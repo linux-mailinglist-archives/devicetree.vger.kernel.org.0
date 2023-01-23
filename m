@@ -2,69 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9AF6677F39
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:16:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98E74677F3B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:16:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232395AbjAWPQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:16:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40632 "EHLO
+        id S232539AbjAWPQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:16:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232388AbjAWPPs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:15:48 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86DC6298C7
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:22 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id k16so9277111wms.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:22 -0800 (PST)
+        with ESMTP id S232414AbjAWPPt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:15:49 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED34A29411
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:24 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id t5so11149532wrq.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wmclShYeTGrkuYn35Gd8osDDw2WC07vGDz3L0CH8Dxc=;
-        b=s+ADnzAU7X7bMVCx2ZnscdcJYo86S2EUoC4eGmVDrxeJpe4W6Taz+BK8elJLns5L1I
-         JQ8OhzpYRz8lsAGxA48HPUeWC6JhS+TEgH1FsNV2iVz+cFNBnAdCCjfvSanuwgkC/yNW
-         bcXiRc4f3nA10S/RbGV/ctyJaPb6HxlB+ao4+tFJAUNqEij43CIipzRlkKd0qlXjnjxZ
-         KnSsIw+kN+PMI6HSv0tWoKmXdvU2WoaLy8Uo9e2/K4o2PTXjfAmoL7E/RJKHLFHY1BAD
-         X+gWO7SusXcNZThkCjezWtPLVBapXSOzdHkGcj6rW7Z5LNKaN+HxHesIQKdQl3CnEL0V
-         D5Hg==
+        bh=kHfgAA7OAQIvUcUxQlsv6bkKlA5JQEtec2yYoAt35BU=;
+        b=suPnw4I/jViCqE4sFKqw5HP2qWRgOG8dZrN6JLySIEDSWF/7nw4xp+pSqiIya4ZYOC
+         6RotZchWHcmiu68TGahWPi1PAxKfLmUay/5xwv2igGU8IgofmeRHWbraGrx22Kuw6rc6
+         ffeDnHiTPXw/6wsnHE463osgiHdKHltVvvA8cEB4PImh0f9Qoy3NZaLEmUH30VO1MfN2
+         LQeE8Ha1N5qFagcbQKJZFFKvxlBaYlzWmxC2QErzuI1FgbptteIj8DKC3N5WD2IvEaZn
+         A2QYBYyf6O/YS7HUHAY5X87/E2ZS8knyUixgAVOi5FJATXhCdF0V2vWmR9cJ4buPY+MP
+         nz2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=wmclShYeTGrkuYn35Gd8osDDw2WC07vGDz3L0CH8Dxc=;
-        b=cyII6pdpIl+FYo95VPTUZkyt3evLELds+xk75PQL/hZu5xSzz2v08zU7/NH2QlOHrK
-         idM62XTKeJRMt5jQGXdHQaJPynCR9/YwJrZBZoU0lTzA9BSp0q26eNQZdu0ryCna7tEQ
-         cB+26r5YDM0aHC3WO2IthBWLRlaV55WNXfmcOUGyQddXl5MafWc/X60zemJqOVjjCMco
-         ym8niGxLahwM5Uq9IIp1P+22cQX9KVbkmWWS1xIMhWfon1MVpyhpPt+88UzzwR2CC2mT
-         sW/vz6vE6vzMhTVeefSDzNEhYG6cjrEWH4zB5WZp1fhTjZikEqA4JkU3VVmJGJc0olQt
-         Ydvg==
-X-Gm-Message-State: AFqh2ko6yGaSsX0v++ImkcVjz7yGHsrEtIIydMXrdKEAJk5tJO/3aFyI
-        x4opnFmHGIsLSz/495dNZvKmsQ==
-X-Google-Smtp-Source: AMrXdXtIOt5r6zgu9MpDD98C9P91qtL78FyKPTVb7dAiZZmoUq7dUXLQCYr4pRU+rHC+yhCG6VGONg==
-X-Received: by 2002:a05:600c:80f:b0:3d2:3d7b:6118 with SMTP id k15-20020a05600c080f00b003d23d7b6118mr24635719wmp.24.1674486920939;
-        Mon, 23 Jan 2023 07:15:20 -0800 (PST)
+        bh=kHfgAA7OAQIvUcUxQlsv6bkKlA5JQEtec2yYoAt35BU=;
+        b=tS89ycKLVGU/uQOaoI0rls9fxPQ8o9pMjviL3xo24dyFs3MURaDzmCTcSXCmCkIaDm
+         D9YK4qP8GZlkQ8GtYSQD1skx3i7xSRlPgyT6JosRKp3IYH7bcbnSQRGmPvQOxW676hNA
+         sa5iINe30nxe1ke877qVK8NabmYKPPfOQKyjd+XgfbHglLvopm8a9NylIPf6BSDKsbcl
+         Mubw+tyuWyEd/SOa6IKt91iZaXt/Wl5B/DNPlmb3ojwLvYN2J4E2HLJ8s8UJvWyIbebu
+         HhU4+D/rZN+Y+eF4l/LgwGGsFxhoN+jkH0U8+X5sLhHm5JhQLgnayBkcjVK6YHNnIBli
+         hnYw==
+X-Gm-Message-State: AFqh2kqyIvWaC7QvSSSarV81/AdQm1N1APRDKGiIJ47gTZXazsoAuSVb
+        aKjaOjgIbOrs3oLVKZj/1UGekw==
+X-Google-Smtp-Source: AMrXdXvL30zLCjVjzFFrYWpWHR1KpGK/rChw+v5yQJJOXNCEjz7e3P6tM92SH75k0U1zPp2cm3Sbyg==
+X-Received: by 2002:a5d:5646:0:b0:2bf:963a:f266 with SMTP id j6-20020a5d5646000000b002bf963af266mr8711203wrw.27.1674486923024;
+        Mon, 23 Jan 2023 07:15:23 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m31-20020a05600c3b1f00b003dafadd2f77sm12017325wms.1.2023.01.23.07.15.20
+        by smtp.gmail.com with ESMTPSA id h9-20020a5d4fc9000000b002bbb2d43f65sm3184124wrw.14.2023.01.23.07.15.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 07:15:20 -0800 (PST)
+        Mon, 23 Jan 2023 07:15:22 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
+To:     Dinh Nguyen <dinguyen@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: ste: align UART node name with bindings
-Date:   Mon, 23 Jan 2023 16:15:18 +0100
-Message-Id: <20230123151519.369158-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: socfpga: align UART node name with bindings
+Date:   Mon, 23 Jan 2023 16:15:21 +0100
+Message-Id: <20230123151521.369188-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -75,398 +73,73 @@ Bindings expect UART/serial node names to be "serial".
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/ste-dbx5x0.dtsi                  | 6 +++---
- arch/arm/boot/dts/ste-href.dtsi                    | 6 +++---
- arch/arm/boot/dts/ste-hrefprev60.dtsi              | 2 +-
- arch/arm/boot/dts/ste-nomadik-nhk15.dts            | 2 +-
- arch/arm/boot/dts/ste-nomadik-s8815.dts            | 2 +-
- arch/arm/boot/dts/ste-nomadik-stn8815.dtsi         | 6 +++---
- arch/arm/boot/dts/ste-snowball.dts                 | 6 +++---
- arch/arm/boot/dts/ste-ux500-samsung-codina-tmo.dts | 6 +++---
- arch/arm/boot/dts/ste-ux500-samsung-codina.dts     | 6 +++---
- arch/arm/boot/dts/ste-ux500-samsung-gavini.dts     | 6 +++---
- arch/arm/boot/dts/ste-ux500-samsung-golden.dts     | 6 +++---
- arch/arm/boot/dts/ste-ux500-samsung-janice.dts     | 6 +++---
- arch/arm/boot/dts/ste-ux500-samsung-kyle.dts       | 6 +++---
- arch/arm/boot/dts/ste-ux500-samsung-skomer.dts     | 6 +++---
- 14 files changed, 36 insertions(+), 36 deletions(-)
+ arch/arm/boot/dts/socfpga.dtsi         | 4 ++--
+ arch/arm/boot/dts/socfpga_arria10.dtsi | 4 ++--
+ arch/arm/boot/dts/socfpga_vt.dts       | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm/boot/dts/ste-dbx5x0.dtsi b/arch/arm/boot/dts/ste-dbx5x0.dtsi
-index a42a4fd69299..ecfaf5a70403 100644
---- a/arch/arm/boot/dts/ste-dbx5x0.dtsi
-+++ b/arch/arm/boot/dts/ste-dbx5x0.dtsi
-@@ -846,7 +846,7 @@ spi3: spi@80129000 {
+diff --git a/arch/arm/boot/dts/socfpga.dtsi b/arch/arm/boot/dts/socfpga.dtsi
+index 3fee80bbae21..4c1d140f40f8 100644
+--- a/arch/arm/boot/dts/socfpga.dtsi
++++ b/arch/arm/boot/dts/socfpga.dtsi
+@@ -905,7 +905,7 @@ timer3: timer3@ffd01000 {
+ 			reset-names = "timer";
+ 		};
+ 
+-		uart0: serial0@ffc02000 {
++		uart0: serial@ffc02000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0xffc02000 0x1000>;
+ 			interrupts = <0 162 4>;
+@@ -918,7 +918,7 @@ uart0: serial0@ffc02000 {
+ 			resets = <&rst UART0_RESET>;
+ 		};
+ 
+-		uart1: serial1@ffc03000 {
++		uart1: serial@ffc03000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0xffc03000 0x1000>;
+ 			interrupts = <0 163 4>;
+diff --git a/arch/arm/boot/dts/socfpga_arria10.dtsi b/arch/arm/boot/dts/socfpga_arria10.dtsi
+index 3b2a2c9c6547..72c55e5187ca 100644
+--- a/arch/arm/boot/dts/socfpga_arria10.dtsi
++++ b/arch/arm/boot/dts/socfpga_arria10.dtsi
+@@ -845,7 +845,7 @@ timer3: timer3@ffd00100 {
+ 			reset-names = "timer";
+ 		};
+ 
+-		uart0: serial0@ffc02000 {
++		uart0: serial@ffc02000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0xffc02000 0x100>;
+ 			interrupts = <0 110 IRQ_TYPE_LEVEL_HIGH>;
+@@ -856,7 +856,7 @@ uart0: serial0@ffc02000 {
  			status = "disabled";
  		};
  
--		serial0: uart@80120000 {
-+		serial0: serial@80120000 {
- 			compatible = "arm,pl011", "arm,primecell";
- 			reg = <0x80120000 0x1000>;
- 			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-@@ -862,7 +862,7 @@ serial0: uart@80120000 {
- 			status = "disabled";
+-		uart1: serial1@ffc02100 {
++		uart1: serial@ffc02100 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0xffc02100 0x100>;
+ 			interrupts = <0 111 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm/boot/dts/socfpga_vt.dts b/arch/arm/boot/dts/socfpga_vt.dts
+index 3d0d806888b7..845ab2cc5ce6 100644
+--- a/arch/arm/boot/dts/socfpga_vt.dts
++++ b/arch/arm/boot/dts/socfpga_vt.dts
+@@ -57,11 +57,11 @@ timer3@ffd01000 {
+ 			clock-frequency = <7000000>;
  		};
  
--		serial1: uart@80121000 {
-+		serial1: serial@80121000 {
- 			compatible = "arm,pl011", "arm,primecell";
- 			reg = <0x80121000 0x1000>;
- 			interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-@@ -878,7 +878,7 @@ serial1: uart@80121000 {
- 			status = "disabled";
+-		serial0@ffc02000 {
++		serial@ffc02000 {
+ 			clock-frequency = <7372800>;
  		};
  
--		serial2: uart@80007000 {
-+		serial2: serial@80007000 {
- 			compatible = "arm,pl011", "arm,primecell";
- 			reg = <0x80007000 0x1000>;
- 			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm/boot/dts/ste-href.dtsi b/arch/arm/boot/dts/ste-href.dtsi
-index 8f1bb78fc1e4..2def50da9eb6 100644
---- a/arch/arm/boot/dts/ste-href.dtsi
-+++ b/arch/arm/boot/dts/ste-href.dtsi
-@@ -45,7 +45,7 @@ bat_therm: thermistor {
- 	};
- 
- 	soc {
--		uart@80120000 {
-+		serial@80120000 {
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u0_a_1_default>;
- 			pinctrl-1 = <&u0_a_1_sleep>;
-@@ -53,13 +53,13 @@ uart@80120000 {
+-		serial1@ffc03000 {
++		serial@ffc03000 {
+ 			clock-frequency = <7372800>;
  		};
  
- 		/* This UART is unused and thus left disabled */
--		uart@80121000 {
-+		serial@80121000 {
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u1rxtx_a_1_default>;
- 			pinctrl-1 = <&u1rxtx_a_1_sleep>;
- 		};
- 
--		uart@80007000 {
-+		serial@80007000 {
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u2rxtx_c_1_default>;
- 			pinctrl-1 = <&u2rxtx_c_1_sleep>;
-diff --git a/arch/arm/boot/dts/ste-hrefprev60.dtsi b/arch/arm/boot/dts/ste-hrefprev60.dtsi
-index 29b67abfc461..9859ee91a15e 100644
---- a/arch/arm/boot/dts/ste-hrefprev60.dtsi
-+++ b/arch/arm/boot/dts/ste-hrefprev60.dtsi
-@@ -17,7 +17,7 @@ button@1 {
- 
- 	soc {
- 		/* Enable UART1 on this board */
--		uart@80121000 {
-+		serial@80121000 {
- 			status = "okay";
- 		};
- 
-diff --git a/arch/arm/boot/dts/ste-nomadik-nhk15.dts b/arch/arm/boot/dts/ste-nomadik-nhk15.dts
-index 8142c017882c..d4bbe9729ced 100644
---- a/arch/arm/boot/dts/ste-nomadik-nhk15.dts
-+++ b/arch/arm/boot/dts/ste-nomadik-nhk15.dts
-@@ -190,7 +190,7 @@ nomadik_clcd: endpoint {
- 		};
- 
- 		/* Activate RX/TX and CTS/RTS on UART 0 */
--		uart0: uart@101fd000 {
-+		uart0: serial@101fd000 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&uart0_nhk_mode>;
- 			status = "okay";
-diff --git a/arch/arm/boot/dts/ste-nomadik-s8815.dts b/arch/arm/boot/dts/ste-nomadik-s8815.dts
-index f16314ffbf4b..c905c2643a12 100644
---- a/arch/arm/boot/dts/ste-nomadik-s8815.dts
-+++ b/arch/arm/boot/dts/ste-nomadik-s8815.dts
-@@ -133,7 +133,7 @@ stw4811@2d {
- 
- 	amba {
- 		/* Activate RXTX on UART 0 */
--		uart0: uart@101fd000 {
-+		uart0: serial@101fd000 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&uart0_s8815_mode>;
- 			status = "okay";
-diff --git a/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi b/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi
-index 1815361fe73c..6816eef39d45 100644
---- a/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi
-+++ b/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi
-@@ -769,7 +769,7 @@ vicb: interrupt-controller@10140020 {
- 			reg = <0x10140020 0x20>;
- 		};
- 
--		uart0: uart@101fd000 {
-+		uart0: serial@101fd000 {
- 			compatible = "arm,pl011", "arm,primecell";
- 			reg = <0x101fd000 0x1000>;
- 			interrupt-parent = <&vica>;
-@@ -782,7 +782,7 @@ uart0: uart@101fd000 {
- 			dma-names = "rx", "tx";
- 		};
- 
--		uart1: uart@101fb000 {
-+		uart1: serial@101fb000 {
- 			compatible = "arm,pl011", "arm,primecell";
- 			reg = <0x101fb000 0x1000>;
- 			interrupt-parent = <&vica>;
-@@ -796,7 +796,7 @@ uart1: uart@101fb000 {
- 			dma-names = "rx", "tx";
- 		};
- 
--		uart2: uart@101f2000 {
-+		uart2: serial@101f2000 {
- 			compatible = "arm,pl011", "arm,primecell";
- 			reg = <0x101f2000 0x1000>;
- 			interrupt-parent = <&vica>;
-diff --git a/arch/arm/boot/dts/ste-snowball.dts b/arch/arm/boot/dts/ste-snowball.dts
-index e2f0cdacba7d..9a3d6546399d 100644
---- a/arch/arm/boot/dts/ste-snowball.dts
-+++ b/arch/arm/boot/dts/ste-snowball.dts
-@@ -308,7 +308,7 @@ mmc@80114000 {
- 			status = "okay";
- 		};
- 
--		uart@80120000 {
-+		serial@80120000 {
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u0_a_1_default>;
- 			pinctrl-1 = <&u0_a_1_sleep>;
-@@ -316,13 +316,13 @@ uart@80120000 {
- 		};
- 
- 		/* This UART is unused and thus left disabled */
--		uart@80121000 {
-+		serial@80121000 {
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u1rxtx_a_1_default>;
- 			pinctrl-1 = <&u1rxtx_a_1_sleep>;
- 		};
- 
--		uart@80007000 {
-+		serial@80007000 {
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u2rxtx_c_1_default>;
- 			pinctrl-1 = <&u2rxtx_c_1_sleep>;
-diff --git a/arch/arm/boot/dts/ste-ux500-samsung-codina-tmo.dts b/arch/arm/boot/dts/ste-ux500-samsung-codina-tmo.dts
-index e036393d5415..463942ae755e 100644
---- a/arch/arm/boot/dts/ste-ux500-samsung-codina-tmo.dts
-+++ b/arch/arm/boot/dts/ste-ux500-samsung-codina-tmo.dts
-@@ -369,7 +369,7 @@ mmc@80005000 {
- 		};
- 
- 		/* GBF (Bluetooth) UART */
--		uart@80120000 {
-+		serial@80120000 {
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u0_a_1_default>;
- 			pinctrl-1 = <&u0_a_1_sleep>;
-@@ -393,7 +393,7 @@ bluetooth {
- 		};
- 
- 		/* GPS UART */
--		uart@80121000 {
-+		serial@80121000 {
- 			status = "okay";
- 			pinctrl-names = "default", "sleep";
- 			/* CTS/RTS is not used, CTS is repurposed as GPIO */
-@@ -403,7 +403,7 @@ uart@80121000 {
- 		};
- 
- 		/* Debugging console UART connected to AB8505 */
--		uart@80007000 {
-+		serial@80007000 {
- 			status = "okay";
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u2rxtx_c_1_default>;
-diff --git a/arch/arm/boot/dts/ste-ux500-samsung-codina.dts b/arch/arm/boot/dts/ste-ux500-samsung-codina.dts
-index 1a6d24a7ccb8..c1ae0e23fe45 100644
---- a/arch/arm/boot/dts/ste-ux500-samsung-codina.dts
-+++ b/arch/arm/boot/dts/ste-ux500-samsung-codina.dts
-@@ -462,7 +462,7 @@ mmc@80005000 {
- 		};
- 
- 		/* GBF (Bluetooth) UART */
--		uart@80120000 {
-+		serial@80120000 {
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u0_a_1_default>;
- 			pinctrl-1 = <&u0_a_1_sleep>;
-@@ -485,7 +485,7 @@ bluetooth {
- 		};
- 
- 		/* GPS UART */
--		uart@80121000 {
-+		serial@80121000 {
- 			status = "okay";
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u1rxtx_a_1_default &u1ctsrts_a_1_default>;
-@@ -505,7 +505,7 @@ gnss {
- 		};
- 
- 		/* Debugging console UART connected to TSU6111RSVR (FSA880) */
--		uart@80007000 {
-+		serial@80007000 {
- 			status = "okay";
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u2rxtx_c_1_default>;
-diff --git a/arch/arm/boot/dts/ste-ux500-samsung-gavini.dts b/arch/arm/boot/dts/ste-ux500-samsung-gavini.dts
-index 5b445fa4c8c0..b21e40da3dfd 100644
---- a/arch/arm/boot/dts/ste-ux500-samsung-gavini.dts
-+++ b/arch/arm/boot/dts/ste-ux500-samsung-gavini.dts
-@@ -417,7 +417,7 @@ mmc@80005000 {
- 		};
- 
- 		/* GBF (Bluetooth) UART */
--		uart@80120000 {
-+		serial@80120000 {
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u0_a_1_default>;
- 			pinctrl-1 = <&u0_a_1_sleep>;
-@@ -439,7 +439,7 @@ bluetooth {
- 		};
- 
- 		/* GPS UART */
--		uart@80121000 {
-+		serial@80121000 {
- 			status = "okay";
- 			pinctrl-names = "default", "sleep";
- 			/* CTS/RTS is not used, CTS is repurposed as GPIO */
-@@ -449,7 +449,7 @@ uart@80121000 {
- 		};
- 
- 		/* Debugging console UART connected to TSU6111RSVR (FSA880) */
--		uart@80007000 {
-+		serial@80007000 {
- 			status = "okay";
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u2rxtx_c_1_default>;
-diff --git a/arch/arm/boot/dts/ste-ux500-samsung-golden.dts b/arch/arm/boot/dts/ste-ux500-samsung-golden.dts
-index 9604695edf53..f736888474e7 100644
---- a/arch/arm/boot/dts/ste-ux500-samsung-golden.dts
-+++ b/arch/arm/boot/dts/ste-ux500-samsung-golden.dts
-@@ -186,7 +186,7 @@ mmc@80005000 {
- 		};
- 
- 		/* BT UART */
--		uart@80120000 {
-+		serial@80120000 {
- 			status = "okay";
- 
- 			pinctrl-names = "default", "sleep";
-@@ -209,7 +209,7 @@ bluetooth {
- 		};
- 
- 		/* GPF UART */
--		uart@80121000 {
-+		serial@80121000 {
- 			status = "okay";
- 
- 			pinctrl-names = "default", "sleep";
-@@ -218,7 +218,7 @@ uart@80121000 {
- 		};
- 
- 		/* Debugging console UART */
--		uart@80007000 {
-+		serial@80007000 {
- 			status = "okay";
- 
- 			pinctrl-names = "default", "sleep";
-diff --git a/arch/arm/boot/dts/ste-ux500-samsung-janice.dts b/arch/arm/boot/dts/ste-ux500-samsung-janice.dts
-index e901cb76b899..6e586e875565 100644
---- a/arch/arm/boot/dts/ste-ux500-samsung-janice.dts
-+++ b/arch/arm/boot/dts/ste-ux500-samsung-janice.dts
-@@ -467,7 +467,7 @@ mmc@80005000 {
- 		};
- 
- 		/* GBF (Bluetooth) UART */
--		uart@80120000 {
-+		serial@80120000 {
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u0_a_1_default>;
- 			pinctrl-1 = <&u0_a_1_sleep>;
-@@ -491,7 +491,7 @@ bluetooth {
- 		};
- 
- 		/* GPS UART */
--		uart@80121000 {
-+		serial@80121000 {
- 			status = "okay";
- 			pinctrl-names = "default", "sleep";
- 			/* CTS/RTS is not used, CTS is repurposed as GPIO */
-@@ -520,7 +520,7 @@ gnss {
- 		};
- 
- 		/* Debugging console UART connected to TSU6111RSVR (FSA880) */
--		uart@80007000 {
-+		serial@80007000 {
- 			status = "okay";
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u2rxtx_c_1_default>;
-diff --git a/arch/arm/boot/dts/ste-ux500-samsung-kyle.dts b/arch/arm/boot/dts/ste-ux500-samsung-kyle.dts
-index 45fab5283a9d..ba4421080b2a 100644
---- a/arch/arm/boot/dts/ste-ux500-samsung-kyle.dts
-+++ b/arch/arm/boot/dts/ste-ux500-samsung-kyle.dts
-@@ -292,7 +292,7 @@ mmc@80005000 {
- 		};
- 
- 		/* GBF (Bluetooth) UART */
--		uart@80120000 {
-+		serial@80120000 {
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u0_a_1_default>;
- 			pinctrl-1 = <&u0_a_1_sleep>;
-@@ -310,7 +310,7 @@ bluetooth {
- 		};
- 
- 		/* GPF UART */
--		uart@80121000 {
-+		serial@80121000 {
- 			status = "okay";
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u1rxtx_a_1_default &u1ctsrts_a_1_default>;
-@@ -333,7 +333,7 @@ gnss {
- 		};
- 
- 		/* Debugging console UART connected to AB8505 USB */
--		uart@80007000 {
-+		serial@80007000 {
- 			status = "okay";
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u2rxtx_c_1_default>;
-diff --git a/arch/arm/boot/dts/ste-ux500-samsung-skomer.dts b/arch/arm/boot/dts/ste-ux500-samsung-skomer.dts
-index 93e5f5ed888d..064d6fee8821 100644
---- a/arch/arm/boot/dts/ste-ux500-samsung-skomer.dts
-+++ b/arch/arm/boot/dts/ste-ux500-samsung-skomer.dts
-@@ -271,7 +271,7 @@ mmc@80005000 {
- 		};
- 
- 		/* GBF (Bluetooth) UART */
--		uart@80120000 {
-+		serial@80120000 {
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u0_a_1_default>;
- 			pinctrl-1 = <&u0_a_1_sleep>;
-@@ -290,7 +290,7 @@ bluetooth {
- 		};
- 
- 		/* GPS UART */
--		uart@80121000 {
-+		serial@80121000 {
- 			status = "okay";
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u1rxtx_a_1_default &u1ctsrts_a_1_default>;
-@@ -313,7 +313,7 @@ gnss {
- 		};
- 
- 		/* Debugging console UART connected to AB8505 USB */
--		uart@80007000 {
-+		serial@80007000 {
- 			status = "okay";
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&u2rxtx_c_1_default>;
 -- 
 2.34.1
 
