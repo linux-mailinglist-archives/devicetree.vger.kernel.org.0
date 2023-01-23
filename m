@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E402F677F1F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:14:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAE79677F22
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:14:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232492AbjAWPOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:14:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40194 "EHLO
+        id S232456AbjAWPOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:14:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232415AbjAWPOF (ORCPT
+        with ESMTP id S232455AbjAWPOF (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:14:05 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803C5298C1
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:13:35 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id e3so11097819wru.13
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:13:35 -0800 (PST)
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65112274AE
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:13:38 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id e3so11097988wru.13
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:13:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PQrsbaoWMRqz/6zcr+gxlvsS+z2BwQ6sf3IkSGfrHIg=;
-        b=DrZkJqf8Lx/ikr2BhspNugPkwAK39BkOWz2sYI9KIsWgPfrmz3MxCIAlThf9eQMRoU
-         0jFC/YJ/sI0ZvwfIPyUKQOcYKAjNBgQZ903EVlEmHIJERffJSuQbWtWQOQplD4P6xzXT
-         vjbQhlypnRB9rEdBr17ZgPxaIuIfR28dVJhRctEPx+xF8mt3sF7Xn9NHD/tFZthCCP3J
-         N9cjFd21wGYV/rg0RlP7ggPd5GuxBxGv3h40ZGahorcp0z8jWPFrnpEgdSfOiixLtos9
-         M3vRGjxu6YizEJCkQmiusSvfeahaywTgfrHTZygFlKjEDsvmsqohvwqFgejQlMBcqr7Z
-         7qeg==
+        bh=t3ne6RtXQyQ2xZokD/urqvcvyti0fGO7udq2uYUhjl4=;
+        b=ydh2zyAbOx3hE1kJAVrZrsefQuSR8jHADM5MS6sVbbZct0miuoC7KZrzryx7Yvz3pM
+         K16L74uX6totfds7MApM5Y7/ETAzTOUeQyjnsu7YJWhRb1e6Y6zZ5iKrI9fd9Z+ik4Dw
+         Mx6ADqiiYoLJz/GmClacx1yB+vBuevPj1fAynGEWxi0kk2i6wujebP0QRpxiZEZK43xC
+         exATrdrAix3IOyt9hk6dBblyy/TJ1Q6w/MLeQTrnrViuZQwlPgnDv/gOlQKlIFR9iUIl
+         KNdDPqCjuLM3V15JfBwvd9jXRLoQtiDIUuoq/41Qp7KCUva41ZYJA99YGXWMG2c0Gh4L
+         +S6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PQrsbaoWMRqz/6zcr+gxlvsS+z2BwQ6sf3IkSGfrHIg=;
-        b=fwstf5fikRqGr3McLoSiaEUvHdeCik1IZZfFR0zppekJtS/3wavFSb0/37/oxLIH6T
-         oZd69fU2RDbKzSwXH5xB+sei8k/PYLItkZRMxjEoCLr18FZxZo1bpIBooD30TX5AoSmw
-         SnYnHWtPf1xgKrKFnXM0eAgHTZpbm3JS5G0/oKHSqm0Ve+lUzI+p3hj5BfTUkYCUK4UL
-         0Q5o0bCrIagms9CrBm+VulhpcxzIRxMCHpSuBhBhEC1NBEDx7qYQ/ERK28X+MqLK0ZNp
-         ywoxq02uTXub8HC8aWrS2aHqnkTyP4RKgWnK4lH5jY9MglXS91FuY42b7hi84EXXjAy1
-         n8Ow==
-X-Gm-Message-State: AFqh2krv3qKjmcPzJ58bXTPAToNJCRj/suNbhw1f1PrkL7rbDw0l5E7g
-        UhfZci+yXpgTwBOaRm2jEt4jJA==
-X-Google-Smtp-Source: AMrXdXs32d96ovFaMtHszqx/rc2fx1h5rF19uqq0L+W7R44WRoQBW69g+WiSqNVd5szTAMO6f6ULYA==
-X-Received: by 2002:adf:f9ca:0:b0:2bf:9424:c163 with SMTP id w10-20020adff9ca000000b002bf9424c163mr9542845wrr.57.1674486815043;
-        Mon, 23 Jan 2023 07:13:35 -0800 (PST)
+        bh=t3ne6RtXQyQ2xZokD/urqvcvyti0fGO7udq2uYUhjl4=;
+        b=SlQzVFVdBqzc/J0bMhIZCO8X1SBGGKL7mnZnfkf+T1RwKllU9ffHkNUnbMUkFOFYHD
+         ivYXgvk0EZGFKkFYQLmEflk0jTB6oW+S3G1l6uls3u8gaiTCxTX+DYuLqeegwh2dkSbp
+         GJA2OZq47sJl6jrRcPqNTa7grXUgEYAco+ma3JMLpowB1XFNWxc50g0+X1inKc9Sjsmi
+         nc5qQ1SIAJCIfnc5Hc/TuDDN9GCQAwjeUrIUHYgTbB/+J+X9xGzQRFRIY72KluiDtZmX
+         Jis0PjfbkH1WSbXbsYaRpPwcO1w8aiuzZCZJDyeOUwaxRDMAoI22i+XxmZRWbr/xoJN9
+         hGsg==
+X-Gm-Message-State: AFqh2krpmqmYQSe3oxBIcolT8N53WV9OSdNYjUPOFE1qFhSJdBaPF8s9
+        nc9yncEELuAZISDgw2sqU5z85w==
+X-Google-Smtp-Source: AMrXdXsviEDUzv3yh0GoS6/F0WtPaxs3pJyKMS9EUX0zyAfxGzLvqcSCV0/YUD0sMeKUCYfXL73u0w==
+X-Received: by 2002:a5d:6404:0:b0:2bc:5115:f072 with SMTP id z4-20020a5d6404000000b002bc5115f072mr23077077wru.50.1674486817972;
+        Mon, 23 Jan 2023 07:13:37 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b002bc7f64efa3sm34737922wrw.29.2023.01.23.07.13.32
+        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b002bc7f64efa3sm34737922wrw.29.2023.01.23.07.13.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 07:13:34 -0800 (PST)
+        Mon, 23 Jan 2023 07:13:37 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -82,9 +82,9 @@ To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
         linux-stm32@st-md-mailman.stormreply.com
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 11/13] dt-bindings: serial: restrict possible child node names
-Date:   Mon, 23 Jan 2023 16:13:00 +0100
-Message-Id: <20230123151302.368277-11-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 12/13] dt-bindings: serial: drop unneeded quotes
+Date:   Mon, 23 Jan 2023 16:13:01 +0100
+Message-Id: <20230123151302.368277-12-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
 References: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
@@ -99,31 +99,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The re-usable serial.yaml schema matches every property with ".*"
-pattern, thus any other schema referencing it will not report unknown
-(unevaluated) properties.  This hides several wrong properties.  It is
-a limitation of dtschema, thus provide a simple workaround: expect
-children to be only of few names matching upstream usage (Bluetooth,
-GNSS, GPS and MCU).
+Cleanup by removing unneeded quotes from refs.  No functional impact
+except adjusting to preferred coding style.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/serial/serial.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/serial/8250.yaml            | 4 ++--
+ .../devicetree/bindings/serial/fsl,s32-linflexuart.yaml       | 2 +-
+ Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml    | 4 ++--
+ Documentation/devicetree/bindings/serial/fsl-lpuart.yaml      | 2 +-
+ Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml   | 2 +-
+ 5 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/serial/serial.yaml b/Documentation/devicetree/bindings/serial/serial.yaml
-index 11e822bf09e2..21992e9a3c2b 100644
---- a/Documentation/devicetree/bindings/serial/serial.yaml
-+++ b/Documentation/devicetree/bindings/serial/serial.yaml
-@@ -96,7 +96,7 @@ then:
-     rts-gpios: false
+diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
+index badaf6d5b6fe..2d0cac642427 100644
+--- a/Documentation/devicetree/bindings/serial/8250.yaml
++++ b/Documentation/devicetree/bindings/serial/8250.yaml
+@@ -203,12 +203,12 @@ properties:
+     deprecated: true
  
- patternProperties:
--  ".*":
-+  "^bluetooth|gnss|gps|mcu$":
-     if:
-       type: object
-     then:
+   aspeed,lpc-io-reg:
+-    $ref: '/schemas/types.yaml#/definitions/uint32'
++    $ref: /schemas/types.yaml#/definitions/uint32
+     description: |
+       The VUART LPC address.  Only applicable to aspeed,ast2500-vuart.
+ 
+   aspeed,lpc-interrupts:
+-    $ref: "/schemas/types.yaml#/definitions/uint32-array"
++    $ref: /schemas/types.yaml#/definitions/uint32-array
+     minItems: 2
+     maxItems: 2
+     description: |
+diff --git a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
+index 8b643bae3c7b..920539926d7e 100644
+--- a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
+@@ -16,7 +16,7 @@ maintainers:
+   - Chester Lin <clin@suse.com>
+ 
+ allOf:
+-  - $ref: "serial.yaml"
++  - $ref: serial.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+index b431a0d1cd6b..4cbe76e1715b 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+@@ -10,8 +10,8 @@ maintainers:
+   - Fabio Estevam <festevam@gmail.com>
+ 
+ allOf:
+-  - $ref: "serial.yaml"
+-  - $ref: "rs485.yaml"
++  - $ref: serial.yaml#
++  - $ref: rs485.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+index 26c3593fa98b..ab81722293d3 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Fugang Duan <fugang.duan@nxp.com>
+ 
+ allOf:
+-  - $ref: "rs485.yaml"
++  - $ref: rs485.yaml#
+   - $ref: serial.yaml#
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml b/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml
+index 14c7594c88c6..6a400a5e6fc7 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Fabio Estevam <festevam@gmail.com>
+ 
+ allOf:
+-  - $ref: "serial.yaml"
++  - $ref: serial.yaml#
+ 
+ properties:
+   compatible:
 -- 
 2.34.1
 
