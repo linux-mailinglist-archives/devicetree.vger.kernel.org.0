@@ -2,98 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05501677F4E
+	by mail.lfdr.de (Postfix) with ESMTP id 9C2F6677F50
 	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:16:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232525AbjAWPQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:16:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43392 "EHLO
+        id S232533AbjAWPQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:16:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232526AbjAWPQE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:16:04 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 882C914489
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:46 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id d14so7442868wrr.9
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:46 -0800 (PST)
+        with ESMTP id S232357AbjAWPQI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:16:08 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 693DD2917E
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:49 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so10863146wmb.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=f0uYFyBWfehvdfPUhzgczyrwyEwalo2faWLflMqRXeM=;
-        b=cyJFF5XYn5Er9Wa52DqnrW9zXgNm0OeFTmjt/j/R0ZKS8oivaVfyCGRSYt+E86fg4o
-         FFfdQSmdD2/9n5bRpSB+jJJBMa9w6EJIN5PqDLAJGS9LeKlpJWjW3Xv1OmljTNPcvq49
-         961HkYs4WR7/0lgRVrCTznfZspJyVCvxkjvwr/dI+If9resaAu5IdR88EYYyMqKlSyx1
-         KpJ+MV5UNdzwztRZwtE8w1AQ53TE7xiqIPjOYNPRVp0DfVF9bTeqwRsvnBwVlANDC42Y
-         CDjyl46M3XQ5jmg0raSKKti4bstddWvOOHR9RtgBKBX82OHV3NHfmkp1RkBEYUU52ctE
-         dS0g==
+        bh=jHbiWI/qNowaHUXXLozc3u0DRaqYJ2VyGTaosWtQNOA=;
+        b=wK/W3MYW9tq1IC1OjKAlCqXosnGSv0EZQtP5beGjlikA2URLQlsoRcAQrRi9AJNmaI
+         Yp8XLy/xwjQH0aS/fqaazGVtURWNrcpiu8Q9ZJoEzddEVXqC+xwXUrjlKyDQbpmzF7qq
+         aynjkgryPnWKY3k6j5Y5i3VSMnRgOIlY+S1TmIAgFAl86BM82A1VAlzG6yCiioQ9g2iw
+         vsL0P7qBohSffB98+GK12L8jIM4XdpIprGw+pVR9grPzZegvlm7KQXuU8i2PBEjggfu8
+         ry9dUvrmspjZ8lbvRnwBUNrFKgLDeotXRSuPn79xPsW/upfTb8ixyAFI0OYcGvVP+goE
+         rT4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=f0uYFyBWfehvdfPUhzgczyrwyEwalo2faWLflMqRXeM=;
-        b=rGhtgxQWlyFfqo1L0/I6SpIP7x9nZgjdPwonjr5JixjnFVgKbxMmChTz2O99pMSLYt
-         lxE6BXfWyyReGoVmVjbri2cbZ6VuMJ698Aw4l9rREJ8yOZbGn+xebmoRC/Z0+8/LDwua
-         a7tmX8t5VPQ61W5AM7N3XbNqvs7vEQpbMarJ0AKM7smTc67brvyjaLEaj0+o8Vm1xbGK
-         LZbEPMwG8h6CPR82iqG4qRFffTPlwzFBOFQ30Jlmk1ECoiOP/Ox0zQTzoOpuAjg7MWlh
-         Re0Y0hdU0WcZSfAsYf74vwE+ZzaBCv/M35zUBD4+6h0honKgpCu4JF3p43J1fthc+fPU
-         8D9A==
-X-Gm-Message-State: AFqh2kr3qiMngzojqBHQhQWqLpavH/dLKX7YZdgfJ+Il5aQ2gPXal8Jw
-        fOgDQJJkJIyJ18wbISqkl2MtJw==
-X-Google-Smtp-Source: AMrXdXsbAbk1BkwWOmduOFyhAo84/oZLdTAs6+ake40n4tMRFKzbhjkI16JICGtEE9PlBUsup5HGjA==
-X-Received: by 2002:adf:ffc3:0:b0:2bb:ede4:5dd4 with SMTP id x3-20020adfffc3000000b002bbede45dd4mr33278813wrs.34.1674486942871;
-        Mon, 23 Jan 2023 07:15:42 -0800 (PST)
+        bh=jHbiWI/qNowaHUXXLozc3u0DRaqYJ2VyGTaosWtQNOA=;
+        b=KkyQzvOegWiPfobFNQ8cqFIs82m8MqSsWl83lWV/EQ2QlXjndm6LKhq/0I/SOMLpmf
+         2Dmi7p1qEe/rDfZURkajcyhehHPNhk/kQvcAxMfXidOn6RCV1YXNsWqVSUr7a4LI3Xbq
+         KC4mfRrotgdmF+VaB1QVd1YQnYoMtPUYIeioWnchre4KhoGxUJDqYIT06XbQrOzb0lpC
+         oT61U6ES8hhHO+ALrfzOu+uhcjUZ0IiCRiMN91N+8icJ743h1pp9G44kPy9MnwmPooiU
+         KHtyyxbdB/3bIHLeSjLHAWC+XzriIzk01wlWYpJxohTw/U+szpc8I2P2oHnLR9NF+JfZ
+         vhWg==
+X-Gm-Message-State: AFqh2krzC4aSdzp9SvUhYS2UdkBifYYx6/V12HT4342BscZntC6vvYCQ
+        g6BUgXMRDk6UYuLs5pp3kLMVYg==
+X-Google-Smtp-Source: AMrXdXtqXtRCQS5ADjwp8FIdQH2xhDxwu6u9W++A+Ckw44vChnBF+RxLS7qT6tyUwCMjhYfiTWNiTQ==
+X-Received: by 2002:a7b:cbd6:0:b0:3db:622:4962 with SMTP id n22-20020a7bcbd6000000b003db06224962mr24328410wmi.21.1674486945000;
+        Mon, 23 Jan 2023 07:15:45 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h3-20020adfe983000000b002bdf5832843sm21726143wrm.66.2023.01.23.07.15.41
+        by smtp.gmail.com with ESMTPSA id t15-20020a05600c198f00b003db32ccf4bfsm10987124wmq.41.2023.01.23.07.15.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 07:15:42 -0800 (PST)
+        Mon, 23 Jan 2023 07:15:44 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Jisheng Zhang <jszhang@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: synaptics: align UART node name with bindings
-Date:   Mon, 23 Jan 2023 16:15:40 +0100
-Message-Id: <20230123151540.369690-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: tegra: drop serial clock-names and reset-names
+Date:   Mon, 23 Jan 2023 16:15:43 +0100
+Message-Id: <20230123151543.369724-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bindings expect UART/serial node names to be "serial".
+The serial node does not use clock-names and reset-names:
 
-  berlin4ct-dmp.dtb: uart@d000: $nodename:0: 'uart@d000' does not match '^serial(@.*)?$'
+  tegra234-sim-vdk.dtb: serial@3100000: Unevaluated properties are not allowed ('clock-names', 'reset-names' were unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/synaptics/berlin4ct.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/nvidia/tegra132.dtsi | 8 --------
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi | 2 --
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi | 4 ----
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi | 8 --------
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi | 2 --
+ 5 files changed, 24 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi b/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi
-index 0949acee4728..dc12350b9fc8 100644
---- a/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi
-+++ b/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi
-@@ -289,7 +289,7 @@ portf: gpio-port@5 {
- 				};
- 			};
+diff --git a/arch/arm64/boot/dts/nvidia/tegra132.dtsi b/arch/arm64/boot/dts/nvidia/tegra132.dtsi
+index c017764bc27e..8b78be8f4f9d 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra132.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra132.dtsi
+@@ -338,9 +338,7 @@ uarta: serial@70006000 {
+ 		reg-shift = <2>;
+ 		interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&tegra_car TEGRA124_CLK_UARTA>;
+-		clock-names = "serial";
+ 		resets = <&tegra_car 6>;
+-		reset-names = "serial";
+ 		dmas = <&apbdma 8>, <&apbdma 8>;
+ 		dma-names = "rx", "tx";
+ 		status = "disabled";
+@@ -352,9 +350,7 @@ uartb: serial@70006040 {
+ 		reg-shift = <2>;
+ 		interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&tegra_car TEGRA124_CLK_UARTB>;
+-		clock-names = "serial";
+ 		resets = <&tegra_car 7>;
+-		reset-names = "serial";
+ 		dmas = <&apbdma 9>, <&apbdma 9>;
+ 		dma-names = "rx", "tx";
+ 		status = "disabled";
+@@ -366,9 +362,7 @@ uartc: serial@70006200 {
+ 		reg-shift = <2>;
+ 		interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&tegra_car TEGRA124_CLK_UARTC>;
+-		clock-names = "serial";
+ 		resets = <&tegra_car 55>;
+-		reset-names = "serial";
+ 		dmas = <&apbdma 10>, <&apbdma 10>;
+ 		dma-names = "rx", "tx";
+ 		status = "disabled";
+@@ -380,9 +374,7 @@ uartd: serial@70006300 {
+ 		reg-shift = <2>;
+ 		interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&tegra_car TEGRA124_CLK_UARTD>;
+-		clock-names = "serial";
+ 		resets = <&tegra_car 65>;
+-		reset-names = "serial";
+ 		dmas = <&apbdma 19>, <&apbdma 19>;
+ 		dma-names = "rx", "tx";
+ 		status = "disabled";
+diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+index 0216b565a370..995276ef55eb 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+@@ -610,9 +610,7 @@ uarta: serial@3100000 {
+ 		reg-shift = <2>;
+ 		interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&bpmp TEGRA186_CLK_UARTA>;
+-		clock-names = "serial";
+ 		resets = <&bpmp TEGRA186_RESET_UARTA>;
+-		reset-names = "serial";
+ 		status = "disabled";
+ 	};
  
--			uart0: uart@d000 {
-+			uart0: serial@d000 {
- 				compatible = "snps,dw-apb-uart";
- 				reg = <0xd000 0x100>;
- 				interrupts = <8>;
+diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+index 5ce2650128b1..b9092790c811 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+@@ -745,9 +745,7 @@ uarta: serial@3100000 {
+ 			reg-shift = <2>;
+ 			interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&bpmp TEGRA194_CLK_UARTA>;
+-			clock-names = "serial";
+ 			resets = <&bpmp TEGRA194_RESET_UARTA>;
+-			reset-names = "serial";
+ 			status = "disabled";
+ 		};
+ 
+@@ -757,9 +755,7 @@ uartb: serial@3110000 {
+ 			reg-shift = <2>;
+ 			interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&bpmp TEGRA194_CLK_UARTB>;
+-			clock-names = "serial";
+ 			resets = <&bpmp TEGRA194_RESET_UARTB>;
+-			reset-names = "serial";
+ 			status = "disabled";
+ 		};
+ 
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+index 980565bf02c9..0e463b3cbe01 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+@@ -618,9 +618,7 @@ uarta: serial@70006000 {
+ 		reg-shift = <2>;
+ 		interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&tegra_car TEGRA210_CLK_UARTA>;
+-		clock-names = "serial";
+ 		resets = <&tegra_car 6>;
+-		reset-names = "serial";
+ 		dmas = <&apbdma 8>, <&apbdma 8>;
+ 		dma-names = "rx", "tx";
+ 		status = "disabled";
+@@ -632,9 +630,7 @@ uartb: serial@70006040 {
+ 		reg-shift = <2>;
+ 		interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&tegra_car TEGRA210_CLK_UARTB>;
+-		clock-names = "serial";
+ 		resets = <&tegra_car 7>;
+-		reset-names = "serial";
+ 		dmas = <&apbdma 9>, <&apbdma 9>;
+ 		dma-names = "rx", "tx";
+ 		status = "disabled";
+@@ -646,9 +642,7 @@ uartc: serial@70006200 {
+ 		reg-shift = <2>;
+ 		interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&tegra_car TEGRA210_CLK_UARTC>;
+-		clock-names = "serial";
+ 		resets = <&tegra_car 55>;
+-		reset-names = "serial";
+ 		dmas = <&apbdma 10>, <&apbdma 10>;
+ 		dma-names = "rx", "tx";
+ 		status = "disabled";
+@@ -660,9 +654,7 @@ uartd: serial@70006300 {
+ 		reg-shift = <2>;
+ 		interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&tegra_car TEGRA210_CLK_UARTD>;
+-		clock-names = "serial";
+ 		resets = <&tegra_car 65>;
+-		reset-names = "serial";
+ 		dmas = <&apbdma 19>, <&apbdma 19>;
+ 		dma-names = "rx", "tx";
+ 		status = "disabled";
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+index b54353f31df5..372be226a7f4 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+@@ -676,9 +676,7 @@ uarta: serial@3100000 {
+ 			reg = <0x0 0x03100000 0x0 0x10000>;
+ 			interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&bpmp TEGRA234_CLK_UARTA>;
+-			clock-names = "serial";
+ 			resets = <&bpmp TEGRA234_RESET_UARTA>;
+-			reset-names = "serial";
+ 			status = "disabled";
+ 		};
+ 
 -- 
 2.34.1
 
