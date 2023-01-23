@@ -2,49 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBCFA6781FE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 17:43:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77BA2678205
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 17:43:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233366AbjAWQnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 11:43:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47576 "EHLO
+        id S233341AbjAWQno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 11:43:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233372AbjAWQnX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 11:43:23 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AA652CC61;
-        Mon, 23 Jan 2023 08:43:04 -0800 (PST)
+        with ESMTP id S233403AbjAWQnb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 11:43:31 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30BB511B;
+        Mon, 23 Jan 2023 08:43:10 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E9A6A60F9B;
-        Mon, 23 Jan 2023 16:43:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FF77C433EF;
-        Mon, 23 Jan 2023 16:42:56 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 626BCB80BA2;
+        Mon, 23 Jan 2023 16:43:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9503C4339C;
+        Mon, 23 Jan 2023 16:43:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674492180;
-        bh=yVswVCV3rpo6pRLtM1xxdVAc0/UTV0lZ6oclhcJUEWs=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=bKuWY1eaAfXuFWEMD8pXG7JEG5uZGmSqXAsAQDJ5+dMKnj+Z+jzKXS36dWDlfAGrO
-         xhoKpPwcbuYrRBnyU94xNn/hmcnuP21SfZJEJfzY71UY11MpXs0UYKRRzUgHo+PUEV
-         HPRYld4mauT7+E4CDLTE6Ux+qm00CO50i9vyVcBYictQmyFdPxPhl8FAB8Hp+6U3tC
-         VkrOA7vef3+K8K1X3Dlnb4tdPtq0KL4iHkDXDGylA0YMnE7DC+6hlYgXg/v2sF675p
-         lqS661UKVFpEbKSM+Z54N0arlJC4+a1saK2IOG2kR7MJ6n2QCwsf5mZ7JfAyp+nJ0m
-         /2tF5v/1yFIwQ==
+        s=k20201202; t=1674492186;
+        bh=JmW7ERfPWXKm8wFtciy8l7lBJ/Sw3XypeD7gPISuKyY=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=Crjh49DXCdmPmqVDmSNvRrnl6Mqg3DbPTsE8OHDkG8CB3A6uEdCAeh8+JgwPZaLZJ
+         JVsgUaCK97elgZnRd8v+d/Gtg59vD3KrslYWFNXGw1FcIFMOMGxeQ9gaaXDLJxvGYl
+         hF4V3k9nOGU1lTilmArbwKFYYXe66eWhRmykY1bdVp0wz9dABtR5v/xOF24MTRfO5y
+         OHPCdFKEBZS7M37fYlMMatTbR4zOwW2cRxKlpFQWo9p3XF6aAPbMrs2PZS0zDv+ldw
+         RZ5dBhc7TuHqiVEL95Q3f3qKWbku7N43nSmtNO7sXbJu2X6vcUGczTifVC5j9TG+QS
+         uuj3IuYLAXjEw==
 From:   Mark Brown <broonie@kernel.org>
-To:     agross@kernel.org, andersson@kernel.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        devicetree@vger.kernel.org,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-In-Reply-To: <1673508617-27410-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1673508617-27410-1-git-send-email-quic_srivasam@quicinc.com>
-Subject: Re: [PATCH] ASoC: qdsp6: audioreach: Add ADSP ready check
-Message-Id: <167449217624.1484410.5375459304519764541.b4-ty@kernel.org>
-Date:   Mon, 23 Jan 2023 16:42:56 +0000
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, Faiz Abbas <faiz.abbas@arm.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        kuninori.morimoto.gx@renesas.com, Anurag.Koul@arm.com,
+        Deepak.Pandey@arm.com
+In-Reply-To: <20230105160346.29018-1-faiz.abbas@arm.com>
+References: <20230105160346.29018-1-faiz.abbas@arm.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: simple-card: Document
+ simple-audio-card,plat
+Message-Id: <167449218337.1484410.12928081501203145393.b4-ty@kernel.org>
+Date:   Mon, 23 Jan 2023 16:43:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -58,11 +57,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 Jan 2023 13:00:17 +0530, Srinivasa Rao Mandadapu wrote:
-> Check for SPF readiness in prm driver probe to avoid race conditions
-> during ADSP pil loading.
-> This patch is to avoid, sending requests to ADSP before it's
-> power domains are up and ready.
+On Thu, 05 Jan 2023 21:33:46 +0530, Faiz Abbas wrote:
+> The simple card driver has support for adding cpu, codec and platform
+> nodes with the simple-audio-card prefix. Add documentation for the plat
+> binding.
 > 
 > 
 
@@ -72,8 +70,8 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: qdsp6: audioreach: Add ADSP ready check
-      commit: 47bc8cf60e926d1fb0c5d990bf6f5e01e9b3352e
+[1/1] ASoC: dt-bindings: simple-card: Document simple-audio-card,plat
+      commit: e7e2b92e609f82cd164209509f852de941e1285b
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
