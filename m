@@ -2,85 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8492B6773C9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 02:29:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EF986773F4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 03:13:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230137AbjAWB3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 20:29:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39168 "EHLO
+        id S230261AbjAWCNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 21:13:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229999AbjAWB3t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 20:29:49 -0500
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8FB9017CF7;
-        Sun, 22 Jan 2023 17:29:47 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.97,238,1669042800"; 
-   d="scan'208";a="150243657"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 23 Jan 2023 10:29:47 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id E8F654126E2B;
-        Mon, 23 Jan 2023 10:29:46 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     iommu@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: Update descriptions for R-Car Gen4
-Date:   Mon, 23 Jan 2023 10:29:40 +0900
-Message-Id: <20230123012940.1250879-1-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
+        with ESMTP id S229817AbjAWCNr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 21:13:47 -0500
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2088.outbound.protection.outlook.com [40.107.14.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62596125A3;
+        Sun, 22 Jan 2023 18:13:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gVGb1NZWFkhg3y8z8JKzAQnrqTeVADllhAkBubUl6d6lpIg13E7UAccX99nw7IltzaAwXUWjACgf+iDZrp75n4NxHrpxZu8rYzOz7dEb0SeMgOtckVXomHcyVNvaYZ+89dXQWVgAK3IPZtSl+7J2EAv6SwJ8YLQprpxi3cAvJ9upwfx3Ztf4ZttZjf3/kkxGYXh3JJRCTfiSXJaWHK0viRO4qFJ+8cyoOfK4ct0jNEez2a4ajTujvr+xm7t8lXdC3NyEOgTXYYMRKY4oRKbh2c3DEjIFdO1vGsbQ8YTraNmRX9K4RtMdHV3PuiAwTjWASA5LzF2VlNp477JVjKXF+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8E0bdYpNvwtkufG5eoMa4bVsSDga1a6QxFBD2NmQS6Y=;
+ b=DvM/xwvfHf4OkNQPCTifxYI6ZqllyyzqAum8zzU1DTUwXsSY7rSSXgUyE1t3HBwOxC7YAQ4cvijd+Hu0wo6gO3ixd55ss5FU0Cxiu18i/5e9Nd1S8ERqqWk8FFS2tgOwNwzBc9lfxVN3wvzybC/GkIzVxlHbfR33v88P6r9rdGlBj4nA815+++aHQmJUH1N1pXs/C7gBsLgLjohjMIEjGVnkZjZK+47qqVFVTXPn14mwIktaoaQNdS2sbqay5ZnZhq9jvwM9nAchOYTtVsR2Mi6Y4e/pWl4YIFj0vh7sl3f3ZZA4HF8j9bOJobLc4m+oIt947G2K8wGZX3hzpY0FvQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8E0bdYpNvwtkufG5eoMa4bVsSDga1a6QxFBD2NmQS6Y=;
+ b=Oisy1AX1WsGWr4PnPJ6kml+B6/AELs3Jcunm/ebY/7P2fMrueqIfrDkX3htvCVrKO946JtxepknH0BP9MLVT3L5ylJh9kVimMnMzBCky0wbGHqZQ/bkO7NEAhE/cHXKdPVe42W/4zj9IaUjBz8mqLKh+7IJ7FioWhQT6gYqyag4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by PAXPR04MB8878.eurprd04.prod.outlook.com (2603:10a6:102:20d::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Mon, 23 Jan
+ 2023 02:13:42 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::5725:92ec:f43e:f5fc]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::5725:92ec:f43e:f5fc%7]) with mapi id 15.20.6002.028; Mon, 23 Jan 2023
+ 02:13:42 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marex@denx.de,
+        linux-imx@nxp.com, krzysztof.kozlowski@linaro.org
+Subject: [PATCH v3 0/2] drm/bridge: fsl-ldb: Add i.MX93 LDB support
+Date:   Mon, 23 Jan 2023 10:14:47 +0800
+Message-Id: <20230123021449.969243-1-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.37.1
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: SGAP274CA0022.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::34)
+ To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|PAXPR04MB8878:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9c84c9de-fa24-42eb-814a-08dafce772f4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kt9s9/Uo+v6BUiJtPjH9JJ2093/qJ4fs6x+Hxkgto/EgUJqCt6vHHUYqE6CgrywZckCk65zEx00gZrFVdFu5AXFnXWYTipJy6hCU8PIXQJBll8PHa8DTi24sQo/IBZpZyfwirJd1RK9GE9pvl1kKvjKUM8WjJuth/DJkYaFvVBk6z04qi0iv9NzIUK7qwxq9U5GJXD5z5P6wv48dvCrYj3lJhU2kkWaZTt+/fYTMeY460BwFC9F0Y0Pb8Iqf3pv1DZw5MsWlmgCtBXw57AUMCHgDFZBc2dpA8EIWb9z4JfjcKNwFqaAhuwR/VVNMBhyQtK6ouUaweLE9ERg6U2pE/R3CJiCp2Xh5lWwlqf9oC3dmiIgxopqNH/w5N1mXU6y/MWp2VH6GWt1ymxl5bcHrYst3OhFdiC5DCnvfxOCJSTZdXeA8Ag97ZGtzqld1t318sYnkGLtL+EJNgiy0fHD78xuwhcYJUO7B8u31x+59hiPn6PJfFFSjOVYthxb08CRxKRZnvylBYS8px75RiXYjaas5KdurcMFymWbv8aeVUxj+RE+XXbSN4nAzcBYHM375Q0Vy7K13HQbK0IELViXr1l3UfB7K4pq9I0SiwSfq8Wxh1qL7KhhLnE6+e0ge3lQSC2Tc+4z87TMhZmVWyUnS+mfSUER+hsFjpYdcuUrC7b2eQd+iY9WzSkRlb05QJmLXOK0oqXrt2LWkzIHNQNWfaw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(366004)(346002)(39860400002)(136003)(396003)(451199015)(36756003)(2906002)(5660300002)(38100700002)(38350700002)(7416002)(8936002)(4326008)(4744005)(41300700001)(83380400001)(52116002)(478600001)(6486002)(66476007)(86362001)(8676002)(26005)(6512007)(186003)(6506007)(316002)(2616005)(66946007)(1076003)(66556008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Z6Ytb/6TkSVEIXpstyJGU729za8tUtMriuhGiVT/hniHrqWV9dBh3FuYJaUW?=
+ =?us-ascii?Q?ObgeZrBvhTiTm0cj5lrMOSxMeZ03EhuwU3kehlmYiqmZACBOZ1xgsGgwp18s?=
+ =?us-ascii?Q?etkoNhrqJZ3+h/aEcs3H/7kV/DQqQN876uiR0bETfDCP52ggZZAJPMGHOikV?=
+ =?us-ascii?Q?bUMuMfs6/z8VjxnDrS7vbgeERbCFReSiLVo5Icze7cgKi9wePgNGOA2FfNO3?=
+ =?us-ascii?Q?rMQiB3rYBmbBDI0dLaNTuxNf8ZtFLDANd6I8xPlTSXBo6qPsflFGwmrQs0Ji?=
+ =?us-ascii?Q?cJm3J/Y67k4hWtsv0LmvLxev3dCdJUqdTPIr0zUumoJVvmjjc2qjmv8VEfnz?=
+ =?us-ascii?Q?Qlt3/+JzT4PhA66ExzJiEHF/PF2napa57JDiQgbpdwdAaNkWXIOfbnTg6t80?=
+ =?us-ascii?Q?pTKe/KsKpvpIWq4Av+yW616gz905Qxqq+Mbs0JKh5Lpfm/CoMDaKwxYSIjb2?=
+ =?us-ascii?Q?AL4+GW1swjSXNCZrzKkHW3mQ4YAL8n6fmgPZ9+Ww7dAa/qNqT3e+PD8FZvOE?=
+ =?us-ascii?Q?7aqZURmGPN+iwkcHhAC8gCmrd4zODIEuL+gbBXEWcwXgu8UEbstnSV+IWuRX?=
+ =?us-ascii?Q?ZSuUXs3UOa+i3vTtZYkvh7zckJtCx/DCkTImfap6cHBd/ZdfFseCdtGZY/P7?=
+ =?us-ascii?Q?leGT+ojkiwaLrMX6GhcAzql8sqJEESntux85jYOq6H7yOTrs5/uzzL4DJhwd?=
+ =?us-ascii?Q?s5Kg1gHkdGKOVq0DChL37OTfvZFBMzajpBYmLgD9uqAWbaDx7RENTJr7jneU?=
+ =?us-ascii?Q?NrT2o+bIU19VccPaaGJgIApMm5Esj159M1hMlCs5KJOW6XcGHoXAAtV31FIV?=
+ =?us-ascii?Q?NWi8gOzqmP8ZnmR9zrxne4M2twR/iArGmqE/WYgsVnB8D59lQ5M73V1hvjB0?=
+ =?us-ascii?Q?MyfNOAR6KsCDYAwJev8PHnQml7hpbAT8XS8cUvQcpI+6UoXYoDBySPMISjHI?=
+ =?us-ascii?Q?FpxRdmcrCIvXWQ2KBBcb+CnGN3+AXiJM11lNuoNk/9uI6QZvfp23Qo8xT2QJ?=
+ =?us-ascii?Q?2tRVNran9ggW8VBRCgqxH0u6X+Q5FO0VvsFSqWIzjg49iipOJ2HPh/jfU+V0?=
+ =?us-ascii?Q?/RhONLafZg8eAowZWh2BikQ/Ltf/EllnAUPRRf+AD56hlbzG+l+x9ftf92Fj?=
+ =?us-ascii?Q?tUcUjCPAwtpYcFM3d5QNflml0kKCj+jgZc684OxmRpRIW2H2MfPMqVLQGtvs?=
+ =?us-ascii?Q?fhP25VXhLr7iYy3U4sAUPrZGBlQMVnHUY37ZTsn8erWjjMtFa0ALO1mVrxn5?=
+ =?us-ascii?Q?FPyVeOook8vjImgwKERlqQBpf41fpJb60CUbjcjnnLnGIHS1Ihl7jx7zBeb4?=
+ =?us-ascii?Q?qlOSAlCN99eZUVGHe9UbsloxvK/YCW18whoGKi07GLHQ6I+UjiXpvFBdpAFS?=
+ =?us-ascii?Q?vuWz2RPwxHT+DZbEmGpWAF0klhKYMSKjxMNf/Lp7wl9lrbQuAy4gR1v1Rr/h?=
+ =?us-ascii?Q?hwaaaAUXMGjgZJ4+qpvgUiFK3waPywoTPNG+XLNqM+wWv6kqvbfdiIMXEgxC?=
+ =?us-ascii?Q?Fibgy2SXdRtW1CVn+6vVV9WTKj1YH4AoWfFhgFwlZLyVK9xR4+M1VXu8mE6D?=
+ =?us-ascii?Q?j0jiCQXDEPfU3QmKKHsRdNwZ7XQA8jPU8zUCDRf6?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9c84c9de-fa24-42eb-814a-08dafce772f4
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2023 02:13:42.5898
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LI7Y/pBXO9YaInLwhG8bg6uKt7zZwlv0ES5U8ATzW1p/7GD7XWtqM70fMf4aFcYd9Mr+x0dDVnR82w9aqyoxBw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8878
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since R-Car Gen4 doens't have the main IPMMU IMSSTR register, but
-each cache IPMMU has own module id. So, update descriptions of
-renesas,ipmmu-main property for R-Car Gen4.
+Hi,
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
- The old R-Car S4-8 datasheet had described IPMMU IMSSTR register, but
- the latest datasheet undocumented the register. So, update the propeties
- description. Note that the second argument is not used on the driver.
- So no behavior change.
+This patch set aims to add i.MX93 LVDS Display Bridge(LDB) support in
+the existing i.MX8mp LDB DRM bridge driver.  Same to i.MX8mp LDB, i.MX93
+LDB is controlled by mediamix blk-ctrl through two registers.  i.MX93
+LDB supports only one LVDS channel(channel 0) while i.MX8mp supports at
+most two.
 
- .../bindings/iommu/renesas,ipmmu-vmsa.yaml          | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+Patch 1/2 adds device tree binding for i.MX93 LDB in the existing
+fsl,ldb.yaml.
 
-diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-index 72308a4c14e7..7f63ecb467e6 100644
---- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-+++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-@@ -76,14 +76,15 @@ properties:
-     items:
-       - items:
-           - description: phandle to main IPMMU
--          - description: the interrupt bit number associated with the particular
--              cache IPMMU device. The interrupt bit number needs to match the main
--              IPMMU IMSSTR register. Only used by cache IPMMU instances.
-+          - description: The interrupt bit number or module id associated with
-+              the particular cache IPMMU device. The interrupt bit number needs
-+              to match the main IPMMU IMSSTR register. Only used by cache IPMMU
-+              instances.
-     description:
-       Reference to the main IPMMU phandle plus 1 cell. The cell is
--      the interrupt bit number associated with the particular cache IPMMU
--      device. The interrupt bit number needs to match the main IPMMU IMSSTR
--      register. Only used by cache IPMMU instances.
-+      the interrupt bit number or module id associated with the particular
-+      cache IPMMU device. The interrupt bit number needs to match the main
-+      IPMMU IMSSTR register. Only used by cache IPMMU instances.
- 
- required:
-   - compatible
+Patch 2/2 adds i.MX93 LDB support in the existing i.MX8mp LDB DRM bridge
+driver.
+
+v2->v3:
+* Provide comment on LVDS_CTRL_LVDS_EN bit in patch 2/2 when defining
+  it's macro. (Marek)
+* Add Marek's R-b tag on patch 2/2.
+
+v1->v2:
+* Drop redundant "device tree binding" from patch 1/2's subject. (Krzysztof)
+* Add Krzysztof's A-b tag on patch 1/2.
+
+Liu Ying (2):
+  dt-bindings: display: bridge: ldb: Add i.MX93 LDB
+  drm/bridge: fsl-ldb: Add i.MX93 LDB support
+
+ .../bindings/display/bridge/fsl,ldb.yaml      | 16 +++++-
+ drivers/gpu/drm/bridge/fsl-ldb.c              | 57 ++++++++++++++++---
+ 2 files changed, 63 insertions(+), 10 deletions(-)
+
 -- 
-2.25.1
+2.37.1
 
