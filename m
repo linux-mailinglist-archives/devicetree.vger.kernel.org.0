@@ -2,66 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF3E4677F47
+	by mail.lfdr.de (Postfix) with ESMTP id 63E08677F46
 	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:16:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232570AbjAWPQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:16:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40802 "EHLO
+        id S232576AbjAWPQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:16:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232439AbjAWPP4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:15:56 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B8A0298E6
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:34 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id r2so11118499wrv.7
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:34 -0800 (PST)
+        with ESMTP id S232454AbjAWPP6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:15:58 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9DB4298FC
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:35 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id j17so9310867wms.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6M5yjSip5+lyc9JyC/BNtyk7E1XKULAsOhJf6nJSZaQ=;
-        b=hciE2g9bHVxJkp55/0nd529QrN5mGQYxmf8CoEeinb94/YV10QcNF0vz5gMM9/vWSw
-         1DxpONycpkRtlm8fDswXh46gf3qqAHar/tC5kcqPZBrvuwLdUgDQ7oAT7dVXUF7bVHID
-         2ytj7OSJqWotyu5fMx3AVtd6S1EnOGiUmM5xlrCjHmalC4Nf3kQ8KdrDWykuFNAlI2EJ
-         y1+T40Q8ac8rihQaXstdTqTtgo68PXFofQY8LbKGw2/1uTDWXBBn4VccZGRGL+pg8olF
-         7vA+DrssKh9EkpWUaP9Y/ckdVyhdv9O+c3YwMIo/Lrf7ryQF1/fNUeQpvBp/JhVFa4qj
-         g3oQ==
+        bh=iWAQjSOi13aBCxQ19WRdS3HTe/RxmEH0TVj9PZ91KvQ=;
+        b=sqGhRhnh5j+fCwU8OnlvQHyyleTPWiYMuSdo/PkbC7+kseo1mRUwT5HM2jwZQe9oCG
+         4xD72Q8t2VaZoElqubUr2mdzyyPN7F6+arU9qjHRbYLkgRTVCmg3MHcNre+f/Yf2Q7TM
+         /580B9/8bOUm7ZOVyYCRQgBB7Vr0MEBtO6YkMXpzx/lqWVY9z+RpnT/ENkzwvToGIGeC
+         GaJuQyzw1L3MTIIobEjLaPR8mEyWGKTdE0AvwkxqK25gADXi+tn1pYUbouzySBWKgNqX
+         bfTqKXgO65hDC9yMY/MUY7X8v8xD0PLgxtQx4EMx+DIGNlACYqM0Fn3y9EpIqVbMTNsH
+         Qa+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6M5yjSip5+lyc9JyC/BNtyk7E1XKULAsOhJf6nJSZaQ=;
-        b=p7g+USEsqCYiq86QKLMxULcgp1sD1IM+NPqXyaboC0AVV2XJk+VWkxWU0ifi2mCDeO
-         5v8wndmUVf4xxaKTATjs6sGPObQhtvkpDZFmQWwTbY7OMNpBWPjRzDK6gbUm2xtRPb1b
-         YQguKi60X/Xxxb/Lb4Topym/B+uVJm430w5umwiBeqbyNo+GksS9F42tGXz5dBVqpZT6
-         JnmPRoDfCEf4V4RySdYcv4oweFzKaVJQGwyjlYSHfchreorijYYBFWzioLpTBkBXfjpQ
-         ulmcEqGtDhc5kd8W5pXK/VokZiCXJx9cNKY0U2J5yCMd0PI6TZrB9AXqtjx+cvbRBGi5
-         IGew==
-X-Gm-Message-State: AFqh2kqDkQWahKtAKfQ0X31xuYEZ8eOh/fyaKsEf+MF05FvmRnOJS0QT
-        6rtD2hY+hhtX6GIEyy960hvDUg==
-X-Google-Smtp-Source: AMrXdXstFmsuhEYFjXSmISJfw7fea55GMjAKfuuayWphh+AyB2FJHv/xDY4A2sW49hh3MVwSnDHVYA==
-X-Received: by 2002:adf:f605:0:b0:2bd:be31:cd77 with SMTP id t5-20020adff605000000b002bdbe31cd77mr20147674wrp.30.1674486931346;
-        Mon, 23 Jan 2023 07:15:31 -0800 (PST)
+        bh=iWAQjSOi13aBCxQ19WRdS3HTe/RxmEH0TVj9PZ91KvQ=;
+        b=Nlw6+R/vRBflM8Xd1hxQ4pj/llL2ymVGPkIgNrltpP5Et3Kdxs5/87kU/1LZmChvvB
+         zpdqB5l3fz+WRFiAm+V3OgaGzkk34wfW4LTWHrkmuz1mnMeQ6jc5aw7BaIs0E8zThUZ6
+         ZdJxJENXuqWJ0CAisrmvlph5p4mam6gRgTepVVlFneI0Eo/9Q1M74JW5/2MQpINdvbLC
+         1SzgoxUgkNEcuKMJP4hQvXKsE9u40pXpSfKZj9jtaZC6xicEDKQpDFAyTOTUrYzWMBHE
+         R352uCe1wH48rr5PGVrqcO2JY+hpYQtc9Gp/2h0BlrJ0jLNCSrkVKmQmsSFG0OA4Ax6C
+         ljww==
+X-Gm-Message-State: AFqh2kqI5JZccht7oYo9Kb1nK0bHzRPu6ipvqP801uvL8XcliLxGBHxA
+        gLdNCf32A2I1rItMhFRdFgtdCA==
+X-Google-Smtp-Source: AMrXdXtThWQ6lVueaaCAa0LEOvsD5PloZt+g2WnEjEBhjrLmQOvc0jbFEVU7lKNZxBP/TRUcXxPwmQ==
+X-Received: by 2002:a05:600c:34d1:b0:3db:1434:c51a with SMTP id d17-20020a05600c34d100b003db1434c51amr18691958wmq.40.1674486933463;
+        Mon, 23 Jan 2023 07:15:33 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id b11-20020a05600018ab00b002be2279f100sm18137132wri.96.2023.01.23.07.15.30
+        by smtp.gmail.com with ESMTPSA id s5-20020a1cf205000000b003b47b80cec3sm10871971wmc.42.2023.01.23.07.15.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 07:15:30 -0800 (PST)
+        Mon, 23 Jan 2023 07:15:33 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: axm55xx: align UART node name with bindings
-Date:   Mon, 23 Jan 2023 16:15:29 +0100
-Message-Id: <20230123151529.369313-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: omap: align UART node name with bindings
+Date:   Mon, 23 Jan 2023 16:15:31 +0100
+Message-Id: <20230123151531.369419-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -72,49 +76,49 @@ Bindings expect UART/serial node names to be "serial".
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/axm55xx.dtsi | 8 ++++----
+ arch/arm/boot/dts/omap-zoom-common.dtsi | 8 ++++----
  1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/axm55xx.dtsi b/arch/arm/boot/dts/axm55xx.dtsi
-index 7676a65059a4..5277890cfad2 100644
---- a/arch/arm/boot/dts/axm55xx.dtsi
-+++ b/arch/arm/boot/dts/axm55xx.dtsi
-@@ -108,7 +108,7 @@ amba {
- 			#size-cells = <2>;
- 			ranges;
- 
--			serial0: uart@2010080000 {
-+			serial0: serial@2010080000 {
- 				compatible = "arm,pl011", "arm,primecell";
- 				reg = <0x20 0x10080000 0 0x1000>;
- 				interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
-@@ -117,7 +117,7 @@ serial0: uart@2010080000 {
- 				status = "disabled";
- 			};
- 
--			serial1: uart@2010081000 {
-+			serial1: serial@2010081000 {
- 				compatible = "arm,pl011", "arm,primecell";
- 				reg = <0x20 0x10081000 0 0x1000>;
- 				interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-@@ -126,7 +126,7 @@ serial1: uart@2010081000 {
- 				status = "disabled";
- 			};
- 
--			serial2: uart@2010082000 {
-+			serial2: serial@2010082000 {
- 				compatible = "arm,pl011", "arm,primecell";
- 				reg = <0x20 0x10082000 0 0x1000>;
- 				interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
-@@ -135,7 +135,7 @@ serial2: uart@2010082000 {
- 				status = "disabled";
- 			};
- 
--			serial3: uart@2010083000 {
-+			serial3: serial@2010083000 {
- 				compatible = "arm,pl011", "arm,primecell";
- 				reg = <0x20 0x10083000 0 0x1000>;
- 				interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm/boot/dts/omap-zoom-common.dtsi b/arch/arm/boot/dts/omap-zoom-common.dtsi
+index 1e96c865d41d..8adc0ef01f6c 100644
+--- a/arch/arm/boot/dts/omap-zoom-common.dtsi
++++ b/arch/arm/boot/dts/omap-zoom-common.dtsi
+@@ -14,7 +14,7 @@ &gpmc {
+ 	 * they probably share the same GPIO IRQ
+ 	 * REVISIT: Add timing support from slls644g.pdf
+ 	 */
+-	uart@3,0 {
++	serial@3,0 {
+ 		compatible = "ns16550a";
+ 		reg = <3 0 8>;	/* CS3, offset 0, IO size 8 */
+ 		bank-width = <2>;
+@@ -50,7 +50,7 @@ uart@3,0 {
+ 		gpmc,wr-data-mux-bus-ns = <45>;
+ 		gpmc,wr-access-ns = <145>;
+ 	};
+-	uart@3,1 {
++	serial@3,1 {
+ 		compatible = "ns16550a";
+ 		reg = <3 0x100 8>;	/* CS3, offset 0x100, IO size 8 */
+ 		bank-width = <2>;
+@@ -61,7 +61,7 @@ uart@3,1 {
+ 		clock-frequency = <1843200>;
+ 		current-speed = <115200>;
+ 	};
+-	uart@3,2 {
++	serial@3,2 {
+ 		compatible = "ns16550a";
+ 		reg = <3 0x200 8>;	/* CS3, offset 0x200, IO size 8 */
+ 		bank-width = <2>;
+@@ -72,7 +72,7 @@ uart@3,2 {
+ 		clock-frequency = <1843200>;
+ 		current-speed = <115200>;
+ 	};
+-	uart@3,3 {
++	serial@3,3 {
+ 		compatible = "ns16550a";
+ 		reg = <3 0x300 8>;	/* CS3, offset 0x300, IO size 8 */
+ 		bank-width = <2>;
 -- 
 2.34.1
 
