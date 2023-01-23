@@ -2,169 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 951A9678682
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:37:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B4D1678685
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:38:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232149AbjAWThs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 14:37:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44120 "EHLO
+        id S232414AbjAWTiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 14:38:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232086AbjAWThp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:37:45 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8943251F
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:37:39 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id f19-20020a1c6a13000000b003db0ef4dedcso11367200wmc.4
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:37:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1OhZ+D+QYAHJTyvBziWpPe0FwSfgzOqFw40HzEYSV/0=;
-        b=wAFt0TMSFvgQUOzquwM5mhRQ0LN/8p/mCfMqdkitO+sojifz2twvshK/7RdpUNNE0G
-         sfVxhtXxGDfAN3/ASBe34ChyKGu+6lwVHoOZXclfhcKUF6/H2g4y7tvScZKZrNqRkUpA
-         j+nrunz1u6wdye2JNrGPhPv6T4JsPKs3HZ2tj3wWMYDAkoHyaAAbk1cKDQGiUEGSjYj7
-         jVgexovoFCoMaBxjPtzvzp7rD/TcCnE+avoh+3/7SeWKcNNeid8lkDHiaGcJ3OHc+Lxg
-         1X8nOJ9y3ihb2/I1ypiS7zcFRsXT60p6ToTsQpiySiLJk7sBGtKdHSKtnq/YBL9VHRyn
-         /S+A==
+        with ESMTP id S231989AbjAWTh7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:37:59 -0500
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99CFEEFAD;
+        Mon, 23 Jan 2023 11:37:54 -0800 (PST)
+Received: by mail-qv1-f43.google.com with SMTP id y8so9860713qvn.11;
+        Mon, 23 Jan 2023 11:37:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1OhZ+D+QYAHJTyvBziWpPe0FwSfgzOqFw40HzEYSV/0=;
-        b=Z05yZHcKGLswCkT1tlkcym5d7zWCZcYa2Bv42BrJPOqTlUR+Z8RxlwqYQiaBLav0KA
-         iDrRM8KStA2Pd8dQzebKSGtGCwxu0fjQVRhDsRu9Q9XuLJUErzsF+unx7LI9056znziu
-         ou6tFX5X5+HCC+xaL3hgjHymrGIDfJwCHgqTOZLrm6MpCxnU/H2k7YS3vRJVuKHM5Jc4
-         JQcFNPVwbfvnDGIjZHPxHykbuib02FvHmZJMohfRAyU9ML7taq7Bs4yI01zGqxTsZpp2
-         oeHpvJcep1z9n0IRUZMovfwXONKw/5USzXNds1xSzFf59FFnLiNlBgTy6pomujADXjXW
-         h4Ag==
-X-Gm-Message-State: AFqh2koSqa3f0WVZzzXqaRe7tVSLkZTSSOd3FtVrz9jRc0dkk8uQj6SU
-        s/EyDyBcugjDUbDdL3B8Da11fg==
-X-Google-Smtp-Source: AMrXdXs/SBkzeUzSBJNT1Gp49ytoZiHX/WkrYsJguNF2i+bufOCj2ALHstW8FBhivh2jeZSrM64xqw==
-X-Received: by 2002:a05:600c:a4c:b0:3dc:d5b:5f6a with SMTP id c12-20020a05600c0a4c00b003dc0d5b5f6amr210384wmq.30.1674502657662;
-        Mon, 23 Jan 2023 11:37:37 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p4-20020a05600c418400b003d98f92692fsm74359wmh.17.2023.01.23.11.37.36
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EETY68yoLxveEOtuKaWLmvNjFo4bmFiVe2JWu/xgnSs=;
+        b=IUiA2f3r79C5cFX5PLhZMah9Ino8OCRhcVqPuYXtIiCMdq/7/yqpKSKonV+Topax+4
+         tcjjdg2hiv1a0MLM6u7syFP9jNymmXuZ/DSSXqzN/Ti0cVy76l/6S6Yb+8MxnYGcOEN4
+         Sskx8GgI7AR6v1Z8bnzufE1aP7eu1QRRD4NjgUDWVOnLExfpwZGYekd32+IkzImTLEhx
+         e9CuEaniZCt/bVpOng54eoS7Pnlwjtu975p8I+ZjwxHVgQc/psDAn7SWeRhfDmdKtoL1
+         OzT/VlORIrwYb4OO3WWxlFRP3wNiEm1rVMylpDGwiUOgoM0G6oNuKIlKzZGM5i5DVCF1
+         9xGw==
+X-Gm-Message-State: AFqh2koMrEOZbvcVgURfyYzWEvpDiKUmN9YE7WSShEVqZx/ivMk2LVpW
+        8qhIsRY/cv1kPl3pWmTax+3adWJoQ6ffIw==
+X-Google-Smtp-Source: AMrXdXvBRSmEoqf6VZPO06csQBhxNNiwgq5sdcIYDHn8DlIOzyRi3+ju0ZC9vLwzPfwUji/KYWqrNQ==
+X-Received: by 2002:ad4:44b1:0:b0:534:b991:26cf with SMTP id n17-20020ad444b1000000b00534b99126cfmr37419036qvt.39.1674502673341;
+        Mon, 23 Jan 2023 11:37:53 -0800 (PST)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id j129-20020a378787000000b00706a1551428sm77957qkd.6.2023.01.23.11.37.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 11:37:37 -0800 (PST)
-Message-ID: <c1a49032-eefd-e028-5a10-845bd0762362@linaro.org>
-Date:   Mon, 23 Jan 2023 20:37:35 +0100
+        Mon, 23 Jan 2023 11:37:52 -0800 (PST)
+Received: by mail-yb1-f173.google.com with SMTP id m199so503376ybm.4;
+        Mon, 23 Jan 2023 11:37:52 -0800 (PST)
+X-Received: by 2002:a25:d88c:0:b0:77a:b5f3:d0ac with SMTP id
+ p134-20020a25d88c000000b0077ab5f3d0acmr2416932ybg.202.1674502672667; Mon, 23
+ Jan 2023 11:37:52 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v2 1/5] drivers: mmc: sdhci-cadence: Reformat the code
-Content-Language: en-US
-To:     Piyush Malgujar <pmalgujar@marvell.com>, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, adrian.hunter@intel.com,
-        ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, yamada.masahiro@socionext.com,
-        devicetree@vger.kernel.org
-Cc:     jannadurai@marvell.com, cchavva@marvell.com,
-        Dhananjay Kangude <dkangude@cadence.com>
-References: <20230123192735.21136-1-pmalgujar@marvell.com>
- <20230123192735.21136-2-pmalgujar@marvell.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230123192735.21136-2-pmalgujar@marvell.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1674499048.git.geert+renesas@glider.be> <Y87f7BPchIcT2BQa@shikoro>
+In-Reply-To: <Y87f7BPchIcT2BQa@shikoro>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 23 Jan 2023 20:37:40 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUF3ZAyp44wagw5vPGy5Qd8+1hF9bt9JwrascmXtLC8Zg@mail.gmail.com>
+Message-ID: <CAMuHMdUF3ZAyp44wagw5vPGy5Qd8+1hF9bt9JwrascmXtLC8Zg@mail.gmail.com>
+Subject: Re: [PATCH 00/12] can: rcar_canfd: Add support for R-Car V4H systems
+To:     Wolfram Sang <wsa@kernel.org>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/01/2023 20:27, Piyush Malgujar wrote:
-> From: Dhananjay Kangude <dkangude@cadence.com>
-> 
+Hi Wolfram,
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
+On Mon, Jan 23, 2023 at 8:29 PM Wolfram Sang <wsa@kernel.org> wrote:
+> > Hence despite the new fixes, the test results are similar to what Ulrich
+> > Hecht reported for R-Car V3U on the Falcon development board before,
+> > i.e. only channels 0 and 1 work (FTR, [2] does not help).
+>
+> IIRC Ulrich reported that the other channels did not even work with the
+> BSP on V3U.
 
-(there is no "drivers:" part)
+Same on V4H.  In fact I'm not surprised, due to lingering bugs like the one
+fixed by "can: rcar_canfd: Fix R-Car V3U GAFLCFG field accesses".
 
-> Reformat the code so that further SD6 changes could be
-> added and it could be isolated from SD4 related code.
-> Also renamed functions accordingly.
+Gr{oetje,eeting}s,
 
-Your code makes much more than just reformat. Split trivial reformating
-and renaming from code which has functional impact.
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> 
-> Signed-off-by: Dhananjay Kangude <dkangude@cadence.com>
-> Co-developed-by: Jayanthi Annadurai <jannadurai@marvell.com>
-> Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
-> Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
-> ---
->  drivers/mmc/host/sdhci-cadence.c | 165 ++++++++++++++++++++-----------
->  1 file changed, 110 insertions(+), 55 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/sdhci-cadence.c b/drivers/mmc/host/sdhci-cadence.c
-> index 6f2de54a598773879bf339aae8450f63e1251509..cb108ff9abda32767b356bb572abdf8626746cd6 100644
-> --- a/drivers/mmc/host/sdhci-cadence.c
-> +++ b/drivers/mmc/host/sdhci-cadence.c
-> @@ -15,14 +15,14 @@
->  
->  #include "sdhci-pltfm.h"
->  
-> -/* HRS - Host Register Set (specific to Cadence) */
-> +/* SD 4.0 Controller HRS - Host Register Set (specific to Cadence) */
->  #define SDHCI_CDNS_HRS04		0x10		/* PHY access port */
-> -#define   SDHCI_CDNS_HRS04_ACK			BIT(26)
-> -#define   SDHCI_CDNS_HRS04_RD			BIT(25)
-> -#define   SDHCI_CDNS_HRS04_WR			BIT(24)
-> -#define   SDHCI_CDNS_HRS04_RDATA		GENMASK(23, 16)
-> -#define   SDHCI_CDNS_HRS04_WDATA		GENMASK(15, 8)
-> -#define   SDHCI_CDNS_HRS04_ADDR			GENMASK(5, 0)
-> +#define SDHCI_CDNS_SD4_HRS04_ACK		BIT(26)
-> +#define SDHCI_CDNS_SD4_HRS04_RD			BIT(25)
-> +#define SDHCI_CDNS_SD4_HRS04_WR			BIT(24)
-> +#define SDHCI_CDNS_SD4_HRS04_RDATA		GENMASK(23, 16)
-> +#define SDHCI_CDNS_SD4_HRS04_WDATA		GENMASK(15, 8)
-> +#define SDHCI_CDNS_SD4_HRS04_ADDR		GENMASK(5, 0)
->  
->  #define SDHCI_CDNS_HRS06		0x18		/* eMMC control */
->  #define   SDHCI_CDNS_HRS06_TUNE_UP		BIT(15)
-> @@ -38,7 +38,7 @@
->  /* SRS - Slot Register Set (SDHCI-compatible) */
->  #define SDHCI_CDNS_SRS_BASE		0x200
->  
-> -/* PHY */
-> +/* PHY registers for SD4 controller */
->  #define SDHCI_CDNS_PHY_DLY_SD_HS	0x00
->  #define SDHCI_CDNS_PHY_DLY_SD_DEFAULT	0x01
->  #define SDHCI_CDNS_PHY_DLY_UHS_SDR12	0x02
-> @@ -59,24 +59,43 @@
->   */
->  #define SDHCI_CDNS_MAX_TUNING_LOOP	40
->  
-> -struct sdhci_cdns_phy_param {
-> +struct sdhci_cdns_priv;
-> +
-> +struct sdhci_cdns_sd4_phy_param {
->  	u8 addr;
->  	u8 data;
->  };
->  
-> +struct sdhci_cdns_data {
-> +	int (*phy_init)(struct sdhci_cdns_priv *priv);
-> +	int (*set_tune_val)(struct sdhci_host *host, unsigned int val);
-> +};
-> +
-> +struct sdhci_cdns_sd4_phy {
-> +	unsigned int nr_phy_params;
-> +	struct sdhci_cdns_sd4_phy_param phy_params[];
-> +};
-
-Defining new structures is not a "reformat".
-
-
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
