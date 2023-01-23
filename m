@@ -2,79 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A258F678140
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 17:21:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31B6B678153
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 17:26:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231488AbjAWQVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 11:21:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54644 "EHLO
+        id S231701AbjAWQ02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 11:26:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230128AbjAWQVd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 11:21:33 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABE80EB71
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:21:30 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id br9so18992517lfb.4
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:21:30 -0800 (PST)
+        with ESMTP id S229676AbjAWQ01 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 11:26:27 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A14502410B
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:26:26 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id kt14so31996805ejc.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:26:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=txdh371/Ub+W12M3IRsoEXByVUgkmKPUORaUx/UnSOw=;
-        b=MMFqhrFgeRVABOgb1w3u1aEsOPVLgjtORkkpV80IrOnLCkFsSJQctcZve4pV63h9W7
-         HI0XCh0LGipTC0bL5liXxoqJstr70DOK4T3PEpaHr7fdltSFx66B5bE4FbRPZLbhRUuA
-         gVKjNFJSjejKuBAklyKn+QmCcSlCuShkqgex2u1nxXQr9MHIeMaPRT92V9Je5HbxQMbL
-         q+lpFPZATUhgZYoNGMVJhA9CY/HjHcEIrrO0CWU++RsknYvGmPK/IPzSBuYr6Omf4Be7
-         pGby3rHRzSVfY79aL9XfvQewyKgGjhbDrDwPYnjHnKoPTJqtrVhcC8KQjVLE76HCQ7h4
-         wPdw==
+        bh=Lab8GS0BsXttrEIIOF5NuoFe5yEpMq3XNGpFEieVFus=;
+        b=oF4rD6jd7XwszpEixf28vjQe5BHyTMqbDMbb0myXN7sNdrC+JWF7pbvptfZlr7EEZu
+         HCOfmKYSseWmcGQZrMEirBmnWHakJk4wj4YR3gUJPzu6+oTCwtccIThIC1wRNBsyWMXu
+         UA1QfgF5DJysHFZOaK/HO8gZU+urYcCCf9sVVohIfO94u8tzqW8/b5tggtzRQWLaG37+
+         7XiMVCZk+HTLtDhrNOTeALvlSHaIBTmfV9EKcQWB56KGNvKJU6JAWK9srHD5ActxyIWq
+         Wrh53EiA1YID0pZF750/wIkqkgG7oi6bMdLd8VzYTe5cs8JuMpY5jjkdg3M6pTcU/vrY
+         3j0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=txdh371/Ub+W12M3IRsoEXByVUgkmKPUORaUx/UnSOw=;
-        b=dj90PW04PqNsavAFWlArxqZ5biMXSEBOl60Uza7ltMq2RJDKQLrhMicZmrlwlbPKVg
-         SJQwxltOYUwnEAnq7YkUgGWbsTv+9Xrpklsw65XJdlYL4yRThVpt1ePriFVaN1s5J7lq
-         51HLUT2hMy+N7MCeWnkDThf7n9AP4YqOa4xLufTWWPLZjYCempH2cnYGRE1fv8sWSTTf
-         qCsWkUwdsq411MWOHcQf6Pkx2FHCxrLUPMUfgixs9f8NE572Okt0c8i6o2ZaRDr/KSbJ
-         VfTeoBo62oyOgnv5vsT6LSJ7oD8Vwsnt3EzITR+Qpl5ZrGxja8MHE87ftecojBMggaNw
-         RDvQ==
-X-Gm-Message-State: AFqh2kqpgJVLrRrtifvj24wxWTPx8v9V17JtDafF5YsLLJPlL8V0+6nK
-        uv4zcpKbjITvmLJ/jmvRQPe8WUjVNcDQ9gbC
-X-Google-Smtp-Source: AMrXdXuX0TFGk1zyt0JSxPTkZJVkcQqaaSyUKzfvHIeCKbO8/SwTMcTHIguAIMxVSIPUP9q8Vki6aw==
-X-Received: by 2002:a17:906:60d0:b0:877:612e:516e with SMTP id f16-20020a17090660d000b00877612e516emr65529550ejk.61.1674490878265;
-        Mon, 23 Jan 2023 08:21:18 -0800 (PST)
+        bh=Lab8GS0BsXttrEIIOF5NuoFe5yEpMq3XNGpFEieVFus=;
+        b=5SYDRL35ddZ4GypmKKVzMuQwf7AhQBFahVMxMVi7SMPIEAY/+NR2QG8TaX6fXyfEYd
+         YGbQUKw29ckNnxkQ74QA7a7i79TCVI4sGM5B1IhzUCqBWGpgDJ+KGYtOYHhgaV7OnP88
+         F9GMl1A3zgnCx0dh3z6NCCldYrYcPNQ7vrh7Mx1otbmy+Xz7NUt9Gp7QTu6h4m+wu8nr
+         jPcNV1oFtuIkt6WEA1yxTk/48AXkuQCM8EDbzfUNV1D0vIHpo8RMwgX2EedVMzSI+XZ4
+         aAG9y9CbG7oR4WeTio9l0nTcarJamJOGxVwQhgb1CirKvOuyvrrLetNlmEtWNvJ27xNq
+         GvJA==
+X-Gm-Message-State: AFqh2krvB/yP1DtUyubONJUYr7HBIvvBHEXYjWG1U30UrvV4UoVe2G2D
+        FG1bQyXV6/oNLxWFVVnCMVWUYQ==
+X-Google-Smtp-Source: AMrXdXsLNSc/qQBnWGQwUSUQ/FzBERvIWV6+ygvsH14hClyHcGWFZRhHiJquSdlWNG5cIgsdJW1j7g==
+X-Received: by 2002:a17:906:78b:b0:7c1:9b07:32cd with SMTP id l11-20020a170906078b00b007c19b0732cdmr26403478ejc.39.1674491186264;
+        Mon, 23 Jan 2023 08:26:26 -0800 (PST)
 Received: from [192.168.1.101] (abxi24.neoplus.adsl.tpnet.pl. [83.9.2.24])
-        by smtp.gmail.com with ESMTPSA id 17-20020a170906219100b008536ff0bb44sm18660955eju.109.2023.01.23.08.21.16
+        by smtp.gmail.com with ESMTPSA id f6-20020a17090631c600b008779b5c7db6sm5411656ejf.107.2023.01.23.08.26.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 08:21:17 -0800 (PST)
-Message-ID: <133139cd-b8e4-3865-ddbf-9fa7d244ddef@linaro.org>
-Date:   Mon, 23 Jan 2023 17:21:15 +0100
+        Mon, 23 Jan 2023 08:26:25 -0800 (PST)
+Message-ID: <2f0881e3-9f6c-1c77-c6ca-3e291b37bd12@linaro.org>
+Date:   Mon, 23 Jan 2023 17:26:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH v4 0/6] Add MSM8939 SoC support with two devices
+Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: sm6350: Use specific qmpphy
+ compatible
 Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org, djakov@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
-        leo.yan@linaro.org, dmitry.baryshkov@linaro.org
-References: <20230123023127.1186619-1-bryan.odonoghue@linaro.org>
- <42baa874-c926-9111-b0b3-2df2562d8de6@linaro.org>
- <Y86CPmgvAi+kChQI@gerhold.net>
+        Johan Hovold <johan+linaro@kernel.org>
+References: <20230120-sm6350-usbphy-v4-0-4d700a90ba16@fairphone.com>
+ <20230120-sm6350-usbphy-v4-3-4d700a90ba16@fairphone.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <Y86CPmgvAi+kChQI@gerhold.net>
+In-Reply-To: <20230120-sm6350-usbphy-v4-3-4d700a90ba16@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,99 +85,109 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 23.01.2023 13:49, Stephan Gerhold wrote:
-> On Mon, Jan 23, 2023 at 11:08:28AM +0000, Bryan O'Donoghue wrote:
->> V4:
->> - Left _AO for wcnss as downstream reference uses this - Bjorn/Bryan
+On 23.01.2023 14:29, Luca Weiss wrote:
+> The sc7180 phy compatible works fine for some cases, but it turns out
+> sm6350 does need proper phy configuration in the driver, so use the
+> newly added sm6350 compatible.
 > 
-> Downstream is just an implementation and contains plenty of misleading
-> or even wrong information. IMO Bjorn is right here that VDDMX_AO is not
-> a logical choice.
+> Because the sm6350 compatible is using the new binding, we need to
+> change the node quite a bit to match it.
 > 
-> The _AO (active-only) suffix means that the votes are only applied when
-> the processor making the vote is "active", that is when the Linux CPUs
-> are not in deep cpuidle mode.
+> This fixes qmpphy init when no USB cable is plugged in during bootloader
+> stage.
 > 
-> For WCNSS the goal is to keep the necessary power domains active while
-> WCNSS is booting up, until it is able to make its own votes (handover).
-> The WCNSS firmware might then vote for VDDMX_AO internally because VDDMX
-> is not needed when the WCNSS CPU is suspended.
-> 
-> However, I would expect that the meaning is totally different when the
-> same vote is made from Linux. When Linux votes for _AO the "active"
-> state likely refers to the Linux CPUs, instead of the WCNSS CPU when
-> made from the WCNSS firmware.
-> 
-> Why does it work in downstream then? I would just assume "side effects":
->   - Something else votes for VDDMX without _AO while WCNSS is booting
->   - The Linux CPUs don't go into deep cpuidle state during startup
->     - In particular, note how downstream often has "lpm_levels.sleep_disabled=1"
->       on the kernel command line. This disables all cpuidle states until
->       late after boot-up when userspace changes this setting. Without
->       cpuidle, VDDMX_AO is identical to VDDMX.
-> 
-> Please change it to VDDMX (without _AO). It will most likely not make
-> any difference
-Wouldn't it make wake-on-wifi-with-cpus-off possible?
-(obviously given the wlan chip supports it and can ping
-the cpu etc etc)
+> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
-
- but IMO it is logcially more correct and less
-> confusing/misleading. :)
+>  arch/arm64/boot/dts/qcom/sm6350.dtsi | 54 +++++++++++-------------------------
+>  1 file changed, 16 insertions(+), 38 deletions(-)
 > 
->> - Leaves dummy power-domain reference in cpu defintion as this is a
->>   required property and the dt checker complains - Stephan/Bryan
+> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> index 8224adb99948..128dbbe23ef5 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> @@ -13,6 +13,7 @@
+>  #include <dt-bindings/interconnect/qcom,sm6350.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/mailbox/qcom-ipcc.h>
+> +#include <dt-bindings/phy/phy-qcom-qmp.h>
+>  #include <dt-bindings/power/qcom-rpmpd.h>
+>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>  
+> @@ -1314,49 +1315,26 @@ usb_1_hsphy: phy@88e3000 {
+>  			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+>  		};
+>  
+> -		usb_1_qmpphy: phy@88e9000 {
+> -			compatible = "qcom,sc7180-qmp-usb3-dp-phy";
+> -			reg = <0 0x088e9000 0 0x200>,
+> -			      <0 0x088e8000 0 0x40>,
+> -			      <0 0x088ea000 0 0x200>;
+> -			status = "disabled";
+> -			#address-cells = <2>;
+> -			#size-cells = <2>;
+> -			ranges;
+> +		usb_1_qmpphy: phy@88e8000 {
+> +			compatible = "qcom,sm6350-qmp-usb3-dp-phy";
+> +			reg = <0 0x088e8000 0 0x3000>;
+>  
+>  			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+> -				 <&xo_board>,
+> -				 <&rpmhcc RPMH_QLINK_CLK>,
+> -				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
+> -			clock-names = "aux", "cfg_ahb", "ref", "com_aux";
+> +				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> +			clock-names = "aux", "ref", "com_aux", "usb3_pipe";
+> +
+> +			power-domains = <&gcc USB30_PRIM_GDSC>;
+>  
+> -			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
+> -				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
+> +			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
+> +				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
+>  			reset-names = "phy", "common";
+>  
+> -			usb_1_ssphy: usb3-phy@88e9200 {
+> -				reg = <0 0x088e9200 0 0x200>,
+> -				      <0 0x088e9400 0 0x200>,
+> -				      <0 0x088e9c00 0 0x400>,
+> -				      <0 0x088e9600 0 0x200>,
+> -				      <0 0x088e9800 0 0x200>,
+> -				      <0 0x088e9a00 0 0x100>;
+> -				#clock-cells = <0>;
+> -				#phy-cells = <0>;
+> -				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> -				clock-names = "pipe0";
+> -				clock-output-names = "usb3_phy_pipe_clk_src";
+> -			};
+> +			#clock-cells = <1>;
+> +			#phy-cells = <1>;
+>  
+> -			dp_phy: dp-phy@88ea200 {
+> -				reg = <0 0x088ea200 0 0x200>,
+> -				      <0 0x088ea400 0 0x200>,
+> -				      <0 0x088eaa00 0 0x200>,
+> -				      <0 0x088ea600 0 0x200>,
+> -				      <0 0x088ea800 0 0x200>;
+> -				#phy-cells = <0>;
+> -				#clock-cells = <1>;
+> -			};
+> +			status = "disabled";
+>  		};
+>  
+>  		dc_noc: interconnect@9160000 {
+> @@ -1430,7 +1408,7 @@ usb_1_dwc3: usb@a600000 {
+>  				snps,dis_enblslpm_quirk;
+>  				snps,has-lpm-erratum;
+>  				snps,hird-threshold = /bits/ 8 <0x10>;
+> -				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
+> +				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
+>  				phy-names = "usb2-phy", "usb3-phy";
+>  			};
+>  		};
 > 
-> It's only required though because you forgot to drop the DT schema patch
-> (3/4) when I suggested half a year ago that you make the MSM8939
-> cpufreq-qcom-nvmem changes together with the CPR stack [1]. :/
-> 
-> Anyway, it looks like qcom-cpufreq-nvmem.yaml requiring "cpr" power
-> domain unconditionally is a mistake anyway for multiple platforms.
-> [2] was recently submitted to fix this so that patch should allow you to
-> drop the dummy nodes. :)
-> 
-> [1]: https://lore.kernel.org/linux-arm-msm/Ysf8VRaXdGg+8Ev3@gerhold.net/
-> [2]: https://lore.kernel.org/linux-arm-msm/20230122174548.13758-1-ansuelsmth@gmail.com/
-> 
->> - Left MDSS interconnects. I don't see a bug to fix here - Stephan/Bryan
-> 
-> Fair enough, if you would like to keep it I will likely send a revert
-> for the MSM8939 icc_sync_state() though. Because clearly it breaks
-> setups without a display and I don't see how one would fix that from the
-> device tree.
-> 
-> Also: The undocumented "register-mem" interconnect is still there. :)
-> 
->> - power-domain in MDSS - dropped its not longer required after
->>   commit a6f033938beb ("dt-bindings: msm: dsi-controller-main: Fix
->> power-domain constraint") - Stephan
-> 
-> Thanks!
-> 
->> - Adds gcc dsi1pll and dsi1pllbyte to gcc clock list.
->>   Reviewing the silicon documentation we see dsi0_phy_pll is used to clock
->>   GCC_BYTE1_CFG_RCGR : SRC_SEL
->>   Root Source Select
->>   000 : cxo
->>   001 : dsi0_phy_pll_out_byteclk
->>   010 : GPLL0_OUT_AUX
->>   011 : gnd
->>   100 : gnd
->>   101 : gnd
->>   110 : gnd
->>   111 : reserved - Stephan/Bryan
->>
-> 
-> I'm confused. Are you not contradicting yourself here? You say that
-> dsi0_phy_pll (dsi ZERO) is used to clock GCC_BYTE1_CFG_RCGR. Then why
-> do you add dsi1_phy_pll (dsi ONE) to the gcc clock list?
-> 
-> To me this looks like a confirmation of what downstream does, that both
-> DSI byte clocks are actually sourced from the dsi0_phy and the PLL of
-> dsi1_phy is not used.
-> 
-> Thanks,
-> Stephan
