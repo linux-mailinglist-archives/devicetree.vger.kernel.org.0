@@ -2,419 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C013E67853F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 19:48:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C55D767854B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 19:52:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231908AbjAWSsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 13:48:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58432 "EHLO
+        id S232183AbjAWSwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 13:52:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231719AbjAWSsO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 13:48:14 -0500
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BEBD14497
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 10:48:12 -0800 (PST)
-Received: by mail-io1-xd33.google.com with SMTP id c66so581008iof.12
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 10:48:12 -0800 (PST)
+        with ESMTP id S232195AbjAWSwu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 13:52:50 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08040BBB3
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 10:52:46 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so11296046wml.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 10:52:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:message-id:in-reply-to:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8e3NreOUzZjT8qz/39bUI0daiN7IxAk6v8AOVW6gkQI=;
-        b=dxzUMmkzRd7l3i2CoAsAN1xYoMbNhtiwbDJkTErNMRTA9ILan8HqJdEc3utiemGRRY
-         hduNhg9AOtx9+stYwmZ7x3SeLmOrjN2dyJ+EA6RbwxtHlMOodp87wHcyIqyVVpWRU0Wq
-         yfOXb56tNwgKNx0/PAmpsoWgwO2eDq4CrLsAYCFHxS5Ibv8ZRlGgStP0xL+aR0TAgs+X
-         fmRxOqjmO8z0pkREAcouyIzRyhkjCAnHodB1J8q0TvWrVqB5ZhN6MNm+fbe/vEQOStP+
-         2ORdX8A0PA3S1p1Iudc80+39nxg4b+kLEzJQpLbPpiwVrq8vnKSzdnl09cGUzmwyoPWM
-         Ri6w==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=h2cQoEb75EczKKjAWZYjz35p/GfaCp/uIVzj7rfHuXk=;
+        b=XpG4yI3/+KzK/651AVNtQXF87SFqCv1BdZOVTWxCyvnrqmLbAjPrgKR+g9KZCHxmwP
+         5hA3Rex9rTzQcVLyxyhmT/r5+97QWNHcMbdAO6vNUNyGCiSKApgKASAYT8+2qhBWhPw/
+         hFytiZqMYyzkz+zUTebHScKj0hOoa8p9eNVsDrNu0V708RlYF6nHdX3s92uaTAn+gI9b
+         hiniRGrVYil/QLPWoXnuIsP72DwIecqwbDFcaIhgFq3k3Trohb6m9T9HBotVrrYCfSeX
+         cTfDt8omtqQIlRJI08xFo4saKDNIZy/IEX27ZG/HrObQePeqLgmNpuukPZmI9VdAzOKM
+         mIpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:references:message-id:in-reply-to:subject:cc:to:from
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8e3NreOUzZjT8qz/39bUI0daiN7IxAk6v8AOVW6gkQI=;
-        b=7N2IubArbz8kYdavF0wsrrPN/LcZd+ThYz0UwdlHw2yVUFd4prPXssZzaAbSAGydmj
-         NrX14GBWY5dsd3yLbsy1V64p43GnP+j3b6Ad5M7qbtDl4S+o/VeIeajfqyCGP7/44VrH
-         aXATMBp4CFmveaNi6HMZXCQ3KdrP+Dda8FWdqg/gKZ51eqiA6LTWtM+wq8suXPxiMfmI
-         yiUwyV4mNbkNmiOV8JEe9/LpJcjklCxYqxX7TUijPxgUJ1lK6wZ85hLqfE9A/5DIO2yv
-         i5dQkKZslLtnDEAnEIVR85GJiftSR6qpWGWklNUlrcTJ1eNl1aLxl/bYev9j4aRanZjU
-         qJ4Q==
-X-Gm-Message-State: AFqh2kqaH20dFbCeT/Q0fXagMQc0apSsnsx+++E9s1g6f+iE+YsdX9N6
-        5v5FtZLfdF578I6LggHHGgs=
-X-Google-Smtp-Source: AMrXdXtAL+nNSP9vH6V/ZZPjBeWJAdNKCKSptXmWdQRNNVCu9jh1eix4aLQygPuKDubYAYpQcD5wPA==
-X-Received: by 2002:a6b:4e12:0:b0:6dc:5e15:c6e4 with SMTP id c18-20020a6b4e12000000b006dc5e15c6e4mr18092928iob.11.1674499691349;
-        Mon, 23 Jan 2023 10:48:11 -0800 (PST)
-Received: from rivendell (static.167.156.21.65.clients.your-server.de. [65.21.156.167])
-        by smtp.gmail.com with ESMTPSA id u27-20020a02b1db000000b003a068d00373sm9749110jah.138.2023.01.23.10.48.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 10:48:10 -0800 (PST)
-Date:   Mon, 23 Jan 2023 19:48:08 +0100 (CET)
-From:   Enrico Mioso <mrkiko.rs@gmail.com>
-To:     Pali <pali@kernel.org>
-cc:     devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: add DTS for GL.iNet GL-MV1000
-In-Reply-To: <20221128185256.awiuxvbzpairsdo5@pali>
-Message-ID: <95e775fe-d899-86c3-9c81-df2fe1208f81@gmail.com>
-References: <20221122063017.924-1-mrkiko.rs@gmail.com> <20221128185256.awiuxvbzpairsdo5@pali>
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=h2cQoEb75EczKKjAWZYjz35p/GfaCp/uIVzj7rfHuXk=;
+        b=2kOf7lYb0LbtUqjYPJHykDD8SvC4QUNLCkZJCug4KHC/jm0KQMduwZktFoWh9mR8I+
+         UJXjmOHSGrrIXiLMKH5QcqnWBalw3ClCVCeIfk7XyyUCbZO5BN+IQZvZqd4M+QrWeeal
+         PLoo+Fd7bwzfCxtwTQKT6ppKRC9hCvVXqr8kWml6T6fGi+fQaFKIOUTZRYeCQDoUm4eU
+         u8qAaymQLXhvapwL6/nGg8C/MWwPFodFtMZ+y79O0bh9EM3X4idUYtzJlkQuEWAvXYQv
+         zA1rla4551fJbcLH45Zqxpab+YtWFDNS4FMPc5rfJaLNHqynt36UZOMF3Uo4KSy5dlKR
+         n6sA==
+X-Gm-Message-State: AFqh2krv0zyjTSgdCzGSaM5DLpRQloBqfaN2MJgU/tE73NzonNsZ2vGL
+        2GQ2zN0AkemqvvHwa4/kL1J9cw==
+X-Google-Smtp-Source: AMrXdXsjZJWtWk61ODR4rKw5oKMzXA5JdwT6IU1QwVh5Rfk+vxs//732Udxrc+zaRJ/w1+a/X2T5ow==
+X-Received: by 2002:a05:600c:4d81:b0:3d0:6c60:b4d1 with SMTP id v1-20020a05600c4d8100b003d06c60b4d1mr26206864wmp.6.1674499965361;
+        Mon, 23 Jan 2023 10:52:45 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id p1-20020a1c7401000000b003b3307fb98fsm11165968wmc.24.2023.01.23.10.52.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 10:52:44 -0800 (PST)
+Message-ID: <b3f563e3-6ecf-75b8-0978-d00358bb8ac2@linaro.org>
+Date:   Mon, 23 Jan 2023 19:52:42 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,LOTS_OF_MONEY,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v8 7/9] dt-bindings: timer: mediatek,mtk-timer: add MT8365
+ SoC bindings
+Content-Language: en-US
+To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, tglx@linutronix.de,
+        maz@kernel.org, lee@kernel.org, linus.walleij@linaro.org,
+        matthias.bgg@gmail.com, gregkh@linuxfoundation.org,
+        daniel.lezcano@linaro.org, chunfeng.yun@mediatek.com,
+        angelogioacchino.delregno@collabora.com,
+        allen-kh.cheng@mediatek.com, nfraprado@collabora.com,
+        andrew@lunn.ch, gtk3@inbox.ru, sean.wang@mediatek.com,
+        zhiyong.tao@mediatek.com
+References: <20230123163833.1007181-1-bero@baylibre.com>
+ <20230123163833.1007181-8-bero@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230123163833.1007181-8-bero@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-
-On Mon, 28 Nov 2022, Pali wrote:
-
-> Date: Mon, 28 Nov 2022 19:52:56
-> From: Pali <pali@pali.im>
-> To: Enrico Mioso <mrkiko.rs@gmail.com>
-> Subject: Re: [PATCH] arm64: dts: marvell: add DTS for GL.iNet GL-MV1000
+On 23/01/2023 17:38, Bernhard Rosenkränzer wrote:
+> Add binding description for mediatek,mt8365-systimer
 > 
-> Hello! Thanks for the patch. I have a few comments.
->
-> Ideally, for kernel patches, please CC my kernel address pali@kernel.org
-> so my email filter correctly put PATCH into correct folder, so I will
-> see it in review queue :-)
-
-Thanks again, sorry for the inconvenience.
-
->
-> About partition generally, I would suggest to completely drop all
-> "read-only" attributes (except factory). I think that "read-only" is
-> useful for some calibration data which should never be erased or
-> updated. So factory with MAC address should be marked as read-only. But
-> on the other hand, firmware, dtb and system rootfs is something
-> upgradable - therefore should be read/write.
-
-Ok, thanks. I removed all the read-only markers except on the factory partitions. The u-boot-env partition will be marked read-only by the kernel itself due to it not ending at an erase/write boundary block.
-Still, updating environment on this device maybe useful when e.g.: installing a general purpose distribution as opposed to OpenWrt in the eMMC.
-
->
-> Ad first partition@0: I would suggest to use label "firmware" as this
-> name is used on all A3720 devices because at offset 0 is not u-boot, but
-> A3720 firmware (TIM). And this partition contains concatenation of TIM,
-> WTMI, ARM trusted firmware and U-Boot. Hence generic firmware name is
-> better.
-
-ACK, thanks a lot.
-
->
-> Ad partition partition@100000: I would suggest to name it just "dtb".
-> Device Tree Blob is system independent and hence can be used by any
-> operating system or program (U-Boot, Linux, BSD, etc...).
-
-Sure.
-
->
-> Anyway, what is stored on "gl-firmware" partition and what on
-> "gl-firmware-jffs2" partition? JFFS2 is file systems, mostly used for
-> the system as root file system. If this is truth than better label could
-> be "rootfs"?
-
-Well - here "firmware" is meant in OpenWrt "conventions" in a sense: so:
-- gl-firmware: consists of an u-boot legacy uImage (kernel+squashfs root filesystem)
-Squashfs is read-only of course, so OpenWrt uses overlayfs to store changes.
-- gl-firmware-jffs2: is used as an overlay to store changes, and contains a JFFS2 filesystem (which is OK, since this is stored in NOR flash).
-
-So to recap:
-- openwrt boots from eMMC and is stored there
-- here we are definiting the partitions for the NOR flash which contains a copy of the "stock" gl.iNet firmware (actually a modified copy of OpenWRt, with features such as automatic firmware updates).
-I prepended them with "gl-" to signal the fact they're stock from gl.iNet, but don't know how to better name them.
+> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt 
 
 
->
-> Recently I introduced updated DTS file for old Turris 1.x routers where
-> I tried to use more descriptive partitions labels and also put comments:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/powerpc/boot/dts/turris1x.dts
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I had a look at it. Thanks!
->
-> On Tuesday 22 November 2022 07:30:17 Enrico Mioso wrote:
->> The GL-MV1000 (Brume) is a small form-factor gateway router.
->> It is based on the Marvell Armada 88F3720 SOC (1GHz), has 3 gigabit ethernet ports, 1 GB RAM, 16M SPI flash, 8GB eMMC and an uSD slot, as well as an USB 2.0 type A and an USB 3.0 type C port.
->>
->> Signed-off-by: Enrico Mioso <mrkiko.rs@gmail.com>
->> CC: Pali <pali@pali.im>
->> ---
->>  arch/arm64/boot/dts/marvell/Makefile          |   1 +
->>  .../dts/marvell/armada-3720-gl-mv1000.dts     | 248 ++++++++++++++++++
->>  2 files changed, 249 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
->>
->> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
->> index 058237681fe5..79ac09b58a89 100644
->> --- a/arch/arm64/boot/dts/marvell/Makefile
->> +++ b/arch/arm64/boot/dts/marvell/Makefile
->> @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
->>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
->>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7.dtb
->>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
->> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-gl-mv1000.dtb
->>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
->>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-uDPU.dtb
->>  dtb-$(CONFIG_ARCH_MVEBU) += armada-7040-db.dtb
->> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
->> new file mode 100644
->> index 000000000000..72d7267ccd08
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
->> @@ -0,0 +1,248 @@
->> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
->> +
->> +/dts-v1/;
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/input/input.h>
->> +#include "armada-372x.dtsi"
->> +
->> +/ {
->> +	model = "GL.iNet GL-MV1000";
->> +	compatible = "glinet,gl-mv1000", "marvell,armada3720";
->> +
->> +	aliases {
->> +		led-boot = &led_power;
->> +		led-failsafe = &led_power;
->> +		led-running = &led_power;
->> +		led-upgrade = &led_power;
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +
->> +	memory@0 {
->> +		device_type = "memory";
->> +		reg = <0x00000000 0x00000000 0x00000000 0x20000000>;
->> +	};
->> +
->> +	vcc_sd_reg1: regulator {
->> +		compatible = "regulator-gpio";
->> +		regulator-name = "vcc_sd1";
->> +		regulator-min-microvolt = <1800000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		regulator-boot-on;
->> +
->> +		gpios-states = <0>;
->> +		states = <1800000 0x1
->> +			3300000 0x0>;
->> +		enable-active-high;
->> +	};
->> +
->> +	keys {
->> +		compatible = "gpio-keys";
->> +
->> +		reset {
->> +			label = "reset";
->> +			linux,code = <KEY_RESTART>;
->> +			gpios = <&gpionb 14 GPIO_ACTIVE_LOW>;
->> +		};
->> +
->> +		switch {
->> +			label = "switch";
->> +			linux,code = <BTN_0>;
->> +			gpios = <&gpiosb 22 GPIO_ACTIVE_LOW>;
->> +		};
->> +	};
->> +
->> +	leds {
->> +		compatible = "gpio-leds";
->> +
->> +		vpn {
->> +			label = "green:vpn";
->> +			gpios = <&gpionb 11 GPIO_ACTIVE_LOW>;
->> +		};
->> +
->> +		wan {
->> +			label = "green:wan";
->> +			gpios = <&gpionb 12 GPIO_ACTIVE_LOW>;
->> +		};
->> +
->> +		led_power: power {
->> +			label = "green:power";
->> +			gpios = <&gpionb 13 GPIO_ACTIVE_LOW>;
->> +			default-state = "on";
->> +		};
->> +	};
->> +};
->> +
->> +&spi0 {
->> +	status = "okay";
->> +
->> +	flash@0 {
->> +		reg = <0>;
->> +		compatible = "jedec,spi-nor";
->> +		spi-max-frequency = <104000000>;
->> +		m25p,fast-read;
->> +		partitions {
->> +			compatible = "fixed-partitions";
->> +			#address-cells = <1>;
->> +			#size-cells = <1>;
->> +
->> +			partition@0 {
->> +				label = "u-boot";
->> +				reg = <0 0xf0000>;
->> +				read-only;
->> +			};
->> +
->> +			partition@f0000 {
->> +				label = "u-boot-env";
->> +				reg = <0xf0000 0x8000>;
->> +				read-only;
->> +			};
->> +
->> +			factory: partition@f8000 {
->> +				label = "factory";
->> +				reg = <0xf8000 0x8000>;
->> +				read-only;
->> +			};
->> +
->> +			partition@100000 {
->> +				label = "gl-firmware-dtb";
->> +				reg = <0x100000 0x10000>;
->> +				read-only;
->> +			};
->> +
->> +			partition@110000 {
->> +				label = "gl-firmware";
->> +				reg = <0x110000 0xef0000>;
->> +				read-only;
->> +			};
->> +
->> +			partition@ef0000 {
->> +				label = "gl-firmware-jffs2";
->> +				reg = <0xef0000 0x110000>;
->> +				read-only;
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&sdhci1 {
->> +	wp-inverted;
->> +	bus-width = <4>;
->> +	cd-gpios = <&gpionb 17 GPIO_ACTIVE_LOW>;
->> +	marvell,pad-type = "sd";
->> +	no-1-8-v;
->> +	vqmmc-supply = <&vcc_sd_reg1>;
->> +	status = "okay";
->> +};
->> +
->> +&sdhci0 {
->> +	bus-width = <8>;
->> +	mmc-ddr-1_8v;
->> +	mmc-hs400-1_8v;
->> +	non-removable;
->> +	no-sd;
->> +	no-sdio;
->> +	marvell,pad-type = "fixed-1-8v";
->> +	status = "okay";
->> +};
->> +
->> +&usb3 {
->> +	status = "okay";
->> +};
->> +
->> +&usb2 {
->> +	status = "okay";
->> +};
->> +
->> +&uart0 {
->> +	status = "okay";
->> +};
->> +
->> +&mdio {
->> +	switch0: switch0@1 {
->> +		compatible = "marvell,mv88e6085";
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +		reg = <1>;
->> +
->> +		dsa,member = <0 0>;
->> +
->> +		ports: ports {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +
->> +			port@0 {
->> +				reg = <0>;
->> +				label = "cpu";
->> +				ethernet = <&eth0>;
->> +			};
->> +
->> +			port@1 {
->> +				reg = <1>;
->> +				label = "wan";
->> +				phy-handle = <&switch0phy0>;
->> +			};
->> +
->> +			port@2 {
->> +				reg = <2>;
->> +				label = "lan0";
->> +				phy-handle = <&switch0phy1>;
->> +
->> +				nvmem-cells = <&macaddr_factory_6>;
->> +				nvmem-cell-names = "mac-address";
->> +			};
->> +
->> +			port@3 {
->> +				reg = <3>;
->> +				label = "lan1";
->> +				phy-handle = <&switch0phy2>;
->> +
->> +				nvmem-cells = <&macaddr_factory_6>;
->> +				nvmem-cell-names = "mac-address";
->> +			};
->> +		};
->> +
->> +		mdio {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +
->> +			switch0phy0: switch0phy0@11 {
->> +				reg = <0x11>;
->> +			};
->> +			switch0phy1: switch0phy1@12 {
->> +				reg = <0x12>;
->> +			};
->> +			switch0phy2: switch0phy2@13 {
->> +				reg = <0x13>;
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&eth0 {
->> +	nvmem-cells = <&macaddr_factory_0>;
->> +	nvmem-cell-names = "mac-address";
->> +	phy-mode = "rgmii-id";
->> +	status = "okay";
->> +
->> +	fixed-link {
->> +		speed = <1000>;
->> +		full-duplex;
->> +	};
->> +};
->> +
->> +&factory {
->> +	compatible = "nvmem-cells";
->> +	#address-cells = <1>;
->> +	#size-cells = <1>;
->> +
->> +	macaddr_factory_0: macaddr@0 {
->> +		reg = <0x0 0x6>;
->> +	};
->> +
->> +	macaddr_factory_6: macaddr@6 {
->> +		reg = <0x6 0x6>;
->> +	};
->> +};
->> --
->> 2.38.1
->>
->
+Best regards,
+Krzysztof
+
