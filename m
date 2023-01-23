@@ -2,72 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2DDA67760D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 09:07:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B34677618
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 09:11:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231593AbjAWIHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 03:07:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46384 "EHLO
+        id S231639AbjAWILP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 03:11:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230074AbjAWIHh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 03:07:37 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F28CF125A1
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 00:07:35 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so7870886wms.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 00:07:35 -0800 (PST)
+        with ESMTP id S231634AbjAWILO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 03:11:14 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D954C1A94B
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 00:11:12 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso7860404wmq.5
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 00:11:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nVQ5axIJVwuSAYvhI9ZqbYDfSY4qZw3+ju4l505nmSM=;
-        b=YDMGPSSgTkWlWhATwYx5t55ztqz0WtMY/+rw9TD/xNR6r0uLpNh3+PQ6r+GWv7jvCO
-         bsbj2uPKR+zF8z141GMP77eFA+lPPMZcCAnpDcXcHUU1Wyy3MmCKq2zoGoOTGlqgWs2F
-         kBzNCju4oy3pfI80WDiPFUSCn7o8hHcf++hNcn6Am45wITw568oqWUkrvAElLUhlrk9h
-         GaRzoAujd5JSsTFqBpY/YPCB5lrlnMxjX/Ms2HdkYVH5n6YOWTZ4to5CkkGdQY7AgBrv
-         deFmVSpLbFaeov5WOTSQ0Z43IZVaSP1aJB9z0TUi7KhZIRQVD67HknmmThmci7KMrZDj
-         Nm9Q==
+        bh=e7s9saYfKQc1Lv+pPmApBZHnSW8je2cMqPGzEWMmsU8=;
+        b=U36nOcrJP5Lav7NaP7ggUfWX03/gtcJ4qyVtPgbUHc7ogn/HdK9JGEZqNKSN1R2S0B
+         LHPIGKa+ZpahcQj0V8tqixMwn2w7byk5pMvpFvVu8qFw2IJX3Ttnl4YKEVc3ErWmLJ8o
+         TJxNhTl7BMXqz8ugDh+FCqKItYZuU2B0o1yaa1uk2vxZ3JQRT7E/EP/KbMU2GKrAQMFm
+         HRw/IGL9HeYf/aNOeKYV9maeVq+BO9UkqDIC6oPoFJr+5dPk8gg48LgQWlNzN2iVwzF7
+         asjU1SR+IFhVawGBPm1/kzh+DICQba71vpE5y12HDDmklyZr5HChWhtEmWB5nTxP8idp
+         iuWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nVQ5axIJVwuSAYvhI9ZqbYDfSY4qZw3+ju4l505nmSM=;
-        b=6I46hgdxLShYPn8pDkoM7Km3b0n3L7nphyFOYu7XdgP3HLZ7st08HIYkDlQN7cHAPH
-         AuVEEZwfFPCp4wAKsRIzPwGT8NYunpV+0b8oxvyQ1Qz0wI2ojJfFueEiHijxyMCCt1un
-         NDecjVXrfSW5cYqIKVM04QHqwEpu4yp+9Ndmb3a/YpXU3BajxfKZ4Qm41abimxzCkFnX
-         W3QklKndODTYeMQErTK9opY0Sc0Kt/yPzhqEy2pV7+tltRnz9k2u3mV/nWVm1NVlRPIz
-         gs//qg5/9o8+j7IrhcQBsTRR/t6j6ReN+VtapOLQp6kQ6n9Hwaf3ZmAm97y1egw1J8qf
-         +erQ==
-X-Gm-Message-State: AFqh2krUOzviZDS/dmyWDeZUg2U8AO8NLJE4BcgGaa1jr4RxKAH5++Cs
-        hKJO7ISeAYIhlI22wi1qMmNGCw==
-X-Google-Smtp-Source: AMrXdXtu2wzIhO70Sk+2krkLKVQM9Z9xPAVVSe0gI8P3VO5rhnqBm/JSnP57nxnU7W6zhLt7W07VOA==
-X-Received: by 2002:a05:600c:21c4:b0:3da:fcf1:d4cc with SMTP id x4-20020a05600c21c400b003dafcf1d4ccmr22816261wmj.30.1674461254499;
-        Mon, 23 Jan 2023 00:07:34 -0800 (PST)
+        bh=e7s9saYfKQc1Lv+pPmApBZHnSW8je2cMqPGzEWMmsU8=;
+        b=e4ICLdZA/aupHa4dOYxfvolBEJ9Lu2JLqh2Jspy8NC8fquaddwtPs3QIEHVmqaDEXG
+         OBapShPPrteVEJNxNzV2PlyQfThkTqpGb+HTWPMlnWlv2YcpJWJdQSpAuG3qV9UQheCq
+         wjepwv54AQxv4O0yfI4JJFXrBxwdK78mCoRbOhbepFMwxkBo6RTglwE4m9d2sURIXJL9
+         cPtrNoVQtqkgoQXxYK8pOejLgUrn04CkdVzDViXp3Yg4iKckXsMb/n5G8jmKYDvU7bHG
+         kuvYEOoR4hHBY/0rZERh9WC5MT1qsdTCrkJkhDtlJPGVRzBBdHorX+R6hs+zxC6l2Gdb
+         +SAQ==
+X-Gm-Message-State: AFqh2krvdEQlYtqwFPdsfmMKOurNlqSj04oWmoiGv/NGKBpray5EXlsh
+        ZW+msjGqAa0Tvwd2UwV12gH4mLxOEbGBcSmM
+X-Google-Smtp-Source: AMrXdXsrI6xUDZcUDl7hloTWyhkrOc4Xd9fNlHdIaE1cAD7LpvXhPrVzG5UikQ15bShCvE55WGPofQ==
+X-Received: by 2002:a05:600c:1da6:b0:3da:107e:a1e6 with SMTP id p38-20020a05600c1da600b003da107ea1e6mr23059216wms.17.1674461471409;
+        Mon, 23 Jan 2023 00:11:11 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id v7-20020a5d6787000000b0025e86026866sm5603695wru.0.2023.01.23.00.07.33
+        by smtp.gmail.com with ESMTPSA id t15-20020a05600c198f00b003db32ccf4bfsm9969922wmq.41.2023.01.23.00.11.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 00:07:34 -0800 (PST)
-Message-ID: <7d191871-1025-43a3-20bf-8fc6b3f92c89@linaro.org>
-Date:   Mon, 23 Jan 2023 09:07:32 +0100
+        Mon, 23 Jan 2023 00:11:10 -0800 (PST)
+Message-ID: <0c19efb4-3bca-f500-ca24-14b9d24369ef@linaro.org>
+Date:   Mon, 23 Jan 2023 09:11:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 04/15] dt-bindings: arm: add support for Ambarella SoC
+Subject: Re: [PATCH 07/15] dt-bindings: clock: Add Ambarella clock bindings
 Content-Language: en-US
 To:     Li Chen <lchen@ambarella.com>, Li Chen <me@linux.beauty>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     "moderated list:ARM/Ambarella SoC support" 
         <linux-arm-kernel@lists.infradead.org>,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         open list <linux-kernel@vger.kernel.org>
 References: <20230123073305.149940-1-lchen@ambarella.com>
- <20230123073305.149940-5-lchen@ambarella.com>
+ <20230123073305.149940-8-lchen@ambarella.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230123073305.149940-5-lchen@ambarella.com>
+In-Reply-To: <20230123073305.149940-8-lchen@ambarella.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,177 +84,167 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 23/01/2023 08:32, Li Chen wrote:
-> Create a vendor directory for Ambarella, and add
-> cpuid, rct, scratchpad documents.
+> This patch introduce clock bindings for Ambarella.
 > 
 > Signed-off-by: Li Chen <lchen@ambarella.com>
-> Change-Id: I2c29e45c08666489b0d9b588ac37d713f5b723d1
+> Change-Id: I29018a23ed3a5b79a1103e859a5c7ed7bb83a261
 
-Please run scripts/checkpatch.pl and fix reported warnings.
+All the same problems plus new:
 
-Applies to all your patches. Also test them... I have doubts that you
-tested if you actually ignored checkpatch :/
+Subject: drop second/last, redundant "bindings". The "dt-bindings"
+prefix is already stating that these are bindings.
 
 > ---
->  .../arm/ambarella/ambarella,cpuid.yaml        | 24 +++++++++++++++++++
->  .../bindings/arm/ambarella/ambarella,rct.yaml | 24 +++++++++++++++++++
->  .../arm/ambarella/ambarella,scratchpad.yaml   | 24 +++++++++++++++++++
->  .../bindings/arm/ambarella/ambarella.yaml     | 22 +++++++++++++++++
->  MAINTAINERS                                   |  4 ++++
->  5 files changed, 98 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
->  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
->  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,scratchpad.yaml
->  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella.yaml
+>  .../clock/ambarella,composite-clock.yaml      | 52 ++++++++++++++++
+>  .../bindings/clock/ambarella,pll-clock.yaml   | 59 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +
+>  3 files changed, 113 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/ambarella,composite-clock.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/ambarella,pll-clock.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml b/Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
+> diff --git a/Documentation/devicetree/bindings/clock/ambarella,composite-clock.yaml b/Documentation/devicetree/bindings/clock/ambarella,composite-clock.yaml
 > new file mode 100644
-> index 000000000000..1f4d9cec8f92
+> index 000000000000..fac1cb9379c4
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
-
-This goes to soc
-
-> @@ -0,0 +1,24 @@
+> +++ b/Documentation/devicetree/bindings/clock/ambarella,composite-clock.yaml
+> @@ -0,0 +1,52 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/clock/ambarella,cpuid.yaml#
+> +$id: http://devicetree.org/schemas/clock/ambarella,composite-clock.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Ambarella SoC ID
+> +title: Ambarella Composite Clock
 > +
 > +maintainers:
 > +  - Li Chen <lchen@ambarella.com>
+> +
 
 Missing description.
 
-> +
 > +properties:
 > +  compatible:
-> +    const: "ambarella,cpuid", "syscon"
+> +    items:
 
-Drop quotes (applies to all your patches)
+Drop items.
 
-Missing SoC specific compatible.
+> +      - const: ambarella,composite-clock
+
+Missing SoC specific compatible. This is anyway not really correct
+compatible...
 
 > +
-> +  reg:
-> +    maxItems: 1
+> +  clocks: true
 
-Missing additionalProperties. sorry, start from scratch from some
-existing recent bindings or better example-schema.
+No, needs constraints.
 
+> +  assigned-clocks: true
+> +  assigned-clock-parents: true
+> +  assigned-clock-rates: true
+
+Drop these three.
+
+> +  clock-output-names: true
+
+Missing constraints.
+
+> +  amb,mux-regmap: true
+
+NAK.
+
+It's enough. The patches have very, very poor quality.
+
+Missing description, missing type/$ref, wrong prefix.
+
+> +  amb,div-regmap: true
+> +  amb,div-width: true
+> +  amb,div-shift: true
+
+These two are arguments to phandle.
+
+> +
+> +  '#clock-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+
+So why you decided to add it here and not in other places?
 > +
 > +examples:
 > +  - |
-> +    cpuid_syscon: cpuid@e0000000 {
-> +        compatible = "ambarella,cpuid", "syscon";
-> +        reg = <0xe0000000 0x1000>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml b/Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
+> +      gclk_uart0: gclk-uart0 {
+
+Wrong indentation.
+
+> +        #clock-cells = <0>;
+> +        compatible = "ambarella,composite-clock";
+> +        clocks = <&osc>, <&gclk_core>, <&pll_out_enet>, <&pll_out_sd>;
+> +        clock-output-names = "gclk_uart0";
+> +        assigned-clocks = <&gclk_uart0>;
+> +        assigned-clock-parents = <&osc>;
+> +        assigned-clock-rates = <24000000>;
+> +        amb,mux-regmap = <&rct_syscon 0x1c8>;
+> +        amb,div-regmap = <&rct_syscon 0x038>;
+> +        amb,div-width = <24>;
+> +        amb,div-shift = <0>;
+> +      };
+> diff --git a/Documentation/devicetree/bindings/clock/ambarella,pll-clock.yaml b/Documentation/devicetree/bindings/clock/ambarella,pll-clock.yaml
 > new file mode 100644
-> index 000000000000..7279bab17d9e
+> index 000000000000..65c1feb60041
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
-> @@ -0,0 +1,24 @@
+> +++ b/Documentation/devicetree/bindings/clock/ambarella,pll-clock.yaml
+> @@ -0,0 +1,59 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/clock/ambarella,rct.yaml#
+> +$id: http://devicetree.org/schemas/clock/ambarella,pll-clock.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Ambarella RCT module
+> +title: Ambarella PLL Clock
 > +
 > +maintainers:
 > +  - Li Chen <lchen@ambarella.com>
 > +
 > +properties:
 > +  compatible:
-> +    const: "ambarella,rct", "syscon"
-
-All the same problems.
-
+> +    enum:
+> +      - ambarella,pll-clock
+> +      - ambarella,clkpll-v0
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +examples:
-> +  - |
-> +		rct_syscon: rct_syscon@ed080000 {
+> +if:
 
-Really? Just take a look and you will see wrong indentation. Also drop
-underscores in node names and "rct". Node names should be generic.
+No, this does not work like that. It sits under "allOf", located after
+"required:".
 
+> +  properties:
+> +    compatible:
+> +      const: ambarella,pll-clock
+> +
+> +then:
+> +  properties:
+> +    clocks:
+> +      maxItems: 1
+> +
+> +    clock-output-names: true
+> +    amb,clk-regmap: true
+> +    amb,frac-mode: true
+> +    assigned-clocks: true
+> +    assigned-clock-rates: true
 
-> +        compatible = "ambarella,rct", "syscon";
-> +        reg = <0xed080000 0x1000>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/arm/ambarella/ambarella,scratchpad.yaml b/Documentation/devicetree/bindings/arm/ambarella/ambarella,scratchpad.yaml
-> new file mode 100644
-> index 000000000000..5d2bd243b5c9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/ambarella/ambarella,scratchpad.yaml
-> @@ -0,0 +1,24 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/ambarella,scratchpad.yaml#
+Same problems.
 
-That's not a clock controller!
+> +    gclk_axi: gclk-axi {
+> +        #clock-cells = <0>;
+> +        compatible = "fixed-factor-clock";
 
+What is this example about? Not related at all. Provide real example.
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ambarella Scratchpad
-> +
-> +maintainers:
-> +  - Li Chen <lchen@ambarella.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: "ambarella,scratchpad", "syscon"
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +examples:
-> +  - |
-> +    scratchpad_syscon: scratchpad_syscon@e0022000 {
-
-All the same problems.
-
-> +        compatible = "ambarella,scratchpad", "syscon";
-> +        reg = <0xe0022000 0x100>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/arm/ambarella/ambarella.yaml b/Documentation/devicetree/bindings/arm/ambarella/ambarella.yaml
-> new file mode 100644
-> index 000000000000..5991bd745c05
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/ambarella/ambarella.yaml
-> @@ -0,0 +1,22 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/ambarella.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ambarella SoC Device Tree Bindings
-> +
-> +maintainers:
-> +  - Li Chen <lchen@ambarella.com>
-> +
-> +properties:
-> +  $nodename:
-> +    const: "/"
-> +  compatible:
-> +    oneOf:
-> +      - description: Ambarella SoC based platforms
-> +        items:
-> +          - enum:
-> +              - ambarella,s6lm
-
-What is this? How do you expect it to apply? Can you try by yourself?
 
 
 Best regards,
