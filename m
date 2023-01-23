@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7845267820A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 17:44:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 966D6678213
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 17:45:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233450AbjAWQoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 11:44:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47524 "EHLO
+        id S233316AbjAWQpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 11:45:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233504AbjAWQnu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 11:43:50 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 676AA2D14D
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:43:29 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id az20so32163189ejc.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:43:29 -0800 (PST)
+        with ESMTP id S233303AbjAWQpL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 11:45:11 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6565822A06
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:44:50 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id tz11so32211430ejc.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:44:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vcXRJ0p9dSQwtYuK68UIrA1JOD2HVWbevssm1dEmW0s=;
-        b=QEIJ9QPG8x8B6vjgAz7fPyws6isNOggbyH0HLKQSe+gmyg2CqI/dL2j9T2bUzQCJU2
-         MbxF+0RmACrj0dSXZWId24OZo0NnvOFrTX7V897WOFSTvboJNdck4YnRpXg7sLKeK2qQ
-         ovNU8m9YzvGwH1BBGY8KC691AR26y0wQ6z2CanipjgUTf/djQzz28y6P9DjX1VE9jiV9
-         X7RHXODyBmHHbHhQb1oVVQJayVfQ+Zt/nNJEYX+axtmIHN8IhxuG2jsR5ydKLnhx2dGO
-         4zGymTQXechEewDa9gMHqbqhusEjCSHG03m95r9dcSsAy7UvUehnAc/nW20M0BCx3pma
-         F2Eg==
+        bh=8+MQluqn9nt7RD71EHDttjyHlEpDdbP4AXW0/Pi9N4o=;
+        b=AsFqEHjp2PSwAXOyGhhhUK4qFRmPxRek5DXJD+ka9zxyw39v6E0qGm93e1fTloHbzg
+         m+AbQbcQ8L/dWEGUoybVvPKvCmYdSzDSCJw3/uYpgu8lnee8rOTCYMiVOTGzR+tVxpvT
+         BkN3iBJCy5H1GBDA5CsRmqq6YeuUeeyQmvrCfhSSc//6SX2hnAtpcM2teUE2kolvkCVL
+         ox9G2lBiPAZurPL+ecT6KAY+8/oKT1lg0YH27sH4rkUcMeUydiGsq+BBtpzIL/OsGAyB
+         bgtfB6v6fw/bl9figdWuulaxYRFFxY/xzUX5etLjEKg0KkF7+gGGOxfWJFJ9RC/AblfQ
+         g2/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vcXRJ0p9dSQwtYuK68UIrA1JOD2HVWbevssm1dEmW0s=;
-        b=C9pmodz75DjsyoLJr//Jpd81R9OLDFZaNb+HSv8Qv5Hd15Yse99ip+Ae+SXZWPAZr/
-         0uwzf4mw8Ty1K4WjMgeti2fo/6XyoglC/JE7tB8GD4sBFtUZG5W38NoPIBQ5cT3ugmga
-         WiQW+qQHfoUX8+hEBiJb0OuW7Msr85qcqAqWfnOYIFbDoajiVV23RXgMVHXIGJ9jQx9G
-         x3VwpUhDFP3BlRlW2MamyZDReqjYm5Pgc0+Z/52qHptXtRepq0g/UqmJSPgqzx0JNcCl
-         UlvkgIy7MmyatvgQuoyHLHvofe3HeUW0z9C+Is6FrvuJ1OAuln8JRXAPRGLIy/xpFgnV
-         fNCQ==
-X-Gm-Message-State: AFqh2kqL1Tz+xBG6xo9LHKmrjN9ZmZg2AjpNyJ3ncrIAW01rqOPDvLGE
-        1JshamnlUsff365ARTOHLrZcLg==
-X-Google-Smtp-Source: AMrXdXtx10wrmb6agMuWawS+yP9oB+G7IkK4ZBE+8ZSkgIfby3Or4KQEVfURmboAKIwz3mV1Rfoz/A==
-X-Received: by 2002:a17:907:2119:b0:86e:d375:1f09 with SMTP id qn25-20020a170907211900b0086ed3751f09mr26068103ejb.67.1674492206500;
-        Mon, 23 Jan 2023 08:43:26 -0800 (PST)
+        bh=8+MQluqn9nt7RD71EHDttjyHlEpDdbP4AXW0/Pi9N4o=;
+        b=SaZKhAcSuK+XAM2rrwSSbgEurNeZPS0ki9ybY5mXNN/zh3GKn53/IwjOr25B+sa6fh
+         LB6a5V1R4RIwFp3Cc784z9lu8L6jqjJoAgeWq2PLpmG+L3lIgVG6fHgaeyIT5R9T0vOD
+         l4PsPXWiEE6t3UZcth2NC82wUG7aBwgIWT50cq+np0Am3cU/IqKPf2ymCGheyq1Yzlb+
+         3bi6COlKTEKrDES6J9UJjVtqvxspv+ycoSyrNsCmE87Tj5jmZAxMspKqlUhoBhx/oGq4
+         QLmSJOWQ2u3Q6FTbGoRQgwEBMyOdE4D5+89MSTOC4q95CGK/8ddBMBAulLnZ45xVrjRw
+         +iGw==
+X-Gm-Message-State: AFqh2krvh8bx1YKC8kw6mufRTHiorcRtQOU7Igh/QohL/Qx+kDiXkR2k
+        3yiyhOSHBQFBZrjUejs9rYIJVg==
+X-Google-Smtp-Source: AMrXdXvQtB0ZWiGkDZiL9MK9IWIwnHOO3JLmXSKr2tzZrBLjkFBjqCvTjHBnHf1KxzAW+Y+scytgGg==
+X-Received: by 2002:a17:907:340f:b0:872:db7f:80b4 with SMTP id ab15-20020a170907340f00b00872db7f80b4mr22527807ejc.38.1674492288754;
+        Mon, 23 Jan 2023 08:44:48 -0800 (PST)
 Received: from [192.168.1.101] (abxi24.neoplus.adsl.tpnet.pl. [83.9.2.24])
-        by smtp.gmail.com with ESMTPSA id c2-20020a17090618a200b0077a8fa8ba55sm22220825ejf.210.2023.01.23.08.43.25
+        by smtp.gmail.com with ESMTPSA id vo16-20020a170907a81000b0086dc174caf2sm13108255ejc.220.2023.01.23.08.44.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 08:43:26 -0800 (PST)
-Message-ID: <d05b15d4-04d8-2dc2-91ec-b5df0154aef9@linaro.org>
-Date:   Mon, 23 Jan 2023 17:43:24 +0100
+        Mon, 23 Jan 2023 08:44:48 -0800 (PST)
+Message-ID: <0c63f37d-a6a9-4cb0-39c8-ebf302945ad2@linaro.org>
+Date:   Mon, 23 Jan 2023 17:44:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 4/5] ARM: dts: qcom: msm8974-oneplus-bacon: Add backlight
+Subject: Re: [PATCH 5/5] ARM: dts: qcom: msm8974-oneplus-bacon: Add
+ notification LED
 Content-Language: en-US
 To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
         phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
@@ -64,15 +65,14 @@ To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230122-msm8974-bacon-features-v1-0-4049f565c24c@z3ntu.xyz>
- <20230122-msm8974-bacon-features-v1-4-4049f565c24c@z3ntu.xyz>
+ <20230122-msm8974-bacon-features-v1-5-4049f565c24c@z3ntu.xyz>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230122-msm8974-bacon-features-v1-4-4049f565c24c@z3ntu.xyz>
+In-Reply-To: <20230122-msm8974-bacon-features-v1-5-4049f565c24c@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,37 +82,54 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 22.01.2023 17:48, Luca Weiss wrote:
-> Add the node for the lm3630 that is used to control backlight.
+> Add the node describing the sn3193 that's used to provide notification
+> LED.
+> 
+> Unfortunately the driver currently supports neither multicolor API nor
+> using the properties function & color, so we use label instead.
 > 
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+>  .../arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts | 28 ++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
 > 
 > diff --git a/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts b/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts
-> index 10ba3c94e26d..ffb486ceb6a6 100644
+> index ffb486ceb6a6..a672c45d7070 100644
 > --- a/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts
 > +++ b/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts
-> @@ -99,6 +99,21 @@ rmi4-f12@12 {
->  			syna,clip-y-high = <1920>;
+> @@ -114,6 +114,34 @@ led@0 {
+>  			default-brightness = <80>;
 >  		};
 >  	};
 > +
-> +	led-controller@36 {
-> +		compatible = "ti,lm3630a";
-> +		reg = <0x36>;
+> +	led-controller@68 {
+> +		compatible = "si-en,sn3193";
+> +		reg = <0x68>;
+> +
+> +		shutdown-gpios = <&tlmm 45 GPIO_ACTIVE_HIGH>;
 > +
 > +		#address-cells = <1>;
 > +		#size-cells = <0>;
 > +
-> +		led@0 {
-> +			reg = <0>;
-> +			led-sources = <0 1>;
-> +			label = "lcd-backlight";
-> +			default-brightness = <80>;
+> +		led@1 {
+> +			reg = <1>;
+> +			label = "red:status";
+> +			led-max-microamp = <17500>;
+> +		};
+> +
+> +		led@2 {
+> +			reg = <2>;
+> +			label = "green:status";
+> +			led-max-microamp = <17500>;
+> +		};
+> +
+> +		led@3 {
+> +			reg = <3>;
+> +			label = "blue:status";
+> +			led-max-microamp = <17500>;
 > +		};
 > +	};
 >  };
