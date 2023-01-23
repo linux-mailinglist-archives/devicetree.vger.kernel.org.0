@@ -2,99 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C147677F6C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC041677F6E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:18:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232369AbjAWPSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:18:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40648 "EHLO
+        id S232632AbjAWPSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:18:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232613AbjAWPRx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:17:53 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 992CE298C6
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:17:08 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id h16so11110484wrz.12
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:17:08 -0800 (PST)
+        with ESMTP id S232599AbjAWPST (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:18:19 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAB4E2B28A
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:17:25 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so10873173wmb.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:17:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gm+Gp9pR9IMXXhQFxyLYqm/RbZlHJZIdJ3yAH5kvq7Y=;
-        b=TX4Y/4P8Xhe1h9XM0PVorL+OzHG/rDPGMpkSrrgxxUPGlKc+czJQoRpd6sdv0KFnjL
-         bxOtBmmFlq2jUmz+XsEUREyIt4JY2zPK8G9aJk438fXVqSzQpdGKPt6a++Zwj+p385AX
-         ZGV8C7BQJVQ7iuS1U17IXue8Iqa/vwy0/dlmC00RjpGuhBw3gR++RIlqnHRACBz3poQO
-         Ukw8pywqsSGNEscgAsFUUmVewPEfDCTB3ww4eIvU1Bv+djDTWoo0QdQO2knscugsL/rt
-         NF0YgtrGPFEKEI9DZvLqVCxaDZO6VIfW4TwFVBn9/z9klLUZakG8OSqF7Xl2ooU1KVe/
-         Ap/A==
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=oXHlh1GVe6XHIGjfxqBlGpday517k1tv+6ix4arA+Zg=;
+        b=mTElaErKpyr/9+bfvnELgYwdkqnRrQO/qiv+5Uq27OCgDaLZ8aaksxAjd9sARIF4ia
+         /MKEh6h6m5FSzyCivP3eglyAgdt3BzjqP26wkFUqzy2+/dG/8NmUZ9FlogJnpdCcldb2
+         acKe0v4SIDaiXlfpQSpvIWPAs+IMm42n+sNx5ilNe2CRyMLhb+Qf8XUxMGpucgpCVr/5
+         0xYCWc18aYTj2u9uyVm24v9OmlUdvlO9ti00jk7Cxckx4+EiBdL7LzF4JhLmGJ/0jnTk
+         phGT5/FRGPYaX0W8aQOgkpWZLLlyatLsvD9LaqDBhKUfBRUYuNa/ewbjRDB8VrtWU+Az
+         k2SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gm+Gp9pR9IMXXhQFxyLYqm/RbZlHJZIdJ3yAH5kvq7Y=;
-        b=WAyfqFV0NwJcY/q+MckBvrBdMGxD0pK+ta8l4mvwiUhkcFNRH4E5PK+Xj9a0IkfYAi
-         UN2MuZpAnFLchb5loS+D2Swz48/UfxUMrp0bk+VRNAniziXvjsY+GZaveIa8ir+1O9/L
-         XG+Uva2OSq1nZqIsjLxq0QkyL/eULrRvO2maB4wqNnctFYgBFrUs1jQDC1NsTsZcb5FC
-         4K4DYCIM+TxUmhnKFFVaCPgCO8hStNc2kn8Rj9V/G16UMbnXuxmnzgwdD8DfFsNbkCQm
-         h6IgQNQ0HfguplIMu+CEEP38QwrfhtGomdCTU4aF031gIJFsllLbzsjLv3XunsapCDV3
-         wPYg==
-X-Gm-Message-State: AFqh2krjznok5M2evqTsKMO4RHoNhLIOfdId6bNQIFa2Cj26FIcNsIm1
-        VRPSx7gmStST39MV+lmQoGZIOw==
-X-Google-Smtp-Source: AMrXdXsOrds413JqL7J/87edldEW0DET/5EYJMlOr3g1/6+tV4yilZkdowNpQSk3rGo59FDk1iRRRA==
-X-Received: by 2002:a5d:6084:0:b0:242:733b:af28 with SMTP id w4-20020a5d6084000000b00242733baf28mr21564299wrt.5.1674486999487;
-        Mon, 23 Jan 2023 07:16:39 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id k3-20020a5d6e83000000b00289bdda07b7sm4529287wrz.92.2023.01.23.07.16.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 07:16:39 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt8183: drop double interrupts
-Date:   Mon, 23 Jan 2023 16:16:34 +0100
-Message-Id: <20230123151634.370011-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230123151634.370011-1-krzysztof.kozlowski@linaro.org>
-References: <20230123151634.370011-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oXHlh1GVe6XHIGjfxqBlGpday517k1tv+6ix4arA+Zg=;
+        b=GAXWm/jSrFVQcVcsPJrhrlQERvF5aYZR45UKVUf8Sl/n4R7GyeZBjEJFc7siSiTWSZ
+         zmxSwSo5uLzDSUhEEmhaOnGL4Ylys0e2GgcHCnd+5MncQGNiE2gpW/I/FcDW+NbCigWV
+         GEEUVLPT2B716UXoDpq2ZXsMP9jlHsZNDOwAX5Fu/SCuaWG3RGMK/N/IgnNqNJGjEVnF
+         sGw2SW8tUbdFBxUw8HghgGhbNOHWIUrFkoDiB3MVhgpx5V+P3kp/Qp8lvIR61BBZAlUf
+         N28hNBQLXeK9JTnK9PTzwwsjZYmFGK4rbsoX/FYipds+QI67IK5Mi+OUAGs7MpqgD4ey
+         zCjg==
+X-Gm-Message-State: AFqh2kpD/arElGidKL+O3aKibemvn2fa0e0CPHybTwqcgJ3H3lfoxWXm
+        neGXeHtE+6KbRb+k+/Ivf1FFGg==
+X-Google-Smtp-Source: AMrXdXv4pjrlJCiDM72DBhh38Wa+y+wDQd0b3eQquuYXJF+qOVFv9nVUL1oHgw77dN4sbV8WLhp+iQ==
+X-Received: by 2002:a05:600c:1e1d:b0:3cf:674a:aefe with SMTP id ay29-20020a05600c1e1d00b003cf674aaefemr24094598wmb.22.1674487004649;
+        Mon, 23 Jan 2023 07:16:44 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:b3d5:343d:5dc9:ee00? ([2a01:e0a:982:cbb0:b3d5:343d:5dc9:ee00])
+        by smtp.gmail.com with ESMTPSA id x15-20020a05600c188f00b003db122d5ac2sm10449596wmp.15.2023.01.23.07.16.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 07:16:43 -0800 (PST)
+Message-ID: <767eb8e4-fba7-e25b-bcd3-3f05db9a6d80@linaro.org>
+Date:   Mon, 23 Jan 2023 16:16:41 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 01/13] dt-bindings: serial: amlogic,meson-uart: allow
+ other serial properties
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        - <devicetree@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Chester Lin <clin@suse.com>, Fugang Duan <fugang.duan@nxp.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Pragnesh Patel <pragnesh.patel@sifive.com>,
+        Le Ray <erwan.leray@foss.st.com>,
+        Peter Korsgaard <jacmet@sunsite.dk>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DTSI comes with interrupts property, so it must be removed if
-interrupts-extended are used:
+On 23/01/2023 16:12, Krzysztof Kozlowski wrote:
+> Reference common serial properties bindings to allow typical serial
+> properties:
+> 
+>    meson-axg-jethome-jethub-j100.dtb: serial@23000: 'bluetooth', 'uart-has-rtscts' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   .../devicetree/bindings/serial/amlogic,meson-uart.yaml       | 5 ++++-
+>   1 file changed, 4 insertions(+), 1 deletion(-)
+> 
 
-  mt8183-kukui-jacuzzi-cozmo.dtb: serial@11003000: More than one condition true in oneOf schema:
+<snip>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index 821a51e458c5..fbe14b13051a 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -963,6 +963,7 @@ &uart1 {
- 	pinctrl-0 = <&uart1_pins_default>;
- 	pinctrl-1 = <&uart1_pins_sleep>;
- 	status = "okay";
-+	/delete-property/ interrupts;
- 	interrupts-extended = <&sysirq GIC_SPI 92 IRQ_TYPE_LEVEL_LOW>,
- 			      <&pio 121 IRQ_TYPE_EDGE_FALLING>;
- 
--- 
-2.34.1
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
