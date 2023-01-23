@@ -2,92 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 927F6678319
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 18:29:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA240678335
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 18:32:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232628AbjAWR3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 12:29:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37144 "EHLO
+        id S233762AbjAWRci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 12:32:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232024AbjAWR3H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 12:29:07 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 605132C65E
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 09:29:03 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id b7so11540445wrt.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 09:29:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NwTlvuJuAIghS26NnVpyyRvZGcuEOs61IaO+NF4nagQ=;
-        b=uhYIvcjkhXGu0oqqp+6e+ZBJPe7uq/YlhETV7dqCwosYuLYgrLpNHwHvCjyZ02X1e7
-         Ue879m3+ZfoWbgARPz2iBlihA1+FCgRYsItbUA3CZ9+stz00N2Sxu/fCCGbgI2H2/EVz
-         jDAbhTXBIKFJqaLY/JKav0H9VVnFxZcViXcqYnjIq3IB8/c6Jz0fEtSciklsodsxr8yL
-         zrNqKh6wxDG+sUX4KgTc+u5Q4NbLGII3NmfWtWUfDOcitF4E2b6Vb8RDC6Xoh2IFlo5M
-         fD/Tg3F1u+1tIZtMmDNTgcJq9zyPPKRFU7Jp9UKSwRbGhT9ibVCgopuJ1kW0v1xso7Sn
-         UKwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NwTlvuJuAIghS26NnVpyyRvZGcuEOs61IaO+NF4nagQ=;
-        b=L5gzX7RrQUA/nt3kOvbI+0hPMOtS6RX8a71GMw81gkEDFTB/jCGozsCYZqrX7riRGW
-         z8eHl07vNru50j3a3dWi6AjhUl8yGYYCn6FAkd2swIhIwBAxmvutrn4Q5XMFOUHkZ3Cl
-         eavgrVH/dHMGVyyRGeI4adRZ8bwg89LRDYCVWuYOIFJpdk4GS9rv96eGALgXwLUjxdl5
-         MUMc1pIS0wTO+6MFP6KdvgrVjOblcE/+bv0a+pLIuWJyHsSGLjwIabpcA+Gl82TbhnVE
-         zcXQAFaKmB9krnrLUFZOEsVBT5MixSJuWL0a+lutIijfkn8pbvYJ5wo7U6x3BQSDugIj
-         dC0w==
-X-Gm-Message-State: AFqh2kqr+CkY3Hmtj3VNrS/+yASBoV3y/bqoJCOT8MdhhE9INs3MvVBM
-        0PM4/TK9XAuNVIArlgFKYrrIwQ==
-X-Google-Smtp-Source: AMrXdXudl+2yzwvw1jE0jM6FJ9tqi9H9sjhc16bH/xfVrnV+/acM7WhMX4jqg9wMdEYt+l6LXUQLuA==
-X-Received: by 2002:adf:f0c7:0:b0:2bd:e18d:c9e5 with SMTP id x7-20020adff0c7000000b002bde18dc9e5mr23003524wro.40.1674494941987;
-        Mon, 23 Jan 2023 09:29:01 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z14-20020a5d4c8e000000b002bdbde1d3absm6950014wrs.78.2023.01.23.09.29.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 09:29:01 -0800 (PST)
-Message-ID: <de7fec53-fe03-456a-8464-d60fdf32ee06@linaro.org>
-Date:   Mon, 23 Jan 2023 18:28:59 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 1/3] dt-bindings: arm: amlogic: document Odroid-N2L
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, Dongjin Kim <tobetter@gmail.com>
-References: <20230122-topic-odroid-n2l-upstream-initial-v1-0-1ce5e08039d0@linaro.org>
- <20230122-topic-odroid-n2l-upstream-initial-v1-1-1ce5e08039d0@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230122-topic-odroid-n2l-upstream-initial-v1-1-1ce5e08039d0@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S233746AbjAWRc3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 12:32:29 -0500
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED7CB30186;
+        Mon, 23 Jan 2023 09:31:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=9mUzZ2pRq14qLCSySucWOb7cYV81m7cHyf4fb1Agy0k=; b=R0bFJvC9cWbboE0TwpMMaqjGWD
+        XFIZFUd/qP5K5COnS6/ReDkXyKRTtdDss1c1lTR8njVHsV5MInQBTMPTqpq9kMh/Ppl5MvDrHfbkW
+        iwI7ShACwGeEQ2twzDs+4h1P5r0mhiwXPlcDaPaUV8CSTeND/QS/Oek3nsHyCZ6AmsdY=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:41494 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1pK0f8-00032V-HA; Mon, 23 Jan 2023 12:31:19 -0500
+Date:   Mon, 23 Jan 2023 12:31:18 -0500
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Message-Id: <20230123123118.39f5a5aab207f5942972b061@hugovil.com>
+In-Reply-To: <Y8rI7/umLv/h64cN@mail.local>
+References: <20221215150214.1109074-1-hugo@hugovil.com>
+        <20221215150214.1109074-11-hugo@hugovil.com>
+        <Y8rI7/umLv/h64cN@mail.local>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v3 10/14] rtc: pcf2127: read and validate PCF2131 device
+ signature
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/01/2023 15:07, Neil Armstrong wrote:
-> ODROID-N2L is a variant SBC in small form factor and some peripherals
-> are removed from ODROID-N2PLUS based on S922X SoC.
+On Fri, 20 Jan 2023 18:01:35 +0100
+Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+
+> On 15/12/2022 10:02:11-0500, Hugo Villeneuve wrote:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > 
+> > Make sure the device we are probing is really the device we are
+> > interested in.
+> > 
+> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > ---
+> >  drivers/rtc/rtc-pcf2127.c | 20 ++++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> > 
+> > diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
+> > index 241189ee4a05..e4b78b9c03f9 100644
+> > --- a/drivers/rtc/rtc-pcf2127.c
+> > +++ b/drivers/rtc/rtc-pcf2127.c
+> > @@ -193,11 +193,13 @@ struct pcf21xx_config {
+> >  	unsigned int has_nvmem:1;
+> >  	unsigned int has_bit_wd_ctl_cd0:1;
+> >  	unsigned int has_int_a_b:1; /* PCF2131 supports two interrupt outputs. */
+> > +	unsigned int has_reset_reg:1; /* If variant has a reset register. */
+> >  	u8 regs_td_base; /* Time/data base registers. */
+> >  	u8 regs_alarm_base; /* Alarm function base registers. */
+> >  	u8 reg_wd_ctl; /* Watchdog control register. */
+> >  	u8 reg_wd_val; /* Watchdog value register. */
+> >  	u8 reg_clkout; /* Clkout register. */
+> > +	u8 reg_reset;  /* Reset register if available. */
+> >  	unsigned int ts_count;
+> >  	struct pcf21xx_ts_config ts[4];
+> >  	struct attribute_group attribute_group;
+> > @@ -882,6 +884,7 @@ static struct pcf21xx_config pcf21xx_cfg[] = {
+> >  		.has_nvmem = 1,
+> >  		.has_bit_wd_ctl_cd0 = 1,
+> >  		.has_int_a_b = 0,
+> > +		.has_reset_reg = 0,
+> >  		.regs_td_base = PCF2127_REG_TIME_DATE_BASE,
+> >  		.regs_alarm_base = PCF2127_REG_ALARM_BASE,
+> >  		.reg_wd_ctl = PCF2127_REG_WD_CTL,
+> > @@ -906,6 +909,7 @@ static struct pcf21xx_config pcf21xx_cfg[] = {
+> >  		.has_nvmem = 0,
+> >  		.has_bit_wd_ctl_cd0 = 0,
+> >  		.has_int_a_b = 0,
+> > +		.has_reset_reg = 0,
+> >  		.regs_td_base = PCF2127_REG_TIME_DATE_BASE,
+> >  		.regs_alarm_base = PCF2127_REG_ALARM_BASE,
+> >  		.reg_wd_ctl = PCF2127_REG_WD_CTL,
+> > @@ -930,11 +934,13 @@ static struct pcf21xx_config pcf21xx_cfg[] = {
+> >  		.has_nvmem = 0,
+> >  		.has_bit_wd_ctl_cd0 = 0,
+> >  		.has_int_a_b = 1,
+> > +		.has_reset_reg = 1,
+> >  		.regs_td_base = PCF2131_REG_TIME_DATE_BASE,
+> >  		.regs_alarm_base = PCF2131_REG_ALARM_BASE,
+> >  		.reg_wd_ctl = PCF2131_REG_WD_CTL,
+> >  		.reg_wd_val = PCF2131_REG_WD_VAL,
+> >  		.reg_clkout = PCF2131_REG_CLKOUT,
+> > +		.reg_reset  = PCF2131_REG_SR_RESET,
+> >  		.ts_count = 4,
+> >  		.ts[0] = {
+> >  			.regs_base = PCF2131_REG_TS1_BASE,
+> > @@ -1075,6 +1081,20 @@ static int pcf2127_probe(struct device *dev, struct regmap *regmap,
+> >  	clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, pcf2127->rtc->features);
+> >  	clear_bit(RTC_FEATURE_ALARM, pcf2127->rtc->features);
+> >  
+> > +	/* Read device signature if available. */
+> > +	if (pcf2127->cfg->has_reset_reg) {
+> > +		ret = regmap_read(pcf2127->regmap, pcf2127->cfg->reg_reset, &val);
+> > +		if (ret < 0) {
+> > +			dev_err(dev, "reading RESET register failed\n");
 > 
-> - On-board ethernet is removed
+> This is too verbose, please cut down on the number of strings you are
+> adding.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+See comment below.
 
-Best regards,
-Krzysztof
+> 
+> > +			return ret;
+> > +		}
+> > +
+> > +		if (val != PCF2131_SR_RESET_READ_PATTERN) {
+> > +			dev_err(dev, "invalid device signature: $%02X\n", (u8)val);
+> 
+> I'm also not convinced this is actually useful. This may have to be
+> updated for the next rtc the driver will support and what if this
+> contradicts what the device tree is claiming at this address?
 
+I will drop that section.
+
+
+> > +			return -ENODEV;
+> > +		}
+> > +	}
+> > +
+> >  	if (alarm_irq > 0) {
+> >  		unsigned long flags;
+> >  
+> > -- 
+> > 2.30.2
+> > 
+> 
+> -- 
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+> 
+
+
+-- 
+Hugo Villeneuve <hugo@hugovil.com>
