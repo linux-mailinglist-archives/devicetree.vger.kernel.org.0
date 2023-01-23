@@ -2,154 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 223F16774B3
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 05:44:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD15A6774C3
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 06:12:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230072AbjAWEoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 23:44:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48694 "EHLO
+        id S230073AbjAWFMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 00:12:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbjAWEoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 23:44:38 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9EA313501;
-        Sun, 22 Jan 2023 20:44:37 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30N4djeL005120;
-        Mon, 23 Jan 2023 04:44:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=OacOLlrKZ8JwK9orVXA8AsmjPvwSvOiWb+YQJupZdHc=;
- b=pyw1F8UUN/si4ysc9TlU/weUAtxSbN2tsrg8LrHldbCzwTWvyeA1ggYohxtjU9RXNYZ1
- HGH5wYMqCoKuL2j19CDVbaojaouSh269rOV7Ah5Vo1YCo6u77i1oJJreo6YjUBwt7oLl
- fHIaeQgIP0Ob1/o6vSnSCTT5yJ3KGUV6y/c51F9MI1IPPwWO5iYaq1UmtQMLgOsLKalO
- tioMWhq45zTQxxl010pK5aRWo/ForE5Q/902Eh1b5U6hH20Sc6GJzkWnxniusEtjYLDN
- nYw+yiVzjBpRVeQ8Oke4Qe5q81LW5MPT8SqaZ/m+f2OgH5I5CAP6qTFHGSBm3tIRVIx9 nw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n89htt6u9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 23 Jan 2023 04:44:33 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30N4iW9E025702
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 23 Jan 2023 04:44:32 GMT
-Received: from [10.50.40.120] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Sun, 22 Jan
- 2023 20:44:29 -0800
-Message-ID: <0b224700-4774-0c34-7ce1-0a984b62b3c0@quicinc.com>
-Date:   Mon, 23 Jan 2023 10:14:26 +0530
+        with ESMTP id S230024AbjAWFMB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 00:12:01 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FD6A17CFA;
+        Sun, 22 Jan 2023 21:11:59 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id y19so13244063edc.2;
+        Sun, 22 Jan 2023 21:11:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=sWioUiHkjNJu+qFD0c7stZaNR29l77ssapWjZeRh5zw=;
+        b=L+Abc93j8hf8PGkpz2K1amYZkyIZ0U8J2kqQpf9Jle5sLJzmqYDLWihTwnQ+qAtY3e
+         LdQxfusjChLBsrBeTFLG3xEWt7QEIn6Y/SUhhnkTUWtpy6ntmaeo9zEhr97i4E4fuEdm
+         RUouQGeLiyTCbHjs+HJ8kcpLsOOldAmgf41sk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sWioUiHkjNJu+qFD0c7stZaNR29l77ssapWjZeRh5zw=;
+        b=qOpUwr4uLJEWzGoaHZZ7xcTXKz2fIaWPlZ5VWYNbr9yyWElAWAtmLGxntQrixUslZ0
+         /qylV0GqkIXjx5vtz5xsPrCr9jBEAoUCiNQGsb/a0FkwZRCCDEHK7n5aeWMs+H2MrT47
+         Bd5Tv/p+61C2/rneDrwbGFlUbvpl3oue38n7D18DrRaKdMXgebxkGmov5wLAz5Oi2Cz8
+         wVgwByzxUktCb1FiY/vPVX/0KGTJtK532doHzBgJWKIHHi/gys5n7/cA/Fk1eDi96RPY
+         0Z3NXArVorNydBNjZdNOTp9z9GMjX4BYBxGKVnxrguPTP1rkGrrs1Vjt7tbQiScBegPz
+         GJxg==
+X-Gm-Message-State: AFqh2kqUjdI+02qwDMDc7sFx6/t7Ak4TIqrCKvzCrVYN008FO2si1I4t
+        X0gKQI0Yh6zcNyQ7vcsDsqISpzecet4Nt8WVtlk=
+X-Google-Smtp-Source: AMrXdXsPVC66oPNni93hPdj3sCljs/LtZOEps1r4t9jmIAGlnws/huj/ohwTtulkMAqHa1SeXH3p2vbViEYi1hHQSh8=
+X-Received: by 2002:a05:6402:524f:b0:497:233d:3eee with SMTP id
+ t15-20020a056402524f00b00497233d3eeemr3118354edd.92.1674450717581; Sun, 22
+ Jan 2023 21:11:57 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq8074: add QFPROM node
-To:     Robert Marko <robimarko@gmail.com>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <srinivas.kandagatla@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230121112358.52216-1-robimarko@gmail.com>
- <20230121112358.52216-2-robimarko@gmail.com>
- <ebdd9932-e251-0cd7-6c98-3c735ecb74a6@quicinc.com>
- <CAOX2RU7p-0ZTx8fkY4hOk=Zmx6RT+1PwVL+CQxkjzVadm0ehTA@mail.gmail.com>
- <29d9de45-1ce7-d6e5-bf02-052e911a067b@quicinc.com>
- <CAOX2RU7BfESmsUdZ5jBfYjWXUnDWmFizT8UiPwgzb_SsrT0jnA@mail.gmail.com>
-Content-Language: en-US
-From:   Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-In-Reply-To: <CAOX2RU7BfESmsUdZ5jBfYjWXUnDWmFizT8UiPwgzb_SsrT0jnA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: DThyUDSLr-WQp1k0nFCb0SapXD4m6Acz
-X-Proofpoint-GUID: DThyUDSLr-WQp1k0nFCb0SapXD4m6Acz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-23_02,2023-01-20_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 lowpriorityscore=0 mlxscore=0 malwarescore=0 bulkscore=0
- impostorscore=0 mlxlogscore=952 suspectscore=0 clxscore=1015 phishscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301230044
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230120190159.23459-1-nick.hawkins@hpe.com> <20230120190159.23459-2-nick.hawkins@hpe.com>
+In-Reply-To: <20230120190159.23459-2-nick.hawkins@hpe.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Mon, 23 Jan 2023 05:11:45 +0000
+Message-ID: <CACPK8Xe46F4Rk1jkLzXdzHE8t_HePe83teTrwUoV4wMvOn4_CQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/5] i2c: hpe: Add GXP SoC I2C Controller
+To:     nick.hawkins@hpe.com
+Cc:     verdun@hpe.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 1/22/2023 10:39 PM, Robert Marko wrote:
-> On Sun, 22 Jan 2023 at 18:05, Kathiravan Thirumoorthy
-> <quic_kathirav@quicinc.com> wrote:
->>
->> On 1/22/2023 10:29 PM, Robert Marko wrote:
->>> On Sun, 22 Jan 2023 at 17:57, Kathiravan Thirumoorthy
->>> <quic_kathirav@quicinc.com> wrote:
->>>> On 1/21/2023 4:53 PM, Robert Marko wrote:
->>>>> IPQ8074 has efuses like other Qualcomm SoC-s that are required for
->>>>> determining various HW quirks which will be required later for CPR etc,
->>>>> so lets add the QFPROM node for start.
->>>>>
->>>>> Individidual fuses will be added as they are required.
->>>>>
->>>>> Signed-off-by: Robert Marko <robimarko@gmail.com>
->>>>> ---
->>>>>     arch/arm64/boot/dts/qcom/ipq8074.dtsi | 7 +++++++
->>>>>     1 file changed, 7 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
->>>>> index 8eba586065a3..f29491f647fe 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
->>>>> @@ -301,6 +301,13 @@ mdio: mdio@90000 {
->>>>>                         status = "disabled";
->>>>>                 };
->>>>>
->>>>> +             qfprom: efuse@a4000 {
->>>>> +                     compatible = "qcom,ipq8074-qfprom", "qcom,qfprom";
->>>>> +                     reg = <0x000a4000 0x1000>;
->>>>    From the HW document, I see the overall size of this region is 0x2000,
->>>> any reason to stick with 0x1000?
->>> Like always, I dont have access to docs and 0x1000 is all I could find
->>> downstream
->>> being used.
->>>
->>> Any chance you can share the regions inside of QFPROM, it would be great to use
->>> the ECC corrected one if available.
->> Sorry, What do you refer by "ECC corrected" here?
-> Isnt there a corrected region in the QFPROM meant for reading?
-> As far as I understand it's protected by FEC.
-
-
-Yes, there are two regions for the QFPROM, the region which you used 
-here is the one used for reading and there is a error correction logic 
-for it and it is size is 8KB not 4KB.
-
-Thanks, Kathiravan T.
-
+On Fri, 20 Jan 2023 at 19:04, <nick.hawkins@hpe.com> wrote:
 >
-> Regards,
-> Robert
->> Thanks, Kathiravan T.
->>
->>
->>> Regards,
->>> Robert
->>>> Thanks, Kathiravan T.
->>>>
->>>>
->>>>> +                     #address-cells = <1>;
->>>>> +                     #size-cells = <1>;
->>>>> +             };
->>>>> +
->>>>>                 prng: rng@e3000 {
->>>>>                         compatible = "qcom,prng-ee";
->>>>>                         reg = <0x000e3000 0x1000>;
+> From: Nick Hawkins <nick.hawkins@hpe.com>
+
+> +static int gxp_i2c_remove(struct platform_device *pdev)
+> +{
+> +       struct gxp_i2c_drvdata *drvdata = platform_get_drvdata(pdev);
+> +
+> +       disable_irq(drvdata->irq);
+
+The i2c core calls disable_irq for us (see i2c_device_shutdown) so you
+don't need that here.
+
+In my review I wondered if you needed to do something like this:
+
++               regmap_update_bits(i2cg_map, GXP_I2CINTEN, 0x00000FFF, 0);
+
+> +       i2c_del_adapter(&drvdata->adapter);
+> +
+> +       return 0;
+> +}
+> +
