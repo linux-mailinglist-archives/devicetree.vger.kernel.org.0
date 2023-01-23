@@ -2,119 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4BD5678AAC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 23:21:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F05E678AB5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 23:23:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231607AbjAWWVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 17:21:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38386 "EHLO
+        id S233144AbjAWWXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 17:23:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231501AbjAWWVp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 17:21:45 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E2F6EFA8;
-        Mon, 23 Jan 2023 14:21:45 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AD37C610A3;
-        Mon, 23 Jan 2023 22:21:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9876DC433D2;
-        Mon, 23 Jan 2023 22:21:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674512504;
-        bh=5pNowrepl2Bk3buosCjxux1jEQssWQZ3moduo0N2YcQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=anwJLJwOMFPB9n1nAjV+3+UF+piqtQ06TgwUhQJWuwq4vpshYJ+ZtTh6AoZInTNeZ
-         L7dtOfftMaiz68yjgOEnzOcPazzND3D4yyjMMAbhimnIYDP5HlAS6tWC4U9cFogTSq
-         FqQZwYY5qRte8CjohmwnMfAbcBcux7dmtJ5o5+yk10o6XjKDfYFXPMtB2DufLWBUd1
-         Siel2WTc0tLs0P3KGLP+Cs7A8EKJdXh2RvFBBoC00u2KKhQS4QPf2xggUt4SQ4DvuY
-         NfinuWWoCT99vrnMV/+HQBrQbVhriEZ2pUKFtpxme105c5jvU5dU5O9iCFqslS2WNP
-         tVUayPvC8lYbA==
-Date:   Mon, 23 Jan 2023 23:21:40 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peter Rosin <peda@axentia.se>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 3/3] i2c: gpio: support write-only sda/scl w/o pull-up
-Message-ID: <Y88IdIeNKa6UiCFc@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
+        with ESMTP id S233073AbjAWWXq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 17:23:46 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A8ED30194;
+        Mon, 23 Jan 2023 14:23:44 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id v30so16369127edb.9;
+        Mon, 23 Jan 2023 14:23:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1fPD3yMwyErqgyHP1cVk5L5Dh397sb2S5yn/YVy8ldA=;
+        b=DUAIZe+ryw7hzpevXSDEpm7IN0lvQO69vkLizbB0wOvV8/K7qK++Tl0jmHGgueWohj
+         yKjKGrkc+xQALKpvhj2M9l+tPxrSiiyyFjGO0gbc6b2tXBmOo9wQ7R/E5MIBblUsZjAe
+         bmQThA3zDezYl2/Zbh13DGGl5mZqVlEPWQKewAWFK93daI/hPWq9gRieR/dlxbbhiQDz
+         BMb+UuYKe+P2KwHC/as6iU/P9JHbhTjQQ8NXyfKZNFGGb3QWU4Q0I2XrCFFc0M6oP0XL
+         TdDi4sqBxsA+UFYKw0Zo6KGFTYMvusBlJXUhgjDPCMv9wjGYOx0AHU8as06mH7oeZFQK
+         Ogrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1fPD3yMwyErqgyHP1cVk5L5Dh397sb2S5yn/YVy8ldA=;
+        b=2i3ii0QBNvTGxaSTCFsPxhRc+zmWVZOUMpkGhb3LjeAyDZtFrSnj3GjBWsV45KPc1b
+         YpEm7BoPVYw1u7Qktp8mEGYHekyLtSaJcGbhk8AMYgNkJmn7yB3w3rSc+24+D5olaY63
+         kdTln2hry7Kp0cpD/dAGSshAW3gB+ltHK1h2pIvIlG/REHW45Q2qCI4yGLgAPGjmi05B
+         4Ld8nXu2/+sjYazMN1W2OW972JhMNF31g/IcwAbDRyQNke86s7t9ZZYWy90Qxnus4tFP
+         ihCxCoCanvV4rqc9XSRm74RacCUqDO0nEN4ASKvF69yG3LtjsDmIhgCPW0g/zvswhUCS
+         m2Dg==
+X-Gm-Message-State: AFqh2kr+SRajikidRRJpD4IeC/vhMaVY9OXn9rSO2f7AsUkAnIOTJew2
+        vYR1YtVXAwQ+uuFyUFDvB9fLI3jT1iY=
+X-Google-Smtp-Source: AMrXdXsMJ/EKeGVhaWg184wBLwM0V9JJR46yYEdZwyH1Mkx0KFL1AwIaJqj9RCzRBF/hpaoJJnJT4g==
+X-Received: by 2002:a05:6402:5110:b0:499:bec8:4f with SMTP id m16-20020a056402511000b00499bec8004fmr35743134edd.20.1674512622636;
+        Mon, 23 Jan 2023 14:23:42 -0800 (PST)
+Received: from localhost.localdomain ([194.39.226.133])
+        by smtp.gmail.com with ESMTPSA id l19-20020a056402345300b0049f5ab4fa97sm256928edc.86.2023.01.23.14.23.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jan 2023 14:23:42 -0800 (PST)
+From:   Markuss Broks <markuss.broks@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Markuss Broks <markuss.broks@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peter Rosin <peda@axentia.se>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <6f4b54d9-ab6d-a4d4-5142-27c89e03c6d2@gmail.com>
- <7eea145d-d5a7-052c-e458-18f3b842c2ec@gmail.com>
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 0/2] Add support for Samsung Galaxy S5 (Exynos)
+Date:   Tue, 24 Jan 2023 00:23:26 +0200
+Message-Id: <20230123222329.13994-1-markuss.broks@gmail.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="LQJfnu/JnbPQR1bP"
-Content-Disposition: inline
-In-Reply-To: <7eea145d-d5a7-052c-e458-18f3b842c2ec@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Samsung Galaxy S5 (Exynos) is a mobile phone released in 2014.
+It has an Exynos5422 platform. This version of Galaxy S5 is only
+capable of 3G communication using the Intel modem, while the
+LTE version of the device (klte) has a Qualcomm Snapdragon SoC.
 
---LQJfnu/JnbPQR1bP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Currently, internal eMMC, USB, regulators on a PMIC, and touchscreen
+are enabled in the device-tree.
 
-On Wed, Jan 18, 2023 at 10:55:12PM +0100, Heiner Kallweit wrote:
-> There are slave devices that understand I2C but have read-only SDA and
-> SCL. Examples are FD650 7-segment LED controller and its derivatives.
-> Typical board designs don't even have a pull-up for both pins.
-> Handle the new attributes for write-only SDA and missing pull-up on
-> SDA/SCL.
->=20
-> For either pin the open-drain and has-no-pullup properties are
-> mutually-exclusive, what is documented in the DT property documentation.
-> We don't add an extra warning here because the open-drain properties
-> are marked deprecated anyway.
->=20
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+It also has the following peripherals:
 
-Applied to for-next, thanks!
+- 5" 1080p S6E3FA2 DSI display,
+- Cypress StreetFighter touch buttons,
+- Broadcom BCM4354 wireless connectivity module,
+- Intel XMM6360 3G modem,
+- STM32F401 serving as a sensor hub,
+- Validify Solutions VFS61 series fingerprint sensor,
+- Lattice ICE401M FPGA as an IRDA controller,
+- Maxim MAX86900 heart rate sensor,
+- NXP PN547 NFC controller,
+- Wolfson WM5110 Audio DSP,
+- Broadcom BCM4753 GPS radio,
+- Maxim MAX77804 PMIC,
+- Silicon Image SII8240 MHL controller,
+- TI LP5562 LED driver
 
-> +	pdata->sda_is_output_only =3D
-> +		of_property_read_bool(np, "i2c-gpio,sda-output-only");
-> +	pdata->sda_has_no_pullup =3D
-> +		of_property_read_bool(np, "i2c-gpio,sda-has-no-pullup");
-> +	pdata->scl_has_no_pullup =3D
-> +		of_property_read_bool(np, "i2c-gpio,scl-has-no-pullup");
+Cc: Mark Brown <broonie@kernel.org>
 
-I converted these to device_property_read_bool() because of 7b6e9dc7e42d
-("i2c: gpio: Add support on ACPI-based system") which is in my for-next.
+v1 -> v2:
+- use better subject prefixes
+- rename Galaxy S5 (Exynos) to Galaxy S5 (SM-G900H)
+- align the compatibles and clock output names
+- reorder the includes
+- generic node name for regulator-tsp-vdd-en
+- GPIO flag for regulator
+- rename all the regulators, leaving the voltage values only where
+  it makes sense (e.g. on 3V3 and 1V8 supplies for the HRM)
+v2 -> v3:
+- touch-pin to touch-irq-pins
+- s2mps11-irq-pin to s2mps11-irq-pins
+- touch_pin to touch_irq
 
+Markuss Broks (2):
+  Documentation: devicetree: bindings: Add compatible for Samsung Galaxy
+    S5 (Exynos)
+  arm: dts: Add device-tree for Samsung Galaxy S5 (Exynos)
 
---LQJfnu/JnbPQR1bP
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/arm/samsung/samsung-boards.yaml  |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/exynos5422-samsung-k3g.dts  | 676 ++++++++++++++++++
+ 3 files changed, 678 insertions(+)
+ create mode 100644 arch/arm/boot/dts/exynos5422-samsung-k3g.dts
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.39.0
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPPCHQACgkQFA3kzBSg
-KbYFIA/+MWdSqmFYPu9rjNdJmjoyr4o4NTmo9opV4SMu39hF3iLTVNqpVeLC0/vF
-ajHzyRzjVVAbCj9nVqexTqIhAzy7kps4+MLU0zvQZHI7k4c1ywL1n3QLCWTrNhXv
-VjfvuB25pqR5Pfetjnl63LEmn6m8tjHls3ckjMSPWImkmSvg4Tqpm5QmMEpb77tz
-PhojsJO2eKwqA2/a3ze9t5PPojKi/4o6d9WEYwN/3fMsQPCXrADvlsSJv1LNQbap
-myn8xshCRiJ/yNnLIyOW1vOeJbKqPhpNW33C0UHVH8NfielbNJd89egY3VCdDigr
-a4+CnE0TvRwEx2LnThCdlnu0yS3pv1h8CBwdyWJn6OVSgDUv39vGTgCeiyQQs8c6
-c3fReEo3KnHiX3Rq1ZfWQ5CX3TytNOrjUXWfLE1Ggt2RNL1N3dZTDiFM+DY42fNh
-9wo7pYmMjC9IzRENolKofAKljrqYtOMB8Z8+W7MyABqvFV5aS62SN1e+MMNnUlJ2
-wdILnQKN8KDjdfY+Wo0OrOnv2OXuEPeVfY3mQXI5PLdhJVhjZkscWh3LmqYqMO/v
-tttGC4dJ4lm/6t5rluY2Bp4UAnxxfmVBj6PGiEjw5I2TdtecoIfTorQJZf8acdY+
-sNUwe3I68Z8Q4l8hJG0l19fboM5B68i/AooiJpYnStAd3TOLrsE=
-=/h1z
------END PGP SIGNATURE-----
-
---LQJfnu/JnbPQR1bP--
