@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FD43677B2E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 13:39:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A61E677B30
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 13:39:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231756AbjAWMjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 07:39:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42460 "EHLO
+        id S231745AbjAWMjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 07:39:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231740AbjAWMjr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 07:39:47 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C43A01116D
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 04:39:43 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so10522641wmb.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 04:39:43 -0800 (PST)
+        with ESMTP id S231753AbjAWMjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 07:39:48 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4900F23DA9
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 04:39:45 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id o17-20020a05600c511100b003db021ef437so8442379wms.4
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 04:39:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CxZUG7WXwxmHRD/CiGq8cgS4TR++f6dGdX+PNWdo2hw=;
-        b=g+VU7EiZyD/baFtvQAvpPHQeZRWHMotbhHOjnwT6LdJPnH8/A5T1BwnpK1GpYvthC6
-         EUqsPzCvVpVLEwsceI7WtsAtOwaOREjWXTso2h7XD+Bl/QGp/xlFQEOyDiU2zRCo7hJW
-         u9ECqliBxG/5wJq+xOHyKz6WZ5RkXIXOdfeSggwzIs2XlavB2RIlrRijjmHg779YHKY7
-         iF+zB2RsRYMkb8/t8ep1RJdZhJNS2Y2ZLbHLaglNyIXO6Na5uxvQDfPyyMGPhXmEf7gJ
-         DlmDQg0pvMbdDMjjirfg99hQVqFIaeyI0xl1LLLcbkvcmNcvjgCPPvoiNyhTlAXJfMLp
-         xfUA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yMEXBUhz1I/IqxZeXa+fNMJbdk1gkDT/FjHuaLwENDc=;
+        b=ikprnw+HLw3iK2peulGj9depeyHuekQquYDdT60rfdTZp2Ly+EyUs4xtxARYKi5aJo
+         54Tp+amTOHUXSiefk/83+/IMBlHhYwLR+dtJX4H6JRGRDHcazP3D50f06qzZ4oLJ28bF
+         3BLe2vmB8XSvIczabQRnJ+pB+WU76GFOqzV7rJUEKwvIV1IsTAK2dNUsucOpqCfNdITu
+         f0xHpQBsbk06TrStpKNfj+lX9hWvPv517Ca8Cc7/j6S60rRclXVM0o3OTE3aDtCisjTp
+         Nn+CFA4fTWKeqqiQ0871joPwATWMBvxhXCMBD93aDrfPQ0leNjaKh71F979xVd6qcvW4
+         CXGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CxZUG7WXwxmHRD/CiGq8cgS4TR++f6dGdX+PNWdo2hw=;
-        b=0fpRBaXpFtq3xYzdzcn+qFy5CejybL830HO3oEFs0qzs+k5MvK4G5bdMJP0DTA9YVv
-         P3x619HSgB+rHVrHPySjPJKVBoA2Ov0cFd1HEcjrNqBgDcl17umConRiUhL7VgM9aDd8
-         QeihlAHoDkCYZBu6117uSsW7rPfrIoEoIcYmVSMfO0TA0pzsqZey9oSGki8KoDpKVEa4
-         luCIWd8PtllLpzn55RVRB9+LN15buxikODsuJOf+Xe+hrwIbetx+ZhteDu6kmPGi+2/c
-         Way2rCUB4Is9jUmyQSAHnu/CZtWHdkLnezA6/g3Uof2ikfgu3STMNB/a6lFyVP0FbKda
-         q7Aw==
-X-Gm-Message-State: AFqh2kqIxw8gsecrueeIlu42u97SzAPoOWP7uX3pRnvpd/wvTHUMXA7H
-        5wS/yJ1XWJO3wTptT6ijwzOf/A==
-X-Google-Smtp-Source: AMrXdXtMFGbO2SvMImopFAFjQbvVi1db5w62HEcZc8VFTwGDyaJCPbwrBKu/GTrvgc/9Y7dNm6CzfQ==
-X-Received: by 2002:a1c:750e:0:b0:3da:fcf6:7146 with SMTP id o14-20020a1c750e000000b003dafcf67146mr23999897wmc.14.1674477582317;
-        Mon, 23 Jan 2023 04:39:42 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yMEXBUhz1I/IqxZeXa+fNMJbdk1gkDT/FjHuaLwENDc=;
+        b=QvXSLGU7Cns4KuCSAEN6ZIznO+ccVUGpE+gKgJUoUMleQ7ILdcuSWG8QICIkdYwvbX
+         8iRpwTA8Mwlfyy1qE8Pt/8vkHksnZrSQk8ItmKUxtw7twMoRs3YRJZE+r6dnb/pzJc2c
+         XTnFClv1n8USdfhji7PC35z+VX0+etk6EnQqxK40paOKXAUF+WBizmb94pk6/JgeXC53
+         Yemso2oyDzcVPmnHSbTK8y+WiIQl4AUI1IAAeGMNhaktAR15BSrdKrXseV7iMhNCliLb
+         rhaynJYrYEOxZ+Bo0hmkp+f2f8/bmOqqQXs6LSgcg3RkZ0JD7EXBRORhpZknp5uTzgNo
+         Xc0w==
+X-Gm-Message-State: AFqh2krCUPqPLvTR2YtIZU2ywILrsVnkhCP13vPnoTzziljtjH2ATLYl
+        CBHi/ubVJDVin20anYEr8jA10w==
+X-Google-Smtp-Source: AMrXdXs/9pcknF6x4KEg1VOGmzmJs/yxQyYQu7TT9MmzZJjl7EhvWNFRoRMwY5r7fv5gbR/1D9sJGw==
+X-Received: by 2002:a05:600c:4f07:b0:3db:2295:9977 with SMTP id l7-20020a05600c4f0700b003db22959977mr15245855wmq.40.1674477583703;
+        Mon, 23 Jan 2023 04:39:43 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m37-20020a05600c3b2500b003daf681d05dsm11347568wms.26.2023.01.23.04.39.40
+        by smtp.gmail.com with ESMTPSA id m37-20020a05600c3b2500b003daf681d05dsm11347568wms.26.2023.01.23.04.39.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 04:39:41 -0800 (PST)
+        Mon, 23 Jan 2023 04:39:43 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,56 +59,46 @@ To:     Andy Gross <agross@kernel.org>,
         Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/3] arm64: dts: qcom: use generic node name for Bluetooth
-Date:   Mon, 23 Jan 2023 13:39:37 +0100
-Message-Id: <20230123123939.139327-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/3] arm64: dts: qcom: sm8350: drop incorrect cells from serial
+Date:   Mon, 23 Jan 2023 13:39:38 +0100
+Message-Id: <20230123123939.139327-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230123123939.139327-1-krzysztof.kozlowski@linaro.org>
+References: <20230123123939.139327-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Node names should be generic (as Devicetree spec mandates), so use
-"bluetooth" for BT node.
+The serial/UART device node does not have children with unit addresses,
+so adderss/size cells are not correct.
 
+Fixes: cf03cd7e12bd ("arm64: dts: qcom: sm8350: Set up WRAP0 QUPs")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc7180-idp.dts    | 2 +-
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-index 774f9d45f051..6ea8dd7d3e01 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-@@ -430,7 +430,7 @@ &uart3 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-1 = <&qup_uart3_sleep>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index 4efe79985186..018f26f729f1 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -1031,8 +1031,6 @@ uart2: serial@98c000 {
+ 				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
+ 				power-domains = <&rpmhpd SM8350_CX>;
+ 				operating-points-v2 = <&qup_opp_table_100mhz>;
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
  
--	bluetooth: wcn3990-bt {
-+	bluetooth: bluetooth {
- 		compatible = "qcom,wcn3990-bt";
- 		vddio-supply = <&vreg_l10a_1p8>;
- 		vddxo-supply = <&vreg_l1c_1p8>;
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-index a78075155310..e19178c1ec44 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-@@ -862,7 +862,7 @@ &uart6 {
- 
- 	pinctrl-0 = <&qup_uart6_4pin>;
- 
--	bluetooth: wcn3990-bt {
-+	bluetooth: bluetooth {
- 		compatible = "qcom,wcn3990-bt";
- 		vddio-supply = <&src_pp1800_s4a>;
- 		vddxo-supply = <&pp1800_l7a_wcn3990>;
 -- 
 2.34.1
 
