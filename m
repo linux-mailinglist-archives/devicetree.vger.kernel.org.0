@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 243D467865E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:29:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F357678661
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:30:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232725AbjAWT3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 14:29:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37738 "EHLO
+        id S229732AbjAWTai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 14:30:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232693AbjAWT3J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:29:09 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA46635267;
-        Mon, 23 Jan 2023 11:28:57 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 374AE61028;
-        Mon, 23 Jan 2023 19:28:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D05EC4339B;
-        Mon, 23 Jan 2023 19:28:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674502136;
-        bh=9NZXkPdmw/iB9Zkyv6wXQtlGAjxqyjWERvaxcrJqUrs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rPXXFP4UpDa/wyVGKxnJhAw75MJAFwnhNF/TMHqQdXN/wKQ/dfUM9cRBvIOMFP+oe
-         lcdbBuVkbA5BK8dY3/yK0IflJTdU213skxB5wW8DJmSNsGBY3FBIUrEFXaS4I3/lz7
-         dMiXuLgrBeRDdLqpHepeh4+6C0RFXlnQuwz8xsVE2pndVxIsdhmkEOqRCJbdYlc4pm
-         /fdTEdVwHltWcZ0RDmn0ZDmHhOsrLXk5X1eWKCwvpHucQ1wjp/N4FZMjz46+oRGNrO
-         LUtsfjdeaH6m8asTOLqaamUkFK63c/jA4txZmEzZO+/jicbSH1eFQP57nZV4JFn8t9
-         911fNT9Dv7FCA==
-Date:   Mon, 23 Jan 2023 20:28:44 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 00/12] can: rcar_canfd: Add support for R-Car V4H systems
-Message-ID: <Y87f7BPchIcT2BQa@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <cover.1674499048.git.geert+renesas@glider.be>
+        with ESMTP id S231513AbjAWTah (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:30:37 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C1CB771
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:30:13 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id h16so11816513wrz.12
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:30:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vVG/qABxXVSiTYOC6pdKipzDPp6lJGWe+6QSkO+wG4o=;
+        b=TddBwYDVTrX5pt7/LtpKe11oyghFsqqWMo5+iuxR0872IjHlFjkiVsDP7xlQZFu9xU
+         kLC9GTgG2jcZOir0fmDYjWsr3NQxIePl5cZelM40vakABUBA0+6VsTxRjmy8wJgDxKYQ
+         gNV2cSdq/VFCwxwS1sXFiZ1+FsBEIh2RX+pfjycKAc22DUB7/C47k3dP9RDseXPlomrB
+         7P6IG1yMab7hrY3+E/PjT2u6P2ImRigpf8wVENeCaGXcq9dJ4FiLA4Lho2ndY5fP5SoU
+         iZcAbFx09IQXOqSX3tlS30wWY7yFx8/+XZoqXCthIhiNfUFarTNHaA06jI23syt908Ek
+         2vrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vVG/qABxXVSiTYOC6pdKipzDPp6lJGWe+6QSkO+wG4o=;
+        b=qEs6/V2AZ7REMjmHmvwYGoHC6UnsNvDlBkMIOfkKoTtfJVt8Y0cmAjEkiylCCVyoCj
+         qHVwtqyqZTxzV9YyoRcQgZzDz+vuoLTL/tG8Gm46XtXxbcryrw5U3gV/a3UOHGQ2H/1w
+         fqieQJefXKVK7TcQiLA0RvHCELEio8gytB2Kb/Y8TBmnDAWaFDzhVfBFcsxhhjG7Vlms
+         6k2/jGTqNPYPFk6UXJBv39D74fvmJnUimXTjVFhhI57sQOdYPqiGx9vXTTeliUAqv04o
+         gJdvms89lhPKl0eXKiez6I/yHdZwdWlX1oBYgsCOUS8sc5cHoKjkYpbdE8OiFRRwMT8i
+         9qsg==
+X-Gm-Message-State: AFqh2kqWeuirM2Ba96Nh+a+WRorJrRLlLAbUhEOWdpwkKfr6SlT9/MBm
+        MScTdEmZwFMnI867cDu1lGIclzLa2L5jodqT
+X-Google-Smtp-Source: AMrXdXv5deREaCg2e/R39OBQ9au1t2rwVSeazLIwo4khNfEMNJkCOW/Xa4IssMkNbZzhpiiFz0qCcA==
+X-Received: by 2002:a05:6000:1816:b0:242:324e:b3d with SMTP id m22-20020a056000181600b00242324e0b3dmr21448863wrh.1.1674502212491;
+        Mon, 23 Jan 2023 11:30:12 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n21-20020adf8b15000000b0028965dc7c6bsm143519wra.73.2023.01.23.11.30.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 11:30:11 -0800 (PST)
+Message-ID: <980797c2-69bb-bbe7-4427-e521b7fc4a73@linaro.org>
+Date:   Mon, 23 Jan 2023 20:30:10 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="+GiX6MlQAA4givF7"
-Content-Disposition: inline
-In-Reply-To: <cover.1674499048.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 2/2] arm64: dts: stratix10: add i2c pins for pinctrl
+Content-Language: en-US
+To:     Dinh Nguyen <dinguyen@kernel.org>, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230123192712.84537-1-dinguyen@kernel.org>
+ <20230123192712.84537-2-dinguyen@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230123192712.84537-2-dinguyen@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,46 +74,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23/01/2023 20:27, Dinh Nguyen wrote:
+> Add the I2C pins definition to the Stratix10 devkit. This allows for the
+> I2C driver to use pinctrl on the pins to allow for GPIO recovery.
+> 
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> ---
+>  .../dts/altera/socfpga_stratix10_socdk.dts    | 23 +++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+> index 17752ca743e5..beda04b9380b 100644
+> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+> @@ -65,6 +65,22 @@ sdmmca-ecc@ff8c8c00 {
+>  	};
+>  };
+>  
+> +&pinctrl0 {
+> +	i2c1_pmx_func: i2c1_pmx_func {
 
---+GiX6MlQAA4givF7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+No underscores in node names.
 
-Hi Geert,
+> +		pinctrl-single,pins = <
+> +			0x78   0x4   /* I2C1_SDA (IO6-B) PIN30SEL) */
+> +			0x7c   0x4   /* I2C1_SCL (IO7-B) PIN31SEL */
+> +		>;
+> +	};
+> +
+> +	i2c1_pmx_func_gpio: i2c1_pmx_func_gpio {
 
-thanks for this work! You not only added V4H support bu fixed/improved
-quite some things on the way.
+Same here.
 
-> Hence despite the new fixes, the test results are similar to what Ulrich
-> Hecht reported for R-Car V3U on the Falcon development board before,
-> i.e. only channels 0 and 1 work (FTR, [2] does not help).
+> +		pinctrl-single,pins = <
+> +			0x78   0x8   /* I2C1_SDA (IO6-B) PIN30SEL) */
+> +			0x7c   0x8   /* I2C1_SCL (IO7-B) PIN31SEL */
+> +		>;
+> +	};
+> +};
+> +
+>  &gpio1 {
+Best regards,
+Krzysztof
 
-IIRC Ulrich reported that the other channels did not even work with the
-BSP on V3U.
-
-Happy hacking,
-
-   Wolfram
-
-
---+GiX6MlQAA4givF7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPO3+gACgkQFA3kzBSg
-Kbb92w//ZDtw+CG21FXOjfI3qtgakd1FudDQYcDoSv+JiVYwSQxD1gMvGcoT+R4S
-1mep29/AXaz9WFNRA+L7lej8wwP+BXfGne2PcXhJSv3qXRyYhxaooN1Ws/Ut3nrX
-RZLaDZIjhctd2OgJ1qJlYCW8OTLq6oksbmaWD7BEMfRB9lkh6/HHo3dKG327QMaG
-hOjvx2Wp0w92SjTf9WBq4DZn17TuTdTslAdwzgXiQRWNqdEO99nGVc9mz3fnU3SM
-7ADxWmnUDmXI0dwLvRu28AvWIzuHdz5tto++AD//miNKJVf9rHuOI8wceDcb4JpR
-XAs/lgGLaBwCd7AkZnTijaTZuJfmWqxcNiLHfhDJVn4kYy+IWFQOPppzPAPef4oK
-soFiUBpgeCuujqOPwrOyNbwVuI15S1C8xfYxZguc1ZNrF52iKR3G3n13xXVmkoy/
-x1NiKza5ueFnJrisopWj8rOdChUwdaFt2k5zTRXmwYE1C5KW7J5AA1DQrAyYmgc0
-WpuvfN56cBrseAuSdi5156+xKJnN7gY9DTJcVUw3PzY8KmTeY8fcvNNXrGw914Bn
-dkVajyH5Ju7dYp49Sf3RCb7o61AWUMn0tbDbQBfmHPBVDcGHQeRECyKIbNo7RfHH
-FkN29pw9izxIT1ewuokGW4nUkKT7f4dvnuJCsPG4Bcl4H3Z+ZL8=
-=m5rR
------END PGP SIGNATURE-----
-
---+GiX6MlQAA4givF7--
