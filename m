@@ -2,185 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F19F6775D0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 08:51:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 293006775AC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 08:36:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbjAWHv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 02:51:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38908 "EHLO
+        id S231515AbjAWHg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 02:36:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231491AbjAWHv0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 02:51:26 -0500
-X-Greylist: delayed 1377 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 22 Jan 2023 23:51:22 PST
-Received: from egress-ip4a.ess.de.barracuda.com (egress-ip4a.ess.de.barracuda.com [18.184.203.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D33EC6F
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 23:51:21 -0800 (PST)
-Received: from mail-oi1-f200.google.com (mail-oi1-f200.google.com [209.85.167.200]) by mx-outbound10-175.eu-central-1a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 23 Jan 2023 07:51:19 +0000
-Received: by mail-oi1-f200.google.com with SMTP id r21-20020a544895000000b00364aaec3604so2831914oic.22
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 23:51:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vs3pXzn1ih/yZ/7D40NXrRgSlsjsvDAR62wJT39LY2g=;
-        b=bAVUMyYDsncF7YGwsaFslmPoE+m8XJFTxn9D6ZRELunG6/3LziNYnivm3p6J5JGgDD
-         S3YU5SoByZoOOctRY7s5MCu83143GhbsMgPp7hCUkhchtir/e5fChCK64EPw2h/bLq4O
-         1niBWk+Luy2S5GS4o3YKKA6EhJ02OiCI2+nLs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Vs3pXzn1ih/yZ/7D40NXrRgSlsjsvDAR62wJT39LY2g=;
-        b=HI+Zem1LAjMzxZfuqixHyO7wAkmaeMCCJVeugOtIgD7rEfwUVJzB8M7Ujd51AI1Zh3
-         QAIDhK4t18P8vds6zD1PlbKyTDiMf/x1KRmMLQ9Gc2d7BSStZ/R7J2TNXZ+TASEWvCZL
-         fshqvQEvrAjoYLNH3blUtKx7CUQmOUWXRgk4wz2cGs+ubevDWY9O8Te/c9mRJG8+hVlD
-         oKztFrYIB3CEZRCLuJLKsJd7Sm5K73JGyK2LaJ9QvvuadE12yKcczLa9FJnM7X78uz2O
-         oOztJnsF6ZRyLOMd16+V2SzFXx1YxsSsa2WNiytHzTOCoYtUpsH3CuTLb905LoFrGbr1
-         jT7Q==
-X-Gm-Message-State: AFqh2krM/R9/D/ium3Uf/dp7sfti6trCUtJBxE4/2QwYlHAbA/kqzvyl
-        eTA2rej0JOtCfotBegCft+1Inh1Afv+q9ZJ1q0rEJ/lL8ixIH8rUPQGr8cjRgwMLTOT0s7LlWH3
-        U7wY8cDlLvXItD+FXlLtU9MxLVK9WE9lTkqKjHD0+TbJzGdR4wL4+CVNiJRJp9BCXtvqWZVmNrg
-        ==
-X-Received: by 2002:a17:90b:291:b0:227:3f:57be with SMTP id az17-20020a17090b029100b00227003f57bemr3304704pjb.158.1674458901965;
-        Sun, 22 Jan 2023 23:28:21 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXvoqQeN9wJNr8PvqPjRStFXoe26VxO1yMBNeKcs1T8GKKVscQki0di0gYoboC0xBJDcUF7IVQImjrHCPO2rEjo=
-X-Received: by 2002:a17:90b:291:b0:227:3f:57be with SMTP id
- az17-20020a17090b029100b00227003f57bemr3304701pjb.158.1674458901651; Sun, 22
- Jan 2023 23:28:21 -0800 (PST)
+        with ESMTP id S230031AbjAWHg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 02:36:26 -0500
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46BA718B33
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 23:36:25 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1674459357; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=H7BwwRZ01ZN1U1RMbNO1pzm8QIU76QnpD1Vo+T4QfTTTFJsT3KYL8TyQM5QLd8ot6lcCeraREJkrjla9Pa6uiBnni+LDreRm299NAp8epsAvhspRIBy8yb7emmnYILSR1hTvSerkrPNB0a4jIcLQa8+6JHBBEJJiU+215wfLyRo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1674459357; h=Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject; 
+        bh=HkG+SmbIjA7sw7BLtfWk5YKVQYC6xM4eS1D5oo5HkRg=; 
+        b=CkpUrhKdNV6tLpuCqRjAYMct1rnU7+6ddITri4lxt2d1A0BgOASuGBeLothybj6CdE0RNaUqOMD6Ew9qaPweozGL+no3AP/39+41YOI77glP8KAOxpOowicvsncnZyL9ct6An7d8w5sVdtjg+1TXPy6fh9BJDFgR/8+8+W5EcZs=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        spf=pass  smtp.mailfrom=me@linux.beauty;
+        dmarc=pass header.from=<lchen@ambarella.com>
+Received: from shbuild9.ambarella.net (116.246.37.178 [116.246.37.178]) by mx.zohomail.com
+        with SMTPS id 1674459355500620.8753836206259; Sun, 22 Jan 2023 23:35:55 -0800 (PST)
+From:   Li Chen <lchen@ambarella.com>
+Cc:     Li Chen <lchen@ambarella.com>,
+        =?UTF-8?q?Andreas=20B=C3=B6hler?= <dev@aboehler.at>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Brian Norris <briannorris@chromium.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Christian Lamparter <chunkeey@gmail.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Daniel Palmer <daniel@0x0f.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), Florian Fainelli <f.fainelli@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Liang Yang <liang.yang@amlogic.com>,
+        Li Chen <lchen@ambarella.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM64 PORT
+        (AARCH64 ARCHITECTURE)),
+        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
+        linux-doc@vger.kernel.org (open list:DOCUMENTATION),
+        linux-gpio@vger.kernel.org (open list:PIN CONTROL SUBSYSTEM),
+        linux-kernel@vger.kernel.org (open list),
+        linux-mtd@lists.infradead.org (open list:MEMORY TECHNOLOGY DEVICES
+        (MTD)), linux-serial@vger.kernel.org (open list:SERIAL DRIVERS),
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        Rickard x Andersson <rickaran@axis.com>,
+        Rob Herring <robh@kernel.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH 00/15] Ambarella S6LM SoC bring-up
+Date:   Mon, 23 Jan 2023 15:32:15 +0800
+Message-Id: <20230123073305.149940-1-lchen@ambarella.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230119132958.124435-1-sabiya.d@ti.com> <20230119132958.124435-3-sabiya.d@ti.com>
- <802ae1e3-8046-675d-cf4e-d3468604a3e8@linaro.org> <90fe0c56-0179-0be1-7a7c-91c26a1eedb6@ti.com>
-In-Reply-To: <90fe0c56-0179-0be1-7a7c-91c26a1eedb6@ti.com>
-From:   Dasnavis Sabiya <sabiya.d@mistralsolutions.com>
-Date:   Mon, 23 Jan 2023 12:58:05 +0530
-Message-ID: <CAAyKsAb0sC_amsPwiQY4XcwK2Mj-ck4SJNKSMVCZH8rwzU6qWw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arch: arm64: dts: Add support for AM69 Starter Kit
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     nm@ti.com, Vignesh Raghavendra <vigneshr@ti.com>,
-        kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Dasnavis Sabiya <sabiya.d@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-X-BESS-ID: 1674460278-302735-5384-1776-1
-X-BESS-VER: 2019.1_20221214.2106
-X-BESS-Apparent-Source-IP: 209.85.167.200
-X-BESS-Outbound-Spam-Score: 0.50
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.245648 [from 
-        cloudscan9-238.eu-central-1a.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.50 BSF_RULE7568M          META: Custom Rule 7568M 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-X-BESS-Outbound-Spam-Status: SCORE=0.50 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_RULE7568M, BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+This series brings up initial support for the Ambarella S6LM
+SoC.
 
-On Fri, Jan 20, 2023 at 4:03 PM Vignesh Raghavendra <vigneshr@ti.com> wrote:
->
-> Hi Krzysztof,
->
-> On 19/01/23 19:06, Krzysztof Kozlowski wrote:
-> > On 19/01/2023 14:29, sabiya.d@mistralsolutions.com wrote:
-> >> From: Dasnavis Sabiya <sabiya.d@ti.com>
-> >>
-> >> AM69 Starter Kit is a single board designed for TI AM69 SOC that
-> >> provides advanced system integration in automotive ADAS applications,
-> >> autonomous mobile robot and edge AI applications. The SOC comprises
-> >> of Cortex-A72s in dual clusters, lockstep capable dual Cortex-R5F MCUs,
-> >> Vision Processing Accelerators (VPAC) with Image Signal Processor (ISP)
-> >> and multiple vision assist accelerators, Depth and Motion Processing
-> >> Accelerators (DMPAC), Deep-learning Matrix Multiply Accelerator(MMA)
-> >> and C7x floating point vector DSP
-> >>
-> >> AM69 SK supports the following interfaces:
-> >>        * 32 GB LPDDR4 RAM
-> >>        * x1 Gigabit Ethernet interface
-> >>        * x3 USB 3.0 Type-A ports
-> >>        * x1 USB 3.0 Type-C port
-> >>        * x1 UHS-1 capable micro-SD card slot
-> >>        * x4 MCAN instances
-> >>        * 32 GB eMMC Flash
-> >>        * 512 Mbit OSPI flash
-> >>        * x2 Display connectors
-> >>        * x1 PCIe M.2 M Key
-> >>        * x1 PCIe M.2 E Key
-> >>        * x1 4L PCIe Card Slot
-> >>        * x3 CSI2 Camera interface
-> >>        * 40-pin Raspberry Pi header
-> >>
-> >> Add initial support for the AM69 SK board.
-> >
-> > Thank you for your patch. There is something to discuss/improve.
-> >
-> >>
-> >> Design Files: https://www.ti.com/lit/zip/SPRR466
-> >> TRM: https://www.ti.com/lit/zip/spruj52
-> >>
-> >> Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
-> >> ---
-> >>  arch/arm64/boot/dts/ti/Makefile       |   1 +
-> >>  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 180 ++++++++++++++++++++++++++
-> >>  2 files changed, 181 insertions(+)
-> >>  create mode 100644 arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> >>
-> >> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> >> index e7c2c7dd0b25..04b1a7611096 100644
-> >> --- a/arch/arm64/boot/dts/ti/Makefile
-> >> +++ b/arch/arm64/boot/dts/ti/Makefile
-> >> @@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
-> >>
-> >>  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
-> >>
-> >> +dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
-> >
-> > I was told the order of entries here is "time of release". Is it
-> > correct? This is the order you want to keep here and am69-sk was
-> > released after j721s2-common-proc-board but before j784s4-evm?
->
->
-> Unfortunately, files are not in any particular order at the moment.
->
-> Currently, entries are grouped into a block based upon SoC present on
-> them. Boards within the family block are sorted alphabetically. But the
-> block of SoCs itself is arranged in no particular order.
->
-> I would like to propose to cleanup this file such that board dtbs are
-> grouped as per SoC present on them (like now), sort the group
-> alphabetically. Also then sort alphabetically within the family (similar
-> how boards appear in dt bindings)
->
-> Will do that towards end of rc6 once these patches are queued up to
-> avoid merge conflicts.
->
-As per the approach mentioned by Vignesh, I have grouped the am69 sk into
-the SoC block J784S4 and sorted the board in alphabetical order.
-Please revert with your thoughts on this.
-> >
-> >>  dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
-> >>
-> >
-> >
-> > Best regards,
-> > Krzysztof
-> >
->
-> --
-> Regards
-> Vignesh
+The following features are supported in this initial port:
 
-Regards
-Dasnavis Sabiya
+- UART with console support
+- Pinctrl with GPIO controller
+- Nand flash controller
+- Devicetree
+
+Li Chen (15):
+  debugfs: allow to use regmap for print regs
+  dt-bindings: vendor-prefixes: add Ambarella prefix
+  dt-bindings: arm: ambarella: Add binding for Ambarella ARM platforms
+  dt-bindings: arm: add support for Ambarella SoC
+  arm64: Kconfig: Introduce CONFIG_ARCH_AMBARELLA
+  soc: add Ambarella driver
+  dt-bindings: clock: Add Ambarella clock bindings
+  clk: add support for Ambarella clocks
+  dt-bindings: serial: add support for Ambarella
+  serial: ambarella: add support for Ambarella uart_port
+  dt-bindings: mtd: Add binding for Ambarella
+  mtd: nand: add Ambarella nand support
+  dt-bindings: pinctrl: add support for Ambarella
+  pinctrl: Add pinctrl/GPIO for Ambarella SoCs
+  arm64: dts: ambarella: introduce Ambarella s6lm SoC
+
+ .../devicetree/bindings/arm/ambarella.yaml    |   22 +
+ .../arm/ambarella/ambarella,cpuid.yaml        |   24 +
+ .../bindings/arm/ambarella/ambarella,rct.yaml |   24 +
+ .../arm/ambarella/ambarella,scratchpad.yaml   |   24 +
+ .../bindings/arm/ambarella/ambarella.yaml     |   22 +
+ .../clock/ambarella,composite-clock.yaml      |   52 +
+ .../bindings/clock/ambarella,pll-clock.yaml   |   59 +
+ .../bindings/mtd/ambarella,nand.yaml          |   77 +
+ .../bindings/pinctrl/ambarella,pinctrl.yaml   |  160 ++
+ .../bindings/serial/ambarella_uart.yaml       |   57 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ Documentation/filesystems/debugfs.rst         |    2 +
+ MAINTAINERS                                   |   29 +
+ arch/arm64/Kconfig.platforms                  |    9 +
+ .../boot/dts/ambarella/ambarella-s6lm.dtsi    |  332 ++++
+ .../boot/dts/ambarella/s6lm_pineapple.dts     |   29 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/ambarella/Makefile                |    5 +
+ drivers/clk/ambarella/clk-composite.c         |  293 +++
+ drivers/clk/ambarella/clk-pll-common.c        |  308 ++++
+ drivers/clk/ambarella/clk-pll-common.h        |   96 +
+ drivers/clk/ambarella/clk-pll-normal.c        |  328 ++++
+ drivers/mtd/nand/raw/Kconfig                  |    8 +
+ drivers/mtd/nand/raw/Makefile                 |    1 +
+ drivers/mtd/nand/raw/ambarella_combo_nand.c   | 1519 ++++++++++++++++
+ drivers/mtd/nand/raw/ambarella_combo_nand.h   |  370 ++++
+ drivers/mtd/nand/raw/nand_ids.c               |    4 +
+ drivers/pinctrl/Kconfig                       |    6 +
+ drivers/pinctrl/Makefile                      |    1 +
+ drivers/pinctrl/pinctrl-ambarella.c           | 1357 ++++++++++++++
+ drivers/soc/Makefile                          |    1 +
+ drivers/soc/ambarella/Makefile                |    3 +
+ drivers/soc/ambarella/soc.c                   |  136 ++
+ drivers/tty/serial/Kconfig                    |   16 +
+ drivers/tty/serial/Makefile                   |    1 +
+ drivers/tty/serial/ambarella_uart.c           | 1581 +++++++++++++++++
+ drivers/tty/serial/ambarella_uart.h           |  120 ++
+ fs/debugfs/file.c                             |   43 +-
+ include/linux/debugfs.h                       |   11 +
+ include/soc/ambarella/misc.h                  |   17 +
+ 40 files changed, 7149 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/ambarella.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,scratchpad.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/ambarella,composite-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/ambarella,pll-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/mtd/ambarella,nand.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/ambarella,pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/serial/ambarella_uart.yaml
+ create mode 100644 arch/arm64/boot/dts/ambarella/ambarella-s6lm.dtsi
+ create mode 100644 arch/arm64/boot/dts/ambarella/s6lm_pineapple.dts
+ create mode 100644 drivers/clk/ambarella/Makefile
+ create mode 100644 drivers/clk/ambarella/clk-composite.c
+ create mode 100644 drivers/clk/ambarella/clk-pll-common.c
+ create mode 100644 drivers/clk/ambarella/clk-pll-common.h
+ create mode 100644 drivers/clk/ambarella/clk-pll-normal.c
+ create mode 100644 drivers/mtd/nand/raw/ambarella_combo_nand.c
+ create mode 100644 drivers/mtd/nand/raw/ambarella_combo_nand.h
+ create mode 100644 drivers/pinctrl/pinctrl-ambarella.c
+ create mode 100644 drivers/soc/ambarella/Makefile
+ create mode 100644 drivers/soc/ambarella/soc.c
+ create mode 100644 drivers/tty/serial/ambarella_uart.c
+ create mode 100644 drivers/tty/serial/ambarella_uart.h
+ create mode 100644 include/soc/ambarella/misc.h
+
+-- 
+2.34.1
+
