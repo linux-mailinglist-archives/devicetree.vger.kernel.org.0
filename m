@@ -2,102 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B06DE67878C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 21:20:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ED68678793
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 21:21:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231667AbjAWUUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 15:20:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51184 "EHLO
+        id S231717AbjAWUVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 15:21:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231584AbjAWUUa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 15:20:30 -0500
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8AB9367D5;
-        Mon, 23 Jan 2023 12:20:13 -0800 (PST)
-Received: by mail-ot1-f50.google.com with SMTP id m18-20020a05683026d200b0068661404380so8031141otu.2;
-        Mon, 23 Jan 2023 12:20:13 -0800 (PST)
+        with ESMTP id S231635AbjAWUVQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 15:21:16 -0500
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C00A34C22;
+        Mon, 23 Jan 2023 12:21:15 -0800 (PST)
+Received: by mail-ot1-f45.google.com with SMTP id f5-20020a9d5f05000000b00684c0c2eb3fso8008070oti.10;
+        Mon, 23 Jan 2023 12:21:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=eJIseX7fbuePlCt3lfYMHgc5yPjn6sJZXZh9GvE7Yuk=;
-        b=MEb/+JI39ce0AogF0PuxwubSLof1UjvG4bMroBo0nt6jOEb17wqgEwlBD5fjwkWcg2
-         Ts+zA+YlPt0gkasuxBsyzfU7XchoOZEJXSaNUV56uCYcqUGJDcAnzG8QffrTVCz+KPVH
-         tJXW618z6PANQHuUqlh8fJyKp20CXPJmaRAagOgNMGagS2HHmmS74UAv21VQxuQfnfu5
-         cKTtZJtxjV+BKID5xSeOkkf6G1KrZdqFumSCdaINCRZ6fr4LXLuFErxSS0tauSvrSxh6
-         6JYpBB3v/4HroGpKeZuGZRVri6AAsW4TBK6Er60+IwKF+fCjbSurOAtyIutIBtwtCWp8
-         CUBQ==
-X-Gm-Message-State: AFqh2kpxpAoTvdcWca5BIljKt/EXat4bOkVQ4iyZt4x4oNHtOT4s7V59
-        cYTaMWkR3Dm2PMfVbFLRBQ==
-X-Google-Smtp-Source: AMrXdXtXo7dsxEuvQDVOZCdjfJoyKEoO2vYkeou3j0fcHEiMdz4hYCE8ilnCls8sDDy5APHHbusT7w==
-X-Received: by 2002:a9d:370:0:b0:66c:dd2b:e1ad with SMTP id 103-20020a9d0370000000b0066cdd2be1admr23494564otv.23.1674505212954;
-        Mon, 23 Jan 2023 12:20:12 -0800 (PST)
+        bh=mr/peXg3iK9f7Aw5h5gPRIJPOxe93cL+xJQ1s//fQlg=;
+        b=yWjuVk1d3005dY55pE0/SGY084nY/8a7+VPIIzx1cyvp3tUta8AnXxIK3gu8YSUW1S
+         7C9RXsy8GL2xG/DyqQlX8t+LsH2oKw8TodrTdBkarO+HZyuTz7esSvXPlGDmBxYIv7GR
+         SXyuhf4kVApq/REOhkB9E6qRjntTDUI+T3vvTcspCadoH+/me1w/MjfGb8HEH4Q+VNUo
+         otLotwy9PVQXtLQ9ubJHbjPGOvTcigb7oiNoTEmPlnv1iyzP4+egEKy4y75YqAMFu/pb
+         AyfsUYJ5xwW8ORcDQcv8LhNYU641z/2iw9YUCCDi+TllMtm+muod7EXp5rfq5ISTCp4w
+         N0SA==
+X-Gm-Message-State: AFqh2krZJUbM0iDn2dzVM5smeZye0Z3PDqyAA3yWki5C+qylXqlvbnmB
+        ePWhiJOYcSYJhNvq3stANw==
+X-Google-Smtp-Source: AMrXdXulR+j0z8S//w5zkUvbJ/5d+atzZyf8exjuefCvS2FYb1oZTNJnqHAYF39sn6MNSTozYMuPdg==
+X-Received: by 2002:a9d:798d:0:b0:684:eca3:fa4a with SMTP id h13-20020a9d798d000000b00684eca3fa4amr13677320otm.31.1674505274364;
+        Mon, 23 Jan 2023 12:21:14 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x17-20020a9d6291000000b00677714a440fsm52560otk.81.2023.01.23.12.20.10
+        by smtp.gmail.com with ESMTPSA id g1-20020a9d5f81000000b0068687c98725sm71931oti.62.2023.01.23.12.21.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 12:20:12 -0800 (PST)
-Received: (nullmailer pid 2457598 invoked by uid 1000);
-        Mon, 23 Jan 2023 20:20:10 -0000
-Date:   Mon, 23 Jan 2023 14:20:10 -0600
+        Mon, 23 Jan 2023 12:21:13 -0800 (PST)
+Received: (nullmailer pid 2459145 invoked by uid 1000);
+        Mon, 23 Jan 2023 20:21:11 -0000
+Date:   Mon, 23 Jan 2023 14:21:11 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Olivier Dautricourt <olivierdautricourt@gmail.com>,
-        Stefan Roese <sr@denx.de>, Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Green Wan <green.wan@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
+Cc:     Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        Kent Gustavsson <kent@minoris.se>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        linux-iio@vger.kernel.org, Harald Geyer <harald@ccbib.org>,
+        Dragos Bogdan <dragos.bogdan@analog.com>,
+        Lucas Stankus <lucas.p.stankus@gmail.com>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        =?UTF-8?B?77+9ZXI=?= <povik+lin@cutebit.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        - <chuanhua.lei@intel.com>, Long Cheng <long.cheng@mediatek.com>,
-        Rajesh Gumasta <rgumasta@nvidia.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
+        chrome-platform@lists.linux.dev,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Sankar Velliangiri <navin@linumiz.com>,
+        Rui Miguel Silva <rmfrfs@gmail.com>,
+        Eugene Zaikonnikov <ez@norophonic.com>,
+        Guenter Roeck <groeck@chromium.org>,
         Miquel Raynal <miquel.raynal@bootlin.com>,
-        Palmer Debbelt <palmer@sifive.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-        linux-tegra@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Philippe Reynes <tremyfr@yahoo.fr>,
+        ", Linus Walleij" <linus.walleij@linaro.org>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Robert Yang <decatf@gmail.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
+        Alexandru Lazar <alazar@startmail.com>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Andreas Klinger <ak@it-klinger.de>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        Artur Rojek <contact@artur-rojek.eu>,
+        Nishant Malpani <nish.malpani25@gmail.com>,
         linux-stm32@st-md-mailman.stormreply.com,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-bindings: dma: cleanup examples - indentation,
- lowercase hex
-Message-ID: <20230123202010.GA2455859-robh@kernel.org>
-References: <20230118180144.364756-1-krzysztof.kozlowski@linaro.org>
- <20230118180144.364756-2-krzysztof.kozlowski@linaro.org>
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Sean Nyekjaer <sean@geanix.com>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Stefan Agner <stefan@agner.ch>, linux-kernel@vger.kernel.org,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Renato Lui Geh <renatogeh@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Benson Leung <bleung@chromium.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Phil Reid <preid@electromag.com.au>,
+        linux-fbdev@vger.kernel.org, kernel@pengutronix.de,
+        linux-renesas-soc@vger.kernel.org,
+        Puranjay Mohan <puranjay12@gmail.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>
+Subject: Re: [PATCH 1/5] dt-bindings: iio: drop unneeded quotes
+Message-ID: <167450527140.2459087.12632188984291690101.robh@kernel.org>
+References: <20230118184413.395820-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230118180144.364756-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230118184413.395820-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -109,79 +116,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 18, 2023 at 07:01:44PM +0100, Krzysztof Kozlowski wrote:
-> Cleanup examples:
->  - use 4-space indentation (for cases when it is neither 4 not 2 space),
->  - use lowercase hex.
+
+On Wed, 18 Jan 2023 19:44:09 +0100, Krzysztof Kozlowski wrote:
+> Cleanup by removing unneeded quotes from refs and redundant blank lines.
+> No functional impact except adjusting to preferred coding style.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../bindings/dma/snps,dw-axi-dmac.yaml        | 36 +++++++++----------
->  .../bindings/dma/stericsson,dma40.yaml        |  4 +--
->  2 files changed, 20 insertions(+), 20 deletions(-)
+>  .../devicetree/bindings/iio/accel/memsensing,msa311.yaml  | 5 ++---
+>  Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml | 2 +-
+>  Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml | 2 +-
+>  .../devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml    | 2 +-
+>  Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml | 4 ++--
+>  .../devicetree/bindings/iio/adc/ingenic,adc.yaml          | 4 ++--
+>  .../devicetree/bindings/iio/adc/microchip,mcp3911.yaml    | 4 ++--
+>  .../devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml    | 2 +-
+>  .../devicetree/bindings/iio/adc/samsung,exynos-adc.yaml   | 2 +-
+>  .../devicetree/bindings/iio/adc/st,stm32-adc.yaml         | 8 ++++----
+>  .../devicetree/bindings/iio/adc/ti,ads131e08.yaml         | 2 +-
+>  Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml | 2 +-
+>  .../devicetree/bindings/iio/dac/lltc,ltc1660.yaml         | 4 ++--
+>  .../devicetree/bindings/iio/dac/lltc,ltc2632.yaml         | 4 ++--
+>  .../devicetree/bindings/iio/dac/st,stm32-dac.yaml         | 4 ++--
+>  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 2 +-
+>  .../devicetree/bindings/iio/temperature/ti,tmp117.yaml    | 6 +++---
+>  17 files changed, 29 insertions(+), 30 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> index 2bedab1f74e0..d34d0fa62ab5 100644
-> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> @@ -113,21 +113,21 @@ additionalProperties: false
->  
->  examples:
->    - |
-> -     #include <dt-bindings/interrupt-controller/arm-gic.h>
-> -     #include <dt-bindings/interrupt-controller/irq.h>
-> -     /* example with snps,dw-axi-dmac */
-> -     dmac: dma-controller@80000 {
-> -         compatible = "snps,axi-dma-1.01a";
-> -         reg = <0x80000 0x400>;
-> -         clocks = <&core_clk>, <&cfgr_clk>;
-> -         clock-names = "core-clk", "cfgr-clk";
-> -         interrupt-parent = <&intc>;
-> -         interrupts = <27>;
-> -         #dma-cells = <1>;
-> -         dma-channels = <4>;
-> -         snps,dma-masters = <2>;
-> -         snps,data-width = <3>;
-> -         snps,block-size = <4096 4096 4096 4096>;
-> -         snps,priority = <0 1 2 3>;
-> -         snps,axi-max-burst-len = <16>;
-> -     };
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    /* example with snps,dw-axi-dmac */
-> +    dmac: dma-controller@80000 {
 
-Drop unused labels while you are here.
-
-> +        compatible = "snps,axi-dma-1.01a";
-> +        reg = <0x80000 0x400>;
-> +        clocks = <&core_clk>, <&cfgr_clk>;
-> +        clock-names = "core-clk", "cfgr-clk";
-> +        interrupt-parent = <&intc>;
-> +        interrupts = <27>;
-> +        #dma-cells = <1>;
-> +        dma-channels = <4>;
-> +        snps,dma-masters = <2>;
-> +        snps,data-width = <3>;
-> +        snps,block-size = <4096 4096 4096 4096>;
-> +        snps,priority = <0 1 2 3>;
-> +        snps,axi-max-burst-len = <16>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml b/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-> index 664ee61a00d8..57395a810719 100644
-> --- a/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-> +++ b/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-> @@ -147,9 +147,9 @@ examples:
->      #include <dt-bindings/interrupt-controller/irq.h>
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      #include <dt-bindings/mfd/dbx500-prcmu.h>
-> -    dma-controller@801C0000 {
-> +    dma-controller@801c0000 {
->        compatible = "stericsson,db8500-dma40", "stericsson,dma40";
-> -      reg = <0x801C0000 0x1000>, <0x40010000 0x800>;
-> +      reg = <0x801c0000 0x1000>, <0x40010000 0x800>;
->        reg-names = "base", "lcpa";
->        interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
->        #dma-cells = <3>;
-
-Indentation?
+Acked-by: Rob Herring <robh@kernel.org>
