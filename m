@@ -2,77 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC3E7678090
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:54:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDAC6678094
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:54:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231829AbjAWPyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:54:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59834 "EHLO
+        id S232786AbjAWPyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:54:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231679AbjAWPyI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:54:08 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 532E930E5
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:54:07 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id h16so11219374wrz.12
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:54:07 -0800 (PST)
+        with ESMTP id S231993AbjAWPyb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:54:31 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6825D3A96
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:54:28 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id l8so9380487wms.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:54:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+T/G9k15WOqcnm5NSoRREaF11y8Ho69NMw/NwpRfAK0=;
-        b=MApYfB0o72zvfWFm+POIdyCrXsaavHTfAUTjsNbY4up+53rhpPBSRhUB0ICJFEZxfj
-         BjKT7XWKlo5R4+S6tYi+ItQ+o3xEY2M/AOvBUwcEBO7fjIOzblAzqhitRzTQdspsq4gW
-         MKX8TpZx+KSZ0oPbJvdnqQb0n8lhOjBOW9esLgrJPe36lfj6ovO/PQcMXERYQTB2j7iH
-         BQjQ7Gf5MLKV2zWm0qOK5jC0K8gd9a5t4ZVIDPPuA9t4NjqighOPJVAPGccKG6ZGaxCW
-         mr/ww9zxKvPdeDWXiDn3tKB4rfHwrNj6msyZEZip/mpJt+o5CD05mdEhnZS6nMk7PTPR
-         n4LQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sWhsZS74+Dvjyfzik5/nC+Ev2mJ9IDMei/KC6GCemqY=;
+        b=TT+l75Q3a2+t2PvAy6nHsS+q1ZUp/sKbhf5T64RkZ9ddDppwuYZeXMANpq/6o/mj+A
+         yMJgop3GLTikdPYq98Wm9+bmbsmcgeRyrpDOH5wvGMevQKJW5Gz1hGCIDPVqiptM7gPI
+         GkruSFbxWZZPi7Ast7916sM4U7Txk25klxq/bRBHnH/qFQ8shdnm+okdCP4opcfnLSnt
+         AmddDMghG+aDGpq1cc/hRVyVU6vh0zcKxyIw8pA3LjwiOzhMEecd1cE3e6OaThw3+hQj
+         h2JXVEgDPlVEVY5qgPjmA5r40jPMP0VZglCL3lbfUWvDHlWwOllnrSJV/ipOUyi7L6R4
+         gw9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+T/G9k15WOqcnm5NSoRREaF11y8Ho69NMw/NwpRfAK0=;
-        b=M0CL7qUeg7DtYd/djyyJG/F1McMUx0MglCjV3tqYJGW0FTt4IKM/hZ5ND8a4Ikihrs
-         OpVJ3aRAMcLyA6bdgxE1Zcz3SYlGcrhj1pS6O3sG/EwzVgcvEH2ismTxOJVbwexI+B7/
-         c8sF0ql/QKJWNnOyJuVhXkQ3lsevAEnAiqGHVEIZPOyy40M8L7w3YD3ruvUajuEUqYkJ
-         9NWWnyLW3BJV5ymWmC0LXPEahEnEKd3DGpr7Y5MNSLL8e3lIhSq8kznJvcwaK9w7kI3e
-         0ZjCg/YbD2Qu4IPwf2CXpkZQ49clUB1NCRIlx1thSxJyfGW7HBjsQTZBuQ/ciaHjiG1/
-         RrDQ==
-X-Gm-Message-State: AFqh2kqwdwVVQL62plfqAXxhL9pz5iAkNqmlm45ieE2y7cF49y4aKtSZ
-        WpBLOV41UvRO6zCLIZxiUOER9A==
-X-Google-Smtp-Source: AMrXdXvwcU0oqIZdIzFUzY0n39UD6sn2j3DukAGMDcoBpW0CyrgNDqr9OSGfP40XyWPsZdMO/5qW6A==
-X-Received: by 2002:a05:6000:98d:b0:2a5:6244:329e with SMTP id by13-20020a056000098d00b002a56244329emr19441398wrb.40.1674489245906;
-        Mon, 23 Jan 2023 07:54:05 -0800 (PST)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id q11-20020a05600000cb00b002be53aa2260sm9689429wrx.117.2023.01.23.07.54.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 07:54:05 -0800 (PST)
-Date:   Mon, 23 Jan 2023 16:54:04 +0100
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
-        Atish Patra <atishp@rivosinc.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/6] dt-bindings: riscv: Document cboz-block-size
-Message-ID: <20230123155404.oqcfufnot4f2vjw7@orel>
-References: <20230122191328.1193885-1-ajones@ventanamicro.com>
- <20230122191328.1193885-3-ajones@ventanamicro.com>
- <CAL_Jsq+SqFOVYZdf5YCELNo7nnU-T32V_Ec1C+RmUv_eLiR0Ng@mail.gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sWhsZS74+Dvjyfzik5/nC+Ev2mJ9IDMei/KC6GCemqY=;
+        b=12jUZ8d52hJ0qsqieTavZqB1S0vqGyZXz249nrdAURiUMMX6cIYtVCJuexIRMgpo9J
+         tmitFHtnWCb1Xe1/3qXKo/4aNlTmZwV09IeHj2pOM2+uq3DNGFV1vLcEWxnWrWASlnvT
+         961SqU6l0jGmSVTLzwWbmqBrypPwejaQAWUsAv6b4nF3FRB5nMyrKWu6/YKp1L1jfuIk
+         pONqcJF1pXOH8f8VnAhwBwZkt+9e/sVeqEcUefOj/GSP5pz7ynR5J5oP6p4BbEnEPyl2
+         AlF3QEZ1NS341Jn0p4xOWIH2xh+tzc2bTUwTNPzms9YM4FSMhOCNzd9sYYho29LEMvGx
+         KWdQ==
+X-Gm-Message-State: AFqh2kq5XTaBrQ4cdUMEcFZdCSFPEnapcEppqICeG1jUt9quld1VYKEC
+        SPaQiIUVZ7spj2APWSC/4bbSjw==
+X-Google-Smtp-Source: AMrXdXud0tQooneMXSQQVIEYXsQAZXqN6E4Gkaz9JfIa1aRRHlSWR2a6cT0AuUF0CvwyFs2RKMFDuw==
+X-Received: by 2002:a05:600c:5116:b0:3db:1a8:c041 with SMTP id o22-20020a05600c511600b003db01a8c041mr24615039wms.17.1674489266958;
+        Mon, 23 Jan 2023 07:54:26 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id m31-20020a05600c3b1f00b003dafadd2f77sm12126036wms.1.2023.01.23.07.54.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 07:54:26 -0800 (PST)
+Message-ID: <b86ed174-811a-023f-4a65-4bc0b10cf710@linaro.org>
+Date:   Mon, 23 Jan 2023 16:54:25 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+SqFOVYZdf5YCELNo7nnU-T32V_Ec1C+RmUv_eLiR0Ng@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH V6 1/6] dt-bindings: usb: Add Cypress cypd4226 Type-C
+ controller
+Content-Language: en-US
+To:     Jon Hunter <jonathanh@nvidia.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
+References: <20230119121639.226729-1-jonathanh@nvidia.com>
+ <20230119121639.226729-2-jonathanh@nvidia.com>
+ <2789cf94-60b4-7e35-50f8-e21b564a1dfb@linaro.org>
+ <e39c0b6b-6265-b419-a7aa-18f930bb3a9f@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e39c0b6b-6265-b419-a7aa-18f930bb3a9f@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,59 +82,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 23, 2023 at 08:33:56AM -0600, Rob Herring wrote:
-> On Sun, Jan 22, 2023 at 1:13 PM Andrew Jones <ajones@ventanamicro.com> wrote:
-> >
-> > The Zicboz operates on a block-size defined for the cpu-core,
-> > which does not necessarily match other cache-sizes used.
+On 23/01/2023 15:28, Jon Hunter wrote:
 > 
-> Please use get_maintainers.pl and send patches to the correct lists.
+> On 20/01/2023 08:32, Krzysztof Kozlowski wrote:
+> 
+> ...
+> 
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/gpio/tegra194-gpio.h>
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +    i2c {
+>>> +      #address-cells = <1>;
+>>> +      #size-cells = <0>;
+>>> +      #interrupt-cells = <2>;
+>>
+>> Drop, does not look like relevant or used here.
+> 
+> 
+> Without the above I get ...
 
-Yup, Conor also pointed out that I forgot to update the CC list when
-adding this patch to the series.
+Didn't you drop too much? I meant only that one line above my comment,
+so only interrupt-cells.
 
 > 
-> I have no idea what Zicboz is. How does it relate to Zicbom for which
-> we already have a block size property? I really hate one by one
-> property additions because they lead to poorly designed bindings. So
-> what's next? What other information might be needed?
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dts:25.13-26: Warning (reg_format): /example-0/i2c/typec-controller@8:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dts:22.13-43.11: Warning (i2c_bus_bridge): /example-0/i2c: incorrect #address-cells for I2C bus
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dts:22.13-43.11: Warning (i2c_bus_bridge): /example-0/i2c: incorrect #size-cells for I2C bus
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'i2c_bus_bridge'
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dts:23.30-42.13: Warning (avoid_default_addr_size): /example-0/i2c/typec-controller@8: Relying on default #address-cells value
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dts:23.30-42.13: Warning (avoid_default_addr_size): /example-0/i2c/typec-controller@8: Relying on default #size-cells value
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: typec-controller@8: interrupts: [[10], [8]] is too long
+> 
+>>
+>>> +
+>>> +      ucsi-ccg@8 {
+>>
+>> Node names should be generic.
+>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> 
+> Thanks. I don't see anything there is would fit here, so would 'typec-controller' for the node name be OK?
 
-Zicbom and Zicboz are both RISC-V ISA extensions for cache-block operation
-(CBO) instructions. Zicbom defines the instructions cbo.inval, cbo.clean,
-and cbo.flush while Zicboz only defines cbo.zero. While it's probably
-likely that the cache block sizes which Zicbom and Zicboz use will be
-the same when both are implemented, the specification does not require it.
-With that in mind, it makes sense to me that Zicbom has its own property
-and that Zicboz could follow Zicbom's pattern with its own property as
-well.
+Yeah, pretty often we miss a generic example. Can be just "typec".
 
-That said, having a generic block size property which is used in the
-absence of the per-extension block size properties would allow DTs to only
-specify the size once when they're the same. In my reply to Conor, I
-suggested introducing a cbo-block-size property for this purpose, but Anup
-suggests we just expand the purpose of cbom-block-size. Expanding cbom-
-block-size's purpose would allow its size to be used with cbo.zero in the
-absence of a cboz-block-size property. Additionally, we could defer the
-introduction of the cboz-block-size property until some system needs it,
-which may be never.
 
-As far as to what's coming next, I'm not aware of a plan for more of these
-types of properties at this time, but the CMO spec also describes prefetch
-instructions, which are defined under the Zicbop extension. If Zicbop
-support is added, then it should follow the same pattern as we agree for
-Zicboz, which is either
+> 
 
- a. Add cboz-block-size and require it (as this series currently does)
- b. Add cboz-block-size, expand the function of cbom-block-size to be
-    a fallback, and fallback to cbom-block-size when cboz-block-size is
-    absent
- c. Don't add cboz-block-size, only expand the function of cbom-block-size
-    and use it. If a need arises for cboz-block-size some day, then it
-    can be added at that time.
- d. ??
-  
-I'm not aware of any additional information needed for these extensions
-beyond the block sizes.
+Best regards,
+Krzysztof
 
-Thanks,
-drew
