@@ -2,145 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B159B677674
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 09:40:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 134C6677682
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 09:43:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231675AbjAWIkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 03:40:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60026 "EHLO
+        id S231570AbjAWInK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 03:43:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231682AbjAWIkD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 03:40:03 -0500
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1BD1CF45;
-        Mon, 23 Jan 2023 00:40:02 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id F39765C00CD;
-        Mon, 23 Jan 2023 03:40:01 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Mon, 23 Jan 2023 03:40:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1674463201; x=1674549601; bh=w/xnBpY6hf
-        cSJp7QsVobDnUei84Cu91kfG5Ty8mZVFk=; b=pYnvhcLmN8HvMMcp4+fmBdl0lO
-        oZgrYlh4LAYA7ed0PDdouTryoJ3zzaBXossuzem6QeiJiskglPTxZjrCQQJMLtVv
-        +RX1WCOfAq0VtwsQ2jbJ+3s/pd6wlwqKr6xWwNRzPo6zuHO4LZd6mp/AUQ4kgnfX
-        QLpEbNe10D72PL1JJpO8KmMV/v3FSktvlRicW1gJT5QBwivjInWWXC0kSqVqiwiU
-        h3VqTSAm5KjUKiyxcj5E2/fq7xcGo4hSttFaei3BpOHP/VnFVfbZo9qrqKVMux1a
-        e7Bh4aRw0BUTvFJTovXvDqOhDe3t3xv5/WQqmPnMoDrmcu+D6LN0MtsjSb5Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1674463201; x=1674549601; bh=w/xnBpY6hfcSJp7QsVobDnUei84C
-        u91kfG5Ty8mZVFk=; b=j9mjnf21Vz/iIhzR9VMDfOIM5XcpVcqxRzqtzw00sjq1
-        4Cs6xzzTbSj3ltZCDBkNoV0lInqeXzN/hRdLbu2JrAhY5seMU6HEBWAsGmNZ/2sj
-        Y4LzkC3v58ZsXeBSmRksFGtmLv6kLO3l1oubTEm67PaDvbu1zokH8LcWdfn1iqk2
-        ldGXpxee5GvOCVxIlYxGe3EC7ycrPGP9FLym+OlwfCJwBGaJ0lnMJeclCgcG48P2
-        /3Juzc6j43gjWMENoYdsZI4GDaBI5gPpx6n/a1k1NdvNE5tkYEAU2tANLAMs54Yx
-        beKxrFW2c9ixIEq0gECuGVQ5VQzGMr5PTt6cBamDlg==
-X-ME-Sender: <xms:4EfOY6vpTDlhmMjSriH5ttsPa5qTSBcPgi6f66LsCrn1yKJ-kUKXjQ>
-    <xme:4EfOY_c7SXsGLPk2732pBYYqo5KtkLpKkx6hNUe56AfMFyOnocDShrOz3JDYhcwsD
-    QaNTqPfehJrjAWVCLw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddujedguddvfecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
-    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:4EfOY1zKIrt6HgC3WlCgi1VoLkspNUJwKtTCZ2JbADae91lS3z6cLA>
-    <xmx:4EfOY1M9Uon-7Q3owh33nDPgVUvsW5JHhfYxbMoCqItEhaYZgJ1P6g>
-    <xmx:4EfOY69y5BmZLndAqUH-hZLYDhwo9QVHsuf2M00GsMrFfH-g1spOLQ>
-    <xmx:4UfOY49RJKSBbJhvhLTS5tzhjisCJi22pJdjgaXc05fhaTwQpRc9JQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 5FCCCB60086; Mon, 23 Jan 2023 03:40:00 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
-Mime-Version: 1.0
-Message-Id: <a69a5ffc-0820-4adc-9ac4-f827ebf66cf0@app.fastmail.com>
-In-Reply-To: <20230123073305.149940-1-lchen@ambarella.com>
-References: <20230123073305.149940-1-lchen@ambarella.com>
-Date:   Mon, 23 Jan 2023 09:39:41 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Li Chen" <lchen@ambarella.com>
-Cc:     =?UTF-8?Q?Andreas_B=C3=B6hler?= <dev@aboehler.at>,
-        "Brian Norris" <briannorris@chromium.org>,
-        "Chris Morgan" <macromorgan@hotmail.com>,
-        "Christian Lamparter" <chunkeey@gmail.com>,
-        "Chuanhong Guo" <gch981213@gmail.com>,
-        "Conor.Dooley" <conor.dooley@microchip.com>,
-        "Daniel Palmer" <daniel@0x0f.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "Florian Fainelli" <f.fainelli@gmail.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Guenter Roeck" <linux@roeck-us.net>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        "Hitomi Hasegawa" <hasegawa-hitomi@fujitsu.com>,
-        "Jean Delvare" <jdelvare@suse.de>,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        "Liang Yang" <liang.yang@amlogic.com>,
-        "Li Chen" <lchen@ambarella.org>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list" <linux-kernel@vger.kernel.org>,
-        "open list:MEMORY TECHNOLOGY DEVICES (MTD)" 
-        <linux-mtd@lists.infradead.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        "Miquel Raynal" <miquel.raynal@bootlin.com>,
-        "Nicolas Ferre" <nicolas.ferre@microchip.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        "Randy Dunlap" <rdunlap@infradead.org>,
-        "Richard Weinberger" <richard@nod.at>,
-        "Rickard x Andersson" <rickaran@axis.com>,
-        "Rob Herring" <robh@kernel.org>,
-        "Roger Quadros" <rogerq@kernel.org>,
-        "Samuel Holland" <samuel@sholland.org>,
-        "Shawn Guo" <shawnguo@kernel.org>,
-        "Sven Peter" <sven@svenpeter.dev>,
-        "Yinbo Zhu" <zhuyinbo@loongson.cn>
-Subject: Re: [PATCH 00/15] Ambarella S6LM SoC bring-up
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230130AbjAWInJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 03:43:09 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68A3818A99
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 00:43:08 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id k16so8369002wms.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 00:43:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=i62Sv7Z9pyLgKE8iTn5bJ35rfwFqLP3uw4DYsz1kYmw=;
+        b=OKiDMSTw8KbxzjIbLtJQ64WHWuvfvKhnoEHI44pe6iL5nQLWWlW9utB6k2dIpPUn7M
+         JydRitF9xELcpVMMVt3C8T+9kjEvG0VWNlK7eVdUK84+xaxQTsn83aqKBBIbbQzeBjgA
+         2v8I8Pn8iLNyGzNPhHte5D9V6wFdd2iUghrLs7+1G9RqRylUueYecEQS7MTK9DMkMXID
+         axZ020kT/tjgn6OfUTcx5fJBT6U/Ni0s3AcjkYoBdYoMpjqPm7uygZXPGfRWLM7s+mo/
+         7Ku47KjAOdp9fUMUIJZe6w6gNrPvpJbk94wSkxnGdw215mm4Nk/tuCRq12EktmH8M9K6
+         VvoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=i62Sv7Z9pyLgKE8iTn5bJ35rfwFqLP3uw4DYsz1kYmw=;
+        b=rwchHa1lIhg/2S4GqVMNb0VkGwbq+M0Pz9rqcsqBY5XpM3qlrRuoqqkU1pJo0DUyZh
+         72P8IMOB8MquhmJyoSu9ll1SAKxSANbHd6Al0l4qAzgzV3CNQ0h5u3Rz5UPYDDChalDU
+         HiOl6/6auaTogC7lRvpmmUSb4/I0YovKigBhYxYHyyQP83I+Zx2El55rU/OV1Vm9ZNAU
+         h7GO4n2WSQUmfPYOkCJGKBQSG9LwgTfDBaB3RZMImRpYo5RXe52JwrNvSKEryJyLOiLW
+         5Qm1Vs2CvaC/D6XQScPPQXAyvdO3ltRX0cnZoa7aQTo04GsuyEcYJ9PbbrsiCvwMmlG6
+         EALQ==
+X-Gm-Message-State: AFqh2koY2oin5ukOqrMf51zelCJYtkG5K0yl5eAOqai6JX+Cdkx+vMbi
+        KgUsyBcpxR9/+ntXSyc29+OagQ==
+X-Google-Smtp-Source: AMrXdXs/1cYiYG8DlneBzUDyF+tLa2QegwpJWMegHFhbTLowaUIrl+6J2+KKzlP05jUvnMCfmwQ4Ew==
+X-Received: by 2002:a05:600c:3514:b0:3db:80c:8ed9 with SMTP id h20-20020a05600c351400b003db080c8ed9mr21484635wmq.22.1674463387029;
+        Mon, 23 Jan 2023 00:43:07 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l30-20020a05600c1d1e00b003c6b70a4d69sm10974120wms.42.2023.01.23.00.43.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jan 2023 00:43:06 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [RFT PATCH v3 1/6] arm64: dts: qcom: sdm845-db845c: add generic sound compatible
+Date:   Mon, 23 Jan 2023 09:42:55 +0100
+Message-Id: <20230123084300.22353-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 23, 2023, at 08:32, Li Chen wrote:
-> This series brings up initial support for the Ambarella S6LM
-> SoC.
->
-> The following features are supported in this initial port:
->
-> - UART with console support
-> - Pinctrl with GPIO controller
-> - Nand flash controller
-> - Devicetree
+Use generic sound card fallback compatible, because the device is
+actually fully compatible with the generic one.
 
-I seem to only have part of the series, please add both me and
-the linux-arm-kernel mailing list to each part of the initial
-submission.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-It's possible that some patches were already Cc'd to
-linux-arm-kernel but did not make it through because the Cc list
-was too long (it has to fit within 1024 characters for many lists).
-I think you too the Cc list from get_maintainers.pl, but when
-sending new drivers this does not work well because it picks
-up everyone that recently touched the Makefile/Kconfig.
+---
 
-     Arnd
+Changes since v2:
+1. None
+
+Changes since v1:
+1. New patch
+
+Bindings: https://lore.kernel.org/alsa-devel/20230118101542.96705-1-krzysztof.kozlowski@linaro.org/T/#t
+---
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 0d935c928148..4833e89affc2 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -704,7 +704,7 @@ &sdhc_2 {
+ };
+ 
+ &sound {
+-	compatible = "qcom,db845c-sndcard";
++	compatible = "qcom,db845c-sndcard", "qcom,sdm845-sndcard";
+ 	pinctrl-0 = <&quat_mi2s_active
+ 			 &quat_mi2s_sd0_active
+ 			 &quat_mi2s_sd1_active
+-- 
+2.34.1
+
