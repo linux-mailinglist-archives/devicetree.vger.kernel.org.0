@@ -2,102 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49847677E54
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 15:46:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C2F2677E84
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 15:58:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230088AbjAWOqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 09:46:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52244 "EHLO
+        id S231863AbjAWO6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 09:58:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbjAWOqq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 09:46:46 -0500
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E3089029;
-        Mon, 23 Jan 2023 06:46:45 -0800 (PST)
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id 37A2D68BEB; Mon, 23 Jan 2023 15:46:39 +0100 (CET)
-Date:   Mon, 23 Jan 2023 15:46:38 +0100
-From:   Christoph Hellwig <hch@lst.de>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Christoph Hellwig <hch@lst.de>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        "Conor.Dooley" <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-        guoren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Tsukasa OI <research_trasio@irq.a4lg.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Mayuresh Chitale <mchitale@ventanamicro.com>,
-        Will Deacon <will@kernel.org>
-Subject: Re: [RFC PATCH v6 1/6] riscv: mm: dma-noncoherent: Switch using
- function pointers for cache management
-Message-ID: <20230123144638.GB31126@lst.de>
-References: <CA+V-a8u6jvR=EDeE3mAbDr6-06NoBJ7mwmi_Y9qVyHT+aC-9rg@mail.gmail.com> <45d6eb0c-cbe3-4a83-aa12-3483638473ae@app.fastmail.com> <20230110070144.GG10289@lst.de> <02988e70-b099-46fd-b260-2d537c50543a@app.fastmail.com> <20230113054807.GA23179@lst.de> <ea4cb121-97e9-4365-861a-b3635fd34721@app.fastmail.com> <20230121143733.GA7415@lst.de> <6a64b0b5-0ebc-43a5-a3d8-483a845a0b5e@app.fastmail.com> <20230122072759.GA3703@lst.de> <7ad668ba-d6f3-4ef9-9335-e42bfe8d4cce@app.fastmail.com>
+        with ESMTP id S231697AbjAWO6O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 09:58:14 -0500
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E7D48A4E
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 06:58:11 -0800 (PST)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-50112511ba7so116009107b3.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 06:58:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xvTqSv9IiiqJO7FY0k9EPMcUo95Z2K5HRqvuXpd73A4=;
+        b=weCELVEjnhgirLS0yfICmHlYM1tJJK/1wLN12zzmlA69lZ/8m7OZl49Sz1klvbgzoU
+         ne/WEVg5nXjUUCYdrmxXAnOYWpxrm0aQPTqm0gFH1HGewVCAs3YecycYgaTPaBcocZW3
+         UizWpTtV2T6B1V0KueIpIOc5VABYaNPLZNPyDWZEV128P67OAl5aVs6DoR1asmQAwz5R
+         CLePFN0oG16pKNmhr3T1iga/Y2bQK58xHS9mw4iNNDJZUnmUehfF/q+DX4P+TplSGWVR
+         Mz22E+WC/kxzVjbef1FVlrkj46Nq11iZ4Wa8Q+Qp0DLV1m0TzVzc8/5c7iaHVfV6u06g
+         Rj6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xvTqSv9IiiqJO7FY0k9EPMcUo95Z2K5HRqvuXpd73A4=;
+        b=q1x2cZvn9UvBIN3FcsSBVLIGhofqB8qQnGLLvQtwVEMEmh481E/t/+f1CdzfXr30G3
+         zKFwQH2MNJ5MnibmtEdfIeC+VwEDxoTJXD1HjFz9l9ORTdCHsic7foBX7GeFeeBxR3qe
+         5aOOjejonVtTmnW/RxtlXa8gDlhDWtj8y3umRWCu2xNKD55LwrzSejRxCdz3Jl9dlZyn
+         JHWzW/d0xQkxaRTEfhHowssRbMKUYwZMnSqfsPOkJFLEnTNZ29RbUnYHBI1P+8Fsrgd7
+         xpOozbBRnq5zHL6FZR5Gk1Xln2gxRk0yNKhnLd5tWnopnPN7xJDk14SSxpJrckswqZ7T
+         2YKQ==
+X-Gm-Message-State: AFqh2kpEKilX2nveOY1wb0UXLcBw747N+Tv/UFPt5SfwCFJEGhRbAOZU
+        cmx25VrthkbX0M90ex3gpANvd682vFqlVk6S9XEUDg==
+X-Google-Smtp-Source: AMrXdXvb8K7VSIORVsr8Qw4LbxKTz53T405uI7iUamoWMQKa2zwGzQKmuAxlkobEyafiMl05CCpJpwK2s4Bv3QBaFj0=
+X-Received: by 2002:a81:11c2:0:b0:3e8:76df:4afd with SMTP id
+ 185-20020a8111c2000000b003e876df4afdmr2507306ywr.380.1674485890612; Mon, 23
+ Jan 2023 06:58:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7ad668ba-d6f3-4ef9-9335-e42bfe8d4cce@app.fastmail.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230118-mt8365-spi-support-v1-2-842a21e50494@baylibre.com>
+ <20230120082054.610626-1-michael@walle.cc> <CAFGrd9qXL-u4XzG9MLK2zbKoDudhTYpr-gJaZPjbysJ9Fo2gnQ@mail.gmail.com>
+ <2aa2ff64cfd3b5ccd1342873fffa6cb4@walle.cc>
+In-Reply-To: <2aa2ff64cfd3b5ccd1342873fffa6cb4@walle.cc>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Mon, 23 Jan 2023 15:57:59 +0100
+Message-ID: <CAFGrd9pKuMsjmqg=mPsrwn=u7pCHdHEGaiW5PnwA_=TSte5sDw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] spi: spidev: add new mediatek support
+To:     Michael Walle <michael@walle.cc>
+Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 22, 2023 at 12:04:35PM +0100, Arnd Bergmann wrote:
-> > And I'm not really sure I'd like to go beyond that - making it too
-> > easy pluggable will make people feel more comfortable doing stupid
-> > things here. 
-> 
-> I fear the bigger risk is still making the functions callable
-> from device driver code than it is to make the functions
-> globally settable.
-> 
-> You introduced the mips version in f8c55dc6e828 ("MIPS: use generic
-> dma noncoherent ops for simple noncoherent platforms"), which
-> was clearly meant as an implementation detail, yet we already
-> have a driver that slipped in with 3bdffa8ffb45 ("Input: Add
-> N64 controller driver") that just calls this directly rather
-> than using the dma-mapping interface.
+Le lun. 23 janv. 2023 =C3=A0 11:44, Michael Walle <michael@walle.cc> a =C3=
+=A9crit :
+>
+> Hi,
+>
+> Am 2023-01-23 10:37, schrieb Alexandre Mergnat:
+> > Le ven. 20 janv. 2023 =C3=A0 09:20, Michael Walle <michael@walle.cc> a =
+=C3=A9crit
+> > :
+> >>
+> >> From: Alexandre Mergnat <amergnat@baylibre.com>
+> >>
+> >> > Add the "mediatek,genio" compatible string to support Mediatek
+> >> > SPI controller on the genio boards.
+> >>
+> >> What is the use case of having the spidev? What if I want to
+> >> connect a device with a linux driver to it? It seems like you
+> >> just want to expose the SPI bus on the pin header. There was a
+> >> similar discussion for a mikrobus connector [1].
+> >>
+> > Yes I want to expose the SPI on the pin header for two reasons:
+>
+> Then "mediatek,genio" doesn't really describe the hardware, does it?
+> If you read that linked thread, NXP was also trying exposing the SPI
+> bus on a pin header. IMHO this is just misusing the userspace spi-dev.
+>
+> That being said, exposing something on a pinheader (or on a standardized
+> connector) seems like a common thing and we should be working towards
+> a good solution. I still think Robs proposal for the mikrobus connector
+> makes also sense for your case.
+>
 
-MIPS actually has a bit of a history of these odd bypasses that
-it seems like this driver copied.  rmk has been very worried by
-this bypassing, and in general I agree.  But there's only so
-much we can do except for auditing drivers.  Especially as none of
-these helpers is exported and built-in only drivers are quite rare.
-
-> > And yes, maybe that's personal because I've warned
-> > the RISC-V people years ago that they'll need architectural
-> > cache management instructions yesterday and the answer was that
-> > no one is going to use them on modern CPUs.  *sigh*
-> 
-> To be fair, from the ISA point of view, it really shouldn't
-> be necessary as long as you have a sane SoC design.
-> In practice there are always chips that are cutting corners,
-> or use the new CPU core as a drop-in for an existing
-> design. Arm SBSA tried to enforce the same thing and also
-> failed for pretty much the same reason.
-
-Not wiring up IP blocks for cache coherency is cheap.  So it totally
-makes sense for dirt cheap SOCs, or even for low performance periphals
-in general.  The GPU folks also believe they can make some things
-faster by deliberately turning coherency off on SOCs that support
-coherency.
-
-In addition to that cache maintainance is absolutely needed for NVDIMM
-support.
+I don't think this is the same case. For the mikrobus case, it's
+consistent to have a connector because it fit with other "add-on"
+board which can be plug on the "mother board".
+Here I've just a simple debug pin header. I've taken a look at
+raspberry pi and Beaglebone black DTS, they don't use connector, but
+DTS overlay to enable SPI. I think you're right when you say that I'm
+misusing the userspace spi-dev.
