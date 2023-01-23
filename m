@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 652B4677C9F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 14:38:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 462FF677CA5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 14:38:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231812AbjAWNiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 08:38:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58326 "EHLO
+        id S231816AbjAWNib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 08:38:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231571AbjAWNiV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 08:38:21 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DE2FCDDB
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:38:19 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id z11so14623736ede.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:38:19 -0800 (PST)
+        with ESMTP id S231873AbjAWNi2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 08:38:28 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3B4614221
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:38:26 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id v6so30540987ejg.6
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:38:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=afOO5O5g9/NTFF1+J/n+I9gdYpUUBo+Q4LKxlRNPfog=;
-        b=T60wxJXHaFYNNZgHZKUr93bkRH3Phy9rYun7HdrYP7fdHyDBTx/Q1Mzo5pkx2LCs7H
-         hajDV9aFgtb9mwneNZimH6c8n4/i0cckM4uuaYMExc5nYFtIpw5abFDR3Ch44aZ0E12T
-         2t1DtWgrpUuNSfv4pQMtWH0u+F5a9WiY9CSVJ3iLeVLqbPwrAX+t9zzEt1PyhVvS9uNE
-         k0l3PPSPPQm1Wb2woYc8P0HDkYLiZC8BrbgtIkNsIok1OowHrTvTDnB6rzpwh3MU3OY7
-         z8N8g4py8kTLJOGPAAYEoQlNnutivMsFZM7vdRAwYDnD6sNhp/24maOmvHzutyrHJXmB
-         FJTw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ehxoyvaIc4ExsaI/5CJUPfW8cWsLvfgBKNN5d4+uPKk=;
+        b=VR9HWOoPmixdQ4AjASWT9GZdYWGZAxSM7xbdZfaviE3YAo/5HeiFmBKL/hUn1nxS9g
+         MtnvUlrKh5U5QhhmQ+RJpyC82kkarTzSYjtpZcv+TI0fAycBP+EGc9xHFdHNR//kf6kQ
+         bb1a68ssbXUmSJKtGHGskPCAEerSQ9YdEg/Fx6GlTCY03tElN/br7HGGyV3e5ZZLVL5O
+         cvSR+A2qS0EyGI3iq38cvgbdn67T16fvExwx7QV/aUr9DbWrYO0TWeK4F1mPTnzehA6x
+         zYFP3sPvAG88j5hIGwdVn5QOUbxcxvNRXI2IPFLEGanTS/tmgIq9Q7/+k7TqRqlF67TB
+         xiDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=afOO5O5g9/NTFF1+J/n+I9gdYpUUBo+Q4LKxlRNPfog=;
-        b=ewfsxJwpYIFlnJvbWXq/zMA4Ub1+ObMkZ18FZ92LItxHiqng6wYxLjruFIQHmekeD4
-         kuy1GEykZlq+DcuuWiK5jYo1S3YdZ2ukKdeVtvxo1U7DDStNUd5xfmTU/cYENOrUn/37
-         TtC/YeWW6IKbDdxNklFE7iwhB0Qw1sNm8+q4GRu1PaztEMXnu4aLfXgr1AvS8H+IYRGn
-         oxNOfcfsQHetG70fsNxAz5IxMbzOLNrHkb9vRogUgkwtU5YAnJw0EhXkowqiRvuHm6Zx
-         9v45q2mRE221wKxz3jMjVJAO6r0ZHf3j604GrEes43UjPQ3M9p4Qoj4tS/PRIiPmG/Ia
-         k0BQ==
-X-Gm-Message-State: AFqh2krMdE2ErGKuacg6wGC3F6kmtC4r9lzZx6vgNJJmrgY7k2eHDOBA
-        Lw4RBVUYTyn2Nj41qRPgITjRLh0dXyEzeZhUMUE9xA==
-X-Google-Smtp-Source: AMrXdXv7D7NgyD6VmwQ5iNmaoi6oKMjHTPr5W95WsdWOXnx9KlCJzNMxV9o33ZGYB7Jq0IXyhg7ZxA==
-X-Received: by 2002:a05:6402:3214:b0:496:37c9:b8e6 with SMTP id g20-20020a056402321400b0049637c9b8e6mr29333783eda.8.1674481098100;
-        Mon, 23 Jan 2023 05:38:18 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ehxoyvaIc4ExsaI/5CJUPfW8cWsLvfgBKNN5d4+uPKk=;
+        b=iEzWoB4gMUt6zXe0MIMY/N+SyeDXXzKGnqx4huWtWPvfdPtduruODzT++TtWXmGZ6w
+         YvTLC2/fQMFjsFtE5ctbNgj3D/lMrmMxEES7VTqZWrHoYkAf2YNUEDmqhpCVvE8lgzmC
+         Zb6vDVGcFb7VDIxVH0CXL0oBSmt19JkdTJsYYaz7AUW5kJOWnsJGWbsXgBbYs0m85rny
+         f7u+W5A76sv3JmVzbvUERpKgJxgftarIcVGIvb8ojT3+B6S2OjcPM0wHxdYrKRfw+2hh
+         dY0hKx0faG7NBSNvMHOY7e5qT6n36BZSs1b36P8nlv0wO7C2x3KSFtsCJ24YOhbVb/Ms
+         HI5Q==
+X-Gm-Message-State: AFqh2kqYr3im6+NdYDPrujcE2R9+4WzCJ8Mc4NGmgS7HKzrtz3snVwZu
+        JJEYTi+YpOKfxhmkIQCxGA0B+g==
+X-Google-Smtp-Source: AMrXdXsRRAXoiK6hJwxk8oz7TxWkF28p/lA+lqmYR6NW373WGtg3B8wN4nvjZIl531gHEA6tLth5zw==
+X-Received: by 2002:a17:907:6d0e:b0:871:7b6f:9c53 with SMTP id sa14-20020a1709076d0e00b008717b6f9c53mr33986620ejc.30.1674481105281;
+        Mon, 23 Jan 2023 05:38:25 -0800 (PST)
 Received: from Lat-5310.dev.rtsoft.ru ([87.116.163.233])
-        by smtp.gmail.com with ESMTPSA id s1-20020aa7cb01000000b00463b9d47e1fsm21502050edt.71.2023.01.23.05.38.16
+        by smtp.gmail.com with ESMTPSA id s1-20020aa7cb01000000b00463b9d47e1fsm21502050edt.71.2023.01.23.05.38.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 05:38:17 -0800 (PST)
+        Mon, 23 Jan 2023 05:38:24 -0800 (PST)
 From:   Andrey Konovalov <andrey.konovalov@linaro.org>
 To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
         pabeni@redhat.com, robh+dt@kernel.org,
@@ -57,58 +58,50 @@ To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         netdev@vger.kernel.org,
         Andrey Konovalov <andrey.konovalov@linaro.org>
-Subject: [PATCH 0/2] net: stmmac: add DT parameter to keep RX_CLK running in LPI state
-Date:   Mon, 23 Jan 2023 16:37:45 +0300
-Message-Id: <20230123133747.18896-1-andrey.konovalov@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: net: snps,dwmac: add snps,rx-clk-runs-in-lpi parameter
+Date:   Mon, 23 Jan 2023 16:37:46 +0300
+Message-Id: <20230123133747.18896-2-andrey.konovalov@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230123133747.18896-1-andrey.konovalov@linaro.org>
+References: <20230123133747.18896-1-andrey.konovalov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On my qcs404 based board the ethernet MAC has issues with handling
-Rx LPI exit / Rx LPI entry interrupts.
+This patch adds a new parameter to the stmmac DT: snps,rx-clk-runs-in-lpi.
 
-When in LPI mode the "refresh transmission" is received, the driver may
-see both "Rx LPI exit", and "Rx LPI entry" bits set in the single read from
-GMAC4_LPI_CTRL_STATUS register (vs "Rx LPI exit" first, and "Rx LPI entry"
-then). In this case an interrupt storm happens: the LPI interrupt is
-triggered every few microseconds - with all the status bits in the
-GMAC4_LPI_CTRL_STATUS register being read as zeros. This interrupt storm
-continues until a normal non-zero status is read from GMAC4_LPI_CTRL_STATUS
-register (single "Rx LPI exit", or "Tx LPI exit").
+If this parameter is present in the device tree, the PHY should not stop
+RX_CLK after entering Rx LPI state.
 
-The reason seems to be in the hardware not being able to properly clear
-the "Rx LPI exit" interrupt if GMAC4_LPI_CTRL_STATUS register is read
-after Rx LPI mode is entered again.
-
-The current driver unconditionally sets the "Clock-stop enable" bit
-(bit 10 in PHY's PCS Control 1 register) when calling phy_init_eee().
-Not setting this bit - so that the PHY continues to provide RX_CLK
-to the ethernet controller during Rx LPI state - prevents the LPI
-interrupt storm.
-
-This patch set adds a new parameter to the stmmac DT:
-snps,rx-clk-runs-in-lpi.
-If this parameter is present in the device tree, the driver configures
-the PHY not to stop RX_CLK after entering Rx LPI state.
-
-Andrey Konovalov (2):
-  dt-bindings: net: snps,dwmac: add snps,rx-clk-runs-in-lpi parameter
-  net: stmmac: consider snps,rx-clk-runs-in-lpi DT parameter
-
+Signed-off-by: Andrey Konovalov <andrey.konovalov@linaro.org>
+---
  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 5 +++++
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c     | 3 ++-
- drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 3 +++
- include/linux/stmmac.h                                | 1 +
- 4 files changed, 11 insertions(+), 1 deletion(-)
+ 1 file changed, 5 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+index e88a86623fce..771f09db4a3f 100644
+--- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+@@ -452,6 +452,11 @@ properties:
+     description:
+       Enable gating of the MAC TX clock during TX low-power mode
+ 
++  snps,rx-clk-runs-in-lpi:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Keep RX_CLK from the PHY running in RX low-power mode
++
+   snps,multicast-filter-bins:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description:
 -- 
 2.34.1
 
