@@ -2,210 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F323E678081
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:51:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C13F267808C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:52:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232075AbjAWPvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:51:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56950 "EHLO
+        id S232973AbjAWPw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:52:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231751AbjAWPvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:51:16 -0500
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E225B15579;
-        Mon, 23 Jan 2023 07:51:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=NUL1k+cRqfVAdbMVsWp+Lo232x8JL5WAzfWWE9/fP8o=; b=x+88pgiTTsW88CDxMJkinwhpdT
-        r7r4SFelsD+8KbOwzNts5mMF+L6CY6xDwo7/az1VnoiaEoJXE7XK3mCZsgilH28sO1cSS9oCZWg6r
-        K5yBo3UfWOyOCZ4/Dtqm2Ya+/FvQWSDJrnaZHFNrGK1ZKSdgvgaqme5r8VzlwbgJpsyI=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:41484 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1pJz64-0002KT-Kc; Mon, 23 Jan 2023 10:51:01 -0500
-Date:   Mon, 23 Jan 2023 10:51:00 -0500
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Message-Id: <20230123105100.b799ad316f27396d62c88a89@hugovil.com>
-In-Reply-To: <Y8rl452Xm1FrnFfF@mail.local>
-References: <20221215150214.1109074-1-hugo@hugovil.com>
-        <Y8rl452Xm1FrnFfF@mail.local>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        with ESMTP id S232786AbjAWPww (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:52:52 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382AA10F7
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:52:50 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id m15so9377290wms.4
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:52:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b/tZ8f/hKuTnmPmwm/3gfR1U9pPYCEdQziOfOTsHWD8=;
+        b=TCXyArpwkAYCRDfZdgOD2gG5tf1XscU6cRLcpKr8YcqSwXGE1Hbdh6WcdLTcNM1A+v
+         +yiZgwW3u/17k5TuCdfHv5Y7P8vYYeJ71i1Q8xBGLpgr+mo25UedeqZCPViGsKO1p74E
+         Yx3oi0jPjP1m9IaYG3yhyICLWUKaWyPAkxCMqNSvyt6ozOKnlbQHWd9jIrkXbQ3H265S
+         gUZz3KZrXaMntBZkIjne9xs1kbUuY8vYMHXAIAPowBhTznp7akNPSIUTfFKFR9P+0rCE
+         t4qsPaaOFTtr9erNSp21NGWkrwnkxJtgNFOx1fZo8s56ai8iWom8/hn3rETqxhqmCSZM
+         ExsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b/tZ8f/hKuTnmPmwm/3gfR1U9pPYCEdQziOfOTsHWD8=;
+        b=6K1SCG1knjY5gDjapbHpAIMfmQ/GQn8v5FVtCSa4JZ9uTuQXy+NaduQG3CkswjOlXq
+         cXUZ95ejfBx2QI1XYsE2vu5xuuOKnvroQNOzs49kIg1X7kLO3JE1d80zUNt06cqwKLeo
+         LwHtTNQLn1hlo/bubqC8exJWDxazbmkq27WlhEvtTJdZiBghX42qleBmtEsW7wEawKSm
+         hQ0nqvCLRFmCl25FYqaa+v9+dLGPJBNS0ZoemeO7IkBHK2vYkW45Lq7WpsKBvGrlt9FF
+         kboCexzqFMAKa5lcontYcMXqnAbrzavN7T8qTwju6+1C9BRr+fe7LpnAnOX0WYs9mO0j
+         /Rvg==
+X-Gm-Message-State: AFqh2kpBbwpArIbw+dJZ+LQ/xb4wKWM0aLhsKzuiP0Kg4KUBN+x0jGKQ
+        8VvUAo+kVCDtFTYERSYLcYh4qA==
+X-Google-Smtp-Source: AMrXdXsvW74isMnE439bftM+OiixytOe6bWOxjDuWosmwOrIoj8bddguUkHujZ5s9OEGL+NVoCbNAA==
+X-Received: by 2002:a05:600c:1d12:b0:3db:53f:baea with SMTP id l18-20020a05600c1d1200b003db053fbaeamr24195728wms.6.1674489168770;
+        Mon, 23 Jan 2023 07:52:48 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id f23-20020a7bc8d7000000b003d358beab9dsm10811991wml.47.2023.01.23.07.52.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 07:52:48 -0800 (PST)
+Message-ID: <2b210dc5-fe63-d295-a488-2988601424f3@linaro.org>
+Date:   Mon, 23 Jan 2023 16:52:47 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 04/15] dt-bindings: arm: add support for Ambarella SoC
+Content-Language: en-US
+To:     Li Chen <me@linux.beauty>
+Cc:     Li Chen <lchen@ambarella.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "moderated list:ARM/Ambarella SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20230123073305.149940-1-lchen@ambarella.com>
+ <20230123073305.149940-5-lchen@ambarella.com>
+ <7d191871-1025-43a3-20bf-8fc6b3f92c89@linaro.org>
+ <875ycxi8xm.wl-me@linux.beauty>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <875ycxi8xm.wl-me@linux.beauty>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v3 00/14] rtc: pcf2127: add PCF2131 driver
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Jan 2023 20:05:07 +0100
-Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
-
-> Hello,
+On 23/01/2023 16:09, Li Chen wrote:
+> On Mon, 23 Jan 2023 16:07:32 +0800,
+> Krzysztof Kozlowski wrote:
+>>
+>> On 23/01/2023 08:32, Li Chen wrote:
+>>> Create a vendor directory for Ambarella, and add
+>>> cpuid, rct, scratchpad documents.
+>>>
+>>> Signed-off-by: Li Chen <lchen@ambarella.com>
+>>> Change-Id: I2c29e45c08666489b0d9b588ac37d713f5b723d1
+>>
+>> Please run scripts/checkpatch.pl and fix reported warnings.
+>>
+>> Applies to all your patches. Also test them... I have doubts that you
+>> tested if you actually ignored checkpatch :/
 > 
-> I know I've been holding off on the review of this series for a while
-> and I'm sorry for that.
+> Yeah, I checkpatch all patches, and have planned to fix Change-Id finally(manually),
+> but forget it before sending mails, my bad, sorry. I will remove it in v2.
 > 
-> One of the main issue that is remaining is that the driver ends up being
-> 53% bigger and generaly less efficient for no added functionality for
-> the existing RTCs.
-
-Hi Alexandre,
-that is why before submitting my driver I sent an RFC on the RTC mailing list to ask what was the better approach for developping this driver (separate or merged into pcf2127), but I didn't got an answer from any of the maintainers.
-
-> I know performance is not a concern however, having more code in the
-> set/read time and irq paths means that it is more difficult to set an
-> get the time precisely.
-
-Just some ideas about that...
-
-Looking at pcf2127_rtc_read_time(), we now do a separate read operation of CTRL3 to check for a low voltage condition. And we only display a message if the battery is low (no abort of read time). Looking at pcf8523 driver for example, this check is done only when responding to an ioctl. Could we do the same in our driver?
-
-Another scheme I say is in rtc-ab-b5ze-s3 driver where this detection is done at startup and using the BLF interrupt flag...
-
-> I guess I'll take it as a merged driver but I took a different decision
-> for other RTCs.
-
-I'll address all the comments/issues Bruno and you found and submit a V4 soon then.
-
-Thank you, Hugo.
-
-
-> On 15/12/2022 10:02:01-0500, Hugo Villeneuve wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > Hello,
-> > this patch series adds the driver for the PCF2131 real-time clock.
-> > 
-> > This RTC is very similar in functionality to the PCF2127/29 with the
-> > following differences:
-> >   -supports two new control registers at offsets 4 and 5
-> >   -supports a new reset register
-> >   -supports 4 tamper detection functions instead of 1
-> >   -has no nvmem (like the PCF2129)
-> >   -has two output interrupt pins instead of one
-> >   -has 1/100th seconds capabilities (not supported in this driver)
-> >   -pcf2127 has watchdog clock sources: 1/60,   1, 64 and 4096Hz
-> >    pcf2131 has watchdog clock sources: 1/64, 1/4,  4 and   64Hz
-> >   -watchdog value register cannot be read after being set
-> > 
-> > Most of the register addresses are very different, although they still
-> > follow the same layout. For example, the time/date and tamper registers
-> > have a different base address, but the offsets are all the same.
-> > Consequently, the source code of the PCF2127 driver can be easily adapted
-> > to support this new device.
-> > 
-> > Patches 1 to 6 modify the existing pcf2127 driver to make it more generic
-> > and able to support multiple variants, like the PCF2131. This is done
-> > mostly by using offsets instead of absolute hardcoded register addresses.
-> > 
-> > Patch 7 add actual support for the PCF2131.
-> > 
-> > Patch 8 configures all interrupt sources to go through the INT A pin.
-> > 
-> > Patch 9 changes the PWRMNG bits to be the same with the PCF2131 as they
-> >       are with the PCF2127/29 (different default values).
-> > 
-> > Patch 10 allow to confirm PCF2131 device presence by reading the reset
-> >       register fixed pattern.
-> > 
-> > Patch 11 adapt the time/date registers write sequence for PCF2131 (STOP and
-> >       CPR bits).
-> > 
-> > Patch 12 add support for generic watchdog timing configuration.
-> > 
-> > Patch 13 add a new flag to identify if device has read support for reading
-> >       watchdog register value.
-> >       Since the watchdog value register cannot be read on the PCF2131 after
-> >       being set, it seems that we cannot detect if watchdog timer was
-> >       started by bootloader. I am not sure what is the best way to handle
-> >       this situation, suggestions are welcomed.
-> > 
-> > Patch 14 add the dt-bindings for the PCF2131.
-> > 
-> > I have tested the driver using a PCF2131-ARD evaluation board connected to
-> > an NXP imx8mp evaluation board:
-> >   - Time get/set ok;
-> >   - Alarms get/set ok
-> >   - Timestamp 1 to 4 ok
-> >   - IRQ alarm ok
-> >   - Watchdog ok
-> >   - Also tested successfully with "RTC Driver Test Example" from
-> >     Documentation/rtc.txt
-> > 
-> > I have also tested the driver on a custom PCF2129 adapter board connected to a
-> > beaglebone black.
-> > 
-> > Thank you.
-> > 
-> > Link: [v1] https://patchwork.ozlabs.org/project/rtc-linux/patch/20220125200009.900660-2-hugo@hugovil.com/
-> > Link: [v2] https://patchwork.ozlabs.org/project/rtc-linux/list/?series=285734
-> > 
-> > Changes for V3:
-> > - Rebased for kernel v6.1
-> > 
-> > Changes for V2:
-> > - In general, fix and improvements after I have tested on real hardware
-> > - Fix alarm interrupt A/B mask setting for PCF2131:
-> >   PCF2131_BIT_INT_AIE must be cleared, not set, to enable interrupt.
-> > - Remove low_reg validation: only check if TS interrupt flag is
-> >   defined, as low_reg is defined at address 0 for PCF2127/29.
-> > - Change PWRMNG value for PCF2131: default is different than PCF2127/29.
-> > - Adapt time/date registers write sequence for PCF2131 (STOP and CPR bits).
-> > - Map all interrupt sources to INT A pin
-> > - Read and validate PCF2131 device presence from RESET register
-> > - Adapt watchdog configuration for PCF2131
-> > 
-> > Hugo Villeneuve (14):
-> >   rtc: pcf2127: add variant-specific configuration structure
-> >   rtc: pcf2127: adapt for time/date registers at any offset
-> >   rtc: pcf2127: adapt for alarm registers at any offset
-> >   rtc: pcf2127: adapt for WD registers at any offset
-> >   rtc: pcf2127: adapt for CLKOUT register at any offset
-> >   rtc: pcf2127: add support for multiple TS functions
-> >   rtc: pcf2127: add support for PCF2131 RTC
-> >   rtc: pcf2127: add support for PCF2131 interrupts on output INT_A
-> >   rtc: pcf2127: set PWRMNG value for PCF2131
-> >   rtc: pcf2127: read and validate PCF2131 device signature
-> >   rtc: pcf2127: adapt time/date registers write sequence for PCF2131
-> >   rtc: pcf2127: support generic watchdog timing configuration
-> >   rtc: pcf2127: add flag for watchdog register value read support
-> >   dt-bindings: rtc: pcf2127: add PCF2131
-> > 
-> >  .../devicetree/bindings/rtc/nxp,pcf2127.yaml  |   4 +-
-> >  drivers/rtc/Kconfig                           |   4 +-
-> >  drivers/rtc/rtc-pcf2127.c                     | 939 ++++++++++++++----
-> >  3 files changed, 752 insertions(+), 195 deletions(-)
-> > 
-> > -- 
-> > 2.30.2
-> > 
+>>> ---
+>>>  .../arm/ambarella/ambarella,cpuid.yaml        | 24 +++++++++++++++++++
+>>>  .../bindings/arm/ambarella/ambarella,rct.yaml | 24 +++++++++++++++++++
+>>>  .../arm/ambarella/ambarella,scratchpad.yaml   | 24 +++++++++++++++++++
+>>>  .../bindings/arm/ambarella/ambarella.yaml     | 22 +++++++++++++++++
+>>>  MAINTAINERS                                   |  4 ++++
+>>>  5 files changed, 98 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
+>>>  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
+>>>  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,scratchpad.yaml
+>>>  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml b/Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
+>>> new file mode 100644
+>>> index 000000000000..1f4d9cec8f92
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
+>>
+>> This goes to soc
 > 
-> -- 
-> Alexandre Belloni, co-owner and COO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+> Thanks, I wasn't aware that there is a document dir named soc. I will move cpuid yaml
+> to bindings/soc/ambarella/, and leave other yaml still here.
+
+However if device has chip identification features (chipid), then the
+location is "hwinfo".
+
 > 
+>>> @@ -0,0 +1,24 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/clock/ambarella,cpuid.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Ambarella SoC ID
+>>> +
+>>> +maintainers:
+>>> +  - Li Chen <lchen@ambarella.com>
+>>
+>> Missing description.
+> 
+> Sorry, description will be added in v2. BTW, does other YAMLs in this patch
+> also need descriptions?
+
+In general yes - we want descriptions which will bring additional
+information. Description should not repeat title, but add more data. For
+trivial cases - maybe actually this one SoC ID - you can skip it.
 
 
--- 
-Hugo Villeneuve <hugo@hugovil.com>
+
+> 
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: "ambarella,cpuid", "syscon"
+>>
+>> Drop quotes (applies to all your patches)
+> 
+> OK, thanks!
+> 
+>> Missing SoC specific compatible.
+>>
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>
+>> Missing additionalProperties. sorry, start from scratch from some
+>> existing recent bindings or better example-schema.
+> 
+> Good to know that there is example-schema, thanks!
+>  
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    cpuid_syscon: cpuid@e0000000 {
+>>> +        compatible = "ambarella,cpuid", "syscon";
+>>> +        reg = <0xe0000000 0x1000>;
+>>> +    };
+>>> diff --git a/Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml b/Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
+>>> new file mode 100644
+>>> index 000000000000..7279bab17d9e
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
+>>> @@ -0,0 +1,24 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/clock/ambarella,rct.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Ambarella RCT module
+>>> +
+>>> +maintainers:
+>>> +  - Li Chen <lchen@ambarella.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: "ambarella,rct", "syscon"
+>>
+>> All the same problems.
+> 
+> Well noted.
+> 
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +		rct_syscon: rct_syscon@ed080000 {
+>>
+>> Really? Just take a look and you will see wrong indentation. Also drop
+>> underscores in node names and "rct". Node names should be generic.
+> 
+> Sorry for the wrong indentation, will fix it in v2.
+> 
+> Is it ok to contain underscores in lable? if so, I will change it into
+> 
+> rct_syscon: syscon@ed080000 {
+
+Yes, label can have it.
+
+Best regards,
+Krzysztof
+
