@@ -2,124 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E77E677804
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 10:59:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE7FB67781B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 11:01:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230074AbjAWJ7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 04:59:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55386 "EHLO
+        id S230155AbjAWKBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 05:01:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231437AbjAWJ7h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 04:59:37 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88D35A260
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:59:09 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so8101962wms.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:59:09 -0800 (PST)
+        with ESMTP id S230131AbjAWKBs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 05:01:48 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A965983EA
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 02:01:46 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id o17-20020a05600c511100b003db021ef437so8093546wms.4
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 02:01:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CtTLJQUHERlGTA1ecjP4ZAB6KPAk/7NPYqYgWuT3Suw=;
-        b=qxRb667FT8O0NQhgeJ5a4fDl242loKNLzX78YKu7cjtJIjcjYHMUzIz584ad53Q5hI
-         bOsyDw8+lkqNVQrw/O0oEVLcIz9OtXayoL6/6l695GMdLIOhXAKDg9iEH8BlQLN83I99
-         miTOO3xCyNBTjscQ3cktsmky2lyQ44RzX1XxlZRXIB3r+ZTcdmRFmBdujfwsjVU9smFp
-         IxGkQqQF1c7RqbEGtA6R75ZTzInores6UmsJtH7UwrLCZpa5TRJ3lOWrLhmfnU/sv0M7
-         fGqg7JG/0oAghdTBOIuPdBg1XaSdVE93v0tQD7nrPvN/vNZvdzudY/qus+UJDjAcoCg/
-         LM8A==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HBW99nl/bxZsTE1SNWWJvTeEp3Nq/6dlA/kis96/OGU=;
+        b=utTGrb/3fg+7tKVMVMXYVYrKAKW0FRoIeNF1MdJG1DSB4hTuxJ8tO7TdOM/KYj+eOq
+         bt/gt2WC4QzDAwlOF8pO67FEmmCVTM0E11nD0utz17Q7jayfIAFYJidKi7PvN5vLOFP3
+         +T2o9zBcZxSXF/rfoFcLfATPe5gOxlm75dbV+OuFQ5juOAjCfsTqubQaFs3n4G/qEWsU
+         r4+obCpbDN+8CqWZ6VTOpxONRmVYLi7+xeBjKwM0KA8MnI+K7gmebwDLmERjOUUoHQ/E
+         OBgepXJLV48Gmwrtw/nvsWWzlqFoRkbs9woizoq3yAj1lCDmXhFr3ByqDdEFauk5V8LV
+         xn8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CtTLJQUHERlGTA1ecjP4ZAB6KPAk/7NPYqYgWuT3Suw=;
-        b=X8qcm2WwwpsZb/oZJyh1Xt28o69WV7s69rDZP+Co/RFNFOubgnFHAj1pjBz+49DdFD
-         duuJnvkKrR73A+f/QUyL2O1vPZYPvHwzYvyDbRGVcCyqsoPpQx5N/+xC/4Xg4ja9k6jO
-         VJRP6lCGudCz3IIdC9V+LVALOal+UBqv3l5bV6JT3GsDFEY8c207yZBbNYpmCl8C75Up
-         GYHsclT+OE+rHfrp7GYM4fde+GEkZHgVT3+N3cgu3tL8ixIfOl2EvHXfe5N2GNiF3iXi
-         0y7ct5lYakSCOgrKcHS7GUL/vNU3msI2QRicLtZPFu410nKAMS1o8Bs0duQPh+M3eHgv
-         ldLQ==
-X-Gm-Message-State: AFqh2kpIsHZ27Qq86zl1EyUmOJE3RN985rgpRH2qddanrBBW0aJDlIoy
-        AayzSE6nl0H1lO9ZMOkqc3N8Ng==
-X-Google-Smtp-Source: AMrXdXsGbgUE3umL1U3RniV7/odixrkxY9sW262BHvRmFLtF52S8OAEs3s/oFW819rxhIhuG1QTQ5g==
-X-Received: by 2002:a05:600c:a15:b0:3db:18a0:310f with SMTP id z21-20020a05600c0a1500b003db18a0310fmr17735845wmp.33.1674467945322;
-        Mon, 23 Jan 2023 01:59:05 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o28-20020a05600c511c00b003dab40f9eafsm11183305wms.35.2023.01.23.01.59.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 01:59:04 -0800 (PST)
-Message-ID: <703ad169-fb10-651c-96fe-22d2eae959b6@linaro.org>
-Date:   Mon, 23 Jan 2023 10:59:03 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v2 0/2] Add support for Samsung Galaxy S5 (Exynos)
-Content-Language: en-US
-To:     Markuss Broks <markuss.broks@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230121201926.46990-1-markuss.broks@gmail.com>
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HBW99nl/bxZsTE1SNWWJvTeEp3Nq/6dlA/kis96/OGU=;
+        b=TMfLXgmNRnotAiqhSuNcQ8FfnpFQvWfYSmwNtta9zGFhSpsW6mlJpXK5Mfa87H78QY
+         Oot54MqHldOvPB2+0AZia+5wpiFpj1NBfukcG9tv+FAhnj+Hht6T/O3JZAR7EcEYFBoH
+         qrqAkTJelHa78OaEgwh+wzqhmCcc8TrkD6oR93aGoVYVofNrRUHHDoo7FjcL62ATZDmC
+         BBCeA/YNnVSOdNpUueBdFwewla0pv1QUObromqnVhfYgYFuExmj/nThFAUgpaiHShEAv
+         WzwDa+XBlUQZnC6A5eIHlecL+89Gy9eB/FulA+XrOJOVXexM53JWYEnwfejBGUlUKTka
+         WYRA==
+X-Gm-Message-State: AFqh2kqgCuG6QPaMEkdyHxq5YZo32+/o3QMooVj7AktbllSd3+AdPZyD
+        r5Qy4AM1oaVP3uZa7mTrXymeNQ==
+X-Google-Smtp-Source: AMrXdXtTrVcaPCCBSgFX/j5Ycf6bevTbzhzytfwtX7u/nET/Yox0ixtMdIVw19MyyI5EXWgbe2l5GQ==
+X-Received: by 2002:a05:600c:3545:b0:3c6:e60f:3f4a with SMTP id i5-20020a05600c354500b003c6e60f3f4amr23476158wmq.1.1674468105235;
+        Mon, 23 Jan 2023 02:01:45 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id m2-20020a05600c4f4200b003db0ad636d1sm11050831wmq.28.2023.01.23.02.01.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jan 2023 02:01:44 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230121201926.46990-1-markuss.broks@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+To:     linux-arm-kernel@lists.infradead.org,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-samsung-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kukjin Kim <kgene@kernel.org>, Inki Dae <inki.dae@samsung.com>
+Cc:     phone-devel@vger.kernel.org, Henrik Grimler <henrik@grimler.se>,
+        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht, replicant@osuosl.org
+Subject: Re: [PATCH 00/11] ARM: dts: exynos: DT schema fixes
+Date:   Mon, 23 Jan 2023 11:01:37 +0100
+Message-Id: <167446806832.57213.6257020240038382720.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230120155404.323386-1-krzysztof.kozlowski@linaro.org>
+References: <20230120155404.323386-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/01/2023 21:19, Markuss Broks wrote:
-> Samsung Galaxy S5 (Exynos) is a mobile phone released in 2014.
-> It has an Exynos5422 platform. This version of Galaxy S5 is only
-> capable of 3G communication using the Intel modem, while the
-> LTE version of the device (klte) has a Qualcomm Snapdragon SoC.
+On Fri, 20 Jan 2023 16:53:53 +0100, Krzysztof Kozlowski wrote:
+> With this set of fixes (and few other earlier), all Exynos ARMv7 boards
+> successfully pass DT Schema checks! All! Hurray!
 > 
-> Currently, internal eMMC, USB, regulators on a PMIC, and touchscreen
-> are enabled in the device-tree.
+> Please kindly test if I did not break any boards...
 > 
-> It also has the following peripherals:
+> Best regards,
+> Krzysztof
 > 
-> - 5" 1080p S6E3FA2 DSI display,
-> - Cypress StreetFighter touch buttons,
-> - Broadcom BCM4354 wireless connectivity module,
-> - Intel XMM6360 3G modem,
-> - STM32F401 serving as a sensor hub,
-> - Validify Solutions VFS61 series fingerprint sensor,
-> - Lattice ICE401M FPGA as an IRDA controller,
-> - Maxim MAX86900 heart rate sensor,
-> - NXP PN547 NFC controller,
-> - Wolfson WM5110 Audio DSP,
-> - Broadcom BCM4753 GPS radio,
-> - Maxim MAX77804 PMIC,
-> - Silicon Image SII8240 MHL controller,
-> - TI LP5562 LED driver
-> 
-> Cc: Mark Brown <broonie@kernel.org>
-> 
-> v1 -> v2:
-> - use better subject prefixes
-> - rename Galaxy S5 (Exynos) to Galaxy S5 (SM-G900H)
-> - align the compatibles and clock output names
-> - reorder the includes
-> - generic node name for regulator-tsp-vdd-en
-> - GPIO flag for regulator
-> - rename all the regulators, leaving the voltage values only where
->   it makes sense (e.g. on 3V3 and 1V8 supplies for the HRM)
+> [...]
 
-I got two v2 patchsets from you. No clue which one is correct. Please
-send v3 if there were differences. Otherwise please annotate somehow...
+Applied, thanks!
+
+[01/11] ARM: dts: exynos: correct wr-active property in Exynos3250 Rinato
+        https://git.kernel.org/krzk/linux/c/d15d2a617499882971ddb773a583015bf36fa492
+[02/11] ARM: dts: exynos: drop unsupported desc-num in Exynos3250
+        https://git.kernel.org/krzk/linux/c/49434cd203ed3af220145f2e5e5791339dac347a
+[03/11] ARM: dts: exynos: correct cd-gpios property in Exynos4412 Itop Elite
+        https://git.kernel.org/krzk/linux/c/78b93ffef4ad1800f884e4892c1bd79ca5512cba
+[04/11] ARM: dts: exynos: align pin node names in Exynos4412
+        https://git.kernel.org/krzk/linux/c/f370a3d0fd16cd260248c387cc085dcb8a6d32b2
+[05/11] ARM: dts: exynos: add ports in HDMI bridge in Exynos4412 Midas
+        https://git.kernel.org/krzk/linux/c/74ac07e485bb01e232c7f3d67632ffc9b64604aa
+[06/11] ARM: dts: exynos: add panel supply in Tiny4412
+        https://git.kernel.org/krzk/linux/c/c2387ee9a318dfb7cb5a7a210e2825c62d4932cc
+[07/11] ARM: dts: exynos: add backlight supply in P4 Note
+        https://git.kernel.org/krzk/linux/c/f845ae570231bcaa677df65af620896fdf3c5705
+[08/11] ARM: dts: exynos: align HSOTG/USB node names
+        https://git.kernel.org/krzk/linux/c/eeb0fd23bc0fc823032dd2a2df22651ce8369aed
+[09/11] ARM: dts: exynos: correct SATA clocks in Exynos5250
+        https://git.kernel.org/krzk/linux/c/712c852a7b0dc0ac66fa6b89997f4f952483a5e4
+[10/11] ARM: dts: exynos: correct HS200 property in Exynos5260
+        https://git.kernel.org/krzk/linux/c/865b7ea364f892a3de7838eec04628efb945939e
+[11/11] ARM: dts: exynos: correct HSI2C properties in Exynos5410 Odroid XU
+        https://git.kernel.org/krzk/linux/c/5dd60c69047ee3fd92a9f64b28377f4819536d2f
 
 Best regards,
-Krzysztof
-
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
