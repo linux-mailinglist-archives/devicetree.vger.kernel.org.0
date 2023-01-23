@@ -2,139 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A0336786D6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:50:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C23486786DA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:52:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231664AbjAWTur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 14:50:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54646 "EHLO
+        id S230267AbjAWTwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 14:52:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233062AbjAWTuF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:50:05 -0500
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB7A12D177
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:50:01 -0800 (PST)
-Received: by mail-qv1-xf36.google.com with SMTP id d13so9931122qvj.8
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:50:01 -0800 (PST)
+        with ESMTP id S230185AbjAWTwy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:52:54 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F30B518A80
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:52:52 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso9913051wmn.5
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:52:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=rGE93gPkAvU6p1g6zMI0ZGEEXbMUYmA6Yp6gqSuvvww=;
-        b=JC7Ly8pZDPQTNo3K1tQHv+sSYUXo//MGnfsKJgowshH4fueBckQk0UMvGHMjxH6f5+
-         7f18QnmMsJ7SZnBI4yNFw/69kxVaralcZtCpLimACvpSfTVeP3ymesdBwdbPZvUEwpnV
-         mw59hgJ1P4k0KWyYwxp9/szWNZ6AZZIWacpC6/SXXH524y84tXbrwsltUjuiFP0HORFd
-         BascxnfgUZWEui4L5G2GnqnpQirCorVXlsSXXeitcLdSJ/itjcyRvT2w2oX4Exuegi7N
-         as/sQTcUgVr7VR3BO7xnQXs8Xi0OQUxF9SS8TigQVQDj0iPUDa7UUAaKmwktKTmr+emu
-         0H1A==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cQX8FwU+yVyIM1d9Uh0Lst/mt6UcJzmO021Nym1UxnA=;
+        b=ndt+GQNySxm/oUPdDgcBDGpBaXA6sEFTWvXfPn2zN3xHC+wSqahOLUwkox3RC0Io/D
+         GEHChfLks00fimEso1HDtUgb0vqstJpQDRSDl+63dJZAWRQzIDFABJY+s3BO0KXEOZbq
+         ZHqIG47LsdceYAZMI3q+BCDWMfCLLjlGeWS1z6U1MyH6biZr7K7rTvi8cb829KAyW4RN
+         nHmnE1KTEabV4jpkKNz43yXJqc4n3ct0QUZ7emfB7zySi96dbLz1cuwA89v7vGix/Tjv
+         OENH/nNeiv5rbAOMnOJz+PLs3udQvMjoiapBAfqkUSNxkm+E0Cz9OquG+8Cvj2S5Nihj
+         bhdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rGE93gPkAvU6p1g6zMI0ZGEEXbMUYmA6Yp6gqSuvvww=;
-        b=1VJVLcb9e0HwT31DVeJgHjdK2zG34VFtsHpMlu0rJjtBOug8qUWl8HGCI7k9kEH6P1
-         CwJ2fK3rpZg05xeVrvBNzws7trJ0/xkW51XUDBuYJOPtHWbOJAwwaM2A8VushNE3WgUJ
-         aULsFyBehKtiIHMLg5h6DeKnGR47xQ2P23URNqreFZVcBAQo6hQlPtsWGl0kJzClCqz5
-         h+iyCQyEMNQ8wEJY6v1hbUOEn2dUaCn0uzxFlUvvmxaVZByuZkypzuhgkUSE2tI/E6xr
-         S4ki+AG5WdnvhoSb/qLhNIvl+rH/4Avyv+xfBGmQrYh0COIkFQzMJWJgsRtWDELGI4iC
-         /EDA==
-X-Gm-Message-State: AFqh2kopQLLZXTwCpBFyoSHlNqvFGTOEbV0bZ2r/RlJOXkjopo+uiQLk
-        HgMacl+q6UiYNDgu1nLruffzVXOGu7JhghXt
-X-Google-Smtp-Source: AMrXdXvZjnmLfOqTE0yM40ZLDkWU26o0u88ybKg/YPkagVEAyWBdG8miScE/MquEbFPqLcKaW6B8fQ==
-X-Received: by 2002:a05:6214:5f09:b0:4c7:5b:75ba with SMTP id lx9-20020a0562145f0900b004c7005b75bamr45249216qvb.31.1674503401130;
-        Mon, 23 Jan 2023 11:50:01 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
-        by smtp.gmail.com with ESMTPSA id 198-20020a3705cf000000b006fed58fc1a3sm24016qkf.119.2023.01.23.11.49.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 11:50:00 -0800 (PST)
-Message-ID: <2517e0aef49a934efa7c1a90e32fa811d060771d.camel@ndufresne.ca>
-Subject: Re: [PATCH RESEND 0/2] media: rockchip: rga: Add rk3568 support
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Michael Tretter <m.tretter@pengutronix.de>,
-        Jacob Chen <jacob-chen@iotwrt.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Date:   Mon, 23 Jan 2023 14:49:59 -0500
-In-Reply-To: <20230119-rk3568-rga-v1-0-43d4d14365e6@pengutronix.de>
-References: <20230119-rk3568-rga-v1-0-43d4d14365e6@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.2 (3.46.2-1.fc37) 
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cQX8FwU+yVyIM1d9Uh0Lst/mt6UcJzmO021Nym1UxnA=;
+        b=AVofWE77lv5rQFBwJopVncyVuNuvXCX7Do69W9P6M6YO1IdXHVqz8qzE9RYTron7FD
+         sRlWbIyMKPK8Wmv5nmblhhYvBR4agA8SdQQCzuCNB4liiF6We2il6Svk45NImuI8+0La
+         zNZ0IwaNRRBItj0sqEzXFptsbsQUKgj+8w5P0KcltexCn5GZTH0FMlHwEWb1y0VYLPzS
+         vM2NX4m++OSh1u9bmOuF7gizvPM+pjzmGW9GkWtzJ+XOx3UvnBgcev/ApaUdrjvckFWE
+         kGChry7xwWRma3ANkmFhb/jg4yZx8fBzhV/sZ1GseFm9ThzZ+npSP1Vszv/TEa0nruy6
+         zIag==
+X-Gm-Message-State: AFqh2koxSpwtNYncDfEvY9+wUPT5ATlBoxLnh+QNRY885L03Rj8vwHSS
+        /8Dgv6vMZq0WeX0yG9I8awuDNg==
+X-Google-Smtp-Source: AMrXdXum5LAGZhQDQK3EgOw1hthCew16D2WYtoCt54zBxa6vJ1/ajLs+PC242LJlsimre21+AwMWCw==
+X-Received: by 2002:a05:600c:3412:b0:3da:f678:1d47 with SMTP id y18-20020a05600c341200b003daf6781d47mr25044946wmp.14.1674503571547;
+        Mon, 23 Jan 2023 11:52:51 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id h9-20020a05600c2ca900b003d237d60318sm129148wmc.2.2023.01.23.11.52.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 11:52:51 -0800 (PST)
+Message-ID: <71fc64ea-81f2-3609-e4f9-741c177d31d2@linaro.org>
+Date:   Mon, 23 Jan 2023 20:52:49 +0100
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: jadard,jd9365da-h3:
+ Add Radxa Display 10HD
+Content-Language: en-US
+To:     Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+References: <20230123183312.436573-1-jagan@edgeble.ai>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230123183312.436573-1-jagan@edgeble.ai>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Micheal,
+On 23/01/2023 19:33, Jagan Teki wrote:
+> Radxa Display 10HD is a family of DSI panels from Radxa that
+> uses jd9365da-h3 IC.
+> 
+> Add compatible string for it.
+> 
 
-Le vendredi 20 janvier 2023 =C3=A0 10:14 +0100, Michael Tretter a =C3=A9cri=
-t=C2=A0:
-> The RGA2 on the Rockchip rk3568 is the same core as the RGA2 on the Rockc=
-hip
-> rk3288.
->=20
-> This series adds the necessary device tree binding and node in the device=
- tree
-> to enable the RGA2 on the Rockchip rk3568.
->=20
-> I tested the driver with the GStreamer v4l2convert element on a Rock3 Mod=
-el A
-> board.
->=20
-> This is a RESEND including the linux-media list, as Heiko asked for an
-> Acked-by from someone from media.
 
-I don't think there will be any concern about this on media side.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-
->=20
->=20
->=20
-> Michael
->=20
-> To: Jacob Chen <jacob-chen@iotwrt.com>
-> To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-> To: Mauro Carvalho Chehab <mchehab@kernel.org>
-> To: Rob Herring <robh+dt@kernel.org>
-> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> To: Heiko Stuebner <heiko@sntech.de>
-> Cc: linux-media@vger.kernel.org
-> Cc: linux-rockchip@lists.infradead.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Cc: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
->=20
-> ---
-> Michael Tretter (2):
->       media: dt-bindings: media: rockchip-rga: add rockchip,rk3568-rga
->       arm64: dts: rockchip: Add RGA2 support to rk356x
->=20
->  Documentation/devicetree/bindings/media/rockchip-rga.yaml |  4 +++-
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi                  | 11 +++++++++=
-++
->  2 files changed, 14 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 5dc4c995db9eb45f6373a956eb1f69460e69e6d4
-> change-id: 20230119-rk3568-rga-d1b0cccc7b82
->=20
-> Best regards,
+Best regards,
+Krzysztof
 
