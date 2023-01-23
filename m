@@ -2,97 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 732A66778FB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 11:19:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13253677948
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 11:36:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231441AbjAWKT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 05:19:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48630 "EHLO
+        id S231540AbjAWKgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 05:36:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232023AbjAWKTr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 05:19:47 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A737A113CC;
-        Mon, 23 Jan 2023 02:19:43 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5F652B80CBC;
-        Mon, 23 Jan 2023 10:19:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0650CC433D2;
-        Mon, 23 Jan 2023 10:19:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674469181;
-        bh=R8TEHMiMrqLAL4VER9QYwXpcKwfMt+LaxjwixzRorjM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jFlknf7bHk9HiHeO2bHfa1wcP91KT8Wf+/vJ55+DGGz1fVU5ccAny+01ENx4vhoam
-         9zjclV80G90b5WAbI+JB1QfnKQQLnuAWIsCW/3MlTiSYEW3OUTJpI3NhtZboEhJPBX
-         2hiA+UNILsBqnO4Q+nV7NblTd7CiPQhj7dPpb6uvH8Gkf3LNs+Ff9L7pt4dMXWPJ/C
-         gCq/CV4JA3Xcq8wM409qzW3/8ppWenjhhvw5N8lyxFH1kwqOw+TTR5rbDW56oRvLjH
-         xZB6rrE2ODKMQPOcVnk6Mz3HNy8tXqHPVHfLgBhczuqPOvKKYjUOU1C81V1mY4z55n
-         BL6o+MvSmZsIg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pJtvO-0000fP-Ag; Mon, 23 Jan 2023 11:19:38 +0100
-Date:   Mon, 23 Jan 2023 11:19:38 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S230489AbjAWKgP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 05:36:15 -0500
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6B1B17176;
+        Mon, 23 Jan 2023 02:36:11 -0800 (PST)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4P0mck3ssfz6J7f6;
+        Mon, 23 Jan 2023 18:32:06 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 23 Jan
+ 2023 10:36:08 +0000
+Date:   Mon, 23 Jan 2023 10:36:07 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+CC:     Jonathan Cameron <jic23@kernel.org>, <phone-devel@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH 04/10] dt-bindings: phy: qcom,qmp-usb: Document SM8550
- compatible
-Message-ID: <Y85fOgfjEUBMnWar@hovoldconsulting.com>
-References: <20221116120157.2706810-1-abel.vesa@linaro.org>
- <20221116120157.2706810-5-abel.vesa@linaro.org>
- <Y3TpzgQ1JaFs5sNk@hovoldconsulting.com>
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        <iio@vger.kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Manivannan Sadhasivam" <mani@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Require generic adc-chan
+ name for channel nodes
+Message-ID: <20230123103607.00001fcd@Huawei.com>
+In-Reply-To: <20230122233741.7jn2nzghfvhgoemr@SoMainline.org>
+References: <20230119212632.185881-1-marijn.suijten@somainline.org>
+        <20230119212632.185881-2-marijn.suijten@somainline.org>
+        <20230121170825.0d284151@jic23-huawei>
+        <20230122233741.7jn2nzghfvhgoemr@SoMainline.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y3TpzgQ1JaFs5sNk@hovoldconsulting.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 02:46:54PM +0100, Johan Hovold wrote:
-> On Wed, Nov 16, 2022 at 02:01:51PM +0200, Abel Vesa wrote:
-> > Add the SM8550 compatible to the list.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >  .../devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml       | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
-> > index 0c6b3ba7346b..cba2a252baf8 100644
-> > --- a/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
-> > @@ -37,6 +37,7 @@ properties:
-> >        - qcom,sm8350-qmp-usb3-phy
-> >        - qcom,sm8350-qmp-usb3-uni-phy
-> >        - qcom,sm8450-qmp-usb3-phy
-> > +      - qcom,sm8550-qmp-usb3-phy
+On Mon, 23 Jan 2023 00:37:41 +0100
+Marijn Suijten <marijn.suijten@somainline.org> wrote:
+
+> On 2023-01-21 17:08:25, Jonathan Cameron wrote:
+> > On Thu, 19 Jan 2023 22:26:31 +0100
+> > Marijn Suijten <marijn.suijten@somainline.org> wrote:
+> >   
+> > > As discussed in [1] it is more convenient to use a generic adc-chan node
+> > > name for ADC channels while storing a friendly - board-specific instead
+> > > of PMIC-specific - name in the label, if/when desired to overwrite the
+> > > channel description already contained (but previously unused) in the
+> > > driver [2].
+> > > 
+> > > Replace the .* name pattern with the adc-chan literal, but leave the
+> > > label property optional for bindings to choose to fall back a channel
+> > > label hardcoded in the driver [2] instead.
+> > > 
+> > > [1]: https://lore.kernel.org/linux-arm-msm/20221106193018.270106-1-marijn.suijten@somainline.org/T/#u
+> > > [2]: https://lore.kernel.org/linux-arm-msm/20230116220909.196926-4-marijn.suijten@somainline.org/
+> > > 
+> > > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>  
+> > Other than the use in the tm5 thermal example that Rob's bot found, this looks
+> > good to me.  
 > 
-> This one too should be based on sc8280xp rather than the legacy binding
-> scheme.
+> Yep, shouldn't have ran dt_binding_check and dtbs_check with
+> DT_SCHEMA_FILES=just/the/one/edited/here.
+> 
+> > I think ideal would be to fix that in a precursor patch then
+> > do this one.  
+> 
+> Can't that be part of the current one?  At least the change requested by
+> dt-bindings here is backwards-compatible; the adc-chan@xx format with
+> optional label property was already allowed.
 
-I can't seem to find a v2 of this one adding a new-style binding for
-sm8550.
+Sure you can merge it in, or do it as a precursor. I'd split it though
+purely as it can be picked up by a different maintainer if that makes
+sense (at cost of some errors as things filter through the various
+trees).
 
-Note that the corresponding dts changes have already been merged:
+> 
+> > Note that the existing two patches should be in the other order
+> > 1. Update the dtsi
+> > 2. Tighten the bounds to check they are right.  
+> 
+> Hmm, I'm never sure what goes first: drivers, bindings, or DT
+> (considering there's an ABI it shouldn't matter whether drivers or DT
+> go first, leaving just dt-bindings which could be used to TDD the DT...
+> or check adjustment after the fact).  Is this relationship - and the
+> order following from it - documented somewhere?
 
-	https://lore.kernel.org/all/20230119004533.1869870-2-abel.vesa@linaro.org/
+In this particular case we in theory want bisectability.  As you note
+the updated tighter naming is already allowed, so we can make that change
+first.
 
-Johan
+Normally we are adding new bindings and it doesn't matter on order as
+we just have an undocumented binding if the driver goes first.
+
+As noted it all become irrelevant when things go through different
+trees anyway!
+
+J
+> 
+> > Doesn't matter much though as the two patches will probably go through
+> > different trees.  
+> 
+> Should be right, indeed.
+> 
+> - Marijn
+
