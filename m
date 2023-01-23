@@ -2,95 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66B9E67806E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:49:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49D4167807C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:50:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232910AbjAWPt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:49:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55338 "EHLO
+        id S231871AbjAWPuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:50:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232606AbjAWPt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:49:26 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C23EC15567
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:49:24 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id e3so11201967wru.13
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:49:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oRrlO1y0MQCgeVJ1C8FCZsk1QyUHS9Bge/H7XBbj9NE=;
-        b=swDVpyA/cOqgd3BzwtL9dhxt8H4pjMIL0rkk6nBLIs34KHHA1zYpIAqLXYNFxrRLhn
-         VWjyFKwr33BcWOCn2AcobEf1bcI1u5v+3/KQqdD9uTIn6jyX/uK3VdIYAAxov0Tv7HOA
-         fLi9bCDGGW8azvBu5b075KGms0op8mme1Jhm0BBUY4ndfcThuVLAMoZOQ5+Zw4IK3w+Z
-         vCA3PD4QELkUITjrC/cnvYHRs4/9i03RpTGOmvscyHjuWSNlBEcbmAgcPWSwlwrrwBBg
-         zOSCOWyKzS2u4qgUXHE0xwXQQ/PbW+ev8hLSlz5HCUAjRF6kLSUJWfcuFw8zGu0gO+Eg
-         rZQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oRrlO1y0MQCgeVJ1C8FCZsk1QyUHS9Bge/H7XBbj9NE=;
-        b=z2qukdiro9wg+7SmN9qNiZBvWVrPa1tcK9GVgqK1Sj6cyC0hmUvwYnAWda0x6Flht0
-         XqLLuMVZr2POxyg0sO1JKNVxJdGVi/FA21Csu+LcQ9WbtvBSt82amYxOETqbYe/p3Jtn
-         qU4VGolXlqmff3Qt4BLE93xyeYzOctqMSP0dz1REvvgelgnD8JdNhk+d3Wm56zjJNswE
-         6viyMn1tYnqUoLc/jHkvLc1MShCenku2agbcJfAlaLtMJP2AYZ/UyKBest3GehfJTLrw
-         8P4xVBQR4B5LayN4Kr33FcQm8PKyiiqUSX+Onoo63JiaxkC4QilMeMCo4Vw9Cfj5564N
-         KyLQ==
-X-Gm-Message-State: AFqh2kodc8oIj0I0Y9kocdFkZV84+fu/86notSI595dzymvaSt79RfH2
-        M9NnQr8p8+qq8J6TeuyFd3pLgv8cg9+fX56Y
-X-Google-Smtp-Source: AMrXdXvj7CKw9kx7uw6aIqK5wdSyxxpICiQJ8Y8+j8LTwjVqZp2eJmwSRdZfJ2o5Nu3o2AvA1xlLSg==
-X-Received: by 2002:adf:dd84:0:b0:2be:4fbe:42d5 with SMTP id x4-20020adfdd84000000b002be4fbe42d5mr13917911wrl.5.1674488963364;
-        Mon, 23 Jan 2023 07:49:23 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id w5-20020adfcd05000000b002bdc914a139sm35089639wrm.108.2023.01.23.07.49.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 07:49:23 -0800 (PST)
-Message-ID: <ee531a81-8ba8-b436-ddee-44a512c7be17@linaro.org>
-Date:   Mon, 23 Jan 2023 16:49:21 +0100
+        with ESMTP id S231822AbjAWPuv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:50:51 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3225613D65;
+        Mon, 23 Jan 2023 07:50:48 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 55C9280375;
+        Mon, 23 Jan 2023 16:50:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1674489046;
+        bh=VTlv3YsP2wm7T9L1A08tQyNMzWRUjUZ90k0GT+bcFF8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=rvq2PVwjbm9dwMsrydB/G1Eu/X2snK/6cK8A0hdqoHvHPowFKX+P8jKdYwlRGTh5E
+         tVH14bwPJmxR3AXoLGcDvfKCRiUwsWW3gvdYph07ggiA6O0j+1qNL7N87XjKSvG/e3
+         UE5aYLMJnLo+jgNnVu7ZJ4swq5QO2gteA0XDrnCUdowv/UYmzzxK6uuZvg8alS2zrE
+         GhZCCCfJ3tirVBQaN/aoFkfp9DDe2NWrcWCFR5NqQ5JMumUKYosz42Jx0ec8Yv3mao
+         wAAGI3206J70YwR4LCUAmsaEijyBHbRPtwjMiVnUeCmCkFQOM2TQ2FJ2sbqXKklbV8
+         Rml3vl32reHJQ==
+Message-ID: <43f3c323-4757-8fe5-415f-aa7fbea7bcab@denx.de>
+Date:   Mon, 23 Jan 2023 16:50:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 1/3] dt-bindings: arm-smmu: Fix binding for SDX55 and
- SDX65
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 1/2] dt-bindings: lcdif: Add i.MX93 LCDIF support
 Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        andersson@kernel.org, will@kernel.org, joro@8bytes.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
+To:     Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        iommu@lists.linux.dev, dmitry.baryshkov@linaro.org
-References: <20230123131931.263024-1-manivannan.sadhasivam@linaro.org>
- <20230123131931.263024-2-manivannan.sadhasivam@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230123131931.263024-2-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        linux-arm-kernel@lists.infradead.org
+Cc:     stefan@agner.ch, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com
+References: <20230123072358.1060670-1-victor.liu@nxp.com>
+ <20230123072358.1060670-2-victor.liu@nxp.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230123072358.1060670-2-victor.liu@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/01/2023 14:19, Manivannan Sadhasivam wrote:
-> Both SDX55 and SDX66 SoCs are using the Qualcomm version of the SMMU-500
-> IP. But the binding lists them under the non-qcom implementation which is
-> not correct.
+On 1/23/23 08:23, Liu Ying wrote:
+> There is one LCDIF embedded in i.MX93 SoC to connect with
+> MIPI DSI controller through LCDIF cross line pattern(controlled
+> by mediamix blk-ctrl) or connect with LVDS display bridge(LDB)
+> directly or connect with a parallel display through parallel
+> display format(also controlled by mediamix blk-ctrl).  i.MX93
+> LCDIF IP is essentially the same to i.MX8MP LCDIF IP.  Add device
+> tree binding for i.MX93 LCDIF.
 > 
-> So fix the binding by moving these two SoCs under "qcom,smmu-500"
-> implementation.
-> 
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Marek Vasut <marex@denx.de>
