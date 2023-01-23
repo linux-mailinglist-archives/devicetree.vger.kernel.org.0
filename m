@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80BEF677C58
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 14:21:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE0DD677C5A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 14:21:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231389AbjAWNVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 08:21:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46758 "EHLO
+        id S230220AbjAWNVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 08:21:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230487AbjAWNVO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 08:21:14 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 829F116AC7
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:21:09 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id 18so14506893edw.7
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:21:09 -0800 (PST)
+        with ESMTP id S231503AbjAWNVa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 08:21:30 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3BD5244B6
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:21:27 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id az20so30460369ejc.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:21:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SBWhNhiZ4FUyAbC08QC+fGNiod2oTpvcfGBQdpI5GH8=;
-        b=gyTeXRBEGBxguFTWgf7UL8BGx0FomjC8KlAWnrx/jBiVFnPYSY3QhsrVkzMVdVB4k9
-         8Yd1JGHAbtD6F+APVfvoLZ4j37J3CURzskZFZhdYwxe9aMBdUU5V0A2dIbQCNVZCo5gp
-         QVJMtsuouilH0bjE1DE5bKJ5C6r8Tw7FS9BcnFdNESSXeeCoflMcVs41QsSUJAqKELXE
-         CmF20AZewLo+VZlwMlFjWtgDfaexMIypdlo+4EV1grwDKhjsJpj9ShuVBiiafJx+xYrX
-         lQgoJdYD1WO3Hz8Tn5AZ1WCjPWSyBx9zJoLLDbhqeVSz5cWSm0MUxZ10eIqHzTm4q7mk
-         /iFQ==
+        bh=YsXGq+84b3tFva8sx/OXAy3zCE5skYa0ofpr2MBER4c=;
+        b=eRDEYhOIGJ103mS6oZnJoO+6Moo0rdjkBf0TOJ5mG0TBUOIxJc/CtJMsqHf7Tn6UuH
+         sULITttpVPB4z/TZl9rXOV5TH2C9xOTHn1+1l7IajvYiAjGBhQeFPicvAMZsDe+v2ZXy
+         ze6kRY+UwbVsCacMyfFQoCs85JCLULvRBsssHbCUgu8nvfAGuHN9ADc+nAGR6+7b351U
+         lVusB2tp+v8OXfrGP2lIQY1AAFlwYo6vmzoVGHg/xOX3cuuZh1rmgGhSYe/yOAXJhqes
+         jLuwg5Gqcwr/EmudOw+AaKZtN/saCTd/WXyVp5aVGTbflmbm2O9J+vZQomtTg4YRRlCk
+         ObVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SBWhNhiZ4FUyAbC08QC+fGNiod2oTpvcfGBQdpI5GH8=;
-        b=zW2SRbT680cqMF405GZ2CeWAnv7HE05HFEHzNnidjtUhtMNyH4KbS9eLChzpvYi2QI
-         q5UpbkAFJ0+wgUa+tn2RSfWGMzoyX426wEsHKkP+3FM4zd0kyJ1IujpVatP0xAm+WF39
-         2Mlq/DFie5QpsltmTgssGf+PQ+vKJC0n4wP2zDFUiHBcIIS/v/DRCppNSpkVQgAJRhSq
-         q1kgCX+Q8C4L6plKbsz57I83dunFUqVHTGxo1UHkzbc6W46VzHjVtJed++mIRir0qJbD
-         r1wrlD7oGHp2s0S8N+nh96dnX20ek7s426tS86gfXQIXAMyjMlQ0vbi6zOrw+NvdPg98
-         UOcQ==
-X-Gm-Message-State: AFqh2krP6UtgNopqQkR5efknmdkVRyFbHSTtyEmCDHJNXJmK0nFdWwS+
-        ZsEE4MkWdtz4+vtlb0OiGoCAgMv5DKGdXJ3U
-X-Google-Smtp-Source: AMrXdXtaIHL/o+6LVr9t758vcJAlmOPxoXCXHzMQicgRM5Ncf+nMcbd1BWxiSJJ2nvUckNjfMqAyfA==
-X-Received: by 2002:a05:6402:524f:b0:49e:910:5706 with SMTP id t15-20020a056402524f00b0049e09105706mr35360367edd.2.1674480068037;
-        Mon, 23 Jan 2023 05:21:08 -0800 (PST)
+        bh=YsXGq+84b3tFva8sx/OXAy3zCE5skYa0ofpr2MBER4c=;
+        b=2j59E1XqJt/skCpBKOQfKoDgTEar9nu44/1TZX2Q2c+MgHaCCovq1NuH/tdCaZmOV5
+         PeuibOrc55jkOk/BvjAfGcew2J1VSIzCzK9WG3TyDhnr3Ke8wqUHBVj58JRa87zYn4KB
+         Z2/YYfUapFMdDW0f/h1AN5wlkMpok0ZDxZY++GNXw+hMSaTGFJXTPBuJaGfydGWUtRvm
+         Biot8rSS0wWKEVnPq/4c1GF4ZTuSf9qhs7rurHZG6LotfAsbAkwtfxfaeULwMMj4DBZG
+         FkkIvRPT4sGICIqyGy421JLmnNItETRjnnH0CjmrjEnxqPBRSFYidn2LtNrVf6+EQLuU
+         Sx8Q==
+X-Gm-Message-State: AFqh2kp1gCL2JjJTNYjmo/JNV9rEJebmU9X2J5vLBmNGyrYCG+GvWbAS
+        kf6W/0NPZn8NGsKhsqyfv2j19w==
+X-Google-Smtp-Source: AMrXdXvoSP7NORFjK/VvrRxhcuHbYeJ42QdKshHQmbhms89pHQrdDseSM67icmPAtdDWwLKfJneaAw==
+X-Received: by 2002:a17:907:cc03:b0:7c4:f8fb:6a27 with SMTP id uo3-20020a170907cc0300b007c4f8fb6a27mr34065026ejc.0.1674480086417;
+        Mon, 23 Jan 2023 05:21:26 -0800 (PST)
 Received: from [192.168.1.101] (abxi24.neoplus.adsl.tpnet.pl. [83.9.2.24])
-        by smtp.gmail.com with ESMTPSA id z6-20020a50cd06000000b0046267f8150csm17130853edi.19.2023.01.23.05.21.06
+        by smtp.gmail.com with ESMTPSA id p8-20020a17090653c800b00872c0bccab2sm9742043ejo.35.2023.01.23.05.21.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 05:21:07 -0800 (PST)
-Message-ID: <1c62001d-5e1a-d5b3-ccb2-1224424c0418@linaro.org>
-Date:   Mon, 23 Jan 2023 14:21:05 +0100
+        Mon, 23 Jan 2023 05:21:26 -0800 (PST)
+Message-ID: <8d07ba5e-6354-c2ba-bd09-5f8169732b55@linaro.org>
+Date:   Mon, 23 Jan 2023 14:21:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 2/3] ARM: dts: qcom: sdx55: Add Qcom SMMU-500 as the
+Subject: Re: [PATCH 3/3] ARM: dts: qcom: sdx65: Add Qcom SMMU-500 as the
  fallback for IOMMU node
 Content-Language: en-US
 To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
@@ -64,15 +64,14 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
         dmitry.baryshkov@linaro.org, stable@vger.kernel.org
 References: <20230123131931.263024-1-manivannan.sadhasivam@linaro.org>
- <20230123131931.263024-3-manivannan.sadhasivam@linaro.org>
+ <20230123131931.263024-4-manivannan.sadhasivam@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230123131931.263024-3-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20230123131931.263024-4-manivannan.sadhasivam@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,29 +81,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 23.01.2023 14:19, Manivannan Sadhasivam wrote:
-> SDX55 uses the Qcom version of the SMMU-500 IP. So use "qcom,smmu-500"
+> SDX65 uses the Qcom version of the SMMU-500 IP. So use "qcom,smmu-500"
 > compatible as the fallback to the SoC specific compatible.
 > 
-> Cc: <stable@vger.kernel.org> # 5.12
-> Fixes: a2bdfdfba2af ("ARM: dts: qcom: sdx55: Enable ARM SMMU")
+> Cc: <stable@vger.kernel.org> # 5.19
+> Fixes: 98187f7b74bf ("ARM: dts: qcom: sdx65: Enable ARM SMMU")
 > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm/boot/dts/qcom-sdx55.dtsi | 2 +-
+>  arch/arm/boot/dts/qcom-sdx65.dtsi | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
-> index f1c0dab40992..93d71aff3fab 100644
-> --- a/arch/arm/boot/dts/qcom-sdx55.dtsi
-> +++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
-> @@ -578,7 +578,7 @@ pil-reloc@94c {
+> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
+> index b073e0c63df4..408c4b87d44b 100644
+> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
+> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
+> @@ -455,7 +455,7 @@ pil-reloc@94c {
 >  		};
 >  
 >  		apps_smmu: iommu@15000000 {
-> -			compatible = "qcom,sdx55-smmu-500", "arm,mmu-500";
-> +			compatible = "qcom,sdx55-smmu-500", "qcom,smmu-500", "arm,mmu-500";
->  			reg = <0x15000000 0x20000>;
+> -			compatible = "qcom,sdx65-smmu-500", "arm,mmu-500";
+> +			compatible = "qcom,sdx65-smmu-500", "qcom,smmu-500", "arm,mmu-500";
+>  			reg = <0x15000000 0x40000>;
 >  			#iommu-cells = <2>;
 >  			#global-interrupts = <1>;
