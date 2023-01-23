@@ -2,72 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D5906776AD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 09:48:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A80826776B4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 09:50:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230230AbjAWIs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 03:48:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37538 "EHLO
+        id S230163AbjAWIuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 03:50:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbjAWIs0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 03:48:26 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81EFECC02
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 00:48:25 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id g10so8387846wmo.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 00:48:25 -0800 (PST)
+        with ESMTP id S229514AbjAWIuk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 03:50:40 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE139CC2C
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 00:50:38 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id z5so10053193wrt.6
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 00:50:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fprSFVrrJnip/JTZ37qMzy2gRM9AV21W/+RUwbxSVAc=;
-        b=G3wEtCktiXpKXO7gbXkzeOUQSo4i5jg5M1xnnovKINwwAGDloR8BE4pWdIviar144X
-         nQUALEqMDZ7NFF2Exd06H67XJp0rRWm1iz261S31dYHt1Q3CWmARWE8jGMiktnddzuLG
-         GMX4yFuiMTXXzyZubOKw+I9wQBDmhCkqh91rUHpxzAdQryclK1XLQBnE/xj4GnxJKlrS
-         vE26TX9Sq42+jyXFnTawzoukkKfcC4C7dJhWLXxmcziRrbIBDfMfdvYgc5Mt9Hj3pbvU
-         lxeLXGNn3VMcwf5CbS74yNr9IER++f6trQBOcMzqKvmb5sUhU6Tt6TUyUxoB2NDbcj06
-         nytg==
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=tokXhkBB2O2paiGKKaoP2lzAxO7le6+XsVsC6OhvEps=;
+        b=Zs2ENQaN/ddPOAPgdaSsg2/GbLd6ZEFs+pDO2+YLotqVUzSfHKe158EBIXmC8Dmv44
+         fpP1XMESSNz+0YuFNbHB/W1r3uRW41i5vWqVXkOmoVnRpD9hzD5QvGWHi0uz+yDVpVpk
+         2nL9Qb4/AkPd3fOmVK0PvMJDoYwzsjKZcp5EC8qOhc7Oi5cAwdKRcVKjljg+7vlbhYke
+         KXjbAKbzyk6gP6OWdQ5H8N6iRF+cOSCOVO2MFj1L1qMsajnTrNvVLL1jbbVv5dLIniLs
+         lYjYrUlUMEaTiwu8EcwJ3Hb/TEOsZQKV/UdGjZMlvxhqWOLUkFcS4OG4kiPtQ4L7AVEH
+         h0qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fprSFVrrJnip/JTZ37qMzy2gRM9AV21W/+RUwbxSVAc=;
-        b=Uev7Pc5kXVUOuV7viJY7KYMfY/nnYjnwYAeOF7vHtNH7NdFzTPihm7kiZWUqyybuKK
-         kf1hqB2r/alovYZm8TvuO9c6YCYxRiOYFD5qbXlVNsDrhiA2/YUtMYxCx+9k+SFRpATP
-         WI3WjVWd57PkQnAw7LjyuERWDJ3pkrc7VnBYKpul8IcJJoYcVoDfO91RArHgC4YOqRJN
-         cqIBOPdiXuy4+Xd84zpEh5evr+HbjFiL4PkEqjNSYFrtHTNdWSSrkNwdeRa+m8B23MNy
-         dD1DMwngRBrn4AA5dILF+e4YhWHlEpk6ruHXYpOmPGiOVNp5L9eikEbCplXn8uFSzzP2
-         HdFA==
-X-Gm-Message-State: AFqh2kpA7CHmKMT5T0gYlLV+SUha8d2Ql5prg6jRM9SvRW7F2+7waFDo
-        qeyPPd4hHnn9ulj4cXPXVg6Rkw==
-X-Google-Smtp-Source: AMrXdXtdtS5fuxBNA0md8yjriXvzIDmJ7LM4InlDyxE/6GHR5d5ygvek+mbvRKs0XNOWmQVq3dTCkw==
-X-Received: by 2002:a1c:7216:0:b0:3cf:614e:b587 with SMTP id n22-20020a1c7216000000b003cf614eb587mr23472481wmc.26.1674463704102;
-        Mon, 23 Jan 2023 00:48:24 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id l18-20020a1c7912000000b003db00747fdesm10024711wme.15.2023.01.23.00.48.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 00:48:23 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Liu Ying <victor.liu@nxp.com>
-Cc:     andrzej.hajda@intel.com, robert.foss@linaro.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        marex@denx.de, linux-imx@nxp.com, krzysztof.kozlowski@linaro.org
-In-Reply-To: <20230123021449.969243-1-victor.liu@nxp.com>
-References: <20230123021449.969243-1-victor.liu@nxp.com>
-Subject: Re: [PATCH v3 0/2] drm/bridge: fsl-ldb: Add i.MX93 LDB support
-Message-Id: <167446370312.2000622.5778653160134240013.b4-ty@linaro.org>
-Date:   Mon, 23 Jan 2023 09:48:23 +0100
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tokXhkBB2O2paiGKKaoP2lzAxO7le6+XsVsC6OhvEps=;
+        b=uqdE6dUnDJkAwcRBcfOhN/yfDzY6byeO/gmvUIDEoQFw6do2KaVXy3rzO86PIt7afg
+         wdq1tpa3iEXKqNEfXpXssGe7jJ3DYhRN5eBjptBhhN0CbgTX3dbo/1DvEw2nRCS2oNd6
+         Yh/a/zLF2b4wFieTiekpn9qj00grL+mdMAzJLYH3hjO1Z/Te+Fw5/KQnLSeoAnKaJYsK
+         5s0zNRF+M1Ci7keZ1iXX6r04Qr9OVAIGn42FQanrpfcXWneTcHwnZhvd2It6rxpeYxJW
+         gVZvXK3NZ0R6C+ymbne2CKbK9LYKbmN5qrk0C//pPjiOlBK2OYN2u5AuJeZc+ZDmt/GG
+         m9hA==
+X-Gm-Message-State: AFqh2koozYMWq02F7B4EUaUZ+4h3Btf9XU3VIyibuqu7N6S6e5C2Sews
+        AUGKvUn+yga+6eja02u+4iIWGg==
+X-Google-Smtp-Source: AMrXdXvTUl7kFlmLjtHWLnsL790TrBTdbZup8iSTjctXdffjd74Qq6pz9pm0/YMDSA5Fa3pMRKHX3A==
+X-Received: by 2002:a5d:4e4e:0:b0:2bd:ec13:8101 with SMTP id r14-20020a5d4e4e000000b002bdec138101mr20899265wrt.41.1674463837319;
+        Mon, 23 Jan 2023 00:50:37 -0800 (PST)
+Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id o2-20020a5d58c2000000b002bdbead763csm31087880wrf.95.2023.01.23.00.50.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 00:50:36 -0800 (PST)
+Message-ID: <470ccb46-4d63-2951-0fb9-71edca59b01a@linaro.org>
+Date:   Mon, 23 Jan 2023 09:50:36 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] arm64: dts: meson: add audio playback to S905X-P212 dts
+Content-Language: en-US
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230123065834.2670125-1-christianshewitt@gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20230123065834.2670125-1-christianshewitt@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.11.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,26 +81,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, 23 Jan 2023 10:14:47 +0800, Liu Ying wrote:
-> This patch set aims to add i.MX93 LVDS Display Bridge(LDB) support in
-> the existing i.MX8mp LDB DRM bridge driver.  Same to i.MX8mp LDB, i.MX93
-> LDB is controlled by mediamix blk-ctrl through two registers.  i.MX93
-> LDB supports only one LVDS channel(channel 0) while i.MX8mp supports at
-> most two.
+On 23/01/2023 07:58, Christian Hewitt wrote:
+> Add initial support for the HDMI and Analogue i2s audio outputs.
 > 
-> Patch 1/2 adds device tree binding for i.MX93 LDB in the existing
-> fsl,ldb.yaml.
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>   .../boot/dts/amlogic/meson-gxl-s905x-p212.dts | 70 +++++++++++++++++++
+>   1 file changed, 70 insertions(+)
 > 
-> [...]
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+> index 2602940c2077..c2bc7cec476d 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+> @@ -7,11 +7,19 @@
+>   /dts-v1/;
+>   
+>   #include "meson-gxl-s905x-p212.dtsi"
+> +#include <dt-bindings/sound/meson-aiu.h>
+>   
+>   / {
+>   	compatible = "amlogic,p212", "amlogic,s905x", "amlogic,meson-gxl";
+>   	model = "Amlogic Meson GXL (S905X) P212 Development Board";
+>   
+> +	dio2133: analog-amplifier {
+> +		compatible = "simple-audio-amplifier";
+> +		sound-name-prefix = "AU2";
+> +		VCC-supply = <&hdmi_5v>;
+> +		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+>   	cvbs-connector {
+>   		compatible = "composite-video-connector";
+>   
+> @@ -32,6 +40,68 @@ hdmi_connector_in: endpoint {
+>   			};
+>   		};
+>   	};
+> +
+> +	sound {
+> +		compatible = "amlogic,gx-sound-card";
+> +		model = "S905X-P212";
+> +		audio-aux-devs = <&dio2133>;
+> +		audio-widgets = "Line", "Lineout";
+> +		audio-routing = "AU2 INL", "ACODEC LOLN",
+> +				"AU2 INR", "ACODEC LORN",
+> +				"Lineout", "AU2 OUTL",
+> +				"Lineout", "AU2 OUTR";
+> +		assigned-clocks = <&clkc CLKID_MPLL0>,
+> +				  <&clkc CLKID_MPLL1>,
+> +				  <&clkc CLKID_MPLL2>;
+> +		assigned-clock-parents = <0>, <0>, <0>;
+> +		assigned-clock-rates = <294912000>,
+> +				       <270950400>,
+> +				       <393216000>;
+> +		status = "okay";
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+You can remove this.
 
-[1/2] dt-bindings: display: bridge: ldb: Add i.MX93 LDB
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=5e68a0ca59c0891d6b7da8ae7f6764565ff67c6d
-[2/2] drm/bridge: fsl-ldb: Add i.MX93 LDB support
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=48865413c9ddab68a774b506b1940af0f6b6089d
+With that removed:
 
--- 
-Neil
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+> +
+> +		dai-link-0 {
+> +			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
+> +		};
+> +
+> +		dai-link-1 {
+> +			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
+> +			dai-format = "i2s";
+> +			mclk-fs = <256>;
+> +
+> +			codec-0 {
+> +				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
+> +			};
+> +
+> +			codec-1 {
+> +				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
+> +			};
+> +		};
+> +
+> +		dai-link-2 {
+> +			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
+> +
+> +			codec-0 {
+> +				sound-dai = <&hdmi_tx>;
+> +			};
+> +		};
+> +
+> +		dai-link-3 {
+> +			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
+> +
+> +			codec-0 {
+> +				sound-dai = <&acodec>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&acodec {
+> +	AVDD-supply = <&vddio_ao18>;
+> +	status = "okay";
+> +};
+> +
+> +&aiu {
+> +	status = "okay";
+>   };
+>   
+>   &cec_AO {
+
