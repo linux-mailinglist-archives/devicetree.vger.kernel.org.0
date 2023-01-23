@@ -2,227 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 413B1677C0B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 13:59:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D3E8677C1A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 14:03:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232014AbjAWM7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 07:59:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34134 "EHLO
+        id S231601AbjAWNDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 08:03:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231862AbjAWM7q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 07:59:46 -0500
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A5CB448E;
-        Mon, 23 Jan 2023 04:59:43 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id B97EE24000E;
-        Mon, 23 Jan 2023 12:59:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1674478782;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=na7HRl0jra781/0Bx/fX+Bp8fWBwR3ej1zRQGenoYHY=;
-        b=G8/vJ77o1xKjT2Zinoy5wk7M6XQTQgH5tPbUFgFhQxZNzL7xLHHP1mbuDIwNez0tAPniFS
-        CkIIVMEIGJGJROyFIkBnHONfa4eyly0C0ACx9vrvaTutKt9DpG0ta8paxapZd4tNO8/h+m
-        DOEFfOmPWB7whrHFQt5kvbdMK4h1RIsYmXCLLQnpmAdP+23fTC3Mphq+RwoB5oJBMqSOF7
-        zkfmj1k+1kovZuzySlRFHsjF/HWOZbsL57hNjDy00pXfhKjLA6Vb4nM7ghRV6eM2YAeO7s
-        VZaurQTn2NePS8ig0yR1Aoe8fyP+gag8TRaQncLCydFTQpOZ69tfYj7Eao+Akg==
-Date:   Mon, 23 Jan 2023 13:59:38 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 2/3] ASoC: codecs: Add support for the Renesas
- IDT821034 codec
-Message-ID: <20230123135938.1855d6a8@bootlin.com>
-In-Reply-To: <79b35117-98aa-dc7c-2a27-805cd4ac2c71@csgroup.eu>
-References: <20230120095036.514639-1-herve.codina@bootlin.com>
-        <20230120095036.514639-3-herve.codina@bootlin.com>
-        <d51b826b-e71f-393c-586b-6a1ca953f26f@csgroup.eu>
-        <20230123095631.4aba35d6@bootlin.com>
-        <eb20dc66-f564-ed7e-8873-65621e5970de@csgroup.eu>
-        <20230123131755.1f5702be@bootlin.com>
-        <79b35117-98aa-dc7c-2a27-805cd4ac2c71@csgroup.eu>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+        with ESMTP id S230231AbjAWNDo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 08:03:44 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D698144B2
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:03:43 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so10537345wml.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:03:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zaX0gI0/ZktxsTJ1ltyBOzUuyo84ob21wz6E7O6B+2w=;
+        b=gtduIFeibsORW/y3pwoBVh8NSDUcIWKrmMxVqFKZyjD0Xxfo9YQs3zSVKkFZ2bUc+8
+         I1uO6Ml/Xg6Vm8NBwKANOrgqeTCl34mEYAoPDVnb0CEI6SDhJL5WvZIwNLXHqZ9dKYkc
+         cEd2qbMw93J34xD1Wtm9Ascz+2RBsJRZkmYpBMSKnnyt3xYmlP8cSEG1g30xHstBv95Y
+         ikbonLRDw2Y5bBt6zNK9l0/Q+d+zrW+4FjcfcNco3vHJaAZQIbDea2rRlbfApkgvaG0r
+         wjRuUFdZrfPhnl7BGFhDeR083B/payaCrPb93B1ooM88Kgwi5qVRL7hzUp4SbOVRgCZN
+         bw+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zaX0gI0/ZktxsTJ1ltyBOzUuyo84ob21wz6E7O6B+2w=;
+        b=Ay8x5Pt0+UTQW5l2g+Rjp8vNOk2BpCVBvER7bY8GyFk2L5Kd+RXTgMH11/4AmN13bb
+         n/hE0LiCaduOgCBHth8+lN0avyAiY8iPQv9W8ZP4nRGzqzth0UG8oYdJj4xSIVxfh5JF
+         +a4qrertUh/CZJS/Ysz+ovk7kCyZg7wsPdmpkKa62dbBsl+VwIOk5uqJFsG57M3Q5pUo
+         fKOUTXlMwANAf9Qh7LWwGf/tIhjr+HfhyhjuneRwuueU2xyk8Fctbd6Xld87Lqx0JLxY
+         NfbalJvP8yjIv4jGCt/UqX3M32Uy67hvtuniQc/C58wTpUCdKtqf40FVuKsIPe9fUvsS
+         jpkg==
+X-Gm-Message-State: AFqh2kp8gfAl0gafThUNnDLBk8uHv+1Tg4ioNm1oR3cZLjHpSHZuHR3K
+        AU2B3UP+MTRTgHD304PjK+ObGQ==
+X-Google-Smtp-Source: AMrXdXvClwHfXDW+e6ScZ+irhQ83QlbY+vHsw/aMa+9Cj9j4Bg4nTDUFZOkEOfgX/zAxE2UCTUxFSg==
+X-Received: by 2002:a05:600c:3d16:b0:3d0:6a57:66a5 with SMTP id bh22-20020a05600c3d1600b003d06a5766a5mr24048487wmb.0.1674479021800;
+        Mon, 23 Jan 2023 05:03:41 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id p16-20020a05600c359000b003da105437besm11443558wmq.29.2023.01.23.05.03.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 05:03:41 -0800 (PST)
+Message-ID: <f36c7095-592b-a4e2-4d76-09632efcc63d@linaro.org>
+Date:   Mon, 23 Jan 2023 13:03:40 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v4 0/6] Add MSM8939 SoC support with two devices
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, benl@squareup.com,
+        shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
+        dmitry.baryshkov@linaro.org
+References: <20230123023127.1186619-1-bryan.odonoghue@linaro.org>
+ <42baa874-c926-9111-b0b3-2df2562d8de6@linaro.org>
+ <Y86CPmgvAi+kChQI@gerhold.net>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <Y86CPmgvAi+kChQI@gerhold.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Jan 2023 12:30:32 +0000
-Christophe Leroy <christophe.leroy@csgroup.eu> wrote:
+On 23/01/2023 12:49, Stephan Gerhold wrote:
+> Also: The undocumented "register-mem" interconnect is still there. 😄
 
-> Le 23/01/2023 =C3=A0 13:17, Herve Codina a =C3=A9crit=C2=A0:
-> > Hi Christophe,
-> >=20
-> > On Mon, 23 Jan 2023 11:13:23 +0000
-> > Christophe Leroy <christophe.leroy@csgroup.eu> wrote:
-> >  =20
-> >> Hi Herv=C3=A9,
-> >>
-> >> Le 23/01/2023 =C3=A0 09:56, Herve Codina a =C3=A9crit=C2=A0: =20
-> >>>
-> >>> gpiochip_get_data() is defined only when CONFIG_GPIOLIB is set.
-> >>> That's why the #if section is used. =20
-> >>
-> >> gpiochip_get_data() is still declared when CONFIG_GPIOLIB is not set, =
-so
-> >> it is not a problem, the call to it will be eliminated at buildtime.
-> >>
-> >> By the way, at the time being I get the following warnings:
-> >>
-> >>     CC      sound/soc/codecs/idt821034.o
-> >> sound/soc/codecs/idt821034.c:310:12: warning: 'idt821034_read_slic_raw'
-> >> defined but not used [-Wunused-function]
-> >>     310 | static int idt821034_read_slic_raw(struct idt821034 *idt8210=
-34,
-> >> u8 ch, u8 *slic_raw)
-> >>         |            ^~~~~~~~~~~~~~~~~~~~~~~
-> >> sound/soc/codecs/idt821034.c:305:11: warning:
-> >> 'idt821034_get_written_slic_raw' defined but not used [-Wunused-functi=
-on]
-> >>     305 | static u8 idt821034_get_written_slic_raw(struct idt821034
-> >> *idt821034, u8 ch)
-> >>         |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> >> sound/soc/codecs/idt821034.c:276:12: warning: 'idt821034_write_slic_ra=
-w'
-> >> defined but not used [-Wunused-function]
-> >>     276 | static int idt821034_write_slic_raw(struct idt821034
-> >> *idt821034, u8 ch, u8 slic_raw)
-> >>         |            ^~~~~~~~~~~~~~~~~~~~~~~~
-> >> sound/soc/codecs/idt821034.c:271:11: warning: 'idt821034_get_slic_conf'
-> >> defined but not used [-Wunused-function]
-> >>     271 | static u8 idt821034_get_slic_conf(struct idt821034 *idt82103=
-4,
-> >> u8 ch)
-> >>         |           ^~~~~~~~~~~~~~~~~~~~~~~
-> >> sound/soc/codecs/idt821034.c:250:12: warning: 'idt821034_set_slic_conf'
-> >> defined but not used [-Wunused-function]
-> >>     250 | static int idt821034_set_slic_conf(struct idt821034 *idt8210=
-34,
-> >> u8 ch, u8 slic_dir)
-> >>         |            ^~~~~~~~~~~~~~~~~~~~~~~
-> >>
-> >>
-> >> With the following changes I have no warning and an objdump -x on
-> >> idt821034.o shows no reference to gpiochip_get_data()
-> >>
-> >> diff --git a/sound/soc/codecs/idt821034.c b/sound/soc/codecs/idt821034=
-.c
-> >> index 5eb93fec6042..8b75388e22ce 100644
-> >> --- a/sound/soc/codecs/idt821034.c
-> >> +++ b/sound/soc/codecs/idt821034.c
-> >> @@ -968,7 +968,6 @@ static const struct snd_soc_component_driver
-> >> idt821034_component_driver =3D {
-> >>    	.endianness		=3D 1,
-> >>    };
-> >>
-> >> -#if IS_ENABLED(CONFIG_GPIOLIB)
-> >>    #define IDT821034_GPIO_OFFSET_TO_SLIC_CHANNEL(_offset) (((_offset) /
-> >> 5) % 4)
-> >>    #define IDT821034_GPIO_OFFSET_TO_SLIC_MASK(_offset)    BIT((_offset=
-) % 5)
-> >>
-> >> @@ -1133,12 +1132,6 @@ static int idt821034_gpio_init(struct idt821034
-> >> *idt821034)
-> >>    	return devm_gpiochip_add_data(&idt821034->spi->dev,
-> >> &idt821034->gpio_chip,
-> >>    				      idt821034);
-> >>    }
-> >> -#else /* IS_ENABLED(CONFIG_GPIOLIB) */
-> >> -static int idt821034_gpio_init(struct idt821034 *idt821034)
-> >> -{
-> >> -	return 0;
-> >> -}
-> >> -#endif
-> >>
-> >>    static int idt821034_spi_probe(struct spi_device *spi)
-> >>    {
-> >> @@ -1165,6 +1158,9 @@ static int idt821034_spi_probe(struct spi_device=
- *spi)
-> >>    	if (ret)
-> >>    		return ret;
-> >>
-> >> +	if (!IS_ENABLED(CONFIG_GPIOLIB))
-> >> +		return 0;
-> >> +
-> >>    	ret =3D idt821034_gpio_init(idt821034);
-> >>    	if (ret)
-> >>    		return ret;
-> >>
-> >>
-> >> Christophe =20
-> >=20
-> > Right, I did the test too and indeed, I can remove the #if section.
-> >=20
-> > I will use (I think is clearer) at idt821034_spi_probe():
-> > 	if (!IS_ENABLED(CONFIG_GPIOLIB)) {
-> >     		ret =3D idt821034_gpio_init(idt821034);
-> > 		if (ret)
-> >     			return ret;
-> > 	}
-> >  =20
->=20
->=20
-> I guess you mean :
->=20
-> 	if (IS_ENABLED(CONFIG_GPIOLIB))
-
-Yes of course. Sorry for the typo.
-
->=20
->=20
-> > Is that ok for you ? =20
->=20
->=20
->=20
-> What about:
->=20
-> 	if (IS_ENABLED(CONFIG_GPIOLIB))
-> 		return idt821034_gpio_init(idt821034);
-> 	else
-> 		return 0;
->=20
-> Christophe
-
-Well, maybe this version ?
-
-static int idt821034_spi_probe(struct spi_device *spi)
-{
-	...
-
-	if (IS_ENABLED(CONFIG_GPIOLIB))
- 		return idt821034_gpio_init(idt821034);
-
-	return 0;
-}
-
-Thanks,
-Herv=C3=A9
-
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Ah indeed. 2:30 am email rule
