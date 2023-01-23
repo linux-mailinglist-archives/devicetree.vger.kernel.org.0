@@ -2,105 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8749B677B3F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 13:41:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A058E677BA4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 13:50:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231478AbjAWMlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 07:41:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44412 "EHLO
+        id S231624AbjAWMuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 07:50:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231130AbjAWMlN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 07:41:13 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B47122A06
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 04:40:42 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id q5so6013954wrv.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 04:40:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ctAeXQbGKSAr1B5seFHr6bhqHo1rRPcfqpnpNIdRSEw=;
-        b=dSYNRl/1AZPlEQ+oq+Bok/Twfn5pqPxxaDv+z7g32jqUmi6dzFvXp6bnVcSgboaiPJ
-         BA1stF6sMQv0JWa9z31RM2cYAlfCB04LgKjlLtMzv9MU1ASnXfnG3duuAH8/5fqn4vw5
-         RlBy7DS58oLs47BD5b8dtlV6DyV4f7KfoO1bXi52YdyjHm7RzuFzPd/j5SEunFg0oeXk
-         0RVWTA/goJxYTPgS0yZ+7BlKkKR2/e8dtyjwU+M2OrJwz4i/uI/1bW1FXrNJJhr1uHiC
-         hAt908nG4yryL4Y7KS4b+fLfQTDKwnZEbIslTQPHj/B1qn+zx/Ht7MFYlyf6tocL2Kgz
-         Jntw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ctAeXQbGKSAr1B5seFHr6bhqHo1rRPcfqpnpNIdRSEw=;
-        b=4ZJg7Fu1SWWLR1K9GBZJWmsTwCiNcjqBFzdSwrKXaLPGAgs2CJFyGWzwGg7pVvSeoo
-         6V0bYlpKLq6H9WepmjHQ9N2XDgUTQBYH03r5uflCrAfegph8Ki4iHZiw9GB9CH9wN70f
-         cikbCiVdJRi6IOtPrTtSHEKt704irG/KerNqV3gCP+VBI4r5Eo54/uGiFeapBqj6OH//
-         PiZCViein5cTSlkEfBdmhYMVEISEODXl1ZmwloQbf9U3kqB1yNzAwYc6h5bNvV+PcHPX
-         uL6zc/z6VWv9UrH4TlMO/BwH+wgJHFroJIDO2/Va7rV/qFmikwpppIO3CoX3V24Il5sU
-         5l/w==
-X-Gm-Message-State: AFqh2ko9EdgpX+H3efntwws7EjhcFXecWzaLQQQNRfuwSlvB7Qn1F7Ko
-        goleJi6pMkYRI1IqZCZXsuLDlw==
-X-Google-Smtp-Source: AMrXdXvoHqDriOlhTDYKHtqiGtrdOZCXKaqWTI1V72XQvkzEKH3aMuwmWdY8AbmEPRnxUo/5it0SgA==
-X-Received: by 2002:adf:fa88:0:b0:2bd:feb5:fb7b with SMTP id h8-20020adffa88000000b002bdfeb5fb7bmr19753407wrr.33.1674477640638;
-        Mon, 23 Jan 2023 04:40:40 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id c8-20020a5d4148000000b002bdd21f25ebsm27744621wrq.71.2023.01.23.04.40.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 04:40:40 -0800 (PST)
-Date:   Mon, 23 Jan 2023 14:40:39 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550: fix USB-DP PHY resets
-Message-ID: <Y86AR+1c3HUFlG5m@linaro.org>
-References: <20230123101607.2413-1-johan+linaro@kernel.org>
+        with ESMTP id S231891AbjAWMty (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 07:49:54 -0500
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C84671114D;
+        Mon, 23 Jan 2023 04:49:15 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1674478149; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Bb7+wDR4HhZ+4yPZeTDvI/n5HAUqDx2yxahDWMl9/K4xhBvhwoq7gvn/rOksK3Jdaz
+    9RpfYLFqImLDMep2oJ8sHGIIeKvHv6EEDYfljOBIOcrTTSwrpbRAbzOjiCfqkv2LIVSU
+    4eac7q6zrHXiKvhbm57yvnElx+z+S7GJXu6KbGu9AwjwlJrC/t6eeGY3/0DpKaCz1X9a
+    eMF2k1Pfu+70x2uBCPXvgE4kGFPaeR4naIYkD0jY6ii/JThRC9bNDe5O2vdCYtNrMprs
+    uyYO7c4zjHTEimJgu3gyiEw+J3RI8DLfqoNTcbxM+PvLtFZGkDvHnvYPumLdZJd7GtMf
+    MItA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1674478149;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=sD2B2ZOQtBqvxHV8WDrINo/9+pIZKRvy/nGecyo3S0o=;
+    b=i2zn1vRDDu+vsxX0VYcRCYlvXwyPQs6V+IR8glc/YTkV5fbXpASNMihKjtdQWZGmzN
+    cDxJ8Psaqs9935RTM7KlaFtsik7e0xbA09syacnbHTt6BQW4zsQnUM5brVQfPrJdlfj7
+    yQH+trIIkg8GYPC8Yws4gRDhFqfqyIWNJT7eg502u/5s1AtsdM/RBDMQQgoKMqePESHN
+    JDLlLSSd6vAsLaaH+e6vHCP7aJm5w+Niln2ApkCRIGDhucSe+Zyj5IaUzMAxGCWGpyoZ
+    mGP6+QwR2tZEBdDWqEToimpVYIzHtbyKOKdWsua7Xc9XMhtrbK9pAhU1X7LSjBcGbpc9
+    dleg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1674478149;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=sD2B2ZOQtBqvxHV8WDrINo/9+pIZKRvy/nGecyo3S0o=;
+    b=nk3ux1boGsNtcf4ltzkvj2s81dSMvhXpY7A5851MmYf/yIZ6+1jvm7OJFefNI2fe+f
+    ZJJ4NW/EP1qpgpL8OuGqf6OzDfA65PX0Gori51lqErBqoyB3E5NRo3LvWFOEdmGlyPP5
+    5xo6k/PIndDgTeqOI6Q5ks6hszQYAaX5CDmGJ6LlJD+UIIu/IK6amahZfFxB5bzVU0ui
+    UaI+NIVoAnHNs5LKlUEyxbNBMNBaXyVZYMpDxyY3jzALGq/Ohy0+d2VptT5c9f8nFqyW
+    Wi+XVc2AV5iyyKTdmDZIXtDLCpmgOvcaJC3W3BOwdyMWFxGFAbRdBe4WNt3G+G6YUkBe
+    oEHg==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKjXrKw58qY="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.1.0 AUTH)
+    with ESMTPSA id 6630d1z0NCn8AFC
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 23 Jan 2023 13:49:08 +0100 (CET)
+Date:   Mon, 23 Jan 2023 13:49:02 +0100
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, benl@squareup.com,
+        shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
+        dmitry.baryshkov@linaro.org
+Subject: Re: [PATCH v4 0/6] Add MSM8939 SoC support with two devices
+Message-ID: <Y86CPmgvAi+kChQI@gerhold.net>
+References: <20230123023127.1186619-1-bryan.odonoghue@linaro.org>
+ <42baa874-c926-9111-b0b3-2df2562d8de6@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230123101607.2413-1-johan+linaro@kernel.org>
+In-Reply-To: <42baa874-c926-9111-b0b3-2df2562d8de6@linaro.org>
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-23 11:16:07, Johan Hovold wrote:
-> The USB-DP PHY resets have been switched.
-> 
-> Fixes: 7f7e5c1b037f ("arm64: dts: qcom: sm8550: Add USB PHYs and controller nodes")
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+On Mon, Jan 23, 2023 at 11:08:28AM +0000, Bryan O'Donoghue wrote:
+> V4:
+> - Left _AO for wcnss as downstream reference uses this - Bjorn/Bryan
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+Downstream is just an implementation and contains plenty of misleading
+or even wrong information. IMO Bjorn is right here that VDDMX_AO is not
+a logical choice.
 
-> ---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+The _AO (active-only) suffix means that the votes are only applied when
+the processor making the vote is "active", that is when the Linux CPUs
+are not in deep cpuidle mode.
+
+For WCNSS the goal is to keep the necessary power domains active while
+WCNSS is booting up, until it is able to make its own votes (handover).
+The WCNSS firmware might then vote for VDDMX_AO internally because VDDMX
+is not needed when the WCNSS CPU is suspended.
+
+However, I would expect that the meaning is totally different when the
+same vote is made from Linux. When Linux votes for _AO the "active"
+state likely refers to the Linux CPUs, instead of the WCNSS CPU when
+made from the WCNSS firmware.
+
+Why does it work in downstream then? I would just assume "side effects":
+  - Something else votes for VDDMX without _AO while WCNSS is booting
+  - The Linux CPUs don't go into deep cpuidle state during startup
+    - In particular, note how downstream often has "lpm_levels.sleep_disabled=1"
+      on the kernel command line. This disables all cpuidle states until
+      late after boot-up when userspace changes this setting. Without
+      cpuidle, VDDMX_AO is identical to VDDMX.
+
+Please change it to VDDMX (without _AO). It will most likely not make
+any difference, but IMO it is logcially more correct and less
+confusing/misleading. :)
+
+> - Leaves dummy power-domain reference in cpu defintion as this is a
+>   required property and the dt checker complains - Stephan/Bryan
+
+It's only required though because you forgot to drop the DT schema patch
+(3/4) when I suggested half a year ago that you make the MSM8939
+cpufreq-qcom-nvmem changes together with the CPR stack [1]. :/
+
+Anyway, it looks like qcom-cpufreq-nvmem.yaml requiring "cpr" power
+domain unconditionally is a mistake anyway for multiple platforms.
+[2] was recently submitted to fix this so that patch should allow you to
+drop the dummy nodes. :)
+
+[1]: https://lore.kernel.org/linux-arm-msm/Ysf8VRaXdGg+8Ev3@gerhold.net/
+[2]: https://lore.kernel.org/linux-arm-msm/20230122174548.13758-1-ansuelsmth@gmail.com/
+
+> - Left MDSS interconnects. I don't see a bug to fix here - Stephan/Bryan
+
+Fair enough, if you would like to keep it I will likely send a revert
+for the MSM8939 icc_sync_state() though. Because clearly it breaks
+setups without a display and I don't see how one would fix that from the
+device tree.
+
+Also: The undocumented "register-mem" interconnect is still there. :)
+
+> - power-domain in MDSS - dropped its not longer required after
+>   commit a6f033938beb ("dt-bindings: msm: dsi-controller-main: Fix
+> power-domain constraint") - Stephan
+
+Thanks!
+
+> - Adds gcc dsi1pll and dsi1pllbyte to gcc clock list.
+>   Reviewing the silicon documentation we see dsi0_phy_pll is used to clock
+>   GCC_BYTE1_CFG_RCGR : SRC_SEL
+>   Root Source Select
+>   000 : cxo
+>   001 : dsi0_phy_pll_out_byteclk
+>   010 : GPLL0_OUT_AUX
+>   011 : gnd
+>   100 : gnd
+>   101 : gnd
+>   110 : gnd
+>   111 : reserved - Stephan/Bryan
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 6ff135191ee0..2f453dc00852 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -2395,8 +2395,8 @@ usb_dp_qmpphy: phy@88e8000 {
->  
->  			power-domains = <&gcc USB3_PHY_GDSC>;
->  
-> -			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
-> -				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
-> +			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
-> +				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
->  			reset-names = "phy", "common";
->  
->  			#clock-cells = <1>;
-> -- 
-> 2.39.1
-> 
+
+I'm confused. Are you not contradicting yourself here? You say that
+dsi0_phy_pll (dsi ZERO) is used to clock GCC_BYTE1_CFG_RCGR. Then why
+do you add dsi1_phy_pll (dsi ONE) to the gcc clock list?
+
+To me this looks like a confirmation of what downstream does, that both
+DSI byte clocks are actually sourced from the dsi0_phy and the PLL of
+dsi1_phy is not used.
+
+Thanks,
+Stephan
