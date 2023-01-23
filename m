@@ -2,130 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90E816780FD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 17:11:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C544F678113
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 17:13:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231712AbjAWQLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 11:11:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46186 "EHLO
+        id S232627AbjAWQNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 11:13:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231858AbjAWQLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 11:11:08 -0500
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0319223D9F
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:11:02 -0800 (PST)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-15f97c478a8so14388720fac.13
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:11:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Hrw9IaKBt2RjGFFOLVmUTAC2ysW/K7FJYVGxgEZT6RI=;
-        b=4+nypBxcvKlmdQifMiVAOKFFCDGoqo0UYC7kFTEqUq3/3B7HBju9+zs+AhD43xFNTH
-         4P5H+FtPQyj9+ZHS6iZkVvtG0b74k2+dbv5msX7EdzA8NExYb01S2F6xNB6kmcVMjaZl
-         wKb1mLTeq5P50r2MvsT1XJoey9531BySinmBn3ehYmkCqcfILqrrgd/QQ2/MrsZy0qME
-         xSCucu/NQc8NfV48Zp3kJhghNJVZhtfLgiyRBxmHgknfXVc0DXONAkXV9jYvohTLKSus
-         nDR1JZJEWpaFCPMMB+CO/QsQ4jqY9lRQtnBiYLRgzoY1CNbkgCtFd60TG6A/0dSy4+5c
-         zW+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Hrw9IaKBt2RjGFFOLVmUTAC2ysW/K7FJYVGxgEZT6RI=;
-        b=1kWdEmokkLY88N9adB9V9wFU3Da6ejBSzqMd8UhhpgbGktbPM6wQqzTgwf47negAqT
-         lI6/A0zhwMjP+eakLH02YyvUYcXyty7G4cVwuFVgeBbeP4hcfEHUE9+kijBJB3kbB6qb
-         HsVwti0kulLSdfqOkymo0J62eUo6xrC+aDsVqhsC/xROlFyKtuE40idfO65c3CksjOXs
-         koGXaDx/9KqDqGBlVPKuD/coQXAqkJfMZ9GsjibiUpSL2gTGWgCOjMlegRvY6/140JA6
-         sGoCTYtISl4c2NFLSUDi4TA19oq2kLoEAQlemrcuOzfp9E4P6B1o98L6TAr0QuXYKgx0
-         a7iQ==
-X-Gm-Message-State: AFqh2kqGZ0ccadzjQh3OFHZ7yjmgFLIsZGnAeEyYe0GkB8U8gVKbrrAp
-        u2ykYEZpYP54uuRCTnq9/veNXh5ChLSyINWaWC39SX/JFn9s2w==
-X-Google-Smtp-Source: AMrXdXvbHVHozpchrZ4CeX9zV23v8gu6ze5x0q8sEBYOdMn3jkh5JF2UpYM+ROxk6lJdCZFAWjMwAAh3hoimr7umhp0=
-X-Received: by 2002:a05:6870:9729:b0:14f:bcdb:3061 with SMTP id
- n41-20020a056870972900b0014fbcdb3061mr1577867oaq.152.1674490261334; Mon, 23
- Jan 2023 08:11:01 -0800 (PST)
+        with ESMTP id S232463AbjAWQNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 11:13:21 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928861041A;
+        Mon, 23 Jan 2023 08:13:19 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 37B3F60F92;
+        Mon, 23 Jan 2023 16:13:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ECD9C4339C;
+        Mon, 23 Jan 2023 16:13:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674490398;
+        bh=y3rlWFzRd5nv0QP6FNJjNaP0em7C2Z0wJEKnu1FpctU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hKrh9Ce1WgD0UltABa98QrbBzmAVpPlOzZ4zviLnttb/X2lRuv1cLVc8b2IHbracc
+         e5lNuWoM1AJBTfyWg5Oa0G5kqyXK5zHyWsdxpETK083ReHnt43dINpF9rQwQ8LLrkA
+         6usuJhBGbTjTkLc6fWEeXLOHvam1TA4erak8GNHKgjMYnXPS3cQScVJLFkS2TbeByC
+         bW++SW+HvB/KKJ4z9QARsjszxAubOhH+5GHLSJxOLelkvHH31ylpVFfDV7G0EXiSlZ
+         y8yHJ2YRCEqDXbT2XMTbIDDYztDvC7D1BZKbw+au9rFm2XJTd8ZFIf14QOqWPSkoOw
+         ovLMohXUDByFA==
+Received: by mail-vs1-f48.google.com with SMTP id v127so13386487vsb.12;
+        Mon, 23 Jan 2023 08:13:18 -0800 (PST)
+X-Gm-Message-State: AFqh2kpsX2Z62Xm7yi4Wik/lLCYtW+27DI35fmr1h5Fmk2M4xLKpRFa0
+        ZmARxu9JkXCSumQB+lZ7R428deFiWdV0IBK3zQ==
+X-Google-Smtp-Source: AMrXdXs8IozFEOjBRXAonZvI6lE5aKxS6Ril5C6iaDuS9uZbH9ZZdPMTl2C8ezrZ2Am5asQFk6kNYbhWKDyEwX7GI64=
+X-Received: by 2002:a67:f441:0:b0:3d3:e619:3c9f with SMTP id
+ r1-20020a67f441000000b003d3e6193c9fmr2916176vsn.6.1674490397497; Mon, 23 Jan
+ 2023 08:13:17 -0800 (PST)
 MIME-Version: 1.0
-References: <20230101220149.3035048-1-bero@baylibre.com> <20230101220149.3035048-8-bero@baylibre.com>
- <18e6d30d-15ee-3d88-e9d3-f8dad6034760@gmail.com>
-In-Reply-To: <18e6d30d-15ee-3d88-e9d3-f8dad6034760@gmail.com>
-From:   =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>
-Date:   Mon, 23 Jan 2023 17:10:50 +0100
-Message-ID: <CAP2ifjNpPFRGJ+dLJPw4tHP1vApyTeuynA_53V8xNQ9SpaxXnA@mail.gmail.com>
-Subject: Re: [PATCH v7 7/7] arm64: dts: mediatek: Initial mt8365-evk support
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        tglx@linutronix.de, maz@kernel.org, lee@kernel.org,
-        linus.walleij@linaro.org, chunfeng.yun@mediatek.com,
-        gregkh@linuxfoundation.org,
-        angelogioacchino.delregno@collabora.com,
-        allen-kh.cheng@mediatek.com, nfraprado@collabora.com,
-        sean.wang@mediatek.com, zhiyong.tao@mediatek.com
+References: <20230120-simple-mfd-pci-v1-1-c46b3d6601ef@axis.com>
+In-Reply-To: <20230120-simple-mfd-pci-v1-1-c46b3d6601ef@axis.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 23 Jan 2023 10:13:06 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKKJn3iuHu-Q5XTknCbAW1gt1BmF0w4Gzfcq2S5mv0gZw@mail.gmail.com>
+Message-ID: <CAL_JsqKKJn3iuHu-Q5XTknCbAW1gt1BmF0w4Gzfcq2S5mv0gZw@mail.gmail.com>
+Subject: Re: [PATCH] mfd: Add Simple PCI MFD driver
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        Lizhi Hou <lizhi.hou@amd.com>
+Cc:     Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@axis.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Fri, Jan 20, 2023 at 11:57 AM Matthias Brugger
-<matthias.bgg@gmail.com> wrote:
-> On 01/01/2023 23:01, Bernhard Rosenkr=C3=A4nzer wrote:
-> > +             uart0: serial@11002000 {
-> > +                     compatible =3D "mediatek,mt8365-uart", "mediatek,=
-mt6577-uart";
+On Mon, Jan 23, 2023 at 8:32 AM Vincent Whitchurch
+<vincent.whitchurch@axis.com> wrote:
 >
-> Unfortunately we are missing this compatible in the binding description.
+> Add a PCI driver which registers all child nodes specified in the
+> devicetree.  It will allow platform devices to be used on virtual
+> systems which already support PCI and devicetree, such as UML with
+> virt-pci.
 
-True, overlooked that one.
+There's similar work underway for Xilinx/AMD PCIe FPGAs[1]. It's the
+same thing really. Non-discoverable things downstream of a PCI device.
+There's also a desire for that to work on non-DT (ACPI) based hosts.
+While UML supports DT, that's currently only for the unittest AFAIK.
+So it's more like a non-DT host. How does the DT get populated for UML
+for this to work?
 
-> > +             ssusb: usb@11201000 {
-> > +                     compatible =3D "mediatek,mt8365-mtu3", "mediatek,=
-mtu3";
+Can you provide details on the actual h/w you want to use. What
+problem are you trying to solve?
+
+Really, what I want to see here is everyone interested in this feature
+to work together on it. Not just creating a one-off solution for their
+1 use case that's a subset of a bigger solution.
+
+> The driver has no id_table by default; user space needs to provide one
+> using the new_id mechanism in sysfs.
+
+But your DT will have the id in it already. Wouldn't you rather
+everything work without userspace intervention? I can't imagine the
+list here would be too long.
+
 >
-> Same here.
-
-This is actually added by an earlier patch within this series (5/7),
-but since it isn't used anywhere yet, might as well drop it for now,
-"mediatek,mtu3" by itself works.
-
-> > +                     usb_host: usb@11200000 {
-> > +                             compatible =3D "mediatek,mt8365-xhci", "m=
-ediatek,mtk-xhci";
+> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> ---
+>  drivers/mfd/Kconfig          | 11 +++++++++++
+>  drivers/mfd/Makefile         |  1 +
+>  drivers/mfd/simple-mfd-pci.c | 21 +++++++++++++++++++++
+>  3 files changed, 33 insertions(+)
 >
-> Same here.
-
-Also added by an earlier patch within the series (6/7), and also not
-used anywhere yet.
-
-> > +     systimer: timer@10017000 {
-> > +             compatible =3D "mediatek,mt6795-systimer";
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index 30db49f31866..1e325334e9ae 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -1277,6 +1277,17 @@ config MFD_SIMPLE_MFD_I2C
+>           sub-devices represented by child nodes in Device Tree will be
+>           subsequently registered.
 >
-> Why don't we use a compatible like
-> "mediatek,mt8365-systimer", "mediatek,mt6795-systimer";
+> +config MFD_SIMPLE_MFD_PCI
+> +       tristate "Simple Multi-Functional Device support (PCI)"
+> +       depends on PCI
+> +       depends on OF || COMPILE_TEST
+> +       help
+> +         This enables support for a PCI driver for which any sub-devices
+> +         represented by child nodes in the devicetree will be registered.
+> +
+> +         The driver does not bind to any devices by default; that should
+> +         be done via sysfs using new_id.
+> +
+>  config MFD_SL28CPLD
+>         tristate "Kontron sl28cpld Board Management Controller"
+>         depends on I2C
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index 457471478a93..7ae329039a13 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -268,6 +268,7 @@ obj-$(CONFIG_MFD_QCOM_PM8008)       += qcom-pm8008.o
+>
+>  obj-$(CONFIG_SGI_MFD_IOC3)     += ioc3.o
+>  obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)       += simple-mfd-i2c.o
+> +obj-$(CONFIG_MFD_SIMPLE_MFD_PCI)       += simple-mfd-pci.o
+>  obj-$(CONFIG_MFD_SMPRO)                += smpro-core.o
+>  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
+>
+> diff --git a/drivers/mfd/simple-mfd-pci.c b/drivers/mfd/simple-mfd-pci.c
+> new file mode 100644
+> index 000000000000..c5b2540e924a
+> --- /dev/null
+> +++ b/drivers/mfd/simple-mfd-pci.c
+> @@ -0,0 +1,21 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +
+> +#include <linux/module.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/pci.h>
+> +
+> +static int simple_mfd_pci_probe(struct pci_dev *pdev,
+> +                               const struct pci_device_id *id)
+> +{
+> +       return devm_of_platform_populate(&pdev->dev);
 
-That was in an earlier revision and removed (because the binding
-description wasn't merged yet). Can add it of course (but then
-mediatek,mt8365-uart and friends should probably stay as well).
+Really, this could be anything in the child DT. Not just what Linux
+classifies as an MFD. So maybe drivers/mfd is not the right place.
 
-I'll post a new revision adding it back (along with the binding
-description) and add the binding description for mt8365-uart as well
-(getting it to the same place mediatek,mt8365-mtu3 and
-mediatek,mt8365-xhci are now).
-Let me know if you'd prefer a variant that drops mediatek,mt8365-uart,
-mediatek,mt8365-mtu3, mediatek,mt8365-xhci and doesn't bring back
-mediatek,mt8365-systimer -- either one works for me, the fallbacks are
-sufficient to make it work.
+Rob
 
-ttyl
-bero
+[1] https://lore.kernel.org/all/1674183732-5157-1-git-send-email-lizhi.hou@amd.com/
