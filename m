@@ -2,272 +2,457 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AABC677A1D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 12:28:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86CEA677A35
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 12:37:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231515AbjAWL2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 06:28:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33116 "EHLO
+        id S229868AbjAWLhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 06:37:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230088AbjAWL2X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 06:28:23 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E091911177
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 03:28:20 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id r9so10475466wrw.4
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 03:28:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zez80j7N2AUXnOsGCALj4JfavUW3suuNkz/TS5kQ1GU=;
-        b=ClHmHiWY1+VkChLIQwt14+53p/nE3HHNZ2NwSulW1JWvj5dzE/0i6qL1H5sTgnHfg7
-         mExBnwWA+AsIw+jqUs1Oa/dEPezWdLj/R9bdCaijZ1uRNmGYUIiGQfwjQA2oxSJfBdbi
-         p7cuN6R8wop6rJ9K7pcXRfe7iFzu10u22GzGFCNa7+0Xs0S1CbR5KpSD146ouEBZCDPv
-         0cYo+7C7GicUsBdSiItE3Bas+30bnXvnJmMACx5o9vJjJGeP3mWU9898Aps0L1tBm37W
-         XC4zgxxvOkFgd09u9yl3ofRbnIVjmJXtuyZFUW/HoPz06wtoh5a6YOonKgJxpvvuQoXY
-         nLVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zez80j7N2AUXnOsGCALj4JfavUW3suuNkz/TS5kQ1GU=;
-        b=HqMPNrOjA8lCDZSqEjTZSH+Ej+j50m2TYKlW8m/v5BDN1VchX5OatjYNrW3xfwtseP
-         4ivHYNAEBH9CYSdG0lUrLz48nllgDOr8Xl4FzFUp2te30zXVntiQLYI8U4hGu+6P1OJC
-         60q8Xl9ICzKQ4t6v48Kr9NuBvrjf/hMn1EQMPOfpa/m2ttCxAIMC8qIutQ0A9fAS2KFg
-         OgxCZnNhsjwJCkk/b/GmTW1Y3BdI2pelKciNdH8NhPi3J14DmkF/BDe54m8W8G9uX93V
-         n/vzhYHBICW262GcnlgKnspZLJfFSl/rnGb1u2ifso/xfgG7XlwX0JjYkSnN42ofXb9T
-         Fkqg==
-X-Gm-Message-State: AFqh2korTztoPedOC69/59DmKpgZRR9IjmXlybYNwanYxxmWMPjntzaQ
-        rkwNiI5CDbiecCnxbIDjA/1sbg==
-X-Google-Smtp-Source: AMrXdXvV1rfhk6eqABRpS1UGR98xTl4oSFJNrVrwQp2URgxX+NqZ83g9Qe6ED6n1kpkpGxfw8g0LYw==
-X-Received: by 2002:a5d:42d0:0:b0:2bf:9459:255 with SMTP id t16-20020a5d42d0000000b002bf94590255mr9538138wrr.70.1674473299350;
-        Mon, 23 Jan 2023 03:28:19 -0800 (PST)
-Received: from alex-rivos.ba.rivosinc.com (lfbn-lyo-1-450-160.w2-7.abo.wanadoo.fr. [2.7.42.160])
-        by smtp.gmail.com with ESMTPSA id o2-20020a5d58c2000000b002bdbead763csm31356689wrf.95.2023.01.23.03.28.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 03:28:19 -0800 (PST)
-From:   Alexandre Ghiti <alexghiti@rivosinc.com>
-To:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org
-Cc:     Alexandre Ghiti <alexghiti@rivosinc.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4] riscv: Use PUD/P4D/PGD pages for the linear mapping
-Date:   Mon, 23 Jan 2023 12:28:02 +0100
-Message-Id: <20230123112803.817534-1-alexghiti@rivosinc.com>
-X-Mailer: git-send-email 2.37.2
+        with ESMTP id S229436AbjAWLhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 06:37:00 -0500
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB821E1CB;
+        Mon, 23 Jan 2023 03:36:57 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 6FC67240008;
+        Mon, 23 Jan 2023 11:36:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1674473815;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=n+igJAl/pqifZR0SzjchX5EdGz+pfJPGF0MNYlXIniw=;
+        b=Vvqt8+5/D4t75o0MWtOWszmDjoeLxz0d8GCcpsXlPFGEQO1h5IYdfDvR0ZBPmABm5ZiMpa
+        ka78Q+jnKGZ43b1E0oh4TOvLRXwDmpLGvLjwiDqiO6hp6nAy2cNcdPyJoKdroPvl3ibrlh
+        M01++3vd0cD96YDOahpAvLZUEfs2hrRS1MQVQlOd9dkRMVWbyPozee6jS0v965m76BM20h
+        QXEkbkYFnAY12818WdmLjliG53OSuBQb4MeEtBbqcB1HDqe4Z4QnpUY/shkyP3x4szYy1p
+        1rvhbnJoA81ZEiZcFQ0+7E9GUQg/sDWXCr2Qa4tM4nbEOxY+FnNlTOO0427nrw==
+Date:   Mon, 23 Jan 2023 12:36:49 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Li Yang <leoyang.li@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 01/10] dt-bindings: soc: fsl: cpm_qe: Add TSA
+ controller
+Message-ID: <20230123123649.63f17dad@bootlin.com>
+In-Reply-To: <20230117145529.GA3044055-robh@kernel.org>
+References: <20230113103759.327698-1-herve.codina@bootlin.com>
+        <20230113103759.327698-2-herve.codina@bootlin.com>
+        <20230117145529.GA3044055-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-During the early page table creation, we used to set the mapping for
-PAGE_OFFSET to the kernel load address: but the kernel load address is
-always offseted by PMD_SIZE which makes it impossible to use PUD/P4D/PGD
-pages as this physical address is not aligned on PUD/P4D/PGD size (whereas
-PAGE_OFFSET is).
+Hi Rob,
 
-But actually we don't have to establish this mapping (ie set va_pa_offset)
-that early in the boot process because:
+On Tue, 17 Jan 2023 08:55:29 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-- first, setup_vm installs a temporary kernel mapping and among other
-  things, discovers the system memory,
-- then, setup_vm_final creates the final kernel mapping and takes
-  advantage of the discovered system memory to create the linear
-  mapping.
+> On Fri, Jan 13, 2023 at 11:37:50AM +0100, Herve Codina wrote:
+> > Add support for the time slot assigner (TSA)
+> > available in some PowerQUICC SoC such as MPC885
+> > or MPC866. =20
+>=20
+> An odd line wrap length...=20
 
-During the first phase, we don't know the start of the system memory and
-then until the second phase is finished, we can't use the linear mapping at
-all and phys_to_virt/virt_to_phys translations must not be used because it
-would result in a different translation from the 'real' one once the final
-mapping is installed.
+Will be changed in v4.
 
-So here we simply delay the initialization of va_pa_offset to after the
-system memory discovery. But to make sure noone uses the linear mapping
-before, we add some guard in the DEBUG_VIRTUAL config.
+>=20
+> >=20
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  .../bindings/soc/fsl/cpm_qe/fsl,tsa.yaml      | 260 ++++++++++++++++++
+> >  include/dt-bindings/soc/fsl,tsa.h             |  13 +
+> >  2 files changed, 273 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fs=
+l,tsa.yaml
+> >  create mode 100644 include/dt-bindings/soc/fsl,tsa.h
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.y=
+aml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
+> > new file mode 100644
+> > index 000000000000..eb17b6119abd
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
+> > @@ -0,0 +1,260 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,tsa.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: PowerQUICC CPM Time-slot assigner (TSA) controller
+> > +
+> > +maintainers:
+> > +  - Herve Codina <herve.codina@bootlin.com>
+> > +
+> > +description: | =20
+>=20
+> Don't need '|' if no formatting.
 
-Finally we can use PUD/P4D/PGD hugepages when possible, which will result
-in a better TLB utilization.
+Will be changed in v4.
 
-Note that we rely on the firmware to protect itself using PMP.
+>=20
+> > +  The TSA is the time-slot assigner that can be found on some
+> > +  PowerQUICC SoC.
+> > +  Its purpose is to route some TDM time-slots to other internal
+> > +  serial controllers. =20
+>=20
+> Wrap at 80.
 
-Acked-by: Rob Herring <robh@kernel.org> # DT bits
-Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
----
+Will be fixed in v4.
 
-v4:
-- Rebase on top of v6.2-rc3, as noted by Conor
-- Add Acked-by Rob
+>=20
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - fsl,mpc885-tsa
+> > +          - fsl,mpc866-tsa
+> > +      - const: fsl,cpm1-tsa
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: SI (Serial Interface) register base
+> > +      - description: SI RAM base
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: si_regs
+> > +      - const: si_ram
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +patternProperties:
+> > +  '^tdm@[0-1]$':
+> > +    description:
+> > +      The TDM managed by this controller
+> > +    type: object =20
+>=20
+>        additionalProperties: false
 
-v3:
-- Change the comment about initrd_start VA conversion so that it fits
-  ARM64 and RISCV64 (and others in the future if needed), as suggested
-  by Rob
+Will be added in v4.
 
-v2:
-- Add a comment on why RISCV64 does not need to set initrd_start/end that
-  early in the boot process, as asked by Rob
+>=20
+> > +
+> > +    properties:
+> > +      reg:
+> > +        minimum: 0
+> > +        maximum: 1
+> > +        description:
+> > +          The TDM number for this TDM, 0 for TDMa and 1 for TDMb
+> > +
+> > +      fsl,common-rxtx-pins:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description:
+> > +          The hardware can use four dedicated pins for Tx clock,
+> > +          Tx sync, Rx clock and Rx sync or use only two pins,
+> > +          Tx/Rx clock and Rx/Rx sync.
+> > +          Without the 'fsl,common-rxtx-pins' property, the four
+> > +          pins are used. With the 'fsl,common-rxtx-pins' property,
+> > +          two pins are used.
+> > +
+> > +      clocks:
+> > +        minItems: 2
+> > +        maxItems: 4
+> > +
+> > +      clock-names:
+> > +        minItems: 2
+> > +        maxItems: 4
+> > +
+> > +      fsl,mode: =20
+>=20
+> 'mode' is a bit vague. It's already used as well which can be a problem=20
+> if there are differing types. (There's not in this case)
 
- arch/riscv/include/asm/page.h | 16 ++++++++++++++++
- arch/riscv/mm/init.c          | 25 +++++++++++++++++++------
- arch/riscv/mm/physaddr.c      | 16 ++++++++++++++++
- drivers/of/fdt.c              | 11 ++++++-----
- 4 files changed, 57 insertions(+), 11 deletions(-)
+What do you think about:
+      fsl,diagnostic-mode:
+        $ref: /schemas/types.yaml#/definitions/string
+        enum: [disabled, echo, internal-loopback, control-loopback]
+        default: disabled
+        description: |
+          The diagnostic mode can be used to diagnose some communication is=
+sues.
+          It should not be present (or set to 'disabled') when diagnostic i=
+s not
+          needed.
+          Diagnostic mode:
+            - disabled:
+                Diagnostic disabled (ie. normal operation)
+            - echo:
+                Automatic echo. Rx data is resent on Tx
+            - internal-loopback:
+                The TDM transmitter is connected to the receiver.
+                Data appears on Tx pin.
+            - control-loopback:
+                The TDM transmitter is connected to the receiver.
+                The Tx pin is disconnected.
 
-diff --git a/arch/riscv/include/asm/page.h b/arch/riscv/include/asm/page.h
-index 9f432c1b5289..7fe84c89e572 100644
---- a/arch/riscv/include/asm/page.h
-+++ b/arch/riscv/include/asm/page.h
-@@ -90,6 +90,14 @@ typedef struct page *pgtable_t;
- #define PTE_FMT "%08lx"
- #endif
- 
-+#ifdef CONFIG_64BIT
-+/*
-+ * We override this value as its generic definition uses __pa too early in
-+ * the boot process (before kernel_map.va_pa_offset is set).
-+ */
-+#define MIN_MEMBLOCK_ADDR      0
-+#endif
-+
- #ifdef CONFIG_MMU
- extern unsigned long riscv_pfn_base;
- #define ARCH_PFN_OFFSET		(riscv_pfn_base)
-@@ -122,7 +130,11 @@ extern phys_addr_t phys_ram_base;
- #define is_linear_mapping(x)	\
- 	((x) >= PAGE_OFFSET && (!IS_ENABLED(CONFIG_64BIT) || (x) < PAGE_OFFSET + KERN_VIRT_SIZE))
- 
-+#ifndef CONFIG_DEBUG_VIRTUAL
- #define linear_mapping_pa_to_va(x)	((void *)((unsigned long)(x) + kernel_map.va_pa_offset))
-+#else
-+void *linear_mapping_pa_to_va(unsigned long x);
-+#endif
- #define kernel_mapping_pa_to_va(y)	({					\
- 	unsigned long _y = (unsigned long)(y);					\
- 	(IS_ENABLED(CONFIG_XIP_KERNEL) && _y < phys_ram_base) ?			\
-@@ -131,7 +143,11 @@ extern phys_addr_t phys_ram_base;
- 	})
- #define __pa_to_va_nodebug(x)		linear_mapping_pa_to_va(x)
- 
-+#ifndef CONFIG_DEBUG_VIRTUAL
- #define linear_mapping_va_to_pa(x)	((unsigned long)(x) - kernel_map.va_pa_offset)
-+#else
-+phys_addr_t linear_mapping_va_to_pa(unsigned long x);
-+#endif
- #define kernel_mapping_va_to_pa(y) ({						\
- 	unsigned long _y = (unsigned long)(y);					\
- 	(IS_ENABLED(CONFIG_XIP_KERNEL) && _y < kernel_map.virt_addr + XIP_OFFSET) ? \
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index 478d6763a01a..cc892ba9f787 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -213,6 +213,14 @@ static void __init setup_bootmem(void)
- 	phys_ram_end = memblock_end_of_DRAM();
- 	if (!IS_ENABLED(CONFIG_XIP_KERNEL))
- 		phys_ram_base = memblock_start_of_DRAM();
-+
-+	/*
-+	 * Any use of __va/__pa before this point is wrong as we did not know the
-+	 * start of DRAM before.
-+	 */
-+	kernel_map.va_pa_offset = PAGE_OFFSET - phys_ram_base;
-+	riscv_pfn_base = PFN_DOWN(phys_ram_base);
-+
- 	/*
- 	 * memblock allocator is not aware of the fact that last 4K bytes of
- 	 * the addressable memory can not be mapped because of IS_ERR_VALUE
-@@ -671,9 +679,16 @@ void __init create_pgd_mapping(pgd_t *pgdp,
- 
- static uintptr_t __init best_map_size(phys_addr_t base, phys_addr_t size)
- {
--	/* Upgrade to PMD_SIZE mappings whenever possible */
--	base &= PMD_SIZE - 1;
--	if (!base && size >= PMD_SIZE)
-+	if (!(base & (PGDIR_SIZE - 1)) && size >= PGDIR_SIZE)
-+		return PGDIR_SIZE;
-+
-+	if (!(base & (P4D_SIZE - 1)) && size >= P4D_SIZE)
-+		return P4D_SIZE;
-+
-+	if (!(base & (PUD_SIZE - 1)) && size >= PUD_SIZE)
-+		return PUD_SIZE;
-+
-+	if (!(base & (PMD_SIZE - 1)) && size >= PMD_SIZE)
- 		return PMD_SIZE;
- 
- 	return PAGE_SIZE;
-@@ -982,11 +997,9 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
- 	set_satp_mode();
- #endif
- 
--	kernel_map.va_pa_offset = PAGE_OFFSET - kernel_map.phys_addr;
-+	kernel_map.va_pa_offset = 0UL;
- 	kernel_map.va_kernel_pa_offset = kernel_map.virt_addr - kernel_map.phys_addr;
- 
--	riscv_pfn_base = PFN_DOWN(kernel_map.phys_addr);
--
- 	/*
- 	 * The default maximal physical memory size is KERN_VIRT_SIZE for 32-bit
- 	 * kernel, whereas for 64-bit kernel, the end of the virtual address
-diff --git a/arch/riscv/mm/physaddr.c b/arch/riscv/mm/physaddr.c
-index 9b18bda74154..18706f457da7 100644
---- a/arch/riscv/mm/physaddr.c
-+++ b/arch/riscv/mm/physaddr.c
-@@ -33,3 +33,19 @@ phys_addr_t __phys_addr_symbol(unsigned long x)
- 	return __va_to_pa_nodebug(x);
- }
- EXPORT_SYMBOL(__phys_addr_symbol);
-+
-+phys_addr_t linear_mapping_va_to_pa(unsigned long x)
-+{
-+	BUG_ON(!kernel_map.va_pa_offset);
-+
-+	return ((unsigned long)(x) - kernel_map.va_pa_offset);
-+}
-+EXPORT_SYMBOL(linear_mapping_va_to_pa);
-+
-+void *linear_mapping_pa_to_va(unsigned long x)
-+{
-+	BUG_ON(!kernel_map.va_pa_offset);
-+
-+	return ((void *)((unsigned long)(x) + kernel_map.va_pa_offset));
-+}
-+EXPORT_SYMBOL(linear_mapping_pa_to_va);
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index f08b25195ae7..58107bd56f8f 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -891,12 +891,13 @@ const void * __init of_flat_dt_match_machine(const void *default_match,
- static void __early_init_dt_declare_initrd(unsigned long start,
- 					   unsigned long end)
- {
--	/* ARM64 would cause a BUG to occur here when CONFIG_DEBUG_VM is
--	 * enabled since __va() is called too early. ARM64 does make use
--	 * of phys_initrd_start/phys_initrd_size so we can skip this
--	 * conversion.
-+	/*
-+	 * __va() is not yet available this early on some platforms. In that
-+	 * case, the platform uses phys_initrd_start/phys_initrd_size instead
-+	 * and does the VA conversion itself.
- 	 */
--	if (!IS_ENABLED(CONFIG_ARM64)) {
-+	if (!IS_ENABLED(CONFIG_ARM64) &&
-+	    !(IS_ENABLED(CONFIG_RISCV) && IS_ENABLED(CONFIG_64BIT))) {
- 		initrd_start = (unsigned long)__va(start);
- 		initrd_end = (unsigned long)__va(end);
- 		initrd_below_start_ok = 1;
--- 
-2.37.2
+>=20
+> > +        $ref: /schemas/types.yaml#/definitions/string
+> > +        enum: [normal, echo, internal-loopback, control-loopback]
+> > +        default: normal
+> > +        description: |
+> > +          Operational mode:
+> > +            - normal:
+> > +                Normal operation
+> > +            - echo:
+> > +                Automatic echo. Rx data is resent on Tx
+> > +            - internal-loopback:
+> > +                The TDM transmitter is connected to the receiver.
+> > +                Data appears on Tx pin.
+> > +            - control-loopback:
+> > +                The TDM transmitter is connected to the receiver.
+> > +                The Tx pin is disconnected.
+> > +
+> > +      fsl,rx-frame-sync-delay-bits:
+> > +        enum: [0, 1, 2, 3]
+> > +        default: 0
+> > +        description: |
+> > +          Receive frame sync delay in number of bits.
+> > +          Indicates the delay between the Rx sync and the first bit of=
+ the
+> > +          Rx frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits d=
+elay.
+> > +
+> > +      fsl,tx-frame-sync-delay-bits:
+> > +        enum: [0, 1, 2, 3]
+> > +        default: 0
+> > +        description: |
+> > +          Transmit frame sync delay in number of bits.
+> > +          Indicates the delay between the Tx sync and the first bit of=
+ the
+> > +          Tx frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits d=
+elay.
+> > +
+> > +      fsl,clock-falling-edge:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description: |
+> > +          Data is sent on falling edge of the clock (and received on t=
+he
+> > +          rising edge).
+> > +          If 'clock-falling-edge' is not present, data is sent on the
+> > +          rising edge (and received on the falling edge).
+> > +
+> > +      fsl,fsync-rising-edge:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description:
+> > +          Frame sync pulses are sampled with the rising edge of the ch=
+annel
+> > +          clock. If 'fsync-rising-edge' is not present, pulses are sam=
+ple
+> > +          with e falling edge.
+> > +
+> > +      fsl,double-speed-clock:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description:
+> > +          The channel clock is twice the data rate.
+> > +
+> > +      fsl,tx-ts-routes:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +        description: |
+> > +          A list of tupple that indicates the Tx time-slots routes.
+> > +            tx_ts_routes =3D
+> > +               < 2 0 >, /* The first 2 time slots are not used */
+> > +               < 3 1 >, /* The next 3 ones are route to SCC2 */
+> > +               < 4 0 >, /* The next 4 ones are not used */
+> > +               < 2 2 >; /* The nest 2 ones are route to SCC3 */
+> > +        items:
+> > +          items:
+> > +            - description:
+> > +                The number of time-slots
+> > +              minimum: 1
+> > +              maximum: 64
+> > +            - description: |
+> > +                The source serial interface (dt-bindings/soc/fsl,tsa.h
+> > +                defines these values)
+> > +                 - 0: No destination
+> > +                 - 1: SCC2
+> > +                 - 2: SCC3
+> > +                 - 3: SCC4
+> > +                 - 4: SMC1
+> > +                 - 5: SMC2
+> > +              enum: [0, 1, 2, 3, 4, 5]
+> > +        minItems: 1
+> > +        maxItems: 64
+> > +
+> > +      fsl,rx-ts-routes:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +        description: |
+> > +          A list of tupple that indicates the Rx time-slots routes.
+> > +            tx_ts_routes =3D
+> > +               < 2 0 >, /* The first 2 time slots are not used */
+> > +               < 3 1 >, /* The next 3 ones are route from SCC2 */
+> > +               < 4 0 >, /* The next 4 ones are not used */
+> > +               < 2 2 >; /* The nest 2 ones are route from SCC3 */
+> > +        items:
+> > +          items:
+> > +            - description:
+> > +                The number of time-slots
+> > +              minimum: 1
+> > +              maximum: 64
+> > +            - description: |
+> > +                The destination serial interface (dt-bindings/soc/fsl,=
+tsa.h
+> > +                defines these values)
+> > +                 - 0: No destination
+> > +                 - 1: SCC2
+> > +                 - 2: SCC3
+> > +                 - 3: SCC4
+> > +                 - 4: SMC1
+> > +                 - 5: SMC2
+> > +              enum: [0, 1, 2, 3, 4, 5]
+> > +        minItems: 1
+> > +        maxItems: 64
+> > +
+> > +    allOf:
+> > +      # If fsl,common-rxtx-pins is present, only 2 clocks are needed.
+> > +      # Else, the 4 clocks must be present.
+> > +      - if:
+> > +          required:
+> > +            - fsl,common-rxtx-pins
+> > +        then:
+> > +          properties:
+> > +            clocks:
+> > +              items:
+> > +                - description: External clock connected to L1RSYNC pin
+> > +                - description: External clock connected to L1RCLK pin
+> > +            clock-names:
+> > +              items:
+> > +                - const: l1rsync
+> > +                - const: l1rclk
+> > +        else:
+> > +          properties:
+> > +            clocks:
+> > +              items:
+> > +                - description: External clock connected to L1RSYNC pin
+> > +                - description: External clock connected to L1RCLK pin
+> > +                - description: External clock connected to L1TSYNC pin
+> > +                - description: External clock connected to L1TCLK pin
+> > +            clock-names:
+> > +              items:
+> > +                - const: l1rsync
+> > +                - const: l1rclk
+> > +                - const: l1tsync
+> > +                - const: l1tclk =20
+>=20
+> As the names are the same, just the length varies between 2 or 4, move=20
+> all this to the main definition and here just put constraints on the=20
+> length.
 
+Ok, will be done in v4.
+
+>=20
+> > +
+> > +    required:
+> > +      - reg
+> > +      - clocks
+> > +      - clock-names
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - '#address-cells'
+> > +  - '#size-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/soc/fsl,tsa.h>
+> > +
+> > +    tsa@ae0 {
+> > +        compatible =3D "fsl,mpc885-tsa", "fsl,cpm1-tsa";
+> > +        reg =3D <0xae0 0x10>,
+> > +              <0xc00 0x200>;
+> > +        reg-names =3D "si_regs", "si_ram";
+> > +
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        tdm@0 {
+> > +            /* TDMa */
+> > +            reg =3D <0>;
+> > +
+> > +            clocks =3D <&clk_l1rsynca>, <&clk_l1rclka>;
+> > +            clock-names =3D "l1rsync", "l1rclk";
+> > +
+> > +            fsl,common-rxtx-pins;
+> > +            fsl,fsync-rising-edge;
+> > +
+> > +            fsl,tx-ts-routes =3D < 2 0 >,             /* TS 0..1 */
+> > +                           < 24 FSL_CPM_TSA_SCC4 >, /* TS 2..25 */
+> > +                           < 1 0 >,                 /* TS 26 */
+> > +                           < 5 FSL_CPM_TSA_SCC3 >;  /* TS 27..31 */
+> > +
+> > +            fsl,rx-ts-routes =3D < 2 0 >,             /* TS 0..1 */
+> > +                           < 24 FSL_CPM_TSA_SCC4 >, /* 2..25 */
+> > +                           < 1 0 >,                 /* TS 26 */
+> > +                           < 5 FSL_CPM_TSA_SCC3 >;  /* TS 27..31 */
+> > +        };
+> > +    };
+> > diff --git a/include/dt-bindings/soc/fsl,tsa.h b/include/dt-bindings/so=
+c/fsl,tsa.h
+> > new file mode 100644
+> > index 000000000000..2cc44e867dbe
+> > --- /dev/null
+> > +++ b/include/dt-bindings/soc/fsl,tsa.h
+> > @@ -0,0 +1,13 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> > +
+> > +#ifndef __DT_BINDINGS_SOC_FSL_TSA_H
+> > +#define __DT_BINDINGS_SOC_FSL_TSA_H
+> > +
+> > +#define FSL_CPM_TSA_NU		0	/* Pseuso Cell Id for not used item */
+> > +#define FSL_CPM_TSA_SCC2	1
+> > +#define FSL_CPM_TSA_SCC3	2
+> > +#define FSL_CPM_TSA_SCC4	3
+> > +#define FSL_CPM_TSA_SMC1	4
+> > +#define FSL_CPM_TSA_SMC2	5
+> > +
+> > +#endif
+> > --=20
+> > 2.38.1
+> >  =20
+
+Thanks for the review,
+
+Herv=C3=A9
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
