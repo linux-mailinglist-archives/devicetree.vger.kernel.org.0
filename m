@@ -2,103 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0AD6678553
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 19:53:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F23FC67856A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 19:56:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232207AbjAWSxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 13:53:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32788 "EHLO
+        id S231753AbjAWS40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 13:56:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232288AbjAWSxD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 13:53:03 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBAEB31E3E
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 10:53:00 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so11309009wma.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 10:53:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lr5MPaX+CPbj+uvLPSPuq0twot1PyuqJGLrkh8HJM0I=;
-        b=xBqRe6fEn+YI8ZmpAsJ+mDYVaEfFQmDshTw9/SjuAUTRT+O5TmYv12ERKaxeqsO8PQ
-         gkAmIjYGjk9UFYHwzHx7cJScZbISnCINuUppUbX9dpx+bWL6KNfbSxDtge00SKu7P0Mf
-         38xeqLn7nAaBGxSitBCxrhN/DiaA1WJW4yPi1DkmgG0gCtlShBuxLdiYIpWvv4mtHkci
-         6Enmd8efhtrU/63NgFCq8OKyzjasErOyl5Zw2GT/Kz4I9vW6rgmUJpsePZH45GfDTEbv
-         1FYjz1zOtaqMEK6BUz1AaFaiMvgs33Q039xxvOZEDI9gMmpwlnwcko6t3xwtbAit6zT+
-         4TFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lr5MPaX+CPbj+uvLPSPuq0twot1PyuqJGLrkh8HJM0I=;
-        b=YChQ3w0ZuCnbtlrPRtb6iHB5P06XGQkKhbKgJEN2gSFsc8xD3k/Hmuo4+9o/Lfdw55
-         kHFGTLUI+XhLnzZBCEwfeWoW65WXN3lsp1z/PwY+GNYnh/PQxILwBMp4+iOi85nJ1jUi
-         Cy4yiyFzzf606kNq9LnGHq9hN7+KYDgILbsgKR7gNnphYflNJPkH91nzdGUh3xVDLM7Z
-         Sx9vAwqwCA0XePVJSdrUWJdSgTpIYldPX5/A7v+3vc2qjZzPh4o5J1vOErINhRRtZQA2
-         zGsTJAJr+jNLBC6z5c/hczjzICNRSzcbK9akv+HB4PEfTPWAkbJbGKz0ObTQ6FQu/gJz
-         S6sg==
-X-Gm-Message-State: AFqh2kqkn4UUAhP83fXdADg77sGlaFtZPvFPK3KralWZYMm5RpylqA9m
-        SY2Er4e0KfAOZxVn53H2qYI0Vg==
-X-Google-Smtp-Source: AMrXdXuHygLwV0w4vccurHokoLTMYfXYMC3RwpOQYEmkkxITUtYbU06E92YaCyZXbM0xv/VucMgR4g==
-X-Received: by 2002:a05:600c:1e1f:b0:3db:2063:425d with SMTP id ay31-20020a05600c1e1f00b003db2063425dmr17101085wmb.2.1674499979190;
-        Mon, 23 Jan 2023 10:52:59 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id c7-20020a05600c0a4700b003d1e1f421bfsm12568074wmq.10.2023.01.23.10.52.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 10:52:58 -0800 (PST)
-Message-ID: <e75e5e1b-e7aa-e62d-1f12-f1543b6dbc25@linaro.org>
-Date:   Mon, 23 Jan 2023 19:52:56 +0100
+        with ESMTP id S231544AbjAWS40 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 13:56:26 -0500
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26D4232E45
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 10:56:23 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:6083:1fd7:ba05:ea8d])
+        by michel.telenet-ops.be with bizsmtp
+        id CJwJ2900B4604Ck06JwJ2l; Mon, 23 Jan 2023 19:56:21 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtp (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pK1zG-0076K6-G3;
+        Mon, 23 Jan 2023 19:56:18 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pK1zO-00Ekh0-C1;
+        Mon, 23 Jan 2023 19:56:18 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 00/12] can: rcar_canfd: Add support for R-Car V4H systems
+Date:   Mon, 23 Jan 2023 19:56:02 +0100
+Message-Id: <cover.1674499048.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v8 8/9] dt-bindings: serial: mediatek,uart: add MT8365 SoC
- bindings
-Content-Language: en-US
-To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, tglx@linutronix.de,
-        maz@kernel.org, lee@kernel.org, linus.walleij@linaro.org,
-        matthias.bgg@gmail.com, gregkh@linuxfoundation.org,
-        daniel.lezcano@linaro.org, chunfeng.yun@mediatek.com,
-        angelogioacchino.delregno@collabora.com,
-        allen-kh.cheng@mediatek.com, nfraprado@collabora.com,
-        andrew@lunn.ch, gtk3@inbox.ru, sean.wang@mediatek.com,
-        zhiyong.tao@mediatek.com
-References: <20230123163833.1007181-1-bero@baylibre.com>
- <20230123163833.1007181-9-bero@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230123163833.1007181-9-bero@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/01/2023 17:38, Bernhard Rosenkränzer wrote:
-> Add binding description for mediatek,mt8365-uart
+	Hi all,
 
-Subject: drop second/last, redundant "bindings". The "dt-bindings"
-prefix is already stating that these are bindings.
+This patch series adds support for the CAN-FD interface on the Renesas
+R-Car V4H (R8A779G0) SoC and support for CAN transceivers described as
+PHYs to the R-Car CAN-FD driver.  It includes several fixes for issues
+(some minor) detected while adding the support and during testing.
+More details can be found in the individual patches.
 
-> 
-> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
-> ---
+Note that the last patch depends on "[PATCH 1/7] phy: Add
+devm_of_phy_optional_get() helper"[1].
+
+This has been tested on the Renesas White-Hawk development board using
+cansend, candump, and canfdtest:
+  - Channel 0 uses an NXP TJR1443AT CAN transceiver, and works fine,
+  - Channels 1-7 use Microchip MCP2558FD-H/SN CAN transceivers (not
+    mounted for channels 4-7), which do not need explicit description.
+    While channel 1 works fine, channels 2-3 do not seem to work.
+
+Hence despite the new fixes, the test results are similar to what Ulrich
+Hecht reported for R-Car V3U on the Falcon development board before,
+i.e. only channels 0 and 1 work (FTR, [2] does not help).
+Whether this is a CAN-FD driver issue, a pin control issue, an IP core
+issue, or an SoC integration issue is still to be seen...
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks for your comments!
 
-Best regards,
-Krzysztof
+[1] https://lore.kernel.org/all/f53a1bcca637ceeafb04ce3540a605532d3bc34a.1674036164.git.geert+renesas@glider.be
+[2] commit e3e5bccc92446048 ("can: rcar_canfd:
+    rcar_canfd_configure_afl_rules(): Fix Rx FIFO entry setting") in
+    renesas-bsp/v5.10.147/rcar-5.2.0.rc3.
 
+Geert Uytterhoeven (12):
+  dt-bindings: can: renesas,rcar-canfd: R-Car V3U is R-Car Gen4
+  dt-bindings: can: renesas,rcar-canfd: Document R-Car V4H support
+  dt-bindings: can: renesas,rcar-canfd: Add transceiver support
+  can: rcar_canfd: Fix R-Car V3U CAN mode selection
+  can: rcar_canfd: Fix R-Car V3U GAFLCFG field accesses
+  can: rcar_canfd: Abstract out DCFG address differences
+  can: rcar_canfd: Add support for R-Car Gen4
+  can: rcar_canfd: Fix R-Car Gen4 DCFG.DSJW field width
+  can: rcar_canfd: Fix R-Car Gen4 CFCC.CFTML field width
+  can: rcar_canfd: Sort included header files
+  can: rcar_canfd: Add helper variable dev
+  can: rcar_canfd: Add transceiver support
+
+ .../bindings/net/can/renesas,rcar-canfd.yaml  |  16 +-
+ drivers/net/can/rcar/rcar_canfd.c             | 255 ++++++++++--------
+ 2 files changed, 148 insertions(+), 123 deletions(-)
+
+-- 
+2.34.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
