@@ -2,70 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94AAC677F3E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:16:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F7AA677F43
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:16:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232476AbjAWPQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:16:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43052 "EHLO
+        id S232419AbjAWPQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:16:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232480AbjAWPPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:15:51 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1824274A4
+        with ESMTP id S232488AbjAWPPw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:15:52 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED1CB2941F
         for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:28 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id z5so11128223wrt.6
+Received: by mail-wr1-x436.google.com with SMTP id h12so7127095wrv.10
         for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:15:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=nj10iQ8+lBJbvUvk0vNNGH/05Uq4O5uL7ih+Ic+fc78=;
-        b=xtQf5O7Zlp8+rL93G8XJKyuJqZrlSdSE9DpZQmi5j0uR21dRObuXDttvpCy9stfYmz
-         6k8I/vGAO+IzpOUp2ebpft+VAXVuW4SaWy33AJlx6USCGksIuiDbg3UhlrurM6qYqcNa
-         q1wOF9kNvanf7VYn6b6En6KOIKo2ieZrNxtrdMaaqqpBK0iYQP5jbfKg1RT7yDMHojnV
-         y8Nn5orFlQya+QFTbVhin9HCT4+nn36ZJUS0WY7KdrZXGJA814N7uDB3AEcTejPuTO0x
-         Uz6YgIH2i6xtN5d/BkyHN2666masspU1BBWqhKKPOkRpUDOmwZ+7ZV5DjCT+5rSr+0Lg
-         l2ng==
+        bh=lCW60nZQX7NSf4Kfpcfc2t8JVwgs7iYI/cZwHaiLa6g=;
+        b=veEO6pQO80liV6qfBiY02vPNpDUZzao2lLv/0+bpu3QBpChjObPNxiO4YDZj6r/QVX
+         5mJw+JMPeMeBMu/hzAeMgxB3vLhIdNAsjnAoqEPvdwpvchFh9HgGYMiOy3a1u05AIVwW
+         a7h/HC/rFQYtndaCy2idaxfSzTMvurvsaPuMHlf9N5JXhVPcMzWhEmepd7TDZ4AkQ49a
+         CYJhzkLpb8dd8f2Gr4Mo9JK000OL+2p6yRp+VydzXeR23oa4wVMpDRaFdVYqb3c1vsxv
+         C2aH8Z8dogGhYREfwQV7BuK7Sssmg/ROKc0jS2mid6c6D87Y3wTNydyuJJcBSUIC1j1h
+         D/2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=nj10iQ8+lBJbvUvk0vNNGH/05Uq4O5uL7ih+Ic+fc78=;
-        b=b9JfeFYzVXJwnGqX3Mo+Y4CFYdSh1NOXEEWswpP+XOBnOUzgt2lYjMaA5TaRxUwkBY
-         9wFRuUlWykvzc0LxrduyuPA52k0oconf0FTdqwkl1zSgjnT+VsrOGSGJYvFdApDuQGT/
-         KIbIZwPkKq0iWa5826cquZEKDfiSX6486hioc9aPNpinADZIqRhvFnMMIP+KtRDc+fej
-         k0y0K8LcBMwtHYK8g8ZwIRldQS4WMwOLAu/K8sJrr9iYi92l0uKhBNu2bN2HiT3gk12H
-         PWEazHfdIwzW64V0glINynY6pvV7r2u3GvXAIzVnj6Gk87KplgP8X1l7USBm+gPz/Nka
-         dLSA==
-X-Gm-Message-State: AFqh2krtwNxroJUjSFRWaoNRoFc6kbo8dyTzeCGE0z5L8VTuaDmmobvq
-        iZadZ3zYQmgke+JNWkuGx05NFkEnq5PES+ok
-X-Google-Smtp-Source: AMrXdXuARq/ZwPTOQeVn2L6tcoSC+rLBeIr8OFg93X9Z1ConDmL2/PsUmJqmr8iDCpl1mdUnFoN7MQ==
-X-Received: by 2002:a05:6000:1085:b0:2be:4e3e:fa0f with SMTP id y5-20020a056000108500b002be4e3efa0fmr13592141wrw.71.1674486925308;
-        Mon, 23 Jan 2023 07:15:25 -0800 (PST)
+        bh=lCW60nZQX7NSf4Kfpcfc2t8JVwgs7iYI/cZwHaiLa6g=;
+        b=nFFYzAeBe/9ojkqV4Ert3vMatFiY1LPWsFxUQ+mjvixJPDR38nKogFrEdJpsG0ysM1
+         36E8Fz/pm7va+0d2lfDfYH0SuoS/clcxCKu14n3VlHRmO6xM5Ee+9Ntiu55tvWVpOKtU
+         5cdljXgm2Bh+IKGn/1+wqba6TYR5HDeLPSpWEsDZxnqDHzqUqK7cmQUZAty6IpKvpizt
+         7xryaMkv8+ycMxy/jA5i+9PccuXDL7sIZh+f5jjLqt3dRgIHPscK+pL2AiFr+Sd6GSm5
+         ZFSnHVXkLpq5RzThXw0HNnBdRC4tn+1WjZ6ssSY9M+7hoN+t1br7zAoZtlTuDT1waFPK
+         gajA==
+X-Gm-Message-State: AO0yUKUnJJqd7rF+oNNc0LGOxOwfdw8EQtyzkcu2q/w1ubxwSa7wYxXX
+        dbpGhXSg+Fu/BsbDRoHhc6KIuw==
+X-Google-Smtp-Source: AK7set8Cazr1rmHYux6nkvowszJLMVEn0atVI6OXJplmFBLXjFi+CoAV5MbxWdu5s4k/u6NKlKZv3g==
+X-Received: by 2002:a5d:6804:0:b0:2bf:ad43:8f08 with SMTP id w4-20020a5d6804000000b002bfad438f08mr124012wru.14.1674486926996;
+        Mon, 23 Jan 2023 07:15:26 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q4-20020adfdfc4000000b002bc6c180738sm41992825wrn.90.2023.01.23.07.15.24
+        by smtp.gmail.com with ESMTPSA id k3-20020a5d6e83000000b00289bdda07b7sm4527603wrz.92.2023.01.23.07.15.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 07:15:24 -0800 (PST)
+        Mon, 23 Jan 2023 07:15:26 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Daniel Palmer <daniel@thingy.jp>,
-        Romain Perier <romain.perier@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: mstar: align UART node name with bindings
-Date:   Mon, 23 Jan 2023 16:15:23 +0100
-Message-Id: <20230123151523.369225-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: moxart: align UART node name with bindings
+Date:   Mon, 23 Jan 2023 16:15:25 +0100
+Message-Id: <20230123151525.369255-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -76,22 +72,22 @@ Bindings expect UART/serial node names to be "serial".
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/mstar-v7.dtsi | 2 +-
+ arch/arm/boot/dts/moxart.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/mstar-v7.dtsi b/arch/arm/boot/dts/mstar-v7.dtsi
-index c26ba9b7b6dd..3eeafd8c7121 100644
---- a/arch/arm/boot/dts/mstar-v7.dtsi
-+++ b/arch/arm/boot/dts/mstar-v7.dtsi
-@@ -174,7 +174,7 @@ gpio: gpio@207800 {
- 				status = "disabled";
- 			};
+diff --git a/arch/arm/boot/dts/moxart.dtsi b/arch/arm/boot/dts/moxart.dtsi
+index 764832ddfa78..11cbea5b94d2 100644
+--- a/arch/arm/boot/dts/moxart.dtsi
++++ b/arch/arm/boot/dts/moxart.dtsi
+@@ -138,7 +138,7 @@ mac1: mac@92000000 {
+ 			status = "disabled";
+ 		};
  
--			pm_uart: uart@221000 {
-+			pm_uart: serial@221000 {
- 				compatible = "ns16550a";
- 				reg = <0x221000 0x100>;
- 				reg-shift = <3>;
+-		uart0: uart@98200000 {
++		uart0: serial@98200000 {
+ 			compatible = "ns16550a";
+ 			reg = <0x98200000 0x20>;
+ 			interrupts = <31 IRQ_TYPE_LEVEL_HIGH>;
 -- 
 2.34.1
 
