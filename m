@@ -2,184 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4356677AA1
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 13:18:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9B05677AAB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 13:19:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231656AbjAWMSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 07:18:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55560 "EHLO
+        id S229588AbjAWMTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 07:19:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231618AbjAWMSC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 07:18:02 -0500
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0C985580;
-        Mon, 23 Jan 2023 04:17:59 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 3049E6000D;
-        Mon, 23 Jan 2023 12:17:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1674476278;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=dSrbZZvovpWvlJHm56TjukjpU0bsgrOflMKyVZ5eOVU=;
-        b=ZUpvTT/3DPBE39G475z/z5eC8dHh8fjFkfRsufenoyMfstAS1QlsDlP5CT7iV5uJMu7wTO
-        BEBr7iXCJBRFNpOI4TNrN3zAzXR4gMuwa4xgg6xpf/n7z51tAQSVwHQiQW1EPZTVhqZGF6
-        QUAaDSOaLVwOD5iWrv7hgFQIjKYfW9xUaYWS21lhFoVQlHS14rpSVrp2nE+7DtorSijkTR
-        QAdh4mVKt4CUAKavRYZp/dMiudCY9guBu7MgoYN5/q/1wbnm4GDlrxGFRPWF420y0kcYG+
-        jlIuARTLmRcX4/T8v/PehW8FfjViib6KecXH6P/yn0mmrFGrfXaUt+7avtmc/Q==
-Date:   Mon, 23 Jan 2023 13:17:55 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 2/3] ASoC: codecs: Add support for the Renesas
- IDT821034 codec
-Message-ID: <20230123131755.1f5702be@bootlin.com>
-In-Reply-To: <eb20dc66-f564-ed7e-8873-65621e5970de@csgroup.eu>
-References: <20230120095036.514639-1-herve.codina@bootlin.com>
-        <20230120095036.514639-3-herve.codina@bootlin.com>
-        <d51b826b-e71f-393c-586b-6a1ca953f26f@csgroup.eu>
-        <20230123095631.4aba35d6@bootlin.com>
-        <eb20dc66-f564-ed7e-8873-65621e5970de@csgroup.eu>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+        with ESMTP id S231150AbjAWMTj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 07:19:39 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42FDFBBB6;
+        Mon, 23 Jan 2023 04:19:37 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D528860E9F;
+        Mon, 23 Jan 2023 12:19:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99AFFC433EF;
+        Mon, 23 Jan 2023 12:19:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674476376;
+        bh=/UE80dW4QUmwYJGNIovZ1MTwLypUd44/RC0OvJ6z9RY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tyu+kWu22XiPKryfvYio/3t84OOQmj1eZ9e2qvynSZxTFa5f3bI6+zhHV0BPjbyg9
+         UIB4/LkcdjNdE7hwajwiGhxc4vE3Q7IjGpiASz0F7gRg3VUFHFDcNL7U4KHle+iAV7
+         s/Ov1tloAY/kop0o0s02fj5CnkEuXS7YBdc/QhI9lCr/KlI4yCOtqBrMyJsIa5ojpg
+         zTsp/Z1AQMnZ3YC1az9eKRVA3aBPAwOYYcIZsgxgYDEB7nxH+qezXE0vZAFno6b/jD
+         ZEUZc0NI3dekjwuevSRV7ZUWm1N/Rku1K6nq5ROsNiLh6qDXTA40JCCa91limv9yxy
+         zIoV1SnCrL4xA==
+Date:   Mon, 23 Jan 2023 12:19:32 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org
+Subject: Re: [PATCH 2/2] spi: spidev: add new mediatek support
+Message-ID: <Y857VOG5upNJfpdM@sirena.org.uk>
+References: <20230118-mt8365-spi-support-v1-2-842a21e50494@baylibre.com>
+ <20230120082054.610626-1-michael@walle.cc>
+ <CAFGrd9qXL-u4XzG9MLK2zbKoDudhTYpr-gJaZPjbysJ9Fo2gnQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="F2NJRR7q1YrufWdq"
+Content-Disposition: inline
+In-Reply-To: <CAFGrd9qXL-u4XzG9MLK2zbKoDudhTYpr-gJaZPjbysJ9Fo2gnQ@mail.gmail.com>
+X-Cookie: Serving suggestion.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christophe,
 
-On Mon, 23 Jan 2023 11:13:23 +0000
-Christophe Leroy <christophe.leroy@csgroup.eu> wrote:
+--F2NJRR7q1YrufWdq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Hi Herv=C3=A9,
->=20
-> Le 23/01/2023 =C3=A0 09:56, Herve Codina a =C3=A9crit=C2=A0:
-> >=20
-> > gpiochip_get_data() is defined only when CONFIG_GPIOLIB is set.
-> > That's why the #if section is used. =20
->=20
-> gpiochip_get_data() is still declared when CONFIG_GPIOLIB is not set, so=
-=20
-> it is not a problem, the call to it will be eliminated at buildtime.
->=20
-> By the way, at the time being I get the following warnings:
->=20
->    CC      sound/soc/codecs/idt821034.o
-> sound/soc/codecs/idt821034.c:310:12: warning: 'idt821034_read_slic_raw'=20
-> defined but not used [-Wunused-function]
->    310 | static int idt821034_read_slic_raw(struct idt821034 *idt821034,=
-=20
-> u8 ch, u8 *slic_raw)
->        |            ^~~~~~~~~~~~~~~~~~~~~~~
-> sound/soc/codecs/idt821034.c:305:11: warning:=20
-> 'idt821034_get_written_slic_raw' defined but not used [-Wunused-function]
->    305 | static u8 idt821034_get_written_slic_raw(struct idt821034=20
-> *idt821034, u8 ch)
->        |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> sound/soc/codecs/idt821034.c:276:12: warning: 'idt821034_write_slic_raw'=
-=20
-> defined but not used [-Wunused-function]
->    276 | static int idt821034_write_slic_raw(struct idt821034=20
-> *idt821034, u8 ch, u8 slic_raw)
->        |            ^~~~~~~~~~~~~~~~~~~~~~~~
-> sound/soc/codecs/idt821034.c:271:11: warning: 'idt821034_get_slic_conf'=20
-> defined but not used [-Wunused-function]
->    271 | static u8 idt821034_get_slic_conf(struct idt821034 *idt821034,=20
-> u8 ch)
->        |           ^~~~~~~~~~~~~~~~~~~~~~~
-> sound/soc/codecs/idt821034.c:250:12: warning: 'idt821034_set_slic_conf'=20
-> defined but not used [-Wunused-function]
->    250 | static int idt821034_set_slic_conf(struct idt821034 *idt821034,=
-=20
-> u8 ch, u8 slic_dir)
->        |            ^~~~~~~~~~~~~~~~~~~~~~~
->=20
->=20
-> With the following changes I have no warning and an objdump -x on=20
-> idt821034.o shows no reference to gpiochip_get_data()
->=20
-> diff --git a/sound/soc/codecs/idt821034.c b/sound/soc/codecs/idt821034.c
-> index 5eb93fec6042..8b75388e22ce 100644
-> --- a/sound/soc/codecs/idt821034.c
-> +++ b/sound/soc/codecs/idt821034.c
-> @@ -968,7 +968,6 @@ static const struct snd_soc_component_driver=20
-> idt821034_component_driver =3D {
->   	.endianness		=3D 1,
->   };
->=20
-> -#if IS_ENABLED(CONFIG_GPIOLIB)
->   #define IDT821034_GPIO_OFFSET_TO_SLIC_CHANNEL(_offset) (((_offset) /=20
-> 5) % 4)
->   #define IDT821034_GPIO_OFFSET_TO_SLIC_MASK(_offset)    BIT((_offset) % =
-5)
->=20
-> @@ -1133,12 +1132,6 @@ static int idt821034_gpio_init(struct idt821034=20
-> *idt821034)
->   	return devm_gpiochip_add_data(&idt821034->spi->dev,=20
-> &idt821034->gpio_chip,
->   				      idt821034);
->   }
-> -#else /* IS_ENABLED(CONFIG_GPIOLIB) */
-> -static int idt821034_gpio_init(struct idt821034 *idt821034)
-> -{
-> -	return 0;
-> -}
-> -#endif
->=20
->   static int idt821034_spi_probe(struct spi_device *spi)
->   {
-> @@ -1165,6 +1158,9 @@ static int idt821034_spi_probe(struct spi_device *s=
-pi)
->   	if (ret)
->   		return ret;
->=20
-> +	if (!IS_ENABLED(CONFIG_GPIOLIB))
-> +		return 0;
-> +
->   	ret =3D idt821034_gpio_init(idt821034);
->   	if (ret)
->   		return ret;
->=20
->=20
-> Christophe
+On Mon, Jan 23, 2023 at 10:37:58AM +0100, Alexandre Mergnat wrote:
 
-Right, I did the test too and indeed, I can remove the #if section.
+> Yes I want to expose the SPI on the pin header for two reasons:
+> - It's an Evaluation Kit board, I believe exposing SPI helps new
+> customers to try/understand it.
 
-I will use (I think is clearer) at idt821034_spi_probe():
-	if (!IS_ENABLED(CONFIG_GPIOLIB)) {
-   		ret =3D idt821034_gpio_init(idt821034);
-		if (ret)
-   			return ret;
-	}
+That's not how this works.  Anyone connecting something to the
+SPI header will need to update the DT to reflect whatever they
+have connected, if that is something that should be controlled
+with spidev then they should add the compatible for that thing
+to the driver.  If that is something that has a regular driver
+then the regular driver will be used.
 
-Is that ok for you ?
+--F2NJRR7q1YrufWdq
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Thanks,
-Herv=C3=A9
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPOe1AACgkQJNaLcl1U
+h9CJ+gf9GkI4+fuHtKD9NFRFbMvHD73e01pZDSR9e8hgGqpBvCOFdvnbGM3XbfH/
+JE9mfuuiW37qqJn55qD2ZsPTUFxGjiWOqe0prsHjRx3Ana5GHfibpVLv5/mPPUlT
+ZRZr/vVWEJy3L0YabKPVe+18PSVlwtUhhsialkjCfRLzat/LWJL5pKwHb6YpCwlf
+NPtZlw+K+dZnJkxobsjvXR51Q07F2idjTBCEqiEBe5BMDMCesW3Gcd5Bl0T1rLXL
+wmrb+tpS6qqelUP3+yOPgy69z0jVfVTJ/AOYDqhNT86dyYkNAnjcj8tYN3dHuN5a
+v4cMmOkxJ01vdv/bbVqa/28BioVk/Q==
+=dFfU
+-----END PGP SIGNATURE-----
+
+--F2NJRR7q1YrufWdq--
