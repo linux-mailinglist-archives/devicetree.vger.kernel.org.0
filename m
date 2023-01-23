@@ -2,168 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF9CC67897C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 22:23:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15C1E678934
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 22:07:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231987AbjAWVXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 16:23:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52142 "EHLO
+        id S232934AbjAWVHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 16:07:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230435AbjAWVXz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 16:23:55 -0500
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA9830B15;
-        Mon, 23 Jan 2023 13:23:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=17xF72TkOudZ1GH2KkrHuQYUcqBX4WbXM/q285Cqrn4=; b=XnQVbU04G+ibmyCKDQvP0W/GEB
-        rihr8unbovHcUxwXBhjEJUVsCn46FK+HKV0ITvrF1CbDz0bfVHFkjz8k2YcDbyMdZZbmJlZ3t+e2v
-        oo9rlBLWBPbv206BCcoZFy7MzmIAvU/92OwtsYWKntnyWM/m1NfjN6bToeeOoN9/ZXSY=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:41506 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1pK3qb-0004rC-35; Mon, 23 Jan 2023 15:55:23 -0500
-Date:   Mon, 23 Jan 2023 15:55:20 -0500
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Bruno Thomsen <bruno.thomsen@gmail.com>
-Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Message-Id: <20230123155520.22a20149745dcbd536536e8f@hugovil.com>
-In-Reply-To: <CAH+2xPBD4ezWPzMj4YzF63duWnw3_af6KkC7eq1EWS=5F_5NGw@mail.gmail.com>
-References: <20221215150214.1109074-1-hugo@hugovil.com>
-        <20221215150214.1109074-12-hugo@hugovil.com>
-        <CAH+2xPBD4ezWPzMj4YzF63duWnw3_af6KkC7eq1EWS=5F_5NGw@mail.gmail.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S232599AbjAWVHJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 16:07:09 -0500
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A691C38667;
+        Mon, 23 Jan 2023 13:07:08 -0800 (PST)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-15ff0a1f735so7254605fac.5;
+        Mon, 23 Jan 2023 13:07:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CADNFe6R10wkswq9pySVFFUriCC1NhXTNYYz3U5dPho=;
+        b=OkEUccvimqLaU14wV72sCLRqDqWYa+MSlpfNEcmQxzuIzYL7c+wOCplXeBPgfrnF6m
+         L8sch+dxbsOsmlHeeswD2aRQV8Hyt96QXpGPEWwO8ccuvx597G7q6ab8Wr9kQaXd5OR0
+         1WjNzbBwWvfpjsQ9/tXNTnfoWxOTbsaX5quNVtsN5p3f7urP4K4r6iWWdN29rn3m6e6+
+         9Tk0PeKXgIOdRDuV0lv3/n8ctrc3msrMoTgVb9BjkndVZq+CYUToI9gi091kC9dAh1zP
+         82GJ5bysjrmLii9kAMQNUMYHbgUhnSKF5lW7DrPfJgpYOymOBoay4pPI2o/WQoCmXwgr
+         97ew==
+X-Gm-Message-State: AFqh2koIsLavNhmnYidxMj9TOXY81EYv+KdBHeTKF16fc/WURTSTcTeu
+        /ytVNP7SIHIz+NM7pOts+9V6QouwvQ==
+X-Google-Smtp-Source: AMrXdXtV9ocXW03GZSJCxa5MfMJy/xxFJnzNCrZoRiE/vvrfehKtCq3M2nfTBomny44RX0TFjadxRA==
+X-Received: by 2002:a05:6870:4c83:b0:150:14a3:6556 with SMTP id pi3-20020a0568704c8300b0015014a36556mr13995312oab.51.1674508027223;
+        Mon, 23 Jan 2023 13:07:07 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r38-20020a05687108a600b0015fa95b00d1sm6491872oaq.22.2023.01.23.13.07.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jan 2023 13:07:06 -0800 (PST)
+Received: (nullmailer pid 2534798 invoked by uid 1000);
+        Mon, 23 Jan 2023 21:07:06 -0000
+Date:   Mon, 23 Jan 2023 15:07:06 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: usb: rockchip,dwc3: Move RK3399 to
+ its own schema
+Message-ID: <20230123210706.GA2496689-robh@kernel.org>
+References: <20230118193056.673514-1-robh@kernel.org>
+ <20230118193056.673514-2-robh@kernel.org>
+ <4eca2695-cb73-eaad-4c8a-82dec923825e@gmail.com>
+ <CAL_JsqKqiRbBJErkh2Hch+XZyLggGyjYo1rvKWPhxb99pA8mAA@mail.gmail.com>
+ <be193659-e97f-23b9-b89c-d02205705db6@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <be193659-e97f-23b9-b89c-d02205705db6@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v3 11/14] rtc: pcf2127: adapt time/date registers write
- sequence for PCF2131
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 7 Jan 2023 19:44:23 +0100
-Bruno Thomsen <bruno.thomsen@gmail.com> wrote:
-
-> Den tor. 15. dec. 2022 kl. 16.19 skrev Hugo Villeneuve <hugo@hugovil.com>:
-> >
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >
-> > The sequence for updating the time/date registers is slightly
-> > different between PCF2127/29 and PCF2131.
-> >
-> > For PCF2127/29, during write operations, the time counting
-> > circuits (memory locations 03h through 09h) are automatically blocked.
-> >
-> > For PCF2131, time/date registers write access requires setting the
-> > STOP bit and sending the clear prescaler instruction (CPR). STOP then
-> > needs to be released once write operation is completed.
-> >
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > ---
-> >  drivers/rtc/rtc-pcf2127.c | 38 +++++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 37 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
-> > index e4b78b9c03f9..11fbdab6bf01 100644
-> > --- a/drivers/rtc/rtc-pcf2127.c
-> > +++ b/drivers/rtc/rtc-pcf2127.c
-> > @@ -39,6 +39,7 @@
-> >  #define PCF2127_REG_CTRL1              0x00
-> >  #define PCF2127_BIT_CTRL1_POR_OVRD             BIT(3)
-> >  #define PCF2127_BIT_CTRL1_TSF1                 BIT(4)
-> > +#define PCF2127_BIT_CTRL1_STOP                 BIT(5)
-> >  /* Control register 2 */
-> >  #define PCF2127_REG_CTRL2              0x01
-> >  #define PCF2127_BIT_CTRL2_AIE                  BIT(1)
-> > @@ -70,6 +71,7 @@
-> >  #define PCF2131_REG_SR_RESET           0x05
-> >  #define PCF2131_SR_RESET_READ_PATTERN  0b00100100 /* Fixed pattern. */
-> >  #define PCF2131_SR_RESET_RESET_CMD     0x2C /* SR is bit 3. */
-> > +#define PCF2131_SR_RESET_CPR_CMD       0xA4 /* CPR is bit 7. */
+On Sat, Jan 21, 2023 at 12:40:12AM +0100, Johan Jonker wrote:
 > 
-> Replace 0xA4 with (BIT(2) | BIT(5) | BIT(7)) or
-> (PCF2131_SR_RESET_READ_PATTERN | BIT(7))
-
-Done.
-
- 
-> >  /* Time and date registers */
-> >  #define PCF2127_REG_TIME_DATE_BASE     0x03
-> >  #define PCF2131_REG_TIME_DATE_BASE     0x07 /* Register 0x06 is 100th seconds,
-> > @@ -307,7 +309,31 @@ static int pcf2127_rtc_set_time(struct device *dev, struct rtc_time *tm)
-> >         /* year */
-> >         buf[i++] = bin2bcd(tm->tm_year - 100);
-> >
-> > -       /* write register's data */
-> > +       /* Write access to time registers:
-> > +        * PCF2127/29: no special action required.
-> > +        * PCF2131:    requires setting the STOP bit. STOP bit needs to
-> > +        *             be cleared after time registers are updated.
-> > +        *             It is also recommended to set CPR bit, although
-> > +        *             write access will work without it.
-> > +        */
-> > +       if (pcf2127->cfg->has_reset_reg) {
-> > +               err = regmap_update_bits(pcf2127->regmap, PCF2127_REG_CTRL1,
-> > +                                        PCF2127_BIT_CTRL1_STOP,
-> > +                                        PCF2127_BIT_CTRL1_STOP);
-> > +               if (err) {
-> > +                       dev_err(dev, "setting STOP bit failed\n");
-> > +                       return err;
-> > +               }
-> > +
-> > +               err = regmap_write(pcf2127->regmap, pcf2127->cfg->reg_reset,
-> > +                                  PCF2131_SR_RESET_CPR_CMD);
-> > +               if (err) {
-> > +                       dev_err(dev, "sending CPR cmd failed\n");
-> > +                       return err;
-> > +               }
-> > +       }
-> > +
-> > +       /* write time register's data */
-> >         err = regmap_bulk_write(pcf2127->regmap, pcf2127->cfg->regs_td_base, buf, i);
-> >         if (err) {
-> >                 dev_err(dev,
-> > @@ -315,6 +341,16 @@ static int pcf2127_rtc_set_time(struct device *dev, struct rtc_time *tm)
-> >                 return err;
-> >         }
-> >
-> > +       if (pcf2127->cfg->has_reset_reg) {
-> > +               /* Clear STOP bit (PCF2131 only) after write is completed. */
-> > +               err = regmap_update_bits(pcf2127->regmap, PCF2127_REG_CTRL1,
-> > +                                        PCF2127_BIT_CTRL1_STOP, 0);
-> > +               if (err) {
-> > +                       dev_err(dev, "clearing STOP bit failed\n");
-> > +                       return err;
-> > +               }
-> > +       }
-> > +
-> >         return 0;
-> >  }
-> >
-> > --
-> > 2.30.2
-> >
 > 
+> On 1/20/23 21:30, Rob Herring wrote:
+> > On Wed, Jan 18, 2023 at 3:05 PM Johan Jonker <jbx6244@gmail.com> wrote:
+> >>
+> >> Hi,
+> >>
+> >> Some alignment at the examples and the unknown extcon property.
+> >>
+> >> usb@fe800000: 'extcon' does not match any of the regexes
+> > 
+> > Does that go in the wrapper or dwc3 node?:
+> > 
+> > arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dtb: usb@fe800000:
+> > usb@fe800000: Unevaluated properties are not allowed ('extcon' was
+> > unexpected)
+> >         From schema:
+> > /home/rob/proj/linux-dt/Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml
+> > 
+> 
+> 
+> > That's the dwc3 node, but the majority are in the wrapper node, so I'm
+> > going with the majority and leaving this one.
+> 
+> In wrapper code for rk33899 in dwc3-of-simple.c I don't see no extcon activity I think.
 
+So all the other cases are just a stray property and the above one is 
+correct.
 
--- 
-Hugo Villeneuve <hugo@hugovil.com>
+'extcon' should be replaced in favor of a connector node, so if not 
+used, it should be able to be removed. Though maybe BSD or something 
+else cares.
+
+> In core there's recently made some changes:
+> https://github.com/torvalds/linux/blame/master/drivers/usb/dwc3/core.c#L1710
+> 
+> usb: dwc3: Don't switch OTG -> peripheral if extcon is present 
+> https://lore.kernel.org/all/20221017233510.53336-1-andriy.shevchenko@linux.intel.com/
+> 
+> Binding status update for that is unknown for me.
+> Do whatever suites you best.
+
+I'm going to leave it as-is for now.
+
+Rob
