@@ -2,271 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54AB76773FD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 03:14:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFB9067740C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 03:31:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbjAWCN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 21:13:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48184 "EHLO
+        id S231131AbjAWCbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 21:31:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230489AbjAWCN4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 21:13:56 -0500
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2080.outbound.protection.outlook.com [40.107.14.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F5C3125A5;
-        Sun, 22 Jan 2023 18:13:54 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i1oYmRkTWhd1biYey7fywkFSGJ3WJNAa7hRz3xKx8xO3WI989hggmUdahicEyw+IVfcGTa+6PCRSNDMchrVSKJOaZSucLoITv2dlr3cKC10xztouPefoPoo3vuK1H3L9bpFon2Kuv9/SJCDYpm9jz/a4dKtjoZYLKss3rDPgG97gOgy5b8+xadpHbfeJHUomWOyvPmz5vZ2CA1OGe4yMuUr4Uzp/vo6tcz0YWaW1RIXNwmosDusqiDVSuPlZNlePUmyIu/z7LSTpO2CEjufUHEqDrTdlaI+dUrZdX4VdXePH708Eb+1DMGFsIgEeLQnHhSrjNVtaHBpaJE2WGup2JQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DbQ4hXdcQ9XzWZ3sm2C00GQzDJIopwbebbFoD4Y3CI8=;
- b=dPkC98QB4EsHCS10t2pDzrRrYAdYu9OUheh5ZdEFTxGXzn0vq4KFQAV7my9/aymA4jzqCHzseEp3Jwz5n7iLFEsmEzT+sR828UBa3Dt1ncqR8azr/3sZScMIVIA4V/XiFNaUmVM3gnuyS8GRD2AeLbWFSKUt1d+iZ6FWXwdD9G/BmAHgrIZ5ZPVjd0ys73x1vthxAnpxOv12ScFAkEGlhn5/JZNWqwDXQc9FfZaEhFEMTBUtR3z7MuLdGCRnClKnYMszqfw+KfGN7lAQSZZ2XdX2sPSh+K4uHYXAeV6R0jtHMdBi2P0nswjfZ6JggF47WrDoFN2wBMz0Lobb1QheVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DbQ4hXdcQ9XzWZ3sm2C00GQzDJIopwbebbFoD4Y3CI8=;
- b=g2wpDe7kvh1s3OZsk+o7jpxxXgOFAubrWmIvRvxy0sxlW9kvztqJxgnfRGv8gel5LkI36AM5PCo9p56bJuI9mFXBvqrrIjy+PCtXebhpwOPHFu2rwkn2Fgk52+ZUC96YCST7BHQi3Yh98fTHUzwrimTGXOD/qjkRxhf2Z79kAGo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by PAXPR04MB8878.eurprd04.prod.outlook.com (2603:10a6:102:20d::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Mon, 23 Jan
- 2023 02:13:51 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::5725:92ec:f43e:f5fc]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::5725:92ec:f43e:f5fc%7]) with mapi id 15.20.6002.028; Mon, 23 Jan 2023
- 02:13:51 +0000
-From:   Liu Ying <victor.liu@nxp.com>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marex@denx.de,
-        linux-imx@nxp.com, krzysztof.kozlowski@linaro.org
-Subject: [PATCH v3 2/2] drm/bridge: fsl-ldb: Add i.MX93 LDB support
-Date:   Mon, 23 Jan 2023 10:14:49 +0800
-Message-Id: <20230123021449.969243-3-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230123021449.969243-1-victor.liu@nxp.com>
-References: <20230123021449.969243-1-victor.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SGAP274CA0022.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::34)
- To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+        with ESMTP id S230024AbjAWCbe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 21:31:34 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C312114EA0
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 18:31:31 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so9622454wma.1
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 18:31:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5gj8cbimwVgm1NSTIem3tHPiLUmP/1gxrqO50zHlwL4=;
+        b=ZsN6RSczyNf6vl12hlCx2a3h50NlpUSxS7VNVL/ervdcDr+rQSBS4UpdwWPpeixXF9
+         BVFUGrxT1dI65IQOLqeMdiifg6j0a5iDuSymZBvUYKjgmd44hhWcEgFaT5eFfh2Fjrdn
+         E5XEIvhn+HzGMO6MFuQ2/n/oBSa/bmjLM1Vi9DfE8G/0m/+qslxZEiao0lyRweIVt1jV
+         sSNWeak8jTo7lCuaSOC9CkiykrnRp76Bm7LDt/53IHQPmQWxg8QdqStPWGB2fYAodX0f
+         YqLB64NOylvXkHku1CH9F+zrzJi5s3KevcfiZTG9HTAbxZgONvzOc9IswtN5Cvezl9mO
+         8yZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5gj8cbimwVgm1NSTIem3tHPiLUmP/1gxrqO50zHlwL4=;
+        b=lj5UpkPx0+6vWNzL910N7NhDZC5IfRd5gfWDMjAg6bpdssM9It2z/jRqV4BU/B83Yx
+         EvtSqbmupe8sg5t9ibAl3RNnHfBI8kMjRQ6w5IisNKIZn04hDEJnJob/gbXDG1Ghv9sh
+         m4VoEJ7zv1gtv8VeTAZMdQtHeZtxqi41BgCt48bXHB3zPeDG2MPYh+TkRKPIxDZ4FGKx
+         epeyLICT2mfDNUv7aClSZhcJ2n9aA+w7ZuNeUV5bCSspAJlx3mXGZjKLHIQZ1Kn4DA+b
+         /p5KxK0soJuGRvl2bjiYpZiReaBT9HMzyz5rzI5SQ9LUDkMRVMQAiteiw0aWRQW0q/PB
+         OdSQ==
+X-Gm-Message-State: AFqh2kovwhSz2v6gWNtYuwrbPbXVysJpaMp3Fn9DiEsv6J3BsmCurWOU
+        jYNocjnbueGf49jyz6VijftSoQ==
+X-Google-Smtp-Source: AMrXdXsdbg49vxi7CLyNCLNcF9QrMiItUuvXDN3ZTVRIfowcawUgx8wDRrx1WpiZRi2Qcfpj2phqdQ==
+X-Received: by 2002:a05:600c:6001:b0:3da:f80a:5e85 with SMTP id az1-20020a05600c600100b003daf80a5e85mr21806687wmb.26.1674441090261;
+        Sun, 22 Jan 2023 18:31:30 -0800 (PST)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id r11-20020adff70b000000b002bdf290efdasm18672703wrp.58.2023.01.22.18.31.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Jan 2023 18:31:29 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     bryan.odonoghue@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, benl@squareup.com,
+        shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
+        dmitry.baryshkov@linaro.org, stephan@gerhold.net
+Subject: [PATCH v4 0/6] Add MSM8939 SoC support with two devices
+Date:   Mon, 23 Jan 2023 02:31:21 +0000
+Message-Id: <20230123023127.1186619-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|PAXPR04MB8878:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6c517fee-776a-4ff1-fcd9-08dafce77881
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NGorLzKPvZmQy4eAsssUKZ9hKOX8+NIx+3S/iDmdSfynXmOCUKwxFtvu9wyGaiXVJVem9YwkRXJNpqyRjFORVB/ILVIHBlmlfYO7NrPOBcDH+07T3obwAYSJ6XeLyOsw8l0tUTNoY0mgqShKhS79lY7TfoOFX35QrkCc1P82r9tqcVEHj57+lmkF2MwBNIEU0zYGWRNZhvrueO5pemFkZPN8MCH1AXbk2ggagyPhEYB5uWvSEG5vyn2iPgf1h/9ix6I3ruB0CB3OY2WELhl7U1XY8vY1gJr8ZdkefYQu0Q8snAsu4/6LWTlGR8hJxULlOPXQ7LKNMVXHnbFiNChND2EdqBtvEre3FdJbt2vlJTxWpfz7IP0uKq2nQR0tkzljaZDP6Os4gkaA18yZ9z+P2qmzssmhXMy44C2fH3UgVvME9VNfVkpgMPkw627HRCiq7hMbijdnNeU+RvjMWnOXRJtrUcUhfizXnHODMWieSBcYrACvmN1ZcacbyWMT5Q0y2XzWa8JPlRx9Sn5nuGBRUKEDywqY19DV4c8TSvhNzTYAXoWR21untu4GBGOhHv6oGbjpxZTnB60An3zuXiCN4UCkaa08i1KsQyn7gExHzUcN3QGgOWoCfLr66x/L1qdeSun9/+soyF097UyOe952DrLID3o2D+PvALan8G2QuJSpt3bLcQqdJCXdqoM7oXn602O3adkL3hnqDSlyV9zO4w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(366004)(346002)(39860400002)(136003)(396003)(451199015)(36756003)(2906002)(5660300002)(38100700002)(38350700002)(7416002)(8936002)(4326008)(41300700001)(83380400001)(52116002)(478600001)(6486002)(66476007)(86362001)(8676002)(26005)(6512007)(186003)(6506007)(316002)(2616005)(66946007)(1076003)(66556008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?znieduWDIf/vuG2eZEaZ8T7fjoewtuPykJ3MIvX9bWvg3epJAX1BZsMjuDOT?=
- =?us-ascii?Q?VYGeveqllYLOQkn3jq/kMzVVTfaYanpxowgBJbv1LycX/lehalnbAQGSZj1f?=
- =?us-ascii?Q?wZf9iW2SS3+KZiyhLME2oezrTi3tkLLs7pCee9syfASUL+o7ahY0rYOrd9d2?=
- =?us-ascii?Q?sBQsmaMnuaLlWaJJShEskgfvOd19GwD8pLBmkr5oFnBj7mlQ0Oz/ydqGeePB?=
- =?us-ascii?Q?JX0hU/GfS6i+awN5W1dPp7Tj1O5W/UFAY92ATsb9HIfQqIk0f0kUDCHXw3uD?=
- =?us-ascii?Q?qKj5vliLBXxAh3LfRloZTLcmySo1bftxG3BK7BUK+sSbZcuSeySrzBIqYF/k?=
- =?us-ascii?Q?b+OW8Ox2Q9ABPakZglKC+Z3LycNGLUR1IbyaLRFJ7sA6mA7S7h+nqRtU8BJy?=
- =?us-ascii?Q?0hXe/UUy0xU6ADZvpTABrrnxmgxfT6IjBX+mk6HnOb0Qgu7v6zwL/XtIqgKk?=
- =?us-ascii?Q?cdXyYBzI8hzW1DLiVCby80yujpHpU8tV0zkSxWbRzIPgdpzGiDEuktPZgqnY?=
- =?us-ascii?Q?UR7dF3x0+tQMfTUjPc2ipB1DPYQQ+1xys94fLB9fUtfSPYzq9NCaH//2qGNo?=
- =?us-ascii?Q?aSxgRQmFMXJ92otMyQ/Sz8Wz1WAyYpBTo34fHkATZo/Tctx++pJ1kPcGvHAX?=
- =?us-ascii?Q?nls6lRDAxQUYhOJMy8x+7TkmdLD74pzXz5/Y6ZE4lbkvdIY9YvcBrLsUP5Jv?=
- =?us-ascii?Q?zmq1SgwQ7RYF3ndtyd7Z4U4sTjCKcamNTF1lXXgKQXLxuuLxVvKS6XSXb5Wi?=
- =?us-ascii?Q?aIh6h9ioaguQHvsFVJ9jDlYQu5qw4WS++iFVmqeuicF77/4zFp23WloWKgWV?=
- =?us-ascii?Q?uUdKUHWcNBRHb2Yr8MBzblzwI2lSjrb6gP86rt3ITzjulZudATfkKYb5hYiX?=
- =?us-ascii?Q?ogrJB8w6GV0PgpPKnbUg8esrdXfGqwpdsjoZ6y3P62bb1roGoE5j241e41Yx?=
- =?us-ascii?Q?CH9QFBZRMVLkNKFENiSZqc7tLeqFAWYtE+H0XEcb92oWz/C1I3hXQ7DOtbKx?=
- =?us-ascii?Q?bOLxcdC/tyof50HCwMvJCKhhWlvc2iIIF7N8bPSjof7q7wUoq73JvXM0KfX/?=
- =?us-ascii?Q?VjTwaNBUIlNpOVCkQpOMuW2G1yZx/a8uMe8hyAhKZLKJBCe7G9I4N4cfoyUH?=
- =?us-ascii?Q?lXp1QaKHPF4d6kFGlVW8aeRkOvWLa64CJNbwEl0z+RAFpSiW2nEKS99oFWSZ?=
- =?us-ascii?Q?IdBBHZ9MkYp4C91eOqp8Gvm/QDs4b6SvuN9+x22srJdwoQFJ/GRTvwKcuzUA?=
- =?us-ascii?Q?1dD7TQ7lJSWruYkaCyyvII4ADgRGeu3eyYZR09T3Guj0+OtkFpMITmPb5QCu?=
- =?us-ascii?Q?J4KnCaj3spCJxiP/zJYMXYB/oQGU5Y0SnKqmCWVvCu8wB/EzSxtsInCoZov8?=
- =?us-ascii?Q?v70HC1rpQxMluE3dKbTntQjUlX6hlJCHh+5B+lXLYTCWoletn8YadmfxuLIk?=
- =?us-ascii?Q?X3gOUSoNFeZPrPLOSpsBLsGzCcmU0QknM837XpuYqDjjZigLAG/JyFyVZ1AP?=
- =?us-ascii?Q?mu1EXAYU0St/4dOkg6NqkEu4130fIYoAbKJmqTcyZfpGCutlrfgmMU3weHr/?=
- =?us-ascii?Q?o7FDZrA6e2/YcHwhtQrwTFQm0NSGVbn8Bf2nEeZ7?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c517fee-776a-4ff1-fcd9-08dafce77881
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2023 02:13:51.7493
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qXGc1ZGqJNahAMmQTLUaZ3DsbFhld5FxhM4mHqDHaJ0qMVzojHIM/5kVqaOndDfJ07wok6Rat3w7LOj3g5ddzA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8878
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Same to i.MX8mp LDB, i.MX93 LDB is controlled by mediamix blk-ctrl
-through LDB_CTRL and LVDS_CTRL registers.  i.MX93 LDB supports only
-one LVDS channel(channel 0) and it's LVDS_CTRL register bit1 is used
-as LVDS_EN instead of CH1_EN.  Add i.MX93 LDB support in the existing
-i.MX8mp LDB bridge driver by adding i.MX93 LDB compatible string and
-device data(to reflect different register offsets and LVDS_CTRL register
-bit1 definition).
+V4:
+- Adds Krzysztof's RB to snoc-mm
+- Re-orders alphabetically missed nodes in previous iteration - Bjorn
+- Adds LK address/size cells comment - Bjorn
 
-Reviewed-by: Marek Vasut <marex@denx.de>
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
-v2->v3:
-* Provide comment on LVDS_CTRL_LVDS_EN bit when defining it's macro. (Marek)
-* Add Marek's R-b tag.
+- Left _AO for wcnss as downstream reference uses this - Bjorn/Bryan
+- Uses qcom,ids.h and QCOM_ID_SOCNAME for qcom,msm-id - Bjorn
+- Revises comment from "Regulator" to "Power supply" - Bjorn
+- Leaves dummy power-domain reference in cpu defintion as this
 
-v1->v2:
-* No change.
+- Relabels "cpu" to "CPU" to be more consistent with other dtsi - Bryan
+- Moves msm8939 gcc to its own yaml file to capture 8939 specific form - Bryan
 
- drivers/gpu/drm/bridge/fsl-ldb.c | 57 +++++++++++++++++++++++++++-----
- 1 file changed, 48 insertions(+), 9 deletions(-)
+  is a required property and the dt checker complains - Stephan/Bryan
+- Removes CPR entries from qfprom - Stephan
+- Left MDSS interconnects. I don't see a bug to fix here - Stephan/Bryan
+- power-domain in MDSS - dropped its not longer required after
+  commit a6f033938beb ("dt-bindings: msm: dsi-controller-main: Fix power-domain constraint") - Stephan
+- Adds gcc dsi1pll and dsi1pllbyte to gcc clock list.
+  Reviewing the silicon documentation we see dsi0_phy_pll is used to clock
+  GCC_BYTE1_CFG_RCGR : SRC_SEL
+  Root Source Select
+  000 : cxo
+  001 : dsi0_phy_pll_out_byteclk
+  010 : GPLL0_OUT_AUX
+  011 : gnd
+  100 : gnd
+  101 : gnd
+  110 : gnd
+  111 : reserved - Stephan/Bryan
 
-diff --git a/drivers/gpu/drm/bridge/fsl-ldb.c b/drivers/gpu/drm/bridge/fsl-ldb.c
-index f9e0f8d99268..85e0ccb27afe 100644
---- a/drivers/gpu/drm/bridge/fsl-ldb.c
-+++ b/drivers/gpu/drm/bridge/fsl-ldb.c
-@@ -18,7 +18,6 @@
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
- 
--#define LDB_CTRL				0x5c
- #define LDB_CTRL_CH0_ENABLE			BIT(0)
- #define LDB_CTRL_CH0_DI_SELECT			BIT(1)
- #define LDB_CTRL_CH1_ENABLE			BIT(2)
-@@ -35,9 +34,13 @@
- #define LDB_CTRL_ASYNC_FIFO_ENABLE		BIT(24)
- #define LDB_CTRL_ASYNC_FIFO_THRESHOLD_MASK	GENMASK(27, 25)
- 
--#define LVDS_CTRL				0x128
- #define LVDS_CTRL_CH0_EN			BIT(0)
- #define LVDS_CTRL_CH1_EN			BIT(1)
-+/*
-+ * LVDS_CTRL_LVDS_EN bit is poorly named in i.MX93 reference manual.
-+ * Clear it to enable LVDS and set it to disable LVDS.
-+ */
-+#define LVDS_CTRL_LVDS_EN			BIT(1)
- #define LVDS_CTRL_VBG_EN			BIT(2)
- #define LVDS_CTRL_HS_EN				BIT(3)
- #define LVDS_CTRL_PRE_EMPH_EN			BIT(4)
-@@ -52,6 +55,29 @@
- #define LVDS_CTRL_VBG_ADJ(n)			(((n) & 0x7) << 17)
- #define LVDS_CTRL_VBG_ADJ_MASK			GENMASK(19, 17)
- 
-+enum fsl_ldb_devtype {
-+	IMX8MP_LDB,
-+	IMX93_LDB,
-+};
-+
-+struct fsl_ldb_devdata {
-+	u32 ldb_ctrl;
-+	u32 lvds_ctrl;
-+	bool lvds_en_bit;
-+};
-+
-+static const struct fsl_ldb_devdata fsl_ldb_devdata[] = {
-+	[IMX8MP_LDB] = {
-+		.ldb_ctrl = 0x5c,
-+		.lvds_ctrl = 0x128,
-+	},
-+	[IMX93_LDB] = {
-+		.ldb_ctrl = 0x20,
-+		.lvds_ctrl = 0x24,
-+		.lvds_en_bit = true,
-+	},
-+};
-+
- struct fsl_ldb {
- 	struct device *dev;
- 	struct drm_bridge bridge;
-@@ -59,6 +85,7 @@ struct fsl_ldb {
- 	struct clk *clk;
- 	struct regmap *regmap;
- 	bool lvds_dual_link;
-+	const struct fsl_ldb_devdata *devdata;
- };
- 
- static inline struct fsl_ldb *to_fsl_ldb(struct drm_bridge *bridge)
-@@ -158,12 +185,12 @@ static void fsl_ldb_atomic_enable(struct drm_bridge *bridge,
- 			reg |= LDB_CTRL_DI1_VSYNC_POLARITY;
- 	}
- 
--	regmap_write(fsl_ldb->regmap, LDB_CTRL, reg);
-+	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->ldb_ctrl, reg);
- 
- 	/* Program LVDS_CTRL */
- 	reg = LVDS_CTRL_CC_ADJ(2) | LVDS_CTRL_PRE_EMPH_EN |
- 	      LVDS_CTRL_PRE_EMPH_ADJ(3) | LVDS_CTRL_VBG_EN;
--	regmap_write(fsl_ldb->regmap, LVDS_CTRL, reg);
-+	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl, reg);
- 
- 	/* Wait for VBG to stabilize. */
- 	usleep_range(15, 20);
-@@ -172,7 +199,7 @@ static void fsl_ldb_atomic_enable(struct drm_bridge *bridge,
- 	if (fsl_ldb->lvds_dual_link)
- 		reg |= LVDS_CTRL_CH1_EN;
- 
--	regmap_write(fsl_ldb->regmap, LVDS_CTRL, reg);
-+	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl, reg);
- }
- 
- static void fsl_ldb_atomic_disable(struct drm_bridge *bridge,
-@@ -180,9 +207,14 @@ static void fsl_ldb_atomic_disable(struct drm_bridge *bridge,
- {
- 	struct fsl_ldb *fsl_ldb = to_fsl_ldb(bridge);
- 
--	/* Stop both channels. */
--	regmap_write(fsl_ldb->regmap, LVDS_CTRL, 0);
--	regmap_write(fsl_ldb->regmap, LDB_CTRL, 0);
-+	/* Stop channel(s). */
-+	if (fsl_ldb->devdata->lvds_en_bit)
-+		/* Set LVDS_CTRL_LVDS_EN bit to disable. */
-+		regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl,
-+			     LVDS_CTRL_LVDS_EN);
-+	else
-+		regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl, 0);
-+	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->ldb_ctrl, 0);
- 
- 	clk_disable_unprepare(fsl_ldb->clk);
- }
-@@ -248,6 +280,10 @@ static int fsl_ldb_probe(struct platform_device *pdev)
- 	if (!fsl_ldb)
- 		return -ENOMEM;
- 
-+	fsl_ldb->devdata = of_device_get_match_data(dev);
-+	if (!fsl_ldb->devdata)
-+		return -EINVAL;
-+
- 	fsl_ldb->dev = &pdev->dev;
- 	fsl_ldb->bridge.funcs = &funcs;
- 	fsl_ldb->bridge.of_node = dev->of_node;
-@@ -306,7 +342,10 @@ static int fsl_ldb_remove(struct platform_device *pdev)
- }
- 
- static const struct of_device_id fsl_ldb_match[] = {
--	{ .compatible = "fsl,imx8mp-ldb", },
-+	{ .compatible = "fsl,imx8mp-ldb",
-+	  .data = &fsl_ldb_devdata[IMX8MP_LDB], },
-+	{ .compatible = "fsl,imx93-ldb",
-+	  .data = &fsl_ldb_devdata[IMX93_LDB], },
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, fsl_ldb_match);
+- pm8916_l16 -> pm8916_l6 in dsi definition, typo - Konrad
+- Moved regulator_set_load location - Konrad
+
+Previous: https://lore.kernel.org/lkml/20230118050948.bibhq26s6sgzullg@builder.lan/T/
+Bootable: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-23-01-23-msm8939-nocpr
+
+V3:
+- Happily I don't currently depend on any other series to be merged.
+  Bjorn and Chanwoo picked up everything I need to unblock this series. ＼(^o^)／
+
+- Moves xo_board to RPM/PMIC clock gated CXO, not including rpmcc: obvs - Konrad/Bjorn
+- qcom,msm-id = <239 0> - left as in V2 valid according to Sony references - bod
+- cpu-release-addr - as stated below we rely on lk2nd to take the second cluster
+  out of reset - bod
+- smem child node update - Konrad
+- Whitespace updates - Konrad
+- gpu no interconnect - Konrad - No bod
+- 19.2 MHz dropped from timer@b020000 - Konrad
+- Added vreg_dummy comment - Konrad
+- sdc_pins grouped - Konrad
+- startup-delay-us = <0> - left as is
+- bias - added no-bias - Konrad
+- :g/msmgpio/s//tlmm/g - Konrad
+- mdss/s//display-controller - Konrad
+- l11 set-load - Korad
+
+- l12 upper voltage raised to 3.3v since this is what the
+  downstream kernel says when I boot and interrogate it - bod
+
+- sdhc@address - Discussed with Krzysztof and implemented as discussed
+- snoc-mm fix - Discussed with Krzysztof implemented if:then:else:not
+- dtc -I dtb -fs apq8039-t2.dtb prodcues
+  /soc@0/i2c@78b5000: duplicate unit-address
+  as does every other component that uses this polymorphic dts node
+- Renamed type-c i2c port manager IC to "typec" - Krzysztof
+
+  /smsm/hexagon@1: Missing #address-cells in interrupt provider
+  Same output as other upstream and recently upstreamed SoCs
+  I left these alone for now
+
+link: https://lore.kernel.org/lkml/20230103010904.3201835-1-bryan.odonoghue@linaro.org/T/
+bootable: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-23-01-16-msm8939-nocpr
+
+V2:
+- Sorts core dtsi node list by address followed by alpahbetical sorting
+  within address sorted nodes - Bjorn
+- Drops use of 8916-pins - Bjorn
+- Adds msm8939-pm8916.dtsi - Stephan
+- Fixes every dts splat from previous submission minus non-converted
+  .txt compat strings [1] and one yaml error in Bjorn's tree not in -next yet
+- I haven't applied Dmitry's change for tsens since that's not been
+  picked up yet
+- Picks up a number of suggestions and fixes from Stephan Gerhold and Vincent Knecht
+
+- Depends on
+
+  Applied:
+  [PATCH v4 0/7] remoteproc: qcom_q6v5_mss: Add MSM8909 and MSM8953 
+  https://lore.kernel.org/linux-arm-msm/167216232800.738877.17567287056128563074.b4-ty@kernel.org/
+
+  [PATCH v6 0/5] remoteproc: qcom: Add support for pronto-v3
+  https://lore.kernel.org/linux-arm-msm/167216232801.738877.15895916910585144737.b4-ty@kernel.org/
+
+  [PATCH v6 00/18] mdss-dsi-ctrl binding and dts fixes
+  https://lore.kernel.org/linux-arm-msm/167233461766.1099840.17628700245792986354.b4-ty@kernel.org/
+
+  Awaiting application:
+  https://lore.kernel.org/linux-arm-msm/20221228133058.213886-1-bryan.odonoghue@linaro.org/
+
+- Previous
+  https://lore.kernel.org/linux-arm-msm/20220419010903.3109514-1-bryan.odonoghue@linaro.org/
+
+- Bootable tree
+  https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-23-01-03-msm8939-no-cpr
+
+- [1] DTC_CHK arch/arm64/boot/dts/qcom/apq8039-t2.dtb
+
+  Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt
+  qcom/apq8039-t2.dtb: idle-states: cpu-sleep-0:compatible:0: 'qcom,idle-state-spc' is not one of ['arm,idle-state', 'riscv,idle-state']
+        From schema: Documentation/devicetree/bindings/cpu/idle-states.yaml
+  qcom/apq8039-t2.dtb: idle-states: cpu-sleep-0:compatible: ['qcom,idle-state-spc', 'arm,idle-state'] is too long
+        From schema: Documentation/devicetree/bindings/cpu/idle-states.yaml
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /cpus/idle-states/cpu-sleep-0: failed to match any schema with compatible: ['qcom,idle-state-spc', 'arm,idle-state']
+
+  Documentation/devicetree/bindings/iommu/qcom,iommu.txt
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/iommu@1ef0000: failed to match any schema with compatible: ['qcom,msm8916-iommu', 'qcom,msm-iommu-v1']
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/iommu@1ef0000/iommu-ctx@4000: failed to match any schema with compatible: ['qcom,msm-iommu-v1-ns']
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/iommu@1ef0000/iommu-ctx@5000: failed to match any schema with compatible: ['qcom,msm-iommu-v1-sec']
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/iommu@1f08000: failed to match any schema with compatible: ['qcom,msm8916-iommu', 'qcom,msm-iommu-v1']
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/iommu@1f08000/iommu-ctx@1000: failed to match any schema with compatible: ['qcom,msm-iommu-v1-ns']
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/iommu@1f08000/iommu-ctx@2000: failed to match any schema with compatible: ['qcom,msm-iommu-v1-ns']
+
+  arch/arm64/boot/dts/qcom/pm8916.dtsi f5d7bca55425c8
+  qcom/apq8039-t2.dtb: pmic@0: 'extcon@1300' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'pinctrl-[0-9]+', 'pon@[0-9a-f]+$'
+        From schema: Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+
+  Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-analog.txt
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/spmi@200f000/pmic@1/audio-codec@f000: failed to match any schema with compatible: ['qcom,pm8916-wcd-analog-codec']
+
+  yaml documentation error not yet in -next
+  arm64/boot/dts/qcom/apq8039-t2.dtb: remoteproc@4080000: qcom,halt-regs:0: [33] is too short
+        From schema: Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
+
+  Documentation/devicetree/bindings/usb/ci-hdrc-usb2.txt
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/usb@78d9000: failed to match any schema with compatible: ['qcom,ci-hdrc']
+
+  Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.txt:            compatible = "qcom,kpss-acc-v2";
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b088000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b098000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b0a8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b0b8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b188000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b198000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b1a8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+  arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b1b8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+
+V1:
+This series adds in MSM8939 SoC support with two supported devices.
+
+- CPU
+  MSM8939 is a non-PSCI compliant device. As such in the downstreaming
+  shipped image custom code is used to bring non-boot cores out of reset.
+
+  This drop specifies the boot-method as spin-table instead and is
+  completely standard. To accomplish this, we rely on lk2nd.
+
+  https://github.com/msm8916-mainline/lk2nd/pull/142
+
+- Serial
+- i2c
+- USB
+- eMMC
+- MDP/DSI
+- WiFi
+- Bluetooth
+
+What's not included
+
+- CPR
+  We have CPR working in a 4.19 kernel quite well but for now it feels like
+  putting the cart before the horse to gate the SoC and boards on CPR.
+
+- Venus
+  I've been told this works but I haven't tried it myself and right now
+  consider it maybe working but probably not 100%.
+
+- Sound
+  We have a copy-exactly from the 4.19 kernel here in the DTS.
+  I haven't run the sound through any sort of reasonable test.
+  Vincent Knecht has some PostmarketOS kernels which use a 5.17 version of
+  this DTS to get sound up so, I think sound is in good shape.
+
+- CAMSS
+  There are slight differences between msm8916 and msm8939 for CAMSS. It
+  doesn't feel like tons of work but, right now it is work we haven't even
+  started.
+
+- Devices
+  I've booted on the Square device obviously and this is my regular
+  hardware for upstream development. I've also booted on the Sony Xperia M4
+  Aqua including mutli-core bring-up, WiFi and ADB.
+
+Dependencies for this drop:
+
+qcom-cpufreq-nvmem: Add msm8939 with some fixups
+link: https://lore.kernel.org/linux-arm-msm/20220418162226.2983117-1-bryan.odonoghue@linaro.org/T/#t
+
+Fix apq8016 compat string
+link: https://lore.kernel.org/linux-arm-msm/20220418230956.3059563-1-bryan.odonoghue@linaro.org/T/#t
+
+dt-bindings: soc: qcom: smd-rpm: Fix missing MSM8936 compatible
+link: https://lore.kernel.org/linux-arm-msm/20220418231857.3061053-1-bryan.odonoghue@linaro.org/T/#u
+
+Bootable tree here:
+https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=v5.18-rc2%2bapq8039-without-cpr
+
+Bryan O'Donoghue (5):
+  dt-bindings: clock: msm8939: Move msm8939 to a distinct yaml file
+  dt-bindings: interconnect: Exclude all non msm8939 from snoc-mm
+  arm64: dts: qcom: Add msm8939 SoC
+  arm64: dts: qcom: Add Square apq8039-t2 board
+  arm64: dts: qcom: Add msm8939 Sony Xperia M4 Aqua
+
+Stephan Gerhold (1):
+  arm64: dts: qcom: Add msm8939-pm8916.dtsi include
+
+ .../bindings/clock/qcom,gcc-msm8916.yaml      |    7 +-
+ .../bindings/clock/qcom,gcc-msm8939.yaml      |   87 +
+ .../bindings/interconnect/qcom,rpm.yaml       |   73 +-
+ arch/arm64/boot/dts/qcom/Makefile             |    2 +
+ arch/arm64/boot/dts/qcom/apq8039-t2.dts       |  545 ++++
+ arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi  |   82 +
+ .../qcom/msm8939-sony-xperia-kanuti-tulip.dts |  453 ++++
+ arch/arm64/boot/dts/qcom/msm8939.dtsi         | 2353 +++++++++++++++++
+ 8 files changed, 3566 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8939.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/apq8039-t2.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8939.dtsi
+
 -- 
-2.37.1
+2.38.1
 
