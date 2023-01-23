@@ -2,97 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B4D1678685
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:38:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8030F678697
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:41:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232414AbjAWTiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 14:38:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44724 "EHLO
+        id S232299AbjAWTl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 14:41:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231989AbjAWTh7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:37:59 -0500
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99CFEEFAD;
-        Mon, 23 Jan 2023 11:37:54 -0800 (PST)
-Received: by mail-qv1-f43.google.com with SMTP id y8so9860713qvn.11;
-        Mon, 23 Jan 2023 11:37:54 -0800 (PST)
+        with ESMTP id S232688AbjAWTlZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:41:25 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 689A32D140
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:41:23 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id bk16so11842256wrb.11
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:41:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w/RsMe/pvsRxXGnKgG44ap9RIqwrmY5BGtfT8sB3Eh4=;
+        b=OMnyhIAFcuf8nT4iXKlhGZ1df39+dR+qfI3xswY1zqPdP6REFLZ1jGmagTJf0E/qZg
+         fSW8p77CNMLw+pmKKkZy2rMGx8V6D5sDerkC7rLtD6BL+JogehS+v3JKKYoyI3rwglN5
+         2PpB28eDnu5Esw+nb/k+NfdGU6f0H5WhAn+f2eaVsl5C4qGAxLnL5LfSwVOLT8QSXgeY
+         v44j/NvtBsgcIIWOcZ7luzLDwmgckOU01IckCg6HSLZgpli3Dtg1CV9XJDSQLmeHR7gO
+         fwN0z4WMjlYZ7L75MkD6TbA8Kqvuv3LgKMrDwTKQpJHLy48xMDMk0oau5V9Ic0FeBvNK
+         pCzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EETY68yoLxveEOtuKaWLmvNjFo4bmFiVe2JWu/xgnSs=;
-        b=IUiA2f3r79C5cFX5PLhZMah9Ino8OCRhcVqPuYXtIiCMdq/7/yqpKSKonV+Topax+4
-         tcjjdg2hiv1a0MLM6u7syFP9jNymmXuZ/DSSXqzN/Ti0cVy76l/6S6Yb+8MxnYGcOEN4
-         Sskx8GgI7AR6v1Z8bnzufE1aP7eu1QRRD4NjgUDWVOnLExfpwZGYekd32+IkzImTLEhx
-         e9CuEaniZCt/bVpOng54eoS7Pnlwjtu975p8I+ZjwxHVgQc/psDAn7SWeRhfDmdKtoL1
-         OzT/VlORIrwYb4OO3WWxlFRP3wNiEm1rVMylpDGwiUOgoM0G6oNuKIlKzZGM5i5DVCF1
-         9xGw==
-X-Gm-Message-State: AFqh2koMrEOZbvcVgURfyYzWEvpDiKUmN9YE7WSShEVqZx/ivMk2LVpW
-        8qhIsRY/cv1kPl3pWmTax+3adWJoQ6ffIw==
-X-Google-Smtp-Source: AMrXdXvBRSmEoqf6VZPO06csQBhxNNiwgq5sdcIYDHn8DlIOzyRi3+ju0ZC9vLwzPfwUji/KYWqrNQ==
-X-Received: by 2002:ad4:44b1:0:b0:534:b991:26cf with SMTP id n17-20020ad444b1000000b00534b99126cfmr37419036qvt.39.1674502673341;
-        Mon, 23 Jan 2023 11:37:53 -0800 (PST)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id j129-20020a378787000000b00706a1551428sm77957qkd.6.2023.01.23.11.37.52
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w/RsMe/pvsRxXGnKgG44ap9RIqwrmY5BGtfT8sB3Eh4=;
+        b=TZKIGHXehDczcwb8ZClbygPlXnrH14lpKTE7OzNERMADs/BVleFngB5w/3+zPMP4L4
+         zs1ElPH6AOsxWZ5lqDtALWxg6vAWdMbjgg7mlt+cr49H5H5/ogaM4u7OjhpF8S2ID7u8
+         P5HfReR/zBAB+RskaIOnAekvhu4ObL1aNuzJG8fMeT3CaXID7rDERrkEjtZ2DG+eUlBn
+         QQUuyzOFvx8qjgEw6JQGof4/3aFLKouNIVofMZogVlUHJfL9C2z6tLAWTZA8TUzk1/Mo
+         ipGRJq9qH85Rahi8VNGZMB8Vl2HzCFGbTw78Ry3TIWx/mZ5FXL8L3fSYr86B1zCJT4xn
+         Wlfw==
+X-Gm-Message-State: AFqh2kpBu3MAzQxbTHI4oTQY9SnMf1lCdfLauyd9eJmShXuxmASflQy3
+        0sCFCTGb1cbO0id25xdsScPlQQ==
+X-Google-Smtp-Source: AMrXdXtxGOM+IE7OMAYhEmDiWqfKeOMQpDAVWOJWd/wcOgQQY/5Q9ZqrysmmRjNZV7CdShF+92RTyQ==
+X-Received: by 2002:adf:dcd2:0:b0:2bb:ebc4:2f5c with SMTP id x18-20020adfdcd2000000b002bbebc42f5cmr31696184wrm.43.1674502882043;
+        Mon, 23 Jan 2023 11:41:22 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n3-20020adff083000000b002714b3d2348sm172556wro.25.2023.01.23.11.41.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 11:37:52 -0800 (PST)
-Received: by mail-yb1-f173.google.com with SMTP id m199so503376ybm.4;
-        Mon, 23 Jan 2023 11:37:52 -0800 (PST)
-X-Received: by 2002:a25:d88c:0:b0:77a:b5f3:d0ac with SMTP id
- p134-20020a25d88c000000b0077ab5f3d0acmr2416932ybg.202.1674502672667; Mon, 23
- Jan 2023 11:37:52 -0800 (PST)
+        Mon, 23 Jan 2023 11:41:21 -0800 (PST)
+Message-ID: <62eb3874-b9e1-7c7c-3147-a9cd9b65ae0a@linaro.org>
+Date:   Mon, 23 Jan 2023 20:41:20 +0100
 MIME-Version: 1.0
-References: <cover.1674499048.git.geert+renesas@glider.be> <Y87f7BPchIcT2BQa@shikoro>
-In-Reply-To: <Y87f7BPchIcT2BQa@shikoro>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 23 Jan 2023 20:37:40 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUF3ZAyp44wagw5vPGy5Qd8+1hF9bt9JwrascmXtLC8Zg@mail.gmail.com>
-Message-ID: <CAMuHMdUF3ZAyp44wagw5vPGy5Qd8+1hF9bt9JwrascmXtLC8Zg@mail.gmail.com>
-Subject: Re: [PATCH 00/12] can: rcar_canfd: Add support for R-Car V4H systems
-To:     Wolfram Sang <wsa@kernel.org>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v2 5/5] drivers: mmc: sdhci-cadence: Add debug option for
+ sdhci-cadence driver.
+Content-Language: en-US
+To:     Piyush Malgujar <pmalgujar@marvell.com>, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, yamada.masahiro@socionext.com,
+        devicetree@vger.kernel.org
+Cc:     jannadurai@marvell.com, cchavva@marvell.com
+References: <20230123192735.21136-1-pmalgujar@marvell.com>
+ <20230123192735.21136-6-pmalgujar@marvell.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230123192735.21136-6-pmalgujar@marvell.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+On 23/01/2023 20:27, Piyush Malgujar wrote:
+> From: Jayanthi Annadurai <jannadurai@marvell.com>
+> 
+> Use Kernel config CONFIG_MMC_DEBUG to support dumping PHY and host
+> controller register configuration for debug.
+> 
 
-On Mon, Jan 23, 2023 at 8:29 PM Wolfram Sang <wsa@kernel.org> wrote:
-> > Hence despite the new fixes, the test results are similar to what Ulrich
-> > Hecht reported for R-Car V3U on the Falcon development board before,
-> > i.e. only channels 0 and 1 work (FTR, [2] does not help).
->
-> IIRC Ulrich reported that the other channels did not even work with the
-> BSP on V3U.
+Commit title/subject does not end with full stop.
 
-Same on V4H.  In fact I'm not surprised, due to lingering bugs like the one
-fixed by "can: rcar_canfd: Fix R-Car V3U GAFLCFG field accesses".
+Best regards,
+Krzysztof
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
