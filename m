@@ -2,137 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B40996786AD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:45:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C72706786B9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:48:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231993AbjAWTpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 14:45:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50866 "EHLO
+        id S232804AbjAWTsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 14:48:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231529AbjAWTpe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:45:34 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9F5F26589;
-        Mon, 23 Jan 2023 11:45:33 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7404361016;
-        Mon, 23 Jan 2023 19:45:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17EB7C433D2;
-        Mon, 23 Jan 2023 19:45:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674503132;
-        bh=7xpsjjOksJa+D80Mz4jpcUdj/h3s0z9lgcJOeeAT3rM=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=KVcVGTo3O3yUE1plqscCldZDjkRC4WO4qMCIj5GPiYHD1ELTPkNADNS67djjPrnPv
-         n9QooRm7MjEmWT17YjH4mLU9yCMd2VAGRhTdWvrliELhAqUjFY5jqfmHKxd49sv2cB
-         7Ks1ypNGpIKRgvuvpexfGfl8CmtOwebqYSQr0nxaDXOZII4zL5SvI2AwtItlqNzLQ+
-         asLpBCgRk2KO7XuTjlnbQE6wr54xa6w/jXnFKCQ+nCbzCaJPVeig9MOqwljaNWoP1t
-         JOWzzRlrAGLzB7guWhMdzKFyTPYDY5wPuaG2W+yBxZ+gXzAtG/UsVsExehpj5INUZN
-         zVL1Pm5lcoAjA==
-Message-ID: <a20b8bd0-b1c9-d2ec-155f-d8e78cd76b1a@kernel.org>
-Date:   Mon, 23 Jan 2023 13:45:26 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] ARM: dts: socfpga: align UART node name with bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S229913AbjAWTs3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:48:29 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9D54222C3;
+        Mon, 23 Jan 2023 11:48:27 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30NJmLVE069757;
+        Mon, 23 Jan 2023 13:48:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1674503301;
+        bh=2deVQnpXjv2jkusjw58aOvaf5EeVgagttXtCwMY42tI=;
+        h=From:To:CC:Subject:Date;
+        b=LZfQoqi8fncgBDoAMBF3N7EjGljyuOZ0XcvyQMLjKTnF73kapHq9zMwK6P0RFtVqi
+         i/86k0+qgCYmGoKhSG6Dbx47IaLKtv9JWG1ZpNZmRVY1Z4wgl0GoHNWp76XgzUrifw
+         Vcuf27OCt/Pn8Mj5bASc97JMz7dlEyLM+yWBUocU=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30NJmL8j077799
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 23 Jan 2023 13:48:21 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 23
+ Jan 2023 13:48:20 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 23 Jan 2023 13:48:20 -0600
+Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30NJmJ0q031936;
+        Mon, 23 Jan 2023 13:48:19 -0600
+From:   Andrew Davis <afd@ti.com>
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230123151521.369188-1-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20230123151521.369188-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Andrew Davis <afd@ti.com>
+Subject: [PATCH v3 0/3] AM57x EVM Device Tree Overlays
+Date:   Mon, 23 Jan 2023 13:48:15 -0600
+Message-ID: <20230123194818.21448-1-afd@ti.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello all,
 
+These is an uncontroversial (hopefully) DT Overlay to support the
+TI AM57x EVM. More complex cases are staged and ready to follow but
+wanted to test the water with this one.
 
-On 1/23/23 09:15, Krzysztof Kozlowski wrote:
-> Bindings expect UART/serial node names to be "serial".
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   arch/arm/boot/dts/socfpga.dtsi         | 4 ++--
->   arch/arm/boot/dts/socfpga_arria10.dtsi | 4 ++--
->   arch/arm/boot/dts/socfpga_vt.dts       | 4 ++--
->   3 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/socfpga.dtsi b/arch/arm/boot/dts/socfpga.dtsi
-> index 3fee80bbae21..4c1d140f40f8 100644
-> --- a/arch/arm/boot/dts/socfpga.dtsi
-> +++ b/arch/arm/boot/dts/socfpga.dtsi
-> @@ -905,7 +905,7 @@ timer3: timer3@ffd01000 {
->   			reset-names = "timer";
->   		};
->   
-> -		uart0: serial0@ffc02000 {
-> +		uart0: serial@ffc02000 {
->   			compatible = "snps,dw-apb-uart";
->   			reg = <0xffc02000 0x1000>;
->   			interrupts = <0 162 4>;
-> @@ -918,7 +918,7 @@ uart0: serial0@ffc02000 {
->   			resets = <&rst UART0_RESET>;
->   		};
->   
-> -		uart1: serial1@ffc03000 {
-> +		uart1: serial@ffc03000 {
->   			compatible = "snps,dw-apb-uart";
->   			reg = <0xffc03000 0x1000>;
->   			interrupts = <0 163 4>;
-> diff --git a/arch/arm/boot/dts/socfpga_arria10.dtsi b/arch/arm/boot/dts/socfpga_arria10.dtsi
-> index 3b2a2c9c6547..72c55e5187ca 100644
-> --- a/arch/arm/boot/dts/socfpga_arria10.dtsi
-> +++ b/arch/arm/boot/dts/socfpga_arria10.dtsi
-> @@ -845,7 +845,7 @@ timer3: timer3@ffd00100 {
->   			reset-names = "timer";
->   		};
->   
-> -		uart0: serial0@ffc02000 {
-> +		uart0: serial@ffc02000 {
->   			compatible = "snps,dw-apb-uart";
->   			reg = <0xffc02000 0x100>;
->   			interrupts = <0 110 IRQ_TYPE_LEVEL_HIGH>;
-> @@ -856,7 +856,7 @@ uart0: serial0@ffc02000 {
->   			status = "disabled";
->   		};
->   
-> -		uart1: serial1@ffc02100 {
-> +		uart1: serial@ffc02100 {
->   			compatible = "snps,dw-apb-uart";
->   			reg = <0xffc02100 0x100>;
->   			interrupts = <0 111 IRQ_TYPE_LEVEL_HIGH>;
-> diff --git a/arch/arm/boot/dts/socfpga_vt.dts b/arch/arm/boot/dts/socfpga_vt.dts
-> index 3d0d806888b7..845ab2cc5ce6 100644
-> --- a/arch/arm/boot/dts/socfpga_vt.dts
-> +++ b/arch/arm/boot/dts/socfpga_vt.dts
-> @@ -57,11 +57,11 @@ timer3@ffd01000 {
->   			clock-frequency = <7000000>;
->   		};
->   
-> -		serial0@ffc02000 {
-> +		serial@ffc02000 {
->   			clock-frequency = <7372800>;
->   		};
->   
-> -		serial1@ffc03000 {
-> +		serial@ffc03000 {
->   			clock-frequency = <7372800>;
->   		};
->   
-
-Applied!
+For some reason dtbs_check does not get run on overlays, this
+will need further investigation to fix in kbuild. For now I ran
+it through manually but am not 100% sure it actually checked it,
+so double checks here very welcome.
 
 Thanks,
-Dinh
+Andrew
+
+Changes from v2:
+ - Rebased on v6.2-rc5
+
+Changes from v1:
+ - Made touchscreen node name generic
+ - Used proper interrupt flags
+
+Andrew Davis (3):
+  ARM: dts: ti: Add AM57xx GP EVM board support
+  ARM: dts: ti: Add AM57xx GP EVM Rev A3 board support
+  ARM: dts: am57xx-idk: Add IDK displays and touchscreens
+
+ arch/arm/boot/dts/Makefile                    |   8 ++
+ arch/arm/boot/dts/am571x-idk-touchscreen.dtso |  32 +++++
+ arch/arm/boot/dts/am572x-idk-touchscreen.dtso |  32 +++++
+ arch/arm/boot/dts/am57xx-evm.dtso             | 127 ++++++++++++++++++
+ .../boot/dts/am57xx-idk-lcd-osd101t2045.dtso  |  63 +++++++++
+ .../boot/dts/am57xx-idk-lcd-osd101t2587.dtso  |  66 +++++++++
+ 6 files changed, 328 insertions(+)
+ create mode 100644 arch/arm/boot/dts/am571x-idk-touchscreen.dtso
+ create mode 100644 arch/arm/boot/dts/am572x-idk-touchscreen.dtso
+ create mode 100644 arch/arm/boot/dts/am57xx-evm.dtso
+ create mode 100644 arch/arm/boot/dts/am57xx-idk-lcd-osd101t2045.dtso
+ create mode 100644 arch/arm/boot/dts/am57xx-idk-lcd-osd101t2587.dtso
+
+-- 
+2.38.1
+
