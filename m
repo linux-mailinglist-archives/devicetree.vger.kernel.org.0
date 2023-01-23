@@ -2,75 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8030F678697
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:41:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A26E67869D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:42:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232299AbjAWTl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 14:41:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47544 "EHLO
+        id S232744AbjAWTma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 14:42:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232688AbjAWTlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:41:25 -0500
+        with ESMTP id S232697AbjAWTm3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:42:29 -0500
 Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 689A32D140
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:41:23 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id bk16so11842256wrb.11
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:41:23 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CD107DA6
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:42:27 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id e3so11840188wru.13
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:42:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=w/RsMe/pvsRxXGnKgG44ap9RIqwrmY5BGtfT8sB3Eh4=;
-        b=OMnyhIAFcuf8nT4iXKlhGZ1df39+dR+qfI3xswY1zqPdP6REFLZ1jGmagTJf0E/qZg
-         fSW8p77CNMLw+pmKKkZy2rMGx8V6D5sDerkC7rLtD6BL+JogehS+v3JKKYoyI3rwglN5
-         2PpB28eDnu5Esw+nb/k+NfdGU6f0H5WhAn+f2eaVsl5C4qGAxLnL5LfSwVOLT8QSXgeY
-         v44j/NvtBsgcIIWOcZ7luzLDwmgckOU01IckCg6HSLZgpli3Dtg1CV9XJDSQLmeHR7gO
-         fwN0z4WMjlYZ7L75MkD6TbA8Kqvuv3LgKMrDwTKQpJHLy48xMDMk0oau5V9Ic0FeBvNK
-         pCzQ==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=p9ILq3+mwKrh0pefLGbJdcwDb8dIBE8u28kNBwVa/4E=;
+        b=AW/XUguALAmXap9iIRkL9wPE1+78JgBdgei1kVXA1aDGHszAL3rWm2zWxD/+2L94qq
+         Ai9QVNX5MqQMZf1tNfL/JAzFrqycZRpT2RTS9zNfk0k7t38aFLRSYuDrl1rOf+bKtOhL
+         59HIDTTK3pLwO0ooeLDkGqAMCelObQvL82eCLD6p6hOucdd+k162dxnenZtS6XFghKAd
+         HpYFMcHO9dgsGMv/PoIRv/phrA051NZUVN1eZ1QsFXFI6RmUyrlqHccHBepyQTMlrztR
+         6z/GMXcviz4lZr9ICzPpx621xgV6B/strzNrsuKr6Btq+0OSucGLSsIzHGf9fY1IEe8K
+         CmeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w/RsMe/pvsRxXGnKgG44ap9RIqwrmY5BGtfT8sB3Eh4=;
-        b=TZKIGHXehDczcwb8ZClbygPlXnrH14lpKTE7OzNERMADs/BVleFngB5w/3+zPMP4L4
-         zs1ElPH6AOsxWZ5lqDtALWxg6vAWdMbjgg7mlt+cr49H5H5/ogaM4u7OjhpF8S2ID7u8
-         P5HfReR/zBAB+RskaIOnAekvhu4ObL1aNuzJG8fMeT3CaXID7rDERrkEjtZ2DG+eUlBn
-         QQUuyzOFvx8qjgEw6JQGof4/3aFLKouNIVofMZogVlUHJfL9C2z6tLAWTZA8TUzk1/Mo
-         ipGRJq9qH85Rahi8VNGZMB8Vl2HzCFGbTw78Ry3TIWx/mZ5FXL8L3fSYr86B1zCJT4xn
-         Wlfw==
-X-Gm-Message-State: AFqh2kpBu3MAzQxbTHI4oTQY9SnMf1lCdfLauyd9eJmShXuxmASflQy3
-        0sCFCTGb1cbO0id25xdsScPlQQ==
-X-Google-Smtp-Source: AMrXdXtxGOM+IE7OMAYhEmDiWqfKeOMQpDAVWOJWd/wcOgQQY/5Q9ZqrysmmRjNZV7CdShF+92RTyQ==
-X-Received: by 2002:adf:dcd2:0:b0:2bb:ebc4:2f5c with SMTP id x18-20020adfdcd2000000b002bbebc42f5cmr31696184wrm.43.1674502882043;
-        Mon, 23 Jan 2023 11:41:22 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n3-20020adff083000000b002714b3d2348sm172556wro.25.2023.01.23.11.41.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 11:41:21 -0800 (PST)
-Message-ID: <62eb3874-b9e1-7c7c-3147-a9cd9b65ae0a@linaro.org>
-Date:   Mon, 23 Jan 2023 20:41:20 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p9ILq3+mwKrh0pefLGbJdcwDb8dIBE8u28kNBwVa/4E=;
+        b=tbPU2DOf6KjEPXnti6K4lSYjDd1p/i+ylWCgwZj5HvPb9UH/CzC148RAPW80mIIYJd
+         l1zTewDLKSXmBjw5Vn0EGXGsRtPZ2M9r03WcZ9uoVpoV41AKooPCaG8mi+oGAhSBG8SE
+         OKrUJBYJpWLsqHxKD1JU7EWgsY6lR/O7w08TCwz/BdFiY5t1KIYpCM+8+NFZ6W9lJTkr
+         mtB/0MeErWQtlxWJn9CDuchUw6FqSoRpDM+8QVOtgw97ofX5QJkQwFyZsppCFVJfEDps
+         n32E4enrtJ9T9DwVkmx6F26iE9OBWls/tXfc6slX6SxHn1TXNfgqnR7p9umZi/2pcbam
+         Wg4g==
+X-Gm-Message-State: AFqh2koTBY1xPjJF5RsUFgfoOooBbeTnN64c6Pt3ABTNYXWqbj3n3GVu
+        Dzau8f6Clh59zW5o2hLkpCg8aQ==
+X-Google-Smtp-Source: AMrXdXsnN/1Z1mhC5MXnr3/Vlg9iTHyDxGzqM1a2JSKGN6e1eHCKTGhbtkzJtZchpKSCwnfztvDLQQ==
+X-Received: by 2002:adf:f805:0:b0:2be:2b5:ae87 with SMTP id s5-20020adff805000000b002be02b5ae87mr22137380wrp.24.1674502945664;
+        Mon, 23 Jan 2023 11:42:25 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id y15-20020a5d470f000000b002bc8130cca7sm175808wrq.23.2023.01.23.11.42.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jan 2023 11:42:25 -0800 (PST)
+Date:   Mon, 23 Jan 2023 21:42:22 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v4 08/12] phy: qcom-qmp-pcie: Add support for SM8550 g3x2
+ and g4x2 PCIEs
+Message-ID: <Y87jHlzAaoGbs0Pu@linaro.org>
+References: <20230119140453.3942340-1-abel.vesa@linaro.org>
+ <20230119140453.3942340-9-abel.vesa@linaro.org>
+ <Y86h1FDuHFu3mImq@hovoldconsulting.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v2 5/5] drivers: mmc: sdhci-cadence: Add debug option for
- sdhci-cadence driver.
-Content-Language: en-US
-To:     Piyush Malgujar <pmalgujar@marvell.com>, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, adrian.hunter@intel.com,
-        ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, yamada.masahiro@socionext.com,
-        devicetree@vger.kernel.org
-Cc:     jannadurai@marvell.com, cchavva@marvell.com
-References: <20230123192735.21136-1-pmalgujar@marvell.com>
- <20230123192735.21136-6-pmalgujar@marvell.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230123192735.21136-6-pmalgujar@marvell.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y86h1FDuHFu3mImq@hovoldconsulting.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,15 +88,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/01/2023 20:27, Piyush Malgujar wrote:
-> From: Jayanthi Annadurai <jannadurai@marvell.com>
+On 23-01-23 16:03:48, Johan Hovold wrote:
+> On Thu, Jan 19, 2023 at 04:04:49PM +0200, Abel Vesa wrote:
+> > Add the SM8550 both g4 and g3 configurations. In addition, there is a
+> > new "lane shared" table that needs to be configured for g4, along with
+> > the No-CSR list of resets.
+> > 
+> > Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> > 
+> > This patchset relies on the following patchset:
+> > https://lore.kernel.org/all/20230117224148.1914627-1-abel.vesa@linaro.org/
+> > 
+> > The v3 of this patchset is:
+> > https://lore.kernel.org/all/20230118005328.2378792-1-abel.vesa@linaro.org/
+> > 
+> > Changes since v3:
+> >  * added Dmitry's R-b tag
+> > 
+> > Changes since v2:
+> >  * none
+> > 
+> > Changes since v1:
+> >  * split all the offsets into separate patches, like Vinod suggested
+> > 
+> > 
+> >  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 365 +++++++++++++++++++++++
+> >  1 file changed, 365 insertions(+)
+> > 
+> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > index bffb9e138715..48d179d8d8d6 100644
+> > --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+
+[...]
+
+> > @@ -2370,6 +2704,14 @@ static int qmp_pcie_power_on(struct phy *phy)
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > +	if (qmp->nocsr_resets) {
+> > +		ret = reset_control_bulk_deassert(cfg->num_nocsr_resets, qmp->nocsr_resets);
+> > +		if (ret) {
+> > +			dev_err(qmp->dev, "no-csr reset deassert failed\n");
+> > +			goto err_disable_pipe_clk;
+> > +		}
+> > +	}
 > 
-> Use Kernel config CONFIG_MMC_DEBUG to support dumping PHY and host
-> controller register configuration for debug.
+> Is this the documented reset sequence? To keep the nocsr reset asserted
+> from init() to power_on() and during programming of the PHY registers?
+> 
+> What if power_on() is never called, etc? (I know we always call
+> power_on() after init() currently, but that may change.)
+> 
+> Could you explain a bit how this reset is supposed work and be used?
 > 
 
-Commit title/subject does not end with full stop.
+The documentation says that the no-CSR reset should be kept asserted until
+the clock (PLL) is stable and during configuration. It also says the
+no-CSR can be used to reset the PHY without losing the configuration.
+It also says pciephy_reset needs to be deasserted before configuration.
 
-Best regards,
-Krzysztof
+So I guess what we need to do here is: deassert the pciephy_reset,
+configure the CSR register, then deassert the no-CSR reset.
 
+If power on never gets called, PHY remains in reset, but configured.
+
+> > +
+> >  	/* Pull PHY out of reset state */
+> >  	qphy_clrbits(pcs, cfg->regs[QPHY_SW_RESET], SW_RESET);
+> >  
+> > @@ -2503,6 +2845,21 @@ static int qmp_pcie_reset_init(struct qmp_pcie *qmp)
+> >  	if (ret)
+> >  		return dev_err_probe(dev, ret, "failed to get resets\n");
+> >  
+> > +	if (cfg->nocsr_reset_list) {
+> > +		qmp->nocsr_resets = devm_kcalloc(dev, cfg->num_nocsr_resets,
+> > +				   sizeof(*qmp->nocsr_resets), GFP_KERNEL);
+> > +		if (!qmp->nocsr_resets)
+> > +			return -ENOMEM;
+> > +
+> > +		for (i = 0; i < cfg->num_nocsr_resets; i++)
+> > +			qmp->nocsr_resets[i].id = cfg->nocsr_reset_list[i];
+> > +
+> > +		ret = devm_reset_control_bulk_get_exclusive(dev, cfg->num_nocsr_resets,
+> > +								qmp->nocsr_resets);
+> > +		if (ret)
+> > +			return dev_err_probe(dev, ret, "failed to get no CSR resets\n");
+
+[...]
