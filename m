@@ -2,113 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F7A5678373
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 18:40:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82CD2678377
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 18:41:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232041AbjAWRk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 12:40:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50824 "EHLO
+        id S232340AbjAWRlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 12:41:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232032AbjAWRk1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 12:40:27 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED60229423;
-        Mon, 23 Jan 2023 09:40:23 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30NHeBIh003751;
-        Mon, 23 Jan 2023 11:40:11 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1674495611;
-        bh=sehj8PPhKP8iCZukopJOwhDBK6WdADlL1otDbYsZdzo=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=wemGoECxpv7xvHjez//xYEtRzNtCGkJhpZYRFhCJYoh9PUJzI9BZJ45Q1tD279Mfw
-         OdiEg3qoNOoXa84/FdLrszMakbM2d5Ignol6H753YJ/A8axgX3Xr1D1y4fSSM+3gyA
-         skG2k6vgJPKHlnHjeiptbj5Hu1t8dyHJQS9bPIGw=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30NHeBNa003327
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 23 Jan 2023 11:40:11 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 23
- Jan 2023 11:40:11 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 23 Jan 2023 11:40:11 -0600
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30NHe7gx122259;
-        Mon, 23 Jan 2023 11:40:08 -0600
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Sinthu Raja <sinthu.raja@mistralsolutions.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Sinthu Raja <sinthu.raja@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH V5 0/3] AM68 SK: Add initial support
-Date:   Mon, 23 Jan 2023 23:09:57 +0530
-Message-ID: <167449552974.2854311.9918348404128839408.b4-ty@ti.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230116071446.28867-1-sinthu.raja@ti.com>
-References: <20230116071446.28867-1-sinthu.raja@ti.com>
+        with ESMTP id S231475AbjAWRla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 12:41:30 -0500
+Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8C2F9EFB9;
+        Mon, 23 Jan 2023 09:41:28 -0800 (PST)
+Received: from [192.168.1.134] (2-248-191-197-no36.tbcn.telia.com [2.248.191.197])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id 2D70B140428;
+        Mon, 23 Jan 2023 17:41:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+        s=donut; t=1674495686;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=UHq6DB8MPeTL9CD1+RatQ6WKZTorJezP7W2joIZr5/8=;
+        b=yaIpWvQzf6RHclGGr/C1Ida+Mrd/Qg0zUpyJjpjuGSoxRC2Pnwl41cfJuje2zCBgZZfsqy
+        TiuPvkjG+hSHXtajCt2kLAowon99gUJQMLZ97XAKUIqoIKuPgRAaZ9OVeGrOdgI9zNUQgJ
+        uW2gJQ3ObWBlqPZrQCmzx0XoRpbMYR0=
+Message-ID: <7c69e654-fe57-ad5c-9b41-15aaeaa73102@postmarketos.org>
+Date:   Mon, 23 Jan 2023 18:41:25 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 2/3] dt-bindings: arm: qcom: Add MSM8926 and Samsung
+ Galaxy Tab 4 10.1 LTE
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        matti.lehtimaki@gmail.com
+References: <20230122144749.87597-1-newbyte@postmarketos.org>
+ <20230122144749.87597-3-newbyte@postmarketos.org>
+ <f67b23e8-a476-7f8c-b692-e85ebbe669f5@linaro.org>
+ <1481d44d-f84c-db12-d95d-75f367e973de@linaro.org>
+From:   Stefan Hansson <newbyte@postmarketos.org>
+In-Reply-To: <1481d44d-f84c-db12-d95d-75f367e973de@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sinthu Raja,
 
-On Mon, 16 Jan 2023 12:44:43 +0530, Sinthu Raja wrote:
-> From: Sinthu Raja <sinthu.raja@ti.com>
+
+On 2023-01-23 18:11, Krzysztof Kozlowski wrote:
+> On 23/01/2023 18:10, Krzysztof Kozlowski wrote:
+>> On 22/01/2023 15:47, Stefan Hansson wrote:
+>>> MSM8926 (also known as Snapdragon 400) is very similar to MSM8226 and
+>>> APQ8026 with the primary difference being that it features an LTE modem
+>>> unlike the former two which feature a 3G modem and a GPS-only modem,
+>>> respectively.
+>>>
+>>> This also documents Samsung Galaxy Tab 4 10.1 LTE (samsung,matisselte)
+>>> which is a tablet by Samsung based on the MSM8926 SoC.
+>>>
+>>> Signed-off-by: Stefan Hansson <newbyte@postmarketos.org>
+>>> ---
+>>>   Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+>>>   1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+>>> index 47913a8e3eea..7a0b2088ead9 100644
+>>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+>>> @@ -35,6 +35,7 @@ description: |
+>>>           mdm9615
+>>>           msm8226
+>>>           msm8916
+>>> +        msm8926
+>>>           msm8953
+>>>           msm8956
+>>>           msm8974
+>>> @@ -219,6 +220,11 @@ properties:
+>>>             - const: qcom,msm8916-v1-qrd/9-v1
+>>>             - const: qcom,msm8916
+>>>   
+>>> +      - items:
+>>> +          - enum:
+>>> +              - samsung,matisselte
+>>
+>> 1. matisse is the code name, lte is version/suffix. I don't think they
+>> should be together, because then it looks like "matisselte" is a name.
+>> It actually sounds like one word.
 > 
-> Hi All,
-> This series of patches add support for AM68 Starter kit(SK). AM68 SK
-> is a low cost, small form factor board designed for TI’s AM68 SoC.
+> Update: there is already matisse-wifi, so please follow the same naming
+> convention. Version suffix should be separated with hyphen.
 > 
-> Refer below link to AM68 Technical Reference Manual for further details:
-> http://www.ti.com/lit/pdf/spruj28
+
+I'm aware, and I've been in contact with the matisse-wifi dts author who 
+told me that he went with this name because you suggested it (he had 
+originally sent it in as matissewifi). However I don't think diverging 
+from how the rest of the community refers to it is a good idea. 
+Codenames often sound nonsensical, but they have effectively become the 
+de-facto universal identifier for devices in the community and so I 
+think retaining that consistency is more beneficial than making it sound 
+nice.
+
+Additionally, while matisse-wifi has the hyphen added before the suffix, 
+many other Samsung devices do not (klte, jackpotlte, s3ve3g). As such, I 
+think the name matisse-wifi is the outlier here rather than matisselte 
+(but yes, I do understand that they are more related to each other than 
+the other devices mentioned).
+
+Does that sound sensible?
+
+>>
+>> 2. You base on other SoC but you do not include its compatibles. Why? Is
+>> it intended? None of the properties applicable to other SoC will match
+>> here, thus I actually wonder if you run dtbs_check...
+
+Sorry, I forgot about running dtbs_check. However, I'm not sure I 
+understand the question. What do you mean by that I don't include its 
+compatibles?
+
+I ran `$ make dtbs_check DT_SCHEMA_FILES=qcom.yaml` locally just now, 
+and it only gave me errors from the qcom-msm8974pro-oneplus-bacon dtb. 
+Maybe I'm running it wrong?
+
 > 
-> [...]
+> Best regards,
+> Krzysztof
+> 
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
-
-[1/3] dt-bindings: arm: ti: Add binding for AM68 SK
-      commit: 73b1c4f5f53e531f75d4b65dec4784cf67e685f2
-[2/3] arm64: dts: ti: Add initial support for AM68 SK System on Module
-      commit: 2b6277b76d42cbb781c558ea982e23cd770dd363
-[3/3] arm64: dts: ti: k3-am68-sk: Add support for AM68 SK base board
-      commit: a266c180b398eab5030bdcf2d1bbdc62fb7fc9c1
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
-
+Thanks for the review,
+Stefan Hansson
