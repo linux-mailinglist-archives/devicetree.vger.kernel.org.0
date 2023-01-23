@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5E4467757B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 08:17:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11CF267757C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 08:17:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231468AbjAWHRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 02:17:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53100 "EHLO
+        id S231483AbjAWHRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 02:17:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231378AbjAWHRi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 02:17:38 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13A371A97D
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 23:17:35 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id u1-20020a17090a450100b0022936a63a21so14454993pjg.4
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 23:17:35 -0800 (PST)
+        with ESMTP id S231378AbjAWHRm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 02:17:42 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 879EF1A97F
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 23:17:40 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id y3-20020a17090a390300b00229add7bb36so10210441pjb.4
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 23:17:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GI8NCTgrz3eH8HHLTGGwu4ZgM3J2mR0tZKBmJm8ZEFI=;
-        b=AyHSatqd3SUjFsZkrghnvnPkSgYtNAYZoegmcjQ8bkGVdN9rOP/5QyzHb7MuYYZe6E
-         PjyIXgUSZ47Jd/uwzJ0o7sEDXjCCvWYcmafwW8Lozy6zNDY2RuClH4qDFstKW5IEwVu9
-         CeigfEACWVJvv3FPV/J0I3zK+7VflToE5PWSA=
+        bh=d2YGakH9pYkYD73KfKfwouPB9cCWa0mtmcn+X4PJ1qI=;
+        b=rKOwd5XzvsFOgekLFnlLwsvEiUCrNhSlvpUvRYxSIohtqmWAvIsJgJGOV7e3BEWDcw
+         VYZjE4nIQjYuOrnUxUllf/dXlseQY8xfX8YsKvpEDRhjYSX8cDjvQgt0Rtg8s4Ji+2Wi
+         2H/3vlt9dZEQ/XT0ypBjM3bROlf5v+iNQvfio=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GI8NCTgrz3eH8HHLTGGwu4ZgM3J2mR0tZKBmJm8ZEFI=;
-        b=o9UJ+YqmeG6NQKg//NP9lpq/XgSTsz/7CDKMVCrMlCFvKerfHltcS73itRWfCvFZWa
-         ai5UsuRxOyHnIVsg6n1x1uIWjUNUD1Zrkrc1F/PzHerkD48Q4GlQU/owZLYlM0SPWzxQ
-         AOipwdpb4ZCo/PGosvUs1WwCWwMHiJB46Ro/gtc+1wYOthXY9APL067mfkK6l0jL/iLU
-         DZcgrzf5P4gAV2HaauIWM4g2KRHgYyeCQL2HHYW1r1002/oQGC44GhH1iZVVpZyhfh06
-         k3Kb8zsrJPcZuOTOncBuzCc1ZvkpvC5nHEdGMpp6WRnlXGLXgyTDqHVfOcG1yqnrn61T
-         sPzw==
-X-Gm-Message-State: AFqh2koXOsq1lX31dQKTDWmWHSKJwWEHLsZYAPx3mJdsGDk8ijdVLg65
-        ZMEYOczKjrjwXWSruaT2ZcF9dw==
-X-Google-Smtp-Source: AMrXdXsOSisp+SnbTKLWuVOng0nj+csLrTEKupg1J6PgyZ1aQ/kMu0a27LLno5vdQZS39iibZqWZCw==
-X-Received: by 2002:a05:6a20:1bc7:b0:b8:653a:6376 with SMTP id cv7-20020a056a201bc700b000b8653a6376mr21850436pzb.2.1674458254574;
-        Sun, 22 Jan 2023 23:17:34 -0800 (PST)
+        bh=d2YGakH9pYkYD73KfKfwouPB9cCWa0mtmcn+X4PJ1qI=;
+        b=XPfBTKF0ITIblg5HcqRm5CMUDvulXaFDfdgtH5AwiWQ2mMwMT1cDjOK9r4qNBxjUeG
+         vVxQ7A9Csuli4mLcPkNAzCZzpHOW/8PhkO9Jt2rz5mX+yFPaH0xFfMDj83ImH1umk2Ri
+         zCtijdjqIVJHsGJoHkJ/grpKUvcGMVxIpQmQtKau8lxLcP8oFwOzw/HZiEXCFS4+224S
+         j9hdSkPFZqzd6bzBXFqiU/EFecqcO38ZqUnDoSYbce9aEJ44sfAIsIEClODBX+fsj8KR
+         A/rlqZobDRCOc2zugIfQkTN2uwVKiVxddBuQ8BOJh9TEUvQaOlP2hpLyZ6R1j1AMWRwv
+         Y6Og==
+X-Gm-Message-State: AFqh2kqBIjwjyqGFY8yMwZdsKnzYhehfzcCSLPIdTARoKYdkv83HkxOj
+        H8pVw1zh1C+3GKfRsDCNrEOgrw==
+X-Google-Smtp-Source: AMrXdXviTJZzXMOc8OKmyBpNavbXFCp4YfwA3oQupaeAFEbtlVRcNlIe4OclPoA1jLQng7UdgTEO3w==
+X-Received: by 2002:a05:6a20:4d91:b0:b9:7a34:a78d with SMTP id gj17-20020a056a204d9100b000b97a34a78dmr9923977pzb.9.1674458260089;
+        Sun, 22 Jan 2023 23:17:40 -0800 (PST)
 Received: from localhost.localdomain ([2405:201:c00a:a15f:3847:3e45:1d7:787c])
-        by smtp.gmail.com with ESMTPSA id e3-20020a17090301c300b00172cb8b97a8sm17742091plh.5.2023.01.22.23.17.27
+        by smtp.gmail.com with ESMTPSA id e3-20020a17090301c300b00172cb8b97a8sm17742091plh.5.2023.01.22.23.17.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Jan 2023 23:17:33 -0800 (PST)
+        Sun, 22 Jan 2023 23:17:39 -0800 (PST)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
@@ -54,14 +54,13 @@ Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         FUKAUMI Naoki <naoki@radxa.com>,
         Jagan Teki <jagan@amarulasolutions.com>,
         Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH v2 3/4] arm64: dts: rockchip: Drop unneeded model for Radxa CM3i
-Date:   Mon, 23 Jan 2023 12:46:52 +0530
-Message-Id: <20230123071654.73139-3-jagan@amarulasolutions.com>
+Subject: [PATCH v2 4/4] arm64: dts: rockchip: Correct the model name for Radxa E25
+Date:   Mon, 23 Jan 2023 12:46:53 +0530
+Message-Id: <20230123071654.73139-4-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230123071654.73139-1-jagan@amarulasolutions.com>
 References: <20230123071654.73139-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -72,36 +71,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With module and carrier board topology, carrier board dts will include
-module dtsi files for creating complete platform.
+Radxa E25 is a Carrier board, so update the model name for Radxa E25
+as suggested by the Radxa website.
 
-The carrier board dts will have final model name and compatible string
-so any model name added in module dtsi will eventually replaced.
-
-This happened for any devicetree property if the same property is updated
-or added twice.
-
-So, drop this unneeded model name from module dtsi.
-
+Fixes: 2bf2f4d9f673 ("arm64: dts: rockchip: Add Radxa CM3I E25")
 Cc: Chukun Pan <amadeus@jmu.edu.cn>
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
 Changes for v2:
-- none
+- update commit message add Fixes tag
 
- arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
-index 225dbbe4955d..c50fbdd48680 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
-@@ -6,7 +6,6 @@
- #include "rk3568.dtsi"
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts b/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
+index 9fc9459505bd..63c4bd873188 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
+@@ -4,7 +4,7 @@
+ #include "rk3568-radxa-cm3i.dtsi"
  
  / {
--	model = "Radxa CM3 Industrial Board";
- 	compatible = "radxa,cm3i", "rockchip,rk3568";
+-	model = "Radxa E25";
++	model = "Radxa E25 Carrier Board";
+ 	compatible = "radxa,e25", "radxa,cm3i", "rockchip,rk3568";
  
  	aliases {
 -- 
