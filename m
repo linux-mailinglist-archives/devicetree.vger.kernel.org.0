@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B8E3677EFC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:13:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40C9C677F0A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:13:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232369AbjAWPNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:13:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39552 "EHLO
+        id S232402AbjAWPNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:13:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231975AbjAWPNX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:13:23 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE85427992
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:13:21 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id r9so11123161wrw.4
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:13:21 -0800 (PST)
+        with ESMTP id S232384AbjAWPNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:13:36 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 411F6274AE
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:13:24 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so10832582wml.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:13:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rcO0beBhJvY7L0pAz0ix6ZIFb3bQV/tZup2eSR9fEjE=;
-        b=jcfa4hARo1HJwIehRkPDvzT0+j43uVWrJYFNzZFKJFnKpJiYnKY2DxtS+F/JYF6uV4
-         KknhnLaVrHDF1aK+YU+We/6hYH28642w2VsAR2GhuxMYrMGdHZ4yvQdKZpcnOwkKtjNs
-         9YeAeCXyUlV+RLV/5E6LYVH0K+wemk8/uI/1dcbZpOzNblLuvGNxrTnammNGXidPuI0r
-         ESQrQEpLx/TKFTbBmG38BRF//5BuQ7VLC+rC4pjygLZu77HP7SzuoAViTIttym9i2g6+
-         dyPK25KiunlTmQVEYImYPt0PSo2l+BBax4BFQZTf5+cfTrrzSHX9Ua9rb0bUiuClnAvS
-         sn1w==
+        bh=XbA6lJheuFk/8xFTT1ePhHPMDBY/JK/4xrBmt+OOi4U=;
+        b=zKwo3e+7uOyJGADkS3SvY4tG/YcyQsjz83Hw5I13CEburg4Q5MNhT/O9mXFaHC1VHm
+         NHpBnUzfLRasM5hHsboJ8qg0tjtusxjgkgU3z7WRakchQU+RDTPBJnRDSdlQige5MWjK
+         n04J6T7rlTs3x9+hGTcOrAiMVD24XhCyrC8pae432g0HFZcOudET18IAy6qyEVL5YFKe
+         tiWwsiNjm+uFGz47RWjXDJJuk1CSEYl4taTXz6UiG6pRB6Loe9dj7kV0N8md6ZyI+0ft
+         Plr0jHIhb9I72XwyXwCtNsowVRCU61bWwloIL2WLm69gsGTF/KCt+exSO/oKQmjopXf0
+         1F2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rcO0beBhJvY7L0pAz0ix6ZIFb3bQV/tZup2eSR9fEjE=;
-        b=znNkGmZmBVDbiIz6KcmWV2hLsxN7NJXLScahqfCDqno886RJoHBXcQJSV2VE4lZziB
-         0F8zWXoYTJtx76FIRpB17l9fuxs4dRsvRLTqj6d3kZHM5/xhlu20rIQJ1jIZFU9XdL3x
-         W0LnXYOssoBabk7/fL8UrmWJFUu+u9w3nk/ijjYONg/Ok/ldjLz27boRMTdwllM96HsI
-         PQp7SMZ5Gek6LU+jKJOvadxR5Uu01GFMTri6TYl6sBzGGggKARzo+858tNlKBZvagT8U
-         titsdRml7i0UEhktgG3BgMM3fh/3OBHs+EQhlbJVHDPxX2sfiGoPhycANmIgZYHeKMHR
-         POvQ==
-X-Gm-Message-State: AFqh2kqy4Y0O2GAzXaKJ6svAA/6sgxat1nUuv2x9R3VHWI2ped0PIjG4
-        vPX1k0Mfe9xMtaxdd9Rp/qPBrA==
-X-Google-Smtp-Source: AMrXdXunaNSmvF24sA3mpkTnzyAxSSQqlgKz33L99W7wuvo753haLL+xzVFn6hjB2Li7pbF1fFW5Cg==
-X-Received: by 2002:a5d:5954:0:b0:2bd:bdb5:baf1 with SMTP id e20-20020a5d5954000000b002bdbdb5baf1mr19905320wri.10.1674486800444;
-        Mon, 23 Jan 2023 07:13:20 -0800 (PST)
+        bh=XbA6lJheuFk/8xFTT1ePhHPMDBY/JK/4xrBmt+OOi4U=;
+        b=1uLIhDZ3l4Y+shMexRaD0Mv+2YT8tTzeNueF97mfdYbPC9zACq+6sUL56A3WZbxjKx
+         hdLms4N/2pydMGzmQWffwL1G+4CJcsb7e/63Xq13gfCVulyH3hsKl1+l4sWgUOogBLdO
+         BVwFjdKgkONkw8ld2U1LpSl3JVzZeopfEaN6k4F4gKPMouOMAw4jBaHtdGk1h6hTT2ES
+         k4dzRP3FIJnwFUOhf/c8QVEGIK3w2vzK6z71OZLfwc6IRR4wJbb19eUWyLMwhPZ8C51q
+         hP4EUe1w90B/G1XEp4DBrS+2ceIIrSM/jfW2Fdf2hINSV6IAbG+wic90CRTITm4vO25u
+         NU+Q==
+X-Gm-Message-State: AFqh2kr79tWraNXq+XWcE3w0o1iiupAR0jgdss9kkh0SZoXOI0WBuhPT
+        RKThqZg6FJ6O8W9kn31UhnmOeg==
+X-Google-Smtp-Source: AMrXdXszs6a9DYNOLInJHWRaCXLtQ/W1X0idHVCXTCQ9XdHt03vNRQ/V7BA7UrJDU9EYj7btHPSV3A==
+X-Received: by 2002:a05:600c:181a:b0:3d2:2043:9cbf with SMTP id n26-20020a05600c181a00b003d220439cbfmr24384116wmp.10.1674486802800;
+        Mon, 23 Jan 2023 07:13:22 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b002bc7f64efa3sm34737922wrw.29.2023.01.23.07.13.18
+        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b002bc7f64efa3sm34737922wrw.29.2023.01.23.07.13.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 07:13:20 -0800 (PST)
+        Mon, 23 Jan 2023 07:13:22 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -82,9 +82,9 @@ To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
         linux-stm32@st-md-mailman.stormreply.com
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 05/13] dt-bindings: serial: cdsn,uart: add power-domains
-Date:   Mon, 23 Jan 2023 16:12:54 +0100
-Message-Id: <20230123151302.368277-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 06/13] dt-bindings: serial: 8250_omap: drop rs485 properties
+Date:   Mon, 23 Jan 2023 16:12:55 +0100
+Message-Id: <20230123151302.368277-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
 References: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
@@ -100,57 +100,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Few Xilinx DTS have power domains in serial node:
-
-  zynqmp-zc1232-revA.dtb: serial@ff000000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+The binding references rs485 schema, so there is no need to list its
+properties.  Simplify a bit by removing unneeded entries.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/serial/cdns,uart.yaml   | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/serial/8250_omap.yaml | 5 -----
+ 1 file changed, 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.yaml b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-index 0c118d5336cc..38925b79cb38 100644
---- a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-@@ -9,9 +9,6 @@ title: Cadence UART Controller
- maintainers:
-   - Michal Simek <michal.simek@xilinx.com>
- 
--allOf:
--  - $ref: serial.yaml#
--
- properties:
-   compatible:
-     oneOf:
-@@ -46,6 +43,9 @@ properties:
-       port does not use this pin.
-     type: boolean
- 
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
-@@ -53,6 +53,17 @@ required:
-   - clocks
-   - clock-names
- 
-+allOf:
-+  - $ref: serial.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: cdns,uart-r1p8
-+    then:
-+      properties:
-+        power-domains: false
-+
- unevaluatedProperties: false
- 
- examples:
+diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+index 53dc1212ad2e..7db8e5477b03 100644
+--- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
++++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+@@ -70,11 +70,6 @@ properties:
+   dsr-gpios: true
+   rng-gpios: true
+   dcd-gpios: true
+-  rs485-rts-delay: true
+-  rs485-rts-active-low: true
+-  rs485-rx-during-tx: true
+-  rs485-rts-active-high: true
+-  linux,rs485-enabled-at-boot-time: true
+   rts-gpio: true
+   power-domains: true
+   clock-frequency: true
 -- 
 2.34.1
 
