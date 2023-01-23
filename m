@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9C5E677BF8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 13:56:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B57A9677BFA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 13:57:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231379AbjAWM45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 07:56:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59030 "EHLO
+        id S231697AbjAWM5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 07:57:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231613AbjAWM45 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 07:56:57 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694A04231
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 04:56:55 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id b7so10726980wrt.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 04:56:55 -0800 (PST)
+        with ESMTP id S231831AbjAWM47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 07:56:59 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC1B19038
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 04:56:56 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id h16so10694886wrz.12
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 04:56:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=js7pRMwDu5EHvl9HWw9Bq4dZ98JUEwC6xMOJGefUs4c=;
-        b=Ys42QZ5dtuZOUeAQTUOjMBFK0hkF/MLkR/buS6vrt86FjjWFLgxDrB5rliYR+0V5hY
-         fMjObsKLzT23m3cFP18ftCuer7iOLA/rzG5KZN1q013GJXJBH5a9g7o4+qXCiszR3AP+
-         MT96ahDnPpvewb9K2Nve6fiudnxgwK32HdJKWjMZDGDdzxGtjsDsK/aDaZWJ4H82mHYM
-         o3Yuk61/q6HfyaIa+G17u0ZNxXukM9dPAUQYtfsyHpyFp+c3/IRMbF1Jku/tLve09Q37
-         ktoPS3KPPHmEgV4deAuIotzpKpr+sOtQdIL2NfnAwa7lX/DwL3RyeXW1p55pnCkLvBQ3
-         QZqQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8+F8CiDwyz8G0OX6+bHI7fZ7rrG2Xo0Ih+n0xx9Q0Bg=;
+        b=c0uSINS/Sspm5+ASMO9ANiSCqd6XxFEemHp9apFWAxgorJPWaa9JgWSJR+LUlrQCp7
+         wtEnOr2UROIm6AzNHv8sSWbQbdopCGlTNXbmfB54YbNS3SjVdrTcXgx+OYlBFeulc2zR
+         GOJQHQV3Fk+A354gJEZ4f+Vlg7blyauOWGNH1MQrInH/c9PUntmSrShAtNH1lFxeJO2K
+         sDwNmrQxyK0/B1vLFbXuf+DW5FXNTq89RuelzemGnHttbY/J9XWhZNoUWwRDvJVy+WBT
+         /nxaftHPo821IVLT/HIv5K87lP593hLEq9bH4nvtm0QO/xUKCseVPSC+sl1x5JdtH+xb
+         nx3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=js7pRMwDu5EHvl9HWw9Bq4dZ98JUEwC6xMOJGefUs4c=;
-        b=P4dcCy4Oxeegnu48M6uPsI820LU79lMoT4eHxdKOq2MXm7P7aXvsfnmZ6jVx/wOmKG
-         c8ZuR0BN2uAVU6tXzyMsyZ+s2tPOypd+KKpxH/qVXT23pLe6j6kKxzkSqXR3vM/4KpZp
-         ioTcIiW8NQlIKg/Bt1oGW2hBp6kwpB5WWJbphjrhswhEpd1jxnuRRfP9GIsIy78YbvGk
-         ahwu3SqZEwqWfC7njNGvkf5cldj5KeIil0Fs4EeLJdef/DvH42/CnWIcEuLr/ah6i11e
-         ZpI2CjtxJ6rWEGI1DZ/IHLbQ9nRM9djziriO12+fLmjAduLAAkRHw4oiyv70hovS637+
-         5FVg==
-X-Gm-Message-State: AFqh2kqxJJ6lSDdF3OLM+EwtEKec9M8IDI7kC3PiKpM26hisQltHsigx
-        ous6fGMUmjvodlo47mRHc8EQ6A==
-X-Google-Smtp-Source: AMrXdXuhxWIrD+fGm7Plj36KzNqMsxCxdjpVHFjf4tsbuHxXogOtxsAmSXdiyz/4r2/PxOtH3ojOPw==
-X-Received: by 2002:a05:6000:a03:b0:244:48b3:d138 with SMTP id co3-20020a0560000a0300b0024448b3d138mr24564949wrb.54.1674478613920;
-        Mon, 23 Jan 2023 04:56:53 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8+F8CiDwyz8G0OX6+bHI7fZ7rrG2Xo0Ih+n0xx9Q0Bg=;
+        b=f3QWZZYchu4y7zLzL6yAU4qLYi1Bzo4iM6mKVnWX93hBDqkDyydWxfsHc9vjSAXVtC
+         vDRuLY6miiiCU9bTUS1ZYMUTM8Hbjq6nCwjOhDWPcTuvYjzUP9ep8368+8PgSkaogeil
+         a+AG5egidRySxs3nfUOx2EB+k/XMIHZ231WQdahVsUU45IGIfgXlyvIR/3relSSut1Ct
+         VkBwtMUSXSwTsG7kXb2eVBDMnDlTE509CBDpwZV8iXcVUjoA9BlaTXXj+N362MogJydA
+         FsNgkxHAhLfQxFGQUBMSdccbH/SOPL6MlWYwmdFrArMBkZ43oWZQJsiX3EaIby3/8bQp
+         JETA==
+X-Gm-Message-State: AFqh2ko+gOvLlA3OfOw+vXeWUOr0a1Kie2UlGvF1G7s3b1loaWFcgOx3
+        Qp3LyYldJbzfkhm6/8wOwzIohw==
+X-Google-Smtp-Source: AMrXdXsM+9GDR+iqVWtgSSzWkZp8ERQoNPykAzzwzzROI6+jPegvlIRm4w0AEoBxpxoC8GYHVXXlcA==
+X-Received: by 2002:a5d:5b0e:0:b0:2bb:e9e6:ac26 with SMTP id bx14-20020a5d5b0e000000b002bbe9e6ac26mr23571007wrb.57.1674478615454;
+        Mon, 23 Jan 2023 04:56:55 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a10-20020a056000100a00b00297dcfdc90fsm4569616wrx.24.2023.01.23.04.56.52
+        by smtp.gmail.com with ESMTPSA id a10-20020a056000100a00b00297dcfdc90fsm4569616wrx.24.2023.01.23.04.56.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 04:56:53 -0800 (PST)
+        Mon, 23 Jan 2023 04:56:55 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,75 +61,51 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 1/4] arm64: dts: qcom: use generic node name for Bluetooth
-Date:   Mon, 23 Jan 2023 13:56:09 +0100
-Message-Id: <20230123125612.154840-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 2/4] arm64: dts: qcom: sm8350: drop incorrect cells from serial
+Date:   Mon, 23 Jan 2023 13:56:10 +0100
+Message-Id: <20230123125612.154840-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230123125612.154840-1-krzysztof.kozlowski@linaro.org>
+References: <20230123125612.154840-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Node names should be generic (as Devicetree spec mandates), so use
-"bluetooth" for BT node.
+The serial/UART device node does not have children with unit addresses,
+so adderss/size cells are not correct.
 
+Fixes: cf03cd7e12bd ("arm64: dts: qcom: sm8350: Set up WRAP0 QUPs")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
 
 Changes since v1:
-1. Fix also msm8996-xiaomi-common
+1. None
 ---
- arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-idp.dts             | 2 +-
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi          | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-index 5b47b8de69da..2acfed28e3cb 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-@@ -229,7 +229,7 @@ &blsp1_uart2 {
- 	status = "okay";
- 	label = "QCA_UART";
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index 4efe79985186..018f26f729f1 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -1031,8 +1031,6 @@ uart2: serial@98c000 {
+ 				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
+ 				power-domains = <&rpmhpd SM8350_CX>;
+ 				operating-points-v2 = <&qup_opp_table_100mhz>;
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
  
--	bluetooth: qca6174a {
-+	bluetooth: bluetooth {
- 		compatible = "qcom,qca6174-bt";
- 
- 		enable-gpios = <&pm8994_gpios 19 GPIO_ACTIVE_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-index 774f9d45f051..6ea8dd7d3e01 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-@@ -430,7 +430,7 @@ &uart3 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-1 = <&qup_uart3_sleep>;
- 
--	bluetooth: wcn3990-bt {
-+	bluetooth: bluetooth {
- 		compatible = "qcom,wcn3990-bt";
- 		vddio-supply = <&vreg_l10a_1p8>;
- 		vddxo-supply = <&vreg_l1c_1p8>;
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-index a78075155310..e19178c1ec44 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-@@ -862,7 +862,7 @@ &uart6 {
- 
- 	pinctrl-0 = <&qup_uart6_4pin>;
- 
--	bluetooth: wcn3990-bt {
-+	bluetooth: bluetooth {
- 		compatible = "qcom,wcn3990-bt";
- 		vddio-supply = <&src_pp1800_s4a>;
- 		vddxo-supply = <&pp1800_l7a_wcn3990>;
 -- 
 2.34.1
 
