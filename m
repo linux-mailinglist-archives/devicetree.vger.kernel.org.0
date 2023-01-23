@@ -2,289 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 877E7677DEC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 15:26:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C05F677E22
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 15:33:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231614AbjAWOZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 09:25:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39452 "EHLO
+        id S231588AbjAWOdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 09:33:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231542AbjAWOZ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 09:25:59 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7339224106
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 06:25:57 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id z5so10977543wrt.6
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 06:25:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=QEvRmdYajcwffwpAz9Fq8XRwGwKumXqkZzQaa8G5Nfc=;
-        b=DmQM8iQfYIuf0qOGVhzw8rHUZaAFZM3TUPCCKm/jYQx/wKbp0fVtyyeq9nW//IXIiR
-         sSWsSOYcir+cnkA7scGRc3VCLfsX0plRvZ/mKhXtbnvVJIM9b6vnUDh6K2lm8yBCV51P
-         qpjBIJ/hZZQ3L4hk0kfFc+xKe6yBtYIhLLZdi4ITFdi7cWa4N8ZWtGNTGi4YWPxdcIQS
-         /rvwTeu5mxxHxJrpgPHXDYerU+LtpfizJxsu//FYnNFPSMcbZ7R7GRehyOLObBwWKexp
-         KxuxKyGrvzrHFHKORF5UErJSCe32dlEfXLyMIAT8XORTg/4f6sVmQXQAUXybFPLrUE1d
-         kl6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QEvRmdYajcwffwpAz9Fq8XRwGwKumXqkZzQaa8G5Nfc=;
-        b=B3bWLezs1OI6KyxeJZ/ahUz74w3iLC59P/+XrMHGU6mrWXO/VdbygITxSXhf9GQ41h
-         ZK58u9yYX8Kecu2XD1O9SC+L5YgDVCNodcma58jO/5fJ1Te+detC5+jl/rvM3xxW2RHM
-         lTkyGC4obkvmydUo/dIGM6jdiWIXB0JMjUx2TGugHwGn8Y3mxwwmAvkgl1zRjONxpcnS
-         HlEPbHozv9Q1CtCDnxHslL1wKkvj61RsPIh86pt4IYbqUxiSsvMmGbPSF3jd0Qz75hB4
-         myB5kNQK9ZLVygeu2LpI94i3Tng2qVxkkSD/wA4JHmjrcxUrEnQD7923pZdeMDVHWWlf
-         iFxw==
-X-Gm-Message-State: AFqh2kognmA0NIyKwDxVBZ0i6fxHT5O0yKACJJfbQB1TU72ThHN2PLfG
-        X7uDcMJTy1cxT8hGykfgNZ7p+w==
-X-Google-Smtp-Source: AMrXdXsWrHG5TqzRPtdl+g9dPuC1FJs+d0wZVLo3f8wQdVx7cngnSuCf5G6jrCd1PwNAcxwiUlPKdg==
-X-Received: by 2002:a5d:65d2:0:b0:2bb:6c04:4598 with SMTP id e18-20020a5d65d2000000b002bb6c044598mr22123720wrw.67.1674483955976;
-        Mon, 23 Jan 2023 06:25:55 -0800 (PST)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id r11-20020a5d694b000000b002bb28209744sm4074571wrw.31.2023.01.23.06.25.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 06:25:55 -0800 (PST)
-Date:   Mon, 23 Jan 2023 15:25:54 +0100
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+        with ESMTP id S230520AbjAWOdW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 09:33:22 -0500
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2070.outbound.protection.outlook.com [40.107.244.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 831B37693;
+        Mon, 23 Jan 2023 06:33:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jIjkgrmPamvpo43GfeDEzuY7t9ZjBqn0rAnp1gdJC5TpFBaVIkXYpBEBDBaqz2EfHqfUiVfyYBjy+BRb4A+Acc9BKBdx4UagZnsYJlnuoLRirms+3FmYIXo52aSNg2SaDvGn74mw4DbBpPVeINxDo+GbpcNNsUNvvFsDAJ/JBrL04lmcA00o9G2WeihOOGpH0XMu+wJAnh9ZaKxPO9nIJscR6YeSCmje8kr2yahkWNUbgtoT5/IEAnaphe6T0bscASAFoqFa6NcPtioycwA/ogYFoE6PU6CZhx4MUtaBkKLxjUnvOIptUoiNYQREh8x2BT3KKz+GW5E+ZBK0Ys6lUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0Pmps9L24qiJZfT66gM1Ahyu/GldNI7W7y1ogirN7Vo=;
+ b=OZZq0GOqaq1bV8sH+Iheh79gRkK4QEQlLDN/3ycIMGSC4Sa5e+ZChiRUI+WggrgPCWbZVV0QB5vUdy7VLtoEPRNF3ZTp5Lc5gTm1vkZX50uyE7osZxl2tnkUwVGLvI5ItwoSIXNzpA2inF+ZYQC/+TSzOK7R17EbTcUmSxE/WBdSegWY6vFX8LXyRf8mVZHesPY9vFwFB1satXvG5uM0q5cTZylSFLoA6C4d9NZyAteSqB6NCmwzeeydDo7qfjdcfaXgC14KCwVp4/GH+q6s3N/KvmNs7jxVIRhEtCTVEq3R6CNBJo6g7dLjhqSTfCCZtRjErhrbIiCEnDXFtZf2aQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0Pmps9L24qiJZfT66gM1Ahyu/GldNI7W7y1ogirN7Vo=;
+ b=i0yIPIff8tf+/0jCAdpukgtVK9QuPOlP5c3zvfe3mkKZZksiVog7d451f2+LjiHQ4TkiUmb/dm48ezj16vmTqRdmXTfZ7Xujf49LSk62LZ63fiyT+cgSGDaP1a83QKNJ1oG5x4CqKP38Lgy4N7cDemrfoIki9k8DKx3UHSG7UO6t00q6d8lV0rYm4QyVtGUPzUv36Y4IRGWdts35CxBoTcQAM6cD/P5iZ/g3JB6q8V6D6+VVVlPj5GgRr8JddXHyVn21HTklOMEwuiC1WvmCmLFCxw4TW/iprtCZOYlaRcqYyxArccUbddwN+t+nA9h+zGv6OJvr7clvcVOvUaOSxg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ DM6PR12MB4370.namprd12.prod.outlook.com (2603:10b6:5:2aa::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6002.33; Mon, 23 Jan 2023 14:33:19 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::f1be:5d:f297:e2f]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::f1be:5d:f297:e2f%8]) with mapi id 15.20.6002.033; Mon, 23 Jan 2023
+ 14:33:19 +0000
+Message-ID: <e39c0b6b-6265-b419-a7aa-18f930bb3a9f@nvidia.com>
+Date:   Mon, 23 Jan 2023 14:28:51 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V6 1/6] dt-bindings: usb: Add Cypress cypd4226 Type-C
+ controller
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4] riscv: Use PUD/P4D/PGD pages for the linear mapping
-Message-ID: <20230123142554.f22ajf6upfk2ybxk@orel>
-References: <20230123112803.817534-1-alexghiti@rivosinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
+References: <20230119121639.226729-1-jonathanh@nvidia.com>
+ <20230119121639.226729-2-jonathanh@nvidia.com>
+ <2789cf94-60b4-7e35-50f8-e21b564a1dfb@linaro.org>
+From:   Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <2789cf94-60b4-7e35-50f8-e21b564a1dfb@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P302CA0027.GBRP302.PROD.OUTLOOK.COM
+ (2603:10a6:600:2c1::17) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230123112803.817534-1-alexghiti@rivosinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|DM6PR12MB4370:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4b778871-4450-4d1d-b20a-08dafd4ec5a7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Hecf5Lak79XL+f8+ph0Ki0HGPB3QTGJKrb6zT1PhP+lUzlbg+1Oxxpc6nmqIslSRVTjqRl86pZkDu1aXY95wybE2AnJ8BiU+Cwq2rUEjwZOIPolaqi7D7XaTpWQ40zxlFhX9hwI+pv2OBQcfrMOxOt1MwheazNhsA7eaUF/+M1B6l5WsmHsJQ1BMwZmHmBRyhI83ZmpTjKuNe5tH+StSiBqwCLLwA8DBk2RzDOjj4IEpZp3SJQrV/R53pADIVr7bMxyJWnmJpEvvrdjG+Nv/tFTFp+t5fLlrUcKJid65QDiMRmz8VFW04kAhNOYVcEX9kXSA0s5aHhD/2KaucnRL1zb46vb5UsqD3laSYfY3kpq/S6+zZEZR9oaJmYp/EWStkFnu5cklCqHQktf8SQGkpdrt8o+kPJ8dk2QmvxshuozBl3fuJdAjkn2HIs9UhHcbvhYBEtvXGPP+VvIuANGHS5RJaO/+wpS968YtFhDiC+5aBrpyCLWBR1AqJtizq4Y6ZDYqqTi0EKuN3G2JuJYvINKbPHTHngQc9SjYfduOpNIQKQ0pIOZIlOFAel65jFHYsP/X9WSzDJLEs5uu3rAQ3j70t/0LIBu0+tTxPwxbPRJyYve7u05Zir1spz3XYsKdB5nzo6vSp4hLeufUNs2O5p1y1uLkoQVYcsLHk4l//e0w151QGt7CAXk4fftd3ZeeGGogOAfY3ipAD6uBuoiQnVQ59xsackJToZKK0gYKa8U=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(396003)(39860400002)(376002)(136003)(346002)(451199015)(83380400001)(38100700002)(31696002)(41300700001)(86362001)(2906002)(8936002)(5660300002)(4326008)(8676002)(55236004)(26005)(53546011)(186003)(6512007)(6506007)(6666004)(107886003)(66476007)(316002)(66946007)(2616005)(66556008)(478600001)(110136005)(966005)(6486002)(31686004)(36756003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q3VEVDlxNm5VV3ZkTWRLTXpRQmNXamdCQkt2N2Z0ZmF2SVpTaXJrN2hPL0lH?=
+ =?utf-8?B?L2pDY2l0MVJBUkVsNFRCMzhIQmF0MkVwbDcrc3BDZUYvQVJlSlExK3BXd08x?=
+ =?utf-8?B?VUhGNmZCMTZvL3hhK0ZRcU84dTlxSExKeE1MaHFkMkpzNXAyZnlXS2d4RU1X?=
+ =?utf-8?B?VHpFV3VQNVZqOVI1SXBWbVlPS3FRNU5QOFdXVHdnSVlvNG02bVBnV2VYbVMy?=
+ =?utf-8?B?T3NRLyt5L2pldExQSWlUb3UzQ3NDVWl5N0FpOHcrUlQ4cHdySUw5NEJkbnFX?=
+ =?utf-8?B?QUtCSlo2Szg3eWNnZkplejlvbHlWUGNMaFR1QXBaU2lMNlFCdWNwaXVpdUJz?=
+ =?utf-8?B?UTlIMFZ6anZKOUV1VkVEcmtuQ3hybVJmSUhDUFNkc29jUkExTk9iYkhBYmNu?=
+ =?utf-8?B?aWdIN3dFK1hmWTV4cVI1bGFhTG1VZkdRNy9RelZnaVk3dkdUZkQ5dDY5SVZ4?=
+ =?utf-8?B?ZTEvcDVyUi95NEVScGIxR05JcTkvSTRnSnJSV0Z1NTBFTS9CdFNUUXlKR3gx?=
+ =?utf-8?B?dndlWFlOZ0xyVlhUdUN4eVVFQlk5NkRUb2JnSStoSFR0bDBQekFYbDhPSTJQ?=
+ =?utf-8?B?a1JoRTBkbU1NcXg0Z1pKKzFDdHkrZlA0SUlFenFoeWhQREtLYmhEVlJNRVBq?=
+ =?utf-8?B?b1NaYjExd0hqNGdLNnh3TEVwRVJqU3hYS213eFNPZUlDWEFLaGVSNVQ1TlZn?=
+ =?utf-8?B?STNSOUVhVDBPaDEwOUU2WlZKTHpPRFFHZUx6NTFxUHVXUWhVMG1mS0NRaUNT?=
+ =?utf-8?B?dndDMWkyNUYza29iaGlKNmhMY2dVWTliaXNHUWlmWHpKVFh5czlGQ0RhcXd0?=
+ =?utf-8?B?QjdYbHRxbStjemwvT3pNbHgvZ0xScU5rT2lXTzFJYThuNS9PakNoRGpscE0w?=
+ =?utf-8?B?VU9rdXFFSFl1OTdlcXNNUU1IZUR1TmQ3TWJadzVPWmdJVytqLzdWUkNpOTNZ?=
+ =?utf-8?B?dHhHc0NHb2dRa3FyR0tDK3QzajR6ajB4QXk2bTNPaW14dEVOZTVjY3V5bnNu?=
+ =?utf-8?B?TnEvMFpNZnR5TGdGQzN0d0FEZERQNGVOT2hRbGFaQ2ZXK3BIUkw1dENHb1lV?=
+ =?utf-8?B?bmVWVmxLU2RrVTJxdDRLZ1NKMm03NlM0c0FrNVd1WmNrQUMrTHdQelc5QnY0?=
+ =?utf-8?B?ZStHaW1QSGI0VDh0WCtNVnJLTUgvZFpXdW44dExEZGxLR0lsMFRpamtVNUUr?=
+ =?utf-8?B?bzlvdGwvd1ppbG9BaVF6ZzdpN2pzNXg2VEs4L2hWWTVwOTZUKzJEM2VXODI2?=
+ =?utf-8?B?dUdSb2IycjlKR0c2MmMvOTROT3BmMGM3QTZrMm43ekdQbkI5UTI3bFN3eExo?=
+ =?utf-8?B?TFVyc2JhbFVFbDlObmJlZ0lrcEVSRHVyVEJOUk9xaVRuTWMvb3ROV1NtRGNX?=
+ =?utf-8?B?SmRUMXYxNjZ0Wjg0cmQwSUhUdVBpYVBGaG1YKzJkSDdPRGlkRHNqYUx5cFUv?=
+ =?utf-8?B?TCtSd3JBK3VoUHhvUUhYRnVzUkZEVnFTellSSWlSU21Vd29nUlhzMkk3MkZJ?=
+ =?utf-8?B?NVFzUCthbnl4dElwajI5eGZBaFpQWi9UT1dkUTRKdElwQks2WDhZbjlOMll3?=
+ =?utf-8?B?NVBzaHpERjA2RUZvTytWcGY0dzQwZmFaSlN0cmYyR0d5bm9zUkU2YS8vWHBN?=
+ =?utf-8?B?UGhSTVF2bDVwRE1YdExtVVBsMW1SenZTUWcydVYzaWNjRFMvY25TTG5RZTNy?=
+ =?utf-8?B?T1dtai9UK3VZekkwUGlHL1lXbEl6VldzcGt0dFhMTDl2cXlmN0ZRL1d5eS9o?=
+ =?utf-8?B?UTF3d3V6SGE0QTNYWkVkNERKRGgxclJDcmVtMFZXSXJuZzhLYmdjbysyVTRn?=
+ =?utf-8?B?aTdiOU9QTWNIM1QwaTlTUXU3WGZyalFSNHpKYTdicmFNWnhpdkxOems3ZjUw?=
+ =?utf-8?B?eC9QaWJsZzBRSXYwRVhpVWJ0T2lmaDN5UFo4OXM1QkZmRmdFTkMzRStVSFNK?=
+ =?utf-8?B?UGd6dGtxU1F0MGNFTTlTa3lCTWQwRS9sTHBVRXNGbDVVWElldXBYMHRLNHdj?=
+ =?utf-8?B?L3g2emZ4d1c1OTJTeWE3YjVZVGRYSGprL2I5Rk00cU5BYzA1Nkg2cFg1dncr?=
+ =?utf-8?B?TTFsKzFrS01tenJLTWZNWVNwU0FjWW1GdytyM0s1eHh5ek04ZHFHdTFFc2ZZ?=
+ =?utf-8?B?Tk05QTBkQ3dFRkIwdm5SeG5NSU9CTXpibWZ2ZTY3endlbGNpYWVMamlVcWcx?=
+ =?utf-8?B?REE9PQ==?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4b778871-4450-4d1d-b20a-08dafd4ec5a7
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2023 14:33:19.5942
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Pz2RGr5H+4MbT8JQUgZtN1rkg4i+mYty/uCnYf71XftBCV0h/sfjCSUyvCt8AqVZ+pzjr6iUqCUnSFVy5zInjw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4370
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 23, 2023 at 12:28:02PM +0100, Alexandre Ghiti wrote:
-> During the early page table creation, we used to set the mapping for
-> PAGE_OFFSET to the kernel load address: but the kernel load address is
-> always offseted by PMD_SIZE which makes it impossible to use PUD/P4D/PGD
-> pages as this physical address is not aligned on PUD/P4D/PGD size (whereas
-> PAGE_OFFSET is).
-> 
-> But actually we don't have to establish this mapping (ie set va_pa_offset)
-> that early in the boot process because:
-> 
-> - first, setup_vm installs a temporary kernel mapping and among other
->   things, discovers the system memory,
-> - then, setup_vm_final creates the final kernel mapping and takes
->   advantage of the discovered system memory to create the linear
->   mapping.
-> 
-> During the first phase, we don't know the start of the system memory and
-> then until the second phase is finished, we can't use the linear mapping at
-> all and phys_to_virt/virt_to_phys translations must not be used because it
-> would result in a different translation from the 'real' one once the final
-> mapping is installed.
-> 
-> So here we simply delay the initialization of va_pa_offset to after the
-> system memory discovery. But to make sure noone uses the linear mapping
-> before, we add some guard in the DEBUG_VIRTUAL config.
-> 
-> Finally we can use PUD/P4D/PGD hugepages when possible, which will result
-> in a better TLB utilization.
-> 
-> Note that we rely on the firmware to protect itself using PMP.
-> 
-> Acked-by: Rob Herring <robh@kernel.org> # DT bits
-> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-> ---
-> 
-> v4:
-> - Rebase on top of v6.2-rc3, as noted by Conor
-> - Add Acked-by Rob
-> 
-> v3:
-> - Change the comment about initrd_start VA conversion so that it fits
->   ARM64 and RISCV64 (and others in the future if needed), as suggested
->   by Rob
-> 
-> v2:
-> - Add a comment on why RISCV64 does not need to set initrd_start/end that
->   early in the boot process, as asked by Rob
-> 
->  arch/riscv/include/asm/page.h | 16 ++++++++++++++++
->  arch/riscv/mm/init.c          | 25 +++++++++++++++++++------
->  arch/riscv/mm/physaddr.c      | 16 ++++++++++++++++
->  drivers/of/fdt.c              | 11 ++++++-----
->  4 files changed, 57 insertions(+), 11 deletions(-)
-> 
-> diff --git a/arch/riscv/include/asm/page.h b/arch/riscv/include/asm/page.h
-> index 9f432c1b5289..7fe84c89e572 100644
-> --- a/arch/riscv/include/asm/page.h
-> +++ b/arch/riscv/include/asm/page.h
-> @@ -90,6 +90,14 @@ typedef struct page *pgtable_t;
->  #define PTE_FMT "%08lx"
->  #endif
->  
-> +#ifdef CONFIG_64BIT
-> +/*
-> + * We override this value as its generic definition uses __pa too early in
-> + * the boot process (before kernel_map.va_pa_offset is set).
-> + */
-> +#define MIN_MEMBLOCK_ADDR      0
-> +#endif
-> +
->  #ifdef CONFIG_MMU
->  extern unsigned long riscv_pfn_base;
->  #define ARCH_PFN_OFFSET		(riscv_pfn_base)
-> @@ -122,7 +130,11 @@ extern phys_addr_t phys_ram_base;
->  #define is_linear_mapping(x)	\
->  	((x) >= PAGE_OFFSET && (!IS_ENABLED(CONFIG_64BIT) || (x) < PAGE_OFFSET + KERN_VIRT_SIZE))
->  
-> +#ifndef CONFIG_DEBUG_VIRTUAL
->  #define linear_mapping_pa_to_va(x)	((void *)((unsigned long)(x) + kernel_map.va_pa_offset))
-> +#else
-> +void *linear_mapping_pa_to_va(unsigned long x);
-> +#endif
->  #define kernel_mapping_pa_to_va(y)	({					\
->  	unsigned long _y = (unsigned long)(y);					\
->  	(IS_ENABLED(CONFIG_XIP_KERNEL) && _y < phys_ram_base) ?			\
-> @@ -131,7 +143,11 @@ extern phys_addr_t phys_ram_base;
->  	})
->  #define __pa_to_va_nodebug(x)		linear_mapping_pa_to_va(x)
->  
-> +#ifndef CONFIG_DEBUG_VIRTUAL
->  #define linear_mapping_va_to_pa(x)	((unsigned long)(x) - kernel_map.va_pa_offset)
-> +#else
-> +phys_addr_t linear_mapping_va_to_pa(unsigned long x);
-> +#endif
->  #define kernel_mapping_va_to_pa(y) ({						\
->  	unsigned long _y = (unsigned long)(y);					\
->  	(IS_ENABLED(CONFIG_XIP_KERNEL) && _y < kernel_map.virt_addr + XIP_OFFSET) ? \
-> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-> index 478d6763a01a..cc892ba9f787 100644
-> --- a/arch/riscv/mm/init.c
-> +++ b/arch/riscv/mm/init.c
-> @@ -213,6 +213,14 @@ static void __init setup_bootmem(void)
->  	phys_ram_end = memblock_end_of_DRAM();
->  	if (!IS_ENABLED(CONFIG_XIP_KERNEL))
->  		phys_ram_base = memblock_start_of_DRAM();
-> +
-> +	/*
-> +	 * Any use of __va/__pa before this point is wrong as we did not know the
-> +	 * start of DRAM before.
-> +	 */
-> +	kernel_map.va_pa_offset = PAGE_OFFSET - phys_ram_base;
-> +	riscv_pfn_base = PFN_DOWN(phys_ram_base);
-> +
->  	/*
->  	 * memblock allocator is not aware of the fact that last 4K bytes of
->  	 * the addressable memory can not be mapped because of IS_ERR_VALUE
-> @@ -671,9 +679,16 @@ void __init create_pgd_mapping(pgd_t *pgdp,
->  
->  static uintptr_t __init best_map_size(phys_addr_t base, phys_addr_t size)
->  {
-> -	/* Upgrade to PMD_SIZE mappings whenever possible */
-> -	base &= PMD_SIZE - 1;
-> -	if (!base && size >= PMD_SIZE)
-> +	if (!(base & (PGDIR_SIZE - 1)) && size >= PGDIR_SIZE)
-> +		return PGDIR_SIZE;
-> +
-> +	if (!(base & (P4D_SIZE - 1)) && size >= P4D_SIZE)
-> +		return P4D_SIZE;
-> +
-> +	if (!(base & (PUD_SIZE - 1)) && size >= PUD_SIZE)
-> +		return PUD_SIZE;
-> +
-> +	if (!(base & (PMD_SIZE - 1)) && size >= PMD_SIZE)
->  		return PMD_SIZE;
->  
->  	return PAGE_SIZE;
-> @@ -982,11 +997,9 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
->  	set_satp_mode();
->  #endif
->  
-> -	kernel_map.va_pa_offset = PAGE_OFFSET - kernel_map.phys_addr;
-> +	kernel_map.va_pa_offset = 0UL;
->  	kernel_map.va_kernel_pa_offset = kernel_map.virt_addr - kernel_map.phys_addr;
->  
-> -	riscv_pfn_base = PFN_DOWN(kernel_map.phys_addr);
-> -
->  	/*
->  	 * The default maximal physical memory size is KERN_VIRT_SIZE for 32-bit
->  	 * kernel, whereas for 64-bit kernel, the end of the virtual address
-> diff --git a/arch/riscv/mm/physaddr.c b/arch/riscv/mm/physaddr.c
-> index 9b18bda74154..18706f457da7 100644
-> --- a/arch/riscv/mm/physaddr.c
-> +++ b/arch/riscv/mm/physaddr.c
-> @@ -33,3 +33,19 @@ phys_addr_t __phys_addr_symbol(unsigned long x)
->  	return __va_to_pa_nodebug(x);
->  }
->  EXPORT_SYMBOL(__phys_addr_symbol);
-> +
-> +phys_addr_t linear_mapping_va_to_pa(unsigned long x)
-> +{
-> +	BUG_ON(!kernel_map.va_pa_offset);
-> +
-> +	return ((unsigned long)(x) - kernel_map.va_pa_offset);
-> +}
-> +EXPORT_SYMBOL(linear_mapping_va_to_pa);
-> +
-> +void *linear_mapping_pa_to_va(unsigned long x)
-> +{
-> +	BUG_ON(!kernel_map.va_pa_offset);
-> +
-> +	return ((void *)((unsigned long)(x) + kernel_map.va_pa_offset));
-> +}
-> +EXPORT_SYMBOL(linear_mapping_pa_to_va);
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index f08b25195ae7..58107bd56f8f 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -891,12 +891,13 @@ const void * __init of_flat_dt_match_machine(const void *default_match,
->  static void __early_init_dt_declare_initrd(unsigned long start,
->  					   unsigned long end)
->  {
-> -	/* ARM64 would cause a BUG to occur here when CONFIG_DEBUG_VM is
-> -	 * enabled since __va() is called too early. ARM64 does make use
-> -	 * of phys_initrd_start/phys_initrd_size so we can skip this
-> -	 * conversion.
-> +	/*
-> +	 * __va() is not yet available this early on some platforms. In that
-> +	 * case, the platform uses phys_initrd_start/phys_initrd_size instead
-> +	 * and does the VA conversion itself.
->  	 */
-> -	if (!IS_ENABLED(CONFIG_ARM64)) {
-> +	if (!IS_ENABLED(CONFIG_ARM64) &&
-> +	    !(IS_ENABLED(CONFIG_RISCV) && IS_ENABLED(CONFIG_64BIT))) {
 
-There are now two architectures, so maybe it's time for a new config
-symbol which would be selected by arm64 and riscv64 and then used here,
-e.g.
+On 20/01/2023 08:32, Krzysztof Kozlowski wrote:
 
-  if (!IS_ENABLED(CONFIG_NO_EARLY_LINEAR_MAP)) {
+...
 
->  		initrd_start = (unsigned long)__va(start);
->  		initrd_end = (unsigned long)__va(end);
->  		initrd_below_start_ok = 1;
-> -- 
-> 2.37.2
->
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/tegra194-gpio.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    i2c {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +      #interrupt-cells = <2>;
+> 
+> Drop, does not look like relevant or used here.
 
-Otherwise,
 
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+Without the above I get ...
 
-Thanks,
-drew
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dts:25.13-26: Warning (reg_format): /example-0/i2c/typec-controller@8:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dts:22.13-43.11: Warning (i2c_bus_bridge): /example-0/i2c: incorrect #address-cells for I2C bus
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dts:22.13-43.11: Warning (i2c_bus_bridge): /example-0/i2c: incorrect #size-cells for I2C bus
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'i2c_bus_bridge'
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dts:23.30-42.13: Warning (avoid_default_addr_size): /example-0/i2c/typec-controller@8: Relying on default #address-cells value
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dts:23.30-42.13: Warning (avoid_default_addr_size): /example-0/i2c/typec-controller@8: Relying on default #size-cells value
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
+Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb: typec-controller@8: interrupts: [[10], [8]] is too long
+
+> 
+>> +
+>> +      ucsi-ccg@8 {
+> 
+> Node names should be generic.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+Thanks. I don't see anything there is would fit here, so would 'typec-controller' for the node name be OK?
+
+Cheers
+Jon
+
+-- 
+nvpublic
