@@ -2,130 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CCAA677CA8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 14:38:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDE28677CB5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 14:39:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231879AbjAWNij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 08:38:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58992 "EHLO
+        id S231652AbjAWNjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 08:39:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231882AbjAWNih (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 08:38:37 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4667A13D48
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:38:31 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id bk15so30460441ejb.9
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:38:31 -0800 (PST)
+        with ESMTP id S231712AbjAWNjn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 08:39:43 -0500
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC4DDDBF9
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:39:41 -0800 (PST)
+Received: by mail-oi1-x22e.google.com with SMTP id v17so10352976oie.5
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 05:39:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AK+/wzvr19IkadKcShT9VhU2Wbb6mjo7zPwMi9XuUSc=;
-        b=nOUDGDEoCFHwdDvtbNtP91LAZ1Vjbqx5L4W/oFL4lsEwsdgirSvgMemgaA+2aP8DRr
-         0n/aF4rjdDEwJwGdCT2tmJYoNJElxtTTaIfjC6Jr+Up+0Ty294B8zRFOagBqLrvwmt83
-         DvTVOvrrU9FXdYJZNH3blaD1oGtDp2qQwrznx2f8dcr6LFGoatDyi+S4lnBF5iVu4nwp
-         /ckbqKxbn4ELWFD2wmPRc4faakVo0o1z225Pt9ntBHwO/+Fm4m32eG6VKAsSUVVHEkx9
-         DdgQ0tPja+F4idUUtvZVqmeNG7LHqBnokB0jwxJ/Tf8Q+8OYPcUbKIMFUFTRS0h39imf
-         nUPQ==
+        d=timesys-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3k/c5woQO7UO9XAwtL5oYuia/I033FJl9LPtMWbUw/I=;
+        b=vSbAvgoxddscXidTzywHkp1IdMfrZWt1oyYfXhrnV9ceZ5nMu6oo2NaseNxD4d+Yhq
+         4tb2BYs2VW9rHMsw5MCNC6hOt9L9gbVkqKljGzrHt1Pu0X8tC2da8uwKGKd2Whi7yVKY
+         EAuRaBzXnJnk3ldFSlU9e2dlJ3FHqBddHno7uxqvg6Zrr5bvO+zOXbFrjfkev4g98WwI
+         FYNIwgEZTjHBp/+KW0dMvI6nywckfpR8+C/ugE1glNWRRPmThFLGY/1aU4I6h5Q9sPYl
+         zidG2ZHk1b3T/uajcuM/7ThobJP4gMjCnWkRdkQz38BLAcTYGjBLLQ7Xo5KbQrgaBDOM
+         cmqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AK+/wzvr19IkadKcShT9VhU2Wbb6mjo7zPwMi9XuUSc=;
-        b=HCsRbrp1TAoVXws8GXAiJ0APbdCF7TlY3OGbwzO1cAgEc0K5JMe3H2W9GVZFAmAgKW
-         dDQPggJZJ064RvDccFGjdyqMXV60iHqA3aSEG1qMiCyQRuscQIK6skGUG0jQJ+8X9l5M
-         OhzWJLkTbtIVTcVL04um5EOl54AizYdR2OHxzDR+MxkSmRhmkiljTwOfs8MCIi5X/Zch
-         25CJI2HfSOlPLSL6fSB27ROGAkfsBPZvoAwfXmX0LtqkmH8cTTtWRLkUda+RZyReMAdv
-         xN8v3HIt3YmpcKro06Why0mck93lyg76KqYdCPoFweTTQxeGyPxwW2SN7Fjk6QY4hGAI
-         gZag==
-X-Gm-Message-State: AFqh2krXrWFYxc7BaYQv++a4od2ALXo+WE7AQaTaP/bzdH4HIMsQ/YGa
-        NKyJqlyCKbVvtkbs2duDwbyAZg==
-X-Google-Smtp-Source: AMrXdXsuCu/CpLRug9+eoQ9tuAnNu0+lxPYf7lVb2TpwPEvPc5j/TURtpfbkmGLKqbjxJsHxsQ5JNQ==
-X-Received: by 2002:a17:907:a07b:b0:7c1:3f04:efa2 with SMTP id ia27-20020a170907a07b00b007c13f04efa2mr37544023ejc.29.1674481109546;
-        Mon, 23 Jan 2023 05:38:29 -0800 (PST)
-Received: from Lat-5310.dev.rtsoft.ru ([87.116.163.233])
-        by smtp.gmail.com with ESMTPSA id s1-20020aa7cb01000000b00463b9d47e1fsm21502050edt.71.2023.01.23.05.38.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 05:38:29 -0800 (PST)
-From:   Andrey Konovalov <andrey.konovalov@linaro.org>
-To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alexandre.torgue@foss.st.com,
-        peppe.cavallaro@st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org,
-        Andrey Konovalov <andrey.konovalov@linaro.org>
-Subject: [PATCH 2/2] net: stmmac: consider snps,rx-clk-runs-in-lpi DT parameter
-Date:   Mon, 23 Jan 2023 16:37:47 +0300
-Message-Id: <20230123133747.18896-3-andrey.konovalov@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230123133747.18896-1-andrey.konovalov@linaro.org>
-References: <20230123133747.18896-1-andrey.konovalov@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3k/c5woQO7UO9XAwtL5oYuia/I033FJl9LPtMWbUw/I=;
+        b=7sndDLcG+A2hVsthXo+6EoV+m1wNzQOAcU0SZ5e6xR2y1aDgKYyhd+DE2xhsFiaIMF
+         TFg2aP4n6r7Myev0GpOxH89qRpYuybFt0lsT/pXsrd8op0X+JMpW0pFG1ij0BOD7JHPY
+         Gc+kLoDTtiM5+LLr5072Kdu8B5kJeY1H3+RK/ZGjjRFVCEDmeYvfdaTWmlBWYcC438tn
+         AZLKyKpHsv2LcAze5CcV07sHULTJ1C+2obvztIvW+HIHZ/3hfGRh6PnB7lAlxB0WPOIn
+         xSuMZEu0e5cggMVS3p/zvlsk9GxVobD33+RgFpgbFaeJ60HKRlm0yxDmJWEi3ryhvfTR
+         PfBg==
+X-Gm-Message-State: AFqh2kpmy+0MQkkyGmjiJ7tIi24ut2NwUuenYoCeWVf1rDZ0Y7Ze3id+
+        PPMP/4wdZrRgflzRlDfBSoVDr22ERfAcryLFlrLDbSj3O70o1A==
+X-Google-Smtp-Source: AMrXdXuNuwfajZUf++uzfezHLqjyrYRxyFRy5gZOuEaa85cnEKeyCvfn2fgQ5hJerDCXwF74VCGoiSQyZHbaeJeC6Lw=
+X-Received: by 2002:a05:6808:613:b0:35b:d261:2d07 with SMTP id
+ y19-20020a056808061300b0035bd2612d07mr1215896oih.299.1674481180984; Mon, 23
+ Jan 2023 05:39:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230115173958.134201-1-jic23@kernel.org> <CALJHbkDKTFN6BT=MCA5Obg6K6jY+yhwCd5Dsa5Ayrj=Z1mLwEA@mail.gmail.com>
+ <20230121180038.0609ca0d@jic23-huawei>
+In-Reply-To: <20230121180038.0609ca0d@jic23-huawei>
+From:   Angelo Dureghello <angelo.dureghello@timesys.com>
+Date:   Mon, 23 Jan 2023 14:39:09 +0100
+Message-ID: <CALJHbkB6dHdE25+11y88DrLdrpWRa3hROZ6zcZRsqtQ5_YNCtw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: iio: dac: Maxim max5522 DAC
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If snps,rx-clk-runs-in-lpi parameter is present in the device tree, the
-driver configures the PHY not to stop RX_CLK after entering Rx LPI state.
+Hi Jonathan,
 
-Signed-off-by: Andrey Konovalov <andrey.konovalov@linaro.org>
----
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c     | 3 ++-
- drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 3 +++
- include/linux/stmmac.h                                | 1 +
- 3 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index b7e5af58ab75..1a5b8dab5e9b 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -1080,7 +1080,8 @@ static void stmmac_mac_link_up(struct phylink_config *config,
- 
- 	stmmac_mac_set(priv, priv->ioaddr, true);
- 	if (phy && priv->dma_cap.eee) {
--		priv->eee_active = phy_init_eee(phy, 1) >= 0;
-+		priv->eee_active =
-+			phy_init_eee(phy, !priv->plat->rx_clk_runs_in_lpi) >= 0;
- 		priv->eee_enabled = stmmac_eee_init(priv);
- 		priv->tx_lpi_enabled = priv->eee_enabled;
- 		stmmac_set_eee_pls(priv, priv->hw, true);
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-index eb6d9cd8e93f..4dacda387fa4 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-@@ -468,6 +468,9 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
- 	plat->en_tx_lpi_clockgating =
- 		of_property_read_bool(np, "snps,en-tx-lpi-clockgating");
- 
-+	plat->rx_clk_runs_in_lpi =
-+		of_property_read_bool(np, "snps,rx-clk-runs-in-lpi");
-+
- 	/* Set the maxmtu to a default of JUMBO_LEN in case the
- 	 * parameter is not present in the device tree.
- 	 */
-diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
-index 83ca2e8eb6b5..a152678b82b7 100644
---- a/include/linux/stmmac.h
-+++ b/include/linux/stmmac.h
-@@ -252,6 +252,7 @@ struct plat_stmmacenet_data {
- 	int rss_en;
- 	int mac_port_sel_speed;
- 	bool en_tx_lpi_clockgating;
-+	bool rx_clk_runs_in_lpi;
- 	int has_xgmac;
- 	bool vlan_fail_q_en;
- 	u8 vlan_fail_q;
+On Sat, Jan 21, 2023 at 6:46 PM Jonathan Cameron <jic23@kernel.org> wrote:
+>
+> On Mon, 16 Jan 2023 23:46:35 +0100
+> Angelo Dureghello <angelo.dureghello@timesys.com> wrote:
+>
+> > Hi Jonathan,
+> >
+> > thanks a lot, and sorry, looks like i forgot this out.
+> No problem!
+> >
+> > Reviewed-by: Angelo Dureghello <angelo.dureghello@timesys.com>
+> Applied the driver an this binding doc to the togreg branch of iio.git
+> which will initially get pushed out as testing for 0-day to see if
+> it can find anything we missed.
+>
+> Thanks,
+>
+> Jonathan
+
+Great, thanks !
+
 -- 
-2.34.1
-
+Angelo Dureghello
+Timesys
+e. angelo.dureghello@timesys.com
