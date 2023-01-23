@@ -2,109 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63299677BFC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 13:57:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 413B1677C0B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 13:59:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231837AbjAWM5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 07:57:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59060 "EHLO
+        id S232014AbjAWM7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 07:59:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231909AbjAWM5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 07:57:00 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA56A12066
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 04:56:58 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id r9so10718582wrw.4
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 04:56:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ftLlYAYAzfSmxLN9WbVnkDIlxb5HQCjXDiqYgrrXe2c=;
-        b=rBj+aPCVTO71uZPWYTSu/R/CjUFfLRVcjPJ3Fsehp/85t39CzNav179fvoIr9VBGqb
-         yOeceDYZxcKD7zhPegr39LxGrM1NxVEZYimXTn9zqOrJCroMDC+/V8B5M/FO3LauH+1y
-         LJgoDrIWxeULtIB5WfcY9SJJAEqgIsvulOW6P1rxpYnzcLw1eVg5lcIUq8ZlEldBW8Na
-         XXhPiMfa4GITb+W0BDp3V2cOMBkhuWonp7j+6y/WwzVigaDR5LsE2ZVwXOSq8El6KiYg
-         8Xn2iPfKm9ZXy8ud9UrX5w2H3u06pLy9nWzfEWS25WgADgvmeeTNGFzj5IbFBHHtGYFw
-         i0DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ftLlYAYAzfSmxLN9WbVnkDIlxb5HQCjXDiqYgrrXe2c=;
-        b=lxa2pAc0pVgI/i2cbAX6a89fD1MDQDXa5Usrode3Pz0/07a6dYAtmkhSOqb/iG2Mku
-         V5F8+qb1W61Mp3HzFAp4o6TrAskvLUM/P1xhvVUAJrw2MF5eLoXxKbFgPeNE0HVu0EO8
-         rv26LhSUNM/HkYb99guDXd33vlJu20aZ3Z51mvTZjo6Rulw/vy4y6wVZF65ZME00iHEq
-         aZHMmxOPRKNolNsXcfpIgJxVwk0c32UpfTsQWGInxC/6xZmfOLWVUCqHmQ0SvGczj87c
-         zi6YrMZC/BibPxWBPxgBiG9+dV/eY3R5xF3BrDXluoDnt241O9dVzHSS2VjlN/GryGpV
-         s77g==
-X-Gm-Message-State: AFqh2kqsvuKPQ8sHauDyUjxeUPv2kcVnDCDElLfvwCuSNri3CD8k0zgF
-        97cMSQIamI4zG+YdbQhKxR7OLg==
-X-Google-Smtp-Source: AMrXdXsZE7WqgbyFGmR+qZOKO6zjk8/nGNDzltIiEFXd+AD9jS1cD/NohG+/WQuurvTqXVy3qR3qnA==
-X-Received: by 2002:a5d:43cd:0:b0:26b:8177:a5e6 with SMTP id v13-20020a5d43cd000000b0026b8177a5e6mr20361476wrr.51.1674478618386;
-        Mon, 23 Jan 2023 04:56:58 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a10-20020a056000100a00b00297dcfdc90fsm4569616wrx.24.2023.01.23.04.56.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 04:56:58 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S231862AbjAWM7q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 07:59:46 -0500
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A5CB448E;
+        Mon, 23 Jan 2023 04:59:43 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id B97EE24000E;
+        Mon, 23 Jan 2023 12:59:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1674478782;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=na7HRl0jra781/0Bx/fX+Bp8fWBwR3ej1zRQGenoYHY=;
+        b=G8/vJ77o1xKjT2Zinoy5wk7M6XQTQgH5tPbUFgFhQxZNzL7xLHHP1mbuDIwNez0tAPniFS
+        CkIIVMEIGJGJROyFIkBnHONfa4eyly0C0ACx9vrvaTutKt9DpG0ta8paxapZd4tNO8/h+m
+        DOEFfOmPWB7whrHFQt5kvbdMK4h1RIsYmXCLLQnpmAdP+23fTC3Mphq+RwoB5oJBMqSOF7
+        zkfmj1k+1kovZuzySlRFHsjF/HWOZbsL57hNjDy00pXfhKjLA6Vb4nM7ghRV6eM2YAeO7s
+        VZaurQTn2NePS8ig0yR1Aoe8fyP+gag8TRaQncLCydFTQpOZ69tfYj7Eao+Akg==
+Date:   Mon, 23 Jan 2023 13:59:38 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sm8550: drop incorrect cells from serial
-Date:   Mon, 23 Jan 2023 13:56:12 +0100
-Message-Id: <20230123125612.154840-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230123125612.154840-1-krzysztof.kozlowski@linaro.org>
-References: <20230123125612.154840-1-krzysztof.kozlowski@linaro.org>
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 2/3] ASoC: codecs: Add support for the Renesas
+ IDT821034 codec
+Message-ID: <20230123135938.1855d6a8@bootlin.com>
+In-Reply-To: <79b35117-98aa-dc7c-2a27-805cd4ac2c71@csgroup.eu>
+References: <20230120095036.514639-1-herve.codina@bootlin.com>
+        <20230120095036.514639-3-herve.codina@bootlin.com>
+        <d51b826b-e71f-393c-586b-6a1ca953f26f@csgroup.eu>
+        <20230123095631.4aba35d6@bootlin.com>
+        <eb20dc66-f564-ed7e-8873-65621e5970de@csgroup.eu>
+        <20230123131755.1f5702be@bootlin.com>
+        <79b35117-98aa-dc7c-2a27-805cd4ac2c71@csgroup.eu>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The serial/UART device node does not have children with unit addresses,
-so adderss/size cells are not correct.
+On Mon, 23 Jan 2023 12:30:32 +0000
+Christophe Leroy <christophe.leroy@csgroup.eu> wrote:
 
-Fixes: 377972ac743f ("arm64: dts: qcom: sm8550: add I2C Master Hub nodes")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Le 23/01/2023 =C3=A0 13:17, Herve Codina a =C3=A9crit=C2=A0:
+> > Hi Christophe,
+> >=20
+> > On Mon, 23 Jan 2023 11:13:23 +0000
+> > Christophe Leroy <christophe.leroy@csgroup.eu> wrote:
+> >  =20
+> >> Hi Herv=C3=A9,
+> >>
+> >> Le 23/01/2023 =C3=A0 09:56, Herve Codina a =C3=A9crit=C2=A0: =20
+> >>>
+> >>> gpiochip_get_data() is defined only when CONFIG_GPIOLIB is set.
+> >>> That's why the #if section is used. =20
+> >>
+> >> gpiochip_get_data() is still declared when CONFIG_GPIOLIB is not set, =
+so
+> >> it is not a problem, the call to it will be eliminated at buildtime.
+> >>
+> >> By the way, at the time being I get the following warnings:
+> >>
+> >>     CC      sound/soc/codecs/idt821034.o
+> >> sound/soc/codecs/idt821034.c:310:12: warning: 'idt821034_read_slic_raw'
+> >> defined but not used [-Wunused-function]
+> >>     310 | static int idt821034_read_slic_raw(struct idt821034 *idt8210=
+34,
+> >> u8 ch, u8 *slic_raw)
+> >>         |            ^~~~~~~~~~~~~~~~~~~~~~~
+> >> sound/soc/codecs/idt821034.c:305:11: warning:
+> >> 'idt821034_get_written_slic_raw' defined but not used [-Wunused-functi=
+on]
+> >>     305 | static u8 idt821034_get_written_slic_raw(struct idt821034
+> >> *idt821034, u8 ch)
+> >>         |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> >> sound/soc/codecs/idt821034.c:276:12: warning: 'idt821034_write_slic_ra=
+w'
+> >> defined but not used [-Wunused-function]
+> >>     276 | static int idt821034_write_slic_raw(struct idt821034
+> >> *idt821034, u8 ch, u8 slic_raw)
+> >>         |            ^~~~~~~~~~~~~~~~~~~~~~~~
+> >> sound/soc/codecs/idt821034.c:271:11: warning: 'idt821034_get_slic_conf'
+> >> defined but not used [-Wunused-function]
+> >>     271 | static u8 idt821034_get_slic_conf(struct idt821034 *idt82103=
+4,
+> >> u8 ch)
+> >>         |           ^~~~~~~~~~~~~~~~~~~~~~~
+> >> sound/soc/codecs/idt821034.c:250:12: warning: 'idt821034_set_slic_conf'
+> >> defined but not used [-Wunused-function]
+> >>     250 | static int idt821034_set_slic_conf(struct idt821034 *idt8210=
+34,
+> >> u8 ch, u8 slic_dir)
+> >>         |            ^~~~~~~~~~~~~~~~~~~~~~~
+> >>
+> >>
+> >> With the following changes I have no warning and an objdump -x on
+> >> idt821034.o shows no reference to gpiochip_get_data()
+> >>
+> >> diff --git a/sound/soc/codecs/idt821034.c b/sound/soc/codecs/idt821034=
+.c
+> >> index 5eb93fec6042..8b75388e22ce 100644
+> >> --- a/sound/soc/codecs/idt821034.c
+> >> +++ b/sound/soc/codecs/idt821034.c
+> >> @@ -968,7 +968,6 @@ static const struct snd_soc_component_driver
+> >> idt821034_component_driver =3D {
+> >>    	.endianness		=3D 1,
+> >>    };
+> >>
+> >> -#if IS_ENABLED(CONFIG_GPIOLIB)
+> >>    #define IDT821034_GPIO_OFFSET_TO_SLIC_CHANNEL(_offset) (((_offset) /
+> >> 5) % 4)
+> >>    #define IDT821034_GPIO_OFFSET_TO_SLIC_MASK(_offset)    BIT((_offset=
+) % 5)
+> >>
+> >> @@ -1133,12 +1132,6 @@ static int idt821034_gpio_init(struct idt821034
+> >> *idt821034)
+> >>    	return devm_gpiochip_add_data(&idt821034->spi->dev,
+> >> &idt821034->gpio_chip,
+> >>    				      idt821034);
+> >>    }
+> >> -#else /* IS_ENABLED(CONFIG_GPIOLIB) */
+> >> -static int idt821034_gpio_init(struct idt821034 *idt821034)
+> >> -{
+> >> -	return 0;
+> >> -}
+> >> -#endif
+> >>
+> >>    static int idt821034_spi_probe(struct spi_device *spi)
+> >>    {
+> >> @@ -1165,6 +1158,9 @@ static int idt821034_spi_probe(struct spi_device=
+ *spi)
+> >>    	if (ret)
+> >>    		return ret;
+> >>
+> >> +	if (!IS_ENABLED(CONFIG_GPIOLIB))
+> >> +		return 0;
+> >> +
+> >>    	ret =3D idt821034_gpio_init(idt821034);
+> >>    	if (ret)
+> >>    		return ret;
+> >>
+> >>
+> >> Christophe =20
+> >=20
+> > Right, I did the test too and indeed, I can remove the #if section.
+> >=20
+> > I will use (I think is clearer) at idt821034_spi_probe():
+> > 	if (!IS_ENABLED(CONFIG_GPIOLIB)) {
+> >     		ret =3D idt821034_gpio_init(idt821034);
+> > 		if (ret)
+> >     			return ret;
+> > 	}
+> >  =20
+>=20
+>=20
+> I guess you mean :
+>=20
+> 	if (IS_ENABLED(CONFIG_GPIOLIB))
 
----
+Yes of course. Sorry for the typo.
 
-Changes since v1:
-1. New patch
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+>=20
+>=20
+> > Is that ok for you ? =20
+>=20
+>=20
+>=20
+> What about:
+>=20
+> 	if (IS_ENABLED(CONFIG_GPIOLIB))
+> 		return idt821034_gpio_init(idt821034);
+> 	else
+> 		return 0;
+>=20
+> Christophe
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 6ff135191ee0..0307b853ec4f 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -1582,8 +1582,6 @@ uart7: serial@a9c000 {
- 				interconnect-names = "qup-core", "qup-config";
- 				interconnects =	<&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
- 						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				status = "disabled";
- 			};
- 		};
--- 
-2.34.1
+Well, maybe this version ?
 
+static int idt821034_spi_probe(struct spi_device *spi)
+{
+	...
+
+	if (IS_ENABLED(CONFIG_GPIOLIB))
+ 		return idt821034_gpio_init(idt821034);
+
+	return 0;
+}
+
+Thanks,
+Herv=C3=A9
+
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
