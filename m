@@ -2,276 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6D16677ED1
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:11:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AC75677EE8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:13:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231547AbjAWPLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:11:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38316 "EHLO
+        id S231503AbjAWPNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:13:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232082AbjAWPLU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:11:20 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A8241350D;
-        Mon, 23 Jan 2023 07:11:14 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1674486655; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=iRl4xmkR0BOQlUNdYVVOsm6vLoo6I4HSweNVspQMNgqEwk+ZIy8MQy77nGPduRBIzN4Rffzrw+i9Kt9ZrQFvlsJs7jVl1j0nghRCFo5u9H0Wgzuq2acG4QU/QuAjym4jdne8sY1zxnoOQ3ZZKYNNQ46xuk9L1fL+tvP21pk7bmU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1674486655; h=Content-Type:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=pulpL6qwi74emUZJrnomwPTI5bv9SqNXmCaK49COUpY=; 
-        b=aEqBl98iJlLdLD8lFrvhJcguUUZQ+AnllI2bvPNe9JW4aYaMFxSZJcG4sqtRgtdCOLZbfItZYq5JciZguKyM7qa7e2SY+7wymKFnT6gCC/CJEElXmrKWB4GU+VWVQj/5XODmcok9gyO7x/9KBM+Yh3cMSehCUq9RV5f0Vi4t5SQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=linux.beauty;
-        spf=pass  smtp.mailfrom=me@linux.beauty;
-        dmarc=pass header.from=<me@linux.beauty>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1674486655;
-        s=zmail; d=linux.beauty; i=me@linux.beauty;
-        h=Date:Date:Message-ID:From:From:To:To:Cc:Cc:Subject:Subject:In-Reply-To:References:MIME-Version:Content-Type:Message-Id:Reply-To;
-        bh=pulpL6qwi74emUZJrnomwPTI5bv9SqNXmCaK49COUpY=;
-        b=KqTrXSc3wVDb7uAfdYNRXoEIy05gZQfzeCp+n+qcs1e7uWoqU9vbg/0Z34s7sKqG
-        SfS80EBEWP1Q3Z4gb3T8Dc1FyQTdaysXlfkUheXTAOg79Q1H8uDA7AyYQ/VLzIWVguc
-        HqQii+Y3uQQ8nHXxPYkIfdZ+AVuUv1A1oRaelzPY=
-Received: from lchen-xiaoxin.linux.beauty (183.211.210.143 [183.211.210.143]) by mx.zohomail.com
-        with SMTPS id 1674486643071215.31279572110736; Mon, 23 Jan 2023 07:10:43 -0800 (PST)
-Date:   Mon, 23 Jan 2023 23:09:57 +0800
-Message-ID: <875ycxi8xm.wl-me@linux.beauty>
-From:   Li Chen <me@linux.beauty>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Li Chen <lchen@ambarella.com>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232249AbjAWPNO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:13:14 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7055514489
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:13:12 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id t5so11143133wrq.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:13:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mD2MSQcoc4dUqM5mN85kRutri7MSD6je9fF7r46KJ3A=;
+        b=MDCHyD/DppgASNZrrhUSjfzEdGsHr7Kz8YcSnZeXCFkB2Q3m1NYn5ir3s9xFQEM9Ih
+         r/EgvHAHTRyx2Rl0HeA47sdHCFwKKJ87D5ItzP+ACb/UmbEl/jwc32KLiWF2WLI7G81M
+         FLPkwyO9hvXc+75utLndnMV9UMJyce8pEiTCyVRWdFMjXdU6DipO1NsVKGqw3QSQdhmV
+         kQd4yhhe9ZzIvLKfstipN8BrQpxvN8R6lagBzjQRLzSsVCJfT5Hsccw2V7xNzoo93W2J
+         bMYcazl+nSP3Onh/+otLqvybwdhDXxbhwDvNQXBL7F9C7AtvDj4p8HBqtKHh9msqOs+o
+         9DkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mD2MSQcoc4dUqM5mN85kRutri7MSD6je9fF7r46KJ3A=;
+        b=R4MPiCJYyfhppyfMiiwPjfh3fMrpFCfnic1Ag1kSVARSs/wLO3kYCF9taFD8wjYUSr
+         wMjX3lMbKdID/2TvRnfTfBvBLgonKZHO0yq536F0Zullb0aBykMWvfBuoxKotJEE6ZgC
+         ce9zopmWTSM0ZCofcUckD9F3wPEolbXJ6NZG4p6mt84owvppbCzoQgPXMUTzf7gJPQBe
+         quN1+ndqO3Sy+F/RaZfZw1nyCaiMRzT5VTrFnMGcnH4ch3HNtHET/h1eHm3WkiWI4p/d
+         9uJYKYS66kOBnEF3wEeOddOVYczXOp4Vgow4HsSgaNYjPsJGh6Ilxu43IT9bxGR9FsGC
+         8d9A==
+X-Gm-Message-State: AFqh2krwoI1bSr+lcXyZL/wK7HeVLwGumalgmzY5IrfY16L2Sv+Pkn5m
+        gr9Ws51g218WErmI7zsgB1zKJQ==
+X-Google-Smtp-Source: AMrXdXudvFeY1MQe2u9dKeFf/Pkg70gCT8e98Ho6iYUtc8YoXVClgM8ziC4ZNwtjUY2hEr18RBBmpw==
+X-Received: by 2002:a5d:4644:0:b0:2be:5cf8:2a83 with SMTP id j4-20020a5d4644000000b002be5cf82a83mr9678706wrs.37.1674486790953;
+        Mon, 23 Jan 2023 07:13:10 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b002bc7f64efa3sm34737922wrw.29.2023.01.23.07.13.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jan 2023 07:13:10 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "moderated list:ARM/Ambarella SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 04/15] dt-bindings: arm: add support for Ambarella SoC
-In-Reply-To: <7d191871-1025-43a3-20bf-8fc6b3f92c89@linaro.org>
-References: <20230123073305.149940-1-lchen@ambarella.com>
-        <20230123073305.149940-5-lchen@ambarella.com>
-        <7d191871-1025-43a3-20bf-8fc6b3f92c89@linaro.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        - <devicetree@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Chester Lin <clin@suse.com>, Fugang Duan <fugang.duan@nxp.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Pragnesh Patel <pragnesh.patel@sifive.com>,
+        Le Ray <erwan.leray@foss.st.com>,
+        Peter Korsgaard <jacmet@sunsite.dk>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 01/13] dt-bindings: serial: amlogic,meson-uart: allow other serial properties
+Date:   Mon, 23 Jan 2023 16:12:50 +0100
+Message-Id: <20230123151302.368277-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Jan 2023 16:07:32 +0800,
-Krzysztof Kozlowski wrote:
->
-> On 23/01/2023 08:32, Li Chen wrote:
-> > Create a vendor directory for Ambarella, and add
-> > cpuid, rct, scratchpad documents.
-> >
-> > Signed-off-by: Li Chen <lchen@ambarella.com>
-> > Change-Id: I2c29e45c08666489b0d9b588ac37d713f5b723d1
->
-> Please run scripts/checkpatch.pl and fix reported warnings.
->
-> Applies to all your patches. Also test them... I have doubts that you
-> tested if you actually ignored checkpatch :/
+Reference common serial properties bindings to allow typical serial
+properties:
 
-Yeah, I checkpatch all patches, and have planned to fix Change-Id finally(manually),
-but forget it before sending mails, my bad, sorry. I will remove it in v2.
+  meson-axg-jethome-jethub-j100.dtb: serial@23000: 'bluetooth', 'uart-has-rtscts' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-> > ---
-> >  .../arm/ambarella/ambarella,cpuid.yaml        | 24 +++++++++++++++++++
-> >  .../bindings/arm/ambarella/ambarella,rct.yaml | 24 +++++++++++++++++++
-> >  .../arm/ambarella/ambarella,scratchpad.yaml   | 24 +++++++++++++++++++
-> >  .../bindings/arm/ambarella/ambarella.yaml     | 22 +++++++++++++++++
-> >  MAINTAINERS                                   |  4 ++++
-> >  5 files changed, 98 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,scratchpad.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml b/Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
-> > new file mode 100644
-> > index 000000000000..1f4d9cec8f92
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
->
-> This goes to soc
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/serial/amlogic,meson-uart.yaml       | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Thanks, I wasn't aware that there is a document dir named soc. I will move cpuid yaml
-to bindings/soc/ambarella/, and leave other yaml still here.
-
-> > @@ -0,0 +1,24 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/ambarella,cpuid.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Ambarella SoC ID
-> > +
-> > +maintainers:
-> > +  - Li Chen <lchen@ambarella.com>
->
-> Missing description.
-
-Sorry, description will be added in v2. BTW, does other YAMLs in this patch
-also need descriptions?
-
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: "ambarella,cpuid", "syscon"
->
-> Drop quotes (applies to all your patches)
-
-OK, thanks!
-
-> Missing SoC specific compatible.
->
-> > +
-> > +  reg:
-> > +    maxItems: 1
->
-> Missing additionalProperties. sorry, start from scratch from some
-> existing recent bindings or better example-schema.
-
-Good to know that there is example-schema, thanks!
+diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+index 7822705ad16c..7abf113c966c 100644
+--- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+@@ -19,6 +19,9 @@ description: |
+   is active since power-on and does not need any clock gating and is usable
+   as very early serial console.
  
-> > +
-> > +examples:
-> > +  - |
-> > +    cpuid_syscon: cpuid@e0000000 {
-> > +        compatible = "ambarella,cpuid", "syscon";
-> > +        reg = <0xe0000000 0x1000>;
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml b/Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
-> > new file mode 100644
-> > index 000000000000..7279bab17d9e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
-> > @@ -0,0 +1,24 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/ambarella,rct.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Ambarella RCT module
-> > +
-> > +maintainers:
-> > +  - Li Chen <lchen@ambarella.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: "ambarella,rct", "syscon"
->
-> All the same problems.
++allOf:
++  - $ref: /schemas/serial/serial.yaml#
++
+ properties:
+   compatible:
+     oneOf:
+@@ -69,7 +72,7 @@ required:
+   - clocks
+   - clock-names
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+-- 
+2.34.1
 
-Well noted.
-
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +examples:
-> > +  - |
-> > +		rct_syscon: rct_syscon@ed080000 {
->
-> Really? Just take a look and you will see wrong indentation. Also drop
-> underscores in node names and "rct". Node names should be generic.
-
-Sorry for the wrong indentation, will fix it in v2.
-
-Is it ok to contain underscores in lable? if so, I will change it into
-
-rct_syscon: syscon@ed080000 {
-
-in v2.
-
->
-> > +        compatible = "ambarella,rct", "syscon";
-> > +        reg = <0xed080000 0x1000>;
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/arm/ambarella/ambarella,scratchpad.yaml b/Documentation/devicetree/bindings/arm/ambarella/ambarella,scratchpad.yaml
-> > new file mode 100644
-> > index 000000000000..5d2bd243b5c9
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/ambarella/ambarella,scratchpad.yaml
-> > @@ -0,0 +1,24 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/ambarella,scratchpad.yaml#
->
-> That's not a clock controller!
-
-Sorry, will fix it in v2.
-
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Ambarella Scratchpad
-> > +
-> > +maintainers:
-> > +  - Li Chen <lchen@ambarella.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: "ambarella,scratchpad", "syscon"
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +examples:
-> > +  - |
-> > +    scratchpad_syscon: scratchpad_syscon@e0022000 {
->
-> All the same problems.
-
-Well noted.
-
-> > +        compatible = "ambarella,scratchpad", "syscon";
-> > +        reg = <0xe0022000 0x100>;
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/arm/ambarella/ambarella.yaml b/Documentation/devicetree/bindings/arm/ambarella/ambarella.yaml
-> > new file mode 100644
-> > index 000000000000..5991bd745c05
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/ambarella/ambarella.yaml
-> > @@ -0,0 +1,22 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/arm/ambarella.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Ambarella SoC Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Li Chen <lchen@ambarella.com>
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    const: "/"
-> > +  compatible:
-> > +    oneOf:
-> > +      - description: Ambarella SoC based platforms
-> > +        items:
-> > +          - enum:
-> > +              - ambarella,s6lm
->
-> What is this? How do you expect it to apply? Can you try by yourself?
-
-Sorry, I didn't find this file is duplicited with outside ambarella.yaml.
-I will remove it in v2.
-
-Thanks for your review!
-
-Regards,
-Li
