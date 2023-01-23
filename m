@@ -2,108 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24B8067895A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 22:18:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6628A678910
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 22:04:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233060AbjAWVSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 16:18:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48566 "EHLO
+        id S232876AbjAWVEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 16:04:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231540AbjAWVSn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 16:18:43 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F23E1ABF0;
-        Mon, 23 Jan 2023 13:18:42 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id n7so12072695wrx.5;
-        Mon, 23 Jan 2023 13:18:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xpwrGNkZx+sVBzOW0j2j89vPfNOgreFG5uTvNf7DxPU=;
-        b=Re4cufl2WPD0YzvKeEyjkmvLydeJYy4KQuxRe9CRuQ7oDQ2oxGsg7J74D+XYFYfct+
-         DVJ1YyRjLXunFJRCg4W/rjWhbeRwbuzEblodhZwoqiC7r3x2pzyAbbQtAynNERDGnnbX
-         zMVrCMPY8ke7Jbh2+8hj+26bMuG4dp1g33QvGkYP9QdftlePedoBdkirLZe4pOKb7ukQ
-         M8JQ9vwHFsNZVwYcEW/QRxpZY/otC5RMcGVuQ4X85bysv+eFZSIjdjjjuNlioOjFf9n8
-         2St3GosQSf2WgkMhkmFO6DpjIlYyqTMgsMYYCHuDvI8R1kYPfZMb72uxwYqPDdR3AAm0
-         wxGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xpwrGNkZx+sVBzOW0j2j89vPfNOgreFG5uTvNf7DxPU=;
-        b=wJ7LccqocBR14g4rKzce5ezVkMtiHo6HrqOMtgUyvI/C1cfI4rGv7e252Cnh9gUzmU
-         iqPLL/26S0wS41FoySJDnH5UQhN73GrokjHakJzVg82XEvYquCyWWb3TPipLvYel8+jA
-         7cL9KXBRe8iLITNCoYMljcQrlpRTWwKhW12O1e4oIMEnqFIjyKBw6r4/i3hUgN8QRQND
-         eUMfRvsRKaUXb+54/8Ktf8/TYfkZETy/qxYaEbUW5pmIMhMRlHYI5oJmYmQaooL7zFVu
-         16wQc3M4829Rh4DaIMB5k6foINb+SM+CJvwpaF02Rpej5CiXi6OUcQ6gSdcfoYas1YNl
-         5RMg==
-X-Gm-Message-State: AFqh2krV2lYGZeHRngH2vZk7WFKRhwo4hAtpeJ5VaxCjee3ekxXkv0yC
-        fFOYz3cwHIE5iLnXVbyzK28=
-X-Google-Smtp-Source: AMrXdXuTEcmNF+SqV8HUBdeUbSceMBFZ6/+tS/tF0O/XdFHGgavdDJZnFa9jxPCwWwHamsCJj6BzeA==
-X-Received: by 2002:adf:e2d0:0:b0:2bb:e868:6a45 with SMTP id d16-20020adfe2d0000000b002bbe8686a45mr17384896wrj.56.1674508720406;
-        Mon, 23 Jan 2023 13:18:40 -0800 (PST)
-Received: from localhost.localdomain (93-34-89-61.ip49.fastwebnet.it. [93.34.89.61])
-        by smtp.googlemail.com with ESMTPSA id v1-20020a5d4b01000000b002be53aa2260sm314121wrq.117.2023.01.23.13.18.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 13:18:40 -0800 (PST)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232719AbjAWVEY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 16:04:24 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2151A360AF;
+        Mon, 23 Jan 2023 13:04:23 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AA84E61092;
+        Mon, 23 Jan 2023 21:04:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71F7BC4339C;
+        Mon, 23 Jan 2023 21:04:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674507862;
+        bh=CVVF40aIqyqHuHo5QkyM/mqnSUoD6khV2a9bfpLNjLk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=mfc5nGdhbTQHKS96aFAAYhGHqgGQtHEQwGNQCfoW1bECCUUvMIAag+B3WjF/5/zV5
+         Xlp+vJ120UbeyNBOxUKEYKmOQqmqB1zymvNx4+QZWz4a8BNVXC+PDOKLN6TpJIRQaM
+         wQ3O4JgzqS4j9o3GCZawgUVfH9QP7SkS+j0RrD3FBD3wzmWosm6FLdz/DofYem8f8V
+         o1fiq59l/h1noYlTNB6H64wX9YJOufPBjdWgF/X0uQg2GmBJqxqhPLcojG+M4CAqAm
+         mOKVqWrgwtCKjkZWUebvaWP5PSlV8LYDP3Oi4f4iOXNacfFidSqA+QPi8FQvC8cKJA
+         zZYVAa6fpkrow==
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH] dt-bindings: arm: qcom,ids: Add Soc IDs for IPQ8064 and variants
-Date:   Mon, 23 Jan 2023 22:17:27 +0100
-Message-Id: <20230123211727.21542-1-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.38.1
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Barry Song <baohua@kernel.org>
+Subject: [PATCH 00/12] staging: iio: accel: adis16203 Inclinometer cleanup and graduation
+Date:   Mon, 23 Jan 2023 21:17:46 +0000
+Message-Id: <20230123211758.563383-1-jic23@kernel.org>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Soc IDs for Qualcomm IPQ8064 and variants.
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- include/dt-bindings/arm/qcom,ids.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+Whilst taking a look at what we still have in staging, I noticed that this
+driver was (probably) only still there due to the need to define some ABI
+for the odd 180 degree offset channel (same as the other channel
+minus 180 degrees).
 
-diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
-index f7aef3f310d7..dc86461ab664 100644
---- a/include/dt-bindings/arm/qcom,ids.h
-+++ b/include/dt-bindings/arm/qcom,ids.h
-@@ -45,6 +45,10 @@
- #define QCOM_ID_MSM8126			198
- #define QCOM_ID_APQ8026			199
- #define QCOM_ID_MSM8926			200
-+#define QCOM_ID_IPQ8062			201
-+#define QCOM_ID_IPQ8064			202
-+#define QCOM_ID_IPQ8066			203
-+#define QCOM_ID_IPQ8068			204
- #define QCOM_ID_MSM8326			205
- #define QCOM_ID_MSM8916			206
- #define QCOM_ID_MSM8994			207
-@@ -80,6 +84,8 @@
- #define QCOM_ID_APQ8094			253
- #define QCOM_ID_MSM8956			266
- #define QCOM_ID_MSM8976			278
-+#define QCOM_ID_IPQ8065			280
-+#define QCOM_ID_IPQ8069			281
- #define QCOM_ID_MDM9607			290
- #define QCOM_ID_APQ8096			291
- #define QCOM_ID_MSM8998			292
+Rather than leaving the driver in staging for ever, let us just drop that
+channel and move on. The rest of the series is trivial driver cleanup.
+
+Note this is only build tested, so would be great if people can take
+a good look.  If anyone happens to have one of these that would be even
+better (they are still marked for production use more than 12 years after
+the driver was submitted).
+
+There are lots of features we could support if anyone wanted to, but
+it should be functional for basic channel reading without the bells
+and whistles.  I've tried to incorporate the relevant device tree bindings
+however (multiple interrupt lines, supplies and reset gpio).
+
+Cc: Barry Song <baohua@kernel.org>
+(mostly for comedy value, not expecting you to remember the driver :)
+
+Jonathan Cameron (12):
+  staging: iio: accel: adis16203: More conventional header ordering
+  staging: iio: accel: adis16203: Drop excessive register comments
+  staging: iio: accel: adis16203: Rename incli channel registers
+  staging: iio: accel: adis16203: Drop the 180 degree offset channel
+  staging: iio: accel: adis16203: Simplify handling of calibbias
+  staging: iio: accel: adis16203: Drop driver name define
+  staging: iio: accel: adis16203: Make units explicit in name of delay
+    define
+  staging: iio: accel: adis16203: Trivial whitespace cleanup
+  staging: iio: accel: adis16203: Drop setting drvdata as nothing gets
+    it
+  staging: iio: accel: adis16203: Trivial style cleanup
+  staging: iio: accel: adis16203: Move out of staging
+  dt-bindings: iio: accel: Add ADIS16203 Inclinometer
+
+ .../bindings/iio/accel/adi,adis16203.yaml     |  59 +++++
+ drivers/iio/accel/Kconfig                     |  12 +
+ drivers/iio/accel/Makefile                    |   1 +
+ drivers/{staging => }/iio/accel/adis16203.c   | 212 ++++++------------
+ drivers/staging/iio/accel/Kconfig             |  12 -
+ drivers/staging/iio/accel/Makefile            |   1 -
+ 6 files changed, 136 insertions(+), 161 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
+ rename drivers/{staging => }/iio/accel/adis16203.c (51%)
+
 -- 
-2.38.1
+2.39.1
 
