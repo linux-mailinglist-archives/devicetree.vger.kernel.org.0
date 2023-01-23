@@ -2,180 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D06967802B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:42:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53FD3678047
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:46:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232818AbjAWPmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:42:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48632 "EHLO
+        id S232358AbjAWPqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:46:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232823AbjAWPmR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:42:17 -0500
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F1CF2A147;
-        Mon, 23 Jan 2023 07:42:11 -0800 (PST)
-Received: from pps.filterd (m0150241.ppops.net [127.0.0.1])
-        by mx0a-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30NFP7TV020838;
-        Mon, 23 Jan 2023 15:41:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=pps0720;
- bh=staV8E8UsGF0OgPFkM8Pljr/cfZ6mTpQtAQg7g65AA4=;
- b=aRxjxn3EqMnhK+1FpuGfSMgvZYSXkLlIQ6pyqrZOT7pwjtlKy1ybv6Qn3vVp1i9Eq5c8
- GY2PoZrXX0YA32g2T3hqLaQQP/fZvhbQU0NCQeI21DblxOvvwwPySdYx2+GUf1YBhkC3
- BP9DHTXWZipEqWErVbCu+qm8K6MWEoAN9fqnDKYtNDfVoDopdXpccEXCdfZ/yLEJ8dGq
- VmSbB5TvK3twm77YazxYtDLUD8aaNZ2Fl0z9HXWME63r8jw8PvR1POFMAYSyuO58UB7I
- JA7JOa9UCS09ypS8UQRUJpkmUKayYTg0mP5VZ4B6tDLthe+O8RfpMcikTvNkVVLK1B7q mA== 
-Received: from p1lg14881.it.hpe.com (p1lg14881.it.hpe.com [16.230.97.202])
-        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3n9vuwg5gb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 23 Jan 2023 15:41:34 +0000
-Received: from p1wg14924.americas.hpqcorp.net (unknown [10.119.18.113])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by p1lg14881.it.hpe.com (Postfix) with ESMTPS id BF7B2802B99;
-        Mon, 23 Jan 2023 15:41:33 +0000 (UTC)
-Received: from p1wg14923.americas.hpqcorp.net (10.119.18.111) by
- p1wg14924.americas.hpqcorp.net (10.119.18.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Mon, 23 Jan 2023 03:41:33 -1200
-Received: from p1wg14920.americas.hpqcorp.net (16.230.19.123) by
- p1wg14923.americas.hpqcorp.net (10.119.18.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36
- via Frontend Transport; Mon, 23 Jan 2023 03:41:33 -1200
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (192.58.206.38)
- by edge.it.hpe.com (16.230.19.123) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 23 Jan 2023 03:41:32 -1200
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cbIJ8uegzuLHTGcopzCG8t4v0R1lbxeEYDFLVRwWQgY5owD3Vwsi1f+t4STAh50I6hOZBl1+iclPeyIKSSoP2ccrAOA4sX4Ztl8t7zWw1lyGvCWdEMQuzxisXvWkplaBsumKsMm2fU1kB5xPfziL3YuCnmjeEjiBYbtXx0n6gOX2K2PnWls7mc+E9t5YBvoZ9hMFcACvXvoffrlwALOCz4ob+W4wUcO6rwVxJof6gj1IKpcAgq1nKYtqOd7HOTDPtSn1mBHko/VK40WHvva7aLUXUkjF/UXGAe++NrXUxcguzsRAWIgu4snjwFxvGa98ZZmAP1LSXEX6IhPbOX5abQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=staV8E8UsGF0OgPFkM8Pljr/cfZ6mTpQtAQg7g65AA4=;
- b=fzmUA0qpXQxYr0R2Y4s7dj9Ox45x7NIQ4JzvKxPAOtiy6voD74Qq7IjB5m1q4hEHbuGNB+bTUdeYpCJXHqdJ8lqD4zZNOZDdf7ywYsn6H2G7tMzXB/McMUxCNVWOuS7ivTUf4mnFkM5Hy6sxZ9PIk0WMR296iNQVtelJP1jwaxTjub5X6S8BMh2kWTQ4s2cn73nmQAIVXIGcmlfkkv2ykLeUO520JoqYH/SbqR49YyRgdJZQ6Gjhjkgu5dyOe3pJBr0Ch9TvZ7MhGasZ7zy032ZKB4hCrtD6D85Hm/7HiUJM4XV11Huj48Jx3RqPBGQPJTved5ngpgfNr8rqOozIXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
- header.d=hpe.com; arc=none
-Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:4e::10) by
- MW4PR84MB1778.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:303:1b1::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Mon, 23 Jan
- 2023 15:41:30 +0000
-Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::de12:a5c2:5c71:6b87]) by DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::de12:a5c2:5c71:6b87%7]) with mapi id 15.20.6002.033; Mon, 23 Jan 2023
- 15:41:30 +0000
-From:   "Hawkins, Nick" <nick.hawkins@hpe.com>
-To:     Joel Stanley <joel@jms.id.au>
-CC:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 1/5] i2c: hpe: Add GXP SoC I2C Controller
-Thread-Topic: [PATCH v3 1/5] i2c: hpe: Add GXP SoC I2C Controller
-Thread-Index: AQHZLQH+Z3hu6r0p/ku88iaKBUtSNq6reFuAgABLXYA=
-Date:   Mon, 23 Jan 2023 15:41:30 +0000
-Message-ID: <B78CF79F-A54B-4E44-97F3-7D93763D59D3@hpe.com>
-References: <20230120190159.23459-1-nick.hawkins@hpe.com>
- <20230120190159.23459-2-nick.hawkins@hpe.com>
- <CACPK8Xe46F4Rk1jkLzXdzHE8t_HePe83teTrwUoV4wMvOn4_CQ@mail.gmail.com>
-In-Reply-To: <CACPK8Xe46F4Rk1jkLzXdzHE8t_HePe83teTrwUoV4wMvOn4_CQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/16.69.23011802
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR84MB1927:EE_|MW4PR84MB1778:EE_
-x-ms-office365-filtering-correlation-id: adbead16-49ca-416e-4f4a-08dafd584c64
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 30d+qV55poHI3ZKRnaOluBaIq5JVgEzwI3ig4orb79KEbwyXC/OeXSL3mL+T1evSmSxL2sk1hcEo/wSJjcXZ5d7AMklmL4kCJxjDkCFnuq9Gc4YsQRHwT91eBtp1nGmz1IYP64e5q+kQLDddUCUHlJqE998D4LVGQl66i41FHgfubJbX/neVARq0JAb8poRXZjuyuPW9jgm1yMcWG6zuO7n2aVDxEGf9mqbvFh8jZyK4aCuWLE8kl11/ldmhfRI429nse1VPI5WeuUf//WsrHGcR3dZ/7pLVR7G+rCEzzFsayLDa0XNAiA1XaJDshu8F5yNvTwJQH36SajvGgnh6bLSS0CxqIpyPin5NH56uVndVs9YONeiaNAeT0AhkHgYu+sUqRmrKpXhkGmeeMLiP1g9biNvU3DCp/0fPGF0QddBIgNenO5wTlrObvyu+iVH7er/1fzc700KnVHKGdBrXq2qqDw+RfoIPBf1MTiCdPXTJgTHkGgzlD0lzoosWkl3KC7CQfWNN8jPqsBcIGdu0uzpPX1vSL45Y1fiGZYGvrXDGb94mz7OkXzG+LG8UVSzjSX9Gy9AC2HZr6MxRjNArHJcwHbGYHTIv7me/1bhMLm06OWxUNML1VW6g0qlip4SQdsgW9jN+Q+bMRnMegZVatQWSg5OcgB/tL6+eA0UhGF1ClNDveTCFv/G/ZhJtMdPfcH7JNSYYYGgY15tuXk1P59Gvup3N51yir59Hhkka0oY=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(366004)(396003)(39860400002)(136003)(346002)(376002)(451199015)(83380400001)(38100700002)(122000001)(33656002)(38070700005)(82960400001)(41300700001)(86362001)(2906002)(4744005)(8936002)(5660300002)(4326008)(8676002)(6916009)(186003)(6512007)(6506007)(66556008)(66476007)(316002)(76116006)(54906003)(64756008)(2616005)(66446008)(66946007)(478600001)(91956017)(6486002)(71200400001)(36756003)(45980500001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SlJIM3o2SHorZUVUSmJBZnFlZUMzOFdpZlN6WDJIdERsQWczZVg2WlNSTUto?=
- =?utf-8?B?UGMvQWVCY2hTNjhCd1lZUlNiVFZJUHNOME0wVlFsWlNFc1lMV3RydVdiYkxk?=
- =?utf-8?B?djlHb1lZOU56QXFlaGRabUl6QUFXWVM2aisrMDk1SGk1UTlWUUtoTWZFMlli?=
- =?utf-8?B?YlpLNEJZNFpncjc1dGo2SHNURDZCdHRwbnZGcnV6eU56OWQza3R1eVZydndE?=
- =?utf-8?B?dUtlaFFtYTRiMTl4RkxYVXNlWXYrSllEZ0dmMFRPbG9uVXpDVEZUakhwOG81?=
- =?utf-8?B?MHlzTWtyem5DNDVvSElzMWNKYUZNMmNsL3NyaWpzTDdDTExBSHVKMHRXakx2?=
- =?utf-8?B?bnFPVE5rVUZ1aGtCVklUMWtpOCsvQ1JTOTAvVjFZeUUxUlpOai9UU1JGekpu?=
- =?utf-8?B?STVXT1BtSi8vSVVTQllNU0U0WS9HSDhVM24vMWpqL1M5dlE0TkRjYUdOeTVT?=
- =?utf-8?B?anNpLzREcEFMM1hjRzNxRkt6NVRadC94OXJ3ZE95SkFFUW5Yak03WjhzNFVr?=
- =?utf-8?B?NVpOd3N5Tm1obWdtM0hBcEZydnc5YWpXOGd6bFNYVjUxdzhncEgrYnRUdEQ2?=
- =?utf-8?B?Z1U4cngrait3ZmpRMnJRWmEyVjV4K0JPV3JpM1M5UXRKQ2Q4RVRhR2pXVmUw?=
- =?utf-8?B?N1RPeUZPMlljNzdEK2J5UXNiOWE0Y3d4eksxKzl6NHdQTksrV2JseWVPbFZZ?=
- =?utf-8?B?cWJoK2V0eFNrQXlJZExQMkxXTzROaEEvRG1rcnFPcXBGMjRINzRST3p6R0ZW?=
- =?utf-8?B?K2xxK1FnbmtQUzlob3U1Y0k0T2RIZm1peDFwQXlDZGlTSkowWG9LVSt3Z1ht?=
- =?utf-8?B?cmgzNzEvcVY1bjBaZWphYWw1UWV1eklGNzdnSDdoRS9iS3QzWklBMEpPeDRN?=
- =?utf-8?B?MG5rZFNqMkpLQmwxcVVHZlNUY0pINk1Nd1AzY1J2cjducXVhRElNblFwWFhE?=
- =?utf-8?B?aWdjOFdvemMvRERPbDI2WlNDRUZ3bzdQb0tPekpPSGhvQVZKQ0xqRHRsc1dy?=
- =?utf-8?B?NXJFd3lEUEYxa2hSRHFLSElvUENYVlJ3MFltTmlaZk1CZWh5OFltV2lVdGlR?=
- =?utf-8?B?dnZBNTQ1K214ZGs1V1NDU1AyTWxYYlh0RDVYV1M5QkJKMVZZT3FJRjhVbUdD?=
- =?utf-8?B?UDZ0VVlsK2pDbkppRWJURUlvc0tHRFN6S1IvbnlUVEUxaW1HZXRXMEVxNFNU?=
- =?utf-8?B?N04wMVJNM0hBSlRDYzY5RzUwT0MxZGtBQnFocUs0RGc4aTYrTUdzOGpsdG9J?=
- =?utf-8?B?SVlURnZ2L2NyLys0UGxPdU5kcVlLb3lSamJmaFFLbVN0R2FocTd5c2dXdlNx?=
- =?utf-8?B?enVTWmFYdjBoUUVVcmFlL1hDVklFNitTNDZGNCtzTWY2WG85SnUyelJXa0x2?=
- =?utf-8?B?TEVOdEgzWHdhVEtBZ1FCZXNNRUZ6MnRkZDFNWGpoNXIzdVpPZkpiNzlHYlpp?=
- =?utf-8?B?VDRCSVNlNW13M1haTjBubkxCL2cyb1pmVFptelN0TTdQSjBtM1Y5RWZmc2VB?=
- =?utf-8?B?K1g0TXR6K0R2by95aXpnbmZqOXBDUVR0M1BDUWhSaFYzTDhOL1dhemxReDVy?=
- =?utf-8?B?NXArbTJsOGNhdkRTRXBCb00zRTVWRkxab1ZKeWpHbGFRZzltVXlrcUcvTXFn?=
- =?utf-8?B?S3dOb3FiNFlxZDV5ZHRrQkpmR3pVeEdJc3pOTEtaTG1pY0M2N0VqOTY3K3l5?=
- =?utf-8?B?VWFmZDUxdmpvSDc0b2JyWXJNUWhkUThMd2hKWkdMc3BienMwK2xUTHpIVTIx?=
- =?utf-8?B?REk2YllHQjhob1FiTVBKV0JycG5Jc2JBaFBBdjBNa3VhdUdkalU4UlRmMmFT?=
- =?utf-8?B?ZVZGeWVieHU3Qis3TmZ6WXhNbXBFWTNWYU1iV09xaGMrSGtodVUwVDlNRDg4?=
- =?utf-8?B?MmZvb1BkcGkvYTdoYit4d1hJOHlTekNxZWk0NUhqN1Q0K3dBNHd1SExBbTlk?=
- =?utf-8?B?S0V3ZVd3cHg1ZlJhUnRvb09zMmhzVjFQUzhXbEkrMzVUekJ5M2xxVE94WEI0?=
- =?utf-8?B?bjJsQmhzQ25nekRTdmlERUJ0SFdKNGF6Z0VaaTdFc1ZVK3V3WlN2bFJROURy?=
- =?utf-8?B?SnI4SWNpbXdSRVB0V3VJbFp0ZEtZeW9NRmJQdHA1am9EQm5yV2l0UXJOdnVh?=
- =?utf-8?B?dmEwdTNuUG56WEpmVC91dlEyUS9TS1dUdW9vcS9YdDh2a3NNVi9qME4vSUo1?=
- =?utf-8?B?eGc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A085F89531737B459B853E938D03905B@NAMPRD84.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+        with ESMTP id S231667AbjAWPqM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:46:12 -0500
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE9535592
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:46:11 -0800 (PST)
+Received: by mail-oi1-x232.google.com with SMTP id o66so10700185oia.6
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:46:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VjT+KuUSRPoSSIx/ak1Yf8ilLHFBmPSpHObnSxuVDlk=;
+        b=JkI3xCrdDTYGwjodwTGGhTGHwyPZCXe9UxkxyJ+qOV+Rxb/hr3pndUmtXFZAMlsObM
+         +LBmtttWAsEfuB0V8CgqlCjAPnUTup4USr/X20JZFkU7uEZV1ADIWFIIWeRGBZHZIfdu
+         95cLe0PQ9fdZuK99Yu0MDVkh3BMB9ul2l5wIOd9hSiFACONeFDDE8yyB0E2aTFz46NtS
+         MOpYvu297eKpfvmEdiIHBN3UgFczNsqvPnSHEsF3E622rqrkQ9ATRqeL5FOio1T4JynI
+         X9rWkhPW56RW0/jywW5icpKwcWTfkGF/ecuBxJoj6yAXXFbIFFSMEIhnm7PYpaqQdWra
+         fqyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VjT+KuUSRPoSSIx/ak1Yf8ilLHFBmPSpHObnSxuVDlk=;
+        b=IaULA1oOJ4dZ3+lXK69VMd9f6VSo1y5fZ9YGgURoWaf/LO/cDkk9khoD+OAZelX7Wg
+         c9vTiMr3rIz1pqZYcTG6cC6pm8A6+rtrEuZBaYU4gFEcoj9QNA20EQNumhPa5OurMFjB
+         PDINK+ACblSXv96sLreZZjm0Se5zh9gAj02q3GyAHRTOSicuM87AOE3mLPq3kmqfuj8+
+         zJGpO5EhaiIoUVUhpR5yyH4fGYTh8kbLMKcGdT6nqXw5EGaHOY6kkzESZ5ooDL0ZtFBH
+         Q1jjVEyxWs08D0Lh5FMjFAqsN+KcZFC4WAphN+5IPYbFD/0OmXo4FXxCue0DvNU3ROnC
+         gIhQ==
+X-Gm-Message-State: AFqh2kqwN7SgksNj5RNrhJkbOayDnvP6igHn4mZlRTa95gOZ9eFqjIqM
+        hVds+gmgcoSMTYrokvcKeNA=
+X-Google-Smtp-Source: AMrXdXttBP2RmIY/4xw4OecWvT/GDZd3INZ+UJThZtbK5vEoxoW8KXfllMWRlNxkI6euPvlYpZ+tpA==
+X-Received: by 2002:aca:d956:0:b0:35a:33d:5651 with SMTP id q83-20020acad956000000b0035a033d5651mr10895196oig.14.1674488771053;
+        Mon, 23 Jan 2023 07:46:11 -0800 (PST)
+Received: from localhost.localdomain ([76.244.6.13])
+        by smtp.gmail.com with ESMTPSA id w13-20020a056808140d00b0035e7ed5daa1sm10040132oiv.26.2023.01.23.07.46.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jan 2023 07:46:10 -0800 (PST)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        tzimmermann@suse.de, mripard@kernel.org,
+        maarten.lankhorst@linux.intel.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
+        thierry.reding@gmail.com, linus.walleij@linaro.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V12 0/4] drm/panel: Add Magnachip D53E6EA8966 Panel Controller
+Date:   Mon, 23 Jan 2023 09:45:59 -0600
+Message-Id: <20230123154603.1315112-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: adbead16-49ca-416e-4f4a-08dafd584c64
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2023 15:41:30.6781
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xs2E15zFmXRHPq6l+XaxFJ1sfHvx+1hNYIQmOvAsfsxsO/gnLwbD8vHtracREYwo8QayiR8yZIvuBhwUmKg25A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR84MB1778
-X-OriginatorOrg: hpe.com
-X-Proofpoint-GUID: yx5DH4ZfcSedsLKMtf24i8JXiXy8ukwF
-X-Proofpoint-ORIG-GUID: yx5DH4ZfcSedsLKMtf24i8JXiXy8ukwF
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-23_11,2023-01-23_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 bulkscore=0 mlxlogscore=613 clxscore=1015 adultscore=0
- spamscore=0 suspectscore=0 malwarescore=0 mlxscore=0 priorityscore=1501
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301230149
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQo+IFRoZSBpMmMgY29yZSBjYWxscyBkaXNhYmxlX2lycSBmb3IgdXMgKHNlZSBpMmNfZGV2aWNl
-X3NodXRkb3duKSBzbyB5b3UNCj4gZG9uJ3QgbmVlZCB0aGF0IGhlcmUuDQoNCg0KPiBJbiBteSBy
-ZXZpZXcgSSB3b25kZXJlZCBpZiB5b3UgbmVlZGVkIHRvIGRvIHNvbWV0aGluZyBsaWtlIHRoaXM6
-DQoNCg0KPiArIHJlZ21hcF91cGRhdGVfYml0cyhpMmNnX21hcCwgR1hQX0kyQ0lOVEVOLCAweDAw
-MDAwRkZGLCAwKTsNCg0KVGhhbmsgeW91IGZvciBwb2ludGluZyB0aGlzIG91dC4gSSB3aWxsIGNv
-cnJlY3QgdGhpcyBmb3IgdGhlIG5leHQgcGF0Y2ggc2V0Lg0KDQotTmljayBIYXdraW5zDQoNCg0K
+From: Chris Morgan <macromorgan@hotmail.com>
+
+Add the Magnachip D53E6EA8966 panel IC controller for display panels
+such as the Samsung AMS495QA01 panel as found on the Anbernic RG503.
+This panel uses DSI to receive video signals, but 3-wire SPI to receive
+command signals using DBI.
+
+Changes since V11:
+ - Added a "Co-developed-by" tag for Maya to capture her contributions
+   correctly.
+
+Changes since V10:
+ - Guarded definition in drm_of.h with an additional #if statement.
+ - Narrowed focus of drm_of_get_dsi_bus() to only return dsi_host (no
+   longer populates node on the mipi_dsi_device_info struct).
+
+Changes since V9:
+ - Set an ifdef to not add the drm_of_get_dsi_bus when MIPI_DSI is not
+   part of the current kernel config.
+ - Made "info" optional in the drm_of_get_dsi_bus() function.
+
+Changes since V8:
+ - Set "placeholder" drm_of_get_dsi_bus in drm_of.h to static inline
+   to hopefully eliminate the reported errors once and for all. Tested
+   with 4 different kernel configurations provided by Intel's kernel
+   test robot and no new warnings or errors were introduced.
+   Reported-by: kernel test robot <lkp@intel.com>
+
+Changes since V7:
+ - Removed Linus Walleij review note due to substantial changes.
+ - Corrected documentation of drm_of_get_dsi_bus function.
+ - Updated the drm_of_get_dsi_bus function to return pointer to
+   mipi_dsi_host and use ERR_PTR macros.
+ - Refactored drm_panel_funcs so that the prepare function calls
+   panel specific function for init sequence and uses generic
+   functions otherwise.
+ - Renamed non-panel specific functions.
+ - Changed backlight value to int instead of u32.
+ - Corrected brightness function to use backlight_get_brightness().
+ - Fix an error reported when CONFIG_OF is selected but
+   CONFIG_DRM_MIPI_DSI is not. Add an if function to drm_of_get_dsi_bus
+   function to return -EINVAL in this instance.
+   Reported-by: kernel test robot <lkp@intel.com>
+
+Changes since V6:
+ - Fixed a trivial error with definition of drm_of_get_dsi_bus().
+   Reported-by: kernel test robot <lkp@intel.com>
+
+Changes since V5:
+ - Reverted dt binding documentation name back to
+   samsung,ams495qa01.yaml.
+ - Removed no longer needed of_graph.h header file.
+ - Added backlight as a dependency.
+
+Changes since V4:
+ - Renamed driver from the panel model to the panel IC controller per
+   DRM team.
+ - Added a drm_of helper function of drm_of_get_dsi_bus() to handle
+   finding and populating the DSI node when the DSI node is not the
+   parent of the DSI controlled display.
+ - Converted the documented commands to constants to make it more
+   readable.
+ - Reset GPIO is now required and documented as GPIO_ACTIVE_LOW.
+ - Removed "prepared" logic from panel.
+
+Changes since V3:
+ - Updated documentation to add spi-peripheral-props.yaml per updates
+   made for similar devices. Note that I removed a "Reviewed-by" tag
+   from Rob Herring since this change probably needs to be confirmed.
+ - Added binding for RG503, since this device is now accepted with this
+   request: https://lore.kernel.org/linux-rockchip/166274831283.21181.6861718157177507544.b4-ty@sntech.de/
+
+Changes since V2:
+ - Added 50hz mode at request of userspace devs.
+ - Renamed "dupa" to panel name. Good catch Maya.
+ - Added Maya's Signed-off-by.
+ - Removed check for max backlight, since it is already done by
+   backlight_device_set_brightness.
+ - Fixed minor formatting issues on devicetree binding documentation
+   and added port to provided example.
+
+Changes since V1:
+ - Removed errant reference to backlight in documentation. This is an
+   OLED panel.
+ - Made elvss regulator optional. In my case its hard wired and not
+   controllable.
+ - Added "prepared" enum to track panel status to prevent unbalanced
+   regulator enable/disable.
+
+Chris Morgan (4):
+  drm: of: Add drm_of_get_dsi_bus helper function
+  dt-bindings: display: panel: Add Samsung AMS495QA01
+  drm/panel: Add Magnachip D53E6EA8966 Panel Driver
+  arm64: dts: rockchip: add display to RG503
+
+ .../display/panel/samsung,ams495qa01.yaml     |  57 ++
+ .../dts/rockchip/rk3566-anbernic-rg503.dts    |  55 ++
+ drivers/gpu/drm/drm_of.c                      |  51 ++
+ drivers/gpu/drm/panel/Kconfig                 |  11 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../drm/panel/panel-magnachip-d53e6ea8966.c   | 522 ++++++++++++++++++
+ include/drm/drm_of.h                          |  12 +
+ 7 files changed, 709 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-magnachip-d53e6ea8966.c
+
+-- 
+2.34.1
+
