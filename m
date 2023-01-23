@@ -2,117 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDC01678171
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 17:30:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60137678178
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 17:31:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230088AbjAWQaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 11:30:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32956 "EHLO
+        id S233018AbjAWQb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 11:31:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232280AbjAWQaP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 11:30:15 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C08D2BEE9
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:29:54 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id mg12so31994630ejc.5
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:29:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TASDLyKH+0DjNc1kNKn1XmKSEz18xnkdI15P2UbcAWA=;
-        b=SEoC8mIsBQpVsNL2SVpaX/Me7/JqveYsN/AJ66jJyFj5rhL9xBCbptenc9ciLNnrVc
-         KHsDrFGXh7FIUYQcybbIIPplTH49U46Sh5Tw8e9Vj5pAISupKU5vjsuAtI++WQyZdu4L
-         +t9/9uqk4bM9YExaatLWO2fDozZmJoGl09pb+PLFMTCnxx0FDkYKLeqggM4T0LJOi7r9
-         PJF2UqpmcCJza2j+2Zcf58z5n564C4rStg0qJ8SbYoihP62Do07fFKdstIneYafQXhPO
-         k0+o2+ude7SzDVYOXI7KUSUE2JEiaMxuEmvs/VbU29SrWzh0/5NkyjJQov+njEInrFjx
-         0qUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TASDLyKH+0DjNc1kNKn1XmKSEz18xnkdI15P2UbcAWA=;
-        b=Ch6K6riaixw66bEFrKb92SUIz3ZbbGG2zsXMJkmmw1oZ8phJt85ett0DChuZroMUaZ
-         ApOwLlHdZdMbuF2cWWeQGJsJObLB5sb65AjXDF3qQm2n7F8RIBcyVQvL3f9sSA0bpu3q
-         4kWJ1c6vk68N1dyuljAik1QrrqOP0MY8EujJnohGr3fUVnggDG+8iCKV71aFPTyiHnfJ
-         0ZiiHoAG0C7gx4Y3p8GH5+fpy256rW5ieBUlgjFY1LRZaF5rjG+TI3vXRp9yrpdND8t8
-         pAF7Bdr+7k2TkxG/F9FWcfewIyIRl8SEBeuF9khKgk0G1oYzbqO5ra2VyKb7/qhGWFPd
-         sfRQ==
-X-Gm-Message-State: AFqh2krN5Qe+dXMngbmZM6U82AXKAoCw/dPdCcoSNju/00+fRzeUosh0
-        oxFr2USZnvGzOlvKzDLfycB72g==
-X-Google-Smtp-Source: AMrXdXv6uGougMYEDD5lLrYNdz6BR2Jr2z2VhkIydC8OzXmpkcu1kg8rLsEa1mULz9hSljpmUUWDXA==
-X-Received: by 2002:a17:906:95d2:b0:7c0:a6a9:64e9 with SMTP id n18-20020a17090695d200b007c0a6a964e9mr27120793ejy.36.1674491393106;
-        Mon, 23 Jan 2023 08:29:53 -0800 (PST)
-Received: from [192.168.1.101] (abxi24.neoplus.adsl.tpnet.pl. [83.9.2.24])
-        by smtp.gmail.com with ESMTPSA id hr35-20020a1709073fa300b00877557ae644sm8748272ejc.71.2023.01.23.08.29.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 08:29:52 -0800 (PST)
-Message-ID: <a7d10bdf-f605-7cef-3ccb-68592febb67b@linaro.org>
-Date:   Mon, 23 Jan 2023 17:29:51 +0100
+        with ESMTP id S233082AbjAWQbZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 11:31:25 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05A5E29E0F;
+        Mon, 23 Jan 2023 08:31:24 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8E4A960F89;
+        Mon, 23 Jan 2023 16:31:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 801E5C433D2;
+        Mon, 23 Jan 2023 16:31:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1674491484;
+        bh=6IfgOcum2gcVYU1kyOtSd1JBd1Ps0O92g/32DAGgyWU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=n2ztuD0bELDmW6cyWLq00lGxLC9w2npeBI9wEG/tIx654z/SK4IGqXtppB4HAfQcG
+         TuKDhr5uBOyZHknyuumgf+5HDL+vAtAVblN2gM6guZADpCLeziRkR+tcKvSOmEQDar
+         dPQwPlo9MxFMivREynyzVsrCaG8fL3MzFqxl6nD0=
+Date:   Mon, 23 Jan 2023 17:31:21 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Lee Jones <lee@kernel.org>
+Cc:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@axis.com
+Subject: Re: [PATCH] mfd: Add Simple PCI MFD driver
+Message-ID: <Y862WTT03/JxXUG8@kroah.com>
+References: <20230120-simple-mfd-pci-v1-1-c46b3d6601ef@axis.com>
+ <Y86op9oh5ldrZQyG@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm8550: drop incorrect cells
- from serial
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230123125612.154840-1-krzysztof.kozlowski@linaro.org>
- <20230123125612.154840-4-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230123125612.154840-4-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y86op9oh5ldrZQyG@google.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jan 23, 2023 at 03:32:55PM +0000, Lee Jones wrote:
+> On Mon, 23 Jan 2023, Vincent Whitchurch wrote:
+> 
+> > Add a PCI driver which registers all child nodes specified in the
+> > devicetree.  It will allow platform devices to be used on virtual
+> > systems which already support PCI and devicetree, such as UML with
+> > virt-pci.
+> > 
+> > The driver has no id_table by default; user space needs to provide one
+> > using the new_id mechanism in sysfs.
+> 
+> This feels wrong for several reasons.
+> 
+> Firstly, I think Greg (Cc:ed) will have something to say about this.
 
+Yes, this isn't ok.  Please write a real driver for the hardware under
+control here, and that would NOT be a MFD driver (hint, if you want to
+split up a PCI device into different drivers, use the aux bus code, that
+is what it is there for.)
 
-On 23.01.2023 13:56, Krzysztof Kozlowski wrote:
-> The serial/UART device node does not have children with unit addresses,
-> so adderss/size cells are not correct.
-> 
-> Fixes: 377972ac743f ("arm64: dts: qcom: sm8550: add I2C Master Hub nodes")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+thanks,
 
-Konrad
-> 
-> Changes since v1:
-> 1. New patch
-> ---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 6ff135191ee0..0307b853ec4f 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -1582,8 +1582,6 @@ uart7: serial@a9c000 {
->  				interconnect-names = "qup-core", "qup-config";
->  				interconnects =	<&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
->  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
-> -				#address-cells = <1>;
-> -				#size-cells = <0>;
->  				status = "disabled";
->  			};
->  		};
+greg k-h
