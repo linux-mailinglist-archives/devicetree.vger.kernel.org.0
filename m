@@ -2,245 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7F0C679642
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:10:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31AD867965E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:15:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233897AbjAXLKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 06:10:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41228 "EHLO
+        id S233724AbjAXLP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 06:15:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233899AbjAXLKR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:10:17 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ABFA4ECA
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:10:13 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id n7so13503053wrx.5
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:10:12 -0800 (PST)
+        with ESMTP id S233560AbjAXLP2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:15:28 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C24781284C;
+        Tue, 24 Jan 2023 03:15:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BXedPZUzvmpRax44TR36pQBVZZnvRJjFRluQuQKM+QE=;
-        b=fY7TM5NiOP5YFJ1l01jIGUeV6RHxVdh7Q92sDqC+8or0Sm2//MiTsY1WdscTLkke/b
-         dR2uSZgMowtEQdYmSga+Tg8VHXcYZ2PsN850+tZm5RXQA/eEDJd61AkK/aAKEs8bTyXZ
-         9w2YnC+M8sba2nwSeb4D70VOsQFdYrnWfxChWjazPikwmvSgF5NskOGN6aVi++bWcB04
-         mkGZJQrv1bGGolRKGo5D0VlJ4c27SRYw9sRAMJPbnyDSg+/xLCDHnLm8T7/fD+UIzGSa
-         41Pht3TgvoLUX4TLOMOJRjcm5Py2fbW0Ry7AhhT01WYVd5YsXE/Vk1EKiQHZQw8ZL/O1
-         1wBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BXedPZUzvmpRax44TR36pQBVZZnvRJjFRluQuQKM+QE=;
-        b=CpeNQHEj60GKd24DBf8RxyGZOHn53OqY/b8mVirmRfoQrSgSW9qVQiuCmpyGJk9+rj
-         aeR/UsrWA+nrbFHGLU5tqr0CEMb7I3cJrVVW5oS32PD3Dl3kg0e7p3SFmNyBpsOo4NK0
-         5jSOcvg4dTi2X6vc+WnANkppIdlTgvxsZQdi6CQhFD5LWBH+nffjnNGbwH6GrDL/0huS
-         sa2LnoVADesk/SX0Hg7odcbKulOSY7N7AG7T8WmU2/xPeLzH2jp3wlrre5ohTprQaDYU
-         KpevysTVAxj1s2BcXjQmAPS3stNdKJf4p6Nk5RiF97wnPZ5Hd5RilXzHbdtKZiZCTBg7
-         TqZw==
-X-Gm-Message-State: AFqh2kqSRUA/1R4jP5FMinf/WE6N2OfXQAoMNF1llhIQWoEQ6+j80QM2
-        FWxfY7o4S05GPeVlGDH6Y7Kktw==
-X-Google-Smtp-Source: AMrXdXulPHEEQgYIOrWZ3fdFI3BgCzZvJ9Web0nW6DxJBAR73XfX5mzg1VJqM4M2H61l1gx1O0dmjg==
-X-Received: by 2002:a5d:6b85:0:b0:2bd:d782:c2bc with SMTP id n5-20020a5d6b85000000b002bdd782c2bcmr24583154wrx.33.1674558611482;
-        Tue, 24 Jan 2023 03:10:11 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p15-20020a5d4e0f000000b002bdc39849d1sm1634610wrt.44.2023.01.24.03.10.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 03:10:11 -0800 (PST)
-Message-ID: <b4b11836-5a4b-a2b7-18e2-89ca26f19817@linaro.org>
-Date:   Tue, 24 Jan 2023 12:10:09 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1674558927; x=1706094927;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=zg8/P28ps+IaW6WtOh6SZ9l5jzbkeb7NOV6ctj41Lo8=;
+  b=l0X3EccSe0Y1l7pDcDM5U1Y83me05n0Pits6sKR+W2RFHl6gU1KNhWm/
+   8CBXPTDwLESklPqZsmQ5COYRaOgR1CxMFG6zbnvYhzsdYciEXI+oHNJ+H
+   hsArB1ivDxV+HgxBAZSvo2+8eiCvu24+7kMa5s0DMWndWDaeitln55SnV
+   sfoa5tPxVzFIoajCjoniYPRC/HQgCyQsCfZGh5wrkhWnpMOO0fYSCFtgY
+   VG4bEtgnNrTeO77cRKvDTnhaljOLXKjMpoDxzYzQa0rL28FPekTpJDOkh
+   3+gCddnuTSFk2rCl/anDv6UhAYT+GV38Fd23VWXQYCMjHqo4icvSm/uiN
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,242,1669071600"; 
+   d="scan'208";a="28617118"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 24 Jan 2023 12:15:25 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 24 Jan 2023 12:15:25 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 24 Jan 2023 12:15:25 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1674558925; x=1706094925;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=zg8/P28ps+IaW6WtOh6SZ9l5jzbkeb7NOV6ctj41Lo8=;
+  b=OGe/gy68+eRmjcQPpwad8KlMcG7R1LsxyZOj9cfLmezWiGUUg0fEI9RU
+   pEfAdbqSAOoQvS/9MrZCa1ws33E+i42B6Rse2/n4/wUutnoo3Q1hPke5v
+   ghB/g9sPoxtZaeuE/Rv2MAv7QvO1gHJPR0zQLxyU/ErlY4al2Sc7A/tct
+   qoAxUUBil3RSa8rvnfGPAj7sMkqSy4ZnNlusySFcyIG2YJbtzGP1m/SpV
+   nCdbMQ9L5D3U5mye6BRcBvjd+oT+FaKgIhL68X7Y+TXwih2ycBikTcmEb
+   HZkdZPAI/djBy51Ah2zpwY8gcrIY7g93YInb1GBBA1N+Jog4tYd1Uo9Jx
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,242,1669071600"; 
+   d="scan'208";a="28617117"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 24 Jan 2023 12:15:25 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C3AFF280056;
+        Tue, 24 Jan 2023 12:15:24 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Liu Ying <victor.liu@nxp.com>
+Cc:     Marek Vasut <marex@denx.de>, s.hauer@pengutronix.de,
+        robh+dt@kernel.org, linux-imx@nxp.com,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH 2/2] drm: lcdif: Add i.MX93 LCDIF support
+Date:   Tue, 24 Jan 2023 12:15:24 +0100
+Message-ID: <13189854.uLZWGnKmhe@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <7ac57bc28da40df054c81fd74f69207af66ad97b.camel@nxp.com>
+References: <20230123072358.1060670-1-victor.liu@nxp.com> <ace76615-533a-9295-8271-95262859d287@denx.de> <7ac57bc28da40df054c81fd74f69207af66ad97b.camel@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] hwmon: (pmbus/tda38640) Add driver for Infineon TDA38640
- Voltage Regulator
-Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230124110111.3965317-1-Naresh.Solanki@9elements.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230124110111.3965317-1-Naresh.Solanki@9elements.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 12:01, Naresh Solanki wrote:
-> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+Hi,
+
+Am Dienstag, 24. Januar 2023, 08:59:39 CET schrieb Liu Ying:
+> On Mon, 2023-01-23 at 16:57 +0100, Marek Vasut wrote:
+> > On 1/23/23 08:23, Liu Ying wrote:
+> > > The LCDIF embedded in i.MX93 SoC is essentially the same to those
+> > > in i.MX8mp SoC.  However, i.MX93 LCDIF may connect with MIPI DSI
+> > > controller through LCDIF cross line pattern(controlled by mediamix
+> > > blk-ctrl) or connect with LVDS display bridge(LDB) directly or a
+> > > parallel display(also through mediamix blk-ctrl), so add multiple
+> > > encoders(with DRM_MODE_ENCODER_NONE encoder type) support in the
+> > > LCDIF DRM driver and find a bridge to attach the relevant encoder's
+> > > chain when needed.  While at it, derive lcdif_crtc_state structure
+> > > from drm_crtc_state structure to introduce bus_format and bus_flags
+> > > states so that the next downstream bridges may use consistent bus
+> > > format and bus flags.
+> > 
+> > Would it be possible to split this patch into preparatory clean up
+> > and
+> > i.MX93 addition ? It seems like the patch is doing two things
+> > according
+> > to the commit message.
 > 
-> Add the pmbus driver for the Infineon TDA38640 voltage regulator.
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  .../devicetree/bindings/trivial-devices.yaml  |  2 +
+> IMHO, all the patch does is for i.MX93 addition, not for clean up.
+> Note that the single LCDIF embedded in i.MX93 SoC may connect with MIPI
+> DSI/LVDS/parallel related bridges to drive triple displays
+> _simultaneously_ in theory, while the three LCDIF instances embedded in
+> i.MX8mp SoC connect with MIPI DSI/LVDS/HDMI displays respectively(one
+> LCDIF maps to one display).  The multiple encoders addition and the new
+> checks for consistent bus format and bus flags are only for i.MX93
+> LCDIF, not for i.MX8mp LCDIF.  Also, I think the multiple encoders
+> addition and the new checks should be done together - if the new checks
+> come first, then the new checks do not make sense(no multiple displays
+> driven by LCDIF); 
 
-Split bindings from driver code.
+You are right on this one, but on the other hand there are lot of preparing 
+patches already. Even if it is useless by itself, having the bus format & flag 
+checks in a separate patch, it is easier to review, IMHO.
 
->  drivers/hwmon/pmbus/Kconfig                   | 16 ++++
->  drivers/hwmon/pmbus/Makefile                  |  1 +
->  drivers/hwmon/pmbus/tda38640.c                | 78 +++++++++++++++++++
->  4 files changed, 97 insertions(+)
->  create mode 100644 drivers/hwmon/pmbus/tda38640.c
-> 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index f5c0a6283e61..a28b02036489 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -141,6 +141,8 @@ properties:
->            - infineon,slb9645tt
->              # Infineon SLB9673 I2C TPM 2.0
->            - infineon,slb9673
-> +            # Infineon TDA38640 Voltage Regulator
-> +          - infineon,tda38640
->              # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
->            - infineon,tlv493d-a1b6
->              # Infineon Multi-phase Digital VR Controller xdpe11280
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index 30448e049486..9f4bbb9c487a 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -395,6 +395,22 @@ config SENSORS_STPDDC60
->  	  This driver can also be built as a module. If so, the module will
->  	  be called stpddc60.
->  
-> +config SENSORS_TDA38640
-> +	tristate "Infineon TDA38640"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for Infineon
-> +	  TDA38640.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called tda38640.
-> +
-> +config SENSORS_TDA38640_REGULATOR
-> +	bool "Regulator support for TDA38640 and compatibles"
-> +	depends on SENSORS_TDA38640 && REGULATOR
-> +	help
-> +	  If you say yes here you get regulator support for Infineon
-> +	  TDA38640 as regulator.
+> if the new checks come later, then it would be a bug
+> to allow inconsistent bus format and bus flags across the next
+> downstream bridges when only adding multiple encoders support(also, I
+> don't know which encoder's bridge should determine the LCDIF output bus
+> format and bus flags, since the three encoders come together with the
+> three next bridges).
 
-Drop entire option, why is it needed?
-
-> +
->  config SENSORS_TPS40422
->  	tristate "TI TPS40422"
->  	help
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index d9d2fa4bd6f7..3ae019916267 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -40,6 +40,7 @@ obj-$(CONFIG_SENSORS_PM6764TR)	+= pm6764tr.o
->  obj-$(CONFIG_SENSORS_PXE1610)	+= pxe1610.o
->  obj-$(CONFIG_SENSORS_Q54SJ108A2)	+= q54sj108a2.o
->  obj-$(CONFIG_SENSORS_STPDDC60)	+= stpddc60.o
-> +obj-$(CONFIG_SENSORS_TDA38640)	+= tda38640.o
->  obj-$(CONFIG_SENSORS_TPS40422)	+= tps40422.o
->  obj-$(CONFIG_SENSORS_TPS53679)	+= tps53679.o
->  obj-$(CONFIG_SENSORS_TPS546D24)	+= tps546d24.o
-> diff --git a/drivers/hwmon/pmbus/tda38640.c b/drivers/hwmon/pmbus/tda38640.c
-> new file mode 100644
-> index 000000000000..31e17a936b8c
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/tda38640.c
-> @@ -0,0 +1,78 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Hardware monitoring driver for Infineon TDA38640
-> + *
-> + * Copyright (c) 2023 9elements GmbH
-> + *
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/regulator/driver.h>
-> +#include "pmbus.h"
-> +
-> +#if IS_ENABLED(CONFIG_SENSORS_TDA38640_REGULATOR)
-> +static const struct regulator_desc tda38640_reg_desc[] = {
-> +	PMBUS_REGULATOR("vout", 0),
-> +};
-> +#endif /* CONFIG_SENSORS_TDA38640_REGULATOR */
-> +
-> +static struct pmbus_driver_info tda38640_info = {
-> +	.pages = 1,
-> +	.format[PSC_VOLTAGE_IN] = linear,
-> +	.format[PSC_VOLTAGE_OUT] = linear,
-> +	.format[PSC_CURRENT_OUT] = linear,
-> +	.format[PSC_CURRENT_IN] = linear,
-> +	.format[PSC_POWER] = linear,
-> +	.format[PSC_TEMPERATURE] = linear,
-> +
-> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT
-> +	    | PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP
-> +	    | PMBUS_HAVE_IIN
-> +	    | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
-> +	    | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT
-> +	    | PMBUS_HAVE_POUT | PMBUS_HAVE_PIN,
-> +#if IS_ENABLED(CONFIG_SENSORS_TDA38640_REGULATOR)
-> +	.num_regulators = 1,
-> +	.reg_desc = tda38640_reg_desc,
-> +#endif
-> +};
-> +
-> +static int tda38640_probe(struct i2c_client *client)
-> +{
-> +	return pmbus_do_probe(client, &tda38640_info);
-> +}
-> +
-> +static const struct i2c_device_id tda38640_id[] = {
-> +	{"tda38640", 0},
-> +	{}
-> +};
-> +
-
-Drop blank line
-
-> +MODULE_DEVICE_TABLE(i2c, tda38640_id);
-> +
-> +#ifdef CONFIG_OF
-
-Drop ifdefs and use __maybe_unused
-
-> +static const struct of_device_id tda38640_of_match[] = {
-> +	{ .compatible = "infineon,tda38640"},
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, tda38640_of_match);
-
-Where is it used? You miss the user.
-
-> +#endif
-> +
-> +/* This is the driver that will be inserted */
-> +static struct i2c_driver tda38640_driver = {
-> +	.driver = {
-> +		   .name = "tda38640",
-> +		   },
-> +	.probe_new = tda38640_probe,
-> +	.id_table = tda38640_id,
-> +};
+Agreed, this order is a no-go.
 
 Best regards,
-Krzysztof
+Alexander
+
+> Regards,
+> Liu Ying
+
+
+
 
