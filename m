@@ -2,115 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13068679D60
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 16:25:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ADD6679D86
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 16:31:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234850AbjAXPZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 10:25:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39114 "EHLO
+        id S235196AbjAXPbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 10:31:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234819AbjAXPZs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 10:25:48 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FBDD233F6
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 07:25:45 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id r2so14228204wrv.7
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 07:25:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oRSOqByjWCTfw2IqSfQf3MSHv6dQgoH4nISayRjMtHk=;
-        b=X9d2a5S1g5Pu1uaUjGX2GmiGuc4pN82zNBWoOGOHcX8XaQC8rGQrGiJeXXPupqndP2
-         8frDjvCY3lM6xNFSYA37yXGrSvy5PYBkJRHC13Eebenn9F/ojaSOUKhG8VARQjtYRVYn
-         eyh99YAjdmXe4Gp4/R2uFIpD527C8xf2I7+NFSRUlRlo9EXl/zd1PWGeJhTzjq5WLhXG
-         Y/ThQ8UtiHVxbsyVAIkJpb/mPo5NATRefd9rcH8Gd6LFhuuxtTwrJPZXScuDn/u/GrVE
-         1FPsN2T235cxTxWMatD3/N/G53cTuBreun53e4j1UQNouUppryVeArPL0OvtowLyQd/d
-         CPZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oRSOqByjWCTfw2IqSfQf3MSHv6dQgoH4nISayRjMtHk=;
-        b=a7ME3983P2mX9eQYZ3DmxgS7Dfvq+rRsFCn5P/eMVbMiKOCOsI6I6APm2/xSFHuKID
-         GO710/An2A2mR9CiJ0zBaYdBb9w6tMyxd97l+Z7efefnpBTb5iN4ovczuDKWlSA7Yg6R
-         ElYLreQOhYKSVspfnLeOd4+dudYJ5jMoKUJNVqjFtkcpP90kT1VnIZ5LEwSkgsC9d+qw
-         17aC0thg2AhkkO4DkKsDodFKn3qx+ixTqUK/YeInqsSF3ciylIs6Ii1+QrEU/hlvb4FL
-         97tGWPIwJoXkIYDyy9IL2ZexuL799l95TtXB3VqF7y6UxH3xArvg3KOqs75753I1fFIv
-         r0xQ==
-X-Gm-Message-State: AFqh2krSVWaQJ97HQCjugKKxUOPNY6qX0E9PnZ67Rs8xZehvd6pv/eg+
-        iCTMdsO5Lw0y/B3W57/JSVE1NA==
-X-Google-Smtp-Source: AMrXdXsmytFzOSiZqt0rtnYj8izFdVm0myDTdxvXTy/+LHsqw85xIPz2gUD9Dr7unVsJyyy14GVP4g==
-X-Received: by 2002:adf:fe05:0:b0:2be:bfcb:b1d4 with SMTP id n5-20020adffe05000000b002bebfcbb1d4mr13392077wrr.57.1674573943928;
-        Tue, 24 Jan 2023 07:25:43 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id r1-20020a0560001b8100b002bfae16ee2fsm2037656wru.111.2023.01.24.07.25.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 07:25:43 -0800 (PST)
-Message-ID: <3ae863df-3260-4863-d88f-da4d3f442174@linaro.org>
-Date:   Tue, 24 Jan 2023 15:25:42 +0000
+        with ESMTP id S235167AbjAXPbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 10:31:17 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 103534B893;
+        Tue, 24 Jan 2023 07:31:14 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5597C6602E26;
+        Tue, 24 Jan 2023 15:31:12 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1674574273;
+        bh=XzNWMNMUfZ0GUDmKAy/1fnLOVo23adcRjRtL+79OId8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Wd3alA47WJak7VwJSwj/g28hfDBPbDYB4YWhX2yIzbv1EFbkY6ZbZrfU9p8BL4kHG
+         GEkU5beBUZ/ETjL+r9EfyVo++qItpQADfj4QgrVgUZ+2uEuoNNtBJ1jT0KyM7lO0Sp
+         9+0LCBYKp6IdH8CAk+bkCIW7fhIHD/DR6xpkZMuao04IS9ItM4RVcBqrpnyuHQ8fQE
+         MAxPgcPckoC8LuSthZNtsFdpmnc3gsFrNAIGHXan86l9DBk1GfCavwpxVWkhFES1nj
+         +cu5fi0WFvmxIruSdHfV+HgCCsabSIAykerlE+LdrftpqxHNHh4kBxAauZYGi/W150
+         8AwvnJnfqkj8g==
+Message-ID: <5dd5c795-5e67-146d-7132-30fc90171d4c@collabora.com>
+Date:   Tue, 24 Jan 2023 16:31:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sm6350: Add camera clock
- controller
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v11 4/6] thermal/drivers/mediatek: Add the Low Voltage
+ Thermal Sensor driver
 Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221213-sm6350-cci-v2-0-15c2c14c34bb@fairphone.com>
- <20221213-sm6350-cci-v2-2-15c2c14c34bb@fairphone.com>
- <e5ff49d4-45c7-8c4a-d624-d8f7cc9ce2cb@linaro.org>
- <CQ0I4ONEI6J4.3KWS1KBE7RTKD@otso>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <CQ0I4ONEI6J4.3KWS1KBE7RTKD@otso>
+To:     bchihi@baylibre.com, daniel.lezcano@linaro.org, rafael@kernel.org,
+        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
+        p.zabel@pengutronix.de
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+References: <20230124131717.128660-1-bchihi@baylibre.com>
+ <20230124131717.128660-5-bchihi@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230124131717.128660-5-bchihi@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 14:48, Luca Weiss wrote:
-> On Fri Jan 20, 2023 at 5:49 PM CET, Bryan O'Donoghue wrote:
->> On 20/01/2023 13:13, Luca Weiss wrote:
->>> +		camcc: clock-controller@ad00000 {
->>> +			compatible = "qcom,sm6350-camcc";
->>> +			reg = <0 0x0ad00000 0 0x16000>;
->>> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
->>> +			#clock-cells = <1>;
->>> +			#reset-cells = <1>;
->>> +			#power-domain-cells = <1>;
->>> +		};
->>
->> Should you include
->>
->> required-opps = <&rpmhpd_opp_low_svs>;
->>
->> ?
+Il 24/01/23 14:17, bchihi@baylibre.com ha scritto:
+> From: Balsam CHIHI <bchihi@baylibre.com>
 > 
-> I don't know, it works without. But doesn't this property not just
-> affect power-domains? I haven't passed any here.
+> The Low Voltage Thermal Sensor (LVTS) is a multiple sensors, multi
+> controllers contained in a thermal domain.
 > 
+> A thermal domains can be the MCU or the AP.
+> 
+> Each thermal domains contain up to seven controllers, each thermal
+> controller handle up to four thermal sensors.
+> 
+> The LVTS has two Finite State Machines (FSM), one to handle the
+> functionin temperatures range like hot or cold temperature and another
+> one to handle monitoring trip point. The FSM notifies via interrupts
+> when a trip point is crossed.
+> 
+> The interrupt is managed at the thermal controller level, so when an
+> interrupt occurs, the driver has to find out which sensor triggered
+> such an interrupt.
+> 
+> The sampling of the thermal can be filtered or immediate. For the
+> former, the LVTS measures several points and applies a low pass
+> filter.
+> 
+> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
 
-Should you have a TITAN_TOP pd though ?
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
----
-bod
-
+On MT8195 Tomato Chromebook:
+Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
