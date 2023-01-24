@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED8F6679F43
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 17:56:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7148A679F50
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 17:58:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233638AbjAXQ4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 11:56:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58250 "EHLO
+        id S233806AbjAXQ6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 11:58:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232991AbjAXQ4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 11:56:20 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D6622015
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 08:56:17 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so13301142wmb.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 08:56:17 -0800 (PST)
+        with ESMTP id S233639AbjAXQ6q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 11:58:46 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D5F046081
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 08:58:44 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id j17so11985713wms.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 08:58:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LSf9EDZbCk9ILTR8VX45RnJZiyt2oS/z0sFs3inXgHo=;
-        b=ic5anKfbZlTHVJvTprKR69JrIKaGO9+bAEoTHZQtwfHzBVUJgDs18Ubfg33NMigsdt
-         UV+m75pcKtNFKf2ZazEYxHzHjBoLgyZ9CmhgPMvLo2lA/mxL/kGx176cV/8dCW50w+Lb
-         DSbyI0w4/1yXbD/XvV/FyywO1m1TFPPEPQ7cUFWnOxnLJceeQMBWlfkE10z3jzRqBiU3
-         P8gUwo0rq1RmQi5MEmuwrxpUOssHdYnpJimOAD+IBYe9SiNdMn9OoQoAmhpUgJJkAEQy
-         eUU4IM7OnaGsv+AORzOAwgK4lQS4dXf3xQooFwfD0YY0Rs22P02vf83hNEkBicWPZ1eB
-         WhEw==
+        bh=Cdb0oFoKxHwQ03DA8if5wSz8FjXcnpPwR7oP9X0TASQ=;
+        b=e8rC3DOOpCpm/yKC3hjmG17ey445cYVbF6eMJloArv1j8eFrG4EnYNXPXSi4csB9X7
+         5C8Ctf1eenyJHDLmzALfwZ2yurMC34RkHpb3joU2q+rKiiGP6kti9EURgnjGYiZVe/96
+         XYvFHzv2LcwE5cYqB05xVQkWhdGVu4ncoc2O0jUDiLGQMPJIDzTPWPn34lx8xqhu9aYE
+         D9pdao+/haCpENeGXtk1r4fXTVYTYEdiyl9ShHYyy/MvnA60DIbQW90lizwLRmhx68qK
+         rMwllXHOG+2AVSwe3ctLIKQ2kKD50g+eL5CIanjtaKNaSWtd4X7x/KQ8EnDOjq5iTEly
+         qrTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LSf9EDZbCk9ILTR8VX45RnJZiyt2oS/z0sFs3inXgHo=;
-        b=veVxVAjZBPP/k7d+oI8XQcnOBGkCJIAvlGJAVxmllyZn2ehiXR36QUpvYTtmbta0h8
-         CivntczOQ+y4BAED5pAlQKEKCAwZfQ1QrGyjXpSIAJGhXBUH2eHplg89W5mEJFoWTem7
-         CfBLA5a/av0leFj3RSjsyalnmfHiSN9nNGMT9iY+hVgrWmK4jNDXaq07O1IYX6g+NCyx
-         li6eohqe4c6deXwvQJJSu3M1yvULTD20i2oWpXTVLD3f6537AJqMbXNkuWk4T7K84uIR
-         1uFWIokcc89rEAfFYwvb8fXyU55Zybx1R/BhrdjpwL2bX2hUmm5DOZfr86M3Atz9e8jT
-         V03Q==
-X-Gm-Message-State: AFqh2korPTd7MbDweHTSM6ysXnIDF9RLoko1QVNskbV83ITDBaE6HFzj
-        MRx5CJJq9DwxkQtMEFCARykQYg==
-X-Google-Smtp-Source: AMrXdXsgji39wGRQLP97ZZxCisKBfhuTXsSUWSzlQpQyc7a9xrC512LRIzndKfV4HjGtaUphsxfi5Q==
-X-Received: by 2002:a05:600c:202:b0:3da:f80d:7230 with SMTP id 2-20020a05600c020200b003daf80d7230mr28444666wmi.8.1674579375802;
-        Tue, 24 Jan 2023 08:56:15 -0800 (PST)
+        bh=Cdb0oFoKxHwQ03DA8if5wSz8FjXcnpPwR7oP9X0TASQ=;
+        b=Fvnfbq+paM72zKBKNLn3esrJ9Q+npOGJw3SB48SWoMKkvxpMJ0CSvGkfoVWrSuTHt/
+         LbsxED78kVdIiGo693Wudvr0/+F84p2l+LnxLFZxxFLwNQOI/yQMhVvlwq0E32VjKzf2
+         9IiyriSEJ6zWpM9x4UGqiouJZe/t09IvzyVz9UpQz+bYUc6w5CJHmvbp+s5wb/i8lGAC
+         o0y/QqjNfp53gwDnwLXBXeZhmAk6grZK+kcbU9+9yMkQo7FR4tGSvILQpTtKuJmhwpPJ
+         JrNsgpqTzR8R1XkC5vQHqwAwufr+IQ6omsvUhOnlIPyy1li541+j/ow891nzbDUEzC7g
+         U3Bw==
+X-Gm-Message-State: AFqh2krdHRdAp0oxouKAZnImxJAYANgoYdazrR1AU4Fkmia1lYvVNDkF
+        G0adCD5v07iUNJAAG5SgTDJcRQ==
+X-Google-Smtp-Source: AMrXdXurcLhwij0yWeyiNpXqw2jGF3m1ReYrcuLOxgg4DHgZkk4BU95yF+abWjpf+ct5ZmUd7pYsjg==
+X-Received: by 2002:a7b:ce15:0:b0:3da:2932:b61a with SMTP id m21-20020a7bce15000000b003da2932b61amr28492673wmc.18.1674579522994;
+        Tue, 24 Jan 2023 08:58:42 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l7-20020a05600c1d0700b003d990372dd5sm15695314wms.20.2023.01.24.08.56.14
+        by smtp.gmail.com with ESMTPSA id o24-20020a05600c511800b003d9de0c39fasm19046290wms.36.2023.01.24.08.58.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 08:56:15 -0800 (PST)
-Message-ID: <3f62e91b-b132-aaf0-a6f4-87191a49448d@linaro.org>
-Date:   Tue, 24 Jan 2023 17:56:13 +0100
+        Tue, 24 Jan 2023 08:58:42 -0800 (PST)
+Message-ID: <50ecd96d-47e4-5140-faeb-d590f0656175@linaro.org>
+Date:   Tue, 24 Jan 2023 17:58:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 0/5 v7] input: pwm-beeper: add feature to set volume
+Subject: Re: [PATCH 1/5 v7] dt-bindings: input: pwm-beeper: Convert txt
+ bindings to yaml
 Content-Language: en-US
 To:     Manuel Traut <manuel.traut@mt.com>, linux-kernel@vger.kernel.org
 Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Frieder Schrempf <frieder.schrempf@kontron.de>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        krzk@kernel.org
-References: <Y9AIq3cSNzI9T/dU@mt.com>
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+References: <Y9AJ07zT1lpBLhPk@mt.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y9AIq3cSNzI9T/dU@mt.com>
+In-Reply-To: <Y9AJ07zT1lpBLhPk@mt.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,15 +77,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 17:34, Manuel Traut wrote:
-> This series implements volume control for the pwm-beeper via sysfs.
+On 24/01/2023 17:39, Manuel Traut wrote:
+> Converts txt binding to new YAML format.
 > 
-> The first patch changes the devicetree documentation from txt to yaml.
+> Signed-off-by: Manuel Traut <manuel.traut@mt.com>
+> ---
+>  .../devicetree/bindings/input/pwm-beeper.txt  | 24 ----------
+>  .../devicetree/bindings/input/pwm-beeper.yaml | 48 +++++++++++++++++++
+>  2 files changed, 48 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.txt b/Documentation/devicetree/bindings/input/pwm-beeper.txt
+> deleted file mode 100644
+> index 8fc0e48c20db..000000000000
+> --- a/Documentation/devicetree/bindings/input/pwm-beeper.txt
+> +++ /dev/null
+> @@ -1,24 +0,0 @@
+> -* PWM beeper device tree bindings
+> -
+> -Registers a PWM device as beeper.
+> -
+> -Required properties:
+> -- compatible: should be "pwm-beeper"
+> -- pwms: phandle to the physical PWM device
+> -
+> -Optional properties:
+> -- amp-supply: phandle to a regulator that acts as an amplifier for the beeper
+> -- beeper-hz:  bell frequency in Hz
+> -
+> -Example:
+> -
+> -beeper_amp: amplifier {
+> -	compatible = "fixed-regulator";
+> -	gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
+> -};
+> -
+> -beeper {
+> -	compatible = "pwm-beeper";
+> -	pwms = <&pwm0>;
+> -	amp-supply = <&beeper_amp>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.yaml b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
+> new file mode 100644
+> index 000000000000..24a40f0f77c1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2Does not look like you tested the bindings. Please run `make dt_binding_check` (see Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> +---
+> +$id: "http://devicetree.org/schemas/input/pwm-beeper.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: PWM beeper device tree bindings
 
-Your emails are:
-1. Not properly threaded which messes inboxes.
-2. Not cc-ed proper people (just use get_maintainers.pl).
+Drop: device tree bindings
 
+> +
+> +maintainers:
+> +	- Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> +
+> +description: Registers a PWM device as beeper.
+> +
+> +properties:
+> +	compatible:
+> +	const: pwm-beeper
+
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+Start from scratch from example-schema. There are so many mistakes here
+it should be seriously rework.
 
 Best regards,
 Krzysztof
