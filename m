@@ -2,60 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8B5C678D55
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 02:24:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6E2C678D57
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 02:24:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231696AbjAXBYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 20:24:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51268 "EHLO
+        id S232010AbjAXBYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 20:24:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230294AbjAXBYF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 20:24:05 -0500
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5348615546;
-        Mon, 23 Jan 2023 17:23:30 -0800 (PST)
-Received: by mail-oo1-f51.google.com with SMTP id 123-20020a4a0681000000b004faa9c6f6b9so2408580ooj.11;
-        Mon, 23 Jan 2023 17:23:30 -0800 (PST)
+        with ESMTP id S232166AbjAXBYH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 20:24:07 -0500
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A76613757B;
+        Mon, 23 Jan 2023 17:23:31 -0800 (PST)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-15f97c478a8so16017091fac.13;
+        Mon, 23 Jan 2023 17:23:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=wbLsmkHwUNwxPZOCXTJogcJ8LmEkiiS2N1PN3EB8w5A=;
-        b=35lZ1FOkxKHc5jiUQC6k5Y5yh5cGOqEY29YmGBX45Cq4hqT1Nmn+cGmgzgUQhV/fSr
-         rSGy1zU/Li6FvboTQt+rXuxNdMbDY7EUpglkB3xhfRniEuhV6CmW5SF1I+9V965YCjvn
-         qh0YVUeacramK/Ww8AjeDP9yIa/xkGF4ySu8gv+cnLQ4sYbinCxd7CgLuPUWkBHVxjiH
-         w3DJ6vgr19S2bdhnK5C4vFX+tkuwv8DWJzIp1uJWt8OsRdSfxFTPz8YyBDCx/tGWR4a4
-         VBDng2ZCa6Fs60WM0QHDGedjkvlW7k9vkiKU96UodvU2ec04tbILWxp6LJipXuSam5G5
-         y13g==
-X-Gm-Message-State: AFqh2kp04f4pRXj4Qz5JF2y5kDcFwHi5gkhihMFcAlUlJZaKWZPgeAUE
-        jwL33jW69W50z/52jInSZ8cR/ANZxA==
-X-Google-Smtp-Source: AMrXdXsUstXqeQ6JOeDoTmPGJVwMNubDdoIXVvoKVC5JqIw99XRErf0IzogI/xL/OiHVV2LwUNgoxw==
-X-Received: by 2002:a4a:e54a:0:b0:4f2:c7aa:a7db with SMTP id s10-20020a4ae54a000000b004f2c7aaa7dbmr11330490oot.2.1674523368663;
-        Mon, 23 Jan 2023 17:22:48 -0800 (PST)
+        bh=GLVto5yh3pJz6zu6tYjZ+M6kKyH93aiMkaD5/MTlBWE=;
+        b=flznn8Vx665lOgJN6Q6Co3YtZZ0YZS6Bw2KgwlcAG3yF6vctEmde6gSl/u/Hwkkpfc
+         7jVXidLQSgXObawA0hjA6GwVKhQDFc8WiePuZBmjZ2BpeKvbl7MfTbTlA7eFmX6Z2GP6
+         Ot7HfgHWud1YmGWnCrcAR2wxkhPWSRIe2Dai/+vIxuyUqdDr07dVtZUxtkgP69no0log
+         qYAyDolHV3aoHI0+WQHaj30d1ioYl5J31+R2dKqmGoc/uofOpjx2L5EqPiWvAubWPoNV
+         zr//c/xarRc5o92DuCOP3ZhrWzoHvlodQrSSvXm9hru+5+dbIg3OBM1rt68TMJKfDtIU
+         4iDg==
+X-Gm-Message-State: AFqh2kq87X/p6+bP03MaNAER7856jM97W3umDx8v769NlN611tRJlF8+
+        YOwwTtFGyGbBUkcP4SslCQ+0DTV1RA==
+X-Google-Smtp-Source: AMrXdXtytUFc/3CGNMl4vK4INEEhyGrE/0xGZ7ONnXHIP1hzrgKo4K1R2LtegXWqsO91zJ+MQU6vBA==
+X-Received: by 2002:a05:6870:9b09:b0:15f:456:6b98 with SMTP id hq9-20020a0568709b0900b0015f04566b98mr13453079oab.7.1674523364347;
+        Mon, 23 Jan 2023 17:22:44 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t10-20020a4a96ca000000b004a3d98b2ccdsm221102ooi.42.2023.01.23.17.22.47
+        by smtp.gmail.com with ESMTPSA id eb44-20020a056870a8ac00b0014fb4bdc746sm210523oab.8.2023.01.23.17.22.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 17:22:48 -0800 (PST)
-Received: (nullmailer pid 3121719 invoked by uid 1000);
+        Mon, 23 Jan 2023 17:22:43 -0800 (PST)
+Received: (nullmailer pid 3121716 invoked by uid 1000);
         Tue, 24 Jan 2023 01:22:42 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+To:     Francesco Dolcini <francesco@dolcini.it>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Eric Dumazet <edumazet@google.com>,
+        linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Barry Song <baohua@kernel.org>
-In-Reply-To: <20230123211758.563383-13-jic23@kernel.org>
-References: <20230123211758.563383-1-jic23@kernel.org>
- <20230123211758.563383-13-jic23@kernel.org>
-Message-Id: <167452324153.3116954.16283334229581146531.robh@kernel.org>
-Subject: Re: [PATCH 12/12] dt-bindings: iio: accel: Add ADIS16203 Inclinometer
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        devicetree@vger.kernel.org, Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+In-Reply-To: <20230118122817.42466-3-francesco@dolcini.it>
+References: <20230118122817.42466-1-francesco@dolcini.it>
+ <20230118122817.42466-3-francesco@dolcini.it>
+Message-Id: <167452324070.3116911.2276760222144588940.robh@kernel.org>
+Subject: Re: [PATCH v1 2/4] dt-bindings: bluetooth: marvell: add max-speed property
 Date:   Mon, 23 Jan 2023 19:22:42 -0600
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -69,31 +75,33 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 23 Jan 2023 21:17:58 +0000, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Wed, 18 Jan 2023 13:28:15 +0100, Francesco Dolcini wrote:
+> From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 > 
-> There has been a driver in staging for quite a while.
-> Given we are now moving it to the main tree, time to make sure it
-> has binding documentation.
+> The 88W8997 bluetooth module supports setting the max-speed property.
 > 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 > ---
->  .../bindings/iio/accel/adi,adis16203.yaml     | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
+>  .../bindings/net/marvell-bluetooth.yaml          | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/marvell-bluetooth.yaml:29:8: [error] empty value in block mapping (empty-values)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/accel/adi,adis16203.example.dtb: accelerometer@0: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/accel/adi,adis16201.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell-bluetooth.yaml: allOf:0:if: None is not of type 'object', 'boolean'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell-bluetooth.yaml: ignoring, error in schema: allOf: 0: if
+Documentation/devicetree/bindings/net/marvell-bluetooth.example.dtb: /example-0/serial/bluetooth: failed to match any schema with compatible: ['mrvl,88w8897']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230123211758.563383-13-jic23@kernel.org
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230118122817.42466-3-francesco@dolcini.it
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
