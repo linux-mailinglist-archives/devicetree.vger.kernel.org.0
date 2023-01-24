@@ -2,80 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0840679C02
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 15:35:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B74AD679C29
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 15:41:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233390AbjAXOfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 09:35:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47176 "EHLO
+        id S233937AbjAXOlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 09:41:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233676AbjAXOfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 09:35:02 -0500
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392333AAA;
-        Tue, 24 Jan 2023 06:34:55 -0800 (PST)
-Received: by mail-qt1-x82c.google.com with SMTP id z9so13167526qtv.5;
-        Tue, 24 Jan 2023 06:34:55 -0800 (PST)
+        with ESMTP id S234099AbjAXOlR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 09:41:17 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CDFC4957E;
+        Tue, 24 Jan 2023 06:41:15 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id jl3so14906184plb.8;
+        Tue, 24 Jan 2023 06:41:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dBgdeB7eNpLEu5+8zA7UQ6+fSJwe+m9XAbycrg2SheA=;
-        b=GwAaing/oXEo69f+bXgeoF/PTRwB/dtsIw18qez6Tb3cJoJX7FEZ+32KLJoVXD/snV
-         9S4hbZHaSmmeJjQhnRnS9WGnWra1TcXxjIH28xxj71Z6gMOF5lg3uapybkYjFYY4iGjb
-         p5amI4mZlJfvuz8b5c78mAHBPWZDFEOcitFrpzAoEJ1rtNL2ygMoBEbvCji1yJzrpUrS
-         lSxb2665Znl/bfdRTAJvYDwRdgZw4MnGnPGzbZEjtSyhdzA/AudcDVJ+JX2i5BhrLY0s
-         WKK/cWq9vV/K7wxJ5kVtqqQkw4JgPABnNhEntAl3ivAwVTB+yzE7f53Y8k/MRqhR1NpW
-         c4Cg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MrcqHhD2+Ap5Bl+Zx7RGd/oyh/FJKuuqv3NrFr1ehPI=;
+        b=Jcw9U+MUVYMBEoxsVTJb6IHvY9DP019FBU3Ii42YSO8iatKG3FGVgrx9HW6fsHXCoA
+         xlYrO+9iWI3zmJhRn85o0pRwutY2q5fXBTrgASKQZLG9e72araf0krQpgOOdZ+hXXUa9
+         7Z7cCXugkTfhz4IrRjqZd2hY6drtj9iwdR3sQ9a7KM86CWy0mrqltCv3IcFlzIPsaBv1
+         LujcLihXqLwqzazjRS0RkdaSBk/qXFHYc0iWxAHcWVkbbIrVgaVILv113smNtYdbiuai
+         O4WTX1oIIcUPRzsTcmHWIr1sG2UeAfAPVwVWMySSBE2B1jbTUOylJDRkgKdvQnVRaoZD
+         F8XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dBgdeB7eNpLEu5+8zA7UQ6+fSJwe+m9XAbycrg2SheA=;
-        b=XhVoSdmlv1CcHNCm/RgzBAM1s89U6Gj6ILW7kL+/Onbz7+IKYyw80gRREr0/ry+Xl1
-         Pdr/K1bsOaNLDHUqF3CsGsQoDfvreMBhhWlIt6/0ToxzFz5ESV0Fu6zvK4Gf+1nEyWiR
-         mLIst2vQyfBolxX2UmaF0aG1rIq7SfXH2sZegmgUFhZvDDPpBXg4Es7VI1Nz44Z8nrJd
-         qFPBUAhN6iTe7/Q4tmdqDL6JrcFoKfxYJWC4VXYsijDwC97k9YsgmipmsRu+KzzgZzcD
-         aUnh763T6R0iL8oBaXHvn3MvNLCx4mLFQAZ220SORFazYPMuJhoZ/xzr/6dqInyrrUmD
-         eZUw==
-X-Gm-Message-State: AFqh2kpcmPudfnynKGriOs6DTjc+b4Wv6hYpYaeqtiTGGwQ1hE77aQxO
-        vlusEXDzcuEtsBODMLKE8NQ=
-X-Google-Smtp-Source: AMrXdXukXU93pCQUwsS7Ynpi03C8Nso0gB8SLrDRBnhrjJNQELMTpcNZ8qRJ7Xu25GsW51jGHJQXLA==
-X-Received: by 2002:ac8:5284:0:b0:3ab:b6cd:3758 with SMTP id s4-20020ac85284000000b003abb6cd3758mr42754491qtn.54.1674570894295;
-        Tue, 24 Jan 2023 06:34:54 -0800 (PST)
-Received: from ?IPV6:2600:1700:2442:6db0:f993:8512:855f:93c3? ([2600:1700:2442:6db0:f993:8512:855f:93c3])
-        by smtp.gmail.com with ESMTPSA id t8-20020ac87608000000b003b642c7c772sm1293673qtq.71.2023.01.24.06.34.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 06:34:53 -0800 (PST)
-Message-ID: <defd6445-a6e3-8d81-c9e7-f1dd343e7875@gmail.com>
-Date:   Tue, 24 Jan 2023 08:34:53 -0600
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MrcqHhD2+Ap5Bl+Zx7RGd/oyh/FJKuuqv3NrFr1ehPI=;
+        b=wtoloNSRN8sRJYOagtz8sxFriNF3/qiZ00wCrhiZwfalo5rc1twvLZThIHtXPd3XVs
+         sGzjfTleulGWQtTA0wevFq7xwlVFYFx/PttERD5siE6IjCriduTSxmVZUO5/LMcMDvJX
+         mJS3/yf7lhl/D1p5JWV5wkX/buxdzFPrUY0m9DuCMWQejsfjlJ1tpDHF2aDy9gwEq4X/
+         KwfZLswSGem4cHs65sJd6EBSBesDFHS5SXKlBKACme/vzpk2HqNcKjMsxdIeKz7GVH79
+         h9YYi/tSJxlOFqs2sFsU5SQlgI45MU4OmZ8vxqUcBYWknP7nh24EQZtqHsu/kvMvc0Ms
+         /gvw==
+X-Gm-Message-State: AFqh2krYQtu+SctPrKPvdHIQx1+GI7zImVe3w/UpqltsX+si7ZQAGA6M
+        6qUj/WgLBxWKz++x2jc5OkwgATWvDZQ=
+X-Google-Smtp-Source: AMrXdXsiw1AMsYD9M8CrlBgvq6vr3XCMdd9u9THS17CmyWpWSZmHup2EEr1eoEo0RdZgIfwBG/nQFQ==
+X-Received: by 2002:a17:903:244f:b0:194:6286:73ba with SMTP id l15-20020a170903244f00b00194628673bamr38337324pls.13.1674571274974;
+        Tue, 24 Jan 2023 06:41:14 -0800 (PST)
+Received: from localhost.localdomain ([45.112.3.15])
+        by smtp.gmail.com with ESMTPSA id b21-20020a170902d31500b0019602dd914csm1747865plc.180.2023.01.24.06.41.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jan 2023 06:41:14 -0800 (PST)
+From:   Anand Moon <linux.amoon@gmail.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH linux-next v4 1/4] ARM: dts: amlogic: Drop superfluous dr_mode in usb node on odroid C1
+Date:   Tue, 24 Jan 2023 14:40:50 +0000
+Message-Id: <20230124144054.13556-2-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20230124144054.13556-1-linux.amoon@gmail.com>
+References: <20230124144054.13556-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] of: create of_root if no dtb provided
-Content-Language: en-US
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lizhi Hou <lizhi.hou@xilinx.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20220624034327.2542112-1-frowand.list@gmail.com>
- <20220624034327.2542112-2-frowand.list@gmail.com>
- <20220624141320.3c473605@fixe.home>
- <6d40876c-2751-01bb-94ab-7c9ab90e636f@gmail.com>
- <20221011092654.6c7d7ec3@fixe.home> <20230109094009.3878c30e@fixe.home>
- <907b6b75-55bc-b38c-442b-4ccb036a3690@gmail.com>
- <20230110091206.72c3df24@fixe.home>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <20230110091206.72c3df24@fixe.home>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,51 +77,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/10/23 02:12, Clément Léger wrote:
-> Le Tue, 10 Jan 2023 00:27:16 -0600,
-> Frank Rowand <frowand.list@gmail.com> a écrit :
-> 
->> On 1/9/23 02:40, Clément Léger wrote:
->>> Le Tue, 11 Oct 2022 09:26:54 +0200,
->>> Clément Léger <clement.leger@bootlin.com> a écrit :
->>>   
->>>> Le Fri, 24 Jun 2022 11:44:07 -0500,
->>>> Frank Rowand <frowand.list@gmail.com> a écrit :
+Drop superfluous dr_mode="host" as it is the default in meson.dtsi
 
-< snip >
+Fixes: 3325f3e4534c ("ARM: dts: amlogic: Used onboard usb hub reset to enable usb hub")
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+ arch/arm/boot/dts/meson8b-odroidc1.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
->>>> Any news on this series ?
->>>>  
->>>
->>> Hi Frank,
->>>
->>> Do you plan on resubmitting this series ? If not, could I resubmit it
->>> after fixing problems that were raised in the review ?  
->>>> Thanks,  
->>>   
->>
->> Thanks for the prod.  I'll re-spin it.
-> 
-> Ok great, thanks Frank.
-
-My apologies, I haven't done this yet and I'm going on vacation for a week or so.
-I'll get back to this.
-
-This is one of the three items at the top of my devicetree todo list (along with
-Lizhi Hou's "Generate device tree node for pci devices" patch series).
-
--Frank
-
->>
->> If I properly captured all the comments, I'll have to implement
->> Rob's suggestion:
->>
->>   "either CONFIG_OF_FLATTREE or CONFIG_OF_EARLY_FLATTREE will need 
->>   to become user selectable."
-> 
->>
->> -Frank
-> 
-> 
-> 
+diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+index 941682844faf..1097b35b7a49 100644
+--- a/arch/arm/boot/dts/meson8b-odroidc1.dts
++++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+@@ -368,7 +368,6 @@ &usb1_phy {
+ };
+ 
+ &usb1 {
+-	dr_mode = "host";
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
+ 	status = "okay";
+-- 
+2.38.1
 
