@@ -2,75 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5CED679AD6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 14:59:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D66E1679ADE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 15:00:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234172AbjAXN7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 08:59:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33922 "EHLO
+        id S233828AbjAXOAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 09:00:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234173AbjAXN7N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 08:59:13 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4236458BA;
-        Tue, 24 Jan 2023 05:58:50 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id tz11so39310028ejc.0;
-        Tue, 24 Jan 2023 05:58:50 -0800 (PST)
+        with ESMTP id S234178AbjAXOAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 09:00:10 -0500
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C32E47433;
+        Tue, 24 Jan 2023 05:59:48 -0800 (PST)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-15eec491b40so17685938fac.12;
+        Tue, 24 Jan 2023 05:59:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tyS09iPK0DCYeu1k2np/Lw2q5U8sfGkE7o+j/ZBbbEk=;
-        b=hSXMxqIUVw0YXLEHAnflcYzGaJVjbxV4NQamcSVrGsQ1mTw+cbiCbG3rRQBj7tRHcp
-         yC+t1RJpsL8lAm2fHl/MHrxT833aOGHp9Mz95pmI4IaqNbTTeXnSNGTMOYOcktfHdakn
-         kuGhQRJ29eii7k6Adg+mRxppLuw3P7K2+Qi+IimCoTj2TLr7On55DE+6hUB1XHOVO5ej
-         pzi0FjkH8F6mZhuYfjedFB5eQZwqV4ymVbBN5xTOgg6lRycaRcoNmn8YBzM3VOSUPslL
-         2p/oXTlURzXB+arTIWV6wnGw+6lb9zJZWeptF5+oTB/BU0OCzpPw9qmLFqk5/KFtInWs
-         J81w==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FkwV3BU2RnZYkqWJ6kRwLVBd/NDUL22RH3FJMPUDwVM=;
+        b=qnqeEyV1eoRwZfM3J7RFFjfA7QF68Yyaz9CDVilGuYkT0Gi6KtONnbZDU/wpmJGKFI
+         c4lbgmk9vcz+OTIfNyRM2m4OZE0ZjGollqQBYOUZWa4ItWiaM8FGeZihGkOHngK6ce9T
+         pfMLny/6ngvsdyK4dsG/YK9etezgCSx58WnKLkd8X6oVWLWrXRq6ZdlObRo1o0qSTNp1
+         yfQdEWzqO2TDoZLkA4edNCuWRtpBrtNvopTirCJ2uAVxvEsjpW/+CfNh2UDjVDe94pb7
+         NG3ZGBzi8UCkE5Vf5Unt89nHo4O4maqFmol1rSfZW+I9cDWO4pMxjHxT56frrwjja7jO
+         g6cA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tyS09iPK0DCYeu1k2np/Lw2q5U8sfGkE7o+j/ZBbbEk=;
-        b=gjVaCuveWfzzJkd23ALWenyxtvIYM4rf+Ox6BUmXzhWFB+X18K8hOlX6wOpt6Rtev7
-         hxaoJPfldlg6+dU9WewheR11eY5x6fcwoOvZqjqgwpEmEVsZFR1P4i1LdlBzBPbfjNt+
-         RNUiIAbuipUKvuFPeCHFT4gBtgkPOkzLPn6PVE7Pfrvtpju34WinoZzklG5LRzi7sl1d
-         TBq2ZY3agidx2jMNTIAu04JAj4OblPSUDeE3bNbUGRDkIFg8p/uce53M3YdPmoZLYyt2
-         lb2oOA4Unkxp8c7CkhytSu6vJShd9yHBD9VAJxE0xavhUqQVs1kcoWHAkVNJy1mSGbJ8
-         qT4A==
-X-Gm-Message-State: AFqh2kqBJlsgQS4x3X6crneuPyXfFueExfq/CLUU8Diq/asoP5PWqL/F
-        Lyor/eam+1d6I9FMIl3eyZTNMSPQwiA=
-X-Google-Smtp-Source: AMrXdXs9x6lO7pLRpVdQQlG8xcWqKVa0Z5bVOV6s5bdZ3jagKcjIg7Bc+TBoGhyzB1xZjrkGLXjcfQ==
-X-Received: by 2002:a17:906:762a:b0:7c0:be5d:59a9 with SMTP id c10-20020a170906762a00b007c0be5d59a9mr39013379ejn.20.1674568728913;
-        Tue, 24 Jan 2023 05:58:48 -0800 (PST)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id v1-20020a17090690c100b007a4e02e32ffsm945743ejw.60.2023.01.24.05.58.48
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FkwV3BU2RnZYkqWJ6kRwLVBd/NDUL22RH3FJMPUDwVM=;
+        b=SSWdBBc5lVlDSSTQcixnXY4GLO9McNWkO3BywGqzhkl6ke89nTx3vH1gEPaITVnRei
+         caYamc5HZyuMKuj9db1s2cBnOvoatLJswLeTxF5QqInTw98JS0HLhzGZFr8iaj/89SG0
+         nt7sKuVGRDrDsEqrLxEXPSoJ6RLBhfYb4oq8y0qAbu+N5CfDFKFYbJ2xvzPy80qcFK2P
+         WbB8Pi9edq3zBYpSDGAjIegr/FMEG6xaKRBCzY0R3+HqZeTo7doQQuoDC85L1mBylpPV
+         TFQz824Tn3bhXbd3/E20L578V0ly89uTW0EnvTJTKw/XN2aJlyuS8JnKNn+h+t9DquNT
+         zQcA==
+X-Gm-Message-State: AO0yUKVqu0IjjSuqh8bN/I3+IxsOMaXC6xDwb7M3AbiZhXfJxGYf6E7m
+        DIofW2YLorw7HImBcKvilAKYTqCrlyI=
+X-Google-Smtp-Source: AK7set937BnhL2n78KIjY8isSUkljjM33ax43UPMxuTkXV5A4KNTYjfUEIUVj3ivc25GAAY/oc+47w==
+X-Received: by 2002:a05:6870:40c6:b0:163:1b65:e459 with SMTP id l6-20020a05687040c600b001631b65e459mr903821oal.23.1674568782735;
+        Tue, 24 Jan 2023 05:59:42 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id pd19-20020a0568701f1300b0014fd25bd3b5sm820444oab.0.2023.01.24.05.59.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 05:58:48 -0800 (PST)
-Date:   Tue, 24 Jan 2023 14:58:46 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, Sing-Han Chen <singhanc@nvidia.com>,
-        Wayne Chang <waynec@nvidia.com>
-Subject: Re: [PATCH V5 4/5] usb: gadget: tegra-xudc: Add Tegra234 support
-Message-ID: <Y8/kFh1La2p0uYAI@orome>
-References: <20230119104208.28726-1-jonathanh@nvidia.com>
- <20230119104208.28726-5-jonathanh@nvidia.com>
+        Tue, 24 Jan 2023 05:59:42 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 24 Jan 2023 05:59:41 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Mario Kicherer <dev@kicherer.org>
+Cc:     linux-hwmon@vger.kernel.org, jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] docs: hwmon: add docs for the NXP MC34VR500 PMIC
+Message-ID: <20230124135941.GA37393@roeck-us.net>
+References: <20230118123019.3041303-1-dev@kicherer.org>
+ <20230118123019.3041303-3-dev@kicherer.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="tv4pc/YfO+eURpsY"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230119104208.28726-5-jonathanh@nvidia.com>
-User-Agent: Mutt/2.2.9 (2022-11-12)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230118123019.3041303-3-dev@kicherer.org>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,47 +76,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jan 18, 2023 at 01:30:18PM +0100, Mario Kicherer wrote:
+> Add documentation for the NXP MC34VR500 PMIC.
+> 
+> Signed-off-by: Mario Kicherer <dev@kicherer.org>
 
---tv4pc/YfO+eURpsY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Checkpatch notes that the SPDX license identifier is missing.
+I copied the one from the source (SPDX-License-Identifier:
+GPL-2.0-or-later). If this is not what you want, please let me know
+and/or resubmit with the desired license identifier.
 
-On Thu, Jan 19, 2023 at 10:42:07AM +0000, Jon Hunter wrote:
-> From: Sing-Han Chen <singhanc@nvidia.com>
->=20
-> This commit adds support for XUSB device mode controller support on
-> Tegra234 SoC. This is very similar to the existing Tegra194 XUDC.
->=20
-> Signed-off-by: Sing-Han Chen <singhanc@nvidia.com>
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+Thanks,
+Guenter
+
 > ---
-> V1 -> V5: nothing has changed
->=20
->  drivers/usb/gadget/udc/tegra-xudc.c | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-
-Acked-by: Thierry Reding <treding@nvidia.com>
-
---tv4pc/YfO+eURpsY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPP5BYACgkQ3SOs138+
-s6Gfcw//bnh2FIbYTcyAxHQPZAYQLo2296iB8u8nUhqjHIbIH7scC1KyGQ8IpEDR
-oWw2yvkBY5Kf5Da6EptK8JhEBsqAURXHm6H143mDpRUU4Wq+hrZj4jr90/6kkFGY
-0qW3ERQS3pVhGZvmMUdqlfg1zPBu+mZcxOujpYILR5h5sIkf7eTDuKSWj2zB4HAY
-EPTwwvW2S7HlCj8pWPjQH+iPwNSCH2UZldAbZNMrwMj7iknL4hgQemFN76YygmOT
-aY1R3n5x+dISxUi/iYZuX6Oz/a0FGByJIb9awp57v/xzA7QBscYC5/Lh7knbTrtj
-/gAvt9eP2x/VHIzAzNDuqCNr4eclgPoIx0S67gV6HAqCDtu/x/MmuX/2j05g3Sa3
-qZwLlPiwNamqj63tnszn5cKz9LAfyLycRQYLMmIUphW5goNortB0rD0TyAig7QOH
-PLtDy9kQGLdBaG2OeUoHVK8Op4O6SUuKHPiyjUSH8FqbN+v1XMYUNYpNVWQUNNr4
-+yQIn9l0GtLR6/5ck58qjEQU8kihTTUbjtGz2vguzaHhyITDw/vsiz3vn2X76vsG
-pI94ER9JjDEyOipeILgfE+myQf6MhzZ29F6kKcWplkaOME5s7zYsL+VR5YVvjRcl
-JfsEV7a3DXsUgCy/KAFMtZQGLuD0S5AyB5OKvOkmlkPCjyEaNQg=
-=z+Kl
------END PGP SIGNATURE-----
-
---tv4pc/YfO+eURpsY--
+>  Documentation/hwmon/mc34vr500.rst | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/hwmon/mc34vr500.rst
+> 
+> diff --git a/Documentation/hwmon/mc34vr500.rst b/Documentation/hwmon/mc34vr500.rst
+> new file mode 100644
+> index 000000000000..c9e3b44fb04f
+> --- /dev/null
+> +++ b/Documentation/hwmon/mc34vr500.rst
+> @@ -0,0 +1,30 @@
+> +Kernel driver mc34vr500
+> +=======================
+> +
+> +Supported Chips:
+> +
+> +  * NXP MC34VR500
+> +
+> +    Prefix: 'mc34vr500'
+> +
+> +    Datasheet: https://www.nxp.com/docs/en/data-sheet/MC34VR500.pdf
+> +
+> +Author: Mario Kicherer <dev@kicherer.org>
+> +
+> +Description
+> +-----------
+> +
+> +This driver implements initial support for the NXP MC34VR500 PMIC. The MC34VR500
+> +monitors the temperature, input voltage and output currents and provides
+> +corresponding alarms. For the temperature, the chip can send interrupts if
+> +the temperature rises above one of the following values: 110°, 120°, 125° and
+> +130° Celsius. For the input voltage, an interrupt is sent when the voltage
+> +drops below 2.8V.
+> +
+> +Currently, this driver only implements the input voltage and temperature
+> +alarms. The interrupts are mapped as follows:
+> +
+> +<= 2.8V  -> in0_min_alarm
+> +>110°c   -> temp1_max_alarm
+> +>120°c   -> temp1_crit_alarm
+> +>130°c   -> temp1_emergency_alarm
