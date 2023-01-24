@@ -2,114 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C626367955A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 11:35:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24652679567
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 11:38:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233835AbjAXKfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 05:35:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38270 "EHLO
+        id S233100AbjAXKiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 05:38:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233748AbjAXKen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 05:34:43 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FCFE402FD
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:34:38 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id n7so13403519wrx.5
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:34:38 -0800 (PST)
+        with ESMTP id S233152AbjAXKiC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 05:38:02 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4CCE42DD7
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:37:23 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id h16so13390959wrz.12
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:37:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IHJKEjRilp8mRaPerWa7dPp1FIIz68emRLTHzv0tFUM=;
-        b=b5+zw97Sn1PkTyvEauJJ+UdsuR60bmf+b5L7fqHqvt6faZ5KCSg7jSYKaQ4FINf0Nx
-         WOnCvQrZMVY0d76qmiDX7JP0Pc3ds1XIKybT80oQXhE/GBC9bRDuqkcRHJcCOoLNdLYT
-         B5FvkvPHYOrT9sh/XwXB8RusdFpVAy2Mim+BCLOv0TbZUO8CBYGwVuctLgHLbVw1wsCv
-         QMUEdwTud5CI1lVfoisS+l1wqmzs4beKWi9S4YZIDbOmFrdhDl9oORoLPbiG6fAYCKoj
-         OaygFRWErcjFBwfa+cSq0JGnBpsD71SSAXgtiT7RhlOq614Xqfo42TeJh03R/09oftyj
-         g95A==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5cq6ayhJIiujuCk7dC1Dlzy/ufBwMT4etpRQGBEg7fw=;
+        b=DLrzKI+hCbokwD2fwMQtd3TC+VEXzPFfCFKtTj0ef//D21zlqQXJqJBmvSMkrycn7g
+         Yehr+ppyackumlQ2kZYRaOHQGv2NwmShbNfd+GC6tFK91fg/zPY4Saq59g7/IqlQRHZw
+         goueE3fLTkbG/NUuvGzE/WEAgFJwU2xGbc+Nrxvp6UHSt4l1llQeuM1VUK7Pu4qUraml
+         RrmE70S6ZmO0+DIrG0FL/zqG9IOt3QtyZldonScrXeZV8TNG+rWWwMiWtu53f1VNVILc
+         9fIxZ+NnlfR8bLuQoSobntsJzqss9hxpqqNgF/ZmPAobvsvMXblnylkyn4ivsYBpDwtQ
+         eGuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IHJKEjRilp8mRaPerWa7dPp1FIIz68emRLTHzv0tFUM=;
-        b=0imqONQEyj5Hod3dt2S7CBotfc4ZC5mJ8iBI7cykl5a61t0C5+ySgJVZLnUfX0TnYF
-         ESIiNS7jC+2tNEBg98iYgcqCx+3WSl0Nf9f8uCXHGrcoPZ9aP/KOXd34Bv3NbElV50bi
-         id+KUzbF9DvqabGjMI7hp0ARvguNOI+YyvzXgfU8bKw7cZ2nSKeuCFwFlKE2dxtZs7nt
-         UhqQbIv/vTETVzgK8vKkIuknKAi/khbniuK9nhzTp3+u+fhMCMBI3W/Cs7Ll5llqwX4J
-         GX/J2CUI775mJYj6Ndt3sgRUsnD5u+VNT5nkQmj+Mq5bkL4E7inavbokqFfLC9M+SpKN
-         atIA==
-X-Gm-Message-State: AFqh2koyBtZejjtbsiu8lR8WLDnB68GK7QtKaQXYG6BFa9uRQVvHEzFv
-        JHoeeCOcPa8+w9WUq6tdSuSDlw==
-X-Google-Smtp-Source: AMrXdXs9Pb86KDUrM01Wgt4mguTTlkCTA9jd1adGiors3M7CTsWqXaoHUlqNYWRYWH9ipqtduCMSAw==
-X-Received: by 2002:a5d:5a8f:0:b0:2be:53cc:ca5c with SMTP id bp15-20020a5d5a8f000000b002be53ccca5cmr15746127wrb.15.1674556476593;
-        Tue, 24 Jan 2023 02:34:36 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id q6-20020adfcd86000000b002bded7da2b8sm1551889wrj.102.2023.01.24.02.34.35
+        bh=5cq6ayhJIiujuCk7dC1Dlzy/ufBwMT4etpRQGBEg7fw=;
+        b=I2jXhjrb+WgE3OeQmt/HZMKlSqVXr8WGlxJYy/76UYeAjFRMgdxNAb303unTKr8gvY
+         q5XPn5XJpsBSrqYSLDFOaZRtVf8AX9gJjY3nzJfF0MG17IOw3Sk5Q8D4OQIplGh2YKMu
+         qDpbkLnV2FjQDwhFIAdMes2dLXCuwfgRnM+eWznxu8/Nw1t0w+w3oxkoAN+FsL5CO+WP
+         wtouMiRGd3h1QM+OkDUWNuzY7BRf0Bg4paEO/97QasBrYOzXGV7aUX/ScUDtGrGmrL1j
+         VjsEUVrkd2xedw8VrC1e4Rqegx2npFFWOvdJhOGt/keCnV7sW9fVwxbPWbG77J+4ncSx
+         1wOA==
+X-Gm-Message-State: AFqh2kpHkrS/20auBk+tGs/WkbzgFTQWwu5kldySGknpAEZbJwXUqTFK
+        ILemc+mSxiow5EHCTBiyeFRXtQ==
+X-Google-Smtp-Source: AMrXdXuzQ/c997mVqB2Kwg5p+g5vYhXX8C6p8cM+GEtoyt8uzs1al2TGxLuJeEaN4QTPjYMPgLV7NQ==
+X-Received: by 2002:a05:6000:a03:b0:2bd:e036:6b1a with SMTP id co3-20020a0560000a0300b002bde0366b1amr27524136wrb.64.1674556602173;
+        Tue, 24 Jan 2023 02:36:42 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id x4-20020adff644000000b002bdeb0cf706sm1559196wrp.65.2023.01.24.02.36.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 02:34:36 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 24 Jan 2023 11:34:35 +0100
-Subject: [PATCH 14/14] arm64: dts: amlogic: meson-g12b-odroid-go-ultra: fix
- rk818 pmic properties
+        Tue, 24 Jan 2023 02:36:41 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     linux-kernel@vger.kernel.org,
+        Markuss Broks <markuss.broks@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, soc@kernel.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Olof Johansson <olof@lixom.net>,
+        linux-samsung-soc@vger.kernel.org,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] Correct inaccuracies in Exynos5420 and Exynos5800 device trees
+Date:   Tue, 24 Jan 2023 11:36:37 +0100
+Message-Id: <167455658659.245058.7412257727955360080.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230121201844.46872-1-markuss.broks@gmail.com>
+References: <20230121201844.46872-1-markuss.broks@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230124-b4-amlogic-bindings-fixups-v1-14-44351528957e@linaro.org>
-References: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
-In-Reply-To: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixes:
-pmic@1c: '#clock-cells' is a required property
-pmic@1c: 'switch-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+On Sat, 21 Jan 2023 22:18:41 +0200, Markuss Broks wrote:
+> Use the proper compatibles for the DSI host controller and MIPI
+> video phy, as the current ones are not compatible with the hardware.
+> 
+> While this fixes the kernel panic while trying to use DSI, I was still
+> unsuccessful to consistently produce image that isn't noise on S6E3FA2
+> panel of Samsung Galaxy S5. It seems to only work sometimes.
+> 
+> [...]
 
-The switch supply is described by vcc9-supply per bindings documentation.
+Applied, thanks!
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[1/2] arm: dts: exynos5420: Use Exynos5420 compatible for the MIPI video phy
+      https://git.kernel.org/krzk/linux/c/bf5de14225625627a35d1acb6739068fc126326f
+[2/2] arm: dts: exynos5800: Use Exynos5422 compatible for the DSI controller
+      https://git.kernel.org/krzk/linux/c/234b8dac096d74e330ed1266956c756efddf3676
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
-index 1e40709610c5..c8e5a0a42b89 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
-@@ -381,6 +381,7 @@ rk818: pmic@1c {
- 		reg = <0x1c>;
- 		interrupt-parent = <&gpio_intc>;
- 		interrupts = <7 IRQ_TYPE_LEVEL_LOW>; /* GPIOAO_7 */
-+		#clock-cells = <1>;
- 
- 		vcc1-supply = <&vdd_sys>;
- 		vcc2-supply = <&vdd_sys>;
-@@ -391,7 +392,6 @@ rk818: pmic@1c {
- 		vcc8-supply = <&vcc_2v3>;
- 		vcc9-supply = <&vddao_3v3>;
- 		boost-supply = <&vdd_sys>;
--		switch-supply = <&vdd_sys>;
- 
- 		regulators {
- 			vddcpu_a: DCDC_REG1 {
-
+Best regards,
 -- 
-2.34.1
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
