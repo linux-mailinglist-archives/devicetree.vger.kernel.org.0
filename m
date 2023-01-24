@@ -2,100 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B5167A187
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 19:42:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BF0067A18E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 19:43:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233860AbjAXSm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 13:42:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47920 "EHLO
+        id S234059AbjAXSnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 13:43:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233900AbjAXSmw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 13:42:52 -0500
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE7D145BCD;
-        Tue, 24 Jan 2023 10:42:16 -0800 (PST)
-Received: by mail-qt1-x833.google.com with SMTP id v19so1318148qtq.13;
-        Tue, 24 Jan 2023 10:42:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iVcjuX1DrPzpms/qqm55UTZi+ADxFT6DDuGfNYewlYI=;
-        b=2ei6fTcIr9X2ixQHZ+EPC5V6182JQumzNihDMIy/75cdok5VCufdVppWkbV2cOKbum
-         tQUQQcf6dsT3oTGntcYphPDjpvez7fvKdHXcbHhtOHQ0/SWzPUd9ukVR7LTJZEuYix0x
-         P2xjoNcrVulWScTqD+uZ2IyHi5SG0pteiI7q4WDE63zV/otmUwGtYbwE6kvjjylqLPlj
-         ayPG91xOnYTsF8kEBOLWxRHAzAMoUrFFF8Kwg7PjWj30qfHhZlED8SyjFzjbHvBMR2HN
-         7w35XDzm7cBN5HKqAM4aCMHe4Tc4wtQD6Byj0eM2T2KWcpkFpgHAOBb2yTeCn88fOMyY
-         qTng==
-X-Gm-Message-State: AFqh2krBnSQrUR4ncDKxd6xTipHHyJZK9GetrXShZ9TcY698CdCH97b3
-        pe8bKeWDB4HwgUeNSEtUNm9OjtGstnsAIA==
-X-Google-Smtp-Source: AMrXdXtMjycl63rqLtCwxpqXzLnyoJpcGZdndPK/mZ5/XadjpLZLQHbavo2VN7ZRW0m7s00iLnvggg==
-X-Received: by 2002:ac8:524c:0:b0:3b6:378c:5cd7 with SMTP id y12-20020ac8524c000000b003b6378c5cd7mr41300962qtn.61.1674585675773;
-        Tue, 24 Jan 2023 10:41:15 -0800 (PST)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id l4-20020a37f504000000b00705be892191sm1877987qkk.56.2023.01.24.10.41.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 10:41:15 -0800 (PST)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-4ff07dae50dso186269157b3.2;
-        Tue, 24 Jan 2023 10:41:14 -0800 (PST)
-X-Received: by 2002:a05:690c:c89:b0:4dd:7a8e:1cf3 with SMTP id
- cm9-20020a05690c0c8900b004dd7a8e1cf3mr3096734ywb.384.1674585674575; Tue, 24
- Jan 2023 10:41:14 -0800 (PST)
+        with ESMTP id S233871AbjAXSnC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 13:43:02 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B3261BB;
+        Tue, 24 Jan 2023 10:42:48 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C782461324;
+        Tue, 24 Jan 2023 18:42:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37236C433A8;
+        Tue, 24 Jan 2023 18:42:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674585767;
+        bh=DBSo7OynaPiD3LOZ5Et+hWfS1NPFDENYrFZZTqaJ4Zo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=RuxlPFOPF6nG3xhTMWTioiwTQkM78eHKGibjNQ4Ld2qVM6eMg+Pqb+1pVDyLlEO88
+         pCYdM+O5ReIsLpkyvLRIL8D6J8ybMRFahWkSUIYHGGmpS8jhZzaK8678isY2qke6J2
+         Cc4WWweSKl5bPOqJYmyqqauDgUrccGrX1l18oSf5R4CHQZk/4niQE1RwVUAD8XWJaR
+         TwCmM300aL9mG3rYbQBV7zQVXNTDypTmog+KVAjaRBT2nOh06Tg7xGq2KZH3P2MUdk
+         IYGcne5XS33CH7MmDjhdgIB4U4YYi0kmVixCDf3HSDRQD921jyFvl2U+H5qXGNjAMO
+         DsXd2ZRZKdUcA==
+Received: by mail-vs1-f49.google.com with SMTP id t10so17452873vsr.3;
+        Tue, 24 Jan 2023 10:42:47 -0800 (PST)
+X-Gm-Message-State: AFqh2kogD8gk997Ly8jqKxhPwk/3wFcKmHnlw6wmkYwFdlWvhxipBIbr
+        XNiUK+W5oJ0jD+EUXb9955/nCw9QPqs22iOIDQ==
+X-Google-Smtp-Source: AMrXdXvM0olT9jSHiUMDJsNqRTneaeFB/92hij1cU2Y+/6V74N/GT/dxRky2xzkFIbykeif2r193/563hWiLeZlWlho=
+X-Received: by 2002:a05:6102:5490:b0:3b5:1fe4:f1c2 with SMTP id
+ bk16-20020a056102549000b003b51fe4f1c2mr3941513vsb.0.1674585766048; Tue, 24
+ Jan 2023 10:42:46 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1674499048.git.geert+renesas@glider.be> <e825b50a843ffe40e33f34e4d858c07c1b2ff259.1674499048.git.geert+renesas@glider.be>
-In-Reply-To: <e825b50a843ffe40e33f34e4d858c07c1b2ff259.1674499048.git.geert+renesas@glider.be>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 24 Jan 2023 19:41:03 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXtiC-Oo01Y-vCbokjF=L+YXMN=TucgqCS4Vtcg5gt==g@mail.gmail.com>
-Message-ID: <CAMuHMdXtiC-Oo01Y-vCbokjF=L+YXMN=TucgqCS4Vtcg5gt==g@mail.gmail.com>
-Subject: Re: [PATCH 12/12] can: rcar_canfd: Add transceiver support
-To:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
+References: <20230110-dt-usb-v3-0-5af0541fcf8c@kernel.org> <Y9ASq0VZ6G7Efe7s@kroah.com>
+In-Reply-To: <Y9ASq0VZ6G7Efe7s@kroah.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 24 Jan 2023 12:42:34 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJJ8tFUCw-MbAsfJ7vKssRxu=p+3jG7dURmB77DOYoiSg@mail.gmail.com>
+Message-ID: <CAL_JsqJJ8tFUCw-MbAsfJ7vKssRxu=p+3jG7dURmB77DOYoiSg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/5] dt-bindings: usb: Convert some more simple
+ OHCI/EHCI bindings
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Lee Jones <lee@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, openbmc@lists.ozlabs.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 23, 2023 at 7:56 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
-> Add support for CAN transceivers described as PHYs.
+On Tue, Jan 24, 2023 at 11:17 AM Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
 >
-> While simple CAN transceivers can do without, this is needed for CAN
-> transceivers like NXP TJR1443 that need a configuration step (like
-> pulling standby or enable lines), and/or impose a bitrate limit.
+> On Mon, Jan 23, 2023 at 09:05:15PM -0600, Rob Herring wrote:
+> > The 'ohci-usb' compatible is another 'generic' compatible for OHCI, but
+> > isn't documented with a schema. Let's add it to generic-ohci.yaml
+> > schema. While looking at this, I found a few other USB host bindings
+> > which are simple enough to use the 'generic' schemas.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
 >
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> This depends on "[PATCH 1/7] phy: Add devm_of_phy_optional_get() helper".
-> https://lore.kernel.org/all/f53a1bcca637ceeafb04ce3540a605532d3bc34a.1674036164.git.geert+renesas@glider.be
+> Am I supposed to take these in my USB tree?
 
-v2: "[PATCH v2 3/9] phy: Add devm_of_phy_optional_get() helper"
-    https://lore.kernel.org/all/4cd0069bcff424ffc5c3a102397c02370b91985b.1674584626.git.geert+renesas@glider.be
+Yes, please.
 
-I'll keep you updated when/if this ends up on an immutable branch.
+> I'm still confused if you all want me to take these types of things or
+> not...
 
-Gr{oetje,eeting}s,
+Yes. I try to only pick up what has less responsive subsys
+maintainers, treewide (binding) cleanups, or otherwise falls thru the
+cracks.
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Rob
