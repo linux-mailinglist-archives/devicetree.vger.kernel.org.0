@@ -2,88 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EB4B678D19
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 02:04:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26CFA678D36
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 02:18:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231811AbjAXBEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 20:04:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39750 "EHLO
+        id S232680AbjAXBST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 20:18:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbjAXBEh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 20:04:37 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F481303C8;
-        Mon, 23 Jan 2023 17:04:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=YLRZgPgm6zFTbHxaOInUyu4eJC7xlh91Tt1JwAy9PRk=; b=nlVxWqq0PB30WEGxiirjxXsV1T
-        m+t9c5zpijwC9nE8FbSu1H2x/XYasgNgzfYSy6u/XoOgXVkf6S531YbAwX5b6WmljqvcV1E7QLsfj
-        6yiozCFkBHz9xgrmg/T+Vzhq2w50IKLG/ZifSu4dQ4nvHOUQ6DsLvDmNkiB7wihOdO3o=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pK7jZ-002xyX-QM; Tue, 24 Jan 2023 02:04:21 +0100
-Date:   Tue, 24 Jan 2023 02:04:21 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Andrey Konovalov <andrey.konovalov@linaro.org>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alexandre.torgue@foss.st.com,
-        peppe.cavallaro@st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 0/2] net: stmmac: add DT parameter to keep RX_CLK running
- in LPI state
-Message-ID: <Y88uleBK5zROcpgc@lunn.ch>
-References: <20230123133747.18896-1-andrey.konovalov@linaro.org>
+        with ESMTP id S232677AbjAXBSR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 20:18:17 -0500
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2065.outbound.protection.outlook.com [40.107.93.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC96A9772;
+        Mon, 23 Jan 2023 17:18:12 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=D7OrBE5nmEEC+gwviBV3bjJAN8eZnTTVscCkyV742Xduxlqbn8vyc4JzBEHu5APsf43r7BuhOeA/d7+vBucTxiDTHAksIBRIJTatYV1UgMDR+fK7/qzyqpfL9498chQRCFTNnv/KMBXeCjL7pn1nPsWUh+PEDMood1qWVJEy0ZlKfo+hEPP6X6OdVIHxgkliRNe8e06IduMqTpXJRitqOXw5kavGC7yLIn9dejF25ENmr1tta+cdKctEJDLrrJwpMYlFxCm/yBZm/kjndFElsV2+OVMjVb4sXuWWOLcbBjpQU/bEkkfSgh3pG4eLJGV132zED29sQhIxs5MlpKr4cg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ulgIukue4F41NVc8yt6y/E0QtI8j3xfHl1rqPHJRK+k=;
+ b=jfgrVpTGiYZb+0b0rxch/1qtkUe227gNEQrT37V14amRb8Iq0uSznRXieKhiI2ari6V+0xb/B3X+vhDO18BwrgpVljfYNk3BgHpv6BCORaYwKFV9dhy9m9KHZqPa8dA1wleob9lx7VBZKTsIxfXQKVx1/a6teMxHVIYqQNX/GtrnGIT6t4rfBVGADufrPQ+Kgd9LNJL5ttNmQoHqMHRzl4OVA6e8sg/Qiwob27UeWem/zG9aoA82VFQjyVI+g/BnQMhedTp2Vwspvwx7Q5ZCdkE4lze0/YD+CCwACdkXVIDrxrthmd0BRT0i+0xYnL2zjDSk3vS4Dp7dAgy0HB1zkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ulgIukue4F41NVc8yt6y/E0QtI8j3xfHl1rqPHJRK+k=;
+ b=FUCTDAiW2lRw3CSvYLuNMPcDkPGWE4m/Xl0pM2FiVhFp8Q2Z7PA2R4hzZ5Y0o3g7YDz2SEAcMVw0pSeOn5D2mXMEA+il2Sg1MRfQE1BqXG1AMdTuZ65CHKfUnAa807HvTWPbtPY8HA63xGxOQZnkul7BulHIiEzTpFlvtoNvwpM=
+Received: from DM5PR07CA0100.namprd07.prod.outlook.com (2603:10b6:4:ae::29) by
+ DS0PR12MB7536.namprd12.prod.outlook.com (2603:10b6:8:11c::21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6002.33; Tue, 24 Jan 2023 01:18:09 +0000
+Received: from DM6NAM11FT005.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:ae:cafe::8e) by DM5PR07CA0100.outlook.office365.com
+ (2603:10b6:4:ae::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33 via Frontend
+ Transport; Tue, 24 Jan 2023 01:18:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT005.mail.protection.outlook.com (10.13.172.238) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6023.16 via Frontend Transport; Tue, 24 Jan 2023 01:18:09 +0000
+Received: from platform-dev1.pensando.io (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Mon, 23 Jan 2023 19:16:54 -0600
+From:   Brad Larson <blarson@amd.com>
+To:     <krzysztof.kozlowski@linaro.org>
+CC:     <adrian.hunter@intel.com>, <alcooperx@gmail.com>,
+        <andy.shevchenko@gmail.com>, <arnd@arndb.de>, <blarson@amd.com>,
+        <brad@pensando.io>, <brendan.higgins@linux.dev>,
+        <briannorris@chromium.org>, <brijeshkumar.singh@amd.com>,
+        <broonie@kernel.org>, <catalin.marinas@arm.com>,
+        <davidgow@google.com>, <devicetree@vger.kernel.org>,
+        <fancer.lancer@gmail.com>, <gerg@linux-m68k.org>,
+        <gsomlo@gmail.com>, <krzk@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <lee.jones@linaro.org>,
+        <lee@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <p.yadav@ti.com>,
+        <p.zabel@pengutronix.de>, <piotrs@cadence.com>,
+        <rdunlap@infradead.org>, <robh+dt@kernel.org>,
+        <samuel@sholland.org>, <skhan@linuxfoundation.org>,
+        <suravee.suthikulpanit@amd.com>, <thomas.lendacky@amd.com>,
+        <tonyhuang.sunplus@gmail.com>, <ulf.hansson@linaro.org>,
+        <vaishnav.a@ti.com>, <will@kernel.org>,
+        <yamada.masahiro@socionext.com>
+Subject: Re: [PATCH v9 03/15] dt-bindings: spi: cdns: Add compatible for AMD Pensando Elba SoC
+Date:   Mon, 23 Jan 2023 17:16:48 -0800
+Message-ID: <20230124011648.52334-1-blarson@amd.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <42be3c33-1055-a63e-d0ad-673d85c27d3e@linaro.org>
+References: <42be3c33-1055-a63e-d0ad-673d85c27d3e@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230123133747.18896-1-andrey.konovalov@linaro.org>
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT005:EE_|DS0PR12MB7536:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7929dea4-72ea-402a-6ef4-08dafda8dac7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wpFJOhqwfbXyxAI2txN5UbcQZZmz3H2RP9FJnwhic9gGwTz4WSZwXn4wrhRDbbbeMeLI/kIXcSsdiQxmP+T7teesWFtPsPBmw30Z+PwihJ6fzZlXNQV9iZfVu5VFIaLgmWuecqIfGv4GCvuVSQ9+nfOBA/4f3LaEVQDsia9fyXgSGoiQ7CC20DlrhQCk2Es4GAh9pGnmUF031dyBqQra2IUSwJYJqZheMIk5kB//s2zvnechBuzXY6R36uG8Y1t8gJfGbBZuxrUhjVUFnnVKSs31cJG4wnPvX26lpcv/fHyK6MeWHWrhZ0OUdOqfIdjDBslTmwuwy2drTtIRj99a0HtXeCxLWHKqYcMgKLUkP/gUIJ+uZ0LfvlHX5/8hYGHkTIyF/zK7cdaeeDMnuQB8P/KMRUKQqxJ1Cp16TZfDlf2XgbgMtj6YOpCKlIBiEZFTQOlfoc1IIQPGpS5SkZhxXBP2tSShZcSUGWaSj1n1L7OI52rTy+tZPbydwI+3te07IDDP3ioILYASjxmaBEeDDj94+yPqEhUITPWrI51tD36z/slkezW2cVakBXt7/TbsHP3mkNuFAawr+ysJcA+rBV5YJU3YpJdqIJwSgW8hzTj006Nn/2uasWK+j0FdU860QGVe89pbvKOeG44K7toB0gQDwcuAMJwqyXd2V3OT2dubJ5j0Fg0WwXpY3/5Ytxw/EZYdj7iTjl1N1L5ehr0XOrsjP8hk2zpaa5ErfjyHjyA=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(136003)(376002)(346002)(396003)(39860400002)(451199015)(36840700001)(40470700004)(46966006)(36756003)(41300700001)(356005)(81166007)(7416002)(82740400003)(5660300002)(7406005)(8936002)(4326008)(82310400005)(2906002)(36860700001)(83380400001)(40140700001)(478600001)(53546011)(6916009)(26005)(186003)(8676002)(40460700003)(16526019)(40480700001)(70206006)(316002)(70586007)(54906003)(1076003)(2616005)(6666004)(336012)(426003)(47076005)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 01:18:09.2401
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7929dea4-72ea-402a-6ef4-08dafda8dac7
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT005.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7536
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 23, 2023 at 04:37:45PM +0300, Andrey Konovalov wrote:
-> On my qcs404 based board the ethernet MAC has issues with handling
-> Rx LPI exit / Rx LPI entry interrupts.
-> 
-> When in LPI mode the "refresh transmission" is received, the driver may
-> see both "Rx LPI exit", and "Rx LPI entry" bits set in the single read from
-> GMAC4_LPI_CTRL_STATUS register (vs "Rx LPI exit" first, and "Rx LPI entry"
-> then). In this case an interrupt storm happens: the LPI interrupt is
-> triggered every few microseconds - with all the status bits in the
-> GMAC4_LPI_CTRL_STATUS register being read as zeros. This interrupt storm
-> continues until a normal non-zero status is read from GMAC4_LPI_CTRL_STATUS
-> register (single "Rx LPI exit", or "Tx LPI exit").
-> 
-> The reason seems to be in the hardware not being able to properly clear
-> the "Rx LPI exit" interrupt if GMAC4_LPI_CTRL_STATUS register is read
-> after Rx LPI mode is entered again.
-> 
-> The current driver unconditionally sets the "Clock-stop enable" bit
-> (bit 10 in PHY's PCS Control 1 register) when calling phy_init_eee().
-> Not setting this bit - so that the PHY continues to provide RX_CLK
-> to the ethernet controller during Rx LPI state - prevents the LPI
-> interrupt storm.
-> 
-> This patch set adds a new parameter to the stmmac DT:
-> snps,rx-clk-runs-in-lpi.
-> If this parameter is present in the device tree, the driver configures
-> the PHY not to stop RX_CLK after entering Rx LPI state.
+On 19/01/2023 7:53 UTC, Krzysztof Kozlowski wrote:
+>On 19/01/2023 04:51, Brad Larson wrote:
+>> Document the cadence qspi controller compatible for AMD Pensando
+>> Elba SoC boards.  The Elba qspi fifo size is 1024.
+>> 
+...
+>> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+>> index 4707294d8f59..a6556854234f 100644
+>> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+>> @@ -20,11 +20,23 @@ allOf:
+>>        required:
+>>          - power-domains
+>>  
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          enum:
+>> +            - amd,pensando-elba-qspi
+>> +    then:
+>> +      properties:
+>> +        cdns,fifo-depth:
+>> +          enum: [ 128, 256, 1024 ]
+>> +          default: 1024
+>
+>This won't work either... did you test it? Is 1024 really allowed?
 
-Do we really need yet another device tree parameter? Could
-dwmac-qcom-ethqos.c just do this unconditionally? Is the interrupt
-controller part of the licensed IP, or is it from QCOM? If it is part
-of the licensed IP, it is probably broken for other devices as well,
-so maybe it should be a quirk for all devices of a particular version
-of the IP?
+Removing enum/default from the cdns,fifo-depth property definition
+and using if/then/else in the allOf block fixed the problem.
 
-   Andrew
+Yes the Cadence IP 1024 fifo-size is supported and is in production.
+The below passes the dtbs_check/dt_binding_check and leaves all
+other implemenations with max 256 fifo-depth.
+
+Do you want to move the allOf block to the bottom as was requested
+for cdns,sdhci.yaml?  This is the updated diff:
+
+--- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
++++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+@@ -20,11 +20,28 @@ allOf:
+       required:
+         - power-domains
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: amd,pensando-elba-qspi
++    then:
++      properties:
++        cdns,fifo-depth:
++          enum: [ 128, 256, 1024 ]
++          default: 1024
++    else:
++      properties:
++        cdns,fifo-depth:
++          enum: [ 128, 256 ]
++          default: 128
++
+ properties:
+   compatible:
+     oneOf:
+       - items:
+           - enum:
++              - amd,pensando-elba-qspi
+               - ti,k2g-qspi
+               - ti,am654-ospi
+               - intel,lgm-qspi
+@@ -48,8 +65,6 @@ properties:
+     description:
+       Size of the data FIFO in words.
+     $ref: "/schemas/types.yaml#/definitions/uint32"
+-    enum: [ 128, 256 ]
+-    default: 128
+ 
+   cdns,fifo-width:
+     $ref: /schemas/types.yaml#/definitions/uint32
+
+Regards,
+Brad
