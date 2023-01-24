@@ -2,96 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BF0067A18E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 19:43:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19C7B67A1A8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 19:45:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234059AbjAXSnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 13:43:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48210 "EHLO
+        id S233999AbjAXSpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 13:45:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233871AbjAXSnC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 13:43:02 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B3261BB;
-        Tue, 24 Jan 2023 10:42:48 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C782461324;
-        Tue, 24 Jan 2023 18:42:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37236C433A8;
-        Tue, 24 Jan 2023 18:42:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674585767;
-        bh=DBSo7OynaPiD3LOZ5Et+hWfS1NPFDENYrFZZTqaJ4Zo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=RuxlPFOPF6nG3xhTMWTioiwTQkM78eHKGibjNQ4Ld2qVM6eMg+Pqb+1pVDyLlEO88
-         pCYdM+O5ReIsLpkyvLRIL8D6J8ybMRFahWkSUIYHGGmpS8jhZzaK8678isY2qke6J2
-         Cc4WWweSKl5bPOqJYmyqqauDgUrccGrX1l18oSf5R4CHQZk/4niQE1RwVUAD8XWJaR
-         TwCmM300aL9mG3rYbQBV7zQVXNTDypTmog+KVAjaRBT2nOh06Tg7xGq2KZH3P2MUdk
-         IYGcne5XS33CH7MmDjhdgIB4U4YYi0kmVixCDf3HSDRQD921jyFvl2U+H5qXGNjAMO
-         DsXd2ZRZKdUcA==
-Received: by mail-vs1-f49.google.com with SMTP id t10so17452873vsr.3;
-        Tue, 24 Jan 2023 10:42:47 -0800 (PST)
-X-Gm-Message-State: AFqh2kogD8gk997Ly8jqKxhPwk/3wFcKmHnlw6wmkYwFdlWvhxipBIbr
-        XNiUK+W5oJ0jD+EUXb9955/nCw9QPqs22iOIDQ==
-X-Google-Smtp-Source: AMrXdXvM0olT9jSHiUMDJsNqRTneaeFB/92hij1cU2Y+/6V74N/GT/dxRky2xzkFIbykeif2r193/563hWiLeZlWlho=
-X-Received: by 2002:a05:6102:5490:b0:3b5:1fe4:f1c2 with SMTP id
- bk16-20020a056102549000b003b51fe4f1c2mr3941513vsb.0.1674585766048; Tue, 24
- Jan 2023 10:42:46 -0800 (PST)
+        with ESMTP id S234211AbjAXSo5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 13:44:57 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 652037299;
+        Tue, 24 Jan 2023 10:44:56 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30OFqEjJ030189;
+        Tue, 24 Jan 2023 18:44:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=Fnf9C8QuLCGeFDnjj2KDCjQLXZy3LmK6fzqg9/IR634=;
+ b=DbNdyA6xrVIc5jmOLEx9SHPVJbBX+fOjep1pT6cIlPXVeKxNLvaetOe/f8aUbor5eq7d
+ 8rUiVqz2Tyj/TbawPblA+EsD2/TbJ6q5PT686m08Gj+bg/cBhcF4mWyPpKKVXu5TsOwr
+ yMWqnx3I2OBYANsW5OQf+/fKV1rxC7SuC0gvnzFeiMXCHaMEkIQFdd1ZoC48vy75SOU0
+ SteMZwRslpy1ZmekiTissejE8we2gPSYDAdTsAxSvTWinssr5XTbiOQ7cO/OLfPhrJIF
+ JHD0xyNY55gjl0/G4/wSE4+bOTCnRo06AWdnnopnSLLFSkS5CPrMot/GND4fMRVb2WAa yA== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n89dndnh6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 24 Jan 2023 18:44:47 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30OIikdX004148
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 24 Jan 2023 18:44:46 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 24 Jan 2023 10:44:45 -0800
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: [PATCH v2 0/3] regulator: Add Maxim MAX20411 support 
+Date:   Tue, 24 Jan 2023 10:44:37 -0800
+Message-ID: <20230124184440.1421074-1-quic_bjorande@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230110-dt-usb-v3-0-5af0541fcf8c@kernel.org> <Y9ASq0VZ6G7Efe7s@kroah.com>
-In-Reply-To: <Y9ASq0VZ6G7Efe7s@kroah.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 24 Jan 2023 12:42:34 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJJ8tFUCw-MbAsfJ7vKssRxu=p+3jG7dURmB77DOYoiSg@mail.gmail.com>
-Message-ID: <CAL_JsqJJ8tFUCw-MbAsfJ7vKssRxu=p+3jG7dURmB77DOYoiSg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/5] dt-bindings: usb: Convert some more simple
- OHCI/EHCI bindings
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Lee Jones <lee@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, openbmc@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: kjq_ybdqihIIj7eKxTteUIYAABoybJTa
+X-Proofpoint-ORIG-GUID: kjq_ybdqihIIj7eKxTteUIYAABoybJTa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-24_13,2023-01-24_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
+ lowpriorityscore=0 spamscore=0 phishscore=0 mlxscore=0 bulkscore=0
+ malwarescore=0 mlxlogscore=854 suspectscore=0 priorityscore=1501
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301240171
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 24, 2023 at 11:17 AM Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
->
-> On Mon, Jan 23, 2023 at 09:05:15PM -0600, Rob Herring wrote:
-> > The 'ohci-usb' compatible is another 'generic' compatible for OHCI, but
-> > isn't documented with a schema. Let's add it to generic-ohci.yaml
-> > schema. While looking at this, I found a few other USB host bindings
-> > which are simple enough to use the 'generic' schemas.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
->
-> Am I supposed to take these in my USB tree?
+Introduce binding and driver for the Maxim MAX20411, and wire these up
+on the Qualcomm SA8295P ADP.
 
-Yes, please.
+Bjorn Andersson (3):
+  regulator: dt-bindings: Describe Maxim MAX20411
+  regulator: Introduce Maxim MAX20411 Step-Down converter
+  arm64: dts: qcom: sa8295p-adp: Add max20411 on i2c12
 
-> I'm still confused if you all want me to take these types of things or
-> not...
+ .../bindings/regulator/maxim,max20411.yaml    |  58 +++++++
+ arch/arm64/boot/dts/qcom/sa8295p-adp.dts      |  41 +++++
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/max20411-regulator.c        | 163 ++++++++++++++++++
+ 5 files changed, 271 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max20411.yaml
+ create mode 100644 drivers/regulator/max20411-regulator.c
 
-Yes. I try to only pick up what has less responsive subsys
-maintainers, treewide (binding) cleanups, or otherwise falls thru the
-cracks.
+-- 
+2.25.1
 
-Rob
