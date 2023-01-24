@@ -2,257 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5949E6796F5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:46:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 048BA679709
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:50:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233933AbjAXLp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 06:45:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40550 "EHLO
+        id S232381AbjAXLus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 06:50:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233937AbjAXLp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:45:57 -0500
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24C223EFC0
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:45:55 -0800 (PST)
-Received: by mail-pf1-x42d.google.com with SMTP id x4so11023734pfj.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:45:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C999FwRzmG6xgSAmN5RaHaFeT5++tBFM3K6nE6gR9kQ=;
-        b=MoIu6dEpxAc7v6NG9qDlkjD5VG8dNzCd1gq2NdqSiC1Jb9EffiqLLPHC4jaCERrpmH
-         3B/n22ADDhlWio/1HgnHzoQa5YudgTv8QGXAhspqVq0OlUs+VOIyPoBR4Pd8VQPbVjrc
-         +aIShkW+EnpmCOBR4hP2GUeymyCUiCD5QmKPwpZ8lwdRyQ72G3LON7klhOmZmgmTyIsh
-         ErHZ394KZG7aDGIEg5kjDQNGzNDCcliLfcgm3EwzG+4YJd+eeXtN7YCZ3TAJe3LEItHI
-         lTAdOEzElueEfY4igULvTyADrT/UsGfr3JDA6x8Q8OevLLO8UJWC6swfru6yVvEDiVMv
-         V70A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C999FwRzmG6xgSAmN5RaHaFeT5++tBFM3K6nE6gR9kQ=;
-        b=QwO0Qgd0vVelmCsReFflfMulkk40gn/Jv81v1vSmqMQKScrn3/gK0h5FVQx5+TqZK2
-         LSQQd2cBERTnomyF/scmMlnyHicGBAFcHSz4x2hIzcq0tFbJognhYGLFmwCtERCzR586
-         p7XXgO+VfeJIF8i5jhYeX7H2u5+LswjFJ2qtF16MI3olJ4MuykaCQvBT/U1yR0CSxMZK
-         jgJVQTMbNb9Ld0HRQHDqAUipFYC7iznVahsWaxkV1q8UUFgm/TJtd4W4TV0MQGQ4Evsk
-         f89wg7zLCcdnI2hGRmQ0MQgSQXH6izSTLyyZ337yJyeJUYU9072i9/jMRROWCw58GxUL
-         ZxWw==
-X-Gm-Message-State: AFqh2ko2fHXDVoDSAjUGFTV+zu2jvqcsRR42ocXx10dyWWk9IBQIEXte
-        tryEq1SXUrb9RjJ6U4kmVzjimQ==
-X-Google-Smtp-Source: AMrXdXvfg2tuDxNrx7qnAFNJY/BpELo24XreajkdeWYqeU89AAQF0hM7X61io/Yz+JTaA+bHzFT6Cg==
-X-Received: by 2002:a05:6a00:1887:b0:58c:b0a:e504 with SMTP id x7-20020a056a00188700b0058c0b0ae504mr37927015pfh.18.1674560754594;
-        Tue, 24 Jan 2023 03:45:54 -0800 (PST)
-Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
-        by smtp.gmail.com with ESMTPSA id 76-20020a62164f000000b0058882b59d22sm1371528pfw.219.2023.01.24.03.45.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 03:45:54 -0800 (PST)
-Message-ID: <05947e9f-0667-4565-b481-ca5635da4174@9elements.com>
-Date:   Tue, 24 Jan 2023 17:15:49 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] hwmon: (pmbus/tda38640) Add driver for Infineon TDA38640
- Voltage Regulator
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S232896AbjAXLur (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:50:47 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66E3643479;
+        Tue, 24 Jan 2023 03:50:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674561033; x=1706097033;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ilmP+R6ClcklSYaYqBc8VR1oeLZrt7IRxXeqBBWyQzA=;
+  b=m1DR/YVdPeqsb+vJYkasAv+I+DeJAT71fWGhNh2BG8JD6Uv3CuhIVuOK
+   n5+rxAWElMIfvS0VDPmUpxu6e9qkZfOqBHc6J+SDcWRnOsAU2E0zY6bUq
+   dCk44g0OoaiyxPBqYl5Nu9R+utNTWke8wczc1t3WyslusOYgHqXOgv3IV
+   I4MBI6AqJLMEicr7RXqrAPaGsm6+Mc8U6fOA+AdwCgJYIF887++vIVWgl
+   XPlzxyJLwADoVmESR5etEy7sjyb0ULByy4icWog2HSfKIJK+5hjpzKP2T
+   OL3YT7D1vWi1qwBHcpRw+cRnBYTtelj9Ly/q1u61/Dgwkd1ATWuhsEvw/
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="412508356"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; 
+   d="scan'208";a="412508356"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2023 03:50:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="804568233"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; 
+   d="scan'208";a="804568233"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 24 Jan 2023 03:50:29 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 24 Jan 2023 13:50:28 +0200
+Date:   Tue, 24 Jan 2023 13:50:28 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230124110111.3965317-1-Naresh.Solanki@9elements.com>
- <b4b11836-5a4b-a2b7-18e2-89ca26f19817@linaro.org>
-Content-Language: en-US
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <b4b11836-5a4b-a2b7-18e2-89ca26f19817@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
+Subject: Re: [PATCH V7 3/6] usb: typec: ucsi_ccg: Add OF support
+Message-ID: <Y8/GBHsaEYKfMLdg@kuha.fi.intel.com>
+References: <20230124114318.18345-1-jonathanh@nvidia.com>
+ <20230124114318.18345-4-jonathanh@nvidia.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230124114318.18345-4-jonathanh@nvidia.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+Hi,
 
-On 24-01-2023 04:40 pm, Krzysztof Kozlowski wrote:
-> On 24/01/2023 12:01, Naresh Solanki wrote:
->> From: Patrick Rudolph <patrick.rudolph@9elements.com>
->>
->> Add the pmbus driver for the Infineon TDA38640 voltage regulator.
->>
->> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->> ---
->>   .../devicetree/bindings/trivial-devices.yaml  |  2 +
+On Tue, Jan 24, 2023 at 11:43:15AM +0000, Jon Hunter wrote:
+> From: Wayne Chang <waynec@nvidia.com>
 > 
-> Split bindings from driver code.
-Sure
+> Add device-tree support for the Cypress CCG UCSI driver. The device-tree
+> binding for the Cypress CCG device uses the standard device-tree
+> 'firmware-name' string property to indicate the firmware build that is
+> used.
 > 
->>   drivers/hwmon/pmbus/Kconfig                   | 16 ++++
->>   drivers/hwmon/pmbus/Makefile                  |  1 +
->>   drivers/hwmon/pmbus/tda38640.c                | 78 +++++++++++++++++++
->>   4 files changed, 97 insertions(+)
->>   create mode 100644 drivers/hwmon/pmbus/tda38640.c
->>
->> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
->> index f5c0a6283e61..a28b02036489 100644
->> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
->> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->> @@ -141,6 +141,8 @@ properties:
->>             - infineon,slb9645tt
->>               # Infineon SLB9673 I2C TPM 2.0
->>             - infineon,slb9673
->> +            # Infineon TDA38640 Voltage Regulator
->> +          - infineon,tda38640
->>               # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
->>             - infineon,tlv493d-a1b6
->>               # Infineon Multi-phase Digital VR Controller xdpe11280
->> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
->> index 30448e049486..9f4bbb9c487a 100644
->> --- a/drivers/hwmon/pmbus/Kconfig
->> +++ b/drivers/hwmon/pmbus/Kconfig
->> @@ -395,6 +395,22 @@ config SENSORS_STPDDC60
->>   	  This driver can also be built as a module. If so, the module will
->>   	  be called stpddc60.
->>   
->> +config SENSORS_TDA38640
->> +	tristate "Infineon TDA38640"
->> +	help
->> +	  If you say yes here you get hardware monitoring support for Infineon
->> +	  TDA38640.
->> +
->> +	  This driver can also be built as a module. If so, the module will
->> +	  be called tda38640.
->> +
->> +config SENSORS_TDA38640_REGULATOR
->> +	bool "Regulator support for TDA38640 and compatibles"
->> +	depends on SENSORS_TDA38640 && REGULATOR
->> +	help
->> +	  If you say yes here you get regulator support for Infineon
->> +	  TDA38640 as regulator.
+> The NVIDIA GPU I2C driver has been updated to use an ACPI string
+> property that is also named 'firmware-build' and given that this was the
+> only users of the 'ccgx,firmware-build' property, we can now remove
+> support for this legacy property.
 > 
-> Drop entire option, why is it needed?
-You mean regulator option ?
-This is how other pmbus regulator devices have provided option.
-> 
->> +
->>   config SENSORS_TPS40422
->>   	tristate "TI TPS40422"
->>   	help
->> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
->> index d9d2fa4bd6f7..3ae019916267 100644
->> --- a/drivers/hwmon/pmbus/Makefile
->> +++ b/drivers/hwmon/pmbus/Makefile
->> @@ -40,6 +40,7 @@ obj-$(CONFIG_SENSORS_PM6764TR)	+= pm6764tr.o
->>   obj-$(CONFIG_SENSORS_PXE1610)	+= pxe1610.o
->>   obj-$(CONFIG_SENSORS_Q54SJ108A2)	+= q54sj108a2.o
->>   obj-$(CONFIG_SENSORS_STPDDC60)	+= stpddc60.o
->> +obj-$(CONFIG_SENSORS_TDA38640)	+= tda38640.o
->>   obj-$(CONFIG_SENSORS_TPS40422)	+= tps40422.o
->>   obj-$(CONFIG_SENSORS_TPS53679)	+= tps53679.o
->>   obj-$(CONFIG_SENSORS_TPS546D24)	+= tps546d24.o
->> diff --git a/drivers/hwmon/pmbus/tda38640.c b/drivers/hwmon/pmbus/tda38640.c
->> new file mode 100644
->> index 000000000000..31e17a936b8c
->> --- /dev/null
->> +++ b/drivers/hwmon/pmbus/tda38640.c
->> @@ -0,0 +1,78 @@
->> +// SPDX-License-Identifier: GPL-2.0+
->> +/*
->> + * Hardware monitoring driver for Infineon TDA38640
->> + *
->> + * Copyright (c) 2023 9elements GmbH
->> + *
->> + */
->> +
->> +#include <linux/err.h>
->> +#include <linux/i2c.h>
->> +#include <linux/init.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/regulator/driver.h>
->> +#include "pmbus.h"
->> +
->> +#if IS_ENABLED(CONFIG_SENSORS_TDA38640_REGULATOR)
->> +static const struct regulator_desc tda38640_reg_desc[] = {
->> +	PMBUS_REGULATOR("vout", 0),
->> +};
->> +#endif /* CONFIG_SENSORS_TDA38640_REGULATOR */
->> +
->> +static struct pmbus_driver_info tda38640_info = {
->> +	.pages = 1,
->> +	.format[PSC_VOLTAGE_IN] = linear,
->> +	.format[PSC_VOLTAGE_OUT] = linear,
->> +	.format[PSC_CURRENT_OUT] = linear,
->> +	.format[PSC_CURRENT_IN] = linear,
->> +	.format[PSC_POWER] = linear,
->> +	.format[PSC_TEMPERATURE] = linear,
->> +
->> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT
->> +	    | PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP
->> +	    | PMBUS_HAVE_IIN
->> +	    | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
->> +	    | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT
->> +	    | PMBUS_HAVE_POUT | PMBUS_HAVE_PIN,
->> +#if IS_ENABLED(CONFIG_SENSORS_TDA38640_REGULATOR)
->> +	.num_regulators = 1,
->> +	.reg_desc = tda38640_reg_desc,
->> +#endif
->> +};
->> +
->> +static int tda38640_probe(struct i2c_client *client)
->> +{
->> +	return pmbus_do_probe(client, &tda38640_info);
->> +}
->> +
->> +static const struct i2c_device_id tda38640_id[] = {
->> +	{"tda38640", 0},
->> +	{}
->> +};
->> +
-> 
-> Drop blank line
-Sure
-> 
->> +MODULE_DEVICE_TABLE(i2c, tda38640_id);
->> +
->> +#ifdef CONFIG_OF
-> 
-> Drop ifdefs and use __maybe_unused
-> 
->> +static const struct of_device_id tda38640_of_match[] = {
->> +	{ .compatible = "infineon,tda38640"},
->> +	{ },
->> +};
->> +MODULE_DEVICE_TABLE(of, tda38640_of_match);
-> 
-> Where is it used? You miss the user.
-I'm not sure if I get your question right.
-This chip is used in sbp1 board to power CPU rails.
-> 
->> +#endif
->> +
->> +/* This is the driver that will be inserted */
->> +static struct i2c_driver tda38640_driver = {
->> +	.driver = {
->> +		   .name = "tda38640",
->> +		   },
->> +	.probe_new = tda38640_probe,
->> +	.id_table = tda38640_id,
->> +};
-> 
-> Best regards,
-> Krzysztof
-> 
+> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 
-Best regards,
-Naresh
+You missed one nitpick in v6 - check below. But that's minor, so if
+there's nothing else:
+
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
+> ---
+> V6 -> V7: removed 'ccgx,firmware-build' property
+> V5 -> V6: fixed compilation
+> V4 -> V5: add support for 'firmware-name'
+> V1 -> V4: nothing has changed
+> 
+>  drivers/usb/typec/ucsi/ucsi_ccg.c | 23 +++++++++++++++++++----
+>  1 file changed, 19 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/ucsi/ucsi_ccg.c b/drivers/usb/typec/ucsi/ucsi_ccg.c
+> index 46441f1477f2..8f5ad2094f26 100644
+> --- a/drivers/usb/typec/ucsi/ucsi_ccg.c
+> +++ b/drivers/usb/typec/ucsi/ucsi_ccg.c
+> @@ -643,7 +643,7 @@ static int ccg_request_irq(struct ucsi_ccg *uc)
+>  {
+>  	unsigned long flags = IRQF_ONESHOT;
+>  
+> -	if (!has_acpi_companion(uc->dev))
+> +	if (!dev_fwnode(uc->dev))
+>  		flags |= IRQF_TRIGGER_HIGH;
+>  
+>  	return request_threaded_irq(uc->irq, NULL, ccg_irq_handler, flags, dev_name(uc->dev), uc);
+> @@ -1342,6 +1342,7 @@ static int ucsi_ccg_probe(struct i2c_client *client)
+>  {
+>  	struct device *dev = &client->dev;
+>  	struct ucsi_ccg *uc;
+> +	const char *fw_name;
+>  	int status;
+>  
+>  	uc = devm_kzalloc(dev, sizeof(*uc), GFP_KERNEL);
+> @@ -1357,9 +1358,16 @@ static int ucsi_ccg_probe(struct i2c_client *client)
+>  	INIT_WORK(&uc->pm_work, ccg_pm_workaround_work);
+>  
+>  	/* Only fail FW flashing when FW build information is not provided */
+> -	status = device_property_read_u16(dev, "ccgx,firmware-build",
+> -					  &uc->fw_build);
+> -	if (status)
+> +	status = device_property_read_string(dev, "firmware-name",
+> +					     &fw_name);
+
+One line is enough:
+
+	status = device_property_read_string(dev, "firmware-name", &fw_name);
+
+> +	if (!status) {
+> +		if (!strcmp(fw_name, "nvidia,jetson-agx-xavier"))
+> +			uc->fw_build = CCG_FW_BUILD_NVIDIA_TEGRA;
+> +		else if (!strcmp(fw_name, "nvidia,gpu"))
+> +			uc->fw_build = CCG_FW_BUILD_NVIDIA;
+> +	}
+> +
+> +	if (!uc->fw_build)
+>  		dev_err(uc->dev, "failed to get FW build information\n");
+>  
+>  	/* reset ccg device and initialize ucsi */
+> @@ -1426,6 +1434,12 @@ static void ucsi_ccg_remove(struct i2c_client *client)
+>  	free_irq(uc->irq, uc);
+>  }
+>  
+> +static const struct of_device_id ucsi_ccg_of_match_table[] = {
+> +		{ .compatible = "cypress,cypd4226", },
+> +		{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ucsi_ccg_of_match_table);
+> +
+>  static const struct i2c_device_id ucsi_ccg_device_id[] = {
+>  	{"ccgx-ucsi", 0},
+>  	{}
+> @@ -1480,6 +1494,7 @@ static struct i2c_driver ucsi_ccg_driver = {
+>  		.pm = &ucsi_ccg_pm,
+>  		.dev_groups = ucsi_ccg_groups,
+>  		.acpi_match_table = amd_i2c_ucsi_match,
+> +		.of_match_table = ucsi_ccg_of_match_table,
+>  	},
+>  	.probe_new = ucsi_ccg_probe,
+>  	.remove = ucsi_ccg_remove,
+> -- 
+> 2.25.1
+
+thanks,
+
+-- 
+heikki
