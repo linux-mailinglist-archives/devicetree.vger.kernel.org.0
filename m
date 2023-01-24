@@ -2,143 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 248D66798A3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 13:55:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD9056798AE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 13:57:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232302AbjAXMzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 07:55:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60280 "EHLO
+        id S233594AbjAXM5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 07:57:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229792AbjAXMzm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 07:55:42 -0500
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D16B1E5;
-        Tue, 24 Jan 2023 04:55:16 -0800 (PST)
+        with ESMTP id S233521AbjAXM5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 07:57:39 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CAE8E5
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:57:38 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id w2so11099985pfc.11
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:57:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1674564918;
-  x=1706100918;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=R/rLi1tr294HxeNCUgBILCIoJ8DA9175pzXb4Jq8ZFE=;
-  b=M7Cy/s2neMxsaKnsSP70stDwH/oFeGn+eOV/+EXJMWeo5kYd3/35Hbeg
-   h2fps3oZ0m5+VfcnLWF7QSAntkxaRFlktZtLWoiCxpF8S+7uJIoXezvSD
-   qKBdHqZxdnTIurkzu7UR7fIdi05fX0ERwX9AcJA46OYdcgRiLRQXRozzg
-   cbgsnQUR7SyTEy6+0rFUJ1KN2GRSxqDkM7dR4qsLYsalIe2mxmtRIwBlA
-   ZLqDeCOSVWLkybY9FOGjzRbi4mqvKn7jRDrilqw/GFu0myc9+5vYrDvvd
-   C3wzxM4cJLwXDk8JfAmZYnSfv4plgLvyOQr95FeeVB6xjHrcjAqxZNpTb
-   Q==;
-Date:   Tue, 24 Jan 2023 13:54:57 +0100
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Lizhi Hou <lizhi.hou@amd.com>, Lee Jones <lee@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        kernel <kernel@axis.com>, <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH] mfd: Add Simple PCI MFD driver
-Message-ID: <Y8/VIXPDcNcj/wxT@axis.com>
-References: <20230120-simple-mfd-pci-v1-1-c46b3d6601ef@axis.com>
- <CAL_JsqKKJn3iuHu-Q5XTknCbAW1gt1BmF0w4Gzfcq2S5mv0gZw@mail.gmail.com>
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=fr4KQQd0av587thkWcqiU+Za+8udTGNRZMwYOL7Y2/Q=;
+        b=SdB2vEz9t1i6Jd6VoxHoWc+WYdwGEvjzyfDeyT8fMbppjAOyhPFCG8J3qwWA3RlStY
+         WjzzMooHZODOnuLKc2dfjCU2xL4Kj1AySQWnAhDZuiTOBFubI6EXyOidLFBfbwK0cNYE
+         yQDJJgfjOcdhawuJpORU0wDvu4uAumvx+pBTbmruoxSBKdfkxOQcRGL1zONdZKtTOUwW
+         w9FtSQyjqiF8tzZcExB5QwdsjqAKVBbNZkSbQ4GJx6AGMTPzRis7dPGxAJCgExWVX7BS
+         57mhsCKb1MsYrWcRHeL0CsraL6QC4H7LwKpInNnP25gWnGf3jFoCunJ1fOOnZwyzlVGU
+         mnrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fr4KQQd0av587thkWcqiU+Za+8udTGNRZMwYOL7Y2/Q=;
+        b=pebRE8I48NS2f2yY5y2rCjvPuufZOd2YoWEki5qzjuRNA7w9nisr+W7UyMOtFbf0/w
+         P9VyrJMimQLlP6O2t6wvQN5Co/AM1vqVy0vyOpG575wmbrnbXNLjBdU9PVo82gCBB46J
+         BTcxVMV6+Xd03HiXY+YSKwb2Ws+5EMHwkky5/3tIdu8NPwEmueX3gtO9Ygufzag4kzUR
+         L5GQ9hWA3/dIJUReaFUoTUlRgh+TzWDqH3l4J/rfJqQlJpp+QSaKvW1wEmoJ1dUDnycX
+         m0IBHyt9vjjGNnhFyO3I42q3gvS1TJGQzAoQb1yXsV0gDdsnUBiafafbO7nfVqENhhPH
+         hPtA==
+X-Gm-Message-State: AFqh2krqhjKPq1kXJCPqA16M4Bblj9OJ2sz8RCjGQZAY3Z2utBq672/z
+        jGRwOGW98nCArvFe6NevKHZk81Jnx+as/KzBQpTFhA==
+X-Google-Smtp-Source: AMrXdXvkN9YYuOhNy7Pn87HY9J17Dsp0qFPMH4QoCWLcBCqcx2wECVReSw2pyQKhY7YZhBMpUParhwflBFFndj/9W3k=
+X-Received: by 2002:a62:e80a:0:b0:58d:982a:f1ea with SMTP id
+ c10-20020a62e80a000000b0058d982af1eamr2518752pfi.28.1674565057932; Tue, 24
+ Jan 2023 04:57:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKKJn3iuHu-Q5XTknCbAW1gt1BmF0w4Gzfcq2S5mv0gZw@mail.gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230116194401.20372-1-doug@schmorgal.com>
+In-Reply-To: <20230116194401.20372-1-doug@schmorgal.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 24 Jan 2023 13:57:00 +0100
+Message-ID: <CAPDyKFreULXcPPo54fLMZO8tQB=9mKrtrf3QWe=55SoXK3cg0A@mail.gmail.com>
+Subject: Re: [PATCH v5 0/8] mmc: sdhci-pxav2: Add support for PXA168
+To:     Doug Brown <doug@schmorgal.com>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 23, 2023 at 05:13:06PM +0100, Rob Herring wrote:
-> On Mon, Jan 23, 2023 at 8:32 AM Vincent Whitchurch
-> <vincent.whitchurch@axis.com> wrote:
-> >
-> > Add a PCI driver which registers all child nodes specified in the
-> > devicetree.  It will allow platform devices to be used on virtual
-> > systems which already support PCI and devicetree, such as UML with
-> > virt-pci.
-> 
-> There's similar work underway for Xilinx/AMD PCIe FPGAs[1]. It's the
-> same thing really. Non-discoverable things downstream of a PCI device.
-> There's also a desire for that to work on non-DT (ACPI) based hosts.
-> While UML supports DT, that's currently only for the unittest AFAIK.
+On Mon, 16 Jan 2023 at 20:44, Doug Brown <doug@schmorgal.com> wrote:
+>
+> This is a revival of an earlier patch series from 2013 to add support
+> for the PXA168 SDHC controller, with an additional SDIO IRQ errata fix.
+> It also cleans up the clock naming to be consistent with the existing DT
+> schema shared with the pxav3 driver (in a backwards-compatible way).
+>
+> Here is the original patch series this is based on:
+> https://lore.kernel.org/linux-mmc/1363544206-3671-1-git-send-email-tanmay.upadhyay@einfochips.com/
+>
+> Note that I left out the platform_specific_completion and clock gating
+> changes from the original patches. They both seemed controversial, and
+> don't seem necessary based on my testing. I've been running this code on
+> a PXA168 for months without any issues.
+>
+> Changes in v5:
+> - Fix missing assignment to ret in core clock patch found by test robot
+>
+> Changes in v4:
+> - Rebase on latest mmc/next to fix conflict with DT binding
+>
+> Changes in v3:
+> - Use OF match data rather than of_match_device and of_device_is_compatible
+> - Simplify some instances of pdev->dev that could have just been "dev"
+> - Handle EPROBE_DEFER when getting the clock
+> - Use devm_clk_get_optional_enabled for the core clock (it's simpler)
+> - Clear sdio_mrq before calling mmc_request_done
+> - Small tweaks to devicetree binding requested by Krzysztof
+>
+> Changes in v2:
+> - Fix mistakes in devicetree binding
+> - Use cleaner code for pxav1_readw suggested by Adrian
+> - Switch to request_done() and irq() for SDIO workaround CMD0 handling
+>
+> Doug Brown (8):
+>   mmc: sdhci-pxav2: add initial support for PXA168 V1 controller
+>   mmc: sdhci-pxav2: enable CONFIG_MMC_SDHCI_IO_ACCESSORS
+>   mmc: sdhci-pxav2: add register workaround for PXA168 silicon bug
+>   mmc: sdhci-pxav2: change clock name to match DT bindings
+>   mmc: sdhci-pxav2: add optional core clock
+>   mmc: sdhci-pxav2: add SDIO card IRQ workaround for PXA168 V1
+>     controller
+>   mmc: sdhci-pxav2: add optional pinctrl for SDIO IRQ workaround
+>   dt-bindings: mmc: sdhci-pxa: add pxav1
+>
+>  .../devicetree/bindings/mmc/sdhci-pxa.yaml    |  19 ++-
+>  drivers/mmc/host/Kconfig                      |   1 +
+>  drivers/mmc/host/sdhci-pxav2.c                | 154 ++++++++++++++++--
+>  3 files changed, 160 insertions(+), 14 deletions(-)
+>
 
-It's possible to pass a devicetree blob to UML via a command line
-argument[0].  The roadtest[1][2] framework uses this to test device
-drivers.
+Applied for next, thanks!
 
-[0] https://lore.kernel.org/lkml/20211208151123.29313-3-vincent.whitchurch@axis.com/
-[1] https://lore.kernel.org/lkml/20220311162445.346685-1-vincent.whitchurch@axis.com/
-[2] https://lwn.net/Articles/887974/
-
-> So it's more like a non-DT host. How does the DT get populated for UML
-> for this to work?
-
-The dts is generated by the test framework based on the test cases being
-run (see the files being patched in [3]) and is compiled and passed to
-UML via the command line argument.
-
-> Can you provide details on the actual h/w you want to use. What
-> problem are you trying to solve?
-
-There is no real hardware.  I'm using this to add support for platform
-devices to roadtest.  As the commit message said, UML supports PCI but I
-want to test platform devices so I just need something to allow me to
-put arbitrary platform devices under the PCI device and have them get
-probed.
-
-The PCI "hardware" (in backend.c in [3]) is just enough implementation
-of the BARs to keep Linux happy and forward the register accesses to the
-platform hardware implementation which is in Python as part of the test
-cases (eg. test_platform.py in [3]).  See my WIP patch for platform
-device support to roadtest which includes a test for the goldfish UART:
-
-[3] https://github.com/vwax/linux/commit/636f4150b086dc581fdfb464869eb98b8a22a254
-
-(The roadtest code is placed in a kernel tree but the only patches to
-the kernel proper are this one,
-https://lore.kernel.org/lkml/20230120-uml-pci-of-v1-1-134fb66643d8@axis.com/,
-and a couple of ongoing fixes at the top of the tree.  Roadtest is
-designed to work on unpatched mainline kernels.)
-
-> Really, what I want to see here is everyone interested in this feature
-> to work together on it. Not just creating a one-off solution for their
-> 1 use case that's a subset of a bigger solution.
-> 
-> > The driver has no id_table by default; user space needs to provide one
-> > using the new_id mechanism in sysfs.
-> 
-> But your DT will have the id in it already. Wouldn't you rather
-> everything work without userspace intervention? I can't imagine the
-> list here would be too long.
-
-I would be nice for things to work without userspace intervention (see
-the change to init.sh in [3]), but I don't have real hardware or real
-PCI IDs, and I don't think we would want to hardcode made-up numbers in
-the ID table?
-
-> > diff --git a/drivers/mfd/simple-mfd-pci.c b/drivers/mfd/simple-mfd-pci.c
-> > new file mode 100644
-> > index 000000000000..c5b2540e924a
-> > --- /dev/null
-> > +++ b/drivers/mfd/simple-mfd-pci.c
-> > @@ -0,0 +1,21 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +
-> > +#include <linux/module.h>
-> > +#include <linux/of_platform.h>
-> > +#include <linux/pci.h>
-> > +
-> > +static int simple_mfd_pci_probe(struct pci_dev *pdev,
-> > +                               const struct pci_device_id *id)
-> > +{
-> > +       return devm_of_platform_populate(&pdev->dev);
-> 
-> Really, this could be anything in the child DT. Not just what Linux
-> classifies as an MFD. So maybe drivers/mfd is not the right place.
-
-What would be the right place?  drivers/bus?  Or perhaps something
-UML-specific similar to arch/x86/kernel/devicetree.c?
+Kind regards
+Uffe
