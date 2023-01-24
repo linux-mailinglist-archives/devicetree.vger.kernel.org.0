@@ -2,88 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A636667A601
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 23:40:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E77E67A60A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 23:42:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234813AbjAXWkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 17:40:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41528 "EHLO
+        id S235089AbjAXWmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 17:42:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234810AbjAXWkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 17:40:22 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BCBC10F7;
-        Tue, 24 Jan 2023 14:40:21 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8FFC9B81614;
-        Tue, 24 Jan 2023 22:40:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2CCEBC433EF;
-        Tue, 24 Jan 2023 22:40:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674600018;
-        bh=UZ1bbTP9wKTGHzz4tz3N2CqqtNbE/N6eI+d92JGLXUU=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=JfSCZo5+sRU0U/bALY3HMljBvquH4FdUnYEM2gl0MaFmQvfRmv+4aKY259UHNywCC
-         +WjGlgPuoPW0qJVDVlEXoR4cPYZN5Ac6j8YQWY7W9UvcAeadZgmrXYLAmxRRYK+VkO
-         c57+R7uav5X0IG5aa5Qprx4tHZkz8yrHSDrDQrNWKRPvn9pF+qWxe+HHa96t9Cb5bS
-         rGQ0zo0SRbMrrN638/jJnOp9Qogoz8QQL2ggo/A2epyQQLEpcvUouQDK3iPxoB8TQq
-         hOpyecPcGbVfnCwZ3XE5uOugXxQ0BpwpN210VCnExS1KrXKJY1TPTAQpeC35SUFyMB
-         VURuSMlzUwkzg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 17520C5C7D4;
-        Tue, 24 Jan 2023 22:40:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S233983AbjAXWmF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 17:42:05 -0500
+Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57CCE659C
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 14:42:02 -0800 (PST)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
+        t=1674600121;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=oAapRs/RO6y9QOzK9GfRl6P67ERhquKIA38gdlc10UE=;
+        b=F9hZW2m6lNyDvtRi0AzaKisYqewyHLR/1ADPdWh9FhsKqTvl8q/VaU1PJCfMsfSO+w6IEi
+        tmbTPlUrATcShnkvCa3+ReiVF8V3IWzypuX0RdOvvjlr89FUZ9mK+lsSCBFTuC3NkUns5p
+        fPnXDh78TFNKytnOHgLrCjkhIAcbAPY=
+From:   Rayyan Ansari <rayyan@ansari.sh>
+To:     dri-devel@lists.freedesktop.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev,
+        janne@jannau.net, Rayyan Ansari <rayyan@ansari.sh>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
+        Hans de Goede <hdegoede@redhat.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v3 0/2] SimpleDRM: allow configuring physical width and height
+Date:   Tue, 24 Jan 2023 22:41:40 +0000
+Message-Id: <20230124224142.7133-1-rayyan@ansari.sh>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 0/2] riscv,isa fixups
-From:   patchwork-bot+linux-riscv@kernel.org
-Message-Id: <167460001809.14719.16320756846682473720.git-patchwork-notify@kernel.org>
-Date:   Tue, 24 Jan 2023 22:40:18 +0000
-References: <20221205174459.60195-1-conor@kernel.org>
-In-Reply-To: <20221205174459.60195-1-conor@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, palmer@dabbelt.com,
-        conor.dooley@microchip.com, jrtc27@jrtc27.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, heiko@sntech.de, ajones@ventanamicro.com,
-        guoren@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Migadu-Flow: FLOW_OUT
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hello,
 
-This series was applied to riscv/linux.git (fixes)
-by Palmer Dabbelt <palmer@rivosinc.com>:
+The following patches:
+- Add support for configuring the width-mm and height-mm DRM mode
+  properties in the SimpleDRM driver via Device Tree
+- Document these two new Device Tree properties
 
-On Mon,  5 Dec 2022 17:44:58 +0000 you wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> I noticed ~today~ while looking at the isa manual that I had not
-> accounted for another couple of edge cases with my regex. As before, I
-> think attempting to validate the canonical order for multiletter stuff
-> makes no sense - but we should totally try to avoid false-positives for
-> combinations that are known to be valid.
-> 
-> [...]
+This is useful for allowing interfaces such as Phosh to calculate
+proper scaling values and for early boot code knowing if hi-dpi
+rendering is necessary.
 
-Here is the summary with links:
-  - [v3,1/2] dt-bindings: riscv: fix underscore requirement for multi-letter extensions
-    https://git.kernel.org/riscv/c/ec64efc4966e
-  - [v3,2/2] dt-bindings: riscv: fix single letter canonical order
-    https://git.kernel.org/riscv/c/a943385aa801
+Changes since v2:
+- Remove $ref property (because it is an SI unit)
+- Extend commit messages
 
-You are awesome, thank you!
+Rayyan Ansari (2):
+  drm/simpledrm: Allow physical width and height configuration via DT
+  dt-bindings: display: simple-framebuffer: Document physical width and
+    height properties
+
+ .../bindings/display/simple-framebuffer.yaml  |  6 ++
+ drivers/gpu/drm/tiny/simpledrm.c              | 60 ++++++++++++++++---
+ 2 files changed, 57 insertions(+), 9 deletions(-)
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.39.1
 
