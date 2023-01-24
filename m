@@ -2,116 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66DFD678C54
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 00:57:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3A80678C75
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 01:02:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232597AbjAWX5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 18:57:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35216 "EHLO
+        id S232519AbjAXACo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 19:02:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232589AbjAWX5S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 18:57:18 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03E4F32E5F;
-        Mon, 23 Jan 2023 15:57:13 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30NNupV8121145;
-        Mon, 23 Jan 2023 17:56:51 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1674518211;
-        bh=J7S8O+tr8YgcZTPAhy9/Ov9M3Fj8mXK6ENoxxcWvGzY=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=HNqu21Bea2kz34pQ9KTbLgfWotZabcZHCSudTRrjvFoEwr71dQXKgyE+8XMOOByj4
-         97KyTPFtUUddN1ZqB7YFG9iJbdWOSYNu872a0wTzGYuAYbX/QnkUjhqyoF74lGBDQu
-         JSUDsHOg43czUXiIoQWkzHaS2g3XYBlQ0U2RruU8=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30NNupdH086607
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 23 Jan 2023 17:56:51 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 23
- Jan 2023 17:56:50 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 23 Jan 2023 17:56:50 -0600
-Received: from [10.250.32.60] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30NNunAF035440;
-        Mon, 23 Jan 2023 17:56:50 -0600
-Message-ID: <3ab320ef-dfbb-eee4-f895-6f1caa6cc66f@ti.com>
-Date:   Mon, 23 Jan 2023 17:56:49 -0600
+        with ESMTP id S232129AbjAXACo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 19:02:44 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C4913B;
+        Mon, 23 Jan 2023 16:02:42 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7125661185;
+        Tue, 24 Jan 2023 00:02:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AE1FC433EF;
+        Tue, 24 Jan 2023 00:02:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674518561;
+        bh=7ooN/zdnBQml/4YUgBf9nDQlZ6ILhJkNlwfGgWR6VmA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Jbyxq8idG+tPMy2tMXwuxpoef3LkIfreIyUgeD3JjkljIzoNsMdqPAZqLJU4GUhYp
+         70T72Okc2ZB14Jd/07fCVnF0wY2LEarnwPFurnjcgrZoSMb0o6+tqf7jadxDLPNxjO
+         Ixfr9TX2zgsrnSEPcRpvS+Xp+41UEzJK7q/bPhvekqiPC1/wnoa3XQaJ4gB/qGWNDV
+         mzqeiQxM7UEtELlcKyNSxTn/engo1HozghiuYd6/KsJ6hWx9UyhNE4yPvDl17UaqXh
+         a8+0GqKZExkMk/2AkGP1awpfR4bGQL9f1mDf+AhvoBPCLdJhEnsD8ReJzRfB2rzm1f
+         qOkS7xBSrCQ/w==
+Message-ID: <2d064077-d4ec-31c4-19a9-4cc9aec8d85b@kernel.org>
+Date:   Tue, 24 Jan 2023 02:02:36 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v5 0/9] TI-Nspire cleanups
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sc7280: Add cpu and llcc BWMON
+ (=> interconnect issue)
 Content-Language: en-US
-To:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Daniel Tang <dt.tangr@gmail.com>,
-        Fabian Vogt <fabian@ritter-vogt.de>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230123214924.27476-1-afd@ti.com>
- <f8922fbc-13cc-4f08-a8e8-08d39ab7d63c@app.fastmail.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <f8922fbc-13cc-4f08-a8e8-08d39ab7d63c@app.fastmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Matthias Kaehlcke <mka@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>
+References: <20220902043511.17130-1-quic_rjendra@quicinc.com>
+ <20220902043511.17130-5-quic_rjendra@quicinc.com>
+ <Y8Ggh6RObbB1cxSS@google.com>
+ <dc5487d8-d31e-28c6-07e8-8d1ff54a4ba4@linaro.org>
+ <Y8baZWlKB9vNGYJw@google.com>
+ <754f8193-09ec-8bbf-e0d4-898525dc242f@linaro.org>
+ <Y8bfIv6GJU1TD4Dh@google.com> <Y8sIf+41EGJuPQrP@google.com>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <Y8sIf+41EGJuPQrP@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/23/23 3:57 PM, Arnd Bergmann wrote:
-> On Mon, Jan 23, 2023, at 22:49, Andrew Davis wrote:
->> Hello all,
+Hi Matthias,
+
+On 20.01.23 23:32, Matthias Kaehlcke wrote:
+> On Tue, Jan 17, 2023 at 05:47:14PM +0000, Matthias Kaehlcke wrote:
+>> On Tue, Jan 17, 2023 at 06:33:41PM +0100, Krzysztof Kozlowski wrote:
+>>> On 17/01/2023 18:27, Matthias Kaehlcke wrote:
+>>>>
+>>>>>> which would set the initially bandwidths to 0 and determine the actually
+>>>>>> needed bandwidth. But since the driver isn't probed the initial
+>>>>>> bandwidths stay at INT_MAX.
+>>>>>>
+>>>>>> This isn't actually an issue with this patch, but how the interconnect
+>>>>>> framework deals with devices that are registered on the bus, but aren't
+>>>>>> probed (yet). Not sure how this would be best fixed. Georgi, do you have
+>>>>>> any ideas?
+>>>>>
+>>>>> Why the device is not probed (yet)? If it is registered, it will come
+>>>>> soon during boot up.
+>>>>
+>>>> Because CONFIG_QCOM_ICC_BWMON is not enabled for the board in question (see
+>>>> above). It could be enabled as a short term mitigtion, however we shouldn't
+>>>> require drivers to be enabled just because the DT has a corresponding node.
+>>>
+>>> It's the same case as with all other interconnect leafs/consumers. The
+>>> same behavior if you do not have it enabled, right? If not, I wonder
+>>> what is here different?
 >>
->> This series is an extended version of the series started here[0]
->> and here[1].
->>
->> We break out what was the first patch into one for DTS change and
->> one for code changes as suggested by Krzysztof. Those are now patches
->> 2 and 8 of this series (I kept the ACKs, hope that is okay).
->>
->> As also pointed out by Krzysztof syscon nodes need a specific
->> compatible, add that as patch 1.
->>
->> While I was adding that, I noticed some other dtbs_check issues,
->> so while here fixed some of those up too (patches 3-6).
+>> Right, this is a general issue. The problem on sc7280 (and probably other
+>> Qualcomm SoCs) is that the interconnect link at full throttle prevents the
+>> SoC from entering its low power mode (AOSS sleep) during system suspend.
+>> On many boards this might go unnoticed, on herobrine the condition is
+>> detected by the embedded controller (EC) and considered a failed suspend,
+>> which results in waking up the system.
 > 
-> Looks all good to me, if there are no final comments within the
-> next few days, can you send this all to:soc@kernel.org, either as
-> separate patches or as two pull requests (dts and code) based
-> on 6.2-rc-1?
+> I did some hackery to convince the EC to enter/stay in S3, despite AOSS
+> no entering sleep mode. That allowed me to take power measurements. With
+> the kernel suspended but the AOSS remaining on the power consumption of
+> the Qcard is more than 7x higher than when the AOSS enters sleep mode!
+> On a Qcard system I can't break the power consumption further down, but
+> I think the extra power consumption must be coming mostly from the SoC
+> itself, since the kernel and the EC are essentially in the same state as
+> during a suspend with AOSS in sleep mode.
 > 
-
-Sure thing.
-
-> I think I previously commented on the lack of an entry in
-> the MAINTAINERS. It would be nice to have one more patch to
-> add this, whichever way you want to split this with Daniel,
-> adding one or both of you as maintainer and/or reviewer.
-> I'd keep that separate from this series though, to not hold
-> it up any longer.
+> The enormous increase in power consumption suggests that this is a serious
+> issue for non-Chrome OS platforms as well. On herobrine and trogdor boards
+> we have the 'luxury' of being able to detect that AOSS stays awake (though
+> it comes with the caveat that the system can't suspend when that happens).
+> On other boards this goes likely unnoticed until someone measures suspend
+> power or notices a significant regression in S3 battery life.
 > 
+> It seems something needs to be done at the interconnect core to fix this.
+> Is it really necessary to init all link to max bandwidth? Maybe it is
+> needed for certain links, but not all of them? What is the background
+> here?
 
-Daniel,
+The basic idea here is to do some initial configuration of the system and
+enable the interconnect buses until all consumers have probed. Otherwise
+it might disable the bus to some hardware, whose driver (module) is not
+loaded yet (and didn't had a chance to express it's bandwidth needs).
 
-Do you want to do this? If not I can add myself as a reviewer, the
-point of this series is to boil down the support to just the DTS file,
-at which point hopefully we won't need too much maintenance.
+The max bandwidth is the default, but we can implement the get_bw() for a
+given platform to return the current (or initial) value. It would be best
+if we could read this value from the hardware, but as this is not possible
+on this board, maybe we can implement get_bw() to return something else.
 
-Andrew
+I guess that you see some int_max values in interconnect_summary for the
+ebi and llcc nodes that stay forever?
 
->       Arnd
+BR,
+Georgi
