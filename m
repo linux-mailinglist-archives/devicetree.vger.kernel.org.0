@@ -2,182 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16AFA6794A7
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 11:03:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1F5A6794BF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 11:07:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233144AbjAXKDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 05:03:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45256 "EHLO
+        id S232884AbjAXKHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 05:07:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbjAXKC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 05:02:59 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5437EB50
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:02:56 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so12414055wml.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:02:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=e7+2ObP6hwGfYv8AoClcbY4T+NA4DE6TZB+TmM9ZmmE=;
-        b=Qrm3AJfL/kw1YbFePRK1oUcqKcOxpjENw5HzCbfcFTD48Htaa1hSvGC/HSbVSuigeD
-         ymfmSmQwAPDkCVcJcDW797QKZOEqV8gWVGpvLohdmWBS7UVfq5MhfwlocVGOSjaT4pu6
-         tZBtmjY3y/CJL6GQGIF5bHV258lDpHDnVdOPU5NABATZywZhILE7m2QCYZIJx7niHVnK
-         ePzHLlc/I408cWUSeDAalrRBA11wkadAxv92tDdWVQRgXkDqaAzyyhqm4HkO+AYCB5oI
-         yJMYm/e/PceuZGu/c9tonmlvYQYpGl0BVdyFJe2RxvzG41bbzAf11WY+j2EtQjuepJsY
-         gGQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e7+2ObP6hwGfYv8AoClcbY4T+NA4DE6TZB+TmM9ZmmE=;
-        b=WyRZ5yE1RNjb4wIdOsdGKep9E14fuPwY6CyxmbmcXEtCojbS4X16l9rw+hh6o1GOin
-         ebabCUsTw2GA2VeryqCcCf9DmW8GnxpyRWIO0IttsdG+3wE0FP5UNMYzafq1s8Aq0yqe
-         3r38Wag195mT2lba1auGHjQcD3jOuZNxLzVgAxY741R5ESiURVlCfTM1YIIAh7wq1xIi
-         0gitiZrJc7F1H2P+qyxpWLrH/DaG/3drbSoqD8kM4VQczGyG8rvehtoSD7WcAA5KpShx
-         5+xp0EYZaLaMkPyEm3MkmYrSkhbGtgAWmDYWIlr9RC39JruhTbVtOMV6xnbAqTx3OCaG
-         E05w==
-X-Gm-Message-State: AFqh2kqm+qX3lN+dPNs9gIi9JktOzY2PXklOU2p5s8py/aEhsP6rC2YK
-        g1STEQGmoTCPJoW6l/G/Y8BtFp6sWlZIEMBm
-X-Google-Smtp-Source: AMrXdXuVShf4vzB3MRnsGM1yCSL18NhLSOQCh97phU6rXE44vNaCzhjcUEtLDEHz4IHu5gDEqcTYNw==
-X-Received: by 2002:a05:600c:89a:b0:3cf:6e78:e2ca with SMTP id l26-20020a05600c089a00b003cf6e78e2camr34965451wmp.5.1674554575278;
-        Tue, 24 Jan 2023 02:02:55 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l15-20020a05600c4f0f00b003d9df9e59c4sm13866978wmq.37.2023.01.24.02.02.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 02:02:54 -0800 (PST)
-Message-ID: <37a95380-ee68-5c3a-3b96-48cc8b525f19@linaro.org>
-Date:   Tue, 24 Jan 2023 11:02:52 +0100
+        with ESMTP id S229965AbjAXKHG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 05:07:06 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F5FC12F30;
+        Tue, 24 Jan 2023 02:07:03 -0800 (PST)
+Received: from [192.168.1.141] ([37.4.248.41]) by mrelayeu.kundenserver.de
+ (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MmD6U-1otgns42Vs-00i8Qx; Tue, 24 Jan 2023 11:06:29 +0100
+Message-ID: <45528830-d59a-4c8b-5b76-2e683c2c6964@i2se.com>
+Date:   Tue, 24 Jan 2023 11:06:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v3 05/10] dt-bindings: soc: fsl: cpm_qe: Add QMC
- controller
-Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 03/12] dt-bindings: serial: pl011: allow ARM Primecell
+ properties
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230113103759.327698-1-herve.codina@bootlin.com>
- <20230113103759.327698-6-herve.codina@bootlin.com>
- <316ddb81-8d13-71dd-3396-412e31cfb880@linaro.org>
- <20230124104232.183cc9ff@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230124104232.183cc9ff@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
+        NXP Linux Team <linux-imx@nxp.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Chester Lin <clin@suse.com>, Fugang Duan <fugang.duan@nxp.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Pragnesh Patel <pragnesh.patel@sifive.com>,
+        Le Ray <erwan.leray@foss.st.com>,
+        Peter Korsgaard <jacmet@sunsite.dk>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20230124091602.44027-1-krzysztof.kozlowski@linaro.org>
+ <20230124091916.45054-1-krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <20230124091916.45054-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:93ulo0PlqXqG5/52B3bZ3mfpX/fbI2HdhNtc3AuLxgKQl2dxSyA
+ /kJkZ7NeRKreYzG5ax4gsYEQSTwH8yygbh7vEtHYYFwTpBZPdev84Mx3OJaAU1mPR2u2MKv
+ vnOjns7+asiWML/aEgPvFrMy3n7cCAB7qWD90wKMTlXMsTG2OvRrP0vJoFgY7ANNIySelYu
+ fM48s9RMBQWREZhb7cuBQ==
+UI-OutboundReport: notjunk:1;M01:P0:VczEPCxySYQ=;U0Lzc/tH6qc3i8FdF6E0O/w2p33
+ Rf11TjOB+akTwm0k3YDF/CofSRH8x/BDseAI/U/Tn594gBt0St1mGo09JEYietjXutJGqAa38
+ zaL10VqH0zF7IKZzZ5Z1m08FP08Hku7dGolSylwNAaZ2y1rLGrHYqFyc+M37tlOd4V/KYz/s/
+ yPTfVxC1z8FodPfbMSQcVSl+rUIPp/vGCjgLT/ut4XDlL6w+TK7v/HFgJl0sHHVNaieHwS1Ea
+ b4NV0O0fSO7293v0aENxUFLcK06FbqeaifKcoESN4aA8zQAFHfrYcQMOIEW282GMu10cwpWFd
+ AdBAUt1TOyQGva+5yTnreOJjQuxcR5RsWNwO6OIj7FVzwe8OYZpcfvtzWiyAQPvaNDlZTFXOZ
+ 4x9WSxOjyQMQo1PyKhAUMTtuQx85DunFFoRMThVzMM/6QUENiZuW9Rcd3PeP5Vnc/bgLd6rbl
+ H4jigRxjDGgJuKqrKb5GnE23xpYOgwb8v4NX72tbbq/9P/kyvziwUZFOyeN/pDyt7VDJDlByy
+ jZKE/3ERTx1japcd0XrLKLJAhUfA2UrgguOdT1zBQZpe7Nu3Xsa0vJSz07Orp1L8GV41dZTOk
+ 57XR3M44hao1bm5JYn6UzhqkyhT70Zi3Iy8m3UNpsTcXFBzpT8t7SEoIryrsEG4qXm0djOnTI
+ h58bXWDP2g/fsSCP4wz1Hu2KLbYyzj7GsP1bgbwh9Q==
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 10:42, Herve Codina wrote:
-> Hi Krzysztof,
-> 
-> On Tue, 17 Jan 2023 12:31:09 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 13/01/2023 11:37, Herve Codina wrote:
->>> Add support for the QMC (QUICC Multichannel Controller)
->>> available in some PowerQUICC SoC such as MPC885 or MPC866.
->>>
->>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
->>> ---
->>>  .../bindings/soc/fsl/cpm_qe/fsl,qmc.yaml      | 164 ++++++++++++++++++
->>>  1 file changed, 164 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
->>> new file mode 100644
->>> index 000000000000..3ec52f1635c8
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
->>> @@ -0,0 +1,164 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qmc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: PowerQUICC CPM QUICC Multichannel Controller (QMC)
->>> +
->>> +maintainers:
->>> +  - Herve Codina <herve.codina@bootlin.com>
->>> +
->>> +description: |
->>> +  The QMC (QUICC Multichannel Controller) emulates up to 64 channels within
->>> +  one serial controller using the same TDM physical interface routed from
->>> +  TSA.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - fsl,mpc885-scc-qmc
->>> +          - fsl,mpc866-scc-qmc
->>> +      - const: fsl,cpm1-scc-qmc
->>> +
->>> +  reg:
->>> +    items:
->>> +      - description: SCC (Serial communication controller) register base
->>> +      - description: SCC parameter ram base
->>> +      - description: Dual port ram base
->>> +
->>> +  reg-names:
->>> +    items:
->>> +      - const: scc_regs
->>> +      - const: scc_pram
->>> +      - const: dpram
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +    description: SCC interrupt line in the CPM interrupt controller
->>> +
->>> +  fsl,tsa:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description: phandle to the TSA
->>> +
->>> +  fsl,tsa-cell-id:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    enum: [1, 2, 3]
->>> +    description: |
->>> +      TSA cell ID (dt-bindings/soc/fsl,tsa.h defines these values)
->>> +       - 1: SCC2
->>> +       - 2: SCC3
->>> +       - 3: SCC4  
->>
->> Is this used as argument to tsa? If so, this should be part of fsl,tsa
->> property, just like we do for all syscon-like phandles.
-> 
-> Yes, indeed.
-> I will move 'fsl,tsa' to 'fsl,tsa-cell' with 'fsl,tsa-cell' a phandle/number
-> pair (the phandle to TSA node and the TSA cell id to use)
+Am 24.01.23 um 10:19 schrieb Krzysztof Kozlowski:
+> Reference ARM Primecell bindings to allow typical Primecell device node properties:
+>
+>    broadcom/bcm2711-rpi-400.dtb: serial@7e201000: Unevaluated properties are not allowed ('arm,primecell-periphid' was unexpected)
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Move to fsl,tsa, not from.
+Reviewed-by: Stefan Wahren <stefan.wahren@i2se.com>
 
-
-Best regards,
-Krzysztof
+Thanks
 
