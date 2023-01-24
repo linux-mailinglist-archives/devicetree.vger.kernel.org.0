@@ -2,112 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E70767909A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 07:01:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1AED679055
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 06:49:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233178AbjAXGB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 01:01:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59068 "EHLO
+        id S232939AbjAXFtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 00:49:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233152AbjAXGBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 01:01:24 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9EB9105;
-        Mon, 23 Jan 2023 22:01:22 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id A4A7E42651;
-        Tue, 24 Jan 2023 05:45:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1674539148; bh=HljMxe7jrBTG1Genyu+Pm2rYswosR8p2EtuxuYI1k5k=;
-        h=Date:Subject:To:References:From:In-Reply-To;
-        b=tGJDNdnjFM7diTyJhByzlPW+Qgjt+NJVZE3JfiWvoqqTN22OFEMWJCJu2Ml1pOsAO
-         r0/W8qLAIOzYaNHY8izHRJlBZMIadNunPGWmPwbEb40y1c6VosRAOpZ3Wcs4aMWegs
-         XbuvONOwx1zSvJYikQceLhiAJggA2UD6cvlPAdRG3c6kHqxdgYFDuUkADi9HPGh5Iv
-         0wfqvQC+iXGieASzeODYfH1Ol3XFtpUDplCyJZqQsIPWXhbLyyI6/TLH14CQRMCzGs
-         /k/FBLs2Gdm6AmXg+b0qJZwx9ZtzOaW60Td3qkL6/m3omSubjkfWbCU4KWlUN6s7C8
-         0z/OcdYARoLFA==
-Message-ID: <d7575a8e-035e-b729-bd16-7fd10b2c56c5@marcan.st>
-Date:   Tue, 24 Jan 2023 14:45:31 +0900
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/2] dt-bindings: dma: drop unneeded quotes
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233033AbjAXFtT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 00:49:19 -0500
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2066.outbound.protection.outlook.com [40.107.241.66])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 151B43C2B0;
+        Mon, 23 Jan 2023 21:48:56 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jD0duKXVvlKdNalTR+AAgBnEPz5p8qZvR8nNvWlw5T6fb0rzg3yCMqHT3jGSQTbNzRy/Ba6jFfP7r44a5cBVfLlMyHVf7Y6dJiUxKOsgIJc8zb4jb3FAWnd/uHSsRAnZUubJ0yfMAgoNdfkJUDOYLeL5pw+IhJF5i7pjQrzdhtfs6B2D9ldV6FkCSov3pDoXm49vj12i9yOuQpApvr0vPjA9lDJvbnFE8wygllNj8SvEd1T3AgmuU9uLgGA9sdPO4IjJnKaeojuKtOcJ+lveoyHTT0emsC9sPie/HNm1VZfmdTq9unzgyM2rPbBBddn3kme6r/v2MmteAioaD7k1Qw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cmx2SXClmCRp0caF9AQpqf5t5IZc3u2Y1kOHUBxCHhY=;
+ b=L80ZpPSdIlwuSZ2I2FRe6PzX4xS5g7xBpjV36jjgd1TS5z3L15uuz+/WK079PwcT1Et5lD/5FkJSqgqe/Gi9eTP1i0q5iLc1PD8mQBux3v6Omaem/AnPIHzgMzmNxKGg8EE5g5GSJi1cpFjQw4gLoBa0fCfY4i3YOOMoO5p0HPDOqr8JpMtjkCpNz6/DTdHW9XOAhPgKkZv5g7R1HHskVLpzx+C0FV8bfU6Id+YVTV1m8IOO/93BU+c0FtFArXLHvJx7crZ5VKSPdvZOpqeuNqdtvlhOhVJO6QXdpMEiAdhLZW8OMa+c1Aa+J7YM0ITJ6G30s8FZ5SavZgdvx58gzQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cmx2SXClmCRp0caF9AQpqf5t5IZc3u2Y1kOHUBxCHhY=;
+ b=Y1axOUC1alITmgd0ipawXCrc5rgqpwGjjrDDbNiUrWtxoxJC/0PXyDh26nVqidYHzqlvBf6tJJxSVLWyV/rfQ3PbnSbWAjunqmZKv+TF8oX6iRZ4v69j7bV9VEq3jbYPLTOHZxYwVRyDdplWn7+UiZt1h9LfTat+ieNqsPkQfnc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by VE1PR08MB5678.eurprd08.prod.outlook.com (2603:10a6:800:1a0::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Tue, 24 Jan
+ 2023 05:47:16 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4718:6092:e763:4219]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4718:6092:e763:4219%2]) with mapi id 15.20.6002.033; Tue, 24 Jan 2023
+ 05:47:16 +0000
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Olivier Dautricourt <olivierdautricourt@gmail.com>,
-        Stefan Roese <sr@denx.de>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Green Wan <green.wan@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        =?UTF-8?B?77+9ZXI=?= <povik+lin@cutebit.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        - <chuanhua.lei@intel.com>, Long Cheng <long.cheng@mediatek.com>,
-        Rajesh Gumasta <rgumasta@nvidia.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Palmer Debbelt <palmer@sifive.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-        linux-tegra@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-mediatek@lists.infradead.org
-References: <20230118180144.364756-1-krzysztof.kozlowski@linaro.org>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <20230118180144.364756-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Heiko Stuebner <heiko@sntech.de>,
+        Sandy Huang <hjc@rock-chips.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sascha Hauer <sha@pengutronix.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: [PATCH v3 0/6] drm/rockchip: vop2: add support for the rgb output block
+Date:   Tue, 24 Jan 2023 06:47:00 +0100
+Message-Id: <20230124054706.3921383-1-michael.riesch@wolfvision.net>
+X-Mailer: git-send-email 2.30.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ZR0P278CA0189.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:44::6) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|VE1PR08MB5678:EE_
+X-MS-Office365-Filtering-Correlation-Id: a7347ce1-4cf3-4a03-23c0-08dafdce7338
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5WYTkh/rA614ox9vs3KOwqWsY8ubNL8ji7gNR7EmbSZdvUG3DiJxSZMV1YuJmCZhv4L+xQmret+JrY8L2i1dvdHMRfwQsB6xQS5E+JTxW2MlpHVsFIiGqnrGEaCOv+5w0u21y3pLIuIkalpwsaoluMczhHjfSQvbOG4dR3JBfOUs9XyhAhbzTf86BdIi39NrPNFX7QKe1buPewKmaW4HDIh2ebcs9V/O6lbnAoRIgB8zcOAXBDoMmHAjXRrpp3XeqI83yE/UNL4iBZ9wz11nnUQpZfIYmEq/ZkZ56GxTIoBh4BB/odWvJxxjSqaBbtYQOieqwgX9P8nQDY7waDVgzDoIdehseqUSe0Pz6gQui7uD/iG+fbBkbR5gbHarNTTTOaU1l/lJQfwaiXFzs+XRArQmo/Q5PYiM+QbkBV6yB8WaZy48DSJogol4Q8jDlvfvG+PpOU/Yu0lFAjTpJ3eWdwSBvG3ppuXEnQP27amfvnLzMn0p9XKa/jpvwQ+u93N/QtwpEDHr2iR8tUCuBpBGmjhTRt5NzEndcPjFlFnD0g8emtEiwpnvwujNfwtKKx94qp+xHx6au+gc5v0/AU5mfM+awyCZ3ubQEmGN2ANW9spMS8+g6s3v07gRfLzKAhuGz0cZKtMWFqSvR6XyrdJMCg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(39840400004)(396003)(376002)(136003)(346002)(451199015)(1076003)(66946007)(4326008)(8676002)(66476007)(6486002)(66556008)(52116002)(2616005)(6512007)(107886003)(6666004)(44832011)(186003)(5660300002)(8936002)(7416002)(41300700001)(83380400001)(2906002)(6506007)(38100700002)(54906003)(316002)(86362001)(478600001)(36756003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KkeQMVwWloUMtoh10gsO/exIAuzjQ42KmgKmrmvsQQAZc7BOYqSmXYEY0fIF?=
+ =?us-ascii?Q?UnD9bf9DWaaAPd+Jr74QI2Sk3ZuY7Lj5Kwhxdq+4CWaF9Kbt6CiGZ6pdkCNA?=
+ =?us-ascii?Q?n94kIlu95ptc8Fu5Igp8GsTksu7iNAXN0dZbZmra35u36B0Hb0zlnT9u/rae?=
+ =?us-ascii?Q?6pEBZy7E1D8H19w/9Pj+b6u7sRVfBLhS/N5iuh+ipQHIWyj3vI7PBl0hKPo2?=
+ =?us-ascii?Q?HU77SXtyUxoJjfRnCwp7MLCGhboUsQFBdwLugnPmf8bbjfPUyLhB5H7imaV5?=
+ =?us-ascii?Q?6ki9hRt5H79W5OhN9b5wxV3b7VGFNGW1PfF4cz+2Qf9Yn3MSnt0OeU15HtUD?=
+ =?us-ascii?Q?ukIXmJAOEXO10aVt3DHQjRqqZ5fLHaaWp8hS+GMMalIN8m9PkrK8NoyROcEE?=
+ =?us-ascii?Q?vYOjFqFEb01lDlTnUJa5nuF+s2iGOumRhtOsP2NdQAstZiDOmUKeuvbqqa7X?=
+ =?us-ascii?Q?nOl05iVB/QmHqVHnH5xwfgrdA+lEfdB457duj+yZbjc5Iq3sdq05UsnIiILi?=
+ =?us-ascii?Q?ntrR7gxP16SkQsaswVUma5ZQHJfAQasaoCt3UvA3j1pBKiMSoEqoEn9A+H/p?=
+ =?us-ascii?Q?AIBCPjXAxnoJ3K65iKcwGTud1cWtW9dO/hIUgGJXZpK221ciS+48FJK2KHnc?=
+ =?us-ascii?Q?N3+KEI3WS8hCKOp0bQxuFQGiZab8TdVB0SglxAVRNSEd0XQj+qCnlr3BbhUi?=
+ =?us-ascii?Q?rE1MxsnKrSPvJcR77qYTzFofY5713miUOEG4euA0OL84cl5HprMOcJEsRCyx?=
+ =?us-ascii?Q?SO3tEu9m4+W4mXzZivk+5GxJfbLzbJ22xdxyDIv+/CZL3yy0Xz3j5RU3Uu7q?=
+ =?us-ascii?Q?+MxkiDEDjgiLQLuICafTDFme3GnFSdbx70PDTdmsxIMwNnQ1336LPDMQtkmF?=
+ =?us-ascii?Q?6gg1q6bb6kjAbhIeMZUsxoIYGrxuRgLhnDngaRXpcIuwJ/AjguEfPvnDrNza?=
+ =?us-ascii?Q?sMdlVK2tFZq8aRpXJvAUCPFCP6/sgbiLYJln1UIRLrHyK0yv+P3HC8smQ4RZ?=
+ =?us-ascii?Q?e2HJS/PgvYkGhFQ8PmWsoKm21DgbAWALcZ5Yn3OebWXbJClLr2uu7uz0UrgO?=
+ =?us-ascii?Q?2me8UoYjhwByxhvDR27+PGJ8nOpu+q4mzAQtTwfcFaqq5hFnV5cLoffJC34A?=
+ =?us-ascii?Q?S1K79NKfJ1Zf3n7/Gfv5PFeDWMgygCYwPmNznGKgGhR7XPvIpb7v9K0nn03Z?=
+ =?us-ascii?Q?6GxCCZ+eV141b/m37ppD2NLHMXnln9ueLLSQ9hXcOS1VOrFDXIgpfZE3B1m2?=
+ =?us-ascii?Q?PO/yXwM1+q2oUcpYWuo1b97hnlDmDU80Pc++f5Y5CpCO3vdHVT43FnFWKKqW?=
+ =?us-ascii?Q?cyiA2N6t/GhSyjNIVn7fVaFhm+xuTGH7p9RLcxsZxvFEw1dUV7APSpNYRs5I?=
+ =?us-ascii?Q?e/F9O53kCsLNPvfDkbTHEZ0zqWzcGpsmYh6WcBj7OeQaM7mnAL39xGK1A+8M?=
+ =?us-ascii?Q?+A0Is6TGMFOohZ/YNg3zScIL7ziGM2YqOor5YmdGap37mBfNi1oPnpV5zc3r?=
+ =?us-ascii?Q?V/RDQTIYtFzz7qVAIIAJg83E2vSsrMfl27UvAONruyC+Mp1q/M4h0vGYSlPR?=
+ =?us-ascii?Q?KYkwsnnHqde4lMfK+rmnggt1WXw2NtxtYFFPnF8pf2TCo5Uc9gXsDwHCQUGE?=
+ =?us-ascii?Q?abW9WwjpGmYCcSibKi92bVVU8QNWg6U4IRNo7aosCSLR0zfyI9B02Hh7mBYa?=
+ =?us-ascii?Q?ZZ7Ej77fOwqQhWKZOt0ZtIiVKO0=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: a7347ce1-4cf3-4a03-23c0-08dafdce7338
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 05:47:16.5589
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NzN36ShaRQ5CxrBpKje0/gqNdR3RJ+FkCcu9F7Z+7xdwNhUrerq7lvcjmpMD1KuFyQ2rlr9h3Qb1IhmAj1qH2aIT+VslKRMmTQdZfNcd6E0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR08MB5678
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 03.01, Krzysztof Kozlowski wrote:
-> Cleanup by removing unneeded quotes from refs and redundant blank lines.
-> No functional impact except adjusting to preferred coding style.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+Hi all,
 
-For the Apple stuff,
+This series adds support for the RGB output block that can be found in the
+Rockchip Video Output Processor (VOP) 2. Version 2 of this series
+incorporates the feedback by Dan Carpenter and Sascha Hauer. Version 3
+fixes a dumb mistake pointed out by Sascha :-) Thanks for your comments!
 
-Acked-by: Hector Martin <marcan@marcan.st>
+Patches 1-4 clean up the code and make it more general.
 
-- Hector
+Patch 5 activates the support for the RGB output block in the VOP2 driver.
+
+Patch 6 adds pinctrls for the 16-bit and 18-bit RGB data lines.
+
+Tested on a custom board featuring the RK3568 SoC with a 18-bit RGB
+display.
+
+Looking forward to your comments!
+
+Best regards,
+Michael
+
+Michael Riesch (6):
+  drm/rockchip: vop2: initialize possible_crtcs properly
+  drm/rockchip: rgb: embed drm_encoder into rockchip_encoder
+  drm/rockchip: rgb: add video_port parameter to init function
+  drm/rockchip: vop2: use symmetric function pair
+    vop2_{create,destroy}_crtcs
+  drm/rockchip: vop2: add support for the rgb output block
+  arm64: dts: rockchip: add pinctrls for 16-bit/18-bit rgb interface to
+    rk356x
+
+ .../boot/dts/rockchip/rk3568-pinctrl.dtsi     | 94 +++++++++++++++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c   |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 80 ++++++++++++----
+ drivers/gpu/drm/rockchip/rockchip_rgb.c       | 19 ++--
+ drivers/gpu/drm/rockchip/rockchip_rgb.h       |  6 +-
+ 5 files changed, 172 insertions(+), 29 deletions(-)
+
+
+base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
+-- 
+2.30.2
+
