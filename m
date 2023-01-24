@@ -2,194 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E8B2679686
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:23:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10FB76796A6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:31:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233911AbjAXLX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 06:23:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50846 "EHLO
+        id S234040AbjAXLbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 06:31:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233925AbjAXLX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:23:57 -0500
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 059D876BE;
-        Tue, 24 Jan 2023 03:23:54 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id EE1DD40003;
-        Tue, 24 Jan 2023 11:23:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1674559433;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=wbYmdWFivLJBG8Pv5/K9k19ry1rzbKQLylHycCbuWNc=;
-        b=NFHmt5S1U+BUZUExL6OMxo6ILWp1xOjzqVQBYDfj00xs/vj7VrSA8WyLsXUrWWzJO2vFgu
-        Cr4mewN/SKd25Vlr4LPbG1RmnyBuql6OvuSKtX7LqGUjOADGdWXtZdqbCqf70llzXc2MgM
-        gh7eqki/cly8NSZheKh/cOaif3gaUwL36fTc/c7tf4VoPbtXcjIlhqFna9u4NYhgiD0nyM
-        LKuhuQx6iBHekcH7quPoCnFbpsrz+VRm0gvzpATBvB8UcNvf1iZ+MMTzHi66V2FDXR1GzD
-        ztM2qnsi+eVF9dkpyWhxPae2i9kmMcC+2PjSxhskT8Ew9B5OqlBkOiUlJlpz/w==
-Date:   Tue, 24 Jan 2023 12:23:47 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 05/10] dt-bindings: soc: fsl: cpm_qe: Add QMC
- controller
-Message-ID: <20230124122347.1a531d0f@bootlin.com>
-In-Reply-To: <37a95380-ee68-5c3a-3b96-48cc8b525f19@linaro.org>
-References: <20230113103759.327698-1-herve.codina@bootlin.com>
-        <20230113103759.327698-6-herve.codina@bootlin.com>
-        <316ddb81-8d13-71dd-3396-412e31cfb880@linaro.org>
-        <20230124104232.183cc9ff@bootlin.com>
-        <37a95380-ee68-5c3a-3b96-48cc8b525f19@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+        with ESMTP id S234032AbjAXLbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:31:24 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1648CF772;
+        Tue, 24 Jan 2023 03:31:24 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AF726B8117D;
+        Tue, 24 Jan 2023 11:31:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8419BC433EF;
+        Tue, 24 Jan 2023 11:31:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674559881;
+        bh=vSvpFgPqXmxl07qKO0PotIG3YQSs9V4kcX2WYtv6Y00=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=MMe07pLbu1gmDqdbs7WNdKnwqs+02+j539LNGY1cbZMWSb+LgaN+KtJUxKap9GrfZ
+         Hfhq+ygaBNKzJtysre7CBNnQlIR0Am8ltX6plLvaXdquNMgugVHz57WxEz2rNQ/fLz
+         BZIsFBfSWiYZADWRI7ik7KAtacsW3AzCP9theWeLzf4veQK/glOgUD9GJIjUxoCCW6
+         tC31q7RHPnyE8UPD7z5eIvTBISBkftsQgI2XvEJihbHkDyLk6OPcKaGgyBxqmM6ocJ
+         IqwjQz7zIvo0gms9KkDdTo0rv/FXFiTdDCIBDkBg1GE+6h+u6Rx4dNMyyuKWA+Ws3h
+         hZaRP1nfl9ayQ==
+Message-ID: <c850df25-57b8-3172-8e5c-c466dc8556cd@kernel.org>
+Date:   Tue, 24 Jan 2023 12:31:12 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v1 2/4] Revert "dt-bindings: mmc: Add bindings for Intel
+ Thunder Bay SoC"
+Content-Language: en-US
+To:     rashmi.a@intel.com, ulf.hansson@linaro.org,
+        michal.simek@xilinx.com, linux-mmc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kishon@ti.com, vkoul@kernel.org, andriy.shevchenko@linux.intel.com,
+        linux-phy@lists.infradead.org, mgross@linux.intel.com
+Cc:     kris.pan@linux.intel.com, adrian.hunter@intel.com,
+        mahesh.r.vaidya@intel.com, nandhini.srikandan@intel.com,
+        vasavi.v.itha@intel.com, kenchappa.demakkanavar@intel.com,
+        furong.zhou@intel.com, mallikarjunappa.sangannavar@intel.com
+References: <20230124054427.28808-1-rashmi.a@intel.com>
+ <20230124054427.28808-2-rashmi.a@intel.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20230124054427.28808-2-rashmi.a@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Jan 2023 11:02:52 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On 24/01/2023 06:44, rashmi.a@intel.com wrote:
+> From: "A, Rashmi" <rashmi.a@intel.com>
+> 
+> This reverts commit ab991c05c42853f0b6110022db9bf30fcc6323dd.
 
-> On 24/01/2023 10:42, Herve Codina wrote:
-> > Hi Krzysztof,
-> >=20
-> > On Tue, 17 Jan 2023 12:31:09 +0100
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> >  =20
-> >> On 13/01/2023 11:37, Herve Codina wrote: =20
-> >>> Add support for the QMC (QUICC Multichannel Controller)
-> >>> available in some PowerQUICC SoC such as MPC885 or MPC866.
-> >>>
-> >>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> >>> ---
-> >>>  .../bindings/soc/fsl/cpm_qe/fsl,qmc.yaml      | 164 ++++++++++++++++=
-++
-> >>>  1 file changed, 164 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/=
-fsl,qmc.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc=
-.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..3ec52f1635c8
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
-> >>> @@ -0,0 +1,164 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qmc.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: PowerQUICC CPM QUICC Multichannel Controller (QMC)
-> >>> +
-> >>> +maintainers:
-> >>> +  - Herve Codina <herve.codina@bootlin.com>
-> >>> +
-> >>> +description: |
-> >>> +  The QMC (QUICC Multichannel Controller) emulates up to 64 channels=
- within
-> >>> +  one serial controller using the same TDM physical interface routed=
- from
-> >>> +  TSA.
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    items:
-> >>> +      - enum:
-> >>> +          - fsl,mpc885-scc-qmc
-> >>> +          - fsl,mpc866-scc-qmc
-> >>> +      - const: fsl,cpm1-scc-qmc
-> >>> +
-> >>> +  reg:
-> >>> +    items:
-> >>> +      - description: SCC (Serial communication controller) register =
-base
-> >>> +      - description: SCC parameter ram base
-> >>> +      - description: Dual port ram base
-> >>> +
-> >>> +  reg-names:
-> >>> +    items:
-> >>> +      - const: scc_regs
-> >>> +      - const: scc_pram
-> >>> +      - const: dpram
-> >>> +
-> >>> +  interrupts:
-> >>> +    maxItems: 1
-> >>> +    description: SCC interrupt line in the CPM interrupt controller
-> >>> +
-> >>> +  fsl,tsa:
-> >>> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >>> +    description: phandle to the TSA
-> >>> +
-> >>> +  fsl,tsa-cell-id:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    enum: [1, 2, 3]
-> >>> +    description: |
-> >>> +      TSA cell ID (dt-bindings/soc/fsl,tsa.h defines these values)
-> >>> +       - 1: SCC2
-> >>> +       - 2: SCC3
-> >>> +       - 3: SCC4   =20
-> >>
-> >> Is this used as argument to tsa? If so, this should be part of fsl,tsa
-> >> property, just like we do for all syscon-like phandles. =20
-> >=20
-> > Yes, indeed.
-> > I will move 'fsl,tsa' to 'fsl,tsa-cell' with 'fsl,tsa-cell' a phandle/n=
-umber
-> > pair (the phandle to TSA node and the TSA cell id to use) =20
->=20
-> Move to fsl,tsa, not from.
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
 
-Well, I plan to remove both fsl,tsa and fsl,tsa-cell-id and use this:
-  fsl,tsa-cell:
-    $ref: /schemas/types.yaml#/definitions/phandle-array
-    items:
-      - items:
-          - description: phandle to TSA node
-          - enum: [1, 2, 3]
-            description: |
-              TSA cell ID (dt-bindings/soc/fsl,tsa.h defines these values)
-               - 1: SCC2
-               - 2: SCC3
-               - 3: SCC4
-    description:
-      Should be a phandle/number pair. The phandle to TSA node and the TSA
-      cell ID to use.
+> 
+> Revert Thunder Bay specific code as the product got cancelled
+> and there are no end customers.
+> 
+> Signed-off-by: A, Rashmi <rashmi.a@intel.com>
+> Reviewed-by: Hunter, Adrian <adrian.hunter@intel.com>wq
 
-Is that what you were thinking about ?
+Stray characters.
+
+> ---
+>  .../devicetree/bindings/mmc/arasan,sdhci.yaml | 25 -------------------
+>  1 file changed, 25 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> index 4053de758db6..0d5d21dd30bb 100644
+> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> @@ -88,12 +88,6 @@ properties:
+>          description:
+>            For this device it is strongly suggested to include
+>            arasan,soc-ctl-syscon.
+> -      - items:
+> -          - const: intel,thunderbay-sdhci-5.1   # Intel Thunder Bay eMMC PHY
+> -          - const: arasan,sdhci-5.1
+
+Instead should be made rather deprecated, unless you are sure there is
+no single person in the world using the bindings (e.g. with BSD or
+bootloader)?
+
+
 
 Best regards,
-Herv=C3=A9
+Krzysztof
 
-
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
