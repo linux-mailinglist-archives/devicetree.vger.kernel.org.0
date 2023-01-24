@@ -2,115 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42E2667937E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 09:50:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F399267939C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 10:05:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233373AbjAXIuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 03:50:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36816 "EHLO
+        id S233161AbjAXJFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 04:05:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233322AbjAXIuG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 03:50:06 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C75E03FF2B
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:50:04 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id j17so10872185wms.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:50:04 -0800 (PST)
+        with ESMTP id S232654AbjAXJE6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 04:04:58 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32B953E087
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 01:04:55 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id z5so13167898wrt.6
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 01:04:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mINvInL15zkPC1A/khy7KRKihohfos6iJmfsJcygUoI=;
-        b=dWCywYrXtrYLY3bQ0NDq/kA/CBmW5rZ+LaIJsKWsgb5/dTuVF8nWm0XZoLRiuyVjZz
-         yICvCiJIe6VFyq5D9QBJnjNo8De+08H3KoLTvMi6xOrItsfHWROm1lU7JgaCzlcJ4zrL
-         sm9VKawk1+k3Y/LOeFvwaUQLCCKH1Oh7zQrJLV3TBvTtL4KJkK+zCZCzZ0DUkImHIaso
-         nACzqzbI2yJ0/7VOfyg3+dn4ibo3vdMNR75hqzDVnZREP6Pamc/CGxUt6xzIKO5pqpZL
-         TE2s9eWKdgYYVOe7RWUd/+lT2gYmw/+1wjBI0YFs+8j1AvDZ2xkW8Ud8+PGqllgQlBUm
-         CPVg==
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=i1juhkmhpvx2lT4x4u+c5+9s9S4X54bhJYPvzt6ZWnE=;
+        b=8R7UGXzogpSZH3Cp+NSSbVCzzvNbQcxPAtX9ECF9aLa/JCykl+NcPb3t87f5F09V9T
+         GlKkIG22mHuVpzNgOc5H81+jPFAEQrCnF6t6ztL/4c6kzf1nt6f5q8JpIx5qFKQnLxzQ
+         vS1KF/8gU3eJylhbeMxZoN3xd/Cxl/agoR5NJSvUG+L9vIeFR3jVjb4JdBtB9kMCZi/k
+         ZTC42UPjHAw3DZe3NYlMzhNOVX/mXw4aXZu3GX9wp/x6GOHuN05aX2g5j4gmEz/eqUqr
+         v9m2xdFf3T/xSN3o1YMKqlfxtFaR5rm5DkgEWhLmz5R3Un6nlmPhfD+xDdKvmi84TW9w
+         rXSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mINvInL15zkPC1A/khy7KRKihohfos6iJmfsJcygUoI=;
-        b=sJHmQ9bPLucWbpWjqE9E1euuG2HRhcbZnEjyXhUO1DU3T9swyv0oPtI+7r6LOacETb
-         Eck9FfweBQnXvgmMs9PqRuyf0ci1/zhjXjYvXjs6g9JJgAj+mPo9Piz9Aq8LZtbKNbBH
-         YwKFjTaaPbP8P9qQpM4CN0D6cWDYL4hTenAMwfwkUoUOi7KwO9mh98aSfTI7GFzHA1AF
-         +AVFkI22okHY5LbA1QXyf8SIy6/+rToNcaNaU5YINabWArosFIzVB9xZDV6QSwZr01pb
-         z9TVtIWM9fWaWfT3RVc0/MUVqzLrz0SmtXYUcH6goVVRqWw8xrtS8y57Pl3uoyq/CfbW
-         7/sA==
-X-Gm-Message-State: AFqh2koWC+TfSWgZVJ6m+svq/IU35LwhRYyNZ/Plji1GXlbFMCUR+XS5
-        AfyQcKq8WpThzOznwd11gK41pw==
-X-Google-Smtp-Source: AMrXdXtsDtTago74US23BpS2ek377xae47ILUPxf0vTMEZSfBojeGh+syIfZ1o8ehzbaoAC06nUCow==
-X-Received: by 2002:a05:600c:214f:b0:3d9:ecae:84f2 with SMTP id v15-20020a05600c214f00b003d9ecae84f2mr25649246wml.25.1674550203304;
-        Tue, 24 Jan 2023 00:50:03 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p18-20020a05600c431200b003dab40f9eafsm1340036wme.35.2023.01.24.00.50.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 00:50:02 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 4/4] arm64: dts: qcom: sm8550: drop incorrect cells from serial
-Date:   Tue, 24 Jan 2023 09:49:51 +0100
-Message-Id: <20230124084951.38195-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230124084951.38195-1-krzysztof.kozlowski@linaro.org>
-References: <20230124084951.38195-1-krzysztof.kozlowski@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=i1juhkmhpvx2lT4x4u+c5+9s9S4X54bhJYPvzt6ZWnE=;
+        b=uf+5eEyz2fBKqzJSwGp+IInpOhoBoTD10gib0cvyqgh7PdfBVya3n4KJvAWCfDAVRn
+         l0klOaUUAeKSsr26UzIxhX8ablRxPXNGhkOVFVrVf9S1hb9x00XCfXHqLAhHlqDEGxHH
+         /lWO9tyUqSh2BIp1284BATmHb2/jr7NVeogsqf/xRrjuwfPnfu5hIOinstuNCLmHva21
+         ddRUmwcYX+dgECdRSY29nqedGmh0fiMQopPPo++6eKCNItOJrrBBIWB9BCBJD1wEjc/P
+         5qhbpu4IYWoQcbpA28whDPedwNFLO0Sm9jO3HZvhjBPSli3uhHQ+gAQsD9HYNQIpnt9a
+         H82A==
+X-Gm-Message-State: AFqh2koesXM9zF8mmE/1naftGqSb4B2mrCyybdwcy9CS4vlc5thCQEhF
+        tk2E7ZVHD/cH2Um6A4Ca3ujdqotZviDihSk8Q0sBgg==
+X-Google-Smtp-Source: AMrXdXslWzyBPl6qN6lfBta/ufChiJMu2Y2CiUL1C94ZCECbF4eI9FFmR8w/ZsdDLVJkOVp28ufLm8pcdg8HVQLMWtk=
+X-Received: by 2002:a5d:5190:0:b0:2bd:d6bc:e35c with SMTP id
+ k16-20020a5d5190000000b002bdd6bce35cmr1227921wrv.144.1674551093678; Tue, 24
+ Jan 2023 01:04:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230123112803.817534-1-alexghiti@rivosinc.com> <Y88F808GULoKFOVJ@spud>
+In-Reply-To: <Y88F808GULoKFOVJ@spud>
+From:   Alexandre Ghiti <alexghiti@rivosinc.com>
+Date:   Tue, 24 Jan 2023 10:04:42 +0100
+Message-ID: <CAHVXubh=SQ0fS2FCpdB-TD5n=DHUHAaRqDazHWDMv3fWqwpjcA@mail.gmail.com>
+Subject: Re: [PATCH v4] riscv: Use PUD/P4D/PGD pages for the linear mapping
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The serial/UART device node does not have children with unit addresses,
-so address/size cells are not correct.
+Hi Conor,
 
-Fixes: 377972ac743f ("arm64: dts: qcom: sm8550: add I2C Master Hub nodes")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Mon, Jan 23, 2023 at 11:11 PM Conor Dooley <conor@kernel.org> wrote:
+>
+> On Mon, Jan 23, 2023 at 12:28:02PM +0100, Alexandre Ghiti wrote:
+> > During the early page table creation, we used to set the mapping for
+> > PAGE_OFFSET to the kernel load address: but the kernel load address is
+> > always offseted by PMD_SIZE which makes it impossible to use PUD/P4D/PGD
+> > pages as this physical address is not aligned on PUD/P4D/PGD size (whereas
+> > PAGE_OFFSET is).
+> >
+> > But actually we don't have to establish this mapping (ie set va_pa_offset)
+> > that early in the boot process because:
+> >
+> > - first, setup_vm installs a temporary kernel mapping and among other
+> >   things, discovers the system memory,
+> > - then, setup_vm_final creates the final kernel mapping and takes
+> >   advantage of the discovered system memory to create the linear
+> >   mapping.
+> >
+> > During the first phase, we don't know the start of the system memory and
+> > then until the second phase is finished, we can't use the linear mapping at
+> > all and phys_to_virt/virt_to_phys translations must not be used because it
+> > would result in a different translation from the 'real' one once the final
+> > mapping is installed.
+> >
+> > So here we simply delay the initialization of va_pa_offset to after the
+> > system memory discovery. But to make sure noone uses the linear mapping
+> > before, we add some guard in the DEBUG_VIRTUAL config.
+> >
+> > Finally we can use PUD/P4D/PGD hugepages when possible, which will result
+> > in a better TLB utilization.
+> >
+> > Note that we rely on the firmware to protect itself using PMP.
+> >
+> > Acked-by: Rob Herring <robh@kernel.org> # DT bits
+> > Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+>
+> No good on !MMU unfortunately Alex:
+> ../arch/riscv/mm/init.c:222:2: error: use of undeclared identifier 'riscv_pfn_base'
+>         riscv_pfn_base = PFN_DOWN(phys_ram_base);
+>         ^
+>
+> Reproduces with nommu_virt_defconfig.
 
----
+Thanks, fixed locally, I'll push the v5 soon.
 
-Changes since v2:
-1. Add tag
-2. Correct typo in commit msg
+Thanks again,
 
-Changes since v1:
-1. New patch
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+Alex
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 59756ec11564..c183eb5cb406 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -1487,8 +1487,6 @@ uart7: serial@a9c000 {
- 				interconnect-names = "qup-core", "qup-config";
- 				interconnects =	<&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
- 						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				status = "disabled";
- 			};
- 		};
--- 
-2.34.1
-
+>
+> Thanks,
+> Conor.
