@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 687AE6793E5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 10:19:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D8236793EF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 10:20:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233414AbjAXJTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 04:19:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49942 "EHLO
+        id S233479AbjAXJUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 04:20:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233463AbjAXJTw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 04:19:52 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ABEF3BDA6
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 01:19:51 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso10420099wms.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 01:19:51 -0800 (PST)
+        with ESMTP id S233439AbjAXJUC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 04:20:02 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5CE3F2A6
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 01:19:55 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so12331390wml.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 01:19:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XbA6lJheuFk/8xFTT1ePhHPMDBY/JK/4xrBmt+OOi4U=;
-        b=gyaMQF7LxN91BqAUGGwqgwsMO2hEdoTGvJ1VHPth0Vl8RgAka5nDpZvB74rufyb+Z0
-         xV00CuvPEWQEr09/BVy1JzwjLcVogjv11FrOZXW+ugvwl0cfQHBRj3Bfa0yC15GWAl1t
-         jXdQs2B6bMEn/Y1LezZLuXMYjROjGQRcLXxatD01tROgJfIaE5vqoJBuPDvdnubUBmHM
-         uG17LU+D1qCJqe3hjfo9MtGoUGnnwKLsjTJUeCxXC2tNvX/cvNTUmEDgAPXYS0cmUL3i
-         gTnni68xV+zWuVbwacWcJZ8jbWYQ5xcswPnGiChiZ+46OlyTOlunUIshv6Q7wrqIN36n
-         NQcw==
+        bh=42Hfl1J4qT8SATIfnUTpADzmL78jDne+EhYGf6Qds8c=;
+        b=BfLinym/cklYezWvUdj/D3yAkf3NS77r92L10AME1y3JOtClKrEyZemZUji43xEfmE
+         1CTGJHL8LxpGTSF3AkvFqeVNgE+wNerxDjURu1GcsX8rSNVpDps+fEwxFUsL1xhzvIiB
+         +JmwNDp9o2c47v+qoJpdwZjZjMOt18r0Fc2C4iVYdDxnRsFioUSNzd9hAO5fdSylxvpr
+         UUpTk957V2QsLmu9PRjgqzFHSbSzImHl6JKpF9omsRIvzHfPuFAVkaXEXwuO1hzWJOBA
+         0yl9HepBj47QjGkby3EUe8AYOG4bhg7R8UD5AgoB/ADnPyyfeGIxtjSl3t1dXmFoRS3j
+         T0zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XbA6lJheuFk/8xFTT1ePhHPMDBY/JK/4xrBmt+OOi4U=;
-        b=VZbxHUkLDKikR2d+0dPsBct99hqQTqIbXPEH9jqmKl0Xw3vr5aaXTLZG5jIqnQo0ff
-         2MPZ7OSKuhesj/y3xXpGYxkiQmvummx0eqvVER9LwHiJjY8anTwZ76cRhpxj1/KL4Rln
-         N++/RdOQ242Ry/EGRKastOWlRP0dYyC135MmJvgOsASYt7qZtz0gaFDmDBToPiWc/8tM
-         09Y/TJ6sKpwmrPZtLJj9gVcg3M/seW1eX96/9fzaPJCDsP+/A9+ZmGTdua+fSBD2O+DM
-         Er3lWvAt6LSDaOtnbe5f8oFGgWQGUghs6/XVizKxz75K9Sf3TfA/pEnISTc78d1S2/4D
-         DOYg==
-X-Gm-Message-State: AFqh2ko3PYw6EZcmIfRtNqEVEczUfnphxCljwHNJ9/d2n1AsBhN53yEc
-        hXpuGGQw1ZIgL9oBtxO5x87iOw==
-X-Google-Smtp-Source: AMrXdXsuCK5QkrJAsWUR9ETP50ULGZWTSxGw8meu3uy8bzB1kS3qzFWy3OBucmJfla4MOZzaKSjqcA==
-X-Received: by 2002:a05:600c:6001:b0:3da:f80a:5e85 with SMTP id az1-20020a05600c600100b003daf80a5e85mr26600878wmb.26.1674551990693;
-        Tue, 24 Jan 2023 01:19:50 -0800 (PST)
+        bh=42Hfl1J4qT8SATIfnUTpADzmL78jDne+EhYGf6Qds8c=;
+        b=boe7+fqtKHNKKW35UrnZWeowgr8CES6S1BsFXGITD4gh3JzR0bMKJnMC9MT0tsPKg7
+         Nx9RD5YV1TTvGtLEb5sOVE2mSfFK4MiHivZXb5KRckvcmnnGe9K6QJAJElvsUlzARRrr
+         XJnY7y/vYgX5peIgr7oC2tG1md6HsYAv39cTmUWRXW/RzezFo+cX1G/kjnHPAKxGW4go
+         cUgnzOZzWqrkWQ/DMBQefyzZksMuaojsqvTBrNUgShV/O8HuRLo7YtEg4QsUjOdaz2N1
+         kc6L42HXlHcL9sP4j8BKkBpnRtID0BHg552rD2HZBQIA45wLLBdDsHKXwxXq3wbs24PI
+         vtdQ==
+X-Gm-Message-State: AFqh2kp22W2ITxFwoVDm2J5JtR0JcWQie+PFZwBoFd+8CKiqzLjILhdd
+        mT/IZ8Y0MhFjO4NuCLTZuqDSxQ==
+X-Google-Smtp-Source: AMrXdXs6ofs80YXfseUtI8imesuJyhITR5jNUBCkTkhOsWQiGBk4hZUL16Iu0n0uoxEvTPx24lzRdw==
+X-Received: by 2002:a05:600c:540a:b0:3db:a3a:45ac with SMTP id he10-20020a05600c540a00b003db0a3a45acmr26791047wmb.32.1674551994306;
+        Tue, 24 Jan 2023 01:19:54 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i22-20020a05600c355600b003a84375d0d1sm13672242wmq.44.2023.01.24.01.19.47
+        by smtp.gmail.com with ESMTPSA id i22-20020a05600c355600b003a84375d0d1sm13672242wmq.44.2023.01.24.01.19.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 01:19:50 -0800 (PST)
+        Tue, 24 Jan 2023 01:19:53 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -81,9 +81,9 @@ To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
         linux-stm32@st-md-mailman.stormreply.com
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 06/12] dt-bindings: serial: 8250_omap: drop rs485 properties
-Date:   Tue, 24 Jan 2023 10:19:10 +0100
-Message-Id: <20230124091916.45054-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 07/12] dt-bindings: serial: fsl-imx-uart: drop common properties
+Date:   Tue, 24 Jan 2023 10:19:11 +0100
+Message-Id: <20230124091916.45054-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230124091602.44027-1-krzysztof.kozlowski@linaro.org>
 References: <20230124091602.44027-1-krzysztof.kozlowski@linaro.org>
@@ -91,37 +91,40 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The binding references rs485 schema, so there is no need to list its
-properties.  Simplify a bit by removing unneeded entries.
+The binding references serial and rs485 schemas, so there is no need to
+list their properties.  Simplify a bit by removing unneeded entries.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/serial/8250_omap.yaml | 5 -----
- 1 file changed, 5 deletions(-)
+ Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml | 7 -------
+ 1 file changed, 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Documentation/devicetree/bindings/serial/8250_omap.yaml
-index 53dc1212ad2e..7db8e5477b03 100644
---- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
-+++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
-@@ -70,11 +70,6 @@ properties:
-   dsr-gpios: true
-   rng-gpios: true
-   dcd-gpios: true
+diff --git a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+index 9d949296a142..b431a0d1cd6b 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+@@ -83,13 +83,6 @@ properties:
+       are sensible for most use cases. If you need low latency processing on
+       slow connections this needs to be configured appropriately.
+ 
+-  uart-has-rtscts: true
+-
 -  rs485-rts-delay: true
 -  rs485-rts-active-low: true
 -  rs485-rx-during-tx: true
--  rs485-rts-active-high: true
 -  linux,rs485-enabled-at-boot-time: true
-   rts-gpio: true
-   power-domains: true
-   clock-frequency: true
+-
+ required:
+   - compatible
+   - reg
 -- 
 2.34.1
 
