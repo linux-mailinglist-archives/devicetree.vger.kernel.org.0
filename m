@@ -2,201 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50390678CE3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 01:32:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EB4B678D19
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 02:04:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232366AbjAXAcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 19:32:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57214 "EHLO
+        id S231811AbjAXBEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 20:04:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229666AbjAXAcw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 19:32:52 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5D1A14204
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 16:32:49 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id mp20so34944957ejc.7
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 16:32:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=W6U+g9mZDv/qdEWNSc6qb0RyFwuSw45Rdcs0sHA30rU=;
-        b=UAC92RfGCjw5VHdjja7nSvpkD7lGZgdqtEEws72SkZddUaYBD8a4Pr0RYDqO2ugYEJ
-         NHaQ7mmsuVZYykX4roJrWoPY/2SrmgXoGoSD5bRNKB/pi2jE9DXWKWiM3XP/eCbE7zsG
-         CO6z/nlK+h6AqBIyhyeG/EXyFopg73oIR0b7EfyUp5fIwTo++9rz9ypDN9lZ4eUAohjZ
-         eNT9Jlo3vHzs276uup8f+H9TRVGW9NYFljtEUSCp1cacpn/NXJeFjoBDToKfkg1Z9cP7
-         Z4yYZwLjydPeNvMJlqurQotP+ppWHVjU9vzWqVtKYkDUJz00+ghZvp0cr2QNn6DXG1Dg
-         uqLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W6U+g9mZDv/qdEWNSc6qb0RyFwuSw45Rdcs0sHA30rU=;
-        b=g8QugCW3NeSh/+FqaoXpeQMyBMYqXDQzskO2sS7/J2FYSliO+V85aGlSFD0bwKGGx1
-         SirFzD1SsYSE9uZHqgKOYsocP8qGpdCydtruVZlC1gpPsz4VaSNEMi0usUDsW2eW21Cd
-         XAQcz0Tlf0aqAkYH0vNGr9u6r0HUGyaKYtBpOcka6p14/P5EgCA02U6wGSOGISiPeKYm
-         1277aVYUb0ibYGfr4OVgYKH7vKINL8eskyO+0HwwK8UrrdLT3/3kFdJYIG8MmckhahIU
-         pTPPVzGEYGqhJoCaku3DQAC7Pch2tQVfRADpXSaoe4NdONxKjr6l6H/YheMlKbw66tS4
-         OmjQ==
-X-Gm-Message-State: AFqh2kom3mHWAaeBLm/PQb/ltqadpxcdWvOB6JV706k51FMj0UlEuV1e
-        OWdPCf0pSHUNrzR+8e1qP91wsQ==
-X-Google-Smtp-Source: AMrXdXsM5FQQXWJV4H6RJU3m/XRhGDnVhnxs5GqEpVMOzj1MTr45Rr2Zo4LktpGzHWioeYlXvKy0Dg==
-X-Received: by 2002:a17:907:a07b:b0:7c1:3f04:efa2 with SMTP id ia27-20020a170907a07b00b007c13f04efa2mr39412563ejc.29.1674520368339;
-        Mon, 23 Jan 2023 16:32:48 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id m26-20020a1709066d1a00b008779b5c7db6sm134758ejr.107.2023.01.23.16.32.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 16:32:47 -0800 (PST)
-Message-ID: <e74a8889-d864-0d61-8e64-d5a928331d0f@linaro.org>
-Date:   Tue, 24 Jan 2023 02:32:46 +0200
+        with ESMTP id S229930AbjAXBEh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 20:04:37 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F481303C8;
+        Mon, 23 Jan 2023 17:04:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=YLRZgPgm6zFTbHxaOInUyu4eJC7xlh91Tt1JwAy9PRk=; b=nlVxWqq0PB30WEGxiirjxXsV1T
+        m+t9c5zpijwC9nE8FbSu1H2x/XYasgNgzfYSy6u/XoOgXVkf6S531YbAwX5b6WmljqvcV1E7QLsfj
+        6yiozCFkBHz9xgrmg/T+Vzhq2w50IKLG/ZifSu4dQ4nvHOUQ6DsLvDmNkiB7wihOdO3o=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pK7jZ-002xyX-QM; Tue, 24 Jan 2023 02:04:21 +0100
+Date:   Tue, 24 Jan 2023 02:04:21 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Andrey Konovalov <andrey.konovalov@linaro.org>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alexandre.torgue@foss.st.com,
+        peppe.cavallaro@st.com, joabreu@synopsys.com,
+        mcoquelin.stm32@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH 0/2] net: stmmac: add DT parameter to keep RX_CLK running
+ in LPI state
+Message-ID: <Y88uleBK5zROcpgc@lunn.ch>
+References: <20230123133747.18896-1-andrey.konovalov@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH Resend v11 00/15] Add PSR support for eDP
-Content-Language: en-GB
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com, quic_khsieh@quicinc.com,
-        quic_vproddut@quicinc.com, quic_bjorande@quicinc.com,
-        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com
-References: <1674138393-475-1-git-send-email-quic_vpolimer@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1674138393-475-1-git-send-email-quic_vpolimer@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230123133747.18896-1-andrey.konovalov@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 16:26, Vinod Polimera wrote:
-> Changes in v2:
->    - Use dp bridge to set psr entry/exit instead of dpu_enocder.
->    - Don't modify whitespaces.
->    - Set self refresh aware from atomic_check.
->    - Set self refresh aware only if psr is supported.
->    - Provide a stub for msm_dp_display_set_psr.
->    - Move dp functions to bridge code.
+On Mon, Jan 23, 2023 at 04:37:45PM +0300, Andrey Konovalov wrote:
+> On my qcs404 based board the ethernet MAC has issues with handling
+> Rx LPI exit / Rx LPI entry interrupts.
 > 
-> Changes in v3:
->    - Change callback names to reflect atomic interfaces.
->    - Move bridge callback change to separate patch as suggested by Dmitry.
->    - Remove psr function declaration from msm_drv.h.
->    - Set self_refresh_aware flag only if psr is supported.
->    - Modify the variable names to simpler form.
->    - Define bit fields for PSR settings.
->    - Add comments explaining the steps to enter/exit psr.
->    - Change DRM_INFO to drm_dbg_db.
+> When in LPI mode the "refresh transmission" is received, the driver may
+> see both "Rx LPI exit", and "Rx LPI entry" bits set in the single read from
+> GMAC4_LPI_CTRL_STATUS register (vs "Rx LPI exit" first, and "Rx LPI entry"
+> then). In this case an interrupt storm happens: the LPI interrupt is
+> triggered every few microseconds - with all the status bits in the
+> GMAC4_LPI_CTRL_STATUS register being read as zeros. This interrupt storm
+> continues until a normal non-zero status is read from GMAC4_LPI_CTRL_STATUS
+> register (single "Rx LPI exit", or "Tx LPI exit").
 > 
-> Changes in v4:
->    - Move the get crtc functions to drm_atomic.
->    - Add atomic functions for DP bridge too.
->    - Add ternary operator to choose eDP or DP ops.
->    - Return true/false instead of 1/0.
->    - mode_valid missing in the eDP bridge ops.
->    - Move the functions to get crtc into drm_atomic.c.
->    - Fix compilation issues.
->    - Remove dpu_assign_crtc and get crtc from drm_enc instead of dpu_enc.
->    - Check for crtc state enable while reserving resources.
+> The reason seems to be in the hardware not being able to properly clear
+> the "Rx LPI exit" interrupt if GMAC4_LPI_CTRL_STATUS register is read
+> after Rx LPI mode is entered again.
 > 
-> Changes in v5:
->    - Move the mode_valid changes into a different patch.
->    - Complete psr_op_comp only when isr is set.
->    - Move the DP atomic callback changes to a different patch.
->    - Get crtc from drm connector state crtc.
->    - Move to separate patch for check for crtc state enable while
-> reserving resources.
+> The current driver unconditionally sets the "Clock-stop enable" bit
+> (bit 10 in PHY's PCS Control 1 register) when calling phy_init_eee().
+> Not setting this bit - so that the PHY continues to provide RX_CLK
+> to the ethernet controller during Rx LPI state - prevents the LPI
+> interrupt storm.
 > 
-> Changes in v6:
->    - Remove crtc from dpu_encoder_virt struct.
->    - fix crtc check during vblank toggle crtc.
->    - Misc changes.
-> 
-> Changes in v7:
->    - Add fix for underrun issue on kasan build.
-> 
-> Changes in v8:
->    - Drop the enc spinlock as it won't serve any purpose in
-> protetcing conn state.(Dmitry/Doug)
-> 
-> Changes in v9:
->    - Update commit message and fix alignment using spaces.(Marijn)
->    - Misc changes.(Marijn)
-> 
-> Changes in v10:
->    - Get crtc cached in dpu_enc during obj init.(Dmitry)
-> 
-> Changes in v11:
->    - Remove crtc cached in dpu_enc during obj init.
->    - Update dpu_enc crtc state on crtc enable/disable during self refresh.
-> 
-> Sankeerth Billakanti (1):
->    drm/msm/dp: disable self_refresh_aware after entering psr
-> 
-> Vinod Polimera (14):
->    drm: add helper functions to retrieve old and new crtc
->    drm/msm/dp: use atomic callbacks for DP bridge ops
->    drm/msm/dp: Add basic PSR support for eDP
->    drm/msm/dp: use the eDP bridge ops to validate eDP modes
->    drm/bridge: use atomic enable/disable callbacks for panel bridge
->    drm/bridge: add psr support for panel bridge callbacks
->    drm/msm/disp/dpu: use atomic enable/disable callbacks for encoder
->      functions
->    drm/msm/disp/dpu: check for crtc enable rather than crtc active to
->      release shared resources
->    drm/msm/disp/dpu: add PSR support for eDP interface in dpu driver
->    drm/msm/disp/dpu: get timing engine status from intf status register
->    drm/msm/disp/dpu: wait for extra vsync till timing engine status is
->      disabled
->    drm/msm/disp/dpu: reset the datapath after timing engine disable
->    drm/msm/disp/dpu: clear active interface in the datapath cleanup
->    drm/msm/disp/dpu: update dpu_enc crtc state on crtc enable/disable
->      during self refresh
+> This patch set adds a new parameter to the stmmac DT:
+> snps,rx-clk-runs-in-lpi.
+> If this parameter is present in the device tree, the driver configures
+> the PHY not to stop RX_CLK after entering Rx LPI state.
 
-1) Please move core patches to the beginning of the series, so that it 
-is possible to pick them up separately
+Do we really need yet another device tree parameter? Could
+dwmac-qcom-ethqos.c just do this unconditionally? Is the interrupt
+controller part of the licensed IP, or is it from QCOM? If it is part
+of the licensed IP, it is probably broken for other devices as well,
+so maybe it should be a quirk for all devices of a particular version
+of the IP?
 
-2) Please follow Daniel's comment in 
-https://lore.kernel.org/all/Y7bMcLHr79uhfJv2@phenom.ffwll.local/ and 
-apply corresponding Reviewed-by tags.
-
-> 
->   drivers/gpu/drm/bridge/panel.c                     |  68 ++++++-
->   drivers/gpu/drm/drm_atomic.c                       |  60 +++++++
->   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c           |  42 ++++-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c        |  29 ++-
->   .../gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c   |  22 +++
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   3 +-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |  12 +-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c        |   8 +-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   2 +-
->   drivers/gpu/drm/msm/dp/dp_catalog.c                |  80 +++++++++
->   drivers/gpu/drm/msm/dp/dp_catalog.h                |   4 +
->   drivers/gpu/drm/msm/dp/dp_ctrl.c                   |  80 +++++++++
->   drivers/gpu/drm/msm/dp/dp_ctrl.h                   |   3 +
->   drivers/gpu/drm/msm/dp/dp_display.c                |  36 ++--
->   drivers/gpu/drm/msm/dp/dp_display.h                |   2 +
->   drivers/gpu/drm/msm/dp/dp_drm.c                    | 196 ++++++++++++++++++++-
->   drivers/gpu/drm/msm/dp/dp_drm.h                    |   9 +-
->   drivers/gpu/drm/msm/dp/dp_link.c                   |  36 ++++
->   drivers/gpu/drm/msm/dp/dp_panel.c                  |  22 +++
->   drivers/gpu/drm/msm/dp/dp_panel.h                  |   6 +
->   drivers/gpu/drm/msm/dp/dp_reg.h                    |  27 +++
->   include/drm/drm_atomic.h                           |   7 +
->   22 files changed, 710 insertions(+), 44 deletions(-)
-> 
-
--- 
-With best wishes
-Dmitry
-
+   Andrew
