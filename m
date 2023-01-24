@@ -2,192 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC29767A595
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 23:20:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06B8F67A5A7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 23:27:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231269AbjAXWUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 17:20:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51684 "EHLO
+        id S229715AbjAXW1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 17:27:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231538AbjAXWUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 17:20:33 -0500
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F6DC37F2F;
-        Tue, 24 Jan 2023 14:20:32 -0800 (PST)
-Received: by mail-ot1-f46.google.com with SMTP id g2-20020a9d6b02000000b006864bf5e658so10110446otp.1;
-        Tue, 24 Jan 2023 14:20:32 -0800 (PST)
+        with ESMTP id S234522AbjAXW1r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 17:27:47 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C81244A5
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 14:27:44 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id j17so12559831wms.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 14:27:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fmjm3Z829U3eQ0HD7RpgQ6QYQN7YmYNmxztlfIbUa3s=;
+        b=qKkFDQZcyvsrKMBBuR0L3F2Ue12BBua/+IGpL5PYXj42IfmbIk7GCNpjsGTlNboBY+
+         hrNhUkQ0Y1o9KCcyi9g1jHGP/fqYc+/C/78N7UBBxLy1EOZvLLnu7nSQDTu0dwQQkJci
+         kWp57evylzpB6O50bYTtbZJ0+RCzKQjSVciZVsUi76gk11ghiNlp2Ui6o81SnI1RlLOy
+         L2H2kt8CXzswNirTU7/a24Cg76KG+SXjXZoh7KaCZig7wS8WuMrSAjqFqpSy9EbSO1V7
+         SqF39G7nuhjAPXZETrPN8FNyTi+CMhanYURNGqvyt9mu5XWOjgdYzXHSCWyUQHTOuTD/
+         y3zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Eez1m+PXfOfMtBkO1erQPzslo6stvsXK/McJNzS+bhE=;
-        b=Y0EqZxzKKFrunEnDMpbyNm9vqKMsPBH3WCDPHj9UnR35f1+8069rQgItBroZcZH5Zc
-         gAdtnLWgyPNFCj/rLHCKlzoXoJZ9/eMT49qFr6Zvs/DauhYOYkYnEbRuafQILXsS9Stv
-         ZjkeDFoafh/sLe8R78IDx4v8Y0sMb62vxDFhUnsw7do8Mx0+fqVE2kt+/ogmlt2AzKga
-         q4Y+xYsdvkREY0dSayC2rBbZ0H7/GFhUpSjz1hwc4VA3qX28PiS58pB/5ojzYC93/NAS
-         33xzVijwY/vnQ+O7OfxrnDa0GL5S0A9+osdu2Efasqu8CM+69muvnpeZx7h16u5wAB/L
-         Zotw==
-X-Gm-Message-State: AFqh2kobLE5Lb15AEnouuCj3VHum8ArM29u1yOYNSPRK/pacYyRbXPHw
-        iOFVfJjmmOC7GFXcFGeO5A==
-X-Google-Smtp-Source: AMrXdXsQOGXLvDUlDyfIhPA3kuz6+QbLmoFpTLE7cXamFILL4fYDaWa2Qf1wZU85+DoB6HyjAsx7SQ==
-X-Received: by 2002:a05:6830:244d:b0:675:410e:7533 with SMTP id x13-20020a056830244d00b00675410e7533mr16096069otr.9.1674598831857;
-        Tue, 24 Jan 2023 14:20:31 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a18-20020a9d74d2000000b00684eaf9018csm1449579otl.34.2023.01.24.14.20.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 14:20:31 -0800 (PST)
-Received: (nullmailer pid 316282 invoked by uid 1000);
-        Tue, 24 Jan 2023 22:20:30 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: firmware: arm,scmi: Restrict protocol child node properties
-Date:   Tue, 24 Jan 2023 16:20:23 -0600
-Message-Id: <20230124222023.316089-1-robh@kernel.org>
-X-Mailer: git-send-email 2.39.0
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fmjm3Z829U3eQ0HD7RpgQ6QYQN7YmYNmxztlfIbUa3s=;
+        b=RLmeNSRvUmnjjI6akiFwo6fvdMFWL89DSwEaMzooHz9+EyJ/wTdkeK2N6+1cZtatl/
+         r3/mYFGZo1G20/k1ZjIfDB0v2oVVizT3BwoCoQ0ft9vuouxPqtvAtHH321VmTe4lgQuJ
+         crfJwZ9/u/wZXuL71+4yBWgLnDuaLhTaymImECjD5OY7Dvv58oa5Kx5SrDDD80/gRpKL
+         wOKswy3HSzk/ywK0bS2HKuDyR1/SraA0yNuyT6jfzo+KbuWw7yMEiMLpuani3Gxm+Zss
+         1GmpFNUrbgCrWJdACxfcNZG7QDE8/jvqKY1OkJxUXooWgeJR1Pw8UGvTt3aPdMGAvhQ0
+         DtEw==
+X-Gm-Message-State: AFqh2koSxZLwT3frJ+VBARphf+CMYfm+OkzFG3guFpFMd+UpZy2QpRMz
+        bTyyYwnQJGWo328+KwogNwtnbw==
+X-Google-Smtp-Source: AMrXdXtUIhIbk+FfYfm8bkmmKEpk9WmMbkLiISQPuqi+mTwK8Cf7fynMGVuZBW+nCEzqHn41DSs8cA==
+X-Received: by 2002:a05:600c:3512:b0:3db:1665:2a98 with SMTP id h18-20020a05600c351200b003db16652a98mr24655553wmq.16.1674599262543;
+        Tue, 24 Jan 2023 14:27:42 -0800 (PST)
+Received: from [192.168.0.20] (62.213.132.195.rev.sfr.net. [195.132.213.62])
+        by smtp.gmail.com with ESMTPSA id bd25-20020a05600c1f1900b003dafa04ecc4sm105977wmb.6.2023.01.24.14.27.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Jan 2023 14:27:41 -0800 (PST)
+Message-ID: <0b5e3a14-fd23-4646-d4cb-df255eb8fa20@baylibre.com>
+Date:   Tue, 24 Jan 2023 23:27:40 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v7 4/4] thermal: mediatek: add another get_temp ops for
+ thermal sensors
+Content-Language: en-US
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        linux-pm@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Michael Kao <michael.kao@mediatek.com>,
+        linux-kernel@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+References: <20221018-up-i350-thermal-bringup-v7-0-ebf08ff2eddb@baylibre.com>
+ <20221018-up-i350-thermal-bringup-v7-4-ebf08ff2eddb@baylibre.com>
+ <4121bb6b-30db-7a23-f4c8-40afdda7a0b5@linaro.org>
+ <COTTJX635TNF.1WL2TEZN7VW9O@amjad-ThinkPad-T490>
+ <adfe41f7-00e5-876b-7803-3127919fba13@linaro.org>
+ <COUMF3IZ9Y63.LA3KFHJSUZIC@amjad-ThinkPad-T490>
+ <0644aede-c281-3919-50e0-4466f6587d81@linaro.org>
+ <187b0fe1-1f14-d8b8-c827-1e824da0b1d3@baylibre.com>
+ <d3daece0-ed23-fae7-9bc8-c6e53b84e8e7@baylibre.com>
+ <9f9547a2-69dd-f91d-c587-289156bf9d55@linaro.org>
+ <2950b824-ad2f-2579-a956-a03d157453eb@baylibre.com>
+ <c1fad818-1858-2e81-84fd-03cfb54d8938@linaro.org>
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+In-Reply-To: <c1fad818-1858-2e81-84fd-03cfb54d8938@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SCMI protocol child nodes are missing any constraints on unknown
-properties. Specifically, either 'unevaluatedProperties' or
-'additionalProperties' is needed. The current structure with a regex
-match for all child nodes doesn't work for this purpose, so let's move
-the common properties '$defs' entry which each specific protocol node
-can reference and set 'unevaluatedProperties: false'.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../bindings/firmware/arm,scmi.yaml           | 43 ++++++++++++++-----
- 1 file changed, 33 insertions(+), 10 deletions(-)
+On 1/24/23 18:55, Daniel Lezcano wrote:
+> On 24/01/2023 18:46, Amjad Ouled-Ameur wrote:
+>>
+>> On 1/24/23 17:54, Daniel Lezcano wrote:
+>>>
+>>> Hi Amjad,
+>>>
+>>> On 24/01/2023 11:08, Amjad Ouled-Ameur wrote:
+>>>
+>>> [ ... ]
+>>>
+>>>>>>
+>>>>>> IIUC, there is a sensor per couple of cores. 1 x 2Bigs, 1 x 2Bigs, 1 x 4 Little, right ?
+>>>>>
+>>>>> MT8365 SoC has 4 x A53 CPUs. The SoC has 4 thermal zones per sensor. Thermal zone 0 corresponds
+>>>>>
+>>>>> to all 4 x A53 CPUs, the other thermal zones (1, 2 and 3) has nothing to do with CPUs. The cooling device type
+>>>>>
+>>>>> used for CPUs is passive. FYI, thermal zones 1, 2 and 3 are present in the SoC for debug-purpose only, they are not supposed
+>>>>>
+>>>>> to be used for production.
+>>>>>
+>>>> After reconsidering the fact that zones 1, 2 and 3 are only used for dev/debug, it might be best to avo >
+>>>> aggregation as you suggested, and keep only support for zone 0 in this driver. Thus I suggest I send a V8
+>>>>
+>>>> where I keep only below fixes for this patch if that's okay with you:
+>>>>
+>>>> - Define "raw_to_mcelsius" function pointer for "struct thermal_bank_cfg".
+>>>>
+>>>> - Fix "mtk_thermal" variable in mtk_read_temp().
+>>>>
+>>>> - Set "mt->raw_to_mcelsius" in probe().
+>>>>
+>>>>
+>>>> For zones 1, 2 and 3 we can later add a different driver specific for dev/debug to probe them to
+>>>>
+>>>> avoid confusion.
+>>>
+>>> You can add them in the driver and in the device tree, but just add the cooling device for the thermal zone 0.
+>>
+>> Thermal zone 0 uses CPU{0..3} for passive cooling, in this case we should register cooling device with
+>>
+>> cpufreq_cooling_register() for each CPU right ?
+>
+> No, the OF code device tree does already that. You just have to register the different thermal zones.
+>
+> Do you have a pointer to a device tree for this board and the thermal setup ?
 
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 176796931a22..2f7c51c75e85 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -100,7 +100,9 @@ properties:
-       Channel specifier required when using OP-TEE transport.
- 
-   protocol@11:
--    type: object
-+    $ref: '#/$defs/protocol-node'
-+    unevaluatedProperties: false
-+
-     properties:
-       reg:
-         const: 0x11
-@@ -112,7 +114,9 @@ properties:
-       - '#power-domain-cells'
- 
-   protocol@13:
--    type: object
-+    $ref: '#/$defs/protocol-node'
-+    unevaluatedProperties: false
-+
-     properties:
-       reg:
-         const: 0x13
-@@ -124,7 +128,9 @@ properties:
-       - '#clock-cells'
- 
-   protocol@14:
--    type: object
-+    $ref: '#/$defs/protocol-node'
-+    unevaluatedProperties: false
-+
-     properties:
-       reg:
-         const: 0x14
-@@ -136,7 +142,9 @@ properties:
-       - '#clock-cells'
- 
-   protocol@15:
--    type: object
-+    $ref: '#/$defs/protocol-node'
-+    unevaluatedProperties: false
-+
-     properties:
-       reg:
-         const: 0x15
-@@ -148,7 +156,9 @@ properties:
-       - '#thermal-sensor-cells'
- 
-   protocol@16:
--    type: object
-+    $ref: '#/$defs/protocol-node'
-+    unevaluatedProperties: false
-+
-     properties:
-       reg:
-         const: 0x16
-@@ -160,20 +170,31 @@ properties:
-       - '#reset-cells'
- 
-   protocol@17:
--    type: object
-+    $ref: '#/$defs/protocol-node'
-+    unevaluatedProperties: false
-+
-     properties:
-       reg:
-         const: 0x17
- 
-       regulators:
-         type: object
-+        additionalProperties: false
-         description:
-           The list of all regulators provided by this SCMI controller.
- 
-+        properties:
-+          '#address-cells':
-+            const: 1
-+
-+          '#size-cells':
-+            const: 0
-+
-         patternProperties:
--          '^regulators@[0-9a-f]+$':
-+          '^regulator@[0-9a-f]+$':
-             type: object
-             $ref: "../regulator/regulator.yaml#"
-+            unevaluatedProperties: false
- 
-             properties:
-               reg:
-@@ -184,15 +205,17 @@ properties:
-               - reg
- 
-   protocol@18:
--    type: object
-+    $ref: '#/$defs/protocol-node'
-+    unevaluatedProperties: false
-+
-     properties:
-       reg:
-         const: 0x18
- 
- additionalProperties: false
- 
--patternProperties:
--  '^protocol@[0-9a-f]+$':
-+$defs:
-+  protocol-node:
-     type: object
-     description:
-       Each sub-node represents a protocol supported. If the platform
--- 
-2.39.0
+Sure, here is a dtsi for MT8365 SoC which contains thermal nodes [0].
 
+[0]: https://lore.kernel.org/linux-arm-kernel/20220531135026.238475-17-fparent@baylibre.com/#Z31arch:arm64:boot:dts:mediatek:mt8365.dtsi
+
+>
+>
