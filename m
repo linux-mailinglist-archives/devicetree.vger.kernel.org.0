@@ -2,602 +2,582 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C2C26790BC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 07:17:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08875679124
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 07:40:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232462AbjAXGR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 01:17:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38610 "EHLO
+        id S232807AbjAXGkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 01:40:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230149AbjAXGR1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 01:17:27 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2888C2DE6F;
-        Mon, 23 Jan 2023 22:17:25 -0800 (PST)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30O5PcU7028447;
-        Tue, 24 Jan 2023 06:16:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=k5XtAdI6pDnsLjE1zyevTiL0NTDbva/Iw9xlkmbclIc=;
- b=heXBzO/5x8c19zN7aec5f0aPjJcEonXN8k9JErC3PKR4etvlaMc1OYq41cTDjg4YIF/v
- RWL+Se4FdS1Wvw1vSE8VQ9byrXKOELrSZeUZsbOa9IcIu/LxkXuCF+rVd+pGtmLJ85We
- ShRUHy654m63sYqsTc9d9QKvtG4VMJXrSm1MxBnEgFZKJPGkEeV1HV6lYeloCSJVQJsA
- io6RuwEIGEgd9+unmi4+4rQC67Cq3ka6x0lp2+BFQ2e7JUnZMrKVsQGrrVf8cTAAWSOr
- m0rV9+Abgpdm6NEDg2FfziBC6lyopvQLQDDngh1+/9q6Bar3rfvj8k2jmz9A6OBWmYkQ zQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n89pwcghd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 24 Jan 2023 06:16:34 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30O6GXAw013727
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 24 Jan 2023 06:16:33 GMT
-Received: from [10.216.24.6] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 23 Jan
- 2023 22:16:24 -0800
-Message-ID: <8325038d-e6cd-3116-647e-6baeba09634f@quicinc.com>
-Date:   Tue, 24 Jan 2023 11:46:11 +0530
+        with ESMTP id S231703AbjAXGkp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 01:40:45 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3246913503;
+        Mon, 23 Jan 2023 22:40:41 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30O6eSPm112656;
+        Tue, 24 Jan 2023 00:40:28 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1674542428;
+        bh=9P/EN4EHXXUpp1mGIKQ1Wm0hm6DLAkxCB0oUo4vyZww=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=A+W18wpnDdFvCZkLFDA8+kIHRoYM8qZpR/T2/wMAGf96HqBFIyvAGwQFq6oAmLlfT
+         ijglBmc0rZdQkck//GxSmauF/RHKQ2Q4G5M+iflm+6MdLwp81tioSDBD2+LvwGErLT
+         b18BXxRBczH7c05h9UITupCV3GjQ5Y9X3imyoH0I=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30O6eRmR081034
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 24 Jan 2023 00:40:27 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 24
+ Jan 2023 00:40:27 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 24 Jan 2023 00:40:27 -0600
+Received: from [172.24.220.23] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30O6eM6D020250;
+        Tue, 24 Jan 2023 00:40:22 -0600
+Message-ID: <014959bc-317c-544c-8afe-0e3b56d45e2b@ti.com>
+Date:   Tue, 24 Jan 2023 12:10:21 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 6/7] arm64: dts: Add ipq9574 SoC and AL02 board support
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <shawnguo@kernel.org>, <arnd@arndb.de>,
-        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
-        <nfraprado@collabora.com>, <broonie@kernel.org>,
-        <tdas@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>
-References: <20230110121316.24892-1-quic_devipriy@quicinc.com>
- <20230110121316.24892-7-quic_devipriy@quicinc.com>
- <9a584aa9-52f1-2c1b-db93-45f0302641dc@linaro.org>
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v6 3/5] drm/tidss: Add support to configure OLDI mode for
+ am625-dss.
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20221119173019.15643-1-a-bhatia1@ti.com>
+ <20221119173019.15643-4-a-bhatia1@ti.com>
+ <7feda5ce-5cff-3838-94ec-c2a1ef831398@ideasonboard.com>
 Content-Language: en-US
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <9a584aa9-52f1-2c1b-db93-45f0302641dc@linaro.org>
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <7feda5ce-5cff-3838-94ec-c2a1ef831398@ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: TJHDJP1MIn6yPur2eR8lmba4SwHGbbrc
-X-Proofpoint-GUID: TJHDJP1MIn6yPur2eR8lmba4SwHGbbrc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-23_12,2023-01-23_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- clxscore=1015 impostorscore=0 suspectscore=0 bulkscore=0 adultscore=0
- spamscore=0 mlxscore=0 mlxlogscore=999 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301240056
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Tomi,
 
+Thanks for reviewing the patch series. I have implemented the most of
+your suggestions, but for the others, I needed to clarify things. I have
+made some comments there.
 
-On 1/10/2023 6:20 PM, Konrad Dybcio wrote:
+On 20-Dec-22 18:22, Tomi Valkeinen wrote:
+> Hi,
 > 
-> 
-> On 10.01.2023 13:13, devi priya wrote:
->> From: POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>
+> On 19/11/2022 19:30, Aradhya Bhatia wrote:
+>> The newer version of DSS (AM625-DSS) has 2 OLDI TXes at its disposal.
+>> These can be configured to support the following modes:
 >>
->> Add initial device tree support for Qualcomm IPQ9574 SoC
->> and AL02 board
+>> 1. OLDI_SINGLE_LINK_SINGLE_MODE
+>> Single Output over OLDI 0.
+>> +------+        +---------+      +-------+
+>> |      |        |         |      |       |
+>> | CRTC +------->+ ENCODER +----->| PANEL |
+>> |      |        |         |      |       |
+>> +------+        +---------+      +-------+
 >>
->> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
->> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->> Co-developed-by: devi priya <quic_devipriy@quicinc.com>
->> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
->> Signed-off-by: POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>
+>> 2. OLDI_SINGLE_LINK_CLONE_MODE
+>> Duplicate Output over OLDI 0 and 1.
+>> +------+        +---------+      +-------+
+>> |      |        |         |      |       |
+>> | CRTC +---+--->| ENCODER +----->| PANEL |
+>> |      |   |    |         |      |       |
+>> +------+   |    +---------+      +-------+
+>>             |
+>>             |    +---------+      +-------+
+>>             |    |         |      |       |
+>>             +--->| ENCODER +----->| PANEL |
+>>                  |         |      |       |
+>>                  +---------+      +-------+
+>>
+>> 3. OLDI_DUAL_LINK_MODE
+>> Combined Output over OLDI 0 and 1.
+>> +------+        +---------+      +-------+
+>> |      |        |         +----->|       |
+>> | CRTC +------->+ ENCODER |      | PANEL |
+>> |      |        |         +----->|       |
+>> +------+        +---------+      +-------+
+>>
+>> Following the above pathways for different modes, 2 encoder/panel-bridge
+>> pipes get created for clone mode, and 1 pipe in cases of single link and
+>> dual link mode.
+>>
+>> Add support for confguring the OLDI modes using OF and LVDS DRM helper
+>> functions.
+>>
+>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
 >> ---
->>   arch/arm64/boot/dts/qcom/Makefile            |   1 +
->>   arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts |  69 ++++
->>   arch/arm64/boot/dts/qcom/ipq9574.dtsi        | 318 +++++++++++++++++++
->>   3 files changed, 388 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->>   create mode 100644 arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>   drivers/gpu/drm/tidss/tidss_dispc.c   |  12 ++
+>>   drivers/gpu/drm/tidss/tidss_dispc.h   |   9 ++
+>>   drivers/gpu/drm/tidss/tidss_drv.h     |   3 +
+>>   drivers/gpu/drm/tidss/tidss_encoder.c |   4 +-
+>>   drivers/gpu/drm/tidss/tidss_encoder.h |   3 +-
+>>   drivers/gpu/drm/tidss/tidss_kms.c     | 188 +++++++++++++++++++++++---
+>>   6 files changed, 198 insertions(+), 21 deletions(-)
 >>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 3e79496292e7..872c62028a0b 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq6018-cp01-c1.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c2.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-al02-c7.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-asus-z00l.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-huawei-g7.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->> new file mode 100644
->> index 000000000000..ae3c32f3e16a
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->> @@ -0,0 +1,69 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
-> BSD3?
+>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
+>> b/drivers/gpu/drm/tidss/tidss_dispc.c
+>> index dbc6a5b617ca..472226a83251 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+>> @@ -365,6 +365,8 @@ struct dispc_device {
+>>       struct dss_vp_data vp_data[TIDSS_MAX_VPS];
+>> +    enum dispc_oldi_modes oldi_mode;
+>> +
+>>       u32 *fourccs;
+>>       u32 num_fourccs;
+>> @@ -1967,6 +1969,16 @@ const u32 *dispc_plane_formats(struct 
+>> dispc_device *dispc, unsigned int *len)
+>>       return dispc->fourccs;
+>>   }
+>> +int dispc_set_oldi_mode(struct dispc_device *dispc,
+>> +            enum dispc_oldi_modes oldi_mode)
+>> +{
+>> +    WARN_ON(!dispc);
 > 
-Sure, will add dual license
->> +/*
->> + * IPQ9574 AL02-C7 board device tree source
->> + *
->> + * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> Happy new year!
+> This feels unnecessary. Is there even a theoretical case where we could 
+> get dispc == NULL?
 > 
-Sure, will update!
->> + */
 >> +
->> +/dts-v1/;
+>> +    dispc->oldi_mode = oldi_mode;
 >> +
->> +#include "ipq9574.dtsi"
+>> +    return 0;
+> 
+> This function could as well be void function. >
+>> +}
 >> +
->> +/ {
->> +	model = "Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C7";
->> +	compatible = "qcom,ipq9574-ap-al02-c7", "qcom,ipq9574";
->> +	interrupt-parent = <&intc>;
->> +
->> +	aliases {
->> +		serial0 = &blsp1_uart2;
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
+>>   static s32 pixinc(int pixels, u8 ps)
+>>   {
+>>       if (pixels == 1)
+>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.h 
+>> b/drivers/gpu/drm/tidss/tidss_dispc.h
+>> index 51db500590ee..e76a7599b544 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_dispc.h
+>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.h
+>> @@ -64,6 +64,14 @@ enum dispc_dss_subrevision {
+>>       DISPC_AM625,
+>>   };
+>> +enum dispc_oldi_modes {
+>> +    OLDI_MODE_OFF,            /* OLDI turned off / tied off in IP. */
+>> +    OLDI_SINGLE_LINK_SINGLE_MODE,    /* Single Output over OLDI 0. */
+>> +    OLDI_SINGLE_LINK_CLONE_MODE,    /* Duplicate Output over OLDI 0 and 1. */
+>> +    OLDI_DUAL_LINK_MODE,        /* Combined Output over OLDI 0 and 1. */
+>> +    OLDI_MODE_UNSUPPORTED,        /* Unsupported OLDI Mode */
 >> +};
->> +
->> +&blsp1_uart2 {
->> +	pinctrl-0 = <&uart2_pins>;
->> +	pinctrl-names = "default";
->> +	status = "okay";
->> +};
->> +
->> +&sdhc_1 {
->> +	pinctrl-0 = <&emmc_pins>;
->> +	pinctrl-names = "default";
->> +	status = "okay";
->> +};
->> +
->> +&tlmm {
->> +	emmc_pins: emmc-state {
-> sdc_default? I suppose you'll introduce a corresponding sleep state
-> later on, so that'll be easier to distinguish.
-Sure, will update the node name. But, we don't have power management 
-states. It would always be in the running state.
 > 
->> +		emmc-clk-pins {
->> +			pins = "gpio5";
->> +			function = "sdc_clk";
->> +			drive-strength = <8>;
->> +			bias-disable;
->> +		};
-> Please add a newline between subsequent nodes.
-Sure, okay
->> +		emmc-cmd-pins {
->> +			pins = "gpio4";
->> +			function = "sdc_cmd";
->> +			drive-strength = <8>;
->> +			bias-pull-up;
->> +		};
->> +		emmc-data-pins {
->> +			pins = "gpio0", "gpio1", "gpio2",
->> +			     "gpio3", "gpio6", "gpio7",
->> +			     "gpio8", "gpio9";
-> The indentation here is wrong.
-Sure, will update
+> What is the difference with MODE_OFF and MODE_UNSUPPORTED? Is 
+> MODE_UNSUPPORTED for cases where, e.g., the DT setup is wrong and the 
+> driver should return an error? The code doesn't quite do that, it prints 
+> an error but then continues.
+
+Yes, OLDI_MODE_UNSUPPORTED is for the cases where DT setup is wrong.
+I have not exited in such a cases with an error, because then the driver
+will never have a chance to setup the 2nd pipeline (DPI) even if all the
+DT requirements are met.
+
 > 
->> +			function = "sdc_data";
->> +			drive-strength = <8>;
->> +			bias-pull-up;
->> +		};
->> +		emmc-rclk-pins {
->> +			pins = "gpio10";
->> +			function = "sdc_rclk";
->> +			drive-strength = <8>;
->> +			bias-pull-down;
->> +		};
->> +	};
+>>   struct dispc_features {
+>>       int min_pclk_khz;
+>>       int max_pclk_khz[DISPC_VP_MAX_BUS_TYPE];
+>> @@ -133,6 +141,7 @@ int dispc_plane_setup(struct dispc_device *dispc, u32 hw_plane,
+>>                 u32 hw_videoport);
+>>   int dispc_plane_enable(struct dispc_device *dispc, u32 hw_plane, bool enable);
+>>   const u32 *dispc_plane_formats(struct dispc_device *dispc, unsigned int *len);
+>> +int dispc_set_oldi_mode(struct dispc_device *dispc, enum dispc_oldi_modes oldi_mode);
+>>   int dispc_init(struct tidss_device *tidss);
+>>   void dispc_remove(struct tidss_device *tidss);
+>> diff --git a/drivers/gpu/drm/tidss/tidss_drv.h 
+>> b/drivers/gpu/drm/tidss/tidss_drv.h
+>> index 0ce7ee5ccd5b..58892f065c16 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_drv.h
+>> +++ b/drivers/gpu/drm/tidss/tidss_drv.h
+>> @@ -13,6 +13,9 @@
+>>   #define TIDSS_MAX_PLANES 4
+>>   #define TIDSS_MAX_OUTPUT_PORTS 4
+>> +/* For AM625-DSS with 2 OLDI TXes */
+>> +#define TIDSS_MAX_BRIDGES_PER_PIPE    2
 >> +
->> +};
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> new file mode 100644
->> index 000000000000..188d18688a77
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> @@ -0,0 +1,318 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * IPQ9574 SoC device tree source
->> + *
->> + * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
+>>   typedef u32 dispc_irq_t;
+>>   struct tidss_device {
+>> diff --git a/drivers/gpu/drm/tidss/tidss_encoder.c 
+>> b/drivers/gpu/drm/tidss/tidss_encoder.c
+>> index e278a9c89476..141383ec4045 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_encoder.c
+>> +++ b/drivers/gpu/drm/tidss/tidss_encoder.c
+>> @@ -70,7 +70,8 @@ static const struct drm_encoder_funcs encoder_funcs = {
+>>   };
+>>   struct drm_encoder *tidss_encoder_create(struct tidss_device *tidss,
+>> -                     u32 encoder_type, u32 possible_crtcs)
+>> +                     u32 encoder_type, u32 possible_crtcs,
+>> +                     u32 possible_clones)
+>>   {
+>>       struct drm_encoder *enc;
+>>       int ret;
+>> @@ -80,6 +81,7 @@ struct drm_encoder *tidss_encoder_create(struct 
+>> tidss_device *tidss,
+>>           return ERR_PTR(-ENOMEM);
+>>       enc->possible_crtcs = possible_crtcs;
+>> +    enc->possible_clones = possible_clones;
+>>       ret = drm_encoder_init(&tidss->ddev, enc, &encoder_funcs,
+>>                      encoder_type, NULL);
+>> diff --git a/drivers/gpu/drm/tidss/tidss_encoder.h 
+>> b/drivers/gpu/drm/tidss/tidss_encoder.h
+>> index ace877c0e0fd..01c62ba3ef16 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_encoder.h
+>> +++ b/drivers/gpu/drm/tidss/tidss_encoder.h
+>> @@ -12,6 +12,7 @@
+>>   struct tidss_device;
+>>   struct drm_encoder *tidss_encoder_create(struct tidss_device *tidss,
+>> -                     u32 encoder_type, u32 possible_crtcs);
+>> +                     u32 encoder_type, u32 possible_crtcs,
+>> +                     u32 possible_clones);
+>>   #endif
+>> diff --git a/drivers/gpu/drm/tidss/tidss_kms.c 
+>> b/drivers/gpu/drm/tidss/tidss_kms.c
+>> index fc9c4eefd31d..8ae321f02197 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_kms.c
+>> +++ b/drivers/gpu/drm/tidss/tidss_kms.c
+>> @@ -106,30 +106,115 @@ static const struct drm_mode_config_funcs 
+>> mode_config_funcs = {
+>>       .atomic_commit = drm_atomic_helper_commit,
+>>   };
+>> +static enum dispc_oldi_modes tidss_get_oldi_mode(struct device_node 
+>> *oldi0_port,
+>> +                         struct device_node *oldi1_port)
+>> +{
+>> +    int pixel_order;
 >> +
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/clock/qcom,gcc-ipq9574.h>
->> +#include <dt-bindings/reset/qcom,gcc-ipq9574.h>
->> +
->> +/ {
->> +	interrupt-parent = <&intc>;
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
->> +
->> +	clocks {
->> +		bias_pll_ubi_nc_clk: bias_pll_ubi_nc_clk {
-> Could you tell us something about the purpose of this clock? First
-> time seeing it, your gcc driver reveals it's connected to at least
-> PCIe.
-Bias_pll_ubi_nc_clk (353MHz) is a backup source for 
-Q6_AXIM2_CLK/PCIE2_AXIM_CLK/PCIE3_AXIM_CLK/SNOC-CLK.
+>> +    if (!(oldi0_port || oldi1_port)) {
+>> +        /* Keep OLDI TXes off if neither OLDI port is present. */
+>> +        return OLDI_MODE_OFF;
+>> +    } else if (oldi0_port && !oldi1_port) {
+>> +        /*
+>> +         * OLDI0 port found, but not OLDI1 port. Setting single
+>> +         * link, single mode output.
+>> +         */
+>> +        return OLDI_SINGLE_LINK_SINGLE_MODE;
+>> +    } else if (!oldi0_port && oldi1_port) {
+>> +        /*
+>> +         * The 2nd OLDI TX cannot be operated alone. This use case is
+>> +         * not supported in the HW. Since the pins for OLDIs 0 and 1 are
+>> +         * separate, one could theoretically set a clone mode over OLDIs
+>> +         * 0 and 1 and just simply not use the OLDI 0. This is a hacky
+>> +         * way to enable only OLDI TX 1 and hence is not officially
+>> +         * supported.
+>> +         */
+>> +        return OLDI_MODE_UNSUPPORTED;
 > 
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <353000000>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		pcie30_phy0_pipe_clk: pcie30_phy0_pipe_clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <250000000>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		pcie30_phy1_pipe_clk: pcie30_phy1_pipe_clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <250000000>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		pcie30_phy2_pipe_clk: pcie30_phy2_pipe_clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <250000000>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		pcie30_phy3_pipe_clk: pcie30_phy3_pipe_clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <250000000>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		usb3phy_0_cc_pipe_clk: usb3phy_0_cc_pipe_clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <125000000>;
->> +			#clock-cells = <0>;
->> +		};
-> Do not define these pipe clocks. You can leave the GCC entries as <0>
-> until you introduce the QMPPHY support, which then you can feed as it
-> provides these clocks.
-Sure, okay
+> If OLDI_MODE_UNSUPPORTED is supposed to result in an error, maybe you 
+> could print the error here (and possibly in the default case below), and 
+> then, in the caller, just return with an error code.
 > 
+>> +    }
 >> +
->> +		sleep_clk: sleep-clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <32000>;
->> +			#clock-cells = <0>;
->> +		};
+>> +    /*
+>> +     * OLDI Ports found for both the OLDI TXes. The DSS is to be configured
+>> +     * in either Dual Link or Clone Mode.
+>> +     */
+>> +    pixel_order = drm_of_lvds_get_dual_link_pixel_order(oldi0_port,
+>> +                                oldi1_port);
+>> +    switch (pixel_order) {
+>> +    case -EINVAL:
+>> +        /*
+>> +         * The dual link properties were not found in at least one of
+>> +         * the sink nodes. Since 2 OLDI ports are present in the DT, it
+>> +         * can be safely assumed that the required configuration is
+>> +         * Clone Mode.
+>> +         */
+>> +        return OLDI_SINGLE_LINK_CLONE_MODE;
 >> +
->> +		xo_board_clk: xo-board-clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <24000000>;
-> The clock frequency should be moved to the device DT, because the
-> clock is on the board and not on the SoC.
-Okay, will move to device DT
+>> +    case DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS:
+>> +        /*
+>> +         * Note that the OLDI TX 0 transmits the odd set of pixels while
+>> +         * the OLDI TX 1 transmits the even set. This is a fixed
+>> +         * configuration in the IP and an cannot be change vis SW. These
+>> +         * properties have been used to merely identify if a Dual Link
+>> +         * configuration is required. Swapping this property in the panel
+>> +         * port DT nodes will not make any difference.
+>> +         */
+>> +        pr_warn("EVEN-ODD config for dual-link sinks is not supported in HW. Switching to ODD-EVEN.\n");
 > 
->> +			#clock-cells = <0>;
->> +		};
->> +	};
->> +
->> +	cpus {
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		CPU0: cpu@0 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a73";
->> +			reg = <0x0>;
->> +			enable-method = "psci";
->> +			next-level-cache = <&L2_0>;
->> +		};
->> +
->> +		CPU1: cpu@1 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a73";
->> +			reg = <0x1>;
->> +			enable-method = "psci";
->> +			next-level-cache = <&L2_0>;
->> +		};
->> +
->> +		CPU2: cpu@2 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a73";
->> +			reg = <0x2>;
->> +			enable-method = "psci";
->> +			next-level-cache = <&L2_0>;
->> +		};
->> +
->> +		CPU3: cpu@3 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a73";
->> +			reg = <0x3>;
->> +			enable-method = "psci";
->> +			next-level-cache = <&L2_0>;
->> +		};
->> +
->> +		L2_0: l2-cache {
->> +			compatible = "cache";
->> +			cache-level = <2>;
->> +		};
->> +	};
->> +
->> +	memory@40000000 {
->> +		device_type = "memory";
->> +		/* We expect the bootloader to fill in the size */
->> +		reg = <0x0 0x40000000 0x0 0x0>;
->> +	};
->> +
->> +	pmu {
->> +		compatible = "arm,cortex-a73-pmu";
->> +		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
->> +	};
->> +
->> +	psci {
->> +		compatible = "arm,psci-1.0";
->> +		method = "smc";
->> +	};
->> +
->> +	reserved-memory {
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +
->> +		tz_region: memory@4a600000 {
->> +			reg = <0x0 0x4a600000 0x0 0x400000>;
->> +			no-map;
->> +		};
-> That's.. surprisingly little reserved memory.. No hyp? No PIL regions
-> that make the board explode when something touches them?
+> Please use dev_warn() instead, so that it will be clear where the print 
+> comes from.
 > 
-The reserved memory for TZ region is 4Mb. yes,we have hypervisor and PIL 
-regions.
-The memory for PIL region will be separately reserved by the remoteproc
->> +	};
->> +
->> +	soc: soc@0 {
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +		ranges = <0 0 0 0xffffffff>;
-> Is 32 bits enough for this SoC's bus? Newer ones use 36 or more..
-Yes, as the maximum range supported by ipq9574 is 4GB, 32 bits would be 
-sufficient
+> In any case, isn't this an error? Do you really want to accept the wrong 
+> pixel order?
 > 
->> +		compatible = "simple-bus";
+>> +        fallthrough;
 >> +
->> +		tlmm: pinctrl@1000000 {
->> +			compatible = "qcom,ipq9574-tlmm";
->> +			reg = <0x01000000 0x300000>;
->> +			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
->> +			gpio-controller;
->> +			#gpio-cells = <2>;
->> +			gpio-ranges = <&tlmm 0 0 65>;
->> +			gpio-reserved-ranges = <59 1>;
-> I see it's assigned to [rx0, pwm23, qdss_tracedata_a].. Is this
-> board-specific or is this pin supposed to be forbidden on all IPQ9574
-> boards?
-This pin is reserved by TZ and is forbidden on all IPQ9574 boards.
+>> +    case DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS:
+>> +        return OLDI_DUAL_LINK_MODE;
+>> +
+>> +    default:
+>> +        return OLDI_MODE_OFF;
 > 
->> +			interrupt-controller;
->> +			#interrupt-cells = <2>;
->> +
->> +			uart2_pins: uart2-state {
->> +				pins = "gpio34", "gpio35";
->> +				function = "blsp2_uart";
->> +				drive-strength = <8>;
->> +				bias-disable;
->> +			};
->> +		};
->> +
->> +		gcc: clock-controller@1800000 {
->> +			compatible = "qcom,gcc-ipq9574";
->> +			reg = <0x1800000 0x80000>;
->> +			clocks = <&xo_board_clk>,
->> +				<&sleep_clk>,
->> +				<&bias_pll_ubi_nc_clk>,
->> +				<&pcie30_phy0_pipe_clk>,
->> +				<&pcie30_phy1_pipe_clk>,
->> +				<&pcie30_phy2_pipe_clk>,
->> +				<&pcie30_phy3_pipe_clk>,
->> +				<&usb3phy_0_cc_pipe_clk>;
->> +			clock-names = "xo",
->> +				"sleep_clk",
->> +				"bias_pll_ubi_nc_clk",
->> +				"pcie30_phy0_pipe_clk",
->> +				"pcie30_phy1_pipe_clk",
->> +				"pcie30_phy2_pipe_clk",
->> +				"pcie30_phy3_pipe_clk",
->> +				"usb3phy_0_cc_pipe_clk";
-> Please touch up the indentation.
+> When do we get here? Shouldn't this be OLDI_MODE_UNSUPPORTED?
 > 
-Sure okay
->> +			#clock-cells = <1>;
->> +			#reset-cells = <1>;
->> +		};
+>> +    }
+>> +}
 >> +
->> +		sdhc_1: sdhci@7804000 {
->> +			compatible = "qcom,sdhci-msm-v5";
->> +			reg = <0x7804000 0x1000>, <0x7805000 0x1000>;
->> +			reg-names = "hc_mem", "cmdq_mem";
+>>   static int tidss_dispc_modeset_init(struct tidss_device *tidss)
+>>   {
+>>       struct device *dev = tidss->dev;
+>>       unsigned int fourccs_len;
+>>       const u32 *fourccs = dispc_plane_formats(tidss->dispc, 
+>> &fourccs_len);
+>> -    unsigned int i;
+>> +    unsigned int i, j;
+>>       struct pipe {
+>>           u32 hw_videoport;
+>> -        struct drm_bridge *bridge;
+>> +        struct drm_bridge *bridge[TIDSS_MAX_BRIDGES_PER_PIPE];
+>>           u32 enc_type;
+>> +        u32 num_bridges;
+>>       };
+>>       const struct dispc_features *feat = tidss->feat;
+>> -    u32 max_vps = feat->num_vps;
+>> +    u32 output_ports = feat->num_output_ports;
+>>       u32 max_planes = feat->num_planes;
+>> -    struct pipe pipes[TIDSS_MAX_VPS];
+>> +    struct pipe pipes[TIDSS_MAX_VPS] = {0};
 >> +
->> +			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
->> +				   <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-> Please touch up the indentation.
-Okay
+>>       u32 num_pipes = 0;
+>>       u32 crtc_mask;
+>> +    u32 portnum_oldi0 = 0, portnum_oldi1 = 2;
 > 
->> +			interrupt-names = "hc_irq", "pwr_irq";
->> +
->> +			clocks = <&xo_board_clk>,
->> +			       <&gcc GCC_SDCC1_AHB_CLK>,
->> +			       <&gcc GCC_SDCC1_APPS_CLK>;
-> Please touch up the indentation.
+> These two are bit of hacks. First, they should be const, or maybe 
+> defines. If they're const, they can be inside the block below.
 > 
-Sure, will do
->> +			clock-names = "xo", "iface", "core";
-> The order should be "iface", "core", "xo" as per Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-Got it, will update
+> And they're very much tied to the HW in question, so just having 
+> hardcoded values here inside a function without any mention of the 
+> situation is not good.
 > 
->> +			mmc-ddr-1_8v;
->> +			mmc-hs200-1_8v;
->> +			mmc-hs400-1_8v;
->> +			mmc-hs400-enhanced-strobe;
-> Are these the limitations of the controller? Otherwise they should
-> probably be moved to the device-specific DT.
-Yes, these are specific to the controller, hence added them in SoC
+> Doing this in a generic and future proof manner is... challenging. So I 
+> think using the hardcoded port numbers is fine. But they are only ok for 
+> the two AM6xx SoCs we have now so the 'oldi_supported' is not very good 
+> fit. In fact, it might be good to drop 'oldi_supported' altogether, and 
+> just check for the SoC versions instead, as (with a quick glance), all 
+> the 'oldi_supported' checks are really SoC specific.
 > 
->> +			max-frequency = <384000000>;
->> +			bus-width = <8>;
+I will be make these portnum variables const as you suggested and
+moving these as well as get-node and put-node function calls to the
+get_oldi_mode function to keep things clear.
+
+However, I believe the 'oldi_supported' variable should still be kept
+(after renaming it to has_oldi as per your suggestion in the previous
+patch) because having this variable will help distinguish from the cases
+where an SoC *can* support OLDI output but its output by-passes the OLDI
+TXes and a DPI output is expected.
+
+> This also again brings up a thing that rubs me the wrong way: the new 
+> OLDI port is port 2. I really think that on AM62x, the two OLDI ports 
+> should be 0 and 1, and the DPI should be 2. Would we need a new 
+> dt-binding doc for that, or could it still be described in the same doc? 
+> Would that change cause changes elsewhere in the dss driver?
 > 
->> +			non-removable;
-> And this property too.
-Yes, it is specific to the controller
->> +			status = "disabled";
->> +		};
+>> +    enum dispc_oldi_modes oldi_mode = OLDI_MODE_OFF;
+>> +    u32 num_oldi = 0;
+>> +    u32 oldi_pipe_index = 0;
+>> +    u32 num_encoders = 0;
 >> +
->> +		blsp1_uart2: serial@78b1000 {
->> +			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
->> +			reg = <0x078b1000 0x200>;
->> +			interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&gcc GCC_BLSP1_UART3_APPS_CLK>,
->> +				 <&gcc GCC_BLSP1_AHB_CLK>;
->> +			clock-names = "core", "iface";
->> +			status = "disabled";
->> +		};
+>> +    if (feat->oldi_supported) {
+>> +        struct device_node *oldi0_port, *oldi1_port;
 >> +
->> +		intc: interrupt-controller@b000000 {
->> +			compatible = "qcom,msm-qgic2";
->> +			reg = <0x0b000000 0x1000>,  /* GICD */
->> +			      <0x0b002000 0x1000>,  /* GICC */
->> +			      <0x0b001000 0x1000>,  /* GICH */
->> +			      <0x0b004000 0x1000>;  /* GICV */
->> +			#address-cells = <1>;
->> +			#size-cells = <1>;
->> +			interrupt-controller;
->> +			#interrupt-cells = <3>;
->> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
->> +			ranges = <0 0x0b00c000 0x3000>;
+>> +        oldi0_port = of_graph_get_port_by_id(dev->of_node,
+>> +                             portnum_oldi0);
+>> +        oldi1_port = of_graph_get_port_by_id(dev->of_node,
+>> +                             portnum_oldi1);
 >> +
->> +			v2m0: v2m@0 {
->> +				compatible = "arm,gic-v2m-frame";
->> +				reg = <0x0 0xffd>;
->> +				msi-controller;
->> +			};
+>> +        oldi_mode = tidss_get_oldi_mode(oldi0_port, oldi1_port);
 >> +
->> +			v2m1: v2m@1 {
->> +				compatible = "arm,gic-v2m-frame";
->> +				reg = <0x1000 0xffd>;
->> +				msi-controller;
->> +			};
+>> +        of_node_put(oldi0_port);
+>> +        of_node_put(oldi1_port);
 >> +
->> +			v2m2: v2m@2 {
->> +				compatible = "arm,gic-v2m-frame";
->> +				reg = <0x2000 0xffd>;
->> +				msi-controller;
->> +			};
->> +		};
->> +
->> +		timer@b120000 {
->> +			compatible = "arm,armv7-timer-mem";
->> +			reg = <0xb120000 0x1000>;
->> +			#address-cells = <1>;
->> +			#size-cells = <1>;
->> +			ranges;
->> +			clock-frequency = <24000000>;
-> Drop, something earlier in the boot chain already writes to CNTFRQ_ELn.
+>> +        dispc_set_oldi_mode(tidss->dispc, oldi_mode);
+>> +    }
+>>       /* first find all the connected panels & bridges */
+>> -    for (i = 0; i < max_vps; i++) {
+>> +    for (i = 0; i < output_ports; i++) {
+>>           struct drm_panel *panel;
+>>           struct drm_bridge *bridge;
+>>           u32 enc_type = DRM_MODE_ENCODER_NONE;
+>> @@ -145,16 +230,24 @@ static int tidss_dispc_modeset_init(struct 
+>> tidss_device *tidss)
+>>               return ret;
+>>           }
+>> +        if (feat->output_port_bus_type[i] == DISPC_VP_OLDI &&
+>> +            oldi_mode == OLDI_MODE_UNSUPPORTED) {
+>> +            dev_err(dev,
+>> +                "Single Mode over OLDI 1 is not supported in HW. Keeping OLDI off.\n");
+>> +            continue;
 > 
-Sure, okay
->> +
->> +			frame@b120000 {
->> +				reg = <0xb121000 0x1000>,
->> +				      <0xb122000 0x1000>;
->> +				frame-number = <0>;
->> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
->> +					     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
->> +			};
->> +
->> +			frame@b123000 {
->> +				reg = <0xb123000 0x1000>;
->> +				frame-number = <1>;
->> +				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
->> +				status = "disabled";
->> +			};
->> +
->> +			frame@b124000 {
->> +				reg = <0xb124000 0x1000>;
->> +				frame-number = <2>;
->> +				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
->> +				status = "disabled";
->> +			};
->> +
->> +			frame@b125000 {
->> +				reg = <0xb125000 0x1000>;
->> +				frame-number = <3>;
->> +				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
->> +				status = "disabled";
->> +			};
->> +
->> +			frame@b126000 {
->> +				reg = <0xb126000 0x1000>;
->> +				frame-number = <4>;
->> +				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
->> +				status = "disabled";
->> +			};
->> +
->> +			frame@b127000 {
->> +				reg = <0xb127000 0x1000>;
->> +				frame-number = <5>;
->> +				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
->> +				status = "disabled";
->> +			};
->> +
->> +			frame@b128000 {
->> +				reg = <0xb128000 0x1000>;
->> +				frame-number = <6>;
->> +				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
->> +				status = "disabled";
->> +			};
->> +		};
->> +	};
->> +
->> +	timer {
->> +		compatible = "arm,armv8-timer";
->> +		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
->> +		clock-frequency = <24000000>;
-> Drop, something earlier in the boot chain already writes to CNTFRQ_ELn.
+> Should we error out here?
 > 
-Okay
-> Konrad
->> +	};
->> +};
-Best Regards,
-Devi Priya
+>> +        }
+>> +
+>>           if (panel) {
+>>               u32 conn_type;
+>>               dev_dbg(dev, "Setting up panel for port %d\n", i);
+>> -            switch (feat->vp_bus_type[i]) {
+>> +            switch (feat->output_port_bus_type[i]) {
+>>               case DISPC_VP_OLDI:
+>>                   enc_type = DRM_MODE_ENCODER_LVDS;
+>>                   conn_type = DRM_MODE_CONNECTOR_LVDS;
+>>                   break;
+>> +
+>>               case DISPC_VP_DPI:
+>>                   enc_type = DRM_MODE_ENCODER_DPI;
+>>                   conn_type = DRM_MODE_CONNECTOR_DPI;
+>> @@ -172,6 +265,17 @@ static int tidss_dispc_modeset_init(struct 
+>> tidss_device *tidss)
+>>                   return -EINVAL;
+>>               }
+>> +            /*
+>> +             * If the 2nd OLDI port is discovered connected to a panel
+>> +             * which is not to be connected in the Clone Mode then a
+>> +             * bridge is not required because the detected port is the
+>> +             * 2nd port for the previously connected panel.
+>> +             */
+>> +            if (feat->output_port_bus_type[i] == DISPC_VP_OLDI &&
+>> +                oldi_mode != OLDI_SINGLE_LINK_CLONE_MODE &&
+> 
+  > Hmm, shouldn't this be oldi_mode == OLDI_DUAL_LINK_MODE? Or rather,
+Yes. I will make the change...
+
+> shouldn't we test here if this is the second oldi display, and if so 
+> which oldi-mode are we using. If dual-link, break. If clone, continue. 
+> Otherwise, error.
+but, if I implement the oldi-mode-find logic over here, that would be
+limited to panels and will skip out the bridges. And the mode-find
+should really be only done once.
+
+That said, I see that this can get a little confusing, So, while keeping
+the mode-find logic separate, I have organized the other OLDI specific
+things separately in the next patch.
+
+> 
+>> +                num_oldi)
+>> +                break;
+>> +
+>>               bridge = devm_drm_panel_bridge_add(dev, panel);
+>>               if (IS_ERR(bridge)) {
+>>                   dev_err(dev,
+>> @@ -181,10 +285,47 @@ static int tidss_dispc_modeset_init(struct 
+>> tidss_device *tidss)
+>>               }
+>>           }
+>> -        pipes[num_pipes].hw_videoport = i;
+>> -        pipes[num_pipes].bridge = bridge;
+>> -        pipes[num_pipes].enc_type = enc_type;
+>> -        num_pipes++;
+>> +        if (feat->output_port_bus_type[i] == DISPC_VP_OLDI) {
+>> +            if (++num_oldi == 1) {
+>> +                /* Setting up pipe parameters when 1st OLDI port is detected */
+>> +
+>> +                pipes[num_pipes].hw_videoport = i;
+>> +                pipes[num_pipes].enc_type = enc_type;
+>> +
+>> +                /*
+>> +                 * Saving the pipe index in case its required for
+>> +                 * 2nd OLDI Port.
+>> +                 */
+>> +                oldi_pipe_index = num_pipes;
+>> +
+>> +                /*
+>> +                 * No additional pipe is required for the 2nd OLDI
+>> +                 * port, because the 2nd Encoder -> Bridge connection
+>> +                 * is the part of the first OLDI Port pipe.
+>> +                 *
+>> +                 * num_pipes will only be incremented when the first
+>> +                 * OLDI port is discovered.
+>> +                 */
+>> +                num_pipes++;
+>> +            }
+>> +
+>> +            /*
+>> +             * Bridge is required to be added only if the detected
+>> +             * port is the first OLDI port or a subsequent port in
+>> +             * Clone Mode.
+>> +             */
+>> +            if (oldi_mode == OLDI_SINGLE_LINK_CLONE_MODE ||
+>> +                num_oldi == 1) {
+>> +                pipes[oldi_pipe_index].bridge[num_oldi - 1] = bridge;
+>> +                pipes[oldi_pipe_index].num_bridges++;
+>> +            }
+>> +        } else {
+>> +            pipes[num_pipes].hw_videoport = i;
+>> +            pipes[num_pipes].bridge[0] = bridge;
+>> +            pipes[num_pipes].num_bridges++;
+>> +            pipes[num_pipes].enc_type = enc_type;
+>> +            num_pipes++;
+>> +        }
+>>       }
+>>       /* all planes can be on any crtc */
+>> @@ -196,6 +337,7 @@ static int tidss_dispc_modeset_init(struct 
+>> tidss_device *tidss)
+>>           struct tidss_plane *tplane;
+>>           struct tidss_crtc *tcrtc;
+>>           struct drm_encoder *enc;
+>> +        u32 possible_clones = 0;
+>>           u32 hw_plane_id = feat->vid_order[tidss->num_planes];
+>>           int ret;
+>> @@ -218,16 +360,24 @@ static int tidss_dispc_modeset_init(struct 
+>> tidss_device *tidss)
+>>           tidss->crtcs[tidss->num_crtcs++] = &tcrtc->crtc;
+>> -        enc = tidss_encoder_create(tidss, pipes[i].enc_type,
+>> -                       1 << tcrtc->crtc.index);
+>> -        if (IS_ERR(enc)) {
+>> -            dev_err(tidss->dev, "encoder create failed\n");
+>> -            return PTR_ERR(enc);
+>> -        }
+>> +        for (j = 0; j < pipes[i].num_bridges; j++) {
+>> +            if (pipes[i].num_bridges > 1)
+>> +                possible_clones = (((1 << pipes[i].num_bridges) - 1)
+>> +                          << num_encoders);
+> 
+> I think the above possible_clones assignment can be outside the for loop. >
+>> +
+>> +            enc = tidss_encoder_create(tidss, pipes[i].enc_type,
+>> +                           1 << tcrtc->crtc.index,
+>> +                           possible_clones);
+>> +            if (IS_ERR(enc)) {
+>> +                dev_err(tidss->dev, "encoder create failed\n");
+>> +                return PTR_ERR(enc);
+>> +            }
+>> -        ret = drm_bridge_attach(enc, pipes[i].bridge, NULL, 0);
+>> -        if (ret)
+>> -            return ret;
+>> +            ret = drm_bridge_attach(enc, pipes[i].bridge[j], NULL, 0);
+>> +            if (ret)
+>> +                return ret;
+>> +        }
+>> +        num_encoders += pipes[i].num_bridges;
+>>       }
+>>       /* create overlay planes of the leftover planes */
+
+Regards
+Aradhya
