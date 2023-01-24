@@ -2,81 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB109679D2F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 16:16:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4C1A679D38
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 16:18:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233241AbjAXPQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 10:16:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58306 "EHLO
+        id S233939AbjAXPR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 10:17:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234969AbjAXPOz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 10:14:55 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF1B6470A6
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 07:14:53 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id h16so14185973wrz.12
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 07:14:53 -0800 (PST)
+        with ESMTP id S234136AbjAXPR5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 10:17:57 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409E626A7
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 07:17:52 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id r2so14203747wrv.7
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 07:17:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fa3NonT7uFixEjw+mFXts/QRHz1QGTzg+aYFZ1DSamI=;
-        b=ZDwoRWXjszEA2Uri4ulJorf3U8qeYpMCzR9w95It/1gUBf49Qp2To8luIc8kDHdrxW
-         FO9g8eIkGybfAuaMkAa7qWlRjQKZia6gZzzuEMba/PBpQbZj1vsW7IiTtxk2BaCH6u2g
-         WuY8nWWaaQZesAhD1Hp/CkPGxt+c73uqhP8N9iH4sqYsfkhAcz+YH4CYpjPbr6j9NPtv
-         JxdnlmhmAEJupOZdHv/cSBJi772XxQ1gunch/yWVVhkzzd27ePiVcvcS1ch7I6bM+mbN
-         3Vp0oCwj6XDip/JpghvWcM6pCB5D5rCwK2bxnp08+BJutG4B+3YIVslD9+EB+fibY2+p
-         qZ6Q==
+        bh=P2VSIRQ0sM1vpHuf8rla2J/YgrIDXTW4aHVMtNxKuzs=;
+        b=E0vtUfGK8Xgmn95qAj3P+4mKS2op5T6PfCq/IoA3n3HfdQ143BRpsqzwpCdU1JDSoR
+         XdkZfIWTqv7xfBwmxEmitd7mqjwpIc3/onc81/cvxT8LyUYQkAq4pd1bq3Hoikqzw7t+
+         ZdzRdS3gBlWoTpM5jVLcydnUdC4DcYfpLrYD9zehs/8ZDjbq4ABgjs0NrtRCbg97z9aq
+         gY0UHZdcwvYYIpGgszUQVqNUDCD6wp0VGQxk81C/4RMEiTiynDbQ3yYd05FEWDASMrsM
+         CnntpL95bt90ccpOBbj8xwehvPTRoaTaA48VtgIzU8eisp1XvloCZJdB5uwP+D7xLXO0
+         fUug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fa3NonT7uFixEjw+mFXts/QRHz1QGTzg+aYFZ1DSamI=;
-        b=cUUNOyRiCRjmCe2nqPxL9likkoWDJCSqWDaxPaqeqJBl5gRidznyDMVJg3bo67qmpz
-         Ft6H86dngIXcPPb+9dYoRLbiseKKAACkll+wGLp99mwnkYNIyokvmnWk0QXpYFL4OFYt
-         4uNACBDVzl7+xh1BdQkBuWqyaspfhahjO5AwUexzdi5qkV4iRvJqVKcvQhqFixFjRkfZ
-         t+/RlQodSb6nLV6CKDWF79J6CkzJuW2SDDWg68GFI//AqAHyiRlARuHN19I/d1mjJ2RL
-         3s8yti8bl1rmw/uwy9HI38XElslUYM9XO7VwcHi90oiduXF8TpoOe1cfzz/t5sermb65
-         vqPA==
-X-Gm-Message-State: AFqh2koxSftO0Bg0eN2Iff2g2DrZ/BQYnmI7zRwHBXqO9jCaJtVR/BYv
-        NfMk6NBnNNSV2kFQYujj6GRrsg==
-X-Google-Smtp-Source: AMrXdXvK51H0IbshntMwpUlZI+AFdA28RuhJbW5H0nwtSX5T9NKgvLN4T82oPMNUoBjZnUPRsi2oJA==
-X-Received: by 2002:adf:e883:0:b0:2be:4624:dd81 with SMTP id d3-20020adfe883000000b002be4624dd81mr16218138wrm.58.1674573292454;
-        Tue, 24 Jan 2023 07:14:52 -0800 (PST)
+        bh=P2VSIRQ0sM1vpHuf8rla2J/YgrIDXTW4aHVMtNxKuzs=;
+        b=dmB38/gTTuVBLFKm9eKhCXPFJCw1OVFSF2QPMElSx4cASEtCFjJg37ugEW0S6j4uVn
+         Y2RHWkIGO2Q5m2Dq8aaFt0O+KWFOjEqv/+Q09eXmKw8J1i9ai8jP1Q+FXexSeMx05LB/
+         DjeMtTHo9Y85KTarQZf764DA+OPfw3a1inbI4QVLq/t5ovUvdEYizZViHlByBBom1bBQ
+         KPhF/Z3LpbosnC+jmJBSojVUcTuvVHrHOY2MxvAp6zKoPMw6s5ae6gs0kvIHqdxxkM32
+         jbtaSW1pjigztinXFDf869GplR4t9XHw6QwX3E3E+wkev1t4dIEgWBs2AwAuWpAY5T6m
+         fZyg==
+X-Gm-Message-State: AFqh2koVFJ6Dyt32r08i1bBkaLQ9KzpddBummKuUlmhnciB2U2bhpTpy
+        ceBY2EfXOoiRiGGYQDTCgRomUA==
+X-Google-Smtp-Source: AMrXdXsf+Cciqhme9ccOuJdxb626GrgOW7aBLMFfulcKCQgwB+siVPDLksLuWgH9yLYS2T/mc64t4g==
+X-Received: by 2002:adf:c7cb:0:b0:2bc:48b3:f6de with SMTP id y11-20020adfc7cb000000b002bc48b3f6demr29408935wrg.0.1674573470736;
+        Tue, 24 Jan 2023 07:17:50 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id s9-20020adfdb09000000b002238ea5750csm2644979wri.72.2023.01.24.07.14.50
+        by smtp.gmail.com with ESMTPSA id r1-20020a0560001b8100b002bfae16ee2fsm2024181wru.111.2023.01.24.07.17.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 07:14:52 -0800 (PST)
-Message-ID: <adb66162-6ff3-184e-fe92-109bdef8ed1c@linaro.org>
-Date:   Tue, 24 Jan 2023 16:14:49 +0100
+        Tue, 24 Jan 2023 07:17:50 -0800 (PST)
+Message-ID: <f14428c8-d059-2bd0-49f0-5b05cb5bc7f8@linaro.org>
+Date:   Tue, 24 Jan 2023 16:17:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH V1 7/8] arm64: dts: qcom: Add ipq9574 SoC and AL02 board
- support
+Subject: Re: [PATCH linux-next v4 4/4] dt-bindings: usb: Fix device tree
+ binding for VL817 hub controller
 Content-Language: en-US
-To:     devi priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, ulf.hansson@linaro.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
-        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
-        broonie@kernel.org, tdas@codeaurora.org, bhupesh.sharma@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-References: <20230124141541.8290-1-quic_devipriy@quicinc.com>
- <20230124141541.8290-8-quic_devipriy@quicinc.com>
+To:     Anand Moon <linux.amoon@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230124144054.13556-1-linux.amoon@gmail.com>
+ <20230124144054.13556-5-linux.amoon@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230124141541.8290-8-quic_devipriy@quicinc.com>
+In-Reply-To: <20230124144054.13556-5-linux.amoon@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,38 +78,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 15:15, devi priya wrote:
-> From: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+On 24/01/2023 15:40, Anand Moon wrote:
+> Cleanup by removing unneeded quotes from refs and
+> add maxItems to reset-gpios and fix the required list.
 > 
-> Add initial device tree support for Qualcomm IPQ9574 SoC
-> and AL02 board
-> 
-> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> Co-developed-by: devi priya <quic_devipriy@quicinc.com>
-> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
-> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile            |   1 +
->  arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts |  78 +++++
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi        | 285 +++++++++++++++++++
->  3 files changed, 364 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 3e79496292e7..872c62028a0b 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq6018-cp01-c1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c2.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-al02-c7.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
+> Fixes: 31360c28dfdd ("dt-bindings: usb: Add binding for Via lab VL817 hub controller")
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-This does not match current tree, so I could not apply it for tests. I
-think you based it on a bit older version.
+I think it's the first time I see this patch. Where did I review it?
+
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
+
+Subject: drop second/last, redundant "device tree binding for". The
+"dt-bindings" prefix is already stating that these are bindings.
+
+
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+>  .../devicetree/bindings/usb/vialab,vl817.yaml  | 18 ++++++++++--------
+>  1 file changed, 10 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
+> index 5f9771e22058..23a13e1d5c7a 100644
+> --- a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
+> +++ b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
+
 
 Best regards,
 Krzysztof
