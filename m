@@ -2,78 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFB2C679DA9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 16:37:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31F20679DC9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 16:43:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235143AbjAXPhd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 10:37:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49620 "EHLO
+        id S234735AbjAXPnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 10:43:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234172AbjAXPhb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 10:37:31 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 770B82CC73;
-        Tue, 24 Jan 2023 07:37:28 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7EBA96602E31;
-        Tue, 24 Jan 2023 15:37:26 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1674574647;
-        bh=6o2Viye9YQhlWUr1v1m4HSU+/9UO2qVzEYBso3DcU74=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=EcfMMKRrFJ+ZmF4kvLS3arY6Ebrqq007CmGaHy4ghYSORuNKDs/FaqDZdz9Svndho
-         WemQr658azNuU+A/bpt//twLudF7E9dIqLwjkxlK/u44KPJN9cv2nhKrTeOl2JGt8k
-         Ea/zFkOgWa+5nCkrvhlt9adSY2Ambx2t67Z5GnRlJoHMNBlLyldGJljfFCeRH2hjiA
-         /9VXQAKKvWqoSgfzr6dw16ArwG68QPCSUHSSmthfLZIUMl6r9eruPFWiXmYWtRDIvH
-         9ad99HMS9cA0vI6/gZyXGECKDUM0AkfZRkdmtp3vuJuXa6EbHCgncd9nHZQaybcu6V
-         EFbbBC0PVeEFw==
-Message-ID: <976628a6-58c8-3298-3777-97aaddf53bc1@collabora.com>
-Date:   Tue, 24 Jan 2023 16:37:24 +0100
+        with ESMTP id S234093AbjAXPnY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 10:43:24 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E96A74C0E3
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 07:43:08 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so13116787wma.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 07:43:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=N/a+6+PTNK+EgdrHpwsWimSpIXxnD79ClgSYevcrnuE=;
+        b=yf89n9wHbV/XnkigjdbRLaTnDYXsvazoQNIyN4X9VfmFm/yRnOxKuD2VSDfh5nnAp6
+         j4iTCxnMuig5YSDyZo8Erw2bTT2twrR2zWWFhJy6JFPsnAcAcdTGVctCKCp9UWLgE4+m
+         3Zi1q2MGqqELl250sQRxjmNJ0u7dcRA6gGRtqvEmswNkmgTPhecSFQp0Il/496oc8U0/
+         YdfTzSMYOXEck4uhxPAIyQRXI+zoKOVzm9a5QSHHp61yj+d8NPyK6ZRiRzTixITkkm6w
+         gciX8E0C3kDc17akCA4xh1Di4UAEoZQsJSGgqIo/e9jYsdup1v6zagNvDeIvivrAfAuw
+         HUuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=N/a+6+PTNK+EgdrHpwsWimSpIXxnD79ClgSYevcrnuE=;
+        b=LU8lrntdRT6IFHB8lsXFtZfWn1d7v3p53wsBsnbenhAuaS7Z3qFkgf9AKBpvgt3wmv
+         TZfy8g/K7rJA9oNR7qW3C74EbRQEE9UV+PFEPaDdnCJo9Xr+f70kDZgKnMXA74trSPKR
+         2PFQ16KmT+MtGiUwt62mF0Gq7IjSGCUFyDaDAAczrfB3XBquXeVMA3VwigYqqgsU6Flm
+         tEc7GxaQESRENkcotvOoeYZNK5lkIk5/oq+bOKqYyUhvi+m4fqNMGfAuYlDjh7tqzBES
+         UY4PMdvWbYV1B77JqX4Y6ulBAQgmwOJo4rkVFhjAlkxXKqRdg/1cSL8SPwlYFSTPSPcV
+         lp5A==
+X-Gm-Message-State: AFqh2kp4CqqOtWpZFN4fOslX+rPilVnN+j5TuhmjoIQ2xCDDwvItuGaL
+        bv/zllcN7vE3Ag6S4AjI7DfvtQ==
+X-Google-Smtp-Source: AMrXdXuYOE3dT+VE3oSwdKK67My+x+RmBaEi/JYTrdmPi+C9tVhvtgV7Z5YjOeHbO2Ewx7v3D/2lrg==
+X-Received: by 2002:a05:600c:1d12:b0:3da:ff82:f627 with SMTP id l18-20020a05600c1d1200b003daff82f627mr29438313wms.25.1674574987235;
+        Tue, 24 Jan 2023 07:43:07 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id t16-20020a5d49d0000000b002bfb0c5527esm1611046wrs.109.2023.01.24.07.43.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Jan 2023 07:43:06 -0800 (PST)
+Message-ID: <e34dd560-1fb5-bd27-a659-eec465fe584a@linaro.org>
+Date:   Tue, 24 Jan 2023 16:43:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v11 1/6] thermal/drivers/mediatek: Relocate driver to
- mediatek folder
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v3 05/10] dt-bindings: soc: fsl: cpm_qe: Add QMC
+ controller
 Content-Language: en-US
-To:     bchihi@baylibre.com, daniel.lezcano@linaro.org, rafael@kernel.org,
-        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
-        p.zabel@pengutronix.de
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-References: <20230124131717.128660-1-bchihi@baylibre.com>
- <20230124131717.128660-2-bchihi@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230124131717.128660-2-bchihi@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230113103759.327698-1-herve.codina@bootlin.com>
+ <20230113103759.327698-6-herve.codina@bootlin.com>
+ <316ddb81-8d13-71dd-3396-412e31cfb880@linaro.org>
+ <20230124104232.183cc9ff@bootlin.com>
+ <37a95380-ee68-5c3a-3b96-48cc8b525f19@linaro.org>
+ <20230124122347.1a531d0f@bootlin.com>
+ <81f80190-a05c-5d0d-11b2-a80573b86e1c@linaro.org>
+ <20230124151514.58d77765@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230124151514.58d77765@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 24/01/23 14:17, bchihi@baylibre.com ha scritto:
-> From: Balsam CHIHI <bchihi@baylibre.com>
+On 24/01/2023 15:15, Herve Codina wrote:
+>>> Is that what you were thinking about ?  
+>>
+>> Yes, except again, so third time, why calling this "cell"? Move it to
+>> fsl,tsa.
+>>
 > 
-> Add MediaTek proprietary folder to upstream more thermal zone and cooler
-> drivers, relocate the original thermal controller driver to it, and rename it
-> as "auxadc_thermal.c" to show its purpose more clearly.
+> Why calling this "cell" ? Just because we reference a "cell" using the TSA
+> cell ID inside TSA and not the TSA itself.
 > 
-> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> Maybe the problem is the term "cell" as it is not the DT definition of
+> "cell" but the source/destination of the TSA routing.
+> 
+> TSA can route data from/to some "serial controller".
+> These serial controllers are :
+> - SCC (Serial Communication Controller)
+> - SMC (Serial Management Controller)
+> - UCC (Unified Communication Controller)
+> 
+> Only SCCs are handled here.
+> 
+> Maybe the term "serial" makes more sense which will lead to
+>   fsl,tsa-serial = <&tsa, SCC4>;
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Yes, that's better. Thanks.
 
+Best regards,
+Krzysztof
 
