@@ -2,105 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B84D86797D6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 13:24:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 446E56797E5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 13:25:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233880AbjAXMYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 07:24:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36358 "EHLO
+        id S233889AbjAXMZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 07:25:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233370AbjAXMYQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 07:24:16 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64ECE38B6D
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:23:46 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so10804468wms.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:23:46 -0800 (PST)
+        with ESMTP id S233944AbjAXMZU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 07:25:20 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E59A2CC6A
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:24:54 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id k16so11302502wms.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:24:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QkTslYMiKbk7wM257ny2CAnZjADL3oZfRoJOLk54k/Y=;
-        b=fzwSE+w049j/XzsIp7VUc9Q4DMyKfqq3Fp9d7DWaBMheW9x2sAs/MEIqyXhSwh2Ov+
-         lHJkJNtaj2yX0tcWoYrO94slISdmHHwqb5BJPTm0+aVrRe17mD3+ouSS5nqgx17rmuWW
-         P3WgVVhT2eNj5WfW1CsxGFGRQgREq/ge11+AXiKBtdgqqWe+RwvPWzwiN6gIMVxXeBZq
-         Jsaf6aqpsdKgVx1p4407eetShAwkNMocLtr4P0EvGNrYCE72VI0cUNEjOSfQbSbc6k0h
-         FlcoIj+kxvNDX0HFC6VC613tx/fb/Rw27XhuLn2fhJ+aeKbL76OMuE5mOyBKRKPJZPfa
-         jIzg==
+        bh=mXlY6d84cdDKWem0q3VudkJf3bezWEcgaKMh2EVVNTk=;
+        b=yshX5LVfelCZT3Fz0BnGm7SsS9jy0waJoSge507dcSisDup5h/ABso0CdkDfrqsEIs
+         iQmy0vR3t8Ph4qtrPcZaOd905M50h8l7YslYTD8KTF2e4AILuC8LTHyz26RanfSIu/eK
+         7cVpAw/Rt0X8l7coTYT1FrFQa37DhulX8Bodsp5uj6mwfhl6WawDlnmbZ0DQxH2J66uQ
+         Qs55hWz87iVLm7kXT13fPb3nZlmnFkSuzgRdcpYPnSvEjD+A7sHd2uaOk7J+UERhqmHA
+         GuLH0ER8fghA+ktwkspHjWiJI/TJ8OuIWep19q/aScDe8vg9dkPSd/d7Zte9ceKjwjrA
+         sCyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QkTslYMiKbk7wM257ny2CAnZjADL3oZfRoJOLk54k/Y=;
-        b=7pjwNvQIhet9xgnCf1z9kF4qEjh4dGwMD+yA0EDr3jrxl03kp/PNQn8HMcn9zDEzO0
-         bjfBJucm6O6KQoLurSMKB1gd1qiYBJcRS+WwxAFb4Jzo0WqiMdpNU4EzQxvcrVNiPkv2
-         B48MYxtKj1CMPMFRz6LQ+zcUacdMeeibn6qZQnCWTeS8215GIT8P95t89Ks4FVb50rK5
-         smQ5lDgPLG17stQ3DT8TR1mJ3wuNgL+FyGJMTsM83O58sLVkV2OJsLbd1cBNwdjn+ytA
-         sP+ihQGuO6rbs+X2ZozMZOAhbVxabLcuAt/PV8ltlj3qEs21p7/RAEQfF47yjIb3skjp
-         YPMw==
-X-Gm-Message-State: AFqh2kpEGK6XUEbyIGrsTAYBw7u98MNbw2TPR89ZWAFYPAICSHTDb3us
-        B2c8fRrgsC6Fpxte4AuHaLMNHw==
-X-Google-Smtp-Source: AMrXdXuHLbuyQsCikp2sixdbE7T4vLrvn3duH3fx+F/wRHrodHvlBxYaP9Buh5DxlemteuWNTR2HPQ==
-X-Received: by 2002:a05:600c:601c:b0:3d3:4f56:62e1 with SMTP id az28-20020a05600c601c00b003d34f5662e1mr27626827wmb.27.1674563006565;
-        Tue, 24 Jan 2023 04:23:26 -0800 (PST)
+        bh=mXlY6d84cdDKWem0q3VudkJf3bezWEcgaKMh2EVVNTk=;
+        b=ENsLeOopaAlz4u+WokYblTdy2tG6+Ms/JgkBnjhfGP7LXVJHAYZMn8wbUJrjZL1k80
+         mjNQY4jUMeqa1Sap4fMCuaxJYVH6n0nh8pv7PPYjxKQwSpf7MM2IYUP1uuE1FFPlMTiP
+         ZunkzDxgsn77KTkIpJBYRP5xR9QhETKYGspWtwrmBHIb92O8RcKQtxeeIh6u48CB670W
+         sMbVW82Kw5HFHFz4MMOBydKE2x8bFtuXtyFLezjTh+fXf2yJAW0qxxvxer5rtXsDnZpl
+         JTZ42vOFLaNc9xX6RqOHMcnmF45kAEBPpDIdfTgaOF8NdZk7n/kOeM6bb+J1qqY/5viJ
+         Isxg==
+X-Gm-Message-State: AFqh2krd7WJxdVD4SbXgLv/CdRIx7N9MzNlyKXm0JamLRMafwNfBvLtQ
+        5O9ompfPoy9iJNRqssHefVmmRQ==
+X-Google-Smtp-Source: AMrXdXsJmuXVSoGbM30Ol21fX64ZHpWAegmpYeRztTdbiwGjGch6tL1FmYHfN1pkyNcJ2QozVYDswA==
+X-Received: by 2002:a05:600c:35d0:b0:3db:c4c:9224 with SMTP id r16-20020a05600c35d000b003db0c4c9224mr25931357wmq.3.1674563090763;
+        Tue, 24 Jan 2023 04:24:50 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y11-20020a1c4b0b000000b003daffc2ecdesm13175479wma.13.2023.01.24.04.23.25
+        by smtp.gmail.com with ESMTPSA id k16-20020a7bc410000000b003d99469ece1sm13200111wmi.24.2023.01.24.04.24.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 04:23:26 -0800 (PST)
-Message-ID: <cfc6b527-3293-b2aa-fd37-f2112b0bfb92@linaro.org>
-Date:   Tue, 24 Jan 2023 13:23:24 +0100
+        Tue, 24 Jan 2023 04:24:50 -0800 (PST)
+Message-ID: <81f80190-a05c-5d0d-11b2-a80573b86e1c@linaro.org>
+Date:   Tue, 24 Jan 2023 13:24:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH] hwmon: (pmbus/tda38640) Add driver for Infineon TDA38640
- Voltage Regulator
+Subject: Re: [PATCH v3 05/10] dt-bindings: soc: fsl: cpm_qe: Add QMC
+ controller
 Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230124110111.3965317-1-Naresh.Solanki@9elements.com>
- <b4b11836-5a4b-a2b7-18e2-89ca26f19817@linaro.org>
- <05947e9f-0667-4565-b481-ca5635da4174@9elements.com>
- <d8fb3c45-435d-f080-6ba4-e9e4595f3638@linaro.org>
- <3993c666-7038-76f8-9216-3db23ca0bffb@9elements.com>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230113103759.327698-1-herve.codina@bootlin.com>
+ <20230113103759.327698-6-herve.codina@bootlin.com>
+ <316ddb81-8d13-71dd-3396-412e31cfb880@linaro.org>
+ <20230124104232.183cc9ff@bootlin.com>
+ <37a95380-ee68-5c3a-3b96-48cc8b525f19@linaro.org>
+ <20230124122347.1a531d0f@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3993c666-7038-76f8-9216-3db23ca0bffb@9elements.com>
+In-Reply-To: <20230124122347.1a531d0f@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 13:19, Naresh Solanki wrote:
+On 24/01/2023 12:23, Herve Codina wrote:
+> On Tue, 24 Jan 2023 11:02:52 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 24/01/2023 10:42, Herve Codina wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On Tue, 17 Jan 2023 12:31:09 +0100
+>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>>   
+>>>> On 13/01/2023 11:37, Herve Codina wrote:  
+>>>>> Add support for the QMC (QUICC Multichannel Controller)
+>>>>> available in some PowerQUICC SoC such as MPC885 or MPC866.
+>>>>>
+>>>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+>>>>> ---
+>>>>>  .../bindings/soc/fsl/cpm_qe/fsl,qmc.yaml      | 164 ++++++++++++++++++
+>>>>>  1 file changed, 164 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..3ec52f1635c8
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
+>>>>> @@ -0,0 +1,164 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qmc.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: PowerQUICC CPM QUICC Multichannel Controller (QMC)
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Herve Codina <herve.codina@bootlin.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  The QMC (QUICC Multichannel Controller) emulates up to 64 channels within
+>>>>> +  one serial controller using the same TDM physical interface routed from
+>>>>> +  TSA.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    items:
+>>>>> +      - enum:
+>>>>> +          - fsl,mpc885-scc-qmc
+>>>>> +          - fsl,mpc866-scc-qmc
+>>>>> +      - const: fsl,cpm1-scc-qmc
+>>>>> +
+>>>>> +  reg:
+>>>>> +    items:
+>>>>> +      - description: SCC (Serial communication controller) register base
+>>>>> +      - description: SCC parameter ram base
+>>>>> +      - description: Dual port ram base
+>>>>> +
+>>>>> +  reg-names:
+>>>>> +    items:
+>>>>> +      - const: scc_regs
+>>>>> +      - const: scc_pram
+>>>>> +      - const: dpram
+>>>>> +
+>>>>> +  interrupts:
+>>>>> +    maxItems: 1
+>>>>> +    description: SCC interrupt line in the CPM interrupt controller
+>>>>> +
+>>>>> +  fsl,tsa:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>>> +    description: phandle to the TSA
+>>>>> +
+>>>>> +  fsl,tsa-cell-id:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    enum: [1, 2, 3]
+>>>>> +    description: |
+>>>>> +      TSA cell ID (dt-bindings/soc/fsl,tsa.h defines these values)
+>>>>> +       - 1: SCC2
+>>>>> +       - 2: SCC3
+>>>>> +       - 3: SCC4    
 >>>>
->>>>> +static const struct of_device_id tda38640_of_match[] = {
->>>>> +	{ .compatible = "infineon,tda38640"},
->>>>> +	{ },
->>>>> +};
->>>>> +MODULE_DEVICE_TABLE(of, tda38640_of_match);
->>>>
->>>> Where is it used? You miss the user.
->>> I'm not sure if I get your question right.
->>> This chip is used in sbp1 board to power CPU rails.
+>>>> Is this used as argument to tsa? If so, this should be part of fsl,tsa
+>>>> property, just like we do for all syscon-like phandles.  
+>>>
+>>> Yes, indeed.
+>>> I will move 'fsl,tsa' to 'fsl,tsa-cell' with 'fsl,tsa-cell' a phandle/number
+>>> pair (the phandle to TSA node and the TSA cell id to use)  
 >>
->> No, where is the data structure used (except module autoloading)?
-> My use case is loading the driver base on DT. Not sure of other uses.
+>> Move to fsl,tsa, not from.
+> 
+> Well, I plan to remove both fsl,tsa and fsl,tsa-cell-id and use this:
+>   fsl,tsa-cell:
+>     $ref: /schemas/types.yaml#/definitions/phandle-array
+>     items:
+>       - items:
+>           - description: phandle to TSA node
+>           - enum: [1, 2, 3]
+>             description: |
+>               TSA cell ID (dt-bindings/soc/fsl,tsa.h defines these values)
+>                - 1: SCC2
+>                - 2: SCC3
+>                - 3: SCC4
+>     description:
+>       Should be a phandle/number pair. The phandle to TSA node and the TSA
+>       cell ID to use.
+> 
+> Is that what you were thinking about ?
 
-Where is it used in the code?
+Yes, except again, so third time, why calling this "cell"? Move it to
+fsl,tsa.
 
 Best regards,
 Krzysztof
