@@ -2,115 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4149679311
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 09:27:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F312F679317
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 09:28:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbjAXI1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 03:27:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50436 "EHLO
+        id S229665AbjAXI23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 03:28:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232655AbjAXI1T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 03:27:19 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9346C642
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:27:12 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id m15so10794134wms.4
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:27:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=l32ibYG6p5bDrGsHgZxAaD4UChPnplKR4dXx/jYKRDA=;
-        b=JKNqKuqs+62LV2uGr0H76AeKHaofNBUD3PD06z8T8M+IGrZpO97cTq/Sl1NUFaz+PD
-         ki9FBk2C52GVGSlVVsImhjy+JOl2tkWYHuk0F9VeHN9+hqhv7qq16tjAmZMfzYawXWMF
-         8N0Xwa9HRXS2UcF3yYEwNj1W9SnijTva0mZ1YTetaomk7o6lg3zmaJWQpSNkh0JZW6eN
-         A5NxR0lY0bxfPyYvofnXfTk0AE4UQRT700951Mc/ZCoSB7m4W3So4PHGl88saJWEs2L4
-         C48h+JK/Rg8f6jeQwzuAdmlEbM0b+4FKpzSgNqUy1kfoVjTEdDLyK2gdV2jo1NGLiY3t
-         JTJw==
+        with ESMTP id S229452AbjAXI22 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 03:28:28 -0500
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79C1D2688;
+        Tue, 24 Jan 2023 00:28:26 -0800 (PST)
+Received: by mail-qt1-f175.google.com with SMTP id g16so10433650qtu.2;
+        Tue, 24 Jan 2023 00:28:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l32ibYG6p5bDrGsHgZxAaD4UChPnplKR4dXx/jYKRDA=;
-        b=jvg5+Pi4QzW/XYzGGK5Ff8gSAebdXpz4O1+EBhOK6lUxxy+Swtt4OGHuhEPg7oPCAi
-         uwFPAFBttxrRRLhdhp8NNVCLHiedtzKoy0pkFIDB4VEhsYQIgDwAXGHpovhsrvcV11oi
-         IuY38nNCcVuydI+FN1XUGTpeYHVUJZwpWR5fHVuKpJ9q+rOuKP180fwMTzcvOODnqG5p
-         kK0XTLiV96N3FjrrkqJflJdY+g6QZFJbNFaQp2V3ar3PaBPzvqzXCsrbkTztAwrn2k0r
-         CDaG873k305N1lR0GpvPePUs83XBSyTvk0KLknpvoL8z5SHbilz+ll0RmBql/qx6IFZc
-         Bqfg==
-X-Gm-Message-State: AFqh2krustyIhhxtg4DrljXlo1Vpa5gu4LGCVVAL3ZamJwow3e740W5a
-        Em3XHnG+pOHA/lYzo2lUJeV7Rw==
-X-Google-Smtp-Source: AMrXdXs8UXA8beQuN+9MpImN9RApvtnwpwlKVPL40j/+G59nG/CBvkp1LiNKNiClcIddqubyyyEagg==
-X-Received: by 2002:a05:600c:3d06:b0:3da:f945:2354 with SMTP id bh6-20020a05600c3d0600b003daf9452354mr27219855wmb.41.1674548831234;
-        Tue, 24 Jan 2023 00:27:11 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:ebd2:15b:f444:7985? ([2a01:e0a:982:cbb0:ebd2:15b:f444:7985])
-        by smtp.gmail.com with ESMTPSA id l18-20020adff492000000b00241d21d4652sm1308969wro.21.2023.01.24.00.27.10
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2Nk8GShX5LyBmobalGDGLvAPzTPwxt28vl4/lWIeTZc=;
+        b=h/G2eImV4QWScXVaTdUZ7ekOeV5nr4QEKn+R3yJEbY4ByH9P+Y0mXJAwEEKVGu5X7C
+         ju8exuqTI5LY+a/R95tu/pmM/wOB75qCZ4MQ+zYJj5CEJcRUF92VAuXZ8PMCGAtkgop+
+         9J4sHA/rrzRmRyYZ/wrzHBJD+O/olVROXsA8+OJVkQwly2w/87FS7ay5jvGNcetkQgVe
+         A4vCYoJ96z9diDEHx/jOlT2GFnwv3gJcZglLd6fbqcdhmrw5NiOBj3oW9b6FDX6OKHCE
+         /rS/TZ3sGQeEN0nQ4apbgx0bqzYT2lD2QX1WLSunqYnbdGAD+pO94jamwBOGNI8XV3Kx
+         P38g==
+X-Gm-Message-State: AFqh2kqFFfrhRujzMXzcaRBExFeYZrbxNkZcoRLhCh3xiR4Veym08dkL
+        6QflpOWLi4daaAvAioYZb0XUbFlaOuYMow==
+X-Google-Smtp-Source: AMrXdXud+svVoxONXp54cGAOViiuv7kcautUgUkDqVLqKez433S8ud4RErjPjpLdgp5mkZjl0+ayTw==
+X-Received: by 2002:ac8:58c3:0:b0:3b6:3594:3470 with SMTP id u3-20020ac858c3000000b003b635943470mr53349342qta.43.1674548905282;
+        Tue, 24 Jan 2023 00:28:25 -0800 (PST)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id x6-20020ac87306000000b003b34650039bsm828920qto.76.2023.01.24.00.28.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 00:27:10 -0800 (PST)
-Message-ID: <2e86f4a5-3612-590b-2845-629a667d926b@linaro.org>
-Date:   Tue, 24 Jan 2023 09:27:09 +0100
+        Tue, 24 Jan 2023 00:28:24 -0800 (PST)
+Received: by mail-yb1-f173.google.com with SMTP id b1so12637818ybn.11;
+        Tue, 24 Jan 2023 00:28:24 -0800 (PST)
+X-Received: by 2002:a25:9801:0:b0:7d5:b884:3617 with SMTP id
+ a1-20020a259801000000b007d5b8843617mr2419327ybo.380.1674548904206; Tue, 24
+ Jan 2023 00:28:24 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8450: Fix DSIn PHY compatible
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
+References: <68037ad181991fe0b792f6d003e3e9e538d5ffd7.1673452118.git.geert+renesas@glider.be>
+ <5da02a9b-3d42-a26f-0d18-29a6b5b181e5@seco.com> <20230124091236.1bf8c6da@booty>
+In-Reply-To: <20230124091236.1bf8c6da@booty>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 24 Jan 2023 09:28:13 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV8_+dF03VD6mST2zMDQ68cgsLLRQi6UeXK2jH-eWqWZg@mail.gmail.com>
+Message-ID: <CAMuHMdV8_+dF03VD6mST2zMDQ68cgsLLRQi6UeXK2jH-eWqWZg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: clk: vc5: Make SD/OE pin configuration
+ properties not required
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc:     Sean Anderson <sean.anderson@seco.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230123200552.553181-1-konrad.dybcio@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230123200552.553181-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Marek Vasut <marek.vasut@gmail.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-reneas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/01/2023 21:05, Konrad Dybcio wrote:
-> Use the correct compatible so that the driver can probe properly.
-> 
-> Fixes: a6dd1206e45a ("arm64: dts: qcom: sm8450: add display hardware devices")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index d66dcd8fe61f..8d85a3139849 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -2873,7 +2873,7 @@ opp-358000000 {
->   			};
->   
->   			mdss_dsi0_phy: phy@ae94400 {
-> -				compatible = "qcom,dsi-phy-5nm-8450";
-> +				compatible = "qcom,sm8450-dsi-phy-5nm";
->   				reg = <0 0x0ae94400 0 0x200>,
->   				      <0 0x0ae94600 0 0x280>,
->   				      <0 0x0ae94900 0 0x260>;
-> @@ -2946,7 +2946,7 @@ mdss_dsi1_out: endpoint {
->   			};
->   
->   			mdss_dsi1_phy: phy@ae96400 {
-> -				compatible = "qcom,dsi-phy-5nm-8450";
-> +				compatible = "qcom,sm8450-dsi-phy-5nm";
->   				reg = <0 0x0ae96400 0 0x200>,
->   				      <0 0x0ae96600 0 0x280>,
->   				      <0 0x0ae96900 0 0x260>;
+Hi Luca,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Tue, Jan 24, 2023 at 9:12 AM Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
+> On Thu, 19 Jan 2023 14:27:43 -0500
+> Sean Anderson <sean.anderson@seco.com> wrote:
+> > On 1/11/23 10:55, Geert Uytterhoeven wrote:
+> > > "make dtbs_check":
+> > >
+> > >     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: clock-generator@6a: 'idt,shutdown' is a required property
+> > >         From schema: Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > >     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: clock-generator@6a: 'idt,output-enable-active' is a required property
+> > >         From schema: Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > >
+> > > Versaclock 5 clock generators can have their configuration stored in
+> > > One-Time Programmable (OTP) memory.  Hence there is no need to specify
+> > > DT properties for manual configuration if the OTP has been programmed
+> > > before.  Likewise, the Linux driver does not touch the SD/OE bits if the
+> > > corresponding properties are not specified, cfr. commit d83e561d43bc71e5
+> > > ("clk: vc5: Add properties for configuring SD/OE behavior").
+> > >
+> > > Reflect this in the bindings by making the "idt,shutdown" and
+> > > "idt,output-enable-active" properties not required, just like the
+> > > various "idt,*" properties in the per-output child nodes.
+> >
+> > IMO we should set this stuff explicitly.
+>
+> I took a moment to think better about this and I think I get your point
+> Sean in preferring that the hardware is described in detail.
+>
+> However I'm still leaning towards approving Geert's proposal.
+>
+> I'm based on the principle that DT is there to describe the aspects of
+> the hardware that the software needs _and_ it is unable to discover by
+> itself.
+>
+> Based on that, does the software need to know SD/OR configuration? If
+> they are already written in the OTP then it doesn't. Also if the chip
+> default is the use that is implemented on the board, it also doesn't
+> (like lots of optional properties, especially when in most cases a
+> given chip is used in the default configuration but not always).
+
+These clock generators are typically programmed through OTP because
+(at least some of) the configuration is needed to boot the board.
+
+> To some extent, writing settings in an OTP is similar to producing a
+> different chip where these values are hard-coded and not configured.
+
+Indeed. Except that here they can still be overwritten by software
+later.
+
+The latter is an inherent danger, and is probably the reason why Sean
+wants to make it explicit: if the configuration is ever changed by
+software, and the system is restarted without resetting the clock
+generator (at least 5P49V6901A does not have a reset line), or using
+kexec/kdump, the newly booted kernel does not know the intended
+settings, and won't restore the correct configuration.
+
+> I'm wondering whether Geert has a practical example of a situation
+> where it is better to have these properties optional.
+
+My issue was that these properties were introduced long after the
+initial bindings, hence pre-existing DTS does not have them.
+Yes, we can add them, but then we have to read out the OTP-programmed
+settings first. If that's the way to go, I can look into that, though...
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
