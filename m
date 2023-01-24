@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 315B26795D4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 11:57:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA2FB6795EB
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:02:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233703AbjAXK47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 05:56:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58440 "EHLO
+        id S233451AbjAXLBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 06:01:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232312AbjAXK47 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 05:56:59 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09636E07E
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:56:57 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id b7so13481066wrt.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:56:56 -0800 (PST)
+        with ESMTP id S233239AbjAXLBi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:01:38 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EC8A6A6A
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:01:37 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id q5so8823420wrv.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:01:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sBOLFWe1r0zJ4kO4grZGmkZTRU8J2jIvTtXC1Hd0AlY=;
-        b=vr4X8ZIKruwzKqYQf/cvVuQzn5uiXgclV1uaSeh4xDurZafWkhm9xM2Zhwgn4M78ub
-         VHsXrMxlvH+TtRHzKiF6xpKvizwN8hOG/2pcCNjpoip94AnsFnFBL9yks/dhJ9d+ZMED
-         g9lCWQyQoNVLTLpdHiDogQyyrXadFxpAINTGZkLI1Jrfiy4CmWrRf/1dMPb/z92Nq6f7
-         JOHUAg//VwXQ+3cH1Gv/b2uWEzd4bSeXJ+qsg7mg3Vg4le0qSOZkIJAzgO8qfmQb1RtO
-         ybNeNDV6EF9z83CQnFXV3sCq/SEZwkB0SWk/0q9A6VlpwejL9rmHBAmWIHfCeNHBFRn0
-         2SYg==
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Diba07ViOeI4wEotQ3miGeT+MgDEwdMPT+7cnpc7+uQ=;
+        b=hdp8oo/fUcR6XBjX1xguZjy7WC9HxTC3SEGl5XuL1VYwFqWAVC76aOuaMbWBX+wvAN
+         FUoB1fXraWV8TFn4MIF320lKbU2rJqUWEEeBdS8pnC5lAcPXbHcI0aIBUSlMI3D+Sdn7
+         06ZEoRf1PAa95/S6L1k8OuQhZkWt/6hiHouHVvw1/qIbd/Vg0F4XNF+Y9uJKh7NHWJR3
+         uT/4J+WWR5GTwB6fqqo85OBd902mcR8Qy2plpXsVCdKcu0KpteK0f8EUc5euNjyewHyW
+         rBtb4/EV26DWFhEHW0PB3MvtE5BFtl7Sfk4oGIUGo26e1PJdVdd2NCkZCYL+Kew5xz9b
+         uBoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sBOLFWe1r0zJ4kO4grZGmkZTRU8J2jIvTtXC1Hd0AlY=;
-        b=yy/vT9rdsVVI5zjjVaq5l7TsOZ2GeaTnCv4Zo7YH9i5XyRkSJpfAKaFY1Puf2W81wL
-         l1YGrp1/kCmqhoMnopOFdwUxDUXnilSgYICf0UnTbi+V9DFhLOewhlSwTTdEePyTxO9M
-         MzaxEv6ct/cnBVgAlOMmiPRCX2zqx35bjKGLkpJsbPiij0E5WvlUHU+Sn6yyrS0QVe8S
-         E5Wu4j285WGQe9uhsw39F2QRhElHy01pKhChzOvCF5c+8BCWiPlkkT8dEr2NUlhmQKqy
-         zGJ7SN72+XuDOZal5+3lfEDRBu45idOOpHoxNtHv6c+g3eMmwZVFaGgQsb99M5xmbPjl
-         VOlQ==
-X-Gm-Message-State: AFqh2ko0xc/JaabEyfhCyZiKM/iFF2UJwRNZr/CshbOeSPzv05uUabYQ
-        LnQZuxzGseWlw2G/dj4XMB7bYw==
-X-Google-Smtp-Source: AMrXdXszjlB08CDXF0xh+XPxqY0Tb0HFQlRxrpM9zQwedKBFr2Gzb0eFECWdmwypDIAz2QXHnkF8Mw==
-X-Received: by 2002:adf:dc81:0:b0:2bc:7f99:f2a with SMTP id r1-20020adfdc81000000b002bc7f990f2amr23896010wrj.54.1674557815505;
-        Tue, 24 Jan 2023 02:56:55 -0800 (PST)
-Received: from lmecxl1178.lme.st.com ([80.215.43.103])
-        by smtp.gmail.com with ESMTPSA id m18-20020adfe952000000b00286ad197346sm1599336wrn.70.2023.01.24.02.56.54
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Diba07ViOeI4wEotQ3miGeT+MgDEwdMPT+7cnpc7+uQ=;
+        b=D1H7woZjE01Lgi1CN7PZmGKuL8lruY4X7CLgWLbgRsSFrOlmkxJKhQYWIYCaX0ev1g
+         sYwZW/u+uHSt0mU7duMIMHQpXve71mrGElzGW4O20HCwZWrT+WNc13j5pO9kJTZbgGxI
+         mZdH9fhxAx1n0LUhCso+6clELnagdl6F2/Jn1d3zdFyk7u+DEBaVbLAdiwlJ/LoKdm3+
+         8o0497crdjOuJVtCO57pamnYMyx3NVw48asZmVieRq+f0LJIxnszLzYBy3bJ4sdz/SDA
+         QPTc8eWvVZrBUbhNdoaRqnuGT8bPNY/2WFgyYYrbmq5RYYjuVyt3K3oAnwiIhFqfHHjm
+         jU1Q==
+X-Gm-Message-State: AFqh2kofq25vGfjxARJ4CORHFntczsDlKviCBPTq/LEYm/01jaKtec/+
+        eJM2jL9C2bdhfRUZE4xAToN/Ew==
+X-Google-Smtp-Source: AMrXdXurQ9dgqy4d6gZMB2MpKM4y/VSKWdvMjQa5viPyjthVLnhd6qbbXkVTGHHlpyaqUVoM3u2bDQ==
+X-Received: by 2002:a05:6000:689:b0:2bd:ffad:1bce with SMTP id bo9-20020a056000068900b002bdffad1bcemr27235891wrb.59.1674558095580;
+        Tue, 24 Jan 2023 03:01:35 -0800 (PST)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id j20-20020a5d6e54000000b002b9b9445149sm1935328wrz.54.2023.01.24.03.01.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 02:56:55 -0800 (PST)
-From:   Etienne Carriere <etienne.carriere@linaro.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        devicetree@vger.kernel.org,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Sumit Garg <sumit.garg@linaro.org>
-Subject: [PATCH v2 3/3] optee: add enable/disable/set_wake handlers to optee irqs
-Date:   Tue, 24 Jan 2023 11:56:43 +0100
-Message-Id: <20230124105643.1737250-3-etienne.carriere@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230124105643.1737250-1-etienne.carriere@linaro.org>
-References: <20230124105643.1737250-1-etienne.carriere@linaro.org>
+        Tue, 24 Jan 2023 03:01:35 -0800 (PST)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Naresh Solanki <Naresh.Solanki@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] hwmon: (pmbus/tda38640) Add driver for Infineon TDA38640 Voltage Regulator
+Date:   Tue, 24 Jan 2023 12:01:11 +0100
+Message-Id: <20230124110111.3965317-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -74,257 +74,158 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Implements OP-TEE's It Notif PTA API to deactivate and activate an
-interrupt notifier and to configure the wakeup capability
-of that interrupt. These controls are useful for efficient power
-management of the device when an interrupt controller resources is
-hosted in OP-TEE world.
+From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-When OP-TEE does not implement the It Notif PTA, the related handlers
-simply return with success. If OP-TEE exposes the PTA services, they
-are invoked on enable, disable and set_wake irqchip operations.
+Add the pmbus driver for the Infineon TDA38640 voltage regulator.
 
-Cc: Jens Wiklander <jens.wiklander@linaro.org>
-Cc: Marc Zyngier <maz@kernel.org>
-Cc: Sumit Garg <sumit.garg@linaro.org>
-
-Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
 ---
-Changes since v1:
-- Patch added in v2 series for power-up/down and wakeup configuration
-  of the irq chip.
----
- drivers/tee/optee/optee_private.h |   2 +
- drivers/tee/optee/smc_abi.c       | 157 ++++++++++++++++++++++++++++++
- 2 files changed, 159 insertions(+)
+ .../devicetree/bindings/trivial-devices.yaml  |  2 +
+ drivers/hwmon/pmbus/Kconfig                   | 16 ++++
+ drivers/hwmon/pmbus/Makefile                  |  1 +
+ drivers/hwmon/pmbus/tda38640.c                | 78 +++++++++++++++++++
+ 4 files changed, 97 insertions(+)
+ create mode 100644 drivers/hwmon/pmbus/tda38640.c
 
-diff --git a/drivers/tee/optee/optee_private.h b/drivers/tee/optee/optee_private.h
-index f467409e02e9..257bb505a1fb 100644
---- a/drivers/tee/optee/optee_private.h
-+++ b/drivers/tee/optee/optee_private.h
-@@ -166,6 +166,7 @@ struct optee_ops {
-  * @scan_bus_done	flag if device registation was already done.
-  * @scan_bus_wq		workqueue to scan optee bus and register optee drivers
-  * @scan_bus_work	workq to scan optee bus and register optee drivers
-+ * @notif_it_pta_ctx    TEE context for invoking interrupt conif services
-  */
- struct optee {
- 	struct tee_device *supp_teedev;
-@@ -185,6 +186,7 @@ struct optee {
- 	bool   scan_bus_done;
- 	struct workqueue_struct *scan_bus_wq;
- 	struct work_struct scan_bus_work;
-+	struct tee_context *notif_it_pta_ctx;
- };
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index f5c0a6283e61..a28b02036489 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -141,6 +141,8 @@ properties:
+           - infineon,slb9645tt
+             # Infineon SLB9673 I2C TPM 2.0
+           - infineon,slb9673
++            # Infineon TDA38640 Voltage Regulator
++          - infineon,tda38640
+             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+           - infineon,tlv493d-a1b6
+             # Infineon Multi-phase Digital VR Controller xdpe11280
+diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+index 30448e049486..9f4bbb9c487a 100644
+--- a/drivers/hwmon/pmbus/Kconfig
++++ b/drivers/hwmon/pmbus/Kconfig
+@@ -395,6 +395,22 @@ config SENSORS_STPDDC60
+ 	  This driver can also be built as a module. If so, the module will
+ 	  be called stpddc60.
  
- struct optee_session {
-diff --git a/drivers/tee/optee/smc_abi.c b/drivers/tee/optee/smc_abi.c
-index 9f4fdd28f04a..95adf8c93c98 100644
---- a/drivers/tee/optee/smc_abi.c
-+++ b/drivers/tee/optee/smc_abi.c
-@@ -52,6 +52,43 @@
-  */
- #define OPTEE_MIN_STATIC_POOL_ALIGN    9 /* 512 bytes aligned */
- 
-+/*
-+ * Interrupt notification can be configured using Notif-IT PTA services.
-+ * Below are the PTA UUID and its API commands.
-+ */
-+#define PTA_IT_NOTIF_UUID \
-+	UUID_INIT(0x4461e5c7, 0xb523, 0x4b73, 0xac, 0xed, 0x75, 0xad, \
-+		  0x2b, 0x9b, 0x59, 0xa1)
++config SENSORS_TDA38640
++	tristate "Infineon TDA38640"
++	help
++	  If you say yes here you get hardware monitoring support for Infineon
++	  TDA38640.
 +
++	  This driver can also be built as a module. If so, the module will
++	  be called tda38640.
++
++config SENSORS_TDA38640_REGULATOR
++	bool "Regulator support for TDA38640 and compatibles"
++	depends on SENSORS_TDA38640 && REGULATOR
++	help
++	  If you say yes here you get regulator support for Infineon
++	  TDA38640 as regulator.
++
+ config SENSORS_TPS40422
+ 	tristate "TI TPS40422"
+ 	help
+diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+index d9d2fa4bd6f7..3ae019916267 100644
+--- a/drivers/hwmon/pmbus/Makefile
++++ b/drivers/hwmon/pmbus/Makefile
+@@ -40,6 +40,7 @@ obj-$(CONFIG_SENSORS_PM6764TR)	+= pm6764tr.o
+ obj-$(CONFIG_SENSORS_PXE1610)	+= pxe1610.o
+ obj-$(CONFIG_SENSORS_Q54SJ108A2)	+= q54sj108a2.o
+ obj-$(CONFIG_SENSORS_STPDDC60)	+= stpddc60.o
++obj-$(CONFIG_SENSORS_TDA38640)	+= tda38640.o
+ obj-$(CONFIG_SENSORS_TPS40422)	+= tps40422.o
+ obj-$(CONFIG_SENSORS_TPS53679)	+= tps53679.o
+ obj-$(CONFIG_SENSORS_TPS546D24)	+= tps546d24.o
+diff --git a/drivers/hwmon/pmbus/tda38640.c b/drivers/hwmon/pmbus/tda38640.c
+new file mode 100644
+index 000000000000..31e17a936b8c
+--- /dev/null
++++ b/drivers/hwmon/pmbus/tda38640.c
+@@ -0,0 +1,78 @@
++// SPDX-License-Identifier: GPL-2.0+
 +/*
-+ * PTA_IT_NOTIF_ACTIVATE_DETECTION - Enable a interrupt notification
++ * Hardware monitoring driver for Infineon TDA38640
 + *
-+ * [in]  params[0].value.a     Interrupt ID
-+ */
-+#define PTA_IT_NOTIF_ACTIVATE_DETECTION		0
-+
-+/*
-+ * PTA_IT_NOTIF_DEACTIVATE_DETECTION - Disable a interrupt notification
++ * Copyright (c) 2023 9elements GmbH
 + *
-+ * [in]  params[0].value.a     Interrupt ID
 + */
-+#define PTA_IT_NOTIF_DEACTIVATE_DETECTION	1
 +
-+/*
-+ * PTA_IT_NOTIF_ENABLE_WAKEUP_SOURCE - Enable an interrupt wakeup source
-+ *
-+ * [in]  params[0].value.a     Interrupt ID
-+ */
-+#define PTA_IT_NOTIF_ENABLE_WAKEUP_SOURCE	2
++#include <linux/err.h>
++#include <linux/i2c.h>
++#include <linux/init.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/regulator/driver.h>
++#include "pmbus.h"
 +
-+/*
-+ * PTA_IT_NOTIF_ENABLE_WAKEUP_SOURCE - Disable an interrupt wakeup source
-+ *
-+ * [in]  params[0].value.a     Interrupt ID
-+ */
-+#define PTA_IT_NOTIF_DISABLE_WAKEUP_SOURCE	3
++#if IS_ENABLED(CONFIG_SENSORS_TDA38640_REGULATOR)
++static const struct regulator_desc tda38640_reg_desc[] = {
++	PMBUS_REGULATOR("vout", 0),
++};
++#endif /* CONFIG_SENSORS_TDA38640_REGULATOR */
 +
++static struct pmbus_driver_info tda38640_info = {
++	.pages = 1,
++	.format[PSC_VOLTAGE_IN] = linear,
++	.format[PSC_VOLTAGE_OUT] = linear,
++	.format[PSC_CURRENT_OUT] = linear,
++	.format[PSC_CURRENT_IN] = linear,
++	.format[PSC_POWER] = linear,
++	.format[PSC_TEMPERATURE] = linear,
 +
- /*
-  * 1. Convert between struct tee_param and struct optee_msg_param
-  *
-@@ -977,6 +1014,92 @@ static int optee_smc_stop_async_notif(struct tee_context *ctx)
-  * 5. Asynchronous notification
-  */
- 
-+static int optee_ctx_match(struct tee_ioctl_version_data *ver, const void *data)
++	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT
++	    | PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP
++	    | PMBUS_HAVE_IIN
++	    | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
++	    | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT
++	    | PMBUS_HAVE_POUT | PMBUS_HAVE_PIN,
++#if IS_ENABLED(CONFIG_SENSORS_TDA38640_REGULATOR)
++	.num_regulators = 1,
++	.reg_desc = tda38640_reg_desc,
++#endif
++};
++
++static int tda38640_probe(struct i2c_client *client)
 +{
-+	return ver->impl_id == TEE_IMPL_ID_OPTEE;
++	return pmbus_do_probe(client, &tda38640_info);
 +}
 +
-+static void init_optee_pta_context(struct optee *optee)
-+{
-+	struct tee_context *ctx = NULL;
-+	const uuid_t pta_uuid = PTA_IT_NOTIF_UUID;
-+	struct tee_ioctl_open_session_arg sess_arg;
-+	int ret;
++static const struct i2c_device_id tda38640_id[] = {
++	{"tda38640", 0},
++	{}
++};
 +
-+	ctx = tee_client_open_context(NULL, optee_ctx_match, NULL, NULL);
-+	if (IS_ERR(ctx))
-+		return;
++MODULE_DEVICE_TABLE(i2c, tda38640_id);
 +
-+	memset(&sess_arg, 0, sizeof(sess_arg));
-+	export_uuid(sess_arg.uuid, &pta_uuid);
-+	sess_arg.clnt_login = TEE_IOCTL_LOGIN_REE_KERNEL;
++#ifdef CONFIG_OF
++static const struct of_device_id tda38640_of_match[] = {
++	{ .compatible = "infineon,tda38640"},
++	{ },
++};
++MODULE_DEVICE_TABLE(of, tda38640_of_match);
++#endif
 +
-+	ret = tee_client_open_session(ctx, &sess_arg, NULL);
-+	if ((ret < 0) || (sess_arg.ret != 0)) {
-+		pr_err("Can't open IT_NOTIF PTA session: %#x\n", sess_arg.ret);
-+		tee_client_close_context(ctx);
-+		return;
-+	}
++/* This is the driver that will be inserted */
++static struct i2c_driver tda38640_driver = {
++	.driver = {
++		   .name = "tda38640",
++		   },
++	.probe_new = tda38640_probe,
++	.id_table = tda38640_id,
++};
 +
-+	tee_client_close_session(ctx, sess_arg.session);
++module_i2c_driver(tda38640_driver);
 +
-+	optee->notif_it_pta_ctx = ctx;
-+}
-+
-+static void release_optee_pta_context(struct optee *optee)
-+{
-+	if (optee->notif_it_pta_ctx) {
-+		tee_client_close_context(optee->notif_it_pta_ctx);
-+		optee->notif_it_pta_ctx = NULL;
-+	}
-+}
-+
-+static int invoke_optee_pta(struct optee *optee, unsigned int command,
-+			    unsigned int irq_id)
-+{
-+	const uuid_t pta_uuid = PTA_IT_NOTIF_UUID;
-+	struct tee_ioctl_open_session_arg sess_arg;
-+	struct tee_ioctl_invoke_arg inv_arg;
-+	struct tee_param param[1];
-+	int ret;
-+
-+	if (!optee->notif_it_pta_ctx)
-+		return -ENOENT;
-+
-+	memset(&sess_arg, 0, sizeof(sess_arg));
-+	export_uuid(sess_arg.uuid, &pta_uuid);
-+	sess_arg.clnt_login = TEE_IOCTL_LOGIN_REE_KERNEL;
-+
-+	ret = tee_client_open_session(optee->notif_it_pta_ctx, &sess_arg, NULL);
-+	if ((ret < 0) || (sess_arg.ret != 0)) {
-+		pr_err("tee_client_open_session failed, err: %#x\n", sess_arg.ret);
-+		if (!ret)
-+			ret = -EINVAL;
-+		return ret;
-+	}
-+
-+	memset(&inv_arg, 0, sizeof(inv_arg));
-+	inv_arg.session = sess_arg.session;
-+	inv_arg.func = command;
-+	inv_arg.num_params = 1;
-+
-+	memset(&param, 0, sizeof(param));
-+	param[0].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INPUT;
-+	param[0].u.value.a = irq_id;
-+
-+	ret = tee_client_invoke_func(optee->notif_it_pta_ctx, &inv_arg, param);
-+	if ((ret < 0) || (inv_arg.ret != 0)) {
-+		pr_err("tee_client_invoke_func failed, ret: %d, err: %#x\n",
-+		       ret, inv_arg.ret);
-+		if (!ret)
-+			ret = -EINVAL;
-+	}
-+
-+	tee_client_close_session(optee->notif_it_pta_ctx, sess_arg.session);
-+
-+	return ret;
-+}
-+
- static void config_notif_it(optee_invoke_fn *invoke_fn, u32 it_value,
- 			    u32 op_mask, u32 val_mask)
- {
-@@ -1001,10 +1124,40 @@ static void optee_it_irq_unmask(struct irq_data *d)
- 	config_notif_it(optee->smc.invoke_fn, d->hwirq, OPTEE_SMC_NOTIF_CONFIG_MASK, 0);
- }
- 
-+static void optee_it_irq_disable(struct irq_data *d)
-+{
-+	struct optee *optee = d->domain->host_data;
-+
-+	(void)invoke_optee_pta(optee, PTA_IT_NOTIF_DEACTIVATE_DETECTION, d->hwirq);
-+}
-+
-+static void optee_it_irq_enable(struct irq_data *d)
-+{
-+	struct optee *optee = d->domain->host_data;
-+
-+	(void)invoke_optee_pta(optee, PTA_IT_NOTIF_ACTIVATE_DETECTION, d->hwirq);
-+}
-+
-+static int optee_it_irq_set_wake(struct irq_data *d, unsigned int on)
-+{
-+	struct optee *optee = d->domain->host_data;
-+	u32 command;
-+
-+	if (on)
-+		command = PTA_IT_NOTIF_ENABLE_WAKEUP_SOURCE;
-+	else
-+		command = PTA_IT_NOTIF_DISABLE_WAKEUP_SOURCE;
-+
-+	return invoke_optee_pta(optee, command, d->hwirq);
-+}
-+
- static struct irq_chip optee_it_irq_chip = {
- 	.name = "optee-it",
- 	.irq_mask = optee_it_irq_mask,
- 	.irq_unmask = optee_it_irq_unmask,
-+	.irq_disable = optee_it_irq_disable,
-+	.irq_enable = optee_it_irq_enable,
-+	.irq_set_wake = optee_it_irq_set_wake,
- };
- 
- static int optee_it_alloc(struct irq_domain *d, unsigned int virq,
-@@ -1463,6 +1616,7 @@ static int optee_smc_remove(struct platform_device *pdev)
- 		optee_disable_shm_cache(optee);
- 
- 	optee_smc_notif_uninit_irq(optee);
-+	release_optee_pta_context(optee);
- 
- 	optee_remove_common(optee);
- 
-@@ -1650,6 +1804,8 @@ static int optee_probe(struct platform_device *pdev)
- 				irq_dispose_mapping(irq);
- 				goto err_notif_uninit;
- 			}
-+
-+			init_optee_pta_context(optee);
- 		}
- 
- 		enable_async_notif(optee->smc.invoke_fn);
-@@ -1687,6 +1843,7 @@ static int optee_probe(struct platform_device *pdev)
- 		optee_disable_shm_cache(optee);
- 	optee_smc_notif_uninit_irq(optee);
- 	optee_unregister_devices();
-+	release_optee_pta_context(optee);
- err_notif_uninit:
- 	optee_notif_uninit(optee);
- err_close_ctx:
++MODULE_AUTHOR("Patrick Rudolph <patrick.rudolph@9elements.com>");
++MODULE_DESCRIPTION("PMBus driver for Infineon TDA38640");
++MODULE_LICENSE("GPL");
++MODULE_IMPORT_NS(PMBUS);
+
+base-commit: 4d891f76a30d3be4194a805c5e4277786140ef05
 -- 
-2.25.1
+2.38.1
 
