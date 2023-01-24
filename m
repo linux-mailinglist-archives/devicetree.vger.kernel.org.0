@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE84A679A99
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 14:52:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2720679AC2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 14:58:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233524AbjAXNwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 08:52:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46010 "EHLO
+        id S233196AbjAXN6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 08:58:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233571AbjAXNwM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 08:52:12 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 984C129157;
-        Tue, 24 Jan 2023 05:49:49 -0800 (PST)
+        with ESMTP id S233370AbjAXN57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 08:57:59 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903E2458B9;
+        Tue, 24 Jan 2023 05:57:28 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2636CB811E4;
-        Tue, 24 Jan 2023 13:43:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5D9AC433EF;
-        Tue, 24 Jan 2023 13:43:46 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D168611FC;
+        Tue, 24 Jan 2023 13:44:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E553DC433D2;
+        Tue, 24 Jan 2023 13:43:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674567827;
-        bh=PKDqEiA9wpuk408a8IhDajU/bWJUc0MZMwjxAsjRxic=;
+        s=k20201202; t=1674567839;
+        bh=jdlW2UpGV39iIb1jZylNHSlBWFgLrecPOvBrOD8Te6U=;
         h=From:To:Cc:Subject:Date:From;
-        b=MiDMDLrQqDOu9elXoUrW9+wLkgG+3zYdSbVjYQPhzSYqfqrxMkmITqmoqpbAeNij1
-         J7u2smi2jKi/XYAAmseBmykJjkwEWU1ouEJotPR9qai9gf3tp9cN0klQiI4XO3H/Ck
-         Byy817I7G6FSHwoxNliQsAfAIg92AgSV84IsZXUxCePifhGHs8+WL8VCcAURTzaCvD
-         gHKpbEGGWHo2zlDJo3Rhi7OtE/FrXgVKNkFgrVhDqcSRy9hUtGE5BzrYrpNm94kDCS
-         PolFCiZPFTeY5Jym1F8wOx/LsYhz7VbxIHdhlqX+G9wGeO384i1CcwVpd4qin0KJhO
-         1cnGJTO9GTzSg==
+        b=ZJub0ZeOQox04vPxRSr+kRQ1/M8mqyqT1HLKRh20CJs30sD+AcPqv66laIb116DpO
+         PtFkmK0nZfq5dXJiLD9oGLRN6RPzccS38Ozuj4xlQRYIgBpuzCztTKMrsqzDAieQDS
+         M26qo+FZlPs8cnoMlyJubXowdZfn9wp2VII+qUvtIaWoc4c/EiPY9JIafkXueDxnHr
+         XGHwtYJ0HhMmSrPjVqfmVArRVmz0yPWyH1Hh3D1wVDWkHFvdiWPWq5C1GvX5J1Q56O
+         ae4tpqrRCf/rRRJE0JCNf6a1+r5QdrsU9/QeKX3xK5q/+VoasZjd68OzhAlP02BKKF
+         hSilTSLx7AmMQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -38,9 +38,9 @@ Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.4 1/6] ARM: dts: imx: Fix pca9547 i2c-mux node name
-Date:   Tue, 24 Jan 2023 08:43:39 -0500
-Message-Id: <20230124134344.637846-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 1/4] ARM: dts: imx: Fix pca9547 i2c-mux node name
+Date:   Tue, 24 Jan 2023 08:43:54 -0500
+Message-Id: <20230124134357.637945-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 X-stable: review
@@ -78,10 +78,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/imx53-ppd.dts b/arch/arm/boot/dts/imx53-ppd.dts
-index c80d1700e094..c01dc571b55c 100644
+index f346673d34ea..0cb5f01f02d1 100644
 --- a/arch/arm/boot/dts/imx53-ppd.dts
 +++ b/arch/arm/boot/dts/imx53-ppd.dts
-@@ -461,7 +461,7 @@ &i2c1 {
+@@ -462,7 +462,7 @@ &i2c1 {
  	scl-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
  	status = "okay";
  
