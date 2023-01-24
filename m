@@ -2,346 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D76C2679672
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1B3567967C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:20:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233344AbjAXLS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 06:18:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48214 "EHLO
+        id S233521AbjAXLUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 06:20:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231666AbjAXLSs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:18:48 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D1281116C
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:18:46 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id bk16so13507684wrb.11
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:18:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2qK2A7F5wKZ8rhLeWq4L+8rVvDbisjlQ7qR2HWPTnjc=;
-        b=8GkKs5DahXIcYNgIjCtM2BpCTC0GX7fbdkZWWXZ2cJ7w00DZu5ZmLRsOu3i2bEEE8I
-         LOoqDDwzZawERSbTseb/+W9vixtTQAYdUcDcjYYEMQtwbKS1IcKJA1HVZrO30UjMU3U7
-         HExHLQp30gTa+dZqAplHnI4V6bME98KgTB9d7QeD9eMIsSl0v8DnJwN8RGQ0x5sXTDYp
-         LlbPFisYnPkcosHqIWkBpDgLQ6HnNh02dkTG7AB9ynqZ7jloa3dNnldQQGuQFEwEheea
-         +9ya6TIh1XR792HuYqbUU+wHk4K2esTxl8mK6Z4NFXsl55+zUWGE+ToRiTNQoNo/MK4z
-         PIrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2qK2A7F5wKZ8rhLeWq4L+8rVvDbisjlQ7qR2HWPTnjc=;
-        b=7bLj2Ik5Fe5suhGFGFg4GGw1vM714Ev3tssnsKB9fi4VIo1TzaQ7u+FMOjelrPhBuq
-         0Oikwv3N6h9cqcnyGd8VyLn21Uiw8YOPVEVoGOxkPIHIH7gocPHpmKIh0cg4LgaN8miZ
-         cXThX5HHBYEEOsAAI0l3HCkAkI1mqRp6x468bIEjgEpVPj9RTSTN55Hnsoak40o+tlOc
-         LkKJ6Wtd4dE5x1LhQzqUQA76k9CnAVTDdUH9WwA2TN1sxl/ANykohyeN0gKbNNfqZniO
-         k0WOqDZE0uNgLa4//LqR6xZEvYurF1693IEgDZWKfdPEMBHuekazrEu8lFH4Wl6jjp1h
-         Pmbw==
-X-Gm-Message-State: AFqh2kodK4675SBy5Kq4h1LXb/Jd/hixEIxlwU+nbFbRgOCtdk87QEDS
-        GnlQ/1RgT7UzPUxe5HFLOANGKQ==
-X-Google-Smtp-Source: AMrXdXvIsmvUF4yEoKVS0/rjSGMgq1Icc3ay5/OyLgYCWJ7B4WfBq9y0ZBxKPPbUvESJ1z6PY5CR8A==
-X-Received: by 2002:adf:f90e:0:b0:2bc:aa67:28fb with SMTP id b14-20020adff90e000000b002bcaa6728fbmr21588839wrr.49.1674559124538;
-        Tue, 24 Jan 2023 03:18:44 -0800 (PST)
-Received: from localhost ([82.66.159.240])
-        by smtp.gmail.com with ESMTPSA id a17-20020a5d53d1000000b0024274a5db0asm1682635wrw.2.2023.01.24.03.18.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 03:18:44 -0800 (PST)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Jacky Bai <ping.bai@nxp.com>, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, linux-rtc@vger.kernel.org,
-        kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com
-Subject: Re: [PATCH v3 2/4] input: bbnsm_pwrkey: Add bbnsm power key support
-In-Reply-To: <20230103074742.2324924-3-ping.bai@nxp.com>
-References: <20230103074742.2324924-1-ping.bai@nxp.com>
- <20230103074742.2324924-3-ping.bai@nxp.com>
-Date:   Tue, 24 Jan 2023 12:18:43 +0100
-Message-ID: <87wn5c18q4.fsf@baylibre.com>
+        with ESMTP id S233386AbjAXLUu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:20:50 -0500
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE9E125B9
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:20:49 -0800 (PST)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 10C6C419BC;
+        Tue, 24 Jan 2023 12:20:45 +0100 (CET)
+Date:   Tue, 24 Jan 2023 12:20:43 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: display/msm: convert MDP5 schema to
+ YAML format
+Message-ID: <20230124112043.4pzhbc3thgorjr2g@SoMainline.org>
+References: <20230109050152.316606-1-dmitry.baryshkov@linaro.org>
+ <20230109050152.316606-2-dmitry.baryshkov@linaro.org>
+ <20230109074947.5vnfrn6shzpm6iqi@SoMainline.org>
+ <997dbd09-03d6-d60d-1dce-db0bc6415582@linaro.org>
+ <20230111222903.otbur6yi4iv4mpgz@SoMainline.org>
+ <1d371e40-0639-16f8-abef-afcd05e72e22@linaro.org>
+ <20230111223553.e3xrxmdys5zxxleh@SoMainline.org>
+ <20230112215015.GA259261-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230112215015.GA259261-robh@kernel.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 03, 2023 at 15:47, Jacky Bai <ping.bai@nxp.com> wrote:
+On 2023-01-12 15:50:15, Rob Herring wrote:
+> On Wed, Jan 11, 2023 at 11:35:53PM +0100, Marijn Suijten wrote:
+> > On 2023-01-12 00:31:33, Dmitry Baryshkov wrote:
+> > > On 12/01/2023 00:29, Marijn Suijten wrote:
+> > > > On 2023-01-10 06:40:27, Dmitry Baryshkov wrote:
+> > > >> On 09/01/2023 09:49, Marijn Suijten wrote:
+> > > >>> On 2023-01-09 07:01:49, Dmitry Baryshkov wrote:
+> > > > <snip>
+> > > >>>> +    description: |
+> > > >>>
+> > > >>> Should multiline descriptions be treated as a oneline string with `>`?
+> 
+> Depends if you want to keep paragraphs. Generally, we use '|' or 
+> nothing. If just a colon (or ???), then I think you want '>'.
 
-> The ON/OFF logic inside the BBNSM allows for connecting directly
-> into a PMIC or other voltage regulator device. The module has an
-> button input signal and a wakeup request input signal. It also
-> has two interrupts (set_pwr_off_irq and set_pwr_on_irq) and an
-> active-low PMIC enable (pmic_en_b) output.
->
-> Add the power key support for the ON/OFF button function found in
-> BBNSM module.
->
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> ---
->   - v2 changes:
->     - use device_property_read_u32() to read the property
+But doesn't that also affect how lines within paragraphs are flowed?
+Arguably it's only GitHub that doesn't "ignore" manual single newlines,
+the Markdown (and maybe also RST?) spec AFAIK state that multiline
+blocks will be turned into a single paragraph (automatically reflowing
+to width).
 
-We state this in the changelog
+> I get tired of saying to drop unnecessary '|' in reviews. It would be 
+> nice to analyze the text to check what's needed automatically.
 
->     - clean up the goto return, return directly
->     - sort the header file alphabetically
->     - rename the file to add 'nxp' prefix
->
->   - v3 changes:
->     - get the regmap directly from the parent node
-> ---
->  drivers/input/keyboard/Kconfig            |  11 ++
->  drivers/input/keyboard/Makefile           |   1 +
->  drivers/input/keyboard/nxp-bbnsm-pwrkey.c | 190 ++++++++++++++++++++++
->  3 files changed, 202 insertions(+)
->  create mode 100644 drivers/input/keyboard/nxp-bbnsm-pwrkey.c
->
-> diff --git a/drivers/input/keyboard/Kconfig b/drivers/input/keyboard/Kconfig
-> index 84490915ae4d..43827e34f276 100644
-> --- a/drivers/input/keyboard/Kconfig
-> +++ b/drivers/input/keyboard/Kconfig
-> @@ -456,6 +456,17 @@ config KEYBOARD_SNVS_PWRKEY
->  	  To compile this driver as a module, choose M here; the
->  	  module will be called snvs_pwrkey.
->  
-> +config KEYBOARD_BBNSM_PWRKEY
-> +	tristate "NXP BBNSM Power Key Driver"
-> +	depends on ARCH_MXC || COMPILE_TEST
-> +	depends on OF
-> +	help
-> +	  This is the bbnsm powerkey driver for the NXP i.MX application
-> +	  processors.
-> +
-> +	  To compile this driver as a module, choose M here; the
-> +	  module will be called bbnsm_pwrkey.
-> +
->  config KEYBOARD_IMX
->  	tristate "IMX keypad support"
->  	depends on ARCH_MXC || COMPILE_TEST
-> diff --git a/drivers/input/keyboard/Makefile b/drivers/input/keyboard/Makefile
-> index 5f67196bb2c1..e34dd65a34c3 100644
-> --- a/drivers/input/keyboard/Makefile
-> +++ b/drivers/input/keyboard/Makefile
-> @@ -13,6 +13,7 @@ obj-$(CONFIG_KEYBOARD_AMIGA)		+= amikbd.o
->  obj-$(CONFIG_KEYBOARD_APPLESPI)		+= applespi.o
->  obj-$(CONFIG_KEYBOARD_ATARI)		+= atakbd.o
->  obj-$(CONFIG_KEYBOARD_ATKBD)		+= atkbd.o
-> +obj-$(CONFIG_KEYBOARD_BBNSM_PWRKEY)	+= nxp-bbnsm-pwrkey.o
->  obj-$(CONFIG_KEYBOARD_BCM)		+= bcm-keypad.o
->  obj-$(CONFIG_KEYBOARD_CAP11XX)		+= cap11xx.o
->  obj-$(CONFIG_KEYBOARD_CLPS711X)		+= clps711x-keypad.o
-> diff --git a/drivers/input/keyboard/nxp-bbnsm-pwrkey.c b/drivers/input/keyboard/nxp-bbnsm-pwrkey.c
-> new file mode 100644
-> index 000000000000..dc937036c952
-> --- /dev/null
-> +++ b/drivers/input/keyboard/nxp-bbnsm-pwrkey.c
-> @@ -0,0 +1,190 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +//
-> +// Copyright 2022 NXP.
-> +
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/init.h>
-> +#include <linux/input.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/jiffies.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_wakeirq.h>
-> +#include <linux/regmap.h>
-> +
-> +#define BBNSM_CTRL		0x8
-> +#define BBNSM_INT_EN		0x10
-> +#define BBNSM_EVENTS		0x14
-> +#define BBNSM_PAD_CTRL		0x24
-> +
-> +#define BBNSM_BTN_PRESSED	BIT(7)
-> +#define BBNSM_PWR_ON		BIT(6)
-> +#define BBNSM_BTN_OFF		BIT(5)
-> +#define BBNSM_EMG_OFF		BIT(4)
-> +#define BBNSM_PWRKEY_EVENTS	(BBNSM_PWR_ON | BBNSM_BTN_OFF | BBNSM_EMG_OFF)
-> +#define BBNSM_DP_EN		BIT(24)
-> +
-> +#define DEBOUNCE_TIME		30
-> +#define REPEAT_INTERVAL		60
-> +
-> +struct bbnsm_pwrkey {
-> +	struct regmap *regmap;
-> +	int irq;
-> +	int keycode;
-> +	int keystate;  /* 1:pressed */
-> +	struct timer_list check_timer;
-> +	struct input_dev *input;
-> +};
-> +
-> +static void bbnsm_pwrkey_check_for_events(struct timer_list *t)
-> +{
-> +	struct bbnsm_pwrkey *bbnsm = from_timer(bbnsm, t, check_timer);
-> +	struct input_dev *input = bbnsm->input;
-> +	u32 state;
-> +
-> +	regmap_read(bbnsm->regmap, BBNSM_EVENTS, &state);
-> +
-> +	state = state & BBNSM_BTN_PRESSED ? 1 : 0;
-> +
-> +	/* only report new event if status changed */
-> +	if (state ^ bbnsm->keystate) {
-> +		bbnsm->keystate = state;
-> +		input_event(input, EV_KEY, bbnsm->keycode, state);
-> +		input_sync(input);
-> +		pm_relax(bbnsm->input->dev.parent);
-> +	}
-> +
-> +	/* repeat check if pressed long */
-> +	if (state) {
-> +		mod_timer(&bbnsm->check_timer,
-> +			  jiffies + msecs_to_jiffies(REPEAT_INTERVAL));
-> +	}
-> +}
-> +
-> +static irqreturn_t bbnsm_pwrkey_interrupt(int irq, void *dev_id)
-> +{
-> +	struct platform_device *pdev = dev_id;
-> +	struct bbnsm_pwrkey *bbnsm = platform_get_drvdata(pdev);
-> +	struct input_dev *input = bbnsm->input;
-> +	u32 event;
-> +
-> +	regmap_read(bbnsm->regmap, BBNSM_EVENTS, &event);
-> +	if (event & BBNSM_BTN_OFF)
-> +		mod_timer(&bbnsm->check_timer, jiffies + msecs_to_jiffies(DEBOUNCE_TIME));
-> +	else
-> +		return IRQ_NONE;
-> +
-> +	pm_wakeup_event(input->dev.parent, 0);
-> +
-> +	/* clear PWR OFF */
-> +	regmap_write(bbnsm->regmap, BBNSM_EVENTS, BBNSM_BTN_OFF);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static void bbnsm_pwrkey_act(void *pdata)
-> +{
-> +	struct bbnsm_pwrkey *bbnsm = pdata;
-> +
-> +	del_timer_sync(&bbnsm->check_timer);
-> +}
-> +
-> +static int bbnsm_pwrkey_probe(struct platform_device *pdev)
-> +{
-> +	struct bbnsm_pwrkey *bbnsm;
-> +	struct input_dev *input;
-> +	struct device_node *np = pdev->dev.of_node;
-> +	int error;
-> +
-> +	bbnsm = devm_kzalloc(&pdev->dev, sizeof(*bbnsm), GFP_KERNEL);
-> +	if (!bbnsm)
-> +		return -ENOMEM;
-> +
-> +	bbnsm->regmap = syscon_node_to_regmap(np->parent);
-> +	if (IS_ERR(bbnsm->regmap)) {
-> +		dev_err(&pdev->dev, "bbnsm pwerkey get regmap failed\n");
-> +		return PTR_ERR(bbnsm->regmap);
-> +	}
-> +
-> +	if (of_property_read_u32(np, "linux,code", &bbnsm->keycode)) {
+And that's just one of the many things...
 
-But of_property_read_u32() is still used
+> > > >> Ack, I'm fine with either of them, let's use the >
+> > > >>
+> > > >>>
+> > > >>>> +      Contains the list of output ports from DPU device. These ports
+> > > >>>> +      connect to interfaces that are external to the DPU hardware,
+> > > >>>> +      such as DSI, DP etc. MDP5 devices support up to 4 ports::
+> > > >>>
+> > > >>> How do these double colons render?  Is this intentional?
+> > > >>
+> > > >> double colons is an escape for a single colon if I remember correcly.
+> > > > 
+> > > > I thought no escaping was necessary here, especially since this is
+> > > > already a value - it is a multiline string.
+> > > 
+> > > I was mostly following examples, grep :: through the dt-bindings.
+> > 
+> > Saw that, maybe these "freeform" description strings are intended to be
+> > RST to support more elaborate rendering if/when that happens?
+> 
+> No, though some experiments have been done in that regard. It seemed to 
+> work.
 
-> +		bbnsm->keycode = KEY_POWER;
-> +		dev_warn(&pdev->dev, "KEY_POWER without setting in dts\n");
-> +	}
-> +
-> +	bbnsm->irq = platform_get_irq(pdev, 0);
-> +	if (bbnsm->irq < 0)
-> +		return -EINVAL;
-> +
-> +	/* config the BBNSM power related register */
-> +	regmap_update_bits(bbnsm->regmap, BBNSM_CTRL, BBNSM_DP_EN, BBNSM_DP_EN);
-> +
-> +	/* clear the unexpected interrupt before driver ready */
-> +	regmap_write_bits(bbnsm->regmap, BBNSM_EVENTS, BBNSM_PWRKEY_EVENTS, BBNSM_PWRKEY_EVENTS);
-> +
-> +	timer_setup(&bbnsm->check_timer, bbnsm_pwrkey_check_for_events, 0);
-> +
-> +	input = devm_input_allocate_device(&pdev->dev);
-> +	if (!input) {
-> +		dev_err(&pdev->dev, "failed to allocate the input device\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	input->name = pdev->name;
-> +	input->phys = "bbnsm-pwrkey/input0";
-> +	input->id.bustype = BUS_HOST;
-> +
-> +	input_set_capability(input, EV_KEY, bbnsm->keycode);
-> +
-> +	/* input customer action to cancel release timer */
-> +	error = devm_add_action(&pdev->dev, bbnsm_pwrkey_act, bbnsm);
-> +	if (error) {
-> +		dev_err(&pdev->dev, "failed to register remove action\n");
-> +		return error;
-> +	}
-> +
-> +	bbnsm->input = input;
-> +	platform_set_drvdata(pdev, bbnsm);
-> +
-> +	error = devm_request_irq(&pdev->dev, bbnsm->irq, bbnsm_pwrkey_interrupt,
-> +			       IRQF_SHARED, pdev->name, pdev);
-> +	if (error) {
-> +		dev_err(&pdev->dev, "interrupt not available.\n");
-> +		return error;
-> +	}
-> +
-> +	error = input_register_device(input);
-> +	if (error < 0) {
-> +		dev_err(&pdev->dev, "failed to register input device\n");
-> +		return error;
-> +	}
-> +
-> +	device_init_wakeup(&pdev->dev, true);
-> +	dev_pm_set_wake_irq(&pdev->dev, bbnsm->irq);
+Hmm, the question is what format description blocks should adhere to,
+and if a double colon here makes sense and/or is required?
 
-Can we add some error handling here?
-The legacy driver (snvs_pwrkey), which looks a lot like this one, warns
-whne irq wake enabling fails, and so do the other drivers keyboard
-drivers that call dev_pm_set_wake_irq().
+> > > >> BTW: how to render the DT schema?
+> > > > 
+> > > > I'm not sure if there's currently any rendering tool to view these docs
+> > > > in a "friendly" manner, e.g. an html page, or whether they're only used
+> > > > as specifications for DT validation.
+> > > 
+> > > Probably there will be one at some point. It might make good addition to 
+> > > devicetree.org.
+> > 
+> > Would be super cool to have some "interactive" / properly
+> > rendered/colored docs up there for DT :)
+> 
+> One of the original goals was to transform the DT spec to schema docs 
+> and then generate the spec from the schemas.
+> 
+> There's tools that do json-schema to docs already. They may just work. I 
+> haven't looked at them though as that's not really my itch and I simply 
+> don't have time. Maybe if we stop reviewing schemas for a while.
 
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id bbnsm_pwrkey_ids[] = {
-> +	{ .compatible = "nxp,bbnsm-pwrkey" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, bbnsm_pwrkey_ids);
-> +
-> +static struct platform_driver bbnsm_pwrkey_driver = {
-> +	.driver = {
-> +		.name = "bbnsm_pwrkey",
-> +		.of_match_table = bbnsm_pwrkey_ids,
-> +	},
-> +	.probe = bbnsm_pwrkey_probe,
-> +};
-> +module_platform_driver(bbnsm_pwrkey_driver);
-> +
-> +MODULE_AUTHOR("Jacky Bai <ping.bai@nxp.com>");
-> +MODULE_DESCRIPTION("NXP bbnsm power key Driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.37.1
+Sure, as above we shoudn't have to render anything now nor any time
+soon, but it would be helpful to know what kind of format to adhere to
+in description blocks.
+
+- Marijn
