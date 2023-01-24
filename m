@@ -2,131 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F59767A529
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 22:44:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E58E867A530
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 22:46:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233174AbjAXVod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 16:44:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60626 "EHLO
+        id S230048AbjAXVqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 16:46:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230160AbjAXVod (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 16:44:33 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 120B847082;
-        Tue, 24 Jan 2023 13:44:32 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id e16so18270538ljn.3;
-        Tue, 24 Jan 2023 13:44:31 -0800 (PST)
+        with ESMTP id S235125AbjAXVqC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 16:46:02 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 480304B4A1
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 13:46:01 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id ud5so42772701ejc.4
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 13:46:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=R4IEpD9aZshjrnq+Srup39D3KYAjhRrq9qRZNhDQbZw=;
-        b=OhtCGeL+X0n5LCE8IvchaPqRu+KxeSiZ0ohzBqS2Mp7J2VlzQATe8yJsxMkHACU2uI
-         yn25a1V6Y3eztsmNsdUwCgvfNvUUx+J/9YG/zMVU2/Qs4Mj36xFiNCxdqj95huqvp4Yb
-         iLOU8F3r/tGL+FK11zu6WxkBYhTpL/mXBoI/oTArJY6OmLWPLb8/xSCxQjN/jgR2crZ0
-         MFoSxDgmc3LW7alYPATjQZYiumYTcCLcc09dSsWt6d1SdsxxjISEWq0io9k8vbDe7CLw
-         klAb/i+Xb3BP2FiLHaqU2hHddMAakU9WFLoORmrMIoQ0C7jHgOjYYbwdzvVVqiRrZsuH
-         zOTg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9xdh2yXUEHJLO3yLt9IOrFcz74mAZ087g5gbTk/yanY=;
+        b=fm0yBjJquVlA+TgQg+HS6DLHSSnMSnMo2hoYalAO2d0BnBxjIUcTz3ONqP2TB8lQHb
+         s2a8wNu8hD9hQaIqV3/fqafwt5rIxg4hlb7B4uW/LVBGNy/AKWH7vr2asjM+mRRmjv0u
+         aCp9wDDEiPk9Zz0U9OAvpprbIdnKgzELD2R7hWleOhdseOQvvDrLVmMEJdWjhLvqfAGJ
+         qd/V+yet4cMGM7xJ+ASaMrvwSscddjnyu9SAApknJdcvWbHFqibF5TJnmOu578pDs+T/
+         IJEtlttjmxSoa2h1WoM9ZYYj1QXc2CAujW3BYFpQDDYsSuq6LNwuRZ7zR7/mJw7ftdsY
+         GMRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R4IEpD9aZshjrnq+Srup39D3KYAjhRrq9qRZNhDQbZw=;
-        b=WcHEMPxoHNDBpn7v5njbRUS0nIM74GjlZjL5m3DLge7X9gcNF7qkkEihlGRftL/vUh
-         urzd28rg8+bKyY9nPA5XD3tMNIuqudEA4UYLIJDVHQTNaAMkUegddFP1QPQms+ikjXsh
-         8iam+YJUsRiyJ8GupdSjhne/bvaK5Y/yMMXSe40vklLiCsz2vRBO+o6LNRssTR+kP3U2
-         GxYhI7h/ATwIMmCz9SRNr813DcPLfrRyJhlSniECIafT3V4w5qfKjvGJHj0OscoEVx+C
-         lX/QYmEK7IhHxAFlAZHIkUk6Qz6pikM+a3oQMtJcFrnE4CQbhskiflXugN1N7B83iezF
-         0R+Q==
-X-Gm-Message-State: AFqh2ko4u5dhUToYYbRj3vuCSxrPeO3UasmkcCF65+UepTVoCu3TZMN0
-        A2tPoOS5nxwdoJEcDa0kdNihRJDwQSoeXv49KN4=
-X-Google-Smtp-Source: AMrXdXu0QWfIjYRWGz+8p7L9B9+lFy3maxvk1fReg4QhtlC0V7o9DjmS9axIQp7sTUwe7JOTSKodmQnXCmKzccJ4KHk=
-X-Received: by 2002:a2e:9212:0:b0:28b:63dc:4c7 with SMTP id
- k18-20020a2e9212000000b0028b63dc04c7mr1609175ljg.423.1674596670073; Tue, 24
- Jan 2023 13:44:30 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9xdh2yXUEHJLO3yLt9IOrFcz74mAZ087g5gbTk/yanY=;
+        b=dn5q78g/qZ7felcHTGmQcF0fgKc1iJwSuCkB81etC8RLKs1qS2VzcwEwW9GCS0eMzN
+         RjG+uOnN2tpQbu7dQoWipK8d0Cd8EhdzSUR+UJWZLDoDTn+hRAT+MSmEPdpuk6ezgiUK
+         ymP/F57vnEX8Rge/S3DV/3qqjzjL3Fd5uvNqg/h+IGheoEwixR62CERIiYLPjNM1oU9M
+         6Bzny18tn0AThy6dRZma39+6pt7WB0SDLEzFo+eqSYG87ChhSElN1vCqJCyQQk5sSRdz
+         gyP610B9ewNmRlJM70YzxuNNyIy3sFdYf30Wt2EDyy7TMrMHdEG0yVipOa0gz+MqRX7+
+         m7UA==
+X-Gm-Message-State: AFqh2koPt1gGnxMUmiJhw8Kd5x3s2zJsRfGXe2agkuRbpLPoT/PIP8aN
+        oVhHTOA60sfyJMnfqhINQVSiZA==
+X-Google-Smtp-Source: AMrXdXvn3p6vxdHIfQJV7xez9X1sqklQMBgb0JM8gn6Ny6gilstu8jtokmAeSx6Ib1Q3BQljexD++w==
+X-Received: by 2002:a17:907:2a8c:b0:870:8e22:1433 with SMTP id fl12-20020a1709072a8c00b008708e221433mr23229804ejc.16.1674596759807;
+        Tue, 24 Jan 2023 13:45:59 -0800 (PST)
+Received: from [192.168.1.101] (abyl109.neoplus.adsl.tpnet.pl. [83.9.31.109])
+        by smtp.gmail.com with ESMTPSA id n22-20020a1709065e1600b00877de2def77sm1420794eju.31.2023.01.24.13.45.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Jan 2023 13:45:59 -0800 (PST)
+Message-ID: <3d126383-8fea-7ff5-3f42-c131ce46547f@linaro.org>
+Date:   Tue, 24 Jan 2023 22:45:57 +0100
 MIME-Version: 1.0
-References: <20230124174714.2775680-1-neeraj.sanjaykale@nxp.com>
- <20230124174714.2775680-3-neeraj.sanjaykale@nxp.com> <167458712396.1259484.1395941797664824881.robh@kernel.org>
-In-Reply-To: <167458712396.1259484.1395941797664824881.robh@kernel.org>
-From:   Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Date:   Tue, 24 Jan 2023 13:44:18 -0800
-Message-ID: <CABBYNZKAwp3Wqjrcp4k3wvjZSNfJhRWA5ytH7oNWXCG7V4k2ow@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] dt-bindings: net: bluetooth: Add NXP bluetooth support
-To:     Rob Herring <robh@kernel.org>,
-        Tedd Ho-Jeong An <hj.tedd.an@gmail.com>
-Cc:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
-        jirislaby@kernel.org, robh+dt@kernel.org, sherry.sun@nxp.com,
-        marcel@holtmann.org, linux-serial@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rohit.fule@nxp.com,
-        devicetree@vger.kernel.org, amitkumar.karwar@nxp.com,
-        linux-bluetooth@vger.kernel.org, edumazet@google.com,
-        pabeni@redhat.com, gregkh@linuxfoundation.org,
-        netdev@vger.kernel.org, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, davem@davemloft.net,
-        johan.hedberg@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8540p-ride: Document i2c busses
+Content-Language: en-US
+To:     Andrew Halaney <ahalaney@redhat.com>, andersson@kernel.org
+Cc:     agross@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bmasney@redhat.com, quic_shazhuss@quicinc.com
+References: <20230124192351.695838-1-ahalaney@redhat.com>
+ <20230124192351.695838-2-ahalaney@redhat.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230124192351.695838-2-ahalaney@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, Tedd,
-
-On Tue, Jan 24, 2023 at 11:06 AM Rob Herring <robh@kernel.org> wrote:
->
->
-> On Tue, 24 Jan 2023 23:17:13 +0530, Neeraj Sanjay Kale wrote:
-> > Add binding document for generic and legacy NXP bluetooth
-> > chipset.
-> >
-> > Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> > ---
-> >  .../bindings/net/bluetooth/nxp-bluetooth.yaml | 67 +++++++++++++++++++
-> >  1 file changed, 67 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml:67:1: [warning] too many blank lines (2 > 1) (empty-lines)
->
-> dtschema/dtc warnings/errors:
-> Error: Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.example.dts:18.9-15 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[1]: *** [scripts/Makefile.lib:434: Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.example.dtb] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1508: dt_binding_check] Error 2
-
-I wonder if that is something that we could incorporate to our CI,
-perhaps we can detect if the subject starts with dt-binding then we
-attempt to make with DT_CHECKER_FLAGS, thoughts?
-
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230124174714.2775680-3-neeraj.sanjaykale@nxp.com
->
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
->
 
 
--- 
-Luiz Augusto von Dentz
+On 24.01.2023 20:23, Andrew Halaney wrote:
+> It isn't obvious in the current devicetree what is connected. Go ahead
+> and document what's on the other end.
+> 
+> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> ---
+Other boards do similar things under the i2c host nodes (see
+e.g. sm8450-sony-xperia-nagara.dtsi..
+
+> 
+> Not sure if this sort of patch is actually welcomed or not but I went
+> through this exercise (for the prior patch) and thought it might be
+> useful to document.
+..and yes it is very welcome!
+
+> 
+> Shazad, this also highlights (unless I misread things) that i2c12 has no
+> use for us, right? If agreed I can remove it but sorting through the
+> lore links that provided all this it seems like at the time it was
+> desired to be added.
+It's fine if you guys decide that it's useful for some kind expansion
+mezzanine or other add-on board, but if it's not connected anywhere
+you may wish to disable the host and remove the pinctrl entries, as
+keeping it enabled essentially wastes some power.
+
+Konrad
+> 
+> Thanks,
+> Andrew
+> 
+>  arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> index cb9fbdeb5a9e..3478ab91fe73 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> @@ -317,6 +317,7 @@ &xo_board_clk {
+>  
+>  &tlmm {
+>  	i2c0_default: i2c0-default-state {
+> +		/* To USB7002T-I/KDXVA0 USB hub (SIP1 only) */
+>  		pins = "gpio135", "gpio136";
+>  		function = "qup0";
+>  		drive-strength = <2>;
+> @@ -324,6 +325,7 @@ i2c0_default: i2c0-default-state {
+>  	};
+>  
+>  	i2c1_default: i2c1-default-state {
+> +		/* To PM40028B-F3EI PCIe switch */
+>  		pins = "gpio158", "gpio159";
+>  		function = "qup1";
+>  		drive-strength = <2>;
+> @@ -331,6 +333,7 @@ i2c1_default: i2c1-default-state {
+>  	};
+>  
+>  	i2c12_default: i2c12-default-state {
+> +		/* Not connected */
+>  		pins = "gpio0", "gpio1";
+>  		function = "qup12";
+>  		drive-strength = <2>;
+> @@ -338,6 +341,7 @@ i2c12_default: i2c12-default-state {
+>  	};
+>  
+>  	i2c15_default: i2c15-default-state {
+> +		/* To display connector (SIP1 only) */
+>  		pins = "gpio36", "gpio37";
+>  		function = "qup15";
+>  		drive-strength = <2>;
+> @@ -345,6 +349,7 @@ i2c15_default: i2c15-default-state {
+>  	};
+>  
+>  	i2c18_default: i2c18-default-state {
+> +		/* To ASM330LHH IMU (SIP1 only) */
+>  		pins = "gpio66", "gpio67";
+>  		function = "qup18";
+>  		drive-strength = <2>;
