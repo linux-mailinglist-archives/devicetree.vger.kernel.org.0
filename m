@@ -2,218 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E932D67A3B0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 21:15:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E20DD67A3C0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 21:23:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230057AbjAXUPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 15:15:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34218 "EHLO
+        id S231828AbjAXUXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 15:23:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229964AbjAXUOz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 15:14:55 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47AF31E5C6;
-        Tue, 24 Jan 2023 12:14:54 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id u1-20020a17090a450100b0022936a63a21so19817656pjg.4;
-        Tue, 24 Jan 2023 12:14:54 -0800 (PST)
+        with ESMTP id S231827AbjAXUXj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 15:23:39 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD5A77D8D
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 12:23:38 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so11845107wmq.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 12:23:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oEtY5LynS2vkRPJ1R/kvYmV9SRofdb2LH2C1cStAz2M=;
-        b=YLqMn6DXAHVh1XoLozY4AjSZ2agwCfvhkAMhaBbQlDjZBccFd5CgQll9zu3+eXv+T3
-         lut752J6pdicDNwtPw0D/+VEKasV0TNfcTCgXpPB0+JjUkK9ObZ5KeUXHB4eBdiCgMkS
-         rAsMHZUlC4kZpqXMwZFqItpHxhcsPA2Noz9zjHKcdCT3BueUIdmHnnQRZNxkxJqrQKcx
-         73PR4NrdkovewfZ3usoqswNOzbAYl+8khJh3bxc7hzSMHjXLOYeeH6BYtu/OA+CUrS4O
-         3PzgLegGlYVKJyk9LsJVomZ987ObpTgG9tGRWdgemBqxaQ6xBdhniwDIeH/nvK/6pAuE
-         rP4Q==
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gmEnLOdJR14tI3Ntkk00dRFSWjZDFa7+/nYKUeYSOJ0=;
+        b=YqaBqbArvj9tbfXxPPzqzyMoylHmGoUYM+4Xi57XkIPMpujQwSX5eOg8gPnANqmOmG
+         FGhqo/sTQ4dB7Uzkya2ud5U/S/eOA4KPEvG/lE4cNc1/nu84GAjvm9MVfy8xVYMHDDjE
+         fRu1vtqSt76yMqKMa5zQRF4P1nsLXK00yjW7XbsKh0lHuua1RD8OnYnP67c/6cdMQm0X
+         lFQ/QUpixTm2XVfv9qXxsjni03Vk4LUS+1BjxNRfeH95ZjpWzsFuoEVwiBej2oLPKrwn
+         1E+iCfWFotzVMxxiukAKlHk/raUwCntYZ0BUJdg33cnXy4d0VUO+3WMH6b3Eianl4d8T
+         MDOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oEtY5LynS2vkRPJ1R/kvYmV9SRofdb2LH2C1cStAz2M=;
-        b=Vg6VeW8lC4EhbhXBwPmcsYfSihSdRr5etMv1R1Fyy3+FwHd9TrqUeEXjA2b5uKTL0A
-         ZgJt2RpaCo8EQlf5bRdh/0z8aUddKnYgaMCeo3E+ptDrrxhIzJw8+SVYNwsn47teRwxy
-         1cYLrXZqlkIhPdTBmGFxJTEZgM7gawbtvVMQgmkDIWo68m7atE80cW6P9DGLKPgCw5iO
-         hQLQwrvNBUDXBP2YAP1UslpvvCJVPoZJWxZ+R7OHZQbo85l3QX8al4ct5SGI9dJ998BP
-         Cr2dWEhaKn87FZJf7roPL4+jmjAJuJNJy9zV5xcaQRNll7V8s49gULsNRZyYm/IiPfcn
-         81RA==
-X-Gm-Message-State: AO0yUKWKASRiHYug93PVla9D+aozZGyRUfiDcxc1KLw04qrAPcYn3ALs
-        q0O7Wg2rKdbXgezTmgSLFpk=
-X-Google-Smtp-Source: AK7set/SVm0TL+nwZtkO3KuT5ojyygCFXTfAneUC4EiVvIR5DnLMNpB8e+WyXau6/07/j3+AxU1FYg==
-X-Received: by 2002:a05:6a20:6985:b0:bb:a0a2:c37a with SMTP id t5-20020a056a20698500b000bba0a2c37amr4187151pzk.33.1674591293717;
-        Tue, 24 Jan 2023 12:14:53 -0800 (PST)
-Received: from stbirv-lnx-3.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d13-20020a170902728d00b00174f61a7d09sm2057824pll.247.2023.01.24.12.14.51
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gmEnLOdJR14tI3Ntkk00dRFSWjZDFa7+/nYKUeYSOJ0=;
+        b=k3bu9eziqd76DshjuFOr0VGuLB+niXV2ys2zwVgrgWNoD3hABHPWBsk6WAZQN/I0Iq
+         BhnohbpiyLjf9+FyfHvmX+SY7R1IyB6nCGBTYdJZlfw0DqfELTTrWUU93FEy/37rfzVZ
+         1uCITeI0aPJOSvnaSko7MvUChcIBYnwQUL/6DL2SzxgRn4hedsLjn1grmj8w0bhIQEpG
+         ZYmMOEjeQUpwUjn9lTG5Ht+1QxcLdBt8mtRx7s74K4pFU7aTTTtyK3kD9VA0dlh7qepD
+         xsqnXGDkaKpzIpevznHSCuSrcBT2lCg4Pdjbr05MLXondjv198pjyPH8bng830VJRHiK
+         UyHQ==
+X-Gm-Message-State: AFqh2krUWrVjkbxnqZxhtkxbnnUuqgFY2xk7UOJtafWdhZTjetqDR9Cg
+        gTPUwL+zZ73nawD3e/9gGYTxng==
+X-Google-Smtp-Source: AMrXdXswcuYTJMXhy4DWMQbQ2A+Kg+0md+xzTgmnKD0QB2GaeTpXmAVDutq5HUKk8SJj/ebTyutWsg==
+X-Received: by 2002:a1c:7712:0:b0:3da:1e35:dfec with SMTP id t18-20020a1c7712000000b003da1e35dfecmr29505954wmi.4.1674591817237;
+        Tue, 24 Jan 2023 12:23:37 -0800 (PST)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id l15-20020a05600c4f0f00b003d9df9e59c4sm15334737wmq.37.2023.01.24.12.23.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 12:14:53 -0800 (PST)
-From:   Doug Berger <opendmb@gmail.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Brian Norris <computersforpeace@gmail.com>,
-        Markus Mayer <mmayer@broadcom.com>,
+        Tue, 24 Jan 2023 12:23:36 -0800 (PST)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Doug Berger <opendmb@gmail.com>
-Subject: [PATCH v2 2/2] rtc: brcmstb-waketimer: allow use as non-wake alarm
-Date:   Tue, 24 Jan 2023 12:14:30 -0800
-Message-Id: <20230124201430.2502371-3-opendmb@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230124201430.2502371-1-opendmb@gmail.com>
-References: <20230124201430.2502371-1-opendmb@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-hwmon@vger.kernel.org, krzysztof.kozlowski@linaro.org,
+        Naresh Solanki <Naresh.Solanki@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/2] dt-bindings: trivial-devices: Add Infineon TDA38640 Voltage Regulator
+Date:   Tue, 24 Jan 2023 21:23:16 +0100
+Message-Id: <20230124202317.3704963-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The wake interrupt only fires when the system is in a suspend
-state. Fortunately we have another interrupt that fires in a
-non-suspend state at the L2 controller UPG_AUX_AON. Add support
-for this interrupt line so we can use the alarm in a non-wake
-context.
+Infineon TDA38640 is PMBUS compliant voltage regulator.
 
-Signed-off-by: Doug Berger <opendmb@gmail.com>
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
 ---
- drivers/rtc/rtc-brcmstb-waketimer.c | 55 +++++++++++++++++++++++++++--
- 1 file changed, 52 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/rtc/rtc-brcmstb-waketimer.c b/drivers/rtc/rtc-brcmstb-waketimer.c
-index e25f9fcd6ed1..1efa81cecc27 100644
---- a/drivers/rtc/rtc-brcmstb-waketimer.c
-+++ b/drivers/rtc/rtc-brcmstb-waketimer.c
-@@ -28,6 +28,7 @@ struct brcmstb_waketmr {
- 	struct device *dev;
- 	void __iomem *base;
- 	unsigned int wake_irq;
-+	unsigned int alarm_irq;
- 	struct notifier_block reboot_notifier;
- 	struct clk *clk;
- 	u32 rate;
-@@ -56,6 +57,8 @@ static inline void brcmstb_waketmr_clear_alarm(struct brcmstb_waketmr *timer)
- {
- 	u32 reg;
- 
-+	if (timer->alarm_en && timer->alarm_irq)
-+		disable_irq(timer->alarm_irq);
- 	timer->alarm_en = false;
- 	reg = readl_relaxed(timer->base + BRCMSTB_WKTMR_COUNTER);
- 	writel_relaxed(reg - 1, timer->base + BRCMSTB_WKTMR_ALARM);
-@@ -88,7 +91,25 @@ static irqreturn_t brcmstb_waketmr_irq(int irq, void *data)
- {
- 	struct brcmstb_waketmr *timer = data;
- 
--	pm_wakeup_event(timer->dev, 0);
-+	if (!timer->alarm_irq)
-+		pm_wakeup_event(timer->dev, 0);
-+	return IRQ_HANDLED;
-+}
-+
-+static irqreturn_t brcmstb_alarm_irq(int irq, void *data)
-+{
-+	struct brcmstb_waketmr *timer = data;
-+
-+	/* Ignore spurious interrupts */
-+	if (!brcmstb_waketmr_is_pending(timer))
-+		return IRQ_HANDLED;
-+
-+	if (timer->alarm_en) {
-+		if (!device_may_wakeup(timer->dev))
-+			writel_relaxed(WKTMR_ALARM_EVENT,
-+				       timer->base + BRCMSTB_WKTMR_EVENT);
-+		rtc_update_irq(timer->rtc, 1, RTC_IRQF | RTC_AF);
-+	}
- 
- 	return IRQ_HANDLED;
- }
-@@ -114,7 +135,7 @@ static void wktmr_read(struct brcmstb_waketmr *timer,
- static int brcmstb_waketmr_prepare_suspend(struct brcmstb_waketmr *timer)
- {
- 	struct device *dev = timer->dev;
--	int ret = 0;
-+	int ret;
- 
- 	if (device_may_wakeup(dev)) {
- 		ret = enable_irq_wake(timer->wake_irq);
-@@ -122,9 +143,17 @@ static int brcmstb_waketmr_prepare_suspend(struct brcmstb_waketmr *timer)
- 			dev_err(dev, "failed to enable wake-up interrupt\n");
- 			return ret;
- 		}
-+		if (timer->alarm_en && timer->alarm_irq) {
-+			ret = enable_irq_wake(timer->alarm_irq);
-+			if (ret) {
-+				dev_err(dev, "failed to enable rtc interrupt\n");
-+				disable_irq_wake(timer->wake_irq);
-+				return ret;
-+			}
-+		}
- 	}
- 
--	return ret;
-+	return 0;
- }
- 
- /* If enabled as a wakeup-source, arm the timer when powering off */
-@@ -192,7 +221,11 @@ static int brcmstb_waketmr_alarm_enable(struct device *dev,
- 		    !brcmstb_waketmr_is_pending(timer))
- 			return -EINVAL;
- 		timer->alarm_en = true;
-+		if (timer->alarm_irq)
-+			enable_irq(timer->alarm_irq);
- 	} else if (!enabled && timer->alarm_en) {
-+		if (timer->alarm_irq)
-+			disable_irq(timer->alarm_irq);
- 		timer->alarm_en = false;
- 	}
- 
-@@ -269,6 +302,19 @@ static int brcmstb_waketmr_probe(struct platform_device *pdev)
- 	if (ret < 0)
- 		goto err_clk;
- 
-+	brcmstb_waketmr_clear_alarm(timer);
-+
-+	/* Attempt to initialize non-wake irq */
-+	ret = platform_get_irq(pdev, 1);
-+	if (ret > 0) {
-+		timer->alarm_irq = (unsigned int)ret;
-+		ret = devm_request_irq(dev, timer->alarm_irq, brcmstb_alarm_irq,
-+				       IRQF_NO_AUTOEN, "brcmstb-waketimer-rtc",
-+				       timer);
-+		if (ret < 0)
-+			timer->alarm_irq = 0;
-+	}
-+
- 	timer->reboot_notifier.notifier_call = brcmstb_waketmr_reboot;
- 	register_reboot_notifier(&timer->reboot_notifier);
- 
-@@ -317,6 +363,8 @@ static int brcmstb_waketmr_resume(struct device *dev)
- 		return 0;
- 
- 	ret = disable_irq_wake(timer->wake_irq);
-+	if (timer->alarm_en && timer->alarm_irq)
-+		disable_irq_wake(timer->alarm_irq);
- 
- 	brcmstb_waketmr_clear_alarm(timer);
- 
-@@ -346,4 +394,5 @@ module_platform_driver(brcmstb_waketmr_driver);
- MODULE_LICENSE("GPL v2");
- MODULE_AUTHOR("Brian Norris");
- MODULE_AUTHOR("Markus Mayer");
-+MODULE_AUTHOR("Doug Berger");
- MODULE_DESCRIPTION("Wake-up timer driver for STB chips");
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index f5c0a6283e61..a28b02036489 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -141,6 +141,8 @@ properties:
+           - infineon,slb9645tt
+             # Infineon SLB9673 I2C TPM 2.0
+           - infineon,slb9673
++            # Infineon TDA38640 Voltage Regulator
++          - infineon,tda38640
+             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+           - infineon,tlv493d-a1b6
+             # Infineon Multi-phase Digital VR Controller xdpe11280
+
+base-commit: 4d891f76a30d3be4194a805c5e4277786140ef05
 -- 
-2.25.1
+2.38.1
 
