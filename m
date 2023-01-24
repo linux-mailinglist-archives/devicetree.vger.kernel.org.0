@@ -2,134 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1B3567967C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:20:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E8B2679686
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:23:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233521AbjAXLUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 06:20:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49162 "EHLO
+        id S233911AbjAXLX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 06:23:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233386AbjAXLUu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:20:50 -0500
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE9E125B9
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:20:49 -0800 (PST)
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 10C6C419BC;
-        Tue, 24 Jan 2023 12:20:45 +0100 (CET)
-Date:   Tue, 24 Jan 2023 12:20:43 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        with ESMTP id S233925AbjAXLX5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:23:57 -0500
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 059D876BE;
+        Tue, 24 Jan 2023 03:23:54 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id EE1DD40003;
+        Tue, 24 Jan 2023 11:23:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1674559433;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=wbYmdWFivLJBG8Pv5/K9k19ry1rzbKQLylHycCbuWNc=;
+        b=NFHmt5S1U+BUZUExL6OMxo6ILWp1xOjzqVQBYDfj00xs/vj7VrSA8WyLsXUrWWzJO2vFgu
+        Cr4mewN/SKd25Vlr4LPbG1RmnyBuql6OvuSKtX7LqGUjOADGdWXtZdqbCqf70llzXc2MgM
+        gh7eqki/cly8NSZheKh/cOaif3gaUwL36fTc/c7tf4VoPbtXcjIlhqFna9u4NYhgiD0nyM
+        LKuhuQx6iBHekcH7quPoCnFbpsrz+VRm0gvzpATBvB8UcNvf1iZ+MMTzHi66V2FDXR1GzD
+        ztM2qnsi+eVF9dkpyWhxPae2i9kmMcC+2PjSxhskT8Ew9B5OqlBkOiUlJlpz/w==
+Date:   Tue, 24 Jan 2023 12:23:47 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v5 1/4] dt-bindings: display/msm: convert MDP5 schema to
- YAML format
-Message-ID: <20230124112043.4pzhbc3thgorjr2g@SoMainline.org>
-References: <20230109050152.316606-1-dmitry.baryshkov@linaro.org>
- <20230109050152.316606-2-dmitry.baryshkov@linaro.org>
- <20230109074947.5vnfrn6shzpm6iqi@SoMainline.org>
- <997dbd09-03d6-d60d-1dce-db0bc6415582@linaro.org>
- <20230111222903.otbur6yi4iv4mpgz@SoMainline.org>
- <1d371e40-0639-16f8-abef-afcd05e72e22@linaro.org>
- <20230111223553.e3xrxmdys5zxxleh@SoMainline.org>
- <20230112215015.GA259261-robh@kernel.org>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 05/10] dt-bindings: soc: fsl: cpm_qe: Add QMC
+ controller
+Message-ID: <20230124122347.1a531d0f@bootlin.com>
+In-Reply-To: <37a95380-ee68-5c3a-3b96-48cc8b525f19@linaro.org>
+References: <20230113103759.327698-1-herve.codina@bootlin.com>
+        <20230113103759.327698-6-herve.codina@bootlin.com>
+        <316ddb81-8d13-71dd-3396-412e31cfb880@linaro.org>
+        <20230124104232.183cc9ff@bootlin.com>
+        <37a95380-ee68-5c3a-3b96-48cc8b525f19@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230112215015.GA259261-robh@kernel.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-01-12 15:50:15, Rob Herring wrote:
-> On Wed, Jan 11, 2023 at 11:35:53PM +0100, Marijn Suijten wrote:
-> > On 2023-01-12 00:31:33, Dmitry Baryshkov wrote:
-> > > On 12/01/2023 00:29, Marijn Suijten wrote:
-> > > > On 2023-01-10 06:40:27, Dmitry Baryshkov wrote:
-> > > >> On 09/01/2023 09:49, Marijn Suijten wrote:
-> > > >>> On 2023-01-09 07:01:49, Dmitry Baryshkov wrote:
-> > > > <snip>
-> > > >>>> +    description: |
-> > > >>>
-> > > >>> Should multiline descriptions be treated as a oneline string with `>`?
-> 
-> Depends if you want to keep paragraphs. Generally, we use '|' or 
-> nothing. If just a colon (or ???), then I think you want '>'.
+On Tue, 24 Jan 2023 11:02:52 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-But doesn't that also affect how lines within paragraphs are flowed?
-Arguably it's only GitHub that doesn't "ignore" manual single newlines,
-the Markdown (and maybe also RST?) spec AFAIK state that multiline
-blocks will be turned into a single paragraph (automatically reflowing
-to width).
+> On 24/01/2023 10:42, Herve Codina wrote:
+> > Hi Krzysztof,
+> >=20
+> > On Tue, 17 Jan 2023 12:31:09 +0100
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> >  =20
+> >> On 13/01/2023 11:37, Herve Codina wrote: =20
+> >>> Add support for the QMC (QUICC Multichannel Controller)
+> >>> available in some PowerQUICC SoC such as MPC885 or MPC866.
+> >>>
+> >>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> >>> ---
+> >>>  .../bindings/soc/fsl/cpm_qe/fsl,qmc.yaml      | 164 ++++++++++++++++=
+++
+> >>>  1 file changed, 164 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/=
+fsl,qmc.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc=
+.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..3ec52f1635c8
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
+> >>> @@ -0,0 +1,164 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qmc.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: PowerQUICC CPM QUICC Multichannel Controller (QMC)
+> >>> +
+> >>> +maintainers:
+> >>> +  - Herve Codina <herve.codina@bootlin.com>
+> >>> +
+> >>> +description: |
+> >>> +  The QMC (QUICC Multichannel Controller) emulates up to 64 channels=
+ within
+> >>> +  one serial controller using the same TDM physical interface routed=
+ from
+> >>> +  TSA.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    items:
+> >>> +      - enum:
+> >>> +          - fsl,mpc885-scc-qmc
+> >>> +          - fsl,mpc866-scc-qmc
+> >>> +      - const: fsl,cpm1-scc-qmc
+> >>> +
+> >>> +  reg:
+> >>> +    items:
+> >>> +      - description: SCC (Serial communication controller) register =
+base
+> >>> +      - description: SCC parameter ram base
+> >>> +      - description: Dual port ram base
+> >>> +
+> >>> +  reg-names:
+> >>> +    items:
+> >>> +      - const: scc_regs
+> >>> +      - const: scc_pram
+> >>> +      - const: dpram
+> >>> +
+> >>> +  interrupts:
+> >>> +    maxItems: 1
+> >>> +    description: SCC interrupt line in the CPM interrupt controller
+> >>> +
+> >>> +  fsl,tsa:
+> >>> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >>> +    description: phandle to the TSA
+> >>> +
+> >>> +  fsl,tsa-cell-id:
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +    enum: [1, 2, 3]
+> >>> +    description: |
+> >>> +      TSA cell ID (dt-bindings/soc/fsl,tsa.h defines these values)
+> >>> +       - 1: SCC2
+> >>> +       - 2: SCC3
+> >>> +       - 3: SCC4   =20
+> >>
+> >> Is this used as argument to tsa? If so, this should be part of fsl,tsa
+> >> property, just like we do for all syscon-like phandles. =20
+> >=20
+> > Yes, indeed.
+> > I will move 'fsl,tsa' to 'fsl,tsa-cell' with 'fsl,tsa-cell' a phandle/n=
+umber
+> > pair (the phandle to TSA node and the TSA cell id to use) =20
+>=20
+> Move to fsl,tsa, not from.
 
-> I get tired of saying to drop unnecessary '|' in reviews. It would be 
-> nice to analyze the text to check what's needed automatically.
+Well, I plan to remove both fsl,tsa and fsl,tsa-cell-id and use this:
+  fsl,tsa-cell:
+    $ref: /schemas/types.yaml#/definitions/phandle-array
+    items:
+      - items:
+          - description: phandle to TSA node
+          - enum: [1, 2, 3]
+            description: |
+              TSA cell ID (dt-bindings/soc/fsl,tsa.h defines these values)
+               - 1: SCC2
+               - 2: SCC3
+               - 3: SCC4
+    description:
+      Should be a phandle/number pair. The phandle to TSA node and the TSA
+      cell ID to use.
 
-And that's just one of the many things...
+Is that what you were thinking about ?
 
-> > > >> Ack, I'm fine with either of them, let's use the >
-> > > >>
-> > > >>>
-> > > >>>> +      Contains the list of output ports from DPU device. These ports
-> > > >>>> +      connect to interfaces that are external to the DPU hardware,
-> > > >>>> +      such as DSI, DP etc. MDP5 devices support up to 4 ports::
-> > > >>>
-> > > >>> How do these double colons render?  Is this intentional?
-> > > >>
-> > > >> double colons is an escape for a single colon if I remember correcly.
-> > > > 
-> > > > I thought no escaping was necessary here, especially since this is
-> > > > already a value - it is a multiline string.
-> > > 
-> > > I was mostly following examples, grep :: through the dt-bindings.
-> > 
-> > Saw that, maybe these "freeform" description strings are intended to be
-> > RST to support more elaborate rendering if/when that happens?
-> 
-> No, though some experiments have been done in that regard. It seemed to 
-> work.
+Best regards,
+Herv=C3=A9
 
-Hmm, the question is what format description blocks should adhere to,
-and if a double colon here makes sense and/or is required?
 
-> > > >> BTW: how to render the DT schema?
-> > > > 
-> > > > I'm not sure if there's currently any rendering tool to view these docs
-> > > > in a "friendly" manner, e.g. an html page, or whether they're only used
-> > > > as specifications for DT validation.
-> > > 
-> > > Probably there will be one at some point. It might make good addition to 
-> > > devicetree.org.
-> > 
-> > Would be super cool to have some "interactive" / properly
-> > rendered/colored docs up there for DT :)
-> 
-> One of the original goals was to transform the DT spec to schema docs 
-> and then generate the spec from the schemas.
-> 
-> There's tools that do json-schema to docs already. They may just work. I 
-> haven't looked at them though as that's not really my itch and I simply 
-> don't have time. Maybe if we stop reviewing schemas for a while.
-
-Sure, as above we shoudn't have to render anything now nor any time
-soon, but it would be helpful to know what kind of format to adhere to
-in description blocks.
-
-- Marijn
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
