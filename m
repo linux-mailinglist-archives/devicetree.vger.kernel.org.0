@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E571B6797A0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 13:19:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B84D86797D6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 13:24:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233653AbjAXMTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 07:19:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57932 "EHLO
+        id S233880AbjAXMYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 07:24:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233704AbjAXMT3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 07:19:29 -0500
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECE464520A
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:19:23 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id t12-20020a17090aae0c00b00229f4cff534so1268231pjq.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:19:23 -0800 (PST)
+        with ESMTP id S233370AbjAXMYQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 07:24:16 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64ECE38B6D
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:23:46 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so10804468wms.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:23:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
+        d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=A/7Qu8+3n1M8/9GOtQ5EA0GbOvgIBu69H4oMSLKB4RU=;
-        b=gFLiV5tfkgWilYvilc2OjqCiE4ojC5DbptZJ+Z3A23EwAvNvB8V/zwRslyMfz98GQ0
-         dCO8BqEEO8/Va3C11xmtci/elCMFrz4GqUqLk/znJwK00v1q6CIxnvtDALHrwsOYmLP9
-         YCZpQ/6wjV+K614rz5LhfvOABnrvvALvbYzXrvcHYZLOmfXFWUKW7cCO5G9JuBQvRK7I
-         we/+a9kIzzeymeuIj5BUR22uiGzfDff6JYa3s6zHMcLa03yLP+izkwL7tbCje4QoQ+Uh
-         GYlC5P5Z5yh4Ph9Xm1GUXnh70l57Wpo3k7WJIStAokegORE1OAV00cQ/IOdqYIzJ+V65
-         mmOA==
+        bh=QkTslYMiKbk7wM257ny2CAnZjADL3oZfRoJOLk54k/Y=;
+        b=fzwSE+w049j/XzsIp7VUc9Q4DMyKfqq3Fp9d7DWaBMheW9x2sAs/MEIqyXhSwh2Ov+
+         lHJkJNtaj2yX0tcWoYrO94slISdmHHwqb5BJPTm0+aVrRe17mD3+ouSS5nqgx17rmuWW
+         P3WgVVhT2eNj5WfW1CsxGFGRQgREq/ge11+AXiKBtdgqqWe+RwvPWzwiN6gIMVxXeBZq
+         Jsaf6aqpsdKgVx1p4407eetShAwkNMocLtr4P0EvGNrYCE72VI0cUNEjOSfQbSbc6k0h
+         FlcoIj+kxvNDX0HFC6VC613tx/fb/Rw27XhuLn2fhJ+aeKbL76OMuE5mOyBKRKPJZPfa
+         jIzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A/7Qu8+3n1M8/9GOtQ5EA0GbOvgIBu69H4oMSLKB4RU=;
-        b=DqVqdCtr5KZX1v9CCJgVJUp9E/UxCrlvxouuXdpgTQuz6GpIw+MDlQ2KfuC7t/dEbr
-         WSD1XL8sioKj13hQhCoSDxuBwBusjjKPeMpkyV5sOTeayTe7wKevMOhAMW3BFh0mGotj
-         XElFr4Fsfd+83gSq9rndSklsiwOvWLgtFHuHzXvlxHoNw7EZYjKq3fGkfc/+jaJZoOGB
-         JlXBrlvABVUW692XFx5f6YRwUsPXRRp6Rd2exMxgdqcihlqFg1krr3Btjm96cUcLQnSu
-         kBHoRZyNFW3xLrRdlwB8TAmoG9kHRlNvighjlHx7qv8sGD6XWgffd6g3kmsyCk1/nfkG
-         PH0w==
-X-Gm-Message-State: AFqh2kol5ADoeKmGWaU2tuktqTheC6KvD/86pWcbPvhxqxlAkmu9Afp6
-        ieNYcFDc5fQ/XiE/j3yWfrhbQw==
-X-Google-Smtp-Source: AMrXdXtufDumWV+8RAXQ8wsMW2TlQHdMz5dV3ooJEie5JhRJKuPT+qDq47usLgM+OvGgRlC85uh10Q==
-X-Received: by 2002:a17:90a:1a41:b0:22b:b82a:f3a6 with SMTP id 1-20020a17090a1a4100b0022bb82af3a6mr14479079pjl.33.1674562763389;
-        Tue, 24 Jan 2023 04:19:23 -0800 (PST)
-Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
-        by smtp.gmail.com with ESMTPSA id t8-20020a17090a1c8800b0020aacde1964sm8182776pjt.32.2023.01.24.04.19.20
+        bh=QkTslYMiKbk7wM257ny2CAnZjADL3oZfRoJOLk54k/Y=;
+        b=7pjwNvQIhet9xgnCf1z9kF4qEjh4dGwMD+yA0EDr3jrxl03kp/PNQn8HMcn9zDEzO0
+         bjfBJucm6O6KQoLurSMKB1gd1qiYBJcRS+WwxAFb4Jzo0WqiMdpNU4EzQxvcrVNiPkv2
+         B48MYxtKj1CMPMFRz6LQ+zcUacdMeeibn6qZQnCWTeS8215GIT8P95t89Ks4FVb50rK5
+         smQ5lDgPLG17stQ3DT8TR1mJ3wuNgL+FyGJMTsM83O58sLVkV2OJsLbd1cBNwdjn+ytA
+         sP+ihQGuO6rbs+X2ZozMZOAhbVxabLcuAt/PV8ltlj3qEs21p7/RAEQfF47yjIb3skjp
+         YPMw==
+X-Gm-Message-State: AFqh2kpEGK6XUEbyIGrsTAYBw7u98MNbw2TPR89ZWAFYPAICSHTDb3us
+        B2c8fRrgsC6Fpxte4AuHaLMNHw==
+X-Google-Smtp-Source: AMrXdXuHLbuyQsCikp2sixdbE7T4vLrvn3duH3fx+F/wRHrodHvlBxYaP9Buh5DxlemteuWNTR2HPQ==
+X-Received: by 2002:a05:600c:601c:b0:3d3:4f56:62e1 with SMTP id az28-20020a05600c601c00b003d34f5662e1mr27626827wmb.27.1674563006565;
+        Tue, 24 Jan 2023 04:23:26 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id y11-20020a1c4b0b000000b003daffc2ecdesm13175479wma.13.2023.01.24.04.23.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 04:19:22 -0800 (PST)
-Message-ID: <3993c666-7038-76f8-9216-3db23ca0bffb@9elements.com>
-Date:   Tue, 24 Jan 2023 17:49:18 +0530
+        Tue, 24 Jan 2023 04:23:26 -0800 (PST)
+Message-ID: <cfc6b527-3293-b2aa-fd37-f2112b0bfb92@linaro.org>
+Date:   Tue, 24 Jan 2023 13:23:24 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
 Subject: Re: [PATCH] hwmon: (pmbus/tda38640) Add driver for Infineon TDA38640
  Voltage Regulator
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
         Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -70,116 +70,38 @@ References: <20230124110111.3965317-1-Naresh.Solanki@9elements.com>
  <b4b11836-5a4b-a2b7-18e2-89ca26f19817@linaro.org>
  <05947e9f-0667-4565-b481-ca5635da4174@9elements.com>
  <d8fb3c45-435d-f080-6ba4-e9e4595f3638@linaro.org>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <d8fb3c45-435d-f080-6ba4-e9e4595f3638@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ <3993c666-7038-76f8-9216-3db23ca0bffb@9elements.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3993c666-7038-76f8-9216-3db23ca0bffb@9elements.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
-
-On 24-01-2023 05:35 pm, Krzysztof Kozlowski wrote:
-> On 24/01/2023 12:45, Naresh Solanki wrote:
->> Hi
+On 24/01/2023 13:19, Naresh Solanki wrote:
+>>>>
+>>>>> +static const struct of_device_id tda38640_of_match[] = {
+>>>>> +	{ .compatible = "infineon,tda38640"},
+>>>>> +	{ },
+>>>>> +};
+>>>>> +MODULE_DEVICE_TABLE(of, tda38640_of_match);
+>>>>
+>>>> Where is it used? You miss the user.
+>>> I'm not sure if I get your question right.
+>>> This chip is used in sbp1 board to power CPU rails.
 >>
->> On 24-01-2023 04:40 pm, Krzysztof Kozlowski wrote:
->>> On 24/01/2023 12:01, Naresh Solanki wrote:
->>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
->>>>
->>>> Add the pmbus driver for the Infineon TDA38640 voltage regulator.
->>>>
->>>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->>>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->>>> ---
->>>>    .../devicetree/bindings/trivial-devices.yaml  |  2 +
->>>
->>> Split bindings from driver code.
->> Sure
->>>
->>>>    drivers/hwmon/pmbus/Kconfig                   | 16 ++++
->>>>    drivers/hwmon/pmbus/Makefile                  |  1 +
->>>>    drivers/hwmon/pmbus/tda38640.c                | 78 +++++++++++++++++++
->>>>    4 files changed, 97 insertions(+)
->>>>    create mode 100644 drivers/hwmon/pmbus/tda38640.c
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
->>>> index f5c0a6283e61..a28b02036489 100644
->>>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
->>>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->>>> @@ -141,6 +141,8 @@ properties:
->>>>              - infineon,slb9645tt
->>>>                # Infineon SLB9673 I2C TPM 2.0
->>>>              - infineon,slb9673
->>>> +            # Infineon TDA38640 Voltage Regulator
->>>> +          - infineon,tda38640
->>>>                # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
->>>>              - infineon,tlv493d-a1b6
->>>>                # Infineon Multi-phase Digital VR Controller xdpe11280
->>>> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
->>>> index 30448e049486..9f4bbb9c487a 100644
->>>> --- a/drivers/hwmon/pmbus/Kconfig
->>>> +++ b/drivers/hwmon/pmbus/Kconfig
->>>> @@ -395,6 +395,22 @@ config SENSORS_STPDDC60
->>>>    	  This driver can also be built as a module. If so, the module will
->>>>    	  be called stpddc60.
->>>>    
->>>> +config SENSORS_TDA38640
->>>> +	tristate "Infineon TDA38640"
->>>> +	help
->>>> +	  If you say yes here you get hardware monitoring support for Infineon
->>>> +	  TDA38640.
->>>> +
->>>> +	  This driver can also be built as a module. If so, the module will
->>>> +	  be called tda38640.
->>>> +
->>>> +config SENSORS_TDA38640_REGULATOR
->>>> +	bool "Regulator support for TDA38640 and compatibles"
->>>> +	depends on SENSORS_TDA38640 && REGULATOR
->>>> +	help
->>>> +	  If you say yes here you get regulator support for Infineon
->>>> +	  TDA38640 as regulator.
->>>
->>> Drop entire option, why is it needed?
->> You mean regulator option ?
->> This is how other pmbus regulator devices have provided option.
-> 
-> Hmmm... I wonder why this is of any use.
- From what I can think of. Chip also provide pin to control regulator 
-enable. If that is used in the design then the regulator option may not 
-be needed.
-> 
->>>
->>>> +
->>>>    config SENSORS_TPS40422
->>>>    	tristate "TI TPS40422"
->>>>    	help
-> 
-> (...)
-Yes this doesn't has regulator support in driver.
-> 
->>>
->>>> +static const struct of_device_id tda38640_of_match[] = {
->>>> +	{ .compatible = "infineon,tda38640"},
->>>> +	{ },
->>>> +};
->>>> +MODULE_DEVICE_TABLE(of, tda38640_of_match);
->>>
->>> Where is it used? You miss the user.
->> I'm not sure if I get your question right.
->> This chip is used in sbp1 board to power CPU rails.
-> 
-> No, where is the data structure used (except module autoloading)?
-My use case is loading the driver base on DT. Not sure of other uses.
-> 
-> Best regards,
-> Krzysztof
-> 
-Best Regards,
-Naresh
+>> No, where is the data structure used (except module autoloading)?
+> My use case is loading the driver base on DT. Not sure of other uses.
+
+Where is it used in the code?
+
+Best regards,
+Krzysztof
+
