@@ -2,94 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31F20679DC9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 16:43:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48B83679E1E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 17:00:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234735AbjAXPnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 10:43:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55534 "EHLO
+        id S233235AbjAXQAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 11:00:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234093AbjAXPnY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 10:43:24 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E96A74C0E3
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 07:43:08 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so13116787wma.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 07:43:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=N/a+6+PTNK+EgdrHpwsWimSpIXxnD79ClgSYevcrnuE=;
-        b=yf89n9wHbV/XnkigjdbRLaTnDYXsvazoQNIyN4X9VfmFm/yRnOxKuD2VSDfh5nnAp6
-         j4iTCxnMuig5YSDyZo8Erw2bTT2twrR2zWWFhJy6JFPsnAcAcdTGVctCKCp9UWLgE4+m
-         3Zi1q2MGqqELl250sQRxjmNJ0u7dcRA6gGRtqvEmswNkmgTPhecSFQp0Il/496oc8U0/
-         YdfTzSMYOXEck4uhxPAIyQRXI+zoKOVzm9a5QSHHp61yj+d8NPyK6ZRiRzTixITkkm6w
-         gciX8E0C3kDc17akCA4xh1Di4UAEoZQsJSGgqIo/e9jYsdup1v6zagNvDeIvivrAfAuw
-         HUuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N/a+6+PTNK+EgdrHpwsWimSpIXxnD79ClgSYevcrnuE=;
-        b=LU8lrntdRT6IFHB8lsXFtZfWn1d7v3p53wsBsnbenhAuaS7Z3qFkgf9AKBpvgt3wmv
-         TZfy8g/K7rJA9oNR7qW3C74EbRQEE9UV+PFEPaDdnCJo9Xr+f70kDZgKnMXA74trSPKR
-         2PFQ16KmT+MtGiUwt62mF0Gq7IjSGCUFyDaDAAczrfB3XBquXeVMA3VwigYqqgsU6Flm
-         tEc7GxaQESRENkcotvOoeYZNK5lkIk5/oq+bOKqYyUhvi+m4fqNMGfAuYlDjh7tqzBES
-         UY4PMdvWbYV1B77JqX4Y6ulBAQgmwOJo4rkVFhjAlkxXKqRdg/1cSL8SPwlYFSTPSPcV
-         lp5A==
-X-Gm-Message-State: AFqh2kp4CqqOtWpZFN4fOslX+rPilVnN+j5TuhmjoIQ2xCDDwvItuGaL
-        bv/zllcN7vE3Ag6S4AjI7DfvtQ==
-X-Google-Smtp-Source: AMrXdXuYOE3dT+VE3oSwdKK67My+x+RmBaEi/JYTrdmPi+C9tVhvtgV7Z5YjOeHbO2Ewx7v3D/2lrg==
-X-Received: by 2002:a05:600c:1d12:b0:3da:ff82:f627 with SMTP id l18-20020a05600c1d1200b003daff82f627mr29438313wms.25.1674574987235;
-        Tue, 24 Jan 2023 07:43:07 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t16-20020a5d49d0000000b002bfb0c5527esm1611046wrs.109.2023.01.24.07.43.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 07:43:06 -0800 (PST)
-Message-ID: <e34dd560-1fb5-bd27-a659-eec465fe584a@linaro.org>
-Date:   Tue, 24 Jan 2023 16:43:05 +0100
+        with ESMTP id S233407AbjAXQA3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 11:00:29 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B00F26A41;
+        Tue, 24 Jan 2023 08:00:27 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4A23EB8129F;
+        Tue, 24 Jan 2023 16:00:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0052CC433A1;
+        Tue, 24 Jan 2023 16:00:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674576025;
+        bh=E4rebzxiuL9N/C2gmFGLTuzUkrJE5V2YWs40own6YyY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=iKvklFst7vZ9IZe4gHIoyd7FDz+BCboBsjFrffOXRyIk7UR33Y+deYe7w9Dt4//N3
+         ZKbX5nAKbhNfgN7SuQ9DLI62Rtg2E/2/6QuSwq+DJlEFvp4NUnewk/RVpuRHCI59qI
+         DA0JndLucnyWGW8PmwHoAlKr93KQNSo7EoOZThp75drTwp8ePo0LySticjPL51/kmm
+         zkmKeOS7kbCU7Z6pz7x+tirTDk7iH10/45A7WtQBAmCWGzefDG5xleY0Ub3GS6FY1C
+         A53uYCj4yVKj+qAoSe1bJAMb3gmsPuMS8UwVjSVXYp+z64VH0siWjGlf3aMSRnbicg
+         tJQsPjBifbH+Q==
+Received: by mail-vs1-f41.google.com with SMTP id i188so16890821vsi.8;
+        Tue, 24 Jan 2023 08:00:24 -0800 (PST)
+X-Gm-Message-State: AFqh2kpfbsnKJ/DpqUDeSr12jY1b2rJlE46MhGPFNvNFOCjhgN0Rr56r
+        OLtOQX/E8EsWtyEwSb17ALugKfkyAXOhST1ZjA==
+X-Google-Smtp-Source: AMrXdXu8POmPTc3kTbupXN8+asQxNlXMX0VKe5umLqj8CtgRiM7NIZ+CsUSwyInEoiakaRCb274kzhdbeY7AXH9Saw0=
+X-Received: by 2002:a67:ef8a:0:b0:3d0:b955:e0af with SMTP id
+ r10-20020a67ef8a000000b003d0b955e0afmr4108270vsp.26.1674576023792; Tue, 24
+ Jan 2023 08:00:23 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v3 05/10] dt-bindings: soc: fsl: cpm_qe: Add QMC
- controller
-Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+References: <20230113041115.4189210-1-quic_bjorande@quicinc.com>
+ <20230117175657.GA3275060-robh@kernel.org> <20230118180811.GB3322341@hu-bjorande-lv.qualcomm.com>
+ <20230119161132.GA1880784-robh@kernel.org> <20230119173954.GB3899167@hu-bjorande-lv.qualcomm.com>
+In-Reply-To: <20230119173954.GB3899167@hu-bjorande-lv.qualcomm.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 24 Jan 2023 10:00:12 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+4t09XDkF0dbh+aOyTz80SY18EpRBdoGpLqQBuCPQ5=Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+4t09XDkF0dbh+aOyTz80SY18EpRBdoGpLqQBuCPQ5=Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Introduce GPIO-based SBU mux
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230113103759.327698-1-herve.codina@bootlin.com>
- <20230113103759.327698-6-herve.codina@bootlin.com>
- <316ddb81-8d13-71dd-3396-412e31cfb880@linaro.org>
- <20230124104232.183cc9ff@bootlin.com>
- <37a95380-ee68-5c3a-3b96-48cc8b525f19@linaro.org>
- <20230124122347.1a531d0f@bootlin.com>
- <81f80190-a05c-5d0d-11b2-a80573b86e1c@linaro.org>
- <20230124151514.58d77765@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230124151514.58d77765@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -97,32 +66,158 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 15:15, Herve Codina wrote:
->>> Is that what you were thinking about ?  
->>
->> Yes, except again, so third time, why calling this "cell"? Move it to
->> fsl,tsa.
->>
-> 
-> Why calling this "cell" ? Just because we reference a "cell" using the TSA
-> cell ID inside TSA and not the TSA itself.
-> 
-> Maybe the problem is the term "cell" as it is not the DT definition of
-> "cell" but the source/destination of the TSA routing.
-> 
-> TSA can route data from/to some "serial controller".
-> These serial controllers are :
-> - SCC (Serial Communication Controller)
-> - SMC (Serial Management Controller)
-> - UCC (Unified Communication Controller)
-> 
-> Only SCCs are handled here.
-> 
-> Maybe the term "serial" makes more sense which will lead to
->   fsl,tsa-serial = <&tsa, SCC4>;
+On Thu, Jan 19, 2023 at 11:40 AM Bjorn Andersson
+<quic_bjorande@quicinc.com> wrote:
+>
+> On Thu, Jan 19, 2023 at 10:11:32AM -0600, Rob Herring wrote:
+> > On Wed, Jan 18, 2023 at 10:08:11AM -0800, Bjorn Andersson wrote:
+> > > On Tue, Jan 17, 2023 at 11:56:57AM -0600, Rob Herring wrote:
+> > > > On Thu, Jan 12, 2023 at 08:11:14PM -0800, Bjorn Andersson wrote:
+> > > > > From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > >
+> > > > > Introduce a binding for GPIO-based mux hardware used for connecting,
+> > > > > disconnecting and switching orientation of the SBU lines in USB Type-C
+> > > > > applications.
+> > > > >
+> > > > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > > > > ---
+> >
+> >
+> > > > > +    tcpm {
+> > > > > +        connector {
+> > > > > +            compatible = "usb-c-connector";
+> > > > > +
+> > > > > +            ports {
+> > > > > +                #address-cells = <1>;
+> > > > > +                #size-cells = <0>;
+> > > > > +
+> > > > > +                port@0 {
+> > > > > +                    reg = <0>;
+> > > > > +                    tcpm_hs_out: endpoint {
+> > > > > +                        remote-endpoint = <&usb_hs_phy_in>;
+> > > > > +                    };
+> > > > > +                };
+> > > > > +
+> > > > > +                port@1 {
+> > > > > +                    reg = <1>;
+> > > > > +                    tcpm_ss_out: endpoint {
+> > > > > +                        remote-endpoint = <&usb_ss_phy_in>;
+> > > > > +                    };
+> > > > > +                };
+> > > > > +
+> > > > > +                port@2 {
+> > > > > +                    reg = <2>;
+> > > > > +                    tcpm_sbu_out: endpoint {
+> > > > > +                        remote-endpoint = <&sbu_mux_in>;
+> > > > > +                    };
+> > > > > +                };
+> > > > > +            };
+> > > > > +        };
+> > > > > +    };
+> > > > > +
+> > > > > +    sbu-mux {
+> > > > > +        compatible = "pericom,pi3usb102", "gpio-sbu-mux";
+> > > > > +
+> > > > > +        enable-gpios = <&tlmm 101 GPIO_ACTIVE_LOW>;
+> > > > > +        select-gpios = <&tlmm 164 GPIO_ACTIVE_HIGH>;
+> > > > > +
+> > > > > +        mode-switch;
+> > > > > +        orientation-switch;
+> > > > > +
+> > > > > +        port {
+> > > > > +            sbu_mux_in: endpoint {
+> > > > > +                remote-endpoint = <&tcpm_sbu_out>;
+> > > > > +            };
+> > > >
+> > > > Don't you need a connection to whatever drives SBU? Maybe your case is
+> > > > fixed because the phy does the DP/USB muxing? But the binding needs to
+> > > > support the worst case which I guess would be all the muxing/switching
+> > > > is done by separate board level components.
+> > > >
+> > >
+> > > Perhaps I'm misunderstanding your request, but I think this is the worst
+> > > case you're talking about.
+> > >
+> > > &usb_ss_phy_in is a reference to the PHY, which does switching/muxing of
+> > > the SuperSpeed lanes in the connector, but the PHY provides no control
+> > > over the SBU signals.
+> > >
+> > > So this sbu-mux is a separate component between the SBU-pads on the SoC
+> > > and the usb-c-connector, referenced through he &sbu_mux_in reference.
+> > >
+> > >
+> > > So upon e.g. a orientation switch, the typec_switch_set() call the tcpm
+> > > implementation will request orientation switching from port@1 and port@2
+> > > (no orientation-switch on port@0/HS pins).
+> >
+> > 'port@2' is supposed to define the connection to what controls SBU. The
+> > mux here switches the signals, but it doesn't control them.
+>
+> The SBU signals are driven by the SS PHY, on behalf of the DisplayPort
+> controller. These signals are  turned on/off as a result of the TCPM
+> indicating the HPD state to the DisplayPort controller.
+>
+> There's a such not really a direct representation today of the entity
+> that drives the SBU lines. It happens to be a sub-block in
+> &usb_ss_phy_in, but I don't envision that we need/want any signaling
+> between the TCPM and the SBU-"driver".
+>
+>
+> I see that I missed that in the example above, your suggestion on how to
+> model that relationship (TCPM - DP controller) was to add an additional
+> endpoint in port@1. So that's the current design (but neither ports nor
+> endpoints are significant from an implementation point of view).
+>
+> > The mux should sit in the middle, but the graph terminates at the mux.
+> > You don't have a connection presumably because you know what the
+> > connection.
+>
+> But do you suggest that the graph should reference the entity that
+> drives the SBU signals?
 
-Yes, that's better. Thanks.
+Yes, that was the original intent.
 
-Best regards,
-Krzysztof
+> What about the discrete mux?
 
+You mean the mux in this binding, right? That should be in the middle:
+
+DPaux --> SBUmux --> connector
+
+Maybe the SS phy is in there too.
+
+>
+> > Perhaps because there is only 1 connector and controller.
+> >
+>
+> There is one SBU mux, one DP controller and one SS PHY per
+> usb-c-connector.
+>
+> > Suppose you have 2 connectors and 2 controllers which drive SBU
+> > signals. Also assume that the SBU signals are completely independent
+> > from what's driving the altmode SS signals. How would you describe that?
+> >
+>
+> This is the setup we have on e.g. SC8280XP CRD; where the TCPM has two
+> usb-c-connectors defined, each with their graph referencing the SS PHY,
+> DP controller and respective sbu-mux.
+>
+> There's an incomplete example of this published at [1] (where the SS phy
+> isn't represented yet - and hence there's no control over the SS lanes,
+> nor is the HS lanes connected to the dwc3 for role switching).
+>
+> Perhaps I'm misunderstanding your concerns though?
+
+That looks like you can assume who drives SBU based on the DP
+controller. Probably a safe assumption for DP (that DP-aux is part of
+the DP controller), but I was more worried about if you can't assume
+that relationship. Take HDMI for example where the DDC signals can
+come from anywhere. They could be part of the HDMI bridge, a general
+purpose I2C bus off the SoC, or bitbanged GPIOs. Though from what I've
+read, HDMI Altmode is dead. I don't know if the need to describe the
+SBU connection would apply to anything else.
+
+I guess this all boils down to whether the SBU mux should have a 2nd
+optional port as the input for what drives it.
+
+Rob
