@@ -2,83 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 145E0679339
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 09:36:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A3DE679342
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 09:39:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232483AbjAXIgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 03:36:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55536 "EHLO
+        id S232517AbjAXIjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 03:39:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbjAXIgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 03:36:18 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51DF330DF
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:36:17 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id l8so10810481wms.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:36:17 -0800 (PST)
+        with ESMTP id S232312AbjAXIjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 03:39:18 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB9253EFD1
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:39:16 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso10334396wms.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:39:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+DHAHqm5mVrdyz4PxCFvnliRLiDdHHafIf1mzcKDvns=;
-        b=mVnjvE2s1a9WXq6NVhTnCnlMlrcB0t4g8HtTagw/livwWU9M2TNbPPAnFGNu7wMV5w
-         p7S41sleaY9OAnp5hcsFq33lpXA2LD55vjPjZR8imXG0WHcvn8yXnSDhaX+oUr/YqGCc
-         Ous99brkpsYno9LrL7bkm6bfbm5ee+RtEFKsHSbZzJr+FSgFwVHJKapEAvaxhfzs5mE/
-         w5PsuVQf0wZygT6HoGiXtGz2JPzq7W4zalPINmXOKYL3QTa0YTyFtdsxYTexIBQ6DoGK
-         VNkP2P5Jh4volMp3GhhTsBly5JuF5kWGY9CW/fw30y6jwSWIyjKiEyWeht1Vl8iM1wxI
-         V1sQ==
+        bh=jC8u09KVIYtGZaoQ2r32KroNFKnC3uPw8Fq2mJfgGM4=;
+        b=oBkW63HdzaVrqHGY/bOlHlUxwT7nnWwUIlEzGV77+CyI4bFvV1mDZoBnyJ8sfithA3
+         g4X8L/7XC6af1Orb+qKlYYnCEPvvCkEdOJlkekTgXO3RealtkP+fFF7gM94F4dybN/+w
+         ZyWarYuACLEgR7RU/OspYViNGyo/cVGDbcuWreKW/M5tadKOed56JwCgKvsTM7zzkKqH
+         mu0LQW1PvlwdtrPkPdpl1bF7UQTt1jJmwU/2Te+Uy4ozznKfZRDsHHKLj9BRDuUrWeFG
+         AtiMKn4yDvnihghWXAn2/NaLfCq0CSOL1SBjKYIvs0ZOIDiEMRdmH9SeUyiN1r8dc/bT
+         /jSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+DHAHqm5mVrdyz4PxCFvnliRLiDdHHafIf1mzcKDvns=;
-        b=lX4mPkhDRsXL1eT5BZ2oImJ134ZS1KxzSpaTtOnenhRs5jdr9TqSkgeoffCicvOclU
-         KpCCOGrvPfcHE+HJAYiByI52FiWM5f2MXfC5SB8dNlGJSnoq6aoYIUXCfUFdfPtCkNDl
-         zta1+Hdqfyrq1mRkomSqaQr+UtdMZnxz2Etz1C6vTOVgoDGMHuufhdtsUT1h3H7o1265
-         6OY5xQFUXBzzK6Ao8CPjb52tZ6ndjNnAV/0j8TpbBJOtcyDlmbgp9L8q9t7PevKbsdmm
-         lcoo8sSfYxMO2w58AnwHl0VwPjgFRCfQlVXQNeQ6LpyhCDQA6N4/CPVhQiym3ovsYjwP
-         KbUQ==
-X-Gm-Message-State: AFqh2kqbSZHnAbMY42/j++XuD+GsarEcAEw7HfPRZcV1iTlP8dWyKsx2
-        5UATFrTeY7kyxRI2M2e9mIY2Dw==
-X-Google-Smtp-Source: AMrXdXvqFer9U2gpvrkA9katgZ3v+FI8mwsJhUFMGM29c0UiNV1/dLmZ0rvPr3GsXvG9rXnwONePew==
-X-Received: by 2002:a05:600c:310e:b0:3db:fc3:6de4 with SMTP id g14-20020a05600c310e00b003db0fc36de4mr23498044wmo.35.1674549375874;
-        Tue, 24 Jan 2023 00:36:15 -0800 (PST)
+        bh=jC8u09KVIYtGZaoQ2r32KroNFKnC3uPw8Fq2mJfgGM4=;
+        b=jmoYSWeeV1MCSrt81Yez7BQGQv3rnxJSeGAJC1M5YPqGiy8qt5mwuOipmvFAkDUeQv
+         6C9CS1EnXvEDr6iqLqR8jJH0V95PrqRO3bi7ysuMUVc+v3tGada43V8CvJCxcnEHmSsW
+         fWwGNVwESbFdS8DQRHhOSGk/GB9a5Hq5wSUR4bNlkyBQUeOIoqyvRpIm4paLG6VgvGCq
+         wbIVtkOvGV6/6B3W38u5hver9JGBYfKUg6kpF9tcttK/6kZuv67BAUFvqgsB8iQctjmQ
+         s2+29QiQq8WSl23OSUDBsvUQil10l8TGC0JCiIy/aoAS/Lv5gY8QfZU2NVwWVn5Fv52/
+         DZ0A==
+X-Gm-Message-State: AFqh2kq0OEtfcUs7+TQw8DAw7EMvd+w8uj+8kY2ATrnU6cg3OkBomMBy
+        CDvw7ieRzCGWYbtaGSd/WBXdhQ==
+X-Google-Smtp-Source: AMrXdXufp48kEceydwMciETTRdgGdjkWekSy7PYkJC1lT0Y9uFBmq5Ow/biKLLOKxuG3HKY6+Zji5g==
+X-Received: by 2002:a05:600c:601c:b0:3d3:4f56:62e1 with SMTP id az28-20020a05600c601c00b003d34f5662e1mr26894618wmb.27.1674549555178;
+        Tue, 24 Jan 2023 00:39:15 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n15-20020a5d4c4f000000b002bfad438811sm658147wrt.74.2023.01.24.00.36.12
+        by smtp.gmail.com with ESMTPSA id k16-20020a7bc410000000b003d99469ece1sm12667052wmi.24.2023.01.24.00.39.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 00:36:14 -0800 (PST)
-Message-ID: <3fdf9e1d-456a-c538-89b6-82b299aabd48@linaro.org>
-Date:   Tue, 24 Jan 2023 09:36:11 +0100
+        Tue, 24 Jan 2023 00:39:13 -0800 (PST)
+Message-ID: <6abc3265-75a2-1fa6-803e-6066a81b8ec5@linaro.org>
+Date:   Tue, 24 Jan 2023 09:39:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 6/7] arm64: dts: Add ipq9574 SoC and AL02 board support
+Subject: Re: [PATCH 12/12] dt-bindings: iio: accel: Add ADIS16203 Inclinometer
 Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
-        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
-        broonie@kernel.org, tdas@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-References: <20230110121316.24892-1-quic_devipriy@quicinc.com>
- <20230110121316.24892-7-quic_devipriy@quicinc.com>
- <f6ef1834-b629-b76c-9cde-55af56320665@linaro.org>
- <7f157b73-f856-04d2-1b39-e1f8861d0439@quicinc.com>
- <84aa79c3-b793-0d0e-d6a5-035aff5a17b4@linaro.org>
- <278a2e6e-69e0-81b0-f476-571edea950ff@quicinc.com>
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Barry Song <baohua@kernel.org>
+References: <20230123211758.563383-1-jic23@kernel.org>
+ <20230123211758.563383-13-jic23@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <278a2e6e-69e0-81b0-f476-571edea950ff@quicinc.com>
+In-Reply-To: <20230123211758.563383-13-jic23@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,20 +79,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 08:19, Devi Priya wrote:
->>>>> +			gpio-ranges = <&tlmm 0 0 65>;
->>>>> +			gpio-reserved-ranges = <59 1>;
->>>>
->>>> Hm, why reserved ranges are in SoC?
->>> As the gpio is forbidden on all ipq9574 boards, we have added it in SoC
->>
->> Why it is forbidden on all boards? I guess it depends on the firmware
->> and this can differ, can't it?
->>
-> This GPIO is protected and used by the TZ firmware and is forbidden on 
-> all the boards & firmware
+On 23/01/2023 22:17, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> There has been a driver in staging for quite a while.
+> Given we are now moving it to the main tree, time to make sure it
+> has binding documentation.
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> ---
+>  .../bindings/iio/accel/adi,adis16203.yaml     | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
+> new file mode 100644
+> index 000000000000..05c095247e10
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/accel/adi,adis16203.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ADIS16203 Programmable 360 degree inclinometer
+> +
+> +maintainers:
+> +  - Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: adi,adis16203
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 2
+> +
+> +  interrupt-names:
 
-OK
+maxItems (and probably minItems)
+
+> +    description:
+> +      Device has two configurable outputs, both of which may be used
+> +      as interrupt sources.
+> +    enum:
+
+This won't work. It's an list. You need:
+items:
+  enum:
+     .....
+
+> +      - dio0
+> +      - dio1
+> +
+> +  reset-gpios: true
+
+maxItems: 1
+
+
+> +
+> +  vdd-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        accelerometer@0 {
+> +            compatible = "adi,adis16201";
+> +            reg = <0>;
+> +            spi-max-frequency = <2500000>;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "dio0";
+
+You require here two items, according to interrupts. Don't you miss
+minItems?
+
+Also... if you tested the binding it would complain here.
+
+> +        };
+> +    };
+> +...
+> +
 
 Best regards,
 Krzysztof
