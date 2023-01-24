@@ -2,83 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A21567A60F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 23:42:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FF4467A694
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 00:03:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235222AbjAXWmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 17:42:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43676 "EHLO
+        id S233694AbjAXXDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 18:03:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235219AbjAXWmJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 17:42:09 -0500
-Received: from out-238.mta0.migadu.com (out-238.mta0.migadu.com [IPv6:2001:41d0:1004:224b::ee])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 984EB4B4BD
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 14:42:07 -0800 (PST)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
-        t=1674600125;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=36Vs8J0xhZS4TyMPNV0MC8jbKBVP8w8N3cOPO33G5Wk=;
-        b=NDz7l4pPA+sUvoQ0mDQNcUtYzr72ERejOPwyYOT4DtmFUwQqUNTU257VyRO0+JF/FswAXH
-        o+DK4x7vQ2KpVpyASwIA8gwOmP/oGcIzYvE/zqTEcqeFrGuPgG7NvzXYM8TEz1lj5rJldo
-        K7Dqn36RngXMNaaFLCEqxRHj8zJe9GU=
-From:   Rayyan Ansari <rayyan@ansari.sh>
-To:     dri-devel@lists.freedesktop.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev,
-        janne@jannau.net, Rayyan Ansari <rayyan@ansari.sh>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
-        Hans de Goede <hdegoede@redhat.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S229625AbjAXXC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 18:02:59 -0500
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 267274AA52
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 15:02:58 -0800 (PST)
+Received: by mail-yb1-xb4a.google.com with SMTP id b201-20020a2534d2000000b0080b87d910a2so1860168yba.21
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 15:02:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=jFCDOVwBx3QUvcMyKCToQPVtKOpYmeI/WzOaX/ijtqo=;
+        b=lGUMU0GoyjMvxhR5c/END1G2FVaGF8h/lxKsEBZG9c0LJpJjGKejWRHgfC/drxKDSH
+         62fajyC2+vuvDk/7FQKN7N60LwQR1dtnGfw0mirFy1kccUYDvzbFEkq8WorpafsApGyW
+         YNdikjtXJ0qvizHvdRE8nZwpmwgkyZKvHejop621KmwDUsS0FCq48chv5FiSx0xM801v
+         +B37aWPXTixdEO0BnBF0OdMDojYAN0xYneU1Zik51sP498ARl78sXWW6D7upcRoxS444
+         ZNlYQh/izuCYRt7+jyaKxT3dQ7Bw+rpvfieeWL3tTUx1TPXnxolTdPGfTD098yBSi7NJ
+         hZpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jFCDOVwBx3QUvcMyKCToQPVtKOpYmeI/WzOaX/ijtqo=;
+        b=nf06u4L/ZCC/ypY1PJ5msY7H7OU29/gq10hvqVDogCTb0eJ8+pm9uOekgusPqfcc5c
+         mUA+93iHGbu1Wrqb1oIGMIe8dIPAwNDFbb15vlrnYQNuQd6dd+rHaoAtuHD/weH1QRd4
+         BbYcUJmI8+F15zvMSmhiD0DYctCtEcBUuG7mOh9/oYPODIbZjXkxmpnS+tyXiC9V54ss
+         k9IiGbCQD9mnk90G/WgFwrDp4LJlQ7v6/tYkiQDxsIGuTh5DMyd+sLYTlyg49wScOlgG
+         I/mQNTDUb+8+WdD2qmMFOil3ahGopQC9fTKcrtEvWhLeTYA3rEfpcIPnI9t3yhpIiyxY
+         hdJw==
+X-Gm-Message-State: AFqh2kq+cQ+Xkmwkeb6KPeuwWbQKNmC7MOMqDUqdYdjgTcROLfi5EpYH
+        HwRa14gecI8ofecSngzy1ZCT345xTzo/4Ibj+mmoLw==
+X-Google-Smtp-Source: AMrXdXudHpb6hExu0NEHtxFsSqiV2w86qKxRTpDMvyw3aa8/qFaD7i3+qsxBf+fcybfThAjbSBPvI40rjFUZGrzvMaW7+A==
+X-Received: from isaacmanjarres.irv.corp.google.com ([2620:15c:2d:3:b15:b561:51fb:73c3])
+ (user=isaacmanjarres job=sendgmr) by 2002:a0d:e285:0:b0:4d8:4718:1c51 with
+ SMTP id l127-20020a0de285000000b004d847181c51mr3040255ywe.284.1674601377338;
+ Tue, 24 Jan 2023 15:02:57 -0800 (PST)
+Date:   Tue, 24 Jan 2023 15:02:54 -0800
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.39.1.405.gd4c25cc71f-goog
+Message-ID: <20230124230254.295589-1-isaacmanjarres@google.com>
+Subject: [PATCH v1] Revert "mm: kmemleak: alloc gray object for reserved
+ region with direct map"
+From:   "Isaac J. Manjarres" <isaacmanjarres@google.com>
+To:     Catalin Marinas <catalin.marinas@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v3 2/2] dt-bindings: display: simple-framebuffer: Document physical width and height properties
-Date:   Tue, 24 Jan 2023 22:41:42 +0000
-Message-Id: <20230124224142.7133-3-rayyan@ansari.sh>
-In-Reply-To: <20230124224142.7133-1-rayyan@ansari.sh>
-References: <20230124224142.7133-1-rayyan@ansari.sh>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-mm@kvack.org, Saravana Kannan <saravanak@google.com>,
+        "Isaac J. Manjarres" <isaacmanjarres@google.com>,
+        stable@vger.kernel.org, Calvin Zhang <calvinzhang.cool@gmail.com>,
+        kernel-team@android.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the optional width-mm and height-mm simple-framebuffer
-properties.
+This reverts commit 972fa3a7c17c9d60212e32ecc0205dc585b1e769.
 
-Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
+Kmemleak operates by periodically scanning memory regions for pointers
+to allocated memory blocks to determine if they are leaked or not.
+However, reserved memory regions can be used for DMA transactions
+between a device and a CPU, and thus, wouldn't contain pointers to
+allocated memory blocks, making them inappropriate for kmemleak to
+scan. Thus, revert this commit.
+
+Cc: stable@vger.kernel.org # 5.17+
+Cc: Calvin Zhang <calvinzhang.cool@gmail.com>
+Signed-off-by: Isaac J. Manjarres <isaacmanjarres@google.com>
 ---
- .../devicetree/bindings/display/simple-framebuffer.yaml     | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/of/fdt.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
-index dd64f70b5014..4ae33a4d2da9 100644
---- a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
-+++ b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
-@@ -106,6 +106,12 @@ properties:
-       - x2r10g10b10
-       - x8r8g8b8
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index f08b25195ae7..d1a68b6d03b3 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -26,7 +26,6 @@
+ #include <linux/serial_core.h>
+ #include <linux/sysfs.h>
+ #include <linux/random.h>
+-#include <linux/kmemleak.h>
  
-+  width-mm:
-+    description: Physical width of the display in millimetres
-+
-+  height-mm:
-+    description: Physical height of the display in millimetres
-+
-   display:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description: Primary display hardware node
+ #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+ #include <asm/page.h>
+@@ -525,12 +524,9 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
+ 		size = dt_mem_next_cell(dt_root_size_cells, &prop);
+ 
+ 		if (size &&
+-		    early_init_dt_reserve_memory(base, size, nomap) == 0) {
++		    early_init_dt_reserve_memory(base, size, nomap) == 0)
+ 			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
+ 				uname, &base, (unsigned long)(size / SZ_1M));
+-			if (!nomap)
+-				kmemleak_alloc_phys(base, size, 0);
+-		}
+ 		else
+ 			pr_err("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
+ 			       uname, &base, (unsigned long)(size / SZ_1M));
 -- 
-2.39.1
+2.39.1.405.gd4c25cc71f-goog
 
