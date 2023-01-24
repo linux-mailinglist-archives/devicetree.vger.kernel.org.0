@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7148A679F50
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 17:58:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E42679F62
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 18:01:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233806AbjAXQ6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 11:58:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59618 "EHLO
+        id S233657AbjAXRBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 12:01:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233639AbjAXQ6q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 11:58:46 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D5F046081
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 08:58:44 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id j17so11985713wms.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 08:58:44 -0800 (PST)
+        with ESMTP id S234138AbjAXRA7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 12:00:59 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D55E440BDB
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 09:00:56 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso11801475wmn.5
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 09:00:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Cdb0oFoKxHwQ03DA8if5wSz8FjXcnpPwR7oP9X0TASQ=;
-        b=e8rC3DOOpCpm/yKC3hjmG17ey445cYVbF6eMJloArv1j8eFrG4EnYNXPXSi4csB9X7
-         5C8Ctf1eenyJHDLmzALfwZ2yurMC34RkHpb3joU2q+rKiiGP6kti9EURgnjGYiZVe/96
-         XYvFHzv2LcwE5cYqB05xVQkWhdGVu4ncoc2O0jUDiLGQMPJIDzTPWPn34lx8xqhu9aYE
-         D9pdao+/haCpENeGXtk1r4fXTVYTYEdiyl9ShHYyy/MvnA60DIbQW90lizwLRmhx68qK
-         rMwllXHOG+2AVSwe3ctLIKQ2kKD50g+eL5CIanjtaKNaSWtd4X7x/KQ8EnDOjq5iTEly
-         qrTA==
+        bh=KYTp9wjTwOZySD0OvGmE1iLm2O/7yZJduMC+N1x2FCY=;
+        b=eaqvvd69zK2ecFFhKaHa0hBhlmBsau9NxvlOkYp9nryXUVwd8Nb5/YD1OzKF6F4fpJ
+         /G/FC371WyTNSG3UhmnNm2LThp2Voezu+LuGimxmsZ/R+0zzXRLv83rdsAR2pgQd3UD9
+         OYjwfz3wVGLolA+fXgKVnJO3LQ/syHQkaSYZK2TsQOt6y541qy+Tew9kGi8YLddMkFvl
+         sUyD+bOi4A/Ex4WCPA5Jv1reMIWPNC8XWP3wT9a4VhMOcGdhisTYXPtVhlZMCgpPs/p5
+         opGYNUQx30XID8h1IRmg9s/LchR9oexJBIYrsZ4D7A8s+5hbN8r70n252ZGGNkYs1Sou
+         aOwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cdb0oFoKxHwQ03DA8if5wSz8FjXcnpPwR7oP9X0TASQ=;
-        b=Fvnfbq+paM72zKBKNLn3esrJ9Q+npOGJw3SB48SWoMKkvxpMJ0CSvGkfoVWrSuTHt/
-         LbsxED78kVdIiGo693Wudvr0/+F84p2l+LnxLFZxxFLwNQOI/yQMhVvlwq0E32VjKzf2
-         9IiyriSEJ6zWpM9x4UGqiouJZe/t09IvzyVz9UpQz+bYUc6w5CJHmvbp+s5wb/i8lGAC
-         o0y/QqjNfp53gwDnwLXBXeZhmAk6grZK+kcbU9+9yMkQo7FR4tGSvILQpTtKuJmhwpPJ
-         JrNsgpqTzR8R1XkC5vQHqwAwufr+IQ6omsvUhOnlIPyy1li541+j/ow891nzbDUEzC7g
-         U3Bw==
-X-Gm-Message-State: AFqh2krdHRdAp0oxouKAZnImxJAYANgoYdazrR1AU4Fkmia1lYvVNDkF
-        G0adCD5v07iUNJAAG5SgTDJcRQ==
-X-Google-Smtp-Source: AMrXdXurcLhwij0yWeyiNpXqw2jGF3m1ReYrcuLOxgg4DHgZkk4BU95yF+abWjpf+ct5ZmUd7pYsjg==
-X-Received: by 2002:a7b:ce15:0:b0:3da:2932:b61a with SMTP id m21-20020a7bce15000000b003da2932b61amr28492673wmc.18.1674579522994;
-        Tue, 24 Jan 2023 08:58:42 -0800 (PST)
+        bh=KYTp9wjTwOZySD0OvGmE1iLm2O/7yZJduMC+N1x2FCY=;
+        b=kmMO5VaxamzLHwYvPMuXIDnW3DI1Tq4LOjlcKMl7UK9PPLroxLiGD4olKwQ6uNPoYl
+         9YKCEbp6rTMpnmXX+KGB/dKZRr85cmRnjkeHmBIS5NY6v8bcHYs5eBonI8g97z+S1cM3
+         7bCrjXz+A2sA+nrdCwwzdA7gOfZF9usivyOqWzZ+0k0dwwAsvnqQrMMDAidczeWaQjwT
+         /TeRxX+145RZhNpCZRrC8XkW14G2MWjZpDl6gjpuHaAlo7Kk2p6jQ96omoqR2XnbrLUJ
+         7YfXxp2EaYk7+p+0exDvpNnicg5hGl7/8NvCqkYhhmdHNuU19TQ6MoutNzC4ukqjOpoB
+         MSCQ==
+X-Gm-Message-State: AFqh2kpliI/IYzN5wVeNyF9O7a6k4fzghblLNhspO+1T5Re3Bc4tHyS0
+        LgYs3R0vGn9IwDvauukTJJIgKA==
+X-Google-Smtp-Source: AMrXdXvbg0cTmgdM7xa2jo5BUEeu6T2vbRUbh/HDpEbqki1ssEGG6woU2xRjY3TSMJ7GGHM9r/T+qQ==
+X-Received: by 2002:a05:600c:33a8:b0:3d9:ed3b:5b3e with SMTP id o40-20020a05600c33a800b003d9ed3b5b3emr27371743wmp.19.1674579654878;
+        Tue, 24 Jan 2023 09:00:54 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o24-20020a05600c511800b003d9de0c39fasm19046290wms.36.2023.01.24.08.58.41
+        by smtp.gmail.com with ESMTPSA id u32-20020a05600c4d2000b003dafb0c8dfbsm2951125wmp.14.2023.01.24.09.00.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 08:58:42 -0800 (PST)
-Message-ID: <50ecd96d-47e4-5140-faeb-d590f0656175@linaro.org>
-Date:   Tue, 24 Jan 2023 17:58:41 +0100
+        Tue, 24 Jan 2023 09:00:54 -0800 (PST)
+Message-ID: <fd8d6f46-9d4a-c74d-6af4-0abbc0c54526@linaro.org>
+Date:   Tue, 24 Jan 2023 18:00:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 1/5 v7] dt-bindings: input: pwm-beeper: Convert txt
- bindings to yaml
+Subject: Re: [PATCH 5/5 v7] input: pwm-beeper: handle module unloading
+ properly
 Content-Language: en-US
 To:     Manuel Traut <manuel.traut@mt.com>, linux-kernel@vger.kernel.org
 Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
@@ -63,9 +63,9 @@ Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Frieder Schrempf <frieder.schrempf@kontron.de>,
         linux-input@vger.kernel.org, devicetree@vger.kernel.org
-References: <Y9AJ07zT1lpBLhPk@mt.com>
+References: <Y9AK71Q7X4d+1E4f@mt.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y9AJ07zT1lpBLhPk@mt.com>
+In-Reply-To: <Y9AK71Q7X4d+1E4f@mt.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,79 +77,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 17:39, Manuel Traut wrote:
-> Converts txt binding to new YAML format.
+On 24/01/2023 17:44, Manuel Traut wrote:
+> 'input: pwm-beeper: add feature to set volume via sysfs' adds device
+> attributes without removing them on error or if the module is unloaded.
+> 
+> This change removes the device attributes on module unloading or if
+
+Do not use "This commit/patch".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+> registering on the input subsystem fails.
+> 
+> If the module will be unloaded and loaded again it fails:
+> [ 1007.918180] sysfs: cannot create duplicate filename '/devices/platform/buzzer/volume'
 > 
 > Signed-off-by: Manuel Traut <manuel.traut@mt.com>
 > ---
->  .../devicetree/bindings/input/pwm-beeper.txt  | 24 ----------
->  .../devicetree/bindings/input/pwm-beeper.yaml | 48 +++++++++++++++++++
->  2 files changed, 48 insertions(+), 24 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.txt
->  create mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.yaml
+>  drivers/input/misc/pwm-beeper.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.txt b/Documentation/devicetree/bindings/input/pwm-beeper.txt
-> deleted file mode 100644
-> index 8fc0e48c20db..000000000000
-> --- a/Documentation/devicetree/bindings/input/pwm-beeper.txt
-> +++ /dev/null
-> @@ -1,24 +0,0 @@
-> -* PWM beeper device tree bindings
-> -
-> -Registers a PWM device as beeper.
-> -
-> -Required properties:
-> -- compatible: should be "pwm-beeper"
-> -- pwms: phandle to the physical PWM device
-> -
-> -Optional properties:
-> -- amp-supply: phandle to a regulator that acts as an amplifier for the beeper
-> -- beeper-hz:  bell frequency in Hz
-> -
-> -Example:
-> -
-> -beeper_amp: amplifier {
-> -	compatible = "fixed-regulator";
-> -	gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
-> -};
-> -
-> -beeper {
-> -	compatible = "pwm-beeper";
-> -	pwms = <&pwm0>;
-> -	amp-supply = <&beeper_amp>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.yaml b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
-> new file mode 100644
-> index 000000000000..24a40f0f77c1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2Does not look like you tested the bindings. Please run `make dt_binding_check` (see Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> +---
-> +$id: "http://devicetree.org/schemas/input/pwm-beeper.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> diff --git a/drivers/input/misc/pwm-beeper.c b/drivers/input/misc/pwm-beeper.c
+> index fe543c4151d6..8ef2937e8f21 100644
+> --- a/drivers/input/misc/pwm-beeper.c
+> +++ b/drivers/input/misc/pwm-beeper.c
+> @@ -300,6 +300,7 @@ static int pwm_beeper_probe(struct platform_device *pdev)
+>  
+>  	error = input_register_device(beeper->input);
+>  	if (error) {
+> +		sysfs_remove_group(&pdev->dev.kobj, &pwm_beeper_attribute_group);
+>  		dev_err(dev, "Failed to register input device: %d\n", error);
+>  		return error;
+>  	}
+> @@ -309,6 +310,17 @@ static int pwm_beeper_probe(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+> +static int pwm_beeper_remove(struct platform_device *pdev)
+> +{
+> +	struct pwm_beeper *beeper;
 > +
-> +title: PWM beeper device tree bindings
+> +    beeper = platform_get_drvdata(pdev);
 
-Drop: device tree bindings
+Wrong indentation.
 
-> +
-> +maintainers:
-> +	- Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> +
-> +description: Registers a PWM device as beeper.
-> +
-> +properties:
-> +	compatible:
-> +	const: pwm-beeper
+Please run scripts/checkpatch.pl and fix reported warnings.
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
-Start from scratch from example-schema. There are so many mistakes here
-it should be seriously rework.
+> +	input_unregister_device(beeper->input);
 
 Best regards,
 Krzysztof
