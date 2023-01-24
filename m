@@ -2,77 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E6A667A3F2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 21:32:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E6DF67A4A9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 22:14:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231538AbjAXUce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 15:32:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44818 "EHLO
+        id S234547AbjAXVO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 16:14:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229625AbjAXUcd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 15:32:33 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86C49618E
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 12:31:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1674592307;
+        with ESMTP id S231987AbjAXVO3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 16:14:29 -0500
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51A7245225;
+        Tue, 24 Jan 2023 13:14:27 -0800 (PST)
+Received: from booty (unknown [77.244.183.192])
+        (Authenticated sender: luca.ceresoli@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 2917120003;
+        Tue, 24 Jan 2023 21:14:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1674594865;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=Uh/+HvzKrTBUoVxhArKOizvvmhv3uYpJ6dJ2xzDMsaI=;
-        b=fMtTOS24Lf52mJRr6F12hBr4fo4osERxsbZ+qL0ZJc1qRBgSRMho3UOXBt+VqY1k8A+KtW
-        48O2QcDn21jwfY7sjetkWfphT+mkdybTt8YurnpVohSsfMMFw3Aajck6RL1l9YlL9Pekn+
-        Uao1SWOKg39KkQqJA1ddCrGWXC5Cfhs=
-Received: from mail-ua1-f72.google.com (mail-ua1-f72.google.com
- [209.85.222.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-271-B2ybmyP4OtOk9Fnr_QDsAQ-1; Tue, 24 Jan 2023 15:31:46 -0500
-X-MC-Unique: B2ybmyP4OtOk9Fnr_QDsAQ-1
-Received: by mail-ua1-f72.google.com with SMTP id n14-20020a9f314e000000b004114b0c125fso4645533uab.8
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 12:31:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Uh/+HvzKrTBUoVxhArKOizvvmhv3uYpJ6dJ2xzDMsaI=;
-        b=Ix0InnhqVvq/RjkGlBYbunF9Ipm3TzrnmCVDKBLJa/LBm2piXMgl1rqnVCa1Hb568K
-         DybZmkuwtHrdnJRmhapa8ye0U2nu6D6Ptu+z+qcnTSU/Y03GkcgQnPpfhGP5p9IkMKlP
-         KnlRx1ulz7rgZggdLuAe7D6KrdWVdUwQZiROGyjE6Q0po48615L5lDXJbQmX3ycPlO2L
-         daIrEk6qEFqqFBk3i/TC1qgBJSqMzjC5hxoxOyiFlU5b4jKvUZx6OsNyZMYXGgjzCkgZ
-         TQZLRxjoNPs0Ebo0kuWySrPbRLRFYmvOhXO0Ruze2pk2NuCuIkdwh/bnMRFLsDyC/MPA
-         eJ1g==
-X-Gm-Message-State: AFqh2krkxYB6tAx9rnzc5BXAwBvDhHPiqCQrYbV1CP2WZYUZh2RDKZkL
-        2bAwOpUMEeMLqMQahG2tiF1XLEZHm/2PGzRn4ytDIZlppdkoaN70NvkkplyXRlbs2Jz5xkGfWPu
-        vEdO2pZoKgUL+9GRLRkmMiQ==
-X-Received: by 2002:a67:f049:0:b0:3d3:cc3e:1cb8 with SMTP id q9-20020a67f049000000b003d3cc3e1cb8mr21478511vsm.6.1674592306012;
-        Tue, 24 Jan 2023 12:31:46 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXvXX350O2gooqvZotJtjKqUSnAbPCSKlHgvw3iaV0OvujJ5QBCAbrLbpwxP6w+E8eexeRm2fw==
-X-Received: by 2002:a67:f049:0:b0:3d3:cc3e:1cb8 with SMTP id q9-20020a67f049000000b003d3cc3e1cb8mr21478495vsm.6.1674592305816;
-        Tue, 24 Jan 2023 12:31:45 -0800 (PST)
-Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id y27-20020a05620a09db00b006cfc9846594sm2048624qky.93.2023.01.24.12.31.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 12:31:45 -0800 (PST)
-Date:   Tue, 24 Jan 2023 15:31:44 -0500
-From:   Brian Masney <bmasney@redhat.com>
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sa8540p-ride: Fix some i2c pinctrl
- settings
-Message-ID: <Y9BAMO+qLqiYZkr7@x1>
-References: <20230124192351.695838-1-ahalaney@redhat.com>
+        bh=MLO6IC4VLOlTEyFjq+sy4xgqFEeyoTwAMmJNZzryGtw=;
+        b=hHhy4kx7JrvVZA7Y931aeVeOn2yw7yaXASKNTPcZubHgXvRlHc2ZxV9s4aou1ozqXqJjlE
+        4VmrG7rkATwQfp17mAr8BWTYB6wAddayfw5Evn2DlsuGvG0s/LEpCvrivDsaFzefknZHRo
+        INIpXikmJvV0kBMAytwxAWQZpY0kODjRxKVSVVjoxye8N6830sGDXm0xfbycxmuD/flqTb
+        cyZHaD0nxKGBqS7Tks5ctbySaUwE/OASzleG9ZUeKhqV4tTCk6sQpHyRKKQq3T7Yv5EEB3
+        nKLIU/BRp/yBV8fUjJ4IyYka/n6kWVAea2dDJyrhceCZg2NUcwLJHfoZPcp8Sw==
+Date:   Tue, 24 Jan 2023 22:14:21 +0100
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 02/21] dt-bindings: display: tegra: vi: add 'vip'
+ property and example
+Message-ID: <20230124221421.2d45a532@booty>
+In-Reply-To: <cdc91bc4-aa76-f824-36c9-d2995c17fb18@collabora.com>
+References: <20221229133205.981397-1-luca.ceresoli@bootlin.com>
+        <20221229133205.981397-3-luca.ceresoli@bootlin.com>
+        <cdc91bc4-aa76-f824-36c9-d2995c17fb18@collabora.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230124192351.695838-1-ahalaney@redhat.com>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,19 +73,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 24, 2023 at 01:23:50PM -0600, Andrew Halaney wrote:
-> Some of the pinctrl groups were invalid for the selected pins. Select
-> the proper qup group to fix these warnings:
-> 
-> [    6.523566] sc8280xp-tlmm f100000.pinctrl: invalid group "gpio135" for function "qup15"
-> [    6.535042] sc8280xp-tlmm f100000.pinctrl: invalid group "gpio136" for function "qup15"
-> [    6.597536] sc8280xp-tlmm f100000.pinctrl: invalid group "gpio158" for function "qup15"
-> [    6.597544] sc8280xp-tlmm f100000.pinctrl: invalid group "gpio159" for function "qup15"
-> [    6.597991] sc8280xp-tlmm f100000.pinctrl: invalid group "gpio0" for function "qup15"
-> [    6.597996] sc8280xp-tlmm f100000.pinctrl: invalid group "gpio1" for function "qup15"
-> 
-> Fixes: e073899ec3e1 ("arm64: dts: qcom: sa8540p-ride: add i2c nodes")
-> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+Hi Dmitry,
 
-Reviewed-by: Brian Masney <bmasney@redhat.com>
+On Tue, 24 Jan 2023 20:02:39 +0300
+Dmitry Osipenko <dmitry.osipenko@collabora.com> wrote:
 
+> On 12/29/22 16:31, Luca Ceresoli wrote:
+> > +        vip {
+> > +            compatible = "nvidia,tegra20-vip";
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +            channel@0 {
+> > +                reg = <0>;
+> > +                ports {
+> > +                    #address-cells = <1>;
+> > +                    #size-cells = <0>;
+> > +                    port@0 {
+> > +                        reg = <0>;
+> > +                        vi_vip_in: endpoint {
+> > +                            remote-endpoint = <&mt9v111_out>;
+> > +                        };
+> > +                    };
+> > +                    port@1 {
+> > +                        reg = <1>;
+> > +                        vi_vip_out: endpoint {
+> > +                            remote-endpoint = <&vi_in>;
+> > +                        };
+> > +                    };
+> > +                };
+> > +            };  
+> 
+> In the changelog you said that the channel@0 node is removed
+
+Thanks, you are right, this is a leftover. I must have forgotten about
+updating the example. :-\
+
+It will be fixed in v4 obviously, I was waiting before sending it in
+case of any feedback on the other patches.
+
+Best regards.
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
