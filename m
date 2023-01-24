@@ -2,194 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BA1E679E8A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 17:23:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 967DD679E90
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 17:24:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232823AbjAXQXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 11:23:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56434 "EHLO
+        id S234251AbjAXQYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 11:24:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234251AbjAXQXj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 11:23:39 -0500
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2052.outbound.protection.outlook.com [40.107.101.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE958F746;
-        Tue, 24 Jan 2023 08:23:17 -0800 (PST)
+        with ESMTP id S234076AbjAXQYh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 11:24:37 -0500
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2070.outbound.protection.outlook.com [40.107.20.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42F8E46A7;
+        Tue, 24 Jan 2023 08:24:14 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fXfJRuElQIo+SHbX06NfFL9OrGQuqCrmQNihv5vl4zM+qsMQSU6QuWQzYGN+BxxQD3EbPjU8YP+ShRQxyKz6BymVSzzLOD7PKE/QefhTPeMWdWlsmIaKFTjiaXUrQD47rKIV7DEjpSGu6wB8yKliCSJwIesEATINGPT4I7MCEHL6j1TeZKl5P2EmHunjYkv2jmW9UO8/exWbaCRCG0DdLH4uX8MgryXkbAkhRxeFqjlEJ7EKUE1tYGC+Vh9Gi9zdPfnHcqA3iOeFVYJ0InNNVoD+nBNhE6u1/zflAEnEfQvNwfej/4kfpOP5nk8pa7I+AbAaC89CnAlcgSBp4auDUA==
+ b=krMbvE0beFEaTXGbFZXl6fCGGxphVThXK8+zknGdU9ucpT5rATjKFT2vnwxIIL04MLJSH9jkdiJ8LiepyjqGqqwYfNOtKYH7DO+vfh90bJrdp4J5pxL/ehRAQdcXvzOlfetuBA75lwjCeAadQGejo2rrlHYOyYjyF4dPUfjCrc+0Poj2vKSnRsIcfLaKL9Vi8sHjq7r1UN6F9SaIxbsRNJBSWqHVQaOn57Sg8XhYZUihT2HAWvdkMzxwSR5/clJjMDcJHiniKv/cEeHQV2/HS7lLhPXRq2zc0A2lPyy0/ANIsfiV3JLXYbUCU2BVwKq4g96cToXlfOxFhy47KZqKWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=efPdI0/IW8wqWzueTFLXq7woZlZhdnMS4QPkBMz9u1M=;
- b=g87EvYxt0QkPS7cxvXr61lf4n6U3OSMiEwHHayRSMKXmQHL3qvUFuJmnisTb5lC5/QmhSZQMsynG/MONgzk0ACCjiY5vRyxHmdHJTBvgurbIZcZOlnCZwBOkFHFxozleHjUbwhx+2AHGX5zFff72Jp7bPEdkF5fp9JpXW/t5gmJ2gt5fghN5YrvNCsCjbE1fHE5rV24hJ2RfxwhmDAGtIdTxLnG7ysPh0LjqsHC3S+Zr7VeUekd5XBTCcCKK4oTRqyosqFtTEk+I400pyKiASAGd+gUZhyZRAXfQ1SyUB/FF7/Ndzi3dK/MtTRZXbrxDu7A4Bc0myQ4DLgS1Jp2D/A==
+ bh=I7EHdQeu8SILrMF7YPvPqf8Yf3xZvqyheqmku3lRXzg=;
+ b=T1xA4OWTphe2H3EZ8m7oL69VWKV/KTfd6X65q+7BvbooYSWiilJmxscVFUT5lEvWK7Us0WtOPjxZ5o6scJry6a8Emvs+hMfSpLSRZZFMDtfP72Ebs5NEIG1mPQP3NDh6eDVHMa3qhgKO1tqpLzoxG0826t/ByBn+fcJyx09As4IjUDdzgH/C+GG+v4egEq5+mgnbl06ZM+7p4GsRrcM+7e5pQkro+00IoQ+gUMU0qhM/wkfvnDbxCrCAmsjnVydOQXihIXInnEjoUuWgTJO/ZSYggRtOZRjVVnFMnqGwOzRy5Z8TkXfIl03EZYo6Lboa7Js0dTVcwZ36+sPqY2MU0Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=efPdI0/IW8wqWzueTFLXq7woZlZhdnMS4QPkBMz9u1M=;
- b=Y0mh8YnxzaoI/f4s6y4q7896rmHhizyfVbk3kw/OMu2Z/7QveB0ypEOz6ahq17OPvo0mD2BRjZvyCYUL5UJl4Dnah7fxAzB/x4dIYSRbk+WNBqOQB50LsIZqwxTa+uP0mQt6Z/RbIkAvfrMpRwVXo8t+jlN61R5cdL8rLoDSZ32zR4erewv4tK1inF+8tOpIchPhJsq2vM81cejT3x8UdFdWgcKNZX2Iska+jHWkFjttgcGenb2oYLH7Lv3gDY5jENBN/aRJ8fHx5KkdGul+I9Y7uo45R3Ada6Wur/I3ijJ984zRdOsLn6vwJktyHtsjgz1MW/jhTbrIN9xbmWbTOQ==
+ bh=I7EHdQeu8SILrMF7YPvPqf8Yf3xZvqyheqmku3lRXzg=;
+ b=ai9QOtZnXqoyEEkTQu6sSZwLSYUBgGcPT6nbSYhLQ2xDJxTIMGja22E1vh6KOr0+ouKuNJLL1urKZz9juctsE10NWVP53ofvDqobCo3Qf59XNH2MZjRwpyl4QALGRNhZf0iKEgnfkY42o6UJo60JD8qgVTgg2vZOMoWB/yRTfXOOhNRyNUBH0sKzV/+Fo15ERcMmm4aztzgUDq3YYKvZ669g3YUNDjnf3WlgtY57mxzlU/8slGoXRERXIe4OG11gvvuPmFlmQHtIW0ybgrNwYtT/FG50ThvKWn09hkDt8D8JOr94i8oBZq8DfgazWWdrS7pUjJmi+9Bnw6BiBeRxfQ==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- CY8PR12MB7731.namprd12.prod.outlook.com (2603:10b6:930:86::16) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6002.28; Tue, 24 Jan 2023 16:23:15 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::f1be:5d:f297:e2f]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::f1be:5d:f297:e2f%8]) with mapi id 15.20.6002.033; Tue, 24 Jan 2023
- 16:23:15 +0000
-Message-ID: <4395a5f9-0f64-e582-c24a-1681d522b8a2@nvidia.com>
-Date:   Tue, 24 Jan 2023 16:23:08 +0000
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
+ by AS8PR03MB9243.eurprd03.prod.outlook.com (2603:10a6:20b:5b0::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Tue, 24 Jan
+ 2023 16:24:11 +0000
+Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
+ ([fe80::6b03:ac16:24b5:9166]) by DB9PR03MB8847.eurprd03.prod.outlook.com
+ ([fe80::6b03:ac16:24b5:9166%2]) with mapi id 15.20.6002.033; Tue, 24 Jan 2023
+ 16:24:10 +0000
+Message-ID: <232f59aa-704b-a374-6a78-469156ccdbea@seco.com>
+Date:   Tue, 24 Jan 2023 11:23:45 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V7 1/6] dt-bindings: usb: Add Cypress cypd4226 Type-C
- controller
+ Thunderbird/102.4.0
+Subject: Re: [PATCH] dt-bindings: clk: vc5: Make SD/OE pin configuration
+ properties not required
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
-        Wayne Chang <waynec@nvidia.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-tegra@vger.kernel.org
-References: <20230124114318.18345-1-jonathanh@nvidia.com>
- <20230124114318.18345-2-jonathanh@nvidia.com>
- <167456749036.611215.16155554024148748452.robh@kernel.org>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <167456749036.611215.16155554024148748452.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Marek Vasut <marek.vasut@gmail.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-reneas-soc@vger.kernel.org
+References: <68037ad181991fe0b792f6d003e3e9e538d5ffd7.1673452118.git.geert+renesas@glider.be>
+ <5da02a9b-3d42-a26f-0d18-29a6b5b181e5@seco.com>
+ <20230124091236.1bf8c6da@booty>
+ <CAMuHMdV8_+dF03VD6mST2zMDQ68cgsLLRQi6UeXK2jH-eWqWZg@mail.gmail.com>
+From:   Sean Anderson <sean.anderson@seco.com>
+In-Reply-To: <CAMuHMdV8_+dF03VD6mST2zMDQ68cgsLLRQi6UeXK2jH-eWqWZg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P123CA0419.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:18b::10) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+X-ClientProxiedBy: BL1PR13CA0224.namprd13.prod.outlook.com
+ (2603:10b6:208:2bf::19) To DB9PR03MB8847.eurprd03.prod.outlook.com
+ (2603:10a6:10:3dd::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|CY8PR12MB7731:EE_
-X-MS-Office365-Filtering-Correlation-Id: 079f7eab-fbc9-4a42-b853-08dafe274ba5
+X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|AS8PR03MB9243:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8aa9ba29-5baa-46db-e985-08dafe276c5a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: twQbiArVBf/9uHSUO07w9+o/Uop8fRue3kzoYwZ5iVP/YRcgYWAW6Yo+MJWRmNxfpBNXrzeOAg4iz/EOF70U3IBBr6suDdsAxZx1gKSi9ReLxF+85m9Kk6t87rroY9Bcv0Po97gkRvrxSh/D9vk/GyfJbIrLt4WMWygtqsGFyvy/6Wn+YQNeknngM/J8VA0v+pV4z+TKYomU/UmV+qRu9mhGiRxb8v14JVOQqWrr45rl7sCyT7e4le8rME2Hlc6Nl4aBsBuQVTdy9S4MBA9VJZjlc0ndDYzNxwoT625NaniPr75iIW9p7z5GoG/lTyD7q3I6DQGEYut8El3fZgDNvriCNeI9otE1epwvuatpekXQ+/5tgVLwuqB7YIhgr2p1pOhS+HQ+oOPKxF/ummh61YZwqDQ2h6tWccLLzwHNw4kw8LgvzcOoMdo8/ErIQaF5bgQ27uiVRIwKvHGH3EyAkDApoxbD7ijgy4h/LldWcmdb0Loy7JH7TeIbWo5ngBNv80J3dHHs3h1rX/6jXC90hJWqHT4WNxIy9ZgndZqO05/qkmiNxaQPGXopl8AY1usi6jTJ2V1gWNB4hQ3t+HPbzw3vlSYUA7BFZ+z4sjFJxDxmhjzZPZLEv6EFYNFb9rQVLkGheJoPkQO41Cl20LVoTTrT7GkDQlmTRhh5FbzItf7ERLt6BwZRMrECNkhBrunN0TnVJjyj2qrYHJUXllxVK+iU4QumP4d3Yc9SC7thMuq/ahU6uPHBBc0pwjktARRZwNTmYKOtrun3hP+Lp7JGyfiUW+AHeJGSVrC+LtfqloI2jl87Qs1q2tXXQl29EEbZrGS8k0kHJLgJGA2dNTv+GlsXLUQ4N+Xy+/V4XKuppws=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(366004)(396003)(376002)(136003)(346002)(451199015)(86362001)(31696002)(2906002)(6916009)(478600001)(8676002)(41300700001)(6512007)(66556008)(66476007)(66946007)(4326008)(2616005)(186003)(6486002)(54906003)(966005)(6506007)(55236004)(53546011)(6666004)(5660300002)(38100700002)(8936002)(316002)(83380400001)(26005)(31686004)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: dt9XwnvaOFcjjZDl+wxguZg4JKgWnnVvaiCT7bpLlhPSU/TUED6zxpS3/2RBpFlr6+9Nxn8/6Y18w7x6GD/ISi8C+e0EIyyq8URqNQ9sGw6DqHCM+tn/F2p4OGtD4Dnaxmb+oy2F7TRvZNNVgv1ZTMhPvJpY4Vt8KEOFzd+Jr3VQpIocq+7rg+psBBPVrqVQgeCViWgCBvYXTnP5FBtIaFe7BsYEqrhkR6+MkigTQygKco7ugJr+XLSr7YuUIfmu5K21UD9pWCAgVej9mZxLbceGe1UGdeFu6MuHqBKb611S4BS8NPBEe4S/hY/lAXw5yP+jS/dSv3Fucw3toZiwP+14ijZ3SrNxzHeI2r57yVHIB5M8wVVx7hFQUN2ILuK7ZbknkWTTGbEHoCIV5ckE/HdA5cRuB8rh3j5FAjjaw6BsbTk8IGArpk5xb1Dn1Aw7PHYGMCuamvd7JCSrY6pt/EVIm6Dzwk7SWWYduwPOZKIevi/BX+2RHI+1b03CI1SSZBSeSJr7FqIQ5lfFpN14Ix++LIKQW3VWDiHcyRRlWe1BqLzPmW2TvujeksjZM1THftnmasq8TE7eFj5UBvxMwj1cd2P+B2vj1ZWGzFDMIDdmtuhdypeyYG0p4DzksbVEk3mjE3/RBcmYgqRrwVqqxQqlGQhqQvkffCkYmtQ4GlCSrNIw/hFpWDoRawAUM0/LGuM6DyZof3ru4G7RdlAdPqatcbCMQDgvEAAFJVcBZ/sBTtDT1hfaIIVv7cHa7CuEtYem6CfQae3eymzCYpXPdw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(346002)(136003)(376002)(366004)(39850400004)(396003)(451199015)(31696002)(36756003)(41300700001)(86362001)(7416002)(8936002)(5660300002)(4326008)(44832011)(2906002)(38100700002)(83380400001)(38350700002)(110136005)(478600001)(6486002)(52116002)(31686004)(66946007)(53546011)(6512007)(26005)(6506007)(8676002)(186003)(316002)(6666004)(54906003)(2616005)(66476007)(66556008)(43740500002)(45980500001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VVRlcmxCbENuRVJVV1o5NVB6ZmdnQkJrRWlsdlhqZVdZS09waHNET2hlb0J2?=
- =?utf-8?B?VE9zSzZKRkdtZld4cFdUQWIwN1lOUS82ZkVNeGlRakJqelRVWkQveDBrQnFw?=
- =?utf-8?B?ZnMvUlZ0akpBUVlqaGZybWZEWjNRMFc2TnFrcWVBTFd4bzlsdVBISUlRcTFS?=
- =?utf-8?B?NCsrK3E4MEVxVk4wR2F3akxVQSs0Q3NjQWx1bFIrYnpmWjgzY2E0WW9UTVo2?=
- =?utf-8?B?YXhYTjBNeTJhNmpxaHIxRlhaNWl1T2hxR3M0YjA0Q05OeitZa1ljckd4a0NG?=
- =?utf-8?B?dE54dy9aMFE2cmd4d0o5MkFUZmhibFV1cVF3aDRDR0NjSjVvRlAzbGYzaGhs?=
- =?utf-8?B?UjVVMkFsZm9HVS9hNVBSYXp3SjhIQ2RIRkR0NlQwcTlZYmVrMUVqRDVpWGYy?=
- =?utf-8?B?ZEx4TVVGNkhsaHpOZ0ZTRTBwNmdNSHFWUDFIM1Aya01hVnJDUTNlNkVqaGN6?=
- =?utf-8?B?UUdOb0ZaYVQvV250eHlxTWF5SWFtbjh6OXhiUEZyNmUzOVVkaUlPY0ltVmc5?=
- =?utf-8?B?UkE4Q2FvdVZVN0lOU29QYkozOFlIYTkxdmFSVENQMGdmUFFiZXlNcjB3ejZ3?=
- =?utf-8?B?MC95ZGF6Z0R4Q2NobDQrSG5SekdEeFBvMkZrRDI2STNrNHUrWUgxS3NWa2Fa?=
- =?utf-8?B?ajZ0eW1VeUxydnZseGZhYUVMcnF1NXZQSWplbTlibXRFSFpNeUY0UittK0FL?=
- =?utf-8?B?bm9wSVFLL1l6L1JaUmdTUWZBR1pQRmppai9QdnBnb3RBWlFWVmFGZEV2aXhI?=
- =?utf-8?B?S0Zsa0NSdVJUTmc2K09BRWQ1MEFZYnhqcEVobFhqQUxwUHlNQWI5UElKdms3?=
- =?utf-8?B?VnBNdUlQY2xzdG9PWkp6WTFBTVRxMVhqQ2Y5TFpQVzNGUXpzWXp0TXpvL1g3?=
- =?utf-8?B?aXQ4QnFqMVFCMS9WN3pBVkZRNVJHTFRxMnpEdTdOVHFIWllGa0xaU3FWTVg1?=
- =?utf-8?B?R3NKRVRFMEFQTVR3Vzh0Ky94WGJXSnUrUU1lN1JOWkgrWXhxWUNGdktYUWtI?=
- =?utf-8?B?MDE5bWNEaUFDV3haOFBkd2hHYnl3RHduTzZZQk0rNlA5R3NtTWUvQlcwTU1z?=
- =?utf-8?B?VEN3MVVKektDTmtIWjNEcVRoMUpON1lNT0h5TE5FMm0vQ0psNjA4U2tnTVcw?=
- =?utf-8?B?MUkrUlNPbXVMc1NPTTJnZVZZVjMvc0JzQ2dWNmI0TXk4WU51UkMwRVpWQWlq?=
- =?utf-8?B?TExVZHQvdmprT3ovVGdMSjljT1VHZ1dsZ3dncGFObDdtTXhtWlR3amlYM2VV?=
- =?utf-8?B?U0JaVnB4RXFwWFhvU2wwM1Z3SUg0QnRCMndVUkJXYjZuNnFVWTJmaUoybXU2?=
- =?utf-8?B?Szc3bEFCTnVzdml6bFJUSDZNVktjSzJva0pza3RtZTJZRnZxU0s0L1BuV3Yr?=
- =?utf-8?B?Ty9lSVRxTmZkNkVXcW02ajVxQ09ob0ZuenhrVXM5Qmlza2JTby9ZeFBLckpV?=
- =?utf-8?B?NnVPS0hNMUo0TTdBY2Fia1ZLN0NRaTk4R2FwWWlKRkppNVpoR1p1SlJGekVi?=
- =?utf-8?B?dFRYRG13dU9DOGZXbTkrZVpyemE4SXhlcmtqR0w1YW9EejhsU0tnWnh0VnNM?=
- =?utf-8?B?c20wSU5VMmorT3RLSWhzaXRRUUE4R2kwT3l5Y20vWU1MK3BUUDcrTnVKRG85?=
- =?utf-8?B?bDZCbnNMV1JNQXpWNFlISHlGY0JzdFlpem5CdW0vSXlRaGNicnIyRDU2S2hH?=
- =?utf-8?B?S2ZxcUdjTXZUUnYzdmdDTFRVL2d2czdMQ3FhZWh4ZWc5amdRdGdudURyTkRT?=
- =?utf-8?B?cmJUVFp4blljcmxhMjBQUU1OR3RPd3lwYWJhUEtBajVWRXdqUGdHelVLY0h4?=
- =?utf-8?B?YzBjT2JYMDhnaGxTeDQzSVN6RXM2Rk1jQzZxMTU1NDJoUWdweFpUUS9lalUz?=
- =?utf-8?B?OGlzWVMvN2pWakNsa0JCdE1USytOZTJwTitmb3JLeEl2T1VWZ2VnM2RRMExj?=
- =?utf-8?B?YVVUblNMMjBzY2YxMWUxRFJBU0pSU2t6SzJJU1dOTisrd25qcnlhTXhLQ3Mx?=
- =?utf-8?B?WWQ5S3VXNS9NRkxCbXJiVXQyUVVIQmpBOFMxdEdIdkc3VzNpRTBHT0pYWDdU?=
- =?utf-8?B?UnozUm5kYmg2RFZhbHdQOWdiUk1TSDFuWG9SLytscDZhMDkwbCtGVWNibTRK?=
- =?utf-8?B?VWdTeENxWlRma0RhOHJ6WHd6ZHVpejFLeURJbG90RmljdU9NaDFmcS9NRUFZ?=
- =?utf-8?B?N1E9PQ==?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 079f7eab-fbc9-4a42-b853-08dafe274ba5
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?anNVdENSNWg5QUQ2WVdUbGk2VDRpb1pyamt6Z2VuTm5xeXZjTkRmcmhLTXRC?=
+ =?utf-8?B?SzJYSmhmRlJpbWRHSVNYOEI1MmpHMjRpUSt2MWlQUWpJSkUyOEdRK0Eva2pU?=
+ =?utf-8?B?ZHZtc3FzcXZGNDZyaGdqU2Q4c094eE5UWVUvOHF6ZWlFbVAyRjV6MnA5V2xE?=
+ =?utf-8?B?dVorR2tuVEhua2tBOU9SNWVML3FHT3ZyTFNEbHJqazBnZ0M0QzgrVHV2MEtR?=
+ =?utf-8?B?TFdpd1Rsdk5mRENEcWdrOWV5VW9VL0RUNlR5NVpzVkVoQm43ZnRMUmg3eVdM?=
+ =?utf-8?B?UEFEbVo1SlNQUldWcUhBdkd3VTFZM2FLeUJaYWtWelZiVVUvVVZ5d09JSXdQ?=
+ =?utf-8?B?MDI3U0k5S1JnTDFsTmp6dXZ5RjVNb1M5aG05aThqVzdoNFQvZlg0YVhhQmFj?=
+ =?utf-8?B?MnduSXdIL2pnZXluMXlRRGZoMVFCL3lpaWN3QnYzbzNpSDVlKysvdTdqYWNl?=
+ =?utf-8?B?VThMVUdvMzc2REJOeFVQd291T0c5bm0xRkFxbWxjVExtaWhrblVjODFqdThM?=
+ =?utf-8?B?eHdjSEtGMkFmQnRROFErSERXY3lDbnZEeFZXYTlmemlCek1WZFlIcVJoYS9n?=
+ =?utf-8?B?cmhBUFlwRkJnNGdEZXBNdGR2ZndLaGE4bndRcHpzNDc0TGtiR1BIaFkzaG5K?=
+ =?utf-8?B?RmVMMks1NmY5WGVKR25lOU5MaEdST0ZOZUVvRHF1SGdFaHRiMlRtZlduUHhv?=
+ =?utf-8?B?TlJkMi9mbkJrdWhDenpYSlRLWEI5V05vcGczRkJpUGRIN2VlN0UwOUMrZG82?=
+ =?utf-8?B?RTg4YllrditiN2pLOFVGVVVTU0kzTUducTdYS2hpTFl1cWZ4QlZLSXVtSG81?=
+ =?utf-8?B?R05KbnFRMlFEZitMYU9zSmtPN2F3UnlaM1ZjUlVTKzdzL095Z0lFYTFuYmNj?=
+ =?utf-8?B?aUVnWkVUOTVidG52VnBCWFIybUZwTUVPZlVCSWV6blhJczZRYnFFMmtUdjhw?=
+ =?utf-8?B?cjZ0WTJRTjdLT0pyaHRYRWZHOG1rVzNUdFZUWnc0Y3ZXaWRCSWZKemhiR3pN?=
+ =?utf-8?B?K25GT09Lajk0dW9FRStReklLaUVUZFI1NXB1dHRhS0QxUTZHdDh4bnJVQVgv?=
+ =?utf-8?B?Q3lsYzlQNEhQdUtJdnF3aVhqWWxidFhXcVE3QWd5Mk1DVGdKVGc0OVgyQnlR?=
+ =?utf-8?B?cWVkQTdBY3Q5YnhOWlY4UVZYSmZyaWxzb2FpSUsrV0xpVEU0TG43ZWg1V3pI?=
+ =?utf-8?B?ckFjeWNqTENPQllwNi9ITUs3M1I0MnJjNHBGQ29JNHVzdU1Dc2t1N2QyRzZh?=
+ =?utf-8?B?WG1QTGUvZy8rY3VVOWtKOHZmblprMzFOOVd2R0hJZndpeEtLTDlsei9kZmhV?=
+ =?utf-8?B?dVdTSkpmTVFpdlVUd0gzZzlMQkphOFBhMmgxVDJyT0ZUM21RY3h5N3hUL2Vx?=
+ =?utf-8?B?akhKUFFPMFRtZHVTSnhsZjBBekZFdEZ2NzRWWXY0S0tsNzZrdjBnRFNlWm4w?=
+ =?utf-8?B?c09MQlZsKzJ3YTlHQ0ZrS0xFdXVKRUUxcEFDcTlLWk5MVFNLdmlVTXI0TnlV?=
+ =?utf-8?B?a3VXbG1YamQ2ZEtxQ2tMaGpjVW5xeVVXb3pGRlBHZFZyUkhnRlNEZWxhbHBI?=
+ =?utf-8?B?c3FsQWJ6T0lJZGd6ZGh4U0xxQUt2Zzl5N0UzSVVQREtTS3lNaC9iZFVucDZq?=
+ =?utf-8?B?ZHpQNnRXSWpMSU1mSVJNdkJubUdFODdpeWgvcnFjaTBXdFcyK3JHelNncmVG?=
+ =?utf-8?B?VHZpZEREREZkOHorMFltN2dIbk9xOTJOYTBVOUdDTU9CL2FLOTIvSURCeU8y?=
+ =?utf-8?B?TDdtT2x5SG1ad2FwMTU5TSszOUd2bytNdFhObVNERWcvQUVpZFlmTWVyR01r?=
+ =?utf-8?B?Z0VXWUlPd0hDUFB3OERYd2c4MXlvRE94YnFVVHFwcisvdG9IaWttMEx1NVo1?=
+ =?utf-8?B?S3FnellDWVY3cDVWa3J6OVdJRTBieVZDb0dQcEZSTCtFN21hNWtzUi8zaCtI?=
+ =?utf-8?B?WVFLM2RkS0xVbCtsK3k5RzdBTTlFREFIZFBKcWFwZFE4T2E1V1d2aktTMDk5?=
+ =?utf-8?B?Z25mVG5WMEdmVWRpR25HSk1BWlZqU3VnMUo3WHdlbFloRUpuWHVmdW5NdlFj?=
+ =?utf-8?B?emZCUTRPUFdleWdYMkxPRktoeGM4RjExRlFseld1NmtRUjA0RitVM044UCtz?=
+ =?utf-8?B?RGhSWTdQaDJFbFFPSnpjTjk3N1BiNE1Na2JkbmYyaCtXVFlORnF6Ky9vWWVO?=
+ =?utf-8?B?aVE9PQ==?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8aa9ba29-5baa-46db-e985-08dafe276c5a
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR03MB8847.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 16:23:15.4396
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 16:24:10.3625
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: R08nMaEAV2A4KMD193SeuDNa1XvfmNTIC+2Ru72k667T3Ckrcq1+NqfRKPWfwAHqukpQ0o1D6JvIfJQuq3k8Mg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7731
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZCZ03qtUrwUQ6Pwnbf1kmP2miIrFGmxCQaV9naCgjRyGMH38oSHq3kyIQSipj6/8uvLhc6Qu6faWVv+eWfHmyw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR03MB9243
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 24/01/2023 13:45, Rob Herring wrote:
+On 1/24/23 03:28, Geert Uytterhoeven wrote:
+> Hi Luca,
 > 
-> On Tue, 24 Jan 2023 11:43:13 +0000, Jon Hunter wrote:
->> From: Wayne Chang <waynec@nvidia.com>
+> On Tue, Jan 24, 2023 at 9:12 AM Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
+>> On Thu, 19 Jan 2023 14:27:43 -0500
+>> Sean Anderson <sean.anderson@seco.com> wrote:
+>> > On 1/11/23 10:55, Geert Uytterhoeven wrote:
+>> > > "make dtbs_check":
+>> > >
+>> > >     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: clock-generator@6a: 'idt,shutdown' is a required property
+>> > >         From schema: Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+>> > >     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: clock-generator@6a: 'idt,output-enable-active' is a required property
+>> > >         From schema: Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+>> > >
+>> > > Versaclock 5 clock generators can have their configuration stored in
+>> > > One-Time Programmable (OTP) memory.  Hence there is no need to specify
+>> > > DT properties for manual configuration if the OTP has been programmed
+>> > > before.  Likewise, the Linux driver does not touch the SD/OE bits if the
+>> > > corresponding properties are not specified, cfr. commit d83e561d43bc71e5
+>> > > ("clk: vc5: Add properties for configuring SD/OE behavior").
+>> > >
+>> > > Reflect this in the bindings by making the "idt,shutdown" and
+>> > > "idt,output-enable-active" properties not required, just like the
+>> > > various "idt,*" properties in the per-output child nodes.
+>> >
+>> > IMO we should set this stuff explicitly.
 >>
->> Add the device-tree binding documentation for Cypress cypd4226 dual
->> Type-C controller.
+>> I took a moment to think better about this and I think I get your point
+>> Sean in preferring that the hardware is described in detail.
 >>
->> Signed-off-by: Wayne Chang <waynec@nvidia.com>
->> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
->> ---
->> V6 -> V7: updated example to use 'typec' for the node name
->> V5 -> V6: no changes
->> V4 -> V5: updated subject and updated binding to use 'firmware-name'.
->> V3 -> V4: no changes
->> V2 -> V3: fix additionalProperties warning on new schema
->> V1 -> V2: based on the review comments. Fix some addressed issues on
+>> However I'm still leaning towards approving Geert's proposal.
 >>
->>   .../bindings/usb/cypress,cypd4226.yaml        | 88 +++++++++++++++++++
->>   1 file changed, 88 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
+>> I'm based on the principle that DT is there to describe the aspects of
+>> the hardware that the software needs _and_ it is unable to discover by
+>> itself.
 >>
+>> Based on that, does the software need to know SD/OR configuration? If
+>> they are already written in the OTP then it doesn't. Also if the chip
+>> default is the use that is implemented on the board, it also doesn't
+>> (like lots of optional properties, especially when in most cases a
+>> given chip is used in the default configuration but not always).
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml: More than one condition true in oneOf schema:
-> 	{'description': 'Either unevaluatedProperties or additionalProperties '
-> 	                'must be present',
-> 	 'oneOf': [{'required': ['unevaluatedProperties']},
-> 	           {'required': ['additionalProperties']}]}
-> 	hint: Either unevaluatedProperties or additionalProperties must be present
-> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230124114318.18345-2-jonathanh@nvidia.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
+> These clock generators are typically programmed through OTP because
+> (at least some of) the configuration is needed to boot the board.
 
+Actually, I found that with these properties added, there is no need to
+program the OTP (at least for my use-case). This is great because it
+removes a step during manufacture and you don't have to worry about
+getting something wrong.
 
-Indeed. My schema was not up to date :-(
+>> To some extent, writing settings in an OTP is similar to producing a
+>> different chip where these values are hard-coded and not configured.
+> 
+> Indeed. Except that here they can still be overwritten by software
+> later.
+> 
+> The latter is an inherent danger, and is probably the reason why Sean
+> wants to make it explicit: if the configuration is ever changed by
+> software, and the system is restarted without resetting the clock
+> generator (at least 5P49V6901A does not have a reset line), or using
+> kexec/kdump, the newly booted kernel does not know the intended
+> settings, and won't restore the correct configuration.
+>
+>> I'm wondering whether Geert has a practical example of a situation
+>> where it is better to have these properties optional.
+> 
+> My issue was that these properties were introduced long after the
+> initial bindings, hence pre-existing DTS does not have them.
+> Yes, we can add them, but then we have to read out the OTP-programmed
+> settings first. If that's the way to go, I can look into that, though...
 
-I see the error now and will fix this. Sorry for not catching.
+FWIW I think there's no need to update existing bindings which don't
+have this property. The required aspect is mainly a reminder for new
+device trees.
 
-Jon
-
--- 
-nvpublic
+--Sean
