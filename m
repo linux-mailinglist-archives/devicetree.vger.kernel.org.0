@@ -2,396 +2,421 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1FB9679AEF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 15:01:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 499FB679B00
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 15:03:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234525AbjAXOB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 09:01:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36854 "EHLO
+        id S234254AbjAXODr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 09:03:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234413AbjAXOBU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 09:01:20 -0500
-Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0836269B;
-        Tue, 24 Jan 2023 06:00:58 -0800 (PST)
-Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-15f97c478a8so17664412fac.13;
-        Tue, 24 Jan 2023 06:00:58 -0800 (PST)
+        with ESMTP id S234486AbjAXODp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 09:03:45 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB89C25E0F
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 06:03:21 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id v6so39284641ejg.6
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 06:03:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tmoyjXZIJi9Rx65rj6ruYDX6ndfhRM7zJBh2XJQLDbY=;
-        b=gPXaSlpMh9zl75rRP8w5h2kwbRlLwklFAMHM0dTjYNRr8rlxNh8B7Em4jZG6EaJVGO
-         p9VEphibY0mxZjRrZlGOuRNX3IzYSNk3WUwdYlVf4lMCydHqBPJLffa7xyivvUgkVcoF
-         DOBIojG+mBOV9Vdl/diy58xlwCTN/wgSUmrs0ayiQVu5uYn6e1jOSQ5Ik+pyIKLZmvg7
-         u0x/s0AjkSxcinjUWJegzOz0o4ThcmhAArMC8U20FDZWEB9fcUQIYu/P/ZkEJMimiEeM
-         VUWItBHCzaR29ftVVU50+fJziWq2k6bMPm2z32EyS+QEZROF4E4/GrP0JrE5JG+FNp5Q
-         UEfw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dvMhrp6aXMYhNBDf7vWcqNsepHP7pV06IRFW7mZteb4=;
+        b=t9MCRzd5cuO9xiAy4KR5nwA6yr/i9V3zqK+xz1vwAlROm5JYEsH0Xtq78S05jQfrJN
+         GT978RXSIeDSi2TdVo61NuXai/utJF113ueOgRYnpFOUjX7hAcG57UBCxfh+teLhnKSO
+         paJqE7tbR++i+89Rpob/+7h7THxeZV51QoSKKpdX9LFpQS3m6CUI3lNVpvdJA67XPPN+
+         QQAWryEYwcLIFIdI8OyEIIJ/F5B4FDfUXgaSxrFDgbOLoMrg/1bah9ccTjKjgc+ts/7j
+         rNTe8SR29K9qzeuBPv7uC7rnvqVubKyPncwYa0Akh4VFGbpeaH79raqoU5lD6vvNJlI8
+         OV9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tmoyjXZIJi9Rx65rj6ruYDX6ndfhRM7zJBh2XJQLDbY=;
-        b=oE2rmOpIbuK6dF5FUThYxWRTD56BrilBUXBNATmBJCwextFHh/iRun63lLad6uHlJk
-         butunCK+b5hEg+xGDIgTZE2NDTPDDk7V/8ORPrm4ypP+LygpxPTRRJ2dIxb4dHpzWhbR
-         Rcx8RwpcJUjW8ToGZYN2DQQPPZiEaM9mud9u3EKQIpX8JfY3rGmzcVhDWm7byoN6BjtI
-         XKP351q2aDPJmmfUtRpe9lAy2D27b6+NIKID5iwdnkVqY/T0bYmb3FBwFxAiFLXFyglw
-         g+x0HtPcKcJCJduluBJfVnUO7ZYrd2EuurEaBTVj9zYkiNA7OmGmala+vsi4OcEHnC3/
-         vheQ==
-X-Gm-Message-State: AFqh2koZuEzR0gtwK6pMGho0FVpVvNWg7GwUv0ImzFlnMxIpC8b1LNmV
-        IAzot8zJZxITX8HG9MZ9BW4=
-X-Google-Smtp-Source: AMrXdXsFbPWzZEWJ+ey/CazkqACJ6dIGevse4ra/3zvmFXKJn0i663Q/medPHl64JRx/vm2Zu4SGJg==
-X-Received: by 2002:a05:6870:3516:b0:15e:c4e1:c9fb with SMTP id k22-20020a056870351600b0015ec4e1c9fbmr16466432oah.31.1674568856289;
-        Tue, 24 Jan 2023 06:00:56 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id lu24-20020a056871431800b0013297705e5dsm737363oab.28.2023.01.24.06.00.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 06:00:55 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 24 Jan 2023 06:00:54 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Mario Kicherer <dev@kicherer.org>
-Cc:     linux-hwmon@vger.kernel.org, jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] hwmon: add initial NXP MC34VR500 PMIC monitoring
- support
-Message-ID: <20230124140054.GA37573@roeck-us.net>
-References: <20230118123019.3041303-1-dev@kicherer.org>
- <20230118123019.3041303-4-dev@kicherer.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dvMhrp6aXMYhNBDf7vWcqNsepHP7pV06IRFW7mZteb4=;
+        b=e6tsgKwVJi7tDajPP7NYNZDXu+PQOKj8Y3YuxIqPSq3Eyx6InTlHlPRZXCC3htgwGs
+         hhqg+ndPbBXb+6hvAv0trQtmdKfoZbswPZ2L5wkBPF1v2RNa+fRlI6SBQMWIQQ+9VING
+         Vsp0LHPFZqQIAmbWDYNdHdDKTvn/ecZY//x46mYuIyVbJswK57oOSivggSPXr7jzYS02
+         TGcTLmAhE/EGvh0Dcfbsyw3l/crAGqb1ScR18Et1D4FL6S+26yeSW9apyqGC4eEetQTN
+         oRY2mYAmlKQ1xMB+LZNnvaVvOeFLNjfYV6gb3nRZBGMDZEZ4pK1vk3yO6ioTIBu2lJn4
+         DTbg==
+X-Gm-Message-State: AFqh2kpzHj+z5M0tlpooA4bDGFAujVEPHNwe+KAR671t6b95sOEVGz0y
+        u+SJzgnEBuEi7xUdv1ZWfdAF8Q==
+X-Google-Smtp-Source: AMrXdXsd7JJcUfvheW6NJmo4OaTa+SBH6fq8UgQo+LkVJrbY7ThmAsSfeG/v6Xbh+C+FzFF/z+feDA==
+X-Received: by 2002:a17:907:c243:b0:872:84dd:8903 with SMTP id tj3-20020a170907c24300b0087284dd8903mr30438950ejc.59.1674569000305;
+        Tue, 24 Jan 2023 06:03:20 -0800 (PST)
+Received: from [192.168.1.101] (abyl109.neoplus.adsl.tpnet.pl. [83.9.31.109])
+        by smtp.gmail.com with ESMTPSA id k14-20020a170906054e00b0084c6581c16fsm942677eja.64.2023.01.24.06.03.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Jan 2023 06:03:19 -0800 (PST)
+Message-ID: <f7a93a51-f104-3c75-8e59-6f718255555c@linaro.org>
+Date:   Tue, 24 Jan 2023 15:03:17 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230118123019.3041303-4-dev@kicherer.org>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8250: Add device tree for Xiaomi
+ Mi Pad 5 Pro
+Content-Language: en-US
+To:     Jianhua Lu <lujianhua000@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G . Piccoli" <gpiccoli@igalia.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230124135318.10023-1-lujianhua000@gmail.com>
+ <20230124135318.10023-2-lujianhua000@gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230124135318.10023-2-lujianhua000@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 18, 2023 at 01:30:19PM +0100, Mario Kicherer wrote:
-> Add initial monitoring support for the MC34VR500 PMIC. In its current
-> state, input voltage and temperature alarms are reported to hwmon.
+
+
+On 24.01.2023 14:53, Jianhua Lu wrote:
+> Add support for Xiaomi Mi Pad 5 Pro, codename is xiaomi-elish.
 > 
-> Datasheet:
->  - https://www.nxp.com/docs/en/data-sheet/MC34VR500.pdf
+> This commit brings support for:
+>   * ADSP/CDSP/SLPI/VENUS
+>   * Backlight
+>   * Battery fuel gauge
+>   * Framebuffer
+>   * PCIe0
+>   * USB2.0
 > 
-> Signed-off-by: Mario Kicherer <dev@kicherer.org>
-
-Applied to hwmon-next.
-
-Thanks,
-Guenter
-
+> Note backlight driver (ktz8866) is waitting for upstreaming[1].
+> [1] https://lore.kernel.org/linux-leds/20230120155018.15376-1-lujianhua000@gmail.com
+> 
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 > ---
->  drivers/hwmon/Kconfig     |   7 +
->  drivers/hwmon/Makefile    |   1 +
->  drivers/hwmon/mc34vr500.c | 262 ++++++++++++++++++++++++++++++++++++++
->  3 files changed, 270 insertions(+)
->  create mode 100644 drivers/hwmon/mc34vr500.c
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../boot/dts/qcom/sm8250-xiaomi-elish.dts     | 594 ++++++++++++++++++
+>  2 files changed, 595 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
 > 
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index 3176c33af6c6..69d4c1609494 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -1166,6 +1166,13 @@ config SENSORS_MAX31790
->  	  This driver can also be built as a module. If so, the module
->  	  will be called max31790.
->  
-> +config SENSORS_MC34VR500
-> +	tristate "NXP MC34VR500 hardware monitoring driver"
-> +	depends on I2C
-> +	help
-> +	  If you say yes here you get support for the temperature and input
-> +	  voltage sensors of the NXP MC34VR500.
-> +
->  config SENSORS_MCP3021
->  	tristate "Microchip MCP3021 and compatibles"
->  	depends on I2C
-> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-> index e2e4e87b282f..4bef13d16c66 100644
-> --- a/drivers/hwmon/Makefile
-> +++ b/drivers/hwmon/Makefile
-> @@ -149,6 +149,7 @@ obj-$(CONFIG_SENSORS_MAX6650)	+= max6650.o
->  obj-$(CONFIG_SENSORS_MAX6697)	+= max6697.o
->  obj-$(CONFIG_SENSORS_MAX31790)	+= max31790.o
->  obj-$(CONFIG_SENSORS_MC13783_ADC)+= mc13783-adc.o
-> +obj-$(CONFIG_SENSORS_MC34VR500)	+= mc34vr500.o
->  obj-$(CONFIG_SENSORS_MCP3021)	+= mcp3021.o
->  obj-$(CONFIG_SENSORS_TC654)	+= tc654.o
->  obj-$(CONFIG_SENSORS_TPS23861)	+= tps23861.o
-> diff --git a/drivers/hwmon/mc34vr500.c b/drivers/hwmon/mc34vr500.c
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index b0423ca3e79f..769cee2b450f 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -184,6 +184,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-hdk.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-mtp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx203.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx206.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-xiaomi-elish.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-hdk.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-microsoft-surface-duo2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-mtp.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
 > new file mode 100644
-> index 000000000000..b14daa999a2e
+> index 000000000000..99ae6668e516
 > --- /dev/null
-> +++ b/drivers/hwmon/mc34vr500.c
-> @@ -0,0 +1,262 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
+> @@ -0,0 +1,594 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
 > +/*
-> + * An hwmon driver for the NXP MC34VR500 PMIC
-> + *
-> + * Author: Mario Kicherer <dev@kicherer.org>
+> + * Copyright (c) 2022, 2023 Jianhua Lu <lujianhua000@gmail.com>
 > + */
 > +
-> +#include <linux/bits.h>
-> +#include <linux/dev_printk.h>
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/errno.h>
-> +#include <linux/hwmon.h>
-> +#include <linux/i2c.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/irqreturn.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/regmap.h>
+> +/dts-v1/;
 > +
-> +#define MC34VR500_I2C_ADDR		0x08
-> +#define MC34VR500_DEVICEID_VALUE	0x14
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> +#include "sm8250.dtsi"
+> +#include "pm8150.dtsi"
+> +#include "pm8150b.dtsi"
+> +#include "pm8150l.dtsi"
+> +#include "pm8009.dtsi"
 > +
-> +/* INTSENSE0 */
-> +#define ENS_BIT		BIT(0)
-> +#define LOWVINS_BIT	BIT(1)
-> +#define THERM110S_BIT	BIT(2)
-> +#define THERM120S_BIT	BIT(3)
-> +#define THERM125S_BIT	BIT(4)
-> +#define THERM130S_BIT	BIT(5)
+> +/*
+> + * Delete following upstream (sm8250.dtsi) reserved
+> + * memory mappings which are different in this device.
+> + */
+> +/delete-node/ &xbl_aop_mem;
+> +/delete-node/ &slpi_mem;
+> +/delete-node/ &adsp_mem;
+> +/delete-node/ &spss_mem;
+> +/delete-node/ &cdsp_secure_heap;
 > +
-> +#define MC34VR500_DEVICEID	0x00
+> +/ {
+> +	model = "Xiaomi Mi Pad 5 Pro";
+> +	compatible = "xiaomi,elish", "qcom,sm8250";
+> +	classis-type = "tablet";
 > +
-> +#define MC34VR500_SILICONREVID	0x03
-> +#define MC34VR500_FABID		0x04
-> +#define MC34VR500_INTSTAT0	0x05
-> +#define MC34VR500_INTMASK0	0x06
-> +#define MC34VR500_INTSENSE0	0x07
+> +	/* required for bootloader to select correct board */
+> +	qcom,msm-id = <356 0x20001>; /* SM8250 v2.1 */
+Please include include/dt-bindings/arm/qcom,ids.h and use
+the QCOM_ID_SM8250 define.
+
+> +	qcom,board-id = <0x10008 0>;
 > +
-> +struct mc34vr500_data {
-> +	struct device *hwmon_dev;
-> +	struct regmap *regmap;
+> +	chosen {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		framebuffer: framebuffer@9c000000 {
+> +			compatible = "simple-framebuffer";
+> +			reg = <0 0x9c000000 0 0x2300000>;
+Please use 0x0 instead of 0, like in other nodes.
+
+> +			width = <1600>;
+> +			height = <2560>;
+> +			stride = <(1600 * 4)>;
+> +			format = "a8r8g8b8";
+> +		};
+> +	};
+> +
+> +	gpio_keys: gpio-keys {
+> +		compatible = "gpio-keys";
+You may want to add the pin settings for pm8150_gpio6 here.
+
+> +
+> +		vol-up {
+> +			label = "Volume Up";
+> +			gpios = <&pm8150_gpios 6 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_VOLUMEUP>;
+> +			debounce-interval = <15>;
+> +			linux,can-disable;
+> +			gpio-key,wakeup;
+> +		};
+> +	};
+> +
+> +	bl_vddpos_5p5: bl-vddpos-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "bl_vddpos_5p5";
+> +		regulator-min-microvolt = <5500000>;
+> +		regulator-max-microvolt = <5500000>;
+> +		regulator-enable-ramp-delay = <233>;
+> +		gpio = <&tlmm 130 0>;
+> +		enable-active-high;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	bl_vddneg_5p5: bl-vddneg-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "bl_vddneg_5p5";
+> +		regulator-min-microvolt = <5500000>;
+> +		regulator-max-microvolt = <5500000>;
+> +		regulator-enable-ramp-delay = <233>;
+> +		gpio = <&tlmm 131 0>;
+> +		enable-active-high;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vph_pwr: vph-pwr-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vph_pwr";
+> +		regulator-min-microvolt = <3700000>;
+> +		regulator-max-microvolt = <3700000>;
+> +	};
+> +
+> +	/* S6c is really ebi.lvl but it's there for supply map completeness sake. */
+> +	vreg_s6c_0p88: smpc6-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vreg_s6c_0p88";
+> +		regulator-min-microvolt = <880000>;
+> +		regulator-max-microvolt = <880000>;
+> +		regulator-always-on;
+> +		vin-supply = <&vph_pwr>;
+> +	};
+> +
+> +	reserved-memory {
+> +		xbl_aop_mem: memory@80700000 {
+> +			reg = <0x0 0x80600000 0x0 0x260000>;
+> +			no-map;
+> +		};
+> +
+> +		slpi_mem: memory@88c00000 {
+> +			reg = <0x0 0x88c00000 0x0 0x2f00000>;
+> +			no-map;
+> +		};
+> +
+> +		adsp_mem: memory@8bb00000 {
+> +			reg = <0x0 0x8bb00000 0x0 0x2500000>;
+> +			no-map;
+> +		};
+> +
+> +		spss_mem: memory@8e000000 {
+> +			reg = <0x0 0x8e000000 0x0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		cdsp_secure_heap: memory@8e100000 {
+> +			reg = <0x0 0x8e100000 0x0 0x4600000>;
+> +			no-map;
+> +		};
+> +
+> +		cont_splash_mem: memory@9c000000 {
+> +			reg = <0x0 0x9c000000 0x0 0x2300000>;
+> +			no-map;
+> +		};
+> +
+> +		ramoops@b0000000 {
+> +			compatible = "ramoops";
+> +			reg = <0x0 0xb0000000 0x0 0x400000>;
+> +			record-size = <0x1000>;
+> +			console-size = <0x200000>;
+> +			ecc-size = <16>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	battery_l: battery-l {
+Move these up to keep the nodes sorted alphabetically.
+
+> +		compatible = "simple-battery";
+> +		voltage-min-design-microvolt = <3870000>;
+> +		energy-full-design-microwatt-hours = <16600000>;
+> +		charge-full-design-microamp-hours = <4300000>;
+> +	};
+> +
+> +	battery_r: battery-r {
+> +		compatible = "simple-battery";
+> +		voltage-min-design-microvolt = <3870000>;
+> +		energy-full-design-microwatt-hours = <16600000>;
+> +		charge-full-design-microamp-hours = <4300000>;
+> +	};
 > +};
 > +
-> +static irqreturn_t mc34vr500_process_interrupt(int irq, void *userdata)
-> +{
-> +	struct mc34vr500_data *data = (struct mc34vr500_data *)userdata;
-> +	unsigned int reg;
-> +	int ret;
+[...]
+
 > +
-> +	ret = regmap_read(data->regmap, MC34VR500_INTSTAT0, &reg);
-> +	if (ret < 0)
-> +		return IRQ_HANDLED;
+> +&i2c0 {
+> +	clock-frequency = <400000>;
+> +	status = "okay";
 > +
-> +	if (reg) {
-> +		if (reg & LOWVINS_BIT)
-> +			hwmon_notify_event(data->hwmon_dev, hwmon_in,
-> +					   hwmon_in_min_alarm, 0);
-> +
-> +		if (reg & THERM110S_BIT)
-> +			hwmon_notify_event(data->hwmon_dev, hwmon_temp,
-> +					   hwmon_temp_max_alarm, 0);
-> +
-> +		if (reg & THERM120S_BIT)
-> +			hwmon_notify_event(data->hwmon_dev, hwmon_temp,
-> +					   hwmon_temp_crit_alarm, 0);
-> +
-> +		if (reg & THERM130S_BIT)
-> +			hwmon_notify_event(data->hwmon_dev, hwmon_temp,
-> +					   hwmon_temp_emergency_alarm, 0);
-> +
-> +		/* write 1 to clear */
-> +		regmap_write(data->regmap, MC34VR500_INTSTAT0, LOWVINS_BIT |
-> +			     THERM110S_BIT | THERM120S_BIT | THERM130S_BIT);
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static umode_t mc34vr500_is_visible(const void *data,
-> +				    enum hwmon_sensor_types type,
-> +				    u32 attr, int channel)
-> +{
-> +	switch (attr) {
-> +	case hwmon_in_min_alarm:
-> +	case hwmon_temp_max_alarm:
-> +	case hwmon_temp_crit_alarm:
-> +	case hwmon_temp_emergency_alarm:
-> +		return 0444;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int mc34vr500_alarm_read(struct mc34vr500_data *data, int index,
-> +				long *val)
-> +{
-> +	unsigned int reg;
-> +	int ret;
-> +
-> +	ret = regmap_read(data->regmap, MC34VR500_INTSENSE0, &reg);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	*val = !!(reg & index);
-> +
-> +	return 0;
-> +}
-> +
-> +static int mc34vr500_read(struct device *dev, enum hwmon_sensor_types type,
-> +			  u32 attr, int channel, long *val)
-> +{
-> +	struct mc34vr500_data *data = dev_get_drvdata(dev);
-> +
-> +	switch (type) {
-> +	case hwmon_in:
-> +		switch (attr) {
-> +		case hwmon_in_min_alarm:
-> +			return mc34vr500_alarm_read(data, LOWVINS_BIT, val);
-> +		default:
-> +			return -EOPNOTSUPP;
-> +		}
-> +	case hwmon_temp:
-> +		switch (attr) {
-> +		case hwmon_temp_max_alarm:
-> +			return mc34vr500_alarm_read(data, THERM110S_BIT, val);
-> +		case hwmon_temp_crit_alarm:
-> +			return mc34vr500_alarm_read(data, THERM120S_BIT, val);
-> +		case hwmon_temp_emergency_alarm:
-> +			return mc34vr500_alarm_read(data, THERM130S_BIT, val);
-> +		default:
-> +			return -EOPNOTSUPP;
-> +		}
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static const struct hwmon_channel_info *mc34vr500_info[] = {
-> +	HWMON_CHANNEL_INFO(in, HWMON_I_MIN_ALARM),
-> +	HWMON_CHANNEL_INFO(temp, HWMON_T_MAX_ALARM | HWMON_T_CRIT_ALARM
-> +			   | HWMON_T_EMERGENCY_ALARM),
-> +	NULL,
+> +	battery_fg@55 {
+fuel-gauge@
+
+> +		compatible = "ti,bq27z561";
+> +		reg = <0x55>;
+> +		monitored-battery = <&battery_r>;
+> +	};
 > +};
 > +
-> +static const struct hwmon_ops mc34vr500_hwmon_ops = {
-> +	.is_visible = mc34vr500_is_visible,
-> +	.read = mc34vr500_read,
+> +&i2c11 {
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +
+> +	backlight: backlight@11 {
+> +		compatible = "kinetic,ktz8866";
+> +		reg = <0x11>;
+> +		vddpos-supply = <&bl_vddpos_5p5>;
+> +		vddneg-supply = <&bl_vddneg_5p5>;
+> +		enable-gpios = <&tlmm 139 GPIO_ACTIVE_HIGH>;
+> +		current-num-sinks = <5>;
+> +		kinetic,current-ramp-delay-ms = <128>;
+> +		kinetic,led-enable-ramp-delay-ms = <1>;
+> +		kinetic,enable-lcd-bias;
+> +	};
 > +};
 > +
-> +static const struct hwmon_chip_info mc34vr500_chip_info = {
-> +	.ops = &mc34vr500_hwmon_ops,
-> +	.info = mc34vr500_info,
+> +&i2c13 {
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +
+> +	battery_fg@55 {
+fuel-gauge@
+
+> +		compatible = "ti,bq27z561";
+> +		reg = <0x55>;
+> +		monitored-battery = <&battery_l>;
+> +	};
 > +};
 > +
-> +static const struct regmap_config mc34vr500_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = MC34VR500_INTSENSE0,
+> +&pcie0 {
+> +	status = "okay";
 > +};
 > +
-> +static int mc34vr500_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct mc34vr500_data *data;
-> +	struct device *hwmon_dev;
-> +	int ret;
-> +	unsigned int reg, revid, fabid;
-> +	struct regmap *regmap;
-> +
-> +	regmap = devm_regmap_init_i2c(client, &mc34vr500_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return PTR_ERR(regmap);
-> +
-> +	data = devm_kzalloc(dev, sizeof(struct mc34vr500_data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->regmap = regmap;
-> +
-> +	ret = regmap_read(regmap, MC34VR500_DEVICEID, &reg);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (reg != MC34VR500_DEVICEID_VALUE)
-> +		return -ENODEV;
-> +
-> +	ret = regmap_read(regmap, MC34VR500_SILICONREVID, &revid);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = regmap_read(regmap, MC34VR500_FABID, &fabid);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	dev_dbg(dev, "mc34vr500: revid 0x%x fabid 0x%x\n", revid, fabid);
-> +
-> +	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name,
-> +							 data,
-> +							 &mc34vr500_chip_info,
-> +							 NULL);
-> +	if (IS_ERR(hwmon_dev))
-> +		return PTR_ERR(hwmon_dev);
-> +
-> +	data->hwmon_dev = hwmon_dev;
-> +
-> +	if (client->irq) {
-> +		ret = devm_request_threaded_irq(dev, client->irq, NULL,
-> +						mc34vr500_process_interrupt,
-> +						IRQF_TRIGGER_RISING |
-> +						IRQF_ONESHOT |
-> +						IRQF_SHARED,
-> +						dev_name(dev), data);
-> +		if (ret)
-> +			return ret;
-> +
-> +		/* write 1 to clear interrupts */
-> +		ret = regmap_write(regmap, MC34VR500_INTSTAT0, LOWVINS_BIT |
-> +				   THERM110S_BIT | THERM120S_BIT |
-> +				   THERM130S_BIT);
-> +		if (ret)
-> +			return ret;
-> +
-> +		/* unmask interrupts */
-> +		ret = regmap_write(regmap, MC34VR500_INTMASK0,
-> +				   ~(LOWVINS_BIT | THERM110S_BIT |
-> +				   THERM120S_BIT | THERM130S_BIT));
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct i2c_device_id mc34vr500_id[] = {
-> +	{ "mc34vr500", 0 },
+> +&pcie0_phy {
+> +	vdda-phy-supply = <&vreg_l5a_0p88>;
+> +	vdda-pll-supply = <&vreg_l9a_1p2>;
+> +	status = "okay";
 > +};
 > +
-> +MODULE_DEVICE_TABLE(i2c, mc34vr500_id);
-> +
-> +static const struct of_device_id __maybe_unused mc34vr500_of_match[] = {
-> +	{ .compatible = "nxp,mc34vr500" },
-> +};
-> +MODULE_DEVICE_TABLE(of, mc34vr500_of_match);
-> +
-> +static struct i2c_driver mc34vr500_driver = {
-> +	.driver = {
-> +		   .name = "mc34vr500",
-> +		   .of_match_table = of_match_ptr(mc34vr500_of_match),
-> +		    },
-> +	.probe_new = mc34vr500_probe,
-> +	.id_table = mc34vr500_id,
+> +&pon_pwrkey {
+> +	status = "okay";
 > +};
 > +
-> +module_i2c_driver(mc34vr500_driver);
+> +&pon_resin {
+> +	linux,code = <KEY_VOLUMEDOWN>;
+> +	status = "okay";
+> +};
 > +
-> +MODULE_AUTHOR("Mario Kicherer <dev@kicherer.org>");
+> +&qupv3_id_0 {
+> +	status = "okay";
+> +};
 > +
-> +MODULE_DESCRIPTION("MC34VR500 driver");
-> +MODULE_LICENSE("GPL");
+> +&qupv3_id_1 {
+> +	status = "okay";
+> +};
+> +
+> +&qupv3_id_2 {
+> +	status = "okay";
+> +};
+> +
+> +&slpi {
+> +	firmware-name = "qcom/sm8250/xiaomi/elish/slpi.mbn";
+> +	status = "okay";
+> +};
+> +
+> +&tlmm {
+> +	gpio-reserved-ranges = <40 4>;
+> +};
+> +
+> +&usb_1 {
+> +	/* USB 2.0 only */
+> +	qcom,select-utmi-as-pipe-clk;
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_dwc3 {
+> +	dr_mode = "peripheral";
+> +	maximum-spped = "high-speed";
+> +	/* Remove USB3 phy */
+> +	phys = <&usb_1_hsphy>;
+> +	phy-names = "usb2-phy";
+> +};
+> +
+> +&usb_1_hsphy {
+> +	vdda-pll-supply = <&vreg_l5a_0p88>;
+> +	vdda18-supply = <&vreg_l12a_1p8>;
+> +	vdda33-supply = <&vreg_l2a_3p1>;
+> +	status = "okay";
+> +};
+> +
+> +&ufs_mem_hc {
+> +	vcc-supply = <&vreg_l17a_3p0>;
+> +	vcc-max-microamp = <800000>;
+> +	vccq-supply = <&vreg_l6a_1p2>;
+> +	vccq-max-microamp = <800000>;
+> +	vccq2-supply = <&vreg_s4a_1p8>;
+> +	vccq2-max-microamp = <800000>;
+I think you may want to add regulator-allow-set-load on
+these regulators.
+
+Konrad
+> +	status = "okay";
+> +};
+> +
+> +&ufs_mem_phy {
+> +	vdda-phy-supply = <&vreg_l5a_0p88>;
+> +	vdda-pll-supply = <&vreg_l9a_1p2>;
+> +	status = "okay";
+> +};
+> +
+> +&venus {
+> +	firmware-name = "qcom/sm8250/elish/venus.mbn";
+> +	status = "okay";
+> +};
