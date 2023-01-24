@@ -2,141 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB2AC679C31
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 15:41:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A68C679C70
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 15:49:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234038AbjAXOli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 09:41:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53590 "EHLO
+        id S235027AbjAXOtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 09:49:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234693AbjAXOlg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 09:41:36 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EDAD49552;
-        Tue, 24 Jan 2023 06:41:33 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id z1-20020a17090a66c100b00226f05b9595so14249656pjl.0;
-        Tue, 24 Jan 2023 06:41:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Hq3YLnLVdkwJ+hnndTnVXYO2IvsFe7R/GdMhEuzT5j4=;
-        b=qMpHIwatJI7zt7K0Oj5YJJtNre1MxSkLAvexCvRqP0sIGGVEuxDWUkXxM2h8INC6++
-         400E9rHBOh8w+sa3EX4PJ5/lnt5rrnU0oBvBK9XrMdsKyVWF2Vtynj27X0kTQ6Ol3an5
-         Apgf/y9I8CySuRTNTIbgYusdiWQ1SWQjJSQqZus6cQ/uXXC2Xc7QXhbYGh5qKK2LnG5z
-         LiLsOzpxV8oS08MvJyE2hAUyORdtOkxskccUWUK/Wut7Y+oIn3xSZOD3Oq32wkNrjDxs
-         TSZ0KY/ESm4aoJw5iIihi5Nh1X4cb9UglvXj8WZYUnKZcnrSxMnAUwmZ2vMrcvcR07wc
-         FyVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Hq3YLnLVdkwJ+hnndTnVXYO2IvsFe7R/GdMhEuzT5j4=;
-        b=y3IWfR3WZWFfwALKRxmiZzmxD3AFe0HXYd9FsXZ5Agvz+eb4Y8ejE6Ni+iBHj5V+bG
-         eQTpAD4f6GrOj5k9eq3AssC2k7KZ1lNgxVD6AnqtrEhnGEIxpC16rpYg2oEwaCpIqPoQ
-         CKVz8KGDNSyNixD1Ik16viVDd2qBO4V39F3b9N60rHzsZbGJTyamZCHFjAwRt1geOLAP
-         Xyjo0h4B8zcJ33Vt8gMgypzQTXZI+niVJT3ioWN5rvqGfyMypKtESKIztw9MIBOs97qz
-         os/7mQBcht3SPZR2w8ssHhMRAe2FbFltSpgM3AEUy1s7lKMbJNteoIA9Ib86paBxHY8s
-         4T6A==
-X-Gm-Message-State: AFqh2kpalaY/pVfTWjeR8+rdispKg/WYNR/jm3xp7CCxppPnyXDvSHVC
-        xiwZOA2gv2NR15KzPO7iVCI=
-X-Google-Smtp-Source: AMrXdXvY1o7Qhxes1YcRkrxgd4lGAV6Hmi6k9DyO8x/ZrZHVk5g2zWtj7+yHvsP+tOAhpSj57x53Vg==
-X-Received: by 2002:a17:902:eccd:b0:194:dec8:9824 with SMTP id a13-20020a170902eccd00b00194dec89824mr23203736plh.26.1674571293053;
-        Tue, 24 Jan 2023 06:41:33 -0800 (PST)
-Received: from localhost.localdomain ([45.112.3.15])
-        by smtp.gmail.com with ESMTPSA id b21-20020a170902d31500b0019602dd914csm1747865plc.180.2023.01.24.06.41.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 06:41:32 -0800 (PST)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-amlogic@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH linux-next v4 4/4] dt-bindings: usb: Fix device tree binding for VL817 hub controller
-Date:   Tue, 24 Jan 2023 14:40:53 +0000
-Message-Id: <20230124144054.13556-5-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230124144054.13556-1-linux.amoon@gmail.com>
-References: <20230124144054.13556-1-linux.amoon@gmail.com>
+        with ESMTP id S234997AbjAXOsi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 09:48:38 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4188645BFD;
+        Tue, 24 Jan 2023 06:48:35 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id DAD2E8563B;
+        Tue, 24 Jan 2023 15:48:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1674571713;
+        bh=Y5gd2EDZ3Kk/gz4KuqyqTDq9f2L0geBvWTECbmKRxN0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=VuZHofmifGRfHdEG7Cdxz2Mu0ebPR7yzH4o9dCwFx27waZvyKcKpiQXSllJeBJH2Z
+         ammntn4sLK8BdzUnAsfiGa6Zhe3IPqqu0qSleVMA3vwe2aWVn7EYCeT6eCHu4lx0/t
+         oKSb68hlsCr20gfOc83UwatA4QWY3NYKbAWWVHcLnhM2rnF/gs4TMi3HE05ReDGWSY
+         lMkzVrI+Gv4hPSfmiIlvmX2cUbi3DUW9Qftk+yaL6UFiL2w8qmXvbl5zorAe5AXW8U
+         k4x+DHSkFtd3dmtPLovLfoji+XbbElt8Z5eR+e2YLIOh47GbMZmOqD1OGmTMib/CjG
+         uRVXjw6Z2Rwjg==
+Message-ID: <25ff9e4d-0a9f-59fc-902a-5b68cf7200b9@denx.de>
+Date:   Tue, 24 Jan 2023 15:47:42 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 2/2] drm: lcdif: Add i.MX93 LCDIF support
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Liu Ying <victor.liu@nxp.com>
+Cc:     s.hauer@pengutronix.de, robh+dt@kernel.org, linux-imx@nxp.com,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        kernel@pengutronix.de
+References: <20230123072358.1060670-1-victor.liu@nxp.com>
+ <ace76615-533a-9295-8271-95262859d287@denx.de>
+ <7ac57bc28da40df054c81fd74f69207af66ad97b.camel@nxp.com>
+ <13189854.uLZWGnKmhe@steina-w>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <13189854.uLZWGnKmhe@steina-w>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cleanup by removing unneeded quotes from refs and
-add maxItems to reset-gpios and fix the required list.
+On 1/24/23 12:15, Alexander Stein wrote:
+> Hi,
 
-Fixes: 31360c28dfdd ("dt-bindings: usb: Add binding for Via lab VL817 hub controller")
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- .../devicetree/bindings/usb/vialab,vl817.yaml  | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
+Hi,
 
-diff --git a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-index 5f9771e22058..23a13e1d5c7a 100644
---- a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-+++ b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-@@ -14,29 +14,32 @@ allOf:
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - usb2109,2817
--          - usb2109,817
-+    enum:
-+      - usb2109,2817
-+      - usb2109,817
- 
-   reg: true
- 
-   reset-gpios:
--    description: GPIO controlling the RESET# pin.
-+    maxItems: 1
-+    description:
-+      GPIO controlling the RESET# pin.
- 
-   vdd-supply:
-     description:
-       phandle to the regulator that provides power to the hub.
- 
-   peer-hub:
--    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    $ref: /schemas/types.yaml#/definitions/phandle
-     description:
-       phandle to the peer hub on the controller.
- 
- required:
--  - peer-hub
-   - compatible
-   - reg
-+  - reset-gpios
-+  - vdd-supply
-+  - peer-hub
- 
- additionalProperties: false
- 
-@@ -45,7 +48,6 @@ examples:
-     #include <dt-bindings/gpio/gpio.h>
- 
-     usb {
--        dr_mode = "host";
-         #address-cells = <1>;
-         #size-cells = <0>;
- 
--- 
-2.38.1
+> Am Dienstag, 24. Januar 2023, 08:59:39 CET schrieb Liu Ying:
+>> On Mon, 2023-01-23 at 16:57 +0100, Marek Vasut wrote:
+>>> On 1/23/23 08:23, Liu Ying wrote:
+>>>> The LCDIF embedded in i.MX93 SoC is essentially the same to those
+>>>> in i.MX8mp SoC.  However, i.MX93 LCDIF may connect with MIPI DSI
+>>>> controller through LCDIF cross line pattern(controlled by mediamix
+>>>> blk-ctrl) or connect with LVDS display bridge(LDB) directly or a
+>>>> parallel display(also through mediamix blk-ctrl), so add multiple
+>>>> encoders(with DRM_MODE_ENCODER_NONE encoder type) support in the
+>>>> LCDIF DRM driver and find a bridge to attach the relevant encoder's
+>>>> chain when needed.  While at it, derive lcdif_crtc_state structure
+>>>> from drm_crtc_state structure to introduce bus_format and bus_flags
+>>>> states so that the next downstream bridges may use consistent bus
+>>>> format and bus flags.
+>>>
+>>> Would it be possible to split this patch into preparatory clean up
+>>> and
+>>> i.MX93 addition ? It seems like the patch is doing two things
+>>> according
+>>> to the commit message.
+>>
+>> IMHO, all the patch does is for i.MX93 addition, not for clean up.
+>> Note that the single LCDIF embedded in i.MX93 SoC may connect with MIPI
+>> DSI/LVDS/parallel related bridges to drive triple displays
+>> _simultaneously_ in theory, while the three LCDIF instances embedded in
+>> i.MX8mp SoC connect with MIPI DSI/LVDS/HDMI displays respectively(one
+>> LCDIF maps to one display).  The multiple encoders addition and the new
+>> checks for consistent bus format and bus flags are only for i.MX93
+>> LCDIF, not for i.MX8mp LCDIF.  Also, I think the multiple encoders
+>> addition and the new checks should be done together - if the new checks
+>> come first, then the new checks do not make sense(no multiple displays
+>> driven by LCDIF);
+> 
+> You are right on this one, but on the other hand there are lot of preparing
+> patches already. Even if it is useless by itself, having the bus format & flag
+> checks in a separate patch, it is easier to review, IMHO.
 
+I agree on the ease of review.
+
+[...]
