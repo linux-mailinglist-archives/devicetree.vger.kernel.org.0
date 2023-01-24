@@ -2,81 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D671F67953A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 11:32:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1BD6679542
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 11:33:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232655AbjAXKcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 05:32:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36120 "EHLO
+        id S232995AbjAXKd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 05:33:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232064AbjAXKcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 05:32:14 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1443F3F2BE
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:32:11 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id d14so9715467wrr.9
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:32:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vgx+byQpBO/6No7Ir2bnN8fVUuZMRKX8+w8Wat/wjes=;
-        b=OuQJqxRtNYs7Sva3jrKvhV17n3ni651EJpq1zFt7cdE/1SM1pSRe3/GTkhENJ6ZfV0
-         gTxh2TNBTcLl9Zjwz+RGr4KglC9pWlQPiOu7BlZ5CnFBmjUoY3iYdubioHbIxROkfc7d
-         9o88HQvLa09KqZsfskNQBm2C30yyZcamjU9EOLvZGpT9OxYj6/mjQjG2ILB2+U7GDzT1
-         CmqyXx+7J+IRNWHyVY4hBrs8QIUy3goWTXPH7SGSAfD+xg7w7IE/sItMi5450IatozaQ
-         3XfoRhUfmSB8BOIrL5OKxL0oVsfa/wOAblvk9ZyNJGQ6AlsAM8hkiw1S+cpmPf5PIzQX
-         v3/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vgx+byQpBO/6No7Ir2bnN8fVUuZMRKX8+w8Wat/wjes=;
-        b=wJETJtv1+YThrELgIo2NV9Qrv1IU+vdPzpZNByZvWMqhw4pbrpTRycPnwrpbZjmc79
-         Mgs8Vfvn75yeXhbNqYfWUiSmwWpir+on/w2V5+sWYQ2WUOZhH3AUy7fGfRbepQAsDt3m
-         J3BYzFiYC/7YDstcTm0ZMoSJxfrSMEXI6IizqH1CN/5zgeH492/N8Q06voS2JPyrKtId
-         mSI/bWXJfLaPvFDwZvxrEVhqPnBx3Nccf8L0TNTZyDqOmNHjP3+ruK2QAMv13kO8KGDd
-         0EYKlkwl4NdS0oWdrWOmXpMJalhiikAuYXiuAV6NrdNie5cSOQQjy9GO9h0kVcxTxzFk
-         htNA==
-X-Gm-Message-State: AFqh2koL9TwdHJtea7QufJL45z2IxqKXi/XPVgQEgRC4Ys4OsL431kiC
-        mqJnztpxWdxKJVfvFxtEUtlbCA==
-X-Google-Smtp-Source: AMrXdXsRbdzhAPpI+JnXWb0o8J0R9VSbSXKp5V9FYY6TChaGKTvDrXPVuu8lgDC2/XJw3EmKa9i5pQ==
-X-Received: by 2002:adf:ef11:0:b0:2bb:dd87:3485 with SMTP id e17-20020adfef11000000b002bbdd873485mr24895602wro.30.1674556329374;
-        Tue, 24 Jan 2023 02:32:09 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t9-20020adff049000000b002bddaea7a0bsm1556999wro.57.2023.01.24.02.32.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 02:32:09 -0800 (PST)
-Message-ID: <09396c7b-1cf5-8ce6-e1ba-3c79a9e8ec56@linaro.org>
-Date:   Tue, 24 Jan 2023 11:32:07 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: iio: tcs3490: Add bindings for AMS
- TCS3490 light sensor
-Content-Language: en-US
-To:     Markuss Broks <markuss.broks@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232676AbjAXKd4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 05:33:56 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 544AC14EB9;
+        Tue, 24 Jan 2023 02:33:55 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0C46EB810F7;
+        Tue, 24 Jan 2023 10:33:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 315F9C433D2;
+        Tue, 24 Jan 2023 10:33:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674556432;
+        bh=ELHb8ubmUl8vqwYtUA9K5pndEoWjAdp7rVDe3vq+R+s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=V4KiO78zxPGC141R4QcTrnuhtpXMED7D0023G7ZBVMa+o1XNN/YOB3+wDcZZauyRA
+         niPzn8ZjO9XTsNVtiEpWOC2XINbwP8VMVtAw7AnUZhJWiLHEfeXq1EVw0NTKgwW+pY
+         jjrQmn8h1Olo0xj2Gv88cId1ewWVNyCJQJVuBv8EizquAk2nbfn6sLuxHWdlF7ra+T
+         6L/1nbceuKJgNt0hAxKPzPNNBENj4cs7TJxm3shgmeC6xkcEt2hbHYBft3tucJeyJ4
+         9pXjU02BH0yNKatzGrbNGUxeuyd2qA8cWvhb1z6iQTh/LuvelPXBirrkv00JTq5FXQ
+         ymcDYU/2BCQXg==
+Date:   Tue, 24 Jan 2023 10:33:46 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Andrew Davis <afd@ti.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Paul Gazzillo <paul@pgazz.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Zhigang Shi <Zhigang.Shi@liteon.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230123231028.26073-1-markuss.broks@gmail.com>
- <20230123231028.26073-2-markuss.broks@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230123231028.26073-2-markuss.broks@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Tang <dt.tangr@gmail.com>,
+        Fabian Vogt <fabian@ritter-vogt.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 0/9] TI-Nspire cleanups
+Message-ID: <Y8+0CuRQ/wNLQ/LE@google.com>
+References: <20230123214924.27476-1-afd@ti.com>
+ <f8922fbc-13cc-4f08-a8e8-08d39ab7d63c@app.fastmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f8922fbc-13cc-4f08-a8e8-08d39ab7d63c@app.fastmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,21 +60,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 00:10, Markuss Broks wrote:
-> Add device-tree bindings for the AMS TCS3490 Color ALS.
+On Mon, 23 Jan 2023, Arnd Bergmann wrote:
 
-If there is going to be new version:
-
-Subject: drop second/last, redundant "bindings for". The "dt-bindings"
-prefix is already stating that these are bindings.
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+> On Mon, Jan 23, 2023, at 22:49, Andrew Davis wrote:
+> > Hello all,
+> >
+> > This series is an extended version of the series started here[0]
+> > and here[1].
+> >
+> > We break out what was the first patch into one for DTS change and
+> > one for code changes as suggested by Krzysztof. Those are now patches
+> > 2 and 8 of this series (I kept the ACKs, hope that is okay).
+> >
+> > As also pointed out by Krzysztof syscon nodes need a specific
+> > compatible, add that as patch 1.
+> >
+> > While I was adding that, I noticed some other dtbs_check issues,
+> > so while here fixed some of those up too (patches 3-6).
 > 
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-> ---
+> Looks all good to me, if there are no final comments within the
+> next few days, can you send this all to:soc@kernel.org, either as
+> separate patches or as two pull requests (dts and code) based
+> on 6.2-rc-1?
 
-Best regards,
-Krzysztof
+Once the dt-bindings patch has been Acked by the DT maintainers, I'll
+take this via MFD.
 
+-- 
+Lee Jones [李琼斯]
