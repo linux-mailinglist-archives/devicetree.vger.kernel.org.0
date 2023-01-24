@@ -2,48 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E59B1679A34
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 14:45:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE84A679A99
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 14:52:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234591AbjAXNpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 08:45:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34696 "EHLO
+        id S233524AbjAXNwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 08:52:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234480AbjAXNou (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 08:44:50 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 865513A99;
-        Tue, 24 Jan 2023 05:43:37 -0800 (PST)
+        with ESMTP id S233571AbjAXNwM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 08:52:12 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 984C129157;
+        Tue, 24 Jan 2023 05:49:49 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E55D761218;
-        Tue, 24 Jan 2023 13:43:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73FDBC433EF;
-        Tue, 24 Jan 2023 13:43:34 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2636CB811E4;
+        Tue, 24 Jan 2023 13:43:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5D9AC433EF;
+        Tue, 24 Jan 2023 13:43:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674567815;
-        bh=LkoBjuiq2polH/rK24e4vvUSa+FRr/93moqEdFoFrqM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=toNB4v/11U1HP+PcH7ig9HgevfGmrSJnohhJhy/ulLQ0NyLrWxJcn/nI6cElVjcPv
-         cVJcfX6urLzpwX0bqhO6s+V7uIMT5kMrwedACQ6LolFheWRjKJXYV9oUZ5azbbVj0T
-         v7yK0uMePjqBPb6kz8xdhMzy7L0sMctyX9hcRPB38uL9bCkMX030gOZZ1j7pFC/+nQ
-         bkiAba5pWFvi10tlxXsGATYex5xCPwhbI3uhz15TBW4PK8KO7ZoA56wnUz5EVm2d5G
-         vtDzCzARUsKag7kZPMkR8FjhVUzEIph84hBGoMToQrheh2bBIC8A7RCdapusksJRmc
-         WziNevIUVlJtg==
+        s=k20201202; t=1674567827;
+        bh=PKDqEiA9wpuk408a8IhDajU/bWJUc0MZMwjxAsjRxic=;
+        h=From:To:Cc:Subject:Date:From;
+        b=MiDMDLrQqDOu9elXoUrW9+wLkgG+3zYdSbVjYQPhzSYqfqrxMkmITqmoqpbAeNij1
+         J7u2smi2jKi/XYAAmseBmykJjkwEWU1ouEJotPR9qai9gf3tp9cN0klQiI4XO3H/Ck
+         Byy817I7G6FSHwoxNliQsAfAIg92AgSV84IsZXUxCePifhGHs8+WL8VCcAURTzaCvD
+         gHKpbEGGWHo2zlDJo3Rhi7OtE/FrXgVKNkFgrVhDqcSRy9hUtGE5BzrYrpNm94kDCS
+         PolFCiZPFTeY5Jym1F8wOx/LsYhz7VbxIHdhlqX+G9wGeO384i1CcwVpd4qin0KJhO
+         1cnGJTO9GTzSg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
         Shawn Guo <shawnguo@kernel.org>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 3/8] arm64: dts: imx8mq-thor96: fix no-mmc property for SDHCI
-Date:   Tue, 24 Jan 2023 08:43:23 -0500
-Message-Id: <20230124134328.637707-3-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 1/6] ARM: dts: imx: Fix pca9547 i2c-mux node name
+Date:   Tue, 24 Jan 2023 08:43:39 -0500
+Message-Id: <20230124134344.637846-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230124134328.637707-1-sashal@kernel.org>
-References: <20230124134328.637707-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -57,42 +55,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+From: Geert Uytterhoeven <geert+renesas@glider.be>
 
-[ Upstream commit ef10d57936ead5e817ef7cea6a87531085e77773 ]
+[ Upstream commit f78985f9f58380eec37f82c8a2c765aa7670fc29 ]
 
-There is no "no-emmc" property, so intention for SD/SDIO only nodes was
-to use "no-mmc".
+"make dtbs_check":
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+    arch/arm/boot/dts/imx53-ppd.dtb: i2c-switch@70: $nodename:0: 'i2c-switch@70' does not match '^(i2c-?)?mux'
+	    From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+    arch/arm/boot/dts/imx53-ppd.dtb: i2c-switch@70: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'i2c@0', 'i2c@1', 'i2c@2', 'i2c@3', 'i2c@4', 'i2c@5', 'i2c@6', 'i2c@7' were unexpected)
+	    From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+
+Fix this by renaming the PCA9547 node to "i2c-mux", to match the I2C bus
+multiplexer/switch DT bindings and the Generic Names Recommendation in
+the Devicetree Specification.
+
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/imx8mq-thor96.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/imx53-ppd.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-thor96.dts b/arch/arm64/boot/dts/freescale/imx8mq-thor96.dts
-index 5d5aa6537225..6e6182709d22 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-thor96.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-thor96.dts
-@@ -339,7 +339,7 @@ &usdhc1 {
- 	bus-width = <4>;
- 	non-removable;
- 	no-sd;
--	no-emmc;
-+	no-mmc;
+diff --git a/arch/arm/boot/dts/imx53-ppd.dts b/arch/arm/boot/dts/imx53-ppd.dts
+index c80d1700e094..c01dc571b55c 100644
+--- a/arch/arm/boot/dts/imx53-ppd.dts
++++ b/arch/arm/boot/dts/imx53-ppd.dts
+@@ -461,7 +461,7 @@ &i2c1 {
+ 	scl-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
  	status = "okay";
  
- 	brcmf: wifi@1 {
-@@ -359,7 +359,7 @@ &usdhc2 {
- 	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
- 	bus-width = <4>;
- 	no-sdio;
--	no-emmc;
-+	no-mmc;
- 	disable-wp;
- 	status = "okay";
- };
+-	i2c-switch@70 {
++	i2c-mux@70 {
+ 		compatible = "nxp,pca9547";
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
 -- 
 2.39.0
 
