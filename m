@@ -2,100 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4330767A033
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 18:31:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5624F679FF2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 18:17:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234544AbjAXRbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 12:31:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34266 "EHLO
+        id S234624AbjAXRRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 12:17:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234364AbjAXRbp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 12:31:45 -0500
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF3694E520
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 09:31:41 -0800 (PST)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-4b718cab0e4so228393587b3.9
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 09:31:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QAWZNKWNBnz2nm7fG3oJ2Ondshli1quuAhafNezlm2I=;
-        b=vmOWgr9rkUwzXlseFVsT2j864QAGrD36dNV6+hb9Z7hRLYJ8B5WeRZdEpjer9y7ZXe
-         y3QrwhGV4pSrb3uagpnMn9m7/R87CzSOQh1IMiI/Ze8ueXecFpmJdcSaN8I9jtsmCAcN
-         xFYH9X4OMx83uCjY9yqRshrNksPwFYRMa4Rny8507wYI6TRGrzwtgTMuGK5om09FRo3V
-         6GUQgPGuq8fDJDIGNIxBaQExAtH7HCjVd4U5z+9I7stqOeHP6HY3Rrp7zHrkLvvLyufq
-         4YKtIX9+fDcRiCAKfOkz6LlWFxlJr9Mq0SgSh5ihV8KN0m2O18EeAPFxR8riEi+Popz0
-         7gyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QAWZNKWNBnz2nm7fG3oJ2Ondshli1quuAhafNezlm2I=;
-        b=PIeKVUCvNuO1nKUp/KWeRR8MCmsZYWcUa0Rhk3mrQR/Z/E5K2Gc7uRI7vbTinJkfDQ
-         S+cR0c2bNcFAWauaZDDz58BKDCzPRsJipSRDtbIoSLd/Ft9bVAXtOk4DYIUVrzNRnoYs
-         Ry60nw1g7rexCX9JvqaPBm4O4N7CsvVA67tOY+8A8716z7HoF/ai7+o5tGh/zIIvmCwG
-         BZU9z5Kw9vhJW46PCmarMLDX/hz5779LUm5ADjWgKe3MAbd71STXVsI5Igjnk6/oX3OO
-         IvUBoA4FYmT+9KJVTYXTgnZi1wzISRA9bO08P/j9Tc7jGWaB1L1YC7QVuqPUMFkPd6XL
-         m6dA==
-X-Gm-Message-State: AFqh2kpvZvlxLsQ55vwj/i+MVpTkigrDbDbvGmF6p9fy2rVvKwe3V+1N
-        fIPskyu/EGHmumMZYVEbm0TilhTrM1M6lxsbAtbM3Q==
-X-Google-Smtp-Source: AMrXdXsZAyRHAzMydmJt0v6Zl159VWuKM4IasufLzc1VlCjkIdzuHw0AHwiN22tOlj83E3v3X9dDNJNrvuw/U/DjuBY=
-X-Received: by 2002:a81:6d8d:0:b0:490:89c3:21b0 with SMTP id
- i135-20020a816d8d000000b0049089c321b0mr3916907ywc.132.1674581500991; Tue, 24
- Jan 2023 09:31:40 -0800 (PST)
+        with ESMTP id S234657AbjAXRRf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 12:17:35 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C23C4173B;
+        Tue, 24 Jan 2023 09:17:34 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5CFC0612FD;
+        Tue, 24 Jan 2023 17:17:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54CF2C433EF;
+        Tue, 24 Jan 2023 17:17:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1674580653;
+        bh=LCa2E8/jVUPBhEQJOos1nf13087EgA3kWouqC8M1bd4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qkQVmWi77Ps21jD4g32ZeUQVGNomNJ/Xoe7rqHKhJrccQ7NaBHHpf5MRwjcl9V+Ih
+         8kH3lnhrc8TzmXLDIzeTVAlSaNNBraJI2XdnwXUrk3WAyvLlLszqPZM8FZyt9AtgF0
+         RZZnQUzPrbpGtO5ZcqQrbLMFe1rMpWjAyQC0ndTA=
+Date:   Tue, 24 Jan 2023 18:17:31 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Lee Jones <lee@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v3 0/5] dt-bindings: usb: Convert some more simple
+ OHCI/EHCI bindings
+Message-ID: <Y9ASq0VZ6G7Efe7s@kroah.com>
+References: <20230110-dt-usb-v3-0-5af0541fcf8c@kernel.org>
 MIME-Version: 1.0
-References: <20230124141541.8290-1-quic_devipriy@quicinc.com> <20230124141541.8290-8-quic_devipriy@quicinc.com>
-In-Reply-To: <20230124141541.8290-8-quic_devipriy@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 24 Jan 2023 19:11:00 +0200
-Message-ID: <CAA8EJpoHqpo=QWHwO=LEbT-Mk4gr7F1X4ecL0Y+kbG8Ow6cGiQ@mail.gmail.com>
-Subject: Re: [PATCH V1 7/8] arm64: dts: qcom: Add ipq9574 SoC and AL02 board support
-To:     devi priya <quic_devipriy@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, ulf.hansson@linaro.org,
-        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
-        p.zabel@pengutronix.de, shawnguo@kernel.org, arnd@arndb.de,
-        marcel.ziswiler@toradex.com, nfraprado@collabora.com,
-        broonie@kernel.org, tdas@codeaurora.org, bhupesh.sharma@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, quic_srichara@quicinc.com,
-        quic_gokulsri@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
-        quic_anusha@quicinc.com, quic_poovendh@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230110-dt-usb-v3-0-5af0541fcf8c@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Jan 2023 at 16:17, devi priya <quic_devipriy@quicinc.com> wrote:
->
-> From: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
->
-> Add initial device tree support for Qualcomm IPQ9574 SoC
-> and AL02 board
->
-> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> Co-developed-by: devi priya <quic_devipriy@quicinc.com>
-> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
-> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+On Mon, Jan 23, 2023 at 09:05:15PM -0600, Rob Herring wrote:
+> The 'ohci-usb' compatible is another 'generic' compatible for OHCI, but 
+> isn't documented with a schema. Let's add it to generic-ohci.yaml 
+> schema. While looking at this, I found a few other USB host bindings 
+> which are simple enough to use the 'generic' schemas.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
+Am I supposed to take these in my USB tree?
 
-I suspect that the order of sign-offs is incorrect here. Your sign-off
-should be the last one, as you are the person sending the patch.
+I'm still confused if you all want me to take these types of things or
+not...
 
+thanks,
 
--- 
-With best wishes
-Dmitry
+greg k-h
