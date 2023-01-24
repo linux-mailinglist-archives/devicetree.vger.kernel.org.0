@@ -2,167 +2,417 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC652679270
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 09:00:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F12767929A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 09:10:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbjAXIA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 03:00:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36110 "EHLO
+        id S232771AbjAXIKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 03:10:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjAXIA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 03:00:26 -0500
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2089.outbound.protection.outlook.com [40.107.22.89])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B3D2ED47;
-        Tue, 24 Jan 2023 00:00:24 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oafhFo/Rt8J/ZTfFK1lCUbvPVWBqLglPpfWt5g9GXHJylGDuNkj2STHl9+W7iw6RSUwxUbhiXKc3EpFOKSS4EPztmFMWk/Tn9eAzS5r32/8+RwbNLQw2WaJ1qYLxfkSyTSVOJ0jPVjG6oe800eBeN6mBTChyM+hYe233to0AtzefB4fX3HpGtgZ8/UypQDFMkZC3RgtyWdjaTld42nQbnEeCuksQzgp4RE0pqHHeERh8TX/kQY3jV6E+zO96pfbRZNAIcQ4qYFYQk8V4DKFMV3TQuYTVxz4xoHsouVA+koGStRnItKiFZ2iRaBJdSg1g0Ee6UfQqaliskH3bgsgEwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=10Q7LTGCXAZ5WaTdhKy1nfI+WNRDdVnQMBbQAVvVvC4=;
- b=YNYLL0GqnHwsVGSbo/Mc5SJcj11s9VpFDoqHyn5JXHU42F8IZ1ItJc29oVaG6oqKlQ9kVr1UkA8lsHsqdYTjt6nOg/T7ZthgD5c7Qpr52Nfw4u3MaRziEvfUZztsSqrO38AXd4UlCia7Z6lMt4zioK+x5xU70s+zHqGOxGAgYp6bt4c4rgCYAjhDvRTdvM5bLDJUeGq1TPftj1kQftn3W6Zl7Lz8ZP7OeAMM7qYB0gfnhu+AIIV/CORMXWIXcWtapCBNfW4lS5yBEzCmdw/TCht6c4yTFjPhkakdPv4DR0mSWGLy1pI6Lj7NcpCbhvCl14FnxbvAv6stjZ5z7c6gVw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=10Q7LTGCXAZ5WaTdhKy1nfI+WNRDdVnQMBbQAVvVvC4=;
- b=MxEeJOJjWXeZl3ne6/Wyf0j3QUatRJVWPn3PSJqx2mawjJDERlbD+yZ1gwi3ibdaY5GFbJQeNkRRUL+G+2EK9d2ukCY1Ou+rnQm8lUiMmo/Pcb6CkHmidhLytDrxqKrr4l/uJssJf7Vy4Me1dYuiZYzkW3TQsAGBq4q4sVzLCqI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by AM9PR04MB8937.eurprd04.prod.outlook.com (2603:10a6:20b:408::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Tue, 24 Jan
- 2023 08:00:22 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::5725:92ec:f43e:f5fc]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::5725:92ec:f43e:f5fc%7]) with mapi id 15.20.6002.028; Tue, 24 Jan 2023
- 08:00:22 +0000
-Message-ID: <7ac57bc28da40df054c81fd74f69207af66ad97b.camel@nxp.com>
-Subject: Re: [PATCH 2/2] drm: lcdif: Add i.MX93 LCDIF support
-From:   Liu Ying <victor.liu@nxp.com>
-To:     Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     stefan@agner.ch, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com
-Date:   Tue, 24 Jan 2023 15:59:39 +0800
-In-Reply-To: <ace76615-533a-9295-8271-95262859d287@denx.de>
-References: <20230123072358.1060670-1-victor.liu@nxp.com>
-         <20230123072358.1060670-3-victor.liu@nxp.com>
-         <ace76615-533a-9295-8271-95262859d287@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2P153CA0014.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::6)
- To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+        with ESMTP id S232805AbjAXIKt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 03:10:49 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D44873E0B2
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:10:45 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id o17-20020a05600c511100b003db021ef437so10273222wms.4
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:10:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HDBXPzEBEMUMcYttzjE6XC4dike+I8A3aqRiNL5fB5M=;
+        b=MuFmJfVQiQrKuFbkGv/+Lr6V4Lo9anW9vunbRGWfikiJL0XXLRfF5Zmv3PsCI4Wtlh
+         EXdfHQZdwfLgUC1EV68jvRNNVtA7FjIB+/KD87v0Itibq5pu7LnrBVK5c8Kqe4a0/Cv1
+         aeF0IP6x812yLbtfIzkHPmTjxx4KFZH8nRIga4nHtICr7hEve5wK7jBdy8ROywzq3VR+
+         jg/MWkMLCcVQxRzAY92G81KVQ9LHyvNaD7UV/MbVdhBPtt67UhWiZodmSLO4DV9W6wSN
+         8v21EcmKhSrmfpGksHpZjAscOCNiCK6BhYbqvzLXa+WfukK2ivwa2Eb4UJ3lZtmnu18T
+         GUCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HDBXPzEBEMUMcYttzjE6XC4dike+I8A3aqRiNL5fB5M=;
+        b=CWAg1roRzU/MSXD0j2c5RqbTajqYxzE+ExnvPZQF6nIZMlFBulmeYzaOmpAb2jaF/K
+         U4oD3U5aVk/j7RhWTg/iR3uOaPLfgZd/wkbrWed4crIwFBy6MlqDjyfO1yNaDu3C7pT/
+         viaCubjaTD6XFmTCU6f3cbxMab2tH5g89eCPmwNAu1BHKIA6zV5aF0Ssk7kBKGn56AXJ
+         vEDWMH1T1LJSu9JmLNWL+G9O5ZjwM403zluj+IYAnOnio9mTJkrk8CRthhsUNbamFoHe
+         +NiudKTlUlLzMFURE6izCYe+Sp1f+X22v8DvqE+jPTRxKKALSVFm3aiIJdnS0/v3IvsH
+         6Ieg==
+X-Gm-Message-State: AFqh2kovLhCIPKi8tpB1L2Sc/n8fathP1qrgG9N8AOqJL1CC7IzMMh3x
+        cLSef5VdREyOt8KNMTQQcEtiuw==
+X-Google-Smtp-Source: AMrXdXvbS5Dj/VcEcyhy1kd6qTcOjfb6MLSocATeXYfIZnQmQ4v0lCOduFFTknv+AcgKAl5IOjzV/A==
+X-Received: by 2002:a05:600c:982:b0:3da:f5b5:13ec with SMTP id w2-20020a05600c098200b003daf5b513ecmr25537236wmp.34.1674547844074;
+        Tue, 24 Jan 2023 00:10:44 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id k21-20020a05600c1c9500b003db30be4a54sm13459779wms.38.2023.01.24.00.10.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jan 2023 00:10:43 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lucas Stankus <lucas.p.stankus@gmail.com>,
+        Puranjay Mohan <puranjay12@gmail.com>,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Renato Lui Geh <renatogeh@gmail.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Andreas Klinger <ak@it-klinger.de>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Kent Gustavsson <kent@minoris.se>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Oleksij Rempel <linux@rempel-privat.de>, kernel@pengutronix.de,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Nishant Malpani <nish.malpani25@gmail.com>,
+        Rui Miguel Silva <rmfrfs@gmail.com>,
+        Dragos Bogdan <dragos.bogdan@analog.com>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Robert Yang <decatf@gmail.com>,
+        Sean Nyekjaer <sean@geanix.com>,
+        Artur Rojek <contact@artur-rojek.eu>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Philippe Reynes <tremyfr@yahoo.fr>,
+        Alexandru Lazar <alazar@startmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Harald Geyer <harald@ccbib.org>,
+        Eugene Zaikonnikov <ez@norophonic.com>,
+        Phil Reid <preid@electromag.com.au>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Sankar Velliangiri <navin@linumiz.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        chrome-platform@lists.linux.dev
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/5] dt-bindings: iio: drop unneeded quotes
+Date:   Tue, 24 Jan 2023 09:10:33 +0100
+Message-Id: <20230124081037.31013-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AM9PR04MB8937:EE_
-X-MS-Office365-Filtering-Correlation-Id: afe1b217-60db-4162-e5d3-08dafde10b1a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /F5Y4esHxJuMTD+bwAqPb/i0kEDDeLFFw9WICXSHpuNNaiPJ6kqYnSOt68H+/p7LHIsCvUt5pggWmeBA06D2bx18n4vssUjMpcGXIsSErrEtoHOw1x2HpK+KKXIK4+JGZ/X1R9/bzV3AcUeHNoOZS8QtB4MO682p3r6KL3IjwMfoIZljhhdv7B+J10iubMQrTuKNs4xR0j9m8a8kyAPIreg1KIg2FqjHA7IZ4R0KSxtItxAqJbsQRyaFNQeqVqdz6dPC40JRTkmfMnfw1Ydx17+Quq4MdsAysYwsNkaOV4AA3SfknGMHtXSlOWgk3id3NnSOOf/+b2LJ04/NaNquXzV3FVfcZgDzHDmgYyzl/XgV96lO7m6YsOZUb0K+Kx7pA3YYqgA0Qil5jkEgam/fqjq72NSFRucO/H4CtujTkjbUxUnZNoJojEp3aQvC7hoj1R61CtZqEWASlcwpmi67RkejZ+FPujjoLJXVxzkdCBUbtcaneCv8ArFcjiEeSxYgCnaeIOO0h6jaDeC30AUEn/cvjLr1oMu5qwmOdstoyj1c0mHE2gOnq8lnL4Me71GHDUwnCwuBSV6H3y8CjDCaQajDBQaaG+GdJNkMLeCpOZkzMAqvyS5BdDS0IYj3eGNzKrlr5D+GTPIrhkl3TQcaALhfu1r1H+dxuqNjNdFOuhOzwuhfa5YUCnNRAG62VRxKICU38Ld5EY8p4yfr7bqtFp4RgRBSqHG1W2PUWtUGEgI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(136003)(376002)(366004)(396003)(346002)(451199015)(83380400001)(66556008)(66476007)(86362001)(66946007)(4326008)(8676002)(53546011)(316002)(36756003)(6506007)(6666004)(26005)(186003)(6512007)(52116002)(6486002)(478600001)(2616005)(8936002)(7416002)(5660300002)(38350700002)(2906002)(41300700001)(38100700002)(99106002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QlBkNGR5dEJyUUJVK0VpM1BRNVZGMGJFeVkyazJjTEtDb050TDYrVGdJc3la?=
- =?utf-8?B?RDNlZDFqR3NRTUZEZ1pzc243ZUpEOFFrS0kxVG5XTmxyQVlOTUNRYTZqemdX?=
- =?utf-8?B?ODZ5NlhVbE0rc0tzbG9KejdUeTZET2VVNjgzSHBlV1BSNVl4eVIvMC9BU3pG?=
- =?utf-8?B?UVU3Rk9qbkRhMTZzRjFPdXhJTnU0WnB6cWFzbCt4UkxsYjk3UDJsUVRHSWVx?=
- =?utf-8?B?VXRVTW1qckE0ZE5kR0xTNlp6R01pY2U0dzkwdXUvTXYxOFZRTnVoRzB4WEoz?=
- =?utf-8?B?ekdZM2lFR3QxaENrZDBZT3krN1hNUWZxY1lERDlqSGRmekRhRjNPYVFQN0k4?=
- =?utf-8?B?akVQSzFteVJkTnpwL0FZdlRIM0xxVHlTUlRrREdEVXJoUVpmVHpPcXIxRlVE?=
- =?utf-8?B?T3RwQzBrSGNxNDN0SDV0S1M3dTk3YzNEa2I3bjJ4c3BuQ3JTeU9XQ3ptdkV1?=
- =?utf-8?B?K2krVzlnbjRGaDRDMWpNa2l3OG5FR1huWGNiaWErYmJnTnR1WE1JQmNEZUtC?=
- =?utf-8?B?N05HK0ZpN1JRU2syK3ZtWU9MVmQzSldqOS9HYmVRZktYREJ6TnFhbkRiWmtn?=
- =?utf-8?B?RVdJN0NCRUlpbTN0WFM2V2ZrSWR4MG9xUmxCSXRSa3R6cm83YTZldDJyckk0?=
- =?utf-8?B?dCs4OXlrRUVqV2UvTTQ2ODIwLzRndnNYSzZFcy9rQXJadFIzbXdmZkVYWkZW?=
- =?utf-8?B?YTZZVHl4dk9qRnphdG9zcmlMaVFTcWVtRGtUU0NKdDlYWmtUc0lvZmlpRnY4?=
- =?utf-8?B?Uy9RSStVN2JSSUxPSEdCbmdPK3lTQWdsK3VWZDdqcksweFVqZ0NmRUxvTTM5?=
- =?utf-8?B?NzdBNXZxMER5Qzk1SGUwK1ZWR3M4SDM5aGxSQVMyNHArcnNLQS9UbjcrcUtU?=
- =?utf-8?B?bzNVYkV4TFk3YTIzL0tSTCtvaEtBT09MVkxSYTB2eG9YMUFEQTdBWkxHTWJX?=
- =?utf-8?B?YThRaGFabU5JU0hRNldnWHpDdlZEV1NEbWhhOUNlTStUcm00VmtVN3hieGo0?=
- =?utf-8?B?clZQTEtxd1dlOXV1eXRoVkRsc2dKV2JReVFFY0cwbnVZZ1VQaXJIM2JUaFU3?=
- =?utf-8?B?RDd5ZlRpQ0Z2K0NDSlRQRzl0T0I2WEozL2dHcVlrcVAyMzdxNkY0T0t4WVdI?=
- =?utf-8?B?a1dhOHRkYVpkQjdxTHFidmVISkNvK2QwN0g5QXJiaGlYSGc2RXBqOW9YNkxr?=
- =?utf-8?B?Q3ZUSDJuN2o4T2Q5UWYzNXpPSCt3QmJ4ZkF0Qm5vRWJWb2YrVXVSdTZtUjlT?=
- =?utf-8?B?MW9zSWtIV2tVRERNUGp1WTlwOEFuWjJoZlZxVDBsd1RnUTEvRDU1SE9qZURZ?=
- =?utf-8?B?Y1ZENC9JMGs0dTJFV295REhYc3NEaEdiRTZZSW5sMHRSZTBkbDJVa2N1RTVX?=
- =?utf-8?B?R3U5cXVITTUvNUVDalNXSEhDbWFKa3JBSVFYMElFUkxuZ0c1WW5Caks4cm9R?=
- =?utf-8?B?cW5nWmNnc3Z5bG0wclB4TUkzeWFSNENROGIyb0JlN1BYZ0JEYm55ZGlKUWdm?=
- =?utf-8?B?T1JaVmdvL2hyaEROQk1pN2xuZytNTDZ3YU1QT3lrWm5wTE9jazhwSmI2bmkr?=
- =?utf-8?B?UGc3Z1kwd0ZOTUhxK3kxNVZxWDRCRCs0TlVrd3dRSE8xd3FZTXFYN1N3MlpD?=
- =?utf-8?B?VlR3c0s0d1JUUE1vV2ZtanVRbE5Pd1gwaWJGVEVVbjhtUklQckd0ZVRFbitY?=
- =?utf-8?B?MUd1M3EvT3dtdS94K3FTZUh5TmFNMGh4NXVodjBKUDZ2azFrQTMrNXB0aTBU?=
- =?utf-8?B?V1Z6UUNDQ2J1dW1xY2dwdDcwN0dMWXFFUHhPZnhuOFVlUE91ZmUxOWhZWmNV?=
- =?utf-8?B?cFBzeFVUVDdwcmNUcERvRTdJYzVIQ0RWT0U0cDQzUXVoRVZqbFdvelhCVGFx?=
- =?utf-8?B?aEhLSmR4dm5Fdm1KU0x3ZVIzVjhNUmJmZDFrZEZQbURVNmFBY05kVVREMzRI?=
- =?utf-8?B?c1dIVUpQYzBteC9MdldxM1NtU3lyb0FvTmxYeVJuZHZqWU9TUjM3NGU2Yzdn?=
- =?utf-8?B?MFM3NTRFTXRDeHROS1hMcGw0d1R0NTV5QlhGR2Uxbk85aGJqZzhsSW5INEc0?=
- =?utf-8?B?VTRydnpjMFBSOFFsVkRqSTRMVDVmbk1RQVV0ZFYyNHpYeGo4QkxPK3FCNXlP?=
- =?utf-8?Q?m4fVjVZevvfZ75VALagsbRn3K?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: afe1b217-60db-4162-e5d3-08dafde10b1a
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 08:00:22.3533
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CqWkRXdlAF2Cc941YJyThnNJpl5B7H8wjTkqwhywLo3zNssKCD86FqRKRmx09bpkYB4xbfhm7AfQCPTip8Z1gg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8937
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2023-01-23 at 16:57 +0100, Marek Vasut wrote:
-> On 1/23/23 08:23, Liu Ying wrote:
-> > The LCDIF embedded in i.MX93 SoC is essentially the same to those
-> > in i.MX8mp SoC.  However, i.MX93 LCDIF may connect with MIPI DSI
-> > controller through LCDIF cross line pattern(controlled by mediamix
-> > blk-ctrl) or connect with LVDS display bridge(LDB) directly or a
-> > parallel display(also through mediamix blk-ctrl), so add multiple
-> > encoders(with DRM_MODE_ENCODER_NONE encoder type) support in the
-> > LCDIF DRM driver and find a bridge to attach the relevant encoder's
-> > chain when needed.  While at it, derive lcdif_crtc_state structure
-> > from drm_crtc_state structure to introduce bus_format and bus_flags
-> > states so that the next downstream bridges may use consistent bus
-> > format and bus flags.
-> 
-> Would it be possible to split this patch into preparatory clean up
-> and 
-> i.MX93 addition ? It seems like the patch is doing two things
-> according 
-> to the commit message.
+Cleanup by removing unneeded quotes from refs and redundant blank lines.
+No functional impact except adjusting to preferred coding style.
 
-IMHO, all the patch does is for i.MX93 addition, not for clean up. 
-Note that the single LCDIF embedded in i.MX93 SoC may connect with MIPI
-DSI/LVDS/parallel related bridges to drive triple displays
-_simultaneously_ in theory, while the three LCDIF instances embedded in
-i.MX8mp SoC connect with MIPI DSI/LVDS/HDMI displays respectively(one
-LCDIF maps to one display).  The multiple encoders addition and the new
-checks for consistent bus format and bus flags are only for i.MX93
-LCDIF, not for i.MX8mp LCDIF.  Also, I think the multiple encoders
-addition and the new checks should be done together - if the new checks
-come first, then the new checks do not make sense(no multiple displays
-driven by LCDIF); if the new checks come later, then it would be a bug
-to allow inconsistent bus format and bus flags across the next
-downstream bridges when only adding multiple encoders support(also, I
-don't know which encoder's bridge should determine the LCDIF output bus
-format and bus flags, since the three encoders come together with the
-three next bridges).
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru> # memsensing
+Reviewed-by: Claudiu Beznea <claudiu.beznea@microchip.com> # sama5d2-adc
+Reviewed-by: Puranjay Mohan <puranjay12@gmail.com> # tmp117
+Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Marcelo Schmitt <marcelo.schmitt1@gmail.com> # ad7292
+---
+ .../devicetree/bindings/iio/accel/memsensing,msa311.yaml  | 5 ++---
+ Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml | 2 +-
+ Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml | 2 +-
+ .../devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml    | 2 +-
+ Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml | 4 ++--
+ .../devicetree/bindings/iio/adc/ingenic,adc.yaml          | 4 ++--
+ .../devicetree/bindings/iio/adc/microchip,mcp3911.yaml    | 4 ++--
+ .../devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml    | 2 +-
+ .../devicetree/bindings/iio/adc/samsung,exynos-adc.yaml   | 2 +-
+ .../devicetree/bindings/iio/adc/st,stm32-adc.yaml         | 8 ++++----
+ .../devicetree/bindings/iio/adc/ti,ads131e08.yaml         | 2 +-
+ Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml | 2 +-
+ .../devicetree/bindings/iio/dac/lltc,ltc1660.yaml         | 4 ++--
+ .../devicetree/bindings/iio/dac/lltc,ltc2632.yaml         | 4 ++--
+ .../devicetree/bindings/iio/dac/st,stm32-dac.yaml         | 4 ++--
+ Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 2 +-
+ .../devicetree/bindings/iio/temperature/ti,tmp117.yaml    | 6 +++---
+ 17 files changed, 29 insertions(+), 30 deletions(-)
 
-Regards,
-Liu Ying
+diff --git a/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml b/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
+index 23528dcaa073..d530ec041fe7 100644
+--- a/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
++++ b/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
+@@ -1,9 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+-
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/iio/accel/memsensing,msa311.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/iio/accel/memsensing,msa311.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: MEMSensing digital 3-Axis accelerometer
+ 
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+index 75a7184a4735..35ed04350e28 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+@@ -61,7 +61,7 @@ required:
+ 
+ patternProperties:
+   "^channel@([0-9]|1[0-5])$":
+-    $ref: "adc.yaml"
++    $ref: adc.yaml
+     type: object
+     description: |
+       Represents the external channels which are connected to the ADC.
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
+index 1bfbeed6f299..7cc4ddc4e9b7 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
+@@ -43,7 +43,7 @@ required:
+ 
+ patternProperties:
+   "^channel@[0-7]$":
+-    $ref: "adc.yaml"
++    $ref: adc.yaml
+     type: object
+     description: |
+       Represents the external channels which are connected to the ADC.
+diff --git a/Documentation/devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml b/Documentation/devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml
+index 31f840d59303..4817b840977a 100644
+--- a/Documentation/devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml
+@@ -41,7 +41,7 @@ properties:
+     description: Startup time expressed in ms, it depends on SoC.
+ 
+   atmel,trigger-edge-type:
+-    $ref: '/schemas/types.yaml#/definitions/uint32'
++    $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+       One of possible edge types for the ADTRG hardware trigger pin.
+       When the specific edge type is detected, the conversion will
+diff --git a/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml b/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+index 77605f17901c..9c57eb13f892 100644
+--- a/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/iio/adc/avia-hx711.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/iio/adc/avia-hx711.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: AVIA HX711 ADC chip for weight cells
+ 
+diff --git a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
+index 517e8b1fcb73..b71c951e6d02 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
+@@ -2,8 +2,8 @@
+ # Copyright 2019-2020 Artur Rojek
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/iio/adc/ingenic,adc.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/iio/adc/ingenic,adc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Ingenic JZ47xx ADC controller IIO
+ 
+diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml b/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
+index 2c93fb41f172..f7b3fde4115a 100644
+--- a/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
+@@ -2,8 +2,8 @@
+ # Copyright 2019 Marcus Folkesson <marcus.folkesson@gmail.com>
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/iio/adc/microchip,mcp3911.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/iio/adc/microchip,mcp3911.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Microchip MCP3911 Dual channel analog front end (ADC)
+ 
+diff --git a/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+index 8b743742a5f9..ba86c7b7d622 100644
+--- a/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+@@ -69,7 +69,7 @@ required:
+ 
+ patternProperties:
+   "^channel@[0-7]$":
+-    $ref: "adc.yaml"
++    $ref: adc.yaml
+     type: object
+     description: |
+       Represents the external channels which are connected to the ADC.
+diff --git a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
+index 81c87295912c..e27d094cfa05 100644
+--- a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
+@@ -52,7 +52,7 @@ properties:
+   vdd-supply: true
+ 
+   samsung,syscon-phandle:
+-    $ref: '/schemas/types.yaml#/definitions/phandle'
++    $ref: /schemas/types.yaml#/definitions/phandle
+     description:
+       Phandle to the PMU system controller node (to access the ADC_PHY
+       register on Exynos3250/4x12/5250/5420/5800).
+diff --git a/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml b/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml
+index 1c340c95df16..995cbf8cefc6 100644
+--- a/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/iio/adc/st,stm32-adc.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/iio/adc/st,stm32-adc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: STMicroelectronics STM32 ADC
+ 
+@@ -80,7 +80,7 @@ properties:
+     description:
+       Phandle to system configuration controller. It can be used to control the
+       analog circuitry on stm32mp1.
+-    $ref: "/schemas/types.yaml#/definitions/phandle-array"
++    $ref: /schemas/types.yaml#/definitions/phandle-array
+ 
+   interrupt-controller: true
+ 
+@@ -341,7 +341,7 @@ patternProperties:
+     patternProperties:
+       "^channel@([0-9]|1[0-9])$":
+         type: object
+-        $ref: "adc.yaml"
++        $ref: adc.yaml
+         description: Represents the external channels which are connected to the ADC.
+ 
+         properties:
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
+index 55c2c73626f4..890f125d422c 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
+@@ -77,7 +77,7 @@ required:
+ 
+ patternProperties:
+   "^channel@([0-7])$":
+-    $ref: "adc.yaml"
++    $ref: adc.yaml
+     type: object
+     description: |
+       Represents the external channels which are connected to the ADC.
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml b/Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
+index bdf3bba2d750..32c52f9fe18b 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
+@@ -41,7 +41,7 @@ required:
+ 
+ patternProperties:
+   "^channel@[0-7]$":
+-    $ref: "adc.yaml"
++    $ref: adc.yaml
+     type: object
+ 
+     properties:
+diff --git a/Documentation/devicetree/bindings/iio/dac/lltc,ltc1660.yaml b/Documentation/devicetree/bindings/iio/dac/lltc,ltc1660.yaml
+index 133b0f867992..c9f51d00fa8f 100644
+--- a/Documentation/devicetree/bindings/iio/dac/lltc,ltc1660.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/lltc,ltc1660.yaml
+@@ -2,8 +2,8 @@
+ # Copyright 2019 Marcus Folkesson <marcus.folkesson@gmail.com>
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/iio/dac/lltc,ltc1660.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/iio/dac/lltc,ltc1660.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Linear Technology Micropower octal 8-Bit and 10-Bit DACs
+ 
+diff --git a/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml b/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
+index b1eb77335d05..c9e3be3b5754 100644
+--- a/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/iio/dac/lltc,ltc2632.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/iio/dac/lltc,ltc2632.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Linear Technology LTC263x 12-/10-/8-Bit Rail-to-Rail DAC
+ 
+diff --git a/Documentation/devicetree/bindings/iio/dac/st,stm32-dac.yaml b/Documentation/devicetree/bindings/iio/dac/st,stm32-dac.yaml
+index 0f1bf1110122..04045b932bd2 100644
+--- a/Documentation/devicetree/bindings/iio/dac/st,stm32-dac.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/st,stm32-dac.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/iio/dac/st,stm32-dac.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/iio/dac/st,stm32-dac.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: STMicroelectronics STM32 DAC
+ 
+diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+index 68b481c63318..decf022335d8 100644
+--- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
++++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+@@ -63,7 +63,7 @@ properties:
+     description: if defined provides VDD IO power to the sensor.
+ 
+   st,drdy-int-pin:
+-    $ref: '/schemas/types.yaml#/definitions/uint32'
++    $ref: /schemas/types.yaml#/definitions/uint32
+     description: |
+       The pin on the package that will be used to signal data ready
+     enum:
+diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+index 347bc16a4671..c4f1c69f9330 100644
+--- a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
++++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+@@ -1,10 +1,10 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/iio/temperature/ti,tmp117.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/iio/temperature/ti,tmp117.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: "TI TMP117 - Digital temperature sensor with integrated NV memory"
++title: TI TMP117 - Digital temperature sensor with integrated NV memory
+ 
+ description: |
+     TI TMP117 - Digital temperature sensor with integrated NV memory that supports
+-- 
+2.34.1
 
