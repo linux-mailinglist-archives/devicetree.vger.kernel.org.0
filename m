@@ -2,215 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D84D679733
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 13:03:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E446679739
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 13:05:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233241AbjAXMDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 07:03:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48484 "EHLO
+        id S232654AbjAXMFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 07:05:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233302AbjAXMDg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 07:03:36 -0500
-Received: from egress-ip33a.ess.de.barracuda.com (egress-ip33a.ess.de.barracuda.com [18.185.115.192])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F84924108
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:03:34 -0800 (PST)
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197]) by mx-outbound45-230.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Tue, 24 Jan 2023 12:03:32 +0000
-Received: by mail-pf1-f197.google.com with SMTP id l7-20020a62be07000000b0058de3976793so6732673pff.18
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:03:32 -0800 (PST)
+        with ESMTP id S229681AbjAXMFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 07:05:31 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE6CD2330C
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:05:29 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id k16so11262612wms.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:05:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KOnXVOeoVE+0IBb9K9QruLQbPATWk3MeeNlnkGcVhKA=;
-        b=n9Va5XTXayrmSJS259JkDDixSj5PSN8wP/369DZ42Zcnqrpcu/vjcQELEAlNA9K+DC
-         1Ki9rIeXcO+/62Cy1x/6bqiqZQSWS6q+8/FESy1GLZa7g5xR0BqBCSxO2DyF1h4w6Lbg
-         m6pW8XKCsFv46S9W7lttyXGWJvVHleIv8gzE0=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ic8eN3I6cwzBtdtpBaU56bD/9LZvawdWvPnRT+wjLI4=;
+        b=rWmlzRYnGQGrT/p1+Upzo6brYfnNA3TV77vb/6F5OKaWkJ9j5epg1eVnH4Kj50zAtO
+         4fDeGuV7JGcek1cUKifShvKVNs7w/xq9Xc3Z1pVuOYq1tUhh3u8pGTghoeL/4mbMFrrz
+         Jy2rWieEKKFGi4dPfDI26D0gaQA+sKz3HJdN4bWvBpTDzfsuMCa/li9GSxAYIC8b8qZm
+         ZWp6io6b5QR6pJM5S2uNlOaXqTD+nyfRP16m+ffoWGn9Nuo0xJEvGra6J/rEnVFcquFo
+         G++tDTnkY1aQ1Byzy1cfPsCBtC4M7haq2GX2FH2G5woiU8jzS0voGKXKd9b1G6lnc68a
+         6bqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KOnXVOeoVE+0IBb9K9QruLQbPATWk3MeeNlnkGcVhKA=;
-        b=XYDNN8QF0SBz736cs2uQ8d8u37sKnp3uam/bdMqJ30KmWrV3gCGqN1rlYjoT5FOjb+
-         CfXm8kMg/OZulUZjoyG+I+/vgS4OcQA6PV74/A6l8YaBiIuJaLL/S7e7oBMGv7DGADMX
-         MgMdKB+Ke8GhAJfWG5t3kyXdXKCmZyFsWvX0F+ubOIxY3uiMaZByr9XNLZ+HgZHAAA1/
-         nCvhNDNeQBe9T7zW1geOvTBbWa5dtS4IkY6vdPsBRedpHeTbQSpnm6uyDoTBQsdfCLPX
-         K6QBkogAtdjpp00ORXpm43ex64plZfqk/w336utsjWlf0SoAm7VzbVwuFZnLV0wV7jcQ
-         zxuw==
-X-Gm-Message-State: AFqh2krBG+oahcR27TUVRSIDXfluz9bLRYyDol0jMeizO8uTLzPuxnWz
-        z3gAx2umLzZJ2TTsmrGBCMyHpMo1oOb9xCDxX3aDClxhkoxFPl+bLRV9Mfgd2OvBuyz1o3NUITJ
-        nR3c7BW88KbRyr4nj69aw8ic4p0F33ooIKZwYpZANJd4uj3L637Bk7haoeA==
-X-Received: by 2002:a62:1cce:0:b0:58d:c617:8e9f with SMTP id c197-20020a621cce000000b0058dc6178e9fmr30083096pfc.3.1674561812042;
-        Tue, 24 Jan 2023 04:03:32 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXvsYVNOjoA4EJ7bFI3SXJcSLfzQ9ihewIamaqpuwv0pHyHHfcR9UFuyZJU/iTRjmF2rdpHAlA==
-X-Received: by 2002:a62:1cce:0:b0:58d:c617:8e9f with SMTP id c197-20020a621cce000000b0058dc6178e9fmr30083068pfc.3.1674561811731;
-        Tue, 24 Jan 2023 04:03:31 -0800 (PST)
-Received: from LAP568U.mistral.in ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id j10-20020aa783ca000000b00581ad007a9fsm1414539pfn.153.2023.01.24.04.03.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 04:03:31 -0800 (PST)
-From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH V2 2/2] arm64: dts: ti: k3-am68-sk-base-board: Add pinmux for RPi Header
-Date:   Tue, 24 Jan 2023 17:33:11 +0530
-Message-Id: <20230124120311.7323-3-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20230124120311.7323-1-sinthu.raja@ti.com>
-References: <20230124120311.7323-1-sinthu.raja@ti.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ic8eN3I6cwzBtdtpBaU56bD/9LZvawdWvPnRT+wjLI4=;
+        b=rtK/gP0ChLza9IWgRA7PMu+nEmjF9eskiOGcG6iikMacxIciSUE4y+8ZKyiswPu45L
+         jKZ8Hdk8nN49LRMnTOkkk1t0Uhm6XTds49B2c7/+NcZlmsi79AcQOBwQBlfK48k/HGPq
+         HebQsC3jifZVWcvSdM972NY8lokvIFQVkM9qME02kGjro7Ml/a97Hz8FaNlsg7Dh2mD2
+         WdZUbh1N04+bRd8SR7vCz/NRyGaezl80WIpgv/Tm9XcPWRVMEOm+r7HkczeQ/vc32b7f
+         qwuUXmzaW3Rp6kGCHWeDQPZm1Dy8IC6O6edxFaL/kaqTw4qeqUEOruDh9IyZCJ5bnCJX
+         9O2g==
+X-Gm-Message-State: AFqh2krV4Yut9T2Pp2PGB/mymnAT10SGlvfC+xAVhjUHpoqe/EOGHJf4
+        bctZhO9gNUoJqUXtuhBKdW5nLg==
+X-Google-Smtp-Source: AMrXdXtDWLE9/Mow9jmUwl0uKzwwn4gUuscIRtfACEWMupiXSbKnJKzbMHEgbV+4SIedSnZ3LK2PeQ==
+X-Received: by 2002:a05:600c:21c4:b0:3da:fcf1:d4cc with SMTP id x4-20020a05600c21c400b003dafcf1d4ccmr27434734wmj.30.1674561928413;
+        Tue, 24 Jan 2023 04:05:28 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id w8-20020a05600c2a0800b003d995a704fdsm1749926wme.33.2023.01.24.04.05.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Jan 2023 04:05:28 -0800 (PST)
+Message-ID: <d8fb3c45-435d-f080-6ba4-e9e4595f3638@linaro.org>
+Date:   Tue, 24 Jan 2023 13:05:26 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1674561805-311750-5375-713-2
-X-BESS-VER: 2019.1_20221214.2106
-X-BESS-Apparent-Source-IP: 209.85.210.197
-X-BESS-Outbound-Spam-Score: 0.50
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.245676 [from 
-        cloudscan20-237.eu-central-1b.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-        0.50 BSF_RULE7568M          META: Custom Rule 7568M 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.50 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_RULE7568M, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH] hwmon: (pmbus/tda38640) Add driver for Infineon TDA38640
+ Voltage Regulator
+Content-Language: en-US
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230124110111.3965317-1-Naresh.Solanki@9elements.com>
+ <b4b11836-5a4b-a2b7-18e2-89ca26f19817@linaro.org>
+ <05947e9f-0667-4565-b481-ca5635da4174@9elements.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <05947e9f-0667-4565-b481-ca5635da4174@9elements.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
+On 24/01/2023 12:45, Naresh Solanki wrote:
+> Hi
+> 
+> On 24-01-2023 04:40 pm, Krzysztof Kozlowski wrote:
+>> On 24/01/2023 12:01, Naresh Solanki wrote:
+>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>>
+>>> Add the pmbus driver for the Infineon TDA38640 voltage regulator.
+>>>
+>>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>>> ---
+>>>   .../devicetree/bindings/trivial-devices.yaml  |  2 +
+>>
+>> Split bindings from driver code.
+> Sure
+>>
+>>>   drivers/hwmon/pmbus/Kconfig                   | 16 ++++
+>>>   drivers/hwmon/pmbus/Makefile                  |  1 +
+>>>   drivers/hwmon/pmbus/tda38640.c                | 78 +++++++++++++++++++
+>>>   4 files changed, 97 insertions(+)
+>>>   create mode 100644 drivers/hwmon/pmbus/tda38640.c
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>> index f5c0a6283e61..a28b02036489 100644
+>>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+>>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>> @@ -141,6 +141,8 @@ properties:
+>>>             - infineon,slb9645tt
+>>>               # Infineon SLB9673 I2C TPM 2.0
+>>>             - infineon,slb9673
+>>> +            # Infineon TDA38640 Voltage Regulator
+>>> +          - infineon,tda38640
+>>>               # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+>>>             - infineon,tlv493d-a1b6
+>>>               # Infineon Multi-phase Digital VR Controller xdpe11280
+>>> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+>>> index 30448e049486..9f4bbb9c487a 100644
+>>> --- a/drivers/hwmon/pmbus/Kconfig
+>>> +++ b/drivers/hwmon/pmbus/Kconfig
+>>> @@ -395,6 +395,22 @@ config SENSORS_STPDDC60
+>>>   	  This driver can also be built as a module. If so, the module will
+>>>   	  be called stpddc60.
+>>>   
+>>> +config SENSORS_TDA38640
+>>> +	tristate "Infineon TDA38640"
+>>> +	help
+>>> +	  If you say yes here you get hardware monitoring support for Infineon
+>>> +	  TDA38640.
+>>> +
+>>> +	  This driver can also be built as a module. If so, the module will
+>>> +	  be called tda38640.
+>>> +
+>>> +config SENSORS_TDA38640_REGULATOR
+>>> +	bool "Regulator support for TDA38640 and compatibles"
+>>> +	depends on SENSORS_TDA38640 && REGULATOR
+>>> +	help
+>>> +	  If you say yes here you get regulator support for Infineon
+>>> +	  TDA38640 as regulator.
+>>
+>> Drop entire option, why is it needed?
+> You mean regulator option ?
+> This is how other pmbus regulator devices have provided option.
 
-Add pinmux required to bring out the i2c and gpios on 40-pin RPi
-expansion header on the AM68 SK board.
+Hmmm... I wonder why this is of any use.
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
----
+>>
+>>> +
+>>>   config SENSORS_TPS40422
+>>>   	tristate "TI TPS40422"
+>>>   	help
 
-No Changes in V2.
+(...)
 
- .../boot/dts/ti/k3-am68-sk-base-board.dts     | 70 ++++++++++++++++++-
- 1 file changed, 69 insertions(+), 1 deletion(-)
+>>
+>>> +static const struct of_device_id tda38640_of_match[] = {
+>>> +	{ .compatible = "infineon,tda38640"},
+>>> +	{ },
+>>> +};
+>>> +MODULE_DEVICE_TABLE(of, tda38640_of_match);
+>>
+>> Where is it used? You miss the user.
+> I'm not sure if I get your question right.
+> This chip is used in sbp1 board to power CPU rails.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-index 2091cd2431fb..722cd19b74e0 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-@@ -173,6 +173,32 @@ J721S2_IOPAD(0x0a0, PIN_INPUT, 0) /* (AB25) MCASP0_AXR12.MCAN7_RX */
- 			J721S2_IOPAD(0x09c, PIN_INPUT, 0) /* (T24) MCASP0_AXR11.MCAN7_TX */
- 		>;
- 	};
-+
-+	main_i2c4_pins_default: main-i2c4-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x010, PIN_INPUT_PULLUP, 7) /* (AF28) MCAN13_RX.I2C4_SDA */
-+			J721S2_IOPAD(0x014, PIN_INPUT_PULLUP, 7) /* (AD25) MCAN14_TX.I2C4_SCL */
-+		>;
-+	};
-+
-+	rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0a8, PIN_INPUT, 7) /* (U24)  MCASP0_AXR14.GPIO0_42 */
-+			J721S2_IOPAD(0x090, PIN_INPUT, 7) /* (W24) MCASP0_AXR8.GPIO0_36 */
-+			J721S2_IOPAD(0x0bc, PIN_INPUT, 7) /* (V28) MCASP1_AFSX.GPIO0_47 */
-+			J721S2_IOPAD(0x06c, PIN_INPUT, 7) /* (V26) MCAN1_TX.GPIO0_27 */
-+			J721S2_IOPAD(0x004, PIN_INPUT, 7) /* (W25) MCAN12_TX.GPIO0_1 */
-+			J721S2_IOPAD(0x008, PIN_INPUT, 7) /* (AC24) MCAN12_RX.GPIO0_2 */
-+			J721S2_IOPAD(0x0b8, PIN_INPUT, 7) /* (AA24) MCASP1_ACLKX.GPIO0_46 */
-+			J721S2_IOPAD(0x00c, PIN_INPUT, 7) /* (AE28) MCAN13_TX.GPIO0_3 */
-+			J721S2_IOPAD(0x034, PIN_INPUT, 7) /* (AD24) PMIC_WAKE0.GPIO0_13 */
-+			J721S2_IOPAD(0x0a4, PIN_INPUT, 7) /* (T23) MCASP0_AXR13.GPIO0_41 */
-+			J721S2_IOPAD(0x0c0, PIN_INPUT, 7) /* (T28) MCASP1_AXR0.GPIO0_48 */
-+			J721S2_IOPAD(0x0b4, PIN_INPUT, 7) /* (U25) MCASP1_AXR4.GPIO0_45 */
-+			J721S2_IOPAD(0x0cc, PIN_INPUT, 7) /* (AE27) SPI0_CS0.GPIO0_51 */
-+			J721S2_IOPAD(0x08c, PIN_INPUT, 7) /* (T25) MCASP0_AXR7.GPIO0_35 */
-+		>;
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -214,12 +240,39 @@ J721S2_WKUP_IOPAD(0x0d0, PIN_OUTPUT, 0) /* (C23) WKUP_GPIO0_4.MCU_MCAN1_TX*/
- 		>;
- 	};
- 
-+	mcu_i2c0_pins_default: mcu-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x100, PIN_INPUT, 0) /*(H24) WKUP_GPIO0_63.MCU_I2C0_SCL*/
-+			J721S2_WKUP_IOPAD(0x104, PIN_INPUT, 0) /*(H27) WKUP_GPIO0_64.MCU_I2C0_SDA*/
-+		>;
-+	};
-+
- 	mcu_i2c1_pins_default: mcu-i2c1-pins-default {
- 		pinctrl-single,pins = <
- 			J721S2_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (F24) WKUP_GPIO0_8.MCU_I2C1_SCL */
- 			J721S2_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
- 		>;
- 	};
-+
-+	mcu_rpi_header_gpio0_pins_default: mcu-rpi-header-gpio0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x180, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_66 */
-+			J721S2_WKUP_IOPAD(0x190, PIN_INPUT, 7) /* (K26) WKUP_GPIO0_49 */
-+			J721S2_WKUP_IOPAD(0x0c4, PIN_INPUT, 7) /* (E24) MCU_SPI1_D0.WKUP_GPIO0_1 */
-+			J721S2_WKUP_IOPAD(0x0c8, PIN_INPUT, 7) /* (C28) MCU_SPI1_D1.WKUP_GPIO0_2 */
-+			J721S2_WKUP_IOPAD(0x0c0, PIN_INPUT, 7) /* (D26) MCU_SPI1_CLK.WKUP_GPIO0_0 */
-+			J721S2_WKUP_IOPAD(0x0fc, PIN_INPUT, 7) /* (D25) MCU_SPI1_CS2.WKUP_GPIO0_15*/
-+			J721S2_WKUP_IOPAD(0x120, PIN_INPUT, 7) /* (G27) WKUP_GPIO0_56 */
-+			J721S2_WKUP_IOPAD(0x17c, PIN_INPUT, 7) /* (J26) WKUP_GPIO0_57 */
-+			J721S2_WKUP_IOPAD(0x184, PIN_INPUT, 7) /* (J27) WKUP_GPIO0_67 */
-+			J721S2_WKUP_IOPAD(0x0cc, PIN_INPUT, 7) /* (C27) MCU_SPI1_CS0.WKUP_GPIO0_3 */
-+		>;
-+	};
-+};
-+
-+&main_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
- };
- 
- &main_gpio2 {
-@@ -235,7 +288,8 @@ &main_gpio6 {
- };
- 
- &wkup_gpio0 {
--	status = "disabled";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_rpi_header_gpio0_pins_default>;
- };
- 
- &wkup_gpio1 {
-@@ -273,6 +327,20 @@ exp1: gpio@21 {
- 	};
- };
- 
-+&main_i2c4 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c4_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
-+&mcu_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
- &main_sdhci0 {
- 	/* Unused */
- 	status = "disabled";
--- 
-2.36.1
+No, where is the data structure used (except module autoloading)?
+
+Best regards,
+Krzysztof
 
