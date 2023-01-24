@@ -2,111 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D266467A12B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 19:33:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82B5167A187
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 19:42:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230294AbjAXSdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 13:33:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40056 "EHLO
+        id S233860AbjAXSm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 13:42:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229546AbjAXSdI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 13:33:08 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA4C6594
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 10:33:07 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id v23so15618805plo.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 10:33:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:author:mime-version:message-id:date
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UsWJpCZ2MiktbEP0bUIDKCE2SHIVUBqnn1o3x0TI6io=;
-        b=YdDsRg3YLjc2/9zOKTNbV5dW2fAzUhZvv6N+sLI9WR5porWWWVLGOEESxfGtJsv1YD
-         HaPdnonpHJoF0mAOOMa37SYLyxHngir9M3NRQUyUTrS6/p62LBXn4Sz9s5kwj2Wn/riK
-         R4bv7Eov+1LdOHJD2Dk91oVBGILUFR+00vVuGfo4Z2VQHFRCkexBf1zUVHuJSOqeQ5Ls
-         wVs7S8RB7VyqkuJ5qNOxP1F0jjKmYLqRe2vW1gEWU8YX9mhl3oWHcWTE1Z0CkaAfuP4b
-         HaRrPVY/puZJZIm08vTO3rGM4ksLeJOaprTeNfhuBgU+NbEs6tdye9YVNAvhE4Ctdtwb
-         Sl8g==
+        with ESMTP id S233900AbjAXSmw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 13:42:52 -0500
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE7D145BCD;
+        Tue, 24 Jan 2023 10:42:16 -0800 (PST)
+Received: by mail-qt1-x833.google.com with SMTP id v19so1318148qtq.13;
+        Tue, 24 Jan 2023 10:42:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:author:mime-version:message-id:date
-         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UsWJpCZ2MiktbEP0bUIDKCE2SHIVUBqnn1o3x0TI6io=;
-        b=BLK1I8jiUe6hjHfePwMH/ERvDlCd3CFbx0/1Un/ifVG8bOTAuMt0I3bnN+u81WE5Vt
-         uSdfq80cVICvjlrDpeUOLnwDCKWgxTdmobRXDY26Lu/B6rNN74BOr3qd3TG9+ECpQoFF
-         Mad7G4yrdIeddlE2325CTEYtCav/t7jknk0al7C1V3KB4NuTCIEWJ2dzrfTno5M+AqsB
-         oebOSu3hyaFTfpa0bVKlEh3sHMawNUPs1xxT8b8D3nY703HQGtMsuSRsgaoi+lRHb6Hn
-         ymJ9l9yocOSqzqcIrLYxWGnLd7R6wpAw3mssWU4rxdZ2b/qQJT7yQFB4ggevkWgiYDox
-         AYPQ==
-X-Gm-Message-State: AFqh2kr/cFkNPOjU0vz0NxcTaWqnJXfOeJ84hPED5+U28JPdDLL63KW5
-        X31UgQIkmFMgEL3KgnCS8kYNmw==
-X-Google-Smtp-Source: AMrXdXuriSuX4HGqunHblAH+Z5NPF9OltDIuJkqmRr3gtJB9j7vPP67/BJL9BAlupctMwtOKvTuCJQ==
-X-Received: by 2002:a17:903:2306:b0:193:3540:c54d with SMTP id d6-20020a170903230600b001933540c54dmr39612857plh.26.1674585186710;
-        Tue, 24 Jan 2023 10:33:06 -0800 (PST)
-Received: from localhost.localdomain ([122.171.17.192])
-        by smtp.gmail.com with ESMTPSA id x7-20020a170902ec8700b001943d58268csm1997229plg.55.2023.01.24.10.33.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 10:33:06 -0800 (PST)
-From:   Amit Pundir <amit.pundir@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Joel Selvaraj <joelselvaraj.oss@gmail.com>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        phone-devel <phone-devel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: qcom: sdm845-xiaomi-beryllium-tianma: Add reserved memory region
-Date:   Wed, 25 Jan 2023 00:02:57 +0530
-Message-Id: <20230124183257.1525376-1-amit.pundir@linaro.org>
-X-Mailer: git-send-email 2.25.1
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iVcjuX1DrPzpms/qqm55UTZi+ADxFT6DDuGfNYewlYI=;
+        b=2ei6fTcIr9X2ixQHZ+EPC5V6182JQumzNihDMIy/75cdok5VCufdVppWkbV2cOKbum
+         tQUQQcf6dsT3oTGntcYphPDjpvez7fvKdHXcbHhtOHQ0/SWzPUd9ukVR7LTJZEuYix0x
+         P2xjoNcrVulWScTqD+uZ2IyHi5SG0pteiI7q4WDE63zV/otmUwGtYbwE6kvjjylqLPlj
+         ayPG91xOnYTsF8kEBOLWxRHAzAMoUrFFF8Kwg7PjWj30qfHhZlED8SyjFzjbHvBMR2HN
+         7w35XDzm7cBN5HKqAM4aCMHe4Tc4wtQD6Byj0eM2T2KWcpkFpgHAOBb2yTeCn88fOMyY
+         qTng==
+X-Gm-Message-State: AFqh2krBnSQrUR4ncDKxd6xTipHHyJZK9GetrXShZ9TcY698CdCH97b3
+        pe8bKeWDB4HwgUeNSEtUNm9OjtGstnsAIA==
+X-Google-Smtp-Source: AMrXdXtMjycl63rqLtCwxpqXzLnyoJpcGZdndPK/mZ5/XadjpLZLQHbavo2VN7ZRW0m7s00iLnvggg==
+X-Received: by 2002:ac8:524c:0:b0:3b6:378c:5cd7 with SMTP id y12-20020ac8524c000000b003b6378c5cd7mr41300962qtn.61.1674585675773;
+        Tue, 24 Jan 2023 10:41:15 -0800 (PST)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id l4-20020a37f504000000b00705be892191sm1877987qkk.56.2023.01.24.10.41.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Jan 2023 10:41:15 -0800 (PST)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-4ff07dae50dso186269157b3.2;
+        Tue, 24 Jan 2023 10:41:14 -0800 (PST)
+X-Received: by 2002:a05:690c:c89:b0:4dd:7a8e:1cf3 with SMTP id
+ cm9-20020a05690c0c8900b004dd7a8e1cf3mr3096734ywb.384.1674585674575; Tue, 24
+ Jan 2023 10:41:14 -0800 (PST)
 MIME-Version: 1.0
-Author: Amit Pundir <amit.pundir@linaro.org>
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1674499048.git.geert+renesas@glider.be> <e825b50a843ffe40e33f34e4d858c07c1b2ff259.1674499048.git.geert+renesas@glider.be>
+In-Reply-To: <e825b50a843ffe40e33f34e4d858c07c1b2ff259.1674499048.git.geert+renesas@glider.be>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 24 Jan 2023 19:41:03 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXtiC-Oo01Y-vCbokjF=L+YXMN=TucgqCS4Vtcg5gt==g@mail.gmail.com>
+Message-ID: <CAMuHMdXtiC-Oo01Y-vCbokjF=L+YXMN=TucgqCS4Vtcg5gt==g@mail.gmail.com>
+Subject: Re: [PATCH 12/12] can: rcar_canfd: Add transceiver support
+To:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Put cont splash memory region under the reserved-memory as
-confirmed by the downstream code for Tianma variant as well.
+On Mon, Jan 23, 2023 at 7:56 PM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+> Add support for CAN transceivers described as PHYs.
+>
+> While simple CAN transceivers can do without, this is needed for CAN
+> transceivers like NXP TJR1443 that need a configuration step (like
+> pulling standby or enable lines), and/or impose a bitrate limit.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> This depends on "[PATCH 1/7] phy: Add devm_of_phy_optional_get() helper".
+> https://lore.kernel.org/all/f53a1bcca637ceeafb04ce3540a605532d3bc34a.1674036164.git.geert+renesas@glider.be
 
-Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
----
-This change should probably go in sdm845-xiaomi-beryllium-common but
-I don't have EBBG variant's downstream code nor the device to test.
+v2: "[PATCH v2 3/9] phy: Add devm_of_phy_optional_get() helper"
+    https://lore.kernel.org/all/4cd0069bcff424ffc5c3a102397c02370b91985b.1674584626.git.geert+renesas@glider.be
 
- .../boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts      | 8 ++++++++
- 1 file changed, 8 insertions(+)
+I'll keep you updated when/if this ends up on an immutable branch.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
-index 8e176111e599..47cbf725b0e3 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
-@@ -7,6 +7,14 @@
- / {
- 	model = "Xiaomi Pocophone F1 (Tianma)";
- 	compatible = "xiaomi,beryllium", "qcom,sdm845";
-+
-+	reserved-memory {
-+		/* Cont splash region set up by the bootloader */
-+		cont_splash_mem: framebuffer@9d400000 {
-+			reg = <0x0 0x9d400000 0x0 0x2400000>;
-+			no-map;
-+		};
-+	};
- };
- 
- &display_panel {
--- 
-2.25.1
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
