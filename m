@@ -2,121 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EBB367A056
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 18:42:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D7A767A05E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 18:46:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233206AbjAXRmb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 12:42:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41476 "EHLO
+        id S233822AbjAXRqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 12:46:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233508AbjAXRma (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 12:42:30 -0500
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D9F16AD1;
-        Tue, 24 Jan 2023 09:42:29 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id a18so2900891plm.2;
-        Tue, 24 Jan 2023 09:42:29 -0800 (PST)
+        with ESMTP id S233235AbjAXRqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 12:46:31 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E3BD46725
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 09:46:29 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso11533411wmq.5
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 09:46:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1aw+tabE+7rYoEAruCtHY8q3Q+/Ll8iXEYyydAkaDNY=;
-        b=R+AA3leOaim17iaMKFAzsawKyaijVW6fPPQgkOdlk7UzFry0/PiHwMNFGXJtl7yHCr
-         ULY4o6z8Y0NVssb96Cye2MobRy/ktiXfhpC7CDVtWHA4wxDnyEIbu00Abc6s5UMX1lrR
-         0TAJqAvSnKSKF8v/E382vIYgt1gR8ri7SLycTykkiQAKS13BlSZUFmH6h2OKPQxNDbEV
-         Ap+UaAusl5mWKhkAPBKq45L1N8tVMcofPMAdefsnK0agQ48OvsR3pL+SA05cvl8PVo79
-         lMsZsGa1G4M9fNykaekbgJhps8eu9VziE6RQeiyEDkPQAV1HMRlJTwwqaEgUdl1jqpSt
-         moHw==
+        bh=/v2GAT/gW1z+AQQeKDDFE3wRS4Dyi8jFMlO2BJzi6HU=;
+        b=A0a6WgFqz7DrQif4g1HqvElyktI4Z/cY5HAWnoBk2ke9Z1JMP1cfOqs+TAujzCc3gh
+         eOl4ID+MHKyx4Gv1wn67rTNUCNdD43nOL4C5DPt6wvA2eB7xKKO0nS68WlKKlvApVNDC
+         RPvVXjVtJW8iPjdtKOmL8Y8PlUaCEx4zjxtZf7Yp/3QcbWnTVCQCUy/W+j/fvb1XpPpV
+         TrT09I6N0fPik30/a4R44afvDeA3zLyf3VPkdMujyvMiLFf++XTotE42ymERA+feMT5z
+         RtiJdRHsSTuM+xE5kUAH3bUo9yrBt5zkS5JN3xQwjmE/i5Fs/EPq+MrS4PW/D+JuZ4g3
+         W85w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1aw+tabE+7rYoEAruCtHY8q3Q+/Ll8iXEYyydAkaDNY=;
-        b=j6JbGmBCfzpjX90KP2bdWE+YaJbay/4ls4Exu4jrPAI0ht63/s5PwNDdjl7T8Cr0zj
-         jVtFREn9mUVP7ly4P61fTsCU1nngYrQ3dStwevwfueG94i87PVIs9SjjQ76EYXnUkN6s
-         fT4Ztjo0L9cc6awRCP1mUR7xJQpALPPM9e9NHtZDacATCqWK8kjwtTHWenLfIYWd/5T/
-         G5vNm2lTFfE2gjJxenFeO+6hQPxY4rkmr5CgSzTe/SvBiukU02FMvaFrgdHxi+/sEpOE
-         a+E18LLYdXRI1+gXLgbJOWOUcSxifHyPAeV14fAdwYKZof44XFx2z4t2vY/6Rk6xprgv
-         vBiA==
-X-Gm-Message-State: AFqh2kphsC9w6THjJy7duJ1pJZoomXaA/oV3+EYeVIEI6x43wQxYJ/Zt
-        fubze+XahIba9oDep97JuXc=
-X-Google-Smtp-Source: AMrXdXsXtJNxzI/D+JIweau0WKFTWKJlEQGlPCfvTU6QWtRH2bpaxbbbHvEm21C2Se4ICIHZaNGszg==
-X-Received: by 2002:a17:90a:db90:b0:22b:b3b6:cf76 with SMTP id h16-20020a17090adb9000b0022bb3b6cf76mr16714631pjv.17.1674582148347;
-        Tue, 24 Jan 2023 09:42:28 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id t8-20020a17090a1c8800b0020aacde1964sm8605583pjt.32.2023.01.24.09.42.22
+        bh=/v2GAT/gW1z+AQQeKDDFE3wRS4Dyi8jFMlO2BJzi6HU=;
+        b=fQs0eaaMmT3eyr+HFSJwUZeBWC/bZG4CAYt8tH2y6O6xkysfeOBba9t9cTPSx0/PMN
+         9tdAgeZKIg1uA4tF0cpFiMoZiZ3bo9MI86m4UXE/aPbkzatvhsZnIADrVwQKlxLSN0u8
+         ad1S9By3HnR1xr/0oqh6tM7Tj/TJIFfc+ukVCVo0tOkOE+A2hiZaB8wWZY2XrnEsSOHk
+         2z8mfEUUbznA1vjlBr0Sn4aZbAaPoaBkpTfTFR3HEzIYHY2PpKIKzrCsOuUiK3ey3CrF
+         R76RdZ0egQk0pVI/g8NTMJM44ilOQEzcoHZCFqP7SlAOOb722nEwfE8wHxpZrNDYQHRN
+         vX5g==
+X-Gm-Message-State: AFqh2kqEuiuQ4jH7Lo4XCmXpISudDoxu7bXfzcyO3nxDA2k+LcV8xaOk
+        hzykS2vyMvWm+Q7Efd1N7Fa2BA==
+X-Google-Smtp-Source: AMrXdXuFSiF40FFxyHPG8XgZAakZ5Xxa9nWm74fz85CKfHOnpPxRnrajry8SoKbxN4RuSUj3gZi6cw==
+X-Received: by 2002:a05:600c:1d10:b0:3d3:58d1:2588 with SMTP id l16-20020a05600c1d1000b003d358d12588mr25731882wms.41.1674582387832;
+        Tue, 24 Jan 2023 09:46:27 -0800 (PST)
+Received: from [192.168.0.20] (62.213.132.195.rev.sfr.net. [195.132.213.62])
+        by smtp.gmail.com with ESMTPSA id m21-20020a05600c091500b003d1de805de5sm2450567wmp.16.2023.01.24.09.46.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 09:42:27 -0800 (PST)
-Message-ID: <4982a703-fc6b-b778-78a5-ada5ea5aedb2@gmail.com>
-Date:   Tue, 24 Jan 2023 09:42:19 -0800
+        Tue, 24 Jan 2023 09:46:27 -0800 (PST)
+Message-ID: <2950b824-ad2f-2579-a956-a03d157453eb@baylibre.com>
+Date:   Tue, 24 Jan 2023 18:46:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: (subset) [PATCH 0/6] rtc: brcmstb-waketimer: add RTC alarm irq
-Content-Language: en-US
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Doug Berger <opendmb@gmail.com>
-Cc:     Brian Norris <computersforpeace@gmail.com>,
-        Markus Mayer <mmayer@broadcom.com>,
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v7 4/4] thermal: mediatek: add another get_temp ops for
+ thermal sensors
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230120190147.718976-1-opendmb@gmail.com>
- <167451526504.1264870.8427240602882815591.b4-ty@bootlin.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <167451526504.1264870.8427240602882815591.b4-ty@bootlin.com>
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        linux-pm@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Michael Kao <michael.kao@mediatek.com>,
+        linux-kernel@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+References: <20221018-up-i350-thermal-bringup-v7-0-ebf08ff2eddb@baylibre.com>
+ <20221018-up-i350-thermal-bringup-v7-4-ebf08ff2eddb@baylibre.com>
+ <4121bb6b-30db-7a23-f4c8-40afdda7a0b5@linaro.org>
+ <COTTJX635TNF.1WL2TEZN7VW9O@amjad-ThinkPad-T490>
+ <adfe41f7-00e5-876b-7803-3127919fba13@linaro.org>
+ <COUMF3IZ9Y63.LA3KFHJSUZIC@amjad-ThinkPad-T490>
+ <0644aede-c281-3919-50e0-4466f6587d81@linaro.org>
+ <187b0fe1-1f14-d8b8-c827-1e824da0b1d3@baylibre.com>
+ <d3daece0-ed23-fae7-9bc8-c6e53b84e8e7@baylibre.com>
+ <9f9547a2-69dd-f91d-c587-289156bf9d55@linaro.org>
+Content-Language: en-US
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+In-Reply-To: <9f9547a2-69dd-f91d-c587-289156bf9d55@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/23/23 15:08, 'Alexandre Belloni' via BCM-KERNEL-FEEDBACK-LIST,PDL 
-wrote:
-> 
-> On Fri, 20 Jan 2023 11:01:41 -0800, Doug Berger wrote:
->> Support is added for an interrupt that can be triggered from the
->> brcmstb-waketimer hardware while the system is awake.
->>
->> This interrupt allows the driver to pass the rtctest selftest.
->>
->> Doug Berger (6):
->>    rtc: brcmstb-waketimer: introduce WKTMR_ALARM_EVENT flag
->>    rtc: brcmstb-waketimer: non-functional code changes
->>    rtc: brcmstb-waketimer: compensate for lack of wktmr disable
->>    rtc: brcmstb-waketimer: rename irq to wake_irq
->>    dt-bindings: rtc: brcm,brcmstb-waketimer: add alarm interrupt
->>    rtc: brcmstb-waketimer: allow use as non-wake alarm
->>
->> [...]
-> 
-> Applied, thanks!
-> 
-> [1/6] rtc: brcmstb-waketimer: introduce WKTMR_ALARM_EVENT flag
->        commit: 90226f6b17a3edcb0bddaf2f16991861c99d6a15
-> [2/6] rtc: brcmstb-waketimer: non-functional code changes
->        commit: 2cd98b22c1443d1f2921a371baee658da184868e
-> [3/6] rtc: brcmstb-waketimer: compensate for lack of wktmr disable
->        commit: 516ae02c38ff3ae867f9b19fa050f78157e2bdae
-> [4/6] rtc: brcmstb-waketimer: rename irq to wake_irq
->        commit: eae258edcb8705932c9e5c61a99f91d8235f688b
 
-That was quick, how about patch 6? It does not actually have a 
-dependency on the Device Tree binding (patch 5) and the second interrupt 
-is looked up by index.
--- 
-Florian
+On 1/24/23 17:54, Daniel Lezcano wrote:
+>
+> Hi Amjad,
+>
+> On 24/01/2023 11:08, Amjad Ouled-Ameur wrote:
+>
+> [ ... ]
+>
+>>>>
+>>>> IIUC, there is a sensor per couple of cores. 1 x 2Bigs, 1 x 2Bigs, 1 x 4 Little, right ?
+>>>
+>>> MT8365 SoC has 4 x A53 CPUs. The SoC has 4 thermal zones per sensor. Thermal zone 0 corresponds
+>>>
+>>> to all 4 x A53 CPUs, the other thermal zones (1, 2 and 3) has nothing to do with CPUs. The cooling device type
+>>>
+>>> used for CPUs is passive. FYI, thermal zones 1, 2 and 3 are present in the SoC for debug-purpose only, they are not supposed
+>>>
+>>> to be used for production.
+>>>
+>> After reconsidering the fact that zones 1, 2 and 3 are only used for dev/debug, it might be best to avo >
+>> aggregation as you suggested, and keep only support for zone 0 in this driver. Thus I suggest I send a V8
+>>
+>> where I keep only below fixes for this patch if that's okay with you:
+>>
+>> - Define "raw_to_mcelsius" function pointer for "struct thermal_bank_cfg".
+>>
+>> - Fix "mtk_thermal" variable in mtk_read_temp().
+>>
+>> - Set "mt->raw_to_mcelsius" in probe().
+>>
+>>
+>> For zones 1, 2 and 3 we can later add a different driver specific for dev/debug to probe them to
+>>
+>> avoid confusion.
+>
+> You can add them in the driver and in the device tree, but just add the cooling device for the thermal zone 0.
 
+Thermal zone 0 uses CPU{0..3} for passive cooling, in this case we should register cooling device with
+
+cpufreq_cooling_register() for each CPU right ?
+
+>
+>
