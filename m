@@ -2,151 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38E8E679473
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 10:44:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 670B367947B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 10:47:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232276AbjAXJo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 04:44:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38944 "EHLO
+        id S233318AbjAXJrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 04:47:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232388AbjAXJoz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 04:44:55 -0500
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 824BC9008;
-        Tue, 24 Jan 2023 01:44:54 -0800 (PST)
-Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.206])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4P1MVz2ZVpz6J9lw;
-        Tue, 24 Jan 2023 17:44:11 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 24 Jan
- 2023 09:44:51 +0000
-Date:   Tue, 24 Jan 2023 09:44:50 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Barry Song <baohua@kernel.org>
-Subject: Re: [PATCH 11/12] staging: iio: accel: adis16203: Move out of
- staging
-Message-ID: <20230124094450.0000272b@Huawei.com>
-In-Reply-To: <20230123211758.563383-12-jic23@kernel.org>
-References: <20230123211758.563383-1-jic23@kernel.org>
-        <20230123211758.563383-12-jic23@kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+        with ESMTP id S232952AbjAXJrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 04:47:07 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1222F9008
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 01:47:03 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id ud5so37472829ejc.4
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 01:47:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o3C7ldfBLXi3hXV4pFxelnt9/f5/V65vBB6BlKhSBWo=;
+        b=vLssLMT4y6tEvIBNnOhKtr/5zWkvVXyRJP+9aaSDN6O2U6fs/2iq2yUgCPeRB+9tI6
+         STLILc0aeIUuUz7z+vvieHWuoSdOFuMRo2Zsow6OxemIZVz07/anY4vhscPyCtprpR/z
+         P7xKxvMwSAFWEyYVzBE7LQxhu6tYCwHFP+YnV7diYDLT3sRDOihIQcoM7BiivXNCEhMB
+         FF7P1hNjuDfI0Q0F2jDATqcspHylbaArM8NlI806wR9FXqmzsUpm0KiXwWrnzGvPzagG
+         AqmnlG2Cad0DwURv3hFJyp3WmyKb6mjhI+NSG8eVaWTBgFFoC7wRUTVQsg3zJSXsuGMe
+         PiTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o3C7ldfBLXi3hXV4pFxelnt9/f5/V65vBB6BlKhSBWo=;
+        b=qYXK/kC9Kj90cnfHMXmHTts5o7RgAmcIWloFLUHPm4Z1MYM8W5r3YzDN7dMmHRsnmS
+         CMznX6I0nYGRjwK7iiG9iGDXmM9Dpv/WzZ215kCUCRZ91QGdfXcXiqf1ynxmuF8jU3bR
+         BQWZtxTV2gvp0mh5yzOSPb5DgrxKI1wR6DpxzKRUAEmVERNMDCpnsWdt1XC9jvZDBcrd
+         u1H2ze26jS53Qss/8QLO3d+Tpmthcs3sdU5yjBwo8racYq4Bup22tvOluzvJgQMiFdfm
+         KUjBF2xLl89EOxO5EpVjQysFA1z6XtRec6tP922reoMrFdDZ4HrygxQP4tsp8UMPgzVb
+         CzAQ==
+X-Gm-Message-State: AFqh2krOhqSBU/nCnIcDnOUFp68HiopPpeP2txZKBcZMMnh8/nHA0iGc
+        H/sFgO4vjh3K15yzHiKeYHuYuQ==
+X-Google-Smtp-Source: AMrXdXvhjbo2HrIxrdYnwU06J+8+ObBkI8rZsJ/LqpLKOO0lnDbsUQqvpp/dJKYckxFL/7ABOmr1YQ==
+X-Received: by 2002:a17:906:9f1f:b0:871:d59d:4f54 with SMTP id fy31-20020a1709069f1f00b00871d59d4f54mr29773166ejc.27.1674553621588;
+        Tue, 24 Jan 2023 01:47:01 -0800 (PST)
+Received: from [192.168.1.101] (abyl109.neoplus.adsl.tpnet.pl. [83.9.31.109])
+        by smtp.gmail.com with ESMTPSA id w1-20020a170906480100b0080c433a9eeesm637395ejq.182.2023.01.24.01.46.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Jan 2023 01:47:01 -0800 (PST)
+Message-ID: <675ed9f7-da31-6206-5089-1db22025ef4b@linaro.org>
+Date:   Tue, 24 Jan 2023 10:46:57 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.227.76]
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 6/7] arm64: dts: Add ipq9574 SoC and AL02 board support
+To:     Devi Priya <quic_devipriy@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linus.walleij@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
+        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
+        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
+        broonie@kernel.org, tdas@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_poovendh@quicinc.com
+References: <20230110121316.24892-1-quic_devipriy@quicinc.com>
+ <20230110121316.24892-7-quic_devipriy@quicinc.com>
+ <f6ef1834-b629-b76c-9cde-55af56320665@linaro.org>
+ <7f157b73-f856-04d2-1b39-e1f8861d0439@quicinc.com>
+ <84aa79c3-b793-0d0e-d6a5-035aff5a17b4@linaro.org>
+ <278a2e6e-69e0-81b0-f476-571edea950ff@quicinc.com>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <278a2e6e-69e0-81b0-f476-571edea950ff@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Jan 2023 21:17:57 +0000
-Jonathan Cameron <jic23@kernel.org> wrote:
 
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> 
-> The main blocker of this driver moving previously was non standard
-> ABI for the 180 degree offset channel. Now support for that channel
-> has been dropped, this simple driver can move out of staging.
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-I forgot my own rules of posting graduations with move detection turned off.
-I'm going to be doing a v2 anyway to fix the issues Rob's bot and
-Krysztof pointed out in the binding so will hopefully remember to
-turn move detection off for that.
 
-> ---
->  drivers/iio/accel/Kconfig                   | 12 ++++++++++++
->  drivers/iio/accel/Makefile                  |  1 +
->  drivers/{staging => }/iio/accel/adis16203.c |  0
->  drivers/staging/iio/accel/Kconfig           | 12 ------------
->  drivers/staging/iio/accel/Makefile          |  1 -
->  5 files changed, 13 insertions(+), 13 deletions(-)
+On 24.01.2023 08:19, Devi Priya wrote:
 > 
-> diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
-> index b6b45d359f28..88d4b18bd5e8 100644
-> --- a/drivers/iio/accel/Kconfig
-> +++ b/drivers/iio/accel/Kconfig
-> @@ -18,6 +18,18 @@ config ADIS16201
->  	  To compile this driver as a module, say M here: the module will
->  	  be called adis16201.
->  
-> +config ADIS16203
-> +	tristate "Analog Devices ADIS16203 Programmable 360 Degrees Inclinometer"
-> +	depends on SPI
-> +	select IIO_ADIS_LIB
-> +	select IIO_ADIS_LIB_BUFFER if IIO_BUFFER
-> +	help
-> +	  Say Y here to build support for Analog Devices adis16203 Programmable
-> +	  360 Degrees Inclinometer.
-> +
-> +	  To compile this driver as a module, say M here: the module will be
-> +	  called adis16203.
-> +
->  config ADIS16209
->  	tristate "Analog Devices ADIS16209 Dual-Axis Digital Inclinometer and Accelerometer"
->  	depends on SPI
-> diff --git a/drivers/iio/accel/Makefile b/drivers/iio/accel/Makefile
-> index 311ead9c3ef1..b6f0cee52659 100644
-> --- a/drivers/iio/accel/Makefile
-> +++ b/drivers/iio/accel/Makefile
-> @@ -5,6 +5,7 @@
->  
->  # When adding new entries keep the list in alphabetical order
->  obj-$(CONFIG_ADIS16201) += adis16201.o
-> +obj-$(CONFIG_ADIS16203) += adis16203.o
->  obj-$(CONFIG_ADIS16209) += adis16209.o
->  obj-$(CONFIG_ADXL313) += adxl313_core.o
->  obj-$(CONFIG_ADXL313_I2C) += adxl313_i2c.o
-> diff --git a/drivers/staging/iio/accel/adis16203.c b/drivers/iio/accel/adis16203.c
-> similarity index 100%
-> rename from drivers/staging/iio/accel/adis16203.c
-> rename to drivers/iio/accel/adis16203.c
-> diff --git a/drivers/staging/iio/accel/Kconfig b/drivers/staging/iio/accel/Kconfig
-> index 3318997a7009..3769af8719f3 100644
-> --- a/drivers/staging/iio/accel/Kconfig
-> +++ b/drivers/staging/iio/accel/Kconfig
-> @@ -4,18 +4,6 @@
->  #
->  menu "Accelerometers"
->  
-> -config ADIS16203
-> -	tristate "Analog Devices ADIS16203 Programmable 360 Degrees Inclinometer"
-> -	depends on SPI
-> -	select IIO_ADIS_LIB
-> -	select IIO_ADIS_LIB_BUFFER if IIO_BUFFER
-> -	help
-> -	  Say Y here to build support for Analog Devices adis16203 Programmable
-> -	  360 Degrees Inclinometer.
-> -
-> -	  To compile this driver as a module, say M here: the module will be
-> -	  called adis16203.
-> -
->  config ADIS16240
->  	tristate "Analog Devices ADIS16240 Programmable Impact Sensor and Recorder"
->  	depends on SPI
-> diff --git a/drivers/staging/iio/accel/Makefile b/drivers/staging/iio/accel/Makefile
-> index 094cc9be35bd..b0beec471814 100644
-> --- a/drivers/staging/iio/accel/Makefile
-> +++ b/drivers/staging/iio/accel/Makefile
-> @@ -3,5 +3,4 @@
->  # Makefile for industrial I/O accelerometer drivers
->  #
->  
-> -obj-$(CONFIG_ADIS16203) += adis16203.o
->  obj-$(CONFIG_ADIS16240) += adis16240.o
+> 
+> On 1/13/2023 7:50 PM, Krzysztof Kozlowski wrote:
+>> On 13/01/2023 14:29, Devi Priya wrote:
+>>>>> +
+>>>>> +    soc: soc@0 {
+>>>>> +        #address-cells = <1>;
+>>>>> +        #size-cells = <1>;
+>>>>> +        ranges = <0 0 0 0xffffffff>;
+>>>>> +        compatible = "simple-bus";
+>>>>> +
+>>>>> +        tlmm: pinctrl@1000000 {
+>>>>> +            compatible = "qcom,ipq9574-tlmm";
+>>>>> +            reg = <0x01000000 0x300000>;
+>>>>> +            interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+>>>>> +            gpio-controller;
+>>>>> +            #gpio-cells = <2>;
+>>>>> +            gpio-ranges = <&tlmm 0 0 65>;
+>>>>> +            gpio-reserved-ranges = <59 1>;
+>>>>
+>>>> Hm, why reserved ranges are in SoC?
+>>> As the gpio is forbidden on all ipq9574 boards, we have added it in SoC
+>>
+>> Why it is forbidden on all boards? I guess it depends on the firmware
+>> and this can differ, can't it?
+>>
+> This GPIO is protected and used by the TZ firmware and is forbidden on all the boards & firmware
+If it's protected on *all* boards and *all* firmwares (for any
+good reason that you probably have internally), perhaps it
+would be better to describe it in the .c driver.. wdyt?
 
+Konrad
+>> Best regards,
+>> Krzysztof
+>>
+> Regards,
+> Devi Priya
