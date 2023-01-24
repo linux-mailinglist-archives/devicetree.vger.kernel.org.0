@@ -2,99 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68FFB679C78
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 15:49:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 924A3679CC2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 15:59:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235058AbjAXOt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 09:49:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33488 "EHLO
+        id S235094AbjAXO7O convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 24 Jan 2023 09:59:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234995AbjAXOtL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 09:49:11 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C4F74B1AB
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 06:48:55 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id cm4so489970edb.9
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 06:48:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gmEnLOdJR14tI3Ntkk00dRFSWjZDFa7+/nYKUeYSOJ0=;
-        b=I9WJV4tHohdSFNvgT3DyyRpkrkbR321+ZvIjeLn6cxLNMil3v6RvbA23WpOl1FxWEZ
-         RM+OHDDpxbAV8RAzSY6xlxgcpTrXPJk5RYx68GTxFl+059YF4psYeA6sgwHrInvtHg6w
-         RGNIxRI/h2d7K2Xb2fbYAl+rtymmKdxwot95z3bsNwmg+1jh84fuVY3sSZ7cq9hLKI/Y
-         OZzCuHUjUIrqEeJ9oVPeik/jPaC+4D5eXsw9bMw3TlmqaqRQrTYraFzHhI0K/odUEgp+
-         2vka+hpM4gz8/c+V+Ta/loEiExVqCINA1nioIiaE5ygICF7gz+5aSI4j1PhVMU9k5AYa
-         2GPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gmEnLOdJR14tI3Ntkk00dRFSWjZDFa7+/nYKUeYSOJ0=;
-        b=Y+9dmrKt/f8xXeEEaBvJze5aaIVc3Mwb6wTSWPYNm7xBcAHMb6GT0ecihzpe0ogCcH
-         mKqw5ka6kEgA27BOlc5jy+ZcmyrEkKtHVQ5OwzuSyrYvY+rk/y9XteXLOeWK54qHNyNN
-         RF7enTGDlC4GbU38vKYmW2j8rdlazqvhQdkyQLcfK6PEqBnngvqnPH1rcmixCKWwRgjE
-         OjBLmzyQV0opl/ramwxXm4pfVKEiZ9AA8i90JdeLRVXvMg4rvuTmDP5aK/yKG12NIQCf
-         Y+3urUWtdebTpOq4Ap+JN6WZlYThQWcr1IcaTaCmV4L9+0AJnvZH2+dzdjjMBYfJE0IP
-         VdGw==
-X-Gm-Message-State: AFqh2kqz84NWMpEWnLwoALKTUk8Uo214KjunDwM86ItHUA2KXhm574rt
-        clygt3hAz1l4PisCS6TguldAIA==
-X-Google-Smtp-Source: AMrXdXvn5O8bRNj0aUasc7ka2tDDIcHcDOU0IRE4ejFhCjw58kLWIlA0ka87oYwA8fHtt/cbAf9TAg==
-X-Received: by 2002:aa7:cc81:0:b0:47e:eaae:9a5b with SMTP id p1-20020aa7cc81000000b0047eeaae9a5bmr28281849edt.42.1674571734030;
-        Tue, 24 Jan 2023 06:48:54 -0800 (PST)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id b8-20020aa7c908000000b00482e0c55e2bsm728104edt.93.2023.01.24.06.48.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 06:48:53 -0800 (PST)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-hwmon@vger.kernel.org, krzysztof.kozlowski@linaro.org,
-        Naresh Solanki <Naresh.Solanki@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/2] dt-bindings: trivial-devices: Add Infineon TDA38640 Voltage Regulator
-Date:   Tue, 24 Jan 2023 15:48:45 +0100
-Message-Id: <20230124144847.423129-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S234186AbjAXO7N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 09:59:13 -0500
+X-Greylist: delayed 64 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 24 Jan 2023 06:59:13 PST
+Received: from mail.sofgi.ru (mail.sofgi.ru [80.252.25.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4AE415C8C;
+        Tue, 24 Jan 2023 06:59:12 -0800 (PST)
+Received: from [156.96.56.77] (156.96.56.77) by mail.sofgi.ru (192.168.0.8)
+ with Microsoft SMTP Server (TLS) id 14.1.218.12; Tue, 24 Jan 2023 18:50:15
+ +0400
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: Re: Email
+To:     Recipients@vger.kernel.org
+From:   Cohen@vger.kernel.org
+Date:   Tue, 24 Jan 2023 06:54:21 -0800
+Reply-To: <cohencharles59@gmail.com>
+Message-ID: <036d922a-9954-4e15-a7ea-a043ec4e9e96@EXCHANGE.fond-samara.ru>
+X-Originating-IP: [156.96.56.77]
+X-Spam-Status: No, score=4.9 required=5.0 tests=BAYES_50,
+        FREEMAIL_FORGED_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_SBL,
+        RCVD_IN_SORBS_WEB,SPF_HELO_NONE,TO_MALFORMED autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Infineon TDA38640 is PMBUS compliant voltage regulator.
-
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index f5c0a6283e61..a28b02036489 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -141,6 +141,8 @@ properties:
-           - infineon,slb9645tt
-             # Infineon SLB9673 I2C TPM 2.0
-           - infineon,slb9673
-+            # Infineon TDA38640 Voltage Regulator
-+          - infineon,tda38640
-             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
-           - infineon,tlv493d-a1b6
-             # Infineon Multi-phase Digital VR Controller xdpe11280
-
-base-commit: 4d891f76a30d3be4194a805c5e4277786140ef05
--- 
-2.38.1
-
+I am interested in funding your business/project. I am a private investor, and I am open to further negotiation with you if this suits your interest.
+Regards,
+Charles Cohen
