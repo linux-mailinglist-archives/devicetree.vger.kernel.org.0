@@ -2,383 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B1866792F3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 09:22:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8D806792EC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 09:22:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232166AbjAXIW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 03:22:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47610 "EHLO
+        id S232609AbjAXIWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 03:22:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229753AbjAXIW2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 03:22:28 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A4F3251C;
-        Tue, 24 Jan 2023 00:22:26 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30O7uqRp030838;
-        Tue, 24 Jan 2023 08:22:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=VvQWL+N8uOSRIOMAJeoRl11wo2LBIK6chT5eIU3Ghkk=;
- b=pDdAzWj7DcEVElKY34mUcBQxJ1PgtaECq2/xC0IZ+rFIxjCe3+OZ8LCt5AdCHktyXqeu
- +XAs6AmF5a+m8k3YTtQ1nOBPfT26wcDvln/3R8+yVd0/CjbsaIly8F/NYvrcIuytitr2
- GNbtx8Ar/Gt6N4uWyYxLD/3s/xx0MzWgjNRdzrjBIn9SRTF6m500OMcRSiWl1srSfSl6
- Erup2AATiyyPpRLuaQOPlH40SSdOS7x9auJd9doLsKeMGtR1m0xTJ3SNLDJFQ4kmFU0e
- qYE76fenERviFeD8nm1X9VSRyFBymnmKhYKFHeWBVWOoK7MQH7dKBTSt0kt4povMhUsN Ww== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n89fm4q3p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 24 Jan 2023 08:22:15 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30O8ME4F010481
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 24 Jan 2023 08:22:14 GMT
-Received: from [10.216.53.255] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 24 Jan
- 2023 00:22:05 -0800
-Message-ID: <203602c9-265a-73cd-6fcd-b97620ec263c@quicinc.com>
-Date:   Tue, 24 Jan 2023 13:51:55 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [RFC v4 2/5] usb: dwc3: core: Refactor PHY logic to support
- Multiport Controller
-To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-        Andrew Halaney <ahalaney@redhat.com>
-CC:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231660AbjAXIWR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 03:22:17 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AFCFBB
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:22:16 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id k16so10788663wms.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:22:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U9DqS2Jn9nJYNaDy07cme/7hQmGWWsUBjAPPDyYRsn4=;
+        b=Vu2rxQhfqYQNgFFNRdKmRY6baqaJ+wwVQzel9USbomB3kstntshg/9LBTQZpk5SPY6
+         SDRy0WiL0IpizDWYRT0N2/2Tw1JeWu/YXwMwC8sok/CA/IeuO7BG+6Zol4XtzttTWx5z
+         mzP2+6XybKArW3kdhnDz3yYcoa2rZvGJnIZUjiWplWf7HLXCmww+AKipfQ3vWJ1GPsA6
+         pt1qrFpjgHqM4VdD8nFt9XdEk7RrYhBC50UqZqkKZ2H0LhH/uCQlm93ENJmEOu/mssSM
+         5TsN/fO5/a8Cdc1QexvNUVnfKWlsJCNoGvlpEnxP2OCHrRpWWJ0FL2TGptMEVapD16Cd
+         fvAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U9DqS2Jn9nJYNaDy07cme/7hQmGWWsUBjAPPDyYRsn4=;
+        b=mrtIrDTgCsEbUtZC9BIS8Sc9hR7F8aG5LMw58DViWJ0znUPPKeyFm9504uD0RqOCPE
+         FF1p/wHEbszpourPVvFIG3GCXrnje/+uYxldZTt4U6SJosTC7ERpsB398I81LBgBCbqO
+         QKA6Cu2jL6otFCY6nokbTXxg+sohva+MCt9wV3N2C6wZ6XCTCd0z9ePo753VwdravamF
+         oT6Y1l+AmJd2acuSgdna1sFa2KchDV3eEUzpCUqFBGXBqKAbBq9MqRrLzk7BwKiw1TsH
+         CnfSJrr+Ofy6RHRlw3um+MlDxLyUF+Ua+oB/XaYhB7ikE4Lde4zk2b4s+rHEfxUOsdr/
+         MOjg==
+X-Gm-Message-State: AO0yUKUsdxTLBB6U1QVpcWbW2S78UtjyRxgOT+LFtz1qZdTg6umNGQnv
+        j1ZkXQ1gLvsXzh8FM8UZ3d2Ikw==
+X-Google-Smtp-Source: AK7set9kgsgyREqDkDA4wXQveg9l8CTz4di8q5DI2C+/Ud24R0ZH9g/nee+rfw3tBwzBqjJdZL6CoA==
+X-Received: by 2002:a05:600c:4fcb:b0:3dc:1687:9b9a with SMTP id o11-20020a05600c4fcb00b003dc16879b9amr460697wmq.37.1674548535007;
+        Tue, 24 Jan 2023 00:22:15 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id h13-20020a05600c2cad00b003cfa622a18asm13870207wmc.3.2023.01.24.00.22.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jan 2023 00:22:14 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_wcheng@quicinc.com>,
-        <quic_jackp@quicinc.com>, <quic_harshq@quicinc.com>
-References: <20230115114146.12628-1-quic_kriskura@quicinc.com>
- <20230115114146.12628-3-quic_kriskura@quicinc.com>
- <20230119220942.ja5gbo3t3fl63gpy@halaney-x13s>
- <8f32c2e5-2743-1017-6a33-4849021c5287@quicinc.com>
- <20230120143717.ikbcb6x7wl4yy5d7@halaney-x13s>
- <84ad5269-dd48-32ef-1313-6241980834bc@quicinc.com>
- <4afa3861-a18c-d547-5f71-16207ef6490f@quicinc.com>
-Content-Language: en-US
-From:   Shazad Hussain <quic_shazhuss@quicinc.com>
-In-Reply-To: <4afa3861-a18c-d547-5f71-16207ef6490f@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: zuxRpqRfFBDhAfrCTwQmkQd3t47OisnU
-X-Proofpoint-GUID: zuxRpqRfFBDhAfrCTwQmkQd3t47OisnU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-23_12,2023-01-23_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1011
- malwarescore=0 bulkscore=0 phishscore=0 lowpriorityscore=0 mlxlogscore=999
- mlxscore=0 priorityscore=1501 adultscore=0 suspectscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2301240075
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+In-Reply-To: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
+References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
+Subject: Re: (subset) [PATCH 0/8] soc: amlogic: switch bindings to yaml and
+ adjust some dtbs's
+Message-Id: <167454853388.2972173.6260080234043719240.b4-ty@linaro.org>
+Date:   Tue, 24 Jan 2023 09:22:13 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+On Mon, 23 Jan 2023 22:22:15 +0100, Heiner Kallweit wrote:
+> At first adjust some existing dtbs's so that they pass dtbs_check
+> after switching bindings to yaml.
+> 
+> Then switch further Amlogic Meson bindings to yaml.
+> Tested with make targets dt_binding_check and dtbs_check.
+> 
+> Heiner Kallweit (8):
+>   arm64: dts: meson-gx: Remove invalid pwm compatible
+>   arm64: dts: amlogic: Fix non-compliant SD/SDIO node names
+>   arm64: dts: meson-gx: Set only one compatible string for mmc
+>   arm64: dts: amlogic: Remove invalid compatible string
+>     amlogic,meson-gpio-intc
+>   dt-bindings: rtc: Add Amlogic Meson vrtc controller binding
+>   dt-bindings: pwm: Add Amlogic Meson PWM binding
+>   dt-bindings: interrupt-controller: Add Amlogic Meson GPIO interrupt
+>     controller binding
+>   dt-bindings: pinctrl: Add Amlogic Meson pinctrl binding
+> 
+> [...]
 
-On 1/20/2023 8:48 PM, Krishna Kurapati PSSNV wrote:
-> 
-> 
-> On 1/20/2023 8:43 PM, Krishna Kurapati PSSNV wrote:
->>
->>
->> On 1/20/2023 8:07 PM, Andrew Halaney wrote:
->>> On Fri, Jan 20, 2023 at 07:25:57AM +0530, Krishna Kurapati PSSNV wrote:
->>>>
->>>>
->>>> On 1/20/2023 3:39 AM, Andrew Halaney wrote:
->>>>> On Sun, Jan 15, 2023 at 05:11:43PM +0530, Krishna Kurapati wrote:
->>>>>> Currently the DWC3 driver supports only single port controller
->>>>>> which requires at most one HS and one SS PHY.
->>>>>>
->>>>>> But the DWC3 USB controller can be connected to multiple ports and
->>>>>> each port can have their own PHYs. Each port of the multiport
->>>>>> controller can either be HS+SS capable or HS only capable
->>>>>> Proper quantification of them is required to modify GUSB2PHYCFG
->>>>>> and GUSB3PIPECTL registers appropriately.
->>>>>>
->>>>>> Add support for detecting, obtaining and configuring phy's supported
->>>>>> by a multiport controller and limit the max number of ports
->>>>>> supported to 4.
->>>>>>
->>>>>> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
->>>>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->>>>>> ---
->>>>>>    drivers/usb/dwc3/core.c | 304 
->>>>>> +++++++++++++++++++++++++++++-----------
->>>>>>    drivers/usb/dwc3/core.h |  15 +-
->>>>>>    drivers/usb/dwc3/drd.c  |  14 +-
->>>>>>    3 files changed, 244 insertions(+), 89 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
->>>>>> index 476b63618511..7e0a9a598dfd 100644
->>>>>> --- a/drivers/usb/dwc3/core.c
->>>>>> +++ b/drivers/usb/dwc3/core.c
->>>>>
->>>>> <snip>
->>>>>
->>>>>> @@ -1575,6 +1690,21 @@ static void dwc3_get_properties(struct dwc3 
->>>>>> *dwc)
->>>>>>        dwc->dis_split_quirk = device_property_read_bool(dev,
->>>>>>                    "snps,dis-split-quirk");
->>>>>> +
->>>>>> +    /*
->>>>>> +     * If no mulitport properties are defined, default
->>>>>> +     * the port count to '1'.
->>>>>> +     */
->>>>>> +    ret = device_property_read_u32(dev, "num-ports",
->>>>>> +                &dwc->num_ports);
->>>>>> +    if (ret)
->>>>>> +        dwc->num_ports = 1;
->>>>>> +
->>>>>> +    ret = device_property_read_u32(dev, "num-ss-ports",
->>>>>> +                &dwc->num_ss_ports);
->>>>>> +    if (ret)
->>>>>> +        dwc->num_ss_ports = 1;
->>>>>
->>>>> By using this DT property instead of using the number of each phy 
->>>>> type you
->>>>> find you can get into situations where you're writing 
->>>>> DWC3_GUSB2PHYCFG, etc,
->>>>> when there's no phy to go along with it.
->>>>>
->>>> Hi Andrew,
->>>>
->>>>   Thanks for the review. Yes, this decoupling is still there and its 
->>>> fine I
->>>> believe.
->>>>
->>>>> I ran into this when testing on sa8540p-ride, which only uses one 
->>>>> of the
->>>>> ports on the multiport controller. I didn't enable the other phys (not
->>>>> sure if that was smart or not) and overrode phy-names/phys, but did 
->>>>> not
->>>>> override num-ports/num-ss-ports, which resulted in that. Nothing bad
->>>>> happened on a quick test.. but I thought I'd highlight that as another
->>>>> downside of decoupling this value from the number of phys you grab.
->>>>>
->>>> If we do not override phy-names or num-ports/num-ss-ports info in 
->>>> DT, they
->>>> are just defaulted to '1' and as per the current logic only port-1 
->>>> registers
->>>> must be configured. Isn't that the case happening ?
->>>>
->>>
->>> In my dts I'm inheriting from the sc8280xp.dtsi usb_2 phandle you've 
->>> created!
->>> So unless I override them I get this from your sc8280xp.dtsi:
->>>
->>> +                       usb_2_dwc3: usb@a400000 {
->>> +                               compatible = "snps,dwc3";
->>> +                               reg = <0 0x0a400000 0 0xcd00>;
->>> +                               interrupts = <GIC_SPI 133 
->>> IRQ_TYPE_LEVEL_HIGH>;
->>> +                               iommus = <&apps_smmu 0x800 0x0>;
->>> +                               num-ports = <4>;
->>> +                               num-ss-ports = <2>;
->>> +                               phys = <&usb_2_hsphy0>, 
->>> <&usb_2_qmpphy0>,
->>> +                                       <&usb_2_hsphy1>, 
->>> <&usb_2_qmpphy1>,
->>> +                                       <&usb_2_hsphy2>,
->>> +                                       <&usb_2_hsphy3>;
->>> +                               phy-names = "usb2-phy_port0", 
->>> "usb3-phy_port0",
->>> +                                               "usb2-phy_port1", 
->>> "usb3-phy_port1",
->>> +                                               "usb2-phy_port2",
->>> +                                               "usb2-phy_port3";
->>> +                       };
->>>
->>> Since this board only uses one port of the multiport controller, I
->>> redefined phys/phy-names to indicate that. I figured that was more
->>> desireable than enabling unnecessary phys. Without overriding
->>> num-ports/num-ss-ports all the for loops in this patch would act like
->>> the values were 4 and 2 respectively, writing to DWC3_GUSB2PHYCFG
->>> multiple times etc as well as look for the multiport phy-names and fail
->>> to actually get any phys. Hope that makes sense!
->>>
->> Hi Andrew,
->>
->>   My Bad. I missed the fact that it was based on sc8280xp.dtsi. In 
->> that case it makes complete sense to override the num-ports and 
->> num-ss-ports to "1" and the usb phy-names.
->>>>> Here's a patch enabling sa8540p-ride, I'd love if you'd add it to the
->>>>> series (probably needs clean up after review, and will definitely need
->>>>> alteration after you update the dt-binding again). If not I'll 
->>>>> continue
->>>>> to test/review so please CC me!:
->>>>>
->>>>>
->>>> Sure, I can add this patch (probably will add the other phy's too) 
->>>> during
->>>> the final submission.
->>>
->>> I don't have a great understanding of the mapping of the phys to
->>> physical connections (as well as what registers like DWC3_GUSB2PHYCFG 
->>> do),
->>> so if it makes more sense to enable all the relevant SoC phys, write
->>> those registers in the DWC3 IP, etc, and only use one of the actual
->>> board outputs then feel free. I think this is a good example of "what if
->>> a board designer only uses a single port of the multiport IP" imo.
->>> Agreed. This could be a good example of multi port with only single port 
-> 
-> Typo in the previous mail. Correcting it here.
-> 
->> working.
-> Agreed, The dt-patch you provided will be a good working example of 
-> getting just a single port working for a multiport controller.
-> 
-> Regards,
-> Krishna,
-> 
->>>>
->>>>>   From dcb27d07f079194ebd7efe1c9bec64da78beb290 Mon Sep 17 00:00:00 
->>>>> 2001
->>>>> From: Andrew Halaney <ahalaney@redhat.com>
->>>>> Date: Thu, 19 Jan 2023 14:53:38 -0600
->>>>> Subject: [PATCH] arm64: dts: qcom: sa8540p-ride: Enable usb_2
->>>>> Content-type: text/plain
->>>>>
->>>>> There is now support for the multiport USB controller this uses
->>>>> so enable it.
->>>>>
->>>>> The board only has a single port hooked up (despite it being wired 
->>>>> up to
->>>>> the multiport IP on the SoC). There's also a USB 2.0 mux hooked up,
->>>>> which by default on boot is selected to mux properly. Grab the gpio
->>>>> controlling that and ensure it stays in the right position so USB 2.0
->>>>> continues to be routed from the external port to the SoC.
->>>>>
->>>>> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
->>>>> ---
->>>>>    arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 24 
->>>>> +++++++++++++++++++++++
->>>>>    1 file changed, 24 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts 
->>>>> b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
->>>>> index 97957f3baa64..56d4f43faa1e 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
->>>>> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
->>>>> @@ -246,6 +246,21 @@ &usb_0_qmpphy {
->>>>>        status = "okay";
->>>>>    };
->>>>> +&usb_2 {
->>>>> +    pinctrl-names = "default";
->>>>> +    pinctrl-0 = <&usb2_en_state>;
->>>>> +
->>>>> +    status = "okay";
->>>>> +};
->>>>> +
->>>>> +&usb_2_dwc3 {
->>>>> +    dr_mode = "host";
->>>>> +    num-ports = <1>;
->>>>> +    num-ss-ports = <1>;
->>>>
->>>> More over, if this is a multiport controller and you are using only 
->>>> port-1,
->>>> it is as good as a single port controller I believe and the normal DT
->>>> convention must work. Adding these properties as "1" is not required 
->>>> as the
->>>> driver logic defaults them to "1" if they are not found.
->>>
->>> See above comment about inheriting from sc8280xp.dtsi and needing to
->>> override their values.
->>>
->>>>
->>>> Just to add a point here (as I was not clear in DT Binding 
->>>> description, My
->>>> bad), the num-ports and num-ss-ports must indicate the HS/SS Phys 
->>>> present on
->>>> HW whether they are used in DT or not. Just to cover all cases which 
->>>> user
->>>> can use [1].
->>>>
->>>> []1:
->>>> https://lore.kernel.org/all/4eb26a54-148b-942f-01c6-64e66541de8b@quicinc.com/
->>>
->>> Ok, if you're going with that approach of "must indicate the HS/SS Phys
->>> present on HW whether they are used in the DT or not" (/me assumes DT
->>> here means on the board and not an incorrect coding of the DT) then I
->>> suppose I should not have overridden anything but phys/phy-names to
->>> indicate that I'm only using the first port (and used the multiport
->>> phy-names convention). It looks like in that link you also mention that
->>> it is ok to write to DWC3_GUSB2PHYCFG and friends even if the phy isn't
->>> defined, which was my concern and reasoning above for overriding
->>> num-ports/num-ss-ports.
->>>
->>> Thanks,
->>> Andrew
->>>
->> Actually, I was trying to mandate that rule to take care of cases 
->> where the phy's for say port2 or port3 are missing for a quad port 
->> controller in dtsi and we don't want to end up configuring wrong 
->> dwc3-phy regs.
->>
->> For just the first port, the changes you have mentioned must be 
->> sufficient. (Furthermore, thanks for the review and testing it on 
->> sa8295-ride and confirming nothing breaks while the first port is 
->> enabled)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
 
-I agree that for ride platform the changes provided with overridden
-phys in DT for the sa8540-ride.dts makes more sense with only having
-port0 of multi port on this platform.
-Looking forward to validate the next version on ride platform.
+[2/8] arm64: dts: amlogic: Fix non-compliant SD/SDIO node names
+      https://git.kernel.org/amlogic/c/1be13a5091bf71627aa1a3d35360b039510f42f3
 
-Krishna, please keep me in cc in the next version :).
+These changes has been applied on the intermediate git tree [1].
 
--Shazad
+The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
 
->>
->> Regards,
->> Krishna,
->>>>
->>>> Regards,
->>>> Krishna,
->>>>
->>>>> +    phy-names = "usb2-phy", "usb3-phy";
->>>>> +    phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
->>>>> +};
->>>>> +
->>>>>    &usb_2_hsphy0 {
->>>>>        vdda-pll-supply = <&vreg_l5a>;
->>>>>        vdda18-supply = <&vreg_l7g>;
->>>>> @@ -313,4 +328,13 @@ wake-pins {
->>>>>                bias-pull-up;
->>>>>            };
->>>>>        };
->>>>> +
->>>>> +    usb2_en_state: usb2-en-state {
->>>>> +        /* TS3USB221A USB2.0 mux select */
->>>>> +        pins = "gpio24";
->>>>> +        function = "gpio";
->>>>> +        drive-strength = <2>;
->>>>> +        bias-disable;
->>>>> +        output-low;
->>>>> +    };
->>>>>    };
->>>>
->>>
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
+
