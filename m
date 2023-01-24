@@ -2,230 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA2FB6795EB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:02:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4B76679603
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:03:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233451AbjAXLBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 06:01:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32810 "EHLO
+        id S233788AbjAXLCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 06:02:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233239AbjAXLBi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:01:38 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EC8A6A6A
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:01:37 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id q5so8823420wrv.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:01:37 -0800 (PST)
+        with ESMTP id S233789AbjAXLCY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:02:24 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7534243440;
+        Tue, 24 Jan 2023 03:02:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Diba07ViOeI4wEotQ3miGeT+MgDEwdMPT+7cnpc7+uQ=;
-        b=hdp8oo/fUcR6XBjX1xguZjy7WC9HxTC3SEGl5XuL1VYwFqWAVC76aOuaMbWBX+wvAN
-         FUoB1fXraWV8TFn4MIF320lKbU2rJqUWEEeBdS8pnC5lAcPXbHcI0aIBUSlMI3D+Sdn7
-         06ZEoRf1PAa95/S6L1k8OuQhZkWt/6hiHouHVvw1/qIbd/Vg0F4XNF+Y9uJKh7NHWJR3
-         uT/4J+WWR5GTwB6fqqo85OBd902mcR8Qy2plpXsVCdKcu0KpteK0f8EUc5euNjyewHyW
-         rBtb4/EV26DWFhEHW0PB3MvtE5BFtl7Sfk4oGIUGo26e1PJdVdd2NCkZCYL+Kew5xz9b
-         uBoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Diba07ViOeI4wEotQ3miGeT+MgDEwdMPT+7cnpc7+uQ=;
-        b=D1H7woZjE01Lgi1CN7PZmGKuL8lruY4X7CLgWLbgRsSFrOlmkxJKhQYWIYCaX0ev1g
-         sYwZW/u+uHSt0mU7duMIMHQpXve71mrGElzGW4O20HCwZWrT+WNc13j5pO9kJTZbgGxI
-         mZdH9fhxAx1n0LUhCso+6clELnagdl6F2/Jn1d3zdFyk7u+DEBaVbLAdiwlJ/LoKdm3+
-         8o0497crdjOuJVtCO57pamnYMyx3NVw48asZmVieRq+f0LJIxnszLzYBy3bJ4sdz/SDA
-         QPTc8eWvVZrBUbhNdoaRqnuGT8bPNY/2WFgyYYrbmq5RYYjuVyt3K3oAnwiIhFqfHHjm
-         jU1Q==
-X-Gm-Message-State: AFqh2kofq25vGfjxARJ4CORHFntczsDlKviCBPTq/LEYm/01jaKtec/+
-        eJM2jL9C2bdhfRUZE4xAToN/Ew==
-X-Google-Smtp-Source: AMrXdXurQ9dgqy4d6gZMB2MpKM4y/VSKWdvMjQa5viPyjthVLnhd6qbbXkVTGHHlpyaqUVoM3u2bDQ==
-X-Received: by 2002:a05:6000:689:b0:2bd:ffad:1bce with SMTP id bo9-20020a056000068900b002bdffad1bcemr27235891wrb.59.1674558095580;
-        Tue, 24 Jan 2023 03:01:35 -0800 (PST)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id j20-20020a5d6e54000000b002b9b9445149sm1935328wrz.54.2023.01.24.03.01.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 03:01:35 -0800 (PST)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1674558138; x=1706094138;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=3wIsd9yuwAxmR+0jDYx8c6/1g7gmVgh8u1CP487VUjo=;
+  b=NpRIlzjqnVJsPPn/hfcnJ+gEwgtdSjd0gkFXyt3e4RV5GRiOOXl93gdm
+   TCngpnjsjW5yAE1MDjI4Pue66hHU3VFUDiXoyvNsZA6jg9TZcOp/rir5z
+   RyQCK6X/kZPQQLMseJIkkEEWPn8r+w9dq0DzgMYEO5sKH9rhL8uAPzFxP
+   jngKXwUupAeOfXQJT3GkvpbT5PaMW/x636jbB88a+887l/ktP7kV0lBmg
+   5W3YQT9NM3ttTsecB/WPneNnqa85T53TXg5E2lhDJdunaoDMpEOej2ooh
+   1lYdd4gEMZ2FbX9GVZj1v8dndxV8H6wfzIVdkCaYCNXuHiaGlu9L8qNeM
+   w==;
+X-IronPort-AV: E=Sophos;i="5.97,242,1669071600"; 
+   d="scan'208";a="28616608"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 24 Jan 2023 12:02:16 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 24 Jan 2023 12:02:16 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 24 Jan 2023 12:02:16 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1674558136; x=1706094136;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=3wIsd9yuwAxmR+0jDYx8c6/1g7gmVgh8u1CP487VUjo=;
+  b=cWkyWJofCHtHPwqnWhAfT0UpGxrJ8iv7SGU+25Ym3oDeKQaXQFVfKUzY
+   /IjImKbIGVl0rtb5qhxyK/MZaPGGCbvHscvAamT0ZCDuVHK01pTPap6zi
+   GrKPRSF6OgUqqc+qutwd+zD9Zm1D6TswN7zaPI91D9nkTluBBSRMxzce0
+   G9yhyXgxqMRCV1TgvDMw3H0faiCZNO7XRi3jOX/gatazGJcVWQwe+qlQK
+   MsnciCCd2RwS5htTZ8FOAXOBlUIitbpcNrOoINBTkIS25CKBeTqhZ/7jL
+   ybJbJCC6qk3Fl5IobYIdxRF+wJMY2aa+s1/GD6UrLbLkU3vWaiec4wWu/
+   w==;
+X-IronPort-AV: E=Sophos;i="5.97,242,1669071600"; 
+   d="scan'208";a="28616606"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 24 Jan 2023 12:02:16 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 00729280056;
+        Tue, 24 Jan 2023 12:02:15 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Naresh Solanki <Naresh.Solanki@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] hwmon: (pmbus/tda38640) Add driver for Infineon TDA38640 Voltage Regulator
-Date:   Tue, 24 Jan 2023 12:01:11 +0100
-Message-Id: <20230124110111.3965317-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.38.1
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Marek Vasut <marex@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Nicolas Schier <nicolas@fjasle.eu>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kbuild@vger.kernel.org
+Subject: [PATCH v3 00/10] TQMLS1021A support
+Date:   Tue, 24 Jan 2023 12:02:03 +0100
+Message-Id: <20230124110213.3221264-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+Hi,
 
-Add the pmbus driver for the Infineon TDA38640 voltage regulator.
+thanks everyone for the feedback. This is the third round of this series to
+add support for the TQMLS1021A using the MBLS1021A mainboard.
+The changelog is included in the individual patches.
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
----
- .../devicetree/bindings/trivial-devices.yaml  |  2 +
- drivers/hwmon/pmbus/Kconfig                   | 16 ++++
- drivers/hwmon/pmbus/Makefile                  |  1 +
- drivers/hwmon/pmbus/tda38640.c                | 78 +++++++++++++++++++
- 4 files changed, 97 insertions(+)
- create mode 100644 drivers/hwmon/pmbus/tda38640.c
+Best regards,
+Alexander
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index f5c0a6283e61..a28b02036489 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -141,6 +141,8 @@ properties:
-           - infineon,slb9645tt
-             # Infineon SLB9673 I2C TPM 2.0
-           - infineon,slb9673
-+            # Infineon TDA38640 Voltage Regulator
-+          - infineon,tda38640
-             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
-           - infineon,tlv493d-a1b6
-             # Infineon Multi-phase Digital VR Controller xdpe11280
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index 30448e049486..9f4bbb9c487a 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -395,6 +395,22 @@ config SENSORS_STPDDC60
- 	  This driver can also be built as a module. If so, the module will
- 	  be called stpddc60.
- 
-+config SENSORS_TDA38640
-+	tristate "Infineon TDA38640"
-+	help
-+	  If you say yes here you get hardware monitoring support for Infineon
-+	  TDA38640.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called tda38640.
-+
-+config SENSORS_TDA38640_REGULATOR
-+	bool "Regulator support for TDA38640 and compatibles"
-+	depends on SENSORS_TDA38640 && REGULATOR
-+	help
-+	  If you say yes here you get regulator support for Infineon
-+	  TDA38640 as regulator.
-+
- config SENSORS_TPS40422
- 	tristate "TI TPS40422"
- 	help
-diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-index d9d2fa4bd6f7..3ae019916267 100644
---- a/drivers/hwmon/pmbus/Makefile
-+++ b/drivers/hwmon/pmbus/Makefile
-@@ -40,6 +40,7 @@ obj-$(CONFIG_SENSORS_PM6764TR)	+= pm6764tr.o
- obj-$(CONFIG_SENSORS_PXE1610)	+= pxe1610.o
- obj-$(CONFIG_SENSORS_Q54SJ108A2)	+= q54sj108a2.o
- obj-$(CONFIG_SENSORS_STPDDC60)	+= stpddc60.o
-+obj-$(CONFIG_SENSORS_TDA38640)	+= tda38640.o
- obj-$(CONFIG_SENSORS_TPS40422)	+= tps40422.o
- obj-$(CONFIG_SENSORS_TPS53679)	+= tps53679.o
- obj-$(CONFIG_SENSORS_TPS546D24)	+= tps546d24.o
-diff --git a/drivers/hwmon/pmbus/tda38640.c b/drivers/hwmon/pmbus/tda38640.c
-new file mode 100644
-index 000000000000..31e17a936b8c
---- /dev/null
-+++ b/drivers/hwmon/pmbus/tda38640.c
-@@ -0,0 +1,78 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Hardware monitoring driver for Infineon TDA38640
-+ *
-+ * Copyright (c) 2023 9elements GmbH
-+ *
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/regulator/driver.h>
-+#include "pmbus.h"
-+
-+#if IS_ENABLED(CONFIG_SENSORS_TDA38640_REGULATOR)
-+static const struct regulator_desc tda38640_reg_desc[] = {
-+	PMBUS_REGULATOR("vout", 0),
-+};
-+#endif /* CONFIG_SENSORS_TDA38640_REGULATOR */
-+
-+static struct pmbus_driver_info tda38640_info = {
-+	.pages = 1,
-+	.format[PSC_VOLTAGE_IN] = linear,
-+	.format[PSC_VOLTAGE_OUT] = linear,
-+	.format[PSC_CURRENT_OUT] = linear,
-+	.format[PSC_CURRENT_IN] = linear,
-+	.format[PSC_POWER] = linear,
-+	.format[PSC_TEMPERATURE] = linear,
-+
-+	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT
-+	    | PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP
-+	    | PMBUS_HAVE_IIN
-+	    | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
-+	    | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT
-+	    | PMBUS_HAVE_POUT | PMBUS_HAVE_PIN,
-+#if IS_ENABLED(CONFIG_SENSORS_TDA38640_REGULATOR)
-+	.num_regulators = 1,
-+	.reg_desc = tda38640_reg_desc,
-+#endif
-+};
-+
-+static int tda38640_probe(struct i2c_client *client)
-+{
-+	return pmbus_do_probe(client, &tda38640_info);
-+}
-+
-+static const struct i2c_device_id tda38640_id[] = {
-+	{"tda38640", 0},
-+	{}
-+};
-+
-+MODULE_DEVICE_TABLE(i2c, tda38640_id);
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id tda38640_of_match[] = {
-+	{ .compatible = "infineon,tda38640"},
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, tda38640_of_match);
-+#endif
-+
-+/* This is the driver that will be inserted */
-+static struct i2c_driver tda38640_driver = {
-+	.driver = {
-+		   .name = "tda38640",
-+		   },
-+	.probe_new = tda38640_probe,
-+	.id_table = tda38640_id,
-+};
-+
-+module_i2c_driver(tda38640_driver);
-+
-+MODULE_AUTHOR("Patrick Rudolph <patrick.rudolph@9elements.com>");
-+MODULE_DESCRIPTION("PMBus driver for Infineon TDA38640");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS(PMBUS);
+Alexander Stein (7):
+  ARM: dts: ls1021a: add TQ-Systems MBLS102xA device tree
+  ARM: dts: ls1021a: add TQMLS1021A flash partition layout
+  ARM: dts: ls1021a: add TQMLS1021A/MBLS102xA LVDS TM070JVHG33 overlay
+  ARM: dts: ls1021a: add TQMLS1021A/MBLS102xA HDMI overlay
+  ARM: dts: ls1021a: add TQMLS1021A/MBLS102xA LVDS CDTECH DC44 overlay
+  ARM: dts: ls1021a: add TQMLS1021A/MBLS102xA LVDS CDTECH FC21 overlay
+  ARM: multi_v7_defconfig: Add options to support TQMLS102xA series
 
-base-commit: 4d891f76a30d3be4194a805c5e4277786140ef05
+Matthias Schiffer (1):
+  dt-bindings: arm: fsl: add TQ-Systems LS1021A board
+
+Nicolas Saenz Julienne (2):
+  kbuild: Add config fragment merge functionality
+  ARM: add multi_v7_lpae_defconfig
+
+ .../devicetree/bindings/arm/fsl.yaml          |  10 +
+ arch/arm/Makefile                             |   6 +
+ arch/arm/boot/dts/Makefile                    |  12 +
+ ...1021a-tqmls1021a-mbls1021a-cdtech-dc44.dts |  55 +++
+ ...1021a-tqmls1021a-mbls1021a-cdtech-fc21.dts |  55 +++
+ .../ls1021a-tqmls1021a-mbls1021a-hdmi.dtso    |  36 ++
+ ...tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtso |  56 +++
+ .../boot/dts/ls1021a-tqmls1021a-mbls1021a.dts | 406 ++++++++++++++++++
+ arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi     | 112 +++++
+ arch/arm/configs/lpae.config                  |   2 +
+ arch/arm/configs/multi_v7_defconfig           |  13 +
+ arch/powerpc/Makefile                         |  12 +-
+ scripts/Makefile.defconf                      |  15 +
+ 13 files changed, 779 insertions(+), 11 deletions(-)
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-cdtech-dc44.dts
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-cdtech-fc21.dts
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-hdmi.dtso
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtso
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi
+ create mode 100644 arch/arm/configs/lpae.config
+ create mode 100644 scripts/Makefile.defconf
+
 -- 
-2.38.1
+2.34.1
 
