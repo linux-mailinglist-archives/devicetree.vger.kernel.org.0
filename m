@@ -2,177 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AD3C67A57A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 23:15:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BEE967A582
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 23:17:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235193AbjAXWPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 17:15:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48438 "EHLO
+        id S235075AbjAXWRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 17:17:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235188AbjAXWPa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 17:15:30 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF457EC50;
-        Tue, 24 Jan 2023 14:15:28 -0800 (PST)
-Received: from [192.168.2.197] (unknown [109.252.117.89])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: dmitry.osipenko)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8CB086602E22;
-        Tue, 24 Jan 2023 22:15:25 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1674598527;
-        bh=U5pqxjSVWv1r+xzfhDscJlEQYLqcxSfkvxxI5A+J+wc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=hQ9YDjUqA9i+uEX6M+UnrsXmKUlOrQLOWtHywTGb4RrDNIX+2wbZDf/cI3jxKkrVs
-         Mo8KSjrlrcX0jJGlHRO7u9jLOuziokRNkSv1JRniKACDb1MqA1xK16xIHe6YIrzgI+
-         pWv3acwe+COWFCC/mKFz8Sc/cObnBsokEctFFnNTp3F9c0AF1kaz99FChTV2bdiCNB
-         VWkfkq0rDO2FRDlZHpf9uhKAK9Rsmr0UZK83FgMkTCHXTQbp/DLMvbmtKFn3U8F5vL
-         BE+WUxmoJaKjGpPcCrMX26rkviFdm/KaUKRAfpVNtAZSlfGIUUnSBDT/IIOWDT4rA8
-         9yFBmCBE/8VHA==
-Message-ID: <e426497b-0421-1bc1-2a72-871b0e2d48a4@collabora.com>
-Date:   Wed, 25 Jan 2023 01:15:22 +0300
+        with ESMTP id S233643AbjAXWRQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 17:17:16 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE0EEEC50;
+        Tue, 24 Jan 2023 14:17:14 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id g13so25808216lfv.7;
+        Tue, 24 Jan 2023 14:17:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mhJX74SyXpEe21VKvtmYRp6Q7Ngr55XoXxrS6GHTUaM=;
+        b=lIOkQn3uy7/I/z2v8Q85L0rLBL7SX9DrJ6x65AriCaUZU12w6lgUwTBkK9bJzvqsbV
+         AGimKEMkNWeNnOND/KABFJLrBc8vXvJ3gqpf+vIRKGOA31TqNm+YVIGpsXKYPx8jgce3
+         2ILeWIph/JftA1Yj53Sq1jDrCHnyp4E6ua4ibXfT3nMhNt9vW7/ouWyn3wgZiGJAPOCU
+         B0LAhuEYvIUp/8lluMUpB0iSfxvIbNcR+tD+q69FIabOyc1m8n7KQnJC5Qj84AbRi3fv
+         bZ+sAwmoB7z60IocecZ6Y9UWh/bV5WXO+rcK7a+EUWW3bwdpDEYgf3rbMGN11Ap1Nywv
+         xEWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mhJX74SyXpEe21VKvtmYRp6Q7Ngr55XoXxrS6GHTUaM=;
+        b=e3Jz8gFwQlrG0xZ9Gp9IC6nE/IZgKdy9pfV7angGzNagGYgbslIUfLPssX0t4G76cD
+         9sn3rGXOzBgKL1YhLDH8tOLSmmMpynD3grXXdpKgCfapuuYj4qARGqsI3g2nhuvPXAvW
+         +p28KOox72oj9jsbsLwCuYznGBhVvzRKEYWyN3CFmn1UDNophaykEvjCHlgN2MMJwKaC
+         QyjEHemMePj7tXOVfIQqWLmoyBKviv6z33irNczgwwePsT/UqiSDihKTJKKv7o2xHn6I
+         2o4o+BkOep8j8tGwvn5Cwi7RQ566Hv2rZT94ZPCH8lvGByWyfSnIEoCz62PAQ21p4qB8
+         Xrfg==
+X-Gm-Message-State: AFqh2krEwZn9JM0MbP3DGk3fKUHYwVZKs4j3GwjI7XV9N9rfZtr4l1DA
+        G4Thjdz2OE95rCov/oto+4B6sFm3ecVDeEMThDo=
+X-Google-Smtp-Source: AMrXdXvh8qx1S3WVzfwHHfZuCvapRPm6sYF0vH2DvRk+gdpioHeoX/MqsquNKQupOjAQ08YfWwH8Fjy+DHTSajvohcw=
+X-Received: by 2002:ac2:4bd3:0:b0:4cc:789a:dac8 with SMTP id
+ o19-20020ac24bd3000000b004cc789adac8mr3098851lfq.198.1674598633139; Tue, 24
+ Jan 2023 14:17:13 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v3 01/21] dt-bindings: display: tegra: add Tegra20 VIP
-Content-Language: en-US
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Richard Leitner <richard.leitner@skidata.com>
-References: <20221229133205.981397-1-luca.ceresoli@bootlin.com>
- <20221229133205.981397-2-luca.ceresoli@bootlin.com>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20221229133205.981397-2-luca.ceresoli@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230124174714.2775680-1-neeraj.sanjaykale@nxp.com> <20230124174714.2775680-2-neeraj.sanjaykale@nxp.com>
+In-Reply-To: <20230124174714.2775680-2-neeraj.sanjaykale@nxp.com>
+From:   Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Date:   Tue, 24 Jan 2023 14:17:01 -0800
+Message-ID: <CABBYNZJ3CVO4fxN55YQ_d+Z2kvxR5H31cEG_CPxmVXfcsSGWeg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] serdev: Add method to assert break
+To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, linux-serial@vger.kernel.org,
+        amitkumar.karwar@nxp.com, rohit.fule@nxp.com, sherry.sun@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/29/22 16:31, Luca Ceresoli wrote:
-> VIP is the parallel video capture component within the video input
-> subsystem of Tegra20 (and other Tegra chips, apparently).
-> 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> 
-> ---
-> 
-> Changed in v3:
->  - remove channel@0 node (Krzysztof, Rob, Dmitry)
->  - add myself as a maintainer of the whole Tegra video driver (Dmitry)
-> 
-> Changed in v2 (suggested by Krzysztof Kozlowski):
->  - remove redundant "bindings" from subject line
->  - remove $nodename
->  - add channel@0 description
->  - add reg: const: 0
-> ---
->  .../display/tegra/nvidia,tegra20-vip.yaml     | 49 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +
->  2 files changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
-> new file mode 100644
-> index 000000000000..c23fd02dd18e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-vip.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra VIP (parallel video capture) controller
-> +
-> +maintainers:
-> +  - Luca Ceresoli <luca.ceresoli@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nvidia,tegra20-vip
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Port receiving the video stream from the sensor
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Port sending the video stream to the VI
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ports
-> +
-> +# see nvidia,tegra20-vi.yaml for an example
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f61eb221415b..4feb2e1258ce 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20563,10 +20563,12 @@ TEGRA VIDEO DRIVER
->  M:	Thierry Reding <thierry.reding@gmail.com>
->  M:	Jonathan Hunter <jonathanh@nvidia.com>
->  M:	Sowjanya Komatineni <skomatineni@nvidia.com>
-> +M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
->  L:	linux-media@vger.kernel.org
->  L:	linux-tegra@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
-> +F:	Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
->  F:	drivers/staging/media/tegra-video/
->  
->  TEGRA XUSB PADCTL DRIVER
+Hi Neeraj,
 
-Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
+On Tue, Jan 24, 2023 at 9:48 AM Neeraj Sanjay Kale
+<neeraj.sanjaykale@nxp.com> wrote:
+>
+> Adds serdev_device_break_ctl() and an implementation for ttyport.
+>
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> ---
+>  drivers/tty/serdev/core.c           | 11 +++++++++++
+>  drivers/tty/serdev/serdev-ttyport.c | 12 ++++++++++++
+>  include/linux/serdev.h              |  6 ++++++
+>  3 files changed, 29 insertions(+)
+>
+> diff --git a/drivers/tty/serdev/core.c b/drivers/tty/serdev/core.c
+> index 0180e1e4e75d..26321ad7e71d 100644
+> --- a/drivers/tty/serdev/core.c
+> +++ b/drivers/tty/serdev/core.c
+> @@ -405,6 +405,17 @@ int serdev_device_set_tiocm(struct serdev_device *serdev, int set, int clear)
+>  }
+>  EXPORT_SYMBOL_GPL(serdev_device_set_tiocm);
+>
+> +int serdev_device_break_ctl(struct serdev_device *serdev, int break_state)
+> +{
+> +       struct serdev_controller *ctrl = serdev->ctrl;
+> +
+> +       if (!ctrl || !ctrl->ops->break_ctl)
+> +               return -ENOTSUPP;
+> +
+> +       return ctrl->ops->break_ctl(ctrl, break_state);
+> +}
+> +EXPORT_SYMBOL_GPL(serdev_device_break_ctl);
+> +
+>  static int serdev_drv_probe(struct device *dev)
+>  {
+>         const struct serdev_device_driver *sdrv = to_serdev_device_driver(dev->driver);
+> diff --git a/drivers/tty/serdev/serdev-ttyport.c b/drivers/tty/serdev/serdev-ttyport.c
+> index d367803e2044..847b1f71ab73 100644
+> --- a/drivers/tty/serdev/serdev-ttyport.c
+> +++ b/drivers/tty/serdev/serdev-ttyport.c
+> @@ -247,6 +247,17 @@ static int ttyport_set_tiocm(struct serdev_controller *ctrl, unsigned int set, u
+>         return tty->ops->tiocmset(tty, set, clear);
+>  }
+>
+> +static int ttyport_break_ctl(struct serdev_controller *ctrl, unsigned int break_state)
+> +{
+> +       struct serport *serport = serdev_controller_get_drvdata(ctrl);
+> +       struct tty_struct *tty = serport->tty;
+> +
+> +       if (!tty->ops->break_ctl)
+> +               return -ENOTSUPP;
+> +
+> +       return tty->ops->break_ctl(tty, break_state);
+> +}
+> +
+>  static const struct serdev_controller_ops ctrl_ops = {
+>         .write_buf = ttyport_write_buf,
+>         .write_flush = ttyport_write_flush,
+> @@ -259,6 +270,7 @@ static const struct serdev_controller_ops ctrl_ops = {
+>         .wait_until_sent = ttyport_wait_until_sent,
+>         .get_tiocm = ttyport_get_tiocm,
+>         .set_tiocm = ttyport_set_tiocm,
+> +       .break_ctl = ttyport_break_ctl,
+>  };
+>
+>  struct device *serdev_tty_port_register(struct tty_port *port,
+> diff --git a/include/linux/serdev.h b/include/linux/serdev.h
+> index 66f624fc618c..01b5b8f308cb 100644
+> --- a/include/linux/serdev.h
+> +++ b/include/linux/serdev.h
+> @@ -92,6 +92,7 @@ struct serdev_controller_ops {
+>         void (*wait_until_sent)(struct serdev_controller *, long);
+>         int (*get_tiocm)(struct serdev_controller *);
+>         int (*set_tiocm)(struct serdev_controller *, unsigned int, unsigned int);
+> +       int (*break_ctl)(struct serdev_controller *, unsigned int);
 
-Please feel free to add my r-b to the rest of the patches. I looked
-though them and haven't noticed anything suspicious.
+Looks like these callbacks don't have any documentation, not sure if
+that is because the operation itself is self explanatory, anyway I
+hope someone can review this from serdev before it can be merged into
+bluetooth-next.
+
+>  };
+>
+>  /**
+> @@ -202,6 +203,7 @@ int serdev_device_write_buf(struct serdev_device *, const unsigned char *, size_
+>  void serdev_device_wait_until_sent(struct serdev_device *, long);
+>  int serdev_device_get_tiocm(struct serdev_device *);
+>  int serdev_device_set_tiocm(struct serdev_device *, int, int);
+> +int serdev_device_break_ctl(struct serdev_device *, int);
+>  void serdev_device_write_wakeup(struct serdev_device *);
+>  int serdev_device_write(struct serdev_device *, const unsigned char *, size_t, long);
+>  void serdev_device_write_flush(struct serdev_device *);
+> @@ -255,6 +257,10 @@ static inline int serdev_device_set_tiocm(struct serdev_device *serdev, int set,
+>  {
+>         return -ENOTSUPP;
+>  }
+> +static inline int serdev_device_break_ctl(struct serdev_device *serdev, int break_state)
+> +{
+> +       return -ENOTSUPP;
+> +}
+>  static inline int serdev_device_write(struct serdev_device *sdev, const unsigned char *buf,
+>                                       size_t count, unsigned long timeout)
+>  {
+> --
+> 2.34.1
+>
+
 
 -- 
-Best regards,
-Dmitry
-
+Luiz Augusto von Dentz
