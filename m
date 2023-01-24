@@ -2,83 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8D806792EC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 09:22:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4149679311
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 09:27:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232609AbjAXIWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 03:22:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47522 "EHLO
+        id S229965AbjAXI1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 03:27:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231660AbjAXIWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 03:22:17 -0500
+        with ESMTP id S232655AbjAXI1T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 03:27:19 -0500
 Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AFCFBB
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:22:16 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id k16so10788663wms.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:22:16 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9346C642
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:27:12 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id m15so10794134wms.4
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 00:27:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U9DqS2Jn9nJYNaDy07cme/7hQmGWWsUBjAPPDyYRsn4=;
-        b=Vu2rxQhfqYQNgFFNRdKmRY6baqaJ+wwVQzel9USbomB3kstntshg/9LBTQZpk5SPY6
-         SDRy0WiL0IpizDWYRT0N2/2Tw1JeWu/YXwMwC8sok/CA/IeuO7BG+6Zol4XtzttTWx5z
-         mzP2+6XybKArW3kdhnDz3yYcoa2rZvGJnIZUjiWplWf7HLXCmww+AKipfQ3vWJ1GPsA6
-         pt1qrFpjgHqM4VdD8nFt9XdEk7RrYhBC50UqZqkKZ2H0LhH/uCQlm93ENJmEOu/mssSM
-         5TsN/fO5/a8Cdc1QexvNUVnfKWlsJCNoGvlpEnxP2OCHrRpWWJ0FL2TGptMEVapD16Cd
-         fvAw==
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=l32ibYG6p5bDrGsHgZxAaD4UChPnplKR4dXx/jYKRDA=;
+        b=JKNqKuqs+62LV2uGr0H76AeKHaofNBUD3PD06z8T8M+IGrZpO97cTq/Sl1NUFaz+PD
+         ki9FBk2C52GVGSlVVsImhjy+JOl2tkWYHuk0F9VeHN9+hqhv7qq16tjAmZMfzYawXWMF
+         8N0Xwa9HRXS2UcF3yYEwNj1W9SnijTva0mZ1YTetaomk7o6lg3zmaJWQpSNkh0JZW6eN
+         A5NxR0lY0bxfPyYvofnXfTk0AE4UQRT700951Mc/ZCoSB7m4W3So4PHGl88saJWEs2L4
+         C48h+JK/Rg8f6jeQwzuAdmlEbM0b+4FKpzSgNqUy1kfoVjTEdDLyK2gdV2jo1NGLiY3t
+         JTJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U9DqS2Jn9nJYNaDy07cme/7hQmGWWsUBjAPPDyYRsn4=;
-        b=mrtIrDTgCsEbUtZC9BIS8Sc9hR7F8aG5LMw58DViWJ0znUPPKeyFm9504uD0RqOCPE
-         FF1p/wHEbszpourPVvFIG3GCXrnje/+uYxldZTt4U6SJosTC7ERpsB398I81LBgBCbqO
-         QKA6Cu2jL6otFCY6nokbTXxg+sohva+MCt9wV3N2C6wZ6XCTCd0z9ePo753VwdravamF
-         oT6Y1l+AmJd2acuSgdna1sFa2KchDV3eEUzpCUqFBGXBqKAbBq9MqRrLzk7BwKiw1TsH
-         CnfSJrr+Ofy6RHRlw3um+MlDxLyUF+Ua+oB/XaYhB7ikE4Lde4zk2b4s+rHEfxUOsdr/
-         MOjg==
-X-Gm-Message-State: AO0yUKUsdxTLBB6U1QVpcWbW2S78UtjyRxgOT+LFtz1qZdTg6umNGQnv
-        j1ZkXQ1gLvsXzh8FM8UZ3d2Ikw==
-X-Google-Smtp-Source: AK7set9kgsgyREqDkDA4wXQveg9l8CTz4di8q5DI2C+/Ud24R0ZH9g/nee+rfw3tBwzBqjJdZL6CoA==
-X-Received: by 2002:a05:600c:4fcb:b0:3dc:1687:9b9a with SMTP id o11-20020a05600c4fcb00b003dc16879b9amr460697wmq.37.1674548535007;
-        Tue, 24 Jan 2023 00:22:15 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id h13-20020a05600c2cad00b003cfa622a18asm13870207wmc.3.2023.01.24.00.22.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 00:22:14 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-In-Reply-To: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
-Subject: Re: (subset) [PATCH 0/8] soc: amlogic: switch bindings to yaml and
- adjust some dtbs's
-Message-Id: <167454853388.2972173.6260080234043719240.b4-ty@linaro.org>
-Date:   Tue, 24 Jan 2023 09:22:13 +0100
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l32ibYG6p5bDrGsHgZxAaD4UChPnplKR4dXx/jYKRDA=;
+        b=jvg5+Pi4QzW/XYzGGK5Ff8gSAebdXpz4O1+EBhOK6lUxxy+Swtt4OGHuhEPg7oPCAi
+         uwFPAFBttxrRRLhdhp8NNVCLHiedtzKoy0pkFIDB4VEhsYQIgDwAXGHpovhsrvcV11oi
+         IuY38nNCcVuydI+FN1XUGTpeYHVUJZwpWR5fHVuKpJ9q+rOuKP180fwMTzcvOODnqG5p
+         kK0XTLiV96N3FjrrkqJflJdY+g6QZFJbNFaQp2V3ar3PaBPzvqzXCsrbkTztAwrn2k0r
+         CDaG873k305N1lR0GpvPePUs83XBSyTvk0KLknpvoL8z5SHbilz+ll0RmBql/qx6IFZc
+         Bqfg==
+X-Gm-Message-State: AFqh2krustyIhhxtg4DrljXlo1Vpa5gu4LGCVVAL3ZamJwow3e740W5a
+        Em3XHnG+pOHA/lYzo2lUJeV7Rw==
+X-Google-Smtp-Source: AMrXdXs8UXA8beQuN+9MpImN9RApvtnwpwlKVPL40j/+G59nG/CBvkp1LiNKNiClcIddqubyyyEagg==
+X-Received: by 2002:a05:600c:3d06:b0:3da:f945:2354 with SMTP id bh6-20020a05600c3d0600b003daf9452354mr27219855wmb.41.1674548831234;
+        Tue, 24 Jan 2023 00:27:11 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ebd2:15b:f444:7985? ([2a01:e0a:982:cbb0:ebd2:15b:f444:7985])
+        by smtp.gmail.com with ESMTPSA id l18-20020adff492000000b00241d21d4652sm1308969wro.21.2023.01.24.00.27.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Jan 2023 00:27:10 -0800 (PST)
+Message-ID: <2e86f4a5-3612-590b-2845-629a667d926b@linaro.org>
+Date:   Tue, 24 Jan 2023 09:27:09 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450: Fix DSIn PHY compatible
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230123200552.553181-1-konrad.dybcio@linaro.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230123200552.553181-1-konrad.dybcio@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,55 +81,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, 23 Jan 2023 22:22:15 +0100, Heiner Kallweit wrote:
-> At first adjust some existing dtbs's so that they pass dtbs_check
-> after switching bindings to yaml.
+On 23/01/2023 21:05, Konrad Dybcio wrote:
+> Use the correct compatible so that the driver can probe properly.
 > 
-> Then switch further Amlogic Meson bindings to yaml.
-> Tested with make targets dt_binding_check and dtbs_check.
+> Fixes: a6dd1206e45a ("arm64: dts: qcom: sm8450: add display hardware devices")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> Heiner Kallweit (8):
->   arm64: dts: meson-gx: Remove invalid pwm compatible
->   arm64: dts: amlogic: Fix non-compliant SD/SDIO node names
->   arm64: dts: meson-gx: Set only one compatible string for mmc
->   arm64: dts: amlogic: Remove invalid compatible string
->     amlogic,meson-gpio-intc
->   dt-bindings: rtc: Add Amlogic Meson vrtc controller binding
->   dt-bindings: pwm: Add Amlogic Meson PWM binding
->   dt-bindings: interrupt-controller: Add Amlogic Meson GPIO interrupt
->     controller binding
->   dt-bindings: pinctrl: Add Amlogic Meson pinctrl binding
-> 
-> [...]
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index d66dcd8fe61f..8d85a3139849 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -2873,7 +2873,7 @@ opp-358000000 {
+>   			};
+>   
+>   			mdss_dsi0_phy: phy@ae94400 {
+> -				compatible = "qcom,dsi-phy-5nm-8450";
+> +				compatible = "qcom,sm8450-dsi-phy-5nm";
+>   				reg = <0 0x0ae94400 0 0x200>,
+>   				      <0 0x0ae94600 0 0x280>,
+>   				      <0 0x0ae94900 0 0x260>;
+> @@ -2946,7 +2946,7 @@ mdss_dsi1_out: endpoint {
+>   			};
+>   
+>   			mdss_dsi1_phy: phy@ae96400 {
+> -				compatible = "qcom,dsi-phy-5nm-8450";
+> +				compatible = "qcom,sm8450-dsi-phy-5nm";
+>   				reg = <0 0x0ae96400 0 0x200>,
+>   				      <0 0x0ae96600 0 0x280>,
+>   				      <0 0x0ae96900 0 0x260>;
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
-
-[2/8] arm64: dts: amlogic: Fix non-compliant SD/SDIO node names
-      https://git.kernel.org/amlogic/c/1be13a5091bf71627aa1a3d35360b039510f42f3
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
