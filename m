@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74880679554
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 11:34:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56375679559
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 11:35:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233789AbjAXKe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 05:34:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38506 "EHLO
+        id S233832AbjAXKfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 05:35:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233724AbjAXKen (ORCPT
+        with ESMTP id S233745AbjAXKen (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 05:34:43 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC5EA41B4C
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:34:35 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id t18so589537wro.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:34:35 -0800 (PST)
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 939FE402E9
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:34:36 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id n7so13403453wrx.5
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:34:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/NL6LDV95iKUZ88QALB+Ce5cz9NNofOXuE/jp4Jy9qw=;
-        b=xWCpo//8yl7WQy6B4hKsdIkck3nEgqtIZjdp8sjH8WD4jjGVX98v0nBtUNbi5QhZ0m
-         +hX1wkilEisWngPsc/sDDIpWwqLnL2KzzvCo2y+JlR4mKfQE/koHINDa+H9MFlF2I8Xf
-         DY0tRSLHx/SSm13nKDB21XitbYhuF8kdQS0anj0VYqHyjnJiiCvC0k4ZCt1zQVoRldwC
-         1r+mNQjD9JpejtwqTubrPk3IDMstJ/PQGGQNaNLxn51KYeB1jk17UxS22gDDdqncTE3D
-         uk0Yb+MIuUNYTgEwRH/679IW3eQyVIPtyUwcQp3K7wNbIJkWAq30/F+egXZ4BpKsN7+M
-         WSpg==
+        bh=8tznsJFtlfJ79s/lJUdTAi2Xm2SaIWvhahisW5yxhsM=;
+        b=zw1HzocInxkImdRCPnwIbeBO9bBEXqsAiJGcZt2+RhsuAiD6jusrdPj2ZDK/kKWuuJ
+         nzEuWvbz/gnlkS3re3nlOYhle6ABLTaSpsk33dkRbyDs5tg9RkOYhs8HCn+nynyTnvTU
+         7s+WGLIg5ggvOXua9p3kLha4PCv58TGgOFpIEdZr9qBLYmZ4hS90YyehA3r0pUprC2c+
+         O1zU80yO53YUhVAV+quuT386YML2ti/syFz2sibQstfGH/I1lXYwP/tCuyuYw0vx1kGQ
+         ayUsRNAwHpORvdrShw+gX5K2L2Q94urDLEWa0MKQO5jZVBCmJatLIoH5uV8sk7SuoxR3
+         FmdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/NL6LDV95iKUZ88QALB+Ce5cz9NNofOXuE/jp4Jy9qw=;
-        b=JY+N8lvTDgDjofMPKNRK7OekfjXC1DPkQasJncGXp2aacsgPljAVPAPlyHXpN9EE15
-         Q1V5l/F6fQBRBpGOhOx5/o984F97ukBVk/PQdA9qi1rqnQZ0pUERwm6CWgi/+RC3kvHa
-         oP8CWqO7C2cbveWmbD3bra8esCM75vZKQ1DrsDRjxnkRLpRLleI/OmWloUMoJ9u7/UGw
-         1gwo/j+nood1sye9WT8XRNghgCAqSkmpELL14y1dmU3TNp1CmAn15OgcpkyMLVCcradt
-         d+cX5zuPYhl6h5AWYTKRDuQkV1APeM1tc5mcxBHGII0S0thprTdu1HL5QPM4hbm4tzsQ
-         gfMQ==
-X-Gm-Message-State: AFqh2kphOOPi9xBYJt2hFdbFfabq6fRUQSMn24bqJ6YmNuHAlp5o6/xy
-        EPLRDFhcdCAhhTjna0EgthrBMg==
-X-Google-Smtp-Source: AMrXdXvlr09valTA39LZgwlGfqTP2jevf0EhtZ35RPqMyoekiYwexPBukO4Bade+FoUIUDDAHDi6IQ==
-X-Received: by 2002:a5d:660b:0:b0:25d:4dfb:790c with SMTP id n11-20020a5d660b000000b0025d4dfb790cmr23823487wru.13.1674556474226;
+        bh=8tznsJFtlfJ79s/lJUdTAi2Xm2SaIWvhahisW5yxhsM=;
+        b=Vxum6Y+vL6KxLoN04oxTiIGw6nv1aDxHyffQRNJ7PYB557aqClSQmmj6XmFmeT6gbb
+         XOdRCAwy1ezBLuMPjTzH0qgB+6TPOTw01nhdOsFRnngTKr3ShJCdFuCGGzdO70y/RSnu
+         YGFvqsWgV8T8A/T4Sl9RlRPJvAb6FhUyNqBAjPBMZco13Gi4Oby/1hegkA2lncLixC85
+         zwENBfo8xFF6DJSIuAjiLcjWPYn7GFe8n/rhWgqppwtlP2KfMjLFtYn92OK8qhPaUqpF
+         S+W94YrEfFxjvaz7vbApRp9CT7Nj3+c2aSlFI6Fs5DMzx7d3cDrUXaOwy04tYUKlR6mt
+         blrg==
+X-Gm-Message-State: AO0yUKVRZ+gQD6GMO2o05nklo6kIfan5FDf31VDQZU5KHObdvheDlbMW
+        hDygSbIQOXuSdVxQyZ7glPlIiw==
+X-Google-Smtp-Source: AK7set/EL4McQuD6+JHRhTNkBEKuYH8qZi7JbPE5x7dncc2cmWzP2OSE/DKwdwtwb2RVI6/+2fjxUQ==
+X-Received: by 2002:adf:fa4b:0:b0:2bf:adb9:faa5 with SMTP id y11-20020adffa4b000000b002bfadb9faa5mr2390522wrr.30.1674556474994;
         Tue, 24 Jan 2023 02:34:34 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id q6-20020adfcd86000000b002bded7da2b8sm1551889wrj.102.2023.01.24.02.34.33
+        by smtp.gmail.com with ESMTPSA id q6-20020adfcd86000000b002bded7da2b8sm1551889wrj.102.2023.01.24.02.34.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 02:34:33 -0800 (PST)
+        Tue, 24 Jan 2023 02:34:34 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 24 Jan 2023 11:34:32 +0100
-Subject: [PATCH 11/14] arm64: dts: amlogic: meson-sm1-bananapi-m5: fix adc
- keys node names
+Date:   Tue, 24 Jan 2023 11:34:33 +0100
+Subject: [PATCH 12/14] arm64: dts: amlogic: meson-gxl-s905d-phicomm-n1: fix
+ led node name
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230124-b4-amlogic-bindings-fixups-v1-11-44351528957e@linaro.org>
+Message-Id: <20230124-b4-amlogic-bindings-fixups-v1-12-44351528957e@linaro.org>
 References: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
 In-Reply-To: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -78,35 +78,26 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Fixes:
-adc_keys: 'key' does not match any of the regexes: '^button-', 'pinctrl-[0-9]+'
-
-Also fix the invalid "adc_keys" node name.
+leds: status: {...} is not of type 'array'
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
-index 028220ed45ad..bfc500df9dcb 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
-@@ -17,13 +17,13 @@ / {
- 	compatible = "bananapi,bpi-m5", "amlogic,sm1";
- 	model = "Banana Pi BPI-M5";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
+index 9ef210f17b4a..393d3cb33b9e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
+@@ -18,7 +18,7 @@ cvbs-connector {
+ 	leds {
+ 		compatible = "gpio-leds";
  
--	adc_keys {
-+	adc-keys {
- 		compatible = "adc-keys";
- 		io-channels = <&saradc 2>;
- 		io-channel-names = "buttons";
- 		keyup-threshold-microvolt = <1800000>;
- 
--		key {
-+		button-sw3 {
- 			label = "SW3";
- 			linux,code = <BTN_3>;
- 			press-threshold-microvolt = <1700000>;
+-		status {
++		led {
+ 			label = "n1:white:status";
+ 			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
+ 			default-state = "on";
 
 -- 
 2.34.1
