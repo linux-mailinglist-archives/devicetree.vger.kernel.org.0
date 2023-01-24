@@ -2,103 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 615F967A1AE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 19:46:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E3FD67A25A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 20:06:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234099AbjAXSqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 13:46:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52176 "EHLO
+        id S233585AbjAXTGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 14:06:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234083AbjAXSqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 13:46:11 -0500
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE5848A00;
-        Tue, 24 Jan 2023 10:45:39 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id D4CABE0007;
-        Tue, 24 Jan 2023 18:45:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1674585936;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=JphgYjEJiQnkqyd7jRw3NYGADyEgFfd5h5oQ31b9pNw=;
-        b=Nj8Ors0ddwd4qOBGVYB4eRTEZNONT7RrlR578oyrMWcwP4dS78CyPDWbFzbA0UX8IBUfPz
-        qT96dyR6O38PlLPcCr1ueEApoRJF6CBy3OCjT5yhAOPSD7iDTqPU1FEd2fmnim9DnH5hZK
-        blSRCEJC1fF8GX7kPXj6XViOifi1hXdsWLYW6YPec8sEGrDmireGdq1qaEhHR1nih2nwS9
-        jZzYdn3/n3WJxpU2ekqrrZFZOK9TuH+++dvBTcJhD4EzLNGNvfnU4zdOqb+EvOVYZNAz7m
-        8ntgCcIFIyFrapTN4LKgJmNjeZ9o7vf6rjcU7IxEICArCksP6sxBhUfCSAoqtw==
-Date:   Tue, 24 Jan 2023 19:45:34 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Doug Berger <opendmb@gmail.com>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Markus Mayer <mmayer@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/6] rtc: brcmstb-waketimer: add RTC alarm irq
-Message-ID: <Y9AnTiM/dKMhc1eP@mail.local>
-References: <20230120190147.718976-1-opendmb@gmail.com>
- <167451526504.1264870.8427240602882815591.b4-ty@bootlin.com>
- <4982a703-fc6b-b778-78a5-ada5ea5aedb2@gmail.com>
+        with ESMTP id S234613AbjAXTGj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 14:06:39 -0500
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0956C4DCD7;
+        Tue, 24 Jan 2023 11:06:18 -0800 (PST)
+Received: by mail-oo1-f51.google.com with SMTP id h3-20020a4ac443000000b004fb2954e7c3so2785486ooq.10;
+        Tue, 24 Jan 2023 11:06:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1zOsAeVeoSP5y0PXnd29TY9147nVFljKF4SWYsX6McA=;
+        b=fxpJeJTiJDzTzcq7fxq9eiC1CF70mNAdbMiNcP/NIGmufjliMa0xYxzPJiZv/HzJmi
+         RH3nz8Fvb86lujl8o/hh+st2cCgnNpcmCmvyk2tdkX5Y7w/+YFlUoD8aUpbefuG/U8OT
+         933qUkTnHBdSmQ9ZeTSlFS3LFPbZ09rrwWPpjMDYaPa++L2Ireawhhp1z5yQ9BhSLfB0
+         Hg/Qxq1La7e2a1DzkRIdNsfntQ7WVtJoYbCBXBINcndlU4jM3VfD4H3C0yk3xkfKi7x2
+         cKFkMXnYWIMYVXADmiLy+yXMONcm2GCCuRzHXkCL2oZwrbUe2/gLPU+FFW5RbiMpQZSD
+         RM5Q==
+X-Gm-Message-State: AFqh2kpugfzH+OF1xw1MG0bypBmM5dc/fRK6NNbpKXWYdAsmR0Zb7xdi
+        C0vb/p3fn3d+wwT9RyiH3A==
+X-Google-Smtp-Source: AMrXdXt9DHpIlN+z/n8VyspGsPRK6b/qCM28zV8M13m6W05TnvExavuHduH/MfvUfPEIoF6iKsfeSA==
+X-Received: by 2002:a4a:d757:0:b0:502:5eae:e506 with SMTP id h23-20020a4ad757000000b005025eaee506mr6904642oot.2.1674587177167;
+        Tue, 24 Jan 2023 11:06:17 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t14-20020a4ae40e000000b004f29c6fb6besm1054913oov.31.2023.01.24.11.06.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jan 2023 11:06:16 -0800 (PST)
+Received: (nullmailer pid 1261082 invoked by uid 1000);
+        Tue, 24 Jan 2023 19:06:15 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4982a703-fc6b-b778-78a5-ada5ea5aedb2@gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Manuel Traut <manuel.traut@mt.com>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+In-Reply-To: <Y9AJ07zT1lpBLhPk@mt.com>
+References: <Y9AJ07zT1lpBLhPk@mt.com>
+Message-Id: <167458712310.1259438.16687606512438665063.robh@kernel.org>
+Subject: Re: [PATCH 1/5 v7] dt-bindings: input: pwm-beeper: Convert txt
+ bindings to yaml
+Date:   Tue, 24 Jan 2023 13:06:15 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 09:42:19-0800, Florian Fainelli wrote:
-> On 1/23/23 15:08, 'Alexandre Belloni' via BCM-KERNEL-FEEDBACK-LIST,PDL
-> wrote:
-> > 
-> > On Fri, 20 Jan 2023 11:01:41 -0800, Doug Berger wrote:
-> > > Support is added for an interrupt that can be triggered from the
-> > > brcmstb-waketimer hardware while the system is awake.
-> > > 
-> > > This interrupt allows the driver to pass the rtctest selftest.
-> > > 
-> > > Doug Berger (6):
-> > >    rtc: brcmstb-waketimer: introduce WKTMR_ALARM_EVENT flag
-> > >    rtc: brcmstb-waketimer: non-functional code changes
-> > >    rtc: brcmstb-waketimer: compensate for lack of wktmr disable
-> > >    rtc: brcmstb-waketimer: rename irq to wake_irq
-> > >    dt-bindings: rtc: brcm,brcmstb-waketimer: add alarm interrupt
-> > >    rtc: brcmstb-waketimer: allow use as non-wake alarm
-> > > 
-> > > [...]
-> > 
-> > Applied, thanks!
-> > 
-> > [1/6] rtc: brcmstb-waketimer: introduce WKTMR_ALARM_EVENT flag
-> >        commit: 90226f6b17a3edcb0bddaf2f16991861c99d6a15
-> > [2/6] rtc: brcmstb-waketimer: non-functional code changes
-> >        commit: 2cd98b22c1443d1f2921a371baee658da184868e
-> > [3/6] rtc: brcmstb-waketimer: compensate for lack of wktmr disable
-> >        commit: 516ae02c38ff3ae867f9b19fa050f78157e2bdae
-> > [4/6] rtc: brcmstb-waketimer: rename irq to wake_irq
-> >        commit: eae258edcb8705932c9e5c61a99f91d8235f688b
+
+On Tue, 24 Jan 2023 17:39:47 +0100, Manuel Traut wrote:
+> Converts txt binding to new YAML format.
 > 
-> That was quick, how about patch 6? It does not actually have a dependency on
-> the Device Tree binding (patch 5) and the second interrupt is looked up by
-> index.
+> Signed-off-by: Manuel Traut <manuel.traut@mt.com>
+> ---
+>  .../devicetree/bindings/input/pwm-beeper.txt  | 24 ----------
+>  .../devicetree/bindings/input/pwm-beeper.yaml | 48 +++++++++++++++++++
+>  2 files changed, 48 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.yaml
+> 
 
-My understanding is that if I take it, then the feature will not be
-documented. I keep that as an incentive to send v2 ;)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/input/pwm-beeper.yaml:10:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/input/pwm-beeper.example.dts'
+Documentation/devicetree/bindings/input/pwm-beeper.yaml:10:1: found character '\t' that cannot start any token
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/input/pwm-beeper.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/input/pwm-beeper.yaml:10:1: found character '\t' that cannot start any token
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/pwm-beeper.yaml: ignoring, error parsing file
+make: *** [Makefile:1508: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/Y9AJ07zT1lpBLhPk@mt.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
