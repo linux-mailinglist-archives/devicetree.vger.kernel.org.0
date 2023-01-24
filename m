@@ -2,108 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2479679C6D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 15:48:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68FFB679C78
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 15:49:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235004AbjAXOsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 09:48:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60984 "EHLO
+        id S235058AbjAXOt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 09:49:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234990AbjAXOsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 09:48:36 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2FED900B
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 06:48:34 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id vw16so39601670ejc.12
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 06:48:34 -0800 (PST)
+        with ESMTP id S234995AbjAXOtL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 09:49:11 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C4F74B1AB
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 06:48:55 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id cm4so489970edb.9
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 06:48:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zLmM/FCAEjLU2FdJ9A80pZJUuYCaWow19JPmu2luiqc=;
-        b=A1Q9UxdZZRYEsGB1//OQ5e21lf6Jd3C7Xgykqn+gE4C9RdaeoSzkZZhsE459oSrhZz
-         qe/DdeXCjiCUASPkO9FM7DnXQJTEvFg6bJP9sacrYBSol2CuxQ3zHTG/ufUR2iIQGHRu
-         kdk+eBPCfP0qvY7J9DDNabUaimGEFGZ0EQ4iO2gDHawsp/8bEtglFtSB4hi+mne4oCT/
-         wXr7BnpDogZ4GkECKHeukLdKFMVDiBd7kpDq5BkTAR6sd4q5R9P1oKtEPqsneGXpla2G
-         wy3XeQpl9XGmQ/SOGXZ/46qZ61tMTBwDz9LJW3rGA85pMCx8H4iK0q31XSxIJuiUwX4h
-         27wg==
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gmEnLOdJR14tI3Ntkk00dRFSWjZDFa7+/nYKUeYSOJ0=;
+        b=I9WJV4tHohdSFNvgT3DyyRpkrkbR321+ZvIjeLn6cxLNMil3v6RvbA23WpOl1FxWEZ
+         RM+OHDDpxbAV8RAzSY6xlxgcpTrXPJk5RYx68GTxFl+059YF4psYeA6sgwHrInvtHg6w
+         RGNIxRI/h2d7K2Xb2fbYAl+rtymmKdxwot95z3bsNwmg+1jh84fuVY3sSZ7cq9hLKI/Y
+         OZzCuHUjUIrqEeJ9oVPeik/jPaC+4D5eXsw9bMw3TlmqaqRQrTYraFzHhI0K/odUEgp+
+         2vka+hpM4gz8/c+V+Ta/loEiExVqCINA1nioIiaE5ygICF7gz+5aSI4j1PhVMU9k5AYa
+         2GPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zLmM/FCAEjLU2FdJ9A80pZJUuYCaWow19JPmu2luiqc=;
-        b=v1FVEZK1AOmtFPlqIcR+aIKYgnLNJx/WymY1yGRHRowQdANeO0sq+5c766FME3Fgzr
-         9jm8fdwtuL/r8+UwBwml48O+VPMXXCBXAGy3YqkVSMAg6bQ+SZNQ0zO83jG4s88M1QzC
-         9LyeTMUTf62WzNxP1DMNyG1KE2Pztp17GW5qOunSTyrUFjnr8b22w80yi1GjhqnmAS0p
-         235+Z0MGD+qXe8czHsSGjq5JI/akQSpEnU9sCpXmbUr1OLsJaEzhERuhNvfZ8ThE7HdB
-         EY3cnbG24ZszQCJ6zyDRxvn7W4VeErKAHT7sxDpKdRsahrxNLY8WJprc6dFmnCX9tOQh
-         Ziaw==
-X-Gm-Message-State: AFqh2krTtR3vYI0ClUo06KyV01VHlK95b1FPV3UQOIguof0cUXhJsvhm
-        BC38CfZ8LKogIwOdqOHY1HAm1Q==
-X-Google-Smtp-Source: AMrXdXsVvOMxuAPW5wRe6WtIgVighYVElOSLGxSpWFMYJgSUBYhgStGKmiPWAaWfnFO+qMDlKvfAaA==
-X-Received: by 2002:a17:907:2982:b0:7c1:23f2:c052 with SMTP id eu2-20020a170907298200b007c123f2c052mr20541935ejc.45.1674571713476;
-        Tue, 24 Jan 2023 06:48:33 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id l12-20020a170906078c00b0079800b8173asm983498ejc.158.2023.01.24.06.48.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 06:48:33 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 24 Jan 2023 15:48:32 +0100
-Message-Id: <CQ0I4ONEI6J4.3KWS1KBE7RTKD@otso>
-Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sm6350: Add camera clock
- controller
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Loic Poulain" <loic.poulain@linaro.org>,
-        "Robert Foss" <rfoss@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
-Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.14.0
-References: <20221213-sm6350-cci-v2-0-15c2c14c34bb@fairphone.com>
- <20221213-sm6350-cci-v2-2-15c2c14c34bb@fairphone.com>
- <e5ff49d4-45c7-8c4a-d624-d8f7cc9ce2cb@linaro.org>
-In-Reply-To: <e5ff49d4-45c7-8c4a-d624-d8f7cc9ce2cb@linaro.org>
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gmEnLOdJR14tI3Ntkk00dRFSWjZDFa7+/nYKUeYSOJ0=;
+        b=Y+9dmrKt/f8xXeEEaBvJze5aaIVc3Mwb6wTSWPYNm7xBcAHMb6GT0ecihzpe0ogCcH
+         mKqw5ka6kEgA27BOlc5jy+ZcmyrEkKtHVQ5OwzuSyrYvY+rk/y9XteXLOeWK54qHNyNN
+         RF7enTGDlC4GbU38vKYmW2j8rdlazqvhQdkyQLcfK6PEqBnngvqnPH1rcmixCKWwRgjE
+         OjBLmzyQV0opl/ramwxXm4pfVKEiZ9AA8i90JdeLRVXvMg4rvuTmDP5aK/yKG12NIQCf
+         Y+3urUWtdebTpOq4Ap+JN6WZlYThQWcr1IcaTaCmV4L9+0AJnvZH2+dzdjjMBYfJE0IP
+         VdGw==
+X-Gm-Message-State: AFqh2kqz84NWMpEWnLwoALKTUk8Uo214KjunDwM86ItHUA2KXhm574rt
+        clygt3hAz1l4PisCS6TguldAIA==
+X-Google-Smtp-Source: AMrXdXvn5O8bRNj0aUasc7ka2tDDIcHcDOU0IRE4ejFhCjw58kLWIlA0ka87oYwA8fHtt/cbAf9TAg==
+X-Received: by 2002:aa7:cc81:0:b0:47e:eaae:9a5b with SMTP id p1-20020aa7cc81000000b0047eeaae9a5bmr28281849edt.42.1674571734030;
+        Tue, 24 Jan 2023 06:48:54 -0800 (PST)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id b8-20020aa7c908000000b00482e0c55e2bsm728104edt.93.2023.01.24.06.48.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jan 2023 06:48:53 -0800 (PST)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-hwmon@vger.kernel.org, krzysztof.kozlowski@linaro.org,
+        Naresh Solanki <Naresh.Solanki@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: trivial-devices: Add Infineon TDA38640 Voltage Regulator
+Date:   Tue, 24 Jan 2023 15:48:45 +0100
+Message-Id: <20230124144847.423129-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri Jan 20, 2023 at 5:49 PM CET, Bryan O'Donoghue wrote:
-> On 20/01/2023 13:13, Luca Weiss wrote:
-> > +		camcc: clock-controller@ad00000 {
-> > +			compatible =3D "qcom,sm6350-camcc";
-> > +			reg =3D <0 0x0ad00000 0 0x16000>;
-> > +			clocks =3D <&rpmhcc RPMH_CXO_CLK>;
-> > +			#clock-cells =3D <1>;
-> > +			#reset-cells =3D <1>;
-> > +			#power-domain-cells =3D <1>;
-> > +		};
->
-> Should you include
->
-> required-opps =3D <&rpmhpd_opp_low_svs>;
->
-> ?
+Infineon TDA38640 is PMBUS compliant voltage regulator.
 
-I don't know, it works without. But doesn't this property not just
-affect power-domains? I haven't passed any here.
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
->
-> ---
-> bod
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index f5c0a6283e61..a28b02036489 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -141,6 +141,8 @@ properties:
+           - infineon,slb9645tt
+             # Infineon SLB9673 I2C TPM 2.0
+           - infineon,slb9673
++            # Infineon TDA38640 Voltage Regulator
++          - infineon,tda38640
+             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+           - infineon,tlv493d-a1b6
+             # Infineon Multi-phase Digital VR Controller xdpe11280
+
+base-commit: 4d891f76a30d3be4194a805c5e4277786140ef05
+-- 
+2.38.1
 
