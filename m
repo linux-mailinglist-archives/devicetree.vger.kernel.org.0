@@ -2,149 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A5F679F3B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 17:55:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED8F6679F43
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 17:56:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234319AbjAXQzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 11:55:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57338 "EHLO
+        id S233638AbjAXQ4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 11:56:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233716AbjAXQzE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 11:55:04 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E5534709C
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 08:54:56 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id n7so14505267wrx.5
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 08:54:56 -0800 (PST)
+        with ESMTP id S232991AbjAXQ4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 11:56:20 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D6622015
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 08:56:17 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so13301142wmb.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 08:56:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gbqVM245e6Z56JV4fTQJ7zaDg0Ij9XOsJaiCe7CtwSI=;
-        b=h9LyvKHpqcEYEPF91dnPtmFsg1Q6w8uYVb2sKT5lMeEyiXpW96z3iumL0u0qM1EwnP
-         TaEq0f7B7VcO3hhRz873j1GGvz3+FmJE7ftqI3EmXHTyPfEuscdo1Y0auets+Uzj96fz
-         3b8Sfk850eA9XSOcGeLhQMjjUawr2P1mW3DBLH9R9rJ4pR67US94mJFlVXE4lIG/zAQC
-         hdKBPYGS6SFhYb4Rk85tG5GsGjSk1qF6y1lf1+5DGuOQoSkYJHQUyz/QL4Di4suWiStE
-         iP1ZegoV7hRyoYC6qVqk6YvjC9EnREHXN0x5FmMmoUmlwPp+bUas8Xpu4jXLYakET2/w
-         8Psw==
+        bh=LSf9EDZbCk9ILTR8VX45RnJZiyt2oS/z0sFs3inXgHo=;
+        b=ic5anKfbZlTHVJvTprKR69JrIKaGO9+bAEoTHZQtwfHzBVUJgDs18Ubfg33NMigsdt
+         UV+m75pcKtNFKf2ZazEYxHzHjBoLgyZ9CmhgPMvLo2lA/mxL/kGx176cV/8dCW50w+Lb
+         DSbyI0w4/1yXbD/XvV/FyywO1m1TFPPEPQ7cUFWnOxnLJceeQMBWlfkE10z3jzRqBiU3
+         P8gUwo0rq1RmQi5MEmuwrxpUOssHdYnpJimOAD+IBYe9SiNdMn9OoQoAmhpUgJJkAEQy
+         eUU4IM7OnaGsv+AORzOAwgK4lQS4dXf3xQooFwfD0YY0Rs22P02vf83hNEkBicWPZ1eB
+         WhEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gbqVM245e6Z56JV4fTQJ7zaDg0Ij9XOsJaiCe7CtwSI=;
-        b=VxNWP0cIEwir9cgLUJv0WSoCHrNpY70RukTmbkHzC5Onnee+CP+iaNyp1felXhIvB8
-         550TYmzTiCVTXSitBZjzDvU1mrJQcwlK/7jxtzmRCZ8EKPDccupZ9XEkwyde0k1efcrY
-         h7sDDsV6ejvjFdB1IxvLKMf9KDd7bqiNfW+6+DGqjtOtFWy8OV+8tsCXcWI754YVv1n2
-         sZ2kIqwd8liOJDamSMhz6waaUPXS3Rrq/jALc4D46ApdpszCH2mBWjy4bhccfcs8S15E
-         hU6bIc1FUyZIp6dHY3KUdYCgw7SU131IZMjK8OrZ2aMn0Z+pnFzujFVzq0A2qzM8f2vi
-         NF0Q==
-X-Gm-Message-State: AFqh2krNMl79rDZgus747xbAd6NiGUEbNOQtLudq+c/9bu5A3HkLjYIA
-        uhHafxHjzSrZaqNHJW45ttcBJA==
-X-Google-Smtp-Source: AMrXdXvYLP0S2L1TVzYTE/JdyRpc+28HghprLvYQY2mjMLlO48/znsZB/dI8qkE+nkFKCEGaEuUmfQ==
-X-Received: by 2002:adf:dd41:0:b0:2be:d9e7:f39a with SMTP id u1-20020adfdd41000000b002bed9e7f39amr12551254wrm.43.1674579294704;
-        Tue, 24 Jan 2023 08:54:54 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id g9-20020adff3c9000000b002bfb29d19e4sm1427304wrp.88.2023.01.24.08.54.53
+        bh=LSf9EDZbCk9ILTR8VX45RnJZiyt2oS/z0sFs3inXgHo=;
+        b=veVxVAjZBPP/k7d+oI8XQcnOBGkCJIAvlGJAVxmllyZn2ehiXR36QUpvYTtmbta0h8
+         CivntczOQ+y4BAED5pAlQKEKCAwZfQ1QrGyjXpSIAJGhXBUH2eHplg89W5mEJFoWTem7
+         CfBLA5a/av0leFj3RSjsyalnmfHiSN9nNGMT9iY+hVgrWmK4jNDXaq07O1IYX6g+NCyx
+         li6eohqe4c6deXwvQJJSu3M1yvULTD20i2oWpXTVLD3f6537AJqMbXNkuWk4T7K84uIR
+         1uFWIokcc89rEAfFYwvb8fXyU55Zybx1R/BhrdjpwL2bX2hUmm5DOZfr86M3Atz9e8jT
+         V03Q==
+X-Gm-Message-State: AFqh2korPTd7MbDweHTSM6ysXnIDF9RLoko1QVNskbV83ITDBaE6HFzj
+        MRx5CJJq9DwxkQtMEFCARykQYg==
+X-Google-Smtp-Source: AMrXdXsgji39wGRQLP97ZZxCisKBfhuTXsSUWSzlQpQyc7a9xrC512LRIzndKfV4HjGtaUphsxfi5Q==
+X-Received: by 2002:a05:600c:202:b0:3da:f80d:7230 with SMTP id 2-20020a05600c020200b003daf80d7230mr28444666wmi.8.1674579375802;
+        Tue, 24 Jan 2023 08:56:15 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l7-20020a05600c1d0700b003d990372dd5sm15695314wms.20.2023.01.24.08.56.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 08:54:54 -0800 (PST)
-Message-ID: <9f9547a2-69dd-f91d-c587-289156bf9d55@linaro.org>
-Date:   Tue, 24 Jan 2023 17:54:52 +0100
+        Tue, 24 Jan 2023 08:56:15 -0800 (PST)
+Message-ID: <3f62e91b-b132-aaf0-a6f4-87191a49448d@linaro.org>
+Date:   Tue, 24 Jan 2023 17:56:13 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v7 4/4] thermal: mediatek: add another get_temp ops for
- thermal sensors
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 0/5 v7] input: pwm-beeper: add feature to set volume
 Content-Language: en-US
-To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
+To:     Manuel Traut <manuel.traut@mt.com>, linux-kernel@vger.kernel.org
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        linux-pm@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Michael Kao <michael.kao@mediatek.com>,
-        linux-kernel@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-References: <20221018-up-i350-thermal-bringup-v7-0-ebf08ff2eddb@baylibre.com>
- <20221018-up-i350-thermal-bringup-v7-4-ebf08ff2eddb@baylibre.com>
- <4121bb6b-30db-7a23-f4c8-40afdda7a0b5@linaro.org>
- <COTTJX635TNF.1WL2TEZN7VW9O@amjad-ThinkPad-T490>
- <adfe41f7-00e5-876b-7803-3127919fba13@linaro.org>
- <COUMF3IZ9Y63.LA3KFHJSUZIC@amjad-ThinkPad-T490>
- <0644aede-c281-3919-50e0-4466f6587d81@linaro.org>
- <187b0fe1-1f14-d8b8-c827-1e824da0b1d3@baylibre.com>
- <d3daece0-ed23-fae7-9bc8-c6e53b84e8e7@baylibre.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <d3daece0-ed23-fae7-9bc8-c6e53b84e8e7@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        krzk@kernel.org
+References: <Y9AIq3cSNzI9T/dU@mt.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y9AIq3cSNzI9T/dU@mt.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi Amjad,
-
-On 24/01/2023 11:08, Amjad Ouled-Ameur wrote:
-
-[ ... ]
-
->>>
->>> IIUC, there is a sensor per couple of cores. 1 x 2Bigs, 1 x 2Bigs, 1 
->>> x 4 Little, right ?
->>
->> MT8365 SoC has 4 x A53 CPUs. The SoC has 4 thermal zones per sensor. 
->> Thermal zone 0 corresponds
->>
->> to all 4 x A53 CPUs, the other thermal zones (1, 2 and 3) has nothing 
->> to do with CPUs. The cooling device type
->>
->> used for CPUs is passive. FYI, thermal zones 1, 2 and 3 are present in 
->> the SoC for debug-purpose only, they are not supposed
->>
->> to be used for production.
->>
-> After reconsidering the fact that zones 1, 2 and 3 are only used for 
-> dev/debug, it might be best to avo >
-> aggregation as you suggested, and keep only support for zone 0 in this 
-> driver. Thus I suggest I send a V8
+On 24/01/2023 17:34, Manuel Traut wrote:
+> This series implements volume control for the pwm-beeper via sysfs.
 > 
-> where I keep only below fixes for this patch if that's okay with you:
-> 
-> - Define "raw_to_mcelsius" function pointer for "struct thermal_bank_cfg".
-> 
-> - Fix "mtk_thermal" variable in mtk_read_temp().
-> 
-> - Set "mt->raw_to_mcelsius" in probe().
-> 
-> 
-> For zones 1, 2 and 3 we can later add a different driver specific for 
-> dev/debug to probe them to
-> 
-> avoid confusion.
+> The first patch changes the devicetree documentation from txt to yaml.
 
-You can add them in the driver and in the device tree, but just add the 
-cooling device for the thermal zone 0.
+Your emails are:
+1. Not properly threaded which messes inboxes.
+2. Not cc-ed proper people (just use get_maintainers.pl).
 
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Best regards,
+Krzysztof
 
