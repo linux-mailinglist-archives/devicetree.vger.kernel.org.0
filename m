@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DBE567A125
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 19:29:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D266467A12B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 19:33:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233279AbjAXS3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 13:29:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38468 "EHLO
+        id S230294AbjAXSdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 13:33:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231538AbjAXS3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 13:29:23 -0500
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EF1BE3
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 10:29:22 -0800 (PST)
-Received: by mail-pl1-x632.google.com with SMTP id jl3so15570276plb.8
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 10:29:22 -0800 (PST)
+        with ESMTP id S229546AbjAXSdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 13:33:08 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA4C6594
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 10:33:07 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id v23so15618805plo.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 10:33:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:author:mime-version:message-id:date
          :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yBHseKN0Bq0k6eUJ7ZDfzyEJ949/USgpBKl0B/3SSNQ=;
-        b=JWqsr7Akzao/lsTKjg2U6ruHJdMiZ3ug/GPcGvrhm05a0M9LLy0Gj3BogRPUGCR2CJ
-         Js+T8uqcU9tr1rsMsh8zPNLbODN0PgnQ5uWE/LFFjOy3U0KvQCDqJnwbUJLMLeQx8IS6
-         rsukqzLD+H86Ay9SX9EbCuY9rtxPCfheIHIwwVflUBNJeE9+XoFqg9x2Foe215PXLqHP
-         U5v7N7nExYtjSImr5x9sV8LEtU9d4SZaoQXoLy2L3Hqm9T6Mqu/6WPl7XvmCQukLELdT
-         eB7h+RLM/1tOTrh+eV36YLwF0jsbZjGFcQdIMeTQIvGnCNHO80fVLsWDJhJSXr3wVjex
-         2Q/g==
+        bh=UsWJpCZ2MiktbEP0bUIDKCE2SHIVUBqnn1o3x0TI6io=;
+        b=YdDsRg3YLjc2/9zOKTNbV5dW2fAzUhZvv6N+sLI9WR5porWWWVLGOEESxfGtJsv1YD
+         HaPdnonpHJoF0mAOOMa37SYLyxHngir9M3NRQUyUTrS6/p62LBXn4Sz9s5kwj2Wn/riK
+         R4bv7Eov+1LdOHJD2Dk91oVBGILUFR+00vVuGfo4Z2VQHFRCkexBf1zUVHuJSOqeQ5Ls
+         wVs7S8RB7VyqkuJ5qNOxP1F0jjKmYLqRe2vW1gEWU8YX9mhl3oWHcWTE1Z0CkaAfuP4b
+         HaRrPVY/puZJZIm08vTO3rGM4ksLeJOaprTeNfhuBgU+NbEs6tdye9YVNAvhE4Ctdtwb
+         Sl8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:author:mime-version:message-id:date
          :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yBHseKN0Bq0k6eUJ7ZDfzyEJ949/USgpBKl0B/3SSNQ=;
-        b=MeuFyBQ4DDHllm4lUjnoSGYNF3MUalk4VrNx+M8AzmYGj255zB+3FXR5Nvj5VeIPrW
-         paSJV+zAU6GUzwKtwCAAxpeXls2KlvpB1W28DozJC5MPmJltNaOM0TVZmnuf5M33ePTQ
-         EnXjBW38IKO2jRtbCXwqEM9ZiACBpT7xksErs2P2PkElefdFWYfKWV97frp5NbzZt5jA
-         SyJf5Olyau+5D/h7dTus0fsYeL+n52vd6kBFJJJScS+YBJyxL3JrCCTHoT9k1Enfgclr
-         wZHSN8UqcvPd5hiHIGis7Nk1y5obHmGQYlXSz08JnY3CYgf/vwaoQSTJoHO9Xhm+0krC
-         XJXQ==
-X-Gm-Message-State: AFqh2krgxfY8oZahhz7kmsvuiesBl+gkQfe0iVs+myu661PSRicySioU
-        6OoYdXjdgLIrkXCUTiJ21h4mUw==
-X-Google-Smtp-Source: AMrXdXuCskyy+nSPqTNseddegZr28RLxBvQHQSD+32FaNvNc5nKqLClcmHVE9GMtYD4FylmhqAAoIg==
-X-Received: by 2002:a17:90b:1e10:b0:229:f562:896e with SMTP id pg16-20020a17090b1e1000b00229f562896emr20675692pjb.36.1674584961632;
-        Tue, 24 Jan 2023 10:29:21 -0800 (PST)
+        bh=UsWJpCZ2MiktbEP0bUIDKCE2SHIVUBqnn1o3x0TI6io=;
+        b=BLK1I8jiUe6hjHfePwMH/ERvDlCd3CFbx0/1Un/ifVG8bOTAuMt0I3bnN+u81WE5Vt
+         uSdfq80cVICvjlrDpeUOLnwDCKWgxTdmobRXDY26Lu/B6rNN74BOr3qd3TG9+ECpQoFF
+         Mad7G4yrdIeddlE2325CTEYtCav/t7jknk0al7C1V3KB4NuTCIEWJ2dzrfTno5M+AqsB
+         oebOSu3hyaFTfpa0bVKlEh3sHMawNUPs1xxT8b8D3nY703HQGtMsuSRsgaoi+lRHb6Hn
+         ymJ9l9yocOSqzqcIrLYxWGnLd7R6wpAw3mssWU4rxdZ2b/qQJT7yQFB4ggevkWgiYDox
+         AYPQ==
+X-Gm-Message-State: AFqh2kr/cFkNPOjU0vz0NxcTaWqnJXfOeJ84hPED5+U28JPdDLL63KW5
+        X31UgQIkmFMgEL3KgnCS8kYNmw==
+X-Google-Smtp-Source: AMrXdXuriSuX4HGqunHblAH+Z5NPF9OltDIuJkqmRr3gtJB9j7vPP67/BJL9BAlupctMwtOKvTuCJQ==
+X-Received: by 2002:a17:903:2306:b0:193:3540:c54d with SMTP id d6-20020a170903230600b001933540c54dmr39612857plh.26.1674585186710;
+        Tue, 24 Jan 2023 10:33:06 -0800 (PST)
 Received: from localhost.localdomain ([122.171.17.192])
-        by smtp.gmail.com with ESMTPSA id t8-20020a17090a1c8800b0020aacde1964sm8647056pjt.32.2023.01.24.10.29.18
+        by smtp.gmail.com with ESMTPSA id x7-20020a170902ec8700b001943d58268csm1997229plg.55.2023.01.24.10.33.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 10:29:21 -0800 (PST)
+        Tue, 24 Jan 2023 10:33:06 -0800 (PST)
 From:   Amit Pundir <amit.pundir@linaro.org>
 To:     Bjorn Andersson <andersson@kernel.org>,
         Andy Gross <agross@kernel.org>,
@@ -55,13 +55,15 @@ To:     Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Joel Selvaraj <joelselvaraj.oss@gmail.com>
 Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
         dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory region as reserved
-Date:   Tue, 24 Jan 2023 23:58:57 +0530
-Message-Id: <20230124182857.1524912-1-amit.pundir@linaro.org>
+        lkml <linux-kernel@vger.kernel.org>,
+        phone-devel <phone-devel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: qcom: sdm845-xiaomi-beryllium-tianma: Add reserved memory region
+Date:   Wed, 25 Jan 2023 00:02:57 +0530
+Message-Id: <20230124183257.1525376-1-amit.pundir@linaro.org>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Author: Amit Pundir <amit.pundir@linaro.org>
@@ -75,22 +77,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Put cont splash memory region under the reserved-memory
-as confirmed by the downstream code as well.
+Put cont splash memory region under the reserved-memory as
+confirmed by the downstream code for Tianma variant as well.
 
 Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 8 ++++++++
+This change should probably go in sdm845-xiaomi-beryllium-common but
+I don't have EBBG variant's downstream code nor the device to test.
+
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts      | 8 ++++++++
  1 file changed, 8 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index f41c6d600ea8..2ae59432cbda 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -100,6 +100,14 @@ hdmi_con: endpoint {
- 		};
- 	};
- 
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
+index 8e176111e599..47cbf725b0e3 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
+@@ -7,6 +7,14 @@
+ / {
+ 	model = "Xiaomi Pocophone F1 (Tianma)";
+ 	compatible = "xiaomi,beryllium", "qcom,sdm845";
++
 +	reserved-memory {
 +		/* Cont splash region set up by the bootloader */
 +		cont_splash_mem: framebuffer@9d400000 {
@@ -98,10 +104,9 @@ index f41c6d600ea8..2ae59432cbda 100644
 +			no-map;
 +		};
 +	};
-+
- 	lt9611_1v8: lt9611-vdd18-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "LT9611_1V8";
+ };
+ 
+ &display_panel {
 -- 
 2.25.1
 
