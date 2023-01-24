@@ -2,128 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 967DD679E90
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 17:24:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AE9D679EAB
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 17:31:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234251AbjAXQYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 11:24:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57342 "EHLO
+        id S233235AbjAXQa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 11:30:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234076AbjAXQYh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 11:24:37 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2070.outbound.protection.outlook.com [40.107.20.70])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42F8E46A7;
-        Tue, 24 Jan 2023 08:24:14 -0800 (PST)
+        with ESMTP id S229546AbjAXQa6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 11:30:58 -0500
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2084.outbound.protection.outlook.com [40.107.8.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 779CE11EA1;
+        Tue, 24 Jan 2023 08:30:57 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=krMbvE0beFEaTXGbFZXl6fCGGxphVThXK8+zknGdU9ucpT5rATjKFT2vnwxIIL04MLJSH9jkdiJ8LiepyjqGqqwYfNOtKYH7DO+vfh90bJrdp4J5pxL/ehRAQdcXvzOlfetuBA75lwjCeAadQGejo2rrlHYOyYjyF4dPUfjCrc+0Poj2vKSnRsIcfLaKL9Vi8sHjq7r1UN6F9SaIxbsRNJBSWqHVQaOn57Sg8XhYZUihT2HAWvdkMzxwSR5/clJjMDcJHiniKv/cEeHQV2/HS7lLhPXRq2zc0A2lPyy0/ANIsfiV3JLXYbUCU2BVwKq4g96cToXlfOxFhy47KZqKWA==
+ b=dfIh6JNpiUm0Puxa1OFBkpxr49M/+uX5wd6fDzyjApSO06Y47ua9ci2g3csuT8tb8ks9H4jNT5c+doN8vvNgcR+gZQA1WoJguviMPbPajXLw0615MDuKAkp+fXyAd6FrdgPG8jpoNEFVWacXWES8G1dawqrdA4JtYVBs6LS46SXoHr/Ag4fdWsUEM08Ug3I+ma82rwiumiKso1Gx58YJCXfQRMZsG19UeanMKBuFRddzY32QLRpOkRawf7HY0B+VVWaJO8TInNp+aWlM3PuyR7Ww35JoFItqOqOFJZZH26YYzc8LkAZN72zIb2+0t/vjVmVGF2dE17xtYxaymyn+3g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I7EHdQeu8SILrMF7YPvPqf8Yf3xZvqyheqmku3lRXzg=;
- b=T1xA4OWTphe2H3EZ8m7oL69VWKV/KTfd6X65q+7BvbooYSWiilJmxscVFUT5lEvWK7Us0WtOPjxZ5o6scJry6a8Emvs+hMfSpLSRZZFMDtfP72Ebs5NEIG1mPQP3NDh6eDVHMa3qhgKO1tqpLzoxG0826t/ByBn+fcJyx09As4IjUDdzgH/C+GG+v4egEq5+mgnbl06ZM+7p4GsRrcM+7e5pQkro+00IoQ+gUMU0qhM/wkfvnDbxCrCAmsjnVydOQXihIXInnEjoUuWgTJO/ZSYggRtOZRjVVnFMnqGwOzRy5Z8TkXfIl03EZYo6Lboa7Js0dTVcwZ36+sPqY2MU0Q==
+ bh=9UgTGLBhEQVscQNBG4YCWvYiYDlgp001c0bxw//T5Y0=;
+ b=K3S/DqbqDCDZ5MUEOTqQd46T2NqUcvrNcO2Aiuj0jIJIY6eBu9Y4V8SgEyPRj52AX/Nmj1AlXMSQKWOfzU8UgSfxMggQ3jTF8AOXv5doSmrHgxx5Mr9aPerQ1f5l4bxXesqBt55+AYCe4AleqCPTSwkgWq7Hv1e/se3J/o9Zy2NbnXmsnzEEZPTpG4SCNWXv4XKlTpFsBEwP38iZJ1QqSsOBwlif+fDvQMXfGYVbgnmcdHyOhm4YX1jwOa335ZVQ12x1Zmu0dh8DdG2TTGUHLNCjM36NfaJts+RN5jFI2jlcgptgigsMX9IcZfq4TG/2XOHDpRccoYc39LjDErqOPA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
  dkim=pass header.d=seco.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I7EHdQeu8SILrMF7YPvPqf8Yf3xZvqyheqmku3lRXzg=;
- b=ai9QOtZnXqoyEEkTQu6sSZwLSYUBgGcPT6nbSYhLQ2xDJxTIMGja22E1vh6KOr0+ouKuNJLL1urKZz9juctsE10NWVP53ofvDqobCo3Qf59XNH2MZjRwpyl4QALGRNhZf0iKEgnfkY42o6UJo60JD8qgVTgg2vZOMoWB/yRTfXOOhNRyNUBH0sKzV/+Fo15ERcMmm4aztzgUDq3YYKvZ669g3YUNDjnf3WlgtY57mxzlU/8slGoXRERXIe4OG11gvvuPmFlmQHtIW0ybgrNwYtT/FG50ThvKWn09hkDt8D8JOr94i8oBZq8DfgazWWdrS7pUjJmi+9Bnw6BiBeRxfQ==
+ bh=9UgTGLBhEQVscQNBG4YCWvYiYDlgp001c0bxw//T5Y0=;
+ b=iHsIiIZ3Os0ujjdYYltFsxpnBxGS2S+Bu3qE7XgI8BJmHbNb0eEA7i+f4ayy+7bNhihVRLLQXPW9BmzBIQ+T3p7LuHwyz4Vh3PCYu4IcgFSaOJjDi47XnQzpjlg6rIGFa8Uz2Cbxo+ghavZOd4vO0fyYR6J0Xy9sZSOtRxsBZjpFt+NfV2Mwv3+x+KsCxqKw6Uc3eSXJpGC107KyhUgBzwzjaiWgOH3zJxmi3dmK+FRu8fzHzWJ3Y6QJo0npMUiErSq0ujvv6c/XkD7iDmaabFpSLVLEb8i7T8bA/1AhZDTJKvyUSMbskkN46hEuuH3vBKLxOGhIf8XLvZeeyw68PA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=seco.com;
 Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
- by AS8PR03MB9243.eurprd03.prod.outlook.com (2603:10a6:20b:5b0::20) with
+ by DU2PR03MB9999.eurprd03.prod.outlook.com (2603:10a6:10:490::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Tue, 24 Jan
- 2023 16:24:11 +0000
+ 2023 16:30:54 +0000
 Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
  ([fe80::6b03:ac16:24b5:9166]) by DB9PR03MB8847.eurprd03.prod.outlook.com
  ([fe80::6b03:ac16:24b5:9166%2]) with mapi id 15.20.6002.033; Tue, 24 Jan 2023
- 16:24:10 +0000
-Message-ID: <232f59aa-704b-a374-6a78-469156ccdbea@seco.com>
-Date:   Tue, 24 Jan 2023 11:23:45 -0500
+ 16:30:54 +0000
+Message-ID: <5cc63796-fd46-98d6-fd01-54a8281cf995@seco.com>
+Date:   Tue, 24 Jan 2023 11:30:49 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH] dt-bindings: clk: vc5: Make SD/OE pin configuration
- properties not required
+Subject: Re: [PATCH 0/8] generic command line v5
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-reneas-soc@vger.kernel.org
-References: <68037ad181991fe0b792f6d003e3e9e538d5ffd7.1673452118.git.geert+renesas@glider.be>
- <5da02a9b-3d42-a26f-0d18-29a6b5b181e5@seco.com>
- <20230124091236.1bf8c6da@booty>
- <CAMuHMdV8_+dF03VD6mST2zMDQ68cgsLLRQi6UeXK2jH-eWqWZg@mail.gmail.com>
+To:     Daniel Walker <danielwa@cisco.com>, Will Deacon <will@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Rob Herring <robh@kernel.org>,
+        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kbuild@vger.kernel.org
+Cc:     xe-linux-external@cisco.com, linux-efi@vger.kernel.org
+References: <20220929023301.3344694-1-danielwa@cisco.com>
 From:   Sean Anderson <sean.anderson@seco.com>
-In-Reply-To: <CAMuHMdV8_+dF03VD6mST2zMDQ68cgsLLRQi6UeXK2jH-eWqWZg@mail.gmail.com>
+In-Reply-To: <20220929023301.3344694-1-danielwa@cisco.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BL1PR13CA0224.namprd13.prod.outlook.com
- (2603:10b6:208:2bf::19) To DB9PR03MB8847.eurprd03.prod.outlook.com
+X-ClientProxiedBy: MN2PR20CA0005.namprd20.prod.outlook.com
+ (2603:10b6:208:e8::18) To DB9PR03MB8847.eurprd03.prod.outlook.com
  (2603:10a6:10:3dd::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|AS8PR03MB9243:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8aa9ba29-5baa-46db-e985-08dafe276c5a
+X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|DU2PR03MB9999:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9f9b0c36-b9fc-4457-fae2-08dafe285d09
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dt9XwnvaOFcjjZDl+wxguZg4JKgWnnVvaiCT7bpLlhPSU/TUED6zxpS3/2RBpFlr6+9Nxn8/6Y18w7x6GD/ISi8C+e0EIyyq8URqNQ9sGw6DqHCM+tn/F2p4OGtD4Dnaxmb+oy2F7TRvZNNVgv1ZTMhPvJpY4Vt8KEOFzd+Jr3VQpIocq+7rg+psBBPVrqVQgeCViWgCBvYXTnP5FBtIaFe7BsYEqrhkR6+MkigTQygKco7ugJr+XLSr7YuUIfmu5K21UD9pWCAgVej9mZxLbceGe1UGdeFu6MuHqBKb611S4BS8NPBEe4S/hY/lAXw5yP+jS/dSv3Fucw3toZiwP+14ijZ3SrNxzHeI2r57yVHIB5M8wVVx7hFQUN2ILuK7ZbknkWTTGbEHoCIV5ckE/HdA5cRuB8rh3j5FAjjaw6BsbTk8IGArpk5xb1Dn1Aw7PHYGMCuamvd7JCSrY6pt/EVIm6Dzwk7SWWYduwPOZKIevi/BX+2RHI+1b03CI1SSZBSeSJr7FqIQ5lfFpN14Ix++LIKQW3VWDiHcyRRlWe1BqLzPmW2TvujeksjZM1THftnmasq8TE7eFj5UBvxMwj1cd2P+B2vj1ZWGzFDMIDdmtuhdypeyYG0p4DzksbVEk3mjE3/RBcmYgqRrwVqqxQqlGQhqQvkffCkYmtQ4GlCSrNIw/hFpWDoRawAUM0/LGuM6DyZof3ru4G7RdlAdPqatcbCMQDgvEAAFJVcBZ/sBTtDT1hfaIIVv7cHa7CuEtYem6CfQae3eymzCYpXPdw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(346002)(136003)(376002)(366004)(39850400004)(396003)(451199015)(31696002)(36756003)(41300700001)(86362001)(7416002)(8936002)(5660300002)(4326008)(44832011)(2906002)(38100700002)(83380400001)(38350700002)(110136005)(478600001)(6486002)(52116002)(31686004)(66946007)(53546011)(6512007)(26005)(6506007)(8676002)(186003)(316002)(6666004)(54906003)(2616005)(66476007)(66556008)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: 1Hxp6HmeF/ueRYPWUFjY/p9TAhlgUzb5DzMUFrynG7B7LDdgyEGSYlv8T2QY99/2/CARY6nFFBZC7ga32Q3+JNSovFqYjpuy7G9gG7Gogkr4ymt9ujES94QJCU5lbKdbiZzwOhHfN6xuwpHGaBulXMEV8gpfPLViiVNRONK+pzEUtvPe7g4aW3tVzSLa0mUNMYS/Jb+K95/XOS/F7AtFshDKK/Ad44QeJhtnQghNqiMGEwLNmDVmBk8SZsSgDRyJGm6CWYCTzg+UhbhqTHzffc3XT3rL5i2L2f7VBFrvbn45LALbseKEROqrxohgtFrdgzH6sxeJPaaDJXAjVfJD6vGiDTCBSFxZwx3KgPQ6WRL3wonAlIJ1xGj+usm9t17Sy69Xq38TfbTM8ZVBFOA0MpTA30AX1aZFI5IG55Q7gIFyIRoaHTrX4oIptMzNWoLX8mMx/HiDrprtIN8oLEQFK3HeF/iYhg5eyFf8s6JQD2zkPwNasACTZzGcJLNjKJSjiE6uc2LLR0LTBjg9ytGVrX0mnSzHVa6EvXf7+MYrUM4jSZZzobFYkIVWMa29jtR5RXCIqdRwOA5KdQ0ECqXFQR3tkKDJPThyCzWFZ1OWYCNRtv76aTFTcRtlqeU4nxI8My3EZytrGOWMjFFXUFhciirKNA5g/4lBGM5B0cwVlFV07AXVwQ7nesUI8c/DmFPgUAXvF6KxsRoFg44NFHjxlUlMa8AfrRMB/36ICZojGlT91Y2sLMBBlaJhRoacClr/co5VsfqltAqrJN1k+GwxgJuddR3RurkZIOAPlg8/3S0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(366004)(39850400004)(136003)(396003)(376002)(346002)(451199015)(31686004)(31696002)(316002)(110136005)(478600001)(52116002)(36756003)(86362001)(2616005)(38100700002)(921005)(38350700002)(83380400001)(26005)(186003)(53546011)(6512007)(5660300002)(2906002)(6666004)(44832011)(6486002)(6506007)(41300700001)(7416002)(66476007)(8936002)(8676002)(66946007)(66556008)(4326008)(41533002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?anNVdENSNWg5QUQ2WVdUbGk2VDRpb1pyamt6Z2VuTm5xeXZjTkRmcmhLTXRC?=
- =?utf-8?B?SzJYSmhmRlJpbWRHSVNYOEI1MmpHMjRpUSt2MWlQUWpJSkUyOEdRK0Eva2pU?=
- =?utf-8?B?ZHZtc3FzcXZGNDZyaGdqU2Q4c094eE5UWVUvOHF6ZWlFbVAyRjV6MnA5V2xE?=
- =?utf-8?B?dVorR2tuVEhua2tBOU9SNWVML3FHT3ZyTFNEbHJqazBnZ0M0QzgrVHV2MEtR?=
- =?utf-8?B?TFdpd1Rsdk5mRENEcWdrOWV5VW9VL0RUNlR5NVpzVkVoQm43ZnRMUmg3eVdM?=
- =?utf-8?B?UEFEbVo1SlNQUldWcUhBdkd3VTFZM2FLeUJaYWtWelZiVVUvVVZ5d09JSXdQ?=
- =?utf-8?B?MDI3U0k5S1JnTDFsTmp6dXZ5RjVNb1M5aG05aThqVzdoNFQvZlg0YVhhQmFj?=
- =?utf-8?B?MnduSXdIL2pnZXluMXlRRGZoMVFCL3lpaWN3QnYzbzNpSDVlKysvdTdqYWNl?=
- =?utf-8?B?VThMVUdvMzc2REJOeFVQd291T0c5bm0xRkFxbWxjVExtaWhrblVjODFqdThM?=
- =?utf-8?B?eHdjSEtGMkFmQnRROFErSERXY3lDbnZEeFZXYTlmemlCek1WZFlIcVJoYS9n?=
- =?utf-8?B?cmhBUFlwRkJnNGdEZXBNdGR2ZndLaGE4bndRcHpzNDc0TGtiR1BIaFkzaG5K?=
- =?utf-8?B?RmVMMks1NmY5WGVKR25lOU5MaEdST0ZOZUVvRHF1SGdFaHRiMlRtZlduUHhv?=
- =?utf-8?B?TlJkMi9mbkJrdWhDenpYSlRLWEI5V05vcGczRkJpUGRIN2VlN0UwOUMrZG82?=
- =?utf-8?B?RTg4YllrditiN2pLOFVGVVVTU0kzTUducTdYS2hpTFl1cWZ4QlZLSXVtSG81?=
- =?utf-8?B?R05KbnFRMlFEZitMYU9zSmtPN2F3UnlaM1ZjUlVTKzdzL095Z0lFYTFuYmNj?=
- =?utf-8?B?aUVnWkVUOTVidG52VnBCWFIybUZwTUVPZlVCSWV6blhJczZRYnFFMmtUdjhw?=
- =?utf-8?B?cjZ0WTJRTjdLT0pyaHRYRWZHOG1rVzNUdFZUWnc0Y3ZXaWRCSWZKemhiR3pN?=
- =?utf-8?B?K25GT09Lajk0dW9FRStReklLaUVUZFI1NXB1dHRhS0QxUTZHdDh4bnJVQVgv?=
- =?utf-8?B?Q3lsYzlQNEhQdUtJdnF3aVhqWWxidFhXcVE3QWd5Mk1DVGdKVGc0OVgyQnlR?=
- =?utf-8?B?cWVkQTdBY3Q5YnhOWlY4UVZYSmZyaWxzb2FpSUsrV0xpVEU0TG43ZWg1V3pI?=
- =?utf-8?B?ckFjeWNqTENPQllwNi9ITUs3M1I0MnJjNHBGQ29JNHVzdU1Dc2t1N2QyRzZh?=
- =?utf-8?B?WG1QTGUvZy8rY3VVOWtKOHZmblprMzFOOVd2R0hJZndpeEtLTDlsei9kZmhV?=
- =?utf-8?B?dVdTSkpmTVFpdlVUd0gzZzlMQkphOFBhMmgxVDJyT0ZUM21RY3h5N3hUL2Vx?=
- =?utf-8?B?akhKUFFPMFRtZHVTSnhsZjBBekZFdEZ2NzRWWXY0S0tsNzZrdjBnRFNlWm4w?=
- =?utf-8?B?c09MQlZsKzJ3YTlHQ0ZrS0xFdXVKRUUxcEFDcTlLWk5MVFNLdmlVTXI0TnlV?=
- =?utf-8?B?a3VXbG1YamQ2ZEtxQ2tMaGpjVW5xeVVXb3pGRlBHZFZyUkhnRlNEZWxhbHBI?=
- =?utf-8?B?c3FsQWJ6T0lJZGd6ZGh4U0xxQUt2Zzl5N0UzSVVQREtTS3lNaC9iZFVucDZq?=
- =?utf-8?B?ZHpQNnRXSWpMSU1mSVJNdkJubUdFODdpeWgvcnFjaTBXdFcyK3JHelNncmVG?=
- =?utf-8?B?VHZpZEREREZkOHorMFltN2dIbk9xOTJOYTBVOUdDTU9CL2FLOTIvSURCeU8y?=
- =?utf-8?B?TDdtT2x5SG1ad2FwMTU5TSszOUd2bytNdFhObVNERWcvQUVpZFlmTWVyR01r?=
- =?utf-8?B?Z0VXWUlPd0hDUFB3OERYd2c4MXlvRE94YnFVVHFwcisvdG9IaWttMEx1NVo1?=
- =?utf-8?B?S3FnellDWVY3cDVWa3J6OVdJRTBieVZDb0dQcEZSTCtFN21hNWtzUi8zaCtI?=
- =?utf-8?B?WVFLM2RkS0xVbCtsK3k5RzdBTTlFREFIZFBKcWFwZFE4T2E1V1d2aktTMDk5?=
- =?utf-8?B?Z25mVG5WMEdmVWRpR25HSk1BWlZqU3VnMUo3WHdlbFloRUpuWHVmdW5NdlFj?=
- =?utf-8?B?emZCUTRPUFdleWdYMkxPRktoeGM4RjExRlFseld1NmtRUjA0RitVM044UCtz?=
- =?utf-8?B?RGhSWTdQaDJFbFFPSnpjTjk3N1BiNE1Na2JkbmYyaCtXVFlORnF6Ky9vWWVO?=
- =?utf-8?B?aVE9PQ==?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OGpTVEhNd1ZrK0xrdnJRWHdsMVM4M1A4MVhWYVk3VE9uVUNxNytMS2ZTSGJl?=
+ =?utf-8?B?NjRXWEVsLytYMnYzK3dZQUhqZnZPTUhoZm54bFlzeGhWUjVWa0tPQmoyMDZ5?=
+ =?utf-8?B?aG9xT004NnZkUjZFR1p6NzRmL1Q4UVFGTGZvSTZlN0NMUU9WR0t0ZXJ0amRG?=
+ =?utf-8?B?K3NWKzdISmRXaDFHYTlvai8xWUlFOHlxREFibTNSSWE5THIrUGdpOGVxYlpJ?=
+ =?utf-8?B?amtEY3RCaEhpNE5TdjFIelQ1YjBEaHBLTlJtTkJoZVI5aWJRelA4TkZtL2cz?=
+ =?utf-8?B?b1lGQmhYNTF6eitHc2ZFalQ0YU1NV3Fpejc0OExQUms1N2RucWplUHVLOWg3?=
+ =?utf-8?B?TnRnODYrN3hFMjQ0T1FlOU5OUkVhQjZFcDBlRG9ITXpTamZZT3BtY2Y0M0J3?=
+ =?utf-8?B?S2Z0VGFxSEJ5NHVCSFZFZllXNHJmVTEvc1ZCN0hMZzdoZ3BQcFF2N0NqT0tt?=
+ =?utf-8?B?N0VsOGFkclhGR3hLdDZCMjRJYzh5ZGpmaC9pRHpEajAzOEV0Q0RsRHhab2hB?=
+ =?utf-8?B?cjk2Zm9nOEc5a3dwQ1llaE9JbU05ZWwyOVV6anBWUTcrY3RESGpxWkhhNDJp?=
+ =?utf-8?B?NklWaVkzUldxbWxDVkFiZ3RoY3hpSThQUklnYzlYS00wUlB1WmVrbEpzcXg2?=
+ =?utf-8?B?Y2lIYjF2NFRlWW1xWVQ4b082QmRqeVJIMXR4K1NGWHF6aGM2RjlqR2xHWFU3?=
+ =?utf-8?B?WFpSL0x0WmtoZmQ4Q09xR1RGMzdzRDU3dTgxalRkVnFQZHNuaXhpdDc5RkpE?=
+ =?utf-8?B?ZHBscmFzOFNtaFJsWWdOMFh5cWZSVURKdXpVNFFKbGQzczNGUlA4UWhPb1VB?=
+ =?utf-8?B?RzRTNWVCTitpZzBOZktMa3l6a0wzTkNVejZVcUd2L0plTGZBdGNsNE9ubGxj?=
+ =?utf-8?B?WktIY1A5UENtYThKL3BvUDFuYU1SVjRsSFUvV0xrcUk0ZG94VHBVeThCZmJt?=
+ =?utf-8?B?aFNGK3lEWjc0NkhVc21FQUQ1UGk2Y3ltSnFyTzdDVmk0V3RCL1dLVTVWeVFE?=
+ =?utf-8?B?clVkTk82VHV1eDVrMDJ2SWRodXpEZ1ZyT0hRaEpPS0lvMHYwU1Mxem5iZlpW?=
+ =?utf-8?B?a0I2bGt1dG1lSkIwNFN2c1NPL2RJTC8zaUVTeFE0OGt2TVlBVmpodk9HSmxo?=
+ =?utf-8?B?VFV4NlU0aWdvMmFsMG9DV3dGN1l1VGx4Tnc4blMxa1Z2WGt4UUM0dVUySVJ1?=
+ =?utf-8?B?MjArNXFCbHJGejRPSE40N3FvOFk4T1poN25EcFdQbFB2bFVLdWFnWUVXazdO?=
+ =?utf-8?B?dGxRWVRDSDBXN3BZWUhHVFpldVRPd29SZFFsZ3ZZaXYzOEdJcmdwdjJFMnFm?=
+ =?utf-8?B?QVJzRVVVSG5TN2NwQkw3VG9YNTBkaFhBTWMwUi9HeTJMZFdHajkvc1pCdmd5?=
+ =?utf-8?B?a3k4OVlleHpObWs0cHNqaWRaN0JZT05UaGNoZkk1d004azFuZUVvMjlLdVo1?=
+ =?utf-8?B?akJCakRMc0E3TkMwVmNqcEFzUmorWDhMYWV4TEcvZjFheVlGdmRvaTEwNUxE?=
+ =?utf-8?B?eDNNL1JHemdoKzRWWTVnZ0dnaFE2enRzZW5PQklOcFZlblhJWVFyV2xVK3pC?=
+ =?utf-8?B?SW90WWZjVHRDQ0hwZXhLSENOUFNTNkxSY3JKVC93OXQyT09ubkVpWm9GYnpK?=
+ =?utf-8?B?Ny9uMEplV05RQlk3b3VRMGExZGlwVTZERjJydXZBUFNUSzBoQy90QURQQjM3?=
+ =?utf-8?B?NDhMUWlXd1R6KzZGcmIzREhiWW5YODZKTXNpeGQwWnBJTC9pTVRmY294MnQ3?=
+ =?utf-8?B?UWtFNjdWZTZRZ0p2UHZzSis5eHFWQm9oRDc2TFZYVkhMdm5HbnQ5YmtzdW5h?=
+ =?utf-8?B?TUpiQ1hOc091ZU45QnBOVkI3Si83OFZuU0pFem9CdFdRUVZ5cDM0M3p0QS9M?=
+ =?utf-8?B?YkwxQW4xcjFKWXRhQ2xYOWNOOVBJeFZ5L2t2c2kzblJtTmVXQ1NrMHFScnNM?=
+ =?utf-8?B?UUxaektWaTlGWHZsVk1zWW1LRDZ3NlJWSTdHT1RxbkRIMEtBZ1dmZkZ4Tmd4?=
+ =?utf-8?B?QmNDb2ozRll3MU5WQ3Qyd1lWbXJSMGZLMzllTHdRcXRnWnR3TzRPWnZVUjZK?=
+ =?utf-8?B?bU8rTXFacE5jNHQ1Z1hhM3JZZGM1SE1pNUhwWFdxa3dxVGQ5QUJUcDBzREk4?=
+ =?utf-8?B?US9FczVYYW40Uk1jTXY3ZFEvbEpyLzQ5aitSU0FueTZ6SnBXN1ZQOFJMUTBO?=
+ =?utf-8?B?VUE9PQ==?=
 X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8aa9ba29-5baa-46db-e985-08dafe276c5a
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f9b0c36-b9fc-4457-fae2-08dafe285d09
 X-MS-Exchange-CrossTenant-AuthSource: DB9PR03MB8847.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 16:24:10.3625
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 16:30:54.1616
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZCZ03qtUrwUQ6Pwnbf1kmP2miIrFGmxCQaV9naCgjRyGMH38oSHq3kyIQSipj6/8uvLhc6Qu6faWVv+eWfHmyw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR03MB9243
+X-MS-Exchange-CrossTenant-UserPrincipalName: xND+A2DB21t/vPRp6zi3b+cLTiMXbvUbW+dRhVMH0Lf0BLAqcYhuNQ2o1+fKgZsDYZpbH7KcsGmRnx46tAuxvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR03MB9999
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
@@ -134,79 +132,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/24/23 03:28, Geert Uytterhoeven wrote:
-> Hi Luca,
+On 9/28/22 22:32, Daniel Walker wrote:
+> v5 release changes. Generally a rebase from v4.
 > 
-> On Tue, Jan 24, 2023 at 9:12 AM Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
->> On Thu, 19 Jan 2023 14:27:43 -0500
->> Sean Anderson <sean.anderson@seco.com> wrote:
->> > On 1/11/23 10:55, Geert Uytterhoeven wrote:
->> > > "make dtbs_check":
->> > >
->> > >     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: clock-generator@6a: 'idt,shutdown' is a required property
->> > >         From schema: Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
->> > >     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: clock-generator@6a: 'idt,output-enable-active' is a required property
->> > >         From schema: Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
->> > >
->> > > Versaclock 5 clock generators can have their configuration stored in
->> > > One-Time Programmable (OTP) memory.  Hence there is no need to specify
->> > > DT properties for manual configuration if the OTP has been programmed
->> > > before.  Likewise, the Linux driver does not touch the SD/OE bits if the
->> > > corresponding properties are not specified, cfr. commit d83e561d43bc71e5
->> > > ("clk: vc5: Add properties for configuring SD/OE behavior").
->> > >
->> > > Reflect this in the bindings by making the "idt,shutdown" and
->> > > "idt,output-enable-active" properties not required, just like the
->> > > various "idt,*" properties in the per-output child nodes.
->> >
->> > IMO we should set this stuff explicitly.
->>
->> I took a moment to think better about this and I think I get your point
->> Sean in preferring that the hardware is described in detail.
->>
->> However I'm still leaning towards approving Geert's proposal.
->>
->> I'm based on the principle that DT is there to describe the aspects of
->> the hardware that the software needs _and_ it is unable to discover by
->> itself.
->>
->> Based on that, does the software need to know SD/OR configuration? If
->> they are already written in the OTP then it doesn't. Also if the chip
->> default is the use that is implemented on the board, it also doesn't
->> (like lots of optional properties, especially when in most cases a
->> given chip is used in the default configuration but not always).
+> * Modified OF changes to move the ugly code into the cmdline.h
 > 
-> These clock generators are typically programmed through OTP because
-> (at least some of) the configuration is needed to boot the board.
+> * Minor compliation update in arm64. Added ifndef __ASSEMBLY__ in
+>   a few places.
+> 
+> * Worked around arm64 kaslr_early.c.
+> 
+> 	This code needs some additional review and consideration. 
+> 	It appears this code is missing the opposite option to nokaslr
+> 	which is kaslr.disabled=1/0 which would allow kaslr to be turn
+> 	back on later in the command line. For example,
+> 
+> 	console=ttyS0 nokaslr root=/dev/ram0 nosmp kaslr.disabled=0 loglevel=7
+> 	
+> 	On arm64 in arch/arm64/kernel/idreg-override.c this is parsed correctly
+> 	to turn on kaslr, but the kaslr_early.c is missing this logic.
+> 	Doing this results in kaslr getting disabled with the following message,
+> 
+> 	KASLR disabled due to lack of seed
+> 
+> 	Even when there is a seed in the device tree.	
+> 
+> 	So change to the generic command line would leave built in command
+> 	lines with nokaslr with no option to re-enable kaslr in in the bootloader
+> 	arguments.
+> 
+> 
+> Daniel Walker (8):
+>   CMDLINE: add generic builtin command line
+>   scripts: insert-sys-cert: add command line insert capability
+>   scripts: insert-sys-cert: change name to insert-symbol
+>   CMDLINE: mips: convert to generic builtin command line
+>   drivers: firmware: efi: libstub: enable generic commandline
+>   CMDLINE: x86: convert to generic builtin command line
+>   of: replace command line handling
+>   CMDLINE: arm64: convert to generic builtin command line
+> 
+>  arch/arm64/Kconfig                            |  33 +--
+>  arch/arm64/include/asm/setup.h                |   4 +
+>  arch/arm64/include/uapi/asm/setup.h           |   2 +
+>  arch/arm64/kernel/idreg-override.c            |   9 +-
+>  arch/arm64/kernel/pi/kaslr_early.c            |  14 +-
+>  arch/mips/Kconfig                             |   4 +-
+>  arch/mips/Kconfig.debug                       |  44 ----
+>  arch/mips/configs/ar7_defconfig               |   9 +-
+>  arch/mips/configs/bcm47xx_defconfig           |   8 +-
+>  arch/mips/configs/bcm63xx_defconfig           |  15 +-
+>  arch/mips/configs/bmips_be_defconfig          |  11 +-
+>  arch/mips/configs/bmips_stb_defconfig         |   6 +-
+>  arch/mips/configs/ci20_defconfig              |   9 +-
+>  arch/mips/configs/cu1000-neo_defconfig        |  10 +-
+>  arch/mips/configs/cu1830-neo_defconfig        |  10 +-
+>  arch/mips/configs/generic_defconfig           |   6 +-
+>  arch/mips/configs/gpr_defconfig               |  18 +-
+>  arch/mips/configs/loongson3_defconfig         |  12 +-
+>  arch/mips/include/asm/setup.h                 |   2 +
+>  arch/mips/kernel/relocate.c                   |  17 +-
+>  arch/mips/kernel/setup.c                      |  36 +--
+>  arch/mips/pic32/pic32mzda/early_console.c     |   2 +-
+>  arch/mips/pic32/pic32mzda/init.c              |   3 +-
+>  arch/x86/Kconfig                              |  44 +---
+>  arch/x86/kernel/setup.c                       |  18 +-
+>  .../firmware/efi/libstub/efi-stub-helper.c    |  29 +++
+>  drivers/firmware/efi/libstub/efi-stub.c       |   9 +
+>  drivers/firmware/efi/libstub/efistub.h        |   1 +
+>  drivers/firmware/efi/libstub/x86-stub.c       |  13 +-
+>  drivers/of/fdt.c                              |  22 +-
+>  include/linux/cmdline.h                       | 137 ++++++++++
+>  init/Kconfig                                  |  78 ++++++
+>  lib/Kconfig                                   |   4 +
+>  lib/Makefile                                  |   3 +
+>  lib/generic_cmdline.S                         |  53 ++++
+>  lib/test_cmdline1.c                           | 139 ++++++++++
+>  scripts/Makefile                              |   2 +-
+>  .../{insert-sys-cert.c => insert-symbol.c}    | 243 ++++++++++++------
+>  38 files changed, 724 insertions(+), 355 deletions(-)
+>  create mode 100644 include/linux/cmdline.h
+>  create mode 100644 lib/generic_cmdline.S
+>  create mode 100644 lib/test_cmdline1.c
+>  rename scripts/{insert-sys-cert.c => insert-symbol.c} (72%)
+> 
 
-Actually, I found that with these properties added, there is no need to
-program the OTP (at least for my use-case). This is great because it
-removes a step during manufacture and you don't have to worry about
-getting something wrong.
+For arm64:
 
->> To some extent, writing settings in an OTP is similar to producing a
->> different chip where these values are hard-coded and not configured.
-> 
-> Indeed. Except that here they can still be overwritten by software
-> later.
-> 
-> The latter is an inherent danger, and is probably the reason why Sean
-> wants to make it explicit: if the configuration is ever changed by
-> software, and the system is restarted without resetting the clock
-> generator (at least 5P49V6901A does not have a reset line), or using
-> kexec/kdump, the newly booted kernel does not know the intended
-> settings, and won't restore the correct configuration.
->
->> I'm wondering whether Geert has a practical example of a situation
->> where it is better to have these properties optional.
-> 
-> My issue was that these properties were introduced long after the
-> initial bindings, hence pre-existing DTS does not have them.
-> Yes, we can add them, but then we have to read out the OTP-programmed
-> settings first. If that's the way to go, I can look into that, though...
+Tested-by: Sean Anderson <sean.anderson@seco.com>
 
-FWIW I think there's no need to update existing bindings which don't
-have this property. The required aspect is mainly a reminder for new
-device trees.
-
---Sean
+Thanks!
