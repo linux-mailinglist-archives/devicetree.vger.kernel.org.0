@@ -2,100 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF89067956B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 11:38:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 722EA6795B3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 11:49:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233669AbjAXKiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 05:38:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43468 "EHLO
+        id S232656AbjAXKtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 05:49:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232827AbjAXKiD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 05:38:03 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D451140BD0
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:37:27 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id h12so9413719wrv.10
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 02:37:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ozuy8c1uprzAYFuNopgrW2eAY/B5tIGZz6v2gE4dvkM=;
-        b=qk4hiCl6a5gxx4NYtVXmwGE614aw/yJGlkAE0YFyMyBwpxP5uI5bkeYuLnUW3W2d+o
-         +GfBpWZuCheRX/yRo8S9KPAUdRL3658Xb9iG6bsOplwHouq6QGZx21R31RoT5GmDZm2/
-         5r10RjUgUY7gOhVZPeOE20CBb57XWMdtzXCz/F66ihzwcRffrL8C/4jMHAZjDHQZpMON
-         Q5E9Zzk8W5yym22S3gjQx4oRJk7aXyGBit5PPu4RfbM060bnW9fzYjWW/WrEt+vOMuEb
-         OYHa77qnkbWNEqGMdMghSYCsBd3Y/UNGYIcrW0FsKTIdKHxB5tIS5gJvY4oXGkTh67dZ
-         Li0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ozuy8c1uprzAYFuNopgrW2eAY/B5tIGZz6v2gE4dvkM=;
-        b=d8BaAzEAaRdEBlW+1IjHc/DPNwNqJ2gO/3jbLWRGmqhd/S5daDWcgEly+xaTiTg3Fj
-         sVzPmtF9Kp4tAzcDrvKhLubnIvpYSuCs1jSFp9NqgYgFdoSFdg1UI0dOA6MCC8AW5dcC
-         zKqVIAxjLSGazMdm+defIRwY1jA0v2r9KQ2TmJSCYyjGfxnFow3nhgifOGbGXhcW0FcL
-         SRDwFYhlI8Fv3GjsQ0bXbnlkN2zwF+KWMImsSxJPsGvwkHQlXxBrMdwJ6BTfkVJLP6Vx
-         pr9ar3SbvmAfdoCCvv7bths5jNT6L8TMCafyJFEOd2RF5wFFxsrV8XRLssBPzjUVRR0E
-         XRfA==
-X-Gm-Message-State: AFqh2kpZuQkgiNT9Uu0le7/JWtt6BaAO8JtCa9A94xyBnwEi42sgicbw
-        VihMbkLuBP6VvzHEug2Uou6+ww==
-X-Google-Smtp-Source: AMrXdXvXUIP7k0jOS/1sd5MRA3PAUIs8khFM+PrSYZyQw40T+C544df9OdxD8I9cHl0tbKM2lxv0Og==
-X-Received: by 2002:adf:e18c:0:b0:2be:493f:3b34 with SMTP id az12-20020adfe18c000000b002be493f3b34mr21537207wrb.26.1674556603612;
-        Tue, 24 Jan 2023 02:36:43 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id x4-20020adff644000000b002bdeb0cf706sm1559196wrp.65.2023.01.24.02.36.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 02:36:43 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-kernel@vger.kernel.org,
-        Markuss Broks <markuss.broks@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Olof Johansson <olof@lixom.net>,
-        linux-samsung-soc@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] Add support for Samsung Galaxy S5 (Exynos)
-Date:   Tue, 24 Jan 2023 11:36:38 +0100
-Message-Id: <167455658659.245058.14105028305276435215.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230123222329.13994-1-markuss.broks@gmail.com>
-References: <20230123222329.13994-1-markuss.broks@gmail.com>
+        with ESMTP id S232771AbjAXKtK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 05:49:10 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BBB743933;
+        Tue, 24 Jan 2023 02:48:54 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9D27D6602E2A;
+        Tue, 24 Jan 2023 10:48:45 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1674557326;
+        bh=PWy/mEzY0rNRWO0R+jYtZffvemYuPS5FyuIJAM/aPmE=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=gBInqdT/EkDYIbquG+ZogkCItyYpL29Igf2pyntw/Nm9EUxi2vafnqP4x4eW0Mftg
+         5uOV4Didt65zhd5IVGhGIGSXGAHDd23uIn84Z3NYB+QOG09c3RdnR7dGrCnAKTkrGO
+         K65XlclnCWoxZnBLW+eHn7YMqbp4Tw03DYW4KKpCx4j1ZLAC4FBtS8q3RCjNGWS4Xb
+         wHrQ1tOgMADlaCVhIM6YD1Y9tkeikvhlL3SxK1CTUKJrK9JEOOiV3mvQT6SpOes7hJ
+         ybgR5a2TykPoTNhjkx3b3vT8VMNRp+dP9W7jDs/p9/ztJ/8PhxEuwwV9P2Rjf4uqaW
+         z3H9dnsDXqf1g==
+Message-ID: <c0c8fdad-a576-7ac5-f6c3-465a1b9392e6@collabora.com>
+Date:   Tue, 24 Jan 2023 11:48:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v8 8/9] dt-bindings: serial: mediatek,uart: add MT8365 SoC
+ bindings
+To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, tglx@linutronix.de,
+        maz@kernel.org, lee@kernel.org, linus.walleij@linaro.org,
+        matthias.bgg@gmail.com, gregkh@linuxfoundation.org,
+        daniel.lezcano@linaro.org, chunfeng.yun@mediatek.com,
+        allen-kh.cheng@mediatek.com, nfraprado@collabora.com,
+        andrew@lunn.ch, gtk3@inbox.ru, sean.wang@mediatek.com,
+        zhiyong.tao@mediatek.com
+References: <20230123163833.1007181-1-bero@baylibre.com>
+ <20230123163833.1007181-9-bero@baylibre.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230123163833.1007181-9-bero@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Jan 2023 00:23:26 +0200, Markuss Broks wrote:
-> Samsung Galaxy S5 (Exynos) is a mobile phone released in 2014.
-> It has an Exynos5422 platform. This version of Galaxy S5 is only
-> capable of 3G communication using the Intel modem, while the
-> LTE version of the device (klte) has a Qualcomm Snapdragon SoC.
+Il 23/01/23 17:38, Bernhard Rosenkränzer ha scritto:
+> Add binding description for mediatek,mt8365-uart
 > 
-> Currently, internal eMMC, USB, regulators on a PMIC, and touchscreen
-> are enabled in the device-tree.
-> 
-> [...]
+> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
 
-Applied, thanks!
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-[1/2] dt-bindings: arm: samsung: Add compatible for Samsung Galaxy S5 (SM-G900H)
-      https://git.kernel.org/krzk/linux/c/5f8d9a0c2ee2d2fe2d59135261a0835a0a688fa5
-[2/2] arm: dts: exynos5422: Add device-tree for Samsung Galaxy S5 (SM-G900H)
-      https://git.kernel.org/krzk/linux/c/75b976c46cbe13dc8accc1173ceee6faddb83112
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
