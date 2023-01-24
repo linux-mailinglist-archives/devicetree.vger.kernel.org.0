@@ -2,72 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98EA8679AC1
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 14:57:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E773A679AC9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 14:58:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233728AbjAXN5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 08:57:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59082 "EHLO
+        id S233768AbjAXN60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 08:58:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233279AbjAXN50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 08:57:26 -0500
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5255B47424;
-        Tue, 24 Jan 2023 05:56:55 -0800 (PST)
-Received: by mail-oi1-x22f.google.com with SMTP id v17so13319929oie.5;
-        Tue, 24 Jan 2023 05:56:55 -0800 (PST)
+        with ESMTP id S234012AbjAXN6Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 08:58:24 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD48245F45;
+        Tue, 24 Jan 2023 05:58:04 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id ud5so39249268ejc.4;
+        Tue, 24 Jan 2023 05:58:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VTtN/eGhLiyVHFsqGbuLo4J/N1AundXf592SuBieBAY=;
-        b=V2i98o56Jegzfl4Yx41CbDMdCa95rrl3tAq/659IAmL83SuIzC+5W6IZau4ayybp01
-         AhIMq+IyvPDaD2twTfJmWvwjo3IbWDhA9J6gAC96Bc4EhZew78nX4kdQLU3mGRrt3o8d
-         v8zUXfuruktj0Owt3gsEkv7C/fXeYshUwyUaCxL2tOWCXlWnQeU+j+qhzvNnKcyIZ1GB
-         akKQgeKUI2luXTPI8S9WwHtjHAKchdKMURk1urfzg9KrNkBcuHJDFQSKHXAkL4spTHYM
-         N/SETvaPPnla82jM4pXfqctEoxlbc+wZus5atKFwnOAtprjWL7PJ2TUN0tv06yt1pl/0
-         z/QQ==
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C8ITfvJMUbAB9n/WNUOpYEt4kZtbu9A4WESFL60Ocvw=;
+        b=ZCtu7IpZipWMzHYjJD0NrrG0vXhqkl79/l3MyZHXQK1Cs6QvbiCxwtznkmkbsqvGbJ
+         jreeqva9ctlonoJJCob2KEpQjuNJfsV0epWdPYXMQICW2/osZ71WEMNLHnh4+yzFvV0S
+         tn9JLmrWHSRzo3sQWlJvMyHXUGvpKRkAsxv3LaMegoLvFB74IBKM6gJ5VyYnxtIz4+zJ
+         /wEGRsE7IfqbRiB1UDRtdhNvM8wmQf/ds580YLZsEwCbRboOgDWR59Bq3/DEhrFINwm3
+         SQNFpNrNNBJhR5dE4SG4VSbwmFJfVP7UOcA1ET1I+Jp5dEP4oHJ1ast5WB/yjM+B5S04
+         zbJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VTtN/eGhLiyVHFsqGbuLo4J/N1AundXf592SuBieBAY=;
-        b=oMSrHqGZqwHaRx5Uu1OTtYlmyAuLoN4RO6rlCsX5Kzd6Xq/cXeNrz91j4nz978qsQe
-         RE8fe0NaPbeCjzDdUuvifUGy2fDvvQj/PqGo95TQBCehmQREkq6rxVoxYwpTiO4gVybO
-         BXcyefzH9GoGLW8Uk4zB8mjFAkIKNXIhhHDmuCNfhfH2aLJ6sCffh9dRP2JgR/ZesBi8
-         OJfB4+RXZkAhD4nCv2G44H1p9lRtzxpdsU2BpeWDr/Et/KQ77KiQOFz0UEwbfvXHv1TD
-         ZEWvCkQCUlN8hB1oAH3+dW4+nDpaTelGzJxcPoWtmiYOBs51wdA3JO3qBahp70I+E9yh
-         qKYA==
-X-Gm-Message-State: AFqh2kqnzV595DfiI9U5LqPjxCDqVQtj1o/QRX7n/94maZQruurKgf5v
-        9QuKIWoIlo36lsWSdWKFv34=
-X-Google-Smtp-Source: AMrXdXuZOnQaZYNSvu98h1TfUdb9IXEjrdTC6Cq2MR7xvzisow0ZIOS69xFshDNUbepqa/5H68gI6g==
-X-Received: by 2002:a05:6808:4cf:b0:36d:f199:6e50 with SMTP id a15-20020a05680804cf00b0036df1996e50mr9113987oie.57.1674568579622;
-        Tue, 24 Jan 2023 05:56:19 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 16-20020a544190000000b00363760f96dcsm1003787oiy.42.2023.01.24.05.56.18
+        bh=C8ITfvJMUbAB9n/WNUOpYEt4kZtbu9A4WESFL60Ocvw=;
+        b=6MWaVPMSMF/8ud3UYT+INatCR2sj69juwqsSRbjtKMe23E2NiSDDb68qWaPR6lBtNI
+         vYRPz42ekcX8ttQzQRNJe8okfMVWNRO/GhQT+H1+fU8cRn9L7Z0XA+WPSyHQxDox7FwJ
+         eNt832cCldn0Y4OZSMQUwKEorsEMydJCfDw1twZb1h7puKbC6ki9ug5Lz1PWOv7RpoWU
+         4I88riaXk1aeGn9U3+6LllxrDZWdgM3C4y8kGfJRZmGYYqDUMi7FEhdx0ImGoVCmfBxB
+         WDWTNJHioAcJXhhSw1L9dwVbhAhUq5tRCU6XbeBI5F8BXq7Lah9m+G6aGrJZV8sQHmWi
+         8yQQ==
+X-Gm-Message-State: AFqh2kqwJZ3jyddT5fCadkljWquH7QG9YizHum01Os/iNW+9fkpnW9yL
+        mPCW44ErFgz6w07Tpe6QmGaDlFrZD0I=
+X-Google-Smtp-Source: AMrXdXvHVx3+V2x2vQ/cKtaZnanXiKGMRWRB+3IJ86B/PWOPlcnH+ESdWYf7R+bBQDGuUb+6lQp5QQ==
+X-Received: by 2002:a17:906:c02:b0:83f:cbc0:1b30 with SMTP id s2-20020a1709060c0200b0083fcbc01b30mr30097434ejf.10.1674568662510;
+        Tue, 24 Jan 2023 05:57:42 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ck1-20020a0564021c0100b004835bd8dfe5sm1090288edb.35.2023.01.24.05.57.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 05:56:19 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 24 Jan 2023 05:56:18 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Mario Kicherer <dev@kicherer.org>
-Cc:     linux-hwmon@vger.kernel.org, jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: add nxp,mc34vr500
-Message-ID: <20230124135618.GA37158@roeck-us.net>
-References: <20230118123019.3041303-1-dev@kicherer.org>
- <20230118123019.3041303-2-dev@kicherer.org>
+        Tue, 24 Jan 2023 05:57:41 -0800 (PST)
+Date:   Tue, 24 Jan 2023 14:57:40 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH V5 0/5] Tegra USB device support updates
+Message-ID: <Y8/j1HBwgEdd4Mp2@orome>
+References: <20230119104208.28726-1-jonathanh@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="lZx75aZqCyuqNaGg"
 Content-Disposition: inline
-In-Reply-To: <20230118123019.3041303-2-dev@kicherer.org>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+In-Reply-To: <20230119104208.28726-1-jonathanh@nvidia.com>
+User-Agent: Mutt/2.2.9 (2022-11-12)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,61 +76,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 18, 2023 at 01:30:17PM +0100, Mario Kicherer wrote:
-> Add dt-bindings for the NXP MC34VR500 PMIC.
-> 
-> Signed-off-by: Mario Kicherer <dev@kicherer.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Applied th hwmon-next.
+--lZx75aZqCyuqNaGg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Jan 19, 2023 at 10:42:03AM +0000, Jon Hunter wrote:
+> This series adds USB device support for Tegra234. 3/5 patches were
+> originally part of the series to add both USB host and device support
+> for Tegra234 [0]. However, the series was getting quite large and so I
+> have split this into a separate series but calling it 'V4' to indicate
+> that this is not completely new either.
+>=20
+> I have added two more patches in this version to fix DMA coherency for
+> Tegra194.
+>=20
+> [0] https://lore.kernel.org/linux-tegra/20221114124053.1873316-1-waynec@n=
+vidia.com/
+>=20
+> Jon Hunter (3):
+>   dt-bindings: usb: tegra-xudc: Add dma-coherent for Tegra194
+>   arm64: tegra: Add dma-coherent property for Tegra194 XUDC
+>   arm64: tegra: Populate the XUDC node for Tegra234
+>=20
+> Sing-Han Chen (1):
+>   usb: gadget: tegra-xudc: Add Tegra234 support
+>=20
+> Wayne Chang (1):
+>   dt-bindings: usb: tegra-xudc: Add Tegra234 XUDC support
+>=20
+>  .../bindings/usb/nvidia,tegra-xudc.yaml       | 15 ++++++++++++
+>  arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  1 +
+>  arch/arm64/boot/dts/nvidia/tegra234.dtsi      | 23 +++++++++++++++++++
+>  drivers/usb/gadget/udc/tegra-xudc.c           | 17 ++++++++++++++
+>  4 files changed, 56 insertions(+)
+
+I've picked up patches 2 and 5 of this series into the Tegra tree. Greg,
+can you pick up patches 1, 3 and 4?
 
 Thanks,
-Guenter
+Thierry
 
-> ---
->  .../bindings/hwmon/nxp,mc34vr500.yaml         | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml b/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
-> new file mode 100644
-> index 000000000000..306f67315835
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
-> @@ -0,0 +1,36 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/nxp,mc34vr500.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP MC34VR500 hwmon sensor
-> +
-> +maintainers:
-> +  - Mario Kicherer <dev@kicherer.org>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,mc34vr500
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      pmic@8 {
-> +        compatible = "nxp,mc34vr500";
-> +        reg = <0x08>;
-> +      };
-> +    };
+--lZx75aZqCyuqNaGg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPP49QACgkQ3SOs138+
+s6EjWxAAiwl3LlrF8B0u2Tsd2ejPHnkYfVryWSQsA6npc4Qwdks5Quo+LeaqJkDr
+BORwAJLaFSBXbRoBfdE8DG0VgqJsS2a5Hej+kDUocMpfm6XDyuGm5QxcRvmnKO0S
+HYgpt+3K2dZMLZx4Ah+XpYOsk78HBmH5ZqXtyYJTby59dtryILvHCwCgGqCfedob
+wgW6khfeho+ejVsTJ9TvE7Jfy4BaqzwovOcmbNOqmRwwgeCvdsE/mpD6jBQhiE4q
+TKNoUz1EsalEORT/1Op1FBgYHdKJ47O+1cJ0umuLJEXucFlpnFJFt9W9nOHyFwZJ
+Y4U5ss84CNtf/LQwHPNkZTus3ITpHGb70kdEF2XeqDvPBd4rDa5fs1icplTqTvKG
+ds6PQeBeKZwq9Z8je2U/WZ4d2cjb3+4vIXHWcxCjZjQqSJ9ch1CowPzpHyetQx4o
+XeWsp3W+v7x9+C44KY02/G7snziCmiv6/d34ksYxRphtuHGGn+jlqEHS+2MabsB2
+JVPDwztnSF8v8tOsu2/iHcLQktAiCR2hrcOD69ZcXEbS9RKnFxdHfpX6BHqv/VMw
+veqR/YXY7bdVUnpeU1KTqBIce4RFOBXPwD8SVO85YjTzrT+BvuXN5hIT3Taf0Txb
+aGhuA2TdwJLvH36DQNycDv8zbR6jlhRnynZioe496PAMidFvY9o=
+=fzSZ
+-----END PGP SIGNATURE-----
+
+--lZx75aZqCyuqNaGg--
