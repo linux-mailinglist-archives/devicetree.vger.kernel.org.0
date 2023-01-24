@@ -2,210 +2,632 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76CA1679719
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:55:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59059679727
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 13:00:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229791AbjAXLzu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 06:55:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44820 "EHLO
+        id S232827AbjAXMAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 07:00:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229546AbjAXLzt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:55:49 -0500
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2087.outbound.protection.outlook.com [40.107.92.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B0D94ED8;
-        Tue, 24 Jan 2023 03:55:48 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jodaq8C2sHpJ0LJ/emjtfiFNlJcACXElneZDHRrEsUeuqUIKZgVgC9ycOMyt0VSNMFvf8zHADCSlPcMmhwI6jzJi9LnaRoC9uj+aSrr7GnazAKKktdkOQeJf3Wrm/R+KYM/vkJcEOOzHMRbRxWXoC98Nh4Y6rpZSuWGQ8rpFCigJMG7r8BTjt/dGLk1GB9qfdPnVUzIGzzN3EjBahbFSsuzEFncUMWaYcpVvvbZn7fwhK1+ZB5zE5DGXMHlQYUycRpyj9c9atdDyROiwr0o3AAIKb86ZgLYkgWHMXuE7R8cPEG2PWQ/Y1ereQTUgxs5CRaPOTViza1Qyi1imI54AEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W1ZoBj5Y2qQC/z8A6g/bUM3n/c0jzXOMr5FQB6hsnc4=;
- b=CCBDT8s1veWKwrm/AmJcUhd4nC6p4H9KEhtWOrnc5J5hv8OWxFy0GUCMxcT1lBbZzGWZOQvzUjlFlmvhF3CtfPC8dgMZ9cjKry8/NEZOt7uHfdXy9ux/v9gf07C43ayiMgHWM/OJKu1VaJE8rmHxVLzEiNhVK9JHtsDp053q8Vw6qmYhVeRgDVIOgM+T72nhjDbYrWxqkcuOmWC/oGPiz8yyiAN1NFlpLMeLHa60sdWwGNX2MGzn61SQE9QjGhUlWYl1O4QG0wA8uS0C5SSqG1Mlt5soQdtqhHf2XoDgqEoXzFiBzRsjQQQP1GZumyo0q2twks8yWNFN0dVST+TBOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W1ZoBj5Y2qQC/z8A6g/bUM3n/c0jzXOMr5FQB6hsnc4=;
- b=ZFN7ibwZClZ7DHPkAbCEkuz354MGhLBZBU56RPlhpNZwzru/Jw2VkdfyprmVd3XuVzstpTaCtwOIOZXpvVhUzB07HEA38ieYSC4tLiy0LX0AQyuUR817uIH2sCr3XcjAiC7+L5ZCmi4NAziFDVQ3EqfLxCndP90qbYXJj2YNeiGcG0bHrA4k04RTIRWJFyIuW8NKsECoMu7+mJZKVgJK8sNoqHVk3tIQHS0F6+dVYkHc2zkJn+FPqQzdV7Lo0Coa+vn5aQyV4g3Xjat0ZKVwtVzkhkAo0wg3mU/CzsG6yy8FQCAv/7ZGSYtVBIHnNhLMqywkf5y6bOrpt/lUkgOgEw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- DS7PR12MB6144.namprd12.prod.outlook.com (2603:10b6:8:98::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6002.33; Tue, 24 Jan 2023 11:55:45 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::f1be:5d:f297:e2f]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::f1be:5d:f297:e2f%8]) with mapi id 15.20.6002.033; Tue, 24 Jan 2023
- 11:55:45 +0000
-Message-ID: <934ab2ae-730c-33ff-4b03-0f7caea147e9@nvidia.com>
-Date:   Tue, 24 Jan 2023 11:55:38 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V7 3/6] usb: typec: ucsi_ccg: Add OF support
-Content-Language: en-US
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
-References: <20230124114318.18345-1-jonathanh@nvidia.com>
- <20230124114318.18345-4-jonathanh@nvidia.com>
- <Y8/GBHsaEYKfMLdg@kuha.fi.intel.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <Y8/GBHsaEYKfMLdg@kuha.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO2P123CA0072.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:1::36) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+        with ESMTP id S230200AbjAXMAM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 07:00:12 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 997E942DD2;
+        Tue, 24 Jan 2023 03:59:54 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 07FF060FBB;
+        Tue, 24 Jan 2023 11:59:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1BD5C433EF;
+        Tue, 24 Jan 2023 11:59:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674561593;
+        bh=3ogPFOHWboNTH7MjTM+sOZHLnLZgkJQU6M+lGGiKH2k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sOLWHkCZAURGcUIKB/nJ48O72coSWbnOUiUrFUM+PwpRAa/jYA6Lb4ZtRCc8C3yaC
+         xkBUC5zZKXM1/POGhOmvAYBnDPCHVcfIaYPyt6CTD1ZSuK0+oPsJ8aAyDJ0QjnFqjs
+         GUkOz/q4QAtSDP8AkAOrLsr4wHQR+uOVyhfOy5/j7O7D8JYe50Z/eQIv0RuZ2dLiRC
+         iBTHNMSUv1wfTSMaj1giAEfLp3A2eu/bUoxNLHQqKDS8Yg8EvWG9EAIVOuITAIMNl6
+         2mQOKlOepEQnXWwvMHOHeumOu+bqnndcjBIkXyz5oOfJqJL9Tq0akF8YYk+9ECwfI1
+         gl3siFvfIyJ6Q==
+Date:   Tue, 24 Jan 2023 17:29:47 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     rashmi.a@intel.com
+Cc:     ulf.hansson@linaro.org, michal.simek@xilinx.com,
+        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kishon@ti.com,
+        andriy.shevchenko@linux.intel.com, linux-phy@lists.infradead.org,
+        mgross@linux.intel.com, kris.pan@linux.intel.com,
+        adrian.hunter@intel.com, mahesh.r.vaidya@intel.com,
+        nandhini.srikandan@intel.com, vasavi.v.itha@intel.com,
+        kenchappa.demakkanavar@intel.com, furong.zhou@intel.com,
+        mallikarjunappa.sangannavar@intel.com
+Subject: Re: [PATCH v1 3/4] Revert "phy: intel: Add Thunder Bay eMMC PHY
+ support"
+Message-ID: <Y8/IM+wN94vPmmrk@matsya>
+References: <20230124054427.28808-1-rashmi.a@intel.com>
+ <20230124054427.28808-3-rashmi.a@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|DS7PR12MB6144:EE_
-X-MS-Office365-Filtering-Correlation-Id: e97f1cf8-b3bf-4984-a86d-08dafe01ece8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PtVZEzi8iiOW3tVfWCZiADiWM75oEtoPgAK82OWdARV6dnWXTya0EknjB2xPD199D/dO1PcOKkq2cioKaDau1YqGsjJTpl+j0bwZgZ/JRrjQogdrXoSY9IZp/yUmDqvWEK9YTBP2raUv8EGO/jLx6bCGbXpIr9txZmdgi4Wvua4yViQCiJ5A858k7dNHvn+qzDoePT01VidmTmFDcQhZuVw9AChybAoki0twBf/DX4GsMi5qFcWCfgAuDg6gEaWvOFFZOeuYOiK1U+uvJ4BY/QhXoL+x0+UB0StbeBY0QFdUS4GwACwUy2xSt/wld2rlVJfSpa9qzALjBBh2xS8pwrLJOODpEvswTVCofDU9lEUC+0mjd4DxbTcTV2GYSG6++Z7fCZbQALk/h4uSZbCmPoru+UhpbYt1qxcmQdWA2q6ZTn+Os/MAaMx9UUzjFPfj5avuTkhKr3UP+LeK3pUtlzf2aG45ROxNJ2AAPFeLH11Xn4OIKCG6Orob6Vuudz3G8iFDNtgu+ju4zydT23S3YcsMZyqLEefW8DaoXTrZ1GmwV2VkCkuSvQI6w+9x3jiFwtQJuD4t7xCwLoRIeOHe1l2yDN9b7WvsUQpJRLO9MDGkb7Y899QDwKXNz7KEKjw0uK1dCWFaJoaSldMoGrWBj/OvjOatYy8jtAQyDMUWBlcSTbyMrzo1wxxUZRkbU8LNhG+kc+cHdO5pkuUKUxeESwHfto7B8ju7DvwCIRPOU5M=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(396003)(39860400002)(366004)(346002)(376002)(451199015)(83380400001)(38100700002)(31696002)(2906002)(86362001)(5660300002)(8936002)(41300700001)(4326008)(186003)(55236004)(6916009)(8676002)(6512007)(6506007)(26005)(316002)(6666004)(107886003)(66556008)(53546011)(2616005)(66476007)(54906003)(66946007)(478600001)(6486002)(31686004)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RzBvL1Fmc0JrZDR6MHZnS1d3SnZWdUQwRXd4RUhUVUw4THJVOVB2bXFVQnBY?=
- =?utf-8?B?OVBkVWZETXdVNXlxVEJVUGlhOFQxOFovZVhDakY1Y2F4UHBaN2RjRkQxZ0dZ?=
- =?utf-8?B?RExSQ2w5emVhTHpKazVaeTlFaC8xZXhtNFMyT2VLZFdQa3Z4OXUraGtyaDBi?=
- =?utf-8?B?YnovckoySVRoZnNXYnU5K2crcmM1RUJGSG5FRStYL0pYZ1lKcWJSSEc4NHo5?=
- =?utf-8?B?NUtFT01nVzJuNnUyUUtUcXhrY3VYWlhDQ0xsdjVYR0pHZ0JBVldwWG9LeG1Y?=
- =?utf-8?B?RzlWajU3S2FBbU5tdklGOUpPa3ErbFd1NzFFbnBBQ3lySXVWdEhDN1luYkl3?=
- =?utf-8?B?bExGMzNDY3VBbkJ0SnRzS04yOWhFZm4zMzlHVEVGQW1LcmIzdWsraVVkM1ha?=
- =?utf-8?B?UnJQOXk5Y2hXMWp1TXVRdHp1OHkrUlpKTGVLN0l1S2VUb2FSUFlyUWpicTFm?=
- =?utf-8?B?NWlRM3ltZ2g2Q1daVUV5N3kyV0J1eXJrUWtuT2lkekczcWxBNDZSN0RVTXor?=
- =?utf-8?B?YVkxREw1N3gxWUV3ZHBwZDAvWjRRM2JDcUNwM2VjemhDL0ZzRVVGb2FFejEy?=
- =?utf-8?B?NnowM3phai8yVWk5SDI0SEhaSS9lWXVvcjYyWmVYYzdXS2NXWVJNSTh5L2kz?=
- =?utf-8?B?Umd3Z04vMDhUU1laQjNkR05PNVdtMmd4ZktTd1F3SW5iMDlnUGt1QkU0SWdI?=
- =?utf-8?B?K0IxQzgrTERrQlN4TERJYzFjMExHenZXVEl4ZVZOS1poSWwweWwybnBabHJ5?=
- =?utf-8?B?c01iRkFiT3lrbkloSDNxaTBoYjJ1dDlxUmdQemJBZEN3dThpYjQ2Z2w4VFVW?=
- =?utf-8?B?bkZOc1RhQWY2U280cHRvQTk4b0h1V2l6UmpZeENsOGx2QmhQdDlkbmk3bU5u?=
- =?utf-8?B?cjZwVkx4VGRwTDNvQTU1SWxacURPd0pqTWZlYkJvMXM5VThzOXJUUzZsMkg0?=
- =?utf-8?B?Q3MzSXRSVzhHL1pyUTdsRDRlVE9RajdZbmE2NnNpY1RWbkFrcFBhNHNKSUly?=
- =?utf-8?B?TVRSS3NWbGNvdUs4ZGorSEFMMTJZYjN2Rk84L2d6ZHdsWnVUa2FIY2pQR2ZF?=
- =?utf-8?B?Nm1paUxkZjA5VGJWaDBoSUFqTGszWDNkbXhwK01XQWErdEZMRG5JeldtUmFS?=
- =?utf-8?B?a1U4bkJuZDE1anp1eEpsaDBZNTRwRWdvWGVVNFAxejBTNVcyV0N1OWd4aWsx?=
- =?utf-8?B?QXZCaE9lckJIS1lMYTFDaVVCLzFsWnlET2g5Mm11aTBoSDlueXNCZUQwNUpJ?=
- =?utf-8?B?RVlGNGh6ZThYRWk4Wlhub2Zkdk5QRmlGb1VjVDZzK0xDdGI3alpjZ1VkVFdJ?=
- =?utf-8?B?VEtKMHBJSDVLQ2FLSGZnbU9INUxRY0R0NXkxaEFZZzhSQ0djL1gxK0FDT0tW?=
- =?utf-8?B?MEY3TmZWYWxtbFAwbnZiYTNBUXN3a0hSc1k1Y3Y2OVNDQmI0a3ZUVnhtaW96?=
- =?utf-8?B?VVo1Y0M3RkFGM28xN09NK1g3VWo4UGpGS1N4QUowMGt5d25BeTRLaUFUR0Vk?=
- =?utf-8?B?eld4V1NaUkg0YkxOVGwwNWNsYUtJNWgwRHhlRGRsWVVIN0NjL1QxeVpqb0ty?=
- =?utf-8?B?Qjg4RWZ1cVlIYXZEeXR6R3c1WnN1akxxRm8yajdqSy9mcnFJSFRCNllyWTN2?=
- =?utf-8?B?NVJ0MnFIaGdTL0lvdEpKdFZSZEF4WVY3UE5WS2ZOWlN3WXVyeFVBL0tjVEpr?=
- =?utf-8?B?N0c3d0gxVmRHTUkzNUk3VmJ4UW5VVTZNVC9kM25qQnQ5NE5KU2JQQW5mLzNP?=
- =?utf-8?B?Sy9iYStGQng4MlliSnlsNTF0TWhBcWp2MkNBQW5ac01DMHFBU3E4cUNXN2NV?=
- =?utf-8?B?UXZZeTMwejNUbzV1cDFLOUpWN0d6c2VEMWVSTCtPbWdabHBnbS9xY1QvMXdr?=
- =?utf-8?B?M0FsRFNScjFLaHFZYzdNWUZwMzZvdFQraDd0cFhKY3Ewam1iZVNIQmduQTBL?=
- =?utf-8?B?azd5djNtbk1TS2VlRGNHWUIyRnh0L2ZERnpobnk5Z2V4WHIzL3crc3hZOUYr?=
- =?utf-8?B?N3RJd2c4em1QRlF0Y25wNUZCNFhzQUZsZ2ZrUUhTMUNPLzUreXNjQ2pMSFIy?=
- =?utf-8?B?K3U5K1BWK1pRajhYekZ0TmtPL1ZmVEZaZ240L08weUNHeUJ0ZFFocDVtTk1F?=
- =?utf-8?B?MWFFeCtXc2ltN3FoREFtT2VTU29UV2NsQ3lsditkLytFRkF6L3dtRiswb01Q?=
- =?utf-8?B?UVE9PQ==?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e97f1cf8-b3bf-4984-a86d-08dafe01ece8
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 11:55:45.0845
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hmv1NikNCNJvptqAhLHxK7FspkuppMnxe3z7CfBrxfi5Wujhw3zcOtd+T/5esocKoCZumGejCY+mcYQehxXUHA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6144
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230124054427.28808-3-rashmi.a@intel.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 24-01-23, 11:14, rashmi.a@intel.com wrote:
+> From: "A, Rashmi" <rashmi.a@intel.com>
 
-On 24/01/2023 11:50, Heikki Krogerus wrote:
+> 
+> This reverts commit 97004c1a4c52b4357169290158a130ca0b7caae1.
 
-...
+Please send a patch to drop the driver etc.. this revert makes no sense
+to me
 
-> Hi,
 > 
-> On Tue, Jan 24, 2023 at 11:43:15AM +0000, Jon Hunter wrote:
->> From: Wayne Chang <waynec@nvidia.com>
->>
->> Add device-tree support for the Cypress CCG UCSI driver. The device-tree
->> binding for the Cypress CCG device uses the standard device-tree
->> 'firmware-name' string property to indicate the firmware build that is
->> used.
->>
->> The NVIDIA GPU I2C driver has been updated to use an ACPI string
->> property that is also named 'firmware-build' and given that this was the
->> only users of the 'ccgx,firmware-build' property, we can now remove
->> support for this legacy property.
->>
->> Signed-off-by: Wayne Chang <waynec@nvidia.com>
->> Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
->> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> Revert Thunder Bay specific code as the product got cancelled
+> and there are no end customers.
 > 
-> You missed one nitpick in v6 - check below. But that's minor, so if
-> there's nothing else:
+> Signed-off-by: A, Rashmi <rashmi.a@intel.com>
+> Reviewed-by: Hunter, Adrian <adrian.hunter@intel.com>
+> ---
+>  drivers/phy/intel/Kconfig                     |  10 -
+>  drivers/phy/intel/Makefile                    |   1 -
+>  drivers/phy/intel/phy-intel-thunderbay-emmc.c | 509 ------------------
+>  3 files changed, 520 deletions(-)
+>  delete mode 100644 drivers/phy/intel/phy-intel-thunderbay-emmc.c
 > 
-> Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> 
->> ---
->> V6 -> V7: removed 'ccgx,firmware-build' property
->> V5 -> V6: fixed compilation
->> V4 -> V5: add support for 'firmware-name'
->> V1 -> V4: nothing has changed
->>
->>   drivers/usb/typec/ucsi/ucsi_ccg.c | 23 +++++++++++++++++++----
->>   1 file changed, 19 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/usb/typec/ucsi/ucsi_ccg.c b/drivers/usb/typec/ucsi/ucsi_ccg.c
->> index 46441f1477f2..8f5ad2094f26 100644
->> --- a/drivers/usb/typec/ucsi/ucsi_ccg.c
->> +++ b/drivers/usb/typec/ucsi/ucsi_ccg.c
->> @@ -643,7 +643,7 @@ static int ccg_request_irq(struct ucsi_ccg *uc)
->>   {
->>   	unsigned long flags = IRQF_ONESHOT;
->>   
->> -	if (!has_acpi_companion(uc->dev))
->> +	if (!dev_fwnode(uc->dev))
->>   		flags |= IRQF_TRIGGER_HIGH;
->>   
->>   	return request_threaded_irq(uc->irq, NULL, ccg_irq_handler, flags, dev_name(uc->dev), uc);
->> @@ -1342,6 +1342,7 @@ static int ucsi_ccg_probe(struct i2c_client *client)
->>   {
->>   	struct device *dev = &client->dev;
->>   	struct ucsi_ccg *uc;
->> +	const char *fw_name;
->>   	int status;
->>   
->>   	uc = devm_kzalloc(dev, sizeof(*uc), GFP_KERNEL);
->> @@ -1357,9 +1358,16 @@ static int ucsi_ccg_probe(struct i2c_client *client)
->>   	INIT_WORK(&uc->pm_work, ccg_pm_workaround_work);
->>   
->>   	/* Only fail FW flashing when FW build information is not provided */
->> -	status = device_property_read_u16(dev, "ccgx,firmware-build",
->> -					  &uc->fw_build);
->> -	if (status)
->> +	status = device_property_read_string(dev, "firmware-name",
->> +					     &fw_name);
-> 
-> One line is enough:
-> 
-> 	status = device_property_read_string(dev, "firmware-name", &fw_name);
-
-Ah sorry yes I forgot this!
-
-Jon
+> diff --git a/drivers/phy/intel/Kconfig b/drivers/phy/intel/Kconfig
+> index 18a3cc5b98c0..ac42bb2fb394 100644
+> --- a/drivers/phy/intel/Kconfig
+> +++ b/drivers/phy/intel/Kconfig
+> @@ -46,13 +46,3 @@ config PHY_INTEL_LGM_EMMC
+>  	select GENERIC_PHY
+>  	help
+>  	  Enable this to support the Intel EMMC PHY
+> -
+> -config PHY_INTEL_THUNDERBAY_EMMC
+> -        tristate "Intel Thunder Bay eMMC PHY driver"
+> -        depends on OF && (ARCH_THUNDERBAY || COMPILE_TEST)
+> -        select GENERIC_PHY
+> -        help
+> -	  This option enables support for Intel Thunder Bay SoC eMMC PHY.
+> -
+> -	  To compile this driver as a module, choose M here: the module
+> -	  will be called phy-intel-thunderbay-emmc.ko.
+> diff --git a/drivers/phy/intel/Makefile b/drivers/phy/intel/Makefile
+> index b7321d56b0bb..14550981a707 100644
+> --- a/drivers/phy/intel/Makefile
+> +++ b/drivers/phy/intel/Makefile
+> @@ -3,4 +3,3 @@ obj-$(CONFIG_PHY_INTEL_KEEMBAY_EMMC)	+= phy-intel-keembay-emmc.o
+>  obj-$(CONFIG_PHY_INTEL_KEEMBAY_USB)	+= phy-intel-keembay-usb.o
+>  obj-$(CONFIG_PHY_INTEL_LGM_COMBO)	+= phy-intel-lgm-combo.o
+>  obj-$(CONFIG_PHY_INTEL_LGM_EMMC)	+= phy-intel-lgm-emmc.o
+> -obj-$(CONFIG_PHY_INTEL_THUNDERBAY_EMMC) += phy-intel-thunderbay-emmc.o
+> diff --git a/drivers/phy/intel/phy-intel-thunderbay-emmc.c b/drivers/phy/intel/phy-intel-thunderbay-emmc.c
+> deleted file mode 100644
+> index 593f6970b81e..000000000000
+> --- a/drivers/phy/intel/phy-intel-thunderbay-emmc.c
+> +++ /dev/null
+> @@ -1,509 +0,0 @@
+> -// SPDX-License-Identifier: GPL-2.0-only
+> -/*
+> - * Intel ThunderBay eMMC PHY driver
+> - *
+> - * Copyright (C) 2021 Intel Corporation
+> - *
+> - */
+> -
+> -#include <linux/clk.h>
+> -#include <linux/delay.h>
+> -#include <linux/io.h>
+> -#include <linux/iopoll.h>
+> -#include <linux/module.h>
+> -#include <linux/of.h>
+> -#include <linux/phy/phy.h>
+> -#include <linux/platform_device.h>
+> -
+> -/* eMMC/SD/SDIO core/phy configuration registers */
+> -#define CTRL_CFG_0	0x00
+> -#define CTRL_CFG_1	0x04
+> -#define CTRL_PRESET_0	0x08
+> -#define CTRL_PRESET_1	0x0c
+> -#define CTRL_PRESET_2	0x10
+> -#define CTRL_PRESET_3	0x14
+> -#define CTRL_PRESET_4	0x18
+> -#define CTRL_CFG_2	0x1c
+> -#define CTRL_CFG_3	0x20
+> -#define PHY_CFG_0	0x24
+> -#define PHY_CFG_1	0x28
+> -#define PHY_CFG_2	0x2c
+> -#define PHYBIST_CTRL	0x30
+> -#define SDHC_STAT3	0x34
+> -#define PHY_STAT	0x38
+> -#define PHYBIST_STAT_0	0x3c
+> -#define PHYBIST_STAT_1	0x40
+> -#define EMMC_AXI        0x44
+> -
+> -/* CTRL_PRESET_3 */
+> -#define CTRL_PRESET3_MASK	GENMASK(31, 0)
+> -#define CTRL_PRESET3_SHIFT	0
+> -
+> -/* CTRL_CFG_0 bit fields */
+> -#define SUPPORT_HS_MASK		BIT(26)
+> -#define SUPPORT_HS_SHIFT	26
+> -
+> -#define SUPPORT_8B_MASK		BIT(24)
+> -#define SUPPORT_8B_SHIFT	24
+> -
+> -/* CTRL_CFG_1 bit fields */
+> -#define SUPPORT_SDR50_MASK	BIT(28)
+> -#define SUPPORT_SDR50_SHIFT	28
+> -#define SLOT_TYPE_MASK		GENMASK(27, 26)
+> -#define SLOT_TYPE_OFFSET	26
+> -#define SUPPORT_64B_MASK	BIT(24)
+> -#define SUPPORT_64B_SHIFT	24
+> -#define SUPPORT_HS400_MASK	BIT(2)
+> -#define SUPPORT_HS400_SHIFT	2
+> -#define SUPPORT_DDR50_MASK	BIT(1)
+> -#define SUPPORT_DDR50_SHIFT	1
+> -#define SUPPORT_SDR104_MASK	BIT(0)
+> -#define SUPPORT_SDR104_SHIFT	0
+> -
+> -/* PHY_CFG_0 bit fields */
+> -#define SEL_DLY_TXCLK_MASK      BIT(29)
+> -#define SEL_DLY_TXCLK_SHIFT	29
+> -#define SEL_DLY_RXCLK_MASK      BIT(28)
+> -#define SEL_DLY_RXCLK_SHIFT	28
+> -
+> -#define OTAP_DLY_ENA_MASK	BIT(27)
+> -#define OTAP_DLY_ENA_SHIFT	27
+> -#define OTAP_DLY_SEL_MASK	GENMASK(26, 23)
+> -#define OTAP_DLY_SEL_SHIFT	23
+> -#define ITAP_CHG_WIN_MASK	BIT(22)
+> -#define ITAP_CHG_WIN_SHIFT	22
+> -#define ITAP_DLY_ENA_MASK	BIT(21)
+> -#define ITAP_DLY_ENA_SHIFT	21
+> -#define ITAP_DLY_SEL_MASK	GENMASK(20, 16)
+> -#define ITAP_DLY_SEL_SHIFT	16
+> -#define RET_ENB_MASK		BIT(15)
+> -#define RET_ENB_SHIFT		15
+> -#define RET_EN_MASK		BIT(14)
+> -#define RET_EN_SHIFT		14
+> -#define DLL_IFF_MASK		GENMASK(13, 11)
+> -#define DLL_IFF_SHIFT		11
+> -#define DLL_EN_MASK		BIT(10)
+> -#define DLL_EN_SHIFT		10
+> -#define DLL_TRIM_ICP_MASK	GENMASK(9, 6)
+> -#define DLL_TRIM_ICP_SHIFT	6
+> -#define RETRIM_EN_MASK		BIT(5)
+> -#define RETRIM_EN_SHIFT		5
+> -#define RETRIM_MASK		BIT(4)
+> -#define RETRIM_SHIFT		4
+> -#define DR_TY_MASK		GENMASK(3, 1)
+> -#define DR_TY_SHIFT		1
+> -#define PWR_DOWN_MASK		BIT(0)
+> -#define PWR_DOWN_SHIFT		0
+> -
+> -/* PHY_CFG_1 bit fields */
+> -#define REN_DAT_MASK		GENMASK(19, 12)
+> -#define REN_DAT_SHIFT		12
+> -#define REN_CMD_MASK		BIT(11)
+> -#define REN_CMD_SHIFT		11
+> -#define REN_STRB_MASK		BIT(10)
+> -#define REN_STRB_SHIFT		10
+> -#define PU_STRB_MASK		BIT(20)
+> -#define PU_STRB_SHIFT		20
+> -
+> -/* PHY_CFG_2 bit fields */
+> -#define CLKBUF_MASK		GENMASK(24, 21)
+> -#define CLKBUF_SHIFT		21
+> -#define SEL_STRB_MASK		GENMASK(20, 13)
+> -#define SEL_STRB_SHIFT		13
+> -#define SEL_FREQ_MASK		GENMASK(12, 10)
+> -#define SEL_FREQ_SHIFT		10
+> -
+> -/* PHY_STAT bit fields */
+> -#define CAL_DONE		BIT(6)
+> -#define DLL_RDY			BIT(5)
+> -
+> -#define OTAP_DLY		0x0
+> -#define ITAP_DLY		0x0
+> -#define STRB			0x33
+> -
+> -/* From ACS_eMMC51_16nFFC_RO1100_Userguide_v1p0.pdf p17 */
+> -#define FREQSEL_200M_170M	0x0
+> -#define FREQSEL_170M_140M	0x1
+> -#define FREQSEL_140M_110M	0x2
+> -#define FREQSEL_110M_80M	0x3
+> -#define FREQSEL_80M_50M		0x4
+> -#define FREQSEL_275M_250M	0x5
+> -#define FREQSEL_250M_225M	0x6
+> -#define FREQSEL_225M_200M	0x7
+> -
+> -/* Phy power status */
+> -#define PHY_UNINITIALIZED	0
+> -#define PHY_INITIALIZED		1
+> -
+> -/*
+> - * During init(400KHz) phy_settings will be called with 200MHZ clock
+> - * To avoid incorrectly setting the phy for init(400KHZ) "phy_power_sts" is used.
+> - * When actual clock is set always phy is powered off once and then powered on.
+> - * (sdhci_arasan_set_clock). That feature will be used to identify whether the
+> - * settings are for init phy_power_on or actual clock phy_power_on
+> - * 0 --> init settings
+> - * 1 --> actual settings
+> - */
+> -
+> -struct thunderbay_emmc_phy {
+> -	void __iomem    *reg_base;
+> -	struct clk      *emmcclk;
+> -	int phy_power_sts;
+> -};
+> -
+> -static inline void update_reg(struct thunderbay_emmc_phy *tbh_phy, u32 offset,
+> -			      u32 mask, u32 shift, u32 val)
+> -{
+> -	u32 tmp;
+> -
+> -	tmp = readl(tbh_phy->reg_base + offset);
+> -	tmp &= ~mask;
+> -	tmp |= val << shift;
+> -	writel(tmp, tbh_phy->reg_base + offset);
+> -}
+> -
+> -static int thunderbay_emmc_phy_power(struct phy *phy, bool power_on)
+> -{
+> -	struct thunderbay_emmc_phy *tbh_phy = phy_get_drvdata(phy);
+> -	unsigned int freqsel = FREQSEL_200M_170M;
+> -	unsigned long rate;
+> -	static int lock;
+> -	u32 val;
+> -	int ret;
+> -
+> -	/* Disable DLL */
+> -	rate = clk_get_rate(tbh_phy->emmcclk);
+> -	switch (rate) {
+> -	case 200000000:
+> -		/* lock dll only when it is used, i.e only if SEL_DLY_TXCLK/RXCLK are 0 */
+> -		update_reg(tbh_phy, PHY_CFG_0, DLL_EN_MASK, DLL_EN_SHIFT, 0x0);
+> -		break;
+> -
+> -	/* dll lock not required for other frequencies */
+> -	case 50000000 ... 52000000:
+> -	case 400000:
+> -	default:
+> -		break;
+> -	}
+> -
+> -	if (!power_on)
+> -		return 0;
+> -
+> -	rate = clk_get_rate(tbh_phy->emmcclk);
+> -	switch (rate) {
+> -	case 170000001 ... 200000000:
+> -		freqsel = FREQSEL_200M_170M;
+> -		break;
+> -
+> -	case 140000001 ... 170000000:
+> -		freqsel = FREQSEL_170M_140M;
+> -		break;
+> -
+> -	case 110000001 ... 140000000:
+> -		freqsel = FREQSEL_140M_110M;
+> -		break;
+> -
+> -	case 80000001 ... 110000000:
+> -		freqsel = FREQSEL_110M_80M;
+> -		break;
+> -
+> -	case 50000000 ... 80000000:
+> -		freqsel = FREQSEL_80M_50M;
+> -		break;
+> -
+> -	case 250000001 ... 275000000:
+> -		freqsel = FREQSEL_275M_250M;
+> -		break;
+> -
+> -	case 225000001 ... 250000000:
+> -		freqsel = FREQSEL_250M_225M;
+> -		break;
+> -
+> -	case 200000001 ... 225000000:
+> -		freqsel = FREQSEL_225M_200M;
+> -		break;
+> -	default:
+> -		break;
+> -	}
+> -	/* Clock rate is checked against upper limit. It may fall low during init */
+> -	if (rate > 200000000)
+> -		dev_warn(&phy->dev, "Unsupported rate: %lu\n", rate);
+> -
+> -	udelay(5);
+> -
+> -	if (lock == 0) {
+> -		/* PDB will be done only once per boot */
+> -		update_reg(tbh_phy, PHY_CFG_0, PWR_DOWN_MASK,
+> -			   PWR_DOWN_SHIFT, 0x1);
+> -		lock = 1;
+> -		/*
+> -		 * According to the user manual, it asks driver to wait 5us for
+> -		 * calpad busy trimming. However it is documented that this value is
+> -		 * PVT(A.K.A. process, voltage and temperature) relevant, so some
+> -		 * failure cases are found which indicates we should be more tolerant
+> -		 * to calpad busy trimming.
+> -		 */
+> -		ret = readl_poll_timeout(tbh_phy->reg_base + PHY_STAT,
+> -					 val, (val & CAL_DONE), 10, 50);
+> -		if (ret) {
+> -			dev_err(&phy->dev, "caldone failed, ret=%d\n", ret);
+> -			return ret;
+> -		}
+> -	}
+> -	rate = clk_get_rate(tbh_phy->emmcclk);
+> -	switch (rate) {
+> -	case 200000000:
+> -		/* Set frequency of the DLL operation */
+> -		update_reg(tbh_phy, PHY_CFG_2, SEL_FREQ_MASK, SEL_FREQ_SHIFT, freqsel);
+> -
+> -		/* Enable DLL */
+> -		update_reg(tbh_phy, PHY_CFG_0, DLL_EN_MASK, DLL_EN_SHIFT, 0x1);
+> -
+> -		/*
+> -		 * After enabling analog DLL circuits docs say that we need 10.2 us if
+> -		 * our source clock is at 50 MHz and that lock time scales linearly
+> -		 * with clock speed. If we are powering on the PHY and the card clock
+> -		 * is super slow (like 100kHz) this could take as long as 5.1 ms as
+> -		 * per the math: 10.2 us * (50000000 Hz / 100000 Hz) => 5.1 ms
+> -		 * hopefully we won't be running at 100 kHz, but we should still make
+> -		 * sure we wait long enough.
+> -		 *
+> -		 * NOTE: There appear to be corner cases where the DLL seems to take
+> -		 * extra long to lock for reasons that aren't understood. In some
+> -		 * extreme cases we've seen it take up to over 10ms (!). We'll be
+> -		 * generous and give it 50ms.
+> -		 */
+> -		ret = readl_poll_timeout(tbh_phy->reg_base + PHY_STAT,
+> -					 val, (val & DLL_RDY), 10, 50 * USEC_PER_MSEC);
+> -		if (ret) {
+> -			dev_err(&phy->dev, "dllrdy failed, ret=%d\n", ret);
+> -			return ret;
+> -		}
+> -		break;
+> -
+> -	default:
+> -		break;
+> -	}
+> -	return 0;
+> -}
+> -
+> -static int thunderbay_emmc_phy_init(struct phy *phy)
+> -{
+> -	struct thunderbay_emmc_phy *tbh_phy = phy_get_drvdata(phy);
+> -
+> -	tbh_phy->emmcclk = clk_get(&phy->dev, "emmcclk");
+> -
+> -	return PTR_ERR_OR_ZERO(tbh_phy->emmcclk);
+> -}
+> -
+> -static int thunderbay_emmc_phy_exit(struct phy *phy)
+> -{
+> -	struct thunderbay_emmc_phy *tbh_phy = phy_get_drvdata(phy);
+> -
+> -	clk_put(tbh_phy->emmcclk);
+> -
+> -	return 0;
+> -}
+> -
+> -static int thunderbay_emmc_phy_power_on(struct phy *phy)
+> -{
+> -	struct thunderbay_emmc_phy *tbh_phy = phy_get_drvdata(phy);
+> -	unsigned long rate;
+> -
+> -	/* Overwrite capability bits configurable in bootloader */
+> -	update_reg(tbh_phy, CTRL_CFG_0,
+> -		   SUPPORT_HS_MASK, SUPPORT_HS_SHIFT, 0x1);
+> -	update_reg(tbh_phy, CTRL_CFG_0,
+> -		   SUPPORT_8B_MASK, SUPPORT_8B_SHIFT, 0x1);
+> -	update_reg(tbh_phy, CTRL_CFG_1,
+> -		   SUPPORT_SDR50_MASK, SUPPORT_SDR50_SHIFT, 0x1);
+> -	update_reg(tbh_phy, CTRL_CFG_1,
+> -		   SUPPORT_DDR50_MASK, SUPPORT_DDR50_SHIFT, 0x1);
+> -	update_reg(tbh_phy, CTRL_CFG_1,
+> -		   SUPPORT_SDR104_MASK, SUPPORT_SDR104_SHIFT, 0x1);
+> -	update_reg(tbh_phy, CTRL_CFG_1,
+> -		   SUPPORT_HS400_MASK, SUPPORT_HS400_SHIFT, 0x1);
+> -	update_reg(tbh_phy, CTRL_CFG_1,
+> -		   SUPPORT_64B_MASK, SUPPORT_64B_SHIFT, 0x1);
+> -
+> -	if (tbh_phy->phy_power_sts == PHY_UNINITIALIZED) {
+> -		/* Indicates initialization, settings for init, same as 400KHZ setting */
+> -		update_reg(tbh_phy, PHY_CFG_0, SEL_DLY_TXCLK_MASK, SEL_DLY_TXCLK_SHIFT, 0x1);
+> -		update_reg(tbh_phy, PHY_CFG_0, SEL_DLY_RXCLK_MASK, SEL_DLY_RXCLK_SHIFT, 0x1);
+> -		update_reg(tbh_phy, PHY_CFG_0, ITAP_DLY_ENA_MASK, ITAP_DLY_ENA_SHIFT, 0x0);
+> -		update_reg(tbh_phy, PHY_CFG_0, ITAP_DLY_SEL_MASK, ITAP_DLY_SEL_SHIFT, 0x0);
+> -		update_reg(tbh_phy, PHY_CFG_0, OTAP_DLY_ENA_MASK, OTAP_DLY_ENA_SHIFT, 0x0);
+> -		update_reg(tbh_phy, PHY_CFG_0, OTAP_DLY_SEL_MASK, OTAP_DLY_SEL_SHIFT, 0);
+> -		update_reg(tbh_phy, PHY_CFG_0, DLL_TRIM_ICP_MASK, DLL_TRIM_ICP_SHIFT, 0);
+> -		update_reg(tbh_phy, PHY_CFG_0, DR_TY_MASK, DR_TY_SHIFT, 0x1);
+> -
+> -	} else if (tbh_phy->phy_power_sts == PHY_INITIALIZED) {
+> -		/* Indicates actual clock setting */
+> -		rate = clk_get_rate(tbh_phy->emmcclk);
+> -		switch (rate) {
+> -		case 200000000:
+> -			update_reg(tbh_phy, PHY_CFG_0, SEL_DLY_TXCLK_MASK,
+> -				   SEL_DLY_TXCLK_SHIFT, 0x0);
+> -			update_reg(tbh_phy, PHY_CFG_0, SEL_DLY_RXCLK_MASK,
+> -				   SEL_DLY_RXCLK_SHIFT, 0x0);
+> -			update_reg(tbh_phy, PHY_CFG_0, ITAP_DLY_ENA_MASK,
+> -				   ITAP_DLY_ENA_SHIFT, 0x0);
+> -			update_reg(tbh_phy, PHY_CFG_0, ITAP_DLY_SEL_MASK,
+> -				   ITAP_DLY_SEL_SHIFT, 0x0);
+> -			update_reg(tbh_phy, PHY_CFG_0, OTAP_DLY_ENA_MASK,
+> -				   OTAP_DLY_ENA_SHIFT, 0x1);
+> -			update_reg(tbh_phy, PHY_CFG_0, OTAP_DLY_SEL_MASK,
+> -				   OTAP_DLY_SEL_SHIFT, 2);
+> -			update_reg(tbh_phy, PHY_CFG_0, DLL_TRIM_ICP_MASK,
+> -				   DLL_TRIM_ICP_SHIFT, 0x8);
+> -			update_reg(tbh_phy, PHY_CFG_0, DR_TY_MASK,
+> -				   DR_TY_SHIFT, 0x1);
+> -			/* For HS400 only */
+> -			update_reg(tbh_phy, PHY_CFG_2, SEL_STRB_MASK,
+> -				   SEL_STRB_SHIFT, STRB);
+> -			break;
+> -
+> -		case 50000000 ... 52000000:
+> -			/* For both HS and DDR52 this setting works */
+> -			update_reg(tbh_phy, PHY_CFG_0, SEL_DLY_TXCLK_MASK,
+> -				   SEL_DLY_TXCLK_SHIFT, 0x1);
+> -			update_reg(tbh_phy, PHY_CFG_0, SEL_DLY_RXCLK_MASK,
+> -				   SEL_DLY_RXCLK_SHIFT, 0x1);
+> -			update_reg(tbh_phy, PHY_CFG_0, ITAP_DLY_ENA_MASK,
+> -				   ITAP_DLY_ENA_SHIFT, 0x0);
+> -			update_reg(tbh_phy, PHY_CFG_0, ITAP_DLY_SEL_MASK,
+> -				   ITAP_DLY_SEL_SHIFT, 0x0);
+> -			update_reg(tbh_phy, PHY_CFG_0, OTAP_DLY_ENA_MASK,
+> -				   OTAP_DLY_ENA_SHIFT, 0x1);
+> -			update_reg(tbh_phy, PHY_CFG_0, OTAP_DLY_SEL_MASK,
+> -				   OTAP_DLY_SEL_SHIFT, 4);
+> -			update_reg(tbh_phy, PHY_CFG_0, DLL_TRIM_ICP_MASK,
+> -				   DLL_TRIM_ICP_SHIFT, 0x8);
+> -			update_reg(tbh_phy, PHY_CFG_0,
+> -				   DR_TY_MASK, DR_TY_SHIFT, 0x1);
+> -			break;
+> -
+> -		case 400000:
+> -			update_reg(tbh_phy, PHY_CFG_0, SEL_DLY_TXCLK_MASK,
+> -				   SEL_DLY_TXCLK_SHIFT, 0x1);
+> -			update_reg(tbh_phy, PHY_CFG_0, SEL_DLY_RXCLK_MASK,
+> -				   SEL_DLY_RXCLK_SHIFT, 0x1);
+> -			update_reg(tbh_phy, PHY_CFG_0, ITAP_DLY_ENA_MASK,
+> -				   ITAP_DLY_ENA_SHIFT, 0x0);
+> -			update_reg(tbh_phy, PHY_CFG_0, ITAP_DLY_SEL_MASK,
+> -				   ITAP_DLY_SEL_SHIFT, 0x0);
+> -			update_reg(tbh_phy, PHY_CFG_0, OTAP_DLY_ENA_MASK,
+> -				   OTAP_DLY_ENA_SHIFT, 0x0);
+> -			update_reg(tbh_phy, PHY_CFG_0, OTAP_DLY_SEL_MASK,
+> -				   OTAP_DLY_SEL_SHIFT, 0);
+> -			update_reg(tbh_phy, PHY_CFG_0, DLL_TRIM_ICP_MASK,
+> -				   DLL_TRIM_ICP_SHIFT, 0);
+> -			update_reg(tbh_phy, PHY_CFG_0, DR_TY_MASK, DR_TY_SHIFT, 0x1);
+> -			break;
+> -
+> -		default:
+> -			update_reg(tbh_phy, PHY_CFG_0, SEL_DLY_TXCLK_MASK,
+> -				   SEL_DLY_TXCLK_SHIFT, 0x1);
+> -			update_reg(tbh_phy, PHY_CFG_0, SEL_DLY_RXCLK_MASK,
+> -				   SEL_DLY_RXCLK_SHIFT, 0x1);
+> -			update_reg(tbh_phy, PHY_CFG_0, ITAP_DLY_ENA_MASK,
+> -				   ITAP_DLY_ENA_SHIFT, 0x0);
+> -			update_reg(tbh_phy, PHY_CFG_0, ITAP_DLY_SEL_MASK,
+> -				   ITAP_DLY_SEL_SHIFT, 0x0);
+> -			update_reg(tbh_phy, PHY_CFG_0, OTAP_DLY_ENA_MASK,
+> -				   OTAP_DLY_ENA_SHIFT, 0x1);
+> -			update_reg(tbh_phy, PHY_CFG_0, OTAP_DLY_SEL_MASK,
+> -				   OTAP_DLY_SEL_SHIFT, 2);
+> -			update_reg(tbh_phy, PHY_CFG_0, DLL_TRIM_ICP_MASK,
+> -				   DLL_TRIM_ICP_SHIFT, 0x8);
+> -			update_reg(tbh_phy, PHY_CFG_0, DR_TY_MASK,
+> -				   DR_TY_SHIFT, 0x1);
+> -			break;
+> -		}
+> -		/* Reset, init seq called without phy_power_off, this indicates init seq */
+> -		tbh_phy->phy_power_sts = PHY_UNINITIALIZED;
+> -	}
+> -
+> -	update_reg(tbh_phy, PHY_CFG_0, RETRIM_EN_MASK, RETRIM_EN_SHIFT, 0x1);
+> -	update_reg(tbh_phy, PHY_CFG_0, RETRIM_MASK, RETRIM_SHIFT, 0x0);
+> -
+> -	return thunderbay_emmc_phy_power(phy, 1);
+> -}
+> -
+> -static int thunderbay_emmc_phy_power_off(struct phy *phy)
+> -{
+> -	struct thunderbay_emmc_phy *tbh_phy = phy_get_drvdata(phy);
+> -
+> -	tbh_phy->phy_power_sts = PHY_INITIALIZED;
+> -
+> -	return thunderbay_emmc_phy_power(phy, 0);
+> -}
+> -
+> -static const struct phy_ops thunderbay_emmc_phy_ops = {
+> -	.init		= thunderbay_emmc_phy_init,
+> -	.exit		= thunderbay_emmc_phy_exit,
+> -	.power_on	= thunderbay_emmc_phy_power_on,
+> -	.power_off	= thunderbay_emmc_phy_power_off,
+> -	.owner		= THIS_MODULE,
+> -};
+> -
+> -static const struct of_device_id thunderbay_emmc_phy_of_match[] = {
+> -	{ .compatible = "intel,thunderbay-emmc-phy",
+> -		(void *)&thunderbay_emmc_phy_ops },
+> -	{}
+> -};
+> -MODULE_DEVICE_TABLE(of, thunderbay_emmc_phy_of_match);
+> -
+> -static int thunderbay_emmc_phy_probe(struct platform_device *pdev)
+> -{
+> -	struct thunderbay_emmc_phy *tbh_phy;
+> -	struct phy_provider *phy_provider;
+> -	struct device *dev = &pdev->dev;
+> -	const struct of_device_id *id;
+> -	struct phy *generic_phy;
+> -	struct resource *res;
+> -
+> -	if (!dev->of_node)
+> -		return -ENODEV;
+> -
+> -	tbh_phy = devm_kzalloc(dev, sizeof(*tbh_phy), GFP_KERNEL);
+> -	if (!tbh_phy)
+> -		return -ENOMEM;
+> -
+> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> -	tbh_phy->reg_base = devm_ioremap_resource(&pdev->dev, res);
+> -	if (IS_ERR(tbh_phy->reg_base))
+> -		return PTR_ERR(tbh_phy->reg_base);
+> -
+> -	tbh_phy->phy_power_sts = PHY_UNINITIALIZED;
+> -	id = of_match_node(thunderbay_emmc_phy_of_match, pdev->dev.of_node);
+> -	if (!id) {
+> -		dev_err(dev, "failed to get match_node\n");
+> -		return -EINVAL;
+> -	}
+> -
+> -	generic_phy = devm_phy_create(dev, dev->of_node, id->data);
+> -	if (IS_ERR(generic_phy)) {
+> -		dev_err(dev, "failed to create PHY\n");
+> -		return PTR_ERR(generic_phy);
+> -	}
+> -
+> -	phy_set_drvdata(generic_phy, tbh_phy);
+> -	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> -
+> -	return PTR_ERR_OR_ZERO(phy_provider);
+> -}
+> -
+> -static struct platform_driver thunderbay_emmc_phy_driver = {
+> -	.probe		 = thunderbay_emmc_phy_probe,
+> -	.driver		 = {
+> -		.name	 = "thunderbay-emmc-phy",
+> -		.of_match_table = thunderbay_emmc_phy_of_match,
+> -	},
+> -};
+> -module_platform_driver(thunderbay_emmc_phy_driver);
+> -
+> -MODULE_AUTHOR("Nandhini S <nandhini.srikandan@intel.com>");
+> -MODULE_AUTHOR("Rashmi A <rashmi.a@intel.com>");
+> -MODULE_DESCRIPTION("Intel Thunder Bay eMMC PHY driver");
+> -MODULE_LICENSE("GPL v2");
+> -- 
+> 2.17.1
 
 -- 
-nvpublic
+~Vinod
