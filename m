@@ -2,121 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67B52678FB3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 06:11:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 554BC678FBF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 06:20:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231593AbjAXFLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 00:11:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56292 "EHLO
+        id S231510AbjAXFUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 00:20:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231599AbjAXFL3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 00:11:29 -0500
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBB1D5B90;
-        Mon, 23 Jan 2023 21:11:28 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 2A836320093F;
-        Tue, 24 Jan 2023 00:11:24 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Tue, 24 Jan 2023 00:11:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; t=1674537083; x=
-        1674623483; bh=FL4EH6QJK+d1XgoAroJrgotEkmtGHshewgrLCi3uekw=; b=r
-        jtn/0FU/v56BlVNeisMMSPzODrC9lG+vIBgyK8yUBQYEnvi+NSW1PhRiWEWejf9y
-        DBMts3ZbhgxCteSsaNrAbsrx3Lxx1vD3+Q+vSVME2JDSjsD+dERvQV14dttsIhE5
-        4I5s9vH/amlpFzbVz03tX1gG2G5xbR5L9HQvKRYvQcxrzMBcTJ7GpKwDD//B5JHO
-        UxJ5bY8pXReNk+13UuaMxtYSW/rYhKkoMSLwiUz7iRz33r/ES8RC+0yN9XygSY2G
-        Baj/nMmnRVz+01qT+5NfcTRwO03mb2MSrC3QWFpuPqvioEM9lZaZ5u7utsp7Tg2W
-        fFFEwBKr0ikIxckS9/m3w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1674537083; x=
-        1674623483; bh=FL4EH6QJK+d1XgoAroJrgotEkmtGHshewgrLCi3uekw=; b=i
-        odecc03ocFIbjUEYEowrzdz0krD8bba7o8+vnGpbpBYspcuqu02fQJaKkjIBxFsk
-        GsVLWdT74zXF/d2NvlNGi8BENIkVxR4a/d6FLEBRZhvhihCXPRp8Ky5GB7A4Ysd3
-        St8gM1tL03X1icXX9xEHlLplIubOWGv0+1ouPYmJYR5X64YObQzcDrjK6ZMJEttU
-        7tReJrl+url8zt6QsbTOsAmrMaev/MHJHKQpxejPR7P9oesjIkAycZpzxsfOQaS9
-        MYsD39/531WjGI30fHjyJQL3oNj9aK+hy7Tq1KKGZ/wu7FD/81fCWnK486mDmSQC
-        bp32Kj2BqLkYT3h3t+MXg==
-X-ME-Sender: <xms:e2jPY1iz9LZz-HZ8fMgwNQ1I9lgPn4QkKZ_bdijKT87dl3oSxbBdaQ>
-    <xme:e2jPY6CIZ6wKxGCD0qFydX-9PWjtGI5ROGEOOyf_eLVTFiQmh6RKGELOanG7IXLIf
-    Liz6ZgeAvv0FA0aWA>
-X-ME-Received: <xmr:e2jPY1FEtRewVLA-CseS80ahykYUqa7mNJt84yyMZIixWmKuBOPV3C6PSso7wHMqAlOsZtxWu7TlAp6yUWkGlQ8OC3LxJp-wge2d9Zv9fg_mGPRtoWEHuypYEQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudduledgkeduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepkfffgggfvfevfhfhufgjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpeejgfffhfdujeeftdeuudeguedttefgieetffffheejuefguedv
-    heejteeftdfftdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:e2jPY6RIHnG1EUqXaC3ACprutbwXrzsJkoSMFBvXOrE7FVFTVWkTcQ>
-    <xmx:e2jPYywKnMpkbb1B4hxUMyrqWP98vX9ORFVTLs90GVRcQbr7vkzpnA>
-    <xmx:e2jPYw55Cn94tS4s1iUFh1Eke49XtFb0udXx6Er5tEjsc0LeR1G5ug>
-    <xmx:e2jPYzomzZAebvz0EzYzrvupHjTo-qOA650_P1omIPpLDP9FJqGp3g>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 24 Jan 2023 00:11:22 -0500 (EST)
-Message-ID: <9d61bda2-17ea-723d-7fee-e911061054bc@sholland.org>
-Date:   Mon, 23 Jan 2023 23:11:23 -0600
+        with ESMTP id S229930AbjAXFUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 00:20:38 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA7D844AA;
+        Mon, 23 Jan 2023 21:20:36 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id DA62C24E24D;
+        Tue, 24 Jan 2023 13:20:33 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 24 Jan
+ 2023 13:20:33 +0800
+Received: from [192.168.125.95] (183.27.96.38) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 24 Jan
+ 2023 13:20:32 +0800
+Message-ID: <820be512-c7f8-1af1-12fa-53c557532c7a@starfivetech.com>
+Date:   Tue, 24 Jan 2023 13:20:32 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v4 0/2] JH7110 PMU Support
+To:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        <linux-riscv@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     Daire McNamara <daire.mcnamara@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230119094447.21939-1-walker.chen@starfivetech.com>
+ <167425300253.196995.6414153954346182622.b4-ty@microchip.com>
 Content-Language: en-US
-To:     Hans Verkuil <hverkuil@xs4all.nl>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-staging@lists.linux.dev,
-        linux-sunxi@lists.linux.dev
-References: <20221231164628.19688-1-samuel@sholland.org>
- <0c411b60-1d12-1c34-0f35-5e38d38e2786@xs4all.nl>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH 0/4] Allwinner D1 video engine support
-In-Reply-To: <0c411b60-1d12-1c34-0f35-5e38d38e2786@xs4all.nl>
-Content-Type: text/plain; charset=UTF-8
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <167425300253.196995.6414153954346182622.b4-ty@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [183.27.96.38]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
-
-On 1/23/23 06:33, Hans Verkuil wrote:
-> Hi Samuel,
+On 2023/1/21 6:21, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> What is the status of this series? It seems to be mostly OK, but I did see
-> a few comments suggesting improvements.
+> On Thu, 19 Jan 2023 17:44:45 +0800, Walker Chen wrote:
+>> This patchset adds PMU (Power Management Unit) controller driver for the
+>> StarFive JH7110 SoC. In order to meet low power requirements, PMU is
+>> designed for including multiple PM domains that can be used for power
+>> gating of selected IP blocks for power saving by reduced leakage
+>> current. The first patch adds device tree binding for PM domain provider
+>> and consumer. The second patch adds pmu driver and support JH7110 SoC.
+>> 
+>> [...]
 > 
-> Does this series depend on your PPU work? That was not clear.
+> Applied to riscv-soc-for-next, thanks!
+> 
+> [1/2] dt-bindings: power: Add starfive,jh7110-pmu
+>       https://git.kernel.org/conor/c/1fc7606d5083f79a20eb9cfd77c0dbd9299421c1
+> [2/2] soc: starfive: Add StarFive JH71XX pmu driver
+>       https://git.kernel.org/conor/c/08b9a94e8654d402bfd1f5496b077503d69aa2cf
+> 
+> I modified the MAINTAINERS entry to remove the include directory that
+> was deleted along the way.
 
-The first three patches do not, but the actual DT node does, for
-completeness.
-
-> I do think there were enough small comments to warrant a v2, unless you disagree?
-
-I agree, and plan to send a v2 with the binding/driver changes made
-compatible-specific.
-
-Regards,
-Samuel
+Thank you so much for your support, Conor, Krzysztof, Emil, Heiko, Rob Herring, etc.
+Hopefully more and more drivers & modules of StarFive SoC will upstream to the open source community.
 
