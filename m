@@ -2,94 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2720679AC2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 14:58:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BABC679A87
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 14:50:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233196AbjAXN6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 08:58:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60192 "EHLO
+        id S233963AbjAXNuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 08:50:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233370AbjAXN57 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 08:57:59 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903E2458B9;
-        Tue, 24 Jan 2023 05:57:28 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D168611FC;
-        Tue, 24 Jan 2023 13:44:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E553DC433D2;
-        Tue, 24 Jan 2023 13:43:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674567839;
-        bh=jdlW2UpGV39iIb1jZylNHSlBWFgLrecPOvBrOD8Te6U=;
-        h=From:To:Cc:Subject:Date:From;
-        b=ZJub0ZeOQox04vPxRSr+kRQ1/M8mqyqT1HLKRh20CJs30sD+AcPqv66laIb116DpO
-         PtFkmK0nZfq5dXJiLD9oGLRN6RPzccS38Ozuj4xlQRYIgBpuzCztTKMrsqzDAieQDS
-         M26qo+FZlPs8cnoMlyJubXowdZfn9wp2VII+qUvtIaWoc4c/EiPY9JIafkXueDxnHr
-         XGHwtYJ0HhMmSrPjVqfmVArRVmz0yPWyH1Hh3D1wVDWkHFvdiWPWq5C1GvX5J1Q56O
-         ae4tpqrRCf/rRRJE0JCNf6a1+r5QdrsU9/QeKX3xK5q/+VoasZjd68OzhAlP02BKKF
-         hSilTSLx7AmMQ==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 1/4] ARM: dts: imx: Fix pca9547 i2c-mux node name
-Date:   Tue, 24 Jan 2023 08:43:54 -0500
-Message-Id: <20230124134357.637945-1-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.0
-MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+        with ESMTP id S234987AbjAXNuQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 08:50:16 -0500
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B1B2410B;
+        Tue, 24 Jan 2023 05:47:53 -0800 (PST)
+Received: by mail-oi1-x233.google.com with SMTP id s124so13332193oif.1;
+        Tue, 24 Jan 2023 05:47:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=dgVu7me6sU+em3VIV4aC+WPji/mlX6JtCE66fSnGyn4=;
+        b=eZTY5qRZxf4KEh7UCsslELdpi8xX5rElv9c5C1SnxNhllNviqfDr2t08gHjt9m1vkL
+         C5Uw69FgV2uDGnGgl7gSz2w2nKfu5cmTYLmPoPq0cuWKKPPOzXuarM7+m5StM1EGtWko
+         EminHAvJH+hQhzCSAyVGVgcuH1ERWbBTONGkYewi2IZp4TK3THPFPZAcQxA4amFIF1+F
+         Mivo3P/Zefm16N4mXhZUiFFgI4cF0DnbbB4rmbwIBaQ808JG0vBfIpNsDsmzSTVkpoEI
+         5QMa/CMmqy33gWcRduML3nZJQlUsLpU4SVRD7aLIGz6hoTu1SU8sMlWHGGBWSmtU7ADF
+         W26w==
+X-Gm-Message-State: AFqh2kq2Ooi1SH+YvL8ld8CIo97j3EmBvLDkz7iaoQu3aTuBtPsLSCzI
+        K8aAMOsCr1MEuanWIfrfqw==
+X-Google-Smtp-Source: AMrXdXt9hoqjLN2to+csT0/dkCRVXxuqN6eTU/E0qsd4wp8ozPy7l2VcYEeNOSS3tFpgIz0nCJaK1Q==
+X-Received: by 2002:aca:de89:0:b0:367:6c7:baf9 with SMTP id v131-20020acade89000000b0036706c7baf9mr11467889oig.8.1674567940590;
+        Tue, 24 Jan 2023 05:45:40 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i10-20020a056808030a00b0036a97066646sm1020354oie.8.2023.01.24.05.45.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jan 2023 05:45:40 -0800 (PST)
+Received: (nullmailer pid 637757 invoked by uid 1000);
+        Tue, 24 Jan 2023 13:45:39 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
+        Wayne Chang <waynec@nvidia.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-tegra@vger.kernel.org
+In-Reply-To: <20230124114318.18345-2-jonathanh@nvidia.com>
+References: <20230124114318.18345-1-jonathanh@nvidia.com>
+ <20230124114318.18345-2-jonathanh@nvidia.com>
+Message-Id: <167456749036.611215.16155554024148748452.robh@kernel.org>
+Subject: Re: [PATCH V7 1/6] dt-bindings: usb: Add Cypress cypd4226 Type-C controller
+Date:   Tue, 24 Jan 2023 07:45:39 -0600
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Geert Uytterhoeven <geert+renesas@glider.be>
 
-[ Upstream commit f78985f9f58380eec37f82c8a2c765aa7670fc29 ]
+On Tue, 24 Jan 2023 11:43:13 +0000, Jon Hunter wrote:
+> From: Wayne Chang <waynec@nvidia.com>
+> 
+> Add the device-tree binding documentation for Cypress cypd4226 dual
+> Type-C controller.
+> 
+> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+> V6 -> V7: updated example to use 'typec' for the node name
+> V5 -> V6: no changes
+> V4 -> V5: updated subject and updated binding to use 'firmware-name'.
+> V3 -> V4: no changes
+> V2 -> V3: fix additionalProperties warning on new schema
+> V1 -> V2: based on the review comments. Fix some addressed issues on
+> 
+>  .../bindings/usb/cypress,cypd4226.yaml        | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
+> 
 
-"make dtbs_check":
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-    arch/arm/boot/dts/imx53-ppd.dtb: i2c-switch@70: $nodename:0: 'i2c-switch@70' does not match '^(i2c-?)?mux'
-	    From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-    arch/arm/boot/dts/imx53-ppd.dtb: i2c-switch@70: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'i2c@0', 'i2c@1', 'i2c@2', 'i2c@3', 'i2c@4', 'i2c@5', 'i2c@6', 'i2c@7' were unexpected)
-	    From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+yamllint warnings/errors:
 
-Fix this by renaming the PCA9547 node to "i2c-mux", to match the I2C bus
-multiplexer/switch DT bindings and the Generic Names Recommendation in
-the Devicetree Specification.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml: More than one condition true in oneOf schema:
+	{'description': 'Either unevaluatedProperties or additionalProperties '
+	                'must be present',
+	 'oneOf': [{'required': ['unevaluatedProperties']},
+	           {'required': ['additionalProperties']}]}
+	hint: Either unevaluatedProperties or additionalProperties must be present
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/imx53-ppd.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+doc reference errors (make refcheckdocs):
 
-diff --git a/arch/arm/boot/dts/imx53-ppd.dts b/arch/arm/boot/dts/imx53-ppd.dts
-index f346673d34ea..0cb5f01f02d1 100644
---- a/arch/arm/boot/dts/imx53-ppd.dts
-+++ b/arch/arm/boot/dts/imx53-ppd.dts
-@@ -462,7 +462,7 @@ &i2c1 {
- 	scl-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
- 	status = "okay";
- 
--	i2c-switch@70 {
-+	i2c-mux@70 {
- 		compatible = "nxp,pca9547";
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--- 
-2.39.0
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230124114318.18345-2-jonathanh@nvidia.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
