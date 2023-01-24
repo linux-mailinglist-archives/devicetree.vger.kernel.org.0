@@ -2,208 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C50D267924F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 08:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC652679270
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 09:00:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232717AbjAXHwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 02:52:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33242 "EHLO
+        id S229627AbjAXIA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 03:00:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232431AbjAXHwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 02:52:49 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D4B83D094
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 23:52:42 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so10257720wms.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 23:52:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BAe2WJH+upW322dDk1bEGZ4cZcCC0V7GrzqFfjdJrMg=;
-        b=hGPTxpSwZUv2ubxuT/5nHbDe+A30AqGBmtvji/Iv7jd9BR1eURErdOE+Ld8kUkcKcV
-         KBpMd+yZB0HVRMSv788IXaCQQxdg9P9UVfVih3M/pen+O2tI+hvtR5R6cbWPe7F48Hqb
-         ExACdlVSsYE6TI+k3v/pOyJomrx6/HBSc4EsF3l9xMz8Uj2+xwf7DVxSUixIp9lITiFV
-         6yOGgpOTV+n/yLZlsoLSx3vLvV/ml+6ZI023vAbywjGDGOjFDrxp+r82czeY0Jb8dexv
-         CP5uWx6pW85Lp7lztlLRVLu4x+/zCR5SutP5JmJbQ2uCG/SEL2XnmQFMRKINlPjQweee
-         wnsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BAe2WJH+upW322dDk1bEGZ4cZcCC0V7GrzqFfjdJrMg=;
-        b=ywLKbrXSinW87wtVcDaJTVhKqdJPAa5Kg6FnYV/Mrqg7b2oJbRtkqINKe4cu30Vcf0
-         WS4zs3CncaJyNGSAHR7JDmnTapLwJGzINyg1Q+NA+H5Q8catamQSq+1HY9ql+JqrQv/u
-         wnuSGwvI83hh5OyhnE87UXC6FdW+SnELJ3JLocIFNxluE6G137Io0LJTIhnHEk2etLag
-         3XC7m6vhGHNTHjvePUTGnBgoarmPqaDLAL6040A6muA6uiR3voTqWTzek4eq8hjmLz2t
-         4ju0d3LV5C72+7+4Nx5NZakVEYVM8JNJj/q0l4SpkxCNvUOKTrpkqJ61bfOK0bk8GL/H
-         6PkQ==
-X-Gm-Message-State: AFqh2koglGTu5op9kPUF3F09BnHq0NInIL9DaS6nFdk11nMg55Qpe6UE
-        o5g2pD4/Xi3ulfHIDGuxdbfGtA==
-X-Google-Smtp-Source: AMrXdXtUIbnTklwYfp0Ur7d3WG5zlOuPOMpIoOKsMyOMySKmH3lI7Ra+GFxs1Sh1FysqHT0LgtpI4A==
-X-Received: by 2002:a05:600c:3488:b0:3d2:370b:97f4 with SMTP id a8-20020a05600c348800b003d2370b97f4mr34735239wmq.16.1674546760714;
-        Mon, 23 Jan 2023 23:52:40 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m26-20020a7bcb9a000000b003db2dede1a2sm12401412wmi.26.2023.01.23.23.52.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 23:52:40 -0800 (PST)
-Message-ID: <b88bacbb-9da2-2175-3f59-7156c3aad4e3@linaro.org>
-Date:   Tue, 24 Jan 2023 08:52:35 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 2/2] dt-bindings: dma: cleanup examples - indentation,
- lowercase hex
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Olivier Dautricourt <olivierdautricourt@gmail.com>,
-        Stefan Roese <sr@denx.de>, Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Green Wan <green.wan@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        =?UTF-8?B?77+9ZXI=?= <povik+lin@cutebit.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        - <chuanhua.lei@intel.com>, Long Cheng <long.cheng@mediatek.com>,
-        Rajesh Gumasta <rgumasta@nvidia.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Palmer Debbelt <palmer@sifive.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-        linux-tegra@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-mediatek@lists.infradead.org
-References: <20230118180144.364756-1-krzysztof.kozlowski@linaro.org>
- <20230118180144.364756-2-krzysztof.kozlowski@linaro.org>
- <20230123202010.GA2455859-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230123202010.GA2455859-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S229451AbjAXIA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 03:00:26 -0500
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2089.outbound.protection.outlook.com [40.107.22.89])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B3D2ED47;
+        Tue, 24 Jan 2023 00:00:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oafhFo/Rt8J/ZTfFK1lCUbvPVWBqLglPpfWt5g9GXHJylGDuNkj2STHl9+W7iw6RSUwxUbhiXKc3EpFOKSS4EPztmFMWk/Tn9eAzS5r32/8+RwbNLQw2WaJ1qYLxfkSyTSVOJ0jPVjG6oe800eBeN6mBTChyM+hYe233to0AtzefB4fX3HpGtgZ8/UypQDFMkZC3RgtyWdjaTld42nQbnEeCuksQzgp4RE0pqHHeERh8TX/kQY3jV6E+zO96pfbRZNAIcQ4qYFYQk8V4DKFMV3TQuYTVxz4xoHsouVA+koGStRnItKiFZ2iRaBJdSg1g0Ee6UfQqaliskH3bgsgEwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=10Q7LTGCXAZ5WaTdhKy1nfI+WNRDdVnQMBbQAVvVvC4=;
+ b=YNYLL0GqnHwsVGSbo/Mc5SJcj11s9VpFDoqHyn5JXHU42F8IZ1ItJc29oVaG6oqKlQ9kVr1UkA8lsHsqdYTjt6nOg/T7ZthgD5c7Qpr52Nfw4u3MaRziEvfUZztsSqrO38AXd4UlCia7Z6lMt4zioK+x5xU70s+zHqGOxGAgYp6bt4c4rgCYAjhDvRTdvM5bLDJUeGq1TPftj1kQftn3W6Zl7Lz8ZP7OeAMM7qYB0gfnhu+AIIV/CORMXWIXcWtapCBNfW4lS5yBEzCmdw/TCht6c4yTFjPhkakdPv4DR0mSWGLy1pI6Lj7NcpCbhvCl14FnxbvAv6stjZ5z7c6gVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=10Q7LTGCXAZ5WaTdhKy1nfI+WNRDdVnQMBbQAVvVvC4=;
+ b=MxEeJOJjWXeZl3ne6/Wyf0j3QUatRJVWPn3PSJqx2mawjJDERlbD+yZ1gwi3ibdaY5GFbJQeNkRRUL+G+2EK9d2ukCY1Ou+rnQm8lUiMmo/Pcb6CkHmidhLytDrxqKrr4l/uJssJf7Vy4Me1dYuiZYzkW3TQsAGBq4q4sVzLCqI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AM9PR04MB8937.eurprd04.prod.outlook.com (2603:10a6:20b:408::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Tue, 24 Jan
+ 2023 08:00:22 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::5725:92ec:f43e:f5fc]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::5725:92ec:f43e:f5fc%7]) with mapi id 15.20.6002.028; Tue, 24 Jan 2023
+ 08:00:22 +0000
+Message-ID: <7ac57bc28da40df054c81fd74f69207af66ad97b.camel@nxp.com>
+Subject: Re: [PATCH 2/2] drm: lcdif: Add i.MX93 LCDIF support
+From:   Liu Ying <victor.liu@nxp.com>
+To:     Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     stefan@agner.ch, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com
+Date:   Tue, 24 Jan 2023 15:59:39 +0800
+In-Reply-To: <ace76615-533a-9295-8271-95262859d287@denx.de>
+References: <20230123072358.1060670-1-victor.liu@nxp.com>
+         <20230123072358.1060670-3-victor.liu@nxp.com>
+         <ace76615-533a-9295-8271-95262859d287@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-ClientProxiedBy: SI2P153CA0014.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::6)
+ To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AM9PR04MB8937:EE_
+X-MS-Office365-Filtering-Correlation-Id: afe1b217-60db-4162-e5d3-08dafde10b1a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /F5Y4esHxJuMTD+bwAqPb/i0kEDDeLFFw9WICXSHpuNNaiPJ6kqYnSOt68H+/p7LHIsCvUt5pggWmeBA06D2bx18n4vssUjMpcGXIsSErrEtoHOw1x2HpK+KKXIK4+JGZ/X1R9/bzV3AcUeHNoOZS8QtB4MO682p3r6KL3IjwMfoIZljhhdv7B+J10iubMQrTuKNs4xR0j9m8a8kyAPIreg1KIg2FqjHA7IZ4R0KSxtItxAqJbsQRyaFNQeqVqdz6dPC40JRTkmfMnfw1Ydx17+Quq4MdsAysYwsNkaOV4AA3SfknGMHtXSlOWgk3id3NnSOOf/+b2LJ04/NaNquXzV3FVfcZgDzHDmgYyzl/XgV96lO7m6YsOZUb0K+Kx7pA3YYqgA0Qil5jkEgam/fqjq72NSFRucO/H4CtujTkjbUxUnZNoJojEp3aQvC7hoj1R61CtZqEWASlcwpmi67RkejZ+FPujjoLJXVxzkdCBUbtcaneCv8ArFcjiEeSxYgCnaeIOO0h6jaDeC30AUEn/cvjLr1oMu5qwmOdstoyj1c0mHE2gOnq8lnL4Me71GHDUwnCwuBSV6H3y8CjDCaQajDBQaaG+GdJNkMLeCpOZkzMAqvyS5BdDS0IYj3eGNzKrlr5D+GTPIrhkl3TQcaALhfu1r1H+dxuqNjNdFOuhOzwuhfa5YUCnNRAG62VRxKICU38Ld5EY8p4yfr7bqtFp4RgRBSqHG1W2PUWtUGEgI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(136003)(376002)(366004)(396003)(346002)(451199015)(83380400001)(66556008)(66476007)(86362001)(66946007)(4326008)(8676002)(53546011)(316002)(36756003)(6506007)(6666004)(26005)(186003)(6512007)(52116002)(6486002)(478600001)(2616005)(8936002)(7416002)(5660300002)(38350700002)(2906002)(41300700001)(38100700002)(99106002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QlBkNGR5dEJyUUJVK0VpM1BRNVZGMGJFeVkyazJjTEtDb050TDYrVGdJc3la?=
+ =?utf-8?B?RDNlZDFqR3NRTUZEZ1pzc243ZUpEOFFrS0kxVG5XTmxyQVlOTUNRYTZqemdX?=
+ =?utf-8?B?ODZ5NlhVbE0rc0tzbG9KejdUeTZET2VVNjgzSHBlV1BSNVl4eVIvMC9BU3pG?=
+ =?utf-8?B?UVU3Rk9qbkRhMTZzRjFPdXhJTnU0WnB6cWFzbCt4UkxsYjk3UDJsUVRHSWVx?=
+ =?utf-8?B?VXRVTW1qckE0ZE5kR0xTNlp6R01pY2U0dzkwdXUvTXYxOFZRTnVoRzB4WEoz?=
+ =?utf-8?B?ekdZM2lFR3QxaENrZDBZT3krN1hNUWZxY1lERDlqSGRmekRhRjNPYVFQN0k4?=
+ =?utf-8?B?akVQSzFteVJkTnpwL0FZdlRIM0xxVHlTUlRrREdEVXJoUVpmVHpPcXIxRlVE?=
+ =?utf-8?B?T3RwQzBrSGNxNDN0SDV0S1M3dTk3YzNEa2I3bjJ4c3BuQ3JTeU9XQ3ptdkV1?=
+ =?utf-8?B?K2krVzlnbjRGaDRDMWpNa2l3OG5FR1huWGNiaWErYmJnTnR1WE1JQmNEZUtC?=
+ =?utf-8?B?N05HK0ZpN1JRU2syK3ZtWU9MVmQzSldqOS9HYmVRZktYREJ6TnFhbkRiWmtn?=
+ =?utf-8?B?RVdJN0NCRUlpbTN0WFM2V2ZrSWR4MG9xUmxCSXRSa3R6cm83YTZldDJyckk0?=
+ =?utf-8?B?dCs4OXlrRUVqV2UvTTQ2ODIwLzRndnNYSzZFcy9rQXJadFIzbXdmZkVYWkZW?=
+ =?utf-8?B?YTZZVHl4dk9qRnphdG9zcmlMaVFTcWVtRGtUU0NKdDlYWmtUc0lvZmlpRnY4?=
+ =?utf-8?B?Uy9RSStVN2JSSUxPSEdCbmdPK3lTQWdsK3VWZDdqcksweFVqZ0NmRUxvTTM5?=
+ =?utf-8?B?NzdBNXZxMER5Qzk1SGUwK1ZWR3M4SDM5aGxSQVMyNHArcnNLQS9UbjcrcUtU?=
+ =?utf-8?B?bzNVYkV4TFk3YTIzL0tSTCtvaEtBT09MVkxSYTB2eG9YMUFEQTdBWkxHTWJX?=
+ =?utf-8?B?YThRaGFabU5JU0hRNldnWHpDdlZEV1NEbWhhOUNlTStUcm00VmtVN3hieGo0?=
+ =?utf-8?B?clZQTEtxd1dlOXV1eXRoVkRsc2dKV2JReVFFY0cwbnVZZ1VQaXJIM2JUaFU3?=
+ =?utf-8?B?RDd5ZlRpQ0Z2K0NDSlRQRzl0T0I2WEozL2dHcVlrcVAyMzdxNkY0T0t4WVdI?=
+ =?utf-8?B?a1dhOHRkYVpkQjdxTHFidmVISkNvK2QwN0g5QXJiaGlYSGc2RXBqOW9YNkxr?=
+ =?utf-8?B?Q3ZUSDJuN2o4T2Q5UWYzNXpPSCt3QmJ4ZkF0Qm5vRWJWb2YrVXVSdTZtUjlT?=
+ =?utf-8?B?MW9zSWtIV2tVRERNUGp1WTlwOEFuWjJoZlZxVDBsd1RnUTEvRDU1SE9qZURZ?=
+ =?utf-8?B?Y1ZENC9JMGs0dTJFV295REhYc3NEaEdiRTZZSW5sMHRSZTBkbDJVa2N1RTVX?=
+ =?utf-8?B?R3U5cXVITTUvNUVDalNXSEhDbWFKa3JBSVFYMElFUkxuZ0c1WW5Caks4cm9R?=
+ =?utf-8?B?cW5nWmNnc3Z5bG0wclB4TUkzeWFSNENROGIyb0JlN1BYZ0JEYm55ZGlKUWdm?=
+ =?utf-8?B?T1JaVmdvL2hyaEROQk1pN2xuZytNTDZ3YU1QT3lrWm5wTE9jazhwSmI2bmkr?=
+ =?utf-8?B?UGc3Z1kwd0ZOTUhxK3kxNVZxWDRCRCs0TlVrd3dRSE8xd3FZTXFYN1N3MlpD?=
+ =?utf-8?B?VlR3c0s0d1JUUE1vV2ZtanVRbE5Pd1gwaWJGVEVVbjhtUklQckd0ZVRFbitY?=
+ =?utf-8?B?MUd1M3EvT3dtdS94K3FTZUh5TmFNMGh4NXVodjBKUDZ2azFrQTMrNXB0aTBU?=
+ =?utf-8?B?V1Z6UUNDQ2J1dW1xY2dwdDcwN0dMWXFFUHhPZnhuOFVlUE91ZmUxOWhZWmNV?=
+ =?utf-8?B?cFBzeFVUVDdwcmNUcERvRTdJYzVIQ0RWT0U0cDQzUXVoRVZqbFdvelhCVGFx?=
+ =?utf-8?B?aEhLSmR4dm5Fdm1KU0x3ZVIzVjhNUmJmZDFrZEZQbURVNmFBY05kVVREMzRI?=
+ =?utf-8?B?c1dIVUpQYzBteC9MdldxM1NtU3lyb0FvTmxYeVJuZHZqWU9TUjM3NGU2Yzdn?=
+ =?utf-8?B?MFM3NTRFTXRDeHROS1hMcGw0d1R0NTV5QlhGR2Uxbk85aGJqZzhsSW5INEc0?=
+ =?utf-8?B?VTRydnpjMFBSOFFsVkRqSTRMVDVmbk1RQVV0ZFYyNHpYeGo4QkxPK3FCNXlP?=
+ =?utf-8?Q?m4fVjVZevvfZ75VALagsbRn3K?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: afe1b217-60db-4162-e5d3-08dafde10b1a
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 08:00:22.3533
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CqWkRXdlAF2Cc941YJyThnNJpl5B7H8wjTkqwhywLo3zNssKCD86FqRKRmx09bpkYB4xbfhm7AfQCPTip8Z1gg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8937
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/01/2023 21:20, Rob Herring wrote:
-> On Wed, Jan 18, 2023 at 07:01:44PM +0100, Krzysztof Kozlowski wrote:
->> Cleanup examples:
->>  - use 4-space indentation (for cases when it is neither 4 not 2 space),
->>  - use lowercase hex.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../bindings/dma/snps,dw-axi-dmac.yaml        | 36 +++++++++----------
->>  .../bindings/dma/stericsson,dma40.yaml        |  4 +--
->>  2 files changed, 20 insertions(+), 20 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
->> index 2bedab1f74e0..d34d0fa62ab5 100644
->> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
->> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
->> @@ -113,21 +113,21 @@ additionalProperties: false
->>  
->>  examples:
->>    - |
->> -     #include <dt-bindings/interrupt-controller/arm-gic.h>
->> -     #include <dt-bindings/interrupt-controller/irq.h>
->> -     /* example with snps,dw-axi-dmac */
->> -     dmac: dma-controller@80000 {
->> -         compatible = "snps,axi-dma-1.01a";
->> -         reg = <0x80000 0x400>;
->> -         clocks = <&core_clk>, <&cfgr_clk>;
->> -         clock-names = "core-clk", "cfgr-clk";
->> -         interrupt-parent = <&intc>;
->> -         interrupts = <27>;
->> -         #dma-cells = <1>;
->> -         dma-channels = <4>;
->> -         snps,dma-masters = <2>;
->> -         snps,data-width = <3>;
->> -         snps,block-size = <4096 4096 4096 4096>;
->> -         snps,priority = <0 1 2 3>;
->> -         snps,axi-max-burst-len = <16>;
->> -     };
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +    /* example with snps,dw-axi-dmac */
->> +    dmac: dma-controller@80000 {
+On Mon, 2023-01-23 at 16:57 +0100, Marek Vasut wrote:
+> On 1/23/23 08:23, Liu Ying wrote:
+> > The LCDIF embedded in i.MX93 SoC is essentially the same to those
+> > in i.MX8mp SoC.  However, i.MX93 LCDIF may connect with MIPI DSI
+> > controller through LCDIF cross line pattern(controlled by mediamix
+> > blk-ctrl) or connect with LVDS display bridge(LDB) directly or a
+> > parallel display(also through mediamix blk-ctrl), so add multiple
+> > encoders(with DRM_MODE_ENCODER_NONE encoder type) support in the
+> > LCDIF DRM driver and find a bridge to attach the relevant encoder's
+> > chain when needed.  While at it, derive lcdif_crtc_state structure
+> > from drm_crtc_state structure to introduce bus_format and bus_flags
+> > states so that the next downstream bridges may use consistent bus
+> > format and bus flags.
 > 
-> Drop unused labels while you are here.
+> Would it be possible to split this patch into preparatory clean up
+> and 
+> i.MX93 addition ? It seems like the patch is doing two things
+> according 
+> to the commit message.
 
-Ack
+IMHO, all the patch does is for i.MX93 addition, not for clean up. 
+Note that the single LCDIF embedded in i.MX93 SoC may connect with MIPI
+DSI/LVDS/parallel related bridges to drive triple displays
+_simultaneously_ in theory, while the three LCDIF instances embedded in
+i.MX8mp SoC connect with MIPI DSI/LVDS/HDMI displays respectively(one
+LCDIF maps to one display).  The multiple encoders addition and the new
+checks for consistent bus format and bus flags are only for i.MX93
+LCDIF, not for i.MX8mp LCDIF.  Also, I think the multiple encoders
+addition and the new checks should be done together - if the new checks
+come first, then the new checks do not make sense(no multiple displays
+driven by LCDIF); if the new checks come later, then it would be a bug
+to allow inconsistent bus format and bus flags across the next
+downstream bridges when only adding multiple encoders support(also, I
+don't know which encoder's bridge should determine the LCDIF output bus
+format and bus flags, since the three encoders come together with the
+three next bridges).
 
-> 
->> +        compatible = "snps,axi-dma-1.01a";
->> +        reg = <0x80000 0x400>;
->> +        clocks = <&core_clk>, <&cfgr_clk>;
->> +        clock-names = "core-clk", "cfgr-clk";
->> +        interrupt-parent = <&intc>;
->> +        interrupts = <27>;
->> +        #dma-cells = <1>;
->> +        dma-channels = <4>;
->> +        snps,dma-masters = <2>;
->> +        snps,data-width = <3>;
->> +        snps,block-size = <4096 4096 4096 4096>;
->> +        snps,priority = <0 1 2 3>;
->> +        snps,axi-max-burst-len = <16>;
->> +    };
->> diff --git a/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml b/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
->> index 664ee61a00d8..57395a810719 100644
->> --- a/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
->> +++ b/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
->> @@ -147,9 +147,9 @@ examples:
->>      #include <dt-bindings/interrupt-controller/irq.h>
->>      #include <dt-bindings/interrupt-controller/arm-gic.h>
->>      #include <dt-bindings/mfd/dbx500-prcmu.h>
->> -    dma-controller@801C0000 {
->> +    dma-controller@801c0000 {
->>        compatible = "stericsson,db8500-dma40", "stericsson,dma40";
->> -      reg = <0x801C0000 0x1000>, <0x40010000 0x800>;
->> +      reg = <0x801c0000 0x1000>, <0x40010000 0x800>;
->>        reg-names = "base", "lcpa";
->>        interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
->>        #dma-cells = <3>;
-> 
-> Indentation?
-
-Ack
-
-Best regards,
-Krzysztof
+Regards,
+Liu Ying
 
