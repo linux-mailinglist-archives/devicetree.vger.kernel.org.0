@@ -2,177 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEA89679F0F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 17:44:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5106679F1C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 17:45:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232381AbjAXQoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 11:44:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50698 "EHLO
+        id S234580AbjAXQpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 11:45:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233843AbjAXQog (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 11:44:36 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2138.outbound.protection.outlook.com [40.107.20.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ABF0172B;
-        Tue, 24 Jan 2023 08:44:35 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Zcu+tPwNzaeX+/SayU5fPOZiGVaVTd4aEjJkia6668se/09B0QlkqXnqj8Fim+20bvZzGOMGxKUEGOCDz++y13udcOZ+4ULZ2WLaO4dL6/CJk4lViAWRbKFhOzQHQg/DJVLDhsJrT2qXcLpqDXSIyq3HxJ4zup8LabR6/3NxqyH6Ew/K+DTvdWgrjuW5n6ZUe+rPORsEUnYO1aUAjrkXS/3ATiP/esfjPvpTwRcvTpS72yXW4pTdSaTH2DhyUqx4D7jirXheJfJsBG2Psx0mfnLJrwHu02r4KiUEjzyWFbTdRNuKkGuGe7LRPX0JMBYZIHH11B1vksV1KJD8xwP9JA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MPJNZHYLnRKCBG/xVFcDHq+Eqy5RvEbA+M00/mDWA4A=;
- b=ab80QRK48xRAkh/Qmhvx1Mb9dk8S1YSaf9b2ijY21f8tYvup4Xl4tN6RD4aC8zSdrrZAA8X1BJGmIYknNJjktN9ew7kkyKwX4/qScSIr3wibKlNLx584t+M1VxfGWPogSsjkQ3Dhoe7Za8BDjYWBOusdkmIUTU2aqsKq+sC9HNohPqXAYKLDZaUMF3sf3jvoM2KZWC24aPunIeo3/gob0zwTLx84RM8ewzArSa7E28lAnzITi2n3yTz8Mln3kcKLHMqTF85tBig52elB+0pnAK4yqB1LwUGQr8M2oaBFACZfk6OO0Fentg/Ix7HcOZ9HNhbHUcM8L1VV2g9xJ0zYLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mt.com; dmarc=pass action=none header.from=mt.com; dkim=pass
- header.d=mt.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mt.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MPJNZHYLnRKCBG/xVFcDHq+Eqy5RvEbA+M00/mDWA4A=;
- b=sGWSP621tGtfS2Wa3ntyWBpJSr3V7Elll6qLiLip/h5TFi+p9D1NtrS/YACXlyOrnP4Q9ZhTglbmdkq9Bd4igaL6IFuqbEy0Curyedsdw/b5JfTle3EludV9A/D3BRBImiMtcK2a/yTnb02PUiV/yyRXZQDOJuxEvNu2z6p+eQ8AfORmEvKTKH1bWVZdxY8pVLhqbSs+VL1tdCrv5jyjb1B1XcWxAwAxbSrz9DhhVLVMNqAqSd0V7Rx2jndJ/tgIyOgunkodSZLG+c2MB/8WGEIpcKUHsjWW3Fe0vtgbXAyWc1ZGUNpwyWCEUlnQ4GnpyQpGSmWdRfR9DO7NPER99g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mt.com;
-Received: from AS8PR03MB7621.eurprd03.prod.outlook.com (2603:10a6:20b:345::20)
- by PAXPR03MB7981.eurprd03.prod.outlook.com (2603:10a6:102:21b::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.28; Tue, 24 Jan
- 2023 16:44:33 +0000
-Received: from AS8PR03MB7621.eurprd03.prod.outlook.com
- ([fe80::b42f:82f8:24cb:a225]) by AS8PR03MB7621.eurprd03.prod.outlook.com
- ([fe80::b42f:82f8:24cb:a225%5]) with mapi id 15.20.6002.033; Tue, 24 Jan 2023
- 16:44:33 +0000
-Date:   Tue, 24 Jan 2023 17:44:31 +0100
-From:   Manuel Traut <manuel.traut@mt.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 5/5 v7] input: pwm-beeper: handle module unloading properly
-Message-ID: <Y9AK71Q7X4d+1E4f@mt.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-X-ClientProxiedBy: FR2P281CA0020.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:14::7) To AS8PR03MB7621.eurprd03.prod.outlook.com
- (2603:10a6:20b:345::20)
+        with ESMTP id S234543AbjAXQpV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 11:45:21 -0500
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BCAF4C0EC
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 08:45:15 -0800 (PST)
+Received: by mail-yb1-xb34.google.com with SMTP id 203so19571629yby.10
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 08:45:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QqylS5Lo3YH2jz2661PX4pOVQQ/ziJPTaE7wN+OoHEs=;
+        b=OpIDwdu/r4cU3OtbGrTpTUn1uaGaVsKSXep/L98p5R65QQm1cokpwVtTor3unuqYty
+         Hurk2yVfcMTTBcT2zcEyrMiXheKNkOtYFRwf1NBoCpdaKZE9b2nW7SbiOl1/pw+ORK60
+         OZCWIB5l7bShpG0e8HkeNDKzzM4aeKQPLPaqXQdV2ckfyDC4mBm3cWdJsUU5jr6kOVtJ
+         84qrTJMR8Cey96o9a0TAEHmKW9l/Id+mOvXPzCFaW4QU+4ggQK5ELW3i2rjuaiCK7VST
+         wLuCcF3sjKgM+C8Zfyu1vpQ0X/SeXHKucd5PsGaE1DB0byyPkICaol7swVq9Vwpij8GA
+         SAOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QqylS5Lo3YH2jz2661PX4pOVQQ/ziJPTaE7wN+OoHEs=;
+        b=mfQBKz8WwzOX6sjOfBiCcuYhTpcqclPI/ljdQzWFbFvtUd8vuZyfJQy6YE1I0aMXx3
+         YqVoBSRhMN/Zg+Dcw/lew5s67e71YOfJnFD8wnbH+xZt2eoN6De1wiP2fpY+MQ7oXqWO
+         jhuT17bM9KuPxXLIWhWR4P3o+ldKQVB4C/bMxMHk1OdHFv9Y9eADpxDosyLYGay/GVqE
+         dh50Fo2lHpmUTCagBMY/q/iihyMyLGmflasIZ8he9ZBVV1akHUmunY3FmeHnJ9S/hRfI
+         MTykyyJvI4h9GuvnRVbOLGRO/F5cnXurkMdAFQ9VsEifSYNeiNxWxmUQh/Ez/8VKj8DK
+         rVpw==
+X-Gm-Message-State: AFqh2koGti5nuBxGk43s50P16Uyifpq4jB3CKqcjGeC0eRCVFjD4baRr
+        RaFnDA/lg54F8pnZw5MjLbSbdEl//aElMa/lq9Wj2g==
+X-Google-Smtp-Source: AMrXdXtZPEVLbt4E2y7ClbN4olSQU0OIa8qgWqubL2tDIH+VU4Fh/bQQNeOcjXxjCOKFPpXRS+UVtpEo3UMHpXeoYjs=
+X-Received: by 2002:a25:99c7:0:b0:6e0:c7d3:f026 with SMTP id
+ q7-20020a2599c7000000b006e0c7d3f026mr3293665ybo.275.1674578714375; Tue, 24
+ Jan 2023 08:45:14 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR03MB7621:EE_|PAXPR03MB7981:EE_
-X-MS-Office365-Filtering-Correlation-Id: c9b26b8f-6e43-4bd8-7204-08dafe2a4554
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XaPdC4ffOIqXhad7C4pIxXbSltKuxB3SMn6BwWPFyrNg9u/EBlYjpmVl6gB6ZoFYfo0b3zCPDpxj91NxDICQlZYLh94DrCYIvmTw14UAbQf4MD+nE3puts1PyhDPvVLzgMtWE3eCN8WOYQa9fCYQnh5x/7ARXzEqRESSTXdj3xnAleaHptsiZsm6JNpPrifrIQLik1ZtIcDZKFu7vtkWu2WKZT5AqepbhR1p8/ufP5ZwL9E/3JkNZjRwBEpy9be7/+d2cN9rP9V4U+KerSe0hUsp5DTnR5lYEvpRbit05hTkElrfhBC45oDwgMyve3ZoDMk0MFMgI597lNgpVW5D6mcwMfuEM4Sh+vZyIJMtXS9C5HObuabjrOoFDf/0ZDQdIMU8GTo0Mkv1yCXqaoxnw25VLthACgoji6u8GSCvGY+yl0Ain5DABP+aIoFIqaGHj+VQj8Oq0+WgaS6kOUqdqD06p4XWQGvC4OnTeB0KefbNyRkpYNkei2ajlPUCAgFqVUu6ckP4IoZr8sXD3kW/lZWkpngSl4W8iPhZarVYMCqQZjG65AT61+wMojzBsAY9JL5M68ucd/tareq13tuq5BKi9wX+i7pKst0n2eXgugMaMcHKEG1nZSeEDqXmIAAjzWM0xPs6Z28ylqdSdx/rx6uXXnZJqjCgE06ii7JISKLNNovmewqnU5CPP8bUInz0xr8yToX2pOwV6D44HFwruAfU0z1Be/Ov51g0vY7mOik=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR03MB7621.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(366004)(376002)(346002)(136003)(396003)(39860400002)(451199015)(36756003)(66476007)(44832011)(6916009)(66946007)(4326008)(86362001)(5660300002)(8676002)(8936002)(66556008)(2906002)(38350700002)(38100700002)(316002)(478600001)(52116002)(54906003)(6486002)(6506007)(41300700001)(186003)(83380400001)(2616005)(6512007)(26005)(67856001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZkgzSERxTm81WG5OUVlkZ05taVNkUXlENW9kT2hkZ1V2TEMxMjhhcHRxR0NI?=
- =?utf-8?B?NEhFbThBV3l2cm80NzQ0MDkrYTViUTJYbDkzSkFVd3dZZkhnc00zN2ViMktW?=
- =?utf-8?B?M2ltV1BBN2hSK3RabUd6K2tUWFV3VWQ1ejluWitFUHNjWXQvbU9ITklKYmtO?=
- =?utf-8?B?THRmSUIzWE13NTV4QnM4UEszbGVFNkkva3I5K0QwRTVpbDYyUGozLy84TTd6?=
- =?utf-8?B?czh3WWRuWDhJQU9DSXVidXBFQ1BNenNaVmhpZmp4UzJIdFdDUWdoOFpzblVN?=
- =?utf-8?B?SCtpRDJVYi83cDFkNGN1aFNPT0tEUjFxSGY4ODRiLytIU2IxSnhGdWVmanFY?=
- =?utf-8?B?eWZjKzdtSmZrQTlHeVAxUHduWDlhSXByRnhPWWtXenhzUTQwZGx3S0ptWXQ1?=
- =?utf-8?B?SjJIR2p5SFc0M2xsVG5vNVMzNHJObkswVndaTVlYcDYzK0VGUzc5UVo0RVAr?=
- =?utf-8?B?cHhyUjR6WHc5b0N3NFFmRm90elhXblpFY0xsVkZUTzJteTlJM2MvSU5DdkZq?=
- =?utf-8?B?eGV5b3h1MEhDajJZZC9rdDE5WE5CbWhVekw0UzlEWVNyc2ZrNXhnVWs4VjZT?=
- =?utf-8?B?NEtmSHU5Ym1IQVZjM1BobUU3ZkJFUWlDNlV5MVlGckZGRzNGS3l2azNBOWhS?=
- =?utf-8?B?QXcvTnVVcmlIZ3YxVjBOZ2l5MSt5YWs5eFdHY1F2TUNsSmtqMFh2aEF2bVJs?=
- =?utf-8?B?T1pybXNVZjBNbGNLUUFGY1hoRlhxNWxFYXB0b1BudXE5cHJPeUFLU0VGQ2sr?=
- =?utf-8?B?NXlFVWxiR3dET3ZmTGNCRHVMME1WNVVkekVSalVUOUIvWTNBdDN0THl4eVpV?=
- =?utf-8?B?REZKaGVPUTFmRzR5ZVdUL3o5WStRYUY4aFRZbEZBejhlYml5RW5TZmg4cUtr?=
- =?utf-8?B?RG1kcVR4SEhld3ovTWJXc2YyNXlJZGJLbGZFWGN2enpJc0w1ZjZKcHRpQmNT?=
- =?utf-8?B?NDRQQjNlbG42a0ZNOEpoSm9ZaHNWbjJJcVpyVDd3eFdRZkJIRkJLVlFPQ2Za?=
- =?utf-8?B?MEw2N2pnZms3U3FJd2NyYllRSGFqcUhHaEI1OXJhKzErS0xGNWw1TmI1d3FL?=
- =?utf-8?B?NG9yL2hKQmFRUU1rUWdvcXdHcStRMzM3MDBlemhrZmxJbDVpRkpjcEZ3VDly?=
- =?utf-8?B?TmpBeCt5R0xXMUtKQmR4aU91cDBGaXVGakJNdzRZUk1NZ2l1WjRDUldEbTd2?=
- =?utf-8?B?b29JRm5rcUVJc1hEOWFrWG1MQnRFVzBjbW9JL3dOQXRHNnJ6VzlQaWthRXFs?=
- =?utf-8?B?NEJUcDFXNXBuUHhFRnFSclJVR0JZdS9ibWl1ak95bnhNSVVmQW5QbnM1dmZV?=
- =?utf-8?B?cG93bTlzZzRtblZDRjB2V1dVT2RibHFqUTVvZVEvQzFhSHBCV0sxdU9Uc2lG?=
- =?utf-8?B?QzJ3WkJZbVZoNWhGR2orcFdJcXVYSzZ1Y2hqVzVEblIxS3F1OUFlMkdIY3or?=
- =?utf-8?B?SjlEa1h4azF5QS9EbUFpQ3ZqLzFDT2tPY3FGWlZnaXVubVQvb1ROeTRQMHhw?=
- =?utf-8?B?djNmT3AvMmVtR09uc0JrdldpNVhCMmQrT3d4NzV6Y0xqOWNBYTdHK2x2aGMr?=
- =?utf-8?B?Nzc3dmdydlA0ZWUvaEpBVGpTSW9Ycmd0NXlmMVFLU3IvRkp6MGRBSTdwYTZJ?=
- =?utf-8?B?bTR1NkoyZGtxSVFTak51dUpWejU1ZGdqQ0JhWEdhZWF4MGxhNGRseHJDNmp1?=
- =?utf-8?B?ZTM0cEJVYW9vQ1BGTHhBRnVvVGdoblo0amlxUkp2dFQwUVhjOFZFOE9WMkVF?=
- =?utf-8?B?T0JMQ2lXQ1JyQWlqemFUWWFsb0hsak8vbFJaWnJRZTlxS1hPYjhselhMc2M5?=
- =?utf-8?B?OE1iRStabXUyajh3cG4wZDhxSHVTMFNzelpMUGtBanY0TC9xd0JUSXBnaWl3?=
- =?utf-8?B?Zi91TmdiZ096VTdBNFVEbkJMa0JqWmhaT2w1NmxlRThESWN3Q1UzMW56YkJv?=
- =?utf-8?B?V1VZeEVBdm14VnhBTGRMYUI0cy9YTXNJaG5DM2h2Sm1JcW1GNHpRTURHSVFG?=
- =?utf-8?B?VFo2c252VWtFMENMNGtNbTNwSEh2ajFVTGNGMUZwVFh1SkhneUVqM1JKK0Ex?=
- =?utf-8?B?S016Mk15YTErZWxSMU5ZT2FKOFE3Um16UjdhUFhoKzZ3eVEzU2tNMm1QYzV2?=
- =?utf-8?Q?n+OJWrtDshVL71vqRjokcToxP?=
-X-OriginatorOrg: mt.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9b26b8f-6e43-4bd8-7204-08dafe2a4554
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR03MB7621.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 16:44:33.2683
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fb4c0aee-6cd2-482f-a1a5-717e7c02496b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dzmWVYX/+auwnbYlTratqUOOkxdoc/3QRwJFMEDl9AP6VrzyaV39eO8slhGrcMdNfuSIxzvuFZz6wFi+SzyimQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR03MB7981
+References: <1674138393-475-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1674138393-475-6-git-send-email-quic_vpolimer@quicinc.com>
+ <4a359748-e53c-a178-de09-2c999eb69013@linaro.org> <BN0PR02MB8173B73AC4E3DB9A7D0509DCE4C99@BN0PR02MB8173.namprd02.prod.outlook.com>
+In-Reply-To: <BN0PR02MB8173B73AC4E3DB9A7D0509DCE4C99@BN0PR02MB8173.namprd02.prod.outlook.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 24 Jan 2023 18:45:03 +0200
+Message-ID: <CAA8EJpr_YAD185VKtLD2TDmbYPpe7S4KPkoP-8N95nwKRt9Y=g@mail.gmail.com>
+Subject: Re: [PATCH Resend v11 05/15] drm/msm/dp: disable self_refresh_aware
+ after entering psr
+To:     Vinod Polimera <vpolimer@qti.qualcomm.com>
+Cc:     "Vinod Polimera (QUIC)" <quic_vpolimer@quicinc.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robdclark@gmail.com" <robdclark@gmail.com>,
+        "dianders@chromium.org" <dianders@chromium.org>,
+        "swboyd@chromium.org" <swboyd@chromium.org>,
+        "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        "Vishnuvardhan Prodduturi (QUIC)" <quic_vproddut@quicinc.com>,
+        "Bjorn Andersson (QUIC)" <quic_bjorande@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'input: pwm-beeper: add feature to set volume via sysfs' adds device
-attributes without removing them on error or if the module is unloaded.
+On Tue, 24 Jan 2023 at 17:10, Vinod Polimera <vpolimer@qti.qualcomm.com> wrote:
+> > -----Original Message-----
+> > From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Sent: Tuesday, January 24, 2023 5:52 AM
+> > To: Vinod Polimera (QUIC) <quic_vpolimer@quicinc.com>; dri-
+> > devel@lists.freedesktop.org; linux-arm-msm@vger.kernel.org;
+> > freedreno@lists.freedesktop.org; devicetree@vger.kernel.org
+> > Cc: Sankeerth Billakanti (QUIC) <quic_sbillaka@quicinc.com>; linux-
+> > kernel@vger.kernel.org; robdclark@gmail.com; dianders@chromium.org;
+> > swboyd@chromium.org; Kalyan Thota (QUIC) <quic_kalyant@quicinc.com>;
+> > Kuogee Hsieh (QUIC) <quic_khsieh@quicinc.com>; Vishnuvardhan
+> > Prodduturi (QUIC) <quic_vproddut@quicinc.com>; Bjorn Andersson (QUIC)
+> > <quic_bjorande@quicinc.com>; Abhinav Kumar (QUIC)
+> > <quic_abhinavk@quicinc.com>
+> > Subject: Re: [PATCH Resend v11 05/15] drm/msm/dp: disable
+> > self_refresh_aware after entering psr
+> >
+> > WARNING: This email originated from outside of Qualcomm. Please be wary
+> > of any links or attachments, and do not enable macros.
 
-This change removes the device attributes on module unloading or if
-registering on the input subsystem fails.
+I hope such headers can be fixed on your side rather than being sent to the ML.
 
-If the module will be unloaded and loaded again it fails:
-[ 1007.918180] sysfs: cannot create duplicate filename '/devices/platform/buzzer/volume'
+> >
+> > On 19/01/2023 16:26, Vinod Polimera wrote:
+> > > From: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+> > >
+> > > Updated frames get queued if self_refresh_aware is set when the
+> > > sink is in psr. To support bridge enable and avoid queuing of update
+> > > frames, reset the self_refresh_aware state after entering psr.
+> >
+> > I'm not convinced by this change. E.g. analogix code doesn't do this.
+> > Could you please clarify, why do you need to toggle the
+> > self_refresh_aware flag?
+> >
+> This was done to fix a bug reported by google. The use case is as follows:
+>         CPU was running in a low frequency with debug build.
+>         When self refresh was triggered by the library, due to system latency, the queued work was not scheduled.
+>         There in another commit came and reinitialized the timer for the next PSR trigger.
+>         This sequence happened multiple times  and we found there were multiple works which are stuck and yet to be run.
 
-Signed-off-by: Manuel Traut <manuel.traut@mt.com>
----
- drivers/input/misc/pwm-beeper.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Where were workers stuck? Was it a busy loop around -EDEADLK /
+drm_modeset_backoff()? Also, what were ther ewma times for entry/exit
+avg times?
 
-diff --git a/drivers/input/misc/pwm-beeper.c b/drivers/input/misc/pwm-beeper.c
-index fe543c4151d6..8ef2937e8f21 100644
---- a/drivers/input/misc/pwm-beeper.c
-+++ b/drivers/input/misc/pwm-beeper.c
-@@ -300,6 +300,7 @@ static int pwm_beeper_probe(struct platform_device *pdev)
- 
- 	error = input_register_device(beeper->input);
- 	if (error) {
-+		sysfs_remove_group(&pdev->dev.kobj, &pwm_beeper_attribute_group);
- 		dev_err(dev, "Failed to register input device: %d\n", error);
- 		return error;
- 	}
-@@ -309,6 +310,17 @@ static int pwm_beeper_probe(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static int pwm_beeper_remove(struct platform_device *pdev)
-+{
-+	struct pwm_beeper *beeper;
-+
-+    beeper = platform_get_drvdata(pdev);
-+	input_unregister_device(beeper->input);
-+	sysfs_remove_group(&pdev->dev.kobj, &pwm_beeper_attribute_group);
-+
-+	return 0;
-+}
-+
- static int __maybe_unused pwm_beeper_suspend(struct device *dev)
- {
- 	struct pwm_beeper *beeper = dev_get_drvdata(dev);
-@@ -354,6 +366,7 @@ MODULE_DEVICE_TABLE(of, pwm_beeper_match);
- 
- static struct platform_driver pwm_beeper_driver = {
- 	.probe	= pwm_beeper_probe,
-+	.remove	= pwm_beeper_remove,
- 	.driver = {
- 		.name	= "pwm-beeper",
- 		.pm	= &pwm_beeper_pm_ops,
+I'm asking because the issue that you are describing sounds like a
+generic one, not the driver-specific issue. And being generic it
+should be handled in a generic fascion, in drm_self_refresh_helper.c.
+
+For example, I can imagine adding a variable to sr_data telling that
+the driver is in the process of transitioning to SR. Note: I did not
+perform a full research if it is a working solution or not. But from
+your description the driver really has to bail out early from
+drm_self_refresh_helper_entry_work().
+
+>         As PSR trigger is guarded by self_refresh_aware, we initialized the variable such that, if we are in PSR then until PSR exit, there cannot be any further PSR entry again.
+>                 https://chromium.googlesource.com/chromiumos/third_party/kernel/+/refs/tags/v5.15.90/drivers/gpu/drm/drm_self_refresh_helper.c#105
+
+Yes, and that's what triggered my attention. We are using a set of
+helpers, that depend on the self_refresh_aware being true. And
+suddenly under the hood we disable this flag. I'd say that I can not
+predict the effect this will have on the helpers library behaviour.
+
+>         This has solved few flicker issues during the stress testing.
+> > >
+> > > Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+> > > Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> > > ---
+> > >   drivers/gpu/drm/msm/dp/dp_drm.c | 27
+> > ++++++++++++++++++++++++++-
+> > >   1 file changed, 26 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/dp/dp_drm.c
+> > b/drivers/gpu/drm/msm/dp/dp_drm.c
+> > > index 029e08c..92d1a1b 100644
+> > > --- a/drivers/gpu/drm/msm/dp/dp_drm.c
+> > > +++ b/drivers/gpu/drm/msm/dp/dp_drm.c
+> > > @@ -134,6 +134,8 @@ static void edp_bridge_atomic_enable(struct
+> > drm_bridge *drm_bridge,
+> > >       struct drm_crtc_state *old_crtc_state;
+> > >       struct msm_dp_bridge *dp_bridge = to_dp_bridge(drm_bridge);
+> > >       struct msm_dp *dp = dp_bridge->dp_display;
+> > > +     struct drm_connector *connector;
+> > > +     struct drm_connector_state *conn_state = NULL;
+> > >
+> > >       /*
+> > >        * Check the old state of the crtc to determine if the panel
+> > > @@ -150,10 +152,22 @@ static void edp_bridge_atomic_enable(struct
+> > drm_bridge *drm_bridge,
+> > >
+> > >       if (old_crtc_state && old_crtc_state->self_refresh_active) {
+> > >               dp_display_set_psr(dp, false);
+> > > -             return;
+> > > +             goto psr_aware;
+> > >       }
+> > >
+> > >       dp_bridge_atomic_enable(drm_bridge, old_bridge_state);
+> > > +
+> > > +psr_aware:
+> > > +     connector =
+> > drm_atomic_get_new_connector_for_encoder(atomic_state,
+> > > +                                                     drm_bridge->encoder);
+> > > +     if (connector)
+> > > +             conn_state =
+> > drm_atomic_get_new_connector_state(atomic_state,
+> > > +                                                             connector);
+> > > +
+> > > +     if (conn_state) {
+> > > +             conn_state->self_refresh_aware = dp->psr_supported;
+> > > +     }
+> >
+> > No need to wrap a single line statement in brackets.
+> >
+> > > +
+> > >   }
+> > >
+> > >   static void edp_bridge_atomic_disable(struct drm_bridge *drm_bridge,
+> > > @@ -164,6 +178,14 @@ static void edp_bridge_atomic_disable(struct
+> > drm_bridge *drm_bridge,
+> > >       struct drm_crtc_state *new_crtc_state = NULL, *old_crtc_state = NULL;
+> > >       struct msm_dp_bridge *dp_bridge = to_dp_bridge(drm_bridge);
+> > >       struct msm_dp *dp = dp_bridge->dp_display;
+> > > +     struct drm_connector *connector;
+> > > +     struct drm_connector_state *conn_state = NULL;
+> > > +
+> > > +     connector =
+> > drm_atomic_get_old_connector_for_encoder(atomic_state,
+> > > +                                                     drm_bridge->encoder);
+> > > +     if (connector)
+> > > +             conn_state =
+> > drm_atomic_get_new_connector_state(atomic_state,
+> > > +                                                             connector);
+> > >
+> > >       crtc = drm_atomic_get_old_crtc_for_encoder(atomic_state,
+> > >                                                  drm_bridge->encoder);
+> > > @@ -190,6 +212,9 @@ static void edp_bridge_atomic_disable(struct
+> > drm_bridge *drm_bridge,
+> > >        * when display disable occurs while the sink is in psr state.
+> > >        */
+> > >       if (new_crtc_state->self_refresh_active) {
+> > > +             if (conn_state)
+> > > +                     conn_state->self_refresh_aware = false;
+> > > +
+> > >               dp_display_set_psr(dp, true);
+> > >               return;
+> > >       } else if (old_crtc_state->self_refresh_active) {
+> >
+> > --
+> > With best wishes
+> > Dmitry
+>
+> Thanks,
+> Vinod P.
+>
+
+
 -- 
-2.39.0
-
+With best wishes
+Dmitry
