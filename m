@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D8236793EF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 10:20:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C2956793F3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 10:20:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233479AbjAXJUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 04:20:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50398 "EHLO
+        id S233546AbjAXJUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 04:20:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233439AbjAXJUC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 04:20:02 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5CE3F2A6
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 01:19:55 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so12331390wml.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 01:19:55 -0800 (PST)
+        with ESMTP id S233439AbjAXJUM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 04:20:12 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23A9340BE1
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 01:20:00 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id f25-20020a1c6a19000000b003da221fbf48so10413004wmc.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 01:19:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=42Hfl1J4qT8SATIfnUTpADzmL78jDne+EhYGf6Qds8c=;
-        b=BfLinym/cklYezWvUdj/D3yAkf3NS77r92L10AME1y3JOtClKrEyZemZUji43xEfmE
-         1CTGJHL8LxpGTSF3AkvFqeVNgE+wNerxDjURu1GcsX8rSNVpDps+fEwxFUsL1xhzvIiB
-         +JmwNDp9o2c47v+qoJpdwZjZjMOt18r0Fc2C4iVYdDxnRsFioUSNzd9hAO5fdSylxvpr
-         UUpTk957V2QsLmu9PRjgqzFHSbSzImHl6JKpF9omsRIvzHfPuFAVkaXEXwuO1hzWJOBA
-         0yl9HepBj47QjGkby3EUe8AYOG4bhg7R8UD5AgoB/ADnPyyfeGIxtjSl3t1dXmFoRS3j
-         T0zQ==
+        bh=iisYcPXooI57UtkAF+HOVcsh+51Ufy433rxJDACay30=;
+        b=QIK45URkusdjjJyIz28i81nYHz/bPWip0DX2PvrCQnN65/DuO7w68GyeUkuXNIKNsi
+         xs/1Vj/8ytAp3/zQx6EAL9f9lMjpqjQMr2D6A57bkBfcQuqWvaPZ1xR2yt43BYBpaGMx
+         VgESHMdfMFchyGnRbxszQ3RlARP5wVOjSJz7IFde+G+7FvaAGhJHz0TNkWNAfkbwMwa6
+         JM6RrxW67FgZHlwp9ePpPQLJdxKKyy+zfijtg8Hx+v8EogkhvtE5DPWZ46MJhlpsHUal
+         KLUOITI571JUoZ4F5YpYZN2pGyrntmAj6GwTh/SKIi0DAZdNfbnxcpZ1dB7MbB2hT2hx
+         vA5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=42Hfl1J4qT8SATIfnUTpADzmL78jDne+EhYGf6Qds8c=;
-        b=boe7+fqtKHNKKW35UrnZWeowgr8CES6S1BsFXGITD4gh3JzR0bMKJnMC9MT0tsPKg7
-         Nx9RD5YV1TTvGtLEb5sOVE2mSfFK4MiHivZXb5KRckvcmnnGe9K6QJAJElvsUlzARRrr
-         XJnY7y/vYgX5peIgr7oC2tG1md6HsYAv39cTmUWRXW/RzezFo+cX1G/kjnHPAKxGW4go
-         cUgnzOZzWqrkWQ/DMBQefyzZksMuaojsqvTBrNUgShV/O8HuRLo7YtEg4QsUjOdaz2N1
-         kc6L42HXlHcL9sP4j8BKkBpnRtID0BHg552rD2HZBQIA45wLLBdDsHKXwxXq3wbs24PI
-         vtdQ==
-X-Gm-Message-State: AFqh2kp22W2ITxFwoVDm2J5JtR0JcWQie+PFZwBoFd+8CKiqzLjILhdd
-        mT/IZ8Y0MhFjO4NuCLTZuqDSxQ==
-X-Google-Smtp-Source: AMrXdXs6ofs80YXfseUtI8imesuJyhITR5jNUBCkTkhOsWQiGBk4hZUL16Iu0n0uoxEvTPx24lzRdw==
-X-Received: by 2002:a05:600c:540a:b0:3db:a3a:45ac with SMTP id he10-20020a05600c540a00b003db0a3a45acmr26791047wmb.32.1674551994306;
-        Tue, 24 Jan 2023 01:19:54 -0800 (PST)
+        bh=iisYcPXooI57UtkAF+HOVcsh+51Ufy433rxJDACay30=;
+        b=mEemSG9ujAys6GmEvSaLOm759gZ6vJShvT5UhyWpBt/LIURTwhNc6FXOLJAF6Ea3ob
+         QhS8y1yNOPN/xJai6e/zavRydT81svNCi8g7i3lXMKs7nkIdhz42PtRDgOIADqcSiv1J
+         36Dgn2S7qjpIN8wj5kXgTrrT+8yGY1uxemO12Jc9jAXl7tK1ZsLghbPL4Uh6SmFMCmFO
+         yYysMPVko76ZbtW6k+l7DRpSm0xjOaclawl9KgP9/75Ypmb5lAYLEN3+cQr1GzDHIVhq
+         2cpoh0TRSx69mbV8fZyNqXTUFUQn8L1VnTmRH1S7rtCiBEzGzMhlaHszNDmfUQuZGLmi
+         Vbsw==
+X-Gm-Message-State: AFqh2koj1dHZxsxNDOgyL3YCE2xjSWBJSN/Q7PCeFb/hvUe3D1rLfMXc
+        My83GKMSYtYQ53OalPnGiV4WKw==
+X-Google-Smtp-Source: AMrXdXs8JG3T2Xep07y1ru/0yEt0ZLj+5ZJcdU+kq6WsnkoPtozPtAB9ElLE+hLK/vU0BiZFCOSAQA==
+X-Received: by 2002:a7b:ca52:0:b0:3da:f4f5:ad0f with SMTP id m18-20020a7bca52000000b003daf4f5ad0fmr27205002wml.10.1674551998415;
+        Tue, 24 Jan 2023 01:19:58 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i22-20020a05600c355600b003a84375d0d1sm13672242wmq.44.2023.01.24.01.19.50
+        by smtp.gmail.com with ESMTPSA id i22-20020a05600c355600b003a84375d0d1sm13672242wmq.44.2023.01.24.01.19.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 01:19:53 -0800 (PST)
+        Tue, 24 Jan 2023 01:19:57 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -81,9 +81,9 @@ To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
         linux-stm32@st-md-mailman.stormreply.com
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 07/12] dt-bindings: serial: fsl-imx-uart: drop common properties
-Date:   Tue, 24 Jan 2023 10:19:11 +0100
-Message-Id: <20230124091916.45054-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 08/12] dt-bindings: serial: fsl-lpuart: drop rs485 properties
+Date:   Tue, 24 Jan 2023 10:19:12 +0100
+Message-Id: <20230124091916.45054-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230124091602.44027-1-krzysztof.kozlowski@linaro.org>
 References: <20230124091602.44027-1-krzysztof.kozlowski@linaro.org>
@@ -99,27 +99,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The binding references serial and rs485 schemas, so there is no need to
-list their properties.  Simplify a bit by removing unneeded entries.
+The binding references rs485 schema, so there is no need to list its
+properties.  Simplify a bit by removing unneeded entries.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml | 7 -------
- 1 file changed, 7 deletions(-)
+ Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-index 9d949296a142..b431a0d1cd6b 100644
---- a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-@@ -83,13 +83,6 @@ properties:
-       are sensible for most use cases. If you need low latency processing on
-       slow connections this needs to be configured appropriately.
+diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+index 74f75f669e77..b1e81a6451a6 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+@@ -64,9 +64,6 @@ properties:
+       - const: rx
+       - const: tx
  
--  uart-has-rtscts: true
--
--  rs485-rts-delay: true
 -  rs485-rts-active-low: true
--  rs485-rx-during-tx: true
 -  linux,rs485-enabled-at-boot-time: true
 -
  required:
