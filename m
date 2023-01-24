@@ -2,115 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C626B67972A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 13:03:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 046C967972F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 13:03:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229802AbjAXMDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 07:03:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47932 "EHLO
+        id S229753AbjAXMDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 07:03:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbjAXMDD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 07:03:03 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49DBA18B17
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:03:02 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id k16so11257379wms.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:03:02 -0800 (PST)
+        with ESMTP id S232930AbjAXMDa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 07:03:30 -0500
+Received: from egress-ip33a.ess.de.barracuda.com (egress-ip33a.ess.de.barracuda.com [18.185.115.192])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D70FB2330C
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:03:28 -0800 (PST)
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197]) by mx-outbound45-230.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Tue, 24 Jan 2023 12:03:26 +0000
+Received: by mail-pf1-f197.google.com with SMTP id l7-20020a62be07000000b0058de3976793so6732573pff.18
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 04:03:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ISTCJcjbLGCkxi1WzMVFDYPcStcahi6jM3lIYNX8/yA=;
-        b=B0k1sMQcXln6PcErJ+2ndH8jtVY5tRps6KchPF7SGjzSvxQlHycQhoYkWsG0Fppi54
-         68rGelGR/kkwvpFnK5TeDeOfyaCmehp3h7U9VPmOMXl/SWKtt2SwMK7xAiARW5JbQbQo
-         X6JnGDOR5kEuFJKxLL0iA0+ybInyNNh/ymMFAy4aoNp4+JsoNDQVTMpx5oDXIYYw4ERM
-         /Uv4is4fUdVQDkIk8dHuNzE1E5Rp0Y+z3tdSzmFRpG6hJPs0C9pCdLjiwHECGpWjmjOv
-         /DlTfJ6KahRHg+hWO3jxrIHBYBsFKfBppB5S+DTjwnzU14+zO228vAqlWd66IeQTIIGQ
-         6ESg==
+        d=mistralsolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=osGu55JV1XvVNpbaCozCNDJ2gx1vrYcjWaXSfznex/w=;
+        b=F2+FyxxKmtlrYf3ZC9aaQplyu1GxzEWVY924HDNCAllGj1Dg0ZvvFNbVrzZkcxmVJ3
+         M/fdlE3Ja+VcDTLtBIXu1npFIGUyGqt0BSKpdFcXxAqWwTFXkHJEWcSEutwJjLkMiUI9
+         RBP7m8Akzt2dqpNdvKlKN2ajBGf0qpk3uBxSM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ISTCJcjbLGCkxi1WzMVFDYPcStcahi6jM3lIYNX8/yA=;
-        b=FLZSlHYsVzue+TDuoXSpqKURboU/P9c2r7lBfwzeh8GryLGrZhsIBRAFdtJw7EYV+p
-         1kVL/FjVJ984UVh0SUcu9f7c4k47GZkrzGF2stpfG/FsR8LokYGfHFSi1NsOtDrvkjK5
-         tGaa0q0ynondskclXPwwAf6bBTN61KePAsmaOvrzJpBxtsjW9YffsE+DcyLjYKob+dSH
-         5BO3GgY1rK2miADQNWhmxQVHKsoVql3XRH682vCf7FKkICssvrnBqiuq/jrxd84AH0au
-         f0EjEvfa28Ad6TOXAAiuG9wxKvmwLyoT06pKaSmr/xgaRkdorhNr4KvjkrKuiQgLbM3p
-         euHg==
-X-Gm-Message-State: AFqh2ko/X83VHKbj0uSlh7nkqBHReNoMIxdC60DzCzxXo9B38izQcQ40
-        v2FNtz0n7qB4i0Sq7RiH4Yt71A==
-X-Google-Smtp-Source: AMrXdXsI90Fm0RpPJXDRWI68hcd9HwX8m+wKszpWhj5+htx3G1Fpiy/xW0/1s7wOAv4T6BkAQISXVQ==
-X-Received: by 2002:a05:600c:2108:b0:3cf:98e5:f72 with SMTP id u8-20020a05600c210800b003cf98e50f72mr35556429wml.3.1674561780785;
-        Tue, 24 Jan 2023 04:03:00 -0800 (PST)
-Received: from [192.168.1.146] (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
-        by smtp.gmail.com with ESMTPSA id j8-20020a05600c190800b003d9aa76dc6asm17995939wmq.0.2023.01.24.04.02.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 04:03:00 -0800 (PST)
-Message-ID: <e5bffb1d-f9d6-0799-bb7b-03dc8dfa0355@linaro.org>
-Date:   Tue, 24 Jan 2023 12:02:58 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [RFT PATCH v3 4/6] arm64: dts: qcom: sdm845: move codec to
- separate file
-Content-Language: en-GB, en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=osGu55JV1XvVNpbaCozCNDJ2gx1vrYcjWaXSfznex/w=;
+        b=vusMAYDxnxEy2+hJXfrbpv9VJ6npsZpaLVOp1NxPDvUbb/Y1rA6h8iahpadLy6wP1K
+         WiINbYezJ5kR3ub4GksytbVio9OgT0Q08mtbW2lCYc+l2yREfsC10wEH7Jfk9bQqBskQ
+         pCow4Db/dbdsvvC+Ui2qO8koNg2lxXdYnhmJ96AxDL7J3LzaNfBySDWm8jNqQU/oTvYL
+         kWfuJU9K7W/p3QkjFjG4KjkR/SQ9p6ceJ4I+LJPh/78GXKqIF27Ju8SG9tA8sn0ZGJer
+         xawpAoABasSRVwLm/5IUBSHWxhRvQuyMv6nOdsi4vdqiUkSMnJFzc1LxsjO0DtcD0KOR
+         Izdw==
+X-Gm-Message-State: AFqh2kqitnky3bNZF+Et/u2Q+Lo9fap5sd/GveZ0jsCXRvv/fUlv14zI
+        CvJ0EdqB6nfmXGP5G8utl6scG2K+HGgo0QvNoWO0VaY5RmlsGwBTC7VCsfECzlT9xxrj9dOzYUW
+        L+nQiZz5Kc2k6GQE0Lc+MOEEpvUhdns50XGxoC7pAwQbS/WTggCQQ+5LZbw==
+X-Received: by 2002:a05:6a00:3495:b0:58d:d7b6:cf58 with SMTP id cp21-20020a056a00349500b0058dd7b6cf58mr29872760pfb.7.1674561804892;
+        Tue, 24 Jan 2023 04:03:24 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXsucmBns/vx9fApBY53Y+ikT7NN4RMfqdW/THh2+A+fsOY8upHDKklY2XmD56JvFsii2WB9aQ==
+X-Received: by 2002:a05:6a00:3495:b0:58d:d7b6:cf58 with SMTP id cp21-20020a056a00349500b0058dd7b6cf58mr29872746pfb.7.1674561804615;
+        Tue, 24 Jan 2023 04:03:24 -0800 (PST)
+Received: from LAP568U.mistral.in ([106.51.227.150])
+        by smtp.gmail.com with ESMTPSA id j10-20020aa783ca000000b00581ad007a9fsm1414539pfn.153.2023.01.24.04.03.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jan 2023 04:03:24 -0800 (PST)
+From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
+X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230123084300.22353-1-krzysztof.kozlowski@linaro.org>
- <20230123084300.22353-4-krzysztof.kozlowski@linaro.org>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-Organization: Linaro
-In-Reply-To: <20230123084300.22353-4-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
+Subject: [PATCH V2 0/2] Fix WKUP domain IO PADCONFIG size issue and RPi header support 
+Date:   Tue, 24 Jan 2023 17:33:09 +0530
+Message-Id: <20230124120311.7323-1-sinthu.raja@ti.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-BESS-ID: 1674561805-311750-5375-713-1
+X-BESS-VER: 2019.1_20221214.2106
+X-BESS-Apparent-Source-IP: 209.85.210.197
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.245676 [from 
+        cloudscan16-144.eu-central-1b.ess.aws.cudaops.com]
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------
+        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
+X-BESS-BRTS-Status: 1
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Sinthu Raja <sinthu.raja@ti.com>
 
+Hi All,
+This patch series fix the incorrect IO PADCONFIG offset size of the
+wakeup domain for J721S2 SoC and add RPi expansion header support for
+AM68 SK.
 
-On 1/23/23 08:42, Krzysztof Kozlowski wrote:
-> Re-organize SDM845 audio codec into separate, audio DTSI which
-> should be included and customized by the SDM845 boards wanting audio.
-> The codec node is anyway not a property of the SoC, but the boards.
-> 
-> On all others boards not using audio, keep the Slimbus node disabled as
-> it is empty.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes in V2:
+- Update commit description.
+- Update the offset value to 0x194 as 0x190 is the last register of the
+  IO PADCONFIG register set.
 
+V1: https://lore.kernel.org/all/20230123135831.4184-1-sinthu.raja@ti.com/
 
-Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
+Sinthu Raja (2):
+  arm64: dts: ti: k3-j721s2-mcu-wakeup: Fix IO PADCONFIG size for wakeup
+    domain
+  arm64: dts: ti: k3-am68-sk-base-board: Add pinmux for RPi Header
 
-I'll give this a spin later and resend OnePlus 6 support.
+ .../boot/dts/ti/k3-am68-sk-base-board.dts     | 70 ++++++++++++++++++-
+ .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  2 +-
+ 2 files changed, 70 insertions(+), 2 deletions(-)
 
-> 
-> ---
-> 
-> Changes since v2:
-> 1. Drop sound node in DTSI - affects devices.
-> 2. Drop "audio" from DTSI file name.
-> 
-> Changes since v1:
-> 1. Move also sound node.
-> 2. Rewrite commit msg.
-> 
-> RFC - please kindly test the boards.
+-- 
+2.36.1
 
---
-Kind Regards,
-Caleb (they/them)
