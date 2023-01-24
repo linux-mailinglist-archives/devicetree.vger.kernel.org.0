@@ -2,73 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0988F678D50
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 02:23:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8B5C678D55
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 02:24:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232083AbjAXBX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 20:23:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51072 "EHLO
+        id S231696AbjAXBYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 20:24:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232038AbjAXBXz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 20:23:55 -0500
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79C62BF12;
-        Mon, 23 Jan 2023 17:23:24 -0800 (PST)
-Received: by mail-ot1-f42.google.com with SMTP id k44-20020a9d19af000000b00683e176ab01so8379332otk.13;
-        Mon, 23 Jan 2023 17:23:24 -0800 (PST)
+        with ESMTP id S230294AbjAXBYF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 20:24:05 -0500
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5348615546;
+        Mon, 23 Jan 2023 17:23:30 -0800 (PST)
+Received: by mail-oo1-f51.google.com with SMTP id 123-20020a4a0681000000b004faa9c6f6b9so2408580ooj.11;
+        Mon, 23 Jan 2023 17:23:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=V1sgADgA70SKeXhD/RheeeugqRShv1VPpwgsy/A47Bo=;
-        b=sxA6eM/C6VkUe5xqf0iYUox08lyBHB93W7UmeDHndrW7TV47ryfXcIKoFw4MGQ0CaE
-         jE4quliMp77WNNh9qufWEsfA7Itw05/KlVFusvwx8y907UQDFR3bMa8uRCyxZK7JidIx
-         ELQsVhtZceZQtptaJfpZixVYaCAZPEOfX1ydt/s/nJazvsIxMt8qsHdGW1CnVHkdGHMO
-         PzOIectaoZpW6y4eAfJBuJAW3gTU99Yk8/lWN71HngMbx0YPTjcd0wofTy80oTJfgapI
-         MgpXOvHNd60DPkkC1A/YXKD2um+wcrHPltADQBT/AdivVYbutazIDDvuzCOsnen5D+vc
-         qCuA==
-X-Gm-Message-State: AFqh2kpYX0CMyfdAjvyyVq0WJEewsakUh+tPYzpdLU0He9SY84OXAp/Y
-        oiGrbdSDWPgqWmy++a4WIw==
-X-Google-Smtp-Source: AMrXdXvmGDew3Bm1N7N4NrHTPEZ/EnDXGdyJAibQDZF1jWycasGn07D0bPUpJAQzs9TdUOf3LSF0CQ==
-X-Received: by 2002:a05:6830:1048:b0:66e:a83e:9e6b with SMTP id b8-20020a056830104800b0066ea83e9e6bmr13809933otp.25.1674523367356;
-        Mon, 23 Jan 2023 17:22:47 -0800 (PST)
+        bh=wbLsmkHwUNwxPZOCXTJogcJ8LmEkiiS2N1PN3EB8w5A=;
+        b=35lZ1FOkxKHc5jiUQC6k5Y5yh5cGOqEY29YmGBX45Cq4hqT1Nmn+cGmgzgUQhV/fSr
+         rSGy1zU/Li6FvboTQt+rXuxNdMbDY7EUpglkB3xhfRniEuhV6CmW5SF1I+9V965YCjvn
+         qh0YVUeacramK/Ww8AjeDP9yIa/xkGF4ySu8gv+cnLQ4sYbinCxd7CgLuPUWkBHVxjiH
+         w3DJ6vgr19S2bdhnK5C4vFX+tkuwv8DWJzIp1uJWt8OsRdSfxFTPz8YyBDCx/tGWR4a4
+         VBDng2ZCa6Fs60WM0QHDGedjkvlW7k9vkiKU96UodvU2ec04tbILWxp6LJipXuSam5G5
+         y13g==
+X-Gm-Message-State: AFqh2kp04f4pRXj4Qz5JF2y5kDcFwHi5gkhihMFcAlUlJZaKWZPgeAUE
+        jwL33jW69W50z/52jInSZ8cR/ANZxA==
+X-Google-Smtp-Source: AMrXdXsUstXqeQ6JOeDoTmPGJVwMNubDdoIXVvoKVC5JqIw99XRErf0IzogI/xL/OiHVV2LwUNgoxw==
+X-Received: by 2002:a4a:e54a:0:b0:4f2:c7aa:a7db with SMTP id s10-20020a4ae54a000000b004f2c7aaa7dbmr11330490oot.2.1674523368663;
+        Mon, 23 Jan 2023 17:22:48 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e14-20020a056830200e00b0066eab2ec808sm369992otp.1.2023.01.23.17.22.46
+        by smtp.gmail.com with ESMTPSA id t10-20020a4a96ca000000b004a3d98b2ccdsm221102ooi.42.2023.01.23.17.22.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 17:22:46 -0800 (PST)
-Received: (nullmailer pid 3121725 invoked by uid 1000);
+        Mon, 23 Jan 2023 17:22:48 -0800 (PST)
+Received: (nullmailer pid 3121719 invoked by uid 1000);
         Tue, 24 Jan 2023 01:22:42 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Uwe =?utf-8?q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-In-Reply-To: <69188960-9d88-4163-8a87-1820fb673eb9@gmail.com>
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
- <69188960-9d88-4163-8a87-1820fb673eb9@gmail.com>
-Message-Id: <167452325471.3119159.12105704680288885350.robh@kernel.org>
-Subject: Re: [PATCH 8/8] dt-bindings: pinctrl: Add Amlogic Meson pinctrl binding
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Barry Song <baohua@kernel.org>
+In-Reply-To: <20230123211758.563383-13-jic23@kernel.org>
+References: <20230123211758.563383-1-jic23@kernel.org>
+ <20230123211758.563383-13-jic23@kernel.org>
+Message-Id: <167452324153.3116954.16283334229581146531.robh@kernel.org>
+Subject: Re: [PATCH 12/12] dt-bindings: iio: accel: Add ADIS16203 Inclinometer
 Date:   Mon, 23 Jan 2023 19:22:42 -0600
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -82,74 +69,42 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 23 Jan 2023 22:30:44 +0100, Heiner Kallweit wrote:
-> Add Amlogic Meson pinctrl binding.
-> Tested with make targets dt_binding_check and dtbs_check.
+On Mon, 23 Jan 2023 21:17:58 +0000, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> There has been a driver in staging for quite a while.
+> Given we are now moving it to the main tree, time to make sure it
+> has binding documentation.
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > ---
->  .../pinctrl/amlogic,meson-pinctrl.yaml        | 121 ++++++++++++++++++
->  .../bindings/pinctrl/meson,pinctrl.txt        |  94 --------------
->  2 files changed, 121 insertions(+), 94 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+>  .../bindings/iio/accel/adi,adis16203.yaml     | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/69188960-9d88-4163-8a87-1820fb673eb9@gmail.com
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/accel/adi,adis16203.example.dtb: accelerometer@0: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/accel/adi,adis16201.yaml
 
+doc reference errors (make refcheckdocs):
 
-pinctrl@84: #address-cells:0:0: 2 was expected
-	arch/arm/boot/dts/meson8b-ec100.dtb
-	arch/arm/boot/dts/meson8b-mxq.dtb
-	arch/arm/boot/dts/meson8b-odroidc1.dtb
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dtb
-	arch/arm/boot/dts/meson8-minix-neo-x8.dtb
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230123211758.563383-13-jic23@kernel.org
 
-pinctrl@84: compatible: ['amlogic,meson8m2-aobus-pinctrl', 'amlogic,meson8-aobus-pinctrl'] is too long
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dtb
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-pinctrl@84: reg: 'anyOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/meson8b-ec100.dtb
-	arch/arm/boot/dts/meson8b-mxq.dtb
-	arch/arm/boot/dts/meson8b-odroidc1.dtb
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dtb
-	arch/arm/boot/dts/meson8-minix-neo-x8.dtb
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-pinctrl@84: #size-cells:0:0: 2 was expected
-	arch/arm/boot/dts/meson8b-ec100.dtb
-	arch/arm/boot/dts/meson8b-mxq.dtb
-	arch/arm/boot/dts/meson8b-odroidc1.dtb
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dtb
-	arch/arm/boot/dts/meson8-minix-neo-x8.dtb
+pip3 install dtschema --upgrade
 
-pinctrl@9880: #address-cells:0:0: 2 was expected
-	arch/arm/boot/dts/meson8b-ec100.dtb
-	arch/arm/boot/dts/meson8b-mxq.dtb
-	arch/arm/boot/dts/meson8b-odroidc1.dtb
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dtb
-	arch/arm/boot/dts/meson8-minix-neo-x8.dtb
-
-pinctrl@9880: compatible: ['amlogic,meson8m2-cbus-pinctrl', 'amlogic,meson8-cbus-pinctrl'] is too long
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dtb
-
-pinctrl@9880: reg: 'anyOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/meson8b-ec100.dtb
-	arch/arm/boot/dts/meson8b-mxq.dtb
-	arch/arm/boot/dts/meson8b-odroidc1.dtb
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dtb
-	arch/arm/boot/dts/meson8-minix-neo-x8.dtb
-
-pinctrl@9880: #size-cells:0:0: 2 was expected
-	arch/arm/boot/dts/meson8b-ec100.dtb
-	arch/arm/boot/dts/meson8b-mxq.dtb
-	arch/arm/boot/dts/meson8b-odroidc1.dtb
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dtb
-	arch/arm/boot/dts/meson8-minix-neo-x8.dtb
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
