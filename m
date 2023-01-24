@@ -2,136 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A28416796ED
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:44:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5949E6796F5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 12:46:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233555AbjAXLoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 06:44:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39252 "EHLO
+        id S233933AbjAXLp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 06:45:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232664AbjAXLoN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:44:13 -0500
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2047.outbound.protection.outlook.com [40.107.100.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4966844BE6;
-        Tue, 24 Jan 2023 03:43:56 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nEDlYf1ADsDS1ULGWOBKUfLpegRVXN2xJXQrW3JTtm4fg+3cMaMsGuuqCjbSP868FQqHuOJvSswGp3u+3VkQwXfGUH0KIqoewdfd+7qIMRmmrPeXCX7fhXZxDI9oAegYpKGsyZRCyN4hbHHMM6gO5tQdbRnOSODqs07PRiXvOmBjqhVPKeRA1le6ZXAJFZ37WECrK4PCGCnm7OxaMEuzPnTKtd1+CFPSewYnExPQaHPyQfZjBOQmFB7ckiDoCA3Ym4wWS+2RDmPyOF3Ui5vfD/5or/+o81oLIkPzTTeiXcuSCbN63TwyXSe6o+Oq9Q3B2Y9FxtTgin3mN9ME/bm8+g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1M3T3PH5qIh7fo+qhVfoz+sQrDJcugUVoDGCKS5eqyw=;
- b=SiUlDK5N99vzkiWzoaxXEtWNYyBavTo2uumpQqgsor6I88C+8JBcaAC2BPxC8gcvxJYnq/A+E+2bPZc40mzmCySAkJm0kWMKm0FoOzDOY5Mj5cBqdSyP9ZR5QBi00nRX+qkxrzQTmzDyuGcThmHJXK4zE/VL1+RUm2beBx9Yed2qfIJZDAmulZqSsMw1fDAfJ9y7iIOcH+S1hYMAeORqG4O0nOBNUcKuz0x/48bvGSz1WLgm0LvAfBPcRnAwPGHiBg7rhovTezBzKle8UjOa7GXslajbMikzW7SxGHMO//8wE+1CwXJFcekO7RkoJzcYANszsR1impDkmRWpt/EkMg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=linux.intel.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1M3T3PH5qIh7fo+qhVfoz+sQrDJcugUVoDGCKS5eqyw=;
- b=ZE/6vBl3sgboklin1AHNT4teW8XOind5ekKOPZq41R70iL6DZ5aKLU9K+AfvyxzUidsTSQ7JPyyKc2I5mtgHloYrh/rln96EvZXJFwu4Yp23nvyeBdFAdLNKOBJtICp0wgf088LvwCAP5wn4/x32Qd7M4E+PQFzT2dTTP4KiZ4RcwVhOiqwitwTDWJLLljQHDd3YtBhqLoWN8SqwZGbGn4oc7tH5UPaFp6Qrw9E6PLHin3wz5i5j/CO+0UKK2Wnsb8o5O6oAXXmR8Wc8OgbDIxrJF1opqoTCDQyqBu3uwsXEHzFbpVQwoNmViL+5vBm1wsH0Wbhml7u4OT7aKPv3hQ==
-Received: from MW4P220CA0005.NAMP220.PROD.OUTLOOK.COM (2603:10b6:303:115::10)
- by SA1PR12MB8600.namprd12.prod.outlook.com (2603:10b6:806:257::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Tue, 24 Jan
- 2023 11:43:54 +0000
-Received: from CO1NAM11FT092.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:115:cafe::b4) by MW4P220CA0005.outlook.office365.com
- (2603:10b6:303:115::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33 via Frontend
- Transport; Tue, 24 Jan 2023 11:43:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- CO1NAM11FT092.mail.protection.outlook.com (10.13.175.225) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6023.16 via Frontend Transport; Tue, 24 Jan 2023 11:43:54 +0000
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 24 Jan
- 2023 03:43:39 -0800
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail205.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 24 Jan
- 2023 03:43:38 -0800
-Received: from moonraker.nvidia.com (10.127.8.13) by mail.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server id 15.2.986.36 via Frontend
- Transport; Tue, 24 Jan 2023 03:43:36 -0800
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, Wayne Chang <waynec@nvidia.com>,
-        Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH V7 6/6] arm64: defconfig: Enable UCSI support
-Date:   Tue, 24 Jan 2023 11:43:18 +0000
-Message-ID: <20230124114318.18345-7-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230124114318.18345-1-jonathanh@nvidia.com>
-References: <20230124114318.18345-1-jonathanh@nvidia.com>
+        with ESMTP id S233937AbjAXLp5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 06:45:57 -0500
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24C223EFC0
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:45:55 -0800 (PST)
+Received: by mail-pf1-x42d.google.com with SMTP id x4so11023734pfj.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 03:45:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=C999FwRzmG6xgSAmN5RaHaFeT5++tBFM3K6nE6gR9kQ=;
+        b=MoIu6dEpxAc7v6NG9qDlkjD5VG8dNzCd1gq2NdqSiC1Jb9EffiqLLPHC4jaCERrpmH
+         3B/n22ADDhlWio/1HgnHzoQa5YudgTv8QGXAhspqVq0OlUs+VOIyPoBR4Pd8VQPbVjrc
+         +aIShkW+EnpmCOBR4hP2GUeymyCUiCD5QmKPwpZ8lwdRyQ72G3LON7klhOmZmgmTyIsh
+         ErHZ394KZG7aDGIEg5kjDQNGzNDCcliLfcgm3EwzG+4YJd+eeXtN7YCZ3TAJe3LEItHI
+         lTAdOEzElueEfY4igULvTyADrT/UsGfr3JDA6x8Q8OevLLO8UJWC6swfru6yVvEDiVMv
+         V70A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C999FwRzmG6xgSAmN5RaHaFeT5++tBFM3K6nE6gR9kQ=;
+        b=QwO0Qgd0vVelmCsReFflfMulkk40gn/Jv81v1vSmqMQKScrn3/gK0h5FVQx5+TqZK2
+         LSQQd2cBERTnomyF/scmMlnyHicGBAFcHSz4x2hIzcq0tFbJognhYGLFmwCtERCzR586
+         p7XXgO+VfeJIF8i5jhYeX7H2u5+LswjFJ2qtF16MI3olJ4MuykaCQvBT/U1yR0CSxMZK
+         jgJVQTMbNb9Ld0HRQHDqAUipFYC7iznVahsWaxkV1q8UUFgm/TJtd4W4TV0MQGQ4Evsk
+         f89wg7zLCcdnI2hGRmQ0MQgSQXH6izSTLyyZ337yJyeJUYU9072i9/jMRROWCw58GxUL
+         ZxWw==
+X-Gm-Message-State: AFqh2ko2fHXDVoDSAjUGFTV+zu2jvqcsRR42ocXx10dyWWk9IBQIEXte
+        tryEq1SXUrb9RjJ6U4kmVzjimQ==
+X-Google-Smtp-Source: AMrXdXvfg2tuDxNrx7qnAFNJY/BpELo24XreajkdeWYqeU89AAQF0hM7X61io/Yz+JTaA+bHzFT6Cg==
+X-Received: by 2002:a05:6a00:1887:b0:58c:b0a:e504 with SMTP id x7-20020a056a00188700b0058c0b0ae504mr37927015pfh.18.1674560754594;
+        Tue, 24 Jan 2023 03:45:54 -0800 (PST)
+Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
+        by smtp.gmail.com with ESMTPSA id 76-20020a62164f000000b0058882b59d22sm1371528pfw.219.2023.01.24.03.45.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Jan 2023 03:45:54 -0800 (PST)
+Message-ID: <05947e9f-0667-4565-b481-ca5635da4174@9elements.com>
+Date:   Tue, 24 Jan 2023 17:15:49 +0530
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT092:EE_|SA1PR12MB8600:EE_
-X-MS-Office365-Filtering-Correlation-Id: 55931245-41c3-4d54-c422-08dafe00453e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UfOI1PneeGUBe+Z5UzIyn4rhccMhAwD1/jHkqBtBV1c79UxNeBXdVyC4KJopAQ5j8b/1sQuP4dd/U4kfnLUfRhxkIuJ8zhYob25/G/6Ld/LX/U7ojvV8WOlo/ZIk72/NoB2dK1bb8yASUTLmq//caOvu9cpOkp6N/9e1xscJuBzHNIES5qT4KMR1HTVuJal88lXbrTnoR7xaBcAuJAuScDjHxr1uEmrmHy+PE2r2UjQY1FFt2wasAH9DD6RMwAvNXNu5XUtpD9xpAx9hPtr9tfd701U94RN1SoflObmFVaszFp7hZoXAcduNjsN+MHEwqFjXKrEN1ExfuYUyxL0VfC1HwGWjgakjBY0wCC2/2Fe+JbDcsOD/93Y2f9icIyR4UemspGnHvoT2Hw93yJIv6rnCreAVPaGG0+yNysp0oNuYV/aaDvZ/OM001BVrOY91pDZLS6vHaTdoak3qBvsgBmKJ9wXL9yvhCB7zn1Yn6Cv+XqcBJE1D49qyO6NqfHGpLTHq3QS9g7gJ18i0L93zlNWUBOvF1P5IuhzRh+HK6Rf99MuAFK2xGEcuV5bWFKiYmSMXXs8lpqRiN2AjztVcGryeQxzsSqzkT5Db4VhkxOjTXl9xiywuRBVeVrb+XSAYKJBkkgkAacGA0w2QgwKcxb4YrBJ9LoM0kjBXB8ibtryZoYRk0SNe4JQtK3OSYw/F7IZ5R2DwUBKKaeK0LTeujw==
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(376002)(346002)(39860400002)(396003)(136003)(451199015)(40470700004)(46966006)(36840700001)(36756003)(7636003)(356005)(2906002)(82740400003)(8936002)(4326008)(82310400005)(4744005)(5660300002)(41300700001)(36860700001)(83380400001)(86362001)(26005)(478600001)(110136005)(7696005)(54906003)(186003)(40480700001)(40460700003)(70206006)(8676002)(2616005)(316002)(70586007)(426003)(107886003)(1076003)(47076005)(336012)(6666004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 11:43:54.0449
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 55931245-41c3-4d54-c422-08dafe00453e
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT092.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8600
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] hwmon: (pmbus/tda38640) Add driver for Infineon TDA38640
+ Voltage Regulator
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230124110111.3965317-1-Naresh.Solanki@9elements.com>
+ <b4b11836-5a4b-a2b7-18e2-89ca26f19817@linaro.org>
+Content-Language: en-US
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <b4b11836-5a4b-a2b7-18e2-89ca26f19817@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the TYPEC UCSI support and the Cypress UCSI driver that is used
-on the NVIDIA Jetson platforms.
+Hi
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
-V7: Added in V7
+On 24-01-2023 04:40 pm, Krzysztof Kozlowski wrote:
+> On 24/01/2023 12:01, Naresh Solanki wrote:
+>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>
+>> Add the pmbus driver for the Infineon TDA38640 voltage regulator.
+>>
+>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>> ---
+>>   .../devicetree/bindings/trivial-devices.yaml  |  2 +
+> 
+> Split bindings from driver code.
+Sure
+> 
+>>   drivers/hwmon/pmbus/Kconfig                   | 16 ++++
+>>   drivers/hwmon/pmbus/Makefile                  |  1 +
+>>   drivers/hwmon/pmbus/tda38640.c                | 78 +++++++++++++++++++
+>>   4 files changed, 97 insertions(+)
+>>   create mode 100644 drivers/hwmon/pmbus/tda38640.c
+>>
+>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+>> index f5c0a6283e61..a28b02036489 100644
+>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+>> @@ -141,6 +141,8 @@ properties:
+>>             - infineon,slb9645tt
+>>               # Infineon SLB9673 I2C TPM 2.0
+>>             - infineon,slb9673
+>> +            # Infineon TDA38640 Voltage Regulator
+>> +          - infineon,tda38640
+>>               # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+>>             - infineon,tlv493d-a1b6
+>>               # Infineon Multi-phase Digital VR Controller xdpe11280
+>> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+>> index 30448e049486..9f4bbb9c487a 100644
+>> --- a/drivers/hwmon/pmbus/Kconfig
+>> +++ b/drivers/hwmon/pmbus/Kconfig
+>> @@ -395,6 +395,22 @@ config SENSORS_STPDDC60
+>>   	  This driver can also be built as a module. If so, the module will
+>>   	  be called stpddc60.
+>>   
+>> +config SENSORS_TDA38640
+>> +	tristate "Infineon TDA38640"
+>> +	help
+>> +	  If you say yes here you get hardware monitoring support for Infineon
+>> +	  TDA38640.
+>> +
+>> +	  This driver can also be built as a module. If so, the module will
+>> +	  be called tda38640.
+>> +
+>> +config SENSORS_TDA38640_REGULATOR
+>> +	bool "Regulator support for TDA38640 and compatibles"
+>> +	depends on SENSORS_TDA38640 && REGULATOR
+>> +	help
+>> +	  If you say yes here you get regulator support for Infineon
+>> +	  TDA38640 as regulator.
+> 
+> Drop entire option, why is it needed?
+You mean regulator option ?
+This is how other pmbus regulator devices have provided option.
+> 
+>> +
+>>   config SENSORS_TPS40422
+>>   	tristate "TI TPS40422"
+>>   	help
+>> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+>> index d9d2fa4bd6f7..3ae019916267 100644
+>> --- a/drivers/hwmon/pmbus/Makefile
+>> +++ b/drivers/hwmon/pmbus/Makefile
+>> @@ -40,6 +40,7 @@ obj-$(CONFIG_SENSORS_PM6764TR)	+= pm6764tr.o
+>>   obj-$(CONFIG_SENSORS_PXE1610)	+= pxe1610.o
+>>   obj-$(CONFIG_SENSORS_Q54SJ108A2)	+= q54sj108a2.o
+>>   obj-$(CONFIG_SENSORS_STPDDC60)	+= stpddc60.o
+>> +obj-$(CONFIG_SENSORS_TDA38640)	+= tda38640.o
+>>   obj-$(CONFIG_SENSORS_TPS40422)	+= tps40422.o
+>>   obj-$(CONFIG_SENSORS_TPS53679)	+= tps53679.o
+>>   obj-$(CONFIG_SENSORS_TPS546D24)	+= tps546d24.o
+>> diff --git a/drivers/hwmon/pmbus/tda38640.c b/drivers/hwmon/pmbus/tda38640.c
+>> new file mode 100644
+>> index 000000000000..31e17a936b8c
+>> --- /dev/null
+>> +++ b/drivers/hwmon/pmbus/tda38640.c
+>> @@ -0,0 +1,78 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Hardware monitoring driver for Infineon TDA38640
+>> + *
+>> + * Copyright (c) 2023 9elements GmbH
+>> + *
+>> + */
+>> +
+>> +#include <linux/err.h>
+>> +#include <linux/i2c.h>
+>> +#include <linux/init.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/regulator/driver.h>
+>> +#include "pmbus.h"
+>> +
+>> +#if IS_ENABLED(CONFIG_SENSORS_TDA38640_REGULATOR)
+>> +static const struct regulator_desc tda38640_reg_desc[] = {
+>> +	PMBUS_REGULATOR("vout", 0),
+>> +};
+>> +#endif /* CONFIG_SENSORS_TDA38640_REGULATOR */
+>> +
+>> +static struct pmbus_driver_info tda38640_info = {
+>> +	.pages = 1,
+>> +	.format[PSC_VOLTAGE_IN] = linear,
+>> +	.format[PSC_VOLTAGE_OUT] = linear,
+>> +	.format[PSC_CURRENT_OUT] = linear,
+>> +	.format[PSC_CURRENT_IN] = linear,
+>> +	.format[PSC_POWER] = linear,
+>> +	.format[PSC_TEMPERATURE] = linear,
+>> +
+>> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT
+>> +	    | PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP
+>> +	    | PMBUS_HAVE_IIN
+>> +	    | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
+>> +	    | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT
+>> +	    | PMBUS_HAVE_POUT | PMBUS_HAVE_PIN,
+>> +#if IS_ENABLED(CONFIG_SENSORS_TDA38640_REGULATOR)
+>> +	.num_regulators = 1,
+>> +	.reg_desc = tda38640_reg_desc,
+>> +#endif
+>> +};
+>> +
+>> +static int tda38640_probe(struct i2c_client *client)
+>> +{
+>> +	return pmbus_do_probe(client, &tda38640_info);
+>> +}
+>> +
+>> +static const struct i2c_device_id tda38640_id[] = {
+>> +	{"tda38640", 0},
+>> +	{}
+>> +};
+>> +
+> 
+> Drop blank line
+Sure
+> 
+>> +MODULE_DEVICE_TABLE(i2c, tda38640_id);
+>> +
+>> +#ifdef CONFIG_OF
+> 
+> Drop ifdefs and use __maybe_unused
+> 
+>> +static const struct of_device_id tda38640_of_match[] = {
+>> +	{ .compatible = "infineon,tda38640"},
+>> +	{ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, tda38640_of_match);
+> 
+> Where is it used? You miss the user.
+I'm not sure if I get your question right.
+This chip is used in sbp1 board to power CPU rails.
+> 
+>> +#endif
+>> +
+>> +/* This is the driver that will be inserted */
+>> +static struct i2c_driver tda38640_driver = {
+>> +	.driver = {
+>> +		   .name = "tda38640",
+>> +		   },
+>> +	.probe_new = tda38640_probe,
+>> +	.id_table = tda38640_id,
+>> +};
+> 
+> Best regards,
+> Krzysztof
+> 
 
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 984553d55e17..d487d0e2b8e0 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -959,6 +959,8 @@ CONFIG_TYPEC_TCPCI=m
- CONFIG_TYPEC_FUSB302=m
- CONFIG_TYPEC_TPS6598X=m
- CONFIG_TYPEC_HD3SS3220=m
-+CONFIG_TYPEC_UCSI=m
-+CONFIG_UCSI_CCG=m
- CONFIG_MMC=y
- CONFIG_MMC_BLOCK_MINORS=32
- CONFIG_MMC_ARMMMCI=y
--- 
-2.25.1
-
+Best regards,
+Naresh
