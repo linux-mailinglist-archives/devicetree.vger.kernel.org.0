@@ -2,112 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81ACC67A58E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 23:19:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC29767A595
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jan 2023 23:20:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234125AbjAXWTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 17:19:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50516 "EHLO
+        id S231269AbjAXWUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 17:20:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbjAXWTP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 17:19:15 -0500
-Received: from out2.migadu.com (out2.migadu.com [188.165.223.204])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B03073E0B3;
-        Tue, 24 Jan 2023 14:19:13 -0800 (PST)
-Message-ID: <3d448210-e9d2-b0ee-e009-535bb0bb760d@ansari.sh>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
-        t=1674598751;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=K+v7CuIhOoILRppgHxxh5e1k2L4tbU2G1qFmuWYmc0o=;
-        b=CQ8g72/Wf+xIuT5nOyeQfhWCNcSF/isB0ieb/e5+Q/+bR1GXUaj5KYvoVTqC5yZqAP8wEt
-        cFD2I+uiPnRE7yqxGmG7kYtZ7PFY646XRm2ePLhEoOUFxxDSqiYFM1iINlIC4bQ62AVKGK
-        mTAkqoNStMMUcaVFHbv2+2gBy7un5iY=
-Date:   Tue, 24 Jan 2023 22:19:09 +0000
+        with ESMTP id S231538AbjAXWUd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 17:20:33 -0500
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F6DC37F2F;
+        Tue, 24 Jan 2023 14:20:32 -0800 (PST)
+Received: by mail-ot1-f46.google.com with SMTP id g2-20020a9d6b02000000b006864bf5e658so10110446otp.1;
+        Tue, 24 Jan 2023 14:20:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Eez1m+PXfOfMtBkO1erQPzslo6stvsXK/McJNzS+bhE=;
+        b=Y0EqZxzKKFrunEnDMpbyNm9vqKMsPBH3WCDPHj9UnR35f1+8069rQgItBroZcZH5Zc
+         gAdtnLWgyPNFCj/rLHCKlzoXoJZ9/eMT49qFr6Zvs/DauhYOYkYnEbRuafQILXsS9Stv
+         ZjkeDFoafh/sLe8R78IDx4v8Y0sMb62vxDFhUnsw7do8Mx0+fqVE2kt+/ogmlt2AzKga
+         q4Y+xYsdvkREY0dSayC2rBbZ0H7/GFhUpSjz1hwc4VA3qX28PiS58pB/5ojzYC93/NAS
+         33xzVijwY/vnQ+O7OfxrnDa0GL5S0A9+osdu2Efasqu8CM+69muvnpeZx7h16u5wAB/L
+         Zotw==
+X-Gm-Message-State: AFqh2kobLE5Lb15AEnouuCj3VHum8ArM29u1yOYNSPRK/pacYyRbXPHw
+        iOFVfJjmmOC7GFXcFGeO5A==
+X-Google-Smtp-Source: AMrXdXsQOGXLvDUlDyfIhPA3kuz6+QbLmoFpTLE7cXamFILL4fYDaWa2Qf1wZU85+DoB6HyjAsx7SQ==
+X-Received: by 2002:a05:6830:244d:b0:675:410e:7533 with SMTP id x13-20020a056830244d00b00675410e7533mr16096069otr.9.1674598831857;
+        Tue, 24 Jan 2023 14:20:31 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a18-20020a9d74d2000000b00684eaf9018csm1449579otl.34.2023.01.24.14.20.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jan 2023 14:20:31 -0800 (PST)
+Received: (nullmailer pid 316282 invoked by uid 1000);
+        Tue, 24 Jan 2023 22:20:30 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: firmware: arm,scmi: Restrict protocol child node properties
+Date:   Tue, 24 Jan 2023 16:20:23 -0600
+Message-Id: <20230124222023.316089-1-robh@kernel.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: display: simple-framebuffer: Document
- physical width and height properties
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org,
-        ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev,
-        janne@jannau.net, Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
-        Hans de Goede <hdegoede@redhat.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thomas Zimmermann <tzimmermann@suse.de>
-References: <20230121153544.467126-1-rayyan@ansari.sh>
- <20230121153544.467126-3-rayyan@ansari.sh>
- <CAL_JsqL+G=Cxkc2j_NowznpqNAnixrU+-6SdccFbpMaP6OYSqQ@mail.gmail.com>
- <cdf32cb0-4529-6bbd-fdda-ae641d141ee5@ansari.sh>
- <20230123175339.GA2019900-robh@kernel.org>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   Rayyan Ansari <rayyan@ansari.sh>
-In-Reply-To: <20230123175339.GA2019900-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/01/2023 17:53, Rob Herring wrote:
-> On Sun, Jan 22, 2023 at 05:25:38PM +0000, Rayyan Ansari wrote:
->> On 22/01/2023 15:36, Rob Herring wrote:
->>> On Sat, Jan 21, 2023 at 9:36 AM Rayyan Ansari <rayyan@ansari.sh> wrote:
->>>>
->>>
->>> Why do you need this change?
->>>
->>> The 'simple-framebuffer' contains data on how the bootloader
->>> configured the display. The bootloader doesn't configure the display
->>> size, so this information doesn't belong here. The information should
->>> already be in the panel node, so also no point in duplicating it here.
->>>
->>>> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
->>>> ---
->>>>    .../devicetree/bindings/display/simple-framebuffer.yaml   | 8 ++++++++
->>>>    1 file changed, 8 insertions(+)
->>
->> Hi Rob,
->>
->> There is the usecase that Hans has mentioned, but I have also mentioned
->> another usecase previously.
->>
->> Adding the width-mm and height-mm properties allows user interfaces such as
->> Phosh (https://puri.sm/posts/phosh-overview/) to scale correctly to the
->> screen. In my case, a panel node is not available and the aforementioned
->> interface is in fact running on the SimpleDRM driver (which binds to the
->> simple-framebuffer device).
-> 
-> Why is the panel node not available? Why not add it? Presumably it is
-> not there because you aren't (yet) using the simple-panel driver (and
-> others that would need). But presumably you will eventually as I'd
-> imagine turning the screen off and back on might be a desired feature.
+The SCMI protocol child nodes are missing any constraints on unknown
+properties. Specifically, either 'unevaluatedProperties' or
+'additionalProperties' is needed. The current structure with a regex
+match for all child nodes doesn't work for this purpose, so let's move
+the common properties '$defs' entry which each specific protocol node
+can reference and set 'unevaluatedProperties: false'.
 
-It requires more than using the simple-panel driver: first the SoC side 
-display hardware needs to be brought up, then a panel driver that 
-implements the proper DCS initialisation sequence needs to be written 
-(which is currently not fully known).
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/firmware/arm,scmi.yaml           | 43 ++++++++++++++-----
+ 1 file changed, 33 insertions(+), 10 deletions(-)
 
-> 
-> So why add a temporary DT property that's tied to your *current* kernel? > The DT should not be tightly coupled to the kernel.
-
-I'm not sure what you mean by it being "tightly coupled" to the kernel.
-
-> 
-> Rob
-
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index 176796931a22..2f7c51c75e85 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -100,7 +100,9 @@ properties:
+       Channel specifier required when using OP-TEE transport.
+ 
+   protocol@11:
+-    type: object
++    $ref: '#/$defs/protocol-node'
++    unevaluatedProperties: false
++
+     properties:
+       reg:
+         const: 0x11
+@@ -112,7 +114,9 @@ properties:
+       - '#power-domain-cells'
+ 
+   protocol@13:
+-    type: object
++    $ref: '#/$defs/protocol-node'
++    unevaluatedProperties: false
++
+     properties:
+       reg:
+         const: 0x13
+@@ -124,7 +128,9 @@ properties:
+       - '#clock-cells'
+ 
+   protocol@14:
+-    type: object
++    $ref: '#/$defs/protocol-node'
++    unevaluatedProperties: false
++
+     properties:
+       reg:
+         const: 0x14
+@@ -136,7 +142,9 @@ properties:
+       - '#clock-cells'
+ 
+   protocol@15:
+-    type: object
++    $ref: '#/$defs/protocol-node'
++    unevaluatedProperties: false
++
+     properties:
+       reg:
+         const: 0x15
+@@ -148,7 +156,9 @@ properties:
+       - '#thermal-sensor-cells'
+ 
+   protocol@16:
+-    type: object
++    $ref: '#/$defs/protocol-node'
++    unevaluatedProperties: false
++
+     properties:
+       reg:
+         const: 0x16
+@@ -160,20 +170,31 @@ properties:
+       - '#reset-cells'
+ 
+   protocol@17:
+-    type: object
++    $ref: '#/$defs/protocol-node'
++    unevaluatedProperties: false
++
+     properties:
+       reg:
+         const: 0x17
+ 
+       regulators:
+         type: object
++        additionalProperties: false
+         description:
+           The list of all regulators provided by this SCMI controller.
+ 
++        properties:
++          '#address-cells':
++            const: 1
++
++          '#size-cells':
++            const: 0
++
+         patternProperties:
+-          '^regulators@[0-9a-f]+$':
++          '^regulator@[0-9a-f]+$':
+             type: object
+             $ref: "../regulator/regulator.yaml#"
++            unevaluatedProperties: false
+ 
+             properties:
+               reg:
+@@ -184,15 +205,17 @@ properties:
+               - reg
+ 
+   protocol@18:
+-    type: object
++    $ref: '#/$defs/protocol-node'
++    unevaluatedProperties: false
++
+     properties:
+       reg:
+         const: 0x18
+ 
+ additionalProperties: false
+ 
+-patternProperties:
+-  '^protocol@[0-9a-f]+$':
++$defs:
++  protocol-node:
+     type: object
+     description:
+       Each sub-node represents a protocol supported. If the platform
 -- 
-Rayyan Ansari
-https://ansari.sh
+2.39.0
 
