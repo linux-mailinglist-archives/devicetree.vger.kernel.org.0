@@ -2,84 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 400BE67B8D9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 18:55:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CFBD67B8DD
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 18:58:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235875AbjAYRzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 12:55:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38688 "EHLO
+        id S236058AbjAYR6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 12:58:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229778AbjAYRzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 12:55:39 -0500
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDE275FFF;
-        Wed, 25 Jan 2023 09:55:37 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id AB106100005;
-        Wed, 25 Jan 2023 17:55:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1674669336;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=DVn2ACjrj+7N2DNj/bk5rGlC0Twaltf0CHWhNg8myoM=;
-        b=bIpChlGDObV5pTFnENoxAwcv2N5b1GqvdoRwobih3R4Jo3QLDb+k3qvwOSS0umifa8Yz6c
-        M5KJRL0z5tTcVyPrgNJoFxysGvKC9ZghcYHweQqfnq7f9WCqBevruj+SvpvNnb0Z/33fPo
-        GRAWjAmaoR5QaV18WXo1KMkDyFVcEwENNpU9sgElFz4WbwnhDzN9bRAcxoB835dFtLD70/
-        vovRCOYm5Bjhwe9bTNshIfvA709mVP/HayKUhQkapqQB7aDR5Pn1NCFZkVwaSEWGsAtToU
-        i9Vif5AqJIElke6i4nbrSDFSZHwjv/QzKMSlXcxfCtSX1apylpcezSGbRiDakg==
-Date:   Wed, 25 Jan 2023 18:55:34 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Doug Berger <opendmb@gmail.com>
-Cc:     Brian Norris <computersforpeace@gmail.com>,
-        Markus Mayer <mmayer@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229778AbjAYR6A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 12:58:00 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93E2E11E8A
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 09:57:56 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so1922250wmq.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 09:57:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JSWaSlJ4ls7ihTqo1gmqPaRQG3AJ8x16qE0HQc0/6H4=;
+        b=RjxMTQ2NYyLKhYJGoZCJ2C570WDNtdtfynWQ8hgzkCr3WnHwtXGZBlQwmniMafmAjR
+         zXdh5+1TpcyqRBBd6Xq+QqU6XdDtXx2yU6PvDW/fkEn8IvxWzMK2NZ09q3R82AW5wPTS
+         NJJOYWc/f1uc/icXoRu4TvqAWt4snsA6sTB6kbzBEouOOkh6HzLw0BsMFU2ETb8hgZjz
+         eCjIy9RvF1uPOPRmyezmEvBLkSHBxp1UaBAH+q74R64iMp+v7m82rqCIQAqt2Ptq/Iu7
+         YaNJ0v0MZg2yTn3ZtjEMQdIhyQSizKlYUVqFNNA5PAg8qhzvEzch9XOD38Ojp36Nzr4G
+         5Z4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JSWaSlJ4ls7ihTqo1gmqPaRQG3AJ8x16qE0HQc0/6H4=;
+        b=Wy1sT9i+/6Q7GPE5Q7umi5MhynfS7v/oYR3dGrok0CIfu8mPz7eDONgIyo4zJuUfSl
+         fbfjZFi1sHEEs3qh+uQ7MJG3g5Lswv/S0NG6NgZvUKZEf73E/4rJczwr3EscDP3WYDed
+         ARp9qvcynAwZblR+lDl3mGjUwLmVy/ndEmUVZ0aiguG8C/D+MGCCr1S4R7eFIHeGQl/i
+         RnW8ZCbwCQFS/7iBNR9dmPXEOcsLjj7g5VErS1NRTIDyjpsySYR3vXjL/I6uR5E7npY+
+         8K+yzgkZtsSl2wiU4uma77xMagzkf4sfYs6A2nvVVb0LoS2mGpImyID+p+H9eeIYMSug
+         IKww==
+X-Gm-Message-State: AFqh2kp3EY0caD8PciHg/L3kVeehGJeX8tkIdBxV1uv/2vnOFcLIwDww
+        U8eGS1rI4FpabVlTOlF7ocE9AQ==
+X-Google-Smtp-Source: AMrXdXth6bnqN6T91DOTrI/5Fj1J/UyobctlisUWYO9JNMUKFVm3+tNFzhCxH9lMkoiuoC3zuHu+bw==
+X-Received: by 2002:a05:600c:181a:b0:3d2:2043:9cbf with SMTP id n26-20020a05600c181a00b003d220439cbfmr32703067wmp.10.1674669475201;
+        Wed, 25 Jan 2023 09:57:55 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id k21-20020a05600c1c9500b003da28dfdedcsm3421197wms.5.2023.01.25.09.57.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jan 2023 09:57:54 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>, linux-rtc@vger.kernel.org,
+        Alim Akhtar <alim.akhtar@samsung.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] rtc: brcmstb-waketimer: add RTC alarm irq
-Message-ID: <167466931430.235977.6000970179317121729.b4-ty@bootlin.com>
-References: <20230124201430.2502371-1-opendmb@gmail.com>
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] ARM: dts: exynos: add unit address to DWC3 node wrapper in Exynos5250
+Date:   Wed, 25 Jan 2023 18:57:50 +0100
+Message-Id: <20230125175751.675090-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230124201430.2502371-1-opendmb@gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Neither simple-bus bindings nor dtc W=1 accept device nodes in soc@ node
+which do not have unit address.  Therefore usethe address space
+of child device (actual DWC3 Controller) as the wrapper's address to
+fix:
 
-On Tue, 24 Jan 2023 12:14:28 -0800, Doug Berger wrote:
-> Support is added for an interrupt that can be triggered from the
-> brcmstb-waketimer hardware while the system is awake.
-> 
-> This interrupt allows the driver to pass the rtctest selftest.
-> 
-> Changes in v2:
->   - Squashed examples in the bindings document.
->   - Added Ack from Florian
-> 
-> [...]
+  exynos5250-smdk5250.dtb: soc: usb3: {'compatible': ['samsung,exynos5250-dwusb3'],
+    ... } should not be valid under {'type': 'object'}
 
-Applied, thanks!
+  exynos5250.dtsi:638.16-653.5: Warning (simple_bus_reg): /soc/usb3: missing or empty reg/ranges property
 
-[1/2] dt-bindings: rtc: brcm,brcmstb-waketimer: add alarm interrupt
-      commit: 6cc7a8262b57db0a2ff6c141bb163c1395b7c4ef
-[2/2] rtc: brcmstb-waketimer: allow use as non-wake alarm
-      commit: 24304a87158aab01b4ccb9b2638c2c623a9a7bd4
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/exynos5250.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Best regards,
-
+diff --git a/arch/arm/boot/dts/exynos5250.dtsi b/arch/arm/boot/dts/exynos5250.dtsi
+index 97e89859ba3d..510be05f50ed 100644
+--- a/arch/arm/boot/dts/exynos5250.dtsi
++++ b/arch/arm/boot/dts/exynos5250.dtsi
+@@ -635,8 +635,9 @@ i2s2: i2s@12d70000 {
+ 			#sound-dai-cells = <1>;
+ 		};
+ 
+-		usbdrd: usb3 {
++		usbdrd: usb-wrapper@12000000 {
+ 			compatible = "samsung,exynos5250-dwusb3";
++			reg = <0x12000000 0x10000>;
+ 			clocks = <&clock CLK_USB3>;
+ 			clock-names = "usbdrd30";
+ 			#address-cells = <1>;
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.34.1
+
