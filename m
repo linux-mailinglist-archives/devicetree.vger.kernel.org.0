@@ -2,131 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7EC567AD5A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 10:09:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3185167AD99
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 10:17:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234655AbjAYJI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 04:08:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33412 "EHLO
+        id S235177AbjAYJPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 04:15:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233235AbjAYJIz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 04:08:55 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE1CC3A84A
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 01:08:53 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so756423wma.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 01:08:53 -0800 (PST)
+        with ESMTP id S234655AbjAYJPi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 04:15:38 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7769D43447
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 01:15:37 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so792443wmq.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 01:15:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=sF+NbwG3d0SXyd+w9CGOwS5V+wHVHgGRIB1Vv65RfW4=;
-        b=ZWrIKDuUi3xvqvKgoHlNBI3N5mKVytsVXnEpwpDbLuTaqSBniGX+ox9bf938gpk8jt
-         H9efII5W8y6VumMOo7nTj2EnIXWml7+JW2SxwQTLXg5W3aKQyLTCQBOZoNxROtjHlp4h
-         NMbGirP+YenRX6bdA/md5/UjuzkwkdfUR87pPS5i6uqhn5suxigqU478/Zb2OJIqRvYT
-         h/z2c07uxlv8IO4tWj85LYStXlZamuppYXBBObn1JhykQiP8G4fj/TZbJHBJLdyE1bkz
-         JlNz4iFeEzqRWuPy8tfWt3tQnn8qvhZ92rIKApzJjLo1EQIge/J3u4FmbhxUJ1jJZDmW
-         8IBw==
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=hLYyMf8v6sX0CmntSwjS63uxAxPxvpyOkk5T320V7ls=;
+        b=vQIeg+80cD1Jh0nHmdw6lIMdBYusiJ8CWnr+acIqPUQ8bgzxwSQV+fGSXvKjFVIEtz
+         iwFgfpQ+PqMQT7N7huipewrSougdMtpDfSqzHshcM+zcqO/0qigO7GUsIx+ZVib7Vgmc
+         4YzGL45GG3DY4I5YhdNjC6bkHnl7jh5Skej2L7BHl793N7X9B5DKoSApVtLxrece0pl7
+         LDttDDg5eljQPKDffr1lM4ltoLQUC2uhAw+Jc/g+r5OA1itaP0kFHGJXxFzCmvu4a09A
+         pDvFwZjLQippIXa/8ZeT9dFxC8PCnQJTHnoMHNaDJOtUYns09Nrw/vg51pEUhnfDbA6L
+         +QRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sF+NbwG3d0SXyd+w9CGOwS5V+wHVHgGRIB1Vv65RfW4=;
-        b=TVcXlQO21aMktP8aHB/xQpjwqRn2zg0p0pO8FraZ3UERzJj1obNT1U9IsjTOYTHCbh
-         CemBED8mg0zvVJwuXyA7b9yXMWS/EnzxAd/O7GJo7k/aIL2Y7VYGaZqUKtrkwFZz04w3
-         1gKhuyAMbqjHxqzblolqh6JU8OC4pNEgiJs+OxQqNMkpNYuX1e4LMgzGkUmCxl0wb1WW
-         7Sir7s7Q/EDv1owop5ghABYHeJDXkOGgejOFz96sh9lRheGUpQ/G7fDQakLqofubl+U1
-         xFxja31gxjmZg2PRYq7OOPM+9kF7nO+nxhqRP+8emah2EHgCqLet9h9jU7xYyNLgMaN+
-         sfBA==
-X-Gm-Message-State: AFqh2ko4k/+JqCcgxXu3T+YvmJBuFa/vM+ZfAieZJo6HL5/HNULla32I
-        5VCfOcAL7Uf5RMWAqNYj/1ok8A==
-X-Google-Smtp-Source: AMrXdXvspCLpjak/blAkqScmjuu7tOfRkMdKuuRUnkH3nrmuuQvbcbNJUkPnLwAuNPDyLikW11ck/g==
-X-Received: by 2002:a05:600c:35d5:b0:3db:fc4:d018 with SMTP id r21-20020a05600c35d500b003db0fc4d018mr28490606wmq.40.1674637732378;
-        Wed, 25 Jan 2023 01:08:52 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id e19-20020a05600c13d300b003daf98d7e35sm1198258wmg.14.2023.01.25.01.08.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 01:08:51 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: interconnect: samsung,exynos-bus: allow opp-table
-Date:   Wed, 25 Jan 2023 10:08:49 +0100
-Message-Id: <20230125090849.122189-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hLYyMf8v6sX0CmntSwjS63uxAxPxvpyOkk5T320V7ls=;
+        b=TPBFkL6siWMX0x0F1Xaf0lZv1UYePP6WdBjJud2j78RCN3sksF12OZdFLH71ZZ9ZkA
+         UkWWAJbeWRP1gpYUf2OKye5vhd2hxvBRhhIzQ9b6mU0Hw2wC95Sun2ZKGxaA3vSsm3Ha
+         rZi/fDufQViBOoIiihjPwYaQ3zdGBrJA1rZwvBk9BkArfBzFTGWHjxlRz1uTAXE7IFH5
+         y7BSZ3pbEfCDu8Ci4mW5DOD9N1hp88BWjaXeYHvcR9KiFkuDb9Fx8Y24RIaWEVNNMeHq
+         ojtC8iDjtwZrlwgXOgZsROwmLE4g1NGLVHoHkd97j0DIqhWdPwWo0AIV7qRhXmADyrwI
+         L4MA==
+X-Gm-Message-State: AFqh2krWzvY43rZCPY1d2AmK6sLfhQgClG0JLfPaoM13RFljDS4bt6V2
+        MmNmOAFHovy31xeEphZJLycdkw==
+X-Google-Smtp-Source: AMrXdXvWRskL0ALdre/zwBQd4CWcE4EeqG3qOzIokfuCHYl0YnH8WVH4If4CW54QDvyDULTACzs7sw==
+X-Received: by 2002:a05:600c:35d4:b0:3dc:b1b:830 with SMTP id r20-20020a05600c35d400b003dc0b1b0830mr6688372wmq.33.1674638135988;
+        Wed, 25 Jan 2023 01:15:35 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ad2f:6fa7:d25a:7047? ([2a01:e0a:982:cbb0:ad2f:6fa7:d25a:7047])
+        by smtp.gmail.com with ESMTPSA id x26-20020a1c7c1a000000b003db01178b62sm1191493wmc.40.2023.01.25.01.15.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Jan 2023 01:15:35 -0800 (PST)
+Message-ID: <47b12a29-1438-3930-b471-69136d41e148@linaro.org>
+Date:   Wed, 25 Jan 2023 10:15:34 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8250: Disable wsamacro and swr0 by
+ default
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230124164616.228619-1-konrad.dybcio@linaro.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230124164616.228619-1-konrad.dybcio@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The opp-table can be located in the exynos-bus node which uses it, so
-allow such child node.
+On 24/01/2023 17:46, Konrad Dybcio wrote:
+> They are not used on all boards, so disable them by default.
+> Enable them back on MTP/RB5, which were the only current users.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 6 ++++++
+>   arch/arm64/boot/dts/qcom/sm8250-mtp.dts  | 6 ++++++
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi     | 4 ++++
+>   3 files changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index 8c64cb060e21..6802d36fb20c 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -1007,6 +1007,8 @@ can@0 {
+>   };
+>   
+>   &swr0 {
+> +	status = "okay";
+> +
+>   	left_spkr: speaker@0,3 {
+>   		compatible = "sdw10217211000";
+>   		reg = <0 3>;
+> @@ -1322,6 +1324,10 @@ &venus {
+>   	status = "okay";
+>   };
+>   
+> +&wsamacro {
+> +	status = "okay";
+> +};
+> +
+>   /* PINCTRL - additions to nodes defined in sm8250.dtsi */
+>   &qup_spi0_cs_gpio {
+>   	drive-strength = <6>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+> index 0991b34a8e49..c0d83fa9a73b 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+> @@ -759,6 +759,8 @@ codec {
+>   };
+>   
+>   &swr0 {
+> +	status = "okay";
+> +
+>   	left_spkr: speaker@0,3 {
+>   		compatible = "sdw10217211000";
+>   		reg = <0 3>;
+> @@ -892,3 +894,7 @@ &usb_2_qmpphy {
+>   &venus {
+>   	status = "okay";
+>   };
+> +
+> +&wsamacro {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index 95f1a6afcd43..a0ba166f89d8 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -2277,6 +2277,8 @@ wsamacro: codec@3240000 {
+>   
+>   			pinctrl-names = "default";
+>   			pinctrl-0 = <&wsa_swr_active>;
+> +
+> +			status = "disabled";
+>   		};
+>   
+>   		swr0: soundwire-controller@3250000 {
+> @@ -2297,6 +2299,8 @@ swr0: soundwire-controller@3250000 {
+>   			#sound-dai-cells = <1>;
+>   			#address-cells = <2>;
+>   			#size-cells = <0>;
+> +
+> +			status = "disabled";
+>   		};
+>   
+>   		audiocc: clock-controller@3300000 {
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../interconnect/samsung,exynos-bus.yaml      | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/interconnect/samsung,exynos-bus.yaml b/Documentation/devicetree/bindings/interconnect/samsung,exynos-bus.yaml
-index ad9ed596dfef..5e26e48c7217 100644
---- a/Documentation/devicetree/bindings/interconnect/samsung,exynos-bus.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/samsung,exynos-bus.yaml
-@@ -196,6 +196,8 @@ properties:
-     maxItems: 2
- 
-   operating-points-v2: true
-+  opp-table:
-+    type: object
- 
-   samsung,data-clock-ratio:
-     $ref: /schemas/types.yaml#/definitions/uint32
-@@ -227,6 +229,31 @@ examples:
-         operating-points-v2 = <&bus_dmc_opp_table>;
-         devfreq-events = <&ppmu_dmc0_3>, <&ppmu_dmc1_3>;
-         vdd-supply = <&buck1_reg>;
-+
-+        bus_dmc_opp_table: opp-table {
-+            compatible = "operating-points-v2";
-+
-+            opp-50000000 {
-+                opp-hz = /bits/ 64 <50000000>;
-+                opp-microvolt = <800000>;
-+            };
-+            opp-100000000 {
-+                opp-hz = /bits/ 64 <100000000>;
-+                opp-microvolt = <800000>;
-+            };
-+            opp-134000000 {
-+                opp-hz = /bits/ 64 <134000000>;
-+                opp-microvolt = <800000>;
-+            };
-+            opp-200000000 {
-+                opp-hz = /bits/ 64 <200000000>;
-+                opp-microvolt = <825000>;
-+            };
-+            opp-400000000 {
-+                opp-hz = /bits/ 64 <400000000>;
-+                opp-microvolt = <875000>;
-+            };
-+        };
-     };
- 
-     ppmu_dmc0: ppmu@106a0000 {
--- 
-2.34.1
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
