@@ -2,329 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3C5967B253
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 13:07:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A66767B260
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 13:11:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbjAYMHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 07:07:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48256 "EHLO
+        id S234668AbjAYMLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 07:11:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234279AbjAYMHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 07:07:41 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C099568A2;
-        Wed, 25 Jan 2023 04:07:39 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1674648443; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=LJWZWgMDiOvUUOaxxGp5C9xXe/ZHhMSs5o934rGBP7am70paMhfe5n7ok2rlAbrCUcSIk3J1UJ3Dc77SNbm5R4xvuRCHBTwgs/15FvCNj8L3W053HKXINbVwKdIcoTEVZCbINRpNrVxlkPcB0Tc+qeDiIT5I+0PbbfZU+uW3ri8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1674648443; h=Content-Type:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=qawlbShSNoXounucMMWi7eU+2wNcInRRobNeMbuhMeI=; 
-        b=R6/wFhs9j7gRP2AGewtIPEg+O2vbXCpctTB+X9Q9NZ0DMVZlLesku4kCGDHECZHb552u0OymObfuFl7aR3kFok+VXVQbPkwm2FUbANVO5e7zsWvduzmeUERh+cNgh75s232rByVvtZg8IE6P3V3hr7GvHB8f+2nQ6j7SYoV98q0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=linux.beauty;
-        spf=pass  smtp.mailfrom=me@linux.beauty;
-        dmarc=pass header.from=<me@linux.beauty>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1674648443;
-        s=zmail; d=linux.beauty; i=me@linux.beauty;
-        h=Date:Date:Message-ID:From:From:To:To:Cc:Cc:Subject:Subject:In-Reply-To:References:MIME-Version:Content-Type:Message-Id:Reply-To;
-        bh=qawlbShSNoXounucMMWi7eU+2wNcInRRobNeMbuhMeI=;
-        b=ohSnSu8BoNmvslUHYqpZt1gXcPG9EcrR0c5VKZLiKdQ8DOhvpb8PEJs5fcc6Fq65
-        /aiJxKOQ/M7mXI9h9gyLGsgJqp41tUbpSIyNfJOBC9GfqqnLnRQNp0knc7uyx0qrkGh
-        tekv5GtEr/HoZOHvMaV2VqzVsRQ3Wm58pdTqNXPM=
-Received: from lchen-xiaoxin.linux.beauty (221.225.241.248 [221.225.241.248]) by mx.zohomail.com
-        with SMTPS id 1674648440762719.0128530744996; Wed, 25 Jan 2023 04:07:20 -0800 (PST)
-Date:   Wed, 25 Jan 2023 20:06:31 +0800
-Message-ID: <87tu0ehl88.wl-me@linux.beauty>
-From:   Li Chen <me@linux.beauty>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Li Chen <lchen@ambarella.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S234699AbjAYMLM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 07:11:12 -0500
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A00315FE0;
+        Wed, 25 Jan 2023 04:11:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674648671; x=1706184671;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=cuAj2WpziNFOg5adP48sEdhtbwxCAEmx2Zc1n71HQlU=;
+  b=FXbLz+j9G6qq5sKo19wygtWddqFlEMbqUCkm64S3+dYbUp0EzNnbPh8D
+   /zeLAHXYk0n6h0Z1NvWuowEap+J1F5yCH8kUplOFrsGnqfz6o2elUBTXa
+   Qgm7mewh9erXDXkLx6i2fEDjzO2uVtPHHzL+QLKqLbVuH3YM18MTRuvgk
+   jp+mR/Zdbx4So/Azmz4vmdGMbZmpgeXKBU/BZOfw2av1DGaSTo5mtFEvs
+   s2w0W9i5peSaHq64kErPqj9e2YV2EZ3p3kEMKzoFh2DzksA2qluD7B9hk
+   uh4wqemKQ69T4ulwPuOjguSZDNab+oKSJi+82O3LzavMEMZpXZMnEMH9s
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="326568108"
+X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; 
+   d="scan'208";a="326568108"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2023 04:10:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="692936140"
+X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; 
+   d="scan'208";a="692936140"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga008.jf.intel.com with ESMTP; 25 Jan 2023 04:10:49 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1pKec2-00Eq1L-2z;
+        Wed, 25 Jan 2023 14:10:46 +0200
+Date:   Wed, 25 Jan 2023 14:10:46 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "moderated list:ARM/Ambarella SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH 07/15] dt-bindings: clock: Add Ambarella clock bindings
-In-Reply-To: <b26a52ff-6b8a-8a64-7189-346cd2b0d705@linaro.org>
-References: <20230123073305.149940-1-lchen@ambarella.com>
-        <20230123073305.149940-8-lchen@ambarella.com>
-        <0c19efb4-3bca-f500-ca24-14b9d24369ef@linaro.org>
-        <87y1prgdyu.wl-me@linux.beauty>
-        <b26a52ff-6b8a-8a64-7189-346cd2b0d705@linaro.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-ZohoMailClient: External
-X-Spam-Status: No, score=0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_BL_SPAMCOP_NET,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH v7 5/7] media: i2c: add DS90UB960 driver
+Message-ID: <Y9EcRlooHwIjOqiZ@smile.fi.intel.com>
+References: <20230118124031.788940-1-tomi.valkeinen@ideasonboard.com>
+ <20230118124031.788940-6-tomi.valkeinen@ideasonboard.com>
+ <Y8gUuqLBXsXQoNUC@smile.fi.intel.com>
+ <aba49d82-c76f-7ff2-751c-d1be7b8f3bca@ideasonboard.com>
+ <Y8rFh6zO7Hp9mLxE@smile.fi.intel.com>
+ <4286abe2-f23f-d4c9-ef18-f351af7a3a8b@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4286abe2-f23f-d4c9-ef18-f351af7a3a8b@ideasonboard.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Jan 2023 17:55:34 +0800,
-Hi Krzysztof,
+On Wed, Jan 25, 2023 at 01:15:34PM +0200, Tomi Valkeinen wrote:
+> On 20/01/2023 18:47, Andy Shevchenko wrote:
 
-Krzysztof Kozlowski wrote:
->
-> On 25/01/2023 10:28, Li Chen wrote:
-> >
-> > Hi Krzysztof,
-> >
-> > Sorry for my late reply.
-> >
-> > On Mon, 23 Jan 2023 16:11:08 +0800,
-> > Krzysztof Kozlowski wrote:
-> >>
-> >> On 23/01/2023 08:32, Li Chen wrote:
-> >>> This patch introduce clock bindings for Ambarella.
-> >>>
-> >>> Signed-off-by: Li Chen <lchen@ambarella.com>
-> >>> Change-Id: I29018a23ed3a5b79a1103e859a5c7ed7bb83a261
-> >>
-> >> All the same problems plus new:
-> >>
-> >> Subject: drop second/last, redundant "bindings". The "dt-bindings"
-> >> prefix is already stating that these are bindings.
-> >
-> > Well noted.
-> >
-> >>> ---
-> >>>  .../clock/ambarella,composite-clock.yaml      | 52 ++++++++++++++++
-> >>>  .../bindings/clock/ambarella,pll-clock.yaml   | 59 +++++++++++++++++++
-> >>>  MAINTAINERS                                   |  2 +
-> >>>  3 files changed, 113 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/clock/ambarella,composite-clock.yaml
-> >>>  create mode 100644 Documentation/devicetree/bindings/clock/ambarella,pll-clock.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/clock/ambarella,composite-clock.yaml b/Documentation/devicetree/bindings/clock/ambarella,composite-clock.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..fac1cb9379c4
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/clock/ambarella,composite-clock.yaml
-> >>> @@ -0,0 +1,52 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/clock/ambarella,composite-clock.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Ambarella Composite Clock
-> >>> +
-> >>> +maintainers:
-> >>> +  - Li Chen <lchen@ambarella.com>
-> >>> +
-> >>
-> >> Missing description.
-> >
-> > Thanks, description as below will be added in v2:
-> >
-> > "Ambarella SoCs integrates some composite clocks, like uart0, which aggrate the functionality
-> > of the basic clock types, like mux and div."
-> >
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    items:
-> >>
-> >> Drop items.
-> >
-> > Ok.
-> >
-> >>> +      - const: ambarella,composite-clock
-> >>
-> >> Missing SoC specific compatible. This is anyway not really correct
-> >> compatible...
-> >
-> > Most Ambarella's compatibles don't contain SoC name, because we prefer
-> > to use syscon + offsets in dts to tell driver the correct register offsets, or
-> > ues struct soc_device and SoC identity stores in a given physical address.
->
-> That's not correct hardware description. Drop the syscon and offsets.
+...
 
-Ok.
-
+> > > > Esp. taking into account that some of them are using actually
+> > > > post-inc. Why this difference?
+> > > 
+> > > Possibly a different person has written that particular piece of code, or
+> > > maybe a copy paste from somewhere.
+> > > 
+> > > I'm personally fine with seeing both post and pre increments in code.
 > > 
-> > So compatibles like "ambarella,composite-clock" and "ambarella,pinctrl" are
-> > used widely in Ambarella kernels.
->
-> What do you do downstream does not matter. You can invent any crazy idea
-> and it is not an argument that it should be done like that. Usually
-> downstream code is incorrect...
+> > I'm not :-), if it's not required by the code. Pre-increment always puzzles
+> > me: Is here anything I have to pay an additional attention to?
+> 
+> That is interesting, as to me pre-increment is the simpler, more obvious
+> case. It's just:
+> 
+> v = v + 1
+> v
+> 
+> Whereas post-increment is:
+> 
+> temp = v
+> v = v + 1
+> temp
+> 
+> In any case, we're side-tracking here, I think =).
 
-Yeah, I understand it.
-I really hope to learn the standard/right ways and
-I am very grateful for your careful reviews.
+Yes, just see the statistics of use below.
 
-> > Feel free to correct me if you think this
-> > is not a good idea.
->
-> This is bad idea. Compatibles should be specific. Devices should not use
-> syscons to poke other registers, unless strictly necessary, but have
-> strictly defined MMIO address space and use it.
+...
 
-Ok, I will convert syscon-based regmaps to SoC-specific compatibles and of_device_id->data.
+> > > > > +	for (nport = 0; nport < priv->hw_data->num_rxports; ++nport) {
+> > > > 
+> > > > Post-inc?
+> > > 
+> > > I still like pre-inc =).
+> > > 
+> > > I see there's a mix os post and pre incs in the code. I'll align those when
+> > > I encounter them, but I don't think it's worth the effort to methodically go
+> > > through all of them to change them use the same style.
+> > 
+> > Kernel uses post-inc is an idiom for loops:
+> > 
+> > $ git grep -n -w '[_a-z0-9]\+++' | wc -l
+> > 148693
+> > 
+> > $ git grep -n -w ' ++[a-z0-9_]\+' | wc -l
+> > 8701
+> > 
+> > So, non-standard pattern needs to be explained.
 
-But I have three questions:
+> > > > > +	}
 
-0. why syscon + offsets is a bad idea copared to specific compatibles?
-1. when would it be a good idea to use syscon in device tree?
-2. syscon VS reg, which is preferred in device tree?
+...
 
-Thanks in advanced.
+> > > > > +	ret = fwnode_property_read_u32(link_fwnode, "ti,eq-level", &eq_level);
+> > > > > +	if (ret) {
+> > > > > +		if (ret != -EINVAL) {
+> > > > > +			dev_err(dev, "rx%u: failed to read 'ti,eq-level': %d\n",
+> > > > > +				nport, ret);
+> > > > > +			return ret;
+> > > > > +		}
+> > 
+> > This seems like trying to handle special cases, if you want it to be optional,
+> > why not ignoring all errors?
+> 
+> I don't follow. Why would we ignore all errors even if the property is
+> optional? If there's a failure in reading the property, or checking if it
+> exists or not, surely that's an actual error to be handled, not to be
+> ignored?
 
-> >
-> >>> +
-> >>> +  clocks: true
-> >>
-> >> No, needs constraints.
-> >
-> > Ok. I will list all clocks name
-> >
-> >>> +  assigned-clocks: true
-> >>> +  assigned-clock-parents: true
-> >>> +  assigned-clock-rates: true
-> >>
-> >> Drop these three.
-> >
-> > Ok
-> >
-> >>> +  clock-output-names: true
-> >>
-> >> Missing constraints.
-> >
-> > Ok, I will add "maxItems: 1"
-> >
-> >>> +  amb,mux-regmap: true
-> >>
-> >> NAK.
-> >>
-> >> It's enough. The patches have very, very poor quality.
-> >>
-> >> Missing description, missing type/$ref, wrong prefix.
-> >
-> > Sorry, I forget to run dt_binding_check, I will spend some
-> > time learning the binding and check, sorry for it.
-> >
-> >>> +  amb,div-regmap: true
-> >>> +  amb,div-width: true
-> >>> +  amb,div-shift: true
-> >>
-> >> These two are arguments to phandle.
-> >
-> > I will add description and $ref to regmap and width/shift.
->
-> Drop all these syscon properties.
+What the problem to ignore them?
 
-Ok, so I should replace these regmaps with reg, right?
+But if you are really pedantic about it, perhaps the proper way is to add
 
-> >
-> >>> +
-> >>> +  '#clock-cells':
-> >>> +    const: 0
-> >>> +
-> >>> +required:
-> >>> +  - compatible
-> >>> +  - reg
-> >>> +  - clocks
-> >>> +  - '#clock-cells'
-> >>> +
-> >>> +additionalProperties: false
-> >>
-> >> So why you decided to add it here and not in other places?
-> >
-> > I didn't understand it well. I will add it to other places in v2,
-> > thanks for pointint out it.
-> >
-> >>> +
-> >>> +examples:
-> >>> +  - |
-> >>> +      gclk_uart0: gclk-uart0 {
-> >>
-> >> Wrong indentation.
-> >
-> > Well noted.
-> >
-> >>> +        #clock-cells = <0>;
-> >>> +        compatible = "ambarella,composite-clock";
-> >>> +        clocks = <&osc>, <&gclk_core>, <&pll_out_enet>, <&pll_out_sd>;
-> >>> +        clock-output-names = "gclk_uart0";
-> >>> +        assigned-clocks = <&gclk_uart0>;
-> >>> +        assigned-clock-parents = <&osc>;
-> >>> +        assigned-clock-rates = <24000000>;
-> >>> +        amb,mux-regmap = <&rct_syscon 0x1c8>;
-> >>> +        amb,div-regmap = <&rct_syscon 0x038>;
-> >>> +        amb,div-width = <24>;
-> >>> +        amb,div-shift = <0>;
-> >>> +      };
-> >>> diff --git a/Documentation/devicetree/bindings/clock/ambarella,pll-clock.yaml b/Documentation/devicetree/bindings/clock/ambarella,pll-clock.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..65c1feb60041
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/clock/ambarella,pll-clock.yaml
-> >>> @@ -0,0 +1,59 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/clock/ambarella,pll-clock.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Ambarella PLL Clock
-> >>> +
-> >>> +maintainers:
-> >>> +  - Li Chen <lchen@ambarella.com>
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    enum:
-> >>> +      - ambarella,pll-clock
-> >>> +      - ambarella,clkpll-v0
-> >>> +
-> >>> +if:
-> >>
-> >> No, this does not work like that. It sits under "allOf", located after
-> >> "required:".
-> >
-> > Thanks, I will learn "allOf" and use it in v2. BTW, we use the two compatibles as below:
-> > clocks {
-> >                 compatible = "ambarella,clkpll-v0";
->
-> Nope.
->
-> >                 ...
-> >                 gclk_core: gclk-core {
-> >                         #clock-cells = <0>;
-> >                         compatible = "ambarella,pll-clock";
->
-> Also nope.
->
-> >                         clocks = <&osc>;
-> >                         clock-output-names = "gclk_core";
-> >                         amb,clk-regmap = <&rct_syscon 0x000 0x004 0x100 0x104 0x000 0x000>;
->
-> Nope, nope, nope.
->
-> You need proper clock-controller with its own MMIO address space.
->
-> >                 };
-> >                 ...
-> > }
-> >
-> > I'm not sure can I describe the two compatibles in this single yaml, can you give some advice? thanks!
->
-> There are plenty of examples, including example-schema.
+fwnode_property_*_optional()
 
-Ok, I will learn more and fix it.
+APIs to the set where you take default and return 0 in case default had been
+used for the absent property.
 
-Regards,
-Li
+> > > > > +	} else if (eq_level > UB960_MAX_EQ_LEVEL) {
+> > > > > +		dev_err(dev, "rx%u: illegal 'ti,eq-level' value: %d\n", nport,
+> > > > > +			eq_level);
+> > 
+> > This part is a validation of DT again, but we discussed above this.
+> > 
+> > > > > +	} else {
+> > > > > +		rxport->eq.manual_eq = true;
+> > > > > +		rxport->eq.manual.eq_level = eq_level;
+> > > > > +	}
+
+...
+
+> > > > > +struct ds90ub9xx_platform_data {
+> > > > > +	u32 port;
+> > > > > +	struct i2c_atr *atr;
+> > > > > +	unsigned long bc_rate;
+> > > > 
+> > > > Not sure why we need this to be public except, probably, atr...
+> > > 
+> > > The port and atr are used by the serializers, for atr. The bc_rate is used
+> > > by the serializers to figure out the clocking (they may use the FPD-Link's
+> > > frequency internally).
+> > 
+> > The plain numbers can be passed as device properties. That's why the question
+> > about platform data. Platform data in general is discouraged to be used in a
+> > new code.
+> 
+> Device properties, as in, coming from DT?
+
+From anywhere.
+
+> The port could be in the DT, but
+> the others are not hardware properties.
+
+Why do we need them? For example, bc_rate.
+
+> Yes, I don't like using platform data. We need some way to pass information
+> between the drivers.
+
+Device properties allow that and targeting to remove the legacy platform data
+in zillions of the drivers.
+
+> Maybe a custom FPD-Link bus could do that, but that's
+> then going into totally new directions.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
