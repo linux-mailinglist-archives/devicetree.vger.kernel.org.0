@@ -2,166 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1301067BE00
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 22:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 658B167BE34
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 22:24:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236654AbjAYVSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 16:18:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45854 "EHLO
+        id S236662AbjAYVYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 16:24:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236700AbjAYVSe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 16:18:34 -0500
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98A5ED528;
-        Wed, 25 Jan 2023 13:18:13 -0800 (PST)
-Received: by mail-oo1-f41.google.com with SMTP id h3-20020a4ac443000000b004fb2954e7c3so14431ooq.10;
-        Wed, 25 Jan 2023 13:18:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bp0mxhbOHK5m7E/8vPnnoJoZCeVsj8BETflMMGfFRwo=;
-        b=ivV4AmA9OTtt1/YXMzSyZrZoN1NWgNvKxlfCSdeOXjrGdr6F79EYhOB73eMELfcdR5
-         qlyBd0H8pkedv9h01CO1QmB9+HgNyLLpvVWAGME6b5xspqjTroe8ZmeUDFdQJE/lvkyr
-         9qJCKcgta7Thcy2d8cNEYC5kGwr+kW4aD30lEAEQthqkwGE2+pCkz1BdquGx9CixqgB6
-         pJBaqv/74EOsbZoS3rDQ1h9ut/x2FjmuosR3dB0Mrd4HtkD/HCWz7LlIq2pBRkKgjc2m
-         RW2GXYFfbAMkOfKMeURUrLFaUNk4bPUR96MaRO1OMB1B3p54dESl/cYYNwz0XA9xXv/h
-         zUzw==
-X-Gm-Message-State: AFqh2krGxfrxgPqVHQVorFbWQe1w5fxYce19ZG9VSGen56RmRm4+/hlL
-        VkbPwOqsz11Q9qwFsi6GqPiN3fkStw==
-X-Google-Smtp-Source: AMrXdXtVWuRQFhdtS4eZUn6+6TSg6l1vpWoxw0m087w2Ydp334vj17fhVuVkwi0NjMRkFZvJ5FeGOg==
-X-Received: by 2002:a4a:a509:0:b0:4f2:2208:46a2 with SMTP id v9-20020a4aa509000000b004f2220846a2mr16168854ook.8.1674681492788;
-        Wed, 25 Jan 2023 13:18:12 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b1-20020a4aba01000000b004f269f9b8f3sm2316082oop.25.2023.01.25.13.18.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 13:18:12 -0800 (PST)
-Received: (nullmailer pid 2907514 invoked by uid 1000);
-        Wed, 25 Jan 2023 21:18:11 -0000
-Date:   Wed, 25 Jan 2023 15:18:11 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     nick.hawkins@hpe.com
-Cc:     verdun@hpe.com, krzysztof.kozlowski+dt@linaro.org,
-        linux@armlinux.org.uk, linux-i2c@vger.kernel.org,
+        with ESMTP id S236607AbjAYVYj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 16:24:39 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C10346145;
+        Wed, 25 Jan 2023 13:24:38 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 788B06E0;
+        Wed, 25 Jan 2023 22:24:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1674681875;
+        bh=CGjkttHwfRgsm0kmNSWXGmUO2uiFOubL40Z4ufN3diE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DYNfZB90LBlzqeqpYUKkw/t7qika5Xh8hsfjNpvedPyon8jAJqxXvGrcGW62dh0kN
+         EdP0ryaw1oDv/Wj2LqhWqfos2sPzSq+jGOdde9XWLv0h8OIVxGhXxRyovNUl9GOJHQ
+         LXvQhWGU3LepUX5xLSLKHY1OOLqc9K7QAR9oVp4U=
+Date:   Wed, 25 Jan 2023 23:24:31 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jonathan Cormier <jcormier@criticallink.com>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Jyri Sarha <jsarha@ti.com>, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, joel@jms.id.au
-Subject: Re: [PATCH v4 2/5] dt-bindings: i2c: Add hpe,gxp-i2c
-Message-ID: <20230125211811.GA2902717-robh@kernel.org>
-References: <20230125184438.28483-1-nick.hawkins@hpe.com>
- <20230125184438.28483-3-nick.hawkins@hpe.com>
+        Michael Williamson <michael.williamson@criticallink.com>,
+        Bob Duke <bduke@criticallink.com>
+Subject: Re: [PATCH 1/4] dt-bindings: display: bridge: tfp410: Add tfp410 i2c
+ example
+Message-ID: <Y9GeD/vXZ1RJ1MLZ@pendragon.ideasonboard.com>
+References: <20230125-tfp410_i2c-v1-0-66a4d4e390b7@criticallink.com>
+ <20230125-tfp410_i2c-v1-1-66a4d4e390b7@criticallink.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230125184438.28483-3-nick.hawkins@hpe.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230125-tfp410_i2c-v1-1-66a4d4e390b7@criticallink.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 25, 2023 at 12:44:35PM -0600, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
+Hi Jonathan,
+
+Thank you for the patch.
+
+On Wed, Jan 25, 2023 at 04:09:09PM -0500, Jonathan Cormier wrote:
+> Add a i2c example with HDMI connector
 > 
-> Document compatibility string to support I2C controller
-> in GXP.
-> 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-> 
+> Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
 > ---
-> v4:
->  *Provide even greater description with the use
->   of Phandle
->  *Reorder properties so they match the required
->   order
-> v3:
->  *Provide better description with use of Phandle
-> v2:
->  *Removed uneccessary size-cells and address-cells
->  *Removed phandle from hpe,sysreg-phandle
->  *Changed hpe,i2c-max-bus-freq to clock-frequency
-> ---
->  .../devicetree/bindings/i2c/hpe,gxp-i2c.yaml  | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
+>  .../bindings/display/bridge/ti,tfp410.yaml         | 42 ++++++++++++++++++++++
+>  1 file changed, 42 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml b/Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
-> new file mode 100644
-> index 000000000000..6604dcd47251
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/hpe,gxp-i2c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HPE GXP SoC I2C Controller
-> +
-> +maintainers:
-> +  - Nick Hawkins <nick.hawkins@hpe.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: hpe,gxp-i2c
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clock-frequency:
-> +    default: 100000
-> +
-> +  hpe,sysreg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the global status and enable interrupt registers shared
-> +      between each I2C engine controller instance. It enables the I2C
-> +      engine controller to act as both a master or slave by being able to
-> +      arm and respond to interrupts from its engine. Each bit in the
-> +      registers represent the respective bit position.
-
-Each bit represents the bit position?
-
-AIUI, each I2C instance has a bit in it needs to control. How does the 
-driver know what instance (and therefore the correct bit)? Typically you 
-would have a 2nd cell here with that information.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
+> index 4c5dd8ec2951..456214f14b47 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
+> @@ -116,4 +116,46 @@ examples:
+>          };
+>      };
+>  
 > +  - |
-> +    i2c@2600 {
-> +        compatible = "hpe,gxp-i2c";
-> +        reg = <0x2500 0x70>;
-> +        interrupts = <9>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        hpe,sysreg = <&sysreg_system_controller>;
-> +        clock-frequency = <10000>;
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+
+Please use 4 spaces for indentation, as in the other example.
+
 > +
-> +        eeprom@50 {
-> +            compatible = "atmel,24c128";
-> +            reg = <0x50>;
+> +      hdmi_encoder: tfp410@38 {
+> +        compatible = "ti,tfp410";
+> +        reg = <0x38>;
+> +
+> +        ports {
+> +          address-cells = <1>;
+> +          size-cells = <0>;
+> +
+> +          port@0 {
+> +            reg = <0>;
+> +            tfp410_in: endpoint {
+> +              remote-endpoint = <&dpi1_out>;
+> +            };
+> +          };
+> +
+> +          port@1 {
+> +            reg = <1>;
+> +            tfp410_out: endpoint {
+> +              remote-endpoint = <&hdmi_connector_in>;
+> +            };
+> +          };
 > +        };
+> +      };
 > +    };
-> -- 
-> 2.17.1
-> 
+> +
+> +    hdmi: hdmi_connector {
+> +      compatible = "hdmi-connector";
+> +      label = "hdmi";
+> +      type = "a";
+> +      ddc-i2c-bus = <&i2c1>;
+> +      port {
+> +        hdmi_connector_in: endpoint {
+> +          remote-endpoint = <&tfp410_out>;
+> +        };
+> +      };
+> +    };
+> +
+
+You can drop the hdmi connector, the example will still validate.
+
+>  ...
+
+-- 
+Regards,
+
+Laurent Pinchart
