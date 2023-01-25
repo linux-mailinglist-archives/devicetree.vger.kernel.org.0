@@ -2,131 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A135B67B06A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 11:58:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5652267B082
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 12:00:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234848AbjAYK6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 05:58:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58166 "EHLO
+        id S229778AbjAYLAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 06:00:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231253AbjAYK6q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 05:58:46 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C58836FE7
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 02:58:44 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id f19-20020a1c6a13000000b003db0ef4dedcso937986wmc.4
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 02:58:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NuRPLNR6yWS1Hhhteoa3n5LG/0eiGai3p1MOQTw2W5s=;
-        b=qqFffHbYUgKbOOFK779uTpAVqso7+NLJ/7bkN4/5eZa9nhE1BPZvGN3hRo3hkZ3If2
-         3RWGYiofa3jdZiE4bKPCi1FVcI+kL75gFexqitR3HBMune8mzdR8HSeH9XQhh9pUMRy8
-         2cseCQVoiJI8qenQzHDFGLvukgF1CksXVjXuSEnXYPRKVRiIudsXe8mf74z2ePTcHwal
-         YPJGGPZTBIhwFTWYYFxKFKb0F3lG5ELQo/JZgPgT2l2r7iD9tPyXsuqqMchhPfW89QE6
-         i3s7ZwdM4vHo1CDyO8Jv9xqoZc85wY8jNSSVXHvpU+hR4CK9VcL8WSrEdnymd8U8Uw2B
-         Is4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NuRPLNR6yWS1Hhhteoa3n5LG/0eiGai3p1MOQTw2W5s=;
-        b=NmgmgPFECknF3oiInWl1/+jO0pJhHmbw4Oo5tebtzaxIsfoUBGfsPp1blgkYwIKYxu
-         o5dXlzIp/f+RFSqfu/ZviVWWy3cAbJHe460y1/RrQ76Z1vx9PlHj9YFBRcHkCcsJvk4b
-         e+oXrYjBCvQQxMhIhrj3fOeEM/okAITQUD0KjZGlfS7aA6Qs3NyC+0rq4dVrLRr4i5qx
-         eyUzQxv88ZG7lsw0oG92rAIrgilVOjRUk8gS8x2SR/Yn4d1lbosoU5/l+hXMm1djfGKR
-         jNWPxzoO6eir/Qf3EFR5yYKryAkrNP1zPK8Ne6Bt4J2HqNwG76zs8fuUqFcSYeTT2lNW
-         nflg==
-X-Gm-Message-State: AFqh2kqlCAYAZltWUH3RTHvAn7mTvshvE2IJekIvQFlL1BA8x3cZ7P+h
-        5w5B5+uPm0Jf0dpQ7k+k1bMnhQ==
-X-Google-Smtp-Source: AMrXdXsGs6ewgIxoJSL9+UnhSb5FQ3Ji1mS2KqH1XkA7xk9/CI9dYwSwz8HLhMpk3nQ8WUuQSXcz8Q==
-X-Received: by 2002:a05:600c:255:b0:3da:f9b7:74c7 with SMTP id 21-20020a05600c025500b003daf9b774c7mr29933425wmj.13.1674644322703;
-        Wed, 25 Jan 2023 02:58:42 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id g12-20020a05600c310c00b003db012d49b7sm6645021wmo.2.2023.01.25.02.58.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jan 2023 02:58:42 -0800 (PST)
-Message-ID: <96e7aaf5-76ef-9356-84e2-ee1f747dafcd@linaro.org>
-Date:   Wed, 25 Jan 2023 11:58:40 +0100
+        with ESMTP id S235377AbjAYLAv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 06:00:51 -0500
+Received: from mail.8bytes.org (mail.8bytes.org [IPv6:2a01:238:42d9:3f00:e505:6202:4f0c:f051])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5AD673E09E;
+        Wed, 25 Jan 2023 03:00:49 -0800 (PST)
+Received: from 8bytes.org (p200300c27714bc0086ad4f9d2505dd0d.dip0.t-ipconnect.de [IPv6:2003:c2:7714:bc00:86ad:4f9d:2505:dd0d])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.8bytes.org (Postfix) with ESMTPSA id A1D0E262E57;
+        Wed, 25 Jan 2023 12:00:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+        s=default; t=1674644448;
+        bh=pZqTenvwmUFMkjyLYQ4V32+jjuRTr49g3o4fyrl32Ig=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qf/m7S5sx+VJA52EV8ZN/vuJN/DLUeW1hDphjfhrAo2FREupHZC+uERwNp7XBkt+4
+         jZJ27h6OK5h6VI/C3ea0uY1Le4vSb11VhVK7kIiETGRF2P0iKec1pSFjZEtEy0TDtB
+         9/9NYXQgFg0jGKpuzvIxjT4jn+pwYvNL2wtYR+cyKC0F6h68s/GW5nlVS4G88GDoCI
+         KCuezohGwq6s4TzOqbkUPgJClJFRT3SLS5eMnBB+AHhjuy0RvProTrI/59u6BsUr97
+         uZweyoxkzcklhy3kvt3/hSxTj0+51iu6jc6nhfL7UUYS1/nHnOQos2sGsmGoeuW/7W
+         le2nJq5kEwENg==
+Date:   Wed, 25 Jan 2023 12:00:47 +0100
+From:   Joerg Roedel <joro@8bytes.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     will@kernel.org, robin.murphy@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779g0
+ support
+Message-ID: <Y9EL3yVHkfyssK+q@8bytes.org>
+References: <20230119131833.1008752-1-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v8 5/5] thermal: mediatek: try again if first temp read is
- bogus
-Content-Language: en-US
-To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh@kernel.org>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Michael Kao <michael.kao@mediatek.com>
-References: <20221018-up-i350-thermal-bringup-v8-0-23e8fbb08837@baylibre.com>
- <20221018-up-i350-thermal-bringup-v8-5-23e8fbb08837@baylibre.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20221018-up-i350-thermal-bringup-v8-5-23e8fbb08837@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230119131833.1008752-1-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/01/2023 10:50, Amjad Ouled-Ameur wrote:
-> In mtk_thermal_bank_temperature, return -EAGAIN instead of 0
-> on the first read of sensor that often are bogus values.
+On Thu, Jan 19, 2023 at 10:18:33PM +0900, Yoshihiro Shimoda wrote:
+> Document the compatible values for the IPMMU-VMSA blocks in
+> the Renesas R-Car V4H (R8A779G0) SoC.
 > 
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
->   drivers/thermal/mtk_thermal.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
-> index b8e06f6c7c42..e7be450cd40a 100644
-> --- a/drivers/thermal/mtk_thermal.c
-> +++ b/drivers/thermal/mtk_thermal.c
-> @@ -736,7 +736,7 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
->   		 * not immediately shut down.
->   		 */
->   		if (temp > 200000)
-> -			temp = 0;
-> +			temp = -EAGAIN;
+>  Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Did you try to add a delay between the bank init and the thermal zone 
-device register (eg. 1ms) ?
-
-May be the HW did not have time to initialize and capture a temperature 
-before thermal_zone_device_register() is called (this one calls get_temp) ?
-
->   		if (temp > max)
->   			max = temp;
-> 
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Applied, thanks.
