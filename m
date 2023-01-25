@@ -2,141 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58C7467AAD6
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 08:26:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C12067AAE0
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 08:28:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234961AbjAYH0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 02:26:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
+        id S234182AbjAYH2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 02:28:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235009AbjAYH0r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 02:26:47 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1719F42DD0;
-        Tue, 24 Jan 2023 23:26:44 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id j5so3952272pjn.5;
-        Tue, 24 Jan 2023 23:26:44 -0800 (PST)
+        with ESMTP id S234572AbjAYH2S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 02:28:18 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E54CB2B63F
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 23:28:16 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id b7so16103713wrt.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 23:28:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Hq3YLnLVdkwJ+hnndTnVXYO2IvsFe7R/GdMhEuzT5j4=;
-        b=eXrMPHaKJJACcgNbFqY2MDAunrGJohcSX0+b/zZxdECntrVwymZjD+yOT6pSbC9HqI
-         7qSpSKQWfJUvWCfG5mkvrnOPcsf7NsPVW0BFPd2UVWjfJk7g2fTbzt8El0BmAfHDmgMH
-         AXv7eJuaagz8LUGm/uHJMqIEKdLhkERxNkq3+YMtBLA4t4zg8MIYlEL8pxxC3i5tayCH
-         OYdhUL3ybK/mnER140UZB9853TdZ8J8aIXHe1GFqP0cZfK48qXnGzM9On6PVMuvnXMH4
-         +gavM0ogR2a/Rtzj/G4pgVsSYWWSgXqFw5Vfod4SsO0i5WQ/hIhFjnmFOh02f0Cm/JXG
-         mIEA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0juD3Z6CRCmdLHAmguPHCfD9MzYp+16yRKaiS/m80wE=;
+        b=hJxiagec1rMDmnWfW5Db4ImIGKsN81dLF361HfBJP8gONdeMsQyVbgsv7K0lPF+6FT
+         YD3DGQd8VLYNojWtfWnDmovrjYzRRV8h74Bq+5b65qUON8i5QrRbdvw0ZbMbPOCyO8FJ
+         yZNbD8ZWFKyi+jn1oyL7JMVdFx6Npj5RpjZozks7cLPnw2soJDZ7F6VTPpqgYH2zI2Kk
+         3JyxsqEzKEnRU6LN3haphIkjU7qd1bprZTL7m5w1ngAP0ZhCsM6JtiqG4VfW13QzJjBC
+         +JqSq7CQnBEBerxs6/Gi60UodIESSToTeelYUJgURCdi07LHNfhSmBPOM1i3aFy+v2gZ
+         1n9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Hq3YLnLVdkwJ+hnndTnVXYO2IvsFe7R/GdMhEuzT5j4=;
-        b=PltIWEBK2/+A+l0TP1yInK39oXNa2m5zTfUK2WmewmGMUKGQ6gskZ1cWEMV+QkG5K+
-         neP9PBzbRGgnzz4xp9mVAFILhXxacZz+4neb5b34ndmoQ/4Lr8U43ww/hFZHcl57gxMv
-         Aay+TcxavnU7BvCi6imc3FZD/a/AXkOAdRrK14mkAVPlrR5CCiRSEkLsHGL36YeHn8QU
-         V+tAeikT44/WOxWNnpsqFUmtwh8C3Om2ONTzx3RsM6WzQGDSBuO4nFgFmkH51DHlMyky
-         DbKwyepQ5O/VzLnJ5ne/tRF1wVOTxZ/k6jyPgZPB7T7kAiZieFjTsowfJOB7kSsKqYbF
-         553g==
-X-Gm-Message-State: AFqh2kpCFZmYG0IyiDsEHSufTaMQq8QSeRsVE6LEWH5DzoffcBIm7qtu
-        dWQxb3ktoI1TdV6Q0WeJvgM=
-X-Google-Smtp-Source: AMrXdXstAyLpMzWAC60MRIw9AG6QXdX7KPpnlpPM+JvyeDaY19pGDE6gRaLGJiCKZwcMgWfTDsZ/Ig==
-X-Received: by 2002:a17:903:2289:b0:194:9290:fa6f with SMTP id b9-20020a170903228900b001949290fa6fmr43429571plh.25.1674631603605;
-        Tue, 24 Jan 2023 23:26:43 -0800 (PST)
-Received: from localhost.localdomain ([45.112.3.15])
-        by smtp.gmail.com with ESMTPSA id h6-20020a170902f54600b001769e6d4fafsm2902500plf.57.2023.01.24.23.26.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 23:26:43 -0800 (PST)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-amlogic@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH RESEND linux-next v4 4/4] dt-bindings: usb: Fix properties for VL817 hub controller
-Date:   Wed, 25 Jan 2023 07:26:04 +0000
-Message-Id: <20230125072605.1121-5-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230125072605.1121-1-linux.amoon@gmail.com>
-References: <20230125072605.1121-1-linux.amoon@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0juD3Z6CRCmdLHAmguPHCfD9MzYp+16yRKaiS/m80wE=;
+        b=jCsCp4hkVCTggPNCzDmz/UhaKBOoJJhi50gClmdx661S2ZnsZnfESKBjLUsgP/7TOP
+         jMrCsf/fVzDfK8oYTtQ0dHOeJruBPdg2rj9kihL/uTx5vW2c7H5I+oF727M6PVaHycEV
+         ry9WK509hWg8WRjEr3GTGyKNj80TcniRXyGx1swaWtpLmrxPsTTddOQV2bMR5Hna6Gb2
+         VZQk+bHZbiVDsRqVzaWlfcdKzHk9cabx77jcj5pAn8901ID3uvFRpikd6EtAn5DNflvJ
+         kJ3HAZno/nXPEvjNBc2KqVH6L1JIwy0j7RsyVfIAXVpphF9TZOUhwRGTujUBtH1VqkWu
+         fjXQ==
+X-Gm-Message-State: AO0yUKVr8qbGdYQe6tD9VlLm4XFZmKRSwRSTTfCe00LzpUjrFcj6IoJU
+        mnjKuved2uF1Np2S9nX+LO7D+g==
+X-Google-Smtp-Source: AK7set9lUBCjZ9+aqMQcWhmoChQgZw7gc5KBt4C0vQo4fYLZ0wwqlOF3vMs9z66OwHjipriVA7x0sQ==
+X-Received: by 2002:a5d:4f87:0:b0:2bf:b2c2:e122 with SMTP id d7-20020a5d4f87000000b002bfb2c2e122mr3656874wru.29.1674631695385;
+        Tue, 24 Jan 2023 23:28:15 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id g16-20020adffc90000000b002882600e8a0sm3788880wrr.12.2023.01.24.23.28.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Jan 2023 23:28:14 -0800 (PST)
+Message-ID: <e053aa6d-8a0b-b0ea-85e7-a1b35fd00e53@linaro.org>
+Date:   Wed, 25 Jan 2023 08:28:13 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v2 2/2] dt-bindings: display: simple-framebuffer: Document
+ physical width and height properties
+Content-Language: en-US
+To:     Rayyan Ansari <rayyan@ansari.sh>, Rob Herring <robh@kernel.org>
+Cc:     dri-devel@lists.freedesktop.org,
+        ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev,
+        janne@jannau.net, Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
+        Hans de Goede <hdegoede@redhat.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thomas Zimmermann <tzimmermann@suse.de>
+References: <20230121153544.467126-1-rayyan@ansari.sh>
+ <20230121153544.467126-3-rayyan@ansari.sh>
+ <CAL_JsqL+G=Cxkc2j_NowznpqNAnixrU+-6SdccFbpMaP6OYSqQ@mail.gmail.com>
+ <cdf32cb0-4529-6bbd-fdda-ae641d141ee5@ansari.sh>
+ <20230123175339.GA2019900-robh@kernel.org>
+ <3d448210-e9d2-b0ee-e009-535bb0bb760d@ansari.sh>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3d448210-e9d2-b0ee-e009-535bb0bb760d@ansari.sh>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cleanup by removing unneeded quotes from refs and
-add maxItems to reset-gpios and fix the required list.
+On 24/01/2023 23:19, Rayyan Ansari wrote:
+> On 23/01/2023 17:53, Rob Herring wrote:
+>> On Sun, Jan 22, 2023 at 05:25:38PM +0000, Rayyan Ansari wrote:
+>>> On 22/01/2023 15:36, Rob Herring wrote:
+>>>> On Sat, Jan 21, 2023 at 9:36 AM Rayyan Ansari <rayyan@ansari.sh> wrote:
+>>>>>
+>>>>
+>>>> Why do you need this change?
+>>>>
+>>>> The 'simple-framebuffer' contains data on how the bootloader
+>>>> configured the display. The bootloader doesn't configure the display
+>>>> size, so this information doesn't belong here. The information should
+>>>> already be in the panel node, so also no point in duplicating it here.
+>>>>
+>>>>> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
+>>>>> ---
+>>>>>    .../devicetree/bindings/display/simple-framebuffer.yaml   | 8 ++++++++
+>>>>>    1 file changed, 8 insertions(+)
+>>>
+>>> Hi Rob,
+>>>
+>>> There is the usecase that Hans has mentioned, but I have also mentioned
+>>> another usecase previously.
+>>>
+>>> Adding the width-mm and height-mm properties allows user interfaces such as
+>>> Phosh (https://puri.sm/posts/phosh-overview/) to scale correctly to the
+>>> screen. In my case, a panel node is not available and the aforementioned
+>>> interface is in fact running on the SimpleDRM driver (which binds to the
+>>> simple-framebuffer device).
+>>
+>> Why is the panel node not available? Why not add it? Presumably it is
+>> not there because you aren't (yet) using the simple-panel driver (and
+>> others that would need). But presumably you will eventually as I'd
+>> imagine turning the screen off and back on might be a desired feature.
+> 
+> It requires more than using the simple-panel driver: first the SoC side 
+> display hardware needs to be brought up, then a panel driver that 
+> implements the proper DCS initialisation sequence needs to be written 
+> (which is currently not fully known).
+> 
+>>
+>> So why add a temporary DT property that's tied to your *current* kernel? > The DT should not be tightly coupled to the kernel.
+> 
+> I'm not sure what you mean by it being "tightly coupled" to the kernel.
 
-Fixes: 31360c28dfdd ("dt-bindings: usb: Add binding for Via lab VL817 hub controller")
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- .../devicetree/bindings/usb/vialab,vl817.yaml  | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
+It means that you used current Linux driver support (or lack) for some
+hardware as an argument for bindings. If you add later the driver, the
+bindings should be changed? Answer is: not. Bindings should be
+independent of Linux drivers, thus whatever kernel is missing now, is
+not an argument in favor of this property.
 
-diff --git a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-index 5f9771e22058..23a13e1d5c7a 100644
---- a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-+++ b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-@@ -14,29 +14,32 @@ allOf:
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - usb2109,2817
--          - usb2109,817
-+    enum:
-+      - usb2109,2817
-+      - usb2109,817
- 
-   reg: true
- 
-   reset-gpios:
--    description: GPIO controlling the RESET# pin.
-+    maxItems: 1
-+    description:
-+      GPIO controlling the RESET# pin.
- 
-   vdd-supply:
-     description:
-       phandle to the regulator that provides power to the hub.
- 
-   peer-hub:
--    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    $ref: /schemas/types.yaml#/definitions/phandle
-     description:
-       phandle to the peer hub on the controller.
- 
- required:
--  - peer-hub
-   - compatible
-   - reg
-+  - reset-gpios
-+  - vdd-supply
-+  - peer-hub
- 
- additionalProperties: false
- 
-@@ -45,7 +48,6 @@ examples:
-     #include <dt-bindings/gpio/gpio.h>
- 
-     usb {
--        dr_mode = "host";
-         #address-cells = <1>;
-         #size-cells = <0>;
- 
--- 
-2.38.1
+Best regards,
+Krzysztof
 
