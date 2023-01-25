@@ -2,109 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E308467AEFF
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 10:57:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23CEA67AF2C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 11:02:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235368AbjAYJ5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 04:57:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42802 "EHLO
+        id S235071AbjAYKCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 05:02:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234264AbjAYJ5K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 04:57:10 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F23C11651
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 01:57:06 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id e3so16437265wru.13
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 01:57:06 -0800 (PST)
+        with ESMTP id S234742AbjAYKCJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 05:02:09 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1AE353E7B
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 02:02:07 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so845117wmb.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 02:02:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=C28GHq9eGnl5C7gie+JAKtI6Ivmm07fD3qZCGDhhJD0=;
-        b=apCrKMlOFE35UeCLT/45jDefh+0DGAJSPjkmuPG50sSlGr5w+2ZAWeU9HH1Q+NyJ5w
-         cKkygEQ7SV2ArCItkDAEfQBwtvyYuuuT2mlux5xzqqYHfrVARXbqGBn51HkC9Bu1MDnS
-         3LEJ1gdTp5iM8+REO/3Zz7HSnFGOwCNV3klEMMQlyIb3fy9pzsOojlIcPEDaazFHXDfM
-         ezgL8ynmxSWcJDoIiOSDhunqVqiijYkrFsDNft+2yamXM4/+42d/adaNFPFGUhS/ebNj
-         xYruzqMiu9pZ6Zr1nnD6TQd94pAZIjkhT0v1bxjk0pqaO9o+96+DFwxuYxHEVgYXvqS4
-         FmNQ==
+        bh=Ez1jIiTv9nX1Skc1wM1E/PnmqK6jZZdjJqYTYBY0xHY=;
+        b=HxmBkWhRZanAM19gbjD/LEt8+fEINkj3ywKLosQLQbJQNZsXfqnXpDbmIAv4vAZn+h
+         Rp/oupBFgjLiKjSMJn0GJqR2OhyItaYDqy9fwTsHSNcLN4EsLbpzBTzwF7Eru0Dyz4MS
+         YHXwLS9ae2cRkytyAYZtRsKZGPO+vvwpEVDhVGWnjZn8WvObuOjAIj7unsoEpdiX6wsG
+         ig6NlHG+XmKN3XjOp67HzuQsrDjiAHGpq3gf5Dkone9+k/HByHdp2SKXjlBhOEtRsPlG
+         brxwTlr9t101guYLnvtRfX0DOYLo0tR56e+9YXEZV8ZDADgbSaQ7KpV5J73e+I9NvoCe
+         WuXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C28GHq9eGnl5C7gie+JAKtI6Ivmm07fD3qZCGDhhJD0=;
-        b=4kyasgJ3G6axVZcPhitWMtyQFB81je4IegNeDd0ym/Ye4q9H52qKOpOkrVp3BfwisL
-         w541kNf31TB1alnJx4tyv6LdQU24A7lpJq2vD9k5/W1+cfIehMaj2DOc4AqAEsXprwTO
-         0VfYgzgmO8JdrBpJ/7kwyB/TFbkC1SzbvUubw1jk0cQtnwyZwh7IM9cqUPWoAjLUUD6s
-         E29/205PlSsZeVUInt5GgFd/QOzMBTTDP/rhrAIqaEqcj4z56ZovseazEPHGc+YjSL1A
-         Rz5qnP+rIFZhCwMXJW+YCAUWXGGeE7B9HADGqmrACLIT9JRGqKIYkujKF5ImG/De2DU6
-         mlKQ==
-X-Gm-Message-State: AFqh2kpahT1NYZ4iwBU+vr3DYBvcuMrRlnbYt3dgKYnDC3jYNY5uM2IB
-        xbPciDY81mEyf50OwP73Xw1bEg==
-X-Google-Smtp-Source: AMrXdXvsbvHnaMoEXFp66nyVdfTb24Mb5lvBtJ7BntzuF0Hy5p5VVX9YiWQI19QuXrcISd1TqN8J8w==
-X-Received: by 2002:a5d:568f:0:b0:2be:b09:796c with SMTP id f15-20020a5d568f000000b002be0b09796cmr27610933wrv.64.1674640624592;
-        Wed, 25 Jan 2023 01:57:04 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q14-20020adff78e000000b002be07cbefb2sm4759057wrp.18.2023.01.25.01.57.03
+        bh=Ez1jIiTv9nX1Skc1wM1E/PnmqK6jZZdjJqYTYBY0xHY=;
+        b=JT2koUOD2lBQ9EzS7PmVpCkaRi/RCR23XjqDJrNRZU41Opqx+Y3IVTZx1IesCDQ/mR
+         Y6EoAyLv8Sx2cGeg37aWkQow9ytOEQLgN5PAX9RZfG74Y+K7pMoTw4OqCflGymMJARc2
+         x8hC0vvCIN41fi0iE+ledNYUuStCspsbF5+7cYuSuJM0m7dBn1u5+0kXDwgOw4EEk8Ei
+         YS7mFkcuwRfs1/DNthqcdgSIRnU3cq160wNJ7Olr5xIbT8v9ECl8iz8IPG1KMDrW5bs7
+         qf4g3VLNZpVv20EAtNpAp6tsjK5iTCH84gGkgAZzvge5sHCzYSSb7hNPEaep6h1MWdaK
+         Y8FA==
+X-Gm-Message-State: AFqh2krsIkX7nF4mNo51GraWOHRkbYW+d20yF9L3DO1WdfaXpbv4DRMO
+        mG0XYX190jvvHOotk2OjByCMPQ==
+X-Google-Smtp-Source: AMrXdXsWI+Xn0CCZaPu7nEc4G6KvXleAVgMRzL7EE29YVtnKarz3Jdw/b+2Wh3ptAxw9WtwVxtljUg==
+X-Received: by 2002:a1c:4b19:0:b0:3da:fb5c:8754 with SMTP id y25-20020a1c4b19000000b003dafb5c8754mr28049633wma.2.1674640925987;
+        Wed, 25 Jan 2023 02:02:05 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id h20-20020a05600c351400b003dc1300eab0sm1460677wmq.33.2023.01.25.02.02.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jan 2023 01:57:04 -0800 (PST)
-Message-ID: <d2ce0dce-eaa0-12e9-e250-bf948d2ce9e1@linaro.org>
-Date:   Wed, 25 Jan 2023 10:57:03 +0100
+        Wed, 25 Jan 2023 02:02:05 -0800 (PST)
+Message-ID: <0df50d0f-de3a-a2be-9363-2b3c65599f96@linaro.org>
+Date:   Wed, 25 Jan 2023 11:02:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH RESEND linux-next v4 4/4] dt-bindings: usb: Fix properties
- for VL817 hub controller
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v7 4/4] thermal: mediatek: add another get_temp ops for
+ thermal sensors
 Content-Language: en-US
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230125072605.1121-1-linux.amoon@gmail.com>
- <20230125072605.1121-5-linux.amoon@gmail.com>
- <bd29cba9-fb1c-051e-e10e-cb3e73ec5ff9@linaro.org>
- <CANAwSgRWVPghhEwvQgzQicJHcjgAv_d5nYfE0Ni90butc5ouSQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CANAwSgRWVPghhEwvQgzQicJHcjgAv_d5nYfE0Ni90butc5ouSQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        linux-pm@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Michael Kao <michael.kao@mediatek.com>,
+        linux-kernel@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+References: <20221018-up-i350-thermal-bringup-v7-0-ebf08ff2eddb@baylibre.com>
+ <20221018-up-i350-thermal-bringup-v7-4-ebf08ff2eddb@baylibre.com>
+ <4121bb6b-30db-7a23-f4c8-40afdda7a0b5@linaro.org>
+ <COTTJX635TNF.1WL2TEZN7VW9O@amjad-ThinkPad-T490>
+ <adfe41f7-00e5-876b-7803-3127919fba13@linaro.org>
+ <COUMF3IZ9Y63.LA3KFHJSUZIC@amjad-ThinkPad-T490>
+ <0644aede-c281-3919-50e0-4466f6587d81@linaro.org>
+ <187b0fe1-1f14-d8b8-c827-1e824da0b1d3@baylibre.com>
+ <d3daece0-ed23-fae7-9bc8-c6e53b84e8e7@baylibre.com>
+ <9f9547a2-69dd-f91d-c587-289156bf9d55@linaro.org>
+ <2950b824-ad2f-2579-a956-a03d157453eb@baylibre.com>
+ <c1fad818-1858-2e81-84fd-03cfb54d8938@linaro.org>
+ <0b5e3a14-fd23-4646-d4cb-df255eb8fa20@baylibre.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <0b5e3a14-fd23-4646-d4cb-df255eb8fa20@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/01/2023 10:43, Anand Moon wrote:
-> Hi Krzysztof,
+On 24/01/2023 23:27, Amjad Ouled-Ameur wrote:
 > 
-> On Wed, 25 Jan 2023 at 13:10, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 25/01/2023 08:26, Anand Moon wrote:
->>> Cleanup by removing unneeded quotes from refs and
->>> add maxItems to reset-gpios and fix the required list.
+> On 1/24/23 18:55, Daniel Lezcano wrote:
+>> On 24/01/2023 18:46, Amjad Ouled-Ameur wrote:
 >>>
->>> Fixes: 31360c28dfdd ("dt-bindings: usb: Add binding for Via lab VL817 hub controller")
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> On 1/24/23 17:54, Daniel Lezcano wrote:
+>>>>
+>>>> Hi Amjad,
+>>>>
+>>>> On 24/01/2023 11:08, Amjad Ouled-Ameur wrote:
+>>>>
+>>>> [ ... ]
+>>>>
+>>>>>>>
+>>>>>>> IIUC, there is a sensor per couple of cores. 1 x 2Bigs, 1 x 
+>>>>>>> 2Bigs, 1 x 4 Little, right ?
+>>>>>>
+>>>>>> MT8365 SoC has 4 x A53 CPUs. The SoC has 4 thermal zones per 
+>>>>>> sensor. Thermal zone 0 corresponds
+>>>>>>
+>>>>>> to all 4 x A53 CPUs, the other thermal zones (1, 2 and 3) has 
+>>>>>> nothing to do with CPUs. The cooling device type
+>>>>>>
+>>>>>> used for CPUs is passive. FYI, thermal zones 1, 2 and 3 are 
+>>>>>> present in the SoC for debug-purpose only, they are not supposed
+>>>>>>
+>>>>>> to be used for production.
+>>>>>>
+>>>>> After reconsidering the fact that zones 1, 2 and 3 are only used 
+>>>>> for dev/debug, it might be best to avo >
+>>>>> aggregation as you suggested, and keep only support for zone 0 in 
+>>>>> this driver. Thus I suggest I send a V8
+>>>>>
+>>>>> where I keep only below fixes for this patch if that's okay with you:
+>>>>>
+>>>>> - Define "raw_to_mcelsius" function pointer for "struct 
+>>>>> thermal_bank_cfg".
+>>>>>
+>>>>> - Fix "mtk_thermal" variable in mtk_read_temp().
+>>>>>
+>>>>> - Set "mt->raw_to_mcelsius" in probe().
+>>>>>
+>>>>>
+>>>>> For zones 1, 2 and 3 we can later add a different driver specific 
+>>>>> for dev/debug to probe them to
+>>>>>
+>>>>> avoid confusion.
+>>>>
+>>>> You can add them in the driver and in the device tree, but just add 
+>>>> the cooling device for the thermal zone 0.
+>>>
+>>> Thermal zone 0 uses CPU{0..3} for passive cooling, in this case we 
+>>> should register cooling device with
+>>>
+>>> cpufreq_cooling_register() for each CPU right ?
 >>
->> NAK.
+>> No, the OF code device tree does already that. You just have to 
+>> register the different thermal zones.
 >>
->> You ignored my feedback. Please help me understand how my tag appeared here.
->>
-> I have followed your feedback and modified the below patch
-> I thought you review these changes see below.
+>> Do you have a pointer to a device tree for this board and the thermal 
+>> setup ?
 > 
-> [0] https://lore.kernel.org/all/df1c8545-01d0-3821-0c19-07a369e40472@linaro.org/
+> Sure, here is a dtsi for MT8365 SoC which contains thermal nodes [0].
 
-This was entirely different patch. You cannot take reviews from
-something else and apply to other patch.
+ From my POV, there are two different setup with the DT but only one 
+implementation with the driver.
 
-Best regards,
-Krzysztof
+The driver should register all the thermal zones for each CPUs. For 
+that, make things nice with the defines for the dt-bindings like [1].
+
+Then the device tree:
+
+setup1:
+
+Describe all the thermal zones in the DT which will be similar to [2]. 
+Each CPU has a thermal zone, trip points and the same cooling device.
+
+The first thermal zone reaching the trip temperature threshold will 
+start the mitigation. The thermal framework takes care of multiple 
+thermal zones sharing the same cooling device.
+
+The result will be the same as the max temperature aggregation you did 
+previously.
+
+setup2:
+
+Describe all the thermal zones in the DT [3], but add the cooling device 
+only on the sensor you are interested in mitigating.
+
+
+And finally, if the sensors should be used to describe a kind of 
+temperature gradient, a linear equation could be used but that is not 
+implemented yet in the thermal framework.
+
+Hope that helps
+
+   -- Daniel
+
+[1] 
+https://lore.kernel.org/linux-arm-kernel/5dd5c795-5e67-146d-7132-30fc90171d4c@collabora.com/T/#Z2e.:..:20230124131717.128660-3-bchihi::40baylibre.com:1include:dt-bindings:thermal:mediatek-lvts.h
+
+[2] 
+https://lore.kernel.org/linux-arm-kernel/5dd5c795-5e67-146d-7132-30fc90171d4c@collabora.com/T/#m303240c4da71f6f37831e5d1b6f3da771ae8dd90
+
+[3] 
+https://lore.kernel.org/linux-arm-kernel/5dd5c795-5e67-146d-7132-30fc90171d4c@collabora.com/T/#Z2e.:..:20230124131717.128660-6-bchihi::40baylibre.com:1arch:arm64:boot:dts:mediatek:mt8195.dtsi
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
