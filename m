@@ -2,107 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB35267B121
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 12:25:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E91567B132
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 12:29:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234997AbjAYLZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 06:25:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47638 "EHLO
+        id S234768AbjAYL30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 06:29:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229884AbjAYLZP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 06:25:15 -0500
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A20979EF1;
-        Wed, 25 Jan 2023 03:25:14 -0800 (PST)
-Received: by mail-qt1-f179.google.com with SMTP id x5so15624948qti.3;
-        Wed, 25 Jan 2023 03:25:14 -0800 (PST)
+        with ESMTP id S235319AbjAYL3O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 06:29:14 -0500
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5452372A1;
+        Wed, 25 Jan 2023 03:29:13 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id i65so13224872pfc.0;
+        Wed, 25 Jan 2023 03:29:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Brsbq1Lv+VKoJkUJMRBwphPkNmZ937GSrjGfpdCV4ds=;
+        b=N234N6tHXN6869JbOVsuHAc7ZBQzqqlWp5zayAmIVqkUEi1SQCy5KKJAXgAOuBSy5H
+         LwJV8DCPrJod2qessT8ts88gq+ZazAWhdAjpwk9h1i2ewBz0Q3Fpv8D6Uho4ToC6avTE
+         UKY/LEfhEKr5fta3ITAAPGHun2K+KJNQggqqmViANKQkY4W9gbLxJnwz56ZXIMJC6wOJ
+         3FTTXhOhTwMR0AlHJ5UmDq+5zAvPbko4dpvfZxgbMg9woMX3U7xYNSR9f7LxlE5X+DMm
+         sG5Vpe6Ur7gOxQYwjjx1NW+TXHU4Th/QKj9CUPmPQUb5Q5jtYfFt5G+k9u4DZRRCGub2
+         FUCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=AMUD0RKspnOJT0fL1Ughd3ZRCNw/KqSlhNrqgOj0lHg=;
-        b=u6ZT0e+1/3oYmTRUWqhz2FjvpbYc87aAE2GBMPb22wHIR6W++vddHKcbq4s+Lb/NbR
-         ev5UhtTr/7LGJDsmnLkTye/au7Yg9f7WZTzcxKVQKrZGtqFKWI5RbaPTGR1kK9xUpdf9
-         z8xIxfdwsRQKLiO5yA8crp/zrl92i/j2GnSB8Fxr1P+ByV0j7slqEO3AKR62cBhdRwvE
-         DkP0MZZddyP6F7diW4nBlDETcm3t1EUVpMPiX2/kOgi35kVBtVQAg4ca0I4aA0NnBgG8
-         dsi3rMx6nfneJQykpfjp4aMEObuYlqVwFOCgPEzyF7QgXIPU2/rO5UuiAuXmpeTh4mj0
-         /8nA==
-X-Gm-Message-State: AO0yUKWLJ86anFgW1HCilUl4U3D+cKQa1e/UZBVXBSR/ET/mhH2FD8vG
-        BMkl2PV7q/0McwnyDa2NCtdyrVwYWn4now==
-X-Google-Smtp-Source: AK7set+ird2aTpgnhCMgOGUFJU1IP09u9ikqz4oHzonZWhjSzHy3YEwik2PH+Vd6yRPh1qtKKJUevg==
-X-Received: by 2002:a05:622a:8c:b0:3b6:9418:ad6f with SMTP id o12-20020a05622a008c00b003b69418ad6fmr2622996qtw.67.1674645913616;
-        Wed, 25 Jan 2023 03:25:13 -0800 (PST)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id dx14-20020a05620a608e00b006b95b0a714esm3343988qkb.17.2023.01.25.03.25.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jan 2023 03:25:13 -0800 (PST)
-Received: by mail-yb1-f172.google.com with SMTP id d132so1033129ybb.5;
-        Wed, 25 Jan 2023 03:25:13 -0800 (PST)
-X-Received: by 2002:a25:9ac1:0:b0:7b4:6a33:d89f with SMTP id
- t1-20020a259ac1000000b007b46a33d89fmr2482812ybo.543.1674645912722; Wed, 25
- Jan 2023 03:25:12 -0800 (PST)
-MIME-Version: 1.0
-References: <20230102221815.273719-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230102221815.273719-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20230102221815.273719-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 25 Jan 2023 12:25:01 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVTUiPpUgmyqx_UMPDWCCcWApsduJtXUE9ZNY0iOmxXjw@mail.gmail.com>
-Message-ID: <CAMuHMdVTUiPpUgmyqx_UMPDWCCcWApsduJtXUE9ZNY0iOmxXjw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: interrupt-controller:
- renesas,rzg2l-irqc: Document RZ/G2UL SoC
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        bh=Brsbq1Lv+VKoJkUJMRBwphPkNmZ937GSrjGfpdCV4ds=;
+        b=iaJLMW2izEwlWA6C0oFrq/iRvCZnJGMuYHjo2BtFatmeYo5vniHR0/edozWNjWKql6
+         kFP6Gn3QPjgOe5J6G/EzqNnsXestwkCoLx1IU8D6DZj76YS3Q5YMfAxI5xdVHS0b/b4/
+         S/Jv7BbIedL52ucbJMAlOfDYIAd+6xctsbCi8aOn6NNXozeOWRH1Atcz9Wxt8F8wczH8
+         jyHx2olE6YHge9c3wfuxiaJ2UVVefF9Oxb6lZEfra2HERGvrADFTGM3Mqftz3SnP8u5I
+         CWhBiQ47FUnyb0NycZTcTDiyXcncKqxKinoKrcFPVMoNRQZWRx/YKzbAIr2jvLBIMUYH
+         KRHQ==
+X-Gm-Message-State: AFqh2kqMAZE0akV//gKEXGXT8PwKMWCrhnAbbQbxplEDrpnQHlbBm72K
+        OpoCBE2Fa2jVqbDy8vhI2MY=
+X-Google-Smtp-Source: AMrXdXtheOC1DaQUBGB7WFc/s0dAMAH2fV2z784by3ddKYCHxzP9HVIKDHQncwbz4GPsb1/PpwZrpw==
+X-Received: by 2002:a05:6a00:328b:b0:577:1c59:a96c with SMTP id ck11-20020a056a00328b00b005771c59a96cmr34326811pfb.2.1674646152891;
+        Wed, 25 Jan 2023 03:29:12 -0800 (PST)
+Received: from localhost.localdomain (n220246252084.netvigator.com. [220.246.252.84])
+        by smtp.gmail.com with ESMTPSA id l19-20020a056a0016d300b0058d92ff8a31sm3333390pfc.187.2023.01.25.03.29.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jan 2023 03:29:12 -0800 (PST)
+From:   Jianhua Lu <lujianhua000@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G . Piccoli" <gpiccoli@igalia.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Jianhua Lu <lujianhua000@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: arm: qcom: Add Xiaomi Mi Pad 5 Pro (xiaomi-elish)
+Date:   Wed, 25 Jan 2023 19:29:02 +0800
+Message-Id: <20230125112903.10710-1-lujianhua000@gmail.com>
+X-Mailer: git-send-email 2.39.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 2, 2023 at 11:19 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Document RZ/G2UL (R9A07G043U) IRQC bindings. The IRQC block on RZ/G2UL SoC
-> is almost identical to one found on the RZ/G2L SoC the only difference
-> being it can support BUS_ERR_INT for which it has additional registers.
-> Hence new generic compatible string "renesas,r9a07g043u-irqc" is added
-> for RZ/G2UL SoC.
->
-> Now that we have additional interrupt for RZ/G2UL and RZ/Five SoC
-> interrupt-names property is added so that we can parse them based on
-> names.
->
-> While at it updated the example node to four spaces and added
-> interrupt-names property.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v2->v3
-> * Dropped RZ/G2UL specific string
+Add a compatible for Xiaomi Mi Pad 5 Pro.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+---
+Changes in v2:
+  - Move compatible "xiaomi-elish" down.
 
-Gr{oetje,eeting}s,
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-                        Geert
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 22553637c519..398ff26e6e0e 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -875,6 +875,7 @@ properties:
+               - qcom,sm8250-mtp
+               - sony,pdx203-generic
+               - sony,pdx206-generic
++              - xiaomi,elish
+           - const: qcom,sm8250
+ 
+       - items:
+-- 
+2.39.1
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
