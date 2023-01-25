@@ -2,172 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E38167BF76
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 23:00:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6CB567BF8B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 23:05:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbjAYWAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 17:00:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52902 "EHLO
+        id S230060AbjAYWFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 17:05:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230016AbjAYV76 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 16:59:58 -0500
-Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D485D10C
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 13:59:54 -0800 (PST)
-Received: by mail-ua1-x931.google.com with SMTP id b18so5034534uan.11
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 13:59:53 -0800 (PST)
+        with ESMTP id S230035AbjAYWFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 17:05:33 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5443746722
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 14:05:31 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id u21so246961edv.3
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 14:05:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=criticallink.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PQ5Mm5ygDFJ/dbpXHc8aAO+GKU6ptqcF+btQdWq/FjQ=;
-        b=k3ppRTlBBGLRNaaLWoiXK9R56Ttogya6SSKR7o/k4rXxD/wEfQ1bgYq0B/GYeOWqfI
-         YhLXDUAeggwXR9kIEXDsFjb3kYGAXc/cSnVMrC1bYHGTJ7mQAtOQmP45RVxmuiW6CJ0f
-         bqVzigypl50W9XtpidbG37z5wF3FE7ljyQkX1jyFPkuK9EiUTn1yr7oRPWuo5FTF78w3
-         d1kuUo222ArFeF0KoR2JDpYJaVXYQ7Pn3cnslgHDD/52BiMzot+3SlPDXTfG9dIMLKwi
-         XkdGBT6760p0zsvUb7z/4dsuubRw6iXflzw6ZBO/WwmoGZCwhwVgoOeHfZCLZ+LaWB+g
-         aHig==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RKFA19R6xv2eymSUsNElEgL5ULZ+IvWXQQkJeAKXWVk=;
+        b=Mv922n4G+JBjWDAthtVTqODJI6w1dOPq/YvqZMHNFTXZyw/hFSs42eLyj+18CT3xoz
+         IxSSgNi1jq6/WWvMdECZPSqI5nFfQwSGHXyvi5VLgp4b9m8oINijX6hrUbIee1VuEl+B
+         R2gN1m3eOBw7XlBS4KGcEOucAbqrR59FWB6toRnHP/dDWdwTYotvXJE+AO3mpeE4WcmK
+         OkThC3RzV6NnwiV09T+bcfkZr5PthUVwgXSj1B9U7z245xtFojcJ4oHc2qLkWtJv5Z+U
+         bTALDK+gAM2Z/XzFrSIZRVJM0Ck/4s4UuJDPmWSPMQy7CRB3WwNEF5H+QPcTNNSWxGFY
+         KKTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PQ5Mm5ygDFJ/dbpXHc8aAO+GKU6ptqcF+btQdWq/FjQ=;
-        b=P8dmG4Z2xPzqXoXc8pDsDg7jWLahgMiVJHkNBht1SJdpH1ZtcpS5HlhEwMTFXvGRzP
-         9ICAWxox6kYBMKCGXXu+Ee/hbqvdxRMwHEqvQKhkz1L039LvNlAKx775/hh8CH52x+lL
-         JvqsGZbIY/gPkYDG3WD5N4JtRdlDgIu03d2BJSY8rUKhU7h2on8/B7RN1L7d6YM2HYgC
-         eKWEZ7biO6lbPqfzw8VHPOR9FCYX2GUB8XD+/kf3onA1jRPf2arf9Ig2FNTPFNrgRaE7
-         wK9rWQt6UhUJe+jK3OgguDLMyZcwXuplSh8lI7qIWx8CbG84tz4plK1X8I5RK4CeI+KN
-         +3yQ==
-X-Gm-Message-State: AO0yUKWg+EeiCW7G4ZPC5fp0PRWr90tm6xUaOnbxAkY0m1NzjuL0ktDJ
-        AlALQ9iV1ET7o0guHFV85xj/GkieWMLhNcGpgwWg5A==
-X-Google-Smtp-Source: AK7set/0yJAWCwrxnr8GVGtPpFu9vcmoxfKwCikOjdfR+xtz3EDp3RRSro35y/qInifYZ4Io23kqMnHm9kaVY62GHSg=
-X-Received: by 2002:ab0:230d:0:b0:654:fe4b:af9c with SMTP id
- a13-20020ab0230d000000b00654fe4baf9cmr913514uao.81.1674683992901; Wed, 25 Jan
- 2023 13:59:52 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RKFA19R6xv2eymSUsNElEgL5ULZ+IvWXQQkJeAKXWVk=;
+        b=iDTHBb+zsGfl102nc/YrgoU3Nx9xjx1NFpigvioLGU/Q9MJYGR3Vsx26ZEiY4CxY0N
+         MODgYmYCO5rtD8POvHZRlQ7zQqK7yoQ6exAtGI+JKK7mRzrARL2y/fEZiAMKda73zNYV
+         ZrSqps+2GOLNt2iR8BSH07UIfE9m68v8uAikppeOb0LTh1VDIG8HtSnK5YMS1jZ1kkx7
+         utjso5blLYFiHGo4B5SY3OjyOXYH8R6dfTi5otloOhp0SyQYkNfvj7JmISqvUOxmCfyQ
+         BQ/zDczkt5tCgCX8Y3XG6s38yQpXFYaFUcqrTzEu4NOUqtrHaflE0aFnzCqFAgZZChAb
+         rqUg==
+X-Gm-Message-State: AFqh2krm0TCsA79YJwlv66Z6dk5x9KAHpHDwGx+2giYyoJr71NbbGYBJ
+        Zgb5+xx2EH+ie1euL9uGZBPNEg==
+X-Google-Smtp-Source: AMrXdXte6HidAfuRLRPGrzkYFjXGReU+SQgPe2DkHhMIRxDK8wTCY04tVP73Wx4a4BoX1D03IP2SWw==
+X-Received: by 2002:aa7:c619:0:b0:49e:6e34:c363 with SMTP id h25-20020aa7c619000000b0049e6e34c363mr26774712edq.35.1674684329832;
+        Wed, 25 Jan 2023 14:05:29 -0800 (PST)
+Received: from [192.168.1.101] (abyk108.neoplus.adsl.tpnet.pl. [83.9.30.108])
+        by smtp.gmail.com with ESMTPSA id cy5-20020a0564021c8500b0049ef56c01d0sm2871624edb.79.2023.01.25.14.05.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Jan 2023 14:05:29 -0800 (PST)
+Message-ID: <df133e5a-8030-0774-091c-6f8e0692e945@linaro.org>
+Date:   Wed, 25 Jan 2023 23:05:27 +0100
 MIME-Version: 1.0
-References: <20230125-tfp410_i2c-v1-0-66a4d4e390b7@criticallink.com>
- <20230125-tfp410_i2c-v1-1-66a4d4e390b7@criticallink.com> <Y9GeD/vXZ1RJ1MLZ@pendragon.ideasonboard.com>
-In-Reply-To: <Y9GeD/vXZ1RJ1MLZ@pendragon.ideasonboard.com>
-From:   Jon Cormier <jcormier@criticallink.com>
-Date:   Wed, 25 Jan 2023 16:59:41 -0500
-Message-ID: <CADL8D3YggahBhipLVO1_E+0+N8bQgzfwkwPUkFm3MxD_F-m-nQ@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: display: bridge: tfp410: Add tfp410 i2c example
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v4 7/7] clk: qcom: add the driver for the MSM8996 APCS
+ clocks
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Jyri Sarha <jsarha@ti.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Michael Williamson <michael.williamson@criticallink.com>,
-        Bob Duke <bduke@criticallink.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230118132254.2356209-1-dmitry.baryshkov@linaro.org>
+ <20230118132254.2356209-8-dmitry.baryshkov@linaro.org>
+ <7055af43f4a8894ac34e53c5847fb3de.sboyd@kernel.org>
+ <63f017c7-d320-a996-7bda-33d263a847bc@linaro.org>
+ <525ef5cdefe987c3412249760324eb09.sboyd@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <525ef5cdefe987c3412249760324eb09.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 25, 2023 at 4:24 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Jonathan,
->
-> Thank you for the patch.
->
-> On Wed, Jan 25, 2023 at 04:09:09PM -0500, Jonathan Cormier wrote:
-> > Add a i2c example with HDMI connector
-> >
-> > Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
-> > ---
-> >  .../bindings/display/bridge/ti,tfp410.yaml         | 42 ++++++++++++++++++++++
-> >  1 file changed, 42 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
-> > index 4c5dd8ec2951..456214f14b47 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
-> > @@ -116,4 +116,46 @@ examples:
-> >          };
-> >      };
-> >
-> > +  - |
-> > +    i2c {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
->
-> Please use 4 spaces for indentation, as in the other example.
-Will do, the whole file is 2 space indents. I didn't notice the
-examples switch to 4 spaces.
->
-> > +
-> > +      hdmi_encoder: tfp410@38 {
-> > +        compatible = "ti,tfp410";
-> > +        reg = <0x38>;
-> > +
-> > +        ports {
-> > +          address-cells = <1>;
-> > +          size-cells = <0>;
-> > +
-> > +          port@0 {
-> > +            reg = <0>;
-> > +            tfp410_in: endpoint {
-> > +              remote-endpoint = <&dpi1_out>;
-> > +            };
-> > +          };
-> > +
-> > +          port@1 {
-> > +            reg = <1>;
-> > +            tfp410_out: endpoint {
-> > +              remote-endpoint = <&hdmi_connector_in>;
-> > +            };
-> > +          };
-> > +        };
-> > +      };
-> > +    };
-> > +
-> > +    hdmi: hdmi_connector {
-> > +      compatible = "hdmi-connector";
-> > +      label = "hdmi";
-> > +      type = "a";
-> > +      ddc-i2c-bus = <&i2c1>;
-> > +      port {
-> > +        hdmi_connector_in: endpoint {
-> > +          remote-endpoint = <&tfp410_out>;
-> > +        };
-> > +      };
-> > +    };
-> > +
->
-> You can drop the hdmi connector, the example will still validate.
-Okay
->
-> >  ...
->
-> --
-> Regards,
->
-> Laurent Pinchart
 
 
+On 25.01.2023 22:56, Stephen Boyd wrote:
+> Quoting Konrad Dybcio (2023-01-25 13:48:54)
+>>
+>>
+>> On 25.01.2023 22:38, Stephen Boyd wrote:
+>>> Quoting Dmitry Baryshkov (2023-01-18 05:22:54)
+>>>> diff --git a/drivers/clk/qcom/apcs-msm8996.c b/drivers/clk/qcom/apcs-msm8996.c
+>>>> new file mode 100644
+>>>> index 000000000000..7e46ea8ed444
+>>>> --- /dev/null
+>>>> +++ b/drivers/clk/qcom/apcs-msm8996.c
+>>>> @@ -0,0 +1,76 @@
+>>> [...]
+>>>> +
+>>>> +static int qcom_apcs_msm8996_clk_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +       struct device *dev = &pdev->dev;
+>>>> +       struct device *parent = dev->parent;
+>>>> +       struct regmap *regmap;
+>>>> +       struct clk_hw *hw;
+>>>> +       unsigned int val;
+>>>> +       int ret = -ENODEV;
+>>>> +
+>>>> +       regmap = dev_get_regmap(parent, NULL);
+>>>> +       if (!regmap) {
+>>>> +               dev_err(dev, "failed to get regmap: %d\n", ret);
+>>>> +               return ret;
+>>>> +       }
+>>>> +
+>>>> +       regmap_read(regmap, APCS_AUX_OFFSET, &val);
+>>>> +       regmap_update_bits(regmap, APCS_AUX_OFFSET, APCS_AUX_DIV_MASK,
+>>>> +                          FIELD_PREP(APCS_AUX_DIV_MASK, APCS_AUX_DIV_2));
+>>>> +
+>>>> +       /* Hardware mandated delay */
+>>>
+>>> Delay for what? Setting the divider? What if the register value didn't
+>>> change at all? Can you skip the delay in that case?
+>> Waiting 5 us unconditionally in exchange for ensured CPU clock
+>> source stability sounds like a rather fair deal.. Checking if
+>> the register value changed would not save us much time..
+> 
+> So it is waiting for the CPU clk to be stable? The comment is not clear.
+Okay, so perhaps this is just a misunderstanding because of a lackluster
+comment.. This SYS_APCS_AUX (provided by this driver) is one of the CPU
+clock sources (and probably the "safest" of them all, as it's fed by
+GPLL0 and not the CPU PLLs) the delay is there to ensure it can
+stabilize after setting the divider to DIV2. In a theoretical case, the
+big 8996 cpucc driver could select this clock as a target for one (or
+both) of the per-cluster muxes and it could put the CPUs in a weird state.
 
--- 
-Jonathan Cormier
-Software Engineer
+As unlikely as that would be, especially considering 8996 (AFAIK) doesn't
+use this clock source coming out of reset / bootloader, this lets us
+ensure one less thing can break.
 
-Voice:  315.425.4045 x222
+Konrad
 
-
-
-http://www.CriticalLink.com
-6712 Brooklawn Parkway, Syracuse, NY 13211
