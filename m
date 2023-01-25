@@ -2,70 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9727D67AAC1
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 08:17:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D3DF67AAC5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 08:21:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234182AbjAYHRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 02:17:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54982 "EHLO
+        id S234642AbjAYHVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 02:21:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232753AbjAYHRa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 02:17:30 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082B33525E
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 23:17:29 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id d14so12381224wrr.9
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 23:17:28 -0800 (PST)
+        with ESMTP id S231563AbjAYHVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 02:21:48 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD0B04EDA
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 23:21:46 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id r9so16064956wrw.4
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 23:21:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=chlnQKczQqGxgtBmjCWKCW6AYBinQQ7f23gebMJ77yc=;
-        b=VqDygT8O9wpfGsIZWFRg/+xuF9eF8OFkp0u8fcS3gvHjFZqH7hSDBytY8tkpoVCOYH
-         KcGQoO3QYl0tfQpuLwWfurJw3MIH7oNtN0LznOAOJBmlkdJ8zBQrBTzaUFvr8fr66QfM
-         n0284fg3GHoJ90BbSuVLe7h4t6/LYjO+spf+J3dtWzGvpIT2XX99jz5yStFUPnfNOh5E
-         xgteqe3OSUipUNNcK0FKpKEYKpCfy4SERdvdp32GCUiW/hXjEHvmLR0xF6OKaB6aKhLA
-         UY/tfMtfwrFWsgn4gm++2vCoGmRt7SbgfUzq+yz04YZKUesEPvEXPXWc7496tDn6m2de
-         ycGA==
+        bh=L5SsXW4to4mQPbXFM5nkMuDOk8eQmviGW5rf64++fL4=;
+        b=ReXrQx6+rZd+ZciRU8AIKVwUDWyt0g96lI2F24Jrg0Zs6X9cIdJZfGJV2yCpx/5XY7
+         iZZu9uGsvLyipfpyr1O955bUmb4hgbxIdEkhf4/cUV7GQyiq81RzE6l5cGSUfLY5/5n1
+         IAxnGHPQwhIIY8w0ct4ovDET3aRff6xtM+nQjO/oznmkc88eghKbsby3LOSdRqom3oSx
+         sbab/0GpdW7Zi3GxEA0DiKdTiGoikHP1Xr87dXnzL+pGehfdN/C2nkn4xzPECbYdnCgM
+         w0swEv/YelX2YfjZjJEnSNp/aS7C78b715s16PiKyZHOHIhw9D7akZGZIrg/wL+2vGIc
+         woWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=chlnQKczQqGxgtBmjCWKCW6AYBinQQ7f23gebMJ77yc=;
-        b=ewpE9klDaCiaolM+s8hIPTx6nxHo/ZEGNyD+SsE2McGNCGcTFdIKpQQH0+YjMKisL3
-         JjUvnZhpDmJ4Ws/miAtj4S8sMX7PjgBNrE2uTKO5zog2OXfLRV/et3QwRMokha3hqDGt
-         0VkQreIZE9h/Vo2DqSOPU0TLWP/OhsxP5dJCf4GhsBSEzsZwpvy8us7TcHGz4EzJ2lYB
-         HTIsV75EQmWMg+KpuyeJMLNqg8YLnfDa7Ycx5VONSuzTQllB8a1UikHirE9l+nYHp48u
-         m4xa1qJK3h7PjgTULZ6ZgN7YMlvP7ngybH9i72zPMRCIpwSFQL53f90GW2qBc1uXvQ3s
-         VRYQ==
-X-Gm-Message-State: AFqh2kq0NwTZKPeZ8JXFyGTKxXzPgVAoQnyI0WaVOGF+9QQlHLSFXcpF
-        wahrJqZalfIfZKESYr+J/v1ifQ==
-X-Google-Smtp-Source: AMrXdXtNNTvlwsj4dxm1R0laqwG0cpyCC+E5QBosMbZ5BoH/xc/nE86RIea1JgdtdCBInnDiQS6WDQ==
-X-Received: by 2002:a05:6000:a06:b0:2bd:d84d:bbbe with SMTP id co6-20020a0560000a0600b002bdd84dbbbemr30996639wrb.47.1674631047510;
-        Tue, 24 Jan 2023 23:17:27 -0800 (PST)
+        bh=L5SsXW4to4mQPbXFM5nkMuDOk8eQmviGW5rf64++fL4=;
+        b=mBdj8BhqvYhYyirifXjyrtRNvIUGw9KNO5z++yRVNgiF/z/akoyV2ZywIoaOeIUHrA
+         8DeskRd06rkdBkpnz4cSEpQGu5YxtbfM9dgwOWSlhCrs57agIjadhwQvUOa04OP6qVV2
+         iDyOURGU+6PThdViIosBubyUEGbcBF38EVmrIueODMcth6cv5yj7WnFefO5K5+rHGa5T
+         qJT9ed0sjSF/punmE9nxgim9rOAP7ikJliyLKXpDYCX134MpyLK0k0Ce0bOA5IA41jWS
+         6BdacC6j4wmaARPUQQNny6nYs8QAvvH7477zP0ddMjwMXsMEOG20SxOEkFboj/MkQHtC
+         Ghtg==
+X-Gm-Message-State: AO0yUKXYr9ZPUBuDNiH+4bCsRQuJUiQXxuehv/qaMN7Sx/7qTntmE4me
+        XmiAwBsubgOpWlgeX5ynH3wmjM4gRMqVTDk7
+X-Google-Smtp-Source: AK7set9vGUZVulA4Aem9PqZS78x6dG0a3JhlM9N28Kzg/F8G9qkkuTMXiGXfU/94PRT1yjSPSbiQIw==
+X-Received: by 2002:a5d:6549:0:b0:2bf:b5bd:8f60 with SMTP id z9-20020a5d6549000000b002bfb5bd8f60mr2462243wrv.61.1674631305087;
+        Tue, 24 Jan 2023 23:21:45 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q6-20020adfcd86000000b002bded7da2b8sm3638255wrj.102.2023.01.24.23.17.26
+        by smtp.gmail.com with ESMTPSA id s8-20020a5d69c8000000b002755e301eeasm3616993wrw.100.2023.01.24.23.21.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 23:17:27 -0800 (PST)
-Message-ID: <1cabe00c-e701-24ee-1c20-3b8eccf4fe39@linaro.org>
-Date:   Wed, 25 Jan 2023 08:17:25 +0100
+        Tue, 24 Jan 2023 23:21:44 -0800 (PST)
+Message-ID: <fcf66269-459c-c7fc-82b7-73303bd67950@linaro.org>
+Date:   Wed, 25 Jan 2023 08:21:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: trivial-devices: Add Infineon
- TDA38640 Voltage Regulator
+Subject: Re: [PATCH v1 2/3] dt-bindings: net: bluetooth: Add NXP bluetooth
+ support
 Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-hwmon@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230124202317.3704963-1-Naresh.Solanki@9elements.com>
+To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
+        rohit.fule@nxp.com, sherry.sun@nxp.com
+References: <20230124174714.2775680-1-neeraj.sanjaykale@nxp.com>
+ <20230124174714.2775680-3-neeraj.sanjaykale@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230124202317.3704963-1-Naresh.Solanki@9elements.com>
+In-Reply-To: <20230124174714.2775680-3-neeraj.sanjaykale@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,16 +82,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 21:23, Naresh Solanki wrote:
-> Infineon TDA38640 is PMBUS compliant voltage regulator.
+On 24/01/2023 18:47, Neeraj Sanjay Kale wrote:
+> Add binding document for generic and legacy NXP bluetooth
+> chipset.
 > 
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
 > ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/net/bluetooth/nxp-bluetooth.yaml | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
+> new file mode 100644
+> index 000000000000..d6226838ab1c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
 
+format is vendor,compatible
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/net/bluetooth/nxp-bluetooth.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+
+Drop quotes from both
+
+> +
+> +title: NXP Bluetooth chips
+> +
+> +description:
+> +  This documents the binding structure and common properties for serial
+> +  attached NXP Bluetooth devices.
+
+Drop "This documents the binding structure and common properties"... and
+replace everything with proper hardware description.
+
+> +
+> +maintainers:
+> +  - Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,nxp-generic-bt-chip
+> +      - nxp,nxp-legacy-bt-chip
+
+These are wrong on multiple levels. Duplicated vendor prefix. Not
+specific compatible. Fake compatible (non-existing device).
+
+> +
+> +  firmware-name:
+> +    description:
+> +      Specify firmware file name. If this property is not
+> +      specified, it is fetched from the user-space config
+> +      file nxp/bt_mod_para.conf
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    &uart1 {
+> +      pinctrl-names = "default";
+> +      pinctrl-0 = <&pinctrl_uart1>;
+> +      assigned-clocks = <&clk IMX8MM_CLK_UART1>;
+> +      assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_80M>;
+> +      fsl,uart-has-rtscts;
+
+Drop everything above except serial node.
+
+> +      status = "okay";
+
+Drop
+
+> +      bluetooth {
+> +              compatible = "nxp,nxp-generic-bt-chip";
+
+Wrong indentation. It's 4-space.
+
+> +      };
+> +    };
+> +  - |
+> +    &uart2 {
+> +      bluetooth {
+> +              compatible = "nxp,nxp-generic-bt-chip";
+> +              firmware-name = "uartuart_n61x_v1.bin"
+> +      };
+> +    };
+> +  - |
+> +    &uart3 {
+> +      bluetooth {
+> +              compatible = "nxp,nxp-legacy-bt-chip";
+> +      };
+> +    };
+> +  - |
+> +    &uart4 {
+> +      bluetooth {
+> +              compatible = "nxp,nxp-legacy-bt-chip";
+> +              firmware-name = "uartuart8987_bt.bin"
+> +      };
+
+Drop all these above - they do not bring anything.
+
+> +    };
+> +
+> +
 
 Best regards,
 Krzysztof
