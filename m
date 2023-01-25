@@ -2,135 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA8FF67AA8B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 07:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0791267AA93
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 07:56:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234083AbjAYGw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 01:52:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46988 "EHLO
+        id S234823AbjAYG4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 01:56:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233425AbjAYGw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 01:52:57 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35DAB298DB
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 22:52:55 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id vw16so44949627ejc.12
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 22:52:55 -0800 (PST)
+        with ESMTP id S230160AbjAYG4O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 01:56:14 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A70D946156;
+        Tue, 24 Jan 2023 22:56:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kcRWz+wlux3+r5w9OU0gEpUewRtO5xydPlFIEWNqMqk=;
-        b=ZB8XDp6C6562DC2Hg+9qfoCV27AdhPI++unNOigC82ZWrZq+Rtkv1TDkn9zdDk4dTK
-         IS21ArtIyBMnHsa1z4prbONlWo3E6oyAec4e1zCJoXxDED+PDnqf3al09r71zxOwLjRB
-         /T9jD5dz2DJVM7NCmJQ3ZpQBzwlxfqfd9INbLHUWnqS6vHNiRD9CXQ1f5tL5kDgUtbwF
-         mImYbM0ad4iswkPsYpSSbNgq74SSuP+EOIljKDjo4XO4Nz1NZjCjT5ffr/10Odc9mNm6
-         IYSEZpeOrcIocKm/LfSXBD6+qIVyXWIm7CjEmMpvdLT0rPIHrIOhBvI9tgeTcfQdrwtM
-         ewvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=kcRWz+wlux3+r5w9OU0gEpUewRtO5xydPlFIEWNqMqk=;
-        b=PYRjlZaczOck1kNFcu/oPvsxawBgcuSmQgEJgPbAx0trk7pUKgUJVzHmycbfXe3cOZ
-         fOuYvbdyVwQkflh2bHggiz9vxv1cr9FuuU0DUpE0QPoMrdzzviNtPtpI80cl+ci3D6v8
-         wjzFBIWCYjvrhFgfBZsBOSQchNwQmGJY3bothrvG1VsGW3fNYsWcIgaBfCb0e7zLnMN1
-         PKerx7yzeK0PAJhb6+DP+TOi1Aq9O+OY621ieKhpJnIZ8lwqfhFo193AkYodu3W4zVak
-         gyFuS4YHuwK/m/fapCbA8q5+OrP3rgVvNR+uu2HnXKWwffOinHSHRp9EQj4VRKop3Yfo
-         DT4w==
-X-Gm-Message-State: AFqh2krw48jLVUBm5S18HjL6K3MDovCXTji1rk8OdXIxo7JULLW+X20H
-        7h2NUR1FgKD/B3WE+0m8uxecDIg88gA=
-X-Google-Smtp-Source: AMrXdXsU0BQfMNqCbQWqvGPRzN2+dYPKj90qH8Q+WPYWIbRhtcSyiCEydPajRl+H1TS5C9aLij6ngg==
-X-Received: by 2002:a17:907:75cf:b0:7aa:76a:fb3 with SMTP id jl15-20020a17090775cf00b007aa076a0fb3mr31698961ejc.66.1674629573497;
-        Tue, 24 Jan 2023 22:52:53 -0800 (PST)
-Received: from ?IPV6:2a01:c22:720f:5a00:9008:755f:20dd:1de8? (dynamic-2a01-0c22-720f-5a00-9008-755f-20dd-1de8.c22.pool.telefonica.de. [2a01:c22:720f:5a00:9008:755f:20dd:1de8])
-        by smtp.googlemail.com with ESMTPSA id b4-20020aa7cd04000000b00487fc51c532sm1967994edw.33.2023.01.24.22.52.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 22:52:52 -0800 (PST)
-Message-ID: <e635fee3-f5c4-2819-d6f3-a50dac55e979@gmail.com>
-Date:   Wed, 25 Jan 2023 07:52:45 +0100
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1674629769; x=1706165769;
+  h=message-id:date:mime-version:from:subject:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=YMx7fJhFYNEDzZOnRhXuw3ctktU/hF+YlmhWtXN/IKU=;
+  b=m32ULWG4CDMiTTmyUjiuk4bSb5VLtR1gqJkcyDfrggb5vLPgahpUaWp6
+   rernIFeQx/AUPJwswB8KGBo7rLbkM/2BkvmPeEg3lRNUtiUz+7VnAUcb5
+   DdASTQMiR8pAF4XB3Ft+l22s/Y240rhq81DUeB9feHiaq5O1AvCKKYt2H
+   Y=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 24 Jan 2023 22:56:09 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.45.79.139])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2023 22:56:09 -0800
+Received: from [10.216.52.138] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 24 Jan
+ 2023 22:56:03 -0800
+Message-ID: <30166208-ba9d-e6e6-1cd2-807a80536052@quicinc.com>
+Date:   Wed, 25 Jan 2023 12:25:54 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
+ Thunderbird/102.7.0
+From:   Shazad Hussain <quic_shazhuss@quicinc.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8540p-ride: Document i2c busses
+To:     Andrew Halaney <ahalaney@redhat.com>, <andersson@kernel.org>
+CC:     <agross@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <bmasney@redhat.com>
+References: <20230124192351.695838-1-ahalaney@redhat.com>
+ <20230124192351.695838-2-ahalaney@redhat.com>
 Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH] arm64: dts: amlogic: Fix SDIO interrupt and make it
- level-sensitive
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20230124192351.695838-2-ahalaney@redhat.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SDIO specification defines that the interrupt is level-sensitive.
-Fix the interrupt trigger type for emmc_a accordingly.
-See comment at beginning of the file wrt which is the SDIO port.
-mmc2 = &sd_emmc_a; /* SDIO */
 
-The usage of edge-triggered interrupts lead to lost interrupts under load,
-see [0]. This was confirmed to be fixed by using level-triggered
-interrupts.
 
-Note:
-SDIO interrupt support was added in Linux just recently, however other
-users of this dts may be affected too.
+On 1/25/2023 12:53 AM, Andrew Halaney wrote:
+> It isn't obvious in the current devicetree what is connected. Go ahead
+> and document what's on the other end.
+> 
+> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> ---
+> 
+> Not sure if this sort of patch is actually welcomed or not but I went
+> through this exercise (for the prior patch) and thought it might be
+> useful to document.
+> 
+> Shazad, this also highlights (unless I misread things) that i2c12 has no
+> use for us, right? If agreed I can remove it but sorting through the
+> lore links that provided all this it seems like at the time it was
+> desired to be added.
+> 
 
-[0] https://www.spinics.net/lists/linux-mmc/msg73991.html
+Andrew, i2c12 has GPU PWR ctl use case, so let's keep it enabled.
 
-Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
-Reported-by: Peter Suti <peter.suti@streamunlimited.com>
-Tested-by: Peter Suti <peter.suti@streamunlimited.com>
-Cc: stable@vger.kernel.org
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+-Shazad
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 1a931d5c2..c09eb9f6f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2324,7 +2324,7 @@ uart_A: serial@24000 {
- 		sd_emmc_a: sd@ffe03000 {
- 			compatible = "amlogic,meson-axg-mmc";
- 			reg = <0x0 0xffe03000 0x0 0x800>;
--			interrupts = <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
-+			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 			clocks = <&clkc CLKID_SD_EMMC_A>,
- 				 <&clkc CLKID_SD_EMMC_A_CLK0>,
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index a79a35e84..ae1a5a568 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -603,7 +603,7 @@ apb: apb@d0000000 {
- 			sd_emmc_a: mmc@70000 {
- 				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
- 				reg = <0x0 0x70000 0x0 0x800>;
--				interrupts = <GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
-+				interrupts = <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
- 				status = "disabled";
- 			};
- 
--- 
-2.39.1
-
+> Thanks,
+> Andrew
+> 
+>   arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> index cb9fbdeb5a9e..3478ab91fe73 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> @@ -317,6 +317,7 @@ &xo_board_clk {
+>   
+>   &tlmm {
+>   	i2c0_default: i2c0-default-state {
+> +		/* To USB7002T-I/KDXVA0 USB hub (SIP1 only) */
+>   		pins = "gpio135", "gpio136";
+>   		function = "qup0";
+>   		drive-strength = <2>;
+> @@ -324,6 +325,7 @@ i2c0_default: i2c0-default-state {
+>   	};
+>   
+>   	i2c1_default: i2c1-default-state {
+> +		/* To PM40028B-F3EI PCIe switch */
+>   		pins = "gpio158", "gpio159";
+>   		function = "qup1";
+>   		drive-strength = <2>;
+> @@ -331,6 +333,7 @@ i2c1_default: i2c1-default-state {
+>   	};
+>   
+>   	i2c12_default: i2c12-default-state {
+> +		/* Not connected */
+>   		pins = "gpio0", "gpio1";
+>   		function = "qup12";
+>   		drive-strength = <2>;
+> @@ -338,6 +341,7 @@ i2c12_default: i2c12-default-state {
+>   	};
+>   
+>   	i2c15_default: i2c15-default-state {
+> +		/* To display connector (SIP1 only) */
+>   		pins = "gpio36", "gpio37";
+>   		function = "qup15";
+>   		drive-strength = <2>;
+> @@ -345,6 +349,7 @@ i2c15_default: i2c15-default-state {
+>   	};
+>   
+>   	i2c18_default: i2c18-default-state {
+> +		/* To ASM330LHH IMU (SIP1 only) */
+>   		pins = "gpio66", "gpio67";
+>   		function = "qup18";
+>   		drive-strength = <2>;
