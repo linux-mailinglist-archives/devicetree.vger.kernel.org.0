@@ -2,102 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FFFA67B15D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 12:33:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 742C467B165
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 12:34:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234798AbjAYLdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 06:33:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51738 "EHLO
+        id S235343AbjAYLer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 06:34:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235535AbjAYLcv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 06:32:51 -0500
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABFA2CDDF;
-        Wed, 25 Jan 2023 03:32:49 -0800 (PST)
-Received: by mail-qt1-f182.google.com with SMTP id a25so15607997qto.10;
-        Wed, 25 Jan 2023 03:32:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HvOTe42diDJsXWior/btva8s4CUD0I041nCSE4A5HyQ=;
-        b=pxtHjZvYrQcmhBVCVsR1qptd9W0tXVHWjO8H4ZG/D4k1u8QVTg8igUd7joo2JYAMSb
-         S1nQnw67fXGB+HvuqOaAnrba+FH0VPBX6hkQvOnrWm9wWxlc4IPdr2jnbKHdCKJi692m
-         UOE1HNul7H4z4edxYHvIS+Nc/rBcx7BmYBFZOkqI2xPTTuzI/jfmuPKREbp/3hesCt9L
-         EOFr32jcdVdugRrKw/QCfZcEcxtflM/BQ+5qbqObVrj8bTG4x2EjlNeRj/ZREE7688Ij
-         6yzfNiOjADN2tDAbPODUnSJBHfWJRBHzzRLk/COPbJiCHDxRtOA+u426hd9b+ci8NKEu
-         c9sg==
-X-Gm-Message-State: AO0yUKVoDt62AfcxX/qxC84TFBZnPrHbl/F8Ern6lXE8G6uvAx1rGNP8
-        G9axvrkLVrmSk1p/Y9lCwTkgKyYY12K5uw==
-X-Google-Smtp-Source: AK7set8Q9avr/pkkmbR9AqjB7f59f6BYJ5zqKR/+HXNXQWK9dUtmh+DoVWs7WVkOQ/+75cmelO2WbQ==
-X-Received: by 2002:ac8:4e85:0:b0:3b7:fafc:73e3 with SMTP id 5-20020ac84e85000000b003b7fafc73e3mr6561646qtp.41.1674646368686;
-        Wed, 25 Jan 2023 03:32:48 -0800 (PST)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id 7-20020a05620a048700b006fc2f74ad12sm3326171qkr.92.2023.01.25.03.32.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jan 2023 03:32:48 -0800 (PST)
-Received: by mail-yb1-f174.google.com with SMTP id 123so22577383ybv.6;
-        Wed, 25 Jan 2023 03:32:47 -0800 (PST)
-X-Received: by 2002:a25:9801:0:b0:7d5:b884:3617 with SMTP id
- a1-20020a259801000000b007d5b8843617mr2825187ybo.380.1674646367559; Wed, 25
- Jan 2023 03:32:47 -0800 (PST)
+        with ESMTP id S235688AbjAYLed (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 06:34:33 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34F838E;
+        Wed, 25 Jan 2023 03:34:32 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D6AD26E0;
+        Wed, 25 Jan 2023 12:34:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1674646469;
+        bh=7h8gV3yROK10RMIraRxPOa8yE19c0tpUmSaniy7cNbI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=AIKjvsYuq+yp2jYzws9CkAi5YnUeSPQvSH57bvW85payAjSQWQmthNo3+GL1M1Hkf
+         mNvH9iscZmWmUrl+bJrcFeP3C3hx7BBKDRlSJr8rDGohi1A2M7Eod+G+cQpktT1uYe
+         TFgAYti4YF7v0gUqKQbEg7nVvbm1a1B4XkP36n0s=
+Message-ID: <a59ea457-58df-0058-ddaf-c605e5432864@ideasonboard.com>
+Date:   Wed, 25 Jan 2023 13:34:25 +0200
 MIME-Version: 1.0
-References: <20230102221815.273719-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230102221815.273719-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20230102221815.273719-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 25 Jan 2023 12:32:36 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWTSHCLOrTzUq8y860P61jCJ+hMR4oiE_XGtQ9F_8kPBg@mail.gmail.com>
-Message-ID: <CAMuHMdWTSHCLOrTzUq8y860P61jCJ+hMR4oiE_XGtQ9F_8kPBg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/6] pinctrl: renesas: rzg2l: Add BUILD_BUG_ON() checks
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v8 5/7] media: i2c: add DS90UB960 driver
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>
+References: <20230120153417.1156207-1-tomi.valkeinen@ideasonboard.com>
+ <20230120153417.1156207-6-tomi.valkeinen@ideasonboard.com>
+ <Y88EhodG7b+oSvtE@pendragon.ideasonboard.com>
+ <beaebec6-4ec5-8041-5f70-a974ae417a78@ideasonboard.com>
+ <Y9AjFcsQQZqZBhAb@pendragon.ideasonboard.com>
+ <ead8904b-0e17-81e7-98a8-19e4abfdf281@ideasonboard.com>
+ <Y9EAw+PUwZJFH+NO@pendragon.ideasonboard.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <Y9EAw+PUwZJFH+NO@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 2, 2023 at 11:19 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add BUILD_BUG_ON() checks to avoid overflows for GPIO configs for each
-> supported SoC.
->
-> While at it, for readability set n_port_pins based on the GPIO pin configs
-> and not on GPIO names for r9a07g044_data as done for r9a07g043_data.
->
-> Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v2 -> v3
-> * No change
+On 25/01/2023 12:13, Laurent Pinchart wrote:
+> Hi Tomi,
+> 
+> On Wed, Jan 25, 2023 at 09:39:57AM +0200, Tomi Valkeinen wrote:
+>> On 24/01/2023 20:27, Laurent Pinchart wrote:
+>>
+>>>>>> +	} else if (ret < 0) {
+>>>>>> +		dev_err(dev, "rx%u: failed to read 'ti,cdr-mode': %d\n", nport,
+>>>>>
+>>>>> If you moved the "ti,cdr-mode" to an argument, printed with %s, the same
+>>>>> format string would be used for the other properties below, and should
+>>>>> thus be de-duplicated by the compiler.
+>>>>
+>>>> I'm not quite sure if this is a sensible optimization or not, but I did
+>>>> it so that I introduce:
+>>>>
+>>>> const char *read_err_str = "rx%u: failed to read '%s': %d\n";
+>>>
+>>> static
+>>>
+>>>> and then use that in the function, which makes the lines much shorter
+>>>> and, I think, a bit more readable.
+>>>
+>>> If you use the same string literal multiple times, the compiler should
+>>> de-duplicate it automatically, so you don't have to create a variable
+>>> manually.
+>>
+>> Yes, but I think this looked better, as it made the code look less
+>> cluttered, and the point is more obvious. Otherwise, looking at the
+>> code, seeing dev_dbg(dev, "Foo %s\n", "bar"); looks pretty weird.
+> 
+> I find
+> 
+> 	dev_dbg(dev, read_err_str, port, "ti,cdr-mode", ret);
+> 
+> less readable as I then have to look up the read_err_str string to
+> understand that line. I also wonder, in that case, if the compiler can
+> still warn if the format string doesn't match the argument types.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-pinctrl-for-v6.3.
+That's a good point, it doesn't.
 
-Gr{oetje,eeting}s,
+>>>>>> +static void ub960_notify_unbind(struct v4l2_async_notifier *notifier,
+>>>>>> +				struct v4l2_subdev *subdev,
+>>>>>> +				struct v4l2_async_subdev *asd)
+>>>>>> +{
+>>>>>> +	struct ub960_rxport *rxport = to_ub960_asd(asd)->rxport;
+>>>>>> +
+>>>>>> +	rxport->source_sd = NULL;
+>>>>>
+>>>>> Does this serve any purpose ? If not, I'd drop the unbind handler.
+>>>>
+>>>> It makes sure we don't access the source subdev after it has been
+>>>> unbound. I don't see much harm with this function, but can catch cleanup
+>>>> errors.
+>>>
+>>> Do you mean we'll crash on a NULL pointer dereference instead of
+>>> accessing freed memory if this happens ? I suppose it's marginally
+>>> better :-)
+>>
+>> Generally speaking I think it's significantly better. Accessing freed
+>> memory might go unnoticed for a long time, and might not cause any
+>> errors or cause randomly some minor errors. Here we might not even be
+>> accessing freed memory, as the source sd is probably still there, so
+>> KASAN wouldn't catch it.
+>>
+>> In this particular case it might not matter that much. The source_sd is
+>> only used when starting streaming, so the chances are quite small that
+>> we'd end up there after the unbind.
+>>
+>> Still, I think it's a very good practice to NULL the pointers when
+>> they're no longer valid.
+> 
+> Fine with me.
+> 
+>>>>>> +}
+>>>
+>>> [snip]
+>>>
+>>>>>> +static int ub960_create_subdev(struct ub960_data *priv)
+>>>>>> +{
+>>>>>> +	struct device *dev = &priv->client->dev;
+>>>>>> +	unsigned int i;
+>>>>>> +	int ret;
+>>>>>> +
+>>>>>> +	v4l2_i2c_subdev_init(&priv->sd, priv->client, &ub960_subdev_ops);
+>>>>>
+>>>>> A blank line would be nice.
+>>>>
+>>>> Ok.
+>>>>
+>>>>>> +	v4l2_ctrl_handler_init(&priv->ctrl_handler, 1);
+>>>>>
+>>>>> You create two controls.
+>>>>
+>>>> Yep. Although I dropped TPG, so only one again.
+>>>>
+>>>>>> +	priv->sd.ctrl_handler = &priv->ctrl_handler;
+>>>>>> +
+>>>>>> +	v4l2_ctrl_new_std_menu_items(&priv->ctrl_handler, &ub960_ctrl_ops,
+>>>>>> +				     V4L2_CID_TEST_PATTERN,
+>>>>>> +				     ARRAY_SIZE(ub960_tpg_qmenu) - 1, 0, 0,
+>>>>>> +				     ub960_tpg_qmenu);
+>>>>>> +
+>>>>>> +	v4l2_ctrl_new_int_menu(&priv->ctrl_handler, NULL, V4L2_CID_LINK_FREQ,
+>>>>>> +			       ARRAY_SIZE(priv->tx_link_freq) - 1, 0,
+>>>>>> +			       priv->tx_link_freq);
+>>>>>> +
+>>>>>> +	if (priv->ctrl_handler.error) {
+>>>>>> +		ret = priv->ctrl_handler.error;
+>>>>>> +		goto err_free_ctrl;
+>>>>>> +	}
+>>>>>> +
+>>>>>> +	priv->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
+>>>>>> +			  V4L2_SUBDEV_FL_HAS_EVENTS | V4L2_SUBDEV_FL_STREAMS;
+>>>>>> +	priv->sd.entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
+>>>>>> +	priv->sd.entity.ops = &ub960_entity_ops;
+>>>>>> +
+>>>>>> +	for (i = 0; i < priv->hw_data->num_rxports + priv->hw_data->num_txports; i++) {
+>>>>>> +		priv->pads[i].flags = ub960_pad_is_sink(priv, i) ?
+>>>>>> +					      MEDIA_PAD_FL_SINK :
+>>>>>> +					      MEDIA_PAD_FL_SOURCE;
+>>>>>> +	}
+>>>>>> +
+>>>>>> +	ret = media_entity_pads_init(&priv->sd.entity,
+>>>>>> +				     priv->hw_data->num_rxports +
+>>>>>> +					     priv->hw_data->num_txports,
+>>>>>
+>>>>> :-(
+>>>>
+>>>> I don't have strong opinion on this, but don't you find it a bit
+>>>> confusing if a single argument spans multiple lines but without any indent?
+>>>>
+>>>> With a quick look, this looks like a call with 4 arguments:
+>>>>
+>>>> ret = media_entity_pads_init(&priv->sd.entity,
+>>>> 			     priv->hw_data->num_rxports +
+>>>> 			     priv->hw_data->num_txports,
+>>>> 			     priv->pads);
+>>>
+>>> I suppose I'm used to it, so it appears more readable to me. It's also
+>>> the style used through most of the kernel. There's of course always the
+>>> option of storing the result of the computation in a local variable.
+>>
+>> I'll be happy to indent like that if someone tells me how to configure
+>> clang-format to do that =). I didn't figure it out.
+> 
+> Setting ContinuationIndentWidth to 0 "fixes" it, but I suspect it may
+> have other side effects.
 
-                        Geert
+Yes, it creates some funny indenting, like:
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+ret =
+func(......);
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> This being said, running clang-format on this file gives me a diffstat
+> of 450 insertions(+), 365 deletions(-), so I don't think you can rely on
+> it blindly...
+
+True, although I the bulk of those are with the #defines and structs.
+
+  Tomi
+
