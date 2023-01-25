@@ -2,203 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3126F67BBDD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 21:04:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B315267BC07
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 21:05:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236224AbjAYUEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 15:04:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36764 "EHLO
+        id S236086AbjAYUFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 15:05:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236115AbjAYUEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 15:04:46 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8490912587;
-        Wed, 25 Jan 2023 12:04:43 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30PK4VR4096181;
-        Wed, 25 Jan 2023 14:04:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1674677071;
-        bh=q04QEmurduN8rMs3TdU5HLHxq3EBdz7WBEpMoppBJFM=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=fNTSJ+FhTLDhAoCEvupVzSbv6f2QLO8dspkdmyFBPM6E0/vLEAC71Lj4BOXqamj9c
-         EvDu5eoCerOvJdtrvmyUnvbGNt9ojAmu+T7QHOfPUkueJONQtjm+bLnCJ+JFONuL9p
-         m+XyNux7R4VibhsrHgpx3TWoUJKf+/0zax+U3RTk=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30PK4UHB046988
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 25 Jan 2023 14:04:30 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 25
- Jan 2023 14:04:30 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 25 Jan 2023 14:04:30 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30PK4TN3038113;
-        Wed, 25 Jan 2023 14:04:29 -0600
-Date:   Thu, 26 Jan 2023 01:34:28 +0530
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>
-CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S235525AbjAYUFp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 15:05:45 -0500
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810CB12587;
+        Wed, 25 Jan 2023 12:05:43 -0800 (PST)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-15b9c93848dso22813893fac.1;
+        Wed, 25 Jan 2023 12:05:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8kqCnvG5HfBYMdFzmIrllsGYjZVwDWefqF05Cmky4HA=;
+        b=1MkdHccN4sTH4t9xBZvyUQIxoYOq7j8fZzdGNnazpcF2mE85RiQc+0HFSP1Z/3DKYS
+         WnIb0QEc4RdWG7FAw0qbFSsXDZ4+cdo45vccV7EDix/1G4+hKJ4kgikaoUfV5SE+FbKM
+         X+ALhCtuuwtE+QlexxVkbkhd5lOVr3PED0pDep9hs0Gm94/DVYEnW4XINdP6GDm9co/q
+         9scVxhpfpOADKuIe6EchvP4EjwDM4tqzgGAJSwjA/oEiZA6qmNhdief8rcSc8kJdV9pv
+         3lq5+h28KgV2C/kVO0K9hc8rYCvHxMoaqqFD2DdS2r3v3MJAkGxsSNF15sT012OVOVg4
+         sBVg==
+X-Gm-Message-State: AO0yUKUD5ZeFxQsUh/9oHbyjsD9L9fqTzkpbEq6ZlOwuB1mr7ICd3rNx
+        W2JLtY3BMbx45vM3aVctOQ==
+X-Google-Smtp-Source: AK7set+KlYA9hOhKxY3yXbw1+jJFui+axb/K8qUGpNYSrXD6fL93Qjufe/ZRHNh9bIxZbHxYbUPr4A==
+X-Received: by 2002:a05:6870:14d5:b0:163:45a2:e276 with SMTP id l21-20020a05687014d500b0016345a2e276mr684576oab.9.1674677142691;
+        Wed, 25 Jan 2023 12:05:42 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id n20-20020a056870559400b0010d7242b623sm2325869oao.21.2023.01.25.12.05.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jan 2023 12:05:42 -0800 (PST)
+Received: (nullmailer pid 2768672 invoked by uid 1000);
+        Wed, 25 Jan 2023 20:05:39 -0000
+Date:   Wed, 25 Jan 2023 14:05:39 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-sunxi@lists.linux.dev, openbmc@lists.ozlabs.org,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Li-hao Kuo <lhjeff911@gmail.com>, Han Xu <han.xu@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Yogesh Gaur <yogeshgaur.83@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        ", Bert Vermeulen" <bert@biot.com>, Marek Vasut <marex@denx.de>,
+        linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        ", Christophe Kerello" <christophe.kerello@foss.st.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-arm-msm@vger.kernel.org,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Vaishnav Achath <vaishnav.a@ti.com>,
+        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        ", Broadcom internal kernel review list" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Andrew Jeffery <andrew@aj.id.au>, linux-spi@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Pragnesh Patel <pragnesh.patel@sifive.com>,
+        linux-riscv@lists.infradead.org,
+        Leilk Liu <leilk.liu@mediatek.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, Joel Stanley <joel@jms.id.au>,
+        Shawn Guo <shawnguo@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sinthu Raja <sinthu.raja@ti.com>
-Subject: Re: [PATCH V2 2/2] arm64: dts: ti: k3-am68-sk-base-board: Add pinmux
- for RPi Header
-Message-ID: <20230125200427.2bqlpym5tzz43yqq@uda0490373>
-References: <20230124120311.7323-1-sinthu.raja@ti.com>
- <20230124120311.7323-3-sinthu.raja@ti.com>
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        =?UTF-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        linux-aspeed@lists.ozlabs.org, Gabor Juhos <juhosg@openwrt.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Erwan Leray <erwan.leray@foss.st.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Parshuram Thombare <pthombar@cadence.com>,
+        ", Fabio Estevam" <festevam@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v2 2/2] spi: dt-bindings: cleanup examples - indentation,
+ lowercase hex
+Message-ID: <167467713905.2768614.7865748447151198568.robh@kernel.org>
+References: <20230124083342.34869-1-krzysztof.kozlowski@linaro.org>
+ <20230124083342.34869-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230124120311.7323-3-sinthu.raja@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230124083342.34869-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:33-20230124, Sinthu Raja wrote:
-> From: Sinthu Raja <sinthu.raja@ti.com>
+
+On Tue, 24 Jan 2023 09:33:42 +0100, Krzysztof Kozlowski wrote:
+> Cleanup examples:
+>  - use 4-space indentation (for cases when it is neither 4 not 2 space),
+>  - drop redundant blank lines,
+>  - use lowercase hex.
 > 
-> Add pinmux required to bring out the i2c and gpios on 40-pin RPi
-> expansion header on the AM68 SK board.
+> No functional impact except adjusting to preferred coding style.
 > 
-> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be> # renesas
+> Reviewed-by: Andrew Jeffery <andrew@aj.id.au> # aspeed
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org> # meson
+> 
 > ---
 > 
-> No Changes in V2.
+> Changes since v1:
+> 1. Adjust indentation in two more examples (cdns,qspi-nor, st,stm32-spi)
+> 2. Add tags
+> ---
+>  .../bindings/spi/amlogic,meson-gx-spicc.yaml  |  26 +--
+>  .../bindings/spi/amlogic,meson6-spifc.yaml    |  22 +--
+>  .../bindings/spi/aspeed,ast2600-fmc.yaml      |  24 +--
+>  .../bindings/spi/brcm,spi-bcm-qspi.yaml       | 156 +++++++++---------
+>  .../bindings/spi/cdns,qspi-nor.yaml           |  34 ++--
+>  .../bindings/spi/nvidia,tegra210-quad.yaml    |  42 ++---
+>  .../bindings/spi/qcom,spi-qcom-qspi.yaml      |   1 -
+>  .../devicetree/bindings/spi/renesas,rspi.yaml |  22 +--
+>  .../bindings/spi/spi-sunplus-sp7021.yaml      |   4 +-
+>  .../devicetree/bindings/spi/st,stm32-spi.yaml |  23 ++-
+>  10 files changed, 176 insertions(+), 178 deletions(-)
 > 
->  .../boot/dts/ti/k3-am68-sk-base-board.dts     | 70 ++++++++++++++++++-
->  1 file changed, 69 insertions(+), 1 deletion(-)
->
 
-Tested-by: Rahul T R <r-ravikumar@ti.com>
-
-> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> index 2091cd2431fb..722cd19b74e0 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> @@ -173,6 +173,32 @@ J721S2_IOPAD(0x0a0, PIN_INPUT, 0) /* (AB25) MCASP0_AXR12.MCAN7_RX */
->  			J721S2_IOPAD(0x09c, PIN_INPUT, 0) /* (T24) MCASP0_AXR11.MCAN7_TX */
->  		>;
->  	};
-> +
-> +	main_i2c4_pins_default: main-i2c4-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x010, PIN_INPUT_PULLUP, 7) /* (AF28) MCAN13_RX.I2C4_SDA */
-> +			J721S2_IOPAD(0x014, PIN_INPUT_PULLUP, 7) /* (AD25) MCAN14_TX.I2C4_SCL */
-> +		>;
-> +	};
-> +
-> +	rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x0a8, PIN_INPUT, 7) /* (U24)  MCASP0_AXR14.GPIO0_42 */
-> +			J721S2_IOPAD(0x090, PIN_INPUT, 7) /* (W24) MCASP0_AXR8.GPIO0_36 */
-> +			J721S2_IOPAD(0x0bc, PIN_INPUT, 7) /* (V28) MCASP1_AFSX.GPIO0_47 */
-> +			J721S2_IOPAD(0x06c, PIN_INPUT, 7) /* (V26) MCAN1_TX.GPIO0_27 */
-> +			J721S2_IOPAD(0x004, PIN_INPUT, 7) /* (W25) MCAN12_TX.GPIO0_1 */
-> +			J721S2_IOPAD(0x008, PIN_INPUT, 7) /* (AC24) MCAN12_RX.GPIO0_2 */
-> +			J721S2_IOPAD(0x0b8, PIN_INPUT, 7) /* (AA24) MCASP1_ACLKX.GPIO0_46 */
-> +			J721S2_IOPAD(0x00c, PIN_INPUT, 7) /* (AE28) MCAN13_TX.GPIO0_3 */
-> +			J721S2_IOPAD(0x034, PIN_INPUT, 7) /* (AD24) PMIC_WAKE0.GPIO0_13 */
-> +			J721S2_IOPAD(0x0a4, PIN_INPUT, 7) /* (T23) MCASP0_AXR13.GPIO0_41 */
-> +			J721S2_IOPAD(0x0c0, PIN_INPUT, 7) /* (T28) MCASP1_AXR0.GPIO0_48 */
-> +			J721S2_IOPAD(0x0b4, PIN_INPUT, 7) /* (U25) MCASP1_AXR4.GPIO0_45 */
-> +			J721S2_IOPAD(0x0cc, PIN_INPUT, 7) /* (AE27) SPI0_CS0.GPIO0_51 */
-> +			J721S2_IOPAD(0x08c, PIN_INPUT, 7) /* (T25) MCASP0_AXR7.GPIO0_35 */
-> +		>;
-> +	};
->  };
->  
->  &wkup_pmx0 {
-> @@ -214,12 +240,39 @@ J721S2_WKUP_IOPAD(0x0d0, PIN_OUTPUT, 0) /* (C23) WKUP_GPIO0_4.MCU_MCAN1_TX*/
->  		>;
->  	};
->  
-> +	mcu_i2c0_pins_default: mcu-i2c0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x100, PIN_INPUT, 0) /*(H24) WKUP_GPIO0_63.MCU_I2C0_SCL*/
-> +			J721S2_WKUP_IOPAD(0x104, PIN_INPUT, 0) /*(H27) WKUP_GPIO0_64.MCU_I2C0_SDA*/
-> +		>;
-> +	};
-> +
->  	mcu_i2c1_pins_default: mcu-i2c1-pins-default {
->  		pinctrl-single,pins = <
->  			J721S2_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (F24) WKUP_GPIO0_8.MCU_I2C1_SCL */
->  			J721S2_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
->  		>;
->  	};
-> +
-> +	mcu_rpi_header_gpio0_pins_default: mcu-rpi-header-gpio0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x180, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_66 */
-> +			J721S2_WKUP_IOPAD(0x190, PIN_INPUT, 7) /* (K26) WKUP_GPIO0_49 */
-> +			J721S2_WKUP_IOPAD(0x0c4, PIN_INPUT, 7) /* (E24) MCU_SPI1_D0.WKUP_GPIO0_1 */
-> +			J721S2_WKUP_IOPAD(0x0c8, PIN_INPUT, 7) /* (C28) MCU_SPI1_D1.WKUP_GPIO0_2 */
-> +			J721S2_WKUP_IOPAD(0x0c0, PIN_INPUT, 7) /* (D26) MCU_SPI1_CLK.WKUP_GPIO0_0 */
-> +			J721S2_WKUP_IOPAD(0x0fc, PIN_INPUT, 7) /* (D25) MCU_SPI1_CS2.WKUP_GPIO0_15*/
-> +			J721S2_WKUP_IOPAD(0x120, PIN_INPUT, 7) /* (G27) WKUP_GPIO0_56 */
-> +			J721S2_WKUP_IOPAD(0x17c, PIN_INPUT, 7) /* (J26) WKUP_GPIO0_57 */
-> +			J721S2_WKUP_IOPAD(0x184, PIN_INPUT, 7) /* (J27) WKUP_GPIO0_67 */
-> +			J721S2_WKUP_IOPAD(0x0cc, PIN_INPUT, 7) /* (C27) MCU_SPI1_CS0.WKUP_GPIO0_3 */
-> +		>;
-> +	};
-> +};
-> +
-> +&main_gpio0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
->  };
->  
->  &main_gpio2 {
-> @@ -235,7 +288,8 @@ &main_gpio6 {
->  };
->  
->  &wkup_gpio0 {
-> -	status = "disabled";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_rpi_header_gpio0_pins_default>;
->  };
->  
->  &wkup_gpio1 {
-> @@ -273,6 +327,20 @@ exp1: gpio@21 {
->  	};
->  };
->  
-> +&main_i2c4 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_i2c4_pins_default>;
-> +	clock-frequency = <400000>;
-> +};
-> +
-> +&mcu_i2c0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_i2c0_pins_default>;
-> +	clock-frequency = <400000>;
-> +};
-> +
->  &main_sdhci0 {
->  	/* Unused */
->  	status = "disabled";
-> -- 
-> 2.36.1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Reviewed-by: Rob Herring <robh@kernel.org>
