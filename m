@@ -2,155 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CF1A67B464
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 15:27:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3258F67B472
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 15:29:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234279AbjAYO1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 09:27:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33114 "EHLO
+        id S234833AbjAYO3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 09:29:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234924AbjAYO1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 09:27:47 -0500
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5973A8E;
-        Wed, 25 Jan 2023 06:27:45 -0800 (PST)
-Received: by mail-vk1-f182.google.com with SMTP id v81so9268938vkv.5;
-        Wed, 25 Jan 2023 06:27:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9V62n1SuuxaJ7pP7jmtkw9+HT1Wzz3MzU0APh/E8WXE=;
-        b=eNraYPJQnd0N24D2N5MkbkWrISsfVbSCZG9hVlrIgaoX5v7vsEUqVGUOou3zp+KTpm
-         wX6n4AD8oet+M8I4864IUJZ6aojBSDvnFb6lodO8fqSxYZALqIDTHI98oN3xUVcVOr+X
-         GuTiHYDKkspqyPSN17kNtg94d2nAN+EcgR8V7Ubl2j6Z8or7jGsZXX5ntX3HtWURfcAD
-         bbA17aNQkifkc6NnzpUdl1qnB3+WMFGnbVDJt/3jmK0YU+7oGinBs7VdBBIjFmdvb7F0
-         a9iYkoAKWTaimmNkvYXnpvzULK/CUD83WpgLNqXKrVUuPvw1nxx0/p6ZqZegxjDYWLOc
-         JSdQ==
-X-Gm-Message-State: AFqh2kotDkeDY+JM4HkCNJZ3ISpG1bMQjbQnjDDEYMmjleYBQLjLVleG
-        Dn37YudAWvLY7aTwrTfNf8QvL6kzuXvZSg==
-X-Google-Smtp-Source: AMrXdXt0MrA59pQWUIuLv9FgWb0v1Hdf6tbygx1FX7OU50nxkeJPw1plX31dAbA6f4o+z7xSXSI9VA==
-X-Received: by 2002:a05:6122:2211:b0:3e1:79a5:74d7 with SMTP id bb17-20020a056122221100b003e179a574d7mr20566532vkb.10.1674656864500;
-        Wed, 25 Jan 2023 06:27:44 -0800 (PST)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id y21-20020a376415000000b006e07228ed53sm3606019qkb.18.2023.01.25.06.27.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jan 2023 06:27:44 -0800 (PST)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-4fd37a1551cso240801647b3.13;
-        Wed, 25 Jan 2023 06:27:43 -0800 (PST)
-X-Received: by 2002:a81:bd6:0:b0:48d:1334:6e38 with SMTP id
- 205-20020a810bd6000000b0048d13346e38mr3764419ywl.316.1674656863782; Wed, 25
- Jan 2023 06:27:43 -0800 (PST)
-MIME-Version: 1.0
-References: <20230118144747.24968-1-fabrizio.castro.jz@renesas.com> <20230118144747.24968-4-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20230118144747.24968-4-fabrizio.castro.jz@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 25 Jan 2023 15:27:32 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXGDETQfOZ4S6_0AZa6QCJ3Kv=hMVHHS7j7tcNJ76GaTg@mail.gmail.com>
-Message-ID: <CAMuHMdXGDETQfOZ4S6_0AZa6QCJ3Kv=hMVHHS7j7tcNJ76GaTg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: v2mevk2: Add uSD card and eMMC support
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+        with ESMTP id S229571AbjAYO3Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 09:29:16 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2350B448
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 06:29:15 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A4B19B819A2
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 14:29:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80F59C433D2;
+        Wed, 25 Jan 2023 14:29:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674656953;
+        bh=/8iL+eLjjDUX15rzUKs6LSSY7QQkdcX4nnlbul5lJdo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mNTdsMAboEikPDCCoP+NQyJEEVVV+ayglp9jMT05a49ONZlUGHgKfpErMg+9wYk98
+         2QxSxOTrsY3kUXKMcAfs6a4lL6OJhnbXldFJau3QZ5kV258RmJ3iwEKnniPlTPgCNJ
+         5rVR0oN/NnxxNP6SEMbEWQVAaZAz+ELjPny/ev6JyGS3B28lFquPoBHo7AcSYgFTdZ
+         vChP2LkdInH+JX6jXchNfsQs5etWrfVgf8Gk/5UjDVeEzCz5Vu0OTBCypEOBdhP3Yw
+         rFGrSHBCOsEucpRe1PtEPxpbWydxjj70UtW/p+6thJGfpWTJZiWu8WfWH7O1h9acNG
+         Ib0HUJmZTn5Ig==
+Date:   Wed, 25 Jan 2023 22:29:05 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        LOTS_OF_MONEY,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: Add LCDIF2 & LDB nodes
+Message-ID: <20230125142904.GB20713@T480>
+References: <20221208090842.2869374-1-alexander.stein@ew.tq-group.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221208090842.2869374-1-alexander.stein@ew.tq-group.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
+On Thu, Dec 08, 2022 at 10:08:41AM +0100, Alexander Stein wrote:
+> LCDIF2 is directly attached to the LVDS Display Bridge (LDB).
+> Both need the same clock source (VIDEO_PLL1).
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-On Wed, Jan 18, 2023 at 3:48 PM Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> The RZ/V2M EVK comes with a slot for a uSD card, and an eMMC.
-> Add support for the both of them.
->
-> Please note that the pinctrl driver for RZ/V2M doesn't support
-> interrupts yet, therefore the card detect pin has been connected
-> to the SDHI IP directly in this patch.
-> We'll connect the card detect pin to its corresponding GPIO when
-> we'll have driver support for interrupts in the RZ/V2M pinctrl
-> driver.
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-
-Thanks for your patch!
-
-> --- a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-
-> @@ -50,6 +81,22 @@ phy0: ethernet-phy@0 {
->         };
->  };
->
-> +&emmc {
-> +       pinctrl-0 = <&emmc_pins>;
-> +       pinctrl-1 = <&emmc_pins>;
-> +       pinctrl-names = "default", "state_uhs";
-> +
-> +       vmmc-supply = <&reg_3v3>;
-> +       vqmmc-supply = <&reg_1v8>;
-> +       bus-width = <8>;
-> +       mmc-hs200-1_8v;
-> +       non-removable;
-
-Does this need "no-sd" and "no-sdio"?
-
-> +       fixed-emmc-driver-type = <1>;
-> +       max-frequency = <200000000>;
-> +       status = "okay";
-> +};
-> +
-> +
->  &extal_clk {
->         clock-frequency = <48000000>;
->  };
-> @@ -78,6 +125,68 @@ i2c2_pins: i2c2 {
->                 pinmux = <RZV2M_PORT_PINMUX(3, 8, 2)>, /* SDA */
->                          <RZV2M_PORT_PINMUX(3, 9, 2)>; /* SCL */
->         };
-> +
-> +       sdhi0_pins: sd0 {
-
-[...]
-
-> +       };
-> +
-> +       sdhi0_pins_uhs: sd0_uhs {
-
-[...]
-
-> +       };
-> +
-> +       emmc_pins: emmc {
-
-Please move up to preserve sort order.
-
-The rest LGTM, so with the above clarified/fixed:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Applied both, thanks!
