@@ -2,170 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98C2667BEA3
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 22:35:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8EE467BEAD
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 22:38:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235239AbjAYVft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 16:35:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33982 "EHLO
+        id S236113AbjAYViX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 16:38:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229905AbjAYVft (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 16:35:49 -0500
-Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40CEF1BE5;
-        Wed, 25 Jan 2023 13:35:48 -0800 (PST)
-Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30PKLjvk023936;
-        Wed, 25 Jan 2023 21:35:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=nIAdRzdPQwyEunmAkOeASKJClLogOZczMRviDVn2RMo=;
- b=GMovTnMgZV2EPS93QyOzU18ECv940x7ZBEdPeHDGMd2fNd7P39vNm3fnq5OBKQykgMml
- FtTX6J8iN+2W2sjwWygaTvhODcTSNKPYEEtj4L/4CllMUF8/ojiH9eij+S11Nzj2fWlV
- ltuxjJrAVLU/difuW2SXlOf1yTWUP06tBBh9RyzOpBkmslFgK2yWBOrsMvkBt4clNfpe
- jdvudSvrU89Cl2CRs8nIgsW+9uLzgz0PPsFti6IhHyvugqwaiMunsAB1tZ/O0+2TQ+2k
- c4Kp79RMolYE3vUQX6+V3YsnfmrqT0XBYNG4sQAo4jogjTC0XgN0Tb3UGJ+ksyQLXZnP hw== 
-Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
-        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3nb7pp82mc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 25 Jan 2023 21:35:34 +0000
-Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
-        by ppma04wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 30PKOjEH003198;
-        Wed, 25 Jan 2023 21:35:34 GMT
-Received: from smtprelay02.dal12v.mail.ibm.com ([9.208.130.97])
-        by ppma04wdc.us.ibm.com (PPS) with ESMTPS id 3n87p7a38b-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 25 Jan 2023 21:35:34 +0000
-Received: from smtpav05.dal12v.mail.ibm.com (smtpav05.dal12v.mail.ibm.com [10.241.53.104])
-        by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 30PLZX1o46531252
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 25 Jan 2023 21:35:33 GMT
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 6AB1458052;
-        Wed, 25 Jan 2023 21:35:33 +0000 (GMT)
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 9CD095804C;
-        Wed, 25 Jan 2023 21:35:32 +0000 (GMT)
-Received: from [9.77.150.21] (unknown [9.77.150.21])
-        by smtpav05.dal12v.mail.ibm.com (Postfix) with ESMTP;
-        Wed, 25 Jan 2023 21:35:32 +0000 (GMT)
-Message-ID: <2fd38f3d-e26b-6888-10b7-8da06f94bfac@linux.ibm.com>
-Date:   Wed, 25 Jan 2023 15:35:32 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 1/2] dt-bindings: fsi: Document the IBM I2C Responder
- virtual FSI master
-Content-Language: en-US
-To:     Andrew Jeffery <andrew@aj.id.au>, linux-fsi@lists.ozlabs.org
-Cc:     devicetree@vger.kernel.org,
-        Alistair Popple <alistair@popple.id.au>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230119174714.1486042-1-eajames@linux.ibm.com>
- <20230119174714.1486042-2-eajames@linux.ibm.com>
- <a8be2b47-b0e9-4a28-8c32-81b9af81299e@app.fastmail.com>
-From:   Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <a8be2b47-b0e9-4a28-8c32-81b9af81299e@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: 2Vwcc3qQou6PqT_R7YtfyD5pzZ9GgfMb
-X-Proofpoint-GUID: 2Vwcc3qQou6PqT_R7YtfyD5pzZ9GgfMb
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+        with ESMTP id S236476AbjAYViW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 16:38:22 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A9372ED42;
+        Wed, 25 Jan 2023 13:38:17 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E2778615AD;
+        Wed, 25 Jan 2023 21:38:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CB93C433D2;
+        Wed, 25 Jan 2023 21:38:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674682696;
+        bh=bmq9nscR0EgSU6fvc32oRHpBhN1RRimmYW62O6DIiZE=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=Qe+JY92dmT+G+YKxGHzlrcnkItmlqhnSMBDUvzjxW06cgIUVYEGnhYXFGw7/AoGvR
+         TwCcuYuiobaRRtXKBT8/rq2by9cOLucsgqX7myHZ8TQuX7fbykQvTNSjpivrE+0DY4
+         cubxeHMZI/n2DlTvQ6GSP12tK8C6Rh3OGDFq5ahugpaiyNfknHWCXZj8+ZIktbZ/Tn
+         pWBluZI+C0wwUDTik2qP42U/QY2iyRqDOVQ4CZCd3i27aTraNI5z8F/6DEaq/m0etz
+         NoX6PJ7NQWOts1il55m2JiMF3zq9x0Wy2LOzYCo4ouNixzdhpx/+DO2YA6mRYr22J1
+         lmbqL1N9+R2TQ==
+Message-ID: <7055af43f4a8894ac34e53c5847fb3de.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-25_13,2023-01-25_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
- phishscore=0 adultscore=0 malwarescore=0 mlxlogscore=999 suspectscore=0
- mlxscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2301250193
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230118132254.2356209-8-dmitry.baryshkov@linaro.org>
+References: <20230118132254.2356209-1-dmitry.baryshkov@linaro.org> <20230118132254.2356209-8-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v4 7/7] clk: qcom: add the driver for the MSM8996 APCS clocks
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Date:   Wed, 25 Jan 2023 13:38:14 -0800
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Dmitry Baryshkov (2023-01-18 05:22:54)
+> diff --git a/drivers/clk/qcom/apcs-msm8996.c b/drivers/clk/qcom/apcs-msm8=
+996.c
+> new file mode 100644
+> index 000000000000..7e46ea8ed444
+> --- /dev/null
+> +++ b/drivers/clk/qcom/apcs-msm8996.c
+> @@ -0,0 +1,76 @@
+[...]
+> +
+> +static int qcom_apcs_msm8996_clk_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+> +       struct device *parent =3D dev->parent;
+> +       struct regmap *regmap;
+> +       struct clk_hw *hw;
+> +       unsigned int val;
+> +       int ret =3D -ENODEV;
+> +
+> +       regmap =3D dev_get_regmap(parent, NULL);
+> +       if (!regmap) {
+> +               dev_err(dev, "failed to get regmap: %d\n", ret);
+> +               return ret;
+> +       }
+> +
+> +       regmap_read(regmap, APCS_AUX_OFFSET, &val);
+> +       regmap_update_bits(regmap, APCS_AUX_OFFSET, APCS_AUX_DIV_MASK,
+> +                          FIELD_PREP(APCS_AUX_DIV_MASK, APCS_AUX_DIV_2));
+> +
+> +       /* Hardware mandated delay */
 
-On 1/19/23 18:22, Andrew Jeffery wrote:
->
-> On Fri, 20 Jan 2023, at 04:17, Eddie James wrote:
->> The I2C Responder translates I2C commands to CFAM or SCOM operations,
->> effectively implementing an FSI master.
->>
->> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->> ---
->>   .../devicetree/bindings/fsi/ibm,i2cr.yaml     | 42 +++++++++++++++++++
->>   1 file changed, 42 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/fsi/ibm,i2cr.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/fsi/ibm,i2cr.yaml
->> b/Documentation/devicetree/bindings/fsi/ibm,i2cr.yaml
->> new file mode 100644
->> index 000000000000..929ca10988f9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/fsi/ibm,i2cr.yaml
->> @@ -0,0 +1,42 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/fsi/ibm,i2cr.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: IBM I2C Responder virtual FSI master
->> +
->> +maintainers:
->> +  - Eddie James <eajames@linux.ibm.com>
->> +
->> +description: |
->> +  This binding describes an I2C device called the I2C Responder
->> (I2CR). The
->> +  I2CR translates commands sent over I2C bus to FSI CFAM reads and
->> writes or
->> +  SCOM operations. The CFAM access means that the I2CR can act as an
->> FSI
->> +  master.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ibm,i2cr
->
-> I think this should be a bit more descriptive and at least mention that
-> it's FSI-related, e.g. `ibm,fsi-i2cr`? Thoughts?
+Delay for what? Setting the divider? What if the register value didn't
+change at all? Can you skip the delay in that case?
 
+> +       udelay(5);
+> +
+> +       /*
+> +        * Register the clock as fixed rate instead of being a child of g=
+pll0
+> +        * to let the driver register probe as early as possible.
 
-Yea that probably makes sense.
+The function doesn't block or return EPROBE_DEFER if the clk is orphaned
+when registered. Why is this necessary? Are you getting defered by the
+fw_devlink logic thinking it needs to defer probe of this driver until
+gpll0 provider probes? We should fix fw_devlink to not do that. Maybe if
+the node is a clk provider (#clock-cells exists) then we don't wait for
+clocks property to be provided, because the clk core already handles
+that itself.
 
-Thanks for the suggestion!
-
-Eddie
-
-
->
->> +
->> +   reg:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> + - |
->> +    i2c {
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
->> +
->> +      i2cr@20 {
->> +        compatible = "ibm,i2cr";
-> Change this in accordance with the above.
->
-> Andrew
+> +        */
+> +       hw =3D devm_clk_hw_register_fixed_rate(dev, "sys_apcs_aux", NULL,=
+ 0, 300000000);
