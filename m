@@ -2,102 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDD0867B19D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 12:38:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27FB667B1A9
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 12:40:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235551AbjAYLia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 06:38:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59178 "EHLO
+        id S235312AbjAYLku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 06:40:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235313AbjAYLiZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 06:38:25 -0500
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 112EE5618E;
-        Wed, 25 Jan 2023 03:37:55 -0800 (PST)
-Received: by mail-qv1-f54.google.com with SMTP id m12so13866102qvt.9;
-        Wed, 25 Jan 2023 03:37:55 -0800 (PST)
+        with ESMTP id S235090AbjAYLku (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 06:40:50 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED38CC148
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 03:40:47 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id mp20so46800909ejc.7
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 03:40:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=M9CONn1V7Ye0B52Z8jaNfjazx4lKqTqS2Pz1n8BRitY=;
+        b=glVFMNjSO3M/lJkAc38ryLFpJX/PuxEQkkajt8a8RsWGcjR8b0wC4FIAHEqN+saZRU
+         29/3wnp6WOHjMxZgsD3Dsd04QuzB/iBeyDHvgh8hLSt3sJbiVLfq5QQRMViMQjkfnuXy
+         7fnNMqWzBhDEGEDuKuz5a2Fc11hnRancjlfkzMpttm3Prl/KmYmN9ZHL9QJHechR44US
+         89Uy9V1IgfRLqpZmyiUSpJM6L7lFa6H2esZgfi5Uzm5BVrgpfRHqINY3OBwquk9cBBrL
+         lfDD+cmFKD6j8G7diOV21inLVr5BH0fQgv47esxBZaSZv5ODsKGDocUZ5XzvaFAxBi0e
+         N9HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=E/t7ys6E2CbYDYuVcXfgtBpZgdyeb4IZ4cqbwkss4Uo=;
-        b=UZBvsy//01TZAyy8XetTeHupyQ0DKpMhFBtSMsATvkYgH2X/0Mo1rjz5UmMCCx1g+d
-         BRa83TsBJkJo7HBuNt5w8OaKLRJEgqnq9V0tb6bFqZXCa93/Gjj1xK9s9NuLesGjNywL
-         SNUVk9MGOCFurN/H3JUhNKq2uo8FQmM5MBpXwxlO829K5xkXt45MrMQe4MSJnmkaC0Km
-         lMfZP4h8kmeqv+Wc4L0k4gNm1ssNCfDGWe32HW/8AYIudLjoRNgtL0FKZBcgcaeoalFd
-         8/vGl+qkZCfxRB5d8NQOduFhEbu17noPcITdEs2GNCDruarJk4iUVpSsgF9qJJQEL49X
-         Dkyg==
-X-Gm-Message-State: AO0yUKUCxF53zUrkAkStATOr06XGhjEIVu3Wqfu9auCH0Qtsd6f0EaoK
-        oNOHcH8WH/WIOyg/mf95J47Qr25SNSyirg==
-X-Google-Smtp-Source: AK7set9OF5JhON/JLlyY5FFbCkQZmy+rqSEs2v5J2i1sSCZoOgt+xUwTy+lwrQrqGwC3KYROOsz3NQ==
-X-Received: by 2002:a0c:f441:0:b0:537:7057:49cf with SMTP id h1-20020a0cf441000000b00537705749cfmr5215902qvm.37.1674646630205;
-        Wed, 25 Jan 2023 03:37:10 -0800 (PST)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id i65-20020a37b844000000b006fec1c0754csm3329969qkf.87.2023.01.25.03.37.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jan 2023 03:37:09 -0800 (PST)
-Received: by mail-yb1-f173.google.com with SMTP id p141so19819238ybg.12;
-        Wed, 25 Jan 2023 03:37:09 -0800 (PST)
-X-Received: by 2002:a25:9ac1:0:b0:7b4:6a33:d89f with SMTP id
- t1-20020a259ac1000000b007b46a33d89fmr2485292ybo.543.1674646629124; Wed, 25
- Jan 2023 03:37:09 -0800 (PST)
-MIME-Version: 1.0
-References: <20230102221815.273719-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230102221815.273719-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20230102221815.273719-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 25 Jan 2023 12:36:57 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXeEXgMYgFq_nTRmco7P7TFSMKcRoQxcL-hKECn+_5FGw@mail.gmail.com>
-Message-ID: <CAMuHMdXeEXgMYgFq_nTRmco7P7TFSMKcRoQxcL-hKECn+_5FGw@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] arm64: dts: renesas: r9a07g043[u]: Update pinctrl
- node to handle GPIO interrupts
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=M9CONn1V7Ye0B52Z8jaNfjazx4lKqTqS2Pz1n8BRitY=;
+        b=1Dx7JkbI8HY6GBQMjhm5LBwZ2JqyXvvdErcpvbEYW5N/AqZhRtu4qrd42iXUeTWL5r
+         +AYWGyRumIU/sO+IshMmRd8Lh+WiQoosJeXpeNDncnNfTUCQ3eXeXajv1tq5UA+QQEZB
+         W0R7e/Asyo7Xx+d/E2FjwN3Mkk8C2IYF1zeZxAcahS4I3fKD00/IwhVcxL+/rGJj27Kb
+         M31sgYM7/ndFgsdlwbPvgKMhSsd9+yzRu+sHQ9cVsmqmqAPf08ZzoHXM6rmVetW2xLQD
+         EgD+Q8GGdnScy5A9xYGW+DMC07qVHbyIUDJ3x2VO7l90R6921+zSZzDTzy5mRuktTju2
+         cmoQ==
+X-Gm-Message-State: AFqh2koCXIsAHJh76aJMqJf0d/aKlX0tgunoyv4vGff3hvsIdIe4yKQv
+        wVbMi1vyReWB0kd30lDKfzBvaA==
+X-Google-Smtp-Source: AMrXdXuOtX/o0noIZONw0GP3yL+7WMkkHddkrvvKpIG3R3OivXD5kAxRBtnLfDYjR/dvWr01000UcQ==
+X-Received: by 2002:a17:906:6313:b0:7c1:6151:34c0 with SMTP id sk19-20020a170906631300b007c1615134c0mr35279437ejc.6.1674646846419;
+        Wed, 25 Jan 2023 03:40:46 -0800 (PST)
+Received: from localhost ([93.99.189.36])
+        by smtp.gmail.com with ESMTPSA id p7-20020a1709060e8700b0086f4b8f9e42sm2287363ejf.65.2023.01.25.03.40.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jan 2023 03:40:45 -0800 (PST)
+Date:   Wed, 25 Jan 2023 12:40:44 +0100
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Frank Rowand <frowand.list@gmail.com>,
+        Conor Dooley <conor@kernel.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] riscv: Get rid of riscv_pfn_base variable
+Message-ID: <20230125114044.qcr2canalvljevcu@orel>
+References: <20230125081214.1576313-1-alexghiti@rivosinc.com>
+ <20230125081214.1576313-2-alexghiti@rivosinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230125081214.1576313-2-alexghiti@rivosinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 2, 2023 at 11:19 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add required properties in pinctrl node to handle GPIO interrupts.
->
-> Note as IRQC is not enabled in RZ/Five the phandle for interrupt-parent
-> is added in RZ/G2UL specific dtsi so that RZ/Five pinctrl driver
-> continues without waiting for IRQC to probe.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Wed, Jan 25, 2023 at 09:12:13AM +0100, Alexandre Ghiti wrote:
+> Use directly phys_ram_base instead, riscv_pfn_base is just the pfn of
+> the address contained in phys_ram_base.
+> 
+> Even if there is no functional change intended in this patch, actually
+> setting phys_ram_base that early changes the behaviour of
+> kernel_mapping_pa_to_va during the early boot: phys_ram_base used to be
+> zero before this patch and now it is set to the physical start address of
+> the kernel. But it does not break the conversion of a kernel physical
+> address into a virtual address since kernel_mapping_pa_to_va should only
+> be used on kernel physical addresses, i.e. addresses greater than the
+> physical start address of the kernel.
+
+afaict, only CONFIG_XIP_KERNEL kernels use phys_ram_base prior to
+setup_bootmem() and, for them, this change only redundantly sets
+phys_ram_base to the same thing, so I believe this is a no functional
+change patch.
+
+> 
+> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
 > ---
-> v2 -> v3
-> * No change
+>  arch/riscv/include/asm/page.h | 3 +--
+>  arch/riscv/mm/init.c          | 6 +-----
+>  2 files changed, 2 insertions(+), 7 deletions(-)
+> 
+> diff --git a/arch/riscv/include/asm/page.h b/arch/riscv/include/asm/page.h
+> index 9f432c1b5289..728eee53152a 100644
+> --- a/arch/riscv/include/asm/page.h
+> +++ b/arch/riscv/include/asm/page.h
+> @@ -91,8 +91,7 @@ typedef struct page *pgtable_t;
+>  #endif
+>  
+>  #ifdef CONFIG_MMU
+> -extern unsigned long riscv_pfn_base;
+> -#define ARCH_PFN_OFFSET		(riscv_pfn_base)
+> +#define ARCH_PFN_OFFSET		(PFN_DOWN(phys_ram_base))
+>  #else
+>  #define ARCH_PFN_OFFSET		(PAGE_OFFSET >> PAGE_SHIFT)
+>  #endif /* CONFIG_MMU */
+> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> index 478d6763a01a..225a7d2b65cc 100644
+> --- a/arch/riscv/mm/init.c
+> +++ b/arch/riscv/mm/init.c
+> @@ -271,9 +271,6 @@ static void __init setup_bootmem(void)
+>  #ifdef CONFIG_MMU
+>  struct pt_alloc_ops pt_ops __initdata;
+>  
+> -unsigned long riscv_pfn_base __ro_after_init;
+> -EXPORT_SYMBOL(riscv_pfn_base);
+> -
+>  pgd_t swapper_pg_dir[PTRS_PER_PGD] __page_aligned_bss;
+>  pgd_t trampoline_pg_dir[PTRS_PER_PGD] __page_aligned_bss;
+>  static pte_t fixmap_pte[PTRS_PER_PTE] __page_aligned_bss;
+> @@ -285,7 +282,6 @@ static pmd_t __maybe_unused early_dtb_pmd[PTRS_PER_PMD] __initdata __aligned(PAG
+>  
+>  #ifdef CONFIG_XIP_KERNEL
+>  #define pt_ops			(*(struct pt_alloc_ops *)XIP_FIXUP(&pt_ops))
+> -#define riscv_pfn_base         (*(unsigned long  *)XIP_FIXUP(&riscv_pfn_base))
+>  #define trampoline_pg_dir      ((pgd_t *)XIP_FIXUP(trampoline_pg_dir))
+>  #define fixmap_pte             ((pte_t *)XIP_FIXUP(fixmap_pte))
+>  #define early_pg_dir           ((pgd_t *)XIP_FIXUP(early_pg_dir))
+> @@ -985,7 +981,7 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+>  	kernel_map.va_pa_offset = PAGE_OFFSET - kernel_map.phys_addr;
+>  	kernel_map.va_kernel_pa_offset = kernel_map.virt_addr - kernel_map.phys_addr;
+>  
+> -	riscv_pfn_base = PFN_DOWN(kernel_map.phys_addr);
+> +	phys_ram_base = kernel_map.phys_addr;
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.3.
+nit: I'd put this in the #else part of the #ifdef CONFIG_XIP_KERNEL above
+to have some consistency with that #ifdef arm and also avoid the redundant
+assignment of phys_ram_base for CONFIG_XIP_KERNEL.
 
-Gr{oetje,eeting}s,
+>  
+>  	/*
+>  	 * The default maximal physical memory size is KERN_VIRT_SIZE for 32-bit
+> -- 
+> 2.37.2
+>
 
-                        Geert
+Otherwise,
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+drew
