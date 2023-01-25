@@ -2,143 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D9367C103
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 00:41:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10D1C67C11A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 00:44:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235793AbjAYXlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 18:41:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43390 "EHLO
+        id S235812AbjAYXoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 18:44:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235878AbjAYXlQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 18:41:16 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 715832194E
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 15:40:56 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id v13so395024eda.11
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 15:40:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pwbh4PMMgQkzK1kN5wBumD27P6cUdwxiPyBgeqdBGE8=;
-        b=fa0DKCBR1y8U9WBPRxnY2UCvnuvn1v8AiF6ILlWIsxizB5wrwtwS0CIj2zUbtWnAok
-         9L1zV52StAkqEa+NA34RXbIVwu3Vczf0gvqveuHsuYawckRwgreTanuoIDrlj+oAPc9p
-         p1ClcQUjXzefJakq/gI0g7M/AquA3ojsLjIToGgBoBlOZkWWQBQ1hyezlFIhSkUc5g7Z
-         fIsysE3cg3CmnS64yDTtL9fZ/Z6VtzEslN86/4sZcgYp5Vfk+uGgIO8rSJGLntGH3tbd
-         wx+RSDEsSu96+llKN8qYgYSCQOhrxiYT2cWOslznqaaZuSz4t9tPdg3OL5kDjWsbOeTn
-         UMtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pwbh4PMMgQkzK1kN5wBumD27P6cUdwxiPyBgeqdBGE8=;
-        b=c5Q8I0IVkoLYt7YN5/YpiK19yvhdpYl6nuV/aAfdBT/9I0Xtvlpr/zLO1DqBTgcASy
-         gDdlHZ0iarZRZgQc7vLNeMgvXFhPquZ9ZTVAE8rWR1biebp9XaYK3Ih5atAo3Z+/WFC2
-         mvGrKM6HzJuS5k5GBAKXkLe8rh6TmIU8vLbYc7UaLyV4ajjIH8fnj0FgbP8S34c8/O5o
-         6UlNb0pEmzNdu8qKk1YEuZBW4oMJZYQOy0NUiMEyd+wLZRLCEjwXFa5vsPm0zA4/6ULq
-         lzqXCTFuHgEh0p/sJ6CeFbX5/CEUfWeZ0DVTQbApCiioKonm+1ostf4Sy2YhiITtrqv5
-         xzmA==
-X-Gm-Message-State: AFqh2kpvsf5k+NqOXIomEq4yAhse08Fq62uu3sYSIlVUlwZHO4CPHP2+
-        tIdTzjrplF+I2R662Y/nuLQ5Hw==
-X-Google-Smtp-Source: AMrXdXuYWSskUkqSo1Tvp5slx5lvO2ecBO+FafsWhHmYSfLfJmMEzAb40/zHEQvkBIp8Ofmlx80UMQ==
-X-Received: by 2002:a05:6402:3709:b0:488:6003:24b6 with SMTP id ek9-20020a056402370900b00488600324b6mr37104852edb.40.1674690054987;
-        Wed, 25 Jan 2023 15:40:54 -0800 (PST)
-Received: from [192.168.1.101] (abyk108.neoplus.adsl.tpnet.pl. [83.9.30.108])
-        by smtp.gmail.com with ESMTPSA id g12-20020a056402180c00b00499703df898sm2934824edy.69.2023.01.25.15.40.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jan 2023 15:40:54 -0800 (PST)
-Message-ID: <41efc16a-8b6d-e6c1-efe1-4e0b4ce43533@linaro.org>
-Date:   Thu, 26 Jan 2023 00:40:51 +0100
+        with ESMTP id S235936AbjAYXoQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 18:44:16 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 464D55E53A
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 15:43:50 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ACD9D616CE
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 23:43:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8C27C433EF;
+        Wed, 25 Jan 2023 23:43:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674690229;
+        bh=b2921ajz+XWP6WktKYBRKnR5y14nUKZxmUT6/Xr+08A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hFuvMgcElUctJc/xpKYEY04hCq62CAjTt8VASzn+ZeWm0VSxnyRqK8Nc05EWzbGo3
+         8g33K8AulPNZIJ4MSqMv4tKxL8gomboMtSPT0kEtQtJeLFqFjkr2QgaYcxSmE4jEU0
+         q2BMGeGluN64YY2FAQHf6RrKTRwvJ7rBZlpftC8xW05sQEkzpgVAkZy/3+80DRHLaP
+         PCtLgZCIieFW6PONIEanl1sVee4aad2sy2Pn7ZMggi0Oi89nCSbnsJ91Dj6mZj/h60
+         0q/EhsTQhzPsaDEfdG1icYW4tg6UtTpqT4PUWcGAGVisQBYzUnWjmKBooMsf3EaEBd
+         AbtFjGy9Hv6PA==
+Date:   Thu, 26 Jan 2023 07:43:40 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>
+Subject: Re: [PATCH v9 07/10] arm64: dts: ls1046ardb: Add serdes bindings
+Message-ID: <20230125234335.GC20713@T480>
+References: <20221230000139.2846763-1-sean.anderson@seco.com>
+ <20221230000139.2846763-8-sean.anderson@seco.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH V1 7/8] arm64: dts: qcom: Add ipq9574 SoC and AL02 board
- support
-Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, ulf.hansson@linaro.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
-        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
-        broonie@kernel.org, tdas@codeaurora.org, bhupesh.sharma@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-References: <20230124141541.8290-1-quic_devipriy@quicinc.com>
- <20230124141541.8290-8-quic_devipriy@quicinc.com>
- <adb66162-6ff3-184e-fe92-109bdef8ed1c@linaro.org>
- <9cce23e9-bb1e-b49e-b771-f61ac6d12933@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <9cce23e9-bb1e-b49e-b771-f61ac6d12933@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221230000139.2846763-8-sean.anderson@seco.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 25.01.2023 12:12, Devi Priya wrote:
+On Thu, Dec 29, 2022 at 07:01:36PM -0500, Sean Anderson wrote:
+> This adds appropriate bindings for the macs which use the SerDes. The
+> 156.25MHz fixed clock is a crystal. The 100MHz clocks (there are
+> actually 3) come from a Renesas 6V49205B at address 69 on i2c0. There is
+> no driver for this device (and as far as I know all you can do with the
+> 100MHz clocks is gate them), so I have chosen to model it as a single
+> fixed clock.
 > 
+> Note: the SerDes1 lane numbering for the LS1046A is *reversed*.
+> This means that Lane A (what the driver thinks is lane 0) uses pins
+> SD1_TX3_P/N.
 > 
-> On 1/24/2023 8:44 PM, Krzysztof Kozlowski wrote:
->> On 24/01/2023 15:15, devi priya wrote:
->>> From: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
->>>
->>> Add initial device tree support for Qualcomm IPQ9574 SoC
->>> and AL02 board
->>>
->>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
->>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->>> Co-developed-by: devi priya <quic_devipriy@quicinc.com>
->>> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
->>> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
->>> ---
->>>   arch/arm64/boot/dts/qcom/Makefile            |   1 +
->>>   arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts |  78 +++++
->>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi        | 285 +++++++++++++++++++
->>>   3 files changed, 364 insertions(+)
->>>   create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->>>   create mode 100644 arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->>> index 3e79496292e7..872c62028a0b 100644
->>> --- a/arch/arm64/boot/dts/qcom/Makefile
->>> +++ b/arch/arm64/boot/dts/qcom/Makefile
->>> @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_QCOM)    += ipq6018-cp01-c1.dtb
->>>   dtb-$(CONFIG_ARCH_QCOM)    += ipq8074-hk01.dtb
->>>   dtb-$(CONFIG_ARCH_QCOM)    += ipq8074-hk10-c1.dtb
->>>   dtb-$(CONFIG_ARCH_QCOM)    += ipq8074-hk10-c2.dtb
->>> +dtb-$(CONFIG_ARCH_QCOM)    += ipq9574-al02-c7.dtb
->>>   dtb-$(CONFIG_ARCH_QCOM)    += msm8916-alcatel-idol347.dtb
->>
->> This does not match current tree, so I could not apply it for tests. I
->> think you based it on a bit older version.
->>
-> The patch series is based on Linux 6.2-rc1 and not the qcom/for-next branch.
-Linux 6.2-rc1 is very old already and Bjorn has already picked
-tens of patches atop it, so yours will not apply unless you
-base it on qcom/for-next (or just linux-next for that matter).
+> Because this will break ethernet if the serdes is not enabled, enable
+> the serdes driver by default on Layerscape.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> ---
+> This depends on [1].
+> 
+> [1] https://lore.kernel.org/netdev/20220804194705.459670-4-sean.anderson@seco.com/
+> 
+> Changes in v9:
+> - Fix name of phy mode node
+> - phy-type -> fsl,phy
+> 
+> Changes in v8:
+> - Rename serdes phy handles to use _A, _B, etc. instead of _0, _1, etc.
+>   This should help remind readers that the numbering corresponds to the
+>   physical layout of the registers, and not the lane (pin) number.
+> 
+> Changes in v6:
+> - XGI.9 -> XFI.9
+> 
+> Changes in v4:
+> - Convert to new bindings
+> 
+>  .../boot/dts/freescale/fsl-ls1046a-rdb.dts    | 112 ++++++++++++++++++
+>  drivers/phy/freescale/Kconfig                 |   1 +
 
-Konrad
->> Best regards,
->> Krzysztof
->>
-> Best Regards,
-> Devi Priya
+The phy driver Kconfig change shouldn't be part of this patch.
+
+>  2 files changed, 113 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
+> index 7025aad8ae89..534f19855b47 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
+> @@ -10,6 +10,8 @@
+>  
+>  /dts-v1/;
+>  
+> +#include <dt-bindings/phy/phy.h>
+> +
+>  #include "fsl-ls1046a.dtsi"
+>  
+>  / {
+> @@ -26,8 +28,110 @@ aliases {
+>  	chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
+> +
+> +	clocks {
+
+Drop this container node.
+
+Shawn
+
+> +		clk_100mhz: clock-100mhz {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <100000000>;
+> +		};
+> +
+> +		clk_156mhz: clock-156mhz {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <156250000>;
+> +		};
+> +	};
+>  };
+>  
+> +&serdes1 {
+> +	clocks = <&clk_100mhz>, <&clk_156mhz>;
+> +	clock-names = "ref0", "ref1";
+> +	status = "okay";
+> +
+> +	/*
+> +	 * XXX: Lane A uses pins SD1_RX3_P/N! That is, the lane numbers and pin
+> +	 * numbers are _reversed_. In addition, the PCCR documentation is
+> +	 * _inconsistent_ in its usage of these terms!
+> +	 *
+> +	 * PCCR "Lane 0" refers to...
+> +	 * ==== =====================
+> +	 *    0 Lane A
+> +	 *    2 Lane A
+> +	 *    8 Lane A
+> +	 *    9 Lane A
+> +	 *    B Lane D!
+> +	 */
+> +	serdes1_A: phy@0 {
+> +		#phy-cells = <0>;
+> +		reg = <0>;
+> +
+> +		/* SGMII.6 */
+> +		sgmii-0 {
+> +			fsl,pccr = <0x8>;
+> +			fsl,index = <0>;
+> +			fsl,cfg = <0x1>;
+> +			fsl,type = <PHY_TYPE_SGMII>;
+> +		};
+> +	};
+> +
+> +	serdes1_B: phy@1 {
+> +		#phy-cells = <0>;
+> +		reg = <1>;
+> +
+> +		/* SGMII.5 */
+> +		sgmii-1 {
+> +			fsl,pccr = <0x8>;
+> +			fsl,index = <1>;
+> +			fsl,cfg = <0x1>;
+> +			fsl,type = <PHY_TYPE_2500BASEX>;
+> +		};
+> +	};
+> +
+> +	serdes1_C: phy@2 {
+> +		#phy-cells = <0>;
+> +		reg = <2>;
+> +
+> +		/* SGMII.10 */
+> +		sgmii-2 {
+> +			fsl,pccr = <0x8>;
+> +			fsl,index = <2>;
+> +			fsl,cfg = <0x1>;
+> +			fsl,type = <PHY_TYPE_2500BASEX>;
+> +		};
+> +
+> +		/* XFI.10 */
+> +		xfi-0 {
+> +			fsl,pccr = <0xb>;
+> +			fsl,index = <0>;
+> +			fsl,cfg = <0x2>;
+> +			fsl,type = <PHY_TYPE_10GBASER>;
+> +		};
+> +	};
+> +
+> +	serdes1_D: phy@3 {
+> +		#phy-cells = <0>;
+> +		reg = <3>;
+> +
+> +		/* SGMII.9 */
+> +		sgmii-3 {
+> +			fsl,pccr = <0x8>;
+> +			fsl,index = <3>;
+> +			fsl,cfg = <0x1>;
+> +			fsl,type = <PHY_TYPE_2500BASEX>;
+> +		};
+> +
+> +		/* XFI.9 */
+> +		xfi-1 {
+> +			fsl,pccr = <0xb>;
+> +			fsl,index = <1>;
+> +			fsl,cfg = <0x1>;
+> +			fsl,type = <PHY_TYPE_10GBASER>;
+> +		};
+> +	};
+> +};
+> +
+> +
+>  &duart0 {
+>  	status = "okay";
+>  };
+> @@ -140,21 +244,29 @@ ethernet@e6000 {
+>  	ethernet@e8000 {
+>  		phy-handle = <&sgmii_phy1>;
+>  		phy-connection-type = "sgmii";
+> +		phys = <&serdes1_B>;
+> +		phy-names = "serdes";
+>  	};
+>  
+>  	ethernet@ea000 {
+>  		phy-handle = <&sgmii_phy2>;
+>  		phy-connection-type = "sgmii";
+> +		phys = <&serdes1_A>;
+> +		phy-names = "serdes";
+>  	};
+>  
+>  	ethernet@f0000 { /* 10GEC1 */
+>  		phy-handle = <&aqr106_phy>;
+>  		phy-connection-type = "xgmii";
+> +		phys = <&serdes1_D>;
+> +		phy-names = "serdes";
+>  	};
+>  
+>  	ethernet@f2000 { /* 10GEC2 */
+>  		fixed-link = <0 1 1000 0 0>;
+>  		phy-connection-type = "xgmii";
+> +		phys = <&serdes1_C>;
+> +		phy-names = "serdes";
+>  	};
+>  
+>  	mdio@fc000 {
+> diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
+> index 6bebe00f5889..b396162dc859 100644
+> --- a/drivers/phy/freescale/Kconfig
+> +++ b/drivers/phy/freescale/Kconfig
+> @@ -54,6 +54,7 @@ config PHY_FSL_LYNX_10G
+>  	depends on ARCH_LAYERSCAPE || PPC || COMPILE_TEST
+>  	select GENERIC_PHY
+>  	select REGMAP_MMIO
+> +	default y if ARCH_LAYERSCAPE
+>  	help
+>  	  This adds support for the Lynx "SerDes" devices found on various QorIQ
+>  	  SoCs. There may be up to four SerDes devices on each SoC, and each
+> -- 
+> 2.35.1.1320.gc452695387.dirty
+> 
