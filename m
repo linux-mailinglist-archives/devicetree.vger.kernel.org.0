@@ -2,115 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6743667BC5A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 21:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1924B67BC75
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 21:22:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236312AbjAYULy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 15:11:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45818 "EHLO
+        id S235791AbjAYUWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 15:22:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236353AbjAYULv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 15:11:51 -0500
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF29D5D111;
-        Wed, 25 Jan 2023 12:11:19 -0800 (PST)
-Received: by mail-ot1-x333.google.com with SMTP id n24-20020a0568301e9800b006865671a9d5so11794540otr.6;
-        Wed, 25 Jan 2023 12:11:19 -0800 (PST)
+        with ESMTP id S234138AbjAYUWS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 15:22:18 -0500
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7842F5925D;
+        Wed, 25 Jan 2023 12:22:17 -0800 (PST)
+Received: by mail-oo1-f47.google.com with SMTP id h3-20020a4ac443000000b004fb2954e7c3so3335947ooq.10;
+        Wed, 25 Jan 2023 12:22:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nvGxKBe2tXNnIAXd7DhRCMLLrdEFz1rEy7hosIzra4k=;
-        b=fbG68ML9FUjq6Ny/B620Rja1oYl3Rj2gaVTIKZGvaq+LG2COIVjb2jFz/1HI2GbX6w
-         CyiS7xfJTqXnnF2389HKa0SJF+YmE6dRdkYKwgfvDkc+6DEBfqtIWwNfl6ilh/tBm4wW
-         LM10x1S00fJBjXjDD7i40Pt6vedNOixUUaXk0aVnmX+d4mRxd/YGU/iaDIZfoP7DyJLH
-         YaaT8hImV1l4ZZDpPrqOU4U7zKOu/Q4lO1gpMtkF6Zh3PA1wnPjTCGD1ymf/e+16mz2y
-         sLkiGFN3ePJxGYXcfXWIe92FXfsoA/dZ0n8JpFFs6tLEWa/od37CVJgUXpGVR9OGW53q
-         q1PQ==
-X-Gm-Message-State: AFqh2kpaMxRVoyXPVJ4sFzyXxVkwVTzQPokEmSvRc3g+bRnLMSalwahx
-        IkvuFkF/r+T+/d5P+rpg1A==
-X-Google-Smtp-Source: AMrXdXuxRG4RDF7RI7gCrOg1RarCpE71i170Oc3Cr+xu3/OuWc975n087q9cZ/K9XzPPfyTQp3Iy4Q==
-X-Received: by 2002:a9d:7508:0:b0:670:686c:7dc with SMTP id r8-20020a9d7508000000b00670686c07dcmr17455962otk.26.1674677402557;
-        Wed, 25 Jan 2023 12:10:02 -0800 (PST)
+        bh=3QV5aYju94H6dkD3L7A3nPcZMzwhL2uI6SZmpxqkGgo=;
+        b=C6KLFuwIPCOembF3+mdJhyQAJETsR4y5ePnDj31LPVbaRx1PRB2TpPTcFQ40dh7mMy
+         3RX2QsVfcW4rqKKRB5H2npES0rTkw1sspp2V0d1MwH+fNAqEQPaOV0Ktg9DlhcCtTqo9
+         T38fjJyVV7YBbRhFlxnOeN3wZM4DYqQfoej92gPKK+ChBbJGsDd1F2YYlZUt5JTBMhGC
+         Xypl3ZwS7rANH/zTmgujj4MX1jfUi/ir89ToyMpB9GaxWQf36tinqG0b3LNJwdF0p4gZ
+         N7SvjIN4d3chmTA4LcBBB1cF964pLhNEIsP3wMT59OWn5eN8EaAv/z4W2cuc2Ij7hqre
+         CUcg==
+X-Gm-Message-State: AFqh2kpb+TckfN4kpcplNT0HtUSLWUhuETEW8qDOBa0A+WIvmX91Qnjw
+        5wtiXDDkqoth3eMZq4DFnQ==
+X-Google-Smtp-Source: AMrXdXv14UQ8CWf0xNn+17CDaLJFAafwyepDkS+ifEDVW5JhBsWhaBfEZyAJnJopDhDR6AXvEOmb2Q==
+X-Received: by 2002:a4a:498d:0:b0:4f2:6b72:6f75 with SMTP id z135-20020a4a498d000000b004f26b726f75mr15582770ooa.7.1674678136672;
+        Wed, 25 Jan 2023 12:22:16 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b6-20020a9d6b86000000b00684e79759d7sm2505546otq.65.2023.01.25.12.10.01
+        by smtp.gmail.com with ESMTPSA id r141-20020a4a3793000000b0050dc3c2f77asm2201809oor.8.2023.01.25.12.22.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 12:10:02 -0800 (PST)
-Received: (nullmailer pid 2808877 invoked by uid 1000);
-        Wed, 25 Jan 2023 20:10:00 -0000
-Date:   Wed, 25 Jan 2023 14:10:00 -0600
+        Wed, 25 Jan 2023 12:22:16 -0800 (PST)
+Received: (nullmailer pid 2846936 invoked by uid 1000);
+        Wed, 25 Jan 2023 20:22:15 -0000
+Date:   Wed, 25 Jan 2023 14:22:15 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Peter Korsgaard <jacmet@sunsite.dk>, Chester Lin <clin@suse.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-riscv@lists.infradead.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-serial@vger.kernel.org, Le Ray <erwan.leray@foss.st.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>, devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-amlogic@lists.infradead.org,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-kernel@vger.kernel.org,
-        Pragnesh Patel <pragnesh.patel@sifive.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Fugang Duan <fugang.duan@nxp.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
+To:     Etienne Carriere <etienne.carriere@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Jens Wiklander <jens.wiklander@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH v2 12/12] dt-bindings: serial: example cleanup
-Message-ID: <167467740050.2808709.16126387956370383942.robh@kernel.org>
-References: <20230124091602.44027-1-krzysztof.kozlowski@linaro.org>
- <20230124091916.45054-10-krzysztof.kozlowski@linaro.org>
+        Marc Zyngier <maz@kernel.org>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        Pascal Paillet <p.paillet@foss.st.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: optee: add interrupt controller
+ properties
+Message-ID: <20230125202215.GA2811928-robh@kernel.org>
+References: <20230124105643.1737250-1-etienne.carriere@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230124091916.45054-10-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230124105643.1737250-1-etienne.carriere@linaro.org>
 X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
++Sudeep
 
-On Tue, 24 Jan 2023 10:19:16 +0100, Krzysztof Kozlowski wrote:
-> Adjust example DTS indentation to match recommended style of 4-spaces
-> and use lower-case hex for address in reg.  No functional change.
+On Tue, Jan 24, 2023 at 11:56:41AM +0100, Etienne Carriere wrote:
+> Adds an optional interrupt controller property to optee firmware node
+> in the DT bindings. Optee driver may embeds an irqchip exposing
+> interrupts notified by the TEE world. Optee registers up to 1 interrupt
+> controller and identifies each line with a line number from 0 to
+> UINT16_MAX.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> In the example, the platform SCMI device uses optee interrupt irq 5
+> as async signal to trigger processing of an async incoming SCMI message,
+> in the scope of a CPU DVFS control. A platform can have several SCMI
+> channels driven this way. Optee irqs also permits small embedded devices
+> to share e.g. a gpio expander, a group of wakeup sources, etc... between
+> OP-TEE world (for sensitive services) and Linux world (for non-sensitive
+> services). The physical controller is driven from the TEE which exposes
+> some controls to Linux kernel.
+> 
+> Cc: Jens Wiklander <jens.wiklander@linaro.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sumit Garg <sumit.garg@linaro.org>
+> 
+> Co-developed-by: Pascal Paillet <p.paillet@foss.st.com>
+> Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
+> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
 > ---
->  .../devicetree/bindings/serial/8250_omap.yaml | 18 ++++++-------
->  .../bindings/serial/amlogic,meson-uart.yaml   | 10 +++----
->  .../devicetree/bindings/serial/cdns,uart.yaml | 10 +++----
->  .../bindings/serial/renesas,em-uart.yaml      | 10 +++----
->  .../bindings/serial/renesas,hscif.yaml        | 26 +++++++++----------
->  .../bindings/serial/renesas,sci.yaml          | 24 ++++++++---------
->  .../bindings/serial/renesas,scif.yaml         | 24 ++++++++---------
->  .../bindings/serial/renesas,scifa.yaml        | 22 ++++++++--------
->  .../bindings/serial/renesas,scifb.yaml        | 12 ++++-----
->  .../devicetree/bindings/serial/serial.yaml    | 18 ++++++-------
->  .../bindings/serial/sifive-serial.yaml        |  6 ++---
->  .../bindings/serial/xlnx,opb-uartlite.yaml    |  4 +--
->  12 files changed, 92 insertions(+), 92 deletions(-)
+> Changes since v1:
+> - Added a description to #interrupt-cells property.
+> - Changed of example. Linux wakeup event was subject to discussion and
+>   i don't know much about input events in Linux. So move to SCMI.
+>   In the example, an SCMI server in OP-TEE world raises optee irq 5
+>   so that Linux scmi optee channel &scmi_cpu_dvfs pushed in the incoming
+>   SCMI message in the scmi device for liekly later processing in threaded
+>   context. The example includes all parties: optee, scmi, sram, gic.
+> - Obviously rephrased the commit message.
+> - Added Cc: tags
+> ---
+>  .../arm/firmware/linaro,optee-tz.yaml         | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> index d4dc0749f9fd..9c00c27f8b2c 100644
+> --- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> +++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> @@ -40,6 +40,14 @@ properties:
+>        HVC #0, register assignments
+>        register assignments are specified in drivers/tee/optee/optee_smc.h
+>  
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 1
+> +    description: |
+> +      OP-TEE exposes irq for irp chip controllers from OP-TEE world. Each
+> +      irq is assigned a single line number identifier used as first argument.
+> +
+>  required:
+>    - compatible
+>    - method
+> @@ -64,3 +72,62 @@ examples:
+>              method = "hvc";
+>          };
+>      };
+> +
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    firmware  {
+> +        optee: optee {
+> +            compatible = "linaro,optee-tz";
+> +            method = "smc";
+> +            interrupts = <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <1>;
+> +        };
+> +
+> +        scmi {
+> +            compatible = "linaro,scmi-optee";
+> +            linaro,optee-channel-id = <0>;
+> +            interrupt-parent = <&gic>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            scmi_cpu_dvfs: protocol@13 {
+> +                reg = <0x13>;
+> +                linaro,optee-channel-id = <1>;
+> +                shmem = <&scmi_shm_tx>, <&scmi_shm_rx>;
+> +                interrupts-extended = <&optee 5>;
+> +                interrupt-names = "a2p";
 
-Acked-by: Rob Herring <robh@kernel.org>
+These properties aren't documented. Soon there will be a warning[1]. 
+
+> +                #clock-cells = <1>;
+> +            };
+> +        };
+> +    };
+> +
+> +    gic: interrupt-controller@a0021000 {
+> +        compatible = "arm,cortex-a7-gic";
+> +        reg = <0xa0021000 0x1000>, <0xa0022000 0x2000>;
+> +        interrupt-controller;
+> +        #interrupt-cells = <3>;
+> +    };
+> +
+> +    soc {
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        sram@2ffff000 {
+> +            compatible = "mmio-sram";
+> +            reg = <0x2ffff000 0x1000>;
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +            ranges = <0 0x2ffff000 0x1000>;
+> +
+> +            scmi_shm_tx: scmi-sram@0 {
+> +                compatible = "arm,scmi-shmem";
+> +                reg = <0 0x80>;
+> +            };
+> +
+> +            scmi_shm_rx: scmi-sram@100 {
+> +                compatible = "arm,scmi-shmem";
+> +                reg = <0x100 0x80>;
+> +            };
+
+There's no need to show providers in examples (unless the example is for 
+the provider).
+
+Rob
