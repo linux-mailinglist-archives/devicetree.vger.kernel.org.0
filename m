@@ -2,64 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34C4467AB79
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 09:18:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04F8F67AB7C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 09:19:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234805AbjAYISt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 03:18:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55470 "EHLO
+        id S234005AbjAYIS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 03:18:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234770AbjAYISq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 03:18:46 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 267CD3C282
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 00:18:44 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id b7so16212861wrt.3
+        with ESMTP id S234961AbjAYISs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 03:18:48 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 432DE4609D
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 00:18:45 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id m7so2537671wru.8
         for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 00:18:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WbD+hf3FdzdoYfGCceQ6HYFxbilvveL00wdzz479bAg=;
-        b=TU4IljbPlO/Cu5JIUMlCZ3SK14XQ4s6KPMmklhaXSQ42uMuxnqet82/79UIicE2Q+R
-         UxK2bCwTgpGlL5WENRCZe0EedKJUh/IIEPFW7xMPyG+YGvIZHt3cCzpn2Eq41wGMX2/x
-         POPZH5/y1aiy/YES1lr93Flbo6Hzeq4UZ3W31Xq3Ccb4Gt+9nYcoZZ/9iZIxrJAaq5uG
-         cWjk66Q4e67h6YH+celevxLvumcA8mhPWPyczXo+YpRbmkCXQA0dY7iZ8WAx8gGKijMO
-         zXQw3nSbnlDJk8+8EYCgAIT+bnj20xhvpRk03R7iGSiES8205uxhWfVIZyoKSJPVupmG
-         1jYA==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l6VVFU09DGdJDicHdzWRUuahuR5if5nGv94bTkwuVxM=;
+        b=P0VzQ57fyl0c8tLyOhp4Tras38f23cWMvWTATg+oiau6eTMWWEPGCA+Ip6qziFE/Ue
+         dRa4xa80kyYbNHsk2Gzi9wNYU32cuxSRitUlLE47/ESbRtFmShSKXMi5PFMsfUh/7ZXB
+         usprM3J9Aej8UCtAO0eMN60Rc+P9ON3mPgXmNtmWKmOsLDiYvbGfGqePmZgw8ypqe9rZ
+         m7rQ1OxXNjBG1bLmw76elyl3LMb759AtoWlvwZ6THjSljdYHAPegqIRCOcrX3NpsRwvh
+         GiBB8nv1iRCk37Matw+sKX2p2nepxNixvQ+1ussSC0/XZkuMcw3R2KJAUqI2bQmFStF+
+         eonQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WbD+hf3FdzdoYfGCceQ6HYFxbilvveL00wdzz479bAg=;
-        b=EBJpmojSGugBl/2n7mwtK0uhepDQawNddXg3ebQxIDVDVMQwB45vqX4WojuVbSJoCU
-         HvIXRLa9fFkyPiX/ei4CSmWwcUNA9D6r8ShC+x2y8Uf/chhNqMAosS2ZDYzc8F3pSAUh
-         ZNbWSIW7kxtIdh6xiqWgovrWjmAsii+IP5vctTKPOm67z1MvhwCJLGN71WGPR/se5fcv
-         SqoQz2DfpD0zyPISztt7fRHP8g3VnCyOMIrGSeNBy0fw8MvEBM6ygKpbZyva5nW87o7c
-         CpdhaCaY4XgCIW3QMNg3cmhxbuMniIv8vQ9k/7j/IdylNyrYJ4qvEpvpbz8DEey+zv4j
-         n4Kw==
-X-Gm-Message-State: AFqh2kpQcbKIcVIFvI6NhWfRlFDCW7w8PlUHYhkg3FZDgDTxhS4SFyJY
-        A1Sx859PYd58o0Ws7fOfjSdvdP1QpaxgvylzXKI=
-X-Google-Smtp-Source: AMrXdXtpdzpnwqRRl/ZPBknIAsI3dT0aYCw6sp/T5m0FkClf8NlpnkPD9KBbymR3GBHpDTU+rz7f8w==
-X-Received: by 2002:a5d:404c:0:b0:2be:1258:897d with SMTP id w12-20020a5d404c000000b002be1258897dmr26796348wrp.43.1674634722560;
-        Wed, 25 Jan 2023 00:18:42 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l6VVFU09DGdJDicHdzWRUuahuR5if5nGv94bTkwuVxM=;
+        b=JpomemUQhTnHh7Fo1koc5u6RObej0JX0MMkSpF+TtAMNADTEqR7e4cHHRlh+Uvwi2m
+         bbrG5SSj0cc/juAFZy2yS3MoDvHsL8fBM3ZW9bKTr07Ld7xBbVCO88qQB6+1VDv42tDl
+         n8EXAwN8HjCp1FCcPJzGDECGKClVMSyCJr3PjyMbNHVQ0fvzDDClytipmRh22t/ub353
+         Jd9gIKSNIz/ZIWV6xIRel4BLlT+YHVWBIq/XSiPLxexGCv+Jy1dWBeGHVQ90t+gSkCpd
+         y2MT+OsG9wi5/fODLzlB5ijZwzXEDQUfnYPCYon2f4UONDBQ6eY3i/OfRyXHNzpjqANZ
+         NdQg==
+X-Gm-Message-State: AFqh2krpUTgQwo2wfkxJDTkT4ezG7/czcw/PVEJ/2IWx7soYrstejDuO
+        fQEY99n6Hv+TnFC9S/hVY5XsJ/ytoevFgd5nMZQ=
+X-Google-Smtp-Source: AMrXdXuoe0lryGNmnQF8GyRl/+DOCT9Q6ttaCZBC8O3SpAo41mjOEQ2F0Bxc4YCb4VIuL6PdhXo1NQ==
+X-Received: by 2002:a05:6000:1708:b0:2bd:daf1:9e4c with SMTP id n8-20020a056000170800b002bddaf19e4cmr29965267wrc.43.1674634723477;
+        Wed, 25 Jan 2023 00:18:43 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id p7-20020adff207000000b002bdff778d87sm3770343wro.34.2023.01.25.00.18.41
+        by smtp.gmail.com with ESMTPSA id p7-20020adff207000000b002bdff778d87sm3770343wro.34.2023.01.25.00.18.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 00:18:42 -0800 (PST)
+        Wed, 25 Jan 2023 00:18:43 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v2 0/3] arm64: meson-g12b: add initial support for
- Odroid-N2L
-Date:   Wed, 25 Jan 2023 09:18:36 +0100
-Message-Id: <20230122-topic-odroid-n2l-upstream-initial-v2-0-8d3fea6d403d@linaro.org>
+Date:   Wed, 25 Jan 2023 09:18:37 +0100
+Subject: [PATCH v2 1/3] dt-bindings: arm: amlogic: document Odroid-N2L
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIANzl0GMC/5WOQQ6CMBBFr0K6dkxbMIAr72FYlDLAJLUl00I0h
- LtbuYHL9xb//V1EZMIo7sUuGDeKFHwGfSmEnY2fEGjILLTUpVRaQwoLWQgDBxrAawfrEhOjeQF
- 5SmQcNFiNdaXqVlsl8k5vIkLPxts5L/nVuSwXxpHeZ/jZZZ4ppsCf88emfvaf5KZAgrJ4Q9nIs
- h3kw5E3HK6BJ9Edx/EFgykUy+gAAAA=
+Message-Id: <20230122-topic-odroid-n2l-upstream-initial-v2-1-8d3fea6d403d@linaro.org>
+References: <20230122-topic-odroid-n2l-upstream-initial-v2-0-8d3fea6d403d@linaro.org>
+In-Reply-To: <20230122-topic-odroid-n2l-upstream-initial-v2-0-8d3fea6d403d@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Kevin Hilman <khilman@baylibre.com>,
@@ -84,44 +82,35 @@ X-Mailing-List: devicetree@vger.kernel.org
 ODROID-N2L is a variant SBC in small form factor and some peripherals
 are removed from ODROID-N2PLUS based on S922X SoC.
 
-- On-board ethernet is removed      
-- On-board RTC is removed        
+- On-board ethernet is removed
+- On-board RTC is removed
 - USB 3.0 hub is removed, so one USB 2.0 and one USB 3.0 host ports
-are available                                                                               
+are available
 - Huge heatsink is replaced with 40x40mm heatsink, 5V active heatsink
-is recommended or a tall passive sink is optional                  
-- 3.5mm earjack is removed                                                                  
-- IR remote receiver is removed                                                             
+is recommended or a tall passive sink is optional
+- 3.5mm earjack is removed
+- IR remote receiver is removed
 - MIPI DSI port is added
 
-So achieve this the current odroid-n2 dtsi is moved as odroid.dtsi
-and only the N2/N2+ changes are kept in the odroid-n2.
-With this only a minimal changes are needed to support the Odroid-N2L.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Changes in v2:
-- Fixed include and phy0 supply name on patch 3
-- Added review tag on patch 1
-- Link to v1: https://lore.kernel.org/r/20230122-topic-odroid-n2l-upstream-initial-v1-0-1ce5e08039d0@linaro.org
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
----
-Neil Armstrong (3):
-      dt-bindings: arm: amlogic: document Odroid-N2L
-      arm64: dts: meson-g12b: move common node into new odroid.dtsi
-      arm64: dts: meson-g12b-odroid: Add initial support for Hardkernel ODROID-N2L
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index e16b5fa55847..8aa6b6a92c29 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -165,6 +165,7 @@ properties:
+               - azw,gtking-pro
+               - hardkernel,odroid-go-ultra
+               - hardkernel,odroid-n2
++              - hardkernel,odroid-n2l
+               - hardkernel,odroid-n2-plus
+               - khadas,vim3
+               - ugoos,am6
 
- Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
- arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi     | 448 +--------------------
- .../boot/dts/amlogic/meson-g12b-odroid-n2l.dts     | 125 ++++++
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi | 445 ++++++++++++++++++++
- 5 files changed, 581 insertions(+), 439 deletions(-)
----
-base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
-change-id: 20230122-topic-odroid-n2l-upstream-initial-8e4f741792c1
-
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
 
