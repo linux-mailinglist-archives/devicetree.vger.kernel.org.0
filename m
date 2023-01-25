@@ -2,138 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8693967AAA8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 08:00:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73A4167AABC
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 08:16:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233619AbjAYHAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 02:00:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50828 "EHLO
+        id S234873AbjAYHQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 02:16:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230160AbjAYHAW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 02:00:22 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D213474EE
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 23:00:20 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id rl14so41688284ejb.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 23:00:20 -0800 (PST)
+        with ESMTP id S234929AbjAYHQI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 02:16:08 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 440B03B677
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 23:16:03 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id y1so11573977wru.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 23:16:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E6Cwt2zoj1KPqgoUGLAvd8YCYHAqAHUKRAPYtupMvBk=;
-        b=WK/PtMneMUj8tYaCs0hjU3/vtSCK+BRocrMLX7QSpyl6mKPWxYXUXSZIfPnqvNw2A8
-         O4Nn6BY3KcE3BU+6CnHNxnrorX2kNfuWu7HS3LYXQsDtCOhSuwQ/52IbkyezM/rgSjfC
-         eaLx+1Os/7FjZNOxyeZUAAM+bl1A8SvKyO0mWZjCf9vRSBEs3UsaL6d2I0uy62W5dllD
-         yIaDUoLbfzQ0q3Zd9KJAfSrJkRW3cs5p87pDgKpnkQ45dHD+PMsKMKNz3+yza0K2D5jP
-         Fft70CAtkZblvHwKgXy0DsMBxu2Z3o+FXLHXDT/LOuZaIY8QgtEF898WfxhpwghblkwR
-         BtCw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KqVnz5dHE+H8EBqWuT4m2bnfmcW1edtMXQTUn/uHibA=;
+        b=iI1Q+Ner3x7gfdxiAzK3mur3wDEWCKn9dxfIlWuEpFSxsQzxWuRG7X2pLeQN1I5xel
+         +/v3dUdnrUtxdcuwqtWLOkUW+eJngWmIT+MPRIQXRgW175yJpTmLSxcFB0w7vsu7ZRG6
+         5KWHHkNWIilYMfDYT4uI/vwyF3PIBy/TuwDWygtGcvDeeaDbaOZU09haKxYnGMYAGkn3
+         c5FIebWU0ol3EqoHLIYnxGUiaxfdB2ltNWnOxNiia87ULZoB9CL5bp+F1isWrpWsfGLO
+         FZbcb2brECcbs+PkKYu6x+NgahwJrTM0Bux310+vKUbOiZGSFuj7v5f1d0IaU4Ane4lx
+         JJlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=E6Cwt2zoj1KPqgoUGLAvd8YCYHAqAHUKRAPYtupMvBk=;
-        b=oWa+dp88HADkJBTGY/jad7XLoOD167LlHpk8f4uvA1I0MYPnJ1fFzRuy00Ax+E2bjP
-         R4cs+oJyuI9U4nYi2Gd+OomlcY5q97eUhQkrs2KgzDeipfEOX13iP4CC9TYYKcAZMCwk
-         55fykQFl+dKYCWWQF10eUQh031+DCVH3g55Frk322WAtcElgRPU3unc6KtZ9mT9MG5xG
-         na/EQSUN3GGrNJUiQHrUG4cgO6JXmMGaEzj/UpERhbTiZ3O2nNW03lO9pd5LfJJHi/9M
-         cZde4IrO0ObZS9Qq0Tg6tT3giwXJXfHKrFKxvi9BF40EW3bOAG3wtHW3agS+Yuw5Y2fh
-         neCQ==
-X-Gm-Message-State: AFqh2kq2z1uqRfo/kqdbsvg24f5+KTpGru5nPytOs127HthgooyIhOXc
-        HdDGrPV1A1Qfn5I7DNiWlNI=
-X-Google-Smtp-Source: AMrXdXu7XzWMtWj4fU35KOZJW2CN7axDgDTgii+/KdguY7A5KbrvJjkcpcmF+xi/PHwxXYz1riyAMQ==
-X-Received: by 2002:a17:906:5fcb:b0:870:df7:300b with SMTP id k11-20020a1709065fcb00b008700df7300bmr32538975ejv.52.1674630018663;
-        Tue, 24 Jan 2023 23:00:18 -0800 (PST)
-Received: from ?IPV6:2a01:c22:720f:5a00:9008:755f:20dd:1de8? (dynamic-2a01-0c22-720f-5a00-9008-755f-20dd-1de8.c22.pool.telefonica.de. [2a01:c22:720f:5a00:9008:755f:20dd:1de8])
-        by smtp.googlemail.com with ESMTPSA id q25-20020a17090676d900b00872a726783dsm1896190ejn.217.2023.01.24.23.00.17
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KqVnz5dHE+H8EBqWuT4m2bnfmcW1edtMXQTUn/uHibA=;
+        b=oGx/2QHdg+QMw5MDiBLGql/toa8YAJhs1d4mukd1NUhp8PadhJXwkX1A7K8026qby9
+         ERZPVW1myNTyFjKagFIhOXgBNn1eUZk0wqVtRIf5HTYShbuSOYeRhs+RL9qc2e02uvY3
+         nXOPTbzfruglhJiq88nv5wnJjIv0t8pFc3fukNFXS9G5Su2t/VCsb1cZMevk97GII/IV
+         JHYTQyGYyYZ8IzJg2mVKJrLbfZwyjO6wPBdqQ+A6QTRmAONyeITvxp3DXzkDYzYOE6RO
+         jt0bGmu4G9p4L/aebxbvQat0Fh14KCa4xwASRFe6HKDlu11i+19kREKOqUeRR527UFc3
+         Z+QQ==
+X-Gm-Message-State: AFqh2krbcJy6vFbh2XIZ4LgcMSlVMmGv1kmSi2lD5NdlSR/U3WOf79bK
+        iDmb+2VB0rWqSFKubfIIRJlgMQ==
+X-Google-Smtp-Source: AMrXdXsQTc3tcSZ5O/Y+CPqj3BvK3F17J/9RhcE/qU182Xl1ciIA3AMHZDscUVB9vIS8xkIVoWcA6Q==
+X-Received: by 2002:a05:6000:1816:b0:2bd:fe5a:b579 with SMTP id m22-20020a056000181600b002bdfe5ab579mr24770799wrh.70.1674630961690;
+        Tue, 24 Jan 2023 23:16:01 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id x6-20020a5d4906000000b002bc6c180738sm4135881wrq.90.2023.01.24.23.15.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 23:00:18 -0800 (PST)
-Message-ID: <d9b72573-a59f-989f-a752-1aa8517cf8dc@gmail.com>
-Date:   Wed, 25 Jan 2023 08:00:13 +0100
+        Tue, 24 Jan 2023 23:16:01 -0800 (PST)
+Message-ID: <c1e206f2-7e86-a7ad-c6fa-c80cc1c3f77d@linaro.org>
+Date:   Wed, 25 Jan 2023 08:15:58 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v2] arm64: dts: amlogic: Fix SDIO interrupt and make it
- level-sensitive
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v4 5/6] arm64: dts: qcom: Add Square apq8039-t2 board
 Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, djakov@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
+        leo.yan@linaro.org, dmitry.baryshkov@linaro.org,
+        stephan@gerhold.net, Jun Nie <jun.nie@linaro.org>,
+        James Willcox <jwillcox@squareup.com>,
+        Joseph Gates <jgates@squareup.com>,
+        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>
+References: <20230123023127.1186619-1-bryan.odonoghue@linaro.org>
+ <20230123023127.1186619-6-bryan.odonoghue@linaro.org>
+ <e80b98bc-54e8-f7ab-b9a9-dd888108a0cd@linaro.org>
+ <8dd1ce3c-82ea-cfc3-a84c-c022cbaec8a0@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8dd1ce3c-82ea-cfc3-a84c-c022cbaec8a0@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SDIO specification defines that the interrupt is level-sensitive.
-Fix the interrupt trigger type for emmc_a accordingly.
-See comment at beginning of the file wrt which is the SDIO port.
-mmc2 = &sd_emmc_a; /* SDIO */
+On 25/01/2023 02:21, Bryan O'Donoghue wrote:
+> On 23/01/2023 16:29, Krzysztof Kozlowski wrote:
+>> On 23/01/2023 03:31, Bryan O'Donoghue wrote:
+>>> The apq8039-t2 is an apq8039 based board paired with a wcn3680b WiFi
+>>> chipset.
+>>>
+>>> Co-developed-by: Shawn Guo <shawn.guo@linaro.org>
+>>> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+>>> Co-developed-by: Jun Nie <jun.nie@linaro.org>
+>>> Signed-off-by: Jun Nie <jun.nie@linaro.org>
+>>> Co-developed-by: Benjamin Li <benl@squareup.com>
+>>> Signed-off-by: Benjamin Li <benl@squareup.com>
+>>> Co-developed-by: James Willcox <jwillcox@squareup.com>
+>>> Signed-off-by: James Willcox <jwillcox@squareup.com>
+>>> Co-developed-by: Leo Yan <leo.yan@linaro.org>
+>>> Signed-off-by: Leo Yan <leo.yan@linaro.org>
+>>> Co-developed-by: Joseph Gates <jgates@squareup.com>
+>>> Signed-off-by: Joseph Gates <jgates@squareup.com>
+>>> Co-developed-by: Max Chen <mchen@squareup.com>
+>>> Signed-off-by: Max Chen <mchen@squareup.com>
+>>> Co-developed-by: Zac Crosby <zac@squareup.com>
+>>> Signed-off-by: Zac Crosby <zac@squareup.com>
+>>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/Makefile       |   1 +
+>>>   arch/arm64/boot/dts/qcom/apq8039-t2.dts | 545 ++++++++++++++++++++++++
+>>>   2 files changed, 546 insertions(+)
+>>>   create mode 100644 arch/arm64/boot/dts/qcom/apq8039-t2.dts
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>>> index b0423ca3e79fd..73ff8d3213d99 100644
+>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>> @@ -1,5 +1,6 @@
+>>>   # SPDX-License-Identifier: GPL-2.0
+>>>   dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb
+>>> +dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
+>>>   dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
+>>>   dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
+>>>   dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
+>>> diff --git a/arch/arm64/boot/dts/qcom/apq8039-t2.dts b/arch/arm64/boot/dts/qcom/apq8039-t2.dts
+>>> new file mode 100644
+>>> index 0000000000000..734b4d6054132
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/apq8039-t2.dts
+>>> @@ -0,0 +1,545 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Copyright (c) 2015, The Linux Foundation. All rights reserved.
+>>> + * Copyright (c) 2020-2023, Linaro Ltd.
+>>> + *
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "msm8939.dtsi"
+>>> +#include "msm8939-pm8916.dtsi"
+>>> +#include <dt-bindings/arm/qcom,ids.h>
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>>> +#include <dt-bindings/sound/apq8016-lpass.h>
+>>> +
+>>> +/ {
+>>> +	model = "Square, Inc. T2 Devkit";
+>>> +	compatible = "square,apq8039-t2", "qcom,msm8939";
+>>
+>> There is no square vendor prefix.
+> 
+> commit d3e2262cd0d1105bb3a71012693876d01e8de203
+> Author: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Date:   Tue Jan 17 02:48:39 2023 +0000
+> 
+>      dt-bindings: arm: qcom: Document MSM8939 SoC binding
+> 
+> +      - items:
+> +          - enum:
+> +              - sony,kanuti-tulip
+> +              - square,apq8039-t2
+> +          - const: qcom,msm8939
 
-The usage of edge-triggered interrupts lead to lost interrupts under load,
-see [0]. This was confirmed to be fixed by using level-triggered
-interrupts.
+This is board compatible. You still missing vendor prefix in
+vendor-prefixes.
 
-Note:
-SDIO interrupt support was added in Linux just recently, however other
-users of this dts may be affected too.
-
-[0] https://www.spinics.net/lists/linux-mmc/msg73991.html
-
-Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
-Reported-by: Peter Suti <peter.suti@streamunlimited.com>
-Tested-by: Peter Suti <peter.suti@streamunlimited.com>
-Cc: stable@vger.kernel.org
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v2:
-- rebase considering recent node name change sd -> mmc for sd_emmc_a
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 1a931d5c2..c09eb9f6f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2324,7 +2324,7 @@ uart_A: serial@24000 {
- 		sd_emmc_a: mmc@ffe03000 {
- 			compatible = "amlogic,meson-axg-mmc";
- 			reg = <0x0 0xffe03000 0x0 0x800>;
--			interrupts = <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
-+			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 			clocks = <&clkc CLKID_SD_EMMC_A>,
- 				 <&clkc CLKID_SD_EMMC_A_CLK0>,
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index a79a35e84..ae1a5a568 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -603,7 +603,7 @@ apb: apb@d0000000 {
- 			sd_emmc_a: mmc@70000 {
- 				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
- 				reg = <0x0 0x70000 0x0 0x800>;
--				interrupts = <GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
-+				interrupts = <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
- 				status = "disabled";
- 			};
- 
--- 
-2.39.1
+Best regards,
+Krzysztof
 
