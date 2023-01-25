@@ -2,155 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A924B67B947
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 19:28:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED50667B9CA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 19:47:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235192AbjAYS2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 13:28:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56832 "EHLO
+        id S235003AbjAYSrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 13:47:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229806AbjAYS23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 13:28:29 -0500
-Received: from fx409.security-mail.net (smtpout140.security-mail.net [85.31.212.149])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F3D10ABB
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 10:28:25 -0800 (PST)
-Received: from localhost (fx409.security-mail.net [127.0.0.1])
-        by fx409.security-mail.net (Postfix) with ESMTP id 902B83495A1
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 19:28:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kalray.eu;
-        s=sec-sig-email; t=1674671303;
-        bh=VkZlMx/sz061Cm6YfPqH8mfzLS3IhHFJZRhlNITSu+c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=PgYGGINfgdlge6AJuhvcxeUH6V0qclH7r/w0zv6MkFIIQyoW7OeQf49pR+PV9NV8p
-         fmlbHY2+Czp6L7ta7EUF/GbRH7PuBhBb899yvjM+2Df0hJO4Fc0FQaeYABlP0TUwps
-         UDIcw6zHlNZBkl1Vkr8vv3SWe5LXy8V23EIzkm1M=
-Received: from fx409 (fx409.security-mail.net [127.0.0.1]) by
- fx409.security-mail.net (Postfix) with ESMTP id 20C0434940E; Wed, 25 Jan
- 2023 19:28:23 +0100 (CET)
-Received: from zimbra2.kalray.eu (unknown [217.181.231.53]) by
- fx409.security-mail.net (Postfix) with ESMTPS id 23501349405; Wed, 25 Jan
- 2023 19:28:22 +0100 (CET)
-Received: from zimbra2.kalray.eu (localhost [127.0.0.1]) by
- zimbra2.kalray.eu (Postfix) with ESMTPS id DD3A827E0493; Wed, 25 Jan 2023
- 19:28:21 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1]) by zimbra2.kalray.eu
- (Postfix) with ESMTP id BBF0027E0491; Wed, 25 Jan 2023 19:28:21 +0100 (CET)
-Received: from zimbra2.kalray.eu ([127.0.0.1]) by localhost
- (zimbra2.kalray.eu [127.0.0.1]) (amavisd-new, port 10026) with ESMTP id
- G_ghmxyD1iYT; Wed, 25 Jan 2023 19:28:21 +0100 (CET)
-Received: from tellis.lin.mbt.kalray.eu (unknown [192.168.36.206]) by
- zimbra2.kalray.eu (Postfix) with ESMTPSA id 4BBCB27E0461; Wed, 25 Jan 2023
- 19:28:21 +0100 (CET)
-X-Virus-Scanned: E-securemail
-Secumail-id: <d944.63d174c6.208cc.0>
-DKIM-Filter: OpenDKIM Filter v2.10.3 zimbra2.kalray.eu BBF0027E0491
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kalray.eu;
- s=32AE1B44-9502-11E5-BA35-3734643DEF29; t=1674671301;
- bh=VkZlMx/sz061Cm6YfPqH8mfzLS3IhHFJZRhlNITSu+c=;
- h=Date:From:To:Message-ID:MIME-Version;
- b=N3SEBnibRaD53LXAAbH/OUxooZ7n0SvOBr0+syTYe+WDdImAFJ/mdTgLKfIxv6LJf
- I5CIDXC/mDxLizitRLdE+s3wz2ripLYND6B2KWw3ej4vQLa/Hu4ztfFI0ZHqW9QVVJ
- 8DSlKZjshZ0JVrBB2b7nAJJF8/TFydx8Kexe3QIU=
-Date:   Wed, 25 Jan 2023 19:28:20 +0100
-From:   Jules Maselbas <jmaselbas@kalray.eu>
-To:     Bagas Sanjaya <bagasdotme@gmail.com>
-Cc:     Yann Sionneau <ysionneau@kalray.eu>, Arnd Bergmann <arnd@arndb.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Boqun Feng <boqun.feng@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        Kees Cook <keescook@chromium.org>,
-        Oleg Nesterov <oleg@redhat.com>,
-        Ingo Molnar <mingo@redhat.com>,
-        Waiman Long <longman@redhat.com>,
-        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Nick Piggin <npiggin@gmail.com>,
-        Paul Moore <paul@paul-moore.com>,
-        Eric Paris <eparis@redhat.com>,
-        Christian Brauner <brauner@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Guillaume Thouvenin <gthouvenin@kalray.eu>,
-        Clement Leger <clement@clement-leger.fr>,
-        Vincent Chardon <vincent.chardon@elsys-design.com>,
-        Marc =?utf-8?b?UG91bGhpw6hz?= <dkm@kataplop.net>,
-        Julian Vetter <jvetter@kalray.eu>,
-        Samuel Jones <sjones@kalray.eu>,
-        Ashley Lesdalons <alesdalons@kalray.eu>,
-        Thomas Costis <tcostis@kalray.eu>,
-        Marius Gligor <mgligor@kalray.eu>,
-        Jonathan Borne <jborne@kalray.eu>,
-        Julien Villette <jvillette@kalray.eu>,
-        Luc Michel <lmichel@kalray.eu>,
-        Louis Morhet <lmorhet@kalray.eu>,
-        Julien Hascoet <jhascoet@kalray.eu>,
-        Jean-Christophe Pince <jcpince@gmail.com>,
-        Guillaume Missonnier <gmissonnier@kalray.eu>,
-        Alex Michon <amichon@kalray.eu>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <git@xen0n.name>,
-        Shaokun Zhang <zhangshaokun@hisilicon.com>,
-        John Garry <john.garry@huawei.com>,
-        Guangbin Huang <huangguangbin2@huawei.com>,
-        Bharat Bhushan <bbhushan2@marvell.com>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Atish Patra <atishp@atishpatra.org>,
-        "Jason A. Donenfeld" <Jason@zx2c4.com>,
-        Qi Liu <liuqi115@huawei.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Mark Brown <broonie@kernel.org>,
-        Janosch Frank <frankja@linux.ibm.com>,
-        Alexey Dobriyan <adobriyan@gmail.com>,
-        Benjamin Mugnier <mugnier.benjamin@gmail.com>,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mm@kvack.org,
-        linux-arch@vger.kernel.org, linux-audit@redhat.com,
-        linux-riscv@lists.infradead.org, bpf@vger.kernel.org
-Subject: Re: [RFC PATCH v2 01/31] Documentation: kvx: Add basic
- documentation
-Message-ID: <20230125182820.GD5952@tellis.lin.mbt.kalray.eu>
-References: <20230120141002.2442-1-ysionneau@kalray.eu>
- <20230120141002.2442-2-ysionneau@kalray.eu> <Y8z7v53A/UDKFd7j@debian.me>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <Y8z7v53A/UDKFd7j@debian.me>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-X-ALTERMIMEV2_out: done
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S235394AbjAYSrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 13:47:07 -0500
+Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392C35619C;
+        Wed, 25 Jan 2023 10:47:06 -0800 (PST)
+Received: from pps.filterd (m0148664.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30PIFR3X011376;
+        Wed, 25 Jan 2023 18:46:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
+ date : message-id; s=pps0720;
+ bh=YKF5DYJPhIrVAXlXwOYGcigxfIp2850usBGmHFx3nA8=;
+ b=gaap69jIIb8hib+X1L6pqyLaf3/+co2ECqJM6hIPlwMqUN4hdd30IUo2wTwAxeQ7dSBb
+ YWIEYjsnwySEuM30V7NVUUwgeo9u5Nl1T6bIRXw2E0cvCN4dT17tUS8bqEiLtDem8rGS
+ b/jDwYffL1xCQVtE0xN2Be/XRLIZ3rjwz2NiI3hxsFT+WvldpAQjvpiEbFcHqp+6w1cW
+ XazRcNiGNWqnTAPnceIgnjddilZuLHRiiZUi2LK0uSqvKNl07QBJa4w/BT0puv8fo8fn
+ lVc/Hoq9k4mCQwwm2XMx7gXjeLJ4HBFnNQ3uoOv/HESygu9XfTE/XEZqRF8T05IYfssm 4g== 
+Received: from p1lg14879.it.hpe.com (p1lg14879.it.hpe.com [16.230.97.200])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3nb9038jc3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 25 Jan 2023 18:46:44 +0000
+Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by p1lg14879.it.hpe.com (Postfix) with ESMTPS id 78686336E0;
+        Wed, 25 Jan 2023 18:46:43 +0000 (UTC)
+Received: from hpe.com (unknown [16.231.227.36])
+        by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id 60FFB8089A9;
+        Wed, 25 Jan 2023 18:46:42 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     verdun@hpe.com, nick.hawkins@hpe.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        joel@jms.id.au
+Subject: [PATCH v4 0/5] ARM: Add GXP I2C Support
+Date:   Wed, 25 Jan 2023 12:44:33 -0600
+Message-Id: <20230125184438.28483-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-ORIG-GUID: X9Nx9LwVcbWGZu6MHNLStvYgxQbYRhOo
+X-Proofpoint-GUID: X9Nx9LwVcbWGZu6MHNLStvYgxQbYRhOo
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-25_12,2023-01-25_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 adultscore=0 mlxscore=0 mlxlogscore=968 phishscore=0
+ clxscore=1015 spamscore=0 impostorscore=0 priorityscore=1501 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301250166
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bagas,
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-Thanks for taking your time and effort to improve the documentation.
-We not only need to clean the documention syntax and wording but also
-its content. I am tempted to apply all your proposed changes first and
-then work on improving and correcting the documentation.
+The GXP SoC supports 10 I2C engines. Each I2C engine is completely
+independent and can function both as an I2C master and I2C slave. The
+I2C master can operate in a multi master environment. The engines support
+a scalable speed from 8kHZ to 1.5 Mhz.
 
-However I am not very sure on how to integrate your changes and give
-proper contribution attributions. Any insights on this would be greatly
-appreciated.
+---
 
-Thanks
--- Jules
+Changes since v3:
+ *Switch engine variable to u32
+ *Disable IRQ on device remove with register write instead
+ *Provided even greater description with the use of Phandle
+Changes since v2:
+ *Disable IRQ on a device remove
+ *Remove use of I2C_CLASS_DEPRECATED
+ *Use i2c_parse_fw_timings instead of of_property_read_u32
+ *Remove redundant dev_err_probe as platform_get_irq already has one
+ *Used __iomem instead of res->start to find physical address
+ *Use BIT in gxp_i2c_irq_handler
+ *Made value u8 instead of u16 for u8 read
+ *Provided a better description of Phandle in yaml
+Changes since v1:
+ *Removed yaml documentation of hpe,gxp-sysreg as it has been
+  applied to syscon.yaml
+ *Made i2cX a generic node name i2c in dts file
+ *Added status field to the dtsi and the dts for i2c bus
+ *Removed unnecessary size-cells and address-cells from yaml
+ *Removed phandle from hpe,sysreg-phandle
+ *Changed hpe,i2c-max-bus-freq to clock-frequency
+ *Removed rogue tab in structure definition
+ *Removed use of __iomem *base local variables as it was
+  unnecessary
+ *Switched #if IS_ENABLED() -> if (IS_ENABLED()) inside
+  functions
+ *Removed use of pr_* functions
+ *Removed informational prints in register and unregister
+  functions
+ *Removed print from interrupt handler
+ *Removed informational prints from probe function
+ *Switched dev_err -> dev_err_probe in probe function
+ *Used the respective helper for mapping the resource to
+  __iomem
 
+Nick Hawkins (5):
+  i2c: hpe: Add GXP SoC I2C Controller
+  dt-bindings: i2c: Add hpe,gxp-i2c
+  ARM: dts: hpe: Add I2C Topology
+  ARM: multi_v7_defconfig: add gxp i2c module
+  MAINTAINERS: Add HPE GXP I2C Support
 
+ .../devicetree/bindings/i2c/hpe,gxp-i2c.yaml  |  59 ++
+ MAINTAINERS                                   |   2 +
+ arch/arm/boot/dts/hpe-bmc-dl360gen10.dts      | 109 ++++
+ arch/arm/boot/dts/hpe-gxp.dtsi                | 125 ++++
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ drivers/i2c/busses/Kconfig                    |   7 +
+ drivers/i2c/busses/Makefile                   |   1 +
+ drivers/i2c/busses/i2c-gxp.c                  | 603 ++++++++++++++++++
+ 8 files changed, 907 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
+ create mode 100644 drivers/i2c/busses/i2c-gxp.c
 
-
+-- 
+2.17.1
 
