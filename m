@@ -2,74 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EB9867AFCA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 11:37:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4DC167AFCF
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 11:39:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235229AbjAYKhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 05:37:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40954 "EHLO
+        id S235613AbjAYKj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 05:39:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229827AbjAYKhp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 05:37:45 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64427422B
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 02:37:44 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id t18so3753506wro.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 02:37:44 -0800 (PST)
+        with ESMTP id S235256AbjAYKj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 05:39:26 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5056C1F48B
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 02:39:25 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id q8so13383150wmo.5
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 02:39:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=u9QC/i6xmhCHUxuneWjxZFC7WZ5y2w3dvdc7GpVVl1c=;
-        b=UAwOR7+Qlhh5HTzIYefJtlBy2JRoWGZcHJslfyla2ST55gwLn71mqCu3TxcQBdfKlW
-         SW5c4zB5CQZg2TU63xZE4dwPkUEtS89ERrMbmRivpGqmYh2Ya/yxHLbnpvPHy1Sm6nrd
-         BKHPbvPffr8rfHJrZscqhljn3n7zK/nsc3XcOf7zFDgz+7frvnTngbd9pXW04q7BJb6X
-         /Jc3kM2w8SXqxmyTOBM85yIr/JXL6GyRps5RsIeQmLs0wYc/X4jRheE/hxIa7ZzjPtz5
-         g3Q5PIWjzMWJFWH91gOgiQCGE4ii9eTHX0WSis7S1FoZeX8An50AsFq3qBmSzaSRg1Wy
-         nuvA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PCQyXdewltdtbx7rJmvVCiDghesnHqYi1Jd/8j7UFHc=;
+        b=FqawqXg+rhOtM79UXKaRsXOKjJ00ET0/G29Yc6C2ZSZ2+UpYwOdB1n4UJyY3IG40YO
+         gA88h8M1iWfdCTcJz/WcYKhrRJg+gABKsVfDB2bQ3jIKXo077ieR0eddsalh8MgFrN7y
+         0aV7HjieREmyqLkV0VXP1+bC+6l+6wKWzS+YXUIH19FMVpSaSabL2wI58EhSPmtGhiUf
+         lEBrvdvhjXdTVdZxxOTGkxzOy1GbrmS0N9m8+JTQdkKIHC2BsodcLrFn5sN/vxXTYgmg
+         yn/Q1PMaCPL1DovYer9gR2xxozt6mFWw8NaftlWbahUci3htAx5Oii2McJigqmWROYdF
+         Yhcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u9QC/i6xmhCHUxuneWjxZFC7WZ5y2w3dvdc7GpVVl1c=;
-        b=5EK2Lwuh43DzO6o04zXA4C+6D9dyftWCz+9kN/mhFnDe6Wnnei81/HTIKgaICCCaYj
-         qz7aK8/iRnoAOI0tzcfgXe7asPHrGnfnmfTO/R6QyBbAnsLpKhPDG17/XzUDjIuIBoS6
-         nbO/hFWB8TxnNMfWaxxLLCqJhdzlM15VWx5XGadjxncuCeNeTCfCObDjGT8SqpzUjSmv
-         6GLJiCYg1xUL6TXDiuULslEkYbarpNRD79QuVrgOJVP6SIoc+y3eQeHZKI5CRYRzV/2s
-         zentEGc8KTdXdVf1V/1olpoHUN4E6eb2z1A+ViU5A0+qeIpyju4VSyeXWZomSqdwK2TB
-         hOrg==
-X-Gm-Message-State: AFqh2krK5NpZiQQ5GqazbugsPQMRedUetxDRcm2hVA/dXOo5Xy/Wxxkr
-        AtRTIXNb03ezGgAgYMDaszuHXQ==
-X-Google-Smtp-Source: AMrXdXuBN5fhM0vK+pB5kmPtv4u70RKRdhe/pckq9HzCkxoJ+0Pr88vB9UNHJErnMGNA25VLCLNScQ==
-X-Received: by 2002:adf:ed0c:0:b0:2be:f21:6b02 with SMTP id a12-20020adfed0c000000b002be0f216b02mr29296812wro.70.1674643062926;
-        Wed, 25 Jan 2023 02:37:42 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z8-20020a5d4408000000b002b8fe58d6desm4039429wrq.62.2023.01.25.02.37.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jan 2023 02:37:42 -0800 (PST)
-Message-ID: <32db06ef-e6c1-d8ed-8624-cf91db5b3e53@linaro.org>
-Date:   Wed, 25 Jan 2023 11:37:41 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] ARM: dts: mstar: align UART node name with bindings
-Content-Language: en-US
-To:     Daniel Palmer <daniel@thingy.jp>
-Cc:     Romain Perier <romain.perier@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230123151523.369225-1-krzysztof.kozlowski@linaro.org>
- <CAFr9PXn+XMzz8uZzNwDNdCpYeN4Nf6rc6nXWvuf_TCRe2B_PXw@mail.gmail.com>
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PCQyXdewltdtbx7rJmvVCiDghesnHqYi1Jd/8j7UFHc=;
+        b=aHYWjW32wXgcfWntukaWtWS7fQgvmC+jGhTOkoYhz8Ybehmpl3DTvmN42n2XIH8iFz
+         RDy/sYB9LXZ9UeWfPDBSjig6qiOo5mR3eleku7U0L1jkJ1/FHmV0r2+5+x0MC0Z/Oh+O
+         UtBtlFYxL5Oh3rTd/eqC6HOHLRrLDP3UZFe3qza231UhqcZcvXc6lo3zPV2ticZD+ck5
+         tsqaJ1ygcrNwDUspReMdNRj2a25D2rGObLA4ClC5eA/mzQIdrBm/8HzCFq9GRHzNzDiZ
+         KqNjAvEHjIsodNoHYniKBxZouEF+2goO/2mcEiPlZW/F+wHmb4+7WC8Gy/tywDvblxJ+
+         n92w==
+X-Gm-Message-State: AFqh2kq9dtSwHhf0xkRLH4E8HIV5xLd20rpW5X8/uda7+RQhZo8oHN6t
+        5kLRW8zuohUE2UAXOSD6P9KrlU8uSACBzTFA
+X-Google-Smtp-Source: AMrXdXtsJreryStNy+l+FbhfiUv2iHijwvvCbH7mS4C6rTdRFwcs37mZIQ69LivvO4uDyTpp6NTOpg==
+X-Received: by 2002:a05:600c:24ce:b0:3da:18c5:e48b with SMTP id 14-20020a05600c24ce00b003da18c5e48bmr39098305wmu.18.1674643163675;
+        Wed, 25 Jan 2023 02:39:23 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id e26-20020a05600c4b9a00b003d9780466b0sm1386804wmp.31.2023.01.25.02.39.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jan 2023 02:39:23 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAFr9PXn+XMzz8uZzNwDNdCpYeN4Nf6rc6nXWvuf_TCRe2B_PXw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Baruch Siach <baruch@tkos.co.il>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: cx92755: align UART node name with bindings
+Date:   Wed, 25 Jan 2023 11:39:19 +0100
+Message-Id: <167464315348.338477.8230347885994646650.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230123151527.369285-1-krzysztof.kozlowski@linaro.org>
+References: <20230123151527.369285-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,35 +74,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/01/2023 11:20, Daniel Palmer wrote:
-> Hi,
+On Mon, 23 Jan 2023 16:15:27 +0100, Krzysztof Kozlowski wrote:
+> Bindings expect UART/serial node names to be "serial".
 > 
-> On Tue, 24 Jan 2023 at 00:15, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> Bindings expect UART/serial node names to be "serial".
 > 
-> snip
-> 
->> -                       pm_uart: uart@221000 {
->> +                       pm_uart: serial@221000 {
->>                                 compatible = "ns16550a";
->>                                 reg = <0x221000 0x100>;
->>                                 reg-shift = <3>;
->> --
->> 2.34.1
->>
-> 
-> I have this change in my changes to use the proper uart driver that I
-> need to fix up and resend but it doesn't hurt to fix it now.
-> 
-> Reviewed-by: Daniel Palmer <daniel@thingy.jp>
-> 
-> But we don't have anything queued up in our tree to send a PR for so
-> maybe this should be merged via soc.
 
-I can take it with my other cleanups. Thanks.
+Applied, thanks!
+
+[1/1] ARM: dts: cx92755: align UART node name with bindings
+      https://git.kernel.org/krzk/linux-dt/c/60e6cca8a2610379c1d29cdc8db42c020de28d8d
 
 Best regards,
-Krzysztof
-
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
