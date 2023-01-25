@@ -2,135 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A4D67B2F4
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 14:06:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA51E67B305
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 14:11:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234742AbjAYNGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 08:06:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46554 "EHLO
+        id S235566AbjAYNLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 08:11:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234613AbjAYNGc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 08:06:32 -0500
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64C8F46709;
-        Wed, 25 Jan 2023 05:06:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1674651989;
-  x=1706187989;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dA62bXJWySP2KDvSzEIUHP6wxBANByXrR0XSLtGkoh8=;
-  b=dZxw4ectAA83DhW9WUTE+xnHThCzlmwnvv1YUW9BsZsyRgle3mBbUk7S
-   ZGHLjGd6Qmr5CHdA8wZaxWMsckGwsAcfYx3dOqtp6E1vDvOMmcXHvVLQT
-   9fs09n/zunq2s6g5WsYKwWKo/EYPWEbt6szdy+jv5HSUlH8s+OB9tVBX5
-   peg+V3jOyuk5cUt5FMeRAPXJUkYSflQ/Y2W2ApbP2oMOuYICtDVhId7LH
-   72htdGenkj9QxI0NosT1XxIW4Ur9/E4DR3J6eleni4vidj8/kckhp9v6I
-   VjA81rC6YP0liq9Z8tvMdW0j5kwSHCQBBMbX7S9Kxcf3zCtJvKYHmti5Z
-   A==;
-Date:   Wed, 25 Jan 2023 14:06:26 +0100
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Lee Jones <lee@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        kernel <kernel@axis.com>, "robh@kernel.org" <robh@kernel.org>
-Subject: Re: [PATCH] mfd: Add Simple PCI MFD driver
-Message-ID: <Y9EpUnRDmWPobcrL@axis.com>
-References: <20230120-simple-mfd-pci-v1-1-c46b3d6601ef@axis.com>
- <Y86op9oh5ldrZQyG@google.com>
- <Y862WTT03/JxXUG8@kroah.com>
- <Y9EBSmOoE5+83jS5@axis.com>
- <Y9EgrKT3hDyx+ULy@kroah.com>
+        with ESMTP id S235361AbjAYNLM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 08:11:12 -0500
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CE548A39;
+        Wed, 25 Jan 2023 05:10:53 -0800 (PST)
+Received: by mail-yb1-f178.google.com with SMTP id 123so22889032ybv.6;
+        Wed, 25 Jan 2023 05:10:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wIDMaIN8cgxQOc8iSe6fxRwjh9fZ0t6b2cc0/2RHXF4=;
+        b=vpD5Qsn5apYi5uUM3jKMtO9215TRUhXiUFoNInZ2NElmQZm5gY/ae8xUyH+R/xLqyV
+         N4cO5CNQUTFtc6darP1chKmDMyL0xWmYL+otMF3Zmy3ZtSnj5A02gMBrQJag0C8L8hyB
+         OtHsMm2USZegpQuehTDPvdlLJmwBIfGnp4ttlihRUHGk9B4PhSN8+/ieiF0fl/XnEMiK
+         UrlkWiJ6SCGC4CCrUQEQCWbzIASwrcTSykKHWv4belnCeEVS/0u0GB2/3OvGRadDp3xi
+         Aud9HKc83DO0NWiMdPU1guHsiV6YYKT89m2HpsnmOathzZAKUUrGebG1tZ5WmKcoM8Cv
+         7nDQ==
+X-Gm-Message-State: AFqh2kpO25JIVGUG6eynsPAf7JgwZbtT3ma+VQ3VlGQzJKt3VC3WsRU8
+        x3fIpK/4qzWc8vjNCImNbHVuZzLUTNbyWA==
+X-Google-Smtp-Source: AMrXdXuvCZlmN9DagQp2z+22LovSX0zO6Ix6hrWGRaeaLeA1b5H6zyfrvOpEKjafpCeFNrOVNm5rxw==
+X-Received: by 2002:a25:cdc6:0:b0:7c0:3ecf:2672 with SMTP id d189-20020a25cdc6000000b007c03ecf2672mr21620663ybf.40.1674652252333;
+        Wed, 25 Jan 2023 05:10:52 -0800 (PST)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id 196-20020a3708cd000000b006fcab4da037sm3505201qki.39.2023.01.25.05.10.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Jan 2023 05:10:51 -0800 (PST)
+Received: by mail-yb1-f179.google.com with SMTP id 123so22888962ybv.6;
+        Wed, 25 Jan 2023 05:10:51 -0800 (PST)
+X-Received: by 2002:a25:37d4:0:b0:80b:8602:f3fe with SMTP id
+ e203-20020a2537d4000000b0080b8602f3femr591237yba.36.1674652251381; Wed, 25
+ Jan 2023 05:10:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Y9EgrKT3hDyx+ULy@kroah.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230117232609.477247-1-aford173@gmail.com>
+In-Reply-To: <20230117232609.477247-1-aford173@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 25 Jan 2023 14:10:39 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUtc7N45CV=U2BVWb60Xe2hCwA0ZeT3RQPsmayNfOJZNw@mail.gmail.com>
+Message-ID: <CAMuHMdUtc7N45CV=U2BVWb60Xe2hCwA0ZeT3RQPsmayNfOJZNw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: r8a774b1-beacon-rzg2n-kit: Sync aliases
+ with rz/g2m
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-renesas-soc@vger.kernel.org, aford@beaconembedded.com,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 25, 2023 at 01:29:32PM +0100, Greg Kroah-Hartman wrote:
-> On Wed, Jan 25, 2023 at 11:15:38AM +0100, Vincent Whitchurch wrote:
-> > I hope it's clear from my other replies in this thread that the entire
-> > purpose of this driver is to allow arbitrary platform devices to be used
-> > via a PCI device in virtual environments like User Mode Linux in order
-> > to test existing platform drivers using mocked hardware.
-> 
-> That still feels wrong, why is PCI involved here at all?
+On Wed, Jan 18, 2023 at 1:15 AM Adam Ford <aford173@gmail.com> wrote:
+> The Beacon Embedded RZ/G2[MNH] boards all have the same baseboard
+> and all share the same PCB.  To make sure all instances appear
+> the same, make the aliases for RZ/G2N match the RZ/G2M to
+> keep them consistent.
 >
-> Don't abuse platform devices like this please, mock up a platform device
-> framework instead if you want to test them that way, don't think that
-> adding a platform device "below" a PCI device is somehow allowed at all.
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-As you know, PCI allows exposing an MMIO region to the host, so the host
-can use ioremap() and readl()/writel() on it.  This allows reusing
-platform drivers even though the device is on the other side of a PCI
-bus.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.3.
 
-There is hardware already supported by the kernel since a long time ago
-which is handled by putting platform devices below PCI devices.  See
-add_bus_probe() in arch/x86/kernel/devicetree.c.
+Gr{oetje,eeting}s,
 
-And this hardware also wants to do the same thing:
+                        Geert
 
- https://lore.kernel.org/lkml/1674183732-5157-1-git-send-email-lizhi.hou@amd.com/
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Also, UML already supports out-of-process PCI, and there is ongoing work
-in QEMU to add support for out-of-process PCI emulation.  So using PCI
-will allow this to work on different kinds of virtual environments
-without having to invent a new method specifically for platform devices.
-
-> > Given this "hardware", it's not clear what a "real driver" would do
-> > differently.
-> 
-> Again, you can not have a platform device below a PCI device, that's not
-> what a platform device is for at all.
-
-See above.
-
-> > The auxiliary bus cannot be used since it naturally does
-> > not support platform devices.
-> 
-> The aux bus can support any type of bus (it's there to be used as you
-> want, it's just that people are currently using it for PCI devices right
-> now).
-
-I assume we're talking about drivers/base/auxiliary.c?  The kernel doc
-says:
-
- * A key requirement for utilizing the auxiliary bus is that there is no
- * dependency on a physical bus, device, register accesses or regmap support.
- * These individual devices split from the core cannot live on the platform bus
- * as they are not physical devices that are controlled by DT/ACPI.
-
-But this case the sub-devices do need standard register access with
-readl()/writel() and _are_ controlled by devicetree.
-
-> > A hard coded list of sub-devices cannot be used since arbitrary
-> > platform devices with arbitrary devicetree properties need to be
-> > supported.
-> 
-> Then make a new bus type and again, do not abuse platform devices.
-
-How can existing platform drivers be re-used if you invent a new bus
-type and don't create platform devices?
-
-> > I could move this driver to drivers/bus/ and pitch it as a
-> > "PCI<->platform bridge for testing in virtual environments", if that
-> > makes more sense.
-> 
-> Again, nope, a platform device is NOT ever a child of a PCI device.
-> That's just not how PCI works at all.
-> 
-> Would you do the attempt to do this for USB?  (hint, no.)  So why is PCI
-> somehow special here?
-
-PCI is special because it allows exposing an MMIO region to the host and
-allowing the host to access it like any other I/O memory.  USB doesn't
-allow that.
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
