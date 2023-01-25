@@ -2,98 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C08CF67BDC5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 22:10:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0739267BDCA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 22:12:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236327AbjAYVK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 16:10:58 -0500
+        id S235892AbjAYVMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 16:12:00 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236146AbjAYVK3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 16:10:29 -0500
-Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E67FB5B58D
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 13:09:31 -0800 (PST)
-Received: by mail-vs1-xe36.google.com with SMTP id i188so21083847vsi.8
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 13:09:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=criticallink.com; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9RJJ/n41zzX+saTp2LNncjY8Fypt3NmL9yEutFB4n1s=;
-        b=WOHm/saIG3Dr4q+24Z7G6SYdxWckEwYZ2OiPVUiQlFDjk9J/GGH5G2lPCp9nPBdUM6
-         NKLPG74xTyEwESMRZGQkeobMfCP0xvhk5dxc/hF9opSrydqXNm+bgs4xusEtsuqt6ZTj
-         erM0lCjFlt1FjkKoN2A0doFteQq1lyRdmHVl5KpF63lOurZ1mSrCtIHL8WCuWLQTVOdQ
-         f57HcEWpr7rvKo71D5asNmYTOkr2yKFiuCioq2hGejao5f7Z1Lr2hfTb0FQGrA4rgB2Z
-         r62S/gRt3R3/7qHDmBiWTdJj+fteUohtw1NfX3myqFn9sBC4hrsY1vkKe36xcZhRDijK
-         IetA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9RJJ/n41zzX+saTp2LNncjY8Fypt3NmL9yEutFB4n1s=;
-        b=7CEGMW76kHJ2rywvHoVvGIhYfbebFYi+wIm5h6gneQUNYFGBlyJOur+/RB9fyE+tW4
-         WIRpBlFQPXb2Sgek9WOUGcWsODCAky5RbB/rYD8gshXlsg7BPIWUUAFOiNv/JjhducdE
-         FojEZezdXLE7x8naISJXUgDSDMc5D8RIpljBxwQlbGCaqMF/B+ZVQTTq8yljdDxYS+84
-         xtbxkU0ACt/Y0zz/79R9bcUStDbqtMQ+AhfFyY1CMQC0CS9P1AqfiqiV0lUtok6mDRTI
-         yUQ+MK+0fk7ebs7gTHNu58l9Xgohq5wlJiEGKNzubtjHgELYUM52si+AFUYefNRboRZF
-         vrNA==
-X-Gm-Message-State: AO0yUKUddQdl31bpS50bRqqkeHC2m9fJAuU6eBpFvOtEfuYs4+wkAjYp
-        rnBMjjT0F0XxbvWHfvK0aUZoaA==
-X-Google-Smtp-Source: AK7set9bH4FlpCkV+Z+7rYCaPzI9wpMh7X7Sa4ITkX7oLz7viTzX4t7Ud2ygznpBXw4WanAYEKE8aw==
-X-Received: by 2002:a67:7284:0:b0:3e9:93fa:140c with SMTP id n126-20020a677284000000b003e993fa140cmr1644589vsc.9.1674680962198;
-        Wed, 25 Jan 2023 13:09:22 -0800 (PST)
-Received: from [127.0.1.1] (static-72-90-70-109.syrcny.fios.verizon.net. [72.90.70.109])
-        by smtp.gmail.com with ESMTPSA id q196-20020a3743cd000000b0070736988c10sm4177090qka.110.2023.01.25.13.09.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 13:09:21 -0800 (PST)
-From:   Jonathan Cormier <jcormier@criticallink.com>
-Date:   Wed, 25 Jan 2023 16:09:12 -0500
-Subject: [PATCH 4/4] DRM: BRIDGE: TFP410: If connected, use I2C for polled HPD status.
-MIME-Version: 1.0
+        with ESMTP id S230329AbjAYVLl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 16:11:41 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D53CD62D09;
+        Wed, 25 Jan 2023 13:11:02 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7A001B81BA0;
+        Wed, 25 Jan 2023 21:10:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F165C433D2;
+        Wed, 25 Jan 2023 21:10:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674681058;
+        bh=2xyucpV9NpzkKbccAToDq9c1AviJ3RxxcHz01+de8rA=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=Bd+EjrsqXmDWNSNrE4qIujUMCUyTzxw827dCbOyzsSOQMcDHBSZgdNyuge1lAzrel
+         hIItPItgM19jakg7qWSPRIjuqG34/AhwpMwfpWYsc0f9U7TAVFMrNVTj2qPSsmHFBF
+         Uy26IGdshltegEK3z2zGnkwZSTCM+RmzQAbQ+gmWwK2mWTikz4Krie9nTTB5oMxRgH
+         Xkd6OVr39DAniOWMUydZqXg6q6AKG1iVqdttXwFKbNWTS/2gFlCBQ2i5URTFhgvXZT
+         CT1p0/GfInT3jDKQJfTwF5ZMgvOsihiP5aBBqw5aH5JzAjPVs8M8Nh5zhuyBQ8/bU4
+         hGEBOqpgyRbIw==
+Message-ID: <1fc8686b0b66c3b3ff80c044ecf1add6.sboyd@kernel.org>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230125-tfp410_i2c-v1-4-66a4d4e390b7@criticallink.com>
-References: <20230125-tfp410_i2c-v1-0-66a4d4e390b7@criticallink.com>
-In-Reply-To: <20230125-tfp410_i2c-v1-0-66a4d4e390b7@criticallink.com>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230101175740.1010258-1-dario.binacchi@amarulasolutions.com>
+References: <20230101175740.1010258-1-dario.binacchi@amarulasolutions.com>
+Subject: Re: [RFC PATCH v2 00/11] clk: imx8mn: setup clocks from the device tree
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     angelo@amarulasolutions.com, michael@amarulasolutions.com,
+        tommaso.merciai@amarulasolutions.com,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        linux-amarula@amarulasolutions.com, anthony@amarulasolutions.com,
+        jagan@amarulasolutions.com,
+        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Jyri Sarha <jsarha@ti.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Michael Williamson <michael.williamson@criticallink.com>,
-        Bob Duke <bduke@criticallink.com>,
-        Jonathan Cormier <jcormier@criticallink.com>
-X-Mailer: b4 0.11.3-dev-d001f
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1533;
- i=jcormier@criticallink.com; h=from:subject:message-id;
- bh=dbb6ec7CfpiriM2pWdSl9OaXPVL9sCebyFiqEYEERQk=;
- b=owEBbQKS/ZANAwAKAdzX/S4LNuuqAcsmYgBj0Zp8UY3oOfu1sE+y2VZfLN0nj6Zb8gpmkZWoxYPV
- wM1zUW2JAjMEAAEKAB0WIQT/MozqCeZtYxNnVN/c1/0uCzbrqgUCY9GafAAKCRDc1/0uCzbrqly9EA
- CPJlnlwhTnKovCKXXIx14LdNjTl14R/C5jZyKgskM3kkTsxuPRLUWuniHgeDEO7fhbZx3FwtW1QUp/
- Zn9RnwRza3ZKJEyHv0elltxnjisj/WTR0Z3NGL2xHIQXP8MxyGFBYtvJZoQHQ3rpmu9bOkhCIvD+fG
- 7MenhcEfyBVbKBnIiK7AraSXgAMBWt5lGo6o8ZBbVHBVgol/iU5lkMs4Od1hCEmfWDyiGAbvvQnCGc
- XSo2TauNuwCKaDxFtgPUmxx9OEN5ng5G72LWN9H3o32YN7zWBHJsArkqExSVXGMn/BlK/rsjzKIwg5
- BQp91qTt4vHztKSR7ekaU6ikv8dQ8kG6f39xSrLXYOxt3IXaIauH6JtqkjeqnsaqxUDi3fR8sVjIW4
- 6CU4mgt8wLdSt6qR7kSYMmqg6BDRRrKjvNd5HvlG1AYTs/aIXXxos80/58TJ+n/PqtROGGKAEPDDli
- oYJ6lkB/1H7pHV9ZfrvCTz9Ws4egquII/R3G7FOyp+kEMFTZQy7jIPfvmXHSdIIo8XSf8fg9pOz8IG
- j4k9CKHz3e699zCre/Yi7JazXyKpcJ3nedEX6XbrDIgXwqx7jShjt0rl2A/sdXuOQSR7Lfg1Ckqqmd
- X3/+eF32C7gtCmaP6ZLHcb0F93Y//74lDL+IYvGiTXMqEz+qFfntvOV1Q+Xw==
-X-Developer-Key: i=jcormier@criticallink.com; a=openpgp;
- fpr=FF328CEA09E66D63136754DFDCD7FD2E0B36EBAA
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Li Jun <jun.li@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
+        Marek Vasut <marex@denx.de>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        linux-kernel@vger.kernel.org
+Date:   Wed, 25 Jan 2023 13:10:55 -0800
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -101,50 +72,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Williamson <michael.williamson@criticallink.com>
+Quoting Dario Binacchi (2023-01-01 09:57:29)
+> The idea for this series was born back from Dublin (ELCE 2022) after
+> having attended the talk entitled "Updating and Modernizing Clock
+> Drivers" held by Chen-Yu Tsai and the availability of a board with
+> imx8mn SOC.
 
-If the I2C bus is connected on the TFP410, then use the register
-status bit to determine connection state.  This is needed, in particular,
-for polling the state when the Hot Plug detect is not connected to
-a controlling CPU via GPIO/IRQ lane.
+Interesting. I didn't see any mention of putting clks into DT in that
+presentation.
 
-Signed-off-by: Michael Williamson <michael.williamson@criticallink.com>
-Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
----
- drivers/gpu/drm/bridge/ti-tfp410.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+>=20
+> This series aims to setup all imx8mn's clocks from the device tree and
+> remove the legacy setup code with hardwired parameters.
 
-diff --git a/drivers/gpu/drm/bridge/ti-tfp410.c b/drivers/gpu/drm/bridge/ti-tfp410.c
-index 837e1f81a0ff..ac216eaec3c8 100644
---- a/drivers/gpu/drm/bridge/ti-tfp410.c
-+++ b/drivers/gpu/drm/bridge/ti-tfp410.c
-@@ -28,6 +28,9 @@
- #define TFP410_BIT_BSEL BIT(2)
- #define TFP410_BIT_DSEL BIT(3)
- 
-+#define TFP410_REG_CTL_2_MODE	0x09
-+#define TFP410_BIT_HTPLG BIT(1)
-+
- static const struct regmap_config tfp410_regmap_config = {
- 	.reg_bits = 8,
- 	.val_bits = 8,
-@@ -105,6 +108,16 @@ static enum drm_connector_status
- tfp410_connector_detect(struct drm_connector *connector, bool force)
- {
- 	struct tfp410 *dvi = drm_connector_to_tfp410(connector);
-+	u32 val;
-+	unsigned int ret;
-+
-+	if (dvi->i2c) {
-+		ret = regmap_test_bits(dvi->regmap, TFP410_REG_CTL_2_MODE, TFP410_BIT_HTPLG);
-+		if (ret < 0)
-+			dev_err(dvi->dev, "%s failed to read HTPLG bit : %d\n", __func__, ret);
-+		else
-+			return ret ? connector_status_connected : connector_status_disconnected;
-+	}
- 
- 	return drm_bridge_detect(dvi->next_bridge);
- }
-
--- 
-2.25.1
+Please, no! We don't want one node per clk style of bindings.
