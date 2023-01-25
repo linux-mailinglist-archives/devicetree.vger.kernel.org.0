@@ -2,141 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDDC667ABC0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 09:31:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C24267ACDE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 09:55:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235090AbjAYIbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 03:31:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36630 "EHLO
+        id S233619AbjAYIzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 03:55:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235115AbjAYIbP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 03:31:15 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C79DE518CF
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 00:30:58 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id y11so20884762edd.6
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 00:30:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=streamunlimited.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=E/2KTSGN5IAeMFBli47Es0k1+cSysqbM8kohqinsDBA=;
-        b=vzaEoNAZ1w3bluqKDelP9gk/naJuO8gK/wAaU1zCFhstolQV3A86OCkE0nPWTEwC+5
-         Z3B1DdIvtQBFhOeMbprsPS9ke6cKmJ3DewYtTmK1eR4SBwrGJuAOrHk/Y77RDQPDdxDi
-         Ccuq81jum+5A4SCoIB0Vtbn8mTCLL/a4vT+AQ=
+        with ESMTP id S234648AbjAYIyu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 03:54:50 -0500
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE21C2DE62;
+        Wed, 25 Jan 2023 00:54:49 -0800 (PST)
+Received: by mail-qv1-f44.google.com with SMTP id r14so622623qvx.4;
+        Wed, 25 Jan 2023 00:54:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=E/2KTSGN5IAeMFBli47Es0k1+cSysqbM8kohqinsDBA=;
-        b=pTAdh31g+70a4SbwFKvB3qEoWlgjCt92UWSDkuzK/iwJCzvjeHRb32NZOsO8a2llNt
-         AUW42pXUO7lVZelcBgZOJBqINukmMOLJs+GrLy7YUl5Zggp6RoUeOcKTVvi7AJ6/anIk
-         rUN9own4K+3DLKoFu71G/Rx+PeFzyXvBTEoNWNktsH6akrMRe0471qkpYa0BdKnEa3ZS
-         D/V6zbnFLGZptEBu9wlJdUvxJgcMDpNx/k5CR/v0ECe+asEc5IVh02QqLleIWJ1xFnKL
-         AwFrM1EIfXkALGCE6eYfaGDlpYQabJ1p9NCA4G9i5E1+tS3Qr3NJXU4cxXwt/9qV/CQr
-         V+/g==
-X-Gm-Message-State: AO0yUKWOM3tAQZ94tgEIah5CJuIIm5xICLd8RTbM1rYP8NZJHlbbbCix
-        xHbevldQyh2np6kHaaXL+DQk2C+PpsdDC7iEQP37Lw==
-X-Google-Smtp-Source: AK7set/yTTBo8oOKFbj5yO3WHAJZiuqAMWxcrSTT16gHXva4l7E857y9sQ7SjqpBYzuiiG3Zk3m6t/Cbf73C534AuAE=
-X-Received: by 2002:aa7:ca42:0:b0:4a0:8fd6:34c2 with SMTP id
- j2-20020aa7ca42000000b004a08fd634c2mr753572edt.67.1674635457251; Wed, 25 Jan
- 2023 00:30:57 -0800 (PST)
+        bh=4i0NQxBxCgG41kmz90B1V7AlGxxGPtE8fvvNdHh0fI4=;
+        b=XpwD+3k0OvnxkUpgJ4nDMB3UeSnemfQpmP337Jwwt4WFtqlWhJc8Z0ixtDJw1hYB+x
+         IWo+M6hw7MLcPPO5AzOBI0DoRKlOvX8Cr8eN5ZJfHDjnYAYSXnU2QBP8bZfgh9Qj0PrF
+         jlxhxEmk8eWCTsRtjoJi4+FVav4Hhj6aEkogNKET1WZHyIAwU4vCY+QyNUHTpZdO+Wfw
+         TlpXfZ6QAU6YPlYG1Hilgei5JmCtnwBKuxZZUMZnUhD/gdgffyKKBg3brKP/wR8aJ7d4
+         dAoeb07Iqm5Cc1fO9Rj35NhRVRX5sWY6PT5sbB/RUzuAfLA8v7DEkc+q1J12VMZ3sOJi
+         pk8A==
+X-Gm-Message-State: AFqh2kreGyiIDOPVW+zOgJnnbfq/c6d7o0MOpSVHivs35RFygGe6WnMu
+        gmtjKJRwO58qh0viSCalNEoswu7BiaghEQ==
+X-Google-Smtp-Source: AMrXdXvgWuka9FN73ULFUk3Dvr663m1L5m5tYLAINNps3WeVX8tkAsQXOp/+H3guMLxAGhqxHf4GWg==
+X-Received: by 2002:a05:6214:3206:b0:537:4ac0:71d5 with SMTP id ms6-20020a056214320600b005374ac071d5mr23486440qvb.2.1674636888609;
+        Wed, 25 Jan 2023 00:54:48 -0800 (PST)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id cx15-20020a05620a51cf00b006e16dcf99c8sm3073961qkb.71.2023.01.25.00.54.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Jan 2023 00:54:48 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id c124so22058968ybb.13;
+        Wed, 25 Jan 2023 00:54:47 -0800 (PST)
+X-Received: by 2002:a25:dd8:0:b0:80a:6a1c:7c3b with SMTP id
+ 207-20020a250dd8000000b0080a6a1c7c3bmr1186104ybn.89.1674636887719; Wed, 25
+ Jan 2023 00:54:47 -0800 (PST)
 MIME-Version: 1.0
-References: <d9b72573-a59f-989f-a752-1aa8517cf8dc@gmail.com>
-In-Reply-To: <d9b72573-a59f-989f-a752-1aa8517cf8dc@gmail.com>
-From:   Peter Suti <peter.suti@streamunlimited.com>
-Date:   Wed, 25 Jan 2023 09:30:46 +0100
-Message-ID: <CACMGZgbtX7zgy2USO5O0qY54tGW+d2cZ6qcUUbb-uOFAtfqOVw@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: amlogic: Fix SDIO interrupt and make it level-sensitive
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+References: <20230123012940.1250879-1-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdX92KMeON0xC9p17kiqWT7ksEBX_NyPiiQk0fLaucDZBA@mail.gmail.com> <TYBPR01MB5341B023178B4A10DE52B844D8CE9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYBPR01MB5341B023178B4A10DE52B844D8CE9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 25 Jan 2023 09:54:36 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXXnu88Tn2ucuHZK=3G18v-nCfaTYpomchRXBu3bD7UuA@mail.gmail.com>
+Message-ID: <CAMuHMdXXnu88Tn2ucuHZK=3G18v-nCfaTYpomchRXBu3bD7UuA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: Update
+ descriptions for R-Car Gen4
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     "joro@8bytes.org" <joro@8bytes.org>,
+        "will@kernel.org" <will@kernel.org>,
+        "robin.murphy@arm.com" <robin.murphy@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 25, 2023 at 8:00 AM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->
-> SDIO specification defines that the interrupt is level-sensitive.
-> Fix the interrupt trigger type for emmc_a accordingly.
-> See comment at beginning of the file wrt which is the SDIO port.
-> mmc2 = &sd_emmc_a; /* SDIO */
->
-> The usage of edge-triggered interrupts lead to lost interrupts under load,
-> see [0]. This was confirmed to be fixed by using level-triggered
-> interrupts.
->
-> Note:
-> SDIO interrupt support was added in Linux just recently, however other
-> users of this dts may be affected too.
->
-> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
->
-> Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
-> Reported-by: Peter Suti <peter.suti@streamunlimited.com>
-> Tested-by: Peter Suti <peter.suti@streamunlimited.com>
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
-> v2:
-> - rebase considering recent node name change sd -> mmc for sd_emmc_a
-> ---
->  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 1a931d5c2..c09eb9f6f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -2324,7 +2324,7 @@ uart_A: serial@24000 {
->                 sd_emmc_a: mmc@ffe03000 {
->                         compatible = "amlogic,meson-axg-mmc";
->                         reg = <0x0 0xffe03000 0x0 0x800>;
-> -                       interrupts = <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
-> +                       interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
->                         status = "disabled";
->                         clocks = <&clkc CLKID_SD_EMMC_A>,
->                                  <&clkc CLKID_SD_EMMC_A_CLK0>,
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> index a79a35e84..ae1a5a568 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -603,7 +603,7 @@ apb: apb@d0000000 {
->                         sd_emmc_a: mmc@70000 {
->                                 compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
->                                 reg = <0x0 0x70000 0x0 0x800>;
-> -                               interrupts = <GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
-> +                               interrupts = <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
->                                 status = "disabled";
->                         };
->
-> --
-> 2.39.1
->
+Hi Shimoda-san,
 
-Please also change arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-sd_emmc_b because it was tested on that platform.
+On Wed, Jan 25, 2023 at 1:49 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> > From: Geert Uytterhoeven, Sent: Tuesday, January 24, 2023 11:35 PM
+> > On Mon, Jan 23, 2023 at 2:35 AM Yoshihiro Shimoda
+> > <yoshihiro.shimoda.uh@renesas.com> wrote:
+> > > Since R-Car Gen4 doens't have the main IPMMU IMSSTR register, but
+> > > each cache IPMMU has own module id. So, update descriptions of
+> > > renesas,ipmmu-main property for R-Car Gen4.
+> > >
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
+> > > ---
+> > >  The old R-Car S4-8 datasheet had described IPMMU IMSSTR register, but
+> > >  the latest datasheet undocumented the register. So, update the propeties
+> > >  description. Note that the second argument is not used on the driver.
+> >
+> > DT describes hardware, not software policy.
 >
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> I think so.
 >
+> > >  So no behavior change.
+> >
+> > So where do we get the module id numbers to use, if they are no longer
+> > documented in the Hardware Manual?
 >
+> If so, we cannot get the module id numbers. So, should we use other
+> information which is completely fixed instead? I have some ideas:
+> 1) Just 0 (or other fixed value) if the IMSSTR register doesn't exist.
+> 2) Sequential numbers from register base offset.
+>    In R-Car S4: ipmmu_rt0 is the first node from register base offset,
+>    and ipmmu_rt1 is the second one.
+>    So, ipmmu_rt0 is 0, ipmmu_rt1 is 1, ipmmu_ds0 is 2 and ipmmu_hc is 3.
+> 3) Using base address upper 16-bits.
+>    In R-Car S4: ipmmu_rt0 is 0xee480000. So, the value is 0xee48.
+>
+> Perhaps, the option 1) is reasonable, I think. But, what do you think?
+
+I would not make up numbers, as that would cause confusion with SoCs
+where the numbers do match the hardware.
+As the driver doesn't use the module id number (it already loops
+over all domains, instead of checking IMSSTR, probably because of
+historical (R-Car Gen2) reasons?), what about dropping it from the
+property? I.e. add "minItems: 1", possibly only when compatible with
+renesas,rcar-gen4-ipmmu-vmsa?
+
+BTW, the related IMCTR register is still documented, and the driver
+does enable the interrupt bit (IMCTR_INTEN), so I'm wondering how the
+hardware (documentation) people intend this to be used...
+Perhaps IMCTR_INTEN will be removed/undocumented, too?
+Or perhaps the removal/undocumentation of IMSSTR was a mistake?
+
+> > > --- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+> > > +++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+> > > @@ -76,14 +76,15 @@ properties:
+> > >      items:
+> > >        - items:
+> > >            - description: phandle to main IPMMU
+> > > -          - description: the interrupt bit number associated with the particular
+> > > -              cache IPMMU device. The interrupt bit number needs to match the main
+> > > -              IPMMU IMSSTR register. Only used by cache IPMMU instances.
+> > > +          - description: The interrupt bit number or module id associated with
+> > > +              the particular cache IPMMU device. The interrupt bit number needs
+> > > +              to match the main IPMMU IMSSTR register. Only used by cache IPMMU
+> > > +              instances.
+> > >      description:
+> > >        Reference to the main IPMMU phandle plus 1 cell. The cell is
+> > > -      the interrupt bit number associated with the particular cache IPMMU
+> > > -      device. The interrupt bit number needs to match the main IPMMU IMSSTR
+> > > -      register. Only used by cache IPMMU instances.
+> > > +      the interrupt bit number or module id associated with the particular
+> > > +      cache IPMMU device. The interrupt bit number needs to match the main
+> > > +      IPMMU IMSSTR register. Only used by cache IPMMU instances.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
