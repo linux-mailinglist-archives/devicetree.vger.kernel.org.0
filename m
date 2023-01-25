@@ -2,110 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 591DB67B59C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 16:12:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17CD967B5A2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 16:13:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235833AbjAYPL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 10:11:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40282 "EHLO
+        id S235701AbjAYPNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 10:13:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236012AbjAYPL4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 10:11:56 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F83259E56
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 07:11:33 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id s3so22135383edd.4
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 07:11:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MK9Ce7LoyUpoHVdDI0Q6deRxLh9svgL/G7RdzcTDYaQ=;
-        b=LySUeIdtlIdpu5P4Kgo82re6kq4R6LXSHS8u8/LBIhHqCR82KIlhMlw5ymVaJpi70D
-         S+3hcT5ACjyUAC7ydHn+LbSTc8PYmMxWqbMHJOJZd09rbrTyxpGMKOy/FJ6TwGwawUO3
-         3gdBQg8cwgg+i7TwUr30ShHh8R9d3/c0tKmRTdBQ3UNP3FI2MQc0vwPloZMwM7C0R/y8
-         QDY+Cmg+3Jvoa6OPYSJdPzf1T8dI0MVldCHrlCW3jW0UvO506xUDHdLpqow7PADPcDLJ
-         a1uw6AJqUjW6Lqqxn0rDd+ilQCOzzhdDNxNQToiQPzqKUvFVHZQE1xQZ6FTnKxmmWNUi
-         ZdnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MK9Ce7LoyUpoHVdDI0Q6deRxLh9svgL/G7RdzcTDYaQ=;
-        b=WVUy3VqYN4PfMXry9uKSPbwFrzEvAOCGBMuYKj6l66MZYr6rj07CMWafeB8tp/3szj
-         dAUFdXC9IXyniNN3z8weodBHCWRLTir2NS86SQW5v8Jgl1RAUO6W1+DW4s63OwJtQFu+
-         eF+EIBh4J+F3LxEtE1sw+4PoVLmFrXb34TDyfDk+w+yrhq6xcCYrman7eQAfZtVobirg
-         q5ggqVfWLCaczOSVEIwIk/8QeVwviV6aUz+I8QRYCgGyxyMs0Qd8rSkAEOVxOey7SQHu
-         EXne+UGpKVCzefSCYGonPRTODaP7jhQW7Pjmwm98FEQAKKom0kiPW/gnXXZCRsS0/8cr
-         XsAQ==
-X-Gm-Message-State: AO0yUKWVtRryXzwIT45cHb3JWA34gkZWQDeT8BtyOsEhOxX0a3WOcqBK
-        nkP5wwLWYUGGEotDe2OX2QPk8xZVOMwdV9ykUKogTA==
-X-Google-Smtp-Source: AK7set+/d6h1+icdov+3bpJCPxwXk9ybBiTH6QptRDsERwtuuR1OBU2F9WB1DSqGNVJB0APKd2JKhc35tLg6EYBsWtg=
-X-Received: by 2002:a05:6402:d59:b0:4a0:90da:4653 with SMTP id
- ec25-20020a0564020d5900b004a090da4653mr768644edb.153.1674659489645; Wed, 25
- Jan 2023 07:11:29 -0800 (PST)
+        with ESMTP id S235562AbjAYPNR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 10:13:17 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AA895867F;
+        Wed, 25 Jan 2023 07:12:56 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C4EF760AC5;
+        Wed, 25 Jan 2023 15:12:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AEA6C433D2;
+        Wed, 25 Jan 2023 15:12:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674659563;
+        bh=jDddyi1PUAaGX1ZpDwTpMyuoepvDXtvrLNrPQvKb12k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r9yOqiteNFl+qIe6GMQpaT3rZgr9v0MZAr4DOztZxnANUk/Ml4OLyrF87xrPNHhXj
+         FxE23xkUHeXbSxfFXfcWBexYfGphFRhd0MYH0074mfOQDzrnuOV/z7YwVQXeEAbtv5
+         joXSkIjqnyrAkKG/K62kb3uhmb/ggpM65L2bjkonK20Z0QIdDx6kmfnRqQ3X1W0hja
+         umzp6/nXxHDfG0xPeAyeDsh//a4RPunyaqMv26oQSH4J+jbmBlH6qVnZkEybk/cLhk
+         frc6DhJR/REis67oE2AXVkq4QaNId8kx8DCMIags0QnoQRCKgg4VBmZA3L+zpTnxdb
+         YaZYYdAcTGx9Q==
+Date:   Wed, 25 Jan 2023 15:12:37 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     patchwork-bot+bluetooth@kernel.org
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>, pavel@ucw.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        robh@kernel.org
+Subject: Re: [PATCH v2] dt-bindings: leds: Document Bluetooth and WLAN
+ triggers
+Message-ID: <Y9FG5Wg0PmP4zfV6@google.com>
+References: <0d0de1bc949d24e08174205c13c0b59bd73c1ea8.1674384302.git.geert+renesas@glider.be>
+ <167460363944.4058.4676712965831302643.git-patchwork-notify@kernel.org>
 MIME-Version: 1.0
-References: <20230124131717.128660-1-bchihi@baylibre.com> <20230124131717.128660-6-bchihi@baylibre.com>
- <80ce4ea3-6ebd-c249-45bd-a2f04343690b@collabora.com>
-In-Reply-To: <80ce4ea3-6ebd-c249-45bd-a2f04343690b@collabora.com>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Wed, 25 Jan 2023 16:10:53 +0100
-Message-ID: <CAGuA+opCcdbPbasadEFbKw1nSy-kbK3WzKG=wXn6dtzynjrY1Q@mail.gmail.com>
-Subject: Re: [PATCH v11 5/6] arm64/dts/mt8195: Add thermal zones and thermal nodes
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     daniel.lezcano@linaro.org, rafael@kernel.org, amitk@kernel.org,
-        rui.zhang@intel.com, matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <167460363944.4058.4676712965831302643.git-patchwork-notify@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 24, 2023 at 4:37 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 24/01/23 14:17, bchihi@baylibre.com ha scritto:
-> > From: Balsam CHIHI <bchihi@baylibre.com>
-> >
-> > Add thermal zones and thermal nodes for the mt8195.
-> >
-> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
->
-> You should change the commit title to reflect the same syntax that you can find
-> in a `git log --oneline arch/arm64/boot/dts/mediatek/`.
->
-> arm64: dts: mediatek: mt8195: Add thermal zones and thermal nodes
->
-> or
->
-> arm64: dts: mt8195: Add thermal zones and thermal nodes
->
+On Tue, 24 Jan 2023, patchwork-bot+bluetooth@kernel.org wrote:
 
-Hi Angelo,
+> Hello:
+> 
+> This patch was applied to bluetooth/bluetooth-next.git (master)
+> by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+> 
+> On Sun, 22 Jan 2023 11:47:27 +0100 you wrote:
+> > Add the missing trigger patterns for Bluetooth and WLAN activity, which
+> > are already in active use.
+> > 
+> > While at it, move the mmc pattern comment where it belongs, and restore
+> > alphabetical sort order.
+> > 
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > 
+> > [...]
+> 
+> Here is the summary with links:
+>   - [v2] dt-bindings: leds: Document Bluetooth and WLAN triggers
+>     https://git.kernel.org/bluetooth/bluetooth-next/c/ef017002b93b
 
-Thank you for the review.
-Should I resend with the fix?
-Or you would fix it when applying it like Matthias did for "[PATCH v11
-3/6] arm64/dts/mt8195: Add efuse node to mt8195"?
+Why are you taking LED patches through the Bluetooth tree?
 
-Best regards,
-Balsam
-
->
-> ...otherwise:
->
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->
+-- 
+Lee Jones [李琼斯]
