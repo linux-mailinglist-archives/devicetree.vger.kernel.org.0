@@ -2,64 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ACF467B841
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 18:17:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E70367B894
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 18:30:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236113AbjAYRRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 12:17:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43044 "EHLO
+        id S235764AbjAYRas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 12:30:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236118AbjAYRRC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 12:17:02 -0500
+        with ESMTP id S235844AbjAYRas (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 12:30:48 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0110437549;
-        Wed, 25 Jan 2023 09:16:44 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F10A437573;
+        Wed, 25 Jan 2023 09:30:37 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 79E7961576;
-        Wed, 25 Jan 2023 17:16:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE22BC433A7;
-        Wed, 25 Jan 2023 17:16:43 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 95F2D6159C;
+        Wed, 25 Jan 2023 17:30:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06045C4339C;
+        Wed, 25 Jan 2023 17:30:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674667003;
-        bh=UVy49VwAMvNvfly1owkooWr3fc9DSt30v0h99b71T2M=;
+        s=k20201202; t=1674667837;
+        bh=doO5B7lVAEUM4IZ60baaHsFh7f5V2tq0ZYza3D65Lpk=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=uaD9EW7rjHHXbvhkf/mp5jKQdeoxq6Q82JD9py3lRSGJ6YjIVsjVf7GxAAoMMX+71
-         +V10qssso3Ag4IW5LJ62BRHZ6e8cyVC07FyIyMZYeIbyRAjAAvf6GsruIDnUTnC4/d
-         c0lYc2u21KEBjswd+mvjS6g5Zr6HragxahqZP77bUJULBm+k/nO1uOl93+N+0biEHb
-         +fbH4heOSQtRyxm42Vsx7wZ24ppGvpxwnpp59CZnHdEvIWDOSDTiiNGSwZlQUUULWf
-         6FuQj23lRCvsRdFFZlxl0YtYoEb42mzsWHjLvSiwAM7dAasHH3HYaF9mE+VoyQX0qB
-         c6cGfGn2QbMLg==
-Received: by mail-vs1-f45.google.com with SMTP id j185so20391060vsc.13;
-        Wed, 25 Jan 2023 09:16:43 -0800 (PST)
-X-Gm-Message-State: AO0yUKXFy3PujAmtBhi2wM5GinzH4/QjwLUEj4xDDH/a0NMfhzRl1aX8
-        J+XQEfhe1iNcxYJWPGgfI4q3jNpD94WlBX/N0w==
-X-Google-Smtp-Source: AK7set/9MH2+8m/u8CsJY1QynMiZjKxMVjlsPnhguaIoTxMs8JGmoZA4y6kFqKQs9YuW49fZGC5DK93+2plS+rfNt00=
+        b=kWE3AN6tbPb7c+n/nTbhk/PlOIyEndZGB9vYOts3hGoTV30wQj49MvudqcM0qok1o
+         OIN2uNK/dviBas0fvUe4sZ3ht1bl5WqpUAsyd+CPHwzlK0Shtd2wNcDtGGWqdL+wJR
+         8GmWTQ37JmHQCshCjNSsWAizxu/EjsfcYgtcoyHVvf5u9lyHcybuIivTCzycjLwHoD
+         unNLaXYGGQoOrXL2HYmxrRaw9meyRU6Lq+Hd3wO1FEvGzH9bv/JbWb7I7AL11NDB1i
+         BosqYYqdBt61+xYmMqJhXOo1Nv0cQh0zQ4793mM/UHR7c0KbE4p4jddIhmI3DwU2wx
+         4n4lAMt+EQ0CA==
+Received: by mail-vs1-f45.google.com with SMTP id k4so20477666vsc.4;
+        Wed, 25 Jan 2023 09:30:36 -0800 (PST)
+X-Gm-Message-State: AO0yUKVKKk6Em1rH8OygHClywbRVbj5eiT0683ncFvXLh51/Gd+tYCfZ
+        HDFuwu1EMqZ86iWx/PMGM2idwoJYhtMfgGJ7iw==
+X-Google-Smtp-Source: AK7set+1oK/DUMFfhX8xs4Oazj4O0yxp2K04oiLSaHoBwKIZJJpMkvGK98H2tuPZIysvuISWwVghNg0L89SfNiN4fos=
 X-Received: by 2002:a67:fe41:0:b0:3ea:c8c:48a5 with SMTP id
- m1-20020a67fe41000000b003ea0c8c48a5mr91271vsr.53.1674667002782; Wed, 25 Jan
- 2023 09:16:42 -0800 (PST)
+ m1-20020a67fe41000000b003ea0c8c48a5mr99015vsr.53.1674667835932; Wed, 25 Jan
+ 2023 09:30:35 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1674409777.git.daniel@makrotopia.org> <7c680bf2502ddfd2077306a46c69728d212386f9.1674409777.git.daniel@makrotopia.org>
- <20230123225943.GA2781371-robh@kernel.org> <Y88eMrwDmSZ2xovw@makrotopia.org>
-In-Reply-To: <Y88eMrwDmSZ2xovw@makrotopia.org>
+References: <20230124222023.316089-1-robh@kernel.org> <Y9EyB+OO7MyGy20w@e120937-lin>
+ <20230125141113.kkbowopusikuogx6@bogus>
+In-Reply-To: <20230125141113.kkbowopusikuogx6@bogus>
 From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 25 Jan 2023 11:16:31 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLnuJKhm46dSShtkwW1o9tQNbHQ9bCd-9U5UqMij3J-0Q@mail.gmail.com>
-Message-ID: <CAL_JsqLnuJKhm46dSShtkwW1o9tQNbHQ9bCd-9U5UqMij3J-0Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: add bindings for MT7981 SoC
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Sean Wang <sean.wang@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+Date:   Wed, 25 Jan 2023 11:30:24 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ2DbC88kEb-r=6WxJ=m+v3UO9n6h_HKkQNoAAW6h-hWA@mail.gmail.com>
+Message-ID: <CAL_JsqJ2DbC88kEb-r=6WxJ=m+v3UO9n6h_HKkQNoAAW6h-hWA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: Restrict protocol child
+ node properties
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Cristian Marussi <cristian.marussi@arm.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        Jianhui Zhao <zhaojh329@gmail.com>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -70,30 +64,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 23, 2023 at 5:56 PM Daniel Golle <daniel@makrotopia.org> wrote:
+On Wed, Jan 25, 2023 at 8:11 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
 >
-> On Mon, Jan 23, 2023 at 04:59:43PM -0600, Rob Herring wrote:
-> > On Sun, Jan 22, 2023 at 06:23:55PM +0000, Daniel Golle wrote:
-> > > Add bindings for the MT7981 pinctrl driver, based on existing MT7986
-> > > pinctrl bindings.
+> On Wed, Jan 25, 2023 at 01:43:48PM +0000, Cristian Marussi wrote:
+> > so now that the catch-all protocol@ patternProperty is gone in favour
+> > of the 'protocol-node' definition and $refs, does that mean that any
+> > current and future SCMI officially published protocol <N> has to be
+> > added to the above explicit protocol list, even though it does not
+> > have any special additional required property beside reg ?
+> > (like protocol@18 above...)
 > >
-> > What existing bindings? A .txt file you need to remove, or undocumented,
-> > but in use somewhere (where?)?
 >
-> What I meant to express is that I used the existing
-> mediatek,mt7986-pinctrl.yaml file as the template to create a similar
-> document for MT7981. I guess my English was not clear enough.
-
-No, I just missed the 1 digit difference...
-
-> Maybe better like this?
+> If there are no consumers, should we just not add and deal with it
+> entirely within the kernel. I know we rely today on presence of node
+> before we initialise, but hey we have exception for system power protocol
+> for other reasons, why not add this one too.
 >
-> "Add bindings for the MT7981 pinctrl driver. As MT7981 is simiar to
-> MT7986, the existing mediatek,mt7986-pinctrl.yaml was used as an example
-> to create a similar document covering MT7981."
+> In short we shouldn't have to add a node if there are no consumers. It
+> was one of the topic of discussion initially when SCMI binding was added
+> and they exist only for the consumers otherwise we don't need it as
+> everything is discoverable from the interface.
 
-Describe how the h/w is similar or different. Can they share the same
-schema doc? I'm guessing all the if/then schemas for pins/groups are
-different, so no. But I shouldn't have to guess.
+As you might guess, I agree.
+
+We need to keep 0x18 I suppose, right? I assume it is already in use.
+Are there any others that didn't get documented? We'd need to keep
+them because old kernels would still need them.
 
 Rob
