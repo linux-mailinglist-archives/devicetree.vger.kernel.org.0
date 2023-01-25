@@ -2,248 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8240967AB7B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 09:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 118E867AB8C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 09:25:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235086AbjAYIS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 03:18:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55528 "EHLO
+        id S234869AbjAYIZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 03:25:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235085AbjAYISt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 03:18:49 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC48D4709B
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 00:18:46 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id d14so12511725wrr.9
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 00:18:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=42S+VqN9LTbh+aZs3DUPyk7eOYyO/WSy+YOH5CCdRvI=;
-        b=VBXlWo7Ifpvo9JGRHEWseLgXSjcbd2zUjutSZIUi6oDlIXUxeie+fG4ndxcVLIbIku
-         EGMoKMLRAetrDWiwayZ7a+tYVgytrfzYqhT+8OsYA7/aly7t0S3LhtiXVvO6BY2L4LcZ
-         g/OhoAraGklYtGWV+LYq9EC5k9J5AEO3vtiplqwCMYNHTt5jCa8Boke5bGqIe2SCjm5p
-         pSi4+vbh7zPno77KHuPirfLacIxGsvhQT0NCk//7Af4ZgdJbE1vcw958oAdia42wGzRU
-         1RFffO429hgs2MfdIvLBsN9fijC4PkYlVxJVEsM4tNe2oHS82NUSweqQikwqjheQmLWd
-         GN9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=42S+VqN9LTbh+aZs3DUPyk7eOYyO/WSy+YOH5CCdRvI=;
-        b=03q3tEb22A2+VshcbjFCfuHUtb85HLM+URnb36C2RPPucp6//uKd9KspZ+YE+8Rla+
-         ixU24AiLQtXsN1tArBC/Y/0XsndW9lfMyF8aAVevldSEsD/XKrG5UBySItjWo6MVPteY
-         261jeDipdGJGVopaZ6xbQs2c+j2K9fknE4OfsrM+8eTowHvMBy1zYCaQ38zGcC3LMueo
-         Wh4LN/PlKIE+kPdMEmLfEuI2b7bZSE+UEdwEL61pk18TZMCmO+CVY9JN8KXJH0dWBHRk
-         PPiBlXf0m0K3CtjpQXhHkMiYRGYQQUjkAmDZIi1+wIP025pFPRCVH0liZw9Jqs5JVabJ
-         9Uhw==
-X-Gm-Message-State: AO0yUKUO4dk6f5HWO0EkREoeM6QFgIKUGfTKzu6erpvsDjkTiRomRT8E
-        IE5w1s2TX032lrZBe8VQx+PUjGI0lvsMm66G5mI=
-X-Google-Smtp-Source: AK7set+nHS1ERfeA5HSjZOAP4XMGZ78LShDv+DbrqPS3vDyLLz1iDEMiepScfodZRBJld8itp5pHGQ==
-X-Received: by 2002:adf:e745:0:b0:2bf:bae4:a369 with SMTP id c5-20020adfe745000000b002bfbae4a369mr1183513wrn.10.1674634725326;
-        Wed, 25 Jan 2023 00:18:45 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id p7-20020adff207000000b002bdff778d87sm3770343wro.34.2023.01.25.00.18.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 00:18:44 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Wed, 25 Jan 2023 09:18:39 +0100
-Subject: [PATCH v2 3/3] arm64: dts: meson-g12b-odroid: Add initial support
- for Hardkernel ODROID-N2L
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230122-topic-odroid-n2l-upstream-initial-v2-3-8d3fea6d403d@linaro.org>
-References: <20230122-topic-odroid-n2l-upstream-initial-v2-0-8d3fea6d403d@linaro.org>
-In-Reply-To: <20230122-topic-odroid-n2l-upstream-initial-v2-0-8d3fea6d403d@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org,
-        Dongjin Kim <tobetter@gmail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S232745AbjAYIZr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 03:25:47 -0500
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABE0B37575;
+        Wed, 25 Jan 2023 00:25:46 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id 82EBA320091D;
+        Wed, 25 Jan 2023 03:25:45 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Wed, 25 Jan 2023 03:25:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1674635145; x=1674721545; bh=SqLhVj0qbW
+        8ZqAiFSGT9rEZMFTBymmWecD0fEbqlVa4=; b=Saij7uF78rLCrjsu9U4i5f+/VS
+        pLFrYWWcPyqmC2DD+2g8UHJ/K16aeIcaIyd+7gp7P4yHEVzqL7uo9Ccvs6nrEhND
+        9idVNJBac0RZrzwxe47+nT2tr5d+2bAfAEs1EVcwIn5zYkS7wSIsCCrh0Ln7EscT
+        3vjy+5LTdqI3OUq/Hj3YIWva3AFMTJs1ogRMRwOQG5yGLK8w6aA0dBdb4phpPWV1
+        vyGQKZ5y4I3Xcrq0CjobHhgiMnOwwkxuz1SBxjrGoemka2MgZxgl91TuEq4L+Rkn
+        Ywpn/Ai1rnI5NxemcCIByQLmAiszDP3SajV7WryRE8fyhCS4Twv+xlMdjjIg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1674635145; x=1674721545; bh=SqLhVj0qbW8ZqAiFSGT9rEZMFTBy
+        mmWecD0fEbqlVa4=; b=b/IeGmX70zXR4TmiGZF82aza03IrWyXrdmUhUMt7dhzp
+        fb7MWfhG0PBR+3CBg60zmUxjiqq1BLAcDNJryaka9fkPUeGjY1u7YKn3pt7fsxRc
+        AEBMWDkHZD+5Oxef5g2e/L+Hu7tJsxsWewMFgeMSKKvJeYfUH9F6dN/NzZ6ugYCM
+        WPLK47oJGALvDjhd7MF5DArInyxGvzMmGA3XTg1ey64bysw5bAqCwy+K2GNMrh0Q
+        IVRhVZdvikCtdWIyG0z/SC0HdsWRIQcVvuNoR3EgN+dfrEiLSLGPpieLO/T98CPc
+        QCQ08b4gKH6eHV/KEgMxzQPyV7i7+r9fE1tpVQ0NhA==
+X-ME-Sender: <xms:iOfQYy4BhrdjvJQJGhwceiuWpPrJNVdd7zYK2gIIumxGASzQXVsWbg>
+    <xme:iOfQY77we8tgPQSEE776SW1iXfkAf46XPSb2SKn0_Un_zFUHs93cZ6G2Mxa7o2KSK
+    dEi0dmH_jfo4iQUSHw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddvuddguddvgecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
+    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:iOfQYxeNmKi5loEwFB0P7I7Tzw3koehOISjmUtNfXb0u2k1S8lUOdQ>
+    <xmx:iOfQY_Iozh-ZCFyw3BLIpl0xA05ls41CzRb8N3Hp1-tyeJAHFiGN_A>
+    <xmx:iOfQY2Kf7JqrkUHThv9c_smpvvcr8_Q91LYYmaByg38rNhacyqE_TQ>
+    <xmx:iefQY3om2-pKsbBbOwDebStmXfGX7HoAWbfQBYzlvijcR8Oa6vMN1A>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id BA64DB60086; Wed, 25 Jan 2023 03:25:44 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
+Mime-Version: 1.0
+Message-Id: <3dabfe7f-1a15-4397-a360-ff048bc97a31@app.fastmail.com>
+In-Reply-To: <20230113160651.51201-3-nick.hawkins@hpe.com>
+References: <20230113160651.51201-1-nick.hawkins@hpe.com>
+ <20230113160651.51201-3-nick.hawkins@hpe.com>
+Date:   Wed, 25 Jan 2023 09:25:25 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>, soc@kernel.org
+Cc:     "Guenter Roeck" <linux@roeck-us.net>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        "Russell King" <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 2/2] ARM: multi_v7_defconfig: Add GXP Fan and SPI support
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ODROID-N2L is a variant SBC in small form factor and some peripherals
-are removed from ODROID-N2PLUS based on S922X SoC.
+On Fri, Jan 13, 2023, at 17:06, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
+>
+> In order for HPE platforms to be supported by linux on GXP it is
+> necessary for there to be fan and spi driver support. There fan driver
+> can support up to 16 fans that are driven by pwm through the CPLD. The
+> SPI driver supports access to the core flash and bios part. The SPI
+> driver spi-gxp was added previously to linux.
+>
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> Acked-by: Guenter Roeck <linux@roeck-us.net>
+>
 
-- On-board ethernet is removed
-- On-board RTC is removed
-- USB 3.0 hub is removed, so one USB 2.0 and one USB 3.0 host ports
-  are available
-- Huge heatsink is replaced with 40x40mm heatsink, 5V active heatsink
-  is recommended or a tall passive sink is optional
-- 3.5mm earjack is removed
-- IR remote receiver is removed
-- MIPI DSI port is added new but not yet supported
+Applied to the soc/defconfig branch, but left the 1/2 for
+now as I still had comments.
 
-Signed-off-by: Dongjin Kim <tobetter@gmail.com>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- .../boot/dts/amlogic/meson-g12b-odroid-n2l.dts     | 125 +++++++++++++++++++++
- 2 files changed, 126 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 97b42e2100e0..04114e8c9992 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-go-ultra.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2-plus.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2l.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-ugoos-am6.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-kii-pro.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts
-new file mode 100644
-index 000000000000..70919f40d597
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts
-@@ -0,0 +1,125 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2022 Dongjin Kim <tobetter@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+/* The Amlogic S922X Rev. C supports the same OPPs as the A311D variant */
-+#include "meson-g12b-a311d.dtsi"
-+#include "meson-g12b-odroid.dtsi"
-+
-+/ {
-+	compatible = "hardkernel,odroid-n2l", "amlogic,s922x", "amlogic,g12b";
-+	model = "Hardkernel ODROID-N2L";
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "ODROID-N2L";
-+		audio-aux-devs = <&tdmout_b>, <&tdmin_a>, <&tdmin_b>,
-+				 <&tdmin_c>, <&tdmin_lb>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT",
-+				"TDMIN_A IN 4", "TDM_B Loopback",
-+				"TDMIN_B IN 4", "TDM_B Loopback",
-+				"TDMIN_C IN 4", "TDM_B Loopback",
-+				"TDMIN_LB IN 1", "TDM_B Loopback",
-+				"TODDR_A IN 0", "TDMIN_A OUT",
-+				"TODDR_B IN 0", "TDMIN_A OUT",
-+				"TODDR_C IN 0", "TDMIN_A OUT",
-+				"TODDR_A IN 1", "TDMIN_B OUT",
-+				"TODDR_B IN 1", "TDMIN_B OUT",
-+				"TODDR_C IN 1", "TDMIN_B OUT",
-+				"TODDR_A IN 2", "TDMIN_C OUT",
-+				"TODDR_B IN 2", "TDMIN_C OUT",
-+				"TODDR_C IN 2", "TDMIN_C OUT",
-+				"TODDR_A IN 6", "TDMIN_LB OUT",
-+				"TODDR_B IN 6", "TDMIN_LB OUT",
-+				"TODDR_C IN 6", "TDMIN_LB OUT";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&toddr_a>;
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&toddr_b>;
-+		};
-+
-+		dai-link-5 {
-+			sound-dai = <&toddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-6 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-7 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&eth_phy {
-+	status = "disabled";
-+};
-+
-+&vddcpu_a {
-+	regulator-min-microvolt = <680000>;
-+	regulator-max-microvolt = <1040000>;
-+
-+	pwms = <&pwm_ab 0 1500 0>;
-+};
-+
-+&vddcpu_b {
-+	regulator-min-microvolt = <680000>;
-+	regulator-max-microvolt = <1040000>;
-+
-+	pwms = <&pwm_AO_cd 1 1500 0>;
-+};
-+
-+&usb2_phy0 {
-+	phy-supply = <&usb_pwr_en>;
-+};
-+
-+&usb2_phy1 {
-+	phy-supply = <&usb_pwr_en>;
-+};
-
--- 
-2.34.1
-
+    ARnd
