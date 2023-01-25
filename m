@@ -2,278 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 104A667AE57
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 10:42:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9631B67AE8F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 10:44:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233453AbjAYJme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 04:42:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55472 "EHLO
+        id S235419AbjAYJoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 04:44:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235008AbjAYJmb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 04:42:31 -0500
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 245D8869F;
-        Wed, 25 Jan 2023 01:42:30 -0800 (PST)
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by lahtoruutu.iki.fi (Postfix) with ESMTPS id 9EA821B0007F;
-        Wed, 25 Jan 2023 11:42:23 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-        t=1674639743;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=hgx5+aB7NzOFEEfe8saSY2MRAnUMo9aCgbQIHJRAFSQ=;
-        b=Pjtqx66fzGHiTm0RLeV+iSGFhafUOoHZ9BkEouUKbhOAnHHRpgNg7D1RCp809bjP1F6U1Z
-        Gdqsb88bGL19iI+uMeuKnHs79irvE21ZMMTzgqmR/ViHCUSHF/aThl9jItU2h1P3Q0S9Al
-        VqmtZWjO/S7/xKDtFBNSe3dpeocCTuNspQqAmXERMJEJ5D49MfchUqn/xAO7M61kWuZ4/p
-        /MGpJtQWEBITOJAKSceyEZW0Uc0Q6aj44HCzt3HkS8vaThn8lxhZVMdwkRNPz1/PzL0Z0G
-        mPw2QA8LSM6HPefIZnwvfslnegGC8eNXcfCFvDlnhW0EeDSSoTQPqW48yO8JiQ==
-Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 571922018E;
-        Wed, 25 Jan 2023 11:42:18 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1674639738;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=hgx5+aB7NzOFEEfe8saSY2MRAnUMo9aCgbQIHJRAFSQ=;
-        b=vtsjZOQTCaFeRHkn59ofrcybH0DzTdvUxPcfem682L4Rlq8OAoJE8Xx33qgHy3P5nIqD3c
-        eFtF39G8qS9kZwUu5pLfBQI/IcwGR/D5yaHXtF8Mo0nM4p8yW7lyxP0Rww7thUb4fBaIoW
-        jTf9vmdZjSLSS+avLJ57cpaI98oNYis=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1674639738;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=hgx5+aB7NzOFEEfe8saSY2MRAnUMo9aCgbQIHJRAFSQ=;
-        b=t/Rn1GRu/ankj0Vwq9v/G3rfzL0wfAAoJxIpBrViQ013TbnxEGwpyY3SabWdqk+o5/PCh+
-        xAe52iVYLbiAdl7si0brfU8rRw7pdElCEP7Uc7YnWvCOcR6s+GUg3vC5JydluA9LTWCuLa
-        lc5DXO2PTc//8BQ3J25RTf1xl3pS8Qc=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1674639738; a=rsa-sha256; cv=none;
-        b=wE3LzXMMRGeNvJpSdIdoY9LbP7Mq8tBA8Orvv9KJ1EKeJYcW2AVXo4INRLb8i6pWuSBH/V
-        ybWeZdEtYFbxUMwZDQTL7vRRJWvvceoed40RvmTJJYaapdG38Ix9sUeChO1rBTFmTzozM7
-        gbUFzSg5wzORVKfG4isXHhc41D1k/j0=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 7A0F1634C91;
-        Wed, 25 Jan 2023 11:42:16 +0200 (EET)
-Date:   Wed, 25 Jan 2023 11:42:16 +0200
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Shravan.Chippa@microchip.com
-Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
-        mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RESEND v10 5/5] media: i2c: imx334: update pixel and link
- frequency
-Message-ID: <Y9D5eG8PP/qYPk40@valkosipuli.retiisi.eu>
-References: <20230121033713.3535351-1-shravan.chippa@microchip.com>
- <20230121033713.3535351-6-shravan.chippa@microchip.com>
- <Y88SG5ndXjQ9AjZg@valkosipuli.retiisi.eu>
- <PH0PR11MB56119C93EB4A19FEFC03778F81C99@PH0PR11MB5611.namprd11.prod.outlook.com>
+        with ESMTP id S235373AbjAYJoM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 04:44:12 -0500
+Received: from mail-vk1-xa30.google.com (mail-vk1-xa30.google.com [IPv6:2607:f8b0:4864:20::a30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F54230EF;
+        Wed, 25 Jan 2023 01:43:26 -0800 (PST)
+Received: by mail-vk1-xa30.google.com with SMTP id bs10so439998vkb.3;
+        Wed, 25 Jan 2023 01:43:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tCWq+O0xtWDJHVp9bnvZ8bZvWJE8EClyj5Mz1s1LVAk=;
+        b=mUwAYcLaNrppfQcwh05lO3E3QaFdYZ8abbOiVVnpMSLbUgXnWW69RtPVAfx0YneHy2
+         aDUwBPweqhpiqI+eXKojNHwb6jAQ1UryvMXXJCUsqw6Ts8b07tjIYZQrOZMNkG8hcabA
+         KlgYcQNrrGWnsodJ4xguLCOWia2jAd62tbXCXMbxT/6IrQH3v8diJEf1N1vxDXc0NneR
+         XJf5GaV971kcO4LWC6n0waLeh4cPPrYiip7Fi8t7JDL85yoNhWfRHBpiDaAMUN2AZGQY
+         7aMkAQ9brYs+7voMxIe2UTOrYCXikCKaIuAb+pGXHHKzSbtn0WZb95JvkEalGlCJB6Ah
+         WkyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tCWq+O0xtWDJHVp9bnvZ8bZvWJE8EClyj5Mz1s1LVAk=;
+        b=FK23G+Mn81N2ivZT3Ecx7FG6uw/6CUuERdkRfn111rrAkkHntq7QLL7C2LBDWlG+xU
+         hiPgiIL9TwAiNBzwbPTNKd78eVH1H9F2NmjTNEpxKKyow4E9PzIEq9qm57e7Y2csNPI1
+         XBIYzBGrAzSsx8yMdA6GqJRmAb2vgRjrJtfV8ZJ7sY6xaCAbp0/3QHkARuFub5MZt+2w
+         ETZsIuxN9pRKafl7HYKKY6zWd1gu+JMwbckzdYPzDuwtnasx1lB+nF4U9p/LgBeuwYPK
+         5fKXZW9Veb2djqsu1ZMXXmXRd1cnIV7l4wqXrK+a66I7JCdNfJpAO7tZvaVZdOedBiGp
+         L7Yg==
+X-Gm-Message-State: AFqh2kok46iZwoAyUbIOlvMxjhQnQQbKHDibfql1mI0IENuVLxP9ciVu
+        VKUWz83HF6MWQSSIMltbJQ6z+84Q8mxRrD3myjk=
+X-Google-Smtp-Source: AMrXdXtMVLT1VlTS1zRfr4VvTCh4w9CLfTixYp7P7YrgIEhZomqQqx1c9GChF38RhFcxN2G1ULW3+FtsbfY0jEDLQS4=
+X-Received: by 2002:a1f:90cd:0:b0:3c5:db35:9288 with SMTP id
+ s196-20020a1f90cd000000b003c5db359288mr4108132vkd.32.1674639805550; Wed, 25
+ Jan 2023 01:43:25 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <PH0PR11MB56119C93EB4A19FEFC03778F81C99@PH0PR11MB5611.namprd11.prod.outlook.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230125072605.1121-1-linux.amoon@gmail.com> <20230125072605.1121-5-linux.amoon@gmail.com>
+ <bd29cba9-fb1c-051e-e10e-cb3e73ec5ff9@linaro.org>
+In-Reply-To: <bd29cba9-fb1c-051e-e10e-cb3e73ec5ff9@linaro.org>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Wed, 25 Jan 2023 15:13:08 +0530
+Message-ID: <CANAwSgRWVPghhEwvQgzQicJHcjgAv_d5nYfE0Ni90butc5ouSQ@mail.gmail.com>
+Subject: Re: [PATCH RESEND linux-next v4 4/4] dt-bindings: usb: Fix properties
+ for VL817 hub controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shravan,
+Hi Krzysztof,
 
-On Tue, Jan 24, 2023 at 05:34:02AM +0000, Shravan.Chippa@microchip.com wrote:
-> Hi Sakari,
-> 
-> > -----Original Message-----
-> > From: Sakari Ailus <sakari.ailus@iki.fi>
-> > Sent: 24 January 2023 04:33 AM
-> > To: shravan Chippa - I35088 <Shravan.Chippa@microchip.com>
-> > Cc: paul.j.murphy@intel.com; daniele.alessandrelli@intel.com;
-> > mchehab@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> > shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
-> > kernel@pengutronix.de; linux-imx@nxp.com; linux-media@vger.kernel.org;
-> > linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
-> > kernel@lists.infradead.org
-> > Subject: Re: [PATCH RESEND v10 5/5] media: i2c: imx334: update pixel and link
-> > frequency
-> > 
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the
-> > content is safe
-> > 
-> > Hi Shravan,
-> > 
-> > On Sat, Jan 21, 2023 at 09:07:13AM +0530, shravan kumar wrote:
-> > > From: Shravan Chippa <shravan.chippa@microchip.com>
-> > >
-> > > Update pixel_rate and link frequency for 1920x1080@30 while changing
-> > > mode.
-> > >
-> > > Add dummy ctrl cases for pixel_rate and link frequency to avoid error
-> > > while changing the modes dynamically.
-> > >
-> > > Add support to handle multiple link frequencies.
-> > >
-> > > Suggested-by: Sakari Ailus <sakari.ailus@iki.fi>
-> > > Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
-> > > ---
-> > >  drivers/media/i2c/imx334.c | 41
-> > > ++++++++++++++++++++++++++++----------
-> > >  1 file changed, 30 insertions(+), 11 deletions(-)
-> > >
-> > > diff --git a/drivers/media/i2c/imx334.c b/drivers/media/i2c/imx334.c
-> > > index 309c706114d2..62b104eaa437 100644
-> > > --- a/drivers/media/i2c/imx334.c
-> > > +++ b/drivers/media/i2c/imx334.c
-> > > @@ -49,7 +49,8 @@
-> > >  #define IMX334_INCLK_RATE    24000000
-> > >
-> > >  /* CSI2 HW configuration */
-> > > -#define IMX334_LINK_FREQ     891000000
-> > > +#define IMX334_LINK_FREQ_891M        891000000
-> > > +#define IMX334_LINK_FREQ_445M        445500000
-> > >  #define IMX334_NUM_DATA_LANES        4
-> > >
-> > >  #define IMX334_REG_MIN               0x00
-> > > @@ -139,12 +140,14 @@ struct imx334 {
-> > >       u32 vblank;
-> > >       const struct imx334_mode *cur_mode;
-> > >       struct mutex mutex;
-> > > +     unsigned long menu_skip_mask;
-> > >       u32 cur_code;
-> > >       bool streaming;
-> > >  };
-> > >
-> > >  static const s64 link_freq[] = {
-> > > -     IMX334_LINK_FREQ,
-> > > +     IMX334_LINK_FREQ_891M,
-> > > +     IMX334_LINK_FREQ_445M,
-> > >  };
-> > >
-> > >  /* Sensor mode registers for 1920x1080@30fps */ @@ -468,7 +471,7 @@
-> > > static const struct imx334_mode supported_modes[] = {
-> > >               .vblank_min = 45,
-> > >               .vblank_max = 132840,
-> > >               .pclk = 297000000,
-> > > -             .link_freq_idx = 0,
-> > > +             .link_freq_idx = 1,
-> > >               .reg_list = {
-> > >                       .num_of_regs = ARRAY_SIZE(mode_1920x1080_regs),
-> > >                       .regs = mode_1920x1080_regs, @@ -598,6 +601,11
-> > > @@ static int imx334_update_controls(struct imx334 *imx334,
-> > >       if (ret)
-> > >               return ret;
-> > >
-> > > +     ret = __v4l2_ctrl_modify_range(imx334->pclk_ctrl, mode->pclk,
-> > > +                                    mode->pclk, 1, mode->pclk);
-> > > +     if (ret)
-> > > +             return ret;
-> > > +
-> > >       ret = __v4l2_ctrl_modify_range(imx334->hblank_ctrl, mode->hblank,
-> > >                                      mode->hblank, 1, mode->hblank);
-> > >       if (ret)
-> > > @@ -698,6 +706,8 @@ static int imx334_set_ctrl(struct v4l2_ctrl *ctrl)
-> > >               pm_runtime_put(imx334->dev);
-> > >
-> > >               break;
-> > > +     case V4L2_CID_PIXEL_RATE:
-> > > +     case V4L2_CID_LINK_FREQ:
-> > >       case V4L2_CID_HBLANK:
-> > >               ret = 0;
-> > >               break;
-> > > @@ -1047,7 +1057,7 @@ static int imx334_parse_hw_config(struct imx334
-> > *imx334)
-> > >       struct fwnode_handle *ep;
-> > >       unsigned long rate;
-> > >       int ret;
-> > > -     int i;
-> > > +     int i, j;
-> > 
-> > unsigned int would be nicer.
-> I will change.
-> > 
-> > >
-> > >       if (!fwnode)
-> > >               return -ENXIO;
-> > > @@ -1097,11 +1107,20 @@ static int imx334_parse_hw_config(struct imx334
-> > *imx334)
-> > >               goto done_endpoint_free;
-> > >       }
-> > >
-> > > -     for (i = 0; i < bus_cfg.nr_of_link_frequencies; i++)
-> > > -             if (bus_cfg.link_frequencies[i] == IMX334_LINK_FREQ)
-> > > +     for (i = 0; i < bus_cfg.nr_of_link_frequencies; i++) {
-> > > +             for (j = 0; j < ARRAY_SIZE(link_freq); j++) {
-> > > +                     if (bus_cfg.link_frequencies[i] == link_freq[j]) {
-> > > +                             set_bit(j, &imx334->menu_skip_mask);
-> > 
-> > Is there a guarantee that you'll only be using the modes with the listed
-> > frequencies? I don't see one but I might have missed it.
-> 
-> If I understand it correctly, the question here is, the listed
-> freqeunceis and modes are one to one mapped? Then yes.
+On Wed, 25 Jan 2023 at 13:10, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 25/01/2023 08:26, Anand Moon wrote:
+> > Cleanup by removing unneeded quotes from refs and
+> > add maxItems to reset-gpios and fix the required list.
+> >
+> > Fixes: 31360c28dfdd ("dt-bindings: usb: Add binding for Via lab VL817 hub controller")
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> NAK.
+>
+> You ignored my feedback. Please help me understand how my tag appeared here.
+>
+I have followed your feedback and modified the below patch
+I thought you review these changes see below.
 
-I don't see this being checked in imx334_set_pad_format(), for instance.
+[0] https://lore.kernel.org/all/df1c8545-01d0-3821-0c19-07a369e40472@linaro.org/
 
-If a frequency isn't in DT, the driver isn't supposed to be using it
-either.
+> Best regards,
+> Krzysztof
+>
 
-> 
-> Thanks.
-> shravan
-> > 
-> > > +                             break;
-> > > +                     }
-> > > +             }
-> > > +
-> > > +             if (j == ARRAY_SIZE(link_freq)) {
-> > > +                     ret = dev_err_probe(imx334->dev, -EINVAL,
-> > > +                                         "no supported link freq
-> > > + found\n");
-> > >                       goto done_endpoint_free;
-> > > -
-> > > -     ret = -EINVAL;
-> > > +             }
-> > > +     }
-> > >
-> > >  done_endpoint_free:
-> > >       v4l2_fwnode_endpoint_free(&bus_cfg);
-> > > @@ -1232,10 +1251,10 @@ static int imx334_init_controls(struct imx334
-> > *imx334)
-> > >       imx334->link_freq_ctrl = v4l2_ctrl_new_int_menu(ctrl_hdlr,
-> > >                                                       &imx334_ctrl_ops,
-> > >                                                       V4L2_CID_LINK_FREQ,
-> > > -                                                     ARRAY_SIZE(link_freq) -
-> > > -                                                     1,
-> > > -                                                     mode->link_freq_idx,
-> > > +                                                     __fls(imx334->menu_skip_mask),
-> > > +
-> > > + __ffs(imx334->menu_skip_mask),
-> > >                                                       link_freq);
-> > > +
-> > >       if (imx334->link_freq_ctrl)
-> > >               imx334->link_freq_ctrl->flags |=
-> > > V4L2_CTRL_FLAG_READ_ONLY;
-
--- 
-Kind regards,
-
-Sakari Ailus
+Thanks
+-Anand
