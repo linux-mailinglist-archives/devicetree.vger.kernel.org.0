@@ -2,95 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25B4D67ADD0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 10:29:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 104A667AE57
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 10:42:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234144AbjAYJ3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 04:29:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45028 "EHLO
+        id S233453AbjAYJme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 04:42:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230160AbjAYJ3A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 04:29:00 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABDECAD0A;
-        Wed, 25 Jan 2023 01:28:59 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id bk15so45852092ejb.9;
-        Wed, 25 Jan 2023 01:28:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=nkDlpiK6JqYBUlqcSfouXIHmsyVu7ZE8aOa2LbX/OX4=;
-        b=Ri4Rgc0kjv11SM3M3hT7DgWRg27kM4xn+I+Iu9fv/2DxCZ1O98df8xtCH7mUpgtn+V
-         IQ4VK5EdeOlPWgiR5gLUEohgI8wg55mcKkm7AezEm8fXX6x2juyAW6/R0u9kgnd2grES
-         POIlAILRgRXTdNVC4ocLKQm6nZCt+ZUZCVFE6l3FRG81l9jYKxbgVv9FcabFT9WIFASs
-         N1vnulG2h0wZjf0icfD61QAZYoCVzGYEXZR+KAukww+6I48SL01v/AS2h44YpI/xDHKw
-         IGRm21wSPcCDcCrnmGstLYtOYcUa6Crk601qzOS/gVrdqF4sg0oZR+YqL9uGQ12ml4y+
-         g3kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nkDlpiK6JqYBUlqcSfouXIHmsyVu7ZE8aOa2LbX/OX4=;
-        b=KJ4xTHEU3MJs/Gng9BamOYJciuo3LP83z0mfzMJ2bL8fYBQWvcVjMSZn+mTXqVVKog
-         LBV5mH1sKDpvMM4tKTo9+He4UgfzyuVOvT42LvfCAsrdIOtUaHg1fJwngrImf/y5iQ0n
-         Ufsp45Kop3Mpx3P2QZrZTP/ewuqLGAXnmUP5aE6m7dD7Vn+64vefd9wtF+XFgENrfdSv
-         zWwaHZ1SOfH1n/k2eZCfutN8iNYLzIn0eOLfSpJACeLRfYfULr8XhxfeAklXpojK5yqv
-         n+Fi2w7knwTyCdIUwU+omneRVQqgU3y5eTMiwXQAnMw1xkg8ooALzTeS0G+9YgKTQuAz
-         TBPQ==
-X-Gm-Message-State: AFqh2kodBz6VtbezmjzKFqzJPG22XzUaDHD62ci8NqRLbNRddMSX5q4L
-        pufP85lKCcQlTpKGXtAMXxA=
-X-Google-Smtp-Source: AMrXdXvtAxeG907Zl+UkNPimfhMuSmIMZLKOu8Yj5pdDBbCXfKLfEuYmeyP7+o4O6IRkylGXMIiXFw==
-X-Received: by 2002:a17:906:fc0e:b0:84d:3fa7:12d7 with SMTP id ov14-20020a170906fc0e00b0084d3fa712d7mr31759441ejb.21.1674638938082;
-        Wed, 25 Jan 2023 01:28:58 -0800 (PST)
-Received: from fedora (176-74-132-138.netdatacomm.cz. [176.74.132.138])
-        by smtp.gmail.com with ESMTPSA id jp9-20020a170906f74900b00877800030f2sm2059259ejb.169.2023.01.25.01.28.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 01:28:57 -0800 (PST)
-Date:   Wed, 25 Jan 2023 10:28:55 +0100
-From:   Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mani@kernel.org, hemantk@codeaurora.org, quic_jhugo@quicinc.com,
-        andersson@kernel.org, Michael.Srba@seznam.cz, arnd@arndb.de,
-        dipenp@nvidia.com, bvanassche@acm.org, iwona.winiarska@intel.com,
-        ogabbay@kernel.org, tzimmermann@suse.de, fmdefrancesco@gmail.com,
-        jason.m.bills@linux.intel.com, jae.hyun.yoo@linux.intel.com,
-        gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH 3/3] wiegand: add Wiegand GPIO bit-banged controller
- driver
-Message-ID: <Y9D2V1dz6/+EOa5D@fedora>
-References: <20230104133414.39305-1-m.zatovic1@gmail.com>
- <20230104133414.39305-4-m.zatovic1@gmail.com>
- <Y7WwVCqDCXFrTqR9@smile.fi.intel.com>
- <Y7Ww67pIyjeLKBE7@smile.fi.intel.com>
+        with ESMTP id S235008AbjAYJmb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 04:42:31 -0500
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 245D8869F;
+        Wed, 25 Jan 2023 01:42:30 -0800 (PST)
+Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by lahtoruutu.iki.fi (Postfix) with ESMTPS id 9EA821B0007F;
+        Wed, 25 Jan 2023 11:42:23 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+        t=1674639743;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=hgx5+aB7NzOFEEfe8saSY2MRAnUMo9aCgbQIHJRAFSQ=;
+        b=Pjtqx66fzGHiTm0RLeV+iSGFhafUOoHZ9BkEouUKbhOAnHHRpgNg7D1RCp809bjP1F6U1Z
+        Gdqsb88bGL19iI+uMeuKnHs79irvE21ZMMTzgqmR/ViHCUSHF/aThl9jItU2h1P3Q0S9Al
+        VqmtZWjO/S7/xKDtFBNSe3dpeocCTuNspQqAmXERMJEJ5D49MfchUqn/xAO7M61kWuZ4/p
+        /MGpJtQWEBITOJAKSceyEZW0Uc0Q6aj44HCzt3HkS8vaThn8lxhZVMdwkRNPz1/PzL0Z0G
+        mPw2QA8LSM6HPefIZnwvfslnegGC8eNXcfCFvDlnhW0EeDSSoTQPqW48yO8JiQ==
+Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by meesny.iki.fi (Postfix) with ESMTPSA id 571922018E;
+        Wed, 25 Jan 2023 11:42:18 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+        t=1674639738;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=hgx5+aB7NzOFEEfe8saSY2MRAnUMo9aCgbQIHJRAFSQ=;
+        b=vtsjZOQTCaFeRHkn59ofrcybH0DzTdvUxPcfem682L4Rlq8OAoJE8Xx33qgHy3P5nIqD3c
+        eFtF39G8qS9kZwUu5pLfBQI/IcwGR/D5yaHXtF8Mo0nM4p8yW7lyxP0Rww7thUb4fBaIoW
+        jTf9vmdZjSLSS+avLJ57cpaI98oNYis=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=meesny; t=1674639738;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=hgx5+aB7NzOFEEfe8saSY2MRAnUMo9aCgbQIHJRAFSQ=;
+        b=t/Rn1GRu/ankj0Vwq9v/G3rfzL0wfAAoJxIpBrViQ013TbnxEGwpyY3SabWdqk+o5/PCh+
+        xAe52iVYLbiAdl7si0brfU8rRw7pdElCEP7Uc7YnWvCOcR6s+GUg3vC5JydluA9LTWCuLa
+        lc5DXO2PTc//8BQ3J25RTf1xl3pS8Qc=
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1674639738; a=rsa-sha256; cv=none;
+        b=wE3LzXMMRGeNvJpSdIdoY9LbP7Mq8tBA8Orvv9KJ1EKeJYcW2AVXo4INRLb8i6pWuSBH/V
+        ybWeZdEtYFbxUMwZDQTL7vRRJWvvceoed40RvmTJJYaapdG38Ix9sUeChO1rBTFmTzozM7
+        gbUFzSg5wzORVKfG4isXHhc41D1k/j0=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 7A0F1634C91;
+        Wed, 25 Jan 2023 11:42:16 +0200 (EET)
+Date:   Wed, 25 Jan 2023 11:42:16 +0200
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Shravan.Chippa@microchip.com
+Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
+        mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RESEND v10 5/5] media: i2c: imx334: update pixel and link
+ frequency
+Message-ID: <Y9D5eG8PP/qYPk40@valkosipuli.retiisi.eu>
+References: <20230121033713.3535351-1-shravan.chippa@microchip.com>
+ <20230121033713.3535351-6-shravan.chippa@microchip.com>
+ <Y88SG5ndXjQ9AjZg@valkosipuli.retiisi.eu>
+ <PH0PR11MB56119C93EB4A19FEFC03778F81C99@PH0PR11MB5611.namprd11.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Y7Ww67pIyjeLKBE7@smile.fi.intel.com>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <PH0PR11MB56119C93EB4A19FEFC03778F81C99@PH0PR11MB5611.namprd11.prod.outlook.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Hi Shravan,
 
-thank you for the notes, I am working on fixing them. You have
-mentioned, that it seems like the driver which should be generic
-provides specific functionality. AFAIK, the Wiegand protocol
-does not define the payload length of messages. Most devices use
-one of the three formats I have implemented - 26, 36 and 
-37-bits. If I understand you right, the Wiegand GPIO bit-banged
-driver should allow one to send messages of any length and it 
-will be up to a device driver to make sure the correct message
-length is used. Is this the correct approach?
+On Tue, Jan 24, 2023 at 05:34:02AM +0000, Shravan.Chippa@microchip.com wrote:
+> Hi Sakari,
+> 
+> > -----Original Message-----
+> > From: Sakari Ailus <sakari.ailus@iki.fi>
+> > Sent: 24 January 2023 04:33 AM
+> > To: shravan Chippa - I35088 <Shravan.Chippa@microchip.com>
+> > Cc: paul.j.murphy@intel.com; daniele.alessandrelli@intel.com;
+> > mchehab@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> > shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
+> > kernel@pengutronix.de; linux-imx@nxp.com; linux-media@vger.kernel.org;
+> > linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+> > kernel@lists.infradead.org
+> > Subject: Re: [PATCH RESEND v10 5/5] media: i2c: imx334: update pixel and link
+> > frequency
+> > 
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the
+> > content is safe
+> > 
+> > Hi Shravan,
+> > 
+> > On Sat, Jan 21, 2023 at 09:07:13AM +0530, shravan kumar wrote:
+> > > From: Shravan Chippa <shravan.chippa@microchip.com>
+> > >
+> > > Update pixel_rate and link frequency for 1920x1080@30 while changing
+> > > mode.
+> > >
+> > > Add dummy ctrl cases for pixel_rate and link frequency to avoid error
+> > > while changing the modes dynamically.
+> > >
+> > > Add support to handle multiple link frequencies.
+> > >
+> > > Suggested-by: Sakari Ailus <sakari.ailus@iki.fi>
+> > > Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
+> > > ---
+> > >  drivers/media/i2c/imx334.c | 41
+> > > ++++++++++++++++++++++++++++----------
+> > >  1 file changed, 30 insertions(+), 11 deletions(-)
+> > >
+> > > diff --git a/drivers/media/i2c/imx334.c b/drivers/media/i2c/imx334.c
+> > > index 309c706114d2..62b104eaa437 100644
+> > > --- a/drivers/media/i2c/imx334.c
+> > > +++ b/drivers/media/i2c/imx334.c
+> > > @@ -49,7 +49,8 @@
+> > >  #define IMX334_INCLK_RATE    24000000
+> > >
+> > >  /* CSI2 HW configuration */
+> > > -#define IMX334_LINK_FREQ     891000000
+> > > +#define IMX334_LINK_FREQ_891M        891000000
+> > > +#define IMX334_LINK_FREQ_445M        445500000
+> > >  #define IMX334_NUM_DATA_LANES        4
+> > >
+> > >  #define IMX334_REG_MIN               0x00
+> > > @@ -139,12 +140,14 @@ struct imx334 {
+> > >       u32 vblank;
+> > >       const struct imx334_mode *cur_mode;
+> > >       struct mutex mutex;
+> > > +     unsigned long menu_skip_mask;
+> > >       u32 cur_code;
+> > >       bool streaming;
+> > >  };
+> > >
+> > >  static const s64 link_freq[] = {
+> > > -     IMX334_LINK_FREQ,
+> > > +     IMX334_LINK_FREQ_891M,
+> > > +     IMX334_LINK_FREQ_445M,
+> > >  };
+> > >
+> > >  /* Sensor mode registers for 1920x1080@30fps */ @@ -468,7 +471,7 @@
+> > > static const struct imx334_mode supported_modes[] = {
+> > >               .vblank_min = 45,
+> > >               .vblank_max = 132840,
+> > >               .pclk = 297000000,
+> > > -             .link_freq_idx = 0,
+> > > +             .link_freq_idx = 1,
+> > >               .reg_list = {
+> > >                       .num_of_regs = ARRAY_SIZE(mode_1920x1080_regs),
+> > >                       .regs = mode_1920x1080_regs, @@ -598,6 +601,11
+> > > @@ static int imx334_update_controls(struct imx334 *imx334,
+> > >       if (ret)
+> > >               return ret;
+> > >
+> > > +     ret = __v4l2_ctrl_modify_range(imx334->pclk_ctrl, mode->pclk,
+> > > +                                    mode->pclk, 1, mode->pclk);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > >       ret = __v4l2_ctrl_modify_range(imx334->hblank_ctrl, mode->hblank,
+> > >                                      mode->hblank, 1, mode->hblank);
+> > >       if (ret)
+> > > @@ -698,6 +706,8 @@ static int imx334_set_ctrl(struct v4l2_ctrl *ctrl)
+> > >               pm_runtime_put(imx334->dev);
+> > >
+> > >               break;
+> > > +     case V4L2_CID_PIXEL_RATE:
+> > > +     case V4L2_CID_LINK_FREQ:
+> > >       case V4L2_CID_HBLANK:
+> > >               ret = 0;
+> > >               break;
+> > > @@ -1047,7 +1057,7 @@ static int imx334_parse_hw_config(struct imx334
+> > *imx334)
+> > >       struct fwnode_handle *ep;
+> > >       unsigned long rate;
+> > >       int ret;
+> > > -     int i;
+> > > +     int i, j;
+> > 
+> > unsigned int would be nicer.
+> I will change.
+> > 
+> > >
+> > >       if (!fwnode)
+> > >               return -ENXIO;
+> > > @@ -1097,11 +1107,20 @@ static int imx334_parse_hw_config(struct imx334
+> > *imx334)
+> > >               goto done_endpoint_free;
+> > >       }
+> > >
+> > > -     for (i = 0; i < bus_cfg.nr_of_link_frequencies; i++)
+> > > -             if (bus_cfg.link_frequencies[i] == IMX334_LINK_FREQ)
+> > > +     for (i = 0; i < bus_cfg.nr_of_link_frequencies; i++) {
+> > > +             for (j = 0; j < ARRAY_SIZE(link_freq); j++) {
+> > > +                     if (bus_cfg.link_frequencies[i] == link_freq[j]) {
+> > > +                             set_bit(j, &imx334->menu_skip_mask);
+> > 
+> > Is there a guarantee that you'll only be using the modes with the listed
+> > frequencies? I don't see one but I might have missed it.
+> 
+> If I understand it correctly, the question here is, the listed
+> freqeunceis and modes are one to one mapped? Then yes.
 
-With regards,
-Martin
+I don't see this being checked in imx334_set_pad_format(), for instance.
+
+If a frequency isn't in DT, the driver isn't supposed to be using it
+either.
+
+> 
+> Thanks.
+> shravan
+> > 
+> > > +                             break;
+> > > +                     }
+> > > +             }
+> > > +
+> > > +             if (j == ARRAY_SIZE(link_freq)) {
+> > > +                     ret = dev_err_probe(imx334->dev, -EINVAL,
+> > > +                                         "no supported link freq
+> > > + found\n");
+> > >                       goto done_endpoint_free;
+> > > -
+> > > -     ret = -EINVAL;
+> > > +             }
+> > > +     }
+> > >
+> > >  done_endpoint_free:
+> > >       v4l2_fwnode_endpoint_free(&bus_cfg);
+> > > @@ -1232,10 +1251,10 @@ static int imx334_init_controls(struct imx334
+> > *imx334)
+> > >       imx334->link_freq_ctrl = v4l2_ctrl_new_int_menu(ctrl_hdlr,
+> > >                                                       &imx334_ctrl_ops,
+> > >                                                       V4L2_CID_LINK_FREQ,
+> > > -                                                     ARRAY_SIZE(link_freq) -
+> > > -                                                     1,
+> > > -                                                     mode->link_freq_idx,
+> > > +                                                     __fls(imx334->menu_skip_mask),
+> > > +
+> > > + __ffs(imx334->menu_skip_mask),
+> > >                                                       link_freq);
+> > > +
+> > >       if (imx334->link_freq_ctrl)
+> > >               imx334->link_freq_ctrl->flags |=
+> > > V4L2_CTRL_FLAG_READ_ONLY;
+
+-- 
+Kind regards,
+
+Sakari Ailus
