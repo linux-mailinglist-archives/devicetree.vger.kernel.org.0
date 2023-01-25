@@ -2,96 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3B3367B8A6
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 18:33:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB5BF67B8C8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 18:45:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235988AbjAYRdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 12:33:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57442 "EHLO
+        id S235225AbjAYRpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 12:45:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229571AbjAYRdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 12:33:19 -0500
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 234FA3FF0F;
-        Wed, 25 Jan 2023 09:33:13 -0800 (PST)
-Received: by mail-pg1-x532.google.com with SMTP id b6so13865577pgi.7;
-        Wed, 25 Jan 2023 09:33:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0yAW9awaWCAFYQgXU2rgzVSORqoFGaa28Ixzc+MNDJc=;
-        b=Yg/+baKKDeXy3RDRxkb6ubdNS+d6cFCtqowuCBvMfnHQciLccF8Jv3/k+iXUN86R+z
-         pVAfEdJ7jD5fqjqO+C7pBCBEcJshSOPo5AL3kzoZraTuS5Nli8WGMmdabJD2DgWSF6SN
-         y7vBQPmAuPIKrxn1qrwpfK2I8FpseutGJx2xnwGMdWnOFFb/vF7u/pDODqjA9MrEJC1w
-         6MRKrZRd+m8LOxqpkpEbqmuVs2bkka+fBT8t6frY/ImDZblhUItrJR+x8KjlJCuwCKki
-         mtP/cNVWH6pcgD8fvVQ6bzUBdJxjtxEY/WqvXLCWT1rb1s8dE7YINAzlmr9B/0sM4r1T
-         9Xjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0yAW9awaWCAFYQgXU2rgzVSORqoFGaa28Ixzc+MNDJc=;
-        b=Ir28XiHu9QQsthfsmYegLEy1GGTBPTYFT8EU4GIbkNKEP0NpjzOFCWPd8+IpEJFupc
-         JopdJTmEcyYdvjCu5p76pjyMeE6pcAX1R6cdBOcptT2F1FZr9igAAn3CG5mU9Qx389aZ
-         ztJfa99iS7NUw+8GvxKjkjISW9BetY4CX07G8K0+IED90XcTmKxLf+BAsv0L2FvTZE9R
-         nYtaqVaRbqKhAf3iBYsjfBusNamQS6unZ/qn7s3fRriP4ezrBejZIuOh74nJyvbFkRbU
-         vuEmcr1CkRBk62IVli5WUZt0qEt4jtRLN0nCVIyaBalb85CArHrGVtG356KE6wqpINGf
-         z+8Q==
-X-Gm-Message-State: AFqh2koTr9TCit+/ASCxNfMZ8AiyRpegIPgDdWMWXKTXsCeDQ/ZH2XSR
-        iX/gOUIbcDBRnuNLY/ZlQdE=
-X-Google-Smtp-Source: AMrXdXuyB2HFb0zu+T3HVa2Z1+Tkuq4CTsUzrV1IpW49XUDYjL71bczJ2bPsL85M4O4J1A1HZ5ad9w==
-X-Received: by 2002:a62:3896:0:b0:58b:9b4e:5292 with SMTP id f144-20020a623896000000b0058b9b4e5292mr31483812pfa.1.1674667992480;
-        Wed, 25 Jan 2023 09:33:12 -0800 (PST)
-Received: from ?IPV6:2600:8802:b00:4a48:6d55:c521:9057:460b? ([2600:8802:b00:4a48:6d55:c521:9057:460b])
-        by smtp.gmail.com with ESMTPSA id y11-20020aa7804b000000b0058bca264253sm3852667pfm.126.2023.01.25.09.33.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jan 2023 09:33:11 -0800 (PST)
-Message-ID: <4a09ff59-278b-9fc4-8d74-0efb8daea970@gmail.com>
-Date:   Wed, 25 Jan 2023 09:33:10 -0800
+        with ESMTP id S234924AbjAYRpw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 12:45:52 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E468B77C;
+        Wed, 25 Jan 2023 09:45:51 -0800 (PST)
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 76C726E0;
+        Wed, 25 Jan 2023 18:45:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1674668749;
+        bh=frB5+tegA0PVzPvOYnArVeUL1dQTTm+M3KDDRp5jALA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tJO6ZT1tGmtYpKFs2ZS27MOYZyCC8IVG1WNHz7X1/c7K6mR4+jlve81kN0T1QRT2W
+         C2aRma5EUNFI0ybCquJQnUoGN/tyxljzeRWOmI3/RcA8xv7mCEg386FbeZWuTk5VVW
+         Mix9u1talQhhZ96pj0TdqaKZKQmKXEMexoogQU/s=
+Date:   Wed, 25 Jan 2023 18:45:46 +0100
+From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
+        Luca Weiss <luca@z3ntu.xyz>, laurent.pinchart@ideasonboard.com,
+        sakari.ailus@iki.fi, Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "open list:OMNIVISION OV5670 SENSOR DRIVER" 
+        <linux-media@vger.kernel.org>, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/8] media: dt-bindings: Add OV5670
+Message-ID: <20230125174546.esaoqgwckrtcjxnv@uno.localdomain>
+References: <20230125173707.127687-1-jacopo.mondi@ideasonboard.com>
+ <20230125173707.127687-2-jacopo.mondi@ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: brcm,brcmstb-waketimer: add
- alarm interrupt
-Content-Language: en-US
-To:     Doug Berger <opendmb@gmail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Brian Norris <computersforpeace@gmail.com>,
-        Markus Mayer <mmayer@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230124201430.2502371-1-opendmb@gmail.com>
- <20230124201430.2502371-2-opendmb@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20230124201430.2502371-2-opendmb@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230125173707.127687-2-jacopo.mondi@ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Forgot to cc dt bindings people, sorry about that
 
-
-On 1/24/2023 12:14 PM, Doug Berger wrote:
-> A second interrupt can optionally be specified for this device
-> to be used for generating RTC alarm interrupts.
-> 
-> Signed-off-by: Doug Berger <opendmb@gmail.com>
-
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+On Wed, Jan 25, 2023 at 06:37:00PM +0100, Jacopo Mondi wrote:
+> Add the bindings documentation for Omnivision OV5670 image sensor.
+>
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> ---
+>  .../bindings/media/i2c/ovti,ov5670.yaml       | 92 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 93 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+> new file mode 100644
+> index 000000000000..fa264255b5eb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5670.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Omnivision OV5670 5 Megapixels raw image sensor
+> +
+> +maintainers:
+> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> +
+> +description: |-
+> +  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
+> +  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
+> +  controlled through an I2C compatible control bus.
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,ov5670
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: System clock. From 6 to 27 MHz.
+> +    maxItems: 1
+> +
+> +  powerdown-gpios:
+> +    description: Reference to the GPIO connected to the PWDNB pin. Active low.
+> +
+> +  reset-gpios:
+> +    description: Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
+> +    maxItems: 1
+> +
+> +  avdd-supply:
+> +    description: Analog circuit power. Typically 2.8V.
+> +
+> +  dvdd-supply:
+> +    description: Digital circuit power. Typically 1.2V.
+> +
+> +  dovdd-supply:
+> +    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            minItems: 1
+> +            maxItems: 2
+> +            items:
+> +              enum: [1, 2]
+> +
+> +          clock-noncontinuous: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ov5670: sensor@36 {
+> +            compatible = "ovti,ov5670";
+> +            reg = <0x36>;
+> +
+> +            clocks = <&sensor_xclk>;
+> +
+> +            port {
+> +                ov5670_ep: endpoint {
+> +                    remote-endpoint = <&csi_ep>;
+> +                    data-lanes = <1 2>;
+> +                    clock-noncontinuous;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f61eb221415b..38d8d1d5d536 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15468,6 +15468,7 @@ M:	Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>
+>  L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  T:	git git://linuxtv.org/media_tree.git
+> +F:	Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+>  F:	drivers/media/i2c/ov5670.c
+>
+>  OMNIVISION OV5675 SENSOR DRIVER
+> --
+> 2.39.0
+>
