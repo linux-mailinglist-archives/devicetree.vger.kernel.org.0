@@ -2,177 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92B0167AF7A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 11:16:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FD9067AF82
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 11:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229827AbjAYKQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 05:16:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55910 "EHLO
+        id S235310AbjAYKUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 05:20:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230160AbjAYKQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 05:16:41 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19541F773;
-        Wed, 25 Jan 2023 02:16:40 -0800 (PST)
-Received: from [IPV6:2a01:e0a:120:3210:ad6f:c6af:709d:745c] (unknown [IPv6:2a01:e0a:120:3210:ad6f:c6af:709d:745c])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1B2216602E3B;
-        Wed, 25 Jan 2023 10:16:38 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1674641798;
-        bh=ZyVJD8SXegxLi3qEwUpYLu3ZwE/l6XInFEYEi6ZpEH0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=QpYPEJu8bdnmcvpvf0LEFJABS7N3CKLOuaTam+BgKa4z4+lUyNnNDlMcwrVa1y5V9
-         fc2uKmJUVv8Pk7r3mQZAPbK+Hz600vr82xey3ImK3CJm5xNwQdgycYOn8+ZwsdEvN/
-         0FyLgWfYWg2UhZLAJa0mJLC/wxgV738dCmYdCjYOMU35yM7E8GxulhkCxE6ktAhtO7
-         JE2D9fBGgwGRzvQwjTk7CynRVj5sq0F3hbCvq2A6juBZT+v85e/097ngH+u+BK1q3P
-         oEOdqZD/KwrEbzgnHxW1012Uz5Gwf61Qvvcf8ecdjzgRNMLirr9Tw5AX7TqkKE0jyZ
-         Mms9YoM6TpA/w==
-Message-ID: <106f7d11-a9fb-8755-b2e8-4173b86f0cc4@collabora.com>
-Date:   Wed, 25 Jan 2023 11:16:35 +0100
+        with ESMTP id S229573AbjAYKUS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 05:20:18 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4884B3801F
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 02:20:17 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id t18so3704681wro.1
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 02:20:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=thingy.jp; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=CocmKqOl46F4l4g+acF+P3temDKBy6NTuyF++EyDG7k=;
+        b=ABIvAwL7oLVLsS6IP5eQd9RiAnQ6dMfhQC3OdxtoyE1HhMCNS+pquX/ljQMoq7bILZ
+         kleQMQy7uaIfcEtPgSTTKF0JXzpjvCaH/wH2AT46DHq47GLtvNqi7/Nd/YgMTF6l3sPJ
+         Itns+/uXLjA4DGfR4MfkFF+V+WnaldJZXhYwg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CocmKqOl46F4l4g+acF+P3temDKBy6NTuyF++EyDG7k=;
+        b=Rd8mLrIuD09R8aT3cnSJTMA/jEIGrQTmyAwpO4qziIX6F7W/EvlNyRFEtvsuMAKnTZ
+         4AL1MQKX6zsIJMmxqe3B0JJa7GmBKDePfP/zxZf754+Kbf8RiczHhRSL8wU/+OfFB6fv
+         GVbVxcCNBy5TKjNb99fpUy1157JD6+f4alXsY71xbO6W2Iae0FDGTCy1PT1cakabnkrK
+         PDuQsFqHcVBehia2CbvIzehcigUICQRWW2LOw/6i3uYYSdGMpcR7CMt0sUS5Z1EymxeT
+         U71yH3Ce1f1zP/vcJ4QDpZm4gHaBHh284A3IvSPJUMVSIlWPNYGJdbOEPdaIQGvE259u
+         Q4sw==
+X-Gm-Message-State: AO0yUKUPDXXlqGULCxvGOCEKe7hxyQdgLzrAPkO5ziRRzZKh60ABq4y5
+        WGuqV1GbW/AU+Z0kOeK5DXUZ0abYSYeYRLWeWS9cJg==
+X-Google-Smtp-Source: AK7set9xuQLQxGd4V9X5pRRQliJNhvniM28fljwVjOIj/yKJcakQvNE8RP3bXULZL56B4NBvE99Ob/ydLJNe5SM1hig=
+X-Received: by 2002:adf:fe50:0:b0:2bf:ae3f:5371 with SMTP id
+ m16-20020adffe50000000b002bfae3f5371mr156634wrs.704.1674642015770; Wed, 25
+ Jan 2023 02:20:15 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 00/13] AV1 stateless decoder for RK3588
-Content-Language: en-US
-To:     Hans Verkuil <hverkuil@xs4all.nl>, ezequiel@vanguardiasur.com.ar,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20230111165931.753763-1-benjamin.gaignard@collabora.com>
- <b4553096-330f-2e6e-239b-bee519140810@xs4all.nl>
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-In-Reply-To: <b4553096-330f-2e6e-239b-bee519140810@xs4all.nl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230123151523.369225-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230123151523.369225-1-krzysztof.kozlowski@linaro.org>
+From:   Daniel Palmer <daniel@thingy.jp>
+Date:   Wed, 25 Jan 2023 19:20:04 +0900
+Message-ID: <CAFr9PXn+XMzz8uZzNwDNdCpYeN4Nf6rc6nXWvuf_TCRe2B_PXw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: mstar: align UART node name with bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Romain Perier <romain.perier@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-Le 25/01/2023 à 10:54, Hans Verkuil a écrit :
-> On 1/11/23 17:59, Benjamin Gaignard wrote:
->> This series implement AV1 stateless decoder for RK3588 SoC.
->> The hardware support 8 and 10 bits bitstreams up to 7680x4320.
->> AV1 feature like film grain or scaling are done by the postprocessor.
->> The driver can produce NV12_4L4, NV12_10LE40_4L4, NV12 and P010 pixels formats.
->> Even if Rockchip have named the hardware VPU981 it looks like a VC9000 but
->> with a different registers mapping.
->>
->> It is based on Daniel's "[PATCH v4] media: Add AV1 uAPI" [1] patches.
->>
->> The full branch can be found here:
->> https://gitlab.collabora.com/linux/for-upstream/-/commits/rk3588_av1_decoder_v3
->>
->> Fluster score is: 200/239 while testing AV1-TEST-VECTORS with GStreamer-AV1-V4L2SL-Gst1.0.
->> The failing tests are:
->> - the 2 tests with 2 spatial layers: few errors in luma/chroma values
->> - tests with resolution < hardware limit (64x64)
->> - 10bits film grain test: bad macroblocks while decoding, the same 8bits
->>    test is working fine.
->>
->> Changes in v3:
->> - Fix arrays loops limites.
->> - Remove unused field.
->> - Reset raw pixel formats list when bit depth or film grain feature
->>    values change.
->> - Enable post-processor P010 support
->>
->> Changes in v2:
->> - Remove useless +1 in sbs computation.
->> - Describe NV12_10LE40_4L4 pixels format.
->> - Post-processor could generate P010.
->> - Fix comments done on v1.
->> - The last patch make sure that only post-processed formats are used when film
->>    grain feature is enabled.
->>
->> Benjamin
->>
-> I have a bunch of sparse errors:
+On Tue, 24 Jan 2023 at 00:15, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> SPARSE:drivers/media/platform/verisilicon/hantro_drv.c:342:17: error: typename in expression
-> SPARSE:drivers/media/platform/verisilicon/hantro_drv.c:342:21: error: Expected ; at end of statement
-> SPARSE:drivers/media/platform/verisilicon/hantro_drv.c:342:21: error: got bit_depth
-> SPARSE:drivers/media/platform/verisilicon/hantro_drv.c:342:17: error: undefined identifier 'int'
-> SPARSE:drivers/media/platform/verisilicon/hantro_drv.c:346:47: error: undefined identifier 'bit_depth'
-> SPARSE:drivers/media/platform/verisilicon/hantro_drv.c:353:39: error: undefined identifier 'bit_depth'
-> SPARSE:drivers/media/platform/verisilicon/hantro_drv.c:354:42: error: undefined identifier 'bit_depth'
->
-> Also some smatch errors:
->
-> SMATCH:drivers/media/platform/verisilicon/hantro_drv.c:342:17: :error: typename in expression
-> SMATCH:drivers/media/platform/verisilicon/hantro_drv.c:342:21: :error: Expected ; at end of statement
-> SMATCH:drivers/media/platform/verisilicon/hantro_drv.c:342:21: :error: got bit_depth
-> drivers/media/platform/verisilicon/hantro_drv.c:342 hantro_av1_s_ctrl() warn: statement has no effect 3
-> drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c:227:6: warning: no previous prototype for 'rockchip_vpu981_av1_dec_tiles_free' [-Wmissing-prototypes]
-> drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c:802:47: warning: variable 'chroma_addr' set but not used [-Wunused-but-set-variable]
+> Bindings expect UART/serial node names to be "serial".
 
-I have fix that in v4.
-I will send v4 once Hantro bit depth problem will be fixed for HEVC since the root cause are the same.
+snip
 
-Thanks,
-Benjamin
+> -                       pm_uart: uart@221000 {
+> +                       pm_uart: serial@221000 {
+>                                 compatible = "ns16550a";
+>                                 reg = <0x221000 0x100>;
+>                                 reg-shift = <3>;
+> --
+> 2.34.1
+>
 
->
-> Regards,
->
-> 	Hans
->
->> [1] https://lore.kernel.org/linux-media/20230103154832.6982-1-daniel.almeida@collabora.com/T/#u
->>
->> Benjamin Gaignard (12):
->>    dt-bindings: media: rockchip-vpu: Add rk3588 vpu compatible
->>    media: Add NV12_10LE40_4L4 pixel format
->>    media: verisilicon: Get bit depth for V4L2_PIX_FMT_NV12_10LE40_4L4
->>    media: verisilicon: Add AV1 decoder mode and controls
->>    media: verisilicon: Save bit depth for AV1 decoder
->>    media: verisilicon: Check AV1 bitstreams bit depth
->>    media: verisilicon: Compute motion vectors size for AV1 frames
->>    media: verisilicon: Add AV1 entropy helpers
->>    media: verisilicon: Add Rockchip AV1 decoder
->>    media: verisilicon: Add film grain feature to AV1 driver
->>    media: verisilicon: Enable AV1 decoder on rk3588
->>    media: verisilicon: Conditionnaly ignore native formats
->>
->> Nicolas Dufresne (1):
->>    v4l2-common: Add support for fractional bpp
->>
->>   .../bindings/media/rockchip-vpu.yaml          |    1 +
->>   .../media/v4l/pixfmt-yuv-planar.rst           |    4 +
->>   drivers/media/platform/verisilicon/Makefile   |    3 +
->>   drivers/media/platform/verisilicon/hantro.h   |    8 +
->>   .../media/platform/verisilicon/hantro_drv.c   |   69 +
->>   .../media/platform/verisilicon/hantro_hw.h    |  102 +
->>   .../platform/verisilicon/hantro_postproc.c    |    7 +
->>   .../media/platform/verisilicon/hantro_v4l2.c  |   22 +-
->>   .../media/platform/verisilicon/hantro_v4l2.h  |    1 +
->>   .../verisilicon/rockchip_av1_entropymode.c    | 4546 +++++++++++++++++
->>   .../verisilicon/rockchip_av1_entropymode.h    |  272 +
->>   .../verisilicon/rockchip_av1_filmgrain.c      |  401 ++
->>   .../verisilicon/rockchip_av1_filmgrain.h      |   36 +
->>   .../verisilicon/rockchip_vpu981_hw_av1_dec.c  | 2278 +++++++++
->>   .../verisilicon/rockchip_vpu981_regs.h        |  477 ++
->>   .../platform/verisilicon/rockchip_vpu_hw.c    |  134 +
->>   drivers/media/v4l2-core/v4l2-common.c         |  149 +-
->>   drivers/media/v4l2-core/v4l2-ioctl.c          |    1 +
->>   include/media/v4l2-common.h                   |    2 +
->>   include/uapi/linux/videodev2.h                |    1 +
->>   20 files changed, 8439 insertions(+), 75 deletions(-)
->>   create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entropymode.c
->>   create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entropymode.h
->>   create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmgrain.c
->>   create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmgrain.h
->>   create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
->>   create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
->>
+I have this change in my changes to use the proper uart driver that I
+need to fix up and resend but it doesn't hurt to fix it now.
+
+Reviewed-by: Daniel Palmer <daniel@thingy.jp>
+
+But we don't have anything queued up in our tree to send a PR for so
+maybe this should be merged via soc.
