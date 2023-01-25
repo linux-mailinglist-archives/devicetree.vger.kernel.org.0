@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4601867B4C1
+	by mail.lfdr.de (Postfix) with ESMTP id 92A0967B4C2
 	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 15:36:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235902AbjAYOgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 09:36:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38460 "EHLO
+        id S235733AbjAYOgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 09:36:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235765AbjAYOgA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 09:36:00 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74B4F59984
+        with ESMTP id S235829AbjAYOgB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 09:36:01 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A54359985
         for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 06:35:36 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id vw16so48136523ejc.12
+Received: by mail-ej1-x634.google.com with SMTP id az20so48236356ejc.1
         for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 06:35:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=O5xBfE/ZGOPJTnop+MEy0u8c1qaCOncm13Ltk1p/JL4=;
-        b=RCcY4EJr7DH2OZHGreyGRn7U8BeObsCO7+xpPYJ3pKfVd6rljsaPpdjEIhr+OW4kBr
-         WOwmN5BBww/4oDETxVCE47sQrY3R9E4AAv3cBQWWAPApk+d0hczKbUdenY+NV2SUbGLJ
-         oBTdyw7zTPFg3MUlCDTol+WhJglkv8o3/WA4FtPvA03NVl/wQ3BjBCjnvEM9Z3JpOjhq
-         gujPyVFd5wwQlCvCPYC6G7tnGOxEvItCEW/ya7suORjREvdxL2FIXES9yyYmbpqk4i6g
-         csOvUnMEay4pAJQDYKuom/jjCO4naJpOicO0AHlwWeI240cJnNh02fZhvFJ7QK7dzeSD
-         4LyQ==
+        bh=B2giSoKpmUMBjrMl9HUkga8ekHANL68RCzLpYCFzHvs=;
+        b=kQ6L5xYgk2+18HedslxV9VP4htolCDeVl8W5FgmN6R2IIAyhioZtcO8nXaShcD/YWY
+         FANg3prPs2LeWtuHWif4TiHdjhnYzEZdBre23zbuwBJeEWvupV2VdCB/scDoW4Xb4XJ7
+         nKF5fFAmNdr+qdpvzRLL5JhqmyzLxdBWyB3RpdxnW6zSDbaYduRoR2h0ffFxe4z2THZs
+         nwc6eAOGrOO6a9Nh1Zejul1Wmzli4sM4uurgDn94D9auMiw4qQw8HJVfVjjH6aOE0pUF
+         cowXWQmv5I5KRiyq9W9TqdQiAu+EmXSbyBuKRbddoXSpViuqORK9tpSMNNi2miLlBoRG
+         gj0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=O5xBfE/ZGOPJTnop+MEy0u8c1qaCOncm13Ltk1p/JL4=;
-        b=K+gFUKePfXqfFp+K3Gn5NoAN4IAmVDDxCvwDlPfswX4pDT2GrAzVO/xemLzWxtWT6t
-         /GebxTdwRLa7irGp2zX5oiUvdgYND1AnDQnG4+eMFRb9DjZGnqMdcIDCIt2FGJzACk6T
-         HjCcu7+UZP16wKqcshnOGgpAc5AeNDrBYDvlCPjAy09ySjqWDDZto7xqs5SBviA0esa5
-         /gam1q3M4gGY1cXP3M4KsZpQ+t7vTWBQrUXxkzVXhL8YqzfxenJPrOEpj8hv4xPUM/Xb
-         7OSpHSHZxhhG4luiGqk/ga7LM9nq8+0HKJyAEszJZH1T1PTnwW3W1kEtBKYaqQBa3tTR
-         zheg==
-X-Gm-Message-State: AFqh2kraKZb9gHzzV5KF/OPF1okp11rcIVPInZ1svB9WnlAX+CvRUOFJ
-        Genbx5xx8anyHnPlPbmnY0edBw==
-X-Google-Smtp-Source: AMrXdXv3P6+YtNux80G5HQOCQm6qla2fel2TtE0oSEz8Qv8aX1zImaVTVApIjkTYGEXQd0inEr4zzQ==
-X-Received: by 2002:a17:907:b9da:b0:872:21b2:9a1f with SMTP id xa26-20020a170907b9da00b0087221b29a1fmr33800112ejc.58.1674657313338;
-        Wed, 25 Jan 2023 06:35:13 -0800 (PST)
+        bh=B2giSoKpmUMBjrMl9HUkga8ekHANL68RCzLpYCFzHvs=;
+        b=Um8osSPqTbzs19os0eCZ9WvFyJxtTR1H8oZOEySmC7Vq8/dV2cL0BFggzgpTIhjCOr
+         knFo4p9Xu7eld17wDfCz8btUmxKxdJu4chUVm8ILPhRlbSfJ5UAec4D4s32ZwFGPL9zz
+         Ge6KcIyn73VjSASbYpOq5wf3peE0l2ayXmBZPI6+80tG8tm0dCjUr1KFw8fF9yVXKTGX
+         pRAkFouTv/Uottw+T1rrZD3dkDKbooQBTtKkw9vQAR3g98Tb0Y7MCu4falhZFOO9Ss76
+         dffehO6DzxCIxkMJjrEcnc8Iyvs4yxrjGoWu2JLv71TwLV0GCWNxygXc5Gq4c5hUbYkR
+         QdWg==
+X-Gm-Message-State: AFqh2kqyrOtZ+gnilTcCYRABzVFoJYyljSeDEyFQ69svZc0l/+c0rAYf
+        gKgLlQ8seoOeMvdNpYdC1IssJA==
+X-Google-Smtp-Source: AMrXdXtaIZrEnurCkz3yd2v2DJFwcX9KOokSAkiudb0bv0MpXe7Oawbn60EZB1shhY8H52QO+UJv9w==
+X-Received: by 2002:a17:906:eb8e:b0:871:6b9d:dbc with SMTP id mh14-20020a170906eb8e00b008716b9d0dbcmr33632150ejb.21.1674657314542;
+        Wed, 25 Jan 2023 06:35:14 -0800 (PST)
 Received: from c64.fritz.box ([81.221.122.240])
-        by smtp.gmail.com with ESMTPSA id gx2-20020a1709068a4200b0082000f8d871sm2437789ejc.152.2023.01.25.06.35.12
+        by smtp.gmail.com with ESMTPSA id gx2-20020a1709068a4200b0082000f8d871sm2437789ejc.152.2023.01.25.06.35.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 06:35:12 -0800 (PST)
+        Wed, 25 Jan 2023 06:35:14 -0800 (PST)
 From:   =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>
 To:     linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
@@ -61,9 +61,9 @@ To:     linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
         angelogioacchino.delregno@collabora.com, nfraprado@collabora.com,
         allen-kh.cheng@mediatek.com, sean.wang@mediatek.com,
         zhiyong.tao@mediatek.com
-Subject: [PATCH v9 6/9] dt-bindings: usb: mediatek,mtk-xhci: add MT8365 SoC bindings
-Date:   Wed, 25 Jan 2023 15:35:00 +0100
-Message-Id: <20230125143503.1015424-7-bero@baylibre.com>
+Subject: [PATCH v9 7/9] dt-bindings: timer: mediatek,mtk-timer: add MT8365
+Date:   Wed, 25 Jan 2023 15:35:01 +0100
+Message-Id: <20230125143503.1015424-8-bero@baylibre.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230125143503.1015424-1-bero@baylibre.com>
 References: <20230125143503.1015424-1-bero@baylibre.com>
@@ -71,40 +71,34 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabien Parent <fparent@baylibre.com>
+Add binding description for mediatek,mt8365-systimer
 
-Add binding documentation for the MT8365 SoC.
-
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
-[bero@baylibre.com: Cleanups suggested by reviewers]
 Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 ---
- Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 1 +
+ Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-index a3c37944c6305..c119caa9ad168 100644
---- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-+++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-@@ -35,6 +35,7 @@ properties:
-           - mediatek,mt8188-xhci
-           - mediatek,mt8192-xhci
-           - mediatek,mt8195-xhci
-+          - mediatek,mt8365-xhci
-       - const: mediatek,mtk-xhci
+diff --git a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+index 8bbb6e94508b2..b3e797e8aa313 100644
+--- a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
++++ b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+@@ -33,6 +33,7 @@ Required properties:
  
-   reg:
+ 	For those SoCs that use CPUX
+ 	* "mediatek,mt6795-systimer" for MT6795 compatible timers (CPUX)
++	* "mediatek,mt8365-systimer" for MT8365 compatible timers (CPUX)
+ 
+ - reg: Should contain location and length for timer register.
+ - clocks: Should contain system clock.
 -- 
 2.39.1
 
