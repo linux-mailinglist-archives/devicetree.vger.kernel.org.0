@@ -2,145 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6CB567BF8B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 23:05:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 988F067BFAE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 23:13:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbjAYWFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 17:05:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55660 "EHLO
+        id S235264AbjAYWN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 17:13:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230035AbjAYWFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 17:05:33 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5443746722
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 14:05:31 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id u21so246961edv.3
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 14:05:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RKFA19R6xv2eymSUsNElEgL5ULZ+IvWXQQkJeAKXWVk=;
-        b=Mv922n4G+JBjWDAthtVTqODJI6w1dOPq/YvqZMHNFTXZyw/hFSs42eLyj+18CT3xoz
-         IxSSgNi1jq6/WWvMdECZPSqI5nFfQwSGHXyvi5VLgp4b9m8oINijX6hrUbIee1VuEl+B
-         R2gN1m3eOBw7XlBS4KGcEOucAbqrR59FWB6toRnHP/dDWdwTYotvXJE+AO3mpeE4WcmK
-         OkThC3RzV6NnwiV09T+bcfkZr5PthUVwgXSj1B9U7z245xtFojcJ4oHc2qLkWtJv5Z+U
-         bTALDK+gAM2Z/XzFrSIZRVJM0Ck/4s4UuJDPmWSPMQy7CRB3WwNEF5H+QPcTNNSWxGFY
-         KKTQ==
+        with ESMTP id S230208AbjAYWN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 17:13:56 -0500
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 200C623DB2;
+        Wed, 25 Jan 2023 14:13:56 -0800 (PST)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-15085b8a2f7so346835fac.2;
+        Wed, 25 Jan 2023 14:13:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RKFA19R6xv2eymSUsNElEgL5ULZ+IvWXQQkJeAKXWVk=;
-        b=iDTHBb+zsGfl102nc/YrgoU3Nx9xjx1NFpigvioLGU/Q9MJYGR3Vsx26ZEiY4CxY0N
-         MODgYmYCO5rtD8POvHZRlQ7zQqK7yoQ6exAtGI+JKK7mRzrARL2y/fEZiAMKda73zNYV
-         ZrSqps+2GOLNt2iR8BSH07UIfE9m68v8uAikppeOb0LTh1VDIG8HtSnK5YMS1jZ1kkx7
-         utjso5blLYFiHGo4B5SY3OjyOXYH8R6dfTi5otloOhp0SyQYkNfvj7JmISqvUOxmCfyQ
-         BQ/zDczkt5tCgCX8Y3XG6s38yQpXFYaFUcqrTzEu4NOUqtrHaflE0aFnzCqFAgZZChAb
-         rqUg==
-X-Gm-Message-State: AFqh2krm0TCsA79YJwlv66Z6dk5x9KAHpHDwGx+2giYyoJr71NbbGYBJ
-        Zgb5+xx2EH+ie1euL9uGZBPNEg==
-X-Google-Smtp-Source: AMrXdXte6HidAfuRLRPGrzkYFjXGReU+SQgPe2DkHhMIRxDK8wTCY04tVP73Wx4a4BoX1D03IP2SWw==
-X-Received: by 2002:aa7:c619:0:b0:49e:6e34:c363 with SMTP id h25-20020aa7c619000000b0049e6e34c363mr26774712edq.35.1674684329832;
-        Wed, 25 Jan 2023 14:05:29 -0800 (PST)
-Received: from [192.168.1.101] (abyk108.neoplus.adsl.tpnet.pl. [83.9.30.108])
-        by smtp.gmail.com with ESMTPSA id cy5-20020a0564021c8500b0049ef56c01d0sm2871624edb.79.2023.01.25.14.05.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jan 2023 14:05:29 -0800 (PST)
-Message-ID: <df133e5a-8030-0774-091c-6f8e0692e945@linaro.org>
-Date:   Wed, 25 Jan 2023 23:05:27 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v4 7/7] clk: qcom: add the driver for the MSM8996 APCS
- clocks
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7tWONC2DLcG7UXmUT4V0Do7k6bI6Vt9ydBIFnBQ35+4=;
+        b=pttknk3PAvp5RulR/ns3hKydYecMpCd9CgyhUglaKhGHSWpxTMCf2wWFJRcK8akjyB
+         AgoaJDrG58ma1uoU9tN+M1olq8fS3boBLT4EcBX1xLd4cVbePZdo5YJtNKKqZWb8tiVM
+         oPIufULy+R2HKtI4yHgBP1e66iuSNUXgUPWwcwaMbV1FCUnjitr9OrelK/noSBxUjhFw
+         7D5+FuFo5WyStM17v7jQqPyeYA3I0yLXDf8Txrtpc6QbTGfXNrrRGDEO7iuYndGDalpa
+         PIuVIuLp3i4sBIjGT+g34okNTDg/Fj6eSK6mjIx/6SV0jJ8o0t2Om8S38V5XYBScc2gw
+         8tAw==
+X-Gm-Message-State: AO0yUKWEqP/vM39i4K2ThIPFJDd8vEHwDN0Uzj5l+W1NbN+m9dh3W3py
+        NwMbtV5OzH0nqy+D5KMPDxE3zG47Ug==
+X-Google-Smtp-Source: AK7set8GB9AfhxSXqkGnrERdEvNo9/262Q8WBeb6t0dGbl1zqQu2Vy6FhBDOVSBFgocMGYQ2mCKiIQ==
+X-Received: by 2002:a05:6870:9112:b0:163:4731:bf2b with SMTP id o18-20020a056870911200b001634731bf2bmr548656oae.53.1674684835268;
+        Wed, 25 Jan 2023 14:13:55 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p30-20020a0568708a1e00b00140d421445bsm2429594oaq.11.2023.01.25.14.13.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jan 2023 14:13:54 -0800 (PST)
+Received: (nullmailer pid 3057607 invoked by uid 1000);
+        Wed, 25 Jan 2023 22:13:54 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Cc:     Peter Ujfalusi <peter.ujfalusi@ti.com>, dmaengine@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230118132254.2356209-1-dmitry.baryshkov@linaro.org>
- <20230118132254.2356209-8-dmitry.baryshkov@linaro.org>
- <7055af43f4a8894ac34e53c5847fb3de.sboyd@kernel.org>
- <63f017c7-d320-a996-7bda-33d263a847bc@linaro.org>
- <525ef5cdefe987c3412249760324eb09.sboyd@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <525ef5cdefe987c3412249760324eb09.sboyd@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Subject: [PATCH] dt-bindings: ti,k3: Use common ti,k3-sci-common.yaml schema
+Date:   Wed, 25 Jan 2023 16:13:39 -0600
+Message-Id: <20230125221339.3057322-1-robh@kernel.org>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Instead of redefining the 'ti,sci' and 'ti,sci-dev-id' properties multiple
+times, reference the common schema where they are defined. Most cases
+using these properties already do this, just udma and ringacc need to be
+fixed.
 
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/dma/ti/k3-udma.yaml         |  9 +--------
+ .../devicetree/bindings/soc/ti/k3-ringacc.yaml      | 13 ++++---------
+ 2 files changed, 5 insertions(+), 17 deletions(-)
 
-On 25.01.2023 22:56, Stephen Boyd wrote:
-> Quoting Konrad Dybcio (2023-01-25 13:48:54)
->>
->>
->> On 25.01.2023 22:38, Stephen Boyd wrote:
->>> Quoting Dmitry Baryshkov (2023-01-18 05:22:54)
->>>> diff --git a/drivers/clk/qcom/apcs-msm8996.c b/drivers/clk/qcom/apcs-msm8996.c
->>>> new file mode 100644
->>>> index 000000000000..7e46ea8ed444
->>>> --- /dev/null
->>>> +++ b/drivers/clk/qcom/apcs-msm8996.c
->>>> @@ -0,0 +1,76 @@
->>> [...]
->>>> +
->>>> +static int qcom_apcs_msm8996_clk_probe(struct platform_device *pdev)
->>>> +{
->>>> +       struct device *dev = &pdev->dev;
->>>> +       struct device *parent = dev->parent;
->>>> +       struct regmap *regmap;
->>>> +       struct clk_hw *hw;
->>>> +       unsigned int val;
->>>> +       int ret = -ENODEV;
->>>> +
->>>> +       regmap = dev_get_regmap(parent, NULL);
->>>> +       if (!regmap) {
->>>> +               dev_err(dev, "failed to get regmap: %d\n", ret);
->>>> +               return ret;
->>>> +       }
->>>> +
->>>> +       regmap_read(regmap, APCS_AUX_OFFSET, &val);
->>>> +       regmap_update_bits(regmap, APCS_AUX_OFFSET, APCS_AUX_DIV_MASK,
->>>> +                          FIELD_PREP(APCS_AUX_DIV_MASK, APCS_AUX_DIV_2));
->>>> +
->>>> +       /* Hardware mandated delay */
->>>
->>> Delay for what? Setting the divider? What if the register value didn't
->>> change at all? Can you skip the delay in that case?
->> Waiting 5 us unconditionally in exchange for ensured CPU clock
->> source stability sounds like a rather fair deal.. Checking if
->> the register value changed would not save us much time..
-> 
-> So it is waiting for the CPU clk to be stable? The comment is not clear.
-Okay, so perhaps this is just a misunderstanding because of a lackluster
-comment.. This SYS_APCS_AUX (provided by this driver) is one of the CPU
-clock sources (and probably the "safest" of them all, as it's fed by
-GPLL0 and not the CPU PLLs) the delay is there to ensure it can
-stabilize after setting the divider to DIV2. In a theoretical case, the
-big 8996 cpucc driver could select this clock as a target for one (or
-both) of the per-cluster muxes and it could put the CPUs in a weird state.
-
-As unlikely as that would be, especially considering 8996 (AFAIK) doesn't
-use this clock source coming out of reset / bootloader, this lets us
-ensure one less thing can break.
-
-Konrad
+diff --git a/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
+index 7ff428ad3aae..97f6ae9b1236 100644
+--- a/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
++++ b/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
+@@ -44,6 +44,7 @@ description: |
+ 
+ allOf:
+   - $ref: "../dma-controller.yaml#"
++  - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
+ 
+ properties:
+   "#dma-cells":
+@@ -78,14 +79,6 @@ properties:
+ 
+   msi-parent: true
+ 
+-  ti,sci:
+-    description: phandle to TI-SCI compatible System controller node
+-    $ref: /schemas/types.yaml#/definitions/phandle
+-
+-  ti,sci-dev-id:
+-    description: TI-SCI device id of UDMAP
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-
+   ti,ringacc:
+     description: phandle to the ring accelerator node
+     $ref: /schemas/types.yaml#/definitions/phandle
+diff --git a/Documentation/devicetree/bindings/soc/ti/k3-ringacc.yaml b/Documentation/devicetree/bindings/soc/ti/k3-ringacc.yaml
+index ddea3d41971d..22cf9002fee7 100644
+--- a/Documentation/devicetree/bindings/soc/ti/k3-ringacc.yaml
++++ b/Documentation/devicetree/bindings/soc/ti/k3-ringacc.yaml
+@@ -25,6 +25,9 @@ description: |
+   The Ring Accelerator is a hardware module that is responsible for accelerating
+   management of the packet queues. The K3 SoCs can have more than one RA instances
+ 
++allOf:
++  - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
++
+ properties:
+   compatible:
+     items:
+@@ -54,14 +57,6 @@ properties:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description: TI-SCI RM subtype for GP ring range
+ 
+-  ti,sci:
+-    $ref: /schemas/types.yaml#/definitions/phandle-array
+-    description: phandle on TI-SCI compatible System controller node
+-
+-  ti,sci-dev-id:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-    description: TI-SCI device id of the ring accelerator
+-
+ required:
+   - compatible
+   - reg
+@@ -72,7 +67,7 @@ required:
+   - ti,sci
+   - ti,sci-dev-id
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+-- 
+2.39.0
 
