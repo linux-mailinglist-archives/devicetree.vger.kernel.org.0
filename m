@@ -2,298 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68AA067AFDA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 11:41:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD01067AFDE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 11:42:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235631AbjAYKlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 05:41:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43316 "EHLO
+        id S234966AbjAYKmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 05:42:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235290AbjAYKlJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 05:41:09 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79E6E1042A
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 02:41:07 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id rl14so43110297ejb.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 02:41:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9itLukGDfLyDGNVdC/aMITGRyQ/NEdmm4jyab+yhQJk=;
-        b=B9byZ9LipWC3xbXynyfcct7nEW1Ax2oBYlXkrwmDaiPDeEXC5zRImR/LdGfscbcXay
-         LC+ynD9TQIE4hfspZC0rBp719HhtK9y51RI98iUeDu/B+i/k0ZHogJlQxfs3w2vXWf8v
-         b4rYWPDu1TcTeh5WbYzvy1J0oQXKbJ7xIG9DY3wbaMd566tmlE6jtrUvCqFy8kUTGiXQ
-         jNaPUFEx8sEZmBZ27nzJ8zluQrrjspWvwhhn0V8YnAr7MuM5u9aJb0Y2L2+gZ6+etlz6
-         +d63o6KA6Fx08hTHyDuK/sQIne68C2jiohgZ0QOehA1nmyvtaGQb9VawvCRZDRmCe/n2
-         PGvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9itLukGDfLyDGNVdC/aMITGRyQ/NEdmm4jyab+yhQJk=;
-        b=hF3k8O1T7XwX7UjiNwF4ZCycozaVCYDt1EfaeAnobretwWqt+AtLfkWmzt4CQzpfeD
-         oFpKcceY2/SgpFsINup+I51YljEVHz6czvhv7lLSG/RNOtgDHjEl5cglgVtqHRDsjjqM
-         zZgKHJs6UMFY9tZZjBNEIQo6DhpfY3oES+GfCtK165HLpl3RNm4WNdvtPpTb6QrjYzuF
-         dYe1aWfA7OPmc+hiaaPUgs7FFnJzwtgsSSpCgCglBlVxA82U4Vzd1m74y2DLwaACvI/j
-         afCgbVqYgKihFMxB8lsCRvWmwDbNFYAVr/83beeyJiL02RPHLMNAvDc3MtEJYUaVz99o
-         ij9g==
-X-Gm-Message-State: AFqh2kofcSnXgpo+ATIttgfcTuYDA5BwpJRbCcRxMCERCN26w8tuxx7E
-        MhOxqaFrlYxCxQznFVL2/ZAZAg==
-X-Google-Smtp-Source: AMrXdXvrYCl3Gy3DZqe6rLo/b+ZcLqkyeb4Yt1GtYysdCkdD1wpvX++KlGdMG+xtAF/8icdbxgqIog==
-X-Received: by 2002:a17:907:7248:b0:872:b1d7:8028 with SMTP id ds8-20020a170907724800b00872b1d78028mr44271808ejc.3.1674643265937;
-        Wed, 25 Jan 2023 02:41:05 -0800 (PST)
-Received: from localhost ([93.99.189.36])
-        by smtp.gmail.com with ESMTPSA id u2-20020aa7d0c2000000b004a0b1d7e39csm203079edo.51.2023.01.25.02.41.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 02:41:05 -0800 (PST)
-Date:   Wed, 25 Jan 2023 11:41:02 +0100
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4] riscv: Use PUD/P4D/PGD pages for the linear mapping
-Message-ID: <20230125104102.2thvourt3lx2p36a@orel>
-References: <20230123112803.817534-1-alexghiti@rivosinc.com>
- <20230123142554.f22ajf6upfk2ybxk@orel>
+        with ESMTP id S234279AbjAYKmS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 05:42:18 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 050BA1042A;
+        Wed, 25 Jan 2023 02:42:16 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2DFA74B3;
+        Wed, 25 Jan 2023 02:42:58 -0800 (PST)
+Received: from [10.57.90.68] (unknown [10.57.90.68])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 013D33F71E;
+        Wed, 25 Jan 2023 02:42:14 -0800 (PST)
+Message-ID: <3c3e1dc2-1f66-565c-c677-2eae368e10be@arm.com>
+Date:   Wed, 25 Jan 2023 10:42:13 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230123142554.f22ajf6upfk2ybxk@orel>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: Update
+ descriptions for R-Car Gen4
+Content-Language: en-GB
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     "joro@8bytes.org" <joro@8bytes.org>,
+        "will@kernel.org" <will@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20230123012940.1250879-1-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdX92KMeON0xC9p17kiqWT7ksEBX_NyPiiQk0fLaucDZBA@mail.gmail.com>
+ <TYBPR01MB5341B023178B4A10DE52B844D8CE9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <CAMuHMdXXnu88Tn2ucuHZK=3G18v-nCfaTYpomchRXBu3bD7UuA@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <CAMuHMdXXnu88Tn2ucuHZK=3G18v-nCfaTYpomchRXBu3bD7UuA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 23, 2023 at 03:25:54PM +0100, Andrew Jones wrote:
-> On Mon, Jan 23, 2023 at 12:28:02PM +0100, Alexandre Ghiti wrote:
-> > During the early page table creation, we used to set the mapping for
-> > PAGE_OFFSET to the kernel load address: but the kernel load address is
-> > always offseted by PMD_SIZE which makes it impossible to use PUD/P4D/PGD
-> > pages as this physical address is not aligned on PUD/P4D/PGD size (whereas
-> > PAGE_OFFSET is).
-> > 
-> > But actually we don't have to establish this mapping (ie set va_pa_offset)
-> > that early in the boot process because:
-> > 
-> > - first, setup_vm installs a temporary kernel mapping and among other
-> >   things, discovers the system memory,
-> > - then, setup_vm_final creates the final kernel mapping and takes
-> >   advantage of the discovered system memory to create the linear
-> >   mapping.
-> > 
-> > During the first phase, we don't know the start of the system memory and
-> > then until the second phase is finished, we can't use the linear mapping at
-> > all and phys_to_virt/virt_to_phys translations must not be used because it
-> > would result in a different translation from the 'real' one once the final
-> > mapping is installed.
-> > 
-> > So here we simply delay the initialization of va_pa_offset to after the
-> > system memory discovery. But to make sure noone uses the linear mapping
-> > before, we add some guard in the DEBUG_VIRTUAL config.
-> > 
-> > Finally we can use PUD/P4D/PGD hugepages when possible, which will result
-> > in a better TLB utilization.
-> > 
-> > Note that we rely on the firmware to protect itself using PMP.
-> > 
-> > Acked-by: Rob Herring <robh@kernel.org> # DT bits
-> > Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-> > ---
-> > 
-> > v4:
-> > - Rebase on top of v6.2-rc3, as noted by Conor
-> > - Add Acked-by Rob
-> > 
-> > v3:
-> > - Change the comment about initrd_start VA conversion so that it fits
-> >   ARM64 and RISCV64 (and others in the future if needed), as suggested
-> >   by Rob
-> > 
-> > v2:
-> > - Add a comment on why RISCV64 does not need to set initrd_start/end that
-> >   early in the boot process, as asked by Rob
-> > 
-> >  arch/riscv/include/asm/page.h | 16 ++++++++++++++++
-> >  arch/riscv/mm/init.c          | 25 +++++++++++++++++++------
-> >  arch/riscv/mm/physaddr.c      | 16 ++++++++++++++++
-> >  drivers/of/fdt.c              | 11 ++++++-----
-> >  4 files changed, 57 insertions(+), 11 deletions(-)
-> > 
-> > diff --git a/arch/riscv/include/asm/page.h b/arch/riscv/include/asm/page.h
-> > index 9f432c1b5289..7fe84c89e572 100644
-> > --- a/arch/riscv/include/asm/page.h
-> > +++ b/arch/riscv/include/asm/page.h
-> > @@ -90,6 +90,14 @@ typedef struct page *pgtable_t;
-> >  #define PTE_FMT "%08lx"
-> >  #endif
-> >  
-> > +#ifdef CONFIG_64BIT
-> > +/*
-> > + * We override this value as its generic definition uses __pa too early in
-> > + * the boot process (before kernel_map.va_pa_offset is set).
-> > + */
-> > +#define MIN_MEMBLOCK_ADDR      0
-> > +#endif
-> > +
-> >  #ifdef CONFIG_MMU
-> >  extern unsigned long riscv_pfn_base;
-> >  #define ARCH_PFN_OFFSET		(riscv_pfn_base)
-> > @@ -122,7 +130,11 @@ extern phys_addr_t phys_ram_base;
-> >  #define is_linear_mapping(x)	\
-> >  	((x) >= PAGE_OFFSET && (!IS_ENABLED(CONFIG_64BIT) || (x) < PAGE_OFFSET + KERN_VIRT_SIZE))
-> >  
-> > +#ifndef CONFIG_DEBUG_VIRTUAL
-> >  #define linear_mapping_pa_to_va(x)	((void *)((unsigned long)(x) + kernel_map.va_pa_offset))
-> > +#else
-> > +void *linear_mapping_pa_to_va(unsigned long x);
-> > +#endif
-> >  #define kernel_mapping_pa_to_va(y)	({					\
-> >  	unsigned long _y = (unsigned long)(y);					\
-> >  	(IS_ENABLED(CONFIG_XIP_KERNEL) && _y < phys_ram_base) ?			\
-> > @@ -131,7 +143,11 @@ extern phys_addr_t phys_ram_base;
-> >  	})
-> >  #define __pa_to_va_nodebug(x)		linear_mapping_pa_to_va(x)
-> >  
-> > +#ifndef CONFIG_DEBUG_VIRTUAL
-> >  #define linear_mapping_va_to_pa(x)	((unsigned long)(x) - kernel_map.va_pa_offset)
-> > +#else
-> > +phys_addr_t linear_mapping_va_to_pa(unsigned long x);
-> > +#endif
-> >  #define kernel_mapping_va_to_pa(y) ({						\
-> >  	unsigned long _y = (unsigned long)(y);					\
-> >  	(IS_ENABLED(CONFIG_XIP_KERNEL) && _y < kernel_map.virt_addr + XIP_OFFSET) ? \
-> > diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-> > index 478d6763a01a..cc892ba9f787 100644
-> > --- a/arch/riscv/mm/init.c
-> > +++ b/arch/riscv/mm/init.c
-> > @@ -213,6 +213,14 @@ static void __init setup_bootmem(void)
-> >  	phys_ram_end = memblock_end_of_DRAM();
-> >  	if (!IS_ENABLED(CONFIG_XIP_KERNEL))
-> >  		phys_ram_base = memblock_start_of_DRAM();
-> > +
-> > +	/*
-> > +	 * Any use of __va/__pa before this point is wrong as we did not know the
-> > +	 * start of DRAM before.
-> > +	 */
-> > +	kernel_map.va_pa_offset = PAGE_OFFSET - phys_ram_base;
-> > +	riscv_pfn_base = PFN_DOWN(phys_ram_base);
-> > +
-> >  	/*
-> >  	 * memblock allocator is not aware of the fact that last 4K bytes of
-> >  	 * the addressable memory can not be mapped because of IS_ERR_VALUE
-> > @@ -671,9 +679,16 @@ void __init create_pgd_mapping(pgd_t *pgdp,
-> >  
-> >  static uintptr_t __init best_map_size(phys_addr_t base, phys_addr_t size)
-> >  {
-> > -	/* Upgrade to PMD_SIZE mappings whenever possible */
-> > -	base &= PMD_SIZE - 1;
-> > -	if (!base && size >= PMD_SIZE)
-> > +	if (!(base & (PGDIR_SIZE - 1)) && size >= PGDIR_SIZE)
-> > +		return PGDIR_SIZE;
-> > +
-> > +	if (!(base & (P4D_SIZE - 1)) && size >= P4D_SIZE)
-> > +		return P4D_SIZE;
-> > +
-> > +	if (!(base & (PUD_SIZE - 1)) && size >= PUD_SIZE)
-> > +		return PUD_SIZE;
-> > +
-> > +	if (!(base & (PMD_SIZE - 1)) && size >= PMD_SIZE)
-> >  		return PMD_SIZE;
-> >  
-> >  	return PAGE_SIZE;
-> > @@ -982,11 +997,9 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
-> >  	set_satp_mode();
-> >  #endif
-> >  
-> > -	kernel_map.va_pa_offset = PAGE_OFFSET - kernel_map.phys_addr;
-> > +	kernel_map.va_pa_offset = 0UL;
-> >  	kernel_map.va_kernel_pa_offset = kernel_map.virt_addr - kernel_map.phys_addr;
-> >  
-> > -	riscv_pfn_base = PFN_DOWN(kernel_map.phys_addr);
-> > -
-> >  	/*
-> >  	 * The default maximal physical memory size is KERN_VIRT_SIZE for 32-bit
-> >  	 * kernel, whereas for 64-bit kernel, the end of the virtual address
-> > diff --git a/arch/riscv/mm/physaddr.c b/arch/riscv/mm/physaddr.c
-> > index 9b18bda74154..18706f457da7 100644
-> > --- a/arch/riscv/mm/physaddr.c
-> > +++ b/arch/riscv/mm/physaddr.c
-> > @@ -33,3 +33,19 @@ phys_addr_t __phys_addr_symbol(unsigned long x)
-> >  	return __va_to_pa_nodebug(x);
-> >  }
-> >  EXPORT_SYMBOL(__phys_addr_symbol);
-> > +
-> > +phys_addr_t linear_mapping_va_to_pa(unsigned long x)
-> > +{
-> > +	BUG_ON(!kernel_map.va_pa_offset);
-> > +
-> > +	return ((unsigned long)(x) - kernel_map.va_pa_offset);
-> > +}
-> > +EXPORT_SYMBOL(linear_mapping_va_to_pa);
-> > +
-> > +void *linear_mapping_pa_to_va(unsigned long x)
-> > +{
-> > +	BUG_ON(!kernel_map.va_pa_offset);
-> > +
-> > +	return ((void *)((unsigned long)(x) + kernel_map.va_pa_offset));
-> > +}
-> > +EXPORT_SYMBOL(linear_mapping_pa_to_va);
-> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > index f08b25195ae7..58107bd56f8f 100644
-> > --- a/drivers/of/fdt.c
-> > +++ b/drivers/of/fdt.c
-> > @@ -891,12 +891,13 @@ const void * __init of_flat_dt_match_machine(const void *default_match,
-> >  static void __early_init_dt_declare_initrd(unsigned long start,
-> >  					   unsigned long end)
-> >  {
-> > -	/* ARM64 would cause a BUG to occur here when CONFIG_DEBUG_VM is
-> > -	 * enabled since __va() is called too early. ARM64 does make use
-> > -	 * of phys_initrd_start/phys_initrd_size so we can skip this
-> > -	 * conversion.
-> > +	/*
-> > +	 * __va() is not yet available this early on some platforms. In that
-> > +	 * case, the platform uses phys_initrd_start/phys_initrd_size instead
-> > +	 * and does the VA conversion itself.
-> >  	 */
-> > -	if (!IS_ENABLED(CONFIG_ARM64)) {
-> > +	if (!IS_ENABLED(CONFIG_ARM64) &&
-> > +	    !(IS_ENABLED(CONFIG_RISCV) && IS_ENABLED(CONFIG_64BIT))) {
+On 2023-01-25 08:54, Geert Uytterhoeven wrote:
+> Hi Shimoda-san,
 > 
-> There are now two architectures, so maybe it's time for a new config
-> symbol which would be selected by arm64 and riscv64 and then used here,
-> e.g.
+> On Wed, Jan 25, 2023 at 1:49 AM Yoshihiro Shimoda
+> <yoshihiro.shimoda.uh@renesas.com> wrote:
+>>> From: Geert Uytterhoeven, Sent: Tuesday, January 24, 2023 11:35 PM
+>>> On Mon, Jan 23, 2023 at 2:35 AM Yoshihiro Shimoda
+>>> <yoshihiro.shimoda.uh@renesas.com> wrote:
+>>>> Since R-Car Gen4 doens't have the main IPMMU IMSSTR register, but
+>>>> each cache IPMMU has own module id. So, update descriptions of
+>>>> renesas,ipmmu-main property for R-Car Gen4.
+>>>>
+>>>> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > 
->   if (!IS_ENABLED(CONFIG_NO_EARLY_LINEAR_MAP)) {
+>>>> ---
+>>>>   The old R-Car S4-8 datasheet had described IPMMU IMSSTR register, but
+>>>>   the latest datasheet undocumented the register. So, update the propeties
+>>>>   description. Note that the second argument is not used on the driver.
+>>>
+>>> DT describes hardware, not software policy.
+>>
+>> I think so.
+>>
+>>>>   So no behavior change.
+>>>
+>>> So where do we get the module id numbers to use, if they are no longer
+>>> documented in the Hardware Manual?
+>>
+>> If so, we cannot get the module id numbers. So, should we use other
+>> information which is completely fixed instead? I have some ideas:
+>> 1) Just 0 (or other fixed value) if the IMSSTR register doesn't exist.
+>> 2) Sequential numbers from register base offset.
+>>     In R-Car S4: ipmmu_rt0 is the first node from register base offset,
+>>     and ipmmu_rt1 is the second one.
+>>     So, ipmmu_rt0 is 0, ipmmu_rt1 is 1, ipmmu_ds0 is 2 and ipmmu_hc is 3.
+>> 3) Using base address upper 16-bits.
+>>     In R-Car S4: ipmmu_rt0 is 0xee480000. So, the value is 0xee48.
+>>
+>> Perhaps, the option 1) is reasonable, I think. But, what do you think?
+> 
+> I would not make up numbers, as that would cause confusion with SoCs
+> where the numbers do match the hardware.
+> As the driver doesn't use the module id number (it already loops
+> over all domains, instead of checking IMSSTR, probably because of
+> historical (R-Car Gen2) reasons?), what about dropping it from the
+> property? I.e. add "minItems: 1", possibly only when compatible with
+> renesas,rcar-gen4-ipmmu-vmsa?
 
-I see v5 left this as it was. Any comment on this suggestion?
+Right, if there really is no meaningful ID for this model then its 
+binding should not require one.
+
+> BTW, the related IMCTR register is still documented, and the driver
+> does enable the interrupt bit (IMCTR_INTEN), so I'm wondering how the
+> hardware (documentation) people intend this to be used...
+> Perhaps IMCTR_INTEN will be removed/undocumented, too?
+> Or perhaps the removal/undocumentation of IMSSTR was a mistake?
+
+I guess it should be pretty straightforward to just try reading the 
+expected IMSSTR register locations on this SoC to double-check whether 
+anything is there.
 
 Thanks,
-drew
-
-> 
-> >  		initrd_start = (unsigned long)__va(start);
-> >  		initrd_end = (unsigned long)__va(end);
-> >  		initrd_below_start_ok = 1;
-> > -- 
-> > 2.37.2
-> >
-> 
-> Otherwise,
-> 
-> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
-> 
-> Thanks,
-> drew
+Robin.
