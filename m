@@ -2,82 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CAEF67BD94
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 22:04:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36C8167BDBE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 22:10:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236646AbjAYVEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 16:04:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59214 "EHLO
+        id S236674AbjAYVKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 16:10:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236602AbjAYVEK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 16:04:10 -0500
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 309932F791;
-        Wed, 25 Jan 2023 13:04:09 -0800 (PST)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-12c8312131fso125662fac.4;
-        Wed, 25 Jan 2023 13:04:09 -0800 (PST)
+        with ESMTP id S236675AbjAYVKX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 16:10:23 -0500
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB8C5AA59
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 13:09:19 -0800 (PST)
+Received: by mail-qt1-x829.google.com with SMTP id j9so17227854qtv.4
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 13:09:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=criticallink.com; s=google;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EPiDgcipjgNdRkY3Z9BH0bSCD7F/IhOp1+OkeiKo+Tg=;
+        b=Gjuim1G2iQKXJUKX+bJTr24WRgNSOngeO9fmVyvAqTmTDHLuw0udDGy8ckLeB/GV6i
+         Tp1vvhaiR8FnOLujfQg1Ng9DeOa9f9vYZXZHYCHnYdWYlVN0lzvzmFv1RlqoWACMpH8w
+         Xf1jG7/GFlRfjrUGz1gSDEJwoq52chMd5d0wpOfGIm8RoAN/zwj5LzKeMN7p8ZyaApr0
+         siu/c0kJCY8MWNJb72+YZTesuaOih93Naah/tMli87xhCZ4fxvY/XbWXYVXDtjreCOHh
+         +SnkVSnoHLSFaGH9gpr8aEH6RTW6Bb2eg3pY+plFMAsF3PS8iEumCzCmyHx2bSxu7xu0
+         CJKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3umJdp0RAk9hjr5PrBIEZs36K07t7ZzqXE0MOXb8Q90=;
-        b=d18HZfo/WBhFZGs2FGglXmPaeGrapQgxzz3jRm8+j5X1OKJMHDc7lmwAvcJHOuNXjh
-         0S9XngN0hL65zpT7Vhiiwlu4ptU9phPD02eTRDiF6eNhBS9D+RW0CkWZqB2f1URXjvXl
-         bsXJNo1HJtdArvtRYKxQVmFvaex+SXiDouS0n7OAQO4dmWtcCcxrTApC2w8B3UNEHqHW
-         bJIyv0j6x7cLWV1HhrWNbCpFkUIw5S7y7D1MNl3TEIgu7WlyE9UGx2lO0Iy1+kc0rKkG
-         7ZxcColQx+NUNfZZi7zrS9kl/38xy52ETHCQJgRgpXzUGFVAzYqB6ZP9a2jTZn6Az8Fj
-         AapA==
-X-Gm-Message-State: AO0yUKVVZ9Dqb97yfamJd2e1kAUtkkdH12cLaDfE7vSlJ98sm2hL3deA
-        WojJh43c3hjYDHGCWgRV3zr8LqZ/WQ==
-X-Google-Smtp-Source: AK7set92TI7dfJnJyXOZWBGbJwJQ1xgBdvAZKKEZQCyJ9GCO64gsAyaoEPDoxz0n5d3Q1ORj8jIelg==
-X-Received: by 2002:a05:6870:b289:b0:163:1ea3:2151 with SMTP id c9-20020a056870b28900b001631ea32151mr3418388oao.40.1674680648356;
-        Wed, 25 Jan 2023 13:04:08 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ls11-20020a0568704b4b00b0014c8b5d54b2sm2364197oab.20.2023.01.25.13.04.07
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EPiDgcipjgNdRkY3Z9BH0bSCD7F/IhOp1+OkeiKo+Tg=;
+        b=UEMnDBrZMMHV7jghfOEELsA8+gYDty7sKRwSbQNI5CItn8xtIC7JaQ+C7STIQCR1lk
+         ez/nNRuxKjyitYHz5tCvGM2VipQD9MDUE14tQBrpl62X/NHtSf95qSXx1YO6IubqZKjI
+         we+d76MoSNsrlqeB8QJp/m1AdhNarjnHk1cIACya5G0tpggGGFXBoMA7zAIHX1d07JAd
+         hKpVfww9rpl9NZcszhMEigyhTGZxlC2JVqrW2QZ1mDms/gm3J4+mn2hFZugKFCP3I0yp
+         YF1HUd2/eb9N+naXsuQalzNOM10TkMGnwSW/DT5h/jBL6QtaQFzlY0oDQDurNYOkTo/J
+         rRGw==
+X-Gm-Message-State: AFqh2kqeIO3ufOt6qz9PdFpbMVnvfcdGn+RzFJg4z3nIeTWQX3GEoyJ6
+        j8Ak1sa/W0Kt9K4muz+OOCTKMg==
+X-Google-Smtp-Source: AMrXdXu6tjgpwHxMJ/VXW+rCUpOHcG/ItMbGudGs+gp7qu7VsX/kPfQBOmSAwq/UAbLuR/G3NAFKzg==
+X-Received: by 2002:ac8:4896:0:b0:3a5:24ac:a175 with SMTP id i22-20020ac84896000000b003a524aca175mr51479667qtq.56.1674680957167;
+        Wed, 25 Jan 2023 13:09:17 -0800 (PST)
+Received: from [127.0.1.1] (static-72-90-70-109.syrcny.fios.verizon.net. [72.90.70.109])
+        by smtp.gmail.com with ESMTPSA id q196-20020a3743cd000000b0070736988c10sm4177090qka.110.2023.01.25.13.09.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 13:04:08 -0800 (PST)
-Received: (nullmailer pid 2892386 invoked by uid 1000);
-        Wed, 25 Jan 2023 21:04:07 -0000
-Date:   Wed, 25 Jan 2023 15:04:07 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: interconnect: samsung,exynos-bus: allow
- opp-table
-Message-ID: <167468064668.2892331.14944394685213771126.robh@kernel.org>
-References: <20230125090849.122189-1-krzysztof.kozlowski@linaro.org>
+        Wed, 25 Jan 2023 13:09:16 -0800 (PST)
+From:   Jonathan Cormier <jcormier@criticallink.com>
+Subject: [PATCH 0/4] DRM: BRIDGE: TFP410: Add i2c support
+Date:   Wed, 25 Jan 2023 16:09:09 -0500
+Message-Id: <20230125-tfp410_i2c-v1-0-66a4d4e390b7@criticallink.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230125090849.122189-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHWa0WMC/yXN0QrCMAyF4VcZubaQtorgq4iUpqYuoHWkmwzG3
+ t1uu/zhfJwFKqtwhVu3gPJPqnxLC3vqIPWxvNjIszU4dB6tu5gxD2eLQVwyntwVCSl7RmiAYmVD
+ GkvqN/KWMs3hE+vIGg62rQblLPN+eX+s6x/+HeIjggAAAA==
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Jyri Sarha <jsarha@ti.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Michael Williamson <michael.williamson@criticallink.com>,
+        Bob Duke <bduke@criticallink.com>,
+        Jonathan Cormier <jcormier@criticallink.com>
+X-Mailer: b4 0.11.3-dev-d001f
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1891;
+ i=jcormier@criticallink.com; h=from:subject:message-id;
+ bh=7DEgVz84wDEyR0sxfDf06N+lWfzxeUZpfqRP1tczmxs=;
+ b=owEBbQKS/ZANAwAKAdzX/S4LNuuqAcsmYgBj0Zp7aDcdCk+9yMv/XE+pU/W5vRSh5c+/zfRFxfs8
+ 6ZFbyKiJAjMEAAEKAB0WIQT/MozqCeZtYxNnVN/c1/0uCzbrqgUCY9GaewAKCRDc1/0uCzbrqup9D/
+ 9gWJb98/LvAHt8vKxBJs/VL/ecw/yYOXuX2o4XY5CriXYLYwA3NX77R/64zbW7vZf3m+h7zMqur5yZ
+ vRxww+qSw0z/wMfEh+w3XDuUW5iL/KMKryjn+SDpL+7akKZH6PI35ejhWN+uY6Fmi6EykYPr7h9N1G
+ +mmhncSOZUHmKibhdojCvPtf5Kd8hhaOOX4AJ6/v+5axWHO9J2zl+/82Fo8FhJOqlWgl99phDKSyoi
+ XwxF7YpmJQtUmHvU2Hu2OgGmrVqFVj9et4/GaQYmk5oeNP3oYDayki/I9buVMlm6dVaCbvyYerp9Cf
+ d8dwBuknlDoHG+gikH+bgvD8/5oIiomcDNHMEGj8cdXVI0O7tsb+6QGHnuxTxgzDW0jhtwOfbFofFr
+ GYvc8LFIE63PV3oLVQGvsAG5cdS3+U83BKiymFm3KdfnQq2ZL6BW9Cw+428YOqwHeZjSrme3uRd+vB
+ 0SZNEIFIMx68HBqZtjq2KEUQv4CIa2Mvfgik+8LCLKV2dbqlP43qoYCBIw52YL7Dt9uEXZRcSqf6a/
+ RWOWRjOpL/NAtZbH4xHypOXge8UMYAe8JHj4sn4jaCgk1QM8iHJpU0QgfBk/ZLkfLGR/evleBSOntd
+ LvU+NYPGaRHrS/xZf9NhErmOicts1pRjXje5HFanOi+kZU3DWwC6Vj5+rOEA==
+X-Developer-Key: i=jcormier@criticallink.com; a=openpgp;
+ fpr=FF328CEA09E66D63136754DFDCD7FD2E0B36EBAA
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The TFP410 driver does not support I2C.  As such, the device remains in
+Power Down if the I2C is enabled by the bootstrap pins.
 
-On Wed, 25 Jan 2023 10:08:49 +0100, Krzysztof Kozlowski wrote:
-> The opp-table can be located in the exynos-bus node which uses it, so
-> allow such child node.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../interconnect/samsung,exynos-bus.yaml      | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
-> 
+Add basic support for the I2C interface, and provide support to take
+the device out of power down when enabled.  Also read the bootstrap mode
+pins via the CTL_1_MODE register when using the I2C bus.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Also allow polling device to support hdmi/dvi hotplug detection.
+
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Robert Foss <robert.foss@linaro.org>
+To: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+To: Jonas Karlman <jonas@kwiboo.se>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Tomi Valkeinen <tomi.valkeinen@ti.com>
+To: Jyri Sarha <jsarha@ti.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Michael Williamson <michael.williamson@criticallink.com>
+Cc: Bob Duke <bduke@criticallink.com>
+Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
+
+---
+Jonathan Cormier (1):
+      dt-bindings: display: bridge: tfp410: Add tfp410 i2c example
+
+Michael Williamson (3):
+      DRM: BRIDGE: TFP410: Support basic I2C interface
+      DRM: BRIDGE: TFP410: Fix logic to configured polled HPD
+      DRM: BRIDGE: TFP410: If connected, use I2C for polled HPD status.
+
+ .../bindings/display/bridge/ti,tfp410.yaml         |  42 ++++++++
+ drivers/gpu/drm/bridge/ti-tfp410.c                 | 110 +++++++++++++++------
+ 2 files changed, 124 insertions(+), 28 deletions(-)
+---
+base-commit: 93f875a8526a291005e7f38478079526c843cbec
+change-id: 20230125-tfp410_i2c-3b270b0bf3e0
+
+Best regards,
+-- 
+Jonathan Cormier <jcormier@criticallink.com>
