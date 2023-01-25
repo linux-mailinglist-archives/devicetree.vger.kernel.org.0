@@ -2,196 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A75867AEB5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 10:46:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6628167AEC6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 10:51:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235380AbjAYJqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 04:46:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59660 "EHLO
+        id S234138AbjAYJvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 04:51:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235385AbjAYJqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 04:46:09 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DE976582
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 01:45:45 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id m15so13279626wms.4
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 01:45:45 -0800 (PST)
+        with ESMTP id S235339AbjAYJvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 04:51:06 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607052D59
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 01:51:02 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id z5so16435175wrt.6
+        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 01:51:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QAZoZHoBuUI+69gut0sQWpWd9KE5DC+R6xcdQlwzKj8=;
-        b=f8AwW5Q4c9/VM8GlsR72Mql0ugf2w0XnfBl4LAvtuFM9WAfaqDQkteATZIBMvPgvGI
-         9b4P7WiXO/gUsQtWkLkaPn0zUFKmkMtYZ8No4rgY04MPdyPpg4GHjks6C20feCmsvbvT
-         nAAXh+0jImh6BFjBumVHEd3/UMz3TCMGrAdNQqvYJL2tNk5LO2Id2FyCSvMP+Spp7dGI
-         ppIjz/qsCY2F++V7JKkZVEi5vT9NdQjMsQqcUk0uWaj0u34WAE+wEQGlPmnBcdt0dZvz
-         ueTSvaZ67Njr0P1Nl4CPBgbVMKggEmNW5rHbLMaeoN61LL7TQlnrKVb2FSbrBK/3tteL
-         c6Sw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vaCPXkD9SZLVsUqcpjkMaFmczW7gT3DS5/0BLDeDcbQ=;
+        b=Rw7ZKTIlxluTpzjoIaXA952ZSKYgO45W3mwE4xtZ2FfGN97Q0me77t81wHveCmmSXy
+         fob1NruqdEF6M4PvdSIF+Rt9WTqjMYVqZ1q4h8kvtDopvY0OIUSezCIMNTHLHriz2y9Y
+         C0ze5VIeMqOwGpNBH3FVctSVFOUxxG5AIr0lFAAoD3IFIznNtNfpqRhwgFktd1UfMFTh
+         nxQpJ9G43+ZPw8cN/KC+vJYtiQU6cLW6t6hC3Iv+EuCWzbN1Z/ccKAbdH5ibdc9XD7mJ
+         XPKlPFb/LzrDH1m5D4mRAcmBkVEtXxnxIHvgUJkUje4lTo2rA0AFrrcObtfowoRPx5dP
+         yO5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QAZoZHoBuUI+69gut0sQWpWd9KE5DC+R6xcdQlwzKj8=;
-        b=24EXZVAgBV9Y2GiSDswr/97uyT21/Cl7CHE5tNbWMxuCawRBzdf4vUF7UXjOVDG/S4
-         QibMFzZwHYhxr8ZEBXFEaw9kZYLHbBzQpCDE76f9q06RFfVvukwza8Iy+VY5h6rGGycY
-         Li+hDyqTwwCDg9g2eMgpY9S8P+63iPxWFYJE6OTfUjdSK1bCvX12CFbWl178GsigcJbz
-         DdT+R6Q9FQAu2dHC3aBnkL5fAeBeuX1HB9qO0G86AggiNaTfIu2+WJyxR+K8sk/HOFmy
-         as/0mmAKBV0/O8KTjVik3G7uedGmLzwBrBl/gKskQfmxu9DBgjgdm8eg2/WHuGTI9Pa1
-         afIA==
-X-Gm-Message-State: AFqh2kowtH6h0liMVaS60agj79TbRVbH/2ivDabNhrb/M+LxMNTvfIRU
-        FwIAYwfxV6LL9ekQvQG4twlOTOtZ0RuJB2J0
-X-Google-Smtp-Source: AMrXdXsTWzMhynRXYBhoD3rS9kAh4qvXH+6PtaedUbtI+gMYVKGHI4S56ushtgvoEZ6tDkHje5QR5w==
-X-Received: by 2002:a05:600c:4f86:b0:3db:15b1:fb28 with SMTP id n6-20020a05600c4f8600b003db15b1fb28mr27321965wmq.19.1674639935212;
-        Wed, 25 Jan 2023 01:45:35 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id fl22-20020a05600c0b9600b003d1e3b1624dsm1419238wmb.2.2023.01.25.01.45.33
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vaCPXkD9SZLVsUqcpjkMaFmczW7gT3DS5/0BLDeDcbQ=;
+        b=mm90DLKWGMHqhTdGCbT4Iop5L/+a792ZxDhGOe5+y31dkUEgfOHV/9mI0iRmfeHF46
+         6sVVuQkitJ3aRqU1wGdpRwW0DHR0zjKbiOSS0ltuuW8yVbR8thK37pwNK6ayW43dzu6N
+         NS6KsF1i1LpT6mE66LsJ6bbKOZlIra0WHmalbXmsJOD+O43+2lK1XLNNEEmhjV86of8+
+         y7o184NY8uGQDkoGTLvA7i9F236946gwxyTzyuWhnoeNyBDPyaHOF8raDKjGafkfGBkc
+         AD/zU+SWYoYMxgeV2Y8GQdP6RivxZzHzE9XaqH8NxECJHbRUsjPVGb1G9Vd2p9HPM2b9
+         6CvA==
+X-Gm-Message-State: AFqh2kqCc1pTaBxZvqV+Up3QkN/tpaS6mBJ4GNC8XZ92Z+G18URXIWpq
+        2Lgwz2jdXexbCObJD3mpX33YXQ==
+X-Google-Smtp-Source: AMrXdXs4iX7MHDhQ8IpIinu+zVBZH31DduJs8o0yFDjgZqXVRfmzOBdosIhPx5NkKAMeRHZalGCImA==
+X-Received: by 2002:a5d:68ce:0:b0:2be:4dc0:6684 with SMTP id p14-20020a5d68ce000000b002be4dc06684mr18346214wrw.7.1674640260896;
+        Wed, 25 Jan 2023 01:51:00 -0800 (PST)
+Received: from [127.0.1.1] (62.213.132.195.rev.sfr.net. [195.132.213.62])
+        by smtp.googlemail.com with ESMTPSA id j26-20020a5d453a000000b002bdf3809f59sm3955072wra.38.2023.01.25.01.50.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 01:45:34 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
-        Henrik Grimler <henrik@grimler.se>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 9/9] arm64: dts: exynos: use lowercase hex addresses
-Date:   Wed, 25 Jan 2023 10:45:13 +0100
-Message-Id: <20230125094513.155063-9-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230125094513.155063-1-krzysztof.kozlowski@linaro.org>
-References: <20230125094513.155063-1-krzysztof.kozlowski@linaro.org>
+        Wed, 25 Jan 2023 01:51:00 -0800 (PST)
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Subject: [PATCH v8 0/5] thermal: mediatek: Add support for MT8365 SoC
+Date:   Wed, 25 Jan 2023 10:50:29 +0100
+Message-Id: <20221018-up-i350-thermal-bringup-v8-0-23e8fbb08837@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGX70GMC/42NywrCMBREf6VkbSSm5KEr/0Nc5HHTBNpUkjZQS
+ v/di0s3uhpmhjmzkwolQSW3bicFWqppzmj0qSMumjwATR494YzzC7tour5o6gWjS4QymZHakvKA
+ ofG9lr5XTMhAcG1NBSxNdhH3eR1HDGOqy1y2z1uTKI/f4CYpo04rew1KCMHs3ZptTLbA2c0TeSK
+ 2qT9RClFgA9MhcPD+G3UcxxuNJQD1EQEAAA==
+To:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Rob Herring <robh@kernel.org>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        Michael Kao <michael.kao@mediatek.com>
+X-Mailer: b4 0.11.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1674640259; l=1557;
+ i=aouledameur@baylibre.com; s=20220920; h=from:subject:message-id;
+ bh=6g6r80ja2Rzpq9olLoUbWHBTm7xTpanipH7fHDJFqNU=;
+ b=T+CLaw+DkWdzd1nbg+TlT6goz1/RMjgk9CSpiYrLyUOPxR6irKRnar3iyJQAhpi1Xuc2kSBCqW1Q
+ JWuB6H0dDOndEuRobKtDdzYA5x9mtavP6YwfwCwZj2Gv6j1r9nf3
+X-Developer-Key: i=aouledameur@baylibre.com; a=ed25519;
+ pk=HgYWawSL4qLGPx+RzJ+Cuu+V8Pi/KQnDDm1wjWPMOFE=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-By convention the hex addresses should be lowercase.
+This patchset adds thermal support for MT8365 SoC.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+MT8365 has 4 thermal sensors, one for CPUs and the rest for debug/dev
+purposes. The CPU thermal zone uses passive cooling device with
+CPU{0..3}.
+
+Changes in v8:
+- Drop support for thermal zones 1, 2 and 3 as they are used for debug only,
+and would cause aggregation issues with current MTK thermal driver.
+- Split up 4/4 patch into 2 patches for clarity.
+- Link to v7: https://lore.kernel.org/r/20221018-up-i350-thermal-bringup-v7-0-ebf08ff2eddb@baylibre.com
+
+Changes in v7:
+- Fix devm_thermal_of_zone_register() error checks.
+- Link to v6: https://lore.kernel.org/r/20221018-up-i350-thermal-bringup-
+v6-0-c87b9f75550b@baylibre.com
+
+Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 ---
- arch/arm64/boot/dts/exynos/exynos5433.dtsi      | 12 ++++++------
- arch/arm64/boot/dts/exynos/exynos7-espresso.dts |  2 +-
- arch/arm64/boot/dts/exynos/exynos7.dtsi         |  6 +++---
- 3 files changed, 10 insertions(+), 10 deletions(-)
+Amjad Ouled-Ameur (2):
+      thermal: mediatek: add callback for raw to mcelsius conversion
+      thermal: mediatek: try again if first temp read is bogus
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-index 47b5ac06f0d6..9da24fe958a3 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-@@ -351,7 +351,7 @@ psci {
- 		compatible = "arm,psci";
- 		method = "smc";
- 		cpu_off = <0x84000002>;
--		cpu_on = <0xC4000003>;
-+		cpu_on = <0xc4000003>;
- 	};
- 
- 	soc: soc@0 {
-@@ -1020,7 +1020,7 @@ decon_tv: decon@13880000 {
- 
- 		dsi: dsi@13900000 {
- 			compatible = "samsung,exynos5433-mipi-dsi";
--			reg = <0x13900000 0xC0>;
-+			reg = <0x13900000 0xc0>;
- 			interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
- 			phys = <&mipi_phy 1>;
- 			phy-names = "dsim";
-@@ -1272,7 +1272,7 @@ jpeg: codec@15020000 {
- 
- 		mfc: codec@152e0000 {
- 			compatible = "samsung,exynos5433-mfc";
--			reg = <0x152E0000 0x10000>;
-+			reg = <0x152e0000 0x10000>;
- 			interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "pclk", "aclk", "aclk_xiu";
- 			clocks = <&cmu_mfc CLK_PCLK_MFC>,
-@@ -1329,7 +1329,7 @@ sysmmu_tv1x: sysmmu@13a30000 {
- 
- 		sysmmu_gscl0: sysmmu@13c80000 {
- 			compatible = "samsung,exynos-sysmmu";
--			reg = <0x13C80000 0x1000>;
-+			reg = <0x13c80000 0x1000>;
- 			interrupts = <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "aclk", "pclk";
- 			clocks = <&cmu_gscl CLK_ACLK_SMMU_GSCL0>,
-@@ -1340,7 +1340,7 @@ sysmmu_gscl0: sysmmu@13c80000 {
- 
- 		sysmmu_gscl1: sysmmu@13c90000 {
- 			compatible = "samsung,exynos-sysmmu";
--			reg = <0x13C90000 0x1000>;
-+			reg = <0x13c90000 0x1000>;
- 			interrupts = <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "aclk", "pclk";
- 			clocks = <&cmu_gscl CLK_ACLK_SMMU_GSCL1>,
-@@ -1351,7 +1351,7 @@ sysmmu_gscl1: sysmmu@13c90000 {
- 
- 		sysmmu_gscl2: sysmmu@13ca0000 {
- 			compatible = "samsung,exynos-sysmmu";
--			reg = <0x13CA0000 0x1000>;
-+			reg = <0x13ca0000 0x1000>;
- 			interrupts = <GIC_SPI 292 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "aclk", "pclk";
- 			clocks = <&cmu_gscl CLK_ACLK_SMMU_GSCL2>,
-diff --git a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-index abb3bd700d6f..f3f4a6ab4b49 100644
---- a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-@@ -28,7 +28,7 @@ chosen {
- 
- 	memory@40000000 {
- 		device_type = "memory";
--		reg = <0x0 0x40000000 0x0 0xC0000000>;
-+		reg = <0x0 0x40000000 0x0 0xc0000000>;
- 	};
- 
- 	usb30_vbus_reg: regulator-usb30 {
-diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-index f378d8629d88..82fee1b7caab 100644
---- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-@@ -119,7 +119,7 @@ psci {
- 		compatible = "arm,psci";
- 		method = "smc";
- 		cpu_off = <0x84000002>;
--		cpu_on = <0xC4000003>;
-+		cpu_on = <0xc4000003>;
- 	};
- 
- 	soc: soc@0 {
-@@ -146,7 +146,7 @@ gic: interrupt-controller@11001000 {
- 
- 		pdma0: dma-controller@10e10000 {
- 			compatible = "arm,pl330", "arm,primecell";
--			reg = <0x10E10000 0x1000>;
-+			reg = <0x10e10000 0x1000>;
- 			interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&clock_fsys0 ACLK_PDMA0>;
- 			clock-names = "apb_pclk";
-@@ -155,7 +155,7 @@ pdma0: dma-controller@10e10000 {
- 
- 		pdma1: dma-controller@10eb0000 {
- 			compatible = "arm,pl330", "arm,primecell";
--			reg = <0x10EB0000 0x1000>;
-+			reg = <0x10eb0000 0x1000>;
- 			interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&clock_fsys0 ACLK_PDMA1>;
- 			clock-names = "apb_pclk";
+Fabien Parent (2):
+      dt-bindings: thermal: mediatek: add binding documentation for MT8365 SoC
+      thermal: mediatek: add support for MT8365 SoC
+
+Markus Schneider-Pargmann (1):
+      thermal: mediatek: control buffer enablement tweaks
+
+ .../bindings/thermal/mediatek-thermal.txt          |   1 +
+ drivers/thermal/mtk_thermal.c                      | 108 ++++++++++++++++++---
+ 2 files changed, 94 insertions(+), 15 deletions(-)
+---
+base-commit: a2c81dc59d41e92362ab7d41d0c15471ea50637d
+change-id: 20221018-up-i350-thermal-bringup-ad386d37056f
+
+Best regards,
 -- 
-2.34.1
-
+Amjad Ouled-Ameur <aouledameur@baylibre.com>
