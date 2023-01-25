@@ -2,64 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E50A67B2AF
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 13:42:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF58D67B2EC
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 14:03:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235029AbjAYMm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 07:42:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37258 "EHLO
+        id S234946AbjAYNDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 08:03:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229827AbjAYMmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 07:42:25 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 816904C24;
-        Wed, 25 Jan 2023 04:42:23 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DAF5C4B3;
-        Wed, 25 Jan 2023 04:43:04 -0800 (PST)
-Received: from bogus (unknown [10.57.77.84])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 85DAD3F71E;
-        Wed, 25 Jan 2023 04:42:21 -0800 (PST)
-Date:   Wed, 25 Jan 2023 12:42:18 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Cristian Marussi <cristian.marussi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: Restrict protocol child
- node properties
-Message-ID: <20230125124218.kp4icrzjqkzqrzir@bogus>
-References: <20230124222023.316089-1-robh@kernel.org>
+        with ESMTP id S234613AbjAYNDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 08:03:23 -0500
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F5FA32517;
+        Wed, 25 Jan 2023 05:03:22 -0800 (PST)
+Received: by mail-oi1-f172.google.com with SMTP id s66so16149634oib.7;
+        Wed, 25 Jan 2023 05:03:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2IsTVqB/pcPCh7jFJPHGPuaVWAVoNerPG3I9d0JHPnA=;
+        b=m01hYGWVW2kp1jbQlXzvLFodqjunuo+iSk/2MfS0grzI+g/0ppQjBQv8dlj8m1Uqig
+         8TilW5ASnjTDBq4fzZglRBhqZHYtDKm/FsxSFLcJeOHbuDk54jHS+DI6SI7aBDcAysLt
+         ADzqlgSP5cAJpyzQHW+39kHoYJWnUyrWjV0LB27SJY931KUk8T0YSI9ynxQzdlBM4/6D
+         OTS0hGF0F4GXqT6b88aWK4SJB71I2QzLbnRlTIKXHzRL0Wcw5Fg4h4cZUFIEFfmA8QX+
+         Pen1Mt/yl12MgJLcTxn+0mH4C2bcWZHtFybYmdgvv1d59BB+KnQbz0ahZs3YRwbK424P
+         QbvA==
+X-Gm-Message-State: AFqh2krIj3J5dSpin1QsxsrAEq5QCMNqYnQLlCAyhC++nyqGkc/tK9qi
+        YRsQWlmlC3wOrj84n/vzm87G76dDFGpqtQ==
+X-Google-Smtp-Source: AMrXdXua2J87aMbWaDqi6lg/OySCUUJw0Je5bvO/eaErvs39xZbjLj3PsbGZkrR5L0mUAkX7R3u+iw==
+X-Received: by 2002:aca:d17:0:b0:365:ce9c:edb6 with SMTP id 23-20020aca0d17000000b00365ce9cedb6mr14169059oin.30.1674651801032;
+        Wed, 25 Jan 2023 05:03:21 -0800 (PST)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id d10-20020a05620a166a00b00706b299d014sm3332243qko.132.2023.01.25.05.03.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Jan 2023 05:03:20 -0800 (PST)
+Received: by mail-yb1-f177.google.com with SMTP id d132so1340502ybb.5;
+        Wed, 25 Jan 2023 05:03:20 -0800 (PST)
+X-Received: by 2002:a25:d505:0:b0:7bf:d201:60cb with SMTP id
+ r5-20020a25d505000000b007bfd20160cbmr2613641ybe.365.1674651799865; Wed, 25
+ Jan 2023 05:03:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230124222023.316089-1-robh@kernel.org>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230102221815.273719-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230102221815.273719-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20230102221815.273719-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 25 Jan 2023 14:03:08 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXaUE2xyP-t1fh2d1d4AVJ0Jm+-6rf3YMEx2n+MxjLRpg@mail.gmail.com>
+Message-ID: <CAMuHMdXaUE2xyP-t1fh2d1d4AVJ0Jm+-6rf3YMEx2n+MxjLRpg@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] arm64: dts: renesas: rzg2ul-smarc-som: Add PHY
+ interrupt support for ETH{0/1}
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 24, 2023 at 04:20:23PM -0600, Rob Herring wrote:
-> The SCMI protocol child nodes are missing any constraints on unknown
-> properties. Specifically, either 'unevaluatedProperties' or
-> 'additionalProperties' is needed. The current structure with a regex
-> match for all child nodes doesn't work for this purpose, so let's move
-> the common properties '$defs' entry which each specific protocol node
-> can reference and set 'unevaluatedProperties: false'.
+On Mon, Jan 2, 2023 at 11:19 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >
+> The PHY interrupt (INT_N) pin is connected to IRQ2 and IRQ7 for ETH0 and
+> ETH1 respectively.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2 -> v3
+> * No change
 
-Makes sense to me. Also thanks for $defs example, wasn't aware of how
-to do that.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.3.
 
-Can you please take it though your tree ? Assuming that,
+Gr{oetje,eeting}s,
 
-Reviewed-by: Sudeep Holla <sudeep.holla@arm.com>
+                        Geert
 
 --
-Regards,
-Sudeep
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
