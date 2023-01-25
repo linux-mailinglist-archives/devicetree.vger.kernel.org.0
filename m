@@ -2,79 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1AAE67BCA5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 21:35:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47A7867BCAE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 21:35:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235121AbjAYUfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 15:35:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35128 "EHLO
+        id S236473AbjAYUfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 15:35:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230064AbjAYUfT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 15:35:19 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9412A3F298;
-        Wed, 25 Jan 2023 12:35:18 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 44733B819C1;
-        Wed, 25 Jan 2023 20:35:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D60F8C433D2;
-        Wed, 25 Jan 2023 20:35:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674678916;
-        bh=8U2DugR9MKz12cxFiXKOhg5icyU2FP2WpZ+gq9wbYaA=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=OQH3KGpP8uLcJIeQ6j+iZSMcfDEhvOegromXyLnN+AYR9+IMAXXnDLLYyW79LSYHz
-         2LR6a8xl8Uevg21g23XOMaa49u8at72bYs8Ox2L+TnH9fdpNeDNoXlA4DTdkVtLvye
-         sBBMlZgYqlMyzN6uxjbrxhJe7Fl+iU3fflfNPruzh1cDGtGhWD8CkcLR7dw6hGXryU
-         nMzvM1wPSWXePgfrknMw/fksQapG+m4oLaFpWsVkb4MRqVfq3RavNAR8ImiPPZyug+
-         Yp1pS3KFJ8Va2/ouZ06qV/ZmUcZkObTgYruNotw+DibQTcDxRGTpk+sq6Yt3h71Os7
-         ifLkpMloV5Y/g==
-Message-ID: <e9277836f6797a1b2aaca2300190da9a.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S236452AbjAYUfd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 15:35:33 -0500
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45A9359B58;
+        Wed, 25 Jan 2023 12:35:31 -0800 (PST)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-1442977d77dso22642fac.6;
+        Wed, 25 Jan 2023 12:35:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=moiufMQUU7UGAHvlsv+XSSPZUsPQZkEoM/OgPbzoeHs=;
+        b=PMT9oVMh5KUzl1w72TAB/wYPV1hetKMPOJXa+ecaMwa13ImHQAjGbrWB6Ldx1CAs2n
+         tVmYzRe7kHNxAcYmfUksoUt0m04Fsgewqkav4DIhS1Oo4KgPIfCNZt2jmCqlVqFhEXGm
+         P0EX5+ixmn0RDCAEZ+xsxgzqvOU2c9GhdtixSAnbAmNvq3l3k302RaiLdkNg4eSutIku
+         s8suXXCc7vk5zzOHUmoST3FUsn6C8nkvaw2/gPUKJFAEJ0E3mkRsqGS3Nlufh1+dCEBu
+         5MQHu9qF6P1qqh0OoMBv2tpr4iY6biwOwcUQNKU8W2bst+pKbRw2i0xx0xunpwSSQ8YG
+         pibw==
+X-Gm-Message-State: AO0yUKVMuo3WsLGv50xOAidAGjwypODTxN3ZT1T9Q/v2sW+dui5tuCix
+        eyrJXk5xaX6yVdELszFp2g==
+X-Google-Smtp-Source: AK7set82Sv2tPnfS0f7sY7zxfI3PJ9ekb8UIP02XBGQpey5HlRn/W8pcSJHjnTffo1P4rZJeTA4N6Q==
+X-Received: by 2002:a05:6870:b694:b0:160:34a0:546 with SMTP id cy20-20020a056870b69400b0016034a00546mr4741222oab.40.1674678930451;
+        Wed, 25 Jan 2023 12:35:30 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ls11-20020a0568704b4b00b0014c8b5d54b2sm2338315oab.20.2023.01.25.12.35.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jan 2023 12:35:29 -0800 (PST)
+Received: (nullmailer pid 2861351 invoked by uid 1000);
+        Wed, 25 Jan 2023 20:35:28 -0000
+Date:   Wed, 25 Jan 2023 14:35:28 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     bchihi@baylibre.com, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
+        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+Subject: Re: [PATCH v11 2/6] dt-bindings/thermal/mediatek: Add LVTS thermal
+ controllers dt-binding definition
+Message-ID: <20230125203528.GB2855708-robh@kernel.org>
+References: <20230124131717.128660-1-bchihi@baylibre.com>
+ <20230124131717.128660-3-bchihi@baylibre.com>
+ <2471a5de-b7a6-fea7-152f-4fe25063abf9@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230125104520.89684-4-quic_kathirav@quicinc.com>
-References: <20230125104520.89684-1-quic_kathirav@quicinc.com> <20230125104520.89684-4-quic_kathirav@quicinc.com>
-Subject: Re: [PATCH 03/10] clk: qcom: Add STROMER PLUS PLL type for IPQ5332
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Kathiravan T <quic_kathirav@quicinc.com>
-To:     Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, arnd@arndb.de,
-        bhupesh.sharma@linaro.org, broonie@kernel.org,
-        catalin.marinas@arm.com, devicetree@vger.kernel.org,
-        dmitry.baryshkov@linaro.org, konrad.dybcio@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, marcel.ziswiler@toradex.com,
-        mturquette@baylibre.com, nfraprado@collabora.com,
-        quic_gurus@quicinc.com, robh+dt@kernel.org, robimarko@gmail.com,
-        shawnguo@kernel.org, ulf.hansson@linaro.org, will@kernel.org
-Date:   Wed, 25 Jan 2023 12:35:13 -0800
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2471a5de-b7a6-fea7-152f-4fe25063abf9@linaro.org>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Kathiravan Thirumoorthy (2023-01-25 02:45:13)
-> From: Kathiravan T <quic_kathirav@quicinc.com>
->=20
-> Add the support for stromer plus pll, which is found on the IPQ5332
-> SoCs. Programming sequence is same as the stromer pll, so we can re-use
-> the same.
->=20
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> ---
+On Wed, Jan 25, 2023 at 12:14:17PM +0100, Daniel Lezcano wrote:
+> On 24/01/2023 14:17, bchihi@baylibre.com wrote:
+> > From: Balsam CHIHI <bchihi@baylibre.com>
+> > 
+> > Add LVTS thermal controllers dt-binding definition for mt8195.
+> > 
+> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> > ---
+> 
+> Krzysztof, Rob,
+> 
+> are you ok with these changes ?
 
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+It says v11, but I sure don't recall the 10 other versions...
 
-I'm amazed that we need so many different register layouts for PLLs. Was
-it really never standardized? So sad.
+Rob
