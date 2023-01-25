@@ -2,136 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D4F67AB44
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 08:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 381BE67AB5D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 09:08:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234742AbjAYH7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 02:59:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47840 "EHLO
+        id S233235AbjAYIIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 03:08:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234138AbjAYH7z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 02:59:55 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFCA245BFC;
-        Tue, 24 Jan 2023 23:59:53 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30P7jCEl010113;
-        Wed, 25 Jan 2023 07:59:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=tbmwcRINlEFcXEbMDAVwgpPTxxQYRDQfGvNfRvkTt3g=;
- b=BTkIdnF1fhp4rV5Nvy91YOp7LGNKNxaAHqIU8pXCRBtsnAtStHQBnB7j2NefKo4UkIpA
- JGgClzqrZFK20PWiBVbqtEAEK4tn9BL3eHgONv4hpq5YoXU6b+XIu39L5Nk3CsVlzbf1
- EEfx6ZtOsPgDdrqShU86FvwDomunFLjw9248muWLoDUHnvDgtOmSRpHQzurhtDVZK55/
- H3y2Lpjchd7lDw7xfxJzRQL2F3OJYoPEj1us+5nxTk+grrYbPejuPsmalgdRxRlDeTMr
- KMie9MJoB8aG19QPtBwZ51fr93+omSEW7knfU5HXmJs9uOpuTuvajc/+6Of1zG5E5e05 dQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3najqa9bba-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 25 Jan 2023 07:59:36 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30P7xZ77010821
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 25 Jan 2023 07:59:35 GMT
-Received: from [10.50.40.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 24 Jan
- 2023 23:59:30 -0800
-Message-ID: <5ca6868c-4e1b-9770-a6e3-d3a961eea757@quicinc.com>
-Date:   Wed, 25 Jan 2023 13:29:11 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH V0 1/1] soc: qcom: dcc: Add QAD, Cti-trigger and
- Bootconfig support for DCC
-Content-Language: en-US
-To:     kernel test robot <lkp@intel.com>, Andy Gross <agross@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>
-CC:     <oe-kbuild-all@lists.linux.dev>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>, <vkoul@kernel.org>
-References: <8337e5672559b197a13699d2c0ee69f18f6167a6.1673247689.git.quic_schowdhu@quicinc.com>
- <202301092313.RPU8Nsb1-lkp@intel.com>
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-In-Reply-To: <202301092313.RPU8Nsb1-lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: IIeIRvrTZ3jeEwbgDxBf-4yzTtghF-4g
-X-Proofpoint-ORIG-GUID: IIeIRvrTZ3jeEwbgDxBf-4yzTtghF-4g
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-25_04,2023-01-24_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- malwarescore=0 adultscore=0 spamscore=0 mlxscore=0 clxscore=1011
- impostorscore=0 priorityscore=1501 mlxlogscore=999 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301250073
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232745AbjAYIIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 03:08:22 -0500
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A319E46733;
+        Wed, 25 Jan 2023 00:08:21 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id E47623200961;
+        Wed, 25 Jan 2023 03:08:17 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Wed, 25 Jan 2023 03:08:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1674634097; x=1674720497; bh=8DJTpXByBP
+        HrfsqMbJyZG5Oa0YHr8WBMwvW/C9sBIMA=; b=R8DYioSCULAYEFrMEQZ5tWfDBd
+        4GbBvD7LL2yqzKz9bOIeIoV/ad4OlyB4uN3vr58BIsdIVVLwJYHsbBp6L392GNhv
+        oFpyIYTOL1+kq0v7MQ9XtfFT5Y474zanIlkNHThxfpMDrXFpkir+U3oOGvBWJetE
+        DlsFTt4sf2VowIuX9uA6k3L+rMep0uAoOvZzndTM1nIoBaGWAoWglih9t4JplLu5
+        uWH7B/7QMQmNp85rDT3DvQBFVnrTNKhjJyS90tDvXeeLLopXKB5PbILQLfDjbBS9
+        gKXz0+ET/dywvJ57O+5vgYJiXlRd9KG0JBVN7f0OzNWtdFoXoYbaw0HC196Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1674634097; x=1674720497; bh=8DJTpXByBPHrfsqMbJyZG5Oa0YHr
+        8WBMwvW/C9sBIMA=; b=Up+VcH1SmO8K4j3FANlN/i9+XJHNW0yoxSXy47H57ncN
+        yWcRO33t7ZhsXDMLJJxptk12jCw9ZEnWXapZne+DGwTCuKKrNJBmHET9U3VgJ3Xd
+        wIVkGQzb9SBEZzu9TkeMQSe8CvFzO0xp9MCcJazPdYutHymSUVnl/TIZUPUwDpAH
+        NPocdXXfCGsGV/5GwO9psL7qu2iGS0AZrenpoYLRlHd4VmbPNUfyMBmSiITWWYDD
+        1b7XQiVGJamOMqIiXj9B4qrPcUEkSNrJ3ivXl4bvxiIvDN0/OfZz/40R9/fLeC5l
+        OeFCNqyPRxPGUuQZU//Riele61UamqdQ8xBYeldUvg==
+X-ME-Sender: <xms:cOPQY_nCuAwzBnUF4KTBiQC3YU32XOR3G5eRXymIuk1mZv1_OG9BkQ>
+    <xme:cOPQYy3WWF2UByWSYVYulr_QTPjcriCluRuy27vvf42ufCkvd3WHq-QYGxcli8ssc
+    7NlqzkYCVHoFuIM4rI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddvuddguddvtdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
+    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:cOPQY1r3G_4gi0Jn91WdLgKYKs_-6OhPnv11UFEd_314SvBfhw_VbQ>
+    <xmx:cOPQY3mZ_qm9uGqF2lsnXUTpTpt2bPz7UKLjtM_rbsxd1NcjV_uAzQ>
+    <xmx:cOPQY93SGcX_5wRWDstEgghM3-IlT0RfyAn7iCducnsgt3fwhnhHZQ>
+    <xmx:cePQY6lFCETUCoe3YZyDplJ9hPAbMXDjx36n2hMRHtuSVAxHfN3MDQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id DB120B60086; Wed, 25 Jan 2023 03:08:16 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
+Mime-Version: 1.0
+Message-Id: <e9b0338e-3b2f-4b54-8547-ab8babf7c0e1@app.fastmail.com>
+In-Reply-To: <20230113160651.51201-2-nick.hawkins@hpe.com>
+References: <20230113160651.51201-1-nick.hawkins@hpe.com>
+ <20230113160651.51201-2-nick.hawkins@hpe.com>
+Date:   Wed, 25 Jan 2023 09:07:57 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>, soc@kernel.org
+Cc:     "Guenter Roeck" <linux@roeck-us.net>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        "Russell King" <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 1/2] ARM: dts: add GXP Support for fans and SPI
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 13, 2023, at 17:06, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
+>
+> Reorganize the base address of AHB to accommodate the SPI and fan driver
+> register requirements. Add the hpe,gxp-spifi and hpe,gxp-fan-ctrl
+> compatibles. Add comments to make the register range more clear.
 
+The changelog describes three separate things, which usually means
+you should split up the patch into three smaller ones to make
+it easier to review.
 
-On 1/9/2023 8:58 PM, kernel test robot wrote:
-> Hi Souradeep,
-> 
-> I love your patch! Yet something to improve:
-> 
-> [auto build test ERROR on next-20230109]
-> [cannot apply to clk/clk-next soc/for-next linus/master v6.2-rc3 v6.2-rc2 v6.2-rc1 v6.2-rc3]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Souradeep-Chowdhury/soc-qcom-dcc-Add-QAD-Cti-trigger-and-Bootconfig-support-for-DCC/20230109-181920
-> patch link:    https://lore.kernel.org/r/8337e5672559b197a13699d2c0ee69f18f6167a6.1673247689.git.quic_schowdhu%40quicinc.com
-> patch subject: [PATCH V0 1/1] soc: qcom: dcc: Add QAD, Cti-trigger and Bootconfig support for DCC
-> config: powerpc-allmodconfig
-> compiler: powerpc-linux-gcc (GCC) 12.1.0
-> reproduce (this is a W=1 build):
->          wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->          chmod +x ~/bin/make.cross
->          # https://github.com/intel-lab-lkp/linux/commit/887ce0321641a448b3c53ad5e3f5b05a47c83ae9
->          git remote add linux-review https://github.com/intel-lab-lkp/linux
->          git fetch --no-tags linux-review Souradeep-Chowdhury/soc-qcom-dcc-Add-QAD-Cti-trigger-and-Bootconfig-support-for-DCC/20230109-181920
->          git checkout 887ce0321641a448b3c53ad5e3f5b05a47c83ae9
->          # save the config file
->          mkdir build_dir && cp config build_dir/.config
->          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
->          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash
-> 
-> If you fix the issue, kindly add following tag where applicable
-> | Reported-by: kernel test robot <lkp@intel.com>
-> 
-> All errors (new ones prefixed by >>, old ones prefixed by <<):
-> 
->>> ERROR: modpost: "xbc_node_get_child" [drivers/soc/qcom/dcc.ko] undefined!
->>> ERROR: modpost: "xbc_node_get_next" [drivers/soc/qcom/dcc.ko] undefined!
->>> ERROR: modpost: "xbc_node_find_value" [drivers/soc/qcom/dcc.ko] undefined!
->>> ERROR: modpost: "xbc_node_get_data" [drivers/soc/qcom/dcc.ko] undefined!
->>> ERROR: modpost: "xbc_node_find_subkey" [drivers/soc/qcom/dcc.ko] undefined!
-> 
+It sounds like the third one is no longer part of the patch anyway.
 
-This error is getting thrown again because 'QCOM_DCC' is declared as 
-tristate. Since DCC is using bootconfig apis which belongs to the __init 
-section of the kernel, it can no longer be used as an external module to 
-link with bootconfig apis. Will be changing it to bool in the next 
-version. Thank you.
+> @@ -52,76 +52,102 @@
+>  			cache-level = <2>;
+>  		};
+> 
+> -		ahb@c0000000 {
+> +		ahb@80000000 {
+>  			compatible = "simple-bus";
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+> -			ranges = <0x0 0xc0000000 0x30000000>;
+> +			ranges = <0x0 0x80000000 0xf000000>,
+> +				<0x40000000 0xc0000000 0x40000000>;
+
+In the changelog text for the first patch that moves the
+ranges down, it would make sense to describe why this specific
+move is done. "to accommodate the SPI and fan driver
+register requirements" does not actually tell me why it was
+first thought that the bus starts at 0xc0000000 but now starts
+at 0x80000000 and has a weird hole.
+
+Please explain how you determined the location of the hole and
+the 0x80000000 offset. Are these from the datasheet, from
+the hardware design or did you make them up because you thought
+this is what I want?
+
+>  			dma-ranges;
+
+Having a 1:1 translation for DMA addresses is actually an indication
+that the MMIO addresses on the bus might also be directly
+mapped, rather than offset: If AHB addresses 0x0-0x80000000
+refer to the local MMIO registers, there is no more room
+for addressing RAM in the same addresses.
+
+> -			vic1: interrupt-controller@80f00000 {
+> +			vic1: interrupt-controller@f00000 {
+>  				compatible = "arm,pl192-vic";
+> -				reg = <0x80f00000 0x1000>;
+> +				reg = <0xf00000 0x1000>;
+>  				interrupt-controller;
+>  				#interrupt-cells = <1>;
+>  			};
+
+Since you said that the earlier version of this was broken,
+it would also make sense to split this bit out into a separate
+bugfix patch, or at least describe it in the changelog text.
+
+       Arnd
