@@ -2,96 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB11E67B396
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 14:42:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8122C67B39B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 14:43:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229806AbjAYNmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 08:42:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37950 "EHLO
+        id S235586AbjAYNn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 08:43:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229953AbjAYNmx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 08:42:53 -0500
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82CCDB76D;
-        Wed, 25 Jan 2023 05:42:51 -0800 (PST)
-Received: by mail-qt1-f175.google.com with SMTP id j9so15924139qtv.4;
-        Wed, 25 Jan 2023 05:42:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KVLXLhrWZMxsS5LRw98rr15QqoCU46pEI19S0OxbMm4=;
-        b=ZiTPoD8FEZ2Kw/SQ6hzgXuhGAmT4q8z7x5uU2krqL0HRgMIeVonmYLcglLHb8JNRgJ
-         mENwX/UAoSTcNfI+fWWpDcwYXMkNT3muKJCK6UNXm8ibuNl29vGrwQslTifDXcFiyvwy
-         1zQdCsrm2cCuY+jpU7jdNCNqaL7cGoQ9zX7AXuaopyCyngzZ02nVguZfltkbpxYaSP7y
-         2hvOQDczUjERt/ZnbfqiCFGXVkdJwr3iEsYAep2VgoB2x3FgYmIZXA6k4Z4iARg88niO
-         It5lfq61IrnuzSwhHiEFSaMIRUnWcY4QVR5G5zgzemixxt8048BTZzvVaf/WtfXifOzc
-         QHrg==
-X-Gm-Message-State: AFqh2koj5iVqAp+tLyVPWQGNaYCdeicb5HSquUn3uWtt19Gmi3AuPChW
-        FDyTmTf7KJ4eGebd9YSMtJhc9iD/81yT/w==
-X-Google-Smtp-Source: AMrXdXvRb+7PJe1ivjV8VqGbG94rxv6z1zS/8anDHjfdr5zJGXC38BDAyP3ohWoUVis0DTPSaCKzPg==
-X-Received: by 2002:ac8:5c14:0:b0:3b6:33c6:c5ac with SMTP id i20-20020ac85c14000000b003b633c6c5acmr60877323qti.4.1674654170281;
-        Wed, 25 Jan 2023 05:42:50 -0800 (PST)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id d10-20020a05620a166a00b00706b299d014sm3388067qko.132.2023.01.25.05.42.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jan 2023 05:42:49 -0800 (PST)
-Received: by mail-yb1-f173.google.com with SMTP id u72so2334903ybi.7;
-        Wed, 25 Jan 2023 05:42:49 -0800 (PST)
-X-Received: by 2002:a25:d505:0:b0:7bf:d201:60cb with SMTP id
- r5-20020a25d505000000b007bfd20160cbmr2623220ybe.365.1674654169340; Wed, 25
- Jan 2023 05:42:49 -0800 (PST)
-MIME-Version: 1.0
-References: <20230118144747.24968-1-fabrizio.castro.jz@renesas.com> <20230118144747.24968-3-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20230118144747.24968-3-fabrizio.castro.jz@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 25 Jan 2023 14:42:38 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVMxt93MxBuO60qWmwuKjfFAts=FyWt4VVP+5uO1Pwx0w@mail.gmail.com>
-Message-ID: <CAMuHMdVMxt93MxBuO60qWmwuKjfFAts=FyWt4VVP+5uO1Pwx0w@mail.gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: renesas: v2mevk2: Add PWC support
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235589AbjAYNnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 08:43:53 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 852085864B;
+        Wed, 25 Jan 2023 05:43:52 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 741064B3;
+        Wed, 25 Jan 2023 05:44:33 -0800 (PST)
+Received: from e120937-lin (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A991C3F71E;
+        Wed, 25 Jan 2023 05:43:50 -0800 (PST)
+Date:   Wed, 25 Jan 2023 13:43:48 +0000
+From:   Cristian Marussi <cristian.marussi@arm.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: Restrict protocol child
+ node properties
+Message-ID: <Y9EyB+OO7MyGy20w@e120937-lin>
+References: <20230124222023.316089-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230124222023.316089-1-robh@kernel.org>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 18, 2023 at 3:48 PM Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> The RZ/V2M EVK uses the PWC IP to control external power supplies
-> and the I/O voltage for the uSD card.
->
-> This patch enables the PWC node, and it also enables the poweroff
-> features since PWC is actually used to control the board power
-> rails.
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+On Tue, Jan 24, 2023 at 04:20:23PM -0600, Rob Herring wrote:
+> The SCMI protocol child nodes are missing any constraints on unknown
+> properties. Specifically, either 'unevaluatedProperties' or
+> 'additionalProperties' is needed. The current structure with a regex
+> match for all child nodes doesn't work for this purpose, so let's move
+> the common properties '$defs' entry which each specific protocol node
+> can reference and set 'unevaluatedProperties: false'.
+> 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.3.
+Hi Rob,
 
-Gr{oetje,eeting}s,
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/firmware/arm,scmi.yaml           | 43 ++++++++++++++-----
+>  1 file changed, 33 insertions(+), 10 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> index 176796931a22..2f7c51c75e85 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> @@ -100,7 +100,9 @@ properties:
+>        Channel specifier required when using OP-TEE transport.
+>  
+>    protocol@11:
+> -    type: object
+> +    $ref: '#/$defs/protocol-node'
+> +    unevaluatedProperties: false
+> +
+>      properties:
+>        reg:
+>          const: 0x11
+> @@ -112,7 +114,9 @@ properties:
+>        - '#power-domain-cells'
+>  
+>    protocol@13:
+> -    type: object
+> +    $ref: '#/$defs/protocol-node'
+> +    unevaluatedProperties: false
+> +
+>      properties:
+>        reg:
+>          const: 0x13
+> @@ -124,7 +128,9 @@ properties:
+>        - '#clock-cells'
+>  
+>    protocol@14:
+> -    type: object
+> +    $ref: '#/$defs/protocol-node'
+> +    unevaluatedProperties: false
+> +
+>      properties:
+>        reg:
+>          const: 0x14
+> @@ -136,7 +142,9 @@ properties:
+>        - '#clock-cells'
+>  
+>    protocol@15:
+> -    type: object
+> +    $ref: '#/$defs/protocol-node'
+> +    unevaluatedProperties: false
+> +
+>      properties:
+>        reg:
+>          const: 0x15
+> @@ -148,7 +156,9 @@ properties:
+>        - '#thermal-sensor-cells'
+>  
+>    protocol@16:
+> -    type: object
+> +    $ref: '#/$defs/protocol-node'
+> +    unevaluatedProperties: false
+> +
+>      properties:
+>        reg:
+>          const: 0x16
+> @@ -160,20 +170,31 @@ properties:
+>        - '#reset-cells'
+>  
+>    protocol@17:
+> -    type: object
+> +    $ref: '#/$defs/protocol-node'
+> +    unevaluatedProperties: false
+> +
+>      properties:
+>        reg:
+>          const: 0x17
+>  
+>        regulators:
+>          type: object
+> +        additionalProperties: false
+>          description:
+>            The list of all regulators provided by this SCMI controller.
+>  
+> +        properties:
+> +          '#address-cells':
+> +            const: 1
+> +
+> +          '#size-cells':
+> +            const: 0
+> +
+>          patternProperties:
+> -          '^regulators@[0-9a-f]+$':
+> +          '^regulator@[0-9a-f]+$':
+>              type: object
+>              $ref: "../regulator/regulator.yaml#"
+> +            unevaluatedProperties: false
+>  
+>              properties:
+>                reg:
+> @@ -184,15 +205,17 @@ properties:
+>                - reg
+>  
+>    protocol@18:
+> -    type: object
+> +    $ref: '#/$defs/protocol-node'
+> +    unevaluatedProperties: false
+> +
+>      properties:
+>        reg:
+>          const: 0x18
+>  
+>  additionalProperties: false
+>  
+> -patternProperties:
+> -  '^protocol@[0-9a-f]+$':
+> +$defs:
+> +  protocol-node:
+>      type: object
+>      description:
 
-                        Geert
+so now that the catch-all protocol@ patternProperty is gone in favour
+of the 'protocol-node' definition and $refs, does that mean that any
+current and future SCMI officially published protocol <N> has to be
+added to the above explicit protocol list, even though it does not
+have any special additional required property beside reg ?
+(like protocol@18 above...)
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+As an example SystemPower protocol@12 is not listed above too and it
+has nothing more than a reg=0x12 prop (liek 0x18), but before this patch
+was 'covered' by the patternProperty (so Krzysztof shot down, rightly,
+my recent attempt to add a distinct protocol@12 def), but now it does not
+seem anymore the case...so will we need to add an explicit protocol node
+for any future protocol addition ? (SCMI is extensible up to 255
+protos..)
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+Cristian
+
