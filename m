@@ -2,121 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04D5C67AED0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 10:51:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAC9667AEF3
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 10:55:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235426AbjAYJvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 04:51:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36374 "EHLO
+        id S235090AbjAYJz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 04:55:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235409AbjAYJvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 04:51:09 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D3D93A99
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 01:51:08 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id b7so16458991wrt.3
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 01:51:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nCD+Tet020QcCYVXiaAHhZ6T43mxf9NGXvGcAhM5Bko=;
-        b=evdFUzWQ1Z6fmorAAHX/2rx1JsI1ucqR/2YMkGAAzJFPBQG40c0oaoquu3sfWeDTD9
-         3bbW4b1CwJW2ZtdWk1rskgF9jbFqKw3nADhOCTcIMfnjYXu6ZIy189AvlcMMHgvDfJzY
-         9afQYjTJqO9rdAxD9pEToliDpS2q7owdH91h9+JBz1LbNAll9s6Hgdia7e+DWdO+w3y4
-         Sa0NSD8NOfnnL+oK/62NjEgHOpuCEJCGAlnK5JxTKv14/TerzMWhOLbvVwhYti7mQztX
-         CFEwt9AP2Kw+GhKwzuBAxI734uWRGbh4f9+9kYKnBVb02juwMrhdxeOFZh5DSK7RuYiZ
-         KJlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nCD+Tet020QcCYVXiaAHhZ6T43mxf9NGXvGcAhM5Bko=;
-        b=qBACKKSlHs1vscJDe69GIH2p2ht/1lIXNHdNkzDdNRM8XFIUnatLZsAm3HECxNQkDZ
-         WMm//uJonQA60Goz6enEHRViaw1J0PHKT5isrgEAO2QKLMbyFcpQKf8qZUy5ZYYRp0d3
-         oeJQxpB18r0DbNPCJipQc3OPm9tNDyXPCY6+i/OrjXqthnADfvRn5kHg/bAGhHDn8KtQ
-         ruTbkoBGw5wgXq3xEs9EI1llpSo9WSSD8CPCtHUmEag3RYWGJP9oOpCfjR7sl70QM4gW
-         LbW6+Ty8tWSM/993N+Pjj0ctx8hCEvlyRpQyZQz5vMhptVnpk9dBOQcwGaz8J61ddvyH
-         YgBw==
-X-Gm-Message-State: AFqh2kq3CwK6qcnAXgmzW/Krd9kj/PfRryHRV5GGxnBpkv0l6RcAf0yA
-        5bthyL/dCZFAoXgWiATOhFQuQA==
-X-Google-Smtp-Source: AMrXdXtW4LbC59RXC+dBFm0EBBki8tu4RWZohenwoLSN2vVO4YuGlip37uSG6yoG1MbxuFzynf8qPw==
-X-Received: by 2002:a05:6000:1e18:b0:2bc:846a:8ead with SMTP id bj24-20020a0560001e1800b002bc846a8eadmr29665011wrb.37.1674640266621;
-        Wed, 25 Jan 2023 01:51:06 -0800 (PST)
-Received: from [127.0.1.1] (62.213.132.195.rev.sfr.net. [195.132.213.62])
-        by smtp.googlemail.com with ESMTPSA id j26-20020a5d453a000000b002bdf3809f59sm3955072wra.38.2023.01.25.01.51.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jan 2023 01:51:06 -0800 (PST)
-From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Date:   Wed, 25 Jan 2023 10:50:33 +0100
-Subject: [PATCH v8 5/5] thermal: mediatek: try again if first temp read is bogus
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20221018-up-i350-thermal-bringup-v8-5-23e8fbb08837@baylibre.com>
-References: <20221018-up-i350-thermal-bringup-v8-0-23e8fbb08837@baylibre.com>
-In-Reply-To: <20221018-up-i350-thermal-bringup-v8-0-23e8fbb08837@baylibre.com>
-To:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+        with ESMTP id S234689AbjAYJz0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 04:55:26 -0500
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2693430E8;
+        Wed, 25 Jan 2023 01:55:25 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1674640517; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=lgOSlRFjiTeXa1ZiN0Sh5q2BNXtuIw1nkHYqh6Cne9vaO7pk8dCW1x1knI7VU7IhgwjIlDY1gSBM24Muw30HLmFpYM4w5hGTQzutF4lMgeh97Rj5ZTqQenGdZia6gfJ+Zdh4j0+b0UHLHixr5iSLtvPcMACiNFd/26FJulMgCgY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1674640517; h=Content-Type:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=GxhsZuLW1aUUdsIzkDgq7YtS68/mjfyyTwcISg+gePc=; 
+        b=F5dsF2CihVBrWMGwf1Hzr0xnW89rx2OEbQ9vMdxa4tj3XKiac2EH3/M6LsGyUh+OkgBuKvgQ4elsqhFVLjb6p/pUflgKdBsAJMEUm+EBicd+ZX1CAEvO7gLfa/O9gOsfUYM9TDtqxzbl73UR/TLF8WieIJC0MjI+5B920DG06WY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=linux.beauty;
+        spf=pass  smtp.mailfrom=me@linux.beauty;
+        dmarc=pass header.from=<me@linux.beauty>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1674640517;
+        s=zmail; d=linux.beauty; i=me@linux.beauty;
+        h=Date:Date:Message-ID:From:From:To:To:Cc:Cc:Subject:Subject:In-Reply-To:References:MIME-Version:Content-Type:Message-Id:Reply-To;
+        bh=GxhsZuLW1aUUdsIzkDgq7YtS68/mjfyyTwcISg+gePc=;
+        b=t7IMeHM8eXXlOe/+x22OEMDUS/bjYxO9RZy7BxQdzpDLZNuloE0YQJOgm2ZEc3xh
+        7WZ9xErJN9/r6zArxEZ+A7Cse7ze2vLqk/TLfUgegdQQmp/JRy2awfqjR+H+Fs66n76
+        PW5YudxpvvVsI6SfdWD/jHVSlKEuCp0R4mWGLJ7w=
+Received: from lchen-xiaoxin.linux.beauty (221.225.241.248 [221.225.241.248]) by mx.zohomail.com
+        with SMTPS id 1674640515886204.08088684860002; Wed, 25 Jan 2023 01:55:15 -0800 (PST)
+Date:   Wed, 25 Jan 2023 17:54:28 +0800
+Message-ID: <87wn5bgcrv.wl-me@linux.beauty>
+From:   Li Chen <me@linux.beauty>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Li Chen <lchen@ambarella.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh@kernel.org>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Michael Kao <michael.kao@mediatek.com>
-X-Mailer: b4 0.11.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1674640259; l=905;
- i=aouledameur@baylibre.com; s=20220920; h=from:subject:message-id;
- bh=SvQ8R3apCWGsjdAHgfNQVmNogbxTjihw270BNNJBqk0=;
- b=pkHFI5a45MlA9rGXHv3vKkA9DV+cFpeLSRC2m5W4FWHIP47gcqAI0gZg8YNrfVLt5u+BTkZkthhA
- AcisRwV0A8EpqInMTUpFXoe4B4+xb7FfJNqyqIZ9hzAgaCL0DM3w
-X-Developer-Key: i=aouledameur@baylibre.com; a=ed25519;
- pk=HgYWawSL4qLGPx+RzJ+Cuu+V8Pi/KQnDDm1wjWPMOFE=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "moderated list:ARM/Ambarella SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 09/15] dt-bindings: serial: add support for Ambarella
+In-Reply-To: <bdff58bf-1a07-ab78-a782-d58d8c644e00@linaro.org>
+References: <20230123073305.149940-1-lchen@ambarella.com>
+        <20230123073305.149940-10-lchen@ambarella.com>
+        <bdff58bf-1a07-ab78-a782-d58d8c644e00@linaro.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-ZohoMailClient: External
+X-Spam-Status: No, score=0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_BL_SPAMCOP_NET,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In mtk_thermal_bank_temperature, return -EAGAIN instead of 0
-on the first read of sensor that often are bogus values.
 
-Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/thermal/mtk_thermal.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Krzysztof Kozlowski,
 
-diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
-index b8e06f6c7c42..e7be450cd40a 100644
---- a/drivers/thermal/mtk_thermal.c
-+++ b/drivers/thermal/mtk_thermal.c
-@@ -736,7 +736,7 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
- 		 * not immediately shut down.
- 		 */
- 		if (temp > 200000)
--			temp = 0;
-+			temp = -EAGAIN;
- 
- 		if (temp > max)
- 			max = temp;
+Sorry for my late reply.
 
--- 
-2.39.1
+On Mon, 23 Jan 2023 16:11:52 +0800,
+Krzysztof Kozlowski wrote:
+>
+> On 23/01/2023 08:32, Li Chen wrote:
+> > Add compatible for Ambarella.
+> >
+> > Signed-off-by: Li Chen <lchen@ambarella.com>
+> > Change-Id: I32513d98f52af0311dfb55dd5c4739a58f6b9fc1
+> > ---
+> >  .../bindings/serial/ambarella_uart.yaml       | 57 +++++++++++++++++++
+> >  MAINTAINERS                                   |  1 +
+> >  2 files changed, 58 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/serial/ambarella_uart.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/serial/ambarella_uart.yaml b/Documentation/devicetree/bindings/serial/ambarella_uart.yaml
+> > new file mode 100644
+> > index 000000000000..238d68078270
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/serial/ambarella_uart.yaml
+> > @@ -0,0 +1,57 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/serial/ambarella_uart.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Ambarella S6LM SoC UART Controller
+> > +
+> > +maintainers:
+> > +  - Li Chen <lchen@ambarella.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: ambarella,uart
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  amb,ignore-fe:
+> > +    description: |
+> > +      ignore frame error report for CV2/CV22/CV25/S6LM because it's
+> > +      checked too strict so that normal stop may be treated as frame error.
+>
+> Missing type. I don't understand why this is property of DT.
+
+Ok, I will add "type: boolean" to it.
+
+> Anyway several problems mentioned earlier, please fix.
+
+Well noted.
+
+Regards,
+Li
