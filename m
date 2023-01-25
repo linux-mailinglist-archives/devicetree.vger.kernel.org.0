@@ -2,54 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27C0E67C088
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 00:00:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F5F767C09D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 00:09:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235959AbjAYXAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 18:00:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51726 "EHLO
+        id S229490AbjAYXJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 18:09:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229739AbjAYXAY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 18:00:24 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D301713DD8;
-        Wed, 25 Jan 2023 15:00:23 -0800 (PST)
+        with ESMTP id S229475AbjAYXJo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 18:09:44 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 748A737F28;
+        Wed, 25 Jan 2023 15:09:43 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8E9AEB81C55;
-        Wed, 25 Jan 2023 23:00:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2922CC433D2;
-        Wed, 25 Jan 2023 23:00:21 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 07A0961647;
+        Wed, 25 Jan 2023 23:09:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B6FCC433EF;
+        Wed, 25 Jan 2023 23:09:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674687621;
-        bh=RZksb65p0COvQF0t0733KNOTzQrC/hPGvtjudMm7qIw=;
+        s=k20201202; t=1674688182;
+        bh=hCZ1XZTCSjWNvYxTSWzJ96eH/+NdoV+UKJq6grJNktI=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=KG+P6oi76PcsMbhOHkhtWTkaqTl0yrOxQLKNJ9uoB/Zoi3L0Wyslfptmz49fVIJgB
-         ovbXowfC0jy9c6ho58PvqGWeyeB7F8IGV1bUwfGh1KoG4xv+2erniNbpEdVxYB4hB7
-         9s6Ccv3ferDUP6aPmjNRyodxdfEsURyCRLYADCgcQTKU+M52pRphsO7vZrxD4yImD1
-         bVqVpX+5Er6gtDHTb+Ls44qFse2d9N3jy5YGMI5IqiiVMwRdfifWT8dYchfSTzskh6
-         keBzE3bW6bq+2hrJmcBvING8m2F80bXgKZYsoHx3cAny3wwJmQQXLpbTd/GiGYDwbS
-         q0xxzpxGf/HTg==
-Message-ID: <a7058fb92642a1661995d7d3ca6411bd.sboyd@kernel.org>
+        b=XVVbEZ2kErRVnh97BqcWzoxJC5vh7Wn67EbUPoNnLYZUoz6EHueLMmDFG+xfpX8zY
+         zp75rSQSDY21OrXuj1KKP/Xcnmh/EazCRNkl4y6RtS25VJAO4xEgIzo8lGTOM2hSRu
+         FEoD2awLy5d1XvQ74PTQM24/JZamMA/zEYebtOqSJqHf0L31jqhGKk3zSy7oYNDt5b
+         sKc/c5LQzbt4EUOCRrgwXQPX3b2ubDgh9Nfcl+7IE/xSPs21n87TS1fyLvv3dFmFji
+         9pqXQX/d2fEAqoVaw5DZbrqDHZl1ma+UG1tIgWsrW/0qXXj+ry+cEfUNaTU6LXxqWy
+         8RLQqhNcCCaIg==
+Message-ID: <3dfa96e2dba814930445e8dcfae97e89.sboyd@kernel.org>
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <4c531c68-b74f-2f90-e8f6-98a4b0316cd4@ansari.sh>
-References: <20230121192540.9177-1-rayyan@ansari.sh> <20230121192540.9177-2-rayyan@ansari.sh> <06d53a3fa48080d902476b71308e69bd.sboyd@kernel.org> <4c531c68-b74f-2f90-e8f6-98a4b0316cd4@ansari.sh>
-Subject: Re: [PATCH v4 1/3] clk: qcom: smd: Add XO RPM clocks for MSM8226/MSM8974
+In-Reply-To: <20230120092053.182923-1-angelogioacchino.delregno@collabora.com>
+References: <20230120092053.182923-1-angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v4 00/23] MediaTek clocks cleanups and improvements
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-To:     Rayyan Ansari <rayyan@ansari.sh>, linux-arm-msm@vger.kernel.org
-Date:   Wed, 25 Jan 2023 15:00:19 -0800
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        angelogioacchino.delregno@collabora.com, wenst@chromium.org,
+        johnson.wang@mediatek.com, miles.chen@mediatek.com,
+        fparent@baylibre.com, chun-jie.chen@mediatek.com,
+        sam.shih@mediatek.com, y.oudjana@protonmail.com,
+        nfraprado@collabora.com, rex-bc.chen@mediatek.com,
+        ryder.lee@kernel.org, daniel@makrotopia.org,
+        jose.exposito89@gmail.com, yangyingliang@huawei.com,
+        pablo.sun@mediatek.com, msp@baylibre.com, weiyi.lu@mediatek.com,
+        ikjn@chromium.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, mturquette@baylibre.com
+Date:   Wed, 25 Jan 2023 15:09:40 -0800
 User-Agent: alot/0.10
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -60,21 +66,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rayyan Ansari (2023-01-25 14:25:08)
-> On 25/01/2023 20:58, Stephen Boyd wrote:
-> > Quoting Rayyan Ansari (2023-01-21 11:25:38)
-> >> Add the XO and XO_A clocks to the MSM8974 clock list, which is also
-> >> used on MSM8226.
-> >=20
-> > Why was this missing for so long? Does this break suspend? Why are you
-> > adding it now?
+Quoting AngeloGioacchino Del Regno (2023-01-20 01:20:30)
 >=20
-> I am adding it because of a recommendation from a maintainer on an older =
+> * Some more spare cleanups here and there.
+>=20
+> All of this was manually tested on various Chromebooks (with different MTK
+> SoCs) and no regression was detected.
+>=20
 
-> patch version.
-> See=20
-> https://lore.kernel.org/linux-arm-msm/20230119023337.h6a7f56lizhv4tcy@bui=
-lder.lan/#t
-
-So nobody has tested this on msm8974? Can you add this information to
-the commit text? And can it be tested on msm8974?
+Do you want me to pick this up directly? Or is there some mediatek
+maintainer willing to send me a PR? If I don't hear anything soon I'll
+go sweep my inbox for mediatek clk patches and start applying them.
