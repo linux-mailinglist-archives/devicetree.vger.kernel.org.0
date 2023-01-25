@@ -2,216 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E176C67A863
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 02:30:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4601167A89A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 03:12:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233279AbjAYBaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 20:30:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38976 "EHLO
+        id S231269AbjAYCM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 21:12:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230482AbjAYBaB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 20:30:01 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 133A349566
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 17:30:00 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id tz11so43848940ejc.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 17:29:59 -0800 (PST)
+        with ESMTP id S230048AbjAYCMz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 21:12:55 -0500
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1097F2685F
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 18:12:53 -0800 (PST)
+Received: by mail-pj1-x102c.google.com with SMTP id 88so5460063pjo.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 18:12:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SaTjOuIxXBK83AxAjFBiHjZe+rvlU5L1GQ57PTy+V+k=;
-        b=yP6iFUSjrUYFUjhhXgQ8jMXrNm2Pl6JUcT1uP5Qs4D9kVD9Zc7BAf756uRWCC53G32
-         1ZRzezlEDYI1OYDHQHSGk5TrNQW2iZKQ/m8YKDsOq5eqL2GuZEITVdibJ7Tb7KXAZ8wm
-         982in2ckWMU5bIi+V+AF9tX4+RyiODm1pg39CqR6yV1KDAdewkoGpnI2YdR1IRVWT+9B
-         mOsSuWf0hmJwt39Xg6o/LX92qw5WRSmVbRpExlvD4jEe9o1HVHX2PLuv5OcoNXRr4Hcz
-         gHAG7KN30cfOqje9+eCM9UkySB2ASt1mUPcme6MhqYyryuT2MS3W3NpRBxnwqX/Xpmvc
-         sZuQ==
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=wyo4ScdnKnOpNdEhwobdQ9WeYs+jQOexpJlhKGainQs=;
+        b=WQyTcKY9Wn6wifrEjH06aIMPm5KuR8cVj90LyYYJz6t1gLRSgzj4DxVSOIXQrDTHeL
+         9zuk9jn2JQ1RAshLv1HMdYfn/ObWLARV+rYWZAYhvVg0ex573km+2YS9+iAxnzzFPWab
+         xk3UswT1bRiKDvYUUrjYuisGK3SXVxzpr1oMSX5KjT2qJDBLIOulxdjgfeAMQccwgUNC
+         m72LoKWAg5fYvJETfDRi+uSLf6VdRf0ewoX7PM5gLhfDyex8y4ln3R0dJFbdWLLF0w05
+         oTABPC3xvqhglWITFsiPtJPXWGmtTLJ6lfAY3IQ23XLwQ1j8xvdZOy65FOU+2aHNk8Tj
+         dZ/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SaTjOuIxXBK83AxAjFBiHjZe+rvlU5L1GQ57PTy+V+k=;
-        b=OONziSbvQVvzs876aqFii7sYNGStJDyrlEsE9ikVuKTNk3wi1khOOLMpZS0XKsb7K9
-         1e1CPwHpdk5fkhxoFHL7YfEZgleZNwg5CE4pETRWGnoLmT0COOFl5uJgQmhqF6D30GXF
-         7QUcoZ1fEwAZM8w/3aWOu0D7EDZi9AeniYotVB4aXSr7Kx+Tw51cgez4Ap0e6wjHoFkF
-         Mp+y68j4jTcPAdUpramuNak64X06bX4pGA88qXtYRFOpXu2RMafnUug857Uz5qTK6LZR
-         Hbl4aR1kUUa3XUm7LJa+mK3VG/6vJphbMCFaLUWzIL0QxrKyxD39/0tuzkVSooMt0reL
-         xH6A==
-X-Gm-Message-State: AFqh2kpuvDcx8rS1EgUaqcOl8NBuFqRVCpPZ/hH4nKhf72roTycyA/co
-        tk8/Bb1vj23mO7ve/Hxz5+yAVQ==
-X-Google-Smtp-Source: AMrXdXt0PeTUnVDTymw1fNMhzslQjfo10NEpW/gwcwWm/osV3KylhDxWrk2c8K1wpDcdiRFuxxKwig==
-X-Received: by 2002:a17:906:a04d:b0:84d:4325:7f7a with SMTP id bg13-20020a170906a04d00b0084d43257f7amr28065424ejb.65.1674610197141;
-        Tue, 24 Jan 2023 17:29:57 -0800 (PST)
-Received: from [192.168.1.101] (abyl109.neoplus.adsl.tpnet.pl. [83.9.31.109])
-        by smtp.gmail.com with ESMTPSA id ks27-20020a170906f85b00b0085fc3dec567sm1637654ejb.175.2023.01.24.17.29.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jan 2023 17:29:56 -0800 (PST)
-Message-ID: <0597e178-d563-0afc-a998-ca7c54ee56b5@linaro.org>
-Date:   Wed, 25 Jan 2023 02:29:54 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wyo4ScdnKnOpNdEhwobdQ9WeYs+jQOexpJlhKGainQs=;
+        b=W3p+b0HrdQJRIsDkpBd9N1j1GfSt/w0n001Xshfp4WviROXlt7dgsAA0hNOfFQAR28
+         I83qZplmBxKLgstaH8A/1NxJQR9Jh8AispLRb+0+upJSKJIjX6TDL5Tn0R0GaAQhLGwP
+         KiMShdG963tnasY+HKzxAL7VTjQHH9LsAQiyfTS4bYst/mfRrEjFh5CCCWt59M7eLS3S
+         J1eDYj5vU+7RUc+quglRelujFkd43yI404ct/K3PhaXC519HnQy2hauL1NG8URO9sPP8
+         /IB/fH9KWJY9zlDR8lWm87dc3sbcomyRb6Nyv4KNMkh2gSjwBXSUMKgdodrjSK14Ma5k
+         73cg==
+X-Gm-Message-State: AFqh2kpdto1pNPEZ4TDvakGt/mBGvz2a2DXkKrvqbh+hY8wFLC+OtMs1
+        /fl+6mpA5ZttItRzSEhAqy2NWVTZv1gA+P97AM/LpA==
+X-Google-Smtp-Source: AMrXdXsVEndUelWqeTOq/yI0y1T7Go1AUXK7I4T+7m8PmMng+9RYf16DOxvQdM/cJ77ZduwDlA9DcaAtqzg9qyhk06g=
+X-Received: by 2002:a17:90a:e646:b0:229:ca6a:d742 with SMTP id
+ ep6-20020a17090ae64600b00229ca6ad742mr3309663pjb.221.1674612772253; Tue, 24
+ Jan 2023 18:12:52 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v4 5/6] arm64: dts: qcom: Add Square apq8039-t2 board
-Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org, andersson@kernel.org, djakov@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+References: <20230118091122.2205452-1-dmitry.baryshkov@linaro.org> <CAL_JsqJ=0neiZ4wkPiMqJMT4E1O_xO0uLrTmEGUcnZMqxkw4UQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqJ=0neiZ4wkPiMqJMT4E1O_xO0uLrTmEGUcnZMqxkw4UQ@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 24 Jan 2023 18:12:15 -0800
+Message-ID: <CAGETcx8Xy5OzsbW3123esxsbQJq-SqDkP1S5g2mmwzoCz4shtQ@mail.gmail.com>
+Subject: Re: [RESEND PATCH] of: property: do not create clocks device link for
+ clock controllers
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
-        leo.yan@linaro.org, dmitry.baryshkov@linaro.org,
-        stephan@gerhold.net, Jun Nie <jun.nie@linaro.org>,
-        James Willcox <jwillcox@squareup.com>,
-        Joseph Gates <jgates@squareup.com>,
-        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>
-References: <20230123023127.1186619-1-bryan.odonoghue@linaro.org>
- <20230123023127.1186619-6-bryan.odonoghue@linaro.org>
- <e80b98bc-54e8-f7ab-b9a9-dd888108a0cd@linaro.org>
- <8dd1ce3c-82ea-cfc3-a84c-c022cbaec8a0@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <8dd1ce3c-82ea-cfc3-a84c-c022cbaec8a0@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Abel Vesa <abel.vesa@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jan 18, 2023 at 5:35 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Wed, Jan 18, 2023 at 3:11 AM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > Do not create device link for clock controllers. Some of the clocks
+> > provided to the device via OF can be the clocks that are just parents to
+> > the clocks provided by this clock controller. Clock subsystem already
+> > has support for handling missing clock parents correctly (clock
+> > orphans). Later when the parent clock is registered, clocks get
+> > populated properly.
+> >
+> > An example of the system where this matters is the SDM8450 MTP board
+> > (see arch/arm64/boot/dts/qcom/sdm845-mtp.dts). Here the dispcc uses
+> > clocks provided by dsi0_phy and dsi1_phy device tree nodes. However the
+> > dispcc itself provides clocks to both PHYs, to the PHY parent device,
+> > etc. With just dsi0_phy in place devlink is able to break the
+> > dependency, but with two PHYs, dispcc doesn't get probed at all, thus
+> > breaking display support.
+> >
+> > Cc: Bjorn Andersson <andersson@kernel.org>
+> > Cc: Stephen Boyd <sboyd@kernel.org>
+> > Cc: Saravana Kannan <saravanak@google.com>
+> > Cc: Abel Vesa <abel.vesa@linaro.org>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >
+> > This patch has been posted a year ago in January 2022 ([1]). Since that time
+> > Saravana failed to produce patches to assist in debugging the issue
+> > ([2]) or to fix the issue ([3]). The issue we observe has been described
+> > by Abel at ([4]). As we work on adding support for Dual DSI
+> > configurations, the issue becomes more and more important, since binding
+> > the whole display subsystem fails.
 
+I did send out a patch series[1] to try and fix this. Heck I even
+talked about this in LPC 2022. So I don't think it's accurate to say I
+didn't help debug this or fix this. There's some email thread in lore
+where Abel gave more details and I figured out the issue and we didn't
+need any more debugging. And then I sent out [1]. Sorry I missed you
+in the cc lise for [1] -- I try to keep track of everyone to cc but
+things slip through the cracks sometimes. But at the same time, it's
+easy to check for emails from me before saying I didn't help or didn't
+send out fixes :)
 
-On 25.01.2023 02:21, Bryan O'Donoghue wrote:
-> On 23/01/2023 16:29, Krzysztof Kozlowski wrote:
->> On 23/01/2023 03:31, Bryan O'Donoghue wrote:
->>> The apq8039-t2 is an apq8039 based board paired with a wcn3680b WiFi
->>> chipset.
->>>
->>> Co-developed-by: Shawn Guo <shawn.guo@linaro.org>
->>> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
->>> Co-developed-by: Jun Nie <jun.nie@linaro.org>
->>> Signed-off-by: Jun Nie <jun.nie@linaro.org>
->>> Co-developed-by: Benjamin Li <benl@squareup.com>
->>> Signed-off-by: Benjamin Li <benl@squareup.com>
->>> Co-developed-by: James Willcox <jwillcox@squareup.com>
->>> Signed-off-by: James Willcox <jwillcox@squareup.com>
->>> Co-developed-by: Leo Yan <leo.yan@linaro.org>
->>> Signed-off-by: Leo Yan <leo.yan@linaro.org>
->>> Co-developed-by: Joseph Gates <jgates@squareup.com>
->>> Signed-off-by: Joseph Gates <jgates@squareup.com>
->>> Co-developed-by: Max Chen <mchen@squareup.com>
->>> Signed-off-by: Max Chen <mchen@squareup.com>
->>> Co-developed-by: Zac Crosby <zac@squareup.com>
->>> Signed-off-by: Zac Crosby <zac@squareup.com>
->>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>> ---
->>>   arch/arm64/boot/dts/qcom/Makefile       |   1 +
->>>   arch/arm64/boot/dts/qcom/apq8039-t2.dts | 545 ++++++++++++++++++++++++
->>>   2 files changed, 546 insertions(+)
->>>   create mode 100644 arch/arm64/boot/dts/qcom/apq8039-t2.dts
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->>> index b0423ca3e79fd..73ff8d3213d99 100644
->>> --- a/arch/arm64/boot/dts/qcom/Makefile
->>> +++ b/arch/arm64/boot/dts/qcom/Makefile
->>> @@ -1,5 +1,6 @@
->>>   # SPDX-License-Identifier: GPL-2.0
->>>   dtb-$(CONFIG_ARCH_QCOM)    += apq8016-sbc.dtb
->>> +dtb-$(CONFIG_ARCH_QCOM)    += apq8039-t2.dtb
->>>   dtb-$(CONFIG_ARCH_QCOM)    += apq8094-sony-xperia-kitakami-karin_windy.dtb
->>>   dtb-$(CONFIG_ARCH_QCOM)    += apq8096-db820c.dtb
->>>   dtb-$(CONFIG_ARCH_QCOM)    += apq8096-ifc6640.dtb
->>> diff --git a/arch/arm64/boot/dts/qcom/apq8039-t2.dts b/arch/arm64/boot/dts/qcom/apq8039-t2.dts
->>> new file mode 100644
->>> index 0000000000000..734b4d6054132
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/qcom/apq8039-t2.dts
->>> @@ -0,0 +1,545 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (c) 2015, The Linux Foundation. All rights reserved.
->>> + * Copyright (c) 2020-2023, Linaro Ltd.
->>> + *
->>> + */
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include "msm8939.dtsi"
->>> +#include "msm8939-pm8916.dtsi"
->>> +#include <dt-bindings/arm/qcom,ids.h>
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
->>> +#include <dt-bindings/sound/apq8016-lpass.h>
->>> +
->>> +/ {
->>> +    model = "Square, Inc. T2 Devkit";
->>> +    compatible = "square,apq8039-t2", "qcom,msm8939";
->>
->> There is no square vendor prefix.
-> 
-> commit d3e2262cd0d1105bb3a71012693876d01e8de203
-> Author: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Date:   Tue Jan 17 02:48:39 2023 +0000
-> 
->     dt-bindings: arm: qcom: Document MSM8939 SoC binding
-> 
-> +      - items:
-> +          - enum:
-> +              - sony,kanuti-tulip
-> +              - square,apq8039-t2
-> +          - const: qcom,msm8939
-> 
-This is the board compatible. Krzysztof meant an entry for Square
-in Documentation/devicetree/bindings/vendor-prefixes.yaml.
+If you do try to give [1] a shot, there are a bunch of bugs that
+people pointed out for which I gave fixes on top of [1] in the
+replies. I was supposed to work on v2 over the holidays, but that
+didn't happen because of stuff outside my control.
 
-> 
->>> +
->>> +    qcom,board-id = <0x53 0x54>;
->>> +    qcom,msm-id = <QCOM_ID_MSM8939 0>, <QCOM_ID_MSM8939 0x30000>, <QCOM_ID_APQ8039 0x30000>;
->>> +
-> 
->>> +
->>> +    lcd_avdd_reg: lcd-avdd-regulator {
->>
->> Since we try to have nodes ordered, how about naming them
->> "regulator-xxx", so whatever is added later will not spread them all over?
-> 
-> Point taken.
-> 
-> vreg_ looks like a more common prefix
-> 
-> arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts: vreg_edp_3p3: regulator-edp-3p3 {
-> vreg_edp_bl: regulator-edp-bl {
-> vreg_misc_3p3: regulator-misc-3p3 {
-> vreg_nvme: regulator-nvme {
-> vreg_vph_pwr: regulator-vph-pwr {
-> vreg_wlan: regulator-wlan {
-> vreg_wwan: regulator-wwan {
-> 
->>> +    status = "okay";
->>> +
->>> +    typec: tps6598x@38 {
->>
->> Node names should be generic.
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> None of those fit really
-> 
-> typec_pd is upstream for the same IC, I'll reuse that.
-Names, not labels.
+> That's ample time to fix this, so I intend to apply this. But I'll
+> give it a few days for comments.
 
-label: name@unitaddress {
+Rob, I'd recommend not applying this because it'll fix it for Dmitry
+but break someone else's use case. That's the whole reason it takes me
+a while to send out patches -- it's easy to fix it for a subset of
+devices, but fixing something without breaking someone else is harder
+(I still believe it's doable) and it takes a while to test them on all
+the devices I want to test before sending them out.
 
-Konrad
-> 
-> arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> 
-> ---
-> bod
+-Saravana
+[1] - https://lore.kernel.org/lkml/20220810060040.321697-1-saravanak@google.com/
