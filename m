@@ -2,260 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A470367A70B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 00:44:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 143F967A787
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 01:23:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231269AbjAXXoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Jan 2023 18:44:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42862 "EHLO
+        id S234152AbjAYAXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Jan 2023 19:23:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229534AbjAXXoN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 18:44:13 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0430E1F4A0;
-        Tue, 24 Jan 2023 15:43:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674603818; x=1706139818;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2d4DLn4Wkq1yGxf176F911BtmoZDFFVhJcdoBSnLFkk=;
-  b=h9t0hpFm8iUE6KVqgLIJBB5rjI2GSwbPOQ3btbm0x8WiLlz9ERLkIM1E
-   7A/XMgRbvvFYTDrjVo0gl+FT7HELcrdJ/h2EvQnjDzoUNB42P85pbeUdo
-   TgO+lK+iCCMFqKTAgUZ9o0ZIRg3eM28A9Z5ot0ShRtAJ/7WBFgoW9yLFM
-   N0lCRcTHMYynm+7vz07N2Ms2AYv5gylLjcc3SWWNECYRuOT0Vu2/LAAl1
-   1r+cZKI1ug4bTbUuiOPzIh8wskunyCcoA+YerfefDNWSltUMVLW2/CLUI
-   wyCY6UK5CjPZ8w0YoLVyHNuyZLPxMIC2hUfRPPw0lkQC3ZjXP+cMZyBkp
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="327695410"
-X-IronPort-AV: E=Sophos;i="5.97,243,1669104000"; 
-   d="scan'208";a="327695410"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2023 15:43:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="612219969"
-X-IronPort-AV: E=Sophos;i="5.97,243,1669104000"; 
-   d="scan'208";a="612219969"
-Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 24 Jan 2023 15:43:27 -0800
-Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pKSwo-0006sW-0K;
-        Tue, 24 Jan 2023 23:43:26 +0000
-Date:   Wed, 25 Jan 2023 07:42:46 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
-        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, linux-serial@vger.kernel.org,
-        amitkumar.karwar@nxp.com, rohit.fule@nxp.com, sherry.sun@nxp.com,
-        neeraj.sanjaykale@nxp.com
-Subject: Re: [PATCH v1 3/3] Bluetooth: NXP: Add protocol support for NXP
- Bluetooth chipsets
-Message-ID: <202301250708.mfePhaPV-lkp@intel.com>
-References: <20230124174714.2775680-4-neeraj.sanjaykale@nxp.com>
+        with ESMTP id S234111AbjAYAXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Jan 2023 19:23:24 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 257104B8A2
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 16:23:21 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id v6so43522303ejg.6
+        for <devicetree@vger.kernel.org>; Tue, 24 Jan 2023 16:23:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IhJRzXVyFbYsW9+EPTTFmUQre+ecqTHVuxtlkf1ZhBo=;
+        b=KCLc7tjuPxwl5JW8yMLr1Wn5U5TnOHXpJR9NXS35wGwpcxF92n6GwN6d2xeH3QzBrU
+         4WAG5bmWef/Pu9BseaRWJIdThGWZUghD1/mykmTHdHyUNMMUPv5yKRdM2LqG/f5iCYtm
+         6HCjTLZJF3O29/qVTTMGYJymLcJEvX0M0G8iT0jKLteUVJGi06JmvEXGBsp3olwYz95A
+         D7gOtlA4y4SqhHcejKrZK41ioSnnOL/8y4AjT0QJ851q9johTHIgv30clTX1wW5iBTgm
+         PRHADWXI1A4mEBUAfuQ8hWdCO5tIm1Rx0SZ1Bq5vTPcQ1WsljCaAYNtJJ5AWQazQ+r5c
+         q4fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IhJRzXVyFbYsW9+EPTTFmUQre+ecqTHVuxtlkf1ZhBo=;
+        b=fRMLrde2AeFknLZQzrlvaIdRQCs9LhpGJJZmqiUfmGg7oTdn/9TdZ34ukQbw+AYvHf
+         mDMzO61EIWeGRZ+HgX4b4q819h8i/D9jZAXa8fqI9axqh6O0wFUjJKwHJHXi/i3PiWur
+         Lo97ooE6hppWlJtWvD+GkDv5x4ZwhdfsMYn8cNnPQMX/4uUC9MEvgB7XkHndjjWwOvnE
+         M/w5Iw/UakyDLn4izeybKPGbpPCiEA4vZ5cn6Zy0nfSBJAWOAJt2LUsA9S2uFfS6ZG2Z
+         nRgDjz7/N9lxeBBsM4yZvpQ133wVoqrW0e6GabpvMDMuesZO4S/k+5skY3kETTwVNANv
+         z1Qg==
+X-Gm-Message-State: AFqh2kqhhsQ4HOL5pIDtayldo7JAf+x7nHcTX5u8XwJ4eArrmghLwQRo
+        nPZvAXInNGwI50nJ8OX7iAM8gA==
+X-Google-Smtp-Source: AMrXdXvS1BAG+73sw122jBVVgFvXv4BoWPsK0NmBVj0lSa1oJW1cWbomQQG6e+x6UomqF0DgG/FF/Q==
+X-Received: by 2002:a17:907:9252:b0:86e:d832:2f60 with SMTP id kb18-20020a170907925200b0086ed8322f60mr27013282ejb.48.1674606199621;
+        Tue, 24 Jan 2023 16:23:19 -0800 (PST)
+Received: from fedora.local (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
+        by smtp.gmail.com with ESMTPSA id if10-20020a170906df4a00b00738795e7d9bsm1584606ejc.2.2023.01.24.16.23.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jan 2023 16:23:19 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 25 Jan 2023 01:23:06 +0100
+Subject: [PATCH v3 1/6] dt-bindings: crypto: Let STM32 define Ux500 HASH
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230124174714.2775680-4-neeraj.sanjaykale@nxp.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20221227-ux500-stm32-hash-v3-1-32ee12cd6f06@linaro.org>
+References: <20221227-ux500-stm32-hash-v3-0-32ee12cd6f06@linaro.org>
+In-Reply-To: <20221227-ux500-stm32-hash-v3-0-32ee12cd6f06@linaro.org>
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lionel Debieve <lionel.debieve@foss.st.com>
+Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.11.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neeraj,
+This adds device tree bindings for the Ux500 HASH block
+as a compatible in the STM32 HASH bindings.
 
-Thank you for the patch! Perhaps something to improve:
+The Ux500 HASH binding has been used for ages in the kernel
+device tree for Ux500 but was never documented, so fill in
+the gap by making it a sibling of the STM32 HASH block,
+which is what it is.
 
-[auto build test WARNING on bluetooth-next/master]
-[also build test WARNING on bluetooth/master tty/tty-testing tty/tty-next tty/tty-linus linus/master v6.2-rc5 next-20230124]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The relationship to the existing STM32 HASH block is pretty
+obvious when looking at the register map, and I have written
+patches to reuse the STM32 HASH driver on the Ux500.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Neeraj-Sanjay-Kale/serdev-Add-method-to-assert-break/20230125-015108
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git master
-patch link:    https://lore.kernel.org/r/20230124174714.2775680-4-neeraj.sanjaykale%40nxp.com
-patch subject: [PATCH v1 3/3] Bluetooth: NXP: Add protocol support for NXP Bluetooth chipsets
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20230125/202301250708.mfePhaPV-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/e5f775c45ec84de38a4cadfb115c488cb44e5943
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Neeraj-Sanjay-Kale/serdev-Add-method-to-assert-break/20230125-015108
-        git checkout e5f775c45ec84de38a4cadfb115c488cb44e5943
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash drivers/bluetooth/
+The main difference from the outside is that the Ux500 HASH
+lacks the interrupt line, so some special if-clauses are
+needed to accomodate this in the binding.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v2->v3:
+- Pick up Rob's review tag.
+ChangeLog v1->v2:
+- Use an else construction instead of if/if not.
+---
+ .../devicetree/bindings/crypto/st,stm32-hash.yaml  | 23 +++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
 
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/bluetooth/btnxp.c:31:
-   drivers/bluetooth/btnxp.c: In function 'nxp_recv_fw_req_v1':
->> drivers/bluetooth/btnxp.c:707:33: warning: format '%ld' expects argument of type 'long int', but argument 2 has type 'size_t' {aka 'unsigned int'} [-Wformat=]
-     707 |                         BT_INFO("FW_Downloaded Successfully: %ld bytes", nxpdev->fw->size);
-         |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~
-         |                                                                                    |
-         |                                                                                    size_t {aka unsigned int}
-   include/net/bluetooth/bluetooth.h:242:41: note: in definition of macro 'BT_INFO'
-     242 | #define BT_INFO(fmt, ...)       bt_info(fmt "\n", ##__VA_ARGS__)
-         |                                         ^~~
-   drivers/bluetooth/btnxp.c:707:64: note: format string is defined here
-     707 |                         BT_INFO("FW_Downloaded Successfully: %ld bytes", nxpdev->fw->size);
-         |                                                              ~~^
-         |                                                                |
-         |                                                                long int
-         |                                                              %d
-   drivers/bluetooth/btnxp.c: In function 'nxp_recv_fw_req_v3':
-   drivers/bluetooth/btnxp.c:826:25: warning: format '%ld' expects argument of type 'long int', but argument 2 has type 'size_t' {aka 'unsigned int'} [-Wformat=]
-     826 |                 BT_INFO("FW_Downloaded Successfully: %ld bytes", nxpdev->fw->size);
-         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~
-         |                                                                            |
-         |                                                                            size_t {aka unsigned int}
-   include/net/bluetooth/bluetooth.h:242:41: note: in definition of macro 'BT_INFO'
-     242 | #define BT_INFO(fmt, ...)       bt_info(fmt "\n", ##__VA_ARGS__)
-         |                                         ^~~
-   drivers/bluetooth/btnxp.c:826:56: note: format string is defined here
-     826 |                 BT_INFO("FW_Downloaded Successfully: %ld bytes", nxpdev->fw->size);
-         |                                                      ~~^
-         |                                                        |
-         |                                                        long int
-         |                                                      %d
-
-
-vim +707 drivers/bluetooth/btnxp.c
-
-   647	
-   648	/* for legacy chipsets with V1 bootloader */
-   649	static int nxp_recv_fw_req_v1(struct hci_dev *hdev, struct sk_buff *skb)
-   650	{
-   651		struct V1_DATA_REQ *req = skb_pull_data(skb, sizeof(struct V1_DATA_REQ));
-   652		struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
-   653		const struct btnxpuart_data *nxp_data = nxpdev->nxp_data;
-   654		static bool timeout_changed;
-   655		static bool baudrate_changed;
-   656		u32 requested_len;
-   657		static u32 expected_len = HDR_LEN;
-   658		int err;
-   659	
-   660		if (!test_bit(BTNXPUART_FW_DOWNLOADING, &nxpdev->tx_state))
-   661			return 0;
-   662	
-   663		if (strlen(nxpdev->fw_name) == 0) {
-   664			err = nxp_load_fw_params_for_chip_id(0xffff, hdev);
-   665			if (err < 0)
-   666				return err;
-   667			timeout_changed = false;
-   668			baudrate_changed = false;
-   669			/* If secondary baudrate is not read from
-   670			 * the conf file set default value from nxp_data
-   671			 */
-   672			if (nxpdev->fw_dnld_sec_baudrate == 0)
-   673				nxpdev->fw_dnld_sec_baudrate = nxp_data->fw_dnld_sec_baudrate;
-   674		}
-   675	
-   676		if (nxpdev->fw_dnld_sec_baudrate != nxpdev->current_baudrate) {
-   677			if (!timeout_changed) {
-   678				nxp_send_ack(NXP_ACK_V1, hdev);
-   679				timeout_changed = nxp_fw_change_timeout(hdev, req->len);
-   680				return 0;
-   681			}
-   682			if (!baudrate_changed) {
-   683				nxp_send_ack(NXP_ACK_V1, hdev);
-   684				baudrate_changed = nxp_fw_change_baudrate(hdev, req->len);
-   685				if (baudrate_changed) {
-   686					serdev_device_set_baudrate(nxpdev->serdev,
-   687									nxpdev->fw_dnld_sec_baudrate);
-   688					nxpdev->current_baudrate = nxpdev->fw_dnld_sec_baudrate;
-   689				}
-   690				return 0;
-   691			}
-   692		}
-   693	
-   694		if (!nxpdev->fw) {
-   695			BT_INFO("Request Firmware: %s", nxpdev->fw_name);
-   696			err = request_firmware(&nxpdev->fw, nxpdev->fw_name, &hdev->dev);
-   697			if (err < 0) {
-   698				BT_ERR("Firmware file %s not found", nxpdev->fw_name);
-   699				clear_bit(BTNXPUART_FW_DOWNLOADING, &nxpdev->tx_state);
-   700				return err;
-   701			}
-   702		}
-   703	
-   704		if (req && (req->len ^ req->len_comp) == 0xffff) {
-   705			nxp_send_ack(NXP_ACK_V1, hdev);
-   706			if (req->len == 0) {
- > 707				BT_INFO("FW_Downloaded Successfully: %ld bytes", nxpdev->fw->size);
-   708				clear_bit(BTNXPUART_FW_DOWNLOADING, &nxpdev->tx_state);
-   709				wake_up_interruptible(&nxpdev->suspend_wait_q);
-   710				return 0;
-   711			}
-   712			if (req->len & 0x01) {
-   713				/* The CRC did not match at the other end.
-   714				 * That's why the request to re-send.
-   715				 * Simply send the same bytes again.
-   716				 */
-   717				requested_len = nxpdev->fw_sent_bytes;
-   718				BT_ERR("CRC error. Resend %d bytes of FW.", requested_len);
-   719			} else {
-   720				/* Increment offset by number of previous successfully sent bytes */
-   721				nxpdev->fw_dnld_offset += nxpdev->fw_sent_bytes;
-   722				requested_len = req->len;
-   723			}
-   724	
-   725			/* The FW bin file is made up of many blocks of
-   726			 * 16 byte header and payload data chunks. If the
-   727			 * FW has requested a header, read the payload length
-   728			 * info from the header, and then send the header.
-   729			 * In the next iteration, the FW should request the
-   730			 * payload data chunk, which should be equal to the
-   731			 * payload length read from header. If there is a
-   732			 * mismatch, clearly the driver and FW are out of sync,
-   733			 * and we need to re-send the previous header again.
-   734			 */
-   735			if (requested_len == expected_len) {
-   736				if (requested_len == HDR_LEN)
-   737					expected_len = nxp_get_data_len(nxpdev->fw->data +
-   738										nxpdev->fw_dnld_offset);
-   739				else
-   740					expected_len = HDR_LEN;
-   741			} else {
-   742				if (requested_len == HDR_LEN) {
-   743					/* FW download out of sync. Send previous chunk again */
-   744					nxpdev->fw_dnld_offset -= nxpdev->fw_sent_bytes;
-   745					expected_len = HDR_LEN;
-   746				}
-   747			}
-   748	
-   749			if (nxpdev->fw_dnld_offset + requested_len <= nxpdev->fw->size)
-   750				serdev_device_write_buf(nxpdev->serdev,
-   751						nxpdev->fw->data + nxpdev->fw_dnld_offset,
-   752						requested_len);
-   753			nxpdev->fw_sent_bytes = requested_len;
-   754		} else {
-   755			BT_INFO("ERR: Send NAK");
-   756			nxp_send_ack(NXP_NAK_V1, hdev);
-   757		}
-   758		return 0;
-   759	}
-   760	
+diff --git a/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml b/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml
+index 4ccb335e8063..b767ec72a999 100644
+--- a/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml
++++ b/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml
+@@ -6,12 +6,18 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: STMicroelectronics STM32 HASH
+ 
++description: The STM32 HASH block is built on the HASH block found in
++  the STn8820 SoC introduced in 2007, and subsequently used in the U8500
++  SoC in 2010.
++
+ maintainers:
+   - Lionel Debieve <lionel.debieve@foss.st.com>
+ 
+ properties:
+   compatible:
+     enum:
++      - st,stn8820-hash
++      - stericsson,ux500-hash
+       - st,stm32f456-hash
+       - st,stm32f756-hash
+ 
+@@ -41,11 +47,26 @@ properties:
+     maximum: 2
+     default: 0
+ 
++  power-domains:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+   - clocks
+-  - interrupts
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          items:
++            const: stericsson,ux500-hash
++    then:
++      properties:
++        interrupts: false
++    else:
++      required:
++        - interrupts
+ 
+ additionalProperties: false
+ 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.39.0
