@@ -2,154 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D19CB67B393
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 14:41:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB11E67B396
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 14:42:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233619AbjAYNl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 08:41:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37058 "EHLO
+        id S229806AbjAYNmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 08:42:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229806AbjAYNlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 08:41:25 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC99C4DCD4;
-        Wed, 25 Jan 2023 05:41:24 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1674654069; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=FYqS8pXHLDpygW1IQ0GkOLw8TvGh1suuGXX5dcgCR4kviESto6QkhbL2B1aKAjJcVLtj64bpmUFmVLyJee/hjbzg3iBRRLVyYHMaTuvdGnmeD67dbRz0qBIGS10mLNy5guVjQKa71+EkKrU5GRIpTlRBB2VnJO9AI0pF36/5x04=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1674654069; h=Content-Type:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=Buta/IEuOcOmRkcva2fQ1tSXMH4qcUYXjavj7E1aFaM=; 
-        b=H7IVh18j4spC50AvmeauW2WLpWCchVRxizHNYlQ/YU7KE9A+qshM/gQT6He53N66Js84Nxx2wOuhUQZ4pe95HdfB9mevYsDE0MLziSQWgKI1x3XlKBExmj6CHvPULCJdthLFPk+AP1qYRVv7ZRKI/sFTgUWmzzbq0EQNwEWa9vo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=linux.beauty;
-        spf=pass  smtp.mailfrom=me@linux.beauty;
-        dmarc=pass header.from=<me@linux.beauty>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1674654069;
-        s=zmail; d=linux.beauty; i=me@linux.beauty;
-        h=Date:Date:Message-ID:From:From:To:To:Cc:Cc:Subject:Subject:In-Reply-To:References:MIME-Version:Content-Type:Message-Id:Reply-To;
-        bh=Buta/IEuOcOmRkcva2fQ1tSXMH4qcUYXjavj7E1aFaM=;
-        b=iR9fvJXN2YOKwZ4jTdPNlcIB5azaqsL4YvIVUxl0D5Zo71alnZNa/IG9H0+LSOsV
-        ZXkQB0JslpTamZJLId+oKVVSlpJOgBeqdpPkh35hEhCICdGkqPWmc7OALFmtd83sXBu
-        SPKBg05RPZcvndMXv3yrN/aKI+OAkELiekFM2DZw=
-Received: from lchen-xiaoxin.linux.beauty (221.225.241.248 [221.225.241.248]) by mx.zohomail.com
-        with SMTPS id 1674654067964288.69962327378846; Wed, 25 Jan 2023 05:41:07 -0800 (PST)
-Date:   Wed, 25 Jan 2023 21:40:19 +0800
-Message-ID: <87sffyhgvw.wl-me@linux.beauty>
-From:   Li Chen <me@linux.beauty>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Li Chen <lchen@ambarella.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229953AbjAYNmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 08:42:53 -0500
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82CCDB76D;
+        Wed, 25 Jan 2023 05:42:51 -0800 (PST)
+Received: by mail-qt1-f175.google.com with SMTP id j9so15924139qtv.4;
+        Wed, 25 Jan 2023 05:42:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KVLXLhrWZMxsS5LRw98rr15QqoCU46pEI19S0OxbMm4=;
+        b=ZiTPoD8FEZ2Kw/SQ6hzgXuhGAmT4q8z7x5uU2krqL0HRgMIeVonmYLcglLHb8JNRgJ
+         mENwX/UAoSTcNfI+fWWpDcwYXMkNT3muKJCK6UNXm8ibuNl29vGrwQslTifDXcFiyvwy
+         1zQdCsrm2cCuY+jpU7jdNCNqaL7cGoQ9zX7AXuaopyCyngzZ02nVguZfltkbpxYaSP7y
+         2hvOQDczUjERt/ZnbfqiCFGXVkdJwr3iEsYAep2VgoB2x3FgYmIZXA6k4Z4iARg88niO
+         It5lfq61IrnuzSwhHiEFSaMIRUnWcY4QVR5G5zgzemixxt8048BTZzvVaf/WtfXifOzc
+         QHrg==
+X-Gm-Message-State: AFqh2koj5iVqAp+tLyVPWQGNaYCdeicb5HSquUn3uWtt19Gmi3AuPChW
+        FDyTmTf7KJ4eGebd9YSMtJhc9iD/81yT/w==
+X-Google-Smtp-Source: AMrXdXvRb+7PJe1ivjV8VqGbG94rxv6z1zS/8anDHjfdr5zJGXC38BDAyP3ohWoUVis0DTPSaCKzPg==
+X-Received: by 2002:ac8:5c14:0:b0:3b6:33c6:c5ac with SMTP id i20-20020ac85c14000000b003b633c6c5acmr60877323qti.4.1674654170281;
+        Wed, 25 Jan 2023 05:42:50 -0800 (PST)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id d10-20020a05620a166a00b00706b299d014sm3388067qko.132.2023.01.25.05.42.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Jan 2023 05:42:49 -0800 (PST)
+Received: by mail-yb1-f173.google.com with SMTP id u72so2334903ybi.7;
+        Wed, 25 Jan 2023 05:42:49 -0800 (PST)
+X-Received: by 2002:a25:d505:0:b0:7bf:d201:60cb with SMTP id
+ r5-20020a25d505000000b007bfd20160cbmr2623220ybe.365.1674654169340; Wed, 25
+ Jan 2023 05:42:49 -0800 (PST)
+MIME-Version: 1.0
+References: <20230118144747.24968-1-fabrizio.castro.jz@renesas.com> <20230118144747.24968-3-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <20230118144747.24968-3-fabrizio.castro.jz@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 25 Jan 2023 14:42:38 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVMxt93MxBuO60qWmwuKjfFAts=FyWt4VVP+5uO1Pwx0w@mail.gmail.com>
+Message-ID: <CAMuHMdVMxt93MxBuO60qWmwuKjfFAts=FyWt4VVP+5uO1Pwx0w@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: v2mevk2: Add PWC support
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "moderated list:ARM/Ambarella SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH 07/15] dt-bindings: clock: Add Ambarella clock bindings
-In-Reply-To: <ec9fc589-2612-3315-3550-83b68bead926@linaro.org>
-References: <20230123073305.149940-1-lchen@ambarella.com>
-        <20230123073305.149940-8-lchen@ambarella.com>
-        <0c19efb4-3bca-f500-ca24-14b9d24369ef@linaro.org>
-        <87y1prgdyu.wl-me@linux.beauty>
-        <b26a52ff-6b8a-8a64-7189-346cd2b0d705@linaro.org>
-        <87tu0ehl88.wl-me@linux.beauty>
-        <ec9fc589-2612-3315-3550-83b68bead926@linaro.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-ZohoMailClient: External
-X-Spam-Status: No, score=0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_BL_SPAMCOP_NET,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Jan 2023 20:14:16 +0800,
-
-Hi Krzysztof,
-
-Krzysztof Kozlowski wrote:
+On Wed, Jan 18, 2023 at 3:48 PM Fabrizio Castro
+<fabrizio.castro.jz@renesas.com> wrote:
+> The RZ/V2M EVK uses the PWC IP to control external power supplies
+> and the I/O voltage for the uSD card.
 >
-> On 25/01/2023 13:06, Li Chen wrote:
-> >>> Feel free to correct me if you think this
-> >>> is not a good idea.
-> >>
-> >> This is bad idea. Compatibles should be specific. Devices should not use
-> >> syscons to poke other registers, unless strictly necessary, but have
-> >> strictly defined MMIO address space and use it.
-> >
-> > Ok, I will convert syscon-based regmaps to SoC-specific compatibles and of_device_id->data.
-> >
-> > But I have three questions:
-> >
-> > 0. why syscon + offsets is a bad idea copared to specific compatibles?
+> This patch enables the PWC node, and it also enables the poweroff
+> features since PWC is actually used to control the board power
+> rails.
 >
-> Specific compatibles are a requirement. They are needed to match device
-> in exact way, not some generic and unspecific. The same with every other
-> interface, it must be specific to allow only correct usage.
->
-> It's of course different with generic fallbacks, but we do not talk
-> about them here...
->
-> > 1. when would it be a good idea to use syscon in device tree?
->
-> When your device needs to poke one or few registers from some
-> system-controller block.
->
-> > 2. syscon VS reg, which is preferred in device tree?
->
-> There is no such choice. Your DTS *must* describe the hardware. The
-> hardware description is for example clock controller which has its own
-> address space. If you now do not add clock controller's address space to
-> the clock controller, it is not a proper hardware description. The same
-> with every other property. If your device has interrupts, but you do not
-> add them, it is not correct description.
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 
-Got it. But Ambarella hardware design is kind of strange. I want to add mroe
-expalaination about why Ambarella's downstream kernel
-use so much syscon in device trees:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.3.
 
-For most SoCs from other vendors, they have seperate address space regions
-for different peripherals, like
-axi address space A: ENET
-axi address space B: PCIe
-axi address space B: USB
-...
+Gr{oetje,eeting}s,
 
-Ambarella is somewhat **different**, its SoCs have two system controllers regions:
-RCT and scratchpad, take RCT for example:
-"The S6LM system software
-interacts with PLLs, PHYs and several other low-level hardware blocks using APB reset clock and test (RCT)
-registers with a system-layer application programming interface (API).
-This includes the setting of clock frequencies."
+                        Geert
 
-There are so many peripherals registers located inside RCT and scratchpad
-(like usb/phy, gpio, sd, dac, enet, rng), and some peripherals even have no their
-own modules for register definitions.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-So most time(for a peripheral driver), the only differences between different
-Ambarella SoCs are just the syscon(rct or scratchpad) offsets get changed.
-
-I don't think such lazy hardware design is common in vendors other than ambarella.
-
-If I switch to SoC-specific compatibles, and remove these syscon from device tree,
-of_device_id->data may only contain system controller(rct or scratchpad) offset for many Ambarella drivers,
-and ioremap/devm_ioremap carefully.
-
-The question is: can upstream kernel accept such codes?
-
-If yes, I will switch to SoC-specific compatibles and remove syscon without hesitation.
-
-Regards,
-Li
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
