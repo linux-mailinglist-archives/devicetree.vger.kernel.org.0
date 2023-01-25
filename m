@@ -2,66 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3258F67B472
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 15:29:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3795167B482
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 15:32:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234833AbjAYO3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 09:29:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34106 "EHLO
+        id S234990AbjAYOcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 09:32:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229571AbjAYO3Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 09:29:16 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2350B448
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 06:29:15 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A4B19B819A2
-        for <devicetree@vger.kernel.org>; Wed, 25 Jan 2023 14:29:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80F59C433D2;
-        Wed, 25 Jan 2023 14:29:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674656953;
-        bh=/8iL+eLjjDUX15rzUKs6LSSY7QQkdcX4nnlbul5lJdo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mNTdsMAboEikPDCCoP+NQyJEEVVV+ayglp9jMT05a49ONZlUGHgKfpErMg+9wYk98
-         2QxSxOTrsY3kUXKMcAfs6a4lL6OJhnbXldFJau3QZ5kV258RmJ3iwEKnniPlTPgCNJ
-         5rVR0oN/NnxxNP6SEMbEWQVAaZAz+ELjPny/ev6JyGS3B28lFquPoBHo7AcSYgFTdZ
-         vChP2LkdInH+JX6jXchNfsQs5etWrfVgf8Gk/5UjDVeEzCz5Vu0OTBCypEOBdhP3Yw
-         rFGrSHBCOsEucpRe1PtEPxpbWydxjj70UtW/p+6thJGfpWTJZiWu8WfWH7O1h9acNG
-         Ib0HUJmZTn5Ig==
-Date:   Wed, 25 Jan 2023 22:29:05 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: Add LCDIF2 & LDB nodes
-Message-ID: <20230125142904.GB20713@T480>
-References: <20221208090842.2869374-1-alexander.stein@ew.tq-group.com>
+        with ESMTP id S229517AbjAYOcf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 09:32:35 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0676C152;
+        Wed, 25 Jan 2023 06:32:34 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id r2so17228160wrv.7;
+        Wed, 25 Jan 2023 06:32:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AYXw+AOPwLHoksA7Df9XhHVSAEgssnhp/xg1dUt6Rjk=;
+        b=GHWgJ+c0TSTRESaqEAwTU+5yoPgI+ytcXnZCX0h+e8p01oUDKdNXbNh2cupxWWKQaM
+         cSW6mlKwZPksBJrJ8y8ABz8nd2c/APnXLkjsJ4zYFAALKKtHVCrcbUNOeUgj7gyESWfD
+         tk8cpWYegvvNzJVSWWZBV8U1FnBFHkQU8Zoe6fDFfMmI1rj7VisvbLDXA/ngSw3jRrvC
+         lhWACWx78W1sGREkjmCSV2b7oBoNrEOddTdpaHABIkJVi2vD2676z62WeV7g1r1R8mOW
+         o8sJ83vAJSn/Is5bYmliqlsDNT4vYCicEDpJRcVz0psbTStiOMf5uf8XwgsMVRrol26H
+         AGFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AYXw+AOPwLHoksA7Df9XhHVSAEgssnhp/xg1dUt6Rjk=;
+        b=bBrbDvsIeAeysjPfSEngxaIzVr1saoQrbFYzcoPsVxVNrnCDyTWowCiBrrXw0FsqHG
+         Vv9xAF4kfXkD+66TJfIEvmUFCcXRa0pI3jOgSU9ZuJZ/AUVJapl29Y9fAQ/XXeJpgnaA
+         4xwVEdHSVPFOjwvlr5q6OAmikqo+VGiMsOTC4q4yC4GHZgxlnOP19/PHZdsQAKPWoa1V
+         7goAKDUXU062RL/OPVR59q5oPc5UCBMXJ8mZFPfEQK8cglqiOGa6UpVN71w50e1Xk4T3
+         ktPjPjGVhywfK++YCYidfMSx43278NRJlEQqA7F0PyCFLfw6Vev3AvUDbb5URBTTWuPc
+         krpQ==
+X-Gm-Message-State: AFqh2kqpj3KXPGAI7cTPZxw+E1s/jNpaaWeHJHXLec3TjQ9loAl8tUR9
+        6v+yNSlYsahzBD0UKPI0GIQ=
+X-Google-Smtp-Source: AMrXdXvf88ZGka2HcScPY6lOi/9ubPa5qOr1CJ68XaLkNAIMhzQF5oG/o5Vp75Duyi7BfDhyBItWzQ==
+X-Received: by 2002:adf:eacd:0:b0:2bb:f4bf:e763 with SMTP id o13-20020adfeacd000000b002bbf4bfe763mr38736300wrn.51.1674657153146;
+        Wed, 25 Jan 2023 06:32:33 -0800 (PST)
+Received: from [192.168.1.135] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id o10-20020adfeaca000000b002b57bae7174sm4767577wrn.5.2023.01.25.06.32.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Jan 2023 06:32:32 -0800 (PST)
+Message-ID: <b143d52a-0a03-9576-ac32-61591d347e54@gmail.com>
+Date:   Wed, 25 Jan 2023 15:32:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221208090842.2869374-1-alexander.stein@ew.tq-group.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/2] arm64: dts: mediatek: mt7622: drop serial clock-names
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230123151634.370011-1-krzysztof.kozlowski@linaro.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20230123151634.370011-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 08, 2022 at 10:08:41AM +0100, Alexander Stein wrote:
-> LCDIF2 is directly attached to the LVDS Display Bridge (LDB).
-> Both need the same clock source (VIDEO_PLL1).
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Applied both, thanks!
+
+On 23/01/2023 16:16, Krzysztof Kozlowski wrote:
+> The serial node does not use clock-names:
+> 
+>    mt7622-bananapi-bpi-r64.dtb: serial@1100c000: Unevaluated properties are not allowed ('clock-names' was unexpected)
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Both applied, thanks!
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt7622.dtsi | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> index 146e18b5b1f4..62487a3c4db1 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> @@ -526,7 +526,6 @@ btif: serial@1100c000 {
+>   		reg = <0 0x1100c000 0 0x1000>;
+>   		interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_LOW>;
+>   		clocks = <&pericfg CLK_PERI_BTIF_PD>;
+> -		clock-names = "main";
+>   		reg-shift = <2>;
+>   		reg-io-width = <4>;
+>   		status = "disabled";
