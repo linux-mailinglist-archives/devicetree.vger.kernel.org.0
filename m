@@ -2,375 +2,367 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ECE467AF4D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 11:07:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C45567AF65
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 11:13:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235390AbjAYKHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 05:07:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49102 "EHLO
+        id S235090AbjAYKNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 05:13:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235509AbjAYKHs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 05:07:48 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A47B91B1;
-        Wed, 25 Jan 2023 02:07:44 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30P9jVOb021226;
-        Wed, 25 Jan 2023 10:07:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : from : subject : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=QG1hOKYyuBjZx2ZX+GmCBbFyswYwVCZj+QnlC00l60k=;
- b=pFzn5puRbpKPQGLVsClKUjAQiF3f2dBXL2ta1kuhSbldpdP+XOORhMouKF7xq3InIGWw
- /jnH6ji7oTMhPXt5uxzm/pyH9WOcSFsLOHqkOaT3bRDRAbW1gVpQY7j4GYk5HvaVaaQo
- nP2UaJF5o4lm+FqzczTAyzghv2S3vk4VbX3B1EAyFHFhh0kTtVV0OKLtdOhO+cPonl6f
- oE1+RBA9cRBhw7duupsTcygIR8Jo2B9k6maxA0lc455Yk5oZIEP0Ue0ZHDBOILgUnTaK
- DoWvtK0+8buiZRQWT3luWaFWczor1ArxxPnLtuBTx5j6NdwyoaGk8EzG5+MKROEAuXw1 1A== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3najkh9kds-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 25 Jan 2023 10:07:33 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30PA7WmH010412
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 25 Jan 2023 10:07:32 GMT
-Received: from [10.216.60.48] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 25 Jan
- 2023 02:07:25 -0800
-Message-ID: <0d9eab77-ad5f-be23-8ed6-d78c0d3ccef1@quicinc.com>
-Date:   Wed, 25 Jan 2023 15:37:20 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Subject: Re: [RFC v4 2/5] usb: dwc3: core: Refactor PHY logic to support
- Multiport Controller
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S235282AbjAYKNe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 05:13:34 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C48241F1;
+        Wed, 25 Jan 2023 02:13:30 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 82D546E0;
+        Wed, 25 Jan 2023 11:13:26 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1674641606;
+        bh=LnwJ2Up/FLzmG7OYUnL3pp9pHtl+LHPjE32uPckwnEM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Py5pC7HnLduNUqkHQxHZwWUQgsFypd92Ahtj/qzvsoE7zb9vNoMZZ3M0tpSREB2FQ
+         5gF0ZCI/Quztp6YIW4eZA01WNweGiC7887qCazDbP3shwFNKU1TfyqXac/r2y29fxE
+         BNGk6pDhegcEZQIfQNuPHLCFMPGVLob6fSa73Trg=
+Date:   Wed, 25 Jan 2023 12:13:23 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Pavan Kondeti <quic_pkondeti@quicinc.com>,
-        Pratham Pratap <quic_ppratap@quicinc.com>,
-        "Harsh Agarwal" <quic_harshq@quicinc.com>,
-        Jack Pham <quic_jackp@quicinc.com>,
-        "Wesley Cheng" <quic_wcheng@quicinc.com>,
-        <quic_shazhuss@quicinc.com>
-References: <20230115114146.12628-1-quic_kriskura@quicinc.com>
- <20230115114146.12628-3-quic_kriskura@quicinc.com>
- <20230119003619.ane3weigd4ebsta6@synopsys.com>
- <7fa2d7b0-509d-ae90-4208-6f0245f927f7@quicinc.com>
- <20230120010226.wjwtisj4id6frirl@synopsys.com>
- <91fa86d8-f443-db13-1544-73e2dd50d964@quicinc.com>
- <20230120224400.77t2j3qtcdfqwt5s@synopsys.com>
-Content-Language: en-US
-In-Reply-To: <20230120224400.77t2j3qtcdfqwt5s@synopsys.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: u4X8nYY1VlsZpwfuklTFI99wFmvUqZTW
-X-Proofpoint-GUID: u4X8nYY1VlsZpwfuklTFI99wFmvUqZTW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-25_04,2023-01-24_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- adultscore=0 spamscore=0 suspectscore=0 mlxlogscore=999 clxscore=1015
- lowpriorityscore=0 impostorscore=0 mlxscore=0 priorityscore=1501
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301250092
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>
+Subject: Re: [PATCH v8 5/7] media: i2c: add DS90UB960 driver
+Message-ID: <Y9EAw+PUwZJFH+NO@pendragon.ideasonboard.com>
+References: <20230120153417.1156207-1-tomi.valkeinen@ideasonboard.com>
+ <20230120153417.1156207-6-tomi.valkeinen@ideasonboard.com>
+ <Y88EhodG7b+oSvtE@pendragon.ideasonboard.com>
+ <beaebec6-4ec5-8041-5f70-a974ae417a78@ideasonboard.com>
+ <Y9AjFcsQQZqZBhAb@pendragon.ideasonboard.com>
+ <ead8904b-0e17-81e7-98a8-19e4abfdf281@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <ead8904b-0e17-81e7-98a8-19e4abfdf281@ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Tomi,
 
-
-On 1/21/2023 4:14 AM, Thinh Nguyen wrote:
-> On Fri, Jan 20, 2023, Krishna Kurapati PSSNV wrote:
->>
->>
->> On 1/20/2023 6:32 AM, Thinh Nguyen wrote:
->>> Hi,
->>>
->>> On Thu, Jan 19, 2023, Krishna Kurapati PSSNV wrote:
->>>>
->>>>
->>>> On 1/19/2023 6:06 AM, Thinh Nguyen wrote:
->>>>> Hi,
->>>>>
->>>>> On Sun, Jan 15, 2023, Krishna Kurapati wrote:
->>>>>> Currently the DWC3 driver supports only single port controller
->>>>>> which requires at most one HS and one SS PHY.
->>>>>
->>>>> Add note here that multi-port is for host mode for clarity.
->>>>>
->>>>>>
->>>>>> But the DWC3 USB controller can be connected to multiple ports and
->>>>>> each port can have their own PHYs. Each port of the multiport
->>>>>> controller can either be HS+SS capable or HS only capable
->>>>>> Proper quantification of them is required to modify GUSB2PHYCFG
->>>>>> and GUSB3PIPECTL registers appropriately.
->>>>>>
->>>>>> Add support for detecting, obtaining and configuring phy's supported
->>>>>> by a multiport controller and limit the max number of ports
->>>>>> supported to 4.
->>>>>>
->>>>>> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
->>>>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->>>>>> ---
->>>>>>     drivers/usb/dwc3/core.c | 304 +++++++++++++++++++++++++++++-----------
->>>>>>     drivers/usb/dwc3/core.h |  15 +-
->>>>>>     drivers/usb/dwc3/drd.c  |  14 +-
->>>>>>     3 files changed, 244 insertions(+), 89 deletions(-)
->>>>>>
->>>
->>> <snip>
->>>
->>>>>> @@ -1575,6 +1690,21 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->>>>>>     	dwc->dis_split_quirk = device_property_read_bool(dev,
->>>>>>     				"snps,dis-split-quirk");
->>>>>> +
->>>>>> +	/*
->>>>>> +	 * If no mulitport properties are defined, default
->>>>>
->>>>> multi*
->>>>>
->>>>>> +	 * the port count to '1'.
->>>>>> +	 */
->>>>>
->>>>> Can we initialize num_ports and num_ss_ports to 1 instead of setting it
->>>>> on error (similar to how we handle other properties).
->>>>>
->>>> Hi Thinh,
->>>>
->>>>     Thanks for the review. On the bindings, Rob and Krzysztof have suggested
->>>> to get the num-ports and num-ss-ports by counting the Phy-names in DT.
->>>
->>> This may be a bit problematic for non-DT device. Currently pci devices
->>> pass fake DT properties to send these kinds of info. But that's fine,
->>> we can enhance dwc3 for non-DT devices later.
->>>
->>>>
->>>> Since there may be many cases where the user might skip giving any Phy's or
->>>> even skip different ports in the DT if he doesn't want to use them, can we
->>>> design/refactor the below logic as follows while mandating the fact that
->>>> user must give the SS Phy's if any starting from Port-0.:
->>>>
->>>> num-ss-ports = max_port_index (usb3-portX) + 1
->>>> num-ports = max (max_port_index(usb2-portX), num-ss-ports) + 1
->>>>
->>>> Ex: If there are 3 ports and only 1 is SS capable and user decides to skip
->>>> port-2 HS Phy.
->>>>
->>>> case-1: phy-names = "usb2-port0", "usb3-port0", "usb2-port-1"
->>>> case-2: phy-names = "usb2-port0", "usb2-port-1", "usb3-port1"
->>>>
->>>> In both cases, only one SS is present, just the order is changed. (Not sure
->>>> if last few ports can be made SS Capable instead of the first ports on any
->>>> HW) ?
->>>>
->>>> But according to the above formula:
->>>>
->>>> In case-1 : (num-ports = 2, num-ss-ports = 1) - This is correct
->>>> In case-2: (num-ports = 2, num-ss-ports = 2) - This is wrong
->>>>
->>>
->>> Can't we just walk through all the phy names to figure that out? Let's
->>> not require the user to specify Port-0 is SS capable if they can skip
->>> it.
->>>
->> Hi Thinh,
->>
->> Thanks for the review.
->>
->>    May be I wasn't able to convey my intention properly in my previous
->> thread. The above suggested method doesn't tell that user must not skip any
->> phy.
->>
->> Let us take the below case for 2 Port (HS+SS) capable controller.
->> If the user skips ss-phy 2, then:
->>
->> phy-names = "usb2-port0", "usb3-port0", "usb2-port-1"
->>
->> We don't need to configure GUSB3PIPECTL2 (for port-2) register ere. If we
->> parse phy-names and find it out, we see there are 2 hs-phy's and 1-ssphy and
->> num-ports = 2 and num-ss-ports = 1.
->>
->> If the user skips ss-phy-1, then phy-names would be something like the
->> below:
->>
->> phy-names = "usb2-port0", "usb2-port-1",  "usb3-port1";
->>
->> We need to handle two types of interpretations here while parsing the
->> phy-names:
->>
->> a) There are 2 SS Phy's and we just skipped the first one. In this scenario,
->> if we consider (num-ss-ports = 2) and (num-ports = 2) by using the above
->> formula as reference, we configure both GUSB3PIPECTL registers present in
->> the address map although we never use SS Phy-1 but nothing must break. All
->> ports would still work as the user intends with the exception of
->> GUSB3PIPECTL1 (for-port1) still being modified.
->>
->> b) The second interpretation is something like, port-1 is only HS capable
->> and only Port-2 is SS Capable, and so in the phy-names only port-2 has been
->> provided a SS Phy. Just by parsing through the phy-names, it would not be
->> possible to get that info. So if we consider num-ss-ports as 2 in this
->> scenario, we end up meddling with wrong registers (as there is only 1
->> GUSB3PIPECTL reg and we are assuing there are 2). I wanted to make sure that
->> this scenario was not possible.
->>
->> num-ss-ports = max_port_index (usb3-portX) + 1
->> num-ports = max (max_port_index(usb2-portX), max_port_index(usb2-portX)) + 1
->>
->> Taking case of a quad port controller with all ports SS Capable, if the user
->> wants to completely skip port-4. Then with above formula, we get (num-ports
->> = 3) and (num-ss-ports = 3) by parsing the phy-names and we will configure
->> exactly those dwc3-phy registers and not touch the port-4 registers which is
->> still fine.
->>
->> Please let me know if the above idea helps us in this scenario.
->>
+On Wed, Jan 25, 2023 at 09:39:57AM +0200, Tomi Valkeinen wrote:
+> On 24/01/2023 20:27, Laurent Pinchart wrote:
 > 
-> This becomes rather more complicated because the user can skip certain
-> port in the DT. We have access to the host registers. Can we just
-> temporarily map and access HCSPARAMS1 to get the MAXPORTS and each port
-> capability before handing control over to the xHCI driver. We would be
-> able to get the num_ports and num_ss_ports then.
+> >>>> +	} else if (ret < 0) {
+> >>>> +		dev_err(dev, "rx%u: failed to read 'ti,cdr-mode': %d\n", nport,
+> >>>
+> >>> If you moved the "ti,cdr-mode" to an argument, printed with %s, the same
+> >>> format string would be used for the other properties below, and should
+> >>> thus be de-duplicated by the compiler.
+> >>
+> >> I'm not quite sure if this is a sensible optimization or not, but I did
+> >> it so that I introduce:
+> >>
+> >> const char *read_err_str = "rx%u: failed to read '%s': %d\n";
+> > 
+> > static
+> > 
+> >> and then use that in the function, which makes the lines much shorter
+> >> and, I think, a bit more readable.
+> > 
+> > If you use the same string literal multiple times, the compiler should
+> > de-duplicate it automatically, so you don't have to create a variable
+> > manually.
 > 
-> Similarly, the xhci driver doesn't care whether the user skips certain
-> port in the DT, it only checks and operates based on the capability
-> registers.
+> Yes, but I think this looked better, as it made the code look less 
+> cluttered, and the point is more obvious. Otherwise, looking at the 
+> code, seeing dev_dbg(dev, "Foo %s\n", "bar"); looks pretty weird.
+
+I find
+
+	dev_dbg(dev, read_err_str, port, "ti,cdr-mode", ret);
+
+less readable as I then have to look up the read_err_str string to
+understand that line. I also wonder, in that case, if the compiler can
+still warn if the format string doesn't match the argument types.
+
+> >>>> +static void ub960_notify_unbind(struct v4l2_async_notifier *notifier,
+> >>>> +				struct v4l2_subdev *subdev,
+> >>>> +				struct v4l2_async_subdev *asd)
+> >>>> +{
+> >>>> +	struct ub960_rxport *rxport = to_ub960_asd(asd)->rxport;
+> >>>> +
+> >>>> +	rxport->source_sd = NULL;
+> >>>
+> >>> Does this serve any purpose ? If not, I'd drop the unbind handler.
+> >>
+> >> It makes sure we don't access the source subdev after it has been
+> >> unbound. I don't see much harm with this function, but can catch cleanup
+> >> errors.
+> > 
+> > Do you mean we'll crash on a NULL pointer dereference instead of
+> > accessing freed memory if this happens ? I suppose it's marginally
+> > better :-)
 > 
-> If we have the exact num_ports and num_ss_ports, we can be sure the
-> setting to GUSB3PIPECTLn and GUSB2PHYCFGn are valid.
+> Generally speaking I think it's significantly better. Accessing freed 
+> memory might go unnoticed for a long time, and might not cause any 
+> errors or cause randomly some minor errors. Here we might not even be 
+> accessing freed memory, as the source sd is probably still there, so 
+> KASAN wouldn't catch it.
 > 
+> In this particular case it might not matter that much. The source_sd is 
+> only used when starting streaming, so the chances are quite small that 
+> we'd end up there after the unbind.
+> 
+> Still, I think it's a very good practice to NULL the pointers when 
+> they're no longer valid.
 
-Hi Thinh,
+Fine with me.
 
-   Thanks for the suggestion. Is the following diff / implementation 
-good enough ? I Wanted to get it clarified from upstream as I am using 
-*ioremap/iounmap* directly instead of *devm_* API's
+> >>>> +}
+> > 
+> > [snip]
+> > 
+> >>>> +static int ub960_create_subdev(struct ub960_data *priv)
+> >>>> +{
+> >>>> +	struct device *dev = &priv->client->dev;
+> >>>> +	unsigned int i;
+> >>>> +	int ret;
+> >>>> +
+> >>>> +	v4l2_i2c_subdev_init(&priv->sd, priv->client, &ub960_subdev_ops);
+> >>>
+> >>> A blank line would be nice.
+> >>
+> >> Ok.
+> >>
+> >>>> +	v4l2_ctrl_handler_init(&priv->ctrl_handler, 1);
+> >>>
+> >>> You create two controls.
+> >>
+> >> Yep. Although I dropped TPG, so only one again.
+> >>
+> >>>> +	priv->sd.ctrl_handler = &priv->ctrl_handler;
+> >>>> +
+> >>>> +	v4l2_ctrl_new_std_menu_items(&priv->ctrl_handler, &ub960_ctrl_ops,
+> >>>> +				     V4L2_CID_TEST_PATTERN,
+> >>>> +				     ARRAY_SIZE(ub960_tpg_qmenu) - 1, 0, 0,
+> >>>> +				     ub960_tpg_qmenu);
+> >>>> +
+> >>>> +	v4l2_ctrl_new_int_menu(&priv->ctrl_handler, NULL, V4L2_CID_LINK_FREQ,
+> >>>> +			       ARRAY_SIZE(priv->tx_link_freq) - 1, 0,
+> >>>> +			       priv->tx_link_freq);
+> >>>> +
+> >>>> +	if (priv->ctrl_handler.error) {
+> >>>> +		ret = priv->ctrl_handler.error;
+> >>>> +		goto err_free_ctrl;
+> >>>> +	}
+> >>>> +
+> >>>> +	priv->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
+> >>>> +			  V4L2_SUBDEV_FL_HAS_EVENTS | V4L2_SUBDEV_FL_STREAMS;
+> >>>> +	priv->sd.entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
+> >>>> +	priv->sd.entity.ops = &ub960_entity_ops;
+> >>>> +
+> >>>> +	for (i = 0; i < priv->hw_data->num_rxports + priv->hw_data->num_txports; i++) {
+> >>>> +		priv->pads[i].flags = ub960_pad_is_sink(priv, i) ?
+> >>>> +					      MEDIA_PAD_FL_SINK :
+> >>>> +					      MEDIA_PAD_FL_SOURCE;
+> >>>> +	}
+> >>>> +
+> >>>> +	ret = media_entity_pads_init(&priv->sd.entity,
+> >>>> +				     priv->hw_data->num_rxports +
+> >>>> +					     priv->hw_data->num_txports,
+> >>>
+> >>> :-(
+> >>
+> >> I don't have strong opinion on this, but don't you find it a bit
+> >> confusing if a single argument spans multiple lines but without any indent?
+> >>
+> >> With a quick look, this looks like a call with 4 arguments:
+> >>
+> >> ret = media_entity_pads_init(&priv->sd.entity,
+> >> 			     priv->hw_data->num_rxports +
+> >> 			     priv->hw_data->num_txports,
+> >> 			     priv->pads);
+> > 
+> > I suppose I'm used to it, so it appears more readable to me. It's also
+> > the style used through most of the kernel. There's of course always the
+> > option of storing the result of the computation in a local variable.
+> 
+> I'll be happy to indent like that if someone tells me how to configure 
+> clang-format to do that =). I didn't figure it out.
 
-I tested it and it works fine on SA8295P. Will do some further testing 
-on other devices as well.
+Setting ContinuationIndentWidth to 0 "fixes" it, but I suspect it may
+have other side effects.
 
+This being said, running clang-format on this file gives me a diffstat
+of 450 insertions(+), 365 deletions(-), so I don't think you can rely on
+it blindly...
 
-+static int dwc3_read_port_info(struct dwc3 *dwc, struct resource *res)
-+{
-+       void __iomem            *regs;
-+       struct resource         dwc_res;
-+       unsigned int            hw_mode;
-+       u32                     offset;
-+       u32                     temp;
-+       u8                      major_revision;
-+       u8                      minor_revision;
-+
-+       /*
-+        * Request memory region including xHCI regs,
-+        * since it is needed to get port info
-+        */
-+       dwc_res = *res;
-+       dwc_res.start += 0;
-+
-+       regs = ioremap(dwc_res.start, resource_size(&dwc_res));
-+       if (IS_ERR(regs)) {
-+               return PTR_ERR(regs);
-+       }
-+
-+       /*
-+        * If the controller is not host-only, then it must be a
-+        * single port controller.
-+        */
-+       temp = readl(regs + DWC3_GHWPARAMS0);
-+       hw_mode = DWC3_GHWPARAMS0_MODE(temp);
-+       if (hw_mode != DWC3_GHWPARAMS0_MODE_HOST) {
-+               dwc->num_ports = 1;
-+               dwc->num_ss_ports = 1;
-+               return 0;
-+       }
-+
-+       offset = xhci_find_next_ext_cap(regs, 0,
-+                                       XHCI_EXT_CAPS_PROTOCOL);
-+       while (offset) {
-+               temp = readl(regs + offset);
-+               major_revision = XHCI_EXT_PORT_MAJOR(temp);;
-+               minor_revision = XHCI_EXT_PORT_MINOR(temp);
-+
-+               temp = readl(regs + offset + 0x08);
-+               if (major_revision == 0x03) {
-+                       dwc->num_ss_ports += XHCI_EXT_PORT_COUNT(temp);
-+               } else if (major_revision <= 0x02) {
-+                       dwc->num_ports += XHCI_EXT_PORT_COUNT(temp);
-+               } else {
-+                       dev_err(dwc->dev, "revision gone wrong\n");
-+                       return -EINVAL;
-+               }
-+
-+               offset = xhci_find_next_ext_cap(regs, offset,
-+                                               XHCI_EXT_CAPS_PROTOCOL);
-+       }
-+
-+       temp = readl(regs + DWC3_XHCI_HCSPARAMS1_OFFSET);
-+       if (HCS_MAX_PORTS(temp) != (dwc->num_ss_ports + dwc->num_ports)) {
-+               dev_err(dwc->dev, "inconsistency in port info\n");
-+               return -EINVAL;
-+       }
-+
-+       dev_info(dwc->dev, "num_ports: %d, num_ss_ports: %d\n", 
-dwc->num_ports, dwc->num_ss_ports);
-+       iounmap(regs);
-+       return 0;
-+}
-+
-  static int dwc3_probe(struct platform_device *pdev)
-  {
-         struct device           *dev = &pdev->dev;
-@@ -1912,6 +1964,10 @@ static int dwc3_probe(struct platform_device *pdev)
-         dwc->xhci_resources[0].flags = res->flags;
-         dwc->xhci_resources[0].name = res->name;
+> >>>> +				     priv->pads);
+> >>>> +	if (ret)
+> >>>> +		goto err_free_ctrl;
+> >>>> +
+> >>>> +	priv->sd.state_lock = priv->sd.ctrl_handler->lock;
+> >>>> +
+> >>>> +	ret = v4l2_subdev_init_finalize(&priv->sd);
+> >>>> +	if (ret)
+> >>>> +		goto err_entity_cleanup;
+> >>>> +
+> >>>> +	ret = ub960_v4l2_notifier_register(priv);
+> >>>> +	if (ret) {
+> >>>> +		dev_err(dev, "v4l2 subdev notifier register failed: %d\n", ret);
+> >>>> +		goto err_free_state;
+> >>>> +	}
+> >>>> +
+> >>>> +	ret = v4l2_async_register_subdev(&priv->sd);
+> >>>> +	if (ret) {
+> >>>> +		dev_err(dev, "v4l2_async_register_subdev error: %d\n", ret);
+> >>>> +		goto err_unreg_notif;
+> >>>> +	}
+> >>>> +
+> >>>> +	return 0;
+> >>>> +
+> >>>> +err_unreg_notif:
+> >>>> +	ub960_v4l2_notifier_unregister(priv);
+> >>>> +err_free_state:
+> >>>
+> >>> err_subdev_cleanup:
+> >>
+> >> Yep.
+> >>
+> >>>> +	v4l2_subdev_cleanup(&priv->sd);
+> >>>> +err_entity_cleanup:
+> >>>> +	media_entity_cleanup(&priv->sd.entity);
+> >>>> +err_free_ctrl:
+> >>>> +	v4l2_ctrl_handler_free(&priv->ctrl_handler);
+> >>>> +
+> >>>> +	return ret;
+> >>>> +}
+> > 
+> > [snip]
+> > 
+> >>>> +static int ub960_probe(struct i2c_client *client)
+> >>>> +{
+> >>>> +	struct device *dev = &client->dev;
+> >>>> +	struct ub960_data *priv;
+> >>>> +	int ret;
+> >>>> +
+> >>>> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> >>>> +	if (!priv)
+> >>>> +		return -ENOMEM;
+> >>>> +
+> >>>> +	priv->client = client;
+> >>>> +
+> >>>> +	priv->hw_data = device_get_match_data(dev);
+> >>>> +
+> >>>> +	mutex_init(&priv->reg_lock);
+> >>>> +	mutex_init(&priv->atr_alias_table.lock);
+> >>>> +
+> >>>> +	INIT_DELAYED_WORK(&priv->poll_work, ub960_handler_work);
+> >>>> +
+> >>>> +	/*
+> >>>> +	 * Initialize these to invalid values so that the first reg writes will
+> >>>> +	 * configure the target.
+> >>>> +	 */
+> >>>> +	priv->current_indirect_target = 0xff;
+> >>>> +	priv->current_read_rxport = 0xff;
+> >>>> +	priv->current_write_rxport_mask = 0xff;
+> >>>> +	priv->current_read_csiport = 0xff;
+> >>>> +	priv->current_write_csiport_mask = 0xff;
+> >>>> +
+> >>>> +	ret = ub960_get_hw_resources(priv);
+> >>>> +	if (ret)
+> >>>> +		goto err_mutex_destroy;
+> >>>> +
+> >>>> +	ret = ub960_enable_core_hw(priv);
+> >>>> +	if (ret)
+> >>>> +		goto err_mutex_destroy;
+> >>>> +
+> >>>> +	/* release GPIO lock */
+> >>>> +	if (priv->hw_data->is_ub9702)
+> >>>> +		ub960_update_bits(priv, UB960_SR_RESET,
+> >>>> +				  UB960_SR_RESET_GPIO_LOCK_RELEASE,
+> >>>> +				  UB960_SR_RESET_GPIO_LOCK_RELEASE);
+> >>>
+> >>> Could this be moved to ub960_enable_core_hw() ?
+> >>
+> >> Yes.
+> >>
+> >>>> +
+> >>>> +	ret = ub960_parse_dt(priv);
+> >>>> +	if (ret)
+> >>>> +		goto err_disable_core_hw;
+> >>>> +
+> >>>> +	ret = ub960_init_tx_ports(priv);
+> >>>> +	if (ret)
+> >>>> +		goto err_free_ports;
+> >>>> +
+> >>>> +	ret = ub960_rxport_enable_vpocs(priv);
+> >>>> +	if (ret)
+> >>>> +		goto err_free_ports;
+> >>>> +
+> >>>> +	ret = ub960_init_rx_ports(priv);
+> >>>> +	if (ret)
+> >>>> +		goto err_disable_vpocs;
+> >>>> +
+> >>>> +	ub960_reset(priv, false);
+> >>>> +
+> >>>> +	ub960_rxport_wait_locks(priv, GENMASK(3, 0), NULL);
+> >>>> +
+> >>>> +	/*
+> >>>> +	 * Clear any errors caused by switching the RX port settings while
+> >>>> +	 * probing.
+> >>>> +	 */
+> >>>> +	ub960_clear_rx_errors(priv);
+> >>>> +
+> >>>> +	ret = ub960_init_atr(priv);
+> >>>> +	if (ret)
+> >>>> +		goto err_disable_vpocs;
+> >>>> +
+> >>>> +	ret = ub960_rxport_add_serializers(priv);
+> >>>> +	if (ret)
+> >>>> +		goto err_uninit_atr;
+> >>>> +
+> >>>> +	ret = ub960_create_subdev(priv);
+> >>>> +	if (ret)
+> >>>> +		goto err_free_sers;
+> >>>> +
+> >>>> +	if (client->irq)
+> >>>> +		dev_warn(dev, "irq support not implemented, using polling\n");
+> >>>
+> >>> That's not nice :-( Can it be fixed ? I'm OK if you do so on top.
+> >>
+> >> Fixed? You mean implemented? I don't have HW, so I'd rather leave it to
+> >> someone who has.
+> > 
+> > Yes, I meant implemented. The fact that we wake up the system every
+> > 500ms for I2C transfers isn't great, although I suppose in systems that
+> > use FPD-Link, that may not matter that much.
+> 
+> I agree, polling is annoying. But again, when there's a platform that 
+> uses IRQs, I think irq handling can be added (and tested) easily.
 
-+       ret = dwc3_read_port_info(dwc, res);
-+       if (ret)
-+               return ret;
-+
-         /*
-          * Request memory region but exclude xHCI regs,
-          * since it will be requested by the xhci-plat driver.
-diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index 2f82eda9d44f..8535425b81d4 100644
---- a/drivers/usb/dwc3/core.h
-+++ b/drivers/usb/dwc3/core.h
-@@ -38,6 +38,9 @@
-  /* Numer of ports supported by a multiport controller */
-  #define MAX_PORTS_SUPPORTED    4
+-- 
+Regards,
 
-+/* XHCI Reg constants */
-+#define DWC3_XHCI_HCSPARAMS1_OFFSET    0x04
-+
-  /* Global constants */
-  #define DWC3_PULL_UP_TIMEOUT   500     /* ms */
-  #define DWC3_BOUNCE_SIZE       1024    /* size of a superspeed bulk */
-
-
-
-Please let me know if this would be acceptable.
-
-BR,
-Krishna,
+Laurent Pinchart
