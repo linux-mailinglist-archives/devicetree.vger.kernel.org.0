@@ -2,120 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD01067AFDE
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 11:42:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B5A067AFF1
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jan 2023 11:46:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234966AbjAYKmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 05:42:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43968 "EHLO
+        id S234833AbjAYKqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 05:46:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234279AbjAYKmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 05:42:18 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 050BA1042A;
-        Wed, 25 Jan 2023 02:42:16 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2DFA74B3;
-        Wed, 25 Jan 2023 02:42:58 -0800 (PST)
-Received: from [10.57.90.68] (unknown [10.57.90.68])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 013D33F71E;
-        Wed, 25 Jan 2023 02:42:14 -0800 (PST)
-Message-ID: <3c3e1dc2-1f66-565c-c677-2eae368e10be@arm.com>
-Date:   Wed, 25 Jan 2023 10:42:13 +0000
+        with ESMTP id S232999AbjAYKqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 05:46:01 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E032D56;
+        Wed, 25 Jan 2023 02:46:00 -0800 (PST)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30P7U2Ma007077;
+        Wed, 25 Jan 2023 10:45:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=/rE7plyDah/nBJmzuMFXucz4lzFGzHs4vSiVS7Yw+7Q=;
+ b=UXwi27jp13YLSmhUWkt1BGSdTz2wC3pssRAZCSpfwFjgvEF5IvELRoejYJR9Y1IKh9jg
+ PcoOC2wr4t/bFAVSlsFN1c4RqH6c/9jTvqZkpRaT880+NiL9i0wEjFidNn2jezGhClln
+ e6p2ka+68m9/HPNpGblulTsPHodXFWWPQZVIgl8PewXRBqctqDh9ROpADimj+vAi8AnP
+ ty/WW9Q/q9iJX3QY2gHD1s+1dR7Fp8dXBMnHH7zvLwBnAWsFhor2K8deE+8DityLIeBs
+ vpf8a2NsDtkL9SPGf3OTqn7UG77zi9JTkAAfaMn/RlF5WmDwaG9W6cqAfa4L5M6IMIyK Lw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nag309xwd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 25 Jan 2023 10:45:43 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30PAjg5k000913
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 25 Jan 2023 10:45:42 GMT
+Received: from win-platform-upstream01.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Wed, 25 Jan 2023 02:45:34 -0800
+From:   Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
+        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
+        <nfraprado@collabora.com>, <broonie@kernel.org>,
+        <robimarko@gmail.com>, <quic_gurus@quicinc.com>,
+        <bhupesh.sharma@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Kathiravan T <quic_kathirav@quicinc.com>
+Subject: [PATCH 00/10] Add minimal boot support for IPQ5332
+Date:   Wed, 25 Jan 2023 16:15:10 +0530
+Message-ID: <20230125104520.89684-1-quic_kathirav@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: Update
- descriptions for R-Car Gen4
-Content-Language: en-GB
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     "joro@8bytes.org" <joro@8bytes.org>,
-        "will@kernel.org" <will@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-References: <20230123012940.1250879-1-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdX92KMeON0xC9p17kiqWT7ksEBX_NyPiiQk0fLaucDZBA@mail.gmail.com>
- <TYBPR01MB5341B023178B4A10DE52B844D8CE9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <CAMuHMdXXnu88Tn2ucuHZK=3G18v-nCfaTYpomchRXBu3bD7UuA@mail.gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <CAMuHMdXXnu88Tn2ucuHZK=3G18v-nCfaTYpomchRXBu3bD7UuA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 0y2CuRzgWXyyYHKpRuNV58BgtErF3Mjg
+X-Proofpoint-GUID: 0y2CuRzgWXyyYHKpRuNV58BgtErF3Mjg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-25_05,2023-01-25_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ suspectscore=0 bulkscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
+ mlxlogscore=579 clxscore=1015 priorityscore=1501 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301250098
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-01-25 08:54, Geert Uytterhoeven wrote:
-> Hi Shimoda-san,
-> 
-> On Wed, Jan 25, 2023 at 1:49 AM Yoshihiro Shimoda
-> <yoshihiro.shimoda.uh@renesas.com> wrote:
->>> From: Geert Uytterhoeven, Sent: Tuesday, January 24, 2023 11:35 PM
->>> On Mon, Jan 23, 2023 at 2:35 AM Yoshihiro Shimoda
->>> <yoshihiro.shimoda.uh@renesas.com> wrote:
->>>> Since R-Car Gen4 doens't have the main IPMMU IMSSTR register, but
->>>> each cache IPMMU has own module id. So, update descriptions of
->>>> renesas,ipmmu-main property for R-Car Gen4.
->>>>
->>>> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> 
->>>> ---
->>>>   The old R-Car S4-8 datasheet had described IPMMU IMSSTR register, but
->>>>   the latest datasheet undocumented the register. So, update the propeties
->>>>   description. Note that the second argument is not used on the driver.
->>>
->>> DT describes hardware, not software policy.
->>
->> I think so.
->>
->>>>   So no behavior change.
->>>
->>> So where do we get the module id numbers to use, if they are no longer
->>> documented in the Hardware Manual?
->>
->> If so, we cannot get the module id numbers. So, should we use other
->> information which is completely fixed instead? I have some ideas:
->> 1) Just 0 (or other fixed value) if the IMSSTR register doesn't exist.
->> 2) Sequential numbers from register base offset.
->>     In R-Car S4: ipmmu_rt0 is the first node from register base offset,
->>     and ipmmu_rt1 is the second one.
->>     So, ipmmu_rt0 is 0, ipmmu_rt1 is 1, ipmmu_ds0 is 2 and ipmmu_hc is 3.
->> 3) Using base address upper 16-bits.
->>     In R-Car S4: ipmmu_rt0 is 0xee480000. So, the value is 0xee48.
->>
->> Perhaps, the option 1) is reasonable, I think. But, what do you think?
-> 
-> I would not make up numbers, as that would cause confusion with SoCs
-> where the numbers do match the hardware.
-> As the driver doesn't use the module id number (it already loops
-> over all domains, instead of checking IMSSTR, probably because of
-> historical (R-Car Gen2) reasons?), what about dropping it from the
-> property? I.e. add "minItems: 1", possibly only when compatible with
-> renesas,rcar-gen4-ipmmu-vmsa?
+From: Kathiravan T <quic_kathirav@quicinc.com>
 
-Right, if there really is no meaningful ID for this model then its 
-binding should not require one.
+The IPQ5332 is Qualcomm's 802.11ax SoC for Routers, Gateways and
+Access Points.
 
-> BTW, the related IMCTR register is still documented, and the driver
-> does enable the interrupt bit (IMCTR_INTEN), so I'm wondering how the
-> hardware (documentation) people intend this to be used...
-> Perhaps IMCTR_INTEN will be removed/undocumented, too?
-> Or perhaps the removal/undocumentation of IMSSTR was a mistake?
+This series adds minimal board boot support for ipq5332-mi01.2 board.
 
-I guess it should be pretty straightforward to just try reading the 
-expected IMSSTR register locations on this SoC to double-check whether 
-anything is there.
+Also, this series depends on the below patch
+https://lore.kernel.org/linux-arm-msm/20230120082631.22053-1-quic_kathirav@quicinc.com/
 
-Thanks,
-Robin.
+Kathiravan T (10):
+  dt-bindings: pinctrl: qcom: add IPQ5332 pinctrl
+  pinctrl: qcom: Introduce IPQ5332 TLMM driver
+  clk: qcom: Add STROMER PLUS PLL type for IPQ5332
+  dt-bindings: clock: Add Qualcomm IPQ5332 GCC
+  clk: qcom: add Global Clock controller (GCC) driver for IPQ5332 SoC
+  dt-bindings: qcom: add ipq5332 boards
+  dt-bindings: firmware: document IPQ5332 SCM
+  dt-bindings: mmc: sdhci-msm: add IPQ5332 compatible
+  arm64: dts: qcom: add IPQ5332 SoC and MI01.2 board support
+  arm64: defconfig: Enable IPQ5332 SoC base configs
+
+ .../devicetree/bindings/arm/qcom.yaml         |    7 +
+ .../bindings/clock/qcom,ipq5332-gcc.yaml      |   55 +
+ .../bindings/firmware/qcom,scm.yaml           |    1 +
+ .../devicetree/bindings/mmc/sdhci-msm.yaml    |    1 +
+ .../pinctrl/qcom,ipq5332-pinctrl.yaml         |  134 +
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts   |   71 +
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         |  273 ++
+ arch/arm64/configs/defconfig                  |    2 +
+ drivers/clk/qcom/Kconfig                      |    7 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-alpha-pll.c              |   11 +
+ drivers/clk/qcom/clk-alpha-pll.h              |    1 +
+ drivers/clk/qcom/gcc-ipq5332.c                | 3954 +++++++++++++++++
+ drivers/pinctrl/qcom/Kconfig                  |   10 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-ipq5332.c        | 1008 +++++
+ include/dt-bindings/clock/qcom,gcc-ipq5332.h  |  359 ++
+ 18 files changed, 5897 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq5332-pinctrl.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5332.dtsi
+ create mode 100644 drivers/clk/qcom/gcc-ipq5332.c
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-ipq5332.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-ipq5332.h
+
+-- 
+2.34.1
+
