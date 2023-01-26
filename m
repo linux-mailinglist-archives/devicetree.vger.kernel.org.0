@@ -2,99 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 696C967C516
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 08:46:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E75A267C51D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 08:48:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235678AbjAZHqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 02:46:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59280 "EHLO
+        id S235766AbjAZHsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 02:48:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236130AbjAZHpv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 02:45:51 -0500
-Received: from smtp-out-06.comm2000.it (smtp-out-06.comm2000.it [212.97.32.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8529169B1B;
-        Wed, 25 Jan 2023 23:45:26 -0800 (PST)
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        with ESMTP id S233264AbjAZHsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 02:48:03 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 121AA3A8E;
+        Wed, 25 Jan 2023 23:47:44 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: francesco@dolcini.it)
-        by smtp-out-06.comm2000.it (Postfix) with ESMTPSA id D51BC561372;
-        Thu, 26 Jan 2023 08:45:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
-        s=mailsrv; t=1674719110;
-        bh=Y9XCnAPij17MA+QoBNd8FvPcBvFaxXeiz+vHwwOCDWE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=I2CYUxZwZ+wcSRyagmyhnstP4jB889U8C2lqZHpElTSvXWVR1/M7WQiK0ZxYc0UKq
-         0LMoyg4QPXsFwbl4KGpeTUvIguB6XcOlKh/hMUzofuiaMrmsxmuQZnNJXaMIoKd/XM
-         oI4pq0Qa6uQI24787uklIx/aJQ5uwuyYfM5YejbEBGFD2NKqOYJobBaBYLPNIXTZXu
-         4d4pVwWCZNAewoeChn75KpnBz32Lu2jtDQ3zieRArOSZOEmBR/ie3E7MbDgN04jfdc
-         xh/RqctVwlWC+hcSFFKwoH40lFg8psglNFENlygH5e3aTDy7+Ars85MMWm2vy460W/
-         Y11hPaXaXkH9A==
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Stefan Eichenberger <stefan.eichenberger@toradex.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        by sin.source.kernel.org (Postfix) with ESMTPS id 623EBCE1D9A;
+        Thu, 26 Jan 2023 07:47:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA1B2C4339B;
+        Thu, 26 Jan 2023 07:47:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674719261;
+        bh=cWzPUPHRhYLWPXWeP+c1yAdqMHSIpVSEZAzI1cfprDc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pByM1yY7eqgdH4BR4rYbQCa/dIKoF/cj0fBlRYiXOAhz8V2vS3VpGT12lbi0RzKaK
+         UJ+0C8vuyDgqTqXQsmfyh86tSjXVP0bfwLPEqmDE9FbZ3nxw7ryN+f7osZjIvr77EH
+         qVXvP524SPASiZ2vs1bkK49zjGle3jt9ykaT/hdS9hO+XCYIuWv1LfJ+0/u9TlOeVp
+         QHAd4F0qXJ1Xu+kd2TreJFg9m8WIIuYiRKXkGwh7dgTtD8tFXxURxpUG8b1T6DptCV
+         A5HzH0Z0m5trFWHgpf2ojSkDdJLcLgiI4VMiH1o5EWf/8pZEJkYUD2cbsZny2IjWs4
+         h5fuh3AKjBkjw==
+Date:   Thu, 26 Jan 2023 15:47:34 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v2 5/5] arm64: dts: imx8mp-verdin: add 88W8997 serdev to uart4
-Date:   Thu, 26 Jan 2023 08:43:56 +0100
-Message-Id: <20230126074356.431306-6-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230126074356.431306-1-francesco@dolcini.it>
-References: <20230126074356.431306-1-francesco@dolcini.it>
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V5 2/2] arm64: dts: imx: Introduce imx8mp-beacon-kit
+Message-ID: <20230126074732.GZ20713@T480>
+References: <20230117223846.465016-1-aford173@gmail.com>
+ <20230117223846.465016-2-aford173@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230117223846.465016-2-aford173@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+On Tue, Jan 17, 2023 at 04:38:45PM -0600, Adam Ford wrote:
+> Beacon Embedded has an i.MX8M Plus development kit which consists
+> of a SOM + baseboard.  The SOM includes Bluetooth, WiFi, QSPI, eMMC,
+> and one Ethernet PHY. The baseboard includes audio, HDMI, USB-C Dual
+> Role port, USB Hub with five ports, a PCIe slot, and a second Ethernet
+> PHY.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Use the serdev feature to load the driver for the 88W8997 bluetooth
-driver.
+Changed subject prefix to 'arm64: dts: freescale: ...'
 
-Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
-v2: no changes
----
- arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi
-index 36289c175e6e..ef94f9a57e20 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi
-@@ -65,6 +65,11 @@ &uart4 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_bt_uart>;
- 	status = "okay";
-+
-+	bluetooth {
-+		compatible = "mrvl,88w8997";
-+		max-speed = <921600>;
-+	};
- };
- 
- /* On-module Wi-Fi */
--- 
-2.25.1
-
+Applied both, thanks!
