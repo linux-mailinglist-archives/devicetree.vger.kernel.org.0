@@ -2,266 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B68F067D104
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 17:11:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71A5867D189
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 17:27:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232615AbjAZQLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 11:11:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49542 "EHLO
+        id S232362AbjAZQ1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 11:27:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232661AbjAZQK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 11:10:58 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1FF06E43A
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 08:10:51 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id f25-20020a1c6a19000000b003da221fbf48so1471561wmc.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 08:10:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eSRyiXt5jg5xGcNVidvCWdFR0yJusjEp3UTc1PNqimw=;
-        b=D7esD/YspzXO+5fTgFKhqMa1nHMS4BS0Pra6HkU4CBBwGcfvZsn2dfm3E2LZHm+Jlg
-         /ByBj3OMqBE6TYJmVjxF3Fcwn0pJTCundKHDfx7GJgXQW6dvSgWlmG/D6s6nQVI/iBGS
-         3aM3r9jPNoKvu4vQfF4XfTa517/YaLBOHIoAWbWp7LTT+MQpHpUqkS+tXdIrz2HgaEjR
-         Mow+w7HnEYZEmc5piE3dC4YEcICOSPFC49fqxQIHVZtVdjvYv7+nUsJkkS/pa7qolA0Y
-         pN2yxWAyXqco7HEtyXMJJDPHSlSC7YM6br58sZiVSTojuc2JU/GHep+tdY7oxSqc1Gwo
-         FDMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eSRyiXt5jg5xGcNVidvCWdFR0yJusjEp3UTc1PNqimw=;
-        b=eYOEl/eLEzV2xekZcO1l1V69JJLnCad90NyddFzL3S0z3HXZ3n4YPc+L9G3DlUjTeb
-         bcxBmJFNIX4y5syjQOweuM+FTYhCGw1X15NX+5+C2nwWa4leSIf0QLJa5UOUE8btPdid
-         PgSnLtKLeWGDhISnoTHz3tUWztCZI599zWPwnGbDVdqeKIGZTSjXuK1h0icWcskqDdVF
-         65yGTZyMcLkO9gUq7o2ehO+6bvekCsq5dnNlkryzgtMT08PZ5ymDldVA8dnsy29ZEiIN
-         gQcw4kRNd23sZy9yeac6H3tP/5N3kx/SDJ6LH4trhoYRayOR9dglmYAdynZOQWBmTfdg
-         3j7g==
-X-Gm-Message-State: AFqh2kqei/WS1waUCFJpy2QddkH8nDs7w7uXPGqewKZ961vCi/UfMAjk
-        YAKaWkcKtd00/d9KCb/0w6GpXw==
-X-Google-Smtp-Source: AMrXdXvLdNi6h2JhbNJzodbD1T9pYrgKkxDyUs3ZRI02aRBggdz0+dUeKSUN0ZJRa/Fv7sHMoJ80dQ==
-X-Received: by 2002:a05:600c:22c6:b0:3da:fc30:bfc5 with SMTP id 6-20020a05600c22c600b003dafc30bfc5mr36978536wmg.13.1674749450471;
-        Thu, 26 Jan 2023 08:10:50 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-657-1-248-155.w90-24.abo.wanadoo.fr. [90.24.137.155])
-        by smtp.gmail.com with ESMTPSA id q18-20020a05600c2e5200b003d1de805de5sm1782401wmf.16.2023.01.26.08.10.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 08:10:50 -0800 (PST)
-From:   bchihi@baylibre.com
-To:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Subject: [PATCH v12 2/6] dt-bindings: thermal: mediatek: Add LVTS thermal controllers dt-binding definition
-Date:   Thu, 26 Jan 2023 17:10:48 +0100
-Message-Id: <20230126161048.94089-1-bchihi@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230124131717.128660-3-bchihi@baylibre.com>
-References: <20230124131717.128660-3-bchihi@baylibre.com>
+        with ESMTP id S232782AbjAZQ0N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 11:26:13 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AC86721CB;
+        Thu, 26 Jan 2023 08:25:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674750353; x=1706286353;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=tkQrGs3FSg5dTmlRU0hcgvbam/IWtDu8mWuckiRq01s=;
+  b=GPk182CpQsM/0tECI8Y1sf1yn/QuX6El8GxErrRSHumLZMHvqyGR4N0v
+   0lfems8LGQ9aZg7NjX9BWg7q/uIaobCIt38JWDzlTy4bKgXyYfW305m7Q
+   gr+0k8goffv0V3EY2UpM1QGUUXk+MOdijBU+2ahxgjiYJY/IciM6tMYkK
+   3kfP3R7mY2d9LzZF4He+VHbm85i1GZVh67fa4KsZRBEI6TKBacpoRRRpC
+   Wxh9oYadsj0LvgY1TZDvPT+bl2Q0blsk/wCf6+fYU0raPtuuuvZgA0e6T
+   WwTXb6lNtXn3+inAIhgpoeT6mz77dflG/PF/iprMcJ8ejaf8rrshnWVTE
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="354154717"
+X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; 
+   d="scan'208";a="354154717"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2023 08:24:43 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="612855093"
+X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; 
+   d="scan'208";a="612855093"
+Received: from nmani1-mobl2.amr.corp.intel.com (HELO [10.209.167.178]) ([10.209.167.178])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2023 08:24:41 -0800
+Message-ID: <557f8f76-38f5-5e07-905e-774e03120bd2@linux.intel.com>
+Date:   Thu, 26 Jan 2023 10:12:36 -0600
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.2
+Subject: Re: [RFC PATCH v2 20/22] sound: usb: Prevent starting of audio stream
+ if in use
+Content-Language: en-US
+To:     Wesley Cheng <quic_wcheng@quicinc.com>,
+        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
+        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        Thinh.Nguyen@synopsys.com, broonie@kernel.org,
+        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
+        agross@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_jackp@quicinc.com,
+        quic_plai@quicinc.com
+References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
+ <20230126031424.14582-21-quic_wcheng@quicinc.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <20230126031424.14582-21-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Balsam CHIHI <bchihi@baylibre.com>
 
-Add LVTS thermal controllers dt-binding definition for mt8195.
 
-Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
----
-Changelog:
-  v12:
-     - Fixed subject prefix
-     - Fixed licences GPL-2.0+ to GPL-2.0
-     - Added dual licenses
-  v11:
-     - Rebase on top of "thermal/linux-next" :
-       base=0d568e144ead70189e7f16066dcb155b78ff9266
-     - Remove unsupported SoC (mt8192) from dt-binding definition
-  v10:
-     - Rebase on top of "thermal/linux-next" : thermal-v6.3-rc1
-  v9:
-     - Rebase on top of 6.0.0-rc1
-     - Update dt-bindings :
-       - Add "allOf:if:then:"
-       - Use mt8192 as example (instead of mt8195)
-       - Fix dt-binding errors
-       - Fix DTS errors
-  v8:
-     - Fix coding style issues
-     - Rebase on top of next-20220803
-     - Add multi-instance support :
-       - Rewrite DT-binding and DTS :
-         - Add DT-binding and DTS for LVTS_v4 (MT8192 and MT8195)
-           - One LVTS node for each HW Domain (AP and MCU)
-         - One SW Instance for each HW Domain
-  v7:
-     - Fix coding style issues
-     - Rewrite dt bindings
-       - was not accurate
-       - Use mt8195 for example (instead of mt8192)
-       - Rename mt6873 to mt8192
-       - Remove clock name
----
----
- .../thermal/mediatek,lvts-thermal.yaml        | 107 ++++++++++++++++++
- include/dt-bindings/thermal/mediatek-lvts.h   |  19 ++++
- 2 files changed, 126 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
- create mode 100644 include/dt-bindings/thermal/mediatek-lvts.h
+On 1/25/23 21:14, Wesley Cheng wrote:
+> With USB audio offloading, an audio session is started from the ASoC
+> platform sound card and PCM devices.  Likewise, the USB SND path is still
+> readily available for use, in case the non-offload path is desired.  In
+> order to prevent the two entities from attempting to use the USB bus,
+> introduce a flag that determines when either paths are in use.
+> 
+> If a PCM device is already in use, the check will return an error to
+> userspace notifying that the stream is currently busy.  This ensures that
+> only one path is using the USB substream.
 
-diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-new file mode 100644
-index 000000000000..12bfbdd8ff89
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-@@ -0,0 +1,107 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/thermal/mediatek,lvts-thermal.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek SoC Low Voltage Thermal Sensor (LVTS)
-+
-+maintainers:
-+  - Balsam CHIHI <bchihi@baylibre.com>
-+
-+description: |
-+  LVTS is a thermal management architecture composed of three subsystems,
-+  a Sensing device - Thermal Sensing Micro Circuit Unit (TSMCU),
-+  a Converter - Low Voltage Thermal Sensor converter (LVTS), and
-+  a Digital controller (LVTS_CTRL).
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8195-lvts-ap
-+      - mediatek,mt8195-lvts-mcu
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+    description: LVTS reset for clearing temporary data on AP/MCU.
-+
-+  nvmem-cells:
-+    minItems: 1
-+    items:
-+      - description: Calibration eFuse data 1 for LVTS
-+      - description: Calibration eFuse data 2 for LVTS
-+
-+  nvmem-cell-names:
-+    minItems: 1
-+    items:
-+      - const: lvts-calib-data-1
-+      - const: lvts-calib-data-2
-+
-+  "#thermal-sensor-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - resets
-+  - nvmem-cells
-+  - nvmem-cell-names
-+  - "#thermal-sensor-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/mt8195-clk.h>
-+    #include <dt-bindings/reset/mt8195-resets.h>
-+    #include <dt-bindings/thermal/mediatek-lvts.h>
-+
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      lvts_mcu: thermal-sensor@11278000 {
-+        compatible = "mediatek,mt8195-lvts-mcu";
-+        reg = <0 0x11278000 0 0x1000>;
-+        interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
-+        clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
-+        resets = <&infracfg_ao MT8195_INFRA_RST4_THERM_CTRL_MCU_SWRST>;
-+        nvmem-cells = <&lvts_efuse_data1 &lvts_efuse_data2>;
-+        nvmem-cell-names = "lvts-calib-data-1", "lvts-calib-data-2";
-+        #thermal-sensor-cells = <1>;
-+      };
-+    };
-+
-+    thermal_zones: thermal-zones {
-+      cpu0-thermal {
-+        polling-delay = <1000>;
-+        polling-delay-passive = <250>;
-+        thermal-sensors = <&lvts_mcu MT8195_MCU_LITTLE_CPU0>;
-+
-+        trips {
-+          cpu0_alert: trip-alert {
-+            temperature = <85000>;
-+            hysteresis = <2000>;
-+            type = "passive";
-+          };
-+
-+          cpu0_crit: trip-crit {
-+            temperature = <100000>;
-+            hysteresis = <2000>;
-+            type = "critical";
-+          };
-+        };
-+      };
-+    };
-diff --git a/include/dt-bindings/thermal/mediatek-lvts.h b/include/dt-bindings/thermal/mediatek-lvts.h
-new file mode 100644
-index 000000000000..902d5b1e4f43
---- /dev/null
-+++ b/include/dt-bindings/thermal/mediatek-lvts.h
-@@ -0,0 +1,19 @@
-+/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
-+/*
-+ * Copyright (c) 2023 MediaTek Inc.
-+ * Author: Balsam CHIHI <bchihi@baylibre.com>
-+ */
-+
-+#ifndef __MEDIATEK_LVTS_DT_H
-+#define __MEDIATEK_LVTS_DT_H
-+
-+#define MT8195_MCU_BIG_CPU0	0
-+#define MT8195_MCU_BIG_CPU1	1
-+#define MT8195_MCU_BIG_CPU2	2
-+#define MT8195_MCU_BIG_CPU3	3
-+#define MT8195_MCU_LITTLE_CPU0	4
-+#define MT8195_MCU_LITTLE_CPU1	5
-+#define MT8195_MCU_LITTLE_CPU2	6
-+#define MT8195_MCU_LITTLE_CPU3	7
-+
-+#endif /* __MEDIATEK_LVTS_DT_H */
--- 
-2.34.1
+It's good to maintain mutual exclusion, but it's still very hard for an
+application to figure out which card can be used when.
 
+Returning -EBUSY is not super helpful. There should be something like a
+notification or connection status so that routing decisions can be made
+without trial-and-error.
+
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> ---
+>  sound/usb/card.h                  |  1 +
+>  sound/usb/pcm.c                   | 19 +++++++++++++++++--
+>  sound/usb/qcom/qc_audio_offload.c | 15 ++++++++++++++-
+>  3 files changed, 32 insertions(+), 3 deletions(-)
+> 
+> diff --git a/sound/usb/card.h b/sound/usb/card.h
+> index 410a4ffad98e..ff6d4695e727 100644
+> --- a/sound/usb/card.h
+> +++ b/sound/usb/card.h
+> @@ -163,6 +163,7 @@ struct snd_usb_substream {
+>  	unsigned int pkt_offset_adj;	/* Bytes to drop from beginning of packets (for non-compliant devices) */
+>  	unsigned int stream_offset_adj;	/* Bytes to drop from beginning of stream (for non-compliant devices) */
+>  
+> +	unsigned int opened:1;		/* pcm device opened */
+>  	unsigned int running: 1;	/* running status */
+>  	unsigned int period_elapsed_pending;	/* delay period handling */
+>  
+> diff --git a/sound/usb/pcm.c b/sound/usb/pcm.c
+> index 0b01a5dfcb73..8946f8ddb892 100644
+> --- a/sound/usb/pcm.c
+> +++ b/sound/usb/pcm.c
+> @@ -1114,8 +1114,15 @@ static int snd_usb_pcm_open(struct snd_pcm_substream *substream)
+>  	struct snd_usb_stream *as = snd_pcm_substream_chip(substream);
+>  	struct snd_pcm_runtime *runtime = substream->runtime;
+>  	struct snd_usb_substream *subs = &as->substream[direction];
+> +	struct snd_usb_audio *chip = subs->stream->chip;
+>  	int ret;
+>  
+> +	mutex_lock(&chip->mutex);
+> +	if (subs->opened) {
+> +		mutex_unlock(&chip->mutex);
+> +		return -EBUSY;
+> +	}
+> +
+>  	runtime->hw = snd_usb_hardware;
+>  	/* need an explicit sync to catch applptr update in low-latency mode */
+>  	if (direction == SNDRV_PCM_STREAM_PLAYBACK &&
+> @@ -1132,13 +1139,17 @@ static int snd_usb_pcm_open(struct snd_pcm_substream *substream)
+>  
+>  	ret = setup_hw_info(runtime, subs);
+>  	if (ret < 0)
+> -		return ret;
+> +		goto out;
+>  	ret = snd_usb_autoresume(subs->stream->chip);
+>  	if (ret < 0)
+> -		return ret;
+> +		goto out;
+>  	ret = snd_media_stream_init(subs, as->pcm, direction);
+>  	if (ret < 0)
+>  		snd_usb_autosuspend(subs->stream->chip);
+> +	subs->opened = 1;
+> +out:
+> +	mutex_unlock(&chip->mutex);
+> +
+>  	return ret;
+>  }
+>  
+> @@ -1147,6 +1158,7 @@ static int snd_usb_pcm_close(struct snd_pcm_substream *substream)
+>  	int direction = substream->stream;
+>  	struct snd_usb_stream *as = snd_pcm_substream_chip(substream);
+>  	struct snd_usb_substream *subs = &as->substream[direction];
+> +	struct snd_usb_audio *chip = subs->stream->chip;
+>  	int ret;
+>  
+>  	snd_media_stop_pipeline(subs);
+> @@ -1160,6 +1172,9 @@ static int snd_usb_pcm_close(struct snd_pcm_substream *substream)
+>  
+>  	subs->pcm_substream = NULL;
+>  	snd_usb_autosuspend(subs->stream->chip);
+> +	mutex_lock(&chip->mutex);
+> +	subs->opened = 0;
+> +	mutex_unlock(&chip->mutex);
+>  
+>  	return 0;
+>  }
+> diff --git a/sound/usb/qcom/qc_audio_offload.c b/sound/usb/qcom/qc_audio_offload.c
+> index c1254d5f680d..9bd09282e70d 100644
+> --- a/sound/usb/qcom/qc_audio_offload.c
+> +++ b/sound/usb/qcom/qc_audio_offload.c
+> @@ -1365,12 +1365,17 @@ static void handle_uaudio_stream_req(struct qmi_handle *handle,
+>  		goto response;
+>  	}
+>  
+> +	mutex_lock(&chip->mutex);
+>  	if (req_msg->enable) {
+> -		if (info_idx < 0 || chip->system_suspend) {
+> +		if (info_idx < 0 || chip->system_suspend || subs->opened) {
+>  			ret = -EBUSY;
+> +			mutex_unlock(&chip->mutex);
+> +
+>  			goto response;
+>  		}
+> +		subs->opened = 1;
+>  	}
+> +	mutex_unlock(&chip->mutex);
+>  
+>  	if (req_msg->service_interval_valid) {
+>  		ret = get_data_interval_from_si(subs,
+> @@ -1392,6 +1397,11 @@ static void handle_uaudio_stream_req(struct qmi_handle *handle,
+>  		if (!ret)
+>  			ret = prepare_qmi_response(subs, req_msg, &resp,
+>  					info_idx);
+> +		if (ret < 0) {
+> +			mutex_lock(&chip->mutex);
+> +			subs->opened = 0;
+> +			mutex_unlock(&chip->mutex);
+> +		}
+>  	} else {
+>  		info = &uadev[pcm_card_num].info[info_idx];
+>  		if (info->data_ep_pipe) {
+> @@ -1413,6 +1423,9 @@ static void handle_uaudio_stream_req(struct qmi_handle *handle,
+>  		}
+>  
+>  		disable_audio_stream(subs);
+> +		mutex_lock(&chip->mutex);
+> +		subs->opened = 0;
+> +		mutex_unlock(&chip->mutex);
+>  	}
+>  
+>  response:
