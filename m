@@ -2,105 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7EFB67C5F7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:36:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D84E67C5E4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:35:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230288AbjAZIgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 03:36:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56154 "EHLO
+        id S235762AbjAZIfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 03:35:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235465AbjAZIgR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:36:17 -0500
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFDD36C139;
-        Thu, 26 Jan 2023 00:35:41 -0800 (PST)
-Received: by mail-qt1-f178.google.com with SMTP id o5so723746qtr.11;
-        Thu, 26 Jan 2023 00:35:41 -0800 (PST)
+        with ESMTP id S235905AbjAZIey (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:34:54 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 098F26C118
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:34:14 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id n7so964790wrx.5
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:34:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wlqKECMrN5ozKYgnpBSVs1svty0s1OqnEzEGJQmggnk=;
+        b=F9+ov4mncbiNtHgLPztkYJ4XH8nsjAvNgkanwZuNh10EX5zuoi756weIdsxKMLGJgj
+         xtLXLXWr7k6np6eXfCdVdBSrEK1jbru/hPzALeCbGZmwTswYLkYeKvWJMpFD0XyZfYkz
+         nblGty+oTnk7J3QTi0Cai6jB7XGu+CggxNktAFa4wiHK5Ie134MFt3JpNENKzKLI7TDa
+         bgA84SV3BvWciZ5I1z5tEx98gfX1cfeGdI23QAzV+hILWzzyE4UonQsDYu3dl069zEqT
+         OFJXW0HPVtDQ1aiTNuKZe25e0B6kxma07EkP99B2lnoEAKVZ1pF+cbXtdJmcGc91Uedd
+         +myQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vRIB8MnpWStVHpiH44fh5LractuJCY2Y+UfvjAsI8p8=;
-        b=W0ANvEePzGmaw5dIindWfNL7+cuOT/d1/TFp8USmFkuLnLOzwYGmoruQvXyX5tIZ9y
-         SWZEWnJoRK26K3CfQoLmYLtF9iCScYgN9vLulS+33uitKrFWDAVUfnhPEyxRvu5vEekl
-         zNhcMtzKNv3ije1hGrlgabyIjQPi+Xp8Z0qxibvTCyUfjYLshzPG6eayr9jza9FaDuqq
-         LnkFUgBImubERCGhtr+1O6hTUDJ16JXjstRxjalbNTXZQaHOkD6ThP/eEFOcc87THFjR
-         7NPRS6uEKjb4F/oypFB+ELnIRlQ1G15d9wQqmto2YMMvWfvHhJ0O9Xbwhweeo4z3C17s
-         zp9g==
-X-Gm-Message-State: AFqh2krOMPSQrlnc5/8QRCXBUrknaejyUbsPdPc6Vw8TZ+WjM2Suzf2g
-        ZksXtS7xbTKwYd/C/aYx2qcpcVjt8flOOg==
-X-Google-Smtp-Source: AMrXdXtohC4TSrTppKkd9zDTLxn7SzZ5drLmnnlTTQ1lU9Hp4dUThL+n8xqJv80vcgSWOeeNI/UWyA==
-X-Received: by 2002:ac8:6605:0:b0:3b6:341c:9143 with SMTP id c5-20020ac86605000000b003b6341c9143mr45094257qtp.62.1674722046127;
-        Thu, 26 Jan 2023 00:34:06 -0800 (PST)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id 2-20020ac82082000000b003ad373d04b6sm362822qtd.59.2023.01.26.00.34.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 00:34:05 -0800 (PST)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-50660e2d2ffso14129727b3.1;
-        Thu, 26 Jan 2023 00:34:05 -0800 (PST)
-X-Received: by 2002:a81:4b02:0:b0:507:6027:60e7 with SMTP id
- y2-20020a814b02000000b00507602760e7mr453322ywa.47.1674722045305; Thu, 26 Jan
- 2023 00:34:05 -0800 (PST)
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wlqKECMrN5ozKYgnpBSVs1svty0s1OqnEzEGJQmggnk=;
+        b=v6NWcidNIzHS4+h0GWtqNneko+8wWP/ETjLiUNu4YBulnieO4jhECem4LCFKRh0j3E
+         JCX9Tlwsa2r1ElgyF8mdASL3ISECWU2NzaghjgwYZ5WgPgMdggjGvQ485bbeNYz8W4MM
+         HRQL7iw/PbXv+p5RN+MroGYovlWs7JenV79lJ+c6uT0/R5L42UoQgTGrXTprAR5eHhwT
+         t7enJuLogEpulRcF7XNgIkXH7DsSTrQnc5YclO9y/IUxF0PBbLHKwSFueisI1fWg+QpH
+         dpg+c+4fjpD3z8xnVrFOvjm8KdrhxPxfq6J+h3hxQnmJ8fG4Uka4659qYdco09g9Ti39
+         cdOw==
+X-Gm-Message-State: AO0yUKVymrlqRhcUPPJ0y6lASoHda6IR/dawUfOo2Aewr1vlrV9MHGhk
+        BWzACtGeIySZvvSQpifBfxv8wD2M5Fot5ZHSlGQ=
+X-Google-Smtp-Source: AK7set+xHB6a7B1HespUte5I/SZh/YUocrutxsx/3SykXNry9Wqg5Bt6sYFifeuZxs9o029TLj8Mvg==
+X-Received: by 2002:a05:6000:104a:b0:2bf:ae18:34dd with SMTP id c10-20020a056000104a00b002bfae1834ddmr8506123wrx.56.1674722040060;
+        Thu, 26 Jan 2023 00:34:00 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id t10-20020a05600c328a00b003d9a86a13bfsm757709wmp.28.2023.01.26.00.33.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jan 2023 00:33:59 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
+References: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
+Subject: Re: [PATCH 00/14] arm64: meson: bunch of DT fixes
+Message-Id: <167472203923.456104.10228308469675767029.b4-ty@linaro.org>
+Date:   Thu, 26 Jan 2023 09:33:59 +0100
 MIME-Version: 1.0
-References: <20230123012940.1250879-1-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdX92KMeON0xC9p17kiqWT7ksEBX_NyPiiQk0fLaucDZBA@mail.gmail.com>
- <TYBPR01MB5341B023178B4A10DE52B844D8CE9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <CAMuHMdXXnu88Tn2ucuHZK=3G18v-nCfaTYpomchRXBu3bD7UuA@mail.gmail.com> <3c3e1dc2-1f66-565c-c677-2eae368e10be@arm.com>
-In-Reply-To: <3c3e1dc2-1f66-565c-c677-2eae368e10be@arm.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 26 Jan 2023 09:33:53 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWa3YSX482NTmh1e0LAqEiKrOBTHxrb=cqS3u36c-jw8g@mail.gmail.com>
-Message-ID: <CAMuHMdWa3YSX482NTmh1e0LAqEiKrOBTHxrb=cqS3u36c-jw8g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: Update
- descriptions for R-Car Gen4
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        "will@kernel.org" <will@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robin,
+Hi,
 
-On Wed, Jan 25, 2023 at 11:42 AM Robin Murphy <robin.murphy@arm.com> wrote:
-> On 2023-01-25 08:54, Geert Uytterhoeven wrote:
-> > BTW, the related IMCTR register is still documented, and the driver
-> > does enable the interrupt bit (IMCTR_INTEN), so I'm wondering how the
-> > hardware (documentation) people intend this to be used...
-> > Perhaps IMCTR_INTEN will be removed/undocumented, too?
-> > Or perhaps the removal/undocumentation of IMSSTR was a mistake?
->
-> I guess it should be pretty straightforward to just try reading the
-> expected IMSSTR register locations on this SoC to double-check whether
-> anything is there.
+On Tue, 24 Jan 2023 11:34:21 +0100, Neil Armstrong wrote:
+> This is a bunch of fixes against the current applied and reviewed bindings.
+> 
+> It takes in account the following bindings conversions:
+> [1] https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v3-0-e28dd31e3bed@linaro.org
+> [2] https://lore.kernel.org/r/20230124091602.44027-1-krzysztof.kozlowski@linaro.org
+> 
+> Remaining fixes will require a complete TXT to dt-schema transition.
+> 
+> [...]
 
-FTR, I did try this.  Unfortunately the IMSSTR register value is zero
-by default, and interrupts are generated only for error conditions (how
-to trigger them?), so my debug print in ipmmu_irq() never triggered.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
 
-Gr{oetje,eeting}s,
+[01/14] arm64: dts: amlogic: meson-gx: fix SCPI clock dvfs node name
+        https://git.kernel.org/amlogic/c/127f79212b07c5d9a6657a87e3eafdd889335814
+[02/14] arm64: dts: amlogic: meson-axg: fix SCPI clock dvfs node name
+        https://git.kernel.org/amlogic/c/5b7069d72f03c92a0ab919725017394ebce03a81
+[03/14] arm64: dts: amlogic: meson-gx: add missing SCPI sensors compatible
+        https://git.kernel.org/amlogic/c/2ff650051493d5bdb6dd09d4c2850bb37db6be31
+[04/14] arm64: dts: amlogic: meson-axg-jethome-jethub-j1xx: fix supply name of USB controller node
+        https://git.kernel.org/amlogic/c/a69cb1042cea840bc7b60fea1c26a6b259e68bf2
+[05/14] arm64: dts: amlogic: meson-gxl-s905d-sml5442tw: drop invalid clock-names property
+        https://git.kernel.org/amlogic/c/e3bd275ccbacf5eb18eaa311cea39f8bf8655feb
+[06/14] arm64: dts: amlogic: meson-gx: add missing unit address to rng node name
+        https://git.kernel.org/amlogic/c/61ff70708b98a85516eccb3755084ac97b42cf48
+[07/14] arm64: dts: amlogic: meson-gxl-s905w-jethome-jethub-j80: fix invalid rtc node name
+        https://git.kernel.org/amlogic/c/11172a97c092eaeb0a65c6434df0fc73f886a495
+[08/14] arm64: dts: amlogic: meson-axg-jethome-jethub-j1xx: fix invalid rtc node name
+        https://git.kernel.org/amlogic/c/956f52025c5dd92c80c12e31c99c854086a6fc55
+[09/14] arm64: dts: amlogic: meson-gxl: add missing unit address to eth-phy-mux node name
+        https://git.kernel.org/amlogic/c/d19189f70ba596798ea49166d2d1ef36a8df5289
+[10/14] arm64: dts: amlogic: meson-gx-libretech-pc: fix update button name
+        https://git.kernel.org/amlogic/c/6bb506ed36968207a8832f0143ebc127f0770eef
+[11/14] arm64: dts: amlogic: meson-sm1-bananapi-m5: fix adc keys node names
+        https://git.kernel.org/amlogic/c/d519a73332b6c3d14e15f8fd20d7c6f29ed13d41
+[12/14] arm64: dts: amlogic: meson-gxl-s905d-phicomm-n1: fix led node name
+        https://git.kernel.org/amlogic/c/eee64d8fbbdaab72bbab3e462f3a7b742d20c8c2
+[13/14] arm64: dts: amlogic: meson-gxbb-kii-pro: fix led node name
+        https://git.kernel.org/amlogic/c/afdef3b188c934f79ad4b0a7bd8c692742f9b5af
+[14/14] arm64: dts: amlogic: meson-g12b-odroid-go-ultra: fix rk818 pmic properties
+        https://git.kernel.org/amlogic/c/ce9999722656f2433af9029571bc2b99448dda74
 
-                        Geert
+These changes has been applied on the intermediate git tree [1].
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
+
