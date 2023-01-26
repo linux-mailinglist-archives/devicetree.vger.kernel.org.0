@@ -2,103 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECA2067C551
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A204167C556
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:01:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbjAZIAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 03:00:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38766 "EHLO
+        id S236227AbjAZIBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 03:01:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235509AbjAZIAx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:00:53 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3B8666F8D;
-        Thu, 26 Jan 2023 00:00:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1674720051; x=1706256051;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GBE/VjADrLDKieC7b5itKGUOfGov2KepyoUCPJ4/mf0=;
-  b=qNStwrT4L45OfwhAcie+UYU/GQ4il/tkx8GeqMRfNED8IHioy1kSoeFb
-   5X0+mEnDjIh9Jgqg1KgYwqyJoeaZQkOq/GgID83VF4d/tW/HEFt7rSNXQ
-   RnZCFvGe0EmfRUwshI0tSeXOQXC/3etub3R9b7Byw2B7TIL4SkPhKLfNK
-   HHkn1arGR/gRkHtlY+TuSB0mGRvRM2igyQP45e5Y6KRW5DsiJmswJOKRp
-   Dlj/gZQSh1hNx4fLM6Em+DRYwmMb4YghQ7mzl+WSnvo/0k4nPhX6LMCXO
-   k8YRAzSX3piSAeCmKwAvTve8wC6uHlN9+Gr5FBP4V/7xhQKrNrYAnra5E
-   w==;
-X-IronPort-AV: E=Sophos;i="5.97,247,1669100400"; 
-   d="asc'?scan'208";a="197475984"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Jan 2023 01:00:50 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 26 Jan 2023 01:00:42 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
- Transport; Thu, 26 Jan 2023 01:00:40 -0700
-Date:   Thu, 26 Jan 2023 08:00:16 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Samuel Holland <samuel@sholland.org>
-CC:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        <linux-sunxi@lists.linux.dev>, <linux-riscv@lists.infradead.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Conor Dooley <conor@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v5 00/11] riscv: Allwinner D1/D1s platform support
-Message-ID: <Y9IzELYtub1DmGB5@wendy>
-References: <20230126045738.47903-1-samuel@sholland.org>
+        with ESMTP id S236249AbjAZIBD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:01:03 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5317669B23;
+        Thu, 26 Jan 2023 00:00:59 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id BBB69CE0FE6;
+        Thu, 26 Jan 2023 08:00:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37ED4C4339B;
+        Thu, 26 Jan 2023 08:00:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674720056;
+        bh=w0GyxWtuZcSCJLuH4x+Imjzwl60UHza1uCdMsCstLZ8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=In7j/G3aHj0zUfdQn9EUP96LDFSx8DSrzm8RD3NDnpy15PMsiUtL0U7JIiRMPSUag
+         +9DAns2GS9mFk0oKN9/ixWhHGTYa4t86Ow4n9LOORddrI52CtVC/smabFlaGjfSUWU
+         j5jl7qZ/fFpHEruQI5KrLy0JYrUZBSJE6PAC7UiYo5mOpGkIbLw5PJW2wDvjWt6TxE
+         85Hd3wcczhWI4GYDrbWoOeX83mk7jKmkGdIhHXTdCmtVML8ZxBw1t7sSz/bsfLS2T8
+         FqfPyQkCfzj6mjaJ8Ko5iGeyttiKTIFIysh98qTRp5dUYw4lxK5AjRVQBzYUQXWiup
+         XOYhf9wX0SBqw==
+Date:   Thu, 26 Jan 2023 08:00:49 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc:     patchwork-bot+bluetooth@kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>, pavel@ucw.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        robh@kernel.org
+Subject: Re: [PATCH v2] dt-bindings: leds: Document Bluetooth and WLAN
+ triggers
+Message-ID: <Y9IzMWnOq+r2/4V2@google.com>
+References: <0d0de1bc949d24e08174205c13c0b59bd73c1ea8.1674384302.git.geert+renesas@glider.be>
+ <167460363944.4058.4676712965831302643.git-patchwork-notify@kernel.org>
+ <Y9FG5Wg0PmP4zfV6@google.com>
+ <CABBYNZJEU-GD5J6K8_Ur4PWLvP10VNJGP7e_43H0=W3DOS=PNw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="fj2Wr4MQdoooWJdA"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230126045738.47903-1-samuel@sholland.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CABBYNZJEU-GD5J6K8_Ur4PWLvP10VNJGP7e_43H0=W3DOS=PNw@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---fj2Wr4MQdoooWJdA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, 25 Jan 2023, Luiz Augusto von Dentz wrote:
 
-On Wed, Jan 25, 2023 at 10:57:27PM -0600, Samuel Holland wrote:
-> This series adds the Kconfig/defconfig plumbing and devicetrees for a
-> range of Allwinner D1 and D1s-based boards. Many features are already
-> enabled, including USB, Ethernet, and WiFi.
->=20
-> This version drops all boards/nodes with missing YAML bindings, so at
-> least some support can get merged for v6.3.
+> Hi Lee,
+> 
+> On Wed, Jan 25, 2023 at 7:16 AM Lee Jones <lee@kernel.org> wrote:
+> >
+> > On Tue, 24 Jan 2023, patchwork-bot+bluetooth@kernel.org wrote:
+> >
+> > > Hello:
+> > >
+> > > This patch was applied to bluetooth/bluetooth-next.git (master)
+> > > by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+> > >
+> > > On Sun, 22 Jan 2023 11:47:27 +0100 you wrote:
+> > > > Add the missing trigger patterns for Bluetooth and WLAN activity, which
+> > > > are already in active use.
+> > > >
+> > > > While at it, move the mmc pattern comment where it belongs, and restore
+> > > > alphabetical sort order.
+> > > >
+> > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > >
+> > > > [...]
+> > >
+> > > Here is the summary with links:
+> > >   - [v2] dt-bindings: leds: Document Bluetooth and WLAN triggers
+> > >     https://git.kernel.org/bluetooth/bluetooth-next/c/ef017002b93b
+> >
+> > Why are you taking LED patches through the Bluetooth tree?
+> 
+> I assume there isn't a tree dedicated to dt-bindings/leds
 
-That'd be great! Pity the LDO stuff isn't ready yet, but definitely
-better to have this stuff in rather than out. In case it helps:
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+% ./scripts/get_maintainer.pl -f Documentation/devicetree/bindings/leds/common.yaml
+ Pavel Machek <pavel@ucw.cz> (maintainer:LED SUBSYSTEM,in file)
+ Lee Jones <lee@kernel.org> (maintainer:LED SUBSYSTEM)
+ Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+ Jacek Anaszewski <jacek.anaszewski@gmail.com> (in file)
+ linux-leds@vger.kernel.org (open list:LED SUBSYSTEM)
+ devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+ linux-kernel@vger.kernel.org (open list)
 
+> not to mention this was submitted to linux-bluetooth and nobody else
+> other than Rob reviewed it,
 
---fj2Wr4MQdoooWJdA
-Content-Type: application/pgp-signature; name="signature.asc"
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+    Rob Herring <robh+dt@kernel.org>,
+    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+    Jacek Anaszewski <jacek.anaszewski@gmail.com>                                      
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+    linux-wireless@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+    linux-renesas-soc@vger.kernel.org,
+    Geert Uytterhoeven <geert+renesas@glider.be>,
+    Rob Herring <robh@kernel.org>
 
------BEGIN PGP SIGNATURE-----
+> anyway I'd be happy if the dt-bindings patches
+> would be handled elsewhere.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY9IzDAAKCRB4tDGHoIJi
-0jEzAPwL157GoMnwml3kupueIMZ1KSMy5IfVKW2YSqP7GD6KxQD7BKmIo2ITQ2fu
-ftVmGqWDLJvwGoS4PdqMF78cCMPU6gc=
-=hIJW
------END PGP SIGNATURE-----
+Yep, we got this. :)
 
---fj2Wr4MQdoooWJdA--
+-- 
+Lee Jones [李琼斯]
