@@ -2,397 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FE5D67CB9C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08EA467CBA2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:05:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231129AbjAZNEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 08:04:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45002 "EHLO
+        id S233903AbjAZNFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 08:05:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229847AbjAZNEY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:04:24 -0500
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11C0F5B9D;
-        Thu, 26 Jan 2023 05:04:22 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id ay1so935719pfb.7;
-        Thu, 26 Jan 2023 05:04:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=DWm7eTwMrQ0nGf/JK2vIcHfVCjcE6fqVapxuyiP5nZs=;
-        b=QjQ/mw7zS0d8OuG50f45yMu6roPKZx4ifq/QIBEmBHXF7CdRotHToMgqOISjMIX8H3
-         UuHdqSafkG6DeCD8Ucx5LR02WsAxn5NO1cqikERyNwyz1FCU9gQ+/NFSOst05HWr0Bbr
-         RM9YZb2YVf8smjIirsqQJnovKAkkcxLddAqV5+hSa6ucEOr7DmgMsX26oypBdSZj6/54
-         wkbom29UlpJaMCXJHufTYSKD9QIchNjR77+/aRtdjvdwHRZu67V5eNg1JS8u8j8dTLBq
-         AlDBaYcBUXBT9rPYmM6ixjErejCr7MuzLgSkDycznkLKzcaZbFWeBmD5WtB0X7ttUC2p
-         ICqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DWm7eTwMrQ0nGf/JK2vIcHfVCjcE6fqVapxuyiP5nZs=;
-        b=ZuZjMBzlzM5yccICQNjgvLIXMZmdgrVjPrJ8CAGBNL2RST+baeML5t7FGLJVQB3NeT
-         3YlVcoCwP5n7X1bfvZ2Oubt20IUiBhsI/IX4dGLABDuhwZTouYa1Nc1U6IzUXD1NFEzL
-         xph4OiLxZP2srKz9kRRpQ2cBU916VYWlKbG8otvkfFev+mAMueaC/LnA4zcOyyhnr6rc
-         JrWRnWMoyPhlZLeylFBICyK2/lyjYREPfJVAayNOjOHiD6v/3SizEH9lA0kRzm0o56qn
-         qz2wbDXAickxSDU4xL3RSrEPTXYEW1D2KjzUXtq1tTXrTnFOiTt6NLm+JBsF2lTxOmjV
-         2LUg==
-X-Gm-Message-State: AFqh2kqouzHyQfpE0HCx25F0XFmSWhS756xfj2872qeuP5Hh5rff3mzR
-        U9NX4u85Pcpe8BSr66OTlpLOznIMpMQq/BwBu/c=
-X-Google-Smtp-Source: AMrXdXtCeVQoLv6CyfSO3ueCDjKx91U9VwCMOiXexoV2QAmArRgcvHyw2ygCiNUsT+BnHtM8ZYxZbSlyG88bESwCDWI=
-X-Received: by 2002:a63:cc01:0:b0:4d0:370b:5027 with SMTP id
- x1-20020a63cc01000000b004d0370b5027mr3485511pgf.8.1674738261053; Thu, 26 Jan
- 2023 05:04:21 -0800 (PST)
+        with ESMTP id S229677AbjAZNFW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:05:22 -0500
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4C25B9D;
+        Thu, 26 Jan 2023 05:05:20 -0800 (PST)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out1.suse.de (Postfix) with ESMTPS id 6BB2A21E37;
+        Thu, 26 Jan 2023 13:05:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1674738319; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=MZ/GsfMgRhW/1fXxnIvw+dujoHIf++p4Z4X2iJFtRvg=;
+        b=hiv1Mn3sT1arZKi54NXDzD/M3afihA9zhvqQiIb2qsecaZXpfrQ2VPaQT1anuwI/7Me+Ui
+        Is2+gpAZE3UtSGom7iBhXENKcaWOEIjSth9NR3IxMVmvtDltVFFUZWbdeQu/I2wrmfUksb
+        3NQ7ux3pflEBS3ffCVKKGiUguFOzDlI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1674738319;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=MZ/GsfMgRhW/1fXxnIvw+dujoHIf++p4Z4X2iJFtRvg=;
+        b=JyZ8tAAS5NgcTJ4XmTK6XzFegSVpTasYrC3B/Z39D3bXGgc20lJI5xRlRvH/spdjl3UIxj
+        LJTVoJ8KjwH3dECA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 334A0139B3;
+        Thu, 26 Jan 2023 13:05:19 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id 6pWsC4960mOfVQAAMHmgww
+        (envelope-from <tzimmermann@suse.de>); Thu, 26 Jan 2023 13:05:19 +0000
+Message-ID: <00e614e8-4395-0aac-d613-b70b7005bd0b@suse.de>
+Date:   Thu, 26 Jan 2023 14:05:18 +0100
 MIME-Version: 1.0
-References: <20230126003320.10047-1-laurent.pinchart@ideasonboard.com>
- <20230126003320.10047-2-laurent.pinchart@ideasonboard.com>
- <CAHCN7x+PcBk-Y+t3AP4saJK=tntYr85btTzQMFD=WL+KYQfHGg@mail.gmail.com>
- <Y9Jehk+qOXkaI3SH@pendragon.ideasonboard.com> <Y9Jvm1GxfNRhPBP/@pendragon.ideasonboard.com>
-In-Reply-To: <Y9Jvm1GxfNRhPBP/@pendragon.ideasonboard.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Thu, 26 Jan 2023 07:04:09 -0600
-Message-ID: <CAHCN7x+GO7mL9myhqP4xGe12_wAF37rr8n5TcN7Cx8a=gOytPQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: Add i.MX8 ISI DT bindings
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 1/2] drm/simpledrm: Allow physical width and height
+ configuration via DT
+Content-Language: en-US
+To:     Rayyan Ansari <rayyan@ansari.sh>, dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        janne@jannau.net,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev
+References: <20230121153544.467126-1-rayyan@ansari.sh>
+ <20230121153544.467126-2-rayyan@ansari.sh>
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20230121153544.467126-2-rayyan@ansari.sh>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------hVvOHpSjJzA94kD7H70P3Lwt"
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 26, 2023 at 6:18 AM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> On Thu, Jan 26, 2023 at 01:05:43PM +0200, Laurent Pinchart wrote:
-> > Hi Adam,
-> >
-> > On Wed, Jan 25, 2023 at 08:36:41PM -0600, Adam Ford wrote:
-> > > On Wed, Jan 25, 2023 at 6:33 PM Laurent Pinchart wrote:
-> > > >
-> > > > The Image Sensing Interface (ISI) combines image processing pipelines
-> > > > with DMA engines to process and capture frames originating from a
-> > > > variety of sources. The inputs to the ISI go through Pixel Link
-> > > > interfaces, and their number and nature is SoC-dependent. They cover
-> > > > both capture interfaces (MIPI CSI-2 RX, HDMI RX) and memory inputs.
-> > > >
-> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > ---
-> > > > Changes since v2:
-> > > >
-> > > > - Describe the interrupts property
-> > > > - Set global minItems and maxItems for interrupts
-> > > > - Set maxItems for power-domains
-> > > >
-> > > > Changes since v1:
-> > > >
-> > > > - Fix compatible string checks in conditional schema
-> > > > - Fix interrupts property handling
-> > > > ---
-> > > >  .../bindings/media/nxp,imx8-isi.yaml          | 152 ++++++++++++++++++
-> > > >  1 file changed, 152 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..130fa41b9d8e
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> > > > @@ -0,0 +1,152 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/media/nxp,imx8-isi.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: i.MX8 Image Sensing Interface
-> > > > +
-> > > > +maintainers:
-> > > > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > +
-> > > > +description: |
-> > > > +  The Image Sensing Interface (ISI) combines image processing pipelines with
-> > > > +  DMA engines to process and capture frames originating from a variety of
-> > > > +  sources. The inputs to the ISI go through Pixel Link interfaces, and their
-> > > > +  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
-> > > > +  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - fsl,imx8mn-isi
-> > > > +      - fsl,imx8mp-isi
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clocks:
-> > > > +    items:
-> > > > +      - description: The AXI clock
-> > > > +      - description: The APB clock
-> > > > +      # TODO: Check if the per-channel ipg_proc_clk clocks need to be specified
-> > > > +      # as well, in case some SoCs have the ability to control them separately.
-> > > > +      # This may be the case of the i.MX8[DQ]X(P)
-> > > > +
-> > > > +  clock-names:
-> > > > +    items:
-> > > > +      - const: axi
-> > > > +      - const: apb
-> > > > +
-> > > > +  fsl,blk-ctrl:
-> > > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > > +    description:
-> > > > +      A phandle referencing the block control that contains the CSIS to ISI
-> > > > +      gasket.
-> > > > +
-> > > > +  interrupts:
-> > > > +    description: Processing pipeline interrupts, one per pipeline
-> > > > +    minItems: 1
-> > > > +    maxItems: 2
-> > > > +
-> > > > +  power-domains:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  ports:
-> > > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > > +    description: |
-> > > > +      Ports represent the Pixel Link inputs to the ISI. Their number and
-> > > > +      assignment are model-dependent. Each port shall have a single endpoint.
-> > > > +
-> > > > +    patternProperties:
-> > > > +      "^port@[0-9]$":
-> > > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > > +        unevaluatedProperties: false
-> > > > +
-> > > > +    unevaluatedProperties: false
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +  - interrupts
-> > > > +  - clocks
-> > > > +  - clock-names
-> > > > +  - fsl,blk-ctrl
-> > > > +  - ports
-> > > > +
-> > > > +allOf:
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            const: fsl,imx8mn-isi
-> > > > +    then:
-> > > > +      properties:
-> > > > +        interrupts:
-> > > > +          maxItems: 1
-> > > > +        ports:
-> > > > +          properties:
-> > > > +            port@0:
-> > > > +              description: MIPI CSI-2 RX
-> > > > +          required:
-> > > > +            - port@0
-> > >
-> > > The imx8mn only has one port for the ISI.  When I compile the device
-> > > tree with W=1, I get the following:
-> > > arch/arm64/boot/dts/freescale/imx8mn.dtsi:1058.11-1068.7: Warning
-> > > (graph_child_address): /soc@0/bus@32c00000/isi@32e20000/ports: graph
-> > > node has single child node 'port@0', #address-cells/#size-cells are
-> > > not necessary
-> >
-> > The only appropriate answer to this is of course aaaarrrrghhhhhhhh.
-> >
-> > > Should the "ports" node be replaced with a single port with port@0 removed?
-> > >
-> > > The device tree would look something like:
-> > >
-> > > port {
-> > >     isi_in: endpoint {
-> > >         remote-endpoint = <&mipi_csi_out>;
-> > >     };
-> > > };
-> >
-> > I understand why DT tools (and before them, DT maintainers) recommend
-> > (or require ?) single-port devices to use the short-hand syntax without
-> > a ports node. In this specific case, or in the more general case of
-> > devices that can have a variable number of ports depending on how
-> > they're instantiated in a particular SoC, allowing a ports node to have
-> > a single port child would be best I believe, as it would make DT
-> > bindings more consistent, and simpler.
-> >
-> > > With the above, the messages go away, and I can still see the media
-> > > pipeline and the video captures.  I am not good with YAML, so I am not
-> > > exactly sure how to code that in YAML form.
-> >
-> > It's possible, and I can do so, but I'll wait for feedback from DT
-> > maintainers.
->
-> Here's a patch on top of this one to support port/ports depending on the
-> number of ports. Adam, could you test it ? Could you also share the
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------hVvOHpSjJzA94kD7H70P3Lwt
+Content-Type: multipart/mixed; boundary="------------crI3tKa4CicLouoxoKq0icJY";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Rayyan Ansari <rayyan@ansari.sh>, dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ janne@jannau.net, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org,
+ Hans de Goede <hdegoede@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev
+Message-ID: <00e614e8-4395-0aac-d613-b70b7005bd0b@suse.de>
+Subject: Re: [PATCH v2 1/2] drm/simpledrm: Allow physical width and height
+ configuration via DT
+References: <20230121153544.467126-1-rayyan@ansari.sh>
+ <20230121153544.467126-2-rayyan@ansari.sh>
+In-Reply-To: <20230121153544.467126-2-rayyan@ansari.sh>
 
-I can test it tonight.
+--------------crI3tKa4CicLouoxoKq0icJY
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-> i.MX8MN DT node for the ISI ? I'd like to add it as an example to the
-> bindings.
+SGksDQoNCkkganVzdCB3YW50IHRvIGNvbW1lbnQgdGhhdCB0aGUgY29kZSBpbiB0aGlzIHBh
+dGNoIGlzIGZpbmUsIGJ1dCBJJ20gbm90IA0KZ29pbmcgdG8gbWVyZ2UgaXQgdW50aWwgdGhl
+IG90aGVyIGRpc2N1c3Npb24gYWJvdXQgdXNpbmcgdGhlIHBhbmVsJ3MgRFQgDQpub2RlcyBo
+YXMgYmVlbiByZXNvbHZlZC4gSU1ITywgdGhlIHBhbmVsLWJhc2VkIHNvbHV0aW9uIHNlZW1z
+IHByZWZlcmFibGUgDQp0byB0aGUgbmV3IHByb3BlcnRpZXMuDQoNCkJlc3QgcmVnYXJkcw0K
+VGhvbWFzDQoNCkFtIDIxLjAxLjIzIHVtIDE2OjM1IHNjaHJpZWIgUmF5eWFuIEFuc2FyaToN
+Cj4gU2lnbmVkLW9mZi1ieTogUmF5eWFuIEFuc2FyaSA8cmF5eWFuQGFuc2FyaS5zaD4NCj4g
+LS0tDQo+ICAgZHJpdmVycy9ncHUvZHJtL3Rpbnkvc2ltcGxlZHJtLmMgfCA2MCArKysrKysr
+KysrKysrKysrKysrKysrKysrKystLS0tLQ0KPiAgIDEgZmlsZSBjaGFuZ2VkLCA1MSBpbnNl
+cnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS90aW55L3NpbXBsZWRybS5jIGIvZHJpdmVycy9ncHUvZHJtL3Rpbnkvc2ltcGxl
+ZHJtLmMNCj4gaW5kZXggMTYyZWI0NGRjYmE4Li43YWFiN2ZhNTcyZjAgMTAwNjQ0DQo+IC0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS90aW55L3NpbXBsZWRybS5jDQo+ICsrKyBiL2RyaXZlcnMv
+Z3B1L2RybS90aW55L3NpbXBsZWRybS5jDQo+IEBAIC0xMjgsNiArMTI4LDIzIEBAIHNpbXBs
+ZWZiX3JlYWRfdTMyX29mKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBkZXZpY2Vf
+bm9kZSAqb2Zfbm9kZSwNCj4gICAJcmV0dXJuIHJldDsNCj4gICB9DQo+ICAgDQo+ICtzdGF0
+aWMgaW50DQo+ICtzaW1wbGVmYl9yZWFkX3UzMl9vZl9vcHQoc3RydWN0IGRybV9kZXZpY2Ug
+KmRldiwgc3RydWN0IGRldmljZV9ub2RlICpvZl9ub2RlLA0KPiArCQkJIGNvbnN0IGNoYXIg
+Km5hbWUsIHUzMiAqdmFsdWUpDQo+ICt7DQo+ICsJaW50IHJldCA9IG9mX3Byb3BlcnR5X3Jl
+YWRfdTMyKG9mX25vZGUsIG5hbWUsIHZhbHVlKTsNCj4gKw0KPiArCWlmIChyZXQgPT0gLUVJ
+TlZBTCkgew0KPiArCQkqdmFsdWUgPSAwOw0KPiArCQlyZXQgPSAwOw0KPiArCX0gZWxzZSBp
+ZiAocmV0KSB7DQo+ICsJCWRybV9lcnIoZGV2LCAic2ltcGxlZmI6IGNhbm5vdCBwYXJzZSBm
+cmFtZWJ1ZmZlciAlczogZXJyb3IgJWRcbiIsDQo+ICsJCQluYW1lLCByZXQpOw0KPiArCX0N
+Cj4gKw0KPiArCXJldHVybiByZXQ7DQo+ICt9DQo+ICsNCj4gICBzdGF0aWMgaW50DQo+ICAg
+c2ltcGxlZmJfcmVhZF9zdHJpbmdfb2Yoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0
+IGRldmljZV9ub2RlICpvZl9ub2RlLA0KPiAgIAkJCWNvbnN0IGNoYXIgKm5hbWUsIGNvbnN0
+IGNoYXIgKip2YWx1ZSkNCj4gQEAgLTE4NCw2ICsyMDEsMTkgQEAgc2ltcGxlZmJfZ2V0X2Zv
+cm1hdF9vZihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3QgZGV2aWNlX25vZGUgKm9m
+X25vZGUpDQo+ICAgCXJldHVybiBzaW1wbGVmYl9nZXRfdmFsaWRhdGVkX2Zvcm1hdChkZXYs
+IGZvcm1hdCk7DQo+ICAgfQ0KPiAgIA0KPiArc3RhdGljIGludA0KPiArc2ltcGxlZmJfZ2V0
+X21tX29mKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBkZXZpY2Vfbm9kZSAqb2Zf
+bm9kZSwNCj4gKwkJICAgY29uc3QgY2hhciAqbmFtZSkNCj4gK3sNCj4gKwlpbnQgbW07DQo+
+ICsJaW50IHJldCA9IHNpbXBsZWZiX3JlYWRfdTMyX29mX29wdChkZXYsIG9mX25vZGUsIG5h
+bWUsICZtbSk7DQo+ICsNCj4gKwlpZiAocmV0KQ0KPiArCQlyZXR1cm4gcmV0Ow0KPiArCXJl
+dHVybiBzaW1wbGVmYl9nZXRfdmFsaWRhdGVkX2ludChkZXYsIG5hbWUsIG1tKTsNCj4gK30N
+Cj4gKw0KPiArDQo+ICAgLyoNCj4gICAgKiBTaW1wbGUgRnJhbWVidWZmZXIgZGV2aWNlDQo+
+ICAgICovDQo+IEBAIC01OTksMTYgKzYyOSwxMiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGRy
+bV9tb2RlX2NvbmZpZ19mdW5jcyBzaW1wbGVkcm1fbW9kZV9jb25maWdfZnVuY3MgPSB7DQo+
+ICAgICovDQo+ICAgDQo+ICAgc3RhdGljIHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlIHNpbXBs
+ZWRybV9tb2RlKHVuc2lnbmVkIGludCB3aWR0aCwNCj4gLQkJCQkJICAgICAgdW5zaWduZWQg
+aW50IGhlaWdodCkNCj4gKwkJCQkJICAgICAgdW5zaWduZWQgaW50IGhlaWdodCwNCj4gKwkJ
+CQkJICAgICAgdW5zaWduZWQgaW50IHdpZHRoX21tLA0KPiArCQkJCQkgICAgICB1bnNpZ25l
+ZCBpbnQgaGVpZ2h0X21tKQ0KPiAgIHsNCj4gLQkvKg0KPiAtCSAqIEFzc3VtZSBhIG1vbml0
+b3IgcmVzb2x1dGlvbiBvZiA5NiBkcGkgdG8NCj4gLQkgKiBnZXQgYSBzb21ld2hhdCByZWFz
+b25hYmxlIHNjcmVlbiBzaXplLg0KPiAtCSAqLw0KPiAgIAljb25zdCBzdHJ1Y3QgZHJtX2Rp
+c3BsYXlfbW9kZSBtb2RlID0gew0KPiAtCQlEUk1fTU9ERV9JTklUKDYwLCB3aWR0aCwgaGVp
+Z2h0LA0KPiAtCQkJICAgICAgRFJNX01PREVfUkVTX01NKHdpZHRoLCA5NnVsKSwNCj4gLQkJ
+CSAgICAgIERSTV9NT0RFX1JFU19NTShoZWlnaHQsIDk2dWwpKQ0KPiArCQlEUk1fTU9ERV9J
+TklUKDYwLCB3aWR0aCwgaGVpZ2h0LCB3aWR0aF9tbSwgaGVpZ2h0X21tKQ0KPiAgIAl9Ow0K
+PiAgIA0KPiAgIAlyZXR1cm4gbW9kZTsNCj4gQEAgLTYyMiw2ICs2NDgsNyBAQCBzdGF0aWMg
+c3RydWN0IHNpbXBsZWRybV9kZXZpY2UgKnNpbXBsZWRybV9kZXZpY2VfY3JlYXRlKHN0cnVj
+dCBkcm1fZHJpdmVyICpkcnYsDQo+ICAgCXN0cnVjdCBzaW1wbGVkcm1fZGV2aWNlICpzZGV2
+Ow0KPiAgIAlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2Ow0KPiAgIAlpbnQgd2lkdGgsIGhlaWdo
+dCwgc3RyaWRlOw0KPiArCWludCB3aWR0aF9tbSA9IDAsIGhlaWdodF9tbSA9IDA7DQo+ICAg
+CWNvbnN0IHN0cnVjdCBkcm1fZm9ybWF0X2luZm8gKmZvcm1hdDsNCj4gICAJc3RydWN0IHJl
+c291cmNlICpyZXMsICptZW07DQo+ICAgCXZvaWQgX19pb21lbSAqc2NyZWVuX2Jhc2U7DQo+
+IEBAIC02NzYsNiArNzAzLDEyIEBAIHN0YXRpYyBzdHJ1Y3Qgc2ltcGxlZHJtX2RldmljZSAq
+c2ltcGxlZHJtX2RldmljZV9jcmVhdGUoc3RydWN0IGRybV9kcml2ZXIgKmRydiwNCj4gICAJ
+CWZvcm1hdCA9IHNpbXBsZWZiX2dldF9mb3JtYXRfb2YoZGV2LCBvZl9ub2RlKTsNCj4gICAJ
+CWlmIChJU19FUlIoZm9ybWF0KSkNCj4gICAJCQlyZXR1cm4gRVJSX0NBU1QoZm9ybWF0KTsN
+Cj4gKwkJd2lkdGhfbW0gPSBzaW1wbGVmYl9nZXRfbW1fb2YoZGV2LCBvZl9ub2RlLCAid2lk
+dGgtbW0iKTsNCj4gKwkJaWYgKHdpZHRoX21tIDwgMCkNCj4gKwkJCXJldHVybiBFUlJfUFRS
+KHdpZHRoX21tKTsNCj4gKwkJaGVpZ2h0X21tID0gc2ltcGxlZmJfZ2V0X21tX29mKGRldiwg
+b2Zfbm9kZSwgImhlaWdodC1tbSIpOw0KPiArCQlpZiAoaGVpZ2h0X21tIDwgMCkNCj4gKwkJ
+CXJldHVybiBFUlJfUFRSKGhlaWdodF9tbSk7DQo+ICAgCX0gZWxzZSB7DQo+ICAgCQlkcm1f
+ZXJyKGRldiwgIm5vIHNpbXBsZWZiIGNvbmZpZ3VyYXRpb24gZm91bmRcbiIpOw0KPiAgIAkJ
+cmV0dXJuIEVSUl9QVFIoLUVOT0RFVik7DQo+IEBAIC02ODYsNyArNzE5LDE2IEBAIHN0YXRp
+YyBzdHJ1Y3Qgc2ltcGxlZHJtX2RldmljZSAqc2ltcGxlZHJtX2RldmljZV9jcmVhdGUoc3Ry
+dWN0IGRybV9kcml2ZXIgKmRydiwNCj4gICAJCQlyZXR1cm4gRVJSX1BUUigtRUlOVkFMKTsN
+Cj4gICAJfQ0KPiAgIA0KPiAtCXNkZXYtPm1vZGUgPSBzaW1wbGVkcm1fbW9kZSh3aWR0aCwg
+aGVpZ2h0KTsNCj4gKwkvKg0KPiArCSAqIEFzc3VtZSBhIG1vbml0b3IgcmVzb2x1dGlvbiBv
+ZiA5NiBkcGkgaWYgcGh5c2ljYWwgZGltZW5zaW9ucw0KPiArCSAqIGFyZSBub3Qgc3BlY2lm
+aWVkIHRvIGdldCBhIHNvbWV3aGF0IHJlYXNvbmFibGUgc2NyZWVuIHNpemUuDQo+ICsJICov
+DQo+ICsJaWYgKCF3aWR0aF9tbSkNCj4gKwkJd2lkdGhfbW0gPSBEUk1fTU9ERV9SRVNfTU0o
+d2lkdGgsIDk2dWwpOw0KPiArCWlmICghaGVpZ2h0X21tKQ0KPiArCQloZWlnaHRfbW0gPSBE
+Uk1fTU9ERV9SRVNfTU0oaGVpZ2h0LCA5NnVsKTsNCj4gKw0KPiArCXNkZXYtPm1vZGUgPSBz
+aW1wbGVkcm1fbW9kZSh3aWR0aCwgaGVpZ2h0LCB3aWR0aF9tbSwgaGVpZ2h0X21tKTsNCj4g
+ICAJc2Rldi0+Zm9ybWF0ID0gZm9ybWF0Ow0KPiAgIAlzZGV2LT5waXRjaCA9IHN0cmlkZTsN
+Cj4gICANCg0KLS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVs
+b3Blcg0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJIDQpNYXhmZWxkc3Ry
+LiA1LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkNCihIUkIgMzY4MDksIEFHIE7DvHJuYmVy
+ZykNCkdlc2Now6RmdHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
 
-Here is git repo where took your stuff and added the Nano stuff:
+--------------crI3tKa4CicLouoxoKq0icJY--
 
-https://github.com/aford173/linux/commit/f1ab727b4f6429aab281a3269ff4567008b72de3
+--------------hVvOHpSjJzA94kD7H70P3Lwt
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-Once the bindings are accepted, I'll push this (or similar) patch to the LKML.
+-----BEGIN PGP SIGNATURE-----
 
-adam
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPSeo4FAwAAAAAACgkQlh/E3EQov+AF
+dRAAr03P99RG0h7Bga6J3Ig+I5zFZhIR/vpS+pZUtrKKdbpGiZLR3Fvfy3yom8PRewVpuL8WoMqf
+j9LM3Ji0hLWFp8DJq0U+Lt62/f2O5odJaFrTLjRJVTGlJhBhEeBxVGa1UAgfvjEWPePrVBZkXoE5
+xOF5+pyMHqxlUxOEUngFEfOcQ0aW2eg7+yIBB4eVrCkTn/bRPN+rdK5RCc9mEkEYX9Psa0feob4h
+03AdZF5bJ62UhH0Yz44eTMc62xgMNUycwyUqNPhklMR+JC1cRXLg2DtdM/Hajc1VaFC9qR2rDAcU
+F2HPnbBzbxUAgKUD9CSdRyEYFPP1yRrTHDc99yFc2/sVMInJ03Z3Yjlmujwzq1anQfoHueqol6cn
+yeKZRFMRjrFtvJeBGfr8/2CVqhdwXUoklG/QqSmafUqkv/m6aWXiJAPUQ+10h+qJT7V4zcXBiBm5
+7koetQbIxew8jSoL5setXGM/YJp8YboO4FpZ429mVVII8da2kwvbCPKKlP3sjx1rFVxPsZ+mSrYX
+HVVTTo7WIqOx3BzKgDOT4YRmcXJ/UUZrlYVz1WktlFRaK4kMqXb498q5dhQJ+fKdloPrqFPlLJDF
+ruH7l30UKj83HMUbll8IcICGZdvgD1CJoMWU3zeTI6J4lJPYzc0DOdGwDV6dWwkBetQCyyIZAhFR
+Q1Q=
+=Uv5e
+-----END PGP SIGNATURE-----
 
->
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> index cead41a017bf..8bbdc4ed929d 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> @@ -52,11 +52,21 @@ properties:
->    power-domains:
->      maxItems: 1
->
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description: |
-> +      The port represents the Pixel Link input to the ISI. It shall have a
-> +      single endpoint. This property is only used for ISI instances with a
-> +      single port (as in the i.MX8MN). For instances that includes multiple
-> +      ports, the 'ports' property shall be used instead.
-> +
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
->      description: |
->        Ports represent the Pixel Link inputs to the ISI. Their number and
-> -      assignment are model-dependent. Each port shall have a single endpoint.
-> +      assignment are model-dependent. For ISI instances that have a single
-> +      port, the 'port' property should be used instead. Each port shall have a
-> +      single endpoint.
->
->  required:
->    - compatible
-> @@ -65,7 +75,6 @@ required:
->    - clocks
->    - clock-names
->    - fsl,blk-ctrl
-> -  - ports
->
->  allOf:
->    - if:
-> @@ -77,12 +86,11 @@ allOf:
->        properties:
->          interrupts:
->            maxItems: 1
-> -        ports:
-> -          properties:
-> -            port@0:
-> -              description: MIPI CSI-2 RX
-> -          required:
-> -            - port@0
-> +        port:
-> +          description: MIPI CSI-2 RX
-> +        ports: false
-> +      required:
-> +        - port
->
->    - if:
->        properties:
-> @@ -93,6 +101,7 @@ allOf:
->        properties:
->          interrupts:
->            maxItems: 2
-> +        port: false
->          ports:
->            properties:
->              port@0:
-> @@ -102,6 +111,8 @@ allOf:
->            required:
->              - port@0
->              - port@1
-> +      required:
-> +        - ports
->
->  additionalProperties: false
->
-> > > > +
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            const: fsl,imx8mp-isi
-> > > > +    then:
-> > > > +      properties:
-> > > > +        interrupts:
-> > > > +          maxItems: 2
-> > > > +        ports:
-> > > > +          properties:
-> > > > +            port@0:
-> > > > +              description: MIPI CSI-2 RX 0
-> > > > +            port@1:
-> > > > +              description: MIPI CSI-2 RX 1
-> > > > +          required:
-> > > > +            - port@0
-> > > > +            - port@1
-> > > > +
-> > > > +additionalProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    #include <dt-bindings/clock/imx8mp-clock.h>
-> > > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > > +
-> > > > +    isi@32e00000 {
-> > > > +        compatible = "fsl,imx8mp-isi";
-> > > > +        reg = <0x32e00000 0x4000>;
-> > > > +        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-> > > > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +        clocks = <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-> > > > +                 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-> > > > +        clock-names = "axi", "apb";
-> > > > +        fsl,blk-ctrl = <&media_blk_ctrl>;
-> > > > +        power-domains = <&mediamix_pd>;
-> > > > +
-> > > > +        ports {
-> > > > +            #address-cells = <1>;
-> > > > +            #size-cells = <0>;
-> > > > +
-> > > > +            port@0 {
-> > > > +                reg = <0>;
-> > > > +                isi_in_0: endpoint {
-> > > > +                    remote-endpoint = <&mipi_csi_0_out>;
-> > > > +                };
-> > > > +            };
-> > > > +
-> > > > +            port@1 {
-> > > > +                reg = <1>;
-> > > > +                isi_in_1: endpoint {
-> > > > +                    remote-endpoint = <&mipi_csi_1_out>;
-> > > > +                };
-> > > > +            };
-> > > > +        };
-> > > > +    };
-> > > > +
-> > > > +...
-> >
-> > --
-> > Regards,
-> >
-> > Laurent Pinchart
->
-> --
-> Regards,
->
-> Laurent Pinchart
+--------------hVvOHpSjJzA94kD7H70P3Lwt--
