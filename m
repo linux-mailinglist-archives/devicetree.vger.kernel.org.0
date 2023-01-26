@@ -2,167 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E46967D9D7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 00:43:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E07867D7EC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 22:51:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233574AbjAZXnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 18:43:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55048 "EHLO
+        id S232929AbjAZVvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 16:51:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233598AbjAZXnc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 18:43:32 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A81849011;
-        Thu, 26 Jan 2023 15:43:21 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id f25-20020a1c6a19000000b003da221fbf48so2297193wmc.1;
-        Thu, 26 Jan 2023 15:43:21 -0800 (PST)
+        with ESMTP id S232812AbjAZVvk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 16:51:40 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB59DFF2F
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 13:51:38 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id tz11so9013040ejc.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 13:51:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=EONYoIxZjQ2TsLY9+i04B1myHyhVfZp+OAShfITEebg=;
-        b=SLrvUsVpk/8wYUgiDh8+8xfwGmz+PuigYX0XGJ3C5LG+5NbRY/OXV/A6mn564EVVWr
-         BQn9m+lYalUK1Q/5CgoF+1gaepal+ISvm8jC/nnFTd2IMRiOPpEABSB3DP6jiVGrfYMq
-         m3HUmyaNxZ+pn9PcLCBe5/tuoAvL43QoBcwEWnKGE3x0l910TQ68G9gK1h59BCWoFMOq
-         963XbYi1uNEGrX4o590PbXMZm7tNi4mCN5K9t0hC7vy14Ks392Fubx8caokp8rSLhRyy
-         XNcxBGlPcViMPb29sbANp1+k1uhz0wty+vTiBFcyrEGEKogiuf+G1E8FiT5OS2ZLy3G3
-         wp1Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MqXh2+E8iJs7wo/kixnLmyAo4vCoE9jx2NshAMdQdhk=;
+        b=bKaK/ctjLrTftCgy6iuhFHsvkcxrlzWwRUDo+YNkZlibgyNBd2PKwG6zJkf3v1F6Ee
+         KbqJ/numtWHVrfY38qrB76My9TGXMDGXD5OrC1Yi5JreUJSsCyV+9vjM1bF/ylYRLdGO
+         sm0psMEJl+tp5dp6TM9jdaTvVeyAS5+U2ZxI3qIkJflUNAkittA7cRR0u7VfvsNMn8ct
+         Vk6HBlOQC7jJTSY7LTvt/nt+ZJXIzuHUY5rdEBN3VswOrrzS7zfjnRwfAYUGV1keT3It
+         kb5BDwZgphSlRvIVFzF5EmIU2vZoVIwHvG/e/ZimszkAkVBTLQU/va0sFO1UehBIy8Ol
+         gy8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EONYoIxZjQ2TsLY9+i04B1myHyhVfZp+OAShfITEebg=;
-        b=K5WekQr3N9/X0W6KfCY2TXF6zdHgvletcZheKJXpP7DAeH613ZT+bk43KycUuUbUim
-         sJm96Ck58eDSlTgZc9nrHKzWTQwiqNTZWJn/W5OZb9Iqtp8JyvUIKLC3QxH/CkGVMpUf
-         Fh25IQaaVdPXQ3ujFVTdBgjRBElgnIKhlCxD2kmGM6mry83Rv5YBNUjdw9SryBrcch7G
-         0raq58vGv6FMRK6LoPd7WG3IBLdYtZTt6GzvHhjEPuYBn1ksFwwUTgjbDPSELo4L9BDb
-         ENYc1Gn+Pzje7GK0QcSGBMM9KzsTJvy00SMV84CmcwI31ePPsWizDv64WN9P8RtEq4DC
-         EU9Q==
-X-Gm-Message-State: AFqh2kqTO9H0Ta7LV27fdBry/9Ti6SEiPPNI2dLuCOIMx2qObnRx/0i1
-        +gvvCVfLGJ/85/WL4UaOwEM=
-X-Google-Smtp-Source: AMrXdXtClFX3qNEKpixctJRKjnKhz717i7YBO0EMNuKGjh+4T+5edcCNG6tl549AQ9+f/vxqSfgo8g==
-X-Received: by 2002:a05:600c:1609:b0:3db:12a:5e65 with SMTP id m9-20020a05600c160900b003db012a5e65mr36540049wmn.4.1674776599385;
-        Thu, 26 Jan 2023 15:43:19 -0800 (PST)
-Received: from Ansuel-xps. (93-34-89-61.ip49.fastwebnet.it. [93.34.89.61])
-        by smtp.gmail.com with ESMTPSA id az26-20020a05600c601a00b003d99469ece1sm6183454wmb.24.2023.01.26.15.43.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 15:43:18 -0800 (PST)
-Message-ID: <63d31016.050a0220.a8e15.261d@mx.google.com>
-X-Google-Original-Message-ID: <Y9Lz6X9qKT4HICIV@Ansuel-xps.>
-Date:   Thu, 26 Jan 2023 22:43:05 +0100
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Ilia Lin <ilia.lin@kernel.org>, linux-pm@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: cpufreq: qcom-cpufreq-nvmem: make
- cpr bindings optional
-References: <20230126150026.14590-1-ansuelsmth@gmail.com>
- <167475624070.2087166.4816561741085643801.robh@kernel.org>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MqXh2+E8iJs7wo/kixnLmyAo4vCoE9jx2NshAMdQdhk=;
+        b=MfTUyzoHvMWTC1a0GFb2dRCUAUOLMXx+nTJkVnz1c6PJxhjfmPewMm9f4DwYzJY/3v
+         GDwfmM4ggDQL1PgHhNQH3cpr2X6Xj+pYSpxcz93kq0DpYCf6E4kt41aDvmcEPZ6xY8BT
+         ULXFZSnPuALmtBzfMLheFhMcrlrE+BEJFdTs0Rg6dXxhIT3IQhqdRsHtbCp/A3RtdM5/
+         WrNaJE/h+tQvrkJHwR7U2ezi2IQW1jQKx1r1Zx89InGKA1HopY3P9RZGjotckzB9Pcx3
+         5eUvSbfM6QZH3VwJfT9vfwnmH/Z9olAoGBL8LWVdXXDsYHMOe84PAdMHKDnsrq9VEm4f
+         85fg==
+X-Gm-Message-State: AFqh2kqaqUQSXzhKJ+1dY/eJy1Xx4hEWYD1jF+CTCmMdEVzbJOoa7SpF
+        pysrw4a45Qrr7JpMRT6mjdhoeg==
+X-Google-Smtp-Source: AMrXdXs+sAI5Gz3WB8RUn1xMA8MppwykyLLgQIlCxXNtxLmH0SYOO77LdlAY9aiwg7Khf80nqTd4gg==
+X-Received: by 2002:a17:907:75e7:b0:871:3919:cbea with SMTP id jz7-20020a17090775e700b008713919cbeamr38276063ejc.54.1674769897548;
+        Thu, 26 Jan 2023 13:51:37 -0800 (PST)
+Received: from [192.168.118.20] ([87.116.162.186])
+        by smtp.gmail.com with ESMTPSA id ck17-20020a170906c45100b0082000f8d871sm1135489ejb.152.2023.01.26.13.51.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jan 2023 13:51:37 -0800 (PST)
+Message-ID: <2d0f82c8-231b-7ad2-0366-a1a25f71da8f@linaro.org>
+Date:   Fri, 27 Jan 2023 00:51:35 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <167475624070.2087166.4816561741085643801.robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 0/2] net: stmmac: add DT parameter to keep RX_CLK running
+ in LPI state
+To:     Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
+        alexandre.torgue@foss.st.com, peppe.cavallaro@st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+References: <20230123133747.18896-1-andrey.konovalov@linaro.org>
+ <Y88uleBK5zROcpgc@lunn.ch> <f8b6aca2-c0d2-3aaf-4231-f7a9b13d864d@linaro.org>
+ <Y8/mrhWDa6DuauZY@lunn.ch> <20230125191453.GA2704119-robh@kernel.org>
+Content-Language: en-US
+From:   Andrey Konovalov <andrey.konovalov@linaro.org>
+In-Reply-To: <20230125191453.GA2704119-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 26, 2023 at 04:05:46PM -0600, Rob Herring wrote:
-> 
-> On Thu, 26 Jan 2023 16:00:24 +0100, Christian Marangi wrote:
-> > The qcom-cpufreq-nvmem driver supports 2 kind of devices:
-> > - pre-cpr that doesn't have power-domains and base everything on nvmem
-> >   cells and multiple named microvolt bindings.
-> >   Doesn't need required-opp binding in the opp nodes as they are only
-> >   used for genpd based devices.
-> > - cpr-based that require power-domain in the cpu nodes and use various
-> >   source to decide the correct voltage and freq
-> >   Require required-opp binding since they need to be linked to the
-> >   related opp-level.
-> > 
-> > When the schema was introduced, it was wrongly set to always require these
-> > binding but this is not the case for pre-cpr devices.
-> > 
-> > Make the power-domain and the required-opp optional and set them required
-> > only for qcs404 based devices.
-> > 
-> > Fixes: ec24d1d55469 ("dt-bindings: opp: Convert qcom-nvmem-cpufreq to DT schema")
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> > Changes v4:
-> > - Explain why required-opp needs to be conditional
-> > - Split additional ref part
-> > Changesv3:
-> > - No change
-> > Changes v2:
-> > - Reword commit description
-> > - Fix condition order
-> > - Add allOf
-> > 
-> >  .../bindings/cpufreq/qcom-cpufreq-nvmem.yaml  | 62 +++++++++++--------
-> >  1 file changed, 37 insertions(+), 25 deletions(-)
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml: 'anyOf' conditional failed, one must be fixed:
-> 	'type' is a required property
-> 	'properties' is a required property
-> 	'patternProperties' is a required property
-> 	hint: 'additionalProperties' depends on 'properties' or 'patternProperties'
-> 	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml: 'anyOf' conditional failed, one must be fixed:
-> 	'properties' is a required property
-> 	'patternProperties' is a required property
-> 	hint: Metaschema for devicetree binding documentation
-> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230126150026.14590-1-ansuelsmth@gmail.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
->
+On 25.01.2023 22:14, Rob Herring wrote:
+> On Tue, Jan 24, 2023 at 03:09:50PM +0100, Andrew Lunn wrote:
+>>>> Could
+>>>> dwmac-qcom-ethqos.c just do this unconditionally?
+>>>
+>>> Never stopping RX_CLK in Rx LPI state would always work, but the power
+>>> consumption would somewhat increase (in Rx LPI state). Some people do care
+>>> about it.
+>>>
+>>>> Is the interrupt
+>>>> controller part of the licensed IP, or is it from QCOM? If it is part
+>>>> of the licensed IP, it is probably broken for other devices as well,
+>>>> so maybe it should be a quirk for all devices of a particular version
+>>>> of the IP?
+>>>
+>>> Most probably this is the part of the ethernet MAC IP. And this is quite
+>>> possible that the issue is specific for particular versions of the IP.
+>>> Unfortunately I don't have the documentation related to this particular
+>>> issue.
+>>
+>> Please could you ask around.
 
-Hi, Rob, was aware of this error but it was expected from the split of
-patches. (since i made each part of the patch conditional the check
-complain for no binding defined)
+I am on it, but it will take time.
 
-If we really want I can send v5 that should fix this bisect problem by
-swapping patch 1 with patch 2 and rebasing.
+>> Do you have contacts in Qualcomm?
+>> Contacts at Synopsys?
 
-I already have that ready and fix this bisect error.
+In Qualcomm only I am afraid.
 
--- 
-	Ansuel
+>> Ideally it would be nice to fix it for everybody, not just one SoC.
+> 
+> Yes, but to fix for just 1 SoC use the SoC specific compatible to imply
+> the need for this. Then only a kernel update is needed to fix, not a
+> kernel and dtb update.
+
+That's good point! Thanks!
+
+I've just posted such 1 SoC only version:
+https://lore.kernel.org/lkml/20230126213539.166298-1-andrey.konovalov@linaro.org/T/#t
+In case this is a more proper way to go.
+
+> Rob
+
+Thanks,
+Andrey
