@@ -2,61 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7BA467C327
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 04:15:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC7D467C389
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 04:33:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236240AbjAZDPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 22:15:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45110 "EHLO
+        id S236240AbjAZDdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 22:33:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236179AbjAZDPJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 22:15:09 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3AF065EEE;
-        Wed, 25 Jan 2023 19:14:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1674702891; x=1706238891;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=l+njOKa/UFfOWF7VK5VgFL97OAxm3R4PP9cElfezPbw=;
-  b=vB6UxmmKJiidhvUvgYIC/2kTD/PNXtPvhVkcsgLm/K0Sa0hMY1OHHlct
-   0Y7kE0CQqnUcdVIel9mf1DDcqsYbiv9xfxtR2sBLNGGtg7T2RRVtcq082
-   A7lidPtLEzCeMjW3koVyR6ghxsw2orY6Pv6W8mCL5AaTQHRTWteBuAh1s
-   8=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 25 Jan 2023 19:14:51 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.45.79.139])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2023 19:14:51 -0800
-Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Wed, 25 Jan 2023 19:14:50 -0800
-From:   Wesley Cheng <quic_wcheng@quicinc.com>
-To:     <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <lgirdwood@gmail.com>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
-        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <agross@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <quic_jackp@quicinc.com>,
-        <quic_plai@quicinc.com>, Wesley Cheng <quic_wcheng@quicinc.com>
-Subject: [RFC PATCH v2 22/22] ASoC: dt-bindings: Update example for enabling USB offload on SM8250
-Date:   Wed, 25 Jan 2023 19:14:24 -0800
-Message-ID: <20230126031424.14582-23-quic_wcheng@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230126031424.14582-1-quic_wcheng@quicinc.com>
-References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
+        with ESMTP id S236127AbjAZDde (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 22:33:34 -0500
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67B5C457F2;
+        Wed, 25 Jan 2023 19:33:31 -0800 (PST)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1pKt0w-0004Dw-1Y;
+        Thu, 26 Jan 2023 04:33:26 +0100
+Date:   Thu, 26 Jan 2023 03:33:19 +0000
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jianhui Zhao <zhaojh329@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Edward-JW Yang <edward-jw.yang@mediatek.com>,
+        Johnson Wang <johnson.wang@mediatek.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Miles Chen <miles.chen@mediatek.com>
+Subject: [PATCH v5 0/3] add support for clocks on MT7981 SoC
+Message-ID: <cover.1674703830.git.daniel@makrotopia.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,36 +53,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an example on enabling of USB offload for the Q6DSP.  The routing can
-be done by the mixer, which can pass the multimedia stream to the USB
-backend.
+The MediaTek MT7981 SoC is quite similar to its big sibling, the
+MT7986. Hence most drivers can be reused and not much is missing the
+get also this SoC working on mainline Linux.
 
-Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
----
- .../devicetree/bindings/sound/qcom,sm8250.yaml      | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Start with a cleaned-up version of the clock drivers, based on what can
+also be found in MediaTek's SDK[1].
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-index 70080d04ddc9..60cd84e6727a 100644
---- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-@@ -216,6 +216,19 @@ examples:
-                 sound-dai = <&vamacro 0>;
-             };
-         };
-+
-+        usb-dai-link {
-+            link-name = "USB Playback";
-+            cpu {
-+                sound-dai = <&q6afedai USB_RX>;
-+            };
-+            codec {
-+                sound-dai = <&usbdai USB_RX>;
-+            };
-+            platform {
-+                sound-dai = <&q6routing>;
-+            };
-+        };
-     };
- 
-   - |
+Upon request of AngeloGioacchino Del Regno this series has been rebased
+and adapted to be applied on top of the pending series
+"MediaTek clocks cleanups and improvements"[2]
+
+The complete tree used for testing (with still some to-be-cleaned-up
+changes, esp. for the Ethernet driver) can be found on Github[3].
+
+[1]: https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/refs/heads/master/target/linux/mediatek/files-5.4/drivers/clk/mediatek/clk-mt7981.c
+[2]: https://patchwork.kernel.org/project/linux-clk/list/?series=714057
+[3]: https://github.com/dangowrt/linux
+
+Changes since v4:
+ * add compatible string also for 'mediatek,apmixedsys', 'mediatek,ethsys' as
+   well as 'mediatek,sgmiisys' bindings
+
+Changes since v3:
+ * fixed typos in commit descriptions
+
+Changes since v2:
+ * rebase on top of next-20230120 with v4 of AngeloGioacchino's series[2]
+ * fix titles of dt-bindings commits (this time for real)
+ * convert clk-mt7981-infracfg to use mtk_clk_simple_probe
+ * make use of PLL_AO flag in clk-mt7981-apmixed
+ * convert clk-mt7981-ethsys into platform driver, also using the generic
+   probe function, allow building as module
+
+Changes since v1:
+ * rebase and adapt on top of [2]
+ * split-off addition of dt-bindings header, fix filename
+ * changed commit title as requested
+
+Daniel Golle (3):
+  dt-bindings: clock: Add compatibles for MT7981
+  dt-bindings: clock: mediatek: add mt7981 clock IDs
+  clk: mediatek: add MT7981 clock support
+
+ .../bindings/arm/mediatek/mediatek,ethsys.txt |   1 +
+ .../arm/mediatek/mediatek,infracfg.yaml       |   1 +
+ .../arm/mediatek/mediatek,sgmiisys.txt        |   2 +
+ .../bindings/clock/mediatek,apmixedsys.yaml   |   1 +
+ .../bindings/clock/mediatek,topckgen.yaml     |   1 +
+ drivers/clk/mediatek/Kconfig                  |  17 +
+ drivers/clk/mediatek/Makefile                 |   4 +
+ drivers/clk/mediatek/clk-mt7981-apmixed.c     | 102 +++++
+ drivers/clk/mediatek/clk-mt7981-eth.c         | 117 +++++
+ drivers/clk/mediatek/clk-mt7981-infracfg.c    | 207 +++++++++
+ drivers/clk/mediatek/clk-mt7981-topckgen.c    | 422 ++++++++++++++++++
+ .../dt-bindings/clock/mediatek,mt7981-clk.h   | 215 +++++++++
+ 12 files changed, 1090 insertions(+)
+ create mode 100644 drivers/clk/mediatek/clk-mt7981-apmixed.c
+ create mode 100644 drivers/clk/mediatek/clk-mt7981-eth.c
+ create mode 100644 drivers/clk/mediatek/clk-mt7981-infracfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt7981-topckgen.c
+ create mode 100644 include/dt-bindings/clock/mediatek,mt7981-clk.h
+
+
+base-commit: 9fbee811e479aca2f3523787cae1f46553141b40
+-- 
+2.39.1
+
