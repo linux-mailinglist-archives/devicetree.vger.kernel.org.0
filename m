@@ -2,165 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 696F567D460
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 19:40:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D79767D476
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 19:42:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229514AbjAZSkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 13:40:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58392 "EHLO
+        id S230287AbjAZSl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 13:41:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbjAZSkF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 13:40:05 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 844843FF2A;
-        Thu, 26 Jan 2023 10:40:04 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A6DF1975;
-        Thu, 26 Jan 2023 19:40:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1674758402;
-        bh=mx/PSBUDTtvmU0+X1iOurPV/is9bFsAWSRTIUBckShU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rbvi57V0x4AqDpwEjUtEmQQCr06nMQH6p9xshBJJkybwnwHrpdMpbAtof8rvEaHdS
-         x790km8UbBGC9bDBYPJZFWuET7T1emONtWI3Ku/Jn0K5Ai1U8eyMNOMOWIUDYVe82u
-         9Ao8ZBN5T+3IoQLxcNde4X8MbgNGMBjssCLxjHi4=
-Date:   Thu, 26 Jan 2023 20:39:59 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-media@vger.kernel.org,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] dt-bindings: media: imx8-isi: Use 'port' instead
- of 'ports' for i.MX8MN
-Message-ID: <Y9LI//H0a8P8c0gL@pendragon.ideasonboard.com>
-References: <20230126170603.11896-1-laurent.pinchart@ideasonboard.com>
- <20230126170603.11896-3-laurent.pinchart@ideasonboard.com>
- <CAHCN7xJNGCd=Sghu3oe9_yjSg0ybXRFHaVLaZmC2guXCy7ty1A@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAHCN7xJNGCd=Sghu3oe9_yjSg0ybXRFHaVLaZmC2guXCy7ty1A@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230019AbjAZSl5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 13:41:57 -0500
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D7AD3EFC6;
+        Thu, 26 Jan 2023 10:41:43 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id 0AB3E32000D9;
+        Thu, 26 Jan 2023 13:41:39 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 26 Jan 2023 13:41:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1674758499; x=1674844899; bh=s/3u3IdhZX
+        LqBuo4DZdO5LrZKWdZJ/fXn8nsI7x5qv8=; b=FpYz1KWomhYBEGMOKTj6x5Kn5l
+        1DHsVSZb3K0d3QkItsPmvcQH31GP710+8Efw1VLHUE6VQK7zAAyEfPBrDIiP0jDM
+        PQ3TjZgWQ4oE6TBlY1dgNQRmb/8N7apPIGJuj8koMiod7r33aCU/2rmK059CJVtL
+        xU6Bs1K0iTE1xuAFTuZH4fvcfgWbkWOJftbuZG6tnePkqoNRrOQQQRasdzqx611H
+        OP8OnqI6I09P0UkQhATWZwhkygZTMtug9kN18+s1NE8oSWEt4CLBLTTZdepswNQc
+        cATI8IKZbxYvV4hxvnqilGcXKiSNoq/HwVnas6wA2dICzDrHeLd4jUNMVuHA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1674758499; x=1674844899; bh=s/3u3IdhZXLqBuo4DZdO5LrZKWdZ
+        J/fXn8nsI7x5qv8=; b=YuHXoEXx5blFxXBbkw5H+PsaxScEXQIcgdWvf78r0G5L
+        a7n1gL1b1ZgT7be3EZwfF3KT7GxettJlq6PBbTzOvD7RSlW3chK4kXeYps4+eK1O
+        YJywqsEYwpBv0NPndDaIJQI4eZ5tnXfXB9Lzgtgh9zacI7GB4qOJ68UqeDRsILS0
+        U4iaHF4Z9JNaTasGXdzorVoXOoh56P6Wn6Y3e53i3YeFlm3sQQbNppWXO7ZREwcb
+        QBWtCUdJn0fE6+hlozaALBgUY2+OKJKkSm59xkyv+Q63iKdnf052s1ECWPvOnZWQ
+        OBLIY+pq1zGEA+0lHogMZ5IpBPnslMYiPTKP/NxFGg==
+X-ME-Sender: <xms:Y8nSY4OfXRXctYOJ8kHq-RPx3tb87SDkmINi6exFN1daN6301GCYgA>
+    <xme:Y8nSY--45iQ-pBNn1SburrssP3OljWCTAqHk_kh0pfHAb-kOWtcmNtnInaZaTaP91
+    CDZaRwUtdg60IUDEos>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddvgedgudduiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
+    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:Y8nSY_TPF7alI46nUTidbO_C_DXkOKVUf3pz5mTBEJ224kDe8jhcng>
+    <xmx:Y8nSYwsvzH4ZCb_Cu0zfXRzKTu7rwH8PAtV4SLqZ3CvsSTOfSxil8Q>
+    <xmx:Y8nSYweum5M6XgJ8mO5p4k37gPh00yxW7WmR14j2B9_He2SZnIHj0Q>
+    <xmx:Y8nSY44oR1hLP64jHYL4F4OTVZxWrcoAtQS95dc23hQouyF_hbuZKw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 43B3DB60086; Thu, 26 Jan 2023 13:41:39 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
+Mime-Version: 1.0
+Message-Id: <5313ee39-7313-493b-9b66-a9c697962831@app.fastmail.com>
+In-Reply-To: <Y9LDIvWiG9gSl9f2@unreal>
+References: <20230126135454.3556647-1-arnd@kernel.org>
+ <Y9LDIvWiG9gSl9f2@unreal>
+Date:   Thu, 26 Jan 2023 19:41:19 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Leon Romanovsky" <leon@kernel.org>,
+        "Arnd Bergmann" <arnd@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        "Eric Dumazet" <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        "Paolo Abeni" <pabeni@redhat.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] wiznet: convert to GPIO descriptors
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+On Thu, Jan 26, 2023, at 19:14, Leon Romanovsky wrote:
+> On Thu, Jan 26, 2023 at 02:54:12PM +0100, Arnd Bergmann wrote:
+>>  
+>> @@ -139,6 +139,12 @@ MODULE_LICENSE("GPL");
+>>  #define W5500_RX_MEM_START	0x30000
+>>  #define W5500_RX_MEM_SIZE	0x04000
+>>  
+>> +#ifndef CONFIG_WIZNET_BUS_SHIFT
+>> +#define CONFIG_WIZNET_BUS_SHIFT 0
+>> +#endif
+>
+> I don't see any define of CONFIG_WIZNET_BUS_SHIFT in the code, so it looks
+> like it always zero and can be removed.
 
-On Thu, Jan 26, 2023 at 12:31:16PM -0600, Adam Ford wrote:
-> On Thu, Jan 26, 2023 at 11:06 AM Laurent Pinchart wrote:
-> >
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  .../bindings/media/nxp,imx8-isi.yaml          | 39 +++++++++++--------
-> >  1 file changed, 22 insertions(+), 17 deletions(-)
-> 
-> Is there a reason not to squash the two bindings into just one patch?
+Good catch! Evidently the original idea was that this would
+be set to a machine specific value through Kconfig. I've renamed
+the constant, removed the #ifdef and explained it in the changelog
+text now.
 
-As indicated in the cover letter, I've kept this separate to clearly
-show the impact on the bindings. If using a 'port' node is the preferred
-option, I can squash this patch, if using a 'ports' unconditionally is
-favoured, then I'll just drop it.
-
-> > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> > index 6038b9b5ab36..121594569395 100644
-> > --- a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> > +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> > @@ -52,11 +52,21 @@ properties:
-> >    power-domains:
-> >      maxItems: 1
-> >
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/properties/port
-> > +    description: |
-> > +      The port represents the Pixel Link input to the ISI. It shall have a
-> > +      single endpoint. This property is only used for ISI instances with a
-> > +      single port (as in the i.MX8MN). For instances that includes multiple
-> > +      ports, the 'ports' property shall be used instead.
-> > +
-> >    ports:
-> >      $ref: /schemas/graph.yaml#/properties/ports
-> >      description: |
-> >        Ports represent the Pixel Link inputs to the ISI. Their number and
-> > -      assignment are model-dependent. Each port shall have a single endpoint.
-> > +      assignment are model-dependent. For ISI instances that have a single
-> > +      port, the 'port' property should be used instead. Each port shall have a
-> > +      single endpoint.
-> >
-> >  required:
-> >    - compatible
-> > @@ -65,7 +75,6 @@ required:
-> >    - clocks
-> >    - clock-names
-> >    - fsl,blk-ctrl
-> > -  - ports
-> >
-> >  allOf:
-> >    - if:
-> > @@ -77,12 +86,11 @@ allOf:
-> >        properties:
-> >          interrupts:
-> >            maxItems: 1
-> > -        ports:
-> > -          properties:
-> > -            port@0:
-> > -              description: MIPI CSI-2 RX
-> > -          required:
-> > -            - port@0
-> > +        port:
-> > +          description: MIPI CSI-2 RX
-> > +        ports: false
-> > +      required:
-> > +        - port
-> >
-> >    - if:
-> >        properties:
-> > @@ -93,6 +101,7 @@ allOf:
-> >        properties:
-> >          interrupts:
-> >            maxItems: 2
-> > +        port: false
-> >          ports:
-> >            properties:
-> >              port@0:
-> > @@ -102,6 +111,8 @@ allOf:
-> >            required:
-> >              - port@0
-> >              - port@1
-> > +      required:
-> > +        - ports
-> >
-> >  additionalProperties: false
-> >
-> > @@ -122,15 +133,9 @@ examples:
-> >          fsl,blk-ctrl = <&disp_blk_ctrl>;
-> >          power-domains = <&disp_blk_ctrl IMX8MN_DISPBLK_PD_ISI>;
-> >
-> > -        ports {
-> > -            #address-cells = <1>;
-> > -            #size-cells = <0>;
-> > -
-> > -            port@0 {
-> > -                reg = <0>;
-> > -                isi_in: endpoint {
-> > -                    remote-endpoint = <&mipi_csi_out>;
-> > -                };
-> > +        port {
-> > +            isi_in: endpoint {
-> > +                remote-endpoint = <&mipi_csi_out>;
-> >              };
-> >          };
-> >      };
-
--- 
-Regards,
-
-Laurent Pinchart
+     Arnd
