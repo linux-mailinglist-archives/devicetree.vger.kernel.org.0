@@ -2,86 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74AE767D87E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 23:34:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABA6F67D8A1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 23:40:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231961AbjAZWdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 17:33:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33582 "EHLO
+        id S233191AbjAZWkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 17:40:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233241AbjAZWcx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 17:32:53 -0500
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF7723658
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 14:32:33 -0800 (PST)
-Received: by mail-qv1-xf2d.google.com with SMTP id r14so2607109qvx.4
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 14:32:33 -0800 (PST)
+        with ESMTP id S230282AbjAZWkv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 17:40:51 -0500
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42C8830EC
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 14:40:48 -0800 (PST)
+Received: by mail-qt1-x832.google.com with SMTP id o5so2624060qtr.11
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 14:40:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=criticallink.com; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SMXyMh+Lwz3neJnqgLoV44iMFdZ/93CQTC6eXheel78=;
-        b=khx+stdm8gj3hVORCp3vGGwzfpFUtfpBgTEIanFn6fjEYFTnrg3+LJgDpc96HX/Ty7
-         4r8nwbwrUYp33LQaJHweQcEKn8jjR8j7kqqFxk55wQLrkNkkwZMLgPnXhCBVRRB8wRD4
-         YjNo3Y7rVbe+cT8kXRVPzB/FCCBY+8JRM2SHLeXxJjRUndyxqED4/EVnvYQLPafZmOBE
-         fHQiMZuR+zPKShSVcp/k9YHvED3hQ0szFF+oWdaqPwNspv/2yQ37ogMmIOdWaKo9p/fJ
-         +etDkPnrFgxbbafSb+giy1XA1g061fGgoHhmDN1gVZcc0AAm7jZ4fpNeMg9fv5eL8TQW
-         IfrA==
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=E/whuDA41L1xd+asNNG2DrY4JLR8H5pt8fDqxVOjlkA=;
+        b=hYb6luPMu/RIBO/nPxBsCYyoOm7mA3N3eVwLTjeLyF+aD2iEWnVZR7GKcU3Hspul5r
+         V7Ju0WCGHxQTEldeZhuQkS8KZWXb6QYHDPnkMN08h+LwI6TSAt7poWbXyAjHlWXtw4kj
+         ppG8DFruxkvlQ6MbMu0B3h7heLbarV4UPa4ogIYZpx8rDaYXMPE1viDclekdDmN5ydS9
+         baTdGfdRbEdX/TtmgEtFE+HroAGPD3m5B+7PXsVObYOx8N/6KBFgtNlWLHjhc9dzOYJ8
+         mk/m4aEyP0FPMH2MmEAHz2T46xJj2FgwjwX0VEuhlb45pq40gnDqeE7seaaNf+gBjTdi
+         AXtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SMXyMh+Lwz3neJnqgLoV44iMFdZ/93CQTC6eXheel78=;
-        b=vDKG85s1Z/6q1g1FNI+Bz1koifZnyeW7E/wg0H+Y1iqBrjvq9mwndf4C6brAI2Jshc
-         WXgvGnwFlKUF7BdiqE3v5ynYjnJmNrdPDxE7DJHohSN3zWclyO95tgXgvIPCfhzkOlM/
-         Xg0j2GGgGWvPnDpcgso8/oyJjdyz+JqfyMf3oO8d1hKb2FlbLCZGAlaEKbMd1jyPkkEZ
-         A4PZ73lNknCS6oA25Vc2DdYRrx4CarfetU6DrYk5EUuXBtxxZF+a7u2808VFeT2BFf8x
-         Crs1BqPoJYgaJBrLhmd9t0RbEe+/DDyQBnrqvEO+xW9kNgyDH/Fa1nv0MZeq52akClOO
-         VThA==
-X-Gm-Message-State: AFqh2kpNYyMBoKLwYSOHx03Tv6YDyOOjl+joRPPB+kVavcrja48qbEYK
-        VFRngX+d1DZoXIVv4XitfQlH3g==
-X-Google-Smtp-Source: AMrXdXuGmsLBqfAHwn5t37b9KDNwt3R6jfn4nDAVPNlKXvZkF7hctLEEKstGiDeMd9zvJeYTrKdZ+Q==
-X-Received: by 2002:a05:6214:3492:b0:534:2b55:6320 with SMTP id mr18-20020a056214349200b005342b556320mr55824540qvb.9.1674772353054;
-        Thu, 26 Jan 2023 14:32:33 -0800 (PST)
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E/whuDA41L1xd+asNNG2DrY4JLR8H5pt8fDqxVOjlkA=;
+        b=RuvcNILdeA/8WPk77MUwwYPV2Vy5ZOik/qpuHcyNKoBeFXmWBmqwX0hPH/jhNjCyMT
+         45v+TMMmsth7yfrFNGBGTnpgwPrzndWDcr+Wr42jgwBq40UBnuQrgdGC5dEhjZF4DwPz
+         r+OtoXCw3dVREOSvwLGSMgzqERO/vQlU0HV4HZGKhlCXTrwTS19kmhUaqSGzoEas1j6v
+         hC6fB9AFNI3LBDa0JEvLo9n6PKS227lvKk7DIn59cT1ArG0HeHiknno/n8xrx1kh+xaV
+         NitvKAFxhpRrSmbSoTv8wEF9dX9D0DS87+HCcoGhSf0bYexHELeTOOeXwmn71qhvOlIp
+         6d0g==
+X-Gm-Message-State: AO0yUKW0ZN4u+ePdOlgCWxhuLjLgOaLcYuNjabJy9DvVmjhSBy/oYndg
+        4/Rn9rjey5we/9Izez7Y3S86n28pKiNyPz605sw=
+X-Google-Smtp-Source: AK7set9LhKUBf8vCljxfEsfIRvuerq9Epym/AUDSZe/1wWpXbTcEhROMUPtiSp8zM0pStGwhx9pFCA==
+X-Received: by 2002:ac8:7dc2:0:b0:3b8:1434:2a0f with SMTP id c2-20020ac87dc2000000b003b814342a0fmr5397072qte.13.1674772847339;
+        Thu, 26 Jan 2023 14:40:47 -0800 (PST)
 Received: from [127.0.1.1] (static-72-90-70-109.syrcny.fios.verizon.net. [72.90.70.109])
-        by smtp.gmail.com with ESMTPSA id m7-20020a05620a220700b006ff8a122a1asm1723091qkh.78.2023.01.26.14.32.32
+        by smtp.gmail.com with ESMTPSA id ek3-20020a05622a4fc300b003b68ea3d5c8sm1505678qtb.41.2023.01.26.14.40.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 14:32:32 -0800 (PST)
+        Thu, 26 Jan 2023 14:40:46 -0800 (PST)
 From:   Jonathan Cormier <jcormier@criticallink.com>
-Date:   Thu, 26 Jan 2023 17:32:27 -0500
-Subject: [PATCH v4 5/5] hwmon: ltc2945: Convert division to
- DIV_ROUND_CLOSEST_ULL
+Subject: [PATCH v2 0/4] drm/bridge: tfp410: Add i2c support
+Date:   Thu, 26 Jan 2023 17:40:41 -0500
+Message-Id: <20230125-tfp410_i2c-v2-0-bf22f4dcbcea@criticallink.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230126-b4-ltc2945_shunt_resistor-v4-5-bb913470d8da@criticallink.com>
-References: <20230126-b4-ltc2945_shunt_resistor-v4-0-bb913470d8da@criticallink.com>
-In-Reply-To: <20230126-b4-ltc2945_shunt_resistor-v4-0-bb913470d8da@criticallink.com>
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+X-B4-Tracking: v=1; b=H4sIAGkB02MC/22OQQ6CMBBFr0K6tmbaIkRX3sMQ0pZBJkIhbSUYw
+ t0tuHX5fublzcoCesLAbtnKPM4UaHQJ5CljttPuiZyaxEyCVCDkhcd2ygXUJC1XRpZgwLQKgSX
+ B6IDceO1stys9ufdSDzpE9PVP268mjy0tR/JRJe4oxNF/jg9msa9/Y7PgwItC502O6gqmvFtPk
+ azuU+d1tuPAqm3bvm4KkCPRAAAA
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Bob Duke <bduke@criticallink.com>,
-        John Pruitt <jpruitt@criticallink.com>,
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Michael Williamson <michael.williamson@criticallink.com>,
+        Bob Duke <bduke@criticallink.com>,
         Jonathan Cormier <jcormier@criticallink.com>
 X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=708;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1478;
  i=jcormier@criticallink.com; h=from:subject:message-id;
- bh=ztSizwKCRQbuO5hjHb+ixZi9TnHDXa8I5HXLLGMpWUk=;
- b=owEBbQKS/ZANAwAKAdzX/S4LNuuqAcsmYgBj0v96Md1xv21n7cR5HEwD5IPLFz0I12Y2BnjVI/ES
- HP4bOeCJAjMEAAEKAB0WIQT/MozqCeZtYxNnVN/c1/0uCzbrqgUCY9L/egAKCRDc1/0uCzbrqoLlD/
- wNZmu751rOnzdh7g2RQ5g7eZ3Y51D8vPnAwxHLHA8qgc1jAv7nVp4+T4xtxMyfbrI8R8VNK0PM8NLe
- l/expSHT30K8SZhxjrLn7r5AdiAh2jOLIxPCbMTnf4ZSZOAAViy9YUhLFpg94Qa9bNOVupLDd6p3ml
- QJuuW4HoPRJkcjetV/cQLrHhkdcJd/fxExAnQABDGltSrKhbIFDwVVKxkOhgAzCs4QiZgB91KWpdei
- sa5xVLscph09wvnHjkKGG1hIK0pISajE9GIBPdM1R7ek8rdhQCU3jblxIkQxDFnjWHgjE01V2W9HQ1
- 5NOM8sFqobmMsOyr4S8h6Y+Kcikh6HGZRdquU+oMQy+c6Y97VH4gG24ZWTNhNxau3qIVJcCb4Cmv2m
- KWYrNfJCNe3zF7wN0qy7D4WT2aVhRWGHZCGztcQdhg6CMc+jESLjuc4maOg0pxjh8mKOledXGK6LLm
- 3nKoCUicm14yoD6vnCcHB+FuZLc+o1crK/+UmOTKEYbzMY79FNEHQNfx90bs+qz0wOzdG70lb11OqU
- /OcejxRTDxEHxdsXj7p29v1a/NOfvUrzW0rmZqoNdGB1kESXI+bOINOhSyWeb9TUAfmQYC4rISi15G
- FTTLoHHR5blXPO0dLrzaJ9g6O2dO/ZiTKmUEQAwYDQmUuy2sZdn+acrXVrXg==
+ bh=JMty2kJ2wva/VHoMk6AFMIIVtUpwMF3osnmd+s87GsI=;
+ b=owEBbQKS/ZANAwAKAdzX/S4LNuuqAcsmYgBj0wFuA4bCH010zpGr3hM2glXIAgaMA0hVNq7VlRRO
+ uAt6v72JAjMEAAEKAB0WIQT/MozqCeZtYxNnVN/c1/0uCzbrqgUCY9MBbgAKCRDc1/0uCzbrqpGPEA
+ CpGITQA1mm++uT/+DaQkdSr8iZ4GW+Chn1EaY1srTZBj6Eg+XW/6UUoK4NxCVlf2zVmL4Gcd2Db2HV
+ 0OKeI+4LlyTuc5cKg6NQt0aLIl1iF9k97cCaC+0PbC5ZsqP922/NAS/5AUTfMfF2OrXSbWk8IlTvXZ
+ rhgPEhz5gwAAzZVPe027T/R2bJDR5kpF5KonlRR5+eOZiNVu5DUmMA8vuFd4oto//x0xsRZoPQF+Gf
+ mJzcKg2WhwoAqP5/iARoq8nbWugmfWTaRTsJy94rcq6NVNYOZtmJRmviTvvwU0g9cxOLggG0dAqbsQ
+ wrTqHKeT3F8S7q0/+SuMODGUJbvI8YMqxN+W+sfGPPzRoqf+uxWmgkCvEZ2YGnfw6pRdY20UhTfcDP
+ lofxpLuuWlnFMhoSadAoxVSbNht+FKkJ2SIoJmEmDbWe353E0ElLON4b0mx8CIAJEUX1O7mDpdebx3
+ 2SpgLp4LT3W9xGp8no9bkJP8+35dojyLLincZpWt97psDCZdb78N8H0ZqSID9g8hvDCh/AaUMKDYJ/
+ DrLlb/ANgn071XhvHrCdjqw8o6eVywJK26xZkJInd3PkVL2I/Bg8thBPBj2mSBYAut0FGT382LMpuw
+ 5aIlICUApYNhgiXLZOHvJWcMMZKOmUfGiEM3EIM38/OQ8ifzV5zGUi3+LiZg==
 X-Developer-Key: i=jcormier@criticallink.com; a=openpgp;
  fpr=FF328CEA09E66D63136754DFDCD7FD2E0B36EBAA
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -94,28 +100,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert division to DIV_ROUND_CLOSEST_ULL to match code
-in same function.
+The TFP410 driver does not support I2C.  As such, the device remains in
+Power Down if the I2C is enabled by the bootstrap pins.
+
+Add basic support for the I2C interface, and provide support to take
+the device out of power down when enabled.  Also read the bootstrap mode
+pins via the CTL_1_MODE register when using the I2C bus.
+
+Also allow polling device to support hdmi/dvi hotplug detection.
 
 Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
 ---
- drivers/hwmon/ltc2945.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v2:
+- Fix dt_binding_check errors
+- Remove hdmi connector from binding example
+- Fix compile warning. Unused variable and unsigned int instead of int for ret
+- Fix commit titles
+- Drop of_match_ptr change
+- Link to v1: https://lore.kernel.org/r/20230125-tfp410_i2c-v1-0-66a4d4e390b7@criticallink.com
 
-diff --git a/drivers/hwmon/ltc2945.c b/drivers/hwmon/ltc2945.c
-index 0b5e448b4f12..33341d01f1f7 100644
---- a/drivers/hwmon/ltc2945.c
-+++ b/drivers/hwmon/ltc2945.c
-@@ -212,7 +212,7 @@ static long long ltc2945_val_to_reg(struct device *dev, u8 reg,
- 	case LTC2945_MAX_VIN_THRES_H:
- 	case LTC2945_MIN_VIN_THRES_H:
- 		/* 25 mV resolution. */
--		val /= 25;
-+		val = DIV_ROUND_CLOSEST_ULL(val, 25);
- 		break;
- 	case LTC2945_ADIN_H:
- 	case LTC2945_MAX_ADIN_H:
+---
+Jonathan Cormier (1):
+      dt-bindings: display: bridge: tfp410: Add tfp410 i2c example
 
+Michael Williamson (3):
+      drm/bridge: tfp410: Support basic I2C interface
+      drm/bridge: tfp410: Fix logic to configured polled HPD
+      drm/bridge: tfp410: If connected, use I2C for polled HPD status.
+
+ .../bindings/display/bridge/ti,tfp410.yaml         |  30 ++++++
+ drivers/gpu/drm/bridge/ti-tfp410.c                 | 107 +++++++++++++++------
+ 2 files changed, 110 insertions(+), 27 deletions(-)
+---
+base-commit: 93f875a8526a291005e7f38478079526c843cbec
+change-id: 20230125-tfp410_i2c-3b270b0bf3e0
+
+Best regards,
 -- 
-2.25.1
+Jonathan Cormier <jcormier@criticallink.com>
 
