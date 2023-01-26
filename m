@@ -2,112 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D0D167C7EC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:01:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 662E967C7F2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:02:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236992AbjAZKBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 05:01:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57582 "EHLO
+        id S236892AbjAZKC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 05:02:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236877AbjAZKBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:01:47 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 876F611EA7
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:01:45 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id n7so1197261wrx.5
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:01:45 -0800 (PST)
+        with ESMTP id S236823AbjAZKCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:02:25 -0500
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE1A1402C3
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:02:18 -0800 (PST)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-4fda31c3351so16062547b3.11
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:02:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NsWprYGbD2CwVtouO/ULFCeYkL3Y+haM/y2Caqpemeg=;
-        b=Os1KoXQjpreDSiLtuaFezS6DeTwNWR4AfM2jEUgbJZkNEVRksxLtyeQCNovtFebOEh
-         wOSKcgPr2DbKeI3tKATnADvslZ1FLjK7d/IFOuvFXJ4A4ves+HMDN03qGrQFA1q/Enk5
-         bolq0rD1HKwV+X7Kqo+O0A2cBP7grN+0VQVRwasbM0lweMmEYTe8A7tiEPlEfGr8u4ki
-         EvrcIBmP1CjInD4ZOzIelz2N48YF7KacnZgrtozKsl7GEeYLwRw+1qQcEjUNFEfRTmID
-         wEXosltCx70IOHfZO0dB6rm8qqQKgq8ULcZ91FmA06uV/aKjQe/Ql2F1Pf4CUvpn2fr5
-         dHdg==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jPp8p2IU+Yo/tv8MptrTkR3LAPKvoMO3xbtflO/ATRM=;
+        b=q2hX7MzP5UHZaIyhfPr3hleh1jHYXEwU3nLOTdLLgalQ/Czfn2t+vLet52ZXwtyyGA
+         q5Go7RplsIwfzTzyzKBZ7Lka6hLIpNt4H0TxkAKrRfkFo4N1ztt/HQbjuly96pJeV+CX
+         hdDq/+IaWW7b1Y2gZrAjEWD98qlKYDX0xx4HWmWDTubgnY4O6JavFVJMRRjLWbzU3O9r
+         chZvAIXjDQNyURrsFpnbm9mO9jSvO/Gy0eOcVbrLf7/q+ks6YUeDobUZhPe9QYHEEkqu
+         3y1BZ2wR+e198LtME88GV2ag8A+Wc0mL9bR65GXNZZ3izwfJP2kNK60WAT7dLiVWxGTs
+         PCHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NsWprYGbD2CwVtouO/ULFCeYkL3Y+haM/y2Caqpemeg=;
-        b=WKlloCCnMIn/xFqrLIhtEHv6fMZ+rETFj+MfWu1QVT1HryascggGnM5pU871F6ztTB
-         +Co9LNtWrwuPhxs0mvej2fLbZ77SRSyJoBmqACQDA1gyPySZOCiqyCDwNSn2CwmwDUvM
-         ZxbGli97bHxGgir+kBGegA/VZS9h52FMcB8Hcd3XSwRZJIKeuA3SOQnD6mO6S+2Bxcec
-         UWiQ6WkcMQ1Ami0IIxoRPvtpaN2ohsLnv5prI2Wa7K6V2SOgAMK8IeoUapJ2wjxpK7Ud
-         xi4THBWcjmcBzggTD+/CMHfW2XpO/k0lfXK0+gATZKxm7GIE1c6I5QqYogX161fJ6ZM5
-         OPzA==
-X-Gm-Message-State: AFqh2krjjHdx5N9gjFl4oEt2qhhv7hPipeNV9IBS2O/4unfn9xUcrtZX
-        UybeLdGieWMFYNl9auCebRGLQA==
-X-Google-Smtp-Source: AMrXdXvCvQt1/kQ6w8atcLGXtdqYVKC9LQPXMiFfg0gMdaHu78to3mc/9L7myuVJ8vBjW3N9ZXLifw==
-X-Received: by 2002:a5d:4fc8:0:b0:256:ff7d:2347 with SMTP id h8-20020a5d4fc8000000b00256ff7d2347mr38309901wrw.13.1674727304037;
-        Thu, 26 Jan 2023 02:01:44 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n15-20020a5d598f000000b002bdff778d87sm960081wri.34.2023.01.26.02.01.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 02:01:43 -0800 (PST)
-Message-ID: <60d87ac5-ddd6-706d-e13a-3431024bca88@linaro.org>
-Date:   Thu, 26 Jan 2023 11:01:41 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jPp8p2IU+Yo/tv8MptrTkR3LAPKvoMO3xbtflO/ATRM=;
+        b=WLxHC+xgukZ4EH4t/PBeqL4tsQ309Ro46Rbyn2Z3KoaShTPpcNxXva0kNA5Tx9y51O
+         0dzn7MwUHpADQh2wUVQNG8gcMx2TDSGLKtQwqEoUc7J/v6AmYj3wUZmOiNywNGpgeWLa
+         MoqdYtB379n56ez16NeX26YKMgrP8lssUarZAImX2jSHzXrFqHO9iRGqJVwvtLBhzQ4D
+         0qSAXYFQZzulvGlbFIFUBs/yKy1M+NpCm0EZHd5qydViQtHBQ70A5vzk8gULWcn/ORPM
+         iWNTs2CTTs7JK1kDNhINPpbBITN0y2WWc+My6MXtXEE6Lmny83W4KI67Egfq1T1+lqWx
+         8VcQ==
+X-Gm-Message-State: AFqh2kp8EvChE3kPvLzu9zJlPKWkR98G5u2pjSQB0BPshaK/l/jZJ0LK
+        hwl5eEsVFvP2Am8IyboykU2haRbRY6Ej8zTiuEg3gg==
+X-Google-Smtp-Source: AMrXdXvB0ebdu+mUaLb+cYjitkUROCW3jas+htqUwZ+2VnP58aTGKtOvieP9n7CzKY2/8R/eJSLvQWMFmVLZ9396h74=
+X-Received: by 2002:a0d:ce43:0:b0:474:b3f2:8df1 with SMTP id
+ q64-20020a0dce43000000b00474b3f28df1mr4148267ywd.434.1674727337977; Thu, 26
+ Jan 2023 02:02:17 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v2] dt-bindings: leds: Document Bluetooth and WLAN
- triggers
-Content-Language: en-US
-To:     Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Lee Jones <lee@kernel.org>
-Cc:     patchwork-bot+bluetooth@kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        robh@kernel.org
-References: <0d0de1bc949d24e08174205c13c0b59bd73c1ea8.1674384302.git.geert+renesas@glider.be>
- <167460363944.4058.4676712965831302643.git-patchwork-notify@kernel.org>
- <Y9FG5Wg0PmP4zfV6@google.com>
- <CABBYNZJEU-GD5J6K8_Ur4PWLvP10VNJGP7e_43H0=W3DOS=PNw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CABBYNZJEU-GD5J6K8_Ur4PWLvP10VNJGP7e_43H0=W3DOS=PNw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230123151533.369533-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230123151533.369533-1-krzysztof.kozlowski@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 26 Jan 2023 11:02:07 +0100
+Message-ID: <CACRpkdajaDLB6VPTrT93Q8y=k8nvkXUGcipTpA1xwzc6kE_v9A@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: arm: align UART node name with bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/01/2023 20:23, Luiz Augusto von Dentz wrote:
->>>> While at it, move the mmc pattern comment where it belongs, and restore
->>>> alphabetical sort order.
->>>>
->>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
->>>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>>
->>>> [...]
->>>
->>> Here is the summary with links:
->>>   - [v2] dt-bindings: leds: Document Bluetooth and WLAN triggers
->>>     https://git.kernel.org/bluetooth/bluetooth-next/c/ef017002b93b
->>
->> Why are you taking LED patches through the Bluetooth tree?
-> 
-> I assume there isn't a tree dedicated to dt-bindings/leds, not to
+On Mon, Jan 23, 2023 at 4:15 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-dt-bindings patches are supposed to go via subsystem (with drivers) or
-as fallback via Rob's DT tree. The subsystem here is LED, so the patches
-should be picked by Pavel and Lee, as maintainers of LED subsystem.
+> Bindings expect UART/serial node names to be "serial".
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-If the subsystem was Bluetooth, then the patch would be for you. I hope
-that clarifies.
+Whoa! This traces back to things like
+commit 3ba7222ac992d24d09ccd0b55940b54849eef752
+"arm/versatile: Add device tree support"
+Grant Likely june 2011 :D
 
-Best regards,
-Krzysztof
+Nice that we put things in order finally.
 
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Do you have a way to queue this to the SoC tree for v6.3?
+
+Yours,
+Linus Walleij
