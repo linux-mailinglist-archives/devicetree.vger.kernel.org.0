@@ -2,136 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2206167CF1B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:00:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66A3D67CF26
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:04:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbjAZPAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 10:00:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35094 "EHLO
+        id S231596AbjAZPEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 10:04:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232000AbjAZPAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:00:38 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 150BD62249;
-        Thu, 26 Jan 2023 07:00:38 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id iv8-20020a05600c548800b003db04a0a46bso4273693wmb.0;
-        Thu, 26 Jan 2023 07:00:38 -0800 (PST)
+        with ESMTP id S229551AbjAZPEb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:04:31 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3157F48A24
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:04:30 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id g13so3427908lfv.7
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:04:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Lu+Or8PKYbtWV7OORtae6hV8R5JH5zBcgVLlCGfEJ6Y=;
-        b=Ad0P9ilJcflpOjq+J1Bs4K5nTZpauWznYDwTxBMdJ/H3DadeK+Oagt5Uvago52MtkI
-         bg7E4ZnmpP8KQHzCITHQtuYrqtgQZtj8LDidMsB8Hm77wp+oV7H4DEs+gfP1+qALOujA
-         0D/XMnipRjqloV6ylVpl9SEgAREiunj5tfsLsRH4QAYZvI9a/3Sa4xy9i0DhczIH0NL7
-         GUP9z99wyV5cT7g/FCShv2Kews1XIH43c8y+Z/c7egZwePWBFvBhUqt6iQQbGaVeS02J
-         bffwqT+kufont17OoVuuTEONJZKE64cSGXFqd5Ubz1D8OCWbpoqfncCovqL6Ja0684a6
-         TgIg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=85g64dsl/DcFY/LlzFQvHEB0mO6DyTsjvCN0CbsFtNw=;
+        b=RkiI+vwnnL7VCkolwfyJmz2pmhwyz1uPFgE9WrH3eTnJ0h1OjtfKBo3De8gNoeWD+X
+         l3xRPZIq/L9vFJzv6PULtvhXKKJtDa9LLTd2AiHrb4BZ60JZC+IqDP/SwDQlwxNDg3Lu
+         9JvSTWA0sLX1/2yvxrUmgT4h1TvymGWt7fVAn2xOTJDbbM8Feyi8EviAkCrynsKOph1z
+         JlCZLF6rHye2m3z2r22q6SSNhTHJoseOKvgJklu5p9zXC51NgfsruhZVLFQ0SRjjMd8L
+         sQonnT13MfN0mupzXLJTbk49qRIe8hctNAc3jWuKFq37gyG4sRWzTKJCqEAo/+pvSIr+
+         DyPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Lu+Or8PKYbtWV7OORtae6hV8R5JH5zBcgVLlCGfEJ6Y=;
-        b=d/6oT9aPzo1h5q5jQW9TB3hneKBsDvYWGR5Oe8aA7x0GhkxrXjhBjalGeXDZLq0swb
-         Jay5wkMPLjiFj/s3xjWZbFWS2ixBQCkTXRe6w5KxfhHGPhwxmmxEQ5XIY9RkL82qSozw
-         pCg5ARqOhCqFtBXV4cyzSF+FtnmxRG4cyu25F8xdFoVFa6DV928DgYj29D0T73fvqOWV
-         mzON57KFI0EYvTRZV8JEDNz1br/oNJRazriXwVqxJ1Sp6vZKhKvFt4TGS4u20gJ/SGwM
-         SVD2k3WrOtav1V4j74jJJOfImWR1W6tLDVXwfnHeBrSPzHNHG51Gp0iM3TnHJgL+MRdb
-         bNgA==
-X-Gm-Message-State: AFqh2kqxG3OYSOuceOehcgJPB7gYTRCoGtidd/uS35C3VFIaC93J9d/E
-        ukFZzZ/XHW+DghpbkxbwmZY=
-X-Google-Smtp-Source: AMrXdXvPwQy0kCKun6Wgxcc78WxueZ1cqFp3ufrgAEiqyqQnr/aP/z1oQhWpwjzkCxLRTvndOgic9A==
-X-Received: by 2002:a05:600c:35cf:b0:3d3:49db:d95 with SMTP id r15-20020a05600c35cf00b003d349db0d95mr35521142wmq.37.1674745236485;
-        Thu, 26 Jan 2023 07:00:36 -0800 (PST)
-Received: from localhost.localdomain (93-34-89-61.ip49.fastwebnet.it. [93.34.89.61])
-        by smtp.googlemail.com with ESMTPSA id g12-20020a05600c310c00b003db012d49b7sm11353115wmo.2.2023.01.26.07.00.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 07:00:36 -0800 (PST)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Ilia Lin <ilia.lin@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Christian Marangi <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 3/3] dt-bindings: opp: opp-v2-kryo-cpu: enlarge opp-supported-hw maximum
-Date:   Thu, 26 Jan 2023 16:00:26 +0100
-Message-Id: <20230126150026.14590-3-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230126150026.14590-1-ansuelsmth@gmail.com>
-References: <20230126150026.14590-1-ansuelsmth@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=85g64dsl/DcFY/LlzFQvHEB0mO6DyTsjvCN0CbsFtNw=;
+        b=dYvmuqYb7jEA0QYyyG7lg6q7r8eyxWGB3waD4HEbep42mltDEOJ3ZaC/im0bUob4zP
+         H+r3yoNgOIQwMtqJy/txYmYYJUBR88m9ed13Wwu7JNuowT17zGTgmFyhqUi/yBIpvCmn
+         +bWERmzPjrhyYALnWpLf9wm4GTGIcTUmTjlkiXpM4E2FoDSVoS2DC4XSZm7k0IxWnVMu
+         V3LvZNXLgbPtLhyvjoHNAzNv6CTIS7P9Qbme6yeMNRDyPFc7MufHeAfXkbiPGsVXIz5V
+         8NrWi4tU6mKrs81skbg7yP+ML1Hq8/Xwm3frwYyQ8EbnxeWeiRx8cG4EdC9GaaqO3Qbn
+         95LA==
+X-Gm-Message-State: AFqh2koEf1eoPAdcAJ95QUygBlU0cJYFLDBuirgWuRi9lm1DP4M9J+DN
+        IbPAG30172uoT1ADuLmgWJCGtw==
+X-Google-Smtp-Source: AMrXdXu6eyBeVwquiscq6dc3oKOQoMKYuh59bv0ZswxZ5ffCDxH44vMaC4VrsM+OBs46fi7tYToQIA==
+X-Received: by 2002:ac2:4f0c:0:b0:4ca:f887:fe99 with SMTP id k12-20020ac24f0c000000b004caf887fe99mr9661416lfr.25.1674745468435;
+        Thu, 26 Jan 2023 07:04:28 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id p8-20020adff208000000b002423edd7e50sm1618824wro.32.2023.01.26.07.04.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jan 2023 07:04:27 -0800 (PST)
+Message-ID: <0a47dfbd-d786-c7bd-e4f5-c71e1b649b9f@linaro.org>
+Date:   Thu, 26 Jan 2023 16:04:25 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v9 7/9] dt-bindings: timer: mediatek,mtk-timer: add MT8365
+Content-Language: en-US
+To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
+        linux-usb@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, tglx@linutronix.de,
+        maz@kernel.org, lee@kernel.org, linus.walleij@linaro.org,
+        matthias.bgg@gmail.com, gregkh@linuxfoundation.org,
+        chunfeng.yun@mediatek.com, angelogioacchino.delregno@collabora.com,
+        nfraprado@collabora.com, allen-kh.cheng@mediatek.com,
+        sean.wang@mediatek.com, zhiyong.tao@mediatek.com
+References: <20230125143503.1015424-1-bero@baylibre.com>
+ <20230125143503.1015424-8-bero@baylibre.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230125143503.1015424-8-bero@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enlarge opp-supported-hw maximum value. In recent SoC we started
-matching more bit and we currently match mask of 112. The old maximum of
-7 was good for old SoC that didn't had complex id, but now this is
-limiting and we need to enlarge it to support more variants.
+On 25/01/2023 15:35, Bernhard Rosenkränzer wrote:
+> Add binding description for mediatek,mt8365-systimer
+> 
+> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-Document all the various mask that can be used and limit them to only
-reasonable values instead of using a generic maximum limit.
+Applied, thanks
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Changes v4:
-- Add review tag from Krzysztof
-Changes v3:
-- Fix dt_binding_check for missing 0x5 and 0x6 value
-Changes v2:
-- Document additional bit format
-
- .../devicetree/bindings/opp/opp-v2-kryo-cpu.yaml | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-index b4947b326773..bbbad31ae4ca 100644
---- a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-+++ b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-@@ -50,12 +50,22 @@ patternProperties:
-       opp-supported-hw:
-         description: |
-           A single 32 bit bitmap value, representing compatible HW.
--          Bitmap:
-+          Bitmap for MSM8996 format:
-           0:  MSM8996, speedbin 0
-           1:  MSM8996, speedbin 1
-           2:  MSM8996, speedbin 2
--          3-31:  unused
--        maximum: 0x7
-+          3:  MSM8996, speedbin 3
-+          4-31:  unused
-+
-+          Bitmap for MSM8996SG format (speedbin shifted of 4 left):
-+          0-3:  unused
-+          4:  MSM8996SG, speedbin 0
-+          5:  MSM8996SG, speedbin 1
-+          6:  MSM8996SG, speedbin 2
-+          7-31:  unused
-+        enum: [0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7,
-+               0x9, 0xd, 0xe, 0xf,
-+               0x10, 0x20, 0x30, 0x70]
- 
-       clock-latency-ns: true
- 
 -- 
-2.38.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
