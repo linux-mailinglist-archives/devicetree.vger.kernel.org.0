@@ -2,168 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DFD767D756
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 22:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BB2F67D7AF
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 22:27:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232769AbjAZVI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 16:08:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41448 "EHLO
+        id S231513AbjAZV1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 16:27:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232785AbjAZVI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 16:08:26 -0500
-Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6412B65367;
-        Thu, 26 Jan 2023 13:08:22 -0800 (PST)
-Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30QJIbFW017731;
-        Thu, 26 Jan 2023 21:08:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=Wy5jGqa36Ei/jzaR8orKTioPfJB7/DMwnd5+9ENVdCo=;
- b=tdtMpEO7KLez33WvEOGHnfJ65kzdvK7AXKqQFpuuAsa0r1njwIHW0erqwU0EjugroPGw
- NZ9uyrW2gdYjuVMohc8QtUOcx24cA3g517A19/qXoZjsUoB4Tjubm5fARakrS+i1hs3t
- v9yZDgGgkmvLNUWS5AkUDjpzV6c61K/CGRz46Gu9/Np/MgatEjsr3/nipNKiQhDHwS0u
- FQscsHUnynW5lgcPg264yDMF61Z59lVnCN4nbwnQsU4roKLJOlnVhnuG2wygwSeGfdgL
- mHe7jAwCMsw3t9ocaoLUsQD+zu03mUpfKopT8Z+ATdos3k7/RpJeJKRrNYpg5xP8iRrb 7Q== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3nbu2jtbgq-1
+        with ESMTP id S232957AbjAZV1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 16:27:42 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53CD93EFED;
+        Thu, 26 Jan 2023 13:27:41 -0800 (PST)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30QKr5qU003063;
+        Thu, 26 Jan 2023 21:27:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=eub/xV2CndV03ABVthGsowvrdm8zTqb73Ay8YAMFLgU=;
+ b=EnMCtFwqCgXYn7qv6B4+uwnY25L8e33icayzlkYrvcWoZn5ml+/jvO48LNg+ZpNliGcU
+ /slccjyiWkdtX3fuJEJAo5RJ2xeLiTvG7kU6qkOU6hW27BqxlJps4dWv6SpS+nhvTLaU
+ 36t6TLuvJnySJ9SfffvkKBphkJY1+iHIoUGIrAh//Lw1QAnPwzHh6wrtSL0ahaHKag3o
+ yhbzr2VupoZVjIvhGzirHDwFf6mndVkE3U0dJwfONMNj+DhCPIFoYUJa/JVuHPu4tsxC
+ GEQm8KwNs1W3Q13gikhpY6XlQTI9O3hYgD0SzOAMtQlmIRZEkTYWhfLq772omIgzJ58G qQ== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nbp1v9bh1-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 26 Jan 2023 21:08:18 +0000
-Received: from m0098416.ppops.net (m0098416.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30QL5i9N017326;
-        Thu, 26 Jan 2023 21:08:17 GMT
-Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com [169.55.91.170])
-        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3nbu2jtbge-1
+        Thu, 26 Jan 2023 21:27:24 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30QLRNUo021049
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 26 Jan 2023 21:08:17 +0000
-Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
-        by ppma02wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 30QK1GLK012685;
-        Thu, 26 Jan 2023 21:08:17 GMT
-Received: from smtprelay01.wdc07v.mail.ibm.com ([9.208.129.119])
-        by ppma02wdc.us.ibm.com (PPS) with ESMTPS id 3n87p7yar1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 26 Jan 2023 21:08:16 +0000
-Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
-        by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 30QL8F3p26542554
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 26 Jan 2023 21:08:15 GMT
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 36F9A58059;
-        Thu, 26 Jan 2023 21:08:15 +0000 (GMT)
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 020925805F;
-        Thu, 26 Jan 2023 21:08:14 +0000 (GMT)
-Received: from slate16.aus.stglabs.ibm.com (unknown [9.160.3.213])
-        by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-        Thu, 26 Jan 2023 21:08:13 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-integrity@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        peterhuewe@gmx.de, jarkko@kernel.org, jgg@ziepe.ca,
-        stefanb@linux.ibm.com, eajames@linux.ibm.com
-Subject: [PATCH v3 2/2] tpm: Add reserved memory event log
-Date:   Thu, 26 Jan 2023 15:08:10 -0600
-Message-Id: <20230126210810.881119-3-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20230126210810.881119-1-eajames@linux.ibm.com>
-References: <20230126210810.881119-1-eajames@linux.ibm.com>
+        Thu, 26 Jan 2023 21:27:23 GMT
+Received: from [10.110.106.42] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 26 Jan
+ 2023 13:27:22 -0800
+Message-ID: <6bafae1a-61b3-887a-14fc-77d389509f4f@quicinc.com>
+Date:   Thu, 26 Jan 2023 13:27:22 -0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v7 10/20] gunyah: rsc_mgr: Add resource manager RPC core
+From:   Elliot Berman <quic_eberman@quicinc.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-acpi@vger.kernel.org>
+References: <20221121140009.2353512-1-quic_eberman@quicinc.com>
+ <20221121140009.2353512-11-quic_eberman@quicinc.com>
+ <Y3uYRvrCZNnbDiY5@kroah.com>
+ <425a8fe9-24b6-26c7-9150-0d3fb76430be@quicinc.com>
+ <Y5gbFhVpuDoZ2ZmY@kroah.com>
+ <f0f4243f-4cbe-0aa2-19b6-047d791207ab@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <f0f4243f-4cbe-0aa2-19b6-047d791207ab@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: VHzkvyJ3c-j3u6p9mKvGRC0sFtdq8EkA
-X-Proofpoint-ORIG-GUID: jw-LOoTPqCc19JY8vA4-3_SrxfArdeR3
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: beyvsiomKsGMAhOhYtuXkCyYCDsnp1bK
+X-Proofpoint-GUID: beyvsiomKsGMAhOhYtuXkCyYCDsnp1bK
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
  definitions=2023-01-26_09,2023-01-26_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 phishscore=0 priorityscore=1501 bulkscore=0 adultscore=0
- suspectscore=0 clxscore=1015 mlxscore=0 impostorscore=0 mlxlogscore=999
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301260198
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 clxscore=1015 spamscore=0 phishscore=0 bulkscore=0
+ suspectscore=0 adultscore=0 mlxlogscore=663 mlxscore=0 lowpriorityscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301260201
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some platforms may desire to pass the event log up to Linux in the
-form of a reserved memory region. In particular, this is desirable
-for embedded systems or baseboard management controllers (BMCs)
-booting with U-Boot. IBM OpenBMC BMCs will be the first user.
-Add support for the reserved memory in the TPM core to find the
-region and map it.
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- drivers/char/tpm/eventlog/of.c | 38 +++++++++++++++++++++++++++++++++-
- 1 file changed, 37 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/char/tpm/eventlog/of.c b/drivers/char/tpm/eventlog/of.c
-index 741ab2204b11..c815cadf00a4 100644
---- a/drivers/char/tpm/eventlog/of.c
-+++ b/drivers/char/tpm/eventlog/of.c
-@@ -12,12 +12,48 @@
- 
- #include <linux/device.h>
- #include <linux/slab.h>
-+#include <linux/io.h>
-+#include <linux/ioport.h>
- #include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_reserved_mem.h>
- #include <linux/tpm_eventlog.h>
- 
- #include "../tpm.h"
- #include "common.h"
- 
-+static int tpm_read_log_memory_region(struct tpm_chip *chip)
-+{
-+	struct device_node *node;
-+	struct resource res;
-+	int rc;
-+
-+	node = of_parse_phandle(chip->dev.parent->of_node, "memory-region", 0);
-+	if (!node) {
-+		dev_info(&chip->dev, "no phandle\n");
-+		return -ENODEV;
-+	}
-+
-+	rc = of_address_to_resource(node, 0, &res);
-+	of_node_put(node);
-+	if (rc) {
-+		dev_info(&chip->dev, "no mem\n");
-+		return rc;
-+	}
-+
-+	chip->log.bios_event_log = devm_memremap(&chip->dev, res.start, resource_size(&res),
-+						 MEMREMAP_WB);
-+	if (!chip->log.bios_event_log) {
-+		dev_info(&chip->dev, "err memremap\n");
-+		return -ENOMEM;
-+	}
-+
-+	chip->log.bios_event_log_end = chip->log.bios_event_log + resource_size(&res);
-+
-+	return chip->flags & TPM_CHIP_FLAG_TPM2 ? EFI_TCG2_EVENT_LOG_FORMAT_TCG_2 :
-+		EFI_TCG2_EVENT_LOG_FORMAT_TCG_1_2;
-+}
-+
- int tpm_read_log_of(struct tpm_chip *chip)
- {
- 	struct device_node *np;
-@@ -39,7 +75,7 @@ int tpm_read_log_of(struct tpm_chip *chip)
- 	sizep = of_get_property(np, "linux,sml-size", NULL);
- 	basep = of_get_property(np, "linux,sml-base", NULL);
- 	if (sizep == NULL && basep == NULL)
--		return -ENODEV;
-+		return tpm_read_log_memory_region(chip);
- 	if (sizep == NULL || basep == NULL)
- 		return -EIO;
- 
--- 
-2.31.1
+On 12/15/2022 6:25 PM, Elliot Berman wrote:
+> 
+> 
+> On 12/12/2022 10:26 PM, Greg Kroah-Hartman wrote:
+>> On Mon, Dec 12, 2022 at 03:46:53PM -0800, Elliot Berman wrote:
+>>>
+>>> Reference counting is not needed on the gh_rm_rpc object because its 
+>>> only
+>>> client (the VM manager) is torn down before the gh_rm_rpc.
+>>
+>> So again, who controls the lifecycle of it?  Where is the reference
+>> count for the structure as it is pointing to reference counted memory?
+> 
+> Had some internal review and I think I'm now taking better care of this 
+> (and the device situation in the other mail). I will send out next 
+> revision soon.
 
+Hello Greg,
+
+I've sent v9 series and wanted to get your feedback on the changes to 
+the patches that you had suggested.
+
+https://lore.kernel.org/all/20230120224627.4053418-10-quic_eberman@quicinc.com/
+
+Thanks,
+Elliot
