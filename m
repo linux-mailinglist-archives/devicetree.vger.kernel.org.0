@@ -2,148 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B05E67CAE6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 13:26:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7319567CAE8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 13:28:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236426AbjAZM0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 07:26:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46566 "EHLO
+        id S236802AbjAZM2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 07:28:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235786AbjAZM0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 07:26:30 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF64A1C310;
-        Thu, 26 Jan 2023 04:26:29 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30QCQOrf017905;
-        Thu, 26 Jan 2023 06:26:24 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1674735984;
-        bh=tFW7aRPyTBES8+llQgQYOcg06QbfnuOKflYk0qlDeS0=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=OVqnShcCyGMDaxECBaQtvQ0NwpX9ulb9ZdqISh3DfekLISDhJtfP3mF9ThIFxyaF4
-         AmPczUZzDK1vREd70nXrmpme7sqQHXaEGt4XAVedZg/bF6dHCyvc4ypEPa8Y0gQ933
-         Z/8bVkVHkGDb+JcGFW+Tz36592ZxedLct8s1JxsE=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30QCQOxO039453
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 26 Jan 2023 06:26:24 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 26
- Jan 2023 06:26:24 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 26 Jan 2023 06:26:24 -0600
-Received: from [10.250.234.92] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30QCQKcU012290;
-        Thu, 26 Jan 2023 06:26:21 -0600
-Message-ID: <b61a183e-7316-0cfc-0118-b0cfeea1577f@ti.com>
-Date:   Thu, 26 Jan 2023 17:56:19 +0530
+        with ESMTP id S236486AbjAZM2w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 07:28:52 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5DC549568
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:28:51 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id r2so1597651wrv.7
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:28:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YUsFc75hI6TZHDszdvKDaz8iQW9fEFrZhZGH/dc9Zw4=;
+        b=BN+d3LISu6a9WAmIRfCGEq3LV3ZEGBMmPnsj1ySWKY9C+nLw0I9WA7/FvQ6hMatZYM
+         hKzU04mq0XhzCqwQ2Z4iYx0GUxKRU8vIYwl1FP29qDg3sF0oFZadjRHuB5stRBUVP+SP
+         ZpM8annmXq+46AWqUDyH1RXcVZuPs7fX227vymzSjIA5eetbIxuIXsN61xDSskvobZap
+         zXr2oEvXU5QiyweG+E+Nxpi67tzciHoPVxXuleq5hvbeQ/VTefilOfQvk18o+lzMEMFs
+         kR26zPcNUWX5xNPMmHqxedVO5/ktHkc0JTu+P1972yyGwPFF1XM+jaWmP5J+WTPucOpm
+         Xkzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YUsFc75hI6TZHDszdvKDaz8iQW9fEFrZhZGH/dc9Zw4=;
+        b=mVEd6SSSyfUT3ERC+rLHLMZ0LzDZHu3R0pduC0WyA/uoutZmE4WE+XLq7Jq6KBgolR
+         c7+Y/SPSMrle4EGqjRiBfNb4Z+O/wHLLjwLQcappyU5yo7Lf/BxqxJfxw9GAG4BpLK+o
+         O+qKzRhrkE4YsN3RLapVjmow3Jzv12S4crg1OaOTo0rRRcIU3g9jZn0qGS+bxb6V5NmF
+         60brX+pAY4zRuokO1o9AQ8tFTUjs5IILZSQYKMu+Geti2nUg6mymS31PmeWza3QkBvBa
+         2lQl6yqOrBK/6zNEgpVs+gq0Tvh9yM6bXbXbqsHbY1gqCMqbM2Dp2yCOxIeRPFQiRizp
+         1H6A==
+X-Gm-Message-State: AFqh2kqTMWrkIlMB58oz8RHN4SFhN3FNyM2BLJ2Q/VGha+11JDNl/8KZ
+        V8jwDLQzaAYAL+HVjyv+9tznBAy/QURtYTBv
+X-Google-Smtp-Source: AMrXdXtQZiQtIGhUwqlUb6hRQYC42p3Tl0CsgkP1SwkHsrGvt1b6dzuRXRIRm5S+/M/Gst+sUSO5Jg==
+X-Received: by 2002:adf:e30c:0:b0:2be:1fae:690e with SMTP id b12-20020adfe30c000000b002be1fae690emr29396197wrj.50.1674736130352;
+        Thu, 26 Jan 2023 04:28:50 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id z12-20020adff74c000000b00291f1a5ced6sm1222424wrp.53.2023.01.26.04.28.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jan 2023 04:28:49 -0800 (PST)
+Message-ID: <d4a70ab2-c5a2-2478-3fa9-c703c1619252@linaro.org>
+Date:   Thu, 26 Jan 2023 13:28:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v8 3/8] arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support
- of OSPI
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 1/3] gpio: dt-bindings: add new property to wd,mbl-gpio
+ bindings
 Content-Language: en-US
-To:     Ravi Gunasekaran <r-gunasekaran@ti.com>, <nm@ti.com>, <afd@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <s-vadapalli@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230123095733.31657-1-r-gunasekaran@ti.com>
- <20230123095733.31657-4-r-gunasekaran@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20230123095733.31657-4-r-gunasekaran@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     nl250060@ncr.com, Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230126-gpio-mmio-fix-v1-0-8a20ce0e8275@ncr.com>
+ <20230126-gpio-mmio-fix-v1-1-8a20ce0e8275@ncr.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230126-gpio-mmio-fix-v1-1-8a20ce0e8275@ncr.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 26/01/2023 11:17, Niall Leonard via B4 Submission Endpoint wrote:
+> From: Niall Leonard <nl250060@ncr.com>
 
+Subject: missing "wd,mbl-gpio:" prefix.
 
-On 23/01/23 3:27 pm, Ravi Gunasekaran wrote:
-> From: Aswath Govindraju <a-govindraju@ti.com>
+Subject: drop second/last, redundant "bindings". The "dt-bindings"
+prefix is already stating that these are bindings.
+
 > 
-> Add support for two instance of OSPI in J721S2 SoC.
+> Added optional "no-input" property
+
+Missing full stop.
+
 > 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
-> Link: https://lore.kernel.org/r/20221122101616.770050-4-mranostay@ti.com
-> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> Signed-off-by: Niall Leonard <nl250060@ncr.com>
 > ---
->  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
+>  Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> index 0af242aa9816..d404b595316e 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> @@ -306,4 +306,43 @@
->  			ti,cpts-periodic-outputs = <2>;
->  		};
->  	};
-> +
-> +	fss: bus@47000000 {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
+> diff --git a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt b/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+> index 038c3a6a1f4d..9405f9dad522 100644
+> --- a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+> +++ b/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+> @@ -18,6 +18,7 @@ Required properties:
+>  
+>  Optional properties:
+>  	- no-output: GPIOs are read-only.
+> +	- no-input: GPIOs are write-only. Read is via a shadow register.
 
-make dtbs W=12
+Why this property is needed? Why driver cannot always use shadow register?
 
-Warning (unit_address_vs_reg): /bus@100000/bus@28380000/bus@47000000: node has a unit name, but no reg or ranges property
+Anyway, please convert the bindings to DT schema first (see
+writing-schema and example-schema).
+Documentation/devicetree/bindings/writing-schema.rst
 
+Best regards,
+Krzysztof
 
-> +		ospi0: spi@47040000 {
-> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-> +			reg = <0x00 0x47040000 0x00 0x100>,
-> +			      <0x5 0x0000000 0x1 0x0000000>;
-
-Also, please follow existing convention
-
-			      <0x05 0x00000000 0x01 0x0000000>;
-
-> +			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
-> +			cdns,fifo-depth = <256>;
-> +			cdns,fifo-width = <4>;
-> +			cdns,trigger-address = <0x0>;
-> +			clocks = <&k3_clks 109 5>;
-> +			assigned-clocks = <&k3_clks 109 5>;
-> +			assigned-clock-parents = <&k3_clks 109 7>;
-> +			assigned-clock-rates = <166666666>;
-> +			power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		ospi1: spi@47050000 {
-> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-> +			reg = <0x00 0x47050000 0x00 0x100>,
-> +			      <0x7 0x0000000 0x1 0x0000000>;
-
-			      <0x07 0x00000000 0x01 0x0000000>;
-
-> +			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
-> +			cdns,fifo-depth = <256>;
-> +			cdns,fifo-width = <4>;
-> +			cdns,trigger-address = <0x0>;
-> +			clocks = <&k3_clks 110 5>;
-> +			power-domains = <&k3_pds 110 TI_SCI_PD_EXCLUSIVE>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +	};
->  };
