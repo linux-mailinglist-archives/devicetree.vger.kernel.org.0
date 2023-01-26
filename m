@@ -2,144 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE08967D825
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 23:05:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD41767D86B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 23:33:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbjAZWFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 17:05:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45752 "EHLO
+        id S233183AbjAZWdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 17:33:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232506AbjAZWFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 17:05:50 -0500
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B24F28D16;
-        Thu, 26 Jan 2023 14:05:49 -0800 (PST)
-Received: by mail-oo1-f50.google.com with SMTP id u13-20020a4aa34d000000b004f5219f9424so415004ool.5;
-        Thu, 26 Jan 2023 14:05:49 -0800 (PST)
+        with ESMTP id S233174AbjAZWcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 17:32:52 -0500
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5F616E43A
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 14:32:28 -0800 (PST)
+Received: by mail-qv1-xf35.google.com with SMTP id d13so2586920qvj.8
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 14:32:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=criticallink.com; s=google;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SypAcRsRGzHhFPMDy6VkPjsCL8zFvVsNw/XJ5tPEVcY=;
+        b=efuaVL0Qm37vcUypEIcgbVoS1Vqqe488UZ8MTte6T0J7ssEwQ7fEY1dkzJIbj8S7E8
+         1aUD44gCPB7puYCswzn1ztv8km0VbM53zvi9+uFVtlUmdH2Xo8L2fr5mYKS/m0Obd7E4
+         m6ofpouoXgvh74lfLmHDrUYk66up3W/YQEV5RAyERXF2OEGmnHeXGRTUoLlL2mee6Zcn
+         WsDucOBTJFm5836z0UAe67+n5M/fpd2evCUpI8rHNsbIiHvPRB47z49nkkUfm46SDKcB
+         ll+XD12STjyOaw4Ka0Ne4Jt4gzXgnpOfZoqw/0tX2HJiB2ENPgA0Vu/aW+nk7iN6Z9uA
+         dXsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=9zvA6aaRxT5oA+vWQpnnbfeU47UvhMD3eanCgwim0e8=;
-        b=xYHbqplskkupYptyDToOpBB1J0tOjt5D6YIOKq9jxgE1RbdxGajZctF/P3slwHhs1w
-         3VzEcK+b2EvtmZvoP7aPJo2l1kdS/ZggEbjvWtEf+vFjbtLycg/AQq2Zw6LrmRE2h9xJ
-         NyWhIJM65geGvwx0M6eGuo0cs585TfRlb4/45RtD7xu5huxnKPY66CdPO6yTDMBv5uIH
-         8v0bjYr/Ug3zHm7R+38ovznKRpYsmyr3m/NjDRfzVX2n3Alub7NKqx570xYsKtxRtwgD
-         a2qVqHeTJGYQ8y/KVjcTSDLGZF7Msb/2+2QuCOP7lt5/p0gWl7QOEtfA4x04FnJJPgHf
-         /4VA==
-X-Gm-Message-State: AFqh2kp2Qfxixug5/4XOpH7+mPL4IMH9GcyFF+8O9dWSqvtbbp4TaGsj
-        gZDWPSyFKBevJ+G7SU4PkA==
-X-Google-Smtp-Source: AMrXdXsvaBNueDbm+FAsWOVEltyyLIwFN/xjB4zgkZ/QVZx+C93Cg+LW+hQsXWhlIx9Od+L1CajrIw==
-X-Received: by 2002:a4a:b5cb:0:b0:4f2:f0f8:b7b5 with SMTP id u11-20020a4ab5cb000000b004f2f0f8b7b5mr15440701ooo.7.1674770748256;
-        Thu, 26 Jan 2023 14:05:48 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o20-20020a4ad494000000b004a394578e14sm990927oos.32.2023.01.26.14.05.47
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SypAcRsRGzHhFPMDy6VkPjsCL8zFvVsNw/XJ5tPEVcY=;
+        b=UejkQ+qkJXBSfrgUHjlks96S8GDlycNo3ep8w/DFvsuX8klofC7lxwx986G6spl/dg
+         yKh4zNZn6nVSngYoycxKYcQzUeLyx3bX76M89ayxWLQFcH9iC/djvh26QwHig3K3uqJq
+         mBYiSYh4JNL8BvGIZbLm9KMp3oUVuQqc0PV2WDuc5TB4bBWH0rB84N5KgDQbeKnCc+gr
+         pKC0o3JYm/279bbpGm7jP7OLGlJ0r2n3CCYi8d00SbN4gSjvTvXVxiS6SjOxoagCvrb7
+         z3Cyt6Ia9AgKLvXm7filfeSdxBRWN0IDikEbpTguqcVBt0NUIrmalTxCosi/bFT1tKq4
+         77iA==
+X-Gm-Message-State: AO0yUKWVw+iMQmKFfC4gOhNvgrNCf/VqNdxRvk88jDWv5B0klnFmoz8x
+        0gOMvg0MifGRltQn7ipH8s0LiQ==
+X-Google-Smtp-Source: AK7set8j39WFl26zDOVkE8AB9B9BKmg0mfHSyv5sD9/kg17OgAvML4uOSTenWt/JZjRGg2pSQ4i87g==
+X-Received: by 2002:a05:6214:192c:b0:537:708d:3fef with SMTP id es12-20020a056214192c00b00537708d3fefmr12386015qvb.38.1674772347729;
+        Thu, 26 Jan 2023 14:32:27 -0800 (PST)
+Received: from [127.0.1.1] (static-72-90-70-109.syrcny.fios.verizon.net. [72.90.70.109])
+        by smtp.gmail.com with ESMTPSA id m7-20020a05620a220700b006ff8a122a1asm1723091qkh.78.2023.01.26.14.32.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 14:05:47 -0800 (PST)
-Received: (nullmailer pid 2669511 invoked by uid 1000);
-        Thu, 26 Jan 2023 22:05:46 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        Thu, 26 Jan 2023 14:32:27 -0800 (PST)
+From:   Jonathan Cormier <jcormier@criticallink.com>
+Subject: [PATCH v4 0/5] hwmon: ltc2945: Add binding and shunt resistor
+ support
+Date:   Thu, 26 Jan 2023 17:32:22 -0500
+Message-Id: <20230126-b4-ltc2945_shunt_resistor-v4-0-bb913470d8da@criticallink.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Ilia Lin <ilia.lin@kernel.org>, linux-pm@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHb/0mMC/y2Nyw6CMBQFf8V0bUnpA4Mr/8MQUmqxV0trbgvRE
+ P7dSlzOJOfMSpJFsImcDytBu0CCGArI44EYp8PdUrgVJpxxwWre0EFSnw1vpeqTm0Pu0SZIOSI
+ dG9kqxaQUjSJlP+hk6YA6GFcewux9kS+0I7z34LUr7PbtZ+8v4mf/KdZyIZSQVd0KLk6M1vRhI
+ k5g8WIQMhjtPYRnZeJEum3bvnnfqJbLAAAA
+To:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-In-Reply-To: <20230126150026.14590-1-ansuelsmth@gmail.com>
-References: <20230126150026.14590-1-ansuelsmth@gmail.com>
-Message-Id: <167475624070.2087166.4816561741085643801.robh@kernel.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: cpufreq: qcom-cpufreq-nvmem: make cpr
- bindings optional
-Date:   Thu, 26 Jan 2023 16:05:46 -0600
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Bob Duke <bduke@criticallink.com>,
+        John Pruitt <jpruitt@criticallink.com>,
+        Jonathan Cormier <jcormier@criticallink.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1912;
+ i=jcormier@criticallink.com; h=from:subject:message-id;
+ bh=V0FNKX9YAVgdV6qQtndh4lVLUCURCHYt+xc2qtMk9AU=;
+ b=owEBbQKS/ZANAwAKAdzX/S4LNuuqAcsmYgBj0v96YYBjH5bl7+oD5yN3Mu+4Qfb2R9YVuyoeBN+Y
+ Od/xXU6JAjMEAAEKAB0WIQT/MozqCeZtYxNnVN/c1/0uCzbrqgUCY9L/egAKCRDc1/0uCzbrqgKyD/
+ 0anhM64UpBpa8TtU69DKDW0uL3AU4HuKH2i3UEaV85FS3f2PFwWpk+Oq41YDikbRb6sF+ugr+/uq4U
+ j5rpdJvtfXQxVZjrmIaqn2BBYqBnD563Kejkkuf8bqmaCELW4GetrUODdj2QNlm4RtRixFASRn67GB
+ RyBlssv12Jk8Twvfp2ORa/z8iStY9QesiB37n9ii89ye5gXDmbH+owGjN9OQNcf810aRgFn74iZnqB
+ /lKLFfI44cn/vNt6qTtPrkYpugwSuPeElX8wXqUAfze7kPd42stfkPaCjU4bfmyhrCec65PpodIrN+
+ nFYzQ7NfRKx0I+OQzEq8RQj+Rq1LJNQnd7Q245eOCWqdAIjtPNwguLXIHPfLOtMXRrMpqS/IppUAJJ
+ YNmw/Azd1om/RmRM14/QsSB/sS1S5uqczNmZKBzQ2VaX5LRifE5uQVBkoSoFJmAekDHb0yub3HTZnT
+ MCq/BjBvN4O3J7goK0e8RFFW3HNxlE2nJjYsvIdZl/AXz3lf4kYpsQd2rHzFW82BgZbXf/kLQskvyj
+ Y1+0p15b5OZhkxg9dZJVmQqE1CQa9L6IHllMtjORyWCXoR1r9WKkZtldp+CGPl/9eI3eBC/512z/kR
+ N5d7Cb9bsMmi8vHrjNyR4FLIqhZVPMAo5jF85hpLAOnSPHFKpZnKfi3Lp1CQ==
+X-Developer-Key: i=jcormier@criticallink.com; a=openpgp;
+ fpr=FF328CEA09E66D63136754DFDCD7FD2E0B36EBAA
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Added the ability to specify the value of the shunt resistor in the
+device tree instead of assuming it is 1 milliOhm.
 
-On Thu, 26 Jan 2023 16:00:24 +0100, Christian Marangi wrote:
-> The qcom-cpufreq-nvmem driver supports 2 kind of devices:
-> - pre-cpr that doesn't have power-domains and base everything on nvmem
->   cells and multiple named microvolt bindings.
->   Doesn't need required-opp binding in the opp nodes as they are only
->   used for genpd based devices.
-> - cpr-based that require power-domain in the cpu nodes and use various
->   source to decide the correct voltage and freq
->   Require required-opp binding since they need to be linked to the
->   related opp-level.
-> 
-> When the schema was introduced, it was wrongly set to always require these
-> binding but this is not the case for pre-cpr devices.
-> 
-> Make the power-domain and the required-opp optional and set them required
-> only for qcs404 based devices.
-> 
-> Fixes: ec24d1d55469 ("dt-bindings: opp: Convert qcom-nvmem-cpufreq to DT schema")
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
-> Changes v4:
-> - Explain why required-opp needs to be conditional
-> - Split additional ref part
-> Changesv3:
-> - No change
-> Changes v2:
-> - Reword commit description
-> - Fix condition order
-> - Add allOf
-> 
->  .../bindings/cpufreq/qcom-cpufreq-nvmem.yaml  | 62 +++++++++++--------
->  1 file changed, 37 insertions(+), 25 deletions(-)
-> 
+Would be good to backport as well
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Changes since v3:
+- Remove shunt-resistor-micro-ohms in binding commit message
+- Simplify ltc2945_value_store fix
+- Validate overflow
+- ltc2945_value_store accept only 32-bit uint from user to avoid overflow
+- Link to v3: https://lore.kernel.org/r/20230109233534.1932370-1-jcormier@criticallink.com
+Changes since v2:
+- Remove newline
+- Combined overflow fix with "Allow setting shunt resistor" commit
+- Add description to "Add devicetree match table"
+- Add fix for unhandled error case in ltc2945_value_store
+- Use imperative in descriptions
+- Remove unneeded overflow check from ltc2945_reg_to_val
+- Fix up DIV_ROUND_CLOSEST_ULL calls, per docs divisor should be 32-bit
+- Split one DIV_ROUND_CLOSEST_ULL change into separate commit per
+ Guenter Roeck's comment
+Changes since v1:
+- Add devicetree match table
+- Add kerneldoc for the ltc2945_data struct
+- Cleanup excesive comments about the shunt resistor
+- Switch to device_property_read_u32()
 
-yamllint warnings/errors:
+Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
+---
+John Pruitt (1):
+      hwmon: ltc2945: Allow setting shunt resistor
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml: 'anyOf' conditional failed, one must be fixed:
-	'type' is a required property
-	'properties' is a required property
-	'patternProperties' is a required property
-	hint: 'additionalProperties' depends on 'properties' or 'patternProperties'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml: 'anyOf' conditional failed, one must be fixed:
-	'properties' is a required property
-	'patternProperties' is a required property
-	hint: Metaschema for devicetree binding documentation
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+Jonathan Cormier (4):
+      dt-bindings: hwmon: adi,ltc2945: Add binding
+      hwmon: ltc2945: Add devicetree match table
+      hwmon: ltc2945: Handle error case in ltc2945_value_store
+      hwmon: ltc2945: Convert division to DIV_ROUND_CLOSEST_ULL
 
-doc reference errors (make refcheckdocs):
+ .../devicetree/bindings/hwmon/adi,ltc2945.yaml     |  49 ++++++++
+ drivers/hwmon/ltc2945.c                            | 132 ++++++++++++++-------
+ 2 files changed, 136 insertions(+), 45 deletions(-)
+---
+base-commit: 93f875a8526a291005e7f38478079526c843cbec
+change-id: 20230126-b4-ltc2945_shunt_resistor-f64955044365
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230126150026.14590-1-ansuelsmth@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Jonathan Cormier <jcormier@criticallink.com>
 
