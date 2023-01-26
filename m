@@ -2,67 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A1CA67CA58
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 12:59:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1301267CA66
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 13:01:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231614AbjAZL7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 06:59:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58546 "EHLO
+        id S236972AbjAZMB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 07:01:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbjAZL7R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 06:59:17 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA7462263;
-        Thu, 26 Jan 2023 03:59:16 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BD0ECB81D46;
-        Thu, 26 Jan 2023 11:59:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 933E2C433EF;
-        Thu, 26 Jan 2023 11:59:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674734353;
-        bh=FWWJFpobRb0f4jIYDScBQjebG8oOkbQRtojwF6I9pto=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=a2CHSMRR2qblKs3tYBXdtEvUQJBaEygMtAq+M7kihcPvUWQxU8oUPtw1Otj9WfeqZ
-         uZgHnPUVK5St+xvr745MrhUkrTJvT4iHkRptilHwwdxLB4kS0/4N722vlMYLexHdU6
-         tfk6epiWVYWpgvkeNVRAz/lUCV3ZyHU60JahlxZ7/Z09J7tWXRIffCfORG4EZ7dvXw
-         3dscl9880EDVCnSuMKWTpOpFrf66cSHHysl3tdLmoSV/HY/sxxAAL4NPln+Mdq6vHQ
-         2GIsAEPwoIp2cT0qu4Ir6+Hj/ZPUtZQ7Eb9zntPalGvGhVFBDqse6ZEa58GkPaUV11
-         Amg0SNp7su9Lw==
-Date:   Thu, 26 Jan 2023 19:59:04 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Li Yang <leoyang.li@nxp.com>, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: ls1046ardb: Use in-band-status for SFP module
-Message-ID: <20230126115903.GK20713@T480>
-References: <20230124174757.2956299-1-sean.anderson@seco.com>
+        with ESMTP id S236383AbjAZMBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 07:01:55 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 379B065F2D
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:01:48 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id q10so1538103wrm.4
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:01:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jxZC6LLZuJ2Wkp1f5+/EfRQ8da/gCgTKGWvHnHflOhU=;
+        b=Rswj04CGt0Ro3ujr1S3ZR7Y4N7ASGIziExdcXQQ1t0tAHoOBAp+Rv5Ajen5TTCq6Uz
+         V+gbLHslr8DIqj/sRgvvvf8NUzKPPd6cmc9xvD1L7rcVbwPmzDsw3cAt+hTyMsnIl2PM
+         rgekxtRTULXWNdJGG/boM6Zhy9E4nKwbd+2Nja0PJkbK/LewLdXrLTCKK7crMd27onpI
+         n8C54T/Wl9738vrpLNe2zjqr1R6cr0NVVjTzmHzTSL6zGTDH6BsMb/kPsihpsNZP6JV2
+         4KMrSIN3h6M0XEtV1Vs7I6kkZoOtFnpJKm+11aqUHNkqsMd0Fezu0O+W/aj2Dutu8cc/
+         TFuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jxZC6LLZuJ2Wkp1f5+/EfRQ8da/gCgTKGWvHnHflOhU=;
+        b=ZIkhyxZ70xMWTSddfRRQdKGt1f9jHz5oF0hdkhbHzdH61sOTxxTYNyJRPK00v5cbyv
+         Q9vksUMAMv5lGMgIMbTJYh3vDC3C2F4BRBq7sWB4/lnw6p9CqGPaL+huhTL7v1h0OsgW
+         sSmhYhGbAbXMiw/TdrHnvhADI8WC6H1z3Q0m6QRp5ZdoEZXFSdttYGL3T9sV3gYJxrau
+         mgk/iPl870FA8AnNDtkP5H/TB9xZkFRJ3FPJrTmsgZfpuXHGmYqVr9wVGFYzicCWcR72
+         13KHo7zUXrYLd9Ofay+ZV9re4EPEBLgzhjnZdEEbaouZWTESt2ae4NI542O1KZdoybQb
+         ZKJw==
+X-Gm-Message-State: AFqh2kr2jY+pIIZ1rNDUvHu4ystzsCAHT2Ebw2WLpTd63vmL5q/3DE/0
+        JPKOg3PTSImlvT4+C+DwF167GA==
+X-Google-Smtp-Source: AMrXdXvJKL26MJpG47M527MVT8QsOcuIjm1qzs/c5EZqKeKst2KGGu2u0oX9JCS35u+WUqsyvQMexQ==
+X-Received: by 2002:a5d:67d2:0:b0:2be:50a7:cfa9 with SMTP id n18-20020a5d67d2000000b002be50a7cfa9mr20937182wrw.63.1674734506461;
+        Thu, 26 Jan 2023 04:01:46 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id z2-20020a5d6542000000b00267bcb1bbe5sm1153739wrv.56.2023.01.26.04.01.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jan 2023 04:01:46 -0800 (PST)
+Message-ID: <05e55db1-5181-8025-8aee-e398200b047c@linaro.org>
+Date:   Thu, 26 Jan 2023 13:01:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230124174757.2956299-1-sean.anderson@seco.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [RFC PATCH v2 14/22] dt-bindings: usb: dwc3: Add
+ snps,num-hc-interrupters definition
+Content-Language: en-US
+To:     Wesley Cheng <quic_wcheng@quicinc.com>,
+        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
+        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        Thinh.Nguyen@synopsys.com, broonie@kernel.org,
+        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
+        agross@kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
+        quic_plai@quicinc.com
+References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
+ <20230126031424.14582-15-quic_wcheng@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230126031424.14582-15-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 24, 2023 at 12:47:57PM -0500, Sean Anderson wrote:
-> net10 is connected to an SFP module. Unfortunately, the I2C lines are
-> not connected due to an address conflict. Now that DPAA uses phylink, we
-> can use in-band-status. This lets us determine whether the link is up or
-> down instead of assuming it is up all the time. Also fix the phy mode
-> while we're here.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+On 26/01/2023 04:14, Wesley Cheng wrote:
+> Add a new definition for specifying how many XHCI secondary interrupters
+> can be allocated.  XHCI in general can potentially support up to 1024
+> interrupters, which some uses may want to limit depending on how many
+> users utilize the interrupters.
 
-Applied, thanks!
+I cannot find in the code any user of this. Your next patch stores it,
+but which other patch uses stored value?
+
+What I still don't get how is this exactly hardware property, not policy
+or driver choice.
+
+> 
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> index 6d78048c4613..4faaec9655e0 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -349,6 +349,18 @@ properties:
+>      items:
+>        enum: [1, 4, 8, 16, 32, 64, 128, 256]
+>  
+> +  snps,num-hc-interrupters:
+> +    description:
+> +      Defines the maximum number of XHCI host controller interrupters that can
+> +      be supported.  The XHCI host controller has support to allocate multiple
+> +      event rings, which can be assigned to different clients/users.  The DWC3
+> +      controller has a maximum of 8 interrupters.  If this is not defined then
+> +      the value will be defaulted to 1.  This parameter is used only when
+> +      operating in host mode.
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    minimum: 1
+> +    maximum: 8
+
+default: 1
+
+> +
+>    port:
+>      $ref: /schemas/graph.yaml#/properties/port
+>      description:
+
+Best regards,
+Krzysztof
+
