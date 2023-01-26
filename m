@@ -2,120 +2,361 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C560B67CA86
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 13:05:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3435867CAC4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 13:19:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237151AbjAZMFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 07:05:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34150 "EHLO
+        id S237071AbjAZMTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 07:19:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230505AbjAZMFo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 07:05:44 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCB7E2687
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:05:42 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id m14so1085877wrg.13
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:05:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=73ycqz5Vr3+tOURurZAagwhA0jCPCZF47oym0B2wObg=;
-        b=zxk3G06qdF/I2uUN1Fxy0Ib1meLLbwiy+FUznNmkeOJDeTot3WNnzI+b7fum/2ng27
-         HLeTSiylgez9NZQU8lHAav3shXV2URLW5Lo3N5Pb5hiHxCinVuE9q1hsMalmjWg2rhRd
-         7vrjU15UhVm+K/hDKM9sAq29nbjbXrvqvlGFbxZLuKmik3r+pMwmyW0sZdN59EGEvMvI
-         H7cXVwmYrRb4V9v6O11nMFNbCoLU0Hx7n9/5dUOfKJbvW6+kMkW5+20eU8JxwH7CwX9Y
-         /HHuBFQ9GMQQSt9f+BpJIZqdMINkoBzZoMcL0GGW6WfGXeFLZQcSdelU0PkNmNK/c/DL
-         6cNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=73ycqz5Vr3+tOURurZAagwhA0jCPCZF47oym0B2wObg=;
-        b=VxREi4MyC3YlXfgbgrz4hmZv1Qbj4L0AZ/YGYUiG8AoQJ2KraOtHbzmJDuxRqxv3H+
-         AajV9URcUTMrhcqQWtgDT0wyZEhs6V5cwtK5GjobwGbxMKKaK28IYtllqaQNcEm1P+yW
-         PWeZ8WPDCUOHvaIJDrax77xUbxBspLo/Xgf2OctE99TvqfDpMJ3/mSGIJsdt3cgOGL1c
-         VIBrZcUnA/FtyqMYCHYYk6RifOJBzOOjA5gszeNZwEa6RNfUAyEGSqJWZhsJXTpizSM+
-         ZERtM9Doq7sQHeaTDj1v9LIo+iY+o4ThqJ9IsTrPeaG4OT95fOaw8CsCiOt3ip/kL0Q6
-         vpWg==
-X-Gm-Message-State: AFqh2krkytzPsg6XS0VSWbX2krY/VlXAcrwII8H6Nh7SSR13lOSjeJcv
-        2BNFd5ePq+vY7ajZd3OBh6H12Q==
-X-Google-Smtp-Source: AMrXdXshQ57vEOT3LPS1eQ3YLZssnfmBDJVIwVtYoUuqSuUrdKv1clQP4CPZX1GEx+hl/WwpY9ADNg==
-X-Received: by 2002:a5d:6b42:0:b0:2bc:7e6c:7cd8 with SMTP id x2-20020a5d6b42000000b002bc7e6c7cd8mr30098482wrw.26.1674734741293;
-        Thu, 26 Jan 2023 04:05:41 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g11-20020a5d488b000000b002be5bdbe40csm1345948wrq.27.2023.01.26.04.05.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 04:05:40 -0800 (PST)
-Message-ID: <77b189f7-18ba-a8ec-20f7-a5d1287ced4b@linaro.org>
-Date:   Thu, 26 Jan 2023 13:05:39 +0100
+        with ESMTP id S237260AbjAZMSt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 07:18:49 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B36B23C6C;
+        Thu, 26 Jan 2023 04:18:40 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B886C2B3;
+        Thu, 26 Jan 2023 13:18:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1674735519;
+        bh=92ycrMbwbkpG+ciZNQ+Vh39sKieesxrjou417esDuSM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oIqY/EQEszlncQYCbSasDopS55yD3Fn8d25Luf/13aL1fzxuMqbVvi1Koc4mUhLcE
+         f5vhpeaDs1VztLxOXos8ZFmK6bmQsNkEDQEcXWXgKooScz75gJBWvCZw+0kAGgegQE
+         ZmYThpzYmycWcFIAnY4pNh1Llwn7GSYbQSMZcsqY=
+Date:   Thu, 26 Jan 2023 14:18:35 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-media@vger.kernel.org,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
+        linux-imx@nxp.com, kernel@pengutronix.de,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: media: Add i.MX8 ISI DT bindings
+Message-ID: <Y9Jvm1GxfNRhPBP/@pendragon.ideasonboard.com>
+References: <20230126003320.10047-1-laurent.pinchart@ideasonboard.com>
+ <20230126003320.10047-2-laurent.pinchart@ideasonboard.com>
+ <CAHCN7x+PcBk-Y+t3AP4saJK=tntYr85btTzQMFD=WL+KYQfHGg@mail.gmail.com>
+ <Y9Jehk+qOXkaI3SH@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [RFC PATCH v2 22/22] ASoC: dt-bindings: Update example for
- enabling USB offload on SM8250
-Content-Language: en-US
-To:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        Thinh.Nguyen@synopsys.com, broonie@kernel.org,
-        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
-        agross@kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
- <20230126031424.14582-23-quic_wcheng@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230126031424.14582-23-quic_wcheng@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <Y9Jehk+qOXkaI3SH@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2023 04:14, Wesley Cheng wrote:
-> Add an example on enabling of USB offload for the Q6DSP.  The routing can
-> be done by the mixer, which can pass the multimedia stream to the USB
-> backend.
-
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching). Missing piece is "qcom,sm8250:"
-
+On Thu, Jan 26, 2023 at 01:05:43PM +0200, Laurent Pinchart wrote:
+> Hi Adam,
 > 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> ---
->  .../devicetree/bindings/sound/qcom,sm8250.yaml      | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+> On Wed, Jan 25, 2023 at 08:36:41PM -0600, Adam Ford wrote:
+> > On Wed, Jan 25, 2023 at 6:33 PM Laurent Pinchart wrote:
+> > >
+> > > The Image Sensing Interface (ISI) combines image processing pipelines
+> > > with DMA engines to process and capture frames originating from a
+> > > variety of sources. The inputs to the ISI go through Pixel Link
+> > > interfaces, and their number and nature is SoC-dependent. They cover
+> > > both capture interfaces (MIPI CSI-2 RX, HDMI RX) and memory inputs.
+> > >
+> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > ---
+> > > Changes since v2:
+> > >
+> > > - Describe the interrupts property
+> > > - Set global minItems and maxItems for interrupts
+> > > - Set maxItems for power-domains
+> > >
+> > > Changes since v1:
+> > >
+> > > - Fix compatible string checks in conditional schema
+> > > - Fix interrupts property handling
+> > > ---
+> > >  .../bindings/media/nxp,imx8-isi.yaml          | 152 ++++++++++++++++++
+> > >  1 file changed, 152 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> > > new file mode 100644
+> > > index 000000000000..130fa41b9d8e
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> > > @@ -0,0 +1,152 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/nxp,imx8-isi.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: i.MX8 Image Sensing Interface
+> > > +
+> > > +maintainers:
+> > > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > +
+> > > +description: |
+> > > +  The Image Sensing Interface (ISI) combines image processing pipelines with
+> > > +  DMA engines to process and capture frames originating from a variety of
+> > > +  sources. The inputs to the ISI go through Pixel Link interfaces, and their
+> > > +  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
+> > > +  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - fsl,imx8mn-isi
+> > > +      - fsl,imx8mp-isi
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: The AXI clock
+> > > +      - description: The APB clock
+> > > +      # TODO: Check if the per-channel ipg_proc_clk clocks need to be specified
+> > > +      # as well, in case some SoCs have the ability to control them separately.
+> > > +      # This may be the case of the i.MX8[DQ]X(P)
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: axi
+> > > +      - const: apb
+> > > +
+> > > +  fsl,blk-ctrl:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > +    description:
+> > > +      A phandle referencing the block control that contains the CSIS to ISI
+> > > +      gasket.
+> > > +
+> > > +  interrupts:
+> > > +    description: Processing pipeline interrupts, one per pipeline
+> > > +    minItems: 1
+> > > +    maxItems: 2
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > > +  ports:
+> > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > +    description: |
+> > > +      Ports represent the Pixel Link inputs to the ISI. Their number and
+> > > +      assignment are model-dependent. Each port shall have a single endpoint.
+> > > +
+> > > +    patternProperties:
+> > > +      "^port@[0-9]$":
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        unevaluatedProperties: false
+> > > +
+> > > +    unevaluatedProperties: false
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - fsl,blk-ctrl
+> > > +  - ports
+> > > +
+> > > +allOf:
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            const: fsl,imx8mn-isi
+> > > +    then:
+> > > +      properties:
+> > > +        interrupts:
+> > > +          maxItems: 1
+> > > +        ports:
+> > > +          properties:
+> > > +            port@0:
+> > > +              description: MIPI CSI-2 RX
+> > > +          required:
+> > > +            - port@0
+> > 
+> > The imx8mn only has one port for the ISI.  When I compile the device
+> > tree with W=1, I get the following:
+> > arch/arm64/boot/dts/freescale/imx8mn.dtsi:1058.11-1068.7: Warning
+> > (graph_child_address): /soc@0/bus@32c00000/isi@32e20000/ports: graph
+> > node has single child node 'port@0', #address-cells/#size-cells are
+> > not necessary
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> index 70080d04ddc9..60cd84e6727a 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> @@ -216,6 +216,19 @@ examples:
->                  sound-dai = <&vamacro 0>;
->              };
->          };
-> +
-> +        usb-dai-link {
-> +            link-name = "USB Playback";
+> The only appropriate answer to this is of course aaaarrrrghhhhhhhh.
+> 
+> > Should the "ports" node be replaced with a single port with port@0 removed?
+> > 
+> > The device tree would look something like:
+> > 
+> > port {
+> >     isi_in: endpoint {
+> >         remote-endpoint = <&mipi_csi_out>;
+> >     };
+> > };
+> 
+> I understand why DT tools (and before them, DT maintainers) recommend
+> (or require ?) single-port devices to use the short-hand syntax without
+> a ports node. In this specific case, or in the more general case of
+> devices that can have a variable number of ports depending on how
+> they're instantiated in a particular SoC, allowing a ports node to have
+> a single port child would be best I believe, as it would make DT
+> bindings more consistent, and simpler.
+> 
+> > With the above, the messages go away, and I can still see the media
+> > pipeline and the video captures.  I am not good with YAML, so I am not
+> > exactly sure how to code that in YAML form.
+> 
+> It's possible, and I can do so, but I'll wait for feedback from DT
+> maintainers.
 
-Keep consistent blank lines between nodes. Other nodes in this example
-have them, haven't they?
+Here's a patch on top of this one to support port/ports depending on the
+number of ports. Adam, could you test it ? Could you also share the
+i.MX8MN DT node for the ISI ? I'd like to add it as an example to the
+bindings.
 
+diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+index cead41a017bf..8bbdc4ed929d 100644
+--- a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
++++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+@@ -52,11 +52,21 @@ properties:
+   power-domains:
+     maxItems: 1
 
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++    description: |
++      The port represents the Pixel Link input to the ISI. It shall have a
++      single endpoint. This property is only used for ISI instances with a
++      single port (as in the i.MX8MN). For instances that includes multiple
++      ports, the 'ports' property shall be used instead.
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+     description: |
+       Ports represent the Pixel Link inputs to the ISI. Their number and
+-      assignment are model-dependent. Each port shall have a single endpoint.
++      assignment are model-dependent. For ISI instances that have a single
++      port, the 'port' property should be used instead. Each port shall have a
++      single endpoint.
 
-Best regards,
-Krzysztof
+ required:
+   - compatible
+@@ -65,7 +75,6 @@ required:
+   - clocks
+   - clock-names
+   - fsl,blk-ctrl
+-  - ports
 
+ allOf:
+   - if:
+@@ -77,12 +86,11 @@ allOf:
+       properties:
+         interrupts:
+           maxItems: 1
+-        ports:
+-          properties:
+-            port@0:
+-              description: MIPI CSI-2 RX
+-          required:
+-            - port@0
++        port:
++          description: MIPI CSI-2 RX
++        ports: false
++      required:
++        - port
+
+   - if:
+       properties:
+@@ -93,6 +101,7 @@ allOf:
+       properties:
+         interrupts:
+           maxItems: 2
++        port: false
+         ports:
+           properties:
+             port@0:
+@@ -102,6 +111,8 @@ allOf:
+           required:
+             - port@0
+             - port@1
++      required:
++        - ports
+
+ additionalProperties: false
+
+> > > +
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            const: fsl,imx8mp-isi
+> > > +    then:
+> > > +      properties:
+> > > +        interrupts:
+> > > +          maxItems: 2
+> > > +        ports:
+> > > +          properties:
+> > > +            port@0:
+> > > +              description: MIPI CSI-2 RX 0
+> > > +            port@1:
+> > > +              description: MIPI CSI-2 RX 1
+> > > +          required:
+> > > +            - port@0
+> > > +            - port@1
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/imx8mp-clock.h>
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +
+> > > +    isi@32e00000 {
+> > > +        compatible = "fsl,imx8mp-isi";
+> > > +        reg = <0x32e00000 0x4000>;
+> > > +        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+> > > +        clocks = <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
+> > > +                 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
+> > > +        clock-names = "axi", "apb";
+> > > +        fsl,blk-ctrl = <&media_blk_ctrl>;
+> > > +        power-domains = <&mediamix_pd>;
+> > > +
+> > > +        ports {
+> > > +            #address-cells = <1>;
+> > > +            #size-cells = <0>;
+> > > +
+> > > +            port@0 {
+> > > +                reg = <0>;
+> > > +                isi_in_0: endpoint {
+> > > +                    remote-endpoint = <&mipi_csi_0_out>;
+> > > +                };
+> > > +            };
+> > > +
+> > > +            port@1 {
+> > > +                reg = <1>;
+> > > +                isi_in_1: endpoint {
+> > > +                    remote-endpoint = <&mipi_csi_1_out>;
+> > > +                };
+> > > +            };
+> > > +        };
+> > > +    };
+> > > +
+> > > +...
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+
+-- 
+Regards,
+
+Laurent Pinchart
