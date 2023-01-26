@@ -2,151 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C737A67C98B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 12:15:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFB8367C99A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 12:18:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237205AbjAZLPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 06:15:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34376 "EHLO
+        id S236186AbjAZLSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 06:18:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236972AbjAZLPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 06:15:51 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1E6E410CD;
-        Thu, 26 Jan 2023 03:15:50 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 33988C14;
-        Thu, 26 Jan 2023 03:16:31 -0800 (PST)
-Received: from FVFF77S0Q05N (unknown [10.57.10.122])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 402733F71E;
-        Thu, 26 Jan 2023 03:15:40 -0800 (PST)
-Date:   Thu, 26 Jan 2023 11:15:37 +0000
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Jules Maselbas <jmaselbas@kalray.eu>
-Cc:     Yann Sionneau <ysionneau@kalray.eu>, Arnd Bergmann <arnd@arndb.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S236526AbjAZLSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 06:18:05 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5B6428D3C
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 03:18:00 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id d14so1399095wrr.9
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 03:18:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NqdjA3+9Qt11hSZoRLBAVvtnUOg90LKLkfkURZqojVc=;
+        b=bmia+l1T8qeG6L9k0m4kQUz0Ep/IY4J7ax4evRMageigmFN69g9Y8uq3e/dgb8K0wV
+         duq5xED/VvbXaHYnpNWf0MSqKk2LfLxGG9j1/UMPnxq1iE/BfU+YXnSif+kz3pPfceup
+         hMpGeXfMv8dJqIAGLlAenz3CA60wWt+jwdn3let/kfBkuf0WlJGJzkHVM5ksbrN1FXR7
+         QtNmytC7WiL87rQnzrRbSULMaXnv7kTS4/I+Y9V9XbMb0LKGeHjUN4XJ5tJe0hI8/BV2
+         iQs66vjTfZ9oFjvwFNMGjrKmeR+lFoomrCDgJv4/VERUghK6YZmamv1KIdzhJ3l5ZAdB
+         jUAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NqdjA3+9Qt11hSZoRLBAVvtnUOg90LKLkfkURZqojVc=;
+        b=xHXJaZSIn/riqEjwyvuX8RFaFUWtmHXlMChjoXoWkF0u1lyfkkvhy+K3eLatTzf28B
+         +ASUHVkocRiHEaFnsyEeSEuVgjzKRZ7YKD0qxRcBzLhyeQ14dWutdGelSNd+GgtEiEl9
+         pOBijZBvxqhyMFD7MqPQ/UUrv+9chjEXpm4Pa3N3405cwIO5AO+ob9i07gK9MSaOIZJl
+         aXo5xsDm3/aHPBbb7udHvIhtCF+N52z9AlCbTOKElPkGdHTnbwzq8VMiGr6j1ZL/z+Tz
+         OkwjOLjUPbUt/FhlUKV9ELDnYVLGxhleEx3I+EtPhM0JFAPyrMruzGhX9iayArT8xD+g
+         7Dvw==
+X-Gm-Message-State: AFqh2kpQ4/uGo1Gc6jGcDTD2fD5QzZHrfnw+VG61v6S7Jk4KhKg9m/gM
+        T+AoB2NtW5mSPKcxofeUoYhF6Q==
+X-Google-Smtp-Source: AMrXdXtXwwsVoDPpG4FBWmaSo/IllaxkAIiivnsODY1DCtiKwSb4Jyo7v20kIZn0Ymcluujwf0ocbQ==
+X-Received: by 2002:a05:6000:16ce:b0:2bd:d9cc:920a with SMTP id h14-20020a05600016ce00b002bdd9cc920amr37171755wrf.45.1674731879174;
+        Thu, 26 Jan 2023 03:17:59 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id a18-20020adffad2000000b002be53aa2260sm1106381wrs.117.2023.01.26.03.17.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jan 2023 03:17:58 -0800 (PST)
+Message-ID: <102e76fd-50bc-9403-b03f-f96a3d3869bd@linaro.org>
+Date:   Thu, 26 Jan 2023 12:17:56 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: cpufreq: qcom-cpufreq-nvmem: make cpr
+ bindings optional
+Content-Language: en-US
+To:     Christian Marangi <ansuelsmth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Boqun Feng <boqun.feng@gmail.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        Kees Cook <keescook@chromium.org>,
-        Oleg Nesterov <oleg@redhat.com>,
-        Ingo Molnar <mingo@redhat.com>,
-        Waiman Long <longman@redhat.com>,
-        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Nick Piggin <npiggin@gmail.com>,
-        Paul Moore <paul@paul-moore.com>,
-        Eric Paris <eparis@redhat.com>,
-        Christian Brauner <brauner@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Guillaume Thouvenin <gthouvenin@kalray.eu>,
-        Clement Leger <clement@clement-leger.fr>,
-        Vincent Chardon <vincent.chardon@elsys-design.com>,
-        Marc =?utf-8?B?UG91bGhpw6hz?= <dkm@kataplop.net>,
-        Julian Vetter <jvetter@kalray.eu>,
-        Samuel Jones <sjones@kalray.eu>,
-        Ashley Lesdalons <alesdalons@kalray.eu>,
-        Thomas Costis <tcostis@kalray.eu>,
-        Marius Gligor <mgligor@kalray.eu>,
-        Jonathan Borne <jborne@kalray.eu>,
-        Julien Villette <jvillette@kalray.eu>,
-        Luc Michel <lmichel@kalray.eu>,
-        Louis Morhet <lmorhet@kalray.eu>,
-        Julien Hascoet <jhascoet@kalray.eu>,
-        Jean-Christophe Pince <jcpince@gmail.com>,
-        Guillaume Missonnier <gmissonnier@kalray.eu>,
-        Alex Michon <amichon@kalray.eu>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <git@xen0n.name>,
-        Shaokun Zhang <zhangshaokun@hisilicon.com>,
-        John Garry <john.garry@huawei.com>,
-        Guangbin Huang <huangguangbin2@huawei.com>,
-        Bharat Bhushan <bbhushan2@marvell.com>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Atish Patra <atishp@atishpatra.org>,
-        "Jason A. Donenfeld" <Jason@zx2c4.com>,
-        Qi Liu <liuqi115@huawei.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Mark Brown <broonie@kernel.org>,
-        Janosch Frank <frankja@linux.ibm.com>,
-        Alexey Dobriyan <adobriyan@gmail.com>,
-        Benjamin Mugnier <mugnier.benjamin@gmail.com>,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mm@kvack.org,
-        linux-arch@vger.kernel.org, linux-audit@redhat.com,
-        linux-riscv@lists.infradead.org, bpf@vger.kernel.org
-Subject: Re: [RFC PATCH v2 11/31] kvx: Add atomic/locking headers
-Message-ID: <Y9Jg2QkbLUoYhimB@FVFF77S0Q05N>
-References: <20230120141002.2442-1-ysionneau@kalray.eu>
- <20230120141002.2442-12-ysionneau@kalray.eu>
- <Y8qw2MaCJZzu3Ows@FVFF77S0Q05N>
- <20230126095720.GF5952@tellis.lin.mbt.kalray.eu>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230126095720.GF5952@tellis.lin.mbt.kalray.eu>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230123193422.15972-1-ansuelsmth@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230123193422.15972-1-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jules,
-
-On Thu, Jan 26, 2023 at 10:57:20AM +0100, Jules Maselbas wrote:
-> Hi Mark,
+On 23/01/2023 20:34, Christian Marangi wrote:
+> The qcom-cpufreq-nvmem driver supports 2 kind of devices:
+> - pre-cpr that doesn't have power-domains and base everything on nvmem
+>   cells and multiple named microvolt bindings
+> - cpr-based that require power-domain in the cpu nodes and use various
+>   source to decide the correct voltage and freq
 > 
-> On Fri, Jan 20, 2023 at 03:18:48PM +0000, Mark Rutland wrote:
-> > On Fri, Jan 20, 2023 at 03:09:42PM +0100, Yann Sionneau wrote:
-> > > +#define ATOMIC64_RETURN_OP(op, c_op)					\
-> > > +static inline long arch_atomic64_##op##_return(long i, atomic64_t *v)	\
-> > > +{									\
-> > > +	long new, old, ret;						\
-> > > +									\
-> > > +	do {								\
-> > > +		old = v->counter;					\
-> > 
-> > This should be arch_atomic64_read(v), in order to avoid the potential for the
-> > compiler to replay the access and introduce ABA races and other such problems.
-> Thanks for the suggestion, this will be into v3.
+> When the schema was introduced, it was wrongly set to always require these
+> binding but this is not the case for pre-cpr devices.
 > 
-> > For details, see:
-> > 
-> >   https://lore.kernel.org/lkml/Y70SWXHDmOc3RhMd@osiris/
-> >   https://lore.kernel.org/lkml/Y71LoCIl+IFdy9D8@FVFF77S0Q05N/
-> > 
-> > I see that the generic 32-bit atomic code suffers from that issue, and we
-> > should fix it.
-> I took a look at the generic 32-bit atomic, but I am unsure if this
-> needs to be done for both the SMP and non-SMP implementations. But I
-> can send a first patch and we can discuss from there.
+> Make the power-domain optional and set them required only for qcs404
+> based devices.
+> 
+> While at it also make more clear what the opp-table supports by adding
+> ref to the opp-v2-kryo-cpu and opp-v2-qcom-level schema.
+> 
+> Fixes: ec24d1d55469 ("dt-bindings: opp: Convert qcom-nvmem-cpufreq to DT schema")
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+> 
+> Changes v2:
+> - Reword commit description
+> - Fix condition order
+> - Add allOf
+> 
+>  .../bindings/cpufreq/qcom-cpufreq-nvmem.yaml  | 81 +++++++++++++------
+>  1 file changed, 56 insertions(+), 25 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml b/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> index 9c086eac6ca7..6f5e7904181f 100644
+> --- a/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> +++ b/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> @@ -17,6 +17,9 @@ description: |
+>    on the CPU OPP in use. The CPUFreq driver sets the CPR power domain level
+>    according to the required OPPs defined in the CPU OPP tables.
+>  
+> +  For old implementation efuses are parsed to select the correct opp table and
+> +  voltage and CPR is not supported/used.
+> +
+>  select:
+>    properties:
+>      compatible:
+> @@ -33,37 +36,65 @@ select:
+>    required:
+>      - compatible
+>  
+> -properties:
+> -  cpus:
+> -    type: object
+> -
+> -    patternProperties:
+> -      '^cpu@[0-9a-f]+$':
+> -        type: object
+> -
+> -        properties:
+> -          power-domains:
+> -            maxItems: 1
+> -
+> -          power-domain-names:
+> -            items:
+> -              - const: cpr
+> -
+> -        required:
+> -          - power-domains
+> -          - power-domain-names
+> -
+>  patternProperties:
+>    '^opp-table(-[a-z0-9]+)?$':
+> -    if:
+> +    allOf:
+> +      - if:
+> +          properties:
+> +            compatible:
+> +              const: operating-points-v2-kryo-cpu
+> +        then:
+> +          $ref: /schemas/opp/opp-v2-kryo-cpu.yaml#
+> +
+> +      - if:
+> +          properties:
+> +            compatible:
+> +              const: operating-points-v2-qcom-level
+> +        then:
+> +          $ref: /schemas/opp/opp-v2-qcom-level.yaml#
 
-Sounds good to me; thanks!
+This entire part looks independent, please split it into separate patch
+with its own explanation. What I still miss here - why do you remove
+"required-opps" from required properties. It's not clear to me at all.
 
-[...]
 
-> > > +static inline int arch_atomic_add_return(int i, atomic_t *v)
-> > > +{
-> > > +	int new, old, ret;
-> > > +
-> > > +	do {
-> > > +		old = v->counter;
-> > 
-> > Likewise, arch_atomic64_read(v) here.
-> ack, this will bt arch_atomic_read(v) here since this is not atomic64_t
-> here.
+Best regards,
+Krzysztof
 
-Ah, yes, my bad!
-
-Thanks,
-Mark.
