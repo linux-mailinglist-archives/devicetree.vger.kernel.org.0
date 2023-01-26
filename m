@@ -2,172 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2374A67CB14
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 13:47:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E07FC67CB17
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 13:47:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233955AbjAZMq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 07:46:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56782 "EHLO
+        id S234999AbjAZMrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 07:47:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232925AbjAZMq6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 07:46:58 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E44622ED7E;
-        Thu, 26 Jan 2023 04:46:55 -0800 (PST)
-Received: from uno.LocalDomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8206E975;
-        Thu, 26 Jan 2023 13:46:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1674737214;
-        bh=FjHe18OjMG5kp/9PYfncXnIQ8ktDN2Uo2h/sBYfzDqo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=KEeHFRPKNjvtnLjX7JmYZtk23ZQDABkw8mM7W51ml4DUyuId0aQzmWy4Gzfoygdt5
-         L26YehlZFEqu4lNOv7EY0Lkcle58OAGMqQ3N8AiPFCGtT810/N8f4ruUiPImUyKl2a
-         2d/KZz2AzjenZZffcMiCFjnO14aPfCd0yFG1Fbpg=
-From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
-        Luca Weiss <luca@z3ntu.xyz>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v5 1/9] media: dt-bindings: Add OV5670
-Date:   Thu, 26 Jan 2023 13:46:24 +0100
-Message-Id: <20230126124632.45842-2-jacopo.mondi@ideasonboard.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230126124632.45842-1-jacopo.mondi@ideasonboard.com>
-References: <20230126124632.45842-1-jacopo.mondi@ideasonboard.com>
+        with ESMTP id S233977AbjAZMrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 07:47:00 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10E6A2ED7E
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:46:59 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso3162842wmn.5
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:46:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aEwl4rXqwP7HFZuGGS8GvTs9Re4pfspXDU7w3TmmVI0=;
+        b=jQY5FDIzJd/D5AfxGaPGYIZIrxbmpQCSjcWGkffpFvIaQgR1klTO6ENQ754svYLOvG
+         BgXcfe0ulf+BwgcCGkM5hZNZaQlx44wuZNZFwCtdb5sctz49e3b8MWpTqoKNlJBBYxFf
+         xeI4WSgPevD+nwPzpdKkG4b4XbiAcdMg3JjWI/1RH95g6BcACOdoyL5+PNGEIR3FrBqA
+         /x3HKYRA0nx62uKk8xJHGODcAZR/swdp2I6CFbRI1RxYZT/6ec/5TI0+JqZwuh78zrGc
+         /LXemjExKf5HwgiJBROMkOK34NfNYjn0OMLOYCNiPJyw3rG9GwvPx9ssRj1PpEZ7oIK9
+         xtww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aEwl4rXqwP7HFZuGGS8GvTs9Re4pfspXDU7w3TmmVI0=;
+        b=ztzhFEcLfMBM8I+1lO8AjtYzHAToIOdC9wq4K1X0nbodowgN7JzWTRQ41eJ3iq/+4y
+         xkHWNJWqOLfd2a2p/YgZBCho6lrYjDZN5vS07YOM3dCg6cL2/eIdbes+TtmDoVoXz2R3
+         UUMbv4TW0EtNoVQRFRaaL8AU1wcc7ZEF8BThtZCwbUfcAdbGCkc/VWMeEgxAM78xfPjC
+         wwWjpxotyx/T/lX+b3vnIBxPjCDp8JZobETvkGTSOdvooATgfSUW6C/qB6O3/4Xrkozk
+         K6j8QTfg9HA77luTlAMZUfCM8INJnzvbwpqxTyRCqX4kOQwnwCNFScYNmuzvBjn2N/bf
+         HZpQ==
+X-Gm-Message-State: AFqh2krKyI79/z7QrN/oQfwmrAc6H2t0+ten0twUjWCvBYlYYkUhKFgF
+        tYQ7iwbdyJgcVcfAbFbsYtcmhA==
+X-Google-Smtp-Source: AMrXdXslJr4J5js/ytBZ7wAvx3rO670yMpHaS8sIaBr7oBWzofte/ymYVVnVFGDtLY2OAxvkzY7S8g==
+X-Received: by 2002:a1c:f317:0:b0:3d0:480b:ac53 with SMTP id q23-20020a1cf317000000b003d0480bac53mr35697160wmq.12.1674737217607;
+        Thu, 26 Jan 2023 04:46:57 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id v11-20020adff68b000000b002bfb8f829eesm1198681wrp.71.2023.01.26.04.46.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jan 2023 04:46:57 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-phy@lists.infradead.org
+Subject: [PATCH v2 0/8] sm8550: Add USB HC and PHYs support
+Date:   Thu, 26 Jan 2023 14:46:43 +0200
+Message-Id: <20230126124651.1362533-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the bindings documentation for Omnivision OV5670 image sensor.
+This patchset adds support for USB for Qualcomm SM8550 platform.
 
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
----
- .../bindings/media/i2c/ovti,ov5670.yaml       | 92 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 93 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+This patchset is based on top of the following patchset:
+https://lore.kernel.org/all/20230124124714.3087948-1-abel.vesa@linaro.org/
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
-new file mode 100644
-index 000000000000..fa264255b5eb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
-@@ -0,0 +1,92 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov5670.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Omnivision OV5670 5 Megapixels raw image sensor
-+
-+maintainers:
-+  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-+
-+description: |-
-+  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
-+  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
-+  controlled through an I2C compatible control bus.
-+
-+properties:
-+  compatible:
-+    const: ovti,ov5670
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description: System clock. From 6 to 27 MHz.
-+    maxItems: 1
-+
-+  powerdown-gpios:
-+    description: Reference to the GPIO connected to the PWDNB pin. Active low.
-+
-+  reset-gpios:
-+    description: Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
-+    maxItems: 1
-+
-+  avdd-supply:
-+    description: Analog circuit power. Typically 2.8V.
-+
-+  dvdd-supply:
-+    description: Digital circuit power. Typically 1.2V.
-+
-+  dovdd-supply:
-+    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          data-lanes:
-+            minItems: 1
-+            maxItems: 2
-+            items:
-+              enum: [1, 2]
-+
-+          clock-noncontinuous: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ov5670: sensor@36 {
-+            compatible = "ovti,ov5670";
-+            reg = <0x36>;
-+
-+            clocks = <&sensor_xclk>;
-+
-+            port {
-+                ov5670_ep: endpoint {
-+                    remote-endpoint = <&csi_ep>;
-+                    data-lanes = <1 2>;
-+                    clock-noncontinuous;
-+                };
-+            };
-+        };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f61eb221415b..38d8d1d5d536 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15468,6 +15468,7 @@ M:	Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
- F:	drivers/media/i2c/ov5670.c
+For changelogs please look at each patch individually.
 
- OMNIVISION OV5675 SENSOR DRIVER
---
-2.39.0
+Abel Vesa (8):
+  dt-bindings: phy: Add qcom,snps-eusb2-phy schema file
+  phy: qcom: Add QCOM SNPS eUSB2 driver
+  dt-bindings: phy: qcom,qmp-usb: Document SM8550 compatible
+  phy: qcom-qmp: pcs-usb: Add v6 register offsets
+  phy: qcom-qmp: Add v6 DP register offsets
+  phy: qcom-qmp-combo: Add support for SM8550
+  arm64: dts: qcom: sm8550: Add USB PHYs and controller nodes
+  arm64: dts: qcom: sm8550-mtp: Add USB PHYs and HC nodes
+
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    |   1 +
+ .../bindings/phy/qcom,snps-eusb2-phy.yaml     |  78 ++++
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts       |  22 +
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  92 +++-
+ drivers/phy/qualcomm/Kconfig                  |   9 +
+ drivers/phy/qualcomm/Makefile                 |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c     | 406 ++++++++++++++++-
+ .../phy/qualcomm/phy-qcom-qmp-pcs-usb-v6.h    |  31 ++
+ drivers/phy/qualcomm/phy-qcom-qmp.h           |   4 +
+ drivers/phy/qualcomm/phy-qcom-snps-eusb2.c    | 421 ++++++++++++++++++
+ 10 files changed, 1061 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-usb-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
+
+-- 
+2.34.1
 
