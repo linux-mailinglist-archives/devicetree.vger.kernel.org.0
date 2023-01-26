@@ -2,138 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A2C567CCFC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:57:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBC4667CD14
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:59:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbjAZN54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 08:57:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50880 "EHLO
+        id S230225AbjAZN7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 08:59:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbjAZN5y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:57:54 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E82A5A5EE;
-        Thu, 26 Jan 2023 05:57:35 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D6F6361812;
-        Thu, 26 Jan 2023 13:57:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49963C4339E;
-        Thu, 26 Jan 2023 13:57:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674741427;
-        bh=A4FypTxPt7KtjZ3a/ZCUVPqWgiTChOiIy6RcBgD/1JU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=gkaXnwVcYEjaV9cKX+jk22movsCf0mow5QoNroNM4enlyYMVrd0BX9SSSpVKG4aKB
-         kKJcyiYU1Ibl/HIC9y+rRzltRAIiFTkyDCnl2iAO9vlc+6Z6pJsKr1Fb6avi6aPMMF
-         Ahq3Vu/tWoCf1/CKnYJCeD9Tp16XP45lf+BTFzvv9BnrkpdYfF9pzx5Lu/JuwSiVzc
-         CW0vbZrYiPEMLAI40mKDt5QDtkrhXGO6hv59TK98b2mxfWa+U8fvKf6gcIE84P12gL
-         WBdnpj7uRr65R5ca5j/N3VHMzdkU9cyQYT4kk9jFQ0EbqmE4oK1RnU+TIU9wnQ8y0C
-         wrYll7Oqn7Xug==
-Received: by mail-vk1-f174.google.com with SMTP id v81so910962vkv.5;
-        Thu, 26 Jan 2023 05:57:07 -0800 (PST)
-X-Gm-Message-State: AFqh2ko+7suRGPphN7Mbvkp0TaD6xBPKO15MW01+etfC+QLLHrnLzOX+
-        XBK2/lcq49J6FDbQko7cw98fZhOjMEVdYSmyVg==
-X-Google-Smtp-Source: AMrXdXvRhY3YBxnwfuP26lobnBE5EYhYWq39LHxcmJlb1XlBGvEHYkW37o5avlOJSpGKu8CjXvG7+ZOtuESLmcYg5mQ=
-X-Received: by 2002:a1f:a002:0:b0:3d5:d30f:81c2 with SMTP id
- j2-20020a1fa002000000b003d5d30f81c2mr4632814vke.14.1674741426154; Thu, 26 Jan
- 2023 05:57:06 -0800 (PST)
-MIME-Version: 1.0
-References: <20230124221218.341511-1-william.zhang@broadcom.com>
- <20230124221218.341511-3-william.zhang@broadcom.com> <abedd2e8-3c7e-f347-06af-99f2e5a2412b@linaro.org>
- <ee4727e1-5705-edb0-c724-2ae4d4d1a8e2@broadcom.com> <20230125205123.GA2864330-robh@kernel.org>
- <1489564a-59d3-6d38-fad7-02119bfedbeb@broadcom.com>
-In-Reply-To: <1489564a-59d3-6d38-fad7-02119bfedbeb@broadcom.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 26 Jan 2023 07:56:54 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL3CYCdamv15-kzvMgoYVpftJ0DoyB5L=LGVi-54GXP5Q@mail.gmail.com>
-Message-ID: <CAL_JsqL3CYCdamv15-kzvMgoYVpftJ0DoyB5L=LGVi-54GXP5Q@mail.gmail.com>
-Subject: Re: [PATCH v2 02/14] dt-bindings: spi: Add bcmbca-hsspi controller support
-To:     William Zhang <william.zhang@broadcom.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linux SPI List <linux-spi@vger.kernel.org>,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        tomer.yacoby@broadcom.com, kursad.oney@broadcom.com,
-        dregan@mail.com, f.fainelli@gmail.com, anand.gore@broadcom.com,
-        jonas.gorski@gmail.com, dan.beygelman@broadcom.com,
-        joel.peshkin@broadcom.com,
+        with ESMTP id S231197AbjAZN7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:59:34 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F51C6F226
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 05:59:15 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id z5so1859424wrt.6
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 05:59:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7SXWg/UEnWdCis3IGlYYusZ1AbVRzZgkweMtomL0X34=;
+        b=djedN6EI0YjG2TUzDdsbG62EW7QU8HA1GXxJCVD2bFVwf79BU0bI+CjPIJelY+ZgBX
+         mQvhucJ8F2KjnYlgjQyAWgGCAVHVAqaa0gGmih50MbDzafLSctkCQ8UEJZ2VIJkNqgfj
+         0iZ9OcO3G0DyH3NYtejsq0C06AXaLLEiqeAAH5Guf6i6PSnIRpLMudY5LTFgvRJk31vL
+         L5nVCoFdnVtK4VNeVwlj7IjbJDNLHONboUWP9DfollQCDi/yun+FQhNEk3sfGl1pYl3c
+         XnIP+iaR0ND2e7ua5GAnYn0Dnaw51zWISiP26CAUBRChaRvn/pzJO3O3Anyz3fTh3iPH
+         gvZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7SXWg/UEnWdCis3IGlYYusZ1AbVRzZgkweMtomL0X34=;
+        b=VykTRH5k5grgK7FxpyieUoXYM4w6RRUB1lt/L2rl2vl/MRsuIqb//YlyivbzixVF/i
+         6UEY+Q2umrpX5NuwUiZsdg9VYsB8drFr8i1LTjOLlbJCAiOgJ6Dp3EzROqtSig/VgB2R
+         kXLm9Q+Akxob/aNCQCx4doGblWJo71VCt3ZUmneRIcZrpGpCeB0T8xUSquRi2D0Lmc83
+         ccIlymxRbBLCMNtWhPdA5WyD2FdK19hiUpv9+Qv/FtMlaQida+e1U/GkTxOqHSy43Q0x
+         aoAY3mg/skCkqjMSMUmmVaNF2++BOn8Zt6DrXqcMD3J+k6vlJPgS9/IfbyqdCMSzJTrH
+         67ow==
+X-Gm-Message-State: AFqh2kozMGsH3CKtDNOBnJawrx9PpxLOMLaQnQYvSTSxSSxzV9cIC7Qk
+        PDwHdDHVaonuprllqsWA+svEcA==
+X-Google-Smtp-Source: AMrXdXuR3Tyu/FQyhnmqD9G+QvNGcy6jxD2Hq3AI+tj8JQjhgMZA/Lj8JaQs0NUZIbv9iDi0l9zQwg==
+X-Received: by 2002:a05:6000:24e:b0:2be:4639:ee26 with SMTP id m14-20020a056000024e00b002be4639ee26mr20771100wrz.0.1674741554063;
+        Thu, 26 Jan 2023 05:59:14 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id l15-20020a5d6d8f000000b002bfb37497a8sm1594067wrs.31.2023.01.26.05.59.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jan 2023 05:59:13 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-phy@lists.infradead.org
+Subject: [RFC v2 0/7] sm8550: Add support for eUSB2 repeater
+Date:   Thu, 26 Jan 2023 15:59:02 +0200
+Message-Id: <20230126135909.1624890-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 25, 2023 at 3:41 PM William Zhang
-<william.zhang@broadcom.com> wrote:
-> On 01/25/2023 12:51 PM, Rob Herring wrote:
-> > On Wed, Jan 25, 2023 at 11:23:52AM -0800, William Zhang wrote:
-> >> On 01/24/2023 11:35 PM, Krzysztof Kozlowski wrote:
-> >>> On 24/01/2023 23:12, William Zhang wrote:
-> >>>> The new Broadcom Broadband BCMBCA SoCs includes a updated HSSPI
-> >>>> controller. Add new compatible strings to differentiate the old and new
-> >>>> controller while keeping MIPS based chip with the old compatible. Update
-> >>>> property requirements for these two revisions of the controller.  Also
-> >>>> add myself and Kursad as the maintainers.
+This patchset adds support for the eUSB2 repeater found in pmic PM8550B,
+used along with SM8550. Since there is no dedicated generic framework
+for eUSB2 repeaters, the most appropriate subsystem to model it is the
+generic phy. This patchset also adds support for such repeater to the
+eUSB2 PHY found in SM8550. Basically, the eUSB2 PHY will have its own
+"phy" which is actually a repeater.
 
-[...]
+This patchset is based on the following patchset:
+https://lore.kernel.org/all/?q=20230126131415.1453741-1-abel.vesa%40linaro.org
 
-> >>>>    properties:
-> >>>>      compatible:
-> >>>> -    const: brcm,bcm6328-hsspi
-> >>>> +    oneOf:
-> >>>> +      - const: brcm,bcm6328-hsspi
-> >>>> +      - items:
-> >>>> +          - enum:
-> >>>> +              - brcm,bcm47622-hsspi
-> >>>> +              - brcm,bcm4908-hsspi
-> >>>> +              - brcm,bcm63138-hsspi
-> >>>> +              - brcm,bcm63146-hsspi
-> >>>> +              - brcm,bcm63148-hsspi
-> >>>> +              - brcm,bcm63158-hsspi
-> >>>> +              - brcm,bcm63178-hsspi
-> >>>> +              - brcm,bcm6846-hsspi
-> >>>> +              - brcm,bcm6856-hsspi
-> >>>> +              - brcm,bcm6858-hsspi
-> >>>> +              - brcm,bcm6878-hsspi
-> >>>> +          - const: brcm,bcmbca-hsspi-v1.0
-> >>>> +          - const: brcm,bcmbca-hsspi
-> >>>
-> >>> Why do you need "brcm,bcmbca-hsspi"? Nothing binds to it, so it's
-> >>> useless and very generic.
-> >>>
-> >> This was from Florian's suggestion and Broadcom's convention. See [1] and
-> >> you are okay with that [2].  I added the rev compatible and you were not
-> >> objecting it finally if I understand you correctly.
-> >
-> > Can you have a driver that only understands what 'brcm,bcmbca-hsspi' is
-> > work on all h/w that includes the compatible string? It doesn't seem
-> > like it since v1.1 is a completely new driver. Therefore
-> > 'brcm,bcmbca-hsspi' is pretty much useless.
-> >
-> 'brcm,bcmbca-hsspi' should be added to the binding table of
-> spi-bcm63xx-hsspi.c driver.   This is the initial driver that works for
-> v1.0 controller.  For v1.1 controller, yes it can fallback and work with
-> 1.0 driver spi-bcm63xx-hsspi.c simply not using the new feature in
-> v1.1(chip select signal control through software) and keeping using the
-> prepend mode or dummy cs workaround supported in 1.0 driver.
+Changes since v1:
+ * the repeater driver is implemented now as a PHY rather than adding
+   a new generic framework for USB repeaters
 
-If v1.1 is compatible with v1.0, then say that:
+Abel Vesa (5):
+  dt-bindings: phy: Add qcom,snps-eusb2-repeater schema file
+  dt-bindings: phy: qcom,snps-eusb2-repeater: Add phy related properties
+  dt-bindings: mfd: qcom,spmi-pmic: Add pattern property for phy
+  phy: qcom: Add QCOM SNPS eUSB2 repeater driver
+  arm64: dts: qcom: sm8550-mtp: Add eUSB2 repeater node
 
-soc-compat, "brcm,bcmbca-hsspi-v1.1", "brcm,bcmbca-hsspi-v1.0"
+Neil Armstrong (2):
+  phy: qcom: phy-qcom-snps-eusb2: Add support for eUSB2 repeater
+  arm64: dts: qcom: pm8550b: Add eUSB2 repeater node
 
-IOW, 'brcm,bcmbca-hsspi' is redundant with 'brcm,bcmbca-hsspi-v1.0'.
-They have the same meaning. So pick which one you want to use. Not
-both.
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |   4 +
+ .../bindings/phy/qcom,snps-eusb2-phy.yaml     |   9 +
+ .../phy/qcom,snps-eusb2-repeater.yaml         |  48 +++
+ arch/arm64/boot/dts/qcom/pm8550b.dtsi         |   6 +
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts       |   8 +
+ drivers/phy/qualcomm/Kconfig                  |   9 +
+ drivers/phy/qualcomm/Makefile                 |   1 +
+ .../phy/qualcomm/phy-qcom-eusb2-repeater.c    | 278 ++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-snps-eusb2.c    |  17 +-
+ 9 files changed, 379 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
 
-Also, if that is the case, you shouldn't be introducing a whole new
-driver for v1.1.
+-- 
+2.34.1
 
-Rob
