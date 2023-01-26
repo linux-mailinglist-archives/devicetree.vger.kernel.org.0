@@ -2,133 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73ABA67C5EC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:35:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A1E667C5FF
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:38:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229641AbjAZIfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 03:35:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53036 "EHLO
+        id S236474AbjAZIic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 03:38:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235788AbjAZIfD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:35:03 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F067F83D4
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:34:24 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id fl24so617782wmb.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:34:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wy4JH/8Y4BIAqhpj+kNbuq2a/U7ZJXTkwi3YphKX6wA=;
-        b=zlsDK5voMRPUM4nKKt8QdmuD/57HzrklVqIviWeVdmAUDSQHHG9qHKk6moGlFoJSU+
-         W3mNtyLXv/QFP3lq2iEDvU9aN6z39Y5Zz897R3RctRM0tSX2AUgj1APgIFfO2bKt9ut5
-         K59U68pcfApeOVdflYbF7J/W0eBWiRh2e0WWuOWDyc5dMaGu0Dd3zkruR/Ou/c/PuZoJ
-         OdSLzHfPtqrEJQCU5W2x4meDJjm8wsxRp7FudyzwrY/4wS4ZoW8M5WDJ1MzPQet8vPT9
-         /2FKWXPwkDb2N3vLIce6gzppJPYKl6svm92TSv0p3c/5kLv4TZYY8YdNgdd8Km+BeFFe
-         +z7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Wy4JH/8Y4BIAqhpj+kNbuq2a/U7ZJXTkwi3YphKX6wA=;
-        b=Egtj299Q7J/5FUgrdqfaDiviEEjDg9QUroRsTbVGHnpBplE5I2eJ2Zdpbv1yyD/bfg
-         w2MHkeiH3HtFhV/oUshCN0gF8h1q64vmj1Niyeza+J6rLfSCtb2+unHszzoMcD7ImQGf
-         c7wWjS5Mn5j731kPHG+5RFDulzqGQNnwVDc2HqqF+nQlytL9DbNda+5zxAg3HgKPf0yP
-         17BQLhbtkgVFjqZmMY8gcDW2GlI3QTUP3dAuQBRuKMRqGIgKYExbhauIeHsPsUlpRmSF
-         benaRG9SII+2sgoemk38nVB3kBcYLWsGL3POlKfDWhyxIv2aQyxaZFHrBRQu5nJql73s
-         02bQ==
-X-Gm-Message-State: AFqh2kpCPwT6BWuHrUNEFJ88LAksqwZxkCZFiwEjl3is8QFt2z3KMYfQ
-        AKubi1+lZsy+Ih9BNtXasE4Rnw==
-X-Google-Smtp-Source: AMrXdXvspuhNLwRUh/Je30Th3z3ZFJPNoD133B5ZmcSE3V09vHaqsUnF+CdOZNBK74w+4MfPzJhCgw==
-X-Received: by 2002:a05:600c:3556:b0:3db:331b:bd2d with SMTP id i22-20020a05600c355600b003db331bbd2dmr23729081wmq.18.1674722043741;
-        Thu, 26 Jan 2023 00:34:03 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id t10-20020a05600c328a00b003d9a86a13bfsm757709wmp.28.2023.01.26.00.34.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 00:34:03 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org,
-        Dongjin Kim <tobetter@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230122-topic-odroid-n2l-upstream-initial-v2-0-8d3fea6d403d@linaro.org>
-References: <20230122-topic-odroid-n2l-upstream-initial-v2-0-8d3fea6d403d@linaro.org>
-Subject: Re: [PATCH v2 0/3] arm64: meson-g12b: add initial support for
- Odroid-N2L
-Message-Id: <167472204279.456104.140123192066740782.b4-ty@linaro.org>
-Date:   Thu, 26 Jan 2023 09:34:02 +0100
+        with ESMTP id S236422AbjAZIiW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:38:22 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69E0015C99;
+        Thu, 26 Jan 2023 00:37:56 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E740E61758;
+        Thu, 26 Jan 2023 08:37:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 574E1C433A0;
+        Thu, 26 Jan 2023 08:37:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674722255;
+        bh=PqLhUOQQTlWk8n9XzgqpHyL97UOcym9liKJ6unA/kpE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Bov/TByAnDKz/9JqsLz5w4GFieNxpApIpgDrenN2/dPbC2ImysjO6x32J0xe8YmZ2
+         gJnBKB+DoJhEfoR+rVMiZCxIQxju/oLrMi68y8aZ9EH1EcH/fZ9FPBGq7//1UMlRrQ
+         U6eQhZM3biUJLs2dLjgnEY+YsOJQCmRWS1Eys/N8fksU+/lxUhR3Sv9c+xIV5cYeLh
+         wZ0rLKpnE5RvGh5P8nz0VptCh/MlzceGdV/jyqSkg/accTUNvNqSf4IpNNPX0XIQGX
+         H6UzMjrZtx0PThr416TRnjE37qKWSnZzKdio2UFS9UrjM1lekTLoVn9Wr5SYocpeo0
+         hrGtk+nt4YlAQ==
+Received: by mail-ed1-f44.google.com with SMTP id m12so1198037edq.5;
+        Thu, 26 Jan 2023 00:37:35 -0800 (PST)
+X-Gm-Message-State: AFqh2ko1htc9EIbn0apYKHIBgRlzBdiMhdzUll7PZgWwiyIpU3PPcjZa
+        DiaBIVQfex0yZqOXdYGXtzH+EfFxPLDTAS2gbcI=
+X-Google-Smtp-Source: AMrXdXuGOk5Zy6voeZPegRYAd9AU9YN+lSP2k9jOq9sruLQ5XsXRI9c1jhVS+U21M17G9uXcCSCVOE18KpeGM/XTu6c=
+X-Received: by 2002:a05:6402:2946:b0:49e:45a8:4a4b with SMTP id
+ ed6-20020a056402294600b0049e45a84a4bmr4893065edb.37.1674722253469; Thu, 26
+ Jan 2023 00:37:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <1673847684-31893-1-git-send-email-hongxing.zhu@nxp.com>
+ <1673847684-31893-5-git-send-email-hongxing.zhu@nxp.com> <20230126064728.GQ20713@T480>
+In-Reply-To: <20230126064728.GQ20713@T480>
+From:   Shawn Guo <shawnguo@kernel.org>
+Date:   Thu, 26 Jan 2023 16:37:21 +0800
+X-Gmail-Original-Message-ID: <CAJBJ56+7x9-zMRHQZjzQ9JG-VuR-bLrW9YzM0hX0sGkyQsPk0A@mail.gmail.com>
+Message-ID: <CAJBJ56+7x9-zMRHQZjzQ9JG-VuR-bLrW9YzM0hX0sGkyQsPk0A@mail.gmail.com>
+Subject: Re: [PATCH v5 04/14] arm64: dts: Add i.MX8MM PCIe EP support
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     l.stach@pengutronix.de, bhelgaas@google.com, robh+dt@kernel.org,
+        lorenzo.pieralisi@arm.com, kishon@ti.com, kw@linux.com,
+        frank.li@nxp.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Jan 26, 2023 at 2:47 PM Shawn Guo <shawnguo@kernel.org> wrote:
+>
+> On Mon, Jan 16, 2023 at 01:41:14PM +0800, Richard Zhu wrote:
+> > Add i.MX8MM PCIe EP support.
+> >
+> > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 20 ++++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > index 4ee89fdcf59b..8124761f629c 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > @@ -1293,6 +1293,26 @@ pcie0: pcie@33800000 {
+> >                       status = "disabled";
+> >               };
+> >
+> > +             pcie0_ep: pcie_ep@33800000 {
+>
+> Hyphen is more preferable than underscore in name node.
+>
+> I fixed it (and the other two patches) up, and applied all DTS patches.
 
-On Wed, 25 Jan 2023 09:18:36 +0100, Neil Armstrong wrote:
-> ODROID-N2L is a variant SBC in small form factor and some peripherals
-> are removed from ODROID-N2PLUS based on S922X SoC.
-> 
-> - On-board ethernet is removed
-> - On-board RTC is removed
-> - USB 3.0 hub is removed, so one USB 2.0 and one USB 3.0 host ports
-> are available
-> - Huge heatsink is replaced with 40x40mm heatsink, 5V active heatsink
-> is recommended or a tall passive sink is optional
-> - 3.5mm earjack is removed
-> - IR remote receiver is removed
-> - MIPI DSI port is added
-> 
-> [...]
+Dropped them, as I just noticed there is v6 of DTS patches being discussed.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
-
-[1/3] dt-bindings: arm: amlogic: document Odroid-N2L
-      https://git.kernel.org/amlogic/c/8280a4ea1d7dd1d635c1ecdb9375b156e83358b9
-[2/3] arm64: dts: meson-g12b: move common node into new odroid.dtsi
-      https://git.kernel.org/amlogic/c/379ae64609c7a3301b60483eb65bd8bc78f76328
-[3/3] arm64: dts: meson-g12b-odroid: Add initial support for Hardkernel ODROID-N2L
-      https://git.kernel.org/amlogic/c/f1193c5c09b1bb6e214c804c7dd1c7fb07046631
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+Shawn
