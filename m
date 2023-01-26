@@ -2,134 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1A9467C802
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:07:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B5EB67C807
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:08:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236705AbjAZKHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 05:07:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60832 "EHLO
+        id S236127AbjAZKIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 05:08:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236704AbjAZKHb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:07:31 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B98F711EA7
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:07:29 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id f25-20020a1c6a19000000b003da221fbf48so778054wmc.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:07:29 -0800 (PST)
+        with ESMTP id S235298AbjAZKIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:08:31 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7721B65B1
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:08:30 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id q10so1221282wrm.4
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:08:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0/C64VDfxrfMZ/1uEiB9zDHpUFLh7m1+xnmbS1pFOyk=;
-        b=V8GT72wwmpsgfPbJCh3bZau3EqF2A4BmUXRINxha+xoOrYdxcwh7sGQJkDcYSMVt7d
-         OEWhNIynscbTDMOde6Scdc3iOpLWjwbl0fDFquAtRZ2lvtpmDtFi4FGJLQLpx9+mmbAz
-         WMCA5HMP7sCJQbCqtw1DXcsWpiwaSU6vwzCpxsdHeutZ1zotQeDyf/i7FbDxsmwAjcBf
-         SC0ksg3nz1JTQ+jWQ4yGHPgt4wQlbaLLxcrcFydXqIEbTGqFeSGS/ubVFCT/vW4Kw65L
-         2EFVzCsmXCMCB0wxJQTzW+Yn36mK8A50GcTo4kFXIEF4+CRyPfw8obfnqRd6wdCOVCs5
-         ThRQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OCMpSj2qX/TvzjoL4WBA0wHs1RQU0xmnM0hsa+C5VYk=;
+        b=CmBV4M5Cp06VI+Bqc7KdM3VcQ7S5S3Ya4+rhl5CQbTLwdmq8TgJH7H1pjh/lDWlW/k
+         IsE4YUY+WWqWDFcQJ1tQcpL+zrUwzmpwFI6vzgIBLHDm7laszZjy+4x+7VqdRl6Y3sLr
+         l2B+gd7SXtNOtZ+2eHG6licGhpHzZlBEo4gKiwFQlOJ/s9MwjKdbXaFnEYVC2KnGtweo
+         IQfnFSyBoBUt9Zq50b7egWunrtCCKHxjEqeMbXA0TJbMTb3rKuCeHGNLpU7uTNxFAEmz
+         CwaxpYnmn+X9T+hHO/q+VNkggupSgIFd97nBfhodCR5mL47OZj8/rP8UnNyKnZ8UeoGP
+         XppA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0/C64VDfxrfMZ/1uEiB9zDHpUFLh7m1+xnmbS1pFOyk=;
-        b=kq8IGhSVzzXPrErRzkG3rqL82lKjGQk/dK0BGcV1q/lzKHjr7aUzNJh4MJrHev96yV
-         3IuOcsPn4KDujTZ7/plIboKDDaxxxgK+MqxKOobEP+na8U5A8LPJNaUbx8Ic9U3BBUOl
-         +eBrgKQqb3yB6Y9Dtrvg1ChwOVUdDzbjXXExzb44uzf7zvL/OrYWxoDYsDHHRuSDKAUW
-         Pimi2IEsnSozJzC2HV5l7JvfU7I5i95b6u8148eHPKLABiIxxgBpiqE7IAxa3tZvWZLI
-         CSp0Azfw7KvwNfprT/9bxTichjI07FFmB76WhNi9tJfRUYEFMfvJfjjtXB2xKJijjz6j
-         HQJQ==
-X-Gm-Message-State: AFqh2kqNeguz12Sjy3YmrMGDyps5l88Aa+LOAbvGvlc5la50sePk6llV
-        CFtZpHl9gMKWeBxIxGkZ6Cch1w==
-X-Google-Smtp-Source: AMrXdXuJjP3gif07dsS93YMwa0ud5oEd8szdXezHlD3wXohWvaPMrwT/AMVBSYVQSnEovOilt2svNQ==
-X-Received: by 2002:a05:600c:3d16:b0:3d0:6a57:66a5 with SMTP id bh22-20020a05600c3d1600b003d06a5766a5mr35013737wmb.0.1674727648285;
-        Thu, 26 Jan 2023 02:07:28 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l16-20020a7bc350000000b003d9aa76dc6asm5198839wmj.0.2023.01.26.02.07.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 02:07:27 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ASoC: dt-bindings: renesas,rsnd: simplify list of compatibles
-Date:   Thu, 26 Jan 2023 11:07:22 +0100
-Message-Id: <20230126100722.9473-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OCMpSj2qX/TvzjoL4WBA0wHs1RQU0xmnM0hsa+C5VYk=;
+        b=y/b+4WcnM68DUeJtrUfvfWSDp8ZCRlD4pBN+jUQAxKOctcCCV4kw5KZBB4e4yEuGhk
+         ax52My6SnDtH1IRN3IeWHZVboXk0VMhEP4QaRg2Io/dadP6DWiuRGnRA8fgihD8wzWf1
+         C8xmJms+7hhdUHoMiHrSINR0P9IHsa3BhOF3pRibtHDJ2UEcnB0lfOZ2u6kBW+36S6w2
+         BXVid1YZse6RGuPITugHq6A86AVJGu8WzjkUfeTjZob2raUhTbrc915tBJc501ndg2kJ
+         GIke04yhfOtZjS0eQczt1/kBTxWj1QFT2gmQFABGUbuAM4dR7/UNfYyjIzW/1T3LY4Et
+         RN5w==
+X-Gm-Message-State: AFqh2ko1ud/9pjbkGZxLb9hH2PJSIZSPu2gZXRalufZ7HIJzfoAEiqNg
+        E2M0DEkM1kFtTjW7lZjcvK724A==
+X-Google-Smtp-Source: AMrXdXvkdqGYnmBaXPcM4k99z+W9QBzHNjb5GVMx2Ejf2Dv7jLU2bRlGzTrG4Cmx6n5GRBCzwMkNfg==
+X-Received: by 2002:a5d:5b0e:0:b0:250:22e4:b89e with SMTP id bx14-20020a5d5b0e000000b0025022e4b89emr33781953wrb.65.1674727709017;
+        Thu, 26 Jan 2023 02:08:29 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id u14-20020a5d434e000000b002bfbda53b98sm841421wrr.35.2023.01.26.02.08.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jan 2023 02:08:28 -0800 (PST)
+Message-ID: <a7b9d4b9-892d-a131-a223-c286efdc9b9c@linaro.org>
+Date:   Thu, 26 Jan 2023 11:08:27 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH] ASoC: dt-bindings: renesas: add R8A779G0 V4H
+Content-Language: en-US
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org
+References: <87zga6t5r4.wl-kuninori.morimoto.gx@renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <87zga6t5r4.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The fallback compatible in a list (the last one) cannot be enum, because
-it is always fixed.  Also if such fallback is used alone ("Generic"
-case), it's not a list anymore.
+On 26/01/2023 02:59, Kuninori Morimoto wrote:
+> 
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+There is stray blank line before your "From".
 
----
+> 
+> Document R-Car V4H (R8A779G0), and R-Car Gen4 SoC bindings.
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../devicetree/bindings/sound/renesas,rsnd.yaml          | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> index 679a246dd666..5319abdda8a2 100644
+> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> @@ -49,12 +49,21 @@ properties:
+>                - renesas,rcar_sound-r8a77995  # R-Car D3
+>            - enum:
+>                - renesas,rcar_sound-gen3
+> +
+> +      # for Gen4 SoC
+> +      - items:
+> +          - enum:
+> +              - renesas,rcar_sound-r8a779g0  # R-Car V4H
+> +          - enum:
+> +              - renesas,rcar_sound-gen4
 
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
----
- .../bindings/sound/renesas,rsnd.yaml           | 18 +++++++-----------
- 1 file changed, 7 insertions(+), 11 deletions(-)
+This is not enum but const. I send a fix for the rest, please rebase on
+top of it.
 
-diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-index cb90463c7297..b1f08d6af38d 100644
---- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-+++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-@@ -18,8 +18,7 @@ properties:
-           - enum:
-               - renesas,rcar_sound-r8a7778   # R-Car M1A
-               - renesas,rcar_sound-r8a7779   # R-Car H1
--          - enum:
--              - renesas,rcar_sound-gen1
-+          - const: renesas,rcar_sound-gen1
-       # for Gen2 SoC
-       - items:
-           - enum:
-@@ -32,8 +31,7 @@ properties:
-               - renesas,rcar_sound-r8a7791   # R-Car M2-W
-               - renesas,rcar_sound-r8a7793   # R-Car M2-N
-               - renesas,rcar_sound-r8a7794   # R-Car E2
--          - enum:
--              - renesas,rcar_sound-gen2
-+          - const: renesas,rcar_sound-gen2
-       # for Gen3 SoC
-       - items:
-           - enum:
-@@ -47,14 +45,12 @@ properties:
-               - renesas,rcar_sound-r8a77965  # R-Car M3-N
-               - renesas,rcar_sound-r8a77990  # R-Car E3
-               - renesas,rcar_sound-r8a77995  # R-Car D3
--          - enum:
--              - renesas,rcar_sound-gen3
-+          - const: renesas,rcar_sound-gen3
-       # for Generic
--      - items:
--          - enum:
--              - renesas,rcar_sound-gen1
--              - renesas,rcar_sound-gen2
--              - renesas,rcar_sound-gen3
-+      - enum:
-+          - renesas,rcar_sound-gen1
-+          - renesas,rcar_sound-gen2
-+          - renesas,rcar_sound-gen3
- 
-   reg:
-     minItems: 1
--- 
-2.34.1
+Best regards,
+Krzysztof
 
