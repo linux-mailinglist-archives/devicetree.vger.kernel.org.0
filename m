@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7981367D021
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:25:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4DD767D029
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:26:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230410AbjAZPZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 10:25:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36610 "EHLO
+        id S231545AbjAZP06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 10:26:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231521AbjAZPZ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:25:28 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0FD2170D
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:25:22 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id fl24so1377892wmb.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:25:22 -0800 (PST)
+        with ESMTP id S231201AbjAZP05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:26:57 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22CDD9024
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:26:38 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id h12so2121105wrv.10
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:26:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6w50+QY2U2rrBwxg9041R7SovRfW3AKP/5TYIutQHOg=;
-        b=EJRmpDzJHoWxYw21CVGGS3KiWAkFKnmB31cgFmJbaPBzPRwQFh31czVGWnJ/VijORv
-         v3xLCEBErN5vcJ32H7dopS8vfLXpJrzLyF/Jcg91XNdMNIxtStuwgrk/7vK/MH1UDkWS
-         CyB3dJaWE6R4ArqSJbgN+DrCJR9t/2tJY6NvFLjvcfUYgAcKvUUI9iua1W1UpUGf7CO9
-         jok519YA0xs2I2iBO+NvR+RRXQl4BTTHzMWc32Lk86YG7Buo555zpJEOZ/W6cYqGBz0H
-         PuhahEWGwTpZzogD59o5/4wUO/sX/uuqu6L7bcrpWWYDMLv1tNbQeilQEoF3BbWOcWBL
-         TjlQ==
+        bh=iDdaSVhd5CpA3qgDsZzi9xAHqh15/HlhGhX8YUuZLwA=;
+        b=HRdDS1V/TLxjS2GGcqYHLy4Y1urFg+5UVtROC9Cioz/CF1HW8qbw0IHcrS8HcYu1ZI
+         wwNTXlVC8gkCWWmjs2QHQf5Zuum5FNomWZ/xkNAx3TrYYDseEAQfxeYwp/kz8IkXgK3r
+         z/UKceE9KqKqD0lpVumd64YZulgQqW4mgty0SLshKP5ljitCesUEbOOmT58UvurbP/4Q
+         MFiISbBqvJJSY0Z+NfZ12/9skiEOFj3v79fZDSCmkgOQVw1N7SJ1YTr0viJGSe2E3prA
+         wXLmUhdv+d+dpGifHxLcf//UGWZH38jjGIYAKU+4L9Y3QkvqZBRLQSrBlMkfM+MMkGtF
+         Mw8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6w50+QY2U2rrBwxg9041R7SovRfW3AKP/5TYIutQHOg=;
-        b=6BXoD62dq8IY0H4lztPZmklk2hMTh86kH2sXRLVSutfLrG6lNjnrJbRnx8OF51wZnm
-         UPLoRsp9nFnSaITcHPTVh6gUPVuMMQGcRpYscTJRk+YwjpdlkCBl3js2+KdFHv7wUa/Q
-         pEw+4X7fjM5JUgLj3BSrhCEyfnc0YhHZJDmR5LhhI3/fXybzd0hREmJ3+3Vp4Y2EriWt
-         CU83Ffh2rdt+TEsTpkwib0LvKODTq8rCZUvpoolrqSPcW2lgG956mTC4nMfzcy8leLtD
-         JcZp/f9+wmlzfQUgBX8xzxsZ/+Zp/zoTVATvBrRZNRm4IF3+XMHVWqL6xv0VBFWXHXX/
-         9b7A==
-X-Gm-Message-State: AFqh2krcWWH12HwfWtlmPZNuMrbI9UCVvzYdR+eN0LZ/w9q6VJ85mbtG
-        InhnRwvLyuOqPKNB2okA/La2iA==
-X-Google-Smtp-Source: AMrXdXtLC4bCssGF+R4NoHrScxbhIKC9YqJD8l4dvSr7ep98tFgY6KRIv+siazbnR+9t4gJx5wJP+A==
-X-Received: by 2002:a05:600c:3b29:b0:3da:f678:1322 with SMTP id m41-20020a05600c3b2900b003daf6781322mr37544644wms.38.1674746721426;
-        Thu, 26 Jan 2023 07:25:21 -0800 (PST)
+        bh=iDdaSVhd5CpA3qgDsZzi9xAHqh15/HlhGhX8YUuZLwA=;
+        b=z1wRCQwylo6iImtY6RmoXmAMk71oqlgTY0i91Ym9UrHqrACfEURyp5WJVHoVdHoFNF
+         fHI42Flrfl4AYSARnT+XU7ckJM+RqAVoFHAmjUY+f5L8AKcOexGQIUH1ri+eAGGZvGLM
+         JPw0N//GrXkxfyAO6uPIIMDZ7IwycVDSdLWmcJuQtlGTiYhIqZ+Tq95lmvJR3MNuse75
+         humcICIwhRAPg5L/j5StsJRr7TeCuVpZZqwSDCe98WrjqBCdrBQnNL9bKka4ICvUQfx/
+         XPYY4rXXi+riSXnXIHd0jNXsm/tyiHg3lhhBzwmeDZKX1C7LTWsiANguOG1sM9AHRjTM
+         +nHg==
+X-Gm-Message-State: AFqh2kryI72n2HTrRGUUDJF+H2omSztMfpzRlkJfpspcRwc1p4sQPBIi
+        qpEf4SC4DDGRVF3PypndfWLjDA==
+X-Google-Smtp-Source: AMrXdXuP4CJtdOq/zPr2e/Xeh1e4qSoa8xWKXlc1G0/HAMne2EK5PtyYKZrwS1u4RNaZ8GVTzdWcMw==
+X-Received: by 2002:adf:edd1:0:b0:2bd:c6ce:7bfc with SMTP id v17-20020adfedd1000000b002bdc6ce7bfcmr33250169wro.42.1674746794182;
+        Thu, 26 Jan 2023 07:26:34 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o7-20020a05600c2e0700b003dafa04ecc4sm1653417wmf.6.2023.01.26.07.25.19
+        by smtp.gmail.com with ESMTPSA id y17-20020adffa51000000b002238ea5750csm2032240wrr.72.2023.01.26.07.26.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 07:25:21 -0800 (PST)
-Message-ID: <83a839c1-ed36-2ee0-d691-39c239a6a351@linaro.org>
-Date:   Thu, 26 Jan 2023 16:25:19 +0100
+        Thu, 26 Jan 2023 07:26:33 -0800 (PST)
+Message-ID: <b2dc1a50-58d2-13a7-2773-21c649b17f1a@linaro.org>
+Date:   Thu, 26 Jan 2023 16:26:31 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 7/8] PCI: rockchip: Fixed legacy IRQ generation for
- endpoint
+Subject: Re: [PATCH 8/8] PCI: rockchip: Fixed MSI generation from PCIe
+ endpoint core
 Content-Language: en-US
 To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>,
         alberto.dassatti@heig-vd.ch
@@ -68,16 +68,16 @@ Cc:     xxm@rock-chips.com, wenrui.li@rock-chips.com,
         =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
         Bjorn Helgaas <bhelgaas@google.com>,
         Jani Nikula <jani.nikula@intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
         Mikko Kovanen <mikko.kovanen@aavamobile.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-pci@vger.kernel.org
 References: <20230126135049.708524-1-rick.wertenbroek@gmail.com>
- <20230126135049.708524-8-rick.wertenbroek@gmail.com>
+ <20230126135049.708524-9-rick.wertenbroek@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230126135049.708524-8-rick.wertenbroek@gmail.com>
+In-Reply-To: <20230126135049.708524-9-rick.wertenbroek@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,22 +91,18 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 26/01/2023 14:50, Rick Wertenbroek wrote:
-> Added generation of legacy IRQ (INTx) for the RK3399 SoC PCIe EP core.
-
-Here and in all other patches and subjects: Use imperative, not past tense.
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-"Fix legacy IRQ", not "Fixed legacy IRQ".
-
-> The generation of the legacy interrupt was validated with the PCIe EP
-> test driver. Generation of IRQ through the core is documented in the
-> TRM and is done through the PCIE_CLIENT_LEGACY_INT_CTRL register of
-> the core.
+> The generation of MSI interrupts from the RK3399 PCIe endpoint core was
+> broken. The main issue came from u16 variables to be used to access u32
+> registers, this would lead to shifts of more than 16 bits moving data
+> out of the variable etc. Address translation for sending the MSI messages
+> over PCIe has also been fixed.
 > 
+> Signed-off-by: Rick Wertenbroek <rick.wertenbroek@gmail.com>
 
-If this is a fix, you need fixes tag and maybe cc-stable. Also the bug
-should be described - it's effect, impact. Then the patch should be
-first in the series (or even entirely separate).
+Same comments as other fix. Missing Fixes tag, cc-stable, move to the
+beginning of patchset.
+
+
 Best regards,
 Krzysztof
 
