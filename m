@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D84E67C5E4
+	by mail.lfdr.de (Postfix) with ESMTP id 68E6267C5E5
 	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:35:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235762AbjAZIfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 03:35:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53052 "EHLO
+        id S235118AbjAZIfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 03:35:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235905AbjAZIey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:34:54 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 098F26C118
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:34:14 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id n7so964790wrx.5
+        with ESMTP id S229736AbjAZIe4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:34:56 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 289AF35A2
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:34:15 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id f19-20020a1c6a13000000b003db0ef4dedcso2764638wmc.4
         for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:34:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wlqKECMrN5ozKYgnpBSVs1svty0s1OqnEzEGJQmggnk=;
-        b=F9+ov4mncbiNtHgLPztkYJ4XH8nsjAvNgkanwZuNh10EX5zuoi756weIdsxKMLGJgj
-         xtLXLXWr7k6np6eXfCdVdBSrEK1jbru/hPzALeCbGZmwTswYLkYeKvWJMpFD0XyZfYkz
-         nblGty+oTnk7J3QTi0Cai6jB7XGu+CggxNktAFa4wiHK5Ie134MFt3JpNENKzKLI7TDa
-         bgA84SV3BvWciZ5I1z5tEx98gfX1cfeGdI23QAzV+hILWzzyE4UonQsDYu3dl069zEqT
-         OFJXW0HPVtDQ1aiTNuKZe25e0B6kxma07EkP99B2lnoEAKVZ1pF+cbXtdJmcGc91Uedd
-         +myQ==
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r9Aqz9ow0096NYVpMVct4LsgcvHoqSMpUjeGW88ptQc=;
+        b=vHPTMynsbnrZC9C3R+6zY5NRfqAAcSsw2x5wvGFFqW5V/vJAWxG6YRjJxYnfqDHh1G
+         wqXLMz15+Z5PE1OsIuAINaxSivTkC3bv02/vzVoHj3RgGaB6uHTbHtM9g7gHXMaU+fQE
+         qHXzi6KLYhBH1Dtnb/8yFhgaXUQzH+us19ZVZzfmA4EA93yZTbmmnjls7QhqaEJ6JJ2N
+         AKXadY0YvPzbEoOn7hp9fdFi0F/ukl4BGpd4IBX6AMDZ+xbuU9BZ/VrcDouL7tVapNGw
+         IeiF9Nx5j2iiVe1PGujtdCJ/aB05Ryc5/Nw7ja/HqthGCIGedXpHTji8658+h8cI3xkm
+         RnPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wlqKECMrN5ozKYgnpBSVs1svty0s1OqnEzEGJQmggnk=;
-        b=v6NWcidNIzHS4+h0GWtqNneko+8wWP/ETjLiUNu4YBulnieO4jhECem4LCFKRh0j3E
-         JCX9Tlwsa2r1ElgyF8mdASL3ISECWU2NzaghjgwYZ5WgPgMdggjGvQ485bbeNYz8W4MM
-         HRQL7iw/PbXv+p5RN+MroGYovlWs7JenV79lJ+c6uT0/R5L42UoQgTGrXTprAR5eHhwT
-         t7enJuLogEpulRcF7XNgIkXH7DsSTrQnc5YclO9y/IUxF0PBbLHKwSFueisI1fWg+QpH
-         dpg+c+4fjpD3z8xnVrFOvjm8KdrhxPxfq6J+h3hxQnmJ8fG4Uka4659qYdco09g9Ti39
-         cdOw==
-X-Gm-Message-State: AO0yUKVymrlqRhcUPPJ0y6lASoHda6IR/dawUfOo2Aewr1vlrV9MHGhk
-        BWzACtGeIySZvvSQpifBfxv8wD2M5Fot5ZHSlGQ=
-X-Google-Smtp-Source: AK7set+xHB6a7B1HespUte5I/SZh/YUocrutxsx/3SykXNry9Wqg5Bt6sYFifeuZxs9o029TLj8Mvg==
-X-Received: by 2002:a05:6000:104a:b0:2bf:ae18:34dd with SMTP id c10-20020a056000104a00b002bfae1834ddmr8506123wrx.56.1674722040060;
+        bh=r9Aqz9ow0096NYVpMVct4LsgcvHoqSMpUjeGW88ptQc=;
+        b=LqDLnGN3VZ6mZd/eEKinGKdh7HZYTXPGOJgL8Rhb9sPDWwz46mLrJQcdAw/TPhkWIA
+         v4a7Xs0Aexz3aNU2KoWbFsIyyAI/UEdl3q3VG7HGXhrkgCU6MbXjocZDcRmv24YzrhKS
+         D6stYa7NBQIvwQJghw+D/Tmq+wR74Mh7tKLkwI3K3LfnBMo+yb14ako65wL/g5jS3+Xs
+         tHbT1pIyhFIIdRrKmVfimw+la0GiCVjRWHNxPI8qXPBLmgi4uLS4r1ipSuzYA7Eoac9n
+         DKf5sejWElfAqqi/U5umhz9CL+QGZV6ATEte+pqlcWpL2qTW+w3SZjZpK4G9EOI36JDJ
+         ey+w==
+X-Gm-Message-State: AFqh2kp3Z+KPzeiMB9Pte4a/H/VnknDG+hJK7AXh8tK2XNSE/tTLrbgt
+        ItEVAtH7y+v1ildZ6rfdBMks9Q==
+X-Google-Smtp-Source: AMrXdXtdHWb1Hu57UY2Fx3spWKuK8REEt5FDqslm9OxT4gnSFLkU+EulXG8ozOVLCNMOe1Bz0s4SAw==
+X-Received: by 2002:a05:600c:4347:b0:3da:fc2c:cda8 with SMTP id r7-20020a05600c434700b003dafc2ccda8mr35154325wme.6.1674722040962;
         Thu, 26 Jan 2023 00:34:00 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id t10-20020a05600c328a00b003d9a86a13bfsm757709wmp.28.2023.01.26.00.33.59
+        by smtp.gmail.com with ESMTPSA id t10-20020a05600c328a00b003d9a86a13bfsm757709wmp.28.2023.01.26.00.34.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 00:33:59 -0800 (PST)
+        Thu, 26 Jan 2023 00:34:00 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
-References: <20230124-b4-amlogic-bindings-fixups-v1-0-44351528957e@linaro.org>
-Subject: Re: [PATCH 00/14] arm64: meson: bunch of DT fixes
-Message-Id: <167472203923.456104.10228308469675767029.b4-ty@linaro.org>
-Date:   Thu, 26 Jan 2023 09:33:59 +0100
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <20230123065504.2669769-1-christianshewitt@gmail.com>
+References: <20230123065504.2669769-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH 0/3] arm64: dts: meson: add WiFi to P212 and cleanup
+ VIM1
+Message-Id: <167472204014.456104.18412997475456067152.b4-ty@linaro.org>
+Date:   Thu, 26 Jan 2023 09:34:00 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.12.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,47 +80,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Tue, 24 Jan 2023 11:34:21 +0100, Neil Armstrong wrote:
-> This is a bunch of fixes against the current applied and reviewed bindings.
+On Mon, 23 Jan 2023 06:55:01 +0000, Christian Hewitt wrote:
+> This small series adds WiFi support to the P212 dtsi then removes the
+> corresponding node from the VIM1 dts (as it's now inherited). Also
+> move the pwm_ef node in the dtsi to alpha-sort correctly.
 > 
-> It takes in account the following bindings conversions:
-> [1] https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v3-0-e28dd31e3bed@linaro.org
-> [2] https://lore.kernel.org/r/20230124091602.44027-1-krzysztof.kozlowski@linaro.org
-> 
-> Remaining fixes will require a complete TXT to dt-schema transition.
+> Christian Hewitt (3):
+>   arm64: dts: meson: add Broadcom WiFi to P212 dtsi
+>   arm64: dts: meson: move pwm_ef node in P212 dtsi
+>   arm64: dts: meson: remove WiFi/BT nodes from Khadas VIM1
 > 
 > [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
 
-[01/14] arm64: dts: amlogic: meson-gx: fix SCPI clock dvfs node name
-        https://git.kernel.org/amlogic/c/127f79212b07c5d9a6657a87e3eafdd889335814
-[02/14] arm64: dts: amlogic: meson-axg: fix SCPI clock dvfs node name
-        https://git.kernel.org/amlogic/c/5b7069d72f03c92a0ab919725017394ebce03a81
-[03/14] arm64: dts: amlogic: meson-gx: add missing SCPI sensors compatible
-        https://git.kernel.org/amlogic/c/2ff650051493d5bdb6dd09d4c2850bb37db6be31
-[04/14] arm64: dts: amlogic: meson-axg-jethome-jethub-j1xx: fix supply name of USB controller node
-        https://git.kernel.org/amlogic/c/a69cb1042cea840bc7b60fea1c26a6b259e68bf2
-[05/14] arm64: dts: amlogic: meson-gxl-s905d-sml5442tw: drop invalid clock-names property
-        https://git.kernel.org/amlogic/c/e3bd275ccbacf5eb18eaa311cea39f8bf8655feb
-[06/14] arm64: dts: amlogic: meson-gx: add missing unit address to rng node name
-        https://git.kernel.org/amlogic/c/61ff70708b98a85516eccb3755084ac97b42cf48
-[07/14] arm64: dts: amlogic: meson-gxl-s905w-jethome-jethub-j80: fix invalid rtc node name
-        https://git.kernel.org/amlogic/c/11172a97c092eaeb0a65c6434df0fc73f886a495
-[08/14] arm64: dts: amlogic: meson-axg-jethome-jethub-j1xx: fix invalid rtc node name
-        https://git.kernel.org/amlogic/c/956f52025c5dd92c80c12e31c99c854086a6fc55
-[09/14] arm64: dts: amlogic: meson-gxl: add missing unit address to eth-phy-mux node name
-        https://git.kernel.org/amlogic/c/d19189f70ba596798ea49166d2d1ef36a8df5289
-[10/14] arm64: dts: amlogic: meson-gx-libretech-pc: fix update button name
-        https://git.kernel.org/amlogic/c/6bb506ed36968207a8832f0143ebc127f0770eef
-[11/14] arm64: dts: amlogic: meson-sm1-bananapi-m5: fix adc keys node names
-        https://git.kernel.org/amlogic/c/d519a73332b6c3d14e15f8fd20d7c6f29ed13d41
-[12/14] arm64: dts: amlogic: meson-gxl-s905d-phicomm-n1: fix led node name
-        https://git.kernel.org/amlogic/c/eee64d8fbbdaab72bbab3e462f3a7b742d20c8c2
-[13/14] arm64: dts: amlogic: meson-gxbb-kii-pro: fix led node name
-        https://git.kernel.org/amlogic/c/afdef3b188c934f79ad4b0a7bd8c692742f9b5af
-[14/14] arm64: dts: amlogic: meson-g12b-odroid-go-ultra: fix rk818 pmic properties
-        https://git.kernel.org/amlogic/c/ce9999722656f2433af9029571bc2b99448dda74
+[1/3] arm64: dts: meson: add Broadcom WiFi to P212 dtsi
+      https://git.kernel.org/amlogic/c/ac714d0925b4fae6a2a8c03da743a91d559f2b5c
+[2/3] arm64: dts: meson: move pwm_ef node in P212 dtsi
+      https://git.kernel.org/amlogic/c/81351d2f0b006302a72310c95203a767cf68631e
+[3/3] arm64: dts: meson: remove WiFi/BT nodes from Khadas VIM1
+      https://git.kernel.org/amlogic/c/3384645fb6cf31542650b89ecabe1fb04d0662fd
 
 These changes has been applied on the intermediate git tree [1].
 
