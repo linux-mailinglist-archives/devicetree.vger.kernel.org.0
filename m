@@ -2,64 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1330067CBEB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:21:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D898167CBF7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:23:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234493AbjAZNVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 08:21:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58290 "EHLO
+        id S235972AbjAZNXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 08:23:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229558AbjAZNVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:21:08 -0500
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A666015C8C;
-        Thu, 26 Jan 2023 05:21:06 -0800 (PST)
-Received: by mail-ot1-f48.google.com with SMTP id k44-20020a9d19af000000b00683e176ab01so761238otk.13;
-        Thu, 26 Jan 2023 05:21:06 -0800 (PST)
+        with ESMTP id S236762AbjAZNXU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:23:20 -0500
+Received: from egress-ip4a.ess.de.barracuda.com (egress-ip4a.ess.de.barracuda.com [18.184.203.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F5199778
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 05:23:14 -0800 (PST)
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200]) by mx-outbound46-2.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Thu, 26 Jan 2023 13:23:12 +0000
+Received: by mail-pg1-f200.google.com with SMTP id bn10-20020a056a02030a00b004da3651ff4cso771580pgb.13
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 05:23:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistralsolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G6Ajtn/dXFsb1dJwxtMc9cBb7rwqzMHAM/XeIm3RbXo=;
+        b=dLKubE6MdgWycXaqJju4vKd0/kcSXs8DRbRASh4UPjDRiySsPddsy7NQZdipi/04Rc
+         Fi/OrdSOMfIo3bHbMl4gct77HOhlChQcv0SF5OUSZAUttB0lk+pWu4TrxA43CeRCM/Pu
+         xcr9ZmtwKObDu6JI7c/qIN9TL0FnN2HKwugbE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sz002uYQx7aQhD0B5gohM0NDHRbcmYnasPC9rqjmz5M=;
-        b=kgEHLRQ4o0faOl1kSDSbKmg9PdGa8yrHE3grxinWpU9EYFtuoqune15nFhRUnnWGZ3
-         QszEZNtieqWeB35ZBr9Dj4Jws7CfEddu+7TMsKfTBFkSWMIbBabzZZTpTo9HRsxZ+gsx
-         tAnvnYXwbHNPDXLdv5MEArmm2ZT9rPZSB35DmAwPrFkKGijNL6JXVaNqCYT0tTE9q30w
-         kKGlvtLRBEFw7DzWMaQk2Ur0ohQtTYX0CK7zkAEVAxVTHUEjAVpONnYO0cuSZXi0TuTY
-         /l0hsDZ+yThXP8RmbBqw21xLvaRS3/i+aqPb6Pr6y26nT9VWsq4S0UEhsuEEjPhiU2GQ
-         +5lg==
-X-Gm-Message-State: AFqh2kqlhBxAgS2DWsz71WwYRompAez46IIlp0uSEXxZHuvQelSRgh00
-        5UDdFi9FnJtYxgghJJl4Z+dgRC77uw==
-X-Google-Smtp-Source: AMrXdXsLf+Rwe5Nz3iPI8O+/n6gSYE4xtLJAe7CrujKz0yCcKoK7JqtuNqV5sK3LB9AeY04h4SM5+Q==
-X-Received: by 2002:a9d:62d0:0:b0:684:de61:77c9 with SMTP id z16-20020a9d62d0000000b00684de6177c9mr18270353otk.30.1674739265840;
-        Thu, 26 Jan 2023 05:21:05 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z15-20020a4ade4f000000b004fb9a65daf1sm494456oot.43.2023.01.26.05.21.05
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G6Ajtn/dXFsb1dJwxtMc9cBb7rwqzMHAM/XeIm3RbXo=;
+        b=2IcnLVJHI+AuwbstE4qnyGt7OzOQs7L+OuGrHkVmhyh2bOwF8ZFT4theGukQxTdxya
+         I8wyoI+tkV9asOIR8tKpWhyqLgnnRqxpMfGoM92sI8/iqTETxVyLldK7h0i9RSlzJJ3x
+         ogeRLN2UgHOLnX+uYxGmWY5WmJ49Z9VWU6d+RrvBh/IWP5mGt/l1GSsPMkRc5ZHdvkS2
+         4qEuqCfUaLBvAt4kGgJV9l5eTD8B63HLGtZcbqGklhe6PTiMf4GEwuY3UrOJmmI0im5h
+         WK/bHOA5zG6u2/ZbBstbxKRFUb4VEfjvsnqZoGt0w8PtKXCeWHU4Kr4p6X/GlQskdjQp
+         eGvw==
+X-Gm-Message-State: AO0yUKVtrJNohrctOJ/oHuzgm7rJ8vJ/IirUUI3Z1IsEux8228AiFFWR
+        vljH8SdMsy0/FuG3DP3JkyqXa0tM9OIWnJFHiibq2/y3hWuJlss1fu+spq2L9Jo1M24QKtRS4z+
+        qqrcJHB/7jOSvy7HYEIg3EsSTU65vrx8pZTu/kPu4BOgM575QxN5cUi74ag==
+X-Received: by 2002:a17:902:dccc:b0:192:8cd1:5e79 with SMTP id t12-20020a170902dccc00b001928cd15e79mr1237644pll.41.1674739391263;
+        Thu, 26 Jan 2023 05:23:11 -0800 (PST)
+X-Google-Smtp-Source: AK7set8IQgw7vRA4qsEaaEHQGI+f2pPf6yzXhzjvUm7ljh/Pd1JT6RB0lPlOU7j1jmjyQkcXIIGqMg==
+X-Received: by 2002:a17:902:dccc:b0:192:8cd1:5e79 with SMTP id t12-20020a170902dccc00b001928cd15e79mr1237621pll.41.1674739390872;
+        Thu, 26 Jan 2023 05:23:10 -0800 (PST)
+Received: from localhost.localdomain ([49.207.202.116])
+        by smtp.gmail.com with ESMTPSA id ix12-20020a170902f80c00b00178143a728esm946206plb.275.2023.01.26.05.23.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 05:21:05 -0800 (PST)
-Received: (nullmailer pid 1204337 invoked by uid 1000);
-        Thu, 26 Jan 2023 13:21:04 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Manuel Traut <manuel.traut@mt.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Thu, 26 Jan 2023 05:23:10 -0800 (PST)
+From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
+X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <20230126091825.220646-2-manuel.traut@mt.com>
-References: <20230126091825.220646-1-manuel.traut@mt.com>
- <20230126091825.220646-2-manuel.traut@mt.com>
-Message-Id: <167473911077.1198926.3684337586701842889.robh@kernel.org>
-Subject: Re: [PATCH v8 1/5] dt-bindings: input: pwm-beeper: Convert txt
- bindings to yaml
-Date:   Thu, 26 Jan 2023 07:21:04 -0600
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j721s2-main: Add dts nodes for EHRPWMs
+Date:   Thu, 26 Jan 2023 18:52:43 +0530
+Message-Id: <20230126132243.15695-1-sinthu.raja@ti.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-BESS-ID: 1674739391-311778-5605-587-1
+X-BESS-VER: 2019.1_20221214.2106
+X-BESS-Apparent-Source-IP: 209.85.215.200
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.245721 [from 
+        cloudscan8-218.eu-central-1a.ess.aws.cudaops.com]
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------
+        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
+X-BESS-BRTS-Status: 1
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,41 +86,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Sinthu Raja <sinthu.raja@ti.com>
 
-On Thu, 26 Jan 2023 10:18:21 +0100, Manuel Traut wrote:
-> Converts txt binding to new YAML format.
-> 
-> Signed-off-by: Manuel Traut <manuel.traut@mt.com>
-> ---
->  .../devicetree/bindings/input/pwm-beeper.txt  | 24 ----------
->  .../devicetree/bindings/input/pwm-beeper.yaml | 48 +++++++++++++++++++
->  2 files changed, 48 insertions(+), 24 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.txt
->  create mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.yaml
-> 
+Add dts nodes for 6 EHRPWM instances on SoC. Disable EHRPWM nodes in the
+dtsi files and only enable the ones that are actually pinned out on a
+given board.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 74 ++++++++++++++++++++++
+ 1 file changed, 74 insertions(+)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/input/pwm-beeper.example.dtb: /example-0/amplifier: failed to match any schema with compatible: ['fixed-regulator']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230126091825.220646-2-manuel.traut@mt.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+index 8915132efcc1..68f4fe85085b 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+@@ -26,6 +26,80 @@ l3cache-sram@200000 {
+ 		};
+ 	};
+ 
++	scm_conf: scm-conf@104000 {
++		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
++		reg = <0x00 0x00104000 0x00 0x18000>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x00 0x00 0x00104000 0x18000>;
++
++		ehrpwm_tbclk: clock-controller@140 {
++			compatible = "ti,am654-ehrpwm-tbclk", "syscon";
++			reg = <0x140 0x18>;
++			#clock-cells = <1>;
++		};
++	};
++
++	main_ehrpwm0: pwm@3000000 {
++		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
++		#pwm-cells = <3>;
++		reg = <0x00 0x3000000 0x00 0x100>;
++		power-domains = <&k3_pds 160 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&ehrpwm_tbclk 0>, <&k3_clks 160 0>;
++		clock-names = "tbclk", "fck";
++		status = "disabled";
++	};
++
++	main_ehrpwm1: pwm@3010000 {
++		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
++		#pwm-cells = <3>;
++		reg = <0x00 0x3010000 0x00 0x100>;
++		power-domains = <&k3_pds 161 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&ehrpwm_tbclk 1>, <&k3_clks 161 0>;
++		clock-names = "tbclk", "fck";
++		status = "disabled";
++	};
++
++	main_ehrpwm2: pwm@3020000 {
++		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
++		#pwm-cells = <3>;
++		reg = <0x00 0x3020000 0x00 0x100>;
++		power-domains = <&k3_pds 162 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&ehrpwm_tbclk 2>, <&k3_clks 162 0>;
++		clock-names = "tbclk", "fck";
++		status = "disabled";
++	};
++
++	main_ehrpwm3: pwm@3030000 {
++		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
++		#pwm-cells = <3>;
++		reg = <0x00 0x3030000 0x00 0x100>;
++		power-domains = <&k3_pds 163 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&ehrpwm_tbclk 3>, <&k3_clks 163 0>;
++		clock-names = "tbclk", "fck";
++		status = "disabled";
++	};
++
++	main_ehrpwm4: pwm@3040000 {
++		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
++		#pwm-cells = <3>;
++		reg = <0x00 0x3040000 0x00 0x100>;
++		power-domains = <&k3_pds 164 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&ehrpwm_tbclk 4>, <&k3_clks 164 0>;
++		clock-names = "tbclk", "fck";
++		status = "disabled";
++	};
++
++	main_ehrpwm5: pwm@3050000 {
++		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
++		#pwm-cells = <3>;
++		reg = <0x00 0x3050000 0x00 0x100>;
++		power-domains = <&k3_pds 165 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&ehrpwm_tbclk 5>, <&k3_clks 165 0>;
++		clock-names = "tbclk", "fck";
++		status = "disabled";
++	};
++
+ 	gic500: interrupt-controller@1800000 {
+ 		compatible = "arm,gic-v3";
+ 		#address-cells = <2>;
+-- 
+2.36.1
 
