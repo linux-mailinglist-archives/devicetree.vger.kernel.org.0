@@ -2,102 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F6B467C5BD
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:25:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91F6567C5C5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:32:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233159AbjAZIZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 03:25:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50188 "EHLO
+        id S235341AbjAZIcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 03:32:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232760AbjAZIZZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:25:25 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 189BA47ED3
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:25:22 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id mg12so3083977ejc.5
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:25:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tM3VxaZl5zM/CvacUjymAdWLAMbgccvEVqlU6otBNnQ=;
-        b=YvL/1hGK6z7nzWuKnEak5LIgPXd1aXGdeRqiuswEK1ACNaSY43vN8ALvam89282NBv
-         rMoo598yoratWLEaja+0iQh3K2Lry7x9MX9C7zq/dsLEUSmPjzsgDbrW0y2NoVnZYNsI
-         O6Hm89f60CkhdNRKyBTkXDtpjdyQvXADFb0X9AnvwcrpzBDE/zDzER1afaf/jiKKetsH
-         3zXkwoqZfYWbj3UEpu1G6xDFIh50Shl+Yd4aPFAkeC2JbCV/pcMinnFEiLUnY+jdI89W
-         vN57vEfeHywtjqg3MfFcFSHJ1mx6krSO6OPZqEpDd58FH5SV8ijNDhpRFOOsCNI2njJO
-         3YwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tM3VxaZl5zM/CvacUjymAdWLAMbgccvEVqlU6otBNnQ=;
-        b=XzqAQNy1cQ08vy6cHjc9AL2GPP4776VUw7DOyOJsq3K5dV+vTo/JZKhQ6uLDpKn/DQ
-         vaQfAt99EucThRCOBsQ8IC0UIgmE6I8tf/Gl2KAIZuht1j94H3muDLXLfuNXak7XUo2j
-         V5DDo20P4kj6cu8ZAZgBuqRehcMRrjf+bNbzFHHJF5lxIFyFVmthhP7zG99cQLOZhU5E
-         sq1rP4VPDEdxM3sF6tNGlL4S1hRbDE6pn8A155ZgQf1R3/1FyDHvWPnXEpHoGxLatB1h
-         4qIja2Cr0CtjYtKURic26wOyp0Wtjlkgx7FuDrl2nAOSEctXgIVPteiv3VqdoCQQSkfa
-         YX/g==
-X-Gm-Message-State: AO0yUKX4+Dz0ExjPR0vk6zBhLF0zVz2rJ5SgPO0+WTjMolkp31LZ/IA4
-        bvhH4hDS0elcMFLoAeVzL5wkJw==
-X-Google-Smtp-Source: AK7set8tJvn/zurhAyQETXWD3WcA97e9Cz1fjhRmWhiU40b/Voppwz01Doj+a5ajyLdaKaXJ4MFw9A==
-X-Received: by 2002:a17:907:94cf:b0:878:5d33:c0ec with SMTP id dn15-20020a17090794cf00b008785d33c0ecmr2147178ejc.40.1674721520641;
-        Thu, 26 Jan 2023 00:25:20 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id hw19-20020a170907a0d300b0086eb30fb618sm222763ejc.183.2023.01.26.00.25.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 00:25:20 -0800 (PST)
-Message-ID: <91e64f7f-fafe-e717-0caa-94c077cff501@linaro.org>
-Date:   Thu, 26 Jan 2023 10:25:19 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v3 07/12] clk: qcom: gcc-apq8084: add
- GCC_MMSS_GPLL0_CLK_SRC
-Content-Language: en-GB
-To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229491AbjAZIcf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:32:35 -0500
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C605E524;
+        Thu, 26 Jan 2023 00:32:32 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id 24569E000C;
+        Thu, 26 Jan 2023 08:32:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1674721951;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=1wuQdqFAcUQPL0i7vCvSEJPExBzl3opiq9wKUTSIV/w=;
+        b=oz5ZwIYo2vwegLw/vSHCzDPVdGn7UZUisu9n4UdR0eJHVkIhdCCMQ2Il0qSA32KjiE/22Q
+        3PAnRffhdy/ovQQFdm0EKIbo0ZoxPTrszE68I6okyQUOAaJ6MeCgU3Dqbzt1+x3JHGBEkW
+        ptKHOQ2X69KKBwLFOpE+TbBiXpTljaEqOr8ltmxW0T4CYFylNn9ntuV6q6yhZ3aloKmCh1
+        QpmqM+uy1KE21qwnKOEgSzDx3hvd+0ddmVhJdDVFSV7YvKoK9z5SjmGZmarSU48bGMbJ8+
+        mO5LC6mxkyFjUnNYUWQlxjkWRCKgYJzbiQ14aBHqc3wD4aYoCdgQ0vdH4BDRZg==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230111060402.1168726-1-dmitry.baryshkov@linaro.org>
- <20230111060402.1168726-8-dmitry.baryshkov@linaro.org>
- <253adc1f1cd97fb13b9aa2b3b8e0ed1a.sboyd@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <253adc1f1cd97fb13b9aa2b3b8e0ed1a.sboyd@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v4 00/10] Add the PowerQUICC audio support using the QMC
+Date:   Thu, 26 Jan 2023 09:32:12 +0100
+Message-Id: <20230126083222.374243-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/01/2023 23:50, Stephen Boyd wrote:
-> Quoting Dmitry Baryshkov (2023-01-10 22:03:57)
->> Add the GCC_MMSS_GPLL0_CLK_SRC, the branch clock gating gpll0 clock for
->> the multimedia subsystem.
->>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
-> Does all hell break loose if this is ever turned off?
+Hi,
 
-Good question. This is just a c&p from msm8974, which employs the 
-similar combo of gcc and mmcc. I suspect that the answer is no, as we 
-are still in world of alive people :D
+This series adds support for audio using the QMC controller available in
+some Freescale PowerQUICC SoCs.
+
+This series contains three parts in order to show the different blocks
+hierarchy and their usage in this support.
+
+The first one is related to TSA (Time Slot Assigner).
+The TSA handles the data present at the pin level (TDM with up to 64
+time slots) and dispatchs them to one or more serial controller (SCC).
+
+The second is related to QMC (QUICC Multichannel Controller).
+The QMC handles the data at the serial controller (SCC) level and splits
+again the data to creates some virtual channels.
+
+The last one is related to the audio component (QMC audio).
+It is the glue between the QMC controller and the ASoC component. It
+handles one or more QMC virtual channels and creates one DAI per QMC
+virtual channels handled.
+
+Compared to the previous iteration
+  https://lore.kernel.org/linux-kernel/20230113103759.327698-1-herve.codina@bootlin.com/
+this v4 series mainly:
+  - updates code comment format (feedback received on v2 series and
+    forgot to update in v3),
+  - fixes bindings,
+  - Replaces the fsl,tsa phandle and the fsl,tsa-cell-id property by a
+    fsl,tsa-serial phandle and update the TSA related API,
+  - Adds some missing lock in tsa_serial_connect() and
+    tsa_serial_disconnect().
+
+Best regards,
+Herve Codina
+
+Changes v3 -> v4
+  - patches 2, 6 and 9
+    Update code comment format.
+
+  - patch 1
+    Fix some description formats.
+    Add 'additionalProperties: false' in subnode.
+    Move fsl,mode to fsl,diagnostic-mode.
+    Change clocks and clock-names properties.
+    Add '#serial-cells' property related to the newly introduced
+    fsl,tsa-serial phandle.
+
+  - patch 2
+    Move fsl,mode to fsl,diagnostic-mode.
+    Replace the	fsl,tsa phandle and the	fsl,tsa-cell-id	property by a
+    fsl,tsa-serial phandle and update the related API.
+    Add missing locks.
+
+  - patch 5
+    Fix some description format.
+    Replace the fsl,tsa phandle and the fsl,tsa-cell-id property by a
+    fsl,tsa-serial phandle.
+    Rename fsl,mode to fsl,operational-mode and update its description.
+
+  - patch 6
+    Replace the	fsl,tsa phandle and the	fsl,tsa-cell-id	property by a
+    fsl,tsa-serial phandle and use the TSA updated API.
+    Rename fsl,mode to fsl,operational-mode.
+
+  - patch 8
+    Add 'Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>'
+
+Changes v2 -> v3
+  - All bindings
+    Rename fsl-tsa.h to fsl,tsa.h
+    Add missing vendor prefix
+    Various fixes (quotes, node names, upper/lower case)
+
+  - patches 1 and 2 (TSA binding specific)
+    Remove 'reserved' values in the routing tables
+    Remove fsl,grant-mode
+    Add a better description for 'fsl,common-rxtx-pins'
+    Fix clocks/clocks-name handling against fsl,common-rxtx-pins
+    Add information related to the delays unit
+    Removed FSL_CPM_TSA_NBCELL
+    Fix license in binding header file fsl,tsa.h
+
+  - patches 5 and 6 (QMC binding specific)
+    Remove fsl,cpm-command property
+    Add interrupt property constraint
+
+  - patches 8 and 9 (QMC audio binding specific)
+    Remove 'items' in compatible property definition
+    Add missing 'dai-common.yaml' reference
+    Fix the qmc_chan phandle definition
+
+  - patch 2 and 6
+    Use io{read,write}be{32,16}
+    Change commit subjects and logs
+
+  - patch 4
+    Add 'Acked-by: Christophe Leroy <christophe.leroy@csgroup.eu>'
+
+Changes v1 -> v2:
+  - patch 2 and 6
+    Fix kernel test robot errors
+
+  - other patches
+    No changes
+
+Herve Codina (10):
+  dt-bindings: soc: fsl: cpm_qe: Add TSA controller
+  soc: fsl: cpm1: Add support for TSA
+  MAINTAINERS: add the Freescale TSA controller entry
+  powerpc/8xx: Use a larger CPM1 command check mask
+  dt-bindings: soc: fsl: cpm_qe: Add QMC controller
+  soc: fsl: cmp1: Add support for QMC
+  MAINTAINERS: add the Freescale QMC controller entry
+  dt-bindings: sound: Add support for QMC audio
+  ASoC: fsl: Add support for QMC audio
+  MAINTAINERS: add the Freescale QMC audio entry
+
+ .../bindings/soc/fsl/cpm_qe/fsl,qmc.yaml      |  167 ++
+ .../bindings/soc/fsl/cpm_qe/fsl,tsa.yaml      |  261 +++
+ .../bindings/sound/fsl,qmc-audio.yaml         |  117 ++
+ MAINTAINERS                                   |   25 +
+ arch/powerpc/platforms/8xx/cpm1.c             |    2 +-
+ drivers/soc/fsl/qe/Kconfig                    |   23 +
+ drivers/soc/fsl/qe/Makefile                   |    2 +
+ drivers/soc/fsl/qe/qmc.c                      | 1533 +++++++++++++++++
+ drivers/soc/fsl/qe/tsa.c                      |  864 ++++++++++
+ drivers/soc/fsl/qe/tsa.h                      |   42 +
+ include/dt-bindings/soc/fsl,tsa.h             |   13 +
+ include/soc/fsl/qe/qmc.h                      |   71 +
+ sound/soc/fsl/Kconfig                         |    9 +
+ sound/soc/fsl/Makefile                        |    2 +
+ sound/soc/fsl/fsl_qmc_audio.c                 |  735 ++++++++
+ 15 files changed, 3865 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/fsl,qmc-audio.yaml
+ create mode 100644 drivers/soc/fsl/qe/qmc.c
+ create mode 100644 drivers/soc/fsl/qe/tsa.c
+ create mode 100644 drivers/soc/fsl/qe/tsa.h
+ create mode 100644 include/dt-bindings/soc/fsl,tsa.h
+ create mode 100644 include/soc/fsl/qe/qmc.h
+ create mode 100644 sound/soc/fsl/fsl_qmc_audio.c
 
 -- 
-With best wishes
-Dmitry
+2.39.0
 
