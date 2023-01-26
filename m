@@ -2,186 +2,306 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D898167CBF7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:23:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83D6167CBFD
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:26:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235972AbjAZNXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 08:23:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60248 "EHLO
+        id S235269AbjAZN0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 08:26:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236762AbjAZNXU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:23:20 -0500
-Received: from egress-ip4a.ess.de.barracuda.com (egress-ip4a.ess.de.barracuda.com [18.184.203.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F5199778
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 05:23:14 -0800 (PST)
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200]) by mx-outbound46-2.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Thu, 26 Jan 2023 13:23:12 +0000
-Received: by mail-pg1-f200.google.com with SMTP id bn10-20020a056a02030a00b004da3651ff4cso771580pgb.13
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 05:23:12 -0800 (PST)
+        with ESMTP id S229481AbjAZN0E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:26:04 -0500
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05E203A9C
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 05:26:03 -0800 (PST)
+Received: by mail-yb1-xb2b.google.com with SMTP id p141so1888904ybg.12
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 05:26:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=G6Ajtn/dXFsb1dJwxtMc9cBb7rwqzMHAM/XeIm3RbXo=;
-        b=dLKubE6MdgWycXaqJju4vKd0/kcSXs8DRbRASh4UPjDRiySsPddsy7NQZdipi/04Rc
-         Fi/OrdSOMfIo3bHbMl4gct77HOhlChQcv0SF5OUSZAUttB0lk+pWu4TrxA43CeRCM/Pu
-         xcr9ZmtwKObDu6JI7c/qIN9TL0FnN2HKwugbE=
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/8yNK2kX9YWdGIDCnUsvQH82+dlm6dp9hInv0MG2rDk=;
+        b=o48o7jrnYs+lpORSn3isAnckevWumyFfoeaD4HP+dcF+CgyAYbucZPQLc5G5DpPDiz
+         HXpr6cmMqN0AG36LXC4k0FNPWfZPUR4wL6PIg5m4vU3nQGOlgGU+iZQ8RW78RdnPNftg
+         2mBh9QLB/nag4F/WTncHo8J1/E/znGR+Geq7BqftvyRwdxREt/QBKHt8p+1EluUClGXP
+         sjlh2I44KpQb+sEyWE1RJwIM52JENQJWC3FdfIRAkqml/R55QOO9wpgL647YI5ALvgYL
+         KA4lj98na3WEi5tf4M8Gtk09WOyPTaxKQPhKSswS4+nLNyy8ZIB/93jT4I1wwUlK2htv
+         JEjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=G6Ajtn/dXFsb1dJwxtMc9cBb7rwqzMHAM/XeIm3RbXo=;
-        b=2IcnLVJHI+AuwbstE4qnyGt7OzOQs7L+OuGrHkVmhyh2bOwF8ZFT4theGukQxTdxya
-         I8wyoI+tkV9asOIR8tKpWhyqLgnnRqxpMfGoM92sI8/iqTETxVyLldK7h0i9RSlzJJ3x
-         ogeRLN2UgHOLnX+uYxGmWY5WmJ49Z9VWU6d+RrvBh/IWP5mGt/l1GSsPMkRc5ZHdvkS2
-         4qEuqCfUaLBvAt4kGgJV9l5eTD8B63HLGtZcbqGklhe6PTiMf4GEwuY3UrOJmmI0im5h
-         WK/bHOA5zG6u2/ZbBstbxKRFUb4VEfjvsnqZoGt0w8PtKXCeWHU4Kr4p6X/GlQskdjQp
-         eGvw==
-X-Gm-Message-State: AO0yUKVtrJNohrctOJ/oHuzgm7rJ8vJ/IirUUI3Z1IsEux8228AiFFWR
-        vljH8SdMsy0/FuG3DP3JkyqXa0tM9OIWnJFHiibq2/y3hWuJlss1fu+spq2L9Jo1M24QKtRS4z+
-        qqrcJHB/7jOSvy7HYEIg3EsSTU65vrx8pZTu/kPu4BOgM575QxN5cUi74ag==
-X-Received: by 2002:a17:902:dccc:b0:192:8cd1:5e79 with SMTP id t12-20020a170902dccc00b001928cd15e79mr1237644pll.41.1674739391263;
-        Thu, 26 Jan 2023 05:23:11 -0800 (PST)
-X-Google-Smtp-Source: AK7set8IQgw7vRA4qsEaaEHQGI+f2pPf6yzXhzjvUm7ljh/Pd1JT6RB0lPlOU7j1jmjyQkcXIIGqMg==
-X-Received: by 2002:a17:902:dccc:b0:192:8cd1:5e79 with SMTP id t12-20020a170902dccc00b001928cd15e79mr1237621pll.41.1674739390872;
-        Thu, 26 Jan 2023 05:23:10 -0800 (PST)
-Received: from localhost.localdomain ([49.207.202.116])
-        by smtp.gmail.com with ESMTPSA id ix12-20020a170902f80c00b00178143a728esm946206plb.275.2023.01.26.05.23.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 05:23:10 -0800 (PST)
-From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j721s2-main: Add dts nodes for EHRPWMs
-Date:   Thu, 26 Jan 2023 18:52:43 +0530
-Message-Id: <20230126132243.15695-1-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.36.1
+        bh=/8yNK2kX9YWdGIDCnUsvQH82+dlm6dp9hInv0MG2rDk=;
+        b=z4UWWBpNMx+0R0YMraUA3gMp/XYbWJscgSIHecZkZVYUgw/B+WwLJs3USTU4rQvYdf
+         05OuyEr4bp6N3IRyDNACmoczyXVl0u8kABQHvGdkvkCu/LU5wBm90zrGmn7yxTixH2nt
+         xJGylBJJLg4ZnbxrqFZmNTA5Vn+NJh4Mmj0Yp6ugsD3DtNXMf5J0E6APDbBFBK7gFX4k
+         VfENw9ZiHAf8vCkfBc/KqSumHQVbGGFDL8tU7T/UC664zSWX3Tch3f0fipWUNZ3gNg0Q
+         +eKTZaJMcx5RCdn6PII5yeFl7Ov9Q6/ClFM+GEDB0sNXpq4FuU76L8ku4/C6oSUdDOuZ
+         +l4w==
+X-Gm-Message-State: AFqh2kpjkCtWwjL/Z3AP0vKo/rZSLIxDyzKtSdcAGnEOfOS1hlopOdrH
+        kB4MFp8x+YqdKE3Dea2Vxg4vZQ8UpQ6mqSrmBr3oRA==
+X-Google-Smtp-Source: AMrXdXsu8qqw0tHjvKv+se62HO30MlCFatIwl/tC9pepudY+t2hytHaDucaZJ0hNLoCk+oGK5ku28DE0oE0f5gHnGNw=
+X-Received: by 2002:a5b:38b:0:b0:7ca:9b40:72a7 with SMTP id
+ k11-20020a5b038b000000b007ca9b4072a7mr4443316ybp.130.1674739562186; Thu, 26
+ Jan 2023 05:26:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1674739391-311778-5605-587-1
-X-BESS-VER: 2019.1_20221214.2106
-X-BESS-Apparent-Source-IP: 209.85.215.200
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.245721 [from 
-        cloudscan8-218.eu-central-1a.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230118094728.3814-1-clin@suse.com> <20230118094728.3814-3-clin@suse.com>
+In-Reply-To: <20230118094728.3814-3-clin@suse.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 26 Jan 2023 14:25:50 +0100
+Message-ID: <CACRpkdZgjoxV-PPUcVHp=e0uMzx8UnvLoLMLXynm8X4VtBdN7g@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] pinctrl: add NXP S32 SoC family support
+To:     Chester Lin <clin@suse.com>
+Cc:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, s32@nxp.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Radu Pirea <radu-nicolae.pirea@nxp.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Matthew Nunez <matthew.nunez@nxp.com>,
+        Phu Luu An <phu.luuan@nxp.com>,
+        Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
+Hi Chester!
 
-Add dts nodes for 6 EHRPWM instances on SoC. Disable EHRPWM nodes in the
-dtsi files and only enable the ones that are actually pinned out on a
-given board.
+thanks for your patch!
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 74 ++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+This looks much better and the DT bindings are finished which is
+nice. As the driver is pretty big I need to find time to do review and
+look closer.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 8915132efcc1..68f4fe85085b 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -26,6 +26,80 @@ l3cache-sram@200000 {
- 		};
- 	};
- 
-+	scm_conf: scm-conf@104000 {
-+		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
-+		reg = <0x00 0x00104000 0x00 0x18000>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x00 0x00 0x00104000 0x18000>;
-+
-+		ehrpwm_tbclk: clock-controller@140 {
-+			compatible = "ti,am654-ehrpwm-tbclk", "syscon";
-+			reg = <0x140 0x18>;
-+			#clock-cells = <1>;
-+		};
-+	};
-+
-+	main_ehrpwm0: pwm@3000000 {
-+		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x3000000 0x00 0x100>;
-+		power-domains = <&k3_pds 160 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&ehrpwm_tbclk 0>, <&k3_clks 160 0>;
-+		clock-names = "tbclk", "fck";
-+		status = "disabled";
-+	};
-+
-+	main_ehrpwm1: pwm@3010000 {
-+		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x3010000 0x00 0x100>;
-+		power-domains = <&k3_pds 161 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&ehrpwm_tbclk 1>, <&k3_clks 161 0>;
-+		clock-names = "tbclk", "fck";
-+		status = "disabled";
-+	};
-+
-+	main_ehrpwm2: pwm@3020000 {
-+		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x3020000 0x00 0x100>;
-+		power-domains = <&k3_pds 162 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&ehrpwm_tbclk 2>, <&k3_clks 162 0>;
-+		clock-names = "tbclk", "fck";
-+		status = "disabled";
-+	};
-+
-+	main_ehrpwm3: pwm@3030000 {
-+		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x3030000 0x00 0x100>;
-+		power-domains = <&k3_pds 163 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&ehrpwm_tbclk 3>, <&k3_clks 163 0>;
-+		clock-names = "tbclk", "fck";
-+		status = "disabled";
-+	};
-+
-+	main_ehrpwm4: pwm@3040000 {
-+		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x3040000 0x00 0x100>;
-+		power-domains = <&k3_pds 164 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&ehrpwm_tbclk 4>, <&k3_clks 164 0>;
-+		clock-names = "tbclk", "fck";
-+		status = "disabled";
-+	};
-+
-+	main_ehrpwm5: pwm@3050000 {
-+		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x3050000 0x00 0x100>;
-+		power-domains = <&k3_pds 165 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&ehrpwm_tbclk 5>, <&k3_clks 165 0>;
-+		clock-names = "tbclk", "fck";
-+		status = "disabled";
-+	};
-+
- 	gic500: interrupt-controller@1800000 {
- 		compatible = "arm,gic-v3";
- 		#address-cells = <2>;
--- 
-2.36.1
+Here follows some concerns:
 
+On Wed, Jan 18, 2023 at 10:47 AM Chester Lin <clin@suse.com> wrote:
+
+> Add the pinctrl driver for NXP S32 SoC family. This driver is mainly based
+> on NXP's downstream implementation on nxp-auto-linux repo[1].
+>
+> [1] https://github.com/nxp-auto-linux/linux/tree/bsp35.0-5.15.73-rt/drivers/pinctrl/freescale
+>
+> Signed-off-by: Matthew Nunez <matthew.nunez@nxp.com>
+> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
+> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>
+> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@nxp.com>
+> Signed-off-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
+> Signed-off-by: Chester Lin <clin@suse.com>
+
+(...)
+
+> +++ b/drivers/pinctrl/nxp/Kconfig
+> @@ -0,0 +1,14 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +config PINCTRL_S32CC
+> +       bool
+> +       depends on ARCH_S32 && OF
+> +       select GENERIC_PINCTRL_GROUPS
+> +       select GENERIC_PINMUX_FUNCTIONS
+> +       select GENERIC_PINCONF
+
+Maybe select REGMAP_MMIO
+Maybe select GPIO_GENERIC or GPIO_REGMAP
+see further below.
+
+> +#ifdef CONFIG_PM_SLEEP
+> +int s32_pinctrl_resume(struct device *dev);
+> +int s32_pinctrl_suspend(struct device *dev);
+> +#endif
+
+I think these are usually handled by tagging the functions with __maybe_unused.
+
+> +static u32 get_pin_no(u32 pinmux)
+> +{
+> +       return pinmux >> S32CC_PIN_NO_SHIFT;
+
+Maybe add a mask too so it is clear that you just rely
+on bits being shifted out to the righy.
+
+> +static inline int s32_pinctrl_readl_nolock(struct pinctrl_dev *pctldev,
+> +                                          unsigned int pin,
+> +                                          unsigned long *config)
+> +{
+> +       struct s32_pinctrl_mem_region *region;
+> +       unsigned int offset;
+> +
+> +       region = s32_get_region(pctldev, pin);
+> +       if (!region)
+> +               return -EINVAL;
+> +
+> +       offset = pin - region->pin_range->start;
+> +
+> +       *config = readl(region->base + S32_PAD_CONFIG(offset));
+> +
+> +       return 0;
+> +}
+> +
+> +static inline int s32_pinctrl_readl(struct pinctrl_dev *pctldev,
+> +                                   unsigned int pin,
+> +                                   unsigned long *config)
+> +{
+> +       struct s32_pinctrl *ipctl = pinctrl_dev_get_drvdata(pctldev);
+> +       unsigned long flags;
+> +       int ret;
+> +
+> +       spin_lock_irqsave(&ipctl->reg_lock, flags);
+> +       ret = s32_pinctrl_readl_nolock(pctldev, pin, config);
+> +       spin_unlock_irqrestore(&ipctl->reg_lock, flags);
+> +
+> +       return ret;
+> +}
+> +
+> +static inline int s32_pinctrl_writel_nolock(struct pinctrl_dev *pctldev,
+> +                                           unsigned int pin,
+> +                                           unsigned long config)
+> +{
+> +       struct s32_pinctrl_mem_region *region;
+> +       unsigned int offset;
+> +
+> +       region = s32_get_region(pctldev, pin);
+> +       if (!region)
+> +               return -EINVAL;
+> +
+> +       offset = pin - region->pin_range->start;
+> +
+> +       writel(config, region->base + S32_PAD_CONFIG(offset));
+> +
+> +       return 0;
+> +
+> +}
+> +
+> +static inline int s32_pinctrl_writel(unsigned long config,
+> +                                    struct pinctrl_dev *pctldev,
+> +                                    unsigned int pin)
+> +{
+> +       struct s32_pinctrl *ipctl = pinctrl_dev_get_drvdata(pctldev);
+> +       unsigned long flags;
+> +       int ret;
+> +
+> +       spin_lock_irqsave(&ipctl->reg_lock, flags);
+> +       ret = s32_pinctrl_writel_nolock(pctldev, pin, config);
+> +       spin_unlock_irqrestore(&ipctl->reg_lock, flags);
+> +
+> +       return ret;
+> +}
+
+If you turn this around, *first* get the offset and *then* issye the read/write
+to respective registers, you will find that you have re-implemented
+regmap_mmio, which will take care of serializing your writes so that
+you do not need a lock either. At least consider it.
+
+> +static int s32_update_pin_mscr(struct pinctrl_dev *pctldev, unsigned int pin,
+> +                              unsigned long mask, unsigned long new_mask)
+> +{
+> +       struct s32_pinctrl *ipctl = pinctrl_dev_get_drvdata(pctldev);
+> +       unsigned long config, flags;
+> +       int ret;
+> +
+> +       spin_lock_irqsave(&ipctl->reg_lock, flags);
+> +
+> +       ret = s32_pinctrl_readl_nolock(pctldev, pin, &config);
+> +       if (ret)
+> +               goto unlock;
+> +
+> +       config &= ~mask;
+> +       config |= new_mask;
+> +
+> +       ret = s32_pinctrl_writel_nolock(pctldev, pin, config);
+> +       if (ret)
+> +               goto unlock;
+
+And after having pointed out how regmap MMIO was reimplemented,
+here you re-implement regmap_update_bits() which performs mask
+and set.
+
+> +static int s32_pinconf_get(struct pinctrl_dev *pctldev,
+> +                          unsigned int pin_id,
+> +                          unsigned long *config)
+> +{
+> +       int ret = s32_pinctrl_readl(pctldev, pin_id, config);
+> +
+> +       if (ret)
+> +               return -EINVAL;
+> +
+> +       return 0;
+
+This looks like unnecessary indirection since every call site has
+to check the return code anyway, can't you just inline the s32_pinctrl_readl()
+calls?
+
+(...)
+> +#ifdef CONFIG_PM_SLEEP
+
+Use __maybe_unused and compile in unconditionally.
+
+> +static void s32_pinctrl_parse_groups(struct device_node *np,
+> +                                    struct s32_pin_group *grp,
+> +                                    struct s32_pinctrl_soc_info *info)
+> +{
+> +       const __be32 *p;
+> +       struct device *dev;
+> +       struct property *prop;
+> +       int i, npins;
+> +       u32 pinmux;
+> +
+> +       dev = info->dev;
+> +
+> +       dev_dbg(dev, "group: %s\n", np->name);
+> +
+> +       /* Initialise group */
+> +       grp->name = np->name;
+> +
+> +       npins = of_property_count_elems_of_size(np, "pinmux", sizeof(u32));
+
+There is a lot of code here for handling the funky pinmux stuff. Don't we have
+generic helpers for this? Well maybe not :/
+
+> +static void s32_pinctrl_parse_functions(struct device_node *np,
+> +                                       struct s32_pinctrl_soc_info *info,
+> +                                       u32 index)
+> +{
+> +       struct device_node *child;
+> +       struct s32_pmx_func *func;
+> +       struct s32_pin_group *grp;
+> +       u32 i = 0;
+> +
+> +       dev_dbg(info->dev, "parse function(%d): %s\n", index, np->name);
+> +
+> +       func = &info->functions[index];
+> +
+> +       /* Initialise function */
+> +       func->name = np->name;
+> +       func->num_groups = of_get_child_count(np);
+> +       if (func->num_groups == 0) {
+> +               dev_err(info->dev, "no groups defined in %s\n", np->full_name);
+> +               return;
+> +       }
+> +       func->groups = devm_kzalloc(info->dev,
+> +                       func->num_groups * sizeof(char *), GFP_KERNEL);
+> +
+> +       for_each_child_of_node(np, child) {
+> +               func->groups[i] = child->name;
+> +               grp = &info->groups[info->grp_index++];
+> +               s32_pinctrl_parse_groups(child, grp, info);
+> +               i++;
+> +       }
+> +}
+
+This also looks like helpers we should already have, can you look around
+ a bit in other recently merged drivers?
+
+Yours,
+Linus Walleij
