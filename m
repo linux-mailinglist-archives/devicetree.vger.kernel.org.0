@@ -2,150 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38FF267D28A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 18:06:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE33B67D2B9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 18:10:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbjAZRGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 12:06:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43726 "EHLO
+        id S229437AbjAZRJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 12:09:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229721AbjAZRGR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 12:06:17 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6495B5B90;
-        Thu, 26 Jan 2023 09:06:16 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 99BCED77;
-        Thu, 26 Jan 2023 18:06:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1674752770;
-        bh=+hdXPGbzHByKztFlx+pbbcoPvK2k/6UnHURKhPfQPa0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=A4qRNWbAG6psE412xsvEIudchprjemfUq93uzbsxNaRqbqtk7I1ouADisiE/mF5XL
-         NmiAL9MsreT5t0cCzGGzV4Ed6CGnIEb2dTiN04PeBT3wMKDrSE3y3+bkqA2/ceflGf
-         GHprg898Ggw97GYfkCLr295m53Szl+qX1O98XNSw=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     linux-media@vger.kernel.org
-Cc:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 2/3] dt-bindings: media: imx8-isi: Use 'port' instead of 'ports' for i.MX8MN
-Date:   Thu, 26 Jan 2023 19:06:02 +0200
-Message-Id: <20230126170603.11896-3-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230126170603.11896-1-laurent.pinchart@ideasonboard.com>
-References: <20230126170603.11896-1-laurent.pinchart@ideasonboard.com>
+        with ESMTP id S232416AbjAZRJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 12:09:52 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CAC5728D;
+        Thu, 26 Jan 2023 09:09:51 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CFC75618F8;
+        Thu, 26 Jan 2023 17:09:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 661DDC433EF;
+        Thu, 26 Jan 2023 17:09:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674752990;
+        bh=YQHLBU7Aivmn9WcnpQM380Yt0zjC5w1aDhENH54PYoM=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=r+e7VK9GhAWdoai6a4dQ+hIx/vGneah7AOXGXBJJsLAX8gnP+7gSJ/J2PumsnF8BT
+         mrQxqzbtj/bUwSeCizoBGXqEzizrhsr5Sno/lJElFpgw7FIEi9LbBVotgadNYZdnUl
+         fiNMXhAYhQWBMeoU7CPJBaZxv7nhwxZbEHwWAbKTS7E4fAUUFow1IFffpzUF8A86oC
+         YX+LHOWrOk+etv6P1z0G3+ltRSl4huGNuFutDcaKPe2GbdvmSXD8AUXA3e+S2Dy+sf
+         tBqDmckx5txXlmHhL0Ntqvag9YRoyU0DS5U4lU5eHuvZ+U8Q+Z7K+hzsWoLum9C6Iz
+         +bYmAVabkDmpw==
+From:   Mark Brown <broonie@kernel.org>
+To:     krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        andersson@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        quic_plai@quicinc.com, bgoswami@quicinc.com,
+        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, devicetree@vger.kernel.org,
+        konrad.dybcio@linaro.org,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+In-Reply-To: <1674468802-14834-1-git-send-email-quic_srivasam@quicinc.com>
+References: <1674468802-14834-1-git-send-email-quic_srivasam@quicinc.com>
+Subject: Re: [PATCH v3 0/2] Update lpass dt-bindings
+Message-Id: <167475298607.4003145.11363897170835254190.b4-ty@kernel.org>
+Date:   Thu, 26 Jan 2023 17:09:46 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.0
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- .../bindings/media/nxp,imx8-isi.yaml          | 39 +++++++++++--------
- 1 file changed, 22 insertions(+), 17 deletions(-)
+On Mon, 23 Jan 2023 15:43:20 +0530, Srinivasa Rao Mandadapu wrote:
+> Update va-macro driver dt-bindings and add missing properties in sc7280
+> machine driver dt-bindings.
+> 
+> Changes since v2:
+>     -- Update commit message and example in "Add platform property" patch.
+>     -- Update commit message in "Update clock name" patch.
+> Changes since v1:
+>     -- Remove sound-dai cells property patch.
+>     -- Update example in clock name change patch.
+>     -- Update commit message and add maxItems in platform proerty patch.
+> 
+> [...]
 
-diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-index 6038b9b5ab36..121594569395 100644
---- a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-+++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-@@ -52,11 +52,21 @@ properties:
-   power-domains:
-     maxItems: 1
- 
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+    description: |
-+      The port represents the Pixel Link input to the ISI. It shall have a
-+      single endpoint. This property is only used for ISI instances with a
-+      single port (as in the i.MX8MN). For instances that includes multiple
-+      ports, the 'ports' property shall be used instead.
-+
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
-     description: |
-       Ports represent the Pixel Link inputs to the ISI. Their number and
--      assignment are model-dependent. Each port shall have a single endpoint.
-+      assignment are model-dependent. For ISI instances that have a single
-+      port, the 'port' property should be used instead. Each port shall have a
-+      single endpoint.
- 
- required:
-   - compatible
-@@ -65,7 +75,6 @@ required:
-   - clocks
-   - clock-names
-   - fsl,blk-ctrl
--  - ports
- 
- allOf:
-   - if:
-@@ -77,12 +86,11 @@ allOf:
-       properties:
-         interrupts:
-           maxItems: 1
--        ports:
--          properties:
--            port@0:
--              description: MIPI CSI-2 RX
--          required:
--            - port@0
-+        port:
-+          description: MIPI CSI-2 RX
-+        ports: false
-+      required:
-+        - port
- 
-   - if:
-       properties:
-@@ -93,6 +101,7 @@ allOf:
-       properties:
-         interrupts:
-           maxItems: 2
-+        port: false
-         ports:
-           properties:
-             port@0:
-@@ -102,6 +111,8 @@ allOf:
-           required:
-             - port@0
-             - port@1
-+      required:
-+        - ports
- 
- additionalProperties: false
- 
-@@ -122,15 +133,9 @@ examples:
-         fsl,blk-ctrl = <&disp_blk_ctrl>;
-         power-domains = <&disp_blk_ctrl IMX8MN_DISPBLK_PD_ISI>;
- 
--        ports {
--            #address-cells = <1>;
--            #size-cells = <0>;
--
--            port@0 {
--                reg = <0>;
--                isi_in: endpoint {
--                    remote-endpoint = <&mipi_csi_out>;
--                };
-+        port {
-+            isi_in: endpoint {
-+                remote-endpoint = <&mipi_csi_out>;
-             };
-         };
-     };
--- 
-Regards,
+Applied to
 
-Laurent Pinchart
+   broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: qcom: dt-bindings: lpass-va-macro: Update clock name
+      commit: 7a35498982e84e4d39e8c259f251dfa588f0f039
+[2/2] ASoC: dt-bindings: google,sc7280-herobrine: Add platform property
+      commit: ec9009724027b6599ee79a8ac6c97de442ad6f6d
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
