@@ -2,164 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B9BA67D6BD
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 21:47:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF8EF67D6CA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 21:49:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231785AbjAZUrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 15:47:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53084 "EHLO
+        id S229681AbjAZUtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 15:49:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230371AbjAZUrK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 15:47:10 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0F9E24C95;
-        Thu, 26 Jan 2023 12:46:34 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id j15so2377945ljg.8;
-        Thu, 26 Jan 2023 12:46:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e8JRQs423qpWUog+nHFrhwfEo9FGIHhJlHpgtXHnAI8=;
-        b=CsuY8hOc0S6TR3cGDg1ExGVIPOKn+OqJ1OwxwuO0c8Gdz2WpuxTlcEP+ZPFz3Khu5F
-         475ELIhic+XXrq8MLA7tnMYq0CUF/u/GlT7ksJOKJ+9SF8OzL7cikSLpwu+vlDbPo/+v
-         o4EuGtkgRM1pipK8GTVOHiRBBm8I26P6qj66tdVgOb5Py5a7Xnz+q/qIjkt11N2zpMRk
-         xN/7D0VapK/jGTPA1fxq0lNuyZoliqV296SJh01eyNJvVjfwE6kjR69QdrmEEWNtAHP6
-         FV6cMMcQe0mHT0U22M/B9oceNBLNeLuwNd9o64spofEtq2H02/uA+JpZQT+o0gpoNMbs
-         6CCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=e8JRQs423qpWUog+nHFrhwfEo9FGIHhJlHpgtXHnAI8=;
-        b=UIHs2FlG/AwJbe8bCVB1CKtACCL0AIA1YzjhTC6I8qb+WKPeoAWcBpiqFcNynVmjiM
-         7bD/LeObK29mjgpy3KX3jv7zK5c82l8VNUYY8bbvD6wNUo6vV0dKLaL3z9Y1XXWDmNQB
-         rJG/598q9JIc7++zX9ziuTAXGnBLBWdbRFyeTLEGYt1A+MYxTIL5VWVowpNr5i0Mepuu
-         aKxua3UQ8mIoTj+wxHwHCUnZ9uzWvokFBXATTKEGXMSts4Bf+1dg9U3sjj6ajExayMsG
-         caOnpxzkXhZ7gUkzDgbNj6EZHvUm4SPLrWvZ5uiQ09OFZ1IsY6KJ5Ir9q96tQ7FiN57D
-         ExkQ==
-X-Gm-Message-State: AFqh2kriAy5jud22BVB3t/ASu4f1BhZeABoXI6pQJYgZdWCjiQEZF2Dr
-        5P88w6q4VkqhQMV1D14twaNX+FxhK2l5BfZ6KmKfWCpVOrk=
-X-Google-Smtp-Source: AMrXdXu5PjFxdJB5hjmPujykCvCLIaf5NB7r9JeAmJ8eyeje/IITqH8iAEreW99bV6+d700rH1R32SF16e+bCJKaYpY=
-X-Received: by 2002:a2e:8e84:0:b0:289:ae03:644b with SMTP id
- z4-20020a2e8e84000000b00289ae03644bmr2348689ljk.66.1674765981705; Thu, 26 Jan
- 2023 12:46:21 -0800 (PST)
+        with ESMTP id S229448AbjAZUtj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 15:49:39 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0AF171B;
+        Thu, 26 Jan 2023 12:49:38 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F140B975;
+        Thu, 26 Jan 2023 21:49:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1674766177;
+        bh=rN41aOWNI6OikK4Y1EV7H5icYuk6/XOyB8mR7h94T+U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rZX2itZNzbJ3NbVEquvYOryK8/XgzZc908dZZ14G488wdDwL3WKLJ7nyWBlNMc5JA
+         HLjfoJ3rvsOSBnbYqFFPQ9sOK6izHHgpf5q8qF7Zkbnbw2taX8TFp+bMZ1TlhtwSFe
+         p8IhaXuSPCUUKAQUdKeyXaP2ZsZH4T/YcIuiq+SI=
+Date:   Thu, 26 Jan 2023 22:49:29 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     yuji2.ishikawa@toshiba.co.jp
+Cc:     hverkuil@xs4all.nl, mchehab@kernel.org,
+        nobuhiro1.iwamatsu@toshiba.co.jp, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rafael.j.wysocki@intel.com,
+        broonie@kernel.org, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/6] media: platform: visconti: Add Toshiba Visconti
+ Video Input Interface driver user interace
+Message-ID: <Y9LnWfZb+v17+h+X@pendragon.ideasonboard.com>
+References: <20230111022433.25950-1-yuji2.ishikawa@toshiba.co.jp>
+ <20230111022433.25950-4-yuji2.ishikawa@toshiba.co.jp>
+ <2b412539-2236-b41f-c777-bc9e9cf99d66@xs4all.nl>
+ <Y8dFlFkVJS/6+Ib1@pendragon.ideasonboard.com>
+ <TYAPR01MB620161823BA912502CEF0A5992CE9@TYAPR01MB6201.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-References: <0d0de1bc949d24e08174205c13c0b59bd73c1ea8.1674384302.git.geert+renesas@glider.be>
- <167460363944.4058.4676712965831302643.git-patchwork-notify@kernel.org>
- <Y9FG5Wg0PmP4zfV6@google.com> <CABBYNZJEU-GD5J6K8_Ur4PWLvP10VNJGP7e_43H0=W3DOS=PNw@mail.gmail.com>
- <Y9IzMWnOq+r2/4V2@google.com>
-In-Reply-To: <Y9IzMWnOq+r2/4V2@google.com>
-From:   Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Date:   Thu, 26 Jan 2023 12:46:09 -0800
-Message-ID: <CABBYNZ+Na7os7D_C_iV22UhyhobxiETjKkngPWVr14QAph6DfQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: leds: Document Bluetooth and WLAN triggers
-To:     Lee Jones <lee@kernel.org>
-Cc:     patchwork-bot+bluetooth@kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        robh@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <TYAPR01MB620161823BA912502CEF0A5992CE9@TYAPR01MB6201.jpnprd01.prod.outlook.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+Hello Ishikawa-san,
 
-On Thu, Jan 26, 2023 at 12:00 AM Lee Jones <lee@kernel.org> wrote:
->
-> On Wed, 25 Jan 2023, Luiz Augusto von Dentz wrote:
->
-> > Hi Lee,
-> >
-> > On Wed, Jan 25, 2023 at 7:16 AM Lee Jones <lee@kernel.org> wrote:
-> > >
-> > > On Tue, 24 Jan 2023, patchwork-bot+bluetooth@kernel.org wrote:
-> > >
-> > > > Hello:
+On Wed, Jan 25, 2023 at 10:20:27AM +0000, yuji2.ishikawa@toshiba.co.jp wrote:
+> On Wednesday, January 18, 2023 10:04 AM, Laurent Pinchart wrote:
+> > On Tue, Jan 17, 2023 at 12:47:10PM +0100, Hans Verkuil wrote:
+> > > On 11/01/2023 03:24, Yuji Ishikawa wrote:
+> > > > Add support to Video Input Interface on Toshiba Visconti ARM SoCs.
+> > > > The interface device includes CSI2 Receiver, frame grabber, video
+> > > > DMAC and image signal processor.
+> > > > This patch provides the user interface layer.
 > > > >
-> > > > This patch was applied to bluetooth/bluetooth-next.git (master)
-> > > > by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+> > > > A driver instance provides three /dev/videoX device files; one for
+> > > > RGB image capture, another one for optional RGB capture with
+> > > > different parameters and the last one for RAW capture.
 > > > >
-> > > > On Sun, 22 Jan 2023 11:47:27 +0100 you wrote:
-> > > > > Add the missing trigger patterns for Bluetooth and WLAN activity,=
- which
-> > > > > are already in active use.
-> > > > >
-> > > > > While at it, move the mmc pattern comment where it belongs, and r=
-estore
-> > > > > alphabetical sort order.
-> > > > >
-> > > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > >
-> > > > > [...]
+> > > > Through the device files, the driver provides streaming (DMA-BUF) interface.
+> > > > A userland application should feed DMA-BUF instances for capture buffers.
 > > > >
-> > > > Here is the summary with links:
-> > > >   - [v2] dt-bindings: leds: Document Bluetooth and WLAN triggers
-> > > >     https://git.kernel.org/bluetooth/bluetooth-next/c/ef017002b93b
+> > > > The driver is based on media controller framework.
+> > > > Its operations are roughly mapped to two subdrivers; one for ISP and
+> > > > CSI2 receiver (yields 1 instance), the other for capture (yields 3
+> > > > instances for each capture mode).
+> > > >
+> > > > Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> > > > ---
+> > > > Changelog v2:
+> > > > - Resend v1 because a patch exceeds size limit.
+> > > >
+> > > > Changelog v3:
+> > > > - Adapted to media control framework
+> > > > - Introduced ISP subdevice, capture device
+> > > > - Remove private IOCTLs and add vendor specific V4L2 controls
+> > > > - Change function name avoiding camelcase and uppercase letters
+> > > >
+> > > > Changelog v4:
+> > > > - Split patches because the v3 patch exceeds size limit
+> > > > - Stop using ID number to identify driver instance:
+> > > >   - Use dynamically allocated structure to hold HW specific context,
+> > > >     instead of static one.
+> > > >   - Call HW layer functions with the context structure instead of ID
+> > > > number
+> > > > - Use pm_runtime to trigger initialization of HW
+> > > >   along with open/close of device files.
+> > > >
+> > > > Changelog v5:
+> > > > - Fix coding style problems in viif.c
+> > > > ---
+> > > >  drivers/media/platform/visconti/Makefile      |    1 +
+> > > >  drivers/media/platform/visconti/viif.c        |  545 ++++++++
+> > > >  drivers/media/platform/visconti/viif.h        |  203 +++
+> > > >  .../media/platform/visconti/viif_capture.c    | 1201 +++++++++++++++++
+> > > >  drivers/media/platform/visconti/viif_isp.c    |  846 ++++++++++++
+> > > >  5 files changed, 2796 insertions(+)  create mode 100644
+> > > > drivers/media/platform/visconti/viif.c
+> > > >  create mode 100644 drivers/media/platform/visconti/viif.h
+> > > >  create mode 100644 drivers/media/platform/visconti/viif_capture.c
+> > > >  create mode 100644 drivers/media/platform/visconti/viif_isp.c
+> > 
+> > [snip]
+> > 
+> > > > +static int viif_s_edid(struct file *file, void *fh, struct
+> > > > +v4l2_edid *edid) {
+> > > > +	struct viif_device *viif_dev = video_drvdata_to_capdev(file)->viif_dev;
+> > > > +	struct viif_subdev *viif_sd = viif_dev->sd;
+> > > > +
+> > > > +	return v4l2_subdev_call(viif_sd->v4l2_sd, pad, set_edid, edid); }
 > > >
-> > > Why are you taking LED patches through the Bluetooth tree?
-> >
-> > I assume there isn't a tree dedicated to dt-bindings/leds
->
-> % ./scripts/get_maintainer.pl -f Documentation/devicetree/bindings/leds/c=
-ommon.yaml
->  Pavel Machek <pavel@ucw.cz> (maintainer:LED SUBSYSTEM,in file)
->  Lee Jones <lee@kernel.org> (maintainer:LED SUBSYSTEM)
->  Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED=
- DEVICE TREE BINDINGS)
->  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN=
- FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
->  Jacek Anaszewski <jacek.anaszewski@gmail.com> (in file)
->  linux-leds@vger.kernel.org (open list:LED SUBSYSTEM)
->  devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE=
- TREE BINDINGS)
->  linux-kernel@vger.kernel.org (open list)
+> > > Has this driver been tested with an HDMI receiver? If not, then I
+> > > would recommend dropping support for it until you actually can
+> > > test with such hardware.
+> > >
+> > > The DV_TIMINGS API is for HDMI/DVI/DisplayPort etc. interfaces, it's
+> > > not meant for CSI and similar interfaces.
+> > 
+> > More than that, for MC-based drivers, the video node should *never* forward
+> > ioctls to a connected subdev. The *only* valid calls to
+> > v4l2_subdev_call() in this file are
+> > 
+> > - to video.s_stream() in the start and stop streaming handler
+> > 
+> > - to pad.g_fmt() when starting streaming to validate that the connected
+> >   subdev outputs a format compatible with the format set on the video
+> >   capture device
+> > 
+> > That's it, nothing else, all other calls to v4l2_subdev_call() must be dropped from
+> > the implementation of the video_device.
+> 
+> Thank you for your comment. I understand the restriction.
+> I'll remove following functions corresponding to ioctls.
+> 
+> * viif_enum_input
+> * viif_g_selection
+> * viif_s_selection
+> * viif_dv_timings_cap
+> * viif_enum_dv_timings
+> * viif_g_dv_timings
+> * viif_s_dv_timings
+> * viif_query_dv_timings
+> * viif_g_edid
+> * viif_s_edid
+> * viif_g_parm
+> * viif_s_parm
+> * viif_enum_framesizes
 
-Well this doesn't tell us what parts of the dt_bindings have a
-dedicated tree and which doesn't, anyway this doesn't show
-linux-bluetooth so I wonder why people are CCing it.
+This one should stay, it should report the minimum and maximum sizes
+supported by the video nodes, regardless of the configuration of the
+connected subdev.
 
-> > not to mention this was submitted to linux-bluetooth and nobody else
-> > other than Rob reviewed it,
->
-> To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
->     Rob Herring <robh+dt@kernel.org>,
->     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
->     Jacek Anaszewski <jacek.anaszewski@gmail.com>
-> Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
->     linux-wireless@vger.kernel.org, linux-bluetooth@vger.kernel.org,
->     linux-renesas-soc@vger.kernel.org,
->     Geert Uytterhoeven <geert+renesas@glider.be>,
->     Rob Herring <robh@kernel.org>
->
-> > anyway I'd be happy if the dt-bindings patches
-> > would be handled elsewhere.
->
-> Yep, we got this. :)
+> * viif_enum_frameintervals
+> 
+> I can call subdevices directly if I need. Is it a correct understanding?
 
-So if it starts with dt-binding: prefix shall we ignore? Or is just
-for dt-bindings: leds? Or perhaps we can just ignore patches received
-as CC: rather than directly To: field.
+what do you mean exactly by calling subdevices directly ?
 
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> As for viif_try_fmt_vid_cap and viif_s_fmt_vid_cap, 
+> I'll remove pad.g_fmt() call which is for checking pixel format.
+> The check will be moved to viif_capture_link_validate() validation
+> routine triggered by a start streaming event.
+> 
+> > [snip]
 
+-- 
+Regards,
 
-
---=20
-Luiz Augusto von Dentz
+Laurent Pinchart
