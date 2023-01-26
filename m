@@ -2,188 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B83467D0A6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:51:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51C9867D0AD
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:55:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232244AbjAZPvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 10:51:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33736 "EHLO
+        id S230059AbjAZPzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 10:55:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232236AbjAZPvX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:51:23 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B6A9241E9
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:51:21 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id m2so5732605ejb.8
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:51:21 -0800 (PST)
+        with ESMTP id S229791AbjAZPzG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:55:06 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A7D62BF39;
+        Thu, 26 Jan 2023 07:55:05 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id h12so2208638wrv.10;
+        Thu, 26 Jan 2023 07:55:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=v6IsKkKvQ66krTdAokeWZGJe4z9XDgjrPRXuutCuv/M=;
-        b=XHYeLCTKL5zftO2PC01bME8vVJoAoZziC0bsroopO76EaBON5PurQCRLeEyC955Xx5
-         CgxfVsw2a47WI/ghLV44JPz6I2VQ2vz9QVmiPRPE1BwOXD9BAYnbgdWCl5GdL+ABDgM1
-         rzKCCD92uyi/cUkSijeUoZIiFUQzYbYxQXp0CUla/n2hHhKRH6Cvy4UYDApef2mQieIX
-         gTYtynJ2xvxPjtYgBMGSgRk1YqPQjtpMRWPCmcJsZIssq16x/NEcLlT3scnLSdQfOygY
-         yvk/gMt+W3tGIUMIvgOHjYSS0xESnKtjxTJezNXshT9LeXrFD4HXwQHasAtRfaDqTc3P
-         ilJA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mGV6/SH7Wgigrc7TfBBO4pYmyGciuNb6xAad1w8dDc8=;
+        b=Zwtnrv1VEuMxZFJb25MGV69RZN20QSn0TORt9VTPCAjkXtchUan0VVrsOYmSfXLuch
+         nKQLqlYg70yOJYXXNvR+MhKxW4sLeSO2Nk4fizyGexqpCnOUIpDFzfW+e1WjVVOLel/l
+         UHybtcjp5srhLPiBHoseaIWHKWhi3mmAEka34OJXBfaTnb1Cz4GC6thOxs0zdjwb5AQq
+         YpxbNvfxqf4NIaMPfffRFWkJzOUFSynmN2iiJAE/QKa2RDX8F8nrfE3UyDKAsQ/F4C5d
+         F1dqRAmJ2+61peigFVzxMuMTUzKR0GbX51x/fhkhheHoPoLz8fXVZIxcktIs1No6DGk7
+         Lf2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v6IsKkKvQ66krTdAokeWZGJe4z9XDgjrPRXuutCuv/M=;
-        b=GWNBWm9o++Swy1PtrCrYVZ+jOb0vg3P2YDF4kispVLmZx7fDKqzM4AJQvLTkE0Pm1P
-         IyMSaEbduOuTz44VKj4iEM7n5s7+y7+fzfx3FeJqjRf8GCVxwitmbFAreddUV8U/De44
-         PKCWJHYwOH9bySYtH7KxfAdHbqfSzn896TK/EJ4TKgVwrGeNLIKzj8qUa531r+cH8cUO
-         Ydq8H/V1Q8AaTMDu6sBqFAZ8Y+Hcsd87bsrNFuSQA2ib4Hj0cT91T/kox9HRxPKJjmTd
-         XOYbbp6XBzm94EFFVNGab2eHbq3NpS8axJZa2Ya0a5HNVJ8gLJbAzeyeZO+wN8TSBNTy
-         YTMA==
-X-Gm-Message-State: AFqh2kpCRx4HQNxD1yRcWGp6s/k/nPThyOAmzQlvrpTScIMcgH71K+3/
-        Z3RIIqnSpkUveCODoBPJ7BuARrrgWgAEqaTk2dqTZWffSh1sNw==
-X-Google-Smtp-Source: AMrXdXutgw5Ig20FwSCClbnyFAtXgNLQ55QoexeLZX3scBTQOof/miV6rbHWrAUkM8G+I4CVNQC13OZMRhl89FJ9PhQ=
-X-Received: by 2002:a17:906:7186:b0:86c:e53a:d212 with SMTP id
- h6-20020a170906718600b0086ce53ad212mr6377050ejk.182.1674748280100; Thu, 26
- Jan 2023 07:51:20 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mGV6/SH7Wgigrc7TfBBO4pYmyGciuNb6xAad1w8dDc8=;
+        b=IJwXzt2LuS5cx4XfQ/iy7hecwdIKQiZVEa8hr7oNzYYyuMcEvyoYTCJ3J65u6Jidxb
+         9zLbM9JJvI8VkngM+yVMyZqK1P1Ir3S9rPqCvb5sxPEyvbKvV8DGMgCMM/4cVOZYeQqM
+         iqkaHGxz0C/cJlj7iccgqUpuYM+EzxziqYj2goeARn/OlUxC85xPucU7zqkPrnzJ2SWU
+         F2jZup6t+trEHDFZu5gpzF2nuFooNcjoCq6gZaABQYUtFt1mplo74wSv4K/Nh24u1fiR
+         +mavvhDEZId7mD8VFbq2AJfRCQshJXS1PO6xHPPEsKZ/hBbmWW5nNwoloJPFDErbq4Dv
+         7kHA==
+X-Gm-Message-State: AO0yUKUa3ZDAdLiMGIH2gdMPOTFdvTruGpb6VbJ7bVehS8Cpsw5V52El
+        zrPSzF31mU8MCODy2jb1kI0s7MpsniLSpdO3
+X-Google-Smtp-Source: AK7set8dhf4itSkSVXSB8ydeXzNGDm3rbkdtGL2/TF0vvFaQAXKRiyXHDZb9/R5ophTYgEZC43ZSrQ==
+X-Received: by 2002:adf:b101:0:b0:2bf:bf27:2dd2 with SMTP id l1-20020adfb101000000b002bfbf272dd2mr4065583wra.45.1674748503703;
+        Thu, 26 Jan 2023 07:55:03 -0800 (PST)
+Received: from [192.168.247.142] ([46.211.236.58])
+        by smtp.gmail.com with ESMTPSA id u13-20020a5d514d000000b002be2f18938csm1560563wrt.41.2023.01.26.07.55.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jan 2023 07:55:03 -0800 (PST)
+Message-ID: <a782a0d9-c47e-4328-774f-6bef78161d81@gmail.com>
+Date:   Thu, 26 Jan 2023 17:54:56 +0200
 MIME-Version: 1.0
-References: <20230124105643.1737250-1-etienne.carriere@linaro.org> <20230126145321.xs3hjivlpifr5hg7@bogus>
-In-Reply-To: <20230126145321.xs3hjivlpifr5hg7@bogus>
-From:   Etienne Carriere <etienne.carriere@linaro.org>
-Date:   Thu, 26 Jan 2023 16:51:09 +0100
-Message-ID: <CAN5uoS_9t6o3NXkinMDZA6oBnj3t9kkmF5d0zn1stxVZfQwFkA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: optee: add interrupt controller properties
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 2/2] iio: light: Add support for AMS TCS3490 light sensor
+Content-Language: en-US
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        Pascal Paillet <p.paillet@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Paul Gazzillo <paul@pgazz.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230123231028.26073-1-markuss.broks@gmail.com>
+ <20230123231028.26073-3-markuss.broks@gmail.com>
+ <Y8+xamtH/U4vK75e@smile.fi.intel.com>
+From:   Markuss Broks <markuss.broks@gmail.com>
+In-Reply-To: <Y8+xamtH/U4vK75e@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep,
+Hi Andy,
 
-On Thu, 26 Jan 2023 at 15:53, Sudeep Holla <sudeep.holla@arm.com> wrote:
+On 1/24/23 12:22, Andy Shevchenko wrote:
+> On Tue, Jan 24, 2023 at 01:10:25AM +0200, Markuss Broks wrote:
+>> Add a driver for AMS TCS3490 Color Light-to-Digital Converter. This
+>> device provides color and IR (red, green, blue, clear and IR) light
+>> sensing. The color sensing can be used for light source detection and
+>> color temperature measurements.
+> ...
 >
-> On Tue, Jan 24, 2023 at 11:56:41AM +0100, Etienne Carriere wrote:
-> > Adds an optional interrupt controller property to optee firmware node
-> > in the DT bindings. Optee driver may embeds an irqchip exposing
-> > interrupts notified by the TEE world. Optee registers up to 1 interrupt
-> > controller and identifies each line with a line number from 0 to
-> > UINT16_MAX.
-> >
-> > In the example, the platform SCMI device uses optee interrupt irq 5
-> > as async signal to trigger processing of an async incoming SCMI message,
-> > in the scope of a CPU DVFS control. A platform can have several SCMI
-> > channels driven this way. Optee irqs also permits small embedded devices
-> > to share e.g. a gpio expander, a group of wakeup sources, etc... between
-> > OP-TEE world (for sensitive services) and Linux world (for non-sensitive
-> > services). The physical controller is driven from the TEE which exposes
-> > some controls to Linux kernel.
-> >
-> > Cc: Jens Wiklander <jens.wiklander@linaro.org>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > Cc: Marc Zyngier <maz@kernel.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Sumit Garg <sumit.garg@linaro.org>
-> >
-> > Co-developed-by: Pascal Paillet <p.paillet@foss.st.com>
-> > Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
-> > Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
-> > ---
-> > Changes since v1:
-> > - Added a description to #interrupt-cells property.
-> > - Changed of example. Linux wakeup event was subject to discussion and
-> >   i don't know much about input events in Linux. So move to SCMI.
-> >   In the example, an SCMI server in OP-TEE world raises optee irq 5
-> >   so that Linux scmi optee channel &scmi_cpu_dvfs pushed in the incoming
-> >   SCMI message in the scmi device for liekly later processing in threaded
-> >   context. The example includes all parties: optee, scmi, sram, gic.
-> > - Obviously rephrased the commit message.
-> > - Added Cc: tags
-> > ---
-> >  .../arm/firmware/linaro,optee-tz.yaml         | 67 +++++++++++++++++++
-> >  1 file changed, 67 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-> > index d4dc0749f9fd..9c00c27f8b2c 100644
-> > --- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-> > @@ -40,6 +40,14 @@ properties:
-> >        HVC #0, register assignments
-> >        register assignments are specified in drivers/tee/optee/optee_smc.h
-> >
-> > +  interrupt-controller: true
-> > +
-> > +  "#interrupt-cells":
-> > +    const: 1
-> > +    description: |
-> > +      OP-TEE exposes irq for irp chip controllers from OP-TEE world. Each
-> > +      irq is assigned a single line number identifier used as first argument.
-> > +
-> >  required:
-> >    - compatible
-> >    - method
-> > @@ -64,3 +72,62 @@ examples:
-> >              method = "hvc";
-> >          };
-> >      };
-> > +
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    firmware  {
-> > +        optee: optee {
-> > +            compatible = "linaro,optee-tz";
-> > +            method = "smc";
-> > +            interrupts = <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>;
-> > +            interrupt-controller;
-> > +            #interrupt-cells = <1>;
-> > +        };
-> > +
-> > +        scmi {
-> > +            compatible = "linaro,scmi-optee";
-> > +            linaro,optee-channel-id = <0>;
-> > +            interrupt-parent = <&gic>;
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +
-> > +            scmi_cpu_dvfs: protocol@13 {
-> > +                reg = <0x13>;
-> > +                linaro,optee-channel-id = <1>;
-> > +                shmem = <&scmi_shm_tx>, <&scmi_shm_rx>;
-> > +                interrupts-extended = <&optee 5>;
+>> +AMS TCS3490 DRIVER
+>> +M:	Markuss Broks <markuss.broks@gmail.com>
+>> +L:	linux-iio@vger.kernel.org
+>> +S:	Maintained
+>> +F:	Documentation/devicetree/bindings/iio/light/ams,tcs3490.yaml
+> Shouldn't actually be added with the schema patch?
 >
-> Just curious if this can discovered by some communication within OPTEE.
-> You know you are using optee-channel-id 0 for all SCMI and 1 for DVFS.
-> Is it not possible to get the information from OPTEE dynamically like
-> you do for shmem. It is offset within the notification bitmap IIUC, so
-> the question is can be get that from the firmware on the fly. It also
-> gives the firmware to reshuffle things around if needed and don't have to
-> worry about compatibility with DT ?
-
-There is not specific discussions with OP-TEE to know which
-Yet, assuming we have that scmi channel notif ID from optee, how does
-scmi/optee driver relates to optee device irqchip?
-With DT, we get both the optee irqchip ref (phandle) and our channel
-notif irq line number (phandle arg #1).
-Without DT, we still need to reference optee's irqchip.
-
-Best regards,
-etienne
-
-
-
+>> +F:	drivers/iio/light/tcs3490.c
+> I dunno what's the rules but it feels a bit inconsistent in case the schema
+> will leave while driver got, for example, rewritten (as brand new) and reverted
+> (as old one). In such (quite unlikely) circumstances we may end up with the
+> dangling file.
 >
-> --
-> Regards,
-> Sudeep
+> Rob, Krzysztof, Jonathan, what is yours take from this?
+>
+> ...
+>
+>> +config TCS3490
+>> +	tristate "AMS TCS3490 color light-to-digital converter"
+>> +	depends on I2C
+> Hmm... Where is the select REGMAP_I2C?
+>
+>> +	select IIO_BUFFER
+>> +	select IIO_TRIGGERED_BUFFER
+>> +	help
+>> +	  Say Y here if you have an AMS TCS3490 color light-to digital converter
+>> +	  which provides RGB color and IR light sensing.
+>> +
+>> +	  This driver can also be built as a module.  If so, the module
+>> +	  will be called tcs3490.
+> ...
+>
+>> +struct tcs3490 {
+>> +	struct i2c_client *client;
+> Why do you need this?
+>
+>> +	struct regmap *regmap;
+>> +	struct regulator *vdd_supply;
+>> +};
+> ...
+>
+>> +static const struct regmap_config tcs3490_regmap_config = {
+>> +	.reg_bits	= 8,
+>> +	.val_bits	= 8,
+> Seems you are using regmap internal serialization, but does it guarantee the
+> serialization on the transaction level? Or why is it not a problem?
+Well, other drivers seem to have it this way too. I don't really 
+understand why it should be a problem, could you please clarify?
+>
+>> +};
+> ...
+>
+>> +	do {
+>> +		usleep_range(3000, 4000);
+>> +
+>> +		ret = regmap_read(data->regmap, TCS3490_STATUS, &status);
+>> +		if (ret)
+>> +			return ret;
+>> +		if (status & TCS3490_STATUS_RGBC_VALID)
+>> +			break;
+>> +	} while (--tries);
+>> +
+>> +	if (!tries)
+>> +		return -ETIMEDOUT;
+> regmap_read_poll_timeout()?
+>
+> ...
+>
+>> +	ret = regmap_read(data->regmap, chan->address, &val_l);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = regmap_read(data->regmap, chan->address + 1, &val_h);
+>> +	if (ret)
+>> +		return ret;
+> Why not a bulk read into __le16 val?
+>
+>> +	*val = (val_h << 8) | val_l;
+> Use le16_to_cpu().
+>
+>> +	ret = regmap_write(data->regmap, TCS3490_ENABLE, TCS3490_SUSPEND);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return 0;
+> Can be simply
+>
+> 	return regmap_write(...);
+>
+>> +}
+> ...
+>
+>> +static int tcs3490_read_raw(struct iio_dev *indio_dev,
+>> +			    const struct iio_chan_spec *chan,
+>> +			    int *val, int *val2, long mask)
+>> +{
+>> +	struct tcs3490 *data = iio_priv(indio_dev);
+>> +	int ret;
+>> +
+>> +	switch (mask) {
+>> +	case IIO_CHAN_INFO_RAW:
+>> +		ret = tcs3490_read_channel(data, chan, val);
+>> +		if (ret < 0)
+>> +			return ret;
+>> +		ret = IIO_VAL_INT;
+>> +		break;
+> return directly.
+>
+>> +	case IIO_CHAN_INFO_CALIBSCALE:
+>> +		ret = tcs3490_get_gain(data, val);
+> Missing error check.
+>
+>> +		ret = IIO_VAL_INT;
+>> +		break;
+> Return directly.
+>
+>> +	default:
+>> +		ret = -EINVAL;
+>> +		break;
+> Ditto.
+>
+>> +	}
+>> +	if (ret < 0)
+>> +		return ret;
+>> +	return IIO_VAL_INT;
+> Redundant, see above.
+>
+>> +}
+> ...
+>
+>> +static const struct of_device_id tcs3490_of_match[] = {
+>> +	{ .compatible = "ams,tcs3490", },
+> Inner comma is not needed.
+>
+>> +	{ },
+> Terminator entries should go without a comma.
+>
+>> +};
+> ...
+>
+>> +static struct i2c_driver tcs3490_driver = {
+>> +	.driver = {
+>> +		.name = "tcs3490",
+>> +		.of_match_table = of_match_ptr(tcs3490_of_match),
+> Kill of_match_ptr(). Its usage is wrong in 99% of the cases.
+>
+>> +	},
+>> +	.probe_new = tcs3490_probe,
+>> +};
+>> +
+> Redundant blank line.
+>
+>> +module_i2c_driver(tcs3490_driver);
+- Markuss
