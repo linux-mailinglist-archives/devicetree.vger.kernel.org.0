@@ -2,68 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0B6967C2DE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 03:36:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3B6B67C2ED
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 03:54:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbjAZCg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 21:36:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36210 "EHLO
+        id S230301AbjAZCyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 21:54:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjAZCgz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 21:36:55 -0500
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E62C561D4B;
-        Wed, 25 Jan 2023 18:36:53 -0800 (PST)
-Received: by mail-pl1-x634.google.com with SMTP id d9so713879pll.9;
-        Wed, 25 Jan 2023 18:36:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=TilgJNWaH/PIir4Wxj/i44qPjBEK6i+yTW+gTWVxk/A=;
-        b=naxpa4gf7LfN+6b239hNIpOvPU6LGpuCf/VxnLMpEf2/QOaVA3bvkQxEVOiYN9+ye7
-         +jHL9PCPDm8FVqIMLwXmvqrkhYyZdsTEIcgtzrGqPFNgNGTLrJVcj0EJRZEqGyBX6/iC
-         v/IhNjwqQwx8r33+x/2M8Kk+QBrsjLe9IuBGMBWUxfozn/rmVhgB9l2m9TVBBn9hUlh9
-         r40Q59RPSY/t9e9inX09g6cgoVNGVEsq9B7zHKkyeBtzGImYafoqwLeYcq/xrwL+8tvI
-         QUKwnulfXA4zHYU7InWwpanCRBF5+h+nwi6bg5kZlQNWOkCRlGzjxHh/pa+AnVa2d6d4
-         RQuQ==
+        with ESMTP id S229576AbjAZCye (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 21:54:34 -0500
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BDC56469A;
+        Wed, 25 Jan 2023 18:54:33 -0800 (PST)
+Received: by mail-ot1-f48.google.com with SMTP id t7-20020a05683014c700b006864760b1caso373833otq.0;
+        Wed, 25 Jan 2023 18:54:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TilgJNWaH/PIir4Wxj/i44qPjBEK6i+yTW+gTWVxk/A=;
-        b=LGObeGbLp/796hcYyt/wsmbTbaPN2FevUawkU9mMcCPH01pOuGUosoUdJzbdhyqwaE
-         GFvfUx41pgJyZ7MN4UwVVKq3ABTaNrd86+3ETx6IDA+Az9kTnY060GNvD08hEZaJmisV
-         OUgGgVMC+CNzJBx0bCc5dXe3yy/HR7BrrqzmFe7Kf9i+SVHjGCwEnPDpl+40q0Bgo9qb
-         Pk5sG/EREFqdedzQHCcHpNs0F3MZPTFKaaB2RyZQuPUoale4Wr2D8Ia2usAqq3K9/+Kp
-         vKgg8FYKdzvXLtJM/RfJshgkh1PL5XtItc/5F5FePYlo5lmPekOBGd8M0u5z+qKM+cm3
-         R2KQ==
-X-Gm-Message-State: AFqh2kqozaZ+EygQxwiR+THnZCqM32DAkdr33b0rcIDu30VwujZyhXcl
-        HPxPq+u6yXjMzOYYJuBJSNOJiUdSm6gu25GJyz8=
-X-Google-Smtp-Source: AMrXdXvRo3fwzXJBAjTRAY+8iOn9Z6q133XHvaDKtgKOJ0Y7OQWI6Wvz5nyUvivPC9Fmgcgw/d6Qo/vL/XS6j8hmqIU=
-X-Received: by 2002:a17:902:714c:b0:195:eb15:6ed0 with SMTP id
- u12-20020a170902714c00b00195eb156ed0mr2427027plm.19.1674700612894; Wed, 25
- Jan 2023 18:36:52 -0800 (PST)
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8QcPXEvT1pedH9u1w6Jhv/1gc0FF4O/dQCeQVTVS8ME=;
+        b=zbYmbZAJBHoLJ/Cx1gYC0txJsN3eVyRVtScxdGfGu/WPbIQHE3b84nIZyxNjmXB7KV
+         ORHA7RNxFMkQi0v5vXh9q5ckZq/ljIvXEIzds3xwMhtHIgW/MIlH9ym+EHSPCVEvnMg1
+         nrY4TO2Y4jTK1IJAiDr3V2czKVZCkxufzG4SePCatbmoeEc2YV4/8N9RbrO2D5i7o/oG
+         KPrCa5JcUWIMukrzZ/oqFgAXRXttn51CiFU738iXqSWOQAZv+IKQjpwkO5anXdaBWV1o
+         bB3Gy4exGrD0SltiOEEN92p/jLcUu6gQNwRo02A5XW5bbrEJpYJq3oHRYUggp3wKCRZM
+         2mug==
+X-Gm-Message-State: AFqh2ko5axw2BHu2f35VBcVHzgkAI9ms7g2sgVUutu5KRAatS89tQYWp
+        FWRcwgd0svEmGjRsIjB0kHThmhrNdg==
+X-Google-Smtp-Source: AMrXdXvjBV1/2RxdzlYJsd0JJW8lxTIISk3b0T72zFoE7XSt8A8SwGrjWMs7+1eHfgQnVsPCoE15hA==
+X-Received: by 2002:a9d:4b19:0:b0:66e:c78e:9ac0 with SMTP id q25-20020a9d4b19000000b0066ec78e9ac0mr15986269otf.31.1674701672508;
+        Wed, 25 Jan 2023 18:54:32 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 8-20020a9d0108000000b00684d5bd56dbsm2872550otu.66.2023.01.25.18.54.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jan 2023 18:54:32 -0800 (PST)
+Received: (nullmailer pid 75020 invoked by uid 1000);
+        Thu, 26 Jan 2023 02:54:29 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20230126003320.10047-1-laurent.pinchart@ideasonboard.com> <20230126003320.10047-2-laurent.pinchart@ideasonboard.com>
-In-Reply-To: <20230126003320.10047-2-laurent.pinchart@ideasonboard.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 25 Jan 2023 20:36:41 -0600
-Message-ID: <CAHCN7x+PcBk-Y+t3AP4saJK=tntYr85btTzQMFD=WL+KYQfHGg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: Add i.MX8 ISI DT bindings
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-trace-kernel@vger.kernel.org, jk@ozlabs.org, joel@jms.id.au,
+        rostedt@goodmis.org, mhiramat@kernel.org, alistair@popple.id.au,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org, andrew@aj.id.au,
+        linux-fsi@lists.ozlabs.org, krzysztof.kozlowski+dt@linaro.org,
         devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+In-Reply-To: <20230125225416.4074040-2-eajames@linux.ibm.com>
+References: <20230125225416.4074040-1-eajames@linux.ibm.com>
+ <20230125225416.4074040-2-eajames@linux.ibm.com>
+Message-Id: <167470157981.71746.7854932259135609750.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: fsi: Document the IBM I2C Responder
+ virtual FSI master
+Date:   Wed, 25 Jan 2023 20:54:29 -0600
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,216 +67,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 25, 2023 at 6:33 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> The Image Sensing Interface (ISI) combines image processing pipelines
-> with DMA engines to process and capture frames originating from a
-> variety of sources. The inputs to the ISI go through Pixel Link
-> interfaces, and their number and nature is SoC-dependent. They cover
-> both capture interfaces (MIPI CSI-2 RX, HDMI RX) and memory inputs.
->
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+On Wed, 25 Jan 2023 16:54:15 -0600, Eddie James wrote:
+> The I2C Responder translates I2C commands to CFAM or SCOM operations,
+> effectively implementing an FSI master.
+> 
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
 > ---
-> Changes since v2:
->
-> - Describe the interrupts property
-> - Set global minItems and maxItems for interrupts
-> - Set maxItems for power-domains
->
-> Changes since v1:
->
-> - Fix compatible string checks in conditional schema
-> - Fix interrupts property handling
-> ---
->  .../bindings/media/nxp,imx8-isi.yaml          | 152 ++++++++++++++++++
->  1 file changed, 152 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
->
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> new file mode 100644
-> index 000000000000..130fa41b9d8e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> @@ -0,0 +1,152 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/nxp,imx8-isi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: i.MX8 Image Sensing Interface
-> +
-> +maintainers:
-> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> +
-> +description: |
-> +  The Image Sensing Interface (ISI) combines image processing pipelines with
-> +  DMA engines to process and capture frames originating from a variety of
-> +  sources. The inputs to the ISI go through Pixel Link interfaces, and their
-> +  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
-> +  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx8mn-isi
-> +      - fsl,imx8mp-isi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: The AXI clock
-> +      - description: The APB clock
-> +      # TODO: Check if the per-channel ipg_proc_clk clocks need to be specified
-> +      # as well, in case some SoCs have the ability to control them separately.
-> +      # This may be the case of the i.MX8[DQ]X(P)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: axi
-> +      - const: apb
-> +
-> +  fsl,blk-ctrl:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      A phandle referencing the block control that contains the CSIS to ISI
-> +      gasket.
-> +
-> +  interrupts:
-> +    description: Processing pipeline interrupts, one per pipeline
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    description: |
-> +      Ports represent the Pixel Link inputs to the ISI. Their number and
-> +      assignment are model-dependent. Each port shall have a single endpoint.
-> +
-> +    patternProperties:
-> +      "^port@[0-9]$":
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        unevaluatedProperties: false
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - fsl,blk-ctrl
-> +  - ports
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: fsl,imx8mn-isi
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +        ports:
-> +          properties:
-> +            port@0:
-> +              description: MIPI CSI-2 RX
-> +          required:
-> +            - port@0
+>  .../bindings/fsi/ibm,i2cr-fsi-master.yaml     | 41 +++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/fsi/ibm,i2cr-fsi-master.yaml
+> 
 
-The imx8mn only has one port for the ISI.  When I compile the device
-tree with W=1, I get the following:
-arch/arm64/boot/dts/freescale/imx8mn.dtsi:1058.11-1068.7: Warning
-(graph_child_address): /soc@0/bus@32c00000/isi@32e20000/ports: graph
-node has single child node 'port@0', #address-cells/#size-cells are
-not necessary
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Should the "ports" node be replaced with a single port with port@0 removed?
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/fsi/ibm,i2cr-fsi-master.yaml:32:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
 
-The device tree would look something like:
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/fsi/ibm,i2cr-fsi-master.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
 
-port {
-    isi_in: endpoint {
-        remote-endpoint = <&mipi_csi_out>;
-    };
-};
+doc reference errors (make refcheckdocs):
 
-With the above, the messages go away, and I can still see the media
-pipeline and the video captures.  I am not good with YAML, so I am not
-exactly sure how to code that in YAML form.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230125225416.4074040-2-eajames@linux.ibm.com
 
-adam
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: fsl,imx8mp-isi
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 2
-> +        ports:
-> +          properties:
-> +            port@0:
-> +              description: MIPI CSI-2 RX 0
-> +            port@1:
-> +              description: MIPI CSI-2 RX 1
-> +          required:
-> +            - port@0
-> +            - port@1
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    isi@32e00000 {
-> +        compatible = "fsl,imx8mp-isi";
-> +        reg = <0x32e00000 0x4000>;
-> +        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-> +                 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-> +        clock-names = "axi", "apb";
-> +        fsl,blk-ctrl = <&media_blk_ctrl>;
-> +        power-domains = <&mediamix_pd>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                isi_in_0: endpoint {
-> +                    remote-endpoint = <&mipi_csi_0_out>;
-> +                };
-> +            };
-> +
-> +            port@1 {
-> +                reg = <1>;
-> +                isi_in_1: endpoint {
-> +                    remote-endpoint = <&mipi_csi_1_out>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> --
-> Regards,
->
-> Laurent Pinchart
->
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
