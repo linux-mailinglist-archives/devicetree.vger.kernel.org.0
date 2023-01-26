@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A00567C63E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:52:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 377E767C646
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:53:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236526AbjAZIwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 03:52:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39262 "EHLO
+        id S234330AbjAZIxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 03:53:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236502AbjAZIwH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:52:07 -0500
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFD6D402FD;
-        Thu, 26 Jan 2023 00:52:01 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPA id 4310440041;
-        Thu, 26 Jan 2023 08:51:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1674723120;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=89IPk7Ub6kTzIYPBJ6dyur64fSCxEPkfLYPQ09yEpxc=;
-        b=PPEN/2NeG6zvvx9ejClgOukuX9YXS0KGjRPIypDFZdaRH1d1COuOIefNOvmnXbQrZqKOzv
-        uf+IvkL9o5jM7EaVRQJtjobq6nZySRq/d0OSG5rWY1gzwwwnhDqGybdcq4sGhAs8etPpYQ
-        gNO+4Sx1Yh076AAH79MGFtWqjKdGOB833FWTwgVRVbjzVSPUSU+0rpiX32cZCWPzl3M2c0
-        fw6hqNDWXDrOOHzp+FhMXdivG91iKYi2BRWuN2h8hkk9oMhomBwFrOUPjU1Nc/7yMtI4Oq
-        s+G5Kn/GRzkXXqdy8mOBRXSdSSgKZH+7KTdZY68Ir9iJNIpyp0cWSfi9xpXSRg==
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v3 3/3] MAINTAINERS: add the Renesas IDT821034 codec entry
-Date:   Thu, 26 Jan 2023 09:51:37 +0100
-Message-Id: <20230126085137.375814-4-herve.codina@bootlin.com>
+        with ESMTP id S233473AbjAZIxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:53:42 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE4DC6C100;
+        Thu, 26 Jan 2023 00:53:27 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 409976602D35;
+        Thu, 26 Jan 2023 08:53:25 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1674723206;
+        bh=HX+xRQ1MW+zhTnCO03qIVVo98R9P1arkoDNOQVwfKU0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=BAtopgoj/QqMawnbD1SOcgdbch/1thvXqI/fRAGMel/anVgACYESLpX7hD0PONfe5
+         M+86Z4d21XQM2t5o31Awz9QjjHzj/T7gYMOkoSoWds7fhmGkQe1EgpT3+91kJrUnxU
+         dDyb9CRba9h37GHu3SNtvfOmm0Ds2qLtiTFOg6q5wz95H8s6Ha5KUq/HTra454shpk
+         Y48r1+IMxr/avlYigxSx0wxyXldpU50MKtmSvz4YFBh7ZcwzaHbrbgHhrfBRUJ/B2a
+         N/P6I9PfqNIYlFft6ZzjtXcsU/8EhVcA7yrSgx6JqPdXj35v63mGWrkCccGOhsP0lF
+         W9JV0MOVyG2/Q==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     sboyd@kernel.org
+Cc:     mturquette@baylibre.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com,
+        edward-jw.yang@mediatek.com, johnson.wang@mediatek.com,
+        wenst@chromium.org, miles.chen@mediatek.com,
+        chun-jie.chen@mediatek.com, rex-bc.chen@mediatek.com,
+        jose.exposito89@gmail.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Subject: [PATCH v2 0/6] MediaTek Frequency Hopping: MT6795/8173/92/95
+Date:   Thu, 26 Jan 2023 09:53:15 +0100
+Message-Id: <20230126085321.87267-1-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230126085137.375814-1-herve.codina@bootlin.com>
-References: <20230126085137.375814-1-herve.codina@bootlin.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,32 +59,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After contributing the driver, add myself as the maintainer for the
-Renesas IDT821034 codec.
+Changes in v2:
+ - Rebased over v4 of my clock drivers cleanups series [1]
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+This series adds support for Frequency Hopping (FHCTL) on more MediaTek
+SoCs, specifically, MT6795, MT8173, MT8192 and MT8195.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9dcfadec5aa3..31115a7e01c1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17809,6 +17809,13 @@ F:	Documentation/devicetree/bindings/net/renesas,*.yaml
- F:	drivers/net/ethernet/renesas/
- F:	include/linux/sh_eth.h
- 
-+RENESAS IDT821034 ASoC CODEC
-+M:	Herve Codina <herve.codina@bootlin.com>
-+L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/sound/renesas,idt821034.yaml
-+F:	sound/soc/codecs/idt821034.c
-+
- RENESAS R-CAR GYROADC DRIVER
- M:	Marek Vasut <marek.vasut@gmail.com>
- L:	linux-iio@vger.kernel.org
+In order to support older platforms like MT6795 and MT8173 it was
+necessary to add a new register layout that is ever-so-slightly
+different from the one that was previously introduced for MT8186.
+
+Since the new layout refers to older SoCs, the one valid for MT8186
+and newer SoCs was renamed to be a "v2" layout, while the new one
+for older chips gets the "v1" name.
+
+Note: These commits won't change any behavior unless FHCTL gets
+      explicitly enabled and configured in devicetrees.
+
+[1]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=714059
+
+AngeloGioacchino Del Regno (6):
+  clk: mediatek: fhctl: Add support for older fhctl register layout
+  dt-bindings: clock: mediatek,mt8186-fhctl: Support MT6795,
+    MT8173/92/95
+  clk: mediatek: mt6795: Add support for frequency hopping through FHCTL
+  clk: mediatek: mt8173: Add support for frequency hopping through FHCTL
+  clk: mediatek: mt8192: Add support for frequency hopping through FHCTL
+  clk: mediatek: mt8195: Add support for frequency hopping through FHCTL
+
+ .../bindings/clock/mediatek,mt8186-fhctl.yaml |  7 +-
+ drivers/clk/mediatek/clk-fhctl.c              | 26 ++++++-
+ drivers/clk/mediatek/clk-fhctl.h              |  9 ++-
+ drivers/clk/mediatek/clk-mt6795-apmixedsys.c  | 63 ++++++++++++++++-
+ drivers/clk/mediatek/clk-mt8173-apmixedsys.c  | 65 ++++++++++++++++-
+ drivers/clk/mediatek/clk-mt8186-apmixedsys.c  |  2 +
+ drivers/clk/mediatek/clk-mt8192.c             | 67 +++++++++++++++++-
+ drivers/clk/mediatek/clk-mt8195-apmixedsys.c  | 69 ++++++++++++++++++-
+ drivers/clk/mediatek/clk-pllfh.c              | 23 +++++--
+ drivers/clk/mediatek/clk-pllfh.h              |  1 +
+ 10 files changed, 311 insertions(+), 21 deletions(-)
+
 -- 
 2.39.0
 
