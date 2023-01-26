@@ -2,163 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C2A467D8E5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 23:55:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 200B367D941
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 00:03:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231480AbjAZWzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 17:55:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53678 "EHLO
+        id S231480AbjAZXD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 18:03:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233076AbjAZWzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 17:55:47 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897AA2DE4A
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 14:54:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1674773691;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=p5Ykxjtl3TsXTsPdCfEmgAHl6ut65lEBsB3rbec3S1g=;
-        b=MhHy83KJPpOKvy3NzHd343lYTg1a6SZmWm3DdZdg2bXPF7JYf/qkwR6h4Z6BT3J5em+Pss
-        T/YcT7Seb/W1V8QB/JEbTaiKHj78oZnnaIOLcM1ef7ZPNXKcch/RHfhKv+OyJ9SJrZ6ZtV
-        fzFcxgSCfuZ+IXZzw0vPOxbDDIVc1XQ=
-Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com
- [209.85.210.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-240-qYkJg6GxOMSnuGCi9PaZRQ-1; Thu, 26 Jan 2023 17:54:50 -0500
-X-MC-Unique: qYkJg6GxOMSnuGCi9PaZRQ-1
-Received: by mail-ot1-f70.google.com with SMTP id v12-20020a9d4e8c000000b0068653f5e950so1496337otk.13
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 14:54:50 -0800 (PST)
+        with ESMTP id S233209AbjAZXD2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 18:03:28 -0500
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2F604DE16
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 15:03:26 -0800 (PST)
+Received: by mail-io1-xd2a.google.com with SMTP id h184so1191006iof.9
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 15:03:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lDvjx1OAw6eQs2/sFgtQAyk0Q6Guc7Gzx5Io8f3s9oI=;
+        b=lHx/lO9HI6ftgZ/rw+Z06Dt3hSVRG+R/CtayYvvCendTbJHv2BcjDkc2efh4WYv4T8
+         ak5rcMF7F+iP90vUOc/umofoyKiErte6ngVbTSc8VmAXdbDlGwu5Lb4ataRpU8IkLcRn
+         eRSeICbV3V+o1EStDHRUvc6JjUVG0zU6326FOTcjaDG0oXBaIFcU32RjiNUcgQfi7bfD
+         x+FYNG5IdBr39hGAXKqogObuhvrPrCoLfTjJPRbqJuEkbdPuskY0hw5EkGu/N6/1mLXJ
+         KbJhIzr6jNC5mr2iK4g8b8VX1dU5sRCmiVr+fRAV++Lvzy89QnWxbP/GQ2y5WGMllSf7
+         4I3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p5Ykxjtl3TsXTsPdCfEmgAHl6ut65lEBsB3rbec3S1g=;
-        b=pehG08VW4D6o0n6xBQq61dr7oG6Lu79ZSmIrFXmnrCDgH7amy6nQQQWKPP7bKHpeaP
-         lwtQzUX50oEBq385OF7n8EwC+JMRgMjMRlRsvLry/Zad6CDk3nZlzJ2y3BsLbtlzcHMm
-         ErudlrA18KzR7UFwQ1BmUO0FuJc9yMws20WzwIn5xe1dQMR7lgaZd60NMP0hmU7nikWC
-         W+8cwz3lwGbsbV2wzqM2DhWFkURuzAEL9zQo/VYKQLuS7e4qSxKf5RrnsUUQLMn286II
-         H5pLTDUcMnYYq4KojZZQ76XYwEgzw895X4RbFnGJyq7W/IbYKkcapJNCMw4vUYP4jp7a
-         iUxA==
-X-Gm-Message-State: AFqh2kosGEw8I65qTtzIr7g3M/otoq5ZsauB+Tgry7EiSaPdopSfiz5W
-        qaEdgosKBrkTeLoKeTCJQz+OuNlz8tFHOwTHY4hn/4phOZkbBQKZM0UgbqtCZhjIj/QwITj+iyU
-        8YSwGVly7Rbws70+jUGOlyg==
-X-Received: by 2002:a05:6870:1609:b0:15e:ce8d:f65c with SMTP id b9-20020a056870160900b0015ece8df65cmr23449616oae.23.1674773689403;
-        Thu, 26 Jan 2023 14:54:49 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXsdeliN+wRD0ouJycj0uRxI8ORwWz77jZBv4UziUIwkNFHcqUC+w2hRdyGCIUFpexruansoig==
-X-Received: by 2002:a05:6870:1609:b0:15e:ce8d:f65c with SMTP id b9-20020a056870160900b0015ece8df65cmr23449601oae.23.1674773689119;
-        Thu, 26 Jan 2023 14:54:49 -0800 (PST)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::21])
-        by smtp.gmail.com with ESMTPSA id u2-20020a056870304200b0015b64f8ff2bsm1043015oau.52.2023.01.26.14.54.47
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lDvjx1OAw6eQs2/sFgtQAyk0Q6Guc7Gzx5Io8f3s9oI=;
+        b=SQ8CGHTK+0Ws5WKvWZv/dY++QwrRIDwjx/A61XzIV49y1nmrnPYnWaUfLVtoGQzJLg
+         QWMT5uru/cGxbfZh9OgEkHiZb29/hXzowsRceQ4+mt6V+mo0FMHXmJGCew+SEu6QbPaF
+         4QxXmqwWNEG9SLN6hq0X6lqHGZsqskoYHzs+Fo4vKsxQOF06KkwzsG4KXfTqYerGiNx9
+         tt2XKzWhBGKbv80kVshhn798Ok8GL85Tmru3rpqupVhUPpgO3o6GKcqgbtUaPvdY/SrG
+         QxCj+WI7+9HJOdQuMjP+4s/uHU1tRfP8tZAoJI3w0eGg79q3xahr7tpgXz950Ll2OlCL
+         l5qw==
+X-Gm-Message-State: AFqh2kp/WpPjTZek+vJD2XxXLwEjut6b3EKhT5CBl3QAbaJAB+k7Cwmk
+        IzUtufdpV5YxFpqM+gyyg3ZoFqHEyDnMa/ujZ3Y=
+X-Google-Smtp-Source: AMrXdXvzqmdWnM7zCcU7G7xkVdOfFqlEHNh6UDZ5VeNfnQFBuIboNwXtKkVcvGdKTwuYmS3pvlRXEg==
+X-Received: by 2002:a05:6602:1253:b0:6e3:19f:b3c3 with SMTP id o19-20020a056602125300b006e3019fb3c3mr27906330iou.0.1674774206203;
+        Thu, 26 Jan 2023 15:03:26 -0800 (PST)
+Received: from eriador.lumag.spb.ru ([194.204.33.9])
+        by smtp.gmail.com with ESMTPSA id l4-20020a6bd104000000b006f8b7d869a0sm670924iob.1.2023.01.26.15.03.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 14:54:48 -0800 (PST)
-Date:   Thu, 26 Jan 2023 16:54:46 -0600
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
+        Thu, 26 Jan 2023 15:03:25 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sa8295p-adp: Add max20411 on
- i2c12
-Message-ID: <20230126225446.rjckq5p35zeozphq@halaney-x13s>
-References: <20230124184440.1421074-1-quic_bjorande@quicinc.com>
- <20230124184440.1421074-4-quic_bjorande@quicinc.com>
+        Taniya Das <quic_tdas@quicinc.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/7] clk: qcom: msm8996: add APCS clock driver
+Date:   Fri, 27 Jan 2023 01:03:12 +0200
+Message-Id: <20230126230319.3977109-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230124184440.1421074-4-quic_bjorande@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 24, 2023 at 10:44:40AM -0800, Bjorn Andersson wrote:
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> 
-> The SA8295P ADP has a Maxim max20411 step-down converter on i2c12.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
-> 
-> Changes since v1:
-> - i2c node had changed name
-> 
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 41 ++++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
+The sys_apcs_aux clock can be used by CPU and CBF clock drivers to drive
+those clocks from GPLL0 while doing initial setup. Add simple driver to
+setup and export this clock.
 
-I realized today this has to do with the comment over at:
+Changes since v4:
+- Expand comments in the apcs-msm8996 driver describing the delay and
+  the reason for setting up the sys_apcs_aux clock as a fixed rate
+  rather than a fixed factor clock.
 
-    https://lore.kernel.org/all/30166208-ba9d-e6e6-1cd2-807a80536052@quicinc.com/
+Changes since v3:
+- Split the patch 3/6 into two: first one moves existing strings, second
+  one adds new compatible strings to the conditionals.
 
-and I just didn't realize that the schematic I've started looking at
-black boxes the SOM/SIP which holds this... darn I thought I could see
-more than I could :(
+Changes since v2:
+- Added the conditional clause to schema forbidding usage of clocks and
+  clock-names on platforms which do not pass additional clocks to the
+  APCS device node (Krzysztof)
+- Added SDX55 compat string
+- Moved MSM8976 compat to the list of platforms using syscon.
 
-I took a similiar patch for a spin on sa8540p-ride (which I'll later
-submit), and things worked fine (I'm not really consuming the output of
-the regulator mind you).
+Changes since v1:
+- Removed the clk.h header inclusion (Stephen)
+- Changed the module license from GPL v2 to bare GPL.
 
-Downstream devicetree indicates all of this looks ok except for possibly
-the below comment:
 
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> index bb4270e8f551..642000d95812 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> @@ -266,6 +266,27 @@ &dispcc1 {
->  	status = "okay";
->  };
->  
-> +&i2c12 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c12_state>;
-> +
-> +	status = "okay";
-> +
-> +	vdd_gfx: regulator@39 {
-> +		compatible = "maxim,max20411";
-> +		reg = <0x39>;
-> +
-> +		regulator-name = "vdd_gfx";
-> +		regulator-min-microvolt = <800000>;
+Dmitry Baryshkov (7):
+  dt-bindings: mailbox: qcom: add SDX55 compatible
+  dt-bindings: mailbox: qcom: enable syscon compatible for msm8976
+  dt-bindings: mailbox: qcom: correct the list of platforms using clocks
+  dt-bindings: mailbox: qcom: add missing platforms to conditional
+    clauses
+  dt-bindings: mailbox: qcom: add #clock-cells to msm8996 example
+  mailbox: qcom-apcs-ipc: enable APCS clock device for MSM8996
+  clk: qcom: add the driver for the MSM8996 APCS clocks
 
-Is there a reason you chose this instead of the 500000 I see downstream?
+ .../mailbox/qcom,apcs-kpss-global.yaml        | 37 ++++++--
+ drivers/clk/qcom/Makefile                     |  2 +-
+ drivers/clk/qcom/apcs-msm8996.c               | 88 +++++++++++++++++++
+ drivers/mailbox/qcom-apcs-ipc-mailbox.c       |  2 +-
+ 4 files changed, 118 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/clk/qcom/apcs-msm8996.c
 
-> +		regulator-max-microvolt = <968750>;
-
-Likewise, I see in this brief description of the regulator
-that the upper bound is higher than this (1.275 V). I am not sure if
-the values in the devicetree are supposed to describe the
-min/max of the regulator itself, or of what your board can really
-handle/needs (the latter I guess makes more sense since you wouldn't want to
-accidentally request a current draw that could melt something.. that can
-be fun). I do see you've got that min/max in the driver itself (now that
-I peaked at that patch).
-
-https://www.analog.com/en/products/MAX20411.html#product-overview
-
-For what it is worth, I also see a SIP document that states vdd_gfx min/max
-is 0.56/1.03 V, which is ultimately what you'd feed this into. The
-downstream devicetree uses the max value you provide though.
-
-No idea how much faith I should put into the SIP document's bounds, or
-downstream, but I thought I should at least highlight them.
-
-Thanks,
-Andrew
+-- 
+2.39.0
 
