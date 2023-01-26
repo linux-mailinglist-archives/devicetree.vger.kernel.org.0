@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81C8367D86A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 23:33:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 269A967D86F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 23:33:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233209AbjAZWdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 17:33:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34144 "EHLO
+        id S229681AbjAZWdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 17:33:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233223AbjAZWcw (ORCPT
+        with ESMTP id S232983AbjAZWcw (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 17:32:52 -0500
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B047671649
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 14:32:29 -0800 (PST)
-Received: by mail-qt1-x829.google.com with SMTP id d3so2622649qte.8
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 14:32:29 -0800 (PST)
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D294E728DE
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 14:32:30 -0800 (PST)
+Received: by mail-qv1-xf30.google.com with SMTP id s4so2610884qvo.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 14:32:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=criticallink.com; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3zFvxOAC0q2c06nWzVmCaxdWpCqkl5RVXm0xsv73DMs=;
-        b=o7lK4z8o7B55iaeb/QVxMD9CSLSJVLJ+w6AHvvYrEztgbkkhfDpccJL5XYVNWY5yui
-         +n0LYYi+DDKn9qEfjUU1fed+Owwzbpf431Fleqr10EISUzsNi/sYpeoW4JW0EdyTnLtA
-         mN4zxcQwsQi+LujmWk6kqP5n6TnS4IdRoZidGWsoJuBNKxkooKtpibgK5X67u2OPXYnE
-         5aCgFsC39nIysvoepqn5YPwDt3Ba+Mk+ozWkw1JaJ5H5YHRPlouCaLKD/EOIbluy7VQ6
-         xHsqrviK+JXTKv8fC6fUqXrOHDIFvipPMtwKDJ7aHmziSOxO6aKbOBnhANESRq/3xpyI
-         ejBQ==
+        bh=4xEhI3axOJYS2dd9mxNrX3agzmt2SZlxn5ns5AzUH58=;
+        b=cEzkNNjy9xdn2V+pJO12CL+zMeml5aYU0d5MSRymk3vzhECNfnAxv1i6QuiVcSung9
+         HKYXTxKhnCqIQpI5WID+qZM4HBfq75uXYeRVOoN7J9VOOhb2MbC8GUJ8z/vwK6MgWhH7
+         l8zzsyqzuNrtLFoh3MogI7R9KgSFwfyb4ysrZsOHEm/e3CaNdURMwSmuG0z3LXh9UuMv
+         SIFOhIVuYksdSG/fttoK7FrudzTxSUuMREd/wnDFhDhCeb2LyBH+0i1AtDuYb+rPg1hK
+         vwF81gE0fo/5zvsSrS9iRVv3ZT/m0zAGoqQCLHd+YqYcyJ+Jm6FRe2j8+3DYT0RorNsL
+         cyIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3zFvxOAC0q2c06nWzVmCaxdWpCqkl5RVXm0xsv73DMs=;
-        b=L5CAO9jOaDon1spamj/R6a3Y24SwRS5e0HQpqvLB/q2tebccnZYdeqS0qCqXnqLuQY
-         VJBDfxEAbNFyGnm03HZOoLVmNucCXzuWdFcX17ktJ/6PLw9n7+fYf46PYOhHBy7F7BbG
-         2WzaWzbTavOKiUXDGqpHE35JKKeyC1GcETP99opEpuQfOSp2k5vqCT91h6a5hhB+kHAy
-         w+uZVcyNNzI2pnMCHkPC0Gbbcy83FYM11hH6wHoqz85e/eOlf8kH/TAIbCy5INEQPBXQ
-         9aC//iThMxvuuew0xW3KXHjgdlVc0SJPpQQuSyNPuLs/IdvFqwCwJ43EtUt7w0mPgOOI
-         5L3w==
-X-Gm-Message-State: AFqh2krbZ9CagGh0FcN4qxFn3G8v23oOpdytR9Rwe/+dzvd+xlWHLRfe
-        xXFWjUUTcLcDgPjI1op2LudvVA==
-X-Google-Smtp-Source: AMrXdXufwfJoYgTc3AtPHx009XAQsWrjQR/+95PfexQQA6FT3nNVJvVyXh7gdStBGf9RlJoP3weqew==
-X-Received: by 2002:a05:622a:1995:b0:3b2:4309:99e with SMTP id u21-20020a05622a199500b003b24309099emr73641310qtc.54.1674772348797;
-        Thu, 26 Jan 2023 14:32:28 -0800 (PST)
+        bh=4xEhI3axOJYS2dd9mxNrX3agzmt2SZlxn5ns5AzUH58=;
+        b=5fn9YSkBtwW/ePmWIYV91qXXQlgE2mfc4cFV/n9kJB5iN2Lp+BMKaxIoY1TeGLZZgI
+         5ZRtN0VBtq2hDlSvdqMU8D70+SMOwrTEDApOgOWSYoQ3NsVd14CRZ5FcrYkl67HZyKvK
+         Ay4m5RUp9rNjtIWej5wO5FXbiUzuS8eSQyD7Hcak7yeT4Lx4qZyuAGZZl6dusm8TlH5S
+         jiLG9cumH1YYmf82Bdw1Yqo9b8gmH+77t8VVam9MOPzHokTWvTShtjF7/PxyANfcGJPY
+         lU7GoYz1cD5RNqICeVTbdj953j9C6JXhd69xYhLRqxDiW37y69+Om4WixLvd0dehplKC
+         iRHA==
+X-Gm-Message-State: AFqh2ko7pouX1K4ewWadPafR2g0mZZXT1lG0I01X0WYJomxRGxqZ0ZMu
+        lNHw3DiN3pLVQ4lwqhNFAgvsbPUKNpAJpAToOJo=
+X-Google-Smtp-Source: AMrXdXuzBOyI5/KyWaygGhCjxZsF6FqdobUQud3r/7841g2Ny78wWU6KYvEP1doyOL2yMhzPTNjRZA==
+X-Received: by 2002:a05:6214:4287:b0:535:2d28:bf1d with SMTP id og7-20020a056214428700b005352d28bf1dmr61600177qvb.33.1674772349768;
+        Thu, 26 Jan 2023 14:32:29 -0800 (PST)
 Received: from [127.0.1.1] (static-72-90-70-109.syrcny.fios.verizon.net. [72.90.70.109])
-        by smtp.gmail.com with ESMTPSA id m7-20020a05620a220700b006ff8a122a1asm1723091qkh.78.2023.01.26.14.32.27
+        by smtp.gmail.com with ESMTPSA id m7-20020a05620a220700b006ff8a122a1asm1723091qkh.78.2023.01.26.14.32.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 14:32:28 -0800 (PST)
+        Thu, 26 Jan 2023 14:32:29 -0800 (PST)
 From:   Jonathan Cormier <jcormier@criticallink.com>
-Date:   Thu, 26 Jan 2023 17:32:23 -0500
-Subject: [PATCH v4 1/5] dt-bindings: hwmon: adi,ltc2945: Add binding
+Date:   Thu, 26 Jan 2023 17:32:24 -0500
+Subject: [PATCH v4 2/5] hwmon: ltc2945: Add devicetree match table
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230126-b4-ltc2945_shunt_resistor-v4-1-bb913470d8da@criticallink.com>
+Message-Id: <20230126-b4-ltc2945_shunt_resistor-v4-2-bb913470d8da@criticallink.com>
 References: <20230126-b4-ltc2945_shunt_resistor-v4-0-bb913470d8da@criticallink.com>
 In-Reply-To: <20230126-b4-ltc2945_shunt_resistor-v4-0-bb913470d8da@criticallink.com>
 To:     Jean Delvare <jdelvare@suse.com>,
@@ -65,98 +65,69 @@ To:     Jean Delvare <jdelvare@suse.com>,
 Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Bob Duke <bduke@criticallink.com>,
         John Pruitt <jpruitt@criticallink.com>,
-        Jonathan Cormier <jcormier@criticallink.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+        Jonathan Cormier <jcormier@criticallink.com>
 X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1715;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1025;
  i=jcormier@criticallink.com; h=from:subject:message-id;
- bh=zommGdK1AE/P2wkRC+Wfs7Ff5ewrg2oHpdh2GCpmvb4=;
- b=owEBbQKS/ZANAwAKAdzX/S4LNuuqAcsmYgBj0v96zdNvjLqjJDJT6uP55wg3FfQKjVKHekgLyJ/H
- g9+UYSiJAjMEAAEKAB0WIQT/MozqCeZtYxNnVN/c1/0uCzbrqgUCY9L/egAKCRDc1/0uCzbrqm5FEA
- CGCashV5T/gehXbDpyC6N+qeRK93QJKBK3yy4ryoch6+CQLU1jV1e2Nm2Lget6jA7r8WvFD/JYiktZ
- EA1YE0dvxdntUT5l92NeBnRsnvF/osVZOWiy//mp363XuQ1XmqWSjdV49lmiEV8U3MtR7T6v3Un3pf
- +qHaF6h9BkSCjoZDuo4yi3ZrWHTHQz7YHPhcRnwo1hJ81wVt0K1+L0Pvch2cK3oWgrqQzto4f2JeBe
- vWuMn528NyfLnC5HJMOc5fjbDUoADlE7dcEmnyitrRTx4xZOHL0V+Y1WeZsdV2OhYLCeHZd2bTS2I0
- 1PRBgpUMfDI51vJftqm4DH6BNTDRYF2n0ar9J/7KEA+L32eU+/GhejGGzSONu2rW1/6rQXBxcAJXiE
- OKec5CU7dcXLN0j2RU2qSD6cZpTSRsRlh8aGO6o3lNiBD2rDz0+9+OeN9rDxz0mCBdKVu94zBNdJG3
- VpiUkoaolGWhqWvje6zIb1VCY9u/0i//+6NB/+pofpwFR8XqrDyf0OvRsjIXFH3svI0Y78wwhBpops
- egwbN3FeiEMaa2z5KRrO1iuR46IAoBYDzDsbPiREr4fi7RRMqVHxe3GvlhxMIQu+wtolpWq0U3cVMg
- TUOxQXklybtJEvajU54xYWmzKoC850y9iYg/ZjT2dYI7V9Uu3PV2/+y3ZA2Q==
+ bh=Ko4/DNeywEIQUpedzI15zf/CLimbk3xwVSNJ1d5SvMM=;
+ b=owEBbQKS/ZANAwAKAdzX/S4LNuuqAcsmYgBj0v967dbZK3pTHY2jf3XbNoFu7verxjCaGB5B9/94
+ 99Zfs7eJAjMEAAEKAB0WIQT/MozqCeZtYxNnVN/c1/0uCzbrqgUCY9L/egAKCRDc1/0uCzbrqqUfD/
+ 4oWWVTbKPgDKGULT2hNoHx/PX85X3YWhcjEp1/ZPPYjIXrqO/Fbu0x3mXg1ki52jK7s5bqdjxPn8Im
+ br2YFa9GAiX7kRSE8JQqtsypb7cD8SP6WhXEftP8I7jJMDINzWkIrqrguLlxnk+gdypv4jydKPb0Sv
+ h91mCNu/hc2Zs6uV/+P9Yozh71LK9r7uVB4Sk9OSag6Ld2cYmHDVoVl5cNZmOvFxrQEjbn1nGvsfpl
+ VJbMZ4sALN8wX0MJ05ISUf8+Py9fq9Cto+cwPAkKo5CemIGoGf5renPvPLgWQMyJiY/PyTDCeM+S4P
+ GRY1r5KsOBsCEc++b2riR7Shjy72oQZY+j9XAXs39vSZrY9/0+xfmbjDkBWEtP8mHzzbIeeYpe43Ir
+ fAWhkbJP+VW7ZfKmOCw2TbgYeBf/2fD7/3vAro2ZBE6PMu1+yqIEHZ3tWwelW2PmfsddvgchoruM1j
+ aaxlCeHlG8xjOdiNXiWuTFzPtnXup5a/aiBrCJG3ftT45xtRDwTFIosHRp7ZrCXcUVhB09JAqysPM3
+ 9XWaKXRjz9NkYdTN/BVbhpPyVXvG9DCmkw1lUTUEhQKU26Bnr96fBrMydOF4vbeEpdXO0T2F82QrDI
+ zCnCXAq2Q4Od6fA9XDEVplrpnl6Ahc38XDbOMbvuDxyefknFaNMlJxFIWkUw==
 X-Developer-Key: i=jcormier@criticallink.com; a=openpgp;
  fpr=FF328CEA09E66D63136754DFDCD7FD2E0B36EBAA
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Create initial binding for the LTC2945 I2C power monitor.
+Add adi,ltc2945 compatible
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
 ---
- .../devicetree/bindings/hwmon/adi,ltc2945.yaml     | 49 ++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+ drivers/hwmon/ltc2945.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml
-new file mode 100644
-index 000000000000..5cb66e97e816
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/adi,ltc2945.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/hwmon/ltc2945.c b/drivers/hwmon/ltc2945.c
+index 9adebb59f604..9af3e3821152 100644
+--- a/drivers/hwmon/ltc2945.c
++++ b/drivers/hwmon/ltc2945.c
+@@ -58,6 +58,12 @@
+ #define CONTROL_MULT_SELECT	(1 << 0)
+ #define CONTROL_TEST_MODE	(1 << 4)
+ 
++static const struct of_device_id __maybe_unused ltc2945_of_match[] = {
++	{ .compatible = "adi,ltc2945" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, ltc2945_of_match);
 +
-+title: Analog Devices LTC2945 wide range i2c power monitor
-+
-+maintainers:
-+  - Guenter Roeck <linux@roeck-us.net>
-+
-+description: |
-+  Analog Devices LTC2945 wide range i2c power monitor over I2C.
-+
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/LTC2945.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ltc2945
-+
-+  reg:
-+    maxItems: 1
-+
-+  shunt-resistor-micro-ohms:
-+    description:
-+      Shunt resistor value in micro-Ohms
-+    default: 1000
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        power-monitor@6e {
-+            compatible = "adi,ltc2945";
-+            reg = <0x6e>;
-+            /* 10 milli-Ohm shunt resistor */
-+            shunt-resistor-micro-ohms = <10000>;
-+        };
-+    };
-+...
+ static inline bool is_power_reg(u8 reg)
+ {
+ 	return reg < LTC2945_SENSE_H;
+@@ -475,8 +481,9 @@ MODULE_DEVICE_TABLE(i2c, ltc2945_id);
+ 
+ static struct i2c_driver ltc2945_driver = {
+ 	.driver = {
+-		   .name = "ltc2945",
+-		   },
++		.name = "ltc2945",
++		.of_match_table = of_match_ptr(ltc2945_of_match),
++	},
+ 	.probe_new = ltc2945_probe,
+ 	.id_table = ltc2945_id,
+ };
 
 -- 
 2.25.1
