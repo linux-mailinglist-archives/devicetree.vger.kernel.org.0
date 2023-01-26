@@ -2,132 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2778367D03C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:31:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04A8A67D041
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:32:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231823AbjAZPb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 10:31:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43210 "EHLO
+        id S232321AbjAZPcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 10:32:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231659AbjAZPb0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:31:26 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AFD04237;
-        Thu, 26 Jan 2023 07:31:25 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id f5-20020a9d5f05000000b00684c0c2eb3fso928837oti.10;
-        Thu, 26 Jan 2023 07:31:25 -0800 (PST)
+        with ESMTP id S231659AbjAZPcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:32:12 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 109AF234D8
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:32:11 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id y1so2172437wru.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:32:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=BOOLjJP/DVblUUBITFT/Clnx2J0qjci9FP4191B8GGA=;
-        b=kfF4oJ+7bDkiArH9VCNhiOZA3zJMx5SUjUkq6wS1uNb4NBxvFpate7JTlgBQlrmhxo
-         h+D5YRvrEAVDq1X9fq8VekKEmJsG/GADiCKx5F0VmzQcWD5rrC2f2PGrDIVTNG0goeUH
-         0RfZmLKKqVgRCgXER1Af5Crae/ibLMNO0PQPSqlMBKKGsr7PZ1SKkzPan1e03NVAumV3
-         RNdOtSkToPSxofnR9sTgpc5N4miEasySuU85O5vaFgEZokGyrppqYD0N6nvD5JJeH8Gp
-         /rlktDvejDB7LyzqLKOVPyTbnEsTsH/cNLqHceRSmKE+eT4g7n44mEEjVathpvQEZRXq
-         Xo2A==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jz1yQJDh82hmVQElGHGWfr/ouKY/iJoAmFgYkVIjURw=;
+        b=CWVyglyvdNmFmSjrgGGDhJJYrYauQdQgibOI4/kl+7D0kO8kyPjUmNAkXIfPCdC7Vj
+         V80wClnbqrY2beIlkLJ1Vh9QH7V37IgvU0gt34DovVqXLzqm4T6tHoonZs99RCm84zFI
+         iJdqw2n16VUyp0dg4ssV6te4UhHXJ5ba4uFJWsAdmziiP5xQ1zhefta8prLOgdyXE8SV
+         B7IDYFUur1cKxGe942GwHb0s7sLwII/KYl30pKzd+mNGATpMktX8GNdsCmpFugYegLmt
+         asYOdz3+UCsQ4UioAbl3B8S37n3ErYOHlrK7a1QmY0HUEicJiFBWxVYOfoZoylh+ytre
+         CMAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BOOLjJP/DVblUUBITFT/Clnx2J0qjci9FP4191B8GGA=;
-        b=s3ocqHND2ovSijO+otkj1ufaNdmlJlk0O7bUuP5nhEtJFw0dtkAQBMJz1gdGFqOnn2
-         8MHoDfTXdhDg56hm1U6HqTD/ZIGMuHJz2bW3GjHufZlq2W/rpwYfof8afRjZactugy0F
-         Lv1vh5GcgFJ2JqOZyTvCiqLyM0pSeR32jnlySK6nhHWk2ibI37Jje1GjxDSjTOXhKJup
-         NyjS9gLGtvODX4W6zHnPaW5cTOpJknpD2IYSmXxFk4/RQ+0q/E91gsX8pbihcUlr7gy6
-         UNWNXa6cvh7OVFr3BNpRgbNZiPSZJeM+AMs36/VYiW18Uu3pATHD0dtouA1hT7FL1H2M
-         OL7A==
-X-Gm-Message-State: AFqh2kraajoD+D66I88pTKFo5ebMmlJoqQqrLlYpa5hXoRPDHRwqCzs1
-        VlNXA0zgGeEIkKIra+a8PScJDrJcDjTw7Py9upU=
-X-Google-Smtp-Source: AMrXdXs24UA4hWdUcc+JZpfPajaLzyE82/X+DFx/CAWvYBhnwLQJBTNQV5FDORmaHJTNtDsDeQV6v71Z2a3QyyCTvS8=
-X-Received: by 2002:a9d:6654:0:b0:670:97d8:b140 with SMTP id
- q20-20020a9d6654000000b0067097d8b140mr2059389otm.164.1674747084920; Thu, 26
- Jan 2023 07:31:24 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jz1yQJDh82hmVQElGHGWfr/ouKY/iJoAmFgYkVIjURw=;
+        b=j7cB2uo4DaFY/CVqHUhYjWaYBaHbh/5r2fs9JCvqHKvkjSNhcTr1aoH//8rACq4sn8
+         kOVpN6WPJKnBY1uE/kIDHcNjlDC016xoG0GOgwP40R8D6PVXyeZ1DW5PSQC0Df4dxq6m
+         14L5dta5A+V2UR4/69vSDGZ9w1uv+7DQv3e5ww+vksH1rhvE4HUBRiapG41mQag4IpFL
+         h8bo7FxsU4qDt1/ePyxdp/572PUgOnDidYmBZM9J3ebg07vYMQWrmGk1NADeUZlhG1X+
+         7SQ3/cb+JUlw8GEZHASM/WgcAz4RMH3ZGbD3wtVev6rlyWaPht+koVpPbMqIhbpHmzv3
+         TM+Q==
+X-Gm-Message-State: AFqh2kpmie4aF8Bk6t4UZoGHILmjF//jdPahSVmJ60bxR5zOF4UWv2AG
+        YRvChCERnaCmrO645J4i+r4jCg==
+X-Google-Smtp-Source: AMrXdXvbHP4MU8LW1+p6+/QnuhuohmSQZLuwW60JkdlaAcbwU5Y7GEyF4W4xaywzdk2WMdog6QND6Q==
+X-Received: by 2002:a05:6000:1e18:b0:2bd:d782:c2c1 with SMTP id bj24-20020a0560001e1800b002bdd782c2c1mr35767974wrb.24.1674747129636;
+        Thu, 26 Jan 2023 07:32:09 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n15-20020a5d598f000000b002bdff778d87sm1865447wri.34.2023.01.26.07.32.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jan 2023 07:32:09 -0800 (PST)
+Message-ID: <67279d92-7a46-8a55-34d1-03d10369d8f5@linaro.org>
+Date:   Thu, 26 Jan 2023 16:32:07 +0100
 MIME-Version: 1.0
-References: <20230126135049.708524-1-rick.wertenbroek@gmail.com>
- <20230126135049.708524-6-rick.wertenbroek@gmail.com> <6a54a51b-cf1a-c601-275f-00f825fcec5d@linaro.org>
-In-Reply-To: <6a54a51b-cf1a-c601-275f-00f825fcec5d@linaro.org>
-From:   Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Date:   Thu, 26 Jan 2023 16:30:48 +0100
-Message-ID: <CAAEEuhpOjSUhiQFxKwkhiwDNtmRzzUXmGYKMuHWePJF-Q7R9dQ@mail.gmail.com>
-Subject: Re: [PATCH 5/8] PCI: rockchip: Added dtsi entry for PCIe endpoint controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        wenrui.li@rock-chips.com, rick.wertenbroek@heig-vd.ch,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v2 2/6] dt-bindings: clock: mediatek,mt8186-fhctl: Support
+ MT6795, MT8173/92/95
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, sboyd@kernel.org
+Cc:     mturquette@baylibre.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        edward-jw.yang@mediatek.com, johnson.wang@mediatek.com,
+        wenst@chromium.org, miles.chen@mediatek.com,
+        chun-jie.chen@mediatek.com, rex-bc.chen@mediatek.com,
+        jose.exposito89@gmail.com, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20230126085321.87267-1-angelogioacchino.delregno@collabora.com>
+ <20230126085321.87267-3-angelogioacchino.delregno@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230126085321.87267-3-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 26, 2023 at 4:23 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 26/01/2023 14:50, Rick Wertenbroek wrote:
-> > Added missing PCIe endpoint controller entry in the device tree. This
-> > entry is documented in :
-> > Documentation/devicetree/bindings/pci/rockchip-pcie-ep.txt
->
-> There is no such file
+On 26/01/2023 09:53, AngeloGioacchino Del Regno wrote:
+> MT6795, MT8173, MT8192 and MT8195 support Frequency Hopping: add the
+> compatibles for them.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
 
-Sorry but the file exists see :
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/devicetree/bindings/pci/rockchip-pcie-ep.txt?h=v6.0.19
-It also exists in 6.1 :
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/devicetree/bindings/pci/rockchip-pcie-ep.txt?h=linux-6.1.y
 
->
-> > The status is disabled by default, so it will not be loaded unless
-> > explicitly chosen to.
->
-> Use subject prefixes matching the subsystem (which you can get for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching).
->
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Sorry about this, you are right, I'll fix it for the next iteration.
-Thank you
+Best regards,
+Krzysztof
 
-> >
-> > Signed-off-by: Rick Wertenbroek <rick.wertenbroek@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 25 ++++++++++++++++++++++++
-> >  1 file changed, 25 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> > index 9d5b0e8c9..5f7251118 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> > @@ -265,6 +265,31 @@ pcie0_intc: interrupt-controller {
-> >               };
-> >       };
-> >
-> > +     pcie0_ep: pcie-ep@f8000000 {
-> > +             compatible = "rockchip,rk3399-pcie-ep";
->
-> reg is usually second property...
-> > +             #address-cells = <3>;
-> > +             #size-cells = <2>;
-> Best regards,
-> Krzysztof
->
