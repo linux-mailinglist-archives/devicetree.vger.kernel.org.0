@@ -2,361 +2,579 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C4E467D21B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 17:49:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9034367D21F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 17:50:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229546AbjAZQtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 11:49:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59692 "EHLO
+        id S229579AbjAZQuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 11:50:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229472AbjAZQtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 11:49:02 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2054.outbound.protection.outlook.com [40.107.20.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFB0DE384
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 08:49:00 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kt40xWwyiqNSWRZ9MFVZJ5l6Pnb0AdurxN41WB126opsB4aXVXC9KzCpGbyU3lg5PxIjmPapKG1osMTJUVRMyIhsm0+RrlcJiZV2yinFrTypLilIgC/JuR3aajwMD4chGnmDxKChqjvYk6KW4A2T6GgNKKsWF9PNCTjxVU129fsJQ/0W2+lWUXHmTwdOrP3wfs4VP3EBzPb62y0zxBiIxiISVL5gPZTtWWH+JaIDglr21EogVP5pKPbk+eXyLzJrdAGUNNw56n4Z+o8PQyfn6s69Xu2CB45Bs29RmfkiqhcQMSkukcHh9V7d9sDLpfpAnMkCBlGPkEXP+KFHfsxxcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k20iJLtccWq2D+9FwD5qz1guSfwvLonaE9tDEzdigPs=;
- b=FGgiVfyAWC9Jd7SQVoYL3zu/x0HxTjbgW3X8RVBdSc+sX2KRpordT7n0eoj6w3lpLtkJW0+OSSfBDOoiqzW9ImzYoaxPQvpVNM6Lgx9PvgRaEd18JilX3uLy2knenY4HK49BF0vMZBxeKkzwbEI8vdgv+E9DOlA11OcGx/siD2MgM73oJxyTtLcwlRa1/tyDwhXVhA4SaQv4ULbM9j3smws8TWESSXt1YpG2QJHeHFZZRigdzLhI+PrxPl6yd51UwoDMyyxvRCfBK948QcxzRFveb7JWqIZyHkID1okUrI/qaIJo0s80+uYs3yUcH5MAxUb/qoyHQ0FAGYMSbUIYfw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k20iJLtccWq2D+9FwD5qz1guSfwvLonaE9tDEzdigPs=;
- b=dkjEEnVdb/eY92tRJpGxxNqZ1X11xZyn6cSgf+QO/McAViLpW65K1RF1QU33xVR3oTZ0mg8afdXH9Ae5zbp0iEdXV6O7mTc8ZKCZHuxQUDJNIy6iIVRaamKjs6svcMEX3YU/PTgGAQKwftN40+M2PwmxmOikZZ4ES1NB4PhYdzM94NSnxyxd1PwRoRubMketiZ6KDtEULYF//7mYDHXyEU5Ex4cWLKPex1zli496+X02VR7tQYWXx+hzY0tu5/vFj6vWLgTxuu3nAKOIB5TP161ajq8CSUnwhXWb0eN10No9SMj0YpD8zm8J2eNiR1FwPg/QC9p4QFT8d8GHalTfZg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
- by DU0PR03MB8244.eurprd03.prod.outlook.com (2603:10a6:10:31d::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Thu, 26 Jan
- 2023 16:48:58 +0000
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::6b03:ac16:24b5:9166]) by DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::6b03:ac16:24b5:9166%2]) with mapi id 15.20.6043.022; Thu, 26 Jan 2023
- 16:48:58 +0000
-Message-ID: <8074f0be-8a70-a937-49f2-123e0bfc6218@seco.com>
-Date:   Thu, 26 Jan 2023 11:48:53 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v9 07/10] arm64: dts: ls1046ardb: Add serdes bindings
-Content-Language: en-US
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>
-References: <20221230000139.2846763-1-sean.anderson@seco.com>
- <20221230000139.2846763-8-sean.anderson@seco.com>
- <20230125234335.GC20713@T480>
-From:   Sean Anderson <sean.anderson@seco.com>
-In-Reply-To: <20230125234335.GC20713@T480>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BL1P222CA0002.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:208:2c7::7) To DB9PR03MB8847.eurprd03.prod.outlook.com
- (2603:10a6:10:3dd::13)
+        with ESMTP id S229472AbjAZQuy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 11:50:54 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F196E384;
+        Thu, 26 Jan 2023 08:50:52 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30QGNE2c018575;
+        Thu, 26 Jan 2023 16:50:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=IXC7JTKxXqNQDx5CtXKNP4WnTahMvK9USBwHVFp5yW8=;
+ b=Ytz6bI1PC9t1ywdwWMFuWyAM5T66ui3WNDzyEBI8EFKyUvdrXW2n5fF2RT5OtBLoWajQ
+ qHqlq8AlJXiScJuqL6/yrp2D2kZ10AqcCPu8kMeCje2X1lcba/1GhysfmBZHMpP2w4J6
+ sTyudrYJt3qFv9yybX6WO8XTLAqxsJBPJUMxtqMx3JkcpO9Qsqh2OkpF3wwhwgagqrKO
+ Qyox+w6rSEsT9djXkgWCeDmosfvPRQjI12cVUk95kQ3Y4P9/ZcGsZNl48C6K8I2Rptdr
+ uTzRXxgqn2cMAy6RR5u1fMkT1rHUuaILICkZx8lvo0Z43UP/+ZYQ2zLbvndGyabY1o+1 bQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3najkhch48-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 26 Jan 2023 16:50:34 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30QGoXhW002726
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 26 Jan 2023 16:50:33 GMT
+Received: from [10.50.43.212] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 26 Jan
+ 2023 08:50:26 -0800
+Message-ID: <8b9ed619-8ff1-53f1-1f3a-c10a3585b9c4@quicinc.com>
+Date:   Thu, 26 Jan 2023 22:20:23 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|DU0PR03MB8244:EE_
-X-MS-Office365-Filtering-Correlation-Id: 373ed4c3-4f98-4fe0-b784-08daffbd3869
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uyo9RSaV1bKimg3iazR//u5L1x9akkYIJSZM9jrbLPGaDk0ruEc7oauo+PTfPSHb1xww/S3Ymy95gGk10sEaagfgw7HmbTnEh/FWWgoxTY5NsE4P8h9Fxk2zuCmAquZsZwnrWbMSaOmZ/a6/LLPco3dnwiJ7mmLpFxk4BFljQOuislbD+24k8brmeZkEcvLLViCZ/vG1qiW9akbjqhJyr27m+f4F5zkOrfPsj+YQFm6DHKjo0IG4F/MssqpcBV4RwKKMa7WT1zH678VO9scRmEblnmk7z9FsxPdFr+RMoBgLri5twnwddeqpG8fuOnS3H7vaMyWax0iuW1wmdwgc4gSX2CKt0x3Z8UHP9+MEBZRLH0sfsJxrFysmxu9iZrvgLo+iezT15L/JNyYlffrJzOKrNGdFhvng4ffZycxWkmmnhriy0hZNGn5tClgM1s+MV7QS4F9HA/sXsWATutD0fMZexgqSJrhTqi+/8bjLjERDIgC1Pyn1Tfq9GRuvBEmKid9y7KGnKQxhn0dL47/OYLnwgGFqZqNcMaJYki1JnJiO3W7dAlfhIommrBBqZGYMJxZXv8335k38hRoja25iSSXAoc/w3YfRG5D/rJqCvmcz30kHKe5M4iEuLr5GYu6IEedyLMO/gZLRygFqD9IVWr6OVkgZmXYHZLrI2FhFIwe84ysy4hzEpWr7BSsOBFpRrDrGjuWs8yUyyMA1x8H/YFeL/+U+sNm9jeYCDrM8ln17E48u7fYHBDcfHEc8FFUTX6sYogbRuF0fkd1IdOr1ULRvODC0YZb9Sv5Y4LRuLRilL2cJCNvwVX3MQPH94WfV
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(376002)(396003)(366004)(39850400004)(136003)(346002)(451199018)(66476007)(54906003)(66946007)(2616005)(316002)(6916009)(66556008)(8676002)(36756003)(4326008)(7416002)(26005)(478600001)(6666004)(41300700001)(83380400001)(6512007)(6506007)(2906002)(966005)(52116002)(6486002)(44832011)(31686004)(186003)(53546011)(31696002)(86362001)(38350700002)(8936002)(38100700002)(5660300002)(21314003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NjlEbkZKMnJKSW5NU0VVclZIRHlZemt5bjRuM0NFa1Nlc0MzVnRvZFZ5QVIr?=
- =?utf-8?B?RUlWQ3NvaWpCbEdBdDlFOGFJVnMwSi9XWGk0ajNDeUNHZ0N5dVdTWE1mZmVp?=
- =?utf-8?B?UVlJTUdRelh5WnhJcDVoTnhsSHlTYjRzbmFzak9aQkxOTEZMWCs5KzJWeXFE?=
- =?utf-8?B?eENOSTRJR3N3OHBIM0VOSVBCQXptcUJUMVRUSTRwTjBRUHE0MUVHSThCaUFW?=
- =?utf-8?B?cWU0YUdIdzdnamVHc2RXUUVMeDY4RUlZUG12bHFGd3NtdnNHdjhxMGxQazZS?=
- =?utf-8?B?WFVvdi9zQ1drQjJnMUpJT21VNGh4M1ZnYUFtTlJNUjlId3F1YVdHcFk2M2Js?=
- =?utf-8?B?S2RUWks3RTZUeVFZdlhBSW90anhmQ3RPeU8xWktrdDdpc3NXOWJDb1A0Z09O?=
- =?utf-8?B?N1RhWk4vUXV6ck9nUWlMeCt3bkJZa3V3dmdIT3JCWW5BZWlPTFFMcTU0YW1t?=
- =?utf-8?B?Um0raEFaQklTY2E1NCtsRm9OL1krY0RPaG45ZWVQTGRqNElTWDh5VGEzQWd2?=
- =?utf-8?B?NzZ6Z0o3UVp1bmNZbFRCNnBZc2MrTVlsZVRLUEpCSXlrU1ptRWZ5ajBlOTFm?=
- =?utf-8?B?TXlHYjNHb0NjWk1MMk5WUmdPazM0RWNIVFEwZStJUEkydFNBZmVSYjdEcXdC?=
- =?utf-8?B?bGlwTGdKR25zYWdHajk4Ti96dDZDRU14K0NBYzVFV0phc3FMSjNIVzBJd3pL?=
- =?utf-8?B?dkMwNHppQXdsMGJiQ3pKTGw0MnhmdEIyNjlTOERvamVYYnpXSDlFeVltckh1?=
- =?utf-8?B?dXBRK2JmWFBYTXhFZnZ6MmNoSmJYSHpGNENuZy9RNHExN0xqNW02YkNWSVJo?=
- =?utf-8?B?UlkvYkpUL2thcVkxd2hyR1BOU1Z5b253R29CQ3VRT1RpVGlVR0dMTDJ1ZU1C?=
- =?utf-8?B?cE1OLzRMbU5KRGlvU2NXa1QydWJaNE5FK0NBZmk4a0VvdE5kZW02ZENxeXRJ?=
- =?utf-8?B?U2U4bjF6Ymk5STBWcllRcGU4bDVqZHZkRkpjK3hWMnVnQjJMMzV4M3NCWlBI?=
- =?utf-8?B?L2VUV0dmUFUwT3lJcGFENXRSeWhoUGlRdTBrUXk1Z24wbnJpL20rZWRQemdE?=
- =?utf-8?B?QzZTNE03elBPRXR0RzhiVkgyUmo2N0kvUXdjbkNMVWVOait2YkZNcUFVZXY3?=
- =?utf-8?B?cW5MUmp0anY3WHovdTVPMTVtangrSnlSSmJPV3doV0llQXk1S1NoVXhaRkRO?=
- =?utf-8?B?dldqZlZ5MDBuempUS0FQL0sveUdMYVNnbDRTOCtvOSs1bm8rTFVhTVJzZHRy?=
- =?utf-8?B?U0dqdXpwTE5heThqSDNmaXorRUV6dys4cVlKUnJXbkNOb3VRei90OWVrSE1y?=
- =?utf-8?B?NmpPbzBnb0ZvWVV2SWZFK2wvTkZUWEptMUF0SnVDdGVHMGZZU2tFcjU3aTJQ?=
- =?utf-8?B?S25aLzVIaVR5ZXZCa0dHdjY2b052UTU4alFZMThpSDRMWWRXZzU2MGFVNDUx?=
- =?utf-8?B?OWRITEpMMiszNFM4bWtJMXhsdnRxa0xPYmxQVmlPY2dCMjNxczE4dnJ5TEpo?=
- =?utf-8?B?VEVmazY4R3dtYkY1TkdNVWhXN3VST2NuRzc5Y0xxcHpvbWczQWY5SnJZa0dC?=
- =?utf-8?B?M01wdjNXQUpHZkkxVVh3UEsrVkJsL1VXMTNZUUhoTjI3L1RLRTJHR2grRUp0?=
- =?utf-8?B?T3dZVXRzQVYyV0JmRXdVUmJQL1Vsdzg1MzYrbHc0WjBKaElwQmE5blREOW41?=
- =?utf-8?B?aFhIaEwrMWF3Z2pFQWdyRDVpK2E2MEtjdDJDdWFyRU05cTliM1BxaFpPbncr?=
- =?utf-8?B?UDBVQXg4N3JJN1dFTHh6dnBtMWk0M2dOdnBXcEZsd3hnSU5tNUs0aVI4aFJP?=
- =?utf-8?B?U3ZPRDByZGVDdjV0NUZlcEdBTlpNa2N4SDd3SHVzZVVUQ0FsVVJxdDNCZHBx?=
- =?utf-8?B?Q0hMSkp5TVdhTGNQK2U1MXc2SmhYd0g0d0JUbTRBWEtyZ0ZqZEx1c2o4OUwv?=
- =?utf-8?B?VEFIeWlpdGRlMWJWNnlRQXBieXFJVGJwT3RrUUplSUpwSHhPOUl4VmJmMVRT?=
- =?utf-8?B?TTBTUjNmVGJTV3NpZGwrY2htSUNZQVVpZlZQTG5IcTFzNDRHbUNhcEhKeDFy?=
- =?utf-8?B?OERnNVVML3FCSmlySnA4dXpNdzVJU01Sck9jUjhuTGQxbktPd3M3TE95R3ZF?=
- =?utf-8?B?M0xTcE8vaFVmZjh2THhRWTJVR1dPdUQ5aXNQc0ZGRTVzcEpVTlpTS3UrQXor?=
- =?utf-8?B?cmc9PQ==?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 373ed4c3-4f98-4fe0-b784-08daffbd3869
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR03MB8847.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2023 16:48:58.7950
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HHTT/6LJdAbnQoSQYzYE5XcdGmELWSwuuVF3CwKAK1cL56neZwvAR1VNJnKBc5ghaNZW2WZeXAICyLkCJslK5A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR03MB8244
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 09/10] arm64: dts: qcom: add IPQ5332 SoC and MI01.2 board
+ support
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
+        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
+        <nfraprado@collabora.com>, <broonie@kernel.org>,
+        <robimarko@gmail.com>, <quic_gurus@quicinc.com>,
+        <bhupesh.sharma@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230125104520.89684-1-quic_kathirav@quicinc.com>
+ <20230125104520.89684-10-quic_kathirav@quicinc.com>
+ <f0312e77-0835-7f79-acf0-3d91d6548f07@linaro.org>
+From:   Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+In-Reply-To: <f0312e77-0835-7f79-acf0-3d91d6548f07@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: C9gXMsMuaq9VEpzTGeNVMqm-BOZJRsUh
+X-Proofpoint-GUID: C9gXMsMuaq9VEpzTGeNVMqm-BOZJRsUh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-26_07,2023-01-26_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ adultscore=0 spamscore=0 suspectscore=0 mlxlogscore=999 clxscore=1015
+ lowpriorityscore=0 impostorscore=0 mlxscore=0 priorityscore=1501
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301260162
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/25/23 18:43, Shawn Guo wrote:
-> On Thu, Dec 29, 2022 at 07:01:36PM -0500, Sean Anderson wrote:
->> This adds appropriate bindings for the macs which use the SerDes. The
->> 156.25MHz fixed clock is a crystal. The 100MHz clocks (there are
->> actually 3) come from a Renesas 6V49205B at address 69 on i2c0. There is
->> no driver for this device (and as far as I know all you can do with the
->> 100MHz clocks is gate them), so I have chosen to model it as a single
->> fixed clock.
->> 
->> Note: the SerDes1 lane numbering for the LS1046A is *reversed*.
->> This means that Lane A (what the driver thinks is lane 0) uses pins
->> SD1_TX3_P/N.
->> 
->> Because this will break ethernet if the serdes is not enabled, enable
->> the serdes driver by default on Layerscape.
->> 
->> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+Thanks Konrad for taking time to review the patch.
+
+
+On 1/26/2023 3:29 AM, Konrad Dybcio wrote:
+>
+> On 25.01.2023 11:45, Kathiravan Thirumoorthy wrote:
+>> From: Kathiravan T <quic_kathirav@quicinc.com>
+>>
+>> Add initial device tree support for the Qualcomm IPQ5332 SoC and
+>> MI01.2 board.
+>>
+>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
 >> ---
->> This depends on [1].
->> 
->> [1] https://lore.kernel.org/netdev/20220804194705.459670-4-sean.anderson@seco.com/
->> 
->> Changes in v9:
->> - Fix name of phy mode node
->> - phy-type -> fsl,phy
->> 
->> Changes in v8:
->> - Rename serdes phy handles to use _A, _B, etc. instead of _0, _1, etc.
->>   This should help remind readers that the numbering corresponds to the
->>   physical layout of the registers, and not the lane (pin) number.
->> 
->> Changes in v6:
->> - XGI.9 -> XFI.9
->> 
->> Changes in v4:
->> - Convert to new bindings
->> 
->>  .../boot/dts/freescale/fsl-ls1046a-rdb.dts    | 112 ++++++++++++++++++
->>  drivers/phy/freescale/Kconfig                 |   1 +
-> 
-> The phy driver Kconfig change shouldn't be part of this patch.
-
-I put it here for bisectability, since this is the point where we need
-to enable it. But I can do this in a separate patch if you want.
-
->>  2 files changed, 113 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
->> index 7025aad8ae89..534f19855b47 100644
->> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
->> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
->> @@ -10,6 +10,8 @@
->>  
->>  /dts-v1/;
->>  
->> +#include <dt-bindings/phy/phy.h>
+>>   arch/arm64/boot/dts/qcom/Makefile           |   1 +
+>>   arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts |  71 +++++
+>>   arch/arm64/boot/dts/qcom/ipq5332.dtsi       | 273 ++++++++++++++++++++
+>>   3 files changed, 345 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts
+>>   create mode 100644 arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>> index 3e79496292e7..fbd5bc583a9b 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-mi01.2.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq6018-cp01-c1.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts b/arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts
+>> new file mode 100644
+>> index 000000000000..7984d8f824ce
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts
+>> @@ -0,0 +1,71 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+>> +/*
+>> + * IPQ5332 AP-MI01.2 board device tree source
+>> + *
+>> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
 >> +
->>  #include "fsl-ls1046a.dtsi"
->>  
->>  / {
->> @@ -26,8 +28,110 @@ aliases {
->>  	chosen {
->>  		stdout-path = "serial0:115200n8";
->>  	};
+>> +/dts-v1/;
 >> +
->> +	clocks {
-> 
-> Drop this container node.
-
-OK
-
---Sean
- 
->> +		clk_100mhz: clock-100mhz {
->> +			compatible = "fixed-clock";
->> +			#clock-cells = <0>;
->> +			clock-frequency = <100000000>;
->> +		};
+>> +#include "ipq5332.dtsi"
 >> +
->> +		clk_156mhz: clock-156mhz {
->> +			compatible = "fixed-clock";
->> +			#clock-cells = <0>;
->> +			clock-frequency = <156250000>;
->> +		};
->> +	};
->>  };
->>  
->> +&serdes1 {
->> +	clocks = <&clk_100mhz>, <&clk_156mhz>;
->> +	clock-names = "ref0", "ref1";
->> +	status = "okay";
+>> +/ {
+>> +	model = "Qualcomm Technologies, Inc. IPQ5332/AP-MI01.2";
+>> +	compatible = "qcom,ipq5332-ap-mi01.2", "qcom,ipq5332";
 >> +
->> +	/*
->> +	 * XXX: Lane A uses pins SD1_RX3_P/N! That is, the lane numbers and pin
->> +	 * numbers are _reversed_. In addition, the PCCR documentation is
->> +	 * _inconsistent_ in its usage of these terms!
->> +	 *
->> +	 * PCCR "Lane 0" refers to...
->> +	 * ==== =====================
->> +	 *    0 Lane A
->> +	 *    2 Lane A
->> +	 *    8 Lane A
->> +	 *    9 Lane A
->> +	 *    B Lane D!
->> +	 */
->> +	serdes1_A: phy@0 {
->> +		#phy-cells = <0>;
->> +		reg = <0>;
->> +
->> +		/* SGMII.6 */
->> +		sgmii-0 {
->> +			fsl,pccr = <0x8>;
->> +			fsl,index = <0>;
->> +			fsl,cfg = <0x1>;
->> +			fsl,type = <PHY_TYPE_SGMII>;
->> +		};
+>> +	aliases {
+>> +		serial0 = &blsp1_uart0;
 >> +	};
 >> +
->> +	serdes1_B: phy@1 {
->> +		#phy-cells = <0>;
->> +		reg = <1>;
->> +
->> +		/* SGMII.5 */
->> +		sgmii-1 {
->> +			fsl,pccr = <0x8>;
->> +			fsl,index = <1>;
->> +			fsl,cfg = <0x1>;
->> +			fsl,type = <PHY_TYPE_2500BASEX>;
->> +		};
->> +	};
->> +
->> +	serdes1_C: phy@2 {
->> +		#phy-cells = <0>;
->> +		reg = <2>;
->> +
->> +		/* SGMII.10 */
->> +		sgmii-2 {
->> +			fsl,pccr = <0x8>;
->> +			fsl,index = <2>;
->> +			fsl,cfg = <0x1>;
->> +			fsl,type = <PHY_TYPE_2500BASEX>;
->> +		};
->> +
->> +		/* XFI.10 */
->> +		xfi-0 {
->> +			fsl,pccr = <0xb>;
->> +			fsl,index = <0>;
->> +			fsl,cfg = <0x2>;
->> +			fsl,type = <PHY_TYPE_10GBASER>;
->> +		};
->> +	};
->> +
->> +	serdes1_D: phy@3 {
->> +		#phy-cells = <0>;
->> +		reg = <3>;
->> +
->> +		/* SGMII.9 */
->> +		sgmii-3 {
->> +			fsl,pccr = <0x8>;
->> +			fsl,index = <3>;
->> +			fsl,cfg = <0x1>;
->> +			fsl,type = <PHY_TYPE_2500BASEX>;
->> +		};
->> +
->> +		/* XFI.9 */
->> +		xfi-1 {
->> +			fsl,pccr = <0xb>;
->> +			fsl,index = <1>;
->> +			fsl,cfg = <0x1>;
->> +			fsl,type = <PHY_TYPE_10GBASER>;
->> +		};
+>> +	chosen {
+>> +		stdout-path = "serial0";
 >> +	};
 >> +};
 >> +
+>> +&blsp1_uart0 {
+>> +	pinctrl-0 = <&serial_0_pins>;
+>> +	pinctrl-names = "default";
+>> +	status = "okay";
+>> +};
 >> +
->>  &duart0 {
->>  	status = "okay";
->>  };
->> @@ -140,21 +244,29 @@ ethernet@e6000 {
->>  	ethernet@e8000 {
->>  		phy-handle = <&sgmii_phy1>;
->>  		phy-connection-type = "sgmii";
->> +		phys = <&serdes1_B>;
->> +		phy-names = "serdes";
->>  	};
->>  
->>  	ethernet@ea000 {
->>  		phy-handle = <&sgmii_phy2>;
->>  		phy-connection-type = "sgmii";
->> +		phys = <&serdes1_A>;
->> +		phy-names = "serdes";
->>  	};
->>  
->>  	ethernet@f0000 { /* 10GEC1 */
->>  		phy-handle = <&aqr106_phy>;
->>  		phy-connection-type = "xgmii";
->> +		phys = <&serdes1_D>;
->> +		phy-names = "serdes";
->>  	};
->>  
->>  	ethernet@f2000 { /* 10GEC2 */
->>  		fixed-link = <0 1 1000 0 0>;
->>  		phy-connection-type = "xgmii";
->> +		phys = <&serdes1_C>;
->> +		phy-names = "serdes";
->>  	};
->>  
->>  	mdio@fc000 {
->> diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
->> index 6bebe00f5889..b396162dc859 100644
->> --- a/drivers/phy/freescale/Kconfig
->> +++ b/drivers/phy/freescale/Kconfig
->> @@ -54,6 +54,7 @@ config PHY_FSL_LYNX_10G
->>  	depends on ARCH_LAYERSCAPE || PPC || COMPILE_TEST
->>  	select GENERIC_PHY
->>  	select REGMAP_MMIO
->> +	default y if ARCH_LAYERSCAPE
->>  	help
->>  	  This adds support for the Lynx "SerDes" devices found on various QorIQ
->>  	  SoCs. There may be up to four SerDes devices on each SoC, and each
->> -- 
->> 2.35.1.1320.gc452695387.dirty
->> 
+>> +&sdhc {
+>> +	pinctrl-0 = <&sdc_default_state>;
+>> +	pinctrl-names = "default";
+>> +	non-removable;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&sleep_clk {
+>> +	clock-frequency = <32000>;
+>> +};
+>> +
+>> +&xo_board {
+>> +	clock-frequency = <24000000>;
+>> +};
+>> +
+>> +/* PINCTRL */
+>> +
+>> +&tlmm {
+>> +	sdc_default_state: sdc-default-state {
+>> +		clk-pins {
+>> +			pins = "gpio13";
+>> +			function = "sdc_clk";
+>> +			drive-strength = <8>;
+>> +			bias-disable;
+>> +		};
+>> +
+>> +		cmd-pins {
+>> +			pins = "gpio12";
+>> +			function = "sdc_cmd";
+>> +			drive-strength = <8>;
+>> +			bias-pull-up;
+>> +		};
+>> +
+>> +		data-pins {
+>> +			pins = "gpio8", "gpio9", "gpio10", "gpio11";
+>> +			function = "sdc_data";
+>> +			drive-strength = <8>;
+>> +			bias-pull-up;
+>> +		};
+>> +	};
+>> +};
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>> new file mode 100644
+>> index 000000000000..d04244a3cd3a
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>> @@ -0,0 +1,273 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * IPQ5332 device tree source
+>> + *
+>> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#include <dt-bindings/clock/qcom,gcc-ipq5332.h>
+>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +
+>> +/ {
+>> +	interrupt-parent = <&intc>;
+>> +	#address-cells = <2>;
+>> +	#size-cells = <2>;
+>> +
+>> +	clocks {
+>> +		sleep_clk: sleep-clk {
+>> +			compatible = "fixed-clock";
+>> +			#clock-cells = <0>;
+>> +		};
+>> +
+>> +		xo_board: xo-board-clk {
+>> +			compatible = "fixed-clock";
+>> +			#clock-cells = <0>;
+>> +		};
+>> +	};
+>> +
+>> +	cpus {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		CPU0: cpu@0 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a53";
+>> +			reg = <0x0>;
+>> +			enable-method = "psci";
+>> +			next-level-cache = <&L2_0>;
+>> +		};
+>> +
+>> +		CPU1: cpu@1 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a53";
+>> +			reg = <0x1>;
+>> +			enable-method = "psci";
+>> +			next-level-cache = <&L2_0>;
+>> +		};
+>> +
+>> +		CPU2: cpu@2 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a53";
+>> +			reg = <0x2>;
+>> +			enable-method = "psci";
+>> +			next-level-cache = <&L2_0>;
+>> +		};
+>> +
+>> +		CPU3: cpu@3 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a53";
+>> +			reg = <0x3>;
+>> +			enable-method = "psci";
+>> +			next-level-cache = <&L2_0>;
+>> +		};
+>> +
+>> +		L2_0: l2-cache {
+>> +			compatible = "cache";
+>> +			cache-level = <0x2>;
+>> +		};
+>> +	};
+>> +
+>> +	firmware {
+>> +		scm {
+>> +			compatible = "qcom,scm-ipq5332", "qcom,scm";
+>> +		};
+>> +	};
+>> +
+>> +	memory@40000000 {
+>> +		device_type = "memory";
+>> +		/* We expect the bootloader to fill in the size */
+>> +		reg = <0x0 0x40000000 0x0 0x0>;
+>> +	};
+>> +
+>> +	pmu {
+>> +		compatible = "arm,cortex-a53-pmu";
+>> +		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+>> +	};
+>> +
+>> +	psci {
+>> +		compatible = "arm,psci-1.0";
+>> +		method = "smc";
+>> +	};
+>> +
+>> +	reserved-memory {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+>> +
+>> +		tz: memory@4a600000 {
+> memory@ is discouraged, the node name should be somewhat
+> descriptive of what lies in this reserved region. On the
+> other hand, tz: sounds like a label to a trust zone device
+> of some kind. I propose:
+>
+> tz_mem: tz@4a600000 {
+>
+> instead.
 
+
+Ack.
+
+
+>
+>> +			no-map;
+>> +			reg = <0x0 0x4a600000 0x0 0x200000>;
+>> +		};
+>> +	};
+>> +
+>> +	soc@0 {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <1>;
+>> +		ranges = <0 0 0 0xffffffff>;
+>> +		compatible = "simple-bus";
+> Move compatible first, please.
+
+
+Ack.
+
+
+>
+>> +
+>> +		tlmm: pinctrl@1000000 {
+>> +			compatible = "qcom,ipq5332-tlmm";
+>> +			reg = <0x01000000 0x300000>;
+>> +			interrupts = <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>;
+>> +			gpio-controller;
+>> +			#gpio-cells = <2>;
+>> +			gpio-ranges = <&tlmm 0 0 53>;
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <2>;
+>> +
+>> +			serial_0_pins: serial0-state {
+> You may be interested in having a suspend state for this
+> one, so you may wish to rename this futureproofing-ly to
+> serial0-active-state.
+
+
+Ack. AFAIK, we don't support suspend state, anyways let me got back and 
+check it.
+
+
+>
+>> +				pins = "gpio18", "gpio19";
+>> +				function = "blsp0_uart0";
+>> +				drive-strength = <8>;
+>> +				bias-pull-up;
+>> +			};
+>> +		};
+>> +
+>> +		gcc: clock-controller@1800000 {
+>> +			compatible = "qcom,ipq5332-gcc";
+>> +			reg = <0x01800000 0x80000>;
+>> +			#clock-cells = <0x1>;
+>> +			#reset-cells = <0x1>;
+> Decimal values for -cells, please.
+
+
+Ack.
+
+
+>
+>> +			#power-domain-cells = <1>;
+>> +			clock-names = "xo",
+>> +				      "sleep_clk",
+>> +				      "pcie_2lane_phy_pipe_clk",
+>> +				      "pcie_2lane_phy_pipe_clk_x1",
+>> +				      "usb_pcie_wrapper_pipe_clk";
+>> +			clocks = <&xo_board>,
+>> +				 <&sleep_clk>,
+>> +				 <0>,
+>> +				 <0>,
+>> +				 <0>;
+>> +		};
+>> +
+>> +		sdhc: mmc@7804000 {
+>> +			compatible = "qcom,ipq5332-sdhci", "qcom,sdhci-msm-v5";
+>> +			reg = <0x07804000 0x1000>, <0x07805000 0x1000>;
+>> +
+>> +			interrupts = <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-names = "hc_irq", "pwr_irq";
+>> +
+>> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
+>> +				 <&gcc GCC_SDCC1_APPS_CLK>,
+>> +				 <&xo_board>;
+>> +			clock-names = "iface", "core", "xo";
+>> +			mmc-ddr-1_8v;
+>> +			mmc-hs200-1_8v;
+>> +			max-frequency = <192000000>;
+> As Krzysztof pointed out, this one should go.
+
+
+Ack.
+
+
+>
+>> +			bus-width = <4>;
+> Oh that's interesting.. a 4-wide bus for eMMC?
+
+
+Yes, eMMC is 4bit bus width with HS200 mode only.
+
+
+>
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		blsp1_uart0: serial@78af000 {
+>> +			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
+>> +			reg = <0x078af000 0x200>;
+>> +			interrupts = <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>;
+>> +			clocks = <&gcc GCC_BLSP1_UART1_APPS_CLK>,
+>> +				 <&gcc GCC_BLSP1_AHB_CLK>;
+>> +			clock-names = "core", "iface";
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		intc: interrupt-controller@b000000 {
+>> +			compatible = "qcom,msm-qgic2";
+>> +			#address-cells = <1>;
+>> +			#size-cells = <1>;
+> Please move these two above ranges..
+
+
+Ack.
+
+
+>
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <0x3>;
+> Decimal value, please.
+
+
+Ack.
+
+
+>
+>> +			reg = <0x0b000000 0x1000>,	/* GICD */
+>> +			      <0x0b002000 0x1000>,	/* GICC */
+>> +			      <0x0b001000 0x1000>,	/* GICH */
+>> +			      <0x0b004000 0x1000>;	/* GICV */
+> ..and reg just below compatible...
+
+Ack.
+
+
+>
+>> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> ..and interrupts just below reg, please.
+
+Ack.
+
+
+>
+>> +			ranges = <0 0x0b00c000 0x3000>;
+>> +
+>> +			v2m0: v2m@0 {
+>> +				compatible = "arm,gic-v2m-frame";
+>> +				reg = <0x0 0xffd>;
+> Please pad the reg for consistency.
+
+
+Sure.
+
+
+>> +				msi-controller;
+>> +			};
+>> +
+>> +			v2m1: v2m@1 {
+>> +				compatible = "arm,gic-v2m-frame";
+>> +				reg = <0x00001000 0xffd>;
+>> +				msi-controller;
+>> +			};
+>> +
+>> +			v2m2: v2m@2 {
+>> +				compatible = "arm,gic-v2m-frame";
+>> +				reg = <0x00002000 0xffd>;
+>> +				msi-controller;
+>> +			};
+>> +		};
+>> +
+>> +		timer@b120000 {
+>> +			compatible = "arm,armv7-timer-mem";
+>> +			reg = <0x0b120000 0x1000>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <1>;
+>> +			ranges;
+>> +
+>> +			frame@b120000 {
+>> +				frame-number = <0>;
+>> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+>> +					     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+>> +				reg = <0x0b121000 0x1000>,
+>> +				      <0x0b122000 0x1000>;
+> reg
+> interrupts
+> frame-number
+>
+> would be more consistent with most other nodes.
+Ack.
+>
+>> +			};
+>> +
+>> +			frame@b123000 {
+>> +				frame-number = <1>;
+>> +				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+>> +				reg = <0x0b123000 0x1000>;
+>> +				status = "disabled";
+>> +			};
+>> +
+>> +			frame@b124000 {
+>> +				frame-number = <2>;
+>> +				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+>> +				reg = <0x0b124000 0x1000>;
+>> +				status = "disabled";
+>> +			};
+>> +
+>> +			frame@b125000 {
+>> +				frame-number = <3>;
+>> +				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+>> +				reg = <0x0b125000 0x1000>;
+>> +				status = "disabled";
+>> +			};
+>> +
+>> +			frame@b126000 {
+>> +				frame-number = <4>;
+>> +				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+>> +				reg = <0x0b126000 0x1000>;
+>> +				status = "disabled";
+>> +			};
+>> +
+>> +			frame@b127000 {
+>> +				frame-number = <5>;
+>> +				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+>> +				reg = <0x0b127000 0x1000>;
+>> +				status = "disabled";
+>> +			};
+>> +
+>> +			frame@b128000 {
+>> +				frame-number = <6>;
+>> +				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+>> +				reg = <0x0b128000 0x1000>;
+>> +				status = "disabled";
+>> +			};
+>> +		};
+>> +
+>> +	};
+>> +
+>> +	timer {
+>> +		compatible = "arm,armv8-timer";
+>> +		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>> +				<GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>> +				<GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>> +				<GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+> The indentation seems off here.
+
+
+Will fix it in V2. Thanks.
+
+
+>
+> Konrad
+>> +	};
+>> +};
