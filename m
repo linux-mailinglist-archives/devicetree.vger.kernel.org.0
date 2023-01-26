@@ -2,572 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 218F067CB45
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 13:51:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7932D67CB90
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:02:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235569AbjAZMu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 07:50:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34538 "EHLO
+        id S235762AbjAZNCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 08:02:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbjAZMu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 07:50:56 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D694691
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:50:52 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id q10so1672342wrm.4
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:50:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/s1CBQyuQ2x6UeWWiJgeRRrRKfDwN9R6LlCHW9vrYXs=;
-        b=tx+GInrb4kISokcEzFfaAgZhtpkpg0EqxuJ5AxZRDnOfwVU50ywVjvbL2exCXzSRmh
-         zRyasE0H9R7zRU/V7AZpuqRqMasZhnXYCU7v3awYC7x+skofh9yREkVJVMuw+9Od/Ycd
-         QHT2ViUPvFDvIELN/sRY0PpRQYzrNiKVo4C5pgXQDUZwwA2vH1o9D/dbnOpHsbqJhVCY
-         jFVaRrlv5/M5M/Ul+2MvB/paljBYf4dw33yQ7FmkRPuk3Jetjnw7+GKuJ1aP+yWKvCxv
-         Ip+SBpmlEReeN6IS13xSp6L602dtDycUYjn7Xl4ahrgHgjwo/Ca/mVeqd4XWCrBN++Mi
-         ENgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/s1CBQyuQ2x6UeWWiJgeRRrRKfDwN9R6LlCHW9vrYXs=;
-        b=Wpn8722YhHyPbHGAZLfZra+UWYRwUiKQPUS9xwWy6NJwMddAoPi/wmTvfJ+7s2aLAa
-         Izdnuqp/40/ii2E1hE2yJQk4CF0pR+t9B9Cw1k31hg2KBPpCaYxHspY2RoQgTboSYfeV
-         a79gS0c4IntetzrSgZxSGtaoTm8LVkzfXZawCocEOfx2fWqbF2F/d86vX2MGlTYqkwLa
-         wQoGPyMlGENFstnGRDE7Cypc9td+mjZsTN4YnQuFhDeijasQwRfb98POCPEOnbFHASzm
-         ImZy76iDPwy65CeLBz2pa5kQhM3eT8ia9fEIectiRPROYRFFucGAFDMj+3sB8F4ASwla
-         vTDA==
-X-Gm-Message-State: AO0yUKVjfnMpiZ9t80VbHtvp4VVAwvh1q4K7jRq89YFT9hxyI0kc9irV
-        h3TZQh8RLcoAPYtSBgswM2pY6Q==
-X-Google-Smtp-Source: AK7set/+JTCCxA94PRGl7WUJcx8lnellP7phGYEdWDj39pjyqgGE11fedO85bPxAVvS3XaRmY0tdBA==
-X-Received: by 2002:a05:6000:1805:b0:2bf:af86:ea05 with SMTP id m5-20020a056000180500b002bfaf86ea05mr8796148wrh.39.1674737451117;
-        Thu, 26 Jan 2023 04:50:51 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id o6-20020adfe806000000b002bdf8dd6a8bsm1226836wrm.80.2023.01.26.04.50.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 04:50:50 -0800 (PST)
-Date:   Thu, 26 Jan 2023 14:50:49 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH v2 2/8] phy: qcom: Add QCOM SNPS eUSB2 driver
-Message-ID: <Y9J3Kb+x+E2EOnjt@linaro.org>
-References: <20230126124651.1362533-1-abel.vesa@linaro.org>
- <20230126124651.1362533-3-abel.vesa@linaro.org>
+        with ESMTP id S236606AbjAZNBx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:01:53 -0500
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2093.outbound.protection.outlook.com [40.107.215.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3824F61868;
+        Thu, 26 Jan 2023 05:01:49 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XIMFWIvG5uAUuRX9w4GibcSJo1jJjhcEEQcmBnTQhdDM93J1gsE5gUYFkhn5FawjKeKiQGn+DO12M9jzez7JF1lg7/VuaBHQ7P6MJohovtn5uhhDwwJ87WuJkmgLAavBs0nrCgvOD4He6zIPjOzG/9IErQnFMbNIKukNyohIG+52vj/Rgvr2tnmeu5PEGeQbPKCm24KKdOEjxYJqSRpy8OS8Owp1qefH4gdqWPzBBbaViwhudnVT3ViVVx/DuhDC0FREiLyuSwDuVRRsuNnfQ5G/C7TzqtVeXpyaSwRXFbIQIUD+VzLzJsXi62Y3Xmld6kgIbO9r8IdZ4gAw4BJcUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=z5X1PoIw7YoIr+WTgn+htCNN7/XX+2dy/IVtrhC+jqE=;
+ b=Y73XQxiinjSw8CASpE3jCpCHtnk0nTriotZYMmf/bGqEDbhMPAo6a3vuXtEUy+sZRagyF8dcMpjZymthHM+lEOFNuxJMz3brqfOu0UEKjwCWiDSMocE/cwAXPouPIhLF6MoaonDhu+QnQjFSPc99fgP8qnOBzwhQ7adpgdlxMC6v/WgrET/chtFzb94mnuwKDZ03NFB9luJfztxISfsgEMce9umTthri5TKoWLIDZfwvn+XC0KunO/3rfNfQmvDHYN9tv6VD2mZ3M5ISXroL+1SG0dwEcdo6bLd/U8p+me+1PFiTmwyxzqt5JTY8lAygoL4xuhmZRzLmtWidt9sjSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z5X1PoIw7YoIr+WTgn+htCNN7/XX+2dy/IVtrhC+jqE=;
+ b=Anaq5B0js7TwhIPL638r8E2ETCp+4VvOW+5Jx9DSd4/B9a1ve41cSNHRDavx3IhNR+AlvCgkvhd3FfCCrrbZkts/Lo9egweFof3sXOGjeSJsvxiZB1bN0uzN00Y3boiv8o9MJXcivxI99S0YFmfNyTBDznbpGskb94wyfs4Kx6s=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by TYCPR01MB9354.jpnprd01.prod.outlook.com
+ (2603:1096:400:196::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.22; Thu, 26 Jan
+ 2023 13:01:46 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::3e61:3792:227e:5f18]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::3e61:3792:227e:5f18%9]) with mapi id 15.20.6043.022; Thu, 26 Jan 2023
+ 13:01:44 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     "joro@8bytes.org" <joro@8bytes.org>,
+        "will@kernel.org" <will@kernel.org>,
+        "robin.murphy@arm.com" <robin.murphy@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: Update
+ descriptions for R-Car Gen4
+Thread-Topic: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: Update
+ descriptions for R-Car Gen4
+Thread-Index: AQHZLsourgLTvtmvK0W71iwTdWHd8a6tpGsAgACkryCAAI6eAIABBdTwgACH/oCAAEkPoA==
+Date:   Thu, 26 Jan 2023 13:01:44 +0000
+Message-ID: <TYBPR01MB5341A464477F3B7AB4A89B84D8CF9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20230123012940.1250879-1-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdX92KMeON0xC9p17kiqWT7ksEBX_NyPiiQk0fLaucDZBA@mail.gmail.com>
+ <TYBPR01MB5341B023178B4A10DE52B844D8CE9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <CAMuHMdXXnu88Tn2ucuHZK=3G18v-nCfaTYpomchRXBu3bD7UuA@mail.gmail.com>
+ <TYBPR01MB5341F8DC36EAD659209A2BDDD8CF9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <CAMuHMdU6fWeQU=kPni5hfP5BC=MzpxSzNNf5ADe37qt1k6mnFw@mail.gmail.com>
+In-Reply-To: <CAMuHMdU6fWeQU=kPni5hfP5BC=MzpxSzNNf5ADe37qt1k6mnFw@mail.gmail.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|TYCPR01MB9354:EE_
+x-ms-office365-filtering-correlation-id: 123f1fb0-d775-4113-f398-08daff9d79a6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: sbvMzjBYzczRVHwUpFdSkp/GuuB5xvV/TsJeN0pQAf+QO+RGjFdpv3MjXBgQ0MNvoak4Y5Je+C5DajNKuL/HK+DV9SCWKZ9M4GqrH9CIIOuigWkm4zbZBKhhYBWj/TRI9YI/vl/W3yUywkLWiisKy+ft7Ehu1KNogITSZ22Q3arNuGF+grB/1pMXdmm9voQ8WkTkfJrbNMlK3woq6eM2N08+0jVEQl1VGSI5Ghx5Wi0syQltvu03VFSZZc73MhRk2qPGc6XoezOweKrpumjRdThHLznVo5wC4oZHROr5wrfj3Cu60N2bsHQpwULDasdzrxJcCIV0YvKm+La9MF2okuXPpWhGmBw72FsaXG3pCZL3LOKRVA2Piwvh9MtHuy3iCj/tRj/L+oSlXMeDOCcb158oqNt9hmeuOE90U1LTEFyMDV7Cp9HyZ9Jul6zHIzZMf85tHvGfvSbmh9r+p4f8VJeW9P3ODfP5aUXq8D62ahwy/ANTKN53h6EB3yKNeVfE5PxQh0FF7w7O7C0ct33jGQO7bgSgtagZHmU7foHykfsUUEtGA6Ej3c0uHLcls0+U4pzPrCKWV5QHfuSFvfbQz8kHKDdMhIC7yTemYXXn8avBOp9bn+sgJ6SCTn5sckjbR/aoqGn5j6lYwYjZS0KFV9gNww+bEpJCRDZsXg7oCL2kE8II3FYTAY5HAB6CMsEZnZu6NKPmxXTdL4UwFYCDGQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(396003)(366004)(39860400002)(346002)(136003)(451199018)(83380400001)(38070700005)(86362001)(55016003)(33656002)(38100700002)(122000001)(5660300002)(15650500001)(4326008)(41300700001)(6916009)(66556008)(66476007)(76116006)(66946007)(8676002)(66446008)(64756008)(316002)(8936002)(2906002)(52536014)(26005)(54906003)(9686003)(186003)(478600001)(71200400001)(7696005)(6506007)(53546011);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?T2FGTlZMaTl5bkljS3JQWlRrYzU2UjRGTkdiM0c4OXlFN0NFZVM0bFRPdHh6?=
+ =?utf-8?B?L1lpU0tCMXNJcGdteGd4c085aENUMElWQ2tDck9wVHBTYUpvdnJ4UkNzM0p4?=
+ =?utf-8?B?Q3BDblBrdTlINU4xOHlacGVuYTZ1RVRGcHdBd0JGRkcxVUdHZGt2SXlmY1FC?=
+ =?utf-8?B?T1VMZEJnL1hmbnh4VW84RHdHVDFScjFhdmpTSzNKMFpiOEhpclczT3FMbzVu?=
+ =?utf-8?B?VUVQenRPRTZHNkpMYXVxM25ZZ0JId1p0ZUx2cWZ4b3RrN0s4ckhKcXlVM0Q0?=
+ =?utf-8?B?U3I1ZERTQ0V5aXR2eW9TWVVzaEJBRTVkdy9aU1dnaXlCZ2ZkK3luL3Myd1RE?=
+ =?utf-8?B?QmZYcXRtb0RvcjFrZkUrVTcxU1dkWllXc0EwdlBiaEtBMThwdnFzN1Y1REhz?=
+ =?utf-8?B?UEI4K2tyN2tGTTd2dHJDZlV5UHAxdUxOaHZ6YUFRUm5KVkJ2SUVJaHpxbmk5?=
+ =?utf-8?B?STFTLzJaWU1lTERLL3hJTU5rTXNpVUVBUnR0emZLZUd6dWVWZ3lFVDV3YmI5?=
+ =?utf-8?B?VWdoZ3JRZ01YcnU3OWJVUkRQY2dSalRlWHdMNnlqVm1MMHZoaXMrREg4eUZV?=
+ =?utf-8?B?TXZZS0xxQWVaQ0JEbEZpZUU1K3NQeFF4R29lSFZROU9jM0pvTGRjd29oZjdF?=
+ =?utf-8?B?VnE5UzBGTDEwdENPdnIxWnlDUmYzMno4Z1RGNExoNTlTQW9sVFRndkd3cm8y?=
+ =?utf-8?B?dWtyV2pTaXVRUzIzK1kvaVJqaDlDaU1ETXFOdjlHMXFuM0RObzd0K0VucEt5?=
+ =?utf-8?B?YWx6aWxYR0xXdjNkRytOc0ROcVNuOTEva1A4YlczV2g3U3VMOEpIMDhhbFR6?=
+ =?utf-8?B?OW1LaDMwN3cwZ0d5L0IrYTJ1amt2anYrQ09hMUdKbElncHdHaGpBOTViczUw?=
+ =?utf-8?B?aEZxMjhyU3MwdGV2UXo0eEtieGVZOXBkcVFITW10QXZHUHlKV3VDc2FOTWNE?=
+ =?utf-8?B?ZlN4ZWtNZ3o3MG8wQnBYOUU5ZVVSK1BlbTI3TTdKc3hIYko4d1Z3bTNJQ3dh?=
+ =?utf-8?B?UWNwc0MxdXNtNjBOVThWcmY3Z3pOcFRaY3YrZENEcW0zcmZjWms5ODIzV2Ev?=
+ =?utf-8?B?alREcDN6cit2ZVRoNkdGb2RXRGVzQkU2cDVPK0phL1BIckduQUh0YUNubVE4?=
+ =?utf-8?B?eGc0Z2lZYWZsZTY2T3ltVC9sc3IxZXl2ajc3QVpVK3F4QjViSjBQbUM3eUdV?=
+ =?utf-8?B?Y1VTSjJZRk9lYVk2UlNjTVpNNHpnMk42NXJDdEpGSFNlaStoTGtnZmNNNWdl?=
+ =?utf-8?B?WHZ1Y0xQcEVjVGw5VWlJNDFBWWQ3WFI5dHo5ZkhnejYxM09GL2lPQ3hnSkNo?=
+ =?utf-8?B?cExSZmFmSkFManlaRUJaL3ZRM3E5bkRoR3R4Y2d1OUNBRVpjVGR5SWd4RWd0?=
+ =?utf-8?B?VjEza0RFd1B4UElWcnBPUGJiVXVTV21Ibk8yeSthU05ZTGdOS2s2MHpRUC9x?=
+ =?utf-8?B?b0c3WjRwQmdRRkdzOGhQMWl3WW1ybmpSMXdIQ1BaQS9oWkgyeFFGNUFYV0s0?=
+ =?utf-8?B?NWg3cCsrSHdDUzZyT2ZFbDk3UEpBdnBCRzc0eVNGSkVWclRnNlJUa1F3RFFQ?=
+ =?utf-8?B?cVVBb2hiL3FubUNwLzRMbnF0cTc5RFUyWE9iKzJNWCtrTUpobktLSkc4WXFM?=
+ =?utf-8?B?N0IxVGVicUpENnoyK2gxUFdLSDE3cWMwbHZZKzRUQlJiOWpETFVxc3VFdzdL?=
+ =?utf-8?B?cjVYWFhlcjZ0ZHhYZ3BhRDJlQmZiNmhQRWpIN1IzalplMnM5WklmNmZyUG44?=
+ =?utf-8?B?L3dLZzFMOHNPa3hIR2dQa1A0eWYrS1BGTlRTYmQ5T0lOY21HY05BMnM2c1Zw?=
+ =?utf-8?B?YlV1cS9sWFhZcjdmZTZnMG5VeVBMcVBDN0YrVlB5azdzTWVxSW41Z2Z4UE1a?=
+ =?utf-8?B?RHN2NmQ4RGJSa3g5MEs3WXhib08vS0RYOEZpblZTRkxjc1NuKzROZGU3c1hQ?=
+ =?utf-8?B?Y0doTVdLeTkvL0Eydy8yNjViK0FtUE1WNGFtem9XZEtVYlZkQXBtVUxORHJE?=
+ =?utf-8?B?c2x0bmFBVVVRZ210THFEdDBHa1lZMTRpZXFQWkNvZXp1eEc1ditNVEZUOUtX?=
+ =?utf-8?B?TXFURWlwZU5jRm1NRjB4U1JiNXVtM3QrbTBCcFYrRlJhazVic2JHaXgrcTRr?=
+ =?utf-8?B?cVhPQVk5RFU4SC9uV1VnMG80dCtJTmhPbERCN2YrY3UwWTJlcWtJUWdnZGUw?=
+ =?utf-8?B?RGc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230126124651.1362533-3-abel.vesa@linaro.org>
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 123f1fb0-d775-4113-f398-08daff9d79a6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2023 13:01:44.1654
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pYcuk3Zd+jy+6moK/l9pORZ/ssONEB0eKgFVM/ab/6WwFcfL1A1gvYpIwvb0pngSPEUWg8n+4gK337g/49m4QzGH2Ao47vA4hJQrzPTZ6P2D3DA1mvJKXHzaXWS7PLXw
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB9354
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-26 14:46:45, Abel Vesa wrote:
-> The SM8550 SoC uses Synopsis eUSB2 PHY for USB 2.0.
-> Add a new driver for it.
-> 
-> The driver is based on a downstream implementation.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
-> 
-> The v1 version of this patch was here:
-> https://lore.kernel.org/all/20221116120157.2706810-10-abel.vesa@linaro.org/
-> 
-> Changes since v1:
->  * replaced qualcomm with qcom in subject line
->  * dropped all unnecessary includes
->  * dropped qcom_snps prefix from qcom_snps_eusb2_hsphy_vreg_names
->  * properly aligned the arguments for qcom_snps_eusb2_hsphy_write_mask
->  * added empty lines after break in switch clause, like Vinod suggested
-> 
->  drivers/phy/qualcomm/Kconfig               |   9 +
->  drivers/phy/qualcomm/Makefile              |   1 +
->  drivers/phy/qualcomm/phy-qcom-snps-eusb2.c | 421 +++++++++++++++++++++
->  3 files changed, 431 insertions(+)
->  create mode 100644 drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
-> 
-> diff --git a/drivers/phy/qualcomm/Kconfig b/drivers/phy/qualcomm/Kconfig
-> index eb9ddc685b38..27b5a2a3637d 100644
-> --- a/drivers/phy/qualcomm/Kconfig
-> +++ b/drivers/phy/qualcomm/Kconfig
-> @@ -70,6 +70,15 @@ config PHY_QCOM_QUSB2
->  	  PHY which is usually paired with either the ChipIdea or Synopsys DWC3
->  	  USB IPs on MSM SOCs.
->  
-> +config PHY_QCOM_SNPS_EUSB2
-> +	tristate "Qualcomm SNPS eUSB2 PHY Driver"
-> +	depends on OF && (ARCH_QCOM || COMPILE_TEST)
-> +	select GENERIC_PHY
-> +	help
-> +	  Enable support for the USB high-speed SNPS eUSB2 phy on Qualcomm
-> +	  chipsets. The PHY is paired with a Synopsys DWC3 USB controller
-> +	  on Qualcomm SOCs.
-> +
->  config PHY_QCOM_USB_HS
->  	tristate "Qualcomm USB HS PHY module"
->  	depends on USB_ULPI_BUS
-> diff --git a/drivers/phy/qualcomm/Makefile b/drivers/phy/qualcomm/Makefile
-> index 65f6c30a3e93..3ee118f4dfc7 100644
-> --- a/drivers/phy/qualcomm/Makefile
-> +++ b/drivers/phy/qualcomm/Makefile
-> @@ -13,6 +13,7 @@ obj-$(CONFIG_PHY_QCOM_QMP)		+= \
->  	phy-qcom-qmp-usb.o
->  
->  obj-$(CONFIG_PHY_QCOM_QUSB2)		+= phy-qcom-qusb2.o
-> +obj-$(CONFIG_PHY_QCOM_SNPS_EUSB2)	+= phy-qcom-snps-eusb2.o
->  obj-$(CONFIG_PHY_QCOM_USB_HS) 		+= phy-qcom-usb-hs.o
->  obj-$(CONFIG_PHY_QCOM_USB_HSIC) 	+= phy-qcom-usb-hsic.o
->  obj-$(CONFIG_PHY_QCOM_USB_HS_28NM)	+= phy-qcom-usb-hs-28nm.o
-> diff --git a/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c b/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
-> new file mode 100644
-> index 000000000000..3eee7b076978
-> --- /dev/null
-> +++ b/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
-> @@ -0,0 +1,421 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2023, Linaro Limited
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/reset.h>
-> +
-> +#define USB_PHY_UTMI_CTRL0		(0x3c)
-> +#define SLEEPM				BIT(0)
-> +#define OPMODE_MASK			GENMASK(4, 3)
-> +#define OPMODE_NONDRIVING		BIT(3)
-> +
-> +#define USB_PHY_UTMI_CTRL5		(0x50)
-> +#define POR				BIT(1)
-> +
-> +#define USB_PHY_HS_PHY_CTRL_COMMON0	(0x54)
-> +#define PHY_ENABLE			BIT(0)
-> +#define SIDDQ_SEL			BIT(1)
-> +#define SIDDQ				BIT(2)
-> +#define RETENABLEN			BIT(3)
-> +#define FSEL_MASK			GENMASK(6, 4)
-> +#define FSEL_19_2_MHZ_VAL		(0x0)
-> +#define FSEL_38_4_MHZ_VAL		(0x4)
-> +
-> +#define USB_PHY_CFG_CTRL_1		(0x58)
-> +#define PHY_CFG_PLL_CPBIAS_CNTRL_MASK	GENMASK(7, 1)
-> +
-> +#define USB_PHY_CFG_CTRL_2		(0x5c)
-> +#define PHY_CFG_PLL_FB_DIV_7_0_MASK	GENMASK(7, 0)
-> +#define DIV_7_0_19_2_MHZ_VAL		(0x90)
-> +#define DIV_7_0_38_4_MHZ_VAL		(0xc8)
-> +
-> +#define USB_PHY_CFG_CTRL_3		(0x60)
-> +#define PHY_CFG_PLL_FB_DIV_11_8_MASK	GENMASK(3, 0)
-> +#define DIV_11_8_19_2_MHZ_VAL		(0x1)
-> +#define DIV_11_8_38_4_MHZ_VAL		(0x0)
-> +
-> +#define PHY_CFG_PLL_REF_DIV		GENMASK(7, 4)
-> +#define PLL_REF_DIV_VAL			(0x0)
-> +
-> +#define USB_PHY_HS_PHY_CTRL2		(0x64)
-> +#define VBUSVLDEXT0			BIT(0)
-> +#define USB2_SUSPEND_N			BIT(2)
-> +#define USB2_SUSPEND_N_SEL		BIT(3)
-> +#define VBUS_DET_EXT_SEL		BIT(4)
-> +
-> +#define USB_PHY_CFG_CTRL_4		(0x68)
-> +#define PHY_CFG_PLL_GMP_CNTRL_MASK	GENMASK(1, 0)
-> +#define PHY_CFG_PLL_INT_CNTRL_MASK	GENMASK(7, 2)
-> +
-> +#define USB_PHY_CFG_CTRL_5		(0x6c)
-> +#define PHY_CFG_PLL_PROP_CNTRL_MASK	GENMASK(4, 0)
-> +#define PHY_CFG_PLL_VREF_TUNE_MASK	GENMASK(7, 6)
-> +
-> +#define USB_PHY_CFG_CTRL_6		(0x70)
-> +#define PHY_CFG_PLL_VCO_CNTRL_MASK	GENMASK(2, 0)
-> +
-> +#define USB_PHY_CFG_CTRL_7		(0x74)
-> +
-> +#define USB_PHY_CFG_CTRL_8		(0x78)
-> +#define PHY_CFG_TX_FSLS_VREF_TUNE_MASK	GENMASK(1, 0)
-> +#define PHY_CFG_TX_FSLS_VREG_BYPASS	BIT(2)
-> +#define PHY_CFG_TX_HS_VREF_TUNE_MASK	GENMASK(5, 3)
-> +#define PHY_CFG_TX_HS_XV_TUNE_MASK	GENMASK(7, 6)
-> +
-> +#define USB_PHY_CFG_CTRL_9		(0x7c)
-> +#define PHY_CFG_TX_PREEMP_TUNE_MASK	GENMASK(2, 0)
-> +#define PHY_CFG_TX_RES_TUNE_MASK	GENMASK(4, 3)
-> +#define PHY_CFG_TX_RISE_TUNE_MASK	GENMASK(6, 5)
-> +#define PHY_CFG_RCAL_BYPASS		BIT(7)
-> +
-> +#define USB_PHY_CFG_CTRL_10		(0x80)
-> +
-> +#define USB_PHY_CFG0			(0x94)
-> +#define DATAPATH_CTRL_OVERRIDE_EN	BIT(0)
-> +#define CMN_CTRL_OVERRIDE_EN		BIT(1)
-> +
-> +#define UTMI_PHY_CMN_CTRL0		(0x98)
-> +#define TESTBURNIN			BIT(6)
-> +
-> +#define USB_PHY_FSEL_SEL		(0xb8)
-> +#define FSEL_SEL			BIT(0)
-> +
-> +#define USB_PHY_APB_ACCESS_CMD		(0x130)
-> +#define RW_ACCESS			BIT(0)
-> +#define APB_START_CMD			BIT(1)
-> +#define APB_LOGIC_RESET			BIT(2)
-> +
-> +#define USB_PHY_APB_ACCESS_STATUS	(0x134)
-> +#define ACCESS_DONE			BIT(0)
-> +#define TIMED_OUT			BIT(1)
-> +#define ACCESS_ERROR			BIT(2)
-> +#define ACCESS_IN_PROGRESS		BIT(3)
-> +
-> +#define USB_PHY_APB_ADDRESS		(0x138)
-> +#define APB_REG_ADDR_MASK		GENMASK(7, 0)
-> +
-> +#define USB_PHY_APB_WRDATA_LSB		(0x13c)
-> +#define APB_REG_WRDATA_7_0_MASK		GENMASK(3, 0)
-> +
-> +#define USB_PHY_APB_WRDATA_MSB		(0x140)
-> +#define APB_REG_WRDATA_15_8_MASK	GENMASK(7, 4)
-> +
-> +#define USB_PHY_APB_RDDATA_LSB		(0x144)
-> +#define APB_REG_RDDATA_7_0_MASK		GENMASK(3, 0)
-> +
-> +#define USB_PHY_APB_RDDATA_MSB		(0x148)
-> +#define APB_REG_RDDATA_15_8_MASK	GENMASK(7, 4)
-> +
-> +static const char * const qcom_snps_eusb2_hsphy_vreg_names[] = {
-
-Urgh, forgot to squash in the change that drops the qcom_snps_ prefix.
-
-Will send v3.
-
-> +	"vdd", "vdda12",
-> +};
-> +
-> +#define EUSB2_NUM_VREGS		ARRAY_SIZE(qcom_snps_eusb2_hsphy_vreg_names)
-> +
-> +struct qcom_snps_eusb2_hsphy {
-> +	struct phy *phy;
-> +	void __iomem *base;
-> +
-> +	struct clk *ref_clk;
-> +	struct reset_control *phy_reset;
-> +
-> +	struct regulator_bulk_data vregs[EUSB2_NUM_VREGS];
-> +
-> +	enum phy_mode mode;
-> +};
-> +
-> +static int qcom_snps_eusb2_hsphy_set_mode(struct phy *p, enum phy_mode mode, int submode)
-> +{
-> +	struct qcom_snps_eusb2_hsphy *phy = phy_get_drvdata(p);
-> +
-> +	phy->mode = mode;
-> +
-> +	return 0;
-> +}
-> +
-> +static void qcom_snps_eusb2_hsphy_write_mask(void __iomem *base, u32 offset,
-> +					     u32 mask, u32 val)
-> +{
-> +	u32 reg;
-> +
-> +	reg = readl_relaxed(base + offset);
-> +	reg &= ~mask;
-> +	reg |= val & mask;
-> +	writel_relaxed(reg, base + offset);
-> +
-> +	/* Ensure above write is completed */
-> +	readl_relaxed(base + offset);
-> +}
-> +
-> +static void qcom_eusb2_default_parameters(struct qcom_snps_eusb2_hsphy *phy)
-> +{
-> +	/* default parameters: tx pre-emphasis */
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_9,
-> +					 PHY_CFG_TX_PREEMP_TUNE_MASK,
-> +					 FIELD_PREP(PHY_CFG_TX_PREEMP_TUNE_MASK, 0));
-> +
-> +	/* tx rise/fall time */
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_9,
-> +					 PHY_CFG_TX_RISE_TUNE_MASK,
-> +					 FIELD_PREP(PHY_CFG_TX_RISE_TUNE_MASK, 0x2));
-> +
-> +	/* source impedance adjustment */
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_9,
-> +					 PHY_CFG_TX_RES_TUNE_MASK,
-> +					 FIELD_PREP(PHY_CFG_TX_RES_TUNE_MASK, 0x1));
-> +
-> +	/* dc voltage level adjustement */
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_8,
-> +					 PHY_CFG_TX_HS_VREF_TUNE_MASK,
-> +					 FIELD_PREP(PHY_CFG_TX_HS_VREF_TUNE_MASK, 0x3));
-> +
-> +	/* transmitter HS crossover adjustement */
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_8,
-> +					 PHY_CFG_TX_HS_XV_TUNE_MASK,
-> +					 FIELD_PREP(PHY_CFG_TX_HS_XV_TUNE_MASK, 0x0));
-> +}
-> +
-> +static int qcom_eusb2_ref_clk_init(struct qcom_snps_eusb2_hsphy *phy)
-> +{
-> +	unsigned long ref_clk_freq = clk_get_rate(phy->ref_clk);
-> +
-> +	switch (ref_clk_freq) {
-> +	case 19200000:
-> +		qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_HS_PHY_CTRL_COMMON0,
-> +						 FSEL_MASK,
-> +						 FIELD_PREP(FSEL_MASK, FSEL_19_2_MHZ_VAL));
-> +
-> +		qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_2,
-> +						 PHY_CFG_PLL_FB_DIV_7_0_MASK,
-> +						 DIV_7_0_19_2_MHZ_VAL);
-> +
-> +		qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_3,
-> +						 PHY_CFG_PLL_FB_DIV_11_8_MASK,
-> +						 DIV_11_8_19_2_MHZ_VAL);
-> +		break;
-> +	case 38400000:
-> +		qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_HS_PHY_CTRL_COMMON0,
-> +						 FSEL_MASK,
-> +						 FIELD_PREP(FSEL_MASK, FSEL_38_4_MHZ_VAL));
-> +
-> +		qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_2,
-> +						 PHY_CFG_PLL_FB_DIV_7_0_MASK,
-> +						 DIV_7_0_38_4_MHZ_VAL);
-> +
-> +		qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_3,
-> +						 PHY_CFG_PLL_FB_DIV_11_8_MASK,
-> +						 DIV_11_8_38_4_MHZ_VAL);
-> +		break;
-> +	default:
-> +		dev_err(&phy->phy->dev, "unsupported ref_clk_freq:%lu\n",
-> +						ref_clk_freq);
-> +		return -EINVAL;
-> +	}
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_3,
-> +					 PHY_CFG_PLL_REF_DIV, PLL_REF_DIV_VAL);
-> +
-> +	return 0;
-> +}
-> +
-> +static int qcom_snps_eusb2_hsphy_init(struct phy *p)
-> +{
-> +	struct qcom_snps_eusb2_hsphy *phy = phy_get_drvdata(p);
-> +	int ret;
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(phy->vregs), phy->vregs);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = clk_prepare_enable(phy->ref_clk);
-> +	if (ret) {
-> +		dev_err(&p->dev, "failed to enable ref clock, %d\n", ret);
-> +		goto disable_vreg;
-> +	}
-> +
-> +	ret = reset_control_assert(phy->phy_reset);
-> +	if (ret) {
-> +		dev_err(&p->dev, "failed to assert phy_reset, %d\n", ret);
-> +		goto disable_ref_clk;
-> +	}
-> +
-> +	usleep_range(100, 150);
-> +
-> +	ret = reset_control_deassert(phy->phy_reset);
-> +	if (ret) {
-> +		dev_err(&p->dev, "failed to de-assert phy_reset, %d\n", ret);
-> +		goto disable_ref_clk;
-> +	}
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG0,
-> +					 CMN_CTRL_OVERRIDE_EN, CMN_CTRL_OVERRIDE_EN);
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_UTMI_CTRL5, POR, POR);
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_HS_PHY_CTRL_COMMON0,
-> +					 PHY_ENABLE | RETENABLEN, PHY_ENABLE | RETENABLEN);
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_APB_ACCESS_CMD,
-> +					 APB_LOGIC_RESET, APB_LOGIC_RESET);
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, UTMI_PHY_CMN_CTRL0, TESTBURNIN, 0);
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_FSEL_SEL,
-> +					 FSEL_SEL, FSEL_SEL);
-> +
-> +	/* update ref_clk related registers */
-> +	ret = qcom_eusb2_ref_clk_init(phy);
-> +	if (ret)
-> +		goto disable_ref_clk;
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_1,
-> +					 PHY_CFG_PLL_CPBIAS_CNTRL_MASK,
-> +					 FIELD_PREP(PHY_CFG_PLL_CPBIAS_CNTRL_MASK, 0x1));
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_4,
-> +					 PHY_CFG_PLL_INT_CNTRL_MASK,
-> +					 FIELD_PREP(PHY_CFG_PLL_INT_CNTRL_MASK, 0x8));
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_4,
-> +					 PHY_CFG_PLL_GMP_CNTRL_MASK,
-> +					 FIELD_PREP(PHY_CFG_PLL_GMP_CNTRL_MASK, 0x1));
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_5,
-> +					 PHY_CFG_PLL_PROP_CNTRL_MASK,
-> +					 FIELD_PREP(PHY_CFG_PLL_PROP_CNTRL_MASK, 0x10));
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_6,
-> +					 PHY_CFG_PLL_VCO_CNTRL_MASK,
-> +					 FIELD_PREP(PHY_CFG_PLL_VCO_CNTRL_MASK, 0x0));
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_CFG_CTRL_5,
-> +					 PHY_CFG_PLL_VREF_TUNE_MASK,
-> +					 FIELD_PREP(PHY_CFG_PLL_VREF_TUNE_MASK, 0x1));
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_HS_PHY_CTRL2,
-> +					 VBUS_DET_EXT_SEL, VBUS_DET_EXT_SEL);
-> +
-> +	/* set default parameters */
-> +	qcom_eusb2_default_parameters(phy);
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_HS_PHY_CTRL2,
-> +					 USB2_SUSPEND_N_SEL | USB2_SUSPEND_N,
-> +					 USB2_SUSPEND_N_SEL | USB2_SUSPEND_N);
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_UTMI_CTRL0, SLEEPM, SLEEPM);
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_HS_PHY_CTRL_COMMON0,
-> +					 SIDDQ_SEL, SIDDQ_SEL);
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_HS_PHY_CTRL_COMMON0,
-> +					 SIDDQ, 0);
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_UTMI_CTRL5, POR, 0);
-> +
-> +	qcom_snps_eusb2_hsphy_write_mask(phy->base, USB_PHY_HS_PHY_CTRL2,
-> +					 USB2_SUSPEND_N_SEL, 0);
-> +
-> +	return 0;
-> +
-> +disable_ref_clk:
-> +	clk_disable_unprepare(phy->ref_clk);
-> +
-> +disable_vreg:
-> +	regulator_bulk_disable(ARRAY_SIZE(phy->vregs), phy->vregs);
-> +
-> +	return ret;
-> +}
-> +
-> +static int qcom_snps_eusb2_hsphy_exit(struct phy *p)
-> +{
-> +	struct qcom_snps_eusb2_hsphy *phy = phy_get_drvdata(p);
-> +
-> +	clk_disable_unprepare(phy->ref_clk);
-> +
-> +	regulator_bulk_disable(ARRAY_SIZE(phy->vregs), phy->vregs);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct phy_ops qcom_snps_eusb2_hsphy_ops = {
-> +	.init		= qcom_snps_eusb2_hsphy_init,
-> +	.exit		= qcom_snps_eusb2_hsphy_exit,
-> +	.set_mode	= qcom_snps_eusb2_hsphy_set_mode,
-> +	.owner		= THIS_MODULE,
-> +};
-> +
-> +static int qcom_snps_eusb2_hsphy_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct qcom_snps_eusb2_hsphy *phy;
-> +	struct phy_provider *phy_provider;
-> +	struct phy *generic_phy;
-> +	int ret, i;
-> +	int num;
-> +
-> +	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
-> +	if (!phy)
-> +		return -ENOMEM;
-> +
-> +	phy->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(phy->base))
-> +		return PTR_ERR(phy->base);
-> +
-> +	phy->phy_reset = devm_reset_control_get_exclusive(dev, NULL);
-> +	if (IS_ERR(phy->phy_reset))
-> +		return PTR_ERR(phy->phy_reset);
-> +
-> +	phy->ref_clk = devm_clk_get(dev, "ref");
-> +	if (IS_ERR(phy->ref_clk))
-> +		return dev_err_probe(dev, PTR_ERR(phy->ref_clk),
-> +				     "failed to get ref clk\n");
-> +
-> +	num = ARRAY_SIZE(phy->vregs);
-> +	for (i = 0; i < num; i++)
-> +		phy->vregs[i].supply = qcom_snps_eusb2_hsphy_vreg_names[i];
-> +
-> +	ret = devm_regulator_bulk_get(dev, num, phy->vregs);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to get regulator supplies\n");
-> +	generic_phy = devm_phy_create(dev, NULL, &qcom_snps_eusb2_hsphy_ops);
-> +	if (IS_ERR(generic_phy)) {
-> +		dev_err(dev, "failed to create phy %d\n", ret);
-> +		return PTR_ERR(generic_phy);
-> +	}
-> +
-> +	dev_set_drvdata(dev, phy);
-> +	phy_set_drvdata(generic_phy, phy);
-> +
-> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +	if (IS_ERR(phy_provider))
-> +		return PTR_ERR(phy_provider);
-> +
-> +	dev_info(dev, "Registered Qcom-eUSB2 phy\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id qcom_snps_eusb2_hsphy_of_match_table[] = {
-> +	{ .compatible = "qcom,sm8550-snps-eusb2-phy", },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, qcom_snps_eusb2_hsphy_of_match_table);
-> +
-> +static struct platform_driver qcom_snps_eusb2_hsphy_driver = {
-> +	.probe		= qcom_snps_eusb2_hsphy_probe,
-> +	.driver = {
-> +		.name	= "qcom-snps-eusb2-hsphy",
-> +		.of_match_table = qcom_snps_eusb2_hsphy_of_match_table,
-> +	},
-> +};
-> +
-> +module_platform_driver(qcom_snps_eusb2_hsphy_driver);
-> +MODULE_DESCRIPTION("Qualcomm SNPS eUSB2 HS PHY driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.34.1
-> 
+SGkgR2VlcnQtc2FuLA0KDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiA8Z2VlcnRAbGludXgt
+bTY4ay5vcmc+LCBTZW50OiBUaHVyc2RheSwgSmFudWFyeSAyNiwgMjAyMyA1OjM4IFBNDQo+IA0K
+PiBPbiBUaHUsIEphbiAyNiwgMjAyMyBhdCAxOjU1IEFNIFlvc2hpaGlybyBTaGltb2RhDQo+IDx5
+b3NoaWhpcm8uc2hpbW9kYS51aEByZW5lc2FzLmNvbT4gd3JvdGU6DQo+ID4gPiBGcm9tOiBHZWVy
+dCBVeXR0ZXJob2V2ZW4sIFNlbnQ6IFdlZG5lc2RheSwgSmFudWFyeSAyNSwgMjAyMyA1OjU1IFBN
+DQo+ID4gPiBPbiBXZWQsIEphbiAyNSwgMjAyMyBhdCAxOjQ5IEFNIFlvc2hpaGlybyBTaGltb2Rh
+DQo+ID4gPiA8eW9zaGloaXJvLnNoaW1vZGEudWhAcmVuZXNhcy5jb20+IHdyb3RlOg0KPiA+ID4g
+PiA+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiwgU2VudDogVHVlc2RheSwgSmFudWFyeSAyNCwg
+MjAyMyAxMTozNSBQTQ0KPiA+ID4gPiA+IE9uIE1vbiwgSmFuIDIzLCAyMDIzIGF0IDI6MzUgQU0g
+WW9zaGloaXJvIFNoaW1vZGENCj4gPiA+ID4gPiA8eW9zaGloaXJvLnNoaW1vZGEudWhAcmVuZXNh
+cy5jb20+IHdyb3RlOg0KPiA+ID4gPiA+ID4gU2luY2UgUi1DYXIgR2VuNCBkb2Vucyd0IGhhdmUg
+dGhlIG1haW4gSVBNTVUgSU1TU1RSIHJlZ2lzdGVyLCBidXQNCj4gPiA+ID4gPiA+IGVhY2ggY2Fj
+aGUgSVBNTVUgaGFzIG93biBtb2R1bGUgaWQuIFNvLCB1cGRhdGUgZGVzY3JpcHRpb25zIG9mDQo+
+ID4gPiA+ID4gPiByZW5lc2FzLGlwbW11LW1haW4gcHJvcGVydHkgZm9yIFItQ2FyIEdlbjQuDQo+
+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTogWW9zaGloaXJvIFNoaW1vZGEg
+PHlvc2hpaGlyby5zaGltb2RhLnVoQHJlbmVzYXMuY29tPg0KPiA+ID4NCj4gPiA+ID4gPiA+IC0t
+LQ0KPiA+ID4gPiA+ID4gIFRoZSBvbGQgUi1DYXIgUzQtOCBkYXRhc2hlZXQgaGFkIGRlc2NyaWJl
+ZCBJUE1NVSBJTVNTVFIgcmVnaXN0ZXIsIGJ1dA0KPiA+ID4gPiA+ID4gIHRoZSBsYXRlc3QgZGF0
+YXNoZWV0IHVuZG9jdW1lbnRlZCB0aGUgcmVnaXN0ZXIuIFNvLCB1cGRhdGUgdGhlIHByb3BldGll
+cw0KPiA+ID4gPiA+ID4gIGRlc2NyaXB0aW9uLiBOb3RlIHRoYXQgdGhlIHNlY29uZCBhcmd1bWVu
+dCBpcyBub3QgdXNlZCBvbiB0aGUgZHJpdmVyLg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gRFQgZGVz
+Y3JpYmVzIGhhcmR3YXJlLCBub3Qgc29mdHdhcmUgcG9saWN5Lg0KPiA+ID4gPg0KPiA+ID4gPiBJ
+IHRoaW5rIHNvLg0KPiA+ID4gPg0KPiA+ID4gPiA+ID4gIFNvIG5vIGJlaGF2aW9yIGNoYW5nZS4N
+Cj4gPiA+ID4gPg0KPiA+ID4gPiA+IFNvIHdoZXJlIGRvIHdlIGdldCB0aGUgbW9kdWxlIGlkIG51
+bWJlcnMgdG8gdXNlLCBpZiB0aGV5IGFyZSBubyBsb25nZXINCj4gPiA+ID4gPiBkb2N1bWVudGVk
+IGluIHRoZSBIYXJkd2FyZSBNYW51YWw/DQo+ID4gPiA+DQo+ID4gPiA+IElmIHNvLCB3ZSBjYW5u
+b3QgZ2V0IHRoZSBtb2R1bGUgaWQgbnVtYmVycy4gU28sIHNob3VsZCB3ZSB1c2Ugb3RoZXINCj4g
+PiA+ID4gaW5mb3JtYXRpb24gd2hpY2ggaXMgY29tcGxldGVseSBmaXhlZCBpbnN0ZWFkPyBJIGhh
+dmUgc29tZSBpZGVhczoNCj4gPiA+ID4gMSkgSnVzdCAwIChvciBvdGhlciBmaXhlZCB2YWx1ZSkg
+aWYgdGhlIElNU1NUUiByZWdpc3RlciBkb2Vzbid0IGV4aXN0Lg0KPiA+ID4gPiAyKSBTZXF1ZW50
+aWFsIG51bWJlcnMgZnJvbSByZWdpc3RlciBiYXNlIG9mZnNldC4NCj4gPiA+ID4gICAgSW4gUi1D
+YXIgUzQ6IGlwbW11X3J0MCBpcyB0aGUgZmlyc3Qgbm9kZSBmcm9tIHJlZ2lzdGVyIGJhc2Ugb2Zm
+c2V0LA0KPiA+ID4gPiAgICBhbmQgaXBtbXVfcnQxIGlzIHRoZSBzZWNvbmQgb25lLg0KPiA+ID4g
+PiAgICBTbywgaXBtbXVfcnQwIGlzIDAsIGlwbW11X3J0MSBpcyAxLCBpcG1tdV9kczAgaXMgMiBh
+bmQgaXBtbXVfaGMgaXMgMy4NCj4gPiA+ID4gMykgVXNpbmcgYmFzZSBhZGRyZXNzIHVwcGVyIDE2
+LWJpdHMuDQo+ID4gPiA+ICAgIEluIFItQ2FyIFM0OiBpcG1tdV9ydDAgaXMgMHhlZTQ4MDAwMC4g
+U28sIHRoZSB2YWx1ZSBpcyAweGVlNDguDQo+ID4gPiA+DQo+ID4gPiA+IFBlcmhhcHMsIHRoZSBv
+cHRpb24gMSkgaXMgcmVhc29uYWJsZSwgSSB0aGluay4gQnV0LCB3aGF0IGRvIHlvdSB0aGluaz8N
+Cj4gPiA+DQo+ID4gPiBJIHdvdWxkIG5vdCBtYWtlIHVwIG51bWJlcnMsIGFzIHRoYXQgd291bGQg
+Y2F1c2UgY29uZnVzaW9uIHdpdGggU29Dcw0KPiA+ID4gd2hlcmUgdGhlIG51bWJlcnMgZG8gbWF0
+Y2ggdGhlIGhhcmR3YXJlLg0KPiA+DQo+ID4gSSBzZWUuDQo+ID4NCj4gPiA+IEFzIHRoZSBkcml2
+ZXIgZG9lc24ndCB1c2UgdGhlIG1vZHVsZSBpZCBudW1iZXIgKGl0IGFscmVhZHkgbG9vcHMNCj4g
+PiA+IG92ZXIgYWxsIGRvbWFpbnMsIGluc3RlYWQgb2YgY2hlY2tpbmcgSU1TU1RSLCBwcm9iYWJs
+eSBiZWNhdXNlIG9mDQo+ID4gPiBoaXN0b3JpY2FsIChSLUNhciBHZW4yKSByZWFzb25zPyksIHdo
+YXQgYWJvdXQgZHJvcHBpbmcgaXQgZnJvbSB0aGUNCj4gPiA+IHByb3BlcnR5PyBJLmUuIGFkZCAi
+bWluSXRlbXM6IDEiLCBwb3NzaWJseSBvbmx5IHdoZW4gY29tcGF0aWJsZSB3aXRoDQo+ID4gPiBy
+ZW5lc2FzLHJjYXItZ2VuNC1pcG1tdS12bXNhPw0KPiA+DQo+ID4gSXQgbG9va3MgYSBnb29kIGlk
+ZWEgdG8gbWUuDQo+ID4NCj4gPiA+IEJUVywgdGhlIHJlbGF0ZWQgSU1DVFIgcmVnaXN0ZXIgaXMg
+c3RpbGwgZG9jdW1lbnRlZCwgYW5kIHRoZSBkcml2ZXINCj4gPiA+IGRvZXMgZW5hYmxlIHRoZSBp
+bnRlcnJ1cHQgYml0IChJTUNUUl9JTlRFTiksIHNvIEknbSB3b25kZXJpbmcgaG93IHRoZQ0KPiA+
+ID4gaGFyZHdhcmUgKGRvY3VtZW50YXRpb24pIHBlb3BsZSBpbnRlbmQgdGhpcyB0byBiZSB1c2Vk
+Li4uDQo+ID4gPiBQZXJoYXBzIElNQ1RSX0lOVEVOIHdpbGwgYmUgcmVtb3ZlZC91bmRvY3VtZW50
+ZWQsIHRvbz8NCj4gPiA+IE9yIHBlcmhhcHMgdGhlIHJlbW92YWwvdW5kb2N1bWVudGF0aW9uIG9m
+IElNU1NUUiB3YXMgYSBtaXN0YWtlPw0KPiA+DQo+ID4gSSBkb24ndCB0aGluayB0aGF0IElNQ1RS
+X0lOVEVOIHdpbGwgYmUgcmVtb3ZlZC91bmRvY3VtZW50ZWQgdG9vIGJlY2F1c2UNCj4gPiB0aGUg
+SU1DVFIgcmVnaXN0ZXIgaXMgcmVsYXRlZCB0byBJTVNUUiByZWdpc3Rlciwgbm90IElNU1NUUiBy
+ZWdpc3RlciA7KQ0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH5+fn5+ICAg
+ICAgICAgICAgICAgfn5+fn5+DQo+ID4gQWJvdXQgdW5kb2N1bWVudGF0aW9uIG9mIElNU1NUUiwg
+SSBmb3VuZCB0aGF0IGFjY2Vzc2luZyB0aGUgcmVnaXN0ZXIgaXMNCj4gPiBwb3NzaWJsZSB0byBj
+YXVzZSBhIHBvdGVudGlhbCBpc3N1ZSBvbiBib3RoIFItQ2FyIEdlbjMvNC4gVGhhdCdzIHdoeQ0K
+PiA+IHRoZSBJTVNTVFIgcmVnaXN0ZXIgaXMgdW5kb2N1bWVudGVkIG9uIFItQ2FyIEdlbjQuIEkn
+bSBub3Qgc3VyZSB3aGV0aGVyDQo+ID4gUi1DYXIgR2VuMyB3aWxsIGJlIHVuZG9jdW1lbnRlZCB0
+b28gaW4gdGhlIGZ1dHVyZSB0aG91Z2gsIGJ1dCBhdCBsZWFzdCwNCj4gPiB3ZSBzaG91bGQgbm90
+IGFjY2VzcyB0aGUgSU1TU1RSIHJlZ2lzdGVyIG9uIGJvdGggUi1DYXIgR2VuMy9HZW40Lg0KPiA+
+ICMgSSdtIG5vdCBzdXJlLCBidXQgdGhhdCdzIHdoeSB0aGUgZHJpdmVyIGRvZXNuJ3QgY2hlY2sg
+SU1TU1RSIHRvIGF2b2lkDQo+ID4gIyB0aGUgcG90ZW50aWFsIGlzc3VlPz8NCj4gDQo+IElDDQo+
+IA0KPiA+IFNvLCB0byBzaW1wbGlmeSB0aGUgZHQtYmluZGluZ3MsIGp1c3QgcmVtb3ZpbmcgdGhl
+IHNlY29uZCBwcm9wZXJ0eSB3aXRob3V0DQo+ID4gYW55IGNvbmRpdGlvbiBpcyBiZXR0ZXIsIEkg
+dGhpbmsuIEJ1dCwgd2hhdCBkbyB5b3UgdGhpbms/DQo+IA0KPiBTbyBqdXN0IGFkZCAibWluSXRl
+bXM6IDEiLCBhbmQgbGVhdmUgb3V0IHRoZSBzZWNvbmQgdmFsdWUgb2YgdGhlDQo+ICJyZW5lc2Fz
+LGlwbW11LW1haW4iIHByb3BlcnR5IHdoZW4gYWRkaW5nIHN1cHBvcnQgZm9yIG5ldyBTb0NzLg0K
+PiBJIGRvbid0IHRoaW5rIHRoZXJlIGlzIGFuIGltbWVkaWF0ZSBuZWVkIHRvIHJlbW92ZSB0aGUg
+ZXhpc3Rpbmcgc2Vjb25kDQo+IHZhbHVlIG9uIGFscmVhZHkgc3VwcG9ydGVkIFNvQ3MsIGFzIHRo
+ZXNlIHZhbHVlcyBhcmUgbm90IGluY29ycmVjdA0KPiBoYXJkd2FyZSBkZXNjcmlwdGlvbi4NCg0K
+VGhhbmsgeW91IGZvciB5b3VyIGNvbW1lbnQhIEkgdW5kZXJzdG9vZCBpdC4NClNvLCBJJ2xsIHN1
+Ym1pdCBzdWNoIGEgcGF0Y2ggYXMgdjIgdG9tb3Jyb3cuDQoNCkJlc3QgcmVnYXJkcywNCllvc2hp
+aGlybyBTaGltb2RhDQoNCj4gR3J7b2V0amUsZWV0aW5nfXMsDQo+IA0KPiAgICAgICAgICAgICAg
+ICAgICAgICAgICBHZWVydA0KPiANCj4gLS0NCj4gR2VlcnQgVXl0dGVyaG9ldmVuIC0tIFRoZXJl
+J3MgbG90cyBvZiBMaW51eCBiZXlvbmQgaWEzMiAtLSBnZWVydEBsaW51eC1tNjhrLm9yZw0KPiAN
+Cj4gSW4gcGVyc29uYWwgY29udmVyc2F0aW9ucyB3aXRoIHRlY2huaWNhbCBwZW9wbGUsIEkgY2Fs
+bCBteXNlbGYgYSBoYWNrZXIuIEJ1dA0KPiB3aGVuIEknbSB0YWxraW5nIHRvIGpvdXJuYWxpc3Rz
+IEkganVzdCBzYXkgInByb2dyYW1tZXIiIG9yIHNvbWV0aGluZyBsaWtlIHRoYXQuDQo+ICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgLS0gTGludXMgVG9ydmFsZHMNCg0K
