@@ -2,114 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14D1567C86B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:21:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 512C967C87A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:25:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236755AbjAZKV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 05:21:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43092 "EHLO
+        id S237028AbjAZKZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 05:25:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237103AbjAZKVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:21:39 -0500
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B49CA5EE;
-        Thu, 26 Jan 2023 02:21:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674728477; x=1706264477;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/Wdj5n8WybsZYtkV2jOsasrUUhnq8i1MgcmZSnWSJSg=;
-  b=FyiHZ00AmlV5cMXIVuXLnwRdxqk23SJon6/e8tKZ4jsvncTIYqhj0Bmh
-   Cse5ZiTgtXV5BZn0/9us917oyeiXkTNuygyxvvvEN9JLBpEHQmWeab40z
-   R6wuh1/DOr5/qwlVxx76NNSp5b+NR19c7G8dFSjbk2aD9Q80NBwnxWN+l
-   jsheza8XPogUUS0LpcntvzDCGkaGNedUidC1ad+Pt0J7FfMYfgGuW2r4b
-   F3LkKM2M/MLEZWQl09mNLbfZc5gJFVRhI9n+LbDONNFK9B23gLYTKNBBg
-   22+FS5ANsl5KSISvtQKPTBsKCbCVa8L27mNF6VYEQ0aQKe6h0ZLTLOFY5
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10601"; a="328861727"
-X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; 
-   d="scan'208";a="328861727"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2023 02:21:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10601"; a="662804905"
-X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; 
-   d="scan'208";a="662804905"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga002.jf.intel.com with ESMTP; 26 Jan 2023 02:21:09 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1pKzNS-00FKzV-1t;
-        Thu, 26 Jan 2023 12:21:06 +0200
-Date:   Thu, 26 Jan 2023 12:21:06 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        with ESMTP id S229620AbjAZKZn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:25:43 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43797A6
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:25:42 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id h12so1245071wrv.10
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:25:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=h9mbkTJPJgNxRZ4b5KP2ORZT0ooITMMuraelrFYHiEA=;
+        b=NmTwRCotAJRtu4RPUODpdooghL0iLWlfSCpKWrcldSXM478/QCyfnuXytbHCtvRA1K
+         9ZUbJ6/IySsUm6FObDuvOdzYEbVEbT3iyJlFKrs3xyFwuZwFgM0TiIHKm6YJPcqLRNs8
+         xKi8Hr35o/8ITFnMxD5WIXWfnlEBQwh+nhFWBxDvFK1yFXSe7N4MM1tynvocoDyWWAdA
+         8UlyiZQ2+xOz9iB4wsYUiM7n8FqOYvnVmEPmTD98aRkoIbOFwWO4uf9/ilfDRnYHc7lt
+         5TSXZe/ZL6YfzcDcweIHia4VHQqrK0qKQidfmc0Qm/fTnXs4QStQ/GnR/xMlchNpYdBR
+         XuLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=h9mbkTJPJgNxRZ4b5KP2ORZT0ooITMMuraelrFYHiEA=;
+        b=nmTmYCiI8SWgOxa6NC4j48dOhFMKXTOUiF4vj4H5a1xnkbjMg+8RzD5Kh8FsaURowP
+         NqCmDE5t1GkAP7BEjzx78I7MRWj17WAtFV9aJkQesfW95m123PfkTD9mKljRRA2VPt8A
+         FKX82/xMVRj/raRAjgIegsY2yJB963sOgZdmYQOFcIAaDl90av2cmVOR1BftWu7pahjy
+         ZqXjbgEzkPO3OYeYJYx6ownoU2+299gUeaVv93LQXrkG8w5S+EzTMP2Z4g6ZP3DWty/e
+         REUvdLeKhGzizXlmjbDAL6xW0UsU7NhZ6WdrcHPOmFKXAElfb1ij4A2doiK/icPEHdmI
+         dfXQ==
+X-Gm-Message-State: AO0yUKXdpO04TzLWQ/5xJWoyUJeziYowV13FMshhbsfeAUicSj4StGe5
+        y75nSHumS7cxPZcJZ1ATgS5fXMRefWz07UFY
+X-Google-Smtp-Source: AK7set+YiLit3kGDdI6Sv6YQ+BymzvRDcZ0YXW5YWynWAR1pqvzAjRzJBvcr51/JdIRT5U+EaLvf4g==
+X-Received: by 2002:adf:e7d2:0:b0:2bf:b33b:fb7c with SMTP id e18-20020adfe7d2000000b002bfb33bfb7cmr7190186wrn.62.1674728740771;
+        Thu, 26 Jan 2023 02:25:40 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id t8-20020a5d6908000000b002bc7e5a1171sm886514wru.116.2023.01.26.02.25.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jan 2023 02:25:40 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
+        Antoine Tenart <atenart@kernel.org>,
+        Tsahee Zidenberg <tsahee@annapurnalabs.com>,
+        linux-arm-kernel@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH v7 5/7] media: i2c: add DS90UB960 driver
-Message-ID: <Y9JUEv66Gze8FjMZ@smile.fi.intel.com>
-References: <Y8gUuqLBXsXQoNUC@smile.fi.intel.com>
- <aba49d82-c76f-7ff2-751c-d1be7b8f3bca@ideasonboard.com>
- <Y8rFh6zO7Hp9mLxE@smile.fi.intel.com>
- <4286abe2-f23f-d4c9-ef18-f351af7a3a8b@ideasonboard.com>
- <Y9EcRlooHwIjOqiZ@smile.fi.intel.com>
- <cad92dbb-43ef-fa8c-1962-13c4a8578899@ideasonboard.com>
- <Y9FBlMl4b3l1zVck@smile.fi.intel.com>
- <5d208710-f284-e6e9-18dc-f5ef63a9ea44@ideasonboard.com>
- <Y9FKcoVlgUWR4rhn@smile.fi.intel.com>
- <04a82b08-524f-8d03-ac47-73d826907fc3@ideasonboard.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: dts: amazon: drop deprecated serial device_type
+Date:   Thu, 26 Jan 2023 11:25:26 +0100
+Message-Id: <167472873009.13092.2072285159866642904.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230123151547.369791-1-krzysztof.kozlowski@linaro.org>
+References: <20230123151547.369791-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <04a82b08-524f-8d03-ac47-73d826907fc3@ideasonboard.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 26, 2023 at 10:41:47AM +0200, Tomi Valkeinen wrote:
-> On 25/01/2023 17:27, Andy Shevchenko wrote:
-
-...
-
-> > But I probably don't understand the ATR structure and what exactly we need to
-> > pass to it, perhaps it also can be replaced with properties (note, that we have
-> > some interesting ones that called references, which is an alternative to DT
-> > phandle).
+On Mon, 23 Jan 2023 16:15:47 +0100, Krzysztof Kozlowski wrote:
+> The device_type property is deprecated by Devicetree specification and
+> bindings do not allow it.
 > 
-> Well, maybe this needs a Linux bus implementation. I'm not that familiar
-> with implementing a bus, but I think that would make it easier to share data
-> between the deserializer and the serializer. A bus sounds a bit like an
-> overkill for a 1-to-1 connection, used by a few drivers, but maybe it
-> wouldn't be too much code.
+> 
 
-Have you looked at auxiliary bus (appeared a few releases ago in kernel)?
+Applied, thanks!
 
+[1/1] arm64: dts: amazon: drop deprecated serial device_type
+      https://git.kernel.org/krzk/linux-dt/c/91fef8a860faa1ab4c36ab04a789ab60f8caea56
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
