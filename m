@@ -2,475 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 191EB67C8DC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:44:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EA8367C8E6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:46:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236527AbjAZKoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 05:44:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37630 "EHLO
+        id S236266AbjAZKqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 05:46:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231428AbjAZKoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:44:09 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 837CD46154
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:44:07 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id h16so1286223wrz.12
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:44:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ri11DGuRUmhA8pxxOQH7Smd4mHpj6lAzz8PfJ17j5NA=;
-        b=giRDVgNo6Z2c/Q6BuF908EAWe+kw9JK95vFrKfs/pBN9zBRYqExik9hsvP09H4shXp
-         KjsaxUqwUwg152Kmb4lli2oTHhXoFdetbTHua8xVQ14JZ2kM0RrrlRGpZYU28GOpvSbH
-         ktOWjFlR98Bi8FoInfyU9z606TnT+YUcbeVlyOjrIHhH5UaGAgvQOn5aNcvAauSDDUkM
-         NufKDqzyB6svDn7fSHQSRg5+MgkP9b/0W4KS/9XerjK8lCgoumSNVLTKkdISQ/GQyUHJ
-         fXKDHeyW2ETwLaIN78zgnG8CZWhtKRKkVj99kFoQb2hUpwm+g0GWzBocAiulDrVvbpi0
-         ppEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ri11DGuRUmhA8pxxOQH7Smd4mHpj6lAzz8PfJ17j5NA=;
-        b=or0ucAcSbGsb4+atO5DeweJLwYYr7BEyBOiycSH4SlPFfjhTT4wDGJCRJrNTH9E1tR
-         Qi/oiQP1hNAxNPsy5CId98n+JSRNIAjiHaYNwY0Sb4bbuGVPBupApVxo79pYhQtKj6/8
-         m3bvGMPgmsicAYPCOVMVOVBFhRawzqJqBoYYcBYyWr7kpNJ2srDUGHUj7qhh5h7GYUmd
-         Lkxelh8GCLAODBACyrLLJ6YxxyQVrSgM+OnLp3YKpkSUdkJ5hp3NoZaSLS4mLklE1c0l
-         ex/cpKEHUQNR1NRebNxJr2z6huuf5DN8/fPxN0Oo6P978elRlUR7fzCTglFAyq8bzR5Y
-         rktg==
-X-Gm-Message-State: AFqh2kq3fHcivf6ScBQGepyVim6upbq4MrgUl7PtTDdURlh9uE6/4wXs
-        QAKebS/EKjvxKvaFzfzCA8AxDw==
-X-Google-Smtp-Source: AMrXdXuYaPv071xcdtTvrGR/+0WZMMaj1AyFIISR5vOB6PWp6L2zGm4TxgbYwTPpHE8h6PH3Y8y65A==
-X-Received: by 2002:adf:dcc8:0:b0:2bf:950f:d4bc with SMTP id x8-20020adfdcc8000000b002bf950fd4bcmr14872363wrm.11.1674729845758;
-        Thu, 26 Jan 2023 02:44:05 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id e10-20020a5d500a000000b002be0b1e556esm926360wrt.59.2023.01.26.02.44.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 02:44:05 -0800 (PST)
-Message-ID: <94bd66d9-bd52-7b34-cf24-b6b9f2e21684@linaro.org>
-Date:   Thu, 26 Jan 2023 11:44:03 +0100
+        with ESMTP id S233130AbjAZKqt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:46:49 -0500
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2054.outbound.protection.outlook.com [40.107.102.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68FC946D54;
+        Thu, 26 Jan 2023 02:46:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=odW00zrNy0R0f02hebO6ZOLtP73g+UVZ+HIODzH9hJae1OyQgii2G+v/D1FbOUVU74wciQ7Gb6sIm4tYzWV7NC/8dd96l9N0BaZ/PU5vdLE4tkGbdmq0zCo9N2FF4FwvAJrP5gi5KaB6GWx21Kdsf6n+ErfAGppBJyihs+s5ugKW8FxmnCPuIvqZDIBCf4CV2bWPg9PZjXWLwB5eo0F47EN8zOUWVczJPb6hiN3fKZoPv6q8228m6FG2VwCw4G1kYL8t88Ie9n4NzTECxtN5ItBB3iSrvUoUGdTAXNv4Lpl6YfDBU24+d52zFIXLMFsKmp7bf1dYDV1ZxaZwAfSXvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GceJ8FbNeI5E0d7Ek5hVgH3PDPYIs1X1Um9Q11XlAto=;
+ b=Cxg+BoF1iDetE4ZYK8O2XmXc49uKHNsE2H03zlOuBPCcpdFuI0hm+4ufL76F0TmQ7EmuY/Fca+blQRITkCu/CSxCmnlyaXxKKqNnCAxDXUJ9jlJbVuNli9rQEOzhfmOI2G9TpNhNZnmkTMWkIGGdxKw1LvAxzgWYvGINOUGFlrcVOa0pwGFwrVluXBcnYEEsnzs80HKpz0NydsV57aC8awzX3CGfny8a+DjsTNI50bbXL6VDVKW+hpk4itrOgp+SeAYh1DYUN628bVbIZiVcg2ZGR0S+42jh7T7fMC5l5GBaIhagvZBJ9MbQdwJW0MWX6yk/uUxhx/IzU4YL1/VPWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GceJ8FbNeI5E0d7Ek5hVgH3PDPYIs1X1Um9Q11XlAto=;
+ b=c3rRhy5E2+r3mqdtj+tj3XXMb2JiagneQ9RyFdRN6CgCstiyVDId5EOnRcYW0CuOqRNmyln4HbmL6aR2oNR77T29oJc5qbDG2n0ZM981BLNQRaTwbQ6Di92iJCJ+e+/L1OsRMFMrXtPH2lAdOc55AAZmd4yo0RDUr+Y82wPium0=
+Received: from BN7PR06CA0043.namprd06.prod.outlook.com (2603:10b6:408:34::20)
+ by SJ0PR12MB5663.namprd12.prod.outlook.com (2603:10b6:a03:42a::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Thu, 26 Jan
+ 2023 10:46:45 +0000
+Received: from BN8NAM11FT115.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:34:cafe::26) by BN7PR06CA0043.outlook.office365.com
+ (2603:10b6:408:34::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.22 via Frontend
+ Transport; Thu, 26 Jan 2023 10:46:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT115.mail.protection.outlook.com (10.13.177.151) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6043.21 via Frontend Transport; Thu, 26 Jan 2023 10:46:45 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 26 Jan
+ 2023 04:46:44 -0600
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 26 Jan
+ 2023 04:46:38 -0600
+Received: from xhdipdslab41.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Thu, 26 Jan 2023 04:46:31 -0600
+From:   Nipun Gupta <nipun.gupta@amd.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <gregkh@linuxfoundation.org>, <rafael@kernel.org>,
+        <eric.auger@redhat.com>, <alex.williamson@redhat.com>,
+        <cohuck@redhat.com>, <song.bao.hua@hisilicon.com>,
+        <mchehab+huawei@kernel.org>, <maz@kernel.org>,
+        <f.fainelli@gmail.com>, <jeffrey.l.hugo@gmail.com>,
+        <saravanak@google.com>, <Michael.Srba@seznam.cz>,
+        <mani@kernel.org>, <yishaih@nvidia.com>, <jgg@ziepe.ca>,
+        <jgg@nvidia.com>, <robin.murphy@arm.com>, <will@kernel.org>,
+        <joro@8bytes.org>, <masahiroy@kernel.org>,
+        <ndesaulniers@google.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kbuild@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <okaya@kernel.org>, <harpreet.anand@amd.com>,
+        <nikhil.agarwal@amd.com>, <michal.simek@amd.com>, <git@amd.com>,
+        Nipun Gupta <nipun.gupta@amd.com>
+Subject: [PATCH v6 0/7] add support for CDX bus
+Date:   Thu, 26 Jan 2023 16:16:23 +0530
+Message-ID: <20230126104630.15493-1-nipun.gupta@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v11 0/6] Add RZ/G2L MTU3a Core, Counter and pwm driver
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-References: <20230113161753.1073706-1-biju.das.jz@bp.renesas.com>
- <OS0PR01MB5922C101756A71153EEBA8AA86CE9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <OS0PR01MB5922C101756A71153EEBA8AA86CE9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT115:EE_|SJ0PR12MB5663:EE_
+X-MS-Office365-Filtering-Correlation-Id: dd5d0962-b2ed-4f24-f982-08daff8a9e4e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 3tTEQsK7YAyJdkuWg5jgec6y5BVY5suAbJmthdKg2n2uyxt7+yihMr0q1texJ+ZmDHWUwuyQnxMKaWongDIOtfn2Gre7Ip9z/qWQgBuAP13FQyXSOA1gpdlcggQ+GhUn9wnqLVm8wTEHEyRR8bEOpjTWZ4PXqmWUxqR7kTgk5xA/rIR0MQiFgBQLMqcEq4KFJTLZ8VU3yNAmgzofOnEUtNWcgUcRuWzNWVoqUfLKhsB5r1AuvAK3DIwBdVMuYirrg0ttzql2EkSAb0Fg4l4L+dutsj9BrkEDDaVvoue5tYXtHB3/bskXfDyF6dW8gH+/jXe8f/DB7R/usAMv6ABsFVhQ8s6Bi6WqxXAmeMAjr7WrPYAhdZ9Rl9uwBsl2pzsMBT/c4lwrOax1JrJEXRFesP/R4bQjzCAw9RzH6pw2bw9Dxwe13FVnSGqbQIbQ/XnoHU5A+9BaXxf+dQbMwACGe6fCPZOSoQfHXhoPEqEczKN2RTcuNvgHtAitK0mR9T+wqM0nFpGNMZPn7FBPPA+2GU64djLBaOPbGnhaKzY40YLbl3YlYfqZ6d91MOSxZvGj8XLzF/3/Qy0KdKeBAcRxQ6FouL5HAqatkh8+YxSkgzSLcMfkV5ng5Rs/M0eLfYMtbtaT2Xw2/Q1hGspOwz7KGVMCWoBVJrd24/O6K5fHbXldiBLi17Q1na2c3hnC8RdBW8iqW8jcNTu52p+14kSeug0sZBQdEEHmQHPemXL2JNv7HuG16I+wRF7fEO4fQjb+Dq8TMsdbc5sj6Q7B0hQico/NPkfKsZYDdMESNL6X2fhuGFzfR6w/iIZXV1MbQF13luBn8zfzTZlonIPtQRwEKLTPNmwFBgIIKobwNPNvBqve+cErD+t5y5z/HsMHJrnS
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(346002)(396003)(136003)(376002)(39860400002)(451199018)(46966006)(40470700004)(36840700001)(36860700001)(83380400001)(82740400003)(2906002)(356005)(44832011)(7416002)(81166007)(86362001)(921005)(316002)(5660300002)(8936002)(4326008)(6666004)(40460700003)(82310400005)(40480700001)(26005)(110136005)(70586007)(54906003)(1076003)(47076005)(41300700001)(2616005)(186003)(336012)(426003)(478600001)(36756003)(966005)(8676002)(70206006)(36900700001)(83996005)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2023 10:46:45.2423
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dd5d0962-b2ed-4f24-f982-08daff8a9e4e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT115.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5663
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/01/2023 20:48, Biju Das wrote:
-> Hi Daniel,
-> 
-> Gentle ping.
+Introduces AMD CDX bus, which provides a mechanism to
+discover/rescan CDX devices. The CDX devices are 
+memory mapped on system bus for embedded CPUs.
 
-Yeah, sorry for the delay.
+CDX controller interacts with the firmware to query different
+CDX devices present in the Fabric and expose them to the Linux
+host on CDX bus.
+
+This patch series:
+- Introduces the CDX bus and CDX devices.
+- Device tree binding for CDX controller
+- Support for CDX bus in arm-smmu-v3 driver
+- Add MCDI (Management CPU Driver Interface) as a protocol
+  for communication with RPU Firmware
+- Support RPMSg channel for Firmware communication
+
+After RFC v4 we sent out v1 (non-RFC) which was meant to be v5.
+This non-RFC patch is at: 
+https://lore.kernel.org/lkml/20230117134139.1298-8-nipun.gupta@amd.com/T/
+Sending this series as a v6 now.
+
+Changes v5 -> v6
+- updated compatible name in the CDX dt-binding 
+- updated reset CDX device and removed redundant function
+- moved from drivers/bus/cdx to drivers/cdx
+- used xarray instead of controller list and ID
+- updated sysfs documentation with more details
+
+Changes RFC v4 -> v5
+- Fixed device tree documentation
+- Add MCDI as a protocol and RPMsg as transport for communication
+  with RPU Firmware instead of using MCDI stubs.
+- MSI patches for CDX are not added in this series as it's
+  support is being revisited as per patch series:
+  https://lore.kernel.org/all/20221111133158.196269823@linutronix.de/
+  It will be added as separate patches.
+
+Changes RFC v3 -> RFC v4:
+ - Separate CDX bus and CDX controller driver (Greg K-H)
+ - Added MSI interfacing to Firmware for writing MSI message
+   to firmware so it can be provided to the device.
+ - Fix MSI review comments - multiple cleanups (Mark Zynger)
+ - Fix the device tree yaml compilation (Rob Herring, Krzysztof)
+ - removed vfio-cdx from this series. It will be added after bus
+   support is complete (Jason)
+
+Changes RFC v2 -> RFC v3:
+- Move CDX bus as a new bus type in kernel rather than
+  using the platform devices (Greg K-H, Marc Zynger)
+- Correspondingly update ARM SMMU v3
+- Add support for vfio-cdx driver
+- Updated device tree yaml with correct binding information
+  (Krzysztof Kozlowski)
+- remove 'compatible' sysfs platform patch which was required
+  for CDX devices exposed as platform devices
+
+Changes RFC v1 -> RFC v2: 
+- introduce CDX bus infrastructure
+- fixed code for making compatible visible for devices
+  having the 'compatible' property only (Greg K-H)
+- moved CDX-MSI domain as part of CDX bus infrastructure.
+  previously it was part of irqchip (Marc Zynger).
+- fixed few prints (Greg K-H)
+- support rescan and reset of CDX bus 
+- add VFIO reset module for CDX bus based devices
 
 
-> The core driver and binding patches [1] and [2] is blocking[3], [4] and [5].
-> 
-> Does these patches have to go via counter tree as it is the first user and
-> we have dependency between subsystems for this IP?
+Abhijit Gangurde (1):
+  cdx: add rpmsg communication channel for CDX
 
-I am reviewing the patch for now.
+Nipun Gupta (6):
+  cdx: add the cdx bus driver
+  iommu/arm-smmu-v3: support ops registration for CDX bus
+  dt-bindings: bus: add CDX bus controller for versal net
+  cdx: add MCDI protocol interface for firmware interaction
+  cdx: add cdx controller
+  cdx: add device attributes
 
-The simplest way is I create an immutable branch based on v6.2-rc1 with 
-these two patches and then I merge it back to the timers/next branch.
-
- From your side, you merge this immutable branch.
-
-I'll take care of it ASAP, so you won't be blocked anymore.
-
-
-> [1] https://lore.kernel.org/linux-renesas-soc/20230113161753.1073706-1-biju.das.jz@bp.renesas.com/T/#m79afdee83fd64dfbeb27fd888361a0d6d6a26ad5
-> 
-> [2] https://lore.kernel.org/linux-renesas-soc/20230113161753.1073706-1-biju.das.jz@bp.renesas.com/T/#m4d0dfa4d2700c2d6669da3289d68bcb9ce7dac71
-> 
-> [3] https://lore.kernel.org/linux-renesas-soc/20230113161753.1073706-1-biju.das.jz@bp.renesas.com/T/#mb8d4b7ad8e23e795bfde15a33c28b5c0348654bc
-> 
-> [4] https://lore.kernel.org/linux-renesas-soc/20230113161753.1073706-1-biju.das.jz@bp.renesas.com/T/#me3bcc56cef9cf78868e38158f8b870fa9cceff8f
-> 
-> [5] https://lore.kernel.org/linux-renesas-soc/20230113161753.1073706-1-biju.das.jz@bp.renesas.com/T/#m1821926505123cd75f0b981e496d4e044cf875c3
-> 
-> Cheers,
-> Biju
-> 
->> Subject: [PATCH v11 0/6] Add RZ/G2L MTU3a Core, Counter and pwm driver
->>
->> The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in the
->> Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer channels and
->> one 32-bit timer channel. It supports the following functions
->>   - Counter
->>   - Timer
->>   - PWM
->>
->> This patch series aims to add core, counter and pwm driver for MTU3a. The
->> core instantiates child devices using mfd api.
->>
->> The 8/16/32 bit registers are mixed in each channel. The HW specifications
->> of the IP is described in patch#1.
->>
->> Current patch set is tested for PWM mode1 on MTU3 channel and 16 and 32 bit
->> phase counting modes on MTU1 and MTU2 channels.
->>
->> There is a plan to add clock event driver later for Power management.
->>
->> Ref:
->>
-> https://patchwork.kernel.org/project/linux-renesas-soc/patch/20221010145222.1047748-2-biju.das.jz@bp.renesas.com/
-> 
->> v10->v11:
->>   * Added Rb tag from William Breathitt Gray for the driver patch
->>   * Replaced count2 channel name from "combined"->"cascaded", as channels
->>     are cascaded
->>   * Simplified the locking by adding the helper functions
->>     rz_mtu3_lock_if_counter_is_valid, rz_mtu3_lock_if_count_is_enabled,
->>     and rz_mtu3_lock_if_ch0_is_enabled.
->>   * Added the MAINTAINERS entries for the driver.
->> v9->v10:
->>   * Added logs from PWM and counter
->>   * Added Rb tag from William Breathitt Gray for sysfs counter doc
->>   * Added helper function for rz_mtu3_count_{action,function}_read
->>   * Added priv->lock in rz_mtu3_count_function_read and rz_mtu3_count_
->>     direction_read.
->>   * Added ch->is_busy check for rz_mtu3_action_read()
->>   * Added rz_mtu3_is_ch0_enabled() for device specific sysfs variables.
->>   * Added ch->is_busy check for device specific sysfs variables.
->> v8->v9:
->>   * Added prescale/duty_cycle variables to struct rz_mtu3_pwm_chip and
->>     cached this values in rz_mtu3_pwm_config and used this cached values
->>     in get_state(), if PWM is disabled.
->>   * Added return code for get_state().
->>   * Added available blocks for external_input_phase_clock_select_available
->>   * Removed the "This attribute" from the external_input_phase_clock_select
->>     description, and capitalize the word "counter" from description.
->>   * Removed the "This attribute" from the cascade_counts_enable description,
->>     and capitalize "counts" and "counter"
->>   * Moved these device-level configuration blocks to top of the file.
->>   * Added count_is_enabled variable to struct rz_mtu3_cnt
->>   * Added check for ch->is_busy and count_is_enabled before every Counter
->>     callback to ensure we do not try to access a busy channel used by other
->>     subsystem(eg: pwm).
->>   * Removed id parameter from rz_mtu3_32bit_cnt_setting()
->>   * Made definition of rz_mtu3_get_ch() in single line.
->>   * Replaced break->return in rz_mtu3_32bit_cnt_setting(),
->>     rz_mtu3_count_function_read() and rz_mtu3_initialize_counter()
->>     and removed redundant return 0.
->>   * Simplified synapse signal check for rz_mtu3_action_read().
->> v7->v8:
->>   * Add locking for RMW on rz_mtu3_shared_reg_update_bit()
->>   * Replaced enum rz_mtu3_functions with channel busy flag
->>   * Added API for request and release a channel.
->>   * Replaced cascade_enable->cascade_counts_enable
->>   * Updated commit header and description
->>   * Added external_input_phase_clock_select_available entry for driver-
->>     specific enum attribute and created a new entry block for it.
->>   * Add a line stating cascade_counts_enable is a boolean attribute.
->>   * Added missing 'component_id' suffix.
->>   * Simplified rz_mtu3_initialize_counter by calling rz_mtu3_request_
->>     channel() and release the acquired sibling channel in case of error.
->>   * Simplified rz_mtu3_terminate_counter by calling rz_mtu3_release_
->>     channel().
->>   * Removed unused ceiling and ch_id from rz_mtu3_count_write()
->>   * Replaced the error -EINVAL->-EBUSY for rz_mtu3_is_counter_invalid()
->>   * Avoided race between rz_mtu3_count_{read, write} with rz_mtu3_
->>     cascade_counts_enable_set() by adding locks and moved the lock
->>     before rz_mtu3_is_counter_invalid()
->>   * Protected the rz_mtu3_count_ceiling_read() function with a lock
->>     to make sure the cascade operation mode doesn't not change and
->>     that the priv data structure accesses don't race when they are
->>     changed in the ceiling_write() callback.
->>   * Added lock in rz_mtu3_cascade_enable_set() to make sure the other
->>     callbacks don't try to read the LWA state while updating LWA.
->>   * Added lock in rz_mtu3_ext_input_phase_clock_select_set() to ensure
->>     the other callbacks don't try to read the PHCKSEL state while updating
->>     PHCKSEL.
->>   * Added lock to avoid race between rz_mtu3_count_function_write() and
->>     rz_mtu3_action_read()
->>   * Updated rz_mtu3_action_read to return 0, if Synapse is in COUNTER_SYNAPSE
->>     _ACTION_NONE state.
->>   * Replaced sysfs variable cascade_enable->cascade_counts_enable
->>   * Renamed rz_mtu3_cascade_enable_get->rz_mtu3_cascade_counts_enable_get
->>   * Renamed rz_mtu3_cascade_enable_set->rz_mtu3_cascade_counts_enable_set
->>   * Removed redundent ceiling assignment from rz_mtu3_count_ceiling_read()
->>   * Removed unused ceiling and ch_id from rz_mtu3_count_write().
->>   * Simplified rz_mtu3_pwm_request by calling rz_mtu3_request_channel()
->>   * Simplified rz_mtu3_pwm_free by calling rz_mtu3_release_channel()
->> v6->v7:
->>   * Added channel specific mutex to avoid races between child devices
->>     (for eg: pwm and counter).
->>   * Added rz_mtu3_shared_reg_update_bit() to update bits.
->>   * Replaced sysfs variable "long_word_access_ctrl_mode->cascade_enable"
->>   * Updated Kernel version in sysfs Documentation
->>   * Updated commit description for counter driver
->>   * Added Register descriptions
->>   * Opimized size of cache variable by using union
->>   * Used test_bit() in rz_mtu3_is_counter_invalid()
->>   * Replaced val->timer_mode in rz_mtu3_count_function_{read,write}
->>   * Added TODO comment phase3 and phase5 modes.
->>   * replaced if-else with ternary expression in
->> rz_mtu3_count_direction_read()
->>   * Used switch statement in rz_mtu3_count_ceiling_read to consistent with
->> write
->>   * Provided default case for all switch statements.
->>   * Add mutex lock for avoiding races with other devices and counter
->>   * Updated comments in rz_mtu3_action_read()
->>   * Replaced COUNTER_COMP_DEVICE_BOOL->COUNTER_COMP_DEVICE_BOOL for
->>     cascade_enable
->>   * Replaced RZ_MTU3_GET_HW_CH->rz_mtu3_get_hw_ch
->>   * Added rz_mtu3_get_ch() to get channels
->>   * used rz_mtu3_shared_reg_update_bit for cascade_enable and
->>     selecting phase input clock.
->>   * Added rz_mtu3_is_counter_invalid() check in rz_mtu3_count_ceiling_read()
->>   * Added channel specific mutex lock to avoid race between counter
->>     device and rz_mtu3_pwm_{request,free}
->>   * Added pm_runtime_resume_and_get in rz_mtu3_pwm_enable()
->>   * Added pm_runtime_put_sync in rz_mtu3_pwm_disable()
->>   * Updated rz_mtu3_pwm_config()
->>   * Updated rz_mtu3_pwm_apply()
->> v5->v6:
->>   * Added Rb tag from Rob and Krzysztof for the binding patch.
->>   * Updated commit and KConfig description for the driver patches
->>   * Selected MFD_CORE to avoid build error if CONFIG_MFD_CORE not set.
->>   * Improved error handling in core driver's probe().
->>   * Fixed RZ_MTU3_GET_HW_CH Macro for argument reuse 'id' -
->>     possible side-effects?
->>   * Replaced SET_RUNTIME_PM_OPS->DEFINE_RUNTIME_DEV_PM_OPS and removed
->>     __maybe_unused from suspend/resume()
->>   * Replaced dev_get_drvdata from rz_mtu3_pwm_pm_disable()
->>   * Sorted header files for all driver files.
->> v4->v5:
->>   * Modelled as timer bindings.
->>   * Fixed the typo in bindings.
->>   * Moved core driver from MFD to timer
->>   * Child devices instatiated using mfd_add_devices()
->>   * Documented sysfs entries external_input_phase_clock_select and
->>     long_word_access_ctrl_mode.
->>   * Updated the Kconfig with SoC vendor name
->>   * Introduced rz_mtu3_is_counter_invalid()
->>   * replaced pointer to an array of struct rz_mtu3_channel with
->>     a simple pointer to struct rz_mtu3_channel.
->>   * Added long_word_access_ctrl_mode sysfs entry for 16-bit and
->>     32-bit access
->>   * Added external_input_phase_clock_select sysfs entry for
->>     selecting input clocks.
->>   * used preprocessor defines represent SIGNAL_{A,B,C,D}_ID instead of
->>     signal ids.
->> v3->v4:
->>   * Dropped counter and pwm compatibeles as they don't have any resources.
->>   * Made rz-mtu3 as pwm provider.
->>   * Updated the example and description.
->>   * A single driver that registers both the counter and the pwm
->> functionalities
->>     that binds against "renesas,rz-mtu3".
->>   * Moved PM handling from child devices to here.
->>   * replaced include/linux/mfd/rz-mtu3.h->drivers/mfd/rz-mtu3.h
->>   * Removed "remove" callback from mfd driver
->>   * There is no resource associated with "rz-mtu3-counter" and "rz-mtu3-pwm"
->>     compatible and moved the code to mfd subsystem as it binds against "rz-
->> mtu".
->>   * Removed struct platform_driver rz_mtu3_cnt_driver.
->>   * Removed struct platform_driver rz_mtu3_pwm_driver.
->>   * Updated commit description
->>   * Updated Kconfig description
->>   * Added macros RZ_MTU3_16_BIT_MTU{1,2}_CH for MTU1 and MTU2 channels
->>   * Added RZ_MTU3_GET_HW_CH macro for getting channel ID.
->>   * replaced priv->ch[id]->priv->ch[0] in rz_mtu3_count_read()
->>   * Cached counter max values
->>   * replaced cnt->tsr in rz_mtu3_count_direction_read()
->>   * Added comments for RZ_MTU3_TCR_CCLR_NONE
->>   * Replaced if with switch in rz_mtu3_initialize_counter() and
->>     rz_mtu3_count_ceiling_write()
->>   * Added locks in initialize, terminate and enable_read to prevent races.
->>   * Updated rz_mtu3_action_read to take care of MTU2 signals.
->>   * Added separate distinct array for each group of Synapse.
->>   * Moved pm handling to parent.
->> v2->v3:
->>   * Dropped counter bindings and integrated with mfd as it has only one
->> property.
->>   * Removed "#address-cells" and "#size-cells" as it do not have children
->> with
->>     unit addresses.
->>   * Removed quotes from counter and pwm.
->>   * Provided full path for pwm bindings.
->>   * Updated the binding example.
->>   * removed unwanted header files
->>   * Added LUT for 32 bit registers as it needed for 32-bit cascade counting.
->>   * Exported 32 bit read/write functions.
->>   * Modelled as a counter device supporting 3 counters(2 16-bit and
->>     32-bit)
->>   * Add kernel-doc comments to document struct rz_mtu3_cnt
->>   * Removed mmio variable from struct rz_mtu3_cnt
->>   * Removed cnt local variable from rz_mtu3_count_read()
->>   * Replaced -EINVAL->-ERANGE for out of range error conditions.
->>   * Removed explicit cast from write functions.
->>   * Removed local variable val from rz_mtu3_count_ceiling_read()
->>   * Added lock for RMW for counter/ceiling updates.
->>   * Added different synapses for counter0 and counter{1,2}
->>   * Used ARRAY for assigning num_counts.
->>   * Added PM runtime for managing clocks.
->>   * Add MODULE_IMPORT_NS(COUNTER) to import the COUNTER namespace.
->>
->> RFC->v2:
->>   * replaced devm_reset_control_get->devm_reset_control_get_exclusive
->>   * Dropped 'bindings' from the binding title
->>   * Updated the binding example
->>   * Added additionalProperties: false for counter bindings
->>   * Squashed all the binding patches
->>   * Modelled as a single counter device providing both 16-bit
->>     and 32-bit phase counting modes
->>   * Modelled as a single pwm device for supporting different pwm modes.
->>   * Moved counter and pwm bindings to respective subsystems.
->>
->> Logs:
->> root@smarc-rzg2l:/# /mtu_test.sh
->> #### Zero duty cycle ###
->> #### decrement Period ###
->> #### Increment Period ###
->> #### decrement duty cycle ###
->> #### Increment duty cycle ###
->> ### Unbind the PWM driver####
->> ### Bind the PWM driver####
->> Positive counting
->> cascade_counts_enable is 0
->> #### Ch0 count
->> 0
->> 2
->> 8
->> 13
->> 18
->> 23
->> 28
->> 33
->> 38
->> 44
->> 50
->> 3
->> 9
->> 14
->> 19
->> 24
->> 29
->> 35
->> 39
->> 45
->> #### Ch1 count
->> #### Select Phase clock
->> Phase clock MTCLKA-MTCLKB
->> 0
->> 5
->> 10
->> 15
->> 20
->> 4
->> 10
->> 14
->> 20
->> 3
->> 9
->> 14
->> 19
->> 3
->> 8
->> 14
->> 18
->> 3
->> 7
->> 13
->> #### Select Phase clock
->> Phase clock MTCLKA-MTCLKB
->> cascade_counts_enable is 1
->> #### Ch2 count
->> 0
->> 5
->> 10
->> 15
->> 21
->> 25
->> 31
->> 36
->> 41
->> 46
->> 51
->> 56
->> 61
->> 67
->> 71
->> 77
->> 82
->> 87
->> 92
->> 97
->> ### Unbind the counter driver####
->> ### Bind the counter driver####
->> ### Unbind the Core driver####
->> ### Bind the Core driver####
->> Read at address  0x11010538 (0xffffb1aaa538): 0x00000000 root@smarc-rzg2l:/#
->>
->> Biju Das (6):
->>    dt-bindings: timer: Document RZ/G2L MTU3a bindings
->>    clocksource/drivers: Add Renesas RZ/G2L MTU3a core driver
->>    Documentation: ABI: sysfs-bus-counter: add cascade_counts_enable and
->>      external_input_phase_clock_select
->>    counter: Add Renesas RZ/G2L MTU3a counter driver
->>    MAINTAINERS: Add entries for Renesas RZ/G2L MTU3a counter driver
->>    pwm: Add Renesas RZ/G2L MTU3a PWM driver
->>
->>   Documentation/ABI/testing/sysfs-bus-counter   |  32 +
->>   .../bindings/timer/renesas,rz-mtu3.yaml       | 302 ++++++
->>   MAINTAINERS                                   |   8 +
->>   drivers/clocksource/Kconfig                   |  11 +
->>   drivers/clocksource/Makefile                  |   1 +
->>   drivers/clocksource/rz-mtu3.c                 | 459 +++++++++
->>   drivers/counter/Kconfig                       |  11 +
->>   drivers/counter/Makefile                      |   1 +
->>   drivers/counter/rz-mtu3-cnt.c                 | 903 ++++++++++++++++++
->>   drivers/pwm/Kconfig                           |  11 +
->>   drivers/pwm/Makefile                          |   1 +
->>   drivers/pwm/pwm-rz-mtu3.c                     | 486 ++++++++++
->>   include/clocksource/rz-mtu3.h                 | 237 +++++
->>   13 files changed, 2463 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/timer/renesas,rz-
->> mtu3.yaml
->>   create mode 100644 drivers/clocksource/rz-mtu3.c  create mode 100644
->> drivers/counter/rz-mtu3-cnt.c  create mode 100644 drivers/pwm/pwm-rz-mtu3.c
->> create mode 100644 include/clocksource/rz-mtu3.h
->>
->> --
->> 2.25.1
-> 
+ Documentation/ABI/testing/sysfs-bus-cdx       |  79 ++
+ .../bindings/bus/xlnx,versal-net-cdx.yaml     |  68 ++
+ MAINTAINERS                                   |   8 +
+ drivers/Kconfig                               |   2 +
+ drivers/Makefile                              |   1 +
+ drivers/cdx/Kconfig                           |  18 +
+ drivers/cdx/Makefile                          |   8 +
+ drivers/cdx/cdx.c                             | 553 +++++++++++
+ drivers/cdx/cdx.h                             |  62 ++
+ drivers/cdx/controller/Kconfig                |  30 +
+ drivers/cdx/controller/Makefile               |   9 +
+ drivers/cdx/controller/bitfield.h             |  88 ++
+ drivers/cdx/controller/cdx_controller.c       | 229 +++++
+ drivers/cdx/controller/cdx_controller.h       |  30 +
+ drivers/cdx/controller/cdx_rpmsg.c            | 202 ++++
+ drivers/cdx/controller/mc_cdx_pcol.h          | 590 +++++++++++
+ drivers/cdx/controller/mcdi.c                 | 913 ++++++++++++++++++
+ drivers/cdx/controller/mcdi.h                 | 247 +++++
+ drivers/cdx/controller/mcdi_functions.c       | 139 +++
+ drivers/cdx/controller/mcdi_functions.h       |  61 ++
+ drivers/iommu/iommu.c                         |   4 +
+ include/linux/cdx/cdx_bus.h                   | 174 ++++
+ include/linux/mod_devicetable.h               |  15 +
+ scripts/mod/devicetable-offsets.c             |   4 +
+ scripts/mod/file2alias.c                      |  12 +
+ 25 files changed, 3546 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-cdx
+ create mode 100644 Documentation/devicetree/bindings/bus/xlnx,versal-net-cdx.yaml
+ create mode 100644 drivers/cdx/Kconfig
+ create mode 100644 drivers/cdx/Makefile
+ create mode 100644 drivers/cdx/cdx.c
+ create mode 100644 drivers/cdx/cdx.h
+ create mode 100644 drivers/cdx/controller/Kconfig
+ create mode 100644 drivers/cdx/controller/Makefile
+ create mode 100644 drivers/cdx/controller/bitfield.h
+ create mode 100644 drivers/cdx/controller/cdx_controller.c
+ create mode 100644 drivers/cdx/controller/cdx_controller.h
+ create mode 100644 drivers/cdx/controller/cdx_rpmsg.c
+ create mode 100644 drivers/cdx/controller/mc_cdx_pcol.h
+ create mode 100644 drivers/cdx/controller/mcdi.c
+ create mode 100644 drivers/cdx/controller/mcdi.h
+ create mode 100644 drivers/cdx/controller/mcdi_functions.c
+ create mode 100644 drivers/cdx/controller/mcdi_functions.h
+ create mode 100644 include/linux/cdx/cdx_bus.h
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+2.17.1
 
