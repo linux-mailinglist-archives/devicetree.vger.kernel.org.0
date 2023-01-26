@@ -2,112 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C727F67D160
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 17:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B27167D0A1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:50:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232707AbjAZQ0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 11:26:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33972 "EHLO
+        id S231823AbjAZPuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 10:50:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232723AbjAZQZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 11:25:54 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2273A485B2;
-        Thu, 26 Jan 2023 08:25:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674750310; x=1706286310;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=7tKbBPC9aDVVfGKolDI9/dBbPmFzcQG7teudBkR6D2c=;
-  b=ZP0wB5j1ha2Ec0vTdj9teVwj3qnxnZZ/DLfGraTt9gSUqiGphcigBZcB
-   ysmAH7PiM0gPflfzVnti+4ccpvB8QGro4tJIH/dimG+yHZ59qPHXyM5VT
-   SYiVzb0n6XUgsMuNwRezzpzB51hshFyYbnrTqh16fc+l5ma9CjwbvLzVi
-   P4cuCrXJwmnYTqXvE1O2JModJZieY2SvQKVhYe5c5J9zqB9I3RPsaMMot
-   PORGywFOfec6R79MFcjNB9kjFSEUevmVNmwohVeRouuLRNtRN5dSb3OTw
-   WWH9oxnTOzIJIZ+feTyDo0IL35RALkHRPRNRND2crBmD1GSdek8YNtpEf
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="354154632"
-X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; 
-   d="scan'208";a="354154632"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2023 08:24:36 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="612855059"
-X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; 
-   d="scan'208";a="612855059"
-Received: from nmani1-mobl2.amr.corp.intel.com (HELO [10.209.167.178]) ([10.209.167.178])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2023 08:24:34 -0800
-Message-ID: <7f471960-0909-4680-e192-261d1fdfe6d7@linux.intel.com>
-Date:   Thu, 26 Jan 2023 09:44:23 -0600
+        with ESMTP id S232259AbjAZPuA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:50:00 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA5B24ABF8;
+        Thu, 26 Jan 2023 07:49:59 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3C141618B6;
+        Thu, 26 Jan 2023 15:49:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F9D5C4339B;
+        Thu, 26 Jan 2023 15:49:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674748198;
+        bh=tz37H93KJoXT7koLr1H4HT5GaXKxGQjDxvtFWm7fYOY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=jqXQMHePLVFSiJqj0BgbGZMSJfFzBNY1s6BwEQB8uiax+WOjHz0lV4186ZtQdvbU3
+         VlcXlHGw+7BSYxkQhOdJkzk5JGC3Sjei/OXUTgUyXuis2MgcgbNTcTFDhBGwtHsapv
+         BWjzD2QkPbh4tcAjQOAWHKvfEIc7v7GVmCAWqYo0dL1dMpif0lnkTtRgmiIgdyTYnv
+         HVwbngVuGhfvugMn/7DfKFiw47VQtQ6TJQaM9BwGmw6P3Q2Xitjm1qmI9trS1Atlk8
+         JJoBV0NzEojUnCR5P0ARoBsXnZYnZ7iK+BEISeiOB51RuC05DGjF6/mWBB0AUtiM01
+         iL+0jwwg2LTxg==
+Date:   Thu, 26 Jan 2023 09:49:56 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>
+Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
+        wenrui.li@rock-chips.com, rick.wertenbroek@heig-vd.ch,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+Subject: Re: [PATCH 0/8] PCI: rockchip: Fix PCIe endpoint controller driver
+Message-ID: <20230126154956.GA1278063@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.4.2
-Subject: Re: [RFC PATCH v2 11/22] ASoC: qcom: Add USB backend ASoC driver for
- Q6
-Content-Language: en-US
-To:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        Thinh.Nguyen@synopsys.com, broonie@kernel.org,
-        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
-        agross@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
- <20230126031424.14582-12-quic_wcheng@quicinc.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <20230126031424.14582-12-quic_wcheng@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAAEEuhq9X0ppqTMp7fnZapbubf9k8xhH=u3gPva3hEpAdawK3w@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jan 26, 2023 at 04:23:57PM +0100, Rick Wertenbroek wrote:
+> Le jeu. 26 janv. 2023 à 15:52, Bjorn Helgaas <helgaas@kernel.org> a écrit :
+> > Thanks very much for your work.
+> >
+> > On Thu, Jan 26, 2023 at 02:50:40PM +0100, Rick Wertenbroek wrote:
+> > > This is a series of patches that fixes the PCIe endpoint controller driver
+> > > for the Rockchip RK3399 SoC. It is based on Linux kernel 6.0.19
+> > >
+> > > The original driver in mainline had issues and would not allow for the
+> > > RK3399 to operate in PCIe endpoint mode. This patch series fixes that so
+> > > that the PCIe core controller of the RK3399 SoC can now act as a PCIe
+> > > endpoint.
+> >
+> > So we merged cf590b078391 ("PCI: rockchip: Add EP driver for Rockchip
+> > PCIe controller") when it actually didn't work?  Ouch.  Thanks for
+> > fixing it and testing it.
+> 
+> It seems it wasn't fully tested, the code compiles and kernel module loads,
+> but further functionality didn't seem to have been tested
+> (e.g., lspci, and with the pcitest tool and pci_endpoit_test_driver).
 
+OK, I guess that happens sometimes.  Glad you're getting it into
+shape!
 
-On 1/25/23 21:14, Wesley Cheng wrote:
-> Create a USB BE component that will register a new USB port to the ASoC USB
-> framework.  This will handle determination on if the requested audio
-> profile is supported by the USB device currently selected.
+> Does this mean I should refer to the commit cf590b078391
+> ("PCI: rockchip: Add EP driver for Rockchip PCIe controller") ?
+> Because it wasn't working in the first place ?
 
-Can you clarify how? because ...
+Yes, I think so.
 
+> Thank you for all the pointers, I'll take them into account for the
+> next iteration. This is the first time I actually submitted a series of
+> patches to the LKML so it's all relatively new to me.
 
-> +static struct snd_soc_dai_driver q6usb_be_dais[] = {
-> +	{
-> +		.playback = {
-> +			.stream_name = "USB BE RX",
-> +			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_11025 |
-> +				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_22050 |
-> +				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_44100 |
-> +				SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 |
-> +				SNDRV_PCM_RATE_192000,
-> +			.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S16_BE |
-> +				SNDRV_PCM_FMTBIT_U16_LE | SNDRV_PCM_FMTBIT_U16_BE |
-> +				SNDRV_PCM_FMTBIT_S24_LE | SNDRV_PCM_FMTBIT_S24_BE |
-> +				SNDRV_PCM_FMTBIT_U24_LE | SNDRV_PCM_FMTBIT_U24_BE,
-> +			.channels_min = 1,
-> +			.channels_max = 2,
-> +			.rate_max =     192000,
-> +			.rate_min =	8000,
-> +		},
-> +		.id = USB_RX,
-> +		.name = "USB_RX_BE",
-> +		.ops = &q6usb_ops,
-> +	},
-> +};
+Welcome to Linux, and great start!
 
-... here I see a single DAI, so presumably ONE endpoint can be supported?
-
-I didn't see in the rest of the code how a card with multiple endpoint
-would be rejected, nor how the capabilities are checked?
-
+Bjorn
