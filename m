@@ -2,113 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B3F567CC46
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:34:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B527967CC5F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:39:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237042AbjAZNea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 08:34:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45268 "EHLO
+        id S236794AbjAZNjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 08:39:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236360AbjAZNeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:34:23 -0500
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAC7D173A;
-        Thu, 26 Jan 2023 05:34:21 -0800 (PST)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30QBB150021981;
-        Thu, 26 Jan 2023 08:34:13 -0500
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3navamh71r-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 26 Jan 2023 08:34:13 -0500
-Received: from m0167088.ppops.net (m0167088.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30QDTnLZ023763;
-        Thu, 26 Jan 2023 08:34:13 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3navamh71k-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 26 Jan 2023 08:34:13 -0500
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 30QDYCO8008429
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 26 Jan 2023 08:34:12 -0500
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 26 Jan 2023 08:34:11 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 26 Jan 2023 08:34:11 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Thu, 26 Jan 2023 08:34:11 -0500
-Received: from tachici-Precision-5530.ad.analog.com ([10.48.65.156])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 30QDXoaq000628;
-        Thu, 26 Jan 2023 08:34:07 -0500
-From:   Alexandru Tachici <alexandru.tachici@analog.com>
-To:     <linux-kernel@vger.kernel.org>
-CC:     <netdev@vger.kernel.org>, <davem@davemloft.net>,
-        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-        <richardcochran@gmail.com>, <yangyingliang@huawei.com>,
-        <weiyongjun1@huawei.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-        <lennart@lfdomain.com>
-Subject: [net-next v2 3/3] dt-bindings: net: adin1110: Document ts-capt pin
-Date:   Thu, 26 Jan 2023 15:33:46 +0200
-Message-ID: <20230126133346.61097-4-alexandru.tachici@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230126133346.61097-1-alexandru.tachici@analog.com>
-References: <20230126133346.61097-1-alexandru.tachici@analog.com>
+        with ESMTP id S236377AbjAZNjF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:39:05 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A330E45BD5;
+        Thu, 26 Jan 2023 05:39:02 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4F5A3B81DC0;
+        Thu, 26 Jan 2023 13:39:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED866C4339E;
+        Thu, 26 Jan 2023 13:38:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674740340;
+        bh=3gnbHufn8tvtYBXfJcxSBpfzUNOp7H3EkIw2GJIYjgw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YIsCB1IhovlAeELk1XKJOXRwEpG2jdkrlDHnY9J7xy4dvse5eclsKqughFTGv+pkc
+         /mjB7uZ6iUjpiWu7ueVdhwMNZPqtp9YrB4EuP1KLvh/+y0FMs5gJt2yArde37cC4Th
+         pZaJ2A272C3lX85N9wrtbkmtle/5nVuT5axBRBg+ndBAMmuYmVajxysFZn6hOYbn+F
+         +DlJa5zl3VOYDiugu044AMsYqXEPwTc2wg1D+nu5veFzaaW1kZuEDG7lgS0ptDrger
+         ZP8CQFrJwJZHx91A2auvJvF1oIiL7hxywIQgF0c7i7dSSAXpTai+UnJVx28VoY5jAo
+         9q8ZUrr4ighGg==
+Received: by mail-ua1-f50.google.com with SMTP id j1so344822uan.1;
+        Thu, 26 Jan 2023 05:38:59 -0800 (PST)
+X-Gm-Message-State: AFqh2kqzZjIBhTDL0dSYEAA/JHe9pZG42800zrj13BAp8ykyUZxghQ6U
+        0XnW7R+Ms10y8CarsXomPW9kxBpkBEPlg+WPOw==
+X-Google-Smtp-Source: AMrXdXsiGeT85ZR+/u+85VzDpJDX04wnLvJNs+7Dcb8hausx6i/2duWGFT0kGPcnJXbR4OO7GypUU3GwITb3P7nsCC4=
+X-Received: by 2002:ab0:5a32:0:b0:61b:d0f0:406b with SMTP id
+ l47-20020ab05a32000000b0061bd0f0406bmr3059624uad.9.1674740338890; Thu, 26 Jan
+ 2023 05:38:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: stKTUITrxeE8t4e_wT3ROwUC9idYRi4c
-X-Proofpoint-ORIG-GUID: 1pjAKUfZ_XwoRhQSy4fq2ODpcNbUD2zI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-26_05,2023-01-25_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- suspectscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
- mlxlogscore=884 malwarescore=0 priorityscore=1501 clxscore=1015
- spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301260131
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230125184438.28483-1-nick.hawkins@hpe.com> <20230125184438.28483-3-nick.hawkins@hpe.com>
+ <20230125211811.GA2902717-robh@kernel.org> <399C2A3B-703A-4D67-818A-27AFA2F1B742@hpe.com>
+In-Reply-To: <399C2A3B-703A-4D67-818A-27AFA2F1B742@hpe.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 26 Jan 2023 07:38:47 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJgoWBmx8-Gcabo_d8R7wqS1pPAu1wauAqq8JRrWMFq3A@mail.gmail.com>
+Message-ID: <CAL_JsqJgoWBmx8-Gcabo_d8R7wqS1pPAu1wauAqq8JRrWMFq3A@mail.gmail.com>
+Subject: Re: [PATCH v4 2/5] dt-bindings: i2c: Add hpe,gxp-i2c
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "joel@jms.id.au" <joel@jms.id.au>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the use of the timestamp capture pin.
+On Wed, Jan 25, 2023 at 3:32 PM Hawkins, Nick <nick.hawkins@hpe.com> wrote:
+>
+> > > + hpe,sysreg:
+> > > + $ref: /schemas/types.yaml#/definitions/phandle
+> > > + description:
+> > > + Phandle to the global status and enable interrupt registers shared
+> > > + between each I2C engine controller instance. It enables the I2C
+> > > + engine controller to act as both a master or slave by being able to
+> > > + arm and respond to interrupts from its engine. Each bit in the
+> > > + registers represent the respective bit position.
+>
+>
+> > Each bit represents the bit position?
+>
+> Yes what I mean here is that bit 0 represents engine 0, bit 1 represents
+> engine 1 and so on. I will reword this how you have below.
+>
+> > AIUI, each I2C instance has a bit in it needs to control. How does the
+> > driver know what instance (and therefore the correct bit)? Typically you
+> > would have a 2nd cell here with that information.
+>
+> We are currently using the memory area designated reg to determine
+> which engine we are on.
+>
+> Here is a snippet from patch 1 of this patchset that introduces the driver:
+> /* Use physical memory address to determine which I2C engine this is. */
+> +       drvdata->engine = ((u32)drvdata->base & 0xf00) >> 8;
+>
+> This works because each engine is 0x100 apart.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
----
- Documentation/devicetree/bindings/net/adi,adin1110.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+Ah, that works fine then.
 
-diff --git a/Documentation/devicetree/bindings/net/adi,adin1110.yaml b/Documentation/devicetree/bindings/net/adi,adin1110.yaml
-index 9de865295d7a..f2db919c166b 100644
---- a/Documentation/devicetree/bindings/net/adi,adin1110.yaml
-+++ b/Documentation/devicetree/bindings/net/adi,adin1110.yaml
-@@ -50,6 +50,13 @@ properties:
-     maxItems: 1
-     description: GPIO connected to active low reset
- 
-+  ts-capt-gpios:
-+    maxItems: 1
-+    description: |
-+      Optional active high GPIO. Connected to the TS_TIMER pin of ADIN1110.
-+      When pulled up device will save a timestamp containing both the
-+      seconds and nanoseconds part simultaneously.
-+
- required:
-   - compatible
-   - reg
--- 
-2.34.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
