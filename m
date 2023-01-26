@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 978A067D154
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 17:25:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FF6167D064
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:39:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232697AbjAZQZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 11:25:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33734 "EHLO
+        id S231731AbjAZPjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 10:39:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbjAZQZ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 11:25:27 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DB376FD32;
-        Thu, 26 Jan 2023 08:24:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674750278; x=1706286278;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=/S4O1xQUstj71vMufDuTxZtrxS0kRcuRW6nd5unpPcQ=;
-  b=AmCfdeQeocHVhfSsg93d/Rm7qN6dqYBjSY1UHu4r3SxVrp5W+W/b9XQF
-   Wqp/IWhAviJ3Yf+/6vMZA6oocqf4/m+/DVZnEymQrFT8VkzD6JbEsB5eN
-   1Kodt9rAz7BDDSI9WOofp6O9sUAw3gL+2vDiFdU3wTvFh6BgB3nFrnBA3
-   5iuF0uIuMkTGxsfOfUeqAcG2hHDZrXmRKl4oJRj2llQVfp/z5B8et64Xw
-   bur4pgMLaqb8y5qXE3CVFF2q0K7FugF5bCpm+STOG4Rj+NKE6YZNwCS1b
-   MNQZXGEuqKaztvJkvQszTHYJ/HdvfS5RbIkrB7LXbbjcM2hZtkC1oFb5T
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="354154594"
-X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; 
-   d="scan'208";a="354154594"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2023 08:24:33 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="612855051"
-X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; 
-   d="scan'208";a="612855051"
-Received: from nmani1-mobl2.amr.corp.intel.com (HELO [10.209.167.178]) ([10.209.167.178])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2023 08:24:31 -0800
-Message-ID: <dea77277-6971-fe27-1ae0-ed551e84b6e4@linux.intel.com>
-Date:   Thu, 26 Jan 2023 09:38:57 -0600
+        with ESMTP id S231585AbjAZPjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:39:32 -0500
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A09F66EC8;
+        Thu, 26 Jan 2023 07:39:28 -0800 (PST)
+Received: by mail-oo1-f48.google.com with SMTP id c145-20020a4a4f97000000b004f505540a20so278613oob.1;
+        Thu, 26 Jan 2023 07:39:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3eXVcz1aWMWvEL81Aq0ojYY8G729mnAF/bOUjUUr3zQ=;
+        b=TzY8VkATKLs422bCWpZosQ/0Fo7ABWG7nkKjkAGcPqIed/GAIPW9xuJPc9paOA/Ah9
+         Glq6E2gI8aHe85ba1Yx7tQsOzOA3RQSYJrKNFYkeFpRK+GzFSFeWncPuRLLLz5BET6Or
+         K6k1FEnHMRj8QF4dyydTdJp+U4scUNVYQsaelsa9ZBaBYCMw5KThTDTQWxq+0sA5PcOy
+         lNQOONe0l9ADKEaUZfDppIvKFJ7fGCtkxaT1EweSqJ7WZ7Qt//PnUeGgZQdltP6m9/Zq
+         zAPIssoRXXdAN2LdI/o33cD3EXvofOkK2SHqbqNxud9hV14Mvj+VDGfpeFP/xXwOWnEY
+         CA4g==
+X-Gm-Message-State: AFqh2kr1f6TrYYx6sfWfYX/2b/00tBGpFPlE2t14gBWCtKFQ1QmB5qOT
+        5rPehqc0DBOEBQaDdGY7lERvI8sE3g==
+X-Google-Smtp-Source: AMrXdXv71xtxYai5bEupVaQg3h+vYl/Y8MKgVR1kwvXabc9mt3Kbcy1UsGCvyzFhu8FjwxC6WWjNmQ==
+X-Received: by 2002:a4a:e744:0:b0:503:1693:4b0f with SMTP id n4-20020a4ae744000000b0050316934b0fmr10195896oov.8.1674747567116;
+        Thu, 26 Jan 2023 07:39:27 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z7-20020a4ab607000000b004a8eb1d8f1bsm624825oon.39.2023.01.26.07.39.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jan 2023 07:39:26 -0800 (PST)
+Received: (nullmailer pid 1544996 invoked by uid 1000);
+        Thu, 26 Jan 2023 15:39:25 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.4.2
-Subject: Re: [RFC PATCH v2 09/22] ASoC: qcom: qdsp6: Introduce USB AFE port to
- q6dsp
-Content-Language: en-US
-To:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        Thinh.Nguyen@synopsys.com, broonie@kernel.org,
-        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
-        agross@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
- <20230126031424.14582-10-quic_wcheng@quicinc.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <20230126031424.14582-10-quic_wcheng@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     linux-phy@lists.infradead.org,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>
+In-Reply-To: <20230126131415.1453741-2-abel.vesa@linaro.org>
+References: <20230126131415.1453741-1-abel.vesa@linaro.org>
+ <20230126131415.1453741-2-abel.vesa@linaro.org>
+Message-Id: <167474700298.1532391.8847992552740606457.robh@kernel.org>
+Subject: Re: [PATCH v3 1/8] dt-bindings: phy: Add qcom,snps-eusb2-phy schema file
+Date:   Thu, 26 Jan 2023 09:39:25 -0600
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -73,39 +72,56 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 1/25/23 21:14, Wesley Cheng wrote:
-> The QC ADSP is able to support USB playback endpoints, so that the main
-> application processor can be placed into lower CPU power modes.  This adds
-> the required AFE port configurations and port start command to start an
-> audio session.
+On Thu, 26 Jan 2023 15:14:08 +0200, Abel Vesa wrote:
+> The SM8550 SoC uses Synopsis eUSB2 PHY. Add a dt-binding schema
+> for the new driver.
 > 
-> Specifically, the QC ADSP can support all potential endpoints that are
-> exposed by the audio data interface.  This includes, feedback endpoints
-> (both implicit and explicit) as well as the isochronous (data) endpoints.
-> The size of audio samples sent per USB frame (microframe) will be adjusted
-> based on information received on the feedback endpoint.
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+> 
+> The v2 version of this patch was here:
+> https://lore.kernel.org/all/20230126124651.1362533-2-abel.vesa@linaro.org/
+> 
+> Changes since v2:
+>  * none
+> 
+> Changes since v1:
+>  * dropped the "ref src" clock
+>  * dropped the usb-repeater property
+> 
+>  .../bindings/phy/qcom,snps-eusb2-phy.yaml     | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+> 
 
-I think you meant "support all potential endpoint types"
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-It's likely that some USB devices have more endpoints than what the DSP
-can handle, no?
+yamllint warnings/errors:
 
-And that brings me back to the question: what is a port and the
-relationship between port/backend/endpoints?
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.example.dts:18:18: fatal error: dt-bindings/clock/qcom,gcc-sm8550.h: No such file or directory
+   18 |         #include <dt-bindings/clock/qcom,gcc-sm8550.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:434: Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1508: dt_binding_check] Error 2
 
-Sorry for being picky on terminology, but if I learned something in days
-in standardization it's that there shouldn't be any ambiguity on
-concepts, otherwise everyone is lost at some point.
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230126131415.1453741-2-abel.vesa@linaro.org
 
->  static struct afe_port_map port_maps[AFE_PORT_MAX] = {
-> +	[USB_RX] = { AFE_PORT_ID_USB_RX, USB_RX, 1, 1},
->  	[HDMI_RX] = { AFE_PORT_ID_MULTICHAN_HDMI_RX, HDMI_RX, 1, 1},
->  	[SLIMBUS_0_RX] = { AFE_PORT_ID_SLIMBUS_MULTI_CHAN_0_RX,
->  				SLIMBUS_0_RX, 1, 1},
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-And if I look here a port seems to be a very specific AFE concept
-related to interface type? Do we even need to refer to a port in the USB
-parts?
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
