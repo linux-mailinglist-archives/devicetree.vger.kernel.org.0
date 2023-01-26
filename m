@@ -2,55 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 473EA67CE46
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 15:36:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E7F667CE57
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 15:38:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231731AbjAZOg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 09:36:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45220 "EHLO
+        id S229642AbjAZOia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 09:38:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbjAZOg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 09:36:56 -0500
+        with ESMTP id S229948AbjAZOi3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 09:38:29 -0500
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDF872529E;
-        Thu, 26 Jan 2023 06:36:55 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E6806180;
+        Thu, 26 Jan 2023 06:38:28 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 938D3B81D12;
-        Thu, 26 Jan 2023 14:36:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63CFAC433EF;
-        Thu, 26 Jan 2023 14:36:50 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 58C52B81D15;
+        Thu, 26 Jan 2023 14:38:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 819EEC433D2;
+        Thu, 26 Jan 2023 14:38:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674743813;
-        bh=98SAiW8EasNhUbmpf7pK4esoZxbZJjAiXnvFOnNwpKk=;
+        s=k20201202; t=1674743906;
+        bh=J6kTUDHhp3UX3SKN+nHetWZA+yyFDNmaZMGXaU/Kwxo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gfCcCUKFz6Gf+RF5hWJAETkkcjsUp4jjQwmKHYRZl2R1mfNN5X7BZhl9yZeLCRiNg
-         9qrLPNiuf8Bdz/n/ZRZc3JoJ3OvC14jm/WyHIvfBNX5i0V7NvEZnfeacpPSGjIaNIn
-         AHCae3F/UGrV+7DYjtBQ5dkOIH88nYZlCTQvOPMu426rpviKIIWWeu4viLSbNukEeS
-         iB6FU32UFkQ6b3sMR+H8g0jGJlwpjgHPjY867Sa3QyKwYkuBsKR1eY6eCoA/3LQSbk
-         iS65fr8vXaIPamQpqApfmdpfVLqYbddK9asoMx3HlrsPURrGIzQNXZPce4al/VqT65
-         gKI4Ve43pwssQ==
-Date:   Thu, 26 Jan 2023 14:36:47 +0000
+        b=AYTqRKSW62JnHa+QPvCzuJ7D2W5Sd7w+SS+Gc0kWhW6sBEwV0WEY2ZuHBR5v2yJqW
+         gOTg417S8mg4dOOPMkiJ26ELSOjpVxezlY05fYHilegIrMTy6n/ONSO4VdXuJnQFvO
+         0SVTvHTgCwbRdcR4w7ZNDUiO1wsuOz9YZRme9IUOTMQds93NFLeJSiCYsDN6yw/DBi
+         uxPg6UxNhAGKostehxnl/tu8sS8gzTLppGnOWRvt4QQVO+51Aj4ddhEkv7JfT6SAG5
+         wngRELtMSbB/qu8QwRM3+FhYlIuT7B3E6jv0iwh5yF5ytRm8YliUnKog2E4Tkrr5il
+         Pyu2Yp1gItPMg==
+Date:   Thu, 26 Jan 2023 14:38:18 +0000
 From:   Lee Jones <lee@kernel.org>
-To:     Jianhua Lu <lujianhua000@gmail.com>
-Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Helge Deller <deller@gmx.de>, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v9 2/2] backlight: ktz8866: Add support for Kinetic
- KTZ8866 backlight
-Message-ID: <Y9KP/0cVKBp6d7qc@google.com>
-References: <20230120155018.15376-1-lujianhua000@gmail.com>
- <20230120155018.15376-2-lujianhua000@gmail.com>
+To:     Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>
+Cc:     linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
+        linux-usb@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, tglx@linutronix.de,
+        maz@kernel.org, linus.walleij@linaro.org, matthias.bgg@gmail.com,
+        gregkh@linuxfoundation.org, daniel.lezcano@linaro.org,
+        chunfeng.yun@mediatek.com, angelogioacchino.delregno@collabora.com,
+        nfraprado@collabora.com, allen-kh.cheng@mediatek.com,
+        sean.wang@mediatek.com, zhiyong.tao@mediatek.com
+Subject: Re: [PATCH v9 3/9] dt-bindings: mfd: syscon: Add mt8365-syscfg
+Message-ID: <Y9KQWp1942TDjV1P@google.com>
+References: <20230125143503.1015424-1-bero@baylibre.com>
+ <20230125143503.1015424-4-bero@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230120155018.15376-2-lujianhua000@gmail.com>
+In-Reply-To: <20230125143503.1015424-4-bero@baylibre.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,55 +62,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Jan 2023, Jianhua Lu wrote:
+On Wed, 25 Jan 2023, Bernhard Rosenkränzer wrote:
 
-> Add support for Kinetic KTZ8866 backlight, which is used in
-> Xiaomi tablet, Mi Pad 5 series. This driver lightly based on
-> downstream implementation [1].
-> [1] https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/elish-r-oss/drivers/video/backlight/ktz8866.c
+> Document Mediatek mt8365-syscfg
 > 
-> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
-> Changes in v2:
->   - Add missing staitc modifier to ktz8866_write function.
-> 
-> Changes in v3:
->   - Add 2022 to Copyright line.
->   - Sort headers.
->   - Remove meaningless comment.
->   - Use definitions instead of hardcoding.
->   - Add missing maintainer info.
-> 
-> Changes in v4:
->   - Change 2022 to 2023.
->   - Remove useless macro and enum.
->   - Describe settings by devicetree.
->   - Move header file to C file.
-> 
-> Changes in v5:
->   - Change "2023" to "2022, 2023" in Copyright line.
->   - Set scale property for backlight.
-> 
-> Changes in v6:
->   - Correct devicetree property name.
-> 
-> Changes in v7:
->   - Remove unnecessary sleep statement.
->   - Fix code style.
->   - Add vddpos and vddneg supply devicetree parse.
->   - Add enabel-gpio devicetree parse.
-> 
-> Changes in v8:
->   - Modify devicetree parse according to dt bindings.
-> 
-> No changes in v9
-> 
->  MAINTAINERS                       |   6 +
->  drivers/video/backlight/Kconfig   |   8 ++
->  drivers/video/backlight/Makefile  |   1 +
->  drivers/video/backlight/ktz8866.c | 209 ++++++++++++++++++++++++++++++
->  4 files changed, 224 insertions(+)
->  create mode 100644 drivers/video/backlight/ktz8866.c
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
 Applied, thanks
 
