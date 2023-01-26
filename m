@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C91167D9A6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 00:35:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C450867D9E4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 00:45:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232936AbjAZXfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 18:35:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45658 "EHLO
+        id S233192AbjAZXpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 18:45:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232871AbjAZXfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 18:35:43 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C0A21DB9C
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 15:35:41 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id y11so3335763edd.6
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 15:35:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Hzo3sFEc0rrT2DBc4hVlM+1SiVGoPIKepFO94/n3CJk=;
-        b=aDDZmr9bRaxGmTx/CMesBvr5efvVLQ0uNblfGbTc3A2Iouva3ybE7fa9mzo8ahJt3q
-         AKlMLCSK2rE0YsfR6bHBeIfr2AKFXJQTH3+3GmlF2ueLU+UBelbYa6NgXDhlxAyHNDHD
-         JE2oHu26ugxiubsGcOTcm6otAa5wXI4IugT/a1ixWzIErQLq616jjZlVkV/m+ZLmJ37S
-         UwmCdok7WWsAbRgb7pfKCb8XFLFgUAgsRpLPcIvura2H69t3waXOvdOfz0L8WZ/IRqyK
-         50w9av/3224OYgWLHBDCMY9flRToQiv9Ly/O1bi6yrXGNJpr5CWEyj00gvNh4qTS5hv0
-         7IhQ==
+        with ESMTP id S232548AbjAZXpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 18:45:36 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DCF9442D3
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 15:44:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1674776640;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=D6x+r4xBxzWNTUBQ9wWxJcF9cSfkhbk7GYZAcyVsQuE=;
+        b=XNsjjnCTjjAEm3ZVYto6w3FrLulcqLmhxbKArwX9Z67p3zX4+aEXu6EkNXzcOtRQVaLZym
+        D0DIP4uzDuaYQ41aJsU53ukOWQtq0O+dRzG5Kc1KsNIEwpNv7xhIWlE20lYBewbperwZCw
+        d0pfWq0+ZF7mdnEkpSjWnp2gL5YL9wM=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-630-uIqxEjhbNxSy9qC5AZndIw-1; Thu, 26 Jan 2023 18:43:59 -0500
+X-MC-Unique: uIqxEjhbNxSy9qC5AZndIw-1
+Received: by mail-qt1-f200.google.com with SMTP id cn7-20020a05622a248700b003b7f2a89829so1493093qtb.6
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 15:43:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hzo3sFEc0rrT2DBc4hVlM+1SiVGoPIKepFO94/n3CJk=;
-        b=WGVm+XVCBxMT9LnkxqymTdkMTsml3rgadEM7ciJIBf4WdzxN6X2HtS6TQzcchS2kPR
-         rB5he1BwXXLaLdxUsvDT9RqLAaht8TsOTj+bgzljuzfuBTYaqQkJf/VOfkNhTobMaglT
-         gId6DhSP1yEvJWo922eyuWahbLZlvpQl8Ymsnyfa6JT2FZHxml2z6WezmzNb3VgNo8eD
-         gqoVL5Vj1BS+mnzWiz+r/Sb38Ms/GRq9ibLVxIVeZl5uvsiTBhtnxqVCu6is0EG0WXD9
-         TMtVHxUyaVbz1mlcIOirSQQd40A3dF34AoIy6s2URE0v7mUtjh3C6XlzzJ/jwO/yRsRf
-         UULQ==
-X-Gm-Message-State: AFqh2kpckjWivkyA0TR/mPyRb3wOJzuCuq6NAdt+B4B5bm+1dCkGh4+Q
-        3U/jMOB/v4IrKB0IeE/sP6Rn6AisNYorJ3P7
-X-Google-Smtp-Source: AMrXdXvx27D+sTT4yn7XqkM6+ujwe2QR+RCFnO1b8ormrj04Pluko4Yf1pUSp7WHdEyfpbxBZoGVdA==
-X-Received: by 2002:a05:6402:27cf:b0:488:e7ae:5cc4 with SMTP id c15-20020a05640227cf00b00488e7ae5cc4mr47577513ede.41.1674776139293;
-        Thu, 26 Jan 2023 15:35:39 -0800 (PST)
-Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
-        by smtp.gmail.com with ESMTPSA id p11-20020a50cd8b000000b004972644b19fsm1424101edi.16.2023.01.26.15.35.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 15:35:38 -0800 (PST)
-Message-ID: <5a638130-89c3-871b-c233-55048a162870@linaro.org>
-Date:   Fri, 27 Jan 2023 00:35:37 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sa8295p-adp: Add max20411 on
- i2c12
-Content-Language: en-US
-To:     Andrew Halaney <ahalaney@redhat.com>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D6x+r4xBxzWNTUBQ9wWxJcF9cSfkhbk7GYZAcyVsQuE=;
+        b=QG1QTy+M+6ggbpudhLrmKjuyWOfm2XWfws/sVXiFyonkI8GMIHQXWUJuTuaBlhf3ab
+         adv/kEz0QZN7kjubQA8KRNgTpgl1Aw89nqHWh98XA/6+ms9I7tmKccA4C8sfiJVNOyH5
+         WaegzKAQzwHhsFl0RtOwTB/V2T9jMRKAHEWat2ku4/kQCs2TJWN+hPA99rQgIMFvZxIX
+         IReoA6HE7UQ9glw/xmZQtHsscVtK15ufLeJcNo49Z/ms8kniMA3ZizJiYbFNofnSeuKK
+         om/WY3f3WEaUtdg28lgw7CZ7tn+R8XwWIwYFdldJTi4eHmRHod/RBRZOs6F18MAcfgb+
+         BK3g==
+X-Gm-Message-State: AFqh2krk8SDHih3MvMzqtgYNmj3ZO71YXm/ymU2bVlbNSxOYyMRGq3Kw
+        o5qXMTEJYhjR5u/RG+DBiYCWIDoWGO2J6mLLKqZoPV2ClWbZrKVR41b15aC8hXB1/AHjt599bKW
+        KsdOY5YNKu/pGCqoXg8kONw==
+X-Received: by 2002:ac8:5b90:0:b0:3a8:30c9:ba8f with SMTP id a16-20020ac85b90000000b003a830c9ba8fmr75296071qta.28.1674776637542;
+        Thu, 26 Jan 2023 15:43:57 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXtLlX6+9As1/MaxSpF4UPb/cDCzNiumeo2i7JN2dW6PE3AVlgjfl2TMXpyrpihN2fyrXG6xnQ==
+X-Received: by 2002:ac8:5b90:0:b0:3a8:30c9:ba8f with SMTP id a16-20020ac85b90000000b003a830c9ba8fmr75296051qta.28.1674776637308;
+        Thu, 26 Jan 2023 15:43:57 -0800 (PST)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::21])
+        by smtp.gmail.com with ESMTPSA id o12-20020a05622a044c00b003a82ca4e81csm1622521qtx.80.2023.01.26.15.43.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jan 2023 15:43:56 -0800 (PST)
+Date:   Thu, 26 Jan 2023 17:43:54 -0600
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -67,105 +66,106 @@ Cc:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sa8295p-adp: Add max20411 on
+ i2c12
+Message-ID: <20230126234354.437bajx7lckafg4z@halaney-x13s>
 References: <20230124184440.1421074-1-quic_bjorande@quicinc.com>
  <20230124184440.1421074-4-quic_bjorande@quicinc.com>
  <20230126225446.rjckq5p35zeozphq@halaney-x13s>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230126225446.rjckq5p35zeozphq@halaney-x13s>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+ <5a638130-89c3-871b-c233-55048a162870@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5a638130-89c3-871b-c233-55048a162870@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 27, 2023 at 12:35:37AM +0100, Konrad Dybcio wrote:
+> 
+> 
+> On 26.01.2023 23:54, Andrew Halaney wrote:
+> > On Tue, Jan 24, 2023 at 10:44:40AM -0800, Bjorn Andersson wrote:
+> >> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >>
+> >> The SA8295P ADP has a Maxim max20411 step-down converter on i2c12.
+> >>
+> >> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> >> ---
+> >>
+> >> Changes since v1:
+> >> - i2c node had changed name
+> >>
+> >>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 41 ++++++++++++++++++++++++
+> >>  1 file changed, 41 insertions(+)
+> > 
+> > I realized today this has to do with the comment over at:
+> > 
+> >     https://lore.kernel.org/all/30166208-ba9d-e6e6-1cd2-807a80536052@quicinc.com/
+> > 
+> > and I just didn't realize that the schematic I've started looking at
+> > black boxes the SOM/SIP which holds this... darn I thought I could see
+> > more than I could :(
+> > 
+> > I took a similiar patch for a spin on sa8540p-ride (which I'll later
+> > submit), and things worked fine (I'm not really consuming the output of
+> > the regulator mind you).
+> > 
+> > Downstream devicetree indicates all of this looks ok except for possibly
+> > the below comment:
+> > 
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> >> index bb4270e8f551..642000d95812 100644
+> >> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> >> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> >> @@ -266,6 +266,27 @@ &dispcc1 {
+> >>  	status = "okay";
+> >>  };
+> >>  
+> >> +&i2c12 {
+> >> +	pinctrl-names = "default";
+> >> +	pinctrl-0 = <&i2c12_state>;
+> >> +
+> >> +	status = "okay";
+> >> +
+> >> +	vdd_gfx: regulator@39 {
+> >> +		compatible = "maxim,max20411";
+> >> +		reg = <0x39>;
+> >> +
+> >> +		regulator-name = "vdd_gfx";
+> >> +		regulator-min-microvolt = <800000>;
+> > 
+> > Is there a reason you chose this instead of the 500000 I see downstream?
+> > 
+> >> +		regulator-max-microvolt = <968750>;
+> > 
+> > Likewise, I see in this brief description of the regulator
+> > that the upper bound is higher than this (1.275 V). I am not sure if
+> > the values in the devicetree are supposed to describe the
+> > min/max of the regulator itself, or of what your board can really
+> > handle/needs (the latter I guess makes more sense since you wouldn't want to
+> > accidentally request a current draw that could melt something.. that can
+> > be fun). I do see you've got that min/max in the driver itself (now that
+> > I peaked at that patch).
+> Yes, your suspicions are correct and the DT sets the actual ranges
+> for the voltage regulators on this specific board while the
+> hardware reachable ranges are defined in the .c driver.
+> 
+> Konrad
 
+Thanks Konrad, then I think:
 
-On 26.01.2023 23:54, Andrew Halaney wrote:
-> On Tue, Jan 24, 2023 at 10:44:40AM -0800, Bjorn Andersson wrote:
->> From: Bjorn Andersson <bjorn.andersson@linaro.org>
->>
->> The SA8295P ADP has a Maxim max20411 step-down converter on i2c12.
->>
->> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
->> ---
->>
->> Changes since v1:
->> - i2c node had changed name
->>
->>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 41 ++++++++++++++++++++++++
->>  1 file changed, 41 insertions(+)
-> 
-> I realized today this has to do with the comment over at:
-> 
->     https://lore.kernel.org/all/30166208-ba9d-e6e6-1cd2-807a80536052@quicinc.com/
-> 
-> and I just didn't realize that the schematic I've started looking at
-> black boxes the SOM/SIP which holds this... darn I thought I could see
-> more than I could :(
-> 
-> I took a similiar patch for a spin on sa8540p-ride (which I'll later
-> submit), and things worked fine (I'm not really consuming the output of
-> the regulator mind you).
-> 
-> Downstream devicetree indicates all of this looks ok except for possibly
-> the below comment:
-> 
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
->> index bb4270e8f551..642000d95812 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
->> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
->> @@ -266,6 +266,27 @@ &dispcc1 {
->>  	status = "okay";
->>  };
->>  
->> +&i2c12 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&i2c12_state>;
->> +
->> +	status = "okay";
->> +
->> +	vdd_gfx: regulator@39 {
->> +		compatible = "maxim,max20411";
->> +		reg = <0x39>;
->> +
->> +		regulator-name = "vdd_gfx";
->> +		regulator-min-microvolt = <800000>;
-> 
-> Is there a reason you chose this instead of the 500000 I see downstream?
-> 
->> +		regulator-max-microvolt = <968750>;
-> 
-> Likewise, I see in this brief description of the regulator
-> that the upper bound is higher than this (1.275 V). I am not sure if
-> the values in the devicetree are supposed to describe the
-> min/max of the regulator itself, or of what your board can really
-> handle/needs (the latter I guess makes more sense since you wouldn't want to
-> accidentally request a current draw that could melt something.. that can
-> be fun). I do see you've got that min/max in the driver itself (now that
-> I peaked at that patch).
-Yes, your suspicions are correct and the DT sets the actual ranges
-for the voltage regulators on this specific board while the
-hardware reachable ranges are defined in the .c driver.
+Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+Tested-by: Andrew Halaney <ahalaney@redhat.com>
 
-Konrad
-> 
-> https://www.analog.com/en/products/MAX20411.html#product-overview
-> 
-> For what it is worth, I also see a SIP document that states vdd_gfx min/max
-> is 0.56/1.03 V, which is ultimately what you'd feed this into. The
-> downstream devicetree uses the max value you provide though.
-> 
-> No idea how much faith I should put into the SIP document's bounds, or
-> downstream, but I thought I should at least highlight them.
-> 
-> Thanks,
-> Andrew
-> 
+is appropriate since things are within range on all accounts. I would
+appreciate an explanation on the current min/max values though if possible!
+
