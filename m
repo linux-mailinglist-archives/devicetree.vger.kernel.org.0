@@ -2,67 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0044167C5E6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:35:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6981867C5EB
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:35:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235905AbjAZIfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 03:35:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54644 "EHLO
+        id S234723AbjAZIfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 03:35:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236186AbjAZIe6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:34:58 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 756506ACB1
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:34:16 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso2759375wmn.5
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:34:16 -0800 (PST)
+        with ESMTP id S234824AbjAZIfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:35:02 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D53042690
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:34:21 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so625685wmq.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:34:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=y3TzVEfEJ82Zcir6qMcrdd/Fw4l7IDS+8TiKObawjuc=;
-        b=TH1l+DrVsmgeFj7NTgYxoGCraCHc5HR5VUTpjIxdUYxbflqE6+yfxwl2+nCMdykwLK
-         BB5/5/raFp+gzICKmf/iIWIQ3nqCJ7OKdMYBNxSlj6YLuHpMGiO/qG3KMzyhegwAzOaN
-         JxHcLY/yWtXbjPWYhJA+HPaFCZxIR36TAms4hYroiqJrwUc/5hg/xHtzREr/ESEUFYpL
-         9XH37Tw2mz9UZixZ+3BwcscTlHtkww6Anv6EWzNUR43DKzb5bHPp9/vFRWlLeJZtL66k
-         5fhc2U4Xvqi5b4A8qz2oofsPBihcDoxzHNE6KiIIlCqCc+h0o24qzOcm/rcT4l9EfVMx
-         1pVw==
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W8K+2b6qYGhmrfMApP1JL3olzeZ2YP6lL+7+ixOQ9ZM=;
+        b=wZTc+VS63T54L++Dg9SWngu8T2SVoeTNy0W/Z1PzOO9b5RxByDYJDJ+us87HIOHZXC
+         jgZ+02pGdY55M73FZVGymHp0dYwN/nrKcl8lS+VjEaqg8wTxGe/vodlxnCik0u26DS2P
+         iih6YNSyAXU02uf1bV3gd/5hWFK80QxMO0JivFc99xWDhFloJlc/TKKRHaG/S4L62xpq
+         bMq6klHfhm6xopM8BFklBsnDyDjasKwqXxpv801JhSUQ819QQZnopjsB24uTf9j04I+m
+         6YUM9JX+/yh9WA1+loY4wxQCeQFy0nq+0+59xqYMrohoIUDVHG2DYAbjCAt/UOqxGIPy
+         hrDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=y3TzVEfEJ82Zcir6qMcrdd/Fw4l7IDS+8TiKObawjuc=;
-        b=Qk5PL65sUcFg3ttKKpDaLUcFuRWmjxzHi6s+6RcfwDhYyK+c1RdtUAUaB+DJ1FI83F
-         /jzK0KpkKHDrmkHqmWLms5+5+685vA7Y2uSeL/kyZ398azl8EfcyRhaLfxZCYyNW1wkv
-         4oAZ5ss5LHkFthcnUem7USOn5zwU3NkHNwNWwchpUpbgEIft4GK/F6etCcYAcdOROjQb
-         sN08c2Rfk1bbBUrBInajkGXibcqjuMvmjMVE6vu0kMMHNlr43a+IIW3MwlFrK0MZJl4Y
-         xpSUFqrb68JlzbEatVp7FXQPQxKvcz8hKpjUv2o8CuSFRoXlflK4v4cDYXGA9P2qc+LF
-         4I+g==
-X-Gm-Message-State: AFqh2kp29mMThXXCQNdBuZ8jfjghAuDYwT298Uz8sXobyywbCrc0huZc
-        6ljQMfM6gC89l1o111FulTY6rw==
-X-Google-Smtp-Source: AMrXdXt75Poh2V5szcz9pL/nP4XYvAND7gBaK6soFPsY8rk9bokbpwvJ9xGN3KkBu1q+UAXnvVz93A==
-X-Received: by 2002:a1c:ed1a:0:b0:3da:c07:c5fe with SMTP id l26-20020a1ced1a000000b003da0c07c5femr31661418wmh.5.1674722041781;
-        Thu, 26 Jan 2023 00:34:01 -0800 (PST)
+        bh=W8K+2b6qYGhmrfMApP1JL3olzeZ2YP6lL+7+ixOQ9ZM=;
+        b=qcCxsb7FAd2xNGekQtoqiSpHqzU2XrDwmfwlw9WlcA++jgAPiSSr3ACzaBiUbzhtL9
+         pmEJtpGXRof7Ito+HUbBhvipkPSgC4UXNGByuBCSAhKv2EBzXyW3qAySSxomU5NHrEK2
+         zhOPVC6A3bKL70QUWN4CN6xQ4At9du0aiGpjiC2uuqeI6t2qBR5GFd8wP0HKMkGGYlYV
+         O020MvesHHZT/aP7Ov3UO5++ISv61PdIz627XR9CHB2AAm3pi9g0/4YeZQhPJH0cO69Z
+         g5S4eF1qFBy+vXWPIwF7vcwa8Rbs+OL+LLLfrGc1T3+7SDin20O798eGnvb9d57i32hS
+         af8Q==
+X-Gm-Message-State: AFqh2kqZ31lZoQSgJw3DUVW8NBmwxTh/1PGTNZYkQZpIPx6xKewl1p/W
+        IJuEu55SFvs3jpQyB4XLzlYWwQ==
+X-Google-Smtp-Source: AMrXdXvUlBtNOqLtKPqGUlEcp3fxlZ8HEpJE7yzJc6lt9UmTN/nHDTyQna7hQ9xXWwN3B4tf6G3DSg==
+X-Received: by 2002:a05:600c:6014:b0:3da:2032:6c0f with SMTP id az20-20020a05600c601400b003da20326c0fmr41886222wmb.31.1674722042720;
+        Thu, 26 Jan 2023 00:34:02 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
         by smtp.gmail.com with ESMTPSA id t10-20020a05600c328a00b003d9a86a13bfsm757709wmp.28.2023.01.26.00.34.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 00:34:01 -0800 (PST)
+        Thu, 26 Jan 2023 00:34:02 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20230123065834.2670125-1-christianshewitt@gmail.com>
-References: <20230123065834.2670125-1-christianshewitt@gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: add audio playback to S905X-P212
- dts
-Message-Id: <167472204102.456104.8089896495896736557.b4-ty@linaro.org>
+        Ricardo Pardini <ricardo@pardini.net>
+In-Reply-To: <20230124-topic-odroid-hc4-upstream-fix-fan-trip-v1-1-b0c6aa355d93@linaro.org>
+References: <20230124-topic-odroid-hc4-upstream-fix-fan-trip-v1-1-b0c6aa355d93@linaro.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: meson-sm1-odroid-hc4: fix active
+ fan thermal trip
+Message-Id: <167472204189.456104.2228463020906844378.b4-ty@linaro.org>
 Date:   Thu, 26 Jan 2023 09:34:01 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -70,8 +72,7 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.12.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,15 +81,16 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Mon, 23 Jan 2023 06:58:34 +0000, Christian Hewitt wrote:
-> Add initial support for the HDMI and Analogue i2s audio outputs.
+On Tue, 24 Jan 2023 12:39:08 +0100, Neil Armstrong wrote:
+> Add an active trip tied to the on-board fan cooling device, which is better
+> than describing it along the passive cooling maps.
 > 
 > 
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
 
-[1/1] arm64: dts: meson: add audio playback to S905X-P212 dts
-      https://git.kernel.org/amlogic/c/7e01e14e9f75385910d1e42f97a5e98f36244967
+[1/1] arm64: dts: amlogic: meson-sm1-odroid-hc4: fix active fan thermal trip
+      https://git.kernel.org/amlogic/c/1d2f14117aa7773efff50f832b85fc7779e586e0
 
 These changes has been applied on the intermediate git tree [1].
 
