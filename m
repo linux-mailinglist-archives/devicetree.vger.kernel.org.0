@@ -2,75 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08EA467CBA2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:05:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52FCB67CBBC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:14:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233903AbjAZNFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 08:05:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45322 "EHLO
+        id S232925AbjAZNOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 08:14:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbjAZNFW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:05:22 -0500
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4C25B9D;
-        Thu, 26 Jan 2023 05:05:20 -0800 (PST)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out1.suse.de (Postfix) with ESMTPS id 6BB2A21E37;
-        Thu, 26 Jan 2023 13:05:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1674738319; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=MZ/GsfMgRhW/1fXxnIvw+dujoHIf++p4Z4X2iJFtRvg=;
-        b=hiv1Mn3sT1arZKi54NXDzD/M3afihA9zhvqQiIb2qsecaZXpfrQ2VPaQT1anuwI/7Me+Ui
-        Is2+gpAZE3UtSGom7iBhXENKcaWOEIjSth9NR3IxMVmvtDltVFFUZWbdeQu/I2wrmfUksb
-        3NQ7ux3pflEBS3ffCVKKGiUguFOzDlI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1674738319;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=MZ/GsfMgRhW/1fXxnIvw+dujoHIf++p4Z4X2iJFtRvg=;
-        b=JyZ8tAAS5NgcTJ4XmTK6XzFegSVpTasYrC3B/Z39D3bXGgc20lJI5xRlRvH/spdjl3UIxj
-        LJTVoJ8KjwH3dECA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 334A0139B3;
-        Thu, 26 Jan 2023 13:05:19 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id 6pWsC4960mOfVQAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Thu, 26 Jan 2023 13:05:19 +0000
-Message-ID: <00e614e8-4395-0aac-d613-b70b7005bd0b@suse.de>
-Date:   Thu, 26 Jan 2023 14:05:18 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/2] drm/simpledrm: Allow physical width and height
- configuration via DT
-Content-Language: en-US
-To:     Rayyan Ansari <rayyan@ansari.sh>, dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        janne@jannau.net,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-kernel@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>,
+        with ESMTP id S230347AbjAZNOo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:14:44 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F2ED5E530
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 05:14:20 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so3224876wmb.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 05:14:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OHA/1FBnLe/DjBL2RAHOE/0kR+mnf0skty5y8z89TXU=;
+        b=t2Ezs4aR0xtOSuPyHKtDtlcugo0TiOWoAwWPyHdZ6npNMNkpe9KiTfD94IA+vVNUaG
+         Y9JkZAKBEhbARn5TAWXNLxS3FNCfsqYLdt8WzHxpZtZP0SqGy0pCbiaj40YEsi+BBeUb
+         jFNE2F04PCkqVh8zsvhnkAd5OFroNXlSLm6nL++WONWIx41velTvLpvUElzH0yCypRiH
+         MYyLLf4v5WouNG+OzEZ45asnbXqjKBAJj6fGFYqRCyNiFPCRo7RKI+8JjTFrvprO4aYm
+         4qdvFj0v9+860LiMQ7ECol1cASOuK3ZE6ttMAiLim/GGPr4FonjvAB8dHIu2FaanRnZz
+         R2fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OHA/1FBnLe/DjBL2RAHOE/0kR+mnf0skty5y8z89TXU=;
+        b=K/ivLqAMYGKY2MUQQ0Q+Lyg1VgCwU+7hVjDh7Zjgw1W2cJd+ND9mRfsfGusfPsKf9H
+         rXB1JajpqYkydv5nF/F1mEe0wkc2K8f8CnTK+P6pQ27y7URwVxbhs3BCFBirf2bLI5vY
+         hGAAJGIHK24+n03YrMF5N4hxh9kp/4jl9ly7r+pDFhopmnJFDRVKrXVZr8aD+vY2eTDd
+         B/IvvE531spcFFLNUBgHJsCAKtoyLtp17YjyVuk2yRMcAjaqIMP7u1M2eeiAhk499Sr+
+         hEgPkKPQmfb8zj9fv4EjB4mpPsBSWnaOsXno7z+d6zoXmKMuXRpneb0+26L4icU7nNp7
+         TG8A==
+X-Gm-Message-State: AFqh2koRo1TvF7KGtdFS7uitqWM/UtHgxVwy2LTbH2CZCXDBFA/jfreA
+        T3euq3z3X6jkxuzb8WjzQ227Aj2VMzZTfpko
+X-Google-Smtp-Source: AMrXdXsB2dypJgZRyLvldnL3MwIjk8JmDxYB3+vK96DnfnuoFbKtG7UDBJzgY5JAKnZdC/FdKnBOEw==
+X-Received: by 2002:a7b:c4d0:0:b0:3d1:f6b3:2ce3 with SMTP id g16-20020a7bc4d0000000b003d1f6b32ce3mr37326986wmk.35.1674738859147;
+        Thu, 26 Jan 2023 05:14:19 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id 18-20020a05600c26d200b003da28dfdedcsm1719804wmv.5.2023.01.26.05.14.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jan 2023 05:14:18 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev
-References: <20230121153544.467126-1-rayyan@ansari.sh>
- <20230121153544.467126-2-rayyan@ansari.sh>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20230121153544.467126-2-rayyan@ansari.sh>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------hVvOHpSjJzA94kD7H70P3Lwt"
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-phy@lists.infradead.org
+Subject: [PATCH v3 0/8] sm8550: Add USB HC and PHYs support
+Date:   Thu, 26 Jan 2023 15:14:07 +0200
+Message-Id: <20230126131415.1453741-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,132 +75,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------hVvOHpSjJzA94kD7H70P3Lwt
-Content-Type: multipart/mixed; boundary="------------crI3tKa4CicLouoxoKq0icJY";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Rayyan Ansari <rayyan@ansari.sh>, dri-devel@lists.freedesktop.org
-Cc: devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
- janne@jannau.net, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org,
- Hans de Goede <hdegoede@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev
-Message-ID: <00e614e8-4395-0aac-d613-b70b7005bd0b@suse.de>
-Subject: Re: [PATCH v2 1/2] drm/simpledrm: Allow physical width and height
- configuration via DT
-References: <20230121153544.467126-1-rayyan@ansari.sh>
- <20230121153544.467126-2-rayyan@ansari.sh>
-In-Reply-To: <20230121153544.467126-2-rayyan@ansari.sh>
+This patchset adds support for USB for Qualcomm SM8550 platform.
 
---------------crI3tKa4CicLouoxoKq0icJY
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+This patchset is based on top of the following patchset:
+https://lore.kernel.org/all/20230124124714.3087948-1-abel.vesa@linaro.org/
 
-SGksDQoNCkkganVzdCB3YW50IHRvIGNvbW1lbnQgdGhhdCB0aGUgY29kZSBpbiB0aGlzIHBh
-dGNoIGlzIGZpbmUsIGJ1dCBJJ20gbm90IA0KZ29pbmcgdG8gbWVyZ2UgaXQgdW50aWwgdGhl
-IG90aGVyIGRpc2N1c3Npb24gYWJvdXQgdXNpbmcgdGhlIHBhbmVsJ3MgRFQgDQpub2RlcyBo
-YXMgYmVlbiByZXNvbHZlZC4gSU1ITywgdGhlIHBhbmVsLWJhc2VkIHNvbHV0aW9uIHNlZW1z
-IHByZWZlcmFibGUgDQp0byB0aGUgbmV3IHByb3BlcnRpZXMuDQoNCkJlc3QgcmVnYXJkcw0K
-VGhvbWFzDQoNCkFtIDIxLjAxLjIzIHVtIDE2OjM1IHNjaHJpZWIgUmF5eWFuIEFuc2FyaToN
-Cj4gU2lnbmVkLW9mZi1ieTogUmF5eWFuIEFuc2FyaSA8cmF5eWFuQGFuc2FyaS5zaD4NCj4g
-LS0tDQo+ICAgZHJpdmVycy9ncHUvZHJtL3Rpbnkvc2ltcGxlZHJtLmMgfCA2MCArKysrKysr
-KysrKysrKysrKysrKysrKysrKystLS0tLQ0KPiAgIDEgZmlsZSBjaGFuZ2VkLCA1MSBpbnNl
-cnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS90aW55L3NpbXBsZWRybS5jIGIvZHJpdmVycy9ncHUvZHJtL3Rpbnkvc2ltcGxl
-ZHJtLmMNCj4gaW5kZXggMTYyZWI0NGRjYmE4Li43YWFiN2ZhNTcyZjAgMTAwNjQ0DQo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS90aW55L3NpbXBsZWRybS5jDQo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS90aW55L3NpbXBsZWRybS5jDQo+IEBAIC0xMjgsNiArMTI4LDIzIEBAIHNpbXBs
-ZWZiX3JlYWRfdTMyX29mKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBkZXZpY2Vf
-bm9kZSAqb2Zfbm9kZSwNCj4gICAJcmV0dXJuIHJldDsNCj4gICB9DQo+ICAgDQo+ICtzdGF0
-aWMgaW50DQo+ICtzaW1wbGVmYl9yZWFkX3UzMl9vZl9vcHQoc3RydWN0IGRybV9kZXZpY2Ug
-KmRldiwgc3RydWN0IGRldmljZV9ub2RlICpvZl9ub2RlLA0KPiArCQkJIGNvbnN0IGNoYXIg
-Km5hbWUsIHUzMiAqdmFsdWUpDQo+ICt7DQo+ICsJaW50IHJldCA9IG9mX3Byb3BlcnR5X3Jl
-YWRfdTMyKG9mX25vZGUsIG5hbWUsIHZhbHVlKTsNCj4gKw0KPiArCWlmIChyZXQgPT0gLUVJ
-TlZBTCkgew0KPiArCQkqdmFsdWUgPSAwOw0KPiArCQlyZXQgPSAwOw0KPiArCX0gZWxzZSBp
-ZiAocmV0KSB7DQo+ICsJCWRybV9lcnIoZGV2LCAic2ltcGxlZmI6IGNhbm5vdCBwYXJzZSBm
-cmFtZWJ1ZmZlciAlczogZXJyb3IgJWRcbiIsDQo+ICsJCQluYW1lLCByZXQpOw0KPiArCX0N
-Cj4gKw0KPiArCXJldHVybiByZXQ7DQo+ICt9DQo+ICsNCj4gICBzdGF0aWMgaW50DQo+ICAg
-c2ltcGxlZmJfcmVhZF9zdHJpbmdfb2Yoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0
-IGRldmljZV9ub2RlICpvZl9ub2RlLA0KPiAgIAkJCWNvbnN0IGNoYXIgKm5hbWUsIGNvbnN0
-IGNoYXIgKip2YWx1ZSkNCj4gQEAgLTE4NCw2ICsyMDEsMTkgQEAgc2ltcGxlZmJfZ2V0X2Zv
-cm1hdF9vZihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3QgZGV2aWNlX25vZGUgKm9m
-X25vZGUpDQo+ICAgCXJldHVybiBzaW1wbGVmYl9nZXRfdmFsaWRhdGVkX2Zvcm1hdChkZXYs
-IGZvcm1hdCk7DQo+ICAgfQ0KPiAgIA0KPiArc3RhdGljIGludA0KPiArc2ltcGxlZmJfZ2V0
-X21tX29mKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBkZXZpY2Vfbm9kZSAqb2Zf
-bm9kZSwNCj4gKwkJICAgY29uc3QgY2hhciAqbmFtZSkNCj4gK3sNCj4gKwlpbnQgbW07DQo+
-ICsJaW50IHJldCA9IHNpbXBsZWZiX3JlYWRfdTMyX29mX29wdChkZXYsIG9mX25vZGUsIG5h
-bWUsICZtbSk7DQo+ICsNCj4gKwlpZiAocmV0KQ0KPiArCQlyZXR1cm4gcmV0Ow0KPiArCXJl
-dHVybiBzaW1wbGVmYl9nZXRfdmFsaWRhdGVkX2ludChkZXYsIG5hbWUsIG1tKTsNCj4gK30N
-Cj4gKw0KPiArDQo+ICAgLyoNCj4gICAgKiBTaW1wbGUgRnJhbWVidWZmZXIgZGV2aWNlDQo+
-ICAgICovDQo+IEBAIC01OTksMTYgKzYyOSwxMiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGRy
-bV9tb2RlX2NvbmZpZ19mdW5jcyBzaW1wbGVkcm1fbW9kZV9jb25maWdfZnVuY3MgPSB7DQo+
-ICAgICovDQo+ICAgDQo+ICAgc3RhdGljIHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlIHNpbXBs
-ZWRybV9tb2RlKHVuc2lnbmVkIGludCB3aWR0aCwNCj4gLQkJCQkJICAgICAgdW5zaWduZWQg
-aW50IGhlaWdodCkNCj4gKwkJCQkJICAgICAgdW5zaWduZWQgaW50IGhlaWdodCwNCj4gKwkJ
-CQkJICAgICAgdW5zaWduZWQgaW50IHdpZHRoX21tLA0KPiArCQkJCQkgICAgICB1bnNpZ25l
-ZCBpbnQgaGVpZ2h0X21tKQ0KPiAgIHsNCj4gLQkvKg0KPiAtCSAqIEFzc3VtZSBhIG1vbml0
-b3IgcmVzb2x1dGlvbiBvZiA5NiBkcGkgdG8NCj4gLQkgKiBnZXQgYSBzb21ld2hhdCByZWFz
-b25hYmxlIHNjcmVlbiBzaXplLg0KPiAtCSAqLw0KPiAgIAljb25zdCBzdHJ1Y3QgZHJtX2Rp
-c3BsYXlfbW9kZSBtb2RlID0gew0KPiAtCQlEUk1fTU9ERV9JTklUKDYwLCB3aWR0aCwgaGVp
-Z2h0LA0KPiAtCQkJICAgICAgRFJNX01PREVfUkVTX01NKHdpZHRoLCA5NnVsKSwNCj4gLQkJ
-CSAgICAgIERSTV9NT0RFX1JFU19NTShoZWlnaHQsIDk2dWwpKQ0KPiArCQlEUk1fTU9ERV9J
-TklUKDYwLCB3aWR0aCwgaGVpZ2h0LCB3aWR0aF9tbSwgaGVpZ2h0X21tKQ0KPiAgIAl9Ow0K
-PiAgIA0KPiAgIAlyZXR1cm4gbW9kZTsNCj4gQEAgLTYyMiw2ICs2NDgsNyBAQCBzdGF0aWMg
-c3RydWN0IHNpbXBsZWRybV9kZXZpY2UgKnNpbXBsZWRybV9kZXZpY2VfY3JlYXRlKHN0cnVj
-dCBkcm1fZHJpdmVyICpkcnYsDQo+ICAgCXN0cnVjdCBzaW1wbGVkcm1fZGV2aWNlICpzZGV2
-Ow0KPiAgIAlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2Ow0KPiAgIAlpbnQgd2lkdGgsIGhlaWdo
-dCwgc3RyaWRlOw0KPiArCWludCB3aWR0aF9tbSA9IDAsIGhlaWdodF9tbSA9IDA7DQo+ICAg
-CWNvbnN0IHN0cnVjdCBkcm1fZm9ybWF0X2luZm8gKmZvcm1hdDsNCj4gICAJc3RydWN0IHJl
-c291cmNlICpyZXMsICptZW07DQo+ICAgCXZvaWQgX19pb21lbSAqc2NyZWVuX2Jhc2U7DQo+
-IEBAIC02NzYsNiArNzAzLDEyIEBAIHN0YXRpYyBzdHJ1Y3Qgc2ltcGxlZHJtX2RldmljZSAq
-c2ltcGxlZHJtX2RldmljZV9jcmVhdGUoc3RydWN0IGRybV9kcml2ZXIgKmRydiwNCj4gICAJ
-CWZvcm1hdCA9IHNpbXBsZWZiX2dldF9mb3JtYXRfb2YoZGV2LCBvZl9ub2RlKTsNCj4gICAJ
-CWlmIChJU19FUlIoZm9ybWF0KSkNCj4gICAJCQlyZXR1cm4gRVJSX0NBU1QoZm9ybWF0KTsN
-Cj4gKwkJd2lkdGhfbW0gPSBzaW1wbGVmYl9nZXRfbW1fb2YoZGV2LCBvZl9ub2RlLCAid2lk
-dGgtbW0iKTsNCj4gKwkJaWYgKHdpZHRoX21tIDwgMCkNCj4gKwkJCXJldHVybiBFUlJfUFRS
-KHdpZHRoX21tKTsNCj4gKwkJaGVpZ2h0X21tID0gc2ltcGxlZmJfZ2V0X21tX29mKGRldiwg
-b2Zfbm9kZSwgImhlaWdodC1tbSIpOw0KPiArCQlpZiAoaGVpZ2h0X21tIDwgMCkNCj4gKwkJ
-CXJldHVybiBFUlJfUFRSKGhlaWdodF9tbSk7DQo+ICAgCX0gZWxzZSB7DQo+ICAgCQlkcm1f
-ZXJyKGRldiwgIm5vIHNpbXBsZWZiIGNvbmZpZ3VyYXRpb24gZm91bmRcbiIpOw0KPiAgIAkJ
-cmV0dXJuIEVSUl9QVFIoLUVOT0RFVik7DQo+IEBAIC02ODYsNyArNzE5LDE2IEBAIHN0YXRp
-YyBzdHJ1Y3Qgc2ltcGxlZHJtX2RldmljZSAqc2ltcGxlZHJtX2RldmljZV9jcmVhdGUoc3Ry
-dWN0IGRybV9kcml2ZXIgKmRydiwNCj4gICAJCQlyZXR1cm4gRVJSX1BUUigtRUlOVkFMKTsN
-Cj4gICAJfQ0KPiAgIA0KPiAtCXNkZXYtPm1vZGUgPSBzaW1wbGVkcm1fbW9kZSh3aWR0aCwg
-aGVpZ2h0KTsNCj4gKwkvKg0KPiArCSAqIEFzc3VtZSBhIG1vbml0b3IgcmVzb2x1dGlvbiBv
-ZiA5NiBkcGkgaWYgcGh5c2ljYWwgZGltZW5zaW9ucw0KPiArCSAqIGFyZSBub3Qgc3BlY2lm
-aWVkIHRvIGdldCBhIHNvbWV3aGF0IHJlYXNvbmFibGUgc2NyZWVuIHNpemUuDQo+ICsJICov
-DQo+ICsJaWYgKCF3aWR0aF9tbSkNCj4gKwkJd2lkdGhfbW0gPSBEUk1fTU9ERV9SRVNfTU0o
-d2lkdGgsIDk2dWwpOw0KPiArCWlmICghaGVpZ2h0X21tKQ0KPiArCQloZWlnaHRfbW0gPSBE
-Uk1fTU9ERV9SRVNfTU0oaGVpZ2h0LCA5NnVsKTsNCj4gKw0KPiArCXNkZXYtPm1vZGUgPSBz
-aW1wbGVkcm1fbW9kZSh3aWR0aCwgaGVpZ2h0LCB3aWR0aF9tbSwgaGVpZ2h0X21tKTsNCj4g
-ICAJc2Rldi0+Zm9ybWF0ID0gZm9ybWF0Ow0KPiAgIAlzZGV2LT5waXRjaCA9IHN0cmlkZTsN
-Cj4gICANCg0KLS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVs
-b3Blcg0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJIDQpNYXhmZWxkc3Ry
-LiA1LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkNCihIUkIgMzY4MDksIEFHIE7DvHJuYmVy
-ZykNCkdlc2Now6RmdHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
+For changelogs please look at each patch individually.
 
---------------crI3tKa4CicLouoxoKq0icJY--
+Abel Vesa (8):
+  dt-bindings: phy: Add qcom,snps-eusb2-phy schema file
+  phy: qcom: Add QCOM SNPS eUSB2 driver
+  dt-bindings: phy: qcom,qmp-usb: Document SM8550 compatible
+  phy: qcom-qmp: pcs-usb: Add v6 register offsets
+  phy: qcom-qmp: Add v6 DP register offsets
+  phy: qcom-qmp-combo: Add support for SM8550
+  arm64: dts: qcom: sm8550: Add USB PHYs and controller nodes
+  arm64: dts: qcom: sm8550-mtp: Add USB PHYs and HC nodes
 
---------------hVvOHpSjJzA94kD7H70P3Lwt
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    |   1 +
+ .../bindings/phy/qcom,snps-eusb2-phy.yaml     |  78 ++++
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts       |  22 +
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  92 +++-
+ drivers/phy/qualcomm/Kconfig                  |   9 +
+ drivers/phy/qualcomm/Makefile                 |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c     | 406 ++++++++++++++++-
+ .../phy/qualcomm/phy-qcom-qmp-pcs-usb-v6.h    |  31 ++
+ drivers/phy/qualcomm/phy-qcom-qmp.h           |   4 +
+ drivers/phy/qualcomm/phy-qcom-snps-eusb2.c    | 423 ++++++++++++++++++
+ 10 files changed, 1063 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-usb-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.34.1
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPSeo4FAwAAAAAACgkQlh/E3EQov+AF
-dRAAr03P99RG0h7Bga6J3Ig+I5zFZhIR/vpS+pZUtrKKdbpGiZLR3Fvfy3yom8PRewVpuL8WoMqf
-j9LM3Ji0hLWFp8DJq0U+Lt62/f2O5odJaFrTLjRJVTGlJhBhEeBxVGa1UAgfvjEWPePrVBZkXoE5
-xOF5+pyMHqxlUxOEUngFEfOcQ0aW2eg7+yIBB4eVrCkTn/bRPN+rdK5RCc9mEkEYX9Psa0feob4h
-03AdZF5bJ62UhH0Yz44eTMc62xgMNUycwyUqNPhklMR+JC1cRXLg2DtdM/Hajc1VaFC9qR2rDAcU
-F2HPnbBzbxUAgKUD9CSdRyEYFPP1yRrTHDc99yFc2/sVMInJ03Z3Yjlmujwzq1anQfoHueqol6cn
-yeKZRFMRjrFtvJeBGfr8/2CVqhdwXUoklG/QqSmafUqkv/m6aWXiJAPUQ+10h+qJT7V4zcXBiBm5
-7koetQbIxew8jSoL5setXGM/YJp8YboO4FpZ429mVVII8da2kwvbCPKKlP3sjx1rFVxPsZ+mSrYX
-HVVTTo7WIqOx3BzKgDOT4YRmcXJ/UUZrlYVz1WktlFRaK4kMqXb498q5dhQJ+fKdloPrqFPlLJDF
-ruH7l30UKj83HMUbll8IcICGZdvgD1CJoMWU3zeTI6J4lJPYzc0DOdGwDV6dWwkBetQCyyIZAhFR
-Q1Q=
-=Uv5e
------END PGP SIGNATURE-----
-
---------------hVvOHpSjJzA94kD7H70P3Lwt--
