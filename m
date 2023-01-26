@@ -2,143 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8D7067CAF8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 13:36:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2374A67CB14
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 13:47:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237260AbjAZMg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 07:36:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51084 "EHLO
+        id S233955AbjAZMq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 07:46:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237257AbjAZMg2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 07:36:28 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1CAE63857
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:36:24 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id q5so1669571wrv.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:36:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wo60df5cmJCZEeoz3PXILA4sT5vfxlhLvp0duE7lf1s=;
-        b=EADzRIu7lym21hOMnZvS+sMMct8/ZA/xoKBHbgkl9ZCl8AXwaxtBx1nL7SVYZvAP1P
-         V0WpbSKizSG3gb8Tx0bP4k2s5D8BnsWgMmVii7/xz6DiFI5xaD4i70VyNi/aR53L4KtP
-         HeGhXiWVenGdkittg1Rag7fB7qDIh8pEfMLezkCMwrrz7+4ZOkhgE3kdDtoXNx6HsjzE
-         rj6xPbcCX14erCpbVDDO6M2wn88dwOJycbU7CLj8JwYfu7TH/ok/lOKDXQoANpOtuGdG
-         i57k4eBlnaBp1HfUOcTPh1PqcvpTvERBo1rfNByEE4wwynr6pMMpdoeDXpiESZB3gLb0
-         SI6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wo60df5cmJCZEeoz3PXILA4sT5vfxlhLvp0duE7lf1s=;
-        b=PmwfK3cauXYxJBiTDFrFv37+L694n/B23+0YGTEraaRdYqRE9tCkaRjv44DL+x+JHa
-         ECGvQvHWzoUrOupyXJsCsssU3zGeNUBJZWxYRlkPdjW4ihrrkolygXwsBkSIgD/N0x6W
-         9ByQl26EQVw8hqBEPY3ziY3ca2cFfxMiUa0sbOAVtCPwpcJumKL1143i1PdTAbIAfSi6
-         dsNwNRdOU7G/05efhI0NrYZFttItFH2agJkOaBmoCbT/d4/FtD/apqm/501VjpUUwMOE
-         Ejb3TQDy0B8Wx0WL8El5KL71Wmf2agkXpCH51AssbwvIqYra6G5tIcvzhXMjDMpAt0fN
-         o5dw==
-X-Gm-Message-State: AFqh2krIeG76dCeIPjoPxv9NAaW1BuBnY1CqzVVPlw9snbb1LgB2ULnT
-        +i50XTJNOQ96RjG/6tgF/oZpfA==
-X-Google-Smtp-Source: AMrXdXuNVegLRJr6/oQKdCFpXOMON9Yqa+ZGh5kux8Fj0IGtNLS5318NED0H8g007dO7cTnthbbffw==
-X-Received: by 2002:adf:8b45:0:b0:2bd:e8c9:bcd5 with SMTP id v5-20020adf8b45000000b002bde8c9bcd5mr29446034wra.61.1674736583113;
-        Thu, 26 Jan 2023 04:36:23 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z4-20020a5d44c4000000b002bfcc9d9607sm112694wrr.68.2023.01.26.04.36.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 04:36:22 -0800 (PST)
-Message-ID: <c519afe0-0a6f-e262-7a85-a3072a828e62@linaro.org>
-Date:   Thu, 26 Jan 2023 13:36:21 +0100
+        with ESMTP id S232925AbjAZMq6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 07:46:58 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E44622ED7E;
+        Thu, 26 Jan 2023 04:46:55 -0800 (PST)
+Received: from uno.LocalDomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8206E975;
+        Thu, 26 Jan 2023 13:46:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1674737214;
+        bh=FjHe18OjMG5kp/9PYfncXnIQ8ktDN2Uo2h/sBYfzDqo=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=KEeHFRPKNjvtnLjX7JmYZtk23ZQDABkw8mM7W51ml4DUyuId0aQzmWy4Gzfoygdt5
+         L26YehlZFEqu4lNOv7EY0Lkcle58OAGMqQ3N8AiPFCGtT810/N8f4ruUiPImUyKl2a
+         2d/KZz2AzjenZZffcMiCFjnO14aPfCd0yFG1Fbpg=
+From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
+        Luca Weiss <luca@z3ntu.xyz>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v5 1/9] media: dt-bindings: Add OV5670
+Date:   Thu, 26 Jan 2023 13:46:24 +0100
+Message-Id: <20230126124632.45842-2-jacopo.mondi@ideasonboard.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230126124632.45842-1-jacopo.mondi@ideasonboard.com>
+References: <20230126124632.45842-1-jacopo.mondi@ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v8 4/5] dt-bindings: input: pwm-beeper: add volume
-Content-Language: en-US
-To:     Manuel Traut <manuel.traut@mt.com>, linux-kernel@vger.kernel.org
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230126091825.220646-1-manuel.traut@mt.com>
- <20230126091825.220646-5-manuel.traut@mt.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230126091825.220646-5-manuel.traut@mt.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2023 10:18, Manuel Traut wrote:
-> Adds an array of supported volume levels and a default volume level.
-> 
-> Signed-off-by: Manuel Traut <manuel.traut@mt.com>
+Add the bindings documentation for Omnivision OV5670 image sensor.
 
-This is the second patch. Bindings must be introduced before you start
-using them.
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+---
+ .../bindings/media/i2c/ovti,ov5670.yaml       | 92 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 93 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
 
-> ---
->  .../devicetree/bindings/input/pwm-beeper.yaml | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.yaml b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
-> index 351df83d5cbe..f1f9283ca855 100644
-> --- a/Documentation/devicetree/bindings/input/pwm-beeper.yaml
-> +++ b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
-> @@ -26,6 +26,24 @@ properties:
->    beeper-hz:
->      description: bell frequency in Hz
->  
-> +  volume-levels:
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+new file mode 100644
+index 000000000000..fa264255b5eb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+@@ -0,0 +1,92 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov5670.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Omnivision OV5670 5 Megapixels raw image sensor
++
++maintainers:
++  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
++
++description: |-
++  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
++  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
++  controlled through an I2C compatible control bus.
++
++properties:
++  compatible:
++    const: ovti,ov5670
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: System clock. From 6 to 27 MHz.
++    maxItems: 1
++
++  powerdown-gpios:
++    description: Reference to the GPIO connected to the PWDNB pin. Active low.
++
++  reset-gpios:
++    description: Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
++    maxItems: 1
++
++  avdd-supply:
++    description: Analog circuit power. Typically 2.8V.
++
++  dvdd-supply:
++    description: Digital circuit power. Typically 1.2V.
++
++  dovdd-supply:
++    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            minItems: 1
++            maxItems: 2
++            items:
++              enum: [1, 2]
++
++          clock-noncontinuous: true
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov5670: sensor@36 {
++            compatible = "ovti,ov5670";
++            reg = <0x36>;
++
++            clocks = <&sensor_xclk>;
++
++            port {
++                ov5670_ep: endpoint {
++                    remote-endpoint = <&csi_ep>;
++                    data-lanes = <1 2>;
++                    clock-noncontinuous;
++                };
++            };
++        };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index f61eb221415b..38d8d1d5d536 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15468,6 +15468,7 @@ M:	Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+ F:	drivers/media/i2c/ov5670.c
 
-use -bp suffix:
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml#L44
-
-which will mean the unit is 1/100 of %, not 1/10. Then you can also drop
-the $ref.
-
-
-> +    description: >
-> +      Array of PWM duty cycle values that correspond to
-> +      linear volume levels. These need to be in the range of
-> +      0 to 500, while 0 means 0% duty cycle (mute) and 500
-> +      means 50% duty cycle (max volume).
-> +      Please note that the actual volume of most beepers is
-> +      highly non-linear, which means that low volume levels
-> +      are probably somewhere in the range of 1 to 30 (0.1-3%
-> +      duty cycle).
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-> +  default-volume-level:
-
-I propose to use just the value, not the index, so the name should
-finish with '-bp' and the $ref can be dropped.
-
-> +    description: >
-> +      The default volume level (index into the array defined
-> +      by the "volume-levels" property).
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
->  required:
->    - compatible
->    - pwms
-> @@ -45,4 +63,6 @@ examples:
->        compatible = "pwm-beeper";
->        pwms = <&pwm0>;
->        amp-supply = <&beeper_amp>;
-> +      volume-levels = <0 8 20 40 500>;
-> +      default-volume-level = <4>;
->      };
-
-Best regards,
-Krzysztof
+ OMNIVISION OV5675 SENSOR DRIVER
+--
+2.39.0
 
