@@ -2,291 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C377167C398
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 04:34:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90FCD67C40C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 05:57:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236411AbjAZDeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Jan 2023 22:34:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59330 "EHLO
+        id S229475AbjAZE5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Jan 2023 23:57:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236376AbjAZDeS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 22:34:18 -0500
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 273B95DC0E;
-        Wed, 25 Jan 2023 19:34:14 -0800 (PST)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1pKt1f-0004Ez-2G;
-        Thu, 26 Jan 2023 04:34:11 +0100
-Date:   Thu, 26 Jan 2023 03:34:05 +0000
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S229650AbjAZE5n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Jan 2023 23:57:43 -0500
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A6D354232;
+        Wed, 25 Jan 2023 20:57:41 -0800 (PST)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 8C2295C013C;
+        Wed, 25 Jan 2023 23:57:37 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Wed, 25 Jan 2023 23:57:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm1; t=1674709057; x=1674795457; bh=1AV7+tKxCnaIrwhMWoEs1PWFI
+        x0nCKGXy0BDPsy2f4g=; b=STDsQzj0bJLwPDRBXF5j/HZBXl9m0ysK2UojW1RDO
+        933BtriP9ncRv8j8FI6QQgCHy5GLLD2yOewpxa1GuGemupLyB4swP/MZ1GZzvoeM
+        wTwli04Gz5U4C8RJVm21SbCCJhYmJoojB5FNuPt8fIAfJd3kECF9qjfB4g5kTkIw
+        Ol0KEsb6wOqoa5jbt/5y2yu3f4i4jnbyQzH8VlYA9y0pXVOSRj9n1MxxD8FocUT3
+        irb5fopLmW16ungbuD95gYY5m/QRk9/G8vkvsUszjNGaW5YjsVWIojblylMbHsyG
+        gUB4zq66HluwQBsw8cOsBeorFlYmidMNsSSNoyllnd1SA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+        1674709057; x=1674795457; bh=1AV7+tKxCnaIrwhMWoEs1PWFIx0nCKGXy0B
+        DPsy2f4g=; b=Lty/DH7XsXFIzp0XwlA5QmxND0IfHheyoy/UYgyN3gUc0f2/JZF
+        DFvOFj3CUQa6dHJHD4jXxINMp+Gc/0bWc3jkdo1H85NKmOtmvyh8AoFw6JD/UCS8
+        UtjBq7JtuCYrpQIba5Tym7P1XrGf9LNAVgfn5oK8jwtjAsySFPsS7/gvP6AwE8e1
+        kgv9kZg8ic8m2sp/qUj6pRKxMCF7S1dj3zsjI75YtGfC+J2tIVNDxaX1Jul6osI1
+        LH/NqSykBJ7snICPknb/Pc4ivL52fp7c6VXrjlaWzCe20dRqfW+DxArRlS7l8av2
+        r4esibNKmbL4az4qD+qTqLhv0wfqmp6hriQ==
+X-ME-Sender: <xms:QAjSY-aK3dJlsL9T0W6tmoX1lk-rDem2pc2kKwLE82B_o1KE50wslw>
+    <xme:QAjSYxbkHJtNZEiLRrKJ9Aizm5qrmvtDSAFLsI2oHxcIXw9C1DM2NuWLbPx156d7A
+    2gZxFExhhrormFWZg>
+X-ME-Received: <xmr:QAjSY4854U-lDNXe4gIl7NIfukKXNNbIUbxrtekpm90pKxjaf8bzmX0bjkkekSdNF0oHcqxYz6jWLq3zav5J3VOowXbqDTq34Ev0oHFWNgNtMZEcycKN90PcJM87qywisHsHXw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddvfedgjeehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
+    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
+    grthhtvghrnhepkeevlefhjeeuleeltedvjedvfeefteegleehueejffehgffffeekhefh
+    hfekkeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:QAjSYwpoU7Mfv7cr01k06J_BTN_HGwgVkACh0NT6ePcQDAV6eq8ihA>
+    <xmx:QAjSY5oMeBvb1tWa8r99QSiuwketYaS6lMBIvHQZkc5CYaIxQfDVfA>
+    <xmx:QAjSY-RVTjhqC4tfsRUojMWne6TzedFErAJ3EFn5uZYQcqnfYxwnSw>
+    <xmx:QQjSY67cc6ZJv0DIfD7ZA5eh0x73xBwdO5yhdSHe5SxWhtFU6TwM3A>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 25 Jan 2023 23:57:36 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev
+Cc:     linux-riscv@lists.infradead.org, Heiko Stuebner <heiko@sntech.de>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Conor Dooley <conor@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andre Przywara <andre.przywara@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jianhui Zhao <zhaojh329@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Edward-JW Yang <edward-jw.yang@mediatek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Miles Chen <miles.chen@mediatek.com>
-Subject: [PATCH v5 2/3] dt-bindings: clock: mediatek: add mt7981 clock IDs
-Message-ID: <e353d32b5a4481766519a037afe1ed44e31ece1a.1674703830.git.daniel@makrotopia.org>
-References: <cover.1674703830.git.daniel@makrotopia.org>
+        linux-arm-kernel@lists.infradead.org,
+        Samuel Holland <samuel@sholland.org>
+Subject: [PATCH v5 00/11] riscv: Allwinner D1/D1s platform support
+Date:   Wed, 25 Jan 2023 22:57:27 -0600
+Message-Id: <20230126045738.47903-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.37.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1674703830.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UPPERCASE_50_75 autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MT7981 clock dt-bindings, include topckgen, apmixedsys,
-infracfg, and ethernet subsystem clocks.
+This series adds the Kconfig/defconfig plumbing and devicetrees for a
+range of Allwinner D1 and D1s-based boards. Many features are already
+enabled, including USB, Ethernet, and WiFi.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Jianhui Zhao <zhaojh329@gmail.com>
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- .../dt-bindings/clock/mediatek,mt7981-clk.h   | 215 ++++++++++++++++++
- 1 file changed, 215 insertions(+)
- create mode 100644 include/dt-bindings/clock/mediatek,mt7981-clk.h
+This version drops all boards/nodes with missing YAML bindings, so at
+least some support can get merged for v6.3.
 
-diff --git a/include/dt-bindings/clock/mediatek,mt7981-clk.h b/include/dt-bindings/clock/mediatek,mt7981-clk.h
-new file mode 100644
-index 0000000000000..192f8cefb589f
---- /dev/null
-+++ b/include/dt-bindings/clock/mediatek,mt7981-clk.h
-@@ -0,0 +1,215 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Author: Wenzhen.Yu <wenzhen.yu@mediatek.com>
-+ * Author: Jianhui Zhao <zhaojh329@gmail.com>
-+ * Author: Daniel Golle <daniel@makrotopia.org>
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_MT7981_H
-+#define _DT_BINDINGS_CLK_MT7981_H
-+
-+/* TOPCKGEN */
-+#define CLK_TOP_CB_CKSQ_40M		0
-+#define CLK_TOP_CB_M_416M		1
-+#define CLK_TOP_CB_M_D2			2
-+#define CLK_TOP_CB_M_D3			3
-+#define CLK_TOP_M_D3_D2			4
-+#define CLK_TOP_CB_M_D4			5
-+#define CLK_TOP_CB_M_D8			6
-+#define CLK_TOP_M_D8_D2			7
-+#define CLK_TOP_CB_MM_720M		8
-+#define CLK_TOP_CB_MM_D2		9
-+#define CLK_TOP_CB_MM_D3		10
-+#define CLK_TOP_CB_MM_D3_D5		11
-+#define CLK_TOP_CB_MM_D4		12
-+#define CLK_TOP_CB_MM_D6		13
-+#define CLK_TOP_MM_D6_D2		14
-+#define CLK_TOP_CB_MM_D8		15
-+#define CLK_TOP_CB_APLL2_196M		16
-+#define CLK_TOP_APLL2_D2		17
-+#define CLK_TOP_APLL2_D4		18
-+#define CLK_TOP_NET1_2500M		19
-+#define CLK_TOP_CB_NET1_D4		20
-+#define CLK_TOP_CB_NET1_D5		21
-+#define CLK_TOP_NET1_D5_D2		22
-+#define CLK_TOP_NET1_D5_D4		23
-+#define CLK_TOP_CB_NET1_D8		24
-+#define CLK_TOP_NET1_D8_D2		25
-+#define CLK_TOP_NET1_D8_D4		26
-+#define CLK_TOP_CB_NET2_800M		27
-+#define CLK_TOP_CB_NET2_D2		28
-+#define CLK_TOP_CB_NET2_D4		29
-+#define CLK_TOP_NET2_D4_D2		30
-+#define CLK_TOP_NET2_D4_D4		31
-+#define CLK_TOP_CB_NET2_D6		32
-+#define CLK_TOP_CB_WEDMCU_208M		33
-+#define CLK_TOP_CB_SGM_325M		34
-+#define CLK_TOP_CKSQ_40M_D2		35
-+#define CLK_TOP_CB_RTC_32K		36
-+#define CLK_TOP_CB_RTC_32P7K		37
-+#define CLK_TOP_USB_TX250M		38
-+#define CLK_TOP_FAUD			39
-+#define CLK_TOP_NFI1X			40
-+#define CLK_TOP_USB_EQ_RX250M		41
-+#define CLK_TOP_USB_CDR_CK		42
-+#define CLK_TOP_USB_LN0_CK		43
-+#define CLK_TOP_SPINFI_BCK		44
-+#define CLK_TOP_SPI			45
-+#define CLK_TOP_SPIM_MST		46
-+#define CLK_TOP_UART_BCK		47
-+#define CLK_TOP_PWM_BCK			48
-+#define CLK_TOP_I2C_BCK			49
-+#define CLK_TOP_PEXTP_TL		50
-+#define CLK_TOP_EMMC_208M		51
-+#define CLK_TOP_EMMC_400M		52
-+#define CLK_TOP_DRAMC_REF		53
-+#define CLK_TOP_DRAMC_MD32		54
-+#define CLK_TOP_SYSAXI			55
-+#define CLK_TOP_SYSAPB			56
-+#define CLK_TOP_ARM_DB_MAIN		57
-+#define CLK_TOP_AP2CNN_HOST		58
-+#define CLK_TOP_NETSYS			59
-+#define CLK_TOP_NETSYS_500M		60
-+#define CLK_TOP_NETSYS_WED_MCU		61
-+#define CLK_TOP_NETSYS_2X		62
-+#define CLK_TOP_SGM_325M		63
-+#define CLK_TOP_SGM_REG			64
-+#define CLK_TOP_F26M			65
-+#define CLK_TOP_EIP97B			66
-+#define CLK_TOP_USB3_PHY		67
-+#define CLK_TOP_AUD			68
-+#define CLK_TOP_A1SYS			69
-+#define CLK_TOP_AUD_L			70
-+#define CLK_TOP_A_TUNER			71
-+#define CLK_TOP_U2U3_REF		72
-+#define CLK_TOP_U2U3_SYS		73
-+#define CLK_TOP_U2U3_XHCI		74
-+#define CLK_TOP_USB_FRMCNT		75
-+#define CLK_TOP_NFI1X_SEL		76
-+#define CLK_TOP_SPINFI_SEL		77
-+#define CLK_TOP_SPI_SEL			78
-+#define CLK_TOP_SPIM_MST_SEL		79
-+#define CLK_TOP_UART_SEL		80
-+#define CLK_TOP_PWM_SEL			81
-+#define CLK_TOP_I2C_SEL			82
-+#define CLK_TOP_PEXTP_TL_SEL		83
-+#define CLK_TOP_EMMC_208M_SEL		84
-+#define CLK_TOP_EMMC_400M_SEL		85
-+#define CLK_TOP_F26M_SEL		86
-+#define CLK_TOP_DRAMC_SEL		87
-+#define CLK_TOP_DRAMC_MD32_SEL		88
-+#define CLK_TOP_SYSAXI_SEL		89
-+#define CLK_TOP_SYSAPB_SEL		90
-+#define CLK_TOP_ARM_DB_MAIN_SEL		91
-+#define CLK_TOP_AP2CNN_HOST_SEL		92
-+#define CLK_TOP_NETSYS_SEL		93
-+#define CLK_TOP_NETSYS_500M_SEL		94
-+#define CLK_TOP_NETSYS_MCU_SEL		95
-+#define CLK_TOP_NETSYS_2X_SEL		96
-+#define CLK_TOP_SGM_325M_SEL		97
-+#define CLK_TOP_SGM_REG_SEL		98
-+#define CLK_TOP_EIP97B_SEL		99
-+#define CLK_TOP_USB3_PHY_SEL		100
-+#define CLK_TOP_AUD_SEL			101
-+#define CLK_TOP_A1SYS_SEL		102
-+#define CLK_TOP_AUD_L_SEL		103
-+#define CLK_TOP_A_TUNER_SEL		104
-+#define CLK_TOP_U2U3_SEL		105
-+#define CLK_TOP_U2U3_SYS_SEL		106
-+#define CLK_TOP_U2U3_XHCI_SEL		107
-+#define CLK_TOP_USB_FRMCNT_SEL		108
-+#define CLK_TOP_AUD_I2S_M		109
-+
-+/* INFRACFG */
-+#define CLK_INFRA_66M_MCK		0
-+#define CLK_INFRA_UART0_SEL		1
-+#define CLK_INFRA_UART1_SEL		2
-+#define CLK_INFRA_UART2_SEL		3
-+#define CLK_INFRA_SPI0_SEL		4
-+#define CLK_INFRA_SPI1_SEL		5
-+#define CLK_INFRA_SPI2_SEL		6
-+#define CLK_INFRA_PWM1_SEL		7
-+#define CLK_INFRA_PWM2_SEL		8
-+#define CLK_INFRA_PWM3_SEL		9
-+#define CLK_INFRA_PWM_BSEL		10
-+#define CLK_INFRA_PCIE_SEL		11
-+#define CLK_INFRA_GPT_STA		12
-+#define CLK_INFRA_PWM_HCK		13
-+#define CLK_INFRA_PWM_STA		14
-+#define CLK_INFRA_PWM1_CK		15
-+#define CLK_INFRA_PWM2_CK		16
-+#define CLK_INFRA_PWM3_CK		17
-+#define CLK_INFRA_CQ_DMA_CK		18
-+#define CLK_INFRA_AUD_BUS_CK		19
-+#define CLK_INFRA_AUD_26M_CK		20
-+#define CLK_INFRA_AUD_L_CK		21
-+#define CLK_INFRA_AUD_AUD_CK		22
-+#define CLK_INFRA_AUD_EG2_CK		23
-+#define CLK_INFRA_DRAMC_26M_CK		24
-+#define CLK_INFRA_DBG_CK		25
-+#define CLK_INFRA_AP_DMA_CK		26
-+#define CLK_INFRA_SEJ_CK		27
-+#define CLK_INFRA_SEJ_13M_CK		28
-+#define CLK_INFRA_THERM_CK		29
-+#define CLK_INFRA_I2C0_CK		30
-+#define CLK_INFRA_UART0_CK		31
-+#define CLK_INFRA_UART1_CK		32
-+#define CLK_INFRA_UART2_CK		33
-+#define CLK_INFRA_SPI2_CK		34
-+#define CLK_INFRA_SPI2_HCK_CK		35
-+#define CLK_INFRA_NFI1_CK		36
-+#define CLK_INFRA_SPINFI1_CK		37
-+#define CLK_INFRA_NFI_HCK_CK		38
-+#define CLK_INFRA_SPI0_CK		39
-+#define CLK_INFRA_SPI1_CK		40
-+#define CLK_INFRA_SPI0_HCK_CK		41
-+#define CLK_INFRA_SPI1_HCK_CK		42
-+#define CLK_INFRA_FRTC_CK		43
-+#define CLK_INFRA_MSDC_CK		44
-+#define CLK_INFRA_MSDC_HCK_CK		45
-+#define CLK_INFRA_MSDC_133M_CK		46
-+#define CLK_INFRA_MSDC_66M_CK		47
-+#define CLK_INFRA_ADC_26M_CK		48
-+#define CLK_INFRA_ADC_FRC_CK		49
-+#define CLK_INFRA_FBIST2FPC_CK		50
-+#define CLK_INFRA_I2C_MCK_CK		51
-+#define CLK_INFRA_I2C_PCK_CK		52
-+#define CLK_INFRA_IUSB_133_CK		53
-+#define CLK_INFRA_IUSB_66M_CK		54
-+#define CLK_INFRA_IUSB_SYS_CK		55
-+#define CLK_INFRA_IUSB_CK		56
-+#define CLK_INFRA_IPCIE_CK		57
-+#define CLK_INFRA_IPCIE_PIPE_CK		58
-+#define CLK_INFRA_IPCIER_CK		59
-+#define CLK_INFRA_IPCIEB_CK		60
-+
-+/* APMIXEDSYS */
-+#define CLK_APMIXED_ARMPLL		0
-+#define CLK_APMIXED_NET2PLL		1
-+#define CLK_APMIXED_MMPLL		2
-+#define CLK_APMIXED_SGMPLL		3
-+#define CLK_APMIXED_WEDMCUPLL		4
-+#define CLK_APMIXED_NET1PLL		5
-+#define CLK_APMIXED_MPLL		6
-+#define CLK_APMIXED_APLL2		7
-+
-+/* SGMIISYS_0 */
-+#define CLK_SGM0_TX_EN			0
-+#define CLK_SGM0_RX_EN			1
-+#define CLK_SGM0_CK0_EN			2
-+#define CLK_SGM0_CDR_CK0_EN		3
-+
-+/* SGMIISYS_1 */
-+#define CLK_SGM1_TX_EN			0
-+#define CLK_SGM1_RX_EN			1
-+#define CLK_SGM1_CK1_EN			2
-+#define CLK_SGM1_CDR_CK1_EN		3
-+
-+/* ETHSYS */
-+#define CLK_ETH_FE_EN			0
-+#define CLK_ETH_GP2_EN			1
-+#define CLK_ETH_GP1_EN			2
-+#define CLK_ETH_WOCPU0_EN		3
-+
-+#endif /* _DT_BINDINGS_CLK_MT7981_H */
+$ make ARCH=riscv CROSS_COMPILE=riscv64-linux-musl- dtbs_check
+  LINT    Documentation/devicetree/bindings
+  CHKDT   Documentation/devicetree/bindings/processed-schema.json
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dtb
+  DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dtb
+  DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dtb
+  DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dtb
+  DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.dtb
+  DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dtb
+  DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dtb
+  DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1s-mangopi-mq.dtb
+$
+
+Note that validation requires dt-schema v2022.12 or newer.
+
+I thoroughly tested earlier versions of this series (DMIC, Ethernet,
+LEDs, MMC, PMIC, touch, and USB, where available) on several boards.
+v4/v5 have trivial changes, and I boot-tested them on sun20i-d1-nezha.
+
+Changes in v5:
+ - Drop system LDOs because the binding is still not merged
+ - Drop the configuration for LDOA and LDOB
+ - Drop the ClockworkPi and DevTerm DTS, since it needs the system LDOs
+
+Changes in v4:
+ - Rebase on v6.2-rc1 + soc2arch-immutable
+ - Drop the now-redundant 'select SIFIVE_PLIC'
+
+Changes in v3:
+ - Drop dummy DCXO clock-frequency property
+ - Decrease the PLIC's riscv,ndev property to 175
+ - Fix `make W=1 dtbs` warnings (unnecessary #address/#size-cells)
+ - Drop mmc aliases
+ - Change LED_FUNCTION_BACKLIGHT to LED_FUNCTION_STATUS (the backlight
+   regulator is disconnected by default, so this is a standalone LED)
+ - Fix `make W=1 dtbs` warnings (missing reg properties)
+ - ARCH_SUNXI depends on MMU && !XIP_KERNEL
+
+Changes in v2:
+ - Add MangoPi MQ (non-Pro) board
+ - Split into separate files for sharing with D1s/R528/T113
+ - Use SOC_PERIPHERAL_IRQ macro for interrupts
+ - Rename osc24M to dcxo and move the frequency to the board DTs
+ - Drop analog LDOs due to the missing binding
+ - Correct tcon_top DSI clock reference
+ - Add DMIC, DSI controller, and DPHY (bindings are in linux-next)
+ - Add CPU OPP table
+ - Common regulators moved to MangoPi MQ patch, removed analog LDOs
+ - Removed LRADC (depends on analog LDOs)
+ - Added XR829 host-wake interrupt
+ - Added DMIC sound card to Lichee RV dock and Lichee RV 86 Panel
+ - Removed LRADC (depends on analog LDOs)
+ - Added LED (GPIO shared between onboard LED and backlight regulator)
+ - Sort Kconfig as if we had done s/SOC_/ARCH_/ for future-proofing
+
+Samuel Holland (11):
+  MAINTAINERS: Match the sun20i family of Allwinner SoCs
+  dt-bindings: vendor-prefixes: Add Allwinner D1/D1s board vendors
+  dt-bindings: riscv: Add Allwinner D1/D1s board compatibles
+  riscv: dts: allwinner: Add the D1/D1s SoC devicetree
+  riscv: dts: allwinner: Add MangoPi MQ devicetree
+  riscv: dts: allwinner: Add Allwinner D1 Nezha devicetree
+  riscv: dts: allwinner: Add Sipeed Lichee RV devicetrees
+  riscv: dts: allwinner: Add MangoPi MQ Pro devicetree
+  riscv: dts: allwinner: Add Dongshan Nezha STU devicetree
+  riscv: Add the Allwinner SoC family Kconfig option
+  riscv: defconfig: Enable the Allwinner D1 platform and drivers
+
+ .../devicetree/bindings/riscv/sunxi.yaml      |  69 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
+ MAINTAINERS                                   |   2 +-
+ arch/riscv/Kconfig.socs                       |   9 +
+ arch/riscv/boot/dts/Makefile                  |   1 +
+ arch/riscv/boot/dts/allwinner/Makefile        |   9 +
+ .../allwinner/sun20i-common-regulators.dtsi   |  28 +
+ .../sun20i-d1-dongshan-nezha-stu.dts          | 117 +++
+ .../sun20i-d1-lichee-rv-86-panel-480p.dts     |  29 +
+ .../sun20i-d1-lichee-rv-86-panel-720p.dts     |  10 +
+ .../sun20i-d1-lichee-rv-86-panel.dtsi         | 119 +++
+ .../allwinner/sun20i-d1-lichee-rv-dock.dts    |  97 ++
+ .../dts/allwinner/sun20i-d1-lichee-rv.dts     |  87 ++
+ .../allwinner/sun20i-d1-mangopi-mq-pro.dts    | 142 +++
+ .../boot/dts/allwinner/sun20i-d1-nezha.dts    | 166 ++++
+ arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi  |  66 ++
+ .../dts/allwinner/sun20i-d1s-mangopi-mq.dts   | 128 +++
+ arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi |  76 ++
+ .../boot/dts/allwinner/sunxi-d1-t113.dtsi     |  15 +
+ .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 826 ++++++++++++++++++
+ arch/riscv/configs/defconfig                  |  22 +-
+ 21 files changed, 2020 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/riscv/sunxi.yaml
+ create mode 100644 arch/riscv/boot/dts/allwinner/Makefile
+ create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-common-regulators.dtsi
+ create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts
+ create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dts
+ create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dts
+ create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel.dtsi
+ create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts
+ create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.dts
+ create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dts
+ create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts
+ create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi
+ create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1s-mangopi-mq.dts
+ create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+ create mode 100644 arch/riscv/boot/dts/allwinner/sunxi-d1-t113.dtsi
+ create mode 100644 arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+
 -- 
-2.39.1
+2.37.4
 
