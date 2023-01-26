@@ -2,89 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 425BC67D04A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:33:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9C3A67D050
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:34:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229786AbjAZPdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 10:33:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45972 "EHLO
+        id S230205AbjAZPef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 10:34:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjAZPdw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:33:52 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E193FEC47;
-        Thu, 26 Jan 2023 07:33:48 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7C93C66018E4;
-        Thu, 26 Jan 2023 15:33:46 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1674747227;
-        bh=VnYSm26lDjICpca46d2eb6U+0j18mBaNjiTo5MgOy4o=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=atQpLK2zMnpEBIfIlflQpObHLU42AH/Wn7iusq6aqTlmUu6cjjl0IBEV0aHmiN4Ep
-         gY5FCtFYMbjCNjQO7zrslGyQO2lROC7eAcVcR3BJWrioq06mkW6g0HTQQPZ6SrzAPB
-         KfYOOAMv5T01Ka+CIoHXVv7irJ80exyDOO+fx4Sub/L1DJRzD7/UcdlXLdLZ4jROBj
-         SaITmcxYb7AkeqoBcUYewXXq86LcP3HulhJ9C3OjWfDFlWt1Q7a9/U+yy/EAJs3hfx
-         kBlrtDH+HxXDZ97dP8m62frujitf9Q4v8Tp5SezPWGD4tPkkgY/i2iqjqNy1xdq7Wd
-         XL/kC3G3gthyw==
-Message-ID: <07eb3c04-c365-4ab2-7137-5fb37e4505c3@collabora.com>
-Date:   Thu, 26 Jan 2023 16:33:44 +0100
+        with ESMTP id S229933AbjAZPed (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:34:33 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E7BF34027
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:34:17 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id v6so6068351ejg.6
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:34:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qGnF5JEUOP/9Gz3yuVHJBVOWbau8dZyNvnJs2NiL0u4=;
+        b=NwuiyYDUtEwQCcuGPxk9KjHLPcMW+cTgBiZjcYxdH4oiTXPzoQRy91ITgCnC9ir6e9
+         E+rmVlzFsIAOKew/6XY2u/b7FzNOAJT8DT7D16fLKVztpfN+2LxUYDpnGweM80UTy/Gb
+         pzH15Qliv1ND84wou0xqg6Mlr/9GClRCq2SOt+8GtkqgQVbUPWdIbu2T0UUmrLzesBPH
+         ZKzlyczwCf35+GeJnlhEMDW6l8BdBjwmcIlmLx3j9anfntZc2b8BW0BaGowVlXxIgE5M
+         8887efSQyqQU8dKUdvFdJOW2/8aNC+Jz2fLDVLm9+jmgeWPgFhdqazVgjhsHopBYRynP
+         ROWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qGnF5JEUOP/9Gz3yuVHJBVOWbau8dZyNvnJs2NiL0u4=;
+        b=2Y9rb9zR1LDen+gAJailHIfUwjjX1y3Vkr2Ef5xL551HYe8NlHmrg4vAfxXRi6efHU
+         Ngm0oAyhXYOIotdO9mmBqEAQ/P0O3t/qoFbk7EzQQeIwQFnva7czDoKpI4PzE7ZCVZr7
+         5N+r250ZvET3OkaoxQc12crM9NJVkh455JnnjbHE6/YU5VC31g8fuwatSK6kP/cLlxa3
+         TGTJfZnMJuTjCOeu4KW13jGKlZVLlnKFCEJVXkdW6LtD7Q9xuVBul98KzxuchiJoPKVN
+         2uURg6l1+uVaLNwqqv/UrAMGdug3VIE+8MY+mOzG7UXR+u6fuGM2Jl+EaZX7rttU8jmO
+         BA5Q==
+X-Gm-Message-State: AO0yUKWaFTxw8tKHK3Z3Y4G2w2pN4YHX3bneXS9Xou2mR9WtbPlN5Pqq
+        GvoqZef25krTxjiFHGFEfuHYRw==
+X-Google-Smtp-Source: AK7set+IK5iXu+sQ3ynJ6pEMSmqCZn6CKH9DbV/Ba01kpOWJqVxjsZEWLpCsrKKoWkFYIoI5dWp/Tg==
+X-Received: by 2002:a17:906:bc51:b0:878:673f:5492 with SMTP id s17-20020a170906bc5100b00878673f5492mr2180594ejv.40.1674747255668;
+        Thu, 26 Jan 2023 07:34:15 -0800 (PST)
+Received: from [192.168.1.101] (abyk108.neoplus.adsl.tpnet.pl. [83.9.30.108])
+        by smtp.gmail.com with ESMTPSA id ck7-20020a170906c44700b007c0fd177c0bsm752292ejb.46.2023.01.26.07.34.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jan 2023 07:34:15 -0800 (PST)
+Message-ID: <df4c76eb-aec7-823e-28f9-5ba96cc200c6@linaro.org>
+Date:   Thu, 26 Jan 2023 16:34:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 2/6] dt-bindings: clock: mediatek,mt8186-fhctl: Support
- MT6795, MT8173/92/95
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v4 0/6] Add MSM8939 SoC support with two devices
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+Cc:     agross@kernel.org, andersson@kernel.org, djakov@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
+        leo.yan@linaro.org, dmitry.baryshkov@linaro.org
+References: <20230123023127.1186619-1-bryan.odonoghue@linaro.org>
+ <42baa874-c926-9111-b0b3-2df2562d8de6@linaro.org>
+ <Y86CPmgvAi+kChQI@gerhold.net>
+ <87192098-b7f4-060f-9274-933d974c0a7d@linaro.org>
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        sboyd@kernel.org
-Cc:     mturquette@baylibre.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        edward-jw.yang@mediatek.com, johnson.wang@mediatek.com,
-        wenst@chromium.org, miles.chen@mediatek.com,
-        chun-jie.chen@mediatek.com, rex-bc.chen@mediatek.com,
-        jose.exposito89@gmail.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20230126085321.87267-1-angelogioacchino.delregno@collabora.com>
- <20230126085321.87267-3-angelogioacchino.delregno@collabora.com>
- <4bcf8191-fe6a-7229-9ebe-a79cebdce87e@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <4bcf8191-fe6a-7229-9ebe-a79cebdce87e@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <87192098-b7f4-060f-9274-933d974c0a7d@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 26/01/23 16:32, Krzysztof Kozlowski ha scritto:
-> On 26/01/2023 09:53, AngeloGioacchino Del Regno wrote:
->> MT6795, MT8173, MT8192 and MT8195 support Frequency Hopping: add the
->> compatibles for them.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
-> 
-> ... but you already had here an ack.
-> 
 
-Honest thanks for that. I'm sorry for missing it.
 
-Regards,
-Angelo
-
-> Best regards,
-> Krzysztof
+On 26.01.2023 16:29, Bryan O'Donoghue wrote:
+> On 23/01/2023 12:49, Stephan Gerhold wrote:
+>>> - Adds gcc dsi1pll and dsi1pllbyte to gcc clock list.
+>>>    Reviewing the silicon documentation we see dsi0_phy_pll is used to clock
+>>>    GCC_BYTE1_CFG_RCGR : SRC_SEL
+>>>    Root Source Select
+>>>    000 : cxo
+>>>    001 : dsi0_phy_pll_out_byteclk
+>>>    010 : GPLL0_OUT_AUX
+>>>    011 : gnd
+>>>    100 : gnd
+>>>    101 : gnd
+>>>    110 : gnd
+>>>    111 : reserved - Stephan/Bryan
+>>>
+>> I'm confused. Are you not contradicting yourself here? You say that
+>> dsi0_phy_pll (dsi ZERO) is used to clock GCC_BYTE1_CFG_RCGR. Then why
+>> do you add dsi1_phy_pll (dsi ONE) to the gcc clock list?
 > 
+> So my understanding of the clock tree here is that dsi0_phy_pll_out_byteclk is a legacy name.
 > 
+> Its perfectly possible to have DSI0 and DSI0_PHY switched off and to have DSI1/DSI1_PHY operable.
+> 
+> dsi0_phy_pll_out_byteclk is perhaps an unfortunate name and probably should have been renamed.
+> 
+>> To me this looks like a confirmation of what downstream does, that both
+>> DSI byte clocks are actually sourced from the dsi0_phy and the PLL of
+> 
+> A better name would have been dsiX_phy_pll_out_byteclk.
+I believe Stephan is just confused what the clock source of both
+pairs of GCC DSI clocks are, as you're suggesting that:
 
+phy_clock0
+  |_gcc_clock0
+
+and
+
+phy_clock0 (yes, zero)
+  |_gcc_clock1
+
+whereas on most other SoCs the following is true:
+
+phy_clock0
+  |_gcc_clock0
+
+phy_clock1
+  |_gcc_clock_1
+
+Konrad
+> 
+> ---
+> bod
