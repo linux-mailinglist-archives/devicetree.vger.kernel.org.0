@@ -2,118 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E56B967D083
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:43:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C727F67D160
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 17:26:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231812AbjAZPnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 10:43:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55760 "EHLO
+        id S232707AbjAZQ0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 11:26:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232070AbjAZPnR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:43:17 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4786030194
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:43:07 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so3517347wmb.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:43:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xaZrQvVMTexBK48seT2psGxItVIS/L4zE3c6J55k3h8=;
-        b=jp04WqjEyYm+E2Tkc2ENfbxkh/4b4cMWFdtsFMHJIToG/9FZmnDZ/gC0vYolLvjzDN
-         LTsDQVL579z+vKzZnxymlDvwLVEDgBe9ase7OQTz1ZNpwI+PTJjQK0bRFenOMnVGsT9O
-         6QnmSFMr33MFNEGur7/bmTMkkk8b5NA6aWyz9oYUKymdP84Niq5uq2VGeLubsuEHQJji
-         6UG2BA315Q0TT+gPUNNzXsBiKmUDjw5ZCKIfVrV1qLeU85jiDVZJBCjTvp2Xy25j7vQP
-         N5pKbQbsQTnporgM+/+gREkjUb008iRxWJGISmoBYaD9UB1E5yY+2er2c/np+gzEu0XX
-         6XUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xaZrQvVMTexBK48seT2psGxItVIS/L4zE3c6J55k3h8=;
-        b=GJN88NC+MtMNpOeJYZOSe0p+KeLvbTk/4dfM8PMAbs1DOW0kyq848yNPFNHYcuQLjE
-         A6McwRKXPWfvOzusgqjpz5hSgeLXvs9f9WGMjfm4eXuCnI5FlqmgVFIBmCKmMyxmfyTS
-         t4jErXzfGzy2XDcKcbUVEyOw0d/nxRxNp0TAXvBmmd7oM9TgJ1hfISTCJ4nqgoJ3JxCV
-         DXpHfThc06VxccgQc69NHdN3cj2rGRH/3OFussLMoi3kX6QaA/rrzxDINwYtRPIpu8Sd
-         lBwNhPYN57x371g6fR0pN4YcInZ9u/Xr01sxWdS5ccBTDWU3awfAd/qmmsoUq8E1YgTD
-         wbyw==
-X-Gm-Message-State: AFqh2krMm75nKIMTn1knZYAGk2vORZTqBaJEYHlY44d0akntw5BmurJi
-        F9iT8oxk3+pV9LJrmueT6dLoxw==
-X-Google-Smtp-Source: AMrXdXssH15/vKnONbR1ylH/B9IaLwcgbhlzvUsooXAZkMdME223Pi73mbSr4a1nFyzzO0iOryMlCw==
-X-Received: by 2002:a05:600c:4395:b0:3da:2829:2935 with SMTP id e21-20020a05600c439500b003da28292935mr35895070wmn.11.1674747785757;
-        Thu, 26 Jan 2023 07:43:05 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id ip6-20020a05600ca68600b003d04e4ed873sm4909786wmb.22.2023.01.26.07.43.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 07:43:05 -0800 (PST)
-Message-ID: <f8aab3ce-f48d-3e7f-933e-abc7bd4dcc52@linaro.org>
-Date:   Thu, 26 Jan 2023 16:43:02 +0100
+        with ESMTP id S232723AbjAZQZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 11:25:54 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2273A485B2;
+        Thu, 26 Jan 2023 08:25:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674750310; x=1706286310;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=7tKbBPC9aDVVfGKolDI9/dBbPmFzcQG7teudBkR6D2c=;
+  b=ZP0wB5j1ha2Ec0vTdj9teVwj3qnxnZZ/DLfGraTt9gSUqiGphcigBZcB
+   ysmAH7PiM0gPflfzVnti+4ccpvB8QGro4tJIH/dimG+yHZ59qPHXyM5VT
+   SYiVzb0n6XUgsMuNwRezzpzB51hshFyYbnrTqh16fc+l5ma9CjwbvLzVi
+   P4cuCrXJwmnYTqXvE1O2JModJZieY2SvQKVhYe5c5J9zqB9I3RPsaMMot
+   PORGywFOfec6R79MFcjNB9kjFSEUevmVNmwohVeRouuLRNtRN5dSb3OTw
+   WWH9oxnTOzIJIZ+feTyDo0IL35RALkHRPRNRND2crBmD1GSdek8YNtpEf
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="354154632"
+X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; 
+   d="scan'208";a="354154632"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2023 08:24:36 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="612855059"
+X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; 
+   d="scan'208";a="612855059"
+Received: from nmani1-mobl2.amr.corp.intel.com (HELO [10.209.167.178]) ([10.209.167.178])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2023 08:24:34 -0800
+Message-ID: <7f471960-0909-4680-e192-261d1fdfe6d7@linux.intel.com>
+Date:   Thu, 26 Jan 2023 09:44:23 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 5/8] PCI: rockchip: Added dtsi entry for PCIe endpoint
- controller
+ Firefox/102.0 Thunderbird/102.4.2
+Subject: Re: [RFC PATCH v2 11/22] ASoC: qcom: Add USB backend ASoC driver for
+ Q6
 Content-Language: en-US
-To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        wenrui.li@rock-chips.com, rick.wertenbroek@heig-vd.ch,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-References: <20230126135049.708524-1-rick.wertenbroek@gmail.com>
- <20230126135049.708524-6-rick.wertenbroek@gmail.com>
- <6a54a51b-cf1a-c601-275f-00f825fcec5d@linaro.org>
- <CAAEEuhpOjSUhiQFxKwkhiwDNtmRzzUXmGYKMuHWePJF-Q7R9dQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAAEEuhpOjSUhiQFxKwkhiwDNtmRzzUXmGYKMuHWePJF-Q7R9dQ@mail.gmail.com>
+To:     Wesley Cheng <quic_wcheng@quicinc.com>,
+        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
+        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        Thinh.Nguyen@synopsys.com, broonie@kernel.org,
+        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
+        agross@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_jackp@quicinc.com,
+        quic_plai@quicinc.com
+References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
+ <20230126031424.14582-12-quic_wcheng@quicinc.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <20230126031424.14582-12-quic_wcheng@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2023 16:30, Rick Wertenbroek wrote:
-> On Thu, Jan 26, 2023 at 4:23 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 26/01/2023 14:50, Rick Wertenbroek wrote:
->>> Added missing PCIe endpoint controller entry in the device tree. This
->>> entry is documented in :
->>> Documentation/devicetree/bindings/pci/rockchip-pcie-ep.txt
->>
->> There is no such file
-> 
-> Sorry but the file exists see :
-> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/devicetree/bindings/pci/rockchip-pcie-ep.txt?h=v6.0.19
-> It also exists in 6.1 :
-> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/devicetree/bindings/pci/rockchip-pcie-ep.txt?h=linux-6.1.y
 
-It's some old tree. It could have existed in the past. But it does not
-exist. Don't refer to non-existing paths.
 
-Your code needs then rebasing if you refer to some old trees. Please
-always work on latest maintainer's tree. Optionally on linux-next.
+On 1/25/23 21:14, Wesley Cheng wrote:
+> Create a USB BE component that will register a new USB port to the ASoC USB
+> framework.  This will handle determination on if the requested audio
+> profile is supported by the USB device currently selected.
 
-Best regards,
-Krzysztof
+Can you clarify how? because ...
+
+
+> +static struct snd_soc_dai_driver q6usb_be_dais[] = {
+> +	{
+> +		.playback = {
+> +			.stream_name = "USB BE RX",
+> +			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_11025 |
+> +				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_22050 |
+> +				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_44100 |
+> +				SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 |
+> +				SNDRV_PCM_RATE_192000,
+> +			.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S16_BE |
+> +				SNDRV_PCM_FMTBIT_U16_LE | SNDRV_PCM_FMTBIT_U16_BE |
+> +				SNDRV_PCM_FMTBIT_S24_LE | SNDRV_PCM_FMTBIT_S24_BE |
+> +				SNDRV_PCM_FMTBIT_U24_LE | SNDRV_PCM_FMTBIT_U24_BE,
+> +			.channels_min = 1,
+> +			.channels_max = 2,
+> +			.rate_max =     192000,
+> +			.rate_min =	8000,
+> +		},
+> +		.id = USB_RX,
+> +		.name = "USB_RX_BE",
+> +		.ops = &q6usb_ops,
+> +	},
+> +};
+
+... here I see a single DAI, so presumably ONE endpoint can be supported?
+
+I didn't see in the rest of the code how a card with multiple endpoint
+would be rejected, nor how the capabilities are checked?
 
