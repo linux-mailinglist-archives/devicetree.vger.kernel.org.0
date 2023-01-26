@@ -2,75 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DCD267CE7D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 15:42:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C6CE67CE9F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 15:47:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230371AbjAZOmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 09:42:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51418 "EHLO
+        id S231558AbjAZOrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 09:47:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbjAZOmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 09:42:51 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 748606A334;
-        Thu, 26 Jan 2023 06:42:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3195EB81D0C;
-        Thu, 26 Jan 2023 14:42:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96BDDC433D2;
-        Thu, 26 Jan 2023 14:42:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674744148;
-        bh=CCnYelU7vTWlPZSDl5BT9muUMJjl8j5MAppunZabsV4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=ehJKrCD8jcjfhoDgsR6ecGQVWtuWDx5JLIwvHsueNlXIxaIYuVjIx9Pv1DPonDJIi
-         SEwF2sFyaI+no5tUS1i9CWP+akisKqLIYBwBtFGv0+AuiYrfpnyr30bCkLXoTrRYiu
-         hsJJYi7r0t6ihexW55XaFpla7rPjYVvBZ+421W8fKfzXfB2Lys1c8hDZ7TQ3dfDaHi
-         sjXRIFp7x8G339EFwAncZTmkwFEonMXS8WIeo/lIDLnUAYkOqeKoY8GDfxNasDQb8s
-         GBrKXLK8JqMcpA676/E+eJTJsi72j2OTEIjowtO4ug5dU7vY0yfQA1o2Rnc+nGv7dE
-         /xg3Eg1MvyDwg==
-Date:   Thu, 26 Jan 2023 08:42:27 -0600
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        wenrui.li@rock-chips.com, rick.wertenbroek@heig-vd.ch,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Subject: Re: [PATCH 4/8] PCI: rockchip: Added poll and timeout to wait for
- PHY PLLs to be locked
-Message-ID: <20230126144227.GA1271912@bhelgaas>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230126135049.708524-5-rick.wertenbroek@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230360AbjAZOqx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 09:46:53 -0500
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 932368693;
+        Thu, 26 Jan 2023 06:46:52 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id 736203200948;
+        Thu, 26 Jan 2023 09:46:51 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 26 Jan 2023 09:46:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1674744411; x=1674830811; bh=TF9eEYC8Cj
+        kJdjJaoevmWAn17FfCvobcfWO0g5/qFzA=; b=qzYfU2WcyIUM8tBKeigQuzxf9d
+        N1onZu/J4+fJVhaPsA6Xkq8gmW7Yply2+0xSzRIMtcuNP+DDdc/pOgme8Cg2dagn
+        Gm9DAlfybbmfjlyB8Grh39c6cCMSORvZgenazF0Qb54XUwf8i5CP9xwaEENIAdmY
+        rFthBYjSsJi10SGujm2svLWsP1iLpwpAtj2/n8kdGw10e/Vo2eZWVWYqevxOMjlv
+        aFOUdbwpHkfw0zCKwbSf21LW5eZaJSk7DZBdrM4oyimueTiW6GbLsEFYDSRyE4O+
+        7tX799UkIR64ByovEUmWqJXIdcygizAp3oQsp7GjNCi3sFo+FaBCRrGegVag==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1674744411; x=1674830811; bh=TF9eEYC8CjkJdjJaoevmWAn17FfC
+        vobcfWO0g5/qFzA=; b=Izh48JijjIcqry9gdX1IgMt8QKReX12XAi+tojaBGJjk
+        POBMQEa+ujw3hhDMVoJI3zOYYGy2MWYRfoNR8tO1+VPmpJDUJS5HHG2YS8rOG+Wv
+        +lK2L/8ViHPX3Bc1rfCTJYcsanN09pvaBCzSqYUjQvReuSitLKdFjvqIEq+HDLjv
+        9gPcI6p3m+uJ3q5iXqPqZrZ+BES1nSycbWg0eTVZFeRXW6PPFtk8eCfN260ylL9c
+        jOqDf2/M1zbbeakttZc18n2F9dr2Slu+IC48rQafi2v79SKgtiQ+N/vHeJKPd+E8
+        zVTgapj5hw1OObibE6+SmMEH9AFE/JU2SfOyr/IYHA==
+X-ME-Sender: <xms:WpLSYziJfwp3f-MAft_eyvX4My_TEQ2UBC6x5XChxRBcb9KGDsCL7A>
+    <xme:WpLSYwDZK2WxWfC84ZhLXY4n6c9seMgXMik3XxPpDmRyIgDghMBOO5MwVSvDDfYHk
+    pZImlmllyazIg0WyX4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddvgedgieekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:WpLSYzG9AXy3jEo2LYYEc_XaaGD-4R-iEfKAqhZ0SPclqS3XXGSOyw>
+    <xmx:WpLSYwQAx4jPWLF6bQDQzo0efYKIbwdHPgw35jzQXy2RhVsMYOb6VQ>
+    <xmx:WpLSYwxesr5opPwr8Cce0xfcyYP8QBTRJivkbrwAwpUS1R2GpbbBnA>
+    <xmx:W5LSYzyjPU6TLeWOUl82eyxPHDn5CTl-v5LdQ0OAmFawLoMFxm3tSw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id A45B8B60086; Thu, 26 Jan 2023 09:46:50 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
+Mime-Version: 1.0
+Message-Id: <0805b351-1661-4c90-89e1-2fea2fc98867@app.fastmail.com>
+In-Reply-To: <20230112145140.67573-1-andriy.shevchenko@linux.intel.com>
+References: <20230112145140.67573-1-andriy.shevchenko@linux.intel.com>
+Date:   Thu, 26 Jan 2023 15:46:32 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
+        "Bartosz Golaszewski" <bartosz.golaszewski@linaro.org>,
+        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     "Linus Walleij" <linus.walleij@linaro.org>,
+        "Bartosz Golaszewski" <brgl@bgdev.pl>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Frank Rowand" <frowand.list@gmail.com>
+Subject: Re: [PATCH v1 1/1] gpiolib: of: Move enum of_gpio_flags to its only user
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 26, 2023 at 02:50:44PM +0100, Rick Wertenbroek wrote:
-> The Rockchip PCIe controller did not wait until the PHY PLLs were locked.
-> This could cause hangs. Now the PHY PLLs status is checked through a side
-> channel bit with a poll and timeout. If the PHY PLLs cannot lock an error
-> is generated. This is documented in the TRM section 17.5.8.1 PCIe
-> Initalization Sequence.
+On Thu, Jan 12, 2023, at 15:51, Andy Shevchenko wrote:
+> GPIO library for OF is the only user for enum of_gpio_flags.
+> Move it there.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-s/Initalization/Initialization/
+I made the same patch independently, but you sent it first, so
+
+Reviewed-by: Arnd Bergmann <arnd@arndb.de>
