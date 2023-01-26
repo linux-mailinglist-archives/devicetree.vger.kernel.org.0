@@ -2,110 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 497DE67CC2D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:29:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38B0F67CC43
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 14:34:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237038AbjAZN3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 08:29:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38726 "EHLO
+        id S229641AbjAZNeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 08:34:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237036AbjAZN3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:29:22 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02BDF6F222
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 05:28:48 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id t18so1793448wro.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 05:28:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lx1DAkubOAlYe3YKXCmyxQpUHCB1kRDO2QcQY7OYxMs=;
-        b=pq+99UzAUffw0B5EaOLSqCukAfbBg5cy0Zyv114NM3mReAyn09ZzdwfeQtd1yi80Xv
-         BFR4xxBW10H88OGoSlSv8cBVtq4t6lTAekNnAk9SuBFoNSejm8JJpDeJm8SXnDlj3ocU
-         wa5EBXSq427FtLItR/UekrIbinAmne9P5T4n10jn8p0gKwT2Sm/PnWX5tkP2Bl2tohnq
-         kEgcm6/ZipxQNzmdfQv8s8X3BX+LjHPuNhHaQdk+zE2AdCvHbx60el1HWaghGN8oGtC4
-         7UXq9fmkV+8Yl5Xh7wJi07E7TGR34joBh6mqZujW6cGNp67VoS9JrBhjSsXUEQZ/HNnA
-         1UuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lx1DAkubOAlYe3YKXCmyxQpUHCB1kRDO2QcQY7OYxMs=;
-        b=b91MYJvacPBAVVneSF6GDfxiS4cBRREW30+ZNY/ybD3hLTCeP1N22jUko/X8TU70N1
-         fdhKzLWXTtO6QHlKLECYZrJ46NwqUwLootHbLnMjmsU77vO4mgmvZjezq9hpZcZSxgdd
-         sBEIxghxWhO2Lp8K6UMd4BlZgoGcsvpYfxBXDkW5nIBRldELEAf77pKmnWM87JtvwLCf
-         1XqsmVe72HUOGUa3TbRGlGsR5YpivBhhSicF+ahHR7hXStqrKKyTdyVNF9D4JT8TpQNJ
-         ZBoLf8lJANDO1tS7b+1ND0yyYeMDmqx/4JWNOe0P2gMYyEhnA1ymtbfsnBdZsgbSrO3T
-         zOJA==
-X-Gm-Message-State: AFqh2kp33SNIzcUUmUbgl16QuGhpM0uLWmo6oNbJ6JpdHWpLByp0Z1gm
-        Db+Xw2UXAetpmnT1AZ4Ebs7pJQ==
-X-Google-Smtp-Source: AMrXdXs/beqvYpPiPnonpjIItu1cPLPKj6Samh65jUCGRVhdi9JtDNGb0Sg72VPia4bfs/daV7+9wQ==
-X-Received: by 2002:a5d:4bce:0:b0:2be:4ae1:215a with SMTP id l14-20020a5d4bce000000b002be4ae1215amr20630645wrt.16.1674739726577;
-        Thu, 26 Jan 2023 05:28:46 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a5-20020adfeec5000000b002bfae6b17d2sm1324488wrp.55.2023.01.26.05.28.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 05:28:46 -0800 (PST)
-Message-ID: <22067557-5753-9bff-a060-7be587b92478@linaro.org>
-Date:   Thu, 26 Jan 2023 14:28:43 +0100
+        with ESMTP id S235298AbjAZNeV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 08:34:21 -0500
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08ABF173A;
+        Thu, 26 Jan 2023 05:34:19 -0800 (PST)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30QCu1Ne021964;
+        Thu, 26 Jan 2023 08:34:09 -0500
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3navamh717-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 26 Jan 2023 08:34:09 -0500
+Received: from m0167088.ppops.net (m0167088.ppops.net [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30QDTvg4023818;
+        Thu, 26 Jan 2023 08:34:09 -0500
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3navamh70y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 26 Jan 2023 08:34:09 -0500
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 30QDY7xG008411
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 26 Jan 2023 08:34:07 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Thu, 26 Jan
+ 2023 08:34:07 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 26 Jan 2023 08:34:07 -0500
+Received: from tachici-Precision-5530.ad.analog.com ([10.48.65.156])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 30QDXoan000628;
+        Thu, 26 Jan 2023 08:33:52 -0500
+From:   Alexandru Tachici <alexandru.tachici@analog.com>
+To:     <linux-kernel@vger.kernel.org>
+CC:     <netdev@vger.kernel.org>, <davem@davemloft.net>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <richardcochran@gmail.com>, <yangyingliang@huawei.com>,
+        <weiyongjun1@huawei.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <lennart@lfdomain.com>
+Subject: [net-next v2 0/3] net: ethernet: adi: adin1110: add PTP support
+Date:   Thu, 26 Jan 2023 15:33:43 +0200
+Message-ID: <20230126133346.61097-1-alexandru.tachici@analog.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 0/6] ARM: dts: add mmc aliases for Exynos devices
-Content-Language: en-US
-To:     Henrik Grimler <henrik@grimler.se>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        alim.akhtar@samsung.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230126103828.481441-1-henrik@grimler.se>
- <0807a4ab-c544-2695-67d4-df9a3b1de4cf@linaro.org>
- <Y9J97CU7f5qoiO/F@grimlerstat>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y9J97CU7f5qoiO/F@grimlerstat>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: XPsFH3nU6XD2mMO2IT_HV1Ydor2cI3UN
+X-Proofpoint-ORIG-GUID: gn-TbrNuZsjqOIwComvhn_X45KvgV4MU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-26_05,2023-01-25_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
+ suspectscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
+ mlxlogscore=999 malwarescore=0 priorityscore=1501 clxscore=1015
+ spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301260131
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2023 14:19, Henrik Grimler wrote:
-> Hi Krzysztof,
-> 
-> On Thu, Jan 26, 2023 at 01:22:54PM +0100, Krzysztof Kozlowski wrote:
->> On 26/01/2023 11:38, Henrik Grimler wrote:
->>> It is convenient to have fixed mmcblk numbering of the eMMC and
->>> sdcard, and with these aliases all Exynos 4 and 5 devices (and
->>> probably Exynos 3, but I do not have one of those boards so cannot
->>> verify) will have the eMMC as mmc0 and sdcard as mmc2.
->>>
->>> I also removed sdhc aliases, as they should not be needed after [1] as
->>> I understand it.
->>>
->>> [1] https://lkml.kernel.org/lkml/20211124184603.3897245-1-john@metanate.com/
->>
->> Marek sent the same in the past:
->> https://lore.kernel.org/all/?q=%22exynos%3A+Use+fixed+index+for+the+MMC+devices%22
->>
->> The patches are fine for me except, that these actually do not belong to
->> DTSI. Aliases for board or user-exposable interfaces are actually board
->> specific and each board should customize the ones it uses.
-> 
-> Thanks for reviewing!  I will change the series to only add aliases to
-> the boards I am familiar with.
+Add control for the PHC inside the ADIN1110/2111.
+Device contains a syntonized counter driven by a 120 MHz
+clock  with 8 ns resolution.
 
-I think you can move all of them to all of the boards. Add aliases for
-interfaces which are enabled in the board.
+Time is stored in two registers: a 32bit seconds register and
+a 32bit nanoseconds register.
 
-Best regards,
-Krzysztof
+For adjusting the clock timing, device uses an addend register.
+Can generate an output signal on the TS_TIMER pin.
+For reading the timestamp the current tiem is saved by setting the
+TS_CAPT pin via gpio in order to snapshot both seconds and nanoseconds
+in different registers that the live ones.
+
+Allow use of hardware RX/TX timestamping.
+
+RX frames are automatically timestamped by the device at hardware
+level when the feature is enabled. Time of day is the one used by the
+MAC device.
+
+When sending a TX frame to the MAC device, driver needs to send
+a custom header ahead of the ethernet one where it specifies where
+the MAC device should store the timestamp after the frame has
+successfully been sent on the MII line. It has 3 timestamp slots that can
+be read afterwards. Host will be notified by the TX_RDY IRQ.
+
+root@analog:~# ethtool -T eth1
+Time stamping parameters for eth1:
+Capabilities:
+	hardware-transmit
+	software-transmit
+	hardware-receive
+	software-receive
+	software-system-clock
+	hardware-raw-clock
+PTP Hardware Clock: 0
+Hardware Transmit Timestamp Modes:
+	off
+	on
+Hardware Receive Filter Modes:
+	none
+	all
+
+root@analog:~# sudo phc2sys -s eth1 -c CLOCK_REALTIME -O 0 -m
+phc2sys[140.318]: CLOCK_REALTIME phc offset    109350 s0 freq      +0 delay      0
+phc2sys[141.319]: CLOCK_REALTIME phc offset    124742 s1 freq  +15385 delay      0
+phc2sys[142.319]: CLOCK_REALTIME phc offset      -159 s2 freq  +15226 delay      0
+phc2sys[143.319]: CLOCK_REALTIME phc offset        55 s2 freq  +15392 delay      0
+phc2sys[144.320]: CLOCK_REALTIME phc offset      -101 s2 freq  +15252 delay      0
+phc2sys[145.320]: CLOCK_REALTIME phc offset       -82 s2 freq  +15241 delay      0
+
+root@analog:~# ptp4l -m -f /etc/ptp_slave.conf
+ptp4l[1188.692]: port 1: new foreign master 00800f.fffe.950400-1
+ptp4l[1192.329]: selected best master clock 00800f.fffe.950400
+ptp4l[1192.329]: foreign master not using PTP timescale
+ptp4l[1192.329]: port 1: LISTENING to UNCALIBRATED on RS_SLAVE
+ptp4l[1194.129]: master offset   29379149 s0 freq -297035 path delay   -810558
+ptp4l[1195.929]: master offset   32040450 s1 freq +512000 path delay   -810558
+ptp4l[1198.058]: master offset    1608389 s2 freq +512000 path delay   -810558
+ptp4l[1198.058]: port 1: UNCALIBRATED to SLAVE on MASTER_CLOCK_SELECTED
+ptp4l[1199.529]: clockcheck: clock jumped forward or running faster than expected!
+ptp4l[1199.529]: master offset    2419241 s0 freq +512000 path delay   -810558
+ptp4l[1199.529]: port 1: SLAVE to UNCALIBRATED on SYNCHRONIZATION_FAULT
+ptp4l[1201.329]: master offset    2004645 s0 freq +512000 path delay   -810558
+ptp4l[1203.130]: master offset    1618970 s1 freq +319234 path delay   -810558
+ptp4l[1204.930]: master offset   -1098742 s2 freq -230137 path delay   -810558
+ptp4l[1204.930]: port 1: UNCALIBRATED to SLAVE on MASTER_CLOCK_SELECTED
+ptp4l[1206.730]: master offset   -1689657 s2 freq -512000 path delay   -810558
+ptp4l[1208.530]: master offset   -1692389 s2 freq -512000 path delay   -345770
+ptp4l[1210.330]: master offset    -404021 s2 freq  -47588 path delay   -166813
+ptp4l[1212.130]: master offset    1098174 s2 freq +512000 path delay   -104916
+ptp4l[1214.061]: master offset    1579741 s2 freq +512000 path delay    -60321
+ptp4l[1215.730]: master offset    1180121 s2 freq +512000 path delay    -60321
+ptp4l[1217.531]: master offset    -345392 s2 freq  -78876 path delay    -43020
+
+Above ptp4l run was not the best as I do not have access (to my knowledge)
+to an accurate PTP grandmaster. Foreign master here is just my laptop
+(with only SW timestamping capabilities) with the
+ptp4l service runnning and NTP disabled.
+
+Alexandru Tachici (3):
+  net: ethernet: adi: adin1110: add PTP clock support
+  net: ethernet: adi: adin1110: add timestamping support
+  dt-bindings: net: adin1110: Document ts-capt pin
+
+Changelog v1 -> v2:
+  - added phylib locking when writing to the integrated PHY registers in
+  adin2111_enable_ts_timer()  and adin2111_enable_extts()
+  - instead of ktime_get_fast_timestamps() used ktime_get_mono_fast_ns() and
+  ktime_get_real_fast_ns() as I only need the real and mono part. The device
+  part is added from the MAC-PHY.
+  - in adjfine() use the new adjust_by_scaled_ppm() helper instead of writing
+  the implementation
+
+Alexandru Tachici (3):
+  net: ethernet: adi: adin1110: add PTP clock support
+  net: ethernet: adi: adin1110: add timestamping support
+  dt-bindings: net: adin1110: Document ts-capt pin
+
+ .../devicetree/bindings/net/adi,adin1110.yaml |   7 +
+ drivers/net/ethernet/adi/adin1110.c           | 824 +++++++++++++++++-
+ 2 files changed, 821 insertions(+), 10 deletions(-)
+
+-- 
+2.34.1
 
