@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE7E767D0B5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:56:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13E8367D0CD
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 17:01:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbjAZP4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 10:56:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36744 "EHLO
+        id S232437AbjAZQBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 11:01:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232350AbjAZP4d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:56:33 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1865148A27
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:56:31 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id q10so2238906wrm.4
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 07:56:31 -0800 (PST)
+        with ESMTP id S232445AbjAZQBx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 11:01:53 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AD874F35C
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 08:01:51 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id y25so3674740lfa.9
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 08:01:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7X8vQJ82g1NBSgy7BqEe+UPGCLxYDo4vEHMc6PKXuH8=;
-        b=v96sfa23JY65nMhchkG1AlpCZpWwa4nxe8dntBmtZU+8hj74OH82bWsxOF/ov/uYJi
-         jUv2ZqiZ5sL/R5I3OkZ6usDOFByjf6LUA+IUZ+82m6nsbuQkUoRhDvVl5vxn+418dcnh
-         dmbThNd+hMTOIvtQUorebw8UxLJt7uDGLvlch1C0wXNWnLx+7uT7mM2ebEBhzVhiRKnZ
-         EzH70kd3ImEcAZQve/naGbUmtz6JPycN7L3gJ1bl1ZuCDgR137k0QR8Y13F/vkU6glYx
-         RYcaIWUMnvejuAEFmGLQ90rvtKFr8o9CgZXxG5RQY81C1vB5cr/+boytChcc/0obDuab
-         XTWg==
+        bh=Z5Ms9/N7/h+Q3K/7Kcf2QDN/nKdDnsv1ksmJeqEJ4s8=;
+        b=BUsa7nCQKL2wwrfAC+d6ATNxemzFJRPIToCfIKKNH3Aybg3LBuGXZcTveogBaeJwfZ
+         v9BWLB1Gc3ulWTpl/CbcHBpBShbk/dBoswFnuh8nWEM861BYi/muql6nwbqp3NUU9BnM
+         m99w7WloEb405olLaX4bQVlGkhyU5b62ZBA4LMtHawwWICGnzl2zXA1f21EhYjpYhAr8
+         UW29g5fMyhmHY76FpEcUWelG+/f8A7mTPhs7soOwgUJNx2z18wDHGBf7F1vschF6VFnY
+         OKITevXq83JgiEseptkms9J23mFehGp9VKNu3GiSeVlzWwWHN6b0jHiYNCqo7IGcCv2N
+         s38A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7X8vQJ82g1NBSgy7BqEe+UPGCLxYDo4vEHMc6PKXuH8=;
-        b=ySNWnpSBuztwf9G8VARL/xcS8iibdiZEVoBDRUtieMIZ1PrJjmyXwUGm0R2CMPpDKx
-         0cR7qv4/73DGCRNkHt9lMHOB8Z2yKnT4yQ6nKXQGQ0CBvd/GmcZk0g9uc7o9I6qx6LAp
-         AdWaPKWJ8pLrkut2PKM6SGtVL53L4WCqmuidTbjBTC852ULp3e+sJtlEM7NncgEZ+pSj
-         rqCI8MaGc4LvuEtU65nQVFSujuxfwX31r7Z00UTVtZBMO3YeATSpF4NgghugFU3BP0Si
-         8RVA6/vg0kqzuJjd8G/mnJgs2lYnOy/3n1o0Ai1UB8+ITybFWPWe/BODoMf4jtJuQOgU
-         6Rog==
-X-Gm-Message-State: AFqh2kq2idzc/umg2ZOk0q/DZGCfXrydHhkOjzvb6DBZRjBvl8iwqJFn
-        QjwmZheOXxWmI3fQxXdS+QD40w==
-X-Google-Smtp-Source: AMrXdXvF0Fzot1vJfqbt44iNVaA6MBvfcl5qnUKqgrLzxTreoghoY2AjqsnfgCDO8Sonz016fO0KFg==
-X-Received: by 2002:adf:e611:0:b0:2bf:96b9:5865 with SMTP id p17-20020adfe611000000b002bf96b95865mr19180823wrm.9.1674748589583;
-        Thu, 26 Jan 2023 07:56:29 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id x7-20020a5d6b47000000b002bbed1388a5sm1662536wrw.15.2023.01.26.07.56.27
+        bh=Z5Ms9/N7/h+Q3K/7Kcf2QDN/nKdDnsv1ksmJeqEJ4s8=;
+        b=gDAyzMMsqH2CKURt+IxIRnkbeRcTC//dibUmDJOJdpPjRBaUqbZqHbURxr1jeHdlZh
+         eZHRGgpr/W/p/lJmAdh+kHvvMHDGa30aU/5VmOe6umaAJRUChPTwIUHbNJpY94PME5Td
+         vcENgm4dPbX9/oy05NBC1RS9fUIIzkdZg7KnV55BRxZrog0jZSVxULi0/NTIDkBupJfc
+         0Il5Y6l4h6I4AGSh+mJuaP69scuNEzsNWz2MMkDlrjnvsBYqaPuzGv0YfW+O288Jt8ry
+         H8i36Rm5L8TJmffb9uymW/rkKhOYFiUWo/81mH1L9ea6S+IWBvrgGYxBxSMTBSc3nBhd
+         aUEA==
+X-Gm-Message-State: AFqh2koy4DmzWC4SFRrOnPsw7wYm7OlOuDGBaBpYnNLyAtUq18Tc5y/3
+        9LT7oGuU8muNJi/848qScezpbg==
+X-Google-Smtp-Source: AMrXdXvkVKfZdcsjY2sUxC828zVsk7+QQCWicTlakTGR1QBfrqe0HQ31k4Fm+iuXbse2OEbGopoRVA==
+X-Received: by 2002:ac2:4f0c:0:b0:4cc:6ffd:9fe6 with SMTP id k12-20020ac24f0c000000b004cc6ffd9fe6mr9574037lfr.50.1674748909319;
+        Thu, 26 Jan 2023 08:01:49 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id y8-20020adfdf08000000b002bfb31bda06sm1700126wrl.76.2023.01.26.08.01.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 07:56:28 -0800 (PST)
-Message-ID: <b5b0b377-b3da-1c32-3b40-6d8ef9774ca2@linaro.org>
-Date:   Thu, 26 Jan 2023 16:56:27 +0100
+        Thu, 26 Jan 2023 08:01:48 -0800 (PST)
+Message-ID: <d6af0436-6c73-8fe0-0627-af18120adca8@linaro.org>
+Date:   Thu, 26 Jan 2023 16:01:47 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 15/24] dt-bindings: rtc: qcom-pm8xxx: add nvmem-cell
- offset
+ Thunderbird/102.4.2
+Subject: Re: [RFC PATCH v2 21/22] ASoC: dt-bindings: Add Q6USB backend
+ bindings
 Content-Language: en-US
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230126142057.25715-1-johan+linaro@kernel.org>
- <20230126142057.25715-16-johan+linaro@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230126142057.25715-16-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Wesley Cheng <quic_wcheng@quicinc.com>, mathias.nyman@intel.com,
+        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        Thinh.Nguyen@synopsys.com, broonie@kernel.org,
+        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
+        agross@kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
+        quic_plai@quicinc.com
+References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
+ <20230126031424.14582-22-quic_wcheng@quicinc.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230126031424.14582-22-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -84,22 +83,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2023 15:20, Johan Hovold wrote:
-> On many Qualcomm platforms the PMIC RTC control and time registers are
-> read-only so that the RTC time can not be updated. Instead an offset
-> needs be stored in some machine-specific non-volatile memory, which a
-> driver can take into account.
+
+
+On 26/01/2023 03:14, Wesley Cheng wrote:
+> Add a dt-binding to describe the definition of enabling the Q6 USB backend
+> device for audio offloading.  The node carries information, which is passed
+> along to the QC USB SND class driver counterpart.  These parameters will be
+> utilized during QMI stream enable requests.
 > 
-> Add an 'offset' nvmem cell which can be used to store a 32-bit offset
-> from the Unix epoch so that the RTC time can be updated on such
-> platforms.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
 > ---
+>   .../bindings/sound/qcom,q6usb-dais.yaml       | 55 +++++++++++++++++++
+>   1 file changed, 55 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6usb-dais.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,q6usb-dais.yaml b/Documentation/devicetree/bindings/sound/qcom,q6usb-dais.yaml
+> new file mode 100644
+> index 000000000000..e24b4d52fa7e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/qcom,q6usb-dais.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/qcom,q6usb-dais.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm ASoC USB backend DAI
+> +
+> +maintainers:
+> +  - Wesley Cheng <quic_wcheng@quicinc.com>
+> +
+> +description:
+> +  The Q6USB backend is a supported AFE port on the Q6DSP. This backend
+> +  driver will communicate the required settings to the QC USB SND class
+> +  driver for properly enabling the audio stream.  Parameters defined
+> +  under this node will carry settings, which will be passed along during
+> +  the QMI stream enable request.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,q6usb-dais
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    const: 1
+> +
+> +  qcom,usb-audio-stream-id:
+> +    description:
+> +      SID for the Q6DSP processor for IOMMU mapping.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+We could derive this directly from iommus property as we do it like 
+q6asm-dai.c
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+--srini
+> +
+> +  qcom,usb-audio-intr-num:
+> +    description:
+> +      Desired XHCI interrupter number to use.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +required:
+> +  - compatible
+> +  - '#sound-dai-cells'
+> +  - qcom,usb-audio-intr-num
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    usbdai: usbd {
+> +      compatible = "qcom,q6usb-dais";
+> +      #sound-dai-cells = <1>;
+> +      iommus = <&apps_smmu 0x180f 0x0>;
+> +      qcom,usb-audio-stream-id = <0xf>;
+> +      qcom,usb-audio-intr-num = <2>;
+> +    };
