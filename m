@@ -2,77 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E07867D7EC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 22:51:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5740967D81B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 23:01:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232929AbjAZVvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 16:51:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34206 "EHLO
+        id S232430AbjAZWA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 17:00:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232812AbjAZVvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 16:51:40 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB59DFF2F
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 13:51:38 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id tz11so9013040ejc.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 13:51:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MqXh2+E8iJs7wo/kixnLmyAo4vCoE9jx2NshAMdQdhk=;
-        b=bKaK/ctjLrTftCgy6iuhFHsvkcxrlzWwRUDo+YNkZlibgyNBd2PKwG6zJkf3v1F6Ee
-         KbqJ/numtWHVrfY38qrB76My9TGXMDGXD5OrC1Yi5JreUJSsCyV+9vjM1bF/ylYRLdGO
-         sm0psMEJl+tp5dp6TM9jdaTvVeyAS5+U2ZxI3qIkJflUNAkittA7cRR0u7VfvsNMn8ct
-         Vk6HBlOQC7jJTSY7LTvt/nt+ZJXIzuHUY5rdEBN3VswOrrzS7zfjnRwfAYUGV1keT3It
-         kb5BDwZgphSlRvIVFzF5EmIU2vZoVIwHvG/e/ZimszkAkVBTLQU/va0sFO1UehBIy8Ol
-         gy8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MqXh2+E8iJs7wo/kixnLmyAo4vCoE9jx2NshAMdQdhk=;
-        b=MfTUyzoHvMWTC1a0GFb2dRCUAUOLMXx+nTJkVnz1c6PJxhjfmPewMm9f4DwYzJY/3v
-         GDwfmM4ggDQL1PgHhNQH3cpr2X6Xj+pYSpxcz93kq0DpYCf6E4kt41aDvmcEPZ6xY8BT
-         ULXFZSnPuALmtBzfMLheFhMcrlrE+BEJFdTs0Rg6dXxhIT3IQhqdRsHtbCp/A3RtdM5/
-         WrNaJE/h+tQvrkJHwR7U2ezi2IQW1jQKx1r1Zx89InGKA1HopY3P9RZGjotckzB9Pcx3
-         5eUvSbfM6QZH3VwJfT9vfwnmH/Z9olAoGBL8LWVdXXDsYHMOe84PAdMHKDnsrq9VEm4f
-         85fg==
-X-Gm-Message-State: AFqh2kqaqUQSXzhKJ+1dY/eJy1Xx4hEWYD1jF+CTCmMdEVzbJOoa7SpF
-        pysrw4a45Qrr7JpMRT6mjdhoeg==
-X-Google-Smtp-Source: AMrXdXs+sAI5Gz3WB8RUn1xMA8MppwykyLLgQIlCxXNtxLmH0SYOO77LdlAY9aiwg7Khf80nqTd4gg==
-X-Received: by 2002:a17:907:75e7:b0:871:3919:cbea with SMTP id jz7-20020a17090775e700b008713919cbeamr38276063ejc.54.1674769897548;
-        Thu, 26 Jan 2023 13:51:37 -0800 (PST)
-Received: from [192.168.118.20] ([87.116.162.186])
-        by smtp.gmail.com with ESMTPSA id ck17-20020a170906c45100b0082000f8d871sm1135489ejb.152.2023.01.26.13.51.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 13:51:37 -0800 (PST)
-Message-ID: <2d0f82c8-231b-7ad2-0366-a1a25f71da8f@linaro.org>
-Date:   Fri, 27 Jan 2023 00:51:35 +0300
+        with ESMTP id S231490AbjAZWA6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 17:00:58 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8073A7374C;
+        Thu, 26 Jan 2023 14:00:57 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2510361937;
+        Thu, 26 Jan 2023 22:00:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DD6DC433D2;
+        Thu, 26 Jan 2023 22:00:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674770456;
+        bh=gz4ZWHEMNfE+DiMnzvnPbgE4z4V258ENlu3ckqdpcYQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ISB4tpW2NDls5g8D3raQODhEamXkt7Zv1SnI7mXH0m+lz/JWgRkB8NUnP5PlonJeC
+         uir+g6Q0hHkT+xDFkCoTTyBcQ1tADTN1qBEdLfEDSqw3aczUzYQxFu2edFkvZHnVWM
+         FxGf2JphrgZ+p/KComFz1goGJGJ8wpeHdFSge89frFGpyPRcO+FF1zV8o9FUPHnXc5
+         HaNYCs+DH+K1j2ImdDQACK4q1SpC8Cw0pRrrpKksxFU0cnpDpB/5mt/njVSrO9Re1v
+         BTCiDWh7WfiehQp7fh/M/92ZQ5/oQnR00k+AU0spX4SuNZ5TSSwjzaqNthuuH9s8Rt
+         v4SnlyFznSn7g==
+Date:   Thu, 26 Jan 2023 22:00:54 +0000
+From:   Jarkko Sakkinen <jarkko@kernel.org>
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, peterhuewe@gmx.de, jgg@ziepe.ca,
+        stefanb@linux.ibm.com
+Subject: Re: [PATCH v3 2/2] tpm: Add reserved memory event log
+Message-ID: <Y9L4Ftv4vndc0CQ2@kernel.org>
+References: <20230126210810.881119-1-eajames@linux.ibm.com>
+ <20230126210810.881119-3-eajames@linux.ibm.com>
+ <Y9Lz3EnACr937Oeh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 0/2] net: stmmac: add DT parameter to keep RX_CLK running
- in LPI state
-To:     Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
-        alexandre.torgue@foss.st.com, peppe.cavallaro@st.com,
-        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20230123133747.18896-1-andrey.konovalov@linaro.org>
- <Y88uleBK5zROcpgc@lunn.ch> <f8b6aca2-c0d2-3aaf-4231-f7a9b13d864d@linaro.org>
- <Y8/mrhWDa6DuauZY@lunn.ch> <20230125191453.GA2704119-robh@kernel.org>
-Content-Language: en-US
-From:   Andrey Konovalov <andrey.konovalov@linaro.org>
-In-Reply-To: <20230125191453.GA2704119-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y9Lz3EnACr937Oeh@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,48 +55,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.01.2023 22:14, Rob Herring wrote:
-> On Tue, Jan 24, 2023 at 03:09:50PM +0100, Andrew Lunn wrote:
->>>> Could
->>>> dwmac-qcom-ethqos.c just do this unconditionally?
->>>
->>> Never stopping RX_CLK in Rx LPI state would always work, but the power
->>> consumption would somewhat increase (in Rx LPI state). Some people do care
->>> about it.
->>>
->>>> Is the interrupt
->>>> controller part of the licensed IP, or is it from QCOM? If it is part
->>>> of the licensed IP, it is probably broken for other devices as well,
->>>> so maybe it should be a quirk for all devices of a particular version
->>>> of the IP?
->>>
->>> Most probably this is the part of the ethernet MAC IP. And this is quite
->>> possible that the issue is specific for particular versions of the IP.
->>> Unfortunately I don't have the documentation related to this particular
->>> issue.
->>
->> Please could you ask around.
-
-I am on it, but it will take time.
-
->> Do you have contacts in Qualcomm?
->> Contacts at Synopsys?
-
-In Qualcomm only I am afraid.
-
->> Ideally it would be nice to fix it for everybody, not just one SoC.
+On Thu, Jan 26, 2023 at 09:42:55PM +0000, Jarkko Sakkinen wrote:
+> On Thu, Jan 26, 2023 at 03:08:10PM -0600, Eddie James wrote:
+> > Some platforms may desire to pass the event log up to Linux in the
+> > form of a reserved memory region. In particular, this is desirable
+> > for embedded systems or baseboard management controllers (BMCs)
+> > booting with U-Boot. IBM OpenBMC BMCs will be the first user.
+> > Add support for the reserved memory in the TPM core to find the
+> > region and map it.
+> > 
+> > Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> > ---
+> >  drivers/char/tpm/eventlog/of.c | 38 +++++++++++++++++++++++++++++++++-
+> >  1 file changed, 37 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/char/tpm/eventlog/of.c b/drivers/char/tpm/eventlog/of.c
+> > index 741ab2204b11..c815cadf00a4 100644
+> > --- a/drivers/char/tpm/eventlog/of.c
+> > +++ b/drivers/char/tpm/eventlog/of.c
+> > @@ -12,12 +12,48 @@
+> >  
+> >  #include <linux/device.h>
+> >  #include <linux/slab.h>
+> > +#include <linux/io.h>
+> > +#include <linux/ioport.h>
+> >  #include <linux/of.h>
+> > +#include <linux/of_address.h>
+> > +#include <linux/of_reserved_mem.h>
+> >  #include <linux/tpm_eventlog.h>
+> >  
+> >  #include "../tpm.h"
+> >  #include "common.h"
+> >  
+> > +static int tpm_read_log_memory_region(struct tpm_chip *chip)
+> > +{
+> > +	struct device_node *node;
+> > +	struct resource res;
+> > +	int rc;
+> > +
+> > +	node = of_parse_phandle(chip->dev.parent->of_node, "memory-region", 0);
+> > +	if (!node) {
+> > +		dev_info(&chip->dev, "no phandle\n");
+> > +		return -ENODEV;
+> > +	}
+> > +
+> > +	rc = of_address_to_resource(node, 0, &res);
+> > +	of_node_put(node);
+> > +	if (rc) {
+> > +		dev_info(&chip->dev, "no mem\n");
+> > +		return rc;
+> > +	}
+> > +
+> > +	chip->log.bios_event_log = devm_memremap(&chip->dev, res.start, resource_size(&res),
+> > +						 MEMREMAP_WB);
+> > +	if (!chip->log.bios_event_log) {
+> > +		dev_info(&chip->dev, "err memremap\n");
+> > +		return -ENOMEM;
+> > +	}
+> > +
+> > +	chip->log.bios_event_log_end = chip->log.bios_event_log + resource_size(&res);
+> > +
+> > +	return chip->flags & TPM_CHIP_FLAG_TPM2 ? EFI_TCG2_EVENT_LOG_FORMAT_TCG_2 :
+> > +		EFI_TCG2_EVENT_LOG_FORMAT_TCG_1_2;
+> > +}
+> > +
+> >  int tpm_read_log_of(struct tpm_chip *chip)
+> >  {
+> >  	struct device_node *np;
+> > @@ -39,7 +75,7 @@ int tpm_read_log_of(struct tpm_chip *chip)
+> >  	sizep = of_get_property(np, "linux,sml-size", NULL);
+> >  	basep = of_get_property(np, "linux,sml-base", NULL);
+> >  	if (sizep == NULL && basep == NULL)
+> > -		return -ENODEV;
+> > +		return tpm_read_log_memory_region(chip);
+> >  	if (sizep == NULL || basep == NULL)
+> >  		return -EIO;
+> >  
+> > -- 
+> > 2.31.1
+> > 
 > 
-> Yes, but to fix for just 1 SoC use the SoC specific compatible to imply
-> the need for this. Then only a kernel update is needed to fix, not a
-> kernel and dtb update.
+> Reviewed-by: Jarkko Sakkinen <jarkko@kernel.org>
 
-That's good point! Thanks!
+I applied the patches.
 
-I've just posted such 1 SoC only version:
-https://lore.kernel.org/lkml/20230126213539.166298-1-andrey.konovalov@linaro.org/T/#t
-In case this is a more proper way to go.
-
-> Rob
-
-Thanks,
-Andrey
+BR, Jarkko
