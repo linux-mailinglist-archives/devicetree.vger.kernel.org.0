@@ -2,205 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93E1667D1FE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 17:43:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D694667D209
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 17:45:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232212AbjAZQnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 11:43:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56304 "EHLO
+        id S232047AbjAZQph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 11:45:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbjAZQng (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 11:43:36 -0500
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2055.outbound.protection.outlook.com [40.107.7.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FEFE4EE1
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 08:43:34 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B09D3/hOqLMRC4T/F515GPVwSMiGqBB9oSLv7UJqIyTjbJxv9zg+N7sdEzqTEjAfw/UNJkbLtko9rCEsFGDONTVtq2MmMpe5BUkqzmf/9WFtfNidSahuBBhvKrT0FhnExia2cehBcAryuHp4tALYneUwmXlSeAGnPeYg+nrtbd0G3Cllil3THXGxHP/x2w5X6AaQMsXB+pt6LmC/XMgYU2gylV1SqXuMGkTu4dZcKCeMbJXxCSNk8AuplyMEZMipzXIhwMI/t+Tp5BbGMndcOgmWS90PHq1qbU9k6KWtEmeQBC6WepfyqGRogOUPOXJ6HGoUzuF7DVQZtF/2X+7ZLg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=E2BnJYGi01KmqLdKa03xOZnEVuDd9ppG1HeBpRW5lbU=;
- b=QEeQKxv5a+G7bXTRXxL4kFwe6wr/VP4mYLqQjKlpT71cNMUg+B2BS9eHGaMLjZPXrkW2ISrvGWxo8HO32+cMxkLWN6RPQ71F+bfgIK4Ph6RLnM6XuSCwvUQGjHI3ZZ4iT27Q7VzBHzYELp3P4cmj7o9N0eScRFC0ncMsJ/B8yRopnsVgqLKKdCC5Rn7+gQFIzxAl6M/6R67gwCFcbwY519bsc9IoGwts3XGSMvLOkS7+U7/QPJkzzeSwTvCdq/4v7iNsedEjzWZC8cwZLffcWkP+d0GV6Hks+O0sInpT/jniWMAGlMXE9jZKKktm6TXN6aFm3VYL0TF8E612M8J4wA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E2BnJYGi01KmqLdKa03xOZnEVuDd9ppG1HeBpRW5lbU=;
- b=EpXUKGM+OBPobR917v2dFGYHBsDFJAuSJhSxk36kvS9G0jzetldhC2G415AUL6/ILbkz5stfneCGuoSYGU5kyC08LXtRvrDfL0iP46g8HdRIQAGWNyGbgG9jZ9ELDzg8nPACmd3KhC8+m4GY6ZoUV/BcGpgF43ogHgB7ZQJoCLkWRMz5pmEyifDx/W5NuNhuL1dtvZd6YCXl1lBSUwKplNQcwh1gpKUME9rY1OLhGe9jOuISUSZMxNNP0zTtgzaoOtP9B/dxap7oXXjMoOovKFhcE34vLh4sitY3+GsVrom+aRvnLQxn1ezI2zuZFwszMSc8YBhKG+2uG/l+1U5aEQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
- by DU0PR03MB8244.eurprd03.prod.outlook.com (2603:10a6:10:31d::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Thu, 26 Jan
- 2023 16:43:31 +0000
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::6b03:ac16:24b5:9166]) by DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::6b03:ac16:24b5:9166%2]) with mapi id 15.20.6043.022; Thu, 26 Jan 2023
- 16:43:31 +0000
-Message-ID: <aa602661-f7f6-ca63-d8a7-d6de0e924259@seco.com>
-Date:   Thu, 26 Jan 2023 11:43:26 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v9 06/10] arm64: dts: ls1046a: Add serdes bindings
-Content-Language: en-US
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>
-References: <20221230000139.2846763-1-sean.anderson@seco.com>
- <20221230000139.2846763-7-sean.anderson@seco.com>
- <20230125234638.GD20713@T480>
-From:   Sean Anderson <sean.anderson@seco.com>
-In-Reply-To: <20230125234638.GD20713@T480>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BLAPR03CA0085.namprd03.prod.outlook.com
- (2603:10b6:208:329::30) To DB9PR03MB8847.eurprd03.prod.outlook.com
- (2603:10a6:10:3dd::13)
+        with ESMTP id S229732AbjAZQpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 11:45:36 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 912364EE1;
+        Thu, 26 Jan 2023 08:45:35 -0800 (PST)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30QGjC0r027852;
+        Thu, 26 Jan 2023 16:45:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=0DhafgZeBu6HoCEQt1MHmaUDfE+Qyo6YP+SijjNjXz0=;
+ b=UGeVHheLaY+xz1iWUuxipjPRsekOxBu8ossFpFVG1PLVOysG3kCHcXA/IfN8WSUo6lfI
+ kNm/NQ/u1aiKClA3dWec7isCoPN1f1NkDTDj+wAGJKtUZ4GVCeWMA1t7xioupJGDeZRw
+ ShjFY5fOJqG3Qbf6nq1bSj4z0+ZyPb8qSG60SYpv4VKg8YPH/GDa6xn3UAaGH6wh0tSh
+ 9dSZV+tOwSAf25ohsT/++wB9dvn1JKq8CzBHXG2CSkXd9UnICdYSIXb1Ep8QTZECb3V1
+ Nfi44kraf+VH3/GCmJ0QrGZz7rXhJ40FJnVV01slM/D4abs99DROAIH9SvyIiS0RjWiO RA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nasr0kkq9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 26 Jan 2023 16:45:12 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30QGjBVv020425
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 26 Jan 2023 16:45:11 GMT
+Received: from [10.50.43.212] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 26 Jan
+ 2023 08:45:03 -0800
+Message-ID: <37fccf60-75e7-3170-4e63-cafa62777596@quicinc.com>
+Date:   Thu, 26 Jan 2023 22:15:00 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|DU0PR03MB8244:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9b69d7fe-cde0-4951-2d03-08daffbc7543
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SbEECGG/AZnuhFK0nw5enJjRYsjA04qGzAsumim0OZTh1oNThNoo/f+R4lVrnb2h4tqtfeIbk8+JZoHBHfGjZ+nN7xSbrX2j7oiT5NouJoNeLYI5bjy1IlA9c9FWfgPGwOEmIHYi0rBscFFILI/i9M/eLfoM4W4V6TekqBQxtNVWXpsfAAsQyq+ZZIQeXTT7jMG0p4vKRHcmgMsmZmkneoech0mKgSu2yJysLkmq2aEjKYd85DMeSyUGJBeFnW+pyJ4f2mM9Oxx26bX4IvZsPANjGtfED7kzCdOsHzPM26TE/I+OPMr66WuUKSqks6K7PRL86o4crvDTgq+/L/3oQw76kIuM0m4X7fzQW4mQKKWNySDapX140M3395/00364nzrJPvoLEGNFwlSNf7L1hfdKuQ4t9JyfOi3OcygmB04+Pv1fg9frNMqfb0GLmp6Vi1+abrnShHrsV/LBLRsx6hXWqKG9X/iPRy8CQqv51mkiBSqjA9jXfMfYzsckA9+2ASw/2mooR6hECZYcXtYxC8Kyvlk7oS3LPzX6CMQs8SDmjrMaxUB8KTz4sDYXdtAnZZmK8MLOFcCYaYaTAj6niBKL93R2hvzNpX44sAAwhyfrh3XmjbWNxDg4kavTb4LiyBxm7oeL1VPxR+Hd+1KaAw1bVl7aDRdpfbI/Rwn6ezf7lFWB5yf2hrGk9luIgo662GffoYJ6HuHGCfz0cxPxmgdoD8M0eTfReItlYq8KffRu0LLO0WAKj65uo2QM3noI
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(136003)(346002)(39850400004)(366004)(396003)(376002)(451199018)(5660300002)(66476007)(66556008)(6916009)(8676002)(36756003)(4326008)(54906003)(66946007)(2616005)(316002)(86362001)(38350700002)(31696002)(38100700002)(8936002)(6666004)(41300700001)(83380400001)(478600001)(7416002)(26005)(6486002)(44832011)(52116002)(53546011)(31686004)(186003)(6512007)(2906002)(6506007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c3pRVkg2clpoUjF3TjNWVVVlYW44cm56eFhtTDBWZEUrUVJTb25kdFRta01S?=
- =?utf-8?B?WkIvZklnWWRGMytmeFJ4b0wzcnk5ejhva1FmaWx2VENYRlNHRXZkdDB4NTFN?=
- =?utf-8?B?WFg4VVdxc2VWclJlbDdod3pyTnBCc0gvcElCQjc5dVVTR3pBc2toUC9IbnVT?=
- =?utf-8?B?ejVJR1ZFazZvcXk5MFhwbkRCeFlwVGVvc1U5REgrQjdKOVp2QXI1WUFHdE5G?=
- =?utf-8?B?ZjNKaHFuZ1BkN2hmdEhmaVRvSEt5VzJnU3c1MTVEdDlzbjhRSitkWVlvWUlu?=
- =?utf-8?B?ZkpTNXhWdjlxRG5jV1hHdDFLdFpKY0VRZjcrTFZDK2lXbi9LR05VSThKVDBk?=
- =?utf-8?B?N3JacHhNQ1I4UERBRUZCekJnN3pMSUhmbEVXVXd5cFI3UEhidXlXQkZEMEUv?=
- =?utf-8?B?QVZwOUNsdVpOSVBqRGpSdjl4eURRSHpHZWVCcWlOT1dmVzRPRmtxdmNJSG5V?=
- =?utf-8?B?QlhyVHhCdVlmV1Ezb3g3K1hUWTlHQ1JwNVdDL05NQW4wZ1BabXVkUEF3MFE3?=
- =?utf-8?B?ckxQNDJyTDR0RU15YjdneTdQSWNjSzZ2V2JGVTE0VkEwVTU4VytxMDNCd2dl?=
- =?utf-8?B?QlJna3pla0pHM2puQ3dDVHpSMnRRQVIzNXdDQzd6TFdPZnV6MVJLbmROWXNt?=
- =?utf-8?B?UU1xQU5ZSTN1SlQ4bGpLNlR5MmxSYWp0a3Z3S0dZTFJHa3dJY3J5SEVMRWwy?=
- =?utf-8?B?ZllWVFNVWjBJUXZuNmRWTkZib3ZOVzh4Wkk5NXNaeitTRTgrNlJLWjFjbEJU?=
- =?utf-8?B?V3EycWYwc2k2TUd0WTkwcGo1ei8yZCtsMVR5MHdGNlVGQ1JvaWM2cXZKd1or?=
- =?utf-8?B?MkNGRml3V3NwZXEyWHBKUTZzdFlyQ1VVVE5mRno4L0tWUEYraGlXN3Bpdkl3?=
- =?utf-8?B?QlA1SFBmWnZsMkpDNUhNRmVENWFxVVovb3NMSGNHVWJyK2h1S0xDNG1tNmRa?=
- =?utf-8?B?TjNJTVpKcUtDU1ROb2pJOW82QndOTVh0eVBYMTM3bE9NTUdIOERvalZOMHBm?=
- =?utf-8?B?STl2YzF0cVpNNlprNExIQmdBMUdvcGF4V3pESEhQZVRGTzRQejBsaEx5YnFC?=
- =?utf-8?B?dGtLT0RYV1E5U3ZkV0hkem5KYm9BSG9tTTRqNXBMNDdXMUJBRm1oaytEUjcx?=
- =?utf-8?B?bUVVT0Vmd3FOT3k5L1FJdGI2aU80Q0RRbEJQdURISDBFNVJETHdWZ0Vmd2hz?=
- =?utf-8?B?d29Ed2E0NnlFMDdBbVlkQm5kUjJVQWZXRkk2aDVKVzhSVnhGekZ3cExOQXNp?=
- =?utf-8?B?S3ozYzBvdTNsbWwrWXYzdWVQaTArMUNjSzFwbUZUbnREMmdaZ29wYUVHZzFL?=
- =?utf-8?B?enZLbmVINmhOQkt6ZlRHeHdUZjhQQk1tWXZBSm9waDlwNFA2Z2w1UEs5NEhn?=
- =?utf-8?B?U0hCaTN5S0lKNTF5ZlVyc1JOYmdHMjJpYkk2NVE5eUoxbm5IV3RSTzhhN3NO?=
- =?utf-8?B?cU5tejN5ZXJ4eE1TSlZUQng2VW5EUHdDei9kcTlDeEZuSHdjZkJYeDZSNU91?=
- =?utf-8?B?MDBXYkdZaU5ZVVdyV3R3TE1VUWZ0bXZMMFVvMWVycUVYR1RnV0d5S09XVlFY?=
- =?utf-8?B?Z3ZvYkNVaThQSHdOZkxLZlZzQWljVXNVMHU1ZW5MYWhLK0RZY1dWZG5IMkxZ?=
- =?utf-8?B?UVVhU3k5MXI3aTdUTVVRYVdFTStjRkIyZmtGWkNyMC90VWgzcGRDbXZTN1lm?=
- =?utf-8?B?dy9PLzUvamxXWng5MFh3ZHMxZmhMWDlDTVdqMmlDSW03UkFWZXdvTGN0WG40?=
- =?utf-8?B?NTRHTGpPRWpvenFtNzhIV0U3QUVFSEVjZmJUT0V1bU1JbzBnRkt3M29VYXg5?=
- =?utf-8?B?dU9QRXRJdjFEdmJLbENHQ0hrT0QxZk9KbHluRG1Ia3RQemFmcVlRKzRKejlm?=
- =?utf-8?B?emNPd3FZc2JReXZxdWE0b3RGR01KVlAxTGpKdGFRUGQwdHRyNDNhVWM5MDhq?=
- =?utf-8?B?UDEzY1FDRXYrOXUybWhDZ0hFL1ROQVlXQ2JHZTloa29EUi9ZekRjemNuQVlK?=
- =?utf-8?B?SStTZ1lFYUZ6aFhLZi9BQWlzN1U3dnVSb1BiWnF6b2p0Sno3QjhHZVRXSGVU?=
- =?utf-8?B?MHIwRW5Vc0JJZmZxVHgvdHlRWXpiNnd3NFZ3S1dKRHVTY0JBSExRRFB1THJJ?=
- =?utf-8?B?L0g0Vm9acFVVZ0RXTU5hdEp6aXBiUG5kQXdTaFlvYzEyOWlqdGVZU29GVHd1?=
- =?utf-8?B?Qnc9PQ==?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9b69d7fe-cde0-4951-2d03-08daffbc7543
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR03MB8847.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2023 16:43:31.4470
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xXkyxwn4LFhqpPsIltJdpm7cC9e3RlIeCfl1MbKTZl6zQW4VPO4GtbA/eA0JtDmjQAcHw2qMGsicAVHGXY1HKw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR03MB8244
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 05/10] clk: qcom: add Global Clock controller (GCC) driver
+ for IPQ5332 SoC
+To:     Stephen Boyd <sboyd@kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <arnd@arndb.de>,
+        <bhupesh.sharma@linaro.org>, <broonie@kernel.org>,
+        <catalin.marinas@arm.com>, <devicetree@vger.kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <konrad.dybcio@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>, <marcel.ziswiler@toradex.com>,
+        <mturquette@baylibre.com>, <nfraprado@collabora.com>,
+        <quic_gurus@quicinc.com>, <robh+dt@kernel.org>,
+        <robimarko@gmail.com>, <shawnguo@kernel.org>,
+        <ulf.hansson@linaro.org>, <will@kernel.org>
+References: <20230125104520.89684-1-quic_kathirav@quicinc.com>
+ <20230125104520.89684-6-quic_kathirav@quicinc.com>
+ <9cf8a94f7ec4d8912bcf507631991999.sboyd@kernel.org>
+Content-Language: en-US
+From:   Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+In-Reply-To: <9cf8a94f7ec4d8912bcf507631991999.sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8YFMf9iChCf7TO-g8rvLTswHK1rj14mB
+X-Proofpoint-ORIG-GUID: 8YFMf9iChCf7TO-g8rvLTswHK1rj14mB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-26_07,2023-01-26_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ mlxlogscore=999 clxscore=1015 phishscore=0 lowpriorityscore=0 adultscore=0
+ priorityscore=1501 mlxscore=0 malwarescore=0 impostorscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301260162
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/25/23 18:46, Shawn Guo wrote:
-> On Thu, Dec 29, 2022 at 07:01:35PM -0500, Sean Anderson wrote:
->> This adds bindings for the SerDes devices. They are disabled by default
-> 
-> s/bindings/descriptions?
-> 
-> The term "bindings" generally means the schema/doc in
-> Documentation/devicetree/bindings/.
 
-How about "nodes"?
-
---Sean
-
-> Shawn
-> 
->> to prevent any breakage on existing boards.
->> 
->> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->> ---
->> 
->> (no changes since v4)
->> 
->> Changes in v4:
->> - Convert to new bindings
->> 
->> Changes in v3:
->> - Describe modes in device tree
->> 
->> Changes in v2:
->> - Use one phy cell for SerDes1, since no lanes can be grouped
->> - Disable SerDes by default to prevent breaking boards inadvertently.
->> 
->>  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 18 ++++++++++++++++++
->>  1 file changed, 18 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
->> index a01e3cfec77f..12adccd5caae 100644
->> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
->> @@ -424,6 +424,24 @@ sfp: efuse@1e80000 {
->>  			clock-names = "sfp";
->>  		};
->>  
->> +		serdes1: serdes@1ea0000 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			#clock-cells = <1>;
->> +			compatible = "fsl,ls1046a-serdes", "fsl,lynx-10g";
->> +			reg = <0x0 0x1ea0000 0x0 0x2000>;
->> +			status = "disabled";
->> +		};
+On 1/26/2023 2:24 AM, Stephen Boyd wrote:
+> Quoting Kathiravan Thirumoorthy (2023-01-25 02:45:15)
+>> diff --git a/drivers/clk/qcom/gcc-ipq5332.c b/drivers/clk/qcom/gcc-ipq5332.c
+>> new file mode 100644
+>> index 000000000000..8351096a4d32
+>> --- /dev/null
+>> +++ b/drivers/clk/qcom/gcc-ipq5332.c
+>> @@ -0,0 +1,3954 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
 >> +
->> +		serdes2: serdes@1eb0000 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			#clock-cells = <1>;
->> +			compatible = "fsl,ls1046a-serdes", "fsl,lynx-10g";
->> +			reg = <0x0 0x1eb0000 0x0 0x2000>;
->> +			status = "disabled";
->> +		};
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/regmap.h>
+> [...]
 >> +
->>  		dcfg: dcfg@1ee0000 {
->>  			compatible = "fsl,ls1046a-dcfg", "syscon";
->>  			reg = <0x0 0x1ee0000 0x0 0x1000>;
->> -- 
->> 2.35.1.1320.gc452695387.dirty
->> 
+>> +static const struct freq_tbl ftbl_gcc_pcnoc_bfdcd_clk_src[] = {
+>> +       F(24000000, P_XO, 1, 0, 0),
+>> +       F(50000000, P_GPLL0_OUT_MAIN, 16, 0, 0),
+>> +       F(100000000, P_GPLL0_OUT_MAIN, 8, 0, 0),
+>> +       { }
+>> +};
+>> +
+>> +static struct clk_rcg2 gcc_pcnoc_bfdcd_clk_src = {
+>> +       .cmd_rcgr = 0x31004,
+>> +       .mnd_width = 0,
+>> +       .hid_width = 5,
+>> +       .parent_map = gcc_parent_map_0,
+>> +       .freq_tbl = ftbl_gcc_pcnoc_bfdcd_clk_src,
+>> +       .clkr.hw.init = &(const struct clk_init_data){
+>> +               .name = "gcc_pcnoc_bfdcd_clk_src",
+>> +               .parent_data = gcc_parent_data_0,
+>> +               .num_parents = ARRAY_SIZE(gcc_parent_data_0),
+>> +               .ops = &clk_rcg2_ops,
+>> +               .flags = CLK_IS_CRITICAL,
+> Why not just turn these clks on in probe and never register them with
+> the framework? That saves some memory for clks that there is no desire
+> to control from linux. This is an RCG, so in theory the frequency can
+> change, but does it really? Usually bus clks are controlled by the
+> interconnect driver.
+
+Thanks Stephen for reviewing the patch. I will look into this and make 
+changes appropriately in V2.
 
