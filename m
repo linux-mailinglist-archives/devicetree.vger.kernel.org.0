@@ -2,70 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0066267C87E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:25:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E79967C880
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:25:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237090AbjAZKZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 05:25:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49558 "EHLO
+        id S237060AbjAZKZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 05:25:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236992AbjAZKZr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:25:47 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 228453400B
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:25:45 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id m7so1254226wru.8
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:25:45 -0800 (PST)
+        with ESMTP id S237095AbjAZKZs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:25:48 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04FC434011
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:25:47 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id y1so1277850wru.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:25:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HEohK6WsZnnZQE1XEaaNmVSZHrsCyyc5P37uY0vfyuE=;
-        b=J6svHmw17ESxKTDiRf+mlTmjoMRhMVy29IeNOO9FfygQeR2Fbj/vgnZl5NEJeD+tMd
-         SDDpnHhOqVVsxNGq5LLsIG+B6UdxE5EoDwDtpPvwxnrdYf7ARenrgGyjY3V4FPYzll1f
-         bEJabj7pZ8uRNKGyjiujrVXbdZnynpeVVTrevpiQd3QOgPv/Q/oSeuOKuDM9tSTEc5PK
-         XInaK48RuSGEgiSv0bU8Qx04OIAaMdDf6EOwUC+M7hDv62y6YPVPdlI2j09CMTVVBZE9
-         KTAn0oPFTlM3mOF3lMfrg1fNMf255B40vC+A5PgU1s87q1Z13zEFtuXqm/tbG+mpRw6R
-         akKA==
+        bh=RixHBTYJM1c4X6p4mjaa+WDjXHZY8ga4mSc4WsfiIqU=;
+        b=x8pBahowr0WiMu31e8tTC1xmeDkvkArj45H9LK0shv1M3+iErOgKYFvRV2mSOa5Wis
+         6q/RTcHKqCl8Uz4Yth/NHm8WAlyyzbeFiUOTcZ5ddvwikIPy2hl5HjiW1USDRVxAhMMY
+         IFZQ1gV5grJOiDamwtiQgDe95TCa+cs7m34oDu0Ydwh09D7mgouvrlSGBLNkSFEcqnJ1
+         IhLlQ/PKTemv/+VBlfEWIOJoi/lDDDwfx7s1qrr0gO7XpNYWebcbXoWZsZLyvI8oDrfz
+         oirICnbMg5x2MKJsT4lZ0ACTTjti6mCUL48oXwQSJez5g4rFRmpJIgFGOH3K3rgce9KH
+         3Tow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HEohK6WsZnnZQE1XEaaNmVSZHrsCyyc5P37uY0vfyuE=;
-        b=1DVhvocDVp2URHiGozYDgbBcBhLZBOmcq19FkFpK3PiOUXsOBA9nnzo42JedaqY1fv
-         fFBQtDV07sUOZNhAv307cftqLoP652mfStEe+cJlAaNzmbKTxSddnqwedO/R7RtyrXTz
-         uawa7b/a5H+CoRFVdj3/q3d2EPn27CaqHym/ERw0Vu9CjBnv9LCHlUkLW9wKYVGivlXB
-         qhZb6Hh3QweGgSgN/B5MA1WbCqrgH6k0Nlc2u+MiflDQOJqjUP6GsTS/CXk1/aRPMCXz
-         XkUEvr3N6aS6exrg+SgGx/Oq1eJUsesxHyZrc79wNEAGGvkhqD67KXSso6oss4PZjgq3
-         qsaw==
-X-Gm-Message-State: AO0yUKWs0u496xMCKePeD7XolmWfH7GVq8z9L55sET/F/I9f8SxIUPGJ
-        nTR4fPhfBOaN4OoVS33BFaVO9A==
-X-Google-Smtp-Source: AK7set+3IQ24+W6zktNXyrxsNES79+e6UERDQkrpgRBWniC+zRetCvrUOnRKnhwDMv9ANAYnKs4fBw==
-X-Received: by 2002:a5d:64ee:0:b0:2bf:b7e3:7c82 with SMTP id g14-20020a5d64ee000000b002bfb7e37c82mr7901356wri.57.1674728744386;
-        Thu, 26 Jan 2023 02:25:44 -0800 (PST)
+        bh=RixHBTYJM1c4X6p4mjaa+WDjXHZY8ga4mSc4WsfiIqU=;
+        b=GqGmz+gMdy40BgdZhtHqUBC/56EsRXAOmdpQdf8Q0RlDHWPtBMtCfg3WghyUW6pnrL
+         1L6lS9as+g6AkUNjgi2T6LPLQXbyQOVRskTw9tGm41r5WDX//qiaymzoYkNjcBIkoD+i
+         1yMmvFKV1+dV4jeX6ASY8oSNfocU3R2Bi5UOWavPTOuvhsSX8hMo7mR49Lh5vQWo+X44
+         BPv6E7HaEZOgK06Dr6oOwmWmfNN4gQR//8NtHAMArSd0g5RkeJi45QLQGClevlqtRsHO
+         lk/Er1b0/UsHIrb8Sur0CGQHoXkffe9ppOBAAWnUDHFgqCpOKy/sgBBgcfw7hnSJb4Xj
+         PFSg==
+X-Gm-Message-State: AFqh2krVES+ThOaRtEj/VCALbw2HwGh9GiO3rQn8Gv64YU90PnqSCWTR
+        /AFl91Uqq3JCKjImx4sy0WEsGg==
+X-Google-Smtp-Source: AMrXdXv7TVlOcr4l54XRp6be5Zhrx+v5ygLzHQZbm/j1GmDwcFQ6G+P019guhhWUKnJj25i80MDVbw==
+X-Received: by 2002:a05:6000:1f14:b0:2ac:5b46:9c85 with SMTP id bv20-20020a0560001f1400b002ac5b469c85mr30123489wrb.68.1674728745557;
+        Thu, 26 Jan 2023 02:25:45 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t8-20020a5d6908000000b002bc7e5a1171sm886514wru.116.2023.01.26.02.25.43
+        by smtp.gmail.com with ESMTPSA id t8-20020a5d6908000000b002bc7e5a1171sm886514wru.116.2023.01.26.02.25.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 02:25:44 -0800 (PST)
+        Thu, 26 Jan 2023 02:25:45 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org,
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Liviu Dudau <liviu.dudau@arm.com>
-Subject: Re: [PATCH] ARM: dts: arm: align UART node name with bindings
-Date:   Thu, 26 Jan 2023 11:25:29 +0100
-Message-Id: <167472873009.13092.12381861125634891317.b4-ty@linaro.org>
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] ARM: dts: axm55xx: align UART node name with bindings
+Date:   Thu, 26 Jan 2023 11:25:30 +0100
+Message-Id: <167472873009.13092.14642851158475305926.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230123151533.369533-1-krzysztof.kozlowski@linaro.org>
-References: <20230123151533.369533-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230123151529.369313-1-krzysztof.kozlowski@linaro.org>
+References: <20230123151529.369313-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -78,15 +72,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Jan 2023 16:15:33 +0100, Krzysztof Kozlowski wrote:
+On Mon, 23 Jan 2023 16:15:29 +0100, Krzysztof Kozlowski wrote:
 > Bindings expect UART/serial node names to be "serial".
 > 
 > 
 
 Applied, thanks!
 
-[1/1] ARM: dts: arm: align UART node name with bindings
-      https://git.kernel.org/krzk/linux-dt/c/cba9e7dbf1119e9f11cef0379a88c42a92029bde
+[1/1] ARM: dts: axm55xx: align UART node name with bindings
+      https://git.kernel.org/krzk/linux-dt/c/79a5b931a2af63cd1249abd696566a7ffbe44c17
 
 Best regards,
 -- 
