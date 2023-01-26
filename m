@@ -2,129 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BB2F67D7AF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 22:27:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6E5767D7BB
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 22:31:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231513AbjAZV1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 16:27:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51864 "EHLO
+        id S232985AbjAZVbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 16:31:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232957AbjAZV1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 16:27:42 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53CD93EFED;
-        Thu, 26 Jan 2023 13:27:41 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30QKr5qU003063;
-        Thu, 26 Jan 2023 21:27:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=eub/xV2CndV03ABVthGsowvrdm8zTqb73Ay8YAMFLgU=;
- b=EnMCtFwqCgXYn7qv6B4+uwnY25L8e33icayzlkYrvcWoZn5ml+/jvO48LNg+ZpNliGcU
- /slccjyiWkdtX3fuJEJAo5RJ2xeLiTvG7kU6qkOU6hW27BqxlJps4dWv6SpS+nhvTLaU
- 36t6TLuvJnySJ9SfffvkKBphkJY1+iHIoUGIrAh//Lw1QAnPwzHh6wrtSL0ahaHKag3o
- yhbzr2VupoZVjIvhGzirHDwFf6mndVkE3U0dJwfONMNj+DhCPIFoYUJa/JVuHPu4tsxC
- GEQm8KwNs1W3Q13gikhpY6XlQTI9O3hYgD0SzOAMtQlmIRZEkTYWhfLq772omIgzJ58G qQ== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nbp1v9bh1-1
+        with ESMTP id S232050AbjAZVbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 16:31:47 -0500
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D79F15C80;
+        Thu, 26 Jan 2023 13:31:46 -0800 (PST)
+Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30QK6vwI021614;
+        Thu, 26 Jan 2023 21:31:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=Mf6rFMBtnM6tqGSKPkciaWZvU1nkFUZo0Ro+i8HWrR0=;
+ b=p1Ef7GodCPSzA0Pro3Lj0+usNn9Sj4geY7uP5STTokpBt32xN2L9E1w0RFhCy8vg8qHz
+ 6qkV0L8oyK1eKcCGy7fXiyU48uyvxTLj4hWuQ5HtgynpLN4EcPKNi6HOpohMRrDo6U7w
+ grFVi/y9iELUMFarLyBzL9PIWt1hkdFodnp3t+y3WY2iWk3S4fIXcMJB9WTUej3YUlEp
+ rZxQJ1qu7kICPrEqYvTDzYpiFnjE+jpGK+fq4H65Zy9WfI7mBgRTx4an6V5pT1qcSPHO
+ 3uotn9w8JycwZHOwRMQGma6xQ7NoFogSTgxLpcs7q31Ov2yG2bJXKQYpyum6Ro/coZyM VA== 
+Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
+        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3nbu2jtscj-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 26 Jan 2023 21:27:24 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30QLRNUo021049
+        Thu, 26 Jan 2023 21:31:26 +0000
+Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
+        by ppma03dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 30QL9CrB006970;
+        Thu, 26 Jan 2023 21:31:26 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([9.208.130.99])
+        by ppma03dal.us.ibm.com (PPS) with ESMTPS id 3n87p7q5s7-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 26 Jan 2023 21:27:23 GMT
-Received: from [10.110.106.42] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 26 Jan
- 2023 13:27:22 -0800
-Message-ID: <6bafae1a-61b3-887a-14fc-77d389509f4f@quicinc.com>
-Date:   Thu, 26 Jan 2023 13:27:22 -0800
+        Thu, 26 Jan 2023 21:31:26 +0000
+Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com [10.241.53.105])
+        by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 30QLVPeE30474708
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 26 Jan 2023 21:31:25 GMT
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 058DA58059;
+        Thu, 26 Jan 2023 21:31:25 +0000 (GMT)
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 8F50758043;
+        Thu, 26 Jan 2023 21:31:23 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.160.3.213])
+        by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
+        Thu, 26 Jan 2023 21:31:23 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-fsi@lists.ozlabs.org
+Cc:     linux-trace-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mhiramat@kernel.org,
+        rostedt@goodmis.org, eajames@linux.ibm.com, alistair@popple.id.au,
+        joel@jms.id.au, jk@ozlabs.org, andrew@aj.id.au, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Subject: [PATCH v3 0/2] fsi: Add IBM I2C Responder virtual FSI master
+Date:   Thu, 26 Jan 2023 15:31:21 -0600
+Message-Id: <20230126213123.884125-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v7 10/20] gunyah: rsc_mgr: Add resource manager RPC core
-From:   Elliot Berman <quic_eberman@quicinc.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-acpi@vger.kernel.org>
-References: <20221121140009.2353512-1-quic_eberman@quicinc.com>
- <20221121140009.2353512-11-quic_eberman@quicinc.com>
- <Y3uYRvrCZNnbDiY5@kroah.com>
- <425a8fe9-24b6-26c7-9150-0d3fb76430be@quicinc.com>
- <Y5gbFhVpuDoZ2ZmY@kroah.com>
- <f0f4243f-4cbe-0aa2-19b6-047d791207ab@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <f0f4243f-4cbe-0aa2-19b6-047d791207ab@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: beyvsiomKsGMAhOhYtuXkCyYCDsnp1bK
-X-Proofpoint-GUID: beyvsiomKsGMAhOhYtuXkCyYCDsnp1bK
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: AeT6XwDjMdGazYn_x2iOWLxvSNDApdOZ
+X-Proofpoint-ORIG-GUID: AeT6XwDjMdGazYn_x2iOWLxvSNDApdOZ
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
  definitions=2023-01-26_09,2023-01-26_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 clxscore=1015 spamscore=0 phishscore=0 bulkscore=0
- suspectscore=0 adultscore=0 mlxlogscore=663 mlxscore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301260201
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 phishscore=0 priorityscore=1501 bulkscore=0 adultscore=0
+ suspectscore=0 clxscore=1015 mlxscore=0 impostorscore=0 mlxlogscore=988
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301260198
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The I2C Responder (I2CR) is an I2C device that translates I2C commands
+to CFAM or SCOM operations, effectively implementing an FSI master and
+bus.
 
+Changes since v2:
+ - Fix the bindings again, sorry for the spam
 
-On 12/15/2022 6:25 PM, Elliot Berman wrote:
-> 
-> 
-> On 12/12/2022 10:26 PM, Greg Kroah-Hartman wrote:
->> On Mon, Dec 12, 2022 at 03:46:53PM -0800, Elliot Berman wrote:
->>>
->>> Reference counting is not needed on the gh_rm_rpc object because its 
->>> only
->>> client (the VM manager) is torn down before the gh_rm_rpc.
->>
->> So again, who controls the lifecycle of it?  Where is the reference
->> count for the structure as it is pointing to reference counted memory?
-> 
-> Had some internal review and I think I'm now taking better care of this 
-> (and the device situation in the other mail). I will send out next 
-> revision soon.
+Changes since v1:
+ - Fix the binding document
+ - Change the binding name
+ - Clean up the size argument checking
+ - Reduce __force by using packed struct for the command
 
-Hello Greg,
+Eddie James (2):
+  dt-bindings: fsi: Document the IBM I2C Responder virtual FSI master
+  fsi: Add IBM I2C Responder virtual FSI master
 
-I've sent v9 series and wanted to get your feedback on the changes to 
-the patches that you had suggested.
+ .../bindings/fsi/ibm,i2cr-fsi-master.yaml     |  41 ++++
+ drivers/fsi/Kconfig                           |   9 +
+ drivers/fsi/Makefile                          |   1 +
+ drivers/fsi/fsi-master-i2cr.c                 | 225 ++++++++++++++++++
+ include/trace/events/fsi_master_i2cr.h        |  96 ++++++++
+ 5 files changed, 372 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/fsi/ibm,i2cr-fsi-master.yaml
+ create mode 100644 drivers/fsi/fsi-master-i2cr.c
+ create mode 100644 include/trace/events/fsi_master_i2cr.h
 
-https://lore.kernel.org/all/20230120224627.4053418-10-quic_eberman@quicinc.com/
+-- 
+2.31.1
 
-Thanks,
-Elliot
