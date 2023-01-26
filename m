@@ -2,129 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF4667D19C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 17:28:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACF1D67D39E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 18:55:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231708AbjAZQ2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 11:28:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34416 "EHLO
+        id S230205AbjAZRz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 12:55:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232206AbjAZQ2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 11:28:01 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48003270B;
-        Thu, 26 Jan 2023 08:27:22 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7B2F2B81EAB;
-        Thu, 26 Jan 2023 16:27:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C07FEC433EF;
-        Thu, 26 Jan 2023 16:26:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674750422;
-        bh=0B3WByzbvhV82JVnWTI4aBuMjHJDudsWnukTFb5RhdA=;
-        h=From:Date:Subject:To:Cc:From;
-        b=EDHRithYdgojTuNASPVs2fl0h4UgABXTSYzJ9Lvp85KaWZkzexE2CNyjD/9taaezT
-         /+qEY1tNEZq3KoZLFQOPAQwG+Kq3IOYFBkJNItMpYqx9gAKT3kN61gaeAE4dSJJmZR
-         uK/0e8Vo/gwq8YAycIt7Kmz5cACJ9SnhvGwSRkUNJf74lVbeFTFRYOyot7H1W33eBy
-         BJCKZcdnTcC61OFsTSbGTdTx1onbmPRKAXlRQ3pMpvv3chZ9AWA18vc22sP0QpDNNl
-         2bPQDJY1N1PRmIurWKyyaR2eexjoFxUaX++xqz+aF7OFbGrp4FVZY8bOV4afnz7Wt7
-         46XEQ3FBIGDcA==
-From:   Mark Brown <broonie@kernel.org>
-Date:   Thu, 26 Jan 2023 16:26:39 +0000
-Subject: [PATCH] of/address: Return an error when no valid dma-ranges are
- found
+        with ESMTP id S229459AbjAZRz5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 12:55:57 -0500
+X-Greylist: delayed 2639 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 26 Jan 2023 09:55:56 PST
+Received: from sp14.canonet.ne.jp (sp14.canonet.ne.jp [210.134.168.91])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 81843EC72;
+        Thu, 26 Jan 2023 09:55:56 -0800 (PST)
+Received: from csp14.canonet.ne.jp (unknown [172.21.160.134])
+        by sp14.canonet.ne.jp (Postfix) with ESMTP id 418BA1E03C8;
+        Fri, 27 Jan 2023 01:28:13 +0900 (JST)
+Received: from echeck14.canonet.ne.jp ([172.21.160.124])
+        by csp4 with ESMTP
+        id L56ipIOBSVjWJL56jp2bsx; Fri, 27 Jan 2023 01:28:13 +0900
+X-CNT-CMCheck-Reason: "undefined", "v=2.4 cv=WsmVjfTv c=1 sm=1 tr=0
+ ts=63d2aa1d cx=g_jp:t_eml p=jICtXCb1Bd4A:10 p=WKcvGfCz9DfGexK3dBCb:22
+ a=puqJfqqrwnhV2n3dwg+kWg==:117 a=yr9NA9NbXb0B05yJHQEWeQ==:17
+ a=PlGk70OYzacA:10 a=kj9zAlcOel0A:10 a=RvmDmJFTN0MA:10 a=x7bEGLp0ZPQA:10
+ a=QA8zHFxAwLBQ4A9MkZgA:9 a=CjuIK1q_8ugA:10 a=0iaRBTTaEecA:10
+ a=xo5jKAKm-U-Zyk2_beg_:22"
+X-CNT-CMCheck-Score: 100.00
+Received: from echeck14.canonet.ne.jp (localhost [127.0.0.1])
+        by esets.canonet.ne.jp (Postfix) with ESMTP id E3BCF1C020D;
+        Fri, 27 Jan 2023 01:28:12 +0900 (JST)
+X-Virus-Scanner: This message was checked by ESET Mail Security
+        for Linux/BSD. For more information on ESET Mail Security,
+        please, visit our website: http://www.eset.com/.
+Received: from smtp14.canonet.ne.jp (unknown [172.21.160.104])
+        by echeck14.canonet.ne.jp (Postfix) with ESMTP id 9C5F41C0259;
+        Fri, 27 Jan 2023 01:28:12 +0900 (JST)
+Received: from daime.co.jp (webmail.canonet.ne.jp [210.134.169.250])
+        by smtp14.canonet.ne.jp (Postfix) with ESMTPA id D33FD15F967;
+        Fri, 27 Jan 2023 01:28:11 +0900 (JST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Message-ID: <20230126162811.00005172.0013@daime.co.jp>
+Date:   Fri, 27 Jan 2023 01:28:11 +0900
+From:   "Mrs Alice Walton" <daime@daime.co.jp>
+To:     <INQUIRY@daime.co.jp>
+Reply-To: <alicewaltton1@gmail.com>
+Subject: INQUIRY
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230126-synquacer-boot-v1-1-94ed0eb1011f@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAL6p0mMC/x2NQQ6CMBAAv0L27Ca0EDR+xXjolkX2YIu7YCSEv
- 1M8ziST2cBYhQ3u1QbKXzHJqYC7VBDHkF6M0hcGX/umdr5DW9NnCZEVKecZfdtQ7+h2HboWSkT
- BGElDiuOZze/ptJPyIL//5vHc9wPT+2Y+dgAAAA==
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Luca Di Stefano <luca.distefano@linaro.org>,
-        993612@bugs.debian.org, stable@kernel.org
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2335; i=broonie@kernel.org;
- h=from:subject:message-id; bh=0B3WByzbvhV82JVnWTI4aBuMjHJDudsWnukTFb5RhdA=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBj0qnSX2z5hfYDIvpgA1MmtHtOEYUPZ6tljqI7AjOe
- CI3xYzGJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCY9Kp0gAKCRAk1otyXVSH0PIPB/
- 9wqN4V/XYFlVMlFoZQ+WV2Lh3k+oKFGTXfLAzUYQY7Zgfz6KnJZgdwgwx/IRigG1ktQxL6IQQ0t3x0
- kZYu2wy5hQDhib4KGIkozJ6BFrLn14sE43fkg33pi6fKuqsMuisvdASS0awe32qcDdZ847fUum9SYk
- xBkW33qV2YcuZ3ZbisXZY8V5d1vqhyh1KxH64VYOeLLjon5En8DFHq8ezNdpi9SC3vcf14xUT3qqbg
- n+irYoWiKaWerUqBDDEGkAbRb9HhWd73rlahS/jj4zBYTGKeLmxpKK+7N6phhA6VqdaWE9WF/Xk16K
- eh4ALvZK6Fb1tsI48O4d1Iel1M/HIx
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Priority: 3
+ORGANIZATION: Mrs Alice Walton
+X-MAILER: Active! mail
+X-EsetResult: clean, %VIRUSNAME%
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1674750493;VERSION=7944;MC=599861430;TRN=0;CRV=0;IPC=210.134.169.250;SP=4;SIPS=1;PI=5;F=0
+X-I-ESET-AS: RN=0;RNP=
+X-ESET-Antispam: OK
+X-Spam-Status: Yes, score=6.5 required=5.0 tests=BAYES_50,
+        FREEMAIL_FORGED_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        LOCALPART_IN_SUBJECT,SPF_HELO_NONE,SPF_PASS,T_HK_NAME_MR_MRS,
+        UNRESOLVED_TEMPLATE,XPRIO_SHORT_SUBJ autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Report: *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5748]
+        *  1.1 LOCALPART_IN_SUBJECT Local part of To: address appears in
+        *      Subject
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [alicewaltton1[at]gmail.com]
+        *  1.3 UNRESOLVED_TEMPLATE Headers contain an unresolved template
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.0 T_HK_NAME_MR_MRS No description available.
+        *  2.1 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+        *  1.0 XPRIO_SHORT_SUBJ Has X Priority header + short subject
+X-Spam-Level: ******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 7a8b64d17e35 ("of/address: use range parser for of_dma_get_range")
-converted the parsing of dma-range properties to use code shared with the
-PCI range parser. The intent was to introduce no functional changes however
-in the case where we fail to translate the first resource instead of
-returning -EINVAL the new code we return 0. Restore the previous behaviour
-by returning an error if we find no valid ranges, the original code only
-handled the first range but subsequently support for parsing all supplied
-ranges was added.
 
-This avoids confusing code using the parsed ranges which doesn't expect to
-successfully parse ranges but have only a list terminator returned, this
-fixes breakage with so far as I can tell all DMA for on SoC devices on the
-Socionext Synquacer platform which has a firmware supplied DT. A bisect
-identified the original conversion as triggering the issues there.
+Greetings,
 
-Fixes: 7a8b64d17e35 ("of/address: use range parser for of_dma_get_range")
-Signed-off-by: Mark Brown <broonie@kernel.org>
-Cc: Luca Di Stefano <luca.distefano@linaro.org>
-Cc: 993612@bugs.debian.org
-Cc: stable@kernel.org
----
- drivers/of/address.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+I trust you are well. I sent you an email yesterday, I just want to confirm if you received it.
+Please let me know as soon as possible,
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index c34ac33b7338..21342223b8e5 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -975,10 +975,12 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
- 	}
- 
- 	/*
--	 * Record all info in the generic DMA ranges array for struct device.
-+	 * Record all info in the generic DMA ranges array for struct device,
-+	 * returning an error if we don't find any parsable ranges.
- 	 */
- 	*map = r;
- 	of_dma_range_parser_init(&parser, node);
-+	ret = -EINVAL;
- 	for_each_of_range(&parser, &range) {
- 		pr_debug("dma_addr(%llx) cpu_addr(%llx) size(%llx)\n",
- 			 range.bus_addr, range.cpu_addr, range.size);
-@@ -992,6 +994,7 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
- 		r->size = range.size;
- 		r->offset = range.cpu_addr - range.bus_addr;
- 		r++;
-+		ret = 0;
- 	}
- out:
- 	of_node_put(node);
+Regard
+Mrs Alice Walton
 
----
-base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
-change-id: 20230126-synquacer-boot-243bd1b87f64
-
-Best regards,
--- 
-Mark Brown <broonie@kernel.org>
 
