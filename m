@@ -2,252 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1E4367C8A0
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:34:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA6B167C8A6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:35:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236266AbjAZKec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 05:34:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56836 "EHLO
+        id S230112AbjAZKfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 05:35:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbjAZKea (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:34:30 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF3AD3EC4B
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:34:27 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id m2so3398969ejb.8
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:34:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=yNKGiFVF7gZl8W9gtBpFjfAaHbcRzsNNp7MAmipi5tM=;
-        b=sUSCEuKpo0FtzU8NNmxCzR/r2KwAtc7S3/o1ClFq6L9vLkC3QIXXqEZ1opixeisU2G
-         iQTu9Eem/CRw6cJOSeu7z6mPcb7H/FVOfoZ44gOSFpxE8OI6Gwzrgh5AEeogGN8s+g4i
-         KCHz5FZ76MAQjOHnzVRtA3LXcGWipp0RxLRwDT/QDXulGWbSn6K0iQT23A+suDeAfldL
-         ZlqmQnVFVyHgdNSeaLuxDM27lWzd7rcg7/8h+i2P943Mv4R0tr4a03cqFezJDRNzYFec
-         U2fF6z/pk8rZeVEQD1pEE4HvcznmUxdp79rYtx0UoQRipTTEKRNGgyHYqLf3I5Fma1c5
-         r06A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yNKGiFVF7gZl8W9gtBpFjfAaHbcRzsNNp7MAmipi5tM=;
-        b=bjIoi+uSE8RJ3Wq397mi8RGbp3zyQAXWfJLvmluwzHvVVMKz5S21IFJC9qd02XDrHo
-         c+K4GLoASIOTpqXtb7TlaG5hfWsvtE3ndlQsoNpTYyc2H2FV4CnfsJaDs+Sw4q0D5F5F
-         cKK9ECfOit7LfM8u0GyLyms3EG/q341LXPSDFiY8cUwvxuWKVNpOzHHZraTpKN52YEb3
-         qb9D2x324k2mys2/EY7iiXD1xf1cADIXJvAXYkQpQMhyGAxRfnPGSoZWuMQaEj5GLay1
-         5rTjsKIWji8f6MffownSGxRyZHkcp//PYtAt3THJvwKOHa8EZAyk4VtoH6/M+1Lemc7N
-         YlIg==
-X-Gm-Message-State: AFqh2kp2KrrO8u6v+Ze6uXhwJNaZRFO6p7q6NX793eEP34VjQu1sAFgW
-        i4J21nnXsDepaFM8HYN3mcY/Yq5KmzNElpETtEkhpg==
-X-Google-Smtp-Source: AMrXdXu0EMTejStEvfuw0MDinG//EO3AdM5XPHW4c5XWtjDfz8npqgxmZS5z1qRVIzw1wvFeVznkiNtOTi4NmJ3dBNA=
-X-Received: by 2002:a17:906:80da:b0:872:618e:b01c with SMTP id
- a26-20020a17090680da00b00872618eb01cmr3636438ejx.275.1674729266315; Thu, 26
- Jan 2023 02:34:26 -0800 (PST)
+        with ESMTP id S231428AbjAZKfg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:35:36 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D1F4518E4;
+        Thu, 26 Jan 2023 02:35:35 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 19B0C6602E68;
+        Thu, 26 Jan 2023 10:35:33 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1674729333;
+        bh=/1IZcCeBq30sq5XeIYZ5KDLyqOJxHaleT4KHHY+u2tY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=A9ow93CX82rwbOjV2A12hJRXCzXASSFhXhEUn6h51FMJlMVrusHLYjz+rxAru6pID
+         8uoGq8zHa+ThXlWuXKK2ETPe74qlU4twfCmvf2qwNUbR0OfAf0kFgVKJ/sCfPn+z3a
+         4MNvSilVNnzgbClLs0pCtJTU9Gq2p3EAtqH9JhVkJ3Vj5OHV55uOelAk9h7AC5CgD3
+         9gyUuVyHaLI94H0Xyc9pyht97msWATScWCY56kX2KlTb3lM/qR6Yp95dSR2cWAsAae
+         KVBmJrKvb/wc2OVcI06w35T6D+QjHTgYFqZ7TPGWKRtB0ztNlS3vVlhXeIrbNl8rgh
+         O+uzOFwT8IctQ==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     matthias.bgg@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        seiya.wang@mediatek.com, tinghan.shen@mediatek.com,
+        allen-kh.cheng@mediatek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 0/6] Fix MT8186/92/95 topology and idle state names
+Date:   Thu, 26 Jan 2023 11:35:20 +0100
+Message-Id: <20230126103526.417039-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-References: <20230124131717.128660-1-bchihi@baylibre.com> <20230124131717.128660-3-bchihi@baylibre.com>
- <20230125203420.GA2855708-robh@kernel.org>
-In-Reply-To: <20230125203420.GA2855708-robh@kernel.org>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Thu, 26 Jan 2023 11:33:50 +0100
-Message-ID: <CAGuA+oq1F4UnEz+ujjtaj=+WCMZOky38B4z4go7TXhMYt1EeEw@mail.gmail.com>
-Subject: Re: [PATCH v11 2/6] dt-bindings/thermal/mediatek: Add LVTS thermal
- controllers dt-binding definition
-To:     Rob Herring <robh@kernel.org>
-Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
-        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+MT8186, MT8192 and MT8195 use ARM DynamIQ, which combines big and
+LITTLE cores in one single cluster! A two cluster topology is simply
+wrong in this case.
 
-On Wed, Jan 25, 2023 at 9:34 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Jan 24, 2023 at 02:17:13PM +0100, bchihi@baylibre.com wrote:
-> > From: Balsam CHIHI <bchihi@baylibre.com>
-> >
->
-> dt-bindings: thermal: ... for the subject
+While at it, after some research, I've also noticed that the names
+assigned to the idle states are misleading, so I went on changing
+them to reflect the actual function.
 
-I will fix it.
+The names change commits, unlike the CPU map ones, didn't get any
+Fixes tag, as naming changes aren't fixing anything that would be
+meaningful for functionality (it's cosmetic, nothing else).
 
->
-> > Add LVTS thermal controllers dt-binding definition for mt8195.
-> >
-> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
-> > ---
-> >  .../thermal/mediatek,lvts-thermal.yaml        | 107 ++++++++++++++++++
-> >  include/dt-bindings/thermal/mediatek-lvts.h   |  19 ++++
-> >  2 files changed, 126 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-> >  create mode 100644 include/dt-bindings/thermal/mediatek-lvts.h
-> >
-> > diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-> > new file mode 100644
-> > index 000000000000..12bfbdd8ff89
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-> > @@ -0,0 +1,107 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/thermal/mediatek,lvts-thermal.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MediaTek SoC Low Voltage Thermal Sensor (LVTS)
-> > +
-> > +maintainers:
-> > +  - Balsam CHIHI <bchihi@baylibre.com>
-> > +
-> > +description: |
-> > +  LVTS is a thermal management architecture composed of three subsystems,
-> > +  a Sensing device - Thermal Sensing Micro Circuit Unit (TSMCU),
-> > +  a Converter - Low Voltage Thermal Sensor converter (LVTS), and
-> > +  a Digital controller (LVTS_CTRL).
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - mediatek,mt8195-lvts-ap
-> > +      - mediatek,mt8195-lvts-mcu
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +    description: LVTS reset for clearing temporary data on AP/MCU.
-> > +
-> > +  nvmem-cells:
-> > +    minItems: 1
-> > +    items:
-> > +      - description: Calibration eFuse data 1 for LVTS
-> > +      - description: Calibration eFuse data 2 for LVTS
-> > +
-> > +  nvmem-cell-names:
-> > +    minItems: 1
-> > +    items:
-> > +      - const: lvts-calib-data-1
-> > +      - const: lvts-calib-data-2
-> > +
-> > +  "#thermal-sensor-cells":
-> > +    const: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - resets
-> > +  - nvmem-cells
-> > +  - nvmem-cell-names
-> > +  - "#thermal-sensor-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/clock/mt8195-clk.h>
-> > +    #include <dt-bindings/reset/mt8195-resets.h>
-> > +    #include <dt-bindings/thermal/mediatek-lvts.h>
-> > +
-> > +    soc {
-> > +      #address-cells = <2>;
-> > +      #size-cells = <2>;
-> > +
-> > +      lvts_mcu: thermal-sensor@11278000 {
-> > +        compatible = "mediatek,mt8195-lvts-mcu";
-> > +        reg = <0 0x11278000 0 0x1000>;
-> > +        interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +        clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
-> > +        resets = <&infracfg_ao MT8195_INFRA_RST4_THERM_CTRL_MCU_SWRST>;
-> > +        nvmem-cells = <&lvts_efuse_data1 &lvts_efuse_data2>;
-> > +        nvmem-cell-names = "lvts-calib-data-1", "lvts-calib-data-2";
-> > +        #thermal-sensor-cells = <1>;
-> > +      };
-> > +    };
-> > +
-> > +    thermal_zones: thermal-zones {
-> > +      cpu0-thermal {
-> > +        polling-delay = <1000>;
-> > +        polling-delay-passive = <250>;
-> > +        thermal-sensors = <&lvts_mcu MT8195_MCU_LITTLE_CPU0>;
-> > +
-> > +        trips {
-> > +          cpu0_alert: trip-alert {
-> > +            temperature = <85000>;
-> > +            hysteresis = <2000>;
-> > +            type = "passive";
-> > +          };
-> > +
-> > +          cpu0_crit: trip-crit {
-> > +            temperature = <100000>;
-> > +            hysteresis = <2000>;
-> > +            type = "critical";
-> > +          };
-> > +        };
-> > +      };
-> > +    };
-> > diff --git a/include/dt-bindings/thermal/mediatek-lvts.h b/include/dt-bindings/thermal/mediatek-lvts.h
-> > new file mode 100644
-> > index 000000000000..428a95c18509
-> > --- /dev/null
-> > +++ b/include/dt-bindings/thermal/mediatek-lvts.h
-> > @@ -0,0 +1,19 @@
-> > +/* SPDX-License-Identifier: GPL-2.0+ */
->
-> Okay with GPL 4? GPL-2.0-only
->
-> Dual license please. Consistent with your .dts files.
+AngeloGioacchino Del Regno (6):
+  arm64: dts: mt8195: Fix CPU map for single-cluster SoC
+  arm64: dts: mt8192: Fix CPU map for single-cluster SoC
+  arm64: dts: mt8186: Fix CPU map for single-cluster SoC
+  arm64: dts: mt8195: Change idle states names to reflect actual
+    function
+  arm64: dts: mt8186: Change idle states names to reflect actual
+    function
+  arm64: dts: mt8192: Change idle states names to reflect actual
+    function
 
-I will fix this too.
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi | 30 ++++++++++----------
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 35 +++++++++++-------------
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 34 +++++++++++------------
+ 3 files changed, 46 insertions(+), 53 deletions(-)
 
->
-> > +/*
-> > + * Copyright (c) 2023 MediaTek Inc.
-> > + * Author: Balsam CHIHI <bchihi@baylibre.com>
-> > + */
-> > +
-> > +#ifndef __MEDIATEK_LVTS_DT_H
-> > +#define __MEDIATEK_LVTS_DT_H
-> > +
-> > +#define MT8195_MCU_BIG_CPU0  0
-> > +#define MT8195_MCU_BIG_CPU1  1
-> > +#define MT8195_MCU_BIG_CPU2  2
-> > +#define MT8195_MCU_BIG_CPU3  3
-> > +#define MT8195_MCU_LITTLE_CPU0       4
-> > +#define MT8195_MCU_LITTLE_CPU1       5
-> > +#define MT8195_MCU_LITTLE_CPU2       6
-> > +#define MT8195_MCU_LITTLE_CPU3       7
-> > +
-> > +#endif /* __MEDIATEK_LVTS_DT_H */
-> > --
-> > 2.34.1
-> >
+-- 
+2.39.0
 
-Thank you for the review.
-
-Best regards,
-Balsam
