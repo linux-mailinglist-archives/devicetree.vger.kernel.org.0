@@ -2,116 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7319567CAE8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 13:28:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5740A67CAF3
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 13:32:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236802AbjAZM2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 07:28:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47518 "EHLO
+        id S236532AbjAZMcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 07:32:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236486AbjAZM2w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 07:28:52 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5DC549568
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:28:51 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id r2so1597651wrv.7
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:28:51 -0800 (PST)
+        with ESMTP id S236391AbjAZMca (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 07:32:30 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4E224A222
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:32:29 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso1009413wms.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 04:32:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YUsFc75hI6TZHDszdvKDaz8iQW9fEFrZhZGH/dc9Zw4=;
-        b=BN+d3LISu6a9WAmIRfCGEq3LV3ZEGBMmPnsj1ySWKY9C+nLw0I9WA7/FvQ6hMatZYM
-         hKzU04mq0XhzCqwQ2Z4iYx0GUxKRU8vIYwl1FP29qDg3sF0oFZadjRHuB5stRBUVP+SP
-         ZpM8annmXq+46AWqUDyH1RXcVZuPs7fX227vymzSjIA5eetbIxuIXsN61xDSskvobZap
-         zXr2oEvXU5QiyweG+E+Nxpi67tzciHoPVxXuleq5hvbeQ/VTefilOfQvk18o+lzMEMFs
-         kR26zPcNUWX5xNPMmHqxedVO5/ktHkc0JTu+P1972yyGwPFF1XM+jaWmP5J+WTPucOpm
-         Xkzg==
+        bh=/bNSq7yyd0Fn2CFk8JA2YspzkodNLpfvLBCK3Yp7urY=;
+        b=oum0aFT6waydlwgkxuNblpIgYLzAffKOlwHZFRBf593vlK/BANnDrFdlUS89AZ4me7
+         t7F6gSmf8fSgbwgpL7y/garFTLUp+3M6lFJC2LuvieLGCrmvohxqkdVOTmg15uiAdWSr
+         u7PCpDbuD767PgolBOStee35yRZH1oW1CXAkmaD7K8ArEbklE/UhfaIKa2h5eUubSv3N
+         MCjBVvk/gkImWs2O5/kFk+JCzaVIBCHPwuKnpx+btOXeAAtbhtIc+oO5Vafu7R2ZCKK9
+         v38yuYW6hkPJLkKUBJSmgKVA6thZpcFaZhKFhp0Jtn16H6Ngnz9i7X4h/wBAgGzIFGWf
+         Lw3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YUsFc75hI6TZHDszdvKDaz8iQW9fEFrZhZGH/dc9Zw4=;
-        b=mVEd6SSSyfUT3ERC+rLHLMZ0LzDZHu3R0pduC0WyA/uoutZmE4WE+XLq7Jq6KBgolR
-         c7+Y/SPSMrle4EGqjRiBfNb4Z+O/wHLLjwLQcappyU5yo7Lf/BxqxJfxw9GAG4BpLK+o
-         O+qKzRhrkE4YsN3RLapVjmow3Jzv12S4crg1OaOTo0rRRcIU3g9jZn0qGS+bxb6V5NmF
-         60brX+pAY4zRuokO1o9AQ8tFTUjs5IILZSQYKMu+Geti2nUg6mymS31PmeWza3QkBvBa
-         2lQl6yqOrBK/6zNEgpVs+gq0Tvh9yM6bXbXbqsHbY1gqCMqbM2Dp2yCOxIeRPFQiRizp
-         1H6A==
-X-Gm-Message-State: AFqh2kqTMWrkIlMB58oz8RHN4SFhN3FNyM2BLJ2Q/VGha+11JDNl/8KZ
-        V8jwDLQzaAYAL+HVjyv+9tznBAy/QURtYTBv
-X-Google-Smtp-Source: AMrXdXtQZiQtIGhUwqlUb6hRQYC42p3Tl0CsgkP1SwkHsrGvt1b6dzuRXRIRm5S+/M/Gst+sUSO5Jg==
-X-Received: by 2002:adf:e30c:0:b0:2be:1fae:690e with SMTP id b12-20020adfe30c000000b002be1fae690emr29396197wrj.50.1674736130352;
-        Thu, 26 Jan 2023 04:28:50 -0800 (PST)
+        bh=/bNSq7yyd0Fn2CFk8JA2YspzkodNLpfvLBCK3Yp7urY=;
+        b=09MxM2bfmAVTb+5ZXgWV+pHMdOShxpr05PoEg1QSPnHSz9WMBq1fcH7t/drid0sg8h
+         K9mSYrPH2nbJ/ZIC7Ed7s5Lcth13uNeYVO2H0h3G/2KaWyK88SgCtGjPf3PctJeFftiY
+         2D3P4TFafgpegwVaO5q2aLMWnjJu8+exhW65KWlofSaAEr62vHGF8/FYJuObjNsHpdZB
+         ySj4EwsE7/VJe8/w2djE+U+zmmj859w4FsEwo7ePiYWDqs3PotJaNUH1l11j8MXCGR+0
+         kV+jYrVrMDGwlbbD1Nm9fCAk31cOhhQlRh77yhuZurp62cOxra0czq6UAVwx20eBMPaU
+         AybQ==
+X-Gm-Message-State: AFqh2koWv3Iis/7FIKwuzsXliF1OMcAlyRFj+nL3xnh9uDRceskZ4vE3
+        +TfpifwfHzji0cxtOBT6vUgsww==
+X-Google-Smtp-Source: AMrXdXv8WZZLPkrmDbdaf70Msw/d1T9RanynwxtPxW0TwnaFzZhcu526bILzcynC0l7mfwL8btwJWw==
+X-Received: by 2002:a05:600c:3d14:b0:3da:f793:fff6 with SMTP id bh20-20020a05600c3d1400b003daf793fff6mr35093224wmb.16.1674736348297;
+        Thu, 26 Jan 2023 04:32:28 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z12-20020adff74c000000b00291f1a5ced6sm1222424wrp.53.2023.01.26.04.28.49
+        by smtp.gmail.com with ESMTPSA id p12-20020a05600c468c00b003dc22ee5a2bsm2350815wmo.39.2023.01.26.04.32.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 04:28:49 -0800 (PST)
-Message-ID: <d4a70ab2-c5a2-2478-3fa9-c703c1619252@linaro.org>
-Date:   Thu, 26 Jan 2023 13:28:48 +0100
+        Thu, 26 Jan 2023 04:32:27 -0800 (PST)
+Message-ID: <4a02f9be-04df-352b-fe49-7990eba5dc2e@linaro.org>
+Date:   Thu, 26 Jan 2023 13:32:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 1/3] gpio: dt-bindings: add new property to wd,mbl-gpio
- bindings
+Subject: Re: [PATCH v8 1/5] dt-bindings: input: pwm-beeper: Convert txt
+ bindings to yaml
 Content-Language: en-US
-To:     nl250060@ncr.com, Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+To:     Manuel Traut <manuel.traut@mt.com>, linux-kernel@vger.kernel.org
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230126-gpio-mmio-fix-v1-0-8a20ce0e8275@ncr.com>
- <20230126-gpio-mmio-fix-v1-1-8a20ce0e8275@ncr.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230126091825.220646-1-manuel.traut@mt.com>
+ <20230126091825.220646-2-manuel.traut@mt.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230126-gpio-mmio-fix-v1-1-8a20ce0e8275@ncr.com>
+In-Reply-To: <20230126091825.220646-2-manuel.traut@mt.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2023 11:17, Niall Leonard via B4 Submission Endpoint wrote:
-> From: Niall Leonard <nl250060@ncr.com>
-
-Subject: missing "wd,mbl-gpio:" prefix.
-
-Subject: drop second/last, redundant "bindings". The "dt-bindings"
-prefix is already stating that these are bindings.
-
+On 26/01/2023 10:18, Manuel Traut wrote:
+> Converts txt binding to new YAML format.
 > 
-> Added optional "no-input" property
+> Signed-off-by: Manuel Traut <manuel.traut@mt.com>
 
-Missing full stop.
+Thank you for your patch. There is something to discuss/improve.
 
-> 
-> Signed-off-by: Niall Leonard <nl250060@ncr.com>
-> ---
->  Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt b/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
-> index 038c3a6a1f4d..9405f9dad522 100644
-> --- a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
-> +++ b/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
-> @@ -18,6 +18,7 @@ Required properties:
->  
->  Optional properties:
->  	- no-output: GPIOs are read-only.
-> +	- no-input: GPIOs are write-only. Read is via a shadow register.
+> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.yaml b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
+> new file mode 100644
+> index 000000000000..351df83d5cbe
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/input/pwm-beeper.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 
-Why this property is needed? Why driver cannot always use shadow register?
+Drop quotes from both. Apologies for not noticing it earlier.
 
-Anyway, please convert the bindings to DT schema first (see
-writing-schema and example-schema).
-Documentation/devicetree/bindings/writing-schema.rst
+> +
+> +title: PWM beeper
+> +
+> +maintainers:
+> +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> +
+> +description: Registers a PWM device as beeper.
+> +
+> +properties:
+> +  compatible:
+> +    const: pwm-beeper
+> +
+> +  pwms:
+> +    maxItems: 1
+> +
+> +  amp-supply:
+> +    description: >
+> +      phandle to a regulator that acts as an amplifier for
+> +      the beeper
+
+Drop "phandle to a"
+
+> +
+> +  beeper-hz:
+> +    description: bell frequency in Hz
+> +
+> +required:
+> +  - compatible
+> +  - pwms
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    beeper_amp: amplifier {
+> +      compatible = "fixed-regulator";
+> +      gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
+> +    };
+
+Drop this device node, not related.
+
+> +
+> +    beeper {
+> +      compatible = "pwm-beeper";
+> +      pwms = <&pwm0>;
+> +      amp-supply = <&beeper_amp>;
+> +    };
 
 Best regards,
 Krzysztof
