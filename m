@@ -2,109 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44DB067C589
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:10:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4245F67C5AB
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 09:21:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234999AbjAZIKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 03:10:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44112 "EHLO
+        id S236371AbjAZIVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 03:21:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236310AbjAZIKL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:10:11 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C7BE69B10;
-        Thu, 26 Jan 2023 00:10:11 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A8C3FB81CC4;
-        Thu, 26 Jan 2023 08:10:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26FD7C433EF;
-        Thu, 26 Jan 2023 08:10:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674720608;
-        bh=8N0004Ksl54/+9j2hPsSyRkAcDEsg7JhyNVs9HdSx/U=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Nb1qE0LYFJSdahhI/hjhx4Bn+9N0xfzHaKzF78swyiLpJLX+Ja5NgGpNlqrQjZxE7
-         lajWN3P8d3tnkP8Pku3FZZX55RKBdvsgA6OYgr0RnnNntPOd98VD2/AYwgUD2Qkp/Z
-         Vd9C13vVHavMCWQWtYJBwPgmKQyawP5YBNTQvgkMkIfBs2Oslzh8n9H9uqQh9pgDGG
-         IA/5TLw7ug62ADl9GJ0GPI/y90j0msxPH4yVfmKi2/c5zDAozBGOCfS7A4FSWUZU2N
-         Llgp5rveODYs0zWCgaYCamrtbi++OVn16f1MHH3EtHmk9dnGECdk5/FIu10YzSAvVC
-         kucg3GPA1sbnw==
-Date:   Thu, 26 Jan 2023 09:10:02 +0100
-From:   Mauro Carvalho Chehab <mchehab@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Yu Chen <chenyu56@huawei.com>,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-usb@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: phy: hisilicon: Fix
- 'hisilicon,eye-diagram-param' differing types
-Message-ID: <20230126091002.01f58b94@coco.lan>
-In-Reply-To: <20230125221444.3058631-1-robh@kernel.org>
-References: <20230125221444.3058631-1-robh@kernel.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+        with ESMTP id S236380AbjAZIVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 03:21:01 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31DD677AE
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:20:55 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id m2so2576644ejb.8
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 00:20:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lXOcNfOjRw1Y0qlOF/3R7EgUaI8IBLrnuJ66uPISGZo=;
+        b=wm9R/Twc5JV6iAvLIM0EAyevxG49lRJsTVoOxJGHA78ymVchZhsvOYR+RvqCaNDfYs
+         ahIXL/48IfjuvLCTtKkVPjPbPkieLeoPXT+BERurZJpQdWuBl/0tBQ8J/Z0LEA1k+slx
+         SQ5ZgI+TD6I42P3r2LAeH/vtJnRk69ktHaxaFvg02aQqv6SoEsyJWSbM0AjKEQauPIzI
+         1l9CJSXIu4bBbKXnPop08oDpvqdQMoqzNkyE1pQKa/MIzI+Nd0fvcLgK7MYlMMU44ged
+         rslspynHGx7euvThb+8EdpEzo1VZOOgn2zgJDpSylK3QTfHqkuyHewc1n+kU7br7ENir
+         dsyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lXOcNfOjRw1Y0qlOF/3R7EgUaI8IBLrnuJ66uPISGZo=;
+        b=KXdthqi4EjZCi7VItW22j6vUZL938q8oJQg0mDUAWmfWNTBu/7/1PQ6nNWQDLVFTqM
+         KHuAr7Wrt7zna+WniYtpY9mh3HCTu+hu5umoAUsoRoI/jNcYRDawHWavzVUsyu/7QfNf
+         Kj51eSqWdWpTQ1ksM+XZfMdrnScXsrYFb1Jpc38RZdj54Dh9FY5YWIEbKXQvFxtQaOD1
+         T3hs1KquwAqeC8GSZo6RZbgM5oksexaGCbLPi6POZCS/XQ+0EfyvydS2iqODKO9hOBLU
+         rqbjRfIJ7ymU73SceyC10MsFfl9wyCHrkv8XQ4QrPnaghcco3rDNQJNkEQ76OztdpHa9
+         uutg==
+X-Gm-Message-State: AO0yUKX33Z3zi3i5vF7NYoJPMAw5HHE9mxGYsD+/RzsyjZmcpuBHLBMH
+        MJjrUhzPjz0PqWUokzvhUEhQTw==
+X-Google-Smtp-Source: AK7set8O4Q8kdw4WO9csN17e7RgF3UVlRgep1//+HpuRvVC+YWMHL+XKfyFLJFOMQC4EH+jSbW66ng==
+X-Received: by 2002:a17:907:9b88:b0:878:5937:7637 with SMTP id kq8-20020a1709079b8800b0087859377637mr2331915ejc.38.1674721253534;
+        Thu, 26 Jan 2023 00:20:53 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id gv11-20020a1709072bcb00b007c0d6b34d54sm231427ejc.129.2023.01.26.00.20.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jan 2023 00:20:52 -0800 (PST)
+Message-ID: <9e2b822a-b8ff-c4e0-aaa3-004682393bd9@linaro.org>
+Date:   Thu, 26 Jan 2023 10:20:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v3 4/8] clk: qcom: cbf-msm8996: scale CBF clock according
+ to the CPUfreq
+Content-Language: en-GB
+To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230120061417.2623751-1-dmitry.baryshkov@linaro.org>
+ <20230120061417.2623751-5-dmitry.baryshkov@linaro.org>
+ <078c5a8254ac006b65fc5fa81dfbc515.sboyd@kernel.org>
+ <3a355075-cc29-957a-678b-2a05aed25587@linaro.org>
+ <b4dd052421f926b60728f1578e4922e0.sboyd@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <b4dd052421f926b60728f1578e4922e0.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Wed, 25 Jan 2023 16:14:43 -0600
-Rob Herring <robh@kernel.org> escreveu:
-
-> 'hisilicon,eye-diagram-param' is also defined in
-> hisilicon,phy-hi3670-pcie.yaml as a 'uint32-array'. Unify it to use
-> 'uint32-array' everywhere.
+On 25/01/2023 23:40, Stephen Boyd wrote:
+> Quoting Dmitry Baryshkov (2023-01-20 14:53:21)
+>> On 21/01/2023 00:11, Stephen Boyd wrote:
+>>> Quoting Dmitry Baryshkov (2023-01-19 22:14:13)
+>>>> diff --git a/drivers/clk/qcom/clk-cbf-8996.c b/drivers/clk/qcom/clk-cbf-8996.c
+>>>> index 9cde0e660228..b049b4f7b270 100644
+>>>> --- a/drivers/clk/qcom/clk-cbf-8996.c
+>>>> +++ b/drivers/clk/qcom/clk-cbf-8996.c
+>>>> @@ -225,6 +228,133 @@ static const struct regmap_config cbf_msm8996_regmap_config = {
+>>>>           .val_format_endian      = REGMAP_ENDIAN_LITTLE,
+>>>>    };
+>>>>    
+>>>> +#ifdef CONFIG_INTERCONNECT
+>>>
+>>> Can you move this driver to drivers/interconnect/ ?
+>>
+>> Only the interconnect part? At some point I considered dropping the
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Yes only the interconnect part. Use auxiliary bus.
 
-> ---
->  .../devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml         | 3 ++-
->  .../devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml         | 3 ++-
->  2 files changed, 4 insertions(+), 2 deletions(-)
+Ack
+
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml b/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
-> index 20b79e2e8b82..b11d9873854a 100644
-> --- a/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
-> +++ b/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
-> @@ -27,7 +27,8 @@ properties:
->      description: phandle of syscon used to control usb tcxo.
->  
->    hisilicon,eye-diagram-param:
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    maxItems: 1
->      description: Eye diagram for phy.
->  
->  required:
-> diff --git a/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml b/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
-> index 1cb00dbcd4c5..3c69aca6c7eb 100644
-> --- a/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
-> +++ b/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
-> @@ -32,7 +32,8 @@ properties:
->      description: phandle of syscon used to control phy deep sleep.
->  
->    hisilicon,eye-diagram-param:
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    maxItems: 1
->      description: Eye diagram for phy.
->  
->    hisilicon,tx-vboost-lvl:
+>> whole CBF mux support and moving the whole driver to
+>> drivers/interconnect, but I could not find a good way to use alpha-pll
+>> from the interconnect driver. Would you recommend one?
+> 
+> I don't think you need to use alpha-pll code from the interconnect
+> driver, do you?
 
+If we have separate drivers? No, I don't.
 
+-- 
+With best wishes
+Dmitry
 
-Thanks,
-Mauro
