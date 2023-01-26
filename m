@@ -2,174 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E73AF67D017
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:25:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C87667D023
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 16:25:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbjAZPZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 10:25:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59910 "EHLO
+        id S232484AbjAZPZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 10:25:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232599AbjAZPYw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:24:52 -0500
-Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E929D14497;
-        Thu, 26 Jan 2023 07:24:34 -0800 (PST)
-Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-15fe106c7c7so2744458fac.8;
-        Thu, 26 Jan 2023 07:24:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ag06Hb9qIk6ptR42BWFbeZ8DVLKjhY0QP30dT9rCnf4=;
-        b=cyjF7viABigh+M4VRRLEDTZqNRkAo8TG5GENzKKvOJivxXG3OFSyboWyDYIw1On5Rs
-         bSu8FUdAzd2l96kLWaZgrdgPDbFGfszBDoG/1jhKyWVqtVjdwf3Cydt6fqlKQfAXT1DH
-         HmHPpPKk38guaELzr4/dRmO5rHHpuYl3rROoo+T+Mb/dNJHP6tk45svYziP1IVLYbjeG
-         gTjMw9ZGM6Lz1TcopZPqF2lcrMIQb+/TgRhmGnSqiQ6jtwWnOul0EuwtY5D/xnlIEuvP
-         dUuTBvK3lRpirXty55CGl3zOu9Rr+TZJrBk+9QdFXeoWzXPr9MvtdH2TPlPAb5NhNqRd
-         660w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ag06Hb9qIk6ptR42BWFbeZ8DVLKjhY0QP30dT9rCnf4=;
-        b=Eul4MASqN9xek1Evt81GcjaLfbGhkjZwJKXdl4Sn6gO+KSbMBU1+CFrpE7CZdN9iQK
-         r6zCmAshvLkIN6eGqDHtwW98/zuZWoq4mVNZ3PoPh9mjAZFSckDNbhuzr3ox9WYrz8Uh
-         ir2QD0824eh/9sbgvI5th7pepfjv2/t61MPSXI0X0ghNr21XurOom84HCILilRfFQgfZ
-         02eEUqSjCDHBzbNKufT0256K4rkgXaRKzcgnLJgFIvFqnvTLJdiVk6CmoliHU9i6ku4p
-         JZLmuVRR7BB7iXy+9aR/8OWo7nHfymFm8kPUmNQ52cFuoA3xHYWd0Br+0oM9OI9TxpnF
-         64hA==
-X-Gm-Message-State: AFqh2kqYmFQleBKTvtNyefhJYQlAM+5+N5YbpSpZM2En0GRexJsC07x0
-        f1cQ7PoqkfB+5a7Y6xV9BtaubwDZpyWm/SaqJWU=
-X-Google-Smtp-Source: AMrXdXvcV4CLcI1gQfSKDu7AQMnOiuJgSHIzx3ort5jv5k0l30wji9hXaAQ67eTJ6qlWKa39m8pJ7cRETaJ4R+DKjgU=
-X-Received: by 2002:a05:6870:9728:b0:148:5512:23c0 with SMTP id
- n40-20020a056870972800b00148551223c0mr3457750oaq.265.1674746674128; Thu, 26
- Jan 2023 07:24:34 -0800 (PST)
+        with ESMTP id S232315AbjAZPZj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 10:25:39 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 011F44239;
+        Thu, 26 Jan 2023 07:25:27 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9F568B818D3;
+        Thu, 26 Jan 2023 15:25:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 519C6C4339E;
+        Thu, 26 Jan 2023 15:25:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674746725;
+        bh=Dv/up+8vnnDKxVYL5M82TsxnhihieAipf84F3aqFTBc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=aIR5lmX6mCnYcMxN6frGMgpYATYps8ht8NHQCphRnDrit6MakT8jnDmbFxbwAAv38
+         WnVfUwIQHZ7PU5ngX2IvGp7Us8dCNNftxqoKX92E6e6u3AtzjxTK17gTXBDzaIwtJ0
+         Dn03Klk06Eu2waGPWqLNK6V76Ydlp/6RmkkT6X+4ms1IB1E0YgVJIAR4gkz8zLeb9c
+         0u05/x/mi105FvazCEu6IbJJRjAh0OBMf86ZnC03X4vl85g7+gQUP7Nb4mZ0pvIvKc
+         Ib69liJEQJXsEXMSsLG3kscLoA3mWVQinadIRuGu2r0owfyl37J+i++syDEdu1YwmQ
+         LoK4SN2lY0mOA==
+Received: by mail-vs1-f49.google.com with SMTP id t10so2252083vsr.3;
+        Thu, 26 Jan 2023 07:25:25 -0800 (PST)
+X-Gm-Message-State: AO0yUKUMvWHY95mP979cWKWz/3mh3yHPbiFP3IeN0Bp7u96vZX3G0Vh9
+        f6TJOIzejDoBkbadAsoEnvFBoQYK8Sz6s3K/JA==
+X-Google-Smtp-Source: AK7set82kQPpMTlyog8X8t8/MQ53pskdfnuSPQEK8B/U+2gBHyhUyhTCsel9OSKXZISSuE7fdiUTRJUY5DL1rJ/8yV4=
+X-Received: by 2002:a67:fe41:0:b0:3ea:c8c:48a5 with SMTP id
+ m1-20020a67fe41000000b003ea0c8c48a5mr603284vsr.53.1674746724284; Thu, 26 Jan
+ 2023 07:25:24 -0800 (PST)
 MIME-Version: 1.0
-References: <20230126135049.708524-1-rick.wertenbroek@gmail.com> <20230126145200.GA1270846@bhelgaas>
-In-Reply-To: <20230126145200.GA1270846@bhelgaas>
-From:   Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Date:   Thu, 26 Jan 2023 16:23:57 +0100
-Message-ID: <CAAEEuhq9X0ppqTMp7fnZapbubf9k8xhH=u3gPva3hEpAdawK3w@mail.gmail.com>
-Subject: Re: [PATCH 0/8] PCI: rockchip: Fix PCIe endpoint controller driver
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        wenrui.li@rock-chips.com, rick.wertenbroek@heig-vd.ch,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230124222023.316089-1-robh@kernel.org> <Y9EyB+OO7MyGy20w@e120937-lin>
+ <20230125141113.kkbowopusikuogx6@bogus> <Y9JLUIioxFPn4BS0@e120937-lin> <20230126144647.6q3qlu5sqz27cmyc@bogus>
+In-Reply-To: <20230126144647.6q3qlu5sqz27cmyc@bogus>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 26 Jan 2023 09:25:12 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLxBAB103vgCUOwW4SkAApm6_=Ace7EFWMSDFKDzJaKpQ@mail.gmail.com>
+Message-ID: <CAL_JsqLxBAB103vgCUOwW4SkAApm6_=Ace7EFWMSDFKDzJaKpQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: Restrict protocol child
+ node properties
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Cristian Marussi <cristian.marussi@arm.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello, Bjorn
-Thank you for your prompt reply and helpful comments.
-
-Le jeu. 26 janv. 2023 =C3=A0 15:52, Bjorn Helgaas <helgaas@kernel.org> a =
-=C3=A9crit :
+On Thu, Jan 26, 2023 at 8:46 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
 >
-> Hi Rick,
->
-> Thanks very much for your work.
->
-> On Thu, Jan 26, 2023 at 02:50:40PM +0100, Rick Wertenbroek wrote:
-> > This is a series of patches that fixes the PCIe endpoint controller dri=
-ver
-> > for the Rockchip RK3399 SoC. It is based on Linux kernel 6.0.19
+> On Thu, Jan 26, 2023 at 09:43:44AM +0000, Cristian Marussi wrote:
+> > On Wed, Jan 25, 2023 at 02:11:13PM +0000, Sudeep Holla wrote:
+> > > On Wed, Jan 25, 2023 at 01:43:48PM +0000, Cristian Marussi wrote:
+> > > > so now that the catch-all protocol@ patternProperty is gone in favour
+> > > > of the 'protocol-node' definition and $refs, does that mean that any
+> > > > current and future SCMI officially published protocol <N> has to be
+> > > > added to the above explicit protocol list, even though it does not
+> > > > have any special additional required property beside reg ?
+> > > > (like protocol@18 above...)
+> > > >
+> > >
+> > > If there are no consumers, should we just not add and deal with it
+> > > entirely within the kernel. I know we rely today on presence of node
+> > > before we initialise, but hey we have exception for system power protocol
+> > > for other reasons, why not add this one too.
+> > >
+> > > In short we shouldn't have to add a node if there are no consumers. It
+> > > was one of the topic of discussion initially when SCMI binding was added
+> > > and they exist only for the consumers otherwise we don't need it as
+> > > everything is discoverable from the interface.
 > >
-> > The original driver in mainline had issues and would not allow for the
-> > RK3399 to operate in PCIe endpoint mode. This patch series fixes that s=
-o
-> > that the PCIe core controller of the RK3399 SoC can now act as a PCIe
-> > endpoint.
+> > It is fine for me the no-consumers/no-node argument (which anyway would
+> > require a few changes in the core init logic anyway to work this way...),
+> > BUT is it not that ANY protocol (even future-ones) does have, potentially,
+> > consumers indeed, since each protocol-node can potentially have a dedicated
+> > channel and related DT channel-descriptor ? (when multiple channels are
+> > allowed by the transport)
+> >
+> > I mean, as an example, you dont strictly need protos 0x18/0x12 nodes for
+> > anything (if we patch the core init as said) UNLESS you want to dedicate
+> > a channel to those protocols; so I'm just checking here if these kind of
+> > scenarios will still be allowed with this binding change, or if I am
+> > missing something.
 >
-> So we merged cf590b078391 ("PCI: rockchip: Add EP driver for Rockchip
-> PCIe controller") when it actually didn't work?  Ouch.  Thanks for
-> fixing it and testing it.
-
-It seems it wasn't fully tested, the code compiles and kernel module loads,
-but further functionality didn't seem to have been tested
-(e.g., lspci, and with the pcitest tool and pci_endpoit_test_driver).
-
+> Ah, good point on the transport information. Yes we will need a node if
+> a protocol has a dedicated transport. No one has used so far other than
+> Juno perf, but we never know. We can always extended the bindings if
+> needed.
 >
-> For the next iteration, can you please update these subject lines and
-> commit logs to:
+> Sorry for missing the dedicated transport part.
 
-Thank you, I will prepare the changes and add them to the next iteration
-with changes from other comments that may arise.
+So I need to add back 'protocol@.*' or not?
 
->
->   - Use imperative mood, i.e., read like a command, instead of a past
->     tense description of what was done.  For example, say "Remove
->     writes to unused registers" instead of "Removed writes ..."
->
->   - Be more specific when possible.  "Fix" conveys no information
->     about the actual code change.  For example, "Fixed endpoint
->     controller Configuration Request Retry Status" gives a general
->     idea, but it would be more useful if it said something about
->     clearing config mode after probe.
->
->   - Say what the patch does in the commit log.  The current ones often
->     describe a *problem*, but do not explicitly say what the patch
->     does.  The commit log should be complete in itself even without
->     the subject line, so it usually contains a slightly expanded
->     version of the subject line.
->
->   - Split patches that do more than one logical thing.  The commit log
->     for "Fixed MSI generation ..." talks about a u16/u32 shift issue,
->     but the patch also adds an unrelated check for multi-function
->     devices.
-
-I will. I tried to split everything into the function it was related to, bu=
-t I
-now understand I should split even more so that the commit message
-and changes are more tightly linked.
-
->
->   - If a patch is a fix for an existing issue and may need to be
->     backported, identify the commit that introduced the issue and add
->     "Fixes: " lines.  This helps distros figure out whether and how
->     far to backport patches.
-
-Does this mean I should refer to the commit cf590b078391
-("PCI: rockchip: Add EP driver for Rockchip PCIe controller") ?
-Because it wasn't working in the first place ?
-
->
->   - Refer to the device consistently.  I see:
->       RK3399 PCI EP core
->       RK3399 SoC PCIe EP core
->       RK3399 PCIe endpoint core
->     I vote for "RK3399 PCIe Endpoint core".
-
-I agree.
-
->
-> Notes about imperative mood:
->   https://chris.beams.io/posts/git-commit/
->   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/Documentation/process/submitting-patches.rst?id=3Dv6.0#n94
-
-Thank you for all the pointers, I'll take them into account for the
-next iteration. This is the first time I actually submitted a series of
-patches to the LKML so it's all relatively new to me.
+Rob
