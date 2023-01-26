@@ -2,146 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08A8567C904
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:49:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 743E667C91A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 11:50:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236657AbjAZKtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 05:49:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41174 "EHLO
+        id S235698AbjAZKuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 05:50:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235762AbjAZKtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:49:08 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA1CA62796
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:48:31 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id bk16so1304742wrb.11
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:48:31 -0800 (PST)
+        with ESMTP id S236482AbjAZKug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 05:50:36 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19B5045F45
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:50:09 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id z11so1509323ede.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 02:50:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S1oHIv84+gqWpeprpYr5WHtUeIKRCWjFxOmQZdohkr0=;
-        b=k/HX4mkyFa8lPlhUKq14mrbcyBZFE3LLULrAnrsgDM/fXCRrK552LC5x4/apKOBt2q
-         cbgiUvNsdJi8SWBW1dBq+EApvnGwBfjaTJ/yeLop4ncIf3QZbfjiJdqj9JSjQNAcPYuK
-         cUPuJaHZI4I5RxqtCnDwXuEH1gkPrloiGhnSbNDk/qORMIBNhH/GLz5mEtw65YJ4MN2C
-         iYQ7DDUiIGJpTpgXdNr4NzZ3HaiX8rs3zkTD/96thlIPRc0LqO9wJdg91CPxlZjZCBKn
-         2ZEP+PDKn7Szx8g5N9ftDnnNo+t/XHfzZFv1NjWzMTc+n+/eRQ1WkeIrVwjWW8um7cS4
-         Y3Hg==
+        d=amarulasolutions.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=LjQL7TO9ONiXI0Kn8PVbO14Ye8gCiDTv38CuhVRinkI=;
+        b=bCUnBjlWA3SxAUJS/jXAShOJzTXgwtniRqMifGDS9oXFifuRksxHVZQVxerZgUZ15J
+         PmMSQ4AyrBx1Zi4nCogj0PTlz/F0hGeNX5uGG1QLCnz9M1kx0WW/OS9kY16ivxVDdcam
+         M1K7VKNp6Sptq5nKVoWF+tgkJECHGQb4PKoY0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S1oHIv84+gqWpeprpYr5WHtUeIKRCWjFxOmQZdohkr0=;
-        b=4pF3RK3/O+Ve+3NFHC2On7lkkXadh/H7oQXjRndTCojgUhJEAv5jO4jMDdWIv4CpbV
-         PBP46s28tZhmXvLoIxqatKpwMHYqooRs3337jijws0N4nAkT3AsZIHgX480pYq/wgyaE
-         p6J6MJlYEk56NR9TU1OoTeoTzybcT87JFNjl4VDOopfJBwFS7PC1WyUljR8NKr7W7bJt
-         sVFz3Jvt0OQFK0HmZqxVAwwyQoJpcuYm/xau92P1TBel9qkqN25xMkIqJMWGimbiaeYI
-         a983SZizCE2j/uidHeZmx1VFxFFn0SepXHjZXWsDoe6Tl2kdJ4bNmquqy8JBd88jSMUU
-         4ErQ==
-X-Gm-Message-State: AO0yUKVyue5fRWRCMsH4JWn3mrUo9Mz4VlqArBAOb4DlapiPAFMxwfP9
-        0JJZ8dxrN1DXxnrARah3J2n20w==
-X-Google-Smtp-Source: AK7set9ng1No/R1yeLGXdRUAQYm/shCPRwBRFuOjvcleaWNJ5RfczIJwORV/9dTBmib4dq4Z2jYg4A==
-X-Received: by 2002:adf:a30d:0:b0:2bf:b44d:6dae with SMTP id c13-20020adfa30d000000b002bfb44d6daemr8076614wrb.28.1674730108083;
-        Thu, 26 Jan 2023 02:48:28 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a17-20020adffb91000000b002bddac15b3dsm940450wrr.33.2023.01.26.02.48.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jan 2023 02:48:27 -0800 (PST)
-Message-ID: <afce38b0-be90-a3b5-f181-a88ad3025bd9@linaro.org>
-Date:   Thu, 26 Jan 2023 11:48:26 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LjQL7TO9ONiXI0Kn8PVbO14Ye8gCiDTv38CuhVRinkI=;
+        b=gfZYl/DMbHCHQFAmgbydDrbVXn21Pt/6sf6vPmciUKk4/aI2QKxjXW4MUdnlw2dcVs
+         vE+KM0JzBXlAGZok0s7OB0VJadW4tLQfbdw5I1L4zaAgktDwE2SweKoghSQkVDbmSyKF
+         qC/d7BoY2xQiT706gAudoH0vue0miMs17r640rGmF4ubwzMS41hU6TXGROa6IrTrJjQC
+         HmZJKkEYj7hBfKwSlDVLnn0GLcyKDPEn2NWGUCgfSWx2OPUvP4Kb6F8+TlcQ7KYoThoL
+         9I/HiEpYk/ZHaiZt/TsnV+SAWb8arvGdZoRc6mnffO1I4JukOUgTzyLRro7CS+IVe0zY
+         u93A==
+X-Gm-Message-State: AO0yUKUJWWagC0tFuRehXH57FrPgIdaPZEGTD+vlbp8P1ohmUVn8izqW
+        kNmwAMe4hbiDJ3bym9h0IYRzi+Sa+/54wWMKyZgHeg==
+X-Google-Smtp-Source: AK7set9zqfLQV+2RRlvYb42Nj5OPfBN03/lMqEKmwcBlV06jvoNbdDi+VRMfZ0I00MIOc2R0Ag8kDGvNb5fVbOKfWSM=
+X-Received: by 2002:a05:6402:3483:b0:4a0:b0ed:9ff8 with SMTP id
+ v3-20020a056402348300b004a0b0ed9ff8mr1098942edc.39.1674730206125; Thu, 26 Jan
+ 2023 02:50:06 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] dt-bindings: usb: samsung,exynos-dwc3: allow unit address
- in DTS
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+References: <20230101175740.1010258-1-dario.binacchi@amarulasolutions.com> <1fc8686b0b66c3b3ff80c044ecf1add6.sboyd@kernel.org>
+In-Reply-To: <1fc8686b0b66c3b3ff80c044ecf1add6.sboyd@kernel.org>
+From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Date:   Thu, 26 Jan 2023 11:49:54 +0100
+Message-ID: <CAOf5uwkMRSc7q1xUv4D=hc4w0HL=+x1_J60yyru_hGSuf5m0bA@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 00/11] clk: imx8mn: setup clocks from the device tree
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        linux-kernel@vger.kernel.org, angelo@amarulasolutions.com,
+        tommaso.merciai@amarulasolutions.com,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        linux-amarula@amarulasolutions.com, anthony@amarulasolutions.com,
+        jagan@amarulasolutions.com, Abel Vesa <abelvesa@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230125175943.675823-1-krzysztof.kozlowski@linaro.org>
- <20230125211329.GA2899932-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230125211329.GA2899932-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Li Jun <jun.li@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
+        Marek Vasut <marex@denx.de>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/01/2023 22:13, Rob Herring wrote:
-> On Wed, Jan 25, 2023 at 06:59:43PM +0100, Krzysztof Kozlowski wrote:
->> The Samsung Exynos SoC USB 3.0 DWC3 Controller is a simple wrapper of
->> actual DWC3 Controller device node.  It handles necessary Samsung
->> Exynos-specific resources (regulators, clocks), but does not have its
->> own MMIO address space.
->>
->> However neither simple-bus bindings nor dtc W=1 accept device nodes in
->> soc@ node which do not have unit address.  Therefore allow using
->> the address space of child device (actual DWC3 Controller) as the
->> wrapper's address.
-> 
-> The correct fix is 'ranges' should have a value. Though the whole 
-> wrapper thing when there are no registers I dislike...
+Hi
 
-You mean something like this (diff against this patchset):
-----------
-diff --git a/arch/arm/boot/dts/exynos54xx.dtsi
-b/arch/arm/boot/dts/exynos54xx.dtsi
-index 08786fd9c6ea..75b6f9678672 100644
---- a/arch/arm/boot/dts/exynos54xx.dtsi
-+++ b/arch/arm/boot/dts/exynos54xx.dtsi
-@@ -142,16 +142,15 @@ hsi2c_7: i2c@12cd0000 {
-                        status = "disabled";
-                };
+On Wed, Jan 25, 2023 at 10:11 PM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Dario Binacchi (2023-01-01 09:57:29)
+> > The idea for this series was born back from Dublin (ELCE 2022) after
+> > having attended the talk entitled "Updating and Modernizing Clock
+> > Drivers" held by Chen-Yu Tsai and the availability of a board with
+> > imx8mn SOC.
+>
+> Interesting. I didn't see any mention of putting clks into DT in that
+> presentation.
+>
+> >
+> > This series aims to setup all imx8mn's clocks from the device tree and
+> > remove the legacy setup code with hardwired parameters.
+>
+> Please, no! We don't want one node per clk style of bindings.
 
--               usbdrd3_0: usb-wrapper@12000000 {
-+               usbdrd3_0: usb-wrapper {
-                        compatible = "samsung,exynos5250-dwusb3";
--                       reg = <0x12000000 0x10000>;
-                        #address-cells = <1>;
-                        #size-cells = <1>;
--                       ranges;
-+                       ranges = <0x0 0x12000000 0x10000>;
+I think the idea behind is:
+- create a way from silicon vendor to export their clock mapping with
+automatic exportation
+- reduce the copy and paste code across the drivers
+- avoid code duplication
 
--                       usbdrd_dwc3_0: usb@12000000 {
-+                       usbdrd_dwc3_0: usb@0 {
-                                compatible = "snps,dwc3";
--                               reg = <0x12000000 0x10000>;
-+                               reg = <0x0 0x10000>;
+Is the binding a way to solve this problem? If you don't want one node
+per clk style bindings, did you still think that the way
+to go is totally wrong?
 
----------
-
-Unfortunately dtc W=1 is still not happy:
-
-exynos54xx.dtsi:145.26-159.5: Warning (unit_address_vs_reg):
-/soc/usb-wrapper: node has a reg or ranges property, but no unit name
-
-neither dtbs_check is:
-
-exynos5410-smdk5410.dtb: soc: usb-wrapper: {'compatible':
-['samsung,exynos5250-dwusb3'], '#address-cells': [[1]], '#size-cells':
-[[1]], 'ranges': [[0, 301989888, 65536]], 'clocks': [[5, 366]],
-'clock-names': ['usbdrd30'], 'pinctrl-names': ['default'], 'pinctrl-0':
-[[21, 22]], 'vdd10-supply': [[23]], 'vdd33-supply': [[23]], 'usb@0':
-{'compatible': ['snps,dwc3'], 'reg': [[0, 65536]], 'interrupts': [[0,
-72, 4]], 'phys': [[24, 0], [24, 1]], 'phy-names': ['usb2-phy',
-'usb3-phy'], 'snps,dis_u3_susphy_quirk': True}} should not be valid
-under {'type': 'object'}
-	From schema:
-/home/krzk/.local/lib/python3.10/site-packages/dtschema/schemas/simple-bus.yaml
-
-
-Best regards,
-Krzysztof
-
+Michael
