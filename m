@@ -2,211 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80BD367CE70
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 15:41:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA7B467CE6A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jan 2023 15:40:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232301AbjAZOlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 09:41:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49204 "EHLO
+        id S231646AbjAZOk6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 09:40:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232303AbjAZOlD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 09:41:03 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D7F86AF56
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 06:40:57 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id kt14so5650611ejc.3
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 06:40:57 -0800 (PST)
+        with ESMTP id S230205AbjAZOk4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 09:40:56 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22F6566023
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 06:40:55 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id kt14so5650081ejc.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 06:40:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CBqQ34M24ukRM2EHUO60odWC2Bkw9VlgnSBaMsLH6+8=;
-        b=WIHThYzfU8KFkKP7d0toaE1lOqCxHXu+M5jcMyXSf70xfOr3k/J/WCSuU8ObMXjDyc
-         LKkvKxeCIOLVqG+XWwsC/fNWxn/nl+2yoKbitbOC+DyZgfidyNra4dmojfycTKup+fFX
-         AL50iQzcq1x7zI2W5uHm8O1Wqf/I8Ci8tApAm0zPTDIS79fQi7adlZ0gWOK0XiDz/SlR
-         RcbM2N1DNDG/14y9GLVL9V+cGLzGU6ZL8IglK7qUPMNbUa2kwMvVlpoUTx6zQKhTUbfH
-         M2QV5++wqw/Z9aUcYy4Awu72Ck4JMOL3UPO7WyiY6Fgpci/7Sf13WWGdqQOZmz7ECFaY
-         AK+g==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=w6NkFNKrGySeIww7WvFjilZaospsmzYauHqXlYvr3ZI=;
+        b=JAgDV4vb6GtICHFhoT5mV+Q/paex2NVWbr8Lt1PdgyEZERFZ2BU9frLVtPZ0Ikt/Eg
+         STl5/zzT/lHZ/CinUDU/VTgfjPKbNZRHcaT4YLxUU52aGvLKHwElL+DIjfRz1A7tKtuz
+         BV3zJ8/XM1znIhuDLAmKKksPXEFsvgdNTP/hvPftgc/P2zCLD8kpMEHVeNquYdEow/MV
+         YeHtH0GB5NIBJrE3rsBhh3ehzAZXZN6JA2TF5f7BTQqG1SZrKPJKx+MezfQVhqvN+WNE
+         oB7m6wOqnsU7xpNxHzkG4Co/T6DmlESO8eIE5xi5aGg0SDjEK2i9bNmyezgWlQOIp9hQ
+         7gFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CBqQ34M24ukRM2EHUO60odWC2Bkw9VlgnSBaMsLH6+8=;
-        b=fCm9NHWJbcihGO9jrlNzfasoTlu+6rFjd3Iv0e+UyYATrzRgXFU7mh8Sn/N5XnP2BV
-         ROuuR59yv0y9zqARECwwXwdE7sJCn9JouTVI2oTnNcC6gZN8Fofq3W/FNLZ4nri7sAhH
-         cNDOJcdDDT+uSNF0Uxg3E87yuq/3U0v99ikYZ4tgYfqL3r1AWpli6/Y9ZSrjGe6Q8b1E
-         FanrkDtJx7fbtVZeXvYxGr6Lv4RKcSa6J+gnsn66m9g9GewtqSPjuTquU/baYzNH0FDw
-         fQlZktlDszc9CLLFjOiQ4tHCpGeMFRQdp0JkAwhx+lqz43Va++ysefBGYy4dONDKjx35
-         6wog==
-X-Gm-Message-State: AO0yUKVpF3pPFFv3UH2jnYdpv8+RngdJ57X5wv4IzC1czMy4ZDmhYqrr
-        cZS0DhLG63plL83RKJZxdmlHbA==
-X-Google-Smtp-Source: AK7set/LCoQ16wv4dnkR7W+zpDqqw5Pqhcf4y7cKzur4Ajx5J8/bLCmVrvktrQJDWxh9Ydm3uAYkSg==
-X-Received: by 2002:a17:906:840f:b0:878:6675:d07c with SMTP id n15-20020a170906840f00b008786675d07cmr2034422ejx.37.1674744057564;
-        Thu, 26 Jan 2023 06:40:57 -0800 (PST)
-Received: from localhost.localdomain (abyk108.neoplus.adsl.tpnet.pl. [83.9.30.108])
-        by smtp.gmail.com with ESMTPSA id s19-20020a1709060c1300b008699bacc03csm697547ejf.14.2023.01.26.06.40.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jan 2023 06:40:57 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 5/6] dt-bindings: clock: Add Qcom SM6115 GPUCC
-Date:   Thu, 26 Jan 2023 15:40:32 +0100
-Message-Id: <20230126144033.216206-6-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230126144033.216206-1-konrad.dybcio@linaro.org>
-References: <20230126144033.216206-1-konrad.dybcio@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w6NkFNKrGySeIww7WvFjilZaospsmzYauHqXlYvr3ZI=;
+        b=LADDX+Od2k0mFdydXOQGR0ujcvkIxpi/JU5EIhHHChFWiMCkuAWTwIsSu4UGKjhfUO
+         ASSBfbSmc2LBywquhKdfSUykQzVvAgBd4jDrz8Vm3OeKso7ohi8aPgyXSCP+IYXy0JTG
+         kmq3pLEBqIXVWOCc5qXXIGXGoAaxlbG/L0sv04x8zLOKwqI6p7hzwfxrZIJsGHTxnG/C
+         moHL7Mxn1F8sCIlIsRx4g/7Ksx0Wf5qFDNkBRQk73aT2ocUVrOHWIudFBIduMaWErexr
+         eSJMNtotpDs0T2koDtXtgpMJtVc6b8k8NMTBg+zioGuUXd7der0HmRbLVhA93Wlnagg4
+         rIjA==
+X-Gm-Message-State: AFqh2kq4ag4bk6cK6Wof+VbQNrHpYN1FovFmgbbE2xpCTijfiiW1SnUL
+        tUfWjQvJ8nl+MiR8fVg/ND58XGQ+BxXzjUunXk/5Nw==
+X-Google-Smtp-Source: AMrXdXsHvhXbQTYC09FtQdNJ1eZUXRTfsG7rzz4YYuYXLhBztZXV8UloV4ORvxJQmXHzkRnIHwfCstzsrt1Rd5KaASI=
+X-Received: by 2002:a17:907:80cd:b0:84d:458f:48c8 with SMTP id
+ io13-20020a17090780cd00b0084d458f48c8mr5301326ejc.204.1674744053651; Thu, 26
+ Jan 2023 06:40:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230124105643.1737250-1-etienne.carriere@linaro.org>
+ <20230125202215.GA2811928-robh@kernel.org> <CAN5uoS9tVyRQP1-2-Umxc33APGW=EFdidbgNVq_H6wVUXauHEg@mail.gmail.com>
+ <CAL_Jsq+sv4vf6iconbitnQ33y0_B7+0T1JmCpjQvfmkqFd0Mgw@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+sv4vf6iconbitnQ33y0_B7+0T1JmCpjQvfmkqFd0Mgw@mail.gmail.com>
+From:   Etienne Carriere <etienne.carriere@linaro.org>
+Date:   Thu, 26 Jan 2023 15:40:42 +0100
+Message-ID: <CAN5uoS9xH3UN3O3Te3QJEB1CHtEcu=iGfJmRfXYp7wo=e+b6oA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: optee: add interrupt controller properties
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Jens Wiklander <jens.wiklander@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        Pascal Paillet <p.paillet@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for graphics clock controller for Qualcomm
-Technology Inc's SM6115 SoCs.
+On Thu, 26 Jan 2023 at 15:00, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Jan 25, 2023 at 3:00 PM Etienne Carriere
+> <etienne.carriere@linaro.org> wrote:
+> >
+> > On Wed, 25 Jan 2023 at 21:22, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > +Sudeep
+> > >
+> > > On Tue, Jan 24, 2023 at 11:56:41AM +0100, Etienne Carriere wrote:
+> > > > Adds an optional interrupt controller property to optee firmware node
+> > > > in the DT bindings. Optee driver may embeds an irqchip exposing
+> > > > interrupts notified by the TEE world. Optee registers up to 1 interrupt
+> > > > controller and identifies each line with a line number from 0 to
+> > > > UINT16_MAX.
+> > > >
+> > > > In the example, the platform SCMI device uses optee interrupt irq 5
+> > > > as async signal to trigger processing of an async incoming SCMI message,
+> > > > in the scope of a CPU DVFS control. A platform can have several SCMI
+> > > > channels driven this way. Optee irqs also permits small embedded devices
+> > > > to share e.g. a gpio expander, a group of wakeup sources, etc... between
+> > > > OP-TEE world (for sensitive services) and Linux world (for non-sensitive
+> > > > services). The physical controller is driven from the TEE which exposes
+> > > > some controls to Linux kernel.
+> > > >
+> > > > Cc: Jens Wiklander <jens.wiklander@linaro.org>
+> > > > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > > > Cc: Marc Zyngier <maz@kernel.org>
+> > > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > > Cc: Sumit Garg <sumit.garg@linaro.org>
+> > > >
+> > > > Co-developed-by: Pascal Paillet <p.paillet@foss.st.com>
+> > > > Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
+> > > > Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+> > > > ---
+> > > > Changes since v1:
+> > > > - Added a description to #interrupt-cells property.
+> > > > - Changed of example. Linux wakeup event was subject to discussion and
+> > > >   i don't know much about input events in Linux. So move to SCMI.
+> > > >   In the example, an SCMI server in OP-TEE world raises optee irq 5
+> > > >   so that Linux scmi optee channel &scmi_cpu_dvfs pushed in the incoming
+> > > >   SCMI message in the scmi device for liekly later processing in threaded
+> > > >   context. The example includes all parties: optee, scmi, sram, gic.
+> > > > - Obviously rephrased the commit message.
+> > > > - Added Cc: tags
+> > > > ---
+> > > >  .../arm/firmware/linaro,optee-tz.yaml         | 67 +++++++++++++++++++
+> > > >  1 file changed, 67 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> > > > index d4dc0749f9fd..9c00c27f8b2c 100644
+> > > > --- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> > > > +++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> > > > @@ -40,6 +40,14 @@ properties:
+> > > >        HVC #0, register assignments
+> > > >        register assignments are specified in drivers/tee/optee/optee_smc.h
+> > > >
+> > > > +  interrupt-controller: true
+> > > > +
+> > > > +  "#interrupt-cells":
+> > > > +    const: 1
+> > > > +    description: |
+> > > > +      OP-TEE exposes irq for irp chip controllers from OP-TEE world. Each
+> > > > +      irq is assigned a single line number identifier used as first argument.
+> > > > +
+> > > >  required:
+> > > >    - compatible
+> > > >    - method
+> > > > @@ -64,3 +72,62 @@ examples:
+> > > >              method = "hvc";
+> > > >          };
+> > > >      };
+> > > > +
+> > > > +  - |
+> > > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > > +    firmware  {
+> > > > +        optee: optee {
+> > > > +            compatible = "linaro,optee-tz";
+> > > > +            method = "smc";
+> > > > +            interrupts = <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>;
+> > > > +            interrupt-controller;
+> > > > +            #interrupt-cells = <1>;
+> > > > +        };
+> > > > +
+> > > > +        scmi {
+> > > > +            compatible = "linaro,scmi-optee";
+> > > > +            linaro,optee-channel-id = <0>;
+> > > > +            interrupt-parent = <&gic>;
+> > > > +            #address-cells = <1>;
+> > > > +            #size-cells = <0>;
+> > > > +
+> > > > +            scmi_cpu_dvfs: protocol@13 {
+> > > > +                reg = <0x13>;
+> > > > +                linaro,optee-channel-id = <1>;
+> > > > +                shmem = <&scmi_shm_tx>, <&scmi_shm_rx>;
+> > > > +                interrupts-extended = <&optee 5>;
+> > > > +                interrupt-names = "a2p";
+> > >
+> > > These properties aren't documented. Soon there will be a warning[1].
+> >
+> > They are.
+> > https://github.com/torvalds/linux/blob/v6.1/Documentation/devicetree/bindings/firmware/arm%2Cscmi.yaml#L45-L53
+>
+> They are not. That's the scmi node, not a protocol node.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../bindings/clock/qcom,sm6115-gpucc.yaml     | 71 +++++++++++++++++++
- include/dt-bindings/clock/qcom,sm6115-gpucc.h | 36 ++++++++++
- 2 files changed, 107 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml
- create mode 100644 include/dt-bindings/clock/qcom,sm6115-gpucc.h
+Ok,i should have written it this way then:
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml
-new file mode 100644
-index 000000000000..abf4e87359a3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml
-@@ -0,0 +1,71 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,sm6115-gpucc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++        scmi {
++            compatible = "linaro,scmi-optee";
++            linaro,optee-channel-id = <0>;
++            shmem = <&scmi_shm_tx>, <&scmi_shm_rx>;
++            interrupts-extended = <&optee 5>;
++            interrupt-names = "a2p";
++            #address-cells = <1>;
++            #size-cells = <0>;
 +
-+title: Qualcomm Graphics Clock & Reset Controller on SM6115
-+
-+maintainers:
-+  - Konrad Dybcio <konrad.dybcio@linaro.org>
-+
-+description: |
-+  Qualcomm graphics clock control module provides clocks and power domains on
-+  Qualcomm SoCs.
-+
-+  See also:: include/dt-bindings/clock/qcom,sm6115-gpucc.h
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,sm6115-gpucc
-+
-+  clocks:
-+    items:
-+      - description: Board XO source
-+      - description: GPLL0 main branch source
-+      - description: GPLL0 main div source
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  '#power-domain-cells':
-+    const: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - '#clock-cells'
-+  - '#reset-cells'
-+  - '#power-domain-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,gcc-sm6115.h>
-+    #include <dt-bindings/clock/qcom,rpmcc.h>
-+
-+    soc {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        clock-controller@5990000 {
-+            compatible = "qcom,sm6115-gpucc";
-+            reg = <0x05990000 0x9000>;
-+            clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-+                     <&gcc GCC_GPU_GPLL0_CLK_SRC>,
-+                     <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-+            #clock-cells = <1>;
-+            #reset-cells = <1>;
-+            #power-domain-cells = <1>;
++            scmi_cpu_dvfs: protocol@13 {
++                reg = <0x13>;
++                #clock-cells = <1>;
++            };
 +        };
-+    };
-+...
-diff --git a/include/dt-bindings/clock/qcom,sm6115-gpucc.h b/include/dt-bindings/clock/qcom,sm6115-gpucc.h
-new file mode 100644
-index 000000000000..945f21a7d745
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,sm6115-gpucc.h
-@@ -0,0 +1,36 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2023, Linaro Limited
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_GPU_CC_SM6115_H
-+#define _DT_BINDINGS_CLK_QCOM_GPU_CC_SM6115_H
-+
-+/* GPU_CC clocks */
-+#define GPU_CC_PLL0			0
-+#define GPU_CC_PLL0_OUT_AUX2		1
-+#define GPU_CC_PLL1			2
-+#define GPU_CC_PLL1_OUT_AUX		3
-+#define GPU_CC_AHB_CLK			4
-+#define GPU_CC_CRC_AHB_CLK		5
-+#define GPU_CC_CX_GFX3D_CLK		6
-+#define GPU_CC_CX_GMU_CLK		7
-+#define GPU_CC_CX_SNOC_DVM_CLK		8
-+#define GPU_CC_CXO_AON_CLK		9
-+#define GPU_CC_CXO_CLK			10
-+#define GPU_CC_GMU_CLK_SRC		11
-+#define GPU_CC_GX_CXO_CLK		12
-+#define GPU_CC_GX_GFX3D_CLK		13
-+#define GPU_CC_GX_GFX3D_CLK_SRC		14
-+#define GPU_CC_SLEEP_CLK		15
-+#define GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK	16
-+
-+/* Resets */
-+#define GPU_GX_BCR			0
-+
-+/* GDSCs */
-+#define GPU_CX_GDSC			0
-+#define GPU_GX_GDSC			1
-+
-+#endif
--- 
-2.39.1
 
+
+>
+> > In arm,scmi.yaml, interrupts optional property stands for interrupts
+> > and interrupts-extended, no?
+>
+> Yes.
+>
+> Rob
