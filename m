@@ -2,71 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A675967E824
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 15:23:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED86F67E830
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 15:26:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232001AbjA0OXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 09:23:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35586 "EHLO
+        id S229542AbjA0O01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 09:26:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232525AbjA0OWu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 09:22:50 -0500
+        with ESMTP id S229830AbjA0O0Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 09:26:25 -0500
 Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 440FD841B0;
-        Fri, 27 Jan 2023 06:22:41 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so3604412wmq.0;
-        Fri, 27 Jan 2023 06:22:41 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 122136EA1;
+        Fri, 27 Jan 2023 06:26:18 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso3583256wms.3;
+        Fri, 27 Jan 2023 06:26:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=L+77rbk+LDQVY8LBXczWlnz0WIcfcLWhxX1pA+0THIM=;
-        b=DIeRH1fBk0Zr4EXjV4aqhp5gScRisiOALZ2XOFLU7Q0n8nO7/EziamoLUfm/eDSYWd
-         827I/fLTu+v+S+nCJD/e9D7oCXv3FCGu0H5i6AuILcmle9F/COzaU8OsZFRDwV12OvC8
-         zEE2sJxidMPnx7SXOEeELgPrwwuqj9HfzY178FGQQNHkFufhgxI32BbOdnON2+amNJME
-         UMD3kPy1aFWnxjRWtPm4uOhmcWAdWhtRMqQO9fX6Lk+/6dVIvs7yeqVwIVa1VS0dFIq6
-         BHq26IY9/rjAiwJPsNItdr6zbTQ5xQXbtzHI1ws5evkSxB5ns2cmWfb6/yTy9TSjEvJU
-         djyA==
+        bh=FQvKuWYbN5U9wXSHPFKMRagSKFxuvpjCAy16zSMxd5s=;
+        b=ftRyiXQYN4C/taX6rBMEEtJ4FYiYyGbKiMEy1G81lAEO4Undc3m4fU5sqvhUMeA+ce
+         trYLUENe8ScOmKriBWOkIlnMg1ZugngJW1/1nxJDUUl53Ei3BN/D1EXIHzRMls7y5gRL
+         yngeTRHjSc7ysN2WfKNfsUH9/I/u5YuX+QnjtsT+6OeEqH+xafvfplXA0AWU7UUWXPkb
+         p9sXAvP1U5PbzWj8Z7GUfjHvPqUkBblHPDj03g1g8XIltFJblEd1wz2oh9G/QPOjyDNL
+         2mpgaUHUw44YNpowOucgnGJNJoko0yFv0A9E/p8TPJV9ltxGkAyWZHJTTSMMCaIMgYGG
+         6T4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=L+77rbk+LDQVY8LBXczWlnz0WIcfcLWhxX1pA+0THIM=;
-        b=czjzz4989pzYyTi21vR4LBZYj4VK74KT1jtDitoFDWYV+uM1WCuT0/amuBOUK3eaYt
-         do6J3P96y4sg8dSKcYkzjg41v2f5Bp8sJm64HkFVT1Ky8uB3Ly+vdHkr+m3pMPraRX1B
-         UjN7LD2RUSHcKrG5JfECOpPsXk5GYAhYNmTnwEGiQXTiubOluLj3BRwwOYObULEjBPZm
-         eOBBtvWAlmcI0N/ozxaqZi+YTXUlo8cMqwoYI9yU7GcbgOI6dg5nRts5yWNxps55X46L
-         rUvjVDdeYpgk/w8tde9mravmLuVqaowrlVawxoAvbI7+uQdZbY+NFcJ+zpv3fA7f/DDr
-         6UCQ==
-X-Gm-Message-State: AFqh2ko+MlQXBhE6vHjXMIL63v0itBEwiyZZ9G7rw9mVIv/RBFzF07Wn
-        41VWCj24aN2iglVJZ6hRTWM=
-X-Google-Smtp-Source: AMrXdXtx3MnOapAVHXeUKN5GkcF+H2YwoBHQnjNyk30TwP6ay34MaBM1nFR/iFba9qEOoRsF9nSNhQ==
-X-Received: by 2002:a05:600c:2108:b0:3cf:98e5:f72 with SMTP id u8-20020a05600c210800b003cf98e50f72mr47632385wml.3.1674829359774;
-        Fri, 27 Jan 2023 06:22:39 -0800 (PST)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id c11-20020adfa30b000000b002bfb5ebf8cfsm4301039wrb.21.2023.01.27.06.22.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 06:22:39 -0800 (PST)
+        bh=FQvKuWYbN5U9wXSHPFKMRagSKFxuvpjCAy16zSMxd5s=;
+        b=rCEIQeszhhNm+PSWYQCwF2rgQZqLQPkRvtjbHGoV3wF8DfYKYkcSZgtCVIjbush6HO
+         mRL943SsE/7SliGNNrdqoGS2J/BsDO3Un4K61t7IiUOAqrEbKhRqTrNwD3RXHc66rVK1
+         WrcHcfD/0F/8fhxH+b4RMCz7pernT2lFD31v42KF74B+xx1nhhahLXHL1OJkUGhQBjfD
+         DK8RP27Ez2nPGDje97c0c/tyBZjN6KSMO1sIp8BqXqGhZrE+65tk4C48f9BhDKUnfgOU
+         WQkmvbaxyac2L9hRrwkzFTj8T1J/DKsohvDL0l7Wt6ZAF+DyTdOZY6zedR7UQy9ZVag2
+         DxKQ==
+X-Gm-Message-State: AFqh2kpnGsNw5YguAcw3FuLRD2zPerZY2S4LI3PMUGD1IaqC4jKMlqNl
+        lg2vM4PztyrUuE99W0qRUnw=
+X-Google-Smtp-Source: AMrXdXuTsCLLxprVf+MTPCRfzq/gdhb9xh4vISbik9FA0H0my/Cy7zi0t3bSLwwCauop5fVPs0vFMw==
+X-Received: by 2002:a05:600c:2d0b:b0:3da:fcf0:a31d with SMTP id x11-20020a05600c2d0b00b003dafcf0a31dmr40316535wmf.22.1674829576580;
+        Fri, 27 Jan 2023 06:26:16 -0800 (PST)
+Received: from smtpclient.apple ([167.99.200.149])
+        by smtp.gmail.com with ESMTPSA id s15-20020a05600c384f00b003d9de0c39fasm9340686wmr.36.2023.01.27.06.26.14
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 27 Jan 2023 06:26:16 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
+Subject: Re: [PATCH 4/4] arm64: dts: meson: add support for BananaPi M2-Pro
 From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+In-Reply-To: <468aef98-2bd7-03d5-0f83-dc58bc4738e9@linaro.org>
+Date:   Fri, 27 Jan 2023 18:26:12 +0400
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Neil Armstrong <neil.armstrong@linaro.org>,
         Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH v2 5/5] arm64: dts: meson: add support for BananaPi M2-Pro
-Date:   Fri, 27 Jan 2023 14:22:21 +0000
-Message-Id: <20230127142221.3718184-6-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230127142221.3718184-1-christianshewitt@gmail.com>
-References: <20230127142221.3718184-1-christianshewitt@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic <linux-amlogic@lists.infradead.org>,
+        linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <A5EFDCC3-AB2F-464A-B5B6-1B1482D7D9A4@gmail.com>
+References: <20230127100236.3385154-1-christianshewitt@gmail.com>
+ <20230127100236.3385154-5-christianshewitt@gmail.com>
+ <a35f7f09-eb19-6cfc-2053-c6b340f10cbd@linaro.org>
+ <356B9EBF-B9C4-4CB0-9F83-9E7A62F93F65@gmail.com>
+ <468aef98-2bd7-03d5-0f83-dc58bc4738e9@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: Apple Mail (2.3696.120.41.1.1)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -77,135 +85,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BPI-M2-PRO is based upon the BPI-M5 design except for a different
-physical board layout and the following changes:
 
-- USB 3.0 ports reduced from 4x to 2x
-- 3.5mm Combined CVBS/Audio Jack removed
-- RTL8821BU WiFi/BT module (internal USB connected)
+> On 27 Jan 2023, at 5:01 pm, Krzysztof Kozlowski =
+<krzysztof.kozlowski@linaro.org> wrote:
+>=20
+> On 27/01/2023 11:19, Christian Hewitt wrote:
+>>> It's by default. Did any DTSI disable the sound node?
+>>=20
+>> No. I=E2=80=99m simply transcribing from the original M5 dts (with =
+edits to omit
+>> the audio jack bits) and the sound nodes of other Amlogic dts which =
+have
+>> long included the same.=20
+>>=20
+>> Q. Do I need to remove it here? (sounds like a yes)
+>=20
+> Yes
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/meson-sm1-bananapi-m2-pro.dts | 97 +++++++++++++++++++
- 2 files changed, 98 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts
+I=E2=80=99ve removed for both dts and sent v2
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 97b42e2100e0..644451794aca 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -60,6 +60,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air-gbit.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m2-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m5.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-h96-max.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts
-new file mode 100644
-index 000000000000..586034316ec3
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts
-@@ -0,0 +1,97 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 BayLibre SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-sm1-bananapi.dtsi"
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	compatible = "bananapi,bpi-m2-pro", "amlogic,sm1";
-+	model = "Banana Pi BPI-M2-PRO";
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "BPI-M2-PRO";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-3 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-4 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&clkc_audio {
-+	status = "okay";
-+};
-+
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
--- 
-2.34.1
+>> Q. Do we need to exorcise/cleanup the same from all other meson dts?
+>=20
+> Yes, please.
 
+I=E2=80=99ll put on my to-do list :)
+
+Christian=
