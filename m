@@ -2,138 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07C5467E918
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 16:11:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11FD567E91D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 16:11:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234315AbjA0PLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 10:11:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45046 "EHLO
+        id S234381AbjA0PLx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 10:11:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234253AbjA0PLi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 10:11:38 -0500
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8F2A84B67;
-        Fri, 27 Jan 2023 07:11:25 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UvP7KtQfght7bNKlT/RB6dH3c+bTDH6HuEcmbByU54wbKw3MUK9jAP3scIjR10TBUrUzdx2XDlFDDEH8W5wu2fw0THy6PJ65IqittNiFcvDW4R+rL6sK8HdxehZ+g4J8P3Ts9+iMtMojcuZ20shItOwYgBa+oj0ZANSbJ3BY3CtPtHgqcVa+zGMa0Ha0qNv2xp4oIeKwJfwhJwJ1F1YljKbyP/rkfooPc8sTXbGikWnZAq/x7Rpse69P9Obm99eKwoIep8BGTXrf2VrG68cPcEyDwqSulYQ6sarA8ryJ9tdJsBz4BAgvInSqrzdqXg7BfGbKPz6/3G9qGDH18xwdCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vmRcd5VUiO2rkU0EnnCsNEDa2lP5CSxMzj3tGED5A9Y=;
- b=T30UwRJgTDy71lQm7hr9efwxdPcNL0tOyArRBWqgu+xjUoH0s3Ecy/XDSGvJ8y7OWQsrBzIE23dPHP7LOM+scOxy/MzVb8rx0dmWgaftSqkKPR+K2dw77sXFqI3nakyoE5LFs91wEPpsu1O8KmM+S0IXCkWWQ0vgXjh4NyFy3EaJUUvbMKpJKXdiE0Q+4AzZ7OjdOOL+oT0ow+Fo++8Mztw/7DXXCt15+2tZUmHR9cjSyE+oZ5tsMS8m98T907eu2Yo2tklQcqhSCfVxRiAttDWeiWcyKGKfh2naH8riABLReEGxxeLEe2QdisxdcbmO8Q3RWEfOopK0frHdz2Ut+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=linux.intel.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vmRcd5VUiO2rkU0EnnCsNEDa2lP5CSxMzj3tGED5A9Y=;
- b=ow6kacWYYxTqEq9u3IaxQehGBT3pMo2s0NLiayzr2AZlPs6S+3dYLL4DNLtzfsy+cVJPiZ4sXJGZAiuwZtVLlrpcH5nSS7gIBgdj66yc5kVeOjVMjS3BNJVddhEYl9ugjC6Y/dMWl8ZCZrOHhDVA7URMq7i28XpATjx7ioQ8bs/zXXUZJVeoTQxiTNnjRi2g7jx/O1RU28yZ5xL6VeKbzo7hxl0kQ+Ol5rqEhKsSTLlJO47KB5Hw4hBUhCVEHTPYdLMjfHI+AtC0FYUqwMJIiJZ+W9bUpeuGaZnkLQLqQs5NajSbuuCN74Xgx4zMGuhV43CS08IX9tJB4vsQPcohHg==
-Received: from MW4PR04CA0207.namprd04.prod.outlook.com (2603:10b6:303:86::32)
- by DS7PR12MB6191.namprd12.prod.outlook.com (2603:10b6:8:98::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.23; Fri, 27 Jan
- 2023 15:11:24 +0000
-Received: from CO1NAM11FT029.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:86:cafe::66) by MW4PR04CA0207.outlook.office365.com
- (2603:10b6:303:86::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.23 via Frontend
- Transport; Fri, 27 Jan 2023 15:11:24 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- CO1NAM11FT029.mail.protection.outlook.com (10.13.174.214) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6043.22 via Frontend Transport; Fri, 27 Jan 2023 15:11:23 +0000
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 27 Jan
- 2023 07:11:06 -0800
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail203.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 27 Jan
- 2023 07:11:06 -0800
-Received: from moonraker.home (10.127.8.14) by mail.nvidia.com (10.129.68.7)
- with Microsoft SMTP Server id 15.2.986.36 via Frontend Transport; Fri, 27 Jan
- 2023 07:11:04 -0800
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, Wayne Chang <waynec@nvidia.com>,
-        Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH V9 6/6] arm64: defconfig: Enable UCSI support
-Date:   Fri, 27 Jan 2023 15:10:41 +0000
-Message-ID: <20230127151041.65751-7-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230127151041.65751-1-jonathanh@nvidia.com>
-References: <20230127151041.65751-1-jonathanh@nvidia.com>
+        with ESMTP id S234340AbjA0PLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 10:11:48 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8839983264
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 07:11:30 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id q8so3666113wmo.5
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 07:11:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pFGFyIlaUgi5dEdEAInZAffkhm1C7oufG5PHtVZv8k4=;
+        b=n+Z7FILuTAIuI8fdgCmqUjlUb9JshrYX66HmRWLHbRPJzI91jR0lFU9qYjA8pVnHMJ
+         Vq9r+s++nCsd5q34Qv8B7ScoMEUzjXVteDLzJJ1Df23lJEDXlftru/r7vV22B9WABGhv
+         txUox2wazSwJbjubtxB4RD4fjmoZzOiD7Wn0t1mJFk8IQKVG7QDMo0EM5loeJGdX+d/X
+         SyUOoOrhMxCPVMbPcZ26NIpIAiHIukooSbmmwzmwRb5icSGU3OCNnL1BaY2bWsz7YpXR
+         74El27246kheJaaVmiTYe1b2eboYcww+/jfTtJsjWuLeJWU+ZBWmHJWYDTIN6UUF5NG7
+         NpNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pFGFyIlaUgi5dEdEAInZAffkhm1C7oufG5PHtVZv8k4=;
+        b=5Bf2mFYfd0M4FjIXYzbbAhjDzyT8KFqrBcTfzdJFulhWXVbRLP7Ob9kXgIRouZ5Fou
+         D8fUu8FSLY/lMjS5Dl1rYjoueoE6jDbDiJ4M06zxf7m7cCHi9TvEtO5DvDdOGc/rIcqe
+         sFDdRDMW5iPxKP3XyqQk6g1BzNzVc+waiyMsFPxWqQTY27fyOIs8Dt3FoNsjFGj2wDpg
+         CS1TXGBdUxU8foLLfC9f177vLyHJBvMRVKQNiN6GoqG9F/U82CWFjHxYs4sxRHMxsnvi
+         yIUHGw+Nmv69gfbA6gMrnzZQDBCfNrqIHN8Akzpq7eMOiKSalfDO7fkBM1Vhbzp3Jpq/
+         jMUA==
+X-Gm-Message-State: AFqh2krinOkURHz8ql1RFm2mO/QiiuZ6QfD+va3V0pOhuxEjHrabfnz1
+        mtnZiCGHg6ErAYzPrFgI/pz60w==
+X-Google-Smtp-Source: AMrXdXskBTvhigu7JjoC9WzKkVc8AO+kZF5hVkJFTRwD5SOusc042fCbF4GvHhgYSIed5eluNp1kKg==
+X-Received: by 2002:a05:600c:c0a:b0:3db:2858:db84 with SMTP id fm10-20020a05600c0c0a00b003db2858db84mr30564681wmb.34.1674832288879;
+        Fri, 27 Jan 2023 07:11:28 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id 18-20020a05600c26d200b003da28dfdedcsm5390776wmv.5.2023.01.27.07.11.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 07:11:28 -0800 (PST)
+Message-ID: <1eff0411-430d-25d2-f1c6-41b22ff3938f@linaro.org>
+Date:   Fri, 27 Jan 2023 16:11:26 +0100
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT029:EE_|DS7PR12MB6191:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c33e94b-ca28-4a1e-fb00-08db0078c12c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oZ59n9nCbvU9ChPzmgvlI7yVBz1+LBS6NyXwdYgJ8OX+/LX5AZR11Z0kvenDfz0Bz3guWkfOdVb4JgqYl9wK4I7TuYe/YW3a6sTqYxbprZXG3RG0Oml6+UWZZtpz0pwu72zuajx1oEO12u3xs2KWKouyIuYDPCv/gBkSkHPnBOqhBRmw+q/jiCeKFKq4/fNXUghrxLxWk1oewUzkcoCxzJd+NFw27gK+zLIAA7wsQChmdpcEZIvwd+3uDzITTAH7rQg3YqJ64OVa9Z1yG/ZoEiwtCx6wasYrAxezr10l0gx7TlONopaikQFZ/0y4LlyF5X7ar9yl2dxVsZwe3bS/KAVpLrw/lfEBiPiwapEy4Mysfsk90Qw6g1T7Z2R4QYZEleDX+M35QIkT3Tt2T+r/N8CZQCljVGNMmMqylaxhjvtFD4am/1Wphd5wnMXEPoPDOCduNIxpiIWK/mDBOzxQtb0kGRizlDSHkmVTCypEj/NMSgMztxdUOud2mTFtC0XuZMJ14CoOUA95kVuA+O+91Q/UQ6c6I7KtrQZn9LLq8DRQADqK1yum0/DT04bLYAf2c8nBKt99f6X/PpM7OIUQAPiWCyhY0YYSv0PhOpZkJdPQ0AlZeoLTJz/VmpFnhc0j4+4F0x2IruHqpDZ8Va3JpLYJ8HtholpOOlBvomM0W/tVmepL7V1dVP3oowREdT21XIhw2p9DPc1PQll4fEZShw==
-X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230025)(4636009)(396003)(376002)(136003)(39860400002)(346002)(451199018)(36840700001)(40470700004)(46966006)(186003)(41300700001)(26005)(356005)(8936002)(70586007)(5660300002)(8676002)(83380400001)(70206006)(6666004)(1076003)(107886003)(4744005)(478600001)(36756003)(36860700001)(2616005)(110136005)(54906003)(426003)(86362001)(7636003)(82310400005)(336012)(4326008)(40480700001)(40460700003)(82740400003)(47076005)(2906002)(316002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2023 15:11:23.8520
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c33e94b-ca28-4a1e-fb00-08db0078c12c
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT029.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6191
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 07/15] dt-bindings: clock: Add Ambarella clock bindings
+Content-Language: en-US
+To:     Li Chen <me@linux.beauty>
+Cc:     li chen <lchen@ambarella.com>,
+        michael turquette <mturquette@baylibre.com>,
+        stephen boyd <sboyd@kernel.org>,
+        rob herring <robh+dt@kernel.org>,
+        krzysztof kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "moderated list:arm/ambarella soc support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:common clk framework" <linux-clk@vger.kernel.org>,
+        "open list:open firmware and flattened device tree bindings" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        arnd bergmann <arnd@arndb.de>
+References: <20230123073305.149940-1-lchen@ambarella.com>
+ <20230123073305.149940-8-lchen@ambarella.com>
+ <0c19efb4-3bca-f500-ca24-14b9d24369ef@linaro.org>
+ <87y1prgdyu.wl-me@linux.beauty>
+ <b26a52ff-6b8a-8a64-7189-346cd2b0d705@linaro.org>
+ <87tu0ehl88.wl-me@linux.beauty>
+ <ec9fc589-2612-3315-3550-83b68bead926@linaro.org>
+ <87sffyhgvw.wl-me@linux.beauty>
+ <f70def8e-b148-616f-a93e-c2a8fb85be03@linaro.org>
+ <185f3b3a330.11c135c37327076.6300919877819761183@linux.beauty>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <185f3b3a330.11c135c37327076.6300919877819761183@linux.beauty>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the TYPEC UCSI support and the Cypress UCSI driver that is used
-on the NVIDIA Jetson platforms.
+On 27/01/2023 15:48, Li Chen wrote:
+>  > This is independent topic. SoC-specific compatibles are a requirement
+>  > but it does not affect your device hierarchy.
+>  
+> Thanks, "requirement" makes things much more clear. So I will always use SoC-specific compatibles even
+> if different Amarella SoCs may share the same reg offset and setting.
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
-V9: no changes
-V8: no changes
-V7: Added in V7
+Just please read before sending any new versions:
+https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst
 
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 984553d55e17..d487d0e2b8e0 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -959,6 +959,8 @@ CONFIG_TYPEC_TCPCI=m
- CONFIG_TYPEC_FUSB302=m
- CONFIG_TYPEC_TPS6598X=m
- CONFIG_TYPEC_HD3SS3220=m
-+CONFIG_TYPEC_UCSI=m
-+CONFIG_UCSI_CCG=m
- CONFIG_MMC=y
- CONFIG_MMC_BLOCK_MINORS=32
- CONFIG_MMC_ARMMMCI=y
--- 
-2.25.1
+Best regards,
+Krzysztof
 
