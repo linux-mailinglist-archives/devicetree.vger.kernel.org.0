@@ -2,68 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A9E067E28F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 12:04:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C5FB67E2BD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 12:10:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232756AbjA0LEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 06:04:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46276 "EHLO
+        id S232810AbjA0LJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 06:09:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232782AbjA0LD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 06:03:58 -0500
-Received: from formenos.hmeau.com (helcar.hmeau.com [216.24.177.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D8074FC33;
-        Fri, 27 Jan 2023 03:03:50 -0800 (PST)
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-        id 1pLMVt-004hKi-RU; Fri, 27 Jan 2023 19:03:22 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 27 Jan 2023 19:03:21 +0800
-Date:   Fri, 27 Jan 2023 19:03:21 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Jia Jie Ho <jiajie.ho@starfivetech.com>
-Cc:     Olivia Mackall <olivia@selenic.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232732AbjA0LJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 06:09:48 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE3EE196AD;
+        Fri, 27 Jan 2023 03:09:34 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id t18so4665000wro.1;
+        Fri, 27 Jan 2023 03:09:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=isAaPgBeDdcHxcgXON9D9sIMsPD5VNAr8JbS+XxPvnw=;
+        b=onA6YQq5/uVWw7YaxNEnf5K6JGQj0hA2+dIlYS8+OPNSL6lqXdTMos5iOw/I3W4ltO
+         /nrrafXlkDxBlkKtUnWX7ZRyr9NfujL6IzZNaH5wu/87HKtZhE6kABZ4HoquwOKJ8R36
+         SUFixppOFQvMviZkPNSfhOGV+e8dJMlFSqFDrs/3AayDPvzAjDuMZlMj/70RsWwmuJ4h
+         NiFyBiDEjib87eg5ZqOK+EovtXvxIGBtXZns8uu2AEe5pMmZfi8cb2oB6/nPTK3LXYEZ
+         gkI9QkeIj84hy2kGCu1SV0IwlNEqWCFI4YjMYCIYK+DGQEx9obvdfz8ZIJo/GEtrV0Qq
+         FUUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=isAaPgBeDdcHxcgXON9D9sIMsPD5VNAr8JbS+XxPvnw=;
+        b=klAtIYemGn2Tdd9PC+FV5yLrCsUNB5QA+rPv0lnzcY6U/34I2KNk1haQtvpYyYNJHq
+         w27q0gI2flqrxWAYFndD1mZ9typHk6gv4dh5ePMcWc1bpYEj7oRBEO5mEuDITkwJt/vx
+         MKNyj5/IGQgiyeWmi+MiOp1r3E0j127h8wgn0p3inznA/txBpMA07uNsRB9lcaaR4Ckt
+         E4j/7ecNtXRZHZ8EuqnJnLPMystSmwbgPrYzji+8pOuVW9RN9zeHU87jfxRoeuzeeI/j
+         191T4iiFN6zHdR/rw4H7aNOccuy0xI3lGxpXQeuSGh0QpNNZo9HTkA8maMuD9pk3YjwJ
+         xiuA==
+X-Gm-Message-State: AFqh2kozAobkJgw/6k7wOue37D5zdBdm9vUbZ0euaAZIg39szjD3xtGz
+        BHq+Z/7J+IQtz65bG5qOrcs=
+X-Google-Smtp-Source: AMrXdXsDpz6xvjzOlbveXGOY9ueHKhX8OWw+Xd0swYVWFPnwkqCcjGgjSJiOH9ZpVy79L/lK7SUb+Q==
+X-Received: by 2002:a5d:5c07:0:b0:2bd:fa1d:5291 with SMTP id cc7-20020a5d5c07000000b002bdfa1d5291mr38022885wrb.67.1674817773386;
+        Fri, 27 Jan 2023 03:09:33 -0800 (PST)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id d7-20020a056000114700b00241fab5a296sm3662106wrx.40.2023.01.27.03.09.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 03:09:32 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: [PATCH] hwrng: starfive - Enable compile testing
-Message-ID: <Y9OveVKTkX8cRhyP@gondor.apana.org.au>
-References: <20230117015445.32500-1-jiajie.ho@starfivetech.com>
- <20230117015445.32500-3-jiajie.ho@starfivetech.com>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: arm: amlogic: add support for Radxa Zero2
+Date:   Fri, 27 Jan 2023 11:09:27 +0000
+Message-Id: <20230127110928.3387654-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230117015445.32500-3-jiajie.ho@starfivetech.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable compile testing for jh7110.  Also remove the dependency on
-HW_RANDOM.
+The Radxa Zero2 is a small form-factor SBC using the Amlogic
+A311D chip.
 
-Signed-off-by: Herbert Xu <herbert@gondor.apana.org.au>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
-index 9924e2f35b69..ae508e96cfc2 100644
---- a/drivers/char/hw_random/Kconfig
-+++ b/drivers/char/hw_random/Kconfig
-@@ -551,8 +551,7 @@ config HW_RANDOM_CN10K
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 8aa6b6a92c29..6e3cb5a0d879 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -154,6 +154,7 @@ properties:
+         items:
+           - enum:
+               - khadas,vim3
++              - radxa,zero2
+           - const: amlogic,a311d
+           - const: amlogic,g12b
  
- config HW_RANDOM_JH7110
- 	tristate "StarFive JH7110 Random Number Generator support"
--	depends on SOC_STARFIVE
--	depends on HW_RANDOM
-+	depends on SOC_STARFIVE || COMPILE_TEST
- 	help
- 	  This driver provides support for the True Random Number
- 	  Generator in StarFive JH7110 SoCs.
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+2.34.1
+
