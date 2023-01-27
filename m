@@ -2,163 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0427467DF74
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 09:47:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0637567DF77
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 09:48:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232322AbjA0Iry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 03:47:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46918 "EHLO
+        id S232129AbjA0IsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 03:48:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232160AbjA0Irx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 03:47:53 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62B69975C
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:47:50 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso64818wms.4
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:47:50 -0800 (PST)
+        with ESMTP id S231551AbjA0IsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 03:48:15 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAE26EB4E
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:48:13 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id fl24so2924191wmb.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:48:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YAjXmwk1x99crswBLoztPVjTMQo0TWbhtFaOuaefFpg=;
-        b=sgVcP+HYC8/PumGjTBslJK+Fm6tY3mPAsR2M5YXg7CWnU1X3QUtzE0qtwGLjBdCg3e
-         eh+emEu/FTTs8p5NIf/9hvBo3I8rVuhZrmk2pLLxqN0jXeJ1oxjMETjsA08RvPvwp2R8
-         MqKDcMJOJEvI8snx9w35PnL3u3xJmvqaUjA6mKoQj3HdlvcFrGV3BqfL1q+L8zwvbqqW
-         PtkR/7HASCQUmv7kGOg5XA1rAof8poeb+HyczXTx62y9xDqa/q6OEDpEKVhC0DOCRGoB
-         N7IJOtuhzfn97nLV+8sJwUCjwB6iGsERruXDvQIT1p3Sp+lcSrsVdVyCqzuy7rDp6UvV
-         4LHQ==
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=74Srsc/HZaLd2G/K5A3jwcD5Q50sHxOztEiNF18Yd+E=;
+        b=RBKipDzSGwfFqx+Z550Wd/qiFS3OXSJoMjvRXvDiE8KJyVGxOqiuSa/9k5Y3HqRdVK
+         08SYhbOJDZxFBhfTE7oiUlPb/M7iaei1GBjuXjcIggMy6VeyK4rapz2XrQ1twT6rJOTl
+         3zF/uWAxYkROGNDC3UcS2/jrsbguPTkVFj2z1Ln3sQX9aJ02TAXQO5f0ib3DH13vgZnN
+         T5qQw4ZeUDwn+2akLuxIP5cyGJPzO8JftKjYk6QiAi+dQ9jjImcc79J2PepZJl5oLJvi
+         JkxfZZRY0BKYcViDNQvkLzdNhIdzAFS6iWJ420abwsacwRsZngPA1wU22TgKOqpGORlW
+         wFOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YAjXmwk1x99crswBLoztPVjTMQo0TWbhtFaOuaefFpg=;
-        b=Jpm6eUrAvcl/35/YTiN+LtMTaanrhXbm1crgQSjTmonr2Smx0vturzsB6nIK/Qtgn4
-         ycVbnXRc5Wne6likrNm12ipeh/iIEzGGxfAmnII8ICzCF+kVz2A4PcAUsPFcl8VXlxTs
-         Mcm1aqpmrePndt+yQ3TRHbBPRK/9RjpwgsgK6+JEPTfy7TYgzXznUBpvZ1pslky4FKv4
-         38V5DkK7IpZh9+5FG2qP5xO5NoL3qS2xOLKoeQu4fc0Z2SekUrG2PipdLUHBr5UANdkh
-         SJczqfEQ4eLXn+KOrkcTG5hmucAKjzTYg491zVfEvFdiaElIq3NTDtvdsHzi9Gou1NSu
-         0ABg==
-X-Gm-Message-State: AO0yUKWpyyDWakKGoCBtUM3ylTNXv77H+3ZpMwp8YGgo5d2vU02eqMN4
-        38hqe7dSJOJ9woXvKSNgPDFyHg==
-X-Google-Smtp-Source: AK7set/wMnfLn7hvAh6pV+9S6aVWZoLm4JL4Cw1Jq8PedxXE7NxReQHkBv90Wyy9FzAIHvxMwhvqyw==
-X-Received: by 2002:a05:600c:3b82:b0:3dc:37bf:c634 with SMTP id n2-20020a05600c3b8200b003dc37bfc634mr1422499wms.15.1674809268950;
-        Fri, 27 Jan 2023 00:47:48 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id v23-20020a05600c4d9700b003cfa81e2eb4sm3674626wmp.38.2023.01.27.00.47.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 00:47:48 -0800 (PST)
-Message-ID: <ff2a546c-e650-75b8-de2e-d682b9c79624@linaro.org>
-Date:   Fri, 27 Jan 2023 09:47:46 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=74Srsc/HZaLd2G/K5A3jwcD5Q50sHxOztEiNF18Yd+E=;
+        b=cfS8ZpX2bLFjy28b3gx49TQmImaImxhYxqaKG4lurrdnbnV7hNLKx7WTTiTfCTPzfG
+         bNxhVMIaIqi8ojVxUrLwXHBCSo8yUql/NqLghY5DaJTrmqbfY2oPKy5SZbIpY3TM7XPi
+         JPfxhn5HGwbMiYYXd8B2CpSl9Ye/FymSszSaF1cxPw9wcArdq9Xmvvy4SQb01LQa9GL0
+         SfKkGzQ5jZmJfsz2bHAoESdFIyciH9OraosrYC4OrKWQs7z7Iy4ttyT/HhQKQCZxqb3b
+         qJRh5DPZIZbSIzIemNDAyfNuvoK+EdviNN9+HX7upflIqandNgP/L+nT+4FxBQTi8l7R
+         ab9g==
+X-Gm-Message-State: AFqh2kqcaYn2MvdJzIGlRphAi2B/j2VWPEiupDHKirwYd4AmJws72XMf
+        fQE1xcYt4oEXiPGXZScK+HbATiD1gVmQdSvhGIHFMA==
+X-Google-Smtp-Source: AMrXdXtA/AmyKEpy3TzOGc4/dtiZaApnUtb/X9HOLK9Y873+F+NyOjwK4O/G2ar6UmEvFhVsCxpDzY7fqrw3nl0IXyo=
+X-Received: by 2002:a7b:c4d0:0:b0:3db:459:5847 with SMTP id
+ g16-20020a7bc4d0000000b003db04595847mr2144158wmk.5.1674809292405; Fri, 27 Jan
+ 2023 00:48:12 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2] dt-bindings: leds: Document Bluetooth and WLAN
- triggers
-Content-Language: en-US
-To:     Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Lee Jones <lee@kernel.org>
-Cc:     patchwork-bot+bluetooth@kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        robh@kernel.org
-References: <0d0de1bc949d24e08174205c13c0b59bd73c1ea8.1674384302.git.geert+renesas@glider.be>
- <167460363944.4058.4676712965831302643.git-patchwork-notify@kernel.org>
- <Y9FG5Wg0PmP4zfV6@google.com>
- <CABBYNZJEU-GD5J6K8_Ur4PWLvP10VNJGP7e_43H0=W3DOS=PNw@mail.gmail.com>
- <Y9IzMWnOq+r2/4V2@google.com>
- <CABBYNZ+Na7os7D_C_iV22UhyhobxiETjKkngPWVr14QAph6DfQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CABBYNZ+Na7os7D_C_iV22UhyhobxiETjKkngPWVr14QAph6DfQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230125081214.1576313-1-alexghiti@rivosinc.com>
+ <20230125081214.1576313-2-alexghiti@rivosinc.com> <20230125114044.qcr2canalvljevcu@orel>
+In-Reply-To: <20230125114044.qcr2canalvljevcu@orel>
+From:   Alexandre Ghiti <alexghiti@rivosinc.com>
+Date:   Fri, 27 Jan 2023 09:48:01 +0100
+Message-ID: <CAHVXubgCK23digBakrPjC7_J-OVD9Bu2=hcvDYvvtnLnyj7Ajw@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] riscv: Get rid of riscv_pfn_base variable
+To:     Andrew Jones <ajones@ventanamicro.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Conor Dooley <conor@kernel.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2023 21:46, Luiz Augusto von Dentz wrote:
-> Hi Lee,
-> 
-> On Thu, Jan 26, 2023 at 12:00 AM Lee Jones <lee@kernel.org> wrote:
->>
->> On Wed, 25 Jan 2023, Luiz Augusto von Dentz wrote:
->>
->>> Hi Lee,
->>>
->>> On Wed, Jan 25, 2023 at 7:16 AM Lee Jones <lee@kernel.org> wrote:
->>>>
->>>> On Tue, 24 Jan 2023, patchwork-bot+bluetooth@kernel.org wrote:
->>>>
->>>>> Hello:
->>>>>
->>>>> This patch was applied to bluetooth/bluetooth-next.git (master)
->>>>> by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
->>>>>
->>>>> On Sun, 22 Jan 2023 11:47:27 +0100 you wrote:
->>>>>> Add the missing trigger patterns for Bluetooth and WLAN activity, which
->>>>>> are already in active use.
->>>>>>
->>>>>> While at it, move the mmc pattern comment where it belongs, and restore
->>>>>> alphabetical sort order.
->>>>>>
->>>>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
->>>>>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>>>>
->>>>>> [...]
->>>>>
->>>>> Here is the summary with links:
->>>>>   - [v2] dt-bindings: leds: Document Bluetooth and WLAN triggers
->>>>>     https://git.kernel.org/bluetooth/bluetooth-next/c/ef017002b93b
->>>>
->>>> Why are you taking LED patches through the Bluetooth tree?
->>>
->>> I assume there isn't a tree dedicated to dt-bindings/leds
->>
->> % ./scripts/get_maintainer.pl -f Documentation/devicetree/bindings/leds/common.yaml
->>  Pavel Machek <pavel@ucw.cz> (maintainer:LED SUBSYSTEM,in file)
->>  Lee Jones <lee@kernel.org> (maintainer:LED SUBSYSTEM)
->>  Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
->>  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
->>  Jacek Anaszewski <jacek.anaszewski@gmail.com> (in file)
->>  linux-leds@vger.kernel.org (open list:LED SUBSYSTEM)
->>  devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
->>  linux-kernel@vger.kernel.org (open list)
-> 
-> Well this doesn't tell us what parts of the dt_bindings have a
-> dedicated tree and which doesn't, 
+On Wed, Jan 25, 2023 at 12:40 PM Andrew Jones <ajones@ventanamicro.com> wrote:
+>
+> On Wed, Jan 25, 2023 at 09:12:13AM +0100, Alexandre Ghiti wrote:
+> > Use directly phys_ram_base instead, riscv_pfn_base is just the pfn of
+> > the address contained in phys_ram_base.
+> >
+> > Even if there is no functional change intended in this patch, actually
+> > setting phys_ram_base that early changes the behaviour of
+> > kernel_mapping_pa_to_va during the early boot: phys_ram_base used to be
+> > zero before this patch and now it is set to the physical start address of
+> > the kernel. But it does not break the conversion of a kernel physical
+> > address into a virtual address since kernel_mapping_pa_to_va should only
+> > be used on kernel physical addresses, i.e. addresses greater than the
+> > physical start address of the kernel.
+>
+> afaict, only CONFIG_XIP_KERNEL kernels use phys_ram_base prior to
+> setup_bootmem() and, for them, this change only redundantly sets
+> phys_ram_base to the same thing, so I believe this is a no functional
+> change patch.
+>
 
-There is no such "parts" anywhere. I don't understand that remark and
-how is related here. This is a list of maintainers for this file. Why
-information are you missing in MAINTAINERS? And why bindings would be
-special (e.g. you don't miss this information for other parts of kernel)?
+Good, thanks for checking again
 
->>
->>> anyway I'd be happy if the dt-bindings patches
->>> would be handled elsewhere.
->>
->> Yep, we got this. :)
-> 
-> So if it starts with dt-binding: prefix shall we ignore? Or is just
-> for dt-bindings: leds? Or perhaps we can just ignore patches received
-> as CC: rather than directly To: field.
+> >
+> > Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+> > ---
+> >  arch/riscv/include/asm/page.h | 3 +--
+> >  arch/riscv/mm/init.c          | 6 +-----
+> >  2 files changed, 2 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/arch/riscv/include/asm/page.h b/arch/riscv/include/asm/page.h
+> > index 9f432c1b5289..728eee53152a 100644
+> > --- a/arch/riscv/include/asm/page.h
+> > +++ b/arch/riscv/include/asm/page.h
+> > @@ -91,8 +91,7 @@ typedef struct page *pgtable_t;
+> >  #endif
+> >
+> >  #ifdef CONFIG_MMU
+> > -extern unsigned long riscv_pfn_base;
+> > -#define ARCH_PFN_OFFSET              (riscv_pfn_base)
+> > +#define ARCH_PFN_OFFSET              (PFN_DOWN(phys_ram_base))
+> >  #else
+> >  #define ARCH_PFN_OFFSET              (PAGE_OFFSET >> PAGE_SHIFT)
+> >  #endif /* CONFIG_MMU */
+> > diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> > index 478d6763a01a..225a7d2b65cc 100644
+> > --- a/arch/riscv/mm/init.c
+> > +++ b/arch/riscv/mm/init.c
+> > @@ -271,9 +271,6 @@ static void __init setup_bootmem(void)
+> >  #ifdef CONFIG_MMU
+> >  struct pt_alloc_ops pt_ops __initdata;
+> >
+> > -unsigned long riscv_pfn_base __ro_after_init;
+> > -EXPORT_SYMBOL(riscv_pfn_base);
+> > -
+> >  pgd_t swapper_pg_dir[PTRS_PER_PGD] __page_aligned_bss;
+> >  pgd_t trampoline_pg_dir[PTRS_PER_PGD] __page_aligned_bss;
+> >  static pte_t fixmap_pte[PTRS_PER_PTE] __page_aligned_bss;
+> > @@ -285,7 +282,6 @@ static pmd_t __maybe_unused early_dtb_pmd[PTRS_PER_PMD] __initdata __aligned(PAG
+> >
+> >  #ifdef CONFIG_XIP_KERNEL
+> >  #define pt_ops                       (*(struct pt_alloc_ops *)XIP_FIXUP(&pt_ops))
+> > -#define riscv_pfn_base         (*(unsigned long  *)XIP_FIXUP(&riscv_pfn_base))
+> >  #define trampoline_pg_dir      ((pgd_t *)XIP_FIXUP(trampoline_pg_dir))
+> >  #define fixmap_pte             ((pte_t *)XIP_FIXUP(fixmap_pte))
+> >  #define early_pg_dir           ((pgd_t *)XIP_FIXUP(early_pg_dir))
+> > @@ -985,7 +981,7 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+> >       kernel_map.va_pa_offset = PAGE_OFFSET - kernel_map.phys_addr;
+> >       kernel_map.va_kernel_pa_offset = kernel_map.virt_addr - kernel_map.phys_addr;
+> >
+> > -     riscv_pfn_base = PFN_DOWN(kernel_map.phys_addr);
+> > +     phys_ram_base = kernel_map.phys_addr;
+>
+> nit: I'd put this in the #else part of the #ifdef CONFIG_XIP_KERNEL above
+> to have some consistency with that #ifdef arm and also avoid the redundant
+> assignment of phys_ram_base for CONFIG_XIP_KERNEL.
 
-What was exactly unclear in my response? The bindings for your subsystem
-are for you. Bindings for other subsystems are not for you. dt-bindings:
-leds: are for leds suubsystem. dt-bindings: mfd: are for mfd subsystem.
-If the prefix is incorrect because people make mistakes, the paths point
-to it - Documentation/devicetree/bindings/SUBSYSTEM_OR_HARDWARE_CLASS/....
+True, but as this is removed in the next patch, I guess we can live with that.
 
+>
+> >
+> >       /*
+> >        * The default maximal physical memory size is KERN_VIRT_SIZE for 32-bit
+> > --
+> > 2.37.2
+> >
+>
+> Otherwise,
+>
+> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 
-Best regards,
-Krzysztof
+Thanks!
 
+Alex
+
+>
+> Thanks,
+> drew
