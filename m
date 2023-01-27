@@ -2,193 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9CDC67DF8D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 09:54:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4236F67DF95
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 09:58:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231649AbjA0IyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 03:54:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50664 "EHLO
+        id S232742AbjA0I6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 03:58:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230289AbjA0IyX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 03:54:23 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01652619B
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:54:20 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso2895825wms.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:54:20 -0800 (PST)
+        with ESMTP id S232052AbjA0I6H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 03:58:07 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC3C329431
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:58:05 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id m15so2926402wms.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:58:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Aq47BtuyFAjUm0GhCtLi/DfxLNu4Y6gfIRbj17cxck=;
-        b=l9WEgyRR6YO39w+xZb/tVykmNrcx9QGGxsKHsAFdDcwKEvPukOAFBbJ/JqXO2/HJub
-         8XKidXklL2aI+ZH5RubFofG8J+ik+cvREZmvR97+fkiOSJHXB/OaM7BwcKl2Usnp9/qQ
-         6dXcBU3e7KhG/qQtUdz+JdKe+AMJ0IY6VDE6aVbUqcz/exrhrEdL8m0ddL4BHtqz/Ij1
-         T9e0VOS1H/gn0M4b4KSEgLxdPq3Ze9Ey7HXkxLJOptJfjPCSk7L2AgsATJO3dayfQL95
-         eVYFPzmrJW2hUtP3E+AzO3+vWuRVEdIQymYrOalD9ofB07zUPjaHc+mgsYTLZFlLIG6g
-         FZAQ==
+        d=ventanamicro.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PYMteubS+4lwOGc2I7JiDeXqE7nT4Xb62g6ujdBjlpE=;
+        b=gly/Ah19V9gpzED0uxuLEtUd8b2f3KZf9Z3F5llZ7GPh2M2DQsUzBwNWErueqqKwOK
+         2IAcgKEbiNGtg++g45thG+xXmIA4Tto8tPfjISHiN5h/kUVp0xZnk9tn7XQwdrlWnZkY
+         tn1OOjDuwMXRVnLhLwkJ20zWcnheaHrd95IgmLye+uFgvmHWG9apsp9IubCtRHBI2MzC
+         oIJfLmqRPKMAtFdTD6OUc0pl8hwNl0ALmQnKK8GS6pYz6+ErcmE2MDOlXhSl3sntDOO6
+         Wo4TU7LR0Ttl99QFAGCq/czH+h4HdB9ejMDMIXBY9mzkXgHaEm4g6jh3Y9R9dVpkCj+9
+         07Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0Aq47BtuyFAjUm0GhCtLi/DfxLNu4Y6gfIRbj17cxck=;
-        b=VXeMQSdAvfMwjhzyuFhzLnVQp4H4TtAVcDYoocD9sLc66UK810ma6qOxMTnuQsbTs4
-         jHv14A87FSdQY7mk0HXFUR0tIp3zFOpvzWl+wjs2rDRF0NMhiOWKzf00dS7B1BsBhIUS
-         4WX25foSln3nmqvLs0KVHMiHt7ofPcazrNs3EQ8FK3UmVthnFs49SvN/wA0akjhJpEQh
-         A7W17NS8yst6WJofLaPa/+EoCJ2KD/LsSG8PTh84451uA8+wXjB0GXaVBgD++5kUPcq7
-         EqcuLtbEAr5obu3dXOBGpj9YY7A5jax/7suQnZi2yn0sfgPiRNbdUPMS4F+t1dH1lv1y
-         oLHg==
-X-Gm-Message-State: AFqh2koIlTKY8mRbtMt3DjxLI3vk6XRhQbmRItl/R3vSSYBONyNVbqHS
-        HgcqbvIiWcihq2lT27WPMz2HCn+vT9Ep/Qer
-X-Google-Smtp-Source: AMrXdXuOEr4KHQE3WeLlWm0Ta83MDcHUBbweeDfYT9AuvvAUrdZUN2EynQr+nxewUbAJTYXZp0WAfA==
-X-Received: by 2002:a05:600c:3583:b0:3d2:2d2a:d581 with SMTP id p3-20020a05600c358300b003d22d2ad581mr39628189wmq.30.1674809659374;
-        Fri, 27 Jan 2023 00:54:19 -0800 (PST)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.gmail.com with ESMTPSA id l11-20020a05600c2ccb00b003cf71b1f66csm4176708wmc.0.2023.01.27.00.54.18
+        bh=PYMteubS+4lwOGc2I7JiDeXqE7nT4Xb62g6ujdBjlpE=;
+        b=6O198+Hlht1R6moE52knVqdn1G0BAKSxHvSqp6bR3LznusnufYWDuzSEqsp6zfzQlq
+         vXYPkDzgcFpcsZbrWc63GJWGU2HaEfiy5DaYo3AgWZLOMRI5VPxyogjZHlahH+huZ8U+
+         B3spQ2D+8UF3d3U1cQcOEFbxGy/kDG8rGGxM9+ilN9+sdlZShGGYeFf7lbEvktw6DLqJ
+         bNFUvmavWVTIf3Vjjk7ZNMwchu59mpDUvQTDW8MXswTdZJc/Ky8sFe+2jrgRq7Svr1tE
+         yLZC1A2SBNETAipABegj43gtUCJWyqdcUiECnWdjMI191DwjZpdQpXamyLaUTt2UJO0N
+         Kb2Q==
+X-Gm-Message-State: AFqh2krjRDbKar/5RJsKqvRRXSz7ky6dX2cOjN1aqqxY5tQdHBZoVxp7
+        r7p/SUHmliYHODY3V+f0deOApw==
+X-Google-Smtp-Source: AMrXdXtav/oM3qM10MujDBkbMkvfbbVRSYWQH3g8HyfDNMvHTIctgxxkkiyCrXTT8buQVGYHDEyK7Q==
+X-Received: by 2002:a1c:f317:0:b0:3d0:480b:ac53 with SMTP id q23-20020a1cf317000000b003d0480bac53mr38981050wmq.12.1674809884477;
+        Fri, 27 Jan 2023 00:58:04 -0800 (PST)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id a19-20020a05600c349300b003cfa622a18asm7342751wmq.3.2023.01.27.00.58.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 00:54:18 -0800 (PST)
-References: <d9721029-780e-09f1-0207-72d3897032a4@gmail.com>
-User-agent: mu4e 1.8.10; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Fri, 27 Jan 2023 00:58:04 -0800 (PST)
+Date:   Fri, 27 Jan 2023 09:58:03 +0100
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH v2] arm64: dts: amlogic: Make mmc host controller
- interrupts level-sensitive
-Date:   Fri, 27 Jan 2023 09:52:34 +0100
-In-reply-to: <d9721029-780e-09f1-0207-72d3897032a4@gmail.com>
-Message-ID: <1jlelo73yd.fsf@starbuckisacylon.baylibre.com>
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4] riscv: Use PUD/P4D/PGD pages for the linear mapping
+Message-ID: <20230127085803.ruj624323wxeyllx@orel>
+References: <20230123112803.817534-1-alexghiti@rivosinc.com>
+ <20230123142554.f22ajf6upfk2ybxk@orel>
+ <20230125104102.2thvourt3lx2p36a@orel>
+ <CAHVXubjUCmk6xGTCPzMujYqKUwE0bhQBqd8A+=yq7ijQZtBObg@mail.gmail.com>
+ <20230125151041.ijhjqswqiwmrzljd@orel>
+ <CAHVXubjR8AsZhMz59goxfmf8LmA4bjePKUx=AkvmbqoF42tzmA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHVXubjR8AsZhMz59goxfmf8LmA4bjePKUx=AkvmbqoF42tzmA@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Thu 26 Jan 2023 at 15:03, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-
-> The usage of edge-triggered interrupts lead to lost interrupts under load,
-> see [0]. This was confirmed to be fixed by using level-triggered
-> interrupts.
-> The report was about SDIO. However, as the host controller is the same
-> for SD and MMC, apply the change to all mmc controller instances.
+On Fri, Jan 27, 2023 at 09:45:21AM +0100, Alexandre Ghiti wrote:
+...
+> > > > > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > > > > > index f08b25195ae7..58107bd56f8f 100644
+> > > > > > --- a/drivers/of/fdt.c
+> > > > > > +++ b/drivers/of/fdt.c
+> > > > > > @@ -891,12 +891,13 @@ const void * __init of_flat_dt_match_machine(const void *default_match,
+> > > > > >  static void __early_init_dt_declare_initrd(unsigned long start,
+> > > > > >                                        unsigned long end)
+> > > > > >  {
+> > > > > > -   /* ARM64 would cause a BUG to occur here when CONFIG_DEBUG_VM is
+> > > > > > -    * enabled since __va() is called too early. ARM64 does make use
+> > > > > > -    * of phys_initrd_start/phys_initrd_size so we can skip this
+> > > > > > -    * conversion.
+> > > > > > +   /*
+> > > > > > +    * __va() is not yet available this early on some platforms. In that
+> > > > > > +    * case, the platform uses phys_initrd_start/phys_initrd_size instead
+> > > > > > +    * and does the VA conversion itself.
+> > > > > >      */
+> > > > > > -   if (!IS_ENABLED(CONFIG_ARM64)) {
+> > > > > > +   if (!IS_ENABLED(CONFIG_ARM64) &&
+> > > > > > +       !(IS_ENABLED(CONFIG_RISCV) && IS_ENABLED(CONFIG_64BIT))) {
+> > > > >
+> > > > > There are now two architectures, so maybe it's time for a new config
+> > > > > symbol which would be selected by arm64 and riscv64 and then used here,
+> > > > > e.g.
+> > > > >
+> > > > >   if (!IS_ENABLED(CONFIG_NO_EARLY_LINEAR_MAP)) {
+> > > >
+> > > > I see v5 left this as it was. Any comment on this suggestion?
+> > >
+> > > Introducing a config for this only use case sounds excessive to me,
+> > > but I'll let Rob decide what he wants to see here.
+> >
+> > To me, the suggestion is less about trying to tidy up DT code and more
+> > about bringing this comment about arm64 and riscv64 not being able to
+> > use the linear map as early as other architectures up out of the
+> > depths of DT code. Seeing an architecture select something like
+> > NO_EARLY_LINEAR_MAP, which has a paragraph explaining what that
+> > means, may help avoid other early uses of __va() which may or may
+> > not fail quickly and cleanly with a BUG.
+> >
+> 
+> You're right, do you have some bandwidth for doing that?
 >
-> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
->
-> Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
-> Reported-by: Peter Suti <peter.suti@streamunlimited.com>
-> Tested-by: Peter Suti <peter.suti@streamunlimited.com>
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
-On the vim3:
-Tested-by: Jerome Brunet <jbrunet@baylibre.com>
+Sure, I'll post something today.
 
-Thanks a lot for this !
-
-> ---
-> v2:
-> - apply the fix also to meson-axg
-> - apply the fix to all host controller instances
-> ---
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 4 ++--
->  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 +++---
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 6 +++---
->  3 files changed, 8 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index ed895fb32..a6a3095de 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -1886,7 +1886,7 @@ apb: bus@ffe00000 {
->  			sd_emmc_b: mmc@5000 {
->  				compatible = "amlogic,meson-axg-mmc";
->  				reg = <0x0 0x5000 0x0 0x800>;
-> -				interrupts = <GIC_SPI 217 IRQ_TYPE_EDGE_RISING>;
-> +				interrupts = <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>;
->  				status = "disabled";
->  				clocks = <&clkc CLKID_SD_EMMC_B>,
->  					<&clkc CLKID_SD_EMMC_B_CLK0>,
-> @@ -1898,7 +1898,7 @@ sd_emmc_b: mmc@5000 {
->  			sd_emmc_c: mmc@7000 {
->  				compatible = "amlogic,meson-axg-mmc";
->  				reg = <0x0 0x7000 0x0 0x800>;
-> -				interrupts = <GIC_SPI 218 IRQ_TYPE_EDGE_RISING>;
-> +				interrupts = <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>;
->  				status = "disabled";
->  				clocks = <&clkc CLKID_SD_EMMC_C>,
->  					<&clkc CLKID_SD_EMMC_C_CLK0>,
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 6d7272b2c..13fdaba21 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -2324,7 +2324,7 @@ uart_A: serial@24000 {
->  		sd_emmc_a: mmc@ffe03000 {
->  			compatible = "amlogic,meson-axg-mmc";
->  			reg = <0x0 0xffe03000 0x0 0x800>;
-> -			interrupts = <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
-> +			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
->  			status = "disabled";
->  			clocks = <&clkc CLKID_SD_EMMC_A>,
->  				 <&clkc CLKID_SD_EMMC_A_CLK0>,
-> @@ -2336,7 +2336,7 @@ sd_emmc_a: mmc@ffe03000 {
->  		sd_emmc_b: mmc@ffe05000 {
->  			compatible = "amlogic,meson-axg-mmc";
->  			reg = <0x0 0xffe05000 0x0 0x800>;
-> -			interrupts = <GIC_SPI 190 IRQ_TYPE_EDGE_RISING>;
-> +			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
->  			status = "disabled";
->  			clocks = <&clkc CLKID_SD_EMMC_B>,
->  				 <&clkc CLKID_SD_EMMC_B_CLK0>,
-> @@ -2348,7 +2348,7 @@ sd_emmc_b: mmc@ffe05000 {
->  		sd_emmc_c: mmc@ffe07000 {
->  			compatible = "amlogic,meson-axg-mmc";
->  			reg = <0x0 0xffe07000 0x0 0x800>;
-> -			interrupts = <GIC_SPI 191 IRQ_TYPE_EDGE_RISING>;
-> +			interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
->  			status = "disabled";
->  			clocks = <&clkc CLKID_SD_EMMC_C>,
->  				 <&clkc CLKID_SD_EMMC_C_CLK0>,
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> index e3c12e0be..5eed15035 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -603,21 +603,21 @@ apb: apb@d0000000 {
->  			sd_emmc_a: mmc@70000 {
->  				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
->  				reg = <0x0 0x70000 0x0 0x800>;
-> -				interrupts = <GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
-> +				interrupts = <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
->  				status = "disabled";
->  			};
->  
->  			sd_emmc_b: mmc@72000 {
->  				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
->  				reg = <0x0 0x72000 0x0 0x800>;
-> -				interrupts = <GIC_SPI 217 IRQ_TYPE_EDGE_RISING>;
-> +				interrupts = <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>;
->  				status = "disabled";
->  			};
->  
->  			sd_emmc_c: mmc@74000 {
->  				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
->  				reg = <0x0 0x74000 0x0 0x800>;
-> -				interrupts = <GIC_SPI 218 IRQ_TYPE_EDGE_RISING>;
-> +				interrupts = <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>;
->  				status = "disabled";
->  			};
->  		};
-
+Thanks,
+drew
