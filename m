@@ -2,99 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D62F067E281
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 12:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69CBC67E288
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 12:03:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231575AbjA0LBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 06:01:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42574 "EHLO
+        id S230060AbjA0LDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 06:03:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjA0LB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 06:01:27 -0500
-Received: from formenos.hmeau.com (helcar.hmeau.com [216.24.177.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2DEC234F2;
-        Fri, 27 Jan 2023 03:01:16 -0800 (PST)
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-        id 1pLMTL-004hGz-0u; Fri, 27 Jan 2023 19:00:44 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 27 Jan 2023 19:00:43 +0800
-Date:   Fri, 27 Jan 2023 19:00:43 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Jia Jie Ho <jiajie.ho@starfivetech.com>
-Cc:     Olivia Mackall <olivia@selenic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 0/3] hwrng: starfive: Add driver for TRNG module
-Message-ID: <Y9Ou20ocr+ReaFVZ@gondor.apana.org.au>
-References: <20230117015445.32500-1-jiajie.ho@starfivetech.com>
+        with ESMTP id S230399AbjA0LDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 06:03:10 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EB112CC7E
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 03:03:08 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id n7so4631132wrx.5
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 03:03:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6WecBPN5Z8fIrzgNM6687sCUjCeNc3gPd9HUiHww7Wk=;
+        b=OBf+O2j/9x9He+KEFDkRIkjuVrzJXuxA4H3bMwqUDxkjdcmPMZfFo/EPdCiuJ0RJGf
+         4WqNjLFcv3q3LuZ3eILsP5MSYMWCoHE0n5SjthGN1+PEbMbXKOA0Gn40GyEJWWkeGoZ9
+         cKqgHqtr0lj3Rl+b9xaP2a4TWfCl7TUoroOKPg93PC3K1UmVXKw1Naf+ESEtFADVjcuC
+         ycmjIZs8Gaa5hQjiAcO76hgURMfYFRcVNjvCga2MNz1gQNSmYoPs3eKHjuMEChLhZNmX
+         QKK4K+FM8h6QCV+ApeE/JY3jZoI5AsRJ9gLaQ+HIIW8+DIMR/b7Uj6Qg/ExXFcBPpZjs
+         eDsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6WecBPN5Z8fIrzgNM6687sCUjCeNc3gPd9HUiHww7Wk=;
+        b=rkByNRF1YCcABoVM+jAd2l15ao83lnUkltyyA9CVYMzFfRh1BeNQApfUqql1/JW2vo
+         3gbZnCobAO0ACh+eCBfTpW9Otv6qObCDL4pI570V2Ix6GKIMxGj0km0/fsKt+JjOo3Jo
+         d4zbV+OdFYmdi/ERLjCaVRAkWxDhBKUK+VonXI4FmJUasnEgpxKMCug7lYK8cH3Z0si5
+         CpJniGuWQLQrQpSg6/QMleD3YbpbKjztZyScYa7Btno5Pr4bUIbQbrjuLypAuxEQozy4
+         ZgEXtXikqdd5BsrJHeh0ICbtrxk051lJhydvu7nfMfmfJdTwgVkzbbEql+JXtQNcosC1
+         lrJw==
+X-Gm-Message-State: AFqh2kpbuFA82RXew0yLFU/1rgNiUJQt1oFOk17l38YG2WNfroLBWypc
+        7xoKulwloM5gsrkneQxTuHJw3Q==
+X-Google-Smtp-Source: AMrXdXv1lUyHNCHx29DyxMxXVX+IbwzXZxWV8IkNWDcUSyNoeC1L0J8VhZEhpvrzdFiL8GYHKEc0Pw==
+X-Received: by 2002:a05:6000:4f:b0:2bf:94c3:19ac with SMTP id k15-20020a056000004f00b002bf94c319acmr21429083wrx.31.1674817387043;
+        Fri, 27 Jan 2023 03:03:07 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id e10-20020a5d500a000000b002be0b1e556esm3674567wrt.59.2023.01.27.03.03.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 03:03:06 -0800 (PST)
+Message-ID: <795b6ac2-9745-7992-566e-950037e622e4@linaro.org>
+Date:   Fri, 27 Jan 2023 12:03:04 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230117015445.32500-1-jiajie.ho@starfivetech.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v4 0/5] remoteproc: qcom_q6v5_pas: add support for SM8550
+ adsp, cdsp & mpss
+Content-Language: en-US
+To:     Bjorn Andersson <andersson@kernel.org>, agross@kernel.org,
+        robh+dt@kernel.org, neil.armstrong@linaro.org, mani@kernel.org,
+        srinivas.kandagatla@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        amahesh@qti.qualcomm.com, mathieu.poirier@linaro.org,
+        konrad.dybcio@somainline.org
+Cc:     linux-arm-msm@vger.kernel.org, elder@linaro.org,
+        abel.vesa@linaro.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-remoteproc-v4-0-54154c08c0b7@linaro.org>
+ <167406406337.2924867.12230424280288709048.b4-ty@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <167406406337.2924867.12230424280288709048.b4-ty@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 17, 2023 at 09:54:42AM +0800, Jia Jie Ho wrote:
-> This patch series adds kernel support for StarFive JH7110 hardware
-> random number generator. First 2 patches add binding docs and device
-> driver for this module. Patch 3 adds devicetree entry for VisionFive 2
-> SoC.
+On 18/01/2023 18:47, Bjorn Andersson wrote:
+> On Wed, 18 Jan 2023 17:22:39 +0100, Neil Armstrong wrote:
+>> This patchsets adds support for the aDSP, cDSP and MPSS found in the
+>> SM8550 SoC.
+>>
+>> The aDSP, cDSP and MPSS boot process on SM8550 now requires a secondary
+>> "Devicetree" firmware to be passed along the main Firmware, and the cDSP
+>> a new power domain named "NSP".
+>>
+>> [...]
 > 
-> Patch 3 needs to be applied on top of:
-> https://patchwork.kernel.org/project/linux-riscv/patch/20221220011247.35560-7-hal.feng@starfivetech.com/
+> Applied, thanks!
 > 
-> Patch 3 also depends on additional clock and reset patches for stg
-> domain that are yet to be submitted to mailing list.
-> 
-> Changes v4->v5:
-> - Updated status in MAINTAINERS. (Conor)
-> - Specified targeted device in Kconfig title and descriptions. (Conor)
-> - Removed unnecessary goto label in patch 2. (Conor)
-> - Enable runtime PM before registering hwrng in patch 2. (Conor)
-> 
-> Changes v3->v4:
-> - Moved init_completion before IRQ registration to be prepared for
->   spurious interrupts. (Herbert)
-> - Added locks to guard concurrent write to the same register. (Herbert)
-> 
-> Changes v2->v3:
-> - Use constant usecs and convert to jiffies. (Herbert)
-> - Removed sleep in irq handler. (Herbert)
-> - Limited wait time to 40us if wait == 0 for trng read. (Herbert)
-> 
-> Changes v1->v2:
-> - Updated of_match_ptr and added pm_sleep_ptr. (Krzysztof)
-> - Dropped "status" in dts as module is always on. (Krzysztof)
-> 
-> Jia Jie Ho (3):
->   dt-bindings: rng: Add StarFive TRNG module
->   hwrng: starfive - Add TRNG driver for StarFive SoC
->   riscv: dts: starfive: Add TRNG node for VisionFive 2
-> 
->  .../bindings/rng/starfive,jh7110-trng.yaml    |  55 +++
->  MAINTAINERS                                   |   6 +
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  10 +
->  drivers/char/hw_random/Kconfig                |  11 +
->  drivers/char/hw_random/Makefile               |   1 +
->  drivers/char/hw_random/jh7110-trng.c          | 393 ++++++++++++++++++
->  6 files changed, 476 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
->  create mode 100644 drivers/char/hw_random/jh7110-trng.c
-> 
-> -- 
-> 2.25.1
+> [1/5] dt-bindings: remoteproc: qcom: adsp: move memory-region and firmware-name out of pas-common
+>       commit: cee616c6884616aea3be72a9debafd0614332682
+> [2/5] dt-bindings: remoteproc: qcom: adsp: document sm8550 adsp, cdsp & mpss compatible
+>       commit: 084258d607128a7486311daf5e67ca414ee07cc9
+> [3/5] remoteproc: qcom_q6v5_pas: add support for dtb co-firmware loading
+>       commit: 29814986b82e820ae9d3eb7474cdcf66605bd114
+> [4/5] remoteproc: qcom_q6v5_pas: add support for assigning memory to firmware
+>       commit: c63c0a7cab91b930a6ee78c28b481b84bfa98b7f
+> [5/5] remoteproc: qcom_q6v5_pas: add sm8550 adsp, cdsp & mpss c
 
-Patches 1-2 applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+
+The bindings were not tested against their own DTS:
+
+sm8550-mtp.dtb: remoteproc@32300000: power-domain-names: ['cx', 'mxc',
+'nsp'] is too long
+
+so now it throws fresh warnings... I don't know what is wrong here -
+either DTS or the bindings - but they probably were never used together.
+
+
+Best regards,
+Krzysztof
+
