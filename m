@@ -2,156 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 618ED67E88D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 15:46:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE7E467E899
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 15:48:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233784AbjA0Oqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 09:46:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54902 "EHLO
+        id S232898AbjA0Osv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 09:48:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230423AbjA0Oq3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 09:46:29 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A01E97D9B0;
-        Fri, 27 Jan 2023 06:46:28 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3A0F961C39;
-        Fri, 27 Jan 2023 14:46:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FDC5C433EF;
-        Fri, 27 Jan 2023 14:46:25 +0000 (UTC)
-Message-ID: <59b1c8f5-24da-4a6b-d555-84a83d3c19ba@xs4all.nl>
-Date:   Fri, 27 Jan 2023 15:46:24 +0100
+        with ESMTP id S232261AbjA0Osu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 09:48:50 -0500
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A102F44BD;
+        Fri, 27 Jan 2023 06:48:49 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1674830915; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=SuETC3WYxVE/ebnr7f/naVh81gf7DyOXptYDKgkVV0HnM7+2pp8ibBe5+heF4por0NzTD2hlWFbXhsFGEApgksdqMnm2MbqOAeojUxZsKx0rDWPms5OMxNKL9TvXYvCZBLNxbxks3VW2fXdx4jx/RBL6fP4YOPbYTjrFVyJkq8c=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1674830915; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=W4NNmlj/sNeDOj4gqCv0xqPrJ6qfWueEIwUDFntChso=; 
+        b=Ydc7vZIH3MzKJQNiE+BZP5E+9sp3R58Svgp4m8VRKOjSQ3peNWnu4qvYnLVzzQ2THQ4pr6gkhI9Zfae9h3ZDrpFBEPz+r/lFMvOfAcZz/p+1FZVgnEdhubUWkv+cjhfltoy2QvJBLqv/STXDNwxFeMycDZidezqclxjHmPwfggY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=linux.beauty;
+        spf=pass  smtp.mailfrom=me@linux.beauty;
+        dmarc=pass header.from=<me@linux.beauty>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1674830915;
+        s=zmail; d=linux.beauty; i=me@linux.beauty;
+        h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=W4NNmlj/sNeDOj4gqCv0xqPrJ6qfWueEIwUDFntChso=;
+        b=qxBYNW+1EHsrHXNMmNnU1IOzNeizNcRnfMrUZQ3upgF2f4uJfaG0ECpeL7sFuhLc
+        PkKK+J9i+mmLx2Sx791fbnkEzwbz8W6tqyqPGFxSkWLb47rPaez+gThZDAm+6wcBSEI
+        EoZqMZkPdVVwgOZo/m6KrtzWWW2Hy+LGb3PqSNsQ=
+Received: from mail.zoho.com by mx.zohomail.com
+        with SMTP id 1674830914372441.42181399158926; Fri, 27 Jan 2023 06:48:34 -0800 (PST)
+Date:   Fri, 27 Jan 2023 22:48:34 +0800
+From:   Li Chen <me@linux.beauty>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+Cc:     "li chen" <lchen@ambarella.com>,
+        "michael turquette" <mturquette@baylibre.com>,
+        "stephen boyd" <sboyd@kernel.org>,
+        "rob herring" <robh+dt@kernel.org>,
+        "krzysztof kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "moderated list:arm/ambarella soc support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:common clk framework" <linux-clk@vger.kernel.org>,
+        "open list:open firmware and flattened device tree bindings" 
+        <devicetree@vger.kernel.org>,
+        "open list" <linux-kernel@vger.kernel.org>,
+        "arnd bergmann" <arnd@arndb.de>
+Message-ID: <185f3b3a330.11c135c37327076.6300919877819761183@linux.beauty>
+In-Reply-To: <f70def8e-b148-616f-a93e-c2a8fb85be03@linaro.org>
+References: <20230123073305.149940-1-lchen@ambarella.com>
+ <20230123073305.149940-8-lchen@ambarella.com>
+ <0c19efb4-3bca-f500-ca24-14b9d24369ef@linaro.org>
+ <87y1prgdyu.wl-me@linux.beauty>
+ <b26a52ff-6b8a-8a64-7189-346cd2b0d705@linaro.org>
+ <87tu0ehl88.wl-me@linux.beauty>
+ <ec9fc589-2612-3315-3550-83b68bead926@linaro.org>
+ <87sffyhgvw.wl-me@linux.beauty> <f70def8e-b148-616f-a93e-c2a8fb85be03@linaro.org>
+Subject: Re: [PATCH 07/15] dt-bindings: clock: Add Ambarella clock bindings
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 05/10] media: Add B312 video format
-Content-Language: en-US
-To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
-        mirela.rabulea@oss.nxp.com
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, xiahong.bao@nxp.com, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <cover.1671071730.git.ming.qian@nxp.com>
- <a3ae7c29f0c2c8e86f2c35d50a4b9cbc432c6cf0.1671071730.git.ming.qian@nxp.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <a3ae7c29f0c2c8e86f2c35d50a4b9cbc432c6cf0.1671071730.git.ming.qian@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/12/2022 04:11, Ming Qian wrote:
-> B312 is a reversed RGB format with 12 bits per component like BGR24,
-> expanded to 16bits.
-> Data in the 12 high bits, zeros in the 4 low bits,
-> arranged in little endian order.
-> 
-> Signed-off-by: Ming Qian <ming.qian@nxp.com>
-> ---
->  .../userspace-api/media/v4l/pixfmt-rgb.rst    | 35 +++++++++++++++++++
->  drivers/media/v4l2-core/v4l2-common.c         |  1 +
->  drivers/media/v4l2-core/v4l2-ioctl.c          |  1 +
->  include/uapi/linux/videodev2.h                |  3 ++
->  4 files changed, 40 insertions(+)
-> 
-> diff --git a/Documentation/userspace-api/media/v4l/pixfmt-rgb.rst b/Documentation/userspace-api/media/v4l/pixfmt-rgb.rst
-> index 30f51cd33f99..f7785c93292a 100644
-> --- a/Documentation/userspace-api/media/v4l/pixfmt-rgb.rst
-> +++ b/Documentation/userspace-api/media/v4l/pixfmt-rgb.rst
-> @@ -763,6 +763,41 @@ nomenclature that instead use the order of components as seen in a 24- or
->      \normalsize
->  
->  
-> +More Than 8 Bits Per Component
-> +==============================
-> +
-> +These formats store an RGB triplet in six or eighth bytes, with more than 8 bits per component.
-> +expand the bits per component to 16 bits, data in the high bits, zeros in the low bits,
-> +arranged in little endian order.
-> +
-> +.. raw:: latex
-> +
-> +    \small
-> +
-> +.. flat-table:: RGB Formats With More Than 8 Bits Per Component
-> +    :header-rows:  1
-> +    :stub-columns: 0
-> +
-> +    * - Identifier
-> +      - Code
-> +      - Byte 1-0
-> +      - Byte 3-2
-> +      - Byte 5-4
-> +      - Byte 7-6
-> +    * .. _V4L2-PIX-FMT-B312:
-> +
-> +      - ``V4L2_PIX_FMT_B312``
-> +      - 'B312'
-> +
-> +      - B\ :sub:`15-4`
-> +      - G\ :sub:`15-4`
-> +      - R\ :sub:`15-4`
-> +      -
-> +
-> +.. raw:: latex
-> +
-> +    \normalsize
-> +
->  Deprecated RGB Formats
->  ======================
->  
-> diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2-core/v4l2-common.c
-> index 332d4b11bc1b..0cc58abae562 100644
-> --- a/drivers/media/v4l2-core/v4l2-common.c
-> +++ b/drivers/media/v4l2-core/v4l2-common.c
-> @@ -252,6 +252,7 @@ const struct v4l2_format_info *v4l2_format_info(u32 format)
->  		{ .format = V4L2_PIX_FMT_RGB565,  .pixel_enc = V4L2_PIXEL_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
->  		{ .format = V4L2_PIX_FMT_RGB555,  .pixel_enc = V4L2_PIXEL_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
->  		{ .format = V4L2_PIX_FMT_BGR666,  .pixel_enc = V4L2_PIXEL_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> +		{ .format = V4L2_PIX_FMT_B312,    .pixel_enc = V4L2_PIXEL_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 6, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
->  
->  		/* YUV packed formats */
->  		{ .format = V4L2_PIX_FMT_YUYV,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
-> index 5b97d7e5dbbf..8c3d40d3acf5 100644
-> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
-> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
-> @@ -1298,6 +1298,7 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
->  	case V4L2_PIX_FMT_BGRX32:	descr = "32-bit XBGR 8-8-8-8"; break;
->  	case V4L2_PIX_FMT_RGBA32:	descr = "32-bit RGBA 8-8-8-8"; break;
->  	case V4L2_PIX_FMT_RGBX32:	descr = "32-bit RGBX 8-8-8-8"; break;
-> +	case V4L2_PIX_FMT_B312:		descr = "12-bit Depth BGR"; break;
->  	case V4L2_PIX_FMT_GREY:		descr = "8-bit Greyscale"; break;
->  	case V4L2_PIX_FMT_Y4:		descr = "4-bit Greyscale"; break;
->  	case V4L2_PIX_FMT_Y6:		descr = "6-bit Greyscale"; break;
-> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-> index 3475331737af..c67f895210de 100644
-> --- a/include/uapi/linux/videodev2.h
-> +++ b/include/uapi/linux/videodev2.h
-> @@ -577,6 +577,9 @@ struct v4l2_pix_format {
->  #define V4L2_PIX_FMT_ARGB32  v4l2_fourcc('B', 'A', '2', '4') /* 32  ARGB-8-8-8-8  */
->  #define V4L2_PIX_FMT_XRGB32  v4l2_fourcc('B', 'X', '2', '4') /* 32  XRGB-8-8-8-8  */
->  
-> +/* RGB formats (6 or 8 bytes per pixel) */
-> +#define V4L2_PIX_FMT_B312    v4l2_fourcc('B', '3', '1', '2') /* 48  BGR 12-bit per component */
+Hi Krzysztof,
+ ---- On Thu, 26 Jan 2023 19:29:05 +0800  Krzysztof Kozlowski  wrote --- 
+ > On 25/01/2023 14:40, Li Chen wrote:
+ > > On Wed, 25 Jan 2023 20:14:16 +0800,
+ > > 
+ > > Hi Krzysztof,
+ > > 
+ > > Krzysztof Kozlowski wrote:
+ > >>
+ > >> On 25/01/2023 13:06, Li Chen wrote:
+ > >>>>> Feel free to correct me if you think this
+ > >>>>> is not a good idea.
+ > >>>>
+ > >>>> This is bad idea. Compatibles should be specific. Devices should not use
+ > >>>> syscons to poke other registers, unless strictly necessary, but have
+ > >>>> strictly defined MMIO address space and use it.
+ > >>>
+ > >>> Ok, I will convert syscon-based regmaps to SoC-specific compatibles and of_device_id->data.
+ > >>>
+ > >>> But I have three questions:
+ > >>>
+ > >>> 0. why syscon + offsets is a bad idea copared to specific compatibles?
+ > >>
+ > >> Specific compatibles are a requirement. They are needed to match device
+ > >> in exact way, not some generic and unspecific. The same with every other
+ > >> interface, it must be specific to allow only correct usage.
+ > >>
+ > >> It's of course different with generic fallbacks, but we do not talk
+ > >> about them here...
+ > >>
+ > >>> 1. when would it be a good idea to use syscon in device tree?
+ > >>
+ > >> When your device needs to poke one or few registers from some
+ > >> system-controller block.
+ > >>
+ > >>> 2. syscon VS reg, which is preferred in device tree?
+ > >>
+ > >> There is no such choice. Your DTS *must* describe the hardware. The
+ > >> hardware description is for example clock controller which has its own
+ > >> address space. If you now do not add clock controller's address space to
+ > >> the clock controller, it is not a proper hardware description. The same
+ > >> with every other property. If your device has interrupts, but you do not
+ > >> add them, it is not correct description.
+ > > 
+ > > Got it. But Ambarella hardware design is kind of strange. I want to add mroe
+ > > expalaination about why Ambarella's downstream kernel
+ > > use so much syscon in device trees:
+ > > 
+ > > For most SoCs from other vendors, they have seperate address space regions
+ > > for different peripherals, like
+ > > axi address space A: ENET
+ > > axi address space B: PCIe
+ > > axi address space B: USB
+ > > ...
+ > > 
+ > > Ambarella is somewhat **different**, its SoCs have two system controllers regions:
+ > > RCT and scratchpad, take RCT for example:
+ > > "The S6LM system software
+ > > interacts with PLLs, PHYs and several other low-level hardware blocks using APB reset clock and test (RCT)
+ > > registers with a system-layer application programming interface (API).
+ > > This includes the setting of clock frequencies."
+ > > 
+ > > There are so many peripherals registers located inside RCT and scratchpad
+ > > (like usb/phy, gpio, sd, dac, enet, rng), and some peripherals even have no their
+ > > own modules for register definitions.
+ > 
+ > Then the syscon is the parent device of these peripherals and clocks.
+ > You did not represent them as children but as siblings which does not
+ > look correct.
+ 
+Ok, I will these syscon(RCT  and scratchpad) as the parent node of our clocks and related peripherals.
 
-BGR24_12
+ > > 
+ > > So most time(for a peripheral driver), the only differences between different
+ > > Ambarella SoCs are just the syscon(rct or scratchpad) offsets get changed.
+ > > 
+ > > I don't think such lazy hardware design is common in vendors other than ambarella.
+ > > 
+ > > If I switch to SoC-specific compatibles, 
+ > 
+ > This is independent topic. SoC-specific compatibles are a requirement
+ > but it does not affect your device hierarchy.
+ 
+Thanks, "requirement" makes things much more clear. So I will always use SoC-specific compatibles even
+if different Amarella SoCs may share the same reg offset and setting.
+
+ > > and remove these syscon from device tree,
+ > > of_device_id->data may only contain system controller(rct or scratchpad) offset for many Ambarella drivers,
+ > > and ioremap/devm_ioremap carefully.
+ > 
+ > I don't understand the problem. Neither the solution.
+ > 
+ > > 
+ > > The question is: can upstream kernel accept such codes?
+ > > 
+ > > If yes, I will switch to SoC-specific compatibles and remove syscon without hesitation.
+ > 
+ > Sorry, none of your explanations here match your DTS. Your DTS clearly
+ > models (for some reason there is no soc which makes even bigger confusion):
+ > 
+ > rct_syscon
+ > clocks
+ >  |-gclk-core
+ >  |-gclk-ddr
+ > 
+ > but what you are saying is that there is no separate clock controller
+ > device with its own IO address but these clocks are part of rct_syscon.
+ > Then model it that way in DTS. The rct_syscon is then your clock
+ > controller and all these fake gclk-core and gclk-ddr nodes should be gone.
+
+Ok, I will remove these fake nodes, and model the hardware as:
+
+rct_syscon node
+| clock node(pll, div, mux, composite  clocks live in the same driver)
+| other periphal nodes
 
 Regards,
-
-	Hans
-
-> +
->  /* Grey formats */
->  #define V4L2_PIX_FMT_GREY    v4l2_fourcc('G', 'R', 'E', 'Y') /*  8  Greyscale     */
->  #define V4L2_PIX_FMT_Y4      v4l2_fourcc('Y', '0', '4', ' ') /*  4  Greyscale     */
-
+Li
