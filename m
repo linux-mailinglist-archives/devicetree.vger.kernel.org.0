@@ -2,93 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 917B567E965
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 16:26:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42B7B67E973
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 16:29:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233295AbjA0P0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 10:26:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54982 "EHLO
+        id S232781AbjA0P3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 10:29:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjA0P0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 10:26:19 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49F28126C7;
-        Fri, 27 Jan 2023 07:26:18 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C293461CB1;
-        Fri, 27 Jan 2023 15:26:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CED7C433D2;
-        Fri, 27 Jan 2023 15:26:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674833177;
-        bh=Z5ZP4DaoVQ2QC+fknVQWZA212TOY3bzBXTC09PEvXyk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UNQtfsRxBJ762s3ZPwg0veDwjdbh9f/dsZi1AmCtvr9IPvhA0QgR1W5fc+eJTaAt3
-         3fIhlHDoqClG+KAB/H/wAuUrSuNj0LJHqLMV/uBDfyjwHiuKiERks4NM9NM+em8apV
-         w5G6CF+0nK2wp/CaTdxUqAYilQ43XOrMMdWOp8jh9v31Ct+xn41MVrhcIwRv206g44
-         qYy/imjKEgDdF5TwocAS4hjWK9xw6Tq23xSVFKGKCip7+qJwObU+WFo7VEheZUAZiH
-         Gvyj1Mpgtq8tKz37ECKoD/HX2f6lleyoY3nC1qGP5ilt2/h8ZreM+2QjJB8jm2X6hL
-         Rh80pil6+W1Hg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pLQcU-0001Cp-Fp; Fri, 27 Jan 2023 16:26:26 +0100
-Date:   Fri, 27 Jan 2023 16:26:26 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 19/24] rtc: pm8xxx: add support for uefi offset
-Message-ID: <Y9PtIiD1o8eBq2wk@hovoldconsulting.com>
-References: <20230126142057.25715-1-johan+linaro@kernel.org>
- <20230126142057.25715-20-johan+linaro@kernel.org>
- <Y9PrdqLHZpZrdGJ4@mail.local>
+        with ESMTP id S231901AbjA0P3l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 10:29:41 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB1E2757B8
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 07:29:39 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id f19-20020a1c6a13000000b003db0ef4dedcso5651097wmc.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 07:29:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=O1suuUkzT2SD8pmtmuon89jC62J3QtPypnaFKVAj0JU=;
+        b=bwY38uJB+sriymVN1affGyIH3e8EGQcrs8YKjvh5MGKqKsxw6S457orZdVhke9kKXe
+         JFN3iG/hZYsCH1yFkY55DPzQu/hCMkuaYv2lJ0zIxRSGde2xfMnfSsEzpAlAa7K2zl5O
+         XAHOlxaKN4Exj1XlBCMKtURAeuWmV7dKvmPu2/GLXzBa1e0PMjxPcsSqTs2DnT4k7T3/
+         n4MVNJder0ih+AU/e5dHcPdnAlkEN54K9J7tQkx1smzT1plVkcicETKvBkiVZ8JS0e3h
+         my2SABlbe1PZj0hALj/EC6MbjYwG25h35lC1cQP4PSB018xOy8/3zjFhcOr7MpimDzMs
+         8MlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O1suuUkzT2SD8pmtmuon89jC62J3QtPypnaFKVAj0JU=;
+        b=lteiUYwFWXNSTBRDtZTmpTboObIpKlU6W46LX7H/qST/iHVtMje6s2sVPicJfDL2Ot
+         CuyqbKa7SwSuyUiHF+EuGVkmIcULOu3BH1r9lJeZWdxr7GIeW4DFs2tYBvNQqD3aSiLN
+         l/3tCEpGKnj8WViFksQOVmA+fAagbcj2DJeH2DMxkbNUMXkvMhXWQ46H3Z+Q6D9qdGbU
+         W+gpMwmRgu2CWsyz2ipNZk9aUfxKnVs2+NSGnKz0IofdRDunGKa/+vsSbY5evpeamwQY
+         jMemGHs5UPNLDUXBi0m9MfXYh3rRmUOFSXpSF75foeU2K71t3E9o1dxkaZJ2gKf3eL++
+         gSUA==
+X-Gm-Message-State: AFqh2kqPaXY3lWxSkke5lmB2H9IqAM+X+uq4USbKgU8iaDBiibxW4F2p
+        04x/b7O0mtUZ8fDYqja/ZT3uMw==
+X-Google-Smtp-Source: AMrXdXu3It+BDt9Fk5ZVJ6Wg+8jB7MrEqaO8ptgkjTk7HV5zV8bW1yAZRWRGkLqOzHVqCQBoQ74/5g==
+X-Received: by 2002:a05:600c:a29e:b0:3d9:ee01:ae5b with SMTP id hu30-20020a05600ca29e00b003d9ee01ae5bmr39390660wmb.12.1674833378435;
+        Fri, 27 Jan 2023 07:29:38 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id r7-20020a05600c434700b003dc3f195abesm1262902wme.39.2023.01.27.07.29.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 07:29:37 -0800 (PST)
+Message-ID: <7ce28c64-9d5f-78dc-6f81-665c32c3e00c@linaro.org>
+Date:   Fri, 27 Jan 2023 16:29:35 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y9PrdqLHZpZrdGJ4@mail.local>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 1/2] dt-bindings: ramoops: Inherit reserve memory
+ property
+Content-Language: en-US
+To:     Mukesh Ojha <quic_mojha@quicinc.com>,
+        linux-hardening@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>,
+        "Guilherme G . Piccoli" <gpiccoli@igalia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <1674832236-6754-1-git-send-email-quic_mojha@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1674832236-6754-1-git-send-email-quic_mojha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 04:19:18PM +0100, Alexandre Belloni wrote:
-> On 26/01/2023 15:20:52+0100, Johan Hovold wrote:
-> > On many Qualcomm platforms the PMIC RTC control and time registers are
-> > read-only so that the RTC time can not be updated. Instead an offset
-> > needs be stored in some machine-specific non-volatile memory, which the
-> > driver can take into account.
-> > 
-> > Add support for storing a 32-bit offset from the GPS time epoch in a
-> > UEFI variable so that the RTC time can be set on such platforms.
-> > 
+On 27/01/2023 16:10, Mukesh Ojha wrote:
+> The reserved memory region for ramoops is assumed to be at a
+> fixed and known location when read from the devicetree. This
+> is not desirable in an environment where it is preferred the
+> region to be dynamically allocated at runtime, as opposed to
+> being fixed at compile time.
 > 
-> Why are you using the GPS epoch? This seems pretty random.
+> So, update the ramoops binding by inheriting some reserve memory
+> property to allocate the ramoops region dynamically.
+> 
+> Cc: Kees Cook <keescook@chromium.org>
+> Cc: Tony Luck <tony.luck@intel.com>
+> Cc: Guilherme G. Piccoli <gpiccoli@igalia.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> ---
+> Changes in v3:
+>  - Fixed yaml error and updated commit text as per comment.
+> 
+> Change in v2:
+>   - Added this patch as per changes going to be done in patch 3/3
+> 
+>  .../bindings/reserved-memory/ramoops.yaml          | 34 ++++++++++++++++++++--
+>  1 file changed, 32 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+> index 0391871..8741626 100644
+> --- a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+> +++ b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+> @@ -10,7 +10,8 @@ description: |
+>    ramoops provides persistent RAM storage for oops and panics, so they can be
+>    recovered after a reboot. This is a child-node of "/reserved-memory", and
+>    is named "ramoops" after the backend, rather than "pstore" which is the
+> -  subsystem.
+> +  subsystem. This region can be reserved both statically or dynamically by
+> +  using appropriate property in device tree.
+>  
+>    Parts of this storage may be set aside for other persistent log buffers, such
+>    as kernel log messages, or for optional ECC error-correction data.  The total
+> @@ -112,7 +113,13 @@ unevaluatedProperties: false
+>  
+>  required:
+>    - compatible
+> -  - reg
+> +
+> +oneOf:
+> +  - required:
+> +      - reg
+> +
+> +  - required:
+> +      - size
+>  
+>  anyOf:
+>    - required: [record-size]
+> @@ -142,3 +149,26 @@ examples:
+>              };
+>          };
+>      };
+> +
+> +  - |
+> +    / {
+> +        compatible = "foo";
+> +        model = "foo";
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        reserved-memory {
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +            ranges;
+> +
+> +            ramoops: ramoops_region {
 
-Tell that to the Qualcomm firmware team. ;)
+This is a friendly reminder during the review process.
 
-Perhaps I could have made it more clear, but this is the format that the
-firmware uses so Linux is not free to pick a different base here (or
-time would differ ten years between UEFI/Windows and Linux).
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
 
-> > The UEFI variable is
-> > 
-> >             882f8c2b-9646-435f-8de5-f208ff80c1bd-RTCInfo
-> > 
-> > and holds a 12-byte structure where the first four bytes is a GPS time
-> > offset in little-endian byte order.
+Thank you.
 
-Johan
+Best regards,
+Krzysztof
+
