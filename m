@@ -2,101 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9F3867EDF3
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 20:05:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D045767EE0D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 20:19:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229583AbjA0TF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 14:05:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59492 "EHLO
+        id S234354AbjA0TTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 14:19:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjA0TFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 14:05:54 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1339C2006D;
-        Fri, 27 Jan 2023 11:05:52 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A36CD61D8F;
-        Fri, 27 Jan 2023 19:05:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BC35C433EF;
-        Fri, 27 Jan 2023 19:05:50 +0000 (UTC)
-Date:   Fri, 27 Jan 2023 19:05:47 +0000
-From:   Mark Brown <broonie@debian.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Luca Di Stefano <luca.distefano@linaro.org>,
-        993612@bugs.debian.org, stable@kernel.org
-Subject: Re: [PATCH] of/address: Return an error when no valid dma-ranges are
- found
-Message-ID: <Y9Qgi2osVrP/qcAM@sirena.org.uk>
-References: <20230126-synquacer-boot-v1-1-94ed0eb1011f@kernel.org>
- <CAL_JsqLPUKS2+8-sShADSYxAgxjP3mh=TcZPszFeYbMTiPvjYQ@mail.gmail.com>
+        with ESMTP id S233708AbjA0TS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 14:18:57 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8B97D294
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:18:35 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id nn18-20020a17090b38d200b0022bfb584987so5659285pjb.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:18:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rrpVKqMmu6aS8nYMVOqBou02mxi1hvJKXYbLMwv8NQs=;
+        b=gpFq7sLNE6mtb8IXlsZj7CCQRrpRWeNX0DaVfrF+tfxo9TmGeMLBn+/gnfOMUf9f03
+         kgwSxVzTICgFikTbtgUWpuNyQft8c8V/oKrK4TQ3eLWiN6R+PKS/rBGLc5GeDDP9ipoj
+         eQhp2NlMF4R8DBNAY1vd+ghK2hq5P4QC8sK34=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rrpVKqMmu6aS8nYMVOqBou02mxi1hvJKXYbLMwv8NQs=;
+        b=DvRNISHHUuTISblAzYbetDtGolRf++wonwKXOqI9C9eraswbZb4UEvz5zaZJAE7VWw
+         6/r4df3iQ/6d5Ce6GPM/4zIMDePozE5nmQ8ozkAI9cbTViwYkenzLNoHyy794ci2qr8B
+         ah8FVin74cQqCUY6EW0lnpx1+JBsQNoOjXkWmYT5yCORwjx27uVewwydMrNij8YGIC5E
+         iT7CKPW6F/WkXbtb/R9D80KUYeXNzeJxYvzGXebo8NtU7TprF6D5DJwwJ18rhT3p1Sg4
+         JHIaasXplMuui3MIBEJPDYD8l3UbkG+dCcERCNILsK5qjOl3sUEBkjoG4SiZ9cOhXoTI
+         YS6A==
+X-Gm-Message-State: AO0yUKVeXhT2Blx4b64ztTgoYsektAI1PopTyGCkkIXvY+nAsbX7CU/F
+        k6e0HbFsQG7WStCGsnLzgFOKoQ==
+X-Google-Smtp-Source: AK7set9hsln9I1KJbS/pzMIo0pAzaGsMtCQ40nv8FkEkxL0KJF+vuhYW0O7+D6uWuvitFfC8bRPHhg==
+X-Received: by 2002:a17:90b:1646:b0:22b:e79f:fff with SMTP id il6-20020a17090b164600b0022be79f0fffmr16835308pjb.15.1674847115070;
+        Fri, 27 Jan 2023 11:18:35 -0800 (PST)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+        by smtp.gmail.com with ESMTPSA id p5-20020a17090a748500b0020aacde1964sm5320872pjk.32.2023.01.27.11.18.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 11:18:34 -0800 (PST)
+Date:   Fri, 27 Jan 2023 11:18:34 -0800
+From:   Kees Cook <keescook@chromium.org>
+To:     Mukesh Ojha <quic_mojha@quicinc.com>
+Cc:     linux-hardening@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G . Piccoli" <gpiccoli@igalia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: ramoops: Inherit reserve memory
+ property
+Message-ID: <202301271118.A223F4E88B@keescook>
+References: <1674835252-31954-1-git-send-email-quic_mojha@quicinc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="UnZ9XPcC2SdAdzt2"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqLPUKS2+8-sShADSYxAgxjP3mh=TcZPszFeYbMTiPvjYQ@mail.gmail.com>
-X-Cookie: Serving suggestion.
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1674835252-31954-1-git-send-email-quic_mojha@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 27, 2023 at 09:30:51PM +0530, Mukesh Ojha wrote:
+> The reserved memory region for ramoops is assumed to be at a
+> fixed and known location when read from the devicetree. This
+> is not desirable in an environment where it is preferred the
+> region to be dynamically allocated at runtime, as opposed to
+> being fixed at compile time.
+> 
+> So, update the ramoops binding by inheriting some reserve memory
+> property to allocate the ramoops region dynamically.
+> 
+> Cc: Kees Cook <keescook@chromium.org>
+> Cc: Tony Luck <tony.luck@intel.com>
+> Cc: Guilherme G. Piccoli <gpiccoli@igalia.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> ---
+> Changes in v4:
+>  - Addressed comment made by Krzysztof on ramoops node name.
 
---UnZ9XPcC2SdAdzt2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks! Krzysztof, if this looks good to you, I can carry it in the
+pstore tree.
 
-On Fri, Jan 27, 2023 at 12:37:35PM -0600, Rob Herring wrote:
+-Kees
 
-> Looks to me like we are leaking 'r' with this change.
-
-Oh, probably now that you mention it.  Usually the OF code keeps
-track of more things than I expect...
-
-> Wouldn't this change work:
-
-> diff --git a/drivers/of/address.c b/drivers/of/address.c
-> index c34ac33b7338..f43311f01c32 100644
-> --- a/drivers/of/address.c
-> +++ b/drivers/of/address.c
-> @@ -968,6 +968,11 @@ int of_dma_get_range(struct device_node *np,
-> const struct bus_dma_region **map)
->         for_each_of_range(&parser, &range)
->                 num_ranges++;
->=20
-> +       if (!num_ranges) {
-> +               ret =3D -EINVAL;
-> +               goto out;
-> +       }
+> 
+> Changes in v3:
+>  - Fixed yaml error and updated commit text as per comment.
+> 
+> Change in v2:
+>   - Added this patch as per changes going to be done in patch 3/3
+> 
+>  .../bindings/reserved-memory/ramoops.yaml          | 34 ++++++++++++++++++++--
+>  1 file changed, 32 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+> index 0391871..8741626 100644
+> --- a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+> +++ b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+> @@ -10,7 +10,8 @@ description: |
+>    ramoops provides persistent RAM storage for oops and panics, so they can be
+>    recovered after a reboot. This is a child-node of "/reserved-memory", and
+>    is named "ramoops" after the backend, rather than "pstore" which is the
+> -  subsystem.
+> +  subsystem. This region can be reserved both statically or dynamically by
+> +  using appropriate property in device tree.
+>  
+>    Parts of this storage may be set aside for other persistent log buffers, such
+>    as kernel log messages, or for optional ECC error-correction data.  The total
+> @@ -112,7 +113,13 @@ unevaluatedProperties: false
+>  
+>  required:
+>    - compatible
+> -  - reg
 > +
+> +oneOf:
+> +  - required:
+> +      - reg
+> +
+> +  - required:
+> +      - size
+>  
+>  anyOf:
+>    - required: [record-size]
+> @@ -142,3 +149,26 @@ examples:
+>              };
+>          };
+>      };
+> +
+> +  - |
+> +    / {
+> +        compatible = "foo";
+> +        model = "foo";
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        reserved-memory {
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +            ranges;
+> +
+> +            ramoops_region: ramoops {
+> +                compatible = "ramoops";
+> +                alloc-ranges = <0x00000000 0xffffffff>;
+> +                size = <0x0 0x10000>;       /* 64kB */
+> +                console-size = <0x8000>;    /* 32kB */
+> +                record-size = <0x400>;      /*  1kB */
+> +                ecc-size = <16>;
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.7.4
+> 
 
-Not as-is, there is a range counted by that first loop but it's
-then rejected by the check in the second loop for cpu_addr =3D=3D
-OF_BAD_ADDR.  We'd need to add a similar check in the first loop.
-It should work otherwise though and avoids doing the allocation
-in this case.
-
---UnZ9XPcC2SdAdzt2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPUIIoACgkQJNaLcl1U
-h9BWWgf/fmh+vNOYgJclVva+npcQWUCr724F0B6EUwZhP8m1z7ltvq8qnzdPRo4K
-XU+25ixFsMoD0D4hiAQYWweXEzre+sEkpggC7ujSMjMqjYdi2JKuJWVYsQCc4fIt
-R67C5beB5xy3jvu5lNujixhC+p4+mvUteOxrbGPjZzKLao/1cX8uI1FuXjGRX6j8
-oe7Arw13DwS/0nKjn7CuU1XSLKuYzJ1M6keRj54cDqCvrl87werGGyYGQmr1p1DT
-AB71on2CPiWsITqqHi6jbMwcwNOVg9I/024R0GIH1fWqad+1cmnC5yICTlTYwICV
-HyehNSl/7fpE3ZRq+EF5HKjUNv7DZA==
-=gn0r
------END PGP SIGNATURE-----
-
---UnZ9XPcC2SdAdzt2--
+-- 
+Kees Cook
