@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF24767E400
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 12:47:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65FF167E47E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:04:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233569AbjA0Lrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 06:47:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40818 "EHLO
+        id S232580AbjA0MD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 07:03:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233593AbjA0LrG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 06:47:06 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBCD372663
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 03:45:18 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so5216128wml.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 03:45:18 -0800 (PST)
+        with ESMTP id S232793AbjA0MDQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:03:16 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D54697E6BE
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 03:58:29 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id w11so7736537lfu.11
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 03:58:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ix6uSq7+eaM/mrHEkG5TL//sAXSE8QmH+pieZcKcbXI=;
-        b=HcoN1x+r5Ss1Lt0MY2O+MJ5UjL5rgoCYsQAiPv8Z7YdiXVruWHAsuMU4NBEU0VGqOQ
-         rG+Cu+HTSfdAjXuTIyMQb0FIpPcnBePJjnofQaNlOPWBijurlEwUUYBjPWBKgunKEguu
-         EpfiFU7zvRihEKljBvBM1GEPTCSqHzZIClkxz7lPjVe49sOsw1/lUJSdGJhpCpeu9kAi
-         5oO0sg35FVgRsbcYTdqrJ4DtnYUxSWsFHFqjwjrzgGzY0S0CNHFba11NPHST8Wjo1NKc
-         cjxXwxBDjpjkD5Y3AMUeQ6PkCTwsiqIfn+ApiHiGpz6oTHi7mSmErz7CKp4eQGlHS+hd
-         tVGA==
+        bh=8/ptUxWMVTor6ntL9qaeIR6q6ULD16W0rtO/BKKve5U=;
+        b=XpotfwvpwAyGdoLduq0wPKd+083oPmahqGb7dlU8BlHWvAA96vR7dtTVV8ulA3RJNZ
+         OBapABPXKZsSh1HFJ4Mn3CJwvJDpA9hNRsiqi8E6mmzYMz8aCPwV8j4kJ/21LjcV5ycI
+         TYXpVOFQUAgdoYJ88TiMpXVb0JV+als1/o+iTwoI2IoERkn4ht8H76hz4qBd//iKjo7Z
+         abS3+A6Hwqa/IlSaxEcTQlmUU9/xqg+TfbIKaZ4zQVfdhCbaWZLj7YNNLDCdJUgm/Bcd
+         gT0zARKKXH9/KoCQvBEdg0AuQzPpogTevN++TXasThHX5F55KFhT6C0nfhKbNw1AEie3
+         xZXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ix6uSq7+eaM/mrHEkG5TL//sAXSE8QmH+pieZcKcbXI=;
-        b=m7/NKKRBfjY8Kh6omXbW9bnVxTX4Vsei9wZ/kQ6ZRcRtaYObQWvO/uVUp8qsYkUrzj
-         HT4s0i6YX6fxj3akgArD6G+/uOK5W5bXFUvS225kga3gf6GMAWznHj5LHvh04+cpCvNM
-         nrUoix6KjWzYaqx0tuiKeVDPjn/fJk9VbTKnHi5XrP+ipvFe4TcZD9moi/gSbxStWyIa
-         a4+SqN8gsoQi5sdKqQ37IkqiostjWkH9MR24BTD97rP+y9ZYWg1h+d+M8cjLi7Cb38st
-         xuJdNdi9+r5JUDYZEGXZ73Zne0jP3ftbU1xbqzKJGu0vpAVHzRyoxFlxYejYM/W7UbXi
-         Wgdg==
-X-Gm-Message-State: AFqh2kpduzxq0PcjwK1P1E7fkL4xZGj8oKqXSeBCUAy1kOXhRUthkAcP
-        RuW70bc8YBGB/Z386BpGFCs+2A==
-X-Google-Smtp-Source: AMrXdXviMgoTrYlDDvt0YMY6p6tQFfmPQP42tyVq9e83/08hQycI4VR1WctbFw+lmXMmvX0mh3Pf/Q==
-X-Received: by 2002:a05:600c:a690:b0:3d5:64bf:ccb8 with SMTP id ip16-20020a05600ca69000b003d564bfccb8mr37868319wmb.12.1674819860648;
-        Fri, 27 Jan 2023 03:44:20 -0800 (PST)
+        bh=8/ptUxWMVTor6ntL9qaeIR6q6ULD16W0rtO/BKKve5U=;
+        b=zqULk4qwT8spp/D5C5NYbAC/l+I9k9RkPIX6WRUcyD+3oKhRXL0ZBZTyoid8dM4VJh
+         s09Y3bco4nfhXcS7rpxv+LapP6/+fIuLShI9k21CS8KDLa3tBfUjIKuAp/1jMewuJcsl
+         GeTG5GpA25n6zxqn7lqd1i5P2Jfl0aaSeGXWCxPkH48UVoztf+yudV6wJntJ594dlyLi
+         U0JntXesJHvKPVv9rjQlhIv1susEu7pYwZc7Duy5ShWySrpYDmo/CdtBelosnRGuaoAV
+         +3D8WA44owP0HKvHSgWawncDsz3z24J0Np6hBkD+lOhLe8fzlWcXVnn0SQtS7oYWg3wn
+         g/dg==
+X-Gm-Message-State: AFqh2koswQPWQll4gmga29bk+EnUjWHGLNPyIKQmLrf/mjc5ObeGQXF+
+        cjms5oAEGDR3/8Na6jJuOFailrgW6tb4VLFG
+X-Google-Smtp-Source: AMrXdXtLkvzlKZwvzP7lcAlgGNjOGsSgHy9Ervuin0Wvk2cBJco0Vuy8P/UFMjU5kcu/IFDr+h2FPw==
+X-Received: by 2002:a5d:60c7:0:b0:2bd:e592:5460 with SMTP id x7-20020a5d60c7000000b002bde5925460mr33113262wrt.39.1674819862219;
+        Fri, 27 Jan 2023 03:44:22 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z14-20020a5d4c8e000000b002bfc2d0eff0sm3807760wrs.47.2023.01.27.03.44.19
+        by smtp.gmail.com with ESMTPSA id z14-20020a5d4c8e000000b002bfc2d0eff0sm3807760wrs.47.2023.01.27.03.44.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 03:44:20 -0800 (PST)
+        Fri, 27 Jan 2023 03:44:21 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 07/11] arm64: dts: qcom: sm7225: align RPMh regulator nodes with bindings
-Date:   Fri, 27 Jan 2023 12:43:43 +0100
-Message-Id: <20230127114347.235963-7-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 08/11] arm64: dts: qcom: sm8150: align RPMh regulator nodes with bindings
+Date:   Fri, 27 Jan 2023 12:43:44 +0100
+Message-Id: <20230127114347.235963-8-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230127114347.235963-1-krzysztof.kozlowski@linaro.org>
 References: <20230127114347.235963-1-krzysztof.kozlowski@linaro.org>
@@ -80,30 +80,149 @@ for RPMh regulator nodes.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sa8155p-adp.dts                  | 4 ++--
+ arch/arm64/boot/dts/qcom/sm8150-hdk.dts                   | 6 +++---
+ arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts | 6 +++---
+ arch/arm64/boot/dts/qcom/sm8150-mtp.dts                   | 6 +++---
+ arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi   | 4 ++--
+ 5 files changed, 13 insertions(+), 13 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-index b86a1c6f08be..52bb48c02536 100644
---- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-+++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-@@ -115,7 +115,7 @@ &adsp {
+diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+index eafdfbbf40b9..459384ec8f23 100644
+--- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
++++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+@@ -72,7 +72,7 @@ queue0 {
  };
  
  &apps_rsc {
--	pm6350-rpmh-regulators {
+-	pmm8155au-1-rpmh-regulators {
 +	regulators-0 {
- 		compatible = "qcom,pm6350-rpmh-regulators";
+ 		compatible = "qcom,pmm8155au-rpmh-regulators";
  		qcom,pmic-id = "a";
  
-@@ -244,7 +244,7 @@ vreg_l22a: ldo22 {
+@@ -201,7 +201,7 @@ vreg_l17a_2p96: ldo17 {
  		};
  	};
  
--	pm6150l-rpmh-regulators {
+-	pmm8155au-2-rpmh-regulators {
 +	regulators-1 {
- 		compatible = "qcom,pm6150l-rpmh-regulators";
- 		qcom,pmic-id = "e";
+ 		compatible = "qcom,pmm8155au-rpmh-regulators";
+ 		qcom,pmic-id = "c";
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+index 3331ee957d64..8f014a232526 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+@@ -56,7 +56,7 @@ key-vol-up {
+ };
+ 
+ &apps_rsc {
+-	pm8150-rpmh-regulators {
++	regulators-0 {
+ 		compatible = "qcom,pm8150-rpmh-regulators";
+ 		qcom,pmic-id = "a";
+ 
+@@ -211,7 +211,7 @@ vreg_l17a_3p0: ldo17 {
+ 		};
+ 	};
+ 
+-	pm8150l-rpmh-regulators {
++	regulators-1 {
+ 		compatible = "qcom,pm8150l-rpmh-regulators";
+ 		qcom,pmic-id = "c";
+ 
+@@ -324,7 +324,7 @@ vreg_l11c_3p3: ldo11 {
+ 		};
+ 	};
+ 
+-	pm8009-rpmh-regulators {
++	regulators-2 {
+ 		compatible = "qcom,pm8009-rpmh-regulators";
+ 		qcom,pmic-id = "f";
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
+index 5397fba9417b..69024f7c7f10 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
++++ b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
+@@ -61,7 +61,7 @@ key-vol-up {
+ };
+ 
+ &apps_rsc {
+-	pm8150-rpmh-regulators {
++	regulators-0 {
+ 		compatible = "qcom,pm8150-rpmh-regulators";
+ 		qcom,pmic-id = "a";
+ 
+@@ -216,7 +216,7 @@ vreg_l17a_3p0: ldo17 {
+ 		};
+ 	};
+ 
+-	pm8150l-rpmh-regulators {
++	regulators-1 {
+ 		compatible = "qcom,pm8150l-rpmh-regulators";
+ 		qcom,pmic-id = "c";
+ 
+@@ -329,7 +329,7 @@ vreg_l11c_3p3: ldo11 {
+ 		};
+ 	};
+ 
+-	pm8009-rpmh-regulators {
++	regulators-2 {
+ 		compatible = "qcom,pm8009-rpmh-regulators";
+ 		qcom,pmic-id = "f";
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+index 46b5cf9a1192..eff995a07ab7 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+@@ -51,7 +51,7 @@ vreg_s4a_1p8: pm8150-s4 {
+ };
+ 
+ &apps_rsc {
+-	pm8150-rpmh-regulators {
++	regulators-0 {
+ 		compatible = "qcom,pm8150-rpmh-regulators";
+ 		qcom,pmic-id = "a";
+ 
+@@ -206,7 +206,7 @@ vreg_l17a_3p0: ldo17 {
+ 		};
+ 	};
+ 
+-	pm8150l-rpmh-regulators {
++	regulators-1 {
+ 		compatible = "qcom,pm8150l-rpmh-regulators";
+ 		qcom,pmic-id = "c";
+ 
+@@ -319,7 +319,7 @@ vreg_l11c_3p3: ldo11 {
+ 		};
+ 	};
+ 
+-	pm8009-rpmh-regulators {
++	regulators-2 {
+ 		compatible = "qcom,pm8009-rpmh-regulators";
+ 		qcom,pmic-id = "f";
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
+index 64602748c657..ff77cc3c879a 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
+@@ -173,7 +173,7 @@ &adsp_mem {
+ };
+ 
+ &apps_rsc {
+-	pm8150-rpmh-regulators {
++	regulators-0 {
+ 		compatible = "qcom,pm8150-rpmh-regulators";
+ 		qcom,pmic-id = "a";
+ 
+@@ -306,7 +306,7 @@ vreg_l18a_0p8: ldo18 {
+ 		};
+ 	};
+ 
+-	pm8150l-rpmh-regulators {
++	regulators-1 {
+ 		compatible = "qcom,pm8150l-rpmh-regulators";
+ 		qcom,pmic-id = "c";
  
 -- 
 2.34.1
