@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F251367EF27
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 21:05:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD5DF67EF29
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 21:05:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232699AbjA0UF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 15:05:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49838 "EHLO
+        id S233249AbjA0UFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 15:05:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233622AbjA0UEz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 15:04:55 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1388B78C
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 12:03:19 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so4260046wms.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 12:03:19 -0800 (PST)
+        with ESMTP id S233262AbjA0UFf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 15:05:35 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF0022034
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 12:04:33 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so6119972wma.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 12:04:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=reEnc4EOAASI0Khp6pR/r9Av8Biua9MumoNI5XALfvY=;
-        b=AERwUFt1/QB4neVHHtnbkmA3v/kn9W/xkJO+ohHV+yUI/ZjsfVSObqYLnA9Onz7w+d
-         /FZZQyn06DRK0zivM71Gt6ZoOcvqv36UJzlPJFIuGB9PiqFgfDmqmJBXMz3jhTVYS+Q3
-         109CsZsJlhhb62GNcvOnQvSxtF3ZregYPC7+/nHuOI+hisVJV696zCXuQdcMA8WD7uuw
-         zT56RDzALQ3LjdQbYgV4OhcJ9NJ2NrPaIxGgoXrIug0Ho4VTO8FtXB/1huPZAxMFvNU0
-         dYCMu5jms/mxbaTid21JdgH4fkKR0ndeSwrM2gx7yrp6zdUNuG0mY4zMgaabz774d4mu
-         cyNA==
+        bh=r1CU7qs7ci6NugYBeu8CzattYoOdRVuz5zL8aur1P60=;
+        b=Mm2jA5KxFIWo7aNPEy44ZDeqkSJgdzJRFF4hMgAT92AbLpAwTVsBeGdTv1UHqguKqa
+         9eOp2BQtWrcyxDs3AsjF84IlsvEGMvsuSDQy09FzI8TD/3ml+eYfTUSzBqNOPqZpGYpc
+         B05eyi2ofn3i49XDFraE1eP6bJEy8Gto/zhUf+YJNCxPNpxkIidqpXrpTgDF4tE+DzXW
+         zjeWftockjGChXgadHbAW5uCnN/G1upgR8iTSyvAZsRAQXa1IztvGeDc6laZontO/JHb
+         61KXrO7QoTSHDjkg/9n9MmpyyMbHKwPl8uECSE3bglFtSuN1n5Newpgy/VgruTSKHUUZ
+         vsxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=reEnc4EOAASI0Khp6pR/r9Av8Biua9MumoNI5XALfvY=;
-        b=Rnt9h8kK9KLFFVSsMaY74/BIA7RimDWFsifxT/s4893DO0ut4Yu7AN1F2x++D1Zrw1
-         reazREe2l1UIAW7PQ69G3ZD2u0nauvnJOKT+Jruw2dlBlclB8bGND8NMgvPIGrx7dqlQ
-         MfH/0cB3JWxZMRVvwcfdheUNDYcBSEWxJIc0TIXJKApKC1GQZXrqcE09Wc+8CSJt52H5
-         7OvBIiVhdmKfWqVqdAOFSA+18FjRasYwh+CZZ/jofMyYZ57hYF9cRwjw80FX7zdAZsDn
-         eXdL/vYQqKlAkD904HnlaqXThCex/88EBUwyBXCyRtwOWPeLFMCV4ZwOUSryBTLZjZvr
-         mtfA==
-X-Gm-Message-State: AFqh2kohLy7YEOSu8Fk6GCTBWhkw0DSlesC/aRUvkjBAwg6fpuRZVwDs
-        qNqPwrfa36jtYbUnfbYPk4xCBg==
-X-Google-Smtp-Source: AMrXdXsASHraCdry4BHxBnY6w52haRZylQxGuF6RmkUFl4Ax5qoaKDhSkUSxOPl+HdLKwZM2OACqPA==
-X-Received: by 2002:a05:600c:3b13:b0:3db:26b8:5023 with SMTP id m19-20020a05600c3b1300b003db26b85023mr33006741wms.10.1674849797768;
-        Fri, 27 Jan 2023 12:03:17 -0800 (PST)
+        bh=r1CU7qs7ci6NugYBeu8CzattYoOdRVuz5zL8aur1P60=;
+        b=2UJYWmYJJOdKESkw9+ebeJ3w2uOP4nPv/lDpsgMhMHVSpivFivmLnznl0HvfmvAZMV
+         5EpVeu2CBtbAwBMtblgCk8tfL/JBXDb+WJP9alvgj2OpUFn2lSzPBDJpDjfO6EMasIaG
+         cye87wQ2YwX8eBHxonA6U7cHlfNDa+BNWE8xa7lNHLBg1bYmJPcZLg9nEbN00vPzrjs4
+         WLHTXbj/n5Ol/7xyrdzqUCWlniv7XMZHFRxelmVPu9yq3sLovfmfoC00JzMuOKVAtXfc
+         EBYtdVglLy3kfX8DEu1H/GuektxWpvD936dIvBjWOvqBl5VP1Mdt/5GaAwBNUwjCtRC7
+         kp7A==
+X-Gm-Message-State: AFqh2kqdB9xTkeCHn7VxxrYKFgTuMuT525KqMhlCqnSpDHboZ4V5xGAa
+        6JK6JbBqm9Je88gPU1uhkQCZ4g==
+X-Google-Smtp-Source: AMrXdXuUC1aSXuKkr7M4Gd98nMnWPuhZvtnLNQK0yVg+I3rnfvlzneSHpw/KEIPtB4X7B1IQiyEKrA==
+X-Received: by 2002:a05:600c:331d:b0:3d3:591a:bfda with SMTP id q29-20020a05600c331d00b003d3591abfdamr48236179wmp.27.1674849872256;
+        Fri, 27 Jan 2023 12:04:32 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n13-20020a05600c500d00b003db2b81660esm9165980wmr.21.2023.01.27.12.03.16
+        by smtp.gmail.com with ESMTPSA id y3-20020adff143000000b002be546f947asm4817532wro.61.2023.01.27.12.04.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 12:03:17 -0800 (PST)
-Message-ID: <637fe4cd-f9e9-ae22-0085-30ea3f1dd5af@linaro.org>
-Date:   Fri, 27 Jan 2023 21:03:15 +0100
+        Fri, 27 Jan 2023 12:04:31 -0800 (PST)
+Message-ID: <10097835-30fe-bbad-6c95-e5ec9dca3e2e@linaro.org>
+Date:   Fri, 27 Jan 2023 21:04:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
@@ -88,95 +88,21 @@ On 27/01/2023 17:00, Mukesh Ojha wrote:
 > 
 > So, update the ramoops binding by inheriting some reserve memory
 > property to allocate the ramoops region dynamically.
-
-Where is the update which adds "inheriting"?
-
 > 
 > Cc: Kees Cook <keescook@chromium.org>
 > Cc: Tony Luck <tony.luck@intel.com>
 > Cc: Guilherme G. Piccoli <gpiccoli@igalia.com>
 > Cc: Rob Herring <robh+dt@kernel.org>
 > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> ---
-> Changes in v4:
->  - Addressed comment made by Krzysztof on ramoops node name.
-> 
-> Changes in v3:
->  - Fixed yaml error and updated commit text as per comment.
-> 
-> Change in v2:
->   - Added this patch as per changes going to be done in patch 3/3
-> 
->  .../bindings/reserved-memory/ramoops.yaml          | 34 ++++++++++++++++++++--
->  1 file changed, 32 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
-> index 0391871..8741626 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
-> +++ b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
-> @@ -10,7 +10,8 @@ description: |
->    ramoops provides persistent RAM storage for oops and panics, so they can be
->    recovered after a reboot. This is a child-node of "/reserved-memory", and
->    is named "ramoops" after the backend, rather than "pstore" which is the
-> -  subsystem.
-> +  subsystem. This region can be reserved both statically or dynamically by
-> +  using appropriate property in device tree.
->  
->    Parts of this storage may be set aside for other persistent log buffers, such
->    as kernel log messages, or for optional ECC error-correction data.  The total
-> @@ -112,7 +113,13 @@ unevaluatedProperties: false
->  
->  required:
->    - compatible
-> -  - reg
 
-This is okay, but:
+Drop. There is no single need to store automated output of
+get_maintainers.pl in the git log forever. It can be easily re-created
+at any given time.
 
-> +
-> +oneOf:
-> +  - required:
-> +      - reg
-> +
-> +  - required:
-> +      - size
+If you need it for your own patch management purposes, keep it under ---.
 
-I now keep wondering - why do you need this?
-
->  
->  anyOf:
->    - required: [record-size]
-> @@ -142,3 +149,26 @@ examples:
->              };
->          };
->      };
-> +
-> +  - |
-> +    / {
-> +        compatible = "foo";
-> +        model = "foo";
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        reserved-memory {
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +            ranges;
-> +
-> +            ramoops_region: ramoops {
-> +                compatible = "ramoops";
-> +                alloc-ranges = <0x00000000 0xffffffff>;
-> +                size = <0x0 0x10000>;       /* 64kB */
-> +                console-size = <0x8000>;    /* 32kB */
-> +                record-size = <0x400>;      /*  1kB */
-> +                ecc-size = <16>;
-> +            };
-> +        };
-> +    };
-
-This example does not bring anything new for the ramoops. It's an
-example for reserved-memory to show usage with alloc-ranges. There is
-nothing useful here in terms of ramoops, so I think it should be dropped.
+Additionally:
+where is patch number 2?
 
 Best regards,
 Krzysztof
