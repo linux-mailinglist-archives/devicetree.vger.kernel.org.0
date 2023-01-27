@@ -2,145 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78B9F67DFCB
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 10:15:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FA4867DFD8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 10:16:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231520AbjA0JPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 04:15:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59830 "EHLO
+        id S232909AbjA0JQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 04:16:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230129AbjA0JPL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 04:15:11 -0500
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1098BBB3;
-        Fri, 27 Jan 2023 01:15:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674810910; x=1706346910;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=N+LSpDops/iyKSXkHdWpx0JMTo+7ZKjnCIzKpZlbtxQ=;
-  b=nL1U7IxvbYhoPIj/Iw0N87MjGKiuUe7OP4QrNx/Ef8wjOcCElODanGhl
-   tuJe31ARs2317ihC6HBOU5pR413gwTJNJKl/ADnRU6Fbodz1XUhzQkQBI
-   wm5qNAXor/+vAaLpB6fW4artUEG51DkpsiE5WuH1hV/nHF0hgScz/fauM
-   IRkyjL6EMC4JNHmBZ6P1Qu5bDdqyKdTMdVYBv4crane19gf9M+72Ot8DD
-   dz0F6P3rGwfrw3SV6lt2N3XL37bVaEU2+2wlcCWBYZXpUaC9FNEVhrtEg
-   7j+giW2u+7UougfMGGP2H4C+1uOygWnxibB40tNAcL17VSs6swW+fAhXE
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="329175766"
-X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; 
-   d="scan'208";a="329175766"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2023 01:15:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="908610468"
-X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; 
-   d="scan'208";a="908610468"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga006.fm.intel.com with ESMTP; 27 Jan 2023 01:15:04 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1pLKp3-00FtEu-2r;
-        Fri, 27 Jan 2023 11:15:01 +0200
-Date:   Fri, 27 Jan 2023 11:15:01 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH v7 5/7] media: i2c: add DS90UB960 driver
-Message-ID: <Y9OWFSxs9ev9hfp2@smile.fi.intel.com>
-References: <4286abe2-f23f-d4c9-ef18-f351af7a3a8b@ideasonboard.com>
- <Y9EcRlooHwIjOqiZ@smile.fi.intel.com>
- <cad92dbb-43ef-fa8c-1962-13c4a8578899@ideasonboard.com>
- <Y9FBlMl4b3l1zVck@smile.fi.intel.com>
- <5d208710-f284-e6e9-18dc-f5ef63a9ea44@ideasonboard.com>
- <Y9FKcoVlgUWR4rhn@smile.fi.intel.com>
- <04a82b08-524f-8d03-ac47-73d826907fc3@ideasonboard.com>
- <Y9JUEv66Gze8FjMZ@smile.fi.intel.com>
- <Y9JbMjPM3Ea3RVzH@pendragon.ideasonboard.com>
- <0c13eac3-cadb-b923-d475-7851dbef0c4e@ideasonboard.com>
+        with ESMTP id S232925AbjA0JQh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 04:16:37 -0500
+Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7AC377DEC
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 01:16:31 -0800 (PST)
+Received: by mail-vk1-xa31.google.com with SMTP id v81so2162167vkv.5
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 01:16:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=aaD6dIV1gsVv+4gc6ahYMn8/UYyHqgHNmcCgd6nynwI=;
+        b=Ci7RLYkb/VW6daieLc6bXUHa0FKFL5uTPQgc0OCRCSQWChPSS2hCE/+JohARsY6lQM
+         b2axTrsCd9tj2rq5tEBa3PmPYVKkrxgPiMN6N/UY+/M0hYffKDnA/2C2000pySvPMki0
+         SXx7Oju2lfywBSapFMocZZcv3naTAe/CcuYr/qrLxNHGkblQkp29EfUSl5AuXJiKI1Sh
+         wJS5bav7RFII2jNxFbplVQxK4seXuhm7wgg6EoJZwGBGjAY3qAC0wNQF2zBqnnEj//DR
+         IGKZx1Atk+T3qnxvnRTUTa+7m/p7u+onGBL5WK/hyyHnbnPiR9+zozw9sMqEv1XSi6n1
+         pCig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aaD6dIV1gsVv+4gc6ahYMn8/UYyHqgHNmcCgd6nynwI=;
+        b=OrjsMYHq1voM1F6EUeAmu8p0ePRB7h13ZosJ8EBqX0MPBW2XbzfNYRnNvis3rvkPmq
+         065yqfbS0K3toMh5OTQnRmz+eFYGDWHKwuUnOAVs5ssYUIE3VZ7ZlQdTI8KzBMZk0G36
+         x3nA00qn4mqqODhqUuk9NiMCgcqGHz2s4g7engOf1pbS98Ugpprntui+lSknfUT9RGyF
+         cY+co2UTwjwapnjDsFu7rk43jo2oCco74yIbZkHpT7vRFEb3PuCK7K1K5pk/GMb0qh3N
+         jvJSjcmxGsyhBA2QP6f+1QtbbEmpQX7RZwMFp0LZZzbscTJ1h6tO5wEDbs8fMbF8g8/b
+         YtIA==
+X-Gm-Message-State: AFqh2kqCH5O3YdmcCnklkjXbQwrebYrfQN8mbN0ENzB5roTC4olmvxHo
+        6Wo+5QvYmpi3nsP2YwttoP7wvC3/3T+CK3Ms+RvYog==
+X-Google-Smtp-Source: AMrXdXt+pm6BC48848ASCGbtuGQ/JZZ7o2YMf3wuxOcXaeJZ59tdocyfrew1oO5ABdFz1Jv5paOkDu/WRD3kr/8Yea0=
+X-Received: by 2002:a1f:9b53:0:b0:3e1:db78:6cd9 with SMTP id
+ d80-20020a1f9b53000000b003e1db786cd9mr3921810vke.25.1674810990878; Fri, 27
+ Jan 2023 01:16:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0c13eac3-cadb-b923-d475-7851dbef0c4e@ideasonboard.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230112145140.67573-1-andriy.shevchenko@linux.intel.com>
+ <0805b351-1661-4c90-89e1-2fea2fc98867@app.fastmail.com> <Y9OQEzbMMMUSVblf@smile.fi.intel.com>
+In-Reply-To: <Y9OQEzbMMMUSVblf@smile.fi.intel.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 27 Jan 2023 10:16:19 +0100
+Message-ID: <CAMRc=Mc-RLHjA=JKVzEgJAzSfs5=wath5nLZ-MgDPLE0N-CYuw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/1] gpiolib: of: Move enum of_gpio_flags to its only user
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 10:24:04AM +0200, Tomi Valkeinen wrote:
-> On 26/01/2023 12:51, Laurent Pinchart wrote:
-> > On Thu, Jan 26, 2023 at 12:21:06PM +0200, Andy Shevchenko wrote:
-> > > On Thu, Jan 26, 2023 at 10:41:47AM +0200, Tomi Valkeinen wrote:
-> > > > On 25/01/2023 17:27, Andy Shevchenko wrote:
+On Fri, Jan 27, 2023 at 9:49 AM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Thu, Jan 26, 2023 at 03:46:32PM +0100, Arnd Bergmann wrote:
+> > On Thu, Jan 12, 2023, at 15:51, Andy Shevchenko wrote:
+> > > GPIO library for OF is the only user for enum of_gpio_flags.
+> > > Move it there.
+> > >
+> > > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> >
+> > I made the same patch independently, but you sent it first, so
+> >
+> > Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+>
+> Thank you!
+>
+> Bart, I guess we have a consensus to proceed with this, the worries I have
+> can be addressed later on, i.e. as a followup patch.
+>
 
-...
+Sounds good, applied!
 
-> > > > > But I probably don't understand the ATR structure and what exactly we need to
-> > > > > pass to it, perhaps it also can be replaced with properties (note, that we have
-> > > > > some interesting ones that called references, which is an alternative to DT
-> > > > > phandle).
-> > > > 
-> > > > Well, maybe this needs a Linux bus implementation. I'm not that familiar
-> > > > with implementing a bus, but I think that would make it easier to share data
-> > > > between the deserializer and the serializer. A bus sounds a bit like an
-> > > > overkill for a 1-to-1 connection, used by a few drivers, but maybe it
-> > > > wouldn't be too much code.
-> > > 
-> > > Have you looked at auxiliary bus (appeared a few releases ago in kernel)?
-> > 
-> > As far as I understand, the auxiliary bus infrastructure is meant for
-> > use cases where a single hardware device needs to be split into multiple
-> > logical devices (as in struct device). Platform devices were
-> > historically (ab)used for this, and the auxiliary bus is meant as a
-> > cleaner solution. I'm not sure if it would be a good match here, or if
-> > it would be considered an abuse of the auxiliary bus API.
-> 
-> The aux bus docs say "A key requirement for utilizing the auxiliary bus is
-> that there is no dependency on a physical bus, device, register accesses or
-> regmap support. These individual devices split from the core cannot live on
-> the platform bus as they are not physical devices that are controlled by
-> DT/ACPI.", which doesn't sound like a good fit.
-
-Thanks for checking!
-
-> The deserializer and serializers are currently independent devices and
-> drivers (the pdata is the only shared thing), but I think we may need
-> something better here. The devices are more tightly tied together than
-> "normal" video devices, in my opinion, as the serializer is fully controlled
-> by the deserializer (including power).
-> 
-> And if we ever want to implement something like power management, we
-> probably need something more than what we have now. Although I don't know
-> how that would be done, as all the peripherals behind the serializer would
-> also lose power...
-
-I believe you have to create a power domain for them and when such device
-is added, the power domain of it should belong to the serialized.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Bart
