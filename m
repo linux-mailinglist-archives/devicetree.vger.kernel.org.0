@@ -2,135 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C4AE67F113
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 23:23:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E70767F118
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 23:28:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231163AbjA0WXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 17:23:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56446 "EHLO
+        id S232739AbjA0W2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 17:28:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232858AbjA0WXJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 17:23:09 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF243875A5
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 14:23:07 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id q8so4423895wmo.5
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 14:23:07 -0800 (PST)
+        with ESMTP id S229530AbjA0W2i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 17:28:38 -0500
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2062.outbound.protection.outlook.com [40.107.92.62])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E6E18625F;
+        Fri, 27 Jan 2023 14:28:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NS9gMrk5kyypPJuUWTe3raPtdfZA7epJp1wPPjnpwBoyf+hXQn5xJZJEUn/q1Gv7Jagdszna/WDcZ0z+Db+nOt8YoP3MywJGpPZv954ULYaE3j5foW80O6j2GbeGMgF1lYPZFe0tXiiVp770vYepC3e2jyntzJL52dTsZ70l/YB2leQSoc9oCQegewLnKQLCEFQ1xHnyzLP0EdIIUX/mVS0kimvhaXPbitGVioinSoRD/tGO5DKmYQNiiUSrnkv1fyP7n/NHCyY9bHJ6LyZwpfALMAcff21OHA21DbVnkmjpucbLMPMbZw9XYk6oL0AhI/v0VN9gSGIZ0Q9UqzZo4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PCpf51S7pPEePwReKwXosFlzs98XhdXJ6l6ZFdNRW5I=;
+ b=b6miNfSoeRnXKnDpHdABdMXlLVXl819uwV/ZValLKA0EGAL/0L4Mo1MA0+LsXg7QfzZ75oIg8SjULfeEjqPIulxg3DX2+IVrSdYN6JQNdyg0hWcXz5VwJZj8j7vQMkXnzrrjO5osI5e4pe5AQoyIQ6mrZFBXu2yOPpoHdNNeljqtsMa0gvFDwJiSOCbwKsNSkHid179pUOAtrIrl1ONdsMrtfeQ1h8pgCnQEwQ1dziTHAYLEaatc63EXn1PMyuULgLRRbqT4qT8Dv0GB5ZkLh482Ws/Z/VNtowWvx+MpUH/7tjSKdtiiKdsGKHuaWcMkixDBWl6RNSkWyACjjdGpYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hw5WZV22kIf8LV4BYYD5zMZGL9QT6puKpKuaXbM0YSg=;
-        b=07HB0DkOvEmzPwgdHTYPWBEwazvDvzxyXCvfZeEWHr7ZQVYrN23FroZHnqI9o3YYHb
-         nOWJYm863srNOIMCCwZ2mMY/KM8WhFtuv6NHRyWz2MbzQsVDPELd6js2CKsC4nrYRvI4
-         g8Y6/f2s6qoCR3kIyWQ3MO01DIQ7riQpvmCfRabBEjF2zCvpJv7i7FCTrehYbECTWJO3
-         qUHmBwjPcl7oPemz/n+ztbqiG6jcanAHYa5sIB4chD0sQ95oaUIX9Hx0AVlal7PEvguQ
-         VRlBBwN62OsA0Smn4ziJiYerSpQy3W3RdvWKeyMAlihnyK8qfl5qMQ3Kq+LPoM9VtcQt
-         Klow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hw5WZV22kIf8LV4BYYD5zMZGL9QT6puKpKuaXbM0YSg=;
-        b=W+uOx/2axsJqbs63sdqqszO/49QbHOmRqWMU1+pHVlQMP+QhmqPQ91FX/PbxG9hyyk
-         Qg1eC/L8TXQ5qC5QjQ8rzzky7XO6p/R5ehvoNHBlF/huzjK7TE/RvfWBz4DyQCmq5Qn2
-         4UmDufbh/jUP7FX4VqQK2mVIVgrbsuFqRTjLHemHEWrhGhXhW5mfEmIb9+tdm4tPL2X3
-         AAR+R65wnLQcVCBTKVEM562rsciOXSTanPbDMawM3IKt940soOWJlgQSTpqF7TToCrOp
-         oF6uFkMHleC9bVVKCRi9f32HbsJTs0of8PDUuYuNhD8+sFikMJZD/zkjcmzKmL7ohyw6
-         pJBQ==
-X-Gm-Message-State: AFqh2kqFlGsPQptfxVkmHo4zW7Jpu1RNgdei7XI6jfWQy2LNazBkA8jj
-        nn+KwSo5yI+fkBBvfW0jwg1rOQ==
-X-Google-Smtp-Source: AMrXdXsAOA3YpQ4mwC7XEGlfoY6kbh9XeRRAB2vBaRPH37DPkopUrTvg7H0JBMp+rt9MvYA3N+zi/g==
-X-Received: by 2002:a05:600c:4d93:b0:3d9:efd1:214d with SMTP id v19-20020a05600c4d9300b003d9efd1214dmr41147873wmp.25.1674858186392;
-        Fri, 27 Jan 2023 14:23:06 -0800 (PST)
-Received: from [192.168.0.20] (62.213.132.195.rev.sfr.net. [195.132.213.62])
-        by smtp.gmail.com with ESMTPSA id j38-20020a05600c1c2600b003daff80f16esm12461874wms.27.2023.01.27.14.23.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 14:23:05 -0800 (PST)
-Message-ID: <81989ddf-4439-c176-e003-891f80a4e291@baylibre.com>
-Date:   Fri, 27 Jan 2023 23:23:04 +0100
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PCpf51S7pPEePwReKwXosFlzs98XhdXJ6l6ZFdNRW5I=;
+ b=o8Lqmy7taI7YaQkb9+dOMThtqFPU69KHRD6svWQRkH39IC6u5KnUdkUuEpIAYEPt7bIXwCOeIqIr3qJxonPZ8gulHTUWKO2/sCJM6/NQneSNeCB0hKQLmPfIgOGvylRI197F1Y08sSznakDuKfyG4A8DAr+bLU8kgezfjrgmAig=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21) by BN8PR08MB6257.namprd08.prod.outlook.com
+ (2603:10b6:408:d5::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.22; Fri, 27 Jan
+ 2023 22:28:33 +0000
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::ea42:ebaf:dd18:6a4c]) by SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::ea42:ebaf:dd18:6a4c%6]) with mapi id 15.20.6043.023; Fri, 27 Jan 2023
+ 22:28:33 +0000
+Date:   Fri, 27 Jan 2023 16:28:25 -0600
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        jeff@labundy.com
+Subject: [PATCH v2 0/2] Miscellaneous fixes for Azoteq IQS626A
+Message-ID: <Y9RQCQa69f3TaiWf@nixie71>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-ClientProxiedBy: SN7P222CA0005.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:806:124::22) To SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v9 0/5] thermal: mediatek: Add support for MT8365 SoC
-Content-Language: en-US
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh@kernel.org>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Michael Kao <michael.kao@mediatek.com>
-References: <20221018-up-i350-thermal-bringup-v9-0-55a1ae14af74@baylibre.com>
- <afa4aacd-bacf-a545-3973-474286fd4b9c@linaro.org>
-From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
-In-Reply-To: <afa4aacd-bacf-a545-3973-474286fd4b9c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|BN8PR08MB6257:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6fbb8927-04c6-4992-0ad9-08db00b5d31d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: iCsS81pd0itdcGkmpMIyaJIjRlryz9EoTDi+OthkhfwVuKLUzkhofe1BgoKeSuNyHKtzr13hJw8rXGY9LTi0UDU73+EkNLQ1cwwtylR1My7bckdeNiVlA5OQ3HuVGLSNlfVPEErNCL+B1P9AsEuoANoMammrAwIJOoiXJE4ZgPzvva3Zns6+/OPO9pFtMjBcnQ2fH/AVUF1srSjGyy+zJEg/vugniEP4ypM441l1uEJBGvWfH8JrtGr40zkdazmkEK5o44FkeLPCb6cSyW3o0e0bLKYNz5pTXOYhkoXI+Vnbda9Pj5zMx3VnHLYIxPVAKbJXYMauI5D/tknA0NhmWzhH2VPer2TzfUSQg72r1HP4ObAXD+k7aO5622W0EVu9SM5gXSu8qPN6G0LAcPUlmeQYCTnlTz1tvsN/0Mr4EPPHol6oHJqaR+4v4FnL3xTZZVKR0I7xvleA4lKMYhUTqp6oAmf5Y2I3vT196/tIRWv32ghsX1zKV3aoGn/BIGxx2m5NCWYPDj+jprHUJ7WHsc4FeF0qOFhY+m8E27JK932JLFeSLXJqZhnCWzlrdTQqZdsXPkCXH2/SPJ0iUqANTilpVuqomJD4H3B7/qnwMjDOLbR4qpzSPVVXqVOehHCXlg0Ea5eB3vOSKLCo6upyYvg8ib9JJskN4+eZNzs37NbEX09LU/7mSYUN+Z6qhqJu
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(7916004)(346002)(376002)(39830400003)(366004)(136003)(396003)(451199018)(316002)(38100700002)(41300700001)(8676002)(66476007)(4744005)(8936002)(66556008)(66946007)(4326008)(86362001)(5660300002)(2906002)(6506007)(26005)(478600001)(9686003)(6512007)(186003)(33716001)(966005)(6486002)(107886003)(83380400001)(6666004);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EqsIqZdunTLJkYlJjGFqaq8FzIIq6KTCwCuX7RV1oiMs1B2Tshwe8ngCi5S5?=
+ =?us-ascii?Q?d3KJAcnvguaNCboZO/x8EWTxBABCYATYiNsSwqKXWWN0YKiSKYR9LhzHbGH8?=
+ =?us-ascii?Q?R8RqDvAOtkxDsC2dQeZgACGOzS24jZY+1xirI0Iz3FUTIerKXOWNQFgq6r7h?=
+ =?us-ascii?Q?k2S3mJUDjdy4P31ooFR7CBDFxiLV9+GKrva/m4yMTO+yPeA3UiB5SLEFRKWT?=
+ =?us-ascii?Q?mCzaRjQSoBjsyHJZnDLdFkK2/sR40vy9w0qlKRZZNZWjCcgEOhfDmDH3RbcU?=
+ =?us-ascii?Q?J76S4VExPDlIlOL/xUfqrqsodenuU+KrqWoer7xewaqMX8rYwe9drFuOwVTC?=
+ =?us-ascii?Q?UiIFlGTmBGJGq5wVrVEiBHylPBrwLnkJ/TcNrsaAxLc/7sd7xJES1JeDZ2p3?=
+ =?us-ascii?Q?y4i1bHyCa3NLMPsdAyekmdYekl11NNFesvTPMT3n6C7JkrRcfTo1mx0qYps2?=
+ =?us-ascii?Q?LQEGEjTtAhAAZbUKAUij7P9ygfV+DRENHxCYahqecGcXEnSpOB5cXsk67n/E?=
+ =?us-ascii?Q?QGJX9USG+Zt2eKOA+HgrKlH5J3LBP+t9COPBgSYriY6REptflBs+MFN7sITu?=
+ =?us-ascii?Q?OgD5ml7JNhVtVJnzSVPz5Z4DJgeUvsPHnZdSpo4ZaYrrU3E1RRJJm7+IUA89?=
+ =?us-ascii?Q?347LKz1Cp10vK4azFVXllgb9jSL5wdEmxfsook9lQdC0PEqtPQjr7M4/3g96?=
+ =?us-ascii?Q?gZZariMbuVSU3R+ajNCuNK0p3eoIMOg1tQ/jCBAEyYsHlQ+zOuvRAs22GN+R?=
+ =?us-ascii?Q?bOAOixZfFuzS77trw50SNgmlFuBhfQ5Qehl1mdCl7aFDg7QyznlQMBxgrpX7?=
+ =?us-ascii?Q?fs9OsVipUtPFijfewbg3Z2iJBp5EiAujOlEf79pvsBECwj1diY23jUIMgIX3?=
+ =?us-ascii?Q?0CiyqJ5kJELetagnVr3EAz9ECHMxyiKvZ3rHZde+L58WczThmh1PD/kbRW25?=
+ =?us-ascii?Q?oZ58RZCjmvgWWv1e7hbFnFgpXBNnpJsBVp8tlEXJGi9zTee4sR2Hq8T6Y05c?=
+ =?us-ascii?Q?ZPXmKf+ywX4EzzMjr4rM5R4XDBpDbW23sXIVzn9e5ZVtpwfLpSswM/MDknMy?=
+ =?us-ascii?Q?pXV/DV6Mnr3ez7bs5KgClXoj85byJHUEm4ZJiQiSQYN3eDFEmuEDSlTqraEl?=
+ =?us-ascii?Q?T3Tmn3H/VTgdUmJ4UTh0MsaG1xzQZhYzIGj5YZ1HdDyqd8+oFhYVai9frmes?=
+ =?us-ascii?Q?janlQoVhJu/YMWyFotYOil5Dk7yhcdEVc4f4fyn74FFi1mASJ5/zi/AgcIMY?=
+ =?us-ascii?Q?vfqHYXeM/niYmWFGqWFJSNpis5u91pN/I3jWia4TErs6/QKzzG4MSJivhN6P?=
+ =?us-ascii?Q?WbGtx81IqkRw0XcF4tskpL5oGtNO/9HCteKQAcyhoD+ER8Vj3wTbS04ccqEO?=
+ =?us-ascii?Q?C/jJWhdXDnSNlOXcCaQfxmXUw3OENb/cFWqy0CHYWIkBgBPvrrmUtPxVKF5O?=
+ =?us-ascii?Q?VHWHt5G4RyBCkKfN4LjjO12PcGxMe/onhN0Ryy5Q/HBrsCDHIrzhBc5CBd9O?=
+ =?us-ascii?Q?WzYQizWn360JG9sq68rzI/MxxBFDC7qjRrCNqQ59hXJHsE4dDR4tN6JzOowl?=
+ =?us-ascii?Q?7pyVWo36tkfgItOYVTZzhjgVes+aqVs+xsMKT4by?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6fbb8927-04c6-4992-0ad9-08db00b5d31d
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2023 22:28:33.5439
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: W5bL0LgkTnhJ4AEawLIXTvbazJl1r1jfHqNyrxeYFabh33gSZA0mQ+yLSKAX5aS3ETDGfXzFsmL4ck2ySLqzvg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR08MB6257
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series addresses a fwnode_handle reference count leak. Tightly
+coupled with this logic is that behind the discussion in [1], where
+it was pointed out that two properties in question have different
+types across bindings for the same vendor.
 
-On 1/27/23 22:59, Daniel Lezcano wrote:
-> On 27/01/2023 16:44, Amjad Ouled-Ameur wrote:
->> This patchset adds thermal support for MT8365 SoC.
->>
->> MT8365 has 4 thermal sensors, one for CPUs and the rest for debug/dev
->> purposes. The CPU thermal zone uses passive cooling device with
->> CPU{0..3}.
->>
->> Changes in v9:
->> - Use delay between bank init and the thermal zone device register.
->> - Link to v8: https://lore.kernel.org/r/20221018-up-i350-thermal-bringup-v8-0-23e8fbb08837@baylibre.com
->>
->> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
->> ---
->> Amjad Ouled-Ameur (2):
->>        thermal: mediatek: add callback for raw to mcelsius conversion
->>        thermal: mediatek: add delay after thermal banks initialization
->>
->> Fabien Parent (2):
->>        dt-bindings: thermal: mediatek: add binding documentation for MT8365 SoC
->>        thermal: mediatek: add support for MT8365 SoC
->>
->> Markus Schneider-Pargmann (1):
->>        thermal: mediatek: control buffer enablement tweaks
->>
->>   .../bindings/thermal/mediatek-thermal.txt          |   1 +
->>   drivers/thermal/mtk_thermal.c                      | 117 +++++++++++++++++----
->>   2 files changed, 96 insertions(+), 22 deletions(-)
->> ---
->
-> Applied, with some changes and the subject fixed:
->
-> Subject format for thermal is: thermal/drivers/<thedriver>: [A-Z]*.
->
-> Thanks
+Addressing the latter in fact simplifies the former; therefore both
+changes are introduced in patch [1/2]. As there are no known users
+of this driver, it is safe to change the binding in this way.
 
-Thank you Daniel for applying the patchset.
+Patch [2/2] makes the corresponding documentation change and carries
+a fixes tag so that it accompanies patch [1/2] into stable releases.
 
-Kindly,
+[1] https://patchwork.kernel.org/patch/13116327/
 
-Amjad
+Jeff LaBundy (2):
+  Input: iqs626a - drop unused device node references
+  dt-bindings: input: iqs626a: Redefine trackpad property types
 
->
->   -- Daniel
->
+ .../devicetree/bindings/input/iqs626a.yaml    |  94 ++++++++---
+ drivers/input/misc/iqs626a.c                  | 156 ++++++++----------
+ 2 files changed, 140 insertions(+), 110 deletions(-)
+
+-- 
+2.34.1
+
