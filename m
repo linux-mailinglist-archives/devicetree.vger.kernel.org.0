@@ -2,107 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F332A67EFEE
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 21:47:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACEE167F007
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 21:59:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230502AbjA0UrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 15:47:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53414 "EHLO
+        id S231743AbjA0U7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 15:59:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230414AbjA0UrP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 15:47:15 -0500
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F422C7DB1;
-        Fri, 27 Jan 2023 12:47:02 -0800 (PST)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-50aa54cc7c0so55279317b3.8;
-        Fri, 27 Jan 2023 12:47:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=kouO7u+bs7T+iMfnYDkSLAukyRnuu6BxC2pSxSTT8zg=;
-        b=DlvsIkX0qN3inFNrOB4prIdQvqtqmM16FWIvEo371ExtB8L0aAXJqh2LkG6stQ+Tte
-         YvUeABbNooq+g0nhZz5ql5sDcq+wn1akooKJ5P9MAER5ilcm/ZogorOdGYf3bWMuFT+2
-         7hR8BT8gqKHN7zyoI+M4nQptlOgsTvKtO4cuxwrqs/vFacQHKJpszHZCD2Kb4MZ6Hi9k
-         LCN54Wbx0e3y6MdJuBfEZu1Eij077oGmGz6DNzo68fyi4DY8X7ekRiuIRg4pokEEsshB
-         MJOTbceR+55QYCGodv7VZFAAIKJnwqBKrSrKZoPr6r3B/occc6uyfaThO/oXzW773Fg9
-         T7TQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kouO7u+bs7T+iMfnYDkSLAukyRnuu6BxC2pSxSTT8zg=;
-        b=PEdX9sP4fuP3vUvPlz4jDpex/z+65nxaqRf86he7w4RGqu/F2TKitO7XDhxzLc0aEJ
-         XN+kKNGj4fKGhK7BT066IlGZGAGohM24+Ps/64SHPHMTc2EC3EztAt/Z4d9bnDAOzEvv
-         ZVPe9i1018gadEa/dQJ7iyVkAnmoeCZiBKjSVcC9yWwRG+wfrslKXFOChE0M0aiXNsuW
-         T/C62tP26I1kiiYYyPobJsGd9Q52PgFvBxiooFcqgEQUGeN3/Hg1asVxr51699+W+lmf
-         gkgrOodWH+Aa0jr8rG6CjXxMVxraWTlLFu85KomekA8/bvvtFxv4Qg5zuNHs7Jyca1Mf
-         R9ig==
-X-Gm-Message-State: AO0yUKVY5ugXnQB79pq6qTIufQEarpuGGikIDOcnBOyk6Otxa2OPGRxt
-        xZdqctiPONUfTVZ2MpJ5TuC5vqiqjrQ5lD0M5e8VBdBzPmo=
-X-Google-Smtp-Source: AK7set9HVG30cY8SO6wA6h66En9OSKjkd+dbQHrXILG1Tsakenlpav9gzJn47RMq8PaYRXejvbM0XW1rdaPOXXaVAvk=
-X-Received: by 2002:a81:4656:0:b0:4fd:9685:d982 with SMTP id
- t83-20020a814656000000b004fd9685d982mr19640ywa.304.1674852422199; Fri, 27 Jan
- 2023 12:47:02 -0800 (PST)
+        with ESMTP id S229933AbjA0U7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 15:59:41 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E8EA78ACF;
+        Fri, 27 Jan 2023 12:59:40 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A9B9D61DB2;
+        Fri, 27 Jan 2023 20:59:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07923C433D2;
+        Fri, 27 Jan 2023 20:59:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674853179;
+        bh=FbspLM+vVBO9mDTKwIH/H9Vo9+TcQEpyjeZ++JdvmYY=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=sSzu4f/njpGW4l6cY9QQQ7I4+piHZz8sJkwXqdpbS3YQfcTmC5kegxJpCafTM3FmV
+         ElsP97xeiEoPaAV7Y2jZYCt5Xemu4l/ZgFkENHExJ4pZN5Uki2/TIQerUPqQ6nRrwp
+         DlDiZeXO2Itj1byAiuK1cuE/f78qlvAzNS/eobYg7bpyMKGqbcAg+eu0T9Dcx1/Fzy
+         qoN2VjU7wYYsRzDmmspI9r6VBa+v47tVprK9jznQcihlctRjdyAhdEl+7xKyIZqQmy
+         m54MCJK5XDQJdx0lvOXe+/YKvzUR7MvzhqYODSjKhWZifE/iKOlQOHROdRTW1ap15g
+         pm4dTV2VacJwA==
+Message-ID: <1abf9cb3e1fb1f01976c903cd8723b0f.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20230127174014.251539-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <6faa66a5-8f86-1a22-df51-2c8fa62054a2@linaro.org>
-In-Reply-To: <6faa66a5-8f86-1a22-df51-2c8fa62054a2@linaro.org>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 27 Jan 2023 20:46:36 +0000
-Message-ID: <CA+V-a8uDfpfZJGK8jZB=8_VApAN+GCu_SC7RDoYvzL+s8M261A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU node
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20221230000139.2846763-5-sean.anderson@seco.com>
+References: <20221230000139.2846763-1-sean.anderson@seco.com> <20221230000139.2846763-5-sean.anderson@seco.com>
+Subject: Re: [PATCH v9 04/10] clk: Add Lynx 10G SerDes PLL driver
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Sean Anderson <sean.anderson@seco.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org
+To:     Kishon Vijay Abraham I <kishon@kernel.org>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org
+Date:   Fri, 27 Jan 2023 12:59:36 -0800
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Quoting Sean Anderson (2022-12-29 16:01:33)
+> This adds support for the PLLs found in Lynx 10G "SerDes" devices found on
+> various NXP QorIQ SoCs. There are two PLLs in each SerDes. This driver has
+> been split from the main PHY driver to allow for better review, even thou=
+gh
+> these PLLs are not present anywhere else besides the SerDes. An auxiliary
+> device is not used as it offers no benefits over a function call (and the=
+re
+> is no need to have a separate device).
+>=20
+> The PLLs are modeled as clocks proper to let us take advantage of the
+> existing clock infrastructure.
 
-Thank you for the review.
+What advantage do we gain?
 
-On Fri, Jan 27, 2023 at 5:54 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 27/01/2023 18:40, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Enable the performance monitor unit for the Cortex-A55 cores on the
-> > RZ/G2L (r9a07g044) SoC.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> >  arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > index 80b2332798d9..ff9bdc03a3ed 100644
-> > --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > @@ -161,6 +161,11 @@ opp-50000000 {
-> >               };
-> >       };
-> >
-> > +     pmu_a55 {
->
-> No underscores in node names. This is usually called just 'pmu'.
->
-Ok, I will update it in the next version.
+> I have not given the same treatment to the
+> per-lane clocks because they need to be programmed in-concert with the re=
+st
+> of the lane settings. One tricky thing is that the VCO (PLL) rate exceeds
+> 2^32 (maxing out at around 5GHz). This will be a problem on 32-bit
+> platforms, since clock rates are stored as unsigned longs. To work around
+> this, the pll clock rate is generally treated in units of kHz.
 
-Cheers,
-Prabhakar
+This looks like a disadvantage. Are we reporting the frequency in kHz to
+the clk framework?
+
+>=20
+> The PLLs are configured rather interestingly. Instead of the usual direct
+> programming of the appropriate divisors, the input and output clock rates
+> are selected directly. Generally, the only restriction is that the input
+> and output must be integer multiples of each other. This suggests some ki=
+nd
+> of internal look-up table. The datasheets generally list out the supported
+> combinations explicitly, and not all input/output combinations are
+> documented. I'm not sure if this is due to lack of support, or due to an
+> oversight. If this becomes an issue, then some combinations can be
+> blacklisted (or whitelisted). This may also be necessary for other SoCs
+> which have more stringent clock requirements.
+
+I'm wondering if a clk provider should be created at all here. Who is
+the consumer of the clk? The phy driver itself? Does the clk provided
+need to interact with other clks in the system? Or is the clk tree
+wholly self-contained?
+
+Can the phy consumer configure the output frequency directly via
+phy_configure() or when the phy is enabled? I'm thinking the phy driver
+can call clk_set_rate() on the parent 'rfclk' before or after setting
+the bits to control the output rate, and use clk_round_rate() to figure
+out what input frequencies are supported for the output frequency
+desired. This would avoid kHz overflowing 32-bits, and the big clk lock
+getting blocked on some other clk in the system changing rates.
+
+BTW, what sort of phy is this? Some networking device?
+
+>=20
+> diff --git a/drivers/clk/clk-fsl-lynx-10g.c b/drivers/clk/clk-fsl-lynx-10=
+g.c
+> new file mode 100644
+> index 000000000000..61f68b5ae675
+> --- /dev/null
+> +++ b/drivers/clk/clk-fsl-lynx-10g.c
+> @@ -0,0 +1,509 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2022 Sean Anderson <sean.anderson@seco.com>
+> + *
+> + * This file contains the implementation for the PLLs found on Lynx 10G =
+phys.
+> + *
+> + * XXX: The VCO rate of the PLLs can exceed ~4GHz, which is the maximum =
+rate
+> + * expressable in an unsigned long. To work around this, rates are speci=
+fied in
+> + * kHz. This is as if there was a division by 1000 in the PLL.
+> + */
+> +
+> +#include <linux/clk.h>
+
+Is this include used? If not, please remove.
+
+> +#include <linux/clk-provider.h>
+> +#include <linux/device.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/math64.h>
+> +#include <linux/phy/lynx-10g.h>
+> +#include <linux/regmap.h>
+> +#include <linux/slab.h>
+> +#include <linux/units.h>
+> +#include <dt-bindings/clock/fsl,lynx-10g.h>
+> +
+> +#define PLL_STRIDE     0x20
+> +#define PLLa(a, off)   ((a) * PLL_STRIDE + (off))
+> +#define PLLaRSTCTL(a)  PLLa(a, 0x00)
+> +#define PLLaCR0(a)     PLLa(a, 0x04)
+> +
+> +#define PLLaRSTCTL_RSTREQ      BIT(31)
+> +#define PLLaRSTCTL_RST_DONE    BIT(30)
+> +#define PLLaRSTCTL_RST_ERR     BIT(29)
+[...]
+> +
+> +static int lynx_clk_init(struct clk_hw_onecell_data *hw_data,
+> +                        struct device *dev, struct regmap *regmap,
+> +                        unsigned int index)
+> +{
+> +       const struct clk_hw *ex_dly_parents;
+> +       struct clk_parent_data pll_parents[1] =3D { };
+> +       struct clk_init_data pll_init =3D {
+> +               .ops =3D &lynx_pll_clk_ops,
+> +               .parent_data =3D pll_parents,
+> +               .num_parents =3D 1,
+> +               .flags =3D CLK_GET_RATE_NOCACHE | CLK_SET_RATE_PARENT |
+
+Why is the nocache flag used?
+
+> +                        CLK_OPS_PARENT_ENABLE,
+> +       };
+> +       struct clk_init_data ex_dly_init =3D {
+> +               .ops =3D &lynx_ex_dly_clk_ops,
+> +               .parent_hws =3D &ex_dly_parents,
+> +               .num_parents =3D 1,
+> +       };
+> +       struct lynx_clk *clk;
+> +       int ret;
