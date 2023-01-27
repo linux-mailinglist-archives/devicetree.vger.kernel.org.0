@@ -2,97 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B18767F00E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 22:00:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DCBD67F015
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 22:04:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230516AbjA0VA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 16:00:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59710 "EHLO
+        id S231827AbjA0VD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 16:03:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229933AbjA0VAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 16:00:25 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E7B478ACF
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:00:25 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id vw16so16876505ejc.12
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:00:24 -0800 (PST)
+        with ESMTP id S231848AbjA0VD5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 16:03:57 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C0298715F
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:03:55 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso1516201wms.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:03:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=djfs4PGRa1CvWKMLKsAcAD0oTIU9m9WrTGUWf83xgvI=;
-        b=Mlt+GejfxFYxZRl4TgvhYecgrJ7r2Z/6dau1C24sH4c46kceboL/nH+nWnN6RlgrFJ
-         VB8FfyGN8cGJ2t9ZGriQMRFP7KJZbMs6nGXCO4GLPzCeQhqOW9ryzkFfeUz1z+hYlju9
-         wnFbobDIj1inUwhY6JmubqeuqazZ8/UdoGrfEUPS8iv7h/lay3vPdX5+KY8T6QfRUlT9
-         /YZFl6vckk81awOTrHMUrS6VlQkVVcf6hOUuyMzrfkdOCJr/Cx/y6AyFPYhSSrDSvfZ5
-         67kGKmZ3clK9LS8mlz+sCvvhUlojrnyWwpMs64/CMIPbtRnsfBraSAi7BqKRTfF3tKOZ
-         TFww==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TkMgIg4fQzJfYGBpNPz1PQWebK98PEAd/0J55gUrVm0=;
+        b=pIeiRMg6iet/r1JbKwx+ppFEX7mnWDj3z/GmW+2pjB7E/EPYLGB29PrD+iixK8ht10
+         7+/4l7qeZbTNIsFkNx0//SaoK4Jzz0NlNTUWSc/kgdMPrmxA0f70DLOtHtn4OOKr63dB
+         wW8ATi21Iw94Q35XHHSBWGOlMjPKy7dHbtSO7ELAzdQrsfbBIcePZc6bbd11ET0eBR10
+         ruipHy9HN9JSul9GQv28PDQAMHaqpr6rYvAa//IqivLeKP3sRJZAwIyY5TeMmPcaWNoW
+         e4ZBYUkZNyU6+yAPNlJCv+yOXHSqWJn1jccigMdVoiMtORSen/RiUs1PDGRKTjsbne1h
+         tXRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=djfs4PGRa1CvWKMLKsAcAD0oTIU9m9WrTGUWf83xgvI=;
-        b=st22X4PCE+R2z5gwEeBF2plclnNqet3+is4LrAnKLudAid4UlcyHMXEFNUss7D7cg6
-         0kV27rR1yAWPxjSwlqujVbk3dOJAKmVovlfIzRF+xzK3A0zgHe9kmI8TL1Y6QjDpJl11
-         C6TuPpwKuNxujzW3kAIX4OjJnc7tg064ySa1UraaiA8ja1igN7cnprPLLtoAiCx6jgxw
-         RI92J9WMK/odc/KfaFlOpB8dShSupexF0r2PHrVwcEcVkFMCZcDSHBND+sGn0L17/gEf
-         Yo3nD2YnPxJUJE9c+9oaDk/g1t8SnZiuemeCrN/Zs3+7nY3KSOs1OQEIq5DnpkqDNJGm
-         dJ8Q==
-X-Gm-Message-State: AO0yUKU8CZAjsZK5PlaQon2O77NP9q3Rn/pCLebxdifsVC13Et5lZcW/
-        OaBUzxw8+aZnzZnnYe5LTw7BGK60vnhG5Q==
-X-Google-Smtp-Source: AK7set9mMQd5iBzzeDEzNyKR84lEscSavBnXhcfmZFSjVpVHw7P6HLc90KeABnq34XLhOwJnQtSZqA==
-X-Received: by 2002:a17:907:3e90:b0:87b:dacb:f0a4 with SMTP id hs16-20020a1709073e9000b0087bdacbf0a4mr3910174ejc.62.1674853223478;
-        Fri, 27 Jan 2023 13:00:23 -0800 (PST)
-Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id t17-20020aa7d711000000b0049dc0123f29sm2876394edq.61.2023.01.27.13.00.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 13:00:22 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: sun8i: a83t: bananapi-m3: describe SATA disk regulator
-Date:   Fri, 27 Jan 2023 22:00:19 +0100
-Message-ID: <5899301.lOV4Wx5bFT@jernej-laptop>
-In-Reply-To: <20230120012616.30960-1-andre.przywara@arm.com>
-References: <20230120012616.30960-1-andre.przywara@arm.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TkMgIg4fQzJfYGBpNPz1PQWebK98PEAd/0J55gUrVm0=;
+        b=lnsMozyVJwqnDYy4DiY6ZvVMFdi8QFXbD8wkS3YGpVDcVdOqty+9ty2rdN9bHH/a2i
+         8WkjQqCqIttbxKPZrfgkdyrfMpQQEq3w72iCiOsCFzQ2T3d9szgcsduP2aRUAxVbrn59
+         H8qIdFoAnZSwRfuu3kabHbrqRI/+Fya4qBjbH0qppif8WR4tKnIUdXke0TB2Ciy0alxp
+         Y1XbFWBHKnvxptuRT4uXCLC9HBZ8ZHKbhkx8IjBWYOL03rHdX844GIQ0Yc/Di2LlhnEa
+         hDilz6nRVcXmNyN/jWuECl1tVU9T18yppFoTzz2kdjVJ85v0tbxJnXYzd4KZkXRfB+WR
+         rDNQ==
+X-Gm-Message-State: AFqh2kruhGjObx8bs5ZHkVAvvQjeaBWmXSqtW+3zd8Q0MJ6QuI/2kM82
+        irDQ8BTcaveL6Le4Lc6kzoVdsA==
+X-Google-Smtp-Source: AMrXdXsl90rZ6ZM9bYIrrvDZZ3ypzuTE9VNVL3N0wOe3smxl6WFD5ugsqSaWPbOjg6ZDMt5BvOe9tA==
+X-Received: by 2002:a05:600c:5d1:b0:3d0:761b:f86 with SMTP id p17-20020a05600c05d100b003d0761b0f86mr41605947wmd.28.1674853433500;
+        Fri, 27 Jan 2023 13:03:53 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id x10-20020a05600c420a00b003c6b70a4d69sm5078137wmh.42.2023.01.27.13.03.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 13:03:53 -0800 (PST)
+Message-ID: <7a01c3f6-3800-472e-e18f-82af1b3f8d9e@linaro.org>
+Date:   Fri, 27 Jan 2023 22:03:51 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v9 5/5] thermal: mediatek: add delay after thermal banks
+ initialization
+Content-Language: en-US
+To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Rob Herring <robh@kernel.org>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Michael Kao <michael.kao@mediatek.com>
+References: <20221018-up-i350-thermal-bringup-v9-0-55a1ae14af74@baylibre.com>
+ <20221018-up-i350-thermal-bringup-v9-5-55a1ae14af74@baylibre.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20221018-up-i350-thermal-bringup-v9-5-55a1ae14af74@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne petek, 20. januar 2023 ob 02:26:16 CET je Andre Przywara napisal(a):
-> The Bananapi-M3 has a SATA connector, driven by a USB-to-SATA bridge
-> soldered on the board. The power for the SATA device is provided by a
-> GPIO controlled regulator. Since the SATA device is behind USB, it has
-> no DT node, so we never described this regulator. Instead U-Boot was
-> turning this on in a rather hackish way, which we now want to get rid of.
-> On top of that it seems fragile to leave this GPIO undescribed, as
-> userland could claim it and turn the disk off.
+On 27/01/2023 16:44, Amjad Ouled-Ameur wrote:
+> Thermal sensor reads performed immediately after thermal bank
+> initialization returns bogus values. This is currently tackled by returning
+> 0 if the temperature is bogus (exceeding 200000).
 > 
-> Add a fixed regulator, controlled by the PD25 GPIO, and mark it as
-> always-on. This would mimic the current situation, but in a safer way,
-> and would allow U-Boot to drop the CONFIG_SATAPWR enable hack.
+> Instead, add a delay between the bank init and the thermal zone device
+> register to properly fix this.
 > 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>   drivers/thermal/mtk_thermal.c | 11 +++--------
+>   1 file changed, 3 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
+> index b8e06f6c7c42..ab7db385afb3 100644
+> --- a/drivers/thermal/mtk_thermal.c
+> +++ b/drivers/thermal/mtk_thermal.c
+> @@ -730,14 +730,6 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
+>   
+>   		temp = mt->raw_to_mcelsius(mt, i, raw);
+>   
+> -		/*
+> -		 * The first read of a sensor often contains very high bogus
+> -		 * temperature value. Filter these out so that the system does
+> -		 * not immediately shut down.
+> -		 */
+> -		if (temp > 200000)
+> -			temp = 0;
+> -
+>   		if (temp > max)
+>   			max = temp;
+>   	}
+> @@ -1160,6 +1152,9 @@ static int mtk_thermal_probe(struct platform_device *pdev)
+>   
+>   	platform_set_drvdata(pdev, mt);
+>   
+> +	// Delay for thermal banks to be ready
 
-Applied, thanks!
+Coding style for comments is : /* */
 
-Best regards,
-Jernej
+No need to resend, I'll take care of changing the comment format.
 
+> +	msleep(30);
+> +
+>   	tzdev = devm_thermal_of_zone_register(&pdev->dev, 0, mt,
+>   					      &mtk_thermal_ops);
+>   	if (IS_ERR(tzdev)) {
+> 
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
