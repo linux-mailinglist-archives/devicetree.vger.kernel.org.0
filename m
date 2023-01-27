@@ -2,109 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20E4E67EE76
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 20:42:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA2B567EEFD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 20:59:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbjA0Tmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 14:42:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49918 "EHLO
+        id S233187AbjA0T7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 14:59:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231294AbjA0Tma (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 14:42:30 -0500
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D40047E6E9;
-        Fri, 27 Jan 2023 11:41:51 -0800 (PST)
-Received: by mail-qt1-x836.google.com with SMTP id z9so4966916qtv.5;
-        Fri, 27 Jan 2023 11:41:51 -0800 (PST)
+        with ESMTP id S233274AbjA0T7X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 14:59:23 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 107768CC5A
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:57:33 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id hw16so16511963ejc.10
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:57:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nrR4W00Y0TgiFcHd6pUVelmAdP0rx76b/pAw6kny76k=;
-        b=cDf0F9IUE89vD+s3BJP4EjO5oS/nwRRX0eqPyTemjE2qknrTVlm/Ny16lMEkleUX6Z
-         5YT5/OmhlVr33eE0ZPYYEC1djfAPoq+fc9XUXm+bkhlR4/UDBlzNgh9fQ42WVV8bqHFl
-         XlN/rLwrxmD0M0ku+9pbtsRvC6mReoI0cIbz6RTFxa1IHVcRGicUog5RLk8UQCbsBlJv
-         SL5IMzHjYy0tpQiH5vXsmON8+LYI6XnEHpSBIees/10i7nx00UQKFUthlNtLMRMMmmfg
-         Fc+7/7bd0Kem3jqPRO5CCsfLXHFxLk8FQta1VwJLyE7RTAhtOZfvfRQCHGIP5eyhoVat
-         1eLg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=laJbzm3hNFvKVQdtgilxX5HQETMASKmZLxjfb/658O4=;
+        b=nI6Ug6W8ctMCQtI1vVqDWj8MpjBhnWeeT31JylQQfqpiYHv2PIYko9EILdTGUMfHun
+         BV7C4e6AAanGxKd7QxFGz+11XVELz2+slWa28dZ+PhwvPC/xB38end1xN7C1jAPghC+4
+         Ti3PlMCgNRCz8JK07atg7xAtsDuCaG5gGwiS8rR8UrN7WYRAYQOTSAkwiHWviWYP0iKa
+         5ClGwzCxxtcm3FdBL4Mh03InXChGiUDmVL0UzT0vnUkKiZQEFCibj37cuwbirsQhDbX9
+         WNxhw85wenI0Fhc3ler070sioGpH0o+6Yamb5V/OORturTxwSie1BBaAInjRQ6lAASUJ
+         gF7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nrR4W00Y0TgiFcHd6pUVelmAdP0rx76b/pAw6kny76k=;
-        b=y1MhcREG4DSTMIgUjD4jufFBxSHvMX6kOlBQ/fGFWAYy+JgtaP4+Y8BC9QmSz0o+qs
-         ryXeToiPuJvkcLXL1VWvrfZGCeoueXt6E822ALUD9DaQzh9rvTWIlCm+agGICET6dLvS
-         V5IN1eU6X1WWb6dawVTBmWqwcQsOl0o5EiVE1zZkJbm2xbOh8S82qkGth/jcufHoVTZ7
-         AEnLrYz592ggHuPPtASkxSWvZT+kkA0k3MxIKU2jlNylO11F6bR5JFsp8AgUSd+xak4z
-         DGC8g32eIBAo8jPB/ZDGbWNJqIXB2ol8AqwfVfL6uPQeD3mRyT/K5GA71UaI7NhYAcu6
-         Ux2g==
-X-Gm-Message-State: AO0yUKVU/tE/lvC+WWdkz7eED1t/JXyJ54KNRRl7IU/tq2YgVWuTJs2J
-        afXI+OGd/g6KvG4l6RqZunk=
-X-Google-Smtp-Source: AK7set8eMzzpAqo2XE0SOLSqZqEIoZWx5rBNzuTzKWJ4N3N2/eQkFrJNywrdr6kIBPFC0liFx9o3GA==
-X-Received: by 2002:a05:622a:c3:b0:3b8:312e:bafb with SMTP id p3-20020a05622a00c300b003b8312ebafbmr1040755qtw.46.1674848426803;
-        Fri, 27 Jan 2023 11:40:26 -0800 (PST)
-Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id g13-20020ac8468d000000b003a7e4129f83sm3181590qto.85.2023.01.27.11.40.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 11:40:25 -0800 (PST)
-Message-ID: <1a359e6a-0836-9281-6246-b06fe252e431@gmail.com>
-Date:   Fri, 27 Jan 2023 11:40:22 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v5 net-next 07/13] net: dsa: felix: add support for MFD
- configurations
-Content-Language: en-US
-To:     Colin Foster <colin.foster@in-advantage.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, UNGLinuxDriver@microchip.com,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=laJbzm3hNFvKVQdtgilxX5HQETMASKmZLxjfb/658O4=;
+        b=tk7ZTWgufhNO+t1rTuHs/3nxsV8h9x1oHbA8fwmWW3OHsN5wLh0peeR30vJ1ZUXSyC
+         dl+Sx6Wl7JBT1xjgcYFdkQstzDYU0ygSpD244Qj6w2Wy9duHRV7ZzKZoriAHVkFjb/9X
+         RV07wwlIKVaT2I8xZwW1V4qX2RPB5IaknrzhE0eqm0DxQK1QF2ygrvdML9bEtPHsAFAn
+         Qu5Jql6kHNMCE2LWY6s7GTLkT6zQHxDv/BM94iMBHeVEOHju+zbSOb99hyksRTu9WDBs
+         69A1xFbFUUGupp5/BLHGIHPvp5qvwzEusEhj7TpsW6z0njCsuzgTjnN9CgSB4Vl1LWBQ
+         5kDw==
+X-Gm-Message-State: AO0yUKUBGWtkAvJP+R0tgkcoYHdZ8gB69HKF3MeZZ8YqFDWNNQTNb2ke
+        mQ25ljdmbbwIjGWDlP+dHSk5yKrhstWrY595
+X-Google-Smtp-Source: AK7set8N28+EX6KUi96o3PeCOm9vKAuOFZYK3aIRSmt7I8LzRlQeQ5HFryKL/vW3McfrcWRpm4j0NA==
+X-Received: by 2002:a5d:658d:0:b0:2bf:ae43:108d with SMTP id q13-20020a5d658d000000b002bfae43108dmr14352920wru.28.1674848466678;
+        Fri, 27 Jan 2023 11:41:06 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id y17-20020adffa51000000b002238ea5750csm5822417wrr.72.2023.01.27.11.41.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 11:41:06 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>
-References: <20230127193559.1001051-1-colin.foster@in-advantage.com>
- <20230127193559.1001051-8-colin.foster@in-advantage.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20230127193559.1001051-8-colin.foster@in-advantage.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
+        Henrik Grimler <henrik@grimler.se>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/8] dt-bindings: phy/samsung: move MIPI and DP phys under PMU
+Date:   Fri, 27 Jan 2023 20:40:49 +0100
+Message-Id: <20230127194057.186458-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The MIPI and DisplayPort phys are actually part of the Power Management
+Unit system controller, thus allow them as its children, instead of
+specifying as separate device nodes with syscon phandle.
 
+Dependencies
+============
+If entire patchset is okay, then it can go via separate trees:
+A. I will take first soc patch.
+B. phy patches #2-#5 are independent and can go via phy tree.
+C. DTS patches depend on (B above), thus they will wait one cycle and get
+   applied later.
 
-On 1/27/2023 11:35 AM, Colin Foster wrote:
-> The architecture around the VSC7512 differs from existing felix drivers. In
-> order to add support for all the chip's features (pinctrl, MDIO, gpio) the
-> device had to be laid out as a multi-function device (MFD).
-> 
-> One difference between an MFD and a standard platform device is that the
-> regmaps are allocated to the parent device before the child devices are
-> probed. As such, there is no need for felix to initialize new regmaps in
-> these configurations, they can simply be requested from the parent device.
-> 
-> Add support for MFD configurations by performing this request from the
-> parent device.
-> 
-> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+Best regards,
+Krzysztof
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+Krzysztof Kozlowski (8):
+  dt-bindings: soc: samsung: exynos-pmu: allow phys as child
+  dt-bindings: phy: samsung,dp-video-phy: deprecate syscon phandle
+  dt-bindings: phy: samsung,mipi-video-phy: deprecate syscon phandle
+  phy: samsung,dp-video-phy: deprecate syscon phandle
+  phy: samsung,mipi-video-phy: deprecate syscon phandle
+  ARM: dts: exynos: move DP and MIPI phys to PMU node in Exynos5420
+  ARM: dts: exynos: move DP and MIPI phys to PMU node in Exynos5250
+  arm64: dts: exynos: move MIPI phy to PMU node in Exynos5433
+
+ .../bindings/phy/samsung,dp-video-phy.yaml    |  5 +-
+ .../bindings/phy/samsung,mipi-video-phy.yaml  | 11 ++-
+ .../bindings/soc/samsung/exynos-pmu.yaml      | 71 +++++++++++++++----
+ arch/arm/boot/dts/exynos5250.dtsi             | 24 +++----
+ arch/arm/boot/dts/exynos5420.dtsi             | 24 +++----
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi    | 19 +++--
+ drivers/phy/samsung/phy-exynos-dp-video.c     |  7 +-
+ drivers/phy/samsung/phy-exynos-mipi-video.c   |  7 +-
+ 8 files changed, 105 insertions(+), 63 deletions(-)
+
 -- 
-Florian
+2.34.1
+
