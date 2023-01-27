@@ -2,239 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 170CE67F044
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 22:17:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A804467F037
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 22:16:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229804AbjA0VRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 16:17:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40326 "EHLO
+        id S231593AbjA0VQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 16:16:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbjA0VRV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 16:17:21 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 808567CCB4
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:17:00 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id n6so3216008edo.9
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:17:00 -0800 (PST)
+        with ESMTP id S230059AbjA0VQC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 16:16:02 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3C98A548
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:15:36 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso6215671wmn.5
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:15:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=N8zYuIc1ynpH62qboQuvd9b+HC4M1D7TmFYg5HThk5M=;
-        b=QcmwD2ziXuO0pMehgnVejred/OFP4vXNUdcWuN1Yk1XzxuBXUVASz2AyhdreJ+NZBM
-         I7P76uiVlDx4yLJg6HWCxWw/wfNMJKnv+DK1Jal3S0/dPwJu9odLnWtlcGzq1X1US5BU
-         8tVb23mpe1qfKPsSE3cCU2WheYRMn8/KplJ1ZpXpJ7b0CwYfYLtuk43eCAOxQysuHq4e
-         C/LxCy65jVV1Sw+ul4c4wtZXosF0ruWBSfOXpUTHBEHJECn8MXjEPV/un9IeAwGK4jhh
-         wuDc7ZZe1ejpyFUSm9KW/QX+Omcd1zsR50k7Td2kVPIkB0abfyrqCMvI39dxQPc6bALU
-         pvqw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=smuQo4geAWNJOxGHerqBUE4luc859AqeHaJfREjKn6k=;
+        b=TKYaTnlPCJXzUlUuoiMXOsYJ9mzHNkAuMvU0eC8uoS4KLrDVikMnh14coxBjOtinzg
+         sPXwL0xNcCC0soLP7ahjYO45rySby6got1EIXVy17ddsAU6kV1xzPQ5PoM1WgrbiOE/S
+         tCCW2QnIW+4FItE9bSwdCHM86hG2HBGcFertfs9iDmCMmaDchdaqvLVKvxaYaOsGIgb1
+         JqEKcDPRAxlaWzgTSU4uvkzjdhr0q4w+zek26zX9BfyEO5wfnVPztHFiUglcNS3AY/bV
+         K8YK7aD0l0vidUoD2gMToc3hm+Q+3xV3AkaJE5M0REOWoaMcsHirZuRo/1iIa1ebB5yM
+         pGPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N8zYuIc1ynpH62qboQuvd9b+HC4M1D7TmFYg5HThk5M=;
-        b=q7Vj1ofla3ritHMvcKb3otpd7AgUrkTYRBsqwyqDcmDU2FdQqYoGVwqZcRMaXLZ25l
-         4dN0RN0FkFwBgVRx6dYi6G5O3tJCJ+qf16kXpngeAd5OTmofUpYMk9ztumlpe9YVVN/I
-         5reIEKXIfB1mrdaVkGTb+aGV9LBoqN3uyiA+vYzLIlHogU+IybXQuuHXZTSXknawbErz
-         VWoMHk3ftqEvNwngW0VP7Od8xserqBMrDv6DPgXiN1mtkTrq8J1qwzR/Ca9bPbxE2iRK
-         mnqz3/jBOcDWR87+km0Sx66VJYCru/F+hx8Y67Ax+xsGnDYrlG25mt0IobWN/0a4jmmW
-         cNDA==
-X-Gm-Message-State: AO0yUKWg03k4gLr3SH7bBnLmtOVSm/q68f5ujqNntb97hvsKOhodOhgB
-        2opLxUDZnL+3e9a4ikUg8LI=
-X-Google-Smtp-Source: AK7set/ToLQy7QUtN+dt0sryt50ryl+BKZxIWdj6M5wulKONZ8WPf3NL+uyX+HQ/2rGxvM5grTiTJA==
-X-Received: by 2002:a05:6402:378:b0:4a0:e442:5df8 with SMTP id s24-20020a056402037800b004a0e4425df8mr6213630edw.18.1674854218824;
-        Fri, 27 Jan 2023 13:16:58 -0800 (PST)
-Received: from ?IPV6:2a01:c22:6e0f:9000:c8f2:6e21:84ed:c3a3? (dynamic-2a01-0c22-6e0f-9000-c8f2-6e21-84ed-c3a3.c22.pool.telefonica.de. [2a01:c22:6e0f:9000:c8f2:6e21:84ed:c3a3])
-        by smtp.googlemail.com with ESMTPSA id d1-20020aa7d681000000b0049be07c9ff5sm2930871edr.4.2023.01.27.13.16.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 13:16:58 -0800 (PST)
-Message-ID: <48aba515-c8c7-45fd-c361-6c235cd605c8@gmail.com>
-Date:   Fri, 27 Jan 2023 22:14:11 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v2] dt-bindings: interrupt-controller: Convert Amlogic Meson
- GPIO interrupt controller binding
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=smuQo4geAWNJOxGHerqBUE4luc859AqeHaJfREjKn6k=;
+        b=ZmDedidh65NyWZo92O7SE4IDc1f6BkfgnQsiSc1bjIQOXWFYqikn3zI5RBALCBC2nN
+         PU8P5/JPGfmB1DLDDkoZbGEPqtWk73F4s3+Ekf1G92A1I+apzRC4woC/devTxWxo4j0c
+         DhMH8A4FupzZ549ob6i5a5Hn8/7OJb+qJF3vr4NG8K5vlDaM1mCepmbNme/iWn6kviTn
+         50M+MjAjXgS3gZgUoamIL5NFUlXPRInv9/pzy483oBqVd5FVU0Zqye6PBpGn7gWqBlAc
+         WGDIsg2i9/8Iho9J5oQANhPABtIGXEI8PTE5tUxZA/GhXNXQcEs+hf9NYG7AZPdcFeBp
+         V+Pg==
+X-Gm-Message-State: AO0yUKX0FI4C20qnxz6LfwB6iGAeJ9WCmrT5lfmupE+w0wtbBpxKqUUo
+        wkHqrDBj50kv/SSkoTJ2eUvA5g==
+X-Google-Smtp-Source: AK7set++T0+otINhEwRRF0+uWq9i5p8hoTzW1FAWYK+36ztUqu67rhVSd6l7suDxXAlNZ5vjAxn/7Q==
+X-Received: by 2002:a1c:7c0d:0:b0:3dc:445f:642 with SMTP id x13-20020a1c7c0d000000b003dc445f0642mr748298wmc.37.1674854135371;
+        Fri, 27 Jan 2023 13:15:35 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l16-20020a7bc350000000b003d9aa76dc6asm10513504wmj.0.2023.01.27.13.15.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 13:15:34 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
-Content-Language: en-US
-In-Reply-To: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
+        Henrik Grimler <henrik@grimler.se>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [RFT PATCH v2 1/4] ARM: dts: exynos: add unit address to DWC3 node wrapper in Exynos5250
+Date:   Fri, 27 Jan 2023 22:15:24 +0100
+Message-Id: <20230127211527.260060-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Amlogic Meson GPIO interrupt controller binding to yaml.
+Neither simple-bus bindings nor dtc W=1 accept device nodes in soc@ node
+which do not have unit address.  Therefore usethe address space
+of child device (actual DWC3 Controller) as the wrapper's address to
+fix:
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v2:
-- consider that more than one compatible may be set
-- remove bus part from example
----
- .../amlogic,meson-gpio-intc.txt               | 38 --------
- .../amlogic,meson-gpio-intc.yaml              | 86 +++++++++++++++++++
- 2 files changed, 86 insertions(+), 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+  exynos5250-smdk5250.dtb: soc: usb3: {'compatible': ['samsung,exynos5250-dwusb3'],
+    ... } should not be valid under {'type': 'object'}
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-deleted file mode 100644
-index bde63f8f0..000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--Amlogic meson GPIO interrupt controller
--
--Meson SoCs contains an interrupt controller which is able to watch the SoC
--pads and generate an interrupt on edge or level. The controller is essentially
--a 256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
--or level and polarity. It does not expose all 256 mux inputs because the
--documentation shows that the upper part is not mapped to any pad. The actual
--number of interrupt exposed depends on the SoC.
--
--Required properties:
--
--- compatible : must have "amlogic,meson8-gpio-intc" and either
--    "amlogic,meson8-gpio-intc" for meson8 SoCs (S802) or
--    "amlogic,meson8b-gpio-intc" for meson8b SoCs (S805) or
--    "amlogic,meson-gxbb-gpio-intc" for GXBB SoCs (S905) or
--    "amlogic,meson-gxl-gpio-intc" for GXL SoCs (S905X, S912)
--    "amlogic,meson-axg-gpio-intc" for AXG SoCs (A113D, A113X)
--    "amlogic,meson-g12a-gpio-intc" for G12A SoCs (S905D2, S905X2, S905Y2)
--    "amlogic,meson-sm1-gpio-intc" for SM1 SoCs (S905D3, S905X3, S905Y3)
--    "amlogic,meson-a1-gpio-intc" for A1 SoCs (A113L)
--    "amlogic,meson-s4-gpio-intc" for S4 SoCs (S802X2, S905Y4, S805X2G, S905W2)
--- reg : Specifies base physical address and size of the registers.
--- interrupt-controller : Identifies the node as an interrupt controller.
--- #interrupt-cells : Specifies the number of cells needed to encode an
--   interrupt source. The value must be 2.
--- meson,channel-interrupts: Array with the 8 upstream hwirq numbers. These
--   are the hwirqs used on the parent interrupt controller.
--
--Example:
--
--gpio_interrupt: interrupt-controller@9880 {
--	compatible = "amlogic,meson-gxbb-gpio-intc",
--		     "amlogic,meson-gpio-intc";
--	reg = <0x0 0x9880 0x0 0x10>;
--	interrupt-controller;
--	#interrupt-cells = <2>;
--	meson,channel-interrupts = <64 65 66 67 68 69 70 71>;
--};
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-new file mode 100644
-index 000000000..801f9db02
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic Meson GPIO interrupt controller
-+
-+maintainers:
-+  - Heiner Kallweit <hkallweit1@gmail.com>
-+
-+description: |
-+  Meson SoCs contains an interrupt controller which is able to watch the SoC
-+  pads and generate an interrupt on edge or level. The controller is essentially
-+  a 256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
-+  or level and polarity. It does not expose all 256 mux inputs because the
-+  documentation shows that the upper part is not mapped to any pad. The actual
-+  number of interrupt exposed depends on the SoC.
-+
-+allOf:
-+  - $ref: /schemas/interrupt-controller.yaml#
-+
-+properties:
-+  compatible:
-+    minItems: 1
-+    maxItems: 2
-+    oneOf:
-+      - items:
-+          - enum:
-+              - amlogic,meson-gpio-intc
-+              - amlogic,meson8-gpio-intc
-+              - amlogic,meson8b-gpio-intc
-+              - amlogic,meson-gxbb-gpio-intc
-+              - amlogic,meson-gxl-gpio-intc
-+              - amlogic,meson-axg-gpio-intc
-+              - amlogic,meson-g12a-gpio-intc
-+              - amlogic,meson-sm1-gpio-intc
-+              - amlogic,meson-a1-gpio-intc
-+              - amlogic,meson-s4-gpio-intc
-+      - items:
-+          - enum:
-+              - amlogic,meson8-gpio-intc
-+              - amlogic,meson-axg-gpio-intc
-+              - amlogic,meson-g12a-gpio-intc
-+              - amlogic,meson-sm1-gpio-intc
-+              - amlogic,meson-s4-gpio-intc
-+          - const: amlogic,meson-gpio-intc
-+      - items:
-+          - const: amlogic,meson-gpio-intc
-+          - enum:
-+              - amlogic,meson8b-gpio-intc
-+              - amlogic,meson-gxbb-gpio-intc
-+              - amlogic,meson-gxl-gpio-intc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 2
-+
-+  amlogic,channel-interrupts:
-+    description: Array with the upstream hwirq numbers
-+    minItems: 8
-+    maxItems: 12
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupt-controller
-+  - "#interrupt-cells"
-+  - amlogic,channel-interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    interrupt-controller@9880 {
-+      compatible = "amlogic,meson-gxbb-gpio-intc";
-+      reg = <0x9880 0x10>;
-+      interrupt-controller;
-+      #interrupt-cells = <2>;
-+      amlogic,channel-interrupts = <64 65 66 67 68 69 70 71>;
-+    };
+  exynos5250.dtsi:638.16-653.5: Warning (simple_bus_reg): /soc/usb3: missing or empty reg/ranges property
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+---
+
+Changes since v1:
+1. Use ranges with values and drop reg from usb-wrapper node.
+2. Keep "usb" as wrapper's node name.
+---
+ arch/arm/boot/dts/exynos5250.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/exynos5250.dtsi b/arch/arm/boot/dts/exynos5250.dtsi
+index 97e89859ba3d..a5db4ac213d5 100644
+--- a/arch/arm/boot/dts/exynos5250.dtsi
++++ b/arch/arm/boot/dts/exynos5250.dtsi
+@@ -635,17 +635,17 @@ i2s2: i2s@12d70000 {
+ 			#sound-dai-cells = <1>;
+ 		};
+ 
+-		usbdrd: usb3 {
++		usbdrd: usb@12000000 {
+ 			compatible = "samsung,exynos5250-dwusb3";
+ 			clocks = <&clock CLK_USB3>;
+ 			clock-names = "usbdrd30";
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+-			ranges;
++			ranges = <0x0 0x12000000 0x10000>;
+ 
+-			usbdrd_dwc3: usb@12000000 {
++			usbdrd_dwc3: usb@0 {
+ 				compatible = "snps,dwc3";
+-				reg = <0x12000000 0x10000>;
++				reg = <0x0 0x10000>;
+ 				interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+ 				phys = <&usbdrd_phy 0>, <&usbdrd_phy 1>;
+ 				phy-names = "usb2-phy", "usb3-phy";
 -- 
-2.39.1
-
+2.34.1
 
