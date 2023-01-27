@@ -2,82 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93ADF67EAA6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 17:18:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A8EA67EABF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 17:22:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232265AbjA0QSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 11:18:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46738 "EHLO
+        id S232597AbjA0QW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 11:22:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232940AbjA0QSx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 11:18:53 -0500
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFA83B44D
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 08:18:51 -0800 (PST)
-Received: by mail-qv1-xf2b.google.com with SMTP id ll10so3054270qvb.6
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 08:18:51 -0800 (PST)
+        with ESMTP id S230257AbjA0QWZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 11:22:25 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DDD2B44B;
+        Fri, 27 Jan 2023 08:22:24 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id ss4so15057641ejb.11;
+        Fri, 27 Jan 2023 08:22:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
-         :user-agent:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DpbM6dulHZ17ZJk7sIXX1zvUQ+2CFayGo452JEZsUgA=;
-        b=sei4Ur3/qhUD7eRtizMwsp9T6XeunKIuHWi7/1xW5YiSHAAZjfGiFrjmNroi5Enj8P
-         0NXdDYvUlkxkZFSZ8QC7MWX3UVc/1D/PRzdEIy1zPa+ac+P8OcshmPccSYKmoPj+8upz
-         bF1cYyx+wYqWTI3M2ZRA5rjQB3IvJhBtMjBcFST1UKVHNS5ge2jDw381/jn/TPNUG8Ig
-         Utt08poel4blMMcW/0fHg3xTtshN+h7KVP6YlUQEUfgC7IHcdXOtmL/qzdXFI1Oxa/+4
-         qPu9X7fftgdEcwoRI/zPhtWiwy4+hJQS7bTws88fySVHeWezQCCBy0QU30+wduA64yFS
-         uaIQ==
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y4OTyOhq5ph49i2Sy9LKLfnqL2EM/Rj+cmCGMdBMlfw=;
+        b=gDkOvsj4AhTDhnfA/Kn+Keq9CFS5AmQp8SUXAJ8gb48RU0fjRQwfo+R08Yjx5rfp1u
+         A0+zAslnSpWmUaMoOsonoenmeLthUY3aJ85PiRMUJ3JikBfOfHSsg9h2OLphc5w5uW1G
+         smtHqMYI10XofhnqWSpYG4io9JpXpHwf/tJIGIp91dC2N7Roby/nC/lGjc/Uf1EzOZnv
+         2kBwYZjEoVF60meKfDKkqC3UofRq8moWDuKJODsTVVUEtuW/tIhvkhN7SnO6RR8LMzfb
+         hbdno94WAfN+nSO597u2TwnM1bLVaCczr/KSZpRefNZfHscCnTGfd4iVuB0T/meWU05x
+         lsLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
-         :user-agent:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DpbM6dulHZ17ZJk7sIXX1zvUQ+2CFayGo452JEZsUgA=;
-        b=bsxGD/+UTVVjfmUrWv076d8Fz93LNYRdgdCaPkBadY92n6B6YnOW7dfzDPsbe7AR8e
-         bbyt41yiNzWGFlk1lwlJpiO67LaHuQPNprMMNBWUc++a/a/RsKZ1Q4pdfYR6f02TEAFa
-         YFPF7hg3a6wjnfVPZtejtQreRnBQZVl/CKOnZcJeFtfGj54saAaoJYDgv9nn3vhyTcjV
-         uh3dg74EWPzL0SEdJoy95FakQsfqnLAPxJuhSIrsezpcjiIqysE2jImyg6a15xwNkNao
-         9H9GUWgMfcgsustAow+ryjBfnyY7JtEfkEcWTW2lOXKcJ5NHErWiCG9DStk2cdrivusT
-         n8xw==
-X-Gm-Message-State: AFqh2krsIYLGNtcs8P11j+3QI4MQflYfBLRX0PJzKC06oRWAk1pgB+0N
-        WGXIZsSdW40WTpiUdEjZndNkYXCIOQNtkYB/9Ei9FA==
-X-Google-Smtp-Source: AMrXdXvLZ3tb9o4k4+Rdt+X24aNNL4DoFTd5UeyiqztwmluRV4eW2iDC4NLWecpVdMZnnv+GzK2PKeAqcPJnnUgMp0M=
-X-Received: by 2002:a05:6214:5c42:b0:534:1fd4:72ec with SMTP id
- lz2-20020a0562145c4200b005341fd472ecmr2080182qvb.65.1674836331103; Fri, 27
- Jan 2023 08:18:51 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 27 Jan 2023 11:18:50 -0500
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: meli 0.7.2
-References: <20220919-v5-0-cfb0e5ad29b2@baylibre.com>
-In-Reply-To: <20220919-v5-0-cfb0e5ad29b2@baylibre.com>
-MIME-Version: 1.0
-Date:   Fri, 27 Jan 2023 11:18:50 -0500
-Message-ID: <CABnWg9u02duwaM3zWAdM9ZLw03Z53j0aCSWYXWpz=WM8zm-Ynw@mail.gmail.com>
-Subject: Re: [PATCH v5 0/3] Add MT8195 HDMI phy support
-To:     CK Hu <ck.hu@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
-        Jitao shi <jitao.shi@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y4OTyOhq5ph49i2Sy9LKLfnqL2EM/Rj+cmCGMdBMlfw=;
+        b=VpNiXw0Bxtvzsqub2J0cYZvNVhNYaUPhk+x9n06LkD5pW7RmT6bJmU1tOV8Ty+J21x
+         XNnf4V3P8q18Jxi5O12TwDOQnQ2k65tDhOBvHMP2w5CD1ScVcL6c8D3MwgFA/HeP5EPf
+         43QIjDLx1muPa906E+/A0wEjtMqSuRQ9sI+sUENPWVS7Bq18RJyn4sTIppgEqCGOtWzb
+         nnepxPNnIJLyTF0ImX9/k/18YTb4pabQ5hl0thqa1TvKaJaBXUR10lmrMmeI0iXwwgJo
+         MLwRMcxS6fIYgmtZiDpM0DF/x/6/pxiwp1aA9n6n+SzVx93HkQYlzNXGyQPrhHVspmcV
+         d5cQ==
+X-Gm-Message-State: AFqh2kon1La2xBwsKJbiqJQkYR2RCl0V5dtZyjTASG8EfObwwqfPc23q
+        17haSKAQjt1u6iAwBtLHJfQ=
+X-Google-Smtp-Source: AMrXdXt2OhjgoI53tjT3nvzAVMGrKi73ulioqKoNtQWBcgvgIEJFCLLgKNEfR5QSlEe4xYwFMFtj4g==
+X-Received: by 2002:a17:907:6c16:b0:86f:3dfa:4016 with SMTP id rl22-20020a1709076c1600b0086f3dfa4016mr47989890ejc.7.1674836542928;
+        Fri, 27 Jan 2023 08:22:22 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ja23-20020a170907989700b00872c0bccab2sm2524552ejc.35.2023.01.27.08.22.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 08:22:22 -0800 (PST)
+Date:   Fri, 27 Jan 2023 17:22:20 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        David Airlie <airlied@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mac.shen@mediatek.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-phy@lists.infradead.org,
-        Guillaume Ranquet <granquet@baylibre.com>,
-        devicetree@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, stuart.lee@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Vinod Koul <vkoul@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-phy@lists.infradead.org, waynec@nvidia.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH V6 2/6] dt-bindings: phy: tegra-xusb: Add support for
+ Tegra234
+Message-ID: <Y9P6PJ9xPVst/um2@orome>
+References: <20230111110450.24617-1-jonathanh@nvidia.com>
+ <20230111110450.24617-3-jonathanh@nvidia.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="b0gkupGM8zWoxRNZ"
+Content-Disposition: inline
+In-Reply-To: <20230111110450.24617-3-jonathanh@nvidia.com>
+User-Agent: Mutt/2.2.9 (2022-11-12)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,91 +80,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 Jan 2023 16:55, Guillaume Ranquet <granquet@baylibre.com> wrote:
->Add support for HDMI phy on MT8195.
->
 
-Please disregard this, as I meant to send v6 and not a new v5...
-link to the actual v6 is here:
-https://lore.kernel.org/linux-mediatek/20220919-v6-0-2f641c422cb6@baylibre.com/
+--b0gkupGM8zWoxRNZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Sorry for spamming your inboxes,
-Guillaume.
+On Wed, Jan 11, 2023 at 11:04:46AM +0000, Jon Hunter wrote:
+> Add the compatible string for the Tegra234 XUSB PHY.
+>=20
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> V5 -> V6: Added Krzysztof's ACK=20
+> V3 -> V5: Fixed compatible string
+> V3 -> V4: Added patch
+>=20
+>  .../devicetree/bindings/phy/nvidia,tegra194-xusb-padctl.yaml  | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 
->This is split from the previous v3 to contain only the phy related
->changes to the HDMI support for mt8195 as suggested by Vinod.
->
->This is based on top of next-20221121
->
->To: Chunfeng Yun <chunfeng.yun@mediatek.com>
->To: Kishon Vijay Abraham I <kishon@ti.com>
->To: Vinod Koul <vkoul@kernel.org>
->To: Rob Herring <robh+dt@kernel.org>
->To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->To: Matthias Brugger <matthias.bgg@gmail.com>
->To: Chun-Kuang Hu <chunkuang.hu@kernel.org>
->To: Philipp Zabel <p.zabel@pengutronix.de>
->To: David Airlie <airlied@gmail.com>
->To: Daniel Vetter <daniel@ffwll.ch>
->To: CK Hu <ck.hu@mediatek.com>
->To: Jitao shi <jitao.shi@mediatek.com>
->Cc: linux-arm-kernel@lists.infradead.org
->Cc: linux-mediatek@lists.infradead.org
->Cc: linux-phy@lists.infradead.org
->Cc: devicetree@vger.kernel.org
->Cc: linux-kernel@vger.kernel.org
->Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->Cc: mac.shen@mediatek.com
->CC: stuart.lee@mediatek.com
->Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
->---
->Changes in v5:
->- Adapt clock bit ratio when TMDS is over 340M
->- Used sized integers for register read/writes
->- Removed useless comments
->- Shortened function names
->- Link to v4: https://lore.kernel.org/r/20220919-v4-0-bdc21e1307e9@baylibre.com
->
->Changes in v4:
->- Dedicated series for HDMI phy support (without the drm/ related
->  changes)
->- Removed useless variable initializations in phy driver
->- Link to v3: https://lore.kernel.org/r/20220919-v3-0-a803f2660127@baylibre.com
->
->Changes in v3:
->- phy: Grouped register and bit definition together to add clarity
->- dt-bindings: Addressed comments
->- Link to v2: https://lore.kernel.org/r/20220919-v2-0-8419dcf4f09d@baylibre.com
->
->Changes in v2:
->- Removed syscon requirement from the hdmi node
->- Use as much as possible bit FIELD_PREP/FIELD_GET macros across all the
->  patches
->- Make cec optional dynamically instead of hardcoded with a flag
->- Renamed hdmi variants to v1 (legacy) and v2 (mt8195) while waiting for
->  a better name
->- Rework hdmi v2 code to use a connector (same as v1)
->- Remove "magic" 0x43 addr special handling in hdmi ddc code
->- Link to v1: https://lore.kernel.org/r/20220919-v1-0-4844816c9808@baylibre.com
->
->---
->Guillaume Ranquet (3):
->      dt-bindings: phy: mediatek: hdmi-phy: Add mt8195 compatible
->      phy: phy-mtk-hdmi: Add generic phy configure callback
->      phy: mediatek: add support for phy-mtk-hdmi-mt8195
->
-> .../devicetree/bindings/phy/mediatek,hdmi-phy.yaml |   1 +
-> drivers/phy/mediatek/Makefile                      |   1 +
-> drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c         | 523 +++++++++++++++++++++
-> drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h         | 111 +++++
-> drivers/phy/mediatek/phy-mtk-hdmi.c                |  15 +
-> drivers/phy/mediatek/phy-mtk-hdmi.h                |   3 +
-> 6 files changed, 654 insertions(+)
->---
->base-commit: e2f86c02fdc96ca29ced53221a3cbf50aa6f8b49
->change-id: 20220919-hdmi_mtk
->
->Best regards,
->--
->Guillaume Ranquet <granquet@baylibre.com>
+Hi Vinod,
+
+can you pick this up into your tree? This applies on top of the
+conversion patch ("dt-bindings: phy: tegra-xusb: Convert to
+json-schema") that's aready in your next branch.
+
+Thanks,
+Thierry
+
+--b0gkupGM8zWoxRNZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPT+jwACgkQ3SOs138+
+s6EmYA/9FJsPyQ6dWaqhDXMyzc1HR5Pr1gLqJZksMN7R4k/xvryrwbYCO19IfrD0
+gilOAeiniIpxcKV4CMr0dvMGI/o9UbrAOcxE85oP2sBiLiUhBQ0QEAFKAQskQOOl
+o8r422cr/CJYDC9OAW1xITSvuWwamJAec7n/lqyYvWr4urMlsT6mDZEpNlKCVfNQ
+lQSfQcN7mnGjzKwycbt5GMVpupDhPRvmNLSVUey6owxULZBdcrPC0b/K5hVElX6o
+rWAkcwh77s3nhwJuPOrREIhnyNBiK3K8x5FM6ncP6l9ndlTHQU4yFVyze0jFPH8c
+QQaFAPTn/axKu+mSZxjUK3OEsGy+ybAplBivH6pY3qEX6D2oYUJ4Ie6Jx1GqGPzh
+Nkv914gkdMfmB4HdaQOELyYseKrLaEmy6AmTNMOpumKv0/8ucV/19s+cqdLWNlOh
+ELjd4CLeOzvYxpA0u1OlOBLNEeBHeg3KY0C9ted8q1RJSOnxLzF4C1ujj+0kFp8U
+/zp6FoLkbchfc50rIxLszh9hfRcyoG25H3jXYDY1xenxhv4Iba5sAILts5/IvI9c
+ZyenKl3sU/pyQDrv8DhFJluIJotQ606moVk1PxJhRv0Yt34Eaa6+TNszezcPnPWU
+kkEf5UXWBofFCYl0f8XVqcFDGmo0tdYTfbi4pK6RSEehe100xVI=
+=wD/W
+-----END PGP SIGNATURE-----
+
+--b0gkupGM8zWoxRNZ--
