@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D8F467E44A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 12:56:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EB2A67E451
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 12:57:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233955AbjA0L4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 06:56:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49100 "EHLO
+        id S234060AbjA0L5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 06:57:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233961AbjA0L4T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 06:56:19 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CA792FCF6
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 03:53:33 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id m2so12562766ejb.8
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 03:53:32 -0800 (PST)
+        with ESMTP id S233654AbjA0L46 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 06:56:58 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82647B76B
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 03:54:03 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id m2so12564849ejb.8
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 03:54:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2GOhGaZPElQirCQ8y5f/SzlHhA/Pc0oVddW/GxMyIYo=;
-        b=D+YiZd9y4aKawIjayOydozjYqPTKdXuKyAaQW5361znZnm9vxkZ6revV8mx7NBoQnD
-         4YGrQNJz8ZhZc9TCz+Tnp3vSFbB3NpgKLrttnPzC4ACVcebB92JnroeDVS66LaVWtfZn
-         OT3UuquNQMzNi0+8junkdIX/FnV6G6LFWZFo7UM5OhTbkZrvbil3kGq3L8/WW5NgcrZK
-         npLGNznXC3lIs5K9ELs3lT7WmoAI6E6bvXkbI8riK5xJhXy71UIV2hZhmawSYbTmEKLm
-         0YE/t0zk1eSSGm9XCakrJSXewbAwtezfHPA5+/jrgot0gTvPHw3lLmF8wLQXH33K5FPb
-         4WVA==
+        bh=kc9X7Psg9XH95WUM/pbLlM0skWooRYAQlEwzHs4bLi4=;
+        b=InvVlCHtG9hTtOGLMC0ut/USz0ZRvGhzpSZZufIT1PVkuQgrf6Jqq64nhw8p+XJrMB
+         MQmkdu/1S/0qvc3DohzJBB27wzwR9+6AyB71gbOcBiFeeMaf6WV+JQ1HgC+O5hzHOs+g
+         O9qOrMRy9oi/6DO2oxJ1mlnk+uOeTLJ+4dTnsVBJ5+iCjM/zYujhEE7DXXroadhZQjl5
+         EsziqJU9VDYMqjCYJMS7vfYoM48KLz7d2u8m7xpDhzg3Tg1TE3kUP+NJZocTmLvNMwfK
+         biqH7GBdX1hpFQXCbslGTrFG2OnXNLc2nhar2hBCo5FR+qEzwYBzs6idsbWsbsaQXciQ
+         oBXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2GOhGaZPElQirCQ8y5f/SzlHhA/Pc0oVddW/GxMyIYo=;
-        b=lLIKhBFjB+JAWZqSaLS1m86gyBywB627WTtLNpAEMZOq4zu+b3Syr5wGJ2ORdZZhho
-         PmfYadiQ3bjbhYm2R+9hE8h+1WV24sRB/ofRTOTPZvwU9Qzovu0oEOYGsmL6WaJonEY6
-         xH717fdv5zv1fSEPLzqh1eTVLsr8S80AmyE1ysTpl5gTP6EJd5jHkGhHMzAdY3JxMtBo
-         tAIxtvJZx/xhY0u1J3zWKisIRKptzB5lGsuKPIbCZM+gDm8oSt3XR+ld4l2zccpRDbg8
-         3yHNw8KzOBJ5b7xQdRMK+EMx5louLI1bvDAP2i08xYmub5n+xXGuQzdHKOJ4mbU9QUCS
-         ZW4w==
-X-Gm-Message-State: AO0yUKVw8f9y9dY6RhkzQTI+9DDQ9SpQc1RP8tRy28NyIEWwFZ97mr2X
-        voGEon8/2iHdFb0/MWcx2ptmrg==
-X-Google-Smtp-Source: AK7set//GHmm+2mKK6X4Q6zeLFoaysIt3TRd7MuvXFhxpN4xAzfOJKJOXUG8pLBDyant5TV1ryrqxQ==
-X-Received: by 2002:a17:906:3704:b0:878:43bb:357 with SMTP id d4-20020a170906370400b0087843bb0357mr7997550ejc.14.1674820338957;
-        Fri, 27 Jan 2023 03:52:18 -0800 (PST)
+        bh=kc9X7Psg9XH95WUM/pbLlM0skWooRYAQlEwzHs4bLi4=;
+        b=W6Kc3ijc1EgrJH2qb8p83gW9TJiCiCd1U8c3tSbVmUfHAAgWtR9h1GLu/os4GHFSQw
+         BAFOjP9ab7lZR+vdc+a6v5UKAtWdXuWQcQ1Peb5L9NbweEyJ22Es7dIKlsIR8WJK1vJ1
+         WJ2vbor7TaEhnmI7lBNduOxAooOgjUfz1GnvnppjEp40zd0WZUvwecKgjLaKqCYdm32i
+         1RWf9hhCQS1D92onjgLfzDkyFal2ZPlfp9UdMkBSmMWYds2hU+YXgfKDE5TRvRkd1WBw
+         3yKzBRLd1lBm/XQE3XIuj5hGhYNBLtiVWXZbhY1FZRxvfXlnyuD89GS80/ylgEyrpbGB
+         dx9A==
+X-Gm-Message-State: AFqh2komRX5grtvuEBoNSCYjWX09sd03AZLlF4DlS9mGWi+ljDIDctP0
+        LiWrG1RPutM9VZMn3ot6NxP6EQ==
+X-Google-Smtp-Source: AMrXdXs5TtLT+nzqXy7OSsMFvTU8VuY1tsIPNgpfOx+NcJgVrlvaoMINgL/37uc2L0bsKXdlYVduBA==
+X-Received: by 2002:a17:907:d049:b0:840:604:1da1 with SMTP id vb9-20020a170907d04900b0084006041da1mr47705828ejc.61.1674820357452;
+        Fri, 27 Jan 2023 03:52:37 -0800 (PST)
 Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
-        by smtp.gmail.com with ESMTPSA id u20-20020a50a414000000b004a08c52a2f0sm2220084edb.76.2023.01.27.03.52.17
+        by smtp.gmail.com with ESMTPSA id h17-20020a1709066d9100b0087856bd9dbbsm2150627ejt.97.2023.01.27.03.52.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 03:52:18 -0800 (PST)
-Message-ID: <9e542412-6373-372f-ae24-7989817284c3@linaro.org>
-Date:   Fri, 27 Jan 2023 12:52:17 +0100
+        Fri, 27 Jan 2023 03:52:37 -0800 (PST)
+Message-ID: <ad4bd119-d66f-a7ce-f9c7-556ed92af969@linaro.org>
+Date:   Fri, 27 Jan 2023 12:52:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 03/11] arm64: dts: qcom: sa8295p-adp: align RPMh regulator
+Subject: Re: [PATCH 04/11] arm64: dts: qcom: sc7180: align RPMh regulator
  nodes with bindings
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -65,14 +65,15 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230127114347.235963-1-krzysztof.kozlowski@linaro.org>
- <20230127114347.235963-3-krzysztof.kozlowski@linaro.org>
+ <20230127114347.235963-4-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230127114347.235963-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230127114347.235963-4-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -90,37 +91,51 @@ On 27.01.2023 12:43, Krzysztof Kozlowski wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  arch/arm64/boot/dts/qcom/sc7180-idp.dts      | 4 ++--
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 4 ++--
+>  2 files changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> index bb4270e8f551..fd253942e5e5 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> @@ -111,7 +111,7 @@ edp3_connector_in: endpoint {
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+> index 6ea8dd7d3e01..c3bdd3295c02 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+> @@ -90,7 +90,7 @@ mdata_mem: mpss-metadata {
 >  };
 >  
 >  &apps_rsc {
-> -	pmm8540-a-regulators {
+> -	pm6150-rpmh-regulators {
 > +	regulators-0 {
->  		compatible = "qcom,pm8150-rpmh-regulators";
+>  		compatible = "qcom,pm6150-rpmh-regulators";
 >  		qcom,pmic-id = "a";
 >  
-> @@ -151,7 +151,7 @@ vreg_l11a: ldo11 {
+> @@ -212,7 +212,7 @@ vreg_l19a_2p9: ldo19 {
 >  		};
 >  	};
 >  
-> -	pmm8540-c-regulators {
+> -	pm6150l-rpmh-regulators {
 > +	regulators-1 {
->  		compatible = "qcom,pm8150-rpmh-regulators";
+>  		compatible = "qcom,pm6150l-rpmh-regulators";
 >  		qcom,pmic-id = "c";
 >  
-> @@ -224,7 +224,7 @@ vreg_l17c: ldo17 {
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index dcb179b2a3fb..423630c4d02c 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -438,7 +438,7 @@ flash@0 {
+>  };
+>  
+>  &apps_rsc {
+> -	pm6150-rpmh-regulators {
+> +	regulators-0 {
+>  		compatible = "qcom,pm6150-rpmh-regulators";
+>  		qcom,pmic-id = "a";
+>  
+> @@ -551,7 +551,7 @@ pp2850_l19a: ldo19 {
 >  		};
 >  	};
 >  
-> -	pmm8540-g-regulators {
-> +	regulators-2 {
->  		compatible = "qcom,pm8150-rpmh-regulators";
->  		qcom,pmic-id = "g";
+> -	pm6150l-rpmh-regulators {
+> +	regulators-1 {
+>  		compatible = "qcom,pm6150l-rpmh-regulators";
+>  		qcom,pmic-id = "c";
 >  
