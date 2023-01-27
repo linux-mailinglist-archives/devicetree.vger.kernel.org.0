@@ -2,104 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A551A67E68E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 14:25:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BCC267E693
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 14:26:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231643AbjA0NZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 08:25:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42492 "EHLO
+        id S233975AbjA0N0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 08:26:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232925AbjA0NZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 08:25:06 -0500
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FF137DBE1
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:25:04 -0800 (PST)
-Received: by mail-yb1-xb2d.google.com with SMTP id e15so5923732ybn.10
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:25:04 -0800 (PST)
+        with ESMTP id S233825AbjA0N0J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 08:26:09 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE6F781B23
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:26:07 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id r2so4959637wrv.7
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:26:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YfmZdMJN/D3xI4YTB54xIsWSAze0zkG8RrFJPkBL4AQ=;
-        b=d2yyXte/yKIliOx/+8dSFRH8+M3Ex72UVdCuqh3m2tyi3rrRYlzuFLuFuOaXo8UJua
-         gElqKdzCZZxnNL7BluA63zU1vXbJTTdCGK01yYehPr6WfmZLwmosoPiS95G7b5lmagCS
-         L/upqPf5qIY2pjLEDKrUW9EdvBvPWpcC2GegAPRzTI8cGzevNc5TRFXyVw8hHFy7XJzN
-         TH3bv0sOG57U6+65n9Xq6fsYWtTWYlZhS/Bzf440xEraF0lC2iKIkZMz3ndkI1DvtaHw
-         EQNdQGri5E5aTQGN016ehd0p8PTqoPCqtOXzj5K3ayVZ69ryCa5toREYxDUTePUi+iWo
-         LVcA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CZd+JWIjDaKYpzBxZXlaUPrja5cm3GEdrEIrnzSxg1A=;
+        b=bvD1H6lI5hOPKvzUhnX/f1mraAjS5TO2SBRO11Nqdd1onSn+pVzM2tBBmSFEjLBp8x
+         20nHqzRNWlmWjVSit2glAPGgnq1LvEb9pLDEqMJ9bGCGQgPLDDZ0w/tdIOpejPm2xuCK
+         Q6uV2SkgWwH90irqtOpsLTSgzD2VmafIQnZnug7rny4BULDppVXicqhnb/XxBx2XazXQ
+         lr6CMRaI+2iOiQM345L/8yVH6Er7j/bQXUycDZCWDWfnuiOJ4DCBRxPAPGkcd+e6b0nw
+         361M47k8NIkKFwJzgVA9400bTyQa381ANuprfXCmUTCDYligJXZ2EsaaJW9OdIWvSzqF
+         HV2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=YfmZdMJN/D3xI4YTB54xIsWSAze0zkG8RrFJPkBL4AQ=;
-        b=HooFK9RvehwTAvgu7PbkD49bqc9BmsYxNdcd4l2jzmeALtvyemwGGGLRaFbx3Q4ks0
-         Jgk7erAcyGFgbkZCRMoV8DrUiXH9U5Z7wG0XgsurQZMPA0aq6+SmocoWBZbOb/VbPPOL
-         MHKoZKruY82OU9jUX8bSUyTrzWvwenYuQS05xqJz5FbN+2jH7wO6cIw3no8rcSPFWuOc
-         LjRSdHq6CAX0P301AlnrEDvvc8y6EUk+YDinaV2wpAgqCEUxe66esUVHdimAOBTZOY5w
-         Ua8THWlTcV7NbSuyo6PRnXd0EZ8wPEnCYnH3FkMTXsFcU1VmUxFVTjJURtef6vH4NqyW
-         /tIg==
-X-Gm-Message-State: AO0yUKXR3RRgl4Lcw4wLjq04l5eC9E2HW07+1xxNqvzP6g3BSutqDiNF
-        nxt3oq7yq4TvLF4NGjAfc4bcrEaPzRTxMsMc+9xOSA==
-X-Google-Smtp-Source: AK7set/AyCr5YILgHa1njAbv5GENd6K1HRNPT5FGDcIp6NDqNoyOABScAptxZu4MVa9CTfeWH7nQwPnr2nr1FbGyMhU=
-X-Received: by 2002:a25:d1d1:0:b0:80b:4d84:b25 with SMTP id
- i200-20020a25d1d1000000b0080b4d840b25mr1325238ybg.584.1674825903381; Fri, 27
- Jan 2023 05:25:03 -0800 (PST)
-MIME-Version: 1.0
-References: <20230127093217.60818-1-krzysztof.kozlowski@linaro.org> <20230127093217.60818-3-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230127093217.60818-3-krzysztof.kozlowski@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 27 Jan 2023 14:24:52 +0100
-Message-ID: <CACRpkdZUD1rw5j=Kik9KMt0w=JzS_T06FOGnyUA9GWmWZyQjcA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: reference MC peripheral properties in
- relevant devices
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        bh=CZd+JWIjDaKYpzBxZXlaUPrja5cm3GEdrEIrnzSxg1A=;
+        b=mWPXO/4gYnM+a5wZ13VdoqBMiGm5wsxi3hY7fHuXB+03jf0yHQSE8kS+U1vFa2YxMu
+         jyvl6yWRDOmGbTOdYTjLIF38m7sNXri3XWxKNdO/pOoTYA5h+nrQL4HaJIgNFS2fNXdh
+         fFLEOSBVTVs1Z/qQ2tdBBXoK6OlaFL/tnru+w7Mi+l8O7djAIyK5TzmBFSSxOhIlDXyW
+         c5TR8bybEiu4ikkNrbOjQU1XG+Ylyr7lJp+OAEsOadO0IvShvevyE8IZSbsvnAr+oIh+
+         +jGEcmpiylibyy4YPIAC+eyYQE+Sq/7HvwgPK00R7OCBVGqG2bBpRsW2/CEYWyId1+l8
+         I82A==
+X-Gm-Message-State: AO0yUKWu7KCt1PpjOmpYbef9YS6JHEJrGjPSIPBJTFAlqd0D0rXJ6GP8
+        lltT/0pwwuFnslpAcAdszQhkAQ==
+X-Google-Smtp-Source: AK7set+jTjYlToxLv7HWQHoOXBqVASbP6hK8bv/7nOmcOahZ6nnLj42BD8VTI1PqExDUkUHpsgpU0w==
+X-Received: by 2002:a5d:4283:0:b0:2bf:d428:a768 with SMTP id k3-20020a5d4283000000b002bfd428a768mr1958419wrq.49.1674825966132;
+        Fri, 27 Jan 2023 05:26:06 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id z14-20020a5d4c8e000000b002bfc2d0eff0sm4021515wrs.47.2023.01.27.05.26.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 05:26:05 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linusw@kernel.org>,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Marek Vasut <marex@denx.de>, Lubomir Rintel <lkundrak@v3.sk>,
-        - <devicetree@vger.kernel.org>, Marc Zyngier <maz@kernel.org>,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mtd@lists.infradead.org, linux-serial@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: qcom,pdc: Add compatible for SM8550
+Date:   Fri, 27 Jan 2023 15:25:58 +0200
+Message-Id: <20230127132558.1176730-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 10:32 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+Document the compatible for SM8550 PDC.
 
-> Several devices can be attached to memory controllers (or memory-mapped
-> buses), thus they can come with additional controller-specific
-> properties, e.g. devices wired under Intel IXP4XX bus: cfi-flash,
-> intel,ixp4xx-compact-flash, NS8250 serial and MAX6369 watchdog.
->
-> Referencing Memory Controller or IXP4XX bus peripheral properties fixes
-> few dtbs_check warnings like:
->
->   intel-ixp42x-gateworks-gw2348.dtb: ide@1,0: Unevaluated properties are not allowed
->     ('intel,ixp4xx-eb-ahb-split-transfers', 'intel,ixp4xx-eb-byte-access', ... ' were unexpected)
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+The v1 is here:
+https://lore.kernel.org/all/20221116114210.2673902-1-abel.vesa@linaro.org/
 
-Yours,
-Linus Walleij
+Changes since v1:
+ * rebased on next-20230125
+ * added Krzysztof's R-b tag
+
+ .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml       | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+index 94791e261c42..5a733bd76b57 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+@@ -37,6 +37,7 @@ properties:
+           - qcom,sm8250-pdc
+           - qcom,sm8350-pdc
+           - qcom,sm8450-pdc
++          - qcom,sm8550-pdc
+       - const: qcom,pdc
+ 
+   reg:
+-- 
+2.34.1
+
