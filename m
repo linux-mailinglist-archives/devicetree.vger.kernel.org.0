@@ -2,89 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B07B67E5E8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:58:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DA9D67E5F6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 14:01:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231130AbjA0M6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 07:58:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39678 "EHLO
+        id S234012AbjA0NBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 08:01:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232369AbjA0M6n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:58:43 -0500
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 510927D2B3
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:58:14 -0800 (PST)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-506609635cbso65763387b3.4
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:58:14 -0800 (PST)
+        with ESMTP id S233933AbjA0NBM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 08:01:12 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 289977D91
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:01:11 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so3427085wmq.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:01:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vh+bKXtdb/z1QCPxI2/PQtGdcBrzsfUgycixwIlm1Is=;
-        b=Rr8xhv/OSS7204WgMEKkwF53NcpYDuZMgCQvnk07CQgUmvxNYUMA1RASA9ajGe2IUm
-         PGUHbdjtv2Rxm0kppk9PehUhB8HOQE84PDOOidRDcJnHYDTgyjf+cpH98vOqAok2zNb1
-         D+nluFpWnwX6ZTnIy75oPmz0VgkhtWTs/aTq+WlyFKMvwLErBewvb8O2QqnwUH8prP10
-         7JQKsz37fibUYPXt59nDJnw8tr4saHruJxiDb3vmnk+5PSX5EXsUDydoexGlmMJNNvAY
-         XNZeBoaxWxT+BKQK5fxGD+oeCTp8bNrHV5fqp3nlV4iAU7IzNrh/McMlxTE4p28Ja3Os
-         /SHw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Uq31ls9+mMXI35R6HMYUksQvzfPZ5izmOtregfCV1mg=;
+        b=EdZTZID/4DNiZfW6uBvU44CaHjbaz0TaQQu3XBGUa+mYl5YHDW18hTPyYCTQEJPLMW
+         yAZ1m1RyD6gxEcyXqgcI8xujDDxeLic42Ha6cP+gYamDdDp8yI1K2xAXY1dneX0aPFHm
+         EDQxUj0gmp7lBywYZhLT7n9WcJx8ILvtBGAVgn57yy6D17piKWwOx+VDlw0w0hJ1qg1h
+         AAMItja0MIfqsLPJACJ3L9w0q1MHbHerQIcWZQHC21vXWa10kO8MKNkYhY96Cjt2Vrix
+         O6bsGdCF5TyHZ8LNWixK8nf9EyA/ycrEp3jSTTHuS2KxWg3Zk/PIib7Y2aTeAG0GdJAH
+         B/PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Vh+bKXtdb/z1QCPxI2/PQtGdcBrzsfUgycixwIlm1Is=;
-        b=oGHeq516C69pAsqMybhmaz4so7KVdVVm1ANs9y6BBQft+7ruEgBKRUYQmLGVCmZJ0e
-         SsGNxkjpIS8vq9zPiTKIalEQm7UmAbAtkRFlb/B/EF3afHyTDvt6ISrUXMagMbXz0lHC
-         sGQbDJg+Nnv5+vdF3oFzxTAAelPg1MKdl5A3YUjrNPy4VEgaUOmC26CkGzONEtIRRFGr
-         BD0tgViMxNazVHD55/cV9yGkA2ERgHQIazPa1J5RAEGhFxDufVHbKABlSqvdIsXManN9
-         RmjwBO27/52W6dbZ82iNEarJQmaDUnBymCzKNmTpiW6a+EhqDjukRi3zHvb506eFx6nn
-         +zEQ==
-X-Gm-Message-State: AO0yUKWOPcg2T5bLkw4fLlGgiGaSerigWkjQA/6Xx6SDa4PWSBMhSWiR
-        X0yCE4ugh4r4TpQfJePDMT4qvuSds0hm68z4n9zuUvCArKH0WQ==
-X-Google-Smtp-Source: AK7set/pmEFwy14DSxUIoFhgRvUHxwHId97MCz3n4bGfCrxDLXaTZoxTOHGysbJaigoBiETZhxOz45r0mMfJ1dv4PhI=
-X-Received: by 2002:a05:690c:706:b0:506:6952:b9c9 with SMTP id
- bs6-20020a05690c070600b005066952b9c9mr1266249ywb.477.1674824288171; Fri, 27
- Jan 2023 04:58:08 -0800 (PST)
-MIME-Version: 1.0
-References: <20230126-gpio-mmio-fix-v1-0-8a20ce0e8275@ncr.com> <20230126-gpio-mmio-fix-v1-1-8a20ce0e8275@ncr.com>
-In-Reply-To: <20230126-gpio-mmio-fix-v1-1-8a20ce0e8275@ncr.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 27 Jan 2023 13:57:57 +0100
-Message-ID: <CACRpkdYyRXx-Q4NYEUzpvmBEvyW5b9TVw7DngphhV56VJJCESw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] gpio: dt-bindings: add new property to wd,mbl-gpio bindings
-To:     nl250060@ncr.com
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        bh=Uq31ls9+mMXI35R6HMYUksQvzfPZ5izmOtregfCV1mg=;
+        b=N78XRWQ+f3OGF+Lsuyw/c+Wz9DHD+ba+HEGyQX/h49FgXHTF9aTB7OyK8N3RPrHj65
+         B0pMMDYYVaAHAfxXm/RqwfxMXKqpjtLBLq1oQximkskW7BDSUr008DeYPOm3699UBY57
+         n9m8uh3GyA3dndNWsLMliqzQrfP6+E8OoUlqnhcVsDWu3Am2uqxfefB8NDDMrRT0lNNK
+         svqmk2g1Sl01Dqb0aXCIhX5eENXwC1fiBgQn+sq8gdBKhEkNw3NrPOVAzKaGvZznfgpT
+         u9mChH4+mvkpW0foxUM+SNzqsHC2AHnoag6TgldnW/zki5c6qMlH26smACLmOrwHbK0Z
+         viUw==
+X-Gm-Message-State: AFqh2kpuqXFf12esNaU8EKACFZWMWCPAHCnSiQE0dVYv4VnEUFUcwjXS
+        1VYXCOmj6jJ9YjGKF2lMQygO8g==
+X-Google-Smtp-Source: AMrXdXtPoIX2X0V4s50VTw+IDcEnV51lGkQKW/IYmMVahDfQKPNCHL41tUCXIxpbGnhSXnJgqggWKg==
+X-Received: by 2002:a05:600c:cc8:b0:3cf:497c:c59e with SMTP id fk8-20020a05600c0cc800b003cf497cc59emr37173573wmb.6.1674824469669;
+        Fri, 27 Jan 2023 05:01:09 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id l4-20020a7bc444000000b003db03725e86sm4270999wmi.8.2023.01.27.05.01.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 05:01:09 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: Fix regulators node names
+Date:   Fri, 27 Jan 2023 15:01:06 +0200
+Message-Id: <20230127130106.1136226-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Niall,
+Bindings check fails as the schema expects the regulator node names to
+have the suffix -regulators, so use the name and the id of the pmic to
+compile the node name instead.
 
-thanks for your patch!
+Fixes: 71342fb91eae ("arm64: dts: qcom: Add base SM8550 MTP dts")
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-On Thu, Jan 26, 2023 at 11:18 AM Niall Leonard via B4 Submission
-Endpoint <devnull+nl250060.ncr.com@kernel.org> wrote:
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+index 725d3bc3ee72..ec17226e11b8 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+@@ -39,7 +39,7 @@ vph_pwr: vph-pwr-regulator {
+ };
+ 
+ &apps_rsc {
+-	regulators-0 {
++	pm8550-b-rpmh-regulators {
+ 		compatible = "qcom,pm8550-rpmh-regulators";
+ 		qcom,pmic-id = "b";
+ 
+@@ -168,7 +168,7 @@ vreg_l17b_2p5: ldo17 {
+ 		};
+ 	};
+ 
+-	regulators-1 {
++	pm8550vs-c-rpmh-regulators {
+ 		compatible = "qcom,pm8550vs-rpmh-regulators";
+ 		qcom,pmic-id = "c";
+ 
+@@ -182,7 +182,7 @@ vreg_l3c_0p91: ldo3 {
+ 		};
+ 	};
+ 
+-	regulators-2 {
++	pm8550vs-d-rpmh-regulators {
+ 		compatible = "qcom,pm8550vs-rpmh-regulators";
+ 		qcom,pmic-id = "d";
+ 
+@@ -196,7 +196,7 @@ vreg_l1d_0p88: ldo1 {
+ 		};
+ 	};
+ 
+-	regulators-3 {
++	pm8550vs-e-rpmh-regulators {
+ 		compatible = "qcom,pm8550vs-rpmh-regulators";
+ 		qcom,pmic-id = "e";
+ 
+@@ -242,7 +242,7 @@ vreg_l3e_1p2: ldo3 {
+ 		};
+ 	};
+ 
+-	regulators-4 {
++	pm8550vs-f-rpmh-regulators {
+ 		compatible = "qcom,pm8550ve-rpmh-regulators";
+ 		qcom,pmic-id = "f";
+ 
+@@ -280,7 +280,7 @@ vreg_l3f_0p91: ldo3 {
+ 		};
+ 	};
+ 
+-	regulators-5 {
++	pm8550vs-g-rpmh-regulators {
+ 		compatible = "qcom,pm8550vs-rpmh-regulators";
+ 		qcom,pmic-id = "g";
+ 
+-- 
+2.34.1
 
->  Optional properties:
->         - no-output: GPIOs are read-only.
-> +       - no-input: GPIOs are write-only. Read is via a shadow register.
-
-"Shadow register" is unclear technical lingo.
-
-Just write "GPIO output registers are write-only"
-
-DT bindings are OS neutral, the fact that Linux and other OS:es need to
-cache ("shadow") this value is an implementation detail.
-
-Yours,
-Linus Walleij
