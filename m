@@ -2,214 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E68DF67EF72
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 21:20:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D71167EF7C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 21:22:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232845AbjA0UUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 15:20:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35168 "EHLO
+        id S229468AbjA0UWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 15:22:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230058AbjA0UUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 15:20:46 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BC43751B7
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 12:20:44 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso1447284wms.4
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 12:20:44 -0800 (PST)
+        with ESMTP id S231656AbjA0UWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 15:22:13 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92561761C8;
+        Fri, 27 Jan 2023 12:22:12 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id v10so5739436edi.8;
+        Fri, 27 Jan 2023 12:22:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MQJZG/xKcCJsVsFDHrDpLNHly5wPWcC1lO6W1/tImAQ=;
-        b=XLswvSn0iWJEiVX86b3AojUKI6gFD+xJfDL0WBc+eU64CJKFU/9zPdXobp2My2DRdM
-         qY792thqiotAKFM+YmxxS1AievxqjzritonPJ9vyD5RVNPW8QsNK9/bnYCMPFgYGQIPZ
-         SgOLFmJr1a+jhEFFCISU1l/G5+HrMaL+nf2FoQSyUlicGwJmjOFy/3qFDXCXJJcZ+yw0
-         IOf1Sf76AUWDCEu0hyxRIfL2Iv3E1jn5Zf/q1ALJYV/gamGrUad5eK6eeEyDE+qIGscb
-         tA0Z3USSOxPo8ThdS8K4e+CaEZizIxxSwiyYQvd26m9e6VliSuaHPjKitpiLhGHMc8vZ
-         IUVQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Mqf3tpDJNX5sIiyTeIYmTr7VbjdNQeu0rlBoqz1e+Q0=;
+        b=KjwD47Qr6iZP/O9PFJhqPa4DXwn1l74X3nfx6kTwt+q9S7DkJW1ctaL1SAg+HarvRo
+         E8mVvJB8G0aM4EzQmGTh0uF45yjqn+nDVC0/6eAe57kksR2S6u2qqOIwcSZgWdFW3Ic+
+         ppvwB8u8v0YZuLJ/M88zYnWPZDekyWFImeo5gxaj3lMv1qmVWE33IHZYMQ8JX0vjY640
+         2FRiGOVg4AjznpAz8uS+VyysPYvPVhD9Uo/KGFEpLBFv3PmdhrOKmeNOTasLzM2Qmb4L
+         fqVMz85pS9/47JF/mmoSYodYM0xJpTbVeWczW1yEX5X21Ww0sQpz4eoYcNIdbzTf+3fs
+         QRvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MQJZG/xKcCJsVsFDHrDpLNHly5wPWcC1lO6W1/tImAQ=;
-        b=IwlxQG9W4gmrEBBhr1gHutZdgcpos57zON8s1bD+Q+RCijuXI/7551pGt2a3JLT7I0
-         2EriH/lds9O3MICPNz6/2i3+NF8gt7eEA7xzc21UGwj4AdhdanN7/MjK0K8KEk0VNE47
-         SBmaHuR3BV8QDIsDgf4f3FAffZWTyffNK6pPyAq5DdbNM6d4DaPhyioEES8rNHBAHMKk
-         LImp6o4iQ1z3tPS32/16H2HplpjkA+NUA+BjP/ibcSD4BSxr1u/yWKab+i9w+27DPwsw
-         /xYL6FqxAaqCWHu6JGK+6AtmN51JOXHry7zm3+peXt4c3M4Vz1xbe6YifMSVnu5jg0J3
-         EsOw==
-X-Gm-Message-State: AFqh2kpGtJlcf3hOaeSdMv/D8WNvZktpROrhKO7htL+iRRI2XgPIeUkL
-        8CQ88+BVinmsqOYOuG1llIiTCIQhy6Q6DTDy
-X-Google-Smtp-Source: AMrXdXuNRILKOhT1cKmkeLlOlAI5U7DaEFjqsMn3TViTMRmv1RGPuc0oBtcBH0u3ppdFai6vxu/YCA==
-X-Received: by 2002:a05:600c:540d:b0:3d9:fb59:c16b with SMTP id he13-20020a05600c540d00b003d9fb59c16bmr37938172wmb.36.1674850843204;
-        Fri, 27 Jan 2023 12:20:43 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t1-20020adfe441000000b002bfd524255esm2116881wrm.43.2023.01.27.12.20.41
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Mqf3tpDJNX5sIiyTeIYmTr7VbjdNQeu0rlBoqz1e+Q0=;
+        b=J9ESqlHP7viclAzgyWFjevE+rpd8WhdiwqtAqvyenTJMcEfr0XT+bZjyljoVB/jwDd
+         7kKi0KX+ByMSXOxaWLcR71m1wWu+KKY4Vu722oEAbcyrUEgU60QktFKVfKQW/h5yr8gF
+         5TrGz3pSDfgIDIUQxgC+FtM26/Vbz0zPgnkRodYlAB7OoDR/Qne8B2qLokNco4PP8yJz
+         1m5iBRi1Urugp/1YR8A9oino2lnkoNtruXeQ5I3QdEwqEnoYd2r5EGzH6ibXPrtcgE2R
+         Jbm+NjebSCMZzZZzg47wbIVoNSe219sWe1c/1wPr5/1jloWy0quEAYlxUcrZq1Geg9EL
+         4e7g==
+X-Gm-Message-State: AFqh2ko40gjG25g9gIBSPZPZNrGhosIzPKTGX1MvSCKZOc8RPIFhTpFJ
+        PyPa4RkwNRR+9Lf4rT/Lh+o=
+X-Google-Smtp-Source: AMrXdXslchCqGmh70f80P2YbvDJBdxIzu+HfPexB7WQFcZPWKwYNQ5BuM/fuJwEdI0F73cI7vK1NlA==
+X-Received: by 2002:a05:6402:28c6:b0:49b:98be:c38 with SMTP id ef6-20020a05640228c600b0049b98be0c38mr44822085edb.11.1674850931014;
+        Fri, 27 Jan 2023 12:22:11 -0800 (PST)
+Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
+        by smtp.gmail.com with ESMTPSA id f5-20020a056402068500b0046dd0c2a08esm2861517edy.36.2023.01.27.12.22.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 12:20:42 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Fri, 27 Jan 2023 12:22:10 -0800 (PST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: input: touchscreen: st,stmfts: convert to dtschema
-Date:   Fri, 27 Jan 2023 21:20:40 +0100
-Message-Id: <20230127202040.196411-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Bin Liu <b-liu@ti.com>, Andre Przywara <andre.przywara@arm.com>
+Cc:     Icenowy Zheng <uwu@icenowy.me>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, soc@kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v5 03/11] usb: musb: sunxi: Introduce config struct
+Date:   Fri, 27 Jan 2023 21:22:08 +0100
+Message-ID: <12138531.O9o76ZdvQC@jernej-laptop>
+In-Reply-To: <20230111015332.172021-4-andre.przywara@arm.com>
+References: <20230111015332.172021-1-andre.przywara@arm.com>
+ <20230111015332.172021-4-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the ST-Microelectronics FingerTip touchscreen controller
-bindings to DT schema.
+Dne sreda, 11. januar 2023 ob 02:53:24 CET je Andre Przywara napisal(a):
+> Currently the probe routine explicitly compares the compatible string of
+> the device node to figure out which features and quirks a certain
+> Allwinner MUSB model requires. This gets harder to maintain for new
+> SoCs.
+> 
+> Add a struct sunxi_musb_cfg that names the features and quirks
+> explicitly, and create instances of this struct for every type of MUSB
+> device we support. Then bind this to the compatible strings via the OF
+> data feature.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/input/touchscreen/st,stmfts.txt  | 41 -----------
- .../bindings/input/touchscreen/st,stmfts.yaml | 72 +++++++++++++++++++
- 2 files changed, 72 insertions(+), 41 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/st,stmfts.txt
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/st,stmfts.yaml
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/st,stmfts.txt b/Documentation/devicetree/bindings/input/touchscreen/st,stmfts.txt
-deleted file mode 100644
-index 0a5d0cb4a280..000000000000
---- a/Documentation/devicetree/bindings/input/touchscreen/st,stmfts.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--* ST-Microelectronics FingerTip touchscreen controller
--
--The ST-Microelectronics FingerTip device provides a basic touchscreen
--functionality. Along with it the user can enable the touchkey which can work as
--a basic HOME and BACK key for phones.
--
--The driver supports also hovering as an absolute single touch event with x, y, z
--coordinates.
--
--Required properties:
--- compatible		: must be "st,stmfts"
--- reg			: I2C slave address, (e.g. 0x49)
--- interrupts		: interrupt specification
--- avdd-supply		: analogic power supply
--- vdd-supply		: power supply
--- touchscreen-size-x	: see touchscreen.txt
--- touchscreen-size-y	: see touchscreen.txt
--
--Optional properties:
--- touch-key-connected	: specifies whether the touchkey feature is connected
--- ledvdd-supply		: power supply to the touch key leds
--
--Example:
--
--i2c@00000000 {
--
--	/* ... */
--
--	touchscreen@49 {
--		compatible = "st,stmfts";
--		reg = <0x49>;
--		interrupt-parent = <&gpa1>;
--		interrupts = <1 IRQ_TYPE_NONE>;
--		touchscreen-size-x = <1599>;
--		touchscreen-size-y = <2559>;
--		touch-key-connected;
--		avdd-supply = <&ldo30_reg>;
--		vdd-supply = <&ldo31_reg>;
--		ledvdd-supply = <&ldo33_reg>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/st,stmfts.yaml b/Documentation/devicetree/bindings/input/touchscreen/st,stmfts.yaml
-new file mode 100644
-index 000000000000..c593ae63d0ec
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/st,stmfts.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/st,stmfts.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ST-Microelectronics FingerTip touchscreen controller
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-+
-+description:
-+  The ST-Microelectronics FingerTip device provides a basic touchscreen
-+  functionality. Along with it the user can enable the touchkey which can work
-+  as a basic HOME and BACK key for phones.
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+
-+properties:
-+  compatible:
-+    const: st,stmfts
-+
-+  reg:
-+    maxItems: 1
-+
-+  avdd-supply:
-+    description: Analogic power supply
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ledvdd-supply:
-+    description: Power supply to the touch key leds
-+
-+  touch-key-connected:
-+    type: boolean
-+    description: The touchkey feature is connected
-+
-+  vdd-supply:
-+    description: Power supply
-+
-+required:
-+  - compatible
-+  - reg
-+  - avdd-supply
-+  - interrupts
-+  - vdd-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        touchscreen@49 {
-+            compatible = "st,stmfts";
-+            reg = <0x49>;
-+            interrupt-parent = <&gpa1>;
-+            interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
-+            touchscreen-size-x = <1599>;
-+            touchscreen-size-y = <2559>;
-+            touch-key-connected;
-+            avdd-supply = <&ldo30_reg>;
-+            vdd-supply = <&ldo31_reg>;
-+            ledvdd-supply = <&ldo33_reg>;
-+        };
-+    };
--- 
-2.34.1
+Best regards,
+Jernej
+
 
