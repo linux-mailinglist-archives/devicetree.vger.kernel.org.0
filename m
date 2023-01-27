@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C21D67E4E0
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:15:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB38667E4C2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:11:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232859AbjA0MPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 07:15:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46668 "EHLO
+        id S232692AbjA0ML5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 07:11:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231563AbjA0MO7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:14:59 -0500
+        with ESMTP id S232777AbjA0MLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:11:44 -0500
 Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEFD381B0D
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:10:13 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id k4so7683728eje.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:10:13 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1144381B1B
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:05:56 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id bk15so13098897ejb.9
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:05:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wL+J3vKYyO+ixLbcMrHJZAkGHMLmqvXASaXe1XTQm3U=;
-        b=QMSVpTkgf9r+mDm9E3i7ygdWPE9SKC2y4h3Zm8g4lXfxjZRBlKAWidCR9K3zgiG/Tt
-         KAJD3zo0ZvWCQg8bI3xfKltjqtbENwM5+kG6zjhMpysR8IdrH6DgkoTsAbS5wB93g6yJ
-         /uqZDtGkElvBVODdn5W9+jtAjuAG8vjJrio4SMigqLEuv8d0RN8xwPNxrH5lCC4ZXJvx
-         7UL+Sw7ia4WK2Zx6M1koiIPJ/2oJkZTy+MSC1B9Lv5ci1ogGDXCfFq07rr651c50jYbW
-         NUdTM0699hUCOYvRPjPHSwpNnLHhFs4ITwHy5s/VKVM/gI6pCZ5GaLOOVRM9J+aBUy+u
-         7z/w==
+        bh=L+nKee/XbBGW3+yUBaZriE12dkxML7gdb0W0OXQfEAI=;
+        b=VmCnAMspJnEDRlwDiJkVljuxmRQmeDxD65ky4Wm6OePT20M4ruBhJFGRAmCpBbGSvw
+         qfYYHzR4SDdcEuryvuR38IGuG+38mVfh0FwJV5Dug7SUI9ngjfQm51mFawRoP1Mn3IK9
+         f/Z0ezqRMVbOppCfyvr9VrFNk07tKJrPg5jEyiAdqD+jA0iKZa4pWGFFIiZMzQSkcRCG
+         rCbfBWOoE916ZmWVQzYcJBp0Kt0Yj2XbFFH5/7wUqDm68HMjGYkOay60A93nGPmJ759u
+         PpQfVWxUlgZZ60SPAH84f0ha7crA3UgCUPpBp5aJSeDQ5BHNnbqWq5gaiKdIWCe/1CGx
+         7jZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wL+J3vKYyO+ixLbcMrHJZAkGHMLmqvXASaXe1XTQm3U=;
-        b=Tl16tG5PhegQ3Ic34YD5Kspj6gnxO2a4xkxSBwfhnOusN4uKUmSzL1Oa/BoMVuaRXK
-         5UkKMxx/oWGMt959TnLtjBKv0sBamHd5QMTUgIz2YlzYzSsxeS/xHat+ik7+EEiPBZ9T
-         oH2GuJ0AXdU3iS1uEEPROylX2UKGbr4B3aWao2nmSpN67GCluSGD87v9Iw3ZNRPUckBy
-         0GsLpWvS5oSrWyVqc327s+/qHntENSUlbLDxTaFAfwJ0B1L8A3BY07UTCT/KB6XRZAo0
-         3aphYbDqKOwqznBUjcSYopf4w75qHH1pyh2mPAbIBT+J7K/H6srvBDeeHLrQXCLYZSki
-         GGjg==
-X-Gm-Message-State: AFqh2koLy7ErfsuPLgrq6JimfNuHTELXClCUFmU9IbvA+CGhxHTfqCQp
-        2fvAVH4gZlOJ0dXI6s+adCpUTVZC5UDB2HaF
-X-Google-Smtp-Source: AK7set+5O0OEKgLx5emltDwKFWF/HSBRr9uGsI47Q+WCU1Snfp9lSR9AZtdULnzdcvbTn+wN8GTeYQ==
-X-Received: by 2002:a17:907:9725:b0:879:aa55:a908 with SMTP id jg37-20020a170907972500b00879aa55a908mr4375273ejc.12.1674820559822;
-        Fri, 27 Jan 2023 03:55:59 -0800 (PST)
+        bh=L+nKee/XbBGW3+yUBaZriE12dkxML7gdb0W0OXQfEAI=;
+        b=1KJLKkSJGOGijqj3lMnuJs9kkG2smWzjzYTTk+v1FNK6G2xCL0/sU2jYYyPclCRIn2
+         Viekx3Tp2ex10QFPrM0i+WwzZbBWq0LtXicbVKEaQZVLELr/zDnZL9oZ8Bjxwmx8+UJL
+         T3H0LZAnKa9SFrPUDa5GNO0HUdAm0FOdJW3b8hpXBkEN6ncjqtH+W/gdCg27OMQTkrRF
+         Hiqjwk8O4afteqbgeVLmgZGDDpc+uOjQzAwlkSolzlT0iy4RxJRTMx9u5oznFCX8dxqk
+         R7JEy1vx51pgFp9gJ2ZLOTkH6bS6JjafnkjjIUZlE+/huGXSdlWqZuDI7nMTwaizXJaW
+         nlog==
+X-Gm-Message-State: AFqh2koYA2gCeFlB2vhBtFHFUsFCXMqTXgblkbPkiLtGHAGnTi+mfOyK
+        UtEmt7JFaYEED1fyPKLRkddCHSeDNSFHvFh4
+X-Google-Smtp-Source: AMrXdXsOuo8qMqtqYGN5RfrmmdYh3OmDkRlCJU2aC5LWx7MQdTYl0+sEhndrGRKR3qdL++FzJf2NVg==
+X-Received: by 2002:a17:906:8618:b0:877:5772:25f with SMTP id o24-20020a170906861800b008775772025fmr36834647ejx.60.1674820587106;
+        Fri, 27 Jan 2023 03:56:27 -0800 (PST)
 Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
-        by smtp.gmail.com with ESMTPSA id h17-20020a1709066d9100b0087856bd9dbbsm2155468ejt.97.2023.01.27.03.55.58
+        by smtp.gmail.com with ESMTPSA id rs14-20020a170907036e00b0084c6ec69a9dsm2085205ejb.124.2023.01.27.03.56.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 03:55:59 -0800 (PST)
-Message-ID: <d31fe7c5-8e4d-173b-3f59-a00b0302a62b@linaro.org>
-Date:   Fri, 27 Jan 2023 12:55:58 +0100
+        Fri, 27 Jan 2023 03:56:26 -0800 (PST)
+Message-ID: <573c9b6f-984f-add4-7792-1df848918b5d@linaro.org>
+Date:   Fri, 27 Jan 2023 12:56:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 06/11] arm64: dts: qcom: sdm845: align RPMh regulator
+Subject: Re: [PATCH 07/11] arm64: dts: qcom: sm7225: align RPMh regulator
  nodes with bindings
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -65,9 +65,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230127114347.235963-1-krzysztof.kozlowski@linaro.org>
- <20230127114347.235963-6-krzysztof.kozlowski@linaro.org>
+ <20230127114347.235963-7-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230127114347.235963-6-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230127114347.235963-7-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,308 +91,28 @@ On 27.01.2023 12:43, Krzysztof Kozlowski wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi                  | 4 ++--
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts                  | 4 ++--
->  arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi              | 6 +++---
->  arch/arm64/boot/dts/qcom/sdm845-mtp.dts                     | 6 +++---
->  arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi         | 6 +++---
->  arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts     | 4 ++--
->  arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts           | 6 +++---
->  arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi       | 6 +++---
->  .../arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 2 +-
->  arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts          | 6 +++---
->  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts        | 2 +-
->  arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts            | 2 +-
->  12 files changed, 27 insertions(+), 27 deletions(-)
+>  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> index e19178c1ec44..f2b48241d15c 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> @@ -339,7 +339,7 @@ flash@0 {
->  
+> diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> index b86a1c6f08be..52bb48c02536 100644
+> --- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> @@ -115,7 +115,7 @@ &adsp {
+>  };
 >  
 >  &apps_rsc {
-> -	pm8998-rpmh-regulators {
+> -	pm6350-rpmh-regulators {
 > +	regulators-0 {
->  		compatible = "qcom,pm8998-rpmh-regulators";
+>  		compatible = "qcom,pm6350-rpmh-regulators";
 >  		qcom,pmic-id = "a";
 >  
-> @@ -621,7 +621,7 @@ src_pp1800_lvs2: lvs2 {
+> @@ -244,7 +244,7 @@ vreg_l22a: ldo22 {
 >  		};
 >  	};
 >  
-> -	pm8005-rpmh-regulators {
+> -	pm6150l-rpmh-regulators {
 > +	regulators-1 {
->  		compatible = "qcom,pm8005-rpmh-regulators";
->  		qcom,pmic-id = "c";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index 9c9a587ea7a9..0b7940c130af 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -270,7 +270,7 @@ &adsp_pas {
->  };
->  
->  &apps_rsc {
-> -	pm8998-rpmh-regulators {
-> +	regulators-0 {
->  		compatible = "qcom,pm8998-rpmh-regulators";
->  		qcom,pmic-id = "a";
->  		vdd-s1-supply = <&vph_pwr>;
-> @@ -395,7 +395,7 @@ vreg_lvs2a_1p8: lvs2 {
->  		};
->  	};
->  
-> -	pmi8998-rpmh-regulators {
-> +	regulators-1 {
->  		compatible = "qcom,pmi8998-rpmh-regulators";
->  		qcom,pmic-id = "b";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> index 36f291d4d691..f942c5afea9b 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> @@ -166,7 +166,7 @@ &adsp_pas {
->  };
->  
->  &apps_rsc {
-> -	pm8998-rpmh-regulators {
-> +	regulators-0 {
->  		compatible = "qcom,pm8998-rpmh-regulators";
->  		qcom,pmic-id = "a";
->  
-> @@ -419,7 +419,7 @@ vreg_lvs2a_1p8: lvs2 {
->  		};
->  	};
->  
-> -	pmi8998-rpmh-regulators {
-> +	regulators-1 {
->  		compatible = "qcom,pmi8998-rpmh-regulators";
->  		qcom,pmic-id = "b";
->  
-> @@ -433,7 +433,7 @@ vreg_bob: bob {
->  		};
->  	};
->  
-> -	pm8005-rpmh-regulators {
-> +	regulators-2 {
->  		compatible = "qcom,pm8005-rpmh-regulators";
->  		qcom,pmic-id = "c";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> index 482f43fe0151..d1440b790fa6 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> @@ -117,7 +117,7 @@ &adsp_pas {
->  };
->  
->  &apps_rsc {
-> -	pm8998-rpmh-regulators {
-> +	regulators-0 {
->  		compatible = "qcom,pm8998-rpmh-regulators";
->  		qcom,pmic-id = "a";
->  
-> @@ -382,7 +382,7 @@ vreg_lvs2a_1p8: lvs2 {
->  		};
->  	};
->  
-> -	pmi8998-rpmh-regulators {
-> +	regulators-1 {
->  		compatible = "qcom,pmi8998-rpmh-regulators";
->  		qcom,pmic-id = "b";
->  
-> @@ -396,7 +396,7 @@ vreg_bob: bob {
->  		};
->  	};
->  
-> -	pm8005-rpmh-regulators {
-> +	regulators-2 {
->  		compatible = "qcom,pm8005-rpmh-regulators";
->  		qcom,pmic-id = "c";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> index 548e34632de2..601f6467146d 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -145,7 +145,7 @@ &adsp_pas {
->  };
->  
->  &apps_rsc {
-> -	pm8998-rpmh-regulators {
-> +	regulators-0 {
->  		compatible = "qcom,pm8998-rpmh-regulators";
->  		qcom,pmic-id = "a";
->  
-> @@ -281,7 +281,7 @@ vreg_l28a_3p0: ldo28 {
->  		};
->  	};
->  
-> -	pmi8998-rpmh-regulators {
-> +	regulators-1 {
->  		compatible = "qcom,pmi8998-rpmh-regulators";
->  		qcom,pmic-id = "b";
->  
-> @@ -295,7 +295,7 @@ vreg_bob: bob {
->  		};
->  	};
->  
-> -	pm8005-rpmh-regulators {
-> +	regulators-2 {
->  		compatible = "qcom,pm8005-rpmh-regulators";
->  		qcom,pmic-id = "c";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> index e742c27fe91f..d37a433130b9 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> @@ -73,7 +73,7 @@ memory@a1300000 {
->  
->  
->  &apps_rsc {
-> -	pm8998-rpmh-regulators {
-> +	regulators-0 {
->  		compatible = "qcom,pm8998-rpmh-regulators";
->  		qcom,pmic-id = "a";
->  
-> @@ -332,7 +332,7 @@ vreg_lvs2a_1p8: lvs2 {
->  		};
->  	};
->  
-> -	pm8005-rpmh-regulators {
-> +	regulators-1 {
->  		compatible = "qcom,pm8005-rpmh-regulators";
->  		qcom,pmic-id = "c";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> index 5d0509f61fe8..b54e304abf71 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> @@ -111,7 +111,7 @@ &adsp_pas {
->  };
->  
->  &apps_rsc {
-> -	pm8998-rpmh-regulators {
-> +	regulators-0 {
->  		compatible = "qcom,pm8998-rpmh-regulators";
->  		qcom,pmic-id = "a";
->  
-> @@ -376,7 +376,7 @@ vreg_lvs2a_1p8: lvs2 {
->  		};
->  	};
->  
-> -	pmi8998-rpmh-regulators {
-> +	regulators-1 {
->  		compatible = "qcom,pmi8998-rpmh-regulators";
->  		qcom,pmic-id = "b";
->  
-> @@ -390,7 +390,7 @@ vreg_bob: bob {
->  		};
->  	};
->  
-> -	pm8005-rpmh-regulators {
-> +	regulators-2 {
->  		compatible = "qcom,pm8005-rpmh-regulators";
->  		qcom,pmic-id = "c";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-> index 85ff0a0789ea..4984c7496c31 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-> @@ -99,7 +99,7 @@ ramoops@ffc00000 {
->  };
->  
->  &apps_rsc {
-> -	pm8998-rpmh-regulators {
-> +	regulators-0 {
->  		compatible = "qcom,pm8998-rpmh-regulators";
->  		qcom,pmic-id = "a";
->  
-> @@ -329,7 +329,7 @@ vreg_lvs2a_1p8: lvs2 {
->  		};
->  	};
->  
-> -	pmi8998-rpmh-regulators {
-> +	regulators-1 {
->  		compatible = "qcom,pmi8998-rpmh-regulators";
->  		qcom,pmic-id = "b";
->  
-> @@ -340,7 +340,7 @@ src_vreg_bob: bob {
->  		};
->  	};
->  
-> -	pm8005-rpmh-regulators {
-> +	regulators-2 {
->  		compatible = "qcom,pm8005-rpmh-regulators";
->  		qcom,pmic-id = "c";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> index 0d19506dc54c..8de01a84f8a0 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> @@ -124,7 +124,7 @@ &adsp_pas {
->  };
->  
->  &apps_rsc {
-> -	pm8998-rpmh-regulators {
-> +	regulators-0 {
->  		compatible = "qcom,pm8998-rpmh-regulators";
->  		qcom,pmic-id = "a";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> index 40185eda28a8..a08d9c97e414 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> @@ -144,7 +144,7 @@ vreg_s4a_1p8: vreg-s4a-1p8 {
->  };
->  
->  &apps_rsc {
-> -	pm8998-rpmh-regulators {
-> +	regulators-0 {
->  		compatible = "qcom,pm8998-rpmh-regulators";
->  		qcom,pmic-id = "a";
->  
-> @@ -344,7 +344,7 @@ vreg_lvs2a_1p8: lvs2 {
->  		};
->  	};
->  
-> -	pmi8998-rpmh-regulators {
-> +	regulators-1 {
->  		compatible = "qcom,pmi8998-rpmh-regulators";
->  		qcom,pmic-id = "b";
->  
-> @@ -356,7 +356,7 @@ vreg_bob: bob {
->  		};
->  	};
->  
-> -	pm8005-rpmh-regulators {
-> +	regulators-2 {
->  		compatible = "qcom,pm8005-rpmh-regulators";
->  		qcom,pmic-id = "c";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> index e9e960b1ad9f..25f88215986b 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> @@ -100,7 +100,7 @@ &adsp_pas {
->  };
->  
->  &apps_rsc {
-> -	pm8998-rpmh-regulators {
-> +	regulators-0 {
->  		compatible = "qcom,pm8998-rpmh-regulators";
->  		qcom,pmic-id = "a";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-> index eae696f0dbe4..b650fa846d23 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-> @@ -130,7 +130,7 @@ &adsp_pas {
->  };
->  
->  &apps_rsc {
-> -	pm8998-rpmh-regulators {
-> +	regulators-0 {
->  		compatible = "qcom,pm8998-rpmh-regulators";
->  		qcom,pmic-id = "a";
+>  		compatible = "qcom,pm6150l-rpmh-regulators";
+>  		qcom,pmic-id = "e";
 >  
