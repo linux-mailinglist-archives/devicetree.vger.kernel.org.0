@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C88367E15E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:18:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD2C267E160
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:18:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230493AbjA0KSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 05:18:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57504 "EHLO
+        id S233487AbjA0KSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 05:18:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233337AbjA0KSc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:18:32 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0955469E
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:18:30 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id q8so3078077wmo.5
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:18:30 -0800 (PST)
+        with ESMTP id S233476AbjA0KSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:18:35 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3BA946AF
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:18:32 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso247984wms.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:18:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oyF1uDKLmVnYezPgLe+itwoNDSKSxafbXq3CcgRX0+8=;
-        b=KKDHJXoNlxQgyWUCnyh5lFbnu7GVYjh05n+a962cLd6oCvwb8kb5beoTtzSpjAQqIB
-         H39KtIY7uBjj14t9xeqGSldf7HYD/C2+gSWdzvazapQMjEKDgv7LwyPvfz8WcvaxWZWR
-         eItJDauwnp0ktik2f2rgIS8FsJVps+WXnjxGeoHEONcilRtRYymyyDwuG1K48DJk9A30
-         ymzLpZxODqWZaOBuuvx7JoLIpjgTgBvoS0zkox7UIg8QFxpKQtm7vpJw0JtXH9/Js83b
-         kJyxZeRjrlQpF1jKuY6gkYXTNIY+D9h1ogpGtywzLz14ah2kcWMMr4neRXpyri0vjfBF
-         0HhA==
+        bh=xAkXrBOeYq2uPJ9Lzg7NjCsv3k9QcgmeUOGZZPQ4XP0=;
+        b=i8SJqbujrO1qBvakjXDZYjGm9F1LrnLmfkxQJp9DEfTyD6g3x6QIGJuvbK54SllfWj
+         BiplNzPxSzh3/XH53mtp5PiNXgmnoeAl0dMty/Yt5HPAL+dFn3WvN5nYuFCOdDpbpX1y
+         5clOr2zovh50XfpS3HiyShcMGswqXmcwUo1uWOm0ez08/0rvemYw36HnTTDX8V3NGqw3
+         8LzSXY5d77NDN4rpRryNznVisIiQF0ywy0CpmRXK7y0jOjmhMV7mrTS29yA/0S4ULUSj
+         zib1A424nDSBtgqnx7Ouhi2MDoE92v7TnJ0kc92RUqZQBUCCA/APQjdcU0+jhycemBQU
+         XH+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=oyF1uDKLmVnYezPgLe+itwoNDSKSxafbXq3CcgRX0+8=;
-        b=XOWhEDVhn42bzzSLw4pwcoHVVDUcIpL/BDcgJSYFjtNhYoKn36eGDDWk5fGzXSe1ZK
-         gxTMHnzfiBcXgNdx2/RmycaskShBvh7uikHp2fLSb925ehrs8hHVMxhJVHje6ugs9riN
-         H33TL+mngZJtdRZbGuk+/ggEbx7qpYAzZPC2QaCfjTET18Kdh7ljEZ4zG3p6jMxYhO+H
-         J5FhH/HgNAn8v7Ajve2iDHzyhumQex+VvzpLqsNaCIC7D1Ea2P5ujFcBudAZBuN8jP9X
-         eDezY5m+XnMQt+aEFj1lKcrY3AcnaWMDMhdIdHY8bk8ZzITajfqYEHhrMW3tHV2QC1ED
-         EGcQ==
-X-Gm-Message-State: AO0yUKVoUM9rqkVIcCqkPWr9BhuKUuRNo1ZPrkNeuUucV2URcwIU781Z
-        4a0TChLP+o3CG3WdTg1pFdsa5w==
-X-Google-Smtp-Source: AK7set/2vMzZO1lhhs37wTScio8JmsV/p/w5C5OLgHJ7qhDSExpQH/BGDdQa8Jgmn5Tgoevmu1ah8Q==
-X-Received: by 2002:a05:600c:5022:b0:3dc:3398:cf7f with SMTP id n34-20020a05600c502200b003dc3398cf7fmr2227541wmr.26.1674814709265;
-        Fri, 27 Jan 2023 02:18:29 -0800 (PST)
+        bh=xAkXrBOeYq2uPJ9Lzg7NjCsv3k9QcgmeUOGZZPQ4XP0=;
+        b=T2HP+8l5uzuRk9sskfxZe7taN7Dz97wzmV3L1jwQVDvGP+RdjqwvbQ5/Bj4GWNbxjx
+         xQvHSqMtvAbt8ldfrGiWL11KBVH2NsgOR9oYWnB1clwFdeF4wb6GU9zj4a13vfU3yxwy
+         mPu85g02L2cYKtM43NRcbz0kGlIj5BRNIcHfweaUgDp7gfwC+UEyS0g38dGqpUbnZmE5
+         XUKXfLJNGeF3/xQk8DOJl6RvpyHEppIB2y4yEq5RN75zQoxRowRlKUAG+gCXOEvqV1WZ
+         P2Gt5UbJHzmpdHEsi2v2iV/VWoM4aopyKEQsz4UEl+kw6bQQfkpQF4KnlWPIpaECFSFJ
+         EJ+g==
+X-Gm-Message-State: AO0yUKVPPu/l7UvrNnUonq9WKdZAXMNxQMmSZZIVYvYCB7fN1TE2J4b8
+        xkTES2sCBRflAftIQ7LGYhn6Bg==
+X-Google-Smtp-Source: AK7set+Drbgf6OSSEHkeOwsvOfzXakxGsZV8okTZ3G8AjjDvI7ooCF+eiP4qYQ2+vTJLQ8DLTycsmg==
+X-Received: by 2002:a05:600c:4fcb:b0:3dc:1687:9b9a with SMTP id o11-20020a05600c4fcb00b003dc16879b9amr12271562wmq.37.1674814711381;
+        Fri, 27 Jan 2023 02:18:31 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p8-20020a05600c05c800b003c65c9a36dfsm3752368wmd.48.2023.01.27.02.18.27
+        by smtp.gmail.com with ESMTPSA id a5-20020adfeec5000000b002bfae6b17d2sm3629503wrp.55.2023.01.27.02.18.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 02:18:28 -0800 (PST)
+        Fri, 27 Jan 2023 02:18:31 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Khuong Dinh <khuong@os.amperecomputing.com>,
+To:     Brijesh Singh <brijeshkumar.singh@amd.com>,
+        Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+        Tom Lendacky <thomas.lendacky@amd.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: apm: use "okay" for status
-Date:   Fri, 27 Jan 2023 11:18:27 +0100
-Message-Id: <20230127101827.93728-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: amd: use "okay" for status
+Date:   Fri, 27 Jan 2023 11:18:29 +0100
+Message-Id: <20230127101829.93761-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -73,70 +75,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/apm/apm-merlin.dts  | 16 ++++++++--------
- arch/arm64/boot/dts/apm/apm-mustang.dts | 16 ++++++++--------
- arch/arm64/boot/dts/apm/apm-storm.dtsi  | 12 ++++++------
- 3 files changed, 22 insertions(+), 22 deletions(-)
+ .../boot/dts/amd/amd-overdrive-rev-b0.dts     | 16 ++++++-------
+ .../boot/dts/amd/amd-overdrive-rev-b1.dts     | 24 +++++++++----------
+ 2 files changed, 20 insertions(+), 20 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/apm/apm-merlin.dts b/arch/arm64/boot/dts/apm/apm-merlin.dts
-index 049e7a5edca7..2e8069002ec1 100644
---- a/arch/arm64/boot/dts/apm/apm-merlin.dts
-+++ b/arch/arm64/boot/dts/apm/apm-merlin.dts
-@@ -45,38 +45,38 @@ poweroff: poweroff@10548010 {
+diff --git a/arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts b/arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts
+index 02bff65e5fd6..21149acb6b31 100644
+--- a/arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts
++++ b/arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts
+@@ -26,7 +26,7 @@ psci {
  };
  
- &serial0 {
+ &ccp0 {
+-	status = "ok";
++	status = "okay";
+ 	amd,zlib-support = <1>;
+ };
+ 
+@@ -34,31 +34,31 @@ &ccp0 {
+  * NOTE: In Rev.B, gpio0 is reserved.
+  */
+ &gpio1 {
 -	status = "ok";
 +	status = "okay";
  };
  
- &sata1 {
+ &gpio4 {
 -	status = "ok";
 +	status = "okay";
  };
  
- &sata2 {
+ &i2c0 {
 -	status = "ok";
 +	status = "okay";
  };
  
- &sata3 {
--	status = "ok";
-+	status = "okay";
- };
- 
- &sgenet0 {
--	status = "ok";
-+	status = "okay";
- };
- 
- &xgenet1 {
--	status = "ok";
-+	status = "okay";
- };
- 
- &mmc0 {
--	status = "ok";
-+	status = "okay";
- };
- 
- &i2c4 {
- 	rtc68: rtc@68 {
- 		compatible = "dallas,ds1337";
- 		reg = <0x68>;
--		status = "ok";
-+		status = "okay";
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/apm/apm-mustang.dts b/arch/arm64/boot/dts/apm/apm-mustang.dts
-index efac50aeca64..033e10e12b18 100644
---- a/arch/arm64/boot/dts/apm/apm-mustang.dts
-+++ b/arch/arm64/boot/dts/apm/apm-mustang.dts
-@@ -45,36 +45,36 @@ poweroff: poweroff@10548010 {
- };
- 
- &pcie0clk {
+ &i2c1 {
 -	status = "ok";
 +	status = "okay";
  };
@@ -146,96 +120,93 @@ index efac50aeca64..033e10e12b18 100644
 +	status = "okay";
  };
  
- &serial0 {
+ &spi0 {
 -	status = "ok";
 +	status = "okay";
  };
  
- &menet {
+ &spi1 {
+-	status = "ok";
++	status = "okay";
+ 	sdcard0: sdcard@0 {
+ 		compatible = "mmc-spi-slot";
+ 		reg = <0>;
+diff --git a/arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts b/arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts
+index 07dab1f1e3c8..99205ae1b46b 100644
+--- a/arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts
++++ b/arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts
+@@ -26,7 +26,7 @@ psci {
+ };
+ 
+ &ccp0 {
+-	status = "ok";
++	status = "okay";
+ 	amd,zlib-support = <1>;
+ };
+ 
+@@ -34,43 +34,43 @@ &ccp0 {
+  * NOTE: In Rev.B, gpio0 is reserved.
+  */
+ &gpio1 {
 -	status = "ok";
 +	status = "okay";
  };
  
- &sgenet0 {
+ &gpio2 {
 -	status = "ok";
 +	status = "okay";
  };
  
- &sgenet1 {
+ &gpio3 {
 -	status = "ok";
 +	status = "okay";
  };
  
- &xgenet {
--	status = "ok";
-+	status = "okay";
- 	rxlos-gpios = <&sbgpio 12 1>;
- };
- 
- &mmc0 {
+ &gpio4 {
 -	status = "ok";
 +	status = "okay";
  };
  
- &mdio {
-diff --git a/arch/arm64/boot/dts/apm/apm-storm.dtsi b/arch/arm64/boot/dts/apm/apm-storm.dtsi
-index 2083b54adee6..d73e809fe41a 100644
---- a/arch/arm64/boot/dts/apm/apm-storm.dtsi
-+++ b/arch/arm64/boot/dts/apm/apm-storm.dtsi
-@@ -270,7 +270,7 @@ sataphy2clk: sataphy1clk@1f22c000 {
- 				reg = <0x0 0x1f22c000 0x0 0x1000>;
- 				reg-names = "csr-reg";
- 				clock-output-names = "sataphy2clk";
--				status = "ok";
-+				status = "okay";
- 				csr-offset = <0x4>;
- 				csr-mask = <0x3a>;
- 				enable-offset = <0x0>;
-@@ -284,7 +284,7 @@ sataphy3clk: sataphy1clk@1f23c000 {
- 				reg = <0x0 0x1f23c000 0x0 0x1000>;
- 				reg-names = "csr-reg";
- 				clock-output-names = "sataphy3clk";
--				status = "ok";
-+				status = "okay";
- 				csr-offset = <0x4>;
- 				csr-mask = <0x3a>;
- 				enable-offset = <0x0>;
-@@ -860,7 +860,7 @@ phy2: phy@1f22a000 {
- 			reg = <0x0 0x1f22a000 0x0 0x100>;
- 			#phy-cells = <1>;
- 			clocks = <&sataphy2clk 0>;
--			status = "ok";
-+			status = "okay";
- 			apm,tx-boost-gain = <30 30 30 30 30 30>;
- 			apm,tx-eye-tuning = <1 10 10 2 10 10>;
- 		};
-@@ -870,7 +870,7 @@ phy3: phy@1f23a000 {
- 			reg = <0x0 0x1f23a000 0x0 0x100>;
- 			#phy-cells = <1>;
- 			clocks = <&sataphy3clk 0>;
--			status = "ok";
-+			status = "okay";
- 			apm,tx-boost-gain = <31 31 31 31 31 31>;
- 			apm,tx-eye-tuning = <2 10 10 2 10 10>;
- 		};
-@@ -899,7 +899,7 @@ sata2: sata@1a400000 {
- 			      <0x0 0x1f227000 0x0 0x1000>;
- 			interrupts = <0x0 0x87 0x4>;
- 			dma-coherent;
--			status = "ok";
-+			status = "okay";
- 			clocks = <&sata23clk 0>;
- 			phys = <&phy2 0>;
- 			phy-names = "sata-phy";
-@@ -913,7 +913,7 @@ sata3: sata@1a800000 {
- 			      <0x0 0x1f23e000 0x0 0x1000>;
- 			interrupts = <0x0 0x88 0x4>;
- 			dma-coherent;
--			status = "ok";
-+			status = "okay";
- 			clocks = <&sata45clk 0>;
- 			phys = <&phy3 0>;
- 			phy-names = "sata-phy";
+ &i2c0 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &i2c1 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &pcie0 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &sata1 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &spi0 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &spi1 {
+-	status = "ok";
++	status = "okay";
+ 	sdcard0: sdcard@0 {
+ 		compatible = "mmc-spi-slot";
+ 		reg = <0>;
+@@ -85,7 +85,7 @@ sdcard0: sdcard@0 {
+ };
+ 
+ &ipmi_kcs {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &smb0 {
 -- 
 2.34.1
 
