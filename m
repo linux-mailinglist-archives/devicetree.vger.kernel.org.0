@@ -2,141 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E206A67EE7F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 20:42:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9357767EE81
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 20:43:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231876AbjA0Tm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 14:42:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50646 "EHLO
+        id S231681AbjA0Tm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 14:42:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231718AbjA0Tmx (ORCPT
+        with ESMTP id S231709AbjA0Tmx (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 14:42:53 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F60D9024
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:42:24 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id b7so5922027wrt.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:42:23 -0800 (PST)
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DEA679F00;
+        Fri, 27 Jan 2023 11:42:25 -0800 (PST)
+Received: by mail-qt1-x830.google.com with SMTP id d3so4962566qte.8;
+        Fri, 27 Jan 2023 11:42:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YQALOu0zos/2GKo4V4/cAoGCHCC2uLMqJ6031+6X5Jk=;
-        b=sGXCHL8sCDU8JXo0+6/UceORrD3447j/IvhVsvXkReOZIMb1iKKx6TZD/aAtI1Nsic
-         6/m1uQP8xTiny7FHKn0qi3/7Jklks14xKZRiMYybUveq5p2fqrtNBemqpUu2/05hrEKh
-         8idqM4mgqNPoL8MiqLWCLGXeEC3ivz1xmUcmxIWp2sxotYiNX5VCbfyzzmE1C+ko4aBx
-         6ljDx+2AAra8sz9FqXnp1xQx89uJSJOqefeCwJ7941Csnwa0x15aqBbwNmzBOetBjpz9
-         h4OHv5awdNsCdv9rkmFhno3r+mXFJJzBMSOyjjvcpAEM0Cej7qum9CPOfO1H5rpjqMFd
-         XA1Q==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bYJb+R9vHDmzhpB4/9JC2gXbOeP6gitvyXNDmhbdviY=;
+        b=JCDFff+5/UB0qymX3IqjVnnjFCmw2jVOT6qrNfiIRlS+p1W3gvU7K9hCsBv1LWK+JF
+         IjN6vksOAdelZWUgK/9aO+sohEjc1gBaIlHKSDUgLkNQ24kbtseMmn/kYXOfrMP8rFSp
+         INCiOdySDT6nJnVuJtxCOtJecyoXkUJoPCWYAq/7jB7oadkSitxXx+HjvuOIRvpOBAl2
+         sN1ZwRk1ab7oLr+2lGZsIHTI5CIhDu5UAFRdhmDjZZOe9bspt8ReaUad5g5VTrFW8bfv
+         Ba33rg1zfvWMw0Yk0maYKPAmoFszJrFgodmlvHXgh7/JONtCiyLu+Q3ksg651phh9Uqk
+         /xiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YQALOu0zos/2GKo4V4/cAoGCHCC2uLMqJ6031+6X5Jk=;
-        b=6VB8ZdCVvw2LVoWAqKI6c8i0b9IdsIvCgP/XdGMFFAH2A9GBjgh7sA5leJNL30IRDx
-         S81421yBcM0+4vpWEH0rF03+DRfyLSxRSFj3b8KODLUCnbAJK8LZxKQekAK04rdK38WE
-         je54u8bLCI6CLG9aPPzkj2E7+qqTwMUOEuypto7KjNOE3jXgLen7eoYBWgagG3DD1IR1
-         PmPznpqyR1JuYESl8rGScJwLNk4Z3fFjzdjRUCW5zleCRsHS+51JhOFglQGifBjisVYn
-         8D4EY0qmMObE5bw28OA6RfhzSGCsGBS7cp671YY8FHFfYa00ZWEg3OrntpkipM3StIrM
-         bFMA==
-X-Gm-Message-State: AFqh2kombmy5b990C0rHQXc/mLnHAqMytvoEfNyHkW82HNqWNGWvwCY5
-        GvlznV5V0knl/YxAn+KvF89kKQ==
-X-Google-Smtp-Source: AMrXdXtHCz5lyTuBDBjfZVraQ1cpBDmDluPB/WtBMnbu+8cXUQblVz7YLrQFitgm3u+uI9Bmt0CrQg==
-X-Received: by 2002:a5d:6b42:0:b0:2bc:7e6c:7cd8 with SMTP id x2-20020a5d6b42000000b002bc7e6c7cd8mr34616383wrw.26.1674848482242;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bYJb+R9vHDmzhpB4/9JC2gXbOeP6gitvyXNDmhbdviY=;
+        b=prUxB/UT9GhiHw8zuH+TFGYnz5c2R+Iv2Eb710f6zcij39/EQ1XSOjlQxZS+NdmAQP
+         Og8QF6DgmnHiWxyfuVI/ZdGp4RimL3w+UnKbikIW5WYwE7xpa3x/VWTg6gctOcdyfvp/
+         0B5DWT8Ymlrvyber7DaNKJE8fzT4ykJyqxTPW/Nuu5Jzl/z6EqOxS8RpSsqwAlyFZ1lb
+         8JFwagukoaOWvyu5WkavZmAN+/GfKCm1XptMB0fpL+RzTtJ3uiycvoI+O1EnWwest6kC
+         HiPxU/IqfFLbaaxSD1vHLtf2OW+TLlK4bsrlRnkUb1t2DtzxzQKxXFwsLRPem878qfk5
+         Kh7w==
+X-Gm-Message-State: AFqh2krxz/ymHrh28BBEEw2L8uZv6i/jHkn2Q9Xr1LnUuQBUCaRzFvnW
+        KJl7FefxJw5iHade+c5gxYM=
+X-Google-Smtp-Source: AMrXdXuqRhbEfvetrr5JTYy8DhK7hL13DxkS2rtMJrI7+DiuUgnLFfjE6EaVA9VZ03wkij1eeyPyhg==
+X-Received: by 2002:ac8:53d3:0:b0:3b6:88c2:2ac6 with SMTP id c19-20020ac853d3000000b003b688c22ac6mr49252749qtq.27.1674848482144;
         Fri, 27 Jan 2023 11:41:22 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y17-20020adffa51000000b002238ea5750csm5822417wrr.72.2023.01.27.11.41.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id f23-20020ac84717000000b003a81eef14efsm3206933qtp.45.2023.01.27.11.41.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
         Fri, 27 Jan 2023 11:41:21 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
-        Henrik Grimler <henrik@grimler.se>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 8/8] arm64: dts: exynos: move MIPI phy to PMU node in Exynos5433
-Date:   Fri, 27 Jan 2023 20:40:57 +0100
-Message-Id: <20230127194057.186458-9-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230127194057.186458-1-krzysztof.kozlowski@linaro.org>
-References: <20230127194057.186458-1-krzysztof.kozlowski@linaro.org>
+Message-ID: <651da1df-2abf-7b44-44db-cb77d0b65d20@gmail.com>
+Date:   Fri, 27 Jan 2023 11:41:19 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v5 net-next 09/13] mfd: ocelot: prepend resource size
+ macros to be 32-bit
+Content-Language: en-US
+To:     Colin Foster <colin.foster@in-advantage.com>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>, UNGLinuxDriver@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>
+References: <20230127193559.1001051-1-colin.foster@in-advantage.com>
+ <20230127193559.1001051-10-colin.foster@in-advantage.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20230127193559.1001051-10-colin.foster@in-advantage.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MIPI phy is actually part of the Power Management Unit system
-controller.  It does not have own address space, thus keeping the node
-under soc causes warnings:
 
-  exynos5433-tm2e.dtb: soc@0: video-phy: {'compatible': ['samsung,exynos5433-mipi-video-phy'], ...
-    should not be valid under {'type': 'object'}
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/exynos/exynos5433.dtsi | 19 +++++++++----------
- 1 file changed, 9 insertions(+), 10 deletions(-)
+On 1/27/2023 11:35 AM, Colin Foster wrote:
+> The *_RES_SIZE macros are initally <= 0x100. Future resource sizes will be
+> upwards of 0x200000 in size.
+> 
+> To keep things clean, fully align the RES_SIZE macros to 32-bit to do
+> nothing more than make the code more consistent.
+> 
+> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+> Acked-for-MFD-by: Lee Jones <lee@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-index 9da24fe958a3..842976addbd9 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-@@ -911,12 +911,20 @@ pinctrl_touch: pinctrl@14ce0000 {
- 		};
- 
- 		pmu_system_controller: system-controller@105c0000 {
--			compatible = "samsung,exynos5433-pmu", "syscon";
-+			compatible = "samsung,exynos5433-pmu", "simple-mfd", "syscon";
- 			reg = <0x105c0000 0x5008>;
- 			#clock-cells = <1>;
- 			clock-names = "clkout16";
- 			clocks = <&xxti>;
- 
-+			mipi_phy: mipi-phy {
-+				compatible = "samsung,exynos5433-mipi-video-phy";
-+				#phy-cells = <1>;
-+				samsung,cam0-sysreg = <&syscon_cam0>;
-+				samsung,cam1-sysreg = <&syscon_cam1>;
-+				samsung,disp-sysreg = <&syscon_disp>;
-+			};
-+
- 			reboot: syscon-reboot {
- 				compatible = "syscon-reboot";
- 				regmap = <&pmu_system_controller>;
-@@ -936,15 +944,6 @@ gic: interrupt-controller@11001000 {
- 			interrupts = <GIC_PPI 9 0xf04>;
- 		};
- 
--		mipi_phy: video-phy {
--			compatible = "samsung,exynos5433-mipi-video-phy";
--			#phy-cells = <1>;
--			samsung,pmu-syscon = <&pmu_system_controller>;
--			samsung,cam0-sysreg = <&syscon_cam0>;
--			samsung,cam1-sysreg = <&syscon_cam1>;
--			samsung,disp-sysreg = <&syscon_disp>;
--		};
--
- 		decon: decon@13800000 {
- 			compatible = "samsung,exynos5433-decon";
- 			reg = <0x13800000 0x2104>;
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
-2.34.1
-
+Florian
