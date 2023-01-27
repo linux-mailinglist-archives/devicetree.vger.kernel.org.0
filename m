@@ -2,170 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1AA967EDC8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 19:47:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43D8A67EDDB
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 19:52:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235141AbjA0SrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 13:47:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50732 "EHLO
+        id S233386AbjA0Swv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 13:52:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234759AbjA0SrI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 13:47:08 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5008761D7;
-        Fri, 27 Jan 2023 10:47:05 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id f19-20020a1c6a13000000b003db0ef4dedcso6006341wmc.4;
-        Fri, 27 Jan 2023 10:47:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D+TzU0hDAWzqzIsf+fugrbPVmb0cJvXw5r9uGPAwlts=;
-        b=EtBJMYUGdEM4o0MSLMJ2W0nPXQgGGTKm/53jvmkHg12xA+wj7HrBDu3sdD9+mznBpa
-         QVQxOMX4XfeNqP3iOJMDMuiatjh4Um2RrPYuvLUeuAKGQjUPBJOS7QGU/gSWSVmMSdO1
-         1mOrnV6oPLMb895nRYAZjBozCI9jm7EsXOZbx0KRabF2kez6DwjzXxzXmoadaRR6bi9h
-         J1hy+IktAPPlrGbg4l0OBk/6ykNXLxQhX5+SugpfHJ6wmc1eJUgeBfeP6uyjW/qdWtoT
-         /Hs+GLN4QEfG7QbXtiz+AZTav9kXz7dWeg0u8wnxxi4OQbceh3A4s0t9+fL2LzseuCAN
-         OsKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=D+TzU0hDAWzqzIsf+fugrbPVmb0cJvXw5r9uGPAwlts=;
-        b=i9XVjUHafdWFhCCrZZgpAfAFK/DajVYtzivgxlUb8f0/Zyf4x+4feRe4pImKPzDyfD
-         mBi2zFQBFmMLjOG5xp9lGLufHdNTXq7BkcYsHNZEZ/qXTUk1fA6ctuadH1glhebFYGYV
-         tgrKTeqkaLeN8hbdbPhrYexUSV70xsOMtIAOHLSet+AVs6EU1q2vSHW5qs4vjtvEI88s
-         s0PKCKqHjJlPVlm62uA/0oiPzxfu6lENaC7OcxT6oyY69LWQ4niOU8rOjMF2c3W0IxXd
-         tWQXdavbYrzJrtWQsNidxQVrLkobwG2M3E1RwgqHw7SRRLN+j9LYTfKkUZGq/6+cR2Bo
-         o1qw==
-X-Gm-Message-State: AO0yUKV4TE3V5pa323Nj04/ImAtu3Kn//HiNZnDGqlt3p1o0XW8IMVS/
-        LaSmZgcne4hSduiK4Kzz/S4=
-X-Google-Smtp-Source: AK7set+cunZVd3+7yKUcqE5BcbG92TFIUXyQOkmtyI6EsJa3gcsqHrbWgdg0NO9+By0Fl6+ovtjYvw==
-X-Received: by 2002:a05:600c:198f:b0:3dc:31f0:3a60 with SMTP id t15-20020a05600c198f00b003dc31f03a60mr4411291wmq.32.1674845224333;
-        Fri, 27 Jan 2023 10:47:04 -0800 (PST)
-Received: from xws.localdomain (pd9ea339c.dip0.t-ipconnect.de. [217.234.51.156])
-        by smtp.gmail.com with ESMTPSA id g12-20020a05600c310c00b003db012d49b7sm16234208wmo.2.2023.01.27.10.47.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 10:47:03 -0800 (PST)
-From:   Maximilian Luz <luzmaximilian@gmail.com>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Maximilian Luz <luzmaximilian@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Johan Hovold <johan@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 3/4] dt-bindings: firmware: Add Qualcomm QSEECOM interface
-Date:   Fri, 27 Jan 2023 19:46:49 +0100
-Message-Id: <20230127184650.756795-4-luzmaximilian@gmail.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230127184650.756795-1-luzmaximilian@gmail.com>
-References: <20230127184650.756795-1-luzmaximilian@gmail.com>
+        with ESMTP id S233191AbjA0Swt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 13:52:49 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 164C693E3;
+        Fri, 27 Jan 2023 10:52:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5CDCD61D76;
+        Fri, 27 Jan 2023 18:52:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA7F0C4339B;
+        Fri, 27 Jan 2023 18:52:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674845565;
+        bh=aaeD/Iv61VLaubRgkw80QFOlkFRzfjZ5atgB6/ZKe+M=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=nYmGuQivs18Aojqsk+6aXLqnYonFBgyOMQI2/Jf78q4dRIJ97QDQ+W4py6OdzqE3m
+         W5wGhxFlVwmVRAkzhkLjP9R4Ybz3GeFfKyAiMkYzsIJvLZx1SEf8ynA9roo1ZzI+bK
+         R/sOq5X/ofMR3tRjik8XQNIW327PMBghyNOapDrTY1nM3IURby9AJdN0RUNFPKesF7
+         NxZBu+0WC8WurHzF5PeKouJnMmrZ+NtgE7mwB+ysc2UIU7O6MjtbSdHD0Dl1+Jzml3
+         k3ixmpLGRpJ9lg52l4yubbtvz5jX+e27mJTdtYzGqrv3VhrkhGg1QEOe88VHrrFYDF
+         ZTD85Mq9KWp4Q==
+Received: by mail-vk1-f171.google.com with SMTP id i38so2503101vkd.0;
+        Fri, 27 Jan 2023 10:52:45 -0800 (PST)
+X-Gm-Message-State: AO0yUKUq0IO5AVgXYM/KtoxEWrJwsNQiiDMnEgBPitc5o9RpqsYAv2cQ
+        4FSXTZ0oSl0NXRpxf763VT0S38XWbkWj05L0Wg==
+X-Google-Smtp-Source: AK7set/OwHob1WkuyP0d3ylYLvHWRkDREVbAn0kxjp9VXZ/sWUmmMKiZ6od5N9SoHcIJOj9xdGDIFLLljtBB5v8Cv8Q=
+X-Received: by 2002:a1f:f8cf:0:b0:3e8:551c:46f with SMTP id
+ w198-20020a1ff8cf000000b003e8551c046fmr860203vkh.19.1674845564666; Fri, 27
+ Jan 2023 10:52:44 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230124222023.316089-1-robh@kernel.org> <Y9EyB+OO7MyGy20w@e120937-lin>
+ <20230125141113.kkbowopusikuogx6@bogus> <Y9JLUIioxFPn4BS0@e120937-lin>
+ <20230126144647.6q3qlu5sqz27cmyc@bogus> <CAL_JsqLxBAB103vgCUOwW4SkAApm6_=Ace7EFWMSDFKDzJaKpQ@mail.gmail.com>
+ <20230126170412.4ytcky6a7lnll6it@bogus>
+In-Reply-To: <20230126170412.4ytcky6a7lnll6it@bogus>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 27 Jan 2023 12:52:33 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJcrmf2fYVC0TnNY_MZvajJxqXPdVFwLf9MZ2XO=VZ1Lw@mail.gmail.com>
+Message-ID: <CAL_JsqJcrmf2fYVC0TnNY_MZvajJxqXPdVFwLf9MZ2XO=VZ1Lw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: Restrict protocol child
+ node properties
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Cristian Marussi <cristian.marussi@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the Qualcomm Secure Execution Environment interface
-(QSEECOM).
+On Thu, Jan 26, 2023 at 11:04 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+>
+> On Thu, Jan 26, 2023 at 09:25:12AM -0600, Rob Herring wrote:
+> > On Thu, Jan 26, 2023 at 8:46 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> > >
+> > > On Thu, Jan 26, 2023 at 09:43:44AM +0000, Cristian Marussi wrote:
+> > > > On Wed, Jan 25, 2023 at 02:11:13PM +0000, Sudeep Holla wrote:
+> > > > > On Wed, Jan 25, 2023 at 01:43:48PM +0000, Cristian Marussi wrote:
+> > > > > > so now that the catch-all protocol@ patternProperty is gone in favour
+> > > > > > of the 'protocol-node' definition and $refs, does that mean that any
+> > > > > > current and future SCMI officially published protocol <N> has to be
+> > > > > > added to the above explicit protocol list, even though it does not
+> > > > > > have any special additional required property beside reg ?
+> > > > > > (like protocol@18 above...)
+> > > > > >
+> > > > >
+> > > > > If there are no consumers, should we just not add and deal with it
+> > > > > entirely within the kernel. I know we rely today on presence of node
+> > > > > before we initialise, but hey we have exception for system power protocol
+> > > > > for other reasons, why not add this one too.
+> > > > >
+> > > > > In short we shouldn't have to add a node if there are no consumers. It
+> > > > > was one of the topic of discussion initially when SCMI binding was added
+> > > > > and they exist only for the consumers otherwise we don't need it as
+> > > > > everything is discoverable from the interface.
+> > > >
+> > > > It is fine for me the no-consumers/no-node argument (which anyway would
+> > > > require a few changes in the core init logic anyway to work this way...),
+> > > > BUT is it not that ANY protocol (even future-ones) does have, potentially,
+> > > > consumers indeed, since each protocol-node can potentially have a dedicated
+> > > > channel and related DT channel-descriptor ? (when multiple channels are
+> > > > allowed by the transport)
+> > > >
+> > > > I mean, as an example, you dont strictly need protos 0x18/0x12 nodes for
+> > > > anything (if we patch the core init as said) UNLESS you want to dedicate
+> > > > a channel to those protocols; so I'm just checking here if these kind of
+> > > > scenarios will still be allowed with this binding change, or if I am
+> > > > missing something.
+> > >
+> > > Ah, good point on the transport information. Yes we will need a node if
+> > > a protocol has a dedicated transport. No one has used so far other than
+> > > Juno perf, but we never know. We can always extended the bindings if
+> > > needed.
+> > >
+> > > Sorry for missing the dedicated transport part.
+> >
+> > So I need to add back 'protocol@.*' or not?
+>
+> IMO it is better to know what exactly gets added under each of these protocol
+> sub-nodes and so better to have entry specific to each known protocols. I
+> liked that fact with this change as I have seen some crazy vendor extensions
+> adding all sorts of non-sense defining some vendor protocol. For example [1],
+> in which case we can catch those better than existing schema which matches
+> all. So let's not add protocol@.* if possible or until that becomes the only
+> cleaner way to maintain this.
 
-Signed-off-by: Maximilian Luz <luzmaximilian@gmail.com>
----
+TBC, 'protocol@.*' would not allow anything but the properties defined
+in the /$defs/protocol-node. So [1] would throw errors without a
+schema addition.
 
-Changes in v2:
- - Replaces uefisecapp bindings.
- - Fix various dt-checker complaints.
+We should either do that along with dropping 'protocol@18' or we keep
+protocol 0x18 node and add all other providerless protocols. I don't
+think we need the latter to just check unit-address vs. reg. I want to
+come up with a better way to do that (dtc does some, but only for
+defined bus types).
 
----
- .../bindings/firmware/qcom,qseecom.yaml       | 49 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 50 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml
-
-diff --git a/Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml b/Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml
-new file mode 100644
-index 000000000000..540a604f81bc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/firmware/qcom,qseecom.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Secure Execution Environment Communication Interface
-+
-+maintainers:
-+  - Maximilian Luz <luzmaximilian@gmail.com>
-+
-+description: |
-+  QSEECOM provides an interface to Qualcomm's Secure Execution Environment
-+  (SEE) running in the Trust Zone via SCM calls. In particular, it allows
-+  communication with secure applications running therein.
-+
-+  Applications running in this environment can, for example, include
-+  'uefisecapp', which is required for accessing UEFI variables on certain
-+  systems as these cannot be accessed directly.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - qcom,qseecom-sc8280xp
-+      - const: qcom,qseecom
-+
-+  qcom,scm:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description:
-+      A phandle pointing to the QCOM SCM device (see ./qcom,scm.yaml).
-+
-+required:
-+  - compatible
-+  - qcom,scm
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    firmware {
-+        scm {
-+            compatible = "qcom,scm-sc8280xp", "qcom,scm";
-+        };
-+        qseecom {
-+            compatible = "qcom,qseecom-sc8280xp", "qcom,qseecom";
-+            qcom,scm = <&scm>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 846d6c927840..5493bcc5792c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17391,6 +17391,7 @@ QUALCOMM SECURE EXECUTION ENVIRONMENT COMMUNICATION DRIVER
- M:	Maximilian Luz <luzmaximilian@gmail.com>
- L:	linux-arm-msm@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml
- F:	drivers/firmware/qcom_qseecom.c
- F:	include/linux/qcom_qseecom.h
- 
--- 
-2.39.0
-
+Rob
