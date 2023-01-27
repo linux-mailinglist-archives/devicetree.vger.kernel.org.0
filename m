@@ -2,169 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D045767EE0D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 20:19:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 528B167EE17
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 20:21:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234354AbjA0TTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 14:19:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35944 "EHLO
+        id S232935AbjA0TVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 14:21:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233708AbjA0TS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 14:18:57 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8B97D294
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:18:35 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id nn18-20020a17090b38d200b0022bfb584987so5659285pjb.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:18:35 -0800 (PST)
+        with ESMTP id S232132AbjA0TVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 14:21:44 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C94BB7B79A
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:21:42 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso6044364wmn.5
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:21:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rrpVKqMmu6aS8nYMVOqBou02mxi1hvJKXYbLMwv8NQs=;
-        b=gpFq7sLNE6mtb8IXlsZj7CCQRrpRWeNX0DaVfrF+tfxo9TmGeMLBn+/gnfOMUf9f03
-         kgwSxVzTICgFikTbtgUWpuNyQft8c8V/oKrK4TQ3eLWiN6R+PKS/rBGLc5GeDDP9ipoj
-         eQhp2NlMF4R8DBNAY1vd+ghK2hq5P4QC8sK34=
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=am7T/jMJPDKlVlAlmog486rwt56SKaL1/RHw4+B1xi4=;
+        b=CNyxn1WT2iL7fR5KpGpcObiAMoxvq3kkOO/liNiZRXdikTzdwIzWMA+FPp0trR9jUW
+         0N6x6pDGy4RP08YSyPlwkNdLosrx6mJl47Nh+u+Wfxi+K1CaolHS8OiCj3K3as7JrQIO
+         G39WJ4TJh0ugTLq5RncrXxTbFI6VgDZVI4BUTtWDladvmIVHUfxeZNclLCLjt5SHBD/z
+         V1l1qktLYgxvPtneBTIBwY7ohleZIcHzsTAZyrJk/jjiEGWY1uLgTNxbAW8odWOBTfU9
+         zGW/eDQ2cLiPTEK58gqpK/9WGK+4yf95ilHj7lp2qs0ORUWaNi21jFi9f2Mq5TPA+W3q
+         reDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rrpVKqMmu6aS8nYMVOqBou02mxi1hvJKXYbLMwv8NQs=;
-        b=DvRNISHHUuTISblAzYbetDtGolRf++wonwKXOqI9C9eraswbZb4UEvz5zaZJAE7VWw
-         6/r4df3iQ/6d5Ce6GPM/4zIMDePozE5nmQ8ozkAI9cbTViwYkenzLNoHyy794ci2qr8B
-         ah8FVin74cQqCUY6EW0lnpx1+JBsQNoOjXkWmYT5yCORwjx27uVewwydMrNij8YGIC5E
-         iT7CKPW6F/WkXbtb/R9D80KUYeXNzeJxYvzGXebo8NtU7TprF6D5DJwwJ18rhT3p1Sg4
-         JHIaasXplMuui3MIBEJPDYD8l3UbkG+dCcERCNILsK5qjOl3sUEBkjoG4SiZ9cOhXoTI
-         YS6A==
-X-Gm-Message-State: AO0yUKVeXhT2Blx4b64ztTgoYsektAI1PopTyGCkkIXvY+nAsbX7CU/F
-        k6e0HbFsQG7WStCGsnLzgFOKoQ==
-X-Google-Smtp-Source: AK7set9hsln9I1KJbS/pzMIo0pAzaGsMtCQ40nv8FkEkxL0KJF+vuhYW0O7+D6uWuvitFfC8bRPHhg==
-X-Received: by 2002:a17:90b:1646:b0:22b:e79f:fff with SMTP id il6-20020a17090b164600b0022be79f0fffmr16835308pjb.15.1674847115070;
-        Fri, 27 Jan 2023 11:18:35 -0800 (PST)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
-        by smtp.gmail.com with ESMTPSA id p5-20020a17090a748500b0020aacde1964sm5320872pjk.32.2023.01.27.11.18.34
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=am7T/jMJPDKlVlAlmog486rwt56SKaL1/RHw4+B1xi4=;
+        b=FQYxdJMChYRW42JU+ndWYTS4BzKgPyYy9m5BsaIiMMJ2OAkqEGuBb6fg1IYjydK3fa
+         foO8K5r7bA0jOWflaT68zqbp1IViar+TIM27sjEDBqn8KJg0Pfwn8pOHgb1iZJY9wb5B
+         9y64zzWJs8isemkwn4OzFvXYxmXUlD3eAX+3YhLZWThRAMXkKBupxLE23Tx3yLktYUsp
+         JcdC1FogFD3+Ps2Hl2M7YH78b3lCLlqqaJVPnmHJG8krpc4D69hQ+D+B4HXnZ8I/U1+R
+         ubafFofGOETgR4XhcvTkySu+w4Yh69nGNP+TOYHNaYrb0weLc8GXWSAZAbd4h3m+rAbA
+         1QUQ==
+X-Gm-Message-State: AO0yUKUKNvAs0AaInw6So1O09DnrFbg6eNvjISbwmxVRrcSKplXyI+l1
+        QhJUlBBifKZZ37spPyYiCjN7Ww==
+X-Google-Smtp-Source: AK7set8R7E/Nw6npvADSfuUxvM2mH8WhXpk7uaWrPp7FTXTQRl7GSnOhn4oiyOIncOFkEQfq8aTkWw==
+X-Received: by 2002:a05:600c:1994:b0:3dc:43cf:7302 with SMTP id t20-20020a05600c199400b003dc43cf7302mr661057wmq.3.1674847301391;
+        Fri, 27 Jan 2023 11:21:41 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:624:f1a4:edb9:78d5])
+        by smtp.gmail.com with ESMTPSA id v6-20020a05600c444600b003db09692364sm9625479wmn.11.2023.01.27.11.21.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 11:18:34 -0800 (PST)
-Date:   Fri, 27 Jan 2023 11:18:34 -0800
-From:   Kees Cook <keescook@chromium.org>
-To:     Mukesh Ojha <quic_mojha@quicinc.com>
-Cc:     linux-hardening@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G . Piccoli" <gpiccoli@igalia.com>,
+        Fri, 27 Jan 2023 11:21:40 -0800 (PST)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: ramoops: Inherit reserve memory
- property
-Message-ID: <202301271118.A223F4E88B@keescook>
-References: <1674835252-31954-1-git-send-email-quic_mojha@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH] dt-bindings: firmware: qcom,scm: add qcom,scm-sa8775p compatible
+Date:   Fri, 27 Jan 2023 20:21:39 +0100
+Message-Id: <20230127192139.299228-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1674835252-31954-1-git-send-email-quic_mojha@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 09:30:51PM +0530, Mukesh Ojha wrote:
-> The reserved memory region for ramoops is assumed to be at a
-> fixed and known location when read from the devicetree. This
-> is not desirable in an environment where it is preferred the
-> region to be dynamically allocated at runtime, as opposed to
-> being fixed at compile time.
-> 
-> So, update the ramoops binding by inheriting some reserve memory
-> property to allocate the ramoops region dynamically.
-> 
-> Cc: Kees Cook <keescook@chromium.org>
-> Cc: Tony Luck <tony.luck@intel.com>
-> Cc: Guilherme G. Piccoli <gpiccoli@igalia.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> ---
-> Changes in v4:
->  - Addressed comment made by Krzysztof on ramoops node name.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Thanks! Krzysztof, if this looks good to you, I can carry it in the
-pstore tree.
+Add a compatible for the sa8775p platform's Secure Channel Manager
+firmware interface.
 
--Kees
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> 
-> Changes in v3:
->  - Fixed yaml error and updated commit text as per comment.
-> 
-> Change in v2:
->   - Added this patch as per changes going to be done in patch 3/3
-> 
->  .../bindings/reserved-memory/ramoops.yaml          | 34 ++++++++++++++++++++--
->  1 file changed, 32 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
-> index 0391871..8741626 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
-> +++ b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
-> @@ -10,7 +10,8 @@ description: |
->    ramoops provides persistent RAM storage for oops and panics, so they can be
->    recovered after a reboot. This is a child-node of "/reserved-memory", and
->    is named "ramoops" after the backend, rather than "pstore" which is the
-> -  subsystem.
-> +  subsystem. This region can be reserved both statically or dynamically by
-> +  using appropriate property in device tree.
->  
->    Parts of this storage may be set aside for other persistent log buffers, such
->    as kernel log messages, or for optional ECC error-correction data.  The total
-> @@ -112,7 +113,13 @@ unevaluatedProperties: false
->  
->  required:
->    - compatible
-> -  - reg
-> +
-> +oneOf:
-> +  - required:
-> +      - reg
-> +
-> +  - required:
-> +      - size
->  
->  anyOf:
->    - required: [record-size]
-> @@ -142,3 +149,26 @@ examples:
->              };
->          };
->      };
-> +
-> +  - |
-> +    / {
-> +        compatible = "foo";
-> +        model = "foo";
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        reserved-memory {
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +            ranges;
-> +
-> +            ramoops_region: ramoops {
-> +                compatible = "ramoops";
-> +                alloc-ranges = <0x00000000 0xffffffff>;
-> +                size = <0x0 0x10000>;       /* 64kB */
-> +                console-size = <0x8000>;    /* 32kB */
-> +                record-size = <0x400>;      /*  1kB */
-> +                ecc-size = <16>;
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.7.4
-> 
-
+diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+index 4193492ba73e..fd3c787e44a8 100644
+--- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
++++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+@@ -39,6 +39,7 @@ properties:
+           - qcom,scm-msm8996
+           - qcom,scm-msm8998
+           - qcom,scm-qdu1000
++          - qcom,scm-sa8775p
+           - qcom,scm-sc7180
+           - qcom,scm-sc7280
+           - qcom,scm-sc8280xp
 -- 
-Kees Cook
+2.37.2
+
