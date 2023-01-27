@@ -2,75 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AF7267E5C8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:52:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C999067E5D0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:53:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234430AbjA0Mw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 07:52:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34492 "EHLO
+        id S234435AbjA0Mxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 07:53:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234419AbjA0Mw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:52:57 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27D1B1420B
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:52:55 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso561672wms.4
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:52:55 -0800 (PST)
+        with ESMTP id S234449AbjA0Mxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:53:41 -0500
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0540D69B26
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:53:37 -0800 (PST)
+Received: by mail-yb1-xb2d.google.com with SMTP id u72so5834978ybi.7
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:53:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=a9WkdjJUtSWAW7q9hMDY+3mWPKLqhqnxsndeOx1lm8g=;
-        b=au4sRJNKmGv4X4Errswe6Bvl7pPfWKzE7I33BGdwXhn5Yr637vGfLM2tNqhtWWaGzk
-         xxA7NDT90MPaBFyDELEAAjZikgA1LvNRlGV5mvogJ3iFMdLeUzPsn41fNKrJ8NlPT0e1
-         SXVdrzetE1rhDj33QkoSljHl6QnHcXHSHchT3z1PetkJAhSe1eJbvSPqHICI2zFO4yAj
-         0UVYVzaVPxIqETB3/zeSIkPKglZWXUgW6DGjPTy9o3KtPs1UheAsEVvxPa94m/trOihA
-         FYmr99PgosnStr2oyPu+Kg1z/sO0AX5KoUf3OMBiD6UFpVfxyXuwtrKZDnCJW7Kfb0Ek
-         vX0A==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=YynEOg+K6RbWzyM6XAOBrJN3Q2/A/JbQ0f/sBD639As=;
+        b=hqaROeNmkKRP82fcMJre3KL8bmY7WJhpLWbYvS7AeAMbRPHUHuTqE+IUYitW+bl7AD
+         iaHWCen3ZX6qiE+vOwpPy1BdDdDf92WqVfJf/EUJWIp8uomVTLIu0M6nN0WoLDBH5Bqo
+         s2+vvTI+0932inzv1luNEbOJd2+/j5HZBFfFWsIYoN8sRMOEGDXSRzpRAZA/KanOqF/U
+         Cn/0Mg19GJSmQlL5+EqnmVY02/8eTuqkRHm9jnpBS1fS32pkyMA09aVPXGMb6bPv35mS
+         znuQMrNJa6che8cyKSLRJ9+1lYhrDuR8tLn1Fa7UGeNlKwjaagRreQ4AIHKzR2jGGly2
+         Cz3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a9WkdjJUtSWAW7q9hMDY+3mWPKLqhqnxsndeOx1lm8g=;
-        b=1yB3c4Jg6H92BmQiuXK9ZCB3N/tmW4nBZ9cK48HaKqAtXVkf780Sg6IeywDOLqH8im
-         SZDuWdKUJVvRxgPk2mFQs5ZRP6Ubb7grtUvbrxxs1/70iogY2TNUwfOoU1oyKQS9W+4H
-         +lLqDu9VXQFyJ+3d+skB/QWdeeNM+78RNEyIUGYdwqdSDr+rg/72aT0Y/iJvceBK3fDC
-         gd9C8hkDJZQ0+wXZZjNZxsuVH3iVk5eealsaPLfnaTFQfhOck9JwbFkgxrgqQuE549Tw
-         WxidjKoMNiwpPhngsjVDIThpHMFNrOLnRI2BrwEterJd+suEeakGiEMcnWmnViD+2m/5
-         HoHA==
-X-Gm-Message-State: AFqh2kpJs1xkACn7KppkgnZH8TtgeyWOLAMUgKipZgdmVHvxl8pWmFq0
-        aUkO3Fsdw2Vk2/3d5KFoYadjsg==
-X-Google-Smtp-Source: AMrXdXusHYAkFqVSWZOeCX2kB00qq6sKQRQnRIO95SWnimDBnCeHDdsnNIQtdrd11fwtvjRrfJ75vA==
-X-Received: by 2002:a05:600c:47cf:b0:3da:fa3d:cf5e with SMTP id l15-20020a05600c47cf00b003dafa3dcf5emr38621123wmo.28.1674823973760;
-        Fri, 27 Jan 2023 04:52:53 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id x10-20020a05600c420a00b003c6b70a4d69sm4081369wmh.42.2023.01.27.04.52.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 04:52:53 -0800 (PST)
-Message-ID: <2958ec74-cc28-0bf4-36f8-19089487dd48@linaro.org>
-Date:   Fri, 27 Jan 2023 13:52:51 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YynEOg+K6RbWzyM6XAOBrJN3Q2/A/JbQ0f/sBD639As=;
+        b=KT4zr8bKrugpB904ZnUEC+XTxocn/4mu61Dv8NfJBrGvy5Ny/2M24KYvpa7qh8Os74
+         ptihWFOA9xJLZig6vAurDk7oc0xQcPxRT10oCH6EtKZUiNYo5jwARikwVhonstOuexBr
+         2JQf/ST1BFZSLBsFCX6ofW4kfoioU60Zc59vX7bmKpxJPO0BQXbnpCpEH/sZw3PXVyMK
+         lW8XpYVaVDjMl0qdowCNPuVFzGtrjPpuaIuMmEiE4yor6wIB3omT+TXX/Lsqb12HgNkE
+         YTk6RG9erSXD6XTcAI7DgFMxGr4WZlyhrGsQpOqpt78SsMk9TC4+WIuKFwZqks3Ym1aL
+         7F/Q==
+X-Gm-Message-State: AO0yUKUSMd1VUoyhsVHfnmH1rja4zO9omMHvKMDqPbLqCvDH3val3raZ
+        FtZtRo04SV7J5J5cDkc7Ir8Os+8pRdGT08lbB04QyA==
+X-Google-Smtp-Source: AK7set9TAmymbQAdiPnX5z4gu+KlZg4IvEcJpmTrFUYwQrhwiX4GjjYUBQJ3q67pAJ+Mr4rFigk80zclsLMC+ML4ErU=
+X-Received: by 2002:a5b:c1:0:b0:80b:c9d0:c676 with SMTP id d1-20020a5b00c1000000b0080bc9d0c676mr901383ybp.341.1674824016210;
+ Fri, 27 Jan 2023 04:53:36 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: reserved-memory: ramoops: Update the
- binding
-Content-Language: en-US
-To:     Mukesh Ojha <quic_mojha@quicinc.com>, keescook@chromium.org,
-        gpiccoli@igalia.com, corbet@lwn.net, tony.luck@intel.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-hardening@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1673611126-13803-1-git-send-email-quic_mojha@quicinc.com>
- <7cb96551-094c-1a68-cc3f-31e4e2e94518@linaro.org>
- <9610a38e-9f39-c514-f535-73434ae8f51a@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9610a38e-9f39-c514-f535-73434ae8f51a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230126-gpio-mmio-fix-v1-0-8a20ce0e8275@ncr.com> <20230126-gpio-mmio-fix-v1-3-8a20ce0e8275@ncr.com>
+In-Reply-To: <20230126-gpio-mmio-fix-v1-3-8a20ce0e8275@ncr.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 27 Jan 2023 13:53:25 +0100
+Message-ID: <CACRpkda1Dn8D7DRd8FcRmz0LesTvvGgJ-njSeG9GrnWB0N-VzQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] gpio: mmio: Use new flag BGPIOF_NO_INPUT
+To:     nl250060@ncr.com
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,27 +68,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/01/2023 13:29, Mukesh Ojha wrote:
->>> +oneOf:
->>> +  - required:
->>> +      - reg
->>> +
->>> +  - required:
->>> +      - size
->>
->> There is no such property. You cannot require it.
-> 
-> I was thinking, since this size is part reserved-memory.yaml and
-> we have
-> 
-> allOf:
->    - $ref: "reserved-memory.yaml"
-> 
-> Is your comment still applies?
+On Thu, Jan 26, 2023 at 11:18 AM Niall Leonard via B4 Submission
+Endpoint <devnull+nl250060.ncr.com@kernel.org> wrote:
 
-Ah, you are right. It's ok.
+> From: Niall Leonard <nl250060@ncr.com>
+>
+> Use the existing shadow data register 'bgpio_data' to allow
+> the last written value to be returned by the read operation
+> when BGPIOF_NO_INPUT flag is set.
+>
+> Signed-off-by: Niall Leonard <nl250060@ncr.com>
 
+Weird hardware, but given these restrictions it makes perfect sense
+to have this.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Best regards,
-Krzysztof
-
+Yours,
+Linus Walleij
