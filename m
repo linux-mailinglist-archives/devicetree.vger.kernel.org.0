@@ -2,284 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E322667F0F0
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 23:11:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E568B67F104
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 23:16:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbjA0WLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 17:11:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47494 "EHLO
+        id S232740AbjA0WQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 17:16:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232402AbjA0WK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 17:10:56 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F040E7F317
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 14:10:47 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso6319527wmn.5
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 14:10:47 -0800 (PST)
+        with ESMTP id S229530AbjA0WQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 17:16:06 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B60B384942;
+        Fri, 27 Jan 2023 14:16:04 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id ud5so17389406ejc.4;
+        Fri, 27 Jan 2023 14:16:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=idUqpMNtTKGKBzaSIni6XsWBLVfQJXf3RNZPZAEYBhY=;
-        b=T+1Xoirx35CarTbZn/QmvccPCvLMX840tpf0yczBXlAWlyqzyTd31ZJy7EL1JzuBot
-         MMvKlI8Lmg3Uxplorrz1/KPq4NQ0C7WOxLRRRpDrs/jx7XSAXT82ujSaXdOKosXAjcyl
-         Ctv94KdNaK27hQGF6LK//ptWWXDbioBJvVSWjCvO/B2PiIBC4KlsWtTJVv4pQdmhCGdn
-         y99CPCdfoBzHqPF3UWNuvXHXjKDkLGD6qRpkkfHhutRVvlM1OHjOnFsEHuEpZ+x7+/mX
-         zJo2I3xvwhIyKR3WD69iyIK8b8D2J4XY3ThHEH9abilLTBdrbkb7fGcV64P7StoBr3dD
-         aRgA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oWZmCcBUXcf+wDULbnXIO3z2JjycNCL/zSqNv6nHObI=;
+        b=FRA1xrdeH7965NGSPZ8DODdV885dSPsIzAWrDAM7bSwSD/5N+IiStpnKM/QJ9JzDEM
+         Eh/Su8eNZCD7EpZTLhtfoY/lkTbjq1zYgEP/wtwpMQ+yewRUlQdcfMysj0L/nrmxqjPk
+         fgX4CsuNORrNy5Ul+7TcKG02Buoqlz5CUYzcYXcEssx5dalDX6g3lEfHFwBWlP83BZnU
+         hkftbMmB0ksA7dDUmpLcmPCF7zmeRqDd++6vPVvfVwQz3RF2D9BRRllSqijb1GXS4e8w
+         vHHzyTKJxG7J6mVTDII4EOlY4OPPhKzO1p7XosrK4b3b1zAnrkB2S8WZ3J2pIKI51W3z
+         hPIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=idUqpMNtTKGKBzaSIni6XsWBLVfQJXf3RNZPZAEYBhY=;
-        b=0WB83L0q+wxzY+xb3v3VIx0vIVC/taX6rfVYO/Dia5REFlpde5Oq6R/ne+zfEVKJDp
-         WlzDALMmmvAcg4RLZlSeIa+09YrC43e5X5cZo/k9lwt5JbqXMjwVf95S4eo72f7sjFZ+
-         +6ZRs0b28+Wp6RGYfs2eOwS+TeOuNXDKI8ZNb27w40HjajKaJOHAkq39Yci0m/WE1iYP
-         dDxoHKIolWOeP8AePvqEU0Ytb6OLTmfmF6mu1nTsXkd71CRjpikFl9eoKypKn3HN2Bo3
-         YI3W2IqKOmJfOO4SRu343g/7+a+Z6e7708U0Uxy8N+SsBUYWcnad+oqH6sObctGjwrtI
-         evFQ==
-X-Gm-Message-State: AFqh2kow1Y44Yq+8XzSM9+fn/5HLXJ0RfACF5BjiOEhneaV/8+cM4sRP
-        KfAIlUZcc0lFKTuSWZYTwsRhYQ==
-X-Google-Smtp-Source: AMrXdXvzVxJFfhXedNSvA1alMBr7vxuLM/4Pb6ufanVh0GnvsBzODZIGkDDFJez7USS5+SGSr2E5xg==
-X-Received: by 2002:a05:600c:a13:b0:3db:1de2:af31 with SMTP id z19-20020a05600c0a1300b003db1de2af31mr33565874wmp.37.1674857446342;
-        Fri, 27 Jan 2023 14:10:46 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id g11-20020a5d488b000000b002be5bdbe40csm5740301wrq.27.2023.01.27.14.10.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 14:10:45 -0800 (PST)
-Message-ID: <2ce57abd-203f-04b9-f0de-8e524d6afaae@linaro.org>
-Date:   Fri, 27 Jan 2023 23:10:44 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v12 2/6] dt-bindings: thermal: mediatek: Add LVTS thermal
- controllers dt-binding definition
-Content-Language: en-US
-To:     bchihi@baylibre.com, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oWZmCcBUXcf+wDULbnXIO3z2JjycNCL/zSqNv6nHObI=;
+        b=MyP+8iAzEI9VArOLiAQ80pXo1c/c1jFNBf88oRyN9vDknd/uwrnvWrmQjG4ack7E5m
+         YYTs88BrJw4DH5CRsq2zgqbwIoKLiz0lP+w3dVtmWR6PZ0RgMyoofvknThgahtUSvKxl
+         8pYJX/CXV/OeSJzOMCsQoPEnIfcovOGEzxqJ77UFbA5bUloFNKOomN0far8d4WM4Zdnr
+         pvKt8J6Mf8Q5fz6eAuwDMa7TcH3S/LVh2JmYqSYrVYAXBDT1AoD0m6xj3dhJfVSnSIVD
+         xezpU6MrhDwL4MHCRTM0URadu4uo30jhL8pDcOsI9RF3VdkwjStF6N67wXFonR6Pg395
+         gm5Q==
+X-Gm-Message-State: AO0yUKU8vC2/2pBaBEKYksr+v5otGSPMeyHLLnkc+uVtitrpha67xCH+
+        3PyqlScsGU4AnddyOjogm2o=
+X-Google-Smtp-Source: AK7set8oLCp7tLV15V8dKR8TK7uxSbo7jxHx20QA6+KJkrKlAVoE/gir68j8+Rgi/X4d6J8ZokU1Og==
+X-Received: by 2002:a17:907:7f94:b0:879:bff:55c with SMTP id qk20-20020a1709077f9400b008790bff055cmr7511455ejc.1.1674857763179;
+        Fri, 27 Jan 2023 14:16:03 -0800 (PST)
+Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
+        by smtp.gmail.com with ESMTPSA id gn19-20020a1709070d1300b0087862f45a29sm2964335ejc.174.2023.01.27.14.16.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 14:16:02 -0800 (PST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
+        Samuel Holland <samuel@sholland.org>
+Cc:     linux-riscv@lists.infradead.org, Heiko Stuebner <heiko@sntech.de>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Conor Dooley <conor@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andre Przywara <andre.przywara@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-References: <20230124131717.128660-3-bchihi@baylibre.com>
- <20230126161048.94089-1-bchihi@baylibre.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20230126161048.94089-1-bchihi@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
+        Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v5 00/11] riscv: Allwinner D1/D1s platform support
+Date:   Fri, 27 Jan 2023 23:16:00 +0100
+Message-ID: <4456339.LvFx2qVVIh@jernej-laptop>
+In-Reply-To: <20230126045738.47903-1-samuel@sholland.org>
+References: <20230126045738.47903-1-samuel@sholland.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dne =C4=8Detrtek, 26. januar 2023 ob 05:57:27 CET je Samuel Holland napisal=
+(a):
+> This series adds the Kconfig/defconfig plumbing and devicetrees for a
+> range of Allwinner D1 and D1s-based boards. Many features are already
+> enabled, including USB, Ethernet, and WiFi.
+>=20
+> This version drops all boards/nodes with missing YAML bindings, so at
+> least some support can get merged for v6.3.
+>=20
+> $ make ARCH=3Driscv CROSS_COMPILE=3Driscv64-linux-musl- dtbs_check
+>   LINT    Documentation/devicetree/bindings
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dtb
+>   DTC_CHK
+> arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dtb DTC_C=
+HK
+> arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dtb DTC_C=
+HK
+> arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dtb DTC_CHK
+> arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.dtb
+>   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dtb
+>   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dtb
+>   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1s-mangopi-mq.dtb
+> $
+>=20
+> Note that validation requires dt-schema v2022.12 or newer.
+>=20
+> I thoroughly tested earlier versions of this series (DMIC, Ethernet,
+> LEDs, MMC, PMIC, touch, and USB, where available) on several boards.
+> v4/v5 have trivial changes, and I boot-tested them on sun20i-d1-nezha.
+>=20
+> Changes in v5:
+>  - Drop system LDOs because the binding is still not merged
+>  - Drop the configuration for LDOA and LDOB
+>  - Drop the ClockworkPi and DevTerm DTS, since it needs the system LDOs
+>=20
+> Changes in v4:
+>  - Rebase on v6.2-rc1 + soc2arch-immutable
+>  - Drop the now-redundant 'select SIFIVE_PLIC'
+>=20
+> Changes in v3:
+>  - Drop dummy DCXO clock-frequency property
+>  - Decrease the PLIC's riscv,ndev property to 175
+>  - Fix `make W=3D1 dtbs` warnings (unnecessary #address/#size-cells)
+>  - Drop mmc aliases
+>  - Change LED_FUNCTION_BACKLIGHT to LED_FUNCTION_STATUS (the backlight
+>    regulator is disconnected by default, so this is a standalone LED)
+>  - Fix `make W=3D1 dtbs` warnings (missing reg properties)
+>  - ARCH_SUNXI depends on MMU && !XIP_KERNEL
+>=20
+> Changes in v2:
+>  - Add MangoPi MQ (non-Pro) board
+>  - Split into separate files for sharing with D1s/R528/T113
+>  - Use SOC_PERIPHERAL_IRQ macro for interrupts
+>  - Rename osc24M to dcxo and move the frequency to the board DTs
+>  - Drop analog LDOs due to the missing binding
+>  - Correct tcon_top DSI clock reference
+>  - Add DMIC, DSI controller, and DPHY (bindings are in linux-next)
+>  - Add CPU OPP table
+>  - Common regulators moved to MangoPi MQ patch, removed analog LDOs
+>  - Removed LRADC (depends on analog LDOs)
+>  - Added XR829 host-wake interrupt
+>  - Added DMIC sound card to Lichee RV dock and Lichee RV 86 Panel
+>  - Removed LRADC (depends on analog LDOs)
+>  - Added LED (GPIO shared between onboard LED and backlight regulator)
+>  - Sort Kconfig as if we had done s/SOC_/ARCH_/ for future-proofing
+>=20
+> Samuel Holland (11):
+>   MAINTAINERS: Match the sun20i family of Allwinner SoCs
+>   dt-bindings: vendor-prefixes: Add Allwinner D1/D1s board vendors
+>   dt-bindings: riscv: Add Allwinner D1/D1s board compatibles
+>   riscv: dts: allwinner: Add the D1/D1s SoC devicetree
+>   riscv: dts: allwinner: Add MangoPi MQ devicetree
+>   riscv: dts: allwinner: Add Allwinner D1 Nezha devicetree
+>   riscv: dts: allwinner: Add Sipeed Lichee RV devicetrees
+>   riscv: dts: allwinner: Add MangoPi MQ Pro devicetree
+>   riscv: dts: allwinner: Add Dongshan Nezha STU devicetree
+>   riscv: Add the Allwinner SoC family Kconfig option
+>   riscv: defconfig: Enable the Allwinner D1 platform and drivers
 
-Hi Rob,
+Applied to sunxi tree. Thanks for your hard work!
 
-I think Balsam took into account your comments. Is it fine for you ?
+Best regards,
+Jernej
+
+>=20
+>  .../devicetree/bindings/riscv/sunxi.yaml      |  69 ++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
+>  MAINTAINERS                                   |   2 +-
+>  arch/riscv/Kconfig.socs                       |   9 +
+>  arch/riscv/boot/dts/Makefile                  |   1 +
+>  arch/riscv/boot/dts/allwinner/Makefile        |   9 +
+>  .../allwinner/sun20i-common-regulators.dtsi   |  28 +
+>  .../sun20i-d1-dongshan-nezha-stu.dts          | 117 +++
+>  .../sun20i-d1-lichee-rv-86-panel-480p.dts     |  29 +
+>  .../sun20i-d1-lichee-rv-86-panel-720p.dts     |  10 +
+>  .../sun20i-d1-lichee-rv-86-panel.dtsi         | 119 +++
+>  .../allwinner/sun20i-d1-lichee-rv-dock.dts    |  97 ++
+>  .../dts/allwinner/sun20i-d1-lichee-rv.dts     |  87 ++
+>  .../allwinner/sun20i-d1-mangopi-mq-pro.dts    | 142 +++
+>  .../boot/dts/allwinner/sun20i-d1-nezha.dts    | 166 ++++
+>  arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi  |  66 ++
+>  .../dts/allwinner/sun20i-d1s-mangopi-mq.dts   | 128 +++
+>  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi |  76 ++
+>  .../boot/dts/allwinner/sunxi-d1-t113.dtsi     |  15 +
+>  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 826 ++++++++++++++++++
+>  arch/riscv/configs/defconfig                  |  22 +-
+>  21 files changed, 2020 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/riscv/sunxi.yaml
+>  create mode 100644 arch/riscv/boot/dts/allwinner/Makefile
+>  create mode 100644
+> arch/riscv/boot/dts/allwinner/sun20i-common-regulators.dtsi create mode
+> 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts
+> create mode 100644
+> arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dts create
+> mode 100644
+> arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dts create
+> mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel.dt=
+si
+> create mode 100644
+> arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts create mode
+> 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.dts create mode
+> 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dts create
+> mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts create mode
+> 100644 arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi
+>  create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1s-mangopi-mq.d=
+ts
+>  create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+>  create mode 100644 arch/riscv/boot/dts/allwinner/sunxi-d1-t113.dtsi
+>  create mode 100644 arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
 
 
-On 26/01/2023 17:10, bchihi@baylibre.com wrote:
-> From: Balsam CHIHI <bchihi@baylibre.com>
-> 
-> Add LVTS thermal controllers dt-binding definition for mt8195.
-> 
-> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
-> ---
-> Changelog:
->    v12:
->       - Fixed subject prefix
->       - Fixed licences GPL-2.0+ to GPL-2.0
->       - Added dual licenses
->    v11:
->       - Rebase on top of "thermal/linux-next" :
->         base=0d568e144ead70189e7f16066dcb155b78ff9266
->       - Remove unsupported SoC (mt8192) from dt-binding definition
->    v10:
->       - Rebase on top of "thermal/linux-next" : thermal-v6.3-rc1
->    v9:
->       - Rebase on top of 6.0.0-rc1
->       - Update dt-bindings :
->         - Add "allOf:if:then:"
->         - Use mt8192 as example (instead of mt8195)
->         - Fix dt-binding errors
->         - Fix DTS errors
->    v8:
->       - Fix coding style issues
->       - Rebase on top of next-20220803
->       - Add multi-instance support :
->         - Rewrite DT-binding and DTS :
->           - Add DT-binding and DTS for LVTS_v4 (MT8192 and MT8195)
->             - One LVTS node for each HW Domain (AP and MCU)
->           - One SW Instance for each HW Domain
->    v7:
->       - Fix coding style issues
->       - Rewrite dt bindings
->         - was not accurate
->         - Use mt8195 for example (instead of mt8192)
->         - Rename mt6873 to mt8192
->         - Remove clock name
-> ---
-> ---
->   .../thermal/mediatek,lvts-thermal.yaml        | 107 ++++++++++++++++++
->   include/dt-bindings/thermal/mediatek-lvts.h   |  19 ++++
->   2 files changed, 126 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
->   create mode 100644 include/dt-bindings/thermal/mediatek-lvts.h
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-> new file mode 100644
-> index 000000000000..12bfbdd8ff89
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-> @@ -0,0 +1,107 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/mediatek,lvts-thermal.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek SoC Low Voltage Thermal Sensor (LVTS)
-> +
-> +maintainers:
-> +  - Balsam CHIHI <bchihi@baylibre.com>
-> +
-> +description: |
-> +  LVTS is a thermal management architecture composed of three subsystems,
-> +  a Sensing device - Thermal Sensing Micro Circuit Unit (TSMCU),
-> +  a Converter - Low Voltage Thermal Sensor converter (LVTS), and
-> +  a Digital controller (LVTS_CTRL).
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8195-lvts-ap
-> +      - mediatek,mt8195-lvts-mcu
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +    description: LVTS reset for clearing temporary data on AP/MCU.
-> +
-> +  nvmem-cells:
-> +    minItems: 1
-> +    items:
-> +      - description: Calibration eFuse data 1 for LVTS
-> +      - description: Calibration eFuse data 2 for LVTS
-> +
-> +  nvmem-cell-names:
-> +    minItems: 1
-> +    items:
-> +      - const: lvts-calib-data-1
-> +      - const: lvts-calib-data-2
-> +
-> +  "#thermal-sensor-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - resets
-> +  - nvmem-cells
-> +  - nvmem-cell-names
-> +  - "#thermal-sensor-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/mt8195-clk.h>
-> +    #include <dt-bindings/reset/mt8195-resets.h>
-> +    #include <dt-bindings/thermal/mediatek-lvts.h>
-> +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      lvts_mcu: thermal-sensor@11278000 {
-> +        compatible = "mediatek,mt8195-lvts-mcu";
-> +        reg = <0 0x11278000 0 0x1000>;
-> +        interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
-> +        clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
-> +        resets = <&infracfg_ao MT8195_INFRA_RST4_THERM_CTRL_MCU_SWRST>;
-> +        nvmem-cells = <&lvts_efuse_data1 &lvts_efuse_data2>;
-> +        nvmem-cell-names = "lvts-calib-data-1", "lvts-calib-data-2";
-> +        #thermal-sensor-cells = <1>;
-> +      };
-> +    };
-> +
-> +    thermal_zones: thermal-zones {
-> +      cpu0-thermal {
-> +        polling-delay = <1000>;
-> +        polling-delay-passive = <250>;
-> +        thermal-sensors = <&lvts_mcu MT8195_MCU_LITTLE_CPU0>;
-> +
-> +        trips {
-> +          cpu0_alert: trip-alert {
-> +            temperature = <85000>;
-> +            hysteresis = <2000>;
-> +            type = "passive";
-> +          };
-> +
-> +          cpu0_crit: trip-crit {
-> +            temperature = <100000>;
-> +            hysteresis = <2000>;
-> +            type = "critical";
-> +          };
-> +        };
-> +      };
-> +    };
-> diff --git a/include/dt-bindings/thermal/mediatek-lvts.h b/include/dt-bindings/thermal/mediatek-lvts.h
-> new file mode 100644
-> index 000000000000..902d5b1e4f43
-> --- /dev/null
-> +++ b/include/dt-bindings/thermal/mediatek-lvts.h
-> @@ -0,0 +1,19 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
-> +/*
-> + * Copyright (c) 2023 MediaTek Inc.
-> + * Author: Balsam CHIHI <bchihi@baylibre.com>
-> + */
-> +
-> +#ifndef __MEDIATEK_LVTS_DT_H
-> +#define __MEDIATEK_LVTS_DT_H
-> +
-> +#define MT8195_MCU_BIG_CPU0	0
-> +#define MT8195_MCU_BIG_CPU1	1
-> +#define MT8195_MCU_BIG_CPU2	2
-> +#define MT8195_MCU_BIG_CPU3	3
-> +#define MT8195_MCU_LITTLE_CPU0	4
-> +#define MT8195_MCU_LITTLE_CPU1	5
-> +#define MT8195_MCU_LITTLE_CPU2	6
-> +#define MT8195_MCU_LITTLE_CPU3	7
-> +
-> +#endif /* __MEDIATEK_LVTS_DT_H */
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
