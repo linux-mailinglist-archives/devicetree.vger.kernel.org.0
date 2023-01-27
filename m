@@ -2,73 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0362B67E4A1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:06:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DA8267E4D7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:14:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233027AbjA0MGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 07:06:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36070 "EHLO
+        id S233839AbjA0MOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 07:14:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233048AbjA0MFo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:05:44 -0500
-Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2BAB8015B
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:00:02 -0800 (PST)
-Received: by mail-vs1-xe36.google.com with SMTP id 187so5021004vsv.10
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:00:02 -0800 (PST)
+        with ESMTP id S233665AbjA0MNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:13:53 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C50391FB6
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:08:44 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id k16so3296820wms.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:08:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jgmw1h6HumCKIAmiKefvna0Hf/3PseJorCSc8z7I4JU=;
-        b=NvTggrZpuQLvzRUb8nXqJDTuvOgJLRHwMC1+NXoMEkGXRbfvcsIgEbqXp2mFf0YAOj
-         PVWU/CBCcuXZw/b9tsRyY9o8lgmQ7zWFhSk+LnsRKeDIwp9tnjODUL2lSP+Kn7M48vVv
-         QFJZ4gvERv1GXu6PA8kNFNBKvMKkvyJ2S9V0k49/V5qPxQRYYu6/aIU5/c2g8oZKq7J1
-         1+Vm6akp9D5LzZzju4RMrCUy07vanmzESnaMVnrk3ne7NtI5pLFmzL6eaFCbzLeU/V/M
-         ZC9aUa2L281d4WdmNGSSG6xfT1N2zn3SQF81gHycm/XWgzLvChNS5TUIIC3P7/74co/p
-         ioig==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IbnzwH+nQgd63XtJgqBuy8alYQJJ5rnozeTdLd13gK4=;
+        b=t2H9eibLPHda5VU5UePrNAz4DSv42zX088teGJS2FRasP++ZLgCNdXhjMGoYIijbox
+         G0j2gZ/mqAamlwLfdPctoxQYkyWxNK2ml0tKuMOPLsOKPH8yQJ5oTJuOngN5HHMdCNXg
+         SCFzVMHFBbNyBKUjG3WbvVqTqyTZsz4l3XMqoNoLiF29nmS0XA61UW0eO8tk8s4x0m9U
+         ORWf+MYN7XBT1hqzJw1Hb2YCxwWKKbPj74PV7XBrmx8ARhE/OM1s0xXD3OuyJf/pEMHk
+         IuXHSDS3ZwOYdnrXycFYXc8OEqZTUbsGlvpN1eNTaSHMqLxHE9Wl2FEcEOQDQ1mn5DBa
+         jLxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jgmw1h6HumCKIAmiKefvna0Hf/3PseJorCSc8z7I4JU=;
-        b=vat5XmvKFUt6N/WRGqgzBRVqysqQnuWft1uGyTmD+o5xeHg/Q2Zx2xcR8dv1UTqCzX
-         fYCG4JBhinqT6YX9E6GJVxyWkoLctLpCzfi/9VPWzL+SBDd0lqwBmaAyaGRn8223r+1Z
-         FgpeP0tuPFwiA2nq6asem6IDQzcvmPYJJEN7FAEX3jrl0eS0yg9/bLVihD7Pjvy9DD5z
-         ahKAFMOEAgj/J1s6e9YwRA67wI2UzugOATjhd7g/di5IoZ9Un2HIPKIhCn0qMTdDCm5x
-         ft/fcqoEaOepXO/v0HA6mzpfkq2r3x7aOtUZkPykxnWXHK6HDyYgePcHPGrwnP/3sL26
-         Fg3w==
-X-Gm-Message-State: AFqh2krLJspLYdR5ZdtUZFXogmSPlQUrAFg47dTtS42dtNE8oa+rtd84
-        nyEsozaRG+hZksHWVw86hDOlX4OJ0UNmc62oTSya7BFeMHycVcRZ
-X-Google-Smtp-Source: AMrXdXubHdqlaizKNTj9G102JeOsBYvmfoEFUWQ0mrfMUZ0Li5vk5eK42eJIcEWgqN/BB7YpwIsfbm0SDqDPvJhJlGE=
-X-Received: by 2002:a05:6102:3134:b0:3d3:d816:c798 with SMTP id
- f20-20020a056102313400b003d3d816c798mr4957237vsh.59.1674820749156; Fri, 27
- Jan 2023 03:59:09 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IbnzwH+nQgd63XtJgqBuy8alYQJJ5rnozeTdLd13gK4=;
+        b=KBGgPFXBPZrVLf1EL+aaWogerpuw7WqYhjVy1CHZRZyBLtc20ZN2PlVKfXj7KU4yFJ
+         ybsfx8fHrphx6ul+q7XeEMXUjO+kTE6Woz7QY7qZ3eU4n4RxXAU8jFpMiTjkibH6guJI
+         Jn2NdpRkMej0cKPpNGhK9XnMkpIp0ttln/2zWy3iOvpBrmzrVjIjFcFzUYfrLJ8QoEzl
+         /iwpPy4Xf4p/a+1rSH1K4EejoDtfB5CrCy3huLhmEAITujdquDSRI7Kqr9bsO5aoDnK5
+         Py0QWK1e4QA4o9AleGj+8LVULoFIhZi1kRPrejdqCRxzupt/JiXJ1IY8vq6MCRRUMtcW
+         Vy3Q==
+X-Gm-Message-State: AFqh2krfL1cr+h+Ry9kS912Cy5JxgtVaK4NG7KXq7iBenYSFPUYuShPJ
+        M20svNrQlEUyJvxO48GcXQb04g==
+X-Google-Smtp-Source: AMrXdXsFHMhT34Xzqpvqy/Q9isMOCIEWtS9pWbJ5oINT8OsgSCDgX+TJd/INUsJknzlT3rvCqliAEg==
+X-Received: by 2002:a05:600c:1d85:b0:3db:1bc5:bbe7 with SMTP id p5-20020a05600c1d8500b003db1bc5bbe7mr32828675wms.0.1674821278610;
+        Fri, 27 Jan 2023 04:07:58 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id p22-20020a1c5456000000b003da286f8332sm4301417wmi.18.2023.01.27.04.07.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 04:07:57 -0800 (PST)
+Message-ID: <437bbede-ccaa-8c8d-11b8-336f2a857072@linaro.org>
+Date:   Fri, 27 Jan 2023 13:07:55 +0100
 MIME-Version: 1.0
-References: <20230103141409.772298-1-apatel@ventanamicro.com>
- <20230103141409.772298-2-apatel@ventanamicro.com> <Y7YGp/7ufyRPhkwg@spud>
- <CAAhSdy2YKJfuxhBmsx9v-OMyxKQjys+J-z_ZqoPJF7q=YrE4Zw@mail.gmail.com> <Y8cIG6gKSlkTh5AF@spud>
-In-Reply-To: <Y8cIG6gKSlkTh5AF@spud>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Fri, 27 Jan 2023 17:28:57 +0530
-Message-ID: <CAK9=C2VzJvpQLPedc+ruUnw8xDDDaC6_Vmj6qg1nXv+iqU-AfQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/9] RISC-V: Add AIA related CSR defines
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Anup Patel <anup@brainfault.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: sm8550: Add USB PHYs and
+ controller nodes
+Content-Language: en-US
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-phy@lists.infradead.org
+References: <20230126124651.1362533-1-abel.vesa@linaro.org>
+ <20230126124651.1362533-8-abel.vesa@linaro.org>
+ <2d368c6f-5240-8aec-ef27-a86b2a361856@linaro.org>
+ <Y9O7iVXN1AgsRQKi@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y9O7iVXN1AgsRQKi@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,89 +87,126 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 18, 2023 at 2:12 AM Conor Dooley <conor@kernel.org> wrote:
->
-> Hey Anup,
->
-> I thought I had already replied here but clearly not, sorry!
->
-> On Mon, Jan 09, 2023 at 10:39:08AM +0530, Anup Patel wrote:
-> > On Thu, Jan 5, 2023 at 4:37 AM Conor Dooley <conor@kernel.org> wrote:
-> > > On Tue, Jan 03, 2023 at 07:44:01PM +0530, Anup Patel wrote:
->
-> > > > +/* AIA CSR bits */
-> > > > +#define TOPI_IID_SHIFT               16
-> > > > +#define TOPI_IID_MASK                0xfff
->
-> While I think of it, it'd be worth noting that these are generic across
-> all of topi, mtopi etc. Initially I thought that this mask was wrong as
-> the topi section says:
->         bits 25:16 Interrupt identity (source number)
->         bits 7:0 Interrupt priority
+On 27/01/2023 12:54, Abel Vesa wrote:
+> On 23-01-27 12:51:05, Krzysztof Kozlowski wrote:
+>> On 26/01/2023 13:46, Abel Vesa wrote:
+>>> Add USB host controller and PHY nodes.
+>>>
+>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>>> ---
+>>>
+>>> NOTE: This patch has been already merged. It is here only to provide
+>>> context for the rest of the patchset. There is a change with respect to the
+>>> clocks, but that will be sent as a separate/individual fix patch.
+>>>
+>>>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 92 +++++++++++++++++++++++++++-
+>>>  1 file changed, 91 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>>> index 4daf1f03d79f..6801454bbe10 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>>> @@ -13,6 +13,7 @@
+>>>  #include <dt-bindings/mailbox/qcom-ipcc.h>
+>>>  #include <dt-bindings/power/qcom-rpmpd.h>
+>>>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>>> +#include <dt-bindings/phy/phy-qcom-qmp.h>
+>>>  #include <dt-bindings/thermal/thermal.h>
+>>>  
+>>>  / {
+>>> @@ -652,7 +653,7 @@ gcc: clock-controller@100000 {
+>>>  				 <&ufs_mem_phy 0>,
+>>>  				 <&ufs_mem_phy 1>,
+>>>  				 <&ufs_mem_phy 2>,
+>>> -				 <0>;
+>>> +				 <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+>>>  		};
+>>>  
+>>>  		ipcc: mailbox@408000 {
+>>> @@ -1924,6 +1925,95 @@ opp-202000000 {
+>>>  			};
+>>>  		};
+>>>  
+>>> +		usb_1_hsphy: phy@88e3000 {
+>>> +			compatible = "qcom,sm8550-snps-eusb2-phy";
+>>> +			reg = <0x0 0x088e3000 0x0 0x154>;
+>>> +			#phy-cells = <0>;
+>>> +
+>>> +			clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
+>>> +			clock-names = "ref";
+>>> +
+>>> +			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+>>> +
+>>> +			status = "disabled";
+>>> +		};
+>>> +
+>>> +		usb_dp_qmpphy: phy@88e8000 {
+>>> +			compatible = "qcom,sm8550-qmp-usb3-dp-phy";
+>>> +			reg = <0x0 0x088e8000 0x0 0x3000>;
+>>> +
+>>> +			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+>>> +				 <&rpmhcc RPMH_CXO_CLK>,
+>>> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+>>> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+>>> +			clock-names = "aux", "ref", "com_aux", "usb3_pipe";
+>>> +
+>>> +			power-domains = <&gcc USB3_PHY_GDSC>;
+>>> +
+>>> +			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
+>>> +				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
+>>> +			reset-names = "phy", "common";
+>>> +
+>>> +			#clock-cells = <1>;
+>>> +			#phy-cells = <1>;
+>>> +
+>>> +			status = "disabled";
+>>> +		};
+>>> +
+>>> +		usb_1: usb@a6f8800 {
+>>> +			compatible = "qcom,sm8550-dwc3", "qcom,dwc3";
+>>> +			reg = <0x0 0x0a6f8800 0x0 0x400>;
+>>> +			#address-cells = <2>;
+>>> +			#size-cells = <2>;
+>>> +			ranges;
+>>> +
+>>> +			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
+>>> +				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
+>>> +				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
+>>> +				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
+>>> +				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
+>>> +				 <&rpmhcc TCSR_USB3_CLKREF_EN>;
+>>> +			clock-names = "cfg_noc",
+>>> +				      "core",
+>>> +				      "iface",
+>>> +				      "sleep",
+>>> +				      "mock_utmi",
+>>> +				      "xo";
+>>> +
+>>> +			assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
+>>> +					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
+>>> +			assigned-clock-rates = <19200000>, <200000000>;
+>>> +
+>>> +			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
+>>> +					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>,
+>>> +					      <&pdc 15 IRQ_TYPE_EDGE_RISING>,
+>>> +					      <&pdc 14 IRQ_TYPE_EDGE_RISING>;
+>>> +			interrupt-names = "hs_phy_irq",
+>>> +					  "ss_phy_irq",
+>>> +					  "dm_hs_phy_irq",
+>>> +					  "dp_hs_phy_irq";
+>>> +
+>>> +			power-domains = <&gcc USB30_PRIM_GDSC>;
+>>> +			required-opps = <&rpmhpd_opp_nom>;
+>>
+>> This part was merged but it is not correct without [1]. Are we going to
+>> revive [1] or should we drop it?
+> 
+> Well, but this one has been merged as well for sc8280xp:
+> https://lore.kernel.org/all/20230112135117.3836655-1-quic_bjorande@quicinc.com/
 
-These defines are for the AIA CSRs and not AIA APLIC IDC registers.
+Thanks! This was done by Bjorn which means he approves required-opps. :)
+I'll send the schema fix (without power domains change).
 
-As per the latest frozen spec, the mtopi/stopi/vstopi has following bits:
-    bits: 27:16 IID
-    bits: 7:0 IPRIO
+Best regards,
+Krzysztof
 
->
-> > > > +#define TOPI_IPRIO_MASK              0xff
-> > > > +#define TOPI_IPRIO_BITS              8
-> > > > +
-> > > > +#define TOPEI_ID_SHIFT               16
-> > > > +#define TOPEI_ID_MASK                0x7ff
-> > > > +#define TOPEI_PRIO_MASK              0x7ff
-> > > > +
-> > > > +#define ISELECT_IPRIO0               0x30
-> > > > +#define ISELECT_IPRIO15              0x3f
-> > > > +#define ISELECT_MASK         0x1ff
-> > > > +
-> > > > +#define HVICTL_VTI           0x40000000
-> > > > +#define HVICTL_IID           0x0fff0000
-> > > > +#define HVICTL_IID_SHIFT     16
-> > > > +#define HVICTL_IPRIOM                0x00000100
-> > > > +#define HVICTL_IPRIO         0x000000ff
-> > >
-> > > Why not name these as masks, like you did for the other masks?
-> > > Also, the mask/shift defines appear inconsistent. TOPI_IID_MASK is
-> > > intended to be used post-shift AFAICT, but HVICTL_IID_SHIFT is intended
-> > > to be used *pre*-shift.
-> > > Some consistency in naming and function would be great.
-> >
-> > The following convention is being followed in asm/csr.h for defining
-> > MASK of any XYZ field in ABC CSR:
-> > 1. ABC_XYZ : This name is used for MASK which is intended
-> >    to be used before SHIFT
-> > 2. ABC_XYZ_MASK: This name is used for MASK which is
-> >    intended to be used after SHIFT
->
-> Which makes sense in theory.
->
-> > The existing defines for [M|S]STATUS, HSTATUS, SATP, and xENVCFG
-> > follows the above convention. The only outlier is HGATPx_VMID_MASK
-> > define which I will fix in my next KVM RISC-V series.
->
-> Yup, it is liable to end up like that.
->
-> > I don't see how any of the AIA CSR defines are violating the above
-> > convention.
->
-> What I was advocating for was picking one style and sticking to it.
-> These copy-paste from docs things are tedious and error prone to review,
-> and I don't think having multiple styles is helpful.
-
-On the other hand, I think we should let developers choose a style
-which is better suited for a particular register field instead enforcing
-it here. The best we can do is follow a naming convention for defines.
-
->
-> Tedious as it was, I did check all the numbers though, so in that
-> respect:
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-BTW, this patch is shared with KVM AIA CSR series so most likely
-I will take this patch through that series.
-
-Regards,
-Anup
