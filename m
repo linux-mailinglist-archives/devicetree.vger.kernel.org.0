@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C04367E04B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 10:32:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A542467E04F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 10:32:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233158AbjA0Jcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 04:32:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46884 "EHLO
+        id S233184AbjA0Jc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 04:32:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233034AbjA0Jcj (ORCPT
+        with ESMTP id S233052AbjA0Jcj (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 04:32:39 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 874F23403A
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 01:32:29 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id iv8-20020a05600c548800b003db04a0a46bso5340812wmb.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 01:32:29 -0800 (PST)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 606CD4B76D
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 01:32:30 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id l8so2997027wms.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 01:32:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=eYlyM6cSaKQ/uUkz/YEasKsMqzXxdWTQoyVNRCFZpLU=;
-        b=HPbrPcaeE6aOk8pV/mFPNOoURR1ALIlUrtscI7xLlC7PsHF78Ze3s5Lf/T69U7XYfZ
-         zPt7E1oCtuEFplHecvHSRt9kaWf13/d4VwAgpLn3w+DwevDheuR0eTeJ2lzhrwSeuTU2
-         RgGKqLlEljMqYv+lsdcdnMPRVHzGFZwGNM1RnlVaaCQw9txB0Sajk628xpKABUsdRwep
-         8myyh94Jo9wXSuAUhKeNth7mcgszq7zvnidxnAdQnHpnNtTpFL1yTcva/82FCGblWx7m
-         vTeUlF7WRaTzcepsjZfhydotPDegyzeQjRAGek9hzDgkvtxhbEkYwam9TbGqnQBKoJPK
-         Ivkg==
+        bh=bk9rrRbVlBSUREXw1iLQlsEZh4LHFBUluT2+RY/DXog=;
+        b=T4ho7Z56EkelNKuLOIS7cADyCVSEQ8LKxCT/HEcCYIM9LjiuPwF5dDpt/48Ki3aOYF
+         /X1dONb0m0tFA8HRxbGg/ELLlsV82x274Dsht5yhsCoc0Z1z+XageqYoXhIjIg9dOyZ2
+         wmCG2WmL1hQ3eaP7KZima2CGPK1YWOI9aOYcnlqhRaWqcmxI/+BQu4FzDLISdHXsfkkt
+         OXuuDN+AK9ozvh9AerLh0LNm14jNUVLcxGDpUiCq+QzWmirbFguu/Fql/MOaCopNqCVk
+         Lw1ey9dHYDYMiYGsF7Q2qJlMsrMYV3G23lmLT98Jpf2H+SRM7mYpr1WNPIIiaHar9QuI
+         XIEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=eYlyM6cSaKQ/uUkz/YEasKsMqzXxdWTQoyVNRCFZpLU=;
-        b=BV2Stjcv9A+pRF+Hj0faLO/i1GAvFsna2awigROBVfX+dKgBUGEwXolpeuTCmpJxEo
-         e9ZWt9asLUMC3UFxPGYPxFbQtKmwIJNB90+4rAfrP28+L62U3zBdGlfNOXVRO+DFJ7kl
-         Qhmnrv/7cxs5Sh4uG8oqbO9QxY+WO3md5ufITSb1pcvy9jkC8VTH2zRZFY52wrroeKEx
-         Toyfi63PyewT3ns0SyMbgrG3f2iOFEG5QLMFp9GRNxU8OnOp+eoK0Q/vBZDPNLAFrEvt
-         vyLA+7swURwf+sBzpSsOqydhFpDLzovKQhx3jHNGfZAKTUSaWNUH59LARIumlBcRF5e4
-         Igpg==
-X-Gm-Message-State: AFqh2kqC597pYGaiEae9O+ecurDab5YteRjQG4KEvXSMyTO1G4U6721d
-        o+kQkXjXjqkUeKKAKbY+Br6rwQ==
-X-Google-Smtp-Source: AMrXdXvU40EM79mlhyImuiNfOn7AB+1l3xFZ9Wdd8ja5wU7h9w454kh126G7hONXVwS785GL9ObqzA==
-X-Received: by 2002:a05:600c:3b07:b0:3d1:cdf7:debf with SMTP id m7-20020a05600c3b0700b003d1cdf7debfmr37448422wms.26.1674811948019;
-        Fri, 27 Jan 2023 01:32:28 -0800 (PST)
+        bh=bk9rrRbVlBSUREXw1iLQlsEZh4LHFBUluT2+RY/DXog=;
+        b=afh779wwdJHXxnqkRSXDjgpy3zS7Zp0ZsmbxIUyC30N1P00xPc66Z+g7kEQC8Xh1yj
+         PF6sakJ6cW87nTTva1KY5XlrgyFE5ar0vGN8PjEAs2k5IyC6fgfA5z0ve7uus6rM2gTF
+         Bcm9wGfeOnY/F5cUKzNWPLaLTLv3lm3mG+q2GGwhz1O1p8WYq/b4+hC+Vp+/65XxPp1K
+         U1sNmTYQT1tSSvx+rly4EkuIfWjI+9s/YqsqWqSNAb1yExEWbOU6cPmnANPUFSvkfR2h
+         CummJXawlDglU2TZXO8kiyQhSGB63AslAJ27pK+H2IgWyUvRmOj9/IzUMwoFNCdv1bjn
+         qGcg==
+X-Gm-Message-State: AFqh2kqH4doKuIrgqF9ocqNYolB/f+ztfTVqRwHoRhRGr1gVbpPe1Ik/
+        u0mVgc+RtTQ2mHqK4ZlnI3NhNA==
+X-Google-Smtp-Source: AMrXdXuAo2Nkeby8FQaCuLvu5bATGCZjCqz2ulVwr97qbd2CrEuId5snzSLLdj6GWfPdbIO6KKjm1A==
+X-Received: by 2002:a05:600c:54d0:b0:3d9:7847:96e2 with SMTP id iw16-20020a05600c54d000b003d9784796e2mr38265609wmb.2.1674811949873;
+        Fri, 27 Jan 2023 01:32:29 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id e19-20020a05600c439300b003cfd4e6400csm3795265wmn.19.2023.01.27.01.32.26
+        by smtp.gmail.com with ESMTPSA id e19-20020a05600c439300b003cfd4e6400csm3795265wmn.19.2023.01.27.01.32.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 01:32:27 -0800 (PST)
+        Fri, 27 Jan 2023 01:32:29 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -69,9 +69,9 @@ To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
         linux-mtd@lists.infradead.org, linux-serial@vger.kernel.org,
         linux-watchdog@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 2/3] dt-bindings: reference MC peripheral properties in relevant devices
-Date:   Fri, 27 Jan 2023 10:32:16 +0100
-Message-Id: <20230127093217.60818-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 3/3] dt-bindings: serial: restrict possible child node names
+Date:   Fri, 27 Jan 2023 10:32:17 +0100
+Message-Id: <20230127093217.60818-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230127093217.60818-1-krzysztof.kozlowski@linaro.org>
 References: <20230127093217.60818-1-krzysztof.kozlowski@linaro.org>
@@ -87,73 +87,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Several devices can be attached to memory controllers (or memory-mapped
-buses), thus they can come with additional controller-specific
-properties, e.g. devices wired under Intel IXP4XX bus: cfi-flash,
-intel,ixp4xx-compact-flash, NS8250 serial and MAX6369 watchdog.
-
-Referencing Memory Controller or IXP4XX bus peripheral properties fixes
-few dtbs_check warnings like:
-
-  intel-ixp42x-gateworks-gw2348.dtb: ide@1,0: Unevaluated properties are not allowed
-    ('intel,ixp4xx-eb-ahb-split-transfers', 'intel,ixp4xx-eb-byte-access', ... ' were unexpected)
+The re-usable serial.yaml schema matches every property with ".*"
+pattern, thus any other schema referencing it will not report unknown
+(unevaluated) properties.  This hides several wrong properties.  It is
+a limitation of dtschema, thus provide a simple workaround: expect
+children to be only of few names matching upstream usage (Bluetooth,
+GNSS, GPS and MCU).
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml      | 1 +
- Documentation/devicetree/bindings/mtd/mtd-physmap.yaml           | 1 +
- Documentation/devicetree/bindings/serial/8250.yaml               | 1 +
- Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml    | 1 +
- 4 files changed, 4 insertions(+)
+ Documentation/devicetree/bindings/serial/serial.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml b/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
-index 52e18600ecff..378692010c56 100644
---- a/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
-+++ b/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
-@@ -35,6 +35,7 @@ required:
+diff --git a/Documentation/devicetree/bindings/serial/serial.yaml b/Documentation/devicetree/bindings/serial/serial.yaml
+index e05ad3ac2abc..c9231e501f1f 100644
+--- a/Documentation/devicetree/bindings/serial/serial.yaml
++++ b/Documentation/devicetree/bindings/serial/serial.yaml
+@@ -96,7 +96,7 @@ then:
+     rts-gpios: false
  
- allOf:
-   - $ref: pata-common.yaml#
-+  - $ref: /schemas/memory-controllers/intel,ixp4xx-expansion-peripheral-props.yaml#
- 
- unevaluatedProperties: false
- 
-diff --git a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-index 5df94953c34e..44cd4476d1d3 100644
---- a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-+++ b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-@@ -15,6 +15,7 @@ description: |
- 
- allOf:
-   - $ref: "mtd.yaml#"
-+  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
-index 2d0cac642427..4aeecd0abb68 100644
---- a/Documentation/devicetree/bindings/serial/8250.yaml
-+++ b/Documentation/devicetree/bindings/serial/8250.yaml
-@@ -11,6 +11,7 @@ maintainers:
- 
- allOf:
-   - $ref: serial.yaml#
-+  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
-   - if:
-       anyOf:
-         - required:
-diff --git a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
-index ab9641e845db..38079e1b6a44 100644
---- a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
-@@ -8,6 +8,7 @@ title: Maxim 63xx Watchdog Timers
- 
- allOf:
-   - $ref: "watchdog.yaml#"
-+  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
- 
- maintainers:
-   - Marc Zyngier <maz@kernel.org>
+ patternProperties:
+-  ".*":
++  "^bluetooth|gnss|gps|mcu$":
+     if:
+       type: object
+     then:
 -- 
 2.34.1
 
