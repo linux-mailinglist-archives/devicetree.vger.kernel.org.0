@@ -2,131 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B85367F06B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 22:28:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC50467F077
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 22:35:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbjA0V2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 16:28:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45672 "EHLO
+        id S229447AbjA0Vfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 16:35:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231686AbjA0V1b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 16:27:31 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16F4A39BB6
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:27:30 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id m15so4324986wms.4
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:27:29 -0800 (PST)
+        with ESMTP id S229468AbjA0Vfj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 16:35:39 -0500
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A28B5AA59
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:35:38 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id z1so1169658pfg.12
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:35:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wufxP51EWGGk9HXvgWg83TOisM7XYlAWLVo728uV5hA=;
-        b=TNh0kQVqhFnNqu+G4pM9Oc4M6cePC/63S8gdsyMqkTslrWbQDlS/J9kJFWBMD1uYQq
-         GC8WJIGE+wIbDdmM20nqVIGiSx2tV1fXN9W0yoVcq18u46qVw/Y1aIxbkPjlL8CV2gbP
-         X7UfnZFWSCxDk8Z5VmyGvbZ0HnT+9b2idsd3AvkP3853iFpWojQFHF4njPIeOdDQp0nz
-         zJFF1xQWjcZ5Sqfw0KQCRzwFvmndDMTDTVrExJt7qMNa+Z6/DAONPWkeCzaIoVCs0bZ0
-         IaKQzSVcBq0jXX5ckuKrSgK3YPg5bUb8I/W0u5zWZliCUxuOWJN0ApMETnFd9MrV++Z6
-         8meQ==
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ct9ck9vkM14O2ZHT6Pqc9iBFx3XHxaDWOS1C2RoVEAU=;
+        b=YcZG93rCx580JM+/kJQjqJNGa6Jgb6/qZiN5/YfvP4kIVBbWkUzJ8hwxXNlx8Ewpwo
+         LqnLq1rlR7zfYs9S4f0XcmnwRYZDOvhEUroawwmqv2wyiiIIaIK8TvTrrGC/9Q5a4i7o
+         /H9LS2x4jHEq2tldPYhckGPvwPm/D6ztPdWkLVVNLbhVASfIVLJ7VdQvtLLDOtAbpZDl
+         mOQv0isg2ZCsQdiIbaXX0WC3KR9suV8MFrv41WyqGXwMi55LYe1tgFvcvKD6WR3wetWZ
+         itqs0kGWR9UYPR5om9kTa4s6pQeQceN/FpGWkJJLYK96iPp3ebtI0ncdPp7Y4tYKAGB9
+         WMvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wufxP51EWGGk9HXvgWg83TOisM7XYlAWLVo728uV5hA=;
-        b=Dc1Q7N/Hsg325kqiIVsWrWyZBDWMVrDhWR+sxneWjD3R2vZG5gJWUK932tgFbHCfxm
-         UdujJmS1GAd8tFD+8K84jjKvqybv4A36VAFPxjxmr/q8MWiAs1UjpsAi3WiASc2BNgxd
-         BDsrRmyso0yO0qL0GBcyBlExy9rr0ksI9mHI+lRNkoB/ALeilfj2hjDXht0cmYEEJQqm
-         KDYHiJcvJd29GA5FsD+uKv/sNkUBdXFf7j4ZNEKNv09M4zIXg+YyCt3H01daYTQHfkcU
-         ztkgZ6D4Q/9y6xBj07fBlFQGKIE0XaZE+iXCtiiYPYYrqlm7nZU36zyUeyt77SJNGX5e
-         JY+A==
-X-Gm-Message-State: AFqh2krx6Sz23emH8zM88ASFxCMdiQlpQtrKdHY/Hyiyc4oHZniREt4r
-        cErEOoI53GfE2JcXlO5wYC97FA==
-X-Google-Smtp-Source: AMrXdXuxJSnrinJ8RLzt8CTuozc6iwrAzQwFHVN8Hco1FzCN0sBy5xGjIVn+L+D1CcmXgSb3sQWagg==
-X-Received: by 2002:a05:600c:35d0:b0:3db:c4c:9224 with SMTP id r16-20020a05600c35d000b003db0c4c9224mr40221166wmq.3.1674854849674;
-        Fri, 27 Jan 2023 13:27:29 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d11-20020a05600c3acb00b003db30be4a54sm8645303wms.38.2023.01.27.13.27.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 13:27:29 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
-        Henrik Grimler <henrik@grimler.se>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RFT PATCH v3 4/4] arm64: dts: exynos: add unit address to DWC3 node wrapper in Exynos7
-Date:   Fri, 27 Jan 2023 22:27:13 +0100
-Message-Id: <20230127212713.267014-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230127212713.267014-1-krzysztof.kozlowski@linaro.org>
-References: <20230127212713.267014-1-krzysztof.kozlowski@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ct9ck9vkM14O2ZHT6Pqc9iBFx3XHxaDWOS1C2RoVEAU=;
+        b=DjY4qiUlZvVA/BdqETt8cqJREG1ZFv7e28FOqd14j4Y9E+Wf3Ctbnk2XgGKzRPvzPS
+         gVRxstG41YsjbTII9Ox85g6g6W+9CuW2fH2A4fLK3ta4WXmJ/QiewfuwjyB5rrE1Ojl1
+         k+jiydDnJWCkjoxgq/N3CkghadNNwTEsZbyhi4KkddaYZyp4AeON0T0VFJy8sCNFfiQb
+         FJM9h/3SqQDfa4Tc7wQZd8HLaAlAcWrlVXR2m36Vx3zZuX2fbzQXWVyXspJ9Z6OIgx1T
+         Fyh9MgiGmB9TpfFZYng/5kftqYdMRMwiTCP/H8ngq8ySPXMmR8YD4vcKPxNxXDqktAdY
+         wFjw==
+X-Gm-Message-State: AO0yUKXLMtNTk3MNy3XS7ilrLUBphate5Fag3lApfR5XMal+ALu9EILM
+        6KMleIZv8ZJbyPjBq0SpiHgcEnzsUlSNjNcytnc2hg==
+X-Google-Smtp-Source: AK7set8A87a1b6gwb4OnNq2XRUc7qhsa9qKHiaWo49QwN+9e+0qsFtowQYDUOK06dTepf46OknaZKx06adJ0S04TZoY=
+X-Received: by 2002:aa7:91d3:0:b0:592:61cc:5aeb with SMTP id
+ z19-20020aa791d3000000b0059261cc5aebmr608421pfa.59.1674855336983; Fri, 27 Jan
+ 2023 13:35:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230127001141.407071-1-saravanak@google.com> <Y9Q0culPHGNZkQz9@euler>
+In-Reply-To: <Y9Q0culPHGNZkQz9@euler>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 27 Jan 2023 13:35:00 -0800
+Message-ID: <CAGETcx9oohQ0SeHGQNsbVpitG-freYhbTUm34TbzMQAeLGjSfw@mail.gmail.com>
+Subject: Re: [PATCH v2 00/11] fw_devlink improvements
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Linux Kernel Functional Testing <lkft@linaro.org>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Maxim Kiselev <bigunclemax@gmail.com>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Jean-Philippe Brucker <jpb@kernel.org>,
+        kernel-team@android.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neither simple-bus bindings nor dtc W=1 accept device nodes in soc@ node
-which do not have unit address.  Therefore usethe address space
-of child device (actual DWC3 Controller) as the wrapper's address to
-fix:
+On Fri, Jan 27, 2023 at 12:30 PM Colin Foster
+<colin.foster@in-advantage.com> wrote:
+>
+> On Thu, Jan 26, 2023 at 04:11:27PM -0800, Saravana Kannan wrote:
+> > Dmitry, Maxim(s), Miquel, Luca, Doug, Colin, Martin, Jean-Philippe,
+> >
+> > I've Cc-ed you because I had pointed you to v1 of this series + the
+> > patches in that thread at one point or another as a fix to some issue
+> > you were facing. It'd appreciate it if you can test this series and
+> > report any issues, or things it fixed and give Tested-bys.
+>
+> I applied this on my working net-next/main development branch and can
+> confirm I am able to successfully boot the Beaglebone Black.
+>
+> Tested-by: Colin Foster <colin.foster@in-advantage.com>
 
-  exynos7-espresso.dtb: soc@0: usb: {'compatible': ['samsung,exynos7-dwusb3'], ...
-    should not be valid under {'type': 'object'}
+Thanks!
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-Changes since v1:
-1. New patch
----
- arch/arm64/boot/dts/exynos/exynos7.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-index 82fee1b7caab..b1fa68835b09 100644
---- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-@@ -690,7 +690,7 @@ usbdrd_phy: phy@15500000 {
- 			#phy-cells = <1>;
- 		};
- 
--		usbdrd: usb {
-+		usbdrd: usb@15400000 {
- 			compatible = "samsung,exynos7-dwusb3";
- 			clocks = <&clock_fsys0 ACLK_USBDRD300>,
- 			       <&clock_fsys0 SCLK_USBDRD300_SUSPENDCLK>,
-@@ -699,11 +699,11 @@ usbdrd: usb {
- 				"usbdrd30_axius_clk";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--			ranges;
-+			ranges = <0x0 0x15400000 0x10000>;
- 
--			usb@15400000 {
-+			usb@0 {
- 				compatible = "snps,dwc3";
--				reg = <0x15400000 0x10000>;
-+				reg = <0x0 0x10000>;
- 				interrupts = <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
- 				phys = <&usbdrd_phy 0>, <&usbdrd_phy 1>;
- 				phy-names = "usb2-phy", "usb3-phy";
--- 
-2.34.1
-
+-Saravana
