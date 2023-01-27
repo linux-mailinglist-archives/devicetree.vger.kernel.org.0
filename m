@@ -2,103 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8427567E00C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 10:26:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 786AE67E013
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 10:27:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232835AbjA0J0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 04:26:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40862 "EHLO
+        id S232632AbjA0J1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 04:27:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232625AbjA0J0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 04:26:22 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 993AB2E0EC
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 01:26:19 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso4957621wmn.5
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 01:26:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=v5COxBprWoYF2NZbM6nFunPs6wim8IJQ/3Q4uq8c1i0=;
-        b=SFcbJxSySu8U3h4WZZ3E1nR8C4sPPzTPRNZ7K98L/Bkepe+HG40+6AyUL/HBBpKbU5
-         pqeHmB72hGSpVncRcEOzTTEQb8L6tl0mCpZeiPJD42qyCZ6akNXLiAFvbUmY3qoQhrrL
-         dqb0IHjkfJgBlBqSFjOAmkplxZwICCv+KwB15UW3+s1P1814IS7nE70RMwL5fH/3XDu0
-         aUHFnuuN9o3WQz9ircYFPlFKXJCir+cw9k+4Tuwg4iS3rbAYutGe/5YsTm6VsilmVkeq
-         2zKvRiN98+NlSb0hHazPLDLZr/4Ud3K/lXPxFj7yK9/hc7cZ9BEX/PweZGe40VueR6Z1
-         O8cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v5COxBprWoYF2NZbM6nFunPs6wim8IJQ/3Q4uq8c1i0=;
-        b=Rw72UOTRb+DSSTYDrJaWNwvRDfZ+HvD+MYUTxZGF9lXHk9HC2AM9ECjxo4Voe+VIYP
-         c7JbJhbTZBlRfzhF9aJaxbnjHo/K8VwfaBayvgX+kobhMnpEboAFKswsWwtoqQYHRQbC
-         Od7okiBN5z4K64aeDZ6UNeG8vFW19hru/75jHC6zTcDeoxK+AvVTHe6+cdLM4uVmEB24
-         KS6UG1nnrKq6QCZLfdwVzSbYwO/Yw2330S/4TgrNGA7JVD6O01z9dU3ViJx/WiU29aRI
-         1dm+gvOMy0GVPmNZjovzOUA+xM1zHnPzMlGMmg/45Bre8oT9gPROIeNHJSI0RhBNEL/l
-         /mfA==
-X-Gm-Message-State: AFqh2krnOhw6aohHNIg9aEx9hjCDBtHZ7gSPcfCYUrxypGR+ole7So0x
-        bg4rmvun3MkF7qXNK5ytR6tl0Q==
-X-Google-Smtp-Source: AMrXdXv7un7XD0R7Z9M5OlGnu3Y1MewDZOALuQiC/9rrvr9/f9d/RnC3xQ2hnrUq4eaGGkWTcZHlig==
-X-Received: by 2002:a05:600c:3d9b:b0:3db:1afd:ac36 with SMTP id bi27-20020a05600c3d9b00b003db1afdac36mr33060394wmb.32.1674811577886;
-        Fri, 27 Jan 2023 01:26:17 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:624:f1a4:edb9:78d5])
-        by smtp.gmail.com with ESMTPSA id l4-20020a05600c1d0400b003db2e3f2c7csm15613178wms.0.2023.01.27.01.26.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 01:26:17 -0800 (PST)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Eric Chanudet <echanude@redhat.com>
-Subject: [PATCH] dt-bindings: interconnect: qcom,sa8775p-rpmh: fix a typo
-Date:   Fri, 27 Jan 2023 10:26:15 +0100
-Message-Id: <20230127092615.39690-1-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
+        with ESMTP id S232048AbjA0J1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 04:27:15 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E17E8E;
+        Fri, 27 Jan 2023 01:27:14 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CEFE2B82003;
+        Fri, 27 Jan 2023 09:27:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 725C0C433D2;
+        Fri, 27 Jan 2023 09:27:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674811631;
+        bh=IP8XQVekAM9mHuY06ZWqOuoTQwvtHPkkz3YM+kuwnDM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XmHpi6saycX0TD7QFyrQvbWBBTZvGSrIKTqLU+PphCv4rAmWQBpoUAuGRbjOwvC1B
+         Tz1Mk6gutw/NJgv7RoUle8L4bngrf7EaKLKeym3oE5RwUfEOHRSvhp+lW1qIwlgvwM
+         2GFNlpIZgrOjXmaqYyEypGiVBsAPKqYmD5p0PisIoTT6erSqDaB0J3NNnnfx9b7uS1
+         ejxywKxpejXwwNaZM2rVAnhmrDGUPZxxoPS05AZOPwik93Saml7WkC2c2vGq4w3tRg
+         IeWv21FbymR9FVDnD0V0Z1X7++3wPJAyRYM5ftiO2Z9XzNK25Iuo1QQnWJ3XJEwd1u
+         9OohtF2l+m45w==
+Date:   Fri, 27 Jan 2023 09:27:04 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc:     patchwork-bot+bluetooth@kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>, pavel@ucw.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        robh@kernel.org
+Subject: Re: [PATCH v2] dt-bindings: leds: Document Bluetooth and WLAN
+ triggers
+Message-ID: <Y9OY6GBAePQ/Y6R2@google.com>
+References: <0d0de1bc949d24e08174205c13c0b59bd73c1ea8.1674384302.git.geert+renesas@glider.be>
+ <167460363944.4058.4676712965831302643.git-patchwork-notify@kernel.org>
+ <Y9FG5Wg0PmP4zfV6@google.com>
+ <CABBYNZJEU-GD5J6K8_Ur4PWLvP10VNJGP7e_43H0=W3DOS=PNw@mail.gmail.com>
+ <Y9IzMWnOq+r2/4V2@google.com>
+ <CABBYNZ+Na7os7D_C_iV22UhyhobxiETjKkngPWVr14QAph6DfQ@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <CABBYNZ+Na7os7D_C_iV22UhyhobxiETjKkngPWVr14QAph6DfQ@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Thu, 26 Jan 2023, Luiz Augusto von Dentz wrote:
 
-The name of the chip is sa8775p, not sa8875p.
+> Hi Lee,
+> 
+> On Thu, Jan 26, 2023 at 12:00 AM Lee Jones <lee@kernel.org> wrote:
+> >
+> > On Wed, 25 Jan 2023, Luiz Augusto von Dentz wrote:
+> >
+> > > Hi Lee,
+> > >
+> > > On Wed, Jan 25, 2023 at 7:16 AM Lee Jones <lee@kernel.org> wrote:
+> > > >
+> > > > On Tue, 24 Jan 2023, patchwork-bot+bluetooth@kernel.org wrote:
+> > > >
+> > > > > Hello:
+> > > > >
+> > > > > This patch was applied to bluetooth/bluetooth-next.git (master)
+> > > > > by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+> > > > >
+> > > > > On Sun, 22 Jan 2023 11:47:27 +0100 you wrote:
+> > > > > > Add the missing trigger patterns for Bluetooth and WLAN activity, which
+> > > > > > are already in active use.
+> > > > > >
+> > > > > > While at it, move the mmc pattern comment where it belongs, and restore
+> > > > > > alphabetical sort order.
+> > > > > >
+> > > > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > > >
+> > > > > > [...]
+> > > > >
+> > > > > Here is the summary with links:
+> > > > >   - [v2] dt-bindings: leds: Document Bluetooth and WLAN triggers
+> > > > >     https://git.kernel.org/bluetooth/bluetooth-next/c/ef017002b93b
+> > > >
+> > > > Why are you taking LED patches through the Bluetooth tree?
+> > >
+> > > I assume there isn't a tree dedicated to dt-bindings/leds
+> >
+> > % ./scripts/get_maintainer.pl -f Documentation/devicetree/bindings/leds/common.yaml
+> >  Pavel Machek <pavel@ucw.cz> (maintainer:LED SUBSYSTEM,in file)
+> >  Lee Jones <lee@kernel.org> (maintainer:LED SUBSYSTEM)
+> >  Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> >  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> >  Jacek Anaszewski <jacek.anaszewski@gmail.com> (in file)
+> >  linux-leds@vger.kernel.org (open list:LED SUBSYSTEM)
+> >  devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> >  linux-kernel@vger.kernel.org (open list)
+> 
+> Well this doesn't tell us what parts of the dt_bindings have a
+> dedicated tree and which doesn't, anyway this doesn't show
+> linux-bluetooth so I wonder why people are CCing it.
 
-Reported-by: Eric Chanudet <echanude@redhat.com>
-Link: https://lore.kernel.org/lkml/20230126203618.nbqwppaddncq7on7@echanude/
-Fixes: 2579af94c813 ("dt-bindings: interconnect: qcom: document the interconnects for sa8775p")
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- .../devicetree/bindings/interconnect/qcom,sa8775p-rpmh.yaml     | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+It is not possible to infer responsibilities from how contributors craft
+their submissions.  The only reliable way to do that is to check the
+MAINTAINERS file.
 
-diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sa8775p-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sa8775p-rpmh.yaml
-index 672c7aaa8ed7..2e0c0bc7a376 100644
---- a/Documentation/devicetree/bindings/interconnect/qcom,sa8775p-rpmh.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/qcom,sa8775p-rpmh.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/interconnect/qcom,sa8775p-rpmh.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Qualcomm RPMh Network-On-Chip Interconnect on SA8875P
-+title: Qualcomm RPMh Network-On-Chip Interconnect on SA8775P
- 
- maintainers:
-   - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+According to the MAINTAINERS excerpt below [0] if a commit only touches
+files contained in; drivers/bluetooth/, include/net/bluetooth/ and/or
+net/bluetooth/ AND there are no build-time dependencies or dependents,
+they are yours to process how you see fit.  However, if commits ALSO touch
+files outside of those directories OR do have dependencies or
+dependents, you will need to consult with the other affected maintainers
+to agree on a strategy for merging them.  If the aforementioned
+directories are not touched (as in this case), you can safely ignore
+them - regardless of which mailing list(s) or individual's inboxes they
+end up in.
+
+Does that help at all?
+
+[0]
+
+BLUETOOTH DRIVERS
+M:      Marcel Holtmann <marcel@holtmann.org>
+M:      Johan Hedberg <johan.hedberg@gmail.com>
+M:      Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+L:      linux-bluetooth@vger.kernel.org
+S:      Supported
+W:      http://www.bluez.org/
+T:      git git://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth.git
+T:      git git://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.g
+F:      drivers/bluetooth/
+
+BLUETOOTH SUBSYSTEM
+M:      Marcel Holtmann <marcel@holtmann.org>
+M:      Johan Hedberg <johan.hedberg@gmail.com>
+M:      Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+L:      linux-bluetooth@vger.kernel.org
+S:      Supported
+W:      http://www.bluez.org/
+T:      git git://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth.git
+T:      git git://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.g
+F:      include/net/bluetooth/
+F:      net/bluetooth/
+
 -- 
-2.37.2
-
+Lee Jones [李琼斯]
