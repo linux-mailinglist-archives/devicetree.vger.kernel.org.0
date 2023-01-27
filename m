@@ -2,351 +2,414 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F06F67DB36
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 02:26:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBCA267DB3A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 02:26:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229500AbjA0B0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 20:26:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52802 "EHLO
+        id S233071AbjA0B0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Jan 2023 20:26:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjA0B0H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 20:26:07 -0500
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 194A870D4B;
-        Thu, 26 Jan 2023 17:26:03 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 7494B5C0135;
-        Thu, 26 Jan 2023 20:26:02 -0500 (EST)
-Received: from imap50 ([10.202.2.100])
-  by compute6.internal (MEProxy); Thu, 26 Jan 2023 20:26:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1674782762; x=1674869162; bh=Uyn0GCb5o1
-        bYMEPxxSY7qoZaJF2u/eBouvclgqEGYes=; b=rhat66Sh6eYyGObGxIkD/EWNQg
-        JKvbUVYX10pRzk9Ged0gEkz0f9LhlTQA1l7TC5/6pMwYp92TfY+2xJs2Q44tadj+
-        Ls6riwBS9xH5Eewf7dhMpooVqKwUk10aWzstBs29fQVAKW41xEAxE3mLxFybRSQe
-        4spyHFJHPjaT/Arkh6Zkof0Y34QH97vRKb42E8mxtrqNIGzefyZHFemaM0NEDz3K
-        rDGnxjuOzQ20qKF2cXltrusbS1pj6mzcjUl+FF8FpGyNUkS0uba4I0hod9cX9skW
-        Rhwmqs+W5+OYFtTq2bpWnF3smqzLx0pqFE2SaO5Yymy2KDsllFfsXmDI8Hqw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1674782762; x=1674869162; bh=Uyn0GCb5o1bYMEPxxSY7qoZaJF2u
-        /eBouvclgqEGYes=; b=rAj+HX9Qw8w2KD1Z/zkagCzwp+IvHeUWzcy9RwuQCmk2
-        mtJyBbpWJySHgAgBeY3uoAcjxETMLJg18x7063vMHnWUMlO2Iz2g7Ww0gwPqws48
-        z5XftvKHknrdl1Q04Tw8hJNZwgtapGrxGQomSemb1ApeGePeWHvt90HvuVXkpmTB
-        5gVcfjYK3FVghntv6bLsvlXn6cAmEv1FxV4k394pzYCMCl1LT8KHsAL+vct5b51y
-        P9bvygBd851MjrvPdAGpGCgiE2b6Wh7DZ8VZu1T6L0cLqPQnc6cP8sipsKF+KsCe
-        hMiQC5Jeb7XsEUXvkej9a93mlq6ud0v/EOMooLonOg==
-X-ME-Sender: <xms:KSjTY2eXS2BWDg6iWEiKJEcgNNczN8Ro_DGxrwUtttcN8ujdRIjp8Q>
-    <xme:KSjTYwMdIBexrBocVFbDv3P3-Gb6cXl2rENw57Zcbby64zQw2ufVHa8euJWNZjFCT
-    rFqtbBTWX_hlZ3Xxg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddvhedgfeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehn
-    ughrvgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtf
-    frrghtthgvrhhnpeekvdekjeekgfejudffteetgeejkeetteduvedtffdtledutdfhheev
-    feetkeeiteenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpegrnhgurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:KSjTY3hk4QJ_1VhEhLWVC_ChfvvqVR_iVhNtrwfejk3O7cHrKiH_zw>
-    <xmx:KSjTYz8Dv62T01pmZb6kEUJeppEEGaywzL-_yhMe2QNxl3A09BepQg>
-    <xmx:KSjTYyvAlnMElN35EvEaYj32Es1RjatiwgkrnY4DpPuqINly20W48Q>
-    <xmx:KijTY8JxJ9GqcebEM87A2J_LH4iu6eikdwlg3wFYO8USb00IlLSaJA>
-Feedback-ID: idfb84289:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id B5F621700090; Thu, 26 Jan 2023 20:26:01 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
-Mime-Version: 1.0
-Message-Id: <47d97eb4-cb75-4697-827d-4985012b3c0a@app.fastmail.com>
-In-Reply-To: <20230126213123.884125-3-eajames@linux.ibm.com>
-References: <20230126213123.884125-1-eajames@linux.ibm.com>
- <20230126213123.884125-3-eajames@linux.ibm.com>
-Date:   Fri, 27 Jan 2023 11:55:11 +1030
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Eddie James" <eajames@linux.ibm.com>, linux-fsi@lists.ozlabs.org
-Cc:     linux-trace-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Masami Hiramatsu" <mhiramat@kernel.org>,
-        "Steven Rostedt" <rostedt@goodmis.org>,
-        "Alistair Popple" <alistair@popple.id.au>,
-        "Joel Stanley" <joel@jms.id.au>, "Jeremy Kerr" <jk@ozlabs.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v3 2/2] fsi: Add IBM I2C Responder virtual FSI master
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231569AbjA0B0j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 20:26:39 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36786728C3;
+        Thu, 26 Jan 2023 17:26:37 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id nm12-20020a17090b19cc00b0022c2155cc0bso3462979pjb.4;
+        Thu, 26 Jan 2023 17:26:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9pJQyN7faLrYE8EO01AciosWjQyfo4DJHwV4xwI/r4A=;
+        b=Ron3n+FDTmbB3Ny8uWavRki07ohYmqrhRi+g81ERwiZQzyS75hdrbwe2y8tQEyJQ/o
+         eHWjpJZlOjawAkMihU0YTx8rpqi4eERzG1dakimjCuiM+bgmTtwh4GqOt0mHwWx++Fhx
+         gUQK9a5DQaHUEpW8cUdqTqu0GXdWov607xpFviWi5gv6MrYwzx96pql/rVwT90XvUcuU
+         2R02t66aKB218HORtLQipY43R9UPEKt4ROG/ywhCwtInLNJgGibvr/1F9DF6tw8emcH3
+         3JFDxG5FLTRSXoG9+MVdhcpfnsqvVUhR2ao5Qf2uRaDYGSFckY2l5wm+5NMUgn9NIfiq
+         63tA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9pJQyN7faLrYE8EO01AciosWjQyfo4DJHwV4xwI/r4A=;
+        b=m6WCGAeqKKffRcBMjRpKQ4zatOR5uhyTVTpRMIXbYOoIEp/4hMhYreBmsAJ8GfBuUl
+         Wp+0AYrvSwW6Q5CfD6kvBhnCEnoFrL6NNfqmAL9OmRYOkMLub6RA0BR5NfstZuaqqhwa
+         4Am3TA/RVfrkrfuU99mWb0pP2C8tCCKeCnWi9t/je0G3wYW4eCG4pkE+aYXp3ZN1HjEk
+         FD12xj6HoZIuRB0u20uE6nIRCQyM+IwrXyxnUKZtUMW/mBgujAw5dT7MtYmhvpplZXca
+         xxS6ApKQmN+HaeoihQbClRJNsIy+PzOcO7M4WCa3GLBeT4CwMGGQvfEaymG8l193ZuLF
+         jlHQ==
+X-Gm-Message-State: AFqh2koEVBihCLRn9pHdvNiObmuptEo8nD1oRQ65q99NAE2q7EDNeUfy
+        fAl5gxOlOGhU521rVCNYEaPteBg6DjvxavgCeck=
+X-Google-Smtp-Source: AMrXdXtyYtizWODHV57rm7EKOYp1lLdm48iOPp/yWhpioZKLnZmtxcPLw0uRj3ABDDrRL3gxNonmJw9uJC2kMs8pI4A=
+X-Received: by 2002:a17:902:714c:b0:195:eb15:6ed0 with SMTP id
+ u12-20020a170902714c00b00195eb156ed0mr2970428plm.19.1674782795984; Thu, 26
+ Jan 2023 17:26:35 -0800 (PST)
+MIME-Version: 1.0
+References: <20230126003320.10047-1-laurent.pinchart@ideasonboard.com>
+ <20230126003320.10047-2-laurent.pinchart@ideasonboard.com>
+ <CAHCN7x+PcBk-Y+t3AP4saJK=tntYr85btTzQMFD=WL+KYQfHGg@mail.gmail.com>
+ <Y9Jehk+qOXkaI3SH@pendragon.ideasonboard.com> <Y9Jvm1GxfNRhPBP/@pendragon.ideasonboard.com>
+ <CAHCN7x+GO7mL9myhqP4xGe12_wAF37rr8n5TcN7Cx8a=gOytPQ@mail.gmail.com>
+ <Y9KsHnQWIRTWzVoT@pendragon.ideasonboard.com> <CAHCN7xLT512MxNhdysqNTO38fiCVpAdu1Z-Qen3Mjp+pPKGEhQ@mail.gmail.com>
+In-Reply-To: <CAHCN7xLT512MxNhdysqNTO38fiCVpAdu1Z-Qen3Mjp+pPKGEhQ@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Thu, 26 Jan 2023 19:26:24 -0600
+Message-ID: <CAHCN7xL_TYHthQLPvtphqhn70LQsEPXayQTu_3WFVqibLrLKVw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: media: Add i.MX8 ISI DT bindings
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
+        linux-imx@nxp.com, kernel@pengutronix.de,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eddie,
-
-On Fri, 27 Jan 2023, at 08:01, Eddie James wrote:
-> The I2C Responder (I2CR) is an I2C device that translates I2C commands
-> to CFAM or SCOM operations, effectively implementing an FSI master and
-> bus.
+On Thu, Jan 26, 2023 at 12:25 PM Adam Ford <aford173@gmail.com> wrote:
 >
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
->  drivers/fsi/Kconfig                    |   9 +
->  drivers/fsi/Makefile                   |   1 +
->  drivers/fsi/fsi-master-i2cr.c          | 225 +++++++++++++++++++++++++
->  include/trace/events/fsi_master_i2cr.h |  96 +++++++++++
->  4 files changed, 331 insertions(+)
->  create mode 100644 drivers/fsi/fsi-master-i2cr.c
->  create mode 100644 include/trace/events/fsi_master_i2cr.h
+> On Thu, Jan 26, 2023 at 10:36 AM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
+> >
+> > Hi Adam,
+> >
+> > On Thu, Jan 26, 2023 at 07:04:09AM -0600, Adam Ford wrote:
+> > > On Thu, Jan 26, 2023 at 6:18 AM Laurent Pinchart wrote:
+> > > > On Thu, Jan 26, 2023 at 01:05:43PM +0200, Laurent Pinchart wrote:
+> > > > > On Wed, Jan 25, 2023 at 08:36:41PM -0600, Adam Ford wrote:
+> > > > > > On Wed, Jan 25, 2023 at 6:33 PM Laurent Pinchart wrote:
+> > > > > > >
+> > > > > > > The Image Sensing Interface (ISI) combines image processing pipelines
+> > > > > > > with DMA engines to process and capture frames originating from a
+> > > > > > > variety of sources. The inputs to the ISI go through Pixel Link
+> > > > > > > interfaces, and their number and nature is SoC-dependent. They cover
+> > > > > > > both capture interfaces (MIPI CSI-2 RX, HDMI RX) and memory inputs.
+> > > > > > >
+> > > > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > > > > ---
+> > > > > > > Changes since v2:
+> > > > > > >
+> > > > > > > - Describe the interrupts property
+> > > > > > > - Set global minItems and maxItems for interrupts
+> > > > > > > - Set maxItems for power-domains
+> > > > > > >
+> > > > > > > Changes since v1:
+> > > > > > >
+> > > > > > > - Fix compatible string checks in conditional schema
+> > > > > > > - Fix interrupts property handling
+> > > > > > > ---
+> > > > > > >  .../bindings/media/nxp,imx8-isi.yaml          | 152 ++++++++++++++++++
+> > > > > > >  1 file changed, 152 insertions(+)
+> > > > > > >  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> > > > > > >
+> > > > > > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> > > > > > > new file mode 100644
+> > > > > > > index 000000000000..130fa41b9d8e
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> > > > > > > @@ -0,0 +1,152 @@
+> > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > > +%YAML 1.2
+> > > > > > > +---
+> > > > > > > +$id: http://devicetree.org/schemas/media/nxp,imx8-isi.yaml#
+> > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > +
+> > > > > > > +title: i.MX8 Image Sensing Interface
+> > > > > > > +
+> > > > > > > +maintainers:
+> > > > > > > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > > > > +
+> > > > > > > +description: |
+> > > > > > > +  The Image Sensing Interface (ISI) combines image processing pipelines with
+> > > > > > > +  DMA engines to process and capture frames originating from a variety of
+> > > > > > > +  sources. The inputs to the ISI go through Pixel Link interfaces, and their
+> > > > > > > +  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
+> > > > > > > +  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
+> > > > > > > +
+> > > > > > > +properties:
+> > > > > > > +  compatible:
+> > > > > > > +    enum:
+> > > > > > > +      - fsl,imx8mn-isi
+> > > > > > > +      - fsl,imx8mp-isi
+> > > > > > > +
+> > > > > > > +  reg:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  clocks:
+> > > > > > > +    items:
+> > > > > > > +      - description: The AXI clock
+> > > > > > > +      - description: The APB clock
+> > > > > > > +      # TODO: Check if the per-channel ipg_proc_clk clocks need to be specified
+> > > > > > > +      # as well, in case some SoCs have the ability to control them separately.
+> > > > > > > +      # This may be the case of the i.MX8[DQ]X(P)
+> > > > > > > +
+> > > > > > > +  clock-names:
+> > > > > > > +    items:
+> > > > > > > +      - const: axi
+> > > > > > > +      - const: apb
+> > > > > > > +
+> > > > > > > +  fsl,blk-ctrl:
+> > > > > > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > > > > > +    description:
+> > > > > > > +      A phandle referencing the block control that contains the CSIS to ISI
+> > > > > > > +      gasket.
+> > > > > > > +
+> > > > > > > +  interrupts:
+> > > > > > > +    description: Processing pipeline interrupts, one per pipeline
+> > > > > > > +    minItems: 1
+> > > > > > > +    maxItems: 2
+> > > > > > > +
+> > > > > > > +  power-domains:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  ports:
+> > > > > > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > > > > > +    description: |
+> > > > > > > +      Ports represent the Pixel Link inputs to the ISI. Their number and
+> > > > > > > +      assignment are model-dependent. Each port shall have a single endpoint.
+> > > > > > > +
+> > > > > > > +    patternProperties:
+> > > > > > > +      "^port@[0-9]$":
+> > > > > > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > > > > > +        unevaluatedProperties: false
+> > > > > > > +
+> > > > > > > +    unevaluatedProperties: false
+> > > > > > > +
+> > > > > > > +required:
+> > > > > > > +  - compatible
+> > > > > > > +  - reg
+> > > > > > > +  - interrupts
+> > > > > > > +  - clocks
+> > > > > > > +  - clock-names
+> > > > > > > +  - fsl,blk-ctrl
+> > > > > > > +  - ports
+> > > > > > > +
+> > > > > > > +allOf:
+> > > > > > > +  - if:
+> > > > > > > +      properties:
+> > > > > > > +        compatible:
+> > > > > > > +          contains:
+> > > > > > > +            const: fsl,imx8mn-isi
+> > > > > > > +    then:
+> > > > > > > +      properties:
+> > > > > > > +        interrupts:
+> > > > > > > +          maxItems: 1
+> > > > > > > +        ports:
+> > > > > > > +          properties:
+> > > > > > > +            port@0:
+> > > > > > > +              description: MIPI CSI-2 RX
+> > > > > > > +          required:
+> > > > > > > +            - port@0
+> > > > > >
+> > > > > > The imx8mn only has one port for the ISI.  When I compile the device
+> > > > > > tree with W=1, I get the following:
+> > > > > > arch/arm64/boot/dts/freescale/imx8mn.dtsi:1058.11-1068.7: Warning
+> > > > > > (graph_child_address): /soc@0/bus@32c00000/isi@32e20000/ports: graph
+> > > > > > node has single child node 'port@0', #address-cells/#size-cells are
+> > > > > > not necessary
+> > > > >
+> > > > > The only appropriate answer to this is of course aaaarrrrghhhhhhhh.
+> > > > >
+> > > > > > Should the "ports" node be replaced with a single port with port@0 removed?
+> > > > > >
+> > > > > > The device tree would look something like:
+> > > > > >
+> > > > > > port {
+> > > > > >     isi_in: endpoint {
+> > > > > >         remote-endpoint = <&mipi_csi_out>;
+> > > > > >     };
+> > > > > > };
+> > > > >
+> > > > > I understand why DT tools (and before them, DT maintainers) recommend
+> > > > > (or require ?) single-port devices to use the short-hand syntax without
+> > > > > a ports node. In this specific case, or in the more general case of
+> > > > > devices that can have a variable number of ports depending on how
+> > > > > they're instantiated in a particular SoC, allowing a ports node to have
+> > > > > a single port child would be best I believe, as it would make DT
+> > > > > bindings more consistent, and simpler.
+> > > > >
+> > > > > > With the above, the messages go away, and I can still see the media
+> > > > > > pipeline and the video captures.  I am not good with YAML, so I am not
+> > > > > > exactly sure how to code that in YAML form.
+> > > > >
+> > > > > It's possible, and I can do so, but I'll wait for feedback from DT
+> > > > > maintainers.
+> > > >
+> > > > Here's a patch on top of this one to support port/ports depending on the
+> > > > number of ports. Adam, could you test it ? Could you also share the
+> > >
+> > > I can test it tonight.
+> > >
+> > > > i.MX8MN DT node for the ISI ? I'd like to add it as an example to the
+> > > > bindings.
+> > >
+> > > Here is git repo where took your stuff and added the Nano stuff:
+> > >
+> > > https://github.com/aford173/linux/commit/f1ab727b4f6429aab281a3269ff4567008b72de3
+> >
+> > Thanks. I notice you list two interrupt lines there, while the ISI has a
+> > single channel. Is that an oversight ?
 >
-> diff --git a/drivers/fsi/Kconfig b/drivers/fsi/Kconfig
-> index e6668a869913..999be82720c5 100644
-> --- a/drivers/fsi/Kconfig
-> +++ b/drivers/fsi/Kconfig
-> @@ -62,6 +62,15 @@ config FSI_MASTER_ASPEED
-> 
->  	 Enable it for your BMC kernel in an OpenPower or IBM Power system.
-> 
-> +config FSI_MASTER_I2CR
-> +	tristate "IBM I2C Responder virtual FSI master"
-> +	depends on I2C
-> +	help
-> +	  This option enables a virtual FSI master in order to access a CFAM
-> +	  behind an IBM I2C Responder (I2CR) chip. The I2CR is an I2C device
-> +	  that translates I2C commands to CFAM or SCOM operations, effectively
-> +	  implementing an FSI master and bus.
-> +
->  config FSI_SCOM
->  	tristate "SCOM FSI client device driver"
->  	help
-> diff --git a/drivers/fsi/Makefile b/drivers/fsi/Makefile
-> index da218a1ad8e1..34dbaa1c452e 100644
-> --- a/drivers/fsi/Makefile
-> +++ b/drivers/fsi/Makefile
-> @@ -4,6 +4,7 @@ obj-$(CONFIG_FSI) += fsi-core.o
->  obj-$(CONFIG_FSI_MASTER_HUB) += fsi-master-hub.o
->  obj-$(CONFIG_FSI_MASTER_ASPEED) += fsi-master-aspeed.o
->  obj-$(CONFIG_FSI_MASTER_GPIO) += fsi-master-gpio.o
-> +obj-$(CONFIG_FSI_MASTER_I2CR) += fsi-master-i2cr.o
->  obj-$(CONFIG_FSI_MASTER_AST_CF) += fsi-master-ast-cf.o
->  obj-$(CONFIG_FSI_SCOM) += fsi-scom.o
->  obj-$(CONFIG_FSI_SBEFIFO) += fsi-sbefifo.o
-> diff --git a/drivers/fsi/fsi-master-i2cr.c 
-> b/drivers/fsi/fsi-master-i2cr.c
-> new file mode 100644
-> index 000000000000..0eadc9b26063
-> --- /dev/null
-> +++ b/drivers/fsi/fsi-master-i2cr.c
-> @@ -0,0 +1,225 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/* Copyright (C) IBM Corporation 2023 */
-> +
-> +#include <linux/device.h>
-> +#include <linux/fsi.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/mutex.h>
-> +
-> +#include "fsi-master.h"
-> +
-> +#define CREATE_TRACE_POINTS
-> +#include <trace/events/fsi_master_i2cr.h>
-> +
-> +#define I2CR_ADDRESS_CFAM(a)	((a) >> 2)
-> +#define I2CR_STATUS		0x30001
-> +#define  I2CR_STATUS_ERR	 BIT_ULL(61)
-> +#define I2CR_ERROR		0x30002
-> +
-> +struct fsi_master_i2cr {
-> +	struct fsi_master master;
-> +	struct mutex lock;	/* protect HW access */
-> +	struct i2c_client *client;
-> +};
-> +
-> +static bool i2cr_check_parity(u32 v, bool parity)
-> +{
-> +	u32 i;
-> +
-> +	for (i = 0; i < 32; ++i) {
-> +		if (v & (1 << i))
-> +			parity = !parity;
-> +	}
-> +
-> +	return parity;
-> +}
-> +
-> +static __be32 i2cr_get_command(u32 address, bool parity)
-> +{
-> +	__be32 command;
-> +
-> +	address <<= 1;
-> +
-> +	if (i2cr_check_parity(address, parity))
-> +		address |= 1;
-> +
-> +	command = cpu_to_be32(address);
-> +	trace_i2cr_command((__force uint32_t)command);
-> +
-> +	return command;
-> +}
-> +
-> +static int i2cr_transfer(struct i2c_client *client, u32 address, 
-> __be64 *data)
-> +{
-> +	struct i2c_msg msgs[2];
-> +	__be32 command;
-> +	int ret;
-> +
-> +	command = i2cr_get_command(address, true);
-> +	msgs[0].addr = client->addr;
-> +	msgs[0].flags = 0;
-> +	msgs[0].len = sizeof(command);
-> +	msgs[0].buf = (__u8 *)&command;
-> +	msgs[1].addr = client->addr;
-> +	msgs[1].flags = I2C_M_RD;
-> +	msgs[1].len = sizeof(*data);
-> +	msgs[1].buf = (__u8 *)data;
-> +
-> +	ret = i2c_transfer(client->adapter, msgs, 2);
-> +	if (ret == 2)
-> +		return 0;
-> +
-> +	trace_i2cr_i2c_error(ret);
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return -EIO;
-> +}
-> +
-> +static int i2cr_check_status(struct i2c_client *client)
-> +{
-> +	__be64 status_be = 0;
-> +	u64 status;
-> +	int ret;
-> +
-> +	ret = i2cr_transfer(client, I2CR_STATUS, &status_be);
-> +	if (ret)
-> +		return ret;
-> +
-> +	status = be64_to_cpu(status_be);
-> +	if (status & I2CR_STATUS_ERR) {
-> +		__be64 error_be = 0;
-> +		u64 error;
-> +
-> +		i2cr_transfer(client, I2CR_ERROR, &error_be);
-> +		error = be64_to_cpu(error_be);
-> +		trace_i2cr_status_error(status, error);
-> +		dev_err(&client->dev, "status:%016llx error:%016llx\n", status, 
-> error);
-> +		return -EREMOTEIO;
-> +	}
-> +
-> +	trace_i2cr_status(status);
-> +	return 0;
-> +}
-> +
-> +static int i2cr_read(struct fsi_master *master, int link, uint8_t id, 
-> uint32_t addr, void *val,
-> +		     size_t size)
-> +{
-> +	struct fsi_master_i2cr *i2cr = container_of(master, struct 
-> fsi_master_i2cr, master);
-> +	__be64 data = 0;
-> +	int ret;
-> +
-> +	if (link || id || (addr & 0xffff0000) || !(size == 1 || size == 2 || 
-> size == 4))
-> +		return -EINVAL;
-> +
-> +	mutex_lock(&i2cr->lock);
-> +
-> +	ret = i2cr_transfer(i2cr->client, I2CR_ADDRESS_CFAM(addr), &data);
-> +	if (ret)
-> +		goto unlock;
-> +
-> +	ret = i2cr_check_status(i2cr->client);
-> +	if (ret)
-> +		goto unlock;
-> +
-> +	trace_i2cr_read(addr, size, (__force uint32_t)data);
-> +	memcpy(val, &data, size);
-> +
-> +unlock:
-> +	mutex_unlock(&i2cr->lock);
-> +	return ret;
-> +}
-> +
-> +static int i2cr_write(struct fsi_master *master, int link, uint8_t id, 
-> uint32_t addr,
-> +		      const void *val, size_t size)
-> +{
-> +	struct fsi_master_i2cr *i2cr = container_of(master, struct 
-> fsi_master_i2cr, master);
-> +	struct {
-> +		__be32 command;
-> +		u32 val;
-> +		u32 rsvd;
-> +	} __packed data = { 0, 0, 0 };
-> +	int ret;
-> +
-> +	if (link || id || (addr & 0xffff0000) || !(size == 1 || size == 2 || 
-> size == 4))
-> +		return -EINVAL;
-> +
-> +	memcpy(&data.val, val, size);
+> The Nano TRM lists interrupt 16 as "ISI Camera Channel 0 Interrupt"
+> and lists interrupt 42 as "ISI Camera Channel 1 Interrupt"
+> It didn't occur to me that channels 1 and 2 are superfluous, but
+> looking at NXP's downstream kernel, they only use 16.
+>
+> The TRM also lists a Channel 2 interrupt as well, but I modeled it
+> after the 8MP example. I can try it again tonight with the 2nd
+> interrupt removed and let you know the outcome.
+> I agree that removing it is likely the right thing to do.
 
-Still nervous about endian mixups here given the buffers in val tend to 
-be pointers to big-endian values but data.val is native-endian (likely 
-little-endian). It probably doesn't matter functionally given we pass 
-the pointer to the packed struct through i2c_master_send(), but do the 
-values come out right in the trace data?
-
-What do you think about adding some commentary outlining the value 
-representations to help with confidence here?
-
-> +	data.command = i2cr_get_command(I2CR_ADDRESS_CFAM(addr),
-> +					i2cr_check_parity(data.val, true));
-> +
-> +	mutex_lock(&i2cr->lock);
-> +
-> +	ret = i2c_master_send(i2cr->client, (const char *)&data, 
-> sizeof(data));
-> +	if (ret == sizeof(data)) {
-> +		ret = i2cr_check_status(i2cr->client);
-> +		if (!ret)
-> +			trace_i2cr_write(addr, size, data.val);
-> +	} else {
-> +		trace_i2cr_i2c_error(ret);
-> +
-> +		if (ret >= 0)
-> +			ret = -EIO;
-> +	}
-
-The i2cr_transfer() call in i2cr_check_status() can error but that 
-won't be traced. Is that intentional? What about this instead?
-
-ret = i2c_master_send(...)
-if (ret == sizeof(data)) {
-    ret = i2cr_check_status(i2cr->client);
-} else {
-    ret = -EIO;
-}
-
-if (ret) {
-    trace_i2cr_i2c_error(ret);
-} else {
-    trace_i2cr_write(addr, size, data.val);
-}
-
-Cheers,
-
-Andrew
+I removed the channel 2 interrupt, and it still works as expected.
+I'll update my git repo.
+>
+> adam
+>
+> >
+> > > Once the bindings are accepted, I'll push this (or similar) patch to the LKML.
+> > >
+> > > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> > > > index cead41a017bf..8bbdc4ed929d 100644
+> > > > --- a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> > > > +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> > > > @@ -52,11 +52,21 @@ properties:
+> > > >    power-domains:
+> > > >      maxItems: 1
+> > > >
+> > > > +  port:
+> > > > +    $ref: /schemas/graph.yaml#/properties/port
+> > > > +    description: |
+> > > > +      The port represents the Pixel Link input to the ISI. It shall have a
+> > > > +      single endpoint. This property is only used for ISI instances with a
+> > > > +      single port (as in the i.MX8MN). For instances that includes multiple
+> > > > +      ports, the 'ports' property shall be used instead.
+> > > > +
+> > > >    ports:
+> > > >      $ref: /schemas/graph.yaml#/properties/ports
+> > > >      description: |
+> > > >        Ports represent the Pixel Link inputs to the ISI. Their number and
+> > > > -      assignment are model-dependent. Each port shall have a single endpoint.
+> > > > +      assignment are model-dependent. For ISI instances that have a single
+> > > > +      port, the 'port' property should be used instead. Each port shall have a
+> > > > +      single endpoint.
+> > > >
+> > > >  required:
+> > > >    - compatible
+> > > > @@ -65,7 +75,6 @@ required:
+> > > >    - clocks
+> > > >    - clock-names
+> > > >    - fsl,blk-ctrl
+> > > > -  - ports
+> > > >
+> > > >  allOf:
+> > > >    - if:
+> > > > @@ -77,12 +86,11 @@ allOf:
+> > > >        properties:
+> > > >          interrupts:
+> > > >            maxItems: 1
+> > > > -        ports:
+> > > > -          properties:
+> > > > -            port@0:
+> > > > -              description: MIPI CSI-2 RX
+> > > > -          required:
+> > > > -            - port@0
+> > > > +        port:
+> > > > +          description: MIPI CSI-2 RX
+> > > > +        ports: false
+> > > > +      required:
+> > > > +        - port
+> > > >
+> > > >    - if:
+> > > >        properties:
+> > > > @@ -93,6 +101,7 @@ allOf:
+> > > >        properties:
+> > > >          interrupts:
+> > > >            maxItems: 2
+> > > > +        port: false
+> > > >          ports:
+> > > >            properties:
+> > > >              port@0:
+> > > > @@ -102,6 +111,8 @@ allOf:
+> > > >            required:
+> > > >              - port@0
+> > > >              - port@1
+> > > > +      required:
+> > > > +        - ports
+> > > >
+> > > >  additionalProperties: false
+> > > >
+> > > > > > > +
+> > > > > > > +  - if:
+> > > > > > > +      properties:
+> > > > > > > +        compatible:
+> > > > > > > +          contains:
+> > > > > > > +            const: fsl,imx8mp-isi
+> > > > > > > +    then:
+> > > > > > > +      properties:
+> > > > > > > +        interrupts:
+> > > > > > > +          maxItems: 2
+> > > > > > > +        ports:
+> > > > > > > +          properties:
+> > > > > > > +            port@0:
+> > > > > > > +              description: MIPI CSI-2 RX 0
+> > > > > > > +            port@1:
+> > > > > > > +              description: MIPI CSI-2 RX 1
+> > > > > > > +          required:
+> > > > > > > +            - port@0
+> > > > > > > +            - port@1
+> > > > > > > +
+> > > > > > > +additionalProperties: false
+> > > > > > > +
+> > > > > > > +examples:
+> > > > > > > +  - |
+> > > > > > > +    #include <dt-bindings/clock/imx8mp-clock.h>
+> > > > > > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > > > > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > > > > > +
+> > > > > > > +    isi@32e00000 {
+> > > > > > > +        compatible = "fsl,imx8mp-isi";
+> > > > > > > +        reg = <0x32e00000 0x4000>;
+> > > > > > > +        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+> > > > > > > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+> > > > > > > +        clocks = <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
+> > > > > > > +                 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
+> > > > > > > +        clock-names = "axi", "apb";
+> > > > > > > +        fsl,blk-ctrl = <&media_blk_ctrl>;
+> > > > > > > +        power-domains = <&mediamix_pd>;
+> > > > > > > +
+> > > > > > > +        ports {
+> > > > > > > +            #address-cells = <1>;
+> > > > > > > +            #size-cells = <0>;
+> > > > > > > +
+> > > > > > > +            port@0 {
+> > > > > > > +                reg = <0>;
+> > > > > > > +                isi_in_0: endpoint {
+> > > > > > > +                    remote-endpoint = <&mipi_csi_0_out>;
+> > > > > > > +                };
+> > > > > > > +            };
+> > > > > > > +
+> > > > > > > +            port@1 {
+> > > > > > > +                reg = <1>;
+> > > > > > > +                isi_in_1: endpoint {
+> > > > > > > +                    remote-endpoint = <&mipi_csi_1_out>;
+> > > > > > > +                };
+> > > > > > > +            };
+> > > > > > > +        };
+> > > > > > > +    };
+> > > > > > > +
+> > > > > > > +...
+> >
+> > --
+> > Regards,
+> >
+> > Laurent Pinchart
