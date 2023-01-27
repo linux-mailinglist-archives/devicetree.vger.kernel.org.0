@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BE1B67EE96
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 20:44:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ABD867EE7D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 20:42:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231889AbjA0Tm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 14:42:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50660 "EHLO
+        id S231636AbjA0Tmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 14:42:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231774AbjA0Tmx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 14:42:53 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A68753BD83
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:42:19 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id h12so5890136wrv.10
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:42:19 -0800 (PST)
+        with ESMTP id S229593AbjA0Tmu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 14:42:50 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ECC079090
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:42:14 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id m7so5902479wru.8
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:42:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vhTZHhvTWH45tyGI0x4uU2VUFxdCNkd8qxpKaMX6L7Y=;
-        b=e2dWa8i6qb8eJW7sdxfl584eKltFPVaJgKseQk3WtgyJ2cNt2DYBn4SO9SH9qgJ2Qo
-         CuzoNnqcjvgl61vDlxJtdCpGstjCbazcEZRpImRp4VnaoVkjfCuMcZ8TPq4++jKBaC/0
-         KZIA+CrKB1cgKIwsSE1jviGl4AJ+5sSq6pC5hpH3Q+0JmpqV8HUyY29YAUKSa+oyzJzt
-         Cygsv1TnrWb9rsyGZIgMh1B2aaiWNuOMsLIFQUXdDDby4m2iKqeUs1Fjv6ZFAtfwKgTV
-         6H2u7SyKE2n7W8C9Obf+NdVoZgPWNsK7QxuYi1B0LaeynW+OypgQPfNhM8DcTTiNdwOu
-         //8g==
+        bh=FIb/cqDE0QEdwTfTF/AFA5NuBZabL9Ys/KRcfgHJZQc=;
+        b=oWy4sZ6gIKCFHxueqjpfjKe7DWfnAojOvONIwiYwpzZjX3rAx+9uwf5lJcI5Wc4qVs
+         S0N0v1tHTL2B5q4M/5cO/f0ScgXOYMCdakGInGdLbInpOhUhgWfA0FkK0xyAKLbE1DQ2
+         yfQ8gf8/ZiJAwBTvXAoIbI0e3rtuiD8qYAmp500vi4R0C+hoRDdgiyKgNM64HAbuNseE
+         tNXLhH4lveMQhsXkqUVlqEL8JnMCl+WgR44T0ptAAZ0cgaCZb8WJFo6J2A6olqMiawcR
+         DQ/W0CoHs9+Akt1Lmv8RocRaZZOXMjA/qsF0SJTWFo2PZS/+/NM9JxKVen+S2s3Y8x0C
+         Zgng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vhTZHhvTWH45tyGI0x4uU2VUFxdCNkd8qxpKaMX6L7Y=;
-        b=D3Ax5iI3t4iy/FFYLRqlEcai5Pb1Cy/I969RjiE9b5yWL2x2zuUlKRbRpvIxrV/cr9
-         Wreknu6U0YaNu0H9SB7lRqCjC2oZAO9I1YAZBGnyLjQ+bQ1Khn0tP/NA0WRq3MvQK22F
-         rIGeKcdS3kB+evczLpVLlnYHY9q9z7UduWDrJUx7xITdxTAhd2O6yAfGEManE9ke2C5H
-         DL1dU+4SFZDJceVK+9JXh1hNyrQ/YfTcj5+nYQ1o8vmlgBOvfqid4Yo+OvzQq9YuEwUn
-         PnrXSqDOyOuNk4bhON7SfK6jRfhsk3S/zLnnSvQe0pQA6qD7l1mSOmyxLygJ3pOMzxpd
-         E/vQ==
-X-Gm-Message-State: AFqh2kovrqRXLH7x3DTPwXvUSYJDwC6nvfDnuVb7PZmFEmvPi3S5YZDU
-        jXEtHnlDbiupY+O9oEzsMuEGLA==
-X-Google-Smtp-Source: AMrXdXs/PEB2tM0xo4K7W3J5nfYXPFlm8AtlFcItNJ0CV+x2XgfOEpsh96Tz7hnOXLSKgop7CBJGFA==
-X-Received: by 2002:a5d:4ec7:0:b0:236:6c33:2130 with SMTP id s7-20020a5d4ec7000000b002366c332130mr30059728wrv.68.1674848474651;
-        Fri, 27 Jan 2023 11:41:14 -0800 (PST)
+        bh=FIb/cqDE0QEdwTfTF/AFA5NuBZabL9Ys/KRcfgHJZQc=;
+        b=7hqmYvoqf9MP/D6gl1fiUMlTFteX52TvFjEMAVtuNBGPyick+rpa9yAOyZ+/Zw7kwD
+         gcbXpcl5TC/h2EVeOLyjRX56dmczo2+B8hvjWKmEUTj9qQ4a/zU9qLvMZaS1HZ14YAf5
+         KbkBZpR6mhcL0K2Rpgc9RAJe0ztIJ5lS+s9DYZZ6BQrxlowtCbh9gXdayND6nPziNfdk
+         V7U6zgsVGg/snZ6LwdrSOkhaWmCXjb8nFU/ivRCQk0q14VkXQMqTuPvussW3iHkGxaCP
+         X8mxjizQhnCsO8amBm97htPRMIXu23kKUdifDJwLO1Udm1ZvDG96zK3JYmq4Fc9fLu/q
+         ulgg==
+X-Gm-Message-State: AO0yUKXdEJoWHqRWVqcIdWBv+Id50xHvpzmS/z4rYoXkn769JoncXOBn
+        JzzPLrbag9DoMriuMZ4QZ8YZ3IuACiw8vUTL
+X-Google-Smtp-Source: AK7set+5hEuWwLlJU+DMSAa4vo4DuOo9ZWE2X/CfhREFzZJPOEdmPS5UEkTnICoYP5XRtrhkaCWtag==
+X-Received: by 2002:adf:e785:0:b0:2bf:c09e:e7bc with SMTP id n5-20020adfe785000000b002bfc09ee7bcmr7659575wrm.7.1674848476372;
+        Fri, 27 Jan 2023 11:41:16 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y17-20020adffa51000000b002238ea5750csm5822417wrr.72.2023.01.27.11.41.12
+        by smtp.gmail.com with ESMTPSA id y17-20020adffa51000000b002238ea5750csm5822417wrr.72.2023.01.27.11.41.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 11:41:14 -0800 (PST)
+        Fri, 27 Jan 2023 11:41:16 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Vinod Koul <vkoul@kernel.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
@@ -66,9 +66,9 @@ Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
         Henrik Grimler <henrik@grimler.se>,
         Chanwoo Choi <cw00.choi@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/8] phy: samsung,dp-video-phy: deprecate syscon phandle
-Date:   Fri, 27 Jan 2023 20:40:53 +0100
-Message-Id: <20230127194057.186458-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 5/8] phy: samsung,mipi-video-phy: deprecate syscon phandle
+Date:   Fri, 27 Jan 2023 20:40:54 +0100
+Message-Id: <20230127194057.186458-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230127194057.186458-1-krzysztof.kozlowski@linaro.org>
 References: <20230127194057.186458-1-krzysztof.kozlowski@linaro.org>
@@ -76,43 +76,47 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DisplayPort phy is actually part of the Power Management Unit system
+The MIPI phy is actually part of the Power Management Unit system
 controller, thus it should be its child, instead of sibling node with
 syscon phandle.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
----
- drivers/phy/samsung/phy-exynos-dp-video.c | 7 +++++--
+ drivers/phy/samsung/phy-exynos-mipi-video.c | 7 +++++--
  1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/phy/samsung/phy-exynos-dp-video.c b/drivers/phy/samsung/phy-exynos-dp-video.c
-index 2b670ef91deb..6069fedbd8f3 100644
---- a/drivers/phy/samsung/phy-exynos-dp-video.c
-+++ b/drivers/phy/samsung/phy-exynos-dp-video.c
-@@ -83,8 +83,11 @@ static int exynos_dp_video_phy_probe(struct platform_device *pdev)
+diff --git a/drivers/phy/samsung/phy-exynos-mipi-video.c b/drivers/phy/samsung/phy-exynos-mipi-video.c
+index c1df1ef3ee3c..a7f67857e5b2 100644
+--- a/drivers/phy/samsung/phy-exynos-mipi-video.c
++++ b/drivers/phy/samsung/phy-exynos-mipi-video.c
+@@ -298,7 +298,7 @@ static int exynos_mipi_video_phy_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	struct device_node *np = dev->of_node;
+ 	struct phy_provider *phy_provider;
+-	unsigned int i;
++	unsigned int i = 0;
+ 
+ 	phy_dev = of_device_get_match_data(dev);
+ 	if (!phy_dev)
+@@ -308,7 +308,10 @@ static int exynos_mipi_video_phy_probe(struct platform_device *pdev)
  	if (!state)
  		return -ENOMEM;
  
--	state->regs = syscon_regmap_lookup_by_phandle(dev->of_node,
--						      "samsung,pmu-syscon");
-+	state->regs = syscon_node_to_regmap(dev->parent->of_node);
-+	if (IS_ERR(state->regs))
-+		/* Backwards compatible way */
-+		state->regs = syscon_regmap_lookup_by_phandle(dev->of_node,
-+							      "samsung,pmu-syscon");
- 	if (IS_ERR(state->regs)) {
- 		dev_err(dev, "Failed to lookup PMU regmap\n");
- 		return PTR_ERR(state->regs);
+-	for (i = 0; i < phy_dev->num_regmaps; i++) {
++	state->regmaps[i] = syscon_node_to_regmap(dev->parent->of_node);
++	if (!IS_ERR(state->regmaps[i]))
++		i++;
++	for (; i < phy_dev->num_regmaps; i++) {
+ 		state->regmaps[i] = syscon_regmap_lookup_by_phandle(np,
+ 						phy_dev->regmap_names[i]);
+ 		if (IS_ERR(state->regmaps[i]))
 -- 
 2.34.1
 
