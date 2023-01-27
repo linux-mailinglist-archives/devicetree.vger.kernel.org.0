@@ -2,86 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2DFE67E7B5
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 15:05:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B81E67E7E2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 15:14:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbjA0OFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 09:05:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47182 "EHLO
+        id S232367AbjA0ONl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 09:13:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235230AbjA0OF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 09:05:28 -0500
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BD44E7E6AD;
-        Fri, 27 Jan 2023 06:04:50 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.97,251,1669042800"; 
-   d="scan'208";a="150775484"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 27 Jan 2023 23:04:50 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 124B4432BC63;
-        Fri, 27 Jan 2023 23:04:50 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     iommu@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v2] dt-bindings: iommu: renesas,ipmmu-vmsa: Update for R-Car Gen4
-Date:   Fri, 27 Jan 2023 23:04:46 +0900
-Message-Id: <20230127140446.1728102-1-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S233726AbjA0ON0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 09:13:26 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D489D7CC98
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 06:13:24 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id m14so4631392wrg.13
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 06:13:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mVctv5eDwfoxIjLhTETlJMvtbUx+PQOv7ZLAfMpykYo=;
+        b=efpKEqP+zZNsaIrRViELne5gnS27yO4dinEoccIQGZDp7CB9wAAYGNoJYhEzdy/CcV
+         VjKgx4YcMwPw+lh95dN6W6o4wjRmrC0M7Yams/GWGTfI7g9EhcHMuBWHm3u+rJvGdq1U
+         zRAEht79DkiluZHuD9NAKIxUSLvBe65z9txT7DZLTn/El+9B2ndW/fGOgoP7vdmiMEL8
+         Z/QdKAlM7AWY3Wy7ALnjauUp8EUM0JegUkwS89B1hpGoMMGyWZz+QQQglJ99CL1JW5RU
+         VfwJUCX56lL4bMKfiOWr5/gGzf6c/NvtE58142cN6+eZfMeiO3u51BRNxiONi9voTLMs
+         r0Mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mVctv5eDwfoxIjLhTETlJMvtbUx+PQOv7ZLAfMpykYo=;
+        b=HKaKRE5IxBBCVYb6IibAoACznNrjfpWDwJqFA5JHVBgMjIKQr+n4PdRfEg18iSZGE6
+         9zb2BgWjdhW8cGZofTVUTyTiWaNlIUfOZmEAvbV4g+0p2efZt7DMk+OkKN1iEBHFr6ga
+         9HxSbE/xYDPAbmwGE++26ePMzKgkui7ahtzphQw3JOT62rBlJriXI8UNJlUodJunquH7
+         nVnWfZqxEI11WDr0zpmaQP4C4Vx/0mN8AKgb9OH/eu0Vd1LiGFwazRKJqBs59GhrjXwU
+         AyVq4pan0cu9HlGMwjXD2LgTTSq6Hcv71xadt2TWOyZ3QYrErjjDU37UumdRFuampfV0
+         SN5Q==
+X-Gm-Message-State: AO0yUKV5hTYAsQMQOK1leaYAJ5WOr+/UrCdxlkEjaNxEKgZyZ5vdHsFZ
+        rQ5YHCVZQnju0cE1XxIQWSCVPg==
+X-Google-Smtp-Source: AK7set8wCkVuAc7TPOvZ2ORkiCGPcKdWseqtrdWE6YkOgeblgrpB1xcuodXvJ9Y4ooNTTu04lXygjg==
+X-Received: by 2002:adf:e842:0:b0:2bf:c58b:9cba with SMTP id d2-20020adfe842000000b002bfc58b9cbamr6185515wrn.60.1674828803425;
+        Fri, 27 Jan 2023 06:13:23 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id f1-20020a7bc8c1000000b003c6bbe910fdsm9297442wml.9.2023.01.27.06.13.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 06:13:22 -0800 (PST)
+Message-ID: <85481368-b32e-61aa-f83a-fb42d58c351a@linaro.org>
+Date:   Fri, 27 Jan 2023 14:13:21 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 16/24] rtc: pm8xxx: add support for nvmem offset
+Content-Language: en-US
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230126142057.25715-1-johan+linaro@kernel.org>
+ <20230126142057.25715-17-johan+linaro@kernel.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230126142057.25715-17-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since R-Car Gen4 doens't have the main IPMMU IMSSTR register, update
-the renesas,ipmmu-main property which allows to only set the first
-argument for R-Car Gen4.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
-Changes from v1:
-https://lore.kernel.org/all/20230123012940.1250879-1-yoshihiro.shimoda.uh@renesas.com/
- - Change number of argument for R-Car Gen4 instead of "module id".
-   On the discussion, using 'minItems' is a solution. But, it causes
-   "too short" errors on dtbs_check. So, using "oneOf" instead.
 
- .../bindings/iommu/renesas,ipmmu-vmsa.yaml         | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+On 26/01/2023 14:20, Johan Hovold wrote:
+> On many Qualcomm platforms the PMIC RTC control and time registers are
+> read-only so that the RTC time can not be updated. Instead an offset
+> needs be stored in some machine-specific non-volatile memory, which the
+> driver can take into account.
+> 
+> Add support for storing a 32-bit offset from the Epoch in an nvmem cell
+> so that the RTC time can be set on such platforms.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   drivers/rtc/rtc-pm8xxx.c | 134 +++++++++++++++++++++++++++++++++++----
+>   1 file changed, 123 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/rtc/rtc-pm8xxx.c b/drivers/rtc/rtc-pm8xxx.c
+> index 922aef0f0241..09816b9f6282 100644
+> --- a/drivers/rtc/rtc-pm8xxx.c
+> +++ b/drivers/rtc/rtc-pm8xxx.c
+> @@ -3,6 +3,7 @@
+>    */
+> +static int pm8xxx_rtc_read_nvmem_offset(struct pm8xxx_rtc *rtc_dd)
+> +{
+> +	size_t len;
+> +	void *buf;
+> +	int rc;
+> +
+> +	buf = nvmem_cell_read(rtc_dd->nvmem_cell, &len);
+> +	if (IS_ERR(buf)) {
+> +		rc = PTR_ERR(buf);
+> +		dev_err(rtc_dd->dev, "failed to read nvmem offset: %d\n", rc);
+> +		return rc;
+> +	}
+> +
+> +	if (len != sizeof(u32)) {
+> +		dev_err(rtc_dd->dev, "unexpected nvmem cell size %zu\n", len);
+> +		kfree(buf);
+> +		return -EINVAL;
+> +	}
+how about us nvmem_cell_read_u32()
 
-diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-index 72308a4c14e7..8e8f79f612e5 100644
---- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-+++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-@@ -73,12 +73,16 @@ properties:
- 
-   renesas,ipmmu-main:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
--    items:
-+    oneOf:
-+      - items:
-+          - items:
-+              - description: phandle to main IPMMU
-+              - description: the interrupt bit number associated with the particular
-+                  cache IPMMU device. The interrupt bit number needs to match the main
-+                  IPMMU IMSSTR register. Only used by cache IPMMU instances.
-       - items:
--          - description: phandle to main IPMMU
--          - description: the interrupt bit number associated with the particular
--              cache IPMMU device. The interrupt bit number needs to match the main
--              IPMMU IMSSTR register. Only used by cache IPMMU instances.
-+          - items:
-+              - description: phandle to main IPMMU
-     description:
-       Reference to the main IPMMU phandle plus 1 cell. The cell is
-       the interrupt bit number associated with the particular cache IPMMU
--- 
-2.25.1
-
+> +
+> +	rtc_dd->offset = get_unaligned_le32(buf);
+> +
+> +	kfree(buf);
+> +
+> +	return 0;
+> +}
+> +
