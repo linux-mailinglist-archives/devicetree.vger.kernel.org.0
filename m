@@ -2,171 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57F0467DF0C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 09:27:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD86367DF24
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 09:30:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232129AbjA0I1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 03:27:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36606 "EHLO
+        id S232542AbjA0Iah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 03:30:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232134AbjA0I1M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 03:27:12 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA111757BE
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:27:09 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso2846131wms.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:27:09 -0800 (PST)
+        with ESMTP id S232461AbjA0Iag (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 03:30:36 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EBBB2D44
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:30:35 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id z5so4243908wrt.6
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:30:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DdfiCXvxE3+wXETvP9iNhM7stAIscaaJ/d3hkQdjD+0=;
-        b=B/RuS1NL29Yrb76eGHNw/76TdWb4k2B7kme4TaLgHYSrSLwmjABNDw2Dhagn/rnWpn
-         pNotOIkOVgeg+wRR2soNop4lqhB6w3PzoKYGRgSB6LKbHYIETB8ygoZwnD54jkXnGwc3
-         lZ19lCIY6dL9kvzLqDr14qQ3aBQhGPheWX/Wy4HdcIent4fBN2vr9jkLOd8uZP1L7phE
-         CqeQGY9cSrlU71PS4W1+tGTceGG4bUjehcDcoytFpxsWjd4IsPL7eYQQ4hqch9misqPn
-         in4Qw2yFFkiPegKQ/JSUfuSVOga0A/MdISZPWXiDYA1E8WSX+PgFQ0cJZRwwtfrw+gEK
-         A/YQ==
+        bh=PzyY2wWF97kB5fX+uFjQpPzD5PWYjl7+jY/2KBj4KNA=;
+        b=DAWwPyeoXoNs6zGt2dX8uWsU8bmo4t2KFPGN+I5gbkowFsMIJjrhKcTfe1zFgbpIOk
+         j9v0hKnjIaEHvszWjYbd9Nwj3opWixjLE5G6cS4AIiGtjR6Th8ckg1r1d4mKtDqvl3AI
+         JTFpMSbC7pUOH1N47z7Opsi9tiEMKVYAvQyOXvkzlXpooD2tMBoY8re8s0s+AdhyRz7h
+         wINbLzeb7FJvPXu5mOwKX6MrGcTWEo9zqfVU9SE/ulD2B1aVGz8D9tkDTJdfIJi43MNi
+         4dyKIyN6HBAfOaRa7MTn4/FhdJ/JpBZ9nEZdqPgB2u+2oaoVW9HuaIBS8nOCV+fMOR9h
+         X7XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DdfiCXvxE3+wXETvP9iNhM7stAIscaaJ/d3hkQdjD+0=;
-        b=R1MSFyo2AJQa4lu9cA+2s5JEm4I7/ww6Y+qWswiJmSu8iQRZViScKeDKLPUgQa82nh
-         ZUGW1uvqfCZ1zWsFYu3/MhdDVIr1GgFIGEzjdqkqKZnJlAFf53Rw1PS93esKWUYhwpne
-         GMoHg0Qu6k7QWeimaFJ0bbZdNfzbfqA35pfZhiz4JtXmkVyHCtCrWyJi+B9um5aIjEWW
-         kCJQRfQxCK+CxYYM+aqn3I9R8MjKa4WAZJpGK5PVKAMqk37UTvWqF/ScfgpZduew5jrI
-         Klb2fpiHYaVW8JgWiFffCG2hUiaf4HMXGAdrfFWzLfOPwTx8nkXVWAMjF3dFnCkk2yFc
-         5xLA==
-X-Gm-Message-State: AO0yUKXi12cTnX1NeoSURA2KQv/6odzFJEjN5+6UyWtZJDD8B0/+KOXc
-        waK7n/iBjNgRYWa8kZNDTKMRcPxjSdLJBApJ
-X-Google-Smtp-Source: AK7set83wpkelfN7j+E1uxuUMRJdC66UYA7JuiqRtNdQUL0FEULzXsRPzprLT/NQQZrpkURjk+U6WQ==
-X-Received: by 2002:a05:600c:354a:b0:3dc:357a:f4ab with SMTP id i10-20020a05600c354a00b003dc357af4abmr1641253wmq.15.1674808028475;
-        Fri, 27 Jan 2023 00:27:08 -0800 (PST)
+        bh=PzyY2wWF97kB5fX+uFjQpPzD5PWYjl7+jY/2KBj4KNA=;
+        b=i1Pc9RrlxJ793bUbTR+c8qxDqx7u3lj9CCpUDXCAmKcZXhiJCXu5PHIIR0vlIWNbKq
+         pOC78gkq76R/P7ry9qdKogzSvcTpGmFvRGTrA28RZXcyMDISZlxjKC+yZJriDe2v1ZOY
+         Er8erIlpAI4ujb6DNZiTNX7uRoKzg65vMwqlJTd2Wc5MgcppeXevNzV5qZjbE9J20YUP
+         iHlahkFn9rdATVBl4tegpfCT2Xw0NhiJmaXiH338wO6Zskz745VgQUbWezCLjc09NF/s
+         zPe0YquQmch1p+iHwBzheuhFY066CI2xspwhiZo2Hv2wTmkwWDWk9/aI9gCQ3nVBz+tH
+         4NMA==
+X-Gm-Message-State: AFqh2krw8Lk9HePebvgEwf7Mo638BUbssh3i73EfzaYzYiNCM2Fa4h3l
+        Y9pfExh/7ZSHtS41YD0ClyZNJg==
+X-Google-Smtp-Source: AMrXdXv5pQRXWL1U0hR5Htkz83S8q7xOPVG51oWOAn3sMt+jlNLKgrMtv7/JNUCjzi+Ka3do1eNpCQ==
+X-Received: by 2002:adf:f791:0:b0:29d:f817:42c1 with SMTP id q17-20020adff791000000b0029df81742c1mr34873932wrp.54.1674808233556;
+        Fri, 27 Jan 2023 00:30:33 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u12-20020a05600c19cc00b003db0ee277b2sm7719863wmq.5.2023.01.27.00.27.06
+        by smtp.gmail.com with ESMTPSA id p17-20020a056000019100b002bddaea7a0bsm3330890wrx.57.2023.01.27.00.30.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 00:27:07 -0800 (PST)
-Message-ID: <291ad4d3-6c8b-507d-08ff-997e0c4bd482@linaro.org>
-Date:   Fri, 27 Jan 2023 09:27:06 +0100
+        Fri, 27 Jan 2023 00:30:33 -0800 (PST)
+Message-ID: <2e183f7b-df8a-38c6-a041-d507fc32e894@linaro.org>
+Date:   Fri, 27 Jan 2023 09:30:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 5/5] ARM: dts: qcom: msm8974-oneplus-bacon: Add
- notification LED
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230122-msm8974-bacon-features-v1-0-4049f565c24c@z3ntu.xyz>
- <4455893.LvFx2qVVIh@g550jk> <dbfa802a-968f-0504-a131-59e2a8f52c9f@linaro.org>
- <1840339.tdWV9SEqCh@g550jk>
+Subject: Re: [PATCH 1/4] dt-bindings: display: bridge: tfp410: Add tfp410 i2c
+ example
 Content-Language: en-US
+To:     Jon Cormier <jcormier@criticallink.com>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Jyri Sarha <jsarha@ti.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Michael Williamson <michael.williamson@criticallink.com>,
+        Bob Duke <bduke@criticallink.com>
+References: <20230125-tfp410_i2c-v1-0-66a4d4e390b7@criticallink.com>
+ <20230125-tfp410_i2c-v1-1-66a4d4e390b7@criticallink.com>
+ <906b693d-1e85-8c17-cdda-f09ea8f12e7f@linaro.org>
+ <CADL8D3YUNnsZt8tc8x9CxH5Ug6kWJHb=a3N5VJFPSePWH3yWxg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1840339.tdWV9SEqCh@g550jk>
+In-Reply-To: <CADL8D3YUNnsZt8tc8x9CxH5Ug6kWJHb=a3N5VJFPSePWH3yWxg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2023 21:41, Luca Weiss wrote:
-> On Donnerstag, 26. Jänner 2023 10:41:24 CET Krzysztof Kozlowski wrote:
->> On 25/01/2023 21:51, Luca Weiss wrote:
->>> On Montag, 23. Jänner 2023 18:18:16 CET Krzysztof Kozlowski wrote:
->>>> On 22/01/2023 17:48, Luca Weiss wrote:
->>>>> Add the node describing the sn3193 that's used to provide notification
->>>>> LED.
->>>>>
->>>>> Unfortunately the driver currently supports neither multicolor API nor
->>>>> using the properties function & color, so we use label instead.
->>>>>
->>>>> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
->>>>> ---
->>>>>
->>>>>  .../arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts | 28
->>>>>  ++++++++++++++++++++++ 1 file changed, 28 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts
->>>>> b/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts index
->>>>> ffb486ceb6a6..a672c45d7070 100644
->>>>> --- a/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts
->>>>> +++ b/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts
->>>>> @@ -114,6 +114,34 @@ led@0 {
->>>>>
->>>>>  			default-brightness = <80>;
->>>>>  		
->>>>>  		};
->>>>>  	
->>>>>  	};
->>>>>
->>>>> +
->>>>> +	led-controller@68 {
->>>>> +		compatible = "si-en,sn3193";
->>>>> +		reg = <0x68>;
->>>>> +
->>>>> +		shutdown-gpios = <&tlmm 45 GPIO_ACTIVE_HIGH>;
->>>>> +
->>>>> +		#address-cells = <1>;
->>>>> +		#size-cells = <0>;
->>>>> +
->>>>> +		led@1 {
->>>>> +			reg = <1>;
->>>>> +			label = "red:status";
->>>>
->>>> These should be colors and functions.
->>>
->>> Hi Krzysztof,
->>>
->>> please check the commit message for this. I tried using it but it didn't
->>> work, the driver in general might need an overhaul at some point...
->>>
->>>> Unfortunately the driver currently supports neither multicolor API nor
->>>> using the properties function & color, so we use label instead.
->>>
->>> Or maybe I messed up but pretty sure this was the case when I wrote the
->>> dts.
->> I don't understand how driver is related here - it's not the driver's
->> property, but LED core. If the driver "supports" label, then it supports
->> color and status.
+On 26/01/2023 19:36, Jon Cormier wrote:
+> On Thu, Jan 26, 2023 at 10:40 AM Krzysztof Kozlowski <
+> krzysztof.kozlowski@linaro.org> wrote:
 > 
-> The leds-is31fl319x.c driver uses devm_led_classdev_register but the function 
-> where 'function' and 'color' is parsed is led_parse_fwnode_props which is 
-> called from led_compose_name which is called from led_classdev_register_ext 
-> (or with the devm_ prefix), and not called from the register method without 
-> _ext suffix.
-
-No, devm_led_classdev_register calls devm_led_classdev_register_ext
-which calls led_classdev_register_ext which calls led_compose_name (if
-initdata is set). The point is that we lack initdata, so indeed color
-and function cannot be used.
-
-> 
-> So in other words, the led driver would need changes to use the new 
-> registration API to be able to use 'function' and 'color' instead of 'label'.
-> 
-> Regards
-> Luca
+>> On 25/01/2023 22:09, Jonathan Cormier wrote:
+>>> Add a i2c example with HDMI connector
+>>
+>> Why? It's the same - but more on this below.
+>>
+> The existing example is for the previous setup where it was configured as
+> its own device.  It seemed necessary now that the driver is going to
+> support being connected to an i2c bus to show it being used as such.
 > 
 >>
->> Best regards,
->> Krzysztof
+>>>
+>>> Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
+>>
+>> You need to test the bindings before sending and fix the errors.
+>>
+> Will do
 > 
+>>
+>>> ---
+>>>  .../bindings/display/bridge/ti,tfp410.yaml         | 42
+>> ++++++++++++++++++++++
+>>>  1 file changed, 42 insertions(+)
+>>>
+>>> diff --git
+>> a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
+>> b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
+>>> index 4c5dd8ec2951..456214f14b47 100644
+>>> --- a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
+>>> @@ -116,4 +116,46 @@ examples:
+>>>          };
+>>>      };
+>>>
+>>> +  - |
+>>> +    i2c {
+>>> +      #address-cells = <1>;
+>>> +      #size-cells = <0>;
+>>> +
+>>> +      hdmi_encoder: tfp410@38 {
+>>
+>> Node names should be generic.
+>>
+>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>>
+>> Can do
 > 
+>>> +        compatible = "ti,tfp410";
+>>> +        reg = <0x38>;
+>>> +
+>>> +        ports {
+>>> +          address-cells = <1>;
+>>> +          size-cells = <0>;
+>>> +
+>>> +          port@0 {
+>>> +            reg = <0>;
+>>> +            tfp410_in: endpoint {
+>>> +              remote-endpoint = <&dpi1_out>;
+>>> +            };
+>>> +          };
+>>> +
+>>> +          port@1 {
+>>> +            reg = <1>;
+>>> +            tfp410_out: endpoint {
+>>> +              remote-endpoint = <&hdmi_connector_in>;
+>>> +            };
+>>
+>> That's the same example as existing one, so it looks useless. I don't
+>> see benefits of this example.
+>>
+> It's mostly the same, except defined inside an i2c bus, with the reg value
+> set. Without the powerdown-gpios or ti,deskew.
+> And without the pclk-sample and bus-width (these are now read from i2c)
+> And I included the hdmi_connector so it would be a more complete and useful
+> example of how it could be used. 
+
+hdmi_connector is being dropped because it is not related.
+
+
+> The TFP410 doesn't handle the ddc i2c bus
+> on its own so a separate connector node is needed.  I'll drop it if that's
+> preferred.
 > 
-> 
+
+If you had here different ports, it would be different case. But as of
+now the only important part is having reg and not having gpios, so
+basically almost the same example. No need for it.
 
 Best regards,
 Krzysztof
