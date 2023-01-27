@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A65C667E554
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:35:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1350B67E558
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:35:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232199AbjA0MfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 07:35:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45428 "EHLO
+        id S233643AbjA0MfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 07:35:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233736AbjA0Meu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:34:50 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B7074A63
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:34:33 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id m15so3337750wms.4
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:34:33 -0800 (PST)
+        with ESMTP id S233671AbjA0MfR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:35:17 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1368079F03
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:35:08 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id h16so4806093wrz.12
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:35:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=nFBq+LWNx9OQ5NIBolt0/CB9kGTsCrF8UXkK5/8aTUk=;
-        b=E1Qar4eVRNKn7I+1ANxO82Oz7QAtYGqHewiZptFAGgK8eaCfBsh4aj3/MwXf+ErAa8
-         11AlArtPGDoIURssZaiBuGstWaGoSu3dcJljdqXluwBaApVtTYx4Eo9jRpLXUxnBTx9b
-         T6xjz9xIpjFpe94kv3uFTYnpGv40ChMpcQ3snQpcV8urwPeQWchYb3rR9SQ1dqc/cK8Q
-         QEZE8noKB6O/GYbBKhTqekArLFTn8WSsxl/PqAheTaY3piCCk7WCyKhTONO8gs1g6y56
-         A324UQlxJMmsLZ2ta0Q09opa59hoNB3Hf9meWroatX4DYOrG6MSqRuxqsVCJddJjQeB/
-         PXIw==
+        bh=9unmXBFY2LCpkLlGduWq9KiCNNGjxWEAC2OciASOX1E=;
+        b=avi5dm/0cmJyqN+xxxHp+8Bk5+Z/0VmWOTRq0yiY4UmeaZbB0sEmpQsuzYzmUYEXYo
+         rONGzpHRgMrboJ5S3CudmhmAMuLNiHxpFO7EXjH62ns3oequ5SnEmiYkv5jcinvLwnUh
+         dnFxIgQpXeoHK2Sla/LF3Q22J4Xtjgk0zq+lzeGYGdLZBj2Ya/Dxl4vuysRRJSUqJH9n
+         rBkp9eAd40blim6iByp/eDjLqHipBXv3Rh7L43sb/AbU+s/K11urQs6eAqz5L4ZrApHg
+         NpQ6sAHjqDBcRUFZlLIXMiTGjpQYVVUNXAc67SGRcZclkpoz2B+LdpFPTXcr2nhIAXap
+         3Gog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nFBq+LWNx9OQ5NIBolt0/CB9kGTsCrF8UXkK5/8aTUk=;
-        b=Bi3Oj492sHerskT5s2D7M3O3SyWTZM8EfYwcrzy1hECCGYdOdw6MvQh9gOkgFBVAlT
-         3G7RJOrOcLUg+BeFYXiNDVAvbn2uJ4bTS26uZiZ66k7HtONjMFPqAv3zIiAOWl15+1vl
-         FaT2nu5qBdqlyF2XxGwX4koZw9PAZ1LuLFCM5PPgyLAv0sJyVHYdC3flF5O1RcTvlhP3
-         GMWbImX/H/1nU/JTPExhyea+SmTxiWJxM0yyIFiZrDNQIq0gXtrp85HLXFPNdj3Hpi27
-         UOSIqxw6BtNAX4xedLMj2sIr4OsRskkWyE4WWEjqNnrnioQHdW7N63fWRLI1n1cuOSCa
-         Xmtw==
-X-Gm-Message-State: AO0yUKV1hV75FCNqA/HmT7OQk35t3ZEbMOr72n0TG/y4PC4jY6j5Kx6I
-        wq1mTvqi5jekjmV+F4QR+IKscw==
-X-Google-Smtp-Source: AK7set+oJEfGmo1/jdHpJGcP3MHNQJUAXDul5H1sxGP4LQF77hoAznOLVtjO67vr1M0M1dG6MuYKuA==
-X-Received: by 2002:a05:600c:3511:b0:3dc:3da0:171f with SMTP id h17-20020a05600c351100b003dc3da0171fmr1279712wmq.41.1674822872068;
-        Fri, 27 Jan 2023 04:34:32 -0800 (PST)
+        bh=9unmXBFY2LCpkLlGduWq9KiCNNGjxWEAC2OciASOX1E=;
+        b=bS2dYVDZ39kAFbIlDfygeuXjV2PO6Kx5WIa82/F3N9gXZ5uLn4wbSL8qx7twq/khVH
+         y2OmSiO0BFf2lHWFy2egLCjYmX6nZohfV3fzAK5ICclGLH017PqJz5L/pC/imX9649Bz
+         C/p/CRFp9c/7U+8dKd9+kqWdCoHXZiLQ8OHJrXNC/fve92m+N1MSVEsQtZOaBmbh5U3u
+         jsvsqalYBcWn/kOxwHlFD10DYNZmoMhpa8LN8ZN/GadBkeOdh9CFFSbw0Novk+Y/Rg14
+         EPNTspjTTLl/KXuNUXF8kviY8HQy3b9Jzwc2X6FkT9w2MnRlO+0kWlVXOQGUi7Mn1TF5
+         TeXw==
+X-Gm-Message-State: AO0yUKU8vOeo5pddfTWguAp3WenyOieiMDHWN7nLB10ViOcFIiiFLTwa
+        5191NpNDNIWXmSvnVJAg5OOsiQ==
+X-Google-Smtp-Source: AK7set8kgl+UYZC1EZtugC3b1RYbe7/NubWbi3C5CSEFCXcerqdM+Mga7HQqn4rbU0NMZK0hYx3Xcw==
+X-Received: by 2002:a05:6000:1204:b0:2bf:b33b:fb7d with SMTP id e4-20020a056000120400b002bfb33bfb7dmr11183611wrx.61.1674822906604;
+        Fri, 27 Jan 2023 04:35:06 -0800 (PST)
 Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id a19-20020a05600c349300b003cfa622a18asm7918199wmq.3.2023.01.27.04.34.30
+        by smtp.gmail.com with ESMTPSA id u13-20020a5d514d000000b002be2f18938csm3732984wrt.41.2023.01.27.04.35.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 04:34:31 -0800 (PST)
-Date:   Fri, 27 Jan 2023 14:34:30 +0200
+        Fri, 27 Jan 2023 04:35:06 -0800 (PST)
+Date:   Fri, 27 Jan 2023 14:35:04 +0200
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550-mtp: correct
- vdd-l5-l16-supply
-Message-ID: <Y9PE1tdk/LucFXfn@linaro.org>
-References: <20230127121843.349738-1-krzysztof.kozlowski@linaro.org>
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: qcom,dwc3: allow required-opps
+Message-ID: <Y9PE+Hli/kLHW2Ag@linaro.org>
+References: <20230127121122.342191-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230127121843.349738-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230127121122.342191-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -77,10 +77,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-27 13:18:43, Krzysztof Kozlowski wrote:
-> Fix typo in vdd-l5-l16 supply of qcom,pm8550-rpmh-regulators.
+On 23-01-27 13:11:22, Krzysztof Kozlowski wrote:
+> Few Qualcomm SoCs require minimum performance level of power domain, so
+> allow it:
 > 
-> Fixes: 71342fb91eae ("arm64: dts: qcom: Add base SM8550 MTP dts")
+>   sm8550-mtp.dtb: usb@a6f8800: 'required-opps' does not match any of the regexes: '^usb@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
@@ -88,25 +90,25 @@ Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 > 
 > ---
 > 
-> Changes since v1:
-> 1. Correct, not drop (Abel, Konrad).
+> Cc: Abel Vesa <abel.vesa@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> index 725d3bc3ee72..5db6e789e6b8 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> @@ -47,7 +47,7 @@ regulators-0 {
->  		vdd-bob2-supply = <&vph_pwr>;
->  		vdd-l2-l13-l14-supply = <&vreg_bob1>;
->  		vdd-l3-supply = <&vreg_s4g_1p3>;
-> -		vdd-l6-l16-supply = <&vreg_bob1>;
-> +		vdd-l5-l16-supply = <&vreg_bob1>;
->  		vdd-l6-l7-supply = <&vreg_bob1>;
->  		vdd-l8-l9-supply = <&vreg_bob1>;
->  		vdd-l11-supply = <&vreg_s4g_1p3>;
+> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> index a3f8a3f49852..4875c5b7d5b5 100644
+> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> @@ -58,6 +58,9 @@ properties:
+>      description: specifies a phandle to PM domain provider node
+>      maxItems: 1
+>  
+> +  required-opps:
+> +    maxItems: 1
+> +
+>    clocks:
+>      description: |
+>        Several clocks are used, depending on the variant. Typical ones are::
 > -- 
 > 2.34.1
 > 
