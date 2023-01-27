@@ -2,78 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E3BE67DF5F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 09:37:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E578367DF63
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 09:41:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231873AbjA0Ihs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 03:37:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43234 "EHLO
+        id S231709AbjA0Iln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 03:41:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232631AbjA0Ih1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 03:37:27 -0500
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C4C47089
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:37:21 -0800 (PST)
-Received: by mail-yb1-xb36.google.com with SMTP id b1so5079574ybn.11
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:37:21 -0800 (PST)
+        with ESMTP id S230044AbjA0Ilm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 03:41:42 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0C12EC68
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:41:41 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id q8so2894820wmo.5
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 00:41:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0GEf7QxJkV2lK+zd3rAlZgziuhyilMpeFi0rsnqoFFQ=;
-        b=InUQr75C75OupAU4ZiPJSfbUP3jzxez7OoMIX8RuGUFLIssgPtWbP37I+0em/pbNx7
-         CoSiLXSruCBM2C0imVfmiluRvz3RPNq+XbSquQJzFvNT66uVvqviop9UGSNqUHWB0xhl
-         cHzzMl0/ZKkg2HU7UdUmb31xgazfgkomH3WYwPtYfl7SNzJHbL0ty5YiavUGZn+GWt3e
-         QT4+fgM83vCRASU/grwcP5HpUHgHUPEZyaC6OIHgFU6uE/AxryFXDJYkm4bNZQGzjN+l
-         ZNB6jmiBnT8VyE+yNDdUFLZCP0s8YeeE78LXq0f0mCPAaLbYrE9EFkYTrhcdEjSfDSlr
-         6Fhg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UxnWhrFnVg9VP58IS7ZKzQX3VM2IYjNuKWEuyc1Z10U=;
+        b=NQCHspnEctpCE8vljAUa6h3ikw9CPSk1fOcWf9iseJERN2npBiZFIcBJiwlDVQhshA
+         s3nOMsVhQJvYM6NgHdqjwftcEEUFrjLMXCRSsSWNxPKV41UH3WYxJQM+3ikN1HQuCcEH
+         s9vyRfIQjEL/21h/cAsthPAHg0YWwvtoKN6JQ5B5xKnvVl1mrcuvs33yWEZOcW0F/tUz
+         Xj0AQtW6tdq7c/+DE0acUuCH3Oc70HlTPAl4NM1PQu+tEmznQBz4NziJnHAye9iScLq9
+         uk4krR9dj6hACvGmgFLDnErk4C8yHOBKV5ZmdKG+te9ZjurwjPVODYLRs0R5OsQD9Doe
+         +0rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0GEf7QxJkV2lK+zd3rAlZgziuhyilMpeFi0rsnqoFFQ=;
-        b=0Z+jifgUr6j+E0BAoFZuQBIk+eWl9BdtVNxKqGZ55AUVMs+rjeDEvCExUZyIU0l0Yp
-         NETFopnHXwqmizHBavpXu9uNYdqNInetvxuYnPqm9k8tkPBpA1N5hAqvR3SytJJBsWSx
-         Ocs9l2JLInr44cIkke5RFvoPOvXGxYjvllqm1DCh9kKsMyqpDfY3m9u/YDlfpE+/xwOy
-         xNVK/eZCkuuUQ7b5/IgjxAMQjKfniHHBMkCawcSsHYqIKvVBIVj1wEuZfyqpc2gnVGJN
-         kUYDYt16io/A+8FT7oK+94S7vxTxu7uE0Sk3i+V1Xr8y9DTOMx3HRUFukoznV5vprYit
-         rVMg==
-X-Gm-Message-State: AO0yUKV8iQMVl+rFk/lG0kkFd3LuIRtCKKYBsHTsgBfTZmyKn34MQSWw
-        2EbWTO469qFLo231Pl/7ca/ls35IagXcrbO3v4yHrlVg/Xw08g==
-X-Google-Smtp-Source: AK7set+HozZEe5bAEwW9VgJFk2rLRsxQWYsM/CeXpOYqfTpUlft9aACuvd7bRiUrSnoeRoakCB7MKB2LKpuAOxMqClQ=
-X-Received: by 2002:a5b:c1:0:b0:80b:c9d0:c676 with SMTP id d1-20020a5b00c1000000b0080bc9d0c676mr819539ybp.341.1674808641146;
- Fri, 27 Jan 2023 00:37:21 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UxnWhrFnVg9VP58IS7ZKzQX3VM2IYjNuKWEuyc1Z10U=;
+        b=8QD0uB+KLQm+iuYVR069kXx55ASjX4IcBk02rcVKjRPuZ+lZ4NSmtGNYhlYh4k/qtV
+         feHpYctDwOIWBJgk/kuzAhZisw2LdgeA44MEY2uGFyX1UijUMFhq3MHO5xp/BefqMmwS
+         /5y3N5Q4g8F0v3rG9spV217L2+jvRUu5fgGoMoA5oU7r+6QOegenRavOVV6pL71w5JOM
+         kbwCee3PT8IEC8zgQGsnCG2Vsbj7/6Ub5GArI5ImgnHS8uFnRBL9isYJzoZljenEbRCu
+         hiZxdEvMBxn3Ne3izWOcQTPTIQXhXBxN2UpVpL1er4uNtsJlTFRZww/cvPiE1NLHPyW2
+         IrNw==
+X-Gm-Message-State: AFqh2kr/E1esrIFFgLIvQrBPktPVGmcSdhJ+89VL/dP3lpzBktgvgg3a
+        N8qn8qiWtF1vNh1CkyLFcwVEYQ==
+X-Google-Smtp-Source: AMrXdXvTpwGNtr6wPm4vSPwSZLub/71exUFMnbCUGJxPEgkSu5kw1bcyisR+Dnx1LOm6LZ1OCZeeAQ==
+X-Received: by 2002:a05:600c:b90:b0:3d8:e0d3:ee24 with SMTP id fl16-20020a05600c0b9000b003d8e0d3ee24mr39376985wmb.37.1674808900181;
+        Fri, 27 Jan 2023 00:41:40 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l4-20020a7bc444000000b003db03725e86sm3662743wmi.8.2023.01.27.00.41.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 00:41:39 -0800 (PST)
+Message-ID: <492fd43c-ca32-17f0-dcdd-48eee0e7e035@linaro.org>
+Date:   Fri, 27 Jan 2023 09:41:37 +0100
 MIME-Version: 1.0
-References: <20230123151519.369158-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230123151519.369158-1-krzysztof.kozlowski@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 27 Jan 2023 09:37:09 +0100
-Message-ID: <CACRpkdb2aZp6x=vGVp0J0=XWuN=5eACQVzFBbvSWR3sF7TpZeQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: ste: align UART node name with bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: bridge: tfp410: Add tfp410
+ i2c example
+Content-Language: en-US
+To:     Jonathan Cormier <jcormier@criticallink.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Michael Williamson <michael.williamson@criticallink.com>,
+        Bob Duke <bduke@criticallink.com>
+References: <20230125-tfp410_i2c-v2-0-bf22f4dcbcea@criticallink.com>
+ <20230125-tfp410_i2c-v2-1-bf22f4dcbcea@criticallink.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230125-tfp410_i2c-v2-1-bf22f4dcbcea@criticallink.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 23, 2023 at 4:15 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On 26/01/2023 23:40, Jonathan Cormier wrote:
+> Add a i2c example with HDMI connector
+> 
+> Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
+> ---
+>  .../bindings/display/bridge/ti,tfp410.yaml         | 30 ++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
+> index 4c5dd8ec2951..1f3d29259f22 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml
+> @@ -116,4 +116,34 @@ examples:
+>          };
+>      };
+>  
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        tfp410_i2c: encoder@38 {
+> +            compatible = "ti,tfp410";
+> +            reg = <0x38>;
 
-> Bindings expect UART/serial node names to be "serial".
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This differs only by two properties, I don't think it's beneficial to
+add it.
 
-Patch applied to the ux500 tree!
+Best regards,
+Krzysztof
 
-Yours,
-Linus Walleij
