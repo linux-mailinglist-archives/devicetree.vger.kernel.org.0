@@ -2,165 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C8EB67E112
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:08:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 762E467E116
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:10:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233003AbjA0KIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 05:08:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47418 "EHLO
+        id S233400AbjA0KKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 05:10:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232116AbjA0KIs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:08:48 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C294CE62
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:08:46 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso5035362wmn.5
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:08:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=MWUMgBP7Oku5gYGzZWSP5y1RRsNvwdyRcB7eFWAwTU0=;
-        b=MPwJxKjWcAbrgBbFXgrvHR4wjhwuS/a56htKBR+RaxHq0WjuafurnQKOkQK+iODchE
-         Jm9X06UK46r8ATa2Ka+fLTrWTr0i1CF6XfPb+CLB22s9omYlHZC5sagsIJfR/yV31lhx
-         XeN9qvL6WaJwd/SgTpTxY63h6wFb3GvQrxYBoEJ4XLfa731msqxegoKzyhwAmgbv3tOo
-         Sgct7aDGKV4wqWKoysLhpw267DqOb7cBIxUE8T22ymUX7LVfAeBcPX9gNEKK5kt9qxro
-         4HMiwiHGJM3ZifyWOEfzZ0U7y+M52O/pmD3hqU1TRAGB4vy4PbBP5T2rzW96in3Fpd32
-         hG2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MWUMgBP7Oku5gYGzZWSP5y1RRsNvwdyRcB7eFWAwTU0=;
-        b=4KML9Xxk96jed/gffvmWJx1A8FdbED6W7XFswwBhjhfopkLeOCvjplWQqloppx0q/U
-         36yZtiB8pTnBlI1ttyI2urZlNP6fMG7iPSXCKOELXy7xJyIYFADucn/rSk3Uimc9hvWg
-         U2XnFrukvWuaObwIFAywYO7CMpkxQrGTWTo29/3dJUjk5YWfQYTZaEaED419XRKpK9V2
-         pcSbDi2ObnTs2PIZLFLhWJC31ruIwkRbyzd00LLbWmQcH0CCtRYpjfXkbLW2sjEwbtWp
-         FydDISncVcFQAJu0y7WSc7OU+/0wx7fAqAhcOyw9G33Ex+cPvwk5QA61Vf56OvE0Fmzj
-         n/Gg==
-X-Gm-Message-State: AFqh2krGVgXQGD2h5BwxsHJCnyp2eVoRTx+UslaeSPuKGSf7pnCQED6/
-        qK1MLybmDiYBm5qizh4GeWWX+w==
-X-Google-Smtp-Source: AMrXdXtulVyKLYucU9uL1ZxqVBbI4su9SJiwmNAknR7BQz1SBzbCEYaJrMSTQLQhzCzL3+o6kD1VAg==
-X-Received: by 2002:a05:600c:3ba5:b0:3da:ff66:e3cc with SMTP id n37-20020a05600c3ba500b003daff66e3ccmr37585096wms.21.1674814125540;
-        Fri, 27 Jan 2023 02:08:45 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:d4ec:15ea:873c:61e6? ([2a01:e0a:982:cbb0:d4ec:15ea:873c:61e6])
-        by smtp.gmail.com with ESMTPSA id n1-20020a5d6b81000000b002bdc39849d1sm3475326wrx.44.2023.01.27.02.08.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 02:08:45 -0800 (PST)
-Message-ID: <8e7700df-32dd-61ad-93a0-74749751e531@linaro.org>
-Date:   Fri, 27 Jan 2023 11:08:44 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 4/4] arm64: dts: meson: add support for BananaPi M2-Pro
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Christian Hewitt <christianshewitt@gmail.com>,
+        with ESMTP id S232538AbjA0KKo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:10:44 -0500
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEC4B4B89E;
+        Fri, 27 Jan 2023 02:10:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674814242; x=1706350242;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Qg/3JDFsC2nzbd86XepCeae+28Y0mZGY4eLCR4gfcsI=;
+  b=EHmNzsNUXbZ20M83kZzhtWO/+kfcv+EgSdi4z+c/kHxxMUs3Py+XQZv9
+   tU+nXiYTmyuo85p4su8bKJqJkhJyfZAgtnZU0S5vhflXJ9baT8RMjJo7/
+   hD2ERE+pYOskdxLmbODtQxp/HKtNs6yIgQrmcDX8YzVCXNqLDRM1noyFy
+   wpZw3sbZI6VMeIt+Q2wiR5eiaJ4hteXdCT23Ok7IlwTyvr+Qtdr/jLU6O
+   16yZ6aZaRDYiWOokh2S0Qr2tORZDD3bv3cRVYNJzFqtkJS45KFIwqGZs4
+   YNGNlnT5BFvkPsQt7Ap4p81G4mVw6KAeNkP5jgejseCfGfDlY4+Fcp8gJ
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="307403875"
+X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; 
+   d="scan'208";a="307403875"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2023 02:10:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="695462376"
+X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; 
+   d="scan'208";a="695462376"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga001.jf.intel.com with ESMTP; 27 Jan 2023 02:10:31 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pLLgh-00FuQp-2J;
+        Fri, 27 Jan 2023 12:10:27 +0200
+Date:   Fri, 27 Jan 2023 12:10:27 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230127100236.3385154-1-christianshewitt@gmail.com>
- <20230127100236.3385154-5-christianshewitt@gmail.com>
- <a35f7f09-eb19-6cfc-2053-c6b340f10cbd@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <a35f7f09-eb19-6cfc-2053-c6b340f10cbd@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Linux Kernel Functional Testing <lkft@linaro.org>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Maxim Kiselev <bigunclemax@gmail.com>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Jean-Philippe Brucker <jpb@kernel.org>,
+        kernel-team@android.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v2 08/11] driver core: fw_devlink: Make cycle detection
+ more robust
+Message-ID: <Y9OjE+bJquDcCpJ8@smile.fi.intel.com>
+References: <20230127001141.407071-1-saravanak@google.com>
+ <20230127001141.407071-9-saravanak@google.com>
+ <Y9OcqGTocu8ZlFqy@smile.fi.intel.com>
+ <CAMuHMdXRbiNW9nd_N_=+OTo-uCmy2ePfOmREEHcqLyEn1H=Rhg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXRbiNW9nd_N_=+OTo-uCmy2ePfOmREEHcqLyEn1H=Rhg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/01/2023 11:06, Krzysztof Kozlowski wrote:
-> On 27/01/2023 11:02, Christian Hewitt wrote:
->> BPI-M2-PRO is based upon the BPI-M5 design except for a different
->> physical board layout and the following changes:
->>
->> - USB 3.0 ports reduced from 4x to 2x
->> - 3.5mm Combined CVBS/Audio Jack removed
->> - RTL8821BU WiFi/BT module (internal USB connected)
->>
->> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
->> ---
->>   arch/arm64/boot/dts/amlogic/Makefile          |  1 +
->>   .../dts/amlogic/meson-sm1-bananapi-m2-pro.dts | 98 +++++++++++++++++++
->>   2 files changed, 99 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
->> index 97b42e2100e0..644451794aca 100644
->> --- a/arch/arm64/boot/dts/amlogic/Makefile
->> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->> @@ -60,6 +60,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air-gbit.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air.dtb
->> +dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m2-pro.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m5.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-h96-max.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts
->> new file mode 100644
->> index 000000000000..4890d5d9a4f7
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts
->> @@ -0,0 +1,98 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (c) 2021 BayLibre SAS
->> + * Author: Neil Armstrong <narmstrong@baylibre.com>
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "meson-sm1-bananapi.dtsi"
->> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->> +
->> +/ {
->> +	compatible = "bananapi,bpi-m2-pro", "amlogic,sm1";
->> +	model = "Banana Pi BPI-M2-PRO";
->> +
->> +	sound {
->> +		compatible = "amlogic,axg-sound-card";
->> +		model = "BPI-M2-PRO";
->> +		audio-aux-devs = <&tdmout_b>;
->> +		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
->> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
->> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
->> +				"TDM_B Playback", "TDMOUT_B OUT";
->> +
->> +		assigned-clocks = <&clkc CLKID_MPLL2>,
->> +				  <&clkc CLKID_MPLL0>,
->> +				  <&clkc CLKID_MPLL1>;
->> +		assigned-clock-parents = <0>, <0>, <0>;
->> +		assigned-clock-rates = <294912000>,
->> +				       <270950400>,
->> +				       <393216000>;
->> +		status = "okay";
+On Fri, Jan 27, 2023 at 10:52:02AM +0100, Geert Uytterhoeven wrote:
+> On Fri, Jan 27, 2023 at 10:43 AM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Thu, Jan 26, 2023 at 04:11:35PM -0800, Saravana Kannan wrote:
+> > > + * Check if @sup_handle or any of its ancestors or suppliers direct/indirectly
+> > > + * depend on @con.  This function can detect multiple cyles between @sup_handle
+> >
+> > A single space is enough.
 > 
-> It's by default. Did any DTSI disable the sound node?
+> It's very common to write two spaces after a full stop.
+> When joining two sentences on separate lines in vim using SHIFT-J,
+> vim will make sure there are two spaces.
 
-It's a leftover we keep copying onto new boards, I'll send a patch top remove all those.
+But is this consistent with all kernel doc comments in the core.c?
 
-Neil
+I'm fine with either as long as it's consistent.
 
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
