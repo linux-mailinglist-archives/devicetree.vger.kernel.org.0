@@ -2,118 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FA4567EBE1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 18:02:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44E8467EC2D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 18:11:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234687AbjA0RCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 12:02:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56668 "EHLO
+        id S235012AbjA0RLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 12:11:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234660AbjA0RCu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 12:02:50 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D89F7FA2C
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 09:02:32 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id j36-20020a05600c1c2400b003dc39cb9c33so1582239wms.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 09:02:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WbU1jG3eBIib3Y4T/FJmhjrIYuLNHNTwPimhNEaBXnw=;
-        b=ZYqzKu5blklwUObA1H3gAkwCboO6R1adMPHjlKADOpoynUElxQHWl2yhz5fmMJ6/OC
-         2nzf1af85r9C5QwP4LdAALucQ0GJBKLp9Fc7M0AxBfPmo4zHYq1dLUyHbWOh2U+NM1uk
-         pDccnDz9SDYqiePHluMiOQypB7bl+tRkOzl31LQiaCkIJWj3RHd4BP0dS4he+VRiqu0W
-         b6vyXb9jET2cF6MJXg4WQkSifFOwnXSbZ9p/ogX/DXyGRLg5epYZ/2i4hjnIK/d+ES7a
-         9u9eLkpvlzjN9eiRcqUcmx74E1ZgC5+yt4Dz+/J3EFtI5q/P0UiM4sAHAQaa8mDJU5vL
-         TsGQ==
+        with ESMTP id S234920AbjA0RLh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 12:11:37 -0500
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03CB37B7B8;
+        Fri, 27 Jan 2023 09:11:10 -0800 (PST)
+Received: by mail-ed1-f44.google.com with SMTP id y19so5321132edc.2;
+        Fri, 27 Jan 2023 09:11:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WbU1jG3eBIib3Y4T/FJmhjrIYuLNHNTwPimhNEaBXnw=;
-        b=vE0ng2CYMxwuJPmImpkEsOZgZlgrjgFpNW4yh7H98c9oTKSm/s+oyBtUojlwS6CMo7
-         lciEen78pqIY/KVRbOwtQ5wHm0i8q8ls4Pve6wELhS30KJxSbeouHHRdWoRSC0yHSssX
-         gx2CjmJqCGm4QqUJHwWcf8HUD6puwRkBc6FpFSNbMJ3j4whVTjerM4wmyQkORvUfXOVU
-         P0YiCmbJiF+WjuYVC/sNVQJXpdU1Ci3sah2FMZ068wIbKpRQjxQ3/8OMQEZR11coWNp/
-         TMr/DwJpgTxFU4fcZ/awOMsYY5LjWCpB6Dty+RWGx8wrYatKSn9/znhVbPgDSkU0XOFu
-         SEgA==
-X-Gm-Message-State: AO0yUKWegVfNaIhRzzPbbJXeCC0bijlZOGi8uXxlmumvLL8jH/2WOxVK
-        ARqUPMTWJtTKFImWtMREkDMeXVq0H0MlVcLboFA=
-X-Google-Smtp-Source: AK7set8nKe1EwJJz5qSh/iMOOjsbaKe0SVJ6gB0BYq3Td23vOrRiaDhe0P7jCeUxIxn6ZPoBJ0Fjww==
-X-Received: by 2002:a05:600c:2189:b0:3dc:4334:22e3 with SMTP id e9-20020a05600c218900b003dc433422e3mr790979wme.17.1674838951034;
-        Fri, 27 Jan 2023 09:02:31 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v10-20020a05600c12ca00b003d9df9e59c4sm7925935wmd.37.2023.01.27.09.02.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 09:02:30 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Christian Hewitt <christianshewitt@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230127150536.3719090-1-christianshewitt@gmail.com>
-References: <20230127150536.3719090-1-christianshewitt@gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add support for
- Radxa Zero2
-Message-Id: <167483894978.2238401.2111173691502093407.b4-ty@linaro.org>
-Date:   Fri, 27 Jan 2023 18:02:29 +0100
+        h=cc:to:subject:message-id:date:from:reply-to:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FUxpuvJ/VHJaLIeLYnuRlg6jDsLtCejrbzt/O2zp+ZQ=;
+        b=IbaGeWez18I6i2D+ir8sVW69k+wa8ji8cW9iELJ8QTTvkisd7LELywspbpwKjv/tsM
+         /754sKeLinmKbmonRdQ3ueDtEgjMvh6/HiQQm7iZyGqgYl9F/HnUCmBUQLImxeoQuyrm
+         EjrWqKOaAPLQHs5eDleQ1Gn/047aJNSLVZNgDl9arur0b7uhOfCVKZ0eNeTqcN5QIQb1
+         WkbTaFzIu8/5D8z/sRM9TN0T/Wkk5IN2Z5apJr1kD5yijb/ArCE+eYTEYGwt6Gxo0OmQ
+         CW8uYQs0BsaJuDDVNZ+RzZtjs46c/7KdrAfFkV6I2XX18SSv+uGupNTHe39859/eaXwh
+         Cc+Q==
+X-Gm-Message-State: AO0yUKV3ddbyiK+waseEoz0CibkIl/Wqc+SubX88Vsjoe0da5uT3j2Os
+        CWyQsumifgQ5r8KqH3VafpGb2J4urnSpcA==
+X-Google-Smtp-Source: AK7set8vdkXQ42gZuenaiaRXxN+mnvdWOMVVdKTV1W27mOJjDObJcj4ESaY4cRC6Y1jtW1OFzshVEA==
+X-Received: by 2002:a05:6402:419:b0:4a0:b640:6505 with SMTP id q25-20020a056402041900b004a0b6406505mr8744081edv.34.1674839435381;
+        Fri, 27 Jan 2023 09:10:35 -0800 (PST)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com. [209.85.128.43])
+        by smtp.gmail.com with ESMTPSA id l19-20020a056402255300b00488abbbadb3sm2585405edb.63.2023.01.27.09.10.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 09:10:34 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso1140812wms.4;
+        Fri, 27 Jan 2023 09:10:34 -0800 (PST)
+X-Received: by 2002:a05:600c:1c8b:b0:3b4:6c36:3f59 with SMTP id
+ k11-20020a05600c1c8b00b003b46c363f59mr1621701wms.100.1674839434612; Fri, 27
+ Jan 2023 09:10:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230120184500.1899814-1-martin.botka@somainline.org> <20230120184500.1899814-2-martin.botka@somainline.org>
+In-Reply-To: <20230120184500.1899814-2-martin.botka@somainline.org>
+Reply-To: wens@csie.org
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Sat, 28 Jan 2023 01:10:23 +0800
+X-Gmail-Original-Message-ID: <CAGb2v678GtZEZiiH_RB5=6UUqCDqPGg6kp6US_s+pKs1oBWWGw@mail.gmail.com>
+Message-ID: <CAGb2v678GtZEZiiH_RB5=6UUqCDqPGg6kp6US_s+pKs1oBWWGw@mail.gmail.com>
+Subject: Re: [PATCH v8 1/3] dt-bindings: mfd: x-powers,axp152: Document the
+ AXP313a variant
+To:     Martin Botka <martin.botka@somainline.org>
+Cc:     martin.botka1@gmail.com,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Jan Trmal <jtrmal@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Sat, Jan 21, 2023 at 2:45 AM Martin Botka
+<martin.botka@somainline.org> wrote:
+>
+> The X-Powers AXP313a is a PMIC used on some devices with the Allwinner
+> H616 or H313 SoC.
+>
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-On Fri, 27 Jan 2023 15:05:35 +0000, Christian Hewitt wrote:
-> The Radxa Zero2 is a small form-factor SBC using the Amlogic
-> A311D chip.
-> 
-> 
-
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
-
-[1/2] dt-bindings: arm: amlogic: add support for Radxa Zero2
-      https://git.kernel.org/amlogic/c/229cfc6b16ccedfcae1ee10dc1aed04e7a85ed32
-[2/2] arm64: dts: meson: add support for Radxa Zero2
-      https://git.kernel.org/amlogic/c/d747e7f76a5fa6e3deb4c419df768f9ee49c2161
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+Acked-by: Chen-Yu Tsai <wens@csie.org>
