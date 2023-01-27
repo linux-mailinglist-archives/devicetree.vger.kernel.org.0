@@ -2,103 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C235467DCA1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 04:23:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAE4867DD6A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 07:27:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233269AbjA0DXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Jan 2023 22:23:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46880 "EHLO
+        id S231700AbjA0G1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 01:27:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232965AbjA0DX2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Jan 2023 22:23:28 -0500
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com [205.220.165.32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB99174C13;
-        Thu, 26 Jan 2023 19:23:21 -0800 (PST)
-Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
-        by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30R0O5tQ011553;
-        Fri, 27 Jan 2023 03:23:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=corp-2022-7-12;
- bh=NUj/6rtTlckjsxTsHc+LIWBWuS5YtkQ3WzxBYqTZPLA=;
- b=Y8bZ5ahSWEpltPfdIwYvDtjDKJrQ1Whk8O1Azf7OeGHMwe8CyEdecVpJt1LZPtAcM+yj
- U/eF/4KLH4LaLT5pr9wRCBG/CUuHUcJ+Xf5Jz7Fxv+PKWlq+hybbCxPKdAVfbrB2bi5+
- sRhgoPeDtAoR87Wi6hP+HsLFT+lu/8ogrz4hgC+NmcQ6fl1gPFdCWqVkWZ01VZbcJQ2p
- HTQ8+cOwCFV3hbw6NvNbTMUROTy05fK6OSq1JeIEyyWi4TH7OnJ5+q++S74SXzwrN/Pw
- en7cDFgmpUr122eP6u2vq6qPe4lFdP0ynXAH5Ir2yDrlgptpfaB4eFIBpE95ZTXFmQCi EA== 
-Received: from phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta03.appoci.oracle.com [138.1.37.129])
-        by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3n87xabury-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 27 Jan 2023 03:23:13 +0000
-Received: from pps.filterd (phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-        by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (8.17.1.5/8.17.1.5) with ESMTP id 30QNlVcu007006;
-        Fri, 27 Jan 2023 03:23:12 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 3n86g8nxrm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 27 Jan 2023 03:23:12 +0000
-Received: from phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30R3N7em036358;
-        Fri, 27 Jan 2023 03:23:12 GMT
-Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
-        by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTP id 3n86g8nxpp-5;
-        Fri, 27 Jan 2023 03:23:11 +0000
-From:   "Martin K. Petersen" <martin.petersen@oracle.com>
-To:     "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        Johan Hovold <johan+linaro@kernel.org>
-Cc:     "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH RESEND] dt-bindings: ufs: qcom: allow 'dma-coherent' property
-Date:   Thu, 26 Jan 2023 22:22:58 -0500
-Message-Id: <167478863305.3972592.17059833835113390136.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230116164236.18958-1-johan+linaro@kernel.org>
-References: <20230116164236.18958-1-johan+linaro@kernel.org>
+        with ESMTP id S231482AbjA0G1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 01:27:15 -0500
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9BE36D5D7
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 22:27:12 -0800 (PST)
+Received: by mail-qt1-x836.google.com with SMTP id d3so3307110qte.8
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 22:27:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0aWZpGFELfbdnYfESYZXXP75fpqFOpqbk6j8seUM1IY=;
+        b=bmvtle+uR7LgOpFr6NPKTt0cz44Ut/VSmygItH61ogyN/F4nDNGg6FgbJ7n+6B6wb3
+         SIc1zfPBPYy1+2bvWtzAet/Lpd/tcrSYjlXCbFeNCtR4+9nQc/eWGY/mQBGkWxcDQP2A
+         sHSbnYL3pPEozCvduCs7vlMDfxFEHQVTP78/9RV/wA5HqGbN0wVIb/QfEUiOqtobxiaV
+         0Vg38cQ90cJNTRIhL+SAk23WRbCVxI8PPQwgRyRHk2QQB/ZHVVmBEC6AxLoP9rI5MKcN
+         9K5mU9YvzDqTgpPXLrqZJzb7h+iM5+me+ULTVncmv0oIXKIqH3+VDF8X4SkumiE/TwdC
+         q9JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0aWZpGFELfbdnYfESYZXXP75fpqFOpqbk6j8seUM1IY=;
+        b=s4fd2gWp+O+ZWtrMUoxeu4kEGYc4sjA17wNPL2upxHr1b/0xwds9zBUYjD5RR+CtRY
+         rOAKgQV1CGk4+yDyJdzxQYLu0DLr12/b0p4Lk9QM2mgaV3shYY4+i8BRNIW2T408nK+r
+         WWE3FxP6McwWzIoctKxtXOj/ShIlVr2EkJzNraGt8LutavlEL0cr/VAl5ef+5A4ijhLr
+         NJnIAQLSlSfT6KgQUAEY9Y8WViZupHRkLe7r40U2K+h69mC3sBsDJwGAHhGfeT46kqSV
+         LoX68nFKXGy/FWHdv1Ytksan8Wdt8YD3/Y4r03Va+rpt9prkv16FAs4u4Nq/kDIMmLjv
+         w4IA==
+X-Gm-Message-State: AFqh2kqU7/FW2qFIhBkK7bXDH5RuAYMqmUFWNNpvruS215BGfHEUriYF
+        XPV2ofDmZ5FWxZZ6hdJ/dVfvHZh3senb9BjC6tXNqrvGNbsM4A==
+X-Google-Smtp-Source: AMrXdXsx4Hwyv/0QcCZQtECAgeaV3PT0x1I6Ste4FFeEN5Xoc29DAJH8HwWtUurLYy91dN/6oCG1WZiEbO9jAuAZpY4=
+X-Received: by 2002:ac8:7c98:0:b0:3ad:83e0:2a7d with SMTP id
+ y24-20020ac87c98000000b003ad83e02a7dmr1616920qtv.477.1674800832038; Thu, 26
+ Jan 2023 22:27:12 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-26_09,2023-01-26_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- bulkscore=0 mlxscore=0 mlxlogscore=868 adultscore=0 spamscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301270029
-X-Proofpoint-GUID: X5xI6KwZlUkEDYUs9PIRmbrvTkWSoVnO
-X-Proofpoint-ORIG-GUID: X5xI6KwZlUkEDYUs9PIRmbrvTkWSoVnO
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230124183257.1525376-1-amit.pundir@linaro.org> <b47b5a49-6e68-c827-a88e-f61fb85521c8@gmail.com>
+In-Reply-To: <b47b5a49-6e68-c827-a88e-f61fb85521c8@gmail.com>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Fri, 27 Jan 2023 11:56:36 +0530
+Message-ID: <CAMi1Hd2F0DZVU1dpju1C0MGfb59qnEyi3Lz3qY+sT=hFbycfZw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-xiaomi-beryllium-tianma: Add
+ reserved memory region
+To:     Joel Selvaraj <joelselvaraj.oss@gmail.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        phone-devel <phone-devel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Jan 2023 17:42:36 +0100, Johan Hovold wrote:
+On Thu, 26 Jan 2023 at 11:45, Joel Selvaraj <joelselvaraj.oss@gmail.com> wrote:
+>
+> Hi Amit Pundir,
+>
+> I have a Poco F1 (EBBG) variant and I can confirm that the framebuffer
+> address is same for the EBBG variant too.
+>
+> I did a quick check by running the following command based on this link[1]:
+>
+> xiber:~$ strings /dev/disk/by-partlabel/xbl_a | grep "Display Reserved"
+>
+> 0x9D400000, 0x02400000, "Display Reserved",  AddMem, MEM_RES,
+> SYS_MEM_CAP, Reserv, WRITE_BACK_XN
+>
+> So I think it's safe to move this to sdm845-xiaomi-beryllium-common.dtsi
 
-> UFS controllers may be cache coherent and must be marked as such in the
-> devicetree to avoid data corruption.
-> 
-> This is specifically needed on recent Qualcomm platforms like SC8280XP.
-> 
-> 
+ACK. Sending v2 shortly.
 
-Applied to 6.3/scsi-queue, thanks!
-
-[1/1] dt-bindings: ufs: qcom: allow 'dma-coherent' property
-      https://git.kernel.org/mkp/scsi/c/85e182b48a33
-
--- 
-Martin K. Petersen	Oracle Linux Engineering
+>
+> Regards,
+> Joel Selvaraj
+>
+> [1]
+> https://wiki.postmarketos.org/wiki/SDM845_Mainlining#Find_the_framebuffer_address
+>
+>
+>
+>
+> On 24/01/23 12:32, Amit Pundir wrote:
+> > Put cont splash memory region under the reserved-memory as
+> > confirmed by the downstream code for Tianma variant as well.
+> >
+> > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+> > ---
+> > This change should probably go in sdm845-xiaomi-beryllium-common but
+> > I don't have EBBG variant's downstream code nor the device to test.
+> >
+> >  .../boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts      | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
+> > index 8e176111e599..47cbf725b0e3 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
+> > @@ -7,6 +7,14 @@
+> >  / {
+> >       model = "Xiaomi Pocophone F1 (Tianma)";
+> >       compatible = "xiaomi,beryllium", "qcom,sdm845";
+> > +
+> > +     reserved-memory {
+> > +             /* Cont splash region set up by the bootloader */
+> > +             cont_splash_mem: framebuffer@9d400000 {
+> > +                     reg = <0x0 0x9d400000 0x0 0x2400000>;
+> > +                     no-map;
+> > +             };
+> > +     };
+> >  };
+> >
+> >  &display_panel {
