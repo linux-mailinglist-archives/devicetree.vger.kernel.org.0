@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B258567EE98
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 20:44:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E206A67EE7F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 20:42:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232427AbjA0To0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 14:44:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51168 "EHLO
+        id S231876AbjA0Tm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 14:42:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjA0TnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 14:43:21 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E20020D2A
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:43:02 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id q5so5947076wrv.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:43:02 -0800 (PST)
+        with ESMTP id S231718AbjA0Tmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 14:42:53 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F60D9024
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:42:24 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id b7so5922027wrt.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:42:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Lt+BQRUkVwG5AY299cvvsisO/FIKbvndsHMl4pZfRMk=;
-        b=fXOWLG86zl7dLNoOfrtLG2LDDDFOaeVYTumck+Oi0XdoziW+QPSIuPZMMob2St1S6L
-         cgoUi1DZwOpAQpEAYNSDlXLMHfYiEkUV++bVcZuJdf8NXaoFa65a/TUO6OgrsBpXTONK
-         h9ap40zTIYBWGkZm1w5L35XD46ECyfGJzH7ToHO2BX46uwSOnCI/9rHmVZUcW7J+y+T0
-         VGt6Peyy8x0YbInO8ZAYkgiKB4vTqEgB3qJf8HUhe3+SliiOG2zr02bNomvJ29ns/QeE
-         wXAYU/yuJC2NgVtmYIZv6xf0an22eIpq90KxEfLwxyapwcao7K3zaf3ln80FEK3An1kM
-         NwWg==
+        bh=YQALOu0zos/2GKo4V4/cAoGCHCC2uLMqJ6031+6X5Jk=;
+        b=sGXCHL8sCDU8JXo0+6/UceORrD3447j/IvhVsvXkReOZIMb1iKKx6TZD/aAtI1Nsic
+         6/m1uQP8xTiny7FHKn0qi3/7Jklks14xKZRiMYybUveq5p2fqrtNBemqpUu2/05hrEKh
+         8idqM4mgqNPoL8MiqLWCLGXeEC3ivz1xmUcmxIWp2sxotYiNX5VCbfyzzmE1C+ko4aBx
+         6ljDx+2AAra8sz9FqXnp1xQx89uJSJOqefeCwJ7941Csnwa0x15aqBbwNmzBOetBjpz9
+         h4OHv5awdNsCdv9rkmFhno3r+mXFJJzBMSOyjjvcpAEM0Cej7qum9CPOfO1H5rpjqMFd
+         XA1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Lt+BQRUkVwG5AY299cvvsisO/FIKbvndsHMl4pZfRMk=;
-        b=SL38jBWhlgM7/JdsM/ahPelwCREJXfBE07M9WlL88HpPTViXsQb6TkrSfyl70w2AO9
-         MjQi1Eu3hGno4fXofZ3Pw+eSiq/MTujB/dI17DLcabTF/X//LCyi7NXB4M1UMRhVwUrp
-         xTjkHaleFF8e2O0bDyYEocDBBEpgGStfOxKoijwvQb0FMHTpc7HAJaxlOpesFKpCCNmZ
-         q5sa24oeGe06xGFTFPHFRMC3sr57ou830SZM+mjfHmYZ/9wRJBxHvE5ziUbAP3KM5IrY
-         FwKiHwqtT+vAnsyb0oLu2NLQBBC3BknhVWxmxlZxvRzKFLO9cb7U7ntsOoeEZhJO2xdd
-         qFVg==
-X-Gm-Message-State: AFqh2kpZ4fJuUTZNqYMX5tZA5aLoX+R5MEOErSVu4PRYipXAxhJp9N/L
-        OTgOhN2R9cSLdM1ktUfV3ENbOA==
-X-Google-Smtp-Source: AMrXdXvK0+FHXkZkxXvhKqcDYinThadMV34TC4+bbQQYM0mPZLE1nitz9lp4mqXEtWCgarftFafXPw==
-X-Received: by 2002:a5d:5a8f:0:b0:2be:53cc:ca5c with SMTP id bp15-20020a5d5a8f000000b002be53ccca5cmr29109152wrb.15.1674848480281;
-        Fri, 27 Jan 2023 11:41:20 -0800 (PST)
+        bh=YQALOu0zos/2GKo4V4/cAoGCHCC2uLMqJ6031+6X5Jk=;
+        b=6VB8ZdCVvw2LVoWAqKI6c8i0b9IdsIvCgP/XdGMFFAH2A9GBjgh7sA5leJNL30IRDx
+         S81421yBcM0+4vpWEH0rF03+DRfyLSxRSFj3b8KODLUCnbAJK8LZxKQekAK04rdK38WE
+         je54u8bLCI6CLG9aPPzkj2E7+qqTwMUOEuypto7KjNOE3jXgLen7eoYBWgagG3DD1IR1
+         PmPznpqyR1JuYESl8rGScJwLNk4Z3fFjzdjRUCW5zleCRsHS+51JhOFglQGifBjisVYn
+         8D4EY0qmMObE5bw28OA6RfhzSGCsGBS7cp671YY8FHFfYa00ZWEg3OrntpkipM3StIrM
+         bFMA==
+X-Gm-Message-State: AFqh2kombmy5b990C0rHQXc/mLnHAqMytvoEfNyHkW82HNqWNGWvwCY5
+        GvlznV5V0knl/YxAn+KvF89kKQ==
+X-Google-Smtp-Source: AMrXdXtHCz5lyTuBDBjfZVraQ1cpBDmDluPB/WtBMnbu+8cXUQblVz7YLrQFitgm3u+uI9Bmt0CrQg==
+X-Received: by 2002:a5d:6b42:0:b0:2bc:7e6c:7cd8 with SMTP id x2-20020a5d6b42000000b002bc7e6c7cd8mr34616383wrw.26.1674848482242;
+        Fri, 27 Jan 2023 11:41:22 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y17-20020adffa51000000b002238ea5750csm5822417wrr.72.2023.01.27.11.41.18
+        by smtp.gmail.com with ESMTPSA id y17-20020adffa51000000b002238ea5750csm5822417wrr.72.2023.01.27.11.41.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 11:41:19 -0800 (PST)
+        Fri, 27 Jan 2023 11:41:21 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Vinod Koul <vkoul@kernel.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
@@ -66,9 +66,9 @@ Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
         Henrik Grimler <henrik@grimler.se>,
         Chanwoo Choi <cw00.choi@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 7/8] ARM: dts: exynos: move DP and MIPI phys to PMU node in Exynos5250
-Date:   Fri, 27 Jan 2023 20:40:56 +0100
-Message-Id: <20230127194057.186458-8-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 8/8] arm64: dts: exynos: move MIPI phy to PMU node in Exynos5433
+Date:   Fri, 27 Jan 2023 20:40:57 +0100
+Message-Id: <20230127194057.186458-9-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230127194057.186458-1-krzysztof.kozlowski@linaro.org>
 References: <20230127194057.186458-1-krzysztof.kozlowski@linaro.org>
@@ -76,75 +76,67 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DisplayPort and MIPI phys are actually part of the Power Management
-Unit system controller.  They do not have their own address space, thus
-keeping the nodes under soc causes warnings:
+The MIPI phy is actually part of the Power Management Unit system
+controller.  It does not have own address space, thus keeping the node
+under soc causes warnings:
 
-  exynos5250-arndale.dtb: soc: video-phy-0: {'compatible': ['samsung,exynos5250-dp-video-phy'],
-    'samsung,pmu-syscon': [[20]], '#phy-cells': [[0]], 'phandle': [[24]]} should not be valid under {'type': 'object'}
+  exynos5433-tm2e.dtb: soc@0: video-phy: {'compatible': ['samsung,exynos5433-mipi-video-phy'], ...
+    should not be valid under {'type': 'object'}
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/exynos5250.dtsi | 24 +++++++++++-------------
- 1 file changed, 11 insertions(+), 13 deletions(-)
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi | 19 +++++++++----------
+ 1 file changed, 9 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm/boot/dts/exynos5250.dtsi b/arch/arm/boot/dts/exynos5250.dtsi
-index 97e89859ba3d..a35c00f055a3 100644
---- a/arch/arm/boot/dts/exynos5250.dtsi
-+++ b/arch/arm/boot/dts/exynos5250.dtsi
-@@ -290,7 +290,7 @@ pinctrl_3: pinctrl@3860000 {
+diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+index 9da24fe958a3..842976addbd9 100644
+--- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+@@ -911,12 +911,20 @@ pinctrl_touch: pinctrl@14ce0000 {
  		};
  
- 		pmu_system_controller: system-controller@10040000 {
--			compatible = "samsung,exynos5250-pmu", "syscon";
-+			compatible = "samsung,exynos5250-pmu", "simple-mfd", "syscon";
- 			reg = <0x10040000 0x5000>;
+ 		pmu_system_controller: system-controller@105c0000 {
+-			compatible = "samsung,exynos5433-pmu", "syscon";
++			compatible = "samsung,exynos5433-pmu", "simple-mfd", "syscon";
+ 			reg = <0x105c0000 0x5008>;
+ 			#clock-cells = <1>;
  			clock-names = "clkout16";
- 			clocks = <&clock CLK_FIN_PLL>;
-@@ -298,6 +298,16 @@ pmu_system_controller: system-controller@10040000 {
- 			interrupt-controller;
- 			#interrupt-cells = <3>;
- 			interrupt-parent = <&gic>;
-+
-+			dp_phy: dp-phy {
-+				compatible = "samsung,exynos5250-dp-video-phy";
-+				#phy-cells = <0>;
-+			};
-+
+ 			clocks = <&xxti>;
+ 
 +			mipi_phy: mipi-phy {
-+				compatible = "samsung,s5pv210-mipi-video-phy";
++				compatible = "samsung,exynos5433-mipi-video-phy";
 +				#phy-cells = <1>;
++				samsung,cam0-sysreg = <&syscon_cam0>;
++				samsung,cam1-sysreg = <&syscon_cam1>;
++				samsung,disp-sysreg = <&syscon_disp>;
 +			};
++
+ 			reboot: syscon-reboot {
+ 				compatible = "syscon-reboot";
+ 				regmap = <&pmu_system_controller>;
+@@ -936,15 +944,6 @@ gic: interrupt-controller@11001000 {
+ 			interrupts = <GIC_PPI 9 0xf04>;
  		};
  
- 		watchdog@101d0000 {
-@@ -810,18 +820,6 @@ mixer: mixer@14450000 {
- 			status = "disabled";
- 		};
- 
--		dp_phy: video-phy-0 {
--			compatible = "samsung,exynos5250-dp-video-phy";
--			samsung,pmu-syscon = <&pmu_system_controller>;
--			#phy-cells = <0>;
--		};
--
--		mipi_phy: video-phy-1 {
--			compatible = "samsung,s5pv210-mipi-video-phy";
+-		mipi_phy: video-phy {
+-			compatible = "samsung,exynos5433-mipi-video-phy";
 -			#phy-cells = <1>;
--			syscon = <&pmu_system_controller>;
+-			samsung,pmu-syscon = <&pmu_system_controller>;
+-			samsung,cam0-sysreg = <&syscon_cam0>;
+-			samsung,cam1-sysreg = <&syscon_cam1>;
+-			samsung,disp-sysreg = <&syscon_disp>;
 -		};
 -
- 		dsi_0: dsi@14500000 {
- 			compatible = "samsung,exynos4210-mipi-dsi";
- 			reg = <0x14500000 0x10000>;
+ 		decon: decon@13800000 {
+ 			compatible = "samsung,exynos5433-decon";
+ 			reg = <0x13800000 0x2104>;
 -- 
 2.34.1
 
