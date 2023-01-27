@@ -2,75 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9114F67E668
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 14:18:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2497667E678
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 14:20:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233609AbjA0NSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 08:18:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35552 "EHLO
+        id S234846AbjA0NUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 08:20:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234773AbjA0NSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 08:18:16 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49DF71165E
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:17:49 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so5396619wma.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:17:49 -0800 (PST)
+        with ESMTP id S234691AbjA0NUY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 08:20:24 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF4D11EA2
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:19:45 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id u21so4720436edv.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:19:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=PHUtNK1QUcmBWUA4niJy/dtuN1rM7eN2dajThZv9k/I=;
-        b=uff7J6FNTNQnfTZKcq9sgfIV6BLs3iEe1qO6Nkjx9qHu/qaIaBQc9wSYwLC5MuiegX
-         pdQ6gcVnlPa0GluVqhZKtX9oM+Tb3O4H3AKaHKL4BM0NRG4JpIb59n9LQsvem1VMIFPw
-         CQl27+lZKSq05ZqTSrjqh5aXL5L3lF+dypYSIZaWJWbn+2O4UgGHkmnTPY/Y5E3nlMXJ
-         sDkgm7vx7Rvqu1pLHI9FLr1xUUF7jj1Uav6476xM2kKTHUEq3yABJXAg2S0UKSO2Lvy9
-         1qnBTTbBzFZcn9beeD3yZ6boQmv8f1uhgip+Ep4vQii4VGsvE+VsDr6i3ztd6EWNqgaq
-         B8Xw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OcgPAMgrAZ/C7xPMvBkfJEfxIjKIhIiRt6e2oEpw2P8=;
+        b=QeQDzrGiKaOpTK0L4ffCwsCnXl55BXQ2SKM3wzAUrretYfLqPKBeAxLZgnLV17ELto
+         c8S4Mw75ZK4P9OGJOLmntTJDb+I72QcNAUcgM3vGgBhd1Yrk/XR98o0geLrPp2T+jFyl
+         8vSz/GoPJ+tnsQtMwegXUK6pm4AfUZ98q2+920rv0OoBYgddgk04LoHnAMesbT5Hohww
+         hBsKQD1Fi2zgZHuMjF0ul0aF2q5nfUKtgvi2y3X2U/jGs3G5psoS0xUhmjKtU8Lnogjr
+         ewLR3QTEE0lXaZJM6ufM1F6Sf26iYV5ooSNdJSW9HG3qqXiDEdcQnVIIMuP+aH1kV5KX
+         0ozg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PHUtNK1QUcmBWUA4niJy/dtuN1rM7eN2dajThZv9k/I=;
-        b=isIuPAWYEgVF2bb4Lgxvj11u1uKl9ImGLbs6v7ONA/PzFXkIQyi2+IcEQUxSEPh1nd
-         7T5JNANhdYrVLEAIG9r0Ksy4njjDfIsQNBdw1wCjVBsTvituQcNv7psF0C2B0f6/BEBT
-         3z7USn2rD4nnz9Q/1zlu+OIYoLU35Ji0UwS5vf4B43UN9ZnxTVt3JaTyS0/HeQNikamh
-         cDX+iUuvEMnHDybT+9OQxemRrjjWXPhXHXqg1cG+R1nORoleUjnCYCZ4RX9LBG3gmXXG
-         OxCNnVkFSmGSLHvFiJIQlEhFfAHChtbYqJLyizj12Bxd63WqgLmFxgpVQcsiqTmWzqJI
-         63CA==
-X-Gm-Message-State: AO0yUKWhRxtp1y5SfreSBg37bf2wj+YRWMdneNItYM7bDo304SAa5+2C
-        QQk7rT1L8PdjbVbjkaI9PPD2Vg==
-X-Google-Smtp-Source: AK7set+Pxyqp8I/31T+hmD4efINPIHybA0/rjg7Snx1FZ+sWFgsJRDV3DN4kYihRGmgXKAJgOhlsgw==
-X-Received: by 2002:a05:600c:4494:b0:3dc:40a0:3853 with SMTP id e20-20020a05600c449400b003dc40a03853mr803614wmo.11.1674825467622;
-        Fri, 27 Jan 2023 05:17:47 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:d4ec:15ea:873c:61e6? ([2a01:e0a:982:cbb0:d4ec:15ea:873c:61e6])
-        by smtp.gmail.com with ESMTPSA id l21-20020a05600c4f1500b003dc4050c97bsm1003279wmq.3.2023.01.27.05.17.46
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OcgPAMgrAZ/C7xPMvBkfJEfxIjKIhIiRt6e2oEpw2P8=;
+        b=4IBUqbgYZLlhY02xMx65pyO6rlYRfbs/SsgP2Hvkc27C0rOkeiQOGpwzjN2VppaSAk
+         +hAp6eBHnxvkBpkDH4Xwucuq1Sj4eZiWh03eHKU+K+YJFQMZMew02zbjs4MkfRjEyS8J
+         BAINy0PF4lrGe4j4RmJ8meMwRN+8Vp7uwVGYFuzuNMsa68B3qh5i31Dk8mgs9jO2A8iV
+         J3vt35RNAPjWkvN9qZdMpAOxHCubLPRC9XHRwILtNbteQs7bmqThwQ6JezsCFTZfwH8J
+         vxSzpgiYnA8vNWzCOy+ICmwK8NT6v7c7TbuDP4uRWwyzcMQDANnAJdmigpwr0H3mjeK5
+         vFSQ==
+X-Gm-Message-State: AFqh2kojVx5204/uvr0y9FYLb1Miyd5uS9CozWf1Iexzuxnj5gH2XMXl
+        XyyKtvXnnLyOiVAb4CzQ3osocw==
+X-Google-Smtp-Source: AMrXdXuQF/+vduGhh7O4LY2Mxe6x5n/9zOd0Pawa+WdOyFosu/ndcYTzHQOWa4l/PZN3CukIRJxNig==
+X-Received: by 2002:a05:6402:4d6:b0:46c:6ed1:83ac with SMTP id n22-20020a05640204d600b0046c6ed183acmr41608812edw.9.1674825584239;
+        Fri, 27 Jan 2023 05:19:44 -0800 (PST)
+Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
+        by smtp.gmail.com with ESMTPSA id e9-20020a50fb89000000b0048ecd372fc9sm2335204edq.2.2023.01.27.05.19.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 05:17:47 -0800 (PST)
-Message-ID: <a4b6d79f-972c-9169-16e0-b930e2c15c51@linaro.org>
-Date:   Fri, 27 Jan 2023 14:17:46 +0100
+        Fri, 27 Jan 2023 05:19:43 -0800 (PST)
+Message-ID: <7da76295-7d0f-f401-1501-7932f31ecbee@linaro.org>
+Date:   Fri, 27 Jan 2023 14:19:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: meson: radxa-zero: allow usb otg mode
+ Thunderbird/102.7.0
+Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Fix the aoss_qmp node name
 Content-Language: en-US
-To:     Christian Hewitt <christianshewitt@gmail.com>,
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230127103913.3386435-1-christianshewitt@gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230127103913.3386435-1-christianshewitt@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+Cc:     devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org
+References: <20230127131441.1157679-1-abel.vesa@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230127131441.1157679-1-abel.vesa@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -81,26 +79,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/01/2023 11:39, Christian Hewitt wrote:
-> Setting dr_mode to "host" prevents otg which can be useful on a board
-> with limited connectivity options. So don't force host mode.
+
+
+On 27.01.2023 14:14, Abel Vesa wrote:
+> The proper name for it is power-management. Currently, with the node
+> name being power-controller, the bindings check fails due to the
+> property #power-domain-cells missing.
 > 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> Fixes: ffc50b2d3828 ("arm64: dts: qcom: Add base SM8550 dtsi")
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->   arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts | 1 -
->   1 file changed, 1 deletion(-)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-> index e3bb6df42ff3..cf0a9be83fc4 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-> @@ -401,5 +401,4 @@ &uart_AO {
->   
->   &usb {
->   	status = "okay";
-> -	dr_mode = "host";
-
-At some point we would need to add the fusb302 node to have proper USB-C PD and mode switch handling.
-
-Fixes: 26d1400f7457 ("arm64: dts: amlogic: add support for Radxa Zero")
-Acked-by: Neil Armstrong <neil.armstrong@linaro.org
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index 6ff135191ee0..57878ea64ee0 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -2503,7 +2503,7 @@ tsens2: thermal-sensor@c273000 {
+>  			#thermal-sensor-cells = <1>;
+>  		};
+>  
+> -		aoss_qmp: power-controller@c300000 {
+> +		aoss_qmp: power-management@c300000 {
+>  			compatible = "qcom,sm8550-aoss-qmp", "qcom,aoss-qmp";
+>  			reg = <0 0x0c300000 0 0x400>;
+>  			interrupt-parent = <&ipcc>;
