@@ -2,85 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A3EA67E541
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:32:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9486C67E543
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:32:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbjA0McQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 07:32:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42312 "EHLO
+        id S231830AbjA0Mcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 07:32:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233285AbjA0McO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:32:14 -0500
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D1657EE2
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:32:10 -0800 (PST)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-4fd37a1551cso64470037b3.13
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:32:10 -0800 (PST)
+        with ESMTP id S231663AbjA0Mcl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:32:41 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97EF1170A
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:32:40 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id j17so3368492wms.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:32:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=v0if3bG0az4VVrqjrBAgqmkkRSjBuWgCJhmn0kYqVUo=;
-        b=FgWZXTUPi5P9XiCuBQQ7Mban5muT1PCuAYN+0cWoieKvqtgyl0BETa13RIeZruTQcI
-         RMlnL/epMaeKzOQBweNCUpVbgYQafunJr0MAQW3/TvrzRwOexZQDDdWIlMiYv3B3TxCw
-         JAaM3ihmcnwnT6voKtG6v0nmzCa5/Vs1uAlqRdqztT9iXBELBGQOHR+CyaOD+rjUb+pS
-         r6JdwodKRM5lkPtF//UxlDd0AKiRSqjF37It476HLdauFoJe3GYrjo7GgUvsup2sPglI
-         VwPK9Df8V36vQ6HzWHzRR1pRwIpcHi394E26eYHS02OgJpMJMT+PAQhk4Dh9ODBTHfHg
-         y5Sw==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zOZLnCCSB4bMWTg2//OMRb+a8xBlO3pQtkZONx7me9k=;
+        b=MBLQfSlFVm5e6eH4hLBrw51ODKea5IRMHFX6KcL1hiqtbCc5VyjKH9Uh7cEoRUUOWp
+         rMBuWGZzfF8rCVg795QqTXKqrA0gLK5n5c87uTtCoR1YDMVaedTxj0VNOjuCt13lliRp
+         ESkiVIJBDAHKWOrRLKoKeSXBkiv0GUFeHQBEm2CdN/zZKEWiqZH5DRKyXImCyn5B1ed0
+         YqU0BA6+zRU7OUqHUbSkM3cf647JBpELsZiEhhgkmO0RqwZ4OaEZ+Q7IkJgHhI3Onw32
+         s1NKfJPqM+Ucopvvv7N6ux9gyX3fiAHyxFBm1nCp+u2z0BWDMP3woH2iXrEFlvaPdsgj
+         Ry3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v0if3bG0az4VVrqjrBAgqmkkRSjBuWgCJhmn0kYqVUo=;
-        b=mAvzhN/6bVFZNrS8FgvfKCTcscFD+wcg2k6Eh2Sg9h4KICIb6bfcaqTYOvMIDh2IPQ
-         kgqMBRRMhmNK98YV3EpVpj6v10YWVhjicKcynrW3nyLCV2Gmgyc7lVIwU846uligGamb
-         qIIXXpIZjmfyTCWE6X8d84b56uh9Rb/v4yZ4ANyOoUGNEuCH+JI9PmB5iA7VRO0nXtx7
-         6n3xRzn0ZEkq+sXFofzqxxnUzgvNJ6vk6fmc0J/tjgY//sKYSXx8a9U/fOYtbDiBV3vy
-         HKPXJGxqWaJctqTXffxlXNqTNsAfOJHc+ri6bFKo9vWXo1hW4gHOmiioC+B+kQO+2b+a
-         uovg==
-X-Gm-Message-State: AFqh2kozHKzoSdr+5LwJioDvFwqrNJqTlRzXjxJO1+Gnx9aavqJAb1Y9
-        ttb0dmDaP5tkzeZiB2GkF7foFg3WnqpdlSk1M6hmGg==
-X-Google-Smtp-Source: AMrXdXuW9ov/7XYT2FJRuxqTfJG/eiPAHPczrgtkY00TYBLkmPlms6WH7OhqK/K+U7X67YZnbPfgRMOD/fB39Awpptc=
-X-Received: by 2002:a05:690c:39b:b0:4f3:8d0e:edce with SMTP id
- bh27-20020a05690c039b00b004f38d0eedcemr3524525ywb.185.1674822729729; Fri, 27
- Jan 2023 04:32:09 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zOZLnCCSB4bMWTg2//OMRb+a8xBlO3pQtkZONx7me9k=;
+        b=v3NaYaWx7nY+oPzYP12c+h5H4HK17Jt5/T1J8h5HH7HM0ljf8J+tnkrYBqZywl7XLk
+         vJb5/otE6ucCZbSQGc/+Mtdv4ESwQqvUy7bIHPIwNen+LZ4xFPU96A6viyncJdlc8vnb
+         OWQit5rreWIq435hNps7mRb9xoF9CqZ/bdjIDSdWwJZFyHkigBB2juUU/ckUXyizmfUD
+         0tTyDo85bhTei0wvpRZzM/VD1Az8tIfmCyt2691qg2AX9JHZV/lqYcVia9ENVdW/Jsd1
+         v5IShomR6Cgt1PJRC7mTKFSjcKi57hJsMreY+f2Pr75KZ7Gj4Ir11HGdw3imiGP+Y0Rz
+         LljA==
+X-Gm-Message-State: AFqh2koPEEvygi98OXBqtNxQM1Hag4u5UsN8As/U/CX8WJu8OenOR4PX
+        6NiL/rRZxIlu9los7ER2qUAudX7rl1St4pK6
+X-Google-Smtp-Source: AMrXdXsW1aVVkxLXdl4r65UZK22XQvImWGDpqsMZdSeZ7sW59AK47O9+z8LSxQk4XKzqNihmVuGDYA==
+X-Received: by 2002:a05:600c:a13:b0:3db:1de2:af31 with SMTP id z19-20020a05600c0a1300b003db1de2af31mr31652904wmp.37.1674822759169;
+        Fri, 27 Jan 2023 04:32:39 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id p12-20020a05600c418c00b003d9780466b0sm4143686wmh.31.2023.01.27.04.32.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 04:32:38 -0800 (PST)
+Message-ID: <c8c923d3-26d0-00ed-9639-251504950593@linaro.org>
+Date:   Fri, 27 Jan 2023 13:32:36 +0100
 MIME-Version: 1.0
-References: <20230120020536.3229300-1-robh@kernel.org>
-In-Reply-To: <20230120020536.3229300-1-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 27 Jan 2023 13:31:58 +0100
-Message-ID: <CACRpkdYRmTiwdtghDjLpCwuQFzDEYhJiWStkwuphUUsAiOEwcw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: mediatek: Fix child node name patterns
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sean Wang <sean.wang@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add support for Radxa
+ Zero2
+Content-Language: en-US
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230127110928.3387654-1-christianshewitt@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230127110928.3387654-1-christianshewitt@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 20, 2023 at 3:05 AM Rob Herring <robh@kernel.org> wrote:
+On 27/01/2023 12:09, Christian Hewitt wrote:
+> The Radxa Zero2 is a small form-factor SBC using the Amlogic
+> A311D chip.
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
 
-> The child node name patterns in Mediatek pinctrl bindings don't match
-> reality. I don't know where '-[0-9]+$' came from, but I don't see any nodes
-> with a matching pattern. Also, patterns such as 'pins' or 'mux' are
-> ambiguous because any prefix or suffix is allowed. If that's desired, it
-> should be explicit.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Patch applied!
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Yours,
-Linus Walleij
+Best regards,
+Krzysztof
+
