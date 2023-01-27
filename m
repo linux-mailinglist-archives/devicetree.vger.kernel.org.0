@@ -2,71 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 548D667E67C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 14:21:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05BEB67E687
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 14:24:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234715AbjA0NVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 08:21:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35590 "EHLO
+        id S232288AbjA0NYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 08:24:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234807AbjA0NVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 08:21:09 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 801C083955
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:20:56 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso5381177wmn.5
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:20:56 -0800 (PST)
+        with ESMTP id S232576AbjA0NYF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 08:24:05 -0500
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F80C7D2A6
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:24:04 -0800 (PST)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-506609635cbso66680477b3.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:24:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Iw0lautMML9+B9oBLxXJ8thF9HPKzqCb+aG8qr+zu50=;
-        b=uXKcQwboXefuGg34DkvLPbnO42hDpxiN0i9AeKvmVXXjwlAnXHR4GiFOkhE5R6uyLk
-         lLGVldCh5cYb+LXp8lCEsaTAzPQdTZkCWraK5jm/CoCvG4G6ahz2+BOK49cjKOK5VrHz
-         s1dimII/1cH7RJQ6G/7DUJqlOKsm6LlrrrjbIPQQjnIBc4EnDeU/6TfofV8amZIorAlc
-         9qJ5a8SMefycA/vLSCcDLvZo3IAIhC8nuhLVG0pQc+SrjeUuyd6rQ+Z6bpBj5jfTnmLB
-         ySF38h8CY5sgcyW90AyzdHOz+576x7Sz648KFvpmx4zXuDF38UFwxImHehhLtRNj8bZg
-         oJGA==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=LZZ3MuEVu6XkQPyGITmSKOdfGu07b5+34vXdaMUVpmM=;
+        b=UAHrFOhuENO8p4X6jjmFs9KrdLnh1L5ioIcN1vRBhDE992xV4cddAO0IjROU44dIG/
+         nalP7afFVUtdPnm8JH4xghgm1GM/q5GOZS2kC5Yd9GXI9Z7PktEengh3fovMoq+zsVVE
+         t0IPxp6dqeh897/z5G46UH91FQqy4WJQU8D3SIuIya0S9WZHfZk2C5Y30r2S827bu9eD
+         CJLrDr1gIIxiC13d3vWqjY/9ZHwEpUdCVVNQAD/k++s1nG+mBWETZdTm2h8dtkZQWFeu
+         swJGEwBP9C1DSuiQ188wLhYmsd5xFXheW++Lnq9ZpWPRKwvE/hZ2po1OCXDHo+L7t9nf
+         jzGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Iw0lautMML9+B9oBLxXJ8thF9HPKzqCb+aG8qr+zu50=;
-        b=JmU041aX98h5O8ZwnbdrYNHa+b/oQap0KRJzhYkqviK6I5v2KgPrFMi6sv3j1DDbVx
-         fKnP1jvN6+Bkp5CodbCDF98daW8FgtbtzZQ8t3aeGosYpD6iF1AwQP11Wy16uQ94sJmi
-         iXjj/jgon1aQn+l7Ax0W23Axk/eblO+zQ6rWLIfJD7+ZpbcGgMLnHNyT4W2ilmqZ0GVk
-         k1d5RWXNfzLTxkNWXLd7seR9FW3p2eFPJBFvu43D7lojav9jSlmOCZ0AAyKiL66rVPYi
-         Y5ZxQjlzNp1amQ1ogyphIwli5h0Ryi4RBPnT3tZFFR2QrJlc4J2dChAjtOFIB7C7iCln
-         ckEA==
-X-Gm-Message-State: AFqh2kqJFLAErshc9rpP9V8NhEQIfF1/hASyVrqV4FrommzipFQtDqIl
-        QFKDj/RaM3xDlmBwLXmFz95ANQ==
-X-Google-Smtp-Source: AMrXdXvdCH47nU7ML39r6l1guaL9tDkEaE32Ak6WDXsKPnrT6ag+MUHNn49hIMPBp5XqjlWMArP2iw==
-X-Received: by 2002:a05:600c:ad4:b0:3db:11d0:21e2 with SMTP id c20-20020a05600c0ad400b003db11d021e2mr36391836wmr.29.1674825655058;
-        Fri, 27 Jan 2023 05:20:55 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id bg6-20020a05600c3c8600b003db06493ee7sm8906473wmb.47.2023.01.27.05.20.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 05:20:54 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20230127103913.3386435-1-christianshewitt@gmail.com>
-References: <20230127103913.3386435-1-christianshewitt@gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: radxa-zero: allow usb otg mode
-Message-Id: <167482565422.1669662.8122640004261744864.b4-ty@linaro.org>
-Date:   Fri, 27 Jan 2023 14:20:54 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LZZ3MuEVu6XkQPyGITmSKOdfGu07b5+34vXdaMUVpmM=;
+        b=EQhBGdOUOA3wQBPo2MpGde/AGQueYGxM+fWoo4zE74mqxU5upkOtuM4nje/MkCNAz+
+         dAsFZgZcZZ7m6dWNdCxJBkERD/rwdzPecjE4zGzgiQUEHkK2ojD40U8ewYJEymboGKmX
+         PzPLl+b6O9l264aPSbfbRp4u+uyf3vDGmJf/qnip3liUfgrUQbly5T6EvM9gPxMu58nw
+         cpAZIVWPK+5iCXdkxIe2gG8d6PeSGlwJeo8fYV/LoSwrC9FlYbFgQDziLWdeLqeiSpuM
+         bi2r4vWHdAap9Jf2xGwDWjQbHjZDs9kjkphjTN5wLIthY6403QK7gxEmwKuRTQDaGraX
+         Gdvw==
+X-Gm-Message-State: AFqh2kphdcx9cCu1ASlRsMMaPyPQ4tOIO6XP0L+grAv5UaIhjFfMxOaJ
+        CLhNz+SjZK5Y/63mWBx1n+Q/CxsGkfGUYi4uSlFdQQ==
+X-Google-Smtp-Source: AMrXdXsM2Y+feqWmDnpZZfAnDgXVYRK43870GInPFgNTT7qpRIbR4qPNx7T9fr58byEQonupKGetuGN9HSWpF17Olo4=
+X-Received: by 2002:a05:690c:39b:b0:4f3:8d0e:edce with SMTP id
+ bh27-20020a05690c039b00b004f38d0eedcemr3538984ywb.185.1674825843435; Fri, 27
+ Jan 2023 05:24:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.0
+References: <20230127093217.60818-1-krzysztof.kozlowski@linaro.org> <20230127093217.60818-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230127093217.60818-2-krzysztof.kozlowski@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 27 Jan 2023 14:23:51 +0100
+Message-ID: <CACRpkdabA03VEFFVDVDiEVnLDZXGmW-kyCpD8iRVOcBzNBTfkw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: intel,ixp4xx-expansion-bus: split out
+ peripheral properties
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linusw@kernel.org>,
+        Imre Kaloz <kaloz@openwrt.org>,
+        Krzysztof Halasa <khalasa@piap.pl>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Marek Vasut <marex@denx.de>, Lubomir Rintel <lkundrak@v3.sk>,
+        - <devicetree@vger.kernel.org>, Marc Zyngier <maz@kernel.org>,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mtd@lists.infradead.org, linux-serial@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -76,40 +82,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Jan 27, 2023 at 10:32 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-On Fri, 27 Jan 2023 10:39:13 +0000, Christian Hewitt wrote:
-> Setting dr_mode to "host" prevents otg which can be useful on a board
-> with limited connectivity options. So don't force host mode.
-> 
-> 
+> The properties of devices in IXP4xx expansion bus need to be also
+> applied to actual devices' bindings.  Prepare for this by splitting them
+> to separate intel,ixp4xx-expansion-peripheral-props binding, just like
+> other memory-controller peripheral properties.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
+Whoa, this is a complex one!
+But I assume you and Marek know what you're doing so:
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-[1/1] arm64: dts: meson: radxa-zero: allow usb otg mode
-      https://git.kernel.org/amlogic/c/ce43ea00b927805c1fd0450ccc9b4b6069e292c5
+Maybe I can assign the following external bus interface to the Qcom
+people, as it is yet another one of those:
+Documentation/devicetree/bindings/bus/qcom,ebi2.txt
 
-These changes has been applied on the intermediate git tree [1].
+I've been uncertain about how I should convert that one over properly.
 
-The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+Yours,
+Linus Walleij
