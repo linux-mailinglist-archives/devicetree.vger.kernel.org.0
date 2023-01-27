@@ -2,96 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 677DB67E1D9
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:39:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B18A867E206
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:43:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232010AbjA0Kj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 05:39:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47436 "EHLO
+        id S230035AbjA0Km6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 05:42:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232048AbjA0KjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:39:25 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A191D90C;
-        Fri, 27 Jan 2023 02:39:19 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so5097176wml.3;
-        Fri, 27 Jan 2023 02:39:19 -0800 (PST)
+        with ESMTP id S229546AbjA0Km5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:42:57 -0500
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71A51227A5
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:42:30 -0800 (PST)
+Received: by mail-yb1-xb33.google.com with SMTP id t16so5484637ybk.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:42:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9cdeNu2rBUonzxoRF7BM3W3tfmDx0o1jZ8hpPYfrDac=;
-        b=DAc5fdvudmdCacf9+7vec558W+yzremTGjoG3Ptit4ATrUwdmQPHKnS0Jq969HMQAh
-         aZQ+puLj0KKKZ88tsd9PPzXPeqgMTd+OJLHh2t7abbXBj1AzH1xzfhJv4BX5XsShqGoa
-         ql4GDehOUm603Qx8w6ZhsbOneUVUm7UEmzlgppiODmDcjSOQAw6I/O4Efo3JIzo4U97w
-         iFRxj9iGP098x/YXH7avsdu+xwOER1m2CfyGAlD3oAQOcRMP452aAAdjHmxf2TKbHn8z
-         KAXnXVdEZ6vLyI5GASrSclvclBbyd4dNkePSpB7ql85fVt2VM4fkbeNW5NujarJey+qa
-         c2mQ==
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=u0DEsVHKXVwSN3PAjhc49w5MtI6q8p3tuYvphFNkdg4=;
+        b=lu0Vvh5MuoiiYDYZUTxh7zbvym4Uj0/v6GjSmt68vqvdxQUf4Buqig6SOOwUSz/XbL
+         lO/9cqb+CuVhsufP2wulTnuiRl2uiG2IjcDc6ivKuvFEojix/qo2+3r/N4B5rLofVMLz
+         M+G+sJV93/IYHsoiQEjGskyIqr24h0NhIbgHpj6EDrJRAv53piOFjlOE4jHf6GwByA9i
+         BKtw45jsb2Zh+Y12Y2TbiuAYQ63uAaP+ubNy0hNZq3JJEttGX7LxkDCENU+DZqPgecyr
+         AqPcysVFgoqtLkToozcLuK7KLQqkNqWwT6Yb+2Eh3jl4zZN177/2r+nainc7iIMJfmMa
+         eNSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9cdeNu2rBUonzxoRF7BM3W3tfmDx0o1jZ8hpPYfrDac=;
-        b=Jo4uh9fmVJLPE8MXgafM3vC31tBn0dStgZNkw6hO3V10L0i0t3BJb7A6gQHMrtwPo+
-         EwFvkthMdeGBjgpGgg1K38PPXDOtEFo3gREm0hlS/sDaypyvrZ7zYDWEoXBQ7Gr4ajwr
-         lASHnjsRMzW2v+oNNujctZcxJ9AvnwDnnKEgXSgWF1ucUn9eaFObxDnShIy+DPs/HGqY
-         YM4Os/fXq4qgeeXS+ZkJCLr8VLxY6Zj9wn6D+tYxsUSWsSIG8NPr0ewK01gt5cJ4PSaC
-         lnAeSlxUEiA1mvOq/EBVZH7Yz/WQaU/KXsAPJ+4uas3RfRoqqezJS/duShwiudQxuh45
-         hTvg==
-X-Gm-Message-State: AFqh2kpYc0gFXvVOShW11iVgW/TZlTVb5ifhJA1NBGCxCMeZKahQo1NZ
-        6W6/V0uHgFT3uplxbUM3gYc=
-X-Google-Smtp-Source: AMrXdXvWPeCgMkd5bkB8/625YuYyvbABWLybVbF249vAUw4sIA1kElnWmwvbpBrWh7Il/OVvdZCPhw==
-X-Received: by 2002:a05:600c:3d98:b0:3d6:ecc4:6279 with SMTP id bi24-20020a05600c3d9800b003d6ecc46279mr36100281wmb.27.1674815958374;
-        Fri, 27 Jan 2023 02:39:18 -0800 (PST)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id j2-20020a5d4482000000b002be063f6820sm4348243wrq.81.2023.01.27.02.39.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 02:39:17 -0800 (PST)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] arm64: dts: meson: radxa-zero: allow usb otg mode
-Date:   Fri, 27 Jan 2023 10:39:13 +0000
-Message-Id: <20230127103913.3386435-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        bh=u0DEsVHKXVwSN3PAjhc49w5MtI6q8p3tuYvphFNkdg4=;
+        b=Cgx5qzFz4N7n7LVmoN5jj+wVDKEiRC9w5wjzoBnEiVoSZqK0zxo6gF8LDZT4Wy8WRT
+         KzVSEM71K0K7KoVQenuki+f4ussa3p99tLVT+/MbLH3WsOYYMjJe4S00m2fPGeEDegDZ
+         LHsxMmqjN2S93I1I295FGdaKG0/M9W2/HeYLYFCMc8KR+RC+0zAkfeKTAAeI7yKZYoXA
+         qAjVUhApjgCNIur2R9U2IWE479tMdAnYoW6bkJqmtT3jqSbgAMg85fiOkPwH+v18FCch
+         axpsdHS3ngDooW17BFOGwoQnESuCSJsnLhpfALDKNkxSibGx0xWqnQeDjVFjYDexF2OV
+         hM/w==
+X-Gm-Message-State: AFqh2kqKs1i3uL0/m92N02qGf6LqZ8wDX1jsJwvAl0pLxADlzGcsoahQ
+        EDhGK+ThS9INPSI/kMMVIyFsjweC2FiRnyyBY1oA7w==
+X-Google-Smtp-Source: AMrXdXt4duFzDFzPIakNzG6OqVc1/XNGxgxhi/nSyzIhtE35B4STzPtFyk5UKGZ1IPXCXqZQlrjy22DL04eJMPVwVFg=
+X-Received: by 2002:a25:af92:0:b0:801:525c:6726 with SMTP id
+ g18-20020a25af92000000b00801525c6726mr3185391ybh.152.1674816137778; Fri, 27
+ Jan 2023 02:42:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1674814545-9453-1-git-send-email-quic_kalyant@quicinc.com> <1674814545-9453-2-git-send-email-quic_kalyant@quicinc.com>
+In-Reply-To: <1674814545-9453-2-git-send-email-quic_kalyant@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 27 Jan 2023 12:42:06 +0200
+Message-ID: <CAA8EJpruGSXPDd+wj2vZpRQ3wgk3U+Nvvx0hsP=+U503vQ-c6g@mail.gmail.com>
+Subject: Re: [PATCH 1/3] drm/msm/disp/dpu1: clear dspp reservations in rm release
+To:     Kalyan Thota <quic_kalyant@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, quic_abhinavk@quicinc.com,
+        marijn.suijten@somainline.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Setting dr_mode to "host" prevents otg which can be useful on a board
-with limited connectivity options. So don't force host mode.
+On Fri, 27 Jan 2023 at 12:15, Kalyan Thota <quic_kalyant@quicinc.com> wrote:
+>
+> Clear dspp reservations from the global state during
+> rm release
+>
+> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts | 1 -
- 1 file changed, 1 deletion(-)
+Fixes: e47616df008b ("drm/msm/dpu: add support for color processing
+blocks in dpu driver")
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-index e3bb6df42ff3..cf0a9be83fc4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-@@ -401,5 +401,4 @@ &uart_AO {
- 
- &usb {
- 	status = "okay";
--	dr_mode = "host";
- };
+> ---
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c
+> index 73b3442..718ea0a 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c
+> @@ -572,6 +572,8 @@ void dpu_rm_release(struct dpu_global_state *global_state,
+>                 ARRAY_SIZE(global_state->ctl_to_enc_id), enc->base.id);
+>         _dpu_rm_clear_mapping(global_state->dsc_to_enc_id,
+>                 ARRAY_SIZE(global_state->dsc_to_enc_id), enc->base.id);
+> +       _dpu_rm_clear_mapping(global_state->dspp_to_enc_id,
+> +               ARRAY_SIZE(global_state->dspp_to_enc_id), enc->base.id);
+>  }
+>
+>  int dpu_rm_reserve(
+> --
+> 2.7.4
+>
+
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
