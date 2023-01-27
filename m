@@ -2,216 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA10367F0D3
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 23:02:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E322667F0F0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 23:11:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232265AbjA0WCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 17:02:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39540 "EHLO
+        id S229530AbjA0WLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 17:11:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232282AbjA0WCf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 17:02:35 -0500
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA26F80F83
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 14:02:23 -0800 (PST)
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20230127220222euoutp02a5768daf5c6616051c77f7815ee3ca50~_SYP3TO9v1472614726euoutp02P
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 22:02:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20230127220222euoutp02a5768daf5c6616051c77f7815ee3ca50~_SYP3TO9v1472614726euoutp02P
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1674856942;
-        bh=4/+IICDVxze4R+boTammad7oJB4qDwWiimXaU/Tj3Ts=;
-        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-        b=CMNpTAiIIMcQd5vjH/3QsnmvJrsLwz2Ysj97euqyTsPedpAlwe6gb9PwRUt5S84+C
-         f4GsO1JoH5PqzAwm7Oml17wucDbzZZBdEpQsOrFY07meulKn/KNqMYeRr3oz8807GJ
-         9hVEK6G6PtVWZEdJXeCoCfvNI2foHI4XwHkecO00=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20230127220221eucas1p138e31e7df0a5bf68011fa4c896847e2f~_SYPLtv092141421414eucas1p16;
-        Fri, 27 Jan 2023 22:02:21 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id F4.9E.13597.DE944D36; Fri, 27
-        Jan 2023 22:02:21 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20230127220221eucas1p1d2caad0ed56be4a43f15bff00a1d5ef5~_SYOiDtpu2139421394eucas1p1D;
-        Fri, 27 Jan 2023 22:02:21 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20230127220221eusmtrp2d712e07a4a3adbeac0fcd54ebab1331c~_SYOhaG1g3022330223eusmtrp2Z;
-        Fri, 27 Jan 2023 22:02:21 +0000 (GMT)
-X-AuditID: cbfec7f4-207ff7000000351d-7f-63d449ed7433
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 76.9F.02722.CE944D36; Fri, 27
-        Jan 2023 22:02:20 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20230127220220eusmtip1f3bcef7d420ef4a31e686a7e21c09546~_SYNsMne62478524785eusmtip1b;
-        Fri, 27 Jan 2023 22:02:20 +0000 (GMT)
-Message-ID: <c2094a98-1a99-14c6-40a6-0c671a6035db@samsung.com>
-Date:   Fri, 27 Jan 2023 23:02:21 +0100
+        with ESMTP id S232402AbjA0WK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 17:10:56 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F040E7F317
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 14:10:47 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso6319527wmn.5
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 14:10:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=idUqpMNtTKGKBzaSIni6XsWBLVfQJXf3RNZPZAEYBhY=;
+        b=T+1Xoirx35CarTbZn/QmvccPCvLMX840tpf0yczBXlAWlyqzyTd31ZJy7EL1JzuBot
+         MMvKlI8Lmg3Uxplorrz1/KPq4NQ0C7WOxLRRRpDrs/jx7XSAXT82ujSaXdOKosXAjcyl
+         Ctv94KdNaK27hQGF6LK//ptWWXDbioBJvVSWjCvO/B2PiIBC4KlsWtTJVv4pQdmhCGdn
+         y99CPCdfoBzHqPF3UWNuvXHXjKDkLGD6qRpkkfHhutRVvlM1OHjOnFsEHuEpZ+x7+/mX
+         zJo2I3xvwhIyKR3WD69iyIK8b8D2J4XY3ThHEH9abilLTBdrbkb7fGcV64P7StoBr3dD
+         aRgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=idUqpMNtTKGKBzaSIni6XsWBLVfQJXf3RNZPZAEYBhY=;
+        b=0WB83L0q+wxzY+xb3v3VIx0vIVC/taX6rfVYO/Dia5REFlpde5Oq6R/ne+zfEVKJDp
+         WlzDALMmmvAcg4RLZlSeIa+09YrC43e5X5cZo/k9lwt5JbqXMjwVf95S4eo72f7sjFZ+
+         +6ZRs0b28+Wp6RGYfs2eOwS+TeOuNXDKI8ZNb27w40HjajKaJOHAkq39Yci0m/WE1iYP
+         dDxoHKIolWOeP8AePvqEU0Ytb6OLTmfmF6mu1nTsXkd71CRjpikFl9eoKypKn3HN2Bo3
+         YI3W2IqKOmJfOO4SRu343g/7+a+Z6e7708U0Uxy8N+SsBUYWcnad+oqH6sObctGjwrtI
+         evFQ==
+X-Gm-Message-State: AFqh2kow1Y44Yq+8XzSM9+fn/5HLXJ0RfACF5BjiOEhneaV/8+cM4sRP
+        KfAIlUZcc0lFKTuSWZYTwsRhYQ==
+X-Google-Smtp-Source: AMrXdXvzVxJFfhXedNSvA1alMBr7vxuLM/4Pb6ufanVh0GnvsBzODZIGkDDFJez7USS5+SGSr2E5xg==
+X-Received: by 2002:a05:600c:a13:b0:3db:1de2:af31 with SMTP id z19-20020a05600c0a1300b003db1de2af31mr33565874wmp.37.1674857446342;
+        Fri, 27 Jan 2023 14:10:46 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id g11-20020a5d488b000000b002be5bdbe40csm5740301wrq.27.2023.01.27.14.10.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 14:10:45 -0800 (PST)
+Message-ID: <2ce57abd-203f-04b9-f0de-8e524d6afaae@linaro.org>
+Date:   Fri, 27 Jan 2023 23:10:44 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0)
-        Gecko/20100101 Thunderbird/102.6.1
-Subject: Re: [RFT PATCH v3 3/4] arm64: dts: exynos: add unit address to DWC3
- node wrapper in Exynos5433
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v12 2/6] dt-bindings: thermal: mediatek: Add LVTS thermal
+ controllers dt-binding definition
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>,
-        Henrik Grimler <henrik@grimler.se>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20230127212713.267014-3-krzysztof.kozlowski@linaro.org>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01SYUxTZxT1e6/v9bVb8aOoXGXT2ESTSSzTMH2EQSRq9vxjHHH+IFm2Wl4q
-        gQJrrUqjsUSpWkeDbA5oUJCBOMK6rViUIggMRlACDBmuUlEzTB2mC5VaqQiM8nDj3z3nnnvP
-        uV8+hpR7qDVMRvZhXpetylLQUlHjb6G+zb49Q+oP+92x7OPLjTR773Ysez/gpdiKzj6K9VW7
-        EGt99oRkW547xazjr2GKvecqp9nS/laC7Z29KGIr3ySz9vpItqClU8x6rfN0w6sZtANzTbaH
-        Yq5raJTiHHXnaM4zfIvmGqpPcnOeH8Vc4NR5irNer0PcpGPtPkma9ON0PivjCK+LS/5Seqi9
-        ZorIrVp9bMbyjDAhV5QFSRjA8WD+vpyyICkjx9cQ/O0pQwIIIChqekQLYBJBTf4Q+Xakudmy
-        OFKLwH3tV1IAfgQhs40Kq2Q4GUavFovCtQhvAPOLUiTwkdBTNjbPM8xKnA6ON0fCdBTOgKqf
-        zy7ISRwND8YqiPDOFbiLgJrS0AIgcSsBnb39CzFovAUsPgsdriV4N5TMmBan18ENX/lCIsA3
-        JPC44jQVdgO8C4rOiIQTomC8+7pYqN+DuSbBDfAZBJXTjxZBEQKT9wESVIng6XtNhxeR+AP4
-        yRUn0CngsZQjYX8E/OmLFDJEQHFjCSnQMjhrlgvqjWDrtv9n2z4wSBYhhW3Js9iW3G9bco3t
-        f99KJKpD0bxBr9Xw+q3Z/FGlXqXVG7I1SnWO1oHmP+Dd2e7ATVQ77ld2IIJBHQgYUrFC5kwZ
-        VMtl6ao8I6/L+UJnyOL1HSiGESmiZbFJPWo51qgO85k8n8vr3nYJRrLGRGSMbO5ldhT8s36f
-        67ys/gCdNSJDezn/lP15d2oCNZDKdSagr4pbjMvcifbjF7TGtqe/xJkPFn56/+u0l8HSk3e+
-        gWlH5g9kW0dr4bGPPlc2ZJ44MKx1fJuc305N5s2NM713Ji7qLQ+Nw2WfHL0ZYUzfcFcZarAn
-        qltt/aelr9p2Dir81lP1F3YmjMw91V4pcOZ53j8R+/vVwdU526x797i3tWxPS4mPSXtnqPBS
-        VbV8aldJwmd1Qe9xTXAMmXKdeG1SVP7+7wLT7cXLg6NlmmW1yj6NOBTpDE68uz3VXumvuOQe
-        qOrazXtDBs3YRM9GPv6coTl61rBqPZEUw7zw/KEQ6Q+ptmwidXrVv9X9i+3vAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrAIsWRmVeSWpSXmKPExsVy+t/xu7pvPK8kG8xusrV4MG8bm8Xl/doW
-        1788Z7WYf+Qcq8XbJbsYLfpePGS22Pt6K7vFpsfXWC0u75rDZjHj/D4mizP/prJYLPhjZ7Fu
-        jaBF694j7BbP+4DCm7//ZXQQ8Ng56y67x9Er91g9Nq3qZPO4c20Pm8fmJfUe/++sZff40tzN
-        6tG3ZRWjx+dNcgGcUXo2RfmlJakKGfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK+nY2Kak5
-        mWWpRfp2CXoZB5f+YCpYJFnxt+sFUwPjLuEuRk4OCQETid27u1i7GLk4hASWMkrs/3CYGSIh
-        I3FyWgMrhC0s8edaFxtE0XtGiSXTLjCBJHgF7CTuLZvEAmKzCKhKtH2awQgRF5Q4OfMJWFxU
-        IEWi+flJsEHCApkSizZ0gMWZBcQlbj2ZzwQyVETgOJPEp0kLmEEcZoEDTBKT9v9hgVh3mVGi
-        8dlKsHVsAoYSXW9B7uDk4BRwlZj+twFqlJlE19YuRghbXmL72znMExiFZiG5ZBaSjbOQtMxC
-        0rKAkWUVo0hqaXFuem6xoV5xYm5xaV66XnJ+7iZGYNRvO/Zz8w7Gea8+6h1iZOJgPMQowcGs
-        JMK71fFSshBvSmJlVWpRfnxRaU5q8SFGU2BwTGSWEk3OB6advJJ4QzMDU0MTM0sDU0szYyVx
-        Xs+CjkQhgfTEktTs1NSC1CKYPiYOTqkGJkfrV+sN/sfHz5t4ymFyf7DFmnsmms8P8hYz7Ck7
-        Ul2xenvuEm+f2cHpmmZztda8tb66+uptZ8Ub3+t31xh+OV6uNPd96eLgtrpFYsVLmIP9Pr7K
-        cY++cCn2rHm6Q/77L/tS3J8cbLwy2WGng+RjT88llq+kG1TXnn6s1526xOrnIb0Fu1497b+w
-        +XR7ff3qH6ea9vvX2T5wuFbF/TjObW/JVM0zNgsVGEoKvB9uVuGeJ2yyPqT2Q2zz9L6eiIR/
-        8Vv6LyQtPVgo1lZv/aD/2YcL7HopCp+d//rU6ys/ZOsy2PDlUHerwMTgP9PME0sdY3Y7T5Fe
-        N/27qF71Ea55/o+9nlglfv/yf5nYweQzb5RYijMSDbWYi4oTAfcLQaSDAwAA
-X-CMS-MailID: 20230127220221eucas1p1d2caad0ed56be4a43f15bff00a1d5ef5
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20230127212730eucas1p1c7553326fe55355c303e2b79480f6a12
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20230127212730eucas1p1c7553326fe55355c303e2b79480f6a12
-References: <20230127212713.267014-1-krzysztof.kozlowski@linaro.org>
-        <CGME20230127212730eucas1p1c7553326fe55355c303e2b79480f6a12@eucas1p1.samsung.com>
-        <20230127212713.267014-3-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+To:     bchihi@baylibre.com, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+References: <20230124131717.128660-3-bchihi@baylibre.com>
+ <20230126161048.94089-1-bchihi@baylibre.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230126161048.94089-1-bchihi@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27.01.2023 22:27, Krzysztof Kozlowski wrote:
-> Neither simple-bus bindings nor dtc W=1 accept device nodes in soc@ node
-> which do not have unit address.  Therefore usethe address space
-> of child device (actual DWC3 Controller) as the wrapper's address to
-> fix:
->
->    exynos5433-tm2e.dtb: soc@0: usbdrd: {'compatible': ['samsung,exynos5433-dwusb3'], ...
->      should not be valid under {'type': 'object'}
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> ---
->
-> Changes since v2:
-> 1. Fix typo/build error.
->
-> Changes since v1:
-> 1. New patch
-> ---
->   arch/arm64/boot/dts/exynos/exynos5433.dtsi | 16 ++++++++--------
->   1 file changed, 8 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-> index 9da24fe958a3..5519a80576c5 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-> @@ -1742,7 +1742,7 @@ hsi2c_11: i2c@14df0000 {
->   			status = "disabled";
->   		};
->   
-> -		usbdrd30: usbdrd {
-> +		usbdrd30: usb@15400000 {
->   			compatible = "samsung,exynos5433-dwusb3";
->   			clocks = <&cmu_fsys CLK_ACLK_USBDRD30>,
->   				<&cmu_fsys CLK_SCLK_USBDRD30>,
-> @@ -1751,16 +1751,16 @@ usbdrd30: usbdrd {
->   			clock-names = "aclk", "susp_clk", "phyclk", "pipe_pclk";
->   			#address-cells = <1>;
->   			#size-cells = <1>;
-> -			ranges;
-> +			ranges = <0x0 0x15400000 0x10000>;
->   			status = "disabled";
->   
-> -			usbdrd_dwc3: usb@15400000 {
-> +			usbdrd_dwc3: usb@0 {
->   				compatible = "snps,dwc3";
->   				clocks = <&cmu_fsys CLK_SCLK_USBDRD30>,
->   					<&cmu_fsys CLK_ACLK_USBDRD30>,
->   					<&cmu_fsys CLK_SCLK_USBDRD30>;
->   				clock-names = "ref", "bus_early", "suspend";
-> -				reg = <0x15400000 0x10000>;
-> +				reg = <0x0 0x10000>;
->   				interrupts = <GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>;
->   				phys = <&usbdrd30_phy 0>, <&usbdrd30_phy 1>;
->   				phy-names = "usb2-phy", "usb3-phy";
-> @@ -1795,7 +1795,7 @@ usbhost30_phy: phy@15580000 {
->   			status = "disabled";
->   		};
->   
-> -		usbhost30: usbhost {
-> +		usbhost30: usb@15a00000 {
->   			compatible = "samsung,exynos5433-dwusb3";
->   			clocks = <&cmu_fsys CLK_ACLK_USBHOST30>,
->   				<&cmu_fsys CLK_SCLK_USBHOST30>,
-> @@ -1804,16 +1804,16 @@ usbhost30: usbhost {
->   			clock-names = "aclk", "susp_clk", "phyclk", "pipe_pclk";
->   			#address-cells = <1>;
->   			#size-cells = <1>;
-> -			ranges;
-> +			ranges = <0x0 0x15a00000 0x10000>;
->   			status = "disabled";
->   
-> -			usbhost_dwc3: usb@15a00000 {
-> +			usbhost_dwc3: usb@0 {
->   				compatible = "snps,dwc3";
->   				clocks = <&cmu_fsys CLK_SCLK_USBHOST30>,
->   					<&cmu_fsys CLK_ACLK_USBHOST30>,
->   					<&cmu_fsys CLK_SCLK_USBHOST30>;
->   				clock-names = "ref", "bus_early", "suspend";
-> -				reg = <0x15a00000 0x10000>;
-> +				reg = <0x0 0x10000>;
->   				interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>;
->   				phys = <&usbhost30_phy 0>, <&usbhost30_phy 1>;
->   				phy-names = "usb2-phy", "usb3-phy";
 
-Best regards
+Hi Rob,
+
+I think Balsam took into account your comments. Is it fine for you ?
+
+
+On 26/01/2023 17:10, bchihi@baylibre.com wrote:
+> From: Balsam CHIHI <bchihi@baylibre.com>
+> 
+> Add LVTS thermal controllers dt-binding definition for mt8195.
+> 
+> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> ---
+> Changelog:
+>    v12:
+>       - Fixed subject prefix
+>       - Fixed licences GPL-2.0+ to GPL-2.0
+>       - Added dual licenses
+>    v11:
+>       - Rebase on top of "thermal/linux-next" :
+>         base=0d568e144ead70189e7f16066dcb155b78ff9266
+>       - Remove unsupported SoC (mt8192) from dt-binding definition
+>    v10:
+>       - Rebase on top of "thermal/linux-next" : thermal-v6.3-rc1
+>    v9:
+>       - Rebase on top of 6.0.0-rc1
+>       - Update dt-bindings :
+>         - Add "allOf:if:then:"
+>         - Use mt8192 as example (instead of mt8195)
+>         - Fix dt-binding errors
+>         - Fix DTS errors
+>    v8:
+>       - Fix coding style issues
+>       - Rebase on top of next-20220803
+>       - Add multi-instance support :
+>         - Rewrite DT-binding and DTS :
+>           - Add DT-binding and DTS for LVTS_v4 (MT8192 and MT8195)
+>             - One LVTS node for each HW Domain (AP and MCU)
+>           - One SW Instance for each HW Domain
+>    v7:
+>       - Fix coding style issues
+>       - Rewrite dt bindings
+>         - was not accurate
+>         - Use mt8195 for example (instead of mt8192)
+>         - Rename mt6873 to mt8192
+>         - Remove clock name
+> ---
+> ---
+>   .../thermal/mediatek,lvts-thermal.yaml        | 107 ++++++++++++++++++
+>   include/dt-bindings/thermal/mediatek-lvts.h   |  19 ++++
+>   2 files changed, 126 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+>   create mode 100644 include/dt-bindings/thermal/mediatek-lvts.h
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+> new file mode 100644
+> index 000000000000..12bfbdd8ff89
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/mediatek,lvts-thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek SoC Low Voltage Thermal Sensor (LVTS)
+> +
+> +maintainers:
+> +  - Balsam CHIHI <bchihi@baylibre.com>
+> +
+> +description: |
+> +  LVTS is a thermal management architecture composed of three subsystems,
+> +  a Sensing device - Thermal Sensing Micro Circuit Unit (TSMCU),
+> +  a Converter - Low Voltage Thermal Sensor converter (LVTS), and
+> +  a Digital controller (LVTS_CTRL).
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt8195-lvts-ap
+> +      - mediatek,mt8195-lvts-mcu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +    description: LVTS reset for clearing temporary data on AP/MCU.
+> +
+> +  nvmem-cells:
+> +    minItems: 1
+> +    items:
+> +      - description: Calibration eFuse data 1 for LVTS
+> +      - description: Calibration eFuse data 2 for LVTS
+> +
+> +  nvmem-cell-names:
+> +    minItems: 1
+> +    items:
+> +      - const: lvts-calib-data-1
+> +      - const: lvts-calib-data-2
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - resets
+> +  - nvmem-cells
+> +  - nvmem-cell-names
+> +  - "#thermal-sensor-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/mt8195-clk.h>
+> +    #include <dt-bindings/reset/mt8195-resets.h>
+> +    #include <dt-bindings/thermal/mediatek-lvts.h>
+> +
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      lvts_mcu: thermal-sensor@11278000 {
+> +        compatible = "mediatek,mt8195-lvts-mcu";
+> +        reg = <0 0x11278000 0 0x1000>;
+> +        interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
+> +        resets = <&infracfg_ao MT8195_INFRA_RST4_THERM_CTRL_MCU_SWRST>;
+> +        nvmem-cells = <&lvts_efuse_data1 &lvts_efuse_data2>;
+> +        nvmem-cell-names = "lvts-calib-data-1", "lvts-calib-data-2";
+> +        #thermal-sensor-cells = <1>;
+> +      };
+> +    };
+> +
+> +    thermal_zones: thermal-zones {
+> +      cpu0-thermal {
+> +        polling-delay = <1000>;
+> +        polling-delay-passive = <250>;
+> +        thermal-sensors = <&lvts_mcu MT8195_MCU_LITTLE_CPU0>;
+> +
+> +        trips {
+> +          cpu0_alert: trip-alert {
+> +            temperature = <85000>;
+> +            hysteresis = <2000>;
+> +            type = "passive";
+> +          };
+> +
+> +          cpu0_crit: trip-crit {
+> +            temperature = <100000>;
+> +            hysteresis = <2000>;
+> +            type = "critical";
+> +          };
+> +        };
+> +      };
+> +    };
+> diff --git a/include/dt-bindings/thermal/mediatek-lvts.h b/include/dt-bindings/thermal/mediatek-lvts.h
+> new file mode 100644
+> index 000000000000..902d5b1e4f43
+> --- /dev/null
+> +++ b/include/dt-bindings/thermal/mediatek-lvts.h
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
+> +/*
+> + * Copyright (c) 2023 MediaTek Inc.
+> + * Author: Balsam CHIHI <bchihi@baylibre.com>
+> + */
+> +
+> +#ifndef __MEDIATEK_LVTS_DT_H
+> +#define __MEDIATEK_LVTS_DT_H
+> +
+> +#define MT8195_MCU_BIG_CPU0	0
+> +#define MT8195_MCU_BIG_CPU1	1
+> +#define MT8195_MCU_BIG_CPU2	2
+> +#define MT8195_MCU_BIG_CPU3	3
+> +#define MT8195_MCU_LITTLE_CPU0	4
+> +#define MT8195_MCU_LITTLE_CPU1	5
+> +#define MT8195_MCU_LITTLE_CPU2	6
+> +#define MT8195_MCU_LITTLE_CPU3	7
+> +
+> +#endif /* __MEDIATEK_LVTS_DT_H */
+
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
