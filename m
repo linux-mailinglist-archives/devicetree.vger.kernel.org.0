@@ -2,73 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C07E67EF07
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 21:00:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F251367EF27
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 21:05:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232642AbjA0UAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 15:00:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43736 "EHLO
+        id S232699AbjA0UF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 15:05:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232677AbjA0UAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 15:00:25 -0500
+        with ESMTP id S233622AbjA0UEz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 15:04:55 -0500
 Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBAADBBA7
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:58:44 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso4238292wmq.5
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 11:58:44 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1388B78C
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 12:03:19 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so4260046wms.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 12:03:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Jq9nTVH9EdQQJF1OClEm59TTJ+mqJAwF9SwU+gZavP8=;
-        b=e/2EEu396VGfyrF89LNE1kiXKpor35qTZuivNx19fuMPjwSuxGvculmjVi+me/f7VR
-         6MSu2TmLve+yTQkl+KE3cq3C9n2QJDo1o9B+8p/I/8Y6EdYUk2p3HFpP4ktU4ObXB/45
-         PJ1UPNY0K1M++CJW73lJ5tRMCDz7wJQLIr8tx76QkrTN6beP23hhyRyueiC+w+g02mI3
-         o656nLCntd8pD6uLhXPw0SKvqptvUu3ElsahU11h3wj18ri2CHO8simzmzbpwHRB2XRg
-         KadX63wPBC2Amv3WC1ePlk2Miu2Rpb95fRaZozZbs+aWKktlblukA2oeXcyTkEQDqLiD
-         13Vg==
+        bh=reEnc4EOAASI0Khp6pR/r9Av8Biua9MumoNI5XALfvY=;
+        b=AERwUFt1/QB4neVHHtnbkmA3v/kn9W/xkJO+ohHV+yUI/ZjsfVSObqYLnA9Onz7w+d
+         /FZZQyn06DRK0zivM71Gt6ZoOcvqv36UJzlPJFIuGB9PiqFgfDmqmJBXMz3jhTVYS+Q3
+         109CsZsJlhhb62GNcvOnQvSxtF3ZregYPC7+/nHuOI+hisVJV696zCXuQdcMA8WD7uuw
+         zT56RDzALQ3LjdQbYgV4OhcJ9NJ2NrPaIxGgoXrIug0Ho4VTO8FtXB/1huPZAxMFvNU0
+         dYCMu5jms/mxbaTid21JdgH4fkKR0ndeSwrM2gx7yrp6zdUNuG0mY4zMgaabz774d4mu
+         cyNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Jq9nTVH9EdQQJF1OClEm59TTJ+mqJAwF9SwU+gZavP8=;
-        b=3tbVD+tgoYxeC2PWusVr7zd3R8Zi9TVW2SyhlMZu4TJ9FAFAWKW22a1nXjIk0SHADu
-         p/buVdxow7Dr6gPTy+6RliOE8j8iSn8dlFxQVA2Y2z60JIE8bKRGMPz7Fi1akNpaLiyq
-         ZcyLxNGGnQzhpdFsvVf9J7L/zdrIWieKYkLk6KkfW6nYd+gCZg4aX2WkHz0sxQnnOa5y
-         NXK2ak0hB2l1TwX0GvPNpQnWNaeEyjYyarIX/ctTCVEoyyMsNRJduRPTWhq3IIW3Jbcl
-         0NyYXM0HsbUY8orep2xCya+jx6ZniEUStaBHqcMlvu9J2H9Tdm9dt2h0GCMz4wkxyWpe
-         duGA==
-X-Gm-Message-State: AFqh2krG71ZGx6DHylw0ERneD4iFW6yJPyzFLehUpeYCJCflm9/BsTTk
-        PjS9WLl1EvsofMoLQUJkDwTWuA==
-X-Google-Smtp-Source: AMrXdXuG+Q/w+CJsKYIRk1g3UM67EOx+RR/LtS8/oiLQLqBF+yQ8dNQDedOFK0qN51nktDdaYXsRiA==
-X-Received: by 2002:a05:600c:a29f:b0:3d9:f42c:56c5 with SMTP id hu31-20020a05600ca29f00b003d9f42c56c5mr40716573wmb.4.1674849502758;
-        Fri, 27 Jan 2023 11:58:22 -0800 (PST)
+        bh=reEnc4EOAASI0Khp6pR/r9Av8Biua9MumoNI5XALfvY=;
+        b=Rnt9h8kK9KLFFVSsMaY74/BIA7RimDWFsifxT/s4893DO0ut4Yu7AN1F2x++D1Zrw1
+         reazREe2l1UIAW7PQ69G3ZD2u0nauvnJOKT+Jruw2dlBlclB8bGND8NMgvPIGrx7dqlQ
+         MfH/0cB3JWxZMRVvwcfdheUNDYcBSEWxJIc0TIXJKApKC1GQZXrqcE09Wc+8CSJt52H5
+         7OvBIiVhdmKfWqVqdAOFSA+18FjRasYwh+CZZ/jofMyYZ57hYF9cRwjw80FX7zdAZsDn
+         eXdL/vYQqKlAkD904HnlaqXThCex/88EBUwyBXCyRtwOWPeLFMCV4ZwOUSryBTLZjZvr
+         mtfA==
+X-Gm-Message-State: AFqh2kohLy7YEOSu8Fk6GCTBWhkw0DSlesC/aRUvkjBAwg6fpuRZVwDs
+        qNqPwrfa36jtYbUnfbYPk4xCBg==
+X-Google-Smtp-Source: AMrXdXsASHraCdry4BHxBnY6w52haRZylQxGuF6RmkUFl4Ax5qoaKDhSkUSxOPl+HdLKwZM2OACqPA==
+X-Received: by 2002:a05:600c:3b13:b0:3db:26b8:5023 with SMTP id m19-20020a05600c3b1300b003db26b85023mr33006741wms.10.1674849797768;
+        Fri, 27 Jan 2023 12:03:17 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id e15-20020a05600c218f00b003dc434b39c7sm937084wme.0.2023.01.27.11.58.21
+        by smtp.gmail.com with ESMTPSA id n13-20020a05600c500d00b003db2b81660esm9165980wmr.21.2023.01.27.12.03.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 11:58:22 -0800 (PST)
-Message-ID: <00139f11-76b0-138a-2f7b-c67d149eb25e@linaro.org>
-Date:   Fri, 27 Jan 2023 20:58:20 +0100
+        Fri, 27 Jan 2023 12:03:17 -0800 (PST)
+Message-ID: <637fe4cd-f9e9-ae22-0085-30ea3f1dd5af@linaro.org>
+Date:   Fri, 27 Jan 2023 21:03:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v6 1/9] media: dt-bindings: Add OV5670
+Subject: Re: [PATCH v4 1/2] dt-bindings: ramoops: Inherit reserve memory
+ property
 Content-Language: en-US
-To:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
-        Luca Weiss <luca@z3ntu.xyz>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230126165909.121302-1-jacopo.mondi@ideasonboard.com>
- <20230126165909.121302-2-jacopo.mondi@ideasonboard.com>
- <482b464b-c5fb-8af2-b0f7-4388fccea3fd@linaro.org>
- <20230127181435.3d5rnrg5omxhn6l7@uno.localdomain>
+To:     Mukesh Ojha <quic_mojha@quicinc.com>,
+        linux-hardening@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>,
+        "Guilherme G . Piccoli" <gpiccoli@igalia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <1674835252-31954-1-git-send-email-quic_mojha@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230127181435.3d5rnrg5omxhn6l7@uno.localdomain>
+In-Reply-To: <1674835252-31954-1-git-send-email-quic_mojha@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,75 +79,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/01/2023 19:14, Jacopo Mondi wrote:
-> Hi Krzysztof
+On 27/01/2023 17:00, Mukesh Ojha wrote:
+> The reserved memory region for ramoops is assumed to be at a
+> fixed and known location when read from the devicetree. This
+> is not desirable in an environment where it is preferred the
+> region to be dynamically allocated at runtime, as opposed to
+> being fixed at compile time.
 > 
-> On Fri, Jan 27, 2023 at 03:19:08PM +0100, Krzysztof Kozlowski wrote:
->> On 26/01/2023 17:59, Jacopo Mondi wrote:
->>> Add the bindings documentation for Omnivision OV5670 image sensor.
->>>
->>> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->>> ---
->>
->> (...)
->>
->>> +
->>> +  dovdd-supply:
->>> +    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
->>> +
->>> +  port:
->>> +    $ref: /schemas/graph.yaml#/$defs/port-base
->>> +    additionalProperties: false
->>> +
->>> +    properties:
->>> +      endpoint:
->>> +        $ref: /schemas/media/video-interfaces.yaml#
->>> +        unevaluatedProperties: false
->>> +
->>> +        properties:
->>> +          data-lanes:
->>> +            minItems: 1
->>> +            maxItems: 2
->>> +            items:
->>> +              enum: [1, 2]
->>> +
->>> +          clock-noncontinuous: true
->>
->> You do not need this. Drop.
->>
-> 
-> Is this due to "unevaluatedProperties: false" ?
-> 
-> I read you recent explanation to a similar question on the Visconti
-> bindings. Let me summarize my understanding:
-> 
-> For a given schema a property could be
-> - required
->         required:
->           - foo
-> 
-> - optional
->         by default with "unevaluatedProperties: false"
->         "foo: true" with "additionalProperties: false"
-> 
-> - forbidden
->         "foo: false" with "unevaluatedProperties: false"
->         by default wiht "additionalProperties: false"
-> 
-> clock-noncontinuous is defined in video-interfaces.yaml. as I specify
-> "unevaluatedProperties: false" does it mean
-> all the properties defined in video-interfaces.yaml are optionally
-> accepted ? If that's the case that's not what I want as
-> clock-noncontinuous is -the only- property from that file we want to
-> accept here (and data-lanes ofc).
-> 
-> Should I change "unevaluatedProperties: false" to
-> "additionalProperties: false" and keep "clock-noncontinuous: true"  ?
->
+> So, update the ramoops binding by inheriting some reserve memory
+> property to allocate the ramoops region dynamically.
 
-Why would you disallow other properties? Just because driver does not
-use them? That's not correct, driver change but bindings should stay the
-same.
+Where is the update which adds "inheriting"?
+
+> 
+> Cc: Kees Cook <keescook@chromium.org>
+> Cc: Tony Luck <tony.luck@intel.com>
+> Cc: Guilherme G. Piccoli <gpiccoli@igalia.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> ---
+> Changes in v4:
+>  - Addressed comment made by Krzysztof on ramoops node name.
+> 
+> Changes in v3:
+>  - Fixed yaml error and updated commit text as per comment.
+> 
+> Change in v2:
+>   - Added this patch as per changes going to be done in patch 3/3
+> 
+>  .../bindings/reserved-memory/ramoops.yaml          | 34 ++++++++++++++++++++--
+>  1 file changed, 32 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+> index 0391871..8741626 100644
+> --- a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+> +++ b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+> @@ -10,7 +10,8 @@ description: |
+>    ramoops provides persistent RAM storage for oops and panics, so they can be
+>    recovered after a reboot. This is a child-node of "/reserved-memory", and
+>    is named "ramoops" after the backend, rather than "pstore" which is the
+> -  subsystem.
+> +  subsystem. This region can be reserved both statically or dynamically by
+> +  using appropriate property in device tree.
+>  
+>    Parts of this storage may be set aside for other persistent log buffers, such
+>    as kernel log messages, or for optional ECC error-correction data.  The total
+> @@ -112,7 +113,13 @@ unevaluatedProperties: false
+>  
+>  required:
+>    - compatible
+> -  - reg
+
+This is okay, but:
+
+> +
+> +oneOf:
+> +  - required:
+> +      - reg
+> +
+> +  - required:
+> +      - size
+
+I now keep wondering - why do you need this?
+
+>  
+>  anyOf:
+>    - required: [record-size]
+> @@ -142,3 +149,26 @@ examples:
+>              };
+>          };
+>      };
+> +
+> +  - |
+> +    / {
+> +        compatible = "foo";
+> +        model = "foo";
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        reserved-memory {
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +            ranges;
+> +
+> +            ramoops_region: ramoops {
+> +                compatible = "ramoops";
+> +                alloc-ranges = <0x00000000 0xffffffff>;
+> +                size = <0x0 0x10000>;       /* 64kB */
+> +                console-size = <0x8000>;    /* 32kB */
+> +                record-size = <0x400>;      /*  1kB */
+> +                ecc-size = <16>;
+> +            };
+> +        };
+> +    };
+
+This example does not bring anything new for the ramoops. It's an
+example for reserved-memory to show usage with alloc-ranges. There is
+nothing useful here in terms of ramoops, so I think it should be dropped.
 
 Best regards,
 Krzysztof
