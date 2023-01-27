@@ -2,210 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A6EB67ECE0
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 18:58:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 584C267ED20
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 19:13:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234794AbjA0R6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 12:58:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40942 "EHLO
+        id S234800AbjA0SNn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 13:13:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234559AbjA0R6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 12:58:45 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54A637D2BD;
-        Fri, 27 Jan 2023 09:58:44 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id fi26so5424670edb.7;
-        Fri, 27 Jan 2023 09:58:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=17/xEWC1WmOjlte8h0eDRTmEFdiv+lS1lWx2rWU4nVc=;
-        b=lXG0lVpDyWFmskbnUS03gA72O+I5FXCzECuk+XOYf33HOHpv1AvKHBp9VBTv52jA+W
-         GRxq7EP4pkvXeZYbXpRaMUJGxqtrDItw0c1t0Fij7ny/38Pm8a0Ex94EEkQZwYvwyCJn
-         VBnFdRJbGmNfyBH3XZ6Obni3BhSmC4Tc+QLIx97O1rUBmIPG5vRn8YkVKRIIPN+NgZ+O
-         x8/MHATBonft0FENTqEz2wZcWPywNNLy7DwbFFf6ywJHVSxVsp/mbhPmfy2T4iqyCM63
-         MVfnBzjA3GOMIfg7WPnzSZd/QRPqty4Vg9iOtDIlAi3hHcOUykPfjqhQDs213I+6dS+c
-         Rkvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=17/xEWC1WmOjlte8h0eDRTmEFdiv+lS1lWx2rWU4nVc=;
-        b=LJFfyvhZMPXpWomsYoHp6CBTljtBSpkcFpw5sCkoPppLRhyoGoVjI/DCJ6N75q6W5H
-         ejUnC94iqg73UUZ6Q6CkAJl355y9/BcS3iryLH0Qy2xBEjPeOe+YtaSYU1mWdtAxiR8c
-         Ay2e0pJRf2n5Fk2Gc5aQVLKtDJ+Q0BWE2+UzJ+0JBgI5QDLdYD+/yzimLxZnuIrZC1cS
-         Pi9x6Pj0qePkfQcgksIwdy8lA0cqMBBS0aBi1M26aztGwsP2Jq3VEf56vjlcc2wGH/ql
-         t/B5L5leFbRcV2o/c6NXXVgaeUkwO+UX0DLvh+6r4DryQIrMdqSf1wfHdX5ac5XbfYUI
-         nsVw==
-X-Gm-Message-State: AFqh2koTdjWofTfEUFN2+UJQ3EguftZw7gJHtYQ0QYh4YkVNOim6ZzTo
-        bbuZdghvLMMiRPN+tR6dWuE=
-X-Google-Smtp-Source: AMrXdXthBjfeJGbjwTfS/yY7ImMNDD+PXI0nFRdpjGlUGxb66VhdMue8cgJPy/yV/1yZEzlOg/ya0g==
-X-Received: by 2002:aa7:cc81:0:b0:47e:eaae:9a5b with SMTP id p1-20020aa7cc81000000b0047eeaae9a5bmr41321458edt.42.1674842322849;
-        Fri, 27 Jan 2023 09:58:42 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id z22-20020a1709067e5600b0087276f66c6asm2600508ejr.115.2023.01.27.09.58.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 09:58:42 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/2] nvmem: add generic driver for devices with I/O based access
-Date:   Fri, 27 Jan 2023 18:58:31 +0100
-Message-Id: <20230127175831.26753-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230127175831.26753-1-zajec5@gmail.com>
-References: <20230127175831.26753-1-zajec5@gmail.com>
+        with ESMTP id S234556AbjA0SNj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 13:13:39 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42B067E6C2;
+        Fri, 27 Jan 2023 10:13:21 -0800 (PST)
+Received: from jupiter.universe (dyndsl-095-033-159-051.ewe-ip-backbone.de [95.33.159.51])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 556646602E9B;
+        Fri, 27 Jan 2023 18:13:20 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1674843200;
+        bh=Q2QQX23fhMzsayXzvNy33mUcpbMe6H9t7Oc8vL44vWc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=bdprN64Xr/GgBxUWiXrITDMsuXyNJ4IWiZp0pcNFm0W26/GcMgTiQjDL1WbuVzll3
+         X79hnuBjkfTEthHwXyRwD4UFLHeBv7UWWz8YZ2TEhnYHmNGNs1mRLhiZV9QjuXiqLS
+         Xp2DzLWI33n2dRdEI2tEOc5UoJJrnETcfnWM1SyH4tp3niDvOS2Ov3mz+ScJhtGKDm
+         9cUitYY2FA0s8w59gnUnTgGc288VWhE8Kafn+AaRUQysBZI5ASoG667BaZKx8RmDBx
+         fVqz4zLN06Xg9TbAOVQ3/s+hGcGQcjNpoP3B+XpKecbVy10CEDmvYYkrP1NUiv4YrJ
+         /HXJc7IhwGvtw==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 2CD7D48010E; Fri, 27 Jan 2023 19:13:17 +0100 (CET)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCHv6 00/11] Introduce RK806 Support
+Date:   Fri, 27 Jan 2023 19:12:33 +0100
+Message-Id: <20230127181244.160887-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi,
 
-With nvmem layouts in place we should now work on plain content access
-NVMEM drivers (e.g. IO one). Actual NVMEM content handling should go to
-layout drivers.
+The Rockchip RK3588 Evaluation Boards as well as the Rock 5
+boards and probably most other RK3588 boards use SPI connected
+RK806 PMICs. Downstream this is handled by a new driver, but
+apart from being SPI connected this chip is quite similar to
+the other Rockchip PMICs (and RK806 is promoted to also support
+I2C). Thus this series instead updates the RK808 driver(s).
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/nvmem/Kconfig  |  7 ++++
- drivers/nvmem/Makefile |  2 ++
- drivers/nvmem/io.c     | 79 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 88 insertions(+)
- create mode 100644 drivers/nvmem/io.c
+Changelog since PATCHv5:
+ * https://lore.kernel.org/all/20230109172723.60304-1-sebastian.reichel@collabora.com/
+ * add Reviewed-by from Rob Herring to the rk806 DT binding patch
+ * drop useless wrapper functions for rk8xx_i2c_suspend and rk8xx_i2c_resume
+ * put .num_resources after .resources for rk806_pwrkey_resources
+ * simplify dual_support logic by storing IRQF_SHARED or 0 instead of bool
+ * add missing spaces around + and - in rk806
+ * add new patch using device_get_match_data() in rk8xx-i2c and removing
+   the pointless dev_info printing the chip version
+ * call devm_mfd_add_devices() with id=0 and rely on mfd_cell to have the .id
+   field configured to either PLATFORM_DEVID_AUTO or PLATFORM_DEVID_NONE
+ * add check if more than 128 bytes are tried to be received/sent, which would
+   overflow the command register
+ * add RK806_CMD_WITH_SIZE() define
 
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index 789729ff7e50..e77bfe6eb52e 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -90,6 +90,13 @@ config NVMEM_IMX_OCOTP_SCU
- 	  This is a driver for the SCU On-Chip OTP Controller (OCOTP)
- 	  available on i.MX8 SoCs.
- 
-+config NVMEM_IO
-+	tristate "IO access based NVMEM support"
-+	depends on HAS_IOMEM
-+	help
-+	  This driver provides support for NVMEM devices that can be accessed
-+	  using I/O mapping.
-+
- config NVMEM_JZ4780_EFUSE
- 	tristate "JZ4780 EFUSE Memory Support"
- 	depends on MACH_INGENIC || COMPILE_TEST
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index 442f9a4876a5..82db0a89c4d6 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -20,6 +20,8 @@ obj-$(CONFIG_NVMEM_IMX_OCOTP)		+= nvmem-imx-ocotp.o
- nvmem-imx-ocotp-y			:= imx-ocotp.o
- obj-$(CONFIG_NVMEM_IMX_OCOTP_SCU)	+= nvmem-imx-ocotp-scu.o
- nvmem-imx-ocotp-scu-y			:= imx-ocotp-scu.o
-+obj-$(CONFIG_NVMEM_IO)			+= nvmem-io.o
-+nvmem-io-y				:= io.o
- obj-$(CONFIG_NVMEM_JZ4780_EFUSE)	+= nvmem_jz4780_efuse.o
- nvmem_jz4780_efuse-y			:= jz4780-efuse.o
- obj-$(CONFIG_NVMEM_LAN9662_OTPC)	+= nvmem-lan9662-otpc.o
-diff --git a/drivers/nvmem/io.c b/drivers/nvmem/io.c
-new file mode 100644
-index 000000000000..307526fda036
---- /dev/null
-+++ b/drivers/nvmem/io.c
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2023 Rafał Miłecki <rafal@milecki.pl>
-+ */
-+
-+#include <linux/io.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/slab.h>
-+
-+struct io_nvmem {
-+	void __iomem *base;
-+};
-+
-+static int io_nvmem_read(void *context, unsigned int offset, void *val, size_t bytes)
-+{
-+	struct io_nvmem *priv = context;
-+	u8 *dst = val;
-+
-+	while (bytes--)
-+		*dst++ = readb(priv->base + offset++);
-+
-+	return 0;
-+}
-+
-+static int io_nvmem_probe(struct platform_device *pdev)
-+{
-+	struct nvmem_config config = {
-+		.name = "io-nvmem",
-+		.reg_read = io_nvmem_read,
-+	};
-+	struct device *dev = &pdev->dev;
-+	struct resource *res;
-+	struct io_nvmem *priv;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-+	if (IS_ERR(priv->base))
-+		return PTR_ERR(priv->base);
-+
-+	config.dev = dev;
-+	config.priv = priv;
-+	config.size = resource_size(res);
-+
-+	if (!device_property_present(dev, "read-only"))
-+		dev_warn(dev, "Writing is not supported yet");
-+
-+	return PTR_ERR_OR_ZERO(devm_nvmem_register(dev, &config));
-+}
-+
-+static const struct of_device_id io_nvmem_of_match_table[] = {
-+	{ .compatible = "io-nvmem", },
-+	{},
-+};
-+
-+static struct platform_driver io_nvmem_driver = {
-+	.probe = io_nvmem_probe,
-+	.driver = {
-+		.name = "io_nvmem",
-+		.of_match_table = io_nvmem_of_match_table,
-+	},
-+};
-+
-+static int __init io_nvmem_init(void)
-+{
-+	return platform_driver_register(&io_nvmem_driver);
-+}
-+
-+subsys_initcall_sync(io_nvmem_init);
-+
-+MODULE_AUTHOR("Rafał Miłecki");
-+MODULE_LICENSE("GPL");
-+MODULE_DEVICE_TABLE(of, io_nvmem_of_match_table);
+Changelog since PATCHv4:
+ * https://lore.kernel.org/all/20221020204251.108565-1-sebastian.reichel@collabora.com/
+ * rebase to v6.2-rc1
+   - dropped 'regulator: rk808: reduce 'struct rk808' usage' (queued to 6.2-rc1)
+   - dropped 'regulator: rk808: Use dev_err_probe' (queued to 6.2-rc1)
+   - dropped 'rtc: rk808: reduce 'struct rk808' usage' (queued to 6.2-rc1)
+ * use 'MFD_RK8XX' for the MFD driver supporting all the MFD8XX chips
+ * added author tags to drivers/mfd/rk8xx-core.c. They were missing because
+   I moved the original header over to the i2c specific file and wrote the
+   new header from scratch. I suppose it's better to have the author tags
+   in both files.
+ * fix Rob's comments for the rk806 YAML binding
+ * add defines for rk806 command indexes
+ * modify rk806 code, so that it is capable of mult-write
+
+Changelog since PATCHv3:
+ * https://lore.kernel.org/all/20220909175522.179175-1-sebastian.reichel@collabora.com/
+ * Dropped removing REGMAP_I2C dependency from RK817 ASoC driver (applied)
+ * Rename MFD_RK808 to MFD_RK8XX to be consistent. It makes sense to do this now,
+   since the patchset touches all the child drivers anyways.
+ * rebase to v6.1-rc1
+ * collected a couple of Acks
+ * update rk806 DT binding according to DT maintainer feedback
+ * add missing pinmux config to the rk806 DT binding
+ * update rk806_spi_bus_write and rk806_spi_bus_read
+ * replaced some constants with sizeof or defines
+ * used capitalized comments
+ * rename regmap_find_closest_bigger to regulator_find_closest_bigger, not sure
+   why I prefixed it with regmap_ in the first place
+ * use rk8xx_is_enabled_wmsk_regmap instead of regulator_is_enabled_regmap for
+   the switching regulators to correctly report the state
+ * reordered the first few patches grouping the MFD patches together
+
+Changelog since PATCHv2:
+ * https://lore.kernel.org/all/20220908003107.220143-1-sebastian.reichel@collabora.com/
+ * Change DT binding to not allow nldo-reg6
+ * Fix DT binding to check for [np]ldo-reg instead of [np]ldo_reg
+ * remove rk806_get_voltage_sel_regmap in favour of regulator_get_voltage_sel_regmap
+ * drop rk806_set_voltage in favour of regulator_set_voltage_sel_regmap
+ * use regulator_set_ramp_delay_regmap
+ * drop possibly incorrect printing of chip id register address in case of errors
+
+Changelog since PATCHv1:
+ * https://lore.kernel.org/all/20220831215437.117880-1-sebastian.reichel@collabora.com/
+ * Collect Acked-by
+ * Avoid if/else checks for regulator id in rk806 regulator driver
+ * Fix indentation in DTS example section of the rk806 binding
+ * Use absolute path for regulator.yaml referencing in the rk806 binding
+ * Reduce pattern for DCDC regulators to only allow 1-10
+ * replace uppercase name with lowercase ones in regulator names
+ * replace _ with - in regulator names
+
+-- Sebastian
+
+Sebastian Reichel (11):
+  clk: RK808: reduce 'struct rk808' usage
+  mfd: rk808: convert to device managed resources
+  mfd: rk808: use dev_err_probe
+  mfd: rk808: replace 'struct i2c_client' with 'struct device'
+  mfd: rk808: split into core and i2c
+  mfd: rk8xx-i2c: use device_get_match_data
+  dt-bindings: mfd: add rk806 binding
+  mfd: rk8xx: add rk806 support
+  pinctrl: rk805: add rk806 pinctrl support
+  regulator: expose regulator_find_closest_bigger
+  regulator: rk808: add rk806 support
+
+ .../bindings/mfd/rockchip,rk806.yaml          | 406 +++++++++++++++++
+ drivers/clk/Kconfig                           |   2 +-
+ drivers/clk/clk-rk808.c                       |  34 +-
+ drivers/input/misc/Kconfig                    |   2 +-
+ drivers/mfd/Kconfig                           |  21 +-
+ drivers/mfd/Makefile                          |   4 +-
+ drivers/mfd/{rk808.c => rk8xx-core.c}         | 352 +++++----------
+ drivers/mfd/rk8xx-i2c.c                       | 185 ++++++++
+ drivers/mfd/rk8xx-spi.c                       | 129 ++++++
+ drivers/pinctrl/Kconfig                       |   2 +-
+ drivers/pinctrl/pinctrl-rk805.c               | 189 +++++++-
+ drivers/power/supply/Kconfig                  |   2 +-
+ drivers/regulator/Kconfig                     |   2 +-
+ drivers/regulator/helpers.c                   |  22 +-
+ drivers/regulator/rk808-regulator.c           | 383 ++++++++++++++++
+ drivers/rtc/Kconfig                           |   2 +-
+ include/linux/mfd/rk808.h                     | 417 +++++++++++++++++-
+ include/linux/regulator/driver.h              |   2 +
+ sound/soc/codecs/Kconfig                      |   2 +-
+ 19 files changed, 1872 insertions(+), 286 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
+ rename drivers/mfd/{rk808.c => rk8xx-core.c} (71%)
+ create mode 100644 drivers/mfd/rk8xx-i2c.c
+ create mode 100644 drivers/mfd/rk8xx-spi.c
+
 -- 
-2.34.1
+2.39.0
 
