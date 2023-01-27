@@ -2,103 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC50467F077
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 22:35:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6651367F07C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 22:38:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229447AbjA0Vfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 16:35:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50168 "EHLO
+        id S229762AbjA0ViJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 16:38:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjA0Vfj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 16:35:39 -0500
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A28B5AA59
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:35:38 -0800 (PST)
-Received: by mail-pf1-x42e.google.com with SMTP id z1so1169658pfg.12
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:35:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ct9ck9vkM14O2ZHT6Pqc9iBFx3XHxaDWOS1C2RoVEAU=;
-        b=YcZG93rCx580JM+/kJQjqJNGa6Jgb6/qZiN5/YfvP4kIVBbWkUzJ8hwxXNlx8Ewpwo
-         LqnLq1rlR7zfYs9S4f0XcmnwRYZDOvhEUroawwmqv2wyiiIIaIK8TvTrrGC/9Q5a4i7o
-         /H9LS2x4jHEq2tldPYhckGPvwPm/D6ztPdWkLVVNLbhVASfIVLJ7VdQvtLLDOtAbpZDl
-         mOQv0isg2ZCsQdiIbaXX0WC3KR9suV8MFrv41WyqGXwMi55LYe1tgFvcvKD6WR3wetWZ
-         itqs0kGWR9UYPR5om9kTa4s6pQeQceN/FpGWkJJLYK96iPp3ebtI0ncdPp7Y4tYKAGB9
-         WMvA==
+        with ESMTP id S229782AbjA0ViH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 16:38:07 -0500
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5873C1C5AB;
+        Fri, 27 Jan 2023 13:38:07 -0800 (PST)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-1636eae256cso3956315fac.0;
+        Fri, 27 Jan 2023 13:38:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ct9ck9vkM14O2ZHT6Pqc9iBFx3XHxaDWOS1C2RoVEAU=;
-        b=DjY4qiUlZvVA/BdqETt8cqJREG1ZFv7e28FOqd14j4Y9E+Wf3Ctbnk2XgGKzRPvzPS
-         gVRxstG41YsjbTII9Ox85g6g6W+9CuW2fH2A4fLK3ta4WXmJ/QiewfuwjyB5rrE1Ojl1
-         k+jiydDnJWCkjoxgq/N3CkghadNNwTEsZbyhi4KkddaYZyp4AeON0T0VFJy8sCNFfiQb
-         FJM9h/3SqQDfa4Tc7wQZd8HLaAlAcWrlVXR2m36Vx3zZuX2fbzQXWVyXspJ9Z6OIgx1T
-         Fyh9MgiGmB9TpfFZYng/5kftqYdMRMwiTCP/H8ngq8ySPXMmR8YD4vcKPxNxXDqktAdY
-         wFjw==
-X-Gm-Message-State: AO0yUKXLMtNTk3MNy3XS7ilrLUBphate5Fag3lApfR5XMal+ALu9EILM
-        6KMleIZv8ZJbyPjBq0SpiHgcEnzsUlSNjNcytnc2hg==
-X-Google-Smtp-Source: AK7set8A87a1b6gwb4OnNq2XRUc7qhsa9qKHiaWo49QwN+9e+0qsFtowQYDUOK06dTepf46OknaZKx06adJ0S04TZoY=
-X-Received: by 2002:aa7:91d3:0:b0:592:61cc:5aeb with SMTP id
- z19-20020aa791d3000000b0059261cc5aebmr608421pfa.59.1674855336983; Fri, 27 Jan
- 2023 13:35:36 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4DjLB1n7BfkYGT4DAfuO2w1qwaXNy9ZaZZ251T77AFo=;
+        b=KYcvAv5aQIuHHpJjKnabOdL2uHAphAsRlpbK/kXTOzPPqPTYWg0aLrnxr3mblXdsjK
+         6qd7BLJ/4RxI6N5neCAEuvtV3LDphTmOcvg4rlho0ege5sONSEticY4jwxIFfwYYGG+R
+         Ej8NwPP346J6E7CAfvBGn8ov/Bn08ZlRLIoFvwEreG0TdEsv74VRbdJU/qIIU6osjRgf
+         NwcP8X5n8ZUmMOpC3kjim9QwS4opEC5ys3OHZYXgx9afSQq13nahT5UQvv+Hp8IvCcHO
+         mVp76gJ8hFXsd5W1/iRkCeYQ6FALaCfaZX7nv+cbNtm0OCuduKVnUqDMhGUocEh5HHmT
+         7d9w==
+X-Gm-Message-State: AO0yUKWQou4vVh1rUxh+upGnhrsTV9NkQG8zmQ66/sMXhEY4s8PcfJ7q
+        Um+YhRu5nnLXhyfnEf3mHw==
+X-Google-Smtp-Source: AK7set8Ql8o8EiWbybmvdsqxzp7LPFPJQ09kTHa1AGoCvt1jMJz/kWH1nsV19uepUDh5cb28oze3dQ==
+X-Received: by 2002:a05:6870:f10c:b0:163:50ff:ba11 with SMTP id k12-20020a056870f10c00b0016350ffba11mr4283145oac.21.1674855486495;
+        Fri, 27 Jan 2023 13:38:06 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b36-20020a056870472400b001600797d1b5sm2406214oaq.41.2023.01.27.13.38.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 13:38:06 -0800 (PST)
+Received: (nullmailer pid 727006 invoked by uid 1000);
+        Fri, 27 Jan 2023 21:38:05 -0000
+Date:   Fri, 27 Jan 2023 15:38:05 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     "Isaac J. Manjarres" <isaacmanjarres@google.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>, stable@vger.kernel.org,
+        Saravana Kannan <saravanak@google.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Calvin Zhang <calvinzhang.cool@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        kernel-team@android.com, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] Revert "mm: kmemleak: alloc gray object for reserved
+ region with direct map"
+Message-ID: <167485548359.726924.14589412750691974893.robh@kernel.org>
+References: <20230124230254.295589-1-isaacmanjarres@google.com>
 MIME-Version: 1.0
-References: <20230127001141.407071-1-saravanak@google.com> <Y9Q0culPHGNZkQz9@euler>
-In-Reply-To: <Y9Q0culPHGNZkQz9@euler>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 27 Jan 2023 13:35:00 -0800
-Message-ID: <CAGETcx9oohQ0SeHGQNsbVpitG-freYhbTUm34TbzMQAeLGjSfw@mail.gmail.com>
-Subject: Re: [PATCH v2 00/11] fw_devlink improvements
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Linux Kernel Functional Testing <lkft@linaro.org>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230124230254.295589-1-isaacmanjarres@google.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -106,22 +68,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 12:30 PM Colin Foster
-<colin.foster@in-advantage.com> wrote:
->
-> On Thu, Jan 26, 2023 at 04:11:27PM -0800, Saravana Kannan wrote:
-> > Dmitry, Maxim(s), Miquel, Luca, Doug, Colin, Martin, Jean-Philippe,
-> >
-> > I've Cc-ed you because I had pointed you to v1 of this series + the
-> > patches in that thread at one point or another as a fix to some issue
-> > you were facing. It'd appreciate it if you can test this series and
-> > report any issues, or things it fixed and give Tested-bys.
->
-> I applied this on my working net-next/main development branch and can
-> confirm I am able to successfully boot the Beaglebone Black.
->
-> Tested-by: Colin Foster <colin.foster@in-advantage.com>
 
-Thanks!
+On Tue, 24 Jan 2023 15:02:54 -0800, Isaac J. Manjarres wrote:
+> This reverts commit 972fa3a7c17c9d60212e32ecc0205dc585b1e769.
+> 
+> Kmemleak operates by periodically scanning memory regions for pointers
+> to allocated memory blocks to determine if they are leaked or not.
+> However, reserved memory regions can be used for DMA transactions
+> between a device and a CPU, and thus, wouldn't contain pointers to
+> allocated memory blocks, making them inappropriate for kmemleak to
+> scan. Thus, revert this commit.
+> 
+> Cc: stable@vger.kernel.org # 5.17+
+> Cc: Calvin Zhang <calvinzhang.cool@gmail.com>
+> Signed-off-by: Isaac J. Manjarres <isaacmanjarres@google.com>
+> ---
+>  drivers/of/fdt.c | 6 +-----
+>  1 file changed, 1 insertion(+), 5 deletions(-)
+> 
 
--Saravana
+Applied, thanks!
