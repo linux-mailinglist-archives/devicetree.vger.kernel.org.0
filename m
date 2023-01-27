@@ -2,134 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50E0467E092
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 10:45:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71AA767E098
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 10:47:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233206AbjA0JpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 04:45:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57742 "EHLO
+        id S233040AbjA0JrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 04:47:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231969AbjA0JpE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 04:45:04 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8A56761F9;
-        Fri, 27 Jan 2023 01:45:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674812703; x=1706348703;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qVG3SO3/mw1Za7KIPJqbPMkWrirnnDCNx1aYcVedBMY=;
-  b=VmoFcCYL/V5hZ4+O+K0sTip9tuFwjzGmtekPy9372nVufBYyAS7bzuPF
-   P2ooTJBTOief0Il0obQrpjHBi2hadWpcBJoXwV9l/NM0Xg/xILDL2EWKb
-   K+ZPctdO4KggQNIEmwcBertcJtjbVm0UbdFbU5Jx3qFeqUJgnvc+rofvI
-   0ZiLoQcDe8rsm5yBrsCp7zP24HYnSP8NCEUeIjvoQgoDOGonSLMl10PiT
-   ejfGaDtXkJ80uu59biMXJGMzVBmDCR4sHRnAmBCVO3+xMiw/wJ0xv9CZ9
-   6D/bstbiq2/8XU/t7Q/Wm8ONQ4BCvW0sQqzBxWocV4z+5ZMBgjsZLp12I
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="413277656"
-X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; 
-   d="scan'208";a="413277656"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2023 01:45:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="908614631"
-X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; 
-   d="scan'208";a="908614631"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga006.fm.intel.com with ESMTP; 27 Jan 2023 01:44:52 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pLLHs-00FtoI-1i;
-        Fri, 27 Jan 2023 11:44:48 +0200
-Date:   Fri, 27 Jan 2023 11:44:48 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Linux Kernel Functional Testing <lkft@linaro.org>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v2 03/11] soc: renesas: Move away from using OF_POPULATED
- for fw_devlink
-Message-ID: <Y9OdEOuqfrIrFR4E@smile.fi.intel.com>
-References: <20230127001141.407071-1-saravanak@google.com>
- <20230127001141.407071-4-saravanak@google.com>
- <Y9OYdX38NfRE9Tvb@smile.fi.intel.com>
- <CAMuHMdUdi9ShckBiEAfg3dgp9EUm354tpf3zEz8Dduo2Qyo2vA@mail.gmail.com>
+        with ESMTP id S229496AbjA0JrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 04:47:03 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4494A761F9
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 01:47:02 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso4994614wmn.5
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 01:47:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YEX5J8B9AU7EZ8H28VRTZd7RQQhYFTy0irZB9bcr5NE=;
+        b=NVPk9jKrWCsQVR8bxcVaXSXYzpCJ1prmLx/sFP4SxxCYnCcHVkkSEZp0GKcOlxavtP
+         QUe8nKEm5yzz56JPR4IefuHs9lhilOufBMQ66/Id/XFkCmHJ7I1sbeDXUj4pUJuYtRVs
+         mvOIy9NqUL4djAF7kaBUs09MIfByWXC1PF9E03NeKu/wcHpoTPFIKGjyd2lYh0qV37Vd
+         2AfIaZurId31yvLMjzHEk8b83A7pgjKBRSFO4Jyyl/0s61XohdmXCvxBfatTghUqwcjX
+         GiPVY5vqxZ1T1v7Fe+hxScbc6knGbPwSeTzs8rFQ5sjybmCCIoX3q4AkREUKgRSQZbSJ
+         boDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YEX5J8B9AU7EZ8H28VRTZd7RQQhYFTy0irZB9bcr5NE=;
+        b=sGhPFxCEdi1rjx9mgeiMzTkJhliwcCzrexfV+8kue3gQ3z6fTVTMxKkxbth5fUvVFu
+         JYv6B8H46LWTP74RmsFwbRL3bDQBKbq0XrVD0ltao1IihP9r7nmMsEwmjyc/aLb9x4ZL
+         tiknsIuEu060QcdPnVdLr369X48788fQvO/TAWl2qtN9MxLI2RJkmwEdoWDFPlWmahzp
+         D3dBP+a7K8+AKip3wcZXZiRCeKytYAxve2WYVBuYcsnevLBkeVOSJsRBiaR7vRX0bSRZ
+         BTxHmxWmLDIDQp3JzVf142bHr7wz/pIbVnRVBLWtt3Il2SlJ1E5/hXyBVehlzvUAc/CP
+         VlOw==
+X-Gm-Message-State: AFqh2kovRtc540B2946JfPU+bS1v6ghGrDOUsG750b4YEqJACiDbduUN
+        10aJjFMVzwmpIz3o448JONY/2w==
+X-Google-Smtp-Source: AMrXdXuaxqtDfrdG54noNUE67hY3JZxFMpyWn8NUMDF/F29zdRqMRF/6oxe1AvlfHpAxk4reUqSHJw==
+X-Received: by 2002:a05:600c:538c:b0:3cf:6f4d:c259 with SMTP id hg12-20020a05600c538c00b003cf6f4dc259mr38947746wmb.39.1674812820870;
+        Fri, 27 Jan 2023 01:47:00 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id h20-20020a05600c351400b003dc1300eab0sm8042087wmq.33.2023.01.27.01.46.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 01:47:00 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     linux-kernel@vger.kernel.org, Wei Xu <xuwei5@hisilicon.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] arm64: dts: hisilicon: align UART node name with bindings
+Date:   Fri, 27 Jan 2023 10:46:55 +0100
+Message-Id: <167481277324.62929.15105252250811150744.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230123151516.369130-1-krzysztof.kozlowski@linaro.org>
+References: <20230123151516.369130-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdUdi9ShckBiEAfg3dgp9EUm354tpf3zEz8Dduo2Qyo2vA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 10:30:35AM +0100, Geert Uytterhoeven wrote:
-> On Fri, Jan 27, 2023 at 10:25 AM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Thu, Jan 26, 2023 at 04:11:30PM -0800, Saravana Kannan wrote:
-
-...
-
-> > > -             of_node_set_flag(np, OF_POPULATED);
-> > > +             fwnode_dev_initialized(&np->fwnode, true);
-> >
-> > of_fwnode_handle(np) ?
+On Mon, 23 Jan 2023 16:15:16 +0100, Krzysztof Kozlowski wrote:
+> Bindings expect UART/serial node names to be "serial".
 > 
-> Or of_node_to_fwnode().
+> 
 
-Not really.
+Applied, thanks!
 
-> Looks like we have (at least) two of them...
+Let me know if anyone preferred to take it via sub-arch/SoC maintainer tree.
+I'll drop it then.
 
-Yes, and the latter one is IRQ subsystem invention. Should gone in favour of
-the generic helper.
+[1/1] arm64: dts: hisilicon: align UART node name with bindings
+      https://git.kernel.org/krzk/linux-dt/c/b8081b9a80945158e21e62ad31f50b704990cd8a
 
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
