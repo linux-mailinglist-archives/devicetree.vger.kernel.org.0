@@ -2,64 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 052CC67DEBD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 08:55:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E24A167DEC3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 08:56:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230515AbjA0Hz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 02:55:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53614 "EHLO
+        id S231972AbjA0H4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 02:56:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230149AbjA0Hzz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 02:55:55 -0500
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0057F6C127
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 23:55:54 -0800 (PST)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-4c131bede4bso56777147b3.5
-        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 23:55:54 -0800 (PST)
+        with ESMTP id S231506AbjA0H43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 02:56:29 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A507579E
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 23:56:28 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so4838465wmb.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Jan 2023 23:56:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KvXOXKKiQZRBWlk+/UH5aeqFLgrp/Q8dsArxQepD8po=;
-        b=YMLwzdtrOL/jQFgUGP5WdaI+kYSogJPcWWXKRBypcXRrGeS7gQtHHCR3ZeCg5VMRuN
-         rkwBpfqxtROGaE27hcNZgrzgxyzE1uXYGCTQF7LpUFBcqJvrBBmuSZeSMwbmSgOt2hsS
-         u54SktjVOFVZc2uFRHBiYOVquNskGN369w4WurXfqJYFnqAQ3gEsqOzk1SldFHGSVAkQ
-         XkeE/3UKpnlUv4K+EbZnT/NxP3V0GxSrzAx2ZwzMbQJ2EjcfVnc7pEWrcNs05Jsg6f5x
-         9GkPWVLHpMVYqB/7LMhgYWqxHFpsrM8+XpBiT24RjqumH9OUdSVbc0QMxdI2D9mRhJWT
-         B4tg==
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K7q3YsIQN3+sD4qAb9lZvQcNflQx9W2XN7v5+vE+T/o=;
+        b=PmP9XzVizDlYOVJw3e1r7BMEkvU53jfG02ubXXjefC81WGgl87HoT76lvVzhoa7Hvc
+         Mjl4mopHBYCjuQwCOa0Otoqqvky5lh2WafSGwu49wyC0IVd9YoXDbjqAiCwmyeoNufAr
+         h4LDhFz41H1IvBFfIEH3Mrs4elAzBrJkFfgonLiBPTYoJLuLIIU1piPti2Nm5L3nbWjp
+         oqBL7ZWco8EmX4G6CUWx8IBQsYmFEhOKxEJwcO8n8bOfYj+eRF30raaLzq/8DpvWdOP7
+         oSABKJ/2EqjlCPcuEXNA+c1b4C+CuPWEhPjsB1ZpzrUD+MsYm0BsKzGz+ulQgmNF4lla
+         nHrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KvXOXKKiQZRBWlk+/UH5aeqFLgrp/Q8dsArxQepD8po=;
-        b=VBfoXoLfuWAXAVanIZAgo0DZ4E9EirzczIA3YRSzuT8LTSe/guftm9oAsJ6kc+/Hzz
-         peWELPneoUKNeSq4WF0b5vonI8dZKuhDsXyvz15+uFmtXufY558W8LQWJTwrrsqL1TUV
-         HnqtUgdDCgzwyP9vBUDWEvM9PmmbYCrmOmOy6o6NtyyBjk4KBpvzTC8/bDQvJCFijh6x
-         NVTkYwZDytlEaolmBmqkIrqWqNEaeyLdnQ0Z+Yd11yqZ8eHzxLCVO6z6SuiiVOYwt+nk
-         VnVYO6GKZ55BbPwnwjOKM2nIovtVxvdCte906oXDbP78bQ2n+yNGI14DW/JV/Wsu1qeU
-         vIIg==
-X-Gm-Message-State: AFqh2kpkzxXEX3QzD+vPk6XePSL02nkn9tWa1toCDiLrnrduH8g69mpx
-        A/deipmVrkvJFa66TiVz8bWbHDHYfmafRqM4/kLuBbHP2rwsIw==
-X-Google-Smtp-Source: AMrXdXse4U9cqOlyNcgIygOMXbyfxyQMZxc1OQjsv3xz7efO9xazS+6V5m1toUF2HYVLQgyU0p/gfv6JliFU9YQaWoI=
-X-Received: by 2002:a05:690c:39b:b0:4f3:8d0e:edce with SMTP id
- bh27-20020a05690c039b00b004f38d0eedcemr3458366ywb.185.1674806154236; Thu, 26
- Jan 2023 23:55:54 -0800 (PST)
-MIME-Version: 1.0
-References: <20230123183312.436573-1-jagan@edgeble.ai>
-In-Reply-To: <20230123183312.436573-1-jagan@edgeble.ai>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 27 Jan 2023 08:55:43 +0100
-Message-ID: <CACRpkda-qxXQE=OtfN0UMwU38E=xhGjY==4YuA4KG=hjfficiQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: jadard,jd9365da-h3:
- Add Radxa Display 10HD
-To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=K7q3YsIQN3+sD4qAb9lZvQcNflQx9W2XN7v5+vE+T/o=;
+        b=vg1YqDOjkXvPVZACpZPNvzm7d6TfBZ/I5rqpTZwtK5ZSCGZpQfzoXY0V0JVpwL+ykJ
+         WZnOnvpGVR2idccQxzJPnJ/ebMK6OVF873Ix6Ay/tDYcW8943/7F1UsMIRGOZrnEzhQn
+         oFZ3l+Jfyw3hLAfZmKjdlPgqncE1Eq+EMKwF1pnXQ86kFWGhYYx3YM4zqLzWjs4kBzrH
+         7g25cNBh5FeHhZue3sRp0s5kw1phnRGZjGeAFiiIAEyN2fwnh+yJiFA8QirFkMK06TOu
+         q0RzcdbpZwScAfoxv9Ws7gmODZuTwDdfmrPLWNfceGvgU/umA8HLtWN8SvfWKwiUsvIG
+         URAw==
+X-Gm-Message-State: AFqh2kqYfZYQFrb/OvC21Uj2WBJGqf8qYQ+S/O8I6XFhVxAQarGbAJGm
+        fJf72amqgyP8Ut2IXZt7iUCm8Q==
+X-Google-Smtp-Source: AMrXdXt7WKMFrRT9BaJy+0OsAcoq1gHNaGBCwt5c8hAYarVFMJrQfW8L9JCxEzHhOikTZhNwZK8ttg==
+X-Received: by 2002:a05:600c:35d5:b0:3db:fc4:d018 with SMTP id r21-20020a05600c35d500b003db0fc4d018mr36631523wmq.40.1674806186720;
+        Thu, 26 Jan 2023 23:56:26 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id k18-20020a05600c081200b003dc3a6f9447sm948683wmp.32.2023.01.26.23.56.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jan 2023 23:56:25 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        David Heidelberg <david@ixit.cz>
+Cc:     ~okias/devicetree@lists.sr.ht, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20230126193732.69699-1-david@ixit.cz>
+References: <20230126193732.69699-1-david@ixit.cz>
+Subject: Re: [PATCH v2] arm64: dts: meson-gxm-khadas-vim2: use gpio-fan
+ matrix instead of an array
+Message-Id: <167480618547.1454427.9904179152485519398.b4-ty@linaro.org>
+Date:   Fri, 27 Jan 2023 08:56:25 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -69,17 +78,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 23, 2023 at 7:33 PM Jagan Teki <jagan@edgeble.ai> wrote:
+Hi,
 
-> Radxa Display 10HD is a family of DSI panels from Radxa that
-> uses jd9365da-h3 IC.
->
-> Add compatible string for it.
->
-> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+On Thu, 26 Jan 2023 20:37:32 +0100, David Heidelberg wrote:
+> No functional changes.
+> 
+> Adjust to comply with dt-schema requirements
+> and make it possible to validate values.
+> 
+> 
 
-The v2 series all look good to me so I have applied the patches to
-drm-misc-next.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
 
-Yours,
-Linus Walleij
+[1/1] arm64: dts: meson-gxm-khadas-vim2: use gpio-fan matrix instead of an array
+      https://git.kernel.org/amlogic/c/527c9552f5f8a99b6c31bfb39e9470cec07faf49
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
+
