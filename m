@@ -2,140 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58CF967E224
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:46:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8182F67E228
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:48:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232507AbjA0Kqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 05:46:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59268 "EHLO
+        id S231708AbjA0Ksg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 05:48:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232516AbjA0KqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:46:22 -0500
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE98579223
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:46:06 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id u72so5461277ybi.7
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:46:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=yEIvFhK3IIlErsVgToB5qFHQjVAAQfk7keFlobxxWmQ=;
-        b=pbRiHizXgqKLgJi0SZFHnlopsAQ2dHzA++kqIfzVt60x7aFpDvVIK8jIuZ/e+bHQIr
-         TsToNjrN77cQxH7RuLXAD01snstWf+mgyrY4tQ+Yji1eFenSGboymtMKPOgqLeX2HPBA
-         1J8WDoPq0J9kfaNBUn0mNnj5oODs+1OdTCAnIFbpUROdGOnaAF7b1mqF4EjjgSk8FnX9
-         3xe/ZNyWEnkMxPqOzBgDEu8sO/y+g0aQhoshBqQ1MuRJFoXw/rZahh+ggq0dorOvjrCo
-         gKEskc21+60VDKHdlqowmvelAntxyM6fffX/JEcdB6p1UQFrNg43bvsgBe+So4DTpzyV
-         v1VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yEIvFhK3IIlErsVgToB5qFHQjVAAQfk7keFlobxxWmQ=;
-        b=ofK+EBjQrQTSHdqBY8oS0mg3pDYycao150I4jmfjyJEdunQexL4XzMRBgBrK8/Cypa
-         BPJnkJEALpvcmRIyEIA4h3qUaEElDTMCVk0yHg6952II2zffV1Uwz3DbndF9SLnlFboL
-         /z1/EHpnNghqvNX5P59O9Y98MjcLGyAStYQ1lw0Z5fk5HKIAchfKaSd3MAfr/RpFZ/R8
-         01xX0LR3kAbrvf82/kqU9cKyBQ6E9nCmDlpOyvEhyYip0OEqP4qRzW00dP8NdWHFEW5r
-         77fRbchdnd0XpBEkBYaNwjUHPkuGLrSMxRE0Puq1jSvMIeZ4P6ZENQ1+VotI0QJTaACK
-         32Qg==
-X-Gm-Message-State: AO0yUKVyFgUkvr/AJlWPUTkOwYZCH6BaVJcqgV+UWcMrHJIlfolmKm5D
-        VBLlSRc5r6HYvdo53IbplKdHqsN4uQQIS1/xdJlkAA==
-X-Google-Smtp-Source: AK7set8CEjnHi7EVPneHsLI4xDP7Wr4mxQeL1iOel0vamGF0k7QBKC5yCvd7idAVuR1tV91uJqvlYEJIbDj6l19NjRo=
-X-Received: by 2002:a25:d84f:0:b0:80e:9132:a7fe with SMTP id
- p76-20020a25d84f000000b0080e9132a7femr88574ybg.516.1674816366185; Fri, 27 Jan
- 2023 02:46:06 -0800 (PST)
+        with ESMTP id S230201AbjA0Ksf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:48:35 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C233868AE2;
+        Fri, 27 Jan 2023 02:48:34 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 012422B;
+        Fri, 27 Jan 2023 02:49:16 -0800 (PST)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BB7EF3F64C;
+        Fri, 27 Jan 2023 02:48:28 -0800 (PST)
+Date:   Fri, 27 Jan 2023 10:48:26 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Linux Kernel Functional Testing <lkft@linaro.org>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Maxim Kiselev <bigunclemax@gmail.com>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Jean-Philippe Brucker <jpb@kernel.org>,
+        kernel-team@android.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v2 11/11] firmware: arm_scmi: Set fwnode for the
+ scmi_device
+Message-ID: <20230127104826.36wcbg7algrzovhz@bogus>
+References: <20230127001141.407071-1-saravanak@google.com>
+ <20230127001141.407071-12-saravanak@google.com>
 MIME-Version: 1.0
-References: <1674814545-9453-1-git-send-email-quic_kalyant@quicinc.com> <1674814545-9453-3-git-send-email-quic_kalyant@quicinc.com>
-In-Reply-To: <1674814545-9453-3-git-send-email-quic_kalyant@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 27 Jan 2023 12:45:55 +0200
-Message-ID: <CAA8EJprX-8fcoi3FBR7ZUOa2ehhCGEAngq2+UDdC64hHMraqfA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] drm/msm/disp/dpu1: add dspps into reservation if
- there is a ctm request
-To:     Kalyan Thota <quic_kalyant@quicinc.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, quic_abhinavk@quicinc.com,
-        marijn.suijten@somainline.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230127001141.407071-12-saravanak@google.com>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 Jan 2023 at 12:15, Kalyan Thota <quic_kalyant@quicinc.com> wrote:
->
-> Add dspp blocks into the topology for reservation, if there is a ctm
-> request for that composition.
-
-... rather than just allocating them for DSI encoders.
-
-With this fixed (and one nit below):
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
->
-> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
-> ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> index 9c6817b..8d76cb3 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> @@ -545,7 +545,8 @@ bool dpu_encoder_use_dsc_merge(struct drm_encoder *drm_enc)
->  static struct msm_display_topology dpu_encoder_get_topology(
->                         struct dpu_encoder_virt *dpu_enc,
->                         struct dpu_kms *dpu_kms,
-> -                       struct drm_display_mode *mode)
-> +                       struct drm_display_mode *mode,
-> +                       struct drm_crtc_state *crtc_state)
->  {
->         struct msm_display_topology topology = {0};
->         int i, intf_count = 0;
-> @@ -573,11 +574,9 @@ static struct msm_display_topology dpu_encoder_get_topology(
->         else
->                 topology.num_lm = (mode->hdisplay > MAX_HDISPLAY_SPLIT) ? 2 : 1;
->
-> -       if (dpu_enc->disp_info.intf_type == DRM_MODE_ENCODER_DSI) {
-> -               if (dpu_kms->catalog->dspp &&
-> -                       (dpu_kms->catalog->dspp_count >= topology.num_lm))
-> -                       topology.num_dspp = topology.num_lm;
-> -       }
-> +       if (dpu_kms->catalog->dspp && crtc_state->ctm &&
-
-Could you please move the second condition to a separate line? Also
-possibly it would be good to indent the conditions to the opening
-parenthesis.
-
-> +               (dpu_kms->catalog->dspp_count >= topology.num_lm))
-> +               topology.num_dspp = topology.num_lm;
->
->         topology.num_enc = 0;
->         topology.num_intf = intf_count;
-> @@ -643,7 +642,7 @@ static int dpu_encoder_virt_atomic_check(
->                 }
->         }
->
-> -       topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, adj_mode);
-> +       topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, adj_mode, crtc_state);
->
->         /* Reserve dynamic resources now. */
->         if (!ret) {
-> --
-> 2.7.4
+On Thu, Jan 26, 2023 at 04:11:38PM -0800, Saravana Kannan wrote:
+> This allows fw_devlink to track and enforce supplier-consumer
+> dependencies for scmi_device.
 >
 
+Is there any dependency in the series, if so
+
+Acked-by: Sudeep Holla <sudeep.holla@arm.com>
+
+after you incorporate Andy's suggestion.
+
+Let me know if you want me to pick this up.
 
 -- 
-With best wishes
-Dmitry
+Regards,
+Sudeep
