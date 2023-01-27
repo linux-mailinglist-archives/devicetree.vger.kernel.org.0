@@ -2,161 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70AC367E100
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:04:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D9CF67E107
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:06:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233169AbjA0KEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 05:04:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44296 "EHLO
+        id S233337AbjA0KGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 05:06:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233118AbjA0KEd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:04:33 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 241D11DBA7
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:03:46 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id m2so11812859ejb.8
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:03:46 -0800 (PST)
+        with ESMTP id S230092AbjA0KGY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:06:24 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E19C4499
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:06:23 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id d14so4469254wrr.9
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:06:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:to:subject:user-agent:mime-version:date:message-id:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=OqcOIHJ8AdmjqV9pu1TUZaFga/jZxoTHW8uGlyxqnn0=;
-        b=jtYILTuidtzcVDMu6N4Iz8i/X9vcd0ViaWG8pc4cA8zUATmQsQmPAs8TLM1hiHPXu3
-         kvDYgvO4IZtFOYlSes8zvjDnPxGKt1xGxSZpv+wuX2W+YdZ4sKFsc9NerFlx1/MiPPe1
-         TOw7K36DDjggL047rptRUAhsw7X9XFqwk96bah8rWAqyFeNw1YdRmfqsaLirbDGTb9Nw
-         U1sguT5GwyQWvBkmfB3w5aG8eKySuhxSpTmI25/S8dofcvm9x0yUthHRF7s+lXpYYR30
-         TvVlk+vifv4j51J6ohZYLr7jyXOl/JdGkdAS/Zc3MOlL7TC60pC5FF2AvYzdaXAOnDYT
-         nclA==
+        bh=nrmC8WdTW0V7nfxUCBuNzCB15DsVsB4CVGrKeJr0XwI=;
+        b=R6dti16XJvpVSbPkZMoJCeut3ET+cUH6XG/nCRHE70H9gugFOiATRgsfhoiUjVLRUC
+         oErbVimD1f/9U2vb9k+NxxoeuF7eY3QNBSqUQUhIJDN9BJ06H+sJbZjniHU3RR7jq7Lm
+         bQq6KID6+SLdPXjbqQ7bD2hwYRpyNwF08quazpWz0EA/aROGirP1TMUXa96RvKKrH+Ti
+         ELZtBi9NOErlCWPJNWi72GaVKGXq4B09gfik99zhGOmvsnJRwS2cYtymbebxx9ImTr8c
+         IYQGMSKpmWl2vPiST4upIboeECI9TEalBDCL4l9Z001u/rKwJVAXapPE+ewszM8P8+3U
+         ZTvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OqcOIHJ8AdmjqV9pu1TUZaFga/jZxoTHW8uGlyxqnn0=;
-        b=MF+24VMAllYgip8fqco3C5Vt/2Lw3KnA43L2bBXJntbb6k/rNDiwXtvSUAZuFhTd+M
-         7HZngd///YPMkRXCMGWZ1vB4jpfM6lj25hasGa3rcLllSKYKOa12x1SlJP/GQIkSPvyA
-         i0BNixWX7//ZDCzv5ueDa08fM2hc4DBEINfEp4gsmhsUHzqkHMxm4Ag2pqllBkbrO+UA
-         XwYUmXDT0Ei0VMiU1fUrNRNn8Ibq63VDQpyx9Kbb2m0wv2WKHfKKzmGVpn5mwez7OKdL
-         UJUC2Z1h3evUM9ssDY4Db9i4U8ALU5R7iQgwnINUMN8DXr9+I/AuIEpADePPlVwWWbEg
-         HCkg==
-X-Gm-Message-State: AFqh2kodcAI/Hc22i55ltCmMWXYjHGKMmzXho+XysEgW20f2pj50dVE6
-        IeU/+I+qKVHgOVVNXrRpyoh0bw==
-X-Google-Smtp-Source: AMrXdXsA5HAt49wMzF8Xw4aZITkpZA52qt+jVIL4FDekX//BTbCTAPcFimR0oQKQce9slcF2MOSKFw==
-X-Received: by 2002:a17:906:1f57:b0:872:2cc4:6886 with SMTP id d23-20020a1709061f5700b008722cc46886mr34797636ejk.30.1674813824644;
-        Fri, 27 Jan 2023 02:03:44 -0800 (PST)
-Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
-        by smtp.gmail.com with ESMTPSA id gx27-20020a1709068a5b00b0086b0d53cde2sm1947693ejc.201.2023.01.27.02.03.43
+        bh=nrmC8WdTW0V7nfxUCBuNzCB15DsVsB4CVGrKeJr0XwI=;
+        b=EzCEAMKZ7DQf44BGlJ6TEZ5v/NclqzU/FBz/tnHgyklAWe0jHIaARNvd35fOOISagA
+         wdvJ7lw3yNjgzo9YIuGbmO4vZafGN2Y6vs/Wexg4wsgmZIRy4AwjALb0YrRHyJyNAxd4
+         D1Kzl+AQg6R84l1EttbrSjJTxUnr7tYW/H233aUBHqa3tJIhrytAla09lbRy9kGknUpJ
+         GUI2bW7Yhzp1Ie279Uw7Al1sBwKdCSYc7bsts8D6ezYzedsTYndWTlASp9zaB1JXrZMb
+         s8Qqp47HuAVQOsVCRY7NmpHcZhSmAgKQX70cl0GnMa0OfqhyT/t/YbyQMGsv5Jk+bT4x
+         Y+lQ==
+X-Gm-Message-State: AFqh2kpiUsTnoOpwsgAuCZoOlrjMC/XBxzNztkiOFlzVLIp1nfnoTKZp
+        ZySJyGeK1/BPCxKk8qnfo3uqmZdisW/6l7Tx
+X-Google-Smtp-Source: AMrXdXu3pU53VutvBKOcRJ/YqMGU7qLNIr7kC4qz8jtdJxITu14kcAIPLweC02JYVul+ed7Tc7KryQ==
+X-Received: by 2002:a5d:688b:0:b0:2b3:b393:181f with SMTP id h11-20020a5d688b000000b002b3b393181fmr33752494wru.56.1674813981777;
+        Fri, 27 Jan 2023 02:06:21 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id y3-20020adff143000000b002be546f947asm3650960wro.61.2023.01.27.02.06.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 02:03:44 -0800 (PST)
-Message-ID: <a3bb7ecd-d97b-9465-60aa-bbf7d145a705@linaro.org>
-Date:   Fri, 27 Jan 2023 11:03:42 +0100
+        Fri, 27 Jan 2023 02:06:21 -0800 (PST)
+Message-ID: <105ca1cf-0b86-cc2f-c73c-06c582827532@linaro.org>
+Date:   Fri, 27 Jan 2023 11:06:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] ARM: dts: qcom: use "okay" for status
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 3/4] dt-bindings: arm: amlogic: add support for BananaPi
+ M2-Pro
+To:     Christian Hewitt <christianshewitt@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230127095319.64560-1-krzysztof.kozlowski@linaro.org>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230127100236.3385154-1-christianshewitt@gmail.com>
+ <20230127100236.3385154-4-christianshewitt@gmail.com>
 Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230127095319.64560-1-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230127100236.3385154-4-christianshewitt@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 27.01.2023 10:53, Krzysztof Kozlowski wrote:
-> "okay" over "ok" is preferred:
+On 27/01/2023 11:02, Christian Hewitt wrote:
+> BPI-M2-PRO is based upon the BPI-M5 using the Amlogic SM1 (S905X3) chipset.
 > 
->   serial@f991f000: status:0: 'ok' is not one of ['okay', 'disabled', 'reserved']
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Konrad
->  arch/arm/boot/dts/qcom-msm8226-samsung-s3ve3g.dts | 2 +-
->  arch/arm/boot/dts/qcom-sdx55-t55.dts              | 6 +++---
->  arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts  | 6 +++---
->  3 files changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-msm8226-samsung-s3ve3g.dts b/arch/arm/boot/dts/qcom-msm8226-samsung-s3ve3g.dts
-> index 6a082ad4418a..288cacd5d1fa 100644
-> --- a/arch/arm/boot/dts/qcom-msm8226-samsung-s3ve3g.dts
-> +++ b/arch/arm/boot/dts/qcom-msm8226-samsung-s3ve3g.dts
-> @@ -20,5 +20,5 @@ chosen {
->  };
->  
->  &blsp1_uart3 {
-> -	status = "ok";
-> +	status = "okay";
->  };
-> diff --git a/arch/arm/boot/dts/qcom-sdx55-t55.dts b/arch/arm/boot/dts/qcom-sdx55-t55.dts
-> index 61ac5f54cd57..ccf2b8b42b16 100644
-> --- a/arch/arm/boot/dts/qcom-sdx55-t55.dts
-> +++ b/arch/arm/boot/dts/qcom-sdx55-t55.dts
-> @@ -233,7 +233,7 @@ ldo16 {
->  };
->  
->  &blsp1_uart3 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &ipa {
-> @@ -243,11 +243,11 @@ &ipa {
->  };
->  
->  &qpic_bam {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &qpic_nand {
-> -	status = "ok";
-> +	status = "okay";
->  
->  	nand@0 {
->  		reg = <0>;
-> diff --git a/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts b/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts
-> index c9c1f7da1261..db7b3d5b0bd0 100644
-> --- a/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts
-> +++ b/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts
-> @@ -233,7 +233,7 @@ ldo16 {
->  };
->  
->  &blsp1_uart3 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &ipa {
-> @@ -258,11 +258,11 @@ &pcie_ep {
->  };
->  
->  &qpic_bam {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &qpic_nand {
-> -	status = "ok";
-> +	status = "okay";
->  
->  	nand@0 {
->  		reg = <0>;
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
