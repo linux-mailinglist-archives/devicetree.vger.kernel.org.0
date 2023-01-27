@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42EAF67E476
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:03:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D331A67E4B4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:10:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233408AbjA0MDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 07:03:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32952 "EHLO
+        id S233602AbjA0MKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 07:10:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230244AbjA0MCu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:02:50 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E898424CB4
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 03:58:08 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id bk15so13040720ejb.9
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 03:58:08 -0800 (PST)
+        with ESMTP id S231201AbjA0MJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:09:58 -0500
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1085D457FF
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:03:37 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id s3so4540891edd.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:03:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GtoHJe8Il6ptpWQcBsQ4zDbCpXApT4hu6VOFngpSKrw=;
-        b=X4K71fNRan6mRN4mGO1HfXhbhDt9jAZpDL7LINJqJApuWmG7SQlyhiae0lwFNJnM1r
-         4dKf0GoRVKYLfodLIoSlYI4QUUSl1bgPMrUTZKL8KJqNFUzHTq08mYAZlWGSLZACTSxx
-         UmnfDt1e1hMCIarNEP+0KK7FW4Jy65XwodTwUeL9EYnURMKd1YfnEP98w0k93kL7LbX8
-         /l4a9q990MQ4ptkN52l+PF/jGk+bTvUoQPW8QuP+n0XCjWiFWuaTw56HVX2lBRAWo3Hz
-         G5YMifrL8sySSmvmi5i6QAQGRbND/ikFI00O9q5Pq1Hp+yqcU6Zg7CHOykIlohGUl4Bj
-         keRA==
+        bh=M/a9I3LIRSC8agto3aucyqpK39VOpxqKC3BVsINP0Zc=;
+        b=jgkg/CrqVBcsNRJ3tc0CtB4G6N1t3Kl4cDuN+0xVd0hQIeh9huvmtUw4Sb9B3hmBWQ
+         762qTdTLunos6q32cOylKfUwuBuU0NRo6ySJb3+hY16J8IEPJMLJU54/zwFp9Os9l1G4
+         PcHyIms+2diOwpdmAjI3n8foo1MHlx6NXJEjsAlgWgfdk3LcvL8PkpV2HmOiEzvp6E+N
+         gjnfH/pB8IRHBoZuL6OhmrLzD0JIk8twQbR4klH+YcuyIfqdTl258CZVo7p2D6jXg59v
+         +FSel3TUCwJVffxEmzuPxruJbc+MA7zHRkWHspIh2iJfMuoa1FVXVlzn7OuSrJ289xLv
+         Uk7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GtoHJe8Il6ptpWQcBsQ4zDbCpXApT4hu6VOFngpSKrw=;
-        b=nZyC0D4//P1AscOqkffk0D4gAM/rkDrRe7NDedvIXjs+y941+aYF8Wi9Luj0YaqSl3
-         1ttQrEgdVyKAcCmu7xM5ki5i52t1nc+TgaatI9p3S33iUpP0u3S3IcfP/kJPGUJ7LVfY
-         Dt2SK/VLDixjRHmVYCrZgyw53TSa/ixuMCgxq83/GsJCmpizOTVyrABim7REvJ6tujgL
-         bJBBR/Jnk3EmxifSMqTyB8hj5rfFBqStPBpsEsaaBhQMuyVoJLTyIoJNwgwH24UxnTam
-         QZ+xXQ4bwInl6RcUgV2u+x8z59tYLuBHNay/UjqGqvbWpLqs+sIx1nnw8J07R1fQMZTh
-         +8UA==
-X-Gm-Message-State: AFqh2kqoZfu26L/veE0brB8G5tVfp4yDZWP8JIi5zqXU62HA+1FMz1CD
-        Y/x5jwUckGMfk+DmC9hpBEMeEQ==
-X-Google-Smtp-Source: AMrXdXvwYYyEuDrKpJSgpU0OTpRLxPfjkWAFE1ToTGGozgWhVqkuZSZ7mZFZrAQusx6Kj9LawzPFyw==
-X-Received: by 2002:a17:907:a4c1:b0:812:d53e:1084 with SMTP id vq1-20020a170907a4c100b00812d53e1084mr56993008ejc.70.1674820613997;
-        Fri, 27 Jan 2023 03:56:53 -0800 (PST)
+        bh=M/a9I3LIRSC8agto3aucyqpK39VOpxqKC3BVsINP0Zc=;
+        b=OX/vggoqMFxVKSZjF80hs+PYgaka2a4zgNbpNV+kyEa2UZZY3AHp6msyhZGaaQE5TB
+         wvW11sqlOudabNVzISH3p/PcVdYWGsbA8UPGAfA1uHiJX4fa9yKUanSGqASIUMW4xunJ
+         YZhtz7j7JLBuyq6OJ92vda9ypH04ATPxG+cJVUJOwy4T7OtttVv+1KAtGEQAQVIjP4V3
+         cDXShDzNZy/Sf4sPfJnfnwO94CJt6Pit/uI1wuiz/ZDZ4b7x82W18/YmndVvYENImoix
+         tpGuVOOi3GeOlGTS/zwEe/TrHpzgy+ntDA1eyc17mYTNl3Wj1qgRvMxCQaAy0FhXkPP3
+         GL5Q==
+X-Gm-Message-State: AO0yUKX6sNny5okMwyHaszlzEYsZBG8KDUtfEsQI4ONL7h3wo8cKzx5J
+        MppibvD1u7ZEPpzyDf+vdw0JYw==
+X-Google-Smtp-Source: AK7set9hFp6A9w6EIN1yid0D1rh/Anzuep95TJOUgaOTGWqGmnF6H9Y9g3h107sqRhCzoI0yoUrgQA==
+X-Received: by 2002:a50:ce54:0:b0:4a0:e039:e911 with SMTP id k20-20020a50ce54000000b004a0e039e911mr6044844edj.12.1674820635125;
+        Fri, 27 Jan 2023 03:57:15 -0800 (PST)
 Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
-        by smtp.gmail.com with ESMTPSA id z2-20020a17090665c200b008784ecb2dd5sm2100624ejn.104.2023.01.27.03.56.52
+        by smtp.gmail.com with ESMTPSA id t6-20020a1709067c0600b008776e2fccfesm2169999ejo.72.2023.01.27.03.57.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 03:56:53 -0800 (PST)
-Message-ID: <ed921920-44b5-21ef-8ed5-82820482ada6@linaro.org>
-Date:   Fri, 27 Jan 2023 12:56:52 +0100
+        Fri, 27 Jan 2023 03:57:14 -0800 (PST)
+Message-ID: <277a50ae-deac-0cf0-4023-18376f229137@linaro.org>
+Date:   Fri, 27 Jan 2023 12:57:13 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 08/11] arm64: dts: qcom: sm8150: align RPMh regulator
+Subject: Re: [PATCH 09/11] arm64: dts: qcom: sm8250: align RPMh regulator
  nodes with bindings
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -65,15 +65,15 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230127114347.235963-1-krzysztof.kozlowski@linaro.org>
- <20230127114347.235963-8-krzysztof.kozlowski@linaro.org>
+ <20230127114347.235963-9-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230127114347.235963-8-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230127114347.235963-9-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -91,40 +91,48 @@ On 27.01.2023 12:43, Krzysztof Kozlowski wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sa8155p-adp.dts                  | 4 ++--
->  arch/arm64/boot/dts/qcom/sm8150-hdk.dts                   | 6 +++---
->  arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts | 6 +++---
->  arch/arm64/boot/dts/qcom/sm8150-mtp.dts                   | 6 +++---
->  arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi   | 4 ++--
->  5 files changed, 13 insertions(+), 13 deletions(-)
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts             | 6 +++---
+>  arch/arm64/boot/dts/qcom/sm8250-hdk.dts              | 6 +++---
+>  arch/arm64/boot/dts/qcom/sm8250-mtp.dts              | 6 +++---
+>  arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi | 6 +++---
+>  4 files changed, 12 insertions(+), 12 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> index eafdfbbf40b9..459384ec8f23 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> @@ -72,7 +72,7 @@ queue0 {
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index 8c64cb060e21..e96aa5ccb679 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -238,7 +238,7 @@ &adsp {
 >  };
 >  
 >  &apps_rsc {
-> -	pmm8155au-1-rpmh-regulators {
+> -	pm8009-rpmh-regulators {
 > +	regulators-0 {
->  		compatible = "qcom,pmm8155au-rpmh-regulators";
->  		qcom,pmic-id = "a";
+>  		compatible = "qcom,pm8009-1-rpmh-regulators";
+>  		qcom,pmic-id = "f";
 >  
-> @@ -201,7 +201,7 @@ vreg_l17a_2p96: ldo17 {
+> @@ -284,7 +284,7 @@ vreg_l7f_1p8: ldo7 {
 >  		};
 >  	};
 >  
-> -	pmm8155au-2-rpmh-regulators {
+> -	pm8150-rpmh-regulators {
 > +	regulators-1 {
->  		compatible = "qcom,pmm8155au-rpmh-regulators";
+>  		compatible = "qcom,pm8150-rpmh-regulators";
+>  		qcom,pmic-id = "a";
+>  
+> @@ -417,7 +417,7 @@ vreg_s6a_0p95: smps6 {
+>  		};
+>  	};
+>  
+> -	pm8150l-rpmh-regulators {
+> +	regulators-2 {
+>  		compatible = "qcom,pm8150l-rpmh-regulators";
 >  		qcom,pmic-id = "c";
 >  
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-> index 3331ee957d64..8f014a232526 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-> @@ -56,7 +56,7 @@ key-vol-up {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+> index 632e98193d27..0aee7f8658b4 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+> @@ -65,7 +65,7 @@ key-vol-up {
 >  };
 >  
 >  &apps_rsc {
@@ -133,7 +141,7 @@ Konrad
 >  		compatible = "qcom,pm8150-rpmh-regulators";
 >  		qcom,pmic-id = "a";
 >  
-> @@ -211,7 +211,7 @@ vreg_l17a_3p0: ldo17 {
+> @@ -199,7 +199,7 @@ vreg_l18a_0p92: ldo18 {
 >  		};
 >  	};
 >  
@@ -142,7 +150,7 @@ Konrad
 >  		compatible = "qcom,pm8150l-rpmh-regulators";
 >  		qcom,pmic-id = "c";
 >  
-> @@ -324,7 +324,7 @@ vreg_l11c_3p3: ldo11 {
+> @@ -310,7 +310,7 @@ vreg_l11c_3p3: ldo11 {
 >  		};
 >  	};
 >  
@@ -151,11 +159,11 @@ Konrad
 >  		compatible = "qcom,pm8009-rpmh-regulators";
 >  		qcom,pmic-id = "f";
 >  
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-> index 5397fba9417b..69024f7c7f10 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-> @@ -61,7 +61,7 @@ key-vol-up {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+> index 0991b34a8e49..0de8f2320b01 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+> @@ -187,7 +187,7 @@ &adsp {
 >  };
 >  
 >  &apps_rsc {
@@ -164,7 +172,7 @@ Konrad
 >  		compatible = "qcom,pm8150-rpmh-regulators";
 >  		qcom,pmic-id = "a";
 >  
-> @@ -216,7 +216,7 @@ vreg_l17a_3p0: ldo17 {
+> @@ -321,7 +321,7 @@ vreg_l18a_0p9: ldo18 {
 >  		};
 >  	};
 >  
@@ -173,7 +181,7 @@ Konrad
 >  		compatible = "qcom,pm8150l-rpmh-regulators";
 >  		qcom,pmic-id = "c";
 >  
-> @@ -329,7 +329,7 @@ vreg_l11c_3p3: ldo11 {
+> @@ -432,7 +432,7 @@ vreg_l11c_3p3: ldo11 {
 >  		};
 >  	};
 >  
@@ -182,11 +190,11 @@ Konrad
 >  		compatible = "qcom,pm8009-rpmh-regulators";
 >  		qcom,pmic-id = "f";
 >  
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-> index 46b5cf9a1192..eff995a07ab7 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-> @@ -51,7 +51,7 @@ vreg_s4a_1p8: pm8150-s4 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+> index e76d0ef5aec9..b9c982a059df 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+> @@ -123,7 +123,7 @@ &adsp {
 >  };
 >  
 >  &apps_rsc {
@@ -195,16 +203,16 @@ Konrad
 >  		compatible = "qcom,pm8150-rpmh-regulators";
 >  		qcom,pmic-id = "a";
 >  
-> @@ -206,7 +206,7 @@ vreg_l17a_3p0: ldo17 {
->  		};
->  	};
->  
+> @@ -247,7 +247,7 @@ vreg_l18a_0p9: ldo18 {
+>  	 * ab: 4600000-6100000
+>  	 * ibb: 800000-5400000
+>  	 */
 > -	pm8150l-rpmh-regulators {
 > +	regulators-1 {
 >  		compatible = "qcom,pm8150l-rpmh-regulators";
 >  		qcom,pmic-id = "c";
 >  
-> @@ -319,7 +319,7 @@ vreg_l11c_3p3: ldo11 {
+> @@ -360,7 +360,7 @@ vreg_l11c_3p0: ldo11 {
 >  		};
 >  	};
 >  
@@ -212,26 +220,4 @@ Konrad
 > +	regulators-2 {
 >  		compatible = "qcom,pm8009-rpmh-regulators";
 >  		qcom,pmic-id = "f";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-> index 64602748c657..ff77cc3c879a 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-> @@ -173,7 +173,7 @@ &adsp_mem {
->  };
->  
->  &apps_rsc {
-> -	pm8150-rpmh-regulators {
-> +	regulators-0 {
->  		compatible = "qcom,pm8150-rpmh-regulators";
->  		qcom,pmic-id = "a";
->  
-> @@ -306,7 +306,7 @@ vreg_l18a_0p8: ldo18 {
->  		};
->  	};
->  
-> -	pm8150l-rpmh-regulators {
-> +	regulators-1 {
->  		compatible = "qcom,pm8150l-rpmh-regulators";
->  		qcom,pmic-id = "c";
 >  
