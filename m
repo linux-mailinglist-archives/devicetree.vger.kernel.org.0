@@ -2,162 +2,306 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E166E67E930
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 16:15:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF46367E956
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 16:19:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234212AbjA0PPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 10:15:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48874 "EHLO
+        id S234352AbjA0PTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 10:19:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234196AbjA0PPD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 10:15:03 -0500
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on20721.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e8b::721])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 055D340E1;
-        Fri, 27 Jan 2023 07:15:01 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hVg1XEspNMojxFe/Ccjzlt+74YtEP5QE5kJmIVQjiZYwFfGmnVjHiYvuJ0QqPoPmzQWDA0paSiDtXZITNWUhiwxqNjp/bRsZ8lW3av0u4vV7aYD/52WbEASoOQQLvu8Km9tqgHoVynmemOXahFGOsv762DM+KYh+nTxJj4gLe2XUFCfoNOKIVT9795EZxwOp43Ums+IcV555CNnVLUOK8WvL444GprBbtyyKLKeS2W7m+dASrYcDBZuFBmgEllHUpTWEsyRFMOUB0nwz1TVYH93AhWrtoPHYS4reb7/uc847U1HnZmaV5jA8W3nmPgLCGwBe5r8X/ybQhMudiPZGOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P6s+Q/S0oIGNxvMZEdApfs0E8S5bO5zaSvcnBzFGqJI=;
- b=IOZ64Oi65sEw8XTNCugxQDf+iE4z/DNqxRcir1tH4zduuo+lHlEdXsoksDYec8kqQrRGfLsexrStS15vo/snHFfAnGqPaI/IGd9eZLTkA4pwxNedNtmTN6z2DVwP3ymFXLpWa4Q1A9VqfncdMW8TcHhNr/jx5RjWFkuse7JUMTpk0Fz7QFmDd4+VSW0TbE7b5LLBhhTF/FGVs45AXsQQ/OnNU62BEKsitGrytKLI7zy5T6WzZUqBPDK4JIRDeYZfl6t+TUtuJFH1Z+KwCWPwDRLF5+Un0eRYb+TkROTVJyWlYnTfxfZbv80+FGIsUPrBTZtfHoVpjYafhijvcwat1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P6s+Q/S0oIGNxvMZEdApfs0E8S5bO5zaSvcnBzFGqJI=;
- b=YiL08lD2G6MKWRti2dyTpMvVDbzQctMqaTl19VdZ1V0lj/IEhXVaX4fQbe2T2NnBJAsK4xmHgwt8rt1x8iVH0oCUUKN9BMzgbHHqxDmo71PA1VgndIrnJo5emjM4U2puEwJ5RsOYnKvarW2jHIJg8RXRFYVXpKOFgHAXrP/EKqU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by CH2PR13MB3751.namprd13.prod.outlook.com (2603:10b6:610:98::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.23; Fri, 27 Jan
- 2023 15:14:56 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::eb5c:910f:3730:fd65]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::eb5c:910f:3730:fd65%6]) with mapi id 15.20.6043.022; Fri, 27 Jan 2023
- 15:14:55 +0000
-Date:   Fri, 27 Jan 2023 16:14:48 +0100
-From:   Simon Horman <simon.horman@corigine.com>
-To:     Alexandru Tachici <alexandru.tachici@analog.com>
-Cc:     linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, richardcochran@gmail.com,
-        yangyingliang@huawei.com, weiyongjun1@huawei.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, lennart@lfdomain.com
-Subject: Re: [net-next v2 1/3] net: ethernet: adi: adin1110: add PTP clock
- support
-Message-ID: <Y9PqaJGwAUAZo2Rx@corigine.com>
-References: <20230126133346.61097-1-alexandru.tachici@analog.com>
- <20230126133346.61097-2-alexandru.tachici@analog.com>
+        with ESMTP id S232176AbjA0PTX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 10:19:23 -0500
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5366583D9;
+        Fri, 27 Jan 2023 07:19:21 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id EAAD2FF804;
+        Fri, 27 Jan 2023 15:19:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1674832760;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=75L9daZQQraiKiPUQbo7VpXC3b/EbE0gKH7qGhFhOsI=;
+        b=esMado+MfG4dtcsh2nEE9uGO5HBsWdN2dck43xL3s8b7qt8PUZi8iMVeo8C0DS3L4i2hUI
+        TeAvnXidnutVL5l1qFSQyC4d3CE672gtgCCtqaRpHSQt24ZtmZqk+mlCUMlAdH5TkSu1jo
+        /64w4yxbsthwYn9LfgZwD8fk+noht0UsaqjmWzE/nCTCYAgSPVM5aXVp1E/cIDhmJs2XB9
+        fcdiXYWHFImk/SySl+/hgUarHZEkfK+6T0rOUpDuMt1qNJiDsOr7MrA66GeABpy+LqLVby
+        37yXbe4UznivtE4wYEy1Rp2llUrKygEmH2aZrrXDllQOJD1neT96Vjg55ecbCw==
+Date:   Fri, 27 Jan 2023 16:19:18 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 19/24] rtc: pm8xxx: add support for uefi offset
+Message-ID: <Y9PrdqLHZpZrdGJ4@mail.local>
+References: <20230126142057.25715-1-johan+linaro@kernel.org>
+ <20230126142057.25715-20-johan+linaro@kernel.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230126133346.61097-2-alexandru.tachici@analog.com>
-X-ClientProxiedBy: AM0PR02CA0164.eurprd02.prod.outlook.com
- (2603:10a6:20b:28d::31) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|CH2PR13MB3751:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5b243729-0325-42f5-c3b8-08db00793f46
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HnYAUVOqzTdqPZ1zih5xzskD9VwbvM0l2MHJpNl4pPO9n8PGq8KC8gC+2MBLLHiZ+gwQUTYZUJz1P+jB+xI2FHAexmGdd0cRBmyD8mqsQ+bVkNCM4OpTpoiuHjA5H58yrvHuRJh0XKhAz2cpuBskfzhdUWQUnsH9c0oLE17kJvhysDsaByq5GON0GX4xO6YP6sxQsWq/W6sLouOLdsCT1GXSh9gIaXPoPTOlBENkSIVFIstbO863GZBvE1CrBPXiYsS7z5C28wzmg8H3I851Jkxwy0ivqEDqCZ7Dotfz3MNgXL1H5CNZmzXanMFsdy7wldW7X9lBWu56farOS93j91FdwJNArjGTbRoeFDMyxC9nXT4wL+h75HWzXqo1gMLVjm2YcMjFyEhJF/rsHXUMGEWJpRJtI/26T0RCenAuCdiVC6BwsVPz1tNAbI+6KigRlN/VfZAVWjCpAgMJD0mst+9ua9MK/ypMNI4g+6bnJV1zBGsYqHPabw+ebfdeKdi+xfx5Yy4pAehh0fSz0NJKHwLMAiXEnVuWcTlATyR55cq+5F77KfvlqP0zr5UWQkDc/AKvIDzpkT94gbjEpwwnuh9XvuJbZ7aDLCuKNe315Kp4wBrx5/lOYo2Cah4Qbo9GqqwSo6ZvinntW8PUJ5O/4w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(376002)(39830400003)(396003)(346002)(136003)(451199018)(7416002)(2906002)(36756003)(44832011)(5660300002)(2616005)(83380400001)(38100700002)(4326008)(8676002)(316002)(8936002)(41300700001)(66556008)(6916009)(6506007)(66476007)(6666004)(6512007)(86362001)(186003)(66946007)(6486002)(478600001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1gpwz8iEQnLuPIjdL2Sj3UTFB/FrempFj55WmDF7Yxr9gSBweSJgELnBTwwn?=
- =?us-ascii?Q?LbQVxruQOTH5P+p2OPq+EZHUYrz2mSOVgnG5OnLV8THKe2jLiNVREuMNcmTq?=
- =?us-ascii?Q?UNYUfJ7FcNcb98N2OjKSB//o2PIauEaz+vHHNCPofzidSHvPpTPiIOQ6SAM/?=
- =?us-ascii?Q?EHCN7U1LHvKMPS81vxlatB0dfUaTSWvLUSakxO5Egl7ZeQXH+5STTb24npEL?=
- =?us-ascii?Q?UYN8DWvRcfgtS3it8w6CZKvZ8t6Sq1wzv6JbNaBiBFpKt69mtSZ3z/OOGPos?=
- =?us-ascii?Q?iKFcHMNhHjc1I6S0vqBNGgRhlIhE8iCW+a1Mp5OS6xC6nt9ThZZwfVED0CTt?=
- =?us-ascii?Q?dxuHvVDO3erL567jJ6MBCo+lmFij+Il8z4QI4V7rQ6X78rtY7phkUBxLf/+v?=
- =?us-ascii?Q?cGwHnCBaUTIG18asvQUol48bCUTUq/grsKYqjm/GRNEdrBwQHBLkEDMpk086?=
- =?us-ascii?Q?Stb3USnagKapOBhD4RWyiMm9c+HJaqWl6nXUmWvCjx/wgC00jfPyib/D3ZuU?=
- =?us-ascii?Q?0RT44RIUX5da80lIP72wPLwdzjaY3xXaCW3XO1t0cXQlIcLHCeR+4diPv7ry?=
- =?us-ascii?Q?MvIXphHzXW3NnuLegyibirmTJ2M5otp7VV5ZYDmEPjElE8jBAMSf93UJysoP?=
- =?us-ascii?Q?CUBtmTsi1hcgA1jrxviIig20cjueLgrVt+RwkZVdZ3GdKMqA9Q3wKu85i99Z?=
- =?us-ascii?Q?5atQdAMzjD4lBZc3UmNy9gG9+Vy9awLMztIWX8njrVpUW4t//nQQyyodo56Q?=
- =?us-ascii?Q?emLpneTAuwZ6fbeiLwnlAwBbqa/Vd6ntOcY62MR46NiXzc7K0lD7Q3EVmp4n?=
- =?us-ascii?Q?eVDSED50cdd6dKPGt3OKQnL5101cLk+H8omKOA+cx7PTMDOhANPP5XDwU78z?=
- =?us-ascii?Q?ith7KvnGZ+GYaVs2rxmjoGeE0RM1iylEiU5XZ+112c5v/mtEWPLCKVPz0o7n?=
- =?us-ascii?Q?gxqoK8WojVVzHeKa8DWq9QVy00pfItcyzk9IRTAAL7KHsUiBqeVM3P/lmydw?=
- =?us-ascii?Q?Q9w8g5rm73BZu+hviL74W1+aOTs7Eh35ou86lEIs3KgJKnOMpjPkhQCYrd4w?=
- =?us-ascii?Q?F3GUBeJW0qGaqb48ch+QTW6n6+do+9Yo1dMLVi4gq2pFHDT3tyHm+zyBI/4m?=
- =?us-ascii?Q?dN1P7mz/WNysp4X4cJ8tQR5DuCpevsfT4WLfI8VfQU+BEMV0YPGhamwv6k1m?=
- =?us-ascii?Q?3GAFYAzlSV/IxAxlMF6T/j8e0gz8PNiQ6s+gFuH2X7Z6Pe4wNwHqlbx+m9dK?=
- =?us-ascii?Q?zYgZt8gXpml444WsltQ6Bo4EgeSG3prLcdeRx9nJYUTc1HTFR+bwo216BFfY?=
- =?us-ascii?Q?4J5ZuJ0gQOHHhP/EQyYcBnIYHtR6pIya5OhkB/ZJROPrwjD9Nbjcm7i3yIJt?=
- =?us-ascii?Q?5SymfYI9mizRFwGuG8o7O1XI32xhf8inreYR+BDL+w4SpnNvtqoI5z2C1flG?=
- =?us-ascii?Q?cEuYhq0qy8UtWZj4tZeXZ42C8hDQX2BbTBjWvfvDQFgLjqZN7FuCeEGU2E/Y?=
- =?us-ascii?Q?Ykeo5WzlOQExmFbndoIOO+v019qnclhqdSE8JLDD3YQ62dNd00m88pqTlBVH?=
- =?us-ascii?Q?5sVIeoDiCLqxF5FHumGgt0/NFIXaxeGYjk0mc6Zt9oeCeC0BVxYLCdWVuFQ8?=
- =?us-ascii?Q?8fLe5yTyqtTwW6U4PKpnZe8eJFDxRoNE9+2IdOb/olMdJOFiYwkdrODb/m3/?=
- =?us-ascii?Q?QDIQPA=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b243729-0325-42f5-c3b8-08db00793f46
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2023 15:14:55.7733
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M2fogo38GRi+b9gJqXZTVEk8f+jVUmlrSSiNAh1jMlRL4X/p8g/Z2LsFSFjm5rCyU+wITfG2C1XTUvJFnenyTBHmoGobrxb0KvH5AA4pD7Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR13MB3751
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230126142057.25715-20-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 26, 2023 at 03:33:44PM +0200, Alexandru Tachici wrote:
-> Add control for the PHC inside the ADIN1110/2111.
-> Device contains a syntonized counter driven by a 120 MHz
-> clock  with 8 ns resolution.
+On 26/01/2023 15:20:52+0100, Johan Hovold wrote:
+> On many Qualcomm platforms the PMIC RTC control and time registers are
+> read-only so that the RTC time can not be updated. Instead an offset
+> needs be stored in some machine-specific non-volatile memory, which the
+> driver can take into account.
 > 
-> Time is stored on two registers: a 32bit seconds register and
-> a 32bit nanoseconds register.
+> Add support for storing a 32-bit offset from the GPS time epoch in a
+> UEFI variable so that the RTC time can be set on such platforms.
 > 
-> For adjusting the clock timing, device uses an addend register.
-> Can generate an output signal on the TS_TIMER pin.
-> For reading the timestamp the current tiem is saved by setting the
-> TS_CAPT pin via gpio in order to snapshot both seconds and nanoseconds
-> in different registers that the live ones.
+
+Why are you using the GPS epoch? This seems pretty random.
+
+> The UEFI variable is
 > 
-> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
+>             882f8c2b-9646-435f-8de5-f208ff80c1bd-RTCInfo
+> 
+> and holds a 12-byte structure where the first four bytes is a GPS time
+> offset in little-endian byte order.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  drivers/rtc/rtc-pm8xxx.c | 122 +++++++++++++++++++++++++++++++++++++--
+>  include/linux/rtc.h      |   1 +
+>  2 files changed, 119 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/rtc/rtc-pm8xxx.c b/drivers/rtc/rtc-pm8xxx.c
+> index 25bdd804b4d2..6c2324baeec6 100644
+> --- a/drivers/rtc/rtc-pm8xxx.c
+> +++ b/drivers/rtc/rtc-pm8xxx.c
+> @@ -5,6 +5,7 @@
+>   * Copyright (c) 2010-2011, Code Aurora Forum. All rights reserved.
+>   * Copyright (c) 2023, Linaro Limited
+>   */
+> +#include <linux/efi.h>
+>  #include <linux/of.h>
+>  #include <linux/module.h>
+>  #include <linux/nvmem-consumer.h>
+> @@ -17,6 +18,7 @@
+>  #include <linux/slab.h>
+>  #include <linux/spinlock.h>
+>  
+> +#include <asm/byteorder.h>
+>  #include <asm/unaligned.h>
+>  
+>  /* RTC_CTRL register bit fields */
+> @@ -46,6 +48,11 @@ struct pm8xxx_rtc_regs {
+>  	unsigned int alarm_en;
+>  };
+>  
+> +struct qcom_uefi_rtc_info {
+> +	__le32	offset_gps;
+> +	u8	reserved[8];
+> +} __packed;
+> +
+>  /**
+>   * struct pm8xxx_rtc -  RTC driver internal structure
+>   * @rtc:		RTC device
+> @@ -54,6 +61,7 @@ struct pm8xxx_rtc_regs {
+>   * @alarm_irq:		alarm irq number
+>   * @regs:		register description
+>   * @dev:		device structure
+> + * @rtc_info:		qcom uefi rtc-info structure
+>   * @nvmem_cell:		nvmem cell for offset
+>   * @offset:		offset from epoch in seconds
+>   */
+> @@ -61,13 +69,101 @@ struct pm8xxx_rtc {
+>  	struct rtc_device *rtc;
+>  	struct regmap *regmap;
+>  	bool allow_set_time;
+> +	bool use_uefi;
+>  	int alarm_irq;
+>  	const struct pm8xxx_rtc_regs *regs;
+>  	struct device *dev;
+> +	struct qcom_uefi_rtc_info rtc_info;
+>  	struct nvmem_cell *nvmem_cell;
+>  	u32 offset;
+>  };
+>  
+> +#ifdef CONFIG_EFI
+> +
+> +MODULE_IMPORT_NS(EFIVAR);
+> +
+> +#define QCOM_UEFI_NAME	L"RTCInfo"
+> +#define QCOM_UEFI_GUID	EFI_GUID(0x882f8c2b, 0x9646, 0x435f, \
+> +				 0x8d, 0xe5, 0xf2, 0x08, 0xff, 0x80, 0xc1, 0xbd)
+> +#define QCOM_UEFI_ATTRS	(EFI_VARIABLE_NON_VOLATILE | \
+> +			 EFI_VARIABLE_BOOTSERVICE_ACCESS | \
+> +			 EFI_VARIABLE_RUNTIME_ACCESS)
+> +
+> +static int pm8xxx_rtc_read_uefi_offset(struct pm8xxx_rtc *rtc_dd)
+> +{
+> +	struct qcom_uefi_rtc_info *rtc_info = &rtc_dd->rtc_info;
+> +	unsigned long size = sizeof(*rtc_info);
+> +	struct device *dev = rtc_dd->dev;
+> +	efi_status_t status;
+> +	u32 offset_gps;
+> +	int rc;
+> +
+> +	rc = efivar_lock();
+> +	if (rc)
+> +		return rc;
+> +
+> +	status = efivar_get_variable(QCOM_UEFI_NAME, &QCOM_UEFI_GUID, NULL,
+> +				     &size, rtc_info);
+> +	efivar_unlock();
+> +
+> +	if (status != EFI_SUCCESS) {
+> +		dev_err(dev, "failed to read UEFI offset: %lu\n", status);
+> +		return efi_status_to_err(status);
+> +	}
+> +
+> +	if (size != sizeof(*rtc_info)) {
+> +		dev_err(dev, "unexpected UEFI structure size %lu\n", size);
+> +		return -EINVAL;
+> +	}
+> +
+> +	dev_dbg(dev, "uefi_rtc_info = %*ph\n", (int)size, rtc_info);
+> +
+> +	/* Convert from GPS to Unix time offset */
+> +	offset_gps = le32_to_cpu(rtc_info->offset_gps);
+> +	rtc_dd->offset = offset_gps + (u32)RTC_TIMESTAMP_BEGIN_GPS;
+> +
+> +	return 0;
+> +}
+> +
+> +static int pm8xxx_rtc_write_uefi_offset(struct pm8xxx_rtc *rtc_dd, u32 offset)
+> +{
+> +	struct qcom_uefi_rtc_info *rtc_info = &rtc_dd->rtc_info;
+> +	unsigned long size = sizeof(*rtc_info);
+> +	struct device *dev = rtc_dd->dev;
+> +	efi_status_t status;
+> +	u32 offset_gps;
+> +
+> +	/* Convert from Unix to GPS time offset */
+> +	offset_gps = offset - (u32)RTC_TIMESTAMP_BEGIN_GPS;
+> +
+> +	rtc_info->offset_gps = cpu_to_le32(offset_gps);
+> +
+> +	dev_dbg(dev, "efi_rtc_info = %*ph\n", (int)size, rtc_info);
+> +
+> +	status = efivar_set_variable(QCOM_UEFI_NAME, &QCOM_UEFI_GUID,
+> +				     QCOM_UEFI_ATTRS, size, rtc_info);
+> +	if (status != EFI_SUCCESS) {
+> +		dev_err(dev, "failed to write UEFI offset: %lx\n", status);
+> +		return efi_status_to_err(status);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +#else	/* CONFIG_EFI */
+> +
+> +static int pm8xxx_rtc_read_uefi_offset(struct pm8xxx_rtc *rtc_dd)
+> +{
+> +	return -ENODEV;
+> +}
+> +
+> +static int pm8xxx_rtc_write_uefi_offset(struct pm8xxx_rtc *rtc_dd, u32 offset)
+> +{
+> +	return -ENODEV;
+> +}
+> +
+> +#endif	/* CONFIG_EFI */
+> +
+>  static int pm8xxx_rtc_read_nvmem_offset(struct pm8xxx_rtc *rtc_dd)
+>  {
+>  	size_t len;
+> @@ -112,10 +208,13 @@ static int pm8xxx_rtc_write_nvmem_offset(struct pm8xxx_rtc *rtc_dd, u32 offset)
+>  
+>  static int pm8xxx_rtc_read_offset(struct pm8xxx_rtc *rtc_dd)
+>  {
+> -	if (!rtc_dd->nvmem_cell)
+> +	if (!rtc_dd->nvmem_cell && !rtc_dd->use_uefi)
+>  		return 0;
+>  
+> -	return pm8xxx_rtc_read_nvmem_offset(rtc_dd);
+> +	if (rtc_dd->nvmem_cell)
+> +		return pm8xxx_rtc_read_nvmem_offset(rtc_dd);
+> +	else
+> +		return pm8xxx_rtc_read_uefi_offset(rtc_dd);
+>  }
+>  
+>  static int pm8xxx_rtc_read_raw(struct pm8xxx_rtc *rtc_dd, u32 *secs)
+> @@ -155,7 +254,7 @@ static int pm8xxx_rtc_update_offset(struct pm8xxx_rtc *rtc_dd, u32 secs)
+>  	u32 offset;
+>  	int rc;
+>  
+> -	if (!rtc_dd->nvmem_cell)
+> +	if (!rtc_dd->nvmem_cell && !rtc_dd->use_uefi)
+>  		return -ENODEV;
+>  
+>  	rc = pm8xxx_rtc_read_raw(rtc_dd, &raw_secs);
+> @@ -167,7 +266,11 @@ static int pm8xxx_rtc_update_offset(struct pm8xxx_rtc *rtc_dd, u32 secs)
+>  	if (offset == rtc_dd->offset)
+>  		return 0;
+>  
+> -	rc = pm8xxx_rtc_write_nvmem_offset(rtc_dd, offset);
+> +	if (rtc_dd->nvmem_cell)
+> +		rc = pm8xxx_rtc_write_nvmem_offset(rtc_dd, offset);
+> +	else
+> +		rc = pm8xxx_rtc_write_uefi_offset(rtc_dd, offset);
+> +
+>  	if (rc)
+>  		return rc;
+>  
+> @@ -488,6 +591,17 @@ static int pm8xxx_rtc_probe(struct platform_device *pdev)
+>  		if (rc != -ENOENT)
+>  			return rc;
+>  		rtc_dd->nvmem_cell = NULL;
+> +
+> +		/* Use UEFI storage as fallback if available */
+> +		rtc_dd->use_uefi = of_property_read_bool(pdev->dev.of_node,
+> +							 "qcom,uefi-rtc-info");
+> +	}
+> +
+> +	if (rtc_dd->use_uefi && !efivar_is_available()) {
+> +		if (IS_ENABLED(CONFIG_EFI))
+> +			return -EPROBE_DEFER;
+> +		dev_warn(&pdev->dev, "efivars not available\n");
+> +		rtc_dd->use_uefi = false;
+>  	}
+>  
+>  	rtc_dd->regs = match->data;
+> diff --git a/include/linux/rtc.h b/include/linux/rtc.h
+> index 1fd9c6a21ebe..1ecee2fe4214 100644
+> --- a/include/linux/rtc.h
+> +++ b/include/linux/rtc.h
+> @@ -169,6 +169,7 @@ struct rtc_device {
+>  /* useful timestamps */
+>  #define RTC_TIMESTAMP_BEGIN_0000	-62167219200ULL /* 0000-01-01 00:00:00 */
+>  #define RTC_TIMESTAMP_BEGIN_1900	-2208988800LL /* 1900-01-01 00:00:00 */
+> +#define RTC_TIMESTAMP_BEGIN_GPS		315964800LL /* 1980-01-06 00:00:00 */
 
-...
+I'd use RTC_TIMESTAMP_EPOCH_GPS but really, I would prefer the UNIX epoch
+to be used
 
-> @@ -150,6 +188,11 @@ struct adin1110_port_priv {
->  struct adin1110_priv {
->  	struct mutex			lock; /* protect spi */
->  	spinlock_t			state_lock; /* protect RX mode */
-> +	bool				ts_rx_append;
-> +	struct ptp_clock_info		ptp;
-> +	struct ptp_clock		*ptp_clock;
-> +	struct gpio_desc		*ts_capt;
-> +	struct ptp_pin_desc		ptp_pins[ADIN_MAC_MAX_PTP_PINS];
->  	struct mii_bus			*mii_bus;
->  	struct spi_device		*spidev;
->  	bool				append_crc;
+>  #define RTC_TIMESTAMP_BEGIN_2000	946684800LL /* 2000-01-01 00:00:00 */
+>  #define RTC_TIMESTAMP_END_2063		2966371199LL /* 2063-12-31 23:59:59 */
+>  #define RTC_TIMESTAMP_END_2079		3471292799LL /* 2079-12-31 23:59:59 */
+> -- 
+> 2.39.1
+> 
 
-nit: I'm unsure if this is important or not.
-     But (on x86_64) the arrangement above leads to a 7-byte hole in the
-     structure between ts_rx_append and ptp.
-
-     Probably there is much scope to make adin1110_priv more
-     cache-line friendly. But in this case an improvement may be
-     to locate ts_rx_append immediately before or after append_crc,
-     as there is also a 7-byte hole after append_crc.
-
-     Likewise, I think there may be room to improve on the cache-line
-     friendliness of the changes to this structure in patch 2/3.
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
