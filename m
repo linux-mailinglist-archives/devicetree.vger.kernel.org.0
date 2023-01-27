@@ -2,101 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C8C767E527
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:28:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E1A867E534
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:30:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234181AbjA0M2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 07:28:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59660 "EHLO
+        id S233305AbjA0MaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 07:30:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234057AbjA0M1v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:27:51 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8416E524A
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:27:22 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id b7so4838303wrt.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:27:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=i1BkSp8a2SvuUtTINTrnLCf7Tcv5hygrYcnbRo1GEug=;
-        b=LnhV9J3Yn7Z8I53kKhiCN2RGVq7tHcF79m2NzfDjvQASZ01x/oc1znQh0iKO35lUS4
-         6HrxNvG/G+Di9/IvLcs38517bVcGnJa2P2r8dZwE8I3Ahtj5kYVe3JIiK3lhgAVYTO4/
-         Yq+FHOc6OkfuK7ISyUn5tEmxJPx/h14FQ9OLyCNczLk4eG9aOM6hqCadxNecyETQ6oU/
-         lPWwXIAsQLeelU4iOLajsqQsLv5SaPEf5rximuX5rCIEvrNg2DzQJsKh66xTtzFmg5Rc
-         Gz/VGQh3yCEDLPfW09jHbsVmTBzlWRseJ6UWSua2xDzb/EMU+IYwuGdOuQ2kt11u1dj9
-         7iTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i1BkSp8a2SvuUtTINTrnLCf7Tcv5hygrYcnbRo1GEug=;
-        b=PPuGqtoi9afyJG3zjmJ56QRIhTQGpwWvGpLxVz7QTe4E4rzKOb+WSrwmR0Np7tbUb5
-         dErMDbVI5U24s5ajkz+R1HsmUcBqhweaN9wQZ5sFnt9+qIAPnmNroJq3x4yPEp67PJO5
-         HdRI9h22TErcbICuCI2x1ZEnrRcTrbANhql8RUVsyluVx24Kb8dqbpmxB/4YvH28XLbJ
-         a1jksr8FPXpQY8zEKltNQhEMtdi8AanqkTHEr/MLjv8cqxnVqrNuQD2xTboN7XcaAlbR
-         xWyE+RRBLm3OmIkpcSMmv1QqMPljlHdc2DbPASVI3qWrLmFlkHO2hr0oHumzTQyC1xQU
-         uHxQ==
-X-Gm-Message-State: AFqh2ko6mkMJ7E0/0eyobVX4e5vlo2Xua8UyKf9C8dbwjDw8XVCDpGN7
-        5kQQgPbtPTi9DCviKtDiwSICXQ==
-X-Google-Smtp-Source: AMrXdXsfp/n8e5fqT7bIHpCYgU5aavFQWhWOXmTPTYNIgN9J069wlX1RjYllTcs2QfN+Vr7R+OMVaQ==
-X-Received: by 2002:a5d:43d2:0:b0:2bd:c962:cd35 with SMTP id v18-20020a5d43d2000000b002bdc962cd35mr32882981wrr.68.1674822441121;
-        Fri, 27 Jan 2023 04:27:21 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d1-20020adfe2c1000000b002bfba730b0fsm3858826wrj.65.2023.01.27.04.27.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 04:27:20 -0800 (PST)
-Message-ID: <d03c3234-42e0-4357-2187-19ff9c7209a0@linaro.org>
-Date:   Fri, 27 Jan 2023 13:27:18 +0100
+        with ESMTP id S232525AbjA0MaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:30:13 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F7E30E4;
+        Fri, 27 Jan 2023 04:30:10 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30RBv4YZ024366;
+        Fri, 27 Jan 2023 12:29:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=6601227chkLYrNzE4yqvw/mKCTmKQwmwYAxGEzjr2CQ=;
+ b=Y9niUPaE3hZuVQWSxiobmtfNmBRfp+eLGAbpXsS15i4iTXY48dxoIQQLnDZnEVVilQcB
+ JNAajD6af9LzP6ZzlIucfcXZ1PTanPCE0++n+oJ1a/OX2E+UhUBQQy3X96U9WiRWEe4z
+ IE/ci/0l+V8LznIj6BrmAeCpqUWCfFy+eEVilUim73cPensHbkJlnzyhjt8ByUeKYsmo
+ DtUlMXB56m2XiknA4zlgCq4AEHLfuAsX6oZakH2KZ5Td5rUIEDlvs9XlEln/Ipd8PHar
+ 9LjoSsVVR0+QrXPRAykgvQ8XgSTLiMft2YtqQjK+9JsscWpAomq3TzQprR6WjzGh1rOf +g== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nbd7au6vb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 27 Jan 2023 12:29:56 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30RCTu79024155
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 27 Jan 2023 12:29:56 GMT
+Received: from [10.216.47.84] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 27 Jan
+ 2023 04:29:52 -0800
+Message-ID: <9610a38e-9f39-c514-f535-73434ae8f51a@quicinc.com>
+Date:   Fri, 27 Jan 2023 17:59:49 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] arm64: dts: realtek: align UART node name with bindings
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v2 1/3] dt-bindings: reserved-memory: ramoops: Update the
+ binding
 Content-Language: en-US
-To:     =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-realtek-soc@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>
-References: <20230123151514.369101-1-krzysztof.kozlowski@linaro.org>
- <167481277324.62929.7688485206150758782.b4-ty@linaro.org>
- <a3ca0bd8-2153-cf69-adf3-bc92a31d0efb@suse.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a3ca0bd8-2153-cf69-adf3-bc92a31d0efb@suse.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <keescook@chromium.org>, <gpiccoli@igalia.com>, <corbet@lwn.net>,
+        <tony.luck@intel.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-hardening@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <1673611126-13803-1-git-send-email-quic_mojha@quicinc.com>
+ <7cb96551-094c-1a68-cc3f-31e4e2e94518@linaro.org>
+From:   Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <7cb96551-094c-1a68-cc3f-31e4e2e94518@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: tPkkxhmOhWHw67xDJR3jJqJHnWT6pnn7
+X-Proofpoint-GUID: tPkkxhmOhWHw67xDJR3jJqJHnWT6pnn7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-27_08,2023-01-27_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ malwarescore=0 spamscore=0 mlxlogscore=999 impostorscore=0 adultscore=0
+ clxscore=1015 priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301270117
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/01/2023 13:22, Andreas Färber wrote:
-> On 27.01.23 10:46, Krzysztof Kozlowski wrote:
->> On Mon, 23 Jan 2023 16:15:14 +0100, Krzysztof Kozlowski wrote:
->>> Bindings expect UART/serial node names to be "serial".
->>
->> Applied, thanks!
->>
->> Let me know if anyone preferred to take it via sub-arch/SoC maintainer tree.
->> I'll drop it then.
+Hi,
+
+On 1/13/2023 5:34 PM, Krzysztof Kozlowski wrote:
+> Subject: drop second/last, redundant "binding". The "dt-bindings" prefix
+> is already stating that these are bindings.
 > 
-> We did have an equivalent patch in '21, from Zhen Lei of Huawei, that I 
-> gave a Reviewed-by for. So should you maybe apply that original patch 
-> instead?
+> Your subject says nothing. Everything is "update".
+> 
+> On 13/01/2023 12:58, Mukesh Ojha wrote:
+>> Update the ramoops region binding document with details
+>> like region can also be reserved dynamically apart from
+>> reserving it statically.
+> 
+> So what exactly can be here reserved dynamically? And what does it mean
+> 'dynamically'? By whom? How is this property of hardware (not OS)?
+> 
+>>
+>> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+>> ---
+>> Change in v2:
+>>    - Added this patch as per changes going to be done in patch 3/3
+>>
+>>   .../bindings/reserved-memory/ramoops.yaml          | 34 ++++++++++++++++++++--
+>>   1 file changed, 32 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+>> index 0391871..54e46e8 100644
+>> --- a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+>> +++ b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+>> @@ -10,7 +10,8 @@ description: |
+>>     ramoops provides persistent RAM storage for oops and panics, so they can be
+>>     recovered after a reboot. This is a child-node of "/reserved-memory", and
+>>     is named "ramoops" after the backend, rather than "pstore" which is the
+>> -  subsystem.
+>> +  subsystem. This region can be reserved both statically or dynamically by
+>> +  using appropriate property in device tree.
+>>   
+>>     Parts of this storage may be set aside for other persistent log buffers, such
+>>     as kernel log messages, or for optional ECC error-correction data.  The total
+>> @@ -112,7 +113,13 @@ unevaluatedProperties: false
+>>   
+>>   required:
+>>     - compatible
+>> -  - reg
+>> +
+>> +oneOf:
+>> +  - required:
+>> +      - reg
+>> +
+>> +  - required:
+>> +      - size
+> 
+> There is no such property. You cannot require it.
 
-I don't have it in my inbox... but if you reviewed it, why didn't pick
-it up? Or whoever is/was the maintainer? I personally do not care about
-Realtek but I do care about bindings checks to succeed without warnings.
+I was thinking, since this size is part reserved-memory.yaml and
+we have
 
-Best regards,
-Krzysztof
+allOf:
+   - $ref: "reserved-memory.yaml"
 
+Is your comment still applies?
+
+-Mukesh
+> 
+>>   
+>>   anyOf:
+>>     - required: [record-size]
+>> @@ -142,3 +149,26 @@ examples:
+>>               };
+>>           };
+>>       };
+>> +
+>> +  - |
+>> +    / {
+>> +        compatible = "foo";
+>> +        model = "foo";
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +        reserved-memory {
+>> +            #address-cells = <2>;
+>> +            #size-cells = <2>;
+>> +            ranges;
+>> +
+>> +            ramoops: ramoops_region {
+> 
+> Node names should be generic, no underscores in node names.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> Any reason in naming it differently then existing one? You have there
+> example.
+> 
+>> +                compatible = "ramoops";
+>> +                alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+>> +                size = <0x0 0x10000>;       /* 64kB */
+>> +                console-size = <0x8000>;    /* 32kB */
+>> +                record-size = <0x400>;      /*  1kB */
+>> +                ecc-size = <16>;
+>> +            };
+>> +        };
+>> +    };
+> 
+> Best regards,
+> Krzysztof
+> 
