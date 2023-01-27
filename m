@@ -2,71 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1350B67E558
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:35:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 092F167E56B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 13:37:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233643AbjA0MfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 07:35:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46006 "EHLO
+        id S234044AbjA0Mh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 07:37:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233671AbjA0MfR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:35:17 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1368079F03
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:35:08 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id h16so4806093wrz.12
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:35:07 -0800 (PST)
+        with ESMTP id S233959AbjA0Mh2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 07:37:28 -0500
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95D4B485A4
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:37:24 -0800 (PST)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-4c24993965eso64624697b3.12
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 04:37:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9unmXBFY2LCpkLlGduWq9KiCNNGjxWEAC2OciASOX1E=;
-        b=avi5dm/0cmJyqN+xxxHp+8Bk5+Z/0VmWOTRq0yiY4UmeaZbB0sEmpQsuzYzmUYEXYo
-         rONGzpHRgMrboJ5S3CudmhmAMuLNiHxpFO7EXjH62ns3oequ5SnEmiYkv5jcinvLwnUh
-         dnFxIgQpXeoHK2Sla/LF3Q22J4Xtjgk0zq+lzeGYGdLZBj2Ya/Dxl4vuysRRJSUqJH9n
-         rBkp9eAd40blim6iByp/eDjLqHipBXv3Rh7L43sb/AbU+s/K11urQs6eAqz5L4ZrApHg
-         NpQ6sAHjqDBcRUFZlLIXMiTGjpQYVVUNXAc67SGRcZclkpoz2B+LdpFPTXcr2nhIAXap
-         3Gog==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5JZzVHCreXAUwrytEOdcDit63iUnhb0koXp2sufhb3E=;
+        b=F/s3lopat6D1wKPoicRdDcIKf0tcxRBUjqO6F+JqPEvBSFNB7vgF/Jt458hpsaH3xg
+         6PkyDc8u7auDtDzwIYclaa9/PPdrw0f+h6SeqnRf/jgy8MyljCcYo7QmfvM41Gf8+Is3
+         O0IEwseDj6gDptV9JeSN9L5hs4GCndY9HkTpD7sL/meTXcsMcX74maQB7RplKnJ52x2e
+         EOmpgypInfYisFesJ56nv8c8JuZWKfSpluFNfoTwxDwQ9ZH0Bg38yc5HQIFbthsZdPus
+         sMK3UjS13Sy+LKz76ba9eqMLG0wtuvxjyDeNWtSLp4oLaLj9ggzZfqkt4sAFWbqBPNNN
+         MBMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9unmXBFY2LCpkLlGduWq9KiCNNGjxWEAC2OciASOX1E=;
-        b=bS2dYVDZ39kAFbIlDfygeuXjV2PO6Kx5WIa82/F3N9gXZ5uLn4wbSL8qx7twq/khVH
-         y2OmSiO0BFf2lHWFy2egLCjYmX6nZohfV3fzAK5ICclGLH017PqJz5L/pC/imX9649Bz
-         C/p/CRFp9c/7U+8dKd9+kqWdCoHXZiLQ8OHJrXNC/fve92m+N1MSVEsQtZOaBmbh5U3u
-         jsvsqalYBcWn/kOxwHlFD10DYNZmoMhpa8LN8ZN/GadBkeOdh9CFFSbw0Novk+Y/Rg14
-         EPNTspjTTLl/KXuNUXF8kviY8HQy3b9Jzwc2X6FkT9w2MnRlO+0kWlVXOQGUi7Mn1TF5
-         TeXw==
-X-Gm-Message-State: AO0yUKU8vOeo5pddfTWguAp3WenyOieiMDHWN7nLB10ViOcFIiiFLTwa
-        5191NpNDNIWXmSvnVJAg5OOsiQ==
-X-Google-Smtp-Source: AK7set8kgl+UYZC1EZtugC3b1RYbe7/NubWbi3C5CSEFCXcerqdM+Mga7HQqn4rbU0NMZK0hYx3Xcw==
-X-Received: by 2002:a05:6000:1204:b0:2bf:b33b:fb7d with SMTP id e4-20020a056000120400b002bfb33bfb7dmr11183611wrx.61.1674822906604;
-        Fri, 27 Jan 2023 04:35:06 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id u13-20020a5d514d000000b002be2f18938csm3732984wrt.41.2023.01.27.04.35.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 04:35:06 -0800 (PST)
-Date:   Fri, 27 Jan 2023 14:35:04 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5JZzVHCreXAUwrytEOdcDit63iUnhb0koXp2sufhb3E=;
+        b=yWTmWlu+y95x8ATLNJz8jJbWFPjEk+u8Lrv3e/0tU0blmwxegWrhuMZuSIRH4Hgkfq
+         pH+c7c+syOHFWk052iFxUcOQc8mMYBEtBxvmvGN7D3tpseFP3WVituashTBk9uu6MnKR
+         JlS53a3rDl2au+bw7mgw4KAr/2CdFAtfDHFn96oYZBFvIzaMl65ilVeQG55egMF6clyG
+         4NCzqpn3gQW0RaOiVcJax8WQvl/hTByJbkPGekaYGRfXz9o+vtYMWuNkszfwypJ20vCJ
+         1qewVa5KsnucnKjmHNlKdVAYVOmQUemmAWswgi2BjhC5uUcDj7C7h3sqXrhXPt0H4hMs
+         zAuQ==
+X-Gm-Message-State: AFqh2kp30tYD8geII5RrEf0DaNdf1OvGo6eGE/S5Gh6IXqldkCBozNrU
+        SQpvmeUGIBxHY1A4sRl9ymy1NCQNwLGDS++u9NPaEw==
+X-Google-Smtp-Source: AMrXdXtOWs3Mx7UlXuvM1S6dKOuLB6/juGXXYVPUtV1HTl7yRgRNErwMfFAECgGi4jdETuNKGg3+8Yd/24V6BVY0v5Y=
+X-Received: by 2002:a05:690c:39b:b0:4f3:8d0e:edce with SMTP id
+ bh27-20020a05690c039b00b004f38d0eedcemr3525869ywb.185.1674823043852; Fri, 27
+ Jan 2023 04:37:23 -0800 (PST)
+MIME-Version: 1.0
+References: <20230120165103.1278852-1-robh@kernel.org> <167423655094.352486.17564121663586668814.b4-ty@linaro.org>
+In-Reply-To: <167423655094.352486.17564121663586668814.b4-ty@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 27 Jan 2023 13:37:12 +0100
+Message-ID: <CACRpkdZwmHyZNJKOatQm9bW-06-RR-oD_5P1-cyr4u1UxyJEeA@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: pinctrl: qcom,pmic-mpp: Rename "mpp"
+ child node names to "-pins$"
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: qcom,dwc3: allow required-opps
-Message-ID: <Y9PE+Hli/kLHW2Ag@linaro.org>
-References: <20230127121122.342191-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230127121122.342191-1-krzysztof.kozlowski@linaro.org>
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-gpio@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -77,38 +72,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-27 13:11:22, Krzysztof Kozlowski wrote:
-> Few Qualcomm SoCs require minimum performance level of power domain, so
-> allow it:
-> 
->   sm8550-mtp.dtb: usb@a6f8800: 'required-opps' does not match any of the regexes: '^usb@[0-9a-f]+$', 'pinctrl-[0-9]+'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Fri, Jan 20, 2023 at 6:42 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On Fri, 20 Jan 2023 10:51:03 -0600, Rob Herring wrote:
+> > Just 'mpp' is a bit ambiguous for a pattern as it allows any prefix or
+> > suffix. Change the node name pattern to "-pins$" to align with other
+> > Qualcomm pinctrl bindings.
+> >
+> >
+>
+> Or instead of review let me grab it for Linus:
+>
+> Applied, thanks!
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+Thanks Krzysztof!
 
-> 
-> ---
-> 
-> Cc: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index a3f8a3f49852..4875c5b7d5b5 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -58,6 +58,9 @@ properties:
->      description: specifies a phandle to PM domain provider node
->      maxItems: 1
->  
-> +  required-opps:
-> +    maxItems: 1
-> +
->    clocks:
->      description: |
->        Several clocks are used, depending on the variant. Typical ones are::
-> -- 
-> 2.34.1
-> 
+Linus
