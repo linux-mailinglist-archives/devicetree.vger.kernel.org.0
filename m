@@ -2,74 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA7367E182
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:22:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3355A67E188
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:24:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229792AbjA0KW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 05:22:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34914 "EHLO
+        id S229596AbjA0KYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 05:24:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbjA0KWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:22:55 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFA621E9D1
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:22:52 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id q5so4563430wrv.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:22:52 -0800 (PST)
+        with ESMTP id S229579AbjA0KYI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:24:08 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF0C265A2
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:24:07 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id y1so4542663wru.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:24:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/CEHKrMArowrp45y0BJCJO3EwlygbfM1dWauMJbvYl4=;
-        b=otigbkRW6OwuOG2Op9YG90y/V+Tu/nCl0D7Wg/TvdYnKbPVzQNxJRx0zM4SOoTK7MD
-         2Txd9qlyPedexlCQiNusoXu+emdX0JHchh7Xrml0Yt+XvNYRlLGQ/O1a4HrO3cczbXh1
-         1VYNF+dGw9FSP4ZV0V4sXVy7tMrKOJ7h3bthsWGCTJugtBJCd9klwMCAoSEkGaiR3OkA
-         RTchiXQPqraytJyp/9A/rWew1+S0BFJE8mCj5HVU8ade5WMSXgZXQ2PRANbqlfxh3nJj
-         tUyX6DwdNVX9iV3JJj8ajSqvyBto8Vse5s0uvaU5AVWACM51yo70S3BCC733S7Qm9YTH
-         QlCw==
+        bh=B1g62FaAwzxRCWTCMBiuBoyOeT/DGaVIfmpUN4XH4l8=;
+        b=WBlhHJ+QydO7/c8H/iv+cPA7WBy/euWH0c8rSU9mF1lm2EpoVxBq+pVtfH+47E98M6
+         +LgVVY709ef+XJl6G++miNZIJFhxCswEpPlWqHNOnrYCd/THbh2EqLDQMAEIB2rcAkt7
+         sUyrebJsnBw5YmDFJzjhYF4op3LYqIvJdPfISDfh/G4H/jmVQqbWxhBbcvK8PlgoX3O9
+         7oQqATG5Y4noaKCX6g8Jd1lCqjY7c2/I5Hog7Of5ye+dSSyvMmOlPUHcNoI3yn/eWrgA
+         kdGSqnAW1ZFawjT75+5dC1O/2bE17OJTDg45ix6c2eLnZ2r7nbMtK1/qbeaVhqENNKjy
+         iLkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/CEHKrMArowrp45y0BJCJO3EwlygbfM1dWauMJbvYl4=;
-        b=0GE5+c9ytc6zIt4l2a7dkaH3+j4lzQ6OsJ78pqK3tfoqKSDJt9zccGxoEGIZnYeyX6
-         lw4f/l2MBBTbIA0sTZvQ8VuLrXFRTZzDoLCAYwPWKTc029gCnDkuOfC+0m5GOOvf8sCJ
-         O5NiIWkmOsAzj2r8d1XEZHyvnS5Y0K6kH7z+hbr3CkuvaujUTpnVdzZk89aSj8QwS4os
-         sgOQJofc3y7k2FZmkK1MwzWQpJ1Bm5v2xnaYHMFv6BpNLPzKLXj6M/ovfTjwsxZQTHcr
-         D7EVVtepV+nwipHHZ78f8e8wIRrr/4JVnyy94KiJNJfL2Rm0R1jzcANEG3+JxLE7OlF1
-         Qkjg==
-X-Gm-Message-State: AFqh2kplkiV5LVnDecauCPKp4EovIyq+I1rN4O/eyPT5ufhHj04SVo1b
-        oScMhD+cCYfyTXyJcld+Zyj3Pg==
-X-Google-Smtp-Source: AMrXdXuOhdgMh17Z4KujKWs02hUZNK/b3pZwJtW3Bkyst7YC0mAzk4Kn36PGmaGsYP8VOwfbJUywYw==
-X-Received: by 2002:a05:6000:81b:b0:2be:5c3d:99e3 with SMTP id bt27-20020a056000081b00b002be5c3d99e3mr27717572wrb.10.1674814971469;
-        Fri, 27 Jan 2023 02:22:51 -0800 (PST)
+        bh=B1g62FaAwzxRCWTCMBiuBoyOeT/DGaVIfmpUN4XH4l8=;
+        b=6bU+ACnfb8grEzNRpZkiEs815VqUdLos22P9tG0o0Wg+mqCPvpJ9u7yHgsHLOlD9YD
+         fU8CXFEMsC7lXACze/bMAmCWBIj6Dcc8wHviZLu5AhVRGsofUCroGt+22ONizo4d/Z/G
+         L/8w3z6MX2uFyZZ73zbr2pwevjkt76DqfhBtxqnsUS+pPOeNaW2Xl7jsMiaS+LbEbcAM
+         SBNqmP8QaD/wg1p/LZAgO8GnriT6X2TE2i8BNkWcyBESbPqpsZQZh4TNMEDhDFVB1YU6
+         O3lSXLKJ5wWTpBAbko948cpddcQg9Q3xITyjjyU6OM4ZMQ7pIUmGC/7aYtvFRk+Znv36
+         myGw==
+X-Gm-Message-State: AFqh2kqJlVVLOiLLt4B+0Twk5Bz1xFNFf7UIsbBDvDg1O7638tlB2L1Q
+        gHjkB0TMfOzDLqtdFy0K0IpLqw==
+X-Google-Smtp-Source: AMrXdXte3GUMCRyW8iKhTS2WKAAQM1NZf4WbfuSy6VgAENXlAWYiUaqyjwMtBrRnpXlHV1p9vrcnBA==
+X-Received: by 2002:a05:6000:5c2:b0:2bb:eb3d:8d20 with SMTP id bh2-20020a05600005c200b002bbeb3d8d20mr32682504wrb.43.1674815045619;
+        Fri, 27 Jan 2023 02:24:05 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id x12-20020adfec0c000000b002b065272da2sm3706693wrn.13.2023.01.27.02.22.50
+        by smtp.gmail.com with ESMTPSA id j15-20020a5d452f000000b002be505ab59asm3704070wra.97.2023.01.27.02.24.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 02:22:50 -0800 (PST)
-Message-ID: <b8ce28b5-0e53-aca4-a2e4-f6333b5ac80b@linaro.org>
-Date:   Fri, 27 Jan 2023 11:22:49 +0100
+        Fri, 27 Jan 2023 02:24:05 -0800 (PST)
+Message-ID: <02bddab6-4c63-bb39-9a11-8dab81322c28@linaro.org>
+Date:   Fri, 27 Jan 2023 11:24:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 5/6] dt-bindings: clock: Add Qcom SM6115 GPUCC
+Subject: Re: [PATCH RFC 1/2] dt-bindings: net: realtek-bluetooth: Add
+ RTL8821CS
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230126181335.12970-1-konrad.dybcio@linaro.org>
- <20230126181335.12970-6-konrad.dybcio@linaro.org>
+To:     Chris Morgan <macroalpha82@gmail.com>,
+        linux-bluetooth@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, alistair@alistair23.me,
+        anarsoul@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, marcel@holtmann.org, johan.hedberg@gmail.com,
+        luiz.dentz@gmail.com, max.chou@realtek.com, hildawu@realtek.com,
+        Chris Morgan <macromorgan@hotmail.com>
+References: <20230126165529.1452252-1-macroalpha82@gmail.com>
+ <20230126165529.1452252-2-macroalpha82@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230126181335.12970-6-konrad.dybcio@linaro.org>
+In-Reply-To: <20230126165529.1452252-2-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,78 +80,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2023 19:13, Konrad Dybcio wrote:
-> Add device tree bindings for graphics clock controller for Qualcomm
-> Technology Inc's SM6115 SoCs.
+On 26/01/2023 17:55, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Add compatible string for RTL8821CS for existing Realtek Bluetooth
+> driver.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
-> v1 -> v2:
+>  Documentation/devicetree/bindings/net/realtek-bluetooth.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> No changes
-> 
->  .../bindings/clock/qcom,sm6115-gpucc.yaml     | 71 +++++++++++++++++++
->  include/dt-bindings/clock/qcom,sm6115-gpucc.h | 36 ++++++++++
->  2 files changed, 107 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,sm6115-gpucc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml
-> new file mode 100644
-> index 000000000000..abf4e87359a3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sm6115-gpucc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Graphics Clock & Reset Controller on SM6115
-> +
-> +maintainers:
-> +  - Konrad Dybcio <konrad.dybcio@linaro.org>
-> +
-> +description: |
-> +  Qualcomm graphics clock control module provides clocks and power domains on
-> +  Qualcomm SoCs.
-> +
-> +  See also:: include/dt-bindings/clock/qcom,sm6115-gpucc.h
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sm6115-gpucc
-> +
-> +  clocks:
-> +    items:
-> +      - description: Board XO source
-> +      - description: GPLL0 main branch source
-> +      - description: GPLL0 main div source
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - '#clock-cells'
-> +  - '#reset-cells'
-> +  - '#power-domain-cells'
 
-Why this one is not referencing gcc.yaml? Looks the same as your
-previous sm6375.
+Based on your driver it is compatible with rtl8822cs, so you can
+indicate it in the binding and use just one of_device_id entry.
 
 Best regards,
 Krzysztof
