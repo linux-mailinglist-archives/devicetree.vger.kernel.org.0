@@ -2,106 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51ADC67EB6E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 17:47:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 449DC67EB82
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 17:49:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbjA0Qr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 11:47:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41692 "EHLO
+        id S234660AbjA0Qtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 11:49:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232597AbjA0Qr0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 11:47:26 -0500
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3502F199F0;
-        Fri, 27 Jan 2023 08:46:48 -0800 (PST)
-Received: by mail-oi1-x22f.google.com with SMTP id o66so4653853oia.6;
-        Fri, 27 Jan 2023 08:46:48 -0800 (PST)
+        with ESMTP id S232597AbjA0Qt1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 11:49:27 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 428FF7DBF6
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 08:49:18 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso3918734wms.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 08:49:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=2P3exPS46FCuDEJsZhMkyQI8tWctasaM0g3W82t3mtc=;
-        b=W0lAIvI+f9yqF2W4ylDvJ1fbmpYqKoW/rGgM3EgKypWyfVTFvLSvuK997i4+0QZ8OD
-         LoM1fBxmpdbQ5P7uruEEPSsVPccHSUm0oXU3XYcM/+1vvtCoJWbouXtAf31jpceKeZup
-         Gx/4Zgp5dWNhaaWJFJbbNeIMSKj8++NPZlolBkY0/nacNerRSFQyGBNLBfdQm3uGb/i9
-         HP/dR6XXBjMphjscdS+63Uu0GY2dDNsMsYzEyXs/jK64TNzbTcR1p7tGQYP+AmBc9iLU
-         51x2gvCLXfM7sJBItCslAC0Cmfbbzc56nBhgcOSlTFVgfu9NzQX7tT8hq86OkPcbyJp5
-         TNBw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MwxIin163802ACvSCq0jg4HlDZfjOU+b7ag/1i6mXEE=;
+        b=p0bN2yAu28MNGvTlRbQWr0+f8dRrN7+Tn627u0K/x42EmNDLphayIf9NlMev0wqj8h
+         /EmzHfmLQqKOVu8ZgIciDK/fUJr6PvWPKCTqRsZtsPxIDrQvOH3aJeQUvnun7rNkTSUQ
+         6/KZMhpjpBCdTsrlPk0Pq1AqbefuhemfseqENDs+CCppSNm6HT2vKHwFAalheOqTayxm
+         dtjoNuM92e8Dp5V+KrvfMQYfpqoVE/fUi7G9DPER5YIOirUmedqSV5KeWbBKvr23C7Je
+         C0hL4yNzr1apQ8T4Xaqa5bA4xfUJep3aF5qWXf5H1dWiQl4NI8yI1oLJqFFQ+XguiBLe
+         Z84Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2P3exPS46FCuDEJsZhMkyQI8tWctasaM0g3W82t3mtc=;
-        b=sUsam1oq5LJhBmVpbEsgf8isHYMUbWPQ6Hp5LQniX55sI/kPQ/JqucUmfz7P5YXkim
-         SOMfGlb10DeboLCwnKxA0l3d/05hTnc5EEpI3/a/fy3/dBEk5hReS3dO6CnACDLtX/h8
-         Q3lffSXXB5AlCNx14cEoNSOCjqYaLHeyqf0CkIN5nrhTCXjfRp6RjfDfBoMDOS+lC5yS
-         uzWEnwHb+dDPcme+azDPfpruZwI3QvGZa93HY5xULu4aVzrc9yl8EmjwfG0S2RGy1Goe
-         ZYhOL6RVyxGWfX4xgo4ONVKB5okuKiwE95dYxJUMGpRFtG3dBso55pubz/wt1/Nu81e0
-         20iA==
-X-Gm-Message-State: AO0yUKVbFfBqttsX1uoruc4OnW6wKX6FWtalKLxikWZGj9jea0uCYaty
-        JYXZP9k91onlMji2moVNC6w=
-X-Google-Smtp-Source: AK7set9VKpC6Qzj7rQikZ5B5cKyszGYD0wzi0IyNmjajW1eyIvZX8kRpk1aRA88Wr8wngGMccqIGiQ==
-X-Received: by 2002:a05:6808:911:b0:35e:a9d4:30d6 with SMTP id w17-20020a056808091100b0035ea9d430d6mr2792250oih.44.1674838007430;
-        Fri, 27 Jan 2023 08:46:47 -0800 (PST)
-Received: from neuromancer. (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
-        by smtp.gmail.com with ESMTPSA id u22-20020a056808115600b0036718f58b7esm1743540oiu.15.2023.01.27.08.46.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 08:46:47 -0800 (PST)
-Message-ID: <63d3fff7.050a0220.db92.7af4@mx.google.com>
-X-Google-Original-Message-ID: <Y9P/9H/NkmCF8dHE@neuromancer.>
-Date:   Fri, 27 Jan 2023 10:46:44 -0600
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
-        alistair@alistair23.me, anarsoul@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        marcel@holtmann.org, johan.hedberg@gmail.com, luiz.dentz@gmail.com,
-        max.chou@realtek.com, hildawu@realtek.com,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH RFC 1/2] dt-bindings: net: realtek-bluetooth: Add
- RTL8821CS
-References: <20230126165529.1452252-1-macroalpha82@gmail.com>
- <20230126165529.1452252-2-macroalpha82@gmail.com>
- <02bddab6-4c63-bb39-9a11-8dab81322c28@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MwxIin163802ACvSCq0jg4HlDZfjOU+b7ag/1i6mXEE=;
+        b=Dfup3c6bZiU3FpcXu5E22MtXcWoUgKmbnUnhccoX7KkCoDAbqfL6KAdtFlTRB9R3De
+         yItztFhlYyLePlXZeEwLTJKMRU51i4s1Quls/swf0pXMPcb2yEkMQ0KC0nUzfvEIY6oS
+         RRn73YH3bJfOxl5C2aG90EcoPhEzkUilJen//2xYy7mhR0pqBvEU7JVWdtLu/1d061Hc
+         Sy0/bxXOk7res9IMI34Tdr94Q3+NXk9zJQMdQhvitGCgqlfaIgVCL7Lojn7y/vWNwnrd
+         KXu0LU1eJzTcUCwYj7B36Vwu2EqyEH+phyNQRpEz4GbE1gXe1s7kcte8MmZAnzb0nbU8
+         CyDA==
+X-Gm-Message-State: AO0yUKX2MmnNmIVKLshPnQT1POsxBj5fsmZbxMn1IUPUUSPui53LMkkW
+        dSUPwG3+0r4pmew1RjT0w+UjKQ==
+X-Google-Smtp-Source: AK7set91BwRn6DZssbXKyvbz30nnUQMYADbkS+Drm/RA9jZHFwp9Oe0M3rmb1c4Tgb8gUCp8+I209g==
+X-Received: by 2002:a05:600c:3151:b0:3dc:443e:420e with SMTP id h17-20020a05600c315100b003dc443e420emr40585wmo.2.1674838156833;
+        Fri, 27 Jan 2023 08:49:16 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id p24-20020a05600c1d9800b003dafadd2f77sm8990779wms.1.2023.01.27.08.49.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 08:49:16 -0800 (PST)
+Message-ID: <1e498b93-d3bd-bd12-e991-e3f4bedf632d@linaro.org>
+Date:   Fri, 27 Jan 2023 17:49:13 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <02bddab6-4c63-bb39-9a11-8dab81322c28@linaro.org>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 1/6] dt-bindings: Document common device controller
+ bindings
+Content-Language: en-US
+To:     Gatien Chevallier <gatien.chevallier@foss.st.com>,
+        Oleksii_Moisieiev@epam.com, gregkh@linuxfoundation.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        alexandre.torgue@foss.st.com, vkoul@kernel.org, jic23@kernel.org,
+        olivier.moysan@foss.st.com, arnaud.pouliquen@foss.st.com,
+        mchehab@kernel.org, fabrice.gasnier@foss.st.com,
+        ulf.hansson@linaro.org, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com
+Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-iio@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
+        netdev@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20230127164040.1047583-1-gatien.chevallier@foss.st.com>
+ <20230127164040.1047583-2-gatien.chevallier@foss.st.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230127164040.1047583-2-gatien.chevallier@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 11:24:03AM +0100, Krzysztof Kozlowski wrote:
-> On 26/01/2023 17:55, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > Add compatible string for RTL8821CS for existing Realtek Bluetooth
-> > driver.
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/realtek-bluetooth.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
+On 27/01/2023 17:40, Gatien Chevallier wrote:
+> From: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
 > 
-> Based on your driver it is compatible with rtl8822cs, so you can
-> indicate it in the binding and use just one of_device_id entry.
-
-It's very similar, and uses some of the same constants, but has a
-different firmware. I assumed the firmware difference is enough to
-require it to be differentiated, but I wasn't sure. You are saying
-it does not? I just want to be clear.
-
-As always, thank you.
-
+> Introducing of the common device controller bindings for the controller
+> provider and consumer devices. Those bindings are intended to allow
+> divided system on chip into muliple domains, that can be used to
+> configure hardware permissions.
 > 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> ---
 > 
+> No change since V1. I'm letting this patch for dependency with bindings to
+> avoid noise with dt/bindings checks. Therefore, it should be reviewed on the
+> appropriate thread.
+
+There was a v6 already, this is v3 and I don't understand this comment.
+What do you let? Whom? If it is not for review and not for merging,
+please annotate it in the title ([IGNORE PATCH] or something).
+
+Best regards,
+Krzysztof
+
