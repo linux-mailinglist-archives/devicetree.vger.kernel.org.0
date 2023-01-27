@@ -2,80 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1F7567EBDC
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 18:02:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 235D467EBE0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 18:02:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234644AbjA0RCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 12:02:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55664 "EHLO
+        id S234628AbjA0RCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 12:02:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234600AbjA0RCM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 12:02:12 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A87B61ADDA
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 09:02:10 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso3944722wmq.5
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 09:02:10 -0800 (PST)
+        with ESMTP id S234632AbjA0RCu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 12:02:50 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20CE17FA37
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 09:02:31 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so5848390wmb.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 09:02:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vEQT9k7sWf+g/ZpYayuVpltvbZFIeubyCWjxQvzBqW8=;
-        b=EzmoTZgXbF7E9yTAP7uvBvmB8ZEvqSbhGe9ltsLMYaZKBiuwRpIYQY4vD5srlIoAX7
-         FaYr1Uvr135FypDtf3bhtFzJIrqybabwI2k955Q1aOeLbUwcF1QdSAxhmU1ChlO7jwa1
-         3YpqSbX1Uy1YQtR8qj60Qkyy5EJjZpU/QM1YZAzgT6anpbVyrHtENcmRJdTISowDKPNp
-         maqdRlgRtDgcsR0BoeryfLkPUp394e76LTwIjztXtGDU5/2JB4FQdZTQdPbo7uEI4MxP
-         JNhz/oujwuE1XbinNSi3aH+9VU8brP9uYNGi560tWjd4UGMeaxjhBLc+ZUc2wGmNSjNa
-         nhSQ==
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=74RYKXADYiWuMtd1iDXR46UqUxe2kZuhY4va9NHmRgw=;
+        b=sftt/w4VLfphRnNORfESsr3LME9gLjhtV6Na3+8e3+UcB+ePTF8lVHMMrTJlROLAMx
+         BTzeq+4dIfLiK0XzuQGpBAx0/C3Y7kjugNFmH9ihf8bwaHJn37MKD7j0/Gg49d8aJAEi
+         PlBaxu2GPd2lnn+NQjhqFUyHCFJMvzP0dCRyWbWaGmutrbGa/tlxTDl++SwiwevX9x75
+         Eoy9mh3SBsUNHyp5Uq9Yf/aIeLu2pVdgAExiN0de44JVkAP7uj5nt4pWSk788i42rSxL
+         apV8ByJ1HpEClYySlJut+SbiATLnHNDZr36zIBieB//l6VE6aV9fBMPT3Gi+rl5prxOy
+         nrbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vEQT9k7sWf+g/ZpYayuVpltvbZFIeubyCWjxQvzBqW8=;
-        b=0pOOy0tRcYt/T5cXF5xCDTc98jEpfeJeOQi+9IXqz2aUxIyFgtgpI3svkMgdNInxmd
-         zLUkFfDdP1CsOencoTXy6XQ+pYMQ5ZF41R6ixGOyDnoSQuZvYG8IheFiSBKqLOZJosMj
-         O7EJk+XZd3OFqx5Xi9caCGZduVS5EWr41uVYeHzJuVyXKQQXSs4db0uEH3tYQc51al9c
-         CjluPowWsClgfqfpy/qiBz9v0CLQpp9mLT0sLrgwq8r1EuwGfYtaDsdeAp8gr0iJk0+p
-         iOOU2nDv1k1ZRxDmsqH1otsGUPZcsTc0KHHQpIVIC+Jjaue2tnyYfrtjMPYCoTubR7DX
-         5RwA==
-X-Gm-Message-State: AO0yUKXhwrt6/tDuu/oeAc3PZcI79Y3iPN9R2GUrmMqvE4L8qMh+8k6V
-        wMsO/oOktNoQV3iW2lgocFbg5Q==
-X-Google-Smtp-Source: AK7set8MQMyC92Aaj2la+mEMNJNQNiSQvSJmb3p2RsoZ+EXzWKHTeAtwJC+6i/4+MMLGeQAeTr+OUw==
-X-Received: by 2002:a05:600c:4688:b0:3dc:438a:c381 with SMTP id p8-20020a05600c468800b003dc438ac381mr432591wmo.28.1674838929278;
-        Fri, 27 Jan 2023 09:02:09 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id v23-20020a05600c4d9700b003cfa81e2eb4sm4856170wmp.38.2023.01.27.09.02.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 09:02:08 -0800 (PST)
-Message-ID: <8cf45912-1fda-dd3e-4051-fa4930f8860d@linaro.org>
-Date:   Fri, 27 Jan 2023 18:02:06 +0100
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=74RYKXADYiWuMtd1iDXR46UqUxe2kZuhY4va9NHmRgw=;
+        b=L8o3DBG3WanInmOk0ad8XeQlRU/5UMXeM8qwZrf5nyEJWrMuvlvGm4aq4mJXbAmb2y
+         3k61TWfbXVrYWqDfsbWkSGAWSVuCT31NbpL5KSOjaaQ8JX/HzoBbVMjNh7aaPcZBnP7I
+         fCfWSqON2maFNVwPauRfXVxFaksM9zoNMSGAcn4YP/HEK39qCemjpI0rWi+Ae3ls7lHi
+         eZUYWCNxyKzm6LjS6mjdBElCiXwaEuSJbcjUfIb86vTTzFwK23GHCV/I6yEw3tMloThJ
+         mh0yC/gkOtoPtA7dGj4FhvkMlMCTiheQYSzGSmPGL9OPjU48DMDvaUP+jay3D0FxsZsl
+         8bAA==
+X-Gm-Message-State: AFqh2kp8nnN/EfyM9d1TURWF1zziGKA6WSE0aJS2UaWE3zqbvTQN6Cks
+        quecxHyoiTmVv+tfuXygeWJ05aa/jwLwc9jkmRw=
+X-Google-Smtp-Source: AMrXdXsL1Hr0yZEA0/ZyJzgSBTvzReIJkdTSMyNhsF6vOWDcuTJ7XyKdsh1A5LroidB30T6W4Q+mHA==
+X-Received: by 2002:a05:600c:b54:b0:3c6:e60f:3f6f with SMTP id k20-20020a05600c0b5400b003c6e60f3f6fmr40944390wmr.38.1674838949712;
+        Fri, 27 Jan 2023 09:02:29 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id v10-20020a05600c12ca00b003d9df9e59c4sm7925935wmd.37.2023.01.27.09.02.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 09:02:28 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <20230127142221.3718184-1-christianshewitt@gmail.com>
+References: <20230127142221.3718184-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH v2 0/5] arm64: dts: meson: fix BPI-M5 and add
+ BPI-M2-PRO
+Message-Id: <167483894832.2238401.307745303107295003.b4-ty@linaro.org>
+Date:   Fri, 27 Jan 2023 18:02:28 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH RFC 1/2] dt-bindings: net: realtek-bluetooth: Add
- RTL8821CS
-Content-Language: en-US
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
-        alistair@alistair23.me, anarsoul@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        marcel@holtmann.org, johan.hedberg@gmail.com, luiz.dentz@gmail.com,
-        max.chou@realtek.com, hildawu@realtek.com,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20230126165529.1452252-1-macroalpha82@gmail.com>
- <20230126165529.1452252-2-macroalpha82@gmail.com>
- <02bddab6-4c63-bb39-9a11-8dab81322c28@linaro.org>
- <63d3fff7.050a0220.db92.7af4@mx.google.com>
- <ed5fec12-1c86-d235-718f-f812e7461d94@linaro.org>
- <63d40318.050a0220.b303.8deb@mx.google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <63d40318.050a0220.b303.8deb@mx.google.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Mailer: b4 0.12.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,56 +77,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/01/2023 18:00, Chris Morgan wrote:
-> On Fri, Jan 27, 2023 at 05:53:49PM +0100, Krzysztof Kozlowski wrote:
->> On 27/01/2023 17:46, Chris Morgan wrote:
->>> On Fri, Jan 27, 2023 at 11:24:03AM +0100, Krzysztof Kozlowski wrote:
->>>> On 26/01/2023 17:55, Chris Morgan wrote:
->>>>> From: Chris Morgan <macromorgan@hotmail.com>
->>>>>
->>>>> Add compatible string for RTL8821CS for existing Realtek Bluetooth
->>>>> driver.
->>>>>
->>>>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/net/realtek-bluetooth.yaml | 1 +
->>>>>  1 file changed, 1 insertion(+)
->>>>>
->>>>
->>>> Based on your driver it is compatible with rtl8822cs, so you can
->>>> indicate it in the binding and use just one of_device_id entry.
->>>
->>> It's very similar, and uses some of the same constants, but has a
->>> different firmware. I assumed the firmware difference is enough to
->>> require it to be differentiated, but I wasn't sure. You are saying
->>> it does not? I just want to be clear.
->>
->> If by "differentiated" you mean "incompatible", then depends:
->> 1. You have firmware-name property to indicate the firmware to load and
->> then you can use one compatible to bind and just load different firmware,
->> 2. If device variant is autodectable, it's compatible.
->>
->> realtek,rtl8723ds-bt also was added to the driver uselessly...
-> 
-> Gotcha.
-> 
-> They are incompatible, but the driver should be able to autodetect each
-> device as best I can tell. In fact all of the devices listed in the
-> bindings should be autodetectable by the driver (again, as best I can
-> tell). Honestly though that's assuming I'm using the correct firmware,
-> which is why I have this tagged as an RFC. I'm really hoping to get
-> Realtek's attention for them to chime in to confirm I'm using the
-> most recent firmware and under what license/terms the firmware can
-> be redistributed so that the firmware may be added to linux-firmware.
-> 
-> Assuming everything is good though, I can resubmit V2 and instead of
-> adding a new compatible just noting that the 8822CS and 8821CS use
-> the same bindings.
+Hi,
 
-They cannot use the same bindings. You always need specific compatible
-and this was not discussed here. What's discussed is to drop the driver
-change in of_device_id.
+On Fri, 27 Jan 2023 14:22:16 +0000, Christian Hewitt wrote:
+> The first patch in this series fixes an SD card (re)boot issue on the
+> BPI-M5. The second removes a redundant status from the sound node so
+> we don't carry it forward when subsequent patches convert the (fixed)
+> dts into a common dtsi, then add support for BPI-M2-PRO which is based
+> on the BPI-M5 board design.
+> 
+> Changes from v1:
+> 
+> [...]
 
-Best regards,
-Krzysztof
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
+
+[1/5] arm64: dts: meson: bananapi-m5: switch VDDIO_C pin to OPEN_DRAIN
+      https://git.kernel.org/amlogic/c/856968e066bd77b113965f1a355ec7401edff65f
+[2/5] arm64: dts: meson: bananapi-m5: remove redundant status from sound node
+      https://git.kernel.org/amlogic/c/31752ffeece8b8dc2cf2be36614c8a4e8e8dcf57
+[3/5] arm64: dts: meson: bananapi-m5: convert dts to dtsi
+      https://git.kernel.org/amlogic/c/ca8dac3a019ac190c39365c99a632c0748c72f58
+[4/5] dt-bindings: arm: amlogic: add support for BananaPi M2-Pro
+      https://git.kernel.org/amlogic/c/bd2529aa41ccb93c2ffcb045ac97121711277fe0
+[5/5] arm64: dts: meson: add support for BananaPi M2-Pro
+      https://git.kernel.org/amlogic/c/5bcfbee7d58d8512493b03b1d1622fe138d0aaee
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
