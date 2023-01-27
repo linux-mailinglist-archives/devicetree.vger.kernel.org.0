@@ -2,99 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3355A67E188
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:24:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6673F67E19E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 11:30:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229596AbjA0KYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 05:24:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35882 "EHLO
+        id S230201AbjA0KaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 05:30:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbjA0KYI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:24:08 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF0C265A2
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:24:07 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id y1so4542663wru.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 02:24:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B1g62FaAwzxRCWTCMBiuBoyOeT/DGaVIfmpUN4XH4l8=;
-        b=WBlhHJ+QydO7/c8H/iv+cPA7WBy/euWH0c8rSU9mF1lm2EpoVxBq+pVtfH+47E98M6
-         +LgVVY709ef+XJl6G++miNZIJFhxCswEpPlWqHNOnrYCd/THbh2EqLDQMAEIB2rcAkt7
-         sUyrebJsnBw5YmDFJzjhYF4op3LYqIvJdPfISDfh/G4H/jmVQqbWxhBbcvK8PlgoX3O9
-         7oQqATG5Y4noaKCX6g8Jd1lCqjY7c2/I5Hog7Of5ye+dSSyvMmOlPUHcNoI3yn/eWrgA
-         kdGSqnAW1ZFawjT75+5dC1O/2bE17OJTDg45ix6c2eLnZ2r7nbMtK1/qbeaVhqENNKjy
-         iLkg==
+        with ESMTP id S231564AbjA0K3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 05:29:50 -0500
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2D5C13503;
+        Fri, 27 Jan 2023 02:29:47 -0800 (PST)
+Received: by mail-oi1-f182.google.com with SMTP id i9so3856357oif.4;
+        Fri, 27 Jan 2023 02:29:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B1g62FaAwzxRCWTCMBiuBoyOeT/DGaVIfmpUN4XH4l8=;
-        b=6bU+ACnfb8grEzNRpZkiEs815VqUdLos22P9tG0o0Wg+mqCPvpJ9u7yHgsHLOlD9YD
-         fU8CXFEMsC7lXACze/bMAmCWBIj6Dcc8wHviZLu5AhVRGsofUCroGt+22ONizo4d/Z/G
-         L/8w3z6MX2uFyZZ73zbr2pwevjkt76DqfhBtxqnsUS+pPOeNaW2Xl7jsMiaS+LbEbcAM
-         SBNqmP8QaD/wg1p/LZAgO8GnriT6X2TE2i8BNkWcyBESbPqpsZQZh4TNMEDhDFVB1YU6
-         O3lSXLKJ5wWTpBAbko948cpddcQg9Q3xITyjjyU6OM4ZMQ7pIUmGC/7aYtvFRk+Znv36
-         myGw==
-X-Gm-Message-State: AFqh2kqJlVVLOiLLt4B+0Twk5Bz1xFNFf7UIsbBDvDg1O7638tlB2L1Q
-        gHjkB0TMfOzDLqtdFy0K0IpLqw==
-X-Google-Smtp-Source: AMrXdXte3GUMCRyW8iKhTS2WKAAQM1NZf4WbfuSy6VgAENXlAWYiUaqyjwMtBrRnpXlHV1p9vrcnBA==
-X-Received: by 2002:a05:6000:5c2:b0:2bb:eb3d:8d20 with SMTP id bh2-20020a05600005c200b002bbeb3d8d20mr32682504wrb.43.1674815045619;
-        Fri, 27 Jan 2023 02:24:05 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j15-20020a5d452f000000b002be505ab59asm3704070wra.97.2023.01.27.02.24.04
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PKruyQW1tJheLO2piiCDKl7s1j50V272W4MEFdOhqCA=;
+        b=00+WBZEp5E7eC76VI9EsDKRtz4ugATiY6ovgMMg5+8PzQAlrpPfvIdodehUMGd0n86
+         qtdHuIn6Hf9dWrjaQ6ZXLe3g2cBht7i0u4e6MnjVp+XmHtqNlbiaeFhg9m/DZURgXkeJ
+         5zRTt4mI7f3XZGXeXo9/u97SvmTw6OhV3sYHc4ds7vtxk9S7DZYkdiloDTZNHRRNN0dr
+         opf8/Kd/An02cPK3pPj5ctk9gz47BfZ8sNfNRf7FaqcuvTBI/IG7ZRGFcQtVilWyf4yG
+         hOhmcLcAvIneUWFdTCV02nxnhIKcTXyjnuCRQOKkUcxaJgDoI2mgfvTAXoqIUy9GQxVx
+         bulw==
+X-Gm-Message-State: AO0yUKWwdXt3Yvo6SNRiUw3mgR9xlU24cMNk8GWoIVDNxPyOsmCtQ8IG
+        rZKRGhSSFZqcpwLknwe8DMGj5Nw3r69cLA==
+X-Google-Smtp-Source: AK7set+qty1T48p73vD/2rNItlz11TA6XIf8lynjnYUo1pcyPxbsdPj1v3HWUIOWXFa6e7SRbVsIfA==
+X-Received: by 2002:a05:6808:d1:b0:35e:7595:30df with SMTP id t17-20020a05680800d100b0035e759530dfmr2415966oic.9.1674815387051;
+        Fri, 27 Jan 2023 02:29:47 -0800 (PST)
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com. [209.85.210.47])
+        by smtp.gmail.com with ESMTPSA id f66-20020aca3845000000b0036acbbf9fbasm1399943oia.46.2023.01.27.02.29.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 02:24:05 -0800 (PST)
-Message-ID: <02bddab6-4c63-bb39-9a11-8dab81322c28@linaro.org>
-Date:   Fri, 27 Jan 2023 11:24:03 +0100
+        Fri, 27 Jan 2023 02:29:46 -0800 (PST)
+Received: by mail-ot1-f47.google.com with SMTP id g21-20020a9d6495000000b0068bb336141dso98981otl.11;
+        Fri, 27 Jan 2023 02:29:46 -0800 (PST)
+X-Received: by 2002:a0d:f281:0:b0:508:2f2c:8e5f with SMTP id
+ b123-20020a0df281000000b005082f2c8e5fmr772773ywf.384.1674815376246; Fri, 27
+ Jan 2023 02:29:36 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH RFC 1/2] dt-bindings: net: realtek-bluetooth: Add
- RTL8821CS
-Content-Language: en-US
-To:     Chris Morgan <macroalpha82@gmail.com>,
-        linux-bluetooth@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, alistair@alistair23.me,
-        anarsoul@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, marcel@holtmann.org, johan.hedberg@gmail.com,
-        luiz.dentz@gmail.com, max.chou@realtek.com, hildawu@realtek.com,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20230126165529.1452252-1-macroalpha82@gmail.com>
- <20230126165529.1452252-2-macroalpha82@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230126165529.1452252-2-macroalpha82@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230127001141.407071-1-saravanak@google.com> <20230127001141.407071-9-saravanak@google.com>
+ <Y9OcqGTocu8ZlFqy@smile.fi.intel.com> <CAMuHMdXRbiNW9nd_N_=+OTo-uCmy2ePfOmREEHcqLyEn1H=Rhg@mail.gmail.com>
+ <Y9OjE+bJquDcCpJ8@smile.fi.intel.com>
+In-Reply-To: <Y9OjE+bJquDcCpJ8@smile.fi.intel.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 27 Jan 2023 11:29:24 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVpDJmjFebdc5yi421Tyvnh4w5AqZTuA035o4FU_wZRKw@mail.gmail.com>
+Message-ID: <CAMuHMdVpDJmjFebdc5yi421Tyvnh4w5AqZTuA035o4FU_wZRKw@mail.gmail.com>
+Subject: Re: [PATCH v2 08/11] driver core: fw_devlink: Make cycle detection
+ more robust
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Linux Kernel Functional Testing <lkft@linaro.org>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Maxim Kiselev <bigunclemax@gmail.com>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Jean-Philippe Brucker <jpb@kernel.org>,
+        kernel-team@android.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2023 17:55, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add compatible string for RTL8821CS for existing Realtek Bluetooth
-> driver.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  Documentation/devicetree/bindings/net/realtek-bluetooth.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Hi Andy,
 
-Based on your driver it is compatible with rtl8822cs, so you can
-indicate it in the binding and use just one of_device_id entry.
+On Fri, Jan 27, 2023 at 11:10 AM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+> On Fri, Jan 27, 2023 at 10:52:02AM +0100, Geert Uytterhoeven wrote:
+> > On Fri, Jan 27, 2023 at 10:43 AM Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> wrote:
+> > > On Thu, Jan 26, 2023 at 04:11:35PM -0800, Saravana Kannan wrote:
+> > > > + * Check if @sup_handle or any of its ancestors or suppliers direct/indirectly
+> > > > + * depend on @con.  This function can detect multiple cyles between @sup_handle
+> > >
+> > > A single space is enough.
+> >
+> > It's very common to write two spaces after a full stop.
 
-Best regards,
-Krzysztof
+See e.g.:
 
+    git grep "\.  [^ ]
+
+> > When joining two sentences on separate lines in vim using SHIFT-J,
+> > vim will make sure there are two spaces.
+>
+> But is this consistent with all kernel doc comments in the core.c?
+
+Probably there are inconsistencies...
+(Aren't there everywhere?)
+
+> I'm fine with either as long as it's consistent.
+
+At least the kerneldoc source will look similar to the PDF output
+(LaTeX inserts more space after a full stop automatically ;-).
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
