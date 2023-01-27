@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 235D467EBE0
+	by mail.lfdr.de (Postfix) with ESMTP id 6FA4567EBE1
 	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 18:02:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234628AbjA0RCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 12:02:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56916 "EHLO
+        id S234687AbjA0RCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 12:02:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234632AbjA0RCu (ORCPT
+        with ESMTP id S234660AbjA0RCu (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 12:02:50 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20CE17FA37
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 09:02:31 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so5848390wmb.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 09:02:31 -0800 (PST)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D89F7FA2C
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 09:02:32 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id j36-20020a05600c1c2400b003dc39cb9c33so1582239wms.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 09:02:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=74RYKXADYiWuMtd1iDXR46UqUxe2kZuhY4va9NHmRgw=;
-        b=sftt/w4VLfphRnNORfESsr3LME9gLjhtV6Na3+8e3+UcB+ePTF8lVHMMrTJlROLAMx
-         BTzeq+4dIfLiK0XzuQGpBAx0/C3Y7kjugNFmH9ihf8bwaHJn37MKD7j0/Gg49d8aJAEi
-         PlBaxu2GPd2lnn+NQjhqFUyHCFJMvzP0dCRyWbWaGmutrbGa/tlxTDl++SwiwevX9x75
-         Eoy9mh3SBsUNHyp5Uq9Yf/aIeLu2pVdgAExiN0de44JVkAP7uj5nt4pWSk788i42rSxL
-         apV8ByJ1HpEClYySlJut+SbiATLnHNDZr36zIBieB//l6VE6aV9fBMPT3Gi+rl5prxOy
-         nrbg==
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WbU1jG3eBIib3Y4T/FJmhjrIYuLNHNTwPimhNEaBXnw=;
+        b=ZYqzKu5blklwUObA1H3gAkwCboO6R1adMPHjlKADOpoynUElxQHWl2yhz5fmMJ6/OC
+         2nzf1af85r9C5QwP4LdAALucQ0GJBKLp9Fc7M0AxBfPmo4zHYq1dLUyHbWOh2U+NM1uk
+         pDccnDz9SDYqiePHluMiOQypB7bl+tRkOzl31LQiaCkIJWj3RHd4BP0dS4he+VRiqu0W
+         b6vyXb9jET2cF6MJXg4WQkSifFOwnXSbZ9p/ogX/DXyGRLg5epYZ/2i4hjnIK/d+ES7a
+         9u9eLkpvlzjN9eiRcqUcmx74E1ZgC5+yt4Dz+/J3EFtI5q/P0UiM4sAHAQaa8mDJU5vL
+         TsGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=74RYKXADYiWuMtd1iDXR46UqUxe2kZuhY4va9NHmRgw=;
-        b=L8o3DBG3WanInmOk0ad8XeQlRU/5UMXeM8qwZrf5nyEJWrMuvlvGm4aq4mJXbAmb2y
-         3k61TWfbXVrYWqDfsbWkSGAWSVuCT31NbpL5KSOjaaQ8JX/HzoBbVMjNh7aaPcZBnP7I
-         fCfWSqON2maFNVwPauRfXVxFaksM9zoNMSGAcn4YP/HEK39qCemjpI0rWi+Ae3ls7lHi
-         eZUYWCNxyKzm6LjS6mjdBElCiXwaEuSJbcjUfIb86vTTzFwK23GHCV/I6yEw3tMloThJ
-         mh0yC/gkOtoPtA7dGj4FhvkMlMCTiheQYSzGSmPGL9OPjU48DMDvaUP+jay3D0FxsZsl
-         8bAA==
-X-Gm-Message-State: AFqh2kp8nnN/EfyM9d1TURWF1zziGKA6WSE0aJS2UaWE3zqbvTQN6Cks
-        quecxHyoiTmVv+tfuXygeWJ05aa/jwLwc9jkmRw=
-X-Google-Smtp-Source: AMrXdXsL1Hr0yZEA0/ZyJzgSBTvzReIJkdTSMyNhsF6vOWDcuTJ7XyKdsh1A5LroidB30T6W4Q+mHA==
-X-Received: by 2002:a05:600c:b54:b0:3c6:e60f:3f6f with SMTP id k20-20020a05600c0b5400b003c6e60f3f6fmr40944390wmr.38.1674838949712;
-        Fri, 27 Jan 2023 09:02:29 -0800 (PST)
+        bh=WbU1jG3eBIib3Y4T/FJmhjrIYuLNHNTwPimhNEaBXnw=;
+        b=vE0ng2CYMxwuJPmImpkEsOZgZlgrjgFpNW4yh7H98c9oTKSm/s+oyBtUojlwS6CMo7
+         lciEen78pqIY/KVRbOwtQ5wHm0i8q8ls4Pve6wELhS30KJxSbeouHHRdWoRSC0yHSssX
+         gx2CjmJqCGm4QqUJHwWcf8HUD6puwRkBc6FpFSNbMJ3j4whVTjerM4wmyQkORvUfXOVU
+         P0YiCmbJiF+WjuYVC/sNVQJXpdU1Ci3sah2FMZ068wIbKpRQjxQ3/8OMQEZR11coWNp/
+         TMr/DwJpgTxFU4fcZ/awOMsYY5LjWCpB6Dty+RWGx8wrYatKSn9/znhVbPgDSkU0XOFu
+         SEgA==
+X-Gm-Message-State: AO0yUKWegVfNaIhRzzPbbJXeCC0bijlZOGi8uXxlmumvLL8jH/2WOxVK
+        ARqUPMTWJtTKFImWtMREkDMeXVq0H0MlVcLboFA=
+X-Google-Smtp-Source: AK7set8nKe1EwJJz5qSh/iMOOjsbaKe0SVJ6gB0BYq3Td23vOrRiaDhe0P7jCeUxIxn6ZPoBJ0Fjww==
+X-Received: by 2002:a05:600c:2189:b0:3dc:4334:22e3 with SMTP id e9-20020a05600c218900b003dc433422e3mr790979wme.17.1674838951034;
+        Fri, 27 Jan 2023 09:02:31 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v10-20020a05600c12ca00b003d9df9e59c4sm7925935wmd.37.2023.01.27.09.02.28
+        by smtp.gmail.com with ESMTPSA id v10-20020a05600c12ca00b003d9df9e59c4sm7925935wmd.37.2023.01.27.09.02.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 09:02:28 -0800 (PST)
+        Fri, 27 Jan 2023 09:02:30 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -58,12 +58,13 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
         Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20230127142221.3718184-1-christianshewitt@gmail.com>
-References: <20230127142221.3718184-1-christianshewitt@gmail.com>
-Subject: Re: [PATCH v2 0/5] arm64: dts: meson: fix BPI-M5 and add
- BPI-M2-PRO
-Message-Id: <167483894832.2238401.307745303107295003.b4-ty@linaro.org>
-Date:   Fri, 27 Jan 2023 18:02:28 +0100
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230127150536.3719090-1-christianshewitt@gmail.com>
+References: <20230127150536.3719090-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add support for
+ Radxa Zero2
+Message-Id: <167483894978.2238401.2111173691502093407.b4-ty@linaro.org>
+Date:   Fri, 27 Jan 2023 18:02:29 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -79,29 +80,18 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Fri, 27 Jan 2023 14:22:16 +0000, Christian Hewitt wrote:
-> The first patch in this series fixes an SD card (re)boot issue on the
-> BPI-M5. The second removes a redundant status from the sound node so
-> we don't carry it forward when subsequent patches convert the (fixed)
-> dts into a common dtsi, then add support for BPI-M2-PRO which is based
-> on the BPI-M5 board design.
+On Fri, 27 Jan 2023 15:05:35 +0000, Christian Hewitt wrote:
+> The Radxa Zero2 is a small form-factor SBC using the Amlogic
+> A311D chip.
 > 
-> Changes from v1:
 > 
-> [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
 
-[1/5] arm64: dts: meson: bananapi-m5: switch VDDIO_C pin to OPEN_DRAIN
-      https://git.kernel.org/amlogic/c/856968e066bd77b113965f1a355ec7401edff65f
-[2/5] arm64: dts: meson: bananapi-m5: remove redundant status from sound node
-      https://git.kernel.org/amlogic/c/31752ffeece8b8dc2cf2be36614c8a4e8e8dcf57
-[3/5] arm64: dts: meson: bananapi-m5: convert dts to dtsi
-      https://git.kernel.org/amlogic/c/ca8dac3a019ac190c39365c99a632c0748c72f58
-[4/5] dt-bindings: arm: amlogic: add support for BananaPi M2-Pro
-      https://git.kernel.org/amlogic/c/bd2529aa41ccb93c2ffcb045ac97121711277fe0
-[5/5] arm64: dts: meson: add support for BananaPi M2-Pro
-      https://git.kernel.org/amlogic/c/5bcfbee7d58d8512493b03b1d1622fe138d0aaee
+[1/2] dt-bindings: arm: amlogic: add support for Radxa Zero2
+      https://git.kernel.org/amlogic/c/229cfc6b16ccedfcae1ee10dc1aed04e7a85ed32
+[2/2] arm64: dts: meson: add support for Radxa Zero2
+      https://git.kernel.org/amlogic/c/d747e7f76a5fa6e3deb4c419df768f9ee49c2161
 
 These changes has been applied on the intermediate git tree [1].
 
