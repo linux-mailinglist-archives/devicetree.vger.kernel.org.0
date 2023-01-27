@@ -2,120 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCAE367DFB7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 10:09:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78B9F67DFCB
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 10:15:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232342AbjA0JJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 04:09:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55676 "EHLO
+        id S231520AbjA0JPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 04:15:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbjA0JJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 04:09:52 -0500
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53BD14C10;
-        Fri, 27 Jan 2023 01:09:51 -0800 (PST)
+        with ESMTP id S230129AbjA0JPL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 04:15:11 -0500
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1098BBB3;
+        Fri, 27 Jan 2023 01:15:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674810591; x=1706346591;
+  t=1674810910; x=1706346910;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=eQ/IZzkS2NRxWmaI8adOA3mfHkoHdtOg1+kSMHdnbcg=;
-  b=c9LRvu5u5uyKb3kvO5pfm+BZt2RSUTbZJDAWH9ITH4x2lik+ZSYrhQ8R
-   Cbw3RNNPIEOGS0ZbzDBZoBpkaqAMEJQJbblKLpoTBRoq35XahQrjxk+Rc
-   6RaXWzUy6l2ek4OF3jjw7xVNawYM2950YR+1FdQ2m74LTJUlZ/mez0/8X
-   2K0td5atJeRCZRmRtA+jMeTojhLb7HigYMQ6FgAWfA+5fU0jOFXXvx8X4
-   gnwAOcl6OggJo5kWV7nbUlN+vEg+C/I+NK6CKgdPNt6IENTMD/JwO77SB
-   fuBBuEL22YdB7ABBcTygijeECNUoWQuoFWpUP+Py57S4ig68QBu/o3IQv
+  bh=N+LSpDops/iyKSXkHdWpx0JMTo+7ZKjnCIzKpZlbtxQ=;
+  b=nL1U7IxvbYhoPIj/Iw0N87MjGKiuUe7OP4QrNx/Ef8wjOcCElODanGhl
+   tuJe31ARs2317ihC6HBOU5pR413gwTJNJKl/ADnRU6Fbodz1XUhzQkQBI
+   wm5qNAXor/+vAaLpB6fW4artUEG51DkpsiE5WuH1hV/nHF0hgScz/fauM
+   IRkyjL6EMC4JNHmBZ6P1Qu5bDdqyKdTMdVYBv4crane19gf9M+72Ot8DD
+   dz0F6P3rGwfrw3SV6lt2N3XL37bVaEU2+2wlcCWBYZXpUaC9FNEVhrtEg
+   7j+giW2u+7UougfMGGP2H4C+1uOygWnxibB40tNAcL17VSs6swW+fAhXE
    Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="325721265"
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="329175766"
 X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; 
-   d="scan'208";a="325721265"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2023 01:09:50 -0800
+   d="scan'208";a="329175766"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2023 01:15:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="787156569"
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="908610468"
 X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; 
-   d="scan'208";a="787156569"
+   d="scan'208";a="908610468"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga004.jf.intel.com with ESMTP; 27 Jan 2023 01:09:47 -0800
+  by fmsmga006.fm.intel.com with ESMTP; 27 Jan 2023 01:15:04 -0800
 Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pLKjx-00Ft8c-1f;
-        Fri, 27 Jan 2023 11:09:45 +0200
-Date:   Fri, 27 Jan 2023 11:09:45 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Markuss Broks <markuss.broks@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1pLKp3-00FtEu-2r;
+        Fri, 27 Jan 2023 11:15:01 +0200
+Date:   Fri, 27 Jan 2023 11:15:01 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Zhigang Shi <Zhigang.Shi@liteon.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Paul Gazzillo <paul@pgazz.com>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: light: Add support for AMS TCS3490 light sensor
-Message-ID: <Y9OU2e6YMIUTtto0@smile.fi.intel.com>
-References: <20230123231028.26073-1-markuss.broks@gmail.com>
- <20230123231028.26073-3-markuss.broks@gmail.com>
- <Y8+xamtH/U4vK75e@smile.fi.intel.com>
- <a782a0d9-c47e-4328-774f-6bef78161d81@gmail.com>
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH v7 5/7] media: i2c: add DS90UB960 driver
+Message-ID: <Y9OWFSxs9ev9hfp2@smile.fi.intel.com>
+References: <4286abe2-f23f-d4c9-ef18-f351af7a3a8b@ideasonboard.com>
+ <Y9EcRlooHwIjOqiZ@smile.fi.intel.com>
+ <cad92dbb-43ef-fa8c-1962-13c4a8578899@ideasonboard.com>
+ <Y9FBlMl4b3l1zVck@smile.fi.intel.com>
+ <5d208710-f284-e6e9-18dc-f5ef63a9ea44@ideasonboard.com>
+ <Y9FKcoVlgUWR4rhn@smile.fi.intel.com>
+ <04a82b08-524f-8d03-ac47-73d826907fc3@ideasonboard.com>
+ <Y9JUEv66Gze8FjMZ@smile.fi.intel.com>
+ <Y9JbMjPM3Ea3RVzH@pendragon.ideasonboard.com>
+ <0c13eac3-cadb-b923-d475-7851dbef0c4e@ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a782a0d9-c47e-4328-774f-6bef78161d81@gmail.com>
+In-Reply-To: <0c13eac3-cadb-b923-d475-7851dbef0c4e@ideasonboard.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 26, 2023 at 05:54:56PM +0200, Markuss Broks wrote:
-> On 1/24/23 12:22, Andy Shevchenko wrote:
-> > On Tue, Jan 24, 2023 at 01:10:25AM +0200, Markuss Broks wrote:
-
-First of all, I assume you agree on the comments you left unanswered,
-so we will expect them all being addressed in the next version. Is it
-correct perception?
+On Fri, Jan 27, 2023 at 10:24:04AM +0200, Tomi Valkeinen wrote:
+> On 26/01/2023 12:51, Laurent Pinchart wrote:
+> > On Thu, Jan 26, 2023 at 12:21:06PM +0200, Andy Shevchenko wrote:
+> > > On Thu, Jan 26, 2023 at 10:41:47AM +0200, Tomi Valkeinen wrote:
+> > > > On 25/01/2023 17:27, Andy Shevchenko wrote:
 
 ...
 
-> > > +static const struct regmap_config tcs3490_regmap_config = {
-> > > +	.reg_bits	= 8,
-> > > +	.val_bits	= 8,
-> > Seems you are using regmap internal serialization, but does it guarantee the
-> > serialization on the transaction level? Or why is it not a problem?
-> Well, other drivers seem to have it this way too.
+> > > > > But I probably don't understand the ATR structure and what exactly we need to
+> > > > > pass to it, perhaps it also can be replaced with properties (note, that we have
+> > > > > some interesting ones that called references, which is an alternative to DT
+> > > > > phandle).
+> > > > 
+> > > > Well, maybe this needs a Linux bus implementation. I'm not that familiar
+> > > > with implementing a bus, but I think that would make it easier to share data
+> > > > between the deserializer and the serializer. A bus sounds a bit like an
+> > > > overkill for a 1-to-1 connection, used by a few drivers, but maybe it
+> > > > wouldn't be too much code.
+> > > 
+> > > Have you looked at auxiliary bus (appeared a few releases ago in kernel)?
+> > 
+> > As far as I understand, the auxiliary bus infrastructure is meant for
+> > use cases where a single hardware device needs to be split into multiple
+> > logical devices (as in struct device). Platform devices were
+> > historically (ab)used for this, and the auxiliary bus is meant as a
+> > cleaner solution. I'm not sure if it would be a good match here, or if
+> > it would be considered an abuse of the auxiliary bus API.
+> 
+> The aux bus docs say "A key requirement for utilizing the auxiliary bus is
+> that there is no dependency on a physical bus, device, register accesses or
+> regmap support. These individual devices split from the core cannot live on
+> the platform bus as they are not physical devices that are controlled by
+> DT/ACPI.", which doesn't sound like a good fit.
 
-They all may be buggy, unclear, or hardware there doesn't require transaction
-level locks. It means we have to avoid cargo cult.
+Thanks for checking!
 
-> I don't really understand
-> why it should be a problem, could you please clarify?
+> The deserializer and serializers are currently independent devices and
+> drivers (the pdata is the only shared thing), but I think we may need
+> something better here. The devices are more tightly tied together than
+> "normal" video devices, in my opinion, as the serializer is fully controlled
+> by the deserializer (including power).
+> 
+> And if we ever want to implement something like power management, we
+> probably need something more than what we have now. Although I don't know
+> how that would be done, as all the peripherals behind the serializer would
+> also lose power...
 
-Because one should distinguish IO with register vs. IO transaction.
-Imaging two threads which do an IO:
-
-	CPU0					CPU1
-						read REG2
-						update value
-	read REG1
-						write REG2
-	update value
-	write REG1
-
-If in our hypothetical example the writing to REG2 has a side effect on
-the values in REG1, we are doomed.
-
-You have to check all possible scenarios and tell if it's a problem or not with
-the certain hardware. According to the result, add a corresponding comment to
-the code and, if required, change the locking scheme.
-
-> > > +};
+I believe you have to create a power domain for them and when such device
+is added, the power domain of it should belong to the serialized.
 
 -- 
 With Best Regards,
