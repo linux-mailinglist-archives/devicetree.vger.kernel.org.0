@@ -2,114 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC80F67E876
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 15:40:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7CFA67E87E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 15:42:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233322AbjA0Ok4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 09:40:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50814 "EHLO
+        id S233253AbjA0OmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 09:42:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbjA0Okz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 09:40:55 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FF0212596;
-        Fri, 27 Jan 2023 06:40:54 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30RDmjCA022601;
-        Fri, 27 Jan 2023 14:40:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=wk13knnpPS0ir92OkbA0UPnhSib867snF/BNjSIFnFQ=;
- b=Z1D52k9kuFqDf7I5UZhVj/VaFwvdCI/zzPv+bh43Paghk9BQUt5MI12bqgNZf4D6GAjy
- LiNoJIlW2f1mpikdpQYwswHUa97PSdY6MBcMueL59wgvXP238Eo5rUy8rmlISccN1dt2
- nQ2f1g4qAB/AXaSEz0peIco6/5kbRQ1GFrBpp07NIIBfHwCm7LQNfpObyYum553CUO0X
- Jz72aa3GS7DCiGo+/StRr+dH1V73bkpDXTKdwtLh6RLvjybr7CDaDvPXfS5njBWp6Zbl
- XcPAobHQ4co8pBE0LfNHbplAjVW6tUaIdRz72iCppl1iXXKT87c+KT/aJwxusgYcZ56l Ig== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ncacmgjuw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 27 Jan 2023 14:40:38 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30REeb2Q029815
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 27 Jan 2023 14:40:37 GMT
-Received: from [10.216.31.125] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 27 Jan
- 2023 06:40:28 -0800
-Message-ID: <0cc27ec7-ddaa-41fa-ee9c-189ec839a5e5@quicinc.com>
-Date:   Fri, 27 Jan 2023 20:10:25 +0530
+        with ESMTP id S232176AbjA0OmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 09:42:12 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F771711;
+        Fri, 27 Jan 2023 06:42:10 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 42834B82128;
+        Fri, 27 Jan 2023 14:42:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9791CC433D2;
+        Fri, 27 Jan 2023 14:42:05 +0000 (UTC)
+Message-ID: <a46040a4-f274-1e07-0829-86facf550496@xs4all.nl>
+Date:   Fri, 27 Jan 2023 15:42:04 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 5/5] dt-bindings: tcsr: Add compatible for IPQ9574
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 04/10] media: Add Y312 video format
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <lee@kernel.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <shawnguo@kernel.org>, <arnd@arndb.de>,
-        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
-        <nfraprado@collabora.com>, <broonie@kernel.org>,
-        <robimarko@gmail.com>, <quic_gurus@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_devipriy@quicinc.com>
-References: <20230113160012.14893-1-quic_poovendh@quicinc.com>
- <20230113160012.14893-6-quic_poovendh@quicinc.com>
- <823a9052-bfd5-3b14-191e-84f049a7693e@linaro.org>
-From:   POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>
-In-Reply-To: <823a9052-bfd5-3b14-191e-84f049a7693e@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
+        mirela.rabulea@oss.nxp.com
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, xiahong.bao@nxp.com, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <cover.1671071730.git.ming.qian@nxp.com>
+ <4eb46df4bb84da00560c6c757cd661a1d00e76fb.1671071730.git.ming.qian@nxp.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <4eb46df4bb84da00560c6c757cd661a1d00e76fb.1671071730.git.ming.qian@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: A6-mR7yPlZzmm9vHJhyJylfjTrmNZbGM
-X-Proofpoint-ORIG-GUID: A6-mR7yPlZzmm9vHJhyJylfjTrmNZbGM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-27_09,2023-01-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 clxscore=1015 mlxscore=0 adultscore=0 suspectscore=0
- mlxlogscore=676 lowpriorityscore=0 spamscore=0 malwarescore=0
- impostorscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2301270139
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 20/12/2022 04:11, Ming Qian wrote:
+> Y312 is a YUV format with 12-bits per component like YUV24,
+> expanded to 16bits.
+> Data in the 12 high bits, zeros in the 4 low bits,
+> arranged in little endian order.
+> 
+> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> ---
+>  .../media/v4l/pixfmt-packed-yuv.rst           | 28 +++++++++++++++++++
+>  drivers/media/v4l2-core/v4l2-common.c         |  1 +
+>  drivers/media/v4l2-core/v4l2-ioctl.c          |  1 +
+>  include/uapi/linux/videodev2.h                |  1 +
+>  4 files changed, 31 insertions(+)
+> 
+> diff --git a/Documentation/userspace-api/media/v4l/pixfmt-packed-yuv.rst b/Documentation/userspace-api/media/v4l/pixfmt-packed-yuv.rst
+> index 39ded0b1e65c..a91c30ba6b73 100644
+> --- a/Documentation/userspace-api/media/v4l/pixfmt-packed-yuv.rst
+> +++ b/Documentation/userspace-api/media/v4l/pixfmt-packed-yuv.rst
+> @@ -257,6 +257,34 @@ the second byte and Y'\ :sub:`7-0` in the third byte.
+>      - The padding bits contain undefined values that must be ignored by all
+>        applications and drivers.
+>  
+> +The next lists the packed YUV 4:4:4 formats with more than 8 bits per component.
+> +expand the bits per component to 16 bits, data in the high bits, zeros in the low bits,
+> +arranged in little endian order. storing 1 pixels in 6 bytes.
+> +
+> +.. flat-table:: Packed YUV 4:4:4 Image Formats (more than 8bpc)
+> +    :header-rows: 1
+> +    :stub-columns: 0
+> +
+> +    * - Identifier
+> +      - Code
+> +      - Byte 1-0
+> +      - Byte 3-2
+> +      - Byte 5-4
+> +      - Byte 7-6
+> +      - Byte 9-8
+> +      - Byte 11-10
+> +
+> +    * .. _V4L2-PIX-FMT-Y312:
+> +
+> +      - ``V4L2_PIX_FMT_Y312``
+> +      - 'Y312'
+> +
+> +      - Y'\ :sub:`0`
+> +      - Cb\ :sub:`0`
+> +      - Cr\ :sub:`0`
+> +      - Y'\ :sub:`1`
+> +      - Cb\ :sub:`1`
+> +      - Cr\ :sub:`1`
+>  
+>  4:2:2 Subsampling
+>  =================
+> diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2-core/v4l2-common.c
+> index 21ace56fac04..332d4b11bc1b 100644
+> --- a/drivers/media/v4l2-core/v4l2-common.c
+> +++ b/drivers/media/v4l2-core/v4l2-common.c
+> @@ -259,6 +259,7 @@ const struct v4l2_format_info *v4l2_format_info(u32 format)
+>  		{ .format = V4L2_PIX_FMT_UYVY,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
+>  		{ .format = V4L2_PIX_FMT_VYUY,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
+>  		{ .format = V4L2_PIX_FMT_Y212,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
+> +		{ .format = V4L2_PIX_FMT_Y312,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 6, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
+>  
+>  		/* YUV planar formats */
+>  		{ .format = V4L2_PIX_FMT_NV12,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 2 },
+> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
+> index 4d5f722b674a..5b97d7e5dbbf 100644
+> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
+> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
+> @@ -1343,6 +1343,7 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
+>  	case V4L2_PIX_FMT_HI240:	descr = "8-bit Dithered RGB (BTTV)"; break;
+>  	case V4L2_PIX_FMT_M420:		descr = "YUV 4:2:0 (M420)"; break;
+>  	case V4L2_PIX_FMT_Y212:		descr = "12-bit Depth YUYV 4:2:2"; break;
+> +	case V4L2_PIX_FMT_Y312:		descr = "12-bit Depth YUV 4:4:4"; break;
+>  	case V4L2_PIX_FMT_NV12:		descr = "Y/UV 4:2:0"; break;
+>  	case V4L2_PIX_FMT_NV21:		descr = "Y/VU 4:2:0"; break;
+>  	case V4L2_PIX_FMT_NV16:		descr = "Y/UV 4:2:2"; break;
+> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+> index b8a501dccfa4..3475331737af 100644
+> --- a/include/uapi/linux/videodev2.h
+> +++ b/include/uapi/linux/videodev2.h
+> @@ -619,6 +619,7 @@ struct v4l2_pix_format {
+>  #define V4L2_PIX_FMT_YUVX32  v4l2_fourcc('Y', 'U', 'V', 'X') /* 32  YUVX-8-8-8-8  */
+>  #define V4L2_PIX_FMT_M420    v4l2_fourcc('M', '4', '2', '0') /* 12  YUV 4:2:0 2 lines y, 1 line uv interleaved */
+>  #define V4L2_PIX_FMT_Y212    v4l2_fourcc('Y', '2', '1', '2') /* 32  YUYV 12-bit per component */
+> +#define V4L2_PIX_FMT_Y312    v4l2_fourcc('Y', '3', '1', '2') /* 48  YUV 4:4:4 12-bit per component */
 
-On 1/13/2023 10:10 PM, Krzysztof Kozlowski wrote:
-> On 13/01/2023 17:00, Poovendhan Selvaraj wrote:
->> Add the tcsr compatible string for IPQ9574 SoC
->>
->> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
->> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->> Co-developed-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
->> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> Same question...
->
-> okay Sure, will address.
->> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
->> ---
-> Best regards,
-> Krzysztof
+YUV24_12 would work, I think. Y312 suggests a greyscale format, so that's definitely wrong.
 
-Best Regards,
+Regards,
 
-Poovendhan S
+	Hans
+
+>  
+>  /* two planes -- one Y, one Cr + Cb interleaved  */
+>  #define V4L2_PIX_FMT_NV12    v4l2_fourcc('N', 'V', '1', '2') /* 12  Y/CbCr 4:2:0  */
 
