@@ -2,101 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39A2467E650
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 14:13:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6319C67E656
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 14:15:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233174AbjA0NNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 08:13:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58102 "EHLO
+        id S234637AbjA0NPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 08:15:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234295AbjA0NNq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 08:13:46 -0500
-Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A74239B9C
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:13:10 -0800 (PST)
-Received: by mail-vs1-xe29.google.com with SMTP id 3so5223933vsq.7
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:13:10 -0800 (PST)
+        with ESMTP id S234648AbjA0NPr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 08:15:47 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67E804B890
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:15:19 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id q10so4947949wrm.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 05:15:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=H5OjDI+BmuahlrrPemGCNzWK2D1S3Y5Nfa98DDI8/8k=;
-        b=3FNkY8nqZHleZUzbXb0ruzpHilbOFCvkA34g4Qc7SGxbjZHQsXwRHueCfp5zGyjwXI
-         lY7ES/g3q0/X/bd0wBh9hEpvZIPccbc6zOwT+p3xZiDqtr6t4qY9RCi1zXW90wgIk5sM
-         26P1xqt/PmTMxbkZL6xVJ0ZPWlaPb7aQY1JP8O3FSv2/1LzP2m4n+1EcCCeY/c8uuuia
-         6dkuDkjEN9ux5tf3IYSUP7aK+g+Xim8o45dKXXWBxsy2Q2Nf2bHw9ws7CX1u+vi8sJj0
-         9VJAXOjuVmP0Ynp+LB8v8HHzuYPN3RRdQ1zrdMWHZjIlYR1s012J4rNL3CNsC5YBSyei
-         edTA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q1/i8HRUIQevoqQyNxhOKILdilu7Ol6BsCbFP0mV8Ms=;
+        b=i+jiFsKrA3zgtC2I8IEJAZyCGW6+jHVKNL8KESaldA+ljIIuDA1rXRIh9VanTksvmg
+         YGEmmvkYJpEvxv4o0DouQb6SXWeNYgKsIOPoYtP7nDQtVfQz+slqBznlMdaEuz9tFDU+
+         0YGecnkttP8ezTkHew81yUgsjkMHGg1fQJ4I8B5w1nkU+SDPgbFd5CH5YrDYuj7VQawU
+         ayZvrtxB4FHjIzOpM2XPtzbaZRTKVYjiDuM5YaqO8wNLOZGS0/UDa8etCAA3lV+wTxnU
+         ol9Gb7c0etd+FRzjhbUdkY9l6RTU0O4kJVQ/FM0czoBMJXZft0U1PVWIpeOZiFLZ9IYI
+         iZog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=H5OjDI+BmuahlrrPemGCNzWK2D1S3Y5Nfa98DDI8/8k=;
-        b=8APkrxdcUx2PVWg+gmV4VdyIWW7sfchDA15PD95PZxqQ6VnqivB1jNQDkYirKJPfMy
-         5e4J90SfgfZ+BhNvITPyrCxveIDaIkaL4DIpt3v+6BA9JYR/IL+2dwmhLqYhEEzoiG4Z
-         dFugoDynTU6ly8HR2SdROqua7ka2ljRtT8GHpBvLGDjQ6EQM/Hzt+egbGpq/gq6wsIbw
-         bGApBecJ1Icx2shdQSD7L/pg+GOswyid60u3lg45YAQbISr/uslTWHEeoo+zN48tR8Hr
-         +UomqJcFeU3el+tAVh1Nc/f9cUitX541sik6zrs4GkyS+BtOfn2sQ4fD27Sb7kibw4Cw
-         3usA==
-X-Gm-Message-State: AO0yUKViaF4pnRa5WPv1rBbpwJAhg353RtCMvpQ+lGzupeSwPKjvaJut
-        iguLEhUKzhBq5IuSYmSrNoLtYqTCxh6I2gqrNYCDkA==
-X-Google-Smtp-Source: AK7set8NJm64JXj8Sonnt3qwTZmV9E5ZtjWIbL/cJOBHCzm8vy8F9tlY1BhQrUCkPFmsLvz/ZCQap95kemwTg5GmAbA=
-X-Received: by 2002:a67:c384:0:b0:3e8:d5a8:3fbe with SMTP id
- s4-20020a67c384000000b003e8d5a83fbemr1347040vsj.9.1674825145903; Fri, 27 Jan
- 2023 05:12:25 -0800 (PST)
-MIME-Version: 1.0
-References: <20230127101836.93845-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230127101836.93845-1-krzysztof.kozlowski@linaro.org>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 27 Jan 2023 14:12:15 +0100
-Message-ID: <CAMRc=MdgOnmT2PRVN1Dejf97iFYTuKWSK==oX=e1MWg3WJUiHw@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: ti: use "okay" for status
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        bh=Q1/i8HRUIQevoqQyNxhOKILdilu7Ol6BsCbFP0mV8Ms=;
+        b=dDn+cga2NbywZ7Fb1PN615Cx/rK1bkO37TzuFYXd+4g+6/9IK2yY3q0xsgtfTzTBJz
+         cotU8rVkeOuit/7R5VraMPxoq3hhIhCZnF9KcocRSbxfkxBsqSoo/7T+SmlL99mBilAQ
+         uWPhtssGTBhfxurujw19CUq3m6JrCH0HI+5j3eP08ieHhme/gsOEh2H78Aoj5KNkiZM4
+         U1ZNhXddR2L2lCFSR2zYLg7rxqlUyKAPAO7bVGe/2pvfF4iOcQuYM7yBP9lrIzvuYENO
+         osNrEtpKFhAXMwJdzVqablw+joTT7nWVQ82Ai9Zxhez6sjzSO56Pqfu15EUWHCfd2ZSj
+         HUOw==
+X-Gm-Message-State: AO0yUKVQYkyitjpcwniicm3vvPzqP5OkzEnjBSjn0/iD3lfW6ltdTjCe
+        0zYLu6sConJOZYL5Y18DR/0MBA==
+X-Google-Smtp-Source: AK7set/anTV6XicubpRlw2HH2aUQEYPRTgpeUam1ELUNXOPB8Kip+bHD+49HJCAIiBVzY1Dq+99dnA==
+X-Received: by 2002:adf:a156:0:b0:2bf:b672:689b with SMTP id r22-20020adfa156000000b002bfb672689bmr9702037wrr.62.1674825291718;
+        Fri, 27 Jan 2023 05:14:51 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id u14-20020a5d434e000000b002bfbda53b98sm3924733wrr.35.2023.01.27.05.14.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 05:14:51 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+Cc:     devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm8550: Fix the aoss_qmp node name
+Date:   Fri, 27 Jan 2023 15:14:41 +0200
+Message-Id: <20230127131441.1157679-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 11:18 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> "okay" over "ok" is preferred for status property.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm/boot/dts/da850-evm.dts         | 2 +-
->  arch/arm/boot/dts/keystone-k2e-evm.dts  | 2 +-
->  arch/arm/boot/dts/keystone-k2g-evm.dts  | 2 +-
->  arch/arm/boot/dts/keystone-k2hk-evm.dts | 2 +-
->  arch/arm/boot/dts/keystone-k2l-evm.dts  | 2 +-
->  5 files changed, 5 insertions(+), 5 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/da850-evm.dts b/arch/arm/boot/dts/da850-evm.dts
-> index 1fdd9a249165..0ca849885d1f 100644
-> --- a/arch/arm/boot/dts/da850-evm.dts
-> +++ b/arch/arm/boot/dts/da850-evm.dts
-> @@ -415,7 +415,7 @@ &edma1 {
->  &aemif {
->         pinctrl-names = "default";
->         pinctrl-0 = <&nand_pins>;
-> -       status = "ok";
-> +       status = "okay";
->         cs3 {
->                 #address-cells = <2>;
->                 #size-cells = <1>;
+The proper name for it is power-management. Currently, with the node
+name being power-controller, the bindings check fails due to the
+property #power-domain-cells missing.
 
-For DaVinci:
+Fixes: ffc50b2d3828 ("arm64: dts: qcom: Add base SM8550 dtsi")
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 6ff135191ee0..57878ea64ee0 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -2503,7 +2503,7 @@ tsens2: thermal-sensor@c273000 {
+ 			#thermal-sensor-cells = <1>;
+ 		};
+ 
+-		aoss_qmp: power-controller@c300000 {
++		aoss_qmp: power-management@c300000 {
+ 			compatible = "qcom,sm8550-aoss-qmp", "qcom,aoss-qmp";
+ 			reg = <0 0x0c300000 0 0x400>;
+ 			interrupt-parent = <&ipcc>;
+-- 
+2.34.1
+
