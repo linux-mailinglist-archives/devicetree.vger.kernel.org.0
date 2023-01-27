@@ -2,209 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC72F67E914
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 16:11:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 791E667E904
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 16:11:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234288AbjA0PLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 10:11:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44902 "EHLO
+        id S234197AbjA0PLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 10:11:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234276AbjA0PLe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 10:11:34 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFA928497E;
-        Fri, 27 Jan 2023 07:11:24 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30RElaZY003863;
-        Fri, 27 Jan 2023 15:11:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=1jlvNCE9cJaCe8gaYSf9W0/ZAru7UYQmH2Cf3/64PhM=;
- b=ChYi6zR/GiwtAE8+VKdLkYni9r93wiIpKKH000XveWnuBQxHxUQOP7FZogqPHgbkrJnf
- CclJgHWNLn6jS9TDXRhakLMEKk0JlVppXIF/SNbvcWtFhGk7DzFNuWWrtrOIfXxiKWoQ
- IWguEjGNxp4bwxa3aPeRliWNWF+kvjqwEriv6Svw4/5NU40aSYw3t8n8viai98wyFO4R
- Asi7IasPymMCHkiI55OH8rNh8RhJ+Xohf6XBdFtb+/2kYeAqubhIwcY88HrpUMimx++e
- NzOsndPDptl1ig0i1U0Y8gyLxMtw2E3ZF8CIY+efjpGRLgoN2q2/v0OCxe7P+V8N/xct bw== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ncavc0jp0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 27 Jan 2023 15:11:14 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30RFBDGY024612
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 27 Jan 2023 15:11:13 GMT
-Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Fri, 27 Jan 2023 07:11:10 -0800
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-To:     <linux-hardening@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     Mukesh Ojha <quic_mojha@quicinc.com>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH v3 2/2] pstore/ram: Rework logic for detecting ramoops
-Date:   Fri, 27 Jan 2023 20:40:36 +0530
-Message-ID: <1674832236-6754-2-git-send-email-quic_mojha@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1674832236-6754-1-git-send-email-quic_mojha@quicinc.com>
-References: <1674832236-6754-1-git-send-email-quic_mojha@quicinc.com>
+        with ESMTP id S234193AbjA0PLP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 10:11:15 -0500
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2079.outbound.protection.outlook.com [40.107.101.79])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D23FD7FA01;
+        Fri, 27 Jan 2023 07:11:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=l7YPNIpuaBZ8lpBTpV2EbEUrsUOTi1Q+UUvXDYUiitE4ey3eY4nGtT7wRTLc/mLQ5zjdpa/6Tw2BSrTJI22uwaSH8w/GmPGeQHcq2a8nvOmAB+TbuQrL7GDEj0fFH0jr6IH+j/CvgMGWaZM3+heQYHlaZuTooAhVJ3BFeD0SqHNhK52E0Uh2I3o7+534hZtmu4M/gqQoZUCxFEQQKPmk6AllVv9EyqI8smhMFpIzSAPl3B3xc2aXqtC8xag7Ed1DWo8P0JUa8UBvXDVvWNuqcl/7zUiV8am6q9Lascbo2+pdil/HKIYO98sw5zU9xJviWMaUdoN1PbHdNIyDaYeEsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5VceegR7S7XvPN3B3VWVjRViS+OfxXwJDhEfrM0/wa4=;
+ b=VnrOC57Iqk7wiUp/WZSTl3E+dzDO3O8pnObJGLrCC2vy20Vf3q/1EiwGu5/buDtCMTX3HFpamG1x5Fit+FzsIbFt/nwDh+sgmY+jifHm+2/kc4trhiQtENQ433gfnI6KzFLBHWsZh3zGckmKEounG5A9FodwkvESDAeS+U5KL2Xka/FJZLweNZzRsUcez4Uk033yY5CLe4r5/lof/RnbgjhAJX4GeID73eiirNGYCtSaEooj0WKnTitTr29YJ3CYZycyv+8tiDFd8EQyrSsY7xEmpUqIPHKDzsqi/Kma6tZpghZwlh942IC8V4jusrz5rT+59RbNpQu1hoST1JBnDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=linux.intel.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5VceegR7S7XvPN3B3VWVjRViS+OfxXwJDhEfrM0/wa4=;
+ b=h3KdygGcwhbbArv7FWTTg5WRVPNLy+VJiZcX7w4sleXCiw5pAjsTTdM1u/pSyavPJR6asB+Kkp7r1sOGB/Yvm4lZzSHD8m5UL0sHBLMG1aZztALbog99SeIiM23po/FFkWMQ9OJOSJ206ylTVoUZjHM2kZ181w6p8ZYqWUcp3CZa7XLJerBpxCPb5kcsHn166rEdUnYyPhjsM74NJDFm6+alHiZW3i2cxw4ezpjLfJof7E5kCgaW1ZFvkm3KK82hqq4H3NvKLhtMmnanISYJ164cs0tDmPRPC0t7DvhZ3mTmxHbV9Q/o/N0zBu4UcmahJ7B6wPA3qsDbNt17V5lqjw==
+Received: from MW4PR04CA0155.namprd04.prod.outlook.com (2603:10b6:303:85::10)
+ by SJ0PR12MB8091.namprd12.prod.outlook.com (2603:10b6:a03:4d5::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.22; Fri, 27 Jan
+ 2023 15:11:13 +0000
+Received: from CO1NAM11FT079.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:85:cafe::70) by MW4PR04CA0155.outlook.office365.com
+ (2603:10b6:303:85::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33 via Frontend
+ Transport; Fri, 27 Jan 2023 15:11:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ CO1NAM11FT079.mail.protection.outlook.com (10.13.175.134) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6043.22 via Frontend Transport; Fri, 27 Jan 2023 15:11:13 +0000
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 27 Jan
+ 2023 07:10:56 -0800
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail202.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 27 Jan
+ 2023 07:10:56 -0800
+Received: from moonraker.home (10.127.8.14) by mail.nvidia.com (10.129.68.7)
+ with Microsoft SMTP Server id 15.2.986.36 via Frontend Transport; Fri, 27 Jan
+ 2023 07:10:54 -0800
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, Wayne Chang <waynec@nvidia.com>,
+        Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH V9 2/6] i2c: nvidia-gpu: Add ACPI property to align with device-tree
+Date:   Fri, 27 Jan 2023 15:10:37 +0000
+Message-ID: <20230127151041.65751-3-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230127151041.65751-1-jonathanh@nvidia.com>
+References: <20230127151041.65751-1-jonathanh@nvidia.com>
 MIME-Version: 1.0
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: q-YUuMj3-EfMQtwdLzArUpIvEDonGQ-Y
-X-Proofpoint-ORIG-GUID: q-YUuMj3-EfMQtwdLzArUpIvEDonGQ-Y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-27_09,2023-01-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- lowpriorityscore=0 spamscore=0 phishscore=0 suspectscore=0 adultscore=0
- mlxlogscore=999 impostorscore=0 priorityscore=1501 bulkscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2301270143
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT079:EE_|SJ0PR12MB8091:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6dd9e26c-f3d6-4e58-ac82-08db0078bac2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6hVDjsBpzYgFup4uKeR/XhLgtxDU6+BNF6SVr+exqu2502DGj6LO0bqjZVVJ/7fgeCGDSmlvUylNBKTmGUghNxtUfytaODZ1OKiy3D4quOukqNVgBGBrnTAUq+6gefmXk3rDCjQjULVMg7PGkr7bZ+JFPxfI0I+iEIe52GW7OO83xWSP6SRPb6nVcajdSyhUJCI9zqCOYhOVTHv8GzW58PddcZa7bzYloyP0PKPEBKsACVlt/J0GKw/JqTDWF0u704T8RnzQaS+9YvkbERLUBTD1VgX8xDiBbsDqzAil6jYil33vnHfw9vDxlPC9x9pXf4iznOqYRCdycNZhlBb5RAeVc5hsQd+2P+TfBY+p+gL9SzcjOp97sEujz/1kFLAytWeC79q13c7ceB4HbIaxJZASxC5Wk3AyQQhHimVFsdkl/pPpnWpLgDCx83zyHER3V6I1PISEhGK5vWYnd44R5BZMYe3m9w8t7823grplv8VlGzs/ZgkFtuEc5nxIC6xsf+IsdR/CfOYiAqKj/JmBN4ZlZj21gIpl4k8pz6uMP/xDi8bx8/G/lsI+QiVuKcGr4iikJUobENAhTV6tuDX3eqXHsMZ8aea1PyNg8uFWNOcWLPVPEyXlzXauk6eMIvXEody98Dmn1yQA3otuc7hLWqdKRqcDisZSf9w6RCxgw7neu9Y7SED49ffdyYvSgGgyD3AqOPO6m2pqrswwnXa6mg==
+X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230025)(4636009)(346002)(376002)(136003)(39860400002)(396003)(451199018)(40470700004)(46966006)(36840700001)(356005)(70206006)(1076003)(316002)(54906003)(41300700001)(8676002)(7636003)(70586007)(36756003)(40460700003)(8936002)(5660300002)(86362001)(4326008)(40480700001)(2906002)(36860700001)(82740400003)(110136005)(26005)(478600001)(186003)(107886003)(426003)(6666004)(47076005)(82310400005)(336012)(2616005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2023 15:11:13.0890
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6dd9e26c-f3d6-4e58-ac82-08db0078bac2
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT079.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB8091
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reserved memory region for ramoops is assumed to be at a fixed
-and known location when read from the devicetree. This is not desirable
-in an environment where it is preferred the region to be dynamically
-allocated at runtime, as opposed to being fixed at compile time.
+From: Wayne Chang <waynec@nvidia.com>
 
-Also, some of the platforms might be still expecting dedicated
-memory region for ramoops node where the region is known beforehand
-and platform_get_resource() is used in that case.
+Device-tree uses the 'firmware-name' string property to pass a name of
+the firmware build to the Cypress CCGx driver. Add a new ACPI string
+property to the NVIDIA GPU I2C driver to align with device-tree so that
+we can migrate to using a common property name for both ACPI and
+device-tree.
 
-So, add logic to detect the start and size of the ramoops memory
-region by looking up reserved memory region with of_reserved_mem_lookup()
-api when platform_get_resource() fails also update the ramoops
-documentation,
-
-Cc: Kees Cook <keescook@chromium.org>
-Cc: Tony Luck <tony.luck@intel.com> 
-Cc: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: Jonathan Corbet <corbet@lwn.net>
-Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+Signed-off-by: Wayne Chang <waynec@nvidia.com>
+Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
+Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 ---
-Changes in v3:
- - Merged 2/3 and 3/3 into one.
-   https://lore.kernel.org/lkml/1673611126-13803-2-git-send-email-quic_mojha@quicinc.com/
-   https://lore.kernel.org/lkml/1673611126-13803-3-git-send-email-quic_mojha@quicinc.com/
+V9: no changes
+V8: no changes
+V7: Added Heikki's reviewed-by
+V6: no changes
+V5: Added this patch from V3
 
-Changes in v2:
- - Addressed the comments made by kees and Guilherme in v1.
+ drivers/i2c/busses/i2c-nvidia-gpu.c | 1 +
+ 1 file changed, 1 insertion(+)
 
- Documentation/admin-guide/ramoops.rst | 25 ++++++++++++++++++++++---
- fs/pstore/ram.c                       | 18 +++++++++++++-----
- 2 files changed, 35 insertions(+), 8 deletions(-)
-
-diff --git a/Documentation/admin-guide/ramoops.rst b/Documentation/admin-guide/ramoops.rst
-index e9f8514..f701fab 100644
---- a/Documentation/admin-guide/ramoops.rst
-+++ b/Documentation/admin-guide/ramoops.rst
-@@ -16,8 +16,9 @@ survive after a restart.
- Ramoops concepts
- ----------------
+diff --git a/drivers/i2c/busses/i2c-nvidia-gpu.c b/drivers/i2c/busses/i2c-nvidia-gpu.c
+index 12e330cd7635..6d81ea530a83 100644
+--- a/drivers/i2c/busses/i2c-nvidia-gpu.c
++++ b/drivers/i2c/busses/i2c-nvidia-gpu.c
+@@ -261,6 +261,7 @@ MODULE_DEVICE_TABLE(pci, gpu_i2c_ids);
+ static const struct property_entry ccgx_props[] = {
+ 	/* Use FW built for NVIDIA (nv) only */
+ 	PROPERTY_ENTRY_U16("ccgx,firmware-build", ('n' << 8) | 'v'),
++	PROPERTY_ENTRY_STRING("firmware-name", "nvidia,gpu"),
+ 	{ }
+ };
  
--Ramoops uses a predefined memory area to store the dump. The start and size
--and type of the memory area are set using three variables:
-+Ramoops uses both predefined and dynamically memory area to store the dump.
-+The start and size and type of the memory area are set using three
-+variables:
- 
-   * ``mem_address`` for the start
-   * ``mem_size`` for the size. The memory size will be rounded down to a
-@@ -70,7 +71,8 @@ Setting the ramoops parameters can be done in several different manners:
- 
-  B. Use Device Tree bindings, as described in
-  ``Documentation/devicetree/bindings/reserved-memory/ramoops.yaml``.
-- For example::
-+
-+ Example of statically reserved ramoops region::
- 
- 	reserved-memory {
- 		#address-cells = <2>;
-@@ -85,6 +87,23 @@ Setting the ramoops parameters can be done in several different manners:
- 		};
- 	};
- 
-+ Example of dynamically reserved ramoops region::
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		ramoops@8f000000 {
-+			compatible = "ramoops";
-+			alloc-ranges = <0x00000000 0xffffffff>;
-+			size = <0 0x100000>;
-+			record-size = <0x4000>;
-+			console-size = <0x4000>;
-+		};
-+	};
-+
-+
-  C. Use a platform device and set the platform data. The parameters can then
-  be set through that platform data. An example of doing that is:
- 
-diff --git a/fs/pstore/ram.c b/fs/pstore/ram.c
-index ade66db..17c9f46 100644
---- a/fs/pstore/ram.c
-+++ b/fs/pstore/ram.c
-@@ -20,6 +20,7 @@
- #include <linux/compiler.h>
- #include <linux/of.h>
- #include <linux/of_address.h>
-+#include <linux/of_reserved_mem.h>
- 
- #include "internal.h"
- #include "ram_internal.h"
-@@ -643,6 +644,7 @@ static int ramoops_parse_dt(struct platform_device *pdev,
- {
- 	struct device_node *of_node = pdev->dev.of_node;
- 	struct device_node *parent_node;
-+	struct reserved_mem *rmem;
- 	struct resource *res;
- 	u32 value;
- 	int ret;
-@@ -651,13 +653,19 @@ static int ramoops_parse_dt(struct platform_device *pdev,
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	if (!res) {
--		dev_err(&pdev->dev,
--			"failed to locate DT /reserved-memory resource\n");
--		return -EINVAL;
-+		rmem = of_reserved_mem_lookup(of_node);
-+		if (!rmem) {
-+			dev_err(&pdev->dev,
-+				"failed to locate DT /reserved-memory resource\n");
-+			return -EINVAL;
-+		}
-+		pdata->mem_size = rmem->size;
-+		pdata->mem_address = rmem->base;
-+	} else {
-+		pdata->mem_size = resource_size(res);
-+		pdata->mem_address = res->start;
- 	}
- 
--	pdata->mem_size = resource_size(res);
--	pdata->mem_address = res->start;
- 	/*
- 	 * Setting "unbuffered" is deprecated and will be ignored if
- 	 * "mem_type" is also specified.
 -- 
-2.7.4
+2.25.1
 
