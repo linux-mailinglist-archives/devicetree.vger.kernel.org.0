@@ -2,333 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5F0067F045
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 22:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C73367F048
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 22:18:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229776AbjA0VRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 16:17:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40400 "EHLO
+        id S229593AbjA0VR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 16:17:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbjA0VRZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 16:17:25 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA525834AC;
-        Fri, 27 Jan 2023 13:17:01 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id m2so16594604ejb.8;
-        Fri, 27 Jan 2023 13:17:01 -0800 (PST)
+        with ESMTP id S229981AbjA0VR5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 16:17:57 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53B171D90C
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:17:55 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id k16so4319723wms.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 13:17:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=h26lxS/rC2l6H34/Yb9jlhl/eiLIQrWyvYolxstx9ZU=;
-        b=ZZh9GBEqn54nWJUNtdar2XGzvYDp905CZtKPF/ej70WdbpP7wEG9UwoLXstS3QLAoQ
-         lq6GeQYUXwOYv4qNh09efX+kkCenuzhI0pmarnhYFJ74k3IsKEQGdiLUgCVySoEgNujX
-         a1HXWcJzR3eALGyGlqHE9XcuNTh6EddCDTzF71hkJxyYcPVLD7/MEtZYGB9TVtojSsQI
-         Tte+EQ+7NeE1+CdorD5B0KpMr3h5yJEJTXZP3qaJ2a50y0uilb4kaTK+SJmPBXcyex1u
-         GYxDCTzpl6D6FzU6JQyp1Wx/zQRfo2oT2MtoglNnzuL4aobG1TxATPX6r8tiT5wjjLAO
-         Ex+Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=n2CqnTIkfAqED0CQ9aF9DG/sLx9ru/fz+pepxlbDILA=;
+        b=NAX3/vBvZG6/s8AhSoJJmBMZWopusb2B7NRWdsTPrKQ+zYNDn+iIqAtAjx/ZNF2UI/
+         z3gLvKp2c/AkrCr5LrzvdCUQqU8hbaW1501X9Y5CRgLlGbk0n/dnrxae/9qnBXbztRtO
+         MDRSHFhM8UmFzozoJ9YVeODEQKnJaRB9tonDpCWa5OhWZNR+6TCfQwTs5EvPhiw3QUTW
+         qPVZkPSlOl+0SHZCry8Dn8kiqHb6jkZ/TbgCWlRuLeHxgVISHhq2Bhv90LCpYx1vQ2aU
+         lVM3dNPaKFw4pe8RpZaHUJ+4Rb0KfRlEdNqA89r8pEMAmM41fbS2bbduXT8EGKkWKbuA
+         znlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h26lxS/rC2l6H34/Yb9jlhl/eiLIQrWyvYolxstx9ZU=;
-        b=05xCixG1d8ESg0SwzL4/bS3Uf7nxq7BD72TXLEiD1ZVGaNc4eqvGQJyC/DySSrByqw
-         3Bh3Uu6OTJvKZXhDVctWE1MBjytMsxZKiobeW0JRmADaDL0Pd1h+p9k3pmkhEr0tr0GT
-         dpRF+sW1lRZVUwrH0Fix3o7exBibHC0QwK/Hc4a2R8AAlAkXryCi7NkqUOEnqK+m20Jc
-         MUf5TP837L11Gz33q2UadDioF2r0IIRDUB1E+Fj0jQU/PvnyDmh7lux3xE/y476BJRly
-         WipQPA5/DEgN7785HSDXo/FRpBaCPLgCC/kc6U9KKrNXdiOAAN8hrhfBRq5NV+ClrzNf
-         Zcdg==
-X-Gm-Message-State: AFqh2kpqxEVbb/Zz4BasxLsyU5xuzlAPGnUNOSGMafdHf2Nlqp51TrkW
-        i+fZYUi8Kol2lR/lFd4cbeQ=
-X-Google-Smtp-Source: AMrXdXtgitUgK1mde2F6rY4Kjvrr6+RQI6BeXmJS2UGgJna9J+wdXlOGjycXivglIOtjunJhYO9Qrw==
-X-Received: by 2002:a17:907:75e7:b0:871:3919:cbea with SMTP id jz7-20020a17090775e700b008713919cbeamr42386843ejc.54.1674854220232;
-        Fri, 27 Jan 2023 13:17:00 -0800 (PST)
-Received: from ?IPV6:2a01:c22:6e0f:9000:c8f2:6e21:84ed:c3a3? (dynamic-2a01-0c22-6e0f-9000-c8f2-6e21-84ed-c3a3.c22.pool.telefonica.de. [2a01:c22:6e0f:9000:c8f2:6e21:84ed:c3a3])
-        by smtp.googlemail.com with ESMTPSA id q18-20020a1709064c9200b0085ff3202ce7sm2869047eju.219.2023.01.27.13.16.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 13:16:59 -0800 (PST)
-Message-ID: <3ffd1889-1966-47a8-9504-d44e452d5a31@gmail.com>
-Date:   Fri, 27 Jan 2023 22:16:50 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v2] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
- binding
-To:     Rob Herring <robh+dt@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n2CqnTIkfAqED0CQ9aF9DG/sLx9ru/fz+pepxlbDILA=;
+        b=GYnGaOeP57rj5DKPTUNev6dKlZcgBb/XHAMCW0qWKdAAOsEZY2tUzz/EVFB+zPv4SI
+         M1fddBSZ+g3YnZ6wVbqO//psQCnu5ie9KCJSmgGrr4JKQaq2AVnNRg5NGT8OLz8/KPfn
+         P3jyRDk4sj+v8cOqKvOhn+QqSA3CUpBFkeOequTeqcPixfxZ8IfHIl3KaVdR6+QFhhq1
+         Syh4Qq0aX2K38pQWww56RZXsLrnO7aaDrZLQ1qvcfz4lDYksSnCaldB+0moZa7GguKTw
+         WGBcg3BlbdajnASALWdho2ExFQ7pp7iDCJgym9kyk4Oxt4rdKjsYq6fV4BQ5SCjfeqjx
+         vI4Q==
+X-Gm-Message-State: AFqh2krZQbPjPYrYy065GQbAI7uxt9BMpLGPYKMXQoAXsvkTwu2ryTl1
+        fuu4n+tk//YrMZtBLZ66rSBMpQ==
+X-Google-Smtp-Source: AMrXdXuAvXQR2Q0dQ5687sSwAmQYI3bktYVsYW/LUdQo+8U8qvC1x44cvRqs3S+hq8k5B0Me4mmBVQ==
+X-Received: by 2002:a1c:7712:0:b0:3da:1e35:dfec with SMTP id t18-20020a1c7712000000b003da1e35dfecmr41853351wmi.4.1674854273942;
+        Fri, 27 Jan 2023 13:17:53 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id b5-20020a05600c150500b003dafb0c8dfbsm6080811wmg.14.2023.01.27.13.17.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 13:17:53 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
-Content-Language: en-US
-In-Reply-To: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
+        Henrik Grimler <henrik@grimler.se>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: usb: samsung,exynos-dwc3: allow unit address in DTS
+Date:   Fri, 27 Jan 2023 22:17:48 +0100
+Message-Id: <20230127211748.260718-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Amlogic Meson pinctrl binding to yaml.
+The Samsung Exynos SoC USB 3.0 DWC3 Controller is a simple wrapper of
+actual DWC3 Controller device node.  It handles necessary Samsung
+Exynos-specific resources (regulators, clocks), but does not have its
+own MMIO address space.
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v2:
-- consider that more than one compatible can be set
-- remove bus part from example
----
- .../pinctrl/amlogic,meson-pinctrl.yaml        | 124 ++++++++++++++++++
- .../bindings/pinctrl/meson,pinctrl.txt        |  94 -------------
- 2 files changed, 124 insertions(+), 94 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
- delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+However neither simple-bus bindings nor dtc W=1 accept device nodes in
+soc@ node which do not have unit address.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
-new file mode 100644
-index 000000000..7ab6e2089
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
-@@ -0,0 +1,124 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic Meson pinmux controller
-+
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-+
-+allOf:
-+  - $ref: pinctrl.yaml#
-+
-+properties:
-+  compatible:
-+    minItems: 1
-+    maxItems: 2
-+    oneOf:
-+      - items:
-+          - enum:
-+              - amlogic,meson8-cbus-pinctrl
-+              - amlogic,meson8b-cbus-pinctrl
-+              - amlogic,meson8m2-cbus-pinctrl
-+              - amlogic,meson8-aobus-pinctrl
-+              - amlogic,meson8b-aobus-pinctrl
-+              - amlogic,meson8m2-aobus-pinctrl
-+              - amlogic,meson-gxbb-periphs-pinctrl
-+              - amlogic,meson-gxbb-aobus-pinctrl
-+              - amlogic,meson-gxl-periphs-pinctrl
-+              - amlogic,meson-gxl-aobus-pinctrl
-+              - amlogic,meson-axg-periphs-pinctrl
-+              - amlogic,meson-axg-aobus-pinctrl
-+              - amlogic,meson-g12a-periphs-pinctrl
-+              - amlogic,meson-g12a-aobus-pinctrl
-+              - amlogic,meson-a1-periphs-pinctrl
-+              - amlogic,meson-s4-periphs-pinctrl
-+      - items:
-+          - const: amlogic,meson8m2-aobus-pinctrl
-+          - const: amlogic,meson8-aobus-pinctrl
-+      - items:
-+          - const: amlogic,meson8m2-cbus-pinctrl
-+          - const: amlogic,meson8-cbus-pinctrl
-+
-+  ranges: true
-+
-+  "#address-cells":
-+    enum: [1, 2]
-+
-+  "#size-cells":
-+    enum: [1, 2]
-+
-+required:
-+  - compatible
-+  - ranges
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties:
-+  anyOf:
-+    - type: object
-+      allOf:
-+        - $ref: pincfg-node.yaml#
-+        - $ref: pinmux-node.yaml#
-+
-+patternProperties:
-+  "^bank@[0-9]$":
-+    type: object
-+    properties:
-+      reg:
-+        minItems: 5
-+        maxItems: 5
-+
-+      reg-names:
-+        items:
-+          - const: gpio
-+          - const: pull
-+          - const: pull-enable
-+          - const: mux
-+          - const: ds
-+
-+      gpio-controller: true
-+
-+      "#gpio-cells":
-+        const: 2
-+
-+      gpio-ranges:
-+        $ref: /schemas/types.yaml#/definitions/phandle
-+
-+    required:
-+      - reg
-+      - reg-names
-+      - gpio-controller
-+      - "#gpio-cells"
-+      - gpio-ranges
-+
-+examples:
-+  - |
-+    pinctrl {
-+      compatible = "amlogic,meson-g12a-periphs-pinctrl";
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+      ranges;
-+
-+      bank@40 {
-+        reg = <0x0 0x40  0x0 0x4c>,
-+              <0x0 0xe8  0x0 0x18>,
-+              <0x0 0x120 0x0 0x18>,
-+              <0x0 0x2c0 0x0 0x40>,
-+              <0x0 0x340 0x0 0x1c>;
-+        reg-names = "gpio", "pull", "pull-enable", "mux", "ds";
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        gpio-ranges = <&periphs_pinctrl 0 0 86>;
-+      };
-+
-+      cec_ao_a_h_pins: cec_ao_a_h {
-+        mux {
-+          groups = "cec_ao_a_h";
-+          function = "cec_ao_a_h";
-+          bias-disable;
-+        };
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
-deleted file mode 100644
-index 8146193bd..000000000
---- a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
-+++ /dev/null
-@@ -1,94 +0,0 @@
--== Amlogic Meson pinmux controller ==
--
--Required properties for the root node:
-- - compatible: one of "amlogic,meson8-cbus-pinctrl"
--		      "amlogic,meson8b-cbus-pinctrl"
--		      "amlogic,meson8m2-cbus-pinctrl"
--		      "amlogic,meson8-aobus-pinctrl"
--		      "amlogic,meson8b-aobus-pinctrl"
--		      "amlogic,meson8m2-aobus-pinctrl"
--		      "amlogic,meson-gxbb-periphs-pinctrl"
--		      "amlogic,meson-gxbb-aobus-pinctrl"
--		      "amlogic,meson-gxl-periphs-pinctrl"
--		      "amlogic,meson-gxl-aobus-pinctrl"
--		      "amlogic,meson-axg-periphs-pinctrl"
--		      "amlogic,meson-axg-aobus-pinctrl"
--		      "amlogic,meson-g12a-periphs-pinctrl"
--		      "amlogic,meson-g12a-aobus-pinctrl"
--		      "amlogic,meson-a1-periphs-pinctrl"
--		      "amlogic,meson-s4-periphs-pinctrl"
-- - reg: address and size of registers controlling irq functionality
--
--=== GPIO sub-nodes ===
--
--The GPIO bank for the controller is represented as a sub-node and it acts as a
--GPIO controller.
--
--Required properties for sub-nodes are:
-- - reg: should contain a list of address and size, one tuple for each entry
--   in reg-names.
-- - reg-names: an array of strings describing the "reg" entries.
--   Must contain "mux" and "gpio".
--   May contain "pull", "pull-enable" and "ds" when appropriate.
-- - gpio-controller: identifies the node as a gpio controller
-- - #gpio-cells: must be 2
--
--=== Other sub-nodes ===
--
--Child nodes without the "gpio-controller" represent some desired
--configuration for a pin or a group. Those nodes can be pinmux nodes or
--configuration nodes.
--
--Required properties for pinmux nodes are:
-- - groups: a list of pinmux groups. The list of all available groups
--   depends on the SoC and can be found in driver sources.
-- - function: the name of a function to activate for the specified set
--   of groups. The list of all available functions depends on the SoC
--   and can be found in driver sources.
--
--Required properties for configuration nodes:
-- - pins: a list of pin names
--
--Configuration nodes support the following generic properties, as
--described in file pinctrl-bindings.txt:
-- - "bias-disable"
-- - "bias-pull-up"
-- - "bias-pull-down"
-- - "output-enable"
-- - "output-disable"
-- - "output-low"
-- - "output-high"
--
--Optional properties :
-- - drive-strength-microamp: Drive strength for the specified pins in uA.
--			    This property is only valid for G12A and newer.
--
--=== Example ===
--
--	pinctrl: pinctrl@c1109880 {
--		compatible = "amlogic,meson8-cbus-pinctrl";
--		reg = <0xc1109880 0x10>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		ranges;
--
--		gpio: banks@c11080b0 {
--			reg = <0xc11080b0 0x28>,
--			      <0xc11080e8 0x18>,
--			      <0xc1108120 0x18>,
--			      <0xc1108030 0x30>;
--			reg-names = "mux", "pull", "pull-enable", "gpio";
--			gpio-controller;
--			#gpio-cells = <2>;
--               };
--
--		nand {
--			mux {
--				groups = "nand_io", "nand_io_ce0", "nand_io_ce1",
--					 "nand_io_rb0", "nand_ale", "nand_cle",
--					 "nand_wen_clk", "nand_ren_clk", "nand_dqs",
--					 "nand_ce2", "nand_ce3";
--				function = "nand";
--			};
--		};
--	};
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+---
+
+Changes since v1:
+1. Use ranges with values and drop reg from usb-wrapper node.
+2. Keep "usb" as wrapper's node name.
+
+DTS fixes are here:
+https://lore.kernel.org/linux-samsung-soc/20230127211527.260060-1-krzysztof.kozlowski@linaro.org/T/#t
+---
+ .../devicetree/bindings/usb/samsung,exynos-dwc3.yaml      | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
+index 6b9a3bcb3926..42ceaf13cd5d 100644
+--- a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
+@@ -108,19 +108,19 @@ examples:
+     #include <dt-bindings/clock/exynos5420.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+-    usb {
++    usb@12000000 {
+         compatible = "samsung,exynos5250-dwusb3";
+         #address-cells = <1>;
+         #size-cells = <1>;
+-        ranges;
++        ranges = <0x0 0x12000000 0x10000>;
+         clocks = <&clock CLK_USBD300>;
+         clock-names = "usbdrd30";
+         vdd33-supply = <&ldo9_reg>;
+         vdd10-supply = <&ldo11_reg>;
+ 
+-        usb@12000000 {
++        usb@0 {
+             compatible = "snps,dwc3";
+-            reg = <0x12000000 0x10000>;
++            reg = <0x0 0x10000>;
+             interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+             phys = <&usbdrd_phy0 0>, <&usbdrd_phy0 1>;
+             phy-names = "usb2-phy", "usb3-phy";
 -- 
-2.39.1
-
+2.34.1
 
