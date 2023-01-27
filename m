@@ -2,93 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3741667E09F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 10:47:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F134B67E0B8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 10:51:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233295AbjA0JrT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 04:47:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59198 "EHLO
+        id S232484AbjA0Jvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 04:51:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233235AbjA0JrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 04:47:12 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56B3D7BE79
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 01:47:07 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id l8so3024165wms.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 01:47:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HBIolSlZ00EwbeKxt9JEN283WvP67aZfjKFSntuEpWw=;
-        b=xMM3VO5T4P9E5qmtfMQrKqowljMqE0Jig9p/WmIy4oAW57OtbhDCzr8n609LTLRNy0
-         cOshi6gndyzzlBXqNxcQfSDUFY+FUZSwA8OcjF75kXZhNkebj5sKgtpFB67J93/PREOs
-         sy1bj5rnxVDft0eBeGjUKnZw80BbzhZbayy42A9oVtZZLbT4uF7GlM+nG+YbZaaLgR+b
-         PJsjHvZnPzQY1nFg/4P/FtBGPo1AocKQebCaZ489TXYAFoCcQLE0bQLu9NoCSda+JH7d
-         IYByK4kK/7Vl1P/ClvNfGS8uoKay3tcWtCioD4gKX6cOWlHJlpb2P02X++OTefMDCO8X
-         OYyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HBIolSlZ00EwbeKxt9JEN283WvP67aZfjKFSntuEpWw=;
-        b=fAyuVjOt3n/iwiBvJ+slFufdygaP71gdvhQEsDfQFyjKsxThJwLG+hvPHD3x6oYF2T
-         qKk8KIQ/iAgUtZmnCjzsXoBFFZPHHybflliM2XbVxhE+PQpT+lrxqiSraswzZohhdMPt
-         K+JGMHcRgfemFmmV2KtBwjA/ijkvFibHM+Yr30UEnu0KaXhld9CFB9/YUIEOn29CeTok
-         wDa34d102Y1AmVgN4bj3cxZYCiZ10FaG/292Fp5eqsV8nqauMBhrSsGngPEaXPo3dUh7
-         I/7OeiU5f82OX8Nky74SXoIvhDLmh+bSufDlXSrgC/pqivpL87SIkScZg7MOZ6CpUZn3
-         VLpQ==
-X-Gm-Message-State: AFqh2krHmyqoSKmoCptqp3gh4y/hldy5utvgbSDiv062nwvdVB+AA4aF
-        9tAVQBxd3NS81O6ri616Vs9Iuw==
-X-Google-Smtp-Source: AMrXdXvcM3Kdm6orrizc223QRtb+ndLyWOi5p5goOkVMJ8rcN3PCm+DMGrz4qGmvIoz+j+5byc8Aag==
-X-Received: by 2002:a05:600c:a4d:b0:3db:1d6:16f7 with SMTP id c13-20020a05600c0a4d00b003db01d616f7mr36374561wmq.23.1674812825815;
-        Fri, 27 Jan 2023 01:47:05 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h20-20020a05600c351400b003dc1300eab0sm8042087wmq.33.2023.01.27.01.47.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 01:47:05 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jisheng Zhang <jszhang@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] ARM: dts: berlin: align UART node name with bindings
-Date:   Fri, 27 Jan 2023 10:46:58 +0100
-Message-Id: <167481277325.62929.11022928494197799320.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230123151539.369654-1-krzysztof.kozlowski@linaro.org>
-References: <20230123151539.369654-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S231743AbjA0Jvq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 04:51:46 -0500
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA87D2713;
+        Fri, 27 Jan 2023 01:51:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674813105; x=1706349105;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZWP6U/h1buqDvrZDQgJO3Y6rjFGk3hK7uUv26Hnc6SY=;
+  b=iG/mm3HDa6YzH977juVQVf4trYcEdd8jVS0WF3burG1WprMo9WQCWdPt
+   zagbVhQUsR9mR7/ell8Y3vYl+oQ41n8hsj7i9awshob4mvyyGMLp8crmj
+   oJ3S0DRuThF5x8uz8Kxz2qozBw0il417AGHIoYwkfHeZD8dtb+UTsmd9d
+   RcEZ38fnHMQpkveLcxhe5CgEgorJZNJeb/tHK6VeEbzASN2PotlTycrlK
+   aCAT3J/b5QPWeJt+VWUo5vBXwsMLi1OiH2zwhs79XD1r96LTEWXXVb5rt
+   7KzMZ0IqB3adllrPiYYyHwkSucUds7KX7yg8/3Ft4eZEPlu1nWjgnXmuV
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="389428691"
+X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; 
+   d="scan'208";a="389428691"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2023 01:51:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="771520372"
+X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; 
+   d="scan'208";a="771520372"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP; 27 Jan 2023 01:51:26 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pLLOE-00Fu2l-0h;
+        Fri, 27 Jan 2023 11:51:22 +0200
+Date:   Fri, 27 Jan 2023 11:51:21 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Linux Kernel Functional Testing <lkft@linaro.org>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Maxim Kiselev <bigunclemax@gmail.com>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Jean-Philippe Brucker <jpb@kernel.org>,
+        kernel-team@android.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v2 10/11] irqchip/irq-imx-gpcv2: Mark fwnode device as
+ not initialized
+Message-ID: <Y9OemQgO9qoSdT1r@smile.fi.intel.com>
+References: <20230127001141.407071-1-saravanak@google.com>
+ <20230127001141.407071-11-saravanak@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230127001141.407071-11-saravanak@google.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Jan 2023 16:15:39 +0100, Krzysztof Kozlowski wrote:
-> Bindings expect UART/serial node names to be "serial".
-> 
-> 
+On Thu, Jan 26, 2023 at 04:11:37PM -0800, Saravana Kannan wrote:
+> Since this device is only partially initialized by the irqchip driver,
+> we need to mark the fwnode device as not initialized. This is to let
+> fw_devlink know that the device will be completely initialized at a
+> later point. That way, fw_devlink will continue to defer the probe of
+> the power domain consumers till the power domain driver successfully
+> binds to the struct device and completes the initialization of the
+> device.
 
-Applied, thanks!
+...
 
-Let me know if anyone preferred to take it via sub-arch/SoC maintainer tree.
-I'll drop it then.
+>  		pd_pdev->dev.of_node = np;
+> +		pd_pdev->dev.fwnode = of_fwnode_handle(np);
 
-[1/1] ARM: dts: berlin: align UART node name with bindings
-      https://git.kernel.org/krzk/linux-dt/c/2ba4ff82f9dd312fb9f77168f159698c93f4841b
+Instead,
 
-Best regards,
+		device_set_node(&pd_dev->dev, of_fwnode_handle(np));
+
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+With Best Regards,
+Andy Shevchenko
+
+
