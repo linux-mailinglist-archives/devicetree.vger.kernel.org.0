@@ -2,75 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1A5167E8F8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 16:09:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2911167E8E4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 16:05:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233302AbjA0PJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 10:09:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43604 "EHLO
+        id S234111AbjA0PFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 10:05:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234130AbjA0PJv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 10:09:51 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A9E77D6DE
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 07:09:49 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so3719378wmq.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 07:09:49 -0800 (PST)
+        with ESMTP id S229687AbjA0PFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 10:05:43 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1824A7BE69;
+        Fri, 27 Jan 2023 07:05:43 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso3680011wmq.5;
+        Fri, 27 Jan 2023 07:05:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=j0jUJd/CQgzPDX6Ls8mFyzSk5wGnBIKAgAJn2GoiB5c=;
-        b=EsG1Yau5s86uf5Ulabx6P3CgJcroBj5L1+yXU2rOTX6T6obuNJVyO3mLuOcPgRzwRI
-         Xn4IPKbxm9rSE6EWFu1zJK9LynxTkTCIQUqbrFIFNFZFP0zHQE3lJ3rFcZqsyBby1nPg
-         v+ihsEYBHXY0S2pZ2UTj41bQeV/JqXfziJ249veltvl42p3QhwRbKwlFWfq8Ec79GdxI
-         VJU4w1yegGnYKrYeQoYkCtCQKL87/H7JzN3XND6acqj/R4C666EHVBJFUxv6PHr7nVHB
-         K04vZvrCqNeubA7MkGrOeiurIOA1U/pEDqQ9AJ3/UWdsCbwpceilCKcBHRx1ECh5T3MO
-         X2sg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gepcoh1/hxUv6nKXHcQhtixyQIosb0XKZ35X3906qAc=;
+        b=NWDPk6+RdbArgGiYL2c5OoIy8HWhZyEEVG07FXCpyTehvXUE2Pbj6JtRkyyb+fAKkj
+         lmL1qZoIP+vYKEdjggclryVwDP34zv6/ghLS2wSes30w3la4h71562IhnhZkGr9PVnnB
+         AaWKkRvl3/CTBMCme5T4jjoQLn1gwPfhHachm8k2qF8bPt/2CUW+Ap30AsPBzy0xtUNA
+         QKi+CENchAych+BeBIREvESp9b3OPZYugMqUsiCkaSayIU3Vlok0qot4UdwlAl6Sw9Wy
+         3m8qFBVykVI5Fs43V7I4q4BMd79W2bURAEaKzdmJAgGV4R65Ssk+giv5+pbTaEyJv0Bh
+         Om5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=j0jUJd/CQgzPDX6Ls8mFyzSk5wGnBIKAgAJn2GoiB5c=;
-        b=yAOHfqh/ofXisJiw3fg3Ro3Dd+IWTyBA5W51cag2YDqnqJcX6i6VgMtcbwMHBGjUru
-         6aiXmjS05vSGTKSvVY3fCoZP2IHaQdgFmZv30hX3MVgj8X4ItpLTknBzwSdZd3p9ngKe
-         ApxfMGP1dC8P2obUY0slxKxXEm0UFBbZBzymYLu5f/uxa2n0/3+VLkCnNBP66QHOQIn6
-         JIO2xLeSqDmzZHRkWaA1ukC3biambK83KYYsvTG1X2AMrehR4GiKKGRcjzvHcQvgA+gc
-         QrYs6TqEgQrkQ5OMrydy/8+Mv3NPf6+G+WCypuy/EWyr2m9BQw4bgcGelZAGe5uwvJQx
-         Uhkw==
-X-Gm-Message-State: AFqh2kp+LVabvAhc8VsFgEuG4FPx0Wu2YImbsAvzg2U9ZnggSdxDYFoF
-        mN21CdbsoZ5BbjQ6nq0d/BDV/ZZ+mqMVgvIC
-X-Google-Smtp-Source: AMrXdXvkozPcTq7K2B7cKlRZyJSMVi1PkLFesIeEaZ9HL9hfOA6tXuYja9JC6RtWsDqBbTpWHfSg7g==
-X-Received: by 2002:a05:600c:684:b0:3cf:5d41:b748 with SMTP id a4-20020a05600c068400b003cf5d41b748mr47180244wmn.36.1674832187400;
-        Fri, 27 Jan 2023 07:09:47 -0800 (PST)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.gmail.com with ESMTPSA id hg6-20020a05600c538600b003dafbd859a6sm8012395wmb.43.2023.01.27.07.09.46
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gepcoh1/hxUv6nKXHcQhtixyQIosb0XKZ35X3906qAc=;
+        b=chIPXrRu6D5KSzRf74/pqy6xpVxD8KHG7oLSn9JKZPEdAgWd+1NEWCWJ4hMeh8/7ob
+         1bnJBhBA254tzP7oWulxVRXqLIT6ADVw7xfVGQnsqIgdfIl5xr20AQTPH7skfQLfyeR9
+         oueepp8X7SiB8eIubEm+Lvn17tKQbBeIUMQhsNIFRoauNllQJsiZvewFF1f7bdmxt1ef
+         mMd41QWEkLZgRIhpmZ/aWcc6TA0hefUyL+yNhEicOUXalaSNOEwNkuZXk7W6shZ0XyJm
+         xNOQCTRLEYgQQS3XqNEqajl+Xc07bS/E0Kp9vNFs5C1ABW1c/OdnT9SfBl2SHYehD/AR
+         Pm4A==
+X-Gm-Message-State: AFqh2kqXmMXnW3FWfzNtOON0H/K2wkXeeV3xj0WdeFzt05dnSZ/N52CU
+        awWAEBjqmJQh3ddUP1dR/bs=
+X-Google-Smtp-Source: AMrXdXuSp44ZwmQGg0LnuJYoMK1vu0OceJljCbHt02EaiC/wLkMHGzV3oBGBHANWrskj1koMT2WeAQ==
+X-Received: by 2002:a05:600c:5386:b0:3cf:9844:7b11 with SMTP id hg6-20020a05600c538600b003cf98447b11mr41889835wmb.23.1674831941414;
+        Fri, 27 Jan 2023 07:05:41 -0800 (PST)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id l4-20020a7bc444000000b003db03725e86sm4573395wmi.8.2023.01.27.07.05.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 07:09:46 -0800 (PST)
-References: <d9721029-780e-09f1-0207-72d3897032a4@gmail.com>
- <f06d1676-4fce-846d-d8fe-fa68439b119e@linaro.org>
- <84d40502-fe1a-ef61-e945-9c581557f528@gmail.com>
-User-agent: mu4e 1.8.10; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Heiner Kallweit <hkallweit1@gmail.com>, neil.armstrong@linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
+        Fri, 27 Jan 2023 07:05:40 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
         Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH v2] arm64: dts: amlogic: Make mmc host controller
- interrupts level-sensitive
-Date:   Fri, 27 Jan 2023 16:04:29 +0100
-In-reply-to: <84d40502-fe1a-ef61-e945-9c581557f528@gmail.com>
-Message-ID: <1jedrg6mkl.fsf@starbuckisacylon.baylibre.com>
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/2] dt-bindings: arm: amlogic: add support for Radxa Zero2
+Date:   Fri, 27 Jan 2023 15:05:35 +0000
+Message-Id: <20230127150536.3719090-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,45 +75,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The Radxa Zero2 is a small form-factor SBC using the Amlogic
+A311D chip.
 
-On Fri 27 Jan 2023 at 14:02, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes from v1:
+- Add Krzysztof's Ack
 
-> On 27.01.2023 08:59, Neil Armstrong wrote:
->> Hi,
->> 
->> On 26/01/2023 15:03, Heiner Kallweit wrote:
->>> The usage of edge-triggered interrupts lead to lost interrupts under load,
->>> see [0]. This was confirmed to be fixed by using level-triggered
->>> interrupts.
->>> The report was about SDIO. However, as the host controller is the same
->>> for SD and MMC, apply the change to all mmc controller instances.
->> 
->> Thanks, I applied it in for-next so it runs on the CI tests.
->> 
->>>
->>> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
->>>
->>> Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
->> 
->> I think we should find a better Fixes or perhaps split in 3 so it targets the
->> right commit adding the nodes for each family.
->> 
-> This would be the cleanest option, right. Practically it shouldn't make
-> much of a difference. The chosen commit is from 2019, SDIO interrupt
-> support has been added just recently, and regarding MMC/SD it seems no
-> problems caused by edge-triggered interrupts are known.
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-... Well, I wonder is this might be linked to instabilities seen with
-very high speed mode (such as SDR104) and DDR modes. We have seen quite
-a lot of those over the years. In any case, if it helps stabilize the
-MMC on amlogic, it would be great if it can be picked up by stable.
-
->
->> If the test doesn't report any breakage, I'll probably ask you that.
->> 
-> Sure.
->
->> Neil
->> 
-> Heiner
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 8aa6b6a92c29..6e3cb5a0d879 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -154,6 +154,7 @@ properties:
+         items:
+           - enum:
+               - khadas,vim3
++              - radxa,zero2
+           - const: amlogic,a311d
+           - const: amlogic,g12b
+ 
+-- 
+2.34.1
 
