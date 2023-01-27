@@ -2,125 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7855C67ED53
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 19:20:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 908C767ED44
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jan 2023 19:17:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235298AbjA0SUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 13:20:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55790 "EHLO
+        id S233585AbjA0SR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 13:17:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235386AbjA0SUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 13:20:04 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 979D7CC01;
-        Fri, 27 Jan 2023 10:19:44 -0800 (PST)
-Received: from ideasonboard.com (host-212-171-97-20.pool212171.interbusiness.it [212.171.97.20])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AD5762B3;
-        Fri, 27 Jan 2023 19:14:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1674843279;
-        bh=432fOub6+T9ejfd3EjZ2DVOwmKtgtJLdRjADvmgtqIU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gFxLHR9PzItUTulp0FkdHEZoMG/AHpzMnywXBptQeiG7IludHniQ6Zq9yJApojkbk
-         lrwxdKMyuiUZnytnJZ3+Yr+XXR5AGbR3IZWcmiBp8fb8nUv2oBvm2sKVyIauXvsPFC
-         3S7Etj0VLi8yP9+u11Yw1JLfBlPianzgnMNqXLMM=
-Date:   Fri, 27 Jan 2023 19:14:35 +0100
-From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
-        Luca Weiss <luca@z3ntu.xyz>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/9] media: dt-bindings: Add OV5670
-Message-ID: <20230127181435.3d5rnrg5omxhn6l7@uno.localdomain>
-References: <20230126165909.121302-1-jacopo.mondi@ideasonboard.com>
- <20230126165909.121302-2-jacopo.mondi@ideasonboard.com>
- <482b464b-c5fb-8af2-b0f7-4388fccea3fd@linaro.org>
+        with ESMTP id S233859AbjA0SR3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 13:17:29 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D908496F
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 10:16:46 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id cf42so9460127lfb.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 10:16:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TdY0ESoBUaWZOArZ4vbd/ZemLGuFiIQedZqcEf/+K3U=;
+        b=e/sDelb/tJo8tE/e2g1IyrTy165rcKSrlvn3QwBk5D/AezBI28mLMdK9E+yjxgs6/z
+         3Rocx/zh2Dhi/IDlaBPTbv4WaHNP7v8rU9GxfuOmWdEBCdVDwCmIMSs9kwh0VzJ5JNfY
+         surZuIX2m3ZdlPA0SaPNAodVPcnDW+vwYjwc/Z1Rj7+V+B1OupxnAK/Lw5y+y78QReay
+         67drD+13oD7vOoKL+5C6sqqiKyTQjiOnK8Ut0J1zEry5Ia6k0Wgmpog+rjOiZrjo+vdF
+         JxpO3IZ+2NlBHVItcH29N6RSeLw6rqzEvPaaptlTN5SgE2UNy33Ej1bs6sKI3EjAq7tX
+         Navg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TdY0ESoBUaWZOArZ4vbd/ZemLGuFiIQedZqcEf/+K3U=;
+        b=buFiFB1tPjeAfspo3Vy3v9ha6BQbxO37CWaYdLGbIjML9Hwm7jIwq3/03oVswVEPR/
+         AeqcgNFBQv0nnbN3i5JmDeWDE5oERqW9nnjdz8DHxLaV7HJz/jGO7jO/MpH6LQU3G0k+
+         nAmhD5GdPX6JruxhGuTXJe+P/2/5lp5at44OAqaZn8YvtdvvidSPXqWnqeeqz3eA+TMQ
+         eoN84wi1prpt2aqn6nMOyx82iwF446vhwGU8Dd56czYzGIhZ+gqmCQa4HI0wCY9MPcz8
+         VnKf450qAb1rxVem0FwVT8qsdaTetzODZPPQycS6ghoXUWkWQSK9iTbKGRmOPb7EGJ3u
+         DcvA==
+X-Gm-Message-State: AFqh2kqjyM7gem5qQGQCK304O+x+LpF3yeN3qN2EqFNjQZ2VaOgfNHty
+        ZzM4hsw2EApUqTXdEa0i05Fc0w==
+X-Google-Smtp-Source: AMrXdXs+VRosPsnuZ3eEvFioqHrKCKqFZEcHh81RW5sZkjmCc4T+79oJt1dTSYNoGXShlhCinXgCng==
+X-Received: by 2002:a05:6512:1044:b0:4b6:ec96:bb9a with SMTP id c4-20020a056512104400b004b6ec96bb9amr13594948lfb.60.1674843329982;
+        Fri, 27 Jan 2023 10:15:29 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id 13-20020ac2482d000000b004cafe65883dsm324170lft.122.2023.01.27.10.15.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 10:15:29 -0800 (PST)
+Message-ID: <92240215-b336-48c8-d9f0-a33890f44907@linaro.org>
+Date:   Fri, 27 Jan 2023 20:15:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <482b464b-c5fb-8af2-b0f7-4388fccea3fd@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v5 0/7] clk: qcom: msm8996: add APCS clock driver
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230126230319.3977109-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230126230319.3977109-1-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
+On 27/01/2023 01:03, Dmitry Baryshkov wrote:
+> The sys_apcs_aux clock can be used by CPU and CBF clock drivers to drive
+> those clocks from GPLL0 while doing initial setup. Add simple driver to
+> setup and export this clock.
 
-On Fri, Jan 27, 2023 at 03:19:08PM +0100, Krzysztof Kozlowski wrote:
-> On 26/01/2023 17:59, Jacopo Mondi wrote:
-> > Add the bindings documentation for Omnivision OV5670 image sensor.
-> >
-> > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> > ---
->
-> (...)
->
-> > +
-> > +  dovdd-supply:
-> > +    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
-> > +
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          data-lanes:
-> > +            minItems: 1
-> > +            maxItems: 2
-> > +            items:
-> > +              enum: [1, 2]
-> > +
-> > +          clock-noncontinuous: true
->
-> You do not need this. Drop.
->
+Jassi, please excuse me for this ping. Since the only questions are 
+related to the clock driver (and hopefully they all are resolved), do 
+you plan to merge the patches 1-6 for 6.3?
 
-Is this due to "unevaluatedProperties: false" ?
+> 
+> Changes since v4:
+> - Expand comments in the apcs-msm8996 driver describing the delay and
+>    the reason for setting up the sys_apcs_aux clock as a fixed rate
+>    rather than a fixed factor clock.
+> 
+> Changes since v3:
+> - Split the patch 3/6 into two: first one moves existing strings, second
+>    one adds new compatible strings to the conditionals.
+> 
+> Changes since v2:
+> - Added the conditional clause to schema forbidding usage of clocks and
+>    clock-names on platforms which do not pass additional clocks to the
+>    APCS device node (Krzysztof)
+> - Added SDX55 compat string
+> - Moved MSM8976 compat to the list of platforms using syscon.
+> 
+> Changes since v1:
+> - Removed the clk.h header inclusion (Stephen)
+> - Changed the module license from GPL v2 to bare GPL.
+> 
+> 
+> Dmitry Baryshkov (7):
+>    dt-bindings: mailbox: qcom: add SDX55 compatible
+>    dt-bindings: mailbox: qcom: enable syscon compatible for msm8976
+>    dt-bindings: mailbox: qcom: correct the list of platforms using clocks
+>    dt-bindings: mailbox: qcom: add missing platforms to conditional
+>      clauses
+>    dt-bindings: mailbox: qcom: add #clock-cells to msm8996 example
+>    mailbox: qcom-apcs-ipc: enable APCS clock device for MSM8996
+>    clk: qcom: add the driver for the MSM8996 APCS clocks
+> 
+>   .../mailbox/qcom,apcs-kpss-global.yaml        | 37 ++++++--
+>   drivers/clk/qcom/Makefile                     |  2 +-
+>   drivers/clk/qcom/apcs-msm8996.c               | 88 +++++++++++++++++++
+>   drivers/mailbox/qcom-apcs-ipc-mailbox.c       |  2 +-
+>   4 files changed, 118 insertions(+), 11 deletions(-)
+>   create mode 100644 drivers/clk/qcom/apcs-msm8996.c
+> 
 
-I read you recent explanation to a similar question on the Visconti
-bindings. Let me summarize my understanding:
+-- 
+With best wishes
+Dmitry
 
-For a given schema a property could be
-- required
-        required:
-          - foo
-
-- optional
-        by default with "unevaluatedProperties: false"
-        "foo: true" with "additionalProperties: false"
-
-- forbidden
-        "foo: false" with "unevaluatedProperties: false"
-        by default wiht "additionalProperties: false"
-
-clock-noncontinuous is defined in video-interfaces.yaml. as I specify
-"unevaluatedProperties: false" does it mean
-all the properties defined in video-interfaces.yaml are optionally
-accepted ? If that's the case that's not what I want as
-clock-noncontinuous is -the only- property from that file we want to
-accept here (and data-lanes ofc).
-
-Should I change "unevaluatedProperties: false" to
-"additionalProperties: false" and keep "clock-noncontinuous: true"  ?
-
-Thanks
-   j
-
-> > +
->
-> Best regards,
-> Krzysztof
->
