@@ -2,124 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6113C67F8B4
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 15:31:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40C4067F8E2
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 15:59:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234389AbjA1Oaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 09:30:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59944 "EHLO
+        id S230474AbjA1O7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 09:59:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234210AbjA1Oax (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 09:30:53 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E885D4B8B2
-        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 06:30:51 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id m12so7133682edq.5
-        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 06:30:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9YmUIiWvEj/OlD5nGw0BxToo9ydjOw0J75PDbpyJ/x0=;
-        b=gXVap0kjUnx4txDs6Nuabhj2btiX70cjn4iws+yCEWWNuC9AK4gCOGXRLUqO31vB5s
-         2ZiyJzZFMxDjHxznxTzdRshnxsDru5wM39skVG7H21egc87yz2RXZeDCNT1HZAT1BmZ6
-         zo5kE5BMdKTixR13HfAQaZWacoAj+hm64hO979fB5cf3DpQkx/lMkjZfoBxWQ68IoW28
-         pDnzMUBD/p7LG339pMbSpCQFtsGBT5czm2ZtTfANuqQPpefZwlQ6Gsk4xEISQYo7zPU4
-         XW0LQnjoM3RlDkIWNqK0GaEDBqGauUxx9DZmdYNUNLVOYgP7aUwMi9s9ACP7YFJlKpPG
-         O8CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9YmUIiWvEj/OlD5nGw0BxToo9ydjOw0J75PDbpyJ/x0=;
-        b=q/RlGZ77CmQBCRV/ND5d86GphuxkKyLLTgLH4b+BuybAJFuoHsecR78jYzo/TT1MM1
-         raq2F8PCOeCazZYKKw4w9X6Lf2RpcojMSZhJot46zkp1gFbX91TvszW37eufMAhsQ2nJ
-         D+6nLkHmRYlBX4C9dVkEXiA5Qp/d0HhdHkG9hPYW6zKzOoEzmM+2xC99J6vSa+5/vXdN
-         FLgXVIkSMHM6uBfGqHvIu66XBcenpAB7E7gCJB75Z7D+9T+yzMRkCIu0mTEg4d/fAnfq
-         VeKDzQ6E8GeyY9NO4x3zGZuwQprzktGqlLJh8Fy1nR5rU1Jcf8clvr9JRbUdop5lexok
-         wrGw==
-X-Gm-Message-State: AFqh2kqaEQNIRna5vPUkxnaZyAlSh3bMR7pB9V4LsZ/MMxjkmwRN3P+1
-        6/MFpAOgFmXInRIlST+nt41D0w==
-X-Google-Smtp-Source: AMrXdXtP3VFcy8JI4mmQAd3j6xdOB4Uo/R/8C7tIhmT07fUfZam2J/X+W3hgeqR3fe8Ww75pSscS0w==
-X-Received: by 2002:a05:6402:10c9:b0:49d:a87f:ba78 with SMTP id p9-20020a05640210c900b0049da87fba78mr44641434edu.35.1674916250518;
-        Sat, 28 Jan 2023 06:30:50 -0800 (PST)
-Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
-        by smtp.gmail.com with ESMTPSA id t13-20020a50d70d000000b00458b41d9460sm3997228edi.92.2023.01.28.06.30.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Jan 2023 06:30:48 -0800 (PST)
-Message-ID: <f8590655-3869-d905-ebad-347b8c9ae8dd@linaro.org>
-Date:   Sat, 28 Jan 2023 15:30:46 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] arm64: dts: qcom: msm8992-lg-bullhead: Correct memory
- overlap with SMEM region
-To:     Jamie Douglass <jamiemdouglass@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229643AbjA1O7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 09:59:41 -0500
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 661AD222F9;
+        Sat, 28 Jan 2023 06:59:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674917980; x=1706453980;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=E1sC9VVtz6EjcL5Ojj73egWWcSigPsuNkiOMnVD4hmU=;
+  b=Dgt3SMSS1/7ZNlPCjte5iET+osw7yRbbV4NlLHX9xziAWcJJ6pXsL0Od
+   CS1vetZ17JQTdEZZBbd1YUAjP/Nw9HPJuZtn0fIDzse54/ZPJzNExDAeg
+   tZ7gzv61en+LQgLGF135jQHZ1KmuUXlJzFsBKLj4bX4OdochBK4YJcUV/
+   tMT+g4bigiU8CZviHKdsc7P/75E9Q9qlQZ21/eN3LwTmifrAzg2WWWdCd
+   damXW7lupPUMG49c0X9Vpv9ZHDkWCcvqSudBZ8+fjxqSjDw51jk+0PklG
+   XwpWsysiE1uE1xIydQDj2/3q1wjrMRBaC8Ix/JT4eRt+kJcfxJI5ihgKt
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="324989750"
+X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
+   d="scan'208";a="324989750"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2023 06:59:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="771925211"
+X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
+   d="scan'208";a="771925211"
+Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 28 Jan 2023 06:59:36 -0800
+Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pLmg3-0000on-23;
+        Sat, 28 Jan 2023 14:59:35 +0000
+Date:   Sat, 28 Jan 2023 22:58:47 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Alexandre Ghiti <alexghiti@rivosinc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Petr Vorel <petr.vorel@gmail.com>,
-        Dominik Kobinski <dominikkobinski314@gmail.com>,
-        Konrad Dybico <konrad.dybico@linaro.org>
-References: <20230128055214.33648-1-jamiemdouglass@gmail.com>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230128055214.33648-1-jamiemdouglass@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Frank Rowand <frowand.list@gmail.com>,
+        Conor Dooley <conor@kernel.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Alexandre Ghiti <alexghiti@rivosinc.com>
+Subject: Re: [PATCH v5 1/2] riscv: Get rid of riscv_pfn_base variable
+Message-ID: <202301282230.sz4DCUe6-lkp@intel.com>
+References: <20230125081214.1576313-2-alexghiti@rivosinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230125081214.1576313-2-alexghiti@rivosinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Alexandre,
+
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.2-rc5 next-20230127]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Alexandre-Ghiti/riscv-Get-rid-of-riscv_pfn_base-variable/20230125-161537
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230125081214.1576313-2-alexghiti%40rivosinc.com
+patch subject: [PATCH v5 1/2] riscv: Get rid of riscv_pfn_base variable
+config: riscv-allnoconfig (https://download.01.org/0day-ci/archive/20230128/202301282230.sz4DCUe6-lkp@intel.com/config)
+compiler: riscv64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/90b21402dc8a7e6e36a62ad19c4969ff13fad168
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Alexandre-Ghiti/riscv-Get-rid-of-riscv_pfn_base-variable/20230125-161537
+        git checkout 90b21402dc8a7e6e36a62ad19c4969ff13fad168
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=riscv olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/asm-generic/bug.h:22,
+                    from arch/riscv/include/asm/bug.h:83,
+                    from include/linux/bug.h:5,
+                    from arch/riscv/include/asm/cmpxchg.h:9,
+                    from arch/riscv/include/asm/atomic.h:19,
+                    from include/linux/atomic.h:7,
+                    from include/linux/jump_label.h:255,
+                    from arch/riscv/include/asm/vdso/processor.h:7,
+                    from include/vdso/processor.h:10,
+                    from arch/riscv/include/asm/processor.h:11,
+                    from arch/riscv/include/asm/irqflags.h:10,
+                    from include/linux/irqflags.h:16,
+                    from arch/riscv/include/asm/bitops.h:14,
+                    from include/linux/bitops.h:68,
+                    from include/linux/kernel.h:22,
+                    from mm/debug.c:9:
+   mm/debug.c: In function '__dump_page':
+>> include/linux/kern_levels.h:5:25: warning: format '%lx' expects argument of type 'long unsigned int', but argument 7 has type 'long long unsigned int' [-Wformat=]
+       5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+         |                         ^~~~~~
+   include/linux/printk.h:429:25: note: in definition of macro 'printk_index_wrap'
+     429 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+         |                         ^~~~
+   include/linux/printk.h:510:9: note: in expansion of macro 'printk'
+     510 |         printk(KERN_WARNING pr_fmt(fmt), ##__VA_ARGS__)
+         |         ^~~~~~
+   include/linux/kern_levels.h:12:25: note: in expansion of macro 'KERN_SOH'
+      12 | #define KERN_WARNING    KERN_SOH "4"    /* warning conditions */
+         |                         ^~~~~~~~
+   include/linux/printk.h:510:16: note: in expansion of macro 'KERN_WARNING'
+     510 |         printk(KERN_WARNING pr_fmt(fmt), ##__VA_ARGS__)
+         |                ^~~~~~~~~~~~
+   mm/debug.c:93:9: note: in expansion of macro 'pr_warn'
+      93 |         pr_warn("page:%p refcount:%d mapcount:%d mapping:%p index:%#lx pfn:%#lx\n",
+         |         ^~~~~~~
 
 
-On 28.01.2023 06:52, Jamie Douglass wrote:
-> A previously committed reserved memory region was overlapping with the
-> SMEM memory region, causing an error message in dmesg:
-> 	OF: reserved mem: OVERLAP DETECTED!
-> 	reserved@5000000 (0x0000000005000000--0x0000000007200000)
-> 	overlaps with smem_region@6a00000
-> 	(0x0000000006a00000--0x0000000006c00000)
-> This patch splits the previous reserved memory region into two
-> reserved sections either side of the SMEM memory region.
-> 
-> Signed-off-by: Jamie Douglass <jamiemdouglass@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi b/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
-> index 79de9cc395c4..5e375ea73c79 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
-> @@ -53,8 +53,13 @@ cont_splash_mem: memory@3400000 {
->  			no-map;
->  		};
->  
-> -		removed_region: reserved@5000000 {
-> -			reg = <0 0x05000000 0 0x2200000>;
-> +		reserved@5000000 {
-> +			reg = <0x0 0x05000000 0x0 0x1a00000>;
-> +			no-map;
-> +		};
-> +
-> +		reserved@6c00000 {
-> +			reg = <0x0 0x06c00000 0x0 0x400000>;
-I think you made this 0x200000 too small, unless there
-is supposed to be functional change.
+vim +5 include/linux/kern_levels.h
 
-Konrad
->  			no-map;
->  		};
->  	};
+314ba3520e513a Joe Perches 2012-07-30  4  
+04d2c8c83d0e3a Joe Perches 2012-07-30 @5  #define KERN_SOH	"\001"		/* ASCII Start Of Header */
+04d2c8c83d0e3a Joe Perches 2012-07-30  6  #define KERN_SOH_ASCII	'\001'
+04d2c8c83d0e3a Joe Perches 2012-07-30  7  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
