@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA33467F5A3
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 08:35:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35D3867F5A6
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 08:35:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232455AbjA1HfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 02:35:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36760 "EHLO
+        id S233798AbjA1HfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 02:35:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234095AbjA1HfH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 02:35:07 -0500
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E71C8CC43
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:34:48 -0800 (PST)
-Received: by mail-pl1-x62f.google.com with SMTP id m2so2072220plg.4
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:34:48 -0800 (PST)
+        with ESMTP id S233672AbjA1HfK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 02:35:10 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09C8E43455
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:34:57 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id b6so4554486pgi.7
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:34:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7LfU4NdFCY9mc96XzAftKL5sqMzYNYpuz0VuvSMcGko=;
-        b=aOMpWODzMbhFL3U0nhkxf3JtSAEDLPoYqjDVsAiPDjmpzGOhoHNHzmJATT2eXZbmFT
-         QhaNHRZiE0UXHnzwCAuJgyJHBBZB4sJRLsdKHLlCiTOTYwTx4S3CA3s+YiYTpTCbFHy/
-         Hp7Vhw4OpgMmE2PKnWTnxvPG5mLSurQjgiUWvv9PxtPSVqMTEh+zWMbpZiADnhmP4Wie
-         CdeUNIUGGwzwf6D4pxWwzgYYB7EeHgRugrq/8Kcdxtl1Ifn4VjvnFsRT9d/x6DrHN52V
-         LjsGBYLIlOOdfEc4rHTKV78v1buVq2Zs6KS92a4vsDyenvGrfrokDe7zk5qyS79UXHN7
-         CEBA==
+        bh=VSzzcrZHpCAhZ5ULfCoy554S0eFulAfOQZjabEFT0U8=;
+        b=T6LKh5CR8Si1HhKOUOGGGtZ6+5L8QCDzffO83OhZP2wPlLcupyHUy8bxsfcm8v8cZ/
+         j/3yaxzN8/IO3o6B/J2ZsXS3POXQlpJG5U9RkT8mKeAbGUGrJsmRBdHQ2xULA4UQhGqf
+         zKLVdpZ1DrH+Ji4aokYjjs7mbouXc5esEsTOJ/ntzTKiT6IkydC8+bkHwec1Og+MUxr0
+         hXNtqQGQVu8qI2xASbYOzyQVR63cGIoNL3Me9EcDqvlg2CkGQqU8vPcIbc6cvzwKo+70
+         ZUFzjUxjTnxSefwef5FGjcIYJ5dpXAlOlag4Rt23C89TQdrXibm+UEG3fZfhVxtUazd9
+         9bkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7LfU4NdFCY9mc96XzAftKL5sqMzYNYpuz0VuvSMcGko=;
-        b=nCZPitAj5hLIxnofpLpy7ujq9wkQsOfFvha5UyCr+kpcyL2LgYCSq8xmFVhJOjBq+W
-         i1fUyFpxuaEcvZPU7jbfxCDfoRzP7dIogZTl8EYItwSy9pDoCtKGC2z/NaSB0aNnN5jj
-         NTgHl66X/rUMNg0I1qLQfmTn8KM/OFn1CDAzK6wAlbcIlJKYOMDM7V7KvYBR7m2840pS
-         KzGfCGVFB8dAVLn8/d+ym6KIxNStFS80y+VHnhHOzcy2/FbKJEH09hRPrLJO2LbPU86a
-         jw7VPt3HQumpCI9CfY+aBxnwCDvPg5JF21iXpdWJluqMy98WR9JQd/w96vWqfbkOMh5S
-         5CMw==
-X-Gm-Message-State: AFqh2kpiFMD0qoxrWm9S6u33hPSVQ+XxbFu2U2cFPT7jYVqzZzwpGZMo
-        YRIsGzFa2/k05TFBGfZKXxyNhLSbwgGO+Eknz5GWJg==
-X-Google-Smtp-Source: AMrXdXtm2ZrkaA0rw5RqDWYgPn1YG+GpZT4pmxbZ4JYnhM7L8m57SoxRptL9ssm4sTwpAl2zFa006VRnLiy4NJFPcco=
-X-Received: by 2002:a17:90a:7e8d:b0:225:d307:95ce with SMTP id
- j13-20020a17090a7e8d00b00225d30795cemr5435468pjl.136.1674891287679; Fri, 27
- Jan 2023 23:34:47 -0800 (PST)
+        bh=VSzzcrZHpCAhZ5ULfCoy554S0eFulAfOQZjabEFT0U8=;
+        b=Z0QfECQ8HMCESTtLsIPQ0gq+k0nqti+IhqtvRXYncIKHgrYpxy0EIhsfm+5O12ihpQ
+         wikUTi64eC+482JzhuXX1ck7xfe3Ky7VTk3XQFVkjgVMLjw2FOMonT2H3z/1rCVd5wjd
+         SbUZTUKJ09xEwg6Z5iaBjAuTrMCJHl7ivx0dIavacaPzb85AeH9z9rBbq/V7fhQVdrYT
+         5L2mg7SIZ7UszMNsvpBvIH307QQOSDvHv30Ys0JfQ5T28qkwlJ0k2RI3rgY/BgqR6XnT
+         vcvJQrsLFLOtX1snhBQPK4MuwcWpA3tUcgStwHmEbR08OnY1JnbnIhk/EdT/0G/96TeV
+         Vkaw==
+X-Gm-Message-State: AFqh2kr2/K3CG386P6s12YXaA0hleHrKdI8TuJFakssooJZG2Enm1eTL
+        0Smux8Rb0iGhmJWKzRT2ILjDKqwsuAc9e9gCNMzmwg==
+X-Google-Smtp-Source: AMrXdXswL1uNSyC4P6OZZsmWvEys2JlxAMsY9Dtx/ZhkSOaPgA1JW1DbGLOznM5iRN4ulYnMstMca6Cy78SGFhjnIGo=
+X-Received: by 2002:aa7:820f:0:b0:58d:a713:d1dd with SMTP id
+ k15-20020aa7820f000000b0058da713d1ddmr5316394pfi.59.1674891296202; Fri, 27
+ Jan 2023 23:34:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20230127001141.407071-1-saravanak@google.com> <20230127001141.407071-6-saravanak@google.com>
- <Y9OZh0ZqtnqmKcvT@smile.fi.intel.com>
-In-Reply-To: <Y9OZh0ZqtnqmKcvT@smile.fi.intel.com>
+References: <20230127001141.407071-1-saravanak@google.com> <20230127001141.407071-7-saravanak@google.com>
+ <Y9OaaC806Ywg7rM9@smile.fi.intel.com>
+In-Reply-To: <Y9OaaC806Ywg7rM9@smile.fi.intel.com>
 From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 27 Jan 2023 23:34:11 -0800
-Message-ID: <CAGETcx9WX-Nf7oD=sLEsG70hDczrQkDRdQTBmgE2y89hDLbYDg@mail.gmail.com>
-Subject: Re: [PATCH v2 05/11] driver core: fw_devlink: Add DL_FLAG_CYCLE
- support to device links
+Date:   Fri, 27 Jan 2023 23:34:19 -0800
+Message-ID: <CAGETcx9XGq20kagmVXwEV6MF9mp9Ta5ra0+Ynhb7GiUKnxkWqg@mail.gmail.com>
+Subject: Re: [PATCH v2 06/11] driver core: fw_devlink: Allow marking a fwnode
+ link as being part of a cycle
 To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         "Rafael J. Wysocki" <rafael@kernel.org>,
@@ -108,82 +108,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 1:30 AM Andy Shevchenko
+On Fri, Jan 27, 2023 at 1:33 AM Andy Shevchenko
 <andriy.shevchenko@linux.intel.com> wrote:
 >
-> On Thu, Jan 26, 2023 at 04:11:32PM -0800, Saravana Kannan wrote:
-> > fw_devlink uses DL_FLAG_SYNC_STATE_ONLY device link flag for two
-> > purposes:
-> >
-> > 1. To allow a parent device to proxy its child device's dependency on a
-> >    supplier so that the supplier doesn't get its sync_state() callback
-> >    before the child device/consumer can be added and probed. In this
-> >    usage scenario, we need to ignore cycles for ensure correctness of
-> >    sync_state() callbacks.
-> >
-> > 2. When there are dependency cycles in firmware, we don't know which of
-> >    those dependencies are valid. So, we have to ignore them all wrt
-> >    probe ordering while still making sure the sync_state() callbacks
-> >    come correctly.
-> >
-> > However, when detecting dependency cycles, there can be multiple
-> > dependency cycles between two devices that we need to detect. For
-> > example:
-> >
-> > A -> B -> A and A -> C -> B -> A.
-> >
-> > To detect multiple cycles correct, we need to be able to differentiate
-> > DL_FLAG_SYNC_STATE_ONLY device links used for (1) vs (2) above.
-> >
-> > To allow this differentiation, add a DL_FLAG_CYCLE that can be use to
-> > mark use case (2). We can then use the DL_FLAG_CYCLE to decide which
-> > DL_FLAG_SYNC_STATE_ONLY device links to follow when looking for
-> > dependency cycles.
+> On Thu, Jan 26, 2023 at 04:11:33PM -0800, Saravana Kannan wrote:
+> > To improve detection and handling of dependency cycles, we need to be
+> > able to mark fwnode links as being part of cycles. fwnode links marked
+> > as being part of a cycle should not block their consumers from probing.
 >
 > ...
 >
-> > +static inline bool device_link_flag_is_sync_state_only(u32 flags)
-> > +{
-> > +     return (flags & ~(DL_FLAG_INFERRED | DL_FLAG_CYCLE))
-> > +             == (DL_FLAG_SYNC_STATE_ONLY | DL_FLAG_MANAGED);
+> > +     list_for_each_entry(link, &fwnode->suppliers, c_hook) {
+> > +             if (link->flags & FWLINK_FLAG_CYCLE)
+> > +                     continue;
+> > +             return link->supplier;
 >
-> Weird indentation, why not
+> Hmm...
+
+Thanks!
+
 >
->         return (flags & ~(DL_FLAG_INFERRED | DL_FLAG_CYCLE)) ==
->                (DL_FLAG_SYNC_STATE_ONLY | DL_FLAG_MANAGED);
+>                 if (!(link->flags & FWLINK_FLAG_CYCLE))
+>                         return link->supplier;
 >
 > ?
-
-Ack. Will fix in v3.
-
 >
-> > +}
+> > +     }
+> > +
+> > +     return NULL;
 >
 > ...
 >
-> >                              DL_FLAG_AUTOREMOVE_SUPPLIER | \
-> >                              DL_FLAG_AUTOPROBE_CONSUMER  | \
-> >                              DL_FLAG_SYNC_STATE_ONLY | \
-> > -                            DL_FLAG_INFERRED)
-> > +                            DL_FLAG_INFERRED | \
-> > +                            DL_FLAG_CYCLE)
+> > -     if (dev->fwnode && !list_empty(&dev->fwnode->suppliers) &&
+> > -         !fw_devlink_is_permissive()) {
+> > -             sup_fw = list_first_entry(&dev->fwnode->suppliers,
+> > -                                       struct fwnode_link,
+> > -                                       c_hook)->supplier;
+> > +     sup_fw = fwnode_links_check_suppliers(dev->fwnode);
 >
-> You can make less churn by squeezing the new one above the last one.
+> dev_fwnode() ?
+>
+> ...
+>
+> > -     val = !list_empty(&dev->fwnode->suppliers);
+> > +     mutex_lock(&fwnode_link_lock);
+> > +     val = !!fwnode_links_check_suppliers(dev->fwnode);
+>
+> Ditto?
 
-I feel like this part is getting bike shedded. I'm going to leave it
-as is. It's done in the order it's defined in the header and keeping
-it that way makes it way more easier to read than worry about a single
-line churn.
+Similar response as Patch 1 and Patch 4.
 
 
 -Saravana
-
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
-> --
-> To unsubscribe from this group and stop receiving emails from it, send an email to kernel-team+unsubscribe@android.com.
->
