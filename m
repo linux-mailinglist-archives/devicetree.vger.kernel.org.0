@@ -2,72 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B82FE67F70E
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 11:21:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3793067F71C
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 11:29:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233775AbjA1KVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 05:21:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39360 "EHLO
+        id S234047AbjA1K3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 05:29:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbjA1KVs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 05:21:48 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C81221732
-        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 02:21:46 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id h12so7035706wrv.10
-        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 02:21:46 -0800 (PST)
+        with ESMTP id S232438AbjA1K3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 05:29:05 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90D29E078
+        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 02:29:03 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so6972469wml.3
+        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 02:29:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KyK61PIIynqyzfMBCuw7rB8JAyotjQ6xTZX0sXTvwv4=;
-        b=aKI/K7Rv941xqFlZ19JayXGiBsYMAlSpyJe9VmKmlpQNAInd1AjU1VlLuYYmCym/b5
-         n7FEjWHH1hzLXKNB4BGFKA950L3HNQco+O0B7TmUI8zQSOmeXc8895k41hLsrQU34krD
-         khQt2o05MdDWqYHgeanECTDWS1akJMh0GPMFDAix8uf09zGnk1YFW4+UcQcLGWil3B95
-         nC9Piu/KtnLRVm5fPvqTXf+64WaBSiQHc56ti19SrN2IPRE5h+gPuYi/ELXRU5+LVIPx
-         yCP87txSIyvuPME3WExIWG/TkRzoVAhMc0ZsGCbDp1NVuQp/ErSKcOZjFvIuWdN0lqXE
-         hqUw==
+        bh=h9C/J+Fu3WqzJtiT/Bo9AU5JcV2nkWAcR65XhuY/8zw=;
+        b=lNrrz/c/JVMyM4ROuoxS/NwPT8/yTzKYcZHFlzMfbUTBQf2O0wtrQz6PUvvUUkUwL9
+         9mrNdIi1zBXoHjxn38l6SNcbeyTRzdYNUWH51oY1kZh/i+Q01JpM1sJdzg59dmmDPHFa
+         C1fL0sQubPt8I7oGzgiRq+Ri5jsyaYGnpm3hM4WisBBadYan8mNJaxE0UWnTNAEQjHVq
+         vXrWgxNzZZIFm8ph28yS4nqyO99cO9jqyxIWuSTINkrwHE8pkyNzRwgyhrq7luFJfv/Z
+         zlStTXUOsWGnOJLFeFQUl6c/ULyYRqhorUHPnBzVQRvmjPeuJR8/cjOVF1taYCKJtSiN
+         +NDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KyK61PIIynqyzfMBCuw7rB8JAyotjQ6xTZX0sXTvwv4=;
-        b=rQQnvxC9tK03fzCg7vDxadxK9DdF32Fj7+o4t6FgvJ/1s3NOC1kR5LR+ScZZurXhAi
-         BGsi6fcY/h2ihzK8nUxiGpLbMSOYBsJXe9nBoJ/eFkjoDoXkUOYdVRem31a8UgF/cxby
-         YUBjmkrvbC0FMbS3YH92PzfoxKR0Pi84j058nS5CBi85RVZyEkYH22fhEVuJSxOCZ6Ro
-         mKpJrh26l/Tl5VzkZ7Q8AF16BlA4XsTXHdRIWgTr449rw+s3TyctMWVKunxtJGLvxAwa
-         61ZqodnYA6nwqbSPUCMyRN029rUE3ZQXHTDWB/dj8CEq6XHMTmggWYXhaqBb8esC6bwJ
-         +XVQ==
-X-Gm-Message-State: AO0yUKUeqXEyYtmPF0N7XWl5Qi4AfZ/JMyFY8u0kbR8NXIEXh6Ce8Wc+
-        LRaB9+q6EF0Z+tE5nY9snnsORw==
-X-Google-Smtp-Source: AK7set//WJfcsdQmnDUXUYzjIqHvzDXemfS6nhNxgE7JDvSqI2eYOResaLvFmYGXsKvGS1vDDCYfKQ==
-X-Received: by 2002:a05:6000:1814:b0:2bf:c851:bf8c with SMTP id m20-20020a056000181400b002bfc851bf8cmr8363720wrh.48.1674901305408;
-        Sat, 28 Jan 2023 02:21:45 -0800 (PST)
+        bh=h9C/J+Fu3WqzJtiT/Bo9AU5JcV2nkWAcR65XhuY/8zw=;
+        b=P6MvHzDYwh18qtQZ0sTHHEwJZIZLeYO9nVjQUaEkBT0fJkn6bY/skMcvDMOTAUW7F2
+         n43E9mWKaAOvE82zvLQHPdy/8V2hZv2dKHEnAggWSBgWqWwrJJRT/JxoZswIu//GI6ft
+         mUBkY3z5L6kzrCkiqfaG35t0afBTZlAsIpnIK6DBCZkk9CPbj44dEea56PYBKCXSDi11
+         i+QYmRDUTwveslXhSfmFMtUa7ahKB5KrMUzfVQpjZhF8Xe6Vf62bwHFS0TSBFP82eB/g
+         x9uuiJd3CykCUX9M77xtOHGLr1pQ+vV4rDR2iBZF1IMPrC8dEOP4pzkMUc/BZDc5yU2R
+         SmGA==
+X-Gm-Message-State: AO0yUKWWS2O6qwO3gYZYb7LlcDjMjysmMudwv48MOE5f0ZIiG5mrgOu2
+        8rZ6I6yCoKmM2kYOo61rjHlcbg==
+X-Google-Smtp-Source: AK7set8cK8kqpsUJRM/HfLEaaDOiJu5mN5ZMXZ0mrE5DBGvRGp39c1OqOXSVXOX5P4o7MT8uM0YaiA==
+X-Received: by 2002:a05:600c:458a:b0:3dc:45a7:2b8a with SMTP id r10-20020a05600c458a00b003dc45a72b8amr2207868wmo.10.1674901742156;
+        Sat, 28 Jan 2023 02:29:02 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p17-20020a056000019100b002bddaea7a0bsm6148579wrx.57.2023.01.28.02.21.44
+        by smtp.gmail.com with ESMTPSA id n23-20020a05600c3b9700b003dab77aa911sm12108357wms.23.2023.01.28.02.29.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Jan 2023 02:21:45 -0800 (PST)
-Message-ID: <3ecfbb0a-6c24-6d72-f9f7-5c9dc4a080b4@linaro.org>
-Date:   Sat, 28 Jan 2023 11:21:43 +0100
+        Sat, 28 Jan 2023 02:29:01 -0800 (PST)
+Message-ID: <be2a9eaa-d049-c249-0c1b-d0eb50b25c3d@linaro.org>
+Date:   Sat, 28 Jan 2023 11:29:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 2/2] dt-bindings: remoteproc: qcom: Add sm6115 pas yaml
- file
+Subject: Re: [PATCH V9 1/6] dt-bindings: usb: Add Cypress cypd4226 Type-C
+ controller
 Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     mani@kernel.org, mathieu.poirier@linaro.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-References: <20230128053504.2099620-1-bhupesh.sharma@linaro.org>
- <20230128053504.2099620-2-bhupesh.sharma@linaro.org>
+To:     Jon Hunter <jonathanh@nvidia.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
+References: <20230127151041.65751-1-jonathanh@nvidia.com>
+ <20230127151041.65751-2-jonathanh@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230128053504.2099620-2-bhupesh.sharma@linaro.org>
+In-Reply-To: <20230127151041.65751-2-jonathanh@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,17 +80,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/01/2023 06:35, Bhupesh Sharma wrote:
-> This documents the aDSP, cDSP and MPSS DSPs present
-> on the SM6115 SoC.
+On 27/01/2023 16:10, Jon Hunter wrote:
+> From: Wayne Chang <waynec@nvidia.com>
+> 
+> Add the device-tree binding documentation for Cypress cypd4226 dual
+> Type-C controller.
+> 
+> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+> V9: added 'unevaluatedProperties' and 'additionalProperties'
+> V8: removed 'additionalProperties'
+> V7: updated example to use 'typec' for the node name
+> V6: no changes
+> V5: updated subject and updated binding to use 'firmware-name'.
+> V4: no changes
+> V3: fix additionalProperties warning on new schema
+> V2: based on the review comments. Fix some addressed issues on
 
-This should be patch #1 - before you start using compatibles.
+Thanks, this is looking good, although few more questions popped up
+while comparing it with other bindings.
 
-Subject: drop second/last, redundant "yaml file". The "dt-bindings"
-prefix is already stating that these are bindings and their expected format.
+(...)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +  firmware-name:
+> +    enum:
+> +      - nvidia,gpu
+> +      - nvidia,jetson-agx-xavier
+> +    description: |
+> +      The name of the CCGx firmware built for product series.
+> +      should be set one of following:
+> +      - "nvidia,gpu" for the NVIDIA RTX product series
+> +      - "nvidia,jetson-agx-xavier" for the NVIDIA Jetson product series
+> +
+> +patternProperties:
+> +  '^connector@[0-1]+$':
 
+How many connectors do you expect/support? 1111 is valid? I guess you
+wanted only [01]?
+
+> +    $ref: /schemas/connector/usb-connector.yaml#
+> +    unevaluatedProperties: false
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+
+I would assume that at least one connector is required (oneOf: required:).
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/tegra194-gpio.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      #interrupt-cells = <2>;
+> +
+> +      typec@8 {
+> +        compatible = "cypress,cypd4226";
+> +        reg = <0x08>;
+> +        interrupt-parent = <&gpio_aon>;
+> +        interrupts = <TEGRA194_AON_GPIO(BB, 2) IRQ_TYPE_LEVEL_LOW>;
+> +        firmware-name = "nvidia,jetson-agx-xavier";
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        connector@0 {
+> +          compatible = "usb-c-connector";
+> +          reg = <0>;
+> +          label = "USB-C";
+> +          data-role = "dual";
+> +          ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            port@0 {
+> +              reg = <0>;
+> +              endpoint {
+> +                remote-endpoint = <&usb_role_switch0>;
+> +              };
+> +            };
+> +          };
+> +        };
+> +      };
+> +    };
 
 Best regards,
 Krzysztof
