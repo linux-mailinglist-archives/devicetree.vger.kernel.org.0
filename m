@@ -2,133 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BF3067F5B1
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 08:35:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72D5867F5C9
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 08:52:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234028AbjA1Hfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 02:35:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37738 "EHLO
+        id S232455AbjA1HwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 02:52:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233796AbjA1Hfk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 02:35:40 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3B128D0B3
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:35:17 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id w6-20020a17090ac98600b0022c58cc7a18so2254538pjt.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:35:17 -0800 (PST)
+        with ESMTP id S231651AbjA1HwG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 02:52:06 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E04E761F1
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:52:04 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id iv8-20020a05600c548800b003db04a0a46bso6562473wmb.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:52:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=b+RFpRJs0xuB4gmuObROuwz4dxLhUH7cqrzlkSnFIcc=;
-        b=E5f3tYSRcGCHD0f05IVlrEg2aBkkQF0+d8+GwNVMRweXITwGxTNJvl5GTzT/ZHynfs
-         tS33LB+QIqb6arl4mkDu5QIIcWq5vLgpXy8dfHP3V/owwfOnmTzyMOVP0yNrKwmgGMTM
-         tG1bKn3TkpfZydcJaT59XgRaIixC6tces40+ymhlwJ1PXxTT4wvEjPW7qoMy1Ye0oXYz
-         oCJ7l5IbZD3va8n08BzIwLdTZQpf60Obi65+jSPECZ4UGLN3XalZN27XFaLXBv51sDrI
-         X/kC6qLfllMA7pk8Jbm/NdDdvLdnCZch7bX6oAHOjIuA2BwN+rjWZ4QxCawWq1g9Ce0Z
-         cBSg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AwT09QFvbeIdYBJsfcmVCJn9nySi46ioy4UiTZXOQBU=;
+        b=O9xMHDeSECxW7o24q/6NUFHzLv5SOU7LuUFzeYGUCKEUfx5ZJ3tE4pipR2JhWAP+jg
+         hPoesVW7rhnn9xzLRSskElx6CmZTetOAxdvriYZEZTJ3pb68iL6YW2YkYWFg4wHIA6W9
+         5xBJLfpPHq4CK6+Z536WA3f+hDRxMti0zb848BvE1aXs/kGND7eqyknPpj4d9vnu3vLK
+         OL3D+AkI/gJ0VG58PsxRDY1/OamUADlhthBOy+c2/99cAyHEiW1M+ZlMgAs4eYJusHOG
+         qhdU+mBXeUO9K12bPXjy8LTm0Wk86BNUNKc3vG8qiBAy+AmBL0E3kLLkVznbDvrsY/sc
+         OV2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=b+RFpRJs0xuB4gmuObROuwz4dxLhUH7cqrzlkSnFIcc=;
-        b=UyVCIV0R8icPgQngwm3ai9wB4S0UAEv1tFuSrm4qCYg/5jJsnAsyyhOq4s7Ow/iH3O
-         i4hWrspK3vkR+F9zygLhHujmwapUJBJMEzpPzk4ImsrvzRghxz7APNGRrsZVnTKHaQfe
-         2ELPdUAejEUYUSjCg+XnLBCcGZb34bJA19R8ox23qt4IhT9IOviXPsgFGx6GcNAKZKvu
-         d2usBDOqscAeLJQhBJ/JRkXm/nz2FMBEyKGG7H4/7QV0XVpRjgbpN88O5furHAGv0inI
-         POn7PNfTvPDVLh+VupA5UIPt4s2TZAz1iVUXxbfDlqcSwa2HKjqxwX2JV0yetBBnUBBD
-         iSdw==
-X-Gm-Message-State: AFqh2kqIt9MPHZmnfhSOfoQKlfJI4qBCXcMvOIk5uNS5n+PFPVMDHhzU
-        sk3nSUs9NeTzKVC/J+seslsnpQafSP4Qz5vE6Ua5FQ==
-X-Google-Smtp-Source: AMrXdXtcy6GzDmIsWx+JJhiM4nf5ZJkxCfBvmjzprfDg2/sXA1zxWHzVMufXd/eGbAB3EbQBo759okdBtzEgtTTy6y4=
-X-Received: by 2002:a17:90a:7e8d:b0:225:d307:95ce with SMTP id
- j13-20020a17090a7e8d00b00225d30795cemr5435623pjl.136.1674891317143; Fri, 27
- Jan 2023 23:35:17 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AwT09QFvbeIdYBJsfcmVCJn9nySi46ioy4UiTZXOQBU=;
+        b=M7BqoancHYOr9warkB66qKF72B5SySNn+eRSxgoJp4dvDtrtjwziHKVUH3QJZp6xAP
+         ID3LBrtxfwMdvP2qSdI1lTLXynDFmq02pejuI2VLZ9XhyFLmF7jmqDKdN6+2WLX1IxAl
+         vjbkVsLBfjPfpbQTl3V2XX1DgjNEk4hmv4nS75YW/dKOLGTsxNbVVLJGTr8/mAKbKgi6
+         VtQWNDkU2kIuNhf1ldmb2IYN2/BprJL9s5EKm5hTWm+bFAvZdFToi07or4AMspxiBlXF
+         KfEUKLCEnVlEkTn3wLfFCLYT5MvoppeK/A7M9oo0QvJtpfaUYsLqXkhNKAc1ORS2zVvZ
+         C78g==
+X-Gm-Message-State: AFqh2kqCM26GvNdkUJRDyy950jee0AYHF392uvnlpvpOYYGVsS+PAOVt
+        /9cTnmNh8JW4wMRR2oW/yQidpA==
+X-Google-Smtp-Source: AMrXdXvSNekIIQS28DBo7WV5qCK0p341YhGJ92/g23fsqCqTUyMImv07j8DGXqwVqRJdkFHAGIuVOA==
+X-Received: by 2002:a05:600c:3ba9:b0:3da:b40f:7a55 with SMTP id n41-20020a05600c3ba900b003dab40f7a55mr48469547wms.6.1674892323044;
+        Fri, 27 Jan 2023 23:52:03 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id v1-20020a5d6781000000b002b9b9445149sm6701742wru.54.2023.01.27.23.52.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jan 2023 23:52:02 -0800 (PST)
+Message-ID: <64b7e7f1-44ff-09fe-c292-40eaa30a76a1@linaro.org>
+Date:   Sat, 28 Jan 2023 08:52:00 +0100
 MIME-Version: 1.0
-References: <20230127001141.407071-1-saravanak@google.com> <20230127001141.407071-11-saravanak@google.com>
- <Y9OemQgO9qoSdT1r@smile.fi.intel.com>
-In-Reply-To: <Y9OemQgO9qoSdT1r@smile.fi.intel.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 27 Jan 2023 23:34:40 -0800
-Message-ID: <CAGETcx9rSNgBhthkyj5zPbTPzp_SW+UUUJqPCSPFix0KG9NiOw@mail.gmail.com>
-Subject: Re: [PATCH v2 10/11] irqchip/irq-imx-gpcv2: Mark fwnode device as not initialized
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v9 2/5] thermal: mediatek: control buffer enablement
+ tweaks
+Content-Language: en-US
+To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
         "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Linux Kernel Functional Testing <lkft@linaro.org>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Rob Herring <robh@kernel.org>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Michael Kao <michael.kao@mediatek.com>
+References: <20221018-up-i350-thermal-bringup-v9-0-55a1ae14af74@baylibre.com>
+ <20221018-up-i350-thermal-bringup-v9-2-55a1ae14af74@baylibre.com>
+ <eb3b9439-172b-daea-8f0f-53c8fe7648f9@linaro.org>
+ <df39cc8c-29db-f401-e1a2-1a3b7e962a7e@baylibre.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <df39cc8c-29db-f401-e1a2-1a3b7e962a7e@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 1:51 AM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Thu, Jan 26, 2023 at 04:11:37PM -0800, Saravana Kannan wrote:
-> > Since this device is only partially initialized by the irqchip driver,
-> > we need to mark the fwnode device as not initialized. This is to let
-> > fw_devlink know that the device will be completely initialized at a
-> > later point. That way, fw_devlink will continue to defer the probe of
-> > the power domain consumers till the power domain driver successfully
-> > binds to the struct device and completes the initialization of the
-> > device.
->
-> ...
->
-> >               pd_pdev->dev.of_node = np;
-> > +             pd_pdev->dev.fwnode = of_fwnode_handle(np);
->
-> Instead,
->
->                 device_set_node(&pd_dev->dev, of_fwnode_handle(np));
+On 27/01/2023 23:21, Amjad Ouled-Ameur wrote:
+> 
+> On 1/27/23 22:48, Daniel Lezcano wrote:
+>> On 27/01/2023 16:44, Amjad Ouled-Ameur wrote:
+>>> From: Markus Schneider-Pargmann <msp@baylibre.com>
+>>>
+>>> Add logic in order to be able to turn on the control buffer on MT8365.
+>>> This change now allows to have control buffer support for 
+>>> MTK_THERMAL_V1,
+>>> and it allows to define the register offset, and mask used to enable it.
+>>>
+>>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+>>> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+>>> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+>>> Reviewed-by: AngeloGioacchino Del Regno 
+>>> <angelogioacchino.delregno@collabora.com>
+>>> ---
+>>>   drivers/thermal/mtk_thermal.c | 25 ++++++++++++++++++-------
+>>>   1 file changed, 18 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/drivers/thermal/mtk_thermal.c 
+>>> b/drivers/thermal/mtk_thermal.c
+>>> index 8440692e3890..d8ddceb75372 100644
+>>> --- a/drivers/thermal/mtk_thermal.c
+>>> +++ b/drivers/thermal/mtk_thermal.c
+>>> @@ -271,6 +271,9 @@ struct mtk_thermal_data {
+>>>       bool need_switch_bank;
+>>>       struct thermal_bank_cfg bank_data[MAX_NUM_ZONES];
+>>>       enum mtk_thermal_version version;
+>>> +    u32 apmixed_buffer_ctl_reg;
+>>> +    u32 apmixed_buffer_ctl_mask;
+>>> +    u32 apmixed_buffer_ctl_set;
+>>>   };
+>>>     struct mtk_thermal {
+>>> @@ -514,6 +517,9 @@ static const struct mtk_thermal_data 
+>>> mt7622_thermal_data = {
+>>>       .adcpnp = mt7622_adcpnp,
+>>>       .sensor_mux_values = mt7622_mux_values,
+>>>       .version = MTK_THERMAL_V2,
+>>> +    .apmixed_buffer_ctl_reg = APMIXED_SYS_TS_CON1,
+>>> +    .apmixed_buffer_ctl_mask = GENMASK(31, 6) | BIT(3),
+>>> +    .apmixed_buffer_ctl_set = BIT(0),
+>>>   };
+>>>     /*
+>>> @@ -963,14 +969,18 @@ static const struct of_device_id 
+>>> mtk_thermal_of_match[] = {
+>>>   };
+>>>   MODULE_DEVICE_TABLE(of, mtk_thermal_of_match);
+>>>   -static void mtk_thermal_turn_on_buffer(void __iomem *apmixed_base)
+>>> +static void mtk_thermal_turn_on_buffer(struct mtk_thermal *mt,
+>>> +                       void __iomem *apmixed_base)
+>>>   {
+>>> -    int tmp;
+>>> +    u32 tmp;
+>>> +
+>>> +    if (!mt->conf->apmixed_buffer_ctl_reg)
+>>> +        return;
+>>>   -    tmp = readl(apmixed_base + APMIXED_SYS_TS_CON1);
+>>> -    tmp &= ~(0x37);
+>>> -    tmp |= 0x1;
+>>> -    writel(tmp, apmixed_base + APMIXED_SYS_TS_CON1);
+>>> +    tmp = readl(apmixed_base + mt->conf->apmixed_buffer_ctl_reg);
+>>> +    tmp &= mt->conf->apmixed_buffer_ctl_mask;
+>>> +    tmp |= mt->conf->apmixed_buffer_ctl_set;
+>>> +    writel(tmp, apmixed_base + mt->conf->apmixed_buffer_ctl_reg);
+>>>       udelay(200);
+>>>   }
+>>>   @@ -1070,8 +1080,9 @@ static int mtk_thermal_probe(struct 
+>>> platform_device *pdev)
+>>>           goto err_disable_clk_auxadc;
+>>>       }
+>>>   +    mtk_thermal_turn_on_buffer(mt, apmixed_base);
+>>> +
+>>>       if (mt->conf->version == MTK_THERMAL_V2) {
+>>> -        mtk_thermal_turn_on_buffer(apmixed_base);
+>>>           mtk_thermal_release_periodic_ts(mt, auxadc_base);
+>>>       }
+>>
+>> This change conflicts with commit 4f2ee0aa2e706
+>>
+>> I fixed it with:
+>>
+>> -       if (mt->conf->version != MTK_THERMAL_V1) {
+>> -               mtk_thermal_turn_on_buffer(apmixed_base);
+>> +       mtk_thermal_turn_on_buffer(apmixed_base);
+>> +
+>> +       if (mt->conf->version != MTK_THERMAL_V1)
+>>                 mtk_thermal_release_periodic_ts(mt, auxadc_base);
+>> -       }
+>>
+> I think it's rather MTK_THERMAL_V2 and not MTK_THERMAL_V1. Other than 
+> that, it looks
 
-Ack
+It was before if (version == MTK_THERMAL_V2). Now there is a V3, so it 
+is replaced by if (version != MTK_THERMAL_V1) in order to include the V3
 
 
--Saravana
+>> Let me know if there is something wrong.
+>>
+>>
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
