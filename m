@@ -2,178 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E555B67F78B
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 12:27:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E355967F79D
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 12:44:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231185AbjA1L14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 06:27:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35396 "EHLO
+        id S233825AbjA1Loy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 06:44:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230110AbjA1L1z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 06:27:55 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8943586AB;
-        Sat, 28 Jan 2023 03:27:50 -0800 (PST)
-Received: from uno.homenet.telecomitalia.it (host-212-171-97-20.pool212171.interbusiness.it [212.171.97.20])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id E00EB5A9;
-        Sat, 28 Jan 2023 12:27:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1674905268;
-        bh=TAW6i2myVpNO7kFpXLP5KznGOEQvjw3iGn708vIufk0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Vbyc6qRWeE1wDytx6Hmib7qoIjmPM7W7bppb2pE6Uxn5kvtkYvcpG2UTyLOhsqAYT
-         WpTm3T2QtxjeSwKOazNdRY1u6xlw6R1DSRsVBct/Bck8Wfv8zROciiN9iJZ64/n/At
-         EVDokccISULC0dtrEpdB2sTa+cwOi8OPt+FOIKJA=
-From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To:     chiranjeevi.rapolu@intel.com, luca@z3ntu.xyz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
-        mchehab@kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Subject: [PATCH v6.1] media: dt-bindings: Add OV5670
-Date:   Sat, 28 Jan 2023 12:27:36 +0100
-Message-Id: <20230128112736.8000-1-jacopo.mondi@ideasonboard.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230126165909.121302-2-jacopo.mondi@ideasonboard.com>
-References: <20230126165909.121302-2-jacopo.mondi@ideasonboard.com>
+        with ESMTP id S233753AbjA1Lov (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 06:44:51 -0500
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A21D62107;
+        Sat, 28 Jan 2023 03:44:48 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 820BB424D0;
+        Sat, 28 Jan 2023 11:44:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1674906285; bh=S5r0W0iw7BaFxUb16luLBBapLUJiOIdlxxM/yB90IPg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=uR8vs9F/g00tVM7iyiTjm8fYPy3+XyQGiV8UDAKDav9WMglXxeoMHPCLYC3NmDuvz
+         E36qupznzR7DP1lJq+73YD6EKtblden0Boa84/GTn1ochzWfS/BlnkZm8RW9flj17n
+         KsQ+UwW5CPK/Y/MMf9xv6JP8kyln2iZzrWuojLV6N7MnDk/mXmQUKTIMCNdeilD+il
+         SySdkGz0+8c+GcjpJSE5+nh2Wxae7fJmP5xLn02ACb0Vb4FERagvk4NOerOxRrWqfT
+         QmdJXSd91T1jUqqoB1B5U6xEkObJ9UrpzwCm38BvCq2mrmBgBnKPROhrLlvRFW8pm4
+         AZtzzvf0muGfQ==
+Message-ID: <f2cfca4c-1728-f9eb-6e1e-56d7f4a1f637@marcan.st>
+Date:   Sat, 28 Jan 2023 20:44:39 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 1/4] dt-bindings: iommu: dart: Add t8103-usb4-dart
+ compatible
+Content-Language: en-US
+To:     Sven Peter <sven@svenpeter.dev>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
+        iommu@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230128111114.4049-1-sven@svenpeter.dev>
+ <20230128111114.4049-2-sven@svenpeter.dev>
+From:   Hector Martin <marcan@marcan.st>
+In-Reply-To: <20230128111114.4049-2-sven@svenpeter.dev>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the bindings documentation for Omnivision OV5670 image sensor.
+On 28/01/2023 20.11, Sven Peter wrote:
+> This DART variant is found in the t8103 (M1) SoCs and used for the
+> USB4/Thunderbolt PCIe ports. Unlike the regular t8103 DART these support
+> up to 64 SIDs and require a slightly different MMIO layout. This variant
+> is only found on the M1 SoCs.
+> 
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> ---
+>  Documentation/devicetree/bindings/iommu/apple,dart.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/apple,dart.yaml b/Documentation/devicetree/bindings/iommu/apple,dart.yaml
+> index 903edf85d72e..f9c1843c074d 100644
+> --- a/Documentation/devicetree/bindings/iommu/apple,dart.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/apple,dart.yaml
+> @@ -24,6 +24,7 @@ properties:
+>    compatible:
+>      enum:
+>        - apple,t8103-dart
+> +      - apple,t8103-dart-usb4
+>        - apple,t8110-dart
+>        - apple,t6000-dart
+>  
 
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
----
-v6->6.1
-- Use additionalProperties: false for endpoint properties from
-  video-interfaces.yaml
-- List 'remote-endpoint' among the accepted endpoint properties
-  now that we use additionalProperties: false
----
- .../bindings/media/i2c/ovti,ov5670.yaml       | 93 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 94 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+You probably wanted t8103-usb4-dart (as mentioned in the commit message).
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
-new file mode 100644
-index 000000000000..6e089fe1d613
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
-@@ -0,0 +1,93 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov5670.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Omnivision OV5670 5 Megapixels raw image sensor
-+
-+maintainers:
-+  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-+
-+description: |-
-+  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
-+  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
-+  controlled through an I2C compatible control bus.
-+
-+properties:
-+  compatible:
-+    const: ovti,ov5670
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description: System clock. From 6 to 27 MHz.
-+    maxItems: 1
-+
-+  powerdown-gpios:
-+    description: Reference to the GPIO connected to the PWDNB pin. Active low.
-+
-+  reset-gpios:
-+    description: Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
-+    maxItems: 1
-+
-+  avdd-supply:
-+    description: Analog circuit power. Typically 2.8V.
-+
-+  dvdd-supply:
-+    description: Digital circuit power. Typically 1.2V.
-+
-+  dovdd-supply:
-+    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        additionalProperties: false
-+
-+        properties:
-+          data-lanes:
-+            minItems: 1
-+            maxItems: 2
-+            items:
-+              enum: [1, 2]
-+
-+          clock-noncontinuous: true
-+          remote-endpoint: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ov5670: sensor@36 {
-+            compatible = "ovti,ov5670";
-+            reg = <0x36>;
-+
-+            clocks = <&sensor_xclk>;
-+
-+            port {
-+                ov5670_ep: endpoint {
-+                    remote-endpoint = <&csi_ep>;
-+                    data-lanes = <1 2>;
-+                    clock-noncontinuous;
-+                };
-+            };
-+        };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f61eb221415b..38d8d1d5d536 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15468,6 +15468,7 @@ M:	Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
- F:	drivers/media/i2c/ov5670.c
+Other than that,
 
- OMNIVISION OV5675 SENSOR DRIVER
---
-2.39.0
+Acked-by: Hector Martin <marcan@marcan.st>
 
+- Hector
