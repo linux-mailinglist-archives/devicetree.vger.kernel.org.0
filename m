@@ -2,212 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FFE167F663
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 09:37:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B08A767F6A4
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 10:19:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234014AbjA1IhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 03:37:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34656 "EHLO
+        id S232579AbjA1JTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 04:19:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233967AbjA1IhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 03:37:12 -0500
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0BD737F0F;
-        Sat, 28 Jan 2023 00:36:25 -0800 (PST)
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Sat, 28 Jan
- 2023 16:36:23 +0800
-Message-ID: <363c7666-30d6-698c-eefa-d9ee46061712@amlogic.com>
-Date:   Sat, 28 Jan 2023 16:36:23 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH V6 2/3] clk: meson: S4: add support for Amlogic S4 SoC PLL
- clock driver
-Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        with ESMTP id S229464AbjA1JTc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 04:19:32 -0500
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 613D2199D3;
+        Sat, 28 Jan 2023 01:19:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674897571; x=1706433571;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JiB3hWFAHtJf+8GoAtoOh5k442MaipNvp4k7d5/JH9U=;
+  b=bxhZiHJBlGiWZLZl1qWVoUhMweXUziXczhnpm1eL0eOHXos1ByHVRoID
+   IaaaKiRJ2CDW2heSonLyKsib8rbiysdTlWKmSJfmMpsdUgd/Yy2v9PSD2
+   +I7GdbK35kkO4FnCKn1hWAr0Fod1+oecl3ZAF+llMZwUjfFBrLNwukofH
+   C+GmYXvPqFlsp3Mv7SFcR141/ahyHLgg7DKPj9m0fOzQUthMX9lZePOue
+   RJioq0+vX07DY2MlIvHktTXnRYQ6XelYU4xTnwZ5WSs1Y0OteadeU8d3E
+   UEx5W/78v/WB7Q1pVffbsXHZYAok8Zj49hMlghg3imCeELf67ej6VyAdB
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10603"; a="391831894"
+X-IronPort-AV: E=Sophos;i="5.97,253,1669104000"; 
+   d="scan'208";a="391831894"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2023 01:19:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10603"; a="693985714"
+X-IronPort-AV: E=Sophos;i="5.97,253,1669104000"; 
+   d="scan'208";a="693985714"
+Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 28 Jan 2023 01:19:25 -0800
+Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pLhMq-0000Y5-1H;
+        Sat, 28 Jan 2023 09:19:24 +0000
+Date:   Sat, 28 Jan 2023 17:19:08 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+        alberto.dassatti@heig-vd.ch
+Cc:     oe-kbuild-all@lists.linux.dev, xxm@rock-chips.com,
+        wenrui.li@rock-chips.com, rick.wertenbroek@heig-vd.ch,
+        Rick Wertenbroek <rick.wertenbroek@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
-        "qi . duan" <qi.duan@amlogic.com>
-References: <20230116074214.2326-1-yu.tu@amlogic.com>
- <20230116074214.2326-3-yu.tu@amlogic.com>
- <1jedrqyd3w.fsf@starbuckisacylon.baylibre.com>
- <55659095-86d7-91b6-2db6-5cdca228bc09@amlogic.com>
- <1j1qnpy1wh.fsf@starbuckisacylon.baylibre.com>
-From:   Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <1j1qnpy1wh.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+Subject: Re: [PATCH 7/8] PCI: rockchip: Fixed legacy IRQ generation for
+ endpoint
+Message-ID: <202301281758.YRZrsGZ9-lkp@intel.com>
+References: <20230126135049.708524-8-rick.wertenbroek@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230126135049.708524-8-rick.wertenbroek@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rick,
+
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on rockchip/for-next]
+[also build test WARNING on linus/master v6.2-rc5 next-20230127]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Rick-Wertenbroek/PCI-rockchip-Removed-writes-to-unused-registers/20230128-155300
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+patch link:    https://lore.kernel.org/r/20230126135049.708524-8-rick.wertenbroek%40gmail.com
+patch subject: [PATCH 7/8] PCI: rockchip: Fixed legacy IRQ generation for endpoint
+config: ia64-allyesconfig (https://download.01.org/0day-ci/archive/20230128/202301281758.YRZrsGZ9-lkp@intel.com/config)
+compiler: ia64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/53e861f3393ad4ebae5f2e133f4783b919036e19
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Rick-Wertenbroek/PCI-rockchip-Removed-writes-to-unused-registers/20230128-155300
+        git checkout 53e861f3393ad4ebae5f2e133f4783b919036e19
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 SHELL=/bin/bash drivers/pci/controller/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/pci/controller/pcie-rockchip-ep.c: In function 'rockchip_pcie_ep_assert_intx':
+>> drivers/pci/controller/pcie-rockchip-ep.c:334:12: warning: variable 'msg_code' set but not used [-Wunused-but-set-variable]
+     334 |         u8 msg_code;
+         |            ^~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:333:13: warning: unused variable 'status' [-Wunused-variable]
+     333 |         u32 status;
+         |             ^~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:332:13: warning: unused variable 'offset' [-Wunused-variable]
+     332 |         u32 offset;
+         |             ^~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:331:13: warning: unused variable 'r' [-Wunused-variable]
+     331 |         u32 r = ep->max_regions - 1;
+         |             ^
+   drivers/pci/controller/pcie-rockchip-ep.c:330:31: warning: unused variable 'rockchip' [-Wunused-variable]
+     330 |         struct rockchip_pcie *rockchip = &ep->rockchip;
+         |                               ^~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c: In function 'rockchip_pcie_ep_probe':
+   drivers/pci/controller/pcie-rockchip-ep.c:538:13: warning: unused variable 'cfg' [-Wunused-variable]
+     538 |         u32 cfg;
+         |             ^~~
 
 
-On 2023/1/20 17:43, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> 
-> On Fri 20 Jan 2023 at 10:58, Yu Tu <yu.tu@amlogic.com> wrote:
-> 
->> Hi Jerome,
->>
->> On 2023/1/19 19:20, Jerome Brunet wrote:
->>> [ EXTERNAL EMAIL ]
->>> On Mon 16 Jan 2023 at 15:42, Yu Tu <yu.tu@amlogic.com> wrote:
->>>
->>>> Add the S4 PLL clock controller driver in the s4 SoC family.
->>>>
->>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>>> ---
->>> [...]
->>>
->>>> +
->>>> +static struct clk_regmap s4_fclk_div2 = {
->>>> +	.data = &(struct clk_regmap_gate_data){
->>>> +		.offset = ANACTRL_FIXPLL_CTRL1,
->>>> +		.bit_idx = 24,
->>>> +	},
->>>> +	.hw.init = &(struct clk_init_data){
->>>> +		.name = "fclk_div2",
->>>> +		.ops = &clk_regmap_gate_ro_ops,
->>> On the previous SoC, these fixed divider gate were not read-only.
->>> They are marked as critical when necessary, with the appropriate
->>> comment.
->>> Why is it different on the s4 ?
->>
->> In fact, this part of the SOC is no different from the previous G12a/b and
->> so on.
->>
->> I remember that my first version was made according to G12A, and I changed
->> this way under your suggestion.
->>
->> Maybe you were busy and forgot. For me, this mode and the previous g12a
->> mode function is ok. I can do either. So now how do you decide to go that
->> way?
-> 
-> No I did not forgot.
-> I told you that cannot put CRITICAL (or IGNORE_USED) without explaining
-> why. I stand by this. Same goes for RO ops.
-> 
+vim +/msg_code +334 drivers/pci/controller/pcie-rockchip-ep.c
 
-I will add an explanation.
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  326  
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  327  static void rockchip_pcie_ep_assert_intx(struct rockchip_pcie_ep *ep, u8 fn,
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  328  					 u8 intx, bool is_asserted)
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  329  {
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  330  	struct rockchip_pcie *rockchip = &ep->rockchip;
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  331  	u32 r = ep->max_regions - 1;
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  332  	u32 offset;
+c577f4a5a08bb9 drivers/pci/controller/pcie-rockchip-ep.c Colin Ian King   2019-03-30  333  	u32 status;
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09 @334  	u8 msg_code;
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  335  
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  336  	intx &= 3;
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  337  	if (is_asserted) {
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  338  		ep->irq_pending |= BIT(intx);
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  339  		msg_code = ROCKCHIP_PCIE_MSG_CODE_ASSERT_INTA + intx;
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  340  	} else {
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  341  		ep->irq_pending &= ~BIT(intx);
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  342  		msg_code = ROCKCHIP_PCIE_MSG_CODE_DEASSERT_INTA + intx;
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  343  	}
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  344  
+53e861f3393ad4 drivers/pci/controller/pcie-rockchip-ep.c Rick Wertenbroek 2023-01-26  345  	if (is_asserted) {
+53e861f3393ad4 drivers/pci/controller/pcie-rockchip-ep.c Rick Wertenbroek 2023-01-26  346  		rockchip_pcie_write(&ep->rockchip,
+53e861f3393ad4 drivers/pci/controller/pcie-rockchip-ep.c Rick Wertenbroek 2023-01-26  347  			PCIE_CLIENT_INT_IN_ASSERT | PCIE_CLIENT_INT_PEND_ST_PEND,
+53e861f3393ad4 drivers/pci/controller/pcie-rockchip-ep.c Rick Wertenbroek 2023-01-26  348  			PCIE_CLIENT_LEGACY_INT_CTRL);
+53e861f3393ad4 drivers/pci/controller/pcie-rockchip-ep.c Rick Wertenbroek 2023-01-26  349  	} else {
+53e861f3393ad4 drivers/pci/controller/pcie-rockchip-ep.c Rick Wertenbroek 2023-01-26  350  		rockchip_pcie_write(&ep->rockchip,
+53e861f3393ad4 drivers/pci/controller/pcie-rockchip-ep.c Rick Wertenbroek 2023-01-26  351  			PCIE_CLIENT_INT_IN_DEASSERT | PCIE_CLIENT_INT_PEND_ST_NORMAL,
+53e861f3393ad4 drivers/pci/controller/pcie-rockchip-ep.c Rick Wertenbroek 2023-01-26  352  			PCIE_CLIENT_LEGACY_INT_CTRL);
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  353  	}
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  354  }
+cf590b07839133 drivers/pci/host/pcie-rockchip-ep.c       Shawn Lin        2018-05-09  355  
 
->>
->>>
->>>> +		.parent_hws = (const struct clk_hw *[]) {
->>>> +			&s4_fclk_div2_div.hw
->>>> +		},
->>>> +		.num_parents = 1,
->>>> +	},
->>>> +};
->>>> +
->>> [...]
->>>
->>>> +#ifndef __MESON_S4_PLL_H__
->>>> +#define __MESON_S4_PLL_H__
->>>> +
->>>> +/* ANA_CTRL - Registers
->>>> + * REG_BASE:  REGISTER_BASE_ADDR = 0xfe008000
->>> This multi-line comment style is wrong in clk/
->>> REG_BASE is not used so I'm not sure this is useful
->>
->> I will remove REG_BASE and  change this format in next version.
->>
->>>
->>>> + */
->>>> +#define ANACTRL_FIXPLL_CTRL0                       0x040
->>>> +#define ANACTRL_FIXPLL_CTRL1                       0x044
->>>> +#define ANACTRL_FIXPLL_CTRL2                       0x048
->>>> +#define ANACTRL_FIXPLL_CTRL3                       0x04c
->>>> +#define ANACTRL_FIXPLL_CTRL4                       0x050
->>>> +#define ANACTRL_FIXPLL_CTRL5                       0x054
->>>> +#define ANACTRL_FIXPLL_CTRL6                       0x058
->>>> +#define ANACTRL_FIXPLL_STS                         0x05c
->>>> +#define ANACTRL_GP0PLL_CTRL0                       0x080
->>>> +#define ANACTRL_GP0PLL_CTRL1                       0x084
->>>> +#define ANACTRL_GP0PLL_CTRL2                       0x088
->>>> +#define ANACTRL_GP0PLL_CTRL3                       0x08c
->>>> +#define ANACTRL_GP0PLL_CTRL4                       0x090
->>>> +#define ANACTRL_GP0PLL_CTRL5                       0x094
->>>> +#define ANACTRL_GP0PLL_CTRL6                       0x098
->>>> +#define ANACTRL_GP0PLL_STS                         0x09c
->>>> +#define ANACTRL_HIFIPLL_CTRL0                      0x100
->>>> +#define ANACTRL_HIFIPLL_CTRL1                      0x104
->>>> +#define ANACTRL_HIFIPLL_CTRL2                      0x108
->>>> +#define ANACTRL_HIFIPLL_CTRL3                      0x10c
->>>> +#define ANACTRL_HIFIPLL_CTRL4                      0x110
->>>> +#define ANACTRL_HIFIPLL_CTRL5                      0x114
->>>> +#define ANACTRL_HIFIPLL_CTRL6                      0x118
->>>> +#define ANACTRL_HIFIPLL_STS                        0x11c
->>>> +#define ANACTRL_MPLL_CTRL0                         0x180
->>>> +#define ANACTRL_MPLL_CTRL1                         0x184
->>>> +#define ANACTRL_MPLL_CTRL2                         0x188
->>>> +#define ANACTRL_MPLL_CTRL3                         0x18c
->>>> +#define ANACTRL_MPLL_CTRL4                         0x190
->>>> +#define ANACTRL_MPLL_CTRL5                         0x194
->>>> +#define ANACTRL_MPLL_CTRL6                         0x198
->>>> +#define ANACTRL_MPLL_CTRL7                         0x19c
->>>> +#define ANACTRL_MPLL_CTRL8                         0x1a0
->>>> +#define ANACTRL_MPLL_STS                           0x1a4
->>>> +#define ANACTRL_HDMIPLL_CTRL0                      0x1c0
->>>> +#define ANACTRL_HDMIPLL_CTRL1                      0x1c4
->>>> +#define ANACTRL_HDMIPLL_CTRL2                      0x1c8
->>>> +#define ANACTRL_HDMIPLL_CTRL3                      0x1cc
->>>> +#define ANACTRL_HDMIPLL_CTRL4                      0x1d0
->>>> +#define ANACTRL_HDMIPLL_CTRL5                      0x1d4
->>>> +#define ANACTRL_HDMIPLL_CTRL6                      0x1d8
->>>> +#define ANACTRL_HDMIPLL_STS                        0x1dc
->>>> +#define ANACTRL_HDMIPLL_VLOCK                      0x1e4
->>>> +
->>>> +/*
->>>> + * CLKID index values
->>>> + *
->>>> + * These indices are entirely contrived and do not map onto the hardware.
->>>> + * It has now been decided to expose everything by default in the DT header:
->>>> + * include/dt-bindings/clock/axg-clkc.h. Only the clocks ids we don't want
->>>> + * to expose, such as the internal muxes and dividers of composite clocks,
->>>> + * will remain defined here.
->>>> + */
->>>> +#define CLKID_FIXED_PLL_DCO		0
->>>> +#define CLKID_FCLK_DIV2_DIV		2
->>>> +#define CLKID_FCLK_DIV3_DIV		4
->>>> +#define CLKID_FCLK_DIV4_DIV		6
->>>> +#define CLKID_FCLK_DIV5_DIV		8
->>>> +#define CLKID_FCLK_DIV7_DIV		10
->>>> +#define CLKID_FCLK_DIV2P5_DIV		12
->>>> +#define CLKID_GP0_PLL_DCO		14
->>>> +#define CLKID_HIFI_PLL_DCO		16
->>>> +#define CLKID_HDMI_PLL_DCO		18
->>>> +#define CLKID_HDMI_PLL_OD		19
->>>> +#define CLKID_MPLL_50M_DIV		21
->>>> +#define CLKID_MPLL_PREDIV		23
->>>> +#define CLKID_MPLL0_DIV			24
->>>> +#define CLKID_MPLL1_DIV			26
->>>> +#define CLKID_MPLL2_DIV			28
->>>> +#define CLKID_MPLL3_DIV			30
->>>> +
->>>> +#define NR_PLL_CLKS			32
->>>> +/* include the CLKIDs that have been made part of the DT binding */
->>>> +#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
->>>> +
->>>> +#endif /* __MESON_S4_PLL_H__ */
->>>
-> 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
