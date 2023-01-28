@@ -2,115 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 471A767FA4C
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 19:58:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD72867FAC8
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 21:26:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230452AbjA1S57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 13:57:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60278 "EHLO
+        id S234793AbjA1U0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 15:26:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229790AbjA1S56 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 13:57:58 -0500
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2337E12040;
-        Sat, 28 Jan 2023 10:57:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674932277; x=1706468277;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=C/Fj/U8MY72zX0xzMfuMhE7ROEG03cf3gcA25/GnMq4=;
-  b=ZxFri32kxuhz7r/YRQp3NR3rOLbvO4EsGUMqrivjqoDNS/vRr1GN51JO
-   6F7ewltH8MnE1dJ1H2KMZeN1DVEZlceEOBZplh5xc72noosQ7vJyFjtJy
-   zx0tUw9X6JMPXQ+/rzeILG8UPN/aH1WQpBInb82iozhRpaWee0FbCWtaI
-   Z9vmDm/GNzXvJFF8vit2aEC6MOYdTCfiAxKYlywXWjZZtF78vmguSQAY2
-   dvQOzZYivKGTZgEngl90w9byyS55ZvwVN8xLLB79+gdjzr1LUKOOu/3ez
-   7VyByN3j3uUS3Oqa4HXVIn1sRtO55U968lMUWIbvRGwF6nNln1mACB96a
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="325015347"
-X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
-   d="scan'208";a="325015347"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2023 10:57:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="771960911"
-X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
-   d="scan'208";a="771960911"
-Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 28 Jan 2023 10:57:47 -0800
-Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pLqOY-000109-2z;
-        Sat, 28 Jan 2023 18:57:46 +0000
-Date:   Sun, 29 Jan 2023 02:57:39 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Jitao shi <jitao.shi@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, CK Hu <ck.hu@mediatek.com>
-Cc:     oe-kbuild-all@lists.linux.dev, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mac.shen@mediatek.com, linux-phy@lists.infradead.org,
-        Guillaume Ranquet <granquet@baylibre.com>,
-        devicetree@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, stuart.lee@mediatek.com
-Subject: Re: [PATCH v5 3/3] phy: mediatek: add support for phy-mtk-hdmi-mt8195
-Message-ID: <202301290245.KWRXz5OS-lkp@intel.com>
-References: <20220919-v5-3-cfb0e5ad29b2@baylibre.com>
+        with ESMTP id S229637AbjA1U0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 15:26:10 -0500
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D6DC974E;
+        Sat, 28 Jan 2023 12:26:09 -0800 (PST)
+Received: by mail-qv1-xf32.google.com with SMTP id x18so6354093qvl.1;
+        Sat, 28 Jan 2023 12:26:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jhStsrBdkKIUL8s3yMha6c/wuTgNY2kKh3rA4nC+xy8=;
+        b=htsBwaQqV7b8JyztbmfW3fq82Rc/YEvjysla+nGwSPKFXr3qynk6Rb9ANQwU4y6Efc
+         CzgdHSlnkunoMnFdUthANh+hgnrrV/jIRrCLybfSdMi0772W19Uw0V4HMRM4vBWL/Bcr
+         uVLPMUM5tZGFOaVVvH+OYtDPX7fSVTVsfyq2JTqIgnscBc/ulNWON8NL/X92qA7yv/NL
+         VOaHY0Z32AOFqDAM8JUtFGcZIE+A94b4gUPh1pbz4BZno2mR9i7rJd6Iyeeu1VNc/7Hn
+         YReW6CdxLOPcehx3NvXQFR7cEt9byHpvS4JQeavp/AdoHglsz3ftTAxBtJUM+xIJDnIq
+         GJHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jhStsrBdkKIUL8s3yMha6c/wuTgNY2kKh3rA4nC+xy8=;
+        b=KNwGJqulbMfX3ZbZwKBlZnD6SCWKT2d0G29ACHIzMhOjGp6xVQJW1steSfpHkP59Fz
+         j1s5zQxsyMknICNkKXn4s7XCwqHTfHp8IaXnOfMfEc1NHCzJcPmVvGklp9XjlFQ+QO6J
+         jqalW9Vyov0ykJbUyLqVIzC35fY9xawhtETc+kuMNUI2uxiDPtNBFqc1p0lr1SVHzLt2
+         hyRaD4YGc+QRD4jS3CmtvGKZ534FuPuRBbbxjxFIQ0dksCVaP5+vBD0xH39Q6lUdzPxa
+         rfLRMM4Q9vb3C22ey3wytK6ouxurqluplrmfqDV/fBr1KuPXrg1YyB4dZ3FgNLalWr5l
+         Y7KQ==
+X-Gm-Message-State: AFqh2krduttxH9O3pEACguG6WWHlfftEv5/BfjNBR+m50PVbrye1L+M0
+        C6M5DhoaQ2xCr+vDNpokZiA4cuvV2pOdeK9h
+X-Google-Smtp-Source: AMrXdXvAwtovn20WrfJ2QCClK5VDFWLw6RHSQIlc7JvLwFTy5utlEx81h6djMBxrkYN6a+lGsYRwvA==
+X-Received: by 2002:a0c:fe46:0:b0:534:a530:e98a with SMTP id u6-20020a0cfe46000000b00534a530e98amr59451613qvs.8.1674937568419;
+        Sat, 28 Jan 2023 12:26:08 -0800 (PST)
+Received: from DANNY-DESKTOP.localdomain (071-013-243-092.res.spectrum.com. [71.13.243.92])
+        by smtp.gmail.com with ESMTPSA id q26-20020a05620a025a00b0071de2b6d439sm52460qkn.49.2023.01.28.12.26.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Jan 2023 12:26:08 -0800 (PST)
+From:   Danny Kaehn <kaehndan@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jikos@kernel.org, benjamin.tissoires@redhat.com
+Cc:     devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: [PATCH 0/4] DeviceTree Support for USB-HID Devices and CP2112
+Date:   Sat, 28 Jan 2023 14:26:18 -0600
+Message-Id: <20230128202622.12676-1-kaehndan@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220919-v5-3-cfb0e5ad29b2@baylibre.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guillaume,
+This patchset allows USB-HID devices to have DeviceTree bindings through sharing
+the USB of_node with the HID driver, and adds such a binding and driver
+implementation for the CP2112 USB to SMBus Bridge (which necessitated the
+USB-HID change). This change allows a CP2112 permanently attached in hardware to
+be described in DT and interoperate with other drivers, and exposed the threaded
+interrupt bug fixed in patch 0003.
 
-Thank you for the patch! Yet something to improve:
+Plese correct if the assumption made that there is a 1:1 correlation between
+a USB device and its HID device is not always true. If so, patch 0002 would
+then need to be reworked.
 
-[auto build test ERROR on e2f86c02fdc96ca29ced53221a3cbf50aa6f8b49]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Guillaume-Ranquet/dt-bindings-phy-mediatek-hdmi-phy-Add-mt8195-compatible/20230128-160522
-base:   e2f86c02fdc96ca29ced53221a3cbf50aa6f8b49
-patch link:    https://lore.kernel.org/r/20220919-v5-3-cfb0e5ad29b2%40baylibre.com
-patch subject: [PATCH v5 3/3] phy: mediatek: add support for phy-mtk-hdmi-mt8195
-config: arm-buildonly-randconfig-r005-20230129 (https://download.01.org/0day-ci/archive/20230129/202301290245.KWRXz5OS-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/2cc45518a7fd551117426c770070d93acb31166e
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Guillaume-Ranquet/dt-bindings-phy-mediatek-hdmi-phy-Add-mt8195-compatible/20230128-160522
-        git checkout 2cc45518a7fd551117426c770070d93acb31166e
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
+Danny Kaehn (4):
+  dt-bindings: hid: Add CP2112 HID USB to SMBus Bridge
+  Share USB device devicetree node with child HID device
+  Fix CP2112 driver not registering GPIO IRQ chip as threaded
+  CP2112 Devicetree Support
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "__aeabi_uldivmod" [drivers/phy/mediatek/phy-mtk-hdmi-drv.ko] undefined!
->> ERROR: modpost: "__aeabi_ldivmod" [drivers/phy/mediatek/phy-mtk-hdmi-drv.ko] undefined!
+ .../bindings/hid/silabs,cp2112.yaml           | 82 +++++++++++++++++++
+ drivers/hid/hid-cp2112.c                      | 10 +++
+ drivers/hid/usbhid/hid-core.c                 |  2 +
+ 3 files changed, 94 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hid/silabs,cp2112.yaml
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.25.1
+
