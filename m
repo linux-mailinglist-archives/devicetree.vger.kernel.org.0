@@ -2,244 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C08567F76A
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 12:03:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4491767F771
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 12:11:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230263AbjA1LDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 06:03:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55376 "EHLO
+        id S231767AbjA1LLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 06:11:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229836AbjA1LDU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 06:03:20 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E0B913DCD;
-        Sat, 28 Jan 2023 03:03:19 -0800 (PST)
-Received: from ideasonboard.com (host-212-171-97-20.pool212171.interbusiness.it [212.171.97.20])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DA0D95A9;
-        Sat, 28 Jan 2023 12:03:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1674903796;
-        bh=OpnfBdL4j6Ht7p1lepj/aokGtwIX8rrlMsLJsh3Harc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GoynAhBiOmquaouDCf19Zf+noOmae59B2xSnM40MkQaiXS0cxcpgXE5uSuNmPE7XE
-         TdZ5FTJH5Pfoe+RG5w3gUklpec1tMYomRyNYl9IagbKppGAhNlnQj0IMWatrLmThzC
-         6YKkcRpDi22QU6v2/Ohl9hcU/oWZWh9GgyP1hueo=
-Date:   Sat, 28 Jan 2023 12:03:11 +0100
-From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
-        Luca Weiss <luca@z3ntu.xyz>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        laurent.pinchart@ideasonboard.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/9] media: dt-bindings: Add OV5670
-Message-ID: <20230128110311.bpm6btxgtp5wsmfq@uno.localdomain>
-References: <20230126165909.121302-1-jacopo.mondi@ideasonboard.com>
- <20230126165909.121302-2-jacopo.mondi@ideasonboard.com>
- <482b464b-c5fb-8af2-b0f7-4388fccea3fd@linaro.org>
- <20230127181435.3d5rnrg5omxhn6l7@uno.localdomain>
- <00139f11-76b0-138a-2f7b-c67d149eb25e@linaro.org>
- <Y9Q2T3h50eudVbbb@valkosipuli.retiisi.eu>
- <042332a6-3407-2c75-362c-db7b922bd99f@linaro.org>
- <20230128095831.k7ywrlbmiesaewgg@uno.localdomain>
- <Y9Tz8AWds51vGgsM@valkosipuli.retiisi.eu>
+        with ESMTP id S231472AbjA1LLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 06:11:31 -0500
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D74D1EFC5;
+        Sat, 28 Jan 2023 03:11:30 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id 2B136320077A;
+        Sat, 28 Jan 2023 06:11:27 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Sat, 28 Jan 2023 06:11:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-transfer-encoding:date:date:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to; s=fm3; t=1674904286; x=1674990686; bh=xDomocLJf0
+        3dCkIOxFCLTmZfi+dECzZoANJhC04FOUg=; b=rDfp/wHubIgL8zdEbfERntzhyR
+        yuGwH3l7OnTflO1d3w0ryGp7lMPWsIf7pPRART36FwCGDMe0PNDyLg2u8+SIl3i8
+        sM/xgJXYisu9q3U/c4LmvpexbpecBkdTgHpBoJmOfLD522J4tvGtI+mnL6dv6qYZ
+        x3gH829HawFTW+ix7HJ6rV8Z6EVAlPxidyFMADkED3Or4DEvtCt8YjJOJqVcBSbp
+        zrgn8uRetSxXKY/5rVbGecjVSfCBmpFHC+M9B4LoBZOzTnxENJxupWzvfeIlTNhV
+        XKqlWg3OPCHt+sJ+S6fdupVIpMha/Jf2I52FLT1HFqCxQdASW9G6ehvoDmnw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+        1674904286; x=1674990686; bh=xDomocLJf03dCkIOxFCLTmZfi+dECzZoANJ
+        hC04FOUg=; b=cJzlVy+puyryLt6DlT2axtUawKzi7sDeWqCg/AnkMDMwu+11XjL
+        u7nyfZpTl09ilndUocKijBLGxVPLq3sPgezj9/zD6p+OkLvCxS4k34ST+F06WPBx
+        SiFm7MCPHoOexsn2WBIvNosP5Hy6APSwDjOwwS+KC1eRlgROAz+Jlxm322iaPy28
+        Z60UEsD8/XtZP0DrE3IMeQ4vNaSZeHL0lxD1LTQ5xhsOavYEXCZrWXr/xFT+H66x
+        wlFqXwm/7FakIWq+pz0JGmihm70eYvK1jS4fAJyLq/NsOg39sM4J1sB2cPGjtPf2
+        pT8zXUjGUwft5xobNLJjCfcYwc89b8TgEMA==
+X-ME-Sender: <xms:3QLVY1HZOl3F4BxUGSU2xHKzHgD53OKvjyWgWMnWHnRuTmb9IFikxw>
+    <xme:3QLVY6Vp723A04WZKcfd5_d7_5N3CbFJcRkPACSycaUDzkQXoA_47HPY2QDTvUz8H
+    IVkIo68jC6vda5nsGk>
+X-ME-Received: <xmr:3QLVY3KRVllc4SUsb_B6k37V7VuRMIcfzMiU7ZfMJ88aYR69L5Hla7lI9JCU6_xHTF7srxE4cm7HuGhKuoO4chEyO5xBtofqLTGQOhE6C29UbC5_EGswDhzANjCHzQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddvkedgvdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepufhvvghnucfr
+    vghtvghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtthgvrh
+    hnpeeludffieehueevtdffvedtueelleejuddugfettdevhfefffdvgffhjeehgfelleen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsvhgvnh
+    esshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:3QLVY7HFgwbJXAXQ5RkdnoBIAGFGsLvwEPHO8gYS6SaE_Fk3JChu3g>
+    <xmx:3QLVY7X2JyNQT6N14U-b4cRTKmRqonhj8i-yhcIQ62DkYku42cRU1w>
+    <xmx:3QLVY2NFbcWOxlj8ckUHzo9WYMStv_5UNPk6p13lMitCWFgzwfrJug>
+    <xmx:3gLVY-N2u8rV0ZRTmlryWJGpg41MQ8oHS3Dr7o1iXZvgj1f6WXICEA>
+Feedback-ID: i51094778:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 28 Jan 2023 06:11:23 -0500 (EST)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
+        iommu@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] Apple M1 USB4/Thunderbolt DART support
+Date:   Sat, 28 Jan 2023 12:11:10 +0100
+Message-Id: <20230128111114.4049-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Y9Tz8AWds51vGgsM@valkosipuli.retiisi.eu>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since I got the attention of both of you, let me point out another
-issue I'm facing.
+Hi,
 
-We also have video-interface-devices.yaml which lists properties for
-the device node and not for the endpoints.
+The M1 SoCs have a second slightly different variant of the regular
+DART used for the USB4 PCIe ports. It supports 64 instead of 16 streams
+which requires a minor change to the MMIO layout.
+There seems to be no way to tell them apart from the regular DARTs by
+just looking at the DART_PARAMs register so we have to add a new
+compatible for those.
 
-video-interface-devices lists properties that should be all optionally
-accepted, as they can potentially apply to all sensors (things like
-rotation, orientation, lens-focus, flash-leds are valid for all
-devices)
+Best,
 
-Being properties for the device node they should be specified in the
-schema top-level and I see a few schema that do that by
+Sven
 
-        allOf:
-          - $ref: /schemas/media/video-interface-devices.yaml#
+Sven Peter (4):
+  dt-bindings: iommu: dart: Add t8103-usb4-dart compatible
+  iommu: dart: Add flag to override bypass support
+  iommu: dart: Write to all DART_T8020_STREAM_SELECT
+  iommu: dart: Add support for t8103 USB4 DART
 
-However top level schemas usually specify
+ .../devicetree/bindings/iommu/apple,dart.yaml |  1 +
+ drivers/iommu/apple-dart.c                    | 42 ++++++++++++++++++-
+ 2 files changed, 41 insertions(+), 2 deletions(-)
 
-        additionalProperties: false
+-- 
+2.25.1
 
-Which means each sensor schema has to list the properties it accepts from
-video-interface-devices.yaml. It's easy to verify this just by
-adding "orientation" to the example in a schema that refers to
-video-interface-devices.yaml and see that the bindings validation
-fails (see below)
-
-TL;DR is there a way to tell in a schema with a top-level
-"additionalProperties: false" that all properties from a referenced
-schema are accepted ?
-
-I'll leave video-interface-devices.yaml this out from this series for
-now and only resend this patch with the previous comments on the usage
-of unevaluatedProperties fixed.
-
-Thanks
-  j
-
-
------------------------------------------------------------------------------
---- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-@@ -109,6 +109,7 @@ examples:
-               powerdown-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-               reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
-               rotation = <180>;
-+              orientation = <0>;
-
-               port {
-                   /* MIPI CSI-2 bus endpoint */
-
-
-$ make ARCH=arm64 dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-  DTEX    Documentation/devicetree/bindings/media/i2c/ovti,ov5640.example.dts
-  DTC_CHK Documentation/devicetree/bindings/media/i2c/ovti,ov5640.example.dtb
-  /home/jmondi/linux-worktree/mainline/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.example.dtb: camera@3c: 'orientation' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /home/jmondi/linux-worktree/mainline/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-
-On Sat, Jan 28, 2023 at 12:07:44PM +0200, Sakari Ailus wrote:
-> Hi Jacopo, Krzysztof,
->
-> On Sat, Jan 28, 2023 at 10:58:31AM +0100, Jacopo Mondi wrote:
-> > Hi Krzysztof
-> >
-> > On Fri, Jan 27, 2023 at 09:44:25PM +0100, Krzysztof Kozlowski wrote:
-> > > On 27/01/2023 21:38, Sakari Ailus wrote:
-> > > > Hi Krzysztof,
-> > > >
-> > > > On Fri, Jan 27, 2023 at 08:58:20PM +0100, Krzysztof Kozlowski wrote:
-> > > >> On 27/01/2023 19:14, Jacopo Mondi wrote:
-> > > >>> Hi Krzysztof
-> > > >>>
-> > > >>> On Fri, Jan 27, 2023 at 03:19:08PM +0100, Krzysztof Kozlowski wrote:
-> > > >>>> On 26/01/2023 17:59, Jacopo Mondi wrote:
-> > > >>>>> Add the bindings documentation for Omnivision OV5670 image sensor.
-> > > >>>>>
-> > > >>>>> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> > > >>>>> ---
-> > > >>>>
-> > > >>>> (...)
-> > > >>>>
-> > > >>>>> +
-> > > >>>>> +  dovdd-supply:
-> > > >>>>> +    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
-> > > >>>>> +
-> > > >>>>> +  port:
-> > > >>>>> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > > >>>>> +    additionalProperties: false
-> > > >>>>> +
-> > > >>>>> +    properties:
-> > > >>>>> +      endpoint:
-> > > >>>>> +        $ref: /schemas/media/video-interfaces.yaml#
-> > > >>>>> +        unevaluatedProperties: false
-> > > >>>>> +
-> > > >>>>> +        properties:
-> > > >>>>> +          data-lanes:
-> > > >>>>> +            minItems: 1
-> > > >>>>> +            maxItems: 2
-> > > >>>>> +            items:
-> > > >>>>> +              enum: [1, 2]
-> > > >>>>> +
-> > > >>>>> +          clock-noncontinuous: true
-> > > >>>>
-> > > >>>> You do not need this. Drop.
-> > > >>>>
-> > > >>>
-> > > >>> Is this due to "unevaluatedProperties: false" ?
-> > > >>>
-> > > >>> I read you recent explanation to a similar question on the Visconti
-> > > >>> bindings. Let me summarize my understanding:
-> > > >>>
-> > > >>> For a given schema a property could be
-> > > >>> - required
-> > > >>>         required:
-> > > >>>           - foo
-> > > >>>
-> > > >>> - optional
-> > > >>>         by default with "unevaluatedProperties: false"
-> > > >>>         "foo: true" with "additionalProperties: false"
-> > > >>>
-> > > >>> - forbidden
-> > > >>>         "foo: false" with "unevaluatedProperties: false"
-> > > >>>         by default wiht "additionalProperties: false"
-> > > >>>
-> > > >>> clock-noncontinuous is defined in video-interfaces.yaml. as I specify
-> > > >>> "unevaluatedProperties: false" does it mean
-> > > >>> all the properties defined in video-interfaces.yaml are optionally
-> > > >>> accepted ? If that's the case that's not what I want as
-> > > >>> clock-noncontinuous is -the only- property from that file we want to
-> > > >>> accept here (and data-lanes ofc).
-> > > >>>
-> > > >>> Should I change "unevaluatedProperties: false" to
-> > > >>> "additionalProperties: false" and keep "clock-noncontinuous: true"  ?
-> > > >>>
-> > > >>
-> > > >> Why would you disallow other properties? Just because driver does not
-> > > >> use them? That's not correct, driver change but bindings should stay the
-> > > >> same.
-> > > >
-> > > > The clock-noncontinuous property is relevant for the hardware. There are
-> > > > some properties not listed here that might be relevant (for all camera
-> > > > sensors) but most properties in video-interfaces.yaml are not applicable to
-> > > > this device.
-> > > >
-> > > > I also think is be useful to say what is relevant in DT bindings, as the
-> > > > other sources of information left are hardware datasheets (if you have
-> > > > access to them) or the driver (which is supposed not to be relevant for the
-> > > > bindings).
-> > > >
-> > >
-> > > Then it might be meaningful to list all allowed properties - even if not
-> > > currently supported by the driver - and use additionalProperties:false.
-> >
-> > Have a look at what properties video-interfaces.yaml lists. Some of
-> > them only apply to CSI-2 sensors (data lanes, link-frequencies etc),
-> > some of them only to parallel sensors (lines polarities, bus-width
-> > etc).
-> >
-> > I see most of the bindings in media/i2c reporting
-> >
-> >         $ref: /schemas/media/video-interfaces.yaml#
-> >         unevaluatedProperties: false
-> >
-> > I think that's actually wrong as there's no way all the properties in
-> > video-interfaces.yaml can apply to a single device (with the exception
-> > of a few sensors that support both bus types).
->
-> It's been in my plan to split this into multiple files so you could refer
-> to fewer than all the properties. I have no schedule for this though.
->
-> >
-> > > This has drawback - whenever video-interfaces gets something new, the
-> > > bindings here (and other such devices) will have to be explicitly enabled.
-> >
-> > video-interfaces is rarely updated, and when it happes it's to add
-> > properties required by a newly supported device, so this doesn't
-> > concern me much personally.
->
-> Me neither.
->
-> --
-> Kind regards,
->
-> Sakari Ailus
