@@ -2,159 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2913A67F779
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 12:12:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0E4B67F784
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 12:23:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234252AbjA1LMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 06:12:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57534 "EHLO
+        id S231444AbjA1LXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 06:23:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234360AbjA1LLw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 06:11:52 -0500
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07FF46DFE8;
-        Sat, 28 Jan 2023 03:11:44 -0800 (PST)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 501583200437;
-        Sat, 28 Jan 2023 06:11:43 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Sat, 28 Jan 2023 06:11:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=cc:cc:content-transfer-encoding:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm3; t=1674904302; x=
-        1674990702; bh=493UH9whhEk1w0ep2M9HRG0EP8+U1OlA4AfdHG/OFhw=; b=d
-        e1jlgU34CGxuCvyj8cZMBK6/bWoiFIZZ14RcjZHMjYqEeQhToEkBt90vb4EG/Fzv
-        ptuZ1dki+TmLwHkSUoHsw/FQCSC6jrAX9gtJYcucp/E7FKWkWXAJzF7bxBbC9PBf
-        ZbeWNtztp4wUs0FvUdASrT+bk2cN1Ftkf0lK9rgdiGj2/6ljdFsXfTuKFgh2T1lp
-        3MzKs3vpVbXcuCzTKOj9Qv3W8h6Ly2u/zzWsJxF3zaPcJ0EhNtcsnUMZDigSMDaN
-        Yl9dC/aSurjv2YkLsul5saJgHY43Oejy9rL7z/3WqMQXou/vOhmDLiIqNEjx6q/a
-        hn9I43GvOxJ7j3OqSLagA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; t=1674904302; x=1674990702; bh=493UH9whhEk1w
-        0ep2M9HRG0EP8+U1OlA4AfdHG/OFhw=; b=PiC/NiSwFoLtaE5G9J5ld6e2XJUJc
-        15KN4gg4UVQFlPLMuT1t7H0mzQXqsehV8LNDs+cfarFaZBfPwgl2ZfE5uyS+IKUG
-        w5Xj+QbmPDj5d/aby83veig5W0liEQ15XRFOI76cpcQsPv3VDuevHTVcwZbbsQJg
-        knsaiOTyyk7zmCokE591nRt84XTYNhtmfc+9EmYqwx4ilwTgOAE30/unrQd6IOyZ
-        cH8E8u6PSa1EqImcI4ROrNHxk3daX0GksTtT75G0BzufUlaQfA8yAoQydiY2Enef
-        Y9R+AFqB+Cv5GYRQ0tkiBUzTQyXREMPA4Sh6NI8pTVFbUrbr5CsEFrhfQ==
-X-ME-Sender: <xms:7gLVY4nvck79p42jxXJL_nV3K0FoHJxIPO-J3dux_3rQk5uR8fsPjQ>
-    <xme:7gLVY30vZ5J-P2v2s5GGRHNxtFSEAxSxXrQzlw8VGZigVL7WW5xu5rTzKTn2uZ1-H
-    9IajvmSHc-msO_r6eg>
-X-ME-Received: <xmr:7gLVY2reNS9WhSXBKUeCCslFd4iu8DTVYbR9axTZxtPRivPobJv4Yxu4py82ZNP_8qXfWDQkshUQYfi1DsPp-RTBadWUZG8jYdr6kngpBIwHQeQzL9_pONsplnnzXQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddvkedgvdegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufhvvghn
-    ucfrvghtvghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtth
-    gvrhhnpeejieehheekgedvjefhveekjefguddtfefhteehtdeiffelkeeiuedufeelkeej
-    geenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsvh
-    gvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:7gLVY0lbXrrVF7HgW2kTl-OeedJJzagd7BRCKrjPrhx0_mvzqCVJhg>
-    <xmx:7gLVY204wNFjpfMcZBILTvxh1bZsgbXQv9G5LHhvgo5K1TIQca3iig>
-    <xmx:7gLVY7uQ7AxsshVmj8mfveE0p_G8aCAVOahDv8Dxin77r9PY3STdjw>
-    <xmx:7gLVYztIhBTfWIEwZv-re8MnBN1pgNsmTNkRPDh6krWi6sNFNvPfhw>
-Feedback-ID: i51094778:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 28 Jan 2023 06:11:40 -0500 (EST)
-From:   Sven Peter <sven@svenpeter.dev>
-To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
-        iommu@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] iommu: dart: Add support for M1 USB4 PCIe DART
-Date:   Sat, 28 Jan 2023 12:11:14 +0100
-Message-Id: <20230128111114.4049-5-sven@svenpeter.dev>
-X-Mailer: git-send-email 2.30.1 (Apple Git-130)
-In-Reply-To: <20230128111114.4049-1-sven@svenpeter.dev>
-References: <20230128111114.4049-1-sven@svenpeter.dev>
+        with ESMTP id S233018AbjA1LXT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 06:23:19 -0500
+Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A58220D0F
+        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 03:23:10 -0800 (PST)
+Received: by mail-vs1-xe36.google.com with SMTP id e9so31003vsj.3
+        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 03:23:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wOS2C+Pc5lRvy5tY8Ds1g0+sULUy/XgMmx38xtTIc5o=;
+        b=ar2/Wb2oJ4e+gcNKm2vX3Ibo1Y0AwZXg/eyJ/KCKuGZjn9ISSK+9XG5OsGJKyu0RiG
+         dWQcpPX3kpURUWFoZCLFAK84d2HtbyR5J4VMMma/BGVRdec+sLzvgYy2gZrp/0/L6GbM
+         REFj+G8uBZrIy4cC2ArTm1QZZMtox/+uWl+gi0Fc7Nvr8CCavhkGz4JD7WQ8jxfEdfHJ
+         MceYSaEZRLjtBYF424R3JgN4uOq/VL4x0EHwswXUJ8DxqYQRUWnXYzPNorp5Q1Yrp/Ie
+         nUqJPv7CdKdIkNnmUrqY9RXPHLDr8gQ1P12gb0Xbk/XeeTDAf/96iefjDuHoe0Sl+oaG
+         vBfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wOS2C+Pc5lRvy5tY8Ds1g0+sULUy/XgMmx38xtTIc5o=;
+        b=WyKc6eZi7v8diQLmMOUUj/cbmPmVTFpkQN9AHHytqtbHc1GwjVibn3IijKHXcEv1LL
+         BbPN/2CtdPztbPrvm/xhe1PKWoIvMp9o6pxX5UF5WTCBldkqP3FvCz9E2DCRo12BAX7/
+         2J7685ET88tdMF4iJitX7NLX0WWCM4mEwFG9Dgr9jT7d++iZ0qRn4D2NCghenG1LK7Ks
+         VsHaAIt0s9lN/PvtF2Yb0EF8N4MBnBZidAT7sGQRCZNXxR1UircCF4lwsQM0vMYwUuhi
+         ZeLrnh9+pf8goU3S3+hcMCYKNYtUb4j/MivQwrVhu9wPcyQMsdRB7fxY70nHetF/yQmv
+         O8FA==
+X-Gm-Message-State: AO0yUKXcTYGjd4cjnq6DTGHcAmv1PgC+//Ia+vUawYQmIE33fTJjFKmI
+        4rYgASoyPZUiGhlSEA9X/As0uph/vWhQj8XwA+zBgw==
+X-Google-Smtp-Source: AK7set9f2AlafEu+pnq1cQhww1WTz5nq7+zC/t0fzyBmIXjie2SP0/mWF4QJFiXIJTjPKBK5iXV3ACjUtWEY0FdTXZ4=
+X-Received: by 2002:a05:6102:10c1:b0:3f2:58c2:5358 with SMTP id
+ t1-20020a05610210c100b003f258c25358mr111725vsr.62.1674904989255; Sat, 28 Jan
+ 2023 03:23:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230127192139.299228-1-brgl@bgdev.pl> <52508584-47c5-2497-68c8-2c0044911aca@linaro.org>
+ <CACMJSevqcaqjLQJ6_5Xn=hMbrsjdxGVM=9RYwYQ8hW_Uy-tRzA@mail.gmail.com> <8dba267b-62b4-1085-c307-3d2608ae5857@linaro.org>
+In-Reply-To: <8dba267b-62b4-1085-c307-3d2608ae5857@linaro.org>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Sat, 28 Jan 2023 12:22:58 +0100
+Message-ID: <CAMRc=MeL_sGhbEagdqriPecxLXs_ecXSgo5_0zAEr226PG2J5Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: firmware: qcom,scm: add qcom,scm-sa8775p compatible
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This variant of the regular t8103 DART is used for the two
-USB4/Thunderbolt PCIe controllers. It supports 64 instead of 16 streams
-which requires a slightly different MMIO layout. We also disallow bypass
-support since these DARTs will only ever be used for externally facing
-devices on the USB4 ports.
+On Sat, Jan 28, 2023 at 11:13 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 27/01/2023 22:22, Bartosz Golaszewski wrote:
+> > On Fri, 27 Jan 2023 at 20:56, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 27/01/2023 20:21, Bartosz Golaszewski wrote:
+> >>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >>>
+> >>> Add a compatible for the sa8775p platform's Secure Channel Manager
+> >>> firmware interface.
+> >>>
+> >>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >>> ---
+> >>>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 1 +
+> >>>  1 file changed, 1 insertion(+)
+> >>
+> >> If you send bindings separately from DTS (which is fine), please provi=
+de
+> >> the link to the user - either DTS or driver for this compatible. Drive=
+r
+> >> does not use it, thus to the DTS.
+> >>
+> >> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>
+> >
+> > Can you specify what kind of link you're expecting? I'm looking at
+> > previous commits for this file and not seeing anything. There's no
+> > upstream user of this compatible in any DTS yet.
+>
+>
+> I expect lore link to the patchset you sent using this binding, so we
+> can verify whether you used it correctly or not. If people were testing
+> their DTS against bindings they write, this would not be needed.
+> Unfortunately people do not do that...
+>
 
-Signed-off-by: Sven Peter <sven@svenpeter.dev>
----
- drivers/iommu/apple-dart.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+Touch=C3=A9. I am making sure v2 passes dtbs_check though. :)
 
-diff --git a/drivers/iommu/apple-dart.c b/drivers/iommu/apple-dart.c
-index 7579c97a9062..a1304ba3639b 100644
---- a/drivers/iommu/apple-dart.c
-+++ b/drivers/iommu/apple-dart.c
-@@ -81,6 +81,7 @@
- #define DART_T8020_TCR_BYPASS_DAPF      BIT(12)
- 
- #define DART_T8020_TTBR       0x200
-+#define DART_T8020_USB4_TTBR  0x400
- #define DART_T8020_TTBR_VALID BIT(31)
- #define DART_T8020_TTBR_ADDR_FIELD_SHIFT 0
- #define DART_T8020_TTBR_SHIFT 12
-@@ -1184,6 +1185,35 @@ static const struct apple_dart_hw apple_dart_hw_t8103 = {
- 	.ttbr_shift = DART_T8020_TTBR_SHIFT,
- 	.ttbr_count = 4,
- };
-+
-+static const struct apple_dart_hw apple_dart_hw_t8103_usb4 = {
-+	.type = DART_T8020,
-+	.irq_handler = apple_dart_t8020_irq,
-+	.invalidate_tlb = apple_dart_t8020_hw_invalidate_tlb,
-+	.oas = 36,
-+	.fmt = APPLE_DART,
-+	.max_sid_count = 64,
-+
-+	.enable_streams = DART_T8020_STREAMS_ENABLE,
-+	.lock = DART_T8020_CONFIG,
-+	.lock_bit = DART_T8020_CONFIG_LOCK,
-+
-+	.error = DART_T8020_ERROR,
-+
-+	.tcr = DART_T8020_TCR,
-+	.tcr_enabled = DART_T8020_TCR_TRANSLATE_ENABLE,
-+	.tcr_disabled = 0,
-+	.tcr_bypass = 0,
-+
-+	.ttbr = DART_T8020_USB4_TTBR,
-+	.ttbr_valid = DART_T8020_TTBR_VALID,
-+	.ttbr_addr_field_shift = DART_T8020_TTBR_ADDR_FIELD_SHIFT,
-+	.ttbr_shift = DART_T8020_TTBR_SHIFT,
-+	.ttbr_count = 4,
-+
-+	.disable_bypass = true,
-+};
-+
- static const struct apple_dart_hw apple_dart_hw_t6000 = {
- 	.type = DART_T6000,
- 	.irq_handler = apple_dart_t8020_irq,
-@@ -1276,6 +1306,7 @@ DEFINE_SIMPLE_DEV_PM_OPS(apple_dart_pm_ops, apple_dart_suspend, apple_dart_resum
- 
- static const struct of_device_id apple_dart_of_match[] = {
- 	{ .compatible = "apple,t8103-dart", .data = &apple_dart_hw_t8103 },
-+	{ .compatible = "apple,t8103-dart-usb4", .data = &apple_dart_hw_t8103_usb4 },
- 	{ .compatible = "apple,t8110-dart", .data = &apple_dart_hw_t8110 },
- 	{ .compatible = "apple,t6000-dart", .data = &apple_dart_hw_t6000 },
- 	{},
--- 
-2.25.1
+v1 didn't have this compatible and used the fallback directly, hence
+this patch being sent before v2. There's no link yet, as I'm still
+polishing the dts for sa8775p-ride. Will remember to add one in the
+future.
 
+Bart
