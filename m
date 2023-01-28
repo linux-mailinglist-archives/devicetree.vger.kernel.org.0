@@ -2,136 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEBBD67F7A3
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 12:46:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2642167F7D5
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 13:45:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231464AbjA1Lqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 06:46:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41248 "EHLO
+        id S231890AbjA1Mpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 07:45:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230074AbjA1Lqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 06:46:47 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 763FB234DA;
-        Sat, 28 Jan 2023 03:46:46 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 15783424D0;
-        Sat, 28 Jan 2023 11:46:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1674906405; bh=XF6Idsk35kfCAPNyhQs/PAXkcVnV95QoxC92DpEL/c4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=V15IkajZn+WdS3awUit4i1s1e3s8SG6WSJhHCNzwEvZ+LMmI8i5FtRGBxGcg4gXKv
-         nHjjWFSmwbhZWFr1QCxhPFg1VY0jdaFcR+3ut3wjICWQWTqEAqiEq42o/45Wabbn2X
-         12v/BFUOjBa+/a7+kH4kEuMEXnAKXsF5Kettw0MBR1KrsaRzzMDLS+xfZ9w4os4R+v
-         uOrdlUVPPN/NCagInIoX/gVqVi8/oVfslaG/XCNPdNS1qAKSikXjPpkNT5/304XLNb
-         amvj17OQeghu5PZgZ0iA8AOEZ+UIfmLv+ySQ/v9NOd8d9Z6WO7fOqGTeKSCgkvqNgo
-         rQGn08gnUW4tQ==
-Message-ID: <3b796124-5edf-aff1-15e9-4ee94da5177b@marcan.st>
-Date:   Sat, 28 Jan 2023 20:46:40 +0900
+        with ESMTP id S229643AbjA1Mpn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 07:45:43 -0500
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA7493DF;
+        Sat, 28 Jan 2023 04:45:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674909942; x=1706445942;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=O5WBaJzgPqwEeJyKfKa2dgk9LEXgRCs5k6shDAwh9+E=;
+  b=Wqu46WD03WDNzASUYMv0gzRIfHEaCfRqDuCXETe9PPWsWV42adABDhGB
+   M78QyJeCiiphQxkUoKvhkjRbbrGkeReIz4yyf++gweN+3tjFv/fmd4/31
+   1IFNXsTecByKSZTn7fGruQwaStI64NV+LcdeGK+a5cJm3GGHZAMjyJ+kO
+   KITQQaz0Hke6tidCXE8mWpYwqL6+QQkLAOQ40lGNcGoC/S858YkyXLpWv
+   EU6W1cxlAq5BNJxS8THP/1DZtkYmLJjIascWafYxIkeOoq/mD7jvqLJeD
+   WFv4fyOixQZ8hPWrzgJwHZ+qsPA84hpMUBodLPZe3Csq+XFTbd2eUiD2J
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10603"; a="329415206"
+X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
+   d="scan'208";a="329415206"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2023 04:45:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10603"; a="787501973"
+X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
+   d="scan'208";a="787501973"
+Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
+  by orsmga004.jf.intel.com with ESMTP; 28 Jan 2023 04:45:34 -0800
+Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pLkaG-0000eR-1i;
+        Sat, 28 Jan 2023 12:45:28 +0000
+Date:   Sat, 28 Jan 2023 20:44:39 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Nipun Gupta <nipun.gupta@amd.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        rafael@kernel.org, eric.auger@redhat.com,
+        alex.williamson@redhat.com, cohuck@redhat.com,
+        song.bao.hua@hisilicon.com, mchehab+huawei@kernel.org,
+        maz@kernel.org, f.fainelli@gmail.com, jeffrey.l.hugo@gmail.com,
+        saravanak@google.com, Michael.Srba@seznam.cz, mani@kernel.org,
+        yishaih@nvidia.com, jgg@ziepe.ca, jgg@nvidia.com,
+        robin.murphy@arm.com, will@kernel.org, joro@8bytes.org,
+        masahiroy@kernel.org, ndesaulniers@google.com,
+        linux-arm-kernel@lists.infradead.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, okaya@kernel.org,
+        harpreet.anand@amd.com, nikhil.agarwal@amd.com
+Subject: Re: [PATCH v6 5/7] cdx: add cdx controller
+Message-ID: <202301282010.JreX4WjQ-lkp@intel.com>
+References: <20230126104630.15493-6-nipun.gupta@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 4/4] iommu: dart: Add support for M1 USB4 PCIe DART
-Content-Language: en-US
-To:     Sven Peter <sven@svenpeter.dev>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
-        iommu@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230128111114.4049-1-sven@svenpeter.dev>
- <20230128111114.4049-5-sven@svenpeter.dev>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <20230128111114.4049-5-sven@svenpeter.dev>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230126104630.15493-6-nipun.gupta@amd.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/01/2023 20.11, Sven Peter wrote:
-> This variant of the regular t8103 DART is used for the two
-> USB4/Thunderbolt PCIe controllers. It supports 64 instead of 16 streams
-> which requires a slightly different MMIO layout. We also disallow bypass
-> support since these DARTs will only ever be used for externally facing
-> devices on the USB4 ports.
-> 
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
-> ---
->  drivers/iommu/apple-dart.c | 31 +++++++++++++++++++++++++++++++
->  1 file changed, 31 insertions(+)
-> 
-> diff --git a/drivers/iommu/apple-dart.c b/drivers/iommu/apple-dart.c
-> index 7579c97a9062..a1304ba3639b 100644
-> --- a/drivers/iommu/apple-dart.c
-> +++ b/drivers/iommu/apple-dart.c
-> @@ -81,6 +81,7 @@
->  #define DART_T8020_TCR_BYPASS_DAPF      BIT(12)
->  
->  #define DART_T8020_TTBR       0x200
-> +#define DART_T8020_USB4_TTBR  0x400
->  #define DART_T8020_TTBR_VALID BIT(31)
->  #define DART_T8020_TTBR_ADDR_FIELD_SHIFT 0
->  #define DART_T8020_TTBR_SHIFT 12
-> @@ -1184,6 +1185,35 @@ static const struct apple_dart_hw apple_dart_hw_t8103 = {
->  	.ttbr_shift = DART_T8020_TTBR_SHIFT,
->  	.ttbr_count = 4,
->  };
-> +
-> +static const struct apple_dart_hw apple_dart_hw_t8103_usb4 = {
-> +	.type = DART_T8020,
-> +	.irq_handler = apple_dart_t8020_irq,
-> +	.invalidate_tlb = apple_dart_t8020_hw_invalidate_tlb,
-> +	.oas = 36,
-> +	.fmt = APPLE_DART,
-> +	.max_sid_count = 64,
-> +
-> +	.enable_streams = DART_T8020_STREAMS_ENABLE,
-> +	.lock = DART_T8020_CONFIG,
-> +	.lock_bit = DART_T8020_CONFIG_LOCK,
-> +
-> +	.error = DART_T8020_ERROR,
-> +
-> +	.tcr = DART_T8020_TCR,
-> +	.tcr_enabled = DART_T8020_TCR_TRANSLATE_ENABLE,
-> +	.tcr_disabled = 0,
-> +	.tcr_bypass = 0,
-> +
-> +	.ttbr = DART_T8020_USB4_TTBR,
-> +	.ttbr_valid = DART_T8020_TTBR_VALID,
-> +	.ttbr_addr_field_shift = DART_T8020_TTBR_ADDR_FIELD_SHIFT,
-> +	.ttbr_shift = DART_T8020_TTBR_SHIFT,
-> +	.ttbr_count = 4,
-> +
-> +	.disable_bypass = true,
-> +};
-> +
->  static const struct apple_dart_hw apple_dart_hw_t6000 = {
->  	.type = DART_T6000,
->  	.irq_handler = apple_dart_t8020_irq,
-> @@ -1276,6 +1306,7 @@ DEFINE_SIMPLE_DEV_PM_OPS(apple_dart_pm_ops, apple_dart_suspend, apple_dart_resum
->  
->  static const struct of_device_id apple_dart_of_match[] = {
->  	{ .compatible = "apple,t8103-dart", .data = &apple_dart_hw_t8103 },
-> +	{ .compatible = "apple,t8103-dart-usb4", .data = &apple_dart_hw_t8103_usb4 },
->  	{ .compatible = "apple,t8110-dart", .data = &apple_dart_hw_t8110 },
->  	{ .compatible = "apple,t6000-dart", .data = &apple_dart_hw_t6000 },
->  	{},
+Hi Nipun,
 
-Other than the compatible as per patch #1,
+I love your patch! Yet something to improve:
 
-Acked-by: Hector Martin <marcan@marcan.st>
+[auto build test ERROR on next-20230127]
+[cannot apply to masahiroy-kbuild/for-next masahiroy-kbuild/fixes robh/for-next joro-iommu/next linus/master v6.2-rc5 v6.2-rc4 v6.2-rc3 v6.2-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-- Hector
+url:    https://github.com/intel-lab-lkp/linux/commits/Nipun-Gupta/cdx-add-the-cdx-bus-driver/20230128-161622
+patch link:    https://lore.kernel.org/r/20230126104630.15493-6-nipun.gupta%40amd.com
+patch subject: [PATCH v6 5/7] cdx: add cdx controller
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20230128/202301282010.JreX4WjQ-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/f412d73800370b8e51d1be454e651d3c4ff796a8
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Nipun-Gupta/cdx-add-the-cdx-bus-driver/20230128-161622
+        git checkout f412d73800370b8e51d1be454e651d3c4ff796a8
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sh olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sh SHELL=/bin/bash drivers/cdx/controller/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All error/warnings (new ones prefixed by >>):
+
+   drivers/cdx/controller/cdx_controller.c: In function 'xlnx_cdx_probe':
+>> drivers/cdx/controller/cdx_controller.c:102:20: error: implicit declaration of function 'kzalloc' [-Werror=implicit-function-declaration]
+     102 |         cdx_mcdi = kzalloc(sizeof(*cdx_mcdi), GFP_KERNEL);
+         |                    ^~~~~~~
+>> drivers/cdx/controller/cdx_controller.c:102:18: warning: assignment to 'struct cdx_mcdi *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     102 |         cdx_mcdi = kzalloc(sizeof(*cdx_mcdi), GFP_KERNEL);
+         |                  ^
+>> drivers/cdx/controller/cdx_controller.c:115:13: warning: assignment to 'struct cdx_controller *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     115 |         cdx = kzalloc(sizeof(*cdx), GFP_KERNEL);
+         |             ^
+>> drivers/cdx/controller/cdx_controller.c:131:9: error: implicit declaration of function 'kfree'; did you mean 'kvfree'? [-Werror=implicit-function-declaration]
+     131 |         kfree(cdx_mcdi);
+         |         ^~~~~
+         |         kvfree
+   cc1: some warnings being treated as errors
+
+
+vim +/kzalloc +102 drivers/cdx/controller/cdx_controller.c
+
+    95	
+    96	static int xlnx_cdx_probe(struct platform_device *pdev)
+    97	{
+    98		struct cdx_controller *cdx;
+    99		struct cdx_mcdi *cdx_mcdi;
+   100		int ret;
+   101	
+ > 102		cdx_mcdi = kzalloc(sizeof(*cdx_mcdi), GFP_KERNEL);
+   103		if (!cdx_mcdi)
+   104			return -ENOMEM;
+   105	
+   106		/* Store the MCDI ops */
+   107		cdx_mcdi->mcdi_ops = &mcdi_ops;
+   108		/* MCDI FW: Initialize the FW path */
+   109		ret = cdx_mcdi_init(cdx_mcdi);
+   110		if (ret) {
+   111			dev_err_probe(&pdev->dev, ret, "MCDI Initialization failed\n");
+   112			goto mcdi_init_fail;
+   113		}
+   114	
+ > 115		cdx = kzalloc(sizeof(*cdx), GFP_KERNEL);
+   116		if (!cdx) {
+   117			ret = -ENOMEM;
+   118			goto cdx_alloc_fail;
+   119		}
+   120		platform_set_drvdata(pdev, cdx);
+   121	
+   122		cdx->dev = &pdev->dev;
+   123		cdx->priv = cdx_mcdi;
+   124		cdx->ops = &cdx_ops;
+   125	
+   126		return 0;
+   127	
+   128	cdx_alloc_fail:
+   129		cdx_mcdi_finish(cdx_mcdi);
+   130	mcdi_init_fail:
+ > 131		kfree(cdx_mcdi);
+   132	
+   133		return ret;
+   134	}
+   135	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
