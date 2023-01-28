@@ -2,305 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C816D67F641
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 09:24:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB22C67F644
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 09:28:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233439AbjA1IYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 03:24:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55706 "EHLO
+        id S229737AbjA1I2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 03:28:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233144AbjA1IYB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 03:24:01 -0500
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE028125AD;
-        Sat, 28 Jan 2023 00:23:13 -0800 (PST)
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Sat, 28 Jan
- 2023 16:23:11 +0800
-Message-ID: <410a5215-a819-1f06-91c7-2d74df5b254d@amlogic.com>
-Date:   Sat, 28 Jan 2023 16:23:11 +0800
+        with ESMTP id S229562AbjA1I2G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 03:28:06 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BE3B402DA
+        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 00:28:04 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id b7so6924777wrt.3
+        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 00:28:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=shruggie-ro.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y9aJH9dWW+lXIo+m5JL54uJsS21RU2JZM9Wrw00k7No=;
+        b=treD55nfTAfWZWSzKShy9mwzsnfnSBTUoVysbGKxOPj5WmP+dMtEdOv0erz5Ru8obZ
+         ve8E3jwlRM2jPNxYcuWYfnEU/ZeLc4PQqiH4MPEC+9kh6L1Tiapbt4dY8ZvoUucXDCON
+         yF25vNXgq+3/VLPTHAeITAKK8i6LuZlQiQiz3Q+uXdd4AJh9RRhzvX5hTghFcADRkBjn
+         qE3BxHUPakz08NccmMgRaNr2UV1sxqti3MjXD8aFJXkTr/O1mvfADdFFdeEwo300Ero5
+         de2mt++mgL40B7Pgw4qZKq8FDCN3JXzYITD509DLvTWPsqMShSg3Ayr30Hi+zDHh+Wgh
+         7W3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y9aJH9dWW+lXIo+m5JL54uJsS21RU2JZM9Wrw00k7No=;
+        b=fWYhYxsE787t0y9sCvXUAUNfnewbSEAOyEW7LPSbB09Ae/J1SIIM7H5CuG6Gzw2CYR
+         1VEVpVKLTNhZHxcb9yain8KXH2DRbYBaPTcTk04G+57NQ8ahjkjZ9AozVGBZlFgSbnLE
+         D9HABmZFeoPOkcYHDn9qDUV70Cdf0xlcNOK111aig9Tmhm9xJa8tGa/kb+jr+CTDZ+Rv
+         QrQAaUMcuP6HcOywN/idcot8jfsAzLAE4flmeY2BQCJ5AJdYkzHO6XGePvMuBgz898KJ
+         3geK15fqJZHDOlL9PMB9bx2vqZp93lB+eDSZLTsg6cRf4yXvVAiVB+t/CDIJK7DCqHez
+         w9kA==
+X-Gm-Message-State: AFqh2koO9S2lKb4+eASjQKhpGKdwoa/YBLn5OoJaSarsRXR9+RM5aIBv
+        1VA2KmeNzXiZFuQ3q+Nh7wXFPWVViuqywv9gVYI=
+X-Google-Smtp-Source: AMrXdXt9KSRH7+r9cYAHQYj+3AoNx2UKmGCATXuRWMG6WddSwu/BzX2/w+k5ao9JwROWKW6FCOnHYw==
+X-Received: by 2002:a5d:61c5:0:b0:2bf:9608:57ee with SMTP id q5-20020a5d61c5000000b002bf960857eemr27136437wrv.21.1674894482631;
+        Sat, 28 Jan 2023 00:28:02 -0800 (PST)
+Received: from neptune.. ([188.27.130.91])
+        by smtp.gmail.com with ESMTPSA id c17-20020a5d4cd1000000b002bfd52f31f6sm3815338wrt.9.2023.01.28.00.28.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Jan 2023 00:28:02 -0800 (PST)
+From:   Alexandru Ardelean <alex@shruggie.ro>
+To:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+Cc:     broonie@kernel.org, lgirdwood@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+        steffen.aschbacher@stihl.de, Alexandru Ardelean <alex@shruggie.ro>
+Subject: [PATCH v2 1/4] ASoC: codecs: tas5720: split a tas5720_mute_soc_component() function
+Date:   Sat, 28 Jan 2023 10:27:41 +0200
+Message-Id: <20230128082744.41849-1-alex@shruggie.ro>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH V6 1/3] dt-bindings: clock: document Amlogic S4 SoC PLL &
- peripheral clock controller
-Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
-        "qi . duan" <qi.duan@amlogic.com>
-References: <20230116074214.2326-1-yu.tu@amlogic.com>
- <20230116074214.2326-2-yu.tu@amlogic.com>
- <02b6b3a6-e2ad-8cbc-fa15-fbd2db6ada64@linaro.org>
- <7c0133a2-ea4d-645e-3df2-2bb832bbd498@amlogic.com>
- <1j5yd1y22r.fsf@starbuckisacylon.baylibre.com>
-From:   Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <1j5yd1y22r.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is to be re-used in tas5720_mute() (which is part of the dai_ops) and
+also in the tas5720_fault_check_work() hook.
 
+The benefit here isn't too great (now).
+It's only when we add support for a new device with a slightly different
+regmap that this becomes more useful.
 
-On 2023/1/20 17:37, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> 
-> On Mon 16 Jan 2023 at 17:31, Yu Tu <yu.tu@amlogic.com> wrote:
-> 
->> Hi Krzysztof,
->> 	Thank you for your quick reply.
->>
->> On 2023/1/16 16:29, Krzysztof Kozlowski wrote:
->>> [ EXTERNAL EMAIL ]
->>> On 16/01/2023 08:42, Yu Tu wrote:
->>>> Add the S4 PLL & peripheral clock controller dt-bindings in the s4 SoC
->>>> family.
->>>>
->>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>>> ---
->>>>    .../clock/amlogic,s4-peripherals-clkc.yaml    | 104 ++++++++++++++
->>>>    .../bindings/clock/amlogic,s4-pll-clkc.yaml   |  50 +++++++
->>>>    MAINTAINERS                                   |   1 +
->>>>    .../clock/amlogic,s4-peripherals-clkc.h       | 131 ++++++++++++++++++
->>>>    .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |  30 ++++
->>>>    5 files changed, 316 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
->>>>    create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>>    create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->>>>    create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>>>
->>>> diff --git
->>>> a/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
->>>> b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
->>>> new file mode 100644
->>>> index 000000000000..2deeff497754
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
->>>> @@ -0,0 +1,104 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-peripherals-clkc.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Amlogic Meson S serials Peripherals Clock Controller
->>>> +
->>>> +maintainers:
->>>> +  - Neil Armstrong <neil.armstrong@linaro.org>
->>>> +  - Jerome Brunet <jbrunet@baylibre.com>
->>>> +  - Yu Tu <yu.tu@amlogic.com>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: amlogic,s4-peripherals-clkc
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  clocks:
->>>> +    items:
->>>> +      - description: input fixed pll div2
->>>> +      - description: input fixed pll div2p5
->>>> +      - description: input fixed pll div3
->>>> +      - description: input fixed pll div4
->>>> +      - description: input fixed pll div5
->>>> +      - description: input fixed pll div7
->>>> +      - description: input hifi pll
->>>> +      - description: input gp0 pll
->>>> +      - description: input mpll0
->>>> +      - description: input mpll1
->>>> +      - description: input mpll2
->>>> +      - description: input mpll3
->>>> +      - description: input hdmi pll
->>>> +      - description: input oscillator (usually at 24MHz)
->>>> +      - description: input external 32kHz reference (optional)
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: fclk_div2
->>>> +      - const: fclk_div2p5
->>>> +      - const: fclk_div3
->>>> +      - const: fclk_div4
->>>> +      - const: fclk_div5
->>>> +      - const: fclk_div7
->>>> +      - const: hifi_pll
->>>> +      - const: gp0_pll
->>>> +      - const: mpll0
->>>> +      - const: mpll1
->>>> +      - const: mpll2
->>>> +      - const: mpll3
->>>> +      - const: hdmi_pll
->>>> +      - const: xtal
->>>> +      - const: ext_32k
->>>> +
->>>> +  "#clock-cells":
->>>> +    const: 1
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - reg
->>>> +  - clocks
->>>> +  - clock-names
->>>> +  - "#clock-cells"
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
->>>> +
->>>> +    /* 32KHz reference crystal */
->>>> +    ext_32k: ref32k {
->>>> +        compatible = "fixed-clock";
->>>> +        #clock-cells = <0>;
->>>> +        clock-frequency = <32000>;
->>>> +    };
->>> This wasn't here before. Drop it. It is trivial and it is not needed to
->>> illustrate your device bindings. All clock bindings use it...
->>>
->>
->> I'm fine with that. I don't know if Jerome agrees with that. Wait for
->> him. See what he says.
-> 
-> This is a simple change related to your binding example.
-> Krzysztof is one of the DT maintainer. Please follow his recommendation.
+Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
+---
 
-Okay. Got it.
+Changelog v1 -> v2:
+- https://lore.kernel.org/alsa-devel/20230115193347.24190-1-alex@shruggie.ro/
+- No change
 
-> 
->>
->>>> +
->>>> +    clkc_periphs: clock-controller@fe000000 {
->>>> +      compatible = "amlogic,s4-peripherals-clkc";
->>>> +      reg = <0xfe000000 0x49c>;
->>>> +      clocks = <&clkc_pll 3>,
->>>> +              <&clkc_pll 13>,
->>>> +              <&clkc_pll 5>,
->>>> +              <&clkc_pll 7>,
->>>> +              <&clkc_pll 9>,
->>>> +              <&clkc_pll 11>,
->>>> +              <&clkc_pll 17>,
->>>> +              <&clkc_pll 15>,
->>>> +              <&clkc_pll 25>,
->>>> +              <&clkc_pll 27>,
->>>> +              <&clkc_pll 29>,
->>>> +              <&clkc_pll 31>,
->>>> +              <&clkc_pll 20>,
->>>> +              <&xtal>,
->>>> +              <&ext_32k>;
->>>> +      clock-names = "fclk_div2", "fclk_div2p5", "fclk_div3", "fclk_div4",
->>>> +                    "fclk_div5", "fclk_div7", "hifi_pll", "gp0_pll",
->>>> +                    "mpll0", "mpll1", "mpll2", "mpll3", "hdmi_pll", "xtal",
->>>> +                    "ext_32k";
->>>> +      #clock-cells = <1>;
->>>> +    };
->>>> +...
->>>> diff --git
->>>> a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>> b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>> new file mode 100644
->>>> index 000000000000..aeda4861cebe
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>> @@ -0,0 +1,50 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Amlogic Meson S serials PLL Clock Controller
->>>> +
->>>> +maintainers:
->>>> +  - Neil Armstrong <neil.armstrong@linaro.org>
->>>> +  - Jerome Brunet <jbrunet@baylibre.com>
->>>> +  - Yu Tu <yu.tu@amlogic.com>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: amlogic,s4-pll-clkc
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  clocks:
->>>> +    maxItems: 1
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: xtal
->>>> +
->>>> +  "#clock-cells":
->>>> +    const: 1
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - reg
->>>> +  - clocks
->>>> +  - clock-names
->>>> +  - "#clock-cells"
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    clkc_pll: clock-controller@fe008000 {
->>>> +      compatible = "amlogic,s4-pll-clkc";
->>>> +      reg = <0xfe008000 0x1e8>;
->>>> +      clocks = <&xtal>;
->>>> +      clock-names = "xtal";
->>>> +      #clock-cells = <1>;
->>>> +    };
->>>> +
->>>> +...
->>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>> index f61eb221415b..26c82beeffda 100644
->>>> --- a/MAINTAINERS
->>>> +++ b/MAINTAINERS
->>>> @@ -1897,6 +1897,7 @@ L:	linux-amlogic@lists.infradead.org
->>>>    S:	Maintained
->>>>    F:	Documentation/devicetree/bindings/clock/amlogic*
->>>>    F:	drivers/clk/meson/
->>>> +F:	include/dt-bindings/clock/amlogic*
->>>>    F:	include/dt-bindings/clock/gxbb*
->>>>    F:	include/dt-bindings/clock/meson*
->>>>    diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->>>> b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->>>> new file mode 100644
->>>> index 000000000000..bbec5094d5c3
->>>> --- /dev/null
->>>> +++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->>>> @@ -0,0 +1,131 @@
->>>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->>> Unusual license... are you sure to license the bindings under GPLv4 or
->>> GPLv5? Fine by me.
->>>
->>
->> Yes.
->>
->>> Best regards,
->>> Krzysztof
->>>
-> 
+ sound/soc/codecs/tas5720.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/sound/soc/codecs/tas5720.c b/sound/soc/codecs/tas5720.c
+index 3885c0bf0b01..0587c9bb3c4e 100644
+--- a/sound/soc/codecs/tas5720.c
++++ b/sound/soc/codecs/tas5720.c
+@@ -199,9 +199,8 @@ static int tas5720_set_dai_tdm_slot(struct snd_soc_dai *dai,
+ 	return ret;
+ }
+ 
+-static int tas5720_mute(struct snd_soc_dai *dai, int mute, int direction)
++static int tas5720_mute_soc_component(struct snd_soc_component *component, int mute)
+ {
+-	struct snd_soc_component *component = dai->component;
+ 	int ret;
+ 
+ 	ret = snd_soc_component_update_bits(component, TAS5720_DIGITAL_CTRL2_REG,
+@@ -214,6 +213,11 @@ static int tas5720_mute(struct snd_soc_dai *dai, int mute, int direction)
+ 	return 0;
+ }
+ 
++static int tas5720_mute(struct snd_soc_dai *dai, int mute, int direction)
++{
++	return tas5720_mute_soc_component(dai->component, mute);
++}
++
+ static void tas5720_fault_check_work(struct work_struct *work)
+ {
+ 	struct tas5720_data *tas5720 = container_of(work, struct tas5720_data,
+@@ -318,8 +322,7 @@ static int tas5720_codec_probe(struct snd_soc_component *component)
+ 			 expected_device_id, device_id);
+ 
+ 	/* Set device to mute */
+-	ret = snd_soc_component_update_bits(component, TAS5720_DIGITAL_CTRL2_REG,
+-				  TAS5720_MUTE, TAS5720_MUTE);
++	ret = tas5720_mute_soc_component(component, 1);
+ 	if (ret < 0)
+ 		goto error_snd_soc_component_update_bits;
+ 
+-- 
+2.34.1
+
