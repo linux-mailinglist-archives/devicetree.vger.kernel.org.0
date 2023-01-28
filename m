@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FD6467F59B
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 08:34:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA33467F5A3
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 08:35:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233272AbjA1HeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 02:34:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35944 "EHLO
+        id S232455AbjA1HfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 02:35:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233620AbjA1HeS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 02:34:18 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1192D43902
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:34:16 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id t12-20020a17090aae0c00b00229f4cff534so9569920pjq.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:34:16 -0800 (PST)
+        with ESMTP id S234095AbjA1HfH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 02:35:07 -0500
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E71C8CC43
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:34:48 -0800 (PST)
+Received: by mail-pl1-x62f.google.com with SMTP id m2so2072220plg.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:34:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JmYzUfpePnB9x0ifwB4TcXSt5sKNdFWyl1mCK+EAt64=;
-        b=sv7EliM4oDY/KPMKE8veikhHJX+n9dLGSJXbCDuMHFjzqR7z9a2A2QV0Mh8ISNJelb
-         gtq6p0Fg/Nut/liGUX0fm5Rk2UCPdlMtAIeuzXuG81EhF5FN+1OT97xlFykF9szLWMS4
-         8oPe32ivIGTGX8kQAMo4euFp43ngRX7rwTwv/ZwMPigJ7gZe5wrGfY/gqQEhcnUf3Gyc
-         oh+BuS8UwHELgpD/F96tP8E+jrdU7YLguXAyMz81xKVFLTC1Gz5BcrUhBkvXAQQlijpA
-         0HbWPf1qfSqLRrt007E+Zwqukn5gwceaXzjcltqaIfqgwrNQ1c4yHM1y2KkqvVbTGVs0
-         wj6g==
+        bh=7LfU4NdFCY9mc96XzAftKL5sqMzYNYpuz0VuvSMcGko=;
+        b=aOMpWODzMbhFL3U0nhkxf3JtSAEDLPoYqjDVsAiPDjmpzGOhoHNHzmJATT2eXZbmFT
+         QhaNHRZiE0UXHnzwCAuJgyJHBBZB4sJRLsdKHLlCiTOTYwTx4S3CA3s+YiYTpTCbFHy/
+         Hp7Vhw4OpgMmE2PKnWTnxvPG5mLSurQjgiUWvv9PxtPSVqMTEh+zWMbpZiADnhmP4Wie
+         CdeUNIUGGwzwf6D4pxWwzgYYB7EeHgRugrq/8Kcdxtl1Ifn4VjvnFsRT9d/x6DrHN52V
+         LjsGBYLIlOOdfEc4rHTKV78v1buVq2Zs6KS92a4vsDyenvGrfrokDe7zk5qyS79UXHN7
+         CEBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JmYzUfpePnB9x0ifwB4TcXSt5sKNdFWyl1mCK+EAt64=;
-        b=Cl7DSMmlZ9XRtq/BtWz1XklCE8HFVnwl2FgYLNhuVVAudDAEdqT1f0+m9JXlGDsdN5
-         JQPpAePLjkBl/5e8mMO83wF+qgqhaLIIYgAiZuE2jLUWkrPM3yf3bhbdUkaTYQoUs95O
-         i+X28aM4GWpK2Alo2AKBKzdcH+DGQfygIJXdQDpYQs3y3Kh3sK3FlcxW21eBojm9qK+0
-         gTy4jmy97Dt7ZGATRS3UtkNsepND9xhoQUziCND/8yRqwWly6lwbmIiRYRtwFmRaBbK0
-         zKEM2QxNVLqJL5cPerinq1+xyGXEzu8Ccdr3xbD5hSf+3kim5hHVLqHZVBgQ5LVVDI5e
-         4gKQ==
-X-Gm-Message-State: AFqh2kq0u9ulr0gtUnTfIKR5haI5dvfBer1gWk8hPF2vdAdr1YI5hnbL
-        9D56/Q8D1kASIXOUzCF4a0BROrUlxB+tQSItsuQcgA==
-X-Google-Smtp-Source: AMrXdXuNSDnsr/Epdkz/K+Dti20l9M0DJ83VLBWJ4Gvg9ChW/l3gOz1X2smf3HJfp3CmcVkj9QCLVhHNnTBqoV7Qy3A=
-X-Received: by 2002:a17:902:8304:b0:194:6253:d685 with SMTP id
- bd4-20020a170902830400b001946253d685mr4962773plb.3.1674891255033; Fri, 27 Jan
- 2023 23:34:15 -0800 (PST)
+        bh=7LfU4NdFCY9mc96XzAftKL5sqMzYNYpuz0VuvSMcGko=;
+        b=nCZPitAj5hLIxnofpLpy7ujq9wkQsOfFvha5UyCr+kpcyL2LgYCSq8xmFVhJOjBq+W
+         i1fUyFpxuaEcvZPU7jbfxCDfoRzP7dIogZTl8EYItwSy9pDoCtKGC2z/NaSB0aNnN5jj
+         NTgHl66X/rUMNg0I1qLQfmTn8KM/OFn1CDAzK6wAlbcIlJKYOMDM7V7KvYBR7m2840pS
+         KzGfCGVFB8dAVLn8/d+ym6KIxNStFS80y+VHnhHOzcy2/FbKJEH09hRPrLJO2LbPU86a
+         jw7VPt3HQumpCI9CfY+aBxnwCDvPg5JF21iXpdWJluqMy98WR9JQd/w96vWqfbkOMh5S
+         5CMw==
+X-Gm-Message-State: AFqh2kpiFMD0qoxrWm9S6u33hPSVQ+XxbFu2U2cFPT7jYVqzZzwpGZMo
+        YRIsGzFa2/k05TFBGfZKXxyNhLSbwgGO+Eknz5GWJg==
+X-Google-Smtp-Source: AMrXdXtm2ZrkaA0rw5RqDWYgPn1YG+GpZT4pmxbZ4JYnhM7L8m57SoxRptL9ssm4sTwpAl2zFa006VRnLiy4NJFPcco=
+X-Received: by 2002:a17:90a:7e8d:b0:225:d307:95ce with SMTP id
+ j13-20020a17090a7e8d00b00225d30795cemr5435468pjl.136.1674891287679; Fri, 27
+ Jan 2023 23:34:47 -0800 (PST)
 MIME-Version: 1.0
-References: <20230127001141.407071-1-saravanak@google.com> <20230127001141.407071-5-saravanak@google.com>
- <Y9OY6pMwYtab1Avd@smile.fi.intel.com>
-In-Reply-To: <Y9OY6pMwYtab1Avd@smile.fi.intel.com>
+References: <20230127001141.407071-1-saravanak@google.com> <20230127001141.407071-6-saravanak@google.com>
+ <Y9OZh0ZqtnqmKcvT@smile.fi.intel.com>
+In-Reply-To: <Y9OZh0ZqtnqmKcvT@smile.fi.intel.com>
 From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 27 Jan 2023 23:33:38 -0800
-Message-ID: <CAGETcx_sm5Efy=80kc9gNTaZgvOQzBGxwWA1n+bPJYWg43OebA@mail.gmail.com>
-Subject: Re: [PATCH v2 04/11] gpiolib: Clear the gpio_device's fwnode
- initialized flag before adding
+Date:   Fri, 27 Jan 2023 23:34:11 -0800
+Message-ID: <CAGETcx9WX-Nf7oD=sLEsG70hDczrQkDRdQTBmgE2y89hDLbYDg@mail.gmail.com>
+Subject: Re: [PATCH v2 05/11] driver core: fw_devlink: Add DL_FLAG_CYCLE
+ support to device links
 To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         "Rafael J. Wysocki" <rafael@kernel.org>,
@@ -108,53 +108,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 1:27 AM Andy Shevchenko
+On Fri, Jan 27, 2023 at 1:30 AM Andy Shevchenko
 <andriy.shevchenko@linux.intel.com> wrote:
 >
-> On Thu, Jan 26, 2023 at 04:11:31PM -0800, Saravana Kannan wrote:
-> > Registering an irqdomain sets the flag for the fwnode. But having the
-> > flag set when a device is added is interpreted by fw_devlink to mean the
-> > device has already been initialized and will never probe. This prevents
-> > fw_devlink from creating device links with the gpio_device as a
-> > supplier. So, clear the flag before adding the device.
+> On Thu, Jan 26, 2023 at 04:11:32PM -0800, Saravana Kannan wrote:
+> > fw_devlink uses DL_FLAG_SYNC_STATE_ONLY device link flag for two
+> > purposes:
+> >
+> > 1. To allow a parent device to proxy its child device's dependency on a
+> >    supplier so that the supplier doesn't get its sync_state() callback
+> >    before the child device/consumer can be added and probed. In this
+> >    usage scenario, we need to ignore cycles for ensure correctness of
+> >    sync_state() callbacks.
+> >
+> > 2. When there are dependency cycles in firmware, we don't know which of
+> >    those dependencies are valid. So, we have to ignore them all wrt
+> >    probe ordering while still making sure the sync_state() callbacks
+> >    come correctly.
+> >
+> > However, when detecting dependency cycles, there can be multiple
+> > dependency cycles between two devices that we need to detect. For
+> > example:
+> >
+> > A -> B -> A and A -> C -> B -> A.
+> >
+> > To detect multiple cycles correct, we need to be able to differentiate
+> > DL_FLAG_SYNC_STATE_ONLY device links used for (1) vs (2) above.
+> >
+> > To allow this differentiation, add a DL_FLAG_CYCLE that can be use to
+> > mark use case (2). We can then use the DL_FLAG_CYCLE to decide which
+> > DL_FLAG_SYNC_STATE_ONLY device links to follow when looking for
+> > dependency cycles.
 >
 > ...
 >
-> > +     /*
-> > +      * If fwnode doesn't belong to another device, it's safe to clear its
-> > +      * initialized flag.
-> > +      */
-> > +     if (!gdev->dev.fwnode->dev)
-> > +             fwnode_dev_initialized(gdev->dev.fwnode, false);
+> > +static inline bool device_link_flag_is_sync_state_only(u32 flags)
+> > +{
+> > +     return (flags & ~(DL_FLAG_INFERRED | DL_FLAG_CYCLE))
+> > +             == (DL_FLAG_SYNC_STATE_ONLY | DL_FLAG_MANAGED);
 >
-> Do not dereference fwnode in struct device. Use dev_fwnode() for that.
+> Weird indentation, why not
 >
->         struct fwnode_handle *fwnode = dev_fwnode(&gdev->dev);
+>         return (flags & ~(DL_FLAG_INFERRED | DL_FLAG_CYCLE)) ==
+>                (DL_FLAG_SYNC_STATE_ONLY | DL_FLAG_MANAGED);
 >
->         if (!fwnode->dev)
->                 fwnode_dev_initialized(fwnode, false);
+> ?
 
-Honestly, we should work towards NOT needing dev_fwnode(). The
-function literally dereferences dev->fwnode or the one inside of_node.
-So my dereference is fine. The whole "fwnode might not be set for
-devices with of_node" is wrong and we should fix that instead of
-writing wrappers to work around it.
-
-Also, for now I'm going to leave this as if for the same reasons as I
-mentioned in Patch 1.
+Ack. Will fix in v3.
 
 >
-> + Blank line.
+> > +}
+>
+> ...
+>
+> >                              DL_FLAG_AUTOREMOVE_SUPPLIER | \
+> >                              DL_FLAG_AUTOPROBE_CONSUMER  | \
+> >                              DL_FLAG_SYNC_STATE_ONLY | \
+> > -                            DL_FLAG_INFERRED)
+> > +                            DL_FLAG_INFERRED | \
+> > +                            DL_FLAG_CYCLE)
+>
+> You can make less churn by squeezing the new one above the last one.
 
-Ack.
+I feel like this part is getting bike shedded. I'm going to leave it
+as is. It's done in the order it's defined in the header and keeping
+it that way makes it way more easier to read than worry about a single
+line churn.
 
 
 -Saravana
 
->
-> >       ret = gcdev_register(gdev, gpio_devt);
-> >       if (ret)
-> >               return ret;
 >
 > --
 > With Best Regards,
