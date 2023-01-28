@@ -2,174 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3793067F71C
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 11:29:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33CD567F737
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 11:43:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234047AbjA1K3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 05:29:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41600 "EHLO
+        id S230156AbjA1Kn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 05:43:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232438AbjA1K3F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 05:29:05 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90D29E078
-        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 02:29:03 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so6972469wml.3
-        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 02:29:03 -0800 (PST)
+        with ESMTP id S234243AbjA1Kn0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 05:43:26 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3F923252D
+        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 02:43:24 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so5151574wms.2
+        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 02:43:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=h9C/J+Fu3WqzJtiT/Bo9AU5JcV2nkWAcR65XhuY/8zw=;
-        b=lNrrz/c/JVMyM4ROuoxS/NwPT8/yTzKYcZHFlzMfbUTBQf2O0wtrQz6PUvvUUkUwL9
-         9mrNdIi1zBXoHjxn38l6SNcbeyTRzdYNUWH51oY1kZh/i+Q01JpM1sJdzg59dmmDPHFa
-         C1fL0sQubPt8I7oGzgiRq+Ri5jsyaYGnpm3hM4WisBBadYan8mNJaxE0UWnTNAEQjHVq
-         vXrWgxNzZZIFm8ph28yS4nqyO99cO9jqyxIWuSTINkrwHE8pkyNzRwgyhrq7luFJfv/Z
-         zlStTXUOsWGnOJLFeFQUl6c/ULyYRqhorUHPnBzVQRvmjPeuJR8/cjOVF1taYCKJtSiN
-         +NDQ==
+        bh=qI6QvwwoMEoMGG2lrNC8roadH7Dk5Bdka3LjXTKFsas=;
+        b=mrEMDFPeaxlF47YSoNrlv7fMopJhfQavMyDPmPwddw79+WhlV4yJI3mKXazLZtgSYT
+         GPl2pwOoJ61egi55HunFRMZn+ALjkvLnv8vjkZHyIHoUZEZU75ts43pf387hTtPiqGzq
+         5RL3b8+AH/ZfoyLRlYdFK1BWYP94yB3Sg5CtSkKb7RzGWb9j3AcyxxV9r/gN2/1+geCV
+         vg4cPQyv2yK44r+5sWO4q9RgzIzOhTtb0wFVTm7DWFopwzuNL4V7Vhy0c9grgR5y3lQm
+         ddIeuJ5bI/y6xVT/o9cwHV/+a873lEbGmaSWZajxmfod7Z9rRbvvBMP+kPqH1vy9A2xa
+         WhaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h9C/J+Fu3WqzJtiT/Bo9AU5JcV2nkWAcR65XhuY/8zw=;
-        b=P6MvHzDYwh18qtQZ0sTHHEwJZIZLeYO9nVjQUaEkBT0fJkn6bY/skMcvDMOTAUW7F2
-         n43E9mWKaAOvE82zvLQHPdy/8V2hZv2dKHEnAggWSBgWqWwrJJRT/JxoZswIu//GI6ft
-         mUBkY3z5L6kzrCkiqfaG35t0afBTZlAsIpnIK6DBCZkk9CPbj44dEea56PYBKCXSDi11
-         i+QYmRDUTwveslXhSfmFMtUa7ahKB5KrMUzfVQpjZhF8Xe6Vf62bwHFS0TSBFP82eB/g
-         x9uuiJd3CykCUX9M77xtOHGLr1pQ+vV4rDR2iBZF1IMPrC8dEOP4pzkMUc/BZDc5yU2R
-         SmGA==
-X-Gm-Message-State: AO0yUKWWS2O6qwO3gYZYb7LlcDjMjysmMudwv48MOE5f0ZIiG5mrgOu2
-        8rZ6I6yCoKmM2kYOo61rjHlcbg==
-X-Google-Smtp-Source: AK7set8cK8kqpsUJRM/HfLEaaDOiJu5mN5ZMXZ0mrE5DBGvRGp39c1OqOXSVXOX5P4o7MT8uM0YaiA==
-X-Received: by 2002:a05:600c:458a:b0:3dc:45a7:2b8a with SMTP id r10-20020a05600c458a00b003dc45a72b8amr2207868wmo.10.1674901742156;
-        Sat, 28 Jan 2023 02:29:02 -0800 (PST)
+        bh=qI6QvwwoMEoMGG2lrNC8roadH7Dk5Bdka3LjXTKFsas=;
+        b=lBzGxDYZe4FcfdiTKwIEn4a/DedpuLtea7QSC0itUxNKq+ksyIQwEcQvCzM3+xiz7X
+         iRdInnvFlYDAFVMxlOsOVWKa5eop4CwDBygFRdGr4Y4iO5k1JeaPjKbkUdQP+C4XAWAT
+         xmRDMrmCpAkJJLJyiCX8vf/rGYjnGHz9QPXwZSSsN0qjjUNYuO6y/uD62nQFjXwRFY9H
+         nY3TyYTv0YJOLYgNEpf0ES0WNgkuDfN37KKc+iJN2WDT/7njt8QfCLBbxXrm7bBUu8Ms
+         RI06CvmHoo50mvUBbZFuc+Cx6jgAvz8Vy39OEMMSLJN4DXQKVcUIY2IowHK/ZsJxRBlF
+         acTg==
+X-Gm-Message-State: AFqh2krT5fojNiR13ut1lBD1+LDoCx1KJMvLJCS2gXW9mQEbzT2BcJ+a
+        ku18IKE/de68KEU+xWnAU5eTPQ==
+X-Google-Smtp-Source: AMrXdXtFHsnvA8WGNi+nEEgZjjW5/ECaWn9n1buzthZdLLG95KFCPxPExue3RykYjGqzhrddrej9Sw==
+X-Received: by 2002:a05:600c:35c1:b0:3d3:5319:b6d3 with SMTP id r1-20020a05600c35c100b003d35319b6d3mr42819876wmq.38.1674902603445;
+        Sat, 28 Jan 2023 02:43:23 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n23-20020a05600c3b9700b003dab77aa911sm12108357wms.23.2023.01.28.02.29.01
+        by smtp.gmail.com with ESMTPSA id y3-20020a1c4b03000000b003dc434b39c2sm2508838wma.26.2023.01.28.02.43.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Jan 2023 02:29:01 -0800 (PST)
-Message-ID: <be2a9eaa-d049-c249-0c1b-d0eb50b25c3d@linaro.org>
-Date:   Sat, 28 Jan 2023 11:29:00 +0100
+        Sat, 28 Jan 2023 02:43:22 -0800 (PST)
+Message-ID: <4dea3da5-54b6-bc50-a802-cb73ddccf5d8@linaro.org>
+Date:   Sat, 28 Jan 2023 11:43:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH V9 1/6] dt-bindings: usb: Add Cypress cypd4226 Type-C
- controller
+Subject: Re: [PATCH 2/9] ARM: dts: exynos: move exynos-bus nodes out of soc in
+ Exynos5420
 Content-Language: en-US
-To:     Jon Hunter <jonathanh@nvidia.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
-References: <20230127151041.65751-1-jonathanh@nvidia.com>
- <20230127151041.65751-2-jonathanh@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230127151041.65751-2-jonathanh@nvidia.com>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>,
+        Henrik Grimler <henrik@grimler.se>,
+        Chanwoo Choi <cw00.choi@samsung.com>
+References: <20230125094513.155063-1-krzysztof.kozlowski@linaro.org>
+ <CGME20230125094529eucas1p29b5f25af2c658abef13a93c49eca975f@eucas1p2.samsung.com>
+ <20230125094513.155063-2-krzysztof.kozlowski@linaro.org>
+ <cd42b8c9-a79a-068c-a967-810c05e818bd@samsung.com>
+ <d8f5fa57-da3a-09f9-e297-197068264d26@linaro.org>
+In-Reply-To: <d8f5fa57-da3a-09f9-e297-197068264d26@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/01/2023 16:10, Jon Hunter wrote:
-> From: Wayne Chang <waynec@nvidia.com>
+On 26/01/2023 11:59, Krzysztof Kozlowski wrote:
+> On 26/01/2023 10:47, Marek Szyprowski wrote:
+>> Hi Krzysztof,
+>>
+>> On 25.01.2023 10:45, Krzysztof Kozlowski wrote:
+>>> The soc node is supposed to have only device nodes with MMIO addresses,
+>>> as reported by dtc W=1:
+>>>
+>>>    arch/arm/boot/dts/exynos5420.dtsi:1070.24-1075.5:
+>>>      Warning (simple_bus_reg): /soc/bus-wcore: missing or empty reg/ranges property
+>>>
+>>> and dtbs_check:
+>>>
+>>>    exynos5420-arndale-octa.dtb: soc: bus-wcore:
+>>>      {'compatible': ['samsung,exynos-bus'], 'clocks': [[2, 769]], 'clock-names': ['bus'], 'status': ['disabled']} should not be valid under {'type': 'object'}
+>>>
+>>> Move the bus nodes and their OPP tables out of SoC to fix this.
+>>> Re-order them alphabetically while moving and put some of the OPP tables
+>>> in device nodes (if they are not shared).
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Frankly speaking I'm not very keen on moving those bus nodes out of 
+>> /soc. Technically speaking this is definitely a part of soc and doesn't 
+>> make much sense outside of it. IMHO they describe SoC hardware details 
+>> and they might be moved somehow under clock controller device(s), 
+>> although this would require some changes in the bindings and drivers.
 > 
-> Add the device-tree binding documentation for Cypress cypd4226 dual
-> Type-C controller.
+> That's the only way to fix it without change of drivers any ABI
+> compatibility issue. The same we do for Qualcomm interconnects, e.g.
+> arch/arm64/boot/dts/qcom/sm8450.dtsi where some interconnects have some
+> do not have MMIO space.
 > 
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
-> V9: added 'unevaluatedProperties' and 'additionalProperties'
-> V8: removed 'additionalProperties'
-> V7: updated example to use 'typec' for the node name
-> V6: no changes
-> V5: updated subject and updated binding to use 'firmware-name'.
-> V4: no changes
-> V3: fix additionalProperties warning on new schema
-> V2: based on the review comments. Fix some addressed issues on
+> I want to achieve finally clean dtbs_check run for all Exynos sources.
+> The in-tree bindings already pass, so now I am fixing the ones coming
+> from dtschema (simple-bus.yaml in particular).
+> 
+> If you have any other idea how to seamlessly clean it up, I am happy to
+> hear. But I guess the main problem is that no one is being paid for
+> doing anything for Samsung Exynos, so for free not many put much effort
+> into working on it.
 
-Thanks, this is looking good, although few more questions popped up
-while comparing it with other bindings.
+Marek, I value your feedback a lot and I appreciate your help here. Just
+to be clear that I am not ignoring it, little disclaimer:
 
-(...)
+Unless there is a clear NAK from you or someone else, with an idea to
+fix or with a commitment to change driver/bindings, I am planning to
+grab these changes.
 
-> +  firmware-name:
-> +    enum:
-> +      - nvidia,gpu
-> +      - nvidia,jetson-agx-xavier
-> +    description: |
-> +      The name of the CCGx firmware built for product series.
-> +      should be set one of following:
-> +      - "nvidia,gpu" for the NVIDIA RTX product series
-> +      - "nvidia,jetson-agx-xavier" for the NVIDIA Jetson product series
-> +
-> +patternProperties:
-> +  '^connector@[0-1]+$':
-
-How many connectors do you expect/support? 1111 is valid? I guess you
-wanted only [01]?
-
-> +    $ref: /schemas/connector/usb-connector.yaml#
-> +    unevaluatedProperties: false
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-
-I would assume that at least one connector is required (oneOf: required:).
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/tegra194-gpio.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      #interrupt-cells = <2>;
-> +
-> +      typec@8 {
-> +        compatible = "cypress,cypd4226";
-> +        reg = <0x08>;
-> +        interrupt-parent = <&gpio_aon>;
-> +        interrupts = <TEGRA194_AON_GPIO(BB, 2) IRQ_TYPE_LEVEL_LOW>;
-> +        firmware-name = "nvidia,jetson-agx-xavier";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        connector@0 {
-> +          compatible = "usb-c-connector";
-> +          reg = <0>;
-> +          label = "USB-C";
-> +          data-role = "dual";
-> +          ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            port@0 {
-> +              reg = <0>;
-> +              endpoint {
-> +                remote-endpoint = <&usb_role_switch0>;
-> +              };
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
+I really want to get the dtbs_check done. With these and my other fixes,
+the arm64 exynos DTS pass fully all dtschema and in-kernel dtbs_check.
 
 Best regards,
 Krzysztof
