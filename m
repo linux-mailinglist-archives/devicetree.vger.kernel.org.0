@@ -2,69 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3358467F45F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 04:41:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EB8967F466
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 04:46:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbjA1DlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 22:41:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58048 "EHLO
+        id S229498AbjA1Dq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 22:46:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbjA1DlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 22:41:24 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C564A8B7AC;
-        Fri, 27 Jan 2023 19:41:23 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id m15so4717060wms.4;
-        Fri, 27 Jan 2023 19:41:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mQ+81Fws2lq/NhKgavsg4624xh5ot56CxL/cmzyR1Ik=;
-        b=MvXtvmjfVc/SHBbD1rHRW+NK4dG+TFqTK7wZIK9pjgCV8jp15Va45IX4lJqf50pphK
-         5s+gPC6BdB4m4nmnkHI32g7Z+61PlfOA+A9f9dl5QyrOxTcWsUBLU4V9jpohvA4nGkZy
-         HNATFvbr8JQEbEhCSWtfEriXBGXYbzVsMwUXBjYvy1a/9Ou4ypS7EYPLoB6qRKkJnM31
-         T2ifsPknUxZbltTAaFQOJjFAmSa35igzNU2L+Ln8vQ5UbtO7teKVN2i/11uoxuy3XNTO
-         WqipjGUoT7hUgQYjd/TmCSlFPp2AioURk9mYi4xyEKeULavJFr+YBTR7Cm3Bpy5altZ+
-         5N+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mQ+81Fws2lq/NhKgavsg4624xh5ot56CxL/cmzyR1Ik=;
-        b=M1qgsKEXsbK3uQBSv0Dnwcdldc6Cu1pA8OY4TT66UpeJ8t9iHXGb6g/8XSGGNz21SK
-         aN8dPuQCDL0X0UVsOVCblDcLXo7JSVC6Zj+mJg3l2TXqSPaxQeHVI8lHIGxZNUMleao1
-         xYtmt8jeJzhecUZF5jGF7AVy80mbiGtBvgxdRC1F+5sqljB8Q9h3adw+lEs+2TQsFkVT
-         VK3r3yGLVA0Kx12EOGy/jbSgWKck/rUx2SkPIv/bS7W5jaoh8Qo4JXDDjBpyywFizmge
-         99aNNDNaoUIp3pB2cS+B9ILn/t5hKDJfU7ZH6Fm96hIgVcbq2kJtKEvAQimYYgnpk5y6
-         RfuQ==
-X-Gm-Message-State: AFqh2krhsBgMhtMpBzCeAMSMSoPbqpLKji8drVRonJqOsnb4JWmR0lNt
-        5T2PP5lfIRgA3B3j9eZ3tzRiAzdA93eUxA==
-X-Google-Smtp-Source: AMrXdXv2vQnMLTbdyIBercQfamwgwIDJ2zbeFEPCDI+PtAq7MglcMlYKeCEJ5JgxN437oVtwhfWIzQ==
-X-Received: by 2002:a05:600c:4e94:b0:3db:bc5:b2ae with SMTP id f20-20020a05600c4e9400b003db0bc5b2aemr38694812wmq.41.1674877282313;
-        Fri, 27 Jan 2023 19:41:22 -0800 (PST)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id u13-20020a5d514d000000b002be2f18938csm5221169wrt.41.2023.01.27.19.41.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 19:41:21 -0800 (PST)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Sean Young <sean@mess.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] media: rc: add keymap for Beelink Mini MXIII remote
-Date:   Sat, 28 Jan 2023 03:41:17 +0000
-Message-Id: <20230128034117.3983105-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
+        with ESMTP id S232115AbjA1Dq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 22:46:27 -0500
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2066.outbound.protection.outlook.com [40.107.20.66])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E311367F6;
+        Fri, 27 Jan 2023 19:46:26 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Wt0VKoIAcUi4xEgYOvYFu5+eCHYGsFgtR43phuqe4VCiGk+0utBHj3WaJa6S//igVwiqyy9oJTwfSAHk72+Ibc/Lkl0fe0WPOMmq6Gl3QG+m1iaQokUr2Qk9hlpvQTTriWPm8TlXRiWn/6oVK0rpejO6Q9Fw0f95WXZUKvjHt4hqaNwqHUW9F7wFzFGldMSbaVjcNgwEStCYM7gl2s1yJnslKA7xdhIYOhIMIWVPz7rgLriQhMht0QdLwoN+NwHJDWmhbjQmQMg5VB7Txo8maM6BtlK2KYkEs5R/PBfR7Q2m4RzAPEUQhYTLFo5MjATWqDLKqa504JQpquRI50s/gA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BE7SY8Sj3Y0aKM4j48HBZlyBNJRlO2gGpJedsD3TFsE=;
+ b=jtz91eVUKSuizxom/QODcgu3JWrLs+ewIgeZGKVbWzSQlFUNg9W1jpksL3gxG91FaDw8tqLpFgV49r6u9mKZ8F2w6/076YORdkCAz0DZbq2pBUOq4H1EZ9EVLyHAMaAxCUSDq5RWeeX3Yqw/HgJH8KQ3tUUTSJdmuaGheDnMQQ/ppfTrQJGVJlHdhJ78PYptVke+7vcCgAU+PqpvTzp/oc0t15EEDvfsP81ZZhNlJ4o4vyhFX6JnApS8dcGDsafsBhYS2E9SP9eqF1cRYpsh+mZ9c++Eg2NVnZ3xPCIaouPgqVbcY4WYuj7DA955TTf4PHy193FZ8jL4IrVJ2mrqgg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BE7SY8Sj3Y0aKM4j48HBZlyBNJRlO2gGpJedsD3TFsE=;
+ b=LwJUaO4bXZODW1JCXQKgY+SfmxDs4v0jp5aAIIHTNrkQQllxBFyS3NDm+kwcHNdYOmpeBhONOBq9tkFFHEpAHn7Knyorvzz/How5eW8sxS/oDqVPXvkj4UUlLhm3yOeIK0/fzdh7KgtuEOZXJXzrxL3yP8Rn38fYTo9hc23kwGY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by PAXPR04MB9203.eurprd04.prod.outlook.com (2603:10a6:102:222::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.25; Sat, 28 Jan
+ 2023 03:46:23 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::5725:92ec:f43e:f5fc]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::5725:92ec:f43e:f5fc%8]) with mapi id 15.20.6043.023; Sat, 28 Jan 2023
+ 03:46:23 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com
+Subject: [PATCH 0/2] drm/bridge: imx: Add i.MX93 parallel display format configuration support
+Date:   Sat, 28 Jan 2023 11:47:11 +0800
+Message-Id: <20230128034713.1530218-1-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.37.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0047.apcprd02.prod.outlook.com
+ (2603:1096:4:196::14) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|PAXPR04MB9203:EE_
+X-MS-Office365-Filtering-Correlation-Id: 331b37e5-1b5e-481b-873d-08db00e2394d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: e2hQBPGwpgo7cuuxsl68iMYUdNLHx0dMtH2knUhC+IMu53QHZz+jVzDQL9krjPBOgX0wc4fhW6IdwyDUAb2DbdzFak6V4rgkxQCNqOL5E1UslOuuZyrzk8YIuCIByjDhwApfDufr6B+fDWSKSqLXyyG5uY+JFHUum8wl5d0gUY8diXachtpWgs4o//J89e+ZbgyZyPO5nazs1u006X+YlxJekoztFmwQ4rJpyWIIsbNGlFixVTNz+Li0lkIJxhkHm/hM7KyAHJPoP/Ai6/44JlY8XCCnm/fd0u3hOM174l/DZ/WJIOOaHPL5ODL+yWwSn/Yz3pLkytAvsK4qmahgBC1xIgw7d8EmmNH9ikvT4EBkWpfOpe9B5acKqx5HF0kERHj0qAoJKZWd0hiA+632Ol3t3e7AIRL9/CLrFJ/UYTaZZaeZlQDztyIAvgPrAeD4TQRDVYnsuPM8iRtbZYMewNt2l0FvJrL8c2GhRCyYOETT0IfgoX/a4s058lGH2xpkfv4m1hwhbbaz1tXmiaDj+6V9I5OScAiplXwoXgvcNVCklGR2uMZc4lhQHuqi+TtiYVQegCfUDav2yCNg0lQoy9LF/Cosbe7+HFfO3YjvevfY0Z3SbkeynpG5sHHkkHYQWL5Vm7I6GsRjMD81F647t7ekRi61mTCsQRQqK0z4GCkzATFxHm6ns6AalVqZ+oEBUXGLqZOYFul7Z904PA1UCQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(346002)(396003)(39860400002)(366004)(376002)(451199018)(186003)(36756003)(6506007)(1076003)(6512007)(26005)(38350700002)(5660300002)(7416002)(38100700002)(2906002)(6486002)(6666004)(52116002)(86362001)(2616005)(4326008)(66946007)(478600001)(66476007)(66556008)(316002)(8676002)(41300700001)(8936002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pEh2NVWqC5nSVBk9cCe5GUYmifZPCngNL8rr1zQ5edn/qFtn7U3Dg4MFLmnW?=
+ =?us-ascii?Q?ABF4dEC9lNhgCmi/SEiyZKHTnV+tbncxjNxvyNkRcre1PHUKEtYgNrPQaOTk?=
+ =?us-ascii?Q?92U19zEChl2tc1oql5DGRzbeHpYdlouZEp5wGLKQPH91GwYmvyGW3YTKl69q?=
+ =?us-ascii?Q?h009GUYMSSXJpzSxWfe57nFuZAP+15WfUylNMazET8mNWrH9n6W93b7XUZtO?=
+ =?us-ascii?Q?mUhOHZLS0RqSBEB7FF7Uv9y+Bh7VGXpIOHgtdjnTlUsOy0QUMwID/qRlnTUE?=
+ =?us-ascii?Q?GyDw4KwHFu7rj6tbGNOpmXJCrI5VaC+VPtCx3a3tAYeqiCbjhuf6rb1QykNU?=
+ =?us-ascii?Q?X12od6lhEzwax/8yUhDp6Ama+JEdm4sIUX63sQP4ipaLSPTDApYVG6pelOri?=
+ =?us-ascii?Q?x6hHno2BlPZfAiPDMU2oqr0TzQswhpLvBjH6qsyrVNebqwuLojFtkChCzjM+?=
+ =?us-ascii?Q?l+9Su6NjbIb0kw2tSEEdGWjqmDhZppsTjVy7XabqKyIXMuD3WrWoPgkYYoqh?=
+ =?us-ascii?Q?wE3Y5evZUS+cdnScbYcKWYD5icnvOKLPHla0IFUgMop3cyyBUZYlTiQLxOJd?=
+ =?us-ascii?Q?cGJyRSWomcoNepQQjqEPTuu0g+h7wqPrdg0naAGZtp6y5HW66Z11xXOtmqPB?=
+ =?us-ascii?Q?iZUndNM+OMu76eiiZgdH34Zq1eZoVSLkkxjOeEt4wGKL+L1ruyn9bg+hHsvY?=
+ =?us-ascii?Q?CUYn/nwWmeWGAuUPh72Svo5h2D4vKTI5nHMRhiB1Tgq+b359ppiWmWaUbv4H?=
+ =?us-ascii?Q?9CPoxjIlV9Fd2qwDJLIUSoqmze8byETMhu22ovwhZFINowAM9nnxCbpdtWBM?=
+ =?us-ascii?Q?q/C+sURMjLGOr8WVGPjQk6cAm0mfYuLL1Vb5AjbIkAGOmIiGQs+Gwy40+pq6?=
+ =?us-ascii?Q?Knmmsgb1mgUFdfurJYPttpN8Jgo65b8qvTbtHdftm71bErhAJv6miFDwnmRZ?=
+ =?us-ascii?Q?DbEQevRgywHdS16lfZAFZU9qIGnCp49bs0/8n0nw7kf8Cj1pPFNEXaH2Q309?=
+ =?us-ascii?Q?4xSEpH9Eeo9F2LRjrZ1vjnQARolRHYBOTlgmDifefTTftddlh6cduFg34jk6?=
+ =?us-ascii?Q?ikljri+zMM7fN+I1yXJIlY8pPJHxfD34dY9POWhjgZhl0EzD5AKVALD6kQxo?=
+ =?us-ascii?Q?xL7xNbXkzckvqj2ocg0cMDICfTbLlOF7Tqqq/oLTuqakj4Ims/4PVPLPmrHo?=
+ =?us-ascii?Q?NRdWOMOVUrqIGfknoMENw946jQD4dRKQXGLRlw3viIf86P9YQaygegYPe4Ds?=
+ =?us-ascii?Q?TM9SQ3lOkE7lsd+B4hF9ye9hKUrzVlzYlxWxSV53zPrAMSkrstFjIdFHswHf?=
+ =?us-ascii?Q?k2WbXLH1f62QPi5iiNqfVh9RWuT1TYQeHiBiUhXOoO2c4SE9ZG99Qou4sVhS?=
+ =?us-ascii?Q?cqi9YoaOFt069/F0+XUlcL6PBt9eBfQKc+0U/gUhF5OXxSh4MWq3EvXhscgI?=
+ =?us-ascii?Q?//SC8q+lKjq2lPZqOcrsDxK37FlOHNeE7pY1IwcEfX5tJNn7oYaSccZ9oo3f?=
+ =?us-ascii?Q?Ld/4w7fnsefql71Ok6QieHJUgaFbWOUFkISzAl9tePvIEi/TU2MBfdgQqAE/?=
+ =?us-ascii?Q?3VyKlWrNgzs6XX3qyMCu6+2LOXRKUeRgfIkueoH8?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 331b37e5-1b5e-481b-873d-08db00e2394d
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2023 03:46:23.2203
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rvI65mSkFKHD9rxMbHbBbvJptwZL9jO2N7LETu/fJ/0QFxcz7qwo9GQ8VRlNBETQ8FJ1KEpOrOhrt/InkfZwqA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9203
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,114 +116,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a keymap and bindings for the simple IR (NEC) remote used with
-the Beelink Mini MXIII Android STB device.
+Hi,
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- .../devicetree/bindings/media/rc.yaml         |  1 +
- drivers/media/rc/keymaps/Makefile             |  1 +
- drivers/media/rc/keymaps/rc-beelink-mxiii.c   | 54 +++++++++++++++++++
- include/media/rc-map.h                        |  1 +
- 4 files changed, 57 insertions(+)
- create mode 100644 drivers/media/rc/keymaps/rc-beelink-mxiii.c
+This patch aims to add NXP i.MX93 parallel display format configuration
+DRM bridge driver support. i.MX93 mediamix blk-ctrl contains one
+DISPLAY_MUX register which configures parallel display format by using
+the "PARALLEL_DISP_FORMAT" field. i.MX93 LCDIF display controller's
+parallel output connects with this piece of small logic to configure
+parallel display format.
 
-diff --git a/Documentation/devicetree/bindings/media/rc.yaml b/Documentation/devicetree/bindings/media/rc.yaml
-index 266f1d5cae51..f390a5d2c82d 100644
---- a/Documentation/devicetree/bindings/media/rc.yaml
-+++ b/Documentation/devicetree/bindings/media/rc.yaml
-@@ -39,6 +39,7 @@ properties:
-       - rc-avertv-303
-       - rc-azurewave-ad-tu700
-       - rc-beelink-gs1
-+      - rc-beelink-mxiii
-       - rc-behold
-       - rc-behold-columbus
-       - rc-budget-ci-old
-diff --git a/drivers/media/rc/keymaps/Makefile b/drivers/media/rc/keymaps/Makefile
-index ec0361b0b758..03bc9a8d355e 100644
---- a/drivers/media/rc/keymaps/Makefile
-+++ b/drivers/media/rc/keymaps/Makefile
-@@ -22,6 +22,7 @@ obj-$(CONFIG_RC_MAP) += \
- 			rc-avertv-303.o \
- 			rc-azurewave-ad-tu700.o \
- 			rc-beelink-gs1.o \
-+			rc-beelink-mxiii.o \
- 			rc-behold-columbus.o \
- 			rc-behold.o \
- 			rc-budget-ci-old.o \
-diff --git a/drivers/media/rc/keymaps/rc-beelink-mxiii.c b/drivers/media/rc/keymaps/rc-beelink-mxiii.c
-new file mode 100644
-index 000000000000..09b77295e0a3
---- /dev/null
-+++ b/drivers/media/rc/keymaps/rc-beelink-mxiii.c
-@@ -0,0 +1,54 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+//
-+// Copyright (C) 2019 Christian Hewitt <christianshewitt@gmail.com>
-+
-+#include <media/rc-map.h>
-+#include <linux/module.h>
-+
-+//
-+// Keytable for the Beelink Mini MXIII remote control
-+//
-+
-+static struct rc_map_table beelink_mxiii[] = {
-+	{ 0xb2dc, KEY_POWER },
-+
-+	{ 0xb288, KEY_MUTE },
-+	{ 0xb282, KEY_HOME },
-+
-+	{ 0xb2ca, KEY_UP },
-+	{ 0xb299, KEY_LEFT },
-+	{ 0xb2ce, KEY_OK },
-+	{ 0xb2c1, KEY_RIGHT },
-+	{ 0xb2d2, KEY_DOWN },
-+
-+	{ 0xb2c5, KEY_MENU },
-+	{ 0xb29a, KEY_BACK },
-+
-+	{ 0xb281, KEY_VOLUMEDOWN },
-+	{ 0xb280, KEY_VOLUMEUP },
-+};
-+
-+static struct rc_map_list beelink_mxiii_map = {
-+	.map = {
-+		.scan     = beelink_mxiii,
-+		.size     = ARRAY_SIZE(beelink_mxiii),
-+		.rc_proto = RC_PROTO_NEC,
-+		.name     = RC_MAP_BEELINK_MXIII,
-+	}
-+};
-+
-+static int __init init_rc_map_beelink_mxiii(void)
-+{
-+	return rc_map_register(&beelink_mxiii_map);
-+}
-+
-+static void __exit exit_rc_map_beelink_mxiii(void)
-+{
-+	rc_map_unregister(&beelink_mxiii_map);
-+}
-+
-+module_init(init_rc_map_beelink_mxiii)
-+module_exit(exit_rc_map_beelink_mxiii)
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Christian Hewitt <christianshewitt@gmail.com");
-diff --git a/include/media/rc-map.h b/include/media/rc-map.h
-index 5178dcae5ff7..dadd4d27a760 100644
---- a/include/media/rc-map.h
-+++ b/include/media/rc-map.h
-@@ -225,6 +225,7 @@ struct rc_map *rc_map_get(const char *name);
- #define RC_MAP_AVERTV_303                "rc-avertv-303"
- #define RC_MAP_AZUREWAVE_AD_TU700        "rc-azurewave-ad-tu700"
- #define RC_MAP_BEELINK_GS1               "rc-beelink-gs1"
-+#define RC_MAP_BEELINK_MXIII             "rc-beelink-mxiii"
- #define RC_MAP_BEHOLD                    "rc-behold"
- #define RC_MAP_BEHOLD_COLUMBUS           "rc-behold-columbus"
- #define RC_MAP_BUDGET_CI_OLD             "rc-budget-ci-old"
+Patch 1/2 adds NXP i.MX93 parallel display format configuration dt-bindings.
+
+Patch 2/2 adds NXP i.MX93 parallel display format configuration DRM bridge
+driver support.
+
+Liu Ying (2):
+  dt-bindings: display: bridge: Add NXP i.MX93 parallel display format
+    configuration
+  drm/bridge: imx: Add i.MX93 parallel display format configuration
+    support
+
+ .../display/bridge/nxp,imx93-pdfc.yaml        |  78 +++++++
+ drivers/gpu/drm/bridge/imx/Kconfig            |   8 +
+ drivers/gpu/drm/bridge/imx/Makefile           |   1 +
+ drivers/gpu/drm/bridge/imx/imx93-pdfc.c       | 209 ++++++++++++++++++
+ 4 files changed, 296 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/nxp,imx93-pdfc.yaml
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx93-pdfc.c
+
 -- 
-2.34.1
+2.37.1
 
