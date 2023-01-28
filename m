@@ -2,375 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2D3F67F46D
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 04:46:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98AC967F4A1
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 05:26:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232760AbjA1Dqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Jan 2023 22:46:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59536 "EHLO
+        id S230225AbjA1E0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Jan 2023 23:26:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232939AbjA1Dqm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 22:46:42 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2083.outbound.protection.outlook.com [40.107.20.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DD948BB9E;
-        Fri, 27 Jan 2023 19:46:36 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PuoB+qqylHE9G9KgWHadXnauM4R3BgmPzWkfCPyqodm9KLNBrsXfFSE/7N0pKlDwFEW3wf73ku1Plfuq/NuX7Z6F7TzcGgy1srn0QK1PkVgGyR8vHFWYCsla0vjTwy3flrqMY65T/02FOuvbVBHznMDXRYwn5WernN/QKLcpUZrJV9abH5bHTQjLhl6aaDFvQSe7HCHEkaslqB1WG78mSOccyiWaw1P4S7I5s8q27AEKsdjW8Fn+gIo3WH6FGmiFQ2E6Lmm2nSzb7ap9T6HKSuxIiTKAeD4DuFkCA29bllz+0o0mzyyuccOQLpwzAWlLKZiWIO1ajl8cPiITZa/8vA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+j8tmRGL2OR+I/QSXpdMl/m+O3C/9A+ffi0C2+j5zAY=;
- b=kc4iU8Wl5wfOK94TL9JOmD9iM63B2qQZ2or6p3tVy8LppJJER9WTfD2p/0qFymjPLuhQnya2GH9a4waI07cvcBUn4paMukAgDmWyaDyl5jeoNnCxMqYbSkboaMv514yw944FBGqo1eVjkOw3mZ8D87Z1gMoheV4/ZJgkPI7Y7KUH4PfjJPyQBbq7JpU2HkitBuWjJx0Kv2rEaL7AHKUU083sQNu/8a7dGIWY9RDeu/uTk5CJ8e5EdsqJjgY82Od4XU1Ejw4QKXYPhGnXI9B/vrnIt3VcbpcpjNtSasUGamUasmmZI5TlfhkpvxjfPRLgMfIfx/kQixnuEvPZUxbAeg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+j8tmRGL2OR+I/QSXpdMl/m+O3C/9A+ffi0C2+j5zAY=;
- b=HwwRmDSjF8uvyVDB+AaH9MB+Q1f/lY5//DTVpQqgYHq/ip1tUZWjyPzAwn0czROuwUIH/0yYcxw2dVne7PPQHe5eOm6TLSE2eWe6Yv/mhJcsfcEAd3y1QpM2Z0iBy+loR/OkEgApnrPuL4/3U2ttc/nv1TxKMHK9gVq7T4feMdg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by PAXPR04MB9203.eurprd04.prod.outlook.com (2603:10a6:102:222::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.25; Sat, 28 Jan
- 2023 03:46:33 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::5725:92ec:f43e:f5fc]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::5725:92ec:f43e:f5fc%8]) with mapi id 15.20.6043.023; Sat, 28 Jan 2023
- 03:46:33 +0000
-From:   Liu Ying <victor.liu@nxp.com>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com
-Subject: [PATCH 2/2] drm/bridge: imx: Add i.MX93 parallel display format configuration support
-Date:   Sat, 28 Jan 2023 11:47:13 +0800
-Message-Id: <20230128034713.1530218-3-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230128034713.1530218-1-victor.liu@nxp.com>
-References: <20230128034713.1530218-1-victor.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR02CA0047.apcprd02.prod.outlook.com
- (2603:1096:4:196::14) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+        with ESMTP id S229883AbjA1E0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Jan 2023 23:26:17 -0500
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9940247EEF
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 20:26:14 -0800 (PST)
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20230128042609epoutp025522b07c7445311e3a7d52e4e8ee1c72~_XnVlK2BD2899428994epoutp02V
+        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 04:26:09 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20230128042609epoutp025522b07c7445311e3a7d52e4e8ee1c72~_XnVlK2BD2899428994epoutp02V
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1674879969;
+        bh=8ccD9UJt6vKihn8EhsWbq86Y0nDtnM3sCEUaPwFJiyY=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=Q4VDD1aRT5iNBRyzm7O9HnNwWB/oaLMzcsrFU4YqBdsowQAYI7oTHNY3G4TkzSsjL
+         LGOGmZWCX9O9uo3kUr4xMF+sEz0uqY7CoUbO9pzWETweKISsF3bSxjuhhfiEB8FtZQ
+         l2/KfMvf5wUmvooPprnPVsUZalrmnLhKzGEQ3WOI=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+        20230128042608epcas5p42bd0fc3996d8056853cf9596a66eb05a~_XnUv-CJn3217632176epcas5p4P;
+        Sat, 28 Jan 2023 04:26:08 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.183]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4P3hG71fbtz4x9Pt; Sat, 28 Jan
+        2023 04:26:07 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        A0.08.10528.FD3A4D36; Sat, 28 Jan 2023 13:26:07 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+        20230128042606epcas5p4e110dea83182c0711f802656cb3db515~_XnSQ6yqC3202832028epcas5p4V;
+        Sat, 28 Jan 2023 04:26:06 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20230128042606epsmtrp167298a1b9a1d3400cbb39caf1d2d948d~_XnSPwjbL1668016680epsmtrp1T;
+        Sat, 28 Jan 2023 04:26:06 +0000 (GMT)
+X-AuditID: b6c32a49-c17ff70000012920-9e-63d4a3df02d3
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        FD.2D.05839.DD3A4D36; Sat, 28 Jan 2023 13:26:06 +0900 (KST)
+Received: from alimakhtar04 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20230128042603epsmtip1b2b266661c2d2dfa10b55919285e0500~_XnPd7Wfm1209812098epsmtip1W;
+        Sat, 28 Jan 2023 04:26:03 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
+        "'Inki Dae'" <inki.dae@samsung.com>,
+        "'Kyungmin Park'" <kyungmin.park@samsung.com>,
+        "'Kukjin Kim'" <kgene@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Cc:     <replicant@osuosl.org>, <phone-devel@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        =?utf-8?Q?'Martin_J=C3=BCcker'?= <martin.juecker@gmail.com>,
+        "'Henrik Grimler'" <henrik@grimler.se>
+In-Reply-To: <20230120155404.323386-2-krzysztof.kozlowski@linaro.org>
+Subject: RE: [PATCH 01/11] ARM: dts: exynos: correct wr-active property in
+ Exynos3250 Rinato
+Date:   Sat, 28 Jan 2023 09:56:01 +0530
+Message-ID: <000001d932d0$a3362000$e9a26000$@samsung.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|PAXPR04MB9203:EE_
-X-MS-Office365-Filtering-Correlation-Id: 78dce08b-8365-4d9b-e9e0-08db00e23fc9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jUkeJxrgNoJuHiuJqE/JXn6LSX/anO2ue1wpnGP1MBoWVVUJDIDfjmEL+xR0uRdURbCd7yEON1liw3xASox/wjKn1eR4d74ro5wv/fPgI7OUHDCPqcmyyLMnd43fWGTRe+0y3trfeYPji9PB63/gtDCqotYj3rT6DPqCTW3QAhxEWwC8XBxKE/eN2UDYgCEt8X65SK4F3HdeM5IZIaM438YDnhmwwSwGOoK+Zs+RYLhYr2yCr5yyAan2YbRqkeZIPWkQ8XQcrXr7MtrIgjMFzH45E6BT28vCjOvZAdMYLgYw2iyyf4EhKkO6FELp/EyMy4oZrttN0GxJ4ZT6AmEcF4sftYKFqtQ+P70zw81u70je/vynGrAM53T3hrGVaB2XWG+4Iv2T4uvLbCWNiVBgC3BiJfhronr04WAk8k3fe4pgVfkuE+U38d76ja/eE7wsPVTrIK0Z5v/dpAlz45k53F6e5SfXpqiZRT3/g/1lip0wwxFOe/2ZsaDmwaYLX7ueRJagCjUUqRPz80Uj3JZG+29bXH4OwjVs33HcXwSC0Ch852GilgA4YFw06s9Ro8/uVVGQni1kXYFY3uShy4jnZQ7dyR1Y1aW/hd76g+sB7S5aHTqvgrzZkLXgRvTNJefk0dSD43G8ZHo2EY942VG565dC9FZ9j+5WE1XdUWLX1wH+S/PxeDW0x2Eckg0L/8+dcRIXbylZ0AHmtSKi+daUgg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(346002)(396003)(39860400002)(366004)(376002)(451199018)(186003)(36756003)(6506007)(1076003)(6512007)(26005)(38350700002)(5660300002)(7416002)(38100700002)(2906002)(6486002)(6666004)(52116002)(86362001)(2616005)(83380400001)(4326008)(66946007)(478600001)(66476007)(66556008)(316002)(8676002)(41300700001)(8936002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?luhCbWHG0nm4FPoG3l8Ck803Qcsvr2rP0WOlJSjUIwwHQ5AQC11j6lRzTOtO?=
- =?us-ascii?Q?ac1iwe8kTSj+6cBal3cnI8puqkxfeQE/lVuBTmao7HeSAUBomzXsGDUNymTl?=
- =?us-ascii?Q?lRnz3/YgxBFm3tVd4ZPh3GAFliBMMygXK2ALHbbGVAFTiWw7cH5SFggmJdmn?=
- =?us-ascii?Q?A76GcNRN8plaE7zupCvFZn4Mgp9DsrOxkQzoUa3uGVWFglMMBaPxVN+8BLQI?=
- =?us-ascii?Q?ryuwajPuekLLR08bjMiKVjvs3zsLcLLZZLWSea8RwHNVqK5nQiOyUXPg7eVK?=
- =?us-ascii?Q?wGaDIxpF40uoBOps12dj4ynCk5Mmgm5oOfy7L5fgqr0AScJ7mPUBQtZB+iPN?=
- =?us-ascii?Q?Q+O+QuwX9Xl6w1rXVc61HCrtKgv1GCAuFJbjOtKXDZ8tKlRz2lWnq3ukoXCf?=
- =?us-ascii?Q?R/g86ncjpYeLyuo4JuNDCfPaJ+WsLdKyjacgMVyMjM7ImImeXrOyNjU3d0Rl?=
- =?us-ascii?Q?ClDs0y4wwhc0yDbisLlmZyljmLagF79eYCAGjcbVDs8RcjmYWk4NbxEXHU0l?=
- =?us-ascii?Q?8D7k9cT1EmhetFTB5CapTA28ARqhS5DFs7GC+8XBPFnot8C3Z97xvlpIiGAg?=
- =?us-ascii?Q?kGH4Mts8hGC/FIRsv/fzNqAfH10HxtE4/Uy7FGuxk6FyNYFlUupvuNiLLPWl?=
- =?us-ascii?Q?IXkFwCqZm71weu5+CAZ/hoEq4zyLuhSrR3n51d6pqr2/gl36h7PDObVqiKrC?=
- =?us-ascii?Q?0SYYqY3OL8ojruAYsLwZLvbVrGTlLxhFTQewSfN/pSH7uluWd5y80petIFzx?=
- =?us-ascii?Q?iRTeNGr3gUWRYJBGUI263b1SPEqNIxmxSyV+GhHIJFT5Db+t1j+0O25n04we?=
- =?us-ascii?Q?gJwJyCCmQNZuwSopFWUq+T8P7NKF7GLNRJe/gbAdAqL6wTABT1lglFuKeJjE?=
- =?us-ascii?Q?mkYNuiEy+/rKcRvZQ/Jrv7UiO1v8RnH07hi4uCWIlUFxXy8FfQgV9ZK6mg1w?=
- =?us-ascii?Q?T3YHvpGRuFr297xEGsn3YUK2fR2/Q74GWDQjBcTByw9qLas6gGyQvKb61CNO?=
- =?us-ascii?Q?VTBaegGqpdntRGQD1WseKCej2jBixUTxbxgRr4zTEWaw+A3CPUYsQ1/eczgm?=
- =?us-ascii?Q?iyQEMTafiH0XVpTUG2c7n5X7OHbVKO11WlejcbTtMYTkAFF+2j6DBizrd8lc?=
- =?us-ascii?Q?EaB69DZhxX0P5lqoToiaxHEmZD8obW0ZZnUmnznnwVcUre3RouMzHmkhVvgY?=
- =?us-ascii?Q?1pdi+J4rxt+LhYb/KKErARWm5W6ZGTfFVvNeePBCcKF/c0VzXi9btoVwCBbf?=
- =?us-ascii?Q?piPDfSsVTj2rDSBZEXJlJ2jIUi59bYvpHfGw2Cyl//4S5jTdy0Utk01Ng24k?=
- =?us-ascii?Q?JohZnrWXiUfBz9r4uslPkt6Ob2da1ZMbFVHSkvDHtqGpJrRwLTB/cr1p7gF3?=
- =?us-ascii?Q?swoyvzViP5h980Au8YNvjN/yuYRb+9KaDrkQYm3YfAoEcDr7YvrisokeHstz?=
- =?us-ascii?Q?iA9w4dJg4D+R1wjtjoQSZSmBtXL/seg2dmMPWS16F6NlLPzO2rDDaoyuWFCE?=
- =?us-ascii?Q?MFB4KG8cxCG2nfijQQP/DO4efjLJNmhns/pTktPjPgYA1CqaMZ6UYWZwq7Fh?=
- =?us-ascii?Q?ujO1HYVfBFxOyGE01pPZg1Lnz7kw0eGR5eqtgdQY?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78dce08b-8365-4d9b-e9e0-08db00e23fc9
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2023 03:46:33.7582
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5cxr2ii8SMzpRK8BpS4HMZ7CFtMBmTJxgg9rQn5FlG+I5ccf9wH2rTEH2+4/eHz/TQ7SMc9S8k9a9ybJYp2lhA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9203
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHNuRkKafHieBmUHCY1mc35yYPTTQKTfc43Ai4xyQmupCEE4A==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrEJsWRmVeSWpSXmKPExsWy7bCmlu79xVeSDV6+4rCYf+Qcq8XbJbsY
+        LSbdn8Bi0f/4NbNF34uHzBZ7X29ltzjb9IbdYtPja6wWl3fNYbOYcX4fk8WZf1NZLBb8sbNY
+        t0bQonXvEXaLzd//Mjrwe+ycdZfd4+iVe6wem1Z1snncubaHzWPzknqP/3fWsnt8ae5m9ejb
+        sorR4/MmuQDOqGybjNTElNQihdS85PyUzLx0WyXv4HjneFMzA0NdQ0sLcyWFvMTcVFslF58A
+        XbfMHKD7lRTKEnNKgUIBicXFSvp2NkX5pSWpChn5xSW2SqkFKTkFJgV6xYm5xaV56Xp5qSVW
+        hgYGRqZAhQnZGcd7pjIXbBWqaJh1lrWB8ZhgFyMnh4SAicSSXc/Yuxi5OIQEdjNKXHqymwkk
+        ISTwiVHi8XQziMQ3RomtB9cyw3RM/7yCEaJoL6PE4hOSEPZLRokVd4JAbDYBXYkdi9vYQJpF
+        BNYySxzYsg3MYRY4zShxZeU2sG5OAVeJw2/3sYDYwgJxEqc2fQKzWQRUJTpXgXRzcvAKWEpM
+        ff+bGcIWlDg58wlYDbOAtsSyha+hLlKQ+Pl0GSuILSLgJLFu3zcmiBpxiZdHj4D9JiHwhkPi
+        4dSNLBANLhKHD82BsoUlXh3fwg5hS0m87G8DsjmAbA+JRX+kIMIZEm+Xr2eEsO0lDlwBaeUA
+        mq8psX6XPsQqPone30+YIDp5JTrahCCqVSWa312FWiQtMbG7mxXC9pC4fmMXywRGxVlIHpuF
+        5LFZSB6YhbBsASPLKkbJ1ILi3PTUYtMCw7zUcnh0J+fnbmIEJ24tzx2Mdx980DvEyMTBeIhR
+        goNZSYR3q+OlZCHelMTKqtSi/Pii0pzU4kOMpsDQnsgsJZqcD8wdeSXxhiaWBiZmZmYmlsZm
+        hkrivOq2J5OFBNITS1KzU1MLUotg+pg4OKUamLbn+YftNXQ3Wvovob/lafbW6xfDf85x8zi4
+        +04C++H+3dOnpFQzzTabuvRSwK4ZD15dWX9Z65DIg4lsepxaJypLzHcF7+oznfd70nqfGbq5
+        Ztqza2T+XjGU0F75/LJ46Jyo9ecvsU14e+KJ+OFcO4WYmD2+am4LFFpNrTY+ucRUW7Hhi090
+        6q6a4+a/pt3kSm46krb4n0iAlF1LkmiEgmbqA84XEQs9zXLkeGOlNm/YlZX+zdt0b1QRv4i/
+        sUx+m93DbQ9i+z2iglbbSrHJ2zc5nSwySra8dWx2cJb01g+hLUJMRy1Zta2nMO3RE7zVupQ/
+        Lels5rRTz/qO7L3Y+1d75Q5Rk/Q3dfOU13CcUWIpzkg01GIuKk4EAKvd9WNlBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrDIsWRmVeSWpSXmKPExsWy7bCSnO69xVeSDTZeZ7SYf+Qcq8XbJbsY
+        LSbdn8Bi0f/4NbNF34uHzBZ7X29ltzjb9IbdYtPja6wWl3fNYbOYcX4fk8WZf1NZLBb8sbNY
+        t0bQonXvEXaLzd//Mjrwe+ycdZfd4+iVe6wem1Z1snncubaHzWPzknqP/3fWsnt8ae5m9ejb
+        sorR4/MmuQDOKC6blNSczLLUIn27BK6MtV8TCmbyVTz/dY6xgbGTp4uRk0NCwERi+ucVjCC2
+        kMBuRomHzbIQcWmJ6xsnsEPYwhIr/z0HsrmAap4zSpzdeJkJJMEmoCuxY3EbG0hCRGAzs8Tx
+        SQeZQRxmgfOMEjdmHGCFaAFyzp+8xwzSwingKnH47T6WLkYODmGBGIk/nx1AwiwCqhKdq0Am
+        cXLwClhKTH3/mxnCFpQ4OfMJC4jNLKAt8fTmUzh72cLXzBDnKUj8fLqMFcQWEXCSWLfvGxNE
+        jbjEy6NH2CcwCs9CMmoWklGzkIyahaRlASPLKkbJ1ILi3PTcYsMCw7zUcr3ixNzi0rx0veT8
+        3E2M4AjW0tzBuH3VB71DjEwcjIcYJTiYlUR4tzpeShbiTUmsrEotyo8vKs1JLT7EKM3BoiTO
+        e6HrZLyQQHpiSWp2ampBahFMlomDU6qBqWOhQtfluMaw2+7Xv6/Sk/kftfP17+3uedemX8+I
+        m5adx7zErn3RxEDm/69qUjY9DFjU6BHV8vNC2jtFllNKXI31x/4ciomq8vX+tGiVQFqdYnPa
+        2aPeUp87E8Jac2apXWVeoMs1NVez0q9n27FdM66+YeZaGzevIC3z08XYkr5Pzw6VrfrTnV/x
+        6pjq6yd3L2qtfXgs49HZn+vb5i+ac+5Qip1Q6dSyx2+DUuw10rnP20nz50jKnl5WVmNy77xN
+        oNJTzY22ejo6XSdnbauY0Oho9CdBied3+XcmmRv3YvsuhNscusH3J1Ozl1uKddukj3ERW6sr
+        Fn/XEt4kX2meX3jSoDU/WDJvpozUm0fdSizFGYmGWsxFxYkAWaF1VE8DAAA=
+X-CMS-MailID: 20230128042606epcas5p4e110dea83182c0711f802656cb3db515
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20230120155418epcas5p1b9c0be73ebb6d20545208f45414ba861
+References: <20230120155404.323386-1-krzysztof.kozlowski@linaro.org>
+        <CGME20230120155418epcas5p1b9c0be73ebb6d20545208f45414ba861@epcas5p1.samsung.com>
+        <20230120155404.323386-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
-configures parallel display format by using the "PARALLEL_DISP_FORMAT"
-field. Add a DRM bridge driver to support the display format configuration.
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
- drivers/gpu/drm/bridge/imx/Kconfig      |   8 +
- drivers/gpu/drm/bridge/imx/Makefile     |   1 +
- drivers/gpu/drm/bridge/imx/imx93-pdfc.c | 209 ++++++++++++++++++++++++
- 3 files changed, 218 insertions(+)
- create mode 100644 drivers/gpu/drm/bridge/imx/imx93-pdfc.c
 
-diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
-index 608f47f41bcd..adbd75a924d1 100644
---- a/drivers/gpu/drm/bridge/imx/Kconfig
-+++ b/drivers/gpu/drm/bridge/imx/Kconfig
-@@ -44,4 +44,12 @@ config DRM_IMX8QXP_PIXEL_LINK_TO_DPI
- 	  Choose this to enable pixel link to display pixel interface(PXL2DPI)
- 	  found in Freescale i.MX8qxp processor.
- 
-+config DRM_IMX93_PARALLEL_DISP_FMT_CONFIG
-+	tristate "NXP i.MX93 parallel display format configuration"
-+	depends on OF
-+	select DRM_KMS_HELPER
-+	help
-+	  Choose this to enable parallel display format configuration
-+	  found in NXP i.MX93 processor.
-+
- endif # ARCH_MXC || COMPILE_TEST
-diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
-index aa90ec8d5433..e88821733770 100644
---- a/drivers/gpu/drm/bridge/imx/Makefile
-+++ b/drivers/gpu/drm/bridge/imx/Makefile
-@@ -7,3 +7,4 @@ obj-$(CONFIG_DRM_IMX8QXP_LDB) += imx8qxp-ldb.o
- obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) += imx8qxp-pixel-combiner.o
- obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK) += imx8qxp-pixel-link.o
- obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK_TO_DPI) += imx8qxp-pxl2dpi.o
-+obj-$(CONFIG_DRM_IMX93_PARALLEL_DISP_FMT_CONFIG) += imx93-pdfc.o
-diff --git a/drivers/gpu/drm/bridge/imx/imx93-pdfc.c b/drivers/gpu/drm/bridge/imx/imx93-pdfc.c
-new file mode 100644
-index 000000000000..a891b1f6743a
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/imx/imx93-pdfc.c
-@@ -0,0 +1,209 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+/*
-+ * Copyright 2022,2023 NXP
-+ */
-+
-+#include <linux/media-bus-format.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#include <drm/drm_atomic_state_helper.h>
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_print.h>
-+
-+#define DRIVER_NAME		"imx93_pdfc"
-+
-+#define DISPLAY_MUX		0x60
-+#define  PARALLEL_DISP_FORMAT	0x700
-+
-+enum imx93_pdfc_format {
-+	RGB888_TO_RGB888 = 0x0,
-+	RGB888_TO_RGB666 = 0x1 << 8,
-+	RGB565_TO_RGB565 = 0x2 << 8,
-+};
-+
-+struct imx93_pdfc {
-+	struct drm_bridge bridge;
-+	struct drm_bridge *next_bridge;
-+	struct device *dev;
-+	struct regmap *regmap;
-+	u32 format;
-+};
-+
-+static int imx93_pdfc_bridge_attach(struct drm_bridge *bridge,
-+				    enum drm_bridge_attach_flags flags)
-+{
-+	struct imx93_pdfc *pdfc = bridge->driver_private;
-+
-+	return drm_bridge_attach(bridge->encoder, pdfc->next_bridge, bridge, flags);
-+}
-+
-+static void
-+imx93_pdfc_bridge_atomic_enable(struct drm_bridge *bridge,
-+				struct drm_bridge_state *old_bridge_state)
-+{
-+	struct imx93_pdfc *pdfc = bridge->driver_private;
-+
-+	regmap_update_bits(pdfc->regmap, DISPLAY_MUX, PARALLEL_DISP_FORMAT,
-+			   pdfc->format);
-+}
-+
-+static const u32 imx93_pdfc_bus_output_fmts[] = {
-+	MEDIA_BUS_FMT_RGB888_1X24,
-+	MEDIA_BUS_FMT_RGB666_1X18,
-+	MEDIA_BUS_FMT_RGB565_1X16,
-+	MEDIA_BUS_FMT_FIXED
-+};
-+
-+static bool imx93_pdfc_bus_output_fmt_supported(u32 fmt)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(imx93_pdfc_bus_output_fmts); i++) {
-+		if (imx93_pdfc_bus_output_fmts[i] == fmt)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
-+static u32 *
-+imx93_pdfc_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
-+					    struct drm_bridge_state *bridge_state,
-+					    struct drm_crtc_state *crtc_state,
-+					    struct drm_connector_state *conn_state,
-+					    u32 output_fmt,
-+					    unsigned int *num_input_fmts)
-+{
-+	u32 *input_fmts;
-+
-+	if (!imx93_pdfc_bus_output_fmt_supported(output_fmt))
-+		return NULL;
-+
-+	input_fmts = kmalloc(sizeof(*input_fmts), GFP_KERNEL);
-+	if (!input_fmts)
-+		return NULL;
-+
-+	switch (output_fmt) {
-+	case MEDIA_BUS_FMT_RGB888_1X24:
-+	case MEDIA_BUS_FMT_RGB565_1X16:
-+		input_fmts[0] = output_fmt;
-+		break;
-+	case MEDIA_BUS_FMT_RGB666_1X18:
-+	case MEDIA_BUS_FMT_FIXED:
-+		input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-+		break;
-+	}
-+
-+	*num_input_fmts = 1;
-+
-+	return input_fmts;
-+}
-+
-+static int imx93_pdfc_bridge_atomic_check(struct drm_bridge *bridge,
-+					  struct drm_bridge_state *bridge_state,
-+					  struct drm_crtc_state *crtc_state,
-+					  struct drm_connector_state *conn_state)
-+{
-+	struct imx93_pdfc *pdfc = bridge->driver_private;
-+
-+	switch (bridge_state->output_bus_cfg.format) {
-+	case MEDIA_BUS_FMT_RGB888_1X24:
-+		pdfc->format = RGB888_TO_RGB888;
-+		break;
-+	case MEDIA_BUS_FMT_RGB666_1X18:
-+		pdfc->format = RGB888_TO_RGB666;
-+		break;
-+	case MEDIA_BUS_FMT_RGB565_1X16:
-+		pdfc->format = RGB565_TO_RGB565;
-+		break;
-+	default:
-+		DRM_DEV_DEBUG_DRIVER(pdfc->dev, "Unsupported output bus format: 0x%x\n",
-+				     bridge_state->output_bus_cfg.format);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct drm_bridge_funcs imx93_pdfc_bridge_funcs = {
-+	.attach			= imx93_pdfc_bridge_attach,
-+	.atomic_enable		= imx93_pdfc_bridge_atomic_enable,
-+	.atomic_duplicate_state	= drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_destroy_state	= drm_atomic_helper_bridge_destroy_state,
-+	.atomic_get_input_bus_fmts	= imx93_pdfc_bridge_atomic_get_input_bus_fmts,
-+	.atomic_check		= imx93_pdfc_bridge_atomic_check,
-+	.atomic_reset		= drm_atomic_helper_bridge_reset,
-+};
-+
-+static int imx93_pdfc_bridge_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct imx93_pdfc *pdfc;
-+	int ret;
-+
-+	pdfc = devm_kzalloc(dev, sizeof(*pdfc), GFP_KERNEL);
-+	if (!pdfc)
-+		return -ENOMEM;
-+
-+	pdfc->regmap = syscon_node_to_regmap(dev->of_node->parent);
-+	if (IS_ERR(pdfc->regmap)) {
-+		ret = PTR_ERR(pdfc->regmap);
-+		if (ret != -EPROBE_DEFER)
-+			DRM_DEV_ERROR(dev, "failed to get regmap: %d\n", ret);
-+		return ret;
-+	}
-+
-+	pdfc->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-+	if (IS_ERR(pdfc->next_bridge)) {
-+		ret = PTR_ERR(pdfc->next_bridge);
-+		if (ret != -EPROBE_DEFER)
-+			DRM_DEV_ERROR(dev, "failed to get next bridge: %d\n", ret);
-+		return ret;
-+	}
-+
-+	platform_set_drvdata(pdev, pdfc);
-+
-+	pdfc->dev = dev;
-+	pdfc->bridge.driver_private = pdfc;
-+	pdfc->bridge.funcs = &imx93_pdfc_bridge_funcs;
-+	pdfc->bridge.of_node = dev->of_node;
-+
-+	drm_bridge_add(&pdfc->bridge);
-+
-+	return 0;
-+}
-+
-+static int imx93_pdfc_bridge_remove(struct platform_device *pdev)
-+{
-+	struct imx93_pdfc *pdfc = platform_get_drvdata(pdev);
-+
-+	drm_bridge_remove(&pdfc->bridge);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id imx93_pdfc_dt_ids[] = {
-+	{ .compatible = "nxp,imx93-pdfc", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, imx93_pdfc_dt_ids);
-+
-+static struct platform_driver imx93_pdfc_bridge_driver = {
-+	.probe	= imx93_pdfc_bridge_probe,
-+	.remove = imx93_pdfc_bridge_remove,
-+	.driver	= {
-+		.of_match_table = imx93_pdfc_dt_ids,
-+		.name = DRIVER_NAME,
-+	},
-+};
-+module_platform_driver(imx93_pdfc_bridge_driver);
-+
-+MODULE_DESCRIPTION("NXP i.MX93 parallel display format configuration driver");
-+MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("platform:" DRIVER_NAME);
--- 
-2.37.1
-
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
+> Sent: Friday, January 20, 2023 9:24 PM
+> To: Rob Herring <robh+dt=40kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt=40linaro.org>; Alim Akhtar
+> <alim.akhtar=40samsung.com>; Inki Dae <inki.dae=40samsung.com>; Kyungmin
+> Park <kyungmin.park=40samsung.com>; Kukjin Kim <kgene=40kernel.org>;
+> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
+ux-
+> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org
+> Cc: replicant=40osuosl.org; phone-devel=40vger.kernel.org;
+> =7Epostmarketos/upstreaming=40lists.sr.ht; Martin J=C3=BCcker=0D=0A>=20<m=
+artin.juecker=40gmail.com>;=20Henrik=20Grimler=20<henrik=40grimler.se>;=0D=
+=0A>=20Krzysztof=20Kozlowski=20<krzysztof.kozlowski=40linaro.org>=0D=0A>=20=
+Subject:=20=5BPATCH=2001/11=5D=20ARM:=20dts:=20exynos:=20correct=20wr-activ=
+e=20property=20in=0D=0A>=20Exynos3250=20Rinato=0D=0A>=20=0D=0A>=20The=20pro=
+perty=20is=20wr-active:=0D=0A>=20=0D=0A>=20=20=20exynos3250-rinato.dtb:=20f=
+imd=4011c00000:=20i80-if-timings:=20'wr-act'=20does=20not=0D=0A>=20match=20=
+any=20of=20the=20regexes:=20'pinctrl-=5B0-9=5D+'=0D=0A>=20=0D=0A>=20Fixes:=
+=20b59b3afb94d4=20(=22ARM:=20dts:=20add=20fimd=20device=20support=20for=20e=
+xynos3250-=0D=0A>=20rinato=22)=0D=0A>=20Signed-off-by:=20Krzysztof=20Kozlow=
+ski=20<krzysztof.kozlowski=40linaro.org>=0D=0A>=20---=0D=0A=0D=0AReviewed-b=
+y:=20Alim=20Akhtar=20<alim.akhtar=40samsung.com>=0D=0A=0D=0A>=20=20arch/arm=
+/boot/dts/exynos3250-rinato.dts=20=7C=202=20+-=0D=0A>=20=201=20file=20chang=
+ed,=201=20insertion(+),=201=20deletion(-)=0D=0A>=20=0D=0A>=20diff=20--git=
+=20a/arch/arm/boot/dts/exynos3250-rinato.dts=0D=0A>=20b/arch/arm/boot/dts/e=
+xynos3250-rinato.dts=0D=0A>=20index=206d2c7bb19184..2eb682009815=20100644=
+=0D=0A>=20---=20a/arch/arm/boot/dts/exynos3250-rinato.dts=0D=0A>=20+++=20b/=
+arch/arm/boot/dts/exynos3250-rinato.dts=0D=0A>=20=40=40=20-250,7=20+250,7=
+=20=40=40=20&fimd=20=7B=0D=0A>=20=20=09i80-if-timings=20=7B=0D=0A>=20=20=09=
+=09cs-setup=20=3D=20<0>;=0D=0A>=20=20=09=09wr-setup=20=3D=20<0>;=0D=0A>=20-=
+=09=09wr-act=20=3D=20<1>;=0D=0A>=20+=09=09wr-active=20=3D=20<1>;=0D=0A>=20=
+=20=09=09wr-hold=20=3D=20<0>;=0D=0A>=20=20=09=7D;=0D=0A>=20=20=7D;=0D=0A>=
+=20--=0D=0A>=202.34.1=0D=0A=0D=0A=0D=0A
