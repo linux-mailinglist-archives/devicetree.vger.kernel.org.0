@@ -2,107 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2314E67FA37
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 19:38:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 090A667FA49
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 19:57:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231888AbjA1Si0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 13:38:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56320 "EHLO
+        id S229619AbjA1S5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 13:57:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231566AbjA1SiZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 13:38:25 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A5B2CC12;
-        Sat, 28 Jan 2023 10:38:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C12BE60B4D;
-        Sat, 28 Jan 2023 18:38:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5165C433EF;
-        Sat, 28 Jan 2023 18:38:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674931104;
-        bh=B+OhhkGo2KUENYhKUv6kM1CbCWEgNBM+74C+T1fBRGQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=s9/6HcFUPWwm+Zvt4jQVV5dwyBJBGKFH0FhJaqukbETskzcrzovo3tPbtxAfSQygk
-         xvHxE4ICgeRc4K7V6PIpYGL4ovDH9mp/qZ7K1Qe63ZmO2TAbGYQmHWsTUbHFNJltr2
-         fdrAJm0ogXQF+F/gcPe+fP+69lSmDKY7/DK2FD0yBnjpbL805MiJyV6wVvhSAdxM/+
-         dvOfPdMkinIexRR7lNVp9l9yQI8KfIxNzb+Z2WKzVxTst0ADUmYx6/kqFu/YLy1FTn
-         /YRsAegmvTHLQ1UDW8ukehoQZ1ujCws5sanrydxkogoR8foJ4EZQtSxmOrdGT9cg87
-         UaZcIW6LO3sIQ==
-Date:   Sat, 28 Jan 2023 19:38:21 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     nick.hawkins@hpe.com
-Cc:     verdun@hpe.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        joel@jms.id.au
-Subject: Re: [PATCH v4 5/5] MAINTAINERS: Add HPE GXP I2C Support
-Message-ID: <Y9VrnQxiFjVqtybb@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>, nick.hawkins@hpe.com,
-        verdun@hpe.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        joel@jms.id.au
-References: <20230125184438.28483-1-nick.hawkins@hpe.com>
- <20230125184438.28483-6-nick.hawkins@hpe.com>
+        with ESMTP id S229790AbjA1S5y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 13:57:54 -0500
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7441AE042;
+        Sat, 28 Jan 2023 10:57:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674932273; x=1706468273;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RjSzj603NNwrtXbFuo4/idkfWRdGyQzkcIKtdJ9tF2w=;
+  b=JW64m28Qvvi9vVvnEjOmAv3qF5bEbLb4gSkM+yOuhKAqicodJtRcHq3v
+   yV4ZpahFwF1xsgxip6XS0wITA8tlcagu5oozfC0cq+W6Sj9wWZcHK0RMN
+   HCm0aIIeb+jlJqsxwCZ2Fr5sMh1ntqNurKWJJptBJ/vGLYTX8UPSjD30V
+   fRLAVKVLu19Pl5b//UJBwjRV/i7KJ1zmbDd2yyEu7HPw6+3ziT6LszvOz
+   2yFWM0fLkvQM8hNTDmCFior32WufD2j3lGPxpen17C3AP8OnnaB07zjHA
+   wPXFal2gKV85SXH/f2d5Y8vPim+1/Pk7sQJEmxWiUvWDrW0i7I7Xwb4jQ
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="325015337"
+X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
+   d="scan'208";a="325015337"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2023 10:57:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="771960926"
+X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
+   d="scan'208";a="771960926"
+Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 28 Jan 2023 10:57:47 -0800
+Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pLqOZ-00010C-00;
+        Sat, 28 Jan 2023 18:57:47 +0000
+Date:   Sun, 29 Jan 2023 02:57:37 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Jonathan Cormier <jcormier@criticallink.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Jyri Sarha <jsarha@ti.com>
+Cc:     oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Michael Williamson <michael.williamson@criticallink.com>,
+        Bob Duke <bduke@criticallink.com>,
+        Jonathan Cormier <jcormier@criticallink.com>
+Subject: Re: [PATCH 4/4] DRM: BRIDGE: TFP410: If connected, use I2C for
+ polled HPD status.
+Message-ID: <202301290252.zgcWeegX-lkp@intel.com>
+References: <20230125-tfp410_i2c-v1-4-66a4d4e390b7@criticallink.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lNxp1tmexppqM6Q7"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230125184438.28483-6-nick.hawkins@hpe.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230125-tfp410_i2c-v1-4-66a4d4e390b7@criticallink.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jonathan,
 
---lNxp1tmexppqM6Q7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for the patch! Perhaps something to improve:
 
-On Wed, Jan 25, 2023 at 12:44:38PM -0600, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
->=20
-> Add the I2C controller source and bindings.
->=20
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+[auto build test WARNING on 93f875a8526a291005e7f38478079526c843cbec]
 
-I assume this better goes via the arm-soc-tree as well to reduce merge
-conflicts, so:
+url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Cormier/dt-bindings-display-bridge-tfp410-Add-tfp410-i2c-example/20230128-183627
+base:   93f875a8526a291005e7f38478079526c843cbec
+patch link:    https://lore.kernel.org/r/20230125-tfp410_i2c-v1-4-66a4d4e390b7%40criticallink.com
+patch subject: [PATCH 4/4] DRM: BRIDGE: TFP410: If connected, use I2C for polled HPD status.
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20230129/202301290252.zgcWeegX-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/c4659fa4c02b62087c095ca99978e5eac8b490de
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jonathan-Cormier/dt-bindings-display-bridge-tfp410-Add-tfp410-i2c-example/20230128-183627
+        git checkout c4659fa4c02b62087c095ca99978e5eac8b490de
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 olddefconfig
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/
 
-Acked-by: Wolfram Sang <wsa@kernel.org>
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
 
-Let me know if I should pick this instead. Will review the driver in the
-next days.
+All warnings (new ones prefixed by >>):
+
+   drivers/gpu/drm/bridge/ti-tfp410.c: In function 'tfp410_connector_detect':
+>> drivers/gpu/drm/bridge/ti-tfp410.c:111:13: warning: unused variable 'val' [-Wunused-variable]
+     111 |         u32 val;
+         |             ^~~
 
 
---lNxp1tmexppqM6Q7
-Content-Type: application/pgp-signature; name="signature.asc"
+vim +/val +111 drivers/gpu/drm/bridge/ti-tfp410.c
 
------BEGIN PGP SIGNATURE-----
+   106	
+   107	static enum drm_connector_status
+   108	tfp410_connector_detect(struct drm_connector *connector, bool force)
+   109	{
+   110		struct tfp410 *dvi = drm_connector_to_tfp410(connector);
+ > 111		u32 val;
+   112		unsigned int ret;
+   113	
+   114		if (dvi->i2c) {
+   115			ret = regmap_test_bits(dvi->regmap, TFP410_REG_CTL_2_MODE, TFP410_BIT_HTPLG);
+   116			if (ret < 0)
+   117				dev_err(dvi->dev, "%s failed to read HTPLG bit : %d\n", __func__, ret);
+   118			else
+   119				return ret ? connector_status_connected : connector_status_disconnected;
+   120		}
+   121	
+   122		return drm_bridge_detect(dvi->next_bridge);
+   123	}
+   124	
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPVa5kACgkQFA3kzBSg
-KbZuiw//WHjb284iR9poKsAdHIl6F/9f3Vvhsb98qHX6geaJxAHNV883ntRTQVkL
-WJ6cC5fykclOevvE5K9hJEBshtuvtIa9XVuh+iNQ2NkdhCjjVyCP5k3CUE5A+/75
-3f5KDLShIzCv2pTPsSRdmTV3Tx9rAnW+7gIHuiZ5TXNNVO5kiVyNoE/BvPqojIvs
-DnoMvvg1kd8hpB+pQgENJ+Dr/BP93vHlYu8/nYtw+0tzzaPSrxMsNB0ELaxW/qsX
-mS4dY1Y8gTvunwOAI2LugnwJEvrt64GEFU4S5HGNIrXIqyf4QC0wHUusgTVD30de
-yCCXYCELF58mwAzsT6KMa0Ghdab0fcxtPJcR968sYxSDA7xdpKr5KvEP+kGKOlqj
-hkpPMG847QIcfyeTBJrYu5YZSXV9cvPhBE18/r5RuiWPTZO/oSWFZ9hHbdiYdiTE
-+vQfbQxPrRWqCJW+U7zS6bqB5ta5KPDlbiM/cQdF6k+Y5p2SisFAHK4BnR4z7KPv
-b+XncIJBy17OPlfc+dsvW519Y0y5gb7+FAMd63fjmo6uHzxpLLmC4p8l5ISLuloK
-9S5myjUS47ouvL7D8CmlSge5mtAf7QWwvDKJ0UofGHSSw404b4R/jhewClSgwXZV
-PoRH3k7LpqkpMQ0MKmUfm/Y7QUP1gzpW9HLfwfynsxChalWUI7M=
-=qbLO
------END PGP SIGNATURE-----
-
---lNxp1tmexppqM6Q7--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
