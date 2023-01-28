@@ -2,231 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FAA367F653
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 09:31:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FFE167F663
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 09:37:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232877AbjA1IbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 03:31:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58616 "EHLO
+        id S234014AbjA1IhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 03:37:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230175AbjA1Ia7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 03:30:59 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A0581A94C;
-        Sat, 28 Jan 2023 00:30:57 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 75D425A9;
-        Sat, 28 Jan 2023 09:30:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1674894654;
-        bh=wolM+608me0k0hqUe79z1fi5itONTQkt1Jp0TVlaS7U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EdQSf4XYaOHQCkcjWzaZfjvllh6Yb02bprrrtGbhWkmYDfh/BYK6MyiFYz/LFGakU
-         LiJcLrlFIFrtfoN1pbKRaKE9fymWGvw+yJXmkZ0fvewqwg/I5RjRe8bx88WYJF9RfU
-         rXIJN5E/t0QImHk4SHiQGGr6XL6qFTffpMcyn1Pk=
-Date:   Sat, 28 Jan 2023 10:30:51 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: bridge: sil,sii8620: convert to
- dtschema
-Message-ID: <Y9TdO9MeNxkesIQE@pendragon.ideasonboard.com>
-References: <20230127203525.198295-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S233967AbjA1IhM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 03:37:12 -0500
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0BD737F0F;
+        Sat, 28 Jan 2023 00:36:25 -0800 (PST)
+Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Sat, 28 Jan
+ 2023 16:36:23 +0800
+Message-ID: <363c7666-30d6-698c-eefa-d9ee46061712@amlogic.com>
+Date:   Sat, 28 Jan 2023 16:36:23 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230127203525.198295-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH V6 2/3] clk: meson: S4: add support for Amlogic S4 SoC PLL
+ clock driver
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
+        "qi . duan" <qi.duan@amlogic.com>
+References: <20230116074214.2326-1-yu.tu@amlogic.com>
+ <20230116074214.2326-3-yu.tu@amlogic.com>
+ <1jedrqyd3w.fsf@starbuckisacylon.baylibre.com>
+ <55659095-86d7-91b6-2db6-5cdca228bc09@amlogic.com>
+ <1j1qnpy1wh.fsf@starbuckisacylon.baylibre.com>
+From:   Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <1j1qnpy1wh.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.18.29.47]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-Thank you for the patch.
 
-On Fri, Jan 27, 2023 at 09:35:25PM +0100, Krzysztof Kozlowski wrote:
-> Convert the Silicon Image SiI8620 HDMI/MHL bridge bindings to DT schema.
+On 2023/1/20 17:43, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/display/bridge/sil,sii8620.yaml  | 107 ++++++++++++++++++
->  .../bindings/display/bridge/sil-sii8620.txt   |  33 ------
->  2 files changed, 107 insertions(+), 33 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml
->  delete mode 100644 Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml b/Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml
-> new file mode 100644
-> index 000000000000..90532bb99161
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml
-> @@ -0,0 +1,107 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/sil,sii8620.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Silicon Image SiI8620 HDMI/MHL bridge
-> +
-> +maintainers:
-> +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: sil,sii8620
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xtal
-> +
-> +  cvcc10-supply:
-> +    description: Digital Core Supply Voltage (1.0V)
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  iovcc18-supply:
-> +    description: I/O Supply Voltage (1.8V)
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Video port for HDMI (encoder) input
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          MHL to connector port
-> +
-> +    required:
-> +      - port@0
+> On Fri 20 Jan 2023 at 10:58, Yu Tu <yu.tu@amlogic.com> wrote:
+> 
+>> Hi Jerome,
+>>
+>> On 2023/1/19 19:20, Jerome Brunet wrote:
+>>> [ EXTERNAL EMAIL ]
+>>> On Mon 16 Jan 2023 at 15:42, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>
+>>>> Add the S4 PLL clock controller driver in the s4 SoC family.
+>>>>
+>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>> ---
+>>> [...]
+>>>
+>>>> +
+>>>> +static struct clk_regmap s4_fclk_div2 = {
+>>>> +	.data = &(struct clk_regmap_gate_data){
+>>>> +		.offset = ANACTRL_FIXPLL_CTRL1,
+>>>> +		.bit_idx = 24,
+>>>> +	},
+>>>> +	.hw.init = &(struct clk_init_data){
+>>>> +		.name = "fclk_div2",
+>>>> +		.ops = &clk_regmap_gate_ro_ops,
+>>> On the previous SoC, these fixed divider gate were not read-only.
+>>> They are marked as critical when necessary, with the appropriate
+>>> comment.
+>>> Why is it different on the s4 ?
+>>
+>> In fact, this part of the SOC is no different from the previous G12a/b and
+>> so on.
+>>
+>> I remember that my first version was made according to G12A, and I changed
+>> this way under your suggestion.
+>>
+>> Maybe you were busy and forgot. For me, this mode and the previous g12a
+>> mode function is ok. I can do either. So now how do you decide to go that
+>> way?
+> 
+> No I did not forgot.
+> I told you that cannot put CRITICAL (or IGNORE_USED) without explaining
+> why. I stand by this. Same goes for RO ops.
+> 
 
-Why port@0 only ?
+I will add an explanation.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - cvcc10-supply
-> +  - interrupts
-> +  - iovcc18-supply
-> +  - reset-gpios
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        bridge@39 {
-> +            reg = <0x39>;
-> +            compatible = "sil,sii8620";
-> +            cvcc10-supply = <&ldo36_reg>;
-> +            iovcc18-supply = <&ldo34_reg>;
-> +            interrupt-parent = <&gpf0>;
-> +            interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-> +            reset-gpios = <&gpv7 0 GPIO_ACTIVE_LOW>;
-> +            clocks = <&pmu_system_controller 0>;
-> +            clock-names = "xtal";
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    mhl_to_hdmi: endpoint {
-> +                        remote-endpoint = <&hdmi_to_mhl>;
-> +                    };
-> +                };
-> +
-> +                port@1 {
-> +                    reg = <1>;
-> +                    mhl_to_musb_con: endpoint {
-> +                        remote-endpoint = <&musb_con_to_mhl>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt b/Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt
-> deleted file mode 100644
-> index b05052f7d62f..000000000000
-> --- a/Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt
-> +++ /dev/null
-> @@ -1,33 +0,0 @@
-> -Silicon Image SiI8620 HDMI/MHL bridge bindings
-> -
-> -Required properties:
-> -	- compatible: "sil,sii8620"
-> -	- reg: i2c address of the bridge
-> -	- cvcc10-supply: Digital Core Supply Voltage (1.0V)
-> -	- iovcc18-supply: I/O Supply Voltage (1.8V)
-> -	- interrupts: interrupt specifier of INT pin
-> -	- reset-gpios: gpio specifier of RESET pin
-> -	- clocks, clock-names: specification and name of "xtal" clock
-> -	- video interfaces: Device node can contain video interface port
-> -			    node for HDMI encoder according to [1].
-> -
-> -[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
-> -
-> -Example:
-> -	sii8620@39 {
-> -		reg = <0x39>;
-> -		compatible = "sil,sii8620";
-> -		cvcc10-supply = <&ldo36_reg>;
-> -		iovcc18-supply = <&ldo34_reg>;
-> -		interrupt-parent = <&gpf0>;
-> -		interrupts = <2 0>;
-> -		reset-gpio = <&gpv7 0 0>;
-> -		clocks = <&pmu_system_controller 0>;
-> -		clock-names = "xtal";
-> -
-> -		port {
-> -			mhl_to_hdmi: endpoint {
-> -				remote-endpoint = <&hdmi_to_mhl>;
-> -			};
-> -		};
-> -	};
-
--- 
-Regards,
-
-Laurent Pinchart
+>>
+>>>
+>>>> +		.parent_hws = (const struct clk_hw *[]) {
+>>>> +			&s4_fclk_div2_div.hw
+>>>> +		},
+>>>> +		.num_parents = 1,
+>>>> +	},
+>>>> +};
+>>>> +
+>>> [...]
+>>>
+>>>> +#ifndef __MESON_S4_PLL_H__
+>>>> +#define __MESON_S4_PLL_H__
+>>>> +
+>>>> +/* ANA_CTRL - Registers
+>>>> + * REG_BASE:  REGISTER_BASE_ADDR = 0xfe008000
+>>> This multi-line comment style is wrong in clk/
+>>> REG_BASE is not used so I'm not sure this is useful
+>>
+>> I will remove REG_BASE and  change this format in next version.
+>>
+>>>
+>>>> + */
+>>>> +#define ANACTRL_FIXPLL_CTRL0                       0x040
+>>>> +#define ANACTRL_FIXPLL_CTRL1                       0x044
+>>>> +#define ANACTRL_FIXPLL_CTRL2                       0x048
+>>>> +#define ANACTRL_FIXPLL_CTRL3                       0x04c
+>>>> +#define ANACTRL_FIXPLL_CTRL4                       0x050
+>>>> +#define ANACTRL_FIXPLL_CTRL5                       0x054
+>>>> +#define ANACTRL_FIXPLL_CTRL6                       0x058
+>>>> +#define ANACTRL_FIXPLL_STS                         0x05c
+>>>> +#define ANACTRL_GP0PLL_CTRL0                       0x080
+>>>> +#define ANACTRL_GP0PLL_CTRL1                       0x084
+>>>> +#define ANACTRL_GP0PLL_CTRL2                       0x088
+>>>> +#define ANACTRL_GP0PLL_CTRL3                       0x08c
+>>>> +#define ANACTRL_GP0PLL_CTRL4                       0x090
+>>>> +#define ANACTRL_GP0PLL_CTRL5                       0x094
+>>>> +#define ANACTRL_GP0PLL_CTRL6                       0x098
+>>>> +#define ANACTRL_GP0PLL_STS                         0x09c
+>>>> +#define ANACTRL_HIFIPLL_CTRL0                      0x100
+>>>> +#define ANACTRL_HIFIPLL_CTRL1                      0x104
+>>>> +#define ANACTRL_HIFIPLL_CTRL2                      0x108
+>>>> +#define ANACTRL_HIFIPLL_CTRL3                      0x10c
+>>>> +#define ANACTRL_HIFIPLL_CTRL4                      0x110
+>>>> +#define ANACTRL_HIFIPLL_CTRL5                      0x114
+>>>> +#define ANACTRL_HIFIPLL_CTRL6                      0x118
+>>>> +#define ANACTRL_HIFIPLL_STS                        0x11c
+>>>> +#define ANACTRL_MPLL_CTRL0                         0x180
+>>>> +#define ANACTRL_MPLL_CTRL1                         0x184
+>>>> +#define ANACTRL_MPLL_CTRL2                         0x188
+>>>> +#define ANACTRL_MPLL_CTRL3                         0x18c
+>>>> +#define ANACTRL_MPLL_CTRL4                         0x190
+>>>> +#define ANACTRL_MPLL_CTRL5                         0x194
+>>>> +#define ANACTRL_MPLL_CTRL6                         0x198
+>>>> +#define ANACTRL_MPLL_CTRL7                         0x19c
+>>>> +#define ANACTRL_MPLL_CTRL8                         0x1a0
+>>>> +#define ANACTRL_MPLL_STS                           0x1a4
+>>>> +#define ANACTRL_HDMIPLL_CTRL0                      0x1c0
+>>>> +#define ANACTRL_HDMIPLL_CTRL1                      0x1c4
+>>>> +#define ANACTRL_HDMIPLL_CTRL2                      0x1c8
+>>>> +#define ANACTRL_HDMIPLL_CTRL3                      0x1cc
+>>>> +#define ANACTRL_HDMIPLL_CTRL4                      0x1d0
+>>>> +#define ANACTRL_HDMIPLL_CTRL5                      0x1d4
+>>>> +#define ANACTRL_HDMIPLL_CTRL6                      0x1d8
+>>>> +#define ANACTRL_HDMIPLL_STS                        0x1dc
+>>>> +#define ANACTRL_HDMIPLL_VLOCK                      0x1e4
+>>>> +
+>>>> +/*
+>>>> + * CLKID index values
+>>>> + *
+>>>> + * These indices are entirely contrived and do not map onto the hardware.
+>>>> + * It has now been decided to expose everything by default in the DT header:
+>>>> + * include/dt-bindings/clock/axg-clkc.h. Only the clocks ids we don't want
+>>>> + * to expose, such as the internal muxes and dividers of composite clocks,
+>>>> + * will remain defined here.
+>>>> + */
+>>>> +#define CLKID_FIXED_PLL_DCO		0
+>>>> +#define CLKID_FCLK_DIV2_DIV		2
+>>>> +#define CLKID_FCLK_DIV3_DIV		4
+>>>> +#define CLKID_FCLK_DIV4_DIV		6
+>>>> +#define CLKID_FCLK_DIV5_DIV		8
+>>>> +#define CLKID_FCLK_DIV7_DIV		10
+>>>> +#define CLKID_FCLK_DIV2P5_DIV		12
+>>>> +#define CLKID_GP0_PLL_DCO		14
+>>>> +#define CLKID_HIFI_PLL_DCO		16
+>>>> +#define CLKID_HDMI_PLL_DCO		18
+>>>> +#define CLKID_HDMI_PLL_OD		19
+>>>> +#define CLKID_MPLL_50M_DIV		21
+>>>> +#define CLKID_MPLL_PREDIV		23
+>>>> +#define CLKID_MPLL0_DIV			24
+>>>> +#define CLKID_MPLL1_DIV			26
+>>>> +#define CLKID_MPLL2_DIV			28
+>>>> +#define CLKID_MPLL3_DIV			30
+>>>> +
+>>>> +#define NR_PLL_CLKS			32
+>>>> +/* include the CLKIDs that have been made part of the DT binding */
+>>>> +#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
+>>>> +
+>>>> +#endif /* __MESON_S4_PLL_H__ */
+>>>
+> 
