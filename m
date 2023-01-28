@@ -2,171 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D68967F557
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 07:53:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1348767F56C
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 08:19:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233213AbjA1Gxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 01:53:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47394 "EHLO
+        id S231376AbjA1HT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 02:19:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233338AbjA1Gxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 01:53:47 -0500
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2252D88CFB
-        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 22:53:42 -0800 (PST)
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20230128065340epoutp0247bbf046057752639726a48a3f8c5762~_ZoIpo8Ux0899708997epoutp02w
-        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 06:53:40 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20230128065340epoutp0247bbf046057752639726a48a3f8c5762~_ZoIpo8Ux0899708997epoutp02w
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1674888820;
-        bh=5n4iboq7S91MUlbJ5yR11EbHrNTkBIoIbonSSb6/xhw=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=BbtKJvgfJyQVZt+kgZzkqXqZo9vEEVnbNc2YvAluiu5tqrggw4H4v0GVrkO6jluLz
-         G7oMMnSxGzKO2UWnPl2681UyDAZDBwGyhYGJ35EEHhHlNc3VIEfZWgtelhUQ2kPJeL
-         PdRft5tfGq4xU63GfzbDpKUp4tmmA54sFQAw80tw=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
-        20230128065339epcas5p399168ac3b550225d3edea90eb2861a70~_ZoH2-kzU1167511675epcas5p34;
-        Sat, 28 Jan 2023 06:53:39 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.181]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4P3lXL1DPYz4x9Pp; Sat, 28 Jan
-        2023 06:53:38 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        6D.4A.55678.276C4D36; Sat, 28 Jan 2023 15:53:38 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-        20230128065337epcas5p1cf180bb85a9b1fd5fb075a83e9f1fbfc~_ZoFx7gT42917629176epcas5p1D;
-        Sat, 28 Jan 2023 06:53:37 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20230128065337epsmtrp2dc54ded66d358b69bf39e16b2d515ef3~_ZoFxExiG0820808208epsmtrp2e;
-        Sat, 28 Jan 2023 06:53:37 +0000 (GMT)
-X-AuditID: b6c32a4a-909fc7000000d97e-48-63d4c6729f2b
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        C5.70.05839.176C4D36; Sat, 28 Jan 2023 15:53:37 +0900 (KST)
-Received: from alimakhtar04 (unknown [107.122.12.5]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20230128065335epsmtip199d221183516dd2f6a07c02362bcfc53~_ZoEGLOky1987319873epsmtip1T;
-        Sat, 28 Jan 2023 06:53:35 +0000 (GMT)
-From:   "Alim Akhtar" <alim.akhtar@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Cc:     "'Sam Protsenko'" <semen.protsenko@linaro.org>,
-        "'Chanho Park'" <chanho61.park@samsung.com>
-In-Reply-To: <20230120173116.341270-2-krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH 2/6] arm64: dts: exynos: add ADC supply on Exynos7
- Espresso
-Date:   Sat, 28 Jan 2023 12:23:32 +0530
-Message-ID: <001101d932e5$3f11c8d0$bd355a70$@samsung.com>
+        with ESMTP id S229737AbjA1HTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 02:19:25 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 741A17E6C4
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:19:24 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id nm12-20020a17090b19cc00b0022c2155cc0bso6698571pjb.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Jan 2023 23:19:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=laXAH5vCj60E4SKPB0EaS+rzszoEwgFmO/AUUT4c6EE=;
+        b=tmPZMbcJdI07kMJbg//bhDUNZ5KDVVZ2XAzmy8ooz8DAs/87eQ8xaIW9TMmlo7p11e
+         hdSVHBR5OJilXJnd6grGS0h68h34HGg+wmw02fuRE3b8brDJ4Rpk3tb6YfnqMUaMNhjM
+         fgye91Hf232OS8bCCEAmgY2kHzH7TvDc87sBHl+WPLXCSalMe5BWf/ze5NEMJrUa7o2O
+         Jcy1lTTkJcImUcG+o7lTL+/xh3ChzFeROE8zm199gWvoBKR4rdbbAdKNH/EVHjkrThIl
+         Bz8K7V429/gShD3wOSxSSFR7OYsgY82uRYwvBvSbV+BGLHO84mkzYjIcLyNuodj9mkX3
+         YaOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=laXAH5vCj60E4SKPB0EaS+rzszoEwgFmO/AUUT4c6EE=;
+        b=YT6065AoADGX4P5DFAf6PkxzbQW5iPeLSHm8K22WUHTLkPKTgUYY7XJi22tri/1Pqc
+         RZvcopHtlyNQhQJ62Crxs5cSJyWTaoFtI+M1zZfJ++Oz+OUyPJ4bpEtBgXzQOmtPNa+2
+         O/b78ZA/aGTtkFR9RgzJyINDdu+59DGBc+TUXHYVWZ2/mCXW7NDCjW5qVrOqnNH//4Yz
+         yUzyMQdERSB/RT+GyQTKsSKQavyodFnmyeT0MzBI9mcLx3XD8Q55l5pXsv+SIIn2wB8X
+         F4NxXv914KrQ6G/9qrOleRCL3iYvuAS2yd92QK/8sva92m3BlNk3HOhxoA1p3JaPiI5t
+         iL2g==
+X-Gm-Message-State: AO0yUKUL6yiTu2xD0pqdeJDdZLLZyEHfkn6Oe0ngI6VAGDu80JPQFpY+
+        vEKXByizuj8DA8dowi5XchBxZSOvM6Fc4UG5A86+2w==
+X-Google-Smtp-Source: AK7set9Mr0byHbMSV0I8NA2aqwV2H7BFCi7M8aNlkggIrU6lOiPUWBoUK5Tegh3Ooimmvu26mnAavaDANvOV+V848Ys=
+X-Received: by 2002:a17:90a:64c5:b0:22b:ef05:ea5b with SMTP id
+ i5-20020a17090a64c500b0022bef05ea5bmr2691642pjm.50.1674890363672; Fri, 27 Jan
+ 2023 23:19:23 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQHe9LN3kxpYXwzfJTNDGvK99jO1aAK8aG7kAlPSQnquf17cIA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrIJsWRmVeSWpSXmKPExsWy7bCmum7RsSvJBlOPsFlc3q9tMf/IOVaL
-        vhcPmS32vt7KbrHp8TVWi8u75rBZzDi/j8mide8RdovnffuYHDg9Nq3qZPO4c20Pm8fmJfUe
-        fVtWMXp83iQXwBqVbZORmpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+Ti
-        E6DrlpkDdI6SQlliTilQKCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8CkQK84Mbe4NC9dLy+1
-        xMrQwMDIFKgwITtj6YmrTAUreCq+/L7G3MC4iauLkZNDQsBE4vW7I2xdjFwcQgK7GSX6vv9l
-        gnA+MUrM2ToRyvnGKDF7xg5WmJZ9p46xQyT2Mkr8+vUfqv8lo0T/glVMIFVsAroSOxa3gSVE
-        BDYxSXzZvxeohYODWSBRouUIM0gNp4CrxIl9exhBbGGBQInjL1aAbWARUJXYPuUDG0g5r4Cl
-        xKlbOiBhXgFBiZMzn7CA2MwC8hLb385hhjhIQeLn02VgrSICThIn1vxlhqgRl3h59AjYoRIC
-        Kzkknr75zATR4CJxfNdjRghbWOLV8S3sELaUxOd3e8H2Sgh4SCz6IwURzpB4u3w9VLm9xIEr
-        c1ggPtGUWL9LH2IVn0Tv7ydMEJ28Eh1tQhDVqhLN766yQNjSEhO7u6FB6CGx5O8RpgmMirOQ
-        PDYLyWOzkDwwC2HZAkaWVYySqQXFuempxaYFRnmp5fDoTs7P3cQITqtaXjsYHz74oHeIkYmD
-        8RCjBAezkgjvVsdLyUK8KYmVValF+fFFpTmpxYcYTYGBPZFZSjQ5H5jY80riDU0sDUzMzMxM
-        LI3NDJXEedVtTyYLCaQnlqRmp6YWpBbB9DFxcEo1MLVm31Nhi3F/e/On/fxucfm480az5vC7
-        pobNygrZ7rnszvwdvS/vprzkj+PbbsS+xpB/psvMSK/ZL+Zqvddu/3lhUotranXzyo9rNxze
-        vLu9cWt06r7YR03Bs0tbCvbKrFyaqTtxgoaIh4jdrbJTGqI9i48UuiwW/HH0/f3eq4tCvs5U
-        WujyQ+3MlyUL7v2Ytull3aL9z9b+Xr/ls6Sbm/iexceEFT78ylbiFvIxcb62QPzTskXC7nNW
-        cTB33U2qjA2Oeb/pp8+tzKtVjy5brWKMfNrvJ+/L0nrjdJXg9dtbJ4eavHVem3BJ3Hi6jXYI
-        X8J/mRY+d6XjWaolV+d+XXVFforiT+Pcd1fj/J0kbhorsRRnJBpqMRcVJwIApTk1VTQEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupikeLIzCtJLcpLzFFi42LZdlhJTrfw2JVkg9t/pCwu79e2mH/kHKtF
-        34uHzBZ7X29lt9j0+BqrxeVdc9gsZpzfx2TRuvcIu8Xzvn1MDpwem1Z1snncubaHzWPzknqP
-        vi2rGD0+b5ILYI3isklJzcksSy3St0vgylh64ipTwQqeii+/rzE3MG7i6mLk5JAQMJHYd+oY
-        excjF4eQwG5Gia61P5khEtIS1zdOYIewhSVW/nsOVfScUeLQlxusIAk2AV2JHYvb2EASIgLb
-        mCRWNf9hA0kwCyRKrF3ZygjRcZ5RYuOcBSwgCU4BV4kT+/YwgtjCAv4ST/49B1vHIqAqsX3K
-        B6BmDg5eAUuJU7d0QMK8AoISJ2c+YQEJMwvoSbRtZIQYLy+x/e0cqEMVJH4+XQZ2j4iAk8SJ
-        NX+ZIWrEJV4ePcI+gVF4FpJJsxAmzUIyaRaSjgWMLKsYJVMLinPTc4sNCwzzUsv1ihNzi0vz
-        0vWS83M3MYKjS0tzB+P2VR/0DjEycTAeYpTgYFYS4d3qeClZiDclsbIqtSg/vqg0J7X4EKM0
-        B4uSOO+FrpPxQgLpiSWp2ampBalFMFkmDk6pBiaz9ANct+4mC/oYpjE22fwr3Lf0XPrOcMfL
-        zi9+HW2oMnxVuGd6g6z7nDvPBS7ZrSy4bCm5fOWTFTOrpkTu/7B0I//l7dvWG2YuthMxYP15
-        4PS2A24SO4xm/v11+O477TnzXty70qj8OucdU721jvmsuHqfxyYMWoW/y2SY1qTNZO+eW/ix
-        Jl3hS3D7tolbVyW7L8iT6I9f8yZcyGl9/jfW7tdNeSw+ISzGd48IrLvF8yVplZ9NR+t+1TSG
-        Mq6DewOZatudr8c/vlLDI60ksyG4y+nsUQueNqeDpX4vwyaEB/35sTE7LaMmYPYFx5tJ56df
-        yGKU7NrRmsrcXjT3Qtwtwdl1JRXx6/99n3Ms1V2JpTgj0VCLuag4EQBBRXXQHQMAAA==
-X-CMS-MailID: 20230128065337epcas5p1cf180bb85a9b1fd5fb075a83e9f1fbfc
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230120173125epcas5p1c2b9e0c03f2776b8ca277919e0ba7be8
-References: <20230120173116.341270-1-krzysztof.kozlowski@linaro.org>
-        <CGME20230120173125epcas5p1c2b9e0c03f2776b8ca277919e0ba7be8@epcas5p1.samsung.com>
-        <20230120173116.341270-2-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230127001141.407071-1-saravanak@google.com> <20230127001141.407071-4-saravanak@google.com>
+ <CAMuHMdV4B49OM7S-UAxJtfAR8OvG_-S526fGnTA+t+-orytrTw@mail.gmail.com>
+In-Reply-To: <CAMuHMdV4B49OM7S-UAxJtfAR8OvG_-S526fGnTA+t+-orytrTw@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 27 Jan 2023 23:18:46 -0800
+Message-ID: <CAGETcx9EXkbAfEX6pBL84DBr3SEwiJe7N4xh91TspLn8CwZ+LQ@mail.gmail.com>
+Subject: Re: [PATCH v2 03/11] soc: renesas: Move away from using OF_POPULATED
+ for fw_devlink
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Linux Kernel Functional Testing <lkft@linaro.org>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Maxim Kiselev <bigunclemax@gmail.com>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Jean-Philippe Brucker <jpb@kernel.org>,
+        kernel-team@android.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 27, 2023 at 12:11 AM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Saravana,
+>
+> On Fri, Jan 27, 2023 at 1:11 AM Saravana Kannan <saravanak@google.com> wrote:
+> > The OF_POPULATED flag was set to let fw_devlink know that the device
+> > tree node will not have a struct device created for it. This information
+> > is used by fw_devlink to avoid deferring the probe of consumers of this
+> > device tree node.
+> >
+> > Let's use fwnode_dev_initialized() instead because it achieves the same
+> > effect without using OF specific flags. This allows more generic code to
+> > be written in driver core.
+> >
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+>
+> Thanks for your patch!
+>
+> > --- a/drivers/soc/renesas/rcar-sysc.c
+> > +++ b/drivers/soc/renesas/rcar-sysc.c
+> > @@ -437,7 +437,7 @@ static int __init rcar_sysc_pd_init(void)
+> >
+> >         error = of_genpd_add_provider_onecell(np, &domains->onecell_data);
+> >         if (!error)
+> > -               of_node_set_flag(np, OF_POPULATED);
+> > +               fwnode_dev_initialized(&np->fwnode, true);
+>
+> As drivers/soc/renesas/rmobile-sysc.c is already using this method,
+> it should work fine.
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v6.4.
 
+Thanks! Does that mean I should drop this from this series? If two
+maintainers pick the same patch up, will it cause problems? I'm
+eventually expecting this series to be picked up by Greg into
+driver-core-next.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Friday, January 20, 2023 11:01 PM
-> To: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
-> <krzysztof.kozlowski+dt@linaro.org>; Alim Akhtar
-> <alim.akhtar@samsung.com>; devicetree@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org; linux-
-> kernel@vger.kernel.org
-> Cc: Sam Protsenko <semen.protsenko@linaro.org>; Chanho Park
-> <chanho61.park@samsung.com>; Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org>
-> Subject: [PATCH 2/6] arm64: dts: exynos: add ADC supply on Exynos7
-> Espresso
-> 
-> ADC requires supply and it seems LDO3 (same as on Exynos5433 TM2 boards)
-> fits in voltage range of 1.8 V.  Use it to silence warning:
-> 
-Yes, it is LDO3 for exynos7_espresso board as well.
+-Saravana
 
->   exynos7-espresso.dtb: adc@13620000: 'vdd-supply' is a required property
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
-
->  arch/arm64/boot/dts/exynos/exynos7-espresso.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-> b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-> index 829657c9c7ca..abb3bd700d6f 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-> +++ b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-> @@ -78,6 +78,7 @@ &watchdog {
->  };
-> 
->  &adc {
-> +	vdd-supply = <&ldo3_reg>;
->  	status = "okay";
->  };
-> 
+>
+> >
+> >  out_put:
+> >         of_node_put(np);
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
 > --
-> 2.34.1
-
-
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
