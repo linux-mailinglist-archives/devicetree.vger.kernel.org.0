@@ -2,131 +2,322 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C29067F7F4
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 14:16:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B12C967F7FD
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 14:26:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233249AbjA1NQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 08:16:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59204 "EHLO
+        id S233641AbjA1N0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 08:26:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233989AbjA1NQk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 08:16:40 -0500
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B3C4677A5;
-        Sat, 28 Jan 2023 05:16:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674911799; x=1706447799;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0TzqwAy/JUoCO7vvHgXEKHAl+hzKvugTYfXk24kmtaE=;
-  b=iIbMVYCO8V/SdfaK6C6vL2z925Xf4NHQ8DRm3dKCUU9ClbmAU3OtOAlr
-   XWSkac6gjMKKOKnfukr3GsXNZaVfk3c8mlCPecQNwFjlOa0lklWNmw9bU
-   H0E1h87OqGQ0xBcK7fdum6gmlNgEH5Fex4OdEVw9HgrFjbhT7Ue/q9mWS
-   pT1hO4oYjuTrEF9b/3UmaNsNpHaTKKRJfBG+3tuEM4u3oldtxAEij3blh
-   TKk/b/jRyvnYAHcy4mervtmlQuzKveL160KPXDbuAmcH7Evrc6nX6DK4I
-   E6BUAuk5pVdjsAw1zsIoIJTrD/j/RbntNKl6CSkrc48ysZpqvXQUFbOHH
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="324983328"
-X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
-   d="scan'208";a="324983328"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2023 05:16:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="695857337"
-X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
-   d="scan'208";a="695857337"
-Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 28 Jan 2023 05:16:30 -0800
-Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pLl4H-0000fd-24;
-        Sat, 28 Jan 2023 13:16:29 +0000
-Date:   Sat, 28 Jan 2023 21:15:52 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Nipun Gupta <nipun.gupta@amd.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, eric.auger@redhat.com,
-        alex.williamson@redhat.com, cohuck@redhat.com,
-        song.bao.hua@hisilicon.com, mchehab+huawei@kernel.org,
-        maz@kernel.org, f.fainelli@gmail.com, jeffrey.l.hugo@gmail.com,
-        saravanak@google.com, Michael.Srba@seznam.cz, mani@kernel.org,
-        yishaih@nvidia.com, jgg@ziepe.ca, jgg@nvidia.com,
-        robin.murphy@arm.com, will@kernel.org, joro@8bytes.org,
-        masahiroy@kernel.org, ndesaulniers@google.com,
-        linux-arm-kernel@lists.infradead.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, okaya@kernel.org,
-        harpreet.anand@amd.com, nikhil.agarwal@amd.com
-Subject: Re: [PATCH v6 4/7] cdx: add MCDI protocol interface for firmware
- interaction
-Message-ID: <202301282114.C7j3UG9O-lkp@intel.com>
-References: <20230126104630.15493-5-nipun.gupta@amd.com>
+        with ESMTP id S230104AbjA1N0l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 08:26:41 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8912A2E800;
+        Sat, 28 Jan 2023 05:26:39 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 3308CCE0ADD;
+        Sat, 28 Jan 2023 13:26:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90FFEC4339B;
+        Sat, 28 Jan 2023 13:26:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1674912395;
+        bh=8sTfmspWNrxkeaaJD+PTKLjxUW2F1n5lgYhmYXWgwss=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=deJNq9nAafXE+G7TxIzrakUsMW891/vlP7TGVYC5OMaav7z3Ryp0LFKFb80Seba+F
+         Gv/gsnCj5gZoAeWjWGA6B42y5NPMgRfUMCCBPl5/GL5Lfw61dliyKlQLxGNPj2ydJn
+         kZL5C1vGG8DwyeWtAVtBe1rrcI+ytrHixw8FkmA4=
+Date:   Sat, 28 Jan 2023 14:26:32 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Wesley Cheng <quic_wcheng@quicinc.com>
+Cc:     srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
+        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Thinh.Nguyen@synopsys.com,
+        broonie@kernel.org, bgoswami@quicinc.com, tiwai@suse.com,
+        robh+dt@kernel.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
+        quic_plai@quicinc.com
+Subject: Re: [RFC PATCH v2 07/22] ASoC: Add SOC USB APIs for adding an USB
+ backend
+Message-ID: <Y9UiiMbJFjkzyEol@kroah.com>
+References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
+ <20230126031424.14582-8-quic_wcheng@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230126104630.15493-5-nipun.gupta@amd.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230126031424.14582-8-quic_wcheng@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nipun,
+On Wed, Jan 25, 2023 at 07:14:09PM -0800, Wesley Cheng wrote:
+> diff --git a/include/sound/soc-usb.h b/include/sound/soc-usb.h
+> new file mode 100644
+> index 000000000000..ec422a8a834f
+> --- /dev/null
+> +++ b/include/sound/soc-usb.h
+> @@ -0,0 +1,33 @@
+> +/* SPDX-License-Identifier: GPL-2.0
+> + *
+> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
 
-I love your patch! Perhaps something to improve:
+It is now 2023 :)
 
-[auto build test WARNING on next-20230127]
-[cannot apply to masahiroy-kbuild/for-next masahiroy-kbuild/fixes robh/for-next joro-iommu/next linus/master v6.2-rc5 v6.2-rc4 v6.2-rc3 v6.2-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> + */
+> +
+> +#ifndef __LINUX_SND_SOC_USB_H
+> +#define __LINUX_SND_SOC_USB_H
+> +
+> +/**
+> + * struct snd_soc_usb
+> + * @component - Reference to DAPM component
+> + * @connection_status_cb - callback to notify connection events
+> + * @priv_data - vendor data
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Nipun-Gupta/cdx-add-the-cdx-bus-driver/20230128-161622
-patch link:    https://lore.kernel.org/r/20230126104630.15493-5-nipun.gupta%40amd.com
-patch subject: [PATCH v6 4/7] cdx: add MCDI protocol interface for firmware interaction
-reproduce:
-        make versioncheck
+You do not document all items in the structure so you will get build
+warnings :(
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+And what exactly is "vendor data"?  You use that term in a few places in
+this series, there is no such thing as a "vendor" in the kernel.  This
+could be a device or driver specific data, but not a "vendor".
 
-versioncheck warnings: (new ones prefixed by >>)
-   INFO PATH=/opt/cross/clang/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-   /usr/bin/timeout -k 100 3h /usr/bin/make W=1 --keep-going HOSTCC=gcc-11 CC=gcc-11 -j32 ARCH=x86_64 versioncheck
-   find ./* \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS -o -name .pc -o -name .hg -o -name .git \) -prune -o \
-   	-name '*.[hcS]' -type f -print | sort \
-   	| xargs perl -w ./scripts/checkversion.pl
-   ./drivers/accessibility/speakup/genmap.c: 13 linux/version.h not needed.
-   ./drivers/accessibility/speakup/makemapdata.c: 13 linux/version.h not needed.
->> ./drivers/cdx/controller/mcdi.c: 20 linux/version.h not needed.
-   ./drivers/net/ethernet/qlogic/qede/qede.h: 10 linux/version.h not needed.
-   ./drivers/net/ethernet/qlogic/qede/qede_ethtool.c: 7 linux/version.h not needed.
-   ./drivers/scsi/cxgbi/libcxgbi.h: 27 linux/version.h not needed.
-   ./drivers/scsi/mpi3mr/mpi3mr.h: 32 linux/version.h not needed.
-   ./drivers/scsi/qedi/qedi_dbg.h: 14 linux/version.h not needed.
-   ./drivers/soc/tegra/cbb/tegra-cbb.c: 19 linux/version.h not needed.
-   ./drivers/soc/tegra/cbb/tegra194-cbb.c: 26 linux/version.h not needed.
-   ./drivers/soc/tegra/cbb/tegra234-cbb.c: 27 linux/version.h not needed.
-   ./drivers/staging/media/atomisp/include/linux/atomisp.h: 23 linux/version.h not needed.
-   ./samples/trace_events/trace_custom_sched.c: 11 linux/version.h not needed.
-   ./sound/soc/codecs/cs42l42.c: 14 linux/version.h not needed.
-   ./tools/lib/bpf/bpf_helpers.h: 289: need linux/version.h
-   ./tools/perf/tests/bpf-script-example.c: 60: need linux/version.h
-   ./tools/perf/tests/bpf-script-test-kbuild.c: 21: need linux/version.h
-   ./tools/perf/tests/bpf-script-test-prologue.c: 49: need linux/version.h
-   ./tools/perf/tests/bpf-script-test-relocation.c: 51: need linux/version.h
-   ./tools/testing/selftests/bpf/progs/dev_cgroup.c: 9 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/netcnt_prog.c: 3 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_map_lock.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_send_signal_kern.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_spin_lock.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_tcp_estats.c: 37 linux/version.h not needed.
-   ./tools/testing/selftests/wireguard/qemu/init.c: 27 linux/version.h not needed.
+> --- /dev/null
+> +++ b/sound/soc/soc-usb.c
+> @@ -0,0 +1,202 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +#include <linux/of.h>
+> +#include <linux/usb.h>
+> +#include <sound/soc.h>
+> +#include <sound/soc-usb.h>
+> +#include "../usb/card.h"
+> +
+> +static DEFINE_MUTEX(ctx_mutex);
+> +static LIST_HEAD(usb_ctx_list);
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+What is this a list of?  Why a list?  This should be dynamic and tied to
+the device itself somehow, not a separate list you have to walk.
+
+> +
+> +#define for_each_usb_ctx(ctx)			\
+> +	list_for_each_entry(ctx, &usb_ctx_list, list)
+
+No need for a #define like this, just spell it out.
+
+
+> +
+> +static struct device_node *snd_soc_find_phandle(struct device *dev)
+> +{
+> +	struct device_node *node;
+> +
+> +	node = of_parse_phandle(dev->of_node, "usb-soc-be", 0);
+> +	if (!node)
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	return node;
+> +}
+> +
+> +static struct snd_soc_usb *snd_soc_find_usb_ctx(struct device *dev)
+> +{
+> +	struct device_node *node;
+> +	struct snd_soc_usb *ctx = NULL;
+> +
+> +	node = snd_soc_find_phandle(dev);
+> +	if (IS_ERR(node))
+> +		return NULL;
+> +
+> +	mutex_lock(&ctx_mutex);
+> +	for_each_usb_ctx(ctx) {
+> +		if (ctx->dev->of_node == node) {
+> +			of_node_put(node);
+> +			mutex_unlock(&ctx_mutex);
+> +			return ctx;
+> +		}
+> +	}
+> +	of_node_put(node);
+> +	mutex_unlock(&ctx_mutex);
+> +
+> +	return NULL;
+> +}
+> +
+> +/**
+> + * snd_soc_usb_get_priv_data() - Retrieve private data stored
+> + * @usbdev: USB bus sysdev
+> + *
+> + * Fetch the private data stored in the USB SND SOC structure.  This is
+> + * intended to be called by the USB offloading class driver, in order to
+> + * attain parameters about the USB backend device.
+> + *
+> + */
+> +void *snd_soc_usb_get_priv_data(struct device *usbdev)
+> +{
+> +	struct snd_soc_usb *ctx;
+> +
+> +	if (!usbdev)
+> +		return NULL;
+
+How could usbdev ever be NULL?
+
+> +
+> +	ctx = snd_soc_find_usb_ctx(usbdev);
+> +
+> +	return ctx ? ctx->priv_data : NULL;
+> +}
+> +EXPORT_SYMBOL_GPL(snd_soc_usb_get_priv_data);
+> +
+> +/**
+> + * snd_soc_usb_set_priv_data() - Set private data stored
+> + * @dev: USB backend device
+> + * @priv: private data to store
+> + *
+> + * Save data describing the USB backend device parameters.  This is intended
+> + * to be called by the ASoC USB backend driver.
+> + *
+> + */
+> +void snd_soc_usb_set_priv_data(struct device *dev, void *priv)
+> +{
+> +	struct snd_soc_usb *ctx;
+
+
+Why does this function take a "struct device" but the get function take
+a USB device?
+
+> +
+> +	mutex_lock(&ctx_mutex);
+> +	for_each_usb_ctx(ctx) {
+> +		if (dev->of_node == ctx->dev->of_node) {
+> +			ctx->priv_data = priv;
+> +			break;
+> +		}
+> +	}
+> +	mutex_unlock(&ctx_mutex);
+> +}
+> +EXPORT_SYMBOL_GPL(snd_soc_usb_set_priv_data);
+> +
+> +/**
+> + * snd_soc_usb_add_port() - Add a USB backend port
+> + * @dev: USB backend device
+> + * @connection_cb: connection status callback
+> + *
+> + * Register a USB backend device to the SND USB SOC framework.  Memory is
+> + * allocated as part of the USB backend device.
+> + *
+> + */
+> +struct snd_soc_usb *snd_soc_usb_add_port(struct device *dev,
+> +			int (*connection_cb)(struct snd_soc_usb *usb, int card_idx,
+> +			int connected))
+> +{
+> +	struct snd_soc_usb *usb;
+> +
+> +	usb = devm_kzalloc(dev, sizeof(*usb), GFP_KERNEL);
+> +	if (!usb)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	usb->connection_status_cb = connection_cb;
+> +	usb->dev = dev;
+> +
+> +	mutex_lock(&ctx_mutex);
+> +	list_add_tail(&usb->list, &usb_ctx_list);
+> +	mutex_unlock(&ctx_mutex);
+
+Again, why a list?
+
+
+> +
+> +	return usb;
+> +}
+> +EXPORT_SYMBOL_GPL(snd_soc_usb_add_port);
+> +
+> +/**
+> + * snd_soc_usb_remove_port() - Remove a USB backend port
+> + * @dev: USB backend device
+> + *
+> + * Remove a USB backend device from USB SND SOC.  Memory is freed when USB
+> + * backend is removed.
+> + *
+> + */
+> +int snd_soc_usb_remove_port(struct device *dev)
+> +{
+> +	struct snd_soc_usb *ctx, *tmp;
+> +
+> +	mutex_lock(&ctx_mutex);
+> +	list_for_each_entry_safe(ctx, tmp, &usb_ctx_list, list) {
+> +		if (ctx->dev == dev) {
+> +			list_del(&ctx->list);
+> +			break;
+> +		}
+> +	}
+> +	mutex_unlock(&ctx_mutex);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(snd_soc_usb_remove_port);
+> +
+> +/**
+> + * snd_soc_usb_connect() - Notification of USB device connection
+> + * @usbdev: USB bus device
+> + * @card_idx: USB SND card instance
+> + *
+> + * Notify of a new USB SND device connection.  The card_idx can be used to
+> + * handle how the USB backend selects, which device to enable offloading on.
+> + *
+> + */
+> +int snd_soc_usb_connect(struct device *usbdev, int card_idx)
+> +{
+> +	struct snd_soc_usb *ctx;
+> +
+> +	if (!usbdev)
+> +		return -ENODEV;
+> +
+> +	ctx = snd_soc_find_usb_ctx(usbdev);
+> +	if (!ctx)
+> +		return -ENODEV;
+> +
+> +	if (ctx->connection_status_cb)
+> +		ctx->connection_status_cb(ctx, card_idx, 1);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(snd_soc_usb_connect);
+> +
+> +/**
+> + * snd_soc_usb_connect() - Notification of USB device connection
+> + * @usbdev: USB bus device
+> + *
+> + * Notify of a new USB SND device disconnection to the USB backend.
+> + *
+> + */
+> +int snd_soc_usb_disconnect(struct device *usbdev)
+> +{
+> +	struct snd_soc_usb *ctx;
+> +
+> +	if (!usbdev)
+> +		return -ENODEV;
+> +
+> +	ctx = snd_soc_find_usb_ctx(usbdev);
+> +	if (!ctx)
+> +		return -ENODEV;
+> +
+> +	if (ctx->connection_status_cb)
+> +		ctx->connection_status_cb(ctx, -1, 0);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(snd_soc_usb_disconnect);
+
+Meta-comment, why are all of these in the sound directory?  They are
+only operating on USB devices, nothing else.  So why here?
+
+thanks,
+
+greg k-h
