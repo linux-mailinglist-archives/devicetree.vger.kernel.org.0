@@ -2,80 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33CD567F737
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 11:43:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83CC067F756
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 11:49:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230156AbjA1Kn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 05:43:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48282 "EHLO
+        id S229843AbjA1KtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 05:49:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234243AbjA1Kn0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 05:43:26 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3F923252D
-        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 02:43:24 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so5151574wms.2
-        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 02:43:24 -0800 (PST)
+        with ESMTP id S234050AbjA1Ks6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 05:48:58 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4242F2CFFB
+        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 02:48:56 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so7005887wma.1
+        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 02:48:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qI6QvwwoMEoMGG2lrNC8roadH7Dk5Bdka3LjXTKFsas=;
-        b=mrEMDFPeaxlF47YSoNrlv7fMopJhfQavMyDPmPwddw79+WhlV4yJI3mKXazLZtgSYT
-         GPl2pwOoJ61egi55HunFRMZn+ALjkvLnv8vjkZHyIHoUZEZU75ts43pf387hTtPiqGzq
-         5RL3b8+AH/ZfoyLRlYdFK1BWYP94yB3Sg5CtSkKb7RzGWb9j3AcyxxV9r/gN2/1+geCV
-         vg4cPQyv2yK44r+5sWO4q9RgzIzOhTtb0wFVTm7DWFopwzuNL4V7Vhy0c9grgR5y3lQm
-         ddIeuJ5bI/y6xVT/o9cwHV/+a873lEbGmaSWZajxmfod7Z9rRbvvBMP+kPqH1vy9A2xa
-         WhaQ==
+        bh=BDMyuNY9y2+mLIY91GGCJaf3jR2VGlODgfIJsSjay2k=;
+        b=hmFG1UC0xZDkKe8YXYtTsoSlN+mukQIUz+DjLBJydedkPIcvK8+eReW4WbgNupYvZt
+         otEbRmzGeNzYEdhfu5WWDr4pMIvYjLYxP6InEc0nUuCcaRf0SB/Y4aSWVyesWuExKx/z
+         U2lItJlcCAexXE1oyUeaEu2jwUYHH2FB54OL0XBD7MkMe2sqyALHhf+IVDik6zoqEA/O
+         9QIUe5775lSgBt5BwcqaOcoxUykdawfEypSNY1Ri7B8E7cuh9Dixjig1gfWl9m5hph33
+         pWybVYBJaz1U5+OhpUxD3/m7lbmdS9SiXu3hYg4/J1pIDsyAsE7t+v4Xk9Y9A5nM2yRE
+         bgbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qI6QvwwoMEoMGG2lrNC8roadH7Dk5Bdka3LjXTKFsas=;
-        b=lBzGxDYZe4FcfdiTKwIEn4a/DedpuLtea7QSC0itUxNKq+ksyIQwEcQvCzM3+xiz7X
-         iRdInnvFlYDAFVMxlOsOVWKa5eop4CwDBygFRdGr4Y4iO5k1JeaPjKbkUdQP+C4XAWAT
-         xmRDMrmCpAkJJLJyiCX8vf/rGYjnGHz9QPXwZSSsN0qjjUNYuO6y/uD62nQFjXwRFY9H
-         nY3TyYTv0YJOLYgNEpf0ES0WNgkuDfN37KKc+iJN2WDT/7njt8QfCLBbxXrm7bBUu8Ms
-         RI06CvmHoo50mvUBbZFuc+Cx6jgAvz8Vy39OEMMSLJN4DXQKVcUIY2IowHK/ZsJxRBlF
-         acTg==
-X-Gm-Message-State: AFqh2krT5fojNiR13ut1lBD1+LDoCx1KJMvLJCS2gXW9mQEbzT2BcJ+a
-        ku18IKE/de68KEU+xWnAU5eTPQ==
-X-Google-Smtp-Source: AMrXdXtFHsnvA8WGNi+nEEgZjjW5/ECaWn9n1buzthZdLLG95KFCPxPExue3RykYjGqzhrddrej9Sw==
-X-Received: by 2002:a05:600c:35c1:b0:3d3:5319:b6d3 with SMTP id r1-20020a05600c35c100b003d35319b6d3mr42819876wmq.38.1674902603445;
-        Sat, 28 Jan 2023 02:43:23 -0800 (PST)
+        bh=BDMyuNY9y2+mLIY91GGCJaf3jR2VGlODgfIJsSjay2k=;
+        b=ljVt2qJxV6pirgXe9gfPNEwU6FbIl3O2dLS4ILhnfgShrttNv1Vv4j7L21DxoodSeQ
+         PgBShZ0O6otekFeyGZuS2TWFNtf3SamADQSPU/UzIFZRrSjJ7D7zOqfIAQPlZpt6Kf3n
+         0sl4V8IBRr5NMzKVH9N48toSr5Z+9k78sYizqSI9CSm3q4+0uk1rD5NHNTh4y8r1+m5D
+         Z35w+bfX/lrE2kwO4ExPMHh3/7VHz0M6oQ/+lb70mX5xgQlTjDj0OB4+a/nl36QrQf/R
+         p9AFsCWN7wgXNG8HSbEM05dBNSEBB3yWBhkaS3G6m7sdTDYpjDpvpwRa8HgGHhVMdCBg
+         K1JQ==
+X-Gm-Message-State: AFqh2kqbzthsfVQ34zJl6jJpksGjiZNusUpXHxkXEQiOJ/O1h95+K98L
+        vutoF7EC/nwtR8tgq6szU4X87w==
+X-Google-Smtp-Source: AMrXdXvzLKnPJzKgzaJo+Fihga+fGeShpAelemc3eeNsipvcvTqGS01hVJ+Ze/uvvnAp2CCmGSCNMQ==
+X-Received: by 2002:a05:600c:3b18:b0:3db:eab:3c5c with SMTP id m24-20020a05600c3b1800b003db0eab3c5cmr40476863wms.32.1674902934819;
+        Sat, 28 Jan 2023 02:48:54 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y3-20020a1c4b03000000b003dc434b39c2sm2508838wma.26.2023.01.28.02.43.21
+        by smtp.gmail.com with ESMTPSA id j6-20020a05600c42c600b003daf89e01d3sm6781867wme.11.2023.01.28.02.48.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Jan 2023 02:43:22 -0800 (PST)
-Message-ID: <4dea3da5-54b6-bc50-a802-cb73ddccf5d8@linaro.org>
-Date:   Sat, 28 Jan 2023 11:43:21 +0100
+        Sat, 28 Jan 2023 02:48:54 -0800 (PST)
+Message-ID: <5ec49108-6ad8-daf7-54ec-104f0923a31d@linaro.org>
+Date:   Sat, 28 Jan 2023 11:48:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 2/9] ARM: dts: exynos: move exynos-bus nodes out of soc in
- Exynos5420
+Subject: Re: [PATCH v12 2/6] dt-bindings: thermal: mediatek: Add LVTS thermal
+ controllers dt-binding definition
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
+To:     bchihi@baylibre.com, daniel.lezcano@linaro.org,
+        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
+        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
+        p.zabel@pengutronix.de
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>,
-        Henrik Grimler <henrik@grimler.se>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-References: <20230125094513.155063-1-krzysztof.kozlowski@linaro.org>
- <CGME20230125094529eucas1p29b5f25af2c658abef13a93c49eca975f@eucas1p2.samsung.com>
- <20230125094513.155063-2-krzysztof.kozlowski@linaro.org>
- <cd42b8c9-a79a-068c-a967-810c05e818bd@samsung.com>
- <d8f5fa57-da3a-09f9-e297-197068264d26@linaro.org>
-In-Reply-To: <d8f5fa57-da3a-09f9-e297-197068264d26@linaro.org>
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+References: <20230124131717.128660-3-bchihi@baylibre.com>
+ <20230126161048.94089-1-bchihi@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230126161048.94089-1-bchihi@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,57 +84,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2023 11:59, Krzysztof Kozlowski wrote:
-> On 26/01/2023 10:47, Marek Szyprowski wrote:
->> Hi Krzysztof,
->>
->> On 25.01.2023 10:45, Krzysztof Kozlowski wrote:
->>> The soc node is supposed to have only device nodes with MMIO addresses,
->>> as reported by dtc W=1:
->>>
->>>    arch/arm/boot/dts/exynos5420.dtsi:1070.24-1075.5:
->>>      Warning (simple_bus_reg): /soc/bus-wcore: missing or empty reg/ranges property
->>>
->>> and dtbs_check:
->>>
->>>    exynos5420-arndale-octa.dtb: soc: bus-wcore:
->>>      {'compatible': ['samsung,exynos-bus'], 'clocks': [[2, 769]], 'clock-names': ['bus'], 'status': ['disabled']} should not be valid under {'type': 'object'}
->>>
->>> Move the bus nodes and their OPP tables out of SoC to fix this.
->>> Re-order them alphabetically while moving and put some of the OPP tables
->>> in device nodes (if they are not shared).
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> Frankly speaking I'm not very keen on moving those bus nodes out of 
->> /soc. Technically speaking this is definitely a part of soc and doesn't 
->> make much sense outside of it. IMHO they describe SoC hardware details 
->> and they might be moved somehow under clock controller device(s), 
->> although this would require some changes in the bindings and drivers.
+On 26/01/2023 17:10, bchihi@baylibre.com wrote:
+> From: Balsam CHIHI <bchihi@baylibre.com>
 > 
-> That's the only way to fix it without change of drivers any ABI
-> compatibility issue. The same we do for Qualcomm interconnects, e.g.
-> arch/arm64/boot/dts/qcom/sm8450.dtsi where some interconnects have some
-> do not have MMIO space.
+> Add LVTS thermal controllers dt-binding definition for mt8195.
+
+Subject: drop second/last, redundant "dt-binding definition". The
+"dt-bindings" prefix is already stating that these are bindings.
+
+Plus two comments at the end.
+
 > 
-> I want to achieve finally clean dtbs_check run for all Exynos sources.
-> The in-tree bindings already pass, so now I am fixing the ones coming
-> from dtschema (simple-bus.yaml in particular).
-> 
-> If you have any other idea how to seamlessly clean it up, I am happy to
-> hear. But I guess the main problem is that no one is being paid for
-> doing anything for Samsung Exynos, so for free not many put much effort
-> into working on it.
+> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> ---
+> Changelog:
+>   v12:
+>      - Fixed subject prefix
+>      - Fixed licences GPL-2.0+ to GPL-2.0
+>      - Added dual licenses
 
-Marek, I value your feedback a lot and I appreciate your help here. Just
-to be clear that I am not ignoring it, little disclaimer:
 
-Unless there is a clear NAK from you or someone else, with an idea to
-fix or with a commitment to change driver/bindings, I am planning to
-grab these changes.
+> +    };
+> diff --git a/include/dt-bindings/thermal/mediatek-lvts.h b/include/dt-bindings/thermal/mediatek-lvts.h
+> new file mode 100644
+> index 000000000000..902d5b1e4f43
+> --- /dev/null
+> +++ b/include/dt-bindings/thermal/mediatek-lvts.h
 
-I really want to get the dtbs_check done. With these and my other fixes,
-the arm64 exynos DTS pass fully all dtschema and in-kernel dtbs_check.
+Same filename as bindings.
+
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
+
+Although this is correct, any reason why not using exactly the same
+license as bindings?
+
+> +/*
+> + * Copyright (c) 2023 MediaTek Inc.
+> + * Author: Balsam CHIHI <bchihi@baylibre.com>
+> + */
 
 Best regards,
 Krzysztof
