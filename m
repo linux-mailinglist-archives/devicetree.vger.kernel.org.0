@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6612768007D
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 18:37:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95C23680081
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 18:42:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232422AbjA2Rhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 12:37:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56004 "EHLO
+        id S229673AbjA2Rmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 12:42:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229605AbjA2Rhv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 12:37:51 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0544F11E
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 09:37:50 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id q10-20020a1cf30a000000b003db0edfdb74so7584350wmq.1
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 09:37:49 -0800 (PST)
+        with ESMTP id S229835AbjA2Rmg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 12:42:36 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E97FE1EFCF
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 09:42:30 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id l8so6607692wms.3
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 09:42:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VAL6s80AXM+XIKVK3wI20y7HYG7Hs9tx+FCABHAzBUM=;
-        b=fduyUY71OvQ/GIHS+qgvArvtZ0n4w6sOGRL2uSsbCDRu6LElUclTj+swWfwJLwegXb
-         5dREJIkWlZCDUJBRDjs6xKqx8T5+z8Cx8gv2KcUbQdZa85KYIv+HA30f+H1Ajb395Tpw
-         BJqz4GR45wioEFVkwj1pRGr725UC05bYiuCthnQCREGm9AKesMslqqQj0mZ2q+onVQfm
-         sY24k7d9XQ4I2kyGlZHkmWS4GekMWV7GVcnGIXghBLHEK5F5JSXeajJS+8Ou5ensZV4O
-         OYOtYn50pJntfqqNG6ThqAtlSuWDLd+Fi8idBaENSdtHUkrBaBzcD7QgZ93ZtLtMrc7f
-         CtJg==
+        bh=34Hkkbw634RC9Fbld7Eci9GLP2rbD+JaNfekHKUfXNo=;
+        b=Dr1Q4ox+yEMCIIgQ6ygG+UKmdT2M6H8Da1GMcciWz/NuJ7KtwC3lYk8GEESwiQAiwB
+         uFkaMt5WGrLzn4GlBD6OQRhy02mKdmH0IimIjGsWnxBvYSEPHdxt9Y0DpGaAN3nUIIAQ
+         g9coapWPSNH2UgdEPLy7fXtwa2lovpiwbvWyRcasOXE4UohIQZTWYfsM4ZFV3mCyRbU5
+         AvF8Rh9u+uA1O+2Mn0p6yHvzl+wFdNDK+xva6lhDXh/kM6ZfuasYa0St9j8EfsVUTiQR
+         UK5Ii2gJSDD+apOAlvfdAw+OUcKntBCvUvF+pwjGPpbult9uHRKXW+0I1u0KLUM8kE1v
+         Z/kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VAL6s80AXM+XIKVK3wI20y7HYG7Hs9tx+FCABHAzBUM=;
-        b=IZLJJuy0PzI1FD2lq+0EhV1pIBk9kDsUca++jOrkUg1x4r6QpkN49nZep2dmCWYTLs
-         fDjIWhD3C/rR2o18n8Mb+Vui0HWMLGiVEmkpx6WRF4O96IMjzRfCQPRy0hDSBSjkPI1R
-         Vwxc0k7h3R2+k+dF7azSjMpEbd49zGS4j7FOQouvT6v5P5oeNit4414gT3+JjlWnid2T
-         Xt13kEyKckp23TAfILAya/Bp6XH0u/6M5HTNqfXFEodMqzLj63Euoa8lQ3O+8nn9gI3u
-         SG5qutmyiZ5sytlDJRrm2K6cfZozrDPj2FZW1nQi70P/dieMx9k0KbcbxujNIdIPLSnr
-         jZhA==
-X-Gm-Message-State: AFqh2kqQFj16Yat16KVdUNqG9rvc6YjaXi0AqlIsXFT1ielziUqk7mSi
-        n7fa0qABNPzLVpL+ySGxCMarkQ==
-X-Google-Smtp-Source: AMrXdXuR5gAMfmqDLdliVvRzowcIFg6DdokcNmYs24pvxoYrKK9ck/FP3emk/Se8p9FKL3/WNPookg==
-X-Received: by 2002:a05:600c:310c:b0:3dc:d5c:76e0 with SMTP id g12-20020a05600c310c00b003dc0d5c76e0mr21171809wmo.22.1675013868594;
-        Sun, 29 Jan 2023 09:37:48 -0800 (PST)
+        bh=34Hkkbw634RC9Fbld7Eci9GLP2rbD+JaNfekHKUfXNo=;
+        b=HruYM8YXFBWZwc63bVTPCGHWwgR6jWN47RrO9jlrq4Ez25ay3B2aO1psONP1i/r2En
+         Xuz4rSGshOVu2exJJvKhAF6GGzemA9MFQm6dkE62ibvQ3AL5bRPcXYZZkCkZhK+oJPTq
+         n4vzGySsTk9NVNhNUC49l2YsgPIK6vEYVsyAv0OjYJZxf6grQ35lqrk4+wfeivVuBDSk
+         h9YsL7F0RsSevk6PZvgIwWJe5B4V+ZnDVpqYv/93U5FhpWFjHY4t+NbPFbCJCObjFGCa
+         cXG2oIlBAafZFDwITjQEgbUKkLlwdJW5xp7OCIjLVUJzzxRqESMUZZnUZLtVtQlb9Raj
+         epKw==
+X-Gm-Message-State: AO0yUKXLknug8y6Fr5wGyTwfG0t0eipbjWa33QIjRg7xntxNPVjw9U1G
+        Ra8aioi9kDCfbjIMEM4bCBdVrg==
+X-Google-Smtp-Source: AK7set/mvmGmVMpNZl6PzqdJ7LQUH9WapUEZ7DRqpjONCtidqEpb6FtGnwBdTrMaCUdhyh08//kGKg==
+X-Received: by 2002:a7b:c8c7:0:b0:3dc:5a7c:f8ad with SMTP id f7-20020a7bc8c7000000b003dc5a7cf8admr285059wml.21.1675014149566;
+        Sun, 29 Jan 2023 09:42:29 -0800 (PST)
 Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id d11-20020a05600c3acb00b003db30be4a54sm13610441wms.38.2023.01.29.09.37.47
+        by smtp.gmail.com with ESMTPSA id f1-20020a7bc8c1000000b003c6bbe910fdsm15922293wml.9.2023.01.29.09.42.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Jan 2023 09:37:48 -0800 (PST)
-Date:   Sun, 29 Jan 2023 19:37:46 +0200
+        Sun, 29 Jan 2023 09:42:29 -0800 (PST)
+Date:   Sun, 29 Jan 2023 19:42:27 +0200
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Marcel Ziswiler <marcel@ziswiler.com>
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -64,55 +64,45 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Shawn Guo <shawnguo@kernel.org>,
         Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
         linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH v1 1/2] clk: imx6sll: add proper spdx license
- identifier
-Message-ID: <Y9au6t91gMECzydj@linaro.org>
+Subject: Re: [RESEND PATCH v1 0/2] ARM: arm64: dts/clk: imx: indentation
+ permission whitespace cleanup 2
+Message-ID: <Y9awA42VPpC9Ne8o@linaro.org>
 References: <20230119085421.102804-1-marcel@ziswiler.com>
- <20230119085421.102804-2-marcel@ziswiler.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230119085421.102804-2-marcel@ziswiler.com>
+In-Reply-To: <20230119085421.102804-1-marcel@ziswiler.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-19 09:54:20, Marcel Ziswiler wrote:
+On 23-01-19 09:54:19, Marcel Ziswiler wrote:
 > From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 > 
-> This fixes the following error:
 > 
-> include/dt-bindings/clock/imx6sll-clock.h:1: warning: Improper SPDX
->  comment style for 'include/dt-bindings/clock/imx6sll-clock.h', please
->  use '/*' instead
-> include/dt-bindings/clock/imx6sll-clock.h:1: warning: Missing or
->  malformed SPDX-License-Identifier tag in line 1
+> While further synchronising them imx device trees with U-Boot I stumbled
+> over more checkpatch warnings. This series addresses those trivial
+> indentation, file permission and/or whitespace cleanups.
+
+Nitpick: The subject line should not contain "ARM: arm64:" prefix, as it makes it
+confusing for maintainers through which tree the patches should be
+applied.
+
 > 
-> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
-
-> ---
+> 
+> Marcel Ziswiler (2):
+>   clk: imx6sll: add proper spdx license identifier
+>   dt-bindings: imx8ulp: clock: no spaces before tabs
 > 
 >  include/dt-bindings/clock/imx6sll-clock.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  include/dt-bindings/clock/imx8ulp-clock.h | 4 ++--
+>  2 files changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/include/dt-bindings/clock/imx6sll-clock.h b/include/dt-bindings/clock/imx6sll-clock.h
-> index f446710fe63d..494fd0c37fb5 100644
-> --- a/include/dt-bindings/clock/imx6sll-clock.h
-> +++ b/include/dt-bindings/clock/imx6sll-clock.h
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +/* SPDX-License-Identifier: GPL-2.0 */
->  /*
->   * Copyright (C) 2016 Freescale Semiconductor, Inc.
->   * Copyright 2017-2018 NXP.
 > -- 
 > 2.36.1
 > 
