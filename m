@@ -2,94 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F66968014F
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 21:16:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0F01680152
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 21:20:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231137AbjA2UQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 15:16:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40212 "EHLO
+        id S230220AbjA2UUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 15:20:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbjA2UQJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 15:16:09 -0500
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D761C586;
-        Sun, 29 Jan 2023 12:16:07 -0800 (PST)
-Received: by mail-ot1-x32e.google.com with SMTP id e12-20020a0568301e4c00b0068bc93e7e34so971085otj.4;
-        Sun, 29 Jan 2023 12:16:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QcUvGf3SnNJxJpngwgS9E38WXihDAHpNbeo4S+i2+60=;
-        b=cYD7YfYm0ILqmo0ok/tIMKHHzSl5YLmOYhTocxYL5rksY2xPX+uTYSGcUC3OCK7jdm
-         2REzNnZCJB8GEFqp1oSI6E8uSjf7GjO9n6eVtQ590WNwheyogkFr82/X/Rvu8gSsguaJ
-         fdF5f29h9dewTOX8xkLqrmf8yT4Iu6IqN9Z5HXc0R/h88R2pCcH8gYQ7j3dfqeG9Vg0B
-         EeRMCT7Pgl1Hi6XMWHcU1MpAjphreZ4fDdH/V39ktDJCzE7LX01HXyFsJn5gT7LQxX3t
-         yOT3sW1rQP7NTPdTPoWOWv20PLzFwGSVT/luUO+/HvNvAl5gPx+MZKpuTeY1jpWik2n8
-         a2gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QcUvGf3SnNJxJpngwgS9E38WXihDAHpNbeo4S+i2+60=;
-        b=CW76y+6U+5AgNJeDuN/DWxxBlrPKteAfaEuUdgutmkOYELEkai7t+nAXfs6kyZkdNV
-         C4orNTdB+OCbqDZdtd2l2FqpmTfHahL/bwKrWO84EbvIe2N2yb0hI6CFsZI7YHAFYSX9
-         QTpNfq5PSWGklyDBq/v6NOjc1EH5zNumbOsWAJtkegibv2aicGY+bZCEjIxCXrJb5hd4
-         jS6OS7DGFAoYbzkk9hf3WRXi7X85Nyc1RfMP1AEz9S/o+wlozYQ8pPgWEi2HFS2l6wvW
-         BljqeoWxf9iG9RJrFzKhbpAJrxuD0awUBxkFtXbYIYfbt9Dpb0g13cQtBHK5OJOuwsT1
-         FzFw==
-X-Gm-Message-State: AO0yUKXLI3FP8q47HWhcmaN4ODXkq/OocpZT/9YFBrKW6YKYEWDRuATK
-        6yg8uZvEGioXY1qDCY0igUvB0eO5T9k=
-X-Google-Smtp-Source: AK7set+GkYHlOmIsVlnTVKZnuTEDSVDrRNryjt+RdJ9ezxZnho6Hgqo1Wds3ZKfQckXmLzs7Pme0vQ==
-X-Received: by 2002:a05:6830:4d4:b0:670:9cff:64bf with SMTP id s20-20020a05683004d400b006709cff64bfmr2901235otd.21.1675023366301;
-        Sun, 29 Jan 2023 12:16:06 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c5-20020a9d75c5000000b006866a9b28eesm341103otl.18.2023.01.29.12.16.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Jan 2023 12:16:05 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sun, 29 Jan 2023 12:16:04 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Jonathan Cormier <jcormier@criticallink.com>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229492AbjA2UUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 15:20:48 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C09E14E97;
+        Sun, 29 Jan 2023 12:20:47 -0800 (PST)
+Received: from mercury (unknown [185.209.196.162])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 04DEB6600869;
+        Sun, 29 Jan 2023 20:20:46 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1675023646;
+        bh=2oLnfCE7coxknptZXDnL1evYxTjdQpQWRqH3kXVpgBU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=S6QVIW1CUg0SkNwXco+jZi/z8RR1Qmn8TYOG0kE3NxVSU4137YaDbRXQkdSN0bu5W
+         424QmwjJHwYtyC4ILeC+q4QQ0X2gQAPhg33RsCFRAchcjoC2Xvv7V6gP7qN26Rzja5
+         992cKykG0cr3J01WQmbEcphzGGMqldPjH8mExrZSrG2qXmuLgk1AUDPywgzETS7agk
+         g24neFu7WmGGt+l7PnLj0oWg91j3V3vXC29xh+g/1haEShWwBgW7MTuIF6yaFxrkb3
+         N0vxka6G+EsQFWW8OkZhOBtjXNEQDoLVhwSftb3A0mct+xQmo9k9YHbowfb2xyjD9c
+         rxQ+OmQd3d52Q==
+Received: by mercury (Postfix, from userid 1000)
+        id 4D04F10607D5; Sun, 29 Jan 2023 21:20:43 +0100 (CET)
+Date:   Sun, 29 Jan 2023 21:20:43 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Caleb Connolly <caleb.connolly@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Bob Duke <bduke@criticallink.com>,
-        John Pruitt <jpruitt@criticallink.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 1/5] dt-bindings: hwmon: adi,ltc2945: Add binding
-Message-ID: <20230129201604.GA1583293@roeck-us.net>
-References: <20230126-b4-ltc2945_shunt_resistor-v4-0-bb913470d8da@criticallink.com>
- <20230126-b4-ltc2945_shunt_resistor-v4-1-bb913470d8da@criticallink.com>
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        phone-devel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/2] power: supply: add Qualcomm PMI8998 SMB2 Charger
+ driver
+Message-ID: <20230129202043.w6mylxeccz2fyxl2@mercury.elektranox.org>
+References: <20230127230506.3140297-1-caleb.connolly@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kz3ypdr3c4nspgz3"
 Content-Disposition: inline
-In-Reply-To: <20230126-b4-ltc2945_shunt_resistor-v4-1-bb913470d8da@criticallink.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230127230506.3140297-1-caleb.connolly@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 26, 2023 at 05:32:23PM -0500, Jonathan Cormier wrote:
-> Create initial binding for the LTC2945 I2C power monitor.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
 
-Series applied, after merging patch 4/5 and 5/5 of the series
-to avoid spurious 32-bit build failures, and after fixing a
-continuation line alignment.
+--kz3ypdr3c4nspgz3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-In the future, please run checkpatch --strict on your patches,
-and please provide change logs.
+Hi,
+
+I tried applying this, but it generates a compiler warning:
+
+On Fri, Jan 27, 2023 at 11:05:05PM +0000, Caleb Connolly wrote:
+> [...]
+> +static int smb2_probe(struct platform_device *pdev)
+> +{
+> [...]
+> +	desc->name =3D devm_kasprintf(chip->dev, GFP_KERNEL, "%s-charger",
+> +				    device_get_match_data(chip->dev));
+
+drivers/power/supply/qcom_pmi8998_charger.c: In function =E2=80=98smb2_prob=
+e=E2=80=99:
+drivers/power/supply/qcom_pmi8998_charger.c:979:62: warning: format =E2=80=
+=98%s=E2=80=99 expects argument of type =E2=80=98char *=E2=80=99, but argum=
+ent 4 has type =E2=80=98const void *=E2=80=99 [-Wformat=3D]
+  979 |         desc->name =3D devm_kasprintf(chip->dev, GFP_KERNEL, "%s-ch=
+arger",
+      |                                                             ~^
+      |                                                              |
+      |                                                              char *
+      |                                                             %p
+  980 |                                     device_get_match_data(chip->dev=
+));
+      |                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                     |
+      |                                     const void *
+
+
+Also while fixing this please also do the following change:
+
+> +static int smb2_init_irq(struct smb2_chip *chip, int *irq, const char *n=
+ame,
+> +			 irqreturn_t (*handler)(int irq, void *data))
+> +{
+> +	int irqnum;
+> +	int rc;
+> +
+> +	irqnum =3D of_irq_get_byname(chip->dev->of_node, name);
+
+irqnum =3D platform_get_irq_byname(to_platform_device(chip->dev), name);
+
+and drop <linux/of_irq.h> include.
+
+> +	if (irqnum < 0)
+> +		return dev_err_probe(chip->dev, irqnum,
+> +				     "Couldn't get irq %s byname\n", name);
+> +
+> +	rc =3D devm_request_threaded_irq(chip->dev, irqnum, NULL, handler,
+> +				       IRQF_ONESHOT, name, chip);
+> +	if (rc < 0)
+> +		return dev_err_probe(chip->dev, rc, "Couldn't request irq %s\n",
+> +				     name);
+> +
+> +	if (irq)
+> +		*irq =3D irqnum;
+> +
+> +	return 0;
+> +}
 
 Thanks,
-Guenter
+
+-- Sebastian
+
+--kz3ypdr3c4nspgz3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmPW1RcACgkQ2O7X88g7
++poYLQ/9Hd4wxvgwNiZiE2TRpiZH96RMIkw7PSQ0mK4A+kuesFSU2XnrGTx+LRxa
+9lmLWFPVmP3PNcOtCJRj215zOsO1D0y+Rva6AE0uO6wH3q8QC7HLzdkSstcTC1/T
+4n4CYRhWyfkEK4HSXoDfNQdoHlbtAwDJo9KHR1eVvIOz1XzJ1HfY6AG22rTE6h14
+ZNKK6prawJ8uLqD3lH9ho0MzmTXXcchW/grf47xehDkjEdMcnfpXP5rkGAvKOFMt
+THrf9wITZ6kiC6uBdNfXG7PdYIi1oXXYuBSPYkGg9ebRob1Ch0/k4kEYrde/1NBu
+JVUL5Zc+Bw0RjLbiX/CDPpOSSEqcDWuf9gyMTmll/YKfjZmcLTmg9oc1crvZ4BON
+RywS7aizdc9Q/7qcPw8dtbPuMkXlg+dPosSpkhKD4TcTwd8TT0PxrrLutg4sGjUY
+DGQfbCf55FiVYiwV1y3e61+ENCu2EIK+SzzCTI5hYtcZAK/uRVIlU/DLDl33iw+M
+VuKiowJr82m1gu8NXuuPOxWN4jZnF2p5N0cmR7Mm1UIZMfPL7hASVvKM2GA8o0qA
+uvezyQtbPPIARCOs924y7Bg7oeWPYiWxWr17h3zY31zzxDSHI5v9Nh5bzvkfvb+s
+EA1PFNY59QL+o2couDZBC+8Y56paAoFjlyJytYxDU7cWAOE5gGQ=
+=s/qD
+-----END PGP SIGNATURE-----
+
+--kz3ypdr3c4nspgz3--
