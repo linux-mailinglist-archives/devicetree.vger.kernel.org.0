@@ -2,249 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B9EC680024
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 17:05:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D275E68005B
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 18:01:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231386AbjA2QFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 11:05:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34572 "EHLO
+        id S230247AbjA2RBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 12:01:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229980AbjA2QFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 11:05:45 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C48F919F0C
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 08:05:43 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so1045693wms.1
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 08:05:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hm5mrI3RgpwLUAtsZnlhddw9mw5PRfzcGs1n8G6C6S4=;
-        b=SZ64e+Kc6nziZJCeyHf85r6SvB3DuSZHahZ4qIy8zToRjMTrpwIJr2byTCTV5lOakk
-         NcUszeGBNXuO+J+asj7kVp8odelPcBHKdblLr2DfKTvLOnwqFq/MTc9Ac4sjQZhRsfP3
-         ThS72xkjYj6uTXN86qPiNqjhnsJ10P1tQMoij+OSBBoys1pGcbz09PXLBX5AzKowXoll
-         qUFgR6rKs0/IYyrRHyFtFmBvPWObtmAoSwUtfjMkNzk62WqeP4/np/FVSAF1yArPyKuw
-         03PWSIepgB14C8t5B5raa6FqPAcVtK40wG7pEUM+NqB5XMkHmH2hxEnTv2Ri7YcqRFB/
-         3p2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Hm5mrI3RgpwLUAtsZnlhddw9mw5PRfzcGs1n8G6C6S4=;
-        b=Hg9mkYkiFgKPw2ABePrvIO0qX7yTghOacR97yTvx53JVtNNSLmufy9/p6K+2n3VU3k
-         SuIxz+54+4i0OQ0iq0FPTY5FhMLr5vH6Nq8Kc3XhpZHpKRIFvT9bl2rXg1R7g0pL/ZWG
-         Y85PqasYj1s0yDsiXXfUP2EO4jQae0GGjOd/f9Br+KTf0mEZ9iyzXYb/z+bK8avJLa8l
-         3sMxjTvE9137S8zo9Gw3K9Kc3LsPlTyOLDy0s+D/wJ+I5NTCiMH3++6u7CkdnHaWbS88
-         Uz8kkrfNM8ekhWGF7Z9jtERXQegkn5N/6Jo6ol1SIcjMDDf6mMWKi1tzgjtMk9fITTBb
-         7HKA==
-X-Gm-Message-State: AFqh2kopHTEQYyPY5/sG4yLj9btiQy6YGYLFPeEBfF3eNGEAvLaA/tuS
-        C/rQC1hYeEOPJdqtqSevmRtCGg==
-X-Google-Smtp-Source: AMrXdXvBpu2ZRGTQqc3v4lxW5p3SrvUYCCzJxj+bvgjNvonJMkC76GUT/EmB0YdJppmSxKWUZfqq7w==
-X-Received: by 2002:a05:600c:34d1:b0:3db:1434:c51a with SMTP id d17-20020a05600c34d100b003db1434c51amr40669786wmq.40.1675008342320;
-        Sun, 29 Jan 2023 08:05:42 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id s15-20020a05600c384f00b003d9de0c39fasm15734648wmr.36.2023.01.29.08.05.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Jan 2023 08:05:41 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229617AbjA2RBn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 12:01:43 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DB5A6A43
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 09:01:41 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6E0A7327;
+        Sun, 29 Jan 2023 18:01:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1675011699;
+        bh=Nr7wHX8nkfFO/cHU7o4Unq5fd3RGLbVdlBjyzJZIqFQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=VW8+2GFQ7OCi0EJbysSk6lnVg+520z6qE/q7PLlgZV6S2gmmuCVVP8JCxJqS7Kje5
+         RTtpAKEFvjOMxj5zsoQCnAvOJ1Mw8HDbYnmbzCgoiqJAloynd88XEPbtnSPTfy8QDg
+         DEYS0MBUhjVmVsJFBUlKBKnqGIPV4Xx6hizRvXDg=
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, Teresa Remmet <t.remmet@phytec.de>,
+        Shawn Guo <shawnguo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2] dt-bindings: display: bridge: sil,sii8620: convert to dtschema
-Date:   Sun, 29 Jan 2023 17:05:37 +0100
-Message-Id: <20230129160537.32275-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: [PATCH] arm64: dts: freescale: imx8mm-phyboard: Add I2C4 pinmuxing
+Date:   Sun, 29 Jan 2023 19:01:36 +0200
+Message-Id: <20230129170136.14506-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Silicon Image SiI8620 HDMI/MHL bridge bindings to DT schema.
+The I2C4 bus is exposed on the camera connector. Add and select the
+corresponding pinmux entries and set the default frequency. The device
+is left disabled, to be enabled from camera overlays.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
+ .../dts/freescale/imx8mm-phyboard-polis-rdk.dts     | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-Changes since v1:
-1. Require also port@1 (Laurent)
----
- .../bindings/display/bridge/sil,sii8620.yaml  | 108 ++++++++++++++++++
- .../bindings/display/bridge/sil-sii8620.txt   |  33 ------
- 2 files changed, 108 insertions(+), 33 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml b/Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml
-new file mode 100644
-index 000000000000..6d1a36b76fcb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml
-@@ -0,0 +1,108 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/sil,sii8620.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts
+index 4a3df2b77b0b..17521bb911c2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts
+@@ -168,6 +168,12 @@ &gpio5 {
+ 		"", "ECSPI1_SS0";
+ };
+ 
++&i2c4 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c4>;
++};
 +
-+title: Silicon Image SiI8620 HDMI/MHL bridge
+ /* PCIe */
+ &pcie0 {
+ 	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
+@@ -336,6 +342,13 @@ MX8MM_IOMUXC_SAI1_RXD6_GPIO4_IO8	0x16
+ 		>;
+ 	};
+ 
++	pinctrl_i2c4: i2c4grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_I2C4_SCL_I2C4_SCL		0x400001c3
++			MX8MM_IOMUXC_I2C4_SDA_I2C4_SDA		0x400001c3
++		>;
++	};
 +
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-+
-+properties:
-+  compatible:
-+    const: sil,sii8620
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: xtal
-+
-+  cvcc10-supply:
-+    description: Digital Core Supply Voltage (1.0V)
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  iovcc18-supply:
-+    description: I/O Supply Voltage (1.8V)
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    unevaluatedProperties: false
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Video port for HDMI (encoder) input
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          MHL to connector port
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - cvcc10-supply
-+  - interrupts
-+  - iovcc18-supply
-+  - reset-gpios
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        bridge@39 {
-+            reg = <0x39>;
-+            compatible = "sil,sii8620";
-+            cvcc10-supply = <&ldo36_reg>;
-+            iovcc18-supply = <&ldo34_reg>;
-+            interrupt-parent = <&gpf0>;
-+            interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-+            reset-gpios = <&gpv7 0 GPIO_ACTIVE_LOW>;
-+            clocks = <&pmu_system_controller 0>;
-+            clock-names = "xtal";
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+                    mhl_to_hdmi: endpoint {
-+                        remote-endpoint = <&hdmi_to_mhl>;
-+                    };
-+                };
-+
-+                port@1 {
-+                    reg = <1>;
-+                    mhl_to_musb_con: endpoint {
-+                        remote-endpoint = <&musb_con_to_mhl>;
-+                    };
-+                };
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt b/Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt
-deleted file mode 100644
-index b05052f7d62f..000000000000
---- a/Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--Silicon Image SiI8620 HDMI/MHL bridge bindings
--
--Required properties:
--	- compatible: "sil,sii8620"
--	- reg: i2c address of the bridge
--	- cvcc10-supply: Digital Core Supply Voltage (1.0V)
--	- iovcc18-supply: I/O Supply Voltage (1.8V)
--	- interrupts: interrupt specifier of INT pin
--	- reset-gpios: gpio specifier of RESET pin
--	- clocks, clock-names: specification and name of "xtal" clock
--	- video interfaces: Device node can contain video interface port
--			    node for HDMI encoder according to [1].
--
--[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
--
--Example:
--	sii8620@39 {
--		reg = <0x39>;
--		compatible = "sil,sii8620";
--		cvcc10-supply = <&ldo36_reg>;
--		iovcc18-supply = <&ldo34_reg>;
--		interrupt-parent = <&gpf0>;
--		interrupts = <2 0>;
--		reset-gpio = <&gpv7 0 0>;
--		clocks = <&pmu_system_controller 0>;
--		clock-names = "xtal";
--
--		port {
--			mhl_to_hdmi: endpoint {
--				remote-endpoint = <&hdmi_to_mhl>;
--			};
--		};
--	};
+ 	pinctrl_leds: leds1grp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_GPIO1_IO01_GPIO1_IO1	0x16
 -- 
-2.34.1
+Regards,
+
+Laurent Pinchart
 
