@@ -2,118 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 813C567FE6F
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 12:09:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70FA867FE71
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 12:09:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229980AbjA2LJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 06:09:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44942 "EHLO
+        id S229637AbjA2LJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 06:09:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbjA2LJ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 06:09:29 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 530541BAF0;
-        Sun, 29 Jan 2023 03:09:28 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30TB127F012329;
-        Sun, 29 Jan 2023 11:09:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=gU1WtSJOvhwTzCbkguNX6JpVqBEroAEsjBAyhD6rxBk=;
- b=FLpBTsYhB/hMBJ/q3/PIrNjzSbwE1tVD4UbSXUGLO5NTbRuIIc0gCejQSEzxesVtjpve
- lfOqzYVCRF2e9Ow+Ddw+BPBIEJAJT/b3znF8XN/+ITdKtXY/jnoWt2JtagMGkqlE40SC
- aF5tGbae8Vf5skTPUuqanW86xUJ6y6knHyCA6rWLfoFQbFvBE4R8IrSGYp0+UquQMjOr
- rYZ+IJX1hRA97BtZfWGcoaErAZNSQBtYgEK0uqtoMSfhfEfxd0vdCwXBnH2JQF3bFjXD
- 2v87GbQx+RxM66IFe9Y0S1DdpoXSBeE09I+GdJgtRllpbDA4Z6/+pshmt6b6AAezhjDp mQ== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ncs2x21yy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 29 Jan 2023 11:09:18 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30TB9HYN017902
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 29 Jan 2023 11:09:17 GMT
-Received: from [10.216.24.113] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Sun, 29 Jan
- 2023 03:09:14 -0800
-Message-ID: <3a4675f8-c182-a98c-38e8-be1b4480f612@quicinc.com>
-Date:   Sun, 29 Jan 2023 16:39:10 +0530
+        with ESMTP id S233855AbjA2LJu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 06:09:50 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AFC61CACD
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 03:09:46 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id q8so6234659wmo.5
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 03:09:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gc8SDGto0OzJBEGuEb9CULJeiUF5CRN2IIi0l9n2zpQ=;
+        b=e82j+RSP9A4XtrP/ZnOWynWBRLU+tKjFj4UJMV/j3iOswAr8UkgQVYUBpfyllONkam
+         Xd/IiJmPqZY0U3Brhz9BzU7OQGn2IZpvxdmjbjQ9Cfp95grnCrlU76gkhgrH8fe3ivX0
+         1smLCC+Ka9SlvLSudqxdwGCQEBJvKyy1Nv+E3ieHpy+4ZG073/Kf8+SjbUPqoO2ickQC
+         egucudgchGf1jnajBbBZRryu/63mLJk8gFxQcIfXAHBBQ8DATZ03DGzhG8TBbXimgGQm
+         Oh/Vt1XGQLTmQFlBqnspF0QlvbrBp8VRZDxBNIHNn2t8UQK12jYA8lNx1+GuG0mV1NAR
+         88gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gc8SDGto0OzJBEGuEb9CULJeiUF5CRN2IIi0l9n2zpQ=;
+        b=Ze6ZVcCetIxUWM4pAAx2O6+PHZDjXXzYgndQSmMlX4e51BKDoORMAxe04zg74gRroq
+         dShVeXGj+nHvwteEfMJZw3fPDQUzliQXdNV7NnoUidS4aTGPKtezDVjABf7wgqqWJPlQ
+         bX43WNTDewdazoxZfjtSEIi0onsCxVry5+GUXcp4LPdQhnAf+wq1JfQJWzmGkfBz4fB0
+         6ccTnuJqw5LsC6GrDVBMbAhRZ0iZOD2FvsOW8jNRV/KvgqBOFdua5FfbosRwUsOg3qfP
+         kqz9PpRG9LMeevLjhYc+PqH99ZYAyokIklnJc+47VustWyfozbmASbO5MUWdmukpY1TF
+         folQ==
+X-Gm-Message-State: AO0yUKWeNjcCRTi27rE02n/tFpS2b1CLptJA5dgKhVEYMo4sxya01CGA
+        UlTv1ruY0B9ul+Kj6uEnviSlGw==
+X-Google-Smtp-Source: AK7set8/AsBKCYFzmR/S5fISt5iR0GjEJFsa734bylubU21q4y8z51HpBj0/zG/eRBCyBX1B3tr5Pg==
+X-Received: by 2002:a05:600c:34d0:b0:3dc:4313:fd1e with SMTP id d16-20020a05600c34d000b003dc4313fd1emr6498435wmq.34.1674990584773;
+        Sun, 29 Jan 2023 03:09:44 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id b48-20020a05600c4ab000b003db1ca20170sm597349wmp.37.2023.01.29.03.09.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Jan 2023 03:09:42 -0800 (PST)
+Message-ID: <062325ab-348b-6186-7979-5076c338cd95@linaro.org>
+Date:   Sun, 29 Jan 2023 12:09:40 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v3 1/2] dt-bindings: mfd: qcom,tcsr: Add compatible for
- sm8450
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] arm64: dts: rockchip: set sdmmc0 speed to sd-uhs-sdr50
 Content-Language: en-US
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <lee@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1673513697-30173-1-git-send-email-quic_mojha@quicinc.com>
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <1673513697-30173-1-git-send-email-quic_mojha@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Dan Johansen <strit@manjaro.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de
+Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20230128112432.132302-1-strit@manjaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230128112432.132302-1-strit@manjaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: rXiT2MOt0SJdPP3-7b65_fu3kG4DgKqE
-X-Proofpoint-GUID: rXiT2MOt0SJdPP3-7b65_fu3kG4DgKqE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-29_09,2023-01-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- adultscore=0 lowpriorityscore=0 mlxscore=0 mlxlogscore=825 impostorscore=0
- priorityscore=1501 bulkscore=0 clxscore=1011 spamscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2301290108
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Jones
+On 28/01/2023 12:24, Dan Johansen wrote:
+> As other rk336x based devices, the Rock 3 Model A has issues with high
+> speed SD cards, so lower the speed to 50 instead of 104 in the same
+> manor has the Quartz64 Model B has.
+> 
+> Fixes: 22a442e6 ("arm64: dts: rockchip: add basic dts for the radxa
+> rock3 model a")
 
-Jones,
+Don't break the tags, one line please.
 
-Can this patch be taken into your tree ?
+> 
 
--Mukesh
+And drop the blank line between tags.
 
-On 1/12/2023 2:24 PM, Mukesh Ojha wrote:
-> Document the qcom,sm8450-tcsr compatible.
-> 
-> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> ---
-> Change in v3:
->    - Align with new format mentioned at
->      Documentation/devicetree/bindings/arm/qcom-soc.yaml
-> 
-> Change in v2:
->    - Considering here it as v2 as this patch came out from comment
->      made on its v1 https://lore.kernel.org/lkml/c5dc8042-717b-22eb-79f6-d18ab10d6685@linaro.org/
-> 
-> 
->   Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> index adcae6c..4290062 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> @@ -26,6 +26,7 @@ properties:
->             - qcom,sdm630-tcsr
->             - qcom,sdm845-tcsr
->             - qcom,sm8150-tcsr
-> +          - qcom,sm8450-tcsr
->             - qcom,tcsr-apq8064
->             - qcom,tcsr-apq8084
->             - qcom,tcsr-ipq6018
+Thanks.
+
+Best regards,
+Krzysztof
+
