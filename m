@@ -2,98 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5ED167FE87
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 12:26:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAB8667FE93
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 12:33:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230223AbjA2L0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 06:26:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49436 "EHLO
+        id S229980AbjA2LdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 06:33:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229600AbjA2L03 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 06:26:29 -0500
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BF427DA0;
-        Sun, 29 Jan 2023 03:26:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
-        t=1674991580; bh=iE0ml3o/oeykLX0bNAtwyLIVpBJx2KBOrIqSvWHF1do=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=GynCDDkKmhcGUaN9MK8UWc3dy7lPbOBSqhzOGjfgcIoHE0M6t19yd1V9UiuxNAdLZ
-         HBkWIIM52j29IhfV2evtTxIZlK6KKZzzCgvHB20EEPdoj/W3AyrgKOQpEMo6MV01G6
-         OdT808lSMIr6oJI1acGmK0+r+j55GEnWXbypa6f0CUqOckH6Ph9hrSgQZ9kMKQlHpw
-         Sw4X+eM4gQotvXIMfru2zc0+ulyhGehEc5n2+0Q+FIm/6UPoWeYxD1W/KoKuT6KDjP
-         Al+fiy1kp2/ojkzPZlRhqfxymOFNY4XA7CNOux4Y9HcJVRuXWLGfNahEqB0s4IroAa
-         4YQC5ZDIIBs5A==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([95.223.44.193]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mo6qp-1otNaB1pvf-00pbQZ; Sun, 29
- Jan 2023 12:26:20 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     openbmc@lists.ozlabs.org
-Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: wpcm450: Add nuvoton,shm = <&shm> to FIU node
-Date:   Sun, 29 Jan 2023 12:26:11 +0100
-Message-Id: <20230129112611.1176517-1-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.39.0
+        with ESMTP id S229519AbjA2LdL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 06:33:11 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F2E1DB90
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 03:33:10 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id h12so8676835wrv.10
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 03:33:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ICxEAz2lTPvNArr1Of6NmwuUlJJFVR9Q6sHPnf6bJqQ=;
+        b=oTNmVLchTqTuyj8wtBqqQ23usioQjMxx6C7SqLtjlvInJbo0I3OO6HU+NnLjAuqbSG
+         V8abxoFjqujql7Sndgme6MVspyU2xP8GXRFGmKd66xqtL3TYEUcWnRkRjfPfgprbXzyv
+         WaRI7DMbTy1CffpAR60MbvvJz/IdU5HNR5li22J8hybjxHaY725WI+A2L7Jod/3n74bh
+         s36CQBaEHBtnoHUl7UYPBmv0OR6+OLudB6YF3ZrP4dLLCUt9UDUh2AGTY1IDVYAPH3Ca
+         j/rUAPh1wYAIKaRItMRxINXuVowRCBJmhLgbgQA5eyd2AM+jKPEwkc/VMJltRe1mChbj
+         drOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ICxEAz2lTPvNArr1Of6NmwuUlJJFVR9Q6sHPnf6bJqQ=;
+        b=ez+lkzRiYTZjAAE+4sPr30ly2LsO66/kK7Cl5PXJ7xPZSiusy/5rdupI3fkiO+ZI5a
+         4qxTKUeRWCKA8S6LPvt2SfM5yANeHZOvTCE/dQhZxY+rxVegSjLS232D/MLN27DsMcfg
+         Q6eE4rg0b3zUnfC59CskSimv8IEDSOfNZ5rkkVMV9sjlbBfaQRpEbkWbJY6YBhOav8t1
+         G6UOzhY/7w5mZKe3LO7Tp0jCRLx2QhJBR8I4B0wD+TnO3fyd061x+Ql3i9jNXo30lCJb
+         bxdTG2FVOF62eUhir0cw6/fHXD09ypvGuIB9CM+ADmO9Fw3eEwaLP7JbEPHrcVCJK7Fz
+         zTUw==
+X-Gm-Message-State: AFqh2kqY10txonArpuZ+RtZ6OUmmKi9IZM/GadPG/vpakQnfCy8WR7HR
+        9EqtYmRg4IEeTdCRY4v+IoWHTj0T9yNPTSx+
+X-Google-Smtp-Source: AMrXdXu+96NQRYpy8juaEVrWzdhFnO3M/UrQmzfQ0iBrX/GCzOtqSJ5G+vUE0p6nRVOR9oE+y8XVpg==
+X-Received: by 2002:a5d:52ca:0:b0:2be:579b:1668 with SMTP id r10-20020a5d52ca000000b002be579b1668mr29419581wrv.1.1674991988734;
+        Sun, 29 Jan 2023 03:33:08 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id f12-20020adfdb4c000000b002bfb1de74absm8953897wrj.114.2023.01.29.03.33.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Jan 2023 03:33:08 -0800 (PST)
+Message-ID: <e4f11bda-32c1-fa9d-39d7-402e55ff1d22@linaro.org>
+Date:   Sun, 29 Jan 2023 12:33:06 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/4] dt-bindings: hid: Add CP2112 HID USB to SMBus Bridge
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Danny Kaehn <kaehndan@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
+        benjamin.tissoires@redhat.com
+Cc:     devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+References: <20230128202622.12676-1-kaehndan@gmail.com>
+ <20230128202622.12676-2-kaehndan@gmail.com>
+ <fa320b2c-5cf5-c10a-ba63-17ccb5c992ad@linaro.org>
+In-Reply-To: <fa320b2c-5cf5-c10a-ba63-17ccb5c992ad@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:oE5K8PVURUUYTJFsmav1i8mDxxB09kKS7hWEFYnsvBPy3yMxFww
- ZLeShVJgizXDtn7hol9iccrI9YaMJQVBMtV1gtiwVNniZ8sblVFMZV5QX8UvH/4/iaBm6KR
- 9lT9qtS+kNGQWA5N8zthoSQc+eHMbhWSOwlZGCeZ4DCkBmEBEWjFHU7bnbKGWz7kjasYK0o
- 8qOfFFXgOw4dPe15BUXaA==
-UI-OutboundReport: notjunk:1;M01:P0:BK9mXZXVw0E=;nPW1XgAKKaWHZmKKlrsRPgtnXG8
- 9te/AMCjG66kvLGJK0YdotC4OTHYMS+S8vsSMnVvK2nwjnUXRWEpLtnr+wFiEIEXnxpMcTsDQ
- KuWtmYp62qU+Ya5KntZSkhpp095pZAqwQplw6YeBvF2ndfMz8KcmLeVuHnc5EsIJSlb/aK6iZ
- GP/Q1oksf7qJ4X4YSCtCt+HbZdbEVee31tXUUTWoH2UbTMqxUFDBpTyD2SnPsFDRXU2e5coOK
- 4slVuzSVzJkEBaqBHd9eneu1+9frBoRMgUBOMMF5l2OUEHaVznFtDWB2wbIDYg+7EbNCT+gAV
- i4BVI1pRssqy38Pg8qPnXZWjPFCc7olOyzYtsudcNSazxvMB4iH986q0oewUVSHKRFYUnBjFn
- B11zhHBoEMFB11ADNTZgkAMG0PNDjHvsT9xyjZW/uP0ckz0MdyfGZ+j+NZ0x/Oo31jrB9JUf/
- o/pY2SDdNV7dhjCSIXIKTiETnTAZaBIQM1sPZlc2Yb/xXoFus/0GZBHECkBR58dXTNr5EUkZa
- e7iUr+/xlzIo2q73kzCAAbDzets+zdDz/y8wRgc2gqKrp4/i9R7Xe75aajN5YKoKMdNs6VgKi
- Mg2s1PtFgXKn9LzRdhAiX3CG3RPoYtMbhBrc1vMbLs10j31UkhZVamHqeIwEc9UjIHwrfqRKl
- S4ZnLq0tN4NHLTy2yN1WksvpyNq3Le1Z8HPhB+tKXaMBs3vgDKl1+y6J/HhoBQyWY7M0rFqny
- fdeKTANd5wN/KoIR0fFZnFNME73jmtarImVAlOu3T/Q9q8GeCcaNOltMlNKL1LdmWdYmzpVRC
- P4GklNg83Lbno2J5leRHKavVZ67Hq++3BpUrQQFWdm/pJDXrVjBPuV9zIHcdTyTyWGX48Dj53
- 3B6UL0fF3Xvt7SFNw5y3P/gsyuNYR/exAaDbqYrC5DhFw0JC67eePvx5stWHOgpBY8tJ2k4s3
- DYnb/1ZC79fXOe7v35eT8qJij1U=
-X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Flash Interface Unit (FIU) should have a reference to the Shared
-Memory controller (SHM) so that flash access from the host (x86 computer
-managed by the WPCM450 BMC) can be blocked during flash access by the
-FIU driver.
+On 29/01/2023 12:05, Krzysztof Kozlowski wrote:
+> On 28/01/2023 21:26, Danny Kaehn wrote:
+>> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+>>
+> Thank you for your patch. There is something to discuss/improve.
+> 
+>> The binding allows describing the chip's gpio and i2c controller in DT
+>> using the subnodes named "gpio" and "i2c", respectively. This is
+>> intended to be used in configurations where the CP2112 is permanently
+>> connected in hardware.
+>>
+>> Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
+>> ---
+>>  .../bindings/hid/silabs,cp2112.yaml           | 82 +++++++++++++++++++
+> 
+> There is no "hid" directory, so I think such devices where going to
+> different place, didn't they?
+> 
+>>  1 file changed, 82 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/hid/silabs,cp2112.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/hid/silabs,cp2112.yaml b/Documentation/devicetree/bindings/hid/silabs,cp2112.yaml
+>> new file mode 100644
+>> index 000000000000..49287927c63f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hid/silabs,cp2112.yaml
+>> @@ -0,0 +1,82 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/hid/silabs,cp2112.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: CP2112 HID USB to SMBus/I2C Bridge
+>> +
+>> +maintainers:
+>> +  - Danny Kaehn <kaehndan@gmail.com>
+>> +
+>> +description:
+>> +  This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+> 
+> s/This is/CP2112 is/
+> 
+>> +  While USB devices typically aren't described in DeviceTree, doing so with the
+>> +  CP2112 allows use of its i2c and gpio controllers with other DT nodes when
+>> +  the chip is expected to be found on a USB port.
+> 
+> Drop these three and replace with description of the hardware.
+> 
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: usb10c4,ea90
+> 
+> So this is an USB device, so I guess they all go to usb?
+> 
+> Missing blank line.
+> 
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: The USB port number on the host controller
+> 
+> Blank line
+> 
+>> +  i2c:
+>> +    $ref: /schemas/i2c/i2c-controller.yaml#
+> 
+> This is not specific enough. What controller is there?
 
-Fixes: 38abcb0d68767 ("ARM: dts: wpcm450: Add FIU SPI controller node")
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
- arch/arm/boot/dts/nuvoton-wpcm450.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+OK, assuming this is tightly wired (with cp2112 I2C controller), then
+the compatible could be skipped as it is inferred from parent one. Yet
+still you need description and unevaluatedProperties.
 
-diff --git a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi b/arch/arm/boot/dts/nu=
-voton-wpcm450.dtsi
-index 299fcbba3089b..fda2f13093f98 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
-+++ b/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
-@@ -478,6 +478,7 @@ fiu: spi-controller@c8000000 {
- 			reg =3D <0xc8000000 0x1000>, <0xc0000000 0x4000000>;
- 			reg-names =3D "control", "memory";
- 			clocks =3D <&clk WPCM450_CLK_FIU>;
-+			nuvoton,shm =3D <&shm>;
- 			status =3D "disabled";
- 		};
+> 
+> Missing unevaluatedProperties: false, anyway.
+> 
+>> +  gpio:
+>> +    $ref: /schemas/gpio/gpio.yaml#
+> 
+> Same comments.
 
-=2D-
-2.39.0
+Description, unevaluatedProperties and constraints on properties (line
+names, reserved ranges, ranges).
+
+
+
+> 
+>> +
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/input/input.h>
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +
+>> +    usb1 {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+> 
+> Drop, not related.
+> 
+>> +
+>> +      usb@1 {
+>> +        compatible = "usb424,2514";
+>> +        reg = <1>;
+>> +
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        device@1 {	/* CP2112 I2C Bridge */
+>> +          compatible = "usb10c4,ea90";
+>> +          reg = <1>;
+>> +
+>> +          cp2112_i2c0: i2c {
+> 
+> Drop unneeded labels.
+> 
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +            /* Child I2C Devices can be described as normal here */
+
+Drop also this comment.
+
+Best regards,
+Krzysztof
 
