@@ -2,66 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45F9D67FEEF
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 13:37:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 185C967FF02
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 13:43:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234766AbjA2MhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 07:37:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39076 "EHLO
+        id S234958AbjA2MnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 07:43:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231796AbjA2MhX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 07:37:23 -0500
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33C2222017;
-        Sun, 29 Jan 2023 04:37:22 -0800 (PST)
+        with ESMTP id S234912AbjA2MnK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 07:43:10 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D034B126C1;
+        Sun, 29 Jan 2023 04:43:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
-        t=1674995834; bh=QRPsmyE9hY4+eTuGgSF7yy6Em/Ww1XWsbL3ob97mB58=;
+        t=1674996183; bh=9fz4xL5G7vsXInxpDkUGRVGvDGpzYQnWOzaC+5JEBTs=;
         h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=EbGyLSd1N77q6W1eb+b/y8xQPeuTipZbvzP2VjHYJGv3CC/b9eEECECDI3y/vib/y
-         B6ztV3BAR3+x0mRuyVDPKTCML0YC5MUkReVvimq+yEbYx5gCz5FKvBg4x9A1mDHgr4
-         ucAMee2p7IMuhTsTtumqT47D8vTdRf92W5rc28JedF+ymc+wUsUczQ9GYWIc9Rt8wG
-         N8CP1h97G0QsHWWZayFaJfXpR/dwRsONzuH3q9DawvY78ufgQgOt6XyBdRVYXBPnda
-         cdlwGxhnzxPy11hhiTGj79qcCbptRgzhcmzaxoEHJLi4I4G4JXLu5aYhxqwm1zN5bo
-         MCc3zKBGFNmXQ==
+        b=n6m/cqeG3XzHmL9G0YAqZAmlElFYKw1S1b78nQku4K4p4vmTYU2MBDip1Iinj+X55
+         so6gxLqvS/eS7qDpcXnnORKv2C0MsVZ8sNkZoBwUtrWLb9iZrK2rIKxKk0ZbItRXGP
+         4Y5udD/XgHuKlZAvUdwN9w1Dlrt5DWdzmZEEMVBVX9rz4CncdrytXGGeK5WKbLMPVM
+         qIewoFGJUhhKDhDuYEgAYFNn9KF2f6ENn3yvKNq/G0Z8aFf/4MKwOKYlH1t/znXAq2
+         mc0G1wLTzdhoheDgYlVVwMwtbFrnMsG0da/uCKWq1nZpFRJSwBqin6+2hEX4VUSvIl
+         +5vBZT2DPb/dw==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([95.223.44.193]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MmlXA-1ouAlI2CIg-00jqxS; Sun, 29
- Jan 2023 13:37:14 +0100
+Received: from probook ([95.223.44.193]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N5GE1-1odKL40QEP-0117hr; Sun, 29
+ Jan 2023 13:43:03 +0100
 From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
 To:     devicetree@vger.kernel.org
 Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: bus: moxtet: Fix reference to SPI peripheral DT properties
-Date:   Sun, 29 Jan 2023 13:35:53 +0100
-Message-Id: <20230129123553.1284503-1-j.neuschaefer@gmx.net>
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: usb: phy: nop: Fix a typo ("specifiy")
+Date:   Sun, 29 Jan 2023 13:42:58 +0100
+Message-Id: <20230129124258.1295503-1-j.neuschaefer@gmx.net>
 X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:b/AImXyzfz4phEg81jcR9HxbORyzvoYrvw6O1tPrYE1fM4VYvt3
- ZvdXP1tEbXAa+c0ybjhpwdEr79xvHUrJNhp6bRPnrEC8QiPF6YTOsQc+lZD4pRYRIMiXC1y
- stVg7dyvpbQY7+r4JrORz8yPWxbyKgmfLSWjs0f42lWwAaBOoVxUxzg8LxRwnmrn4cVQN6W
- 0CT6EUstm4CyawMPUE1pg==
-UI-OutboundReport: notjunk:1;M01:P0:AMGUonl3rdA=;+R99m5j6S+PzYh/yIJ7Spq3tMqN
- 6i9EKEnP5026bhc7V2PoeqYWWYjP+cnSPPkWMAPd13DzJCoyQZ2lqgepxn8ctdwDDi308w+rX
- Mt0BhoaA23OBv8f9zFH9AfareIVQEy/az1n7w+dVmMGxsdJ9t6AORD/fOTTwPjdb2nP+VfUNw
- f/0f+c4x8U0/2ht+wYQX3NpHeabxZodgC62fsc1oLRrdlrPIdmAYrSgQ/Ja2qJmOMpuQvjCQ0
- 2gXhrPYRXPW2wFjwuWZvGcYZsUCkV5NCHGg0v6cgE15MlNRQAHYyrLSmZEQsyDSaIHiL4og/p
- kCvhz8ZB914+/No7ljVQeK7bZVQuKCe188XvWwJdvReGtKluvVxkxQj7tCc52P/A8kS5kGNJu
- dCJOPFQZA7lPYo8jUDIJOpu/+zSj1/PnSTutV5ublO6+iQ5EfsxMpbQDIE6246OhAPOY9L+VK
- cNWOWpkgkQ7d3WiVb6aiqIhBvfkm3zyZIh8377jrDYoULmNP0/g6vZZMxdaxEgKjqtTeP/UG5
- mVeGhxNf/wKcG12X3tUOf5Uag5WTix9zeRYlG3GpfzLW6ae7ivIdH4KYCKNN/0/D/Ms/j8oEt
- BJJ9Yj1N2JN9lX13MleoFNKXviFzVhgZX3mjf7Bsp1ybBL4eg5jib2jbObv86JHCTWwcL5t8y
- sdoOVeiycDbk8jsEYIzxZvr084evwV8AOqLYbrfH/x2F6hzoV7FbPtit53ni+fFEYJCYjOPhZ
- V2D1rtKpPLBLYp4HUoYJHN0GF6QMsg6QmbqQq4QINA9E3/7D8qGyEG0KbF5AvoiiPZdRKi1KQ
- MfRDv3jRJZoE2HJmFkVexCMuPWy1FHWEbBoYZP7lj9+d7eNx0yx7QeU7MrLnxCiOb+1B2hChH
- SzLciZUokIB5p6CJkCKlW7LrlK7xUR40z26OzQXjSTYKZVFB0Rmr8lnjlyC/UWQwJbjCNBEM2
- xV4kg3s/N5Zw4+3Y4RBxLlIOQAk=
+X-Provags-ID: V03:K1:zHsQwgpM2Z+0Eg0oMK+ANH/cRXMlp6tk0QIf/ZQVQzuwJTQa3A7
+ 1lGx91ypYIDskOgxiE+gCxZ76fcm1xcB6BxDUFvqRGM3pGZMpxB/sZLwJ8+eyp6r2dZ32kC
+ gKQLS51jLmEHQVC07K0veAF2KYB5Y3rGyM7KOD6zFCNkuWo8wH66MVyXpFT9N6ZbtiD5KvI
+ hagCaGjxoSCaxuJX3VDlQ==
+UI-OutboundReport: notjunk:1;M01:P0:bQnWwKzea9A=;4GqUWPFs7Rxokjhxrb3SuQFz7P3
+ P+Lgdd9ASs2gV09av6uOlx8hqjcSDO7JrFqhwtY6ElyEuB8ao7LBvHcxDppwDQ8kTKDpfMoFz
+ YzJNkUjeb9I2B15Q+Q8Rde0+JzT0rLvAa1q+6dRrBHTYXWrri3jhGLjcX6+Pa8RHW2i+pV0r0
+ ebMKY4aB1zRiIKCQ5/E+IpfatLKtoBXlaBR+4N6ZLSrOXLt7YfWm68drQU7WDk2ZwOfAe4zqP
+ +l4yLq0f28QegryhT86SGzzxXClQyRR7TZ+NVQvFIniqxCKxAjGWou1iQpY6rfjez3p90Y/Dr
+ sTXxIwxBzbEXOCmkSnl/5BDRNAOWvONFKyzW+TZ1dzo0MuvkOzMg6k4tyQ/Yk9RO/IPioyL1+
+ qQtCkoNbS/G+vRSepSExMkwiKc6YgPPkUOp5EB9f0Ay5wOVoIsx/VutQPFWKlpz1Vjl4QyA20
+ mN8kL6gaE/2eGo1mJtqv9FILfHdXTANOQk8mhia+omCWJonfcxWLczGMspAhM0PULp76WKoUu
+ rSTlNlijkabj2pbS7SMhjxELri3oswXakaLKOzZH8GiDzGOoGqAU2siAIcD8YV89aTLereDhq
+ yO0X26QW74q/Jr0f7+FHctRDmnEdIbcmDGhoR9L6RDHAIyQYLEPJqWpI+K1CF6TICoWkj01Oc
+ LQpmAIc5OIf0Dvo9t/O2hc49PUKK2EvpBlw0+ygWaJy2jqOawr2GpIChK4Ey9ChWIVwMKJaWB
+ GI7iRYvhCRwK66gTgQ48+GNvZn6seL9dmFTGIebPMQb5FiYxhFJZIKvl2yVt944/edu1HRGZA
+ Or7et6KHDFJdYGMczXGzRe70qgBFk9nnv1BNwYees0ku6VhMcO4E1A+SJL35pqAoK58QMRtuO
+ cmH7nXPzGRCz9Y3WNLCFRoTm/0MM6Nq8MmJigsHFlKq48vBO/nnZXQC0uacse6DiNsHD7mAHE
+ 6ouhUw==
 X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
         RCVD_IN_MSPIKE_H2,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
@@ -72,32 +70,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-spi-bus.txt has been converted to YAML and the peripheral properties
-have been moved to spi-controller.yaml.
+Spell it correctly as "specify".
 
-Fixes: 0a1b929356830 ("spi: Add YAML schemas for the generic SPI options")
-Fixes: 8762b07c95c18 ("spi: dt-bindings: add schema listing peripheral-spe=
-cific properties")
 Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
 =2D--
- Documentation/devicetree/bindings/bus/moxtet.txt | 2 +-
+ Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/bus/moxtet.txt b/Documentat=
-ion/devicetree/bindings/bus/moxtet.txt
-index fb50fc8653368..d6bf929c00c4e 100644
-=2D-- a/Documentation/devicetree/bindings/bus/moxtet.txt
-+++ b/Documentation/devicetree/bindings/bus/moxtet.txt
-@@ -11,7 +11,7 @@ Required properties:
-  - #interrupt-cells	: Has to be 1
+diff --git a/Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml b/Do=
+cumentation/devicetree/bindings/usb/usb-nop-xceiv.yaml
+index 326131dcf14d7..921b986adc477 100644
+=2D-- a/Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml
++++ b/Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml
+@@ -35,7 +35,7 @@ properties:
+     maxItems: 1
 
- For other required and optional properties of SPI slave nodes please refe=
-r to
--../spi/spi-bus.txt.
-+../spi/spi-peripheral-props.yaml.
+   vbus-regulator:
+-    description: Should specifiy the regulator supplying current drawn fr=
+om
++    description: Should specify the regulator supplying current drawn fro=
+m
+       the VBus line.
+     $ref: /schemas/types.yaml#/definitions/phandle
 
- Required properties of subnodes:
-  - reg			: Should be position on the Moxtet bus (how many Moxtet
 =2D-
 2.39.0
 
