@@ -2,130 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D091680087
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 18:45:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDFDF68008B
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 18:48:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235164AbjA2RpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 12:45:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58498 "EHLO
+        id S230082AbjA2Rsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 12:48:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231386AbjA2RpA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 12:45:00 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1290612847
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 09:44:59 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso3889417wms.4
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 09:44:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KDVqMwkXzQiwnLCIs/h43LafiVs1rZMTm8awi1qCCKc=;
-        b=w0aTvaIintJcu8HU7uxDd+368iaEn8jPDp5DkzPJFdRPAwMrnip0Y77XTRfcJBAdHj
-         VWTidx1OV9y+w7+urHB/D+3I3K17rwJZbw7QYHtpaaIAXdBALUARE+t7mgaI4Wfw3IUH
-         GxyVFgg73RVe1BnW83ZJvtaIDw2ts0ODJ+TICcSb13MDrOOt1AwvudgwTzv2jeHzwXS6
-         YLbt3dPHP6LYvyUikKHBn65VPT0Cau8k1DSzDEV8vHxgcc/PydLwMSZo3gCJewqhNU9X
-         Padm4pJxlO9d+5aaSaEb752vxypSJyeab7IMASNwwtHsQ62dE50IDtJITU0rUKtJ+rPu
-         Sx7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KDVqMwkXzQiwnLCIs/h43LafiVs1rZMTm8awi1qCCKc=;
-        b=ebKcS04a2EbtvQ9znTwrnsqctMAyoP4QlrTxG5yRSJ0jFNxZ6gNTEbcS7bZJgKNldp
-         V5mkkTWdSH/d9NlsqTTjgYyTat6b7mcgz7EK/kY/p1dz+4qdutjWhIJaiThW5R3LJD7K
-         dWvyJ1QBD5SINdO9urdBdZ32/qymtaTz/NLVejRXhIXl0/vmGetgMu/Dzr6K4Ut1AVFb
-         QYU7z3rTcZaMMjCYCiAqVnd9jjWsFZ3GaajQInqiVcy3tXGs9ngOZnhURgofCwrlu+Qg
-         4YNnZJuRoI4atShbP6FXx9Gu12mjuQVQXpt/8bDoLGWsrz47vq3CxLgIkuVEhcImjVaF
-         U+uw==
-X-Gm-Message-State: AO0yUKUp0pMAoQKrVcWXJCSN0yE5uQbCRFUsyMLRtGmmquDUXVuRgm6Q
-        iJCIpl+IkisWFrAfAYwe0RhKUg==
-X-Google-Smtp-Source: AK7set9OhOe4XHsV2+ozJ/7/aDfXe0ptogZxgvVXaITVWgOHypR3+G8KPJ7ocr022Dmi0R2srkRVIw==
-X-Received: by 2002:a05:600c:1e08:b0:3dc:58fb:c1eb with SMTP id ay8-20020a05600c1e0800b003dc58fbc1ebmr1126427wmb.8.1675014297663;
-        Sun, 29 Jan 2023 09:44:57 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id c1-20020a05600c0a4100b003d9fba3c7a4sm14899978wmq.16.2023.01.29.09.44.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Jan 2023 09:44:57 -0800 (PST)
-Date:   Sun, 29 Jan 2023 19:44:55 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Marcel Ziswiler <marcel@ziswiler.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        with ESMTP id S229673AbjA2Rsc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 12:48:32 -0500
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45F2C1ABE4
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 09:48:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1675014501; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=nEv2Qjex5GrWowG4Tg2/4TJVTzLYTIcr8lE7dLcoLejZpSUxZlaL+MyLsAXwBke0dA
+    LdDX1YKPYWsHDSdwihLuG50+y+nlcUB6pjN0O3ZB99hZk158j7Ac5W5ZOl8wrlxAaa2D
+    ch2NKCcEwRFdKd337RUsB/x44/d3ich7P9WIuQ3NBlKZg2VQhAibOC1RAFbBkCLupGea
+    gXqdGcNrDN/KrRB1L/Ezut8nfaPM8MY6HM7kwodXdl1ynPiLgwYz111gdO0xvWiAuqxt
+    f/t3mMudYL8pKiJw3MitUZ7pOngnKLiJePhIzdssTFZQ9YAKdT8p6wJxqWEvgeO3dsa/
+    WdGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1675014501;
+    s=strato-dkim-0002; d=strato.com;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=yGRM7cEfo5aFqSY1gp1TMJFXgu2PUQKG5rOicfC2/UM=;
+    b=Ubxu5ZB2rt/ZvfyyeiCisvS8yfUt1Bzp8/KU7Rkv+dTy02cr7cWGXkkd7xz5bqTTG0
+    9UuisNmN9WKlSIJGf1wspIAhhZpdMcVrONCpCeU8abxZ1JFy8R9M9sf3DHZCwHUn6uwL
+    JikBlaHih4d/0P+c+LCJBLUFX/df5XJZoVl/IIe/DtkuQQT08qs3LIvWp3P1nYrcwsgE
+    O9uy9+kjZANSCPJHYIHkkDBtSJ01UxoOP1b8SUan0gNYmIshn2m9jM9M/Q2xXWfySFCn
+    HPitcJnM8pOtYWFdy20vXv3QeE85bOffFu535T9gtR1d5fjOIxzvNj8Sto9iW+SzxBKe
+    YCyw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1675014501;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=yGRM7cEfo5aFqSY1gp1TMJFXgu2PUQKG5rOicfC2/UM=;
+    b=YGgxX1rZkRfkfhsomTXlfklMo3l8Zp1Nhf75BARGaQ+UPfWUZ5f8VhF/vgj5grWvTg
+    5UGfMx+do+BhUeIfKPgJ04r1ENzjWTQMYqavts/CHPdqRMkEuXVhYJWo54YEBg6zMW/K
+    ypyFoAVsrA/K1GS5osDkyowWE2AJ2Q61aM3dPHgFmC+6FULVI5jc/89+x9D8kHZVPGr5
+    wLoSlKMs7HVEXpw0UpUoqpsL9lMFG3htTB68j1HpOzU02UeytGKu6tnoIYW45WrDKSMZ
+    +O1dx0E1SML60oa+nRoPTCoz37Ej45GYXgdYe3t2N+fGw0ZFKhaq1BpwOgfE+BRt5mkT
+    /xqg==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1iTDUhfN4hi3qVZrW/J"
+Received: from iMac.fritz.box
+    by smtp.strato.de (RZmta 49.2.2 SBL|AUTH)
+    with ESMTPSA id e4ab20z0THmKHyv
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Sun, 29 Jan 2023 18:48:20 +0100 (CET)
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+To:     Paul Cercueil <paul@crapouillou.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH v1 2/2] dt-bindings: imx8ulp: clock: no spaces
- before tabs
-Message-ID: <Y9awlwWhjoH77dM2@linaro.org>
-References: <20230119085421.102804-1-marcel@ziswiler.com>
- <20230119085421.102804-3-marcel@ziswiler.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0?= <zhouyanjie@wanyeetech.com>
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
+        "H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: [PATCH] MIPS: DTS: CI20: fix otg power gpio
+Date:   Sun, 29 Jan 2023 18:48:15 +0100
+Message-Id: <1e102159b4be526af88883374d112d558e3ac3f5.1675014494.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230119085421.102804-3-marcel@ziswiler.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-19 09:54:21, Marcel Ziswiler wrote:
-> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> 
-> This fixes the following warnings:
-> 
-> include/dt-bindings/clock/imx8ulp-clock.h:204: warning: please, no space
->  before tabs
-> include/dt-bindings/clock/imx8ulp-clock.h:215: warning: please, no space
->  before tabs
-> 
-> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+According to schematics it is PF15 and not PF14 (MIC_SW_EN).
+Seems as if it was hidden and not noticed during testing since
+there is no sound DT node.
 
-Applied both.
+Fixes: 158c774d3c64 ("MIPS: Ingenic: Add missing nodes for Ingenic SoCs and boards.")
+Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+---
+ arch/mips/boot/dts/ingenic/ci20.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks.
+diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
+index 9819abb2465dd..a276488c0f752 100644
+--- a/arch/mips/boot/dts/ingenic/ci20.dts
++++ b/arch/mips/boot/dts/ingenic/ci20.dts
+@@ -115,7 +115,7 @@ otg_power: fixedregulator@2 {
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+ 
+-		gpio = <&gpf 14 GPIO_ACTIVE_LOW>;
++		gpio = <&gpf 15 GPIO_ACTIVE_LOW>;
+ 		enable-active-high;
+ 	};
+ };
+-- 
+2.38.1
 
-> 
-> ---
-> 
->  include/dt-bindings/clock/imx8ulp-clock.h | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/include/dt-bindings/clock/imx8ulp-clock.h b/include/dt-bindings/clock/imx8ulp-clock.h
-> index 953ecfe8ebcc..827404fadf5c 100644
-> --- a/include/dt-bindings/clock/imx8ulp-clock.h
-> +++ b/include/dt-bindings/clock/imx8ulp-clock.h
-> @@ -201,7 +201,7 @@
->  #define IMX8ULP_CLK_SAI7		2
->  #define IMX8ULP_CLK_SPDIF		3
->  #define IMX8ULP_CLK_ISI			4
-> -#define IMX8ULP_CLK_CSI_REGS 		5
-> +#define IMX8ULP_CLK_CSI_REGS		5
->  #define IMX8ULP_CLK_PCTLD		6
->  #define IMX8ULP_CLK_CSI			7
->  #define IMX8ULP_CLK_DSI			8
-> @@ -212,7 +212,7 @@
->  #define IMX8ULP_CLK_GPU2D		13
->  #define IMX8ULP_CLK_GPU3D		14
->  #define IMX8ULP_CLK_DC_NANO		15
-> -#define IMX8ULP_CLK_CSI_CLK_UI 		16
-> +#define IMX8ULP_CLK_CSI_CLK_UI		16
->  #define IMX8ULP_CLK_CSI_CLK_ESC		17
->  #define IMX8ULP_CLK_RGPIOD		18
->  #define IMX8ULP_CLK_DMA2_MP		19
-> -- 
-> 2.36.1
-> 
