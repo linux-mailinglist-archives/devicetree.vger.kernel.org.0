@@ -2,219 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58E75680160
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 21:52:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B74B680177
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 22:20:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229835AbjA2UwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 15:52:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43960 "EHLO
+        id S234378AbjA2VUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 16:20:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233805AbjA2UwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 15:52:18 -0500
-X-Greylist: delayed 551 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 29 Jan 2023 12:52:17 PST
-Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 312201BAD2
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 12:52:16 -0800 (PST)
-Received: from [192.168.100.237] (cust-41-49-110-94.dyn.as47377.net [94.110.49.41])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229549AbjA2VUm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 16:20:42 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 358522684;
+        Sun, 29 Jan 2023 13:20:42 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id 0E4A43744C0;
-        Sun, 29 Jan 2023 21:43:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1675024982;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=GKCL4x5Txs5llaY7BYYY71zG1gIHojGBLbaJh42WF2U=;
-        b=fZiGVi8n69bRgrIt/cGwzR5qVM88nWhqbRDxoIxLxoImEPG0gvyW/l/tbvtJF+abPNt/yR
-        sIGDN2G/q6XR3/QU1WY47DI1hq2ozdiCvbERfeEN32h/UWEysKWKd8wRWNZJ+uIZQUqE8/
-        l3QdvM3j5RMspUG/ExKvneq4DnZI4+xzMKr2zqL560X6Crm9OhtfETYiuN3sbmoAGY64vU
-        0jtFSknqbvxBFeFqBGZN1ElZMsUvUeMJ/b7gcSnPnIGzslmS93Fzmrchii7xEHiq89f3lF
-        RTYA7y60bhhqVtY0trX1G4LvAB9ECvzSBhMzwSM46f0GACuf39qJB7VcDW9xWQ==
-Message-ID: <c609a7f865ab48f858adafdd9c1014dda8ec82d6.camel@svanheule.net>
-Subject: Re: [PATCH v7 11/11] dt-bindings: net: dsa: qca8k: add LEDs
- definition example
-From:   Sander Vanheule <sander@svanheule.net>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Date:   Sun, 29 Jan 2023 21:43:00 +0100
-In-Reply-To: <63a30221.050a0220.16e5f.653a@mx.google.com>
-References: <20221214235438.30271-1-ansuelsmth@gmail.com>
-         <20221214235438.30271-12-ansuelsmth@gmail.com>
-         <20221220173958.GA784285-robh@kernel.org> <Y6JDOFmcEQ3FjFKq@lunn.ch>
-         <Y6JkXnp0/lF4p0N1@lunn.ch> <63a30221.050a0220.16e5f.653a@mx.google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B893F60DCC;
+        Sun, 29 Jan 2023 21:20:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 269F1C433EF;
+        Sun, 29 Jan 2023 21:20:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675027241;
+        bh=kWLMQrFqShcluz07QO5vOBfP0AiHRWpr8FUknDuT51c=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Lm8rserOmXwPSHSxL4fL8MMBG+V5eoyPGufc4gf71ro9Az9HuC4pfK1+ibeT+jrjE
+         9Hqfd64WU2tlRHOGsdSB6Z3zqdOUqD9h7MrysAr/ILwMqg5d8VHX4ZO3d5xwaWnf2i
+         mVMf1aAy0QuaS9qbBOSczp2+Z7r1FMuc4X3nEIxGd6PuLfN7M6ImOMkrgwfHf/qkuY
+         5si2JeTV905zYfBlaMW6EL1xYY+dt+E/JeU7GAVnsQQN4gcyQvXhLE2IIrDSfznYOS
+         RluKNbC7OJvQgGtqzNLS8jImsygjunU4gHaJ3n5+AlSwNDQfne7PcFJXBP4c34gvdd
+         zV85Sc24DpbUg==
+Received: by mail-vs1-f51.google.com with SMTP id y8so10676539vsq.0;
+        Sun, 29 Jan 2023 13:20:41 -0800 (PST)
+X-Gm-Message-State: AFqh2kpj28W32Vxi9mVn3CoyrfPAL1vtG99Ox+W4g3TsP580ATKRyH3E
+        DVyORpf0OR/ClGlrnfcNPMLs5WlPvgP0k3+R1w==
+X-Google-Smtp-Source: AMrXdXsO0UKVf3d7SOMw8/7583PiRZiRlhNbFl++XIntdRN5ODCwGQ2dEyGP6VEOMUa6VrvVubh3sCXD7L+nkuUu38s=
+X-Received: by 2002:a05:6102:5490:b0:3b5:1fe4:f1c2 with SMTP id
+ bk16-20020a056102549000b003b51fe4f1c2mr6411996vsb.0.1675027240073; Sun, 29
+ Jan 2023 13:20:40 -0800 (PST)
 MIME-Version: 1.0
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230127224101.never.746-kees@kernel.org> <CAL_JsqKVp57NtR11JV-eXktMU9_dQ+8sF8YSPe7KyazrvJB-eQ@mail.gmail.com>
+ <202301271609.15F0E5EB15@keescook> <202301271624.01B4A55D3C@keescook>
+In-Reply-To: <202301271624.01B4A55D3C@keescook>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Sun, 29 Jan 2023 15:20:28 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+fJk29-wGp02eFFru2Pn+m6eGKnVT6XJJyf-WtkxWw4g@mail.gmail.com>
+Message-ID: <CAL_Jsq+fJk29-wGp02eFFru2Pn+m6eGKnVT6XJJyf-WtkxWw4g@mail.gmail.com>
+Subject: Re: [PATCH] scripts/dtc: Replace 0-length arrays with flexible arrays
+To:     Kees Cook <keescook@chromium.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christian,
+On Fri, Jan 27, 2023 at 6:24 PM Kees Cook <keescook@chromium.org> wrote:
+>
+> On Fri, Jan 27, 2023 at 04:12:21PM -0800, Kees Cook wrote:
+> > On Fri, Jan 27, 2023 at 05:44:13PM -0600, Rob Herring wrote:
+> > > On Fri, Jan 27, 2023 at 4:41 PM Kees Cook <keescook@chromium.org> wrote:
+> > > >
+> > > > Replace the 0-length array with a C99 flexible array. Seen with GCC 13
+> > > > under -fstrict-flex-arrays:
+> > > >
+> > > > In file included from ../lib/fdt_ro.c:2:
+> > > > ../lib/../scripts/dtc/libfdt/fdt_ro.c: In function 'fdt_get_name':
+> > > > ../lib/../scripts/dtc/libfdt/fdt_ro.c:319:24: warning: 'strrchr' reading 1 or more bytes from a region of size 0 [-Wstringop-overread]
+> > > >   319 |                 leaf = strrchr(nameptr, '/');
+> > > >       |                        ^~~~~~~~~~~~~~~~~~~~~
+> > > >
+> > > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > > Cc: Frank Rowand <frowand.list@gmail.com>
+> > > > Cc: devicetree@vger.kernel.org
+> > > > Signed-off-by: Kees Cook <keescook@chromium.org>
+> > > > ---
+> > > >  scripts/dtc/libfdt/fdt.h | 4 ++--
+> > > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > >
+> > > Changes to dtc/libfdt go to upstream dtc first and then we sync them back.
+> >
+> > Ah-ha, I've found it: https://github.com/dgibson/dtc
+>
+> Sent upstream: https://github.com/dgibson/dtc/pull/76
 
-On Wed, 2022-12-21 at 13:54 +0100, Christian Marangi wrote:
-> For reg it's really specific to the driver... My idea was that since a
-> single phy can have multiple leds attached, reg will represent the led
-> number.
->=20
-> This is an example of the dt implemented on a real device.
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0mdio {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#ad=
-dress-cells =3D <1>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#si=
-ze-cells =3D <0>;
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0phy=
-_port1: phy@0 {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg =3D <0>;
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0leds {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0#size-cells =3D <0>;
-[...]
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
-[...]
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0};
->=20
-> In the following implementation. Each port have 2 leds attached (out of
-> 3) one white and one amber. The driver parse the reg and calculate the
-> offset to set the correct option with the regs by also checking the phy
-> number.
+Maybe David will take that PR, but upstream is here[1]. Patches go to
+devicetree-compiler@vger.kernel.org.
 
-With switch silicon allowing user control of the LEDs, vendors can (and wil=
-l)
-use the switch's LED peripheral to drive other LEDs (or worse). E.g. on a C=
-isco
-SG220-26 switch, using a Realtek RTL8382 SoC, the LEDs associated with some
-unused switch ports are used to display a global device status. My concern =
-here
-is that one would have to specify switch ports, that aren't connected to
-anything, just to describe those non-ethernet LEDs.
+Rob
 
-Would an alternative with a 'trigger-sources' property pointing to the righ=
-t phy
-be an option? The trade-off I see would be that extra port info has to be
-provided on a separate LED controller, which your example can avoid thanks =
-to
-the phy's reg property.
-
-Building on your example this may become:
-
-       switch {
-           mdio {
-                #address-cells =3D <1>;
-                #size-cells =3D <0>;
-               =20
-                switch_phy0: phy@0 {
-                    reg =3D <0>;
-                    #trigger-source-cells =3D <1>;
-                };
-            };
-
-            leds {
-                #address-cells =3D <2>;
-                #size-cells =3D <0>;
-
-                /* First port, first LED */
-                /* Port status, can be offloaded */
-                led@0.0 {
-                    reg =3D <0 0>;
-                    trigger-sources =3D <&switch_phy0 (NET_LINK | NET_SPEED=
-_1000)>;
-                    function =3D color =3D <LED_COLOR_ID_WHITE>;
-                    function =3D LED_FUNCTION_LAN;
-                    function-enumerator =3D <1>;
-                    linux,default-trigger =3D "netdev";
-                };
-
-                /* First port, first LED */
-                /* Port status, can be offloaded */
-                led@0.1 {
-                    reg =3D <0 1>;
-                    trigger-sources =3D <&switch_phy0 (NET_LINK | NET_SPEED=
-_100 | NET_SPEED_10)>;
-                    function =3D color =3D <LED_COLOR_ID_AMBER>;
-                    function =3D LED_FUNCTION_LAN;
-                    function-enumerator =3D <1>;
-                    linux,default-trigger =3D "netdev";
-                };
-
-                /* Last port (not used in hardware), first LED */
-                /* Device status, software controlled */
-                led@7.0 {
-                    reg =3D <7 0>;
-                    function =3D color =3D <LED_COLOR_ID_AMBER>;
-                    function =3D LED_FUNCTION_STATUS;
-                    linux,default-trigger =3D "default-on";
-                };
-            };
-        };
-
-
-To be a bit less verbose, the &switch_mdio node might serve as trigger prov=
-ider
-with a single cell, but the above would allow only defined phy-s to be
-referenced.
-
-The trigger-source cells could be used for a more fine grained control of w=
-hat
-should be offloaded (link up/down, Rx/Tx activity, link speed, ...). Althou=
-gh
-this selectivity is most likely runtime configurable, this could serve as a
-description of static device labeling (e.g. "LINK/ACT 1000").
-
-Switching to the implementation and driver side, the 'trigger-sources' prop=
-erty
-could be used by the netdev trigger to determine if a status LED can be
-offloaded. The netdev trigger could just hide the whole hardware/software
-control aspect then. Much like how the timer trigger always offloads if an
-implementation is provided, even when offloading is less flexible than the
-software implementation of the timer trigger.
-
-
-Best,
-Sander
+[1] https://git.kernel.org/pub/scm/utils/dtc/dtc.git
