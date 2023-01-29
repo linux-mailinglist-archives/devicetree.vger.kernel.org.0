@@ -2,113 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4099D68015A
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 21:35:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58E75680160
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 21:52:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232549AbjA2Ufz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 15:35:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42076 "EHLO
+        id S229835AbjA2UwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 15:52:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230365AbjA2Ufy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 15:35:54 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE4018B2F
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 12:35:51 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id h16so9316704wrz.12
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 12:35:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j8aqki5CcPtcLzfCY7Wo7lQT4J4ibEQGFMyeTxDiGAQ=;
-        b=OZbq6tnzL8TeplhGciC1YL9kquoVfH5YeTYjfDIHV2BoCrfBcqQ1q/vIXUwCcoMDjJ
-         pqDgytiooxv2G1ZkM02XtHEAQ0oshsEFq6ZK6JmzfORnilUVjG4H1cIWStj2wn/xBFqP
-         S/2gIwfobAtjdt44Wb6Dyo6OhcWj8NjoxLr3ZbH5MLvjNbye3Sbvf6+UrRsBDGitvBp0
-         Ajp895PriLJw8dkJ37MTZR1Yep6rFPnDjEol2N98R9Lo/OGvu2SMd5O6zzpbW6jhr6e6
-         gs1nvbeWF9FotGztoyXUR3XZ3HHWq56h85mokLqeii/pJpJVzai9+9oGFr0d6vL3dbI8
-         ildg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j8aqki5CcPtcLzfCY7Wo7lQT4J4ibEQGFMyeTxDiGAQ=;
-        b=RgPe3BWg2augWcl0r4hqKmJdtXnnI6CtoB+KkSPp4KYfVHjo8GfIejjplM/Tyw+oj4
-         vSKt2seW1ken1+7YFgQIv99B8X2iADsMxBPBscTrUc9gkXrnPj1wTnTn6x4EjuPsj9gq
-         zr/5PNwmvmJUjhGEUbTXrEUD/6/KRRo5wjSTGOFvcgW7XE8pQu7nHEd40RHXq4NXptri
-         lQ2iA4jVL/hMkVLX98EycoreQ/d5xcLm+O61W4OK0mSGZde7E+jxm11bUBBXrNcqmv9K
-         8egdbpqlRBMYJU40QriUqFuoQhkPAwkzeONB800ADKcw9UruBMw5w7M0cuUm87TndgZT
-         H1TQ==
-X-Gm-Message-State: AO0yUKUlDfXh8RoYsDFV1hE9EuNqkzmxmGgGVGY0lwmv10cUD6D/CVon
-        vpJlikC75T9UvOP79zCOEH1axA==
-X-Google-Smtp-Source: AK7set8mh4lwRHVWgzw9plGkhTC0LxGuzA2btm4FE97PRWONLb5ri8GZ01gKo2/yhwB4ocF497kPxw==
-X-Received: by 2002:adf:f409:0:b0:2bf:bb71:dc55 with SMTP id g9-20020adff409000000b002bfbb71dc55mr16253917wro.52.1675024549902;
-        Sun, 29 Jan 2023 12:35:49 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f28-20020a5d58fc000000b002be5401ef5fsm10204173wrd.39.2023.01.29.12.35.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Jan 2023 12:35:49 -0800 (PST)
-Message-ID: <47ee24cd-4239-772b-6dc6-d0741e813f15@linaro.org>
-Date:   Sun, 29 Jan 2023 21:35:46 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v7 1/2] power: supply: add Qualcomm PMI8998 SMB2 Charger
- driver
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233805AbjA2UwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 15:52:18 -0500
+X-Greylist: delayed 551 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 29 Jan 2023 12:52:17 PST
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 312201BAD2
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 12:52:16 -0800 (PST)
+Received: from [192.168.100.237] (cust-41-49-110-94.dyn.as47377.net [94.110.49.41])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 0E4A43744C0;
+        Sun, 29 Jan 2023 21:43:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1675024982;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=GKCL4x5Txs5llaY7BYYY71zG1gIHojGBLbaJh42WF2U=;
+        b=fZiGVi8n69bRgrIt/cGwzR5qVM88nWhqbRDxoIxLxoImEPG0gvyW/l/tbvtJF+abPNt/yR
+        sIGDN2G/q6XR3/QU1WY47DI1hq2ozdiCvbERfeEN32h/UWEysKWKd8wRWNZJ+uIZQUqE8/
+        l3QdvM3j5RMspUG/ExKvneq4DnZI4+xzMKr2zqL560X6Crm9OhtfETYiuN3sbmoAGY64vU
+        0jtFSknqbvxBFeFqBGZN1ElZMsUvUeMJ/b7gcSnPnIGzslmS93Fzmrchii7xEHiq89f3lF
+        RTYA7y60bhhqVtY0trX1G4LvAB9ECvzSBhMzwSM46f0GACuf39qJB7VcDW9xWQ==
+Message-ID: <c609a7f865ab48f858adafdd9c1014dda8ec82d6.camel@svanheule.net>
+Subject: Re: [PATCH v7 11/11] dt-bindings: net: dsa: qca8k: add LEDs
+ definition example
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        phone-devel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230127230506.3140297-1-caleb.connolly@linaro.org>
- <20230129202043.w6mylxeccz2fyxl2@mercury.elektranox.org>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230129202043.w6mylxeccz2fyxl2@mercury.elektranox.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+        Tim Harvey <tharvey@gateworks.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Date:   Sun, 29 Jan 2023 21:43:00 +0100
+In-Reply-To: <63a30221.050a0220.16e5f.653a@mx.google.com>
+References: <20221214235438.30271-1-ansuelsmth@gmail.com>
+         <20221214235438.30271-12-ansuelsmth@gmail.com>
+         <20221220173958.GA784285-robh@kernel.org> <Y6JDOFmcEQ3FjFKq@lunn.ch>
+         <Y6JkXnp0/lF4p0N1@lunn.ch> <63a30221.050a0220.16e5f.653a@mx.google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/01/2023 21:20, Sebastian Reichel wrote:
-> Hi,
-> 
-> I tried applying this, but it generates a compiler warning:
-> 
-> On Fri, Jan 27, 2023 at 11:05:05PM +0000, Caleb Connolly wrote:
->> [...]
->> +static int smb2_probe(struct platform_device *pdev)
->> +{
->> [...]
->> +	desc->name = devm_kasprintf(chip->dev, GFP_KERNEL, "%s-charger",
->> +				    device_get_match_data(chip->dev));
-> 
-> drivers/power/supply/qcom_pmi8998_charger.c: In function ‘smb2_probe’:
-> drivers/power/supply/qcom_pmi8998_charger.c:979:62: warning: format ‘%s’ expects argument of type ‘char *’, but argument 4 has type ‘const void *’ [-Wformat=]
->   979 |         desc->name = devm_kasprintf(chip->dev, GFP_KERNEL, "%s-charger",
->       |                                                             ~^
->       |                                                              |
->       |                                                              char *
->       |                                                             %p
->   980 |                                     device_get_match_data(chip->dev));
->       |                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->       |                                     |
->       |                                     const void *
+Hi Christian,
 
-This was also reported now by kernel test robot. I wonder why there were
-no earlier reports...
+On Wed, 2022-12-21 at 13:54 +0100, Christian Marangi wrote:
+> For reg it's really specific to the driver... My idea was that since a
+> single phy can have multiple leds attached, reg will represent the led
+> number.
+>=20
+> This is an example of the dt implemented on a real device.
+>=20
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0mdio {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#ad=
+dress-cells =3D <1>;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#si=
+ze-cells =3D <0>;
+>=20
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0phy=
+_port1: phy@0 {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg =3D <0>;
+>=20
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0leds {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0#size-cells =3D <0>;
+[...]
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+[...]
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0};
+>=20
+> In the following implementation. Each port have 2 leds attached (out of
+> 3) one white and one amber. The driver parse the reg and calculate the
+> offset to set the correct option with the regs by also checking the phy
+> number.
 
-Best regards,
-Krzysztof
+With switch silicon allowing user control of the LEDs, vendors can (and wil=
+l)
+use the switch's LED peripheral to drive other LEDs (or worse). E.g. on a C=
+isco
+SG220-26 switch, using a Realtek RTL8382 SoC, the LEDs associated with some
+unused switch ports are used to display a global device status. My concern =
+here
+is that one would have to specify switch ports, that aren't connected to
+anything, just to describe those non-ethernet LEDs.
 
+Would an alternative with a 'trigger-sources' property pointing to the righ=
+t phy
+be an option? The trade-off I see would be that extra port info has to be
+provided on a separate LED controller, which your example can avoid thanks =
+to
+the phy's reg property.
+
+Building on your example this may become:
+
+       switch {
+           mdio {
+                #address-cells =3D <1>;
+                #size-cells =3D <0>;
+               =20
+                switch_phy0: phy@0 {
+                    reg =3D <0>;
+                    #trigger-source-cells =3D <1>;
+                };
+            };
+
+            leds {
+                #address-cells =3D <2>;
+                #size-cells =3D <0>;
+
+                /* First port, first LED */
+                /* Port status, can be offloaded */
+                led@0.0 {
+                    reg =3D <0 0>;
+                    trigger-sources =3D <&switch_phy0 (NET_LINK | NET_SPEED=
+_1000)>;
+                    function =3D color =3D <LED_COLOR_ID_WHITE>;
+                    function =3D LED_FUNCTION_LAN;
+                    function-enumerator =3D <1>;
+                    linux,default-trigger =3D "netdev";
+                };
+
+                /* First port, first LED */
+                /* Port status, can be offloaded */
+                led@0.1 {
+                    reg =3D <0 1>;
+                    trigger-sources =3D <&switch_phy0 (NET_LINK | NET_SPEED=
+_100 | NET_SPEED_10)>;
+                    function =3D color =3D <LED_COLOR_ID_AMBER>;
+                    function =3D LED_FUNCTION_LAN;
+                    function-enumerator =3D <1>;
+                    linux,default-trigger =3D "netdev";
+                };
+
+                /* Last port (not used in hardware), first LED */
+                /* Device status, software controlled */
+                led@7.0 {
+                    reg =3D <7 0>;
+                    function =3D color =3D <LED_COLOR_ID_AMBER>;
+                    function =3D LED_FUNCTION_STATUS;
+                    linux,default-trigger =3D "default-on";
+                };
+            };
+        };
+
+
+To be a bit less verbose, the &switch_mdio node might serve as trigger prov=
+ider
+with a single cell, but the above would allow only defined phy-s to be
+referenced.
+
+The trigger-source cells could be used for a more fine grained control of w=
+hat
+should be offloaded (link up/down, Rx/Tx activity, link speed, ...). Althou=
+gh
+this selectivity is most likely runtime configurable, this could serve as a
+description of static device labeling (e.g. "LINK/ACT 1000").
+
+Switching to the implementation and driver side, the 'trigger-sources' prop=
+erty
+could be used by the netdev trigger to determine if a status LED can be
+offloaded. The netdev trigger could just hide the whole hardware/software
+control aspect then. Much like how the timer trigger always offloads if an
+implementation is provided, even when offloading is less flexible than the
+software implementation of the timer trigger.
+
+
+Best,
+Sander
