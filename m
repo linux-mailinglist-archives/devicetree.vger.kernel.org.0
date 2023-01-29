@@ -2,75 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4051068001D
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 16:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01379680020
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 17:01:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230135AbjA2P7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 10:59:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60600 "EHLO
+        id S232496AbjA2QBk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 11:01:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230300AbjA2P7v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 10:59:51 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F5FE1C5BD
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 07:59:49 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id q10so9000427wrm.4
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 07:59:49 -0800 (PST)
+        with ESMTP id S229673AbjA2QBi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 11:01:38 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 350C41F936
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 08:01:35 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id m15so6496801wms.4
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 08:01:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mF4/RgNWBVZCYtU/1f2NreRNL4Xyx/noHyWvkGcpot0=;
-        b=v78Lh/DOQuyyvT8a0aBRj1Z38M7XR1iSHyzdwcx3zTCU7DJ1+0lXaewS84Zp6SShIy
-         Xn0/m27YaMw6H5nfvcM36hmDCdIe4K42Qcm81u68he/XuOdEbXwf2/1PLPAU16i3tA7A
-         dFTwC3JG7YbmsHTj7fbkQEmxlXDa1mgszVXQeSnE0Cdg/cHfTr2UOFzkYX60p45DovTg
-         kggZ7oRSaUmNOpW0sPuRAWMBJ+i16tpz0amGIPeWU7RGM+AS65izraU07TaZpE9+fZoB
-         MoYG8LWbkhPxqsgA4mMxXpPHakRUQteMArqn6wBrxQybadsV24it1q2eruFKwnCRiWaB
-         pG9g==
+        bh=VaYQWv6xZ5TTyHoxaDqQOnl6+vxxWnFWLnikW3QAHTs=;
+        b=kk43o2FzJhQJ7hemG1HCrwhbWsQx3yXbIjyvGRa1pDOcYHaIK/MWoOAAc4k/LebWoC
+         JISrDyd2MM4KJTtVHcmQeiXcoF93eCcwt8uARRftYYhMD3TF6cz/LsDaBdDX2LnfRHP/
+         ysCeiWE8JF37GtafWbroiSir7rdZfI/wxVOzduAcc7CmijWeBoIWWYmoXwa4rXNJi0yX
+         y35V1m4T5LYtO1C1ct+EJQ0XUOMiRbiZs2bgvLZwkoZG26JXskX0yjrNFIFkf8kqKsHu
+         p3WP+qxkeNfKwpDESV3fADdF73/8v/6Gvp+HztEt6qC2buMWt1lecEi04sav/JGQZ3wk
+         S17g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mF4/RgNWBVZCYtU/1f2NreRNL4Xyx/noHyWvkGcpot0=;
-        b=ZSDjQ7NvK7uGdAywH/Og1av/7fPuhnvM71ILR8AtJXBZUzjDYGGpRTVaHrO00woWPG
-         +VLKB+AVwpP0c4BS7Rn8WiLlz1t/AppyHt5CICn7qtl3KAgAFDXIvM6NFYbPcTHVhWUc
-         7NNb5r/zg+Ul3QlBl0/MmVH8qmaV6cKKu0IHjWd//5KPGj+Pvk1kUIWrnoNqmXCB1BUS
-         cVLWmM4sj5sSxdEXzaeYpoZgbJRtT0YH0unlskifMqTL/rDKCie3w5J/jC+7ffuS9bm1
-         T9ls6Qfy+TfREXK9wwnaGF1fPK7EJgrqxWDQUkVvN2A7ROhCiF19tjQtw2cv8u2seXhD
-         zZdQ==
-X-Gm-Message-State: AO0yUKWiphhoYwCMtasI0UuFtWzkY9Tz56wkPFPzWKoqbI0NXzDFzHq0
-        bckI5/W810IafW4dhpQ4IL+k1w==
-X-Google-Smtp-Source: AK7set8KGu4Ovfx8qfYoK4hp+/pmZA6BfNFj4GfR7W1m38iD5XQS75vHu6YXDBK7JQDt52K6T0jJeA==
-X-Received: by 2002:adf:efcb:0:b0:2bf:ae3f:9911 with SMTP id i11-20020adfefcb000000b002bfae3f9911mr18212986wrp.12.1675007987835;
-        Sun, 29 Jan 2023 07:59:47 -0800 (PST)
+        bh=VaYQWv6xZ5TTyHoxaDqQOnl6+vxxWnFWLnikW3QAHTs=;
+        b=Pb9sXBpPlUpI4vRpLpZexuc5V/LjpBtNFK0LFNx2oLpbgkjDjSElXobCxsYyh+eMvv
+         z+DxblhwmimFmKaDKo0qi89uqVDtYv6I12lVtEypWfwNBo4A/gNz4X4yy6b9D0AeCUOm
+         mUQs/lyztO+sO2IcPOS78dJUxaKexdkg9FQ8gAt9U+9RK2kGewrgT3rf8ft7Qj+chtLs
+         Ns3IJiue02gCH3hGyVWiblRW7a0shy9zwYkwWqFY9TSimoZ+OfniRjlkWjmpUel/MNUb
+         e3gzLVQkct2mpomrBsOOjLU9uAEfo2vyRYYm8iwRUbll8tll22Veh1pVLSBAQ2twmMjD
+         OPyQ==
+X-Gm-Message-State: AO0yUKUv/FgmnrZVsS5f7MQRYGnzoQaO3xuNvA3Ri6qmhaUnx1GwjRFw
+        ZRm5wAQXwzBDswgn8wUrne4YSw==
+X-Google-Smtp-Source: AK7set+6G9+19ovGlu+q2bRz/VGxfdK6a4Il3tekS0A66i+VUB4hNQIEctoGZkAxQZoo1P7L70Q2Ww==
+X-Received: by 2002:a7b:c44a:0:b0:3dc:4871:7b66 with SMTP id l10-20020a7bc44a000000b003dc48717b66mr5263226wmi.29.1675008093699;
+        Sun, 29 Jan 2023 08:01:33 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id k4-20020a5d4284000000b00241fde8fe04sm9511888wrq.7.2023.01.29.07.59.46
+        by smtp.gmail.com with ESMTPSA id k28-20020a05600c1c9c00b003a84375d0d1sm14862013wms.44.2023.01.29.08.01.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Jan 2023 07:59:47 -0800 (PST)
-Message-ID: <ed16faa2-eb04-772d-8762-0c3f90fddbcb@linaro.org>
-Date:   Sun, 29 Jan 2023 16:59:46 +0100
+        Sun, 29 Jan 2023 08:01:33 -0800 (PST)
+Message-ID: <3c5b6ae1-387f-143c-691f-92b96fe78270@linaro.org>
+Date:   Sun, 29 Jan 2023 17:01:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/3] gpio: dt-bindings: add new property to wd,mbl-gpio
- bindings
+Subject: Re: [PATCH 3/3] gpio: mmio: Use new flag BGPIOF_NO_INPUT
 Content-Language: en-US
-To:     "Leonard, Niall" <Niall.Leonard@ncr.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+To:     nl250060@ncr.com, Linus Walleij <linus.walleij@linaro.org>,
         Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 References: <20230126-gpio-mmio-fix-v1-0-8a20ce0e8275@ncr.com>
- <20230126-gpio-mmio-fix-v1-1-8a20ce0e8275@ncr.com>
- <d4a70ab2-c5a2-2478-3fa9-c703c1619252@linaro.org>
- <MW5PR15MB52184F83BA524D9600B820F5FDCC9@MW5PR15MB5218.namprd15.prod.outlook.com>
+ <20230126-gpio-mmio-fix-v1-3-8a20ce0e8275@ncr.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <MW5PR15MB52184F83BA524D9600B820F5FDCC9@MW5PR15MB5218.namprd15.prod.outlook.com>
+In-Reply-To: <20230126-gpio-mmio-fix-v1-3-8a20ce0e8275@ncr.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,89 +78,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/01/2023 12:39, Leonard, Niall wrote:
+On 26/01/2023 11:17, Niall Leonard via B4 Submission Endpoint wrote:
+> From: Niall Leonard <nl250060@ncr.com>
 > 
+> Use the existing shadow data register 'bgpio_data' to allow
+> the last written value to be returned by the read operation
+> when BGPIOF_NO_INPUT flag is set.
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: 26 January 2023 12:29
->> To: Leonard, Niall <Niall.Leonard@ncr.com>; Linus Walleij
->> <linus.walleij@linaro.org>; Bartosz Golaszewski <brgl@bgdev.pl>; Rob
->> Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>
->> Cc: linux-gpio@vger.kernel.org; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org
->> Subject: Re: [PATCH 1/3] gpio: dt-bindings: add new property to wd,mbl-gpio
->> bindings
->>
->> *External Message* - Use caution before opening links or attachments
->>
->> On 26/01/2023 11:17, Niall Leonard via B4 Submission Endpoint wrote:
->>> From: Niall Leonard <nl250060@ncr.com>
->>
->> Subject: missing "wd,mbl-gpio:" prefix.
->>
->> Subject: drop second/last, redundant "bindings". The "dt-bindings"
->> prefix is already stating that these are bindings.
->>
->>>
->>> Added optional "no-input" property
->>
->> Missing full stop.
->>
->>>
->>> Signed-off-by: Niall Leonard <nl250060@ncr.com>
->>> ---
->>>  Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
->>> b/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
->>> index 038c3a6a1f4d..9405f9dad522 100644
->>> --- a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
->>> +++ b/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
->>> @@ -18,6 +18,7 @@ Required properties:
->>>
->>>  Optional properties:
->>>  	- no-output: GPIOs are read-only.
->>> +	- no-input: GPIOs are write-only. Read is via a shadow register.
->>
->> Why this property is needed? Why driver cannot always use shadow
->> register?
->>
-> The shadow register is currently only used during the write operation. It is not available during the read operation. 
 
-You just wrote above that reading is via shadow register, so how can it
-not be available for reads? Again, why you cannot always read via shadow
-register and need to make a property? You mean that for other GPIOs
-there is no shadow register at all?
+(...)
 
-What changes between one board and another that justifies this property?
+>  	if (gc->set == bgpio_set_set &&
+>  			!(flags & BGPIOF_UNREADABLE_REG_SET))
+>  		gc->bgpio_data = gc->read_reg(gc->reg_set);
+> @@ -711,6 +723,9 @@ static struct bgpio_pdata *bgpio_parse_dt(struct platform_device *pdev,
+>  	if (of_property_read_bool(pdev->dev.of_node, "no-output"))
+>  		*flags |= BGPIOF_NO_OUTPUT;
+>  
+> +	if (of_property_read_bool(pdev->dev.of_node, "no-input"))
 
-> That is essentially the change I have 
-> submitted.
-
-This does not answer me. I am asking why this change is justified in
-terms of Devicetree.
-
-> An alternative approach would have been to develop an entire new gpio driver similar to the 74xx driver, but I felt this approach was better.
-> 
->> Anyway, please convert the bindings to DT schema first (see writing-schema
->> and example-schema).
->> Documentation/devicetree/bindings/writing-schema.rst
->>
-> The bindings for this driver are duplicated in a few files even though they use the same driver.
-> i.e. wd,mbl-gpio.txt, ni,169445-nand-gpio.txt, brcm,bcm6345-gpio.yaml
-
-So your changes here affect several bindings but you adjust only one?
-This won't work.
-
-> I don't know why these multiple bindings exist. It would perhaps make sense to remove these duplicate binding documentation files and replace with a single one for "basic-mmio-gpio". I happened to pick ". wd,mbl-gpio.txt", but I could have just as easily chosen one of the other 2.
-
-We usually keep same hardware in the same bindings. This might or might
-not map to same Linux driver (drivers are independent). All this
-hardware looks like having the same interface and same properties, so
-having one binding makes sense.
+As pointed, this brings undocumented property to two other bindings.
+This needs to be fixed.
 
 Best regards,
 Krzysztof
