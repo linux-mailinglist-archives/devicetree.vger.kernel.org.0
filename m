@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3895768010D
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 20:00:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28D23680110
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 20:00:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230191AbjA2TAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 14:00:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54328 "EHLO
+        id S234942AbjA2TA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 14:00:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbjA2TAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 14:00:21 -0500
-X-Greylist: delayed 172 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 29 Jan 2023 11:00:20 PST
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C1BF18B05;
-        Sun, 29 Jan 2023 11:00:19 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1675018631; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=HR1S7lcbkVRGFxrxvbDExW//GLek5S1JwH267gecTUbHX+uU86A1Iujcd+ANveWwrA
-    1EyF+TGynGYG+hBLQgv2utb80QC+psN2noOpdtTVnHgpSh/UPNH0sJzaiVrTucwqraAv
-    xdXMXgQRdtgZV1Yh+MtTA3WE0/kv28j+4/YwFaraONZNYHDrPIPgxl9Op6OAbJ2EXjlv
-    0MXx9DoPLu5BjplerSSq9lZSEWCaP8NLhLLbSNrTItpAAhveYWXipR1HI263k8nACRi6
-    HJClzMFi3gKXD61CC1qALCxmZCSP8Kp5ccxWdv5d92LevP+KopLEk096hliMzTKSfFBi
-    2tow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1675018631;
-    s=strato-dkim-0002; d=strato.com;
-    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
-    bh=hdb0RhMA/W7iN9ASZsM7cnZYyO0Ib+35iRVsKYcQ5ek=;
-    b=n5+RlhKvMP1+jn3OjHvWKl0LrqNMsB9FEqRz9rSh+ns2E02O14z9zFp+leN6zqx49o
-    uFr19EJMiN5JyyeKs/T6XCfMapiBQDGXCQN47n5VtDCX+euzL16zSAwps08nP2p+Rd0O
-    MFGBDAKgoOfZKDPv8zYKquu5SSKctmN1H5WkZHAx+aMUBz76S+vZoIsE2II3gYlSVcGf
-    V8//L3DHzHYllbTjuW2L10tfXgJQyo6E1U2oOn2HrhpWx/Ry53Ijvp0ikSAMwhQtHh76
-    l4BB+TYmkNBtoSiSccWDqzO+CM2vzJdQeT5RYYHecqj/stCQjNeiSsHbR65rkrvuTlC5
-    W3iw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1675018631;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
-    bh=hdb0RhMA/W7iN9ASZsM7cnZYyO0Ib+35iRVsKYcQ5ek=;
-    b=E+aDT93U3y9S01cTyej6zxM3jIN3/VWByxf0osZiqiKxlSQ3N3NiFvUHrH05ZqOhie
-    3EnnAEWN6l7xqpnd4H3liApdqETkGdDEHSCffo34YxMYuHkfwkhbfUHfOvTIGkH4Hj0x
-    gFdlj2qr0TGzgOjLb7uuh+oDYDoZC5GOmcaK1QrAsOzEzRIALpRHVwOqHFEIsTrDtgD1
-    Liq55aTjCKTlyUfpnCbeAJdE4ZUjrADk9oZeIfQb9Fct27EZLKozJcmUUl9H5O4Udh+0
-    d7qbmWGBR3pogfZ9dBQdLMy8tIKN48KUp9PhJmo0QhwjD9rke0cpfO4NkScgiklmAwoJ
-    Vxrg==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1iTDUhfN4hi3qVZrW/J"
-Received: from iMac.fritz.box
-    by smtp.strato.de (RZmta 49.2.2 SBL|AUTH)
-    with ESMTPSA id e4ab20z0TIvBI4C
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Sun, 29 Jan 2023 19:57:11 +0100 (CET)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Paul Cercueil <paul@crapouillou.net>,
+        with ESMTP id S234897AbjA2TAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 14:00:25 -0500
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 441311969A;
+        Sun, 29 Jan 2023 11:00:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1675018824; x=1706554824;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=qcLePQTbrzoLvq+ElRVOT/zcQr0y/IMDSu9rw90ydJ4=;
+  b=EmpB0/dZ3ieBAkwgEtfdOZVUYlB42m59sHmfhn3cKtmzK4HCorvKeRK3
+   D8quRut1uBE2haOyDEhqyTyv2bqDtNjB1QxIwG34ZAux2ZYMKlDXb44wF
+   FNyJhIEXrSEnb9IRbnUB+B626c4zuL0T6lyo8T14mFKWsx50x9ZVwnlax
+   7104DKtwhNIN7L5Lgi03cSmxNTThp8OZ4O50jIa5SSz4eI1nHHATPpoeS
+   uMfSyrfmUkQ4ZejDf245v24DZktVkzM2803dnalVocppsm9rBZu9iiTpA
+   JQ6ZuepQ6j5IsjhYtYpmLqCBmLg0jzO+ZtK3klAK65WRPc4PviNKO691Q
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="307071745"
+X-IronPort-AV: E=Sophos;i="5.97,256,1669104000"; 
+   d="scan'208";a="307071745"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2023 11:00:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="806429240"
+X-IronPort-AV: E=Sophos;i="5.97,256,1669104000"; 
+   d="scan'208";a="806429240"
+Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
+  by fmsmga001.fm.intel.com with ESMTP; 29 Jan 2023 11:00:21 -0800
+Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pMCua-00032E-1L;
+        Sun, 29 Jan 2023 19:00:20 +0000
+Date:   Mon, 30 Jan 2023 03:00:06 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Caleb Connolly <caleb.connolly@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0?= <zhouyanjie@wanyeetech.com>
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        "H. Nikolaus Schaller" <hns@goldelico.com>, stable@vger.kernel.org
-Subject: [PATCH v2] MIPS: DTS: CI20: fix otg power gpio
-Date:   Sun, 29 Jan 2023 19:57:04 +0100
-Message-Id: <8bcf9311284b4cab8be36922d6027813bfdf2bae.1675018624.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.38.1
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        phone-devel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/2] power: supply: add Qualcomm PMI8998 SMB2 Charger
+ driver
+Message-ID: <202301300204.VMpH8OI5-lkp@intel.com>
+References: <20230127230506.3140297-1-caleb.connolly@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230127230506.3140297-1-caleb.connolly@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,31 +71,155 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to schematics it is PF15 and not PF14 (MIC_SW_EN).
-Seems as if it was hidden and not noticed during testing since
-there is no sound DT node.
+Hi Caleb,
 
-Fixes: 158c774d3c64 ("MIPS: Ingenic: Add missing nodes for Ingenic SoCs and boards.")
-Cc: stable@vger.kernel.org
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-Acked-by: Paul Cercueil <paul@crapouillou.net>
----
- arch/mips/boot/dts/ingenic/ci20.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thank you for the patch! Perhaps something to improve:
 
-diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
-index 9819abb2465dd..a276488c0f752 100644
---- a/arch/mips/boot/dts/ingenic/ci20.dts
-+++ b/arch/mips/boot/dts/ingenic/ci20.dts
-@@ -115,7 +115,7 @@ otg_power: fixedregulator@2 {
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
- 
--		gpio = <&gpf 14 GPIO_ACTIVE_LOW>;
-+		gpio = <&gpf 15 GPIO_ACTIVE_LOW>;
- 		enable-active-high;
- 	};
- };
+[auto build test WARNING on sre-power-supply/for-next]
+[also build test WARNING on robh/for-next linus/master v6.2-rc5 next-20230127]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Caleb-Connolly/dt-bindings-power-supply-qcom-pmi8998-charger-add-bindings-for-smb2-driver/20230128-172503
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git for-next
+patch link:    https://lore.kernel.org/r/20230127230506.3140297-1-caleb.connolly%40linaro.org
+patch subject: [PATCH v7 1/2] power: supply: add Qualcomm PMI8998 SMB2 Charger driver
+config: alpha-allmodconfig (https://download.01.org/0day-ci/archive/20230130/202301300204.VMpH8OI5-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/703a352943e95de330efc87cd3feab1c6534603a
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Caleb-Connolly/dt-bindings-power-supply-qcom-pmi8998-charger-add-bindings-for-smb2-driver/20230128-172503
+        git checkout 703a352943e95de330efc87cd3feab1c6534603a
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=alpha olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=alpha SHELL=/bin/bash drivers/bluetooth/ drivers/net/ethernet/mediatek/ drivers/power/supply/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/power/supply/qcom_pmi8998_charger.c: In function 'smb2_probe':
+>> drivers/power/supply/qcom_pmi8998_charger.c:979:62: warning: format '%s' expects argument of type 'char *', but argument 4 has type 'const void *' [-Wformat=]
+     979 |         desc->name = devm_kasprintf(chip->dev, GFP_KERNEL, "%s-charger",
+         |                                                             ~^
+         |                                                              |
+         |                                                              char *
+         |                                                             %p
+     980 |                                     device_get_match_data(chip->dev));
+         |                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |                                     |
+         |                                     const void *
+
+
+vim +979 drivers/power/supply/qcom_pmi8998_charger.c
+
+   934	
+   935	static int smb2_probe(struct platform_device *pdev)
+   936	{
+   937		struct power_supply_config supply_config = {};
+   938		struct power_supply_desc *desc;
+   939		struct smb2_chip *chip;
+   940		int rc, irq;
+   941	
+   942		chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
+   943		if (!chip)
+   944			return -ENOMEM;
+   945	
+   946		chip->dev = &pdev->dev;
+   947		chip->name = pdev->name;
+   948	
+   949		chip->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+   950		if (!chip->regmap)
+   951			return dev_err_probe(chip->dev, -ENODEV,
+   952					     "failed to locate the regmap\n");
+   953	
+   954		rc = device_property_read_u32(chip->dev, "reg", &chip->base);
+   955		if (rc < 0)
+   956			return dev_err_probe(chip->dev, rc,
+   957					     "Couldn't read base address\n");
+   958	
+   959		chip->usb_in_v_chan = devm_iio_channel_get(chip->dev, "usbin_v");
+   960		if (IS_ERR(chip->usb_in_v_chan))
+   961			return dev_err_probe(chip->dev, PTR_ERR(chip->usb_in_v_chan),
+   962					     "Couldn't get usbin_v IIO channel\n");
+   963	
+   964		chip->usb_in_i_chan = devm_iio_channel_get(chip->dev, "usbin_i");
+   965		if (IS_ERR(chip->usb_in_i_chan)) {
+   966			return dev_err_probe(chip->dev, PTR_ERR(chip->usb_in_i_chan),
+   967					     "Couldn't get usbin_i IIO channel\n");
+   968		}
+   969	
+   970		rc = smb2_init_hw(chip);
+   971		if (rc < 0)
+   972			return rc;
+   973	
+   974		supply_config.drv_data = chip;
+   975		supply_config.of_node = pdev->dev.of_node;
+   976	
+   977		desc = devm_kzalloc(chip->dev, sizeof(smb2_psy_desc), GFP_KERNEL);
+   978		memcpy(desc, &smb2_psy_desc, sizeof(smb2_psy_desc));
+ > 979		desc->name = devm_kasprintf(chip->dev, GFP_KERNEL, "%s-charger",
+   980					    device_get_match_data(chip->dev));
+   981	
+   982		chip->chg_psy =
+   983			devm_power_supply_register(chip->dev, desc, &supply_config);
+   984		if (IS_ERR(chip->chg_psy))
+   985			return dev_err_probe(chip->dev, PTR_ERR(chip->chg_psy),
+   986					     "failed to register power supply\n");
+   987	
+   988		rc = power_supply_get_battery_info(chip->chg_psy, &chip->batt_info);
+   989		if (rc)
+   990			return dev_err_probe(chip->dev, rc,
+   991					     "Failed to get battery info\n");
+   992	
+   993		rc = devm_delayed_work_autocancel(chip->dev, &chip->status_change_work,
+   994						  smb2_status_change_work);
+   995		if (rc)
+   996			return dev_err_probe(chip->dev, rc,
+   997					     "Failed to init status change work\n");
+   998	
+   999		rc = (chip->batt_info->voltage_max_design_uv - 3487500) / 7500 + 1;
+  1000		rc = regmap_update_bits(chip->regmap, chip->base + FLOAT_VOLTAGE_CFG,
+  1001					FLOAT_VOLTAGE_SETTING_MASK, rc);
+  1002		if (rc < 0)
+  1003			return dev_err_probe(chip->dev, rc, "Couldn't set vbat max\n");
+  1004	
+  1005		rc = smb2_init_irq(chip, &irq, "bat-ov", smb2_handle_batt_overvoltage);
+  1006		if (rc < 0)
+  1007			return rc;
+  1008	
+  1009		rc = smb2_init_irq(chip, &chip->cable_irq, "usb-plugin",
+  1010				   smb2_handle_usb_plugin);
+  1011		if (rc < 0)
+  1012			return rc;
+  1013	
+  1014		rc = smb2_init_irq(chip, &irq, "usbin-icl-change",
+  1015				   smb2_handle_usb_icl_change);
+  1016		if (rc < 0)
+  1017			return rc;
+  1018		rc = smb2_init_irq(chip, &irq, "wdog-bark", smb2_handle_wdog_bark);
+  1019		if (rc < 0)
+  1020			return rc;
+  1021	
+  1022		rc = dev_pm_set_wake_irq(chip->dev, chip->cable_irq);
+  1023		if (rc < 0)
+  1024			return dev_err_probe(chip->dev, rc, "Couldn't set wake irq\n");
+  1025	
+  1026		platform_set_drvdata(pdev, chip);
+  1027	
+  1028		/* Initialise charger state */
+  1029		schedule_delayed_work(&chip->status_change_work, 0);
+  1030	
+  1031		return 0;
+  1032	}
+  1033	
+
 -- 
-2.38.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
