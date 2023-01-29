@@ -2,186 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABAAA67FB69
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jan 2023 23:55:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA71B67FBFC
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 01:47:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230482AbjA1Wzu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 17:55:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53562 "EHLO
+        id S229580AbjA2ArK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 19:47:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229749AbjA1Wzs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 17:55:48 -0500
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5854623D97
-        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 14:55:43 -0800 (PST)
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20230128225539euoutp02f44af02d4ef005bbc1dbca9cb146cf47~_mwDqy4Qd2747327473euoutp02B
-        for <devicetree@vger.kernel.org>; Sat, 28 Jan 2023 22:55:39 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20230128225539euoutp02f44af02d4ef005bbc1dbca9cb146cf47~_mwDqy4Qd2747327473euoutp02B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1674946539;
-        bh=teddXjoVzkAfzf7gd+eRxVt62IjBdeRbie00f/bRDc0=;
-        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-        b=UGMFHxdd+WUjqHKfhVFASEZNMkln04cm9KkgeqYSIPDRXn7ziCDILvjWwx0t1UeqW
-         OfnCFSY/ujFw5hDRH6Dz2DV15HUfmkCiGFkVl8VqIjZAfKuXnOyPusGv73auwiGHFM
-         5jTBk7+co10M4IKpQkC8+AmyjZdWapR2MJP4mKqg=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20230128225538eucas1p17edb6104df27edd8cb543840a0137603~_mwCQFVDR0349603496eucas1p1v;
-        Sat, 28 Jan 2023 22:55:38 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 98.FA.13597.9E7A5D36; Sat, 28
-        Jan 2023 22:55:38 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20230128225537eucas1p27906fc36dfcdebd81c65e7bf75dd9fb0~_mwBRp9_I1353613536eucas1p2S;
-        Sat, 28 Jan 2023 22:55:37 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20230128225537eusmtrp263d866e6aeb23b31410d5fe1b8d6f51e~_mwBQ_6Js0449604496eusmtrp2K;
-        Sat, 28 Jan 2023 22:55:37 +0000 (GMT)
-X-AuditID: cbfec7f4-1f1ff7000000351d-a4-63d5a7e971be
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id D9.EB.02722.8E7A5D36; Sat, 28
-        Jan 2023 22:55:36 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20230128225536eusmtip20a542bfcf0a4fa80aff350daaa59f66e~_mwAgQVIx0141301413eusmtip2r;
-        Sat, 28 Jan 2023 22:55:36 +0000 (GMT)
-Message-ID: <6a2b0750-b71b-409e-7e9d-df0f3fa71a2e@samsung.com>
-Date:   Sat, 28 Jan 2023 23:55:36 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0)
-        Gecko/20100101 Thunderbird/102.6.1
-Subject: Re: [PATCH 2/9] ARM: dts: exynos: move exynos-bus nodes out of soc
- in Exynos5420
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S230302AbjA2ArH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 19:47:07 -0500
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5D451E9FC;
+        Sat, 28 Jan 2023 16:47:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674953226; x=1706489226;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=l0j7K1/L9M+f1mEpBM1Ek5xikMFJoO8xM/NLZGKxV44=;
+  b=AfhUt2FnK0shdOndFZggk49BSI/H5WajQgJt/N9O+1HoNN+IuwLWpQ1k
+   xpkBFIe8kKAkYEr4+ROYq8gWWQ1WHxqON4q/6x5sP6DErBl7PR75a9WK+
+   emVF/9YqyqQaySdmi/Nmtn750IUct/GvS28OmJSTz11OL+LYRLV4IB57Y
+   5BgMfXmBxZfJg05ilfWUIb/nubXtqmBjSk6EMqowGZaZziWXe5VJqR+78
+   HGWrVNsnIdyjD8iJAl9mKgqrJw0y9qJJPIfjQv1Cr9UzP7q3QQ9rUjSZS
+   njIIO26sPZK/U/nU5Zt+U+pcOiWvpAp60jpdJr2KHFrDoeDhfOgsXzRWt
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="325043676"
+X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
+   d="scan'208";a="325043676"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2023 16:47:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="727086438"
+X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
+   d="scan'208";a="727086438"
+Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 28 Jan 2023 16:47:01 -0800
+Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pLvqV-0001H4-3A;
+        Sun, 29 Jan 2023 00:46:59 +0000
+Date:   Sun, 29 Jan 2023 08:46:46 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Jonathan Cormier <jcormier@criticallink.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>,
-        Henrik Grimler <henrik@grimler.se>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <4dea3da5-54b6-bc50-a802-cb73ddccf5d8@linaro.org>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrOKsWRmVeSWpSXmKPExsWy7djPc7qvll9NNmj5wGjxYN42NovrX56z
-        Wsw/co7V4u2SXYwW/Y9fM1v0vXjIbLH39VZ2i02Pr7FaXN41h81ixvl9TBZn/k1lsVjwx85i
-        3RpBi9a9R9gtNn//y+jA77Fz1l12j6NX7rF6bFrVyeZx59oeNo/NS+o9/t9Zy+7xpbmb1aNv
-        yypGj8+b5AI4o7hsUlJzMstSi/TtErgyZq+bwFzwQaRi/p4tTA2MnwW6GDk5JARMJB6vfc3U
-        xcjFISSwglFi8912NgjnC6PE0r5tjBDOZ0aJA32r2GBabi46yg6RWM4o8XLdZBYI5yOjxNef
-        y5lBqngF7CQeXz0MlODgYBFQlfh2ghMiLChxcuYTsLCoQIrEpj9lIGFhgWiJg9O/gs1nFhCX
-        uPVkPthJIgLPmCRmbm1lgkg8Z5S4/ResiE3AUKLrbReYzQm0qqtjOSNEjbzE9rdzmEGaJQQ2
-        c0rsn7+IFeJqF4m9F+ZAfSAs8er4FnYIW0bi/06IbRIC7YwSC37fh3ImMEo0PL/FCFFlLXHn
-        3C82kLOZBTQl1u/Shwg7SmxdvRTsGwkBPokbbwUhjuCTmLRtOjNEmFeio00IolpNYtbxdXBr
-        D164xDyBUWkWUrDMQvL/LCTvzELYu4CRZRWjeGppcW56arFRXmq5XnFibnFpXrpecn7uJkZg
-        2jv97/iXHYzLX33UO8TIxMF4iFGCg1lJhHer46VkId6UxMqq1KL8+KLSnNTiQ4zSHCxK4rza
-        tieThQTSE0tSs1NTC1KLYLJMHJxSDUyLvnWIynzh2dxyad3swgCHdbnMOoJm592vMSd0Cq4U
-        kf+3u2q5QCKjsG1KjviVJy9DTcI+ST1cVzr7bCV3s1P9KXlWXdn9s2Uffj569Yot//bnYuw1
-        1dZr7V9eXJwz+9TZLfGBCstPrJoefM6IcZP3LMnPk+2eH3j/X97aw2P+O0/D+j1ih89sZUjc
-        6xB5P7fJxrpORPGo/xyLm7YZN1ljO5Y/Wpvusq4v/0hC5ydBs47KN+rVabNPf3bxC7yY/kTT
-        tXpWx54pNjvOR07465P5I83lrlZf46mJse9W7NpZv6xroQdvXKRnjOGLSKXv8kq81gdeN4n+
-        KH23+ffRoPZtwV5Pa+WkXly/G/jmb4ISS3FGoqEWc1FxIgC4OgdN6gMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrNIsWRmVeSWpSXmKPExsVy+t/xe7ovll9NNjh/3dLiwbxtbBbXvzxn
-        tZh/5Byrxdsluxgt+h+/Zrboe/GQ2WLv663sFpseX2O1uLxrDpvFjPP7mCzO/JvKYrHgj53F
-        ujWCFq17j7BbbP7+l9GB32PnrLvsHkev3GP12LSqk83jzrU9bB6bl9R7/L+zlt3jS3M3q0ff
-        llWMHp83yQVwRunZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq6dvZpKTmZJal
-        FunbJehlzF43gbngg0jF/D1bmBoYPwt0MXJySAiYSNxcdJS9i5GLQ0hgKaPEz4vXmCESMhIn
-        pzWwQtjCEn+udbFBFL1nlNj1qZcNJMErYCfx+Ophli5GDg4WAVWJbyc4IcKCEidnPmEBsUUF
-        UiSan58EmyMsEC2xct5esPnMAuISt57MZwKZKSLwjEni8fNtLCAOs8BzRon7W5tYIbZ9YJLY
-        ffYXI0gLm4ChRNfbLrDNnECbuzqWM0KMMpPo2toFZctLbH87h3kCo9AsJJfMQrJxFpKWWUha
-        FjCyrGIUSS0tzk3PLTbUK07MLS7NS9dLzs/dxAiM9W3Hfm7ewTjv1Ue9Q4xMHIyHGCU4mJVE
-        eLc6XkoW4k1JrKxKLcqPLyrNSS0+xGgKDI2JzFKiyfnAZJNXEm9oZmBqaGJmaWBqaWasJM7r
-        WdCRKCSQnliSmp2aWpBaBNPHxMEp1cCUqGOSEaFXGZkk2bz8X+QKpTIGd+2J6toNovWKngeM
-        zy6VlOauPiCfFF92tzjowOnATzJJEj23T7ZLHxbfnVy3d1qDqcSylqNNTDeuPk24G6f94LjR
-        9/ZSaxnx/oiieV3ljLZ2rT/9ZK3PvNKUZvtmu+Tr22LxEIuYDYabtUUMyta8abh8Wmizyxf+
-        R6+7PuVt7fb63rr66D0Wua6pilNfHbG4cSdYdu+ZqyrTJZaVLik+9SHO+76szd29TFXGZy6e
-        UukWUQ6IfR14hi1DubLlXhF3h+mTSs1rARwcpe7hSz7o55kE7q3yOXzrr4ZQ8NR95TpHMsJU
-        lebeWFW5kneT+dLr3B9nSSTqbUqsVWIpzkg01GIuKk4EAOWe/LN+AwAA
-X-CMS-MailID: 20230128225537eucas1p27906fc36dfcdebd81c65e7bf75dd9fb0
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20230125094529eucas1p29b5f25af2c658abef13a93c49eca975f
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20230125094529eucas1p29b5f25af2c658abef13a93c49eca975f
-References: <20230125094513.155063-1-krzysztof.kozlowski@linaro.org>
-        <CGME20230125094529eucas1p29b5f25af2c658abef13a93c49eca975f@eucas1p2.samsung.com>
-        <20230125094513.155063-2-krzysztof.kozlowski@linaro.org>
-        <cd42b8c9-a79a-068c-a967-810c05e818bd@samsung.com>
-        <d8f5fa57-da3a-09f9-e297-197068264d26@linaro.org>
-        <4dea3da5-54b6-bc50-a802-cb73ddccf5d8@linaro.org>
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Jyri Sarha <jsarha@ti.com>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Michael Williamson <michael.williamson@criticallink.com>,
+        Bob Duke <bduke@criticallink.com>,
+        Jonathan Cormier <jcormier@criticallink.com>
+Subject: Re: [PATCH 4/4] DRM: BRIDGE: TFP410: If connected, use I2C for
+ polled HPD status.
+Message-ID: <202301290803.ouS19eab-lkp@intel.com>
+References: <20230125-tfp410_i2c-v1-4-66a4d4e390b7@criticallink.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230125-tfp410_i2c-v1-4-66a4d4e390b7@criticallink.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28.01.2023 11:43, Krzysztof Kozlowski wrote:
-> On 26/01/2023 11:59, Krzysztof Kozlowski wrote:
->> On 26/01/2023 10:47, Marek Szyprowski wrote:
->>> Hi Krzysztof,
->>>
->>> On 25.01.2023 10:45, Krzysztof Kozlowski wrote:
->>>> The soc node is supposed to have only device nodes with MMIO addresses,
->>>> as reported by dtc W=1:
->>>>
->>>>     arch/arm/boot/dts/exynos5420.dtsi:1070.24-1075.5:
->>>>       Warning (simple_bus_reg): /soc/bus-wcore: missing or empty reg/ranges property
->>>>
->>>> and dtbs_check:
->>>>
->>>>     exynos5420-arndale-octa.dtb: soc: bus-wcore:
->>>>       {'compatible': ['samsung,exynos-bus'], 'clocks': [[2, 769]], 'clock-names': ['bus'], 'status': ['disabled']} should not be valid under {'type': 'object'}
->>>>
->>>> Move the bus nodes and their OPP tables out of SoC to fix this.
->>>> Re-order them alphabetically while moving and put some of the OPP tables
->>>> in device nodes (if they are not shared).
->>>>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Frankly speaking I'm not very keen on moving those bus nodes out of
->>> /soc. Technically speaking this is definitely a part of soc and doesn't
->>> make much sense outside of it. IMHO they describe SoC hardware details
->>> and they might be moved somehow under clock controller device(s),
->>> although this would require some changes in the bindings and drivers.
->> That's the only way to fix it without change of drivers any ABI
->> compatibility issue. The same we do for Qualcomm interconnects, e.g.
->> arch/arm64/boot/dts/qcom/sm8450.dtsi where some interconnects have some
->> do not have MMIO space.
->>
->> I want to achieve finally clean dtbs_check run for all Exynos sources.
->> The in-tree bindings already pass, so now I am fixing the ones coming
->> from dtschema (simple-bus.yaml in particular).
->>
->> If you have any other idea how to seamlessly clean it up, I am happy to
->> hear. But I guess the main problem is that no one is being paid for
->> doing anything for Samsung Exynos, so for free not many put much effort
->> into working on it.
-> Marek, I value your feedback a lot and I appreciate your help here. Just
-> to be clear that I am not ignoring it, little disclaimer:
->
-> Unless there is a clear NAK from you or someone else, with an idea to
-> fix or with a commitment to change driver/bindings, I am planning to
-> grab these changes.
->
-> I really want to get the dtbs_check done. With these and my other fixes,
-> the arm64 exynos DTS pass fully all dtschema and in-kernel dtbs_check.
+Hi Jonathan,
 
-Go ahead. I won't block it.
+Thank you for the patch! Perhaps something to improve:
 
-Best regards
+[auto build test WARNING on 93f875a8526a291005e7f38478079526c843cbec]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Cormier/dt-bindings-display-bridge-tfp410-Add-tfp410-i2c-example/20230128-183627
+base:   93f875a8526a291005e7f38478079526c843cbec
+patch link:    https://lore.kernel.org/r/20230125-tfp410_i2c-v1-4-66a4d4e390b7%40criticallink.com
+patch subject: [PATCH 4/4] DRM: BRIDGE: TFP410: If connected, use I2C for polled HPD status.
+config: i386-randconfig-a006 (https://download.01.org/0day-ci/archive/20230129/202301290803.ouS19eab-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/c4659fa4c02b62087c095ca99978e5eac8b490de
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jonathan-Cormier/dt-bindings-display-bridge-tfp410-Add-tfp410-i2c-example/20230128-183627
+        git checkout c4659fa4c02b62087c095ca99978e5eac8b490de
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/bridge/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/bridge/ti-tfp410.c:111:6: warning: unused variable 'val' [-Wunused-variable]
+           u32 val;
+               ^
+   1 warning generated.
+
+
+vim +/val +111 drivers/gpu/drm/bridge/ti-tfp410.c
+
+   106	
+   107	static enum drm_connector_status
+   108	tfp410_connector_detect(struct drm_connector *connector, bool force)
+   109	{
+   110		struct tfp410 *dvi = drm_connector_to_tfp410(connector);
+ > 111		u32 val;
+   112		unsigned int ret;
+   113	
+   114		if (dvi->i2c) {
+   115			ret = regmap_test_bits(dvi->regmap, TFP410_REG_CTL_2_MODE, TFP410_BIT_HTPLG);
+   116			if (ret < 0)
+   117				dev_err(dvi->dev, "%s failed to read HTPLG bit : %d\n", __func__, ret);
+   118			else
+   119				return ret ? connector_status_connected : connector_status_disconnected;
+   120		}
+   121	
+   122		return drm_bridge_detect(dvi->next_bridge);
+   123	}
+   124	
 
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
