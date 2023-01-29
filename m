@@ -2,208 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAB8667FE93
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 12:33:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0EAE67FE97
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 12:36:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229980AbjA2LdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 06:33:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51626 "EHLO
+        id S229980AbjA2Lgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 06:36:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbjA2LdL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 06:33:11 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F2E1DB90
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 03:33:10 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id h12so8676835wrv.10
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 03:33:10 -0800 (PST)
+        with ESMTP id S229637AbjA2Lgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 06:36:36 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBEA91DB90
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 03:36:35 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id l35-20020a05600c1d2300b003dc4634a466so2206879wms.4
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 03:36:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ICxEAz2lTPvNArr1Of6NmwuUlJJFVR9Q6sHPnf6bJqQ=;
-        b=oTNmVLchTqTuyj8wtBqqQ23usioQjMxx6C7SqLtjlvInJbo0I3OO6HU+NnLjAuqbSG
-         V8abxoFjqujql7Sndgme6MVspyU2xP8GXRFGmKd66xqtL3TYEUcWnRkRjfPfgprbXzyv
-         WaRI7DMbTy1CffpAR60MbvvJz/IdU5HNR5li22J8hybjxHaY725WI+A2L7Jod/3n74bh
-         s36CQBaEHBtnoHUl7UYPBmv0OR6+OLudB6YF3ZrP4dLLCUt9UDUh2AGTY1IDVYAPH3Ca
-         j/rUAPh1wYAIKaRItMRxINXuVowRCBJmhLgbgQA5eyd2AM+jKPEwkc/VMJltRe1mChbj
-         drOg==
+        bh=iV0CtKNsc1LUNsSCU8gg6eLRL99aTa/LuFSM/j2NmbU=;
+        b=V1rIs1SQsJszkNU1hmiAOlCO1pbGoG87eRwvJKl4RzAQGdjqZAnwhY4+s+P8CvzhqL
+         O+yFDiWNyLYYZiroZMyYIfp4TfzB7X04apZv98Z+J3AuHeS6Hhz0BvSjkt1Cx5G1fTOL
+         SSo0DLZgJpNXWK5ttZbp2g93GOrBTs6QZrieTnl0AGayB3pXo5//MyQNWpTOaXXrDiWb
+         XAaTEJNIM6NrF6NXyQybJiofFH/TW3RDkaybqGSVMGkOpWqMR9AnAI901Io76eNCKFG5
+         0b56ZwSWNts7+oCgzIM7wo3hQSoz1fOm8jrPqCyMWxBDXTadFHeDvW/2asjKpaOOmq7h
+         e1Aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ICxEAz2lTPvNArr1Of6NmwuUlJJFVR9Q6sHPnf6bJqQ=;
-        b=ez+lkzRiYTZjAAE+4sPr30ly2LsO66/kK7Cl5PXJ7xPZSiusy/5rdupI3fkiO+ZI5a
-         4qxTKUeRWCKA8S6LPvt2SfM5yANeHZOvTCE/dQhZxY+rxVegSjLS232D/MLN27DsMcfg
-         Q6eE4rg0b3zUnfC59CskSimv8IEDSOfNZ5rkkVMV9sjlbBfaQRpEbkWbJY6YBhOav8t1
-         G6UOzhY/7w5mZKe3LO7Tp0jCRLx2QhJBR8I4B0wD+TnO3fyd061x+Ql3i9jNXo30lCJb
-         bxdTG2FVOF62eUhir0cw6/fHXD09ypvGuIB9CM+ADmO9Fw3eEwaLP7JbEPHrcVCJK7Fz
-         zTUw==
-X-Gm-Message-State: AFqh2kqY10txonArpuZ+RtZ6OUmmKi9IZM/GadPG/vpakQnfCy8WR7HR
-        9EqtYmRg4IEeTdCRY4v+IoWHTj0T9yNPTSx+
-X-Google-Smtp-Source: AMrXdXu+96NQRYpy8juaEVrWzdhFnO3M/UrQmzfQ0iBrX/GCzOtqSJ5G+vUE0p6nRVOR9oE+y8XVpg==
-X-Received: by 2002:a5d:52ca:0:b0:2be:579b:1668 with SMTP id r10-20020a5d52ca000000b002be579b1668mr29419581wrv.1.1674991988734;
-        Sun, 29 Jan 2023 03:33:08 -0800 (PST)
+        bh=iV0CtKNsc1LUNsSCU8gg6eLRL99aTa/LuFSM/j2NmbU=;
+        b=IZoHozOz7n5LUZiKZ62eUyudv2R0FZl8ILexfAl6ACoB00bkA3KIjoacrjNR09U0z4
+         49C5obom7vGcN1uLNPrhMzHLt8g78+3S4k4FlIJJHBKdGHRp+rp5cGEw+aBh0NuULRDg
+         jGrJR2yEDkFBm9AV1Jcks+UR5ek7JOCJGtfdWD2TpsCsSXSxZUKbDiHCs4WDOnck3TtO
+         MYhaA77FxjzXMp0NvPOUu9gljvdncg/Sb+B0o0iuS83bged7+JbJax0cVgELVCDALE60
+         gcb1uP6JN84FrJhJr4BS3FgefN44e6DE8LxbzhPTY4XfFJdc3zVpqMP1N8PY/cu5641d
+         Na9Q==
+X-Gm-Message-State: AFqh2kqV5z80lkjkVYhwyOYmi5dg4ci5zItUXvwxcZSoGJy31oMQHqYr
+        2rN9u4pXIzM0bKqrUOr5RSCaPQ==
+X-Google-Smtp-Source: AMrXdXtz1poD36W1EDSpm1yH1Dds1BxQSl4n1g/04ldKpBNrfRUwNTOHnnJ7rInk0ZnYQ8EqvBi++w==
+X-Received: by 2002:a05:600c:4e03:b0:3db:262a:8ef with SMTP id b3-20020a05600c4e0300b003db262a08efmr36811883wmq.38.1674992194394;
+        Sun, 29 Jan 2023 03:36:34 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f12-20020adfdb4c000000b002bfb1de74absm8953897wrj.114.2023.01.29.03.33.07
+        by smtp.gmail.com with ESMTPSA id i6-20020adff306000000b002425be3c9e2sm8949557wro.60.2023.01.29.03.36.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Jan 2023 03:33:08 -0800 (PST)
-Message-ID: <e4f11bda-32c1-fa9d-39d7-402e55ff1d22@linaro.org>
-Date:   Sun, 29 Jan 2023 12:33:06 +0100
+        Sun, 29 Jan 2023 03:36:33 -0800 (PST)
+Message-ID: <86bd229e-9ac3-2a3b-b0a9-4dbc462a3888@linaro.org>
+Date:   Sun, 29 Jan 2023 12:36:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/4] dt-bindings: hid: Add CP2112 HID USB to SMBus Bridge
+Subject: Re: [PATCH v6 1/9] media: dt-bindings: Add OV5670
 Content-Language: en-US
+To:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
+        Luca Weiss <luca@z3ntu.xyz>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        laurent.pinchart@ideasonboard.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230126165909.121302-1-jacopo.mondi@ideasonboard.com>
+ <20230126165909.121302-2-jacopo.mondi@ideasonboard.com>
+ <482b464b-c5fb-8af2-b0f7-4388fccea3fd@linaro.org>
+ <20230127181435.3d5rnrg5omxhn6l7@uno.localdomain>
+ <00139f11-76b0-138a-2f7b-c67d149eb25e@linaro.org>
+ <Y9Q2T3h50eudVbbb@valkosipuli.retiisi.eu>
+ <042332a6-3407-2c75-362c-db7b922bd99f@linaro.org>
+ <20230128095831.k7ywrlbmiesaewgg@uno.localdomain>
+ <Y9Tz8AWds51vGgsM@valkosipuli.retiisi.eu>
+ <20230128110311.bpm6btxgtp5wsmfq@uno.localdomain>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Danny Kaehn <kaehndan@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        benjamin.tissoires@redhat.com
-Cc:     devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-References: <20230128202622.12676-1-kaehndan@gmail.com>
- <20230128202622.12676-2-kaehndan@gmail.com>
- <fa320b2c-5cf5-c10a-ba63-17ccb5c992ad@linaro.org>
-In-Reply-To: <fa320b2c-5cf5-c10a-ba63-17ccb5c992ad@linaro.org>
+In-Reply-To: <20230128110311.bpm6btxgtp5wsmfq@uno.localdomain>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/01/2023 12:05, Krzysztof Kozlowski wrote:
-> On 28/01/2023 21:26, Danny Kaehn wrote:
->> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
->>
-> Thank you for your patch. There is something to discuss/improve.
+On 28/01/2023 12:03, Jacopo Mondi wrote:
+> Since I got the attention of both of you, let me point out another
+> issue I'm facing.
 > 
->> The binding allows describing the chip's gpio and i2c controller in DT
->> using the subnodes named "gpio" and "i2c", respectively. This is
->> intended to be used in configurations where the CP2112 is permanently
->> connected in hardware.
->>
->> Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
->> ---
->>  .../bindings/hid/silabs,cp2112.yaml           | 82 +++++++++++++++++++
+> We also have video-interface-devices.yaml which lists properties for
+> the device node and not for the endpoints.
 > 
-> There is no "hid" directory, so I think such devices where going to
-> different place, didn't they?
+> video-interface-devices lists properties that should be all optionally
+> accepted, as they can potentially apply to all sensors (things like
+> rotation, orientation, lens-focus, flash-leds are valid for all
+> devices)
 > 
->>  1 file changed, 82 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/hid/silabs,cp2112.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/hid/silabs,cp2112.yaml b/Documentation/devicetree/bindings/hid/silabs,cp2112.yaml
->> new file mode 100644
->> index 000000000000..49287927c63f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/hid/silabs,cp2112.yaml
->> @@ -0,0 +1,82 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/hid/silabs,cp2112.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: CP2112 HID USB to SMBus/I2C Bridge
->> +
->> +maintainers:
->> +  - Danny Kaehn <kaehndan@gmail.com>
->> +
->> +description:
->> +  This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+> Being properties for the device node they should be specified in the
+> schema top-level and I see a few schema that do that by
 > 
-> s/This is/CP2112 is/
+>         allOf:
+>           - $ref: /schemas/media/video-interface-devices.yaml#
 > 
->> +  While USB devices typically aren't described in DeviceTree, doing so with the
->> +  CP2112 allows use of its i2c and gpio controllers with other DT nodes when
->> +  the chip is expected to be found on a USB port.
+> However top level schemas usually specify
 > 
-> Drop these three and replace with description of the hardware.
+>         additionalProperties: false
 > 
->> +
->> +properties:
->> +  compatible:
->> +    const: usb10c4,ea90
+> Which means each sensor schema has to list the properties it accepts from
+> video-interface-devices.yaml. It's easy to verify this just by
+> adding "orientation" to the example in a schema that refers to
+> video-interface-devices.yaml and see that the bindings validation
+> fails (see below)
 > 
-> So this is an USB device, so I guess they all go to usb?
-> 
-> Missing blank line.
-> 
->> +  reg:
->> +    maxItems: 1
->> +    description: The USB port number on the host controller
-> 
-> Blank line
-> 
->> +  i2c:
->> +    $ref: /schemas/i2c/i2c-controller.yaml#
-> 
-> This is not specific enough. What controller is there?
+> TL;DR is there a way to tell in a schema with a top-level
+> "additionalProperties: false" that all properties from a referenced
+> schema are accepted ?
 
-OK, assuming this is tightly wired (with cp2112 I2C controller), then
-the compatible could be skipped as it is inferred from parent one. Yet
-still you need description and unevaluatedProperties.
+No, because this would make it exactly the same as
+unevaluatedProperties, so we would have two keywords with same meaning.
 
-> 
-> Missing unevaluatedProperties: false, anyway.
-> 
->> +  gpio:
->> +    $ref: /schemas/gpio/gpio.yaml#
-> 
-> Same comments.
-
-Description, unevaluatedProperties and constraints on properties (line
-names, reserved ranges, ranges).
-
-
-
-> 
->> +
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/input/input.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    usb1 {
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
-> 
-> Drop, not related.
-> 
->> +
->> +      usb@1 {
->> +        compatible = "usb424,2514";
->> +        reg = <1>;
->> +
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        device@1 {	/* CP2112 I2C Bridge */
->> +          compatible = "usb10c4,ea90";
->> +          reg = <1>;
->> +
->> +          cp2112_i2c0: i2c {
-> 
-> Drop unneeded labels.
-> 
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +            /* Child I2C Devices can be described as normal here */
-
-Drop also this comment.
+https://lore.kernel.org/all/c2740d66-b51f-efc2-6583-a69bde950c68@linaro.org/
 
 Best regards,
 Krzysztof
