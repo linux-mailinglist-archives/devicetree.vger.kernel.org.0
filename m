@@ -2,103 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30B4067FF8A
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 15:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEB3F67FFB5
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 15:59:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbjA2OcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 09:32:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35326 "EHLO
+        id S235051AbjA2O7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 09:59:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234930AbjA2OcA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 09:32:00 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F6E7A5DF;
-        Sun, 29 Jan 2023 06:31:59 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id mc11so2755321ejb.10;
-        Sun, 29 Jan 2023 06:31:59 -0800 (PST)
+        with ESMTP id S235082AbjA2O7u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 09:59:50 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C47E1448D
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 06:59:26 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id b7so8937988wrt.3
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 06:59:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SIsYvjDlZhXseIBbB+cVw5ndep5LtZPlaWmi5dbOsTU=;
-        b=MG0zYJDEuwdAIPlKTrUz/tAIjgDecO7da5aOjlPCt7ezTnZ3WgOceJliclMU9Pazqn
-         L5dGHo3y0fEB15rgAiisrsMFa+3jXGtLedc0ONf9sBkC0778amcL2vHCDKkUxC4jdhMT
-         L0rdAhvn8wVieQsB1oAkRsDJ3Nm+CF1BtUuyHf7VPOdNSRzLqHzgv/SclP4Frd+cOG6i
-         X2ENBpIDZWQgCSXsc7QISY2Rh49PaEbED3Zf2tNTKbt5TzReV7RmffSXlgodgbATqjEb
-         MHDIrbXq6HkYyWVfAE2XkUFSTeoREPo5WWPDuDI6ENlcV3w93U76jE0ms0yYIo2l/e8u
-         a3Ew==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pkYdbcUfukIthtd0r0b7QQIU7hJvHQCUD0UgIfwX48g=;
+        b=Rgf5I6a5W6LV986SXUsrBWelksbM0i4FXT1HC97i/SSzvpCaZbPRbBo9DZv/bTM0eh
+         dteXweklQFLuPQWCS4LQDxr0mBXcNgzQ4t8Frm3wZfaJ7qJlrlwj6U/54IY1HWdRXAoT
+         938j3DbLNIq72jEZPVDOxIw/xTwiIX522fIFHn5Eff19qpTfJMh6hOfdJKvOuJ7zQZB2
+         oKw7FZ2nOO0gIL2xnBsFuYW4xj9ulnYFROKpTxPDGJcJuAeW+fVrPvD0biHPQSpoeZdg
+         eIpkqPsunRxZnVl3lAzj9u696I97dhkjFd5FQ0qBHqS5Js2fky1dTo7p0hyhJB+7m8bQ
+         Kydg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SIsYvjDlZhXseIBbB+cVw5ndep5LtZPlaWmi5dbOsTU=;
-        b=eNZ/LPmy6Syn9HfFVfk18QKFSYvwkMcqaERiZO7XwFXfzZh5Xz0wNuAudieDZBuIQ6
-         7NiTt4BrRZp1C1COF5eLqQCIlpjgfvzlowH2X9IqE2zMWh0gnLuY1uPitWenfO44B1Pz
-         72nZU3gIAVT4C9vdwXnArva6ND1zcOJ+qjOpO+6/PIbCRbPS3kWNUxV4r/d7qtkMpv/r
-         K1OqBmaiXk+ChYDkKHL+A3HY4MfB9A/kMTuwT81oN5HuJzdsC62gycCJ5ftoxhca6NRb
-         A0gF1lWsY6ZyzK6Nr8zYjDJ2UNGjoU1lOHyX3vKkrU6kNPAc8J8rolIBt4mFA8nc3PWJ
-         KVXA==
-X-Gm-Message-State: AO0yUKXCWCB+00PJ54V3h4DYqWPAqKh4Gq7KAPBXGoM0bkXHg299flOq
-        HihDs7DcBC4nB/Vlgox8ou0=
-X-Google-Smtp-Source: AK7set9Opdxx1Q5nZgj4I7SG11bJhP2LKEKpWGGYInJD7QBsb0eZzG8RWYkwDjUBL0J/cY+nvl432Q==
-X-Received: by 2002:a17:907:6e90:b0:887:915d:7502 with SMTP id sh16-20020a1709076e9000b00887915d7502mr2229039ejc.31.1675002717970;
-        Sun, 29 Jan 2023 06:31:57 -0800 (PST)
-Received: from localhost.localdomain (83.6.123.74.ipv4.supernova.orange.pl. [83.6.123.74])
-        by smtp.gmail.com with ESMTPSA id jr23-20020a170906515700b0086f4b8f9e42sm5410128ejc.65.2023.01.29.06.31.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Jan 2023 06:31:57 -0800 (PST)
-From:   Maya Matuszczyk <maccraft123mc@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pkYdbcUfukIthtd0r0b7QQIU7hJvHQCUD0UgIfwX48g=;
+        b=4gBzmVsibHCPyDZvvLAt23VENVrya5uN5HPl6dwUafnOtBZny430CcRUtMAQYmswnV
+         WXxOFOxPoqoFkP6bw3W2Ppy29giCxQMrZmEJXi7NJY3qjB2hQofV6mMYY+z2UlKW3d3N
+         E1C/ILzxOa37ZV1genoC/gIx5GU2v1DgNjZC4ntqcAvMeb41vXncTBo8Zp9on+zlYSFv
+         ePxNodZ7CbvlAg5b1hTpc6rrvBOAiaTUEiRu9wkNneYN8RaExxt7E7+o+i/GYgOV2wIo
+         SMV9mW1kqWQBTda9X74EFIAB+4bDxLebUc7hwPVDOp21BuYx7bPSF5xUXArIz1VOKDXJ
+         9zHw==
+X-Gm-Message-State: AO0yUKWW7EWk+xjbYGMqHPuhQgFNvUPQZWqyQ2M3fHMnwV/hAiNFlARA
+        +le/jGm7BCo6ttg/9HfEu0h9+Q==
+X-Google-Smtp-Source: AK7set9lhBibwCPMEZTCkQwTk/Ur2R6HM3k4cpVtVT2vBoRMKmwSGZlH4f5o5iVDq5EyI0dHIaXfOA==
+X-Received: by 2002:a05:6000:1204:b0:2bf:b33b:fb7d with SMTP id e4-20020a056000120400b002bfb33bfb7dmr17152701wrx.61.1675004356655;
+        Sun, 29 Jan 2023 06:59:16 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id e21-20020a5d5955000000b002b57bae7174sm9217250wri.5.2023.01.29.06.59.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Jan 2023 06:59:16 -0800 (PST)
+Message-ID: <19b4be07-ac5e-b4b6-acf9-621e567aa8c6@linaro.org>
+Date:   Sun, 29 Jan 2023 15:59:14 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/3] dt-bindings: display: panel: sitronix,st7701: Add
+ another panel
+To:     Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-rockchip@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: rockchip: Add display support to Odroid Go Super
-Date:   Sun, 29 Jan 2023 15:31:41 +0100
-Message-Id: <20230129143141.173413-4-maccraft123mc@gmail.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230129143141.173413-1-maccraft123mc@gmail.com>
 References: <20230129143141.173413-1-maccraft123mc@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+ <20230129143141.173413-2-maccraft123mc@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230129143141.173413-2-maccraft123mc@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Note that orientation property in ST7701 driver is currently missing,
-And that ST7701 panel driver uses different regulator names compared to
-driver for Elida KD35T133 driver.
+On 29/01/2023 15:31, Maya Matuszczyk wrote:
+> Add compatible for 854x480 Elida KD50T048A panel, found in Odroid Go Super and Odroid Go Ultra
 
-Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3326-odroid-go3.dts | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go3.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go3.dts
-index 842efbaf1a6a..1b9769ccfdeb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go3.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go3.dts
-@@ -142,7 +142,9 @@ button-sw22 {
- };
- 
- &internal_display {
--	status = "disabled";
-+	compatible = "elida,kd50t048a", "sitronix,st7701";
-+	reset-gpios = <&gpio3 RK_PC0 GPIO_ACTIVE_HIGH>;
-+	VCC-supply = <&vcc_lcd>;
- };
- 
- &rk817_charger {
--- 
-2.39.1
+> 
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> ---
+>  .../devicetree/bindings/display/panel/sitronix,st7701.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
+> index 34d5e20c6cb3..dbc92c4e26ed 100644
+> --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
+> @@ -29,6 +29,7 @@ properties:
+>        - enum:
+>            - densitron,dmt028vghmcmi-1a
+>            - techstar,ts8550b
+> +          - elida,kd50t048a
+
+Alphabetical order, please.
+
+
+Best regards,
+Krzysztof
 
