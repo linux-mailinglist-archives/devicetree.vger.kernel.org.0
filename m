@@ -2,141 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA71B67FBFC
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 01:47:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAECB67FC1B
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 02:34:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229580AbjA2ArK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Jan 2023 19:47:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38362 "EHLO
+        id S230008AbjA2BeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Jan 2023 20:34:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230302AbjA2ArH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 19:47:07 -0500
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5D451E9FC;
-        Sat, 28 Jan 2023 16:47:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674953226; x=1706489226;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=l0j7K1/L9M+f1mEpBM1Ek5xikMFJoO8xM/NLZGKxV44=;
-  b=AfhUt2FnK0shdOndFZggk49BSI/H5WajQgJt/N9O+1HoNN+IuwLWpQ1k
-   xpkBFIe8kKAkYEr4+ROYq8gWWQ1WHxqON4q/6x5sP6DErBl7PR75a9WK+
-   emVF/9YqyqQaySdmi/Nmtn750IUct/GvS28OmJSTz11OL+LYRLV4IB57Y
-   5BgMfXmBxZfJg05ilfWUIb/nubXtqmBjSk6EMqowGZaZziWXe5VJqR+78
-   HGWrVNsnIdyjD8iJAl9mKgqrJw0y9qJJPIfjQv1Cr9UzP7q3QQ9rUjSZS
-   njIIO26sPZK/U/nU5Zt+U+pcOiWvpAp60jpdJr2KHFrDoeDhfOgsXzRWt
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="325043676"
-X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
-   d="scan'208";a="325043676"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2023 16:47:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="727086438"
-X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; 
-   d="scan'208";a="727086438"
-Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 28 Jan 2023 16:47:01 -0800
-Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pLvqV-0001H4-3A;
-        Sun, 29 Jan 2023 00:46:59 +0000
-Date:   Sun, 29 Jan 2023 08:46:46 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jonathan Cormier <jcormier@criticallink.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229637AbjA2BeC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Jan 2023 20:34:02 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1934E6E90;
+        Sat, 28 Jan 2023 17:34:00 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id iv8-20020a05600c548800b003db04a0a46bso7234327wmb.0;
+        Sat, 28 Jan 2023 17:34:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IRsgsFOkDL2GeFrKorEQKN10FPDAyCyhKXv2uU/88Ko=;
+        b=dxKQuht2s4U4X2KDPzAlSyw52WRimmYQVTovbxtRZQro32CD+XMb9O+yz8R7kpRa3y
+         VQR+CWM0j+VO1lMXcYPc79YRTGc39KJSRSXI0TRXwW9Xe+pPqwfmEz7wQ6nIzmobh9/u
+         nY4UVGcu7DDVxxlsfMef3JrHlHgY2U8+gKnTMdcg9zKICO85H9mZkEuoPo+x2oPlzQMx
+         Pd//E1ZX+lCLNnl3OvfYxzbb9pYAjXWvEB+MDmjzhJOl9PRPaa4R/leWIeOhU8lo0vEM
+         oWllPU3VOWJr4DmCK7iXDWBbwLo2dtLLzXC5/HZTi+3ui0vH7bWITd+9Ly2CSktBUbfK
+         ml5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IRsgsFOkDL2GeFrKorEQKN10FPDAyCyhKXv2uU/88Ko=;
+        b=PLrCtIrIQz4w/4a2wVvsZ2TlomKKIbe2VB3X18KbTfr87FOqATXgKBzCDh0iyNprJo
+         yxW7enWcx3m0T7EtbRgGnhnDqEpmJ0Ygjv5a6bFv4Yt+g5FpUIEeak6AVFKy6GEbNV4O
+         15fXfs0+Qtop3BmbPFDmaEFISns9UOjTTYECCwlCOezJYBcmFSpVlB82Tm6cAkqmla3O
+         F3L90GZaOMLhTO+31fyZHFcyokMgsS4v5YUuRqgrW54zcIyXmMrAGzyqyk+KzQ2bGuVN
+         30Qc336naWM7OkgJz7gq7que9Y7pi9DS/DbAI/gMrhslZ+cUrBSpcHFM2Q+X4eQkK0sh
+         mmYg==
+X-Gm-Message-State: AO0yUKVSL9x/9lhFgA9HI5RSvkeBEouXWGvOAgn3MLes9XzczGhhQBzD
+        peAhLVCuGZHm67mN385u+g2ajor0HN4=
+X-Google-Smtp-Source: AK7set/fhMPWeoK42Zs856R1cnCCgM97Pc3z2dRdP+FBZr1l7VtKrgLVMb81esrv8NGRSCJy2a3DDg==
+X-Received: by 2002:a7b:c85a:0:b0:3d2:813:138a with SMTP id c26-20020a7bc85a000000b003d20813138amr850568wml.35.1674956038257;
+        Sat, 28 Jan 2023 17:33:58 -0800 (PST)
+Received: from localhost.localdomain (143.red-83-35-57.dynamicip.rima-tde.net. [83.35.57.143])
+        by smtp.gmail.com with ESMTPSA id r7-20020a05600c434700b003dc3f195abesm5197132wme.39.2023.01.28.17.33.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Jan 2023 17:33:57 -0800 (PST)
+From:   Angel Iglesias <ang.iglesiasg@gmail.com>
+To:     linux-iio@vger.kernel.org
+Cc:     Angel Iglesias <ang.iglesiasg@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Jyri Sarha <jsarha@ti.com>
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Michael Williamson <michael.williamson@criticallink.com>,
-        Bob Duke <bduke@criticallink.com>,
-        Jonathan Cormier <jcormier@criticallink.com>
-Subject: Re: [PATCH 4/4] DRM: BRIDGE: TFP410: If connected, use I2C for
- polled HPD status.
-Message-ID: <202301290803.ouS19eab-lkp@intel.com>
-References: <20230125-tfp410_i2c-v1-4-66a4d4e390b7@criticallink.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/7] Add support for pressure sensor Bosch BMP580
+Date:   Sun, 29 Jan 2023 02:33:02 +0100
+Message-Id: <cover.1674954271.git.ang.iglesiasg@gmail.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230125-tfp410_i2c-v1-4-66a4d4e390b7@criticallink.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
+This patchset adds support for the new pressure sensors BMP580 extending
+the bmp280 driver.
 
-Thank you for the patch! Perhaps something to improve:
+Patch 1 introduces a minor refactor of the driver structure to change how
+the device matching and driver initialization is performed. In place of
+the chips ids, the driver_data now contains a pointer to its chip_info.
+To perform this change, a series of declarations previously on the core
+file were migrated to the shared header file, to allow access to specific
+fields on the chip_info on the I2C and SPI drivers. This change is
+required because BMP380 and BMP580 have the same chip_id and values would
+collide using the chip_id as the driver_data value.
+Patch 2 introduces new preinit callback and unifies init logic across all
+supported variants.
+Patch 3 made calibration callback function optional.
+Patch 4 deletes misleading i2c reference on bmp280 Kconfig entry.
+Patch 5 extends the bmp280 driver with the new logic to read measurements
+and configure the operation parameters for the BMP580 sensors.
+Patch 6 updates the devicetree binding docs with the new sensor id.
+Patch 7 adds the NVMEM operations to read and program the NVM user range
+contained in the non-volatile memory of the BMP580 sensors.
 
-[auto build test WARNING on 93f875a8526a291005e7f38478079526c843cbec]
+Changes in v3:
+* Refactor driver structure to use chip_info structs as driver_data and
+  updated i2c and spi implementations device match codepaths.
+* Deleted Kconfig driver title misleading i2c reference.
+* Made calibration reading optional as a prerequisite patch in preparation
+  for the bmp580 built in compensation.
+* Break command helper function in soft-reset helper function and NVM
+  operation helper.
+* Fixed minor styling issues thorough patches.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Cormier/dt-bindings-display-bridge-tfp410-Add-tfp410-i2c-example/20230128-183627
-base:   93f875a8526a291005e7f38478079526c843cbec
-patch link:    https://lore.kernel.org/r/20230125-tfp410_i2c-v1-4-66a4d4e390b7%40criticallink.com
-patch subject: [PATCH 4/4] DRM: BRIDGE: TFP410: If connected, use I2C for polled HPD status.
-config: i386-randconfig-a006 (https://download.01.org/0day-ci/archive/20230129/202301290803.ouS19eab-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/c4659fa4c02b62087c095ca99978e5eac8b490de
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jonathan-Cormier/dt-bindings-display-bridge-tfp410-Add-tfp410-i2c-example/20230128-183627
-        git checkout c4659fa4c02b62087c095ca99978e5eac8b490de
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/bridge/
+Changes in v2:
+* For patch 3, fixed missing retcodes reported by the kernel test robot.
+* For patch 5, fixed logic paths that left the sensor mutex locked
+  reported by the kernel test robot.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+Angel Iglesias (7):
+  iio: pressure: bmp280: Use chip_info pointers for each chip as driver
+    data
+  iio: pressure: bmp280: Add preinit callback
+  iio: pressure: bmp280: Make read calibration callback optional
+  iio: pressure: Kconfig: Delete misleading I2C reference on bmp280
+    title
+  iio: pressure: bmp280: Add support for new sensor BMP580
+  dt-bindings: iio: pressure: bmp085: Add BMP580 compatible string
+  iio: pressure: bmp280: Add nvmem operations for BMP580
 
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/bridge/ti-tfp410.c:111:6: warning: unused variable 'val' [-Wunused-variable]
-           u32 val;
-               ^
-   1 warning generated.
+ .../bindings/iio/pressure/bmp085.yaml         |   2 +
+ drivers/iio/pressure/Kconfig                  |   6 +-
+ drivers/iio/pressure/bmp280-core.c            | 762 ++++++++++++++----
+ drivers/iio/pressure/bmp280-i2c.c             |  45 +-
+ drivers/iio/pressure/bmp280-regmap.c          |  60 ++
+ drivers/iio/pressure/bmp280-spi.c             |  47 +-
+ drivers/iio/pressure/bmp280.h                 | 273 ++++++-
+ 7 files changed, 958 insertions(+), 237 deletions(-)
 
 
-vim +/val +111 drivers/gpu/drm/bridge/ti-tfp410.c
-
-   106	
-   107	static enum drm_connector_status
-   108	tfp410_connector_detect(struct drm_connector *connector, bool force)
-   109	{
-   110		struct tfp410 *dvi = drm_connector_to_tfp410(connector);
- > 111		u32 val;
-   112		unsigned int ret;
-   113	
-   114		if (dvi->i2c) {
-   115			ret = regmap_test_bits(dvi->regmap, TFP410_REG_CTL_2_MODE, TFP410_BIT_HTPLG);
-   116			if (ret < 0)
-   117				dev_err(dvi->dev, "%s failed to read HTPLG bit : %d\n", __func__, ret);
-   118			else
-   119				return ret ? connector_status_connected : connector_status_disconnected;
-   120		}
-   121	
-   122		return drm_bridge_detect(dvi->next_bridge);
-   123	}
-   124	
-
+base-commit: 354f23ac2c8703d170354577738edad159a7d37b
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.39.1
+
