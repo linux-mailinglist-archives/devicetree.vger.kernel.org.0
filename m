@@ -2,83 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50D2C67FD50
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 08:09:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E30B167FDAE
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 09:44:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231648AbjA2HJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 02:09:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46728 "EHLO
+        id S231373AbjA2Io1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 03:44:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231417AbjA2HJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 02:09:52 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63BBD22A12;
-        Sat, 28 Jan 2023 23:09:50 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DFB1760C49;
-        Sun, 29 Jan 2023 07:09:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCCEDC433D2;
-        Sun, 29 Jan 2023 07:09:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1674976189;
-        bh=5QzWA80JnAMHP8PX2TMVNUHFE4JYQUNbxY2QalPX/4w=;
+        with ESMTP id S230238AbjA2Io0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 03:44:26 -0500
+X-Greylist: delayed 374 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 29 Jan 2023 00:44:25 PST
+Received: from gofer.mess.org (gofer.mess.org [IPv6:2a02:8011:d000:212::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82B3B195
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 00:44:25 -0800 (PST)
+Received: by gofer.mess.org (Postfix, from userid 1000)
+        id BF820100065; Sun, 29 Jan 2023 08:38:06 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
+        t=1674981486; bh=nFCgRLzt2RwhOcZeAYZUtkoppohSIfqzgQUjFWAep0I=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rhzlM/PXVF3UGJ8Gzuu6E/mwYY6fuDkK7gh6hj+7cnJUYwy65c8kVUrOxYUdB0R4/
-         jEQuUO6poSKB7P3QP3myRBJEg0gNKAUCmXILtzf5TOnl0yWPBWQPVlO/sZc4XuQxmF
-         RngB74fzeURIwYGOagNvLrAuw+DDA5Ht9VXJ85Wo=
-Date:   Sun, 29 Jan 2023 08:09:46 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Zhou Furong <furong.zhou@linux.intel.com>
-Cc:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Thinh.Nguyen@synopsys.com,
-        broonie@kernel.org, bgoswami@quicinc.com, tiwai@suse.com,
-        robh+dt@kernel.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-Subject: Re: [RFC PATCH v2 07/22] ASoC: Add SOC USB APIs for adding an USB
- backend
-Message-ID: <Y9YbumlV9qh+k68h@kroah.com>
-References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
- <20230126031424.14582-8-quic_wcheng@quicinc.com>
- <Y9UiiMbJFjkzyEol@kroah.com>
- <7c1d80b6-5db3-9955-0a67-908455bd77fa@linux.intel.com>
+        b=IVL6EWyl0UNgAEvxfgrwtF5P37oAUkXsipKUcmu6Oir9pbpCtXo4nE+NWp8uWZCXB
+         BryOaQeQ7lrUJ5hOGSALefkVVzK6+Yq5lZr1ERxqe1h2pqWlgI0KM8vUQEL1nb+fIO
+         x08q95u5bT1j/oloDKh5w/fBruj3byJEm4AOyVgciAwmrcC+7YsGEttoIGVmbx8hQB
+         dm4zV5x7K0bbAEAqsda5GjlW13LhGwFAzq0kNJvt1VjUI1uvP03hvIrxEDdE1gDTH6
+         SRBm41PmoGlI0wWVf1e3m5TH8GJgAzLiXK44SfcCNMWyIP4ZaJhcpevoYEwIBwhilB
+         V7YyyG8fVgRqw==
+Date:   Sun, 29 Jan 2023 08:38:06 +0000
+From:   Sean Young <sean@mess.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] media: rc: add keymap for Beelink Mini MXIII remote
+Message-ID: <Y9YwbiJz9vOBejdL@gofer.mess.org>
+References: <20230128034117.3983105-1-christianshewitt@gmail.com>
+ <6e953652-4a24-6f3c-74e7-07c25fa1c6c1@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7c1d80b6-5db3-9955-0a67-908455bd77fa@linux.intel.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <6e953652-4a24-6f3c-74e7-07c25fa1c6c1@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 29, 2023 at 02:54:43PM +0800, Zhou Furong wrote:
-> 
-> 
-> > > +void *snd_soc_usb_get_priv_data(struct device *usbdev)
-> > > +{
-> > > +	struct snd_soc_usb *ctx;
-> > > +
-> > > +	if (!usbdev)
-> > > +		return NULL;
+On Sat, Jan 28, 2023 at 11:11:32AM +0100, Krzysztof Kozlowski wrote:
+> On 28/01/2023 04:41, Christian Hewitt wrote:
+> > Add a keymap and bindings for the simple IR (NEC) remote used with
+> > the Beelink Mini MXIII Android STB device.
 > > 
-> > How could usbdev ever be NULL?
-> The method is exported to public, valid check should be reasonable
-> as someone may call it by mistake
+> > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> > ---
+> >  .../devicetree/bindings/media/rc.yaml         |  1 +
+> >  drivers/media/rc/keymaps/Makefile             |  1 +
+> >  drivers/media/rc/keymaps/rc-beelink-mxiii.c   | 54 +++++++++++++++++++
+> >  include/media/rc-map.h                        |  1 +
+> >  4 files changed, 57 insertions(+)
+> >  create mode 100644 drivers/media/rc/keymaps/rc-beelink-mxiii.c
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/rc.yaml b/Documentation/devicetree/bindings/media/rc.yaml
+> > index 266f1d5cae51..f390a5d2c82d 100644
+> > --- a/Documentation/devicetree/bindings/media/rc.yaml
+> > +++ b/Documentation/devicetree/bindings/media/rc.yaml
+> > @@ -39,6 +39,7 @@ properties:
+> >        - rc-avertv-303
+> >        - rc-azurewave-ad-tu700
+> >        - rc-beelink-gs1
+> > +      - rc-beelink-mxiii
+> 
+> Bindings are separate patches. Didn't you get such feedback already?
 
-We do not protect the kernel from itself like this, no need to check
-things that should never happen.  If the caller gets it wrong, their
-code will break :)
+The only change for new keymaps is an added entry to the rc-map-name enum.
+In the past, new keymaps have been accepted with that single line in the
+same commit.
 
-thanks,
 
-greg k-h
+Sean
