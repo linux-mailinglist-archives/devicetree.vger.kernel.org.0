@@ -2,80 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0EAE67FE97
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 12:36:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E03D867FE9A
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 12:40:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229980AbjA2Lgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 06:36:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52256 "EHLO
+        id S230247AbjA2LkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 06:40:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbjA2Lgg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 06:36:36 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBEA91DB90
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 03:36:35 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id l35-20020a05600c1d2300b003dc4634a466so2206879wms.4
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 03:36:35 -0800 (PST)
+        with ESMTP id S229637AbjA2LkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 06:40:08 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 177AC1F91F
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 03:40:07 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id m15so6263077wms.4
+        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 03:40:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iV0CtKNsc1LUNsSCU8gg6eLRL99aTa/LuFSM/j2NmbU=;
-        b=V1rIs1SQsJszkNU1hmiAOlCO1pbGoG87eRwvJKl4RzAQGdjqZAnwhY4+s+P8CvzhqL
-         O+yFDiWNyLYYZiroZMyYIfp4TfzB7X04apZv98Z+J3AuHeS6Hhz0BvSjkt1Cx5G1fTOL
-         SSo0DLZgJpNXWK5ttZbp2g93GOrBTs6QZrieTnl0AGayB3pXo5//MyQNWpTOaXXrDiWb
-         XAaTEJNIM6NrF6NXyQybJiofFH/TW3RDkaybqGSVMGkOpWqMR9AnAI901Io76eNCKFG5
-         0b56ZwSWNts7+oCgzIM7wo3hQSoz1fOm8jrPqCyMWxBDXTadFHeDvW/2asjKpaOOmq7h
-         e1Aw==
+        bh=NSQCOw2WSGmmTx3tC+mDOjWpJ6kOuGP8aWZB3E9pAcQ=;
+        b=EEaapLJEsGIfVt+FkG1CXj52M2eGAyq5ubgMGCxw+IFRVh+1oKz2IKufhaqymmBWfT
+         QplCMNZb2ds8GzZsrn4n63Vf+gwxC9a2Oj77Es7gXUfYwBKPsw1ygftnOlSVYTWF33wE
+         u64UOWpE+21Drn1gMpcw+Wso9tzNRRmGvpS+f/uvekP5lAQ4KI2deUhY7WV4iWdBb1xp
+         IuafPwFq7LKMjWrGiyUwDEXcaBKodyLbDpiP/n5OiyHT3nLnKwvLVADKCJU623W5ozU4
+         X6Z7afMfkmJL0h2HnQVA8H6+N3+LLxuZZyGx6wrL6yhsl3ECVSxvOOkQsqQ3W7XUzj2k
+         DEfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iV0CtKNsc1LUNsSCU8gg6eLRL99aTa/LuFSM/j2NmbU=;
-        b=IZoHozOz7n5LUZiKZ62eUyudv2R0FZl8ILexfAl6ACoB00bkA3KIjoacrjNR09U0z4
-         49C5obom7vGcN1uLNPrhMzHLt8g78+3S4k4FlIJJHBKdGHRp+rp5cGEw+aBh0NuULRDg
-         jGrJR2yEDkFBm9AV1Jcks+UR5ek7JOCJGtfdWD2TpsCsSXSxZUKbDiHCs4WDOnck3TtO
-         MYhaA77FxjzXMp0NvPOUu9gljvdncg/Sb+B0o0iuS83bged7+JbJax0cVgELVCDALE60
-         gcb1uP6JN84FrJhJr4BS3FgefN44e6DE8LxbzhPTY4XfFJdc3zVpqMP1N8PY/cu5641d
-         Na9Q==
-X-Gm-Message-State: AFqh2kqV5z80lkjkVYhwyOYmi5dg4ci5zItUXvwxcZSoGJy31oMQHqYr
-        2rN9u4pXIzM0bKqrUOr5RSCaPQ==
-X-Google-Smtp-Source: AMrXdXtz1poD36W1EDSpm1yH1Dds1BxQSl4n1g/04ldKpBNrfRUwNTOHnnJ7rInk0ZnYQ8EqvBi++w==
-X-Received: by 2002:a05:600c:4e03:b0:3db:262a:8ef with SMTP id b3-20020a05600c4e0300b003db262a08efmr36811883wmq.38.1674992194394;
-        Sun, 29 Jan 2023 03:36:34 -0800 (PST)
+        bh=NSQCOw2WSGmmTx3tC+mDOjWpJ6kOuGP8aWZB3E9pAcQ=;
+        b=eqgCoa5wFX+8SCE4TdUlIxEW/j+9Mk6zu+n0Utn0oGHUP3MJNPmTcpm4x6EiThYzJL
+         2+OWKRteNcpL779VggTlwNAbnZoWPNmlml+YWitox6S26+Z86gE0KQTceWJuyFicf4tx
+         hX7DN+pdFHu6r8wXnxR1wbeJ5oqfoRspAf7SX605VtpPpzHZLxYbSd0Eme4qsSoiSHNK
+         qRv18DKjhU62M6u/7/INkcUptWddR5w/KQyV1s0DDg6kmtT6NK+kwQcl6SjsnysXYD5K
+         4KjbHdHSIrLY4yXkZfFlqdgliZ8LD/6bOVgVHnSnLMDflsprLoiuzWIBWRA7n5vMvapx
+         Pc1g==
+X-Gm-Message-State: AFqh2krfRICdd91uv7LOmIFCg8YrL+qiGqjcO8AZUkmBFpxJOEk4Uw/E
+        Qq6Sgnk1ef2PNblzE3a0AAyUNg==
+X-Google-Smtp-Source: AMrXdXvc4vHqi6vmjU7hwMX93HX48RyNXbSJXfCRO2o0zsuh2GCpUWEsqPgV29m0Ae7KoJbaL/xCZw==
+X-Received: by 2002:a7b:c5d6:0:b0:3d9:fb89:4e3d with SMTP id n22-20020a7bc5d6000000b003d9fb894e3dmr48124372wmk.28.1674992405682;
+        Sun, 29 Jan 2023 03:40:05 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i6-20020adff306000000b002425be3c9e2sm8949557wro.60.2023.01.29.03.36.32
+        by smtp.gmail.com with ESMTPSA id j20-20020a05600c489400b003dc43fffff2sm4831633wmp.40.2023.01.29.03.40.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Jan 2023 03:36:33 -0800 (PST)
-Message-ID: <86bd229e-9ac3-2a3b-b0a9-4dbc462a3888@linaro.org>
-Date:   Sun, 29 Jan 2023 12:36:32 +0100
+        Sun, 29 Jan 2023 03:40:05 -0800 (PST)
+Message-ID: <b4794490-b059-373a-dec0-58fcd2344f6f@linaro.org>
+Date:   Sun, 29 Jan 2023 12:40:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v6 1/9] media: dt-bindings: Add OV5670
+Subject: Re: [PATCH v6.1] media: dt-bindings: Add OV5670
 Content-Language: en-US
 To:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
-        Luca Weiss <luca@z3ntu.xyz>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        laurent.pinchart@ideasonboard.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230126165909.121302-1-jacopo.mondi@ideasonboard.com>
- <20230126165909.121302-2-jacopo.mondi@ideasonboard.com>
- <482b464b-c5fb-8af2-b0f7-4388fccea3fd@linaro.org>
- <20230127181435.3d5rnrg5omxhn6l7@uno.localdomain>
- <00139f11-76b0-138a-2f7b-c67d149eb25e@linaro.org>
- <Y9Q2T3h50eudVbbb@valkosipuli.retiisi.eu>
- <042332a6-3407-2c75-362c-db7b922bd99f@linaro.org>
- <20230128095831.k7ywrlbmiesaewgg@uno.localdomain>
- <Y9Tz8AWds51vGgsM@valkosipuli.retiisi.eu>
- <20230128110311.bpm6btxgtp5wsmfq@uno.localdomain>
+        chiranjeevi.rapolu@intel.com, luca@z3ntu.xyz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
+        mchehab@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230126165909.121302-2-jacopo.mondi@ideasonboard.com>
+ <20230128112736.8000-1-jacopo.mondi@ideasonboard.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230128110311.bpm6btxgtp5wsmfq@uno.localdomain>
+In-Reply-To: <20230128112736.8000-1-jacopo.mondi@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,42 +78,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/01/2023 12:03, Jacopo Mondi wrote:
-> Since I got the attention of both of you, let me point out another
-> issue I'm facing.
+On 28/01/2023 12:27, Jacopo Mondi wrote:
+> Add the bindings documentation for Omnivision OV5670 image sensor.
 > 
-> We also have video-interface-devices.yaml which lists properties for
-> the device node and not for the endpoints.
-> 
-> video-interface-devices lists properties that should be all optionally
-> accepted, as they can potentially apply to all sensors (things like
-> rotation, orientation, lens-focus, flash-leds are valid for all
-> devices)
-> 
-> Being properties for the device node they should be specified in the
-> schema top-level and I see a few schema that do that by
-> 
->         allOf:
->           - $ref: /schemas/media/video-interface-devices.yaml#
-> 
-> However top level schemas usually specify
-> 
->         additionalProperties: false
-> 
-> Which means each sensor schema has to list the properties it accepts from
-> video-interface-devices.yaml. It's easy to verify this just by
-> adding "orientation" to the example in a schema that refers to
-> video-interface-devices.yaml and see that the bindings validation
-> fails (see below)
-> 
-> TL;DR is there a way to tell in a schema with a top-level
-> "additionalProperties: false" that all properties from a referenced
-> schema are accepted ?
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> ---
+> v6->6.1
+> - Use additionalProperties: false for endpoint properties from
+>   video-interfaces.yaml
+> - List 'remote-endpoint' among the accepted endpoint properties
+>   now that we use additionalProperties: false
 
-No, because this would make it exactly the same as
-unevaluatedProperties, so we would have two keywords with same meaning.
+b4 diff '20230128112736.8000-1-jacopo.mondi@ideasonboard.com'
+Could not create fake-am range for lower series v1
 
-https://lore.kernel.org/all/c2740d66-b51f-efc2-6583-a69bde950c68@linaro.org/
+Can you send patches in a way it does not break out workflows? Why
+making our review process more difficult?
 
 Best regards,
 Krzysztof
