@@ -2,119 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49D7767FEE0
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 13:31:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45F9D67FEEF
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 13:37:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233532AbjA2MbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 07:31:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35532 "EHLO
+        id S234766AbjA2MhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 07:37:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232135AbjA2MbK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 07:31:10 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A59522006
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 04:31:05 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id t7so408340wrp.5
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 04:31:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2oMMCjG7xw4KeHO7R13X8iVeuFR01DNR9QgxRsd6r90=;
-        b=MJaSgPTYB14TsGSK1qWSJSFkz7r+czxV2yh780u0A+e7b+zJlI5RiTeP63VhOlnKyj
-         6mBoI51wz0aG77IeuyOPGpWILfiuVjzTpIfywxSwvqsEAuxzBgOnVPtrogCbTXnzj1zA
-         3CF48PGScvJIG3KBTMTklUDDQY8ueHovYutTuW1J4cyyZp2mLn9lHQs4XZa/ApYhCOlI
-         xZgcrIcjvWiyD3AwOcxX3dzvBds/Dm0hm/dafvyGv4bl+GtqzrmcfnzU+MKBUjltwJrD
-         v+FRUPc45z7r6PWJwHQTQR0qFjgtSlJg4zF23HopDNLNwKLAFao9Peiyso9KAVuPv9Dl
-         XRIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2oMMCjG7xw4KeHO7R13X8iVeuFR01DNR9QgxRsd6r90=;
-        b=vieCR/VAPPeJIZzdISUHlypDB/D0ZMt2ncDWGnKBtisFLtOn/rcez/FcQQlTIlV4FC
-         fy68bu2BO3/bU/rMel+ik/nSbfFrX8WgOAtw54X7/466t73/zrR/HpP63y4/8ZxWw0+0
-         5iYJPgVQBF4iAqFTcSmVl5b5pEUw7l9rGW6VtNG1WCoETj8eJwo2qDcrT+LDCLM48XZq
-         An22wBbBHchUSDtcHAGE/Iz5REcTvES0IgOXCVNe7bqTq+RLKurXGSChBKMJtDr85sUX
-         gFbRHn90ujSn8lemcyToNXmHf/6wRpo6FCDtB+NqOa0CDRxeCHuxT6116cHutn6Vh/q4
-         6z3w==
-X-Gm-Message-State: AO0yUKXRneY7Z4Rt0uICugBwN3Fg/Pi9InLFpGo9ZOVV18Dcslsm4Qdn
-        YQZcTH0ouhxPckR7mavfuNQ6Ag==
-X-Google-Smtp-Source: AK7set+N19HuPpZ4vhIU3bm1no6GXtfmLeR0XP24mRXinhmCJgsfNb1JKf4KjTM9OAsNlCC8aatg5A==
-X-Received: by 2002:adf:cf08:0:b0:2bf:bbd1:1db3 with SMTP id o8-20020adfcf08000000b002bfbbd11db3mr14020755wrj.44.1674995463769;
-        Sun, 29 Jan 2023 04:31:03 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g6-20020adfe406000000b002bf95500254sm9137097wrm.64.2023.01.29.04.31.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Jan 2023 04:31:03 -0800 (PST)
-Message-ID: <0f1fb9df-65e7-d779-e725-84ddd8c5bb1e@linaro.org>
-Date:   Sun, 29 Jan 2023 13:31:01 +0100
+        with ESMTP id S231796AbjA2MhX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 07:37:23 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33C2222017;
+        Sun, 29 Jan 2023 04:37:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
+        t=1674995834; bh=QRPsmyE9hY4+eTuGgSF7yy6Em/Ww1XWsbL3ob97mB58=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=EbGyLSd1N77q6W1eb+b/y8xQPeuTipZbvzP2VjHYJGv3CC/b9eEECECDI3y/vib/y
+         B6ztV3BAR3+x0mRuyVDPKTCML0YC5MUkReVvimq+yEbYx5gCz5FKvBg4x9A1mDHgr4
+         ucAMee2p7IMuhTsTtumqT47D8vTdRf92W5rc28JedF+ymc+wUsUczQ9GYWIc9Rt8wG
+         N8CP1h97G0QsHWWZayFaJfXpR/dwRsONzuH3q9DawvY78ufgQgOt6XyBdRVYXBPnda
+         cdlwGxhnzxPy11hhiTGj79qcCbptRgzhcmzaxoEHJLi4I4G4JXLu5aYhxqwm1zN5bo
+         MCc3zKBGFNmXQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([95.223.44.193]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MmlXA-1ouAlI2CIg-00jqxS; Sun, 29
+ Jan 2023 13:37:14 +0100
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     devicetree@vger.kernel.org
+Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: bus: moxtet: Fix reference to SPI peripheral DT properties
+Date:   Sun, 29 Jan 2023 13:35:53 +0100
+Message-Id: <20230129123553.1284503-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v6.1] media: dt-bindings: Add OV5670
-Content-Language: en-US
-To:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc:     chiranjeevi.rapolu@intel.com, luca@z3ntu.xyz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
-        mchehab@kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230126165909.121302-2-jacopo.mondi@ideasonboard.com>
- <20230128112736.8000-1-jacopo.mondi@ideasonboard.com>
- <b4794490-b059-373a-dec0-58fcd2344f6f@linaro.org>
- <20230129121132.uamuvywdsuah5ivn@uno.localdomain>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230129121132.uamuvywdsuah5ivn@uno.localdomain>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:b/AImXyzfz4phEg81jcR9HxbORyzvoYrvw6O1tPrYE1fM4VYvt3
+ ZvdXP1tEbXAa+c0ybjhpwdEr79xvHUrJNhp6bRPnrEC8QiPF6YTOsQc+lZD4pRYRIMiXC1y
+ stVg7dyvpbQY7+r4JrORz8yPWxbyKgmfLSWjs0f42lWwAaBOoVxUxzg8LxRwnmrn4cVQN6W
+ 0CT6EUstm4CyawMPUE1pg==
+UI-OutboundReport: notjunk:1;M01:P0:AMGUonl3rdA=;+R99m5j6S+PzYh/yIJ7Spq3tMqN
+ 6i9EKEnP5026bhc7V2PoeqYWWYjP+cnSPPkWMAPd13DzJCoyQZ2lqgepxn8ctdwDDi308w+rX
+ Mt0BhoaA23OBv8f9zFH9AfareIVQEy/az1n7w+dVmMGxsdJ9t6AORD/fOTTwPjdb2nP+VfUNw
+ f/0f+c4x8U0/2ht+wYQX3NpHeabxZodgC62fsc1oLRrdlrPIdmAYrSgQ/Ja2qJmOMpuQvjCQ0
+ 2gXhrPYRXPW2wFjwuWZvGcYZsUCkV5NCHGg0v6cgE15MlNRQAHYyrLSmZEQsyDSaIHiL4og/p
+ kCvhz8ZB914+/No7ljVQeK7bZVQuKCe188XvWwJdvReGtKluvVxkxQj7tCc52P/A8kS5kGNJu
+ dCJOPFQZA7lPYo8jUDIJOpu/+zSj1/PnSTutV5ublO6+iQ5EfsxMpbQDIE6246OhAPOY9L+VK
+ cNWOWpkgkQ7d3WiVb6aiqIhBvfkm3zyZIh8377jrDYoULmNP0/g6vZZMxdaxEgKjqtTeP/UG5
+ mVeGhxNf/wKcG12X3tUOf5Uag5WTix9zeRYlG3GpfzLW6ae7ivIdH4KYCKNN/0/D/Ms/j8oEt
+ BJJ9Yj1N2JN9lX13MleoFNKXviFzVhgZX3mjf7Bsp1ybBL4eg5jib2jbObv86JHCTWwcL5t8y
+ sdoOVeiycDbk8jsEYIzxZvr084evwV8AOqLYbrfH/x2F6hzoV7FbPtit53ni+fFEYJCYjOPhZ
+ V2D1rtKpPLBLYp4HUoYJHN0GF6QMsg6QmbqQq4QINA9E3/7D8qGyEG0KbF5AvoiiPZdRKi1KQ
+ MfRDv3jRJZoE2HJmFkVexCMuPWy1FHWEbBoYZP7lj9+d7eNx0yx7QeU7MrLnxCiOb+1B2hChH
+ SzLciZUokIB5p6CJkCKlW7LrlK7xUR40z26OzQXjSTYKZVFB0Rmr8lnjlyC/UWQwJbjCNBEM2
+ xV4kg3s/N5Zw4+3Y4RBxLlIOQAk=
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/01/2023 13:11, Jacopo Mondi wrote:
-> On Sun, Jan 29, 2023 at 12:40:03PM +0100, Krzysztof Kozlowski wrote:
->> On 28/01/2023 12:27, Jacopo Mondi wrote:
->>> Add the bindings documentation for Omnivision OV5670 image sensor.
->>>
->>> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->>> ---
->>> v6->6.1
->>> - Use additionalProperties: false for endpoint properties from
->>>   video-interfaces.yaml
->>> - List 'remote-endpoint' among the accepted endpoint properties
->>>   now that we use additionalProperties: false
->>
->> b4 diff '20230128112736.8000-1-jacopo.mondi@ideasonboard.com'
->> Could not create fake-am range for lower series v1
->>
->> Can you send patches in a way it does not break out workflows? Why
->> making our review process more difficult?
-> 
-> Because it's a nit on a 10 patches series with no other changes
-> requested ?
-> 
-> What is difficult exactly ?
+spi-bus.txt has been converted to YAML and the peripheral properties
+have been moved to spi-controller.yaml.
 
-I wrote above what's difficult.
+Fixes: 0a1b929356830 ("spi: Add YAML schemas for the generic SPI options")
+Fixes: 8762b07c95c18 ("spi: dt-bindings: add schema listing peripheral-spe=
+cific properties")
+Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+=2D--
+ Documentation/devicetree/bindings/bus/moxtet.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
-> I see several patches in linux-media being sent inline to a previous
-> version for small fixes if the only required changed is a nit like
-> this one.
+diff --git a/Documentation/devicetree/bindings/bus/moxtet.txt b/Documentat=
+ion/devicetree/bindings/bus/moxtet.txt
+index fb50fc8653368..d6bf929c00c4e 100644
+=2D-- a/Documentation/devicetree/bindings/bus/moxtet.txt
++++ b/Documentation/devicetree/bindings/bus/moxtet.txt
+@@ -11,7 +11,7 @@ Required properties:
+  - #interrupt-cells	: Has to be 1
 
-If you sent it as separate v7 would be fine, but:
-1. Threading is wrong - it's buried in other patch.
-2. Version is wrong - you did there changes, not nits. There are no
-point versions...
+ For other required and optional properties of SPI slave nodes please refe=
+r to
+-../spi/spi-bus.txt.
++../spi/spi-peripheral-props.yaml.
 
-Best regards,
-Krzysztof
+ Required properties of subnodes:
+  - reg			: Should be position on the Moxtet bus (how many Moxtet
+=2D-
+2.39.0
 
