@@ -2,115 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEB3F67FFB5
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 15:59:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B212C67FFDA
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jan 2023 16:21:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235051AbjA2O7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 09:59:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44138 "EHLO
+        id S230076AbjA2PVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 10:21:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235082AbjA2O7u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 09:59:50 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C47E1448D
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 06:59:26 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id b7so8937988wrt.3
-        for <devicetree@vger.kernel.org>; Sun, 29 Jan 2023 06:59:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pkYdbcUfukIthtd0r0b7QQIU7hJvHQCUD0UgIfwX48g=;
-        b=Rgf5I6a5W6LV986SXUsrBWelksbM0i4FXT1HC97i/SSzvpCaZbPRbBo9DZv/bTM0eh
-         dteXweklQFLuPQWCS4LQDxr0mBXcNgzQ4t8Frm3wZfaJ7qJlrlwj6U/54IY1HWdRXAoT
-         938j3DbLNIq72jEZPVDOxIw/xTwiIX522fIFHn5Eff19qpTfJMh6hOfdJKvOuJ7zQZB2
-         oKw7FZ2nOO0gIL2xnBsFuYW4xj9ulnYFROKpTxPDGJcJuAeW+fVrPvD0biHPQSpoeZdg
-         eIpkqPsunRxZnVl3lAzj9u696I97dhkjFd5FQ0qBHqS5Js2fky1dTo7p0hyhJB+7m8bQ
-         Kydg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pkYdbcUfukIthtd0r0b7QQIU7hJvHQCUD0UgIfwX48g=;
-        b=4gBzmVsibHCPyDZvvLAt23VENVrya5uN5HPl6dwUafnOtBZny430CcRUtMAQYmswnV
-         WXxOFOxPoqoFkP6bw3W2Ppy29giCxQMrZmEJXi7NJY3qjB2hQofV6mMYY+z2UlKW3d3N
-         E1C/ILzxOa37ZV1genoC/gIx5GU2v1DgNjZC4ntqcAvMeb41vXncTBo8Zp9on+zlYSFv
-         ePxNodZ7CbvlAg5b1hTpc6rrvBOAiaTUEiRu9wkNneYN8RaExxt7E7+o+i/GYgOV2wIo
-         SMV9mW1kqWQBTda9X74EFIAB+4bDxLebUc7hwPVDOp21BuYx7bPSF5xUXArIz1VOKDXJ
-         9zHw==
-X-Gm-Message-State: AO0yUKWW7EWk+xjbYGMqHPuhQgFNvUPQZWqyQ2M3fHMnwV/hAiNFlARA
-        +le/jGm7BCo6ttg/9HfEu0h9+Q==
-X-Google-Smtp-Source: AK7set9lhBibwCPMEZTCkQwTk/Ur2R6HM3k4cpVtVT2vBoRMKmwSGZlH4f5o5iVDq5EyI0dHIaXfOA==
-X-Received: by 2002:a05:6000:1204:b0:2bf:b33b:fb7d with SMTP id e4-20020a056000120400b002bfb33bfb7dmr17152701wrx.61.1675004356655;
-        Sun, 29 Jan 2023 06:59:16 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id e21-20020a5d5955000000b002b57bae7174sm9217250wri.5.2023.01.29.06.59.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Jan 2023 06:59:16 -0800 (PST)
-Message-ID: <19b4be07-ac5e-b4b6-acf9-621e567aa8c6@linaro.org>
-Date:   Sun, 29 Jan 2023 15:59:14 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 1/3] dt-bindings: display: panel: sitronix,st7701: Add
- another panel
-To:     Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229549AbjA2PVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 10:21:14 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D43E71557E;
+        Sun, 29 Jan 2023 07:21:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
+        t=1675005665; bh=xRgh7PbWbByuQaQYTffFheMpg4Zu7Fic4S+r4wSdVRw=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=ThSei0M1nvQljzV080X0oty9H14FXdAQeZoA2Mw6aWnuxzTWg4xwfdMNtHFcIWRw+
+         53ZIvcf+/t54gavCLDIyI6jSctjETndFfR44DWFp4JrlreUZPHx2S4Zx/H5nlpjOWQ
+         NdxRV9kgRget5G9LZuBzUqagFrd2CFHEv1r7eKyffLfwcb3TVj0HHfBXqUVRbdIoEg
+         2hlZ9nMi1QnqMpTOVlZbnrY7D0B1KiK8FUiC+1uXwHjo21fYFNrZQ9TeeIAjlg+xRQ
+         EGtnogea+/bJo+HNWbjqAuHHA93d0xgFUP2mq2YPqNS4XtoFnWi+PsDzImLLxpZbc1
+         Us0N2TJogHygA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([95.223.44.193]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mq2jC-1oqiPr0q3e-00nAwo; Sun, 29
+ Jan 2023 16:21:05 +0100
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     linux-mips@vger.kernel.org
+Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-rockchip@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230129143141.173413-1-maccraft123mc@gmail.com>
- <20230129143141.173413-2-maccraft123mc@gmail.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230129143141.173413-2-maccraft123mc@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] MIPS: dts: lantiq: Remove bogus interrupt-parent; line
+Date:   Sun, 29 Jan 2023 16:20:58 +0100
+Message-Id: <20230129152059.1535947-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:79+nw1R6XzrDUiZM56FJ3RqShSSXfL5QGkYw2TG2nvX2Fn3Lfhc
+ Lr3ck/8z/+VDVpR1ruxmNKAQkTpujQjkmwFSj3QvIdBeqZIUat5MLNSCc/D+wOhwKtjKGRM
+ yPrsmNeRGlFS3dJxp2svz6SnhQh19cO7QReZrZI13BNltEDIQ6ZLb9BPjuiJ/9ZMGBAx2L7
+ 2nuvoWj5Kxiq8Z5N8FlaA==
+UI-OutboundReport: notjunk:1;M01:P0:GjLIrHJYGHI=;bZzdnh82rfg+slMLyZEISZYjev7
+ i+betdkgaSyESjBL4YtqItqH8xWRPFYNDUleTl9kR7ulLnsyOP1M2Wu1HuIroUzXmir0fdyUU
+ j7/Y6A9+Edm4jfnIdKZhaTm6Xv2dODzEgAjP4hhg7j6ISWPzAYfX0SJnIAgoAI9SMO76UVcmA
+ /l2fzTGL52BSXTaX9lvYGJHrSCQgkJhR+7woVfbw4Kyd+KR5RM7AeTnOcp4KmvVcro9vuDSh3
+ RnJgpm5e9iz+rn3ZwrWD7jk7JaYhJCzsF/6qLRa9PhVq4bKnNWK/lfM2MH8Ubiho2YEqKPgTN
+ crUn5z7GfSL57g2Oadc5e1hH79tzNIiRHk7UMEMHGgk5Hy63rObfbmKbIl///XGYZnjLbyM4P
+ Fc46SC8adAPP6k/F4b3d9Ep13dbh+2uBJQq96c8ycpL6J38tdvvGjsMp1sT0haMsHehIhOkPt
+ jQX82XOPCEdglTgGigsvSM+E2UvTcsUfMTR8bL+2mFz6hZd/FtXRo477qQfd0GTpsd9P3Eg0I
+ MhKkZ1nSZgTUF4PRmhqboa/6NOkwRWNIKhgxGVGMLtnAKHJ3xOMBylCDc4Bk6X5e1Cm+Pw16H
+ V/kvbVOMj8fuWXzleVtjSk39NZLEbJ9AgA+kubdEbnHbnZi2qVbhSNnhzjN2TUK1tuKw0LfgM
+ fay5ox2Er75EEbOobSiH9DSpsrHN3fDw7D/id5hWz4NX2G0e1TtLPTBStHy9svE+Y3lLRQv2f
+ mmP00cKwBxACoAezuESwqtLLMaqfbs6wJobn6daCXyEKnPbV4vWxT6I3XdWSje/+9tYsdCtBD
+ yhRLpWMZK0DBgB1ONmQpfN4biHz1TCKJvW/uk6zoT/k2d2RNZdSxjq4XrQJrF1pEkwZ7P6N6a
+ Zo9VCmrJCx7ivQ2yKeWgP3tbnJgtAKj6Cwwqwjd09DDtf+yO3OOjzF/o+KeLz+GLsBo21pipP
+ Nbj6dMkCm0ciI7SqB3OJ9+GG4MI=
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/01/2023 15:31, Maya Matuszczyk wrote:
-> Add compatible for 854x480 Elida KD50T048A panel, found in Odroid Go Super and Odroid Go Ultra
+Specifying interrupt-parent without a value (in other words, as a bool)
+doesn't really mean anything. Remove one such property in the Lantiq
+Danube DT, at /sram@1f000000/eiu@101000.
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
+Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+=2D--
+ arch/mips/boot/dts/lantiq/danube.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-> 
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> ---
->  .../devicetree/bindings/display/panel/sitronix,st7701.yaml       | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
-> index 34d5e20c6cb3..dbc92c4e26ed 100644
-> --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
-> @@ -29,6 +29,7 @@ properties:
->        - enum:
->            - densitron,dmt028vghmcmi-1a
->            - techstar,ts8550b
-> +          - elida,kd50t048a
-
-Alphabetical order, please.
-
-
-Best regards,
-Krzysztof
+diff --git a/arch/mips/boot/dts/lantiq/danube.dtsi b/arch/mips/boot/dts/la=
+ntiq/danube.dtsi
+index 510be63c8bdf1..7a7ba66aa5349 100644
+=2D-- a/arch/mips/boot/dts/lantiq/danube.dtsi
++++ b/arch/mips/boot/dts/lantiq/danube.dtsi
+@@ -40,7 +40,6 @@ sram@1f000000 {
+ 		eiu0: eiu@101000 {
+ 			#interrupt-cells =3D <1>;
+ 			interrupt-controller;
+-			interrupt-parent;
+ 			compatible =3D "lantiq,eiu-xway";
+ 			reg =3D <0x101000 0x1000>;
+ 		};
+=2D-
+2.39.0
 
