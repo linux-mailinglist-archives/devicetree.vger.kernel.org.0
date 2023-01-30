@@ -2,96 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C34368110D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 15:09:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E83668111C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 15:10:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237162AbjA3OJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 09:09:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51470 "EHLO
+        id S237179AbjA3OKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 09:10:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237157AbjA3OJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 09:09:44 -0500
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C2193B0F3;
-        Mon, 30 Jan 2023 06:09:41 -0800 (PST)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 003BA1C0018;
-        Mon, 30 Jan 2023 14:09:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1675087780;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=KD4t6AFD7zWRuav/9wfKI/33NlxRT+vOROmFd5NS47E=;
-        b=ldhsz/T6pvQk9zJ+osMNoqfhUEntk27/80Ft3G6zKe2Roz+Zgcx4HSuwH9VWfGvcYwxyJu
-        2Uf43LiYczJZQDCWMzegUMOZTV2SIdik3qb64ONTophqff7ObdB4h6ExKbvomDlI6ThUTA
-        67TCnClen+rBEHirq2hf333lEG1G25vOO/tx0S0Us51dcnGGQD77xjbdnrtL5p9ucchTtQ
-        qc8TMEF7BBdhaJ5chrEB/qgkpr3PgIIqcFQgYrHmqCKpbW1oBB6+kmGxZxByQLiSnuYWni
-        T8NziJRpHdFAgJl620jTp42QKKDTrxvonvf1DLsGah582qWwPbbNtshBXE9XYA==
-Date:   Mon, 30 Jan 2023 15:09:36 +0100
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S237188AbjA3OKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 09:10:04 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AAA803B658;
+        Mon, 30 Jan 2023 06:09:59 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6D11C1758;
+        Mon, 30 Jan 2023 06:10:41 -0800 (PST)
+Received: from FVFF77S0Q05N (unknown [10.57.11.245])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4A9363F885;
+        Mon, 30 Jan 2023 06:09:57 -0800 (PST)
+Date:   Mon, 30 Jan 2023 14:09:54 +0000
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Will Deacon <will.deacon@arm.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Richard Leitner <richard.leitner@skidata.com>
-Subject: Re: [PATCH v3 01/21] dt-bindings: display: tegra: add Tegra20 VIP
-Message-ID: <20230130150936.381f4008@booty>
-In-Reply-To: <e426497b-0421-1bc1-2a72-871b0e2d48a4@collabora.com>
-References: <20221229133205.981397-1-luca.ceresoli@bootlin.com>
-        <20221229133205.981397-2-luca.ceresoli@bootlin.com>
-        <e426497b-0421-1bc1-2a72-871b0e2d48a4@collabora.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU node
+Message-ID: <Y9fPsjffc7bE8ULm@FVFF77S0Q05N>
+References: <20230127174014.251539-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <OS0PR01MB592258905AC3979803C473D786CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CA+V-a8s+cZpuUXWRa573a373n7YPsHrdLnUVXHjez6O101oneQ@mail.gmail.com>
+ <OS0PR01MB5922943C1E1D9329691DB02F86CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CA+V-a8u=xmYghCtCcGg-fU02u0kcwGqeCKOs4iSfwkdUe1MbFg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8u=xmYghCtCcGg-fU02u0kcwGqeCKOs4iSfwkdUe1MbFg@mail.gmail.com>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
-
-On Wed, 25 Jan 2023 01:15:22 +0300
-Dmitry Osipenko <dmitry.osipenko@collabora.com> wrote:
-
-> On 12/29/22 16:31, Luca Ceresoli wrote:
-> > VIP is the parallel video capture component within the video input
-> > subsystem of Tegra20 (and other Tegra chips, apparently).
-> > 
-> > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
-...
-
-> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
+On Mon, Jan 30, 2023 at 02:04:44PM +0000, Lad, Prabhakar wrote:
+> Hi Mark and Will,
 > 
-> Please feel free to add my r-b to the rest of the patches. I looked
-> though them and haven't noticed anything suspicious.
+> On Fri, Jan 27, 2023 at 9:48 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> >
+> > Hi Prabhakar,
+> >
+> >
+> > > Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU node
+> > >
+> > > Hi Biju,
+> > >
+> > > Thank you for the review.
+> > >
+> > > On Fri, Jan 27, 2023 at 6:38 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > > >
+> > > > Hi Prabhakar,
+> > > >
+> > > > Thanks for the patch.
+> > > >
+> > > > > Subject: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU
+> > > > > node
+> > > > >
+> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > >
+> > > > > Enable the performance monitor unit for the Cortex-A55 cores on the
+> > > > > RZ/G2L
+> > > > > (r9a07g044) SoC.
+> > > > >
+> > > > > Signed-off-by: Lad Prabhakar
+> > > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > ---
+> > > > >  arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 5 +++++
+> > > > >  1 file changed, 5 insertions(+)
+> > > > >
+> > > > > diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > > > b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > > > index 80b2332798d9..ff9bdc03a3ed 100644
+> > > > > --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > > > +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > > > @@ -161,6 +161,11 @@ opp-50000000 {
+> > > > >               };
+> > > > >       };
+> > > > >
+> > > > > +     pmu_a55 {
+> > > > > +             compatible = "arm,cortex-a55-pmu";
+> > > > > +             interrupts-extended = <&gic GIC_PPI 7
+> > > > > + IRQ_TYPE_LEVEL_HIGH>;
+> > > >
+> > > > Just a question, Is it tested?
+> > > Yes this was tested with perf test
+> > >
+> > > > timer node[1] defines irq type as LOW, here it is high.
+> > > You are right looking at the RZG2L_InterruptMapping_rev01.xlsx this should
+> > > be LOW. (I followed the SPI IRQS where all the LEVEL interrupts are HIGH)
+> > >
+> > > > Also do we need to define (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW) as
+> > > it has 2 cores??
+> > > >
+> > > No this is not required for example here [0] where it has 6 cores.
+> >
+> > I may be wrong, That is the only example[1], where the A55 PMU per cpu interrupts and number of a55 cores in the DT
+> > are not matching.
+> >
+> Some SoCs specify the GIC_CPU_MASK_SIMPLE(x) while describing the PPI
+> interrupt for the PMU and some dont [1]. What should be the correct
+> usage when specifying the PPI interrupts for the PMU with multiple CPU
+> cores (we are using
+> arm,cortex-a55-pmu)?
+> 
+>  [1] https://elixir.bootlin.com/linux/latest/B/ident/arm%2Ccortex-a55-pmu
 
-Thanks you very much, I have applied your r-b tag to all patches except
-patch 2 where you spotted a mistake. v4 coming soon.
+This is a GICv3 system. the GICv3 interrupts binding *does not* have a cpumask,
+and it's always wrong to use GIC_CPU_MASK_SIMPLE() (or any mask, for that
+matter) for GICv3
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+The GICv2 binding has the mask, but even there it's arguably pointless.
+
+Please do not add the mask here, since it would violate the GICv3 binding.
+
+Thanks,
+Mark.
