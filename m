@@ -2,106 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 018606814AD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 16:19:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10B2F6814D0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 16:21:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231337AbjA3PTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 10:19:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60484 "EHLO
+        id S237981AbjA3PVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 10:21:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238117AbjA3PT1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 10:19:27 -0500
-Received: from mail-vk1-xa2f.google.com (mail-vk1-xa2f.google.com [IPv6:2607:f8b0:4864:20::a2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F402FC15C
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 07:19:18 -0800 (PST)
-Received: by mail-vk1-xa2f.google.com with SMTP id 6so3214346vko.7
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 07:19:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=criticallink.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=xlsuOCO1YI2MMlgCHeBWLiVMGsqzeJfOwez6+D5kqBc=;
-        b=Rx5ZT27gjdzWRwbX0Tyc/+dk5vjX0+wrDP1QTezFRqJJliSPoDMBhicfLS5bNaQ2qK
-         oAFH1dCV4eJSERNzDTgg015uP6W+Myq6XEpgVlgjYt91G5QsrCTqG67NFFHak1/Vq2i2
-         rxPmR3u+KvTqx/Z2heyy+LjQjzJhCcgo9WgbNJWcgCvTfJl5eUaDIQKLoph1lS3PoQ6V
-         EBr8Xne388w6RWcCwaEMLVtXJWsyarXvwhsHDcofkrUNNWG/R2yKqA1mOhKU9TdzR4Bc
-         DSRbEESte6R1DvsTknnDSwoPwzu3XNPYg/71uHT/tLNNE4cur/vEdDSBDUxhbfoxGMjA
-         Sjwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xlsuOCO1YI2MMlgCHeBWLiVMGsqzeJfOwez6+D5kqBc=;
-        b=Z5zf4BRrpVG2nuaZoTcOgKEKQyDB4iivmrPG0xIcMut/i2Os1meb5fU9jPqfkao9qm
-         +YYA2EJims/YiSpaA0DBL8Fh8o7V8yGNxa4DWe+ZPp82D733oXcQilg74pjcNfUfw9CA
-         E4Ch+iWwHK2rBWC7d6MIX7mHykvjWQJkTkClpuY23Q5LadxGVCtCOK9ujiA/Z+24MpUe
-         1cU9w6+Mr3plIx+oxyo5VipvcYjO2ChVOOpQIV425JNIAtGs6foohU3zChfBff8EKvY3
-         pZ+oUTy0HFLpvfp35Ta+xOqSjtgkeyUnXBcXkCbBaBqpZz+vIEUG50s8Pjm4RxGq70Xv
-         r73g==
-X-Gm-Message-State: AFqh2kr9tFYUHQ9HdkyYYlv+jqCxKWi0NRp3qQAifoDPh5a9lI2XkkMw
-        Ce6LF/F+64QfAArBmxEmCN3qj7VKm9WvMIEOVpXRww==
-X-Google-Smtp-Source: AMrXdXvrpSfest9Nz2ELy3kyAiLAnfRzOnJ1Y3sWUJTC0FxkcDwpmweJu+nCWsskihnhNOiqk4hiEqyl+u72iE7URSg=
-X-Received: by 2002:a1f:9b4d:0:b0:3e1:722f:9a6f with SMTP id
- d74-20020a1f9b4d000000b003e1722f9a6fmr6572750vke.1.1675091958079; Mon, 30 Jan
- 2023 07:19:18 -0800 (PST)
-MIME-Version: 1.0
-References: <20230126-b4-ltc2945_shunt_resistor-v4-0-bb913470d8da@criticallink.com>
- <20230126-b4-ltc2945_shunt_resistor-v4-1-bb913470d8da@criticallink.com> <20230129201604.GA1583293@roeck-us.net>
-In-Reply-To: <20230129201604.GA1583293@roeck-us.net>
-From:   Jon Cormier <jcormier@criticallink.com>
-Date:   Mon, 30 Jan 2023 10:19:06 -0500
-Message-ID: <CADL8D3ZkGT51FX5UrCQ8afzFxPNGHbi09EdXqE+cQyGRnHR2mw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/5] dt-bindings: hwmon: adi,ltc2945: Add binding
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Bob Duke <bduke@criticallink.com>,
-        John Pruitt <jpruitt@criticallink.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S238068AbjA3PVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 10:21:47 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61CA335272;
+        Mon, 30 Jan 2023 07:21:46 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30UDZcdH021495;
+        Mon, 30 Jan 2023 15:21:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=L9AIHrzPObiEg8iX+Q9mRhYtMsa2DNoNppfxH9yTVJE=;
+ b=d+A+nRglxXVTV2TnSmmbqNcG//8LwuCvgS0EshyFuEYw+M9HTidtVJP4HHwzSLypbgbZ
+ WjWQwr7MgMUF53Wei3d3y5UncV/Ud0LO4mrtZ7SScrZNGEnxgrgz104+7QXB45mKDWcB
+ 1qalzMLZGcpSgz5TT93WXzp1P9b+mb0HrlVu9HGQXg8ZYgRrwwLWD1B6MJwt7VgYaJSc
+ Y2c7F1IgqMKcsuTyatqPZ6HHh6Ab2/amHDHNaPOTgVIg5Gxsbc2nI1ia/eiNDT+jei/y
+ SHu084uegbOMAg0HOx+DHvFmQBV0ptQ7T6L3w2icXZougzfufaVvSCv7quz0uFdvWVT1 CA== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ncvfpbt94-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Jan 2023 15:21:40 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 30UFLZFK027518;
+        Mon, 30 Jan 2023 15:21:35 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3ncvsk4n3k-1;
+        Mon, 30 Jan 2023 15:21:35 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30UFLZ1U027513;
+        Mon, 30 Jan 2023 15:21:35 GMT
+Received: from kalyant-linux.qualcomm.com (kalyant-linux.qualcomm.com [10.204.66.210])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 30UFLYIx027511;
+        Mon, 30 Jan 2023 15:21:35 +0000
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id 0FD3B4BA5; Mon, 30 Jan 2023 07:21:33 -0800 (PST)
+From:   Kalyan Thota <quic_kalyant@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
+        quic_abhinavk@quicinc.com, marijn.suijten@somainline.org
+Subject: [PATCH 0/3] Reserve dspps based on user request
+Date:   Mon, 30 Jan 2023 07:21:29 -0800
+Message-Id: <1675092092-26412-1-git-send-email-quic_kalyant@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XJ7YuC7qwxbWQYLfEdKwc_x9_115BZCa
+X-Proofpoint-ORIG-GUID: XJ7YuC7qwxbWQYLfEdKwc_x9_115BZCa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-30_14,2023-01-30_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ spamscore=0 mlxscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0
+ priorityscore=1501 phishscore=0 mlxlogscore=685 bulkscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301300148
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 29, 2023 at 3:16 PM Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On Thu, Jan 26, 2023 at 05:32:23PM -0500, Jonathan Cormier wrote:
-> > Create initial binding for the LTC2945 I2C power monitor.
-> >
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
->
-> Series applied,
-Great
-> after merging patch 4/5 and 5/5 of the series
-> to avoid spurious 32-bit build failures,
-Huh, I split these per request, curious why they'd cause build
-failures when separated...
-> and after fixing a continuation line alignment.
->
-> In the future, please run checkpatch --strict on your patches,
-Will do. I didn't know about this option.
-> and please provide change logs.
-This I did do in every cover letter.
->
-> Thanks,
-> Guenter
+This series will enable color features on sc7280 target which has primary panel as eDP
+
+The series removes dspp allocation based on encoder type and allows the dspp reservation
+based on user request via ctm.
+
+The series will release/reserve the dpu resources when ever there is a topology change
+to suit the new requirements.
+
+Kalyan Thota (3):
+  drm/msm/disp/dpu1: clear dspp reservations in rm release
+  drm/msm/disp/dpu1: add dspps into reservation if there is a ctm
+    request
+  drm/msm/disp/dpu1: reserve the resources on topology change
+
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h    |  1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 54 +++++++++++++++++++++++------
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h |  4 ++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     |  2 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c      |  6 ++--
+ 5 files changed, 50 insertions(+), 17 deletions(-)
 
 -- 
-Jonathan Cormier
-Software Engineer
+2.7.4
 
-Voice:  315.425.4045 x222
-
-
-
-http://www.CriticalLink.com
-6712 Brooklawn Parkway, Syracuse, NY 13211
