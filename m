@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08A49681DD2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 23:12:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F6D9681DE1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 23:16:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231531AbjA3WMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 17:12:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56416 "EHLO
+        id S230060AbjA3WQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 17:16:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbjA3WMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 17:12:01 -0500
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 081C83B0DB;
-        Mon, 30 Jan 2023 14:11:58 -0800 (PST)
-Received: by mail-oo1-f48.google.com with SMTP id i11-20020a056820012b00b00517518d79f6so638957ood.10;
-        Mon, 30 Jan 2023 14:11:58 -0800 (PST)
+        with ESMTP id S230028AbjA3WQ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 17:16:29 -0500
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EF5428D21;
+        Mon, 30 Jan 2023 14:16:28 -0800 (PST)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-15ff0a1f735so17067019fac.5;
+        Mon, 30 Jan 2023 14:16:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dWJ05yhc/QoYhGwjtBStJIcXLe5TjSNLXFeusdsihHg=;
-        b=PolgQlT2OFSmEkWhXl1LMQ9Dr9C5/9hW04sjACVQKiX4a/Kd+KGIUtjNoycqiaICqg
-         6G9W47J5lMVvUhwIxvTgTpcIOaAFdtlHhBe6gZbcQk9o5SzsoYZAp/DG1eeJ6uhsa8VO
-         +mKylTM2duNUY0kT3sGsk4V6Tv8aPeosBVWRGvA59Ac1jeEFU6TAmoHwtzAtVSzIwTGM
-         pFG9SeBViG5uoXtnRYmEDwrvSZKW8zN7mn1Ji2cKy3aOWaNj/hxPsKc57E2zJMZJ5vep
-         k2oYg0TS8daNgRc7QuSmI+djG65YSjxMs+GWpMcBlM9ru2hAKfctB8El4J27/Dst8vz2
-         vsuQ==
-X-Gm-Message-State: AO0yUKWDUVigRJHOWGlnBGLX/qHBDM/RVX9juNK2/Tg/zquEPF0cIngE
-        NjWGB19DfzKpAzqZVqxVj1LbYhjb2g==
-X-Google-Smtp-Source: AK7set/YAH3TEUhitOrmZxOxRKiEb2e6U2zBS7JTANOg3qFnJ89fkAqhM0gR0HuIkDCGafJlzcSxRw==
-X-Received: by 2002:a4a:c884:0:b0:517:7b89:b8d3 with SMTP id t4-20020a4ac884000000b005177b89b8d3mr2657984ooq.6.1675116717033;
-        Mon, 30 Jan 2023 14:11:57 -0800 (PST)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1gAy2MsPL1mgeMVyNEjNqoU5MoZko0cfwbJx1Ivk1cU=;
+        b=mVUEGd8+iGJJVtEmJeQDoCZSbEHJfFS6KoApsYP2/jH8gfZuMFy4IMvTTKJ8fYJRj9
+         C/KeCtQ72Bb3w2FuLV6X5llgr4SAEsjt66svyuglhYIyRXxYVkUOtxWn0MOxNVR2U1Ao
+         S8zN91p+69xTZ6V3B7A01AHLei22ndxzcmIvmK6ppfg96jAJgOgKekMrv6FoCslMsnyD
+         QRoSgngGyLLfbYtYBD3MxModGXmqvtTtqBIIqNAkZEcgcpn8gPTtpgnWp/we1/zvFBG3
+         fov0tuKfGah0pA83xYdrC70eesrAcfBRMAxjuq7AwTd4Jkh2VGb79kus83rNXzWnfE0I
+         /bpw==
+X-Gm-Message-State: AO0yUKW0s3GB2tkoaCj2iTzBruCJ9kqFoDbT77JKcnU359BxPpOj1WdC
+        7Ydx/RWoeACufKEayowCtw==
+X-Google-Smtp-Source: AK7set/xrtAWmQ7TIWn6uKPbZVhxNrg/+u+ntuu4cMuNwq8xXSrcZXbauq2QJnggWgmLNxDOx0VppQ==
+X-Received: by 2002:a05:6870:9607:b0:163:416e:a549 with SMTP id d7-20020a056870960700b00163416ea549mr11486315oaq.51.1675116987671;
+        Mon, 30 Jan 2023 14:16:27 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o22-20020a4ae596000000b004f269f9b8f3sm5441483oov.25.2023.01.30.14.11.56
+        by smtp.gmail.com with ESMTPSA id pa13-20020a0568701d0d00b0015f9cc16ef7sm5724355oab.46.2023.01.30.14.16.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 14:11:56 -0800 (PST)
-Received: (nullmailer pid 3618211 invoked by uid 1000);
-        Mon, 30 Jan 2023 22:11:55 -0000
-Date:   Mon, 30 Jan 2023 16:11:55 -0600
+        Mon, 30 Jan 2023 14:16:27 -0800 (PST)
+Received: (nullmailer pid 3624482 invoked by uid 1000);
+        Mon, 30 Jan 2023 22:16:26 -0000
+Date:   Mon, 30 Jan 2023 16:16:26 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Cc:     devicetree@vger.kernel.org,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, list@opendingux.net,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: rtc: Add #clock-cells property
-Message-ID: <167511671553.3618148.6225023459111985094.robh@kernel.org>
-References: <20230129120442.22858-1-paul@crapouillou.net>
- <20230129120442.22858-2-paul@crapouillou.net>
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: bus: moxtet: Fix reference to SPI
+ peripheral DT properties
+Message-ID: <20230130221626.GA3618337-robh@kernel.org>
+References: <20230129123553.1284503-1-j.neuschaefer@gmx.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230129120442.22858-2-paul@crapouillou.net>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230129123553.1284503-1-j.neuschaefer@gmx.net>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -67,24 +68,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Sun, 29 Jan 2023 12:04:39 +0000, Paul Cercueil wrote:
-> The RTC in the JZ4770 is compatible with the JZ4760, but has an extra
-> register that permits to configure the behaviour of the CLK32K pin. The
-> same goes for the RTC in the JZ4780.
+On Sun, Jan 29, 2023 at 01:35:53PM +0100, Jonathan Neuschäfer wrote:
+> spi-bus.txt has been converted to YAML and the peripheral properties
+> have been moved to spi-controller.yaml.
 > 
-> With this change, the RTC node is now also a clock provider on these
-> SoCs, so a #clock-cells property is added.
-> 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> 
+> Fixes: 0a1b929356830 ("spi: Add YAML schemas for the generic SPI options")
+> Fixes: 8762b07c95c18 ("spi: dt-bindings: add schema listing peripheral-specific properties")
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
 > ---
->  v2: - add constraint on which SoCs can have the #clock-cells property
->      - add JZ4780 example which has a #clock-cells
->  v3: Don't break ABI anymore.
-> ---
->  .../devicetree/bindings/rtc/ingenic,rtc.yaml  | 29 +++++++++++++++++++
->  1 file changed, 29 insertions(+)
-> 
+>  Documentation/devicetree/bindings/bus/moxtet.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I'm not really interested in fixes to .txt bindings. Fix it by 
+converting to schema if you want to. By my count, there's 37 other 
+cases, why just this one?
+
+Rob
