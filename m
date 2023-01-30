@@ -2,118 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ADF16813C4
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 15:52:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D71C16813D6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 15:55:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237854AbjA3OwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 09:52:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36234 "EHLO
+        id S237887AbjA3Oy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 09:54:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235949AbjA3OwB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 09:52:01 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79F471E2A8
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 06:51:58 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id hn2-20020a05600ca38200b003dc5cb96d46so1254028wmb.4
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 06:51:58 -0800 (PST)
+        with ESMTP id S237883AbjA3Oy5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 09:54:57 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF1B2A17B
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 06:54:55 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id d14so11308452wrr.9
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 06:54:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=w/BGsdjH3kzkfT6LKJZyI96LnFxoW5s+QoFH5M2WoRo=;
-        b=1/+vRbWhaghOFGpUBcEHV3AxQ6Q8sYpKCxRhQNUA8a6jHR/xhzKJT1XCbUh1gjrc8u
-         3Oaa+3uDigkdjteWe4g6BhB1FlFFyu4LbNCUjWzaW2+RJV2ZNfFcJY7EQJAEoiPBo9M6
-         Qnxeq5SoYDPIBwUGNobgOgQAaBynvH0n4wPpQR4ToomGKAhSy4aJC0Jih+dB8T4w3TEP
-         G65m0s/XY7h3plhdtHxAXXtMkBGDIk9qjdwBIxcUt/OwccuXdb+DjfUEVoanN5JL6bTu
-         yOSnHV2CeYYyhNlWUnC1PVGf44XgsHb5un5UhkuPT1MsDSLxQvJdTrThTbUX5uX0m3vO
-         XfBg==
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=DBOpQJYrFBTRisXeKisTfMrcTyjxLh2di8KfVPbWNqU=;
+        b=yKHFfxGFUyCjIMcxvHJEvAUDSj9OgEptKjOD4txVEqyNPntE8lDUViVchodbt0Hj1k
+         c9FHCupazK3N7mGho43gKincjUaeyT7uCaNAy/6uOEg8XZxxztCvFK7oTBh2cJ4gmLgE
+         7r+5gKQ7fPfY3b+YJ8LnW/fwL0vA7ZiaIvLYtuOwEue7lNs7ZVJXg8eZIT8qFLdc8zvt
+         kaMj/LcWL6RJdqqLRdgOT7I+67H8NdS2dsMECQStAZAddAVkeXByo+gddLNkh9BOuc3R
+         1CexiZK4c6kCRryEirmAuBMG8PTviOWRK0QWC5qWNALfDzShp++ifTbl7sJXONrQamjH
+         VxGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w/BGsdjH3kzkfT6LKJZyI96LnFxoW5s+QoFH5M2WoRo=;
-        b=z01LB0wgUb4CGKJHAR4GD0QMYJ+2hO/R5LRMmAvXzF1Hv52/ko7vbYbZU+SCv/pbfb
-         P8qC7e7V40PsG5gWdcB+S2mMMvagWNcxbFKjvdyesum2A3v5EZobcSTkVVkQ4HLpjUb9
-         dAAYxhH/jIAmWJwOCE9fLd9bhEDMZ9lzQrM+CiLy+Tn1y6copy1Gkx8J5h7kkkxS6qkN
-         TFQsRuyDh74mizgWPfiJ93eB9jG2qfACvW2/QLIrDnM5TMQMNzeHMIxwelVdmwj52iHQ
-         Cb7zju7yRjMpTqqLRKcQzy8aYRDcs8Qtf/9N8gExXu5y/V4rOIRWuG5IMkDl5NZg3e//
-         C/NA==
-X-Gm-Message-State: AO0yUKXMkVTw7nJDlcRqrtT8D5WVIbs6qRDgAq9y0oF9Q4lVkIxzyV6c
-        IvPdAri2UFGrCSibZ32WGdk+Nw==
-X-Google-Smtp-Source: AK7set+ZLvgVqk9VEY+YtMK5GWPiTjquoo1pbvkYmsFSRUYj9NHIH/c+DdZLVRyF9YkJOHHyuhfeKw==
-X-Received: by 2002:a7b:c4ca:0:b0:3dc:4316:52be with SMTP id g10-20020a7bc4ca000000b003dc431652bemr10316252wmk.10.1675090317023;
-        Mon, 30 Jan 2023 06:51:57 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:b9a5:a1fe:d3ab:6b40])
-        by smtp.gmail.com with ESMTPSA id q17-20020a05600c46d100b003dc530186e1sm6430248wmo.45.2023.01.30.06.51.56
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DBOpQJYrFBTRisXeKisTfMrcTyjxLh2di8KfVPbWNqU=;
+        b=3yqNdRYtkFHsh5d1lS/rlWVhfDsD2roS+gxFM1gUCiIhC55c3u8zYy1O6HQpyl+EqM
+         wMd0bVHsrDWd174SCoRcuLteENtzHv7EiVaRpGLyBBEqpu9Pk8GkPRBD4H1/H06R17bY
+         90myKxFfe+naEx0WyofrG6jYMTmitXr+is31B3DTs0o57QPHgcJEN9xcmxflr66RT3be
+         uAUuS9C5umSW1vYpF7ZBSu2ln3rpGYdHrDj3j4w5GEnEHYmFSN/QzYnwK10skhgV2P7L
+         qyU2XEr6mlafsxLp587fWBVTUhA5Wm+n2Wlc5SiXHhoTqSBY+dMnuNYY+cHs8tOCW8Q8
+         wivA==
+X-Gm-Message-State: AO0yUKXA78MvO5AOqecd/KD+VqbEituM/o+WzJUJYRvGa7Pwem4jj9qK
+        +6zSGT3cxakibbMpv0sN/6RUCQ==
+X-Google-Smtp-Source: AK7set984+SMpkQTbwcvMG4YeVGE0ndrZoyiRnap/3z+W0qvqktcQHTobeelX/749h7V8DxCcL4QEg==
+X-Received: by 2002:a5d:4c49:0:b0:2bf:c82d:7ad4 with SMTP id n9-20020a5d4c49000000b002bfc82d7ad4mr13257293wrt.7.1675090494310;
+        Mon, 30 Jan 2023 06:54:54 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id m13-20020a5d56cd000000b002bfd462d13asm11233373wrw.18.2023.01.30.06.54.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 06:51:56 -0800 (PST)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH -next] dt-bindings: clock: qcom,sa8775p-gcc: add the power-domains property
-Date:   Mon, 30 Jan 2023 15:51:54 +0100
-Message-Id: <20230130145154.195562-1-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
+        Mon, 30 Jan 2023 06:54:52 -0800 (PST)
+Date:   Mon, 30 Jan 2023 16:54:51 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Richard Cochran <richardcochran@gmail.com>,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Stephen Boyd <sboyd@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-clk@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        netdev@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Abel Vesa <abelvesa@kernel.org>
+Subject: Re: [PATCH v2 15/19] clk: imx6ul: fix enet1 gate configuration
+Message-ID: <Y9faOzCkeNea1bmd@linaro.org>
+References: <20230117061453.3723649-1-o.rempel@pengutronix.de>
+ <20230117061453.3723649-16-o.rempel@pengutronix.de>
+ <Y9atr+Gn60+m4nOg@linaro.org>
+ <20230130121530.GA10978@pengutronix.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230130121530.GA10978@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 23-01-30 13:15:30, Oleksij Rempel wrote:
+> On Sun, Jan 29, 2023 at 07:32:31PM +0200, Abel Vesa wrote:
+> > On 23-01-17 07:14:49, Oleksij Rempel wrote:
+> > > According to the "i.MX 6UltraLite Applications Processor Reference Manual,
+> > > Rev. 2, 03/2017", BIT(13) is ENET1_125M_EN which is not controlling root
+> > > of PLL6. It is controlling ENET1 separately.
+> > > 
+> > > So, instead of this picture (implementation before this patch):
+> > > fec1 <- enet_ref (divider) <---------------------------,
+> > >                                                        |- pll6_enet (gate)
+> > > fec2 <- enet2_ref_125m (gate) <- enet2_ref (divider) <-´
+> > > 
+> > > we should have this one (after this patch):
+> > > fec1 <- enet1_ref_125m (gate) <- enet1_ref (divider) <-,
+> > >                                                        |- pll6_enet
+> > > fec2 <- enet2_ref_125m (gate) <- enet2_ref (divider) <-´
+> > > 
+> > > With this fix, the RMII reference clock will be turned off, after
+> > > setting network interface down on each separate interface
+> > > (ip l s dev eth0 down). Which was not working before, on system with both
+> > > FECs enabled.
+> > > 
+> > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > 
+> > I'm OK with this. Maybe a fixes tag ?
+> 
+> Hm. Initial commit was:
+> Fixes: 787b4271a6a0 ("clk: imx: add imx6ul clk tree support")
+> but this patch will not apply on top of it.
+> Next possible commit would be:
+> Fixes: 1487b60dc2d2 ("clk: imx6ul: Switch to clk_hw based API")
+> But this patch didn't introduce this issue, it was just refactoring.
 
-The binding document is missing the power-domains property. Add it and
-update the example.
+Hm, in that case I don't think is qoing to be backported ever.
 
-Fixes: 0fff9fa043f9 ("dt-bindings: clock: Add Qualcomm SA8775P GCC")
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- .../devicetree/bindings/clock/qcom,sa8775p-gcc.yaml          | 5 +++++
- 1 file changed, 5 insertions(+)
+> 
+> What do you prefer?
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sa8775p-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sa8775p-gcc.yaml
-index dae65ebc5557..0f641c235b13 100644
---- a/Documentation/devicetree/bindings/clock/qcom,sa8775p-gcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,sa8775p-gcc.yaml
-@@ -40,6 +40,9 @@ properties:
-   protected-clocks:
-     maxItems: 240
- 
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - clocks
-@@ -52,6 +55,7 @@ unevaluatedProperties: false
- examples:
-   - |
-     #include <dt-bindings/clock/qcom,rpmh.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
- 
-     gcc: clock-controller@100000 {
-         compatible = "qcom,sa8775p-gcc";
-@@ -71,6 +75,7 @@ examples:
-                  <&pcie_phy_pipe_clk>,
-                  <&rxc0_ref_clk>,
-                  <&rxc1_ref_clk>;
-+        power-domains = <&rpmhpd SA8775P_CX>;
- 
-         #clock-cells = <1>;
-         #reset-cells = <1>;
--- 
-2.37.2
+I'll apply it as it is.
 
+Thanks.
+
+> 
+> Regards,
+> Oleksij
+> -- 
+> Pengutronix e.K.                           |                             |
+> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
