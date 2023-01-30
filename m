@@ -2,127 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 617AD680B57
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:53:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00ACD680B60
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:57:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235919AbjA3Kx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 05:53:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43816 "EHLO
+        id S236302AbjA3K5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 05:57:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230416AbjA3Kxz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:53:55 -0500
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8F4D17CC0;
-        Mon, 30 Jan 2023 02:53:54 -0800 (PST)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-501c3a414acso153888527b3.7;
-        Mon, 30 Jan 2023 02:53:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=FUC6K+TUdMSstlrzdppRdz/QrMCOXm0EOP7+90i1xZY=;
-        b=ht9m9YFxQLFVsUimHeqoJwFOz8qFoSRwZxDiiTuUCr6V9x5I9kzETu5HZ7Rmjy4sEi
-         fZhXb5qv67wtF+fT5O3UuWa+FO1COtdg5e+h2L1kz6syB0Vh/fbc7sY2LvOPYqFgz4JM
-         wPEP8L+Z48T6Y/f7lzkOWKTluCOkEGZ9SxMMaXB4rb+AePPqGO3IckIkQOTgfEGw7zP/
-         c2Mqi7wWoSXJaPWKSLOS5iLCgUz5XOrtLj7Rjb5HwZyghhU6UVRiQXKGEnbEWzxGOPKo
-         HBisRg6xWKEI08xXgJdaZdfAf2SfbJwAkt9DNzkXrMyp6I1MoYB9R0TN1VDZhpMoLg+F
-         TWfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FUC6K+TUdMSstlrzdppRdz/QrMCOXm0EOP7+90i1xZY=;
-        b=K81O8UvgUrXSrxC7BLyURYFok65QC5K1uFgsbe9zVP+Q/yxJ5BjMyPHCSJFaOPgXk4
-         fy9vcwX/RYzxs6qLXhOg8bPW7TRDzXOXHy0ePm3g3zR8giVnTdv8gcb1RjtEwjs5q5s8
-         oMs3XIjghtqhr7ddLB1LpjWavV1C2Hq81toG8YYdsc6Gu7CL7KAWgDvlDOhRsqKXQh1h
-         Y4nKVR1VHvs6cZIq/Ux9Nc4nLizYrbpqeQHlYlYn8S4npGwhapBdC+FXWeoV4yoTzJE6
-         dRH+0rojVLWKDS3i6GUxaB4tB9SYJnxgMAYygzxpe71MNJcLIsZRAuwPmnxALlmsJfFL
-         MnBQ==
-X-Gm-Message-State: AO0yUKUNz9mxpU1hjxuAbmrsbEr6kx3Pq5Zc1URjEj0VTyjH8CF1XGnM
-        zU9y2LRlmnEPzq3OC7r3PwIsvGQfbZtQwNdXGZE=
-X-Google-Smtp-Source: AK7set8tcLkYYaI01/h2mGKxIOWC8zR7J8jV7aBtEhF+UBiWCM2HORVPRdg6Bslygx9SHUJanm0vt4LR3QDgRmsbg4g=
-X-Received: by 2002:a81:b246:0:b0:506:55d9:3a78 with SMTP id
- q67-20020a81b246000000b0050655d93a78mr1975529ywh.339.1675076034014; Mon, 30
- Jan 2023 02:53:54 -0800 (PST)
-MIME-Version: 1.0
-References: <CA+V-a8tR1KiLSs=Psa=w7kf0zT=yU5_Ekr6-3V1MR==Wtzmksg@mail.gmail.com>
- <Y9KQPxzHBuZGIN4U@casper.infradead.org>
-In-Reply-To: <Y9KQPxzHBuZGIN4U@casper.infradead.org>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 30 Jan 2023 10:53:28 +0000
-Message-ID: <CA+V-a8uizF8sQgs8cfTwH3OnK+nvr2dXAoSOPTXCXLFnprHSeA@mail.gmail.com>
-Subject: Re: [QUERY]: Block region to mmap
-To:     Matthew Wilcox <willy@infradead.org>
-Cc:     Linux-MM <linux-mm@kvack.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-        Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S236236AbjA3K5C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:57:02 -0500
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B05A4303CF;
+        Mon, 30 Jan 2023 02:56:58 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 53506C0005;
+        Mon, 30 Jan 2023 10:56:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1675076217;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Tb+knWc8+xa2/HboMdrehqj8n7prrLHVDVYJpjds7L0=;
+        b=dx0eBt2DUT9QA1cUStZpuihlEBjkczXXHUN7eU6qohkq9uyVgu99pZNPUks9lSEf3INjMe
+        Yk8daT6J86YqnA/B749t+i0aoTWOFeYnHU6r5y/0fJJSOUi3MRXDw9D9SQn4vEPv7ob+Iv
+        HClmkGs85gjGN4KrO/JLMUoCIivBRYhtPZEfCX/7fDzyFJm8cjHrFsSgJSqWAiToFduHke
+        g+yQgy/o2aFDXLO0kePwXPqFG0xQCGm/wtZ2TqApAzolFZqEWmE+5URoKMtHkCwBTruRE2
+        Onu1MugaQI9Bkiq1OP9apqs4rDufSuPPP/CDM4Iriyr7tOq0h/tR04GnMRsqPw==
+Date:   Mon, 30 Jan 2023 11:56:54 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Geert Uytterhoeven <geert.uytterhoeven@gmail.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        u-boot@lists.denx.de,
+        =?UTF-8?B?UmFmYcWC?= =?UTF-8?B?IE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V3 1/6] nvmem: core: add nvmem_dev_size() helper
+Message-ID: <20230130115654.0041716d@xps-13>
+In-Reply-To: <20230127125709.32191-1-zajec5@gmail.com>
+References: <20230127125709.32191-1-zajec5@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthew,
+Hi Rafa=C5=82,
 
-Thank you for the feedback.
+zajec5@gmail.com wrote on Fri, 27 Jan 2023 13:57:04 +0100:
 
-On Thu, Jan 26, 2023 at 2:37 PM Matthew Wilcox <willy@infradead.org> wrote:
->
-> On Wed, Jan 25, 2023 at 12:30:13PM +0000, Lad, Prabhakar wrote:
-> > Renesas RZ/Five RISC-V SoC has Instruction local memory and Data local
-> > memory (ILM & DLM) mapped between region 0x30000 - 0x4FFFF. When a
-> > virtual address falls within this range, the MMU doesn't trigger a
-> > page fault; it assumes the virtual address is a physical address which
-> > can cause undesired behaviours.
->
-> Wow.  I've never come across such broken behaviour before.
->
-> > To avoid this the ILM/DLM memory regions are now added to the root
-> > domain region of the PMPU with permissions set to 0x0 for S/U modes so
-> > that any access to these regions gets blocked and for M-mode we grant
-> > full access (R/W/X). This prevents any users from accessing these
-> > regions by triggering an unhandled signal 11 in S/U modes.
->
-> I have no idea what any of this means.
->
-Basically we are making use of the memory protection unit (MPU) so
-that only M-mode is allowed to access this region and S/U modes are
-blocked.
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>=20
+> This is required by layouts that need to read whole NVMEM space. It
+> applies to NVMEM devices without hardcoded layout (like U-Boot
+> environment data block).
+>=20
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> ---
+> V2: Drop "const" from "const size_t"
 
-> > This works as expected but for applications say for example when doing
-> > mmap to this region would still succeed and later down the path when
-> > doing a read/write to this location would cause unhandled signal 11.
-> > To handle this case gracefully we might want mmap() itself to fail if
-> > the addr/offset falls in this local memory region.
->
-> No, that's not what you want.  You want mmap to avoid allocating address
-> space in that virtual address range.  I don't know if we have a good
-> way to do that at the moment; like I said I've never seen such broken
-> hardware before.
->
-> I'd say the right way to solve this is to add a new special kind of VMA
-> to the address space that covers this range.
-Do you have any pointers where I can look further into this?
+It would be good if you could always add a cover-letter, just so that
+we can reply to the whole series. In my case I wanted to add a global
 
-> We'd want to make sure it doesn't appear in /proc/*/maps and also that
-> it can't be overridden with MAP_FIXED.
-Agreed.
+Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Cheers,
-Prabhakar
+Because I gave this series a quick review and it looks good to me.
+
+Thanks,
+Miqu=C3=A8l
+
+> ---
+>  drivers/nvmem/core.c           | 13 +++++++++++++
+>  include/linux/nvmem-consumer.h |  1 +
+>  2 files changed, 14 insertions(+)
+>=20
+> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+> index 38a5728bc65c..9e77af0164aa 100644
+> --- a/drivers/nvmem/core.c
+> +++ b/drivers/nvmem/core.c
+> @@ -2063,6 +2063,19 @@ void nvmem_del_cell_lookups(struct nvmem_cell_look=
+up *entries, size_t nentries)
+>  }
+>  EXPORT_SYMBOL_GPL(nvmem_del_cell_lookups);
+> =20
+> +/**
+> + * nvmem_dev_size() - Get the size of a given nvmem device.
+> + *
+> + * @nvmem: nvmem device.
+> + *
+> + * Return: size of the nvmem device.
+> + */
+> +size_t nvmem_dev_size(struct nvmem_device *nvmem)
+> +{
+> +	return nvmem->size;
+> +}
+> +EXPORT_SYMBOL_GPL(nvmem_dev_size);
+> +
+>  /**
+>   * nvmem_dev_name() - Get the name of a given nvmem device.
+>   *
+> diff --git a/include/linux/nvmem-consumer.h b/include/linux/nvmem-consume=
+r.h
+> index fa030d93b768..c3005ab6cc4f 100644
+> --- a/include/linux/nvmem-consumer.h
+> +++ b/include/linux/nvmem-consumer.h
+> @@ -78,6 +78,7 @@ ssize_t nvmem_device_cell_read(struct nvmem_device *nvm=
+em,
+>  int nvmem_device_cell_write(struct nvmem_device *nvmem,
+>  			    struct nvmem_cell_info *info, void *buf);
+> =20
+> +size_t nvmem_dev_size(struct nvmem_device *nvmem);
+>  const char *nvmem_dev_name(struct nvmem_device *nvmem);
+> =20
+>  void nvmem_add_cell_lookups(struct nvmem_cell_lookup *entries,
+
