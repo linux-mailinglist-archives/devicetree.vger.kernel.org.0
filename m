@@ -2,188 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7D5D680A93
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:15:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C5BD680A8F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:15:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236218AbjA3KPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 05:15:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48932 "EHLO
+        id S236158AbjA3KPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 05:15:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236232AbjA3KPh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:15:37 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44D902ED44
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:15:33 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so7775442wmq.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:15:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=1GD6xvkAI4vVIPmoXjUJESxT67/DmEIL0NxqWHVJZ14=;
-        b=ou/WTQh/rbAEo5i1/IWRz6TsdWW9GiyVSx95zPqG1wlb8uWq7GDDJ1AF1NNoVq4cP7
-         Hk2AP5lqUGtDGN2zKp441z2I4OVTn//z/nMIdbVCWEyaijkTDCFIN9Fm/3+DrTm7tfb/
-         kr0MymPvx6aDZSR2W65kNFOhRZHvN7ax66qvN4fLLI4OT710+qUuo4xPvT2mKB1NeHth
-         c/XuA42ZBrSAmwl0qFnZSFdR3bmj9zZSMYUYHa68bnR/jOH5eXgvpuxOnUZtoxqxYx/S
-         48M/WsrjxhilD+BuPQ+j6gzyayhLv34WC+jhgOzPYLa0/WNjVIDfv9unLvqoQ9SpQMoE
-         vGLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1GD6xvkAI4vVIPmoXjUJESxT67/DmEIL0NxqWHVJZ14=;
-        b=N6yo7TxLkVi/LJNHoErTuOx/oG3FNYLD3q9a3AGMfU3H0jYY+u6q3gOCJOvme+Oz7u
-         o490pNpmLwbVyM16gw0tjtpM/DFtglAXmdWXnEgWznKGPUFgvnNzI0eqjRGiLNn5LW5R
-         dnISJe4IJzmONfhYN+t64IYT8BgHqmZ+4SMPPu9Co2aIBxsBE/pe588S0L5I6moXCQa8
-         kNeqI37VRnjhxF7N1RD7pbQMdHjL2nso2is9chWYyyJW+Omp/UDd6txxwCk7UL3AWBcJ
-         N0iFj5MlSieuFR9v2F5BO0P114b3v4MnMWxQTMVVRmW44qCaUPFP/ytZsZTB2IawBxXB
-         xpQw==
-X-Gm-Message-State: AO0yUKUXyH5WsUdoeds0T7iiBW91k5FB4/cOpQStV13UqnxB0iB5VBLp
-        jQwvaJwZMih7Mny3p+R0+lN52g==
-X-Google-Smtp-Source: AK7set8BN8DVUVltmKpqNSmrNuOc+vShSw+Cdb+p4Xr2bLyDzS9ZnhXiE4NnCN8obYC0pP2DuBQrzw==
-X-Received: by 2002:a05:600c:b93:b0:3dc:5965:2c35 with SMTP id fl19-20020a05600c0b9300b003dc59652c35mr2792658wmb.24.1675073731709;
-        Mon, 30 Jan 2023 02:15:31 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id d33-20020a05600c4c2100b003dc41a9836esm8478505wmp.43.2023.01.30.02.15.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 02:15:30 -0800 (PST)
-References: <20230116074214.2326-1-yu.tu@amlogic.com>
- <20230116074214.2326-4-yu.tu@amlogic.com>
- <1ja62eybrv.fsf@starbuckisacylon.baylibre.com>
- <aedb0764-b5cb-7f49-f279-51dbec070e80@amlogic.com>
- <1jwn5hwn0w.fsf@starbuckisacylon.baylibre.com>
- <a4ad6ac6-60c2-8f7b-fdb0-509de31db282@amlogic.com>
- <1jy1pko0fc.fsf@starbuckisacylon.baylibre.com>
- <e2e9045a-6e35-112f-69a7-15b080571b69@amlogic.com>
- <1jr0vcnyf7.fsf@starbuckisacylon.baylibre.com>
- <37e5d1a9-9379-a7ff-e288-9a4b80a0cc5f@amlogic.com>
-User-agent: mu4e 1.8.10; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S233899AbjA3KPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:15:16 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA2F5252;
+        Mon, 30 Jan 2023 02:15:15 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30U6LBr4028583;
+        Mon, 30 Jan 2023 10:15:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : reply-to : references : mime-version :
+ content-type : in-reply-to; s=qcppdkim1;
+ bh=FQ25Ocj9mmDa26Q4Qbvq4/AjPwDuTjYyZW7kxiBvCw4=;
+ b=BZi8IdZDbX5hx6pjZrgv/HIi1W23MKVBMB0rmvPOzvHxatgRF61leNff6FStpwl9emy0
+ va3LN1khxdjFM4WEEzq82Nc2zSuoU1XD9RlgUuQ7jrJSst3oTHR5WUJIpJUEsIldq4+D
+ ZFd9ONjt69t9qYre5l9DmPMUJqoZoIBu+Z5hYP47hD/dr7PVnDImaD506x4AvEyH6Wu8
+ QgummUH5FKBwl7slhEmTxcN8+5E21YnSpbOIW3XmpM+gp4eDcTdhjvKEQClt88987UqQ
+ /zNhxclZ27zUV89K5/Ten0g0cZdzM2RWQccXqduoLeEHdZfWNxp5Qd73QmUjTqPc6FhP Mg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ncvvu36p9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Jan 2023 10:15:00 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30UAEx3E005764
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Jan 2023 10:14:59 GMT
+Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 30 Jan
+ 2023 02:14:51 -0800
+Date:   Mon, 30 Jan 2023 15:44:45 +0530
+From:   Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Alex Elder <elder@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
-        "qi . duan" <qi.duan@amlogic.com>
-Subject: Re: [PATCH V6 3/3] clk: meson: s4: add support for Amlogic S4 SoC
- peripheral clock controller
-Date:   Mon, 30 Jan 2023 11:07:28 +0100
-In-reply-to: <37e5d1a9-9379-a7ff-e288-9a4b80a0cc5f@amlogic.com>
-Message-ID: <1jmt60nxa7.fsf@starbuckisacylon.baylibre.com>
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v9 12/27] gunyah: rsc_mgr: Add RPC for sharing memory
+Message-ID: <20230130101445.GB332@quicinc.com>
+Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
+ <20230120224627.4053418-13-quic_eberman@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+In-Reply-To: <20230120224627.4053418-13-quic_eberman@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: QKEya6Z32GHI_o5Kft3PK1XLQziwReYd
+X-Proofpoint-ORIG-GUID: QKEya6Z32GHI_o5Kft3PK1XLQziwReYd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-30_10,2023-01-27_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ mlxlogscore=802 suspectscore=0 spamscore=0 mlxscore=0 phishscore=0
+ clxscore=1015 lowpriorityscore=0 priorityscore=1501 bulkscore=0
+ adultscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2301300098
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+* Elliot Berman <quic_eberman@quicinc.com> [2023-01-20 14:46:11]:
 
-On Mon 30 Jan 2023 at 17:59, Yu Tu <yu.tu@amlogic.com> wrote:
+> +static int gh_rm_mem_lend_common(struct gh_rm *rm, u32 message_id, struct gh_rm_mem_parcel *p)
+> +{
+> +	size_t msg_size = 0, initial_n_mem_entries = p->n_mem_entries;
+> +	void *msg;
+> +	__le32 *resp;
+> +	struct gh_mem_share_req_header *req_header;
+> +	struct gh_mem_share_req_acl_section *acl_section;
+> +	struct gh_mem_share_req_mem_section *mem_section;
+> +	u32 *mem_attr_section;
+> +	size_t resp_size;
+> +	int ret;
+> +
+> +	if (!p->acl_entries || !p->n_acl_entries || !p->mem_entries || !p->n_mem_entries ||
+> +	    p->n_acl_entries > U8_MAX || p->mem_handle != GH_MEM_HANDLE_INVAL)
+> +		return -EINVAL;
+> +
+> +	if (initial_n_mem_entries > GH_RM_MAX_MEM_ENTRIES)
+> +		initial_n_mem_entries = GH_RM_MAX_MEM_ENTRIES;
+> +
+> +	/* The format of the message goes:
+> +	 * request header
+> +	 * ACL entries (which VMs get what kind of access to this memory parcel)
+> +	 * Memory entries (list of memory regions to share)
+> +	 * Memory attributes (currently unused, we'll hard-code the size to 0)
+> +	 */
+> +	msg_size += sizeof(struct gh_mem_share_req_header);
+> +	msg_size += offsetof(struct gh_mem_share_req_acl_section, entries[p->n_acl_entries]);
+> +	msg_size += offsetof(struct gh_mem_share_req_mem_section, entries[initial_n_mem_entries]);
+> +	msg_size += sizeof(u32); /* for memory attributes, currently unused */
+> +
+> +	msg = kzalloc(msg_size, GFP_KERNEL);
+> +	if (!msg)
+> +		return -ENOMEM;
+> +
+> +	ret = gh_rm_platform_pre_mem_share(rm, p);
 
-> On 2023/1/30 17:47, Jerome Brunet wrote:
->> [ EXTERNAL EMAIL ]
->> On Mon 30 Jan 2023 at 17:41, Yu Tu <yu.tu@amlogic.com> wrote:
->> 
->>> On 2023/1/30 17:06, Jerome Brunet wrote:
->>>> [ EXTERNAL EMAIL ]
->>>> On Sat 28 Jan 2023 at 18:17, Yu Tu <yu.tu@amlogic.com> wrote:
->>>>
->>>>> On 2023/1/20 17:47, Jerome Brunet wrote:
->>>>>> [ EXTERNAL EMAIL ]
->>>>>> On Fri 20 Jan 2023 at 11:33, Yu Tu <yu.tu@amlogic.com> wrote:
->>>>>>
->>>>>>> Hi
->>>>>>> On 2023/1/19 19:37, Jerome Brunet wrote:
->>>>>>>> [ EXTERNAL EMAIL ]
->>>>>>>> On Mon 16 Jan 2023 at 15:42, Yu Tu <yu.tu@amlogic.com> wrote:
->>>>>>>>
->>>>>>>>> Add the peripherals clock controller driver in the s4 SoC family.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>>>>>>> [...]
->>>>>>>>
->>>>>>>>> +
->>>>>>>>> +/* Video Clocks */
->>>>>>>>> +static struct clk_regmap s4_vid_pll_div = {
->>>>>>>>> +	.data = &(struct meson_vid_pll_div_data){
->>>>>>>>> +		.val = {
->>>>>>>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
->>>>>>>>> +			.shift   = 0,
->>>>>>>>> +			.width   = 15,
->>>>>>>>> +		},
->>>>>>>>> +		.sel = {
->>>>>>>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
->>>>>>>>> +			.shift   = 16,
->>>>>>>>> +			.width   = 2,
->>>>>>>>> +		},
->>>>>>>>> +	},
->>>>>>>>> +	.hw.init = &(struct clk_init_data) {
->>>>>>>>> +		.name = "vid_pll_div",
->>>>>>>>> +		/*
->>>>>>>>> +		 * The frequency division from the hdmi_pll clock to the vid_pll_div
->>>>>>>>> +		 * clock is the default value of this register. When designing the
->>>>>>>>> +		 * video module of the chip, a default value that can meet the
->>>>>>>>> +		 * requirements of the video module will be solidified according
->>>>>>>>> +		 * to the usage requirements of the chip, so as to facilitate chip
->>>>>>>>> +		 * simulation. So this is ro_ops.
->>>>>>>>> +		 * It is important to note that this clock is not used on this
->>>>>>>>> +		 * chip and is described only for the integrity of the clock tree.
->>>>>>>>> +		 */
->>>>>>>> If it is reset value and will be applicable to all the design, regarless
->>>>>>>> of the use-case, then yes RO ops is OK
->>>>>>>>
->>>>>>>> >From what I understand here, the value will depend on the use-case requirements.
->>>>>>>> This is a typical case where the DT prop "assigned-rate" should be used, not RO ops.
->>>>>>>
->>>>>>> Check the previous chip history, the actual scene is not used at all,
->>>>>>> basically is used in simulation. So the previous SOC was "ro_ops" without
->>>>>>> any problems.  This S4 SOC is not actually useful either.
->>>>>>>
->>>>>>> So when you were upstream, you had no problem making "ro_ops". I wonder if
->>>>>>> I could delete this useless clock, so you don't have to worry about it.
->>>>>> I don't know what to make of this. What is the point of adding a useless
->>>>>> clock ?
->>>>>
->>>>> As explained earlier this "vid_pll_div" is actually used in chip
->>>>> emulation. So next I'd like to know what you suggest to do with the clock?
->>>>>
->>>> If it does not exist in the actual SoC, please remove it
->>>>
->>>
->>> If I remove it, the "vid_pll_sel" clock will be missing a parent
->>> (vid_pll_div). I will use the table method and give the above reasons. Do
->>> you accept this method?
->> Either the clock exists or it does not.
->> If the HW actually exist, it is expected to be properly described.
->> If it does not, it obviously cannot be an input to another clock.
->> Please sort this out and make the necessary changes.
->> 
->
-> The CLKCTRL_VID_PLL_CLK_DIV register is actually described, but it is not
-> used in the actual board. According to your reply just now, description is
-> required, but I want to know how to describe it to meet your requirements.
->
-> Please give me some suggestions.
+Hmm ..I think gh_rm_platform_pre_mem_share() is not yet defined as of this
+patch, so you probably want this in a later patch.
 
-Implementing things is NOT about usage, it is about correctness.
-Either there is actually a clock in the silicon you are producing at the
-Amlogic factory, or there is not. 
-
-If the clock is there in the actual HW should be properly
-described/implemented, as it "might" be used as an input to other clocks
-- even if you personnaly don't.
-
-If clock does not exists (nothing behind the registers, or broken, etc
-...)  then, yes you'll need to use parent tables and document this.
-
+> +	if (ret) {
+> +		kfree(msg);
+> +		return ret;
+> +	}
+> +
