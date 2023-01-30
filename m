@@ -2,132 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 182F2680A98
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:17:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3792680ABF
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:26:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235666AbjA3KR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 05:17:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49894 "EHLO
+        id S236470AbjA3K0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 05:26:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236065AbjA3KR2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:17:28 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE9B4DBE6
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:17:26 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pMRDx-0005mI-Sc; Mon, 30 Jan 2023 11:17:17 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pMRDp-001RYw-MJ; Mon, 30 Jan 2023 11:17:08 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pMRDo-00H0dV-5B; Mon, 30 Jan 2023 11:17:08 +0100
-Date:   Mon, 30 Jan 2023 11:17:07 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nylon Chen <nylon.chen@sifive.com>
-Cc:     aou@eecs.berkeley.edu, conor@kernel.org,
-        emil.renner.berthing@canonical.com, geert+renesas@glider.be,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, nylon7717@gmail.com,
-        zong.li@sifive.com, greentime.hu@sifive.com,
-        vincent.chen@sifive.com
-Subject: Re: [PATCH v2 2/2] pwm: sifive: change the PWM controlled LED
- algorithm
-Message-ID: <20230130101707.pdvabl3na2wpwxqu@pengutronix.de>
-References: <20230130093229.27489-1-nylon.chen@sifive.com>
- <20230130093229.27489-3-nylon.chen@sifive.com>
+        with ESMTP id S231186AbjA3K0m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:26:42 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D20DE27D54
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:26:37 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id bk16so10534255wrb.11
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:26:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=a1sabGNp0i0jnpvKtDcfkVpINZEUTfpEqzCGhBjXqIw=;
+        b=TGbOhzz/rPG3jSJFwXwz9IARb5DEJa0LNKqqAhM8Or6IuR3iLbqSOj9ah3EQaWUZv3
+         QtpJDEd/CQRktCQqVLtB4vMZaVkaUSlj+f5413ziTkTbsZUGJC4difgipU7P2mnJ841b
+         zG1f6EeK7NeiAN/BqZVB1ON0FvRmlPDDVE9eVMZVPoBM9CLB5O5dIyX2rQeA6GAJEwJ6
+         16CHJhQItoI+eKYhP7OGYNAFW1GMAdm5Dtrr41T9yxgdjS3/MmzxF9LWlc0xEXyuXtgP
+         cmZDGJRW7Ap0j75DnTuemaHRy5l01XZKOCvIULOdnHGtgMI/vE9fKap6yzNcupMNxijc
+         Q35A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a1sabGNp0i0jnpvKtDcfkVpINZEUTfpEqzCGhBjXqIw=;
+        b=bsVHv6E8Sm3phby4eNKiSq7ezNJw0OK/7VuPpI1V7HtfPgojANOQenwtosbGqgyfn5
+         sQ649UwZE21cBnFHBAG/IkeXI8ZNdbL/hUiU5oeKIWx4u4XS4e7oOlJg9vkD5/fpFwu8
+         ux3kIAGvgjMTBcNflicAjaLZPyNR/G39hQG6zLPS6XG4Ipxi19fB9fNTQD1SUzu/bN0C
+         F/fuI9UWhSYctCZ/HGEMN+qQgcfI4L8/kJock1iB4m5kVJ8sjPp3T/KCkRB+IytHfvZ6
+         vGRk/LeYdrRWArkX1N6Y4Q+7xmAAtquOu5GztPTbRvYuv0iaTSGktBBM2Qt16xpvPhSK
+         VcZQ==
+X-Gm-Message-State: AFqh2kq00LHb4eCIdGjzvudbKboYfWcvUiPQk59I5zROF5rCTFzLZahd
+        lOeBfoBp+yCKJ3jzh+OvvJz8pA==
+X-Google-Smtp-Source: AMrXdXusnxR1vGulnY9qOYGIrAj2fP/mpLLBdaOBnAzh7KNVOon1ShfM7VQfgnYhs0CrTstGHVq8UA==
+X-Received: by 2002:a5d:6e8b:0:b0:2bd:d9b5:8191 with SMTP id k11-20020a5d6e8b000000b002bdd9b58191mr42677507wrz.61.1675074396348;
+        Mon, 30 Jan 2023 02:26:36 -0800 (PST)
+Received: from alex-T14.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id s5-20020a5d5105000000b002bdfcd8c77csm11426785wrt.101.2023.01.30.02.26.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 02:26:35 -0800 (PST)
+From:   Alexandre Bailon <abailon@baylibre.com>
+To:     yong.wu@mediatek.com, joro@8bytes.org, will@kernel.org
+Cc:     robin.murphy@arm.com, matthias.bgg@gmail.com,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Alexandre Bailon <abailon@baylibre.com>
+Subject: [PATCH 0/3] Add support of unmanaged domain to mediatek IOMMU
+Date:   Mon, 30 Jan 2023 11:27:19 +0100
+Message-Id: <20230130102722.133271-1-abailon@baylibre.com>
+X-Mailer: git-send-email 2.38.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jlahpnwnp2we3m5x"
-Content-Disposition: inline
-In-Reply-To: <20230130093229.27489-3-nylon.chen@sifive.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Mediatek mt8365 SoC APU support (AI Processor Unit) is being upstremed.
+This device, behind an IOMMU uses remoteproc which requires unmanaged domain.
+This updates the iommu driver to support unmanaged iommu domain and let
+remoteproc use the IOMMU.
 
---jlahpnwnp2we3m5x
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Alexandre Bailon (3):
+  dt-bindings: memory: mediatek: Add support of unmanaged iommu domain
+  iommu: mediatek: Add support of unmanaged iommu domain
+  dt-bindings: iommu: memory: Use unmanaged iommu domain for the APU
 
-On Mon, Jan 30, 2023 at 05:32:29PM +0800, Nylon Chen wrote:
-> The `frac` variable represents the pulse inactive time, and the result of
-> this algorithm is the pulse active time. Therefore, we must reverse the
-> result.
->=20
-> The reference is SiFive FU740-C000 Manual[0].
->=20
-> [0]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b1=
-6acba_fu740-c000-manual-v1p6.pdf
->=20
-> Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-> ---
->  drivers/pwm/pwm-sifive.c | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
-> index 62b6acc6373d..a5eda165d071 100644
-> --- a/drivers/pwm/pwm-sifive.c
-> +++ b/drivers/pwm/pwm-sifive.c
-> @@ -158,6 +158,7 @@ static int pwm_sifive_apply(struct pwm_chip *chip, st=
-ruct pwm_device *pwm,
->  	frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
->  	/* The hardware cannot generate a 100% duty cycle */
->  	frac =3D min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
-> +	frac =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
+ drivers/iommu/mtk_iommu.c                              | 6 ++++++
+ include/dt-bindings/memory/mediatek,mt8365-larb-port.h | 4 ++--
+ include/dt-bindings/memory/mtk-memory-port.h           | 3 +++
+ 3 files changed, 11 insertions(+), 2 deletions(-)
 
-The same problem exists in pwm_sifive_get_state(), doesn't it?
+-- 
+2.38.2
 
-As fixing this is an interruptive change anyhow, this is the opportunity
-to align the driver to the rules tested by PWM_DEBUG.
-
-The problems I see in the driver (only checked quickly, so I might be
-wrong):
-
- - state->period !=3D ddata->approx_period isn't necessarily a problem. If
-   state->period > ddata->real_period that's fine and the driver should
-   continue
-
- - frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-   is wrong for two reasons:
-   it should round down and use the real period.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---jlahpnwnp2we3m5x
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmPXmSAACgkQwfwUeK3K
-7AleyggAkGDMZYle0TOKBmbhKP3cCv66Lspwhkit9fvzLF+u5WV9aZ2Hhh18MHLj
-MH8UhAepKUC7oy5vd5eCo5fafKOOr71uJvkxg6W6IJncOMbphNH9K55LeAktSDg6
-AAk4bHiUx9AW1UEhnyu+9SqTl/SS6UoRzWBB8naxQil/YPJpvP6kUM/MnWDthd5r
-1HM4iovyCbXcWYhdG4asGUvA4lQnK92UO47apHnOW7VL9ivVgmfE6N6m5Q4ELy8e
-KarTUp8nG5N5Ki/+2LlpZYWY6w3t27CQJ0UegXxcn3Igu44a0hpYbpeHgi4kYIME
-Su9cOg8cW7mP2GIhIiVZ+63s+pTWqQ==
-=uHqH
------END PGP SIGNATURE-----
-
---jlahpnwnp2we3m5x--
