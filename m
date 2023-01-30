@@ -2,142 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9D58681754
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 18:11:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E164C681765
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 18:16:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236937AbjA3RLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 12:11:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36202 "EHLO
+        id S236546AbjA3RQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 12:16:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236114AbjA3RLt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 12:11:49 -0500
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D0240BDD;
-        Mon, 30 Jan 2023 09:11:47 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id D439F5C00C8;
-        Mon, 30 Jan 2023 12:11:44 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Mon, 30 Jan 2023 12:11:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1675098704; x=1675185104; bh=8g5jhxs1ye
-        CDrjfLIf+8U8LlK1MXTqncFvTNe1mMJWo=; b=qqgWjZIs+GIIXlXlQscQhT6+Ia
-        kyZGJikgz1VoROG4ltqTM8VX/1YSKTj9Czq4SeJgeKAuEdJZ8mBlkfkXic5SftJU
-        iq7jyxSB+BXByUTVk7CByJBj3B3wgBOjPkDqs8MfHpxOK9be+OX0fyTGDWlG1E3e
-        vtiDgLlLogvFHkYZQcif7WuSWlMHOTTD+3K2SeKoy2VX+1HnluwciIkoRFmcfw3R
-        FdrYp3HdAenXZ4S44+fmYraIxm+K6WYYTxQXNI5BBxLGVsL8UNM5lebORuxILBI0
-        dPVQ0F+kv/BGb9SNdrpZaEAuu8+r/Prs1K3a4ax9FEi3zxStLT5GD8gJn0OQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1675098704; x=1675185104; bh=8g5jhxs1yeCDrjfLIf+8U8LlK1MX
-        TqncFvTNe1mMJWo=; b=kVtf/GzsRe7Ufz9KnzY7w4t8qmuSx5ze2fyXzaFvm/JC
-        mg4wKHKEaSvfCk8KspwJ3Vi08vYZgnAQQxHHuQNStMx4NDHnn8iBx8X29yV2mXT+
-        VtQfYMJWwyNkzTiuul+MCh0O0Wybt9uds1dPyfHI/uXh3uysVcOm6oHpHg1Vtyof
-        6J/XPnFhFyp+n6oHzSS+ieuv8XjRZG0m+YTcfRdG4rvkbgjPMwrsUFraUywxIOMu
-        qT8WN8Wsd/R4fHdR1yAr72izkeleJPZ+Lx6vesRmhtXnsOk4dEnnHDO0zWlitTCA
-        yEwRLYL84LYJV+m2MarOKv67JeG1pZDqRQMDFvnoYQ==
-X-ME-Sender: <xms:T_rXY4D1VxwvoYSgVp0iTHLfixLrNRJOXnJ_707xOpYTylAM73pDFA>
-    <xme:T_rXY6ij-rFoP4n1D1sV1tfik-ne6nvazoN59pEJag_u9HUzQ1riUZcFYk-cXCeb7
-    TlJOuyr7Lw_vabY6yg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudefvddguddttdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffegffdutddvhefffeeltefhjeejgedvleffjeeigeeuteelvdettddulefg
-    udfgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:T_rXY7n2AH0WdgbhHdwgSwIGEHKNxu9eRjx1pbS7k_0nzd9oqUUiIQ>
-    <xmx:T_rXY-yugjxUAeNrmRWeYJDU1aUCVH6a_s-MDyrY4SvXybppXrmVvg>
-    <xmx:T_rXY9RGoFIPLzWaQ6wGkkdRVwN44TZujenS2kE-S-8gOzGLzGy-5g>
-    <xmx:UPrXY5rZOjN1IwZu-rXrVDkWffDb9WfHYSzy86V5U4r0-OwGxuJdaw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id AE699B60086; Mon, 30 Jan 2023 12:11:43 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-106-gfe3ab13a96-fm-20230124.001-gfe3ab13a
-Mime-Version: 1.0
-Message-Id: <7c5dfa87-41df-4ba7-b0e4-72c8386402a8@app.fastmail.com>
-In-Reply-To: <20230113164449.906002-8-robimarko@gmail.com>
-References: <20230113164449.906002-1-robimarko@gmail.com>
- <20230113164449.906002-8-robimarko@gmail.com>
-Date:   Mon, 30 Jan 2023 18:11:24 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Robert Marko" <robimarko@gmail.com>,
-        "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>, bhelgaas@google.com,
-        lpieralisi@kernel.org, "Rob Herring" <robh@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        krzysztof.kozlowski+dt@linaro.org,
-        "Manivannan Sadhasivam" <mani@kernel.org>, svarbanov@mm-sol.com,
-        shawn.guo@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, "Abel Vesa" <abelvesa@kernel.org>
-Subject: Re: [PATCH v2 8/9] arm64: dts: qcom: ipq8074: fix Gen3 PCIe node
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S236102AbjA3RQX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 12:16:23 -0500
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83E0240BDD;
+        Mon, 30 Jan 2023 09:16:21 -0800 (PST)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-142b72a728fso15857811fac.9;
+        Mon, 30 Jan 2023 09:16:21 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EFbZYokXDaufN+nrw5U+tk54eaumBdk6Eaj/TYXiSlc=;
+        b=C7NxRfBBIzF2QTuzUsl5Ml3G9eXetQekWk/fNOfNDMKwn0zXOQppST41er9C/lLHKK
+         LseNVaohiulA8/prqVQOc9zCA8sRx/rIidCyLwUxaxz/rw20CaXhvdKhIR6l+C2ZeI8g
+         Nv7Noyv8ZcgVNeh1sXrAoj+i88ek189tiGSaqp6axrd+10+OmKN6HEhB8p2Xi3mhIh0e
+         ObqgF9nUyMXStOJSpcgS/i2RlSrwwUB2y/tmtVCRzZ7aBI13ZPsRF6Ck4LotZDlcqWWV
+         4loffJXUPH/Cbq6yG7OY7e/N8yEtorekybfVLaB2urfOSw5EwBSQNS9yH3PRvtWc01q1
+         MVGg==
+X-Gm-Message-State: AO0yUKWIDCI0cUn+trv5/CmrAfVm9TiyezYcGMpO87znyVgtcOR6KcXX
+        WjhOKOuhh8lQ1pjhOqjWyw==
+X-Google-Smtp-Source: AK7set9D9gvZqo/95yXNlorY/OCGBOTG2wadwkpOFSNQvhHBMxofZPVeWjr0GxvAfHf2ukHGXSr36Q==
+X-Received: by 2002:a05:6870:42d2:b0:163:290f:9ef4 with SMTP id z18-20020a05687042d200b00163290f9ef4mr12449174oah.6.1675098980670;
+        Mon, 30 Jan 2023 09:16:20 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id et10-20020a0568705cca00b00163263f84dasm5335195oab.12.2023.01.30.09.16.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 09:16:20 -0800 (PST)
+Received: (nullmailer pid 2929331 invoked by uid 1000);
+        Mon, 30 Jan 2023 17:16:19 -0000
+Date:   Mon, 30 Jan 2023 11:16:19 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: pwm: Convert Amlogic Meson PWM binding
+Message-ID: <20230130171619.GA2851045-robh@kernel.org>
+References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
+ <d37fb6a3-f94e-224a-8829-80cf47412fce@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d37fb6a3-f94e-224a-8829-80cf47412fce@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 13, 2023, at 17:44, Robert Marko wrote:
-> IPQ8074 comes in 2 silicon versions:
-> * v1 with 2x Gen2 PCIe ports and QMP PHY-s
-> * v2 with 1x Gen3 and 1x Gen2 PCIe ports and QMP PHY-s
->
-> v2 is the final and production version that is actually supported by the
-> kernel, however it looks like PCIe related nodes were added for the v1 SoC.
->
-> Finish the PCIe fixup by using the correct compatible, adding missing ATU
-> register space, declaring max-link-speed, use correct ranges, add missing
-> clocks and resets.
->
-> Fixes: 33057e1672fe ("ARM: dts: ipq8074: Add pcie nodes")
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-
-I was reading through the pull request today and saw this patch
-along with the Gen2 one:
-
-
-> @@ -871,9 +873,9 @@ pcie0: pci@20000000 {
->  			phy-names = "pciephy";
+On Wed, Jan 25, 2023 at 11:28:17PM +0100, Heiner Kallweit wrote:
+> Convert Amlogic Meson PWM binding to yaml.
 > 
->  			ranges = <0x81000000 0 0x20200000 0x20200000
-> -				  0 0x100000   /* downstream I/O */
-> +				  0 0x10000>, /* downstream I/O */
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v2:
+> - fix clocks and clock-names
+> - consider that more than one compatible may be set
+> ---
+>  .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 73 +++++++++++++++++++
+>  .../devicetree/bindings/pwm/pwm-meson.txt     | 29 --------
+>  2 files changed, 73 insertions(+), 29 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> new file mode 100644
+> index 000000000..871b24bc2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic PWM
+> +
+> +maintainers:
+> +  - Heiner Kallweit <hkallweit1@gmail.com>
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    minItems: 1
+> +    maxItems: 2
 
-Fixing the length here seems fine, but the bus-side address
-still looks wrong: 0x20200000 is way outside of the usual
-port ranges from 0 to 0x10000 on the local bus.
+A fallback compatible shouldn't be optional. This makes 
+'amlogic,meson-gx-pwm' alone valid, for example.
 
-> -				  0x82000000 0 0x20300000 0x20300000
-> -				  0 0xd00000>; /* non-prefetchable memory */
-> +				 <0x82000000 0 0x20220000 0x20220000
-> +				  0 0xfde0000>; /* non-prefetchable memory */
+Though probably the dtschema processing will add minItems/maxItems on 
+each oneOf entry to prevent that anyways. So just drop the 
+minItems/maxItems here.
 
-I see the total size of the memory space is under 256MB. Are you
-sure that there is no 64-bit BAR in addition to this?
-
-I also see commit 7d1158c984d3 ("arm64: dts: qcom: sm8550: Add
-PCIe PHYs and controllers nodes") introduce the same broken
-I/O port range (oversized 1MB space wiht an identity map) for a
-new SoC. This should probably be fixed as well, along with
-reviewing the other ones.
-
-Has the I/O space mapping on any of these actually been tested,
-or just copied from one SoC to another? Very few devices actually
-use I/O space, so it wouldn't be surprising if it never worked
-in the first place.
-
-       Arnd
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - amlogic,meson8b-pwm
+> +              - amlogic,meson-gxbb-pwm
+> +              - amlogic,meson-gxbb-ao-pwm
+> +              - amlogic,meson-axg-ee-pwm
+> +              - amlogic,meson-axg-ao-pwm
+> +              - amlogic,meson-g12a-ee-pwm
+> +              - amlogic,meson-g12a-ao-pwm-ab
+> +              - amlogic,meson-g12a-ao-pwm-cd
+> +              - amlogic,meson-s4-pwm
+> +      - items:
+> +          - const: amlogic,meson-gx-pwm
+> +          - const: amlogic,meson-gxbb-pwm
+> +      - items:
+> +          - const: amlogic,meson-gx-ao-pwm
+> +          - const: amlogic,meson-gxbb-ao-pwm
+> +      - items:
+> +          - const: amlogic,meson8-pwm
+> +          - const: amlogic,meson8b-pwm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    oneOf:
+> +      - items:
+> +          - enum: [clkin0, clkin1]
+> +      - items:
+> +          - const: clkin0
+> +          - const: clkin1
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pwm@8550 {
+> +      compatible = "amlogic,meson-gxbb-pwm";
+> +      reg = <0x08550 0x10>;
+> +      clocks = <&xtal>, <&xtal>;
+> +      clock-names = "clkin0", "clkin1";
+> +      #pwm-cells = <3>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+> deleted file mode 100644
+> index bd02b0a14..000000000
+> --- a/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+> +++ /dev/null
+> @@ -1,29 +0,0 @@
+> -Amlogic Meson PWM Controller
+> -============================
+> -
+> -Required properties:
+> -- compatible: Shall contain "amlogic,meson8b-pwm"
+> -                         or "amlogic,meson-gxbb-pwm"
+> -                         or "amlogic,meson-gxbb-ao-pwm"
+> -                         or "amlogic,meson-axg-ee-pwm"
+> -                         or "amlogic,meson-axg-ao-pwm"
+> -                         or "amlogic,meson-g12a-ee-pwm"
+> -                         or "amlogic,meson-g12a-ao-pwm-ab"
+> -                         or "amlogic,meson-g12a-ao-pwm-cd"
+> -- #pwm-cells: Should be 3. See pwm.yaml in this directory for a description of
+> -  the cells format.
+> -
+> -Optional properties:
+> -- clocks: Could contain one or two parents clocks phandle for each of the two
+> -  PWM channels.
+> -- clock-names: Could contain at least the "clkin0" and/or "clkin1" names.
+> -
+> -Example:
+> -
+> -	pwm_ab: pwm@8550 {
+> -		compatible = "amlogic,meson-gxbb-pwm";
+> -		reg = <0x0 0x08550 0x0 0x10>;
+> -		#pwm-cells = <3>;
+> -		clocks = <&xtal>, <&xtal>;
+> -		clock-names = "clkin0", "clkin1";
+> -	}
+> -- 
+> 2.39.1
+> 
+> 
