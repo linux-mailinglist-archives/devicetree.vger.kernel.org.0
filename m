@@ -2,106 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B02968099B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 10:35:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F2C96809D2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 10:42:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236048AbjA3Jer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 04:34:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35050 "EHLO
+        id S235365AbjA3JmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 04:42:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236243AbjA3JeQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 04:34:16 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 231E19EDC
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 01:32:56 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id w6-20020a17090ac98600b0022c58cc7a18so6009547pjt.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 01:32:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w06XLuTGv42ExA7kvsEzi3HmqNn0e+XIKH+7gH1xWFk=;
-        b=PPfshnuneZVuaGMsWsf0abmeP49jp4AxSkkBj/mh1QI/DzHKXdaR6hl+H+ItCxqyBK
-         8EvW4xXW6VegaasREhK2bUhShb9wvty8UOLr3wp/rbISnmKVHRVvA0rpCOSUt0MCj0ZR
-         oPhRoLukyOzJLiU4C/lp/aLdGjZGUoPkShPRj19HLGlGJVneY/5JrOxKgYSDAs+kHckA
-         ZbAar3Gjnh03WMx7A3k5Ncx3kq8vJdKp0fzptQZusU7UMj0/chZLjSo/ClNBAAPUYkSd
-         8bm/XpTxdY/MmYvytxFvGcJV04KPmAG08wqBrYkaeFcuRA8URaK7P1WcmVaJR2IZIpdw
-         jMhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w06XLuTGv42ExA7kvsEzi3HmqNn0e+XIKH+7gH1xWFk=;
-        b=xou/XueX+yBWROXl/BQP9XD+8h7FN5nBPp5EljOnwEqQiBsorURDfHonrmt2EoBG91
-         Bv07gfkISIlBr10eTc1Bs5LuveM2TZUQFYVm6kxaAFm7WhhdUoE3OchU7d7+tsDXz+8C
-         U6btT5/kuxVyJXd+S6JX7gGBw7tAjf9IT0bqzhIFQ1hmPmS0CkAEiJMgJy3ISDyh00zM
-         AUk/zFMqS1hRDdpALNiNMU6LVfRQlH/bLPvGKENDHyJAgUn+pkotoqfkS8uP32V44LoV
-         X4QYOUbr2VBlBoDfcg25osiB0gP5qSndT2PV68ap/ztoUFoW7s7l8t1X465jwxt/FR8f
-         961A==
-X-Gm-Message-State: AFqh2koHSf12AyJh7e6Lobienj8rHO+ATpHhC7m8eJMztod3n/Po6pgd
-        P56tkdWHj2g8rD/sJ0+oRMkvpA==
-X-Google-Smtp-Source: AMrXdXtS3CCualmkzbk7XdCqctKx3U6p6dFg1oHURin04Tlb0OJZb8OfiFW6kp53r9/H5XL1owCXrw==
-X-Received: by 2002:a05:6a20:1596:b0:b8:7905:b6c4 with SMTP id h22-20020a056a20159600b000b87905b6c4mr62293777pzj.61.1675071165340;
-        Mon, 30 Jan 2023 01:32:45 -0800 (PST)
-Received: from hsinchu15.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id t13-20020a6564cd000000b004db2b310f95sm6245704pgv.16.2023.01.30.01.32.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 01:32:44 -0800 (PST)
-From:   Nylon Chen <nylon.chen@sifive.com>
-To:     aou@eecs.berkeley.edu, conor@kernel.org,
-        emil.renner.berthing@canonical.com, geert+renesas@glider.be,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     nylon.chen@sifive.com, nylon7717@gmail.com, zong.li@sifive.com,
-        greentime.hu@sifive.com, vincent.chen@sifive.com
-Subject: [PATCH v2 2/2] pwm: sifive: change the PWM controlled LED algorithm
-Date:   Mon, 30 Jan 2023 17:32:29 +0800
-Message-Id: <20230130093229.27489-3-nylon.chen@sifive.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20230130093229.27489-1-nylon.chen@sifive.com>
-References: <20230130093229.27489-1-nylon.chen@sifive.com>
+        with ESMTP id S235757AbjA3JmO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 04:42:14 -0500
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97A482111;
+        Mon, 30 Jan 2023 01:41:17 -0800 (PST)
+Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 30 Jan
+ 2023 17:41:14 +0800
+Message-ID: <e2e9045a-6e35-112f-69a7-15b080571b69@amlogic.com>
+Date:   Mon, 30 Jan 2023 17:41:14 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH V6 3/3] clk: meson: s4: add support for Amlogic S4 SoC
+ peripheral clock controller
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
+        "qi . duan" <qi.duan@amlogic.com>
+References: <20230116074214.2326-1-yu.tu@amlogic.com>
+ <20230116074214.2326-4-yu.tu@amlogic.com>
+ <1ja62eybrv.fsf@starbuckisacylon.baylibre.com>
+ <aedb0764-b5cb-7f49-f279-51dbec070e80@amlogic.com>
+ <1jwn5hwn0w.fsf@starbuckisacylon.baylibre.com>
+ <a4ad6ac6-60c2-8f7b-fdb0-509de31db282@amlogic.com>
+ <1jy1pko0fc.fsf@starbuckisacylon.baylibre.com>
+From:   Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <1jy1pko0fc.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.18.29.47]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The `frac` variable represents the pulse inactive time, and the result of
-this algorithm is the pulse active time. Therefore, we must reverse the
-result.
 
-The reference is SiFive FU740-C000 Manual[0].
 
-[0]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b16acba_fu740-c000-manual-v1p6.pdf
+On 2023/1/30 17:06, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> 
+> On Sat 28 Jan 2023 at 18:17, Yu Tu <yu.tu@amlogic.com> wrote:
+> 
+>> On 2023/1/20 17:47, Jerome Brunet wrote:
+>>> [ EXTERNAL EMAIL ]
+>>> On Fri 20 Jan 2023 at 11:33, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>
+>>>> Hi
+>>>> On 2023/1/19 19:37, Jerome Brunet wrote:
+>>>>> [ EXTERNAL EMAIL ]
+>>>>> On Mon 16 Jan 2023 at 15:42, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>>>
+>>>>>> Add the peripherals clock controller driver in the s4 SoC family.
+>>>>>>
+>>>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>>> [...]
+>>>>>
+>>>>>> +
+>>>>>> +/* Video Clocks */
+>>>>>> +static struct clk_regmap s4_vid_pll_div = {
+>>>>>> +	.data = &(struct meson_vid_pll_div_data){
+>>>>>> +		.val = {
+>>>>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+>>>>>> +			.shift   = 0,
+>>>>>> +			.width   = 15,
+>>>>>> +		},
+>>>>>> +		.sel = {
+>>>>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+>>>>>> +			.shift   = 16,
+>>>>>> +			.width   = 2,
+>>>>>> +		},
+>>>>>> +	},
+>>>>>> +	.hw.init = &(struct clk_init_data) {
+>>>>>> +		.name = "vid_pll_div",
+>>>>>> +		/*
+>>>>>> +		 * The frequency division from the hdmi_pll clock to the vid_pll_div
+>>>>>> +		 * clock is the default value of this register. When designing the
+>>>>>> +		 * video module of the chip, a default value that can meet the
+>>>>>> +		 * requirements of the video module will be solidified according
+>>>>>> +		 * to the usage requirements of the chip, so as to facilitate chip
+>>>>>> +		 * simulation. So this is ro_ops.
+>>>>>> +		 * It is important to note that this clock is not used on this
+>>>>>> +		 * chip and is described only for the integrity of the clock tree.
+>>>>>> +		 */
+>>>>> If it is reset value and will be applicable to all the design, regarless
+>>>>> of the use-case, then yes RO ops is OK
+>>>>>
+>>>>> >From what I understand here, the value will depend on the use-case requirements.
+>>>>> This is a typical case where the DT prop "assigned-rate" should be used, not RO ops.
+>>>>
+>>>> Check the previous chip history, the actual scene is not used at all,
+>>>> basically is used in simulation. So the previous SOC was "ro_ops" without
+>>>> any problems.  This S4 SOC is not actually useful either.
+>>>>
+>>>> So when you were upstream, you had no problem making "ro_ops". I wonder if
+>>>> I could delete this useless clock, so you don't have to worry about it.
+>>> I don't know what to make of this. What is the point of adding a useless
+>>> clock ?
+>>
+>> As explained earlier this "vid_pll_div" is actually used in chip
+>> emulation. So next I'd like to know what you suggest to do with the clock?
+>>
+> 
+> If it does not exist in the actual SoC, please remove it
+> 
 
-Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
----
- drivers/pwm/pwm-sifive.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
-index 62b6acc6373d..a5eda165d071 100644
---- a/drivers/pwm/pwm-sifive.c
-+++ b/drivers/pwm/pwm-sifive.c
-@@ -158,6 +158,7 @@ static int pwm_sifive_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 	frac = DIV64_U64_ROUND_CLOSEST(num, state->period);
- 	/* The hardware cannot generate a 100% duty cycle */
- 	frac = min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
-+	frac = (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
- 
- 	mutex_lock(&ddata->lock);
- 	if (state->period != ddata->approx_period) {
--- 
-2.36.1
-
+If I remove it, the "vid_pll_sel" clock will be missing a parent 
+(vid_pll_div). I will use the table method and give the above reasons. 
+Do you accept this method?
