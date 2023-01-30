@@ -2,207 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E01C1681DA8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 23:05:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1BE1681DC0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 23:10:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbjA3WFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 17:05:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50610 "EHLO
+        id S230513AbjA3WKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 17:10:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229969AbjA3WFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 17:05:45 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FC4D34C00
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 14:05:42 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id t7so4184154wrp.5
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 14:05:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=emChjJeed1eKpYwI+TZyrMB77/b+qmQePLis86Dn8K8=;
-        b=fF4QBHq/CayAljWbeGvBRmwAVeRYHWdRGWTDW5oc0VA+rNzgrWKPB6l4dTTecYOF/1
-         f5RSzyYBEYaptwLCzcr7Znh4DPP0IKOYRwHL52HFfJgLIUTshE61h4ln6W+sjiE0QETr
-         J5s742TG3xlskH4NKaRZhQTpIHroJPQh4uWffpNdpBLuUG/bqiP5ENz+1rX/3QNZXTHA
-         9xtimiVFck9WH4GC8meOxr6KXR4167WaVm6e1IYdEIhvh3yMhik2yqwKi9VNWbhgtfNz
-         5xS8D6GdmxoBR4FtOub17+v8o8lJiIiPoyzU8cb4pFZg106naVfFkWDVz3CKu8CQaWCR
-         RxDg==
+        with ESMTP id S230496AbjA3WK3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 17:10:29 -0500
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E773526A;
+        Mon, 30 Jan 2023 14:10:00 -0800 (PST)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-16346330067so17075941fac.3;
+        Mon, 30 Jan 2023 14:10:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=emChjJeed1eKpYwI+TZyrMB77/b+qmQePLis86Dn8K8=;
-        b=ztZ5MZ+CizRIwOw/dFLRn4G6T7myjp4I5bhGR85jYJoHb8nYPfkZbecr3bjojrdzSx
-         xfzq4zvxC8yd8ijN6Ixcbs0zcUqHFW6SdILF+U5aKiK+bf4rD/7E2/ecEPWNggZzTEUA
-         J60m8flqfAeyd3xG8KZJBtcVV2EQhQBKJjCSqcLIR8dwxmh99W4V4YiMvs9A1mqFxmy4
-         KXJuK0x8YRh4JBiW4ObphLi5gRgAQ6n8ogvGe6AfUI6oXj3w+TzFl8wzBvKpD8rohmZy
-         4bPH/HKrTbiYO5+AYyrUM06bh/PJ1ZBPwO2JSLHGF79qq5KUTrecB8E5qKyJuqZvhC43
-         oPYQ==
-X-Gm-Message-State: AO0yUKVuXOrZTjd3bQh4u/gmBPjYNUiXhFB4aQdNjcZrcEI3uIdJtsEL
-        qAFIh4TrxOEie4j0u/7YGTfmuw==
-X-Google-Smtp-Source: AK7set/q/q0k9a9lQBsL6bgV46xu7DFQ7Ahv4AtNiE/p5jjyWJWrbre/yVqDiB0Onvne9eV6NvNyoA==
-X-Received: by 2002:adf:f041:0:b0:2bf:e45d:8e06 with SMTP id t1-20020adff041000000b002bfe45d8e06mr5871579wro.70.1675116341060;
-        Mon, 30 Jan 2023 14:05:41 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id u13-20020a5d514d000000b002be2f18938csm12847786wrt.41.2023.01.30.14.05.39
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lw81Ox9m8bEAO1darCcd9bAwGM0pyskgkCFM54xB7Dw=;
+        b=sZLdDL8jqtXnpbxbpFD5DHPU+VjwEBKU5G2agaaeI214PPrbVmDiYDYWZ4NEM6qRbc
+         61I+INh/+vw7nIrG1/N77M9Ek22WrW010ctMpsTUF5omaht/9y9fFFMN1/IUaR5tgQ29
+         7IcYjkHpPom614IoQL2BSTt5vmatjNi9VAJ6NrI1RM0p6EwWxr/+RsMV3TFg4suY+UPE
+         b60QFzV4McE/NXDjfN1B/GVaL5QdPTgXiQ6i2lcu+NKohdgM6zLgkYvcuED5lnCS3q5d
+         97BNgmes7omDn9ZWGdYR/W+D6dUovZUFa1XVSiR6kJkAwE2YWUv2ckGlg+uaDpOrLiU1
+         I32Q==
+X-Gm-Message-State: AO0yUKXcpBtSxhobXfy8J8BPvh5uOBObcNLoBaD+9IcXlOwgVBNWCyAQ
+        9JbqIC4EBbKNsB5YEBlkWg==
+X-Google-Smtp-Source: AK7set856cqhnQCPb48Kq7IYjEinJUpv3uoWOb02qiCWhiuZVNYb/yeNAQi/VqSaq0I1hkeIEt1IQA==
+X-Received: by 2002:a05:6870:d38f:b0:163:6239:24f1 with SMTP id k15-20020a056870d38f00b00163623924f1mr5449536oag.36.1675116599324;
+        Mon, 30 Jan 2023 14:09:59 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id gn12-20020a056870d98c00b0013ae39d0575sm5698312oab.15.2023.01.30.14.09.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 14:05:40 -0800 (PST)
-Date:   Tue, 31 Jan 2023 00:05:38 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Lee Jones <lee@kernel.org>, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Russell King <linux@armlinux.org.uk>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH v2 16/19] clk: imx6ul: add ethernet refclock mux support
-Message-ID: <Y9g/Mpt+MywfJ6bx@linaro.org>
-References: <20230117061453.3723649-1-o.rempel@pengutronix.de>
- <20230117061453.3723649-17-o.rempel@pengutronix.de>
+        Mon, 30 Jan 2023 14:09:58 -0800 (PST)
+Received: (nullmailer pid 3615591 invoked by uid 1000);
+        Mon, 30 Jan 2023 22:09:58 -0000
+Date:   Mon, 30 Jan 2023 16:09:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jacky Bai <ping.bai@nxp.com>
+Cc:     shawnguo@kernel.org, a.zummo@towertech.it, lee@kernel.org,
+        alexandre.belloni@bootlin.com, linux-input@vger.kernel.org,
+        linux-rtc@vger.kernel.org, festevam@gmail.com,
+        dmitry.torokhov@gmail.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-imx@nxp.com,
+        s.hauer@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+        kernel@pengutronix.de, robh+dt@kernel.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Add nxp bbnsm
+Message-ID: <167511659739.3615531.14629886482934237177.robh@kernel.org>
+References: <20230129070823.1945489-1-ping.bai@nxp.com>
+ <20230129070823.1945489-2-ping.bai@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230117061453.3723649-17-o.rempel@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230129070823.1945489-2-ping.bai@nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-17 07:14:50, Oleksij Rempel wrote:
-> Add ethernet refclock mux support and set it to internal clock by
-> default. This configuration will not affect existing boards.
-> 
-> clock tree before this patch:
-> fec1 <- enet1_ref_125m (gate) <- enet1_ref (divider) <-,
->                                                        |- pll6_enet
-> fec2 <- enet2_ref_125m (gate) <- enet2_ref (divider) <-´
-> 
-> after this patch:
-> fec1 <- enet1_ref_sel(mux) <- enet1_ref_125m (gate) <- ...
->                `--<> enet1_ref_pad                      |- pll6_enet
-> fec2 <- enet2_ref_sel(mux) <- enet2_ref_125m (gate) <- ...
->                `--<> enet2_ref_pad
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Acked-by: Lee Jones <lee@kernel.org>
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
-
+On Sun, 29 Jan 2023 15:08:20 +0800, Jacky Bai wrote:
+> Add binding for NXP BBNSM(Battery-Backed Non-Secure Module).
+> 
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 > ---
->  drivers/clk/imx/clk-imx6ul.c                | 26 +++++++++++++++++++++
->  include/dt-bindings/clock/imx6ul-clock.h    |  6 ++++-
->  include/linux/mfd/syscon/imx6q-iomuxc-gpr.h |  6 +++--
->  3 files changed, 35 insertions(+), 3 deletions(-)
+>   - v2 changes:
+>     - remove the redundant 'bindings' string
+>     - add ref to rtc.yaml
+>     - add start-year property
+>     - rename 'regmap' to 'nxp,bbnsm-regmap' and add description & type define
+>     - add header files including in the example and correct the indentation
 > 
-> diff --git a/drivers/clk/imx/clk-imx6ul.c b/drivers/clk/imx/clk-imx6ul.c
-> index c3c465c1b0e7..2836adb817b7 100644
-> --- a/drivers/clk/imx/clk-imx6ul.c
-> +++ b/drivers/clk/imx/clk-imx6ul.c
-> @@ -10,6 +10,7 @@
->  #include <linux/err.h>
->  #include <linux/init.h>
->  #include <linux/io.h>
-> +#include <linux/mfd/syscon/imx6q-iomuxc-gpr.h>
->  #include <linux/of.h>
->  #include <linux/of_address.h>
->  #include <linux/of_irq.h>
-> @@ -94,6 +95,17 @@ static const struct clk_div_table video_div_table[] = {
->  	{ }
->  };
->  
-> +static const char * enet1_ref_sels[] = { "enet1_ref_125m", "enet1_ref_pad", };
-> +static const u32 enet1_ref_sels_table[] = { IMX6UL_GPR1_ENET1_TX_CLK_DIR,
-> +					    IMX6UL_GPR1_ENET1_CLK_SEL };
-> +static const u32 enet1_ref_sels_table_mask = IMX6UL_GPR1_ENET1_TX_CLK_DIR |
-> +					     IMX6UL_GPR1_ENET1_CLK_SEL;
-> +static const char * enet2_ref_sels[] = { "enet2_ref_125m", "enet2_ref_pad", };
-> +static const u32 enet2_ref_sels_table[] = { IMX6UL_GPR1_ENET2_TX_CLK_DIR,
-> +					    IMX6UL_GPR1_ENET2_CLK_SEL };
-> +static const u32 enet2_ref_sels_table_mask = IMX6UL_GPR1_ENET2_TX_CLK_DIR |
-> +					     IMX6UL_GPR1_ENET2_CLK_SEL;
-> +
->  static u32 share_count_asrc;
->  static u32 share_count_audio;
->  static u32 share_count_sai1;
-> @@ -472,6 +484,17 @@ static void __init imx6ul_clocks_init(struct device_node *ccm_node)
->  	/* mask handshake of mmdc */
->  	imx_mmdc_mask_handshake(base, 0);
->  
-> +	hws[IMX6UL_CLK_ENET1_REF_PAD] = imx_obtain_fixed_of_clock(ccm_node, "enet1_ref_pad", 0);
-> +
-> +	hws[IMX6UL_CLK_ENET1_REF_SEL] = imx_clk_gpr_mux("enet1_ref_sel", "fsl,imx6ul-iomuxc-gpr",
-> +				IOMUXC_GPR1, enet1_ref_sels, ARRAY_SIZE(enet1_ref_sels),
-> +				enet1_ref_sels_table, enet1_ref_sels_table_mask);
-> +	hws[IMX6UL_CLK_ENET2_REF_PAD] = imx_obtain_fixed_of_clock(ccm_node, "enet2_ref_pad", 0);
-> +
-> +	hws[IMX6UL_CLK_ENET2_REF_SEL] = imx_clk_gpr_mux("enet2_ref_sel", "fsl,imx6ul-iomuxc-gpr",
-> +				IOMUXC_GPR1, enet2_ref_sels, ARRAY_SIZE(enet2_ref_sels),
-> +				enet2_ref_sels_table, enet2_ref_sels_table_mask);
-> +
->  	imx_check_clk_hws(hws, IMX6UL_CLK_END);
->  
->  	of_clk_add_hw_provider(np, of_clk_hw_onecell_get, clk_hw_data);
-> @@ -516,6 +539,9 @@ static void __init imx6ul_clocks_init(struct device_node *ccm_node)
->  		clk_set_parent(hws[IMX6ULL_CLK_EPDC_PRE_SEL]->clk, hws[IMX6UL_CLK_PLL3_PFD2]->clk);
->  
->  	clk_set_parent(hws[IMX6UL_CLK_ENFC_SEL]->clk, hws[IMX6UL_CLK_PLL2_PFD2]->clk);
-> +
-> +	clk_set_parent(hws[IMX6UL_CLK_ENET1_REF_SEL]->clk, hws[IMX6UL_CLK_ENET_REF]->clk);
-> +	clk_set_parent(hws[IMX6UL_CLK_ENET2_REF_SEL]->clk, hws[IMX6UL_CLK_ENET2_REF]->clk);
->  }
->  
->  CLK_OF_DECLARE(imx6ul, "fsl,imx6ul-ccm", imx6ul_clocks_init);
-> diff --git a/include/dt-bindings/clock/imx6ul-clock.h b/include/dt-bindings/clock/imx6ul-clock.h
-> index b44920f1edb0..66239ebc0e23 100644
-> --- a/include/dt-bindings/clock/imx6ul-clock.h
-> +++ b/include/dt-bindings/clock/imx6ul-clock.h
-> @@ -257,7 +257,11 @@
->  #define IMX6UL_CLK_GPIO5		248
->  #define IMX6UL_CLK_MMDC_P1_IPG		249
->  #define IMX6UL_CLK_ENET1_REF_125M	250
-> +#define IMX6UL_CLK_ENET1_REF_SEL	251
-> +#define IMX6UL_CLK_ENET1_REF_PAD	252
-> +#define IMX6UL_CLK_ENET2_REF_SEL	253
-> +#define IMX6UL_CLK_ENET2_REF_PAD	254
->  
-> -#define IMX6UL_CLK_END			251
-> +#define IMX6UL_CLK_END			255
->  
->  #endif /* __DT_BINDINGS_CLOCK_IMX6UL_H */
-> diff --git a/include/linux/mfd/syscon/imx6q-iomuxc-gpr.h b/include/linux/mfd/syscon/imx6q-iomuxc-gpr.h
-> index d4b5e527a7a3..09c6b3184bb0 100644
-> --- a/include/linux/mfd/syscon/imx6q-iomuxc-gpr.h
-> +++ b/include/linux/mfd/syscon/imx6q-iomuxc-gpr.h
-> @@ -451,8 +451,10 @@
->  #define IMX6SX_GPR12_PCIE_RX_EQ_2			(0x2 << 0)
->  
->  /* For imx6ul iomux gpr register field define */
-> -#define IMX6UL_GPR1_ENET1_CLK_DIR		(0x1 << 17)
-> -#define IMX6UL_GPR1_ENET2_CLK_DIR		(0x1 << 18)
-> +#define IMX6UL_GPR1_ENET2_TX_CLK_DIR		BIT(18)
-> +#define IMX6UL_GPR1_ENET1_TX_CLK_DIR		BIT(17)
-> +#define IMX6UL_GPR1_ENET2_CLK_SEL		BIT(14)
-> +#define IMX6UL_GPR1_ENET1_CLK_SEL		BIT(13)
->  #define IMX6UL_GPR1_ENET1_CLK_OUTPUT		(0x1 << 17)
->  #define IMX6UL_GPR1_ENET2_CLK_OUTPUT		(0x1 << 18)
->  #define IMX6UL_GPR1_ENET_CLK_DIR		(0x3 << 17)
-> -- 
-> 2.30.2
+>   -v3 changes:
+>     - remove the 'nxp,bbnsm-regmap' property, get the regmap directly from the
+>       parent node in rtc/pwrkey driver
 > 
+>   - v4 changes:
+>     - update the compatible string to include the soc id as Rob suggested
+> ---
+>  .../devicetree/bindings/mfd/nxp,bbnsm.yaml    | 101 ++++++++++++++++++
+>  1 file changed, 101 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
