@@ -2,145 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D576968127E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 15:21:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA5466812A7
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 15:23:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237653AbjA3OVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 09:21:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32918 "EHLO
+        id S236159AbjA3OXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 09:23:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237408AbjA3OVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 09:21:22 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60355402EE
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 06:20:13 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id l8so8112870wms.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 06:20:13 -0800 (PST)
+        with ESMTP id S237464AbjA3OXO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 09:23:14 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11F743D932
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 06:22:14 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id dr8so10567531ejc.12
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 06:22:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=QVfyUaMlKe2XgKvP+3UZFMNGgzOkxpuMQuoaVQh0BKc=;
-        b=AU5OTDUQfdokXPeFU5yQryz/q9qCxaUN91+qIhqfKpwMtoooFYxLZ+jyVqOWOOnFcm
-         R9juG1J/K6NASljEygwMQHYkM9UwC2lChPae8ue/Z2qbu4y3wh3U4CIHGVkE4G9yWZe3
-         w8b+MFuKkD0IIxf3m1WUq4rMdbLFawaBlmb0DBBOQbsF4cZ+epAFbH8OTYKoJEt6FRIU
-         hhMUwxrm1K0edMp/noTFix8XechTBHb2fKw6XJnYPbuhlpBUNZW1DWBSLzy/8CpWjDz4
-         RtQ8I4CGdwRZ1nODOxCei15r1vrC/tWP/Bvae6aII0GLmVkACD41/kg0eHHRFqwd7Epi
-         Y5Vg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mp4r9fVpKZrzzgv4D9J+I1cyqWfeLifMaidR1ESs/XU=;
+        b=nvY5nlRxsX46l48SpXxJHxTOpx5vwRolWHXeXIfrwTV+sxdjBY+bxhpt1aXTcXgErw
+         e+6ApQliSQDeXS06uwz4Kqx2OEpi2RmRS9sAiphlvhx10NEqy05FFlYP19w1EJXvEmpd
+         2CbTttOyOJN4mwUhtr0ht8zs0o9m1gDbxmiKKexSGcHYlz9pTlFZRyZNOQ8p5F4Gm/Xr
+         r2XPUdQWTKpDfVyAnvkPUzqEWrfUeZAIjpuYbYqGgQsKcaHTrOtD/OaWPDf6RuOjqzz+
+         t4m/CiCXlbt5YyFVrGRYevkpzHFwxoTnezegT3vQVgWzwWqeBOkHP3YgAcc908BZev3F
+         bygQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QVfyUaMlKe2XgKvP+3UZFMNGgzOkxpuMQuoaVQh0BKc=;
-        b=WTXl3UWecF8/+R45i6Cd4tbqBy8eXy0WJAfFRPGIkOcWI1mnWgSFyTeYXTiLeLQaRX
-         4vVjNex6vNHYaPZYnDhvYENHpxU4Dr9SQbgLECVCoL+LYPqGnaeZEdugOLtSdrJQc5m0
-         IBRtppel3+T4SBau6xIDAQjf6ODnKVILSRYV+vnVAsaXwS5BL610vvDOwwxUcadOpIfp
-         lrfY0tET87CnkCk/EyekOhurVwViqJ5Ncad2VqxUaFjwzBqN4FTPB5HaaUpe55Rn1Z3i
-         EwNHtkVKX8cuRSBPV7jBgcuDnFx94SJAf8O1H6aFRDEKObklMQBQMY1hH3lDZK9AiPkz
-         5xyw==
-X-Gm-Message-State: AO0yUKWA7o/E5hiJo29YUh3vdjfTcQylK26bIwjQHSndouJSKZFZu7EW
-        vIhVA77TLQmtXxSjk8xWmE53XQ==
-X-Google-Smtp-Source: AK7set/pqvBd/T/fnKgqYnfdEL/4TEGOcLzq7bpTeWO1f5GtFkVADlDjXe6AYRSdPNLc0ue8bBGsTw==
-X-Received: by 2002:a05:600c:54e5:b0:3dc:4f2c:c856 with SMTP id jb5-20020a05600c54e500b003dc4f2cc856mr7773946wmb.32.1675088374692;
-        Mon, 30 Jan 2023 06:19:34 -0800 (PST)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id e5-20020a05600c254500b003dc47fb33dasm8355006wma.18.2023.01.30.06.19.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 06:19:34 -0800 (PST)
-Date:   Mon, 30 Jan 2023 15:19:33 +0100
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Alexandre Ghiti <alexghiti@rivosinc.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org
-Subject: Re: [PATCH v4] riscv: Use PUD/P4D/PGD pages for the linear mapping
-Message-ID: <20230130141933.wuikrruh2svkcfv4@orel>
-References: <20230123112803.817534-1-alexghiti@rivosinc.com>
- <20230123142554.f22ajf6upfk2ybxk@orel>
- <20230125104102.2thvourt3lx2p36a@orel>
- <CAHVXubjUCmk6xGTCPzMujYqKUwE0bhQBqd8A+=yq7ijQZtBObg@mail.gmail.com>
- <CAL_JsqJ8JtkOBLpdf3hU9JWcdRTFr3Ss1Hd+yFpMqs7ujUiyCQ@mail.gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mp4r9fVpKZrzzgv4D9J+I1cyqWfeLifMaidR1ESs/XU=;
+        b=k7Eyf/B1RQP9PG+kEF4nuvxt/EgLOJH/NvK32PGwPsDzLW5mYowoInphP209mWrmaC
+         LygN4kq0Y/T88GCEcdT+7iu/fTf/e+LKXppNZ8qv4H4xGAkvC1bL47s3unrXLbZzxQOS
+         A3S3227UIn3gO/eEh5O2obnUWO9G0rGr8QweKOVv+MSECSVtQRNjYrXvMh4JNxAJ90ed
+         dVeiUE0xSfiHNKbm+DSaYu2Hg6lGRUI0Us5lADcEXRAAh3REm87hIW+uXjKZOHl4W/nW
+         UK937iWEuq5YnYZd3IC4nM/W+Rtpbta8TzQ9tm66mWWGspewh6hTayKnZyQNjNcq2Iqn
+         sz1A==
+X-Gm-Message-State: AO0yUKWp+iPc0e5TU9Odpe0fEvljTATjZPFMhTsAokzGuo3tmTCJcGbL
+        7QlwsqVCgHxh62kJ5Cd9vUIftw==
+X-Google-Smtp-Source: AK7set889yj+dR/89CpchqzYstp2P/VMTYjNzpamS85mDA7EvwK5iBUQV/Uj7vVPTON3aNKos3siBg==
+X-Received: by 2002:a17:906:2dd8:b0:87b:d3fa:79f2 with SMTP id h24-20020a1709062dd800b0087bd3fa79f2mr11618195eji.19.1675088478736;
+        Mon, 30 Jan 2023 06:21:18 -0800 (PST)
+Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
+        by smtp.gmail.com with ESMTPSA id q5-20020a1709060f8500b00883ec4c63ddsm3634846ejj.146.2023.01.30.06.21.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Jan 2023 06:21:18 -0800 (PST)
+Message-ID: <fd879d4e-13d7-bb82-8668-a1423fc7e428@linaro.org>
+Date:   Mon, 30 Jan 2023 15:21:16 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJ8JtkOBLpdf3hU9JWcdRTFr3Ss1Hd+yFpMqs7ujUiyCQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH] arm64: dts: qcom: msm8992-lg-bullhead: Correct memory
+ overlap with SMEM region
+Content-Language: en-US
+To:     Petr Vorel <petr.vorel@gmail.com>,
+        Jamie Douglass <jamiemdouglass@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Dominik Kobinski <dominikkobinski314@gmail.com>,
+        Konrad Dybico <konrad.dybico@linaro.org>
+References: <20230128055214.33648-1-jamiemdouglass@gmail.com>
+ <CAB1t1CwzUCEL1josABxfyqX91Z6DsrbEuopsDYsgq-eNxh6Btw@mail.gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <CAB1t1CwzUCEL1josABxfyqX91Z6DsrbEuopsDYsgq-eNxh6Btw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 30, 2023 at 07:48:04AM -0600, Rob Herring wrote:
-> On Wed, Jan 25, 2023 at 6:13 AM Alexandre Ghiti <alexghiti@rivosinc.com> wrote:
-> >
-> > On Wed, Jan 25, 2023 at 11:41 AM Andrew Jones <ajones@ventanamicro.com> wrote:
-> > >
-> > > On Mon, Jan 23, 2023 at 03:25:54PM +0100, Andrew Jones wrote:
-> > > > On Mon, Jan 23, 2023 at 12:28:02PM +0100, Alexandre Ghiti wrote:
-> > > > > During the early page table creation, we used to set the mapping for
-> > > > > PAGE_OFFSET to the kernel load address: but the kernel load address is
-> > > > > always offseted by PMD_SIZE which makes it impossible to use PUD/P4D/PGD
-> > > > > pages as this physical address is not aligned on PUD/P4D/PGD size (whereas
-> > > > > PAGE_OFFSET is).
-> 
-> [...]
-> 
-> > > > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > > > index f08b25195ae7..58107bd56f8f 100644
-> > > > > --- a/drivers/of/fdt.c
-> > > > > +++ b/drivers/of/fdt.c
-> > > > > @@ -891,12 +891,13 @@ const void * __init of_flat_dt_match_machine(const void *default_match,
-> > > > >  static void __early_init_dt_declare_initrd(unsigned long start,
-> > > > >                                        unsigned long end)
-> > > > >  {
-> > > > > -   /* ARM64 would cause a BUG to occur here when CONFIG_DEBUG_VM is
-> > > > > -    * enabled since __va() is called too early. ARM64 does make use
-> > > > > -    * of phys_initrd_start/phys_initrd_size so we can skip this
-> > > > > -    * conversion.
-> > > > > +   /*
-> > > > > +    * __va() is not yet available this early on some platforms. In that
-> > > > > +    * case, the platform uses phys_initrd_start/phys_initrd_size instead
-> > > > > +    * and does the VA conversion itself.
-> > > > >      */
-> > > > > -   if (!IS_ENABLED(CONFIG_ARM64)) {
-> > > > > +   if (!IS_ENABLED(CONFIG_ARM64) &&
-> > > > > +       !(IS_ENABLED(CONFIG_RISCV) && IS_ENABLED(CONFIG_64BIT))) {
-> > > >
-> > > > There are now two architectures, so maybe it's time for a new config
-> > > > symbol which would be selected by arm64 and riscv64 and then used here,
-> > > > e.g.
-> > > >
-> > > >   if (!IS_ENABLED(CONFIG_NO_EARLY_LINEAR_MAP)) {
-> > >
-> > > I see v5 left this as it was. Any comment on this suggestion?
-> >
-> > Introducing a config for this only use case sounds excessive to me,
-> > but I'll let Rob decide what he wants to see here.
-> 
-> Agreed. Can we just keep it as is here.
-> 
-> > > > >             initrd_start = (unsigned long)__va(start);
-> > > > >             initrd_end = (unsigned long)__va(end);
-> 
-> I think long term, we should just get rid of needing to do this part
-> in the DT code and let the initrd code do this.
 
-initrd code provides reserve_initrd_mem() for this and riscv calls
-it later on. afaict, this early setting in OF code is a convenience
-which architectures could be taught not to depend on, and then it
-could be removed. But, until then, some architectures will need to
-avoid it. As I commented downthread, I also don't want to go with
-a config anymore, but it'd be nice to keep arch-specifics out of
-here, so I've posted a patch changing __early_init_dt_declare_initrd
-to be a weak function.
 
-Thanks,
-drew
+On 30.01.2023 15:19, Petr Vorel wrote:
+> Hi Jamie,
+> 
+> On Sat, 28 Jan 2023 at 06:53, Jamie Douglass <jamiemdouglass@gmail.com> wrote:
+>>
+>> A previously committed reserved memory region was overlapping with the
+> 
+> IMHO there should be marked commit which you're fixing:
+> Fixes: 22c7e1a0fa45 ("arm64: dts: msm8992-bullhead: add memory hole region")
+Yes
+
+> 
+>> SMEM memory region, causing an error message in dmesg:
+>>         OF: reserved mem: OVERLAP DETECTED!
+>>         reserved@5000000 (0x0000000005000000--0x0000000007200000)
+>>         overlaps with smem_region@6a00000
+>>         (0x0000000006a00000--0x0000000006c00000)
+>> This patch splits the previous reserved memory region into two
+>> reserved sections either side of the SMEM memory region.
+> 
+> Reviewed-by: Petr Vorel <pvorel@suse.cz>
+> Tested-by: Petr Vorel <pvorel@suse.cz>
+> ...
+>> +++ b/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
+>> @@ -53,8 +53,13 @@ cont_splash_mem: memory@3400000 {
+>>                         no-map;
+>>                 };
+>>
+>> -               removed_region: reserved@5000000 {
+>> -                       reg = <0 0x05000000 0 0x2200000>;
+>> +               reserved@5000000 {
+> Can we keep "removed_region:" ?
+> removed_region: reserved@5000000 {
+> 
+>> +                       reg = <0x0 0x05000000 0x0 0x1a00000>;
+>> +                       no-map;
+>> +               };
+>> +
+>> +               reserved@6c00000 {
+> Not sure which label to add, maybe append 2?
+> removed_region2: reserved@6c00000 {
+> @Konrad @Krzysztof WDYT?
+Generally, if you don't expect that there'll be a need to
+amend/reference the node from somewhere else, the label is
+rather useless..
+
+Konrad
+
+> 
+> Kind regards,
+> Petr
+> 
+>> +                       reg = <0x0 0x06c00000 0x0 0x400000>;
+>>                         no-map;
+>>                 };
+>>         };
