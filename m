@@ -2,61 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FB11680B80
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 12:01:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DCB5680B88
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 12:02:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236598AbjA3LBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 06:01:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48042 "EHLO
+        id S235650AbjA3LCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 06:02:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236564AbjA3LAY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 06:00:24 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7790F33470
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 03:00:02 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id n6so7891323edo.9
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 03:00:02 -0800 (PST)
+        with ESMTP id S236526AbjA3LC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 06:02:28 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 587E134C36
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 03:01:39 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id q5so10696371wrv.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 03:01:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=42nfxs7+j0auGTA9g4xWOyNLHLvDSidsXOT+f9td0DA=;
-        b=jFzVZ/lHH2uSd6jOgWQqwozRiKpesIqvhdnot48LjyYSbK+6FHpPQXYx2BsoXdfPRN
-         MYIDIsPKvX1/7lViVffaAfiZoqDiXOMoaXT5UtGtcqs5sDh/KfiRCdb/XtcS4HW0cGqU
-         N3rnQTe5EiZ7ekhdGokb4uOJjxjwOQdwxVAwKoXFEwPc6cxkAIxm/mOmzT43vuNjjhre
-         9OgxSUsG0xQ0y0mnV8mNzexYtnyjgrY/s3c13jV95pQ3o0/J40Q6Mi4pH73CIHEw3637
-         adblGYQxLos3cvG3ezHkK1HOm+4OT7zVpWua57/O76ZhSEF3Qv6L0xCBotcJs+mPG9pa
-         kxNw==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=BmN+g/dAnuer7yOAtI/to5ZWjp6c/Vk223ZfFssWlmQ=;
+        b=bkrkwX1ZmtQHtKR46u2m3FuzsAUs+wp6w0S6i+OD33iRdckKm8yFLdsaeA5VIfiPkc
+         YHNgLa07djAT4QttWNg0ALSyHS0INYj3Qb61AQcnGIC3qn9RwRPf9HfYCKxOaXeTEc4S
+         y5N24BQZpldNrz7NyCJDXTaVuN4NKQbhSrxDR/4HpRJxRv8G6Miz9xDaO6oy5FD48/+c
+         ePn21hgP9E9+BTCI9CR7hajq8BzsqhWY2Ij5l4OkOAC8d+D0Fc3SHCeNUAbu0GO79gia
+         +5Saj5QEERgTRCl2GPtzDvwrcRkwALjp9+1b6zyZnwR8tsILhwdTwzeJHJdwhjBflGux
+         rUtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=42nfxs7+j0auGTA9g4xWOyNLHLvDSidsXOT+f9td0DA=;
-        b=TVWRtvyFBApYtk8cLrGJzISAKLh2bFYyEGudRbuSZNi/DN0hJOaoRpmZEyAkz7NJ5f
-         3k0QNpJoSrovGBsE8oZ1GG8339uj4zQ2xPE9eda0+QbAJ9zOsFEfi/zbhDPpsp6TsPTL
-         MHAXdPMre90iCTH/C3tNi9a+pVKSqPzFuYG7lowzcuj9iJ6/kIvNzkQzXa9Cjd0dtanB
-         7zXXrPOyGqubH1d+/xCKs2IPaeX8uSebywL2QwF854XwMHl+2870gBJVfp+XFPcIuwTH
-         0XGQuGI/6ltdLrRMQw+c7SXAMSVoLsm4yLfkOPHW7ofMgBqlhHFkDNdBJS+20mU05PeJ
-         xaoQ==
-X-Gm-Message-State: AO0yUKWH8F1c1U9vr9S9OjabYgl0kxB6LItY1xiTdQc+duZE5Y3f6Atv
-        XZ8lxKNmcJ229u8sjlp/XEzxPg==
-X-Google-Smtp-Source: AK7set85d0o7+cCe8nNxiPsQPHcIs8hggv+PhgtrPXuhoUHOpaEgeKsNsdQ0RG1HFwSTrrj6txuWdg==
-X-Received: by 2002:a50:9eef:0:b0:4a0:8fc4:6be8 with SMTP id a102-20020a509eef000000b004a08fc46be8mr22328727edf.26.1675076400886;
-        Mon, 30 Jan 2023 03:00:00 -0800 (PST)
-Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
-        by smtp.gmail.com with ESMTPSA id eg55-20020a05640228b700b0049f5ab4fa97sm6679693edb.86.2023.01.30.02.59.59
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BmN+g/dAnuer7yOAtI/to5ZWjp6c/Vk223ZfFssWlmQ=;
+        b=2qEPDpUwJIO3VXbvcLy0sGy3rd/XYLx4KPNk8ioAuKlPYdxPLaVKTAVFTiv2VVtzOC
+         yq/tPDpoiZ1RPRKepUaPArOXMwMSb98zQCHl286WgTNEjz/DScE6PY5Mdx7FLsUVQ7l4
+         16F2CkdzS464o6N9BrxbDzoUXihVn9hUMKK0dgotmLSmtHZ1BDg7qLCdZ0DBkmsbxwqm
+         krvv7fOqPKMyFAsJOmNHU8O2xJ+prduscaA+yVcLMe3DZAujeB7KibmoWGBCi2vAVMev
+         egg6QQET+SGGg0bL0CrQjhWt/h/BRogfxDH4Twrsh5KoC49jpDJO8mf6uxESgnf5crkB
+         nhcA==
+X-Gm-Message-State: AFqh2kpU6ej9Jw9TwpsMNeJXkEsKQ4UdaHyFKwV+VYBLREVTAVUyloqs
+        QcAu9QnkJ9gsQApkbhC921WHWQ==
+X-Google-Smtp-Source: AMrXdXu1MHbaat0/kWk30g5Bk1GkRBZQXl4XwxezF2rlzOZtqzjFvEjyu/AID3ezJDgJcjQGh3Fqzg==
+X-Received: by 2002:a5d:5c07:0:b0:2bd:fa1d:5291 with SMTP id cc7-20020a5d5c07000000b002bdfa1d5291mr49366324wrb.67.1675076497821;
+        Mon, 30 Jan 2023 03:01:37 -0800 (PST)
+Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id k4-20020a5d4284000000b00241fde8fe04sm11614558wrq.7.2023.01.30.03.01.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jan 2023 03:00:00 -0800 (PST)
-Message-ID: <51d1c4a3-60bf-72df-e1d5-91c69514c36b@linaro.org>
-Date:   Mon, 30 Jan 2023 11:59:58 +0100
+        Mon, 30 Jan 2023 03:01:37 -0800 (PST)
+Message-ID: <ea95f4fb-ccbb-8078-ddac-5254e1dbfc85@linaro.org>
+Date:   Mon, 30 Jan 2023 12:01:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
+ Thunderbird/102.6.0
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
 Subject: Re: [PATCH 5/7] arm64: dts: qcom: sm8450-hdk: add pmic glink node
 Content-Language: en-US
-To:     neil.armstrong@linaro.org,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Heikki Krogerus <heikki.krogerus@linux.intel.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Andy Gross <agross@kernel.org>,
@@ -72,111 +75,118 @@ References: <20230130-topic-sm8450-upstream-pmic-glink-v1-0-0b0acfad301e@linaro.
  <20230130-topic-sm8450-upstream-pmic-glink-v1-5-0b0acfad301e@linaro.org>
  <1c3fa66b-651f-c3c1-1751-af3f43c86c49@linaro.org>
  <6cde6bce-ce28-2dd0-1f16-4868ae93fb3f@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <6cde6bce-ce28-2dd0-1f16-4868ae93fb3f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+ <51d1c4a3-60bf-72df-e1d5-91c69514c36b@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <51d1c4a3-60bf-72df-e1d5-91c69514c36b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 30.01.2023 11:58, Neil Armstrong wrote:
-> On 30/01/2023 11:40, Konrad Dybcio wrote:
->>
->>
->> On 30.01.2023 10:54, Neil Armstrong wrote:
->>> Add the pmic glink node linked with the DWC3 USB controller
->>> switched to OTG mode and tagged with usb-role-switch.
+On 30/01/2023 11:59, Konrad Dybcio wrote:
+> 
+> 
+> On 30.01.2023 11:58, Neil Armstrong wrote:
+>> On 30/01/2023 11:40, Konrad Dybcio wrote:
 >>>
->>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> Missing commit message
-> 
-> ??
-> 
->>
->>> ---
->>>   arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 34 ++++++++++++++++++++++++++++++++-
->>>   1 file changed, 33 insertions(+), 1 deletion(-)
 >>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
->>> index 5bdc2c1159ae..5ab12c911bfe 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
->>> @@ -87,6 +87,31 @@ lt9611_3v3: lt9611-3v3-regulator {
->>>           enable-active-high;
->>>       };
->>>   +    pmic-glink {
->>> +        compatible = "qcom,sm8450-pmic-glink", "qcom,pmic-glink";
->>> +
->> You could remove this newline
->>> +        #address-cells = <1>;
->>> +        #size-cells = <0>;
->>> +
->>> +        connector@0 {
->>> +            compatible = "usb-c-connector";
->>> +            reg = <0>;
->>> +            power-role = "dual";
->>> +            data-role = "dual";
->>> +
->>> +            ports {
->>> +                #address-cells = <1>;
->>> +                #size-cells = <0>;
->> And add one here
+>>> On 30.01.2023 10:54, Neil Armstrong wrote:
+>>>> Add the pmic glink node linked with the DWC3 USB controller
+>>>> switched to OTG mode and tagged with usb-role-switch.
+>>>>
+>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> Missing commit message
 >>
->>> +                port@0 {
->>> +                    reg = <0>;
->> And here
+>> ??
 >>
-> 
-> Ack
-> 
->>> +                    pmic_glink_dwc3_in: endpoint {
->>> +                        remote-endpoint = <&usb_1_dwc3_out>;
->>> +                    };
->>> +                };
->>> +            };
->>> +        };
->>> +    };
->>> +
->>>       vph_pwr: vph-pwr-regulator {
->>>           compatible = "regulator-fixed";
->>>           regulator-name = "vph_pwr";
->>> @@ -724,7 +749,14 @@ &usb_1 {
->>>   };
->>>     &usb_1_dwc3 {
->>> -    dr_mode = "peripheral";
->>> +    dr_mode = "otg";
->>> +    usb-role-switch;
->>> +
->>> +    port {
->> Hm, maybe this could be moved to 8450 dtsi?
-> 
-> Nop because it depends on the board layout, I think dr_mode
-> and eventual connector description should really stay in
-> the board dts.
-I just meant the port definition, would it cause any side
-effects to have it there?
+>>>
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 34 ++++++++++++++++++++++++++++++++-
+>>>>    1 file changed, 33 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>>>> index 5bdc2c1159ae..5ab12c911bfe 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>>>> @@ -87,6 +87,31 @@ lt9611_3v3: lt9611-3v3-regulator {
+>>>>            enable-active-high;
+>>>>        };
+>>>>    +    pmic-glink {
+>>>> +        compatible = "qcom,sm8450-pmic-glink", "qcom,pmic-glink";
+>>>> +
+>>> You could remove this newline
+>>>> +        #address-cells = <1>;
+>>>> +        #size-cells = <0>;
+>>>> +
+>>>> +        connector@0 {
+>>>> +            compatible = "usb-c-connector";
+>>>> +            reg = <0>;
+>>>> +            power-role = "dual";
+>>>> +            data-role = "dual";
+>>>> +
+>>>> +            ports {
+>>>> +                #address-cells = <1>;
+>>>> +                #size-cells = <0>;
+>>> And add one here
+>>>
+>>>> +                port@0 {
+>>>> +                    reg = <0>;
+>>> And here
+>>>
+>>
+>> Ack
+>>
+>>>> +                    pmic_glink_dwc3_in: endpoint {
+>>>> +                        remote-endpoint = <&usb_1_dwc3_out>;
+>>>> +                    };
+>>>> +                };
+>>>> +            };
+>>>> +        };
+>>>> +    };
+>>>> +
+>>>>        vph_pwr: vph-pwr-regulator {
+>>>>            compatible = "regulator-fixed";
+>>>>            regulator-name = "vph_pwr";
+>>>> @@ -724,7 +749,14 @@ &usb_1 {
+>>>>    };
+>>>>      &usb_1_dwc3 {
+>>>> -    dr_mode = "peripheral";
+>>>> +    dr_mode = "otg";
+>>>> +    usb-role-switch;
+>>>> +
+>>>> +    port {
+>>> Hm, maybe this could be moved to 8450 dtsi?
+>>
+>> Nop because it depends on the board layout, I think dr_mode
+>> and eventual connector description should really stay in
+>> the board dts.
+> I just meant the port definition, would it cause any side
+> effects to have it there?
 
-Konrad
+Right, I don't think so, I don't have an opinion on that so whatever
+
+Neil
+
 > 
-> Thanks,
-> Neil
-> 
+> Konrad
 >>
->> Konrad
->>> +        usb_1_dwc3_out: endpoint {
->>> +              remote-endpoint = <&pmic_glink_dwc3_in>;
->>> +          };
->>> +    };
->>>   };
->>>     &usb_1_hsphy {
+>> Thanks,
+>> Neil
+>>
 >>>
-> 
+>>> Konrad
+>>>> +        usb_1_dwc3_out: endpoint {
+>>>> +              remote-endpoint = <&pmic_glink_dwc3_in>;
+>>>> +          };
+>>>> +    };
+>>>>    };
+>>>>      &usb_1_hsphy {
+>>>>
+>>
+
