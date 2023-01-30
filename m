@@ -2,193 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12DA1680A49
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:01:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44AE3680A5E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:05:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236205AbjA3KB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 05:01:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37202 "EHLO
+        id S235634AbjA3KFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 05:05:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234005AbjA3KB0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:01:26 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F80D2716;
-        Mon, 30 Jan 2023 02:01:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9B64960F19;
-        Mon, 30 Jan 2023 10:01:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D98F4C433D2;
-        Mon, 30 Jan 2023 10:01:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1675072884;
-        bh=o4dqwsRXEnWX6zVfh/4HE2Z0WTuD083NeZjgbIqzrOg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SsxUv9ALlxr1+btx1VMsLmDXaeHRixyoG6l4HT4SP89eEXSaquKGXjt69Wurw+0Fd
-         SokJY8XgP5jjIF1nU0Rxg3zRVLZMM3S4OcUt2RbGsSjse81kG2m/Pi/xEcNsJWWpl0
-         TuwaUgufjL348Sq1b8R3tU60akMoA03yL6Y7iags=
-Date:   Mon, 30 Jan 2023 11:01:20 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S231355AbjA3KFv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:05:51 -0500
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F55830E5;
+        Mon, 30 Jan 2023 02:05:50 -0800 (PST)
+Received: by mail-qt1-f173.google.com with SMTP id h24so9463750qta.12;
+        Mon, 30 Jan 2023 02:05:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IzWe6tX5adqaRlCGb9/O9HSY/b8LN8usIGob5izDvDU=;
+        b=aHVPZ7vQlnu/E38d9MYa8FTon1lV/mYVxJejhKEfir4i1UhbbbjyDsNdGcs8f70z43
+         czL30PxWDyREFE3b533UzHg9kLn3Sn8tgsINXHEXiZx5k2g105gx0T7CP7IImfJYhCee
+         tyerpT9kMiF7NyqSEuGZm5siGcK//kK78X0T/XqAHqPIW87d/SB5DK4Fe+87PUPqzk6I
+         Vm5reMuPg+kT92CYA6MW1rt2oKmrBBvttY6LM5P4mh67j4QBfmVKPL/kV0n+U6UCWqpA
+         cR3hNKzjkvd8PnE678b00us0AVEyBE/uxlT029+mW12n5XOoFoOOVsXElZuaLUVMzxrg
+         DhFQ==
+X-Gm-Message-State: AO0yUKV14fq+qHbBknktKdD/n34NjkE4V4aA7LlJgazt5m3VzW8Dh/FL
+        TOwnQ+JJZRKT21Eee4ROSyQ5JY6QzbK8CA==
+X-Google-Smtp-Source: AK7set832nSp1ZDyVzpf0Y8jfYF6EU5TodfMPTRWg5wPyY829zhn56WDyDqm2EEkpohZgbfnDQlhcw==
+X-Received: by 2002:ac8:5c55:0:b0:3b8:54ee:c27d with SMTP id j21-20020ac85c55000000b003b854eec27dmr9516279qtj.60.1675073149165;
+        Mon, 30 Jan 2023 02:05:49 -0800 (PST)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id d187-20020a37b4c4000000b0071f636c108bsm1732180qkf.73.2023.01.30.02.05.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Jan 2023 02:05:49 -0800 (PST)
+Received: by mail-yb1-f177.google.com with SMTP id a9so13327154ybb.3;
+        Mon, 30 Jan 2023 02:05:48 -0800 (PST)
+X-Received: by 2002:a25:9801:0:b0:7d5:b884:3617 with SMTP id
+ a1-20020a259801000000b007d5b8843617mr4330104ybo.380.1675073148543; Mon, 30
+ Jan 2023 02:05:48 -0800 (PST)
+MIME-Version: 1.0
+References: <20230127174014.251539-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <OS0PR01MB592258905AC3979803C473D786CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CA+V-a8s+cZpuUXWRa573a373n7YPsHrdLnUVXHjez6O101oneQ@mail.gmail.com> <OS0PR01MB5922943C1E1D9329691DB02F86CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922943C1E1D9329691DB02F86CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 30 Jan 2023 11:05:36 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWHE3wAYd7TSamN77Xy7CSxnEd8QHW8xm9ng4opsBEapg@mail.gmail.com>
+Message-ID: <CAMuHMdWHE3wAYd7TSamN77Xy7CSxnEd8QHW8xm9ng4opsBEapg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU node
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v9 04/27] virt: gunyah: Add hypercalls to identify Gunyah
-Message-ID: <Y9eVcHM9nZZ/4ZSh@kroah.com>
-References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
- <20230120224627.4053418-5-quic_eberman@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230120224627.4053418-5-quic_eberman@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 20, 2023 at 02:46:03PM -0800, Elliot Berman wrote:
-> Add hypercalls to identify when Linux is running a virtual machine under
-> Gunyah.
-> 
-> There are two calls to help identify Gunyah:
-> 
-> 1. gh_hypercall_get_uid() returns a UID when running under a Gunyah
->    hypervisor.
-> 2. gh_hypercall_hyp_identify() returns build information and a set of
->    feature flags that are supported by Gunyah.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->  MAINTAINERS                          |  2 +
->  arch/arm64/Kbuild                    |  1 +
->  arch/arm64/gunyah/Makefile           |  3 ++
->  arch/arm64/gunyah/gunyah_hypercall.c | 75 ++++++++++++++++++++++++++++
->  drivers/virt/Kconfig                 |  2 +
->  drivers/virt/gunyah/Kconfig          | 14 ++++++
->  include/linux/gunyah.h               | 33 ++++++++++++
->  7 files changed, 130 insertions(+)
->  create mode 100644 arch/arm64/gunyah/Makefile
->  create mode 100644 arch/arm64/gunyah/gunyah_hypercall.c
->  create mode 100644 drivers/virt/gunyah/Kconfig
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f1e07e39b2f5..fe19e71efc6d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9048,6 +9048,8 @@ L:	linux-arm-msm@vger.kernel.org
->  S:	Supported
->  F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->  F:	Documentation/virt/gunyah/
-> +F:	arch/arm64/gunyah/
-> +F:	drivers/virt/gunyah/
->  F:	include/linux/gunyah.h
->  
->  HABANALABS PCI DRIVER
-> diff --git a/arch/arm64/Kbuild b/arch/arm64/Kbuild
-> index 5bfbf7d79c99..e4847ba0e3c9 100644
-> --- a/arch/arm64/Kbuild
-> +++ b/arch/arm64/Kbuild
-> @@ -3,6 +3,7 @@ obj-y			+= kernel/ mm/ net/
->  obj-$(CONFIG_KVM)	+= kvm/
->  obj-$(CONFIG_XEN)	+= xen/
->  obj-$(subst m,y,$(CONFIG_HYPERV))	+= hyperv/
-> +obj-$(CONFIG_GUNYAH)	+= gunyah/
->  obj-$(CONFIG_CRYPTO)	+= crypto/
->  
->  # for cleaning
-> diff --git a/arch/arm64/gunyah/Makefile b/arch/arm64/gunyah/Makefile
-> new file mode 100644
-> index 000000000000..84f1e38cafb1
-> --- /dev/null
-> +++ b/arch/arm64/gunyah/Makefile
-> @@ -0,0 +1,3 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +obj-$(CONFIG_GUNYAH) += gunyah_hypercall.o
-> diff --git a/arch/arm64/gunyah/gunyah_hypercall.c b/arch/arm64/gunyah/gunyah_hypercall.c
-> new file mode 100644
-> index 000000000000..ffed4b71641f
-> --- /dev/null
-> +++ b/arch/arm64/gunyah/gunyah_hypercall.c
-> @@ -0,0 +1,75 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/arm-smccc.h>
-> +#include <linux/module.h>
-> +#include <linux/gunyah.h>
-> +
-> +static const uint32_t gunyah_known_uuids[][4] = {
+On Fri, Jan 27, 2023 at 10:48 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU node
+> > On Fri, Jan 27, 2023 at 6:38 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > > > Subject: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU
+> > > > node
+> > > >
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Enable the performance monitor unit for the Cortex-A55 cores on the
+> > > > RZ/G2L
+> > > > (r9a07g044) SoC.
+> > > >
+> > > > Signed-off-by: Lad Prabhakar
+> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 5 +++++
+> > > >  1 file changed, 5 insertions(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > > b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > > index 80b2332798d9..ff9bdc03a3ed 100644
+> > > > --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > > +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > > @@ -161,6 +161,11 @@ opp-50000000 {
+> > > >               };
+> > > >       };
+> > > >
+> > > > +     pmu_a55 {
+> > > > +             compatible = "arm,cortex-a55-pmu";
+> > > > +             interrupts-extended = <&gic GIC_PPI 7
+> > > > + IRQ_TYPE_LEVEL_HIGH>;
+> > >
+> > > Just a question, Is it tested?
+> > Yes this was tested with perf test
+> >
+> > > timer node[1] defines irq type as LOW, here it is high.
+> > You are right looking at the RZG2L_InterruptMapping_rev01.xlsx this should
+> > be LOW. (I followed the SPI IRQS where all the LEVEL interrupts are HIGH)
+> >
+> > > Also do we need to define (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW) as
+> > it has 2 cores??
+> > >
+> > No this is not required for example here [0] where it has 6 cores.
+>
+> I may be wrong, That is the only example[1], where the A55 PMU per cpu interrupts and number of a55 cores in the DT
+> are not matching.
+>
+> [1]
+> https://elixir.bootlin.com/linux/latest/B/ident/arm%2Ccortex-a55-pmu
 
-uint32_t is not a kernel type, please use sane ones, like u32.
+Indeed, this looks like an omission, propagated through
+arch/arm64/boot/dts/renesas/r8a779[afg]0.dtsi.
 
-> +	{0x19bd54bd, 0x0b37571b, 0x946f609b, 0x54539de6}, /* QC_HYP (Qualcomm's build) */
-> +	{0x673d5f14, 0x9265ce36, 0xa4535fdb, 0xc1d58fcd}, /* GUNYAH (open source build) */
+And doesn't this apply to all PPI interrupts, i.e. shouldn't the GIC
+in arch/arm64/boot/dts/renesas/r9a07g0{43u,44u,54}.dtsi specify the
+mask in their interrupts properties, too?
 
-And why not use the kernel uuid type here?  Why create your own?
+Gr{oetje,eeting}s,
 
-> +};
-> +
-> +#define GH_HYPERCALL_HYP_IDENTIFY		GH_HYPERCALL(0x0000)
-> +
-> +/**
-> + * gh_hypercall_get_uid() - Returns a UID when running under a Gunyah hypervisor
-> + * @uid: An array of 4 u32's (u32 uid[4];)
-> + *
-> + * Caller should compare the resulting UID to a list of known Gunyah UIDs to
-> + * confirm that Linux is running as a guest of Gunyah.
-> + */
-> +void gh_hypercall_get_uid(u32 uid[4])
-> +{
-> +	struct arm_smccc_res res;
-> +	u32 uid[4];
+                        Geert
 
-How does this work when you have a local variable the same name as the
-parameter to the function?  What shadows what and how?  The compiler
-didn't complain about this?
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> +	int i;
-> +
-> +	arm_smccc_1_1_hvc(ARM_SMCCC_VENDOR_HYP_CALL_UID_FUNC_ID, &res);
-> +
-> +	uid[0] = lower_32_bits(res.a0);
-> +	uid[1] = lower_32_bits(res.a1);
-> +	uid[2] = lower_32_bits(res.a2);
-> +	uid[3] = lower_32_bits(res.a3);
-> +
-> +	for (i = 0; i < ARRAY_SIZE(gunyah_known_uuids); i++)
-> +		if (!memcmp(uid, gunyah_known_uuids[i], sizeof(uid)))
-> +			break;
-> +
-> +	return i != ARRAY_SIZE(gunyah_known_uuids);
-
-How can a function that returns void actually return anything?
-
-This obviously was never compiled.  I'm stopping here in my review.
-
-greg k-h
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
