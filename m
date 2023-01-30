@@ -2,83 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3DDC681AA6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 20:37:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB1CE681AD5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 20:53:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238094AbjA3ThQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 14:37:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36062 "EHLO
+        id S229972AbjA3TxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 14:53:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236704AbjA3ThP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 14:37:15 -0500
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8D3338EAD;
-        Mon, 30 Jan 2023 11:37:14 -0800 (PST)
-Received: by mail-oi1-f177.google.com with SMTP id d188so10995357oia.3;
-        Mon, 30 Jan 2023 11:37:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SY8t9rjZvKksjjObUfSr/JlHFAVlEcQD+wuQnMYT6og=;
-        b=BHd4yFoHcrkAipOPK3o52jdeVeo2rZEOFLSmdRdjj+g/54hX1z2YJr77A8ESJhZ3nq
-         mUU9fxVVKcKOorlQ82yV4HbFvEdY4hFVe8OUEWg97I58YswSbwL753v2832hLnIIVL2K
-         cgWIKyqZcc7wL/yoeJ98MUfZsvkLkpuwAGSJ3iN8q+EjHqWx4dj812wOcEqons8ju2h9
-         itaksx8LXqSjKXuKFZd/YgcpURvZ06vlMAoZGsUHOgEq5tYFnN72sT3T7BJJ+MIPdsXo
-         0Kryh749lYDOhyNslI8AIM3k1XUSycnbZB51k4lX+4YwM+RJnyyYw4w3rsCMGy83gEYp
-         nIyA==
-X-Gm-Message-State: AO0yUKU/UtMT9X5oi3FlLz1PvidVC88cgpkFnI/4j17lGmgOI3Ba+OlU
-        QVugpSMUsz0PIlo/RoY99A==
-X-Google-Smtp-Source: AK7set+LExoVClMVHa7Z2AUHvHd9asnN4InRgfJ7HTs+KkGhNtYD+t+SMJiiR4ca0LFwjquj/JKapg==
-X-Received: by 2002:a54:4497:0:b0:378:330d:84ef with SMTP id v23-20020a544497000000b00378330d84efmr2906173oiv.0.1675107433889;
-        Mon, 30 Jan 2023 11:37:13 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c82-20020acab355000000b003645b64d7b3sm5139410oif.4.2023.01.30.11.37.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 11:37:13 -0800 (PST)
-Received: (nullmailer pid 3234988 invoked by uid 1000);
-        Mon, 30 Jan 2023 19:37:13 -0000
-Date:   Mon, 30 Jan 2023 13:37:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
-        krzysztof.kozlowski+dt@linaro.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: iommu: renesas,ipmmu-vmsa: Update for
- R-Car Gen4
-Message-ID: <20230130193713.GA3213851-robh@kernel.org>
-References: <20230127140446.1728102-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S234988AbjA3TxO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 14:53:14 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C05D64ED3;
+        Mon, 30 Jan 2023 11:53:13 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7EF9BB81689;
+        Mon, 30 Jan 2023 19:53:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FE31C433EF;
+        Mon, 30 Jan 2023 19:53:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675108391;
+        bh=8zlI9aX1N49T0MYlxinfKaNPhz4QTQRZioihuwzrMDM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=kjcs3x9qAYFwI/kCEBObIX7v+j2rpw23nbJNcUGBEMINvopnL9u/S+rjP1otQBnSl
+         QyEgku6IEfZGAHNSKYmpG5bXxQNAui8DyycZeBowclE8g0foDr1YhWcpF6ZFAJ3z/m
+         X3GQsFnQauRP0u1OER6viwD9oJb6GLyKX3TytEXZ48sPRHBLb04gFL+BVfh+HihgDA
+         UFyQGMVnjb1zCIEYjaVM+bGxJ+PABHcOIvsCdjoFcRD+v5kIZeOt6AT6nkjwGo2DQq
+         RKo2Z6lavsAC2Q7LjRr/R07lMRoDV30H4qUOTtdBnCxB30oQ8zJOpIH9cucmajFAjj
+         +y+Xj0Dn9vuJA==
+Received: by mail-vs1-f52.google.com with SMTP id j7so13718645vsl.11;
+        Mon, 30 Jan 2023 11:53:11 -0800 (PST)
+X-Gm-Message-State: AO0yUKUPMekEgg0hptWHJ3x2Jo07Pp5+PGSK6bokiVzUX56LcJJz7MuC
+        VoEFyo1Fur8SBLRNqd6RDony26I3OdZst9jJCA==
+X-Google-Smtp-Source: AK7set8fFL3zBqYlQdY0u7dmCurFObMNP2O53UQEuYSzkKOCYh+xT4NHlzqp2dA6Oe2XAUjxln8to9PrmxtiHVDPR/c=
+X-Received: by 2002:a67:7144:0:b0:3f3:5ce0:85ab with SMTP id
+ m65-20020a677144000000b003f35ce085abmr1252830vsc.26.1675108390153; Mon, 30
+ Jan 2023 11:53:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230127140446.1728102-1-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20230130162650.399490-1-masahiroy@kernel.org>
+In-Reply-To: <20230130162650.399490-1-masahiroy@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 30 Jan 2023 13:52:58 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+e15e64Vsg8SwDsrUfzS8rWKi_39ajp3=2Ck7Dz_gs5A@mail.gmail.com>
+Message-ID: <CAL_Jsq+e15e64Vsg8SwDsrUfzS8rWKi_39ajp3=2Ck7Dz_gs5A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: rename .yamllint to yamllint
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 11:04:46PM +0900, Yoshihiro Shimoda wrote:
-> Since R-Car Gen4 doens't have the main IPMMU IMSSTR register, update
-> the renesas,ipmmu-main property which allows to only set the first
-> argument for R-Car Gen4.
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
-> Changes from v1:
-> https://lore.kernel.org/all/20230123012940.1250879-1-yoshihiro.shimoda.uh@renesas.com/
->  - Change number of argument for R-Car Gen4 instead of "module id".
->    On the discussion, using 'minItems' is a solution. But, it causes
->    "too short" errors on dtbs_check. So, using "oneOf" instead.
+On Mon, Jan 30, 2023 at 10:26 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
+>
+> This file is ignored by git by the '.*' rule in the top .gitignore.
+>
+> I do not see a good reason why this should be a hidden file.
 
-What was the schema you had?
-
-
-I've commented on v1.
+Only because that is the default name yamllint will pick up if it is
+run from the bindings directory. Not really something I do though.
 
 Rob
