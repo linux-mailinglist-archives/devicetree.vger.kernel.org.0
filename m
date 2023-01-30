@@ -2,103 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4310668042F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 04:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B46F868043A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 04:15:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235575AbjA3DIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 22:08:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56964 "EHLO
+        id S229878AbjA3DPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Jan 2023 22:15:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235690AbjA3DIa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 22:08:30 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C004F23675;
-        Sun, 29 Jan 2023 19:08:08 -0800 (PST)
-X-UUID: 4292aa50a04b11eda06fc9ecc4dadd91-20230130
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=88IrPDewJMdiNmtnllWW1ZT8q7OVxFl9yffQnwnQCD4=;
-        b=pYs5RqeSouWQGdh7w3PPB3o/DjzF2veRBq7/HLe8yshr57TXxwH2rrW9zfD5zgspm8awZAvS/Lv3uzBtqdAg/ZXuGH/mgdBEQYK0PWcrz/SD4fAxggexUX6f5UEcUmNihCh0sYynfGU3mzkYVTZB6Fub3EbPsEBYruJTx8ZpcqA=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.18,REQID:a104fedc-b7de-446c-926a-9ca3bba356b5,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:95
-X-CID-INFO: VERSION:1.1.18,REQID:a104fedc-b7de-446c-926a-9ca3bba356b5,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
-        :quarantine,TS:95
-X-CID-META: VersionHash:3ca2d6b,CLOUDID:92e04c8d-8530-4eff-9f77-222cf6e2895b,B
-        ulkID:2301301107422DY0ZAK9,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-        ,OSI:0,OSA:0
-X-CID-BVR: 0,NGT
-X-UUID: 4292aa50a04b11eda06fc9ecc4dadd91-20230130
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-        (envelope-from <xiangsheng.hou@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 176492950; Mon, 30 Jan 2023 11:07:41 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Mon, 30 Jan 2023 11:07:40 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Mon, 30 Jan 2023 11:07:39 +0800
-From:   Xiangsheng Hou <xiangsheng.hou@mediatek.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S229592AbjA3DPb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 22:15:31 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31A091BF6;
+        Sun, 29 Jan 2023 19:15:29 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30U3FAx7048529;
+        Sun, 29 Jan 2023 21:15:10 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1675048510;
+        bh=TR1CxKzS2lEZabrt9Fmyh10P7iKJoWA2rNtNpq8RqM4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=pkIdf++rgtDV55v/aF0mdDc7srAmC8CZHN1tUEdYw8DQOhGZEgWAuV2+XnuSRcUz1
+         jNJZ8OXXPz5lBK2YJWh75z/bCF1uTaCMQRhz4j9yrgC0IGtsBcL9otUG0IGNfluVG8
+         ewz7JNryX+X3Yncgyem4WC17gIgu8uU7yPFQwnYw=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30U3FAr9091112
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 29 Jan 2023 21:15:10 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sun, 29
+ Jan 2023 21:15:09 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Sun, 29 Jan 2023 21:15:09 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30U3F94c083498;
+        Sun, 29 Jan 2023 21:15:09 -0600
+Date:   Sun, 29 Jan 2023 21:15:09 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Chuanhong Guo <gch981213@gmail.com>
-CC:     Xiangsheng Hou <xiangsheng.hou@mediatek.com>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <benliang.zhao@mediatek.com>, <bin.zhang@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RESEND PATCH v5 10/10] dt-bindings: mtd: mediatek,nand-ecc-engine: Add compatible for MT7986
-Date:   Mon, 30 Jan 2023 11:06:56 +0800
-Message-ID: <20230130030656.12127-11-xiangsheng.hou@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230130030656.12127-1-xiangsheng.hou@mediatek.com>
-References: <20230130030656.12127-1-xiangsheng.hou@mediatek.com>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ARM: dts: ti: use "okay" for status
+Message-ID: <20230130031509.qpsiuaaxhxwdhhwm@unwarlike>
+References: <20230127101836.93845-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230127101836.93845-1-krzysztof.kozlowski@linaro.org>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dt-bindings documentation of ECC for MediaTek MT7986 SoC
-platform.
+On 11:18-20230127, Krzysztof Kozlowski wrote:
+> "okay" over "ok" is preferred for status property.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm/boot/dts/da850-evm.dts         | 2 +-
+>  arch/arm/boot/dts/keystone-k2e-evm.dts  | 2 +-
+>  arch/arm/boot/dts/keystone-k2g-evm.dts  | 2 +-
+>  arch/arm/boot/dts/keystone-k2hk-evm.dts | 2 +-
+>  arch/arm/boot/dts/keystone-k2l-evm.dts  | 2 +-
+>  5 files changed, 5 insertions(+), 5 deletions(-)
+> 
 
-Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/mtd/mediatek,nand-ecc-engine.yaml        | 1 +
- 1 file changed, 1 insertion(+)
+[...]
 
-diff --git a/Documentation/devicetree/bindings/mtd/mediatek,nand-ecc-engine.yaml b/Documentation/devicetree/bindings/mtd/mediatek,nand-ecc-engine.yaml
-index b13d801eda76..505baf1e8830 100644
---- a/Documentation/devicetree/bindings/mtd/mediatek,nand-ecc-engine.yaml
-+++ b/Documentation/devicetree/bindings/mtd/mediatek,nand-ecc-engine.yaml
-@@ -18,6 +18,7 @@ properties:
-       - mediatek,mt2701-ecc
-       - mediatek,mt2712-ecc
-       - mediatek,mt7622-ecc
-+      - mediatek,mt7986-ecc
- 
-   reg:
-     items:
+> diff --git a/arch/arm/boot/dts/keystone-k2e-evm.dts b/arch/arm/boot/dts/keystone-k2e-evm.dts
+> index 5d6d074011df..abd5aef8b87d 100644
+> --- a/arch/arm/boot/dts/keystone-k2e-evm.dts
+> +++ b/arch/arm/boot/dts/keystone-k2e-evm.dts
+> @@ -159,7 +159,7 @@ partition@1 {
+>  };
+>  
+>  &mdio {
+> -	status = "ok";
+> +	status = "okay";
+>  	ethphy0: ethernet-phy@0 {
+>  		compatible = "marvell,88E1514", "marvell,88E1510", "ethernet-phy-ieee802.3-c22";
+>  		reg = <0>;
+> diff --git a/arch/arm/boot/dts/keystone-k2g-evm.dts b/arch/arm/boot/dts/keystone-k2g-evm.dts
+> index 88be868cf71e..3a87b7943c70 100644
+> --- a/arch/arm/boot/dts/keystone-k2g-evm.dts
+> +++ b/arch/arm/boot/dts/keystone-k2g-evm.dts
+> @@ -534,7 +534,7 @@ tlv320aic3106: tlv320aic3106@1b {
+>  &dss {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&vout_pins>;
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	port {
+>  		dpi_out: endpoint {
+> diff --git a/arch/arm/boot/dts/keystone-k2hk-evm.dts b/arch/arm/boot/dts/keystone-k2hk-evm.dts
+> index 4352397b4f52..1f762af6f502 100644
+> --- a/arch/arm/boot/dts/keystone-k2hk-evm.dts
+> +++ b/arch/arm/boot/dts/keystone-k2hk-evm.dts
+> @@ -183,7 +183,7 @@ partition@1 {
+>  };
+>  
+>  &mdio {
+> -	status = "ok";
+> +	status = "okay";
+>  	ethphy0: ethernet-phy@0 {
+>  		compatible = "marvell,88E1111", "ethernet-phy-ieee802.3-c22";
+>  		reg = <0>;
+> diff --git a/arch/arm/boot/dts/keystone-k2l-evm.dts b/arch/arm/boot/dts/keystone-k2l-evm.dts
+> index 1c880cf8fa91..3a69f65de81e 100644
+> --- a/arch/arm/boot/dts/keystone-k2l-evm.dts
+> +++ b/arch/arm/boot/dts/keystone-k2l-evm.dts
+> @@ -132,7 +132,7 @@ partition@1 {
+>  };
+>  
+>  &mdio {
+> -	status = "ok";
+> +	status = "okay";
+>  	ethphy0: ethernet-phy@0 {
+>  		compatible = "marvell,88E1514", "marvell,88E1510", "ethernet-phy-ieee802.3-c22";
+>  		reg = <0>;
+> -- 
+> 2.34.1
+> 
+
+For keystone:
+Acked-by: Nishanth Menon <nm@ti.com>
+
 -- 
-2.25.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
