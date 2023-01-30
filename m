@@ -2,145 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 006016807CF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 09:49:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA9CC6807C6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 09:48:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236162AbjA3ItA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 03:49:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33626 "EHLO
+        id S236110AbjA3Isp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 03:48:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236129AbjA3Is4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 03:48:56 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E95F18B26;
-        Mon, 30 Jan 2023 00:48:23 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id cq16-20020a17090af99000b0022c9791ac39so2319398pjb.4;
-        Mon, 30 Jan 2023 00:48:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0dgMsTq5Ts9YEjqdpbek5QxemQ/PfLYpnehoHOo4hN8=;
-        b=kRlKvwqJrudORyPXxYlY6uAPXAorGilGpcQYT9VxBv+HOC0g2w6/zeryG5O0wZF8xJ
-         1hO/UFchFYBL4M00kX7zFg+5A4IrEt2454v2kJkfXXAvlLsiwDZRY1eBfjYdEwafGoRz
-         3skVunpDqqgQgy+Gh445WndXIdL7eQag6l6SfTvwTjz2+VD8zocooGY6yf3sLTDAWTSA
-         zVxnnOycc0BZgmmJk6Rj3zT0rn/rf9C+FDI8jMzf5MuRH/BPNjmNIWSyLye0UY7cB5cC
-         iMj6VpJQ7lO382Mr04hN2ECiwIhsjcwhao8NVosolZwUiT+0W1r5MrMeBMEcp4KLTtP/
-         8GpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0dgMsTq5Ts9YEjqdpbek5QxemQ/PfLYpnehoHOo4hN8=;
-        b=TnRHrskK9Bp/u4jUcQ5UnaQqVtF+R8cPYSxaM/0FzTXuLSQ3tqqiNABN+1QoBaxwER
-         Dnr23LrfcKdoW3mc6vtyX8Rc4OeP7jM0oNW/dQwVI6md0f73LqEJF4b3TMKHMLZeDOwP
-         L7jdzpa3YA7cEIZtr2Luq0sBZE9wmu8CiWxNrsGUR0x3s6GEZSSRO1J5TPUrVkroLg9j
-         TVcYtsq8QuTafhJ84oHgqqLhq1UMyMg/ojJWYjLznDuemVeOwWOt34oGT6QBNwFuthS0
-         9TStCBiK3PGVu3VIMZ/mDVj9dlQw84G2ukpQoavLE2sNrY6+kMAN0JJaOiooS4RRbzBh
-         2gnA==
-X-Gm-Message-State: AO0yUKUUJLoNQVrB6Lt8Q/pfUFTQn1noD+qYziFKS3Msxsty67/nXEA/
-        tMnba2HIeiFvu9SPp51A3ik=
-X-Google-Smtp-Source: AK7set8Nlmxdg0CtwUfU9uT+3YiRsDDX20CZDBHXxQPB1hfblLlao+qqh6ph4W22gi2k3hBv3FKL7w==
-X-Received: by 2002:a17:903:11cd:b0:196:8d33:f083 with SMTP id q13-20020a17090311cd00b001968d33f083mr1179155plh.28.1675068502630;
-        Mon, 30 Jan 2023 00:48:22 -0800 (PST)
-Received: from localhost.localdomain ([45.112.3.15])
-        by smtp.gmail.com with ESMTPSA id ix1-20020a170902f80100b00192d9258512sm7205284plb.154.2023.01.30.00.48.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 00:48:22 -0800 (PST)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-amlogic@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH linux-next v5 4/4] dt-bindings: usb: vialab,vl817: Cleanup compatible, reset-gpios and required
-Date:   Mon, 30 Jan 2023 08:47:43 +0000
-Message-Id: <20230130084744.2539-5-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230130084744.2539-1-linux.amoon@gmail.com>
-References: <20230130084744.2539-1-linux.amoon@gmail.com>
+        with ESMTP id S236098AbjA3Isn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 03:48:43 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 314AA15C93;
+        Mon, 30 Jan 2023 00:48:07 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 23F046602DE5;
+        Mon, 30 Jan 2023 08:48:04 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1675068485;
+        bh=MAOqAEBgvD2S1zgCqv5KXxmSTBg+M7tmyplC/Cf1sGw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=NP7QWvQxoOQkrIo0DZJ7Sg5w18iN59deoI2jBB/vL01Xn5gvIqHvsxacTRznFwI7p
+         74eAziL8fL9go2YFlVeRHH4aGgB4WEUVgrG1MixdfKXL9FSna3M/+Mm7kTGrcGKsqJ
+         picheY74gSByXoBTbnYRemseiYKHl2ue//HRKBUZ4mZJn9bNezv3pEix1Ynq+X1iEA
+         Zc5K1d1h2Msjb+TlKf6JqPn1YAGHJ3UQIXIEGLq3kCvU4+whIoSp4umC/0WCI29ZqM
+         Yu0nkBbQWVgqNdop+3gEzuidFoQAb0QTscsKmao4AyTH8SNPJ8aLeZSg8RJGPSocwW
+         O5vdsodF0039Q==
+Message-ID: <136a6c96-6bff-8860-c2e9-5e484c75867a@collabora.com>
+Date:   Mon, 30 Jan 2023 09:48:00 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 00/23] MediaTek clocks cleanups and improvements
+To:     Miles Chen <miles.chen@mediatek.com>
+Cc:     chun-jie.chen@mediatek.com, daniel@makrotopia.org,
+        devicetree@vger.kernel.org, fparent@baylibre.com,
+        ikjn@chromium.org, johnson.wang@mediatek.com,
+        jose.exposito89@gmail.com, kernel@collabora.com,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        matthias.bgg@gmail.com, msp@baylibre.com, mturquette@baylibre.com,
+        nfraprado@collabora.com, pablo.sun@mediatek.com,
+        rex-bc.chen@mediatek.com, robh+dt@kernel.org, ryder.lee@kernel.org,
+        sam.shih@mediatek.com, sboyd@kernel.org, weiyi.lu@mediatek.com,
+        wenst@chromium.org, y.oudjana@protonmail.com,
+        yangyingliang@huawei.com, Mingming.Su@mediatek.com
+References: <20230113110616.111001-1-angelogioacchino.delregno@collabora.com>
+ <20230130065141.2117-1-miles.chen@mediatek.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230130065141.2117-1-miles.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cleanup by removing unneeded quotes from refs and
-add maxItems to reset-gpios and fix the required list.
+Il 30/01/23 07:51, Miles Chen ha scritto:
+> Mingming has tested this series on mt2712.
+> 
+> Tested-by: Mingming Su <mingming.su@mediatek.com>
+> 
 
-Fixes: 31360c28dfdd ("dt-bindings: usb: Add binding for Via lab VL817 hub controller")
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-v5: added Rev by Krzysztof
-    fix the subject as suggested by Krzysztof.
-v4: Fix the subject and patch description.
----
- .../devicetree/bindings/usb/vialab,vl817.yaml  | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
+Thanks everyone! :-)
 
-diff --git a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-index 5f9771e22058..23a13e1d5c7a 100644
---- a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-+++ b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-@@ -14,29 +14,32 @@ allOf:
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - usb2109,2817
--          - usb2109,817
-+    enum:
-+      - usb2109,2817
-+      - usb2109,817
- 
-   reg: true
- 
-   reset-gpios:
--    description: GPIO controlling the RESET# pin.
-+    maxItems: 1
-+    description:
-+      GPIO controlling the RESET# pin.
- 
-   vdd-supply:
-     description:
-       phandle to the regulator that provides power to the hub.
- 
-   peer-hub:
--    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    $ref: /schemas/types.yaml#/definitions/phandle
-     description:
-       phandle to the peer hub on the controller.
- 
- required:
--  - peer-hub
-   - compatible
-   - reg
-+  - reset-gpios
-+  - vdd-supply
-+  - peer-hub
- 
- additionalProperties: false
- 
-@@ -45,7 +48,6 @@ examples:
-     #include <dt-bindings/gpio/gpio.h>
- 
-     usb {
--        dr_mode = "host";
-         #address-cells = <1>;
-         #size-cells = <0>;
- 
--- 
-2.38.1
-
+Cheers,
+Angelo
