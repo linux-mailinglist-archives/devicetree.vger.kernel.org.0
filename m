@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8EEC680CBD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 13:01:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39B42680CBE
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 13:01:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230422AbjA3MBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 07:01:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59232 "EHLO
+        id S235761AbjA3MBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 07:01:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235737AbjA3MBh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 07:01:37 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5EC62709
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 04:01:35 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id hn2-20020a05600ca38200b003dc5cb96d46so876411wmb.4
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 04:01:35 -0800 (PST)
+        with ESMTP id S235725AbjA3MBi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 07:01:38 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 539011708
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 04:01:37 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id o36so1779715wms.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 04:01:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ventanamicro.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=i6UAT/lkfohFOOd5Gpj9LH7cNIgjJcQBN1fpGpSr8xc=;
-        b=YAJkFwZgJ0LA+Bn91S1gW2IYB2sIPvhW6e6BW2FC0ggX9BN2VdTIs6eo0COXLeNbXl
-         0xZQZZMwH7BG/U/cSI8XUpSxSkP7ifpTzPsFNuEMkY6ZtNrHN+YkxBgNtCN3LmqEWUwh
-         UMIQvi289QOP68BL6Z7bAP+mltjwervb7q/27sPJNkA2T8g02Csve6BMietLfOs7MEmK
-         5riyFYTlmpvRyPmOEu8goWTZ3PMU+LCqD1bFeXC7WbNXLODd0vJ624AozbExD0JUAivm
-         xJ6knoiMfRNR8hBBei7t02fEZmRJMqaHHqXpuP77nD/+k0JTcRgDki9jjvtjK5wkJ4Ik
-         TcNg==
+        bh=p7WajgJTyp6s8p17b2ocg3NsVY17UO9gaFgvhSkFOC0=;
+        b=Wbwo3i3JcY1tS/49otQJmEIY7fqsrg11ZUW4q7MvAwS4DmaXaggS3mEBa4HX7YJH4C
+         KdPyV91sLrnzjer5SUxqsyGzlt5L7waQdJ3ZrnYX+4ILG24BQZOOja0OwUDcGyeSgr0e
+         FqN14cTOppGvVYpfxhC39U/1MEKd8uM4o7QSA7277Vj5eKkRH9h4MVE3LFk0yRzBRLDM
+         taeynreiWr0Q1LLU4uO0Cd1YoXzuGEN6eFd825yX2G19nJy0JF+QO7M189V4CMb9Iztz
+         qA3K805K9LrP39QvpqVuxki6icLKL1TR3Qo+oz+sl9txQF7YiUTZSanZDC+42/L2sG8/
+         rdFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=i6UAT/lkfohFOOd5Gpj9LH7cNIgjJcQBN1fpGpSr8xc=;
-        b=csLmWOwFaC1+Htw6sV0r1STo3Ltp8GaGhaNKpZeK2f2DfOVCMnh+B5t4fboGfcxcqN
-         spKVN0Lw98k7zmJtOXfnSDBtmSgrYGIZOR0LjWPagBbM/qLARJniQiAbH9TpE0WEFadv
-         z0Y5olskyEI2b5OY4qZ528ZiT8aso6vfvrQcBi5GUwnAhWnkmEsRRTTAX+G4KJ0nkPuA
-         x9XJJOttHHeA/PvTWA/V/EbGlfA552udCA7nijyudTTSDXUBBKMl1YholwE9YIRlqu6V
-         K3C+oDBrbEyg57owf7g3/1xvHccHzn57MCvHUItnBAD101D+23BDzEyGbY0B+pYUJsPE
-         v+Sw==
-X-Gm-Message-State: AFqh2krexVgNhYdZYgd1mizRV9yhD0XavH8/6CEyfg80KCczPdbrdY5T
-        1Am+t/Xs+iAQsd0KtTLcCXtTBQ==
-X-Google-Smtp-Source: AMrXdXvvCERJn5Fz/gBHngbNbmXcmEiiEfNEU7a7OZnVnONN33npyUcEEU5gzZTIrGKZSlRlA45H4A==
-X-Received: by 2002:a1c:ed1a:0:b0:3da:c07:c5fe with SMTP id l26-20020a1ced1a000000b003da0c07c5femr46386974wmh.5.1675080094397;
-        Mon, 30 Jan 2023 04:01:34 -0800 (PST)
+        bh=p7WajgJTyp6s8p17b2ocg3NsVY17UO9gaFgvhSkFOC0=;
+        b=6yJde1iBbrmjh4kIaxoRnEdP8OmMKqVi6mfcTLrQe7vLdCm41M5VNBAa3MkUL163Rl
+         twvoC+ha9W+CkKkRK2JAJ8hCHTv0f8CbSMmql9vFgvFsqCIGlO3SQzfxb0hFjTdeZ2N6
+         oHNhKyAf7zPIf2RrGtUA1jg0lsN9b1EPu2EbZMr6tKjtkL6eUoE2xGUEGda552x/D8xG
+         w8QX+P6NDfy5iaqBbfu4w7mmBQtmAEibvSiYtfxNGO0gVfA7mq27bMqudaNRKy+GuCI8
+         nruCL8Zr2kR7xpagH5of/9BNCDAODXJerR/7wt/iRqOD8IrsRmWypu3Xfce13SSjE4+V
+         1W/w==
+X-Gm-Message-State: AO0yUKUYZ1r8fg01znQaNN4WPKRTktFf9IW2dr6RXqHgwzpXMX8Ve8Za
+        +jiwzpyg/wxDWHRjEEt2xeFmKg==
+X-Google-Smtp-Source: AK7set/2f+jRkKa/sCvrMWRE1bTC+tI84VI05n/zDsWil2rOn6uHMV8JmqkFKkrkC7Wch1PcKM+Vqw==
+X-Received: by 2002:a05:600c:895:b0:3dc:4cb5:41c with SMTP id l21-20020a05600c089500b003dc4cb5041cmr7241371wmp.0.1675080095733;
+        Mon, 30 Jan 2023 04:01:35 -0800 (PST)
 Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id o16-20020a05600c379000b003dc49e0132asm7126453wmr.1.2023.01.30.04.01.33
+        by smtp.gmail.com with ESMTPSA id u9-20020a05600c4d0900b003dc54eef495sm4217244wmp.24.2023.01.30.04.01.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 04:01:34 -0800 (PST)
+        Mon, 30 Jan 2023 04:01:35 -0800 (PST)
 From:   Andrew Jones <ajones@ventanamicro.com>
 To:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
         devicetree@vger.kernel.org
@@ -62,9 +62,9 @@ Cc:     'Heiko Stuebner ' <heiko@sntech.de>,
         'Conor Dooley ' <conor.dooley@microchip.com>,
         'Rob Herring ' <robh@kernel.org>,
         'Jisheng Zhang ' <jszhang@kernel.org>
-Subject: [PATCH v3 3/6] RISC-V: Add Zicboz detection and block size parsing
-Date:   Mon, 30 Jan 2023 13:01:25 +0100
-Message-Id: <20230130120128.1349464-4-ajones@ventanamicro.com>
+Subject: [PATCH v3 4/6] RISC-V: Use Zicboz in clear_page when available
+Date:   Mon, 30 Jan 2023 13:01:26 +0100
+Message-Id: <20230130120128.1349464-5-ajones@ventanamicro.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230130120128.1349464-1-ajones@ventanamicro.com>
 References: <20230130120128.1349464-1-ajones@ventanamicro.com>
@@ -80,149 +80,144 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Parse "riscv,cboz-block-size" from the DT by piggybacking on Zicbom's
-riscv_init_cbom_blocksize(). Additionally check the DT for the presence
-of the "zicboz" extension and, when it's present, validate the parsed
-cboz block size as we do Zicbom's cbom block size with
-riscv_isa_extension_check().
+Using memset() to zero a 4K page takes 563 total instructions
+where 20 are branches. clear_page() with Zicboz takes 150 total
+instructions where 16 are branches. We could reduce the numbers
+by further unrolling, but, since the cboz block size isn't fixed,
+we'd need a Duff device to ensure we don't execute too many
+unrolled steps. Also, cbo.zero doesn't take an offset, so each
+unrolled step requires it and an add instruction. This increases
+the chance for icache misses if we unroll many times. For these
+reasons we only unroll four times. Unrolling four times should be
+safe as it supports cboz block sizes up to 1K when used with 4K
+pages and it's only 24 to 32 bytes of unrolled instructions.
+
+Another note about the Duff device idea is that it would probably
+be best to store the number of steps needed at boot time and then
+load the value in clear_page(). Calculating it in clear_page(),
+particularly without the Zbb extension, would not be efficient.
 
 Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/riscv/include/asm/cacheflush.h |  3 ++-
- arch/riscv/include/asm/hwcap.h      |  1 +
- arch/riscv/kernel/cpu.c             |  1 +
- arch/riscv/kernel/cpufeature.c      | 10 ++++++++++
- arch/riscv/kernel/setup.c           |  2 +-
- arch/riscv/mm/cacheflush.c          | 23 +++++++++++++++--------
- 6 files changed, 30 insertions(+), 10 deletions(-)
+ arch/riscv/Kconfig                | 13 +++++++++++
+ arch/riscv/include/asm/insn-def.h |  4 ++++
+ arch/riscv/include/asm/page.h     |  6 +++++-
+ arch/riscv/lib/Makefile           |  1 +
+ arch/riscv/lib/clear_page.S       | 36 +++++++++++++++++++++++++++++++
+ 5 files changed, 59 insertions(+), 1 deletion(-)
+ create mode 100644 arch/riscv/lib/clear_page.S
 
-diff --git a/arch/riscv/include/asm/cacheflush.h b/arch/riscv/include/asm/cacheflush.h
-index 03e3b95ae6da..8091b8bf4883 100644
---- a/arch/riscv/include/asm/cacheflush.h
-+++ b/arch/riscv/include/asm/cacheflush.h
-@@ -50,7 +50,8 @@ void flush_icache_mm(struct mm_struct *mm, bool local);
- #endif /* CONFIG_SMP */
+diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+index 33bbdc33cef8..3759a2f6edd5 100644
+--- a/arch/riscv/Kconfig
++++ b/arch/riscv/Kconfig
+@@ -432,6 +432,19 @@ config RISCV_ISA_ZICBOM
  
- extern unsigned int riscv_cbom_block_size;
--void riscv_init_cbom_blocksize(void);
-+extern unsigned int riscv_cboz_block_size;
-+void riscv_init_cbo_blocksizes(void);
+ 	   If you don't know what to do here, say Y.
  
- #ifdef CONFIG_RISCV_DMA_NONCOHERENT
- void riscv_noncoherent_supported(void);
-diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index 7936ae6f7bdf..7d1e88d7320d 100644
---- a/arch/riscv/include/asm/hwcap.h
-+++ b/arch/riscv/include/asm/hwcap.h
-@@ -46,6 +46,7 @@
- #define RISCV_ISA_EXT_SVPBMT		29
- #define RISCV_ISA_EXT_ZICBOM		30
- #define RISCV_ISA_EXT_ZIHINTPAUSE	31
-+#define RISCV_ISA_EXT_ZICBOZ		32
++config RISCV_ISA_ZICBOZ
++	bool "Zicboz extension support for faster zeroing of memory"
++	depends on !XIP_KERNEL && MMU
++	select RISCV_ALTERNATIVE
++	default y
++	help
++	   Enable the use of the ZICBOZ extension (cbo.zero instruction)
++	   when available.
++
++	   The Zicboz extension is used for faster zeroing of memory.
++
++	   If you don't know what to do here, say Y.
++
+ config TOOLCHAIN_HAS_ZIHINTPAUSE
+ 	bool
+ 	default y
+diff --git a/arch/riscv/include/asm/insn-def.h b/arch/riscv/include/asm/insn-def.h
+index e01ab51f50d2..6960beb75f32 100644
+--- a/arch/riscv/include/asm/insn-def.h
++++ b/arch/riscv/include/asm/insn-def.h
+@@ -192,4 +192,8 @@
+ 	INSN_I(OPCODE_MISC_MEM, FUNC3(2), __RD(0),		\
+ 	       RS1(base), SIMM12(2))
+ 
++#define CBO_zero(base)						\
++	INSN_I(OPCODE_MISC_MEM, FUNC3(2), __RD(0),		\
++	       RS1(base), SIMM12(4))
++
+ #endif /* __ASM_INSN_DEF_H */
+diff --git a/arch/riscv/include/asm/page.h b/arch/riscv/include/asm/page.h
+index 9f432c1b5289..ccd168fe29d2 100644
+--- a/arch/riscv/include/asm/page.h
++++ b/arch/riscv/include/asm/page.h
+@@ -49,10 +49,14 @@
  
  #ifndef __ASSEMBLY__
- #include <linux/jump_label.h>
-diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-index 0bf1c7f663fc..578c1093b839 100644
---- a/arch/riscv/kernel/cpu.c
-+++ b/arch/riscv/kernel/cpu.c
-@@ -186,6 +186,7 @@ arch_initcall(riscv_cpuinfo_init);
-  */
- static struct riscv_isa_ext_data isa_ext_arr[] = {
- 	__RISCV_ISA_EXT_DATA(zicbom, RISCV_ISA_EXT_ZICBOM),
-+	__RISCV_ISA_EXT_DATA(zicboz, RISCV_ISA_EXT_ZICBOZ),
- 	__RISCV_ISA_EXT_DATA(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE),
- 	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
- 	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index a4f737bc7530..5d278d2c48fb 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -78,6 +78,15 @@ static bool riscv_isa_extension_check(int id)
- 			return false;
- 		}
- 		return true;
-+	case RISCV_ISA_EXT_ZICBOZ:
-+		if (!riscv_cboz_block_size) {
-+			pr_err("Zicboz detected in ISA string, but no cboz-block-size found\n");
-+			return false;
-+		} else if (!is_power_of_2(riscv_cboz_block_size)) {
-+			pr_err("cboz-block-size present, but is not a power-of-2\n");
-+			return false;
-+		}
-+		return true;
- 	}
  
- 	return true;
-@@ -225,6 +234,7 @@ void __init riscv_fill_hwcap(void)
- 				SET_ISA_EXT_MAP("svinval", RISCV_ISA_EXT_SVINVAL);
- 				SET_ISA_EXT_MAP("svpbmt", RISCV_ISA_EXT_SVPBMT);
- 				SET_ISA_EXT_MAP("zicbom", RISCV_ISA_EXT_ZICBOM);
-+				SET_ISA_EXT_MAP("zicboz", RISCV_ISA_EXT_ZICBOZ);
- 				SET_ISA_EXT_MAP("zihintpause", RISCV_ISA_EXT_ZIHINTPAUSE);
- 			}
- #undef SET_ISA_EXT_MAP
-diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
-index 376d2827e736..5d3184cbf518 100644
---- a/arch/riscv/kernel/setup.c
-+++ b/arch/riscv/kernel/setup.c
-@@ -297,7 +297,7 @@ void __init setup_arch(char **cmdline_p)
- 	setup_smp();
- #endif
++#ifdef CONFIG_RISCV_ISA_ZICBOZ
++void clear_page(void *page);
++#else
+ #define clear_page(pgaddr)			memset((pgaddr), 0, PAGE_SIZE)
++#endif
+ #define copy_page(to, from)			memcpy((to), (from), PAGE_SIZE)
  
--	riscv_init_cbom_blocksize();
-+	riscv_init_cbo_blocksizes();
- 	riscv_fill_hwcap();
- 	apply_boot_alternatives();
- 	if (IS_ENABLED(CONFIG_RISCV_ISA_ZICBOM) &&
-diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
-index eaf23fc14966..ba4832bb949b 100644
---- a/arch/riscv/mm/cacheflush.c
-+++ b/arch/riscv/mm/cacheflush.c
-@@ -98,6 +98,9 @@ void flush_icache_pte(pte_t pte)
- unsigned int riscv_cbom_block_size;
- EXPORT_SYMBOL_GPL(riscv_cbom_block_size);
+-#define clear_user_page(pgaddr, vaddr, page)	memset((pgaddr), 0, PAGE_SIZE)
++#define clear_user_page(pgaddr, vaddr, page)	clear_page(pgaddr)
+ #define copy_user_page(vto, vfrom, vaddr, topg) \
+ 			memcpy((vto), (vfrom), PAGE_SIZE)
  
-+unsigned int riscv_cboz_block_size;
-+EXPORT_SYMBOL_GPL(riscv_cboz_block_size);
+diff --git a/arch/riscv/lib/Makefile b/arch/riscv/lib/Makefile
+index 25d5c9664e57..9ee5e2ab5143 100644
+--- a/arch/riscv/lib/Makefile
++++ b/arch/riscv/lib/Makefile
+@@ -5,5 +5,6 @@ lib-y			+= memset.o
+ lib-y			+= memmove.o
+ lib-$(CONFIG_MMU)	+= uaccess.o
+ lib-$(CONFIG_64BIT)	+= tishift.o
++lib-$(CONFIG_RISCV_ISA_ZICBOZ)	+= clear_page.o
+ 
+ obj-$(CONFIG_FUNCTION_ERROR_INJECTION) += error-inject.o
+diff --git a/arch/riscv/lib/clear_page.S b/arch/riscv/lib/clear_page.S
+new file mode 100644
+index 000000000000..49f29139a5b6
+--- /dev/null
++++ b/arch/riscv/lib/clear_page.S
+@@ -0,0 +1,36 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (c) 2023 Ventana Micro Systems Inc.
++ */
 +
- static void cbo_get_block_size(struct device_node *node,
- 			       const char *name, u32 *block_size,
- 			       unsigned long *first_hartid)
-@@ -120,19 +123,23 @@ static void cbo_get_block_size(struct device_node *node,
- 	}
- }
- 
--void riscv_init_cbom_blocksize(void)
-+void riscv_init_cbo_blocksizes(void)
- {
-+	unsigned long cbom_hartid, cboz_hartid;
-+	u32 cbom_block_size = 0, cboz_block_size = 0;
- 	struct device_node *node;
--	unsigned long cbom_hartid;
--	u32 probed_block_size;
- 
--	probed_block_size = 0;
- 	for_each_of_cpu_node(node) {
--		/* set block-size for cbom extension if available */
-+		/* set block-size for cbom and/or cboz extension if available */
- 		cbo_get_block_size(node, "riscv,cbom-block-size",
--				   &probed_block_size, &cbom_hartid);
-+				   &cbom_block_size, &cbom_hartid);
-+		cbo_get_block_size(node, "riscv,cboz-block-size",
-+				   &cboz_block_size, &cboz_hartid);
- 	}
- 
--	if (probed_block_size)
--		riscv_cbom_block_size = probed_block_size;
-+	if (cbom_block_size)
-+		riscv_cbom_block_size = cbom_block_size;
++#include <linux/linkage.h>
++#include <asm/asm.h>
++#include <asm/alternative-macros.h>
++#include <asm/hwcap.h>
++#include <asm/insn-def.h>
++#include <asm/page.h>
 +
-+	if (cboz_block_size)
-+		riscv_cboz_block_size = cboz_block_size;
- }
++/* void clear_page(void *page) */
++ENTRY(__clear_page)
++WEAK(clear_page)
++	li	a2, PAGE_SIZE
++	ALTERNATIVE("j .Lno_zicboz", "nop",
++		    0, RISCV_ISA_EXT_ZICBOZ, CONFIG_RISCV_ISA_ZICBOZ)
++	la	a1, riscv_cboz_block_size
++	lw	a1, 0(a1)
++	add	a2, a0, a2
++.Lzero_loop:
++	CBO_zero(a0)
++	add	a0, a0, a1
++	CBO_zero(a0)
++	add	a0, a0, a1
++	CBO_zero(a0)
++	add	a0, a0, a1
++	CBO_zero(a0)
++	add	a0, a0, a1
++	bltu	a0, a2, .Lzero_loop
++	ret
++.Lno_zicboz:
++	li	a1, 0
++	tail	__memset
++END(__clear_page)
 -- 
 2.39.1
 
