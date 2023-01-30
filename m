@@ -2,135 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99FD768140A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 16:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3777A68142A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 16:11:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236233AbjA3PE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 10:04:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45236 "EHLO
+        id S237965AbjA3PLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 10:11:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237734AbjA3PE4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 10:04:56 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C18E81A96B;
-        Mon, 30 Jan 2023 07:04:55 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3EF3F6118A;
-        Mon, 30 Jan 2023 15:04:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1F64C433AE;
-        Mon, 30 Jan 2023 15:04:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675091094;
-        bh=NP5hS1dR9EZmj2uQzPc5GC8kAzVVdZAEiPRJ9S3ogeI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JfkSBEiDdHCwrsfpP1o2ASLyl1gWXHuRLeuSIvE9vW44hD9mhkvwoROQD8QIrcP9+
-         kfiUaMTjYKtpddyFZN8rH6G9MqO7wZz+ISPYrrD4YRTfIPovQZiXJtGC6XfOudB6RT
-         ZA3O9mb9VjUFkTDHsOMNoJK83ukgTyNQwOz4IfYQtxqkLVnz5nhg7EG6CeUofwyhgV
-         FqaLYi+mLu6CnaOZLUOyHh2sRF+RkeCmeFBpWdKB2/wIqv5P/TxfJYX3IgJqCIekbm
-         dyaxlVSrZf+K1XGw3c+JGDbsDFjMMVcmzFy017yUOq/XW5mCkB9znE3yBAo+sjXFrU
-         D3/LIj1ZMEcOw==
-Received: by mail-vs1-f48.google.com with SMTP id 187so12723596vsv.10;
-        Mon, 30 Jan 2023 07:04:54 -0800 (PST)
-X-Gm-Message-State: AO0yUKVMZJrUShspaFsw5UnMpJonkhXkIBmGZzzh3ocslQLUJRW0Mpn6
-        CtjjJi30mUIs5Q7NSOPwKT6kHRqSm9JOLJnS6w==
-X-Google-Smtp-Source: AK7set+hZraBztww+lgC8qx204C8V9L5htt85m/SDlWTCczhWl723RbgSQuPGeGVqFZxYylGIiZSxrnXAgLr+5AEgsw=
-X-Received: by 2002:a67:fe41:0:b0:3ea:c8c:48a5 with SMTP id
- m1-20020a67fe41000000b003ea0c8c48a5mr2455575vsr.53.1675091093363; Mon, 30 Jan
- 2023 07:04:53 -0800 (PST)
+        with ESMTP id S236713AbjA3PLL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 10:11:11 -0500
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97A9D39282;
+        Mon, 30 Jan 2023 07:11:10 -0800 (PST)
+Received: by mail-oi1-f179.google.com with SMTP id r9so10285680oig.12;
+        Mon, 30 Jan 2023 07:11:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1lHdh1CkCtIdFTXxL0MnkKjoUkZTHAxzc6MiEiiVEVU=;
+        b=OpGvB8hT5gecMjpBgt8xQtyc0v6FByV2BugfTvXxJcR+0ppB8wqzgWc5e8o1PemL+V
+         ksC/uLec7i01ia0ECT7LZuZqQ52wxwcqKnNsxtYWSJltHWZUxMAW1gunci/Vr9OhZirp
+         7jXLyWGDwH1PatYB91uFXpmFnyK2hsbC+QH0Zt+Q1II66OQE2qTeIZTaG3SvGl3eFAxt
+         5gQg9CGP8/f4jNMUk+9T5nz1Z6WKQXJLMBe8ZOfda8XOnwoRjsj1Cdny2XUfMSyt+mTz
+         wLVN1af0KhMoFfBtvEVsdwXBM5XHXHNcu6nTxhvP3ajvnjqQwZNLmc8Bm1u/q9YheJtO
+         iVzQ==
+X-Gm-Message-State: AFqh2koc56n2sSONs8eRpbGg7bBmH0Mr7o7EthJ8/Un3yoCRFV0gekum
+        uBtZbTULhGe1MEJo96YUFA==
+X-Google-Smtp-Source: AMrXdXtih+BIOtVOCT9uywHOqVTZZLIqiwGALi32V+KKFVD5odraFJnotVWrWvyiMnBWA25gnXCZQA==
+X-Received: by 2002:aca:c2c6:0:b0:363:a5fd:9cc7 with SMTP id s189-20020acac2c6000000b00363a5fd9cc7mr21476755oif.13.1675091469441;
+        Mon, 30 Jan 2023 07:11:09 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s9-20020acadb09000000b00363ea5be014sm4839405oig.3.2023.01.30.07.11.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 07:11:09 -0800 (PST)
+Received: (nullmailer pid 2585826 invoked by uid 1000);
+        Mon, 30 Jan 2023 15:11:08 -0000
+Date:   Mon, 30 Jan 2023 09:11:08 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-remoteproc@vger.kernel.org, bhupesh.linux@gmail.com,
+        agross@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mathieu.poirier@linaro.org, mani@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: remoteproc: qcom: Add sm6115 pas yaml
+ file
+Message-ID: <20230130151108.GA2548714-robh@kernel.org>
+References: <20230128053504.2099620-1-bhupesh.sharma@linaro.org>
+ <20230128053504.2099620-2-bhupesh.sharma@linaro.org>
+ <167491555142.2364868.11831106421472878617.robh@kernel.org>
+ <8c954218-bba4-54c8-59a2-86371610aa03@linaro.org>
 MIME-Version: 1.0
-References: <20230126135049.708524-1-rick.wertenbroek@gmail.com> <20230126135049.708524-6-rick.wertenbroek@gmail.com>
-In-Reply-To: <20230126135049.708524-6-rick.wertenbroek@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 30 Jan 2023 09:04:41 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJSZ7v-YSOyUu2zJ0Yu2pU+qm=hRtoyQpdmQdhs1tirDg@mail.gmail.com>
-Message-ID: <CAL_JsqJSZ7v-YSOyUu2zJ0Yu2pU+qm=hRtoyQpdmQdhs1tirDg@mail.gmail.com>
-Subject: Re: [PATCH 5/8] PCI: rockchip: Added dtsi entry for PCIe endpoint controller
-To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        wenrui.li@rock-chips.com, rick.wertenbroek@heig-vd.ch,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8c954218-bba4-54c8-59a2-86371610aa03@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 26, 2023 at 7:52 AM Rick Wertenbroek
-<rick.wertenbroek@gmail.com> wrote:
->
-> Added missing PCIe endpoint controller entry in the device tree. This
-> entry is documented in :
-> Documentation/devicetree/bindings/pci/rockchip-pcie-ep.txt
-> The status is disabled by default, so it will not be loaded unless
-> explicitly chosen to.
->
-> Signed-off-by: Rick Wertenbroek <rick.wertenbroek@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 25 ++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> index 9d5b0e8c9..5f7251118 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> @@ -265,6 +265,31 @@ pcie0_intc: interrupt-controller {
->                 };
->         };
->
-> +       pcie0_ep: pcie-ep@f8000000 {
-> +               compatible = "rockchip,rk3399-pcie-ep";
-> +               #address-cells = <3>;
-> +               #size-cells = <2>;
+On Sun, Jan 29, 2023 at 12:08:34PM +0100, Krzysztof Kozlowski wrote:
+> On 28/01/2023 15:20, Rob Herring wrote:
+> > 
+> > On Sat, 28 Jan 2023 11:05:04 +0530, Bhupesh Sharma wrote:
+> >> This documents the aDSP, cDSP and MPSS DSPs present
+> >> on the SM6115 SoC.
+> >>
+> >> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> >> ---
+> >>  .../bindings/remoteproc/qcom,sm6115-pas.yaml  | 143 ++++++++++++++++++
+> >>  1 file changed, 143 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
+> >>
+> > 
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > ./Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/remoteproc/qcom,pas-common.yaml
+> 
+> This is expected - the qcom,pas-common.yaml is in remoteproc repo.
 
-These are only needed when you have child nodes. Additionally, it
-would not be a PCI bus which is the only case that has 3 address
-cells.
+Where is that dependency mentioned in this patch? If not mentioned, I 
+will mention it for you with the error report.
 
-There's a schema for this in linux-next now. Please test this change
-with that. It should point out the above issue and maybe others.
+Rob
 
-> +               rockchip,max-outbound-regions = <32>;
-> +               clocks = <&cru ACLK_PCIE>, <&cru ACLK_PERF_PCIE>,
-> +                       <&cru PCLK_PCIE>, <&cru SCLK_PCIE_PM>;
-> +               clock-names = "aclk", "aclk-perf",
-> +                               "hclk", "pm";
-> +               max-functions = /bits/ 8 <8>;
-> +               num-lanes = <4>;
-> +               reg = <0x0 0xfd000000 0x0 0x1000000>, <0x0 0xfa000000 0x0 0x2000000>;
-> +               reg-names = "apb-base", "mem-base";
-> +               resets = <&cru SRST_PCIE_CORE>, <&cru SRST_PCIE_MGMT>,
-> +                       <&cru SRST_PCIE_MGMT_STICKY>, <&cru SRST_PCIE_PIPE> ,
-> +                       <&cru SRST_PCIE_PM>, <&cru SRST_P_PCIE>, <&cru SRST_A_PCIE>;
-> +               reset-names = "core", "mgmt", "mgmt-sticky", "pipe",
-> +                               "pm", "pclk", "aclk";
-> +               phys = <&pcie_phy 0>, <&pcie_phy 1>, <&pcie_phy 2>, <&pcie_phy 3>;
-> +               phy-names = "pcie-phy-0", "pcie-phy-1", "pcie-phy-2", "pcie-phy-3";
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&pcie_clkreqnb_cpm>;
-> +               status = "disabled";
-> +       };
-> +
->         gmac: ethernet@fe300000 {
->                 compatible = "rockchip,rk3399-gmac";
->                 reg = <0x0 0xfe300000 0x0 0x10000>;
-> --
-> 2.25.1
->
