@@ -2,100 +2,332 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE806681BFC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 22:00:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D735681BFE
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 22:00:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229871AbjA3VA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 16:00:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55414 "EHLO
+        id S229643AbjA3VAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 16:00:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbjA3VA1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 16:00:27 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB5244741A
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 13:00:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6A7A9B8163F
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 21:00:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8D4FC433EF;
-        Mon, 30 Jan 2023 21:00:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675112418;
-        bh=4kTM7qZTPCTN7vtUc2O1W4p+zcVF/sa0deMNMF+1J5o=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=PG1ECVPtvhUFMQEyQ9udjXNZeOuPi8QpZSWJSqRjiQIYL8Djne8Gqu2DH+WkwjCaT
-         PQBalZJ6ekV4ZreDtCBtwkh5okBTObHB9BmEW7q83pnaEMcLHGVP1pQs6+mp5gSJGU
-         yueSg9Ta/IvdJeGYR+DfOwNBBnKDNYXLb/DInGK95rMtI6YgHOJAM1Xr5vygZVQxGk
-         QXiq62aVpZLuGfGWKlGdkNPTlzL7c5lVgBKnQZSuqSOkU0b9XWGZSQEEcHpZb+eczA
-         ZSE9DF7sVXALaK7n+gy+g7ZZQcWPS8dMLA8+AobyTgmMEF6cKRHjr5SRg4hRmbSgNR
-         L2D3fwL0SJHVw==
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Alexandru Ardelean <alex@shruggie.ro>
-Cc:     lgirdwood@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        perex@perex.cz, tiwai@suse.com, steffen.aschbacher@stihl.de
-In-Reply-To: <20230128082744.41849-1-alex@shruggie.ro>
-References: <20230128082744.41849-1-alex@shruggie.ro>
-Subject: Re: [PATCH v2 1/4] ASoC: codecs: tas5720: split a
- tas5720_mute_soc_component() function
-Message-Id: <167511241532.2141894.5359389287914359338.b4-ty@kernel.org>
-Date:   Mon, 30 Jan 2023 21:00:15 +0000
+        with ESMTP id S229468AbjA3VAh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 16:00:37 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A5D14740A;
+        Mon, 30 Jan 2023 13:00:31 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id n13so1950682wmr.4;
+        Mon, 30 Jan 2023 13:00:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:content-language
+         :references:cc:to:from:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=KuSuW06HHF3831P0xJ/zxYyhYTNoVLwB7x4VqcQ3BUY=;
+        b=aw41t3PiCVuliTn7GB71u3ZTHm5yQpZ4AAdgVa8UV92fR0y+n3BLzsnsKTmPpQMH0K
+         DNvmj+ssAHPpX38Fvjmoe5iUzvk2j4k7OB0w66a7e91IUTCOeUcxLcNdLp3HFE/z0Pj/
+         1ztyi0lVlM1Ypo4CZ57a0mj6jYEI2E6LCPY3q9IvOaflvMIH7uVEvvqjwLOi0E88WjOk
+         9awAEh0cPp7qC8XQVoWBSlF285oJ5OjbMr3zMyAIglRMzt8c5r5/LmVrX2N89UOAV3vQ
+         IITrtqrcE/6xaxiFdoDvExIupLvrmW6xHLfKmmKznOPnF2+iJ/wdP4ZoB+v5Q09VA1k9
+         5wgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:content-language
+         :references:cc:to:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KuSuW06HHF3831P0xJ/zxYyhYTNoVLwB7x4VqcQ3BUY=;
+        b=omsgVqOf3ieQhUVdn6I7xEuxh1ZXLDdVZ86KJlQhHK7+R0ko3VzXrpSZuk1iM6wICQ
+         jPsEUPHnGRdNigy9V+kJTIC/h/TzOjJ34THMMU0hJf5wAj3BwOxNUAxhkstjwJgpJkTg
+         ZYlRAogY3IY+1M2thX7TdlsWZvG5i6HxzqmaKT4Dsyc9Dqjfc1mOi/MMcdEczdx/V6eF
+         K8qlOoi9SPNNLWMhe9syK+9mPNvB8bgDcGSatrww7Bdr6KOgfXilMD2UbIEPa0Jhc44e
+         giGoTyKuNknoPxh7w3xM807zolRmTe888jsETHMFxtpXCo/u4Yvom8tdjpo0D2Tw0ZSF
+         3SOw==
+X-Gm-Message-State: AFqh2kowrbO/VgGLPptxe9SwxckP4EJWzO1dofLG8zuOh/JmfYgmxxSg
+        ZxytWEhwViAj4Um53koz/uQ=
+X-Google-Smtp-Source: AMrXdXtJed6wpGR2cYaoQZUKrCrllboFvOBM2MNrbyMZZ7PyjnFqAhhst3wANkrZshDgdFwY1oiE7Q==
+X-Received: by 2002:a05:600c:4e05:b0:3d3:5a4a:9103 with SMTP id b5-20020a05600c4e0500b003d35a4a9103mr50950062wmq.31.1675112429300;
+        Mon, 30 Jan 2023 13:00:29 -0800 (PST)
+Received: from ?IPV6:2a01:c23:c074:7400:d941:3cb5:fa86:8ec8? (dynamic-2a01-0c23-c074-7400-d941-3cb5-fa86-8ec8.c23.pool.telefonica.de. [2a01:c23:c074:7400:d941:3cb5:fa86:8ec8])
+        by smtp.googlemail.com with ESMTPSA id l21-20020a05600c4f1500b003dc4050c97bsm13993322wmq.3.2023.01.30.13.00.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Jan 2023 13:00:28 -0800 (PST)
+Message-ID: <285b7b4b-4fd4-be5f-266c-96b1ee6f4cbf@gmail.com>
+Date:   Mon, 30 Jan 2023 22:00:24 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
+Content-Language: en-US
+Subject: [PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
+ binding
+In-Reply-To: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 28 Jan 2023 10:27:41 +0200, Alexandru Ardelean wrote:
-> This is to be re-used in tas5720_mute() (which is part of the dai_ops) and
-> also in the tas5720_fault_check_work() hook.
-> 
-> The benefit here isn't too great (now).
-> It's only when we add support for a new device with a slightly different
-> regmap that this becomes more useful.
-> 
-> [...]
+Convert Amlogic Meson pinctrl binding to yaml.
 
-Applied to
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+v2:
+- consider that more than one compatible can be set
+- remove bus part from example
+v3:
+- remove minItem/maxItem properties for compatible
+---
+ .../pinctrl/amlogic,meson-pinctrl.yaml        | 122 ++++++++++++++++++
+ .../bindings/pinctrl/meson,pinctrl.txt        |  94 --------------
+ 2 files changed, 122 insertions(+), 94 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/4] ASoC: codecs: tas5720: split a tas5720_mute_soc_component() function
-      commit: 879142be618c05d234db31cbf69f101c53b7892f
-[2/4] ASoC: codecs: tas5720: add support for TAS5720A-Q1 (automotive) variant
-      commit: c24a62be09d8a0c7ede1c209055a4ac6760a45ee
-[3/4] ASoC: tas5720: set bit 7 in ANALOG_CTRL_REG for TAS5720A-Q1 during probe
-      commit: 88f748e38b283702a620e635820f1864bf32db0e
-[4/4] ASoC: dt-bindings: add entry for TAS5720A-Q1 driver
-      commit: 8d076a992eb86b99afb04980ac4b57e3a79f6704
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
+new file mode 100644
+index 000000000..7aaae606b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
+@@ -0,0 +1,122 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson pinmux controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++allOf:
++  - $ref: pinctrl.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - amlogic,meson8-cbus-pinctrl
++              - amlogic,meson8b-cbus-pinctrl
++              - amlogic,meson8m2-cbus-pinctrl
++              - amlogic,meson8-aobus-pinctrl
++              - amlogic,meson8b-aobus-pinctrl
++              - amlogic,meson8m2-aobus-pinctrl
++              - amlogic,meson-gxbb-periphs-pinctrl
++              - amlogic,meson-gxbb-aobus-pinctrl
++              - amlogic,meson-gxl-periphs-pinctrl
++              - amlogic,meson-gxl-aobus-pinctrl
++              - amlogic,meson-axg-periphs-pinctrl
++              - amlogic,meson-axg-aobus-pinctrl
++              - amlogic,meson-g12a-periphs-pinctrl
++              - amlogic,meson-g12a-aobus-pinctrl
++              - amlogic,meson-a1-periphs-pinctrl
++              - amlogic,meson-s4-periphs-pinctrl
++      - items:
++          - const: amlogic,meson8m2-aobus-pinctrl
++          - const: amlogic,meson8-aobus-pinctrl
++      - items:
++          - const: amlogic,meson8m2-cbus-pinctrl
++          - const: amlogic,meson8-cbus-pinctrl
++
++  ranges: true
++
++  "#address-cells":
++    enum: [1, 2]
++
++  "#size-cells":
++    enum: [1, 2]
++
++required:
++  - compatible
++  - ranges
++  - "#address-cells"
++  - "#size-cells"
++
++additionalProperties:
++  anyOf:
++    - type: object
++      allOf:
++        - $ref: pincfg-node.yaml#
++        - $ref: pinmux-node.yaml#
++
++patternProperties:
++  "^bank@[0-9]$":
++    type: object
++    properties:
++      reg:
++        minItems: 5
++        maxItems: 5
++
++      reg-names:
++        items:
++          - const: gpio
++          - const: pull
++          - const: pull-enable
++          - const: mux
++          - const: ds
++
++      gpio-controller: true
++
++      "#gpio-cells":
++        const: 2
++
++      gpio-ranges:
++        $ref: /schemas/types.yaml#/definitions/phandle
++
++    required:
++      - reg
++      - reg-names
++      - gpio-controller
++      - "#gpio-cells"
++      - gpio-ranges
++
++examples:
++  - |
++    pinctrl {
++      compatible = "amlogic,meson-g12a-periphs-pinctrl";
++      #address-cells = <1>;
++      #size-cells = <1>;
++      ranges;
++
++      bank@40 {
++        reg = <0x0 0x40  0x0 0x4c>,
++              <0x0 0xe8  0x0 0x18>,
++              <0x0 0x120 0x0 0x18>,
++              <0x0 0x2c0 0x0 0x40>,
++              <0x0 0x340 0x0 0x1c>;
++        reg-names = "gpio", "pull", "pull-enable", "mux", "ds";
++        gpio-controller;
++        #gpio-cells = <2>;
++        gpio-ranges = <&periphs_pinctrl 0 0 86>;
++      };
++
++      cec_ao_a_h_pins: cec_ao_a_h {
++        mux {
++          groups = "cec_ao_a_h";
++          function = "cec_ao_a_h";
++          bias-disable;
++        };
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+deleted file mode 100644
+index 8146193bd..000000000
+--- a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
++++ /dev/null
+@@ -1,94 +0,0 @@
+-== Amlogic Meson pinmux controller ==
+-
+-Required properties for the root node:
+- - compatible: one of "amlogic,meson8-cbus-pinctrl"
+-		      "amlogic,meson8b-cbus-pinctrl"
+-		      "amlogic,meson8m2-cbus-pinctrl"
+-		      "amlogic,meson8-aobus-pinctrl"
+-		      "amlogic,meson8b-aobus-pinctrl"
+-		      "amlogic,meson8m2-aobus-pinctrl"
+-		      "amlogic,meson-gxbb-periphs-pinctrl"
+-		      "amlogic,meson-gxbb-aobus-pinctrl"
+-		      "amlogic,meson-gxl-periphs-pinctrl"
+-		      "amlogic,meson-gxl-aobus-pinctrl"
+-		      "amlogic,meson-axg-periphs-pinctrl"
+-		      "amlogic,meson-axg-aobus-pinctrl"
+-		      "amlogic,meson-g12a-periphs-pinctrl"
+-		      "amlogic,meson-g12a-aobus-pinctrl"
+-		      "amlogic,meson-a1-periphs-pinctrl"
+-		      "amlogic,meson-s4-periphs-pinctrl"
+- - reg: address and size of registers controlling irq functionality
+-
+-=== GPIO sub-nodes ===
+-
+-The GPIO bank for the controller is represented as a sub-node and it acts as a
+-GPIO controller.
+-
+-Required properties for sub-nodes are:
+- - reg: should contain a list of address and size, one tuple for each entry
+-   in reg-names.
+- - reg-names: an array of strings describing the "reg" entries.
+-   Must contain "mux" and "gpio".
+-   May contain "pull", "pull-enable" and "ds" when appropriate.
+- - gpio-controller: identifies the node as a gpio controller
+- - #gpio-cells: must be 2
+-
+-=== Other sub-nodes ===
+-
+-Child nodes without the "gpio-controller" represent some desired
+-configuration for a pin or a group. Those nodes can be pinmux nodes or
+-configuration nodes.
+-
+-Required properties for pinmux nodes are:
+- - groups: a list of pinmux groups. The list of all available groups
+-   depends on the SoC and can be found in driver sources.
+- - function: the name of a function to activate for the specified set
+-   of groups. The list of all available functions depends on the SoC
+-   and can be found in driver sources.
+-
+-Required properties for configuration nodes:
+- - pins: a list of pin names
+-
+-Configuration nodes support the following generic properties, as
+-described in file pinctrl-bindings.txt:
+- - "bias-disable"
+- - "bias-pull-up"
+- - "bias-pull-down"
+- - "output-enable"
+- - "output-disable"
+- - "output-low"
+- - "output-high"
+-
+-Optional properties :
+- - drive-strength-microamp: Drive strength for the specified pins in uA.
+-			    This property is only valid for G12A and newer.
+-
+-=== Example ===
+-
+-	pinctrl: pinctrl@c1109880 {
+-		compatible = "amlogic,meson8-cbus-pinctrl";
+-		reg = <0xc1109880 0x10>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges;
+-
+-		gpio: banks@c11080b0 {
+-			reg = <0xc11080b0 0x28>,
+-			      <0xc11080e8 0x18>,
+-			      <0xc1108120 0x18>,
+-			      <0xc1108030 0x30>;
+-			reg-names = "mux", "pull", "pull-enable", "gpio";
+-			gpio-controller;
+-			#gpio-cells = <2>;
+-               };
+-
+-		nand {
+-			mux {
+-				groups = "nand_io", "nand_io_ce0", "nand_io_ce1",
+-					 "nand_io_rb0", "nand_ale", "nand_cle",
+-					 "nand_wen_clk", "nand_ren_clk", "nand_dqs",
+-					 "nand_ce2", "nand_ce3";
+-				function = "nand";
+-			};
+-		};
+-	};
+-- 
+2.39.1
 
