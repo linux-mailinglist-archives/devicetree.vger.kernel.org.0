@@ -2,102 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 885AF680988
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 10:31:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CDB6680994
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 10:34:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235421AbjA3Jbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 04:31:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34882 "EHLO
+        id S236380AbjA3Jee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 04:34:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235972AbjA3JbM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 04:31:12 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52C1530E99;
-        Mon, 30 Jan 2023 01:29:00 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2E4E660EF5;
-        Mon, 30 Jan 2023 09:27:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 127BCC433EF;
-        Mon, 30 Jan 2023 09:27:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1675070871;
-        bh=L6DQkAcPvIKi+T4eGspMMolrBK+1nrGGRuHqkmC162U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kdbA+rmUpGxEMKET78aKHH01Iq9x5xjEDMJgNaY4Dt+iL54lpORmj/9a8H28uJjI5
-         dwKmBABgkEwgxmmZW70yuBrtVzVvGcLc3ByoXR2nBwBqSS1UC8qjMjlp0dOLhuUBlZ
-         eYREFAHN5Iot6xilhKAZKD9QLqtBND1vMzfazX8o=
-Date:   Mon, 30 Jan 2023 10:27:48 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Zhou Furong <furong.zhou@linux.intel.com>
-Cc:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Thinh.Nguyen@synopsys.com,
-        broonie@kernel.org, bgoswami@quicinc.com, tiwai@suse.com,
-        robh+dt@kernel.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-Subject: Re: [RFC PATCH v2 07/22] ASoC: Add SOC USB APIs for adding an USB
- backend
-Message-ID: <Y9eNlKNRqsar4GDb@kroah.com>
-References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
- <20230126031424.14582-8-quic_wcheng@quicinc.com>
- <Y9UiiMbJFjkzyEol@kroah.com>
- <7c1d80b6-5db3-9955-0a67-908455bd77fa@linux.intel.com>
- <Y9YbumlV9qh+k68h@kroah.com>
- <7f461661-2dcf-056d-f78a-93c409388f29@linux.intel.com>
+        with ESMTP id S236504AbjA3JeN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 04:34:13 -0500
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0F2376BE
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 01:32:47 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id cl23-20020a17090af69700b0022c745bfdc3so3895802pjb.3
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 01:32:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=W7Rfwt1I+uGLH2WvGyjGS4z4+0W1oBU0PyN8+ybwBQM=;
+        b=hCnLQngH722sIEXN1Gho9Wj1ujABjTtK8JX/cG3wwwGaTKdAB+ey7HkETd6oZpO8tv
+         vLdoPzqJLerf49cPLSpjOorHVag3ybhXhpYr/77qmDgvjgzmFdT/0d3bxHOZj/e7n+bY
+         t8uSp9ikhaT89Y8/DDu/f6YmDsbqbCtH9SHKNmJGAis1CHdAD2Vg/Us25RsC2Vxm6SGm
+         6peI7uPrZelCCu4EcstZZseRCRQsCrohoNKVVIoWxmA+RdjN7nMbH43Kb9cIzmBoXo3D
+         OU6oU5ZwPVpKtUhF3UDUADSHTLP/R+4DWP3Ll5ImHlmOricvo99OaP/0pQI1SvA4a9R8
+         yMHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W7Rfwt1I+uGLH2WvGyjGS4z4+0W1oBU0PyN8+ybwBQM=;
+        b=pFvxWJ/Gwv5bZGuUyRPxcqZAjLtZDD9NX1pUYGJLafJRT+AApmE00oe9JKmVe1/PE0
+         zcizboeHPF1AHCLG3O/tjesaIUzHVW9jdQoC6LYT4SGo2QbDEq99Anh960AiyDx+0ep8
+         +fGuCb4tdRpJj1in9G0uNuizDZe9FfM6EYQE+lriW2kkbCo3MIBkU+dMOBnjWXG7qJNY
+         vvXEotGLZ/pp7NaVJbsLy23MseBNTLka9WlOA435yPLv81+SkOPSkb3beOyqY1hXDQP2
+         AOb4GaCB4mgG7oK1nP+s3pPdNFW+tUjpeazeYK66Ah1Y5FUq5/1rJBz0Wp74As1ZMcud
+         bX3Q==
+X-Gm-Message-State: AO0yUKVY+sjgWctCK/x1++XfWyduOm4zfx2PQgUGVAqi8sOICqUyYBAX
+        R6MXoFJLUW555r1srQOLxbaRJQ==
+X-Google-Smtp-Source: AK7set9QLGZ+95SoqxDpz0fnhu2C6Btygt/5TP7yC/t6bY6mZyLjmV3rrULbqSgdQtIJkwB74RFyog==
+X-Received: by 2002:a17:902:c406:b0:196:e8e:cd28 with SMTP id k6-20020a170902c40600b001960e8ecd28mr30471930plk.15.1675071155816;
+        Mon, 30 Jan 2023 01:32:35 -0800 (PST)
+Received: from hsinchu15.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id t13-20020a6564cd000000b004db2b310f95sm6245704pgv.16.2023.01.30.01.32.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 01:32:35 -0800 (PST)
+From:   Nylon Chen <nylon.chen@sifive.com>
+To:     aou@eecs.berkeley.edu, conor@kernel.org,
+        emil.renner.berthing@canonical.com, geert+renesas@glider.be,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     nylon.chen@sifive.com, nylon7717@gmail.com, zong.li@sifive.com,
+        greentime.hu@sifive.com, vincent.chen@sifive.com
+Subject: [PATCH v2 0/2] Change PWM-controlled LED pin active mode and algorithm
+Date:   Mon, 30 Jan 2023 17:32:27 +0800
+Message-Id: <20230130093229.27489-1-nylon.chen@sifive.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7f461661-2dcf-056d-f78a-93c409388f29@linux.intel.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 30, 2023 at 04:34:58PM +0800, Zhou Furong wrote:
-> 
-> 
-> On 2023/1/29 15:09, Greg KH wrote:
-> > On Sun, Jan 29, 2023 at 02:54:43PM +0800, Zhou Furong wrote:
-> > > 
-> > > 
-> > > > > +void *snd_soc_usb_get_priv_data(struct device *usbdev)
-> > > > > +{
-> > > > > +	struct snd_soc_usb *ctx;
-> > > > > +
-> > > > > +	if (!usbdev)
-> > > > > +		return NULL;
-> > > > 
-> > > > How could usbdev ever be NULL?
-> > > The method is exported to public, valid check should be reasonable
-> > > as someone may call it by mistake
-> > 
-> > We do not protect the kernel from itself like this, no need to check
-> > things that should never happen.  If the caller gets it wrong, their
-> > code will break :)
-> > 
-> > thanks,
-> > 
-> > greg k-h
-> 
-> Thank you Greg!
-> 
-> This has been confused me for long time when I found Linux kernel don't
-> check input even for public method.
+According to the circuit diagram of User LEDs - RGB described in the
+manual hifive-unleashed-a00.pdf[0] and hifive-unmatched-schematics-v3.pdf[1].
+The behavior of PWM is acitve-high.
 
-That is because we control all callers of internal kernel apis,
-otherwise we would have nothing but checks all over the place that did
-nothing in the end.
+According to the descriptionof PWM for pwmcmp in SiFive FU740-C000 Manual[2].
+The pwm algorithm is (PW) pulse active time  = (D) duty * (T) period.
+The `frac` variable is pulse "inactive" time so we need to invert it.
 
-thanks,
+So this patchset removes active-low in DTS and adds reverse logic to the driver.
 
-greg k-h
+[0]: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf8453f8698_hifive-unleashed-a00-schematics-1.pdf
+[1]: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce76f4192_hifive-unmatched-schematics-v3.pdf
+[2]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b16acba_fu740-c000-manual-v1p6.pdf
+
+Changed in v2:
+ - Convert the reference link to standard link.
+ - Fix typo: s/sifive unmatched:/sifive: unmatched:/.
+ - Remove active-low from hifive-unleashed-a00.dts.
+ - Include this reference link in the dts and pwm commit messages.
+
+Nylon Chen (2):
+  riscv: dts: sifive: unleashed/unmatched: Remove PWM controlled LED's
+    active-low properties
+  pwm: sifive: change the PWM controlled LED algorithm
+
+ arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 4 ----
+ arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 4 ----
+ drivers/pwm/pwm-sifive.c                            | 1 +
+ 3 files changed, 1 insertion(+), 8 deletions(-)
+
+-- 
+2.36.1
+
