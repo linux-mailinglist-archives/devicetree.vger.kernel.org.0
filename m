@@ -2,145 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C385F6807E4
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 09:53:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3794B6807E7
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 09:54:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235846AbjA3Iw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 03:52:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38462 "EHLO
+        id S235861AbjA3Iyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 03:54:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235929AbjA3Iw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 03:52:57 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3654461B7;
-        Mon, 30 Jan 2023 00:52:54 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id dr8so8003008ejc.12;
-        Mon, 30 Jan 2023 00:52:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bqd+AYKseBUG/ZqMySUNAymE7dOTpHE8cVutn9FOQcE=;
-        b=cu9Mqtjbt1fqJJ2R65+6eNjiwu8UAjmEKv12h3IQsTALgr9sFHkbuTY61d+ydEWsrd
-         hQowFxgPdsJZHwZ43D2IkadgurzXJ8qUWKnQkD5TSctBoFsistF1KaiGbVJNvxC/CM3+
-         YZwJiLeQNCrDXkGoTzTBk2t0e6NZus24d+7K2JW0V2L/u/Jw5xLYdRERiiVql2h6otxD
-         MKGec9y2LW/wVIjjonBD8f9VhIxjyxUnbrru++LWdF/MtRllwaqWSbVU9GJk2+FWv2m0
-         0bvcum9osmW7omzPCSQY495IEUg64er5dbOG+YfaZYm1eW+4CiTKQIHtuLZfw3qRqw4d
-         68bQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bqd+AYKseBUG/ZqMySUNAymE7dOTpHE8cVutn9FOQcE=;
-        b=kJ1KNQhabCF/Pl4jfWQsIe7mjTvj0IHjBojYqBlABty/2wRHveJztNLT+ZuE/eV049
-         cZF8rs1n31RP9wB945QiUZH2TvdOQ12M7QryMhGQq0sF3+XPy+gQ9FCKj2lm+ImSUTTC
-         Evfmz0Ah0Cv5TmHYeUyhsY1cDBxJ8eRDtnqOuMnTffzpIkWkG+WNI3ZOC9dSqvQq5wyA
-         kmT+YW+A6oRP6sDYxRdam1HDfJAzsSuDBjMzJy5WKrb3MFv1rionb/+qLFblZkUv4SoJ
-         EoB96UK78MbJHX9C2yThaCvhubarZhOcucCBegsRCZkFeXQYgUB3HoJyxacGwG6sEV5f
-         7iVw==
-X-Gm-Message-State: AFqh2krK9TPsiXVfQXEDUMwMQjyd17emAKprkjpsz04oczwjX/v2YD5X
-        0QIFL5rJwUvc+i7MfO0xTfhQS8JiJ1DNTw2EfxUQ/X3DeLFx5Whr
-X-Google-Smtp-Source: AMrXdXvSbcF8crULhPh3gJHBuaC8TbzosJW7VineeWbq4gYqPcrYYG/JXGIYYsksdp9AIrq555FlmE0IKMEcb5dh+2A=
-X-Received: by 2002:a17:906:6a8e:b0:86e:3764:4f80 with SMTP id
- p14-20020a1709066a8e00b0086e37644f80mr6254866ejr.239.1675068772856; Mon, 30
- Jan 2023 00:52:52 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1673340642.git.zhoubinbin@loongson.cn> <77046b03eb0e75b25934406afce597997624a2b8.1673340642.git.zhoubinbin@loongson.cn>
- <Y8paBAVsBJIqLZnH@ninjato>
-In-Reply-To: <Y8paBAVsBJIqLZnH@ninjato>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Mon, 30 Jan 2023 16:52:40 +0800
-Message-ID: <CAMpQs4LVc2nMR_ZxcqX_vOuyyyhip=fgEfYPqctJGy7YS89=Zg@mail.gmail.com>
-Subject: Re: [PATCH V10 3/4] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C controller
-To:     Wolfram Sang <wsa@kernel.org>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Andy Shevchenko <andy@kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        with ESMTP id S234978AbjA3Iya (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 03:54:30 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B7577DA3;
+        Mon, 30 Jan 2023 00:54:29 -0800 (PST)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30U4mJkp019976;
+        Mon, 30 Jan 2023 08:54:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : reply-to : references : mime-version :
+ content-type : in-reply-to; s=qcppdkim1;
+ bh=OlA92o5gOGaNjtD2eEvU1jdJTaTRmV/rUevgrh/YtbY=;
+ b=X71m282pGhqAK4HSBoW7lf3I34BM2Q69yp5OHSONPs36btabYdbFm1D3MPf5ipwJPZ6a
+ JyVIBuxty53MC4OPfb+NhvbKUfPm1E7PZlgYtN9LvtjakJZiTtkUbuyWHnwFbhtBpAQ4
+ IfEs61zCw98dgzE6ZGh5h8bWE7qDaB0z4XJ+3Pec4rY9RbRunyJiu9ViDsEdPMYNDAox
+ BTNNrwHlW1k4WQBZQIrDvaBScRJjI3ugv+C8SKEfz7aBqM8E0VhhIUcm+8nq+gozkY3Z
+ sucx9/arusLhwThNDO9mNNW/0Wt0Vw7Ic0PSGjqvr8Ay5+COiqZrd+hYNZnwJz0J6nkt OQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ncua8udk6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Jan 2023 08:54:11 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30U8sA2o025310
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Jan 2023 08:54:10 GMT
+Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 30 Jan
+ 2023 00:54:03 -0800
+Date:   Mon, 30 Jan 2023 14:23:59 +0530
+From:   Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Alex Elder <elder@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Arnd Bergmann <arnd@arndb.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Peibao Liu <liupeibao@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v9 14/27] gunyah: vm_mgr: Add ioctls to support basic
+ non-proxy VM boot
+Message-ID: <20230130085359.GC4169015@quicinc.com>
+Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
+ <20230120224627.4053418-15-quic_eberman@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+In-Reply-To: <20230120224627.4053418-15-quic_eberman@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: sh86p9gSCoJaJhdPgk9trdqNIHJSMXWr
+X-Proofpoint-ORIG-GUID: sh86p9gSCoJaJhdPgk9trdqNIHJSMXWr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-30_07,2023-01-27_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ lowpriorityscore=0 bulkscore=0 phishscore=0 suspectscore=0 malwarescore=0
+ mlxlogscore=999 impostorscore=0 mlxscore=0 priorityscore=1501 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301300084
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram:
+* Elliot Berman <quic_eberman@quicinc.com> [2023-01-20 14:46:13]:
 
-Sorry for the late reply.
+> +static int gh_vm_start(struct gunyah_vm *ghvm)
+> +{
+> +	struct gunyah_vm_memory_mapping *mapping;
+> +	u64 dtb_offset;
+> +	u32 mem_handle;
+> +	int ret;
+> +
+> +	down_write(&ghvm->status_lock);
+> +	if (ghvm->vm_status != GH_RM_VM_STATUS_NO_STATE) {
+> +		up_write(&ghvm->status_lock);
+> +		return 0;
 
-On Fri, Jan 20, 2023 at 5:08 PM Wolfram Sang <wsa@kernel.org> wrote:
->
-> Hi,
->
-> the driver looks mostly good. Thank you for your hard work, and also
-> thanks to Andy for his great review efforts again!
->
-> > +static unsigned int ls2x_i2c_func(struct i2c_adapter *adap)
-> > +{
-> > +     return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
-> > +}
->
-> Have you tried messages with zero-length or the SMBUS_QUICK transfer
-> which is basically the same? i2cdectect uses it by default, so if that
-> works, then we are good.
+return -EINVAL in this case.
 
-Yes, I have tried this, and i2cdetect shows the following:
+Additionally check if its already GH_RM_VM_STATUS_READY and return 0 in that
+case.
 
-[root@xxx ~]# ./i2c-tools-4.3/tools/i2cdetect -q -y 2
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:                         -- -- -- -- -- -- -- --
-10: -- -- -- -- -- -- -- -- 18 -- -- -- -- -- -- --
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-30: 30 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-50: 50 51 52 53 54 55 56 UU UU UU UU UU UU UU UU --
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-70: -- -- -- -- -- -- -- --
-[root@xxx ~]# ./i2c-tools-4.3/tools/i2cdetect -q -y 3
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:                         -- -- -- -- -- -- -- --
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-70: -- -- -- -- -- -- -- --
+[snip]
 
-Do you mean this?
 
->
-> > +/* The DC subsystem depends on it, we should initialize it earlier. */
-> > +static int __init ls2x_i2c_init_driver(void)
-> > +{
-> > +     return platform_driver_register(&ls2x_i2c_driver);
-> > +}
-> > +subsys_initcall(ls2x_i2c_init_driver);
->
-> Can't this be handled with deferred probing?
+> +	mem_handle = mapping->parcel.mem_handle;
+> +	dtb_offset = ghvm->dtb_config.gpa - mapping->guest_phys_addr;
+> +
+> +	ret = gh_rm_vm_configure(ghvm->rm, ghvm->vmid, ghvm->auth, mem_handle,
+> +				0, 0, dtb_offset, ghvm->dtb_config.size);
 
-Emm, I've been trying to register using the generic method before and
-deferred probing should be a better option.
-Also, I'll use module_platform_driver(ls2x_i2c_driver); instead in the
-next version.
+Default value of auth is 0 (GH_RM_VM_AUTH_NONE). Is that what you wanted here?
+Perhaps initialize default value of auth to be GH_RM_VM_AUTH_QCOM_PIL_ELF?
 
-Thanks.
-Binbin
-
->
-> Happy hacking,
->
->    Wolfram
->
