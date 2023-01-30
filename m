@@ -2,191 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DCB5680B88
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 12:02:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6BD7680BC1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 12:19:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235650AbjA3LCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 06:02:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47856 "EHLO
+        id S230365AbjA3LTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 06:19:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236526AbjA3LC2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 06:02:28 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 587E134C36
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 03:01:39 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id q5so10696371wrv.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 03:01:39 -0800 (PST)
+        with ESMTP id S236522AbjA3LS7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 06:18:59 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38AEF18B1D;
+        Mon, 30 Jan 2023 03:18:55 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id o18so1230519wrj.3;
+        Mon, 30 Jan 2023 03:18:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=BmN+g/dAnuer7yOAtI/to5ZWjp6c/Vk223ZfFssWlmQ=;
-        b=bkrkwX1ZmtQHtKR46u2m3FuzsAUs+wp6w0S6i+OD33iRdckKm8yFLdsaeA5VIfiPkc
-         YHNgLa07djAT4QttWNg0ALSyHS0INYj3Qb61AQcnGIC3qn9RwRPf9HfYCKxOaXeTEc4S
-         y5N24BQZpldNrz7NyCJDXTaVuN4NKQbhSrxDR/4HpRJxRv8G6Miz9xDaO6oy5FD48/+c
-         ePn21hgP9E9+BTCI9CR7hajq8BzsqhWY2Ij5l4OkOAC8d+D0Fc3SHCeNUAbu0GO79gia
-         +5Saj5QEERgTRCl2GPtzDvwrcRkwALjp9+1b6zyZnwR8tsILhwdTwzeJHJdwhjBflGux
-         rUtg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dkp4rkyxPgpsD/uKlrIIe9RaCjDd2iGDYMH6lIDGA08=;
+        b=abpt2ulPIdGPmIvepxo6Cv91sShFhDssmHfiPZpMNayWwndjSU2xssnbeqLQ452ZYs
+         efyDdYOvNXRwFbl2ze3wN5fs9GMKGUAn10MbYcDqP6gBOocekGw6Dja4/4SELwP8OzEG
+         3DOPhP0UBdPFQt576Ie3Xo/DmfN6DSDx4Q7dcW00yCdyNyhXziqGbhpI5qB4U9cjMHah
+         hSiBoWyMeA7ySx7f/udXhuo1xdGQXmZvYVZ8G8hmUWTaz14qHUQxNg2ywYHlfIOxDfh5
+         HEywEtK7v5HbdXj9HPlLmMlp1yxFNrBCEJEYUaS9vCKqAKecmDDKpDwQhLq56pm5raFh
+         a18g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BmN+g/dAnuer7yOAtI/to5ZWjp6c/Vk223ZfFssWlmQ=;
-        b=2qEPDpUwJIO3VXbvcLy0sGy3rd/XYLx4KPNk8ioAuKlPYdxPLaVKTAVFTiv2VVtzOC
-         yq/tPDpoiZ1RPRKepUaPArOXMwMSb98zQCHl286WgTNEjz/DScE6PY5Mdx7FLsUVQ7l4
-         16F2CkdzS464o6N9BrxbDzoUXihVn9hUMKK0dgotmLSmtHZ1BDg7qLCdZ0DBkmsbxwqm
-         krvv7fOqPKMyFAsJOmNHU8O2xJ+prduscaA+yVcLMe3DZAujeB7KibmoWGBCi2vAVMev
-         egg6QQET+SGGg0bL0CrQjhWt/h/BRogfxDH4Twrsh5KoC49jpDJO8mf6uxESgnf5crkB
-         nhcA==
-X-Gm-Message-State: AFqh2kpU6ej9Jw9TwpsMNeJXkEsKQ4UdaHyFKwV+VYBLREVTAVUyloqs
-        QcAu9QnkJ9gsQApkbhC921WHWQ==
-X-Google-Smtp-Source: AMrXdXu1MHbaat0/kWk30g5Bk1GkRBZQXl4XwxezF2rlzOZtqzjFvEjyu/AID3ezJDgJcjQGh3Fqzg==
-X-Received: by 2002:a5d:5c07:0:b0:2bd:fa1d:5291 with SMTP id cc7-20020a5d5c07000000b002bdfa1d5291mr49366324wrb.67.1675076497821;
-        Mon, 30 Jan 2023 03:01:37 -0800 (PST)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id k4-20020a5d4284000000b00241fde8fe04sm11614558wrq.7.2023.01.30.03.01.36
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dkp4rkyxPgpsD/uKlrIIe9RaCjDd2iGDYMH6lIDGA08=;
+        b=uPLJpbTftC/YXIRWRupnAoCVW32ZzzMFSfFc8vyc09FyyGDK3nBD+gs/nsyMYIdMqC
+         Yw7LOXbm2rzWlgrDwyiUWIIlj8WtgUZwK1hQ9nmFPrxqmvQqgVuBNTRsvZ18yCJ89sCy
+         km6DSNiREv0szMHYGAF0S+uGsu261a/IpMbRv4epXazN+WKWgoJMVh+y18cWwD+TRLRA
+         AhxmhqtsNN9HjIrgFPkHC1CO6J3Xe3IBvK/G26+kkK+W+XGWuihG3oAS6LGfWdsIYGoC
+         jEespcBWM8/OFTR//30usDiU4MyBQCEXPcuiEe2yhoXht7GrWgbkXA6zE2jeSdCrt08W
+         SLSw==
+X-Gm-Message-State: AO0yUKVLXIZqyXAp1TbkcLrYeKfYgOm2a+yuDkGLB1ifTcB3hA7XkW5P
+        BK/wgygK1TUBCdRYWQWQJb0=
+X-Google-Smtp-Source: AK7set8I9YflWW0cSwJMchVO/4uVYr4AsWm9Ei9TpWsGvGjSY92DMQt+BNMb+NGDgOcDPBrbwEUnug==
+X-Received: by 2002:adf:a453:0:b0:2bf:ee61:7daf with SMTP id e19-20020adfa453000000b002bfee617dafmr2022150wra.10.1675077533640;
+        Mon, 30 Jan 2023 03:18:53 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id w10-20020adfcd0a000000b002bff7caa1c2sm364623wrm.0.2023.01.30.03.18.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jan 2023 03:01:37 -0800 (PST)
-Message-ID: <ea95f4fb-ccbb-8078-ddac-5254e1dbfc85@linaro.org>
-Date:   Mon, 30 Jan 2023 12:01:36 +0100
+        Mon, 30 Jan 2023 03:18:53 -0800 (PST)
+Message-ID: <b4bec164-5986-718e-b9cc-290dfc995edb@gmail.com>
+Date:   Mon, 30 Jan 2023 12:18:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 5/7] arm64: dts: qcom: sm8450-hdk: add pmic glink node
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v12 2/6] dt-bindings: thermal: mediatek: Add LVTS thermal
+ controllers dt-binding definition
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230130-topic-sm8450-upstream-pmic-glink-v1-0-0b0acfad301e@linaro.org>
- <20230130-topic-sm8450-upstream-pmic-glink-v1-5-0b0acfad301e@linaro.org>
- <1c3fa66b-651f-c3c1-1751-af3f43c86c49@linaro.org>
- <6cde6bce-ce28-2dd0-1f16-4868ae93fb3f@linaro.org>
- <51d1c4a3-60bf-72df-e1d5-91c69514c36b@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <51d1c4a3-60bf-72df-e1d5-91c69514c36b@linaro.org>
+To:     Balsam CHIHI <bchihi@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
+        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+References: <20230124131717.128660-3-bchihi@baylibre.com>
+ <20230126161048.94089-1-bchihi@baylibre.com>
+ <5ec49108-6ad8-daf7-54ec-104f0923a31d@linaro.org>
+ <CAGuA+opQboxH8qoNv4GG+raX=ZZAyRVLC9VLjVCzbT_cUQWWTA@mail.gmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <CAGuA+opQboxH8qoNv4GG+raX=ZZAyRVLC9VLjVCzbT_cUQWWTA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/01/2023 11:59, Konrad Dybcio wrote:
+
+
+On 30/01/2023 11:40, Balsam CHIHI wrote:
+> Hi Krzysztof,
 > 
+> Thank you for the feedback.
 > 
-> On 30.01.2023 11:58, Neil Armstrong wrote:
->> On 30/01/2023 11:40, Konrad Dybcio wrote:
->>>
->>>
->>> On 30.01.2023 10:54, Neil Armstrong wrote:
->>>> Add the pmic glink node linked with the DWC3 USB controller
->>>> switched to OTG mode and tagged with usb-role-switch.
->>>>
->>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>> Missing commit message
+> On Sat, Jan 28, 2023 at 11:48 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> ??
->>
+>> On 26/01/2023 17:10, bchihi@baylibre.com wrote:
+>>> From: Balsam CHIHI <bchihi@baylibre.com>
 >>>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 34 ++++++++++++++++++++++++++++++++-
->>>>    1 file changed, 33 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
->>>> index 5bdc2c1159ae..5ab12c911bfe 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
->>>> @@ -87,6 +87,31 @@ lt9611_3v3: lt9611-3v3-regulator {
->>>>            enable-active-high;
->>>>        };
->>>>    +    pmic-glink {
->>>> +        compatible = "qcom,sm8450-pmic-glink", "qcom,pmic-glink";
->>>> +
->>> You could remove this newline
->>>> +        #address-cells = <1>;
->>>> +        #size-cells = <0>;
->>>> +
->>>> +        connector@0 {
->>>> +            compatible = "usb-c-connector";
->>>> +            reg = <0>;
->>>> +            power-role = "dual";
->>>> +            data-role = "dual";
->>>> +
->>>> +            ports {
->>>> +                #address-cells = <1>;
->>>> +                #size-cells = <0>;
->>> And add one here
->>>
->>>> +                port@0 {
->>>> +                    reg = <0>;
->>> And here
->>>
+>>> Add LVTS thermal controllers dt-binding definition for mt8195.
 >>
->> Ack
->>
->>>> +                    pmic_glink_dwc3_in: endpoint {
->>>> +                        remote-endpoint = <&usb_1_dwc3_out>;
->>>> +                    };
->>>> +                };
->>>> +            };
->>>> +        };
->>>> +    };
->>>> +
->>>>        vph_pwr: vph-pwr-regulator {
->>>>            compatible = "regulator-fixed";
->>>>            regulator-name = "vph_pwr";
->>>> @@ -724,7 +749,14 @@ &usb_1 {
->>>>    };
->>>>      &usb_1_dwc3 {
->>>> -    dr_mode = "peripheral";
->>>> +    dr_mode = "otg";
->>>> +    usb-role-switch;
->>>> +
->>>> +    port {
->>> Hm, maybe this could be moved to 8450 dtsi?
->>
->> Nop because it depends on the board layout, I think dr_mode
->> and eventual connector description should really stay in
->> the board dts.
-> I just meant the port definition, would it cause any side
-> effects to have it there?
-
-Right, I don't think so, I don't have an opinion on that so whatever
-
-Neil
-
+>> Subject: drop second/last, redundant "dt-binding definition". The
+>> "dt-bindings" prefix is already stating that these are bindings.
 > 
-> Konrad
+> fixed.
+> The patch title has been fixed as you suggested :
+> "dt-bindings: thermal: mediatek: Add LVTS thermal controllers"
+> 
 >>
->> Thanks,
->> Neil
+>> Plus two comments at the end.
 >>
 >>>
->>> Konrad
->>>> +        usb_1_dwc3_out: endpoint {
->>>> +              remote-endpoint = <&pmic_glink_dwc3_in>;
->>>> +          };
->>>> +    };
->>>>    };
->>>>      &usb_1_hsphy {
->>>>
+>>> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+>>> ---
+>>> Changelog:
+>>>    v12:
+>>>       - Fixed subject prefix
+>>>       - Fixed licences GPL-2.0+ to GPL-2.0
+>>>       - Added dual licenses
 >>
+>>
+>>> +    };
+>>> diff --git a/include/dt-bindings/thermal/mediatek-lvts.h b/include/dt-bindings/thermal/mediatek-lvts.h
+>>> new file mode 100644
+>>> index 000000000000..902d5b1e4f43
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/thermal/mediatek-lvts.h
+>>
+>> Same filename as bindings.
+> 
+> fixed.
+> rename :
+> include/dt-bindings/thermal/mediatek-lvts.h =>
+> include/dt-bindings/thermal/mediatek-lvts-thermal.h
+> 
 
+I think it should be
+include/dt-bindings/thermal/mediatek,lvts-thermal.yaml
+
+Regards,
+Matthias
+
+>>
+>>> @@ -0,0 +1,19 @@
+>>> +/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
+>>
+>> Although this is correct, any reason why not using exactly the same
+>> license as bindings?
+> 
+> fixed.
+> both files are now using the same license :
+> "SPDX-License-Identifier: (GPL-2.0 or MIT)"
+> 
+>>
+>>> +/*
+>>> + * Copyright (c) 2023 MediaTek Inc.
+>>> + * Author: Balsam CHIHI <bchihi@baylibre.com>
+>>> + */
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> I'll send the changes soon.
+> 
+> Best regards,
+> Balsam
