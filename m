@@ -2,89 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 652D5680CA1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 12:57:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E15CD680CB0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 12:59:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230374AbjA3L5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 06:57:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53874 "EHLO
+        id S231425AbjA3L7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 06:59:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236266AbjA3L5a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 06:57:30 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E264A302A4
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 03:57:16 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id y1so10823003wru.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 03:57:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XmcsKjHOKYvrUOUyXFN2fyX5681YPhZugfu38EMuB08=;
-        b=H2FPuCMk/NF+fT6BAcIMqqiJEBfns65LIpOPsw5l2IRunMicVdx3XMV5/qZ+gvz80o
-         c2ym7rtY3PllyRlph6/nAcDVro7vxo5QN37nVetUJ8fnIhYKNcNYT36gON1zlwpkhfKm
-         TqyJLZKKFYc9gomPikcHOSM/Fh+IIAhxBYRllJTJ5B9ZarX1C4CLORSnT8Q9qWSyRx+M
-         SarrGtpFcNeORELwQaDTH87A9GuMt0YwGJKiBRYhjyZqi0/aPRb9w3/rPvoVSi0AM3td
-         qpRwW2J7Xg+vy7C8cVsDH0kwHXosXoncBm0nLFU/oaAdQdioTu2E/pc95qo4vOQ+CITZ
-         t+tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XmcsKjHOKYvrUOUyXFN2fyX5681YPhZugfu38EMuB08=;
-        b=Nd3cqfxcDLircMAgfBv0ljf5j9OEXAOqSzOdJsJLuisUQpXLZbOnsxWY+0ezfUIv1A
-         j7KQLkW16GtgaNqnKjJ/H7eUmRukNifaE5fkbP76W1rZ10wPN25Ph0BSrB31f4AO1K6B
-         1sKm9nMf2ocbyAOc9X/6vMPko8Z+xZdeVYMYk9Nsj4UmdIW3HmbO22OrCLkY1+yCSlDe
-         SOgoGVVrDaGS9doZMIJ+fM/LwSYX5NOfHp1VoszpF1bZxy75e/x7bIlpDoKy42SWhlY4
-         60IHr9w5VkZgXHssXj4Xot+c9AaGmY/LagA5CHle69MJnTwmZ4VfrwxvYm++WtQFwmGc
-         Drug==
-X-Gm-Message-State: AFqh2kpgXdrcmus8lnRAx6n7Cyok78mb8cm35Y9FiNoyMTqmfPWg+XBc
-        jdDdAd5umRN/K6O2qETTi4aG2DYXQ6Rb035X
-X-Google-Smtp-Source: AMrXdXvY1RmKLr2Gv1YwpANPagILR9MGIr+duSCkotDjClMAoKjRsaSW02r6KnsoxsJY+EfDL1FMlA==
-X-Received: by 2002:adf:8bd6:0:b0:2bf:95d0:fa5d with SMTP id w22-20020adf8bd6000000b002bf95d0fa5dmr32299686wra.9.1675079835446;
-        Mon, 30 Jan 2023 03:57:15 -0800 (PST)
-Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id m2-20020a056000180200b002bfb5618ee7sm11648461wrh.91.2023.01.30.03.57.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jan 2023 03:57:14 -0800 (PST)
-Message-ID: <921aa473-b2a6-0905-2b52-1acf84ed399a@baylibre.com>
-Date:   Mon, 30 Jan 2023 12:57:13 +0100
+        with ESMTP id S234199AbjA3L70 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 06:59:26 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7C99C9772;
+        Mon, 30 Jan 2023 03:58:52 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B027816F3;
+        Mon, 30 Jan 2023 03:59:26 -0800 (PST)
+Received: from [10.57.89.162] (unknown [10.57.89.162])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DF7853F71E;
+        Mon, 30 Jan 2023 03:58:42 -0800 (PST)
+Message-ID: <52254849-96fa-2882-d81d-d22fe3948405@arm.com>
+Date:   Mon, 30 Jan 2023 11:58:38 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
 Subject: Re: [PATCH 1/3] dt-bindings: memory: mediatek: Add support of
  unmanaged iommu domain
+Content-Language: en-GB
 To:     Alexandre Bailon <abailon@baylibre.com>, yong.wu@mediatek.com,
         joro@8bytes.org, will@kernel.org
-Cc:     robin.murphy@arm.com, matthias.bgg@gmail.com,
-        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
+Cc:     matthias.bgg@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, iommu@lists.linux.dev,
+        linux-mediatek@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20230130102722.133271-1-abailon@baylibre.com>
  <20230130102722.133271-2-abailon@baylibre.com>
-Content-Language: en-US
-From:   Alexandre Mergnat <amergnat@baylibre.com>
+From:   Robin Murphy <robin.murphy@arm.com>
 In-Reply-To: <20230130102722.133271-2-abailon@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/01/2023 11:27, Alexandre Bailon wrote:
+On 2023-01-30 10:27, Alexandre Bailon wrote:
 > Currently, the only way to have an unmanaged domain for a device
 > is having a dedicated iova region or bank.
 > This adds a new bit to MTK_M4U_ID that allows defining devices
 > that needs unmanaged iommu domain.
-> 
+
+These are details of Linux-specific usage policy, so don't belong in DT 
+bindings. I believe the driver already has some internal data to make 
+its own assignment of particular devices into particular groups, so 
+please just add to that.
+
+Thanks,
+Robin.
+
 > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
 > ---
 >   include/dt-bindings/memory/mtk-memory-port.h | 3 +++
@@ -109,5 +88,3 @@ On 30/01/2023 11:27, Alexandre Bailon wrote:
 > +#define MTK_M4U_UNMANAGED_ID(larb, port) (MTK_M4U_ID(larb, port) | MTK_UNMANAGED_DEVICE)
 >   
 >   #endif
-
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
