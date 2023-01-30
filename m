@@ -2,165 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C624680F20
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 14:36:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71906680F39
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 14:43:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236489AbjA3Ngt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 08:36:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49414 "EHLO
+        id S235776AbjA3Nne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 08:43:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235037AbjA3Ngs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 08:36:48 -0500
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DB03126E0;
-        Mon, 30 Jan 2023 05:36:47 -0800 (PST)
-Received: by mail-yb1-xb31.google.com with SMTP id b1so13951049ybn.11;
-        Mon, 30 Jan 2023 05:36:47 -0800 (PST)
+        with ESMTP id S233324AbjA3Nnd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 08:43:33 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EBDD126D9
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 05:43:32 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso2071625wms.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 05:43:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=XVXFMfiXW7j1hSxPDtInEvzJtkAmO/pwYdcItY2zsYc=;
-        b=Yo1kEWfwEHOJ2WPhV9wNw4bitrVT4PA8LZfEfJWC9LuuLXlaBN6OhOlqJo9+HXDlL1
-         woog57bYi+hNUnzSGwFeR9LI/8Fc5Y5xEtEHUZi9/tVAaBaq3mEtrsfkKC+oC1IdLhCE
-         WVDvzIvYWc9KB1by7/LxKYjVZVbOWZcVc4F94gnOxH8diD3QihhkDAkdsFVSuhDNMtxQ
-         6DEhB6FXPKpn0Xo9uiBbh6rCTrAIiYx7GLLt2HzFNuyM2VsB9SSloj946tmDmhVdG5C0
-         uEjFkHhY4FrHNi9O1Qb6L22seNhsPxyi+Pec6U11pYJxOssa7gtSDV8KxW/pWrUIHb0N
-         ZE3Q==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0dzAvNhqbLHD8Qqr5U4HkMhu9d4Ko8KZtdb+p3yzQqo=;
+        b=r3+O9ok547RbwEpeaTLhkg2nhQik6ojXy+fTq+Mnx7azfKGPocnjWfqHgTANTMmRRi
+         Ga7BrBfT6JMqxyyLMGSRQGNZWeS/0obKNdiOuurdTQfR+4PLPos4/1ZQ7Lrt6uEn6siU
+         mXpsUovrCJCA6CmoF6tql2U5NHvmyJxWbUQtFpIa1/YnhFNS9efyClfxEwebL08zPvOw
+         SExuyJGXGdar9XV2X8crhizmga9Wi/Mh0H1rRXTsBeOkK2Qsnk+qHb0V1vVsQYGpWtLx
+         vAwsDI3vaM0mJSi6vBtY+oyJKFvojk84NRYYDuVRU4DAqvyl5WGPE3dT9ddYNJc4hv2j
+         d0og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=XVXFMfiXW7j1hSxPDtInEvzJtkAmO/pwYdcItY2zsYc=;
-        b=NOCv/BwVEeIkO/9KJdUiKS2KwW3R4EWpey0i12dPyrUkY4w0W2mXxNvYznqSGcuHN7
-         vmtwfgGuH/P0Z5J3Qbfu9aLx1xY0Hbk/IyU71wME+R8SkAL+1hGMnlzT/J+9Q1TTrU7P
-         RXuA7N8en3QYP2fWVjciVxBZxQ84UcBL3yTTnZovYWqnCWZf5D8rTKXHr8TmJ0oul+EL
-         9n9Fza3XaRKJdDJ9h89ZLRK3ciYohVUJyZITr8xOmlXPtgLHgg/Pw2td2QYPSd5lsHFb
-         b7R+HWzfAot5xgEldisgQqeOJyHXXL+4mmV6Do0+LDlCSlTBoBQtCIEAssLxOw3953Vs
-         yajg==
-X-Gm-Message-State: AO0yUKVj+rN9VjJnEd1+umfwAvlPcD/cVAkUHzaHzgVosogBFkkn1i6c
-        +5QvA5oFDofxscdyCb0Cz36QhT5gTAlAOZG10pUBgyJfjRE=
-X-Google-Smtp-Source: AK7set900xzmxxQiL/dVyqLp37FVN80GeSLvWgrXmbl0dW4zdIY99Hug+iq7ujv+gggOluRCuYf7OUltJeCT39T7u0E=
-X-Received: by 2002:a25:b55:0:b0:816:c63:dc96 with SMTP id 82-20020a250b55000000b008160c63dc96mr398350ybl.119.1675085806597;
- Mon, 30 Jan 2023 05:36:46 -0800 (PST)
-MIME-Version: 1.0
-References: <20230127174014.251539-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <OS0PR01MB592258905AC3979803C473D786CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CA+V-a8s+cZpuUXWRa573a373n7YPsHrdLnUVXHjez6O101oneQ@mail.gmail.com>
- <OS0PR01MB5922943C1E1D9329691DB02F86CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CAMuHMdWHE3wAYd7TSamN77Xy7CSxnEd8QHW8xm9ng4opsBEapg@mail.gmail.com>
- <CA+V-a8vBFSKbFJo1nEX7eN+S8eJazDDfCrzO7oFHsiF5yvpZ+g@mail.gmail.com> <874js8duh7.wl-maz@kernel.org>
-In-Reply-To: <874js8duh7.wl-maz@kernel.org>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 30 Jan 2023 13:36:20 +0000
-Message-ID: <CA+V-a8tvc1K=eHxGNGPvGjp4Ddz6jKu2b3w4+KE-SfJu0Qquvw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU node
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        bh=0dzAvNhqbLHD8Qqr5U4HkMhu9d4Ko8KZtdb+p3yzQqo=;
+        b=gq4wK+V931nZzpVy/VkbPXFuWQBdio/3mxFzI2R6T4MHK15TfvKG1tCODLXMbyv3dd
+         i/5fyvhoHCif2fi6+JVOd9jaBYPcoqhL8A+c5FDzOBhrYXCYR98HlyBQkPfPDS6eITlz
+         kd0y3ZIcAmhUcQIyVtqgrjWxVQX17fG0Q60Tnow9jbluodzfI33yRtPcaf8BvMnOL4Ug
+         tp+fxt0BXvOuwqUEQLWY70JXmgB6y8G7us1mFniUcMUjOR6eDXwgYR+h8XPWPtgK6Waz
+         SPO71B3nw2WU9ugC4pUrlT6DEm2metPu/tsrfjficL/pfAIJfrdfk1YvWNfo9V9DPw9o
+         buVA==
+X-Gm-Message-State: AO0yUKVmcTmrDiDkYsA2sqdIv4BjeRCdzdZSATe/hdhPZ7bXH0udKcZF
+        ocolcXgw2Gi9nuX9Ikv+nxKSHw==
+X-Google-Smtp-Source: AK7set97xlKmmDBvKPBmRQ17fPHhyiyadsOAAP+bSHsQR+a7netx9q1OsYsNQSaB7yg2FcxInSshMQ==
+X-Received: by 2002:a05:600c:3545:b0:3dd:1ac2:989 with SMTP id i5-20020a05600c354500b003dd1ac20989mr256851wmq.39.1675086210825;
+        Mon, 30 Jan 2023 05:43:30 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:b9a5:a1fe:d3ab:6b40])
+        by smtp.gmail.com with ESMTPSA id g12-20020a05600c310c00b003db012d49b7sm27403410wmo.2.2023.01.30.05.43.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 05:43:30 -0800 (PST)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH] dt-bindings: watchdog: qcom-wdt: add the interrupts property
+Date:   Mon, 30 Jan 2023 14:43:28 +0100
+Message-Id: <20230130134328.178591-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-On Mon, Jan 30, 2023 at 1:26 PM Marc Zyngier <maz@kernel.org> wrote:
->
-> On Mon, 30 Jan 2023 13:13:26 +0000,
-> "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> >
-> > Hi Geert,
-> >
-> > On Mon, Jan 30, 2023 at 10:05 AM Geert Uytterhoeven
-> > <geert@linux-m68k.org> wrote:
-> > >
-> > > On Fri, Jan 27, 2023 at 10:48 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > > > Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU node
-> > > > > On Fri, Jan 27, 2023 at 6:38 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > > > > > Subject: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU
-> > > > > > > node
-> > > > > > >
-> > > > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > > >
-> > > > > > > Enable the performance monitor unit for the Cortex-A55 cores on the
-> > > > > > > RZ/G2L
-> > > > > > > (r9a07g044) SoC.
-> > > > > > >
-> > > > > > > Signed-off-by: Lad Prabhakar
-> > > > > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > > > ---
-> > > > > > >  arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 5 +++++
-> > > > > > >  1 file changed, 5 insertions(+)
-> > > > > > >
-> > > > > > > diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > > > > > > b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > > > > > > index 80b2332798d9..ff9bdc03a3ed 100644
-> > > > > > > --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > > > > > > +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > > > > > > @@ -161,6 +161,11 @@ opp-50000000 {
-> > > > > > >               };
-> > > > > > >       };
-> > > > > > >
-> > > > > > > +     pmu_a55 {
-> > > > > > > +             compatible = "arm,cortex-a55-pmu";
-> > > > > > > +             interrupts-extended = <&gic GIC_PPI 7
-> > > > > > > + IRQ_TYPE_LEVEL_HIGH>;
-> > > > > >
-> > > > > > Just a question, Is it tested?
-> > > > > Yes this was tested with perf test
-> > > > >
-> > > > > > timer node[1] defines irq type as LOW, here it is high.
-> > > > > You are right looking at the RZG2L_InterruptMapping_rev01.xlsx this should
-> > > > > be LOW. (I followed the SPI IRQS where all the LEVEL interrupts are HIGH)
-> > > > >
-> > > > > > Also do we need to define (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW) as
-> > > > > it has 2 cores??
-> > > > > >
-> > > > > No this is not required for example here [0] where it has 6 cores.
-> > > >
-> > > > I may be wrong, That is the only example[1], where the A55 PMU per cpu interrupts and number of a55 cores in the DT
-> > > > are not matching.
-> > > >
-> > > > [1]
-> > > > https://elixir.bootlin.com/linux/latest/B/ident/arm%2Ccortex-a55-pmu
-> > >
-> > > Indeed, this looks like an omission, propagated through
-> > > arch/arm64/boot/dts/renesas/r8a779[afg]0.dtsi.
-> > >
-> > > And doesn't this apply to all PPI interrupts, i.e. shouldn't the GIC
-> > > in arch/arm64/boot/dts/renesas/r9a07g0{43u,44u,54}.dtsi specify the
-> > > mask in their interrupts properties, too?
-> > >
-> > I was under the impression that the GIC_CPU_MASK_SIMPLE(x) was only
-> > needed if the driver handled per-cpu stuff.
-> >
-> > Marc, what should be the correct usage?
->
-> I'm reading the DT correctly, this system has a GICv3, which is quite
-> natural for an A55-based system. For this configuration, no mask is
-> required.
->
-> The CPU mask stuff only applies to pre-GICv3. With GICv3+, you simply
-> cannot express such a mask, as there is no practical limit to the
-> number of CPUs.
->
-Thank you for the clarification.
+The interrupts property is used in all nodes using this binding but not
+defined in the document itself - hence dtbs_check fails for them. Add
+the property and update the example.
 
-Cheers,
-Prabhakar
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ .../devicetree/bindings/watchdog/qcom-wdt.yaml        | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+index 27fb484d5f8d..45940d643b92 100644
+--- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+@@ -46,6 +46,10 @@ properties:
+   clocks:
+     maxItems: 1
+ 
++  interrupts:
++    minItems: 1
++    maxItems: 5
++
+ required:
+   - compatible
+   - reg
+@@ -55,9 +59,16 @@ unevaluatedProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
+     watchdog@208a038 {
+       compatible = "qcom,kpss-wdt-ipq8064";
+       reg = <0x0208a038 0x40>;
+       clocks = <&sleep_clk>;
+       timeout-sec = <10>;
++      interrupts = <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
++                   <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
++                   <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
++                   <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
++                   <GIC_PPI 5 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
+     };
+-- 
+2.37.2
+
