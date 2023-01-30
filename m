@@ -2,295 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7492B681496
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 16:17:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 622996814A4
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 16:18:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235858AbjA3PRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 10:17:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58256 "EHLO
+        id S237898AbjA3PSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 10:18:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238065AbjA3PQz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 10:16:55 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26E093CE1A
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 07:16:32 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso2290660wms.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 07:16:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cyC0WPiESVFATZgdkk9pkTr4ui49YzPabZztaAdxpeA=;
-        b=H4mXe/vo/lr7dTr9p6kfKeuOyyEgETFP+/ki0D99l4xb14APKN8+cfkmRyVp20QkvH
-         RAVgEma2eqZp+SGaakRv+DyUYmGASnODJnH0Jfy/62URsADj0mhsKCf5F2SecRpu2l7G
-         NL1zrAP/rCGVnTU2+RceRTOo2yaZHEZsPclFB6HfbNMrCpndXKytwm/Kw977S9ANneCg
-         eHw7sUv5eWbo9u6cjOWkq3koIEnr5HGy1FLvbJSfxC0lkJcxCt37Imb4WgnE6gec0U/I
-         YCT5QkWXnwO8hB49VFIlqaxMjRpVYJhhGxlO3mjGJMgeNc18K+fbntCD+U5y9qsAEtuZ
-         jiMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cyC0WPiESVFATZgdkk9pkTr4ui49YzPabZztaAdxpeA=;
-        b=IZ03bBuUnGFboEULIWmtsuHjWQhRLTHLhVaCcQlbTWLgiV1kgXdOj7mL+AXhmd1gSm
-         lgFnqOiFYJp/X1ORHxBZkV39F2nrf0eLmIaveO57oDKupjbb+vPSpDrPeCpr6P9Op2N1
-         lrhYDubQRoNmWtz6VsFGcemy5jJUEb0/zC5gY29OhAtnuTmWaeC/n8R9iSFs1rvWvula
-         O39yKeR0pRC+YZRFwaShdB61bJQw2r8SWuCj6MHd7QiVX532XvzOSe1tnW4YMGJZs628
-         WnVfPELn2IL42VcLNwfQoAF0PHFz309d4O54nIDjx6SU4yKeOIfk/MRAERYKWGMO3GXQ
-         CgGQ==
-X-Gm-Message-State: AO0yUKU6EK5sqX+yh8n88SloANR63ojJTCiwtn7UlskyQJYRxm1ffIvZ
-        RnhfYpnnCtOgUAkhY+qY3sfIRw==
-X-Google-Smtp-Source: AK7set+iSv4SoypTeDtrUTj78tmVgk0ig3A61r9Gs7gXD6xA1NkAgzeiEYDRuZCPpajWX5wOJmcTFg==
-X-Received: by 2002:a05:600c:21d5:b0:3dc:50c2:cc1 with SMTP id x21-20020a05600c21d500b003dc50c20cc1mr7092137wmj.23.1675091786745;
-        Mon, 30 Jan 2023 07:16:26 -0800 (PST)
-Received: from jackdaw.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id u12-20020a05600c19cc00b003db0ee277b2sm18735802wmq.5.2023.01.30.07.16.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 07:16:26 -0800 (PST)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     netdev@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Da Xue <da@lessconfused.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 net-next 2/2] net: mdio: add amlogic gxl mdio mux support
-Date:   Mon, 30 Jan 2023 16:16:16 +0100
-Message-Id: <20230130151616.375168-3-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230130151616.375168-1-jbrunet@baylibre.com>
-References: <20230130151616.375168-1-jbrunet@baylibre.com>
+        with ESMTP id S238050AbjA3PS2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 10:18:28 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B80C15C;
+        Mon, 30 Jan 2023 07:17:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1675091875; x=1706627875;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4jfbSarMFyi7cMttwvDR5yy006KKKlZ6jChWvaFjhEk=;
+  b=YzBqa9ltyfekpYfTOa4cifNKNPR+88bOa3O8Wv+rESqnn2J+LHMlI/rI
+   o6A8U4fHRSqF1WPTqJvkdqAf5d7MoodgCFRylMYlJYjVAZtkcfGTPKfHN
+   ubEyEKoLEe5DoBjEIB2wpnnwiojIqDqJkewioulYGMzySAFgVOuJOj7T7
+   nmyEslTOIqYdadL+m6edgJx9LbgJtS/bXO9uLFHDWfAWAZ2PCzAE2KwVN
+   EDbNeEfesgBBHObNEIqwdJ7YDnmsMjU7nJvP+ZugdKKa31A+7trTi7XGI
+   5yt1y9LevJD03nYULxtPQWKX18NcYe1zUWhJYc+BrWJ1poBsqhN/T/ylZ
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="354898535"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; 
+   d="scan'208";a="354898535"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2023 07:16:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="992938805"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; 
+   d="scan'208";a="992938805"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga005.fm.intel.com with ESMTP; 30 Jan 2023 07:16:41 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pMVtc-00HPM7-2k;
+        Mon, 30 Jan 2023 17:16:36 +0200
+Date:   Mon, 30 Jan 2023 17:16:36 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Linux Kernel Functional Testing <lkft@linaro.org>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Maxim Kiselev <bigunclemax@gmail.com>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Jean-Philippe Brucker <jpb@kernel.org>,
+        kernel-team@android.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v2 08/11] driver core: fw_devlink: Make cycle detection
+ more robust
+Message-ID: <Y9ffVEa1KECKqBGB@smile.fi.intel.com>
+References: <20230127001141.407071-1-saravanak@google.com>
+ <20230127001141.407071-9-saravanak@google.com>
+ <Y9OcqGTocu8ZlFqy@smile.fi.intel.com>
+ <CAGETcx-PiV12pKnVuKyvNcjYbHA=YFJG1QUa-o-G1cL3iMHgcA@mail.gmail.com>
+ <Y9e09qUa9CDxHFcb@smile.fi.intel.com>
+ <CAMuHMdXSgS-hu1xV_vmJZi_kr6ypiS=a-e0p7Hb75HKDfz9k-g@mail.gmail.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXSgS-hu1xV_vmJZi_kr6ypiS=a-e0p7Hb75HKDfz9k-g@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the mdio mux and internal phy glue of the GXL SoC
-family
+On Mon, Jan 30, 2023 at 03:36:04PM +0100, Geert Uytterhoeven wrote:
+> On Mon, Jan 30, 2023 at 1:16 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Fri, Jan 27, 2023 at 11:34:28PM -0800, Saravana Kannan wrote:
+> > > On Fri, Jan 27, 2023 at 1:43 AM Andy Shevchenko
+> > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > On Thu, Jan 26, 2023 at 04:11:35PM -0800, Saravana Kannan wrote:
+> > > > > +static bool __fw_devlink_relax_cycles(struct device *con,
+> > > > > +                              struct fwnode_handle *sup_handle)
+> > > > > +{
+> > > > > +     struct fwnode_link *link;
+> > > > > +     struct device_link *dev_link;
+> > > >
+> > > > > +     struct device *sup_dev = NULL, *par_dev = NULL;
+> > > >
+> > > > You can put it the first line since it's long enough.
+> > >
+> > > Wait, is that a style guideline to have the longer lines first?
+> >
+> > No, but it's easier to read.
+> 
+> Yes it is, "reverse xmas tree" local variable ordering:
+> https://elixir.bootlin.com/linux/v6.2-rc6/source/Documentation/process/maintainer-netdev.rst#L272
 
-Reported-by: Da Xue <da@lessconfused.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/net/mdio/Kconfig              |  11 ++
- drivers/net/mdio/Makefile             |   1 +
- drivers/net/mdio/mdio-mux-meson-gxl.c | 164 ++++++++++++++++++++++++++
- 3 files changed, 176 insertions(+)
- create mode 100644 drivers/net/mdio/mdio-mux-meson-gxl.c
+Good to  know, thanks!
 
-diff --git a/drivers/net/mdio/Kconfig b/drivers/net/mdio/Kconfig
-index bfa16826a6e1..90309980686e 100644
---- a/drivers/net/mdio/Kconfig
-+++ b/drivers/net/mdio/Kconfig
-@@ -215,6 +215,17 @@ config MDIO_BUS_MUX_MESON_G12A
- 	  the amlogic g12a SoC. The multiplexers connects either the external
- 	  or the internal MDIO bus to the parent bus.
- 
-+config MDIO_BUS_MUX_MESON_GXL
-+	tristate "Amlogic GXL based MDIO bus multiplexer"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	depends on OF_MDIO && HAS_IOMEM && COMMON_CLK
-+	select MDIO_BUS_MUX
-+	default m if ARCH_MESON
-+	help
-+	  This module provides a driver for the MDIO multiplexer/glue of
-+	  the amlogic GXL SoC. The multiplexer connects either the external
-+	  or the internal MDIO bus to the parent bus.
-+
- config MDIO_BUS_MUX_BCM6368
- 	tristate "Broadcom BCM6368 MDIO bus multiplexers"
- 	depends on OF && OF_MDIO && (BMIPS_GENERIC || COMPILE_TEST)
-diff --git a/drivers/net/mdio/Makefile b/drivers/net/mdio/Makefile
-index 15f8dc4042ce..7d4cb4c11e4e 100644
---- a/drivers/net/mdio/Makefile
-+++ b/drivers/net/mdio/Makefile
-@@ -28,5 +28,6 @@ obj-$(CONFIG_MDIO_BUS_MUX_BCM6368)	+= mdio-mux-bcm6368.o
- obj-$(CONFIG_MDIO_BUS_MUX_BCM_IPROC)	+= mdio-mux-bcm-iproc.o
- obj-$(CONFIG_MDIO_BUS_MUX_GPIO)		+= mdio-mux-gpio.o
- obj-$(CONFIG_MDIO_BUS_MUX_MESON_G12A)	+= mdio-mux-meson-g12a.o
-+obj-$(CONFIG_MDIO_BUS_MUX_MESON_GXL)	+= mdio-mux-meson-gxl.o
- obj-$(CONFIG_MDIO_BUS_MUX_MMIOREG) 	+= mdio-mux-mmioreg.o
- obj-$(CONFIG_MDIO_BUS_MUX_MULTIPLEXER) 	+= mdio-mux-multiplexer.o
-diff --git a/drivers/net/mdio/mdio-mux-meson-gxl.c b/drivers/net/mdio/mdio-mux-meson-gxl.c
-new file mode 100644
-index 000000000000..76188575ca1f
---- /dev/null
-+++ b/drivers/net/mdio/mdio-mux-meson-gxl.c
-@@ -0,0 +1,164 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Copyright (c) 2022 Baylibre, SAS.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/delay.h>
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/mdio-mux.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+
-+#define ETH_REG2		0x0
-+#define  REG2_PHYID		GENMASK(21, 0)
-+#define   EPHY_GXL_ID		0x110181
-+#define  REG2_LEDACT		GENMASK(23, 22)
-+#define  REG2_LEDLINK		GENMASK(25, 24)
-+#define  REG2_DIV4SEL		BIT(27)
-+#define  REG2_ADCBYPASS		BIT(30)
-+#define  REG2_CLKINSEL		BIT(31)
-+#define ETH_REG3		0x4
-+#define  REG3_ENH		BIT(3)
-+#define  REG3_CFGMODE		GENMASK(6, 4)
-+#define  REG3_AUTOMDIX		BIT(7)
-+#define  REG3_PHYADDR		GENMASK(12, 8)
-+#define  REG3_PWRUPRST		BIT(21)
-+#define  REG3_PWRDOWN		BIT(22)
-+#define  REG3_LEDPOL		BIT(23)
-+#define  REG3_PHYMDI		BIT(26)
-+#define  REG3_CLKINEN		BIT(29)
-+#define  REG3_PHYIP		BIT(30)
-+#define  REG3_PHYEN		BIT(31)
-+#define ETH_REG4		0x8
-+#define  REG4_PWRUPRSTSIG	BIT(0)
-+
-+#define MESON_GXL_MDIO_EXTERNAL_ID 0
-+#define MESON_GXL_MDIO_INTERNAL_ID 1
-+
-+struct gxl_mdio_mux {
-+	void __iomem *regs;
-+	void *mux_handle;
-+};
-+
-+static void gxl_enable_internal_mdio(struct gxl_mdio_mux *priv)
-+{
-+	u32 val;
-+
-+	/* Setup the internal phy */
-+	val = (REG3_ENH |
-+	       FIELD_PREP(REG3_CFGMODE, 0x7) |
-+	       REG3_AUTOMDIX |
-+	       FIELD_PREP(REG3_PHYADDR, 8) |
-+	       REG3_LEDPOL |
-+	       REG3_PHYMDI |
-+	       REG3_CLKINEN |
-+	       REG3_PHYIP);
-+
-+	writel(REG4_PWRUPRSTSIG, priv->regs + ETH_REG4);
-+	writel(val, priv->regs + ETH_REG3);
-+	mdelay(10);
-+
-+	/* NOTE: The HW kept the phy id configurable at runtime.
-+	 * The id below is arbitrary. It is the one used in the vendor code.
-+	 * The only constraint is that it must match the one in
-+	 * drivers/net/phy/meson-gxl.c to properly match the PHY.
-+	 */
-+	writel(FIELD_PREP(REG2_PHYID, EPHY_GXL_ID),
-+	       priv->regs + ETH_REG2);
-+
-+	/* Enable the internal phy */
-+	val |= REG3_PHYEN;
-+	writel(val, priv->regs + ETH_REG3);
-+	writel(0, priv->regs + ETH_REG4);
-+
-+	/* The phy needs a bit of time to power up */
-+	mdelay(10);
-+}
-+
-+static void gxl_enable_external_mdio(struct gxl_mdio_mux *priv)
-+{
-+	/* Reset the mdio bus mux to the external phy */
-+	writel(0, priv->regs + ETH_REG3);
-+}
-+
-+static int gxl_mdio_switch_fn(int current_child, int desired_child,
-+			      void *data)
-+{
-+	struct gxl_mdio_mux *priv = dev_get_drvdata(data);
-+
-+	if (current_child == desired_child)
-+		return 0;
-+
-+	switch (desired_child) {
-+	case MESON_GXL_MDIO_EXTERNAL_ID:
-+		gxl_enable_external_mdio(priv);
-+		break;
-+	case MESON_GXL_MDIO_INTERNAL_ID:
-+		gxl_enable_internal_mdio(priv);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id gxl_mdio_mux_match[] = {
-+	{ .compatible = "amlogic,gxl-mdio-mux", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, gxl_mdio_mux_match);
-+
-+static int gxl_mdio_mux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct gxl_mdio_mux *priv;
-+	struct clk *rclk;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+	platform_set_drvdata(pdev, priv);
-+
-+	priv->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->regs))
-+		return PTR_ERR(priv->regs);
-+
-+	rclk = devm_clk_get_enabled(dev, "ref");
-+	if (IS_ERR(rclk))
-+		return dev_err_probe(dev, PTR_ERR(rclk),
-+				     "failed to get reference clock\n");
-+
-+	ret = mdio_mux_init(dev, dev->of_node, gxl_mdio_switch_fn,
-+			    &priv->mux_handle, dev, NULL);
-+	if (ret)
-+		dev_err_probe(dev, ret, "mdio multiplexer init failed\n");
-+
-+	return ret;
-+}
-+
-+static int gxl_mdio_mux_remove(struct platform_device *pdev)
-+{
-+	struct gxl_mdio_mux *priv = platform_get_drvdata(pdev);
-+
-+	mdio_mux_uninit(priv->mux_handle);
-+
-+	return 0;
-+}
-+
-+static struct platform_driver gxl_mdio_mux_driver = {
-+	.probe		= gxl_mdio_mux_probe,
-+	.remove		= gxl_mdio_mux_remove,
-+	.driver		= {
-+		.name	= "gxl-mdio-mux",
-+		.of_match_table = gxl_mdio_mux_match,
-+	},
-+};
-+module_platform_driver(gxl_mdio_mux_driver);
-+
-+MODULE_DESCRIPTION("Amlogic GXL MDIO multiplexer driver");
-+MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
-+MODULE_LICENSE("GPL");
 -- 
-2.39.0
+With Best Regards,
+Andy Shevchenko
+
 
