@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CDB6680994
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 10:34:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 697E4680997
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 10:34:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236380AbjA3Jee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 04:34:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35220 "EHLO
+        id S235725AbjA3Jeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 04:34:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236504AbjA3JeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 04:34:13 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0F2376BE
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 01:32:47 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id cl23-20020a17090af69700b0022c745bfdc3so3895802pjb.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 01:32:47 -0800 (PST)
+        with ESMTP id S235476AbjA3JeO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 04:34:14 -0500
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AE332126
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 01:32:52 -0800 (PST)
+Received: by mail-pl1-x62e.google.com with SMTP id be8so10960735plb.7
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 01:32:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=W7Rfwt1I+uGLH2WvGyjGS4z4+0W1oBU0PyN8+ybwBQM=;
-        b=hCnLQngH722sIEXN1Gho9Wj1ujABjTtK8JX/cG3wwwGaTKdAB+ey7HkETd6oZpO8tv
-         vLdoPzqJLerf49cPLSpjOorHVag3ybhXhpYr/77qmDgvjgzmFdT/0d3bxHOZj/e7n+bY
-         t8uSp9ikhaT89Y8/DDu/f6YmDsbqbCtH9SHKNmJGAis1CHdAD2Vg/Us25RsC2Vxm6SGm
-         6peI7uPrZelCCu4EcstZZseRCRQsCrohoNKVVIoWxmA+RdjN7nMbH43Kb9cIzmBoXo3D
-         OU6oU5ZwPVpKtUhF3UDUADSHTLP/R+4DWP3Ll5ImHlmOricvo99OaP/0pQI1SvA4a9R8
-         yMHQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nxtYcVhJhYnmw9Kyf/CwQWgviswE64iGZP+l2Z32zUU=;
+        b=WfpSpboUezsAyUDDVV9MgUHTxwU1B6vz4v5+gIu7omiVgcRS+MZhIWZsnhesnBobkJ
+         FuricfmatL/tBgUO2Ox5jovBrabUbuVFkruA6tDgzTFQg8NdpfM1PA/DXKnbJhaaakHI
+         UetQVLgUSxAPkniq7vGNYBLuRL/k9EnltcV5QBnMJgmh+6y3YuHI2HDK2tO2cQFuJKu1
+         cy34U3MGwmpRhajU5owIL9mqSuUSM6w1F3wRuOzqU7r+M/Nf66ZWml5iRBZ7ttNvwCBl
+         HqdqkfNfe4oBmhzr0Q895sfoVszPUVnwcg2WRU1LSP9N1QpyFifC6WgQ5fm4pizh9PJA
+         QCpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=W7Rfwt1I+uGLH2WvGyjGS4z4+0W1oBU0PyN8+ybwBQM=;
-        b=pFvxWJ/Gwv5bZGuUyRPxcqZAjLtZDD9NX1pUYGJLafJRT+AApmE00oe9JKmVe1/PE0
-         zcizboeHPF1AHCLG3O/tjesaIUzHVW9jdQoC6LYT4SGo2QbDEq99Anh960AiyDx+0ep8
-         +fGuCb4tdRpJj1in9G0uNuizDZe9FfM6EYQE+lriW2kkbCo3MIBkU+dMOBnjWXG7qJNY
-         vvXEotGLZ/pp7NaVJbsLy23MseBNTLka9WlOA435yPLv81+SkOPSkb3beOyqY1hXDQP2
-         AOb4GaCB4mgG7oK1nP+s3pPdNFW+tUjpeazeYK66Ah1Y5FUq5/1rJBz0Wp74As1ZMcud
-         bX3Q==
-X-Gm-Message-State: AO0yUKVY+sjgWctCK/x1++XfWyduOm4zfx2PQgUGVAqi8sOICqUyYBAX
-        R6MXoFJLUW555r1srQOLxbaRJQ==
-X-Google-Smtp-Source: AK7set9QLGZ+95SoqxDpz0fnhu2C6Btygt/5TP7yC/t6bY6mZyLjmV3rrULbqSgdQtIJkwB74RFyog==
-X-Received: by 2002:a17:902:c406:b0:196:e8e:cd28 with SMTP id k6-20020a170902c40600b001960e8ecd28mr30471930plk.15.1675071155816;
-        Mon, 30 Jan 2023 01:32:35 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nxtYcVhJhYnmw9Kyf/CwQWgviswE64iGZP+l2Z32zUU=;
+        b=0ZB/X6LrAbp2m90nPpefiLHF9wY0d3YDt6jJGSxtcndY6seUnj9ECI99hCgEEohj++
+         kQzZTR41MjMrxjz2KnrfWegt9s+4ubcIw6MGgqRSg/xKZ7WU7eix8Sh3EBCVEtNKypVU
+         6jp1f6v3bbsf55sji5RmGToPy8GxT1cKjdEx5fJxivrU8Aomoaln12xsZ3ty+xEzpdlp
+         7dNTUHiypG1idgwPeyX67YdgrMR0ifm8jypzMtCMpFj7FvO5oLvL3tymOiRNmzZaLzRk
+         IKpxXIPtyKtbJgRRfxw1yAUAe/Qk38jdPJWDOrk9PTs0+9yuLVGD0LDKECc/Z1ZmPHQy
+         kAAg==
+X-Gm-Message-State: AO0yUKUEueVg7EGv4VtsS8n/FspB4J5rgwDAcRrDoHYLraHBTnMB9LRQ
+        YQfvNSJnyk6Wo17zXyIHdb47Ww==
+X-Google-Smtp-Source: AK7set+sqas1TmEZGyot0yhlXSSwa3Kkzex+Yml58yVBreADNUkvzMVeVh4R0UHw2PdTkO1Dvv9mIA==
+X-Received: by 2002:a05:6a20:1592:b0:be:9249:236c with SMTP id h18-20020a056a20159200b000be9249236cmr1679774pzj.35.1675071160436;
+        Mon, 30 Jan 2023 01:32:40 -0800 (PST)
 Received: from hsinchu15.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id t13-20020a6564cd000000b004db2b310f95sm6245704pgv.16.2023.01.30.01.32.32
+        by smtp.gmail.com with ESMTPSA id t13-20020a6564cd000000b004db2b310f95sm6245704pgv.16.2023.01.30.01.32.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 01:32:35 -0800 (PST)
+        Mon, 30 Jan 2023 01:32:40 -0800 (PST)
 From:   Nylon Chen <nylon.chen@sifive.com>
 To:     aou@eecs.berkeley.edu, conor@kernel.org,
         emil.renner.berthing@canonical.com, geert+renesas@glider.be,
@@ -58,10 +59,12 @@ To:     aou@eecs.berkeley.edu, conor@kernel.org,
         linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     nylon.chen@sifive.com, nylon7717@gmail.com, zong.li@sifive.com,
         greentime.hu@sifive.com, vincent.chen@sifive.com
-Subject: [PATCH v2 0/2] Change PWM-controlled LED pin active mode and algorithm
-Date:   Mon, 30 Jan 2023 17:32:27 +0800
-Message-Id: <20230130093229.27489-1-nylon.chen@sifive.com>
+Subject: [PATCH v2 1/2] riscv: dts: sifive: unleashed/unmatched: Remove PWM controlled LED's active-low properties
+Date:   Mon, 30 Jan 2023 17:32:28 +0800
+Message-Id: <20230130093229.27489-2-nylon.chen@sifive.com>
 X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20230130093229.27489-1-nylon.chen@sifive.com>
+References: <20230130093229.27489-1-nylon.chen@sifive.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -74,36 +77,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the circuit diagram of User LEDs - RGB described in the
-manual hifive-unleashed-a00.pdf[0] and hifive-unmatched-schematics-v3.pdf[1].
-The behavior of PWM is acitve-high.
+This removes the active-low properties of the PWM-controlled LEDs in
+the HiFive Unmatched device tree.
 
-According to the descriptionof PWM for pwmcmp in SiFive FU740-C000 Manual[2].
-The pwm algorithm is (PW) pulse active time  = (D) duty * (T) period.
-The `frac` variable is pulse "inactive" time so we need to invert it.
-
-So this patchset removes active-low in DTS and adds reverse logic to the driver.
+The reference is hifive-unleashed-a00.pdf[0] and hifive-unmatched-schematics-v3.pdf[1].
 
 [0]: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf8453f8698_hifive-unleashed-a00-schematics-1.pdf
 [1]: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce76f4192_hifive-unmatched-schematics-v3.pdf
-[2]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b16acba_fu740-c000-manual-v1p6.pdf
 
-Changed in v2:
- - Convert the reference link to standard link.
- - Fix typo: s/sifive unmatched:/sifive: unmatched:/.
- - Remove active-low from hifive-unleashed-a00.dts.
- - Include this reference link in the dts and pwm commit messages.
-
-Nylon Chen (2):
-  riscv: dts: sifive: unleashed/unmatched: Remove PWM controlled LED's
-    active-low properties
-  pwm: sifive: change the PWM controlled LED algorithm
-
+Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
+---
  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 4 ----
  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 4 ----
- drivers/pwm/pwm-sifive.c                            | 1 +
- 3 files changed, 1 insertion(+), 8 deletions(-)
+ 2 files changed, 8 deletions(-)
 
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+index 900a50526d77..7a9f336a391c 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+@@ -50,7 +50,6 @@ led-controller {
+ 
+ 		led-d1 {
+ 			pwms = <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
+-			active-low;
+ 			color = <LED_COLOR_ID_GREEN>;
+ 			max-brightness = <255>;
+ 			label = "d1";
+@@ -58,7 +57,6 @@ led-d1 {
+ 
+ 		led-d2 {
+ 			pwms = <&pwm0 1 7812500 PWM_POLARITY_INVERTED>;
+-			active-low;
+ 			color = <LED_COLOR_ID_GREEN>;
+ 			max-brightness = <255>;
+ 			label = "d2";
+@@ -66,7 +64,6 @@ led-d2 {
+ 
+ 		led-d3 {
+ 			pwms = <&pwm0 2 7812500 PWM_POLARITY_INVERTED>;
+-			active-low;
+ 			color = <LED_COLOR_ID_GREEN>;
+ 			max-brightness = <255>;
+ 			label = "d3";
+@@ -74,7 +71,6 @@ led-d3 {
+ 
+ 		led-d4 {
+ 			pwms = <&pwm0 3 7812500 PWM_POLARITY_INVERTED>;
+-			active-low;
+ 			color = <LED_COLOR_ID_GREEN>;
+ 			max-brightness = <255>;
+ 			label = "d4";
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+index 07387f9c135c..11f08a545ee6 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+@@ -52,7 +52,6 @@ led-controller-1 {
+ 
+ 		led-d12 {
+ 			pwms = <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
+-			active-low;
+ 			color = <LED_COLOR_ID_GREEN>;
+ 			max-brightness = <255>;
+ 			label = "d12";
+@@ -69,19 +68,16 @@ multi-led {
+ 
+ 			led-red {
+ 				pwms = <&pwm0 2 7812500 PWM_POLARITY_INVERTED>;
+-				active-low;
+ 				color = <LED_COLOR_ID_RED>;
+ 			};
+ 
+ 			led-green {
+ 				pwms = <&pwm0 1 7812500 PWM_POLARITY_INVERTED>;
+-				active-low;
+ 				color = <LED_COLOR_ID_GREEN>;
+ 			};
+ 
+ 			led-blue {
+ 				pwms = <&pwm0 3 7812500 PWM_POLARITY_INVERTED>;
+-				active-low;
+ 				color = <LED_COLOR_ID_BLUE>;
+ 			};
+ 		};
 -- 
 2.36.1
 
