@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96AA8681C93
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 22:21:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D773681C9A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 22:22:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229874AbjA3VVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 16:21:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44518 "EHLO
+        id S229648AbjA3VWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 16:22:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbjA3VVX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 16:21:23 -0500
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 291713669A;
-        Mon, 30 Jan 2023 13:21:23 -0800 (PST)
-Received: by mail-ot1-f47.google.com with SMTP id s41-20020a05683043a900b0068bd63d34d0so808262otv.6;
-        Mon, 30 Jan 2023 13:21:23 -0800 (PST)
+        with ESMTP id S230261AbjA3VWQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 16:22:16 -0500
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B228544BD6;
+        Mon, 30 Jan 2023 13:22:14 -0800 (PST)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-163bd802238so4722997fac.1;
+        Mon, 30 Jan 2023 13:22:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2zpzrKyS9XxSvm98qW4QbIC/Am08CDM2xVesuhLYrLA=;
-        b=qd+75EKY6UVFEfycAFGS7FZauAzOdeZIeOvO28ArUcireUbmg6jChRJVBUp07tZsE6
-         qBlaU0PN7Z7INZntnlSZdP2KNf2bA8EjVsk2IhBr7y6a+F+/JXwo4+H51QiPcsa7Dk9M
-         QyygEvLXCJ+bEVy9TfpBNLMLcz/NOvwGTGPMkXiegIeAiF7CMlf8+rV3g6yu4j1T28Yi
-         ek/MH3CJo6/pj7gBOsxN+rkpIBZlJFVoN2fmBCRIDoJgphVLPfoMcb5/KtJOFcFrIPbQ
-         hQvmCtmJE2hEBQOzv9LuS/ZNKa2rhlnel90kBFSAE31jaFW5oshS1QEAPsn11zz8YrZp
-         e9qg==
-X-Gm-Message-State: AFqh2kqGuD9LBlSOTyD4rtNHWh9qLeohU5dCzE6MJOOQm4EhZfDbgLhA
-        lZFs2MSgQVJEIA/jzslG5g==
-X-Google-Smtp-Source: AMrXdXvJ8iNrfIQAEQZqn76K9ENlbNXf+Q64nNWqXvJpA7MtqgLrP0m1Q+AXwxcjZXO2EcUA4PdOvg==
-X-Received: by 2002:a9d:1b6c:0:b0:66c:4d30:b69f with SMTP id l99-20020a9d1b6c000000b0066c4d30b69fmr25099087otl.24.1675113682417;
-        Mon, 30 Jan 2023 13:21:22 -0800 (PST)
+        bh=rJ+eBx2LRsO5FUwHyxKkgCUPaWB9Ix+NfxqKDqjGEZM=;
+        b=ibXibB9pE8JxQ6F48tJXS18A68mqtXfrNVPo20xZoepabyE5GkI4P+NG/0os2eswX+
+         N5GZWslrR0GnPJLaINztKSwdS5ndbqYqARm5nccUJ+nFr4yo6LD8cWcliKi+e2PmASMU
+         4aR6w5HWlvCt8fvbxlg1hCEmkon9alQlTCOkl3hKUEfuHHXbJlxh6oNrnH5KgK/gcpdY
+         N0cHpxDYP+/K7sJmHq+jxQU5I4XVWnamDQqDn7us2YVcu9rC9lstGN4kmwu78pNqStCh
+         s1Slm0XKZdlXgIuZ4ekE26KNfxJ1wvUVPaiZyeQFeAlZ7fQqJS3T7ZnrXEnvwfDr/TJG
+         WABw==
+X-Gm-Message-State: AO0yUKWicP0X20q2TXlQ4jNTHw4ioLoyy2g79w9XlGpJTKNxBRNqlDcj
+        hSQ/m5tCo/oiwafs4GSSLA==
+X-Google-Smtp-Source: AK7set/KeFL8Z5Buy3G3kH3IByoTxOzC/qb7dQzVJ/ttEJb5jzKY4nOhRTb7M61cPH8Rz6GF2oM16A==
+X-Received: by 2002:a05:6870:c18f:b0:163:97bd:814d with SMTP id h15-20020a056870c18f00b0016397bd814dmr4734826oad.27.1675113733933;
+        Mon, 30 Jan 2023 13:22:13 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k96-20020a9d19e9000000b0068bb3a9e2b9sm4296762otk.77.2023.01.30.13.21.21
+        by smtp.gmail.com with ESMTPSA id n18-20020a056870971200b0014fe4867dc7sm5695918oaq.56.2023.01.30.13.22.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 13:21:22 -0800 (PST)
-Received: (nullmailer pid 3506884 invoked by uid 1000);
-        Mon, 30 Jan 2023 21:21:21 -0000
-Date:   Mon, 30 Jan 2023 15:21:21 -0600
+        Mon, 30 Jan 2023 13:22:13 -0800 (PST)
+Received: (nullmailer pid 3516638 invoked by uid 1000);
+        Mon, 30 Jan 2023 21:22:12 -0000
+Date:   Mon, 30 Jan 2023 15:22:12 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: pwm: Convert Amlogic Meson PWM binding
-Message-ID: <20230130212121.GA3468100-robh@kernel.org>
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
- <c92b9e51-bb69-0712-0b29-3db3c9a29f8b@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin =?iso-8859-1?Q?J=FCcker?= <martin.juecker@gmail.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        phone-devel@vger.kernel.org, Henrik Grimler <henrik@grimler.se>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        linux-usb@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: Re: [PATCH v2] dt-bindings: usb: samsung,exynos-dwc3: allow unit
+ address in DTS
+Message-ID: <167511373111.3516190.9618063650854117643.robh@kernel.org>
+References: <20230127211748.260718-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c92b9e51-bb69-0712-0b29-3db3c9a29f8b@gmail.com>
+In-Reply-To: <20230127211748.260718-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -74,25 +74,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 30, 2023 at 09:34:57PM +0100, Heiner Kallweit wrote:
-> Convert Amlogic Meson PWM binding to yaml.
 
-In the future, don't thread new versions to old versions of 
-patches/series.
-
+On Fri, 27 Jan 2023 22:17:48 +0100, Krzysztof Kozlowski wrote:
+> The Samsung Exynos SoC USB 3.0 DWC3 Controller is a simple wrapper of
+> actual DWC3 Controller device node.  It handles necessary Samsung
+> Exynos-specific resources (regulators, clocks), but does not have its
+> own MMIO address space.
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> However neither simple-bus bindings nor dtc W=1 accept device nodes in
+> soc@ node which do not have unit address.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
-> v2:
-> - fix clocks and clock-names
-> - consider that more than one compatible may be set
-> v3:
-> - remove minItem/maxItem properties for compatible
+> 
+> Changes since v1:
+> 1. Use ranges with values and drop reg from usb-wrapper node.
+> 2. Keep "usb" as wrapper's node name.
+> 
+> DTS fixes are here:
+> https://lore.kernel.org/linux-samsung-soc/20230127211527.260060-1-krzysztof.kozlowski@linaro.org/T/#t
 > ---
->  .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 71 +++++++++++++++++++
->  .../devicetree/bindings/pwm/pwm-meson.txt     | 29 --------
->  2 files changed, 71 insertions(+), 29 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
+>  .../devicetree/bindings/usb/samsung,exynos-dwc3.yaml      | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
