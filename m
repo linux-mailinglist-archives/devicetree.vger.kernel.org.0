@@ -2,48 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 361CA681BFB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 22:00:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE806681BFC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 22:00:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbjA3VAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 16:00:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55386 "EHLO
+        id S229871AbjA3VA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 16:00:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbjA3VAU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 16:00:20 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 364B94616C
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 13:00:16 -0800 (PST)
+        with ESMTP id S229611AbjA3VA1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 16:00:27 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB5244741A
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 13:00:20 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A59986123D
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 21:00:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D6BEC433EF;
-        Mon, 30 Jan 2023 21:00:12 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6A7A9B8163F
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 21:00:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8D4FC433EF;
+        Mon, 30 Jan 2023 21:00:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675112415;
-        bh=WTWM7SqB8xXGbuN9mo4glH+GptrM7/5tgGaUtKQXtpQ=;
+        s=k20201202; t=1675112418;
+        bh=4kTM7qZTPCTN7vtUc2O1W4p+zcVF/sa0deMNMF+1J5o=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=mxoaS9Szvk11r18aDgzPv5EHN8uf2loNzdolvsRUP33FG0qZVipXM+1LolBBnrlpH
-         nnWRZDOBHObGLpSM89sarZbs6c4z6UHZl2a/fuQ5N5tQUnmGwSca39J+W04lwSxmCy
-         lSQysC8vmF5mjQalJJ1I5Hb/yz1eKHeCfL/GZJK16s4UPwlxu5ceOiBDNqd53TacBM
-         DcKphWL4CaKg8CSqFogEXolyS21amV6BuaF2VSolK1WX84IWrlroMiNNJaKiuuzj8D
-         U2lgOfe+dZnVLerZYw8j8j++gu0gZ2pXjcFKNoldtOtOyOAG0+7bqcg4GVKRDGLKX0
-         DkeNJlA+JmKkw==
+        b=PG1ECVPtvhUFMQEyQ9udjXNZeOuPi8QpZSWJSqRjiQIYL8Djne8Gqu2DH+WkwjCaT
+         PQBalZJ6ekV4ZreDtCBtwkh5okBTObHB9BmEW7q83pnaEMcLHGVP1pQs6+mp5gSJGU
+         yueSg9Ta/IvdJeGYR+DfOwNBBnKDNYXLb/DInGK95rMtI6YgHOJAM1Xr5vygZVQxGk
+         QXiq62aVpZLuGfGWKlGdkNPTlzL7c5lVgBKnQZSuqSOkU0b9XWGZSQEEcHpZb+eczA
+         ZSE9DF7sVXALaK7n+gy+g7ZZQcWPS8dMLA8+AobyTgmMEF6cKRHjr5SRg4hRmbSgNR
+         L2D3fwL0SJHVw==
 From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-In-Reply-To: <87sfg17rjq.wl-kuninori.morimoto.gx@renesas.com>
-References: <87sfg17rjq.wl-kuninori.morimoto.gx@renesas.com>
-Subject: Re: [PATCH v3 00/11] ASoC: dt-bindings: audio-graph-port related
- update
-Message-Id: <167511241281.2141894.852476687405190205.b4-ty@kernel.org>
-Date:   Mon, 30 Jan 2023 21:00:12 +0000
+To:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Alexandru Ardelean <alex@shruggie.ro>
+Cc:     lgirdwood@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        perex@perex.cz, tiwai@suse.com, steffen.aschbacher@stihl.de
+In-Reply-To: <20230128082744.41849-1-alex@shruggie.ro>
+References: <20230128082744.41849-1-alex@shruggie.ro>
+Subject: Re: [PATCH v2 1/4] ASoC: codecs: tas5720: split a
+ tas5720_mute_soc_component() function
+Message-Id: <167511241532.2141894.5359389287914359338.b4-ty@kernel.org>
+Date:   Mon, 30 Jan 2023 21:00:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -57,14 +55,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Jan 2023 05:23:22 +0000, Kuninori Morimoto wrote:
-> Cc Geert
+On Sat, 28 Jan 2023 10:27:41 +0200, Alexandru Ardelean wrote:
+> This is to be re-used in tas5720_mute() (which is part of the dai_ops) and
+> also in the tas5720_fault_check_work() hook.
 > 
-> These v3 patches fixups audio-graph-port, and its related DT schema.
-> Audio-Graph-Card and Simple-Audio-Card are similar Card
-> and are sharing same utils. Thus we can also sharing same schema.
-> 
-> This patch-set fixup some Renesas's "make dtbs_check".
+> The benefit here isn't too great (now).
+> It's only when we add support for a new device with a slightly different
+> regmap that this becomes more useful.
 > 
 > [...]
 
@@ -74,28 +71,14 @@ Applied to
 
 Thanks!
 
-[01/11] ASoC: dt-bindings: audio-graph-port: use definitions for port/endpoint
-        commit: bbda859e02a4df3ef3f841c72e55d220ca75f90d
-[02/11] ASoC: dt-bindings: audio-graph-port: add definitions/ports
-        commit: 6a7216db63c884863db8200334ddaf991935ff45
-[03/11] ASoC: dt-bindings: audio-graph-port: add missing mclk-fs
-        commit: a2fabeaaf5e29df03ff90ec4ad8ecc8663c5ef16
-[04/11] ASoC: dt-bindings: audio-graph-port: add clocks on endpoint
-        commit: 2f0be75c9ff9351b4968b52e536cef9614ccf4b7
-[05/11] ASoC: dt-bindings: audio-graph-port: remove prefix
-        commit: f2a7ef1acffee5804c00029d7f273a8b7ca46227
-[06/11] ASoC: dt-bindings: ti,pcm3168a: Convert to json-schema
-        commit: 13a7d9e992fa47bb94f55149a3a3b80e7148dc17
-[07/11] ASoC: dt-bindings: ak4613: enable Of-graph (Audio-Graph-Card) style
-        commit: 2657e28b28aee9da8d7c43ba3022c8fcd446ef59
-[08/11] ASoC: dt-bindings: renesas,rsnd: add missing playback/capture
-        commit: fcedf6547e650ae42bc4afc15389c840edc2b2f8
-[09/11] ASoC: dt-bindings: renesas,rsnd: tidyup rcar_sound,src
-        commit: f292f4d36744fb8369055d3dd7e50705babdce37
-[10/11] ASoC: dt-bindings: renesas,rsnd: #sound-dai-cells is not mandatory
-        commit: 60cc61a68c98f23f6fe543bd5ad830a815537677
-[11/11] ASoC: dt-bindings: simple-card: add missing #address-cells/#size-cells
-        commit: 9e8593ec9ef74a4731ab1a07ba0838fc48c98466
+[1/4] ASoC: codecs: tas5720: split a tas5720_mute_soc_component() function
+      commit: 879142be618c05d234db31cbf69f101c53b7892f
+[2/4] ASoC: codecs: tas5720: add support for TAS5720A-Q1 (automotive) variant
+      commit: c24a62be09d8a0c7ede1c209055a4ac6760a45ee
+[3/4] ASoC: tas5720: set bit 7 in ANALOG_CTRL_REG for TAS5720A-Q1 during probe
+      commit: 88f748e38b283702a620e635820f1864bf32db0e
+[4/4] ASoC: dt-bindings: add entry for TAS5720A-Q1 driver
+      commit: 8d076a992eb86b99afb04980ac4b57e3a79f6704
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
