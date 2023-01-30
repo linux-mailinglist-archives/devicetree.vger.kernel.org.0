@@ -2,122 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC0566814F5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 16:25:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F41681500
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 16:29:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238170AbjA3PZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 10:25:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40824 "EHLO
+        id S237807AbjA3P3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 10:29:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238172AbjA3PZX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 10:25:23 -0500
-Received: from mail-vk1-xa32.google.com (mail-vk1-xa32.google.com [IPv6:2607:f8b0:4864:20::a32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE64634021
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 07:25:22 -0800 (PST)
-Received: by mail-vk1-xa32.google.com with SMTP id l20so5879973vkm.11
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 07:25:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=criticallink.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=FWq5l4TyEr8IR7mmSeMUsAGTq3ylCBFM2oZg8br9OhA=;
-        b=UFHiCIIsGs8Y1dofmWtBxUWLG9G4bGklIGTNgM/q7Z0JbVPv0kvnHwyO6hYOLt+V/5
-         NNeLsyzgMcXEnX3A2BZMPNgzBv2Ct3akhx3iK80twtV4vxpZkgrrxGco7BKNjn4E5HAs
-         eoNRsBW//jq2ghehiAQFnBcocgkqtrxo2DNJC6jBUUxT3ta8Aj0VPqXDpsvmgBx3Zn4G
-         9q4GkeLTN7MFnlq2BDuMHm39RGfBY9U3+BLguEJqe31hKRIe1XVV1DOeSQ7HEPivmwqh
-         rU7txLTnCU7vJspKbJdxTj4xG2G3dxj6WpMUO1lWiguQrt0rhE4u1dxJDiSELOHlHhGL
-         /gXA==
+        with ESMTP id S237103AbjA3P3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 10:29:05 -0500
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F50710AB2;
+        Mon, 30 Jan 2023 07:29:04 -0800 (PST)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-1636eae256cso11135494fac.0;
+        Mon, 30 Jan 2023 07:29:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FWq5l4TyEr8IR7mmSeMUsAGTq3ylCBFM2oZg8br9OhA=;
-        b=mge94DIuiL3SqpQKorF1QukU6Q9/hvWYyyPkvvF30WVp+F5Jf+XiW1zt14aY3HuFfy
-         ZMEKF36zFytkQRHFE4N1YO4lvJ03rBbjzeZZffzYllsDFVEaevXDSrFXYOr6K5kR51Vh
-         jydYOYhWb2HaGPSGU4Lr/BsSUc2eZwLvRT5oDCWe1hiZctpQjebxL9xFtZWItSAS2rjE
-         B8b2JWYKo1lXCKmAplkbVZ1gfXbTXF/xqCN9lLIVUi0Ly2HkJlJmKn+hGwKnvjU9H/ri
-         gvqCV1gksbcPm0DPLe8jyyVfwFKSUHiy3RGhoDXyPEsyXa+mA6cvTPyMHDX0bAHOtNsT
-         AJaQ==
-X-Gm-Message-State: AFqh2kq2UyPgPqOdjrqO3ZND1fD4bj/dOrc/GlZNl24VplIfgkvclYez
-        X7yt/GNi0A3utlkgiMXMXCKnk2IX1IJFD9S26WewNg==
-X-Google-Smtp-Source: AMrXdXv4PC6wQP9hoqOOsDo+zisJ9tSxzJa5oPFAdqYJ10Hx4wmMt1IlFQHk7m3XYCJCfuFLsJkFOQKqeiiD5cbbZpk=
-X-Received: by 2002:a1f:1b8f:0:b0:3d8:d753:56bb with SMTP id
- b137-20020a1f1b8f000000b003d8d75356bbmr6392583vkb.39.1675092321847; Mon, 30
- Jan 2023 07:25:21 -0800 (PST)
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Re9Y3gSh85iYxes8p1OPwaScIdLGuvtyxLSCyhs+8AE=;
+        b=T7kF+PVNcG0+OkPJyaABEuEeHZ3hBQ+Y3i1Jd4FGn0+izWCnoVgpqFNUiaDeIa9aFr
+         PZVjtA770IxhHrIAgal8KqA9BeRJdNmliY+WUgS3gQKMyzYdAjhxOqtcAdl1MzSneDxS
+         y/G0jwJ18MLjUHg7BNkKhzoc3TYano8ReJjGstq2VprKo7SLmk3aibdCpcKs5UjTcNcL
+         0qZ2uPeOHwPVjOiasj81gIZOykhbVFe4t1g9hzg0ZctSkOE2X+w+0Qv45xb7bgosz4IZ
+         Fvmf53whuWPbykLByemhoBtJi2/CDe+hyUoAO8+cgq0GJR/rXFTcGX8uR8XJetOJbNo9
+         RzsQ==
+X-Gm-Message-State: AO0yUKVmjnEaO9eKEH75ne3xl8KYqEIbPImSI1kpzda6PShhHkDFW7pC
+        ++2NxNzVBTmES29hSs54ew==
+X-Google-Smtp-Source: AK7set/xg8UFthw46wt095CQ6iVpdLuhS9p0HATUnXyif8qxQF14khdjCq5Cy9p7wXHtQxbvoZDcHA==
+X-Received: by 2002:a05:6870:5704:b0:163:1fa1:7be5 with SMTP id k4-20020a056870570400b001631fa17be5mr13198940oap.38.1675092544165;
+        Mon, 30 Jan 2023 07:29:04 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 14-20020a9d048e000000b006864c8043e0sm5464585otm.61.2023.01.30.07.29.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 07:29:03 -0800 (PST)
+Received: (nullmailer pid 2679071 invoked by uid 1000);
+        Mon, 30 Jan 2023 15:29:03 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20230126-b4-ltc2945_shunt_resistor-v4-0-bb913470d8da@criticallink.com>
- <20230126-b4-ltc2945_shunt_resistor-v4-1-bb913470d8da@criticallink.com>
- <20230129201604.GA1583293@roeck-us.net> <CADL8D3ZkGT51FX5UrCQ8afzFxPNGHbi09EdXqE+cQyGRnHR2mw@mail.gmail.com>
-In-Reply-To: <CADL8D3ZkGT51FX5UrCQ8afzFxPNGHbi09EdXqE+cQyGRnHR2mw@mail.gmail.com>
-From:   Jon Cormier <jcormier@criticallink.com>
-Date:   Mon, 30 Jan 2023 10:25:10 -0500
-Message-ID: <CADL8D3b0QznFarombRPuAH_iR+PJYqK2c-Rp4TDeD7WtvwWgPg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/5] dt-bindings: hwmon: adi,ltc2945: Add binding
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Bob Duke <bduke@criticallink.com>,
-        John Pruitt <jpruitt@criticallink.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Manuel Traut <manuel.traut@mt.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+In-Reply-To: <20230130135650.1407156-4-manuel.traut@mt.com>
+References: <20230130135650.1407156-1-manuel.traut@mt.com>
+ <20230130135650.1407156-4-manuel.traut@mt.com>
+Message-Id: <167509249482.2676771.1698495294796937190.robh@kernel.org>
+Subject: Re: [PATCH v9 3/4] dt-bindings: input: pwm-beeper: add volume
+Date:   Mon, 30 Jan 2023 09:29:03 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 30, 2023 at 10:19 AM Jon Cormier <jcormier@criticallink.com> wrote:
->
-> On Sun, Jan 29, 2023 at 3:16 PM Guenter Roeck <linux@roeck-us.net> wrote:
-> >
-> > On Thu, Jan 26, 2023 at 05:32:23PM -0500, Jonathan Cormier wrote:
-> > > Create initial binding for the LTC2945 I2C power monitor.
-> > >
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
-> >
-> > Series applied,
-> Great
-> > after merging patch 4/5 and 5/5 of the series
-> > to avoid spurious 32-bit build failures,
-> Huh, I split these per request, curious why they'd cause build
-> failures when separated...
-Nevermind, I see your other response.
-> > and after fixing a continuation line alignment.
-> >
-> > In the future, please run checkpatch --strict on your patches,
-> Will do. I didn't know about this option.
-> > and please provide change logs.
-> This I did do in every cover letter.
-> >
-> > Thanks,
-> > Guenter
->
-> --
-> Jonathan Cormier
-> Software Engineer
->
-> Voice:  315.425.4045 x222
->
->
->
-> http://www.CriticalLink.com
-> 6712 Brooklawn Parkway, Syracuse, NY 13211
 
+On Mon, 30 Jan 2023 14:56:49 +0100, Manuel Traut wrote:
+> Adds an array of supported volume levels and a default volume level.
+> 
+> Signed-off-by: Manuel Traut <manuel.traut@mt.com>
+> ---
+>  .../devicetree/bindings/input/pwm-beeper.yaml   | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
 
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
--- 
-Jonathan Cormier
-Software Engineer
+yamllint warnings/errors:
 
-Voice:  315.425.4045 x222
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/pwm-beeper.example.dtb: beeper: 'default-volume-level', 'volume-levels' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/pwm-beeper.yaml
 
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230130135650.1407156-4-manuel.traut@mt.com
 
-http://www.CriticalLink.com
-6712 Brooklawn Parkway, Syracuse, NY 13211
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
