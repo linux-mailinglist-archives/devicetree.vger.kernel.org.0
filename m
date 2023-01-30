@@ -2,71 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DC63681BFA
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 22:00:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 361CA681BFB
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 22:00:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229637AbjA3VAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 16:00:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55360 "EHLO
+        id S229501AbjA3VAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 16:00:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbjA3VAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 16:00:18 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 210F3460BF
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 13:00:15 -0800 (PST)
+        with ESMTP id S229688AbjA3VAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 16:00:20 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 364B94616C
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 13:00:16 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CBB81B80E7B
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 21:00:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97280C433D2;
-        Mon, 30 Jan 2023 21:00:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A59986123D
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 21:00:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D6BEC433EF;
+        Mon, 30 Jan 2023 21:00:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675112412;
-        bh=0qCJs9x+zx7S/aIAKZoN20zb3eVW8TP2fNPskc4zsFI=;
+        s=k20201202; t=1675112415;
+        bh=WTWM7SqB8xXGbuN9mo4glH+GptrM7/5tgGaUtKQXtpQ=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=dW5zXp+wTF0m5Cl5G2k5/bxOp7QKsCfHltK1ATA0LFpGExD2s/aXfCwvUZOD+AL+l
-         sVUHIY/snYS533s+4ZPRQcr2DQBf/i/ulp56px7D5pNdTGGMlXgUFJhQUOzeBz7eW+
-         4gf8WkaorlU1Fd6O2lEPeuHcyDiDty4A2IdpMaDtG8KFBdEN7Bzx5AzqbJoQJotBc4
-         XjyisQV0z4XmU3IKU02KHLRJujlgcdP7MOfQ6M8jLYMRnTbrqNIu+izlZMsumGzpr1
-         PJq0gzAyScgd5VTNbEwZMm/FF9t/ZPon99opINQNSvEl9FyElBt03hGFuckwgZJSDY
-         nzV6F/F1guIdA==
+        b=mxoaS9Szvk11r18aDgzPv5EHN8uf2loNzdolvsRUP33FG0qZVipXM+1LolBBnrlpH
+         nnWRZDOBHObGLpSM89sarZbs6c4z6UHZl2a/fuQ5N5tQUnmGwSca39J+W04lwSxmCy
+         lSQysC8vmF5mjQalJJ1I5Hb/yz1eKHeCfL/GZJK16s4UPwlxu5ceOiBDNqd53TacBM
+         DcKphWL4CaKg8CSqFogEXolyS21amV6BuaF2VSolK1WX84IWrlroMiNNJaKiuuzj8D
+         U2lgOfe+dZnVLerZYw8j8j++gu0gZ2pXjcFKNoldtOtOyOAG0+7bqcg4GVKRDGLKX0
+         DkeNJlA+JmKkw==
 From:   Mark Brown <broonie@kernel.org>
-To:     linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>
-Cc:     Adam Ford <aford173@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
+To:     Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Tim Harvey <tharvey@gateworks.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-In-Reply-To: <20230105144145.165010-1-marex@denx.de>
-References: <20230105144145.165010-1-marex@denx.de>
-Subject: Re: (subset) [PATCH 1/2] ASoC: dt-bindings: fsl-sai: Simplify the
- VFxxx dmas binding
-Message-Id: <167511240513.2141894.10630659697412696608.b4-ty@kernel.org>
-Date:   Mon, 30 Jan 2023 21:00:05 +0000
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+In-Reply-To: <87sfg17rjq.wl-kuninori.morimoto.gx@renesas.com>
+References: <87sfg17rjq.wl-kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH v3 00/11] ASoC: dt-bindings: audio-graph-port related
+ update
+Message-Id: <167511241281.2141894.852476687405190205.b4-ty@kernel.org>
+Date:   Mon, 30 Jan 2023 21:00:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,13 +57,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 05 Jan 2023 15:41:44 +0100, Marek Vasut wrote:
-> Get rid of the vf610 sai special case, instead update the vfxxx.dtsi
-> DT to use the same DMA channel ordering as all the other devices. The
-> sai DMA channel ordering has not been aligned with other IP DMA channel
-> ordering in the vfxxx.dtsi anyway.
+On Mon, 23 Jan 2023 05:23:22 +0000, Kuninori Morimoto wrote:
+> Cc Geert
 > 
+> These v3 patches fixups audio-graph-port, and its related DT schema.
+> Audio-Graph-Card and Simple-Audio-Card are similar Card
+> and are sharing same utils. Thus we can also sharing same schema.
 > 
+> This patch-set fixup some Renesas's "make dtbs_check".
+> 
+> [...]
 
 Applied to
 
@@ -88,8 +74,28 @@ Applied to
 
 Thanks!
 
-[1/2] ASoC: dt-bindings: fsl-sai: Simplify the VFxxx dmas binding
-      commit: 21d64f6f63eeca9f136ac514ca801a5a6485cd78
+[01/11] ASoC: dt-bindings: audio-graph-port: use definitions for port/endpoint
+        commit: bbda859e02a4df3ef3f841c72e55d220ca75f90d
+[02/11] ASoC: dt-bindings: audio-graph-port: add definitions/ports
+        commit: 6a7216db63c884863db8200334ddaf991935ff45
+[03/11] ASoC: dt-bindings: audio-graph-port: add missing mclk-fs
+        commit: a2fabeaaf5e29df03ff90ec4ad8ecc8663c5ef16
+[04/11] ASoC: dt-bindings: audio-graph-port: add clocks on endpoint
+        commit: 2f0be75c9ff9351b4968b52e536cef9614ccf4b7
+[05/11] ASoC: dt-bindings: audio-graph-port: remove prefix
+        commit: f2a7ef1acffee5804c00029d7f273a8b7ca46227
+[06/11] ASoC: dt-bindings: ti,pcm3168a: Convert to json-schema
+        commit: 13a7d9e992fa47bb94f55149a3a3b80e7148dc17
+[07/11] ASoC: dt-bindings: ak4613: enable Of-graph (Audio-Graph-Card) style
+        commit: 2657e28b28aee9da8d7c43ba3022c8fcd446ef59
+[08/11] ASoC: dt-bindings: renesas,rsnd: add missing playback/capture
+        commit: fcedf6547e650ae42bc4afc15389c840edc2b2f8
+[09/11] ASoC: dt-bindings: renesas,rsnd: tidyup rcar_sound,src
+        commit: f292f4d36744fb8369055d3dd7e50705babdce37
+[10/11] ASoC: dt-bindings: renesas,rsnd: #sound-dai-cells is not mandatory
+        commit: 60cc61a68c98f23f6fe543bd5ad830a815537677
+[11/11] ASoC: dt-bindings: simple-card: add missing #address-cells/#size-cells
+        commit: 9e8593ec9ef74a4731ab1a07ba0838fc48c98466
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
