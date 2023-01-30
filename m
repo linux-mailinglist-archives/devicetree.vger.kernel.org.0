@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E89C4681586
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 16:50:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DF9868159F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 16:55:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231936AbjA3PuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 10:50:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60252 "EHLO
+        id S235934AbjA3PzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 10:55:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237734AbjA3Ptt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 10:49:49 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D1A0210B
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 07:49:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1675093744;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=fRlDyXKPLMeNzgtxy7Fw1k/Ln61yLUxV1SRBoDuWD4Q=;
-        b=Gdl6Bakb4kLxZmjG//1CqMUO3ooAksJjzcnv6CeVrhPyZUSZTGzqPuQqbK3Bp81LTYUhi5
-        0PvmcIGROoOCfYMWuRkZpJQaCb+iHUNWwX64B/1xwX06DHnaqUfcAv6pbik1qKfkI1+AZ8
-        Vrvh2I9SIaailJIqjutFG9p3Y1emqGE=
-Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com
- [209.85.161.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-508-Ntq-oDiNO0yuFVT9dD1TvQ-1; Mon, 30 Jan 2023 10:49:00 -0500
-X-MC-Unique: Ntq-oDiNO0yuFVT9dD1TvQ-1
-Received: by mail-oo1-f70.google.com with SMTP id l6-20020a4acf06000000b00512a0b30f5cso2336660oos.19
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 07:49:00 -0800 (PST)
+        with ESMTP id S235825AbjA3PzB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 10:55:01 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16D8483D1;
+        Mon, 30 Jan 2023 07:55:00 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id dr8so11461445ejc.12;
+        Mon, 30 Jan 2023 07:55:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=f3sFXOuMqveoRXd7c7rTvCNrAHt/0EUfBDQLk4NsWDU=;
+        b=eBDJP3zeF2CAaV0hDs5MvtyoDr/wOEgmEWdDUxKIEuFmRz/dNOcgE6ZHva18qRQVpZ
+         C8GCVx3eWCu10vVpwL2r3KutFHUFC55AOTX4PklKY7UxKZd3wRDxT6aKe7cT0XmxgJoX
+         Ss4KHwtUNBBjxqJaUukTI4+WgDPL5riWQ4wavqeB+U6gNZjTIrBVCgOzMVi7ht93pmku
+         u0V9+44goKViY0qPYTns7eb9Btc/4k7/ED18rCeuJ5PMLq4999ZlHYG8obKkGnqwiXUs
+         P027f+Kl+XyyY4LaRmmpbV3BlP13SF9a+hKPYCmBXzknBrW7xZiY0fU7Gk3UqfT8n872
+         mzeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fRlDyXKPLMeNzgtxy7Fw1k/Ln61yLUxV1SRBoDuWD4Q=;
-        b=T58ks7YtXvAMX1x8rXOTv1K2/XWeEQqZ8C5yywdDaF0FAdjL8wLoVUF+KoF6HDYGEy
-         jvv3rdjoEyRpefn1PeMVNxAAt22IlS0qmBuETB3Ybx7GKeAtiVCYD9zTW00sSq3H2xDD
-         bcttmt8bybsqW42psTOzzL2K4JHvKqQa/5wg7NsyJXk9/lJMuL4M+7YFaGerveGOa3Os
-         bu856AaE9ostMDtVnDgr9EkILW3M1z5oy4GTPcrR1psFRtRyS5R5itLfRyQMDf0bTh8u
-         1fU0OUT6iMwBzX5mlhtVUUqW/AH9lsXndrw3hjaQDXQ8dSfY3Z81i94AcMn+tqoOiBze
-         MeRA==
-X-Gm-Message-State: AFqh2krv8D+U/szWIjH6ZB8BlcYPwi1TiLFwoWyNAAdrXmIu7uvNx0Nx
-        hDCf81omK8gE+3WCyW1h0KzAjiK5qtoWIuw9wPkW6qhb71JgDTAK4wciJxe6EaupM6ql0OizajF
-        sQUM3egtUtdR41zgxzEN6hw==
-X-Received: by 2002:a4a:c305:0:b0:49f:8941:ffed with SMTP id c5-20020a4ac305000000b0049f8941ffedmr21754436ooq.9.1675093739563;
-        Mon, 30 Jan 2023 07:48:59 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXtF/MHLgvMCX+knJ4UvMho4BjyD1571KGt8hCsvHeghOqHWHjJDyISzjJkMZy6DLoylQR5e1Q==
-X-Received: by 2002:a4a:c305:0:b0:49f:8941:ffed with SMTP id c5-20020a4ac305000000b0049f8941ffedmr21754421ooq.9.1675093739348;
-        Mon, 30 Jan 2023 07:48:59 -0800 (PST)
-Received: from halaney-x13s.attlocal.net ([2600:1700:1ff0:d0e0::41])
-        by smtp.gmail.com with ESMTPSA id h3-20020a4ad743000000b0051763fef75fsm2137688oot.37.2023.01.30.07.48.58
+        bh=f3sFXOuMqveoRXd7c7rTvCNrAHt/0EUfBDQLk4NsWDU=;
+        b=FChlX8KrdP6j48COA6aDN0mcFO/Xf05FN2vqQeLvPCPBCwkqoGyrn/tHhpDJonDlFn
+         LYIsOmW3dTotoIMkPmUrJBl2d+IdBKOW0u9daEf4Q4ZcVpZczVYYBy8aP6p/OsqSqCeT
+         c3mWFwNqXSQFsF/MD6GXJvJsmYlPNuM7dSa7yKKoYk6n7tS+D+BbFUFsmir/u9BVvSbr
+         7CNlHEomvJ2fxOb3lbvcVpOJDlT7WzgwzPJ9/7UiuZ+XES96kdixTUJ0WYGyBuwwtIms
+         HzyLRGxUGhfcpkQnt0alruHKZN6GmNydNpSX3o9ATpDtc+rKlmmBMIrLjW+aZYwumX9c
+         xsnQ==
+X-Gm-Message-State: AO0yUKWfZiPu+6R1OEw2Z7DXbysypF5h2IYcRpGppnoclflht3z+436s
+        U9Nm5+9gVoQlXSFUcYCtwcE=
+X-Google-Smtp-Source: AK7set9zUUm0Jj+SonyVqg9785v4818CFDmFNQJTFN3ESMX3gDZbsqz/JP7M8gVpqikxOdzMlB1WWQ==
+X-Received: by 2002:a17:907:1c0e:b0:87a:6a63:9014 with SMTP id nc14-20020a1709071c0e00b0087a6a639014mr16454978ejc.20.1675094098604;
+        Mon, 30 Jan 2023 07:54:58 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id p14-20020a170906784e00b0084d34eec68esm7055612ejm.213.2023.01.30.07.54.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 07:48:58 -0800 (PST)
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     andersson@kernel.org
-Cc:     agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bmasney@redhat.com, quic_shazhuss@quicinc.com,
-        Andrew Halaney <ahalaney@redhat.com>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sa8540p-ride: Document i2c busses
-Date:   Mon, 30 Jan 2023 09:48:23 -0600
-Message-Id: <20230130154823.117542-2-ahalaney@redhat.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230130154823.117542-1-ahalaney@redhat.com>
-References: <20230130154823.117542-1-ahalaney@redhat.com>
+        Mon, 30 Jan 2023 07:54:57 -0800 (PST)
+Date:   Mon, 30 Jan 2023 16:54:56 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, john@phrozen.org, sean.wang@mediatek.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v1 1/2] arm64: dts: mediatek: mt7622: Add missing
+ pwm-cells to pwm node
+Message-ID: <Y9foUMtlMZfZ18nr@orome>
+References: <20221128112028.58021-1-angelogioacchino.delregno@collabora.com>
+ <20221128112028.58021-2-angelogioacchino.delregno@collabora.com>
+ <20221202180932.5k3vymrwds5ssivq@pengutronix.de>
 MIME-Version: 1.0
-Content-type: text/plain
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Tt+4zDA4srW5HLc6"
+Content-Disposition: inline
+In-Reply-To: <20221202180932.5k3vymrwds5ssivq@pengutronix.de>
+User-Agent: Mutt/2.2.9 (2022-11-12)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,77 +81,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It isn't obvious in the current devicetree what is connected. Go ahead
-and document what's on the other end.
 
-Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
----
+--Tt+4zDA4srW5HLc6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Changes since v1:
-	* Document i2c12 having a max20411 (Shazad)
+On Fri, Dec 02, 2022 at 07:09:32PM +0100, Uwe Kleine-K=C3=B6nig wrote:
+> On Mon, Nov 28, 2022 at 12:20:27PM +0100, AngeloGioacchino Del Regno wrot=
+e:
+> > Specify #pwm-cells on pwm@11006000 to make it actually usable.
+> >=20
+> > Fixes: ae457b7679c4 ("arm64: dts: mt7622: add SoC and peripheral relate=
+d device nodes")
+> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
+llabora.com>
+> > ---
+> >  arch/arm64/boot/dts/mediatek/mt7622.dtsi | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot=
+/dts/mediatek/mt7622.dtsi
+> > index 146e18b5b1f4..f321c6d0fd7c 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> > @@ -435,6 +435,7 @@ uart3: serial@11005000 {
+> >  	pwm: pwm@11006000 {
+> >  		compatible =3D "mediatek,mt7622-pwm";
+> >  		reg =3D <0 0x11006000 0 0x1000>;
+> > +		#pwm-cells =3D <2>;
+>=20
+> 3 should be possible, too. The driver does only support one
+> polarity, so it's not really needed, but would be nice for consistency?
+>=20
+> Thierry, what's your take here?
 
-In v1 I said i2c12 was not connected, that's not true though (I just
-have a board schematic which shows it not connected, but it _is_
-connected on the SIP/SOM, which I verified with series [0]).
+There's little point in setting this to 3 if the driver doesn't support
+it. The core should catch misconfiguration, but that's more of a fail-
+safe and if we can just avoid this from the start by not allowing anyone
+to specify inversed polarity that seems like a good idea.
 
-I debated waiting for Bjorn to sort out appropriate label names over at
-[0] (and follow suit in a third patch here), but decided to get this
-series out again to clean up the current warnings while that's worked
-out. Once [0] is resubmitted I'll submit a separate patch to enable the
-max20411 on this board as well!
+Thierry
 
-[0] https://lore.kernel.org/linux-arm-msm/20230130035642.GA464800@hu-bjorande-lv.qualcomm.com/
+--Tt+4zDA4srW5HLc6
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Thanks,
-Andrew
+-----BEGIN PGP SIGNATURE-----
 
- arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPX6FAACgkQ3SOs138+
+s6GHKg//ZEgZo9vAqHU2RnhvwzEqB5Lj0Ga0bH0vzXcHSsZDpr8YSGqWraBHHppV
+UJuzylMJGnmJnNkz6YsDWLiZaUgtGcUUxSMHeDC6iYvc+HjlZfvHf4xxEA7IQauE
+UwYDyXVHCKxsWtvRR4VO/l93LasCoA1Qt1CP4mfUOZ3gvbiFP6BR1iTKZ8balc6C
+izOytiVpiXsIUTiJN4dJvkEcTUgysLuUIRfYtVigBckcf8nmNEvfNHzTUJ2p8QTQ
+14PSEIsfJAkcOXIyl2PYajd5L6Nn72rxH8vgoF6aX4PhPSXMknjeIzNtMAebmmd4
+2tLGNaB0MliHCRmjDjcd7ELY9dNuzH8drODRsMzoIPG5HLSBftUmVhVC5elZKtjb
+xq069ysSwdSKEa2/emVmFWTgt+G7XQ67ZYOhUxPTJXgNq5J3HA7bKffOleXIaUvX
+Dqj83mJu6mE+dHsoGYyoIuV+YO74bsaKGqP3CK8xHHZUs2n28h2OIEGxQh2vLkja
+CH3d/T0Awdqr7VqUQp5rWGnwylKnx8RkjDC73tyVzTn5ld4NmJMqnfEpatuwvzjG
+iSowdQrNiyZIdofe+S8qiNy1vNBPOWio5miVRRfm30678h0hVYMEe+745wSBMkp/
+oidl1RGU72RmnK+ySUPPomygTW13jOimthZSfo3DIdpqRdMSJxI=
+=g4sq
+-----END PGP SIGNATURE-----
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-index 6ab4b435c49e..8b7555f22528 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -317,6 +317,7 @@ &xo_board_clk {
-
- &tlmm {
- 	i2c0_default: i2c0-default-state {
-+		/* To USB7002T-I/KDXVA0 USB hub (SIP1 only) */
- 		pins = "gpio135", "gpio136";
- 		function = "qup0";
- 		drive-strength = <2>;
-@@ -324,6 +325,7 @@ i2c0_default: i2c0-default-state {
- 	};
-
- 	i2c1_default: i2c1-default-state {
-+		/* To PM40028B-F3EI PCIe switch */
- 		pins = "gpio158", "gpio159";
- 		function = "qup1";
- 		drive-strength = <2>;
-@@ -331,6 +333,7 @@ i2c1_default: i2c1-default-state {
- 	};
-
- 	i2c12_default: i2c12-default-state {
-+		/* To Maxim max20411 */
- 		pins = "gpio0", "gpio1";
- 		function = "qup12";
- 		drive-strength = <2>;
-@@ -338,6 +341,7 @@ i2c12_default: i2c12-default-state {
- 	};
-
- 	i2c15_default: i2c15-default-state {
-+		/* To display connector (SIP1 only) */
- 		pins = "gpio36", "gpio37";
- 		function = "qup15";
- 		drive-strength = <2>;
-@@ -345,6 +349,7 @@ i2c15_default: i2c15-default-state {
- 	};
-
- 	i2c18_default: i2c18-default-state {
-+		/* To ASM330LHH IMU (SIP1 only) */
- 		pins = "gpio66", "gpio67";
- 		function = "qup18";
- 		drive-strength = <2>;
---
-2.39.1
-
+--Tt+4zDA4srW5HLc6--
