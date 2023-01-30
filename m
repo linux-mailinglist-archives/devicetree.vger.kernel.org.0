@@ -2,141 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44AE3680A5E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:05:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7D5D680A93
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:15:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235634AbjA3KFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 05:05:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40644 "EHLO
+        id S236218AbjA3KPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 05:15:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231355AbjA3KFv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:05:51 -0500
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F55830E5;
-        Mon, 30 Jan 2023 02:05:50 -0800 (PST)
-Received: by mail-qt1-f173.google.com with SMTP id h24so9463750qta.12;
-        Mon, 30 Jan 2023 02:05:50 -0800 (PST)
+        with ESMTP id S236232AbjA3KPh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:15:37 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44D902ED44
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:15:33 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so7775442wmq.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:15:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=1GD6xvkAI4vVIPmoXjUJESxT67/DmEIL0NxqWHVJZ14=;
+        b=ou/WTQh/rbAEo5i1/IWRz6TsdWW9GiyVSx95zPqG1wlb8uWq7GDDJ1AF1NNoVq4cP7
+         Hk2AP5lqUGtDGN2zKp441z2I4OVTn//z/nMIdbVCWEyaijkTDCFIN9Fm/3+DrTm7tfb/
+         kr0MymPvx6aDZSR2W65kNFOhRZHvN7ax66qvN4fLLI4OT710+qUuo4xPvT2mKB1NeHth
+         c/XuA42ZBrSAmwl0qFnZSFdR3bmj9zZSMYUYHa68bnR/jOH5eXgvpuxOnUZtoxqxYx/S
+         48M/WsrjxhilD+BuPQ+j6gzyayhLv34WC+jhgOzPYLa0/WNjVIDfv9unLvqoQ9SpQMoE
+         vGLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IzWe6tX5adqaRlCGb9/O9HSY/b8LN8usIGob5izDvDU=;
-        b=aHVPZ7vQlnu/E38d9MYa8FTon1lV/mYVxJejhKEfir4i1UhbbbjyDsNdGcs8f70z43
-         czL30PxWDyREFE3b533UzHg9kLn3Sn8tgsINXHEXiZx5k2g105gx0T7CP7IImfJYhCee
-         tyerpT9kMiF7NyqSEuGZm5siGcK//kK78X0T/XqAHqPIW87d/SB5DK4Fe+87PUPqzk6I
-         Vm5reMuPg+kT92CYA6MW1rt2oKmrBBvttY6LM5P4mh67j4QBfmVKPL/kV0n+U6UCWqpA
-         cR3hNKzjkvd8PnE678b00us0AVEyBE/uxlT029+mW12n5XOoFoOOVsXElZuaLUVMzxrg
-         DhFQ==
-X-Gm-Message-State: AO0yUKV14fq+qHbBknktKdD/n34NjkE4V4aA7LlJgazt5m3VzW8Dh/FL
-        TOwnQ+JJZRKT21Eee4ROSyQ5JY6QzbK8CA==
-X-Google-Smtp-Source: AK7set832nSp1ZDyVzpf0Y8jfYF6EU5TodfMPTRWg5wPyY829zhn56WDyDqm2EEkpohZgbfnDQlhcw==
-X-Received: by 2002:ac8:5c55:0:b0:3b8:54ee:c27d with SMTP id j21-20020ac85c55000000b003b854eec27dmr9516279qtj.60.1675073149165;
-        Mon, 30 Jan 2023 02:05:49 -0800 (PST)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id d187-20020a37b4c4000000b0071f636c108bsm1732180qkf.73.2023.01.30.02.05.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jan 2023 02:05:49 -0800 (PST)
-Received: by mail-yb1-f177.google.com with SMTP id a9so13327154ybb.3;
-        Mon, 30 Jan 2023 02:05:48 -0800 (PST)
-X-Received: by 2002:a25:9801:0:b0:7d5:b884:3617 with SMTP id
- a1-20020a259801000000b007d5b8843617mr4330104ybo.380.1675073148543; Mon, 30
- Jan 2023 02:05:48 -0800 (PST)
-MIME-Version: 1.0
-References: <20230127174014.251539-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <OS0PR01MB592258905AC3979803C473D786CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CA+V-a8s+cZpuUXWRa573a373n7YPsHrdLnUVXHjez6O101oneQ@mail.gmail.com> <OS0PR01MB5922943C1E1D9329691DB02F86CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB5922943C1E1D9329691DB02F86CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 30 Jan 2023 11:05:36 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWHE3wAYd7TSamN77Xy7CSxnEd8QHW8xm9ng4opsBEapg@mail.gmail.com>
-Message-ID: <CAMuHMdWHE3wAYd7TSamN77Xy7CSxnEd8QHW8xm9ng4opsBEapg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU node
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1GD6xvkAI4vVIPmoXjUJESxT67/DmEIL0NxqWHVJZ14=;
+        b=N6yo7TxLkVi/LJNHoErTuOx/oG3FNYLD3q9a3AGMfU3H0jYY+u6q3gOCJOvme+Oz7u
+         o490pNpmLwbVyM16gw0tjtpM/DFtglAXmdWXnEgWznKGPUFgvnNzI0eqjRGiLNn5LW5R
+         dnISJe4IJzmONfhYN+t64IYT8BgHqmZ+4SMPPu9Co2aIBxsBE/pe588S0L5I6moXCQa8
+         kNeqI37VRnjhxF7N1RD7pbQMdHjL2nso2is9chWYyyJW+Omp/UDd6txxwCk7UL3AWBcJ
+         N0iFj5MlSieuFR9v2F5BO0P114b3v4MnMWxQTMVVRmW44qCaUPFP/ytZsZTB2IawBxXB
+         xpQw==
+X-Gm-Message-State: AO0yUKUXyH5WsUdoeds0T7iiBW91k5FB4/cOpQStV13UqnxB0iB5VBLp
+        jQwvaJwZMih7Mny3p+R0+lN52g==
+X-Google-Smtp-Source: AK7set8BN8DVUVltmKpqNSmrNuOc+vShSw+Cdb+p4Xr2bLyDzS9ZnhXiE4NnCN8obYC0pP2DuBQrzw==
+X-Received: by 2002:a05:600c:b93:b0:3dc:5965:2c35 with SMTP id fl19-20020a05600c0b9300b003dc59652c35mr2792658wmb.24.1675073731709;
+        Mon, 30 Jan 2023 02:15:31 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id d33-20020a05600c4c2100b003dc41a9836esm8478505wmp.43.2023.01.30.02.15.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 02:15:30 -0800 (PST)
+References: <20230116074214.2326-1-yu.tu@amlogic.com>
+ <20230116074214.2326-4-yu.tu@amlogic.com>
+ <1ja62eybrv.fsf@starbuckisacylon.baylibre.com>
+ <aedb0764-b5cb-7f49-f279-51dbec070e80@amlogic.com>
+ <1jwn5hwn0w.fsf@starbuckisacylon.baylibre.com>
+ <a4ad6ac6-60c2-8f7b-fdb0-509de31db282@amlogic.com>
+ <1jy1pko0fc.fsf@starbuckisacylon.baylibre.com>
+ <e2e9045a-6e35-112f-69a7-15b080571b69@amlogic.com>
+ <1jr0vcnyf7.fsf@starbuckisacylon.baylibre.com>
+ <37e5d1a9-9379-a7ff-e288-9a4b80a0cc5f@amlogic.com>
+User-agent: mu4e 1.8.10; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
+        "qi . duan" <qi.duan@amlogic.com>
+Subject: Re: [PATCH V6 3/3] clk: meson: s4: add support for Amlogic S4 SoC
+ peripheral clock controller
+Date:   Mon, 30 Jan 2023 11:07:28 +0100
+In-reply-to: <37e5d1a9-9379-a7ff-e288-9a4b80a0cc5f@amlogic.com>
+Message-ID: <1jmt60nxa7.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 10:48 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU node
-> > On Fri, Jan 27, 2023 at 6:38 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > > Subject: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU
-> > > > node
-> > > >
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > Enable the performance monitor unit for the Cortex-A55 cores on the
-> > > > RZ/G2L
-> > > > (r9a07g044) SoC.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar
-> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > ---
-> > > >  arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 5 +++++
-> > > >  1 file changed, 5 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > > > b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > > > index 80b2332798d9..ff9bdc03a3ed 100644
-> > > > --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > > > +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > > > @@ -161,6 +161,11 @@ opp-50000000 {
-> > > >               };
-> > > >       };
-> > > >
-> > > > +     pmu_a55 {
-> > > > +             compatible = "arm,cortex-a55-pmu";
-> > > > +             interrupts-extended = <&gic GIC_PPI 7
-> > > > + IRQ_TYPE_LEVEL_HIGH>;
-> > >
-> > > Just a question, Is it tested?
-> > Yes this was tested with perf test
-> >
-> > > timer node[1] defines irq type as LOW, here it is high.
-> > You are right looking at the RZG2L_InterruptMapping_rev01.xlsx this should
-> > be LOW. (I followed the SPI IRQS where all the LEVEL interrupts are HIGH)
-> >
-> > > Also do we need to define (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW) as
-> > it has 2 cores??
-> > >
-> > No this is not required for example here [0] where it has 6 cores.
+
+On Mon 30 Jan 2023 at 17:59, Yu Tu <yu.tu@amlogic.com> wrote:
+
+> On 2023/1/30 17:47, Jerome Brunet wrote:
+>> [ EXTERNAL EMAIL ]
+>> On Mon 30 Jan 2023 at 17:41, Yu Tu <yu.tu@amlogic.com> wrote:
+>> 
+>>> On 2023/1/30 17:06, Jerome Brunet wrote:
+>>>> [ EXTERNAL EMAIL ]
+>>>> On Sat 28 Jan 2023 at 18:17, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>>
+>>>>> On 2023/1/20 17:47, Jerome Brunet wrote:
+>>>>>> [ EXTERNAL EMAIL ]
+>>>>>> On Fri 20 Jan 2023 at 11:33, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>>>>
+>>>>>>> Hi
+>>>>>>> On 2023/1/19 19:37, Jerome Brunet wrote:
+>>>>>>>> [ EXTERNAL EMAIL ]
+>>>>>>>> On Mon 16 Jan 2023 at 15:42, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>>>>>>
+>>>>>>>>> Add the peripherals clock controller driver in the s4 SoC family.
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>>>>>> [...]
+>>>>>>>>
+>>>>>>>>> +
+>>>>>>>>> +/* Video Clocks */
+>>>>>>>>> +static struct clk_regmap s4_vid_pll_div = {
+>>>>>>>>> +	.data = &(struct meson_vid_pll_div_data){
+>>>>>>>>> +		.val = {
+>>>>>>>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+>>>>>>>>> +			.shift   = 0,
+>>>>>>>>> +			.width   = 15,
+>>>>>>>>> +		},
+>>>>>>>>> +		.sel = {
+>>>>>>>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+>>>>>>>>> +			.shift   = 16,
+>>>>>>>>> +			.width   = 2,
+>>>>>>>>> +		},
+>>>>>>>>> +	},
+>>>>>>>>> +	.hw.init = &(struct clk_init_data) {
+>>>>>>>>> +		.name = "vid_pll_div",
+>>>>>>>>> +		/*
+>>>>>>>>> +		 * The frequency division from the hdmi_pll clock to the vid_pll_div
+>>>>>>>>> +		 * clock is the default value of this register. When designing the
+>>>>>>>>> +		 * video module of the chip, a default value that can meet the
+>>>>>>>>> +		 * requirements of the video module will be solidified according
+>>>>>>>>> +		 * to the usage requirements of the chip, so as to facilitate chip
+>>>>>>>>> +		 * simulation. So this is ro_ops.
+>>>>>>>>> +		 * It is important to note that this clock is not used on this
+>>>>>>>>> +		 * chip and is described only for the integrity of the clock tree.
+>>>>>>>>> +		 */
+>>>>>>>> If it is reset value and will be applicable to all the design, regarless
+>>>>>>>> of the use-case, then yes RO ops is OK
+>>>>>>>>
+>>>>>>>> >From what I understand here, the value will depend on the use-case requirements.
+>>>>>>>> This is a typical case where the DT prop "assigned-rate" should be used, not RO ops.
+>>>>>>>
+>>>>>>> Check the previous chip history, the actual scene is not used at all,
+>>>>>>> basically is used in simulation. So the previous SOC was "ro_ops" without
+>>>>>>> any problems.  This S4 SOC is not actually useful either.
+>>>>>>>
+>>>>>>> So when you were upstream, you had no problem making "ro_ops". I wonder if
+>>>>>>> I could delete this useless clock, so you don't have to worry about it.
+>>>>>> I don't know what to make of this. What is the point of adding a useless
+>>>>>> clock ?
+>>>>>
+>>>>> As explained earlier this "vid_pll_div" is actually used in chip
+>>>>> emulation. So next I'd like to know what you suggest to do with the clock?
+>>>>>
+>>>> If it does not exist in the actual SoC, please remove it
+>>>>
+>>>
+>>> If I remove it, the "vid_pll_sel" clock will be missing a parent
+>>> (vid_pll_div). I will use the table method and give the above reasons. Do
+>>> you accept this method?
+>> Either the clock exists or it does not.
+>> If the HW actually exist, it is expected to be properly described.
+>> If it does not, it obviously cannot be an input to another clock.
+>> Please sort this out and make the necessary changes.
+>> 
 >
-> I may be wrong, That is the only example[1], where the A55 PMU per cpu interrupts and number of a55 cores in the DT
-> are not matching.
+> The CLKCTRL_VID_PLL_CLK_DIV register is actually described, but it is not
+> used in the actual board. According to your reply just now, description is
+> required, but I want to know how to describe it to meet your requirements.
 >
-> [1]
-> https://elixir.bootlin.com/linux/latest/B/ident/arm%2Ccortex-a55-pmu
+> Please give me some suggestions.
 
-Indeed, this looks like an omission, propagated through
-arch/arm64/boot/dts/renesas/r8a779[afg]0.dtsi.
+Implementing things is NOT about usage, it is about correctness.
+Either there is actually a clock in the silicon you are producing at the
+Amlogic factory, or there is not. 
 
-And doesn't this apply to all PPI interrupts, i.e. shouldn't the GIC
-in arch/arm64/boot/dts/renesas/r9a07g0{43u,44u,54}.dtsi specify the
-mask in their interrupts properties, too?
+If the clock is there in the actual HW should be properly
+described/implemented, as it "might" be used as an input to other clocks
+- even if you personnaly don't.
 
-Gr{oetje,eeting}s,
+If clock does not exists (nothing behind the registers, or broken, etc
+...)  then, yes you'll need to use parent tables and document this.
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
