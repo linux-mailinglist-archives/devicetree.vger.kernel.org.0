@@ -2,104 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F69668077B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 09:35:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F2E86807A1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 09:42:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231186AbjA3IfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 03:35:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54120 "EHLO
+        id S235082AbjA3ImS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 03:42:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230232AbjA3IfJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 03:35:09 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA0DCEB49;
-        Mon, 30 Jan 2023 00:35:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675067708; x=1706603708;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=GBIpIc+A10cwgQqoTcUX1briJX8R+8iaF6VJFNW2w1o=;
-  b=T/OJu6kX+SXVgkQqHw+pvbCzV2htYmlwGEZ0pBVmcLg7V++UtM6D6GCa
-   430DNxXrjGjzdo26Tc/KHKT3JHSBpMd1E2wZYPTz7rHeiOzYwhb6TzLW0
-   Mps6wJM965w44qehlaqg8YDIwOVBT09n9wnnAzydpzqNDKJKqqS3JIJCv
-   K1HuFFYLBVhmV0uNpVQMqYkxRDJSI217IbQ3O74wiURknyqUZ+TrhmKKk
-   gpRhzclSSVck7RbtN3Yt2z3CVZ3WpFN5fjN5tq/2AqidC/6DZYRNcJFoS
-   AeAvRItLQ+gib4MTWWX9L7rkBUpmw9rOTQsN9Y89DzXdeZiyeUgSEDO4M
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="327521040"
-X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; 
-   d="scan'208";a="327521040"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2023 00:35:08 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="772405473"
-X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; 
-   d="scan'208";a="772405473"
-Received: from zhoufuro-mobl.ccr.corp.intel.com (HELO [10.249.170.163]) ([10.249.170.163])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2023 00:35:01 -0800
-Message-ID: <7f461661-2dcf-056d-f78a-93c409388f29@linux.intel.com>
-Date:   Mon, 30 Jan 2023 16:34:58 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [RFC PATCH v2 07/22] ASoC: Add SOC USB APIs for adding an USB
- backend
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Thinh.Nguyen@synopsys.com,
-        broonie@kernel.org, bgoswami@quicinc.com, tiwai@suse.com,
-        robh+dt@kernel.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
- <20230126031424.14582-8-quic_wcheng@quicinc.com> <Y9UiiMbJFjkzyEol@kroah.com>
- <7c1d80b6-5db3-9955-0a67-908455bd77fa@linux.intel.com>
- <Y9YbumlV9qh+k68h@kroah.com>
-Content-Language: en-US
-From:   Zhou Furong <furong.zhou@linux.intel.com>
-In-Reply-To: <Y9YbumlV9qh+k68h@kroah.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        with ESMTP id S229728AbjA3ImR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 03:42:17 -0500
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2047.outbound.protection.outlook.com [40.107.20.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB94529E33;
+        Mon, 30 Jan 2023 00:42:15 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bQOI0IgW1x61Tgl7lVYJyiBcEh3Tyj8NWBuRKa4GwYvJ8OpZ0k8TMQ2cp6JH0l01jTx0LpzsSquEGrzAttfYnyFIURfoosbPPKHLQz9faompU89YKMdRiOmsebVOpEzo2GL4fvfLMVf/IbvBVSsMAINIbHeyr85EtNWydIHWiLPLNctkxYADBIFe4tUCk2YfMw+kJoNyQNyVji5S4b4kPT4YvZxrcLxgp3zoENfE0q57g/9NGRiIDXKI7e6K5CTeLNvNx4yDBR6rpyyQEFryg2smSgy56DZOJBNd3tNCEy9SOrwcHROxx31EYZ3N2lYIy1hi2zcMb68KTbRcgfOeZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=k3J1zo/xGHqNYNupdCm/8NiHaBw1+9TyGMGE0ZrvQ40=;
+ b=bQzNVbtNZnzwoGzSro5/aANn4RW/CEmWbV4W9ShgjPO+o41u2zNdOZpLVZb5Lg6d+6zQEcXi1yFbZ0sp9PyVTMHEmiyBQIPu85ksJ+rsbQYVA7Brs6vm/7XijnhN2nqEtqaOtSIzVohaCvndgV3zAiuJDSRq+gX+DciWt9oqykKj+bCRv3OT4fPCEaATz9sK+60KbeWd6va8DP5ZMD9qsyH6FkqxqUhT+teenTLDxYxkeo4b8QtUtVzzISguc2bZkB4byENf2EouOHbVMQq93UIC5IR2Jo0N6EWx/Vx4o9o+5dTh5xIelqRh+3oPAO9MveXfLFM0TRlkbmoyFYYlNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=k3J1zo/xGHqNYNupdCm/8NiHaBw1+9TyGMGE0ZrvQ40=;
+ b=ZKOr8mvaaDc1BoI3CXv/GMe4W5MX0EriaZ1hryWrvCI8vdex6xPLiDQUfNr/wTfkymUv+stOqQQ06UFwKSnWs7qzaINEcbEyGbuFmLZyn7OggDX8zes1MVTSfw0H1kZMiY6EmnR0jWFbqxyW7vt9jW/wCodPRoorRKXmsY4jCkw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AS8PR04MB8481.eurprd04.prod.outlook.com (2603:10a6:20b:349::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.33; Mon, 30 Jan
+ 2023 08:42:13 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::5725:92ec:f43e:f5fc]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::5725:92ec:f43e:f5fc%8]) with mapi id 15.20.6043.023; Mon, 30 Jan 2023
+ 08:42:13 +0000
+Message-ID: <87d6f54c4695330064eda295e258a0a5c3bc48f8.camel@nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: Add NXP i.MX93
+ parallel display format configuration
+From:   Liu Ying <victor.liu@nxp.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com
+In-Reply-To: <3c07b9bd-1981-2945-9efe-80afb0195de8@linaro.org>
+References: <20230128034713.1530218-1-victor.liu@nxp.com>
+         <20230128034713.1530218-2-victor.liu@nxp.com>
+         <3c07b9bd-1981-2945-9efe-80afb0195de8@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Date:   Mon, 30 Jan 2023 16:39:05 +0800
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-ClientProxiedBy: SI2PR02CA0005.apcprd02.prod.outlook.com
+ (2603:1096:4:194::6) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AS8PR04MB8481:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5164f687-e241-4446-9c11-08db029de246
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7xBO3ks5000azIdmkSECTeXxGY8972iQhXbnSPzZB8RvSLZpdBgqLd8h4yXCkTxAbafJbzkLoD6dh5wgsTgkg4g9kzZ0etsWj1O7ZJ91H904Djk6AL2UhfeYQAoCX/x5kYbK0q+uOsU+k97M4mak7aQ2TMJhW34qEkRq/J9kyBM9b2RVXT6sxT5IHh2woavnydxpAgC2P3sP94OkDeqjUuKN9tIn8HFn2sQkD0ZDrCHFZ/pX3HEk00rJENQxaA5D7j5tR67p1X07EFEctzaFtzxZI23qVaM+vTqsMge5dosqPhBkaVsqUbtRqYPN2vnF1soyPR24vRBZCMisfQe9HMOiGsYzuCxWMIqXDQjpX6gPZClNvpPc3L5JfRclTScgbIe8sPH11MyIdXaSYuodyb1XdPqS/tNpS9ReIuX3Mw0jqh4oWDcwVAV0LSqt955CAUEkwFAr2XLcdt19ICOuek/ARXyLNfBqVsYAdVmndCYH8BVARc/1l6mIiQzHdqgaUe7kcsX/6jc+Sm2JB3qlNEPgB4btRP2rjMwSGIouTL9KQpCpX0/2Mwflrla3HL3wEgItraBPeO3Kd7eLa23GFV89l/3e9O1NJIDyAcqx8OnSgmxxi6VHisnbvMkBiS3LJ055hLZVYJvOICQiZV3vkaprrfdI/MZzaiumUNmQWbYa+xaJXKGPO+WbC00bC0yY5t6Jqao8K5YPj0P6niazt2I6iILdIZEdi/C4RbcYcEWTwWrwYflxBf+6owycuOD99s7h5UM6zh8EfJmP81ahZhR3lD0H91xhEfGP+kSCG3M=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(39860400002)(136003)(366004)(346002)(396003)(376002)(451199018)(186003)(6666004)(6506007)(26005)(6512007)(53546011)(86362001)(36756003)(38350700002)(38100700002)(2616005)(41300700001)(8936002)(2906002)(5660300002)(7416002)(6486002)(45080400002)(966005)(478600001)(4326008)(316002)(8676002)(66946007)(52116002)(66556008)(66476007)(99106002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TGlGYVpBV0hEWDQwNE84TmpUR1JGMW5DTDJHaGpHa0toUzlIOGRJMDZCaldI?=
+ =?utf-8?B?RG9lclRvOTlaazh5OTljYzJmbVFBMTdHcjE4U3FBQzB3VFY3ZjZHYWZPSnpl?=
+ =?utf-8?B?c0M0a0VvN3Y0STNkL1Y2L1VJZ2lGYk1XSUtsc1hYWjZWK1Q2bU9kWHJqTUxW?=
+ =?utf-8?B?elFGVnZWYWl3bVR6YzBSaHR2YXF3eGJsYnpsQXN2ZUQzZGxwaWdYdXJuMFpW?=
+ =?utf-8?B?aWFzRXRGaGJONjJISWhkLzFxNFJoLytDU2lsUWpvTzluOW16NGx6cXg5RVND?=
+ =?utf-8?B?eDUwQVBGekVNaTFORk9xNWVxUUFMTkpHTldhVjVEZVJYMHk5YmEvaGxodksr?=
+ =?utf-8?B?YW9oNGNCY3RmQ1d6dnNISU56bTBTdDhBZmN5Vi9LZWlQekk1cGUwNkFMOC94?=
+ =?utf-8?B?N1B3clorMEpvNzFhVU5HQU1PMFlGdjRmcjVBSVVSbHJhT1djUVEvQzIyNVls?=
+ =?utf-8?B?NVppbDhyNXdFMk9DM0d3UFA0SkR4R29KbzhRRTdMandYMnFVeEcwaU81Kyti?=
+ =?utf-8?B?dlJudi92Z3BHK1ZLUWhNSFB0a3JTcng5UDN0a1pBaTJIc2FqU2w2OUtQRVBj?=
+ =?utf-8?B?eHplOUFjRExQbmhSWnpBa01IMm4xL0hOcVZQOXdWTHBhNjQ0a1VWNHFxdlJO?=
+ =?utf-8?B?azh5T0N4U0RaYUx2dTBNNks4VmY3NHViV0dYUk9PNjZrSjBGSTdTZzhjOExL?=
+ =?utf-8?B?dWE2NlcydWZiSnJSRkw5Nko5azZLM0VGOXFlNlllSmRVR0UzMkxxYjIrM1l0?=
+ =?utf-8?B?YWRIZGQ1bDloeC9lSG56b3Fyay9BNXFsZmJXdHZONFg0K1NKMDZuby94RGlU?=
+ =?utf-8?B?YmNCYXgwOU9QbWJhVWdNWm44Zk01Rk5rR0JPUm5wRHlFdTdEc1RkazRUZWtL?=
+ =?utf-8?B?N1hJRTViUk1hRElYUVV1dSt1R0JUQ3hTczE0OEJHN2c3Rk8yaVVxM1NUeDFC?=
+ =?utf-8?B?OTZCMCsxbzMxc0tLc0VKSXZXWUpIMnJHSVVuejNLclZPalRvd2hiTkhST3pm?=
+ =?utf-8?B?TFE2NUZsbjdiazR4ZGRTaE5ONEE4SVU5Y3cvTk5pTGF4WS9KVnRhRnVrdEVp?=
+ =?utf-8?B?UG96RlY4TXlkREFEK0w5UFZmSUNqNDArT0lWYmY3WVYwQ2VkN1hHM1cvc3B1?=
+ =?utf-8?B?SDY1NWUrNFpyZW5Fb2NVTitqRnNFS0N5V3dnVHlZSDJzU09LNmhNV3U4RU1R?=
+ =?utf-8?B?WHZlTm5ScWJvNGZPb3BWOXh0UklkMWRFWTFOR0dGMU1PT0NGN2NnNjBIdGdn?=
+ =?utf-8?B?S0dsNkk2ZFg3UnJuZW45ZHR1dWphdXRhb0MweS8rWE9nZGNicmZYZVZDRTdj?=
+ =?utf-8?B?UWhDN3FhMjNqLzlxMmoybHF0VTc3VVlRVHR4L2srWHovUDNlQTlxNlBHbnNC?=
+ =?utf-8?B?WFkreklwZldMS2N1Nkl1TGFOY3V4OHRsSTJ6YlVIMEhyQ3RyWktYSVpYOXVU?=
+ =?utf-8?B?SGk5YWpZZWMrc25yWkhYcWZFMTVwRzZLeVF2MDFDY3BxbjJ3dkF6L1dNOFNk?=
+ =?utf-8?B?M202alp5TEdMZkRKYU1XTDJDcXhqMlRIVnYwWXpqQ3NKMkZrQUhsSDhDQk5p?=
+ =?utf-8?B?M0dhbFBBRFVqVVB4U1FOTlZnQTBWZW1jbUxwa2hDOEhiUFdudmxDUERCdjN5?=
+ =?utf-8?B?b2pWd3ZnUnE4NDl3QlFLbWhKRmVydXcrM3FnU01rZXFtYzRNT2lwQmhNTktJ?=
+ =?utf-8?B?ckJiYTFQRndoN2lCUDV5V2ZDcjRtNUQxeGtqcXdzTUlKaHN4dW8yRk5SYnM0?=
+ =?utf-8?B?Q3E4ZVprSjJJS1dCd3NHd2hqZ1ZSR0VldzlLa1dDdklaa3pWbFhvZnlMN2JI?=
+ =?utf-8?B?UG9CSWdNam03U1JueWhYbEZ4ZXJFNUFmZmVWalBsZFhPNDRLVkJjUWlSclFm?=
+ =?utf-8?B?Q3g0T0JVZEJ1OUNSTDR4S1JFc3ZEYVUzVGMxazExTjJybFNpaUJSU3QrRjVX?=
+ =?utf-8?B?c0pTRVFTSWhKdmVSRDZjOU4xck5wN3hYbWNidm9EUXdwSUpXOXZMaEFzazNp?=
+ =?utf-8?B?V1RHQUFPKzZTbUNwTjNMT1hlM0pEL3FXVHRCc3FrVVh0TCtram9tUDdldnM0?=
+ =?utf-8?B?T05OTmFhTEVwbllxaThMQ3p3RjlyV0FnRWtDcFhXS3pkOHc4dmU4dVJoUnlW?=
+ =?utf-8?Q?SgyyBZA6QEmupFhIQRB1c4Qi4?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5164f687-e241-4446-9c11-08db029de246
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2023 08:42:13.3706
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dbcDpTuWVkHesh2JxYkR8k7nhHE5+Mcn83FbmaIpGa6lZOnUv48UyJps7hZoN2O/nCgGJgQtJnksJZggjFprsA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8481
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/1/29 15:09, Greg KH wrote:
-> On Sun, Jan 29, 2023 at 02:54:43PM +0800, Zhou Furong wrote:
->>
->>
->>>> +void *snd_soc_usb_get_priv_data(struct device *usbdev)
->>>> +{
->>>> +	struct snd_soc_usb *ctx;
->>>> +
->>>> +	if (!usbdev)
->>>> +		return NULL;
->>>
->>> How could usbdev ever be NULL?
->> The method is exported to public, valid check should be reasonable
->> as someone may call it by mistake
+On Sun, 2023-01-29 at 12:46 +0100, Krzysztof Kozlowski wrote:
+> On 28/01/2023 04:47, Liu Ying wrote:
+> > NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register
+> > which
+> > configures parallel display format by using the
+> > "PARALLEL_DISP_FORMAT"
+> > field. Add device tree bindings for the display format
+> > configuration.
+> > 
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > ---
+> >  .../display/bridge/nxp,imx93-pdfc.yaml        | 78
+> > +++++++++++++++++++
+> >  1 file changed, 78 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/bridge/nxp,imx93-
+> > pdfc.yaml
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/bridge/nxp,imx93-
+> > pdfc.yaml
+> > b/Documentation/devicetree/bindings/display/bridge/nxp,imx93-
+> > pdfc.yaml
+> > new file mode 100644
+> > index 000000000000..a84bfb46b01d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/bridge/nxp,imx93-
+> > pdfc.yaml
+> > @@ -0,0 +1,78 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: 
+> > https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fdisplay%2Fbridge%2Fnxp%2Cimx93-pdfc.yaml%23&data=05%7C01%7Cvictor.liu%40nxp.com%7C7fb1b69849974435787008db01ee832c%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638105896131701918%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=kkX5B45NTsmDKKzxjOiE6MaE4zkMVbMe4ILammVSwMc%3D&reserved=0
+> > +$schema: 
+> > https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&data=05%7C01%7Cvictor.liu%40nxp.com%7C7fb1b69849974435787008db01ee832c%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638105896131701918%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=vIVpdEjIo6H3V8T7iTbDwz4Bmn0d%2BQB4BCJNJ0OzKJw%3D&reserved=0
+> > +
+> > +title: NXP i.MX93 Parallel Display Format Configuration
+> > +
+> > +maintainers:
+> > +  - Liu Ying <victor.liu@nxp.com>
+> > +
+> > +description: |
+> > +  The i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register
+> > which
+> > +  configures parallel display format by using the
+> > "PARALLEL_DISP_FORMAT"
+> > +  field.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: nxp,imx93-pdfc
 > 
-> We do not protect the kernel from itself like this, no need to check
-> things that should never happen.  If the caller gets it wrong, their
-> code will break :)
 > 
-> thanks,
+> Based on description, I have doubts this is a separate bridge device.
+> Why this is not part of display driver/bindings?
+
+The relevant display controller in i.MX93 SoC is LCDIF. From hardware
+design PoV, the parallel display format configuration logic is not a
+part of LCDIF. Instead, it's a part of i.MX93 mediamix blk-ctrl. The
+blk-ctrl includes controls for miscellaneous devices with small logics,
+like this parallel display format configuration, LVDS Display
+Bridge(LDB, see fsl,ldb.yaml) and so on. The below pipeline describes
+data flow of a parallel display LCD panel:
+
+DRAM -> LCDIF -> parallel display format configuration -> LCD panel
+
+So, the parallel display format configuration appears to be a separate
+bridge.
+
 > 
-> greg k-h
+> We do not create usually devices for single registers, because they
+> are
+> not a devices. Devices are a bit more complex - have some pin
+> inputs/outputs, not a register only. Of course there are exception,
+> but
+> this one does not look like one.
 
-Thank you Greg!
+IMHO, this one is a standalone device although it is controlled by one
+single register. It's input pins connect to LCDIF and output pins
+connect to i.MX93 SoC's pins/pads.
 
-This has been confused me for long time when I found Linux kernel don't 
-check input even for public method.
+> 
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> 
+> Your driver tells different story:
+> 
+> syscon_node_to_regmap(dev->of_node->parent);
+> 
+> (which also points to fact this is not a separate device)
+
+This function call gets the parent device's(mediamix blk-ctrl's)
+regmap, like fsl-ldb.c does. Same to LDB, the parallel display format
+configuration device is a child device of the mediamix blk-ctrl device.
+
+Regards,
+Liu Ying
+
+> 
+> Best regards,
+> Krzysztof
+> 
 
