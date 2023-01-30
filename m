@@ -2,188 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ABAF681D26
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 22:46:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA35B681D59
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 22:52:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231475AbjA3Vql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 16:46:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38210 "EHLO
+        id S231450AbjA3Vwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 16:52:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231472AbjA3Vqk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 16:46:40 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 423353ABD;
-        Mon, 30 Jan 2023 13:46:39 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id h12so12486261wrv.10;
-        Mon, 30 Jan 2023 13:46:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=A+625/Bqulur4KZ1EHmL5p6cKcEZr14ZlhksM8ID3dw=;
-        b=p+hvsKVA1pgF0YWyAPK11sFss7+qh1Wmy17xOH6Qcnr8zSWWDP/QGJi/1he8hhDNg2
-         /Ph1XMIhZrN1IVY+IOWgjVyxJz+CN7dOfVCUKoim/5bbfUvRECNeJxpg1VkyOO9tyz97
-         fEMNOHz93ah2opok6hXhd+OAVTs1EQmJ7yFWt+rIHjVdpz9vhxMyRFrPnHlKzTXBOiD1
-         9Uda97uAFM2Bko6yFeW19YXabY2ph+dnl9AJD2qfQrGOLTg25DBDbZt/ctbdDdrYF537
-         XD6DhBbFTquf+im6V4BwbA2Q/hA/mLUoYPQjBlVLk71mQjl1OD4fLPaIyzyil99sIAlz
-         lyzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A+625/Bqulur4KZ1EHmL5p6cKcEZr14ZlhksM8ID3dw=;
-        b=xakXeDuwYlpYTb+jQDmowHG3phpMKu9w/qywfjOfPjy5DD1jmLOTBeTtb8GV2/x/Oi
-         SGVFnWUejA4lI9qzpAtlgy2kNo98oKhhLiRnceZiYFymLRI1Vu0C2SJOzv6pRDoQeViT
-         n64gMJtbkpWUHGObHv5XcxzLUwnhIJF5UYEoYGPg5iGH6nACLtdnUgEGdQryG0YqDzpj
-         G/BA5nWu58pzLmid9Tdd7PREWXEsuObHZHgLZZRALQBCdmkH5l7N+vffMDlN6q3GvDgq
-         yyEHAAKg+ihLtUB92T+IUruyF5o5QPnTcYcFEO9/ne3VUisdeq712NnXiDf1lqcybYFT
-         6wwA==
-X-Gm-Message-State: AFqh2krcwQWSWApv6CyXuVROadYkNR1vd8xye2YMIPBC2I5DFo/2sshA
-        af4Pu2Jjai1pzfKNdb8acjxcQQIGZDw=
-X-Google-Smtp-Source: AMrXdXvqxKrlRFU3eDZXIZ7VniVxT3C2s7LBCag2aCeQ1jeZQNTvj4KLzXpD+Z7hdY5EqwON6cUO3w==
-X-Received: by 2002:adf:f242:0:b0:2b2:1db6:a6bb with SMTP id b2-20020adff242000000b002b21db6a6bbmr44545475wrp.20.1675115197635;
-        Mon, 30 Jan 2023 13:46:37 -0800 (PST)
-Received: from [192.168.2.202] (p5487b129.dip0.t-ipconnect.de. [84.135.177.41])
-        by smtp.gmail.com with ESMTPSA id o9-20020adfeac9000000b002bfebe2d67esm5488027wrn.9.2023.01.30.13.46.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jan 2023 13:46:36 -0800 (PST)
-Message-ID: <1459147d-8944-b01b-6f45-65a7fb7018c4@gmail.com>
-Date:   Mon, 30 Jan 2023 22:46:35 +0100
+        with ESMTP id S231444AbjA3Vwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 16:52:38 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE89234C3;
+        Mon, 30 Jan 2023 13:52:35 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30ULUVkK022923;
+        Mon, 30 Jan 2023 21:52:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=pMeGehCvjIxyYq3VnzuG3YS/OHemqj7G5eJpv4FbH1M=;
+ b=n8a2VbTM36K8tEzsZLzv/vieAeKN9eGYyT2UZx64+Nx0Au/09/KwvR2Jr4UucnY7B2dA
+ Zwrl5FQ/X3dUCf7ePaoh+F4uDOD48jUHtBlC8/HbxmOIAx2HrtZOgMq74ODQ+Icva/st
+ K36Y0rJ1GewHb5fI+J/CxNXxkrzQ3vqH7+f9dJtfpJq3e9QxVwv1XQ3K/nOjTne8pAok
+ wWg2LeZVjuCd4sEUO0o5DvXuxD6HG55oubk0h5BBku/T0hpfgfeI/+Gk+/tcGZpKXbsK
+ mB5jd1AkDh1BSeAjKXy59JRfRBwrWcPqcCbyDrlLglxGhRUyeYRvmy78IXoIuJwneaKp Jw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ncvfpcmgg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Jan 2023 21:52:09 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30ULq8RN014878
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Jan 2023 21:52:09 GMT
+Received: from [10.110.113.14] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 30 Jan
+ 2023 13:52:07 -0800
+Message-ID: <e040a41c-8004-a5c0-eb3d-e1b2b06eeb1a@quicinc.com>
+Date:   Mon, 30 Jan 2023 13:51:52 -0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v2 3/4] dt-bindings: firmware: Add Qualcomm QSEECOM
- interface
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Johan Hovold <johan@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230127184650.756795-1-luzmaximilian@gmail.com>
- <20230127184650.756795-4-luzmaximilian@gmail.com>
- <20230130210530.GA3339716-robh@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [RFC PATCH v2 00/22] Introduce QC USB SND audio offloading
+ support
 Content-Language: en-US
-From:   Maximilian Luz <luzmaximilian@gmail.com>
-In-Reply-To: <20230130210530.GA3339716-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Mathias Nyman <mathias.nyman@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <lgirdwood@gmail.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
+        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
+        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <agross@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <quic_jackp@quicinc.com>,
+        <quic_plai@quicinc.com>
+References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
+ <1e889754-6492-4c53-27f0-796002d5680c@linux.intel.com>
+From:   Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <1e889754-6492-4c53-27f0-796002d5680c@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: EXurEiNRKHrMlBe5HsV4k8Of91RkhGfa
+X-Proofpoint-ORIG-GUID: EXurEiNRKHrMlBe5HsV4k8Of91RkhGfa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-30_17,2023-01-30_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ spamscore=0 mlxscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0
+ priorityscore=1501 phishscore=0 mlxlogscore=999 bulkscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301300201
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/30/23 22:05, Rob Herring wrote:
-> On Fri, Jan 27, 2023 at 07:46:49PM +0100, Maximilian Luz wrote:
->> Add bindings for the Qualcomm Secure Execution Environment interface
->> (QSEECOM).
->>
->> Signed-off-by: Maximilian Luz <luzmaximilian@gmail.com>
->> ---
->>
+Hi Mathias,
+
+On 1/26/2023 1:23 AM, Mathias Nyman wrote:
+> On 26.1.2023 5.14, Wesley Cheng wrote:
 >> Changes in v2:
->>   - Replaces uefisecapp bindings.
->>   - Fix various dt-checker complaints.
 >>
->> ---
->>   .../bindings/firmware/qcom,qseecom.yaml       | 49 +++++++++++++++++++
->>   MAINTAINERS                                   |  1 +
->>   2 files changed, 50 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml
+>> XHCI:
+>> - Replaced XHCI and HCD changes with Mathias' XHCI interrupter changes
+>> in his tree:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/?h=feature_interrupters 
 >>
->> diff --git a/Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml b/Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml
->> new file mode 100644
->> index 000000000000..540a604f81bc
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml
->> @@ -0,0 +1,49 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/firmware/qcom,qseecom.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Secure Execution Environment Communication Interface
->> +
->> +maintainers:
->> +  - Maximilian Luz <luzmaximilian@gmail.com>
->> +
->> +description: |
->> +  QSEECOM provides an interface to Qualcomm's Secure Execution Environment
->> +  (SEE) running in the Trust Zone via SCM calls. In particular, it allows
+>>
 > 
-> SCM is SMCCC or something else?
-
-It's whatever qcom-scm.c uses. I'm not too familiar with the specifics,
-so maybe someone else can answer this better.
-
->> +  communication with secure applications running therein.
->> +
->> +  Applications running in this environment can, for example, include
->> +  'uefisecapp', which is required for accessing UEFI variables on certain
->> +  systems as these cannot be accessed directly.
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - qcom,qseecom-sc8280xp
->> +      - const: qcom,qseecom
->> +
->> +  qcom,scm:
->> +    $ref: '/schemas/types.yaml#/definitions/phandle'
->> +    description:
->> +      A phandle pointing to the QCOM SCM device (see ./qcom,scm.yaml).
->> +
->> +required:
->> +  - compatible
->> +  - qcom,scm
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    firmware {
->> +        scm {
->> +            compatible = "qcom,scm-sc8280xp", "qcom,scm";
->> +        };
->> +        qseecom {
->> +            compatible = "qcom,qseecom-sc8280xp", "qcom,qseecom";
->> +            qcom,scm = <&scm>;
+> I'll submit the first three patches from that branch myself to usb-next, 
+> might modify
+> them slightly.
+> Just need to make sure they don't cause regression. Those are changes I 
+> want done anyway.
 > 
-> Why do you need this in DT? If you already know you have a firmware
-> interface (via "qcom,scm"), then query the firmware to see if the SEE is
-> there.
 
-Unfortunately I don't know of any way to query this, but please let me
-know if you do.
+Sounds good! Thanks!
 
-As I've briefly mentioned in the cover letter: There are two interfaces
-to manage secure apps. QSEECOM (on older and current-gen laptop devices)
-and scminvoke (on newer and some current-gen mobile devices if I
-understood right). ACPI also uses a separate device for this
-(QCOM0476), so it seemed like the best option to follow that.
+>> Adjustments made to Mathias' changes:
+>>    - Created xhci-intr.h to export/expose interrupter APIs versus 
+>> exposing xhci.h.
 
-Ideally, scminvoke would be preferred since that can be integrated as
-TEE driver, but I've been told that on platforms where apps (like
-uefisecapp) are loaded via QSEECOM by firmware, we can only use QSEECOM
-to communicate with those.
+Do you think using the xhci-intr.h is a viable solution for class 
+drivers to request for a secondary interrupter?
 
-Regards,
-Max
+>>      Moved dependent structures to this file as well. (so clients can 
+>> parse out
+>>      information from "struct xhci_interrupter")
+>>    - Added some basic locking when requesting interrupters.
+>>    - Fixed up some sanity checks.
+>>    - Removed clearing of the ERSTBA during freeing of the interrupter. 
+>> (pending
+>>      issue where SMMU fault occurs if DMA addr returned is 64b - TODO)
+> 
+> Was this solvable by first clearing high 32 bits and then low 32 bits?
+> 
 
+During the freeing of the secondary interrupter, the SMMU fault wasn't 
+resolvable with clearing the high bits first.  This does somewhat give 
+me the notion that the xHC is attempting to access the event ring base 
+address every time the ERSTBA is written.  I believe the hi-lo write 
+didn't work, as this time we are zero'ing out the base address. (SMMU 
+FAR=0x0)
+
+As stated in Table 5-40 in the XHCI spec, when we write a 0 to the 
+secondary interrupter ERSTSZ, it should disable that event ring.  In 
+this case, do we really need to explicitly clear the base address 
+register?  If I don't clear the ERSTBA (during free), then I don't see a 
+SMMU fault even after the event ring has been freed. (ie event ring 
+memory has been unmapped from the SMMU)  So this should mean the xHC 
+hasn't attempted to access that unmapped region for the memory address 
+stored in the ERSTBA.
+
+Likewise, we'll write the ERSTBA again during the alloc phase to a valid 
+and mapped address.
+
+Thanks
+Wesley Cheng
