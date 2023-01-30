@@ -2,141 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE6F6680D3E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 13:12:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEDD7680D57
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 13:15:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236759AbjA3MMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 07:12:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38514 "EHLO
+        id S232776AbjA3MPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 07:15:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236792AbjA3MLv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 07:11:51 -0500
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8093C37B58;
-        Mon, 30 Jan 2023 04:10:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675080649; x=1706616649;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=F7kz/t7goqTvjK8l9cj5cpA+WN6lVLHQofCFYgKQjgM=;
-  b=Aub4vzzByvl995Nq/Eae36nOWF+39w2/pU82SLe6C9hmeMwOlfuI9b+O
-   Uf0bdncd29F7r7mkcdGN7MZvTOIAaU7O3G1sBo0PGndkh8foBDpb6UBCy
-   LBj9eM78iWKpFzdgYCnhGTyniLG6Wh7zGI2o4q1VqKKlVLXEb2dK/gGN2
-   +jMMpesFTQPK3Hk+RYm6ouuPvachQT+BDykaypjIYwn3jiLSNmPsB1RJf
-   DBTpoEVxPZMdhAKRePctHROFkVmPQTUI4aBSISSnlparUHiy8KKKabvwp
-   XYCtpqMsDQyeZ9yVDqtKyqaT06k2+d4s9uu63UceFZ4Zksx9fv2sl7BM/
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="389906024"
-X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; 
-   d="scan'208";a="389906024"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2023 04:10:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="806649751"
-X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; 
-   d="scan'208";a="806649751"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP; 30 Jan 2023 04:09:52 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pMSyc-00HKzp-19;
-        Mon, 30 Jan 2023 14:09:34 +0200
-Date:   Mon, 30 Jan 2023 14:09:34 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        with ESMTP id S234199AbjA3MPk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 07:15:40 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93882C652
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 04:15:35 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1pMT4N-0003qm-24; Mon, 30 Jan 2023 13:15:31 +0100
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1pMT4M-0002HO-A1; Mon, 30 Jan 2023 13:15:30 +0100
+Date:   Mon, 30 Jan 2023 13:15:30 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Richard Cochran <richardcochran@gmail.com>,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Stephen Boyd <sboyd@kernel.org>,
         Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-clk@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Linux Kernel Functional Testing <lkft@linaro.org>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v2 06/11] driver core: fw_devlink: Allow marking a fwnode
- link as being part of a cycle
-Message-ID: <Y9ezfr3xxFIUoXIF@smile.fi.intel.com>
-References: <20230127001141.407071-1-saravanak@google.com>
- <20230127001141.407071-7-saravanak@google.com>
- <Y9OaaC806Ywg7rM9@smile.fi.intel.com>
- <CAGETcx9XGq20kagmVXwEV6MF9mp9Ta5ra0+Ynhb7GiUKnxkWqg@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        netdev@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Abel Vesa <abelvesa@kernel.org>
+Subject: Re: [PATCH v2 15/19] clk: imx6ul: fix enet1 gate configuration
+Message-ID: <20230130121530.GA10978@pengutronix.de>
+References: <20230117061453.3723649-1-o.rempel@pengutronix.de>
+ <20230117061453.3723649-16-o.rempel@pengutronix.de>
+ <Y9atr+Gn60+m4nOg@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAGETcx9XGq20kagmVXwEV6MF9mp9Ta5ra0+Ynhb7GiUKnxkWqg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Y9atr+Gn60+m4nOg@linaro.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 11:34:19PM -0800, Saravana Kannan wrote:
-> On Fri, Jan 27, 2023 at 1:33 AM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Thu, Jan 26, 2023 at 04:11:33PM -0800, Saravana Kannan wrote:
-
-...
-
-> > > -     if (dev->fwnode && !list_empty(&dev->fwnode->suppliers) &&
-> > > -         !fw_devlink_is_permissive()) {
-> > > -             sup_fw = list_first_entry(&dev->fwnode->suppliers,
-> > > -                                       struct fwnode_link,
-> > > -                                       c_hook)->supplier;
-> > > +     sup_fw = fwnode_links_check_suppliers(dev->fwnode);
-> >
-> > dev_fwnode() ?
-> >
-> > ...
-> >
-> > > -     val = !list_empty(&dev->fwnode->suppliers);
-> > > +     mutex_lock(&fwnode_link_lock);
-> > > +     val = !!fwnode_links_check_suppliers(dev->fwnode);
-> >
-> > Ditto?
+On Sun, Jan 29, 2023 at 07:32:31PM +0200, Abel Vesa wrote:
+> On 23-01-17 07:14:49, Oleksij Rempel wrote:
+> > According to the "i.MX 6UltraLite Applications Processor Reference Manual,
+> > Rev. 2, 03/2017", BIT(13) is ENET1_125M_EN which is not controlling root
+> > of PLL6. It is controlling ENET1 separately.
+> > 
+> > So, instead of this picture (implementation before this patch):
+> > fec1 <- enet_ref (divider) <---------------------------,
+> >                                                        |- pll6_enet (gate)
+> > fec2 <- enet2_ref_125m (gate) <- enet2_ref (divider) <-´
+> > 
+> > we should have this one (after this patch):
+> > fec1 <- enet1_ref_125m (gate) <- enet1_ref (divider) <-,
+> >                                                        |- pll6_enet
+> > fec2 <- enet2_ref_125m (gate) <- enet2_ref (divider) <-´
+> > 
+> > With this fix, the RMII reference clock will be turned off, after
+> > setting network interface down on each separate interface
+> > (ip l s dev eth0 down). Which was not working before, on system with both
+> > FECs enabled.
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > 
-> Similar response as Patch 1 and Patch 4.
+> I'm OK with this. Maybe a fixes tag ?
 
-Same.
+Hm. Initial commit was:
+Fixes: 787b4271a6a0 ("clk: imx: add imx6ul clk tree support")
+but this patch will not apply on top of it.
+Next possible commit would be:
+Fixes: 1487b60dc2d2 ("clk: imx6ul: Switch to clk_hw based API")
+But this patch didn't introduce this issue, it was just refactoring.
 
+What do you prefer?
+
+Regards,
+Oleksij
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
