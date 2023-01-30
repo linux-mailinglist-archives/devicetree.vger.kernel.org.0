@@ -2,72 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BF0368054B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 05:58:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF0F068057B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 06:15:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234813AbjA3E6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Jan 2023 23:58:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49268 "EHLO
+        id S235538AbjA3FO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 00:14:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbjA3E6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Jan 2023 23:58:10 -0500
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59C80EC51;
-        Sun, 29 Jan 2023 20:58:08 -0800 (PST)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out1.suse.de (Postfix) with ESMTPS id 58CCE21A54;
-        Mon, 30 Jan 2023 04:58:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1675054684; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=QsEAPOMyaeu/9McoDoMoMk0k2EHIrCJNQvu263sxO1U=;
-        b=DuB4cgq2LIabTM8uZnAWF0eU1FHiS4CQQ2JFBzn+0d/xZ7kIKXp7iSZGWs+TcR0UkgGjJy
-        Q+Ap+x7Ycxwu7xvNd7IUtiWyzX+iIo1yc7Zp079jxprwVrbrIZHmYIPA3m4c5Ny1YcF3XI
-        +gJDo8xIK80N/4RSAYqBddgj9Uip/6w=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1675054684;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=QsEAPOMyaeu/9McoDoMoMk0k2EHIrCJNQvu263sxO1U=;
-        b=Ci2ysmXzLi2CtQmPQ6E555lg6r2QDTpj3135rPpTFD3SXKzx0T5vBmMeFOGjFioX35x/eT
-        69X8ZFwmaPeV29CQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 23F1413A09;
-        Mon, 30 Jan 2023 04:57:59 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id /YhgLVdO12PzegAAMHmgww
-        (envelope-from <neilb@suse.de>); Mon, 30 Jan 2023 04:57:59 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S235529AbjA3FO7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 00:14:59 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19DAE23C71;
+        Sun, 29 Jan 2023 21:14:58 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30U4C3qs019432;
+        Mon, 30 Jan 2023 05:14:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=M9KtfpmFVdbIRd/2qYLXC/lqTjcA85o9Am5EbHuy21w=;
+ b=fTOk1h5wZ2M65sVyrHeda7+QCislWfOlIL5+JBKtmeeyfiDCUfcNLO6SRJCCVOyrUuyf
+ +EhSjbTfDdeeswVC5Qmg2DT7biZCUUPyCBprP+/3FpT0Hqt6PTfPajHJCDSydlqjlvt9
+ do0m7KPt6XepOoaHgBmH9T4dr+DQ/o6/XhQRyb2VW5AZfCNYGnzNbHnR1KGBzEBGAMIf
+ gmJUrQX0JtDeYDcEK/T/pRv/VaDyg384r/sTtlcp5W0+PHmRpuPu0rmUTUDgJ+YzZO0n
+ Vd3PnqjGGP/yyfzHHX/s2dAS6HOjaeL9QhDIJ4EfM1sVBGewDYQ9RMjK5AISvk6lHshZ oQ== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ncs2x35cw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Jan 2023 05:14:41 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30U5EeUs030359
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Jan 2023 05:14:40 GMT
+Received: from [10.216.24.235] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Sun, 29 Jan
+ 2023 21:14:37 -0800
+Message-ID: <343d8b2f-9b7e-85ba-6f68-13cef73e55d0@quicinc.com>
+Date:   Mon, 30 Jan 2023 10:44:32 +0530
 MIME-Version: 1.0
-From:   "NeilBrown" <neilb@suse.de>
-To:     "Paul Cercueil" <paul@crapouillou.net>
-Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
-        =?utf-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org
-Subject: Re: [PATCH] MIPS: DTS: CI20: fix otg power gpio
-In-reply-to: <b7745c417d5ac46efa273f1fc45217bb6254ea4f.camel@crapouillou.net>
-References: <1e102159b4be526af88883374d112d558e3ac3f5.1675014494.git.hns@goldelico.com>,
- <b7745c417d5ac46efa273f1fc45217bb6254ea4f.camel@crapouillou.net>
-Date:   Mon, 30 Jan 2023 15:57:53 +1100
-Message-id: <167505467359.23017.2124580706077477317@noble.neil.brown.name>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v4 1/2] dt-bindings: ramoops: Inherit reserve memory
+ property
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-hardening@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>,
+        "Guilherme G . Piccoli" <gpiccoli@igalia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <1674835252-31954-1-git-send-email-quic_mojha@quicinc.com>
+ <10097835-30fe-bbad-6c95-e5ec9dca3e2e@linaro.org>
+From:   Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <10097835-30fe-bbad-6c95-e5ec9dca3e2e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: udmzns9DRiekGpBmEu07sWQoqDSenRk-
+X-Proofpoint-GUID: udmzns9DRiekGpBmEu07sWQoqDSenRk-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-30_03,2023-01-27_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ adultscore=0 lowpriorityscore=0 mlxscore=0 mlxlogscore=622 impostorscore=0
+ priorityscore=1501 bulkscore=0 clxscore=1015 spamscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301300048
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,34 +83,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAzMCBKYW4gMjAyMywgUGF1bCBDZXJjdWVpbCB3cm90ZToKPiBMZSBkaW1hbmNoZSAy
-OSBqYW52aWVyIDIwMjMgw6AgMTg6NDggKzAxMDAsIEguIE5pa29sYXVzIFNjaGFsbGVyIGEKPiDD
-qWNyaXTCoDoKPiA+IEFjY29yZGluZyB0byBzY2hlbWF0aWNzIGl0IGlzIFBGMTUgYW5kIG5vdCBQ
-RjE0IChNSUNfU1dfRU4pLgo+ID4gU2VlbXMgYXMgaWYgaXQgd2FzIGhpZGRlbiBhbmQgbm90IG5v
-dGljZWQgZHVyaW5nIHRlc3Rpbmcgc2luY2UKPiA+IHRoZXJlIGlzIG5vIHNvdW5kIERUIG5vZGUu
-Cj4gPiAKPiA+IEZpeGVzOiAxNThjNzc0ZDNjNjQgKCJNSVBTOiBJbmdlbmljOiBBZGQgbWlzc2lu
-ZyBub2RlcyBmb3IgSW5nZW5pYwo+ID4gU29DcyBhbmQgYm9hcmRzLiIpCj4gPiBTaWduZWQtb2Zm
-LWJ5OiBILiBOaWtvbGF1cyBTY2hhbGxlciA8aG5zQGdvbGRlbGljby5jb20+Cj4gCj4gSSBtaXNz
-ZWQgaXQsIGJ1dCBldmVyeSB0aW1lIHlvdSBoYXZlIGEgRml4ZXM6IHRhZywgeW91IGFsc28gbmVl
-ZCB0byBhZGQKPiBiZWxvdzoKPiBDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZwoKSSBkb24ndCB0
-aGluayB5b3UgZG8gYW55IG1vcmUuICBUaGUgc3RhYmxlIHRlYW0gZ3JhYnMgYW55dGhpbmcgdGhh
-dApsb29rcyBldmVuIHZhZ3VlbHkgbGlrZSBhIGZpeCBhbmQgYXBwbGllcyBpdC4gIEhhdmluZyBh
-IHZhbGlkIEZpeGVzIHRhZwppcyBlbm91Z2ggZm9yIHRoZSBzdGFibGUgdGVhbSB0byB0YWtlIGlu
-dGVyZXN0LgoKTmVpbEJyb3duCgoKPiAKPiB1bmxlc3MgdGhlIGJ1ZyB5b3UgZml4IGlzIGluIG9u
-ZSBvZiB0aGUgUkNzIChhbmQgbm90IGluIGEgcmVsZWFzZWQKPiBrZXJuZWwpLgo+IAo+IEkgdGhp
-bmsgeW91IHNob3VsZCBzZW5kIGEgVjIgd2l0aCB0aGlzIHRhZyAoYW5kIG15IEFDSykuCj4gCj4g
-Q2hlZXJzLAo+IC1QYXVsCj4gCj4gPiAtLS0KPiA+IMKgYXJjaC9taXBzL2Jvb3QvZHRzL2luZ2Vu
-aWMvY2kyMC5kdHMgfCAyICstCj4gPiDCoDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwg
-MSBkZWxldGlvbigtKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9taXBzL2Jvb3QvZHRzL2lu
-Z2VuaWMvY2kyMC5kdHMKPiA+IGIvYXJjaC9taXBzL2Jvb3QvZHRzL2luZ2VuaWMvY2kyMC5kdHMK
-PiA+IGluZGV4IDk4MTlhYmIyNDY1ZGQuLmEyNzY0ODhjMGY3NTIgMTAwNjQ0Cj4gPiAtLS0gYS9h
-cmNoL21pcHMvYm9vdC9kdHMvaW5nZW5pYy9jaTIwLmR0cwo+ID4gKysrIGIvYXJjaC9taXBzL2Jv
-b3QvZHRzL2luZ2VuaWMvY2kyMC5kdHMKPiA+IEBAIC0xMTUsNyArMTE1LDcgQEAgb3RnX3Bvd2Vy
-OiBmaXhlZHJlZ3VsYXRvckAyIHsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-cmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8NTAwMDAwMD47Cj4gPiDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoHJlZ3VsYXRvci1tYXgtbWljcm92b2x0ID0gPDUwMDAwMDA+Owo+ID4g
-wqAKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBncGlvID0gPCZncGYgMTQgR1BJ
-T19BQ1RJVkVfTE9XPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBncGlvID0g
-PCZncGYgMTUgR1BJT19BQ1RJVkVfTE9XPjsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgZW5hYmxlLWFjdGl2ZS1oaWdoOwo+ID4gwqDCoMKgwqDCoMKgwqDCoH07Cj4gPiDCoH07
-Cj4gCj4gCg==
+
+
+On 1/28/2023 1:34 AM, Krzysztof Kozlowski wrote:
+> On 27/01/2023 17:00, Mukesh Ojha wrote:
+>> The reserved memory region for ramoops is assumed to be at a
+>> fixed and known location when read from the devicetree. This
+>> is not desirable in an environment where it is preferred the
+>> region to be dynamically allocated at runtime, as opposed to
+>> being fixed at compile time.
+>>
+>> So, update the ramoops binding by inheriting some reserve memory
+>> property to allocate the ramoops region dynamically.
+>>
+>> Cc: Kees Cook <keescook@chromium.org>
+>> Cc: Tony Luck <tony.luck@intel.com>
+>> Cc: Guilherme G. Piccoli <gpiccoli@igalia.com>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> 
+> Drop. There is no single need to store automated output of
+> get_maintainers.pl in the git log forever. It can be easily re-created
+> at any given time.
+> 
+> If you need it for your own patch management purposes, keep it under ---.
+> 
+
+Will drop, thanks.
+
+> Additionally:
+> where is patch number 2?
+
+It was merged with 2/2 as it was not making sense to keep it as separate 
+patch
+
+-Mukesh
+
+> 
+> Best regards,
+> Krzysztof
+> 
