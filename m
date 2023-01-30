@@ -2,124 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F5FB681FE1
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 00:46:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C179681FCB
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 00:44:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229536AbjA3Xqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 18:46:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60354 "EHLO
+        id S229757AbjA3Xn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 18:43:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230166AbjA3Xq3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 18:46:29 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 838BC2B63F;
-        Mon, 30 Jan 2023 15:46:24 -0800 (PST)
-Received: from mercury (unknown [185.209.196.162])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BBFC16602E5A;
-        Mon, 30 Jan 2023 23:46:22 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675122382;
-        bh=qpiVtCBTcq4oyUEyHgfHNcNf3c0Lxxip1+ljGsvf18o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TEMYysGSmrxfvdsxZrDW4tEPboZ8B6cjfRjj0ovlA/ctdSyEWJ/IPnEHuawG/8SnC
-         MIb7yAO+nj40GgZB+2XCc+qn2qF7CkuHCOkqKCNgCrTJ42w1zYqDolAP9L8VUkbuFH
-         Ket+ykZbBygP/R+K2xGNY6eFovXfRICzDgHwGb9nOFt94zk4xpSyaflRrLM+50Nl9p
-         yXZ8vC/RVJnaUSustzLqn5ooSaMPHZsaOF5WyRmXp7JqDiHA+lmojBb1YBl30o/zgh
-         +99Pk3e+xR32CHTTw5tUHRcxOjDQQFmeiWRnEaIXroqil+t0zFb9O0lhoyBM3B9Prc
-         9mmAzWcHmn43A==
-Received: by mercury (Postfix, from userid 1000)
-        id 4E6A41060FFA; Tue, 31 Jan 2023 00:36:26 +0100 (CET)
-Date:   Tue, 31 Jan 2023 00:36:26 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        shengfei Xu <xsf@rock-chips.com>
-Subject: Re: [PATCHv6 09/11] pinctrl: rk805: add rk806 pinctrl support
-Message-ID: <20230130233626.r5kfnduj2i2urb56@mercury.elektranox.org>
-References: <20230127181244.160887-1-sebastian.reichel@collabora.com>
- <20230127181244.160887-10-sebastian.reichel@collabora.com>
- <CACRpkdbQfaCX=ZbFQh3p_T3biWEex-QZofXTrbVKd5hYOzMAug@mail.gmail.com>
+        with ESMTP id S229460AbjA3Xn6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 18:43:58 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A90F222DCE;
+        Mon, 30 Jan 2023 15:43:57 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so9411308wms.2;
+        Mon, 30 Jan 2023 15:43:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=j2jstaPI4y1XJ/gNFdxFKBz/qLiOGjBGxKWHNOfP69M=;
+        b=q7mcSsHqEC3fFpT53TEvXIrKOhKgkzxxZh+Qo8k0Fk7rLMLKn/yLvOnnrpeemgpzOs
+         9uYBjKTg7rnP2CDT41wNbCny0Io0qQtiXrA26+0f6KItly2Nbm3S9IYUK9PD1XybYDoj
+         HW3LBh7oQdfUGacm6GObwevVEhahE2yLWR0DiTTUspWhrTHwn1HGVC8TIZifeYbJrQNL
+         hq4nzCsk5tdeIsvIpNeSB97j4IxrR75TbmcbX9YDdZAvv5HxI/QyaugmKLIbwqxn/OUn
+         UR03oA6YemUQCaOTLPYHr4/DxOyK3/NujnVTDya7ox2Y2mJsUif/+qcIQKQSE8ku3X5E
+         QbrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j2jstaPI4y1XJ/gNFdxFKBz/qLiOGjBGxKWHNOfP69M=;
+        b=7qCLbK0w7Mz9veXBw1Xu+VIaoK97RannR7Qih57IXRQBatVVuRGuDhOhTvspFC92+8
+         6W7OhMMF3+9MxgM4y77bEFv32tw833IkIjnGvdhQR1++8IsWOgRTM5pUS3Zxpx8ToAAg
+         FNZluRLLIMK8hAiUbZb6a9udH4iBkjHOSmgJ6I7AEvGJFKqo0S2uVFk8ige3FxMX+7Nd
+         hddG8UP3+pImQRFCVg75tXeXeRKpWsK012dBqtB/AlxcJjjtgLX93RiKkTI+40Xbw3PJ
+         2/jlysscvsCdI8CsYOwe4yqnvKu0EqKcC5ElPIsiSKg6vvI8yp1yDtpuxab7Gc0WyO6Y
+         k/qg==
+X-Gm-Message-State: AO0yUKX1tWSKI3KUw2YrIJGFDQFAD53K/HMNTOj+/tosMWLDdzA9+D5n
+        FTrppaz7N0fqFpN4wGGv4nY=
+X-Google-Smtp-Source: AK7set/yUJpbBV1OJgxzUM+TU61hf/xyJLpCwUwNaB5CfnuPavlpqLH+G3VM3L26HW9hwpHQ6hr5mw==
+X-Received: by 2002:a05:600c:500d:b0:3dc:eaef:c1bb with SMTP id n13-20020a05600c500d00b003dceaefc1bbmr3074848wmr.35.1675122236131;
+        Mon, 30 Jan 2023 15:43:56 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2501:c701:6048:d643:15b:441a])
+        by smtp.gmail.com with ESMTPSA id i27-20020a05600c4b1b00b003dc54d9aeeasm5712903wmp.36.2023.01.30.15.43.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 15:43:55 -0800 (PST)
+From:   Lad Prabhakar <prabhakar.csengg@gmail.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Subject: [PATCH] dt-bindings: interrupt-controller: arm,gic-v3: Fix typo in description of msi-controller property
+Date:   Mon, 30 Jan 2023 23:43:35 +0000
+Message-Id: <20230130234335.13952-1-prabhakar.csengg@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uiqkrrhztl7odqxv"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdbQfaCX=ZbFQh3p_T3biWEex-QZofXTrbVKd5hYOzMAug@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Fix typo functionnality -> functionality.
 
---uiqkrrhztl7odqxv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Lad Prabhakar <prabhakar.csengg@gmail.com>
+---
+ .../devicetree/bindings/interrupt-controller/arm,gic-v3.yaml    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Hi Linus,
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
+index 9f7d3e11aacb..8449e14af9f3 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
+@@ -108,7 +108,7 @@ properties:
+ 
+   msi-controller:
+     description:
+-      Only present if the Message Based Interrupt functionnality is
++      Only present if the Message Based Interrupt functionality is
+       being exposed by the HW, and the mbi-ranges property present.
+ 
+   mbi-ranges:
+-- 
+2.25.1
 
-On Mon, Jan 30, 2023 at 11:31:51PM +0100, Linus Walleij wrote:
-> On Fri, Jan 27, 2023 at 7:13 PM Sebastian Reichel
-> <sebastian.reichel@collabora.com> wrote:
->=20
-> > Add support for rk806 dvs pinctrl to the existing rk805
-> > driver.
-> >
-> > This has been implemented using shengfei Xu's rk806
-> > specific driver from the vendor tree as reference.
-> >
-> > Co-Developed-by: shengfei Xu <xsf@rock-chips.com>
-> > Signed-off-by: shengfei Xu <xsf@rock-chips.com>
-> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->=20
-> Is this something I can just apply? I haven't had Heiko's review
-> on it but it looks innocent enough.
-
-No. This code depends on the RK806 register defines added to
-include/linux/mfd/rk808.h in the previous patch. The series cannot
-be applied per-subsystem and my suggestion is that Lee provides an
-immutable branch once he is happy with the MFD patches.
-
-Greetings,
-
--- Sebastian
-
---uiqkrrhztl7odqxv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmPYVHcACgkQ2O7X88g7
-+ppYZg/8DGI/AMzUJEq3qV2LqyRgz6nFLAFoFr+dA4My3ID5/iL597LBZwdPCDi0
-zE5d8mcUvdQu9eJRlKfMe7W5nrLzp9whOjYGu27cpG8Ho9W4gvKX1oAo0xjiZvpw
-TVZzuyWMdTAh622T+XhN/x9PFYsWop1nMm/Olxl5vC5uole/RxMO7uUNcgjeQgP0
-ssVDGROpjWEpvUg9BYEISBK3G8SN/noMlzpLUZoJkVtEJlGwsIcnJip8BXmKUlqr
-4gVc8Y5GrlULFFCDG+mxoW12YhB28PvxKgp4YtpNxx1sUfa38qJU6Q+U1UoPzXR7
-H5PaH+K288xcSG9Rt4xfZcFcxcmLytvw1Hsdi2zDCgredgwgrS3HaP0QEW8K0VSy
-VPWQ9ndbsyxWMYKhFcm9NFBaqw/rIWqiw0C/Mj7lV9UPXE4yZ+MtNf1zmLXeNYny
-DPKcWrpoiEtkWb5U5sSnE4x2sI12TDy1actVc3y49b//Mwg3N+BS3FWDogcZVKli
-94uKdiZUMtqucK9/BWNov9TCRXDUeYh5myPqI0DtivBnqCq4DYtjdfBasR6VX/jW
-A3UbLxorMUyXvRELdOb7/2u4BhY9QfPJTWu4iZ1/JNpKqiafB4BSPilrKz7dQs1+
-0q0MWr1Fv98SFIMlYXAeRZIxToP2GBHMg5+ly7LZ+mhpYMcFqTs=
-=oQOe
------END PGP SIGNATURE-----
-
---uiqkrrhztl7odqxv--
