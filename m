@@ -2,114 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A8D7681DF6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 23:23:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAB27681E14
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 23:29:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231214AbjA3WXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 17:23:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34964 "EHLO
+        id S231590AbjA3W3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 17:29:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231281AbjA3WXk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 17:23:40 -0500
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FED92135;
-        Mon, 30 Jan 2023 14:23:39 -0800 (PST)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-15085b8a2f7so17107965fac.2;
-        Mon, 30 Jan 2023 14:23:39 -0800 (PST)
+        with ESMTP id S231569AbjA3W3g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 17:29:36 -0500
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 096552ED52;
+        Mon, 30 Jan 2023 14:29:34 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id d188so11373532oia.3;
+        Mon, 30 Jan 2023 14:29:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PI3Awd4JerWn0fe3vlblIk0s9rAEypgjGDblSG+ZIos=;
-        b=DK2pBXs1QNEgMK2rwO6UO3JCkEGgB4qq+XcwdzB70s7hNGE8V030OLElhupMYwmAdj
-         dBDvQ4BbI9pj0dTflIK797u4sdYdt7MQVPSN5dW/4VEI/J5zdt6logfN2+ZmgIwg4cCK
-         itLscT476YsMyzGIyE9KcCIRWEW9MNh5jTLH0MiXAf5/23r1YHmrQyk9BPpHJASEWUNh
-         MWPQZBnv90WaIUCDvPXL966PSypnjKf3rLfOj7lZu5cPpa+48g2HPfzp4c2rL/o+N9LN
-         KqhkyujwCavKCVAU3WBSpnZRo0LFvt16W+reieAh3Op3pVXPwDY71DM6vzpAaE4ra5mo
-         ix8w==
-X-Gm-Message-State: AFqh2kp0Awgofwfbxay8uC+n+MqtaHxzIJvparHnDQRVpOnKwTlmYHQp
-        APpyEweN88dbuYFgWWyDVw==
-X-Google-Smtp-Source: AMrXdXsTnuLljnybua4AK97CM8WBMusPcrJy97X+k5iy4QoFI1RGMlyIUdBFmv3+gqmhdiorIRm2/w==
-X-Received: by 2002:a05:6870:548f:b0:15f:d0dd:55f1 with SMTP id f15-20020a056870548f00b0015fd0dd55f1mr21239724oan.29.1675117418469;
-        Mon, 30 Jan 2023 14:23:38 -0800 (PST)
+        bh=8LRTaCsYupaKAIxJ4u3XR2A11yw5IpehNtdsJbn/NTo=;
+        b=3w7GfnvySgqKZMcooOq/ud2Zmz4hvCLwsdfBedydrGcgai+B2ZwxFbURXA5+1Kz7Sv
+         lD7LssyaPGt6Z1Oaw0e7GpjOVdVe+yxGtQNG5y53Eqq86tBADojVYTOP2GWXy79CaYPm
+         8WfL+56mVXUC0E2BDgcYhg+EWtUwQ7Kbga8HndBRq1RGrAFi2yODtFdRUOYsqo2O6iaB
+         7pV3ZxwPJ82uCTN26jakFlxgwGfFnpsmv51cYp/t1ZxaC3KBR6Nsg3WO5/PJrhaGKDvv
+         9hqF+Uw2fiEXVLSJQDrEKAca091DUGcp+cwnxh0/njOp8VQnOqapNaMdK/DQESKv+eAk
+         GzLg==
+X-Gm-Message-State: AFqh2kqCVknPDhdtbQZSE+tfx1hcaHu0VKWYmpkhxbkQB6TacAfJKuUi
+        jGX2jc3syvINOANn9esSRQ==
+X-Google-Smtp-Source: AMrXdXtsZN18JtBDPLJvQi4F9AvmMcMq/hDOjEtb7fzc6IuLtWh0PJy6kGEcLqiUe29fbQATyakg+w==
+X-Received: by 2002:a05:6808:4247:b0:36e:b7bf:e3d7 with SMTP id dp7-20020a056808424700b0036eb7bfe3d7mr18464727oib.52.1675117773208;
+        Mon, 30 Jan 2023 14:29:33 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id js10-20020a056870baca00b0015fadfaa960sm5756868oab.37.2023.01.30.14.23.37
+        by smtp.gmail.com with ESMTPSA id g131-20020acab689000000b0036e9160f57csm5170753oif.20.2023.01.30.14.29.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 14:23:38 -0800 (PST)
-Received: (nullmailer pid 3634514 invoked by uid 1000);
-        Mon, 30 Jan 2023 22:23:37 -0000
-Date:   Mon, 30 Jan 2023 16:23:37 -0600
+        Mon, 30 Jan 2023 14:29:32 -0800 (PST)
+Received: (nullmailer pid 3642109 invoked by uid 1000);
+        Mon, 30 Jan 2023 22:29:32 -0000
+Date:   Mon, 30 Jan 2023 16:29:32 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Steev Klimaszewski <steev@kali.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Balakrishna Godavarthi <bgodavar@codeaurora.org>,
-        Rocky Liao <rjliao@codeaurora.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: net: Add WCN6855 Bluetooth bindings
-Message-ID: <20230130222337.GA3628858-robh@kernel.org>
-References: <20230129215136.5557-1-steev@kali.org>
- <20230129215136.5557-2-steev@kali.org>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, l.stach@pengutronix.de,
+        shawnguo@kernel.org, lorenzo.pieralisi@arm.com, peng.fan@nxp.com,
+        marex@denx.de, marcel.ziswiler@toradex.com, tharvey@gateworks.com,
+        frank.li@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Subject: Re: [PATCH v7 2/5] dt-bindings: imx6q-pcie: Add schema for i.MX8M
+ PCIe Endpoint modes
+Message-ID: <20230130222932.GA3634639-robh@kernel.org>
+References: <1675049539-14976-1-git-send-email-hongxing.zhu@nxp.com>
+ <1675049539-14976-3-git-send-email-hongxing.zhu@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230129215136.5557-2-steev@kali.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+In-Reply-To: <1675049539-14976-3-git-send-email-hongxing.zhu@nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 29, 2023 at 03:51:27PM -0600, Steev Klimaszewski wrote:
-> Add bindings for the QTI WCN6855 chipset, based on the WCN6750.
-
-Proper threading is all patches are reply to cover letter.
-
-Drop the last 'binding' in the subject. Don't need it twice.
-
+On Mon, Jan 30, 2023 at 11:32:16AM +0800, Richard Zhu wrote:
+> Add support for i.MX8M PCIe Endpoint modes, and update the MAINTAINER
+> accordingly.
 > 
-> Signed-off-by: Steev Klimaszewski <steev@kali.org>
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 > ---
->  .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml   | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/pci/fsl,imx6q-pcie-ep.yaml       | 317 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 318 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-> index a6a6b0e4df7a..64e278561ba8 100644
-> --- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-> +++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-> @@ -23,6 +23,7 @@ properties:
->        - qcom,wcn3998-bt
->        - qcom,qca6390-bt
->        - qcom,wcn6750-bt
-> +      - qcom,wcn6855-bt
->  
->    enable-gpios:
->      maxItems: 1
-> @@ -121,6 +122,7 @@ allOf:
->            contains:
->              enum:
->                - qcom,wcn6750-bt
-> +              - qcom,wcn6855-bt
->      then:
->        required:
->          - enable-gpios
-> -- 
-> 2.39.0
-> 
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
+> new file mode 100644
+> index 000000000000..7c594ae53067
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
+> @@ -0,0 +1,317 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie-ep.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX6 PCIe Endpoint controller
+> +
+> +maintainers:
+> +  - Lucas Stach <l.stach@pengutronix.de>
+> +  - Richard Zhu <hongxing.zhu@nxp.com>
+> +
+> +description: |+
+> +  This PCIe controller is based on the Synopsys DesignWare PCIe IP and
+> +  thus inherits all the common properties defined in snps,dw-pcie-ep.yaml.
+> +  The controller instances are dual mode where in they can work either in
+> +  Root Port mode or Endpoint mode but one at a time.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8mm-pcie-ep
+> +      - fsl,imx8mq-pcie-ep
+> +      - fsl,imx8mp-pcie-ep
+> +
+> +  reg:
+> +    minItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dbi
+> +      - const: addr_space
+> +
+> +  interrupts:
+> +    items:
+> +      - description: builtin eDMA interrupter.
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: dma
+> +
+> +  clocks:
+> +    minItems: 3
+> +    items:
+> +      - description: PCIe bridge clock.
+> +      - description: PCIe bus clock.
+> +      - description: PCIe PHY clock.
+> +      - description: Additional required clock entry for imx6sx-pcie-ep,
+> +          imx8mq-pcie-ep.
+> +
+> +  clock-names:
+> +    minItems: 3
+> +    items:
+> +      - const: pcie
+> +      - const: pcie_bus
+> +      - enum: [ pcie_phy, pcie_aux ]
+> +      - enum: [ pcie_inbound_axi, pcie_aux ]
+
+Are the clocks in endpoint mode suddenly different? I can't tell, but 
+will assume so since they added here.
+
+> +
+> +  num-lanes:
+> +    const: 1
+
+You shouldn't need this if it can only be 1 value.
+
+> +
+> +  fsl,imx7d-pcie-phy:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: A phandle to an fsl,imx7d-pcie-phy node. Additional
+> +      required properties for imx7d-pcie-ep and imx8mq-pcie-ep.
+> +
+> +  power-domains:
+> +    minItems: 1
+> +    items:
+> +      - description: The phandle pointing to the DISPLAY domain for
+> +          imx6sx-pcie-ep, to PCIE_PHY power domain for imx7d-pcie-ep and
+> +          imx8mq-pcie-ep.
+> +      - description: The phandle pointing to the PCIE_PHY power domains
+> +          for imx6sx-pcie-ep.
+> +
+> +  power-domain-names:
+> +    minItems: 1
+> +    items:
+> +      - const: pcie
+> +      - const: pcie_phy
+> +
+> +  resets:
+> +    minItems: 2
+> +    maxItems: 3
+> +    description: Phandles to PCIe-related reset lines exposed by SRC
+> +      IP block. Additional required by imx7d-pcie-ep and imx8mq-pcie-ep.
+> +
+> +  reset-names:
+> +    minItems: 2
+> +    maxItems: 3
+
+Same question for resets.
+
+> +
+> +  fsl,tx-deemph-gen1:
+> +    description: Gen1 De-emphasis value (optional required).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0
+> +
+> +  fsl,tx-deemph-gen2-3p5db:
+> +    description: Gen2 (3.5db) De-emphasis value (optional required).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0
+> +
+> +  fsl,tx-deemph-gen2-6db:
+> +    description: Gen2 (6db) De-emphasis value (optional required).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 20
+> +
+> +  fsl,tx-swing-full:
+> +    description: Gen2 TX SWING FULL value (optional required).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 127
+> +
+> +  fsl,tx-swing-low:
+> +    description: TX launch amplitude swing_low value (optional required).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 127
+
+Now we'd duplicated defining the type for all these properties...
+
+This needs to be restructured into a schema of all the common properties 
+and then the host and endpoint schema can reference it. IOW, like how 
+other schemas have been done.
+
+Rob
