@@ -2,80 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0007C6807EB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 09:54:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA8236807F4
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 09:56:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235917AbjA3Iy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 03:54:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39304 "EHLO
+        id S235970AbjA3I4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 03:56:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229675AbjA3Iy5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 03:54:57 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DDC2EF93;
-        Mon, 30 Jan 2023 00:54:56 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30U6tYCc018386;
-        Mon, 30 Jan 2023 08:54:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=+CPvLWuuE/tmFz+1BW1LIIRhx0WTDf5kB9XZygRl1WY=;
- b=extUGdRk5aCrp39k6m3O6h0nGaXve9fnM1xfBXHAQF2qYFkNNyRZCLJ+Gk0phJ0dG2VQ
- OtSCQAbVvEldgP5aBnpO134DakbItcsmvDbqsRtG1B/0UQJynSECf6vyEOoFi0KX0Xo5
- D2G6OnP1m8pfgN3xl9nplcBaNbQGigFhsGHnDatWihpkbjcJol607ygyuHX1xbj+Ul5v
- uRxnMAgt2yXvgDttzAoQWle6/hebCeZcLKqUtsiNhDV+N4jyOxp9WTVdmm8t5cH3eeo+
- 9VshR6D6vlRWwOzHtPF+QvTh0yC7KljQIbmgy6x3+m7CToWGVYA5C0157hYjrMBxupUA tA== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ncuxak4ba-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 30 Jan 2023 08:54:53 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30U8sqdX018383
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 30 Jan 2023 08:54:52 GMT
-Received: from [10.216.24.235] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 30 Jan
- 2023 00:54:49 -0800
-Message-ID: <c54678b3-5255-2b8c-a256-bd85413e05d0@quicinc.com>
-Date:   Mon, 30 Jan 2023 14:24:46 +0530
+        with ESMTP id S229888AbjA3I4I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 03:56:08 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F70EF93
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 00:56:07 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id g9so7191574pfo.5
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 00:56:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Cvti0wscSxm2TsFta3vppQO1DWp6PaQtNXLMnh1nMxU=;
+        b=wCbHQAQZNWcjdWWkzQJgDhsEDKuVN1zgoHCXrEukOEkgU2YOV3x1Jyu4fOP3xQZRcE
+         pWMxI1BEvf5ZrYRdn0hw0gExa61JO2fyFO0drmRQaR7qIN95KVk2e2kDpADRDWBCWK8Z
+         flTyfRJsWSz7K6x9ck5DPCum/IBz2cK3J6lEQ8apC5HAFrhDvJ17+MSzkql+AddL+UA1
+         kqdcEZIQ7zbXJuZrB0KFUnP4CQB+LUNBzSwah9Nr+hccEf5jo62JU6VZ8J+aPmmL/QVm
+         y/0vlDZZf0w07LPfbWXcUp2szu5gEJ3/FqRnFZnakmBSA1iS4iLb8+MR1bD7eM1NWMHY
+         /NIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Cvti0wscSxm2TsFta3vppQO1DWp6PaQtNXLMnh1nMxU=;
+        b=ufT/irDg1Mor35WviBSCFxhSVa6Anphq7klYSkBpuuuFdVeOUADu4FgPxYedpXz+5I
+         o6+5UadTed1GDY7SoqKArBEw935HqGbY+OA1cVKofiLkFud3wWyem0pJJmtvTvtK/e3d
+         pMaw4WYrDSvEBR5/FvZll95pp2U3gzVUO3NmALbk/Lk/21lJ9gkay2Nz3t45ziKa9hxw
+         8hWSZerR2JyKR+dTEHadRo6h5yVDRrimpSJTLqrJ4k5FDXPh2aUavBd3bnJiCjgCvB7r
+         5CZMRi/n/v/r+zohWxb4Ocz7nQUktEiwXrcu0M+4l2gQuHksnXGNY24m7ArUmDnYfLMV
+         DazA==
+X-Gm-Message-State: AO0yUKUeOm8ZQ1VqfXKlfhnVehSyHn4FguE+KzpC9mcONSTbM5tzvE+F
+        z63Pbt1lQZ3WbxSwv4v22oOgdA==
+X-Google-Smtp-Source: AK7set8lcM5fQ2RoTmj81iwj1zSBfNdM0n7rVQIjXg+oYAZNRx9qpvdUg22R0xSmKyKtG9S0ga5Jmg==
+X-Received: by 2002:a62:1c10:0:b0:57d:56f1:6ae7 with SMTP id c16-20020a621c10000000b0057d56f16ae7mr14872298pfc.33.1675068966188;
+        Mon, 30 Jan 2023 00:56:06 -0800 (PST)
+Received: from localhost.localdomain ([124.123.172.194])
+        by smtp.gmail.com with ESMTPSA id o3-20020a056a0015c300b00593a01d93ecsm3320539pfu.208.2023.01.30.00.55.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 00:56:05 -0800 (PST)
+From:   Naresh Kamboju <naresh.kamboju@linaro.org>
+To:     saravanak@google.com
+Cc:     abel.vesa@linaro.org, alexander.stein@ew.tq-group.com,
+        andriy.shevchenko@linux.intel.com, bigunclemax@gmail.com,
+        brgl@bgdev.pl, colin.foster@in-advantage.com,
+        cristian.marussi@arm.com, devicetree@vger.kernel.org,
+        dianders@chromium.org, djrscally@gmail.com,
+        dmitry.baryshkov@linaro.org, festevam@gmail.com, fido_max@inbox.ru,
+        frowand.list@gmail.com, geert+renesas@glider.be,
+        geert@linux-m68k.org, gregkh@linuxfoundation.org,
+        heikki.krogerus@linux.intel.com, jpb@kernel.org,
+        jstultz@google.com, kernel-team@android.com, kernel@pengutronix.de,
+        lenb@kernel.org, linus.walleij@linaro.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux@roeck-us.net, lkft@linaro.org, luca.weiss@fairphone.com,
+        magnus.damm@gmail.com, martin.kepplinger@puri.sm, maz@kernel.org,
+        miquel.raynal@bootlin.com, naresh.kamboju@linaro.org,
+        rafael@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        sakari.ailus@linux.intel.com, shawnguo@kernel.org,
+        sudeep.holla@arm.com, tglx@linutronix.de, tony@atomide.com
+Subject: [PATCH v2 00/11] fw_devlink improvements
+Date:   Mon, 30 Jan 2023 14:25:42 +0530
+Message-Id: <20230130085542.38546-1-naresh.kamboju@linaro.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230127001141.407071-1-saravanak@google.com>
+References: <20230127001141.407071-1-saravanak@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v3 1/2] dt-bindings: mfd: qcom,tcsr: Add compatible for
- sm8450
-Content-Language: en-US
-To:     Lee Jones <lee@kernel.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1673513697-30173-1-git-send-email-quic_mojha@quicinc.com>
- <3a4675f8-c182-a98c-38e8-be1b4480f612@quicinc.com>
- <Y9d90TwyLKdhkj13@google.com>
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <Y9d90TwyLKdhkj13@google.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: F-vclzoUmx0ZLGbL6ORqhkcOHTv_XKnc
-X-Proofpoint-GUID: F-vclzoUmx0ZLGbL6ORqhkcOHTv_XKnc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-30_07,2023-01-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- malwarescore=0 bulkscore=0 clxscore=1015 priorityscore=1501 adultscore=0
- lowpriorityscore=0 mlxlogscore=793 impostorscore=0 phishscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2301300084
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,51 +88,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Build test pass on arm, arm64, i386, mips, parisc, powerpc, riscv, s390, sh,
+sparc and x86_64.
+
+Boot and LTP smoke pass on qemu-arm64, qemu-armv7, qemu-i386 and qemu-x86_64.
+Boot failed on FVP.
+
+Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
+
+Please refer following link for details of testing.
+FVP boot log failed.
+https://qa-reports.linaro.org/~anders.roxell/linux-mainline-patches/build/lore_kernel_org_linux-devicetree_20230127001141_407071-1-saravanak_google_com/testrun/14389034/suite/boot/test/gcc-12-lkftconfig-64k_page_size/details/
 
 
-On 1/30/2023 1:50 PM, Lee Jones wrote:
-> On Sun, 29 Jan 2023, Mukesh Ojha wrote:
-> 
->> +Jones
->>
->> Jones,
->>
->> Can this patch be taken into your tree ?
-> 
-> If it is sent to me properly, then yes.
+[    2.613437] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000010
+[    2.613628] Mem abort info:
+[    2.613756]   ESR = 0x0000000096000005
+[    2.613904]   EC = 0x25: DABT (current EL), IL = 32 bits
+[    2.614071]   SET = 0, FnV = 0
+[    2.614215]   EA = 0, S1PTW = 0
+[    2.614358]   FSC = 0x05: level 1 translation fault
+[    2.614517] Data abort info:
+[    2.614647]   ISV = 0, ISS = 0x00000005
+[    2.614792]   CM = 0, WnR = 0
+[    2.614934] [0000000000000010] user address but active_mm is swapper
+[    2.615105] Internal error: Oops: 0000000096000005 [#1] PREEMPT SMP
+[    2.615219] Modules linked in:
+[    2.615310] CPU: 1 PID: 1 Comm: swapper/0 Not tainted 6.2.0-rc5 #1
+[    2.615445] Hardware name: FVP Base RevC (DT)
+[    2.615533] pstate: 61400009 (nZCv daif +PAN -UAO -TCO +DIT -SSBS BTYPE=--)
+[    2.615685] pc : gpiochip_setup_dev (include/linux/err.h:41 include/linux/fwnode.h:201 drivers/gpio/gpiolib.c:586) 
+[    2.615816] lr : gpiochip_add_data_with_key (drivers/gpio/gpiolib.c:871) 
+[    2.615970] sp : ffff8000081af5e0
+[    2.616051] x29: ffff8000081af5e0 x28: 0000000000000000 x27: ffff0008027cb5a0
+[    2.616261] x26: 0000000000000000 x25: ffffd7c5d6745910 x24: ffff0008027f4800
+[    2.616472] x23: 0000000000000000 x22: ffffd7c5d62b99a8 x21: 0000000000000202
+[    2.616679] x20: 0000000000000000 x19: ffff0008027f4800 x18: ffffffffffffffff
+[    2.616890] x17: ffffd7c5d6467928 x16: 0000000013e3690a x15: ffff8000081af3b0
+[    2.617102] x14: ffff00080275cd8a x13: ffff00080275cd88 x12: 0000000000000001
+[    2.617312] x11: 62726568746f6d3a x10: 0000000000000000 x9 : ffffd7c5d3b3ebe0
+[    2.617522] x8 : ffff8000081af548 x7 : 0000000000000000 x6 : 0000000000000001
+[    2.617727] x5 : 0000000000000000 x4 : ffff000800640000 x3 : ffffd7c5d62b99c8
+[    2.617933] x2 : 0000000000000000 x1 : 0000000000000000 x0 : 0000000000000000
+[    2.618138] Call trace:
+[    2.618204] gpiochip_setup_dev (include/linux/err.h:41 include/linux/fwnode.h:201 drivers/gpio/gpiolib.c:586) 
+[    2.618337] gpiochip_add_data_with_key (drivers/gpio/gpiolib.c:871) 
+[    2.618493] devm_gpiochip_add_data_with_key (drivers/gpio/gpiolib-devres.c:478) 
+[    2.618654] bgpio_pdev_probe (drivers/gpio/gpio-mmio.c:793) 
+[    2.618785] platform_probe (drivers/base/platform.c:1401) 
+[    2.618928] really_probe (drivers/base/dd.c:560 drivers/base/dd.c:639) 
+[    2.619056] __driver_probe_device (drivers/base/dd.c:778) 
+[    2.619193] driver_probe_device (drivers/base/dd.c:808) 
+[    2.619329] __device_attach_driver (drivers/base/dd.c:937) 
+[    2.619464] bus_for_each_drv (drivers/base/bus.c:427) 
+[    2.619590] __device_attach (drivers/base/dd.c:1010) 
+[    2.619722] device_initial_probe (drivers/base/dd.c:1058) 
+[    2.619861] bus_probe_device (drivers/base/bus.c:489) 
+[    2.619988] device_add (drivers/base/core.c:3637) 
+[    2.620102] platform_device_add (drivers/base/platform.c:717) 
+[    2.620251] mfd_add_device (drivers/mfd/mfd-core.c:297) 
+[    2.620397] devm_mfd_add_devices (drivers/mfd/mfd-core.c:351 drivers/mfd/mfd-core.c:449) 
+[    2.620548] vexpress_sysreg_probe (drivers/mfd/vexpress-sysreg.c:115) 
+[    2.620672] platform_probe (drivers/base/platform.c:1401) 
+[    2.620814] really_probe (drivers/base/dd.c:560 drivers/base/dd.c:639) 
+[    2.620940] __driver_probe_device (drivers/base/dd.c:778) 
+[    2.621080] driver_probe_device (drivers/base/dd.c:808) 
+[    2.621216] __driver_attach (drivers/base/dd.c:1195) 
+[    2.621344] bus_for_each_dev (drivers/base/bus.c:301) 
+[    2.621467] driver_attach (drivers/base/dd.c:1212) 
+[    2.621596] bus_add_driver (drivers/base/bus.c:618) 
+[    2.621720] driver_register (drivers/base/driver.c:246) 
+[    2.621859] __platform_driver_register (drivers/base/platform.c:868) 
+[    2.622012] vexpress_sysreg_driver_init (drivers/mfd/vexpress-sysreg.c:134) 
+[    2.622145] do_one_initcall (init/main.c:1306) 
+[    2.622269] kernel_init_freeable (init/main.c:1378 init/main.c:1395 init/main.c:1414 init/main.c:1634) 
+[    2.622394] kernel_init (init/main.c:1526) 
+[    2.622531] ret_from_fork (arch/arm64/kernel/entry.S:864) 
+[ 2.622692] Code: 910003fd a90153f3 aa0003f3 f9414c00 (f9400801)
+All code
+========
+   0:*	fd                   	std    		<-- trapping instruction
+   1:	03 00                	add    (%rax),%eax
+   3:	91                   	xchg   %eax,%ecx
+   4:	f3 53                	repz push %rbx
+   6:	01 a9 f3 03 00 aa    	add    %ebp,-0x55fffc0d(%rcx)
+   c:	00 4c 41 f9          	add    %cl,-0x7(%rcx,%rax,2)
+  10:	01 08                	add    %ecx,(%rax)
+  12:	40 f9                	rex stc 
 
-Apology on my behalf to missed cc'ing you..
+Code starting with the faulting instruction
+===========================================
+   0:	01 08                	add    %ecx,(%rax)
+   2:	40 f9                	rex stc 
+[    2.622807] ---[ end trace 0000000000000000 ]---
+[    2.623043] Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
+[    2.623157] SMP: stopping secondary CPUs
+[    2.623303] Kernel Offset: 0x57c5cb400000 from 0xffff800008000000
+[    2.623413] PHYS_OFFSET: 0x80000000
+[    2.623492] CPU features: 0x00000,001439ff,cd3e772f
+[    2.623591] Memory Limit: none
+[    2.623679] ---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b ]---
 
--Thanks
 
-> 
->> On 1/12/2023 2:24 PM, Mukesh Ojha wrote:
->>> Document the qcom,sm8450-tcsr compatible.
->>>
->>> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
->>> ---
->>> Change in v3:
->>>     - Align with new format mentioned at
->>>       Documentation/devicetree/bindings/arm/qcom-soc.yaml
->>>
->>> Change in v2:
->>>     - Considering here it as v2 as this patch came out from comment
->>>       made on its v1 https://lore.kernel.org/lkml/c5dc8042-717b-22eb-79f6-d18ab10d6685@linaro.org/
->>>
->>>
->>>    Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
->>>    1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
->>> index adcae6c..4290062 100644
->>> --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
->>> +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
->>> @@ -26,6 +26,7 @@ properties:
->>>              - qcom,sdm630-tcsr
->>>              - qcom,sdm845-tcsr
->>>              - qcom,sm8150-tcsr
->>> +          - qcom,sm8450-tcsr
->>>              - qcom,tcsr-apq8064
->>>              - qcom,tcsr-apq8084
->>>              - qcom,tcsr-ipq6018
-> 
+ref:
+ - https://qa-reports.linaro.org/~anders.roxell/linux-mainline-patches/build/lore_kernel_org_linux-devicetree_20230127001141_407071-1-saravanak_google_com/?results_layout=table&failures_only=false#!?details=#test-results
+
+
+
+--
+Linaro LKFT
+https://lkft.linaro.org
+
