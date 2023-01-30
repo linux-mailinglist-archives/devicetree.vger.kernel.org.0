@@ -2,100 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 067EB6816E1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 17:50:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CDF26816FC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 17:54:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237691AbjA3Quo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 11:50:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49776 "EHLO
+        id S235970AbjA3Qyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 11:54:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237403AbjA3Quk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 11:50:40 -0500
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AC77442C8;
-        Mon, 30 Jan 2023 08:50:36 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id p185so10577376oif.2;
-        Mon, 30 Jan 2023 08:50:36 -0800 (PST)
+        with ESMTP id S235798AbjA3Qyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 11:54:46 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA72D3D935
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 08:54:45 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id mc11so11127528ejb.10
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 08:54:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LXg0vcX33DnXDRl4Qdi6ZDWogrA8s0G2Rrxf8IO1PKs=;
+        b=QbEicjF7YmF13ezulDFfNuz727VQByALrw9uuIPZvtZlKMsoG+jKaOarkL4iXLFKTG
+         M0d6hNOY6JOUyW1OrmRyichUnqhw1kBkVBj0LApPmSnftNSC8johSQ78djllzPoCumbP
+         KOd3H32nWwAcGVcTBDzQpq/8ZHGB8vg9dmTqpZYpQxcSQgiP1cAI2AjgfSPJiazPGZl1
+         wxFm74achDIccqe7q6gGhas3ePdnaoHCZLqbcWoTFz16gQOpPV2Di3ZmnB9dc01SgKNY
+         /ckAetNlwTU+YT3b2tGaxVSjfp7t2vt0DQJWAVym52nNEYWv3LPl04ChAPzvthnsLTsJ
+         Jz6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jNHGc+FYLfWuI0WyP8cgi2QoONQjOUTwM6TUqLZs8f4=;
-        b=3u+Uur5pykfJmGIRkOgRpgj1oa6+hhy7WBqhnePD6ct0NyWJSxJd8Ad+HpovVmg8JS
-         WdW7y/V4gizL1EKPgE/4EYznxQLzWgBFCXo+iuNmq/y1hTyzZyBu1x5a/xLzgin99KwD
-         0Zr5zMliq0XoKAWO6QVsQkpSmm0diuRpLv3vw1tymgZgu9K82hmwg1HMxbjtnnMXlwK2
-         SzYTeGUhLyV5BQ2dw3UGlqe+DdgvfUqhCoiwLgqst89cg9nL5PEg0S7yRzXuFF+6o6Xg
-         DAWZS05E5KeKVQ+608od0X0Ef+uiiBrmOOXQl6SZb4c/GLzvRRW979RQo5c6+anGoMe+
-         t1tQ==
-X-Gm-Message-State: AFqh2krXsVwrmaAFn9kjGWbCRaW+IFUxUWR5sMFfN2ljnVOyJOp94wpN
-        gg0sJSj5Igv4DDK704Gu1w==
-X-Google-Smtp-Source: AMrXdXti2G0mwexjQfuiuQB27g1A+0HBQf48DMV3lRqSFJr1OJsLGzadxFlqI5+H0l2a2gHK/KRN6g==
-X-Received: by 2002:a05:6808:1495:b0:364:3de2:bfd1 with SMTP id e21-20020a056808149500b003643de2bfd1mr27752455oiw.32.1675097436054;
-        Mon, 30 Jan 2023 08:50:36 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z11-20020aca330b000000b003458d346a60sm4899521oiz.25.2023.01.30.08.50.35
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LXg0vcX33DnXDRl4Qdi6ZDWogrA8s0G2Rrxf8IO1PKs=;
+        b=okeH9spoTOMG7j0z8uCjhb68t5CrG6I0MbdWv+Xe4nLxOncCGKVRACMLrY7il2omMH
+         RRFSkXHWYNQNDZKomLkx2xGKQz5ecT5rJuxMpjFa+bUEdiCAZaoL+e5vnvKnd4jjybCy
+         qXzuLN/bCGKE/LxXTr8nlxl5okUHmelkYEudvS59tyZaP/MNpoaF0WsMfrFxyDvKFwNx
+         oh7v1m9BFBEZRHhsDgM/h+UW5Bjtpu93HNZcWiqBOQ9fd3Fu5wtvkL8wm1cYprr4ekGx
+         0T1TiI87zlT3OgQc52aF5KwPqIHkEuasbv+oT9PEoXm9RGUVNdOL/XJO4BDcBYo00CVw
+         9eBA==
+X-Gm-Message-State: AO0yUKWXbYi2oH52gmswTrGOvPe6U82J69To67r/NI8vrVkPoKa9Mw5f
+        dsEYqtme6DizxGe4dPZZ3Xl3xBUhHJKsbrgv
+X-Google-Smtp-Source: AK7set+Mbu9nF6QDeSGgFURDfRkwriUDkJi++ex+D+IPiTZoixzQMsBWsfU1u1xAf1BAwf+msRnsxQ==
+X-Received: by 2002:a17:907:3c16:b0:889:daeb:5532 with SMTP id gh22-20020a1709073c1600b00889daeb5532mr2195829ejc.47.1675097684236;
+        Mon, 30 Jan 2023 08:54:44 -0800 (PST)
+Received: from localhost.localdomain (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
+        by smtp.gmail.com with ESMTPSA id lj14-20020a170906f9ce00b0088744fc7084sm2590651ejb.38.2023.01.30.08.54.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 08:50:35 -0800 (PST)
-Received: (nullmailer pid 2794298 invoked by uid 1000);
-        Mon, 30 Jan 2023 16:50:34 -0000
-Date:   Mon, 30 Jan 2023 10:50:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Michal Suchanek <msuchanek@suse.de>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        open list <linux-kernel@vger.kernel.org>,
+        Mon, 30 Jan 2023 08:54:43 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Erhard F." <erhard_f@mailbox.org>,
-        Javier Martinez Canillas <javierm@redhat.com>
-Subject: Re: [PATCH v3] of: Make of framebuffer devices unique
-Message-ID: <167509742194.2793991.9757556857543301296.robh@kernel.org>
-References: <20230120180958.30798-1-msuchanek@suse.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 1/2] dt-bindings: pincfg-node: Introduce an overridable way to set bias on pins
+Date:   Mon, 30 Jan 2023 17:54:34 +0100
+Message-Id: <20230130165435.2347569-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230120180958.30798-1-msuchanek@suse.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+We came to a point where we sometimes we support a few dozen boards
+with a given SoC. Sometimes, we have to take into consideration
+configurations which deviate rather significatly from the reference
+or most common designs. In the context of pinctrl, this often comes
+down to wildly different pin configurations. While pins, function and
+drive-strength are easily overridable, the (mostly) boolean properties
+associated with setting bias, aren't. This wouldn't be much of a
+problem if they didn't differ between boards so often, preventing us
+from having a "nice" baseline setup without inevitably having to go
+with an ugly /delete-property/. Introduce bias-type, a bias-type-
+specific property and clone the pinconf-generic type enum into
+dt-bindings to allow for setting the bias in an easily overridable
+manner such as:
 
-On Fri, 20 Jan 2023 19:09:57 +0100, Michal Suchanek wrote:
-> Since Linux 5.19 this error is observed:
-> 
-> sysfs: cannot create duplicate filename '/devices/platform/of-display'
-> 
-> This is because multiple devices with the same name 'of-display' are
-> created on the same bus.
-> 
-> Update the code to create numbered device names for the non-boot
-> disaplay.
-> 
-> cc: linuxppc-dev@lists.ozlabs.org
-> References: https://bugzilla.kernel.org/show_bug.cgi?id=216095
-> Fixes: 52b1b46c39ae ("of: Create platform devices for OF framebuffers")
-> Reported-by: Erhard F. <erhard_f@mailbox.org>
-> Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Signed-off-by: Michal Suchanek <msuchanek@suse.de>
-> ---
-> v3:
-> - merge fix into original patch
-> - Update the device name format
-> - add missing const
-> - do not continue with iterating display devices when formatting device
->   name fails
-> ---
->  drivers/of/platform.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
-> 
+// SoC DT
+i2c0_pin: i2c0-pin-state {
+	pins = "gpio10";
+	function = "gpio";
+	bias-type = <BIAS_PULL_UP>;
+};
 
-Applied, thanks!
+// Deviant board DT
+&i2c0_pin {
+	bias-type = <BIAS_HIGH_IMPEDANCE>;
+};
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ .../bindings/pinctrl/pincfg-node.yaml         |  4 ++
+ include/dt-bindings/pinctrl/pinconf-generic.h | 40 +++++++++++++++++++
+ 2 files changed, 44 insertions(+)
+ create mode 100644 include/dt-bindings/pinctrl/pinconf-generic.h
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+index be81ed22a036..d4ea563d283e 100644
+--- a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+@@ -51,6 +51,10 @@ properties:
+     description: use pin-default pull state. Takes as optional argument on
+       hardware supporting it the pull strength in Ohm.
+ 
++  bias-type:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Use the specified bias type.
++
+   drive-push-pull:
+     oneOf:
+       - type: boolean
+diff --git a/include/dt-bindings/pinctrl/pinconf-generic.h b/include/dt-bindings/pinctrl/pinconf-generic.h
+new file mode 100644
+index 000000000000..7d9c7d8f9105
+--- /dev/null
++++ b/include/dt-bindings/pinctrl/pinconf-generic.h
+@@ -0,0 +1,40 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (C) 2011 ST-Ericsson SA
++ * Written on behalf of Linaro for ST-Ericsson
++ *
++ * Author: Linus Walleij <linus.walleij@linaro.org>
++ */
++
++#ifndef _DT_BINDINGS_PINCTRL_PINCONF_GENERIC_H
++#define _DT_BINDINGS_PINCTRL_PINCONF_GENERIC_H
++
++#define BIAS_BUS_HOLD			0
++#define BIAS_DISABLE			1
++#define BIAS_HIGH_IMPEDANCE		2
++#define BIAS_PULL_DOWN			3
++#define BIAS_PULL_PIN_DEFAULT		4
++#define BIAS_PULL_UP			5
++#define DRIVE_OPEN_DRAIN		6
++#define DRIVE_OPEN_SOURCE		7
++#define DRIVE_PUSH_PULL			8
++#define DRIVE_STRENGTH			9
++#define DRIVE_STRENGTH_UA		10
++#define INPUT_DEBOUNCE			11
++#define INPUT_ENABLE			12
++#define INPUT_SCHMITT			13
++#define INPUT_SCHMITT_ENABLE		14
++#define MODE_LOW_POWER			15
++#define MODE_PWM			16
++#define OUTPUT				17
++#define OUTPUT_ENABLE			18
++#define OUTPUT_IMPEDANCE_OHMS		19
++#define PERSIST_STATE			20
++#define POWER_SOURCE			21
++#define SKEW_DELAY			22
++#define SLEEP_HARDWARE_STATE		23
++#define SLEW_RATE			24
++#define PIN_CONFIG_END			0x7F
++#define PIN_CONFIG_MAX			0xFF
++
++#endif
+-- 
+2.39.1
+
