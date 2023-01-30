@@ -2,145 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20B87681F69
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 00:11:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F5FB681FE1
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 00:46:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbjA3XLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 18:11:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41770 "EHLO
+        id S229536AbjA3Xqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 18:46:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbjA3XLM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 18:11:12 -0500
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C63B79004
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 15:11:09 -0800 (PST)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-501c3a414acso181164817b3.7
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 15:11:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=LDfQZoGlwUK+kzxRXSbyFi2jPNk3BphEmmNBP0GjF0Q=;
-        b=OQ5btj3qyNunRkWa/eT2Rf1e2qqvSRm/L4uLNC8PepSZPzxTIskzOaRby8IxSTJK1a
-         A4DJcRTNXP9feNHl9aBq3x7WgYKKrBMUhPFJnfmAVFoIPC834tDKXunaB9jtZTz7COHt
-         0CEAmfvG6UfZMEo1bA7Vi/L8t9/tNunOZ521l7rvupZa9n0rxe/9e3WsAcas95BatZDb
-         MIoeWvtgMjugIfsqKyMQ+ZA8rY0LX3Daz7lN92Ul91r1riwqf6MML/jEAbnuhIER77tt
-         LeWz2X9ZYld81ddZiBXddfLmU2YIzWZ7r+qzxfr8K3QK7yj02Um4UZPadN7qmXoWkXP1
-         U1jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LDfQZoGlwUK+kzxRXSbyFi2jPNk3BphEmmNBP0GjF0Q=;
-        b=jDR2AMT40FMwYamX05wB+Dsdf+q3Pq9/Bt6qK3CFlMbkrVI8kSdyvCFN+2bgW//HrZ
-         e0hafxeK4fLxKDdVqBjNtkjyWyBU8S2GS0kLS2a3bDuftiO9nP1kS845gAc+qbvnmF5J
-         9cUSgHQtW3EsNtqtXDG8mxnd5dWBU2itHahUyDjy/6ufllUQKtVcrRGIcTFhUC2pgKGP
-         fU71etNl8W+plUHQBPDrgCi9M1EoC3MPbNsqoCxh3vBLejG8cz3iA54gNs3Ri+3KLq76
-         qcoduU+KUbrG0vInkkCnnK5XnX28uLQJkqHgH7tQbuGgBNn4VKxELgi8ipmxPZleZ6H2
-         q5gQ==
-X-Gm-Message-State: AFqh2kqgChpWnYBHn9JnwSNGzswEysPMB/QCezhuz+Hk+bTZfjBmfRZ6
-        x+wiHZhHb2hUUNbR+6GXimoP9obnSExZSM9CFLbH6g==
-X-Google-Smtp-Source: AMrXdXtRz1bfZDc0Sl8udmgePKD2SUPlDJ5rqBwH5lFq8s8CAawhOWc+wuDT5y9DNmCpcoDn2Xrf/+ydTkvzsK2sjQE=
-X-Received: by 2002:a81:1a0a:0:b0:4dc:818f:f9f2 with SMTP id
- a10-20020a811a0a000000b004dc818ff9f2mr5170823ywa.469.1675120268932; Mon, 30
- Jan 2023 15:11:08 -0800 (PST)
-MIME-Version: 1.0
-References: <20230130165435.2347569-1-konrad.dybcio@linaro.org>
-In-Reply-To: <20230130165435.2347569-1-konrad.dybcio@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 31 Jan 2023 00:10:57 +0100
-Message-ID: <CACRpkdZjAyLUg3V7ZTzeMfUOTrndLrRX_gTFdO+amSmZkzB72Q@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/2] dt-bindings: pincfg-node: Introduce an
- overridable way to set bias on pins
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org,
-        marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230166AbjA3Xq3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 18:46:29 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 838BC2B63F;
+        Mon, 30 Jan 2023 15:46:24 -0800 (PST)
+Received: from mercury (unknown [185.209.196.162])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id BBFC16602E5A;
+        Mon, 30 Jan 2023 23:46:22 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1675122382;
+        bh=qpiVtCBTcq4oyUEyHgfHNcNf3c0Lxxip1+ljGsvf18o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TEMYysGSmrxfvdsxZrDW4tEPboZ8B6cjfRjj0ovlA/ctdSyEWJ/IPnEHuawG/8SnC
+         MIb7yAO+nj40GgZB+2XCc+qn2qF7CkuHCOkqKCNgCrTJ42w1zYqDolAP9L8VUkbuFH
+         Ket+ykZbBygP/R+K2xGNY6eFovXfRICzDgHwGb9nOFt94zk4xpSyaflRrLM+50Nl9p
+         yXZ8vC/RVJnaUSustzLqn5ooSaMPHZsaOF5WyRmXp7JqDiHA+lmojBb1YBl30o/zgh
+         +99Pk3e+xR32CHTTw5tUHRcxOjDQQFmeiWRnEaIXroqil+t0zFb9O0lhoyBM3B9Prc
+         9mmAzWcHmn43A==
+Received: by mercury (Postfix, from userid 1000)
+        id 4E6A41060FFA; Tue, 31 Jan 2023 00:36:26 +0100 (CET)
+Date:   Tue, 31 Jan 2023 00:36:26 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Lee Jones <lee@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        shengfei Xu <xsf@rock-chips.com>
+Subject: Re: [PATCHv6 09/11] pinctrl: rk805: add rk806 pinctrl support
+Message-ID: <20230130233626.r5kfnduj2i2urb56@mercury.elektranox.org>
+References: <20230127181244.160887-1-sebastian.reichel@collabora.com>
+ <20230127181244.160887-10-sebastian.reichel@collabora.com>
+ <CACRpkdbQfaCX=ZbFQh3p_T3biWEex-QZofXTrbVKd5hYOzMAug@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="uiqkrrhztl7odqxv"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdbQfaCX=ZbFQh3p_T3biWEex-QZofXTrbVKd5hYOzMAug@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 30, 2023 at 5:54 PM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 
-> We came to a point where we sometimes we support a few dozen boards
-> with a given SoC. Sometimes, we have to take into consideration
-> configurations which deviate rather significatly from the reference
-> or most common designs. In the context of pinctrl, this often comes
-> down to wildly different pin configurations. While pins, function and
-> drive-strength are easily overridable, the (mostly) boolean properties
-> associated with setting bias, aren't. This wouldn't be much of a
-> problem if they didn't differ between boards so often, preventing us
-> from having a "nice" baseline setup without inevitably having to go
-> with an ugly /delete-property/.
+--uiqkrrhztl7odqxv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I see what the problem is.
+Hi Linus,
 
-Have you considered pulling out *all* the pin config for a certain
-reference design into its own .dtsi file, simply? And then not include
-that to the next product.
+On Mon, Jan 30, 2023 at 11:31:51PM +0100, Linus Walleij wrote:
+> On Fri, Jan 27, 2023 at 7:13 PM Sebastian Reichel
+> <sebastian.reichel@collabora.com> wrote:
+>=20
+> > Add support for rk806 dvs pinctrl to the existing rk805
+> > driver.
+> >
+> > This has been implemented using shengfei Xu's rk806
+> > specific driver from the vendor tree as reference.
+> >
+> > Co-Developed-by: shengfei Xu <xsf@rock-chips.com>
+> > Signed-off-by: shengfei Xu <xsf@rock-chips.com>
+> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+>=20
+> Is this something I can just apply? I haven't had Heiko's review
+> on it but it looks innocent enough.
 
-This pattern is pretty common.
+No. This code depends on the RK806 register defines added to
+include/linux/mfd/rk808.h in the previous patch. The series cannot
+be applied per-subsystem and my suggestion is that Lee provides an
+immutable branch once he is happy with the MFD patches.
 
-> Introduce bias-type, a bias-type-
-> specific property and clone the pinconf-generic type enum into
-> dt-bindings to allow for setting the bias in an easily overridable
-> manner such as:
->
-> // SoC DT
-> i2c0_pin: i2c0-pin-state {
->         pins = "gpio10";
->         function = "gpio";
->         bias-type = <BIAS_PULL_UP>;
-> };
->
-> // Deviant board DT
-> &i2c0_pin {
->         bias-type = <BIAS_HIGH_IMPEDANCE>;
-> };
->
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Greetings,
 
-The idea is pretty straight-forward.
+-- Sebastian
 
-But it applies to systems already using the bool flags. So what do
-we do the day we manage to have:
+--uiqkrrhztl7odqxv
+Content-Type: application/pgp-signature; name="signature.asc"
 
-{
-    bias-type = <BIAS_HIGH_IMPEDANCE>;
-    bias-pull-up;
-};
+-----BEGIN PGP SIGNATURE-----
 
-As you see this makes it necessary to author some really nasty
-YAML to make sure this cannot happen or everyone has to make
-a runtime check for it.
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmPYVHcACgkQ2O7X88g7
++ppYZg/8DGI/AMzUJEq3qV2LqyRgz6nFLAFoFr+dA4My3ID5/iL597LBZwdPCDi0
+zE5d8mcUvdQu9eJRlKfMe7W5nrLzp9whOjYGu27cpG8Ho9W4gvKX1oAo0xjiZvpw
+TVZzuyWMdTAh622T+XhN/x9PFYsWop1nMm/Olxl5vC5uole/RxMO7uUNcgjeQgP0
+ssVDGROpjWEpvUg9BYEISBK3G8SN/noMlzpLUZoJkVtEJlGwsIcnJip8BXmKUlqr
+4gVc8Y5GrlULFFCDG+mxoW12YhB28PvxKgp4YtpNxx1sUfa38qJU6Q+U1UoPzXR7
+H5PaH+K288xcSG9Rt4xfZcFcxcmLytvw1Hsdi2zDCgredgwgrS3HaP0QEW8K0VSy
+VPWQ9ndbsyxWMYKhFcm9NFBaqw/rIWqiw0C/Mj7lV9UPXE4yZ+MtNf1zmLXeNYny
+DPKcWrpoiEtkWb5U5sSnE4x2sI12TDy1actVc3y49b//Mwg3N+BS3FWDogcZVKli
+94uKdiZUMtqucK9/BWNov9TCRXDUeYh5myPqI0DtivBnqCq4DYtjdfBasR6VX/jW
+A3UbLxorMUyXvRELdOb7/2u4BhY9QfPJTWu4iZ1/JNpKqiafB4BSPilrKz7dQs1+
+0q0MWr1Fv98SFIMlYXAeRZIxToP2GBHMg5+ly7LZ+mhpYMcFqTs=
+=oQOe
+-----END PGP SIGNATURE-----
 
-Another problem is that I was just discussing with Bjorn for some
-specific i2c pull-up, was actually using the argument for
-bias-pull-up with a parameter:
-
-bias-pull-up = <8000000>;  // 8kOhm pull-up
-
-Not to mention that other platforms than qcom use this and
-qcom use it for drive-strength I think?
-
-+#define DRIVE_STRENGTH                 9
-+#define DRIVE_STRENGTH_UA              10
-
-drive-strength = <8>; // 8mA drive strength
-
-bias-type = <DRIVE_STRENGTH>;
-
-OK where do I put my 8 mA now?
-
-Yours,
-Linus Walleij
+--uiqkrrhztl7odqxv--
