@@ -2,93 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D038168178D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 18:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DE9468183D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 19:06:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237243AbjA3R1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 12:27:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44736 "EHLO
+        id S237243AbjA3SGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 13:06:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236200AbjA3R1C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 12:27:02 -0500
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2135.outbound.protection.outlook.com [40.107.22.135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EFFE3F28A
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 09:27:01 -0800 (PST)
+        with ESMTP id S234038AbjA3SGS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 13:06:18 -0500
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2071.outbound.protection.outlook.com [40.107.7.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26EC83B3DD;
+        Mon, 30 Jan 2023 10:06:15 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hwMGaXwLjxb7T1I0LX46ugExalIJkajBwUcrju1kP4N/kuQPmKmvTQFwXnlyu0r9eUrAmmOzonuzbVeVdbU16JJhuLZfQAK9CqnQcMzpj//tB1vT186ZpccQMcviRU5p12MIrkDb85/mo/NXheOQzpfW8PPgB2FZrrmi3CKCasWf00C3Q04SZuZWJhAsP/6IpWqTvMVNBI1EcqOLyBrcigGSYxa83npOHCjLznd3ag7ATZTKpkIvgz8RxY+vSliqBwigVQOUrLrPeEsTsnWRIO9DDOo/f16jg0ziRaFTa3SUfpAB6OXme+ntxkeL6ab3HORHQGadMoHd9sjeM9HyyQ==
+ b=F6MUyhyAppzWQW5fOaoTgsz85vhlPXiitBozskS7XwUpoqI+ODP8d3tTDzBJHKpBvAnaMjI02kKC3h4GSY+8FWHZwlcY7iTnkQEBsqY14h2/eogaSCE6VOg4eY5cNrwFaLEGmphKT0S8LR6mr8h7TmBN0t3Ni0OFFoDoiSMHlnq5yPKEoKckkGr+x1qrF8/nH1TohJOGY7Rggi+FdO1ogfvJl8mMwt7kKxMGprdTZx4OUY9abz8tDwoFnJl0eB31wrU81wPAE1wQE1POsXmGOz0VQPPEzALqoLt3PAX/nV/Zq7czuxz0KMkuLE9jTKvSCCYHQ/ucar/stKeW/GpcOQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bQRk0KBJv7C+Dra8nYT3LdLLta3iXuQ37PI3wr+JGeQ=;
- b=KOSgmrxSUrDNjRsou8PpYUoSd9GdG7ZGBOnFT4ztMZWBCvXyhRwyu/MbfpSE8y1XLjQy/CTRLceC60PEhE0zz8rcGA6o/taUT+nQ82QP3NMA1R8wh8HH/7pUit+7Yp4oGcTSUI55kkLhvkJjxnsvtJG3oJkyDPx4Qoeg3FGg26VQSZpDCmkKgpU1dAo1nTGBABqmULbsR9a5U9rK5qJoLYv2Ib30AE30LJPxB0We+xxrvf2hQDVjEiCQDXp54KZjHmrSMIU1Itm16a5qkefZoVuOUiHBbq+SgrumYKxmqQ+wI6T/XeWp8N8P5iIKF6o35oNkZdEl4MQPuRWw6OWiBg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 193.8.40.94) smtp.rcpttodomain=kernel.org smtp.mailfrom=leica-geosystems.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none
- header.from=leica-geosystems.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
- s=selector1;
+ bh=H4cTBJEo0OjgMKQJwnn3TzO48Pw56uEYV5S0D9ZAAyI=;
+ b=UJ08TgSYfUsGjHcbiG7iKWxpV27LJ8j0DgWrLAmgmutThMEBgHvy9Kqt0wWMrSHjtDjhLwr3ZEwbR61IdVWCFd7YbMyuoJ+13QeEjzk9DbDXu4MMuy7VOOiNm+g2wpQcdPEQe9n2c9BCZPHmofQJNngG+poADRKdvo7P9HqBmd+lBuaecedH8UPTNcxP2uK450Je8yJn4ECYTL9e0CbqALlFRBdtI3i8GCpkyUV9EOfbyLoqfCnqc0czeBenxIEX0flXSBiQBpbdovYGN1d8ZlMIYQynnexT8kJaudiaHFUeovyQ3KQUD9lnUY9NKoP9uqEviGJ96s7MfLru55mWng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bQRk0KBJv7C+Dra8nYT3LdLLta3iXuQ37PI3wr+JGeQ=;
- b=uQYLvp7BJPRMyq/XJBPcV1UxbQ+A9TeRLyvOy7vjuIIkj5VSXHpAKwjmyj8bkXJGix6NbSEQtKAbKyGvlP7DLwrU29La0vF9E98F6mT/BMUb3OmTeKAxUrDN71Q7e6VKWt6/LISlHs0WdFMwEO/qnKrxuMOD/2VZHFWL0LW/Dco=
-Received: from AS9PR06CA0374.eurprd06.prod.outlook.com (2603:10a6:20b:460::29)
- by VI1PR06MB5376.eurprd06.prod.outlook.com (2603:10a6:803:b9::19) with
+ bh=H4cTBJEo0OjgMKQJwnn3TzO48Pw56uEYV5S0D9ZAAyI=;
+ b=N47iM3LDktMN1jf0F0SjRNFag8keS7GFLRDNpSkak0aOUF8mZ+Y4n9ca7WxqFFkJgScBe4W3bQ7dxQ8y+7Z4v37OR3XeWnUUj4HsrzXGmtuhZtrykS7ifVBR8ePR2YCmFVM55aS7k8MdX/h2O7vzcIi4lIQ5o3rgpbkFT8JbZP0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM9PR04MB8603.eurprd04.prod.outlook.com (2603:10a6:20b:43a::10)
+ by DB8PR04MB7129.eurprd04.prod.outlook.com (2603:10a6:10:127::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.28; Mon, 30 Jan
- 2023 17:26:47 +0000
-Received: from AM0EUR02FT004.eop-EUR02.prod.protection.outlook.com
- (2603:10a6:20b:460:cafe::5a) by AS9PR06CA0374.outlook.office365.com
- (2603:10a6:20b:460::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.36 via Frontend
- Transport; Mon, 30 Jan 2023 17:26:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
- smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=leica-geosystems.com;
-Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com
- designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
- client-ip=193.8.40.94; helo=aherlnxbspsrv01.lgs-net.com; pr=C
-Received: from aherlnxbspsrv01.lgs-net.com (193.8.40.94) by
- AM0EUR02FT004.mail.protection.outlook.com (10.13.54.70) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6043.30 via Frontend Transport; Mon, 30 Jan 2023 17:26:46 +0000
-From:   Johannes Schneider <johannes.schneider@leica-geosystems.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Johannes Schneider <johannes.schneider@leica-geosystems.com>
-Subject: [PATCH v11 0/2] pmic on imx8mm
-Date:   Mon, 30 Jan 2023 18:26:44 +0100
-Message-Id: <20230130172644.2740332-1-johannes.schneider@leica-geosystems.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
+ 2023 18:06:12 +0000
+Received: from AM9PR04MB8603.eurprd04.prod.outlook.com
+ ([fe80::f8fe:ab7c:ef5d:9189]) by AM9PR04MB8603.eurprd04.prod.outlook.com
+ ([fe80::f8fe:ab7c:ef5d:9189%6]) with mapi id 15.20.6043.036; Mon, 30 Jan 2023
+ 18:06:12 +0000
+From:   Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        alok.a.tiwari@oracle.com, hdanton@sina.com,
+        ilpo.jarvinen@linux.intel.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
+        rohit.fule@nxp.com, sherry.sun@nxp.com, neeraj.sanjaykale@nxp.com
+Subject: [PATCH v2 0/3] Add support for NXP bluetooth chipsets
+Date:   Mon, 30 Jan 2023 23:35:01 +0530
+Message-Id: <20230130180504.2029440-1-neeraj.sanjaykale@nxp.com>
+X-Mailer: git-send-email 2.34.1
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0EUR02FT004:EE_|VI1PR06MB5376:EE_
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 785210cc-ae46-4637-e621-08db02e72a3f
+X-ClientProxiedBy: SI2P153CA0008.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:140::19) To AM9PR04MB8603.eurprd04.prod.outlook.com
+ (2603:10a6:20b:43a::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8603:EE_|DB8PR04MB7129:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4dfbe566-7bc2-4518-b469-08db02ecabe0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: aDWDSCV8JH+/hN18zQP4v/VRDWlVAOoK17qiD+qnkGq4p7rjO21pIy69sxrg9yY1Z6ESVZKpdBP+6rQ5iB9E3ck+v41n1M5G8YFbyAcUOUFhmo3J6zVEVYw63tthO5+BXBWsX5zLvyf3bsvEsjiE3gYOJBAxpJFhnubn/Y3bd5U+CwfU0m0xKH/72r1ayJcJPBe7hhNEM+02Re0RPu+J1nkUpTmre+op/91OzC3AXssxXVBGdgMwuUc2k8faoNf0XdVmmvbYxo3/Fh1dbxtvzoLFtTi9OyoXnG0p2518i7YGvfYh4n+EQxDGBlekVBiGOoPLqdIBZRUIc7Sp2l3kmYuyUdZrUE5iO7NnoGT75Ct35hOQP6qfnSH6wft3pdkpTI9BxBoi89UrTWc+TALCIIOcZ5xmrNNs/FVgXu8V/R1/MdMhZ104r18Y1vidr/nCWALf/JL0/QSVVdTdp3nUbskU7OGHs8ebbSCpdQEUMyKZjTnTZI/aznZYsHaGUcfdD9peUTBgqo/QYYTVucqAmcKJhxQJg32HnnMYLO2SRYibCOcW7tsNU0JHjNf/L72/N5OVhFo2KotAjIBE6LDxT1hAN0Erdhra2+nyWAPnU1QSZqK+k+nbmWdPUKVa/WwCazVuTyHn5/lWFWDWhBHFZj/VzMgHqQabIktQ8v4aXcxUSUIdRVXdeh9xS4Q0+ybkXDDm0+w+Pqxk0RwbFfcT2BpaF67PBJpi7m5M/u+ToUc=
-X-Forefront-Antispam-Report: CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:aherlnxbspsrv01.lgs-net.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230025)(4636009)(39860400002)(396003)(376002)(346002)(136003)(451199018)(36840700001)(46966006)(40470700004)(40460700003)(118246002)(2906002)(36756003)(956004)(83380400001)(44832011)(336012)(6486002)(2616005)(478600001)(6512007)(356005)(110136005)(81166007)(36860700001)(1076003)(107886003)(26005)(6506007)(7416002)(70206006)(4326008)(8676002)(70586007)(41300700001)(5660300002)(82740400003)(8936002)(186003)(36736006)(86362001)(316002)(54906003)(40480700001)(47076005)(82310400005)(9316004)(32563001);DIR:OUT;SFP:1102;
-X-OriginatorOrg: leica-geosystems.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2023 17:26:46.9464
+X-Microsoft-Antispam-Message-Info: 9unhWjM3NsXoZibV193tUxnAvTlELWJIVyX3mrpIaQ8Zp4ttRyYSVtitrk1/9LFBlxslpWZstmvE12Dl5Yl8rgknYymEYMp3g1pypxBgNirLPgQyif51pYIPlOHJFRkk6rc7RpGWNky6qBDm4U7MYX7iVGQuVlo6mm2zRYb3ZQN+w6bcL2gJZ64CBq58RX+wzaM9FpjGuUMZUfqFCGG2X1VRHRM4s2lAR7sCAhKv8QEgstJn+yu5E0g6puI76r5rswxhzqb2/xCvnpCbeQWvu2Amlh9D2cU4GuwGvmlDLMM9+oJZ6Lvwz7wwWamreLwCjFScP2kmWE/uLGwrMiOW0aH1BjL/C3UJDsIQPEyJydhN6JVqiU/4o25tUkxxjDYzv+JMQSN5gGfgww1zTuc2vg5Q9ljD3LJ78i6KASvbUpOYphVhSfH7P6SL5HPM50VCXlnApxMV7GL45zzL2sSNZ+0bmWDObyItUxXkEdc8rXVblaKxbXzZynNEJfaE70SkcMEMGatKeF2O98VQ9SBm+Sk62ZxBOhjjkS22xnprXGtEDn8KvOPbE7/GBRL89h/3nb0S0sZBdvK3X11K2erM+5mDZ23hK4xfc+7q0JzSv7AwA0QLaZUvTYGy+zMq+BaVD7khNncx56ZvGwmuRMqDXE4A0biPyzyD/2d0JO9lflspqovrcjqqaPvtUIwh8MX34kYSy02irSYr4ZaLKfbPhMDCWrpIueYeIy6JMzbhIf0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8603.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(346002)(376002)(136003)(39860400002)(396003)(451199018)(186003)(6512007)(86362001)(26005)(6506007)(1076003)(921005)(38350700002)(38100700002)(83380400001)(2616005)(36756003)(316002)(6486002)(6666004)(8936002)(52116002)(41300700001)(478600001)(7416002)(5660300002)(2906002)(66556008)(8676002)(4326008)(66946007)(66476007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5jP20E1GCs4nQQhhWBsyA7doPFMv/E1F0XrjQlZ6ubdyagmdC6VJmsDwdhrl?=
+ =?us-ascii?Q?+j4b4n+dsySun5SaE5UcsEvUAbmwEAiUKkD9MzJWgBzisCrhoCETogeLgmuW?=
+ =?us-ascii?Q?e4bHCljWHt8nEkTQMdPpCKEt04YY3CW/me8Mj44FAs26UFoWdN55fb98d/O3?=
+ =?us-ascii?Q?MhRUCOVTuRzzmxIAyiNY2Ja1uVqI5C+gZErvvjGIR0qajTY1tjMGxzqDab+u?=
+ =?us-ascii?Q?jdHV+PfIvr4SCsFv80OMX9ekcQpIM9oXbXDg4u4a0FxL5dePXu+R+yThj+xS?=
+ =?us-ascii?Q?ndjfgxY6cNt8G7vrpblhwf3Z5wULa5nQa6+z4IO+pbsw/E1+oWwiuDK1QcCW?=
+ =?us-ascii?Q?5vHV7jZo82XKvvbfaJd9kYPNuZ4qrsFkFvf5g7jUXTzHTOrPupt58eCOhUOE?=
+ =?us-ascii?Q?CP4TA8l+iPo4yqjEU0pgQ4nkhdgrRwGYcwUqth46oaSWHyfNfDRs4uu7wFc1?=
+ =?us-ascii?Q?6wjkAQTC6lVYMVAlhptTv17jCpO033NCpEdaHmdbLWU1fEIe6HZ3obqqd8jV?=
+ =?us-ascii?Q?30Nm8XjTWxZBfpWBU/iZM7Wb0AcXTtZWi3V2HskF1T86mhAfk6+o5VRBBv17?=
+ =?us-ascii?Q?2MC9j/HYHXTgNDW/gEeN6noTfnoW9QMzvnkeLCAMz2StvsF5ch27Ma4BgV/U?=
+ =?us-ascii?Q?OtUppYe3NYHWjrjwtOo3GwFokhoLiXJMpV/ta6nuxZnHcfHuX+K+xthRaLTh?=
+ =?us-ascii?Q?a0yzGLwizoIbA7guadmKoQUHJxMmVfhzvvnxqbAssLIfT2ORC7PwNjJAigtV?=
+ =?us-ascii?Q?+bTHmJfhwCgTu4lqqv07/CbDlJudi+YEZDkFh7FnTDj8zh/p7bUqzVKSNYcN?=
+ =?us-ascii?Q?DFiOeIQUJ1thM0Pos+426SQIpj75vv4RRrZOvVEEoSYJkh/8WCQdAshltcu7?=
+ =?us-ascii?Q?teVWmHv1eg5J3OTk7JRzbUz08iD1L6JO9ANBOyTonZRCO4LDJk/ZMw9HK5cJ?=
+ =?us-ascii?Q?EvnCsmxbgySlX3mGgQ+n7KsvZkqUZDi8It6PQwjj9UfyN+2NPq3N2Fyc6mBg?=
+ =?us-ascii?Q?v0/tzS3BORLbBs3oEBVp6JO7wFkFZn28rkSWZ9OgQeV+w0ABKIVT8cKG2yTK?=
+ =?us-ascii?Q?TY+77s3Moyo9pNiowZmOoRl6TdO/5MELc0n1sU0yi8zIoVYl+1CT6TqMTPMH?=
+ =?us-ascii?Q?04bE7D3by1T9equuGw6gX39TVoXdt70wkRW9fmMOrP8/kysHJhB217hY1L5O?=
+ =?us-ascii?Q?5b/ZBjjgHAE4KTUJyWOwoUOzykvsSMXEljNxv2MtRUpLpnCX+nWaBIsbpwVb?=
+ =?us-ascii?Q?JT/3IOJj+7htwhYwmRCR7YxN86PLLNjTu8OC1N97I21TRP5SE01ZY0ButeCG?=
+ =?us-ascii?Q?+mF8BcH+olcBmtNlM8JjQINmI9QsZxEHGv2Cvm3DEgCTLn+WG8BfbPUoW1TC?=
+ =?us-ascii?Q?v8O1KFjqAnpWBengb+v7+zkMzbqiCsErt+FjokftIdRyyEbFCBKzDJvnTSAf?=
+ =?us-ascii?Q?MhrjD6A/v6C1BcI3U1FW79/zOITHmA6eEj29rsXQ14u88VfgbqembKGr2iRG?=
+ =?us-ascii?Q?eflwMRhh+lCGA5l86kKHNN0mIgQm8EYnzYpE/WsS5bH0c3yc/pcUk7444+4Q?=
+ =?us-ascii?Q?rGlaGVzw50DavXiqLeGS4FAZoCvhjPObS6mF7VHOa5Kp5qVlLQ7Q+tAbIhC4?=
+ =?us-ascii?Q?nQ=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4dfbe566-7bc2-4518-b469-08db02ecabe0
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8603.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2023 18:06:12.3942
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 785210cc-ae46-4637-e621-08db02e72a3f
-X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[aherlnxbspsrv01.lgs-net.com]
-X-MS-Exchange-CrossTenant-AuthSource: AM0EUR02FT004.eop-EUR02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR06MB5376
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: r1/H3Rhhqcfk7+rEeNu+4o/vDmEpsiaPDU13zV2vDZIxC2/+T6TuVgk++9ekYmqrlrJQHAXltdbZq/vkh23lz4bkKRt1l58dGvYWHazxcwQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7129
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
@@ -99,58 +119,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-current(?) imx8mm EVKs come with a different PMIC: used to be
-"rohm,bd71847", which is now replaced by "nxp,pca9450a" on the LPDDR4
-variant at least the register settings etc where "backported" from
-current u-boot sources for the EVK
+This patch adds a driver for NXP bluetooth chipsets.
+The driver is based on H4 protocol, and uses serdev
+APIs. It supports host to chip power save feature,
+which is signalled by the host by asserting break
+over UART TX lines, to put the chip into sleep state.
 
-Note: not sure if the changes should go in the ddr4-evk.dts or elsewhere;
-what about backwards compatibility? = users/holders of the EVKs with the bd71847 IC?
+To support this feature, break_ctl has also been
+added to serdev-tty along with a new serdev API
+serdev_device_break_ctl().
 
-changes with V11:
-	correct (?) regulator min/max from:
-	8MMINILPD4-CPU  SPF-31399_C2.pdf
+This driver is capable of downloading firmware into
+the chip over UART.
 
-changes with V10:
-	- keep rhom-pic node untouched, for the "old" evks, and
-	  delete+replace the node in the newer evks = EVKB
-	- migrate voltage levels set for the rhom to the nxp pmic
+The document specifying device tree bindings for
+this driver is also included in this patch series.
 
-changes with V9:
-	drop 'rev b' references
+Neeraj Sanjay Kale (3):
+  serdev: Add method to assert break
+  dt-bindings: net: bluetooth: Add NXP bluetooth support
+  Bluetooth: NXP: Add protocol support for NXP Bluetooth chipsets
 
-changes with V8:
-	rewording of commit messages, to reference "EVKB" instead of "rev-b"
-
-changes with V7:
-	add missing "acked-by" tag
-	(finally) add missing makefile entry for imx8mm-evbk.dtb
-
-changes with V6:
-	move A53 cpu-supply nodes back into imx8mm-evk.dtsi
-	rewording of commit messages
-	fix syntax error during compile
-
-changes with V5:
-	split of bindings into separate commit
-	rewording of commit messages
-
-changes with V4:
-	deduplicate rohm-pmic into one dtsi 
-
-changes with V3:
-	split changes into multiple commits
-	removed unused header
-
-changes with V2:
-	reshuffle common nodes into the imx8mm-evk.dtsi, and only keeping the pmic related parts separate
-
-Johannes Schneider (1):
-  arm64: dts: imx8mm: set PCA9450a as PMIC
-
- .../boot/dts/freescale/imx8mm-ddr4-evk.dts    | 124 ++++++++++++++++++
- 1 file changed, 124 insertions(+)
+ .../bindings/net/bluetooth/nxp-bluetooth.yaml |   42 +
+ MAINTAINERS                                   |    7 +
+ drivers/bluetooth/Kconfig                     |   11 +
+ drivers/bluetooth/Makefile                    |    1 +
+ drivers/bluetooth/btnxpuart.c                 | 1145 +++++++++++++++++
+ drivers/bluetooth/btnxpuart.h                 |  227 ++++
+ drivers/tty/serdev/core.c                     |   11 +
+ drivers/tty/serdev/serdev-ttyport.c           |   12 +
+ include/linux/serdev.h                        |    6 +
+ 9 files changed, 1462 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
+ create mode 100644 drivers/bluetooth/btnxpuart.c
+ create mode 100644 drivers/bluetooth/btnxpuart.h
 
 -- 
-2.25.1
+2.34.1
 
