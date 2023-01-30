@@ -2,167 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27933680BF8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 12:28:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34C7E680C06
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 12:32:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235265AbjA3L2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 06:28:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34722 "EHLO
+        id S236137AbjA3LcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 06:32:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236254AbjA3L2h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 06:28:37 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FC1C31E03;
-        Mon, 30 Jan 2023 03:28:22 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id j32-20020a05600c1c2000b003dc4fd6e61dso2923562wms.5;
-        Mon, 30 Jan 2023 03:28:22 -0800 (PST)
+        with ESMTP id S236652AbjA3LcF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 06:32:05 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD91C34C27
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 03:31:55 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id me3so30770316ejb.7
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 03:31:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pGao7bFNvayRLXYx+1NJAmEJ9xV7NpkTyTJLNdomiEY=;
-        b=awYjgw8Ey+gXsNO+2+7zD6fJ9bbqNMH/gNO548BB9Kz1+2anZVVtWbhdudmAF55fy0
-         OHZcn3DUgKKkwGtQbs+Z1xYWf+I+/u8IdMhzQOgbNm4dyxpG8AQJ4Z9qFCYPCUFFtf4F
-         onQv92SJnk4i5Os1qTRN9Jg+b+kxTe029QuoQyCfG5Nh8PDkMhrDw6HVyjsyhKThxT32
-         i3tm+BGCFlE2BTQWuk9dHXjdKAaiKTq/5lWPS0Y1S64XlOIoXBgDjiyRV1ot4X3QqWqA
-         mLjX3M9ai0pLX0Sy0l4TFV4+l5VYvGzT2u2t/vwFfosrjic6XUazi2qN6HGyrDO+gl5/
-         4rQw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4YbWf65lg2cQpgfmV5inxaJ+xw++SwQJT+M7eoK5F4Q=;
+        b=x6p8Wts7qSiLZarPrBkLp0wV/Ji/Izq6x9YUDQ+t2ydvkeNyAAcwooP/s5sxdbXTJZ
+         QfAhnkLD5xXVNOmoQPxXZQhRvOxyDefu9UfCdXDPdsQxFwgN7nYp5rOnrHmQubeU0Wz7
+         eK8nt31Y79kCDI/WUOlpVbVLKhY/A31MF9kIPCvHzXEuKzigl5N+HTdSbOTO3jVO9UrJ
+         rvIPF4HY1xI8S88pNf/hGoRybHV6Gnw15MGvIukhgOTviXWV+h9ZyCkIvMDsOCHhPSaF
+         l8IGOlFeqnLzxwf6O4+j4feBX2xVOR+1HMOBCCcBzWUZeSdWFXNCW1cUaYH9u8txG47Z
+         Bvaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pGao7bFNvayRLXYx+1NJAmEJ9xV7NpkTyTJLNdomiEY=;
-        b=EwppzRJXZ0g0fJV22trZpxmtAltkGdCghxZVj2Ay2ADKc7cggLwW0E0xMBuPvtdybv
-         rYMdboiyfBkcQRrmfS8mkEiTdKtKt/RfiZvcEU3qaKN1zf1jbrQRPXF238sNOXQKWJrT
-         DaXV+UcKpVnct33zPOBIDDuP6O+5yIgoe+5bjZw100Nv3QfhsPP34XQkoCcXRD+n2mVF
-         Ulm9XmKj4hJh41AOGjP+okJAA/KV9aHgYQFG5Gadfah1uYDVoRhk6KaoTvK51kDxPlwQ
-         Os3646V9qAwXZ3a3gQnU1yHm1dTUdI/SiAWBK20aRWZbjZZhyS1Q2tNtfuV0lQxYSCCZ
-         RVaQ==
-X-Gm-Message-State: AFqh2koxppZKNSQBQcIAbSR3NuHTBksoJmY0964tmm/qUhBDANSndKMt
-        lHMu0TYqtZFW2ksduRBiYhI=
-X-Google-Smtp-Source: AMrXdXuqwouNavCIzGS+zCP5ZhZ28lH6UR0DubxAWdWEi0qJwi71JGL+LChymyRIdN59GMOrNnlUrg==
-X-Received: by 2002:a05:600c:4e4b:b0:3db:2e6d:9f79 with SMTP id e11-20020a05600c4e4b00b003db2e6d9f79mr37379881wmq.39.1675078100854;
-        Mon, 30 Jan 2023 03:28:20 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id hg6-20020a05600c538600b003dafbd859a6sm15943157wmb.43.2023.01.30.03.28.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jan 2023 03:28:20 -0800 (PST)
-Message-ID: <3e88c585-5d45-7183-db50-030415bac9da@gmail.com>
-Date:   Mon, 30 Jan 2023 12:28:18 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v6 4/4] soc: mediatek: mmsys: add support for MT8195
- VPPSYS
-Content-Language: en-US
-To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4YbWf65lg2cQpgfmV5inxaJ+xw++SwQJT+M7eoK5F4Q=;
+        b=7Wh365DYLaKW6CVUNpSF1WB7hsnv/F1gED7dSVcRZT8nvPgSk9Zks+RySAcq1IGYXC
+         TQTBKnnsU0c59I2UjyWkEHSp6JiFmDo9lQ/34+Rk54t6nI8wapYeaSSNV82gIOnAJT/X
+         JqKpDSF7jr31f3Iux+Y0I48QkYbR/vjSpihBv33TO01Ugq7Ng89Jlj+t6vE+UUNnFLoS
+         NdoBpJBPG3TzQt/o5TJeXv4wKSEcp9M9rOO3k+wkcCMozQzAdJn85cwAkDgYxuQ18LZg
+         DBhHxDmB0kYj/DHlVrfUmgDQGjJLZL/pFiLWGK0GQwiQnkE+1RpVL+JG0IgtnkdiR60+
+         ev2Q==
+X-Gm-Message-State: AFqh2koX4XljQDmO7AkACEg5O4yquH9RJJ6nUWXNgAhm8UxuXMvJrm03
+        qJN9Ltiwms5KzKEex2od40Ua/w==
+X-Google-Smtp-Source: AMrXdXtOvcr+SFVypdszhnnG8chKGR68qAsLVWoEYFnrJOTeUx1xaP+iDHtDb/nHwypYGL0jd/mnXQ==
+X-Received: by 2002:a17:907:7e9c:b0:84d:363c:888b with SMTP id qb28-20020a1709077e9c00b0084d363c888bmr64669724ejc.58.1675078314495;
+        Mon, 30 Jan 2023 03:31:54 -0800 (PST)
+Received: from localhost.localdomain (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
+        by smtp.gmail.com with ESMTPSA id w5-20020a1709061f0500b0086a2e31d1c1sm6703356ejj.28.2023.01.30.03.31.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 03:31:53 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
-References: <20230118031509.29834-1-moudy.ho@mediatek.com>
- <20230118031509.29834-5-moudy.ho@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230118031509.29834-5-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: usb: fsa4480: Use generic node name
+Date:   Mon, 30 Jan 2023 12:31:50 +0100
+Message-Id: <20230130113151.2130063-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Node names should be generic. Change fsa4480@ to typec-mux@.
 
+Fixes: 01afa882f12d ("dt-bindings: usb: Add binding for fcs,fsa4480")
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 18/01/2023 04:15, Moudy Ho wrote:
-> From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
-> 
-> Add MT8195 VPPSYS0 and VPPSYS1 driver data.
-> 
-> Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+diff --git a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+index 9473f26b0621..51120fe90322 100644
+--- a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
++++ b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+@@ -51,7 +51,7 @@ examples:
+         #address-cells = <1>;
+         #size-cells = <0>;
+ 
+-        fsa4480@42 {
++        typec-mux@42 {
+           compatible = "fcs,fsa4480";
+           reg = <0x42>;
+ 
+-- 
+2.39.1
 
-Applied, thanks
-
-> ---
->   drivers/soc/mediatek/mtk-mmsys.c | 22 ++++++++++++++++++++++
->   drivers/soc/mediatek/mtk-mmsys.h |  1 +
->   2 files changed, 23 insertions(+)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-mmsys.c
-> index 38f1dd92e7c6..176fdc866e22 100644
-> --- a/drivers/soc/mediatek/mtk-mmsys.c
-> +++ b/drivers/soc/mediatek/mtk-mmsys.c
-> @@ -88,6 +88,16 @@ static const struct mtk_mmsys_driver_data mt8195_vdosys0_driver_data = {
->   	.num_routes = ARRAY_SIZE(mmsys_mt8195_routing_table),
->   };
->   
-> +static const struct mtk_mmsys_driver_data mt8195_vppsys0_driver_data = {
-> +	.clk_driver = "clk-mt8195-vpp0",
-> +	.is_vppsys = true,
-> +};
-> +
-> +static const struct mtk_mmsys_driver_data mt8195_vppsys1_driver_data = {
-> +	.clk_driver = "clk-mt8195-vpp1",
-> +	.is_vppsys = true,
-> +};
-> +
->   static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data = {
->   	.clk_driver = "clk-mt8365-mm",
->   	.routes = mt8365_mmsys_routing_table,
-> @@ -264,6 +274,9 @@ static int mtk_mmsys_probe(struct platform_device *pdev)
->   	if (IS_ERR(clks))
->   		return PTR_ERR(clks);
->   
-> +	if (mmsys->data->is_vppsys)
-> +		goto out_probe_done;
-> +
->   	drm = platform_device_register_data(&pdev->dev, "mediatek-drm",
->   					    PLATFORM_DEVID_AUTO, NULL, 0);
->   	if (IS_ERR(drm)) {
-> @@ -271,6 +284,7 @@ static int mtk_mmsys_probe(struct platform_device *pdev)
->   		return PTR_ERR(drm);
->   	}
->   
-> +out_probe_done:
->   	return 0;
->   }
->   
-> @@ -323,6 +337,14 @@ static const struct of_device_id of_match_mtk_mmsys[] = {
->   		.compatible = "mediatek,mt8195-vdosys0",
->   		.data = &mt8195_vdosys0_driver_data,
->   	},
-> +	{
-> +		.compatible = "mediatek,mt8195-vppsys0",
-> +		.data = &mt8195_vppsys0_driver_data,
-> +	},
-> +	{
-> +		.compatible = "mediatek,mt8195-vppsys1",
-> +		.data = &mt8195_vppsys1_driver_data,
-> +	},
->   	{
->   		.compatible = "mediatek,mt8365-mmsys",
->   		.data = &mt8365_mmsys_driver_data,
-> diff --git a/drivers/soc/mediatek/mtk-mmsys.h b/drivers/soc/mediatek/mtk-mmsys.h
-> index 77f37f8c715b..54a96b83afb4 100644
-> --- a/drivers/soc/mediatek/mtk-mmsys.h
-> +++ b/drivers/soc/mediatek/mtk-mmsys.h
-> @@ -91,6 +91,7 @@ struct mtk_mmsys_driver_data {
->   	const struct mtk_mmsys_routes *routes;
->   	const unsigned int num_routes;
->   	const u16 sw0_rst_offset;
-> +	const bool is_vppsys;
->   };
->   
->   /*
