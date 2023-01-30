@@ -2,62 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFF45680732
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 09:15:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FAA0680771
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 09:31:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235278AbjA3IPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 03:15:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42560 "EHLO
+        id S236033AbjA3Ibm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 03:31:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233731AbjA3IP0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 03:15:26 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FF0E1024C;
-        Mon, 30 Jan 2023 00:15:06 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id ECE7224E1ED;
-        Mon, 30 Jan 2023 16:14:24 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 30 Jan
- 2023 16:14:25 +0800
-Received: from [192.168.125.128] (183.27.97.127) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 30 Jan
- 2023 16:14:23 +0800
-Message-ID: <ce15c2be-e959-334a-2297-cfbb6bc2d62f@starfivetech.com>
-Date:   Mon, 30 Jan 2023 16:10:16 +0800
+        with ESMTP id S236032AbjA3Ibk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 03:31:40 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37CAE2413A;
+        Mon, 30 Jan 2023 00:31:39 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30U6KNbW020276;
+        Mon, 30 Jan 2023 08:13:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=y9H0J9H/Gb1KHD/YVlxfGW9S3sdNySUo8pNooxrjeQU=;
+ b=es/Wa5M+OOGPSU0uxT9JQRz67ib3PxdThN27wIXqslKD9p3QMsITu1LkIW1HqNekSjJo
+ Cc6ZR+4JiDGf05V037mejcKb11DOwjS2LLfnXWrhKIrkvc+ym1/ekr9jQuF4aBAai049
+ VQ+/flWdJZpF8kLNs+yuTplsSMPWAsKYgMGh1VmDYMsP60evV7RFIfd3tyw1bXqWszr7
+ JQ015NL6Bt08ttehguRMIIdJI+imu0uluThXk5szzTyI4L3FS0zNKea8GH7L2/YsOHOg
+ FXFLUBH7+WizJdvEhb6nzogfY0v6J7FQBKxjQBYChoWhYg5ylCswa0VAyHjHRCgCOdw/ fw== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ncsdpu7hp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Jan 2023 08:13:18 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30U8DHhY016285
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Jan 2023 08:13:17 GMT
+Received: from [10.216.24.235] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 30 Jan
+ 2023 00:13:14 -0800
+Message-ID: <8a4d1e88-56d0-fb71-7172-75b3ecf6e4b6@quicinc.com>
+Date:   Mon, 30 Jan 2023 13:43:10 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v1 07/11] dt-bindings: clock: Add StarFive JH7110
- Video-Output clock and reset generator
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v4 1/2] dt-bindings: ramoops: Inherit reserve memory
+ property
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <kernel@esmil.dk>
-CC:     Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20230120024445.244345-1-xingyu.wu@starfivetech.com>
- <20230120024445.244345-8-xingyu.wu@starfivetech.com>
- <428dc119-82ab-e565-7bd6-1a99ec3967d9@linaro.org>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <428dc119-82ab-e565-7bd6-1a99ec3967d9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-hardening@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>,
+        "Guilherme G . Piccoli" <gpiccoli@igalia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <1674835252-31954-1-git-send-email-quic_mojha@quicinc.com>
+ <637fe4cd-f9e9-ae22-0085-30ea3f1dd5af@linaro.org>
+From:   Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <637fe4cd-f9e9-ae22-0085-30ea3f1dd5af@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.127]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: S7lAdF-VgBep3I70Ri1Hu2FK_FbHE5qi
+X-Proofpoint-ORIG-GUID: S7lAdF-VgBep3I70Ri1Hu2FK_FbHE5qi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-30_06,2023-01-27_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 bulkscore=0 adultscore=0 suspectscore=0 mlxlogscore=999
+ spamscore=0 clxscore=1015 impostorscore=0 mlxscore=0 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301300077
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,168 +83,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/1/20 16:13, Krzysztof Kozlowski wrote:
-> On 20/01/2023 03:44, Xingyu Wu wrote:
->> Add bindings for the Video-Output clock and reset generator (VOUTCRG)
->> on the JH7110 RISC-V SoC by StarFive Ltd.
->> 
->> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->> ---
->>  .../clock/starfive,jh7110-voutcrg.yaml        | 96 +++++++++++++++++++
->>  .../dt-bindings/clock/starfive,jh7110-crg.h   | 22 +++++
->>  .../dt-bindings/reset/starfive,jh7110-crg.h   | 16 ++++
->>  3 files changed, 134 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-voutcrg.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-voutcrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-voutcrg.yaml
->> new file mode 100644
->> index 000000000000..a6a43d86a392
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-voutcrg.yaml
->> @@ -0,0 +1,96 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/starfive,jh7110-voutcrg.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: StarFive JH7110 Video-Output Clock and Reset Generator
->> +
->> +maintainers:
->> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: starfive,jh7110-voutcrg
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: Vout Top core
->> +      - description: Vout Top Ahb
->> +      - description: Vout Top Axi
->> +      - description: Vout Top HDMI MCLK
->> +      - description: I2STX0 BCLK
->> +      - description: external HDMI pixel
->> +
->> +  clock-names:
->> +    items:
->> +      - const: vout_src
->> +      - const: vout_top_ahb
->> +      - const: vout_top_axi
->> +      - const: vout_top_hdmitx0_mclk
->> +      - const: i2stx0_bclk
->> +      - const: hdmitx0_pixelclk
->> +
->> +  resets:
->> +    items:
->> +      - description: Vout Top core
->> +
->> +  reset-names:
->> +    items:
->> +      - const: vout_top_src
->> +
->> +  '#clock-cells':
->> +    const: 1
->> +    description:
->> +      See <dt-bindings/clock/starfive,jh7110-crg.h> for valid indices.
->> +
->> +  '#reset-cells':
->> +    const: 1
->> +    description:
->> +      See <dt-bindings/reset/starfive,jh7110-crg.h> for valid indices.
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +    description:
->> +      Vout domain power
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - reset-names
->> +  - '#clock-cells'
->> +  - '#reset-cells'
->> +  - power-domains
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/starfive,jh7110-crg.h>
->> +    #include <dt-bindings/power/starfive,jh7110-pmu.h>
->> +    #include <dt-bindings/reset/starfive,jh7110-crg.h>
->> +
->> +    voutcrg: clock-controller@295C0000 {
->> +        compatible = "starfive,jh7110-voutcrg";
->> +        reg = <0x295C0000 0x10000>;
->> +        clocks = <&syscrg JH7110_SYSCLK_VOUT_SRC>,
->> +                 <&syscrg JH7110_SYSCLK_VOUT_TOP_AHB>,
->> +                 <&syscrg JH7110_SYSCLK_VOUT_TOP_AXI>,
->> +                 <&syscrg JH7110_SYSCLK_VOUT_TOP_HDMITX0_MCLK>,
->> +                 <&syscrg JH7110_SYSCLK_I2STX0_BCLK>,
->> +                 <&hdmitx0_pixelclk>;
->> +        clock-names = "vout_src", "vout_top_ahb",
->> +                      "vout_top_axi", "vout_top_hdmitx0_mclk",
->> +                      "i2stx0_bclk", "hdmitx0_pixelclk";
->> +        resets = <&syscrg JH7110_SYSRST_VOUT_TOP_SRC>;
->> +        reset-names = "vout_top_src";
->> +        #clock-cells = <1>;
->> +        #reset-cells = <1>;
->> +        power-domains = <&pwrc JH7110_PD_VOUT>;
->> +    };
->> diff --git a/include/dt-bindings/clock/starfive,jh7110-crg.h b/include/dt-bindings/clock/starfive,jh7110-crg.h
->> index 91ee589809c3..3ebece93cbd3 100644
->> --- a/include/dt-bindings/clock/starfive,jh7110-crg.h
->> +++ b/include/dt-bindings/clock/starfive,jh7110-crg.h
->> @@ -274,4 +274,26 @@
->>  
->>  #define JH7110_ISPCLK_END			14
->>  
->> +/* VOUTCRG clocks */
->> +#define JH7110_VOUTCLK_APB			0
->> +#define JH7110_VOUTCLK_DC8200_PIX		1
->> +#define JH7110_VOUTCLK_DSI_SYS			2
->> +#define JH7110_VOUTCLK_TX_ESC			3
->> +#define JH7110_VOUTCLK_DC8200_AXI		4
->> +#define JH7110_VOUTCLK_DC8200_CORE		5
->> +#define JH7110_VOUTCLK_DC8200_AHB		6
->> +#define JH7110_VOUTCLK_DC8200_PIX0		7
->> +#define JH7110_VOUTCLK_DC8200_PIX1		8
->> +#define JH7110_VOUTCLK_DOM_VOUT_TOP_LCD		9
->> +#define JH7110_VOUTCLK_DSITX_APB		10
->> +#define JH7110_VOUTCLK_DSITX_SYS		11
->> +#define JH7110_VOUTCLK_DSITX_DPI		12
->> +#define JH7110_VOUTCLK_DSITX_TXESC		13
->> +#define JH7110_VOUTCLK_MIPITX_DPHY_TXESC	14
->> +#define JH7110_VOUTCLK_HDMI_TX_MCLK		15
->> +#define JH7110_VOUTCLK_HDMI_TX_BCLK		16
->> +#define JH7110_VOUTCLK_HDMI_TX_SYS		17
->> +
->> +#define JH7110_VOUTCLK_END			18
->> +
->>  #endif /* __DT_BINDINGS_CLOCK_STARFIVE_JH7110_CRG_H__ */
->> diff --git a/include/dt-bindings/reset/starfive,jh7110-crg.h b/include/dt-bindings/reset/starfive,jh7110-crg.h
->> index 1b40df62cdac..f89589610cf5 100644
->> --- a/include/dt-bindings/reset/starfive,jh7110-crg.h
->> +++ b/include/dt-bindings/reset/starfive,jh7110-crg.h
->> @@ -195,4 +195,20 @@
->>  
->>  #define JH7110_ISPRST_END			12
->>  
->> +/* VOUTCRG resets */
->> +#define	JH7110_VOUTRST_DC8200_AXI		0
->> +#define	JH7110_VOUTRST_DC8200_AHB		1
+
+
+On 1/28/2023 1:33 AM, Krzysztof Kozlowski wrote:
+> On 27/01/2023 17:00, Mukesh Ojha wrote:
+>> The reserved memory region for ramoops is assumed to be at a
+>> fixed and known location when read from the devicetree. This
+>> is not desirable in an environment where it is preferred the
+>> region to be dynamically allocated at runtime, as opposed to
+>> being fixed at compile time.
+>>
+>> So, update the ramoops binding by inheriting some reserve memory
+>> property to allocate the ramoops region dynamically.
 > 
-> Ditto
+> Where is the update which adds "inheriting"?
 
-Will fix.
+By inheriting, i meant using reserve memory properties..
 
-Best regards,
-Xingyu Wu
+Probably rephrase above as.
 
+"dt-bindings: ramoops: Support dynamic ramoops region allocation
+
+The reserved memory region for ramoops is assumed to be at a
+fixed and known location when read from the devicetree. This
+is not desirable in an environment where it is preferred the
+region to be dynamically allocated at runtime, as opposed to
+being fixed at compile time. This can be done with minor update
+in ramoops binding as it inherit reserve memory property
+(.yaml) in the binding.
+
+Dynamic region could be used by providing size(region size) and
+alloc-ranges(allowed ddr region to allocate the size from) instead
+of mentioning regs"
+
+Does it sound reasonable ?
+
+-Mukesh
+> 
+>>
+>> Cc: Kees Cook <keescook@chromium.org>
+>> Cc: Tony Luck <tony.luck@intel.com>
+>> Cc: Guilherme G. Piccoli <gpiccoli@igalia.com>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+>> ---
+>> Changes in v4:
+>>   - Addressed comment made by Krzysztof on ramoops node name.
+>>
+>> Changes in v3:
+>>   - Fixed yaml error and updated commit text as per comment.
+>>
+>> Change in v2:
+>>    - Added this patch as per changes going to be done in patch 3/3
+>>
+>>   .../bindings/reserved-memory/ramoops.yaml          | 34 ++++++++++++++++++++--
+>>   1 file changed, 32 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+>> index 0391871..8741626 100644
+>> --- a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+>> +++ b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+>> @@ -10,7 +10,8 @@ description: |
+>>     ramoops provides persistent RAM storage for oops and panics, so they can be
+>>     recovered after a reboot. This is a child-node of "/reserved-memory", and
+>>     is named "ramoops" after the backend, rather than "pstore" which is the
+>> -  subsystem.
+>> +  subsystem. This region can be reserved both statically or dynamically by
+>> +  using appropriate property in device tree.
+>>   
+>>     Parts of this storage may be set aside for other persistent log buffers, such
+>>     as kernel log messages, or for optional ECC error-correction data.  The total
+>> @@ -112,7 +113,13 @@ unevaluatedProperties: false
+>>   
+>>   required:
+>>     - compatible
+>> -  - reg
+> 
+> This is okay, but:
+> 
+>> +
+>> +oneOf:
+>> +  - required:
+>> +      - reg
+>> +
+>> +  - required:
+>> +      - size
+> 
+> I now keep wondering - why do you need this?
+
+This should be same as..
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+
+> 
+>>   
+>>   anyOf:
+>>     - required: [record-size]
+>> @@ -142,3 +149,26 @@ examples:
+>>               };
+>>           };
+>>       };
+>> +
+>> +  - |
+>> +    / {
+>> +        compatible = "foo";
+>> +        model = "foo";
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +
+>> +        reserved-memory {
+>> +            #address-cells = <1>;
+>> +            #size-cells = <1>;
+>> +            ranges;
+>> +
+>> +            ramoops_region: ramoops {
+>> +                compatible = "ramoops";
+>> +                alloc-ranges = <0x00000000 0xffffffff>;
+>> +                size = <0x0 0x10000>;       /* 64kB */
+>> +                console-size = <0x8000>;    /* 32kB */
+>> +                record-size = <0x400>;      /*  1kB */
+>> +                ecc-size = <16>;
+>> +            };
+>> +        };
+>> +    };
+> 
+> This example does not bring anything new for the ramoops. It's an
+> example for reserved-memory to show usage with alloc-ranges. There is
+> nothing useful here in terms of ramoops, so I think it should be dropped.
+> 
+
+will drop this..
+
+> Best regards,
+> Krzysztof
+> 
