@@ -2,95 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C179681FCB
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 00:44:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8436F681FDD
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 00:46:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229757AbjA3Xn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 18:43:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59110 "EHLO
+        id S230094AbjA3Xq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 18:46:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229460AbjA3Xn6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 18:43:58 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A90F222DCE;
-        Mon, 30 Jan 2023 15:43:57 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so9411308wms.2;
-        Mon, 30 Jan 2023 15:43:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=j2jstaPI4y1XJ/gNFdxFKBz/qLiOGjBGxKWHNOfP69M=;
-        b=q7mcSsHqEC3fFpT53TEvXIrKOhKgkzxxZh+Qo8k0Fk7rLMLKn/yLvOnnrpeemgpzOs
-         9uYBjKTg7rnP2CDT41wNbCny0Io0qQtiXrA26+0f6KItly2Nbm3S9IYUK9PD1XybYDoj
-         HW3LBh7oQdfUGacm6GObwevVEhahE2yLWR0DiTTUspWhrTHwn1HGVC8TIZifeYbJrQNL
-         hq4nzCsk5tdeIsvIpNeSB97j4IxrR75TbmcbX9YDdZAvv5HxI/QyaugmKLIbwqxn/OUn
-         UR03oA6YemUQCaOTLPYHr4/DxOyK3/NujnVTDya7ox2Y2mJsUif/+qcIQKQSE8ku3X5E
-         QbrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j2jstaPI4y1XJ/gNFdxFKBz/qLiOGjBGxKWHNOfP69M=;
-        b=7qCLbK0w7Mz9veXBw1Xu+VIaoK97RannR7Qih57IXRQBatVVuRGuDhOhTvspFC92+8
-         6W7OhMMF3+9MxgM4y77bEFv32tw833IkIjnGvdhQR1++8IsWOgRTM5pUS3Zxpx8ToAAg
-         FNZluRLLIMK8hAiUbZb6a9udH4iBkjHOSmgJ6I7AEvGJFKqo0S2uVFk8ige3FxMX+7Nd
-         hddG8UP3+pImQRFCVg75tXeXeRKpWsK012dBqtB/AlxcJjjtgLX93RiKkTI+40Xbw3PJ
-         2/jlysscvsCdI8CsYOwe4yqnvKu0EqKcC5ElPIsiSKg6vvI8yp1yDtpuxab7Gc0WyO6Y
-         k/qg==
-X-Gm-Message-State: AO0yUKX1tWSKI3KUw2YrIJGFDQFAD53K/HMNTOj+/tosMWLDdzA9+D5n
-        FTrppaz7N0fqFpN4wGGv4nY=
-X-Google-Smtp-Source: AK7set/yUJpbBV1OJgxzUM+TU61hf/xyJLpCwUwNaB5CfnuPavlpqLH+G3VM3L26HW9hwpHQ6hr5mw==
-X-Received: by 2002:a05:600c:500d:b0:3dc:eaef:c1bb with SMTP id n13-20020a05600c500d00b003dceaefc1bbmr3074848wmr.35.1675122236131;
-        Mon, 30 Jan 2023 15:43:56 -0800 (PST)
-Received: from prasmi.home ([2a00:23c8:2501:c701:6048:d643:15b:441a])
-        by smtp.gmail.com with ESMTPSA id i27-20020a05600c4b1b00b003dc54d9aeeasm5712903wmp.36.2023.01.30.15.43.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 15:43:55 -0800 (PST)
-From:   Lad Prabhakar <prabhakar.csengg@gmail.com>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Subject: [PATCH] dt-bindings: interrupt-controller: arm,gic-v3: Fix typo in description of msi-controller property
-Date:   Mon, 30 Jan 2023 23:43:35 +0000
-Message-Id: <20230130234335.13952-1-prabhakar.csengg@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S230072AbjA3Xq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 18:46:27 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AEED2C669;
+        Mon, 30 Jan 2023 15:46:16 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0CD0B612E6;
+        Mon, 30 Jan 2023 23:46:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE14FC4339C;
+        Mon, 30 Jan 2023 23:46:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675122375;
+        bh=ZO2LzXO0hA8ITd+nMfGPDGgZA633jMSGnWqUOEhaxkQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=WuNnFb3yAx59DXQDjPlCBpaU3Paja0Qi9Jfv97X/07ROAJT/dxyBytaH9m2JxtTic
+         lKLCjWjL6Z6K3Iw4JKfhMDMlrMui3zRcYBfHIWq7ULi5tNRzDIhvrF6ToXw//+rMIi
+         OgFlkDbOPyf1TAd1NBrUfYd13Fpy+5UhJiKbVkRutw7PZfmIiYVY74eyRG8nZn0d9N
+         cyA2aJLLo88zkzwOn4mH3ftQ7UkH5ZvS5Z/elj6o/Wy1oifLXsk3CzHX9UHntFmefY
+         Iz5of7kmb8fBNOtm1MGrlwuZIctBT76VFOVHf199utv24xE7nG4kx/6CGFSLH73Sgi
+         GWlPY+m3EBBbg==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     quic_molvera@quicinc.com, krzysztof.kozlowski+dt@linaro.org,
+        Andy Gross <agross@kernel.org>, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v6 0/2] Add base device tree files for QDU1000/QRU1000
+Date:   Mon, 30 Jan 2023 17:46:11 -0600
+Message-Id: <167512236604.4092892.10258510885495297697.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20230112210722.6234-1-quic_molvera@quicinc.com>
+References: <20230112210722.6234-1-quic_molvera@quicinc.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix typo functionnality -> functionality.
+On Thu, 12 Jan 2023 13:07:20 -0800, Melody Olvera wrote:
+> This series adds the base device tree files and DTS support for the
+> Qualcomm QDU1000 and QRU1000 IDP SoCs, including the clocks, tlmm, smmu,
+> regulators, mmc, interconnects, cpufreq, and qup.
+> 
+> This patchset requires the dt-bindings changes from [1-3].
+> 
+> The Qualcomm Technologies, Inc. Distributed Unit 1000 and Radio Unit
+> 1000 are new SoCs meant for enabling Open RAN solutions. See more at
+> https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/qualcomm_5g_ran_platforms_product_brief.pdf
+> 
+> [...]
 
-Signed-off-by: Lad Prabhakar <prabhakar.csengg@gmail.com>
----
- .../devicetree/bindings/interrupt-controller/arm,gic-v3.yaml    | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Applied, thanks!
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-index 9f7d3e11aacb..8449e14af9f3 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-@@ -108,7 +108,7 @@ properties:
- 
-   msi-controller:
-     description:
--      Only present if the Message Based Interrupt functionnality is
-+      Only present if the Message Based Interrupt functionality is
-       being exposed by the HW, and the mbi-ranges property present.
- 
-   mbi-ranges:
+[1/2] arm64: dts: qcom: Add base QDU1000/QRU1000 DTSIs
+      commit: b441a026ae1a5d269ec0ee768681b55294a72621
+[2/2] arm64: dts: qcom: Add base QDU1000/QRU1000 IDP DTs
+      commit: e5768f7a804acdae33d5e02325dd4b67c3883593
+
+Best regards,
 -- 
-2.25.1
-
+Bjorn Andersson <andersson@kernel.org>
