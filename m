@@ -2,73 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50CE76815F9
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 17:07:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC096681606
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 17:11:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236754AbjA3QHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 11:07:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45740 "EHLO
+        id S236741AbjA3QL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 11:11:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236888AbjA3QHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 11:07:39 -0500
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745963FF25;
-        Mon, 30 Jan 2023 08:07:35 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 24D786000D;
-        Mon, 30 Jan 2023 16:07:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1675094853;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=lwBxvonceY4P1NbcQ0KVI8q53OO3cIpiyQCxAOt2B3c=;
-        b=E/Lv8BGKmuhXTh819UVjZR4InZHKKnezUUdq9dmEaqTBKNxPXBZrcNYnapr40CoWlTAynC
-        aor5lY5LDNmjE7AKRzzfI8HK/G9YoYEQNcpiSyri67orHBlhaWzOFRHblxQRYLbZo5Pkaq
-        OEmZBLBiimPoZyTA9Uyvv54KDB/9o9f1EZo2VltWNoT7Z0ABOzBLi7FpLzEKRPfrbZS3Vl
-        QSgZEyodjzo4q5z5gn3rBsw+aWXelYaVMiJGm7EN7TzVLBVL9E9LEV+FWid791xM+v9iGW
-        A0TkT6pD0ajH+q1xYV19TvMpegxPs0OGcd9hgvEuzzVqWYcPy1+NI//jC7V5IQ==
-Date:   Mon, 30 Jan 2023 17:07:27 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
+        with ESMTP id S236937AbjA3QLZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 11:11:25 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1F943E639;
+        Mon, 30 Jan 2023 08:11:23 -0800 (PST)
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C45928B8;
+        Mon, 30 Jan 2023 17:11:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1675095081;
+        bh=sG001yyKvLUqqVVjqlpKXCrPqUid8Xi8Bus9CnOQHJM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=legGWsqSS5O/61U/ux7b3sNsa1RhCN6agqUV/DO+jVw5XECpPKcP3wTbMdWMycFBJ
+         +2g8rqC5+sNSFXEcDJ6GTg55KjWUn4Mj15WUv00aHrvEiAsoi/Jbxj+lR/9LHAxWME
+         8vXmgAxhPUk54x2K5iqvv9ZlwOT+hyGiyeOu3ZaA=
+Date:   Mon, 30 Jan 2023 17:11:19 +0100
+From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 To:     Rob Herring <robh@kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: partitions: Fix partition node name
- pattern
-Message-ID: <20230130170727.04286633@xps-13>
-In-Reply-To: <20230120020454.3225796-1-robh@kernel.org>
-References: <20230120020454.3225796-1-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+Cc:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        chiranjeevi.rapolu@intel.com, luca@z3ntu.xyz,
+        krzysztof.kozlowski+dt@linaro.org,
+        laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
+        mchehab@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6.1] media: dt-bindings: Add OV5670
+Message-ID: <20230130161119.togkryxoaf47bqqp@uno.localdomain>
+References: <20230126165909.121302-2-jacopo.mondi@ideasonboard.com>
+ <20230128112736.8000-1-jacopo.mondi@ideasonboard.com>
+ <b4794490-b059-373a-dec0-58fcd2344f6f@linaro.org>
+ <20230129121132.uamuvywdsuah5ivn@uno.localdomain>
+ <20230130155840.GA2706990-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230130155840.GA2706990-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Mon, Jan 30, 2023 at 09:58:40AM -0600, Rob Herring wrote:
+> On Sun, Jan 29, 2023 at 01:11:32PM +0100, Jacopo Mondi wrote:
+> > On Sun, Jan 29, 2023 at 12:40:03PM +0100, Krzysztof Kozlowski wrote:
+> > > On 28/01/2023 12:27, Jacopo Mondi wrote:
+> > > > Add the bindings documentation for Omnivision OV5670 image sensor.
+> > > >
+> > > > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > > > ---
+> > > > v6->6.1
+> > > > - Use additionalProperties: false for endpoint properties from
+> > > >   video-interfaces.yaml
+> > > > - List 'remote-endpoint' among the accepted endpoint properties
+> > > >   now that we use additionalProperties: false
+> > >
+> > > b4 diff '20230128112736.8000-1-jacopo.mondi@ideasonboard.com'
+> > > Could not create fake-am range for lower series v1
+> > >
+> > > Can you send patches in a way it does not break out workflows? Why
+> > > making our review process more difficult?
+> >
+> > Because it's a nit on a 10 patches series with no other changes
+> > requested ?
+>
+> So? Think of patch series as an 'email transport' for your git branches.
+> If you rebase your branch, that's a whole new branch to send.
+>
 
-robh@kernel.org wrote on Thu, 19 Jan 2023 20:04:53 -0600:
+So if a series has a single comment and could be then collected as it
+is but one patch I saw it happening multiple times on the ML and I
+thought it was an accepted practice.
 
-> The 'partition' node name pattern is missing start and end anchors, so
-> anything is allowed before or after the regex pattern. There's no in tree
-> users needing that, so add anchors to the pattern.
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
 
-Looks like my scripts did not properly sent the "applied" e-mail, so
-here it is, I applied this patch to mtd/next.
+> > What is difficult exactly ?
+>
+> In addition to 'b4 diff', if a maintainer is applying this series, for a
+> v7 they just do:
+>
+> b4 shazam msgid-of-v7
+>
+> For v6.1, they do:
+>
+> b4 shazam msgid-of-v6
+> git rebase -i ...
+> <stop on patch 1>
+> git reset --hard HEAD^
+> b4 shazam msgid-of-v6.1
+> git rebase --continue
+>
+> Which one makes the maintainer's life easier?
+>
 
-Thanks,
-Miqu=C3=A8l
+With b4 it now certainly makes a difference.
+
+As I save patches from my mail client and apply them manually I never
+really considered picking one patch over the other from the same
+thread "more difficult". I should have noticed when Krzysztof
+mentioned b4 in his first reply.
+
+> If it's a CI job trying to apply and test this, there's no way it's
+> going to do the second case.
+>
+
+That's another point yes.
+
+Got your message, I'll stop :)
+
+Don't think a v7 is needed for this on though (if not other
+comments ofc)
+
+> Rob
