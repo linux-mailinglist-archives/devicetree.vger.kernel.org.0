@@ -2,243 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E345D681876
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 19:16:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ADF16813C4
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 15:52:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237377AbjA3SQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 13:16:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48168 "EHLO
+        id S237854AbjA3OwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 09:52:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237403AbjA3SPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 13:15:55 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E2392B60E;
-        Mon, 30 Jan 2023 10:15:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675102549; x=1706638549;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QjXjMnu6Y3KsGfyiWp4s/PbltUG+5MX/5jw4lyAX9SI=;
-  b=ADRBXuR4/RUxMjE7apGEcC3zByEzkwGtZZXw0+n6W6bc5Kl+bqGAKVOi
-   h3xQyBWJjgWwtR7JrsRNiwuqD9LbAKXkIvPVXk4bBGBhPYaqfkHcAet1k
-   t8fRoO+ZbD0GRdEr94lxCFrSC99diXMX3yny36DtUhGuvJuRX0+DsSOMM
-   azQcjM7racXV7eYCbI23WqCaUSdCtgEFy9JrzQ75Iihl6gP0QVCvuf0jr
-   JeY3XTrXbdO1LCFhgsgu/grgFlem5BF4Lj4/n0HdyWDgKSHicTWWX7ssM
-   c6+dSq3fHsMc1U95WS+yrnj/HkgDhxbK8wXEB5UWmUGHwK4nr8AbBSFvF
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="328909709"
-X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; 
-   d="scan'208";a="328909709"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2023 10:15:46 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="657563974"
-X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; 
-   d="scan'208";a="657563974"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2023 10:15:34 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-        by kekkonen.fi.intel.com (Postfix) with SMTP id 9970A1202B0;
-        Mon, 30 Jan 2023 16:39:47 +0200 (EET)
-Date:   Mon, 30 Jan 2023 16:39:47 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        with ESMTP id S235949AbjA3OwB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 09:52:01 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79F471E2A8
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 06:51:58 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id hn2-20020a05600ca38200b003dc5cb96d46so1254028wmb.4
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 06:51:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=w/BGsdjH3kzkfT6LKJZyI96LnFxoW5s+QoFH5M2WoRo=;
+        b=1/+vRbWhaghOFGpUBcEHV3AxQ6Q8sYpKCxRhQNUA8a6jHR/xhzKJT1XCbUh1gjrc8u
+         3Oaa+3uDigkdjteWe4g6BhB1FlFFyu4LbNCUjWzaW2+RJV2ZNfFcJY7EQJAEoiPBo9M6
+         Qnxeq5SoYDPIBwUGNobgOgQAaBynvH0n4wPpQR4ToomGKAhSy4aJC0Jih+dB8T4w3TEP
+         G65m0s/XY7h3plhdtHxAXXtMkBGDIk9qjdwBIxcUt/OwccuXdb+DjfUEVoanN5JL6bTu
+         yOSnHV2CeYYyhNlWUnC1PVGf44XgsHb5un5UhkuPT1MsDSLxQvJdTrThTbUX5uX0m3vO
+         XfBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w/BGsdjH3kzkfT6LKJZyI96LnFxoW5s+QoFH5M2WoRo=;
+        b=z01LB0wgUb4CGKJHAR4GD0QMYJ+2hO/R5LRMmAvXzF1Hv52/ko7vbYbZU+SCv/pbfb
+         P8qC7e7V40PsG5gWdcB+S2mMMvagWNcxbFKjvdyesum2A3v5EZobcSTkVVkQ4HLpjUb9
+         dAAYxhH/jIAmWJwOCE9fLd9bhEDMZ9lzQrM+CiLy+Tn1y6copy1Gkx8J5h7kkkxS6qkN
+         TFQsRuyDh74mizgWPfiJ93eB9jG2qfACvW2/QLIrDnM5TMQMNzeHMIxwelVdmwj52iHQ
+         Cb7zju7yRjMpTqqLRKcQzy8aYRDcs8Qtf/9N8gExXu5y/V4rOIRWuG5IMkDl5NZg3e//
+         C/NA==
+X-Gm-Message-State: AO0yUKXMkVTw7nJDlcRqrtT8D5WVIbs6qRDgAq9y0oF9Q4lVkIxzyV6c
+        IvPdAri2UFGrCSibZ32WGdk+Nw==
+X-Google-Smtp-Source: AK7set+ZLvgVqk9VEY+YtMK5GWPiTjquoo1pbvkYmsFSRUYj9NHIH/c+DdZLVRyF9YkJOHHyuhfeKw==
+X-Received: by 2002:a7b:c4ca:0:b0:3dc:4316:52be with SMTP id g10-20020a7bc4ca000000b003dc431652bemr10316252wmk.10.1675090317023;
+        Mon, 30 Jan 2023 06:51:57 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:b9a5:a1fe:d3ab:6b40])
+        by smtp.gmail.com with ESMTPSA id q17-20020a05600c46d100b003dc530186e1sm6430248wmo.45.2023.01.30.06.51.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 06:51:56 -0800 (PST)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Linux Kernel Functional Testing <lkft@linaro.org>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v2 09/11] of: property: Simplify of_link_to_phandle()
-Message-ID: <Y9fWsxYJgNR0z6te@kekkonen.localdomain>
-References: <20230127001141.407071-1-saravanak@google.com>
- <20230127001141.407071-10-saravanak@google.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH -next] dt-bindings: clock: qcom,sa8775p-gcc: add the power-domains property
+Date:   Mon, 30 Jan 2023 15:51:54 +0100
+Message-Id: <20230130145154.195562-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230127001141.407071-10-saravanak@google.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Saravana,
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-On Thu, Jan 26, 2023 at 04:11:36PM -0800, Saravana Kannan wrote:
-> The driver core now:
-> - Has the parent device of a supplier pick up the consumers if the
->   supplier never has a device created for it.
-> - Ignores a supplier if the supplier has no parent device and will never
->   be probed by a driver
-> 
-> And already prevents creating a device link with the consumer as a
-> supplier of a parent.
-> 
-> So, we no longer need to find the "compatible" node of the supplier or
-> do any other checks in of_link_to_phandle(). We simply need to make sure
-> that the supplier is available in DT.
-> 
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->  drivers/of/property.c | 84 +++++++------------------------------------
->  1 file changed, 13 insertions(+), 71 deletions(-)
-> 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 134cfc980b70..c651aad6f34b 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1062,20 +1062,6 @@ of_fwnode_device_get_match_data(const struct fwnode_handle *fwnode,
->  	return of_device_get_match_data(dev);
->  }
->  
-> -static bool of_is_ancestor_of(struct device_node *test_ancestor,
-> -			      struct device_node *child)
-> -{
-> -	of_node_get(child);
-> -	while (child) {
-> -		if (child == test_ancestor) {
-> -			of_node_put(child);
-> -			return true;
-> -		}
-> -		child = of_get_next_parent(child);
-> -	}
-> -	return false;
-> -}
-> -
->  static struct device_node *of_get_compat_node(struct device_node *np)
->  {
->  	of_node_get(np);
-> @@ -1106,71 +1092,27 @@ static struct device_node *of_get_compat_node_parent(struct device_node *np)
->  	return node;
->  }
->  
-> -/**
-> - * of_link_to_phandle - Add fwnode link to supplier from supplier phandle
-> - * @con_np: consumer device tree node
-> - * @sup_np: supplier device tree node
-> - *
-> - * Given a phandle to a supplier device tree node (@sup_np), this function
-> - * finds the device that owns the supplier device tree node and creates a
-> - * device link from @dev consumer device to the supplier device. This function
-> - * doesn't create device links for invalid scenarios such as trying to create a
-> - * link with a parent device as the consumer of its child device. In such
-> - * cases, it returns an error.
-> - *
-> - * Returns:
-> - * - 0 if fwnode link successfully created to supplier
-> - * - -EINVAL if the supplier link is invalid and should not be created
-> - * - -ENODEV if struct device will never be create for supplier
-> - */
-> -static int of_link_to_phandle(struct device_node *con_np,
-> +static void of_link_to_phandle(struct device_node *con_np,
->  			      struct device_node *sup_np)
->  {
-> -	struct device *sup_dev;
-> -	struct device_node *tmp_np = sup_np;
-> +	struct device_node *tmp_np = of_node_get(sup_np);
->  
-> -	/*
-> -	 * Find the device node that contains the supplier phandle.  It may be
-> -	 * @sup_np or it may be an ancestor of @sup_np.
-> -	 */
-> -	sup_np = of_get_compat_node(sup_np);
-> -	if (!sup_np) {
-> -		pr_debug("Not linking %pOFP to %pOFP - No device\n",
-> -			 con_np, tmp_np);
-> -		return -ENODEV;
-> -	}
-> +	/* Check that sup_np and its ancestors are available. */
-> +	while (tmp_np) {
-> +		if (of_fwnode_handle(tmp_np)->dev) {
-> +			of_node_put(tmp_np);
-> +			break;
-> +		}
->  
-> -	/*
-> -	 * Don't allow linking a device node as a consumer of one of its
-> -	 * descendant nodes. By definition, a child node can't be a functional
-> -	 * dependency for the parent node.
-> -	 */
-> -	if (of_is_ancestor_of(con_np, sup_np)) {
-> -		pr_debug("Not linking %pOFP to %pOFP - is descendant\n",
-> -			 con_np, sup_np);
-> -		of_node_put(sup_np);
-> -		return -EINVAL;
-> -	}
-> +		if (!of_device_is_available(tmp_np)) {
-> +			of_node_put(tmp_np);
-> +			return;
-> +		}
->  
-> -	/*
-> -	 * Don't create links to "early devices" that won't have struct devices
-> -	 * created for them.
-> -	 */
-> -	sup_dev = get_dev_from_fwnode(&sup_np->fwnode);
-> -	if (!sup_dev &&
-> -	    (of_node_check_flag(sup_np, OF_POPULATED) ||
-> -	     sup_np->fwnode.flags & FWNODE_FLAG_NOT_DEVICE)) {
-> -		pr_debug("Not linking %pOFP to %pOFP - No struct device\n",
-> -			 con_np, sup_np);
-> -		of_node_put(sup_np);
-> -		return -ENODEV;
-> +		tmp_np = of_get_next_parent(tmp_np);
->  	}
-> -	put_device(sup_dev);
->  
->  	fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_np));
+The binding document is missing the power-domains property. Add it and
+update the example.
 
-fwnode_link_add() returns int. Why is the return type of this function
-changed to void?
+Fixes: 0fff9fa043f9 ("dt-bindings: clock: Add Qualcomm SA8775P GCC")
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ .../devicetree/bindings/clock/qcom,sa8775p-gcc.yaml          | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> -	of_node_put(sup_np);
-> -
-> -	return 0;
->  }
->  
->  /**
-
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sa8775p-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sa8775p-gcc.yaml
+index dae65ebc5557..0f641c235b13 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,sa8775p-gcc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,sa8775p-gcc.yaml
+@@ -40,6 +40,9 @@ properties:
+   protected-clocks:
+     maxItems: 240
+ 
++  power-domains:
++    maxItems: 1
++
+ required:
+   - compatible
+   - clocks
+@@ -52,6 +55,7 @@ unevaluatedProperties: false
+ examples:
+   - |
+     #include <dt-bindings/clock/qcom,rpmh.h>
++    #include <dt-bindings/power/qcom-rpmpd.h>
+ 
+     gcc: clock-controller@100000 {
+         compatible = "qcom,sa8775p-gcc";
+@@ -71,6 +75,7 @@ examples:
+                  <&pcie_phy_pipe_clk>,
+                  <&rxc0_ref_clk>,
+                  <&rxc1_ref_clk>;
++        power-domains = <&rpmhpd SA8775P_CX>;
+ 
+         #clock-cells = <1>;
+         #reset-cells = <1>;
 -- 
-Regards,
+2.37.2
 
-Sakari Ailus
