@@ -2,107 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EF47680B49
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 617AD680B57
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:53:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236120AbjA3KuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 05:50:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42140 "EHLO
+        id S235919AbjA3Kx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 05:53:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236569AbjA3Kt6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:49:58 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A52732E59
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:49:48 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id me3so30448526ejb.7
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:49:48 -0800 (PST)
+        with ESMTP id S230416AbjA3Kxz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:53:55 -0500
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8F4D17CC0;
+        Mon, 30 Jan 2023 02:53:54 -0800 (PST)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-501c3a414acso153888527b3.7;
+        Mon, 30 Jan 2023 02:53:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WbYOQUl8YkiJPsrRGZ6+9JqhC6vIn/U8fqF7NQ0FW/8=;
-        b=ViX+vlUGX5BaP57CJJRM376Pvt1EL0A1wuWaXke5DxqeOY5dT3bVE3rJ3XRafd6XBG
-         dbvdEqnA8aId1gPMR7LYH3a5ghGC6ptgK3A1k2wZUUq5utbQlMGSSbKG+rK28UVkmzRs
-         +RSMjFrFJ1uE7tsd+ZdNNuCeVOwNIVbhA8q41vulASQromkI8HCGNOkj1+jXLCfhEiKc
-         5vlPnRkHj21aJwuRRWcKoHO+J/vhxcY/lDd57zjgLTzshME0qgL76XikV0t9qNA6l750
-         v1AKurPoH4qEAkHWr7v/PcFyFfCtGUhXl1JmRWskH7hSgLP1gnvD1bfU9eurASGMasPc
-         ZXAQ==
+        bh=FUC6K+TUdMSstlrzdppRdz/QrMCOXm0EOP7+90i1xZY=;
+        b=ht9m9YFxQLFVsUimHeqoJwFOz8qFoSRwZxDiiTuUCr6V9x5I9kzETu5HZ7Rmjy4sEi
+         fZhXb5qv67wtF+fT5O3UuWa+FO1COtdg5e+h2L1kz6syB0Vh/fbc7sY2LvOPYqFgz4JM
+         wPEP8L+Z48T6Y/f7lzkOWKTluCOkEGZ9SxMMaXB4rb+AePPqGO3IckIkQOTgfEGw7zP/
+         c2Mqi7wWoSXJaPWKSLOS5iLCgUz5XOrtLj7Rjb5HwZyghhU6UVRiQXKGEnbEWzxGOPKo
+         HBisRg6xWKEI08xXgJdaZdfAf2SfbJwAkt9DNzkXrMyp6I1MoYB9R0TN1VDZhpMoLg+F
+         TWfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=WbYOQUl8YkiJPsrRGZ6+9JqhC6vIn/U8fqF7NQ0FW/8=;
-        b=Nw0qzyTXI718X7Z+KyVZHapnciHi5dCg7XwOm0M7rLRsfP5za8U+zxWdupwigHD2oL
-         YKK+ARn7kzPbRZgZUnE1FYpsewjqHm8iCahgL4oQhQf5tQ+XdHzRTUGImmINmrRISou2
-         fjK8+ymYbw/A5RMM15NyltXGz1LhAmQasOAVfTh1/nTABGfkNlLlNiRE/CS7ctXPP8XS
-         QIHxHcOQviNeZv56Z2kmCp8CErpZGg9EgD9HAh3Yw4ZpbbQIw92ImjHv9l3VKFM6944D
-         Jj29WQcUobcAYxcaOrXmtlqCCGYPXwNpRyfIJ2poOTUv4oX1wRkuDtGqsCN+mW3Gq4wW
-         yCOQ==
-X-Gm-Message-State: AO0yUKUukdW9rqxK2hEoSQ3Wshj8WKNwT6SsIWXJL5MemQzXfBhySnjO
-        FnkAV62nkGDUimuEnex/ua3KIRvJIQEa1N8cRXnILA==
-X-Google-Smtp-Source: AK7set/J7PES+ljqawMieJJRd/cu/yzPZarw9tMyMY5Jntle7Jn7XPBW+FIYQs1uClIQZVIgTGBgF92r5iwxtvN2CD8=
-X-Received: by 2002:a17:906:eced:b0:878:4ea8:6c2f with SMTP id
- qt13-20020a170906eced00b008784ea86c2fmr4129189ejb.115.1675075787022; Mon, 30
- Jan 2023 02:49:47 -0800 (PST)
+        bh=FUC6K+TUdMSstlrzdppRdz/QrMCOXm0EOP7+90i1xZY=;
+        b=K81O8UvgUrXSrxC7BLyURYFok65QC5K1uFgsbe9zVP+Q/yxJ5BjMyPHCSJFaOPgXk4
+         fy9vcwX/RYzxs6qLXhOg8bPW7TRDzXOXHy0ePm3g3zR8giVnTdv8gcb1RjtEwjs5q5s8
+         oMs3XIjghtqhr7ddLB1LpjWavV1C2Hq81toG8YYdsc6Gu7CL7KAWgDvlDOhRsqKXQh1h
+         Y4nKVR1VHvs6cZIq/Ux9Nc4nLizYrbpqeQHlYlYn8S4npGwhapBdC+FXWeoV4yoTzJE6
+         dRH+0rojVLWKDS3i6GUxaB4tB9SYJnxgMAYygzxpe71MNJcLIsZRAuwPmnxALlmsJfFL
+         MnBQ==
+X-Gm-Message-State: AO0yUKUNz9mxpU1hjxuAbmrsbEr6kx3Pq5Zc1URjEj0VTyjH8CF1XGnM
+        zU9y2LRlmnEPzq3OC7r3PwIsvGQfbZtQwNdXGZE=
+X-Google-Smtp-Source: AK7set8tcLkYYaI01/h2mGKxIOWC8zR7J8jV7aBtEhF+UBiWCM2HORVPRdg6Bslygx9SHUJanm0vt4LR3QDgRmsbg4g=
+X-Received: by 2002:a81:b246:0:b0:506:55d9:3a78 with SMTP id
+ q67-20020a81b246000000b0050655d93a78mr1975529ywh.339.1675076034014; Mon, 30
+ Jan 2023 02:53:54 -0800 (PST)
 MIME-Version: 1.0
-References: <20230124131717.128660-3-bchihi@baylibre.com> <20230126161048.94089-1-bchihi@baylibre.com>
- <2ce57abd-203f-04b9-f0de-8e524d6afaae@linaro.org> <b0b49007-7882-bb44-df26-8d2132b34bc0@linaro.org>
-In-Reply-To: <b0b49007-7882-bb44-df26-8d2132b34bc0@linaro.org>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Mon, 30 Jan 2023 11:49:11 +0100
-Message-ID: <CAGuA+oqL41XZ0bUDTY1xfZrhWXjFrT9aoX+nqMmXDdY7QDJ5Ow@mail.gmail.com>
-Subject: Re: [PATCH v12 2/6] dt-bindings: thermal: mediatek: Add LVTS thermal
- controllers dt-binding definition
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
-        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
-        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
+References: <CA+V-a8tR1KiLSs=Psa=w7kf0zT=yU5_Ekr6-3V1MR==Wtzmksg@mail.gmail.com>
+ <Y9KQPxzHBuZGIN4U@casper.infradead.org>
+In-Reply-To: <Y9KQPxzHBuZGIN4U@casper.infradead.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 30 Jan 2023 10:53:28 +0000
+Message-ID: <CA+V-a8uizF8sQgs8cfTwH3OnK+nvr2dXAoSOPTXCXLFnprHSeA@mail.gmail.com>
+Subject: Re: [QUERY]: Block region to mmap
+To:     Matthew Wilcox <willy@infradead.org>
+Cc:     Linux-MM <linux-mm@kvack.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Geert Uytterhoeven <geert.uytterhoeven@gmail.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Matthew,
 
-On Sat, Jan 28, 2023 at 11:50 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 27/01/2023 23:10, Daniel Lezcano wrote:
-> >
-> > Hi Rob,
-> >
-> > I think Balsam took into account your comments. Is it fine for you ?
-> >
->
-> The patchset was not sent to us at all, so it is the second version we
-> see. Therefore it's not v12 for us. It's v2 and it still needs fixes.
->
-> I replied with minor comments (which could be fixed during applying) and
-> the license concern (which you rather cannot change while applying).
+Thank you for the feedback.
 
-I apologize for forgetting to add some email addresses while sending
-previous versions.
-The changes you asked in your preview comment are taken in account and
-ready to be sent.
-Please let me know what version number should the patch have.
-
+On Thu, Jan 26, 2023 at 2:37 PM Matthew Wilcox <willy@infradead.org> wrote:
 >
-> Best regards,
-> Krzysztof
+> On Wed, Jan 25, 2023 at 12:30:13PM +0000, Lad, Prabhakar wrote:
+> > Renesas RZ/Five RISC-V SoC has Instruction local memory and Data local
+> > memory (ILM & DLM) mapped between region 0x30000 - 0x4FFFF. When a
+> > virtual address falls within this range, the MMU doesn't trigger a
+> > page fault; it assumes the virtual address is a physical address which
+> > can cause undesired behaviours.
 >
+> Wow.  I've never come across such broken behaviour before.
+>
+> > To avoid this the ILM/DLM memory regions are now added to the root
+> > domain region of the PMPU with permissions set to 0x0 for S/U modes so
+> > that any access to these regions gets blocked and for M-mode we grant
+> > full access (R/W/X). This prevents any users from accessing these
+> > regions by triggering an unhandled signal 11 in S/U modes.
+>
+> I have no idea what any of this means.
+>
+Basically we are making use of the memory protection unit (MPU) so
+that only M-mode is allowed to access this region and S/U modes are
+blocked.
 
-Best regards,
-Balsam
+> > This works as expected but for applications say for example when doing
+> > mmap to this region would still succeed and later down the path when
+> > doing a read/write to this location would cause unhandled signal 11.
+> > To handle this case gracefully we might want mmap() itself to fail if
+> > the addr/offset falls in this local memory region.
+>
+> No, that's not what you want.  You want mmap to avoid allocating address
+> space in that virtual address range.  I don't know if we have a good
+> way to do that at the moment; like I said I've never seen such broken
+> hardware before.
+>
+> I'd say the right way to solve this is to add a new special kind of VMA
+> to the address space that covers this range.
+Do you have any pointers where I can look further into this?
+
+> We'd want to make sure it doesn't appear in /proc/*/maps and also that
+> it can't be overridden with MAP_FIXED.
+Agreed.
+
+Cheers,
+Prabhakar
