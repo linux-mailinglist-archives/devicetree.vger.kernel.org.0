@@ -2,141 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C5BD680A8F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:15:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 182F2680A98
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:17:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236158AbjA3KPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 05:15:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48452 "EHLO
+        id S235666AbjA3KR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 05:17:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233899AbjA3KPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:15:16 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA2F5252;
-        Mon, 30 Jan 2023 02:15:15 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30U6LBr4028583;
-        Mon, 30 Jan 2023 10:15:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : reply-to : references : mime-version :
- content-type : in-reply-to; s=qcppdkim1;
- bh=FQ25Ocj9mmDa26Q4Qbvq4/AjPwDuTjYyZW7kxiBvCw4=;
- b=BZi8IdZDbX5hx6pjZrgv/HIi1W23MKVBMB0rmvPOzvHxatgRF61leNff6FStpwl9emy0
- va3LN1khxdjFM4WEEzq82Nc2zSuoU1XD9RlgUuQ7jrJSst3oTHR5WUJIpJUEsIldq4+D
- ZFd9ONjt69t9qYre5l9DmPMUJqoZoIBu+Z5hYP47hD/dr7PVnDImaD506x4AvEyH6Wu8
- QgummUH5FKBwl7slhEmTxcN8+5E21YnSpbOIW3XmpM+gp4eDcTdhjvKEQClt88987UqQ
- /zNhxclZ27zUV89K5/Ten0g0cZdzM2RWQccXqduoLeEHdZfWNxp5Qd73QmUjTqPc6FhP Mg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ncvvu36p9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 30 Jan 2023 10:15:00 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30UAEx3E005764
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 30 Jan 2023 10:14:59 GMT
-Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 30 Jan
- 2023 02:14:51 -0800
-Date:   Mon, 30 Jan 2023 15:44:45 +0530
-From:   Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v9 12/27] gunyah: rsc_mgr: Add RPC for sharing memory
-Message-ID: <20230130101445.GB332@quicinc.com>
-Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
- <20230120224627.4053418-13-quic_eberman@quicinc.com>
+        with ESMTP id S236065AbjA3KR2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:17:28 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE9B4DBE6
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:17:26 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pMRDx-0005mI-Sc; Mon, 30 Jan 2023 11:17:17 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pMRDp-001RYw-MJ; Mon, 30 Jan 2023 11:17:08 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pMRDo-00H0dV-5B; Mon, 30 Jan 2023 11:17:08 +0100
+Date:   Mon, 30 Jan 2023 11:17:07 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Nylon Chen <nylon.chen@sifive.com>
+Cc:     aou@eecs.berkeley.edu, conor@kernel.org,
+        emil.renner.berthing@canonical.com, geert+renesas@glider.be,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, nylon7717@gmail.com,
+        zong.li@sifive.com, greentime.hu@sifive.com,
+        vincent.chen@sifive.com
+Subject: Re: [PATCH v2 2/2] pwm: sifive: change the PWM controlled LED
+ algorithm
+Message-ID: <20230130101707.pdvabl3na2wpwxqu@pengutronix.de>
+References: <20230130093229.27489-1-nylon.chen@sifive.com>
+ <20230130093229.27489-3-nylon.chen@sifive.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="jlahpnwnp2we3m5x"
 Content-Disposition: inline
-In-Reply-To: <20230120224627.4053418-13-quic_eberman@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: QKEya6Z32GHI_o5Kft3PK1XLQziwReYd
-X-Proofpoint-ORIG-GUID: QKEya6Z32GHI_o5Kft3PK1XLQziwReYd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-30_10,2023-01-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- mlxlogscore=802 suspectscore=0 spamscore=0 mlxscore=0 phishscore=0
- clxscore=1015 lowpriorityscore=0 priorityscore=1501 bulkscore=0
- adultscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2301300098
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230130093229.27489-3-nylon.chen@sifive.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Elliot Berman <quic_eberman@quicinc.com> [2023-01-20 14:46:11]:
 
-> +static int gh_rm_mem_lend_common(struct gh_rm *rm, u32 message_id, struct gh_rm_mem_parcel *p)
-> +{
-> +	size_t msg_size = 0, initial_n_mem_entries = p->n_mem_entries;
-> +	void *msg;
-> +	__le32 *resp;
-> +	struct gh_mem_share_req_header *req_header;
-> +	struct gh_mem_share_req_acl_section *acl_section;
-> +	struct gh_mem_share_req_mem_section *mem_section;
-> +	u32 *mem_attr_section;
-> +	size_t resp_size;
-> +	int ret;
-> +
-> +	if (!p->acl_entries || !p->n_acl_entries || !p->mem_entries || !p->n_mem_entries ||
-> +	    p->n_acl_entries > U8_MAX || p->mem_handle != GH_MEM_HANDLE_INVAL)
-> +		return -EINVAL;
-> +
-> +	if (initial_n_mem_entries > GH_RM_MAX_MEM_ENTRIES)
-> +		initial_n_mem_entries = GH_RM_MAX_MEM_ENTRIES;
-> +
-> +	/* The format of the message goes:
-> +	 * request header
-> +	 * ACL entries (which VMs get what kind of access to this memory parcel)
-> +	 * Memory entries (list of memory regions to share)
-> +	 * Memory attributes (currently unused, we'll hard-code the size to 0)
-> +	 */
-> +	msg_size += sizeof(struct gh_mem_share_req_header);
-> +	msg_size += offsetof(struct gh_mem_share_req_acl_section, entries[p->n_acl_entries]);
-> +	msg_size += offsetof(struct gh_mem_share_req_mem_section, entries[initial_n_mem_entries]);
-> +	msg_size += sizeof(u32); /* for memory attributes, currently unused */
-> +
-> +	msg = kzalloc(msg_size, GFP_KERNEL);
-> +	if (!msg)
-> +		return -ENOMEM;
-> +
-> +	ret = gh_rm_platform_pre_mem_share(rm, p);
+--jlahpnwnp2we3m5x
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hmm ..I think gh_rm_platform_pre_mem_share() is not yet defined as of this
-patch, so you probably want this in a later patch.
+On Mon, Jan 30, 2023 at 05:32:29PM +0800, Nylon Chen wrote:
+> The `frac` variable represents the pulse inactive time, and the result of
+> this algorithm is the pulse active time. Therefore, we must reverse the
+> result.
+>=20
+> The reference is SiFive FU740-C000 Manual[0].
+>=20
+> [0]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b1=
+6acba_fu740-c000-manual-v1p6.pdf
+>=20
+> Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
+> ---
+>  drivers/pwm/pwm-sifive.c | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
+> index 62b6acc6373d..a5eda165d071 100644
+> --- a/drivers/pwm/pwm-sifive.c
+> +++ b/drivers/pwm/pwm-sifive.c
+> @@ -158,6 +158,7 @@ static int pwm_sifive_apply(struct pwm_chip *chip, st=
+ruct pwm_device *pwm,
+>  	frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
+>  	/* The hardware cannot generate a 100% duty cycle */
+>  	frac =3D min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
+> +	frac =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
 
-> +	if (ret) {
-> +		kfree(msg);
-> +		return ret;
-> +	}
-> +
+The same problem exists in pwm_sifive_get_state(), doesn't it?
+
+As fixing this is an interruptive change anyhow, this is the opportunity
+to align the driver to the rules tested by PWM_DEBUG.
+
+The problems I see in the driver (only checked quickly, so I might be
+wrong):
+
+ - state->period !=3D ddata->approx_period isn't necessarily a problem. If
+   state->period > ddata->real_period that's fine and the driver should
+   continue
+
+ - frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
+   is wrong for two reasons:
+   it should round down and use the real period.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--jlahpnwnp2we3m5x
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmPXmSAACgkQwfwUeK3K
+7AleyggAkGDMZYle0TOKBmbhKP3cCv66Lspwhkit9fvzLF+u5WV9aZ2Hhh18MHLj
+MH8UhAepKUC7oy5vd5eCo5fafKOOr71uJvkxg6W6IJncOMbphNH9K55LeAktSDg6
+AAk4bHiUx9AW1UEhnyu+9SqTl/SS6UoRzWBB8naxQil/YPJpvP6kUM/MnWDthd5r
+1HM4iovyCbXcWYhdG4asGUvA4lQnK92UO47apHnOW7VL9ivVgmfE6N6m5Q4ELy8e
+KarTUp8nG5N5Ki/+2LlpZYWY6w3t27CQJ0UegXxcn3Igu44a0hpYbpeHgi4kYIME
+Su9cOg8cW7mP2GIhIiVZ+63s+pTWqQ==
+=uHqH
+-----END PGP SIGNATURE-----
+
+--jlahpnwnp2we3m5x--
