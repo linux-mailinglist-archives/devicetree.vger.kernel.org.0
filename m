@@ -2,211 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EB5B681F6C
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 00:11:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20B87681F69
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 00:11:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbjA3XL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 18:11:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41560 "EHLO
+        id S229960AbjA3XLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 18:11:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbjA3XL1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 18:11:27 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1CA9F74C
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 15:10:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1675120238;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=p+K8e/zfLN4jZoxJoefnBbSYk/h9sMX4+P4UDlH6in4=;
-        b=H91EZjtd+lk6Jju/7S+zG6ONG2LSQ5dKnNvpNeb0plDB/cOEGUcn/qRtzjYSx7nDgVptGl
-        Yd8LE9ElO768DUrnCfnZbdn2DYAIBwoNV+JpjwzbrNNqcMIUqwmemtRXAj1vDLYJCkpX0M
-        diN0QVoDSsMYdrQUkbLFU6Xd/MKNLGE=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-510-cCwNYnz1NViVPDkSr4MmVg-1; Mon, 30 Jan 2023 18:10:36 -0500
-X-MC-Unique: cCwNYnz1NViVPDkSr4MmVg-1
-Received: by mail-qt1-f197.google.com with SMTP id z12-20020ac8710c000000b003b829a0eda2so3935884qto.21
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 15:10:36 -0800 (PST)
+        with ESMTP id S229904AbjA3XLM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 18:11:12 -0500
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C63B79004
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 15:11:09 -0800 (PST)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-501c3a414acso181164817b3.7
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 15:11:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=LDfQZoGlwUK+kzxRXSbyFi2jPNk3BphEmmNBP0GjF0Q=;
+        b=OQ5btj3qyNunRkWa/eT2Rf1e2qqvSRm/L4uLNC8PepSZPzxTIskzOaRby8IxSTJK1a
+         A4DJcRTNXP9feNHl9aBq3x7WgYKKrBMUhPFJnfmAVFoIPC834tDKXunaB9jtZTz7COHt
+         0CEAmfvG6UfZMEo1bA7Vi/L8t9/tNunOZ521l7rvupZa9n0rxe/9e3WsAcas95BatZDb
+         MIoeWvtgMjugIfsqKyMQ+ZA8rY0LX3Daz7lN92Ul91r1riwqf6MML/jEAbnuhIER77tt
+         LeWz2X9ZYld81ddZiBXddfLmU2YIzWZ7r+qzxfr8K3QK7yj02Um4UZPadN7qmXoWkXP1
+         U1jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:organization
-         :references:in-reply-to:date:cc:to:from:subject:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p+K8e/zfLN4jZoxJoefnBbSYk/h9sMX4+P4UDlH6in4=;
-        b=RGsqCnDPjtGY8oTtGyk4qNCBTouZytEKyzOSviwlPCFOtqNtK38Pu/F6B2C9Ej8tSR
-         QdnuCJIDHtTbusu/Wn4+DpLun1jWk0m3E/xrl62SSWdDZqX90T6sHRSx4vS2eBmeIZjC
-         mTcMNsCOR3tX2sxp0mDdSDStA3N9FgoDFFkU2C0/sb4LkA68nhuALM9P4n2XLbXWDFmf
-         8K9m1DtHKDvg+LHUHZ5RCbOUT0yW76fCIXSnFUEZBdXa/vH71gq+8FvXIhs9GwVAA1AJ
-         qlcK47SQm/MTf1H6ftGdIQh/NfQA18tZ8bGDVLBet/Kzf5Ch+l9NSG6F8jqWDQBHrW9y
-         +9PA==
-X-Gm-Message-State: AO0yUKUGrjj2BoB3lJJ20UjDDa05xqAUhEqG0lBn3EE22Op2G+3+DidJ
-        XJyZb7JE+/MusOka9T0djS3Ta/sovyZep9xs2XTgDLa8fF68tm+tP8L6akO2bxZYfGUMMUO341M
-        0lQrqYUB+pApfoWQ1HLAGIw==
-X-Received: by 2002:a05:622a:180e:b0:3b4:2b61:da32 with SMTP id t14-20020a05622a180e00b003b42b61da32mr15365931qtc.59.1675120235981;
-        Mon, 30 Jan 2023 15:10:35 -0800 (PST)
-X-Google-Smtp-Source: AK7set89917aaMWXfx8H2M6z2jsMBTb17FVp8nR3WX9yHmkqkhPUzBHVr8SFkLh0Wpt7DzxdggBhnA==
-X-Received: by 2002:a05:622a:180e:b0:3b4:2b61:da32 with SMTP id t14-20020a05622a180e00b003b42b61da32mr15365872qtc.59.1675120235657;
-        Mon, 30 Jan 2023 15:10:35 -0800 (PST)
-Received: from ?IPv6:2600:4040:5c68:6800::feb? ([2600:4040:5c68:6800::feb])
-        by smtp.gmail.com with ESMTPSA id k22-20020a05620a139600b0071f17af8733sm2954494qki.64.2023.01.30.15.10.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 15:10:35 -0800 (PST)
-Message-ID: <e620862840bcac9dcd46dd63e247966424af060f.camel@redhat.com>
-Subject: Re: [PATCH v9 0/9] Register Type-C mode-switch in DP bridge
- endpoints
-From:   Lyude Paul <lyude@redhat.com>
-To:     Pin-yen Lin <treapking@chromium.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
-        Stephen Boyd <swboyd@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Xin Ji <xji@analogixsemi.com>, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Allen Chen <allen.chen@ite.com.tw>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        =?ISO-8859-1?Q?N=EDcolas?= "F . R . A . Prado" 
-        <nfraprado@collabora.com>, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Imre Deak <imre.deak@intel.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Jim Cromie <jim.cromie@gmail.com>,
-        Kees Cook <keescook@chromium.org>,
-        Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= 
-        <ville.syrjala@linux.intel.com>
-Date:   Mon, 30 Jan 2023 18:10:33 -0500
-In-Reply-To: <20230109084101.265664-1-treapking@chromium.org>
-References: <20230109084101.265664-1-treapking@chromium.org>
-Organization: Red Hat Inc.
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LDfQZoGlwUK+kzxRXSbyFi2jPNk3BphEmmNBP0GjF0Q=;
+        b=jDR2AMT40FMwYamX05wB+Dsdf+q3Pq9/Bt6qK3CFlMbkrVI8kSdyvCFN+2bgW//HrZ
+         e0hafxeK4fLxKDdVqBjNtkjyWyBU8S2GS0kLS2a3bDuftiO9nP1kS845gAc+qbvnmF5J
+         9cUSgHQtW3EsNtqtXDG8mxnd5dWBU2itHahUyDjy/6ufllUQKtVcrRGIcTFhUC2pgKGP
+         fU71etNl8W+plUHQBPDrgCi9M1EoC3MPbNsqoCxh3vBLejG8cz3iA54gNs3Ri+3KLq76
+         qcoduU+KUbrG0vInkkCnnK5XnX28uLQJkqHgH7tQbuGgBNn4VKxELgi8ipmxPZleZ6H2
+         q5gQ==
+X-Gm-Message-State: AFqh2kqgChpWnYBHn9JnwSNGzswEysPMB/QCezhuz+Hk+bTZfjBmfRZ6
+        x+wiHZhHb2hUUNbR+6GXimoP9obnSExZSM9CFLbH6g==
+X-Google-Smtp-Source: AMrXdXtRz1bfZDc0Sl8udmgePKD2SUPlDJ5rqBwH5lFq8s8CAawhOWc+wuDT5y9DNmCpcoDn2Xrf/+ydTkvzsK2sjQE=
+X-Received: by 2002:a81:1a0a:0:b0:4dc:818f:f9f2 with SMTP id
+ a10-20020a811a0a000000b004dc818ff9f2mr5170823ywa.469.1675120268932; Mon, 30
+ Jan 2023 15:11:08 -0800 (PST)
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230130165435.2347569-1-konrad.dybcio@linaro.org>
+In-Reply-To: <20230130165435.2347569-1-konrad.dybcio@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 31 Jan 2023 00:10:57 +0100
+Message-ID: <CACRpkdZjAyLUg3V7ZTzeMfUOTrndLrRX_gTFdO+amSmZkzB72Q@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: pincfg-node: Introduce an
+ overridable way to set bias on pins
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Don't know if this still needs reviews from me (feel free to respond if it
-does!), but I wanted to say nice work! This is something I've wanted to see
-added to DRM for a while =E2=99=A5
+On Mon, Jan 30, 2023 at 5:54 PM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 
+> We came to a point where we sometimes we support a few dozen boards
+> with a given SoC. Sometimes, we have to take into consideration
+> configurations which deviate rather significatly from the reference
+> or most common designs. In the context of pinctrl, this often comes
+> down to wildly different pin configurations. While pins, function and
+> drive-strength are easily overridable, the (mostly) boolean properties
+> associated with setting bias, aren't. This wouldn't be much of a
+> problem if they didn't differ between boards so often, preventing us
+> from having a "nice" baseline setup without inevitably having to go
+> with an ugly /delete-property/.
 
-On Mon, 2023-01-09 at 16:40 +0800, Pin-yen Lin wrote:
-> This series introduces bindings for anx7625/it6505 to register Type-C
-> mode-switch in their output endpoints, and use data-lanes property to
-> describe the pin connections.
->=20
-> The first two patch modifies fwnode_graph_devcon_matches and
-> cros_typec_init_ports to enable the registration of the switches.
->=20
-> Patch 4~6 introduce the bindings for anx7625 and the corresponding driver
-> modifications.
->=20
-> Patch 7~9 add similar bindings and driver changes for it6505.
->=20
-> v7: https://lore.kernel.org/all/20230105132457.4125372-1-treapking@chromi=
-um.org/
-> v6: https://lore.kernel.org/all/20221124102056.393220-1-treapking@chromiu=
-m.org/
-> v5: https://lore.kernel.org/linux-usb/20220622173605.1168416-1-pmalani@ch=
-romium.org/
->=20
-> Changes in v9:
-> - Collected Reviewed-by tag
-> - Fixed subject prefix again
-> - Changed the naming of the example node for it6505
->=20
-> Changes in v8:
-> - Fixed the build issue when CONFIG_TYPEC=3Dm
-> - Fixed some style issues
-> - Fixed the subject prefixes for the bindings patch
-> - Fixed the bindings for data-lanes properties
->=20
-> Changes in v7:
-> - Fix the long comment lines
-> - Extracted the common codes to a helper function
-> - Fixed style issues in anx7625 driver
-> - Removed DT property validation in anx7625 driver.
-> - Fixed style issues in it6505 driver
-> - Removed the redundant sleep in it6505 driver
-> - Removed DT property validation in it6505 driver
-> - Rebased to drm-misc-next
-> - Fixed indentations in bindings patches
-> - Added a new patch to fix indentations in Kconfig
->=20
-> Changes in v6:
-> - Changed it6505_typec_mux_set callback function to accommodate with
->   the latest drm-misc patches
-> - Changed the driver implementation to accommodate with the new binding
-> - Dropped typec-switch binding and use endpoints and data-lanes propertie=
-s
->   to describe the pin connections
-> - Added new patches (patch 1,2,4) to fix probing issues
-> - Changed the bindings of it6505/anx7625 and modified the drivers
->   accordingly
-> - Merged it6505/anx7625 driver changes into a single patch
->=20
-> Pin-yen Lin (7):
->   drm/display: Add Type-C switch helpers
->   dt-bindings: display: bridge: anx7625: Add mode-switch support
->   drm/bridge: anx7625: Check for Type-C during panel registration
->   drm/bridge: anx7625: Register Type C mode switches
->   dt-bindings: display: bridge: it6505: Add mode-switch support
->   drm/bridge: it6505: Fix Kconfig indentation
->   drm/bridge: it6505: Register Type C mode switches
->=20
-> Prashant Malani (2):
->   device property: Add remote endpoint to devcon matcher
->   platform/chrome: cros_ec_typec: Purge blocking switch devlinks
->=20
->  .../display/bridge/analogix,anx7625.yaml      |  99 ++++++++++++-
->  .../bindings/display/bridge/ite,it6505.yaml   |  93 ++++++++++--
->  drivers/base/property.c                       |  15 ++
->  drivers/gpu/drm/bridge/Kconfig                |  21 +--
->  drivers/gpu/drm/bridge/analogix/Kconfig       |   1 +
->  drivers/gpu/drm/bridge/analogix/anx7625.c     | 101 +++++++++++++-
->  drivers/gpu/drm/bridge/analogix/anx7625.h     |  13 ++
->  drivers/gpu/drm/bridge/ite-it6505.c           | 119 +++++++++++++++-
->  drivers/gpu/drm/display/drm_dp_helper.c       | 132 ++++++++++++++++++
->  drivers/platform/chrome/cros_ec_typec.c       |  10 ++
->  include/drm/display/drm_dp_helper.h           |  16 +++
->  11 files changed, 591 insertions(+), 29 deletions(-)
->=20
+I see what the problem is.
 
---=20
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+Have you considered pulling out *all* the pin config for a certain
+reference design into its own .dtsi file, simply? And then not include
+that to the next product.
 
+This pattern is pretty common.
+
+> Introduce bias-type, a bias-type-
+> specific property and clone the pinconf-generic type enum into
+> dt-bindings to allow for setting the bias in an easily overridable
+> manner such as:
+>
+> // SoC DT
+> i2c0_pin: i2c0-pin-state {
+>         pins = "gpio10";
+>         function = "gpio";
+>         bias-type = <BIAS_PULL_UP>;
+> };
+>
+> // Deviant board DT
+> &i2c0_pin {
+>         bias-type = <BIAS_HIGH_IMPEDANCE>;
+> };
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+The idea is pretty straight-forward.
+
+But it applies to systems already using the bool flags. So what do
+we do the day we manage to have:
+
+{
+    bias-type = <BIAS_HIGH_IMPEDANCE>;
+    bias-pull-up;
+};
+
+As you see this makes it necessary to author some really nasty
+YAML to make sure this cannot happen or everyone has to make
+a runtime check for it.
+
+Another problem is that I was just discussing with Bjorn for some
+specific i2c pull-up, was actually using the argument for
+bias-pull-up with a parameter:
+
+bias-pull-up = <8000000>;  // 8kOhm pull-up
+
+Not to mention that other platforms than qcom use this and
+qcom use it for drive-strength I think?
+
++#define DRIVE_STRENGTH                 9
++#define DRIVE_STRENGTH_UA              10
+
+drive-strength = <8>; // 8mA drive strength
+
+bias-type = <DRIVE_STRENGTH>;
+
+OK where do I put my 8 mA now?
+
+Yours,
+Linus Walleij
