@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6BD7680BC1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 12:19:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF33D680BF3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 12:28:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230365AbjA3LTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 06:19:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58126 "EHLO
+        id S236612AbjA3L17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 06:27:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236522AbjA3LS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 06:18:59 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38AEF18B1D;
-        Mon, 30 Jan 2023 03:18:55 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id o18so1230519wrj.3;
-        Mon, 30 Jan 2023 03:18:55 -0800 (PST)
+        with ESMTP id S236337AbjA3L16 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 06:27:58 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C4EE6A74;
+        Mon, 30 Jan 2023 03:27:55 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id l8so7745204wms.3;
+        Mon, 30 Jan 2023 03:27:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dkp4rkyxPgpsD/uKlrIIe9RaCjDd2iGDYMH6lIDGA08=;
-        b=abpt2ulPIdGPmIvepxo6Cv91sShFhDssmHfiPZpMNayWwndjSU2xssnbeqLQ452ZYs
-         efyDdYOvNXRwFbl2ze3wN5fs9GMKGUAn10MbYcDqP6gBOocekGw6Dja4/4SELwP8OzEG
-         3DOPhP0UBdPFQt576Ie3Xo/DmfN6DSDx4Q7dcW00yCdyNyhXziqGbhpI5qB4U9cjMHah
-         hSiBoWyMeA7ySx7f/udXhuo1xdGQXmZvYVZ8G8hmUWTaz14qHUQxNg2ywYHlfIOxDfh5
-         HEywEtK7v5HbdXj9HPlLmMlp1yxFNrBCEJEYUaS9vCKqAKecmDDKpDwQhLq56pm5raFh
-         a18g==
+        bh=OLtIKfrQlP60j4+DiH/uXns1J7cBM/abFHLneyBahMs=;
+        b=Irt249mnGvQvO23P85fhdsJ7dvOLw4yemt9EXkUwsHhP610YrgXtEsxLJBHhJb+zIv
+         vH3kXhG0fNhEuqOzY0vjpH3qn3+KYxn/uhJeYUsOHEk8ekF/668EGj3xjF6hQLPjABOr
+         iAMHcFoM17QRWeqQmSY2ySPZs9NQjQjpXrchvTmVpgNYHFafmgmWUwz53BbUZa0r59+q
+         fQJm+MUm55/BO/Y0RiFE0IwR8S8jgOhP3qHCoyjwgA3Fk2Z60tWXo4CP8tWIT60IlLC9
+         Gh8MK2Awpq+5ZUwR/wzPhZEHQFFeVOiUfGBlBxYp0scx9MbJjodnA8g5+B0JZYSH1tpC
+         NGhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dkp4rkyxPgpsD/uKlrIIe9RaCjDd2iGDYMH6lIDGA08=;
-        b=uPLJpbTftC/YXIRWRupnAoCVW32ZzzMFSfFc8vyc09FyyGDK3nBD+gs/nsyMYIdMqC
-         Yw7LOXbm2rzWlgrDwyiUWIIlj8WtgUZwK1hQ9nmFPrxqmvQqgVuBNTRsvZ18yCJ89sCy
-         km6DSNiREv0szMHYGAF0S+uGsu261a/IpMbRv4epXazN+WKWgoJMVh+y18cWwD+TRLRA
-         AhxmhqtsNN9HjIrgFPkHC1CO6J3Xe3IBvK/G26+kkK+W+XGWuihG3oAS6LGfWdsIYGoC
-         jEespcBWM8/OFTR//30usDiU4MyBQCEXPcuiEe2yhoXht7GrWgbkXA6zE2jeSdCrt08W
-         SLSw==
-X-Gm-Message-State: AO0yUKVLXIZqyXAp1TbkcLrYeKfYgOm2a+yuDkGLB1ifTcB3hA7XkW5P
-        BK/wgygK1TUBCdRYWQWQJb0=
-X-Google-Smtp-Source: AK7set8I9YflWW0cSwJMchVO/4uVYr4AsWm9Ei9TpWsGvGjSY92DMQt+BNMb+NGDgOcDPBrbwEUnug==
-X-Received: by 2002:adf:a453:0:b0:2bf:ee61:7daf with SMTP id e19-20020adfa453000000b002bfee617dafmr2022150wra.10.1675077533640;
-        Mon, 30 Jan 2023 03:18:53 -0800 (PST)
+        bh=OLtIKfrQlP60j4+DiH/uXns1J7cBM/abFHLneyBahMs=;
+        b=B+JWU8rLlFIdHVefU9YohbKJTKWSqWsffgESSzVWsuvvpjxm0Lo5wIQMlfs4YqPZHY
+         VFE40I/demFyhc0ddv23CSQWo9V68q42fZ9NMipCe9P6M2EMpJS2gBWGW2HgxSWJCWsx
+         EsfSXHEHYlljM0HzTexWcFV8Wu/0TGZ2cPEDGVrJplVb3tW/Tpa5WWRl6XWwVjHoVlJv
+         p4qEark+5hTL2WJcuOE3auV5B09UmBC3+yGu4JEtg//9aYhXez73bZLqzA7EzahunF3r
+         tTINMDESFInuQZs22JGSgkdVRJ/jI4XNAxrMlvsXRbZ0EPgscgADdGi03pyG0VbeOFkQ
+         8ncA==
+X-Gm-Message-State: AO0yUKVNnFwYmXs6PX1bg4TMH/fu83IeHSPaJ1BkR0Qr24AD3fFg/rdJ
+        E07yIq0ZVX3G3tq2AhOg0oQ=
+X-Google-Smtp-Source: AK7set/5iNsvsM5ybxrTH5ZpW/0KUhjubVlqPz+QI8m2RB1wvXMRG7KKhUq0WeLIHNH7pCYanD2Oqw==
+X-Received: by 2002:a7b:c7ce:0:b0:3dc:42d2:aeee with SMTP id z14-20020a7bc7ce000000b003dc42d2aeeemr10296508wmk.25.1675078074261;
+        Mon, 30 Jan 2023 03:27:54 -0800 (PST)
 Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id w10-20020adfcd0a000000b002bff7caa1c2sm364623wrm.0.2023.01.30.03.18.52
+        by smtp.gmail.com with ESMTPSA id bd16-20020a05600c1f1000b003d1f3e9df3csm16557501wmb.7.2023.01.30.03.27.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jan 2023 03:18:53 -0800 (PST)
-Message-ID: <b4bec164-5986-718e-b9cc-290dfc995edb@gmail.com>
-Date:   Mon, 30 Jan 2023 12:18:51 +0100
+        Mon, 30 Jan 2023 03:27:53 -0800 (PST)
+Message-ID: <c8023960-3361-91a3-6fdb-7c66bcabd2e9@gmail.com>
+Date:   Mon, 30 Jan 2023 12:27:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v12 2/6] dt-bindings: thermal: mediatek: Add LVTS thermal
- controllers dt-binding definition
+Subject: Re: [PATCH v6 2/4] dt-bindings: arm: mediatek: mmsys: Add support for
+ MT8195 VPPSYS
 Content-Language: en-US
-To:     Balsam CHIHI <bchihi@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
-        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-References: <20230124131717.128660-3-bchihi@baylibre.com>
- <20230126161048.94089-1-bchihi@baylibre.com>
- <5ec49108-6ad8-daf7-54ec-104f0923a31d@linaro.org>
- <CAGuA+opQboxH8qoNv4GG+raX=ZZAyRVLC9VLjVCzbT_cUQWWTA@mail.gmail.com>
+To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230118031509.29834-1-moudy.ho@mediatek.com>
+ <20230118031509.29834-3-moudy.ho@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <CAGuA+opQboxH8qoNv4GG+raX=ZZAyRVLC9VLjVCzbT_cUQWWTA@mail.gmail.com>
+In-Reply-To: <20230118031509.29834-3-moudy.ho@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,82 +83,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 30/01/2023 11:40, Balsam CHIHI wrote:
-> Hi Krzysztof,
+On 18/01/2023 04:15, Moudy Ho wrote:
+> For MT8195, VPPSYS0 and VPPSYS1 are 2 display pipes with
+> hardware differences in power domains, clocks and subsystem counts,
+> which should be determined by compatible names.
 > 
-> Thank you for the feedback.
-> 
-> On Sat, Jan 28, 2023 at 11:48 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 26/01/2023 17:10, bchihi@baylibre.com wrote:
->>> From: Balsam CHIHI <bchihi@baylibre.com>
->>>
->>> Add LVTS thermal controllers dt-binding definition for mt8195.
->>
->> Subject: drop second/last, redundant "dt-binding definition". The
->> "dt-bindings" prefix is already stating that these are bindings.
-> 
-> fixed.
-> The patch title has been fixed as you suggested :
-> "dt-bindings: thermal: mediatek: Add LVTS thermal controllers"
-> 
->>
->> Plus two comments at the end.
->>
->>>
->>> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
->>> ---
->>> Changelog:
->>>    v12:
->>>       - Fixed subject prefix
->>>       - Fixed licences GPL-2.0+ to GPL-2.0
->>>       - Added dual licenses
->>
->>
->>> +    };
->>> diff --git a/include/dt-bindings/thermal/mediatek-lvts.h b/include/dt-bindings/thermal/mediatek-lvts.h
->>> new file mode 100644
->>> index 000000000000..902d5b1e4f43
->>> --- /dev/null
->>> +++ b/include/dt-bindings/thermal/mediatek-lvts.h
->>
->> Same filename as bindings.
-> 
-> fixed.
-> rename :
-> include/dt-bindings/thermal/mediatek-lvts.h =>
-> include/dt-bindings/thermal/mediatek-lvts-thermal.h
-> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
 
-I think it should be
-include/dt-bindings/thermal/mediatek,lvts-thermal.yaml
+Applied, thanks!
 
-Regards,
-Matthias
-
->>
->>> @@ -0,0 +1,19 @@
->>> +/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
->>
->> Although this is correct, any reason why not using exactly the same
->> license as bindings?
+> ---
+>   .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml        | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
-> fixed.
-> both files are now using the same license :
-> "SPDX-License-Identifier: (GPL-2.0 or MIT)"
-> 
->>
->>> +/*
->>> + * Copyright (c) 2023 MediaTek Inc.
->>> + * Author: Balsam CHIHI <bchihi@baylibre.com>
->>> + */
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> I'll send the changes soon.
-> 
-> Best regards,
-> Balsam
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> index 84de12709323..b08ae7405b1a 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> @@ -33,6 +33,8 @@ properties:
+>                 - mediatek,mt8186-mmsys
+>                 - mediatek,mt8188-vdosys0
+>                 - mediatek,mt8192-mmsys
+> +              - mediatek,mt8195-vppsys0
+> +              - mediatek,mt8195-vppsys1
+>                 - mediatek,mt8365-mmsys
+>             - const: syscon
+>   
