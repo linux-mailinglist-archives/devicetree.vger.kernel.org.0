@@ -2,94 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1BE1681DC0
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 23:10:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DA14681DCB
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 23:12:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230513AbjA3WKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 17:10:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55008 "EHLO
+        id S231296AbjA3WL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 17:11:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230496AbjA3WK3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 17:10:29 -0500
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E773526A;
-        Mon, 30 Jan 2023 14:10:00 -0800 (PST)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-16346330067so17075941fac.3;
-        Mon, 30 Jan 2023 14:10:00 -0800 (PST)
+        with ESMTP id S231530AbjA3WL5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 17:11:57 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B98149976
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 14:11:55 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id l8so9059357wms.3
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 14:11:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9I5pl8DSHmaWXNB0PemQm1q2dxgc93EP+DNyvXZvXX4=;
+        b=hSE6hMx5cHbbag2pGvUGtlSJ0IWqHMjds6j4grw2kUJ3JuoUkpAg8P2Z29H64voQp1
+         kEHa9cUnonHudEzcnfDnMAtyfVdJR5mADezrTePzasDhkARzwO5POgYFTQyjDMH7zDkd
+         5NMAM1F2wKwOWL82M0xAasy6Bp3SiHi41n2A9iucDRbpmn7zvHT7uBDs8lEvk3b4bG73
+         t5xE+SH/RjUL9aCZjy3PNlbVY1DJKLMP11TpoqY5BeiYvS7KLZ15dO7i0dj0yVvlaPd0
+         7kNqpdC0amP+7Cw1c4zUmNdnNlM1/iiTdxNXKeMF0QSSx1CNsfe3fP+fUbrH6eUwWAOv
+         TieQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lw81Ox9m8bEAO1darCcd9bAwGM0pyskgkCFM54xB7Dw=;
-        b=sZLdDL8jqtXnpbxbpFD5DHPU+VjwEBKU5G2agaaeI214PPrbVmDiYDYWZ4NEM6qRbc
-         61I+INh/+vw7nIrG1/N77M9Ek22WrW010ctMpsTUF5omaht/9y9fFFMN1/IUaR5tgQ29
-         7IcYjkHpPom614IoQL2BSTt5vmatjNi9VAJ6NrI1RM0p6EwWxr/+RsMV3TFg4suY+UPE
-         b60QFzV4McE/NXDjfN1B/GVaL5QdPTgXiQ6i2lcu+NKohdgM6zLgkYvcuED5lnCS3q5d
-         97BNgmes7omDn9ZWGdYR/W+D6dUovZUFa1XVSiR6kJkAwE2YWUv2ckGlg+uaDpOrLiU1
-         I32Q==
-X-Gm-Message-State: AO0yUKXcpBtSxhobXfy8J8BPvh5uOBObcNLoBaD+9IcXlOwgVBNWCyAQ
-        9JbqIC4EBbKNsB5YEBlkWg==
-X-Google-Smtp-Source: AK7set856cqhnQCPb48Kq7IYjEinJUpv3uoWOb02qiCWhiuZVNYb/yeNAQi/VqSaq0I1hkeIEt1IQA==
-X-Received: by 2002:a05:6870:d38f:b0:163:6239:24f1 with SMTP id k15-20020a056870d38f00b00163623924f1mr5449536oag.36.1675116599324;
-        Mon, 30 Jan 2023 14:09:59 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id gn12-20020a056870d98c00b0013ae39d0575sm5698312oab.15.2023.01.30.14.09.58
+        bh=9I5pl8DSHmaWXNB0PemQm1q2dxgc93EP+DNyvXZvXX4=;
+        b=X0kjzJ8SVhypbJHoM+t3evpAVX97urjre8xSGdWpJ09/j9RSn2eRnni7CMV1tjGUNW
+         3Mq7BbeUtXW2xOVSnI3rpqE6XJqpJz3PYRKh6cm3yF4yfjUr0XFWi0BtydCJXTbhNvTu
+         Xk/ZxYhQHj7PLZYym+yapR4s+TyGbSvXTy5pdR/Uf3hFXZYvwCNn9cVmc9q5HeO0LeKH
+         oiCpJMlK6WitmrVaH2I9DtgsxJyTVDvaz2upEjq8ory52/0+DTfcdUiMUOaV/cTEBVwi
+         LHAIS7UaASkNRwmLknW0uqsyFCJlFD+FTU4SnF5+PE06cufZarHMpjyEsMvFc9NhzYzq
+         Lv8Q==
+X-Gm-Message-State: AO0yUKUaiNZ0nyF2yoZE5AkBzTBgwhPYRw4JAAqkbcy9kWYkpnBO7A4S
+        Le4UoVU/QyjvOFZUxkJKB1VtoQ==
+X-Google-Smtp-Source: AK7set9kXkviydhoYszyF+Pxt81ps5PQMVZGsIpP1V/XMSwer/iHzhncD/OWVHvxEri6J1yR//rrTg==
+X-Received: by 2002:a05:600c:1ca7:b0:3dc:1050:5553 with SMTP id k39-20020a05600c1ca700b003dc10505553mr987240wms.23.1675116713757;
+        Mon, 30 Jan 2023 14:11:53 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id n6-20020adff086000000b002bdbead763csm13337430wro.95.2023.01.30.14.11.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 14:09:58 -0800 (PST)
-Received: (nullmailer pid 3615591 invoked by uid 1000);
-        Mon, 30 Jan 2023 22:09:58 -0000
-Date:   Mon, 30 Jan 2023 16:09:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     shawnguo@kernel.org, a.zummo@towertech.it, lee@kernel.org,
-        alexandre.belloni@bootlin.com, linux-input@vger.kernel.org,
-        linux-rtc@vger.kernel.org, festevam@gmail.com,
-        dmitry.torokhov@gmail.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-imx@nxp.com,
-        s.hauer@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
-        kernel@pengutronix.de, robh+dt@kernel.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Add nxp bbnsm
-Message-ID: <167511659739.3615531.14629886482934237177.robh@kernel.org>
-References: <20230129070823.1945489-1-ping.bai@nxp.com>
- <20230129070823.1945489-2-ping.bai@nxp.com>
+        Mon, 30 Jan 2023 14:11:53 -0800 (PST)
+Date:   Tue, 31 Jan 2023 00:11:51 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v2 00/19] ARM: imx: make Ethernet refclock configurable
+Message-ID: <Y9hApxZv2QiWftB4@linaro.org>
+References: <20230117061453.3723649-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230129070823.1945489-2-ping.bai@nxp.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230117061453.3723649-1-o.rempel@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23-01-17 07:14:34, Oleksij Rempel wrote:
+> changes v2:
+> - remove "ARM: imx6q: use of_clk_get_by_name() instead of_clk_get() to
+>   get ptp clock" patch
+> - fix build warnings
+> - add "Acked-by: Lee Jones <lee@kernel.org>"
+> - reword some commits as suggested by Fabio
 
-On Sun, 29 Jan 2023 15:08:20 +0800, Jacky Bai wrote:
-> Add binding for NXP BBNSM(Battery-Backed Non-Secure Module).
-> 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> ---
->   - v2 changes:
->     - remove the redundant 'bindings' string
->     - add ref to rtc.yaml
->     - add start-year property
->     - rename 'regmap' to 'nxp,bbnsm-regmap' and add description & type define
->     - add header files including in the example and correct the indentation
-> 
->   -v3 changes:
->     - remove the 'nxp,bbnsm-regmap' property, get the regmap directly from the
->       parent node in rtc/pwrkey driver
-> 
->   - v4 changes:
->     - update the compatible string to include the soc id as Rob suggested
-> ---
->  .../devicetree/bindings/mfd/nxp,bbnsm.yaml    | 101 ++++++++++++++++++
->  1 file changed, 101 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Unfortunatley it doesn't apply on my tree. Can you please rebase and resend?
+
+Thanks.
+
+> 
+> Most of i.MX SoC variants have configurable FEC/Ethernet reference clock
+> used by RMII specification. This functionality is located in the
+> general purpose registers (GRPx) and till now was not implemented as
+> part of SoC clock tree.
+> 
+> With this patch set, we move forward and add this missing functionality
+> to some of i.MX clk drivers. So, we will be able to configure clock topology
+> by using devicetree and be able to troubleshoot clock dependencies
+> by using clk_summary etc.
+> 
+> Currently implemented and tested i.MX6Q, i.MX6DL and i.MX6UL variants.
+> 
+> Oleksij Rempel (19):
+>   clk: imx: add clk-gpr-mux driver
+>   clk: imx6q: add ethernet refclock mux support
+>   ARM: imx6q: skip ethernet refclock reconfiguration if enet_clk_ref is
+>     present
+>   ARM: dts: imx6qdl: use enet_clk_ref instead of enet_out for the FEC
+>     node
+>   ARM: dts: imx6dl-lanmcu: configure ethernet reference clock parent
+>   ARM: dts: imx6dl-alti6p: configure ethernet reference clock parent
+>   ARM: dts: imx6dl-plybas: configure ethernet reference clock parent
+>   ARM: dts: imx6dl-plym2m: configure ethernet reference clock parent
+>   ARM: dts: imx6dl-prtmvt: configure ethernet reference clock parent
+>   ARM: dts: imx6dl-victgo: configure ethernet reference clock parent
+>   ARM: dts: imx6q-prtwd2: configure ethernet reference clock parent
+>   ARM: dts: imx6qdl-skov-cpu: configure ethernet reference clock parent
+>   ARM: dts: imx6dl-eckelmann-ci4x10: configure ethernet reference clock
+>     parent
+>   clk: imx: add imx_obtain_fixed_of_clock()
+>   clk: imx6ul: fix enet1 gate configuration
+>   clk: imx6ul: add ethernet refclock mux support
+>   ARM: dts: imx6ul: set enet_clk_ref to CLK_ENETx_REF_SEL
+>   ARM: mach-imx: imx6ul: remove not optional ethernet refclock overwrite
+>   ARM: dts: imx6ul-prti6g: configure ethernet reference clock parent
+> 
+>  arch/arm/boot/dts/imx6dl-alti6p.dts           |  12 +-
+>  arch/arm/boot/dts/imx6dl-eckelmann-ci4x10.dts |  13 +-
+>  arch/arm/boot/dts/imx6dl-lanmcu.dts           |  12 +-
+>  arch/arm/boot/dts/imx6dl-plybas.dts           |  12 +-
+>  arch/arm/boot/dts/imx6dl-plym2m.dts           |  12 +-
+>  arch/arm/boot/dts/imx6dl-prtmvt.dts           |  11 +-
+>  arch/arm/boot/dts/imx6dl-victgo.dts           |  12 +-
+>  arch/arm/boot/dts/imx6q-prtwd2.dts            |  17 ++-
+>  arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi       |  12 +-
+>  arch/arm/boot/dts/imx6qdl.dtsi                |   4 +-
+>  arch/arm/boot/dts/imx6ul-prti6g.dts           |  14 ++-
+>  arch/arm/boot/dts/imx6ul.dtsi                 |  10 +-
+>  arch/arm/mach-imx/mach-imx6q.c                |  10 +-
+>  arch/arm/mach-imx/mach-imx6ul.c               |  20 ---
+>  drivers/clk/imx/Makefile                      |   1 +
+>  drivers/clk/imx/clk-gpr-mux.c                 | 119 ++++++++++++++++++
+>  drivers/clk/imx/clk-imx6q.c                   |  13 ++
+>  drivers/clk/imx/clk-imx6ul.c                  |  33 ++++-
+>  drivers/clk/imx/clk.c                         |  14 +++
+>  drivers/clk/imx/clk.h                         |   8 ++
+>  include/dt-bindings/clock/imx6qdl-clock.h     |   4 +-
+>  include/dt-bindings/clock/imx6ul-clock.h      |   7 +-
+>  include/linux/mfd/syscon/imx6q-iomuxc-gpr.h   |   6 +-
+>  23 files changed, 296 insertions(+), 80 deletions(-)
+>  create mode 100644 drivers/clk/imx/clk-gpr-mux.c
+> 
+> -- 
+> 2.30.2
+> 
