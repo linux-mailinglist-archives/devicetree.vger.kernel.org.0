@@ -2,70 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 533E7680E80
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 14:08:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 806E2680E99
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 14:14:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235774AbjA3NIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 08:08:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60138 "EHLO
+        id S235854AbjA3NOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 08:14:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235573AbjA3NIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 08:08:14 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF782E803
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 05:08:01 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so8110230wms.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 05:08:01 -0800 (PST)
+        with ESMTP id S235989AbjA3NOG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 08:14:06 -0500
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2AB012870;
+        Mon, 30 Jan 2023 05:13:53 -0800 (PST)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-4fda31c3351so158403597b3.11;
+        Mon, 30 Jan 2023 05:13:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Se5Q1lXw9K+Pz2pZOS2n30yDozh7nMIeUh0ec9tbew=;
-        b=sYqkr9eqZ0fdxEVtcBLHAy5FfbUAp/4Dsxxuvd6alsL9M67rKWmCLdl1LxFH9debQg
-         d3kfUYXnQzX9UE3tW0P9hIWpYc0X8IY4pccYCoQy6eLfXZEB9X/03KtRhbxWxLaWSbxh
-         XHMVnDvJU5xX2qjHLN4SApu3NSYBRaWFsmDP6GXAgJMTtE5jS9uXRfWMop3JO1v97a1A
-         kXuXZzZSVoqLpFWLEnokjmj71dCa79fpVHfPBUGEtHyapRnOATYxNIrjaHd/cTjH7uw6
-         SUZpq/NZPF1bDP/94tz5hkHz0d699Iq6M8JzCi6e3nSRzz6f3wiN3DPcbaU72OfgwQ88
-         2YRw==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=yuIsIC5WkjlnYbFhp4do2Gvm2A9ljg1sUa4uVtjOdgU=;
+        b=IKBdjSrJ4VJn2rHtWs60QnO5mRjsEER3YCBTtAIeZiTrCvdG2vBjbcpf0pxp6uQ0xX
+         8gATo3iO6H84h0x2ry2SDtyvA8Mjk/i1AZPF/PaXsiPUTARNirqPoQuJ156nzKRbqqLh
+         iDxHhNsecBReJ8CzDc4F9lWk3QWPfMl49KzYVoYX6GRusgCIia2MRrYyWRMzJ+QTHhay
+         xWfptfUX5EFM1pbj7JT7RPR/fVzhZT9nCxK7rtUKW30xHlZ8NnrD6+Ap8SFrNTp2dWhp
+         Ed4DXSQjJixwgUCqhs9w7APNmHcJfT+jPbQBeBraCktRAlz2w8nUVz/us5O6IexCT/g/
+         sbwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2Se5Q1lXw9K+Pz2pZOS2n30yDozh7nMIeUh0ec9tbew=;
-        b=ebOrrfup3CP4QYU1z6TPWMBjEsl3WQpOggx73JHI+faYzPE7ZfMNHL9Y8R2EX7nrXF
-         yfgtM5VbnLAi2AzHyAL76hH6ps7n6Pj6YWS73GEFgTSmGCN36n3eiAzS5VPKSXgfjR1A
-         ToyQL+UW7FGMKU6+5XoLCcE2Tm7YkHM5V8ja+x1RaPzmcJimla8pwe8GC7Sf0b1vuRkb
-         UaUsQudL69ylsApt6V7s2jGhgmwyCtTFNcI06NfmzSkEs/ydw3B7EIjMRG4Zovf11SJB
-         QXacFAtxnEF1jzDn3sa50cp5Wx4Hxi9ni9o+x+aRETiJ7kz7p1lemxih+bRgLywIs/xG
-         S3ow==
-X-Gm-Message-State: AO0yUKUZ+heuGwiOSh0r795DTP539SzSidZV2u9wQd1cnlBGVhsDPxY7
-        CUes9iSs1ICzsR9oY+a0KVhxOA==
-X-Google-Smtp-Source: AK7set8GSjb0s93vkK1fliYHVJS234DkIT5hqqeHwHaj3yMD9zznVEh8poWvWYbSp0ttOIg1ksF6/g==
-X-Received: by 2002:a05:600c:1d12:b0:3dc:58a6:bbe6 with SMTP id l18-20020a05600c1d1200b003dc58a6bbe6mr4007541wms.31.1675084079443;
-        Mon, 30 Jan 2023 05:07:59 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:b9a5:a1fe:d3ab:6b40])
-        by smtp.gmail.com with ESMTPSA id l21-20020a05600c4f1500b003b47b80cec3sm17776021wmq.42.2023.01.30.05.07.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 05:07:58 -0800 (PST)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH] dt-bindings: watchdog: qcom-wdt: add qcom,apss-wdt-sa8775p compatible
-Date:   Mon, 30 Jan 2023 14:07:56 +0100
-Message-Id: <20230130130756.144160-1-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
+        bh=yuIsIC5WkjlnYbFhp4do2Gvm2A9ljg1sUa4uVtjOdgU=;
+        b=5BNbNoghTqt7ofKg+g24opvaApZSSFXejQTSVVYgu7nI1n286w0hbtldB4FFXvTEDu
+         pkRp93YQJLkeQpRUITuvV/KTz93utgr+Q7JiZ633O2HfYNBMa8vVzOO+YIv3h87eH/DV
+         Ua+K/IhaTgVYsEMzDN84sv3D8p4v/U40X7OXjnUbps061KRD3kgVGaScBzLDnwQjcAVu
+         KMw/bPluOPT8O1UAUwHGuMyWb+YQV8Y2i775+F5e8JbH7x4k+KqAf5/rFcD6JK/zCyUk
+         D5YTb0A0F4M8vB/F8wIkYMOZOLjXiV1O/yFdM9Rb3EseHclJA3KUYu4AHBqVjxlxlwHN
+         L+tw==
+X-Gm-Message-State: AFqh2kpjw2SIDsgWe1HpTZeVMZhCBmDEAkzQ7V6xIcNj0UuWZMIfpu2K
+        9s1dzlkihsmgbk3a4B/Xk1gTJFHSwyTgsoI0oto=
+X-Google-Smtp-Source: AMrXdXvyV4vHU4lm4qhXJxoTcPF2urcHfYEtL9TUBmeWZ/fYbZf+ZAfC9QTyp+bogQscsTO7ydYqVZ8jHchtCG5QYzo=
+X-Received: by 2002:a81:e801:0:b0:500:5624:904c with SMTP id
+ a1-20020a81e801000000b005005624904cmr4374481ywm.258.1675084432986; Mon, 30
+ Jan 2023 05:13:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+References: <20230127174014.251539-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <OS0PR01MB592258905AC3979803C473D786CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CA+V-a8s+cZpuUXWRa573a373n7YPsHrdLnUVXHjez6O101oneQ@mail.gmail.com>
+ <OS0PR01MB5922943C1E1D9329691DB02F86CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CAMuHMdWHE3wAYd7TSamN77Xy7CSxnEd8QHW8xm9ng4opsBEapg@mail.gmail.com>
+In-Reply-To: <CAMuHMdWHE3wAYd7TSamN77Xy7CSxnEd8QHW8xm9ng4opsBEapg@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 30 Jan 2023 13:13:26 +0000
+Message-ID: <CA+V-a8vBFSKbFJo1nEX7eN+S8eJazDDfCrzO7oFHsiF5yvpZ+g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU node
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,30 +78,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Hi Geert,
 
-Add a compatible for the sa8775p platform's KPSS watchdog.
+On Mon, Jan 30, 2023 at 10:05 AM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> On Fri, Jan 27, 2023 at 10:48 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > > Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU node
+> > > On Fri, Jan 27, 2023 at 6:38 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > > > > Subject: [PATCH] arm64: dts: renesas: r9a07g044: Add Cortex-A55 PMU
+> > > > > node
+> > > > >
+> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > >
+> > > > > Enable the performance monitor unit for the Cortex-A55 cores on the
+> > > > > RZ/G2L
+> > > > > (r9a07g044) SoC.
+> > > > >
+> > > > > Signed-off-by: Lad Prabhakar
+> > > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > ---
+> > > > >  arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 5 +++++
+> > > > >  1 file changed, 5 insertions(+)
+> > > > >
+> > > > > diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > > > b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > > > index 80b2332798d9..ff9bdc03a3ed 100644
+> > > > > --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > > > +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > > > @@ -161,6 +161,11 @@ opp-50000000 {
+> > > > >               };
+> > > > >       };
+> > > > >
+> > > > > +     pmu_a55 {
+> > > > > +             compatible = "arm,cortex-a55-pmu";
+> > > > > +             interrupts-extended = <&gic GIC_PPI 7
+> > > > > + IRQ_TYPE_LEVEL_HIGH>;
+> > > >
+> > > > Just a question, Is it tested?
+> > > Yes this was tested with perf test
+> > >
+> > > > timer node[1] defines irq type as LOW, here it is high.
+> > > You are right looking at the RZG2L_InterruptMapping_rev01.xlsx this should
+> > > be LOW. (I followed the SPI IRQS where all the LEVEL interrupts are HIGH)
+> > >
+> > > > Also do we need to define (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW) as
+> > > it has 2 cores??
+> > > >
+> > > No this is not required for example here [0] where it has 6 cores.
+> >
+> > I may be wrong, That is the only example[1], where the A55 PMU per cpu interrupts and number of a55 cores in the DT
+> > are not matching.
+> >
+> > [1]
+> > https://elixir.bootlin.com/linux/latest/B/ident/arm%2Ccortex-a55-pmu
+>
+> Indeed, this looks like an omission, propagated through
+> arch/arm64/boot/dts/renesas/r8a779[afg]0.dtsi.
+>
+> And doesn't this apply to all PPI interrupts, i.e. shouldn't the GIC
+> in arch/arm64/boot/dts/renesas/r9a07g0{43u,44u,54}.dtsi specify the
+> mask in their interrupts properties, too?
+>
+I was under the impression that the GIC_CPU_MASK_SIMPLE(x) was only
+needed if the driver handled per-cpu stuff.
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
-Krzysztof: I'm now adding any link here as the v1 of the sa8775p DTS patch
-did not use this compatible and v2 is still WiP.
+Marc, what should be the correct usage?
 
- Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-index d8ac0be36e6c..27fb484d5f8d 100644
---- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-@@ -18,6 +18,7 @@ properties:
-       - items:
-           - enum:
-               - qcom,apss-wdt-qcs404
-+              - qcom,apss-wdt-sa8775p
-               - qcom,apss-wdt-sc7180
-               - qcom,apss-wdt-sc7280
-               - qcom,apss-wdt-sc8180x
--- 
-2.37.2
-
+Cheers,
+Prabhakar
