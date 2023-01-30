@@ -2,203 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58298682035
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 01:00:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80FD9682047
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 01:01:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231360AbjAaAAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 19:00:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42548 "EHLO
+        id S231180AbjAaAA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 19:00:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231530AbjA3X7x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 18:59:53 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1F7523DA2
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 15:59:48 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id me3so36897401ejb.7
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 15:59:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CDoOdjfsWKmLJAB94hSuPuVJscqgiA2qYQ0HfGwlM14=;
-        b=zoyMpp6Mw+IHu+8pRT4ByKS6CEL8Oce2qDWrBO8hJwrcv/2e8dYzGpI15NGI82Thps
-         dCmxAy30En9Rd3j3SiAtYVC+TdAs7V1E0IRG4t0WL6SbwIvMNZPOKOOy982SQLYdCvVv
-         KYiKAc72zusfWG7C6QPKS6y/rrXrDM0wxtDyiPztjRNlfcoSzY/VYcchuTZ71q0N/66y
-         yX/YkTlj1+Ts6UUaTW7/bSnLC6WTm/99flXNYicRVsa64lRZKd7TqEUPFKEuwbKjjTy8
-         D+cc3DMM5Yp3d+LvZkhZkAF+Ufb3R+0axI1ObSghkxANaKCcoCEWPx9aCq1L/zJeN+7X
-         tC/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CDoOdjfsWKmLJAB94hSuPuVJscqgiA2qYQ0HfGwlM14=;
-        b=AhEsk85DC5kvTKWJJzdJX/tODo9qnXDxlqdng3jxKO4tV5cOa7kJNqaryTH57u24LO
-         /nWVq4+Y9sDoKQvip70ac+RpQBJK4O09sJ7LOkrZRUdA8IMvDOGdbtPaCMNclkUVVAfw
-         Z6mDXxEgQYe9fT4U+NdWo7mWr5zDb1LeuV2yRbEcYNbl8SIIlCof1tpsmFPvr1EpsXwD
-         wVw+8Kg9lVoETlpuzZlQI9VrzfxkUF0I3XmZXg5yh+fBpC015NqVZMK5v3IMjT5a/+63
-         HpZPNX67CMO40fpffpYoYyEtjyITyzgwxD6nXZJ4yjWShxp5+HZuQ5fCKHs1iiUiiXWz
-         AQxw==
-X-Gm-Message-State: AO0yUKXdrM1beApMh/jmofgZTISnTbsgKmjReLbWcoM1RiTxRUFGMe5K
-        OV2EYckB2veaVYsR2nOSAHFFRQ==
-X-Google-Smtp-Source: AK7set8Ozk7kadx6GKeokKjGlVdmDRVF4XNjXDE/8Bmt3bcgkElGINLh5+oEVFJ5gIQ+6239+tWBDQ==
-X-Received: by 2002:a17:907:a0d2:b0:871:dd2:4afb with SMTP id hw18-20020a170907a0d200b008710dd24afbmr1421405ejc.42.1675123187287;
-        Mon, 30 Jan 2023 15:59:47 -0800 (PST)
-Received: from localhost.localdomain (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
-        by smtp.gmail.com with ESMTPSA id jr23-20020a170906515700b0086f4b8f9e42sm7577751ejc.65.2023.01.30.15.59.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 15:59:47 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 7/8] dt-bindings: clock: Add Qcom SM6115 GPUCC
-Date:   Tue, 31 Jan 2023 00:59:25 +0100
-Message-Id: <20230130235926.2419776-8-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230130235926.2419776-1-konrad.dybcio@linaro.org>
-References: <20230130235926.2419776-1-konrad.dybcio@linaro.org>
+        with ESMTP id S231296AbjAaAAw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 19:00:52 -0500
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0DE62ED70;
+        Mon, 30 Jan 2023 16:00:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1675123220; x=1706659220;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=WUwUPxlnqbiRmgDhKOibNerjH9tu78jzKFyyYvm0Dns=;
+  b=ahNoGFSQZ6IVRlNnLiFYdmH1erqTcOlikz2ncAWDdt4F27oEV7rLg3W/
+   VHXVwTq/y3t5WRCKUjmAEG1Ly2MMrA4QyWEMPK0zmRENQsfNydwPAGZUz
+   E1/JWyyamNLFp50NDeVO5nLSVlxwI3RNiApIouMkFjOnTKJzn+dL7isO9
+   ryJ9jfZz/VYU9hdlOYYYu1ptcz+mRjgIHDcmGlsuPuD71LOmyeHRhHzit
+   glzqoTXBLP5JTDYacRXj4jmryGaatffYBIK3+UXcMqld6xxI1kgykD3Pn
+   jKETZB5o2lifY82gl3IH+fV6a5ZipIHkrSBhALYaU2nB33AUHHoGj1izx
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="327726719"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; 
+   d="scan'208";a="327726719"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2023 16:00:19 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="614227920"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; 
+   d="scan'208";a="614227920"
+Received: from inuber-mobl5.amr.corp.intel.com (HELO [10.212.58.60]) ([10.212.58.60])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2023 16:00:18 -0800
+Message-ID: <ebf8ebed-ef79-bf18-4635-360f916877a6@linux.intel.com>
+Date:   Mon, 30 Jan 2023 17:59:26 -0600
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.2
+Subject: Re: [RFC PATCH v2 09/22] ASoC: qcom: qdsp6: Introduce USB AFE port to
+ q6dsp
+Content-Language: en-US
+To:     Wesley Cheng <quic_wcheng@quicinc.com>,
+        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
+        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        Thinh.Nguyen@synopsys.com, broonie@kernel.org,
+        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
+        agross@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_jackp@quicinc.com,
+        quic_plai@quicinc.com
+References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
+ <20230126031424.14582-10-quic_wcheng@quicinc.com>
+ <dea77277-6971-fe27-1ae0-ed551e84b6e4@linux.intel.com>
+ <5dec443d-9894-2d06-1798-c56b8f2e1e5e@quicinc.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <5dec443d-9894-2d06-1798-c56b8f2e1e5e@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for graphics clock controller for Qualcomm
-Technology Inc's SM6115 SoCs.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
-v3 -> v4:
 
-- Use unevaluatedProperties instead of additionalProperties
+On 1/30/23 16:54, Wesley Cheng wrote:
+> Hi Pierre,
+> 
+> On 1/26/2023 7:38 AM, Pierre-Louis Bossart wrote:
+>>
+>>
+>> On 1/25/23 21:14, Wesley Cheng wrote:
+>>> The QC ADSP is able to support USB playback endpoints, so that the main
+>>> application processor can be placed into lower CPU power modes.  This
+>>> adds
+>>> the required AFE port configurations and port start command to start an
+>>> audio session.
+>>>
+>>> Specifically, the QC ADSP can support all potential endpoints that are
+>>> exposed by the audio data interface.  This includes, feedback endpoints
+>>> (both implicit and explicit) as well as the isochronous (data)
+>>> endpoints.
+>>> The size of audio samples sent per USB frame (microframe) will be
+>>> adjusted
+>>> based on information received on the feedback endpoint.
+>>
+>> I think you meant "support all potential endpoint types"
+>>
+>> It's likely that some USB devices have more endpoints than what the DSP
+>> can handle, no?
+>>
+> 
+> True, as we discussed before, we only handle the endpoints for the audio
+> interface.  Other endpoints, such as HID, or control is still handled by
+> the main processor.
 
- .../bindings/clock/qcom,sm6115-gpucc.yaml     | 58 +++++++++++++++++++
- include/dt-bindings/clock/qcom,sm6115-gpucc.h | 36 ++++++++++++
- 2 files changed, 94 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml
- create mode 100644 include/dt-bindings/clock/qcom,sm6115-gpucc.h
+The number of isoc/audio endpoints can be larger than 1 per direction,
+it's not uncommon for a USB device to have multiple connectors on the
+front side for instruments, mics, monitor speakers, you name it. Just
+google 'motu' or 'rme usb' and you'll see examples of USB devices that
+are very different from plain vanilla headsets.
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml
-new file mode 100644
-index 000000000000..cf19f44af774
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,sm6115-gpucc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Graphics Clock & Reset Controller on SM6115
-+
-+maintainers:
-+  - Konrad Dybcio <konrad.dybcio@linaro.org>
-+
-+description: |
-+  Qualcomm graphics clock control module provides clocks, resets and power
-+  domains on Qualcomm SoCs.
-+
-+  See also:: include/dt-bindings/clock/qcom,sm6115-gpucc.h
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,sm6115-gpucc
-+
-+  clocks:
-+    items:
-+      - description: Board XO source
-+      - description: GPLL0 main branch source
-+      - description: GPLL0 main div source
-+
-+required:
-+  - compatible
-+  - clocks
-+
-+allOf:
-+  - $ref: qcom,gcc.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,gcc-sm6115.h>
-+    #include <dt-bindings/clock/qcom,rpmcc.h>
-+
-+    soc {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        clock-controller@5990000 {
-+            compatible = "qcom,sm6115-gpucc";
-+            reg = <0x05990000 0x9000>;
-+            clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-+                     <&gcc GCC_GPU_GPLL0_CLK_SRC>,
-+                     <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-+            #clock-cells = <1>;
-+            #reset-cells = <1>;
-+            #power-domain-cells = <1>;
-+        };
-+    };
-+...
-diff --git a/include/dt-bindings/clock/qcom,sm6115-gpucc.h b/include/dt-bindings/clock/qcom,sm6115-gpucc.h
-new file mode 100644
-index 000000000000..945f21a7d745
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,sm6115-gpucc.h
-@@ -0,0 +1,36 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2023, Linaro Limited
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_GPU_CC_SM6115_H
-+#define _DT_BINDINGS_CLK_QCOM_GPU_CC_SM6115_H
-+
-+/* GPU_CC clocks */
-+#define GPU_CC_PLL0			0
-+#define GPU_CC_PLL0_OUT_AUX2		1
-+#define GPU_CC_PLL1			2
-+#define GPU_CC_PLL1_OUT_AUX		3
-+#define GPU_CC_AHB_CLK			4
-+#define GPU_CC_CRC_AHB_CLK		5
-+#define GPU_CC_CX_GFX3D_CLK		6
-+#define GPU_CC_CX_GMU_CLK		7
-+#define GPU_CC_CX_SNOC_DVM_CLK		8
-+#define GPU_CC_CXO_AON_CLK		9
-+#define GPU_CC_CXO_CLK			10
-+#define GPU_CC_GMU_CLK_SRC		11
-+#define GPU_CC_GX_CXO_CLK		12
-+#define GPU_CC_GX_GFX3D_CLK		13
-+#define GPU_CC_GX_GFX3D_CLK_SRC		14
-+#define GPU_CC_SLEEP_CLK		15
-+#define GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK	16
-+
-+/* Resets */
-+#define GPU_GX_BCR			0
-+
-+/* GDSCs */
-+#define GPU_CX_GDSC			0
-+#define GPU_GX_GDSC			1
-+
-+#endif
--- 
-2.39.1
+>> And that brings me back to the question: what is a port and the
+>> relationship between port/backend/endpoints?
+>>
+>> Sorry for being picky on terminology, but if I learned something in days
+>> in standardization it's that there shouldn't be any ambiguity on
+>> concepts, otherwise everyone is lost at some point.
+>>
+> 
+> No worries, I can understand where you're coming from :).  After
+> re-reading some of the notations used, I can see where people may be
+> confused.
+> 
+>>
+>>>   static struct afe_port_map port_maps[AFE_PORT_MAX] = {
+>>> +    [USB_RX] = { AFE_PORT_ID_USB_RX, USB_RX, 1, 1},
+>>>       [HDMI_RX] = { AFE_PORT_ID_MULTICHAN_HDMI_RX, HDMI_RX, 1, 1},
+>>>       [SLIMBUS_0_RX] = { AFE_PORT_ID_SLIMBUS_MULTI_CHAN_0_RX,
+>>>                   SLIMBUS_0_RX, 1, 1},
+>>
+>> And if I look here a port seems to be a very specific AFE concept
+>> related to interface type? Do we even need to refer to a port in the USB
+>> parts?
+>>
+> 
+> Well, this is a design specific to how the Q6 AFE is implemented.  There
+> is a concept for an AFE port to be opened.  However, as mentioned
+> earlier, the "port" term used in soc-usb should be more for how many USB
+> devices can be supported.
+> 
+> If there was a case the audio DSP would support more than one USB
+> device, I believe another AFE port would need to be added.
 
+
+would the suggested infrastructure work though, even if the DSP could
+deal with multiple endpoints on different devices ? You have static
+mutexes and ops, can that scale to more than one USB device?
