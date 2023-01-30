@@ -2,100 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D092680AC5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:26:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6E7E680B14
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:40:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236450AbjA3K04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 05:26:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54222 "EHLO
+        id S235828AbjA3Kkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 05:40:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236441AbjA3K0p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:26:45 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642A130B27
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:26:41 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id q10so10559937wrm.4
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:26:41 -0800 (PST)
+        with ESMTP id S235800AbjA3Kkn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:40:43 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D7C3252A
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:40:41 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id hx15so10858623ejc.11
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:40:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZPoBz9/1/N6ODRgUu0zywPKZ5Pb9peKUsXrjhFsletU=;
-        b=ZRyN6STZ1TLPVz4LQ6q3JE4PIWOJj1I9SrDzQgnNUxCnJuucnPb47K5T+FT5VJqJhK
-         O7/cyqU8K6RTZ+xoZ92FBBgXMi1SXmIumyAw3zE49VeVoVkCg+xC4bMIp9CwVBpGwgV+
-         y1MxJbFLq0iCWns2b+hVFDDcpyNc720nV1LmafAtHn/n2W96sBotkpDyOvna77pG9sP6
-         pPdfwpT2P+ZdYR6Qk6guRYpEpokyLcJ7bBJ2yNGthRpuCqIw7AOsVGJ/Yib4yo/Oh8fN
-         FVTH/apMKrbFOcEOzGxtAc29B7xT//JupyxHXJDrXcqSVdyNziI2+Z/zZVg0y0FIe7Fe
-         jywQ==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=fdNUPffFvmZrBuodDbaQxrLCKtYnZUu/RnBAFeTehl4=;
+        b=a2NRjekX1BfZ9QTLs6Qgo7mu/qYSpCZY4kuWbHpJX4+D72h350igExn6viCpYRlecV
+         /0pWnosUN9yVKUm0jdvVypK0arvG4GaSstEAinU7aaigbVStLP0fRzhcmTb9nIsU9HVb
+         6uLOjsBjJzkpqRR3XDhRnb1H6E+TgUx9ctWBsVkwCB9J5S51f0myvsf0Sc4Sbw+eG1X6
+         m/I3QqddCot7i5eOcL2PMn3nkrIkneB09Y606dBle5CUM5W09FrhIhZFGQcw8+NBM8Wu
+         c+Q7SjByjaUg94IRP9xDkz+vAJCRocnaXZ2MXSDQonUdK9SzOeYI6kzN/3msG/ZX4u6E
+         GAkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZPoBz9/1/N6ODRgUu0zywPKZ5Pb9peKUsXrjhFsletU=;
-        b=TWiaD+bHggciqmSgrX3ZMbrQjHdzpprRA/WEnWBwXeX+eAFbc5rWJV4bi+bTyrFx0M
-         piKL1Pen1PTiVm+m/dKYUo3FfPOwQKfxkeMiYiqFC/xdm6JWrFcEBOrucTXzdMQvMW53
-         ApVEVzy6b6UPgd7pUEN1HBastT4BjTIVSXohaGM/Gpbw6tl236GLEV9jT/Y+p/6tI2aQ
-         tYEs+8ieXnNelSHwDX1xxGGBxZJESxLJOX24DDaTW/KbhuAlpGNkQxn7zNSmdsSBfsHx
-         X2uhENARGZlopph/PYgspMt088d13BX/7iay0r1RRB8B4PJ6nvJN2eaZbzRxIiOoUNcw
-         gJxQ==
-X-Gm-Message-State: AFqh2kpY2fOtIv4dP0z4iqG2e7HR/XvlaXVHUtPQInpaGXQvMpmqyaYi
-        Bk5UxCchQOohdMLzzyjHc7IH8A==
-X-Google-Smtp-Source: AMrXdXsW7ZQDGKlzFTYhQEjR+p+Zk8AHHZFaUSI9MHLnvUkGztcTA7MZHFFlS/Gqk/Zh0lJ9wDVJ1g==
-X-Received: by 2002:a05:6000:1e18:b0:2bc:846a:8ead with SMTP id bj24-20020a0560001e1800b002bc846a8eadmr46483687wrb.37.1675074399921;
-        Mon, 30 Jan 2023 02:26:39 -0800 (PST)
-Received: from alex-T14.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id s5-20020a5d5105000000b002bdfcd8c77csm11426785wrt.101.2023.01.30.02.26.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 02:26:39 -0800 (PST)
-From:   Alexandre Bailon <abailon@baylibre.com>
-To:     yong.wu@mediatek.com, joro@8bytes.org, will@kernel.org
-Cc:     robin.murphy@arm.com, matthias.bgg@gmail.com,
-        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Alexandre Bailon <abailon@baylibre.com>
-Subject: [PATCH 3/3] dt-bindings: iommu: memory: Use unmanaged iommu domain for the APU
-Date:   Mon, 30 Jan 2023 11:27:22 +0100
-Message-Id: <20230130102722.133271-4-abailon@baylibre.com>
-X-Mailer: git-send-email 2.38.2
-In-Reply-To: <20230130102722.133271-1-abailon@baylibre.com>
-References: <20230130102722.133271-1-abailon@baylibre.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fdNUPffFvmZrBuodDbaQxrLCKtYnZUu/RnBAFeTehl4=;
+        b=Ase+M9/Ima+CADHeBEWrlFmqxPZsk87VHxhVo9XJSOOIj4U16HwhDQSX8GOXXmOezN
+         UqjnqiMuvCCEghKgTKmiw47In70Xzda51WKXn13/hlP6bvlpTUdJIObqITIQ4GPsLyGD
+         g4wYVpvJoIuMAmccjP+YNq9vnBH4Vo8VCV3H7KiumLSaLrvyteejLwIjd25/ACfwH2ih
+         pGOrtZwYzrVaPNQPdXkToSHlHHRQrqPsP9eXwHpnL0a8670pD4eZ4PlH01Y7adTxQ/kY
+         jJeTsTE0+rt7NWYkPzDXqMimqE5ThqaLSklc4vUte0p+yXMZQPE1cAqftvwAgjdZjdRB
+         LMkg==
+X-Gm-Message-State: AFqh2kqnAjmtis5UCpr24nd98IU7jr8ON9CpFOhPHbqwYYEdVcw00Mqi
+        fXmtB5Xs1EBbfJulNmxqQQcBezkAX6IhlrYkZYZsHw==
+X-Google-Smtp-Source: AMrXdXschNa1yyE4yyXfnHt7bxuX8pZDNHXkMneEpkjyfpKCpzB4G3AuW7kler2jR3lAb6d0ud+riMwnij52Z0VjIV4=
+X-Received: by 2002:a17:906:30c1:b0:877:4531:b133 with SMTP id
+ b1-20020a17090630c100b008774531b133mr8032986ejb.37.1675075239722; Mon, 30 Jan
+ 2023 02:40:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230124131717.128660-3-bchihi@baylibre.com> <20230126161048.94089-1-bchihi@baylibre.com>
+ <5ec49108-6ad8-daf7-54ec-104f0923a31d@linaro.org>
+In-Reply-To: <5ec49108-6ad8-daf7-54ec-104f0923a31d@linaro.org>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Mon, 30 Jan 2023 11:40:03 +0100
+Message-ID: <CAGuA+opQboxH8qoNv4GG+raX=ZZAyRVLC9VLjVCzbT_cUQWWTA@mail.gmail.com>
+Subject: Re: [PATCH v12 2/6] dt-bindings: thermal: mediatek: Add LVTS thermal
+ controllers dt-binding definition
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This updates the iommu id to use unmanaged iommu domain for the APU.
-This is required by remoteproc to use the iommu.
+Hi Krzysztof,
 
-Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
----
- include/dt-bindings/memory/mediatek,mt8365-larb-port.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Thank you for the feedback.
 
-diff --git a/include/dt-bindings/memory/mediatek,mt8365-larb-port.h b/include/dt-bindings/memory/mediatek,mt8365-larb-port.h
-index 56d5a5dd519e7..86d82a8f6017d 100644
---- a/include/dt-bindings/memory/mediatek,mt8365-larb-port.h
-+++ b/include/dt-bindings/memory/mediatek,mt8365-larb-port.h
-@@ -24,8 +24,8 @@
- #define M4U_PORT_MDP_WROT0		MTK_M4U_ID(M4U_LARB0_ID, 7)
- #define M4U_PORT_MDP_RDMA1		MTK_M4U_ID(M4U_LARB0_ID, 8)
- #define M4U_PORT_DISP_FAKE0		MTK_M4U_ID(M4U_LARB0_ID, 9)
--#define M4U_PORT_APU_READ		MTK_M4U_ID(M4U_LARB0_ID, 10)
--#define M4U_PORT_APU_WRITE		MTK_M4U_ID(M4U_LARB0_ID, 11)
-+#define M4U_PORT_APU_READ		MTK_M4U_UNMANAGED_ID(M4U_LARB0_ID, 10)
-+#define M4U_PORT_APU_WRITE		MTK_M4U_UNMANAGED_ID(M4U_LARB0_ID, 11)
- 
- /* larb1 */
- #define M4U_PORT_VENC_RCPU		MTK_M4U_ID(M4U_LARB1_ID, 0)
--- 
-2.38.2
+On Sat, Jan 28, 2023 at 11:48 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 26/01/2023 17:10, bchihi@baylibre.com wrote:
+> > From: Balsam CHIHI <bchihi@baylibre.com>
+> >
+> > Add LVTS thermal controllers dt-binding definition for mt8195.
+>
+> Subject: drop second/last, redundant "dt-binding definition". The
+> "dt-bindings" prefix is already stating that these are bindings.
 
+fixed.
+The patch title has been fixed as you suggested :
+"dt-bindings: thermal: mediatek: Add LVTS thermal controllers"
+
+>
+> Plus two comments at the end.
+>
+> >
+> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> > ---
+> > Changelog:
+> >   v12:
+> >      - Fixed subject prefix
+> >      - Fixed licences GPL-2.0+ to GPL-2.0
+> >      - Added dual licenses
+>
+>
+> > +    };
+> > diff --git a/include/dt-bindings/thermal/mediatek-lvts.h b/include/dt-bindings/thermal/mediatek-lvts.h
+> > new file mode 100644
+> > index 000000000000..902d5b1e4f43
+> > --- /dev/null
+> > +++ b/include/dt-bindings/thermal/mediatek-lvts.h
+>
+> Same filename as bindings.
+
+fixed.
+rename :
+include/dt-bindings/thermal/mediatek-lvts.h =>
+include/dt-bindings/thermal/mediatek-lvts-thermal.h
+
+>
+> > @@ -0,0 +1,19 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
+>
+> Although this is correct, any reason why not using exactly the same
+> license as bindings?
+
+fixed.
+both files are now using the same license :
+"SPDX-License-Identifier: (GPL-2.0 or MIT)"
+
+>
+> > +/*
+> > + * Copyright (c) 2023 MediaTek Inc.
+> > + * Author: Balsam CHIHI <bchihi@baylibre.com>
+> > + */
+>
+> Best regards,
+> Krzysztof
+>
+
+I'll send the changes soon.
+
+Best regards,
+Balsam
