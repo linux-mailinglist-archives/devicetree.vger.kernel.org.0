@@ -2,120 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71906680F39
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 14:43:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64212680F44
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 14:48:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235776AbjA3Nne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 08:43:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54044 "EHLO
+        id S235426AbjA3NsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 08:48:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233324AbjA3Nnd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 08:43:33 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EBDD126D9
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 05:43:32 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso2071625wms.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 05:43:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0dzAvNhqbLHD8Qqr5U4HkMhu9d4Ko8KZtdb+p3yzQqo=;
-        b=r3+O9ok547RbwEpeaTLhkg2nhQik6ojXy+fTq+Mnx7azfKGPocnjWfqHgTANTMmRRi
-         Ga7BrBfT6JMqxyyLMGSRQGNZWeS/0obKNdiOuurdTQfR+4PLPos4/1ZQ7Lrt6uEn6siU
-         mXpsUovrCJCA6CmoF6tql2U5NHvmyJxWbUQtFpIa1/YnhFNS9efyClfxEwebL08zPvOw
-         SExuyJGXGdar9XV2X8crhizmga9Wi/Mh0H1rRXTsBeOkK2Qsnk+qHb0V1vVsQYGpWtLx
-         vAwsDI3vaM0mJSi6vBtY+oyJKFvojk84NRYYDuVRU4DAqvyl5WGPE3dT9ddYNJc4hv2j
-         d0og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0dzAvNhqbLHD8Qqr5U4HkMhu9d4Ko8KZtdb+p3yzQqo=;
-        b=gq4wK+V931nZzpVy/VkbPXFuWQBdio/3mxFzI2R6T4MHK15TfvKG1tCODLXMbyv3dd
-         i/5fyvhoHCif2fi6+JVOd9jaBYPcoqhL8A+c5FDzOBhrYXCYR98HlyBQkPfPDS6eITlz
-         kd0y3ZIcAmhUcQIyVtqgrjWxVQX17fG0Q60Tnow9jbluodzfI33yRtPcaf8BvMnOL4Ug
-         tp+fxt0BXvOuwqUEQLWY70JXmgB6y8G7us1mFniUcMUjOR6eDXwgYR+h8XPWPtgK6Waz
-         SPO71B3nw2WU9ugC4pUrlT6DEm2metPu/tsrfjficL/pfAIJfrdfk1YvWNfo9V9DPw9o
-         buVA==
-X-Gm-Message-State: AO0yUKVmcTmrDiDkYsA2sqdIv4BjeRCdzdZSATe/hdhPZ7bXH0udKcZF
-        ocolcXgw2Gi9nuX9Ikv+nxKSHw==
-X-Google-Smtp-Source: AK7set97xlKmmDBvKPBmRQ17fPHhyiyadsOAAP+bSHsQR+a7netx9q1OsYsNQSaB7yg2FcxInSshMQ==
-X-Received: by 2002:a05:600c:3545:b0:3dd:1ac2:989 with SMTP id i5-20020a05600c354500b003dd1ac20989mr256851wmq.39.1675086210825;
-        Mon, 30 Jan 2023 05:43:30 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:b9a5:a1fe:d3ab:6b40])
-        by smtp.gmail.com with ESMTPSA id g12-20020a05600c310c00b003db012d49b7sm27403410wmo.2.2023.01.30.05.43.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 05:43:30 -0800 (PST)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH] dt-bindings: watchdog: qcom-wdt: add the interrupts property
-Date:   Mon, 30 Jan 2023 14:43:28 +0100
-Message-Id: <20230130134328.178591-1-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
+        with ESMTP id S235232AbjA3NsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 08:48:22 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 517D12941D;
+        Mon, 30 Jan 2023 05:48:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C1105B81116;
+        Mon, 30 Jan 2023 13:48:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64E29C4339E;
+        Mon, 30 Jan 2023 13:48:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675086497;
+        bh=+iz7/0m+hEIPyBQg3I/82VjHc01NMeldbSQt2dqGcSg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=R9sDP955tHpJ1QqsR0L3i+gv+cjOVpaU84PSIDDhw30Zfl75NL7qlIA2Ek9QCOvOs
+         f+80E8rQ53TD2AN3Y/fjhXCl/P394lhf7L+pmSgNTulhP9LTLp6wF6rENXVPR99t4q
+         P7PT9uexAhtg0aTWMcOYFA3CSWm9/gLd1V6rPdGhjNkwjeN/4nwM9wJRlxmuhyahod
+         oB/uATlvf3mMQn1UmbUNCfzcUWCJKUY9gGnL/RqnIJP6gJ9vUwQcc9VGeaLhCHOMJe
+         qUvl/iPosG3dy0T8Zw5/MXdW5+nM7hxAjDtIxxYz/Dkt76O6zY7CAxhzYf6xfll6wU
+         3fXZBoZjE6a5g==
+Received: by mail-vs1-f44.google.com with SMTP id s24so5118292vsi.12;
+        Mon, 30 Jan 2023 05:48:17 -0800 (PST)
+X-Gm-Message-State: AFqh2kr+v+o3ek47rwjxnLP3xhK7Lxq54kmW6KFPxT6FOBhAl32Qur7i
+        FQndBs0XLHw5FxhNwniM85ZYZR829H23CPw2Bg==
+X-Google-Smtp-Source: AMrXdXvWFxwf7o8XYdZZzxKLXqR1OblZ1Jf42fyF9cWbecmrBhoaNv2NX636Gi1FINWWYnmBotKarycuGbTuFd70diw=
+X-Received: by 2002:a05:6102:5490:b0:3b5:1fe4:f1c2 with SMTP id
+ bk16-20020a056102549000b003b51fe4f1c2mr6746365vsb.0.1675086496230; Mon, 30
+ Jan 2023 05:48:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230123112803.817534-1-alexghiti@rivosinc.com>
+ <20230123142554.f22ajf6upfk2ybxk@orel> <20230125104102.2thvourt3lx2p36a@orel> <CAHVXubjUCmk6xGTCPzMujYqKUwE0bhQBqd8A+=yq7ijQZtBObg@mail.gmail.com>
+In-Reply-To: <CAHVXubjUCmk6xGTCPzMujYqKUwE0bhQBqd8A+=yq7ijQZtBObg@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 30 Jan 2023 07:48:04 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ8JtkOBLpdf3hU9JWcdRTFr3Ss1Hd+yFpMqs7ujUiyCQ@mail.gmail.com>
+Message-ID: <CAL_JsqJ8JtkOBLpdf3hU9JWcdRTFr3Ss1Hd+yFpMqs7ujUiyCQ@mail.gmail.com>
+Subject: Re: [PATCH v4] riscv: Use PUD/P4D/PGD pages for the linear mapping
+To:     Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc:     Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Wed, Jan 25, 2023 at 6:13 AM Alexandre Ghiti <alexghiti@rivosinc.com> wrote:
+>
+> On Wed, Jan 25, 2023 at 11:41 AM Andrew Jones <ajones@ventanamicro.com> wrote:
+> >
+> > On Mon, Jan 23, 2023 at 03:25:54PM +0100, Andrew Jones wrote:
+> > > On Mon, Jan 23, 2023 at 12:28:02PM +0100, Alexandre Ghiti wrote:
+> > > > During the early page table creation, we used to set the mapping for
+> > > > PAGE_OFFSET to the kernel load address: but the kernel load address is
+> > > > always offseted by PMD_SIZE which makes it impossible to use PUD/P4D/PGD
+> > > > pages as this physical address is not aligned on PUD/P4D/PGD size (whereas
+> > > > PAGE_OFFSET is).
 
-The interrupts property is used in all nodes using this binding but not
-defined in the document itself - hence dtbs_check fails for them. Add
-the property and update the example.
+[...]
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- .../devicetree/bindings/watchdog/qcom-wdt.yaml        | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+> > > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > > > index f08b25195ae7..58107bd56f8f 100644
+> > > > --- a/drivers/of/fdt.c
+> > > > +++ b/drivers/of/fdt.c
+> > > > @@ -891,12 +891,13 @@ const void * __init of_flat_dt_match_machine(const void *default_match,
+> > > >  static void __early_init_dt_declare_initrd(unsigned long start,
+> > > >                                        unsigned long end)
+> > > >  {
+> > > > -   /* ARM64 would cause a BUG to occur here when CONFIG_DEBUG_VM is
+> > > > -    * enabled since __va() is called too early. ARM64 does make use
+> > > > -    * of phys_initrd_start/phys_initrd_size so we can skip this
+> > > > -    * conversion.
+> > > > +   /*
+> > > > +    * __va() is not yet available this early on some platforms. In that
+> > > > +    * case, the platform uses phys_initrd_start/phys_initrd_size instead
+> > > > +    * and does the VA conversion itself.
+> > > >      */
+> > > > -   if (!IS_ENABLED(CONFIG_ARM64)) {
+> > > > +   if (!IS_ENABLED(CONFIG_ARM64) &&
+> > > > +       !(IS_ENABLED(CONFIG_RISCV) && IS_ENABLED(CONFIG_64BIT))) {
+> > >
+> > > There are now two architectures, so maybe it's time for a new config
+> > > symbol which would be selected by arm64 and riscv64 and then used here,
+> > > e.g.
+> > >
+> > >   if (!IS_ENABLED(CONFIG_NO_EARLY_LINEAR_MAP)) {
+> >
+> > I see v5 left this as it was. Any comment on this suggestion?
+>
+> Introducing a config for this only use case sounds excessive to me,
+> but I'll let Rob decide what he wants to see here.
 
-diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-index 27fb484d5f8d..45940d643b92 100644
---- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-@@ -46,6 +46,10 @@ properties:
-   clocks:
-     maxItems: 1
- 
-+  interrupts:
-+    minItems: 1
-+    maxItems: 5
-+
- required:
-   - compatible
-   - reg
-@@ -55,9 +59,16 @@ unevaluatedProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-     watchdog@208a038 {
-       compatible = "qcom,kpss-wdt-ipq8064";
-       reg = <0x0208a038 0x40>;
-       clocks = <&sleep_clk>;
-       timeout-sec = <10>;
-+      interrupts = <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
-+                   <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
-+                   <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
-+                   <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
-+                   <GIC_PPI 5 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
-     };
--- 
-2.37.2
+Agreed. Can we just keep it as is here.
 
+> > > >             initrd_start = (unsigned long)__va(start);
+> > > >             initrd_end = (unsigned long)__va(end);
+
+I think long term, we should just get rid of needing to do this part
+in the DT code and let the initrd code do this.
+
+Rob
