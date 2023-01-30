@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1537680AC1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:26:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C4A0680AC2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 11:26:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236489AbjA3K0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 05:26:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54192 "EHLO
+        id S236432AbjA3K0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 05:26:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236427AbjA3K0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:26:43 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD2E530B12
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:26:38 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id h12so10537662wrv.10
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:26:38 -0800 (PST)
+        with ESMTP id S236429AbjA3K0o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 05:26:44 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05B812ED6E
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:26:40 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id bk16so10534357wrb.11
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 02:26:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=h/rwlLDEtbW36VfCqW0mnDyKREjKUOT7fxTwKpedSJQ=;
-        b=3E0zkA2gqTmqoeeFb3Q+vnT07aKxFwrUH34EgWo4WmsznGFTb6oc/GlWxTb3M5RUud
-         UpNd0oOfSg9RHk2rK4Qtmk3soyvhnU8HOmBmEKP3nwmU3dlqRPt2zGLETL3HRegddjlw
-         GMBvu07lIEFQjUx+90/7IwQ9Vf0kjB7AQhdWVa3SPuLup8G6jeOQa2sFj8MzYy4l+cAq
-         j5vZgqbDnzOhOGRLq5GC+J8jqaJMkwz2FTQK7Q5eFL6tXwU3wKLq0HkrAn9m+l4Wx1ff
-         NOUX31pnVurLmnDzXn/SttucqBwkn4mJ4IjYBq0um87+eUw7KmIB72WmryhMVtgR4zwq
-         Rd4w==
+        bh=mNpd3roa5gv6troS6TLhHBAaJw7HpklMLo5JJSNOuFM=;
+        b=HvVgNisJ1GOros7sTO0b7jt6wckJtww8GE0pYFh/mdrEOLAcdKo8vPknDwup16osyM
+         116amBTSkKUkZ8ekVMYLvfeqfw5qoBdXOLh4SHUHOOcBkstUcLJjw95obMk6rJSVbKjS
+         jHAE6s5PzQaftkaFWBDvZ1Y32Am60WjAZ4zjvWjfB6KlK/GbXWqaBDgX+ZUj+kieeJ3N
+         xlZglbm8ucQewISN4rZyw375sWGlYOOpp9mK5o81r+L+y9Nu5mUB36mXBzJdTCCW4/1Q
+         NXgBjgb+wtTtDdgBkmjtDiARGJcZK4ENi17cLkZgpm92XEUBp+mW6HAo5xVLPYkbLeXk
+         SXOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=h/rwlLDEtbW36VfCqW0mnDyKREjKUOT7fxTwKpedSJQ=;
-        b=woKg0tmhCFB2CqP6ENtx0kLKR2ExdmHrzK7KNumbCCbhZMjZSTOozE6zyXTmnAgHv1
-         w0eeBWKrAJWh3SBDUn8QG/cM+m7KzoatW1GtfMQTdPYiXinNyq2K3Al/xpl7s0AiMjWS
-         RiEQgtZpYILA2oOBxXapUpqEyF7bb34eoD4R5Wd11DwNpSAiqL0UELgWgLcN+ME9fdAm
-         UP4swIj04J+nyS5qcDSmAwOiDzlmOqAQmzrXO8JmhHbIcRnI1ovYpBdU/gaQyqFjPK0L
-         HzDp7jqmhbPFjhhyV0Iy0D17erL6qzdxzhznCK7V8TdgYPaqFqYI40Ch+Pts41dMrAlz
-         se3Q==
-X-Gm-Message-State: AFqh2koZI80kj4Ta5v+l4ryOd//b8sp4Ii1Ro9cNPL1e4ufdeK/LF6KB
-        XntSwdPLAqK9xSVB37w90MB7Ig==
-X-Google-Smtp-Source: AMrXdXtCiNfSdUuMkTNChaAYiBD0oXk/tcW8F7bQQHQBjcoe+x26vkfwvHt6Gpl6NHBhKdyyS31KtA==
-X-Received: by 2002:a5d:46c2:0:b0:2bf:9468:340 with SMTP id g2-20020a5d46c2000000b002bf94680340mr29633671wrs.19.1675074397479;
-        Mon, 30 Jan 2023 02:26:37 -0800 (PST)
+        bh=mNpd3roa5gv6troS6TLhHBAaJw7HpklMLo5JJSNOuFM=;
+        b=UVjKnuNYUzpIIZAKJg3WczAqPFIUpoFQvnz2BWcm7Ii5pMsszdU7tAE+MJJ2xqcDBO
+         kph9S+ijpbCAj3lS3vmdOyu0Iz9xbswKJtvvUhteKCarlY4lGVPae+ekJKDVOKQbCFfm
+         JmhqkjJ25etLFSr46J1dmi0zvrQMgQfuccTokvpqbiQkoXJqawjPMrhEhhErSObWYXhS
+         0WyEBA74h4Iz1kfsI9OABWTeoE7NRWPR65YhEr2GxKps3P3xD+EC9uYp7N/XrPfpbjis
+         PBYCqaUhY1GrUA7VwhPDx5++Qx75cKkGJdSDinssszOKMVWWqnTmzD3Af/qysNYu0LCc
+         g71A==
+X-Gm-Message-State: AO0yUKW6UfE7gcySgEa1acPos6E7/9hGLpSaaiJwqf1fjSoAnid5yAPT
+        rIbiIp7/VBach2YT7a6H/l1OaQ==
+X-Google-Smtp-Source: AK7set9AyBy9CX25oVJxOx8ewKugRbpLcfdp5pWqnHAyLQivzN79VIqqC6uSU+2kFVMMMrl1nKkKlA==
+X-Received: by 2002:a5d:5c08:0:b0:2bf:b775:babd with SMTP id cc8-20020a5d5c08000000b002bfb775babdmr21396377wrb.28.1675074398562;
+        Mon, 30 Jan 2023 02:26:38 -0800 (PST)
 Received: from alex-T14.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id s5-20020a5d5105000000b002bdfcd8c77csm11426785wrt.101.2023.01.30.02.26.36
+        by smtp.gmail.com with ESMTPSA id s5-20020a5d5105000000b002bdfcd8c77csm11426785wrt.101.2023.01.30.02.26.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 02:26:37 -0800 (PST)
+        Mon, 30 Jan 2023 02:26:38 -0800 (PST)
 From:   Alexandre Bailon <abailon@baylibre.com>
 To:     yong.wu@mediatek.com, joro@8bytes.org, will@kernel.org
 Cc:     robin.murphy@arm.com, matthias.bgg@gmail.com,
@@ -56,9 +56,9 @@ Cc:     robin.murphy@arm.com, matthias.bgg@gmail.com,
         iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, Alexandre Bailon <abailon@baylibre.com>
-Subject: [PATCH 1/3] dt-bindings: memory: mediatek: Add support of unmanaged iommu domain
-Date:   Mon, 30 Jan 2023 11:27:20 +0100
-Message-Id: <20230130102722.133271-2-abailon@baylibre.com>
+Subject: [PATCH 2/3] iommu: mediatek: Add support of unmanaged iommu domain
+Date:   Mon, 30 Jan 2023 11:27:21 +0100
+Message-Id: <20230130102722.133271-3-abailon@baylibre.com>
 X-Mailer: git-send-email 2.38.2
 In-Reply-To: <20230130102722.133271-1-abailon@baylibre.com>
 References: <20230130102722.133271-1-abailon@baylibre.com>
@@ -73,35 +73,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently, the only way to have an unmanaged domain for a device
-is having a dedicated iova region or bank.
-This adds a new bit to MTK_M4U_ID that allows defining devices
-that needs unmanaged iommu domain.
+Currently, the driver can allocate an unmanaged iommu domain.
+But, this only works for SoC having multiple bank or multiple iova region.
+This updates the driver to also support unmanaged iommu domain if
+MTK_UNMANAGED_DEVICE is set in the iommu id.
 
 Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
 ---
- include/dt-bindings/memory/mtk-memory-port.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/iommu/mtk_iommu.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/include/dt-bindings/memory/mtk-memory-port.h b/include/dt-bindings/memory/mtk-memory-port.h
-index 2f68a0511a257..86896c776691a 100644
---- a/include/dt-bindings/memory/mtk-memory-port.h
-+++ b/include/dt-bindings/memory/mtk-memory-port.h
-@@ -7,11 +7,14 @@
- #define __DT_BINDINGS_MEMORY_MTK_MEMORY_PORT_H_
+diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+index 2badd6acfb23d..5884a1ad409a0 100644
+--- a/drivers/iommu/mtk_iommu.c
++++ b/drivers/iommu/mtk_iommu.c
+@@ -858,9 +858,15 @@ static int mtk_iommu_get_group_id(struct device *dev, const struct mtk_iommu_pla
+ static struct iommu_group *mtk_iommu_device_group(struct device *dev)
+ {
+ 	struct mtk_iommu_data *c_data = dev_iommu_priv_get(dev), *data;
++	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
+ 	struct list_head *hw_list = c_data->hw_list;
+ 	struct iommu_group *group;
+ 	int groupid;
++	int i;
++
++	for (i = 0; i < fwspec->num_ids; i++)
++		if (MTK_M4U_UNMANAGED(fwspec->ids[i]))
++			return iommu_group_alloc();
  
- #define MTK_LARB_NR_MAX			32
-+#define MTK_UNMANAGED_DEVICE            (1 << 31)
- 
- #define MTK_M4U_ID(larb, port)		(((larb) << 5) | (port))
- #define MTK_M4U_TO_LARB(id)		(((id) >> 5) & 0x1f)
- #define MTK_M4U_TO_PORT(id)		((id) & 0x1f)
-+#define MTK_M4U_UNMANAGED(id)		((id) & MTK_UNMANAGED_DEVICE)
- 
- #define MTK_IFAIOMMU_PERI_ID(port)	MTK_M4U_ID(0, port)
-+#define MTK_M4U_UNMANAGED_ID(larb, port) (MTK_M4U_ID(larb, port) | MTK_UNMANAGED_DEVICE)
- 
- #endif
+ 	data = mtk_iommu_get_frst_data(hw_list);
+ 	if (!data)
 -- 
 2.38.2
 
