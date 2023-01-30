@@ -2,120 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5B18681723
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 18:02:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 204E868172F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 18:05:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237461AbjA3RCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 12:02:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57552 "EHLO
+        id S235858AbjA3REq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 12:04:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237496AbjA3RCf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 12:02:35 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A76240BE6;
-        Mon, 30 Jan 2023 09:02:28 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30UEO212006565;
-        Mon, 30 Jan 2023 17:02:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=9LFRpLyRhXWyH+7jrPEhrD02rrf8/HqGRJ6PpLDFJWI=;
- b=N0TP8iVMmfA28jwro09ztdIs3wdKqdbnpQc17/beCp2/3yW9A6K8PP6QGDz0xNZAAxot
- zvXgdRNm6qssHOmFByQjnQubeC4Gvpldumwn7Wl6wUgQFPrPQPQsgQzcSheDkvyjbeem
- ZRU/FYJOdMALla7NmA16kHpFHXC2Tx8cF4TnwFByIVCCOVxfUFDiABRKVZTR2MkJOQyg
- Y3vnZqsi6Pt5+Pov6EcjdLPVIjcjJTHO6oXErDXhu1BUvkavZMMwjO5mPJVwxFjJDd2e
- djl5vKb/TQiUUI/VKPTBtXEJGowL6BXnrWD9lK0yi7/nfgkOFEJ1hjd9BNGldU36hEST yA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nefmfrbhp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 30 Jan 2023 17:02:25 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30UH2O8i006723
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 30 Jan 2023 17:02:24 GMT
-Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Mon, 30 Jan 2023 09:02:20 -0800
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Kathiravan T <quic_kathirav@quicinc.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: ipq5332: add SMEM support
-Date:   Mon, 30 Jan 2023 22:31:55 +0530
-Message-ID: <20230130170155.27266-4-quic_kathirav@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230130170155.27266-1-quic_kathirav@quicinc.com>
-References: <20230130170155.27266-1-quic_kathirav@quicinc.com>
+        with ESMTP id S229694AbjA3REp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 12:04:45 -0500
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE0ACC1D;
+        Mon, 30 Jan 2023 09:04:44 -0800 (PST)
+Received: by mail-ot1-f48.google.com with SMTP id g21-20020a9d6495000000b0068bb336141dso2838112otl.11;
+        Mon, 30 Jan 2023 09:04:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7Ejf7vqAQxFeMcRz+b+ludPXWyayqJapmdG5pn46nsk=;
+        b=ium8EhYJ+khpX7bVHU+zYLKdMrWOhKMVJLJlI66d7ZGK6qddheFiHhuetKi7KVdvSV
+         3RPSEkhm5ubVTSA1m1qNK5uTWTH0WEhvx/h072ceqrF4VnfenbdRmQncCfG9CUaID128
+         kJOjn97s/8R8HoFhyLFtg3xDwUrkbTEgsL434jryLinFRpO29L2B8tRVuQfOoPNWg/3T
+         N20xUV2vTr4M5f+f8PFeZAaDg/mBhXlM8E1OqdcLiUfn2DW7K/FQgc8KrN5gYNAZN0Cb
+         0LNqZ2j5Dp0IBnM1KzRAL01dHFF8bPtrVVn04UjKNQ6sS8F1tz3FDrbp2QxQ4xaHtaCK
+         cemg==
+X-Gm-Message-State: AO0yUKXHicHL1IaK2xkP2JIeEh/cwqKMkqwW9S7XH8EGC35lSikgbDBH
+        v7w1NqwoDQAWvNj6RH32yg==
+X-Google-Smtp-Source: AK7set8w8/Wu9DKjsKGEnq+lsfo72FtdhgNl/pG9CyvPUTTpOD8gzinQeTtCr6QRjCiwKv9eYztbDQ==
+X-Received: by 2002:a9d:6847:0:b0:68b:bca5:8dfa with SMTP id c7-20020a9d6847000000b0068bbca58dfamr4730987oto.28.1675098283123;
+        Mon, 30 Jan 2023 09:04:43 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id df17-20020a056830479100b006884c42a38asm4066933otb.41.2023.01.30.09.04.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 09:04:42 -0800 (PST)
+Received: (nullmailer pid 2814224 invoked by uid 1000);
+        Mon, 30 Jan 2023 17:04:41 -0000
+Date:   Mon, 30 Jan 2023 11:04:41 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tomi Valkeinen <tomba@kernel.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Guo Ren <guoren@kernel.org>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Linux RISC-V List <linux-riscv@lists.infradead.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Linux Mediatek List <linux-mediatek@lists.infradead.org>,
+        Linux C-SKY Arch List <linux-csky@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: panel: Introduce dual-link LVDS panel
+Message-ID: <20230130170441.GA2796575-robh@kernel.org>
+References: <20230124101238.4542-1-a-bhatia1@ti.com>
+ <20230124101238.4542-4-a-bhatia1@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Zt_-Er4yQ3xTEIFVKHexE24jCadnr2xB
-X-Proofpoint-GUID: Zt_-Er4yQ3xTEIFVKHexE24jCadnr2xB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-30_16,2023-01-30_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- priorityscore=1501 mlxlogscore=732 suspectscore=0 bulkscore=0 mlxscore=0
- impostorscore=0 phishscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2301300165
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230124101238.4542-4-a-bhatia1@ti.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add SMEM support by adding required nodes.
+On Tue, Jan 24, 2023 at 03:42:37PM +0530, Aradhya Bhatia wrote:
+> Dual-link LVDS interfaces have 2 links, with even pixels traveling on
+> one link, and odd pixels on the other. These panels are also generic in
+> nature, with no documented constraints, much like their single-link
+> counterparts, "panel-lvds".
+> 
+> Add a new compatible, "panel-dual-lvds", and a dt-binding document for
+> these panels.
+> 
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>  .../display/panel/panel-dual-lvds.yaml        | 149 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 150 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
+> new file mode 100644
+> index 000000000000..e2ce1768e9a3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
+> @@ -0,0 +1,149 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/panel-dual-lvds.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic Dual-Link LVDS Display Panel
+> +
+> +maintainers:
+> +  - Aradhya Bhatia <a-bhatia1@ti.com>
+> +  - Thierry Reding <thierry.reding@gmail.com>
+> +
+> +description: |
+> +  A dual-LVDS interface is a dual-link connection with the even pixels
+> +  traveling on one link, and the odd pixels traveling on the other.
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +  - $ref: /schemas/display/lvds.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - lincolntech,lcd185-101ct
+> +          - microtips,mf-101hiebcaf0
+> +      - const: panel-dual-lvds
 
-Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq5332.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Why do we need a new compatible? You have ports and properties to see if 
+the panel is dual link.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-index 6a1d0cc927ef..17f30118f9fd 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-@@ -99,6 +99,14 @@
- 			no-map;
- 			reg = <0x0 0x4a600000 0x0 0x200000>;
- 		};
-+
-+		smem@4a800000 {
-+			compatible = "qcom,smem";
-+			reg = <0x0 0x4a800000 0x0 0x00100000>;
-+			no-map;
-+
-+			hwlocks = <&tcsr_mutex 0>;
-+		};
- 	};
- 
- 	soc@0 {
-@@ -143,6 +151,12 @@
- 				 <0>;
- 		};
- 
-+		tcsr_mutex: hwlock@1905000 {
-+			compatible = "qcom,tcsr-mutex";
-+			reg = <0x01905000 0x20000>;
-+			#hwlock-cells = <1>;
-+		};
-+
- 		tcsr: syscon@193d100 {
- 			compatible = "qcom,tcsr-ipq5332", "syscon";
- 			reg = <0x0193d100 0x4>;
--- 
-2.17.1
+We already have dual link LVDS supported in advantech,idk-2121wr.yaml 
+which says is compatible with 'panel-lvds', so that decision has already 
+been made. The hint was you added the compatible match to the driver 
+with 0 other changes needed.
 
+That schema is missing type definitions and constraints for 
+dual-lvds-odd-pixels/dual-lvds-even-pixels so there does need to be some 
+changes to add those.
+
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: The sink for first set of LVDS pixels.
+> +
+> +        properties:
+> +          dual-lvds-odd-pixels:
+> +            type: boolean
+> +
+> +          dual-lvds-even-pixels:
+> +            type: boolean
+> +
+> +        oneOf:
+> +          - required: [dual-lvds-odd-pixels]
+> +          - required: [dual-lvds-even-pixels]
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: The sink for second set of LVDS pixels.
+> +
+> +        properties:
+> +          dual-lvds-even-pixels:
+> +            type: boolean
+> +
+> +          dual-lvds-odd-pixels:
+> +            type: boolean
+> +
+> +        oneOf:
+> +          - required: [dual-lvds-even-pixels]
+> +          - required: [dual-lvds-odd-pixels]
+> +
+> +    allOf:
+> +      - if:
+> +          properties:
+> +            port@0:
+> +              required:
+> +                - dual-lvds-odd-pixels
+> +        then:
+> +          properties:
+> +            port@1:
+> +              properties:
+> +                dual-lvds-odd-pixels: false
+> +
+> +      - if:
+> +          properties:
+> +            port@0:
+> +              required:
+> +                - dual-lvds-even-pixels
+> +        then:
+> +          properties:
+> +            port@1:
+> +              properties:
+> +                dual-lvds-even-pixels: false
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +  port: false
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - width-mm
+> +  - height-mm
+> +  - data-mapping
+> +  - panel-timing
+> +  - ports
+> +
+> +examples:
+> +  - |
+> +    panel {
+> +      compatible = "microtips,mf-101hiebcaf0", "panel-dual-lvds";
+> +
+> +      width-mm = <217>;
+> +      height-mm = <136>;
+> +
+> +      data-mapping = "vesa-24";
+> +
+> +      panel-timing {
+> +        clock-frequency = <150275000>;
+> +        hactive = <1920>;
+> +        vactive = <1200>;
+> +        hfront-porch = <32>;
+> +        hsync-len = <52>;
+> +        hback-porch = <24>;
+> +        vfront-porch = <24>;
+> +        vsync-len = <8>;
+> +        vback-porch = <3>;
+> +        de-active = <1>;
+> +      };
+> +
+> +      ports {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        port@0 {
+> +          reg = <0>;
+> +          dual-lvds-odd-pixels;
+> +          lcd_in0: endpoint {
+> +            remote-endpoint = <&oldi_out0>;
+> +          };
+> +        };
+> +
+> +        port@1 {
+> +          reg = <1>;
+> +          dual-lvds-even-pixels;
+> +          lcd_in1: endpoint {
+> +            remote-endpoint = <&oldi_out1>;
+> +          };
+> +        };
+> +      };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 5e18388b4579..6025bb024586 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6461,6 +6461,7 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
+>  S:	Maintained
+>  F:	drivers/gpu/drm/panel/panel-lvds.c
+>  F:	Documentation/devicetree/bindings/display/lvds.yaml
+> +F:	Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
+>  F:	Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
+>  
+>  DRM DRIVER FOR MANTIX MLAF057WE51 PANELS
+> -- 
+> 2.39.0
+> 
