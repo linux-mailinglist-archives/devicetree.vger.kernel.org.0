@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC200680A18
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 10:55:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B364A680A1E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 10:55:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236112AbjA3JzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 04:55:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57662 "EHLO
+        id S236205AbjA3Jze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 04:55:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236010AbjA3JzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 04:55:18 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43BB42F7A0
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 01:54:59 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id m7so10458755wru.8
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 01:54:59 -0800 (PST)
+        with ESMTP id S236053AbjA3JzU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 04:55:20 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8E22E0E3
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 01:55:03 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id k16so7558961wms.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 01:55:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=n966g2oytrrI+/j6t013UuTzLUKjnaUrX5GhJ4ozsXg=;
-        b=ZOwhZvD2lSeo382ndgIzNynH5GDowRNc0fXYdhjAhhGozZEMle/xd4AFhAM3AR0fxP
-         huO8SLuSmvXE+NQksi+gfyW8KL3Bi6SyTRJNKgacRP4B84BV0KNoicDfTeTVzT2eN8Ii
-         W6MtnmtZRRqda7o6TyCBd2+2/M3CHARhBDLE1kqsbKuFCxfa9F+eKvcY+UAtR3xoan9u
-         lEA/W26cxN5B8narooYnF1ThsfyGaI8Y65Q4vfFbvhh1LnVcHb05OvQfDiu1jJW+uQ8F
-         /0jcJCKZZxOQxbBFy1hFcRTCcKGgF0DhboicHS5P4iI8GGpBL9onOHrXA8F13WOenqhX
-         JkLQ==
+        bh=HyBwev6TUNJBaFlgSQKpbSDpQdJ67+HQlt1JHFyKM8E=;
+        b=Bc24lrZj+St1lVcE/bYObbVAx2ZXSbSMBtxsimxLhm0TdKsEm9TzI6T7seXtYVA4H3
+         rCHqna4EMbgNyk+Cq/4kN1LJESNsDYd9Qo9EV0vGxS3In5SqZvWi7mzOnm9obFy5kfpq
+         Xkx9EZxJSJQMbL5Lu7I6hwRPOozNllUZ0UkXsy+XKsQ7sX598A01/nJXzzobl5GEC2cz
+         JpZZ5OyKNwl9fA5oKoK7D9oldTRg2W7kuQzQY7/6oa11JhmEiS/BRWhiGz82FifjW/OB
+         92W/ZJ0i9czrQHj3KdVdrxGx74M3ddukUYnIfzR98nmHaUsEs1xhY2kCZGenAjWlM+T1
+         2+5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=n966g2oytrrI+/j6t013UuTzLUKjnaUrX5GhJ4ozsXg=;
-        b=RrJ3NYH0H9Ave55nGchqNd+PXe2A7N/RsmsqiQVKPnZFVermheEQ6+gXeq1BDGNuiX
-         5/VN/VoJhDo25i79Fe6opgFCpk/5XXgHTnHWLFF/TDvq4ZTP2S9WkW7U/EMN2LEt2Bsn
-         ObEnpO7Ogc8Wd74LiQsZi/Hu+GQOogoQnKUJK3GIOOoAyXy+OPl2z0CnO8gxB5s9ik9t
-         o6+ay4gs+hOkiPjr+SEzjYAD167/U+2H22BYQgXF50KcxRRS1uolCWsHE8ieXV5QLqMu
-         rFIc538wbqcc9kBTgnq5M4EGNl09toFqGPMuR/WSbP/VoekRBeDoU53ffG9LOnBNAUxo
-         UV4A==
-X-Gm-Message-State: AO0yUKUBHkCQfao4v9G0o8KuXAEqg6omDr6tPZrm9CDSTFnHG0Fynqos
-        tP+iZUxPej/vqaQYLVM84YCV8Q==
-X-Google-Smtp-Source: AK7set/UWd2HAUscqvmpzv+2/RkYvIvkbUAFztMrzHEQdNwR0bBci3eFfop0wai9KWcDFyy+xVsIKg==
-X-Received: by 2002:adf:a1c4:0:b0:2bf:b1f0:7bab with SMTP id v4-20020adfa1c4000000b002bfb1f07babmr17618268wrv.47.1675072478016;
+        bh=HyBwev6TUNJBaFlgSQKpbSDpQdJ67+HQlt1JHFyKM8E=;
+        b=thic/ZhCZKEI6WhdP9zqECOtDELgfjPvebDIosMlUev9ZYWMcH0WJTgMDtgvFCOjAI
+         hY6IUo8lyzTMuwUXrLyukIdNFX4Cm93raHHyWfKrlJ7tvHCF18jm1W7UsqjIAeTnuDm1
+         dCdWNdqpqNoY1OfTGzd2/MevII0ZsBsQvexxfwuvNmzFt6VdbtzNhujeXtbky8N0csF3
+         NcLDlyuHH1hilTa2jSZN58lrBC8mpm83zQ7XB2gs8/x6VwNbK/4JQte0shHU1eqxHNBv
+         pd5f0fC0S6cZi9RmsfdCaHaez6c9sv0uwfXrQNOMR/ApvjFRi6mg6guPvfuzvjMggR3l
+         DfFA==
+X-Gm-Message-State: AFqh2koDjZjPG8GaW4Oxsk7CWEoUwLeKBvGatYpUVK7wWF54W1dY/kGs
+        KAVZ84SALAdNwtHSqhaUAYinAA==
+X-Google-Smtp-Source: AMrXdXve8jY/Or0A1lGmhun2uvsz+OiyqlVS2u3uaiR+fvOq+J1lAqJIJ94FyE05U5PyxgeegDtm2g==
+X-Received: by 2002:a05:600c:4e50:b0:3da:f4ef:5e70 with SMTP id e16-20020a05600c4e5000b003daf4ef5e70mr49675437wmq.6.1675072478963;
         Mon, 30 Jan 2023 01:54:38 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id k4-20020a5d4284000000b00241fde8fe04sm11453537wrq.7.2023.01.30.01.54.37
+        by smtp.gmail.com with ESMTPSA id k4-20020a5d4284000000b00241fde8fe04sm11453537wrq.7.2023.01.30.01.54.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 01:54:37 -0800 (PST)
+        Mon, 30 Jan 2023 01:54:38 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Mon, 30 Jan 2023 10:54:34 +0100
-Subject: [PATCH 3/7] dt-bindings: soc: qcom: qcom,pmic-glink: document
- SM8550 compatible
+Date:   Mon, 30 Jan 2023 10:54:35 +0100
+Subject: [PATCH 4/7] soc: qcom: pmic_glink: register ucsi aux device
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230130-topic-sm8450-upstream-pmic-glink-v1-3-0b0acfad301e@linaro.org>
+Message-Id: <20230130-topic-sm8450-upstream-pmic-glink-v1-4-0b0acfad301e@linaro.org>
 References: <20230130-topic-sm8450-upstream-pmic-glink-v1-0-0b0acfad301e@linaro.org>
 In-Reply-To: <20230130-topic-sm8450-upstream-pmic-glink-v1-0-0b0acfad301e@linaro.org>
 To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
@@ -83,26 +82,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the SM8550 compatible used to describe the pmic glink
-on this platform.
+Only register UCSI on know working devices, like on the SM8450
+or Sm8550 which requires UCSI to get USB mode switch events.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/soc/qcom/pmic_glink.c | 67 ++++++++++++++++++++++++++++++++++++-------
+ 1 file changed, 57 insertions(+), 10 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-index 2dc11686c33e..59ac9db81733 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-@@ -26,6 +26,7 @@ properties:
-           - qcom,sc8280xp-pmic-glink
-           - qcom,sm8350-pmic-glink
-           - qcom,sm8450-pmic-glink
-+          - qcom,sm8550-pmic-glink
-       - const: qcom,pmic-glink
+diff --git a/drivers/soc/qcom/pmic_glink.c b/drivers/soc/qcom/pmic_glink.c
+index bb3fb57abcc6..c7f091f4a8c1 100644
+--- a/drivers/soc/qcom/pmic_glink.c
++++ b/drivers/soc/qcom/pmic_glink.c
+@@ -4,6 +4,7 @@
+  * Copyright (c) 2022, Linaro Ltd
+  */
+ #include <linux/auxiliary_bus.h>
++#include <linux/of_device.h>
+ #include <linux/module.h>
+ #include <linux/platform_device.h>
+ #include <linux/rpmsg.h>
+@@ -11,12 +12,23 @@
+ #include <linux/soc/qcom/pdr.h>
+ #include <linux/soc/qcom/pmic_glink.h>
  
-   '#address-cells':
++enum {
++	PMIC_GLINK_CLIENT_BATT = 0,
++	PMIC_GLINK_CLIENT_ALTMODE,
++	PMIC_GLINK_CLIENT_UCSI,
++};
++
++#define PMIC_GLINK_CLIENT_DEFAULT	(BIT(PMIC_GLINK_CLIENT_BATT) |	\
++					 BIT(PMIC_GLINK_CLIENT_ALTMODE))
++
+ struct pmic_glink {
+ 	struct device *dev;
+ 	struct pdr_handle *pdr;
+ 
+ 	struct rpmsg_endpoint *ept;
+ 
++	unsigned int client_mask;
++
+ 	struct auxiliary_device altmode_aux;
+ 	struct auxiliary_device ps_aux;
+ 	struct auxiliary_device ucsi_aux;
+@@ -231,8 +243,19 @@ static struct rpmsg_driver pmic_glink_rpmsg_driver = {
+ 	},
+ };
+ 
++/* Do not handle altmode for now on those platforms */
++static const unsigned int pmic_glink_sm8450_client_mask = BIT(PMIC_GLINK_CLIENT_BATT) |
++							  BIT(PMIC_GLINK_CLIENT_UCSI);
++
++static const struct of_device_id pmic_glink_of_client_mask[] = {
++	{ .compatible = "qcom,sm8450-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
++	{ .compatible = "qcom,sm8550-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
++	{}
++};
++
+ static int pmic_glink_probe(struct platform_device *pdev)
+ {
++	const struct of_device_id *match;
+ 	struct pdr_service *service;
+ 	struct pmic_glink *pg;
+ 	int ret;
+@@ -249,12 +272,27 @@ static int pmic_glink_probe(struct platform_device *pdev)
+ 	mutex_init(&pg->client_lock);
+ 	mutex_init(&pg->state_lock);
+ 
+-	ret = pmic_glink_add_aux_device(pg, &pg->altmode_aux, "altmode");
+-	if (ret)
+-		return ret;
+-	ret = pmic_glink_add_aux_device(pg, &pg->ps_aux, "power-supply");
+-	if (ret)
+-		goto out_release_altmode_aux;
++	match = of_match_device(pmic_glink_of_client_mask, &pdev->dev);
++	if (match)
++		pg->client_mask = *(const unsigned int *)match->data;
++	else
++		pg->client_mask = PMIC_GLINK_CLIENT_DEFAULT;
++
++	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI)) {
++		ret = pmic_glink_add_aux_device(pg, &pg->ucsi_aux, "ucsi");
++		if (ret)
++			return ret;
++	}
++	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE)) {
++		ret = pmic_glink_add_aux_device(pg, &pg->altmode_aux, "altmode");
++		if (ret)
++			goto out_release_ucsi_aux;
++	}
++	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT)) {
++		ret = pmic_glink_add_aux_device(pg, &pg->ps_aux, "power-supply");
++		if (ret)
++			goto out_release_altmode_aux;
++	}
+ 
+ 	pg->pdr = pdr_handle_alloc(pmic_glink_pdr_callback, pg);
+ 	if (IS_ERR(pg->pdr)) {
+@@ -278,9 +316,14 @@ static int pmic_glink_probe(struct platform_device *pdev)
+ out_release_pdr_handle:
+ 	pdr_handle_release(pg->pdr);
+ out_release_aux_devices:
+-	pmic_glink_del_aux_device(pg, &pg->ps_aux);
++	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
++		pmic_glink_del_aux_device(pg, &pg->ps_aux);
+ out_release_altmode_aux:
+-	pmic_glink_del_aux_device(pg, &pg->altmode_aux);
++	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
++		pmic_glink_del_aux_device(pg, &pg->altmode_aux);
++out_release_ucsi_aux:
++	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
++		pmic_glink_del_aux_device(pg, &pg->ucsi_aux);
+ 
+ 	return ret;
+ }
+@@ -291,8 +334,12 @@ static int pmic_glink_remove(struct platform_device *pdev)
+ 
+ 	pdr_handle_release(pg->pdr);
+ 
+-	pmic_glink_del_aux_device(pg, &pg->ps_aux);
+-	pmic_glink_del_aux_device(pg, &pg->altmode_aux);
++	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
++		pmic_glink_del_aux_device(pg, &pg->ps_aux);
++	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
++		pmic_glink_del_aux_device(pg, &pg->altmode_aux);
++	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
++		pmic_glink_del_aux_device(pg, &pg->ucsi_aux);
+ 
+ 	mutex_lock(&__pmic_glink_lock);
+ 	__pmic_glink = NULL;
 
 -- 
 2.34.1
