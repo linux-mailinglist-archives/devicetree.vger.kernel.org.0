@@ -2,63 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD50A681634
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 17:19:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8D1468163E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 17:24:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236023AbjA3QTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 11:19:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54540 "EHLO
+        id S236472AbjA3QYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 11:24:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235055AbjA3QTE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 11:19:04 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13FA18A7A;
-        Mon, 30 Jan 2023 08:19:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9F2006118E;
-        Mon, 30 Jan 2023 16:19:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B38D2C433D2;
-        Mon, 30 Jan 2023 16:18:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675095543;
-        bh=njr6W+Xwj/RIjnPwkPZx0WPEFYVoTi3RI/NZkQ71He0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=S4pV9f9QVf9hjJO00A1v6XCQxfx3XVceL2Og+/lnnm0Nb1idnuUlwNImdtKyDjoQy
-         xPO3+WYVshtAzycehccoXY3U8yGDgleBYbqnLB9VMNOZLtUMbQUs140UaDu12+HkzT
-         /eXZf8rra8k7G3b519MGLAU0Yb948BS3vzGE9Gw0VAqkbe9Eo/YXpniDWCWxQoTKhV
-         Kdb1xyoVTjQ9Upq3kUTM0L6L7kHF4zY1V8nh073JfkVyxYBDhytNnjKzszIYD/Mkgw
-         ympSumFq1JWmAyCTaA/i1M5yk1hdP+Gi3LLP/kKMtQmrjQYUdWzuuDUv6F6reHOb8/
-         2ni4oaiuI7cGQ==
-Date:   Mon, 30 Jan 2023 16:18:56 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Xiangsheng Hou <xiangsheng.hou@mediatek.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, benliang.zhao@mediatek.com,
-        bin.zhang@mediatek.com
-Subject: Re: [RESEND PATCH v5 00/10] Add MediaTek MT7986 SPI NAND and ECC
- support
-Message-ID: <Y9ft8BIzESLQ0TTh@sirena.org.uk>
-References: <20230130030656.12127-1-xiangsheng.hou@mediatek.com>
- <20230130171145.2c844d34@xps-13>
+        with ESMTP id S233265AbjA3QYb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 11:24:31 -0500
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 313E13B0C1
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 08:24:30 -0800 (PST)
+Received: by mail-vs1-xe35.google.com with SMTP id 3so13036880vsq.7
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 08:24:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=criticallink.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TNjcl9ue4Yo+C3qXNF3I2IXLdPdV2VfDLb5UgrGwaNI=;
+        b=WtpdVSeOyj3NqmS8x1J7iyhRv/V7ha9AnHL68DNjFluRRqNbJK88sYdxcMnhkY8t6X
+         IFa4EfhuyatIkNKRKGkm9n+gDO0OX36QOSZ+tNcPWDzSffM3emrKCn8Da45DzuF8dJUT
+         ZmZlwopPfGtyO1AJaR6YCWLepNYkHtk3IFMrqL8qZfnPi86PsUI6yQ0X3Z9Lf7Fdgw4B
+         J6p5P3SBEf8maYUzvmVH64dIuvoot3NyC4rVF+MRJ+jiqD9lVJN7osAxX7oQ5ZEChSJX
+         Fisw6C68uToeMVoQj26/eL1mp7XloiMme5kZB+/UcvnYm07/ovfa4VCRT31K7f3vvLZJ
+         BrtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TNjcl9ue4Yo+C3qXNF3I2IXLdPdV2VfDLb5UgrGwaNI=;
+        b=hbn0szLkcr8zAKlTq8uU9E/F5B7v12B//CuCh6E/A+IlhyIWdVgMMfWOTWPpMl9Wdo
+         Q6K7XdhzH24Brrx6eNwW66VevGLQRrKxVGfT6Ox58W6HOItJoonG6PITRFQPQ2LqR0cG
+         MPg4ZRE+mkXpF393oMkAZqoqZDneQqLHdVn7aCzHmz5cKAVfkrkO7S9pRiqcmB8Xjw7Q
+         x3fzIRxyF8KWM+EchVOUeHvnPBPxH3CC6oa+TjtQ5mJQOOItCxwNNO0Cc33UsdaT8Sgh
+         YrWYGrxOBZK2KKVx2Cl9RazaG0KVZFTedSETv3Zr6JiNqu1w5H147D0OcIBAmvICldB4
+         bn5Q==
+X-Gm-Message-State: AFqh2kqxxNrvLz17zOv6VFR76G/423j4rFKRitU9+w9FDRu3ZCNk3qo5
+        J8TExFLFdDGkpa/AboXt34GePrOvcjU1aQ/DSocZvw==
+X-Google-Smtp-Source: AMrXdXvS2Xawh4TMY7nGcG42X6+jgpIxV+dRdppy1YUwAh+MSFiMtT/oSRraGGu4VgjT0QR7HOIsuVThWjRInNDG+YU=
+X-Received: by 2002:a05:6102:5587:b0:3d1:2167:11ad with SMTP id
+ dc7-20020a056102558700b003d1216711admr6493306vsb.2.1675095869214; Mon, 30 Jan
+ 2023 08:24:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="CMu4i+MTxKFAnMnD"
-Content-Disposition: inline
-In-Reply-To: <20230130171145.2c844d34@xps-13>
-X-Cookie: Some restrictions may apply.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+References: <20230125-tfp410_i2c-v1-4-66a4d4e390b7@criticallink.com> <202301290803.ouS19eab-lkp@intel.com>
+In-Reply-To: <202301290803.ouS19eab-lkp@intel.com>
+From:   Jon Cormier <jcormier@criticallink.com>
+Date:   Mon, 30 Jan 2023 11:24:18 -0500
+Message-ID: <CADL8D3bxCOwXU7NJ+jvN530LQByJCMRCGrH+HrGzCxR3+imZ2Q@mail.gmail.com>
+Subject: Re: [PATCH 4/4] DRM: BRIDGE: TFP410: If connected, use I2C for polled
+ HPD status.
+To:     kernel test robot <lkp@intel.com>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Jyri Sarha <jsarha@ti.com>, llvm@lists.linux.dev,
+        oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Michael Williamson <michael.williamson@criticallink.com>,
+        Bob Duke <bduke@criticallink.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,42 +80,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---CMu4i+MTxKFAnMnD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Mon, Jan 30, 2023 at 05:11:45PM +0100, Miquel Raynal wrote:
-> xiangsheng.hou@mediatek.com wrote on Mon, 30 Jan 2023 11:06:46 +0800:
-
-> > This patch series add MediaTek MT7986 SPI NAND and ECC controller
-> > support, split ECC engine with rawnand controller in bindings and
-> > change to YAML schema.
-
-> I would like to pick-up patches 3, 7 and 10 and apply them in the mtd
-> tree as they look completely orthogonal with all the other (spi/DT)
-> changes, am I right?
-
-> Mark, is it okay for you?
-
-That's fine, assuming there's no dependency issues.  Xiangsheng, it's
-generally best to avoid mixing patches for multiple subsystems into a
-single series when it's not needed since it makes merging things more
-complex.
-
---CMu4i+MTxKFAnMnD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPX7e8ACgkQJNaLcl1U
-h9CP4Qf+Pd13QIe/NKJYmT5Ku/sdC2wKEgISZktdgp6nkJnezPBcHDPZMRAovciN
-tEkeKbKAngXsLPelmzMjY5z14PseLyy1afFboVV8Vz43LUE144H9WRx917uqatkP
-/QCJ0/l9/izHntwO0zWOPNIomAyoITzsO8Sk79DmtqEMjSx7GNMrr3xX1RaxHDam
-O2J/ho0Qt84u81akb1jCSR6yWcLO0AJ4gJ5FYby9GU/qIGpdSGYGppQ2uAVJUSsa
-Hn4knoLT4QarM9J+obdb1FQz6GHRB8hTRaqMrAy1reHcP6XEJgkaQkxP+cFc2RRS
-5o+l86XRsBjIv5jTxDO/VSl7U3kV/w==
-=fnzJ
------END PGP SIGNATURE-----
-
---CMu4i+MTxKFAnMnD--
+On Sat, Jan 28, 2023 at 7:47 PM kernel test robot <lkp@intel.com> wrote:
+>
+> Hi Jonathan,
+>
+> Thank you for the patch! Perhaps something to improve:
+Good bot.
+>
+> [auto build test WARNING on 93f875a8526a291005e7f38478079526c843cbec]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Cormier/dt-bindings-display-bridge-tfp410-Add-tfp410-i2c-example/20230128-183627
+> base:   93f875a8526a291005e7f38478079526c843cbec
+> patch link:    https://lore.kernel.org/r/20230125-tfp410_i2c-v1-4-66a4d4e390b7%40criticallink.com
+> patch subject: [PATCH 4/4] DRM: BRIDGE: TFP410: If connected, use I2C for polled HPD status.
+> config: i386-randconfig-a006 (https://download.01.org/0day-ci/archive/20230129/202301290803.ouS19eab-lkp@intel.com/config)
+> compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # https://github.com/intel-lab-lkp/linux/commit/c4659fa4c02b62087c095ca99978e5eac8b490de
+>         git remote add linux-review https://github.com/intel-lab-lkp/linux
+>         git fetch --no-tags linux-review Jonathan-Cormier/dt-bindings-display-bridge-tfp410-Add-tfp410-i2c-example/20230128-183627
+>         git checkout c4659fa4c02b62087c095ca99978e5eac8b490de
+>         # save the config file
+>         mkdir build_dir && cp config build_dir/.config
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/bridge/
+>
+> If you fix the issue, kindly add following tag where applicable
+> | Reported-by: kernel test robot <lkp@intel.com>
+>
+> All warnings (new ones prefixed by >>):
+>
+> >> drivers/gpu/drm/bridge/ti-tfp410.c:111:6: warning: unused variable 'val' [-Wunused-variable]
+>            u32 val;
+>                ^
+>    1 warning generated.
+This has already been fixed in V2 of the patch series.
+>
+>
+> vim +/val +111 drivers/gpu/drm/bridge/ti-tfp410.c
+>
+>    106
+>    107  static enum drm_connector_status
+>    108  tfp410_connector_detect(struct drm_connector *connector, bool force)
+>    109  {
+>    110          struct tfp410 *dvi = drm_connector_to_tfp410(connector);
+>  > 111          u32 val;
+>    112          unsigned int ret;
+>    113
+>    114          if (dvi->i2c) {
+>    115                  ret = regmap_test_bits(dvi->regmap, TFP410_REG_CTL_2_MODE, TFP410_BIT_HTPLG);
+>    116                  if (ret < 0)
+>    117                          dev_err(dvi->dev, "%s failed to read HTPLG bit : %d\n", __func__, ret);
+>    118                  else
+>    119                          return ret ? connector_status_connected : connector_status_disconnected;
+>    120          }
+>    121
+>    122          return drm_bridge_detect(dvi->next_bridge);
+>    123  }
+>    124
+>
+> --
+> 0-DAY CI Kernel Test Service
+> https://github.com/intel/lkp-tests
