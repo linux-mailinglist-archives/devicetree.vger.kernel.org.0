@@ -2,103 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D52506814CE
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 16:21:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E00316814F0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jan 2023 16:25:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236479AbjA3PVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 10:21:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34952 "EHLO
+        id S238104AbjA3PYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 10:24:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237869AbjA3PVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 10:21:43 -0500
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA883144AE;
-        Mon, 30 Jan 2023 07:21:39 -0800 (PST)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-163ba2b7c38so3548699fac.4;
-        Mon, 30 Jan 2023 07:21:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+NSVbX4xHtQYGwioMq/aOSnTwyPJzXFq/h73uH9NB58=;
-        b=XE/OIykMgkxMGgZr95f5ZQo6/q5VLWOvrZrPYtYvdGccYpaIae8F+ajz+YggbAG5+m
-         HLbOYK5T1Wg4AvmUzpLVm7V15mB5xxTw7nno63T6Ssrwn7ifGIkTgk+MGBxvYeQiUxLm
-         b3SMJJ0O3F8L9KoR02IoUmX6g5qLqKN0SNYyFl26eQGfKfq8xA02zy5IOl8oBQpfJHD7
-         Tf89xkk7EWVWX8Fb3BxjZP/M5NGbUQsw3LReuGTs7Y0wmGrEc0RuMMoxiSPiw3Osi8ii
-         eUQ795NKsY7YTlEkTZWDLaMC3YJMX2m4ED8YXPLdLRwFnCXP4C5WeN1oFgar0vmZB3IV
-         PbdA==
-X-Gm-Message-State: AO0yUKWOC+Gu5njiezZ1YHNg+jR5N19Z4Ty+c5fyrRsoJcU7DF1RfCO/
-        BF2+jra9mNjVho9n8YrR+g==
-X-Google-Smtp-Source: AK7set/N/oWpOD2zj/Ao8+Acld2pqQriPDXeQfaJ8xvTcw6Mso9QuCrB/QnwVsosMUZbS+c4r1bHWw==
-X-Received: by 2002:a05:6870:a9a1:b0:163:74ae:e3a6 with SMTP id ep33-20020a056870a9a100b0016374aee3a6mr5931238oab.1.1675092098885;
-        Mon, 30 Jan 2023 07:21:38 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e12-20020a4aaacc000000b005177543fafdsm1518739oon.40.2023.01.30.07.21.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jan 2023 07:21:38 -0800 (PST)
-Received: (nullmailer pid 2667528 invoked by uid 1000);
-        Mon, 30 Jan 2023 15:21:37 -0000
-Date:   Mon, 30 Jan 2023 09:21:37 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org,
+        with ESMTP id S231337AbjA3PYv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 10:24:51 -0500
+Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D33D30E8;
+        Mon, 30 Jan 2023 07:24:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=l/UE1BohSbsYPSjuqli4vf8tirXZJGoVCmdHLEf4q2s=; b=f8aP+RFjS52Fxxq6I01TNC2w1E
+        5jN4u+I+N01Ci4f09xlt4KIJ9tHTmfAO94SuJcbvTn+zcMt2w1+YFr6fZ95HwKKK+UOcnIW3lR/Na
+        avmtpoKYS12t4vAMr2NH+kvHUs67h2uIgoj8frrP7vZpAyZvX1vYVex+XFUw+cOybgPPhpLGFmIoi
+        R66WcpMp9bytp0uBRp0STXT1B7yS5ICYN4CF/lpMzQVF+sphmviMwklrlVNOWmGNKZth8+B40kAHR
+        exuq2dSOhDPlMNBzcyDKhLQ4SOxDXHlREa2CnYup1aWTuoimj2nDXOXIs5hkOeRNUxBuJuqYIgBd3
+        Gp0Gi63Q==;
+Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1pMW1Q-00ASYH-IK; Mon, 30 Jan 2023 15:24:40 +0000
+Date:   Mon, 30 Jan 2023 15:24:40 +0000
+From:   Matthew Wilcox <willy@infradead.org>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Linux-MM <linux-mm@kvack.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Michael Hennerich <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v2 12/12] dt-bindings: iio: accel: Add ADIS16203
- Inclinometer
-Message-ID: <20230130152137.GA2586655-robh@kernel.org>
-References: <20230129155602.740743-1-jic23@kernel.org>
- <20230129155602.740743-13-jic23@kernel.org>
- <167502679603.787347.16663590794832817182.robh@kernel.org>
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Geert Uytterhoeven <geert.uytterhoeven@gmail.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>
+Subject: Re: [QUERY]: Block region to mmap
+Message-ID: <Y9fhOFEV0kS9U06/@casper.infradead.org>
+References: <CA+V-a8tR1KiLSs=Psa=w7kf0zT=yU5_Ekr6-3V1MR==Wtzmksg@mail.gmail.com>
+ <Y9KQPxzHBuZGIN4U@casper.infradead.org>
+ <CA+V-a8uizF8sQgs8cfTwH3OnK+nvr2dXAoSOPTXCXLFnprHSeA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <167502679603.787347.16663590794832817182.robh@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <CA+V-a8uizF8sQgs8cfTwH3OnK+nvr2dXAoSOPTXCXLFnprHSeA@mail.gmail.com>
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 30, 2023 at 07:35:26AM -0600, Rob Herring wrote:
-> 
-> On Sun, 29 Jan 2023 15:56:02 +0000, Jonathan Cameron wrote:
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > There has been a driver in staging for quite a while.
-> > Given we are now moving it to the main tree, time to make sure it
-> > has binding documentation.
-> > 
-> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > --
-> > V2:
-> > - maxItems/minItems added where needed.
-> > - fix interrupt-names to allow multiple entries.
-> > ---
-> >  .../bindings/iio/accel/adi,adis16203.yaml     | 64 +++++++++++++++++++
-> >  1 file changed, 64 insertions(+)
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/accel/adi,adis16203.example.dtb: accelerometer@0: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/accel/adi,adis16201.yaml
+On Mon, Jan 30, 2023 at 10:53:28AM +0000, Lad, Prabhakar wrote:
+> > > To avoid this the ILM/DLM memory regions are now added to the root
+> > > domain region of the PMPU with permissions set to 0x0 for S/U modes so
+> > > that any access to these regions gets blocked and for M-mode we grant
+> > > full access (R/W/X). This prevents any users from accessing these
+> > > regions by triggering an unhandled signal 11 in S/U modes.
+> >
+> > I have no idea what any of this means.
+> >
+> Basically we are making use of the memory protection unit (MPU) so
+> that only M-mode is allowed to access this region and S/U modes are
+> blocked.
 
-I was scratching my head on this one... Check the compatible string in 
-the example. You've got 201 instead of 203.
+This sounds like RISC-V terminology.  I have no idea what M, S or U
+modes are (Supervisor and User, I'd guess for the last two?)
 
-Are these parts that different?
+> > > This works as expected but for applications say for example when doing
+> > > mmap to this region would still succeed and later down the path when
+> > > doing a read/write to this location would cause unhandled signal 11.
+> > > To handle this case gracefully we might want mmap() itself to fail if
+> > > the addr/offset falls in this local memory region.
+> >
+> > No, that's not what you want.  You want mmap to avoid allocating address
+> > space in that virtual address range.  I don't know if we have a good
+> > way to do that at the moment; like I said I've never seen such broken
+> > hardware before.
+> >
+> > I'd say the right way to solve this is to add a new special kind of VMA
+> > to the address space that covers this range.
+> Do you have any pointers where I can look further into this?
 
-Rob
+Before we go too deeply into it, how much would it cost to buy all of
+these parts and feed them into a shredder?  I'm not entirely joking;
+if it's less than the software engineering time it'd take to develop
+and support this feature, we should do it.
+
