@@ -2,122 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09F0568332E
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 17:59:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26C81683338
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 18:01:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231760AbjAaQ7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 11:59:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36586 "EHLO
+        id S229718AbjAaRBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 12:01:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229504AbjAaQ7t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 11:59:49 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E6B5618D;
-        Tue, 31 Jan 2023 08:59:37 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id 14-20020a9d010e000000b0068bdddfa263so1021609otu.2;
-        Tue, 31 Jan 2023 08:59:37 -0800 (PST)
+        with ESMTP id S231809AbjAaRB3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 12:01:29 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E04A635254
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 09:01:26 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id j32-20020a05600c1c2000b003dc4fd6e61dso6098906wms.5
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 09:01:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=g6EHWBopwmyoZ8t02iSgYiy3q8eIFt2evLGFJVDXB0U=;
-        b=XdOQTY1YGQ8QfZ+CnRoCAPxSvGoIvfQESz//mQqz0hVMANcC7XjKrdVFCXdhrz2BNF
-         eECF5ptcXCs/i9+J55ZVQE+LXmb6k1DYAYWvPoql62pd9ZARXm4sROnlSQFWv2ngtQnP
-         MNsqFe4QUStT3sMuPqaEAUr7LbWexU7K544m6MjqHI+dlfxfhteuCDcV0g0wYlFGUcI+
-         1wtvxICsXzPJQhT4WK4Sf0OTkps/nMKl2g3rF3AIn7pq+PUYm6kuRiNVZ0LBDO/SgBdX
-         UaCRjDbLNS0JXSYhSyLGbXMQGjheWNaf7of6KQq9MmXVWXcVsOylhFiOTZ1b6m7IJZXe
-         cMOA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2GALk2yOZBKbLsxNTrFUIpXFTaX4N6lDPW1UKlHm5KE=;
+        b=lwqm7TzjZO5Sfs1RFWBEMFVWW0RImKhn5FMLNqY6xLCU5ZJbh2Ajf0a1h36kTfKQvW
+         L4YJovqVAgbzrUeXFedhWhORzjpBrKFvFpiY6NFQm4dFBfyTxkVoCGDt9R8fElvtqQPP
+         lTebqPZFct7DrsKT0ll2poNNAyLwzsDxZKFxlymI3hjWo/SKqrOhHheBxMU7XMKGVeW6
+         2NYnL5e81jVdTSrSs3yMWVPPQV6XvgWqjxxRq6+pp43eNS9HkwLGmyPwEktMRjDoiCpP
+         uDwT8g/RDF6WV9QEnHR9YVzV3xkMjtkJc/eBiN2neWXtjVIqgQBaqh9Ox18900tbhc34
+         Vznw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g6EHWBopwmyoZ8t02iSgYiy3q8eIFt2evLGFJVDXB0U=;
-        b=4pQiAQe6rSCyxkS26jPEdi/csCEIw10qgqkYRn/rGaJkJGACU9+CpogYgKvuRihMV/
-         9EZHyJjUMjqBeswz9ZHoGRJgDHNPU6maepSdaLdl26Ik/SPxDNfFKXO0k4F+tcPyO774
-         YNDIWFykLEC2+W3zq2hq3ncSRBPYvWcXQu672FZ5WQFx2F+1ay6x7AOyvxApdqlK1tRZ
-         LGVxNpX5BC98BnHCucow59ptjoCLA5BK619vZ16Sk26x2aEiTJJWjKlUbpL+XAhuqsun
-         W//D5xgQXZ1/67c0DGsMsYgiR/6WjYkNWuzJsJbSDgsilxIvlDg1Z1Pub0FnGiiO2Quw
-         4VNg==
-X-Gm-Message-State: AO0yUKVxOu36OLAKEe60eTtdknLDTeA3yc4WpDnnWHMfI3zwEyx9SItp
-        MztmnPEO2Fcmmyn1i8hFo8Purn6t/oE=
-X-Google-Smtp-Source: AK7set9rvFfW+9ZAMZPfXChr+dNJZg99s509uTrhWOefwXgAPeCAYvt7V72eSRhgWGoWDf9frNszzg==
-X-Received: by 2002:a05:6830:4491:b0:68b:b3a2:a039 with SMTP id r17-20020a056830449100b0068bb3a2a039mr8155223otv.6.1675184376985;
-        Tue, 31 Jan 2023 08:59:36 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e8-20020a9d5608000000b0066b9a6bf3bcsm6775819oti.12.2023.01.31.08.59.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Jan 2023 08:59:36 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 31 Jan 2023 08:59:35 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: watchdog: allow "timer" as node name
-Message-ID: <20230131165935.GA3598170@roeck-us.net>
-References: <20221212174933.208900-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2GALk2yOZBKbLsxNTrFUIpXFTaX4N6lDPW1UKlHm5KE=;
+        b=CoAZlidi/LzyG49Sw3NI5uqytJdlHjuRk3wJM4J0psdMd000myZIAX7tUoQT7NbTMb
+         fKjtv1qvNBIwf2uuWcL5Hcy2ZWFKaZJ0HoBh96heJBu1VHwDweKplyDpSFT+9okW/pdZ
+         sgO6Amdsy465UOk90bdcNNphoZeIRnkbYzXlbcfG6vbfhhL22tVE2e2/o0DnbxemvjWp
+         Yq/m6Orm8sWUZCWbJ07Zepr+HrA9CoCBtu7+PznAMCl6tTnMeA9rGSuDkcIufLluRwKT
+         Y5jAqTmvV0tXks6evNpG16EDJuHsk5BDtzSsM+UVKRNTWWpPdo/FqS5Dt8qPUcI1I9vc
+         GZ/Q==
+X-Gm-Message-State: AFqh2koA9+txJYCIBql7fQc0RvkaZOdAbEpwk3lqnbjTLFoqt3qw0SEU
+        GHG+kDBpPcS+FDs8BpaJ3uJrBTzO/5PJQzLJ
+X-Google-Smtp-Source: AMrXdXtLemWqndR75w4l1MF5cQPb/cZFGAuLxWq3kqfaP3oIS7sIEJiokNLJlE2yqgs02Oz1Ya5i6A==
+X-Received: by 2002:a05:600c:1c1b:b0:3d9:ebf9:7004 with SMTP id j27-20020a05600c1c1b00b003d9ebf97004mr52008187wms.29.1675184485343;
+        Tue, 31 Jan 2023 09:01:25 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id c7-20020adfe707000000b002bfb0c5527esm15291583wrm.109.2023.01.31.09.01.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 09:01:24 -0800 (PST)
+Message-ID: <17b57e3a-48ec-5e70-d659-fcbbfb3e22ca@linaro.org>
+Date:   Tue, 31 Jan 2023 18:01:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221212174933.208900-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v12 2/6] dt-bindings: thermal: mediatek: Add LVTS thermal
+ controllers dt-binding definition
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Balsam CHIHI <bchihi@baylibre.com>
+Cc:     angelogioacchino.delregno@collabora.com, rafael@kernel.org,
+        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
+        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+References: <20230124131717.128660-3-bchihi@baylibre.com>
+ <20230126161048.94089-1-bchihi@baylibre.com>
+ <5ec49108-6ad8-daf7-54ec-104f0923a31d@linaro.org>
+ <CAGuA+opQboxH8qoNv4GG+raX=ZZAyRVLC9VLjVCzbT_cUQWWTA@mail.gmail.com>
+ <35a4d692-e4f3-e5c7-2d33-2d5e15694c33@linaro.org>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <35a4d692-e4f3-e5c7-2d33-2d5e15694c33@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 12, 2022 at 06:49:33PM +0100, Krzysztof Kozlowski wrote:
-> On some SoCs the watchdog device is actually mixed with timer, e.g.
-> the qcom,msm-timer on older Qualcomm SoCs where this is actually one
-> hardware block responsible for both system timer and watchdog.
+On 31/01/2023 17:53, Krzysztof Kozlowski wrote:
+> On 30/01/2023 11:40, Balsam CHIHI wrote:
+>>>> diff --git a/include/dt-bindings/thermal/mediatek-lvts.h b/include/dt-bindings/thermal/mediatek-lvts.h
+>>>> new file mode 100644
+>>>> index 000000000000..902d5b1e4f43
+>>>> --- /dev/null
+>>>> +++ b/include/dt-bindings/thermal/mediatek-lvts.h
+>>>
+>>> Same filename as bindings.
+>>
+>> fixed.
+>> rename :
+>> include/dt-bindings/thermal/mediatek-lvts.h =>
+>> include/dt-bindings/thermal/mediatek-lvts-thermal.h
 > 
-> Allow calling such device nodes as "timer".
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Missing coma, so mediatek,lvts-thermal.h
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Yeah, actually Balsam resent a new version but numbered v3 taking into 
+account your comments.
 
-> ---
-> 
-> See also:
-> https://lore.kernel.org/linux-arm-msm/20221212163532.142533-1-krzysztof.kozlowski@linaro.org/T/#t
-> 
-> which causes warnings:
-> 
-> qcom-msm8960-cdp.dtb: timer@200a000: $nodename:0: 'timer@200a000' does not match '^watchdog(@.*|-[0-9a-f])?$'
->   From schema: Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-> ---
->  Documentation/devicetree/bindings/watchdog/watchdog.yaml | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/watchdog.yaml b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-> index e3dfb02f0ca5..b1daefec86af 100644
-> --- a/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-> @@ -14,9 +14,14 @@ description: |
->    This document describes generic bindings which can be used to
->    describe watchdog devices in a device tree.
->  
-> +select:
-> +  properties:
-> +    $nodename:
-> +      pattern: "^watchdog(@.*|-[0-9a-f])?$"
-> +
->  properties:
->    $nodename:
-> -    pattern: "^watchdog(@.*|-[0-9a-f])?$"
-> +    pattern: "^(timer|watchdog)(@.*|-[0-9a-f])?$"
->  
->    timeout-sec:
->      description:
+The versioning is becoming a bit messy now but if you are ok with the 
+changes I'll pick the patch as is so we can go forward for this series.
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
