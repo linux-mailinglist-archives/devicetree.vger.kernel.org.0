@@ -2,138 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3EB668315A
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 16:21:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86F0B683188
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 16:31:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233223AbjAaPVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 10:21:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59644 "EHLO
+        id S233101AbjAaPbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 10:31:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232766AbjAaPVc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 10:21:32 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E4B755282;
-        Tue, 31 Jan 2023 07:19:12 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30VEn8AB020024;
-        Tue, 31 Jan 2023 15:18:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : reply-to : references : mime-version :
- content-type : in-reply-to; s=qcppdkim1;
- bh=bgX3jpoASPjVdzGNfq22olUT76/fsVEkQivhHSjUx3s=;
- b=ESGHJRo47GelNfdH/U+HIDc6xDFsvHUI2Mx3tloGd7vY+dOfg5R++6lk+kIJJPekE9Za
- zofMjkM7Ctff+5f2mFTz+2jDQUm9zdTxbUT/Krwc/EO9fukMgsWClaENgdCa1yyfr0VJ
- CFNTNx9L59fHvIga7Fz0D2f+5dLDS2OWKPOYs1vQCsg/VhxQV1f7oYeBIaZwuZFIMKPK
- 79wNLfHW/1u5I7T1ltAx3rBoYWnsr9nyBk7LM22Pz5WPInt/ymye0Dns7wmmmvsgwW63
- tcFQamz0nrmOCl5tLmdZYTykC4bz1qMXUrHwkgtQuz1fnuV2hof5L1C4KKXYW1M8punE eQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3new3u9ctv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 31 Jan 2023 15:18:55 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30VFIsrF016529
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 31 Jan 2023 15:18:54 GMT
-Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 31 Jan
- 2023 07:18:47 -0800
-Date:   Tue, 31 Jan 2023 20:48:43 +0530
-From:   Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Alex Elder <elder@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Murali Nalajala" <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v9 18/27] firmware: qcom_scm: Register Gunyah platform ops
-Message-ID: <20230131151843.GD4169015@quicinc.com>
-Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
- <20230120224627.4053418-19-quic_eberman@quicinc.com>
+        with ESMTP id S233119AbjAaPbI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 10:31:08 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FDFD1A496
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 07:31:02 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id y1so14595800wru.2
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 07:31:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LNHg+3VGzgNlbuSbTVuo88oNplb0rm3LEdUfokdqDlg=;
+        b=RCHkxpAWnQSqHPdnpp6ePitnHgP5WVPogB8f4u0fTq40Rqx8pgjf0347MqkJRxynb3
+         B9ijSs+0b/JWGxtBgA+ZeCIhr7K6c6+PLW4xMI/ZOfxt5wQU54RgTAFcb0zdb5eVlKBA
+         Eh4BjJFUwN0O50CF8aA6LYnAPVYj2W8Q8RX71si2HdGc/Uqy7Nou3KLW4B/PG1PZod4t
+         ywjwZ86pNhuWMWA3h2dM/5ystXzDgz1jwrSVZoZdvyAY/EJKJj4kHiKivf5v72MnwVuo
+         j6+FWNImer03bd5e1umGwjFtjzCIf2pVubgtWLw3bIuGdCutkH2Va8fBoNtMJ+62wci2
+         JaTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LNHg+3VGzgNlbuSbTVuo88oNplb0rm3LEdUfokdqDlg=;
+        b=zUwf1SquhblciXPEbVaB17qE7O98Qq2BO5ESSmpU2ujyWu7zTK//nsK+zstJiWPpSd
+         SE7u4iUK9vp5cMycaPoddaeFFMGmoIB/g+jAQ5ddXl6ZjdzONx7mDLuASkUSd/k+v6Gn
+         irsKxDXOe3lqA7mdlirok+yL7z2io6Kd7+gZI4FTiKZeH6MiFwxgFEefIHViCFyxZQca
+         uKdq1SUe8g2oI5QQ9u44kfdVtawkUamsD6KYUkk9IJ6JeUCeaL4LbqJfxX0A6ndU/42A
+         atWv9OxBkHM3IdJpzEieWMqiuapOcWS5D8udjBXiw2nOHnhQwnCBUofq8ER0Iv/x0FGQ
+         JCTw==
+X-Gm-Message-State: AO0yUKX/YUmUeJKUsPW1/tXhY/LsphMbc/R4AO+fSoAJS4FdAC5LEXlu
+        yjOQY+r+jXgPgeWRjJc9TvGnNA==
+X-Google-Smtp-Source: AK7set9IQ7yWTwyiPAv7mBA1PbDTtpyNBAOCky4AcErrqoNQA9Poy8RWuBQOGbUKoTkPmUImtL4p2g==
+X-Received: by 2002:a5d:64a6:0:b0:2bf:b11d:91b with SMTP id m6-20020a5d64a6000000b002bfb11d091bmr3938165wrp.44.1675179060974;
+        Tue, 31 Jan 2023 07:31:00 -0800 (PST)
+Received: from [10.1.4.104] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id m14-20020a5d6a0e000000b002bfd09f2ca6sm13091544wru.3.2023.01.31.07.30.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 07:31:00 -0800 (PST)
+Message-ID: <21fef8eb-6482-fd8c-118a-c4d9da4cfbaf@baylibre.com>
+Date:   Tue, 31 Jan 2023 16:31:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-In-Reply-To: <20230120224627.4053418-19-quic_eberman@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: yM2P9em_0wy-BTbbA6biMq32dYVgcMLk
-X-Proofpoint-ORIG-GUID: yM2P9em_0wy-BTbbA6biMq32dYVgcMLk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-31_08,2023-01-31_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 clxscore=1011 suspectscore=0 mlxscore=0 mlxlogscore=560
- impostorscore=0 adultscore=0 bulkscore=0 malwarescore=0 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301310136
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 2/3] iommu: mediatek: Add support of unmanaged iommu
+ domain
+Content-Language: en-US
+To:     Robin Murphy <robin.murphy@arm.com>, yong.wu@mediatek.com,
+        joro@8bytes.org, will@kernel.org
+Cc:     matthias.bgg@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, iommu@lists.linux.dev,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230130102722.133271-1-abailon@baylibre.com>
+ <20230130102722.133271-3-abailon@baylibre.com>
+ <741920ba-8637-5e28-695c-699b46351590@arm.com>
+ <f126c61f-6373-d6c5-59c8-24dea9d9d168@baylibre.com>
+ <0e9f677b-846d-809d-9bc3-30906f703fda@arm.com>
+From:   Alexandre Bailon <abailon@baylibre.com>
+In-Reply-To: <0e9f677b-846d-809d-9bc3-30906f703fda@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Elliot Berman <quic_eberman@quicinc.com> [2023-01-20 14:46:17]:
 
-> +	for (i = 0; i < mem_parcel->n_mem_entries; i++) {
-> +		src_cpy = src;
-> +		ret = qcom_scm_assign_mem(le64_to_cpu(mem_parcel->mem_entries[i].ipa_base),
-> +						le64_to_cpu(mem_parcel->mem_entries[i].size),
-> +						&src_cpy, new_perms, mem_parcel->n_acl_entries);
-> +		if (ret) {
-> +			src = 0;
-> +			for (n = 0; n < mem_parcel->n_acl_entries; n++) {
-> +				vmid = le16_to_cpu(mem_parcel->acl_entries[n].vmid);
-> +				if (vmid <= QCOM_SCM_MAX_MANAGED_VMID)
-> +					src |= (1ull << vmid);
-> +				else
-> +					src |= (1ull << QCOM_SCM_RM_MANAGED_VMID);
-> +			}
-> +
-> +			new_perms[0].vmid = QCOM_SCM_VMID_HLOS;
-> +
-> +			for (i--; i >= 0; i--) {
-> +				src_cpy = src;
-> +				ret = qcom_scm_assign_mem(
-> +						le64_to_cpu(mem_parcel->mem_entries[i].ipa_base),
-> +						le64_to_cpu(mem_parcel->mem_entries[i].size),
-> +						&src_cpy, new_perms, 1);
-> +				WARN_ON_ONCE(ret);
-> +			}
 
-We would be returning 0 incorrectly here, indicating success.
+On 1/31/23 15:15, Robin Murphy wrote:
+> On 31/01/2023 1:08 pm, Alexandre Bailon wrote:
+>> Hi Robin
+>>
+>> On 1/30/23 13:04, Robin Murphy wrote:
+>>> On 2023-01-30 10:27, Alexandre Bailon wrote:
+>>>> Currently, the driver can allocate an unmanaged iommu domain.
+>>>> But, this only works for SoC having multiple bank or multiple iova 
+>>>> region.
+>>>
+>>> That is for good reason - there is only a single pagetable per bank, 
+>>> so if there are multiple devices assigned to a single bank, they 
+>>> cannot possibly be attached to different domains at the same time. 
+>>> Hence why the banks are modelled as groups.
+>> I understand.
+>> I am trying to upstream a remoteproc driver but the remote processor is
+>> behind the iommu.
+>> remoteproc can manage the iommu but it requires an unmanaged domain.
+>> I tried a couple of things but this cause code duplication,
+>> implies many hacks and not always reliable.
+>> Do you have any suggestion ?
+> 
+> If there are other active devices behind the same IOMMU, and the 
+> remoteproc device cannot be isolated into its own bank using the 
+> existing IOMMU driver logic, then the remoteproc driver cannot manage 
+> the IOMMU directly, and must just use the regular DMA API. There's no 
+> way around it; you can't have two different parts of the kernel both 
+> thinking they have exclusive control of a single IOMMU address space at 
+> the same time. Similarly, remoteproc also cannot take explicit control 
+> of a multi-device group if it's not actually in control of the other 
+> devices, since their drivers will not be expecting the DMA address space 
+> to suddenly change underfoot - that's why iommu_attach_device() has the 
+> check which you presumably ran into.
+Unfortunately, we can't just use the regular DMA API.
+Basically, the firmware use static addresses (and the remote core is 
+only supposed to access addresses between 0x60000000 and 0x70000000).
+When we use DMA API, we get a random address that doesn't match what the
+firmware would expect.
+remoteproc use directly the iommu API to map physical address to the
+static address expected by the firmware when DMA API can't be use.
 
-> @@ -1414,6 +1511,9 @@ static int qcom_scm_probe(struct platform_device *pdev)
->  	if (download_mode)
->  		qcom_scm_set_download_mode(true);
->  
-> +	if (gh_rm_register_platform_ops(&qcom_scm_gh_rm_platform_ops))
-> +		dev_warn(__scm->dev, "Gunyah RM platform ops were already registered\n");
-> +
-
-We should remove above registration in qcom_scm_shutdown.
-
+Thanks,
+Alexandre
 
