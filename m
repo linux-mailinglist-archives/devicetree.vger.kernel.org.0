@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41B53683686
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 20:27:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C62E68368D
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 20:28:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231491AbjAaT1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 14:27:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43218 "EHLO
+        id S230344AbjAaT2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 14:28:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231712AbjAaT1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 14:27:41 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 419371C31A
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:27:39 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so11468229wms.2
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:27:39 -0800 (PST)
+        with ESMTP id S231836AbjAaT2v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 14:28:51 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 768DDCDF2
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:28:49 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id y1so15250976wru.2
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:28:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GTJLn6oKGjnxYf6846RHISTL5/yy97eFOR4if6Wt764=;
-        b=Ybz7qM7wsy7z+XRk2O1Jumca3deQCM001JjyM9GsECXb4koTdOwHZfDd/k5/4knG13
-         OmZyy7mov5+LzXNDLg2vkCbxAyQltxkCrzGNt+rl+U/u/as98PUoAWJZrEcDPJoJO65A
-         TJVDSe/jYlkqp/ajmt6hd5IdlqlLq/MawkZkZYMZyrDmLxK375DJ0p8mlnJHNCTPeSWH
-         u+5U7JZCT6bFWZojUJzwn6/Xzzr+j6/sVrpXCnkcDVfUIqqg/pDyYFZEY+ZIKDmIktwu
-         M0oBlEq7KMHmfhINCX8jtdyUPMlW4UwFLSjNwIs6ilfKbjJlwTkbARVNuihiHqJ3iu/N
-         n8WQ==
+        bh=hNT+DCfUqwj/pE7ErUm6d5wjv6OQt/ojsZMbHaQZ/oA=;
+        b=SNtOBvmPhKui/9LXfPudO1NApLtM1DNonJ6dfzYxgCjRzwJx0N6m3sRF0japNYQwdV
+         mttElfQBTrvq/YRRfL65Sa54eaHp57m8ZnStBtTbqDJ80cd7wbkICsVJK4zayvhXPqsa
+         BdLA8FBV0XtLoYJxfhsGboqrO+1TL8Wyox3oQuOwc6MbdKI9uCjuxSiyeaH0sS4fBNcK
+         /FYxnvoZ9reZ9HSMg027PogAD25PVVAGtNw46txwzxLmCmOGGR2x/SfnIOgkGufZIek0
+         T7i9hF2+boGYwS9jIEu2EdKYIvTCcMsLwt93aZ9gGFyDGgc85E7LoLupPtJuYLjtDc8v
+         NRiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GTJLn6oKGjnxYf6846RHISTL5/yy97eFOR4if6Wt764=;
-        b=WZ3y5b1Yn/60UD1FMdEZNm4+S9dB+zE/pqHaQ6e4bNPqCEga8KI3ZPD6JwqVAjHrBi
-         qheoIfAKk22Tio1K/7UY8fdDsCRQWS8c6miqyzZy7JPYDOXIrMMM9c/Pchig7foX7zg8
-         mA47D8/HhAIVFWyO+/wdStNuXhnN9Kt8BW+7lRkCwvwBteBNtsY/LXdqgD6CZ0SnEHxv
-         jjYH50jjIHETlrC8QT3kFOPy2vQtSJ+yKlsByQOP2iXjBD7VLkOm0I2GWACHxHbQfPqY
-         zj3eVpODuUbC8u+JjRJOSVmTNxdzkhkGRBimN3N8B+oB6zCIBt+K1MZT+q2oBhemHqPK
-         C3Ew==
-X-Gm-Message-State: AO0yUKXHi5VXsZwuSOGB8bNe/0sFH8p9WFFMU0A7J/1odp2N9MuJmRwr
-        OsUKe33JFopPH37nvZ5HrKzXbA==
-X-Google-Smtp-Source: AK7set8qAivzV4CkzlekJFT9+K/5k+Cxaf4lWIq5ZUq+KrMCH/wnQSbQIvNPS6BvHRZ15jT3UbDGTQ==
-X-Received: by 2002:a05:600c:3c8a:b0:3da:2a78:d7a4 with SMTP id bg10-20020a05600c3c8a00b003da2a78d7a4mr165351wmb.21.1675193257782;
-        Tue, 31 Jan 2023 11:27:37 -0800 (PST)
+        bh=hNT+DCfUqwj/pE7ErUm6d5wjv6OQt/ojsZMbHaQZ/oA=;
+        b=Z/gaFZS88ANV73ipexZOB9yfI1DO3p3Ul8+uBxihLuQTdn7QT2EvCQVqmHWjbxNCQU
+         EuSwoWV29lUcT9VmLEaAZeWDOczBaKlk4a2e5fKU+r1LRFXWHnPk3S8YmvGBDg72YIsT
+         g+GAwDew6tG9Be+MaIHgu4neUErIukK6f0dbvmXGVvg+PUYOKSsDciKA58pXKaT897v7
+         kfoeVTiw1SmeembQWSLmsn+zy0pfNTOJHE4UekJSbsW39aQUk0kJmCIi+/oGXDOBWPBR
+         k+4qPVv/7lkDndMeR+2Adn0SE/c5uTNwsUKnKxiUoKhaKZ5YFDBqlbMfKmijZT7yGDzj
+         cFrA==
+X-Gm-Message-State: AO0yUKVpuwSMEnYayAF7D2W1U4iwJGI1mzKBf7rOy+kRbdGYGoGzGP3F
+        4HOb5vTbcVVe8H2n3Pap2ezH2Q==
+X-Google-Smtp-Source: AK7set/C1ywHvaqC5YRQoXkU+oZTXqBZrb05uso7vtdvE66T+ZCEjZ0xV/RTecCzPatCDsxrvkSrCw==
+X-Received: by 2002:a5d:64e6:0:b0:2bd:f17b:bfd3 with SMTP id g6-20020a5d64e6000000b002bdf17bbfd3mr197868wri.4.1675193328057;
+        Tue, 31 Jan 2023 11:28:48 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f24-20020a05600c491800b003dc0cb5e3f1sm15860139wmp.46.2023.01.31.11.27.34
+        by smtp.gmail.com with ESMTPSA id d7-20020a056000114700b00241fab5a296sm15294321wrx.40.2023.01.31.11.28.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 11:27:37 -0800 (PST)
-Message-ID: <cf41cb9f-e633-c0e5-95cc-98b2a4312886@linaro.org>
-Date:   Tue, 31 Jan 2023 20:27:34 +0100
+        Tue, 31 Jan 2023 11:28:47 -0800 (PST)
+Message-ID: <3afcae23-d23e-13bf-7c8b-ff984da74f2b@linaro.org>
+Date:   Tue, 31 Jan 2023 20:28:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH V2 0/9] Add minimal boot support for IPQ5332
+Subject: Re: [PATCH V2 4/9] dt-bindings: clock: Add Qualcomm IPQ5332 GCC
 Content-Language: en-US
 To:     Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
         agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
@@ -68,8 +68,9 @@ To:     Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20230130114702.20606-1-quic_kathirav@quicinc.com>
+ <20230130114702.20606-5-quic_kathirav@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230130114702.20606-1-quic_kathirav@quicinc.com>
+In-Reply-To: <20230130114702.20606-5-quic_kathirav@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,17 +86,12 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 30/01/2023 12:46, Kathiravan Thirumoorthy wrote:
 > From: Kathiravan T <quic_kathirav@quicinc.com>
 > 
-> The IPQ5332 is Qualcomm's 802.11ax SoC for Routers, Gateways and
-> Access Points.
+> Add binding for the Qualcomm IPQ5332 Global Clock Controller.
 > 
-> This series adds minimal board boot support for ipq5332-mi01.2 board.
-> 
-> Also, this series depends on the below patch
-> https://lore.kernel.org/linux-arm-msm/20230120082631.22053-1-quic_kathirav@quicinc.com/
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
 
-You sent it even before answering to me in old thread, so even before
-giving me a chance to read your answer... Don't send v2 before we finish
-discussing previous one.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
