@@ -2,79 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62CAE682D1E
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 13:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2951682D21
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:00:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230430AbjAaM7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 07:59:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34994 "EHLO
+        id S231460AbjAaNAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 08:00:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbjAaM7r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 07:59:47 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8226A4DCE8;
-        Tue, 31 Jan 2023 04:59:39 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id h12so14109464wrv.10;
-        Tue, 31 Jan 2023 04:59:39 -0800 (PST)
+        with ESMTP id S231431AbjAaNAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:00:07 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D8854C0D1;
+        Tue, 31 Jan 2023 04:59:53 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id p26so30123595ejx.13;
+        Tue, 31 Jan 2023 04:59:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3UndeySbwJtYhBstLS+7W0sTuNpKqoxWhQG5bKCKu1E=;
-        b=kcA47SugyoASWc7ydEtwePhQFM0twx4+y19Z7wadyt7XQFZsZEJSpna+gvXiMiscEq
-         IFOkCKqb6zFJl8Hll5lSlYJu8amy7v6m6HNpc7AB9o177uxiIjaCKPFc5aRo5PGFxVyM
-         N23MA+9g8B+nUGHIW9Quq4A9Sveb1HSRp+4DNsKCP3RuIeVz14NU5O9RVD3WVhrkrhSi
-         cW4H8Mnj8bCiB/ngDAqhyGzFIbm3qfrp0Ki3vJdRZ8cyBKvwWmUFbvPcgGIxNETLk0ZI
-         gnslR4N/O0vXCZbyvSER8rWmxvarMbqbS+BGhLdFvPRPiNwKx0TUzkj0BOC1LoqtbaWw
-         d4tQ==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tmFGl6w1T2X4Iy8+4eFf49j5NvCgFbPb0EL0ASIAaVI=;
+        b=eWXVzLfbpi3n2E+VS5aBQxpuKaAQTApd9ALBvi4nr3xCIZcR2372Q+JwCNDnh8SJ3F
+         FtiSeLIvLjfs55hR5TQ2QKb/lnp55d3hs73tb14pMvvWWJzgNZOIQfLJF8m0l+HQNglb
+         OWamgw70Ge/2LtyVYYjNGUb5CbnBsPzyLAcNDX4WSKckRQ36F4NOCLRJUxs3KpXkZ88g
+         QeVy1RS7kpdxNKzOcHZX00s//yteeMaKcSBXqQSveGB7mtqCEvxqd6Ai+CbvHFz4rRAj
+         SlkrOVQpAf8kL8EV8676ZX+jWcFiQoa73DoCueWYXzTTKNGatxGvRfzCs89y+rkFtCnq
+         9zyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3UndeySbwJtYhBstLS+7W0sTuNpKqoxWhQG5bKCKu1E=;
-        b=UzBLMJ0qv30AYvfjVxtGt5ttmjP4l09pHe6rJOvvt3Fzf//XkDNctMzZ8R3481eEMP
-         Js2y6fZSof4IgeHsUiidLf6WeB8aalEABrsRHxQstVEvsLTTrkJIOidauaBv/zn67S9r
-         Q4EEPmH1gMvAlJZobiLDT7XNxaIjwoIpPK76HdF3k33SW3k204o8p2vMxNh4j0rQet5c
-         BYEg45ykXVRJY8TclEDVHb8xruh57DI+MPQwkgOqFD6wJQrVhBiybKLr0nBsusLb44Rt
-         RpXQrztRBMU6DXRBh2YRwPsTETpklmPMQHtZfsy5QzABXzW4hoUB9jJWIhVGKlZZv8vL
-         efXA==
-X-Gm-Message-State: AFqh2kqnT3Y+wPvX/Vfy/5eAm+7qzZlHkhAghwaRtIBrcJVMysGWE7gv
-        65JLw1EwP8UAI13hjPXy9AM=
-X-Google-Smtp-Source: AMrXdXuQTnI7ooh6atfJ1l+iKecwB8hqvSyt3CFwVI9zZ+9rWAa4lGHia0YO6Ocu7iA5lZ7l35q2iw==
-X-Received: by 2002:adf:a31a:0:b0:2bf:96ae:7cc8 with SMTP id c26-20020adfa31a000000b002bf96ae7cc8mr33668033wrb.4.1675169977792;
-        Tue, 31 Jan 2023 04:59:37 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id b14-20020a05600010ce00b0029e1aa67fd2sm14798814wrx.115.2023.01.31.04.59.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 04:59:37 -0800 (PST)
-Message-ID: <561d9a97-64c7-6633-ff10-d85ae2c7f314@gmail.com>
-Date:   Tue, 31 Jan 2023 13:59:35 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tmFGl6w1T2X4Iy8+4eFf49j5NvCgFbPb0EL0ASIAaVI=;
+        b=xHL/0p8PnH762Luc2NYQYLKqRG+Vj4UcmGvWTDr1xCBbVgieNAcni6+7j8sR/Mo+ey
+         44sgkEjFdpSBhc57KFzmqL6TEIZhxvn70RDBiIW9bzRd5PpY27flBsFnMbpbNtfMLrpH
+         N+EVvBkgf8HCbkF3hq6P5E8G9RQvEK3IhcNXL+ke/jNYUykFGexTgrmJkyGr4to+UfZO
+         en3EUBVLM0d4FsLqJxnog5r9nK/EvS2DliWufHAm2FC1k2kdgKrOskg9UFGe/zRsD4sr
+         gKT2fcFkMyV+FppOtbmUanXrKyIdv2v6xTMBuQ5EIP/Yc5heZQYSsaaS/IGCHdqT/6aE
+         r4kA==
+X-Gm-Message-State: AO0yUKXY82r0AD68cwOMfj3mZS8K4/+PVdB0oNKf0SXwYTzI/eqhxQPg
+        HMHY11s26OMq71hUKleDVdV9Ugg6ok4AK5Ub77+1lcXXr027jAUm
+X-Google-Smtp-Source: AK7set970BlocwV52n44djBoL/Js4qvYthDu+af0gSiKo5LxU6fJE+DM2hEBIFVxOCFGQjMs5MfdOHs1/I3SDYkdMcc=
+X-Received: by 2002:a17:906:4950:b0:88a:b6ca:7d3a with SMTP id
+ f16-20020a170906495000b0088ab6ca7d3amr1315292ejt.1.1675169991517; Tue, 31 Jan
+ 2023 04:59:51 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 03/14] soc: mediatek: mtk-svs: enable the IRQ later
-Content-Language: en-US
-To:     Roger Lu <roger.lu@mediatek.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>
-Cc:     Fan Chen <fan.chen@mediatek.com>,
-        Jia-wei Chang <jia-wei.chang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Ricardo Ribalda <ribalda@chromium.org>
-References: <20230111074528.29354-1-roger.lu@mediatek.com>
- <20230111074528.29354-4-roger.lu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230111074528.29354-4-roger.lu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+References: <cover.1673227292.git.zhoubinbin@loongson.cn> <Y88VIXerF5Wk/9kj@mail.local>
+In-Reply-To: <Y88VIXerF5Wk/9kj@mail.local>
+From:   Binbin Zhou <zhoubb.aaron@gmail.com>
+Date:   Tue, 31 Jan 2023 20:59:37 +0800
+Message-ID: <CAMpQs4+8m0r98eGMHO7ktS2_AuNCA_u3Yk1q06i99TdbVZJ_Cg@mail.gmail.com>
+Subject: Re: [PATCH V2 0/7] rtc: ls2x: Add support for the Loongson-2K/LS7A RTC
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>, linux-rtc@vger.kernel.org,
+        linux-mips@vger.kernel.org, loongarch@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Qing Zhang <zhangqing@loongson.cn>,
+        Tiezhu Yang <yangtiezhu@loongson.cn>,
+        zhaoxiao <zhaoxiao@uniontech.com>, zhzhl555@gmail.com,
+        Kelvin Cheung <keguang.zhang@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,81 +77,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Kelvin:
+
+Excuse me.
+I am submitting the Loongson-2K/LS7A RTC driver and Alexandre would
+like me to merge the ls1x rtc driver in parallel.
+Unfortunately I found out that the loongson-1 does not yet support DT
+and would like to ask if you have any plans to support DT?
+
+I think this is the prerequisite for the merge.
+
+Regards.
 
 
-On 11/01/2023 08:45, Roger Lu wrote:
-> From: Ricardo Ribalda <ribalda@chromium.org>
-> 
-> If the system does not come from reset (like when is booted via
-> kexec(), the peripheral might trigger an IRQ before the data structures
-> are initialized.
-> 
-> Fixes:
-> 
-> [    0.227710] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000f08
-> [    0.227913] Call trace:
-> [    0.227918]  svs_isr+0x8c/0x538
-> 
+Binbin
 
-This patch is different from
-https://lore.kernel.org/r/20221127-mtk-svs-v2-0-145b07663ea8@chromium.org
 
-If you think the patch from Ricardo is wrong, then you should have mentioned 
-that in the review.
 
-Regards,
-Matthias
 
-> Fixes: 681a02e95000 ("soc: mediatek: SVS: introduce MTK SVS engine")
-> Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
-> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> ---
->   drivers/soc/mediatek/mtk-svs.c | 28 ++++++++++++++--------------
->   1 file changed, 14 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-> index a803b92afc3d..64d4d03ab71c 100644
-> --- a/drivers/soc/mediatek/mtk-svs.c
-> +++ b/drivers/soc/mediatek/mtk-svs.c
-> @@ -2403,20 +2403,6 @@ static int svs_probe(struct platform_device *pdev)
->   		goto svs_probe_free_resource;
->   	}
->   
-> -	svsp_irq = platform_get_irq(pdev, 0);
-> -	if (svsp_irq < 0) {
-> -		ret = svsp_irq;
-> -		goto svs_probe_free_resource;
-> -	}
-> -
-> -	ret = devm_request_threaded_irq(svsp->dev, svsp_irq, NULL, svs_isr,
-> -					IRQF_ONESHOT, svsp->name, svsp);
-> -	if (ret) {
-> -		dev_err(svsp->dev, "register irq(%d) failed: %d\n",
-> -			svsp_irq, ret);
-> -		goto svs_probe_free_resource;
-> -	}
-> -
->   	svsp->main_clk = devm_clk_get(svsp->dev, "main");
->   	if (IS_ERR(svsp->main_clk)) {
->   		dev_err(svsp->dev, "failed to get clock: %ld\n",
-> @@ -2438,6 +2424,20 @@ static int svs_probe(struct platform_device *pdev)
->   		goto svs_probe_clk_disable;
->   	}
->   
-> +	svsp_irq = platform_get_irq(pdev, 0);
-> +	if (svsp_irq < 0) {
-> +		ret = svsp_irq;
-> +		goto svs_probe_iounmap;
-> +	}
-> +
-> +	ret = devm_request_threaded_irq(svsp->dev, svsp_irq, NULL, svs_isr,
-> +					IRQF_ONESHOT, svsp->name, svsp);
-> +	if (ret) {
-> +		dev_err(svsp->dev, "register irq(%d) failed: %d\n",
-> +			svsp_irq, ret);
-> +		goto svs_probe_iounmap;
-> +	}
-> +
->   	ret = svs_start(svsp);
->   	if (ret) {
->   		dev_err(svsp->dev, "svs start fail: %d\n", ret);
+On Tue, Jan 24, 2023 at 7:24 AM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
+>
+> On 09/01/2023 09:35:10+0800, Binbin Zhou wrote:
+> > Hi all:
+> >
+> > The initial DT-base ls2x rtc driver was written by Wang Xuerui, He has
+> > released five versions of patchset before, and all related mail records
+> > are shown below if you are interested:
+> >
+> > https://lore.kernel.org/all/?q=ls2x-rtc
+> >
+> > In this series of patches, based on the code above, I have added the
+> > following support:
+> >
+> > 1. Add ACPI-related support, as Loongson-3A5000 + LS7A is now ACPI-base
+> >    by default under LoongArch architecture;
+> > 2. Add rtc alarm/walarm related functions.
+> >
+> > I have tested on Loongson-3A5000LA+LS7A1000/LS7A2000, Loongson-2K1000LA
+> > and Loongson-2K0500.
+> >
+> > BTW:
+> > There have been discussions about merging the rtc drivers of ls1x and
+> > ls2x, but the following reasons made the merger difficult to achieve:
+> >
+> > 1. ls1x does not support ACPI, for it is only on MIPS-based system;
+>
+> This is not a good justification, you have to support both in your
+> driver anyway, as shown by your CONFIG_ACPI ifdefery.
+>
+> > 2. ls1x does not support alarm function.
+>
+> It is just a matter of clearing a single bit, this is not difficult at
+> all.
+>
+> >
+> > Thanks.
+> >
+> > -------
+> > Changes since v1:
+> > 1. Rebased on top of latest loongarch-next;
+> > 2. Add interrupt descriptions to the ls2k and ls7a DTS files to avoid
+> > errors when the driver gets the IRQ number, Thanks to Qing Zhang for
+> > testing;
+> > 3. Remove some inexact CONFIG_ACPI.
+> >
+> > Binbin Zhou (4):
+> >   rtc: Add support for the Loongson-2K/LS7A RTC
+> >   LoongArch: Enable LS2X RTC in loongson3_defconfig
+> >   MIPS: Loongson64: DTS: Add RTC support to LS7A
+> >   MIPS: Loongson64: DTS: Add RTC support to Loongson-2K
+> >
+> > WANG Xuerui (3):
+> >   dt-bindings: rtc: Add Loongson LS2X RTC support
+> >   MIPS: Loongson: Enable LS2X RTC in loongson3_defconfig
+> >   MIPS: Loongson: Enable LS2X RTC in loongson2k_defconfig
+> >
+> >  .../devicetree/bindings/rtc/trivial-rtc.yaml  |   2 +
+> >  arch/loongarch/configs/loongson3_defconfig    |   1 +
+> >  .../boot/dts/loongson/loongson64-2k1000.dtsi  |   7 +
+> >  arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   7 +
+> >  arch/mips/configs/loongson2k_defconfig        |   1 +
+> >  arch/mips/configs/loongson3_defconfig         |   1 +
+> >  drivers/rtc/Kconfig                           |  11 +
+> >  drivers/rtc/Makefile                          |   1 +
+> >  drivers/rtc/rtc-ls2x.c                        | 379 ++++++++++++++++++
+> >  9 files changed, 410 insertions(+)
+> >  create mode 100644 drivers/rtc/rtc-ls2x.c
+> >
+> > --
+> > 2.31.1
+> >
+>
+> --
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+>
