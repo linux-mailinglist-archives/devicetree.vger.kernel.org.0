@@ -2,90 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3858E682B42
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 12:16:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1BF0682BAF
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 12:42:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231611AbjAaLQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 06:16:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53238 "EHLO
+        id S231839AbjAaLmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 06:42:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231784AbjAaLQD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 06:16:03 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 192A14B74C
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 03:15:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1675163710;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=r5WDosCN8ptqhgrL1cgVrQgfmxbqRf8M/DBi7ayRhQA=;
-        b=JOj28pt/5tSkoR2voFgvxr/7OhWYhEkibJo5LD4HWS0ZPJduxO3d3Lf3xYp7L7RKAtOcm0
-        89XNojvtuvUrUUwnzKcHEhkaOszzIEEKaaX+901qrn/BFv19NgaEz+twfHkTlKEJGTjLrd
-        87j+VeOlFO/WzXhVhqPRO+k8mseKxuw=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-664-f8Twh7D2NlupAptnwxFoWQ-1; Tue, 31 Jan 2023 06:15:09 -0500
-X-MC-Unique: f8Twh7D2NlupAptnwxFoWQ-1
-Received: by mail-qt1-f197.google.com with SMTP id a13-20020ac8108d000000b003b7ea9814a2so6363421qtj.2
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 03:15:09 -0800 (PST)
+        with ESMTP id S231743AbjAaLml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 06:42:41 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15201244A8;
+        Tue, 31 Jan 2023 03:42:40 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id t7so5566638wrp.5;
+        Tue, 31 Jan 2023 03:42:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jbuaZt7lhM/9Ln5zNse1ilA+2En9FQ3goK6JMsF3RXU=;
+        b=iBJRXcXOfNlS/bNMALXBSUsoDCg0SbyFWLXapD05y0OOSL874mHMqfAuh5vd3VO45r
+         79VWiPhfRAG9Eofp5QQRhQ/UZycsbplEOhl4uVpMf0wt4dJyeACIBclsRv+d37nKitcE
+         uc4pAYt2yyiNb2quuXfViTLCPU2RaLPvSjmfL0ho+O90QmI3CA/2zdHYXYWRvsoZqjuO
+         JAr09yk0QaYpF1xzZ1D8A4wnJBKVaCVdlrhzoAf3BtIlIXpV5GxIAxxMqYEdIHlBTb0h
+         I07gxQ3kMf0GeBlKEYRX+h/xc3KVTsSiyczyehePJnrWBhn4oEJpRHM0OZCHpPsxPo7n
+         +4PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=r5WDosCN8ptqhgrL1cgVrQgfmxbqRf8M/DBi7ayRhQA=;
-        b=syU56CVZwfC5uVA31RlqbZ1KagKPAjz6rx4SeVcgOb5IX81OkKSen/MBeN2JhLxnUl
-         3XH7Q4wFUJSCEFg0rMe5dWQXo4RA6UyO0g5PUliqgoneIdyjptv1369GMQh6DZycoyzC
-         EMr9D+85CmMzrwY9XCB5yBEBX1yso84Cy64WekAiefI8DIb5WttlzDRnbqwLSlmVh0AJ
-         jaqoXlsQoktZR8iuuMNiuMyQMGNl7dgYHXWvIy96tZZ/cioaUUNYnPsj3LzO2p6jPR3u
-         QCs/ux4ocZYx/R5D7kSL3XglBBVQJC8oEYbkz4jp9nTnMjoZOFQkmpwvQDvQAjbJibDV
-         QcTA==
-X-Gm-Message-State: AO0yUKUGbVwWzo3JlSspsZGx3yXs75FUR4In7mJM7QH+AfoKdIqtzKq9
-        BRB7WvaT2BsFFvKwx8uT3OUh8Eu/Y+CgCVbl5Raduxd9o/gNng1TpXmU+X2KcdbuX7oRcOfiyg0
-        Wkfs0SGjoqQ/YTsocIh2bMw==
-X-Received: by 2002:a05:6214:b85:b0:537:6dfa:efaf with SMTP id fe5-20020a0562140b8500b005376dfaefafmr33023139qvb.13.1675163708313;
-        Tue, 31 Jan 2023 03:15:08 -0800 (PST)
-X-Google-Smtp-Source: AK7set9PvPYF6HAkQ+AlinxEAf03bWrkLFOaUAgoOy2qSI7bVMAHunwsC9vjqR1Y96nmCMq2TF5yVg==
-X-Received: by 2002:a05:6214:b85:b0:537:6dfa:efaf with SMTP id fe5-20020a0562140b8500b005376dfaefafmr33023117qvb.13.1675163708088;
-        Tue, 31 Jan 2023 03:15:08 -0800 (PST)
-Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id bs32-20020a05620a472000b0071d7ade87afsm4839339qkb.67.2023.01.31.03.15.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Jan 2023 03:15:07 -0800 (PST)
-Date:   Tue, 31 Jan 2023 06:15:05 -0500
-From:   Brian Masney <bmasney@redhat.com>
-To:     Steev Klimaszewski <steev@kali.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>
-Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: sc8280xp: Define uart2
-Message-ID: <Y9j4ORb4r8+QXx4J@x1>
-References: <20230131043816.4525-1-steev@kali.org>
- <20230131043816.4525-4-steev@kali.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jbuaZt7lhM/9Ln5zNse1ilA+2En9FQ3goK6JMsF3RXU=;
+        b=dtqlxjwHHZh4wLtBQ/3O4x2st9Qqbsc0Mvz3V+MKe6tcM12PtGqYsd/Btw4xXEEVx1
+         Wkaq590SdvSJpENVayEC+TYIK05NnJa6+Bn6Q4+In8fSMbY8uD6aTYeNjqCg5k8qlLeH
+         PWI6y2rrXZ5AfPx4Du62qPs/f1r+oBbjT0CGi3jHHroXUwIWfr+z2pfgwHJ5PY+hVijN
+         ECx1UNgGjYbix+VJfkjJvEZLWBQ/aXRTdHuaMFFC5RAaJ6xwDRb9ONAufrjpjKINcvsE
+         VnF5a/rIBAYAc5aqxQbKpMCpF+bhd85dY0UnO/bKGosOnXqdgBV9mMaokEcME3xAyMwG
+         nkEQ==
+X-Gm-Message-State: AO0yUKWK50xFtGTzXNAdgHXgjjjMK9CkXRbYTT6v/VkGhx9qkTC1ieii
+        W1tPJ4SpnT1KZTf2ZhkL0aE=
+X-Google-Smtp-Source: AK7set9v+XGRdhbhRoauvb60itN4l43MujdWvSVRCtJ9jAJS7r5kiHvWKLHYDuoX5hwD0pmfNEG/hQ==
+X-Received: by 2002:a5d:5e93:0:b0:2bf:cba5:6add with SMTP id ck19-20020a5d5e93000000b002bfcba56addmr2898145wrb.58.1675165358589;
+        Tue, 31 Jan 2023 03:42:38 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id z14-20020a5d4d0e000000b002bde537721dsm14408352wrt.20.2023.01.31.03.42.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 03:42:38 -0800 (PST)
+Message-ID: <2a091926-653c-6deb-12b9-85ae5ecef8cc@gmail.com>
+Date:   Tue, 31 Jan 2023 12:42:36 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230131043816.4525-4-steev@kali.org>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 0/6] Fix MT8186/92/95 topology and idle state names
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        seiya.wang@mediatek.com, tinghan.shen@mediatek.com,
+        allen-kh.cheng@mediatek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230126103526.417039-1-angelogioacchino.delregno@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20230126103526.417039-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,12 +78,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 30, 2023 at 10:38:15PM -0600, Steev Klimaszewski wrote:
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> 
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Steev Klimaszewski <steev@kali.org>
 
-Reviewed-by: Brian Masney <bmasney@redhat.com>
 
+On 26/01/2023 11:35, AngeloGioacchino Del Regno wrote:
+> MT8186, MT8192 and MT8195 use ARM DynamIQ, which combines big and
+> LITTLE cores in one single cluster! A two cluster topology is simply
+> wrong in this case.
+> 
+> While at it, after some research, I've also noticed that the names
+> assigned to the idle states are misleading, so I went on changing
+> them to reflect the actual function.
+> 
+> The names change commits, unlike the CPU map ones, didn't get any
+> Fixes tag, as naming changes aren't fixing anything that would be
+> meaningful for functionality (it's cosmetic, nothing else).
+> 
+> AngeloGioacchino Del Regno (6):
+>    arm64: dts: mt8195: Fix CPU map for single-cluster SoC
+>    arm64: dts: mt8192: Fix CPU map for single-cluster SoC
+>    arm64: dts: mt8186: Fix CPU map for single-cluster SoC
+>    arm64: dts: mt8195: Change idle states names to reflect actual
+>      function
+>    arm64: dts: mt8186: Change idle states names to reflect actual
+>      function
+>    arm64: dts: mt8192: Change idle states names to reflect actual
+>      function
+> 
+
+Whole series applied, thanks!
+Matthias
+
+>   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 30 ++++++++++----------
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 35 +++++++++++-------------
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 34 +++++++++++------------
+>   3 files changed, 46 insertions(+), 53 deletions(-)
+> 
