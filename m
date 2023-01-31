@@ -2,66 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 436A9682145
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 02:07:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B03682156
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 02:20:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229464AbjAaBHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 20:07:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42366 "EHLO
+        id S230241AbjAaBUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 20:20:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230053AbjAaBHA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 20:07:00 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC242FCE0;
-        Mon, 30 Jan 2023 17:06:59 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id y25so21890888lfa.9;
-        Mon, 30 Jan 2023 17:06:58 -0800 (PST)
+        with ESMTP id S230229AbjAaBUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 20:20:44 -0500
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A34D113CA
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 17:20:42 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id 78so8971265pgb.8
+        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 17:20:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=google.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=i8oNqOnqGl0TJqn6jZQHbNg94bw3DsYJIPuzzD1fNwk=;
-        b=LcODaJLsEWVzIjx/pIT0gzk51VcJDCNKLdsZ06vqR6ZiREx9INQ7cVy4vOAxpJ8xk+
-         NtkfSRh5hy7OhtnOG5wugoSh8xU5i8LKuMUzjQi5Txr9s+44+BRWA4Hwcnvtn9b8jVLy
-         xkrdQJH8tTnFMSUn32b/axfKYg7WdU9cDYQep0p3WeizwAa9DjT0Sf1tqP7SyqMZKpkc
-         6jsc45WwIlPMRoDcop7pCgQbQgAgaxZVKjIEQjBVxWrHpI2rbYoIo5nHy3n9yW6HJ5pZ
-         4uHs5PPKVe5I7oYYHZpvxaAA9HbA1dvkIoLansFEfec61kL2tOcQ2lLYHpO/jKVWpxJD
-         vFsg==
+        bh=WlKnm9SlBY6a95G31ugIPx75GFY5lk/gBJScYr6B/MA=;
+        b=D9rmez0+kSKL3ccFg9a8F7AC1nKa00vADDYdszu9EH8DheWWLli6rK5KQG+m5BDTun
+         lBN3WiydFkh0tenV2406XKnQtMRh6xc6n2fE0ebr1WQaK0U9SEeflAszPpkaoEczXCPa
+         XnJ1zqvgyNwoi6VrgYqpbxCLOgDdxcvws0ZfwlT70OkOSwwYd8pazHEn/kuiJtYM22J7
+         kOf9lJua0c/fv0pyYlG9F4HJa3jGoahD9mRdj1+isxbekM65F/g6qDG8KyLMcWDQWG6+
+         R8T2lbX2UzZVK83BTDKWSVk4xIjaABA2PMQlvA9tQVzbLSueVsWJKDQjFrANX9n7Nu8n
+         auYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=i8oNqOnqGl0TJqn6jZQHbNg94bw3DsYJIPuzzD1fNwk=;
-        b=N4+C01RCytj4U7W9FllvbqGeouAtsVhMf2UErN0LJZduiLAVj+8gYwanPYsWZ/rg/n
-         V6POyfQ1kkzOOjlcEvLUGYeso3yVuQNzbLEK8r5jzS/8if+db8Eo/VT3KqNRU2GajFYH
-         obl64iFyaqxXE1GkaY4sofYKJFhPM8V3fhvMyfBKlDIoi3cuYc4PCJWRbUoeL4rKtADR
-         RiQ88v4aKwS77Iulp5DP66KOwQ/ZdMPnQpG3vzOZ0Sr/Zy5vXYtDLH8RqyyCthatbzHc
-         iWFX4fg98Z6gc2kJ+2fAOdQi2p3mhVWtZ6a7yAC+nHsR44g0hDQuuw4HG+g57NSykv0s
-         I7qw==
-X-Gm-Message-State: AFqh2krWhGkBvgoqPnXd3sq6hzsshEbEfJCULJV7axGcA6HtvYfUHlB3
-        xznAXwDOtb5/CuawUq+Q/I8sPzQ70bF9hpYpMaA=
-X-Google-Smtp-Source: AMrXdXvb3x30sDfNnUATc8PmsbWxWBdcxDJwYBYZZcLo+IqFaZaLu7FASDESU0mjuLUkvKoXk362fh0NVQABgr2tT48=
-X-Received: by 2002:ac2:4f0e:0:b0:4ca:fab6:91db with SMTP id
- k14-20020ac24f0e000000b004cafab691dbmr4596313lfr.202.1675127217110; Mon, 30
- Jan 2023 17:06:57 -0800 (PST)
+        bh=WlKnm9SlBY6a95G31ugIPx75GFY5lk/gBJScYr6B/MA=;
+        b=BEGEYfbMHSQWchUvk6SyHN1jMwK63gYtbPUuLromPNF1JencfJG2G2dYZzNT1bk+7w
+         Kw2IJ4dFLFwLJxdpNj6pQei32VwBHuGG2eyRgcarZRCLOIm57/cJyvDTUUzivMj+oOQE
+         u+1NoBAA4Gmpv0WJZulu//CpLsWz2Dsl1bmW8Y+5qnwLSNZZKkNzUu8xJwZQKpt2Pon5
+         Zg+VJnujSGcWFh8xDu+WUrHHBFdrTnFp2mUkyX2lzYGhJn9VvYIgOI51ts6gaQE2Wiyf
+         B03Sxvu76c4eMjs5dOvSiRMHZjWBj0I098DqqbvjGYVHufASpJzaQJCEttDWH4mkJLvT
+         yFRQ==
+X-Gm-Message-State: AO0yUKVEAmvxlz3MlvNU3/LbcFpSGPJZME+7UNaMXLods1mgMY+vc9Jk
+        PP95OhVEP48bdmMYWzq+uxxIxEAucB90A8xjouQkag==
+X-Google-Smtp-Source: AK7set/OnrysWGmShNaN4ttMAIR9UncJ4m1eUuwNep1bR9GutY4sRTfWIiOaEY4ReHbIYjKOu7DJxRnva6K27yrlZqg=
+X-Received: by 2002:aa7:91d3:0:b0:592:61cc:5aeb with SMTP id
+ z19-20020aa791d3000000b0059261cc5aebmr2113642pfa.59.1675128041704; Mon, 30
+ Jan 2023 17:20:41 -0800 (PST)
 MIME-Version: 1.0
-References: <20230128202622.12676-1-kaehndan@gmail.com> <20230128202622.12676-5-kaehndan@gmail.com>
- <b3712d74-2276-b7ba-4145-4d9a6d5f3a34@linaro.org>
-In-Reply-To: <b3712d74-2276-b7ba-4145-4d9a6d5f3a34@linaro.org>
-From:   Daniel Kaehn <kaehndan@gmail.com>
-Date:   Mon, 30 Jan 2023 19:06:46 -0600
-Message-ID: <CAP+ZCCe6J8y=qLMWafXPur1V_0=oQdw2QWqeAZ-C3TroMB4HhA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] CP2112 Devicetree Support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
+References: <20230127001141.407071-1-saravanak@google.com> <20230130114839.379f08bd@xps-13>
+ <CALHCpMimX63NC2P=mYdqOv339P06B4iAd10L2NpC5ALy_207vA@mail.gmail.com>
+In-Reply-To: <CALHCpMimX63NC2P=mYdqOv339P06B4iAd10L2NpC5ALy_207vA@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 30 Jan 2023 17:20:05 -0800
+Message-ID: <CAGETcx8FpmbaRm2CCwqt3BRBpgbogwP5gNB+iA5OEtuxWVTNLA@mail.gmail.com>
+Subject: Re: [PATCH v2 00/11] fw_devlink improvements
+To:     Maxim Kiselev <bigunclemax@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Linux Kernel Functional Testing <lkft@linaro.org>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Jean-Philippe Brucker <jpb@kernel.org>,
+        kernel-team@android.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,26 +107,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 29, 2023 at 5:06 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Mon, Jan 30, 2023 at 4:09 AM Maxim Kiselev <bigunclemax@gmail.com> wrote:
 >
-> On 28/01/2023 21:26, Danny Kaehn wrote:
-> > +#if defined(CONFIG_OF_GPIO)
+> Hi Saravana & Miquel.
 >
-> Don't use #if, but IS_ENABLED(). I think it should work here.
+> Sorry for the long response. I finally got access to my test device
+> and tried this patch series.
+>
+> And unfortunately it didn't solve my issue. I'm still getting a
+> hanging f1070000.ethernet dependency
+> from the nvmem-cell mac@6 subnode.
 
-I think I will still need to use an #if / some sort of preprocessor directive,
-since of_node is only a member of the gpio_chip struct if that is enabled
-(and thus causes a compile error if done outside of the preprocessor)...
-Unless I'm misinterpreting your comment?
+Thanks for testing the series.
+
+Btw, don't top post. It's frowned upon. Top post means your reply is
+on the top before the email you are replying to. See how my first line
+of reply in inline with your email I'm replying to?
 
 >
-> > +     dev->gc.of_node                 = of_get_child_by_name(hdev->dev.of_node, "gpio");
+> Here are related parts of my kernel log and device tree:
 >
-> You leak it now on error paths.
+>
+>     [    2.713302] device: 'mtd-0': device_add
+>     [    2.719528] device: 'spi0': device_add
+>     [    2.724180] device: 'spi0.0': device_add
+>     [    2.728957] spi-nor spi0.0: mx66l51235f (65536 Kbytes)
+>     [    2.735338] 7 fixed-partitions partitions found on MTD device spi0.0
+>     [    2.741978] device:
+> 'f1010600.spi:m25p80@0:partitions:partition@1': device_add
+>     [    2.749636] Creating 7 MTD partitions on "spi0.0":
+>     [    2.754564] 0x000000000000-0x000000080000 : "SPI.U_BOOT"
+>     [    2.759981] device: 'mtd0': device_add
+>     [    2.764323] device: 'mtd0': device_add
+>     [    2.768280] device: 'mtd0ro': device_add
+>     [    2.772624] 0x0000000a0000-0x0000000c0000 : "SPI.INV_INFO"
+>     [    2.778218] device: 'mtd1': device_add
+>     [    2.782549] device: 'mtd1': device_add
+>     [    2.786582] device: 'mtd1ro': device_add
+>     ...
+>     [    5.426625] mvneta_bm f10c0000.bm: Buffer Manager for network
+> controller enabled
+>     [    5.492867] platform f1070000.ethernet: error -EPROBE_DEFER:
+> wait for supplier mac@6
+>     [    5.528636] device: 'Fixed MDIO bus.0': device_add
+>     [    5.533726] device: 'fixed-0': device_add
+>     [    5.547564] device: 'f1072004.mdio-eth-mii': device_add
+>     [    5.616368] device: 'f1072004.mdio-eth-mii:00': device_add
+>     [    5.645127] device: 'f1072004.mdio-eth-mii:1e': device_add
+>     [    5.651530] devices_kset: Moving f1070000.ethernet to end of list
+>     [    5.657948] platform f1070000.ethernet: error -EPROBE_DEFER:
+> wait for supplier mac@6
+>
+>     spi@10600 {
+>         m25p80@0 {
+>             compatible = "mx66l51235l";
+>
+>             partitions {
+>                 compatible = "fixed-partitions";
+>
+>                 partition@0 {
+>                     label = "SPI.U_BOOT";
+>                 };
+>                 partition@1 {
+>                     compatible = "nvmem-cells";
+>                     label = "SPI.INV_INFO";
+>                     macaddr: mac@6 {
+>                         reg = <0x6 0x6>;
+>                     };
+>                 };
+>                 ...
+>             };
+>         };
+>     };
+>
+>     enet1: ethernet@70000 {
+>         nvmem-cells = <&macaddr>;
+>         nvmem-cell-names = "mac-address";
+>         phy-mode = "rgmii";
+>         phy = <&phy0>;
+>     };
+>
+>
+> Maybe I should provide some additional debug info?
 
-Ah, good point. Will fix!
+I took a look at it and I think I know the issue. But it'll be good if
+you can point me to the dts (not dtsi) file that corresponds to the
+board you are seeing this issue on so I can double check my guess by
+looking at the exact code/drivers.
 
-Thanks,
+The main problem/mistake is the nvmem framework is using a "struct
+bus" instead of a "struct class" to keep a list of the nvmem devices.
+And we can't change it now because it'd affect the sysfs paths
+significantly and might break userspace ABI.
 
-Danny Kaehn
+Can you try the patch at the end of this email under these
+configurations and tell me which ones fail vs pass? I don't need logs
+for any pass/failures.
+1. On top of this series
+2. Without this series
+3. On top of the series but with the call to fwnode_dev_initialized() deleted?
+4. Without this series, but with the call to fwnode_dev_initialized() deleted?
+
+-Saravana
+
+Sorry about tabs to spaces conversion. Email client issue.
+
+diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+index 321d7d63e068..23d94c0ecccf 100644
+--- a/drivers/nvmem/core.c
++++ b/drivers/nvmem/core.c
+@@ -752,6 +752,7 @@ static int nvmem_add_cells_from_of(struct
+nvmem_device *nvmem)
+ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
+ {
+        struct nvmem_device *nvmem;
++       struct fwnode_handle *fwnode;
+        int rval;
+
+        if (!config->dev)
+@@ -804,9 +805,18 @@ struct nvmem_device *nvmem_register(const struct
+nvmem_config *config)
+        nvmem->keepout = config->keepout;
+        nvmem->nkeepout = config->nkeepout;
+        if (config->of_node)
+-               nvmem->dev.of_node = config->of_node;
++               fwnode = of_fwnode_handle(config->of_node);
+        else if (!config->no_of_node)
+-               nvmem->dev.of_node = config->dev->of_node;
++               fwnode = of_fwnode_handle(config->dev->of_node);
++       device_set_node(&nvmem->dev, fwnode);
++
++       /*
++        * If the fwnode doesn't have another device associated with it, mark
++        * the fwnode as initialized since no driver is going to bind to the
++        * nvmem.
++        */
++       if (fwnode && !fwnode->dev)
++               fwnode_dev_initialized(fwnode, true);
+
+        switch (config->id) {
+        case NVMEM_DEVID_NONE:
