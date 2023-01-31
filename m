@@ -2,85 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CB9B683871
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 22:13:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 774F76838F5
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 22:55:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232097AbjAaVNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 16:13:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44994 "EHLO
+        id S229488AbjAaVze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 16:55:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232025AbjAaVNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 16:13:44 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DB2947408;
-        Tue, 31 Jan 2023 13:13:43 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CCB52B81F03;
-        Tue, 31 Jan 2023 21:13:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 623A4C433D2;
-        Tue, 31 Jan 2023 21:13:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675199620;
-        bh=VL+rZ6hI815ahbQIQZB50x/KUsJNcZufvjyjenXPPKQ=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=uiWDpYHbUhja/iF80U6mJXYOC0151kUi2ccPlsHPsuwLsC1e75zJfGuc3dV0bTmlH
-         rrW6ClP0waQ/tn+sfdpAXb4f4HX7FzSL/DVsAx0I0EeLI7435rMTopW4zUs402QXfh
-         laI+X0atym0ivT3jb3DfqQk74GmzG+ijuCJSdxRxPXL5lKEx6y84vRkr+yNSLF8v/I
-         6GYKnE2S0vh9uIFjIwA2A6oxzmmCrHib9Eyu5eodBye54Ts0P3FzJpZA+nMB3ZzJbw
-         M5IsFMJ6AtYili/i5sKYjYpZcowjuFCAh4wnnsL/QdGuFCdGJH61g+6vVh0ra5tD+k
-         ryZcsvxs66I0A==
-Message-ID: <0e40502f2d8c0f0801eeb250b9c27af7.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230154AbjAaVzc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 16:55:32 -0500
+X-Greylist: delayed 1805 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 31 Jan 2023 13:55:29 PST
+Received: from walmailout03.yourhostingaccount.com (walmailout03.yourhostingaccount.com [65.254.253.144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BE395A805
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 13:55:28 -0800 (PST)
+Received: from mailscan09.yourhostingaccount.com ([10.1.15.9] helo=walmailscan09.yourhostingaccount.com)
+        by walmailout03.yourhostingaccount.com with esmtp (Exim)
+        id 1pMy82-0003fy-60
+        for devicetree@vger.kernel.org; Tue, 31 Jan 2023 16:25:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=grabaclue.com; s=dkim; h=Content-Type:MIME-Version:Message-ID:Reply-To:From
+        :Date:To:Subject:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=BjzAo18x76wi2Usnx2VbHBYf78xZJWeQ5l2VapFGSZI=; b=on8yKleMSOwzaKkIVOJK+jy2yu
+        iHxR5M/vF6hgzUbttg9ajvbJc8NxzOlhJhLdqJ2WIVOGqfGmNojRk1bF22tQBVZEJBQs8X098C7oL
+        mar2NImY596o9cp9PdfT/zWJOsnAaOhhLMtp32unrpglyqsSuJnGAX5hIXLcf+iAy/AX6zy3d6Ryt
+        KTO7jXRFz+PqedWDMXQ3Kma8IDSFQnFgz203/z43A87NOCrw2BoXXCyFfYHUjwb/uREA4hWSfqjgz
+        yVmhUGmTrA+NRwZM/1IsMdvLDCfhHKmXC0PaePsp8Mgo+9NQJeVDgi4K+WTXD9YTzxDrLqCSP4fx6
+        JqhKI4ag==;
+Received: from [10.114.3.23] (helo=walimpout03)
+        by walmailscan09.yourhostingaccount.com with esmtp (Exim)
+        id 1pMy81-00013d-Tz
+        for devicetree@vger.kernel.org; Tue, 31 Jan 2023 16:25:21 -0500
+Received: from IIS85P.nt.com ([10.15.50.85])
+        by walimpout03 with 
+        id FZRJ2900b1qHL0A01ZRMGr; Tue, 31 Jan 2023 16:25:21 -0500
+X-EN-SP-DIR: OUT
+X-EN-SP-SQ: 1
+Received: from IIS85P.nt.com ([127.0.0.1]) by IIS85P.nt.com with Microsoft SMTPSVC(10.0.20348.1);
+         Tue, 31 Jan 2023 16:25:18 -0500
+Subject: devicetree,  please confirm
+To:     devicetree@vger.kernel.org
+X-PHP-Originating-Script: 0:d3dccas.php
+Date:   Tue, 31 Jan 2023 16:25:18 -0500
+From:   Sello Juaquin Dabeer <support@grabaclue.com>
+Reply-To: sellojuaquindabeer@gmail.com
+Message-ID: <d761a5f929f3119af70c90aa2ea2d7f7@grabaclue.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230130125528.11509-2-quic_devipriy@quicinc.com>
-References: <20230130125528.11509-1-quic_devipriy@quicinc.com> <20230130125528.11509-2-quic_devipriy@quicinc.com>
-Subject: Re: [PATCH V3 1/7] dt-bindings: Add ipq9574 clock and reset definitions
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-To:     agross@kernel.org, andersson@kernel.org, arnd@arndb.de,
-        catalin.marinas@arm.com, devi priya <quic_devipriy@quicinc.com>,
-        devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org,
-        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        linus.walleij@linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        marcel.ziswiler@toradex.com, mturquette@baylibre.com,
-        nfraprado@collabora.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, shawnguo@kernel.org, will@kernel.org
-Date:   Tue, 31 Jan 2023 13:13:38 -0800
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+X-OriginalArrivalTime: 31 Jan 2023 21:25:18.0812 (UTC) FILETIME=[848C59C0:01D935BA]
+X-Spam-Status: Yes, score=7.1 required=5.0 tests=BAYES_99,BAYES_999,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_REPLYTO,
+        HEADER_FROM_DIFFERENT_DOMAINS,LOCALPART_IN_SUBJECT,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: *  3.5 BAYES_99 BODY: Bayes spam probability is 99 to 100%
+        *      [score: 1.0000]
+        *  0.2 BAYES_999 BODY: Bayes spam probability is 99.9 to 100%
+        *      [score: 1.0000]
+        * -0.0 RCVD_IN_MSPIKE_H2 RBL: Average reputation (+2)
+        *      [65.254.253.144 listed in wl.mailspike.net]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  1.1 LOCALPART_IN_SUBJECT Local part of To: address appears in
+        *      Subject
+        *  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+        *      mail domains are different
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        *  2.1 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting devi priya (2023-01-30 04:55:22)
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yam=
-l b/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
-> new file mode 100644
-> index 000000000000..7a98469b197c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,ipq9574-gcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Global Clock & Reset Controller on IPQ9574
-> +
-> +maintainers:
-> +  - Stephen Boyd <sboyd@kernel.org>
+01/31/2023 04:25:18 pm
 
-Can you be the maintainer? I don't work for Qualcomm.
+Good day ,
+
+Did you receive my previous email to you, or do I repeat ?
+
+Best Regard,
+
+Juaquin Dabeer
+
