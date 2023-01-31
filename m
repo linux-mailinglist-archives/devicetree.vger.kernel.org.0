@@ -2,155 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51529682EF1
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 15:13:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A570682EFC
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 15:15:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231764AbjAaONw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 09:13:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48860 "EHLO
+        id S232230AbjAaOPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 09:15:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229895AbjAaONv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 09:13:51 -0500
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA733C0A;
-        Tue, 31 Jan 2023 06:13:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675174430; x=1706710430;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/BEyfGW0W/aNEviei4kNEG3m+BpXMjr5t7OGNNmaDWM=;
-  b=ioz6Nc7Ln4FiaXhcghfkBaYM7jKk6skuQ8CBvZ/D0LLVMv+UOHGT+ju+
-   5eQ03jQOzmxZB/fX7W79XkYAkP4KrFTmiXIlOxQy1GDsmK748q9DSQU8D
-   O2EKm0qWPV+VinplluWbcoBpVsfWR8Kt0Ifhw6doKjQYSQV4//6/gQzhn
-   6a4i9jgJBQpU4EluU5995lDhLVyhsyq8802iD6hZGmMds//VE+qCdkEPE
-   jqqRI9ia6vmO6Jgmm1a61Uk5noMEw4sLtqwHQzqNtiIaE/ZWmOQVHBh0N
-   1XBuyJVW4FqgLpM4QWq2kXckWw1BRcAlzSX8A08NEd933A5f+ogk0dgyW
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="392399983"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; 
-   d="scan'208";a="392399983"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2023 06:13:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="727958871"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; 
-   d="scan'208";a="727958871"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga008.fm.intel.com with ESMTP; 31 Jan 2023 06:13:03 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pMrNd-000Hgz-30;
-        Tue, 31 Jan 2023 16:13:01 +0200
-Date:   Tue, 31 Jan 2023 16:13:01 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     "Sahin, Okan" <Okan.Sahin@analog.com>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v3 3/5] drivers: regulator: Add ADI MAX77541/MAX77540
- Regulator Support
-Message-ID: <Y9kh7QI+1RqvLr2G@smile.fi.intel.com>
-References: <20230118063822.14521-1-okan.sahin@analog.com>
- <20230118063822.14521-4-okan.sahin@analog.com>
- <Y8erlpofdk24vwCC@smile.fi.intel.com>
- <MN2PR03MB5168EC97926AB33D4D806FCCE7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
- <MN2PR03MB516865804044A798AEB5B6C0E7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
- <Y9kJEsjkG8h79tcR@smile.fi.intel.com>
- <BY5PR03MB5153C18E65B954E9FEFD96B1E7D09@BY5PR03MB5153.namprd03.prod.outlook.com>
- <Y9kXxP/cEBJ5gyoB@smile.fi.intel.com>
- <BY5PR03MB51539CB52778A945C8CB788FE7D09@BY5PR03MB5153.namprd03.prod.outlook.com>
+        with ESMTP id S232282AbjAaOPV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 09:15:21 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5B83E4B77F;
+        Tue, 31 Jan 2023 06:15:18 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 21EDA2F4;
+        Tue, 31 Jan 2023 06:16:00 -0800 (PST)
+Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 99C563F71E;
+        Tue, 31 Jan 2023 06:15:16 -0800 (PST)
+Message-ID: <0e9f677b-846d-809d-9bc3-30906f703fda@arm.com>
+Date:   Tue, 31 Jan 2023 14:15:11 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BY5PR03MB51539CB52778A945C8CB788FE7D09@BY5PR03MB5153.namprd03.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 2/3] iommu: mediatek: Add support of unmanaged iommu
+ domain
+Content-Language: en-GB
+To:     Alexandre Bailon <abailon@baylibre.com>, yong.wu@mediatek.com,
+        joro@8bytes.org, will@kernel.org
+Cc:     matthias.bgg@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, iommu@lists.linux.dev,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230130102722.133271-1-abailon@baylibre.com>
+ <20230130102722.133271-3-abailon@baylibre.com>
+ <741920ba-8637-5e28-695c-699b46351590@arm.com>
+ <f126c61f-6373-d6c5-59c8-24dea9d9d168@baylibre.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <f126c61f-6373-d6c5-59c8-24dea9d9d168@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 31, 2023 at 01:59:45PM +0000, Sahin, Okan wrote:
-> On Tue, 31 Jan 2022 4:30 PM
-> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> >On Tue, Jan 31, 2023 at 01:23:33PM +0000, Sahin, Okan wrote:
-> >> On Tue, 31 Jan 2022 3:27 PM
-> >> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> >> >On Tue, Jan 31, 2023 at 09:27:48AM +0000, Sahin, Okan wrote:
-
-...
-
-> >> >> Sorry for second question. I do not want to bother you, but I
-> >> >> realized that I need to be sure about driver_data before sending
-> >> >> new patch. You said that you need to use pointers directly for
-> >> >> driver_data then I fixed that part in mfd, but I do not need or
-> >> >> use driver_data in regulator since chip_id comes from mfd device so
-> >> >> I think using like below should be enough for my implementation.
-> >> >>
-> >> >> static const struct platform_device_id max77541_regulator_platform_id[] =
-> >{
-> >> >> 	{ "max77540-regulator", },
-> >> >> 	{ "max77541-regulator", },
-> >> >> 	{  /* sentinel */  }
-> >> >> };
-> >> >> MODULE_DEVICE_TABLE(platform, max77541_regulator_platform_id);
-> >> >>
-> >> >> static const struct of_device_id max77541_regulator_of_id[] = {
-> >> >> 	{ .compatible = "adi,max77540-regulator", },
-> >> >> 	{ .compatible = "adi,max77541-regulator", },
-> >> >> 	{ /* sentinel */  }
-> >> >> };
-> >> >> MODULE_DEVICE_TABLE(of, max77541_regulator_of_id);
-> >> >>
-> >> >> What do you think?
-> >> >
-> >> >If you have got all necessary data from the upper layer, why do you
-> >> >need to have an ID table here? I'm not sure I understand how this OF
-> >> >ID table works in this case.
-> >
-> >> I added it since there is regulator node in device tree. With the help
-> >> of devm_regulator_register(..), driver takes parameters of regulator
-> >> node. I also used id to select and to initialize regulator descriptors
-> >> which are chip specific. So far there is no comment about OF ID table
-> >> so I kept it. I thought I need to add both of id table and platform id
-> >> table as name matching is required to initialize platform device from mfd.
-> >
-> >For platform device is one mechanism how to enumerate device, and bind it to
-> >the driver. The OF ID table needs to be present in case you are using it for direct
-> >DT enumeration (there is also something related to MFD child nodes, but you
-> >need to check and explain how your device is enumerated by this driver).
-> >
-> >I.o.w. please clarify how the OF ID table is being used.
+On 31/01/2023 1:08 pm, Alexandre Bailon wrote:
+> Hi Robin
 > 
-> I do not use "of id table" directly in max77541-regulator.c so do I need to exclude it?
+> On 1/30/23 13:04, Robin Murphy wrote:
+>> On 2023-01-30 10:27, Alexandre Bailon wrote:
+>>> Currently, the driver can allocate an unmanaged iommu domain.
+>>> But, this only works for SoC having multiple bank or multiple iova 
+>>> region.
+>>
+>> That is for good reason - there is only a single pagetable per bank, 
+>> so if there are multiple devices assigned to a single bank, they 
+>> cannot possibly be attached to different domains at the same time. 
+>> Hence why the banks are modelled as groups.
+> I understand.
+> I am trying to upstream a remoteproc driver but the remote processor is
+> behind the iommu.
+> remoteproc can manage the iommu but it requires an unmanaged domain.
+> I tried a couple of things but this cause code duplication,
+> implies many hacks and not always reliable.
+> Do you have any suggestion ?
 
-Exactly my point. How does this OF ID table affect the device enumeration?
+If there are other active devices behind the same IOMMU, and the 
+remoteproc device cannot be isolated into its own bank using the 
+existing IOMMU driver logic, then the remoteproc driver cannot manage 
+the IOMMU directly, and must just use the regular DMA API. There's no 
+way around it; you can't have two different parts of the kernel both 
+thinking they have exclusive control of a single IOMMU address space at 
+the same time. Similarly, remoteproc also cannot take explicit control 
+of a multi-device group if it's not actually in control of the other 
+devices, since their drivers will not be expecting the DMA address space 
+to suddenly change underfoot - that's why iommu_attach_device() has the 
+check which you presumably ran into.
 
-> However, devm_regulator_register(..) method initialize each regulator with
-> the nodes under "regulators node". If of_match in desc and name of node
-> matches, then regulator will be initialized with parameters in the node under
-> the regulators node in the device tree. Since I am using device tree to
-> initialize regulators, I added of id table. I hope I explained the situation
-> clearly.
-
-This is confusing. If your regulator is enumerated via DT, why do you need MFD?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Thanks,
+Robin.
