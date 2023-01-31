@@ -2,79 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 311EE682AE2
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 11:54:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7014B682B02
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 12:00:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230120AbjAaKyw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 05:54:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40426 "EHLO
+        id S231676AbjAaK77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 05:59:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229903AbjAaKyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 05:54:51 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E53210D
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 02:54:50 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id d14so13791308wrr.9
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 02:54:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7OYEwxTaqjtlGjvqbHJHN/en6Xpq8Ykki5vkrB21KOQ=;
-        b=kGZYXNRVfKrXuVZiSbzJTqRr6TC8WN3FpQle90s6u1QN8F5g8sI8U/7qkGomlzsnBy
-         ziS5sR9MEYLzcmGin/3FRXCE87cjz2ACN9r8UTG3EQPZRtyMK5S+4pnUCFzZCgS+Eu5G
-         CvkigsGaxmBgz7sFT3dJsMZzW2XNkxadOYX1TlWWGDvoj44EiilMspHj8ITHuF7JvZEb
-         JTiyhviWoA1iHqqtjIXvYx/tZvTjjOtt45N3QPfQnWkFJctnbmuzJ3I9FKj14OFIkecZ
-         O05tgLW/NaMB6ifP0BCXYTTHHuD61+2MGmbI+CqzURlp6ozSH9Jb1KSnebG+XGtHcc/k
-         2D7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7OYEwxTaqjtlGjvqbHJHN/en6Xpq8Ykki5vkrB21KOQ=;
-        b=1UTRkgMDB9HUT3dafWu369YufdfKRC5efl/iU9SmtQXHOnjrTYpLhBCCgW6M3yvQde
-         jelw6UP9JTMAYfZ49ducYUpXXGsdCehzWmEUVcX8vSAVvYbi5nIoA+Cmj54gAV20ac7m
-         AK7R3iCZ24mJ7T7YPFAJpG9U95wY+ecerMVtPBFd7kLjHgsHVwwlsAi+cwybzS552lZx
-         MK3KOmRhayQ5BBOkQIN6VAMBnTHLSrtFxxQW9bv+mkMv+m0AcaMQDb9RIMdkwtaoljy3
-         T0OLLGSMGfNrUD1vPrK4wWLcue2hichR4zvt5R9cNosAmYwXFfP1rrq2OBP/0ExzNvho
-         QFUw==
-X-Gm-Message-State: AO0yUKU5JU44N1pE/U64AT8M6Gq5hfV3g6PGU58eMZw0/xDWYQWGzw+c
-        8RZ98RNzn5bfNooy8P9O33c4wA==
-X-Google-Smtp-Source: AK7set8yGv0W3fTh/34Gl9/VtI2q+tEtUrPw0o9c7WAhiS/iqRH503gaIshhxxf4qN+vLSA+xsrz8w==
-X-Received: by 2002:a5d:59c1:0:b0:2c1:2a1c:a8d2 with SMTP id v1-20020a5d59c1000000b002c12a1ca8d2mr2781235wry.27.1675162489014;
-        Tue, 31 Jan 2023 02:54:49 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id b11-20020adfd1cb000000b002bcaa47bf78sm15338247wrd.26.2023.01.31.02.54.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 02:54:48 -0800 (PST)
-Message-ID: <39751511-3f06-7c39-9c21-208d4c272113@linaro.org>
-Date:   Tue, 31 Jan 2023 10:54:47 +0000
+        with ESMTP id S230120AbjAaK76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 05:59:58 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 537DA485AB;
+        Tue, 31 Jan 2023 02:59:38 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1393BB81908;
+        Tue, 31 Jan 2023 10:59:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39B50C4339B;
+        Tue, 31 Jan 2023 10:59:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675162775;
+        bh=KizWfdLaJoHcpqoGQCUVz2SlSQqe8gsl8o7bCmMfKTI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tc4D1sGpb3hOZBqC9mmXKOGlkigoH/LAkb317owIQWQmGQIW0CouS7STd22cFllnn
+         9sxW25UMMQDJLKSGqpeJpyVYA8HZRHmuYJZtksQGCMMW8BBg2jl7vztd3X4HzM64UP
+         OLunRf+rQxRTFZbFFrBrybRFihauckL3jIBhzaLjoG0u7rxt6FRu7oK3wdUbphvWPf
+         a08zUV+9tfgQmQq+8xlnekSElE4KJW4/83RKS0ug3br4+5FwXfR3TE7RkME5we2sQk
+         pCRQFBYdoggHCPwEOQgIhTNdv2Bd6l5qCcOu6tqHWlTT6igk8Yvg1SKu2w1xuGy201
+         mQR9LaHcI5cVg==
+Date:   Tue, 31 Jan 2023 16:29:31 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, heiko@sntech.de,
+        linux-phy@lists.infradead.org, krzysztof.kozlowski+dt@linaro.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v1] dt-bindings: phy: rename phy-rockchip-inno-usb2.yaml
+Message-ID: <Y9j0k4hTCsB6vo6v@matsya>
+References: <99794484-d67e-ee1f-4e76-200de20a879c@gmail.com>
+ <167320365145.195794.14991903357914132463.robh@kernel.org>
+ <8c33967b-1b91-42d2-879b-fa73dd8ecbeb@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory
- region as reserved
-Content-Language: en-US
-To:     Amit Pundir <amit.pundir@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20230124182857.1524912-1-amit.pundir@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230124182857.1524912-1-amit.pundir@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8c33967b-1b91-42d2-879b-fa73dd8ecbeb@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,41 +57,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2023 18:28, Amit Pundir wrote:
-> Put cont splash memory region under the reserved-memory
-> as confirmed by the downstream code as well.
+On 31-01-23, 11:39, Johan Jonker wrote:
 > 
-> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 8 ++++++++
->   1 file changed, 8 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index f41c6d600ea8..2ae59432cbda 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -100,6 +100,14 @@ hdmi_con: endpoint {
->   		};
->   	};
->   
-> +	reserved-memory {
-> +		/* Cont splash region set up by the bootloader */
-> +		cont_splash_mem: framebuffer@9d400000 {
-> +			reg = <0x0 0x9d400000 0x0 0x2400000>;
-> +			no-map;
-> +		};
-> +	};
-> +
->   	lt9611_1v8: lt9611-vdd18-regulator {
->   		compatible = "regulator-fixed";
->   		regulator-name = "LT9611_1V8";
+> On 1/8/23 19:48, Rob Herring wrote:
+> > 
+> > On Thu, 29 Dec 2022 12:39:17 +0100, Johan Jonker wrote:
+> >> Rename phy-rockchip-inno-usb2.yaml to a more common format of
+> >> rockchip,inno-usb2phy.yaml
+> >>
+> >> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> >> ---
+> >>
+> 
+> >> Apply after:
+> >>   dt-bindings: soc: rockchip: grf: add rockchip,rk3288-dp-phy.yaml
+> 
+> Hi Vinod, Heiko,
+> 
+> This patch has been acked from the device tree side.
+> If it suits you is there Ack from the phy side possible, so that Heiko can merge it to grf.yaml in the order that he likes.
 
-Doesn't this mean we loose 0x2400000 of DRAM for all rb3 platforms 
-though ? About what 37 megabytes.. ?
+Yes, lgtm:
 
-IMO it would be better to have a bootloader that cares about continuous 
-splash to apply a dtb overlay or simply to add a separate dts 
-sdm845-db845c-continuous-spash.dts.
+Acked-By: Vinod Koul <vkoul@kernel.org>
 
----
-bod
+-- 
+~Vinod
