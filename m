@@ -2,149 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8041B683600
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 20:05:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7666568360F
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 20:07:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232033AbjAaTFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 14:05:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54194 "EHLO
+        id S231408AbjAaTHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 14:07:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231972AbjAaTFQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 14:05:16 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C89B45357E
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:05:14 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso11414533wmq.5
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:05:14 -0800 (PST)
+        with ESMTP id S229816AbjAaTHv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 14:07:51 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C14BE18148
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:07:47 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id o18so5711528wrj.3
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:07:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YQzlHN8C5ytWD4LQULKZ+tnaW8K03J/011gZ4O7NdVs=;
-        b=vCbZXJ1rfzjUa5dN6FIKKkiKpeHVetK+tl7KKoqgwlPzhIQ+UooJsZ52A07VqUzGhI
-         PJ/6mVq88orxv5VJp5e5tzGnvj9cFS60KWJ18od5UR7/vEeUBXdhv0vyhLqaQZRLXCMQ
-         uD47GtMt8lSE5DwKzPOC7UlS6DFuVg4W8xpcaLIYCa2/Gi3T5pc0mzoBfgmioYHbqmuL
-         u1Mhz/7QY8cdU7eqyRmLLuvbKNU+hisKc/y/0Bum6ax/mXOQfnxLrtO7C5L0oS/gqeqs
-         0xS9f4N9A/3ZJTazAFLOK1X3o9xxTp/ag8mf8SnlzqJewKo0rBk6KQOqzJCSqfo/+Gep
-         4tow==
+        d=raspberrypi.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=f8u9MUcqGJPFEKolVS5GxO0QQI8oiywQSvdO+4XYGjY=;
+        b=cM7XVn7a7dnz07Q23IRShl3dtQ9B4gxvNuVmzvZX82y63o4KJ2kZRE6vBdtz/v4U7C
+         ZBKbMfI1Y/A9dLJWxTbJmoZqzzhqjHFnGVo3b2UYMUCxBnREmpoYa7UU1owAW+JDu/Ce
+         Gn44p6J9eVDuDklkn1lM0bEYUx3RqEbjncuOuA+vRTL8zLzVKY9cUGSQAhAPUhnzU/hi
+         s0er1X6IsR3bflH7Vxhn28Y39q6zGIoV24y/OhJL89/1pI5q+dBlhMyr4dzYVIq9IaJv
+         veBVIz8UptqW9m8qpLtiCxZ0Kb5I3FF7AT0wKhtysRHrE4hgR3xQJOGdEXL3rW0TTEpi
+         5YpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YQzlHN8C5ytWD4LQULKZ+tnaW8K03J/011gZ4O7NdVs=;
-        b=vFpBNArdhR6eAZdLXSkWvLFsJ74NlP0PgNsa8Wt59kCuLnYDFGNdnyC0lGCTcMjTND
-         9J73nyu2/LPmFlMtDnqAGL+EvSR5dc1hLB+1mhn0zqDzg7Ggt4vtuFg4EIoE23SqJOMd
-         dc5zddvaY+fDqNyxmCMe6YkjYhkQctgf5V7UiN8w0yqHC0hIA9wTmkaoABqfd2PEqmsd
-         82HkM5hF66Mo+ZTqd1ZJkNuJWtxr5XedbbnPaVz1BwO9VEUoKlLw5753uZrdBb00K2Zs
-         anzQFG5HqmJwF8gOgHKQ6amhxMt6sJFBF8KANvT1VxbDqjva20+Kt0U1tyIlIb/5KdC7
-         qWWA==
-X-Gm-Message-State: AO0yUKUS9eeUNV9HOMT/tUd484CO+rAFeb76BeNoo1f/gapMdx/CJVw6
-        wRUpRwg1N8G6UtTdIIVphqS9CA==
-X-Google-Smtp-Source: AK7set+5BxSdzoPJgFTWK/Vh/UjrLFnT0l09EhoYMylWE8EAIswQxOqOvmFqGb/av2JpjnJH/tykmQ==
-X-Received: by 2002:a1c:7210:0:b0:3dc:46e8:982 with SMTP id n16-20020a1c7210000000b003dc46e80982mr13857728wmc.19.1675191913320;
-        Tue, 31 Jan 2023 11:05:13 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p9-20020a05600c358900b003dc1f466a25sm21001542wmq.25.2023.01.31.11.04.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 11:05:12 -0800 (PST)
-Message-ID: <2a237ca0-15cd-b86c-7d9b-32014370d9dd@linaro.org>
-Date:   Tue, 31 Jan 2023 20:04:55 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f8u9MUcqGJPFEKolVS5GxO0QQI8oiywQSvdO+4XYGjY=;
+        b=n4n9jwSR6XH1EEwV/LObZ+tsneGzBFPv3qlQ5b2zJlBEKKxoEWHyPITDSbIcUTPVM7
+         aWfcxg/abIkAoX9ErCl+XklVY/u4AfyxzajhesX9mC+5h215w4fngPT5qsOKtKItcbvL
+         3eV/ZBE8TOesdyRSoPsnDC7CDA0jkv98aTbHtFkbJJ7UEJ5fcSfn573mHEUrkHn9P+T5
+         wIFacKWlPo+M4IYXgSx/RrK+QpMbPB2I/mo6IQv1epTLaHyyyU4vT2Bm391vbFH42y3M
+         bWWzpe3iQH/wRqlXe5TT3ow4Ahm1YZaxlA95Uynrf+DiRXEuSNW2Rkqgmy5PpL2fEy8T
+         GFzQ==
+X-Gm-Message-State: AO0yUKX7G3GI+wyukGAjDn1RrXbY2xeVLY8u9Qys5S6aqGHfL9l7+P0a
+        PxXsbrpUplmAJTQO+1rGU6B1+A==
+X-Google-Smtp-Source: AK7set+c7/OZVD9dMyfADAOXdrIkNTLghC9AiBQE49DusjrMo9mA1xEpw+X6F8YfJo+FmleYv/Oahw==
+X-Received: by 2002:a5d:584f:0:b0:2be:1ea0:f794 with SMTP id i15-20020a5d584f000000b002be1ea0f794mr4525593wrf.52.1675192066347;
+        Tue, 31 Jan 2023 11:07:46 -0800 (PST)
+Received: from dave-Ubuntu2204.. (194.15.169.217.in-addr.arpa. [217.169.15.194])
+        by smtp.googlemail.com with ESMTPSA id c17-20020adffb11000000b002bc8130cca7sm15574989wrr.23.2023.01.31.11.07.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Jan 2023 11:07:44 -0800 (PST)
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: [PATCH 0/2] Add support for mono version of Sony IMX290 sensor
+Date:   Tue, 31 Jan 2023 19:06:58 +0000
+Message-Id: <20230131190700.3476796-1-dave.stevenson@raspberrypi.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 2/3] dt-bindings: net: bluetooth: Add NXP bluetooth
- support
-Content-Language: en-US
-To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
-        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        alok.a.tiwari@oracle.com, hdanton@sina.com,
-        ilpo.jarvinen@linux.intel.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
-        rohit.fule@nxp.com, sherry.sun@nxp.com
-References: <20230130180504.2029440-1-neeraj.sanjaykale@nxp.com>
- <20230130180504.2029440-3-neeraj.sanjaykale@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230130180504.2029440-3-neeraj.sanjaykale@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/01/2023 19:05, Neeraj Sanjay Kale wrote:
-> Add binding document for generic and legacy NXP bluetooth
-> chipsets.
-> 
-> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> ---
-> v2: Resolved dt_binding_check errors. (Rob Herring)
-> v2: Modified description, added specific compatibility devices,
-> corrected indentations. (Krzysztof Kozlowski)
-> ---
->  .../bindings/net/bluetooth/nxp-bluetooth.yaml | 40 +++++++++++++++++++
->  MAINTAINERS                                   |  6 +++
->  2 files changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
-> new file mode 100644
-> index 000000000000..9c8a25396b49
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
+The IMX290 comes in both mono and colour variants, but has no runtime way
+of determining which is connected.
+These patches adds support for either option.
 
+Dave Stevenson (2):
+  media: dt-bindings: media: i2c: Add mono version to IMX290 bindings
+  media: i2c: imx290: Add support for the mono sensor variant.
 
-Filename based on family of devices or compatible (assuming it is
-correct): nxp,w8987-bt.yaml
+ .../bindings/media/i2c/sony,imx290.yaml       |  8 ++--
+ drivers/media/i2c/imx290.c                    | 47 ++++++++++++-------
+ 2 files changed, 35 insertions(+), 20 deletions(-)
 
-Hyphen is not a correct separator between vendor prefix and device name.
-
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/bluetooth/nxp-bluetooth.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP Bluetooth chips
-> +
-> +description:
-> +  This binding describes UART-attached NXP bluetooth chips.
-
-
-This is description of binding. So in description of binding for NXP
-bluetooth chips you say that it describes NXP bluetooth chips. I don't
-think it's useful. Describe the hardware instead.
-
-> +
-> +maintainers:
-> +  - Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,w8987-bt
-> +      - nxp,w8997-bt
-> +      - nxp,w9098-bt
-> +      - nxp,iw416-bt
-> +      - nxp,iw612-bt
-
-Why "bt" suffix? Are these chips coming with other functions?
-
-
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
