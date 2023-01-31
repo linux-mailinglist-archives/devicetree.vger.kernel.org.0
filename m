@@ -2,142 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E2BB682DFF
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:33:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3C65682E1C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:37:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232266AbjAaNdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 08:33:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45356 "EHLO
+        id S231615AbjAaNhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 08:37:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232254AbjAaNdY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:33:24 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3972A50854
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 05:33:22 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id gr7so17024963ejb.5
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 05:33:22 -0800 (PST)
+        with ESMTP id S231444AbjAaNhn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:37:43 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBED650875;
+        Tue, 31 Jan 2023 05:37:37 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id f47-20020a05600c492f00b003dc584a7b7eso4454082wmp.3;
+        Tue, 31 Jan 2023 05:37:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=G/whnsNry6VB8uKQBheTAOpeLql048SnvWb40T9c6cY=;
-        b=XwS8Q2bjQLTFp2zv1NyNhG4A7uOdja0EAXaWVeczhLkmTbTq5ODUAx0zh8sCvH4YuV
-         OauClZawsGjti1GsQFbaXTsqBfMVgSRVhSVrOe7zeXpGQMb1QKbuKPkOJ5BqqzTHcZ3/
-         LakOlNG/83W3mpBYHQK0E61+B1bWq5MSTRLIyvOQHzVQ9MyUqMKfEVWK/7RopRTpWSKv
-         o7pCU4v5oNiIh+XxHaMVt7+gi+SEJc6FIiqju2eKA9zHl0sbJKO6ZMemGrNV5kX/Kn+U
-         DnmxDSunbUHGf2w671ED2JiPGB7dHOjB9VVyXKb7JTbsFQ9UPPu/Hb5sf7/0RfhO4oFg
-         6NhQ==
+        bh=gN8Wq5E0N3HaFBsHRV9eya7b4jMZgDEegEG0/7rxU6Y=;
+        b=M6fdQdSxkncaF2gGsMGmgwiRTx17JrkmhphINg4jzKeXIuUUE1NClOZlA7lVuWJSjN
+         v+SEeYL251vyLO2jJDt2liXop052ZSYklXuUYxSCDnEm/j+QWu6ecEzDtxaiXYvozVhP
+         GrYlTT9qUcHjJ7SKnGBvyPkvBFAga/Z5tWgD2xAENUFPlL6H5ne63PQ0IGYZeJDuKweG
+         +oMFYUHPIQ4bwSSfJ09zxZIqEREqJa8kfxaX17h+xwP5tBxPCocx6ANCbJdzFgk7oVwR
+         /QrcBX1MqLYpJSm45IIwP74qjZeF319LZw2WmJ5KRm1Xe+JtbsIVJ5PCSJ50n3+Z9KmN
+         zO5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G/whnsNry6VB8uKQBheTAOpeLql048SnvWb40T9c6cY=;
-        b=eE2/zTl9dJ43OAt7p8jT/7MAqFGUGMpjsXfnfb6JJ3p3K+GmVWiQCobHCN7cyWYj0k
-         PA4Z4A4IZA2m9G/n5ovk2TX1z3cc4mxo9fLbuyLA5l6y2vo7/0XX5AwwMNal/uav8dR0
-         faN9NQorOWW6UxoKeEJILIMJqWaQDfX3S9n5QIoEwG9WnDuM7CWRiFDV9mlZoFSK+J2z
-         Ormx3Nj/j0oSH3hiGnjM3fvukIkNsVAwoLEF+hTIimtCjeTAkPjlgWSnDo7bImt68xME
-         on3AO/lqRiqxb/kDUkvIKfwf6WSTfUG18tR63z1sN+jtCuPMvfxSyHC7HIWOdypFkR0w
-         Kg1A==
-X-Gm-Message-State: AO0yUKVUWMV/hro/qDJspxO2Ex/Mu0U8GLxSxVOK0/PcppMHYXKUf6x+
-        7x6TwCTTBRgdfFGbXwGaXZ5H7A==
-X-Google-Smtp-Source: AK7set+koSZf6sHbHDiaLVwPkMiC+vP2w4cQYHPGzAXOwJi38AqFiKtmADM9MZ/Kl0ofOmPk8Zldhg==
-X-Received: by 2002:a17:906:7394:b0:87b:d402:95ac with SMTP id f20-20020a170906739400b0087bd40295acmr3846126ejl.27.1675172000747;
-        Tue, 31 Jan 2023 05:33:20 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id c20-20020aa7df14000000b00499b3d09bd2sm3900289edy.91.2023.01.31.05.33.19
+        bh=gN8Wq5E0N3HaFBsHRV9eya7b4jMZgDEegEG0/7rxU6Y=;
+        b=MESju2UZ8LVS4b/NugiwCfbs0s+WMH4O3MGA91D9pEIm+nbOLU+ksJw1tnJ6452EgA
+         FQYuvEtyEEyImGClg9xsAWxp/8oOJeYFirl4umTMX66eF0SlFVq6sh8w46Djgb8rllFh
+         T6riT5HkgotfL8HwPnAxnW0WDboL3aFt79ZOs3jIESsng8VrDl4mAkDUCuS9wzs4M0GN
+         5x98vaY9c+tzj3UnqMvC6wihnC3Icgfkh9kil4RgwoZGCZXl0gWEEH0FraPxBu2P+sI0
+         3lSKibi7dtNAEtCaljjppJ8gyydrtnjzLkll4fYwN6feXvzPoGTBFMTfl8p2iw9Bfer3
+         PtYw==
+X-Gm-Message-State: AO0yUKXQkOuSFJIZu+Y1DHw6b84IoFzU/I4oTAG9yl0AAQpqXJDytggW
+        kd8Kboz1j2CPT5QXji7Hc8o=
+X-Google-Smtp-Source: AK7set++xleaE8Iw4YlNEsa+QphiRF4k9n4Zuxxob7UJsMazROSSd23CO1qgR/pRIHH2ikmmllOqcA==
+X-Received: by 2002:a05:600c:314f:b0:3dc:4aa6:a8a9 with SMTP id h15-20020a05600c314f00b003dc4aa6a8a9mr3641957wmo.7.1675172256417;
+        Tue, 31 Jan 2023 05:37:36 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id c3-20020a1c3503000000b003dc1d668866sm19247111wma.10.2023.01.31.05.37.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 05:33:20 -0800 (PST)
-Message-ID: <8508e3d5-7468-0b2f-5a43-7c439ecf2d8b@linaro.org>
-Date:   Tue, 31 Jan 2023 15:33:19 +0200
+        Tue, 31 Jan 2023 05:37:35 -0800 (PST)
+Message-ID: <2995be5e-88e9-f00d-7bce-2f7c9eb5724d@gmail.com>
+Date:   Tue, 31 Jan 2023 14:37:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory
- region as reserved
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     Amit Pundir <amit.pundir@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20230124182857.1524912-1-amit.pundir@linaro.org>
- <39751511-3f06-7c39-9c21-208d4c272113@linaro.org>
- <CAA8EJppLBuA08hkqTrZx_wwbtCxK9sAjv48c9_DxgPENgo7a8Q@mail.gmail.com>
- <1a840d88-e5b1-711c-b980-f57620c54472@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1a840d88-e5b1-711c-b980-f57620c54472@linaro.org>
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v4 12/14] soc: mediatek: mtk-svs: use svs get efuse common
+ function
+Content-Language: en-US
+To:     Roger Lu <roger.lu@mediatek.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>
+Cc:     Fan Chen <fan.chen@mediatek.com>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230111074528.29354-1-roger.lu@mediatek.com>
+ <20230111074528.29354-13-roger.lu@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20230111074528.29354-13-roger.lu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/01/2023 14:45, Konrad Dybcio wrote:
+
+
+On 11/01/2023 08:45, Roger Lu wrote:
+> SVS might need to read both svs efuse and thermal efuse on the probe flow.
+> Therefore, add a common efuse read function to remove the superfluous
+> codes.
 > 
+> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
+
+Looks good to me, could you please rebase.
+
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+
+> ---
+>   drivers/soc/mediatek/mtk-svs.c | 69 ++++++++++++----------------------
+>   1 file changed, 24 insertions(+), 45 deletions(-)
 > 
-> On 31.01.2023 12:06, Dmitry Baryshkov wrote:
->> On Tue, 31 Jan 2023 at 12:54, Bryan O'Donoghue
->> <bryan.odonoghue@linaro.org> wrote:
->>>
->>> On 24/01/2023 18:28, Amit Pundir wrote:
->>>> Put cont splash memory region under the reserved-memory
->>>> as confirmed by the downstream code as well.
->>>>
->>>> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 8 ++++++++
->>>>    1 file changed, 8 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->>>> index f41c6d600ea8..2ae59432cbda 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->>>> @@ -100,6 +100,14 @@ hdmi_con: endpoint {
->>>>                };
->>>>        };
->>>>
->>>> +     reserved-memory {
->>>> +             /* Cont splash region set up by the bootloader */
->>>> +             cont_splash_mem: framebuffer@9d400000 {
->>>> +                     reg = <0x0 0x9d400000 0x0 0x2400000>;
->>>> +                     no-map;
->>>> +             };
->>>> +     };
->>>> +
->>>>        lt9611_1v8: lt9611-vdd18-regulator {
->>>>                compatible = "regulator-fixed";
->>>>                regulator-name = "LT9611_1V8";
->>>
->>> Doesn't this mean we loose 0x2400000 of DRAM for all rb3 platforms
->>> though ? About what 37 megabytes.. ?
->>
->> I think this memory is further used for display memory allocation. So
->> we are not loosing it, but dedicating it to the framebuffer memory.
-> Not exactly, to do so, you'd have to use the memory-region property
-> with mdss, which nobody does. Otherwise it's just a hole for Linux.
-
-Then maybe it's time to start using that property?
-
-> 
-> Konrad
->>
->>
-
--- 
-With best wishes
-Dmitry
-
+> diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
+> index bd23d1111d7b..a7f0a6f02d52 100644
+> --- a/drivers/soc/mediatek/mtk-svs.c
+> +++ b/drivers/soc/mediatek/mtk-svs.c
+> @@ -1758,26 +1758,28 @@ static int svs_bank_resource_setup(struct svs_platform *svsp)
+>   	return 0;
+>   }
+>   
+> -static int svs_thermal_efuse_get_data(struct svs_platform *svsp)
+> +static int svs_get_efuse_data(struct svs_platform *svsp,
+> +			      const char *nvmem_cell_name,
+> +			      u32 **svsp_efuse, size_t *svsp_efuse_max)
+>   {
+>   	struct nvmem_cell *cell;
+>   
+> -	/* Thermal efuse parsing */
+> -	cell = nvmem_cell_get(svsp->dev, "t-calibration-data");
+> +	cell = nvmem_cell_get(svsp->dev, nvmem_cell_name);
+>   	if (IS_ERR_OR_NULL(cell)) {
+> -		dev_err(svsp->dev, "no \"t-calibration-data\"? %ld\n", PTR_ERR(cell));
+> +		dev_err(svsp->dev, "no \"%s\"? %ld\n",
+> +			nvmem_cell_name, PTR_ERR(cell));
+>   		return PTR_ERR(cell);
+>   	}
+>   
+> -	svsp->tefuse = nvmem_cell_read(cell, &svsp->tefuse_max);
+> -	if (IS_ERR(svsp->tefuse)) {
+> -		dev_err(svsp->dev, "cannot read thermal efuse: %ld\n",
+> -			PTR_ERR(svsp->tefuse));
+> +	*svsp_efuse = nvmem_cell_read(cell, svsp_efuse_max);
+> +	if (IS_ERR(*svsp_efuse)) {
+> +		dev_err(svsp->dev, "cannot read \"%s\" efuse: %ld\n",
+> +			nvmem_cell_name, PTR_ERR(*svsp_efuse));
+>   		nvmem_cell_put(cell);
+> -		return PTR_ERR(svsp->tefuse);
+> +		return PTR_ERR(*svsp_efuse);
+>   	}
+>   
+> -	svsp->tefuse_max /= sizeof(u32);
+> +	*svsp_efuse_max /= sizeof(u32);
+>   	nvmem_cell_put(cell);
+>   
+>   	return 0;
+> @@ -1825,7 +1827,8 @@ static bool svs_mt8192_efuse_parsing(struct svs_platform *svsp)
+>   		svsb->vmax += svsb->dvt_fixed;
+>   	}
+>   
+> -	ret = svs_thermal_efuse_get_data(svsp);
+> +	ret = svs_get_efuse_data(svsp, "t-calibration-data",
+> +				 &svsp->tefuse, &svsp->tefuse_max);
+>   	if (ret)
+>   		return false;
+>   
+> @@ -1930,7 +1933,8 @@ static bool svs_mt8183_efuse_parsing(struct svs_platform *svsp)
+>   		}
+>   	}
+>   
+> -	ret = svs_thermal_efuse_get_data(svsp);
+> +	ret = svs_get_efuse_data(svsp, "t-calibration-data",
+> +				 &svsp->tefuse, &svsp->tefuse_max);
+>   	if (ret)
+>   		return false;
+>   
+> @@ -2039,32 +2043,6 @@ static bool svs_mt8183_efuse_parsing(struct svs_platform *svsp)
+>   	return true;
+>   }
+>   
+> -static bool svs_is_efuse_data_correct(struct svs_platform *svsp)
+> -{
+> -	struct nvmem_cell *cell;
+> -
+> -	/* Get svs efuse by nvmem */
+> -	cell = nvmem_cell_get(svsp->dev, "svs-calibration-data");
+> -	if (IS_ERR(cell)) {
+> -		dev_err(svsp->dev, "no \"svs-calibration-data\"? %ld\n",
+> -			PTR_ERR(cell));
+> -		return false;
+> -	}
+> -
+> -	svsp->efuse = nvmem_cell_read(cell, &svsp->efuse_max);
+> -	if (IS_ERR(svsp->efuse)) {
+> -		dev_err(svsp->dev, "cannot read svs efuse: %ld\n",
+> -			PTR_ERR(svsp->efuse));
+> -		nvmem_cell_put(cell);
+> -		return false;
+> -	}
+> -
+> -	svsp->efuse_max /= sizeof(u32);
+> -	nvmem_cell_put(cell);
+> -
+> -	return true;
+> -}
+> -
+>   static struct device *svs_get_subsys_device(struct svs_platform *svsp,
+>   					    const char *node_name)
+>   {
+> @@ -2404,8 +2382,9 @@ static int svs_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		return ret;
+>   
+> -	if (!svs_is_efuse_data_correct(svsp)) {
+> -		dev_notice(svsp->dev, "efuse data isn't correct\n");
+> +	ret = svs_get_efuse_data(svsp, "svs-calibration-data",
+> +				 &svsp->efuse, &svsp->efuse_max);
+> +	if (ret) {
+>   		ret = -EPERM;
+>   		goto svs_probe_free_efuse;
+>   	}
+> @@ -2413,13 +2392,13 @@ static int svs_probe(struct platform_device *pdev)
+>   	if (!svsp_data->efuse_parsing(svsp)) {
+>   		dev_err(svsp->dev, "efuse data parsing failed\n");
+>   		ret = -EPERM;
+> -		goto svs_probe_free_resource;
+> +		goto svs_probe_free_tefuse;
+>   	}
+>   
+>   	ret = svs_bank_resource_setup(svsp);
+>   	if (ret) {
+>   		dev_err(svsp->dev, "svs bank resource setup fail: %d\n", ret);
+> -		goto svs_probe_free_resource;
+> +		goto svs_probe_free_tefuse;
+>   	}
+>   
+>   	svsp->main_clk = devm_clk_get(svsp->dev, "main");
+> @@ -2427,12 +2406,12 @@ static int svs_probe(struct platform_device *pdev)
+>   		dev_err(svsp->dev, "failed to get clock: %ld\n",
+>   			PTR_ERR(svsp->main_clk));
+>   		ret = PTR_ERR(svsp->main_clk);
+> -		goto svs_probe_free_resource;
+> +		goto svs_probe_free_tefuse;
+>   	}
+>   
+>   	ret = svs_clk_enable(svsp);
+>   	if (ret)
+> -		goto svs_probe_free_resource;
+> +		goto svs_probe_free_tefuse;
+>   
+>   	svsp->base = of_iomap(svsp->dev->of_node, 0);
+>   	if (IS_ERR_OR_NULL(svsp->base)) {
+> @@ -2477,7 +2456,7 @@ static int svs_probe(struct platform_device *pdev)
+>   svs_probe_clk_disable:
+>   	svs_clk_disable(svsp);
+>   
+> -svs_probe_free_resource:
+> +svs_probe_free_tefuse:
+>   	if (!IS_ERR_OR_NULL(svsp->tefuse))
+>   		kfree(svsp->tefuse);
+>   
