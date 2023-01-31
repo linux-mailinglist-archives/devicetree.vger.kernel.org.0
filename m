@@ -2,81 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4395682DE8
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:31:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92311682DF2
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:32:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231953AbjAaNbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 08:31:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41428 "EHLO
+        id S231952AbjAaNcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 08:32:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232323AbjAaNa7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:30:59 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E78574DBF3;
-        Tue, 31 Jan 2023 05:30:47 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso7773768wms.4;
-        Tue, 31 Jan 2023 05:30:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GlJgCog2Hv8jB8412B4wI1AwEbA0UN9A/8RVLd437gg=;
-        b=lmUEaSQsWaxheHAZrGoD6GfSUA+RbAdbdhfinS5hw+aurNtAA90Wnh8auikxHeq4Ls
-         577MVNxMeg6DkKPS8Q894c48ZFihssvGG9cYaTB1ESrwBZCT4chLPszsO1ACGTR6Pl2j
-         VqrbKRa/S6u4ensww/+oBfYBFB2cMnxV3v3M6IJHdkLc1DAvarp1W8dE6/5Haxg4LINk
-         u4G1giaLslAjO9tVaezL2rzywjOay10Zg87QogUX3INl+qeWlzncVOzivNcs/VZiIAVK
-         PVqBo+U5bNT5DxvfV9BRO7UyXU9FwqsEe7hPGaoEtVN9hidmPezh6PJ5xDPmFPa1V4uT
-         FIWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GlJgCog2Hv8jB8412B4wI1AwEbA0UN9A/8RVLd437gg=;
-        b=mpHZUNH73rFVF2KTuLnqY8nYfh+WkZD+ov5VNYIZrGRpE9/C3YbFNaF0WoGZYPZQcH
-         YHrvjy5mAJhJCJ3E0b3c8xOyx4V/ejrc7LWmixkWycQO4JrJ6vY28L//af0YhO7Y2kaS
-         wLY+9apJ5cZY0RjGEUr5DDBUxPyaptCGdygSYiLPxhh02q1Hzke/o20avsSHvyx0TKRf
-         jhxQFnMNIqQuSMKCc3HrMTzA4U9kZq8C/pbwnbZtV3By/eOciar2dyJKcWovOytKGdmd
-         Ts0DiYPtHn3dDZow/Kr4Ed/z5W/3W3jfMuvcoa3nmox3VAm6+pkViFiJmIeGNxYDRfq2
-         s5Vg==
-X-Gm-Message-State: AO0yUKUlYrml9RJINdwi73v+wUSyR9+PF7MnXIxIgvMszf7HuWheFWJi
-        fW93NTAdyMjE0/CCutmN17I=
-X-Google-Smtp-Source: AK7set8/csf6Jb47rd2+WT8vJqeSqRgiZXGTv0gl7wmEt9eROuj0FoQXqNwIKgx+X51hhlnfWyt1hw==
-X-Received: by 2002:a1c:f014:0:b0:3dc:4318:d00d with SMTP id a20-20020a1cf014000000b003dc4318d00dmr14993723wmb.11.1675171846445;
-        Tue, 31 Jan 2023 05:30:46 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id h6-20020a05600c2ca600b003dd1bd66e0dsm2807447wmc.3.2023.01.31.05.30.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 05:30:45 -0800 (PST)
-Message-ID: <bcb229bf-4243-05aa-93db-98af1c779880@gmail.com>
-Date:   Tue, 31 Jan 2023 14:30:44 +0100
+        with ESMTP id S232231AbjAaNcS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:32:18 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 557064860E;
+        Tue, 31 Jan 2023 05:32:17 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E70E261512;
+        Tue, 31 Jan 2023 13:32:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D43FC433D2;
+        Tue, 31 Jan 2023 13:32:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675171936;
+        bh=zluzqNhEDMREcE7HOdEzAROjhz7qIrAFoLUueku9epg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EqldAqGluycuPltb9QjJTewitzBFRIqBWPBUXjM7TI8Hk9tvRpmW0bNiUjRshltgn
+         j4VOxKyfNdLtfLTcwsVTPquPF9zI1OB7cOHrNMuWBLNpf0jPlDnwxr/Q8S/GRwkEab
+         +JpRH8Vuy6dERNa+r94kXD4NZFumvnDpLYQylzTntfsGHE0LJ+QNNomBC78h8a2jd3
+         Lwm1NMWbUVHnoGmZRZI0+KN9gPn/JftaylokInYnahWk5A1ARfR7EuZn3dQy239QPg
+         DRTPTA3gabSXqUL6ZwonHCuA2k+4xiYxjfjC1Na/k+Ykv6dMZuFxeGjjmuGZF/Sp32
+         pxa1nHcmXlPrA==
+Date:   Tue, 31 Jan 2023 13:32:09 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     "Sahin, Okan" <Okan.Sahin@analog.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v3 3/5] drivers: regulator: Add ADI MAX77541/MAX77540
+ Regulator Support
+Message-ID: <Y9kYWfAkVnUFO9nN@sirena.org.uk>
+References: <20230118063822.14521-1-okan.sahin@analog.com>
+ <20230118063822.14521-4-okan.sahin@analog.com>
+ <Y8erlpofdk24vwCC@smile.fi.intel.com>
+ <MN2PR03MB5168EC97926AB33D4D806FCCE7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <MN2PR03MB516865804044A798AEB5B6C0E7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <Y9kJEsjkG8h79tcR@smile.fi.intel.com>
+ <BY5PR03MB5153C18E65B954E9FEFD96B1E7D09@BY5PR03MB5153.namprd03.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 11/14] soc: mediatek: mtk-svs: delete superfluous
- platform data entries
-Content-Language: en-US
-To:     Roger Lu <roger.lu@mediatek.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>
-Cc:     Fan Chen <fan.chen@mediatek.com>,
-        Jia-wei Chang <jia-wei.chang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230111074528.29354-1-roger.lu@mediatek.com>
- <20230111074528.29354-12-roger.lu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230111074528.29354-12-roger.lu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="SyVB6RxR1IPYQ5gk"
+Content-Disposition: inline
+In-Reply-To: <BY5PR03MB5153C18E65B954E9FEFD96B1E7D09@BY5PR03MB5153.namprd03.prod.outlook.com>
+X-Cookie: MS-DOS must die!
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,111 +73,52 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--SyVB6RxR1IPYQ5gk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 11/01/2023 08:45, Roger Lu wrote:
-> From: Matthias Brugger <matthias.bgg@gmail.com>
-> 
-> The platform name and efuse parsing function pointer are only used while
-> probing the device. Use them from the svs_platform_data struct instead.
-> 
-> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
+On Tue, Jan 31, 2023 at 01:23:33PM +0000, Sahin, Okan wrote:
+> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 
-Applied, thanks!
+> >> static const struct of_device_id max77541_regulator_of_id[] = {
+> >> 	{ .compatible = "adi,max77540-regulator", },
+> >> 	{ .compatible = "adi,max77541-regulator", },
+> >> 	{ /* sentinel */  }
+> >> };
+> >> MODULE_DEVICE_TABLE(of, max77541_regulator_of_id);
 
-> ---
->   drivers/soc/mediatek/mtk-svs.c | 22 ++++++++++++----------
->   1 file changed, 12 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-> index 9d9210c22289..bd23d1111d7b 100644
-> --- a/drivers/soc/mediatek/mtk-svs.c
-> +++ b/drivers/soc/mediatek/mtk-svs.c
-> @@ -313,14 +313,12 @@ static const u32 svs_regs_v2[] = {
->   
->   /**
->    * struct svs_platform - svs platform control
-> - * @name: svs platform name
->    * @base: svs platform register base
->    * @dev: svs platform device
->    * @main_clk: main clock for svs bank
->    * @pbank: svs bank pointer needing to be protected by spin_lock section
->    * @banks: svs banks that svs platform supports
->    * @rst: svs platform reset control
-> - * @efuse_parsing: svs platform efuse parsing function pointer
->    * @efuse_max: total number of svs efuse
->    * @tefuse_max: total number of thermal efuse
->    * @regs: svs platform registers map
-> @@ -330,14 +328,12 @@ static const u32 svs_regs_v2[] = {
->    * @clk_cnt: clock count shows the clk enable/disable times by svs driver
->    */
->   struct svs_platform {
-> -	char *name;
->   	void __iomem *base;
->   	struct device *dev;
->   	struct clk *main_clk;
->   	struct svs_bank *pbank;
->   	struct svs_bank *banks;
->   	struct reset_control *rst;
-> -	bool (*efuse_parsing)(struct svs_platform *svsp);
->   	size_t efuse_max;
->   	size_t tefuse_max;
->   	const u32 *regs;
-> @@ -2066,7 +2062,7 @@ static bool svs_is_efuse_data_correct(struct svs_platform *svsp)
->   	svsp->efuse_max /= sizeof(u32);
->   	nvmem_cell_put(cell);
->   
-> -	return svsp->efuse_parsing(svsp);
-> +	return true;
->   }
->   
->   static struct device *svs_get_subsys_device(struct svs_platform *svsp,
-> @@ -2400,9 +2396,7 @@ static int svs_probe(struct platform_device *pdev)
->   		return -ENOMEM;
->   
->   	svsp->dev = &pdev->dev;
-> -	svsp->name = svsp_data->name;
->   	svsp->banks = svsp_data->banks;
-> -	svsp->efuse_parsing = svsp_data->efuse_parsing;
->   	svsp->regs = svsp_data->regs;
->   	svsp->bank_max = svsp_data->bank_max;
->   
-> @@ -2413,6 +2407,12 @@ static int svs_probe(struct platform_device *pdev)
->   	if (!svs_is_efuse_data_correct(svsp)) {
->   		dev_notice(svsp->dev, "efuse data isn't correct\n");
->   		ret = -EPERM;
-> +		goto svs_probe_free_efuse;
-> +	}
-> +
-> +	if (!svsp_data->efuse_parsing(svsp)) {
-> +		dev_err(svsp->dev, "efuse data parsing failed\n");
-> +		ret = -EPERM;
->   		goto svs_probe_free_resource;
->   	}
->   
-> @@ -2448,7 +2448,7 @@ static int svs_probe(struct platform_device *pdev)
->   	}
->   
->   	ret = devm_request_threaded_irq(svsp->dev, svsp_irq, NULL, svs_isr,
-> -					IRQF_ONESHOT, svsp->name, svsp);
-> +					IRQF_ONESHOT, svsp_data->name, svsp);
->   	if (ret) {
->   		dev_err(svsp->dev, "register irq(%d) failed: %d\n",
->   			svsp_irq, ret);
-> @@ -2478,11 +2478,13 @@ static int svs_probe(struct platform_device *pdev)
->   	svs_clk_disable(svsp);
->   
->   svs_probe_free_resource:
-> -	if (!IS_ERR_OR_NULL(svsp->efuse))
-> -		kfree(svsp->efuse);
->   	if (!IS_ERR_OR_NULL(svsp->tefuse))
->   		kfree(svsp->tefuse);
->   
-> +svs_probe_free_efuse:
-> +	if (!IS_ERR_OR_NULL(svsp->efuse))
-> +		kfree(svsp->efuse);
-> +
->   	return ret;
->   }
->   
+> >> What do you think?
+
+> >If you have got all necessary data from the upper layer, why do you need to have
+> >an ID table here? I'm not sure I understand how this OF ID table works in this
+> >case.
+
+> I added it since there is regulator node in device tree. With the help
+> of devm_regulator_register(..), driver takes parameters of regulator
+> node. I also used id to select and to initialize regulator descriptors
+> which are chip specific. So far there is no comment about OF ID table
+> so I kept it. I thought I need to add both of id table and platform id
+> table as name matching is required to initialize platform device from
+> mfd.
+
+You probably shouldn't have compatibles for subdevices of a MFD unless
+it's some reusable IP that'll appear elsewhere, especially for something
+like the regulators where grouping them all into a single device is very
+Linux specific.
+
+--SyVB6RxR1IPYQ5gk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPZGFgACgkQJNaLcl1U
+h9AMsQf9F35rB6oz1Aj0FUXAVJYnE1F/r7OWDi89yHeoLbiwjYXUtwpxzxzJoe0a
+uCfU/5+eH3AnL0gvqSb+6930Oieh7Bdoq38dW/GYORr5h+KZrZXb6cPPrAV0L/Uv
+o4mkVKb0EqubUCddiA6uTdf5c+1fWEvgyhk8C4sJJCiKBO2mKbu3RDrF/bSvgLPY
+dsz1VFXmBNPRl0/aEQPXVWI/kQ7oi6OpFku+p/G3cMRdKwP2i6M/iMmjPRedP68K
+RffMWc02z+qOWCdRrzp4U4KWoTaASVuWzqWbaqodHNKjB1M4g4dLh9hrZ798o2Ea
+roefahQsaxhBe0hg38uCJ3DBQoBOhg==
+=jgfu
+-----END PGP SIGNATURE-----
+
+--SyVB6RxR1IPYQ5gk--
