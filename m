@@ -2,136 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF7E06829A0
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 10:54:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4CC56829A9
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 10:55:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231344AbjAaJyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 04:54:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55526 "EHLO
+        id S232094AbjAaJzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 04:55:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230477AbjAaJy3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 04:54:29 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20FC3AB0
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 01:54:28 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pMnLO-0000Lh-C7; Tue, 31 Jan 2023 10:54:26 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pMnLM-0004mS-V0; Tue, 31 Jan 2023 10:54:24 +0100
-Date:   Tue, 31 Jan 2023 10:54:24 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] arm64: dts: imx8mq: update usb compatible string
-Message-ID: <20230131095424.vlj4z4qci4722gy7@pengutronix.de>
-References: <20230131091140.3696808-1-peng.fan@oss.nxp.com>
- <20230131092455.2s63zr6d56v2u6ka@pengutronix.de>
- <DU0PR04MB941741A921F3953E165BB45F88D09@DU0PR04MB9417.eurprd04.prod.outlook.com>
+        with ESMTP id S231858AbjAaJzv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 04:55:51 -0500
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F2A8846715;
+        Tue, 31 Jan 2023 01:55:48 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.97,259,1669042800"; 
+   d="scan'208";a="147983400"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 31 Jan 2023 18:55:48 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 1D8FB4001B72;
+        Tue, 31 Jan 2023 18:55:48 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com
+Cc:     Sergey.Semin@baikalelectronics.ru, marek.vasut+renesas@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v8 0/6] PCI: rcar-gen4: Add R-Car Gen4 PCIe support
+Date:   Tue, 31 Jan 2023 18:55:37 +0900
+Message-Id: <20230131095543.1831875-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DU0PR04MB941741A921F3953E165BB45F88D09@DU0PR04MB9417.eurprd04.prod.outlook.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-31, Peng Fan wrote:
-> > Subject: Re: [PATCH] arm64: dts: imx8mq: update usb compatible string
-> > 
-> > Hi,
-> > 
-> > On 23-01-31, Peng Fan (OSS) wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > There is no fsl,imx8mq-dwc3 binding doc, no driver use this compatible
-> > > string. Drop it.
-> > 
-> > please don't. I'm not aware of the driver state but the compatibles are there
-> > for _possible_ quirk handling, so the driver can add a match on demand.
-> 
-> NXP downstream also not has driver use this compatible string, and pass
-> several GA releases.
+Add R-Car S4-8 (R-Car Gen4) PCIe Host and Endpoint support.
+To support them, modify PCIe DesignWare common codes.
 
-This shouldn't be an argument, because there is no bug at the moment
-doesn't mean that there is one. Also the compatible may used by other
-projects using this device tree too.
+Changes from v7:
+https://lore.kernel.org/all/20221121124400.1282768-1-yoshihiro.shimoda.uh@renesas.com/
+ - Based on next-20230131.
+ - Update Copyright year of new files.
+ - Add a new capability flag (DW_PCIE_CAP_EDMA_UNROLL) for finding eDMA on
+   R-Car S4-8.
+ - Remove some PCIe configurations like L1 substates from pcie-rcar-gen4-host.c.
+ - Change timing of reset_control for suitable this hardware initialization.
+ - Add gpio reset handling for host mode.
+ - Capitalize the first charactors on each printk message.
 
-> People could add it back when it is needed together with binding doc.
+Changes from v6:
+ https://lore.kernel.org/all/20220922080647.3489791-1-yoshihiro.shimoda.uh@renesas.com/
+ - Based on next-20221116.
+ -- And based on the following patches:
+    [PATCH v7 00/20] PCI: dwc: Add generic resources and Baikal-T1 support
+    https://lore.kernel.org/linux-pci/20221113191301.5526-1-Sergey.Semin@baikalelectronics.ru/
+    [PATCH v6 00/24] dmaengine: dw-edma: Add RP/EP local DMA controllers support
+    https://lore.kernel.org/linux-pci/20221107210438.1515-1-Sergey.Semin@baikalelectronics.ru/
+ - Update dt-bindings docs for the latest based code.
+ - Add support for triggering legacy IRQs in the patch [06/10] (new).
+ - Add .no_msix flag into the patch [07/10].
+ - Merge .ep_pre_init() support into the patch [08/10].
+ - Add .reserved_bar for BAR5 instead in the patch [08/10].
+ - Change SPDX-License-Identifier from "GPL-2.0" to "GPL-2.0-only".
 
-Nope since a DTB is firmware which is updated relativ rare. The kernel
-instead is updated more often. So please instead of removing it add
-support to the dt-bindings doc.
+Yoshihiro Shimoda (6):
+  PCI: Add PCI_EXP_LNKCAP_MLW macros
+  PCI: designware-ep: Expose dw_pcie_ep_exit() to module
+  PCI: dwc: Add support for triggering legacy IRQs
+  PCI: rcar-gen4: Add R-Car Gen4 PCIe Host support
+  PCI: rcar-gen4-ep: Add R-Car Gen4 PCIe Endpoint support
+  MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
 
-Regards,
-  Marco
+ MAINTAINERS                                   |   1 +
+ drivers/pci/controller/dwc/Kconfig            |  18 ++
+ drivers/pci/controller/dwc/Makefile           |   4 +
+ .../pci/controller/dwc/pcie-designware-ep.c   |  70 ++++++-
+ .../pci/controller/dwc/pcie-designware-host.c |   3 +
+ drivers/pci/controller/dwc/pcie-designware.c  |  33 +++-
+ drivers/pci/controller/dwc/pcie-designware.h  |  19 +-
+ .../pci/controller/dwc/pcie-rcar-gen4-ep.c    | 185 ++++++++++++++++++
+ .../pci/controller/dwc/pcie-rcar-gen4-host.c  | 165 ++++++++++++++++
+ drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 166 ++++++++++++++++
+ drivers/pci/controller/dwc/pcie-rcar-gen4.h   |  63 ++++++
+ include/uapi/linux/pci_regs.h                 |   6 +
+ 12 files changed, 714 insertions(+), 19 deletions(-)
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-ep.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-host.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.h
 
+-- 
+2.25.1
 
-> Thanks,
-> Peng.
-> 
-> > 
-> > Regards,
-> >   Marco
-> > 
-> > 
-> > >
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > > b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > > index d59156fdee0b..d308f94a7c52 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > > @@ -1431,7 +1431,7 @@ gpu: gpu@38000000 {
-> > >  		};
-> > >
-> > >  		usb_dwc3_0: usb@38100000 {
-> > > -			compatible = "fsl,imx8mq-dwc3", "snps,dwc3";
-> > > +			compatible = "snps,dwc3";
-> > >  			reg = <0x38100000 0x10000>;
-> > >  			clocks = <&clk IMX8MQ_CLK_USB1_CTRL_ROOT>,
-> > >  			         <&clk IMX8MQ_CLK_USB_CORE_REF>, @@ -
-> > 1463,7 +1463,7 @@
-> > > usb3_phy0: usb-phy@381f0040 {
-> > >  		};
-> > >
-> > >  		usb_dwc3_1: usb@38200000 {
-> > > -			compatible = "fsl,imx8mq-dwc3", "snps,dwc3";
-> > > +			compatible = "snps,dwc3";
-> > >  			reg = <0x38200000 0x10000>;
-> > >  			clocks = <&clk IMX8MQ_CLK_USB2_CTRL_ROOT>,
-> > >  			         <&clk IMX8MQ_CLK_USB_CORE_REF>,
-> > > --
-> > > 2.37.1
-> > >
-> > >
-> > >
-> 
