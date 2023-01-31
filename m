@@ -2,139 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B0E36820AB
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 01:25:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E08346820CB
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 01:36:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229962AbjAaAZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 19:25:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55920 "EHLO
+        id S230122AbjAaAgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 19:36:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230168AbjAaAZ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 19:25:28 -0500
-Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B5FE2BEFE;
-        Mon, 30 Jan 2023 16:25:25 -0800 (PST)
-Received: by mail-vs1-xe2f.google.com with SMTP id 187so14402555vsv.10;
-        Mon, 30 Jan 2023 16:25:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JPYYzJBRE2hZQZu6xxzfCtdzMijLz6xeT8V5xhIEHKM=;
-        b=q19gdCQcI3bN48xJ5ilrnrWb+j9Bt/6WCppm3scBZKhnhfjET1vHTtFeI7qgmQpJpC
-         wgIBT2OOYUbpPRfG9wvHka7/A04bCN60i0ubTqF+YWzsRP5co9fdcz0QuUzgKzToHlQm
-         S58IZnIsiXS6dBtCa9Wn6/3wdGHtjQLeuFSG3tg7LvekuWlRKP+urQ81O4w99zeORADc
-         +hdyeTtkbFyTujMmrTwIHoCAtxHoKJJsQZIQzEXJLZSis1BEbZiUFm7w720E6fxv66s8
-         2W2PvbKsdk2rd3pAx4+9tBY8xPXbjTqoOx9gmcDkFMM7Xs7LOKAwEaeNMeDzo7zjft3H
-         fWsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JPYYzJBRE2hZQZu6xxzfCtdzMijLz6xeT8V5xhIEHKM=;
-        b=uhur+zxqauoPMP2gm1afmcFSoXE0gGeFPODr7xSYwz3SgK5+BF7dOvsOi4e6nR6TnL
-         rYbPcqzzdYBIDOleb3YkErj8Eo3DLfXg85tMixz8tIgD+13zdzhRuVuFJIyDoc6djQs7
-         jzB6AOCnNjY+zOCCbo8uQNPLQbBqPVYkNuRH4bv7ObtGwhd60/FsNYs8yfEH3/RbqRx+
-         mEfj+8un1/L4/41UxEyVpA/AUVelzHMpHXODv66S1yJvaFAdkghL3oTUDflfnmgeCEDg
-         ITtE+1msdLUCp0yqNqJSVFuFFtYY8bn1ArrGQBdUrmhLT48ZKZS2GF76/2nGWnYJ0hDD
-         Ubdg==
-X-Gm-Message-State: AO0yUKV48T/rrQ6IvxeDCy31fAQBIaioItcq235Ek8RLJJc6j7/7Fi8b
-        /IH2hLG4+EP6tfSe9srShfzE1mdTBAX6DSSFdqA=
-X-Google-Smtp-Source: AK7set+U2JMLzXYydWC2YgrSAqSSIZZxKs42Kr0SvWDXmkFig3XdXMJRCovIpBgbRYzVOSKNr9VbPBNufuArOuTUZgo=
-X-Received: by 2002:a05:6102:2136:b0:3f8:6b59:61b with SMTP id
- f22-20020a056102213600b003f86b59061bmr1014656vsg.40.1675124724233; Mon, 30
- Jan 2023 16:25:24 -0800 (PST)
+        with ESMTP id S229513AbjAaAgI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 19:36:08 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E96522A28;
+        Mon, 30 Jan 2023 16:36:04 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 192BCB818BF;
+        Tue, 31 Jan 2023 00:36:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B66E7C433D2;
+        Tue, 31 Jan 2023 00:36:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675125361;
+        bh=winm19U7j/1SrLM33+LHutRtt1r14B9o9myRfOllwWM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=aCyjcqCjxnVQ8w/xZDqPFiYemSX/BMOgjjM6FSRSGqmfPlinxqB+XMZrM/g8W9qTB
+         uOMQSbrtIA17dxunmnIzx/zeAoU4Im/xJ83cPHApTqD4GFzrk4tw2c5Vb+S0kpYxcp
+         f7iqLDA2tGdCnhoAwps0Ay+hPA5OBilaT3H6X+g7RkP41BgR4VHJGyWoKY51ZFiIzt
+         ixHhw6iUHd5RQJuzL6L40TcvllTvA/C/dPI4IjrATKirCaGBs/oQqHIjW3gYnWMMmT
+         HDZe81mmyl8ItKfe1CNdqNpFM7uqU+Ziv8+y+PomXb2Bm5VcQjkYJjfJgMlms3fYI7
+         W8JNFDLqBZUmw==
+Message-ID: <f6f558a0daafa454c02fe29cd904cfcd.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20230128202622.12676-1-kaehndan@gmail.com> <20230128202622.12676-2-kaehndan@gmail.com>
- <fa320b2c-5cf5-c10a-ba63-17ccb5c992ad@linaro.org> <e4f11bda-32c1-fa9d-39d7-402e55ff1d22@linaro.org>
-In-Reply-To: <e4f11bda-32c1-fa9d-39d7-402e55ff1d22@linaro.org>
-From:   Daniel Kaehn <kaehndan@gmail.com>
-Date:   Mon, 30 Jan 2023 18:25:14 -0600
-Message-ID: <CAP+ZCCdbwzDwF2kYMQucy+5d23L3tbLQWxxWvEx_ZXWgQQdUnA@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: hid: Add CP2112 HID USB to SMBus Bridge
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <0e77bf23-b359-9884-6a8c-368e31d718a4@starfivetech.com>
+References: <20230120024445.244345-1-xingyu.wu@starfivetech.com> <20230120024445.244345-4-xingyu.wu@starfivetech.com> <5bb5263d26b157548d7ba39f80989c69.sboyd@kernel.org> <0e77bf23-b359-9884-6a8c-368e31d718a4@starfivetech.com>
+Subject: Re: [PATCH v1 03/11] clk: starfive: Add StarFive JH7110 System-Top-Group clock driver
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+To:     Emil Renner Berthing <kernel@esmil.dk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Date:   Mon, 30 Jan 2023 16:35:59 -0800
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for all of the comments. All feedback is ACK'd and will be
-added in v2 -- what follows is just commentary on some comments.
+Quoting Xingyu Wu (2023-01-30 00:02:28)
+> On 2023/1/26 10:33, Stephen Boyd wrote:
+> > Quoting Xingyu Wu (2023-01-19 18:44:37)
+> >> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-stg.c b/drivers/=
+clk/starfive/clk-starfive-jh7110-stg.c
+> >> new file mode 100644
+> >> index 000000000000..c2740f44e796
+> >> --- /dev/null
+> >> +++ b/drivers/clk/starfive/clk-starfive-jh7110-stg.c
+[...]
+> >> +                               parents[i].fw_name =3D "nocstg_bus";
+> >> +                       else if (pidx =3D=3D JH7110_STGCLK_APB_BUS)
+> >> +                               parents[i].fw_name =3D "apb_bus";
+> >=20
+> > Can this be an array lookup instead of a pile of conditions?
+> >=20
+> >       if (pidx < JH7110_STGCLK_END)
+> >               ...
+> >       else
+> >               parents[i].fw_name =3D fw_table[pidx - JH7110_STGCLK_END];
+> >=20
+> > Or even better, don't use strings at all and just make the 'pidx' number
+> > (possibly minus the end constant) be the 'clocks' property index that
+> > you want.
+>=20
+> It seen to be a good way that there uses an array.
+> Based on the another way, can I use the 'pidx' number to get the 'clock-n=
+ames' property
+> to be the parent clock name?
 
-On Sun, Jan 29, 2023 at 5:33 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 29/01/2023 12:05, Krzysztof Kozlowski wrote:
-> > On 28/01/2023 21:26, Danny Kaehn wrote:
-> >> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
-> >>
-> > Thank you for your patch. There is something to discuss/improve.
-> >
-> >> The binding allows describing the chip's gpio and i2c controller in DT
-> >> using the subnodes named "gpio" and "i2c", respectively. This is
-> >> intended to be used in configurations where the CP2112 is permanently
-> >> connected in hardware.
-> >>
-> >> Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
-> >> ---
-> >>  .../bindings/hid/silabs,cp2112.yaml           | 82 +++++++++++++++++++
-> >
-> > There is no "hid" directory, so I think such devices where going to
-> > different place, didn't they?
+The binding is your design. It is incorrect if the binding is referencing c=
+locks
+provided by the same node though. If that's the case, simply use the hw
+pointer directly.
 
-Good point, I didn't notice other hid-related bindings went into
-input/ -- will change
+>=20
+> >=20
+> >> +               }
+> >> +
+> >> +               clk->hw.init =3D &init;
+> >> +               clk->idx =3D idx;
+> >> +               clk->max_div =3D max & JH71X0_CLK_DIV_MASK;
+> >> +
+> >> +               ret =3D devm_clk_hw_register(&pdev->dev, &clk->hw);
+> >> +               if (ret)
+> >> +                       return ret;
+> >> +       }
+> >> +
+> >> +       ret =3D devm_of_clk_add_hw_provider(&pdev->dev, jh7110_stgclk_=
+get, priv);
+> >> +       if (ret)
+> >> +               return ret;
+> >> +
+> >> +       return jh7110_reset_controller_register(priv, "reset-stg", 2);
+> >=20
+> > Is this also devm-ified?
+>=20
+> No, it need to be freed actively. I will advise Hal Feng this.
+>=20
 
-> >
-> >> +  While USB devices typically aren't described in DeviceTree, doing so with the
-> >> +  CP2112 allows use of its i2c and gpio controllers with other DT nodes when
-> >> +  the chip is expected to be found on a USB port.
-> >
-> > Drop these three and replace with description of the hardware.
-
-Understood. I noticed that a similar usb-based binding included
-a similar description (net/marvell,mvusb.yaml) but I understand why
-we would not want this in new bindings.
-
-> >
-> >> +  i2c:
-> >> +    $ref: /schemas/i2c/i2c-controller.yaml#
-> >
-> > This is not specific enough. What controller is there?
->
-> OK, assuming this is tightly wired (with cp2112 I2C controller), then
-> the compatible could be skipped as it is inferred from parent one. Yet
-> still you need description and unevaluatedProperties.
->
-
-Great point, will update -- I didn't quite understand that child nodes of the
-root could have properties/unevaluatedProperties/etc.. but I see now that
-that is well-documented (just not often done in existing bindings)!
-
-> >
-> > Missing unevaluatedProperties: false, anyway.
-> >
-> >> +  gpio:
-> >> +    $ref: /schemas/gpio/gpio.yaml#
-> >
-> > Same comments.
->
-> Description, unevaluatedProperties and constraints on properties (line
-> names, reserved ranges, ranges).
->
-
-Will add.
-
-Thanks,
-Danny Kaehn
+Oh, that's not good.
