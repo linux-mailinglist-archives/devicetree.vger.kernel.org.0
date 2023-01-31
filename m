@@ -2,189 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8064E682A19
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 11:13:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41F0E682A42
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 11:17:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229863AbjAaKNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 05:13:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42274 "EHLO
+        id S230268AbjAaKRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 05:17:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbjAaKNq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 05:13:46 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2D58549029;
-        Tue, 31 Jan 2023 02:13:45 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DD1CA2F4;
-        Tue, 31 Jan 2023 02:14:26 -0800 (PST)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 770FD3F64C;
-        Tue, 31 Jan 2023 02:13:39 -0800 (PST)
-Date:   Tue, 31 Jan 2023 10:13:37 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Linux Kernel Functional Testing <lkft@linaro.org>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v2 04/11] gpiolib: Clear the gpio_device's fwnode
- initialized flag before adding
-Message-ID: <20230131101337.376mnrvhltbsychd@bogus>
-References: <20230127001141.407071-1-saravanak@google.com>
- <20230127001141.407071-5-saravanak@google.com>
- <20230130143153.67dsxn4lugfetfwb@bogus>
- <Y9fe2arI8afeURWn@smile.fi.intel.com>
- <CAGETcx9aPp+JU-hO+fGyGps6jaoKoFzZd2zzy5YZBKoU8G=OhA@mail.gmail.com>
+        with ESMTP id S229900AbjAaKRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 05:17:11 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 794134A211;
+        Tue, 31 Jan 2023 02:17:10 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30V4umH2028760;
+        Tue, 31 Jan 2023 10:17:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=MT3ILMDbCV+lqKyn4yXDQ0/1vxBQ1kSzH7A3Kr8PP0o=;
+ b=ou55hD0WUnNb2e2G2oStQL4XFOIEvrF1zjzcLlkx07f8ygjFwMOJ35UStS28WxyNTUMH
+ N4m4bEhoglfdGooIzqoI+Z+i3vnCSjd1H8zUkJ2edc1jP8LDaAHefyMA1dl1t/0NZdBA
+ PhDQt/pk9WXqpBWsocFkibee4Zign7TbKDetRIsFWPDKrF3zLJq790mrd6c867nk2FLF
+ sGYp8XFKFe8L6XFpeHgtLHx//zrvTmgskHz3ssMr4wEGkg6+wyQx6W18eDGfXsvlYby/
+ GhWYsQ21By0GaDwTpJH19chg/PiGk5VtvRD81yCcIGxrKTXn+WEXHaC7Vs1Gho4UmdIl gA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3neua98x7a-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 31 Jan 2023 10:17:06 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30VAH5rR026522
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 31 Jan 2023 10:17:05 GMT
+Received: from [10.50.40.197] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 31 Jan
+ 2023 02:16:59 -0800
+Message-ID: <2d735345-b2cc-faf8-7c3c-43d481ac7116@quicinc.com>
+Date:   Tue, 31 Jan 2023 15:46:56 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx9aPp+JU-hO+fGyGps6jaoKoFzZd2zzy5YZBKoU8G=OhA@mail.gmail.com>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 3/6] regulator: qcom_smd: Add MP5496 regulators
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_poovendh@quicinc.com>, <quic_ipkumar@quicinc.com>
+References: <20230113150310.29709-1-quic_devipriy@quicinc.com>
+ <20230113150310.29709-4-quic_devipriy@quicinc.com>
+ <552e75a9-179a-7720-3d37-59f1846266b1@linaro.org>
+ <2cc385d9-4f51-945d-cc59-2738011bd295@quicinc.com>
+ <0ef104a5-fc10-a043-a458-4e6d1e07a7a7@linaro.org>
+From:   Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <0ef104a5-fc10-a043-a458-4e6d1e07a7a7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: NBu5J3l3sQz5juhUomKRqJh2IJWLdUhq
+X-Proofpoint-ORIG-GUID: NBu5J3l3sQz5juhUomKRqJh2IJWLdUhq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-31_04,2023-01-31_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ mlxscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0
+ phishscore=0 priorityscore=1501 clxscore=1015 spamscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301310090
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 30, 2023 at 08:01:17PM -0800, Saravana Kannan wrote:
-> On Mon, Jan 30, 2023 at 7:14 AM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> >
-> > On Mon, Jan 30, 2023 at 02:31:53PM +0000, Sudeep Holla wrote:
-> > > On Thu, Jan 26, 2023 at 04:11:31PM -0800, Saravana Kannan wrote:
-> > > > Registering an irqdomain sets the flag for the fwnode. But having the
-> > > > flag set when a device is added is interpreted by fw_devlink to mean the
-> > > > device has already been initialized and will never probe. This prevents
-> > > > fw_devlink from creating device links with the gpio_device as a
-> > > > supplier. So, clear the flag before adding the device.
-> >
-> > ...
-> >
-> > > > +   /*
-> > > > +    * If fwnode doesn't belong to another device, it's safe to clear its
-> > > > +    * initialized flag.
-> > > > +    */
-> > > > +   if (!gdev->dev.fwnode->dev)
-> > > > +           fwnode_dev_initialized(gdev->dev.fwnode, false);
-> > >
-> > > This is the one causing the kernel crash during the boot on FVP which
-> > > Naresh has reported. Just reverted this and was able to boot, confirming
-> > > the issue with this patch.
-> >
-> > I'm wondering if
-> >
-> >         if (!dev_fwnode(&gdev->dev)->dev)
-> >                 fwnode_dev_initialized(&dev_fwnode(gdev->dev), false);
-> >
-> > works.
+
+
+On 1/27/2023 9:33 PM, Konrad Dybcio wrote:
 > 
-> No, that won't help. The problem was that with arm32, we have gpio
-> devices created without any of_node or fwnode. So I can't assume
-> fwnode will always be present.
->
-
-Correct, and this one is not even arm32. But it is just reusing a driver
-that needs to be supported even on arm32.
-
-Not sure on how to proceed. As a simple way to check, I added a NULL check
-for fwnode building on top of Andy's suggestion[1]. That works.
-
-Also the driver in question on arm64 FVP model is drivers/mfd/vexpress-sysreg.c
-mfd_add_device() in drivers/mfd/mfd-core.c allows addition of devices without
-of_node/fwnode. I am sure returning error like[2] will break many platforms
-but I just wanted to confirm the root cause and [2] fixes the boot without
-NULL check for fwnode in gpiochip_setup_dev().
-
-Hope this helps.
-
---
-Regards,
-Sudeep
-
-[1]
-
--->8
-diff --git i/drivers/gpio/gpiolib.c w/drivers/gpio/gpiolib.c
-index b23140c6485f..e162f13aa2c9 100644
---- i/drivers/gpio/gpiolib.c
-+++ w/drivers/gpio/gpiolib.c
-@@ -577,13 +577,15 @@ static void gpiodevice_release(struct device *dev)
- static int gpiochip_setup_dev(struct gpio_device *gdev)
- {
-        int ret;
-+       struct fwnode_handle *fwnode = dev_fwnode(&gdev->dev);
-
-        /*
-         * If fwnode doesn't belong to another device, it's safe to clear its
-         * initialized flag.
-         */
--       if (!gdev->dev.fwnode->dev)
--               fwnode_dev_initialized(gdev->dev.fwnode, false);
-+       if (fwnode && !fwnode->dev)
-+               fwnode_dev_initialized(fwnode, false);
-+
-        ret = gcdev_register(gdev, gpio_devt);
-        if (ret)
-                return ret;
-
-[2]
-
--->8
-
-diff --git i/drivers/mfd/mfd-core.c w/drivers/mfd/mfd-core.c
-index 16d1861e9682..3b2c4b0e9a2a 100644
---- i/drivers/mfd/mfd-core.c
-+++ w/drivers/mfd/mfd-core.c
-@@ -231,9 +231,11 @@ static int mfd_add_device(struct device *parent, int id,
-                        }
-                }
-
--               if (!pdev->dev.of_node)
-+               if (!pdev->dev.of_node) {
-                        pr_warn("%s: Failed to locate of_node [id: %d]\n",
-                                cell->name, platform_id);
-+                       goto fail_alias;
-+               }
-        }
-
-        mfd_acpi_add_device(cell, pdev);
-
+> 
+> On 27.01.2023 17:01, Devi Priya wrote:
+>>
+>>
+>> On 1/13/2023 8:54 PM, Konrad Dybcio wrote:
+>>>
+>>>
+>>> On 13.01.2023 16:03, devi priya wrote:
+>>>> Adding support for PMIC MP5496 on IPQ9574 SoC
+>>>>
+>>>> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>>>> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
+>>>> ---
+>>> Please simply extend the existing MP5496 support with this
+>>> S1 regulator. If you don't explicitly define and set voltages
+>>> for the other vregs, they will not be probed.
+>>>
+>>> Konrad
+>> IPQ6018 and IPQ9574 platforms use the same PMIC MP5496 but they have a different power layout. IPQ9574 has S2 regulator which will be used for NSS scaling but S2 in IPQ6018 serves a different purpose. Hence it would not be possible to extend the existing MP5496 support for IPQ9574
+> Does the s2 on IPQ9574 have a different voltage range than
+> the one on IPQ6018? No? Then there's nothing blocking you
+> from using the setup for both SoCs. As I've mentioned,
+> regulators that you don't add to the device tree will
+> not even be probed.
+> 
+Yeah, understood! will update this in V2
+> Konrad
+>>>>    drivers/regulator/qcom_smd-regulator.c | 16 ++++++++++++++++
+>>>>    1 file changed, 16 insertions(+)
+>>>>
+>>>> diff --git a/drivers/regulator/qcom_smd-regulator.c b/drivers/regulator/qcom_smd-regulator.c
+>>>> index 9f2b58458841..1eb17d378897 100644
+>>>> --- a/drivers/regulator/qcom_smd-regulator.c
+>>>> +++ b/drivers/regulator/qcom_smd-regulator.c
+>>>> @@ -767,6 +767,15 @@ static const struct regulator_desc mp5496_ldoa2 = {
+>>>>        .ops = &rpm_mp5496_ops,
+>>>>    };
+>>>>    +static const struct regulator_desc ipq9574_mp5496_smpa1 = {
+>>>> +    .linear_ranges = (struct linear_range[]) {
+>>>> +        REGULATOR_LINEAR_RANGE(600000, 0, 37, 12500),
+>>>> +    },
+>>>> +    .n_linear_ranges = 1,
+>>>> +    .n_voltages = 38,
+>>>> +    .ops = &rpm_mp5496_ops,
+>>>> +};
+>>>> +
+>>>>    static const struct regulator_desc pm2250_lvftsmps = {
+>>>>        .linear_ranges = (struct linear_range[]) {
+>>>>            REGULATOR_LINEAR_RANGE(320000, 0, 269, 4000),
+>>>> @@ -799,6 +808,11 @@ static const struct rpm_regulator_data rpm_mp5496_regulators[] = {
+>>>>        {}
+>>>>    };
+>>>>    +static const struct rpm_regulator_data rpm_ipq9574_mp5496_regulators[] = {
+>>>> +    { "s1", QCOM_SMD_RPM_SMPA, 1, &ipq9574_mp5496_smpa1, "s1" },
+>>>> +    {}
+>>>> +};
+>>>> +
+>>>>    static const struct rpm_regulator_data rpm_pm2250_regulators[] = {
+>>>>        { "s1", QCOM_SMD_RPM_SMPA, 1, &pm2250_lvftsmps, "vdd_s1" },
+>>>>        { "s2", QCOM_SMD_RPM_SMPA, 2, &pm2250_lvftsmps, "vdd_s2" },
+>>>> @@ -1320,6 +1334,8 @@ static const struct rpm_regulator_data rpm_pms405_regulators[] = {
+>>>>    };
+>>>>      static const struct of_device_id rpm_of_match[] = {
+>>>> +    { .compatible = "qcom,rpm-ipq9574-mp5496-regulators",
+>>>> +        .data = &rpm_ipq9574_mp5496_regulators },
+>>>>        { .compatible = "qcom,rpm-mp5496-regulators", .data = &rpm_mp5496_regulators },
+>>>>        { .compatible = "qcom,rpm-pm2250-regulators", .data = &rpm_pm2250_regulators },
+>>>>        { .compatible = "qcom,rpm-pm6125-regulators", .data = &rpm_pm6125_regulators },
+>> Best Regards,
+>> Devi Priya
+Best Regards,
+Devi Priya
