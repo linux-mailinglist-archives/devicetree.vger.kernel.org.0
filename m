@@ -2,54 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F142682AD0
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 11:48:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 311EE682AE2
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 11:54:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229898AbjAaKsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 05:48:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37746 "EHLO
+        id S230120AbjAaKyw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 05:54:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbjAaKsc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 05:48:32 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97B56166FB
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 02:48:29 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pMoBV-0001Xk-Ha; Tue, 31 Jan 2023 11:48:17 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pMoBU-0008FP-37; Tue, 31 Jan 2023 11:48:16 +0100
-Date:   Tue, 31 Jan 2023 11:48:16 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Cai Huoqing <cai.huoqing@linux.dev>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: add missing vref-supply
-Message-ID: <20230131104816.w5sfpcdjulr2ogze@pengutronix.de>
-References: <20230131101323.606931-1-alexander.stein@ew.tq-group.com>
+        with ESMTP id S229903AbjAaKyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 05:54:51 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E53210D
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 02:54:50 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id d14so13791308wrr.9
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 02:54:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7OYEwxTaqjtlGjvqbHJHN/en6Xpq8Ykki5vkrB21KOQ=;
+        b=kGZYXNRVfKrXuVZiSbzJTqRr6TC8WN3FpQle90s6u1QN8F5g8sI8U/7qkGomlzsnBy
+         ziS5sR9MEYLzcmGin/3FRXCE87cjz2ACN9r8UTG3EQPZRtyMK5S+4pnUCFzZCgS+Eu5G
+         CvkigsGaxmBgz7sFT3dJsMZzW2XNkxadOYX1TlWWGDvoj44EiilMspHj8ITHuF7JvZEb
+         JTiyhviWoA1iHqqtjIXvYx/tZvTjjOtt45N3QPfQnWkFJctnbmuzJ3I9FKj14OFIkecZ
+         O05tgLW/NaMB6ifP0BCXYTTHHuD61+2MGmbI+CqzURlp6ozSH9Jb1KSnebG+XGtHcc/k
+         2D7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7OYEwxTaqjtlGjvqbHJHN/en6Xpq8Ykki5vkrB21KOQ=;
+        b=1UTRkgMDB9HUT3dafWu369YufdfKRC5efl/iU9SmtQXHOnjrTYpLhBCCgW6M3yvQde
+         jelw6UP9JTMAYfZ49ducYUpXXGsdCehzWmEUVcX8vSAVvYbi5nIoA+Cmj54gAV20ac7m
+         AK7R3iCZ24mJ7T7YPFAJpG9U95wY+ecerMVtPBFd7kLjHgsHVwwlsAi+cwybzS552lZx
+         MK3KOmRhayQ5BBOkQIN6VAMBnTHLSrtFxxQW9bv+mkMv+m0AcaMQDb9RIMdkwtaoljy3
+         T0OLLGSMGfNrUD1vPrK4wWLcue2hichR4zvt5R9cNosAmYwXFfP1rrq2OBP/0ExzNvho
+         QFUw==
+X-Gm-Message-State: AO0yUKU5JU44N1pE/U64AT8M6Gq5hfV3g6PGU58eMZw0/xDWYQWGzw+c
+        8RZ98RNzn5bfNooy8P9O33c4wA==
+X-Google-Smtp-Source: AK7set8yGv0W3fTh/34Gl9/VtI2q+tEtUrPw0o9c7WAhiS/iqRH503gaIshhxxf4qN+vLSA+xsrz8w==
+X-Received: by 2002:a5d:59c1:0:b0:2c1:2a1c:a8d2 with SMTP id v1-20020a5d59c1000000b002c12a1ca8d2mr2781235wry.27.1675162489014;
+        Tue, 31 Jan 2023 02:54:49 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id b11-20020adfd1cb000000b002bcaa47bf78sm15338247wrd.26.2023.01.31.02.54.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 02:54:48 -0800 (PST)
+Message-ID: <39751511-3f06-7c39-9c21-208d4c272113@linaro.org>
+Date:   Tue, 31 Jan 2023 10:54:47 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230131101323.606931-1-alexander.stein@ew.tq-group.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory
+ region as reserved
+Content-Language: en-US
+To:     Amit Pundir <amit.pundir@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>
+Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+References: <20230124182857.1524912-1-amit.pundir@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230124182857.1524912-1-amit.pundir@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,50 +82,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
-
-On 23-01-31, Alexander Stein wrote:
-> Although this property is used right now for IIO_CHAN_INFO_SCALE,
-> this ADC has two internal reference voltages, which the driver currently
-> doesn't make use of.
+On 24/01/2023 18:28, Amit Pundir wrote:
+> Put cont splash memory region under the reserved-memory
+> as confirmed by the downstream code as well.
 > 
-> Fixes: db73419d8c06 ("dt-bindings: iio: adc: Add binding documentation for NXP IMX8QXP ADC")
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
 > ---
->  .../devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml          | 4 ++++
->  1 file changed, 4 insertions(+)
+>   arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 8 ++++++++
+>   1 file changed, 8 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> index 63369ba388e4..879768af0303 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> @@ -39,6 +39,9 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> +  vref-supply:
-> +    description: External ADC reference voltage supply on VREFH pad.
-
-Please add it to the list of required properties, we can remove it as
-soon as the driver has support for the internal reference voltages.
-
-Regards,
-  Marco
-
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> index f41c6d600ea8..2ae59432cbda 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> @@ -100,6 +100,14 @@ hdmi_con: endpoint {
+>   		};
+>   	};
+>   
+> +	reserved-memory {
+> +		/* Cont splash region set up by the bootloader */
+> +		cont_splash_mem: framebuffer@9d400000 {
+> +			reg = <0x0 0x9d400000 0x0 0x2400000>;
+> +			no-map;
+> +		};
+> +	};
 > +
->    "#io-channel-cells":
->      const: 1
->  
-> @@ -72,6 +75,7 @@ examples:
->              assigned-clocks = <&clk IMX_SC_R_ADC_0>;
->              assigned-clock-rates = <24000000>;
->              power-domains = <&pd IMX_SC_R_ADC_0>;
-> +            vref-supply = <&reg_1v8>;
->              #io-channel-cells = <1>;
->          };
->      };
-> -- 
-> 2.34.1
-> 
-> 
-> 
+>   	lt9611_1v8: lt9611-vdd18-regulator {
+>   		compatible = "regulator-fixed";
+>   		regulator-name = "LT9611_1V8";
+
+Doesn't this mean we loose 0x2400000 of DRAM for all rb3 platforms 
+though ? About what 37 megabytes.. ?
+
+IMO it would be better to have a bootloader that cares about continuous 
+splash to apply a dtb overlay or simply to add a separate dts 
+sdm845-db845c-continuous-spash.dts.
+
+---
+bod
