@@ -2,78 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75F18682CF1
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 13:48:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 894E6682CFD
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 13:51:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231946AbjAaMs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 07:48:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57186 "EHLO
+        id S231984AbjAaMvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 07:51:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231919AbjAaMs4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 07:48:56 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D122F234EE
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 04:48:55 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id fi26so14272550edb.7
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 04:48:55 -0800 (PST)
+        with ESMTP id S231967AbjAaMvk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 07:51:40 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F945234EE
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 04:51:38 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so12374928wma.1
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 04:51:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pvlJDPmyZkse1KpRICBczG4DN3KDD75qIE0L61Q0oFc=;
-        b=Cfc/3ngAO6dfmwbQA5rSsm6nSh72mkIVWEBN9auSqFMhKTjoQU1G1HzmlU9fZmT0OX
-         98UDAOEsBRoZoFDn2VMSotWMnXzOXYO35WG7W8fCEcN5+Q4nRZSns+CHoLRauR/qelVY
-         nquZ1x9YF6K2W1HxEoSQwDjc1gcfCkTPtAfYJQ2fu6DIXwbMsbbabNj91meNE6QVrIkX
-         OxY+w9JOKFr5ykdIGTh1IaNqsVZg3Ov+SrvGzLU3qmesAZfErkWOE/d2cah8L7scwHI9
-         04Wm/o00JgvAVNDMXvfrfyyxFC20mYGgw00Ck/z87Lh5RZ/JZB/OfMyYs/8u5cblRhcK
-         TAGg==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=n65vnVKUKNt8sq6OAnE9DvWi7qEHkIEJrwEj31voYJc=;
+        b=UdiQFxg8bARvB8WUDhiJW5v0fhBx6P/SghoR4ExMXmol8S8ZOSR2N+/MLh2zBciUZj
+         y/ARlUt9g/Eo8QFMkaHr297lO1wN1/szlws64TROBwrW1M3qohGMzBShVdhFPSKwMot5
+         dAMJuflQqocRWPrl+nJaNGjXrg5eTobBJw9IkHFx4shQAS24q9KAO6jz47iep36vd/AT
+         PnfhRqaJTR0CL9bC2FZ/p38o7vdBNXwdHYa00u9flA0Bvyn5XSimcKzw1r5+eKytmgg4
+         oCgFwreYrfJjIJgNve1LoGUeRBnipbP+zHhF/XkBARDFwbwigPdtzVUStnFph+UPvis6
+         MQLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pvlJDPmyZkse1KpRICBczG4DN3KDD75qIE0L61Q0oFc=;
-        b=Jsb9JRZecGqI8e/sjXkVejwe6McP8ANudhdo+9fDueisyJCcdzfhCSWpH51jEfNNaU
-         6MbFtgYqSqrdkK2r/+UTDbYGqRICLRcJShw8p9bBkBDiqTV0tc/lh5yzgUzb6ZqV1fnP
-         91vWG1u8bt/bfWho438k2eofKylib+39tLyL8qPGIO+JzVy9PYWxd5M+Zosy1XFq4dTb
-         lz2Dbpf+lXX9anP96sDGeHpfb7jRFl/f/W4nTs3ehVMgE4Di22v/4d5qLKUhgq5RY2la
-         4VzntiVK1DhulPvsbYK/VIV35FphDxPctPyZl0m4bULtC7VluqQHjR0P0LK7V6nwBPTq
-         DAfA==
-X-Gm-Message-State: AO0yUKWIxa8fG4DQ6+NaXZ5tMpNeclNuFe4V2vSvuMIiLGQ0sv/UvzQa
-        oKuQ+EECDCg3ApfKIt1hjbtbaw==
-X-Google-Smtp-Source: AK7set//VQXczvKXDG8kHylj7whbqt4shHHQk5vvtfw+X5QnesrfSqmHthhMT/zpwao7sG/SwmfnMg==
-X-Received: by 2002:aa7:c755:0:b0:4a2:2e8a:14c0 with SMTP id c21-20020aa7c755000000b004a22e8a14c0mr14119954eds.9.1675169334447;
-        Tue, 31 Jan 2023 04:48:54 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id d3-20020a50fe83000000b004a26665b962sm1003272edt.89.2023.01.31.04.48.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 04:48:54 -0800 (PST)
-Message-ID: <670d0a87-a932-6f33-b363-5499dc7ff29f@linaro.org>
-Date:   Tue, 31 Jan 2023 14:48:52 +0200
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n65vnVKUKNt8sq6OAnE9DvWi7qEHkIEJrwEj31voYJc=;
+        b=yPnNFq28aoAuKZOZoO4SpFhRN3cj3XMvRPB/z4LwNU7a6iaHNxjqhT/2wLBipYsZ/s
+         ZAzKdqRYuedZEkywPUif0eOYnB7u59s/is6eyCdYg6lj3u4ExRHMNRdjeaBh0ZH31Cbx
+         yikcDDHERJBDutrmmZRu/+Q+fsm2btSLFn3mor7OtWGK3oW0ijpIzPypP7BC324MbJ63
+         HmrXlXAqkYjXauYIX9VD2zuJqKdWhZhEDAjuCZugxnpyw7MWqscr8PMV1ztjNYQFdFI9
+         UYh8V0EYCvhCuGKBb9nGUTx7Slg8dHtw3p1QZi3tiyyoNR554qLAhboAWDNLTeCOTSYK
+         MJGQ==
+X-Gm-Message-State: AO0yUKX1gXwrIP2tp+RIfha4W9MMLdAZn2iVTmRd1PJTpVEVO3rotvPx
+        km7TLCDub8ewM+oD9Wy6STeOgg==
+X-Google-Smtp-Source: AK7set87qQhpYFQ5Ln/lqHrC79343lQuL5eRVq9AVr7ltHrMJ+M2G75KQraxNDzZODnnDlOY3iQPVw==
+X-Received: by 2002:a05:600c:500d:b0:3dd:97d6:8f2e with SMTP id n13-20020a05600c500d00b003dd97d68f2emr1559900wmr.17.1675169496919;
+        Tue, 31 Jan 2023 04:51:36 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id l16-20020a7bc350000000b003d9aa76dc6asm22318343wmj.0.2023.01.31.04.51.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Jan 2023 04:51:36 -0800 (PST)
+Date:   Tue, 31 Jan 2023 14:51:34 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v3 00/19] ARM: imx: make Ethernet refclock configurable
+Message-ID: <Y9kO1rGH5hDWky//@linaro.org>
+References: <20230131084642.709385-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v12 09/14] drm/msm/dp: disable self_refresh_aware after
- entering psr
-Content-Language: en-GB
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com, quic_khsieh@quicinc.com,
-        quic_vproddut@quicinc.com, quic_bjorande@quicinc.com,
-        quic_abhinavk@quicinc.com
-References: <1675091494-13988-1-git-send-email-quic_vpolimer@quicinc.com>
- <1675091494-13988-10-git-send-email-quic_vpolimer@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1675091494-13988-10-git-send-email-quic_vpolimer@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230131084642.709385-1-o.rempel@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,24 +81,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/01/2023 17:11, Vinod Polimera wrote:
-> From: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+On 23-01-31 09:46:23, Oleksij Rempel wrote:
+> changes v3:
+> - add Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+> - rebase on top of abelvesa/for-next
+
+Applied all clk/imx ones. Thanks!
+
 > 
-> Updated frames get queued if self_refresh_aware is set when the
-> sink is in psr. To support bridge enable and avoid queuing of update
-> frames, reset the self_refresh_aware state after entering psr.
+> changes v2:
+> - remove "ARM: imx6q: use of_clk_get_by_name() instead of_clk_get() to
+>   get ptp clock" patch
+> - fix build warnings
+> - add "Acked-by: Lee Jones <lee@kernel.org>"
+> - reword some commits as suggested by Fabio
 > 
-> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-> ---
->   drivers/gpu/drm/msm/dp/dp_drm.c | 25 ++++++++++++++++++++++++-
->   1 file changed, 24 insertions(+), 1 deletion(-)
-
-As I stated in v11's discussion, I do not like the way this change plays 
-with the self_refresh_aware. Please find another way to work around the 
-timing issue (let's probably continue the discussion back in v11).
-
--- 
-With best wishes
-Dmitry
-
+> Most of i.MX SoC variants have configurable FEC/Ethernet reference
+> lock
+> used by RMII specification. This functionality is located in the
+> general purpose registers (GRPx) and till now was not implemented as
+> part of SoC clock tree.
+> 
+> With this patch set, we move forward and add this missing functionality
+> to some of i.MX clk drivers. So, we will be able to configure clock
+> opology
+> by using devicetree and be able to troubleshoot clock dependencies
+> by using clk_summary etc.
+> 
+> Currently implemented and tested i.MX6Q, i.MX6DL and i.MX6UL variants.
+> 
+> 
+> Oleksij Rempel (19):
+>   clk: imx: add clk-gpr-mux driver
+>   clk: imx6q: add ethernet refclock mux support
+>   ARM: imx6q: skip ethernet refclock reconfiguration if enet_clk_ref is
+>     present
+>   ARM: dts: imx6qdl: use enet_clk_ref instead of enet_out for the FEC
+>     node
+>   ARM: dts: imx6dl-lanmcu: configure ethernet reference clock parent
+>   ARM: dts: imx6dl-alti6p: configure ethernet reference clock parent
+>   ARM: dts: imx6dl-plybas: configure ethernet reference clock parent
+>   ARM: dts: imx6dl-plym2m: configure ethernet reference clock parent
+>   ARM: dts: imx6dl-prtmvt: configure ethernet reference clock parent
+>   ARM: dts: imx6dl-victgo: configure ethernet reference clock parent
+>   ARM: dts: imx6q-prtwd2: configure ethernet reference clock parent
+>   ARM: dts: imx6qdl-skov-cpu: configure ethernet reference clock parent
+>   ARM: dts: imx6dl-eckelmann-ci4x10: configure ethernet reference clock
+>     parent
+>   clk: imx: add imx_obtain_fixed_of_clock()
+>   clk: imx6ul: fix enet1 gate configuration
+>   clk: imx6ul: add ethernet refclock mux support
+>   ARM: dts: imx6ul: set enet_clk_ref to CLK_ENETx_REF_SEL
+>   ARM: mach-imx: imx6ul: remove not optional ethernet refclock overwrite
+>   ARM: dts: imx6ul-prti6g: configure ethernet reference clock parent
+> 
+>  arch/arm/boot/dts/imx6dl-alti6p.dts           |  12 +-
+>  arch/arm/boot/dts/imx6dl-eckelmann-ci4x10.dts |  13 +-
+>  arch/arm/boot/dts/imx6dl-lanmcu.dts           |  12 +-
+>  arch/arm/boot/dts/imx6dl-plybas.dts           |  12 +-
+>  arch/arm/boot/dts/imx6dl-plym2m.dts           |  12 +-
+>  arch/arm/boot/dts/imx6dl-prtmvt.dts           |  11 +-
+>  arch/arm/boot/dts/imx6dl-victgo.dts           |  12 +-
+>  arch/arm/boot/dts/imx6q-prtwd2.dts            |  17 ++-
+>  arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi       |  12 +-
+>  arch/arm/boot/dts/imx6qdl.dtsi                |   4 +-
+>  arch/arm/boot/dts/imx6ul-prti6g.dts           |  14 ++-
+>  arch/arm/boot/dts/imx6ul.dtsi                 |  10 +-
+>  arch/arm/mach-imx/mach-imx6q.c                |  10 +-
+>  arch/arm/mach-imx/mach-imx6ul.c               |  20 ---
+>  drivers/clk/imx/Makefile                      |   1 +
+>  drivers/clk/imx/clk-gpr-mux.c                 | 119 ++++++++++++++++++
+>  drivers/clk/imx/clk-imx6q.c                   |  13 ++
+>  drivers/clk/imx/clk-imx6ul.c                  |  33 ++++-
+>  drivers/clk/imx/clk.c                         |  14 +++
+>  drivers/clk/imx/clk.h                         |   8 ++
+>  include/dt-bindings/clock/imx6qdl-clock.h     |   4 +-
+>  include/dt-bindings/clock/imx6ul-clock.h      |   7 +-
+>  include/linux/mfd/syscon/imx6q-iomuxc-gpr.h   |   6 +-
+>  23 files changed, 296 insertions(+), 80 deletions(-)
+>  create mode 100644 drivers/clk/imx/clk-gpr-mux.c
+> 
+> -- 
+> 2.30.2
+> 
