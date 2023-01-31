@@ -2,150 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 606EF6832E3
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 17:40:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66E246832F1
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 17:44:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbjAaQkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 11:40:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50128 "EHLO
+        id S231344AbjAaQo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 11:44:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229546AbjAaQkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 11:40:22 -0500
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23E5F1448C;
-        Tue, 31 Jan 2023 08:40:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
-        s=s31663417; t=1675183189;
-        bh=RIe/S0uaHaYJgMue7HTYnNWRd6tihNmsPFU03DnY8u8=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=isMvIMW85ulIIsw+DyntNGcMfLEwAkxiSDXtg7YOdjH+xnCToKe556R4yznLn06Bt
-         ceFCUq/FdovTeiqKHYfg7YlWxcyNlikfz0l9ijlksUm5ffA1I5WltVb4DIPWNMq3Xx
-         8duOru4vZni41IcCSn9/RFqBks5heGxKN/LnoUiTZV5mQHPY9VWM0LLYdwCO+AcK9/
-         sFxEZPG0dqsDQHZzAC8OHrx0OIJn4J97OjzHIpfd3QC6pfgZKI6qHkba5qPGKSGlbX
-         +JgroiBSXdsrhikX3Uj1HV9/hqtjq60iXoOijhYJeQpU7Pwat1/58hlVh7ZXLdKS/B
-         +f2EF8l+YUxWQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.157.42] ([217.61.157.42]) by web-mail.gmx.net
- (3c-app-gmx-bs58.server.lan [172.19.170.142]) (via HTTP); Tue, 31 Jan 2023
- 17:39:49 +0100
+        with ESMTP id S231388AbjAaQo1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 11:44:27 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49FD2561BF
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 08:44:23 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso4935607wms.0
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 08:44:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VACkZgLatYW5HQqyGfJo2+gfSctgdtIk3yDVLriuhMI=;
+        b=jDtpgJul1DbH534h4IWyZpa6j2ujhnXHivY/FjkiRkeUp+2PLAmwOMmUeOpPyKFfXH
+         GI1p+sCOUY8GVbnvrT84y+yQaPOw7MUCztDIfZDjrq4c7zaOxouC8HGB0qGcPMqIgptV
+         MuwHC9TRT8MjGwC60YZbhcDUrlApFFhhEyCRw9euY8WjB5BYmKspmWLu26c6kGccrIn+
+         6efTRq4wHthltHHEDg6GqiBrTqplZH4zECBtDyxQrm0+UBD3ptPLmm5eiPuM2nb/cRrB
+         xUV5W32S4DUryzOu0pKgPU0bli542Doqs+4HqpdDS55xGdfduP9FlXhNj7bh1pm6JeXV
+         U2Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VACkZgLatYW5HQqyGfJo2+gfSctgdtIk3yDVLriuhMI=;
+        b=GNWGtYxXuYEhPipfvcWOn03bYui1YCtpTwbnoL3zqTNTApybpjDec7aEnI5sptKfJp
+         tszDtWVNAsU6sOan1p6lcu8dIr8tcZv1m0uFNl9cJ8CKITpD/TuTU0I+PNbwFWUdSnGz
+         /Lb7EmiGZM7uAiNbCVAJfTpZn38rSOsBA+2JPHWp2W/Rc3lW76WcgPUwDpz6PIRDg73p
+         SdPwy4TtwkY6gKzMVtZVIchqEju+0KPQe/MRqYzDpzAv8ZR5Kyf5XkYDNRLMQejOxbD7
+         vSirgBxTj3En+FTLDyRV2onvVpaI3Moy0K8HYTzDKoGCEpNAwlwrHPWz65JSOI9P6JQV
+         JgQA==
+X-Gm-Message-State: AO0yUKWrmypKtABqY6b+4FGYOng13Kg8dRKJ81Cssxt4k6oMe8kS0AFF
+        RL8QYNS+wXC6qidUiVGIOaRXew==
+X-Google-Smtp-Source: AK7set/ur7S6CdxKnb7cMV+i2Tl9KgmWwXAz1NW3CfurIE87CpN2UzlaovzvtcsXKy3o97Lc7aXONg==
+X-Received: by 2002:a05:600c:4e07:b0:3db:30c3:ed83 with SMTP id b7-20020a05600c4e0700b003db30c3ed83mr4407987wmq.28.1675183461849;
+        Tue, 31 Jan 2023 08:44:21 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id 3-20020a05600c248300b003db0ad636d1sm9436348wms.28.2023.01.31.08.44.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 08:44:21 -0800 (PST)
+Message-ID: <04ac07ef-ee4b-abb8-9fb2-114e3a646a2f@linaro.org>
+Date:   Tue, 31 Jan 2023 17:44:18 +0100
 MIME-Version: 1.0
-Message-ID: <trinity-a044d8eb-8bc2-4b96-9abf-874dcc10db54-1675183189634@3c-app-gmx-bs58>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 2/5] dt-bindings: mfd: Add ADI MAX77541/MAX77540
+Content-Language: en-US
+To:     "Sahin, Okan" <Okan.Sahin@analog.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        erkin.bozoglu@xeront.com, Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>
-Subject: Aw: Re: [PATCH 4/5] arm: dts: mt7623: mux phy0 on Bananapi BPI-R2
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+References: <20230118063822.14521-1-okan.sahin@analog.com>
+ <20230118063822.14521-3-okan.sahin@analog.com>
+ <c4433cba-ce35-e5d3-f04b-ba8f9f501732@linaro.org>
+ <MN2PR03MB51685B56D49CBB590BBE6B7EE7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <MN2PR03MB51685B56D49CBB590BBE6B7EE7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 31 Jan 2023 17:39:49 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <c78e2725-0be7-caa8-40db-2f355cc2cdec@gmail.com>
-References: <20230120205318.519493-1-arinc.unal@arinc9.com>
- <20230120205318.519493-5-arinc.unal@arinc9.com>
- <9A7BD95A-F026-4EAB-96E1-12B1B0C6AAA4@public-files.de>
- <cf7d3247-4d21-98f0-819b-7653153ee4c0@arinc9.com>
- <c78e2725-0be7-caa8-40db-2f355cc2cdec@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:wf6YfoT4OK7QjKfeIa90qRY/Tb8ei+6zlrygKrdduKqgS6qdQfLxP0l8PayX9BnEIPDfc
- pdyT//908UqfNdZYga/38QiI5k6TgG3IuEIO/DkURyUKlP3LH3eOJm1rtL7poHolpgswbSyhj3Q5
- e/+bvASvLDE8izw8Rh9e1a4iWntSIL3ianjJV/HiIo2iSVUZZBZLGc0+ObcUbpB53w0yft5Jmlz3
- vyb5FYDa3qEiXWoOOXdJ3Mpev3jlkdQBDMKx5VTxFcls6F05V+Hng7KNZPjoW3ikuc1LnS6OgfaC
- V4=
-UI-OutboundReport: notjunk:1;M01:P0:2dBudpK+voc=;7y5POLU7oXjvPhuCAqB51PX0Qdj
- 5aUy4YWDfCiOcmur90YZnmx5SN9uUOgNpE6HmfEjoOUsUnCTEP3PPqgzXG/JpyjYsJsdBfy69
- OFz81xxWSaUzWlggofUujZxSIi79Jzet/QC7HVLj+wb9UYlukIJ7JK2b9gs1EqE6ASvDl2dwK
- bg5TEpRZMp3XqWmqggfSvtNxnOhanxmMM2uVORw4aFUJmiNc1+i/0ZLF6KM+87WPPJWiGqBnT
- TSfvQ6XaNafU8PfvaoGgI2zB4Mf0grU8sxFeED5VLcO4KmhL4CJBFBhpvEko6CL6Z45ynJatF
- YwzU7WxhGkzU1C3MqwfYC9x52u4M9OPajSTfGGv6gS3UGOHQ2aUO/XJcRrPdl/4q2gfVkVXQ+
- 4cs7V7jSJYHbsS4upbB04geSo8yOVuuIaQ8cEFGGLJyeRmxE2PcPsSWncSa67RWcef/gfaPFL
- WFRFlgPEUgCR4J8IC44QmeusfJYtO71+N+gZpgPjPPuV5oG1sZoRiwEBTg9kaExoXBL7wUYfz
- FLRIQlYfZ97SMNYZwOq7TUkb8Tvd2+faG/d1bp1O1YksWVexFYqK/MWpyiEmFmKkbpxMY5HD+
- yKWdrTimizRUIik9CBl0GftSZnHwUi/mgp8oF14kRto1P7RGYWD99cYphC5ugPcmVNKBQZf/F
- 4BmBaUBL5IhkFmr3Thd1mOVE/y3V2Sz4hlXMqXwkW8Bjv/pDoUG/OXi2R8r9Fk9bMswiniEkT
- 2vCm74Zp0fD4sMWP51N1+lTvNTdDFkIDey6q+KIcTHO7Utj31Y94WeUp0Z/QXoxN/ly2vjunM
- l+WQ4Mi7SF6h32idL5GW/qYD4lzGRG4cRCB/astIZX17M=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
-> Gesendet: Dienstag, 31=2E Januar 2023 um 12:55 Uhr
-> Von: "Matthias Brugger" <matthias=2Ebgg@gmail=2Ecom>
-> An: "Ar=C4=B1n=C3=A7 =C3=9CNAL" <arinc=2Eunal@arinc9=2Ecom>, frank-w@pub=
-lic-files=2Ede, "Rob Herring" <robh+dt@kernel=2Eorg>, "Krzysztof Kozlowski"=
- <krzysztof=2Ekozlowski+dt@linaro=2Eorg>
-> Cc: devicetree@vger=2Ekernel=2Eorg, linux-arm-kernel@lists=2Einfradead=
-=2Eorg, linux-mediatek@lists=2Einfradead=2Eorg, linux-kernel@vger=2Ekernel=
-=2Eorg, erkin=2Ebozoglu@xeront=2Ecom, "Sean Wang" <sean=2Ewang@mediatek=2Ec=
-om>, "DENG Qingfang" <dqfext@gmail=2Ecom>
-> Betreff: Re: [PATCH 4/5] arm: dts: mt7623: mux phy0 on Bananapi BPI-R2
->
->=20
->=20
-> On 25/01/2023 17:54, Ar=C4=B1n=C3=A7 =C3=9CNAL wrote:
-> > On 25=2E01=2E2023 19:41, Frank Wunderlich wrote:
-> >> Am 20=2E Januar 2023 21:53:17 MEZ schrieb "Ar=C4=B1n=C3=A7 =C3=9CNAL"=
- <arinc=2Eunal@arinc9=2Ecom>:
-> >>
-> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 switch@1f {
-> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 c=
-ompatible =3D "mediatek,mt7530";
-> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 r=
-eg =3D <0x1f>;
-> >>> @@ -199,11 +208,6 @@ ports {
-> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
-> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0>;
-> >>>
-> >>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 port@0 {
-> >>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0>;
-> >>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 label =3D "wan";
-> >>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 };
-> >>> -
-> >>
-> >> This will break existing userspace setups using wan as interface name=
-=2E
-> >=20
-> > Yup=2E The OS being used will have to either rename the interface or a=
-dapt to the=20
-> > new name, eth1=2E
-> >=20
->=20
-> In that case please explain in the commit message why this is needed=2E =
-We are=20
-> trying really hard to not break userspace by a device-tree update=2E
+On 31/01/2023 13:02, Sahin, Okan wrote:
+>>> +  regulators:
+>>> +    $ref: /schemas/regulator/adi,max77541-regulator.yaml#
+>>
+>> No improvements regarding bisectability - this patch fails. If you tested this patch,
+>> you would see it.
+>>
+>> Instead of ignoring comments, either implement them or ask for clarification.
+>>
+>>
+> Sorry for misunderstanding, I checked patchset as a whole not one by one this is why I did not get failure after "make dt_binding_check " . Right now, I understand why you are saying this patch fails, but what is your suggestion?  what is the correct order for this patchset? I sent adi,max77541-regulator.yaml in path 4/5. In the light of discussion, should I remove all the parts related to regulator in patch 2/5, then add adi,max77541-regulator.yaml and update adi,max77541.yaml in patch 4/5? or should I add new patch to update adi,max77541.yaml?
 
-I understand the reason why Ar=C4=B1n=C3=A7 wants to change it:
+Regulator binding patch should be first in the series (bindings are
+before usage), then the MFD binding should come. Your cover letter
+should clearly at the top mention the dependency. You can also mention
+dependency in MFD patch after ---, because many of us do not really read
+cover letters...
 
-currently all ports including wan-port are routed via dsa over gmac0 (trgm=
-ii), Ar=C4=B1n=C3=A7 enables the second gmac and port5 of switch to route w=
-an-traffic over the other gmac=2E But unfortunately there is no mainline-wa=
-y to rename the gmac1 interface (eth1) to wan=2E=2E=2Ethis would be a way t=
-o not break the userspace=2E
 
-i had an older patch for mtk_eth_soc [1] which do it at driver level for m=
-ediatek ethernet driver, but afair a generic way to (re)name interfaces in =
-dts (vendor independ) was requested as the right way=2E
+Best regards,
+Krzysztof
 
-regards Frank
-
-[1] https://github=2Ecom/frank-w/BPI-Router-Linux/commit/5088c9c81e9001462=
-2a950fca38cfb29e0421155
