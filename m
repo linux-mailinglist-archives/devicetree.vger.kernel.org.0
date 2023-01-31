@@ -2,131 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EBDB6837E9
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 21:53:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AED1A683848
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 22:06:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231569AbjAaUxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 15:53:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55078 "EHLO
+        id S231817AbjAaVG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 16:06:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231837AbjAaUxY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 15:53:24 -0500
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B759233DE;
-        Tue, 31 Jan 2023 12:53:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
-        t=1675198373; bh=HDxB0P5zwGe+abY0IPTRkMgnzZ77OEeJH9Ujawc8nac=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=IHQ0MyKh50LjZyqH4Ip8oUE4FdiyeJ4Sjz0lsxOl6lH0aRSlIS+e1565NVL9FHxzE
-         n7c4h7nmVoPj1laI6Rkru4nNHbrRKq/qLqNOnpk3Z1y2Hv06x+dhkqW/p941u63mVt
-         uQK0cDzYwRjLxofjOlczeQG0Ro8yVD/wEzBXE7xcGk5qgJqJcX98bXb8NrSKjiO9DH
-         Xl3ej7Q4hY1P4hKHr4vJX2H8xgyn+zbnXxGXCA9S8EWEicAuoYYdHdgNlr4m9b0Eqw
-         X/105Hpb2hbBURRDjTPDTRTqsLdJge2xFqkg7XREoVA4bZj5FM/+Gu11Y47y9ZqIdh
-         ds6DZD8ywsjDw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([95.223.44.193]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MWAOW-1p7ys32rJS-00XbHB; Tue, 31
- Jan 2023 21:52:53 +0100
-Date:   Tue, 31 Jan 2023 21:52:52 +0100
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        devicetree@vger.kernel.org,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: bus: moxtet: Fix reference to SPI
- peripheral DT properties
-Message-ID: <Y9l/pGzBCgWcLR2w@probook>
-References: <20230129123553.1284503-1-j.neuschaefer@gmx.net>
- <20230130221626.GA3618337-robh@kernel.org>
+        with ESMTP id S229876AbjAaVG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 16:06:26 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 890A32D71;
+        Tue, 31 Jan 2023 13:06:25 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 24B0D61719;
+        Tue, 31 Jan 2023 21:06:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AAE2C433EF;
+        Tue, 31 Jan 2023 21:06:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675199184;
+        bh=2SI43GAd/Uo23yPrQZT30ppWFreFy7xGgyu3ykD7WEA=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=D9dsms4Z2oU2Dm+CgtokNWpOURyhgNSVpu3vimTbqVjpxFGw7Vyt3rVFZ/iQEjw4R
+         eTwhqMRGcfqi9/+3GAhvE9tJkCfUKDcqOZOC72Fc/P09DPjKEfaeVP52QcWa88kDIQ
+         xb+P+dU/WQABKQQgnOtTmFvmio2wXAx626E0Wr9Tehe/YPy67DAuECYTP7p3jyQGPW
+         GLuUadHMrZCkwXpnzTlTV/+R5UGGUhgbC9JlIfhAFVzO7fSq2zZarAH3WiQCaEG6L+
+         uz4sGIWlDuY6S0PB6goPhNiVKVh5IGSYZWubYhy61rw4IAA1xr4LI9ijA3PLaMRCjR
+         VFup27km8OtQw==
+Message-ID: <b1cd40bfcb027b54bc7ec15f4834c644.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="syKY1ZXdedU5+4rp"
-Content-Disposition: inline
-In-Reply-To: <20230130221626.GA3618337-robh@kernel.org>
-X-Provags-ID: V03:K1:7lRz+bdu1ad+wEiPBtAh1XCwjNWoWay9EuEAnQGWvm25gFHTEu2
- wOaeKJ4mSiOcJDyspIbXmBzBVQwPKkGGLtBeCaQME8Fhq9XjbizeUc7O8mafBtp6K6qhE60
- R3m7hyR+g10NM9YB3TV0qzd6RzWPyKxYZRvNiKDXs8/tvYH+0SBOZIOdA+AY/ESbmX5APPU
- 8+pGeryq83YW/ZuMAyWpA==
-UI-OutboundReport: notjunk:1;M01:P0:FJ07ktveZSg=;F8DE8xdz/2jFX+E3tkuVSisKGtM
- LYR4sD0r/i9V4RoAYHTrHhNnY5TIIwB6rGNxvxG7+5ghcssW27hT01+YRxKo5xRBS0szDa59Y
- 6xnD8QOA28npgBoQ+rJy5U64C/8E9POc+tX9vSLaKy0rqMKjGvIIkgUMesgPaGJyqyvU00r4j
- BS+xBSatgawoxCtDs6EchASIsAlvZCSD3zq3LhlxyLQeDyciN+/ymg6lY4BzrQxSZysP2pErk
- TUnpUzuCg7Kdv8oCHTzL9vcTRjIWmhJD5+UIkYww8W4WgHhkLbxRQfv2hZdcbBc2ArHdU8AdA
- It1NtIT9AR2kRslEH6pJrJ1L1WCxhUa5gBtQvbMrXm6wk1MYD7fLEU31I8MLH8lKG7htT0DWh
- TR78hIstjc4fIV3gqccFlp6/aorZK3kWkSJ7rX7DIDOUzd4oP/iaLOs6HgCKZc5WTkvGuqtgg
- d6qenvbfeEi1ZO9bfKu4ZnE1AEdHS8sW3MvDfU9CSwbwx21pesGVn9/3r7syZwZ1rUrBgdZoi
- cyDILk2wsUFQ16JDicCsBzqmjA0QEZ0DKIAyx9ObRkZ9+z4rFeXYmL0RzNxuFRieExOBYhM/F
- knH+EoHAcFVM8SH3swHgQz4B33OwQozblqJAjWav7zNmLTCgUFEEyyRrtx4syiJSa0KoHhTdy
- WGrvfa+NjNj7NTN8FDFtBGuVnwtfhyx4Uq6cl5bsYazeuYZ3kiJBFdJ8b23YDxf7o370NI44i
- K085BuhcU8o9G86ZPsiSGCPJEd1rS3n0Fk/rF/K028rwDhAcI9lOJKqyL9Fc3EKZC5v1hHbGs
- 6qb2Vhs4PJK5xkVPPIG97zNXa9RZhGOD465X/f0nYOkuEU6U2obAQfzVC2y8ms7P98Zu1ITIM
- o0IQRwd7u7Sp1TUBwmAga66MdIciFn9rXJTvTEMwJWI/rLsk8k7hcJ6xaKWwun/psWdCuQaB3
- UJ7T14Lt91CN9JYkjWiA+d7fCpA=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230130114702.20606-5-quic_kathirav@quicinc.com>
+References: <20230130114702.20606-1-quic_kathirav@quicinc.com> <20230130114702.20606-5-quic_kathirav@quicinc.com>
+Subject: Re: [PATCH V2 4/9] dt-bindings: clock: Add Qualcomm IPQ5332 GCC
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Kathiravan T <quic_kathirav@quicinc.com>
+To:     Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, arnd@arndb.de,
+        catalin.marinas@arm.com, devicetree@vger.kernel.org,
+        dmitry.baryshkov@linaro.org, konrad.dybcio@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        marcel.ziswiler@toradex.com, mturquette@baylibre.com,
+        nfraprado@collabora.com, quic_gurus@quicinc.com,
+        robh+dt@kernel.org, robimarko@gmail.com, shawnguo@kernel.org,
+        will@kernel.org
+Date:   Tue, 31 Jan 2023 13:06:22 -0800
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---syKY1ZXdedU5+4rp
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jan 30, 2023 at 04:16:26PM -0600, Rob Herring wrote:
-> On Sun, Jan 29, 2023 at 01:35:53PM +0100, Jonathan Neusch=C3=A4fer wrote:
-> > spi-bus.txt has been converted to YAML and the peripheral properties
-> > have been moved to spi-controller.yaml.
-> >=20
-> > Fixes: 0a1b929356830 ("spi: Add YAML schemas for the generic SPI option=
-s")
-> > Fixes: 8762b07c95c18 ("spi: dt-bindings: add schema listing peripheral-=
-specific properties")
-> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-> > ---
-> >  Documentation/devicetree/bindings/bus/moxtet.txt | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
+Quoting Kathiravan Thirumoorthy (2023-01-30 03:46:57)
+> From: Kathiravan T <quic_kathirav@quicinc.com>
 >=20
-> I'm not really interested in fixes to .txt bindings. Fix it by=20
-> converting to schema if you want to.
+> Add binding for the Qualcomm IPQ5332 Global Clock Controller.
+>=20
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> ---
 
-Fair enough.
-
-> By my count, there's 37 other cases, why just this one?
-
-Mainly because a patch to a large number of files seemed harder to
-coordinate well.
-
-
-Jonathan
-
---syKY1ZXdedU5+4rp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmPZf34ACgkQCDBEmo7z
-X9v8LxAAp84UuYkoLEGgNNgB5bDiBPkYSLZtIiV/sbNbjuvjkDQz4pcxSkfKufo/
-ARMFrucQkSD3OkRfvF4L9RLmHaty1adwiKYS9pbGikfTcNI0OjAv8JVC+zxzstjg
-zHp7rxItVhRtlIsH93o8owMMCf3bhkpnRLMzfln27iUcEzTct9L610oKsrde4B7v
-S7ocuNr4+tK5tHdSjVew4CAR+YL+hxffYVZti7YKYx6PA0ip8lXALxH+2qCPGL90
-dGOWv6/7OrOGDgN4UAHIE//qr/ulpxXPVu9vjWyw5Gn58CD+TYmZgRwc2YHdqFYJ
-QsuzGW7ZrIlYJ9L6ECFThs33j67Ck0KlwqDtz5Ak/Ew1UehLL7EtPxZcRY6plmpU
-BWFxIuVh7BIcKGRQOF7WVDMqnnTz+eHVeYV7UWPft+IOE7qDvpsed9c2IY7m32ir
-fGMYoX1GJVUhEugBjnlOGLD4S+sUIkY5LF96yfWKZGV//gQRH1oTj2HJnTUj5QVw
-Rw9yW7vRaH0jnDrG1vlF7vyeTJo/y4gs23bmmdas8hu6dfORDFAgyqn+1qBl5taC
-mV/qqUiOz8TRbFaM9coFvUDIwswcSuxw7DSJ+bz5mOoZ9IQLLPpr/b9IIMWJ5qz3
-qwHJ7UmoD5AXReRvHL6toh9GKqU8KinAF5YI+SoTohuqS5b5UPQ=
-=lOlu
------END PGP SIGNATURE-----
-
---syKY1ZXdedU5+4rp--
+Reviewed-by: Stephen Boyd <sboyd@kernel.org>
