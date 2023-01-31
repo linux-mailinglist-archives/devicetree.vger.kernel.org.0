@@ -2,136 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 356A6683481
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 18:59:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E81C683483
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 18:59:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230481AbjAaR7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 12:59:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57822 "EHLO
+        id S230138AbjAaR7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 12:59:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229903AbjAaR7V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 12:59:21 -0500
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2079.outbound.protection.outlook.com [40.107.93.79])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74BD121A31;
-        Tue, 31 Jan 2023 09:59:15 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OBisflVk6cfyXZtOiIoQJBNo6mg5FBnUfa8TPDTrMAqhPJmgp6YMYbz1HWIw9zO6wJXJ87tPdMjfpm1FnrSP+12lDNZL97mvL7KgVLoLxoPQe5pgl2sg320BrDRohq23wMISUFkSg2yoj0ejUK33fh0yRvlgr1IaA5jfvZ1Q2v3jnBn3RPBImEO3HH1Es+Qy6CQeE5lOd+ycyehckzCzNKR12lB3GJ+gXGlaR3cvdRqHfu2TzJQZckdgMuf1yyjtfRrfBS0MwMca7C5yDWXdo7iPsuY9iVyoZkvJNnLBa5Sr9iJfinrjvj3rrc6hvjPo1l5i5yaaqECpHOetkjJ0yQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z7FDRxLahFR6uDmDIwphTX0R7vjBs5HU4RejtC3PX70=;
- b=Tt8jofG0J0tzGKn27erj2Z0rcXwYY7yRutKlC3P0XBNr1EK+jxIgeKij+nDfGiHmbSapLPS4Oeo2TUaH8gQ9E5B/iHCdmLH0G4VkETXjUyTp7aeNro2mQp7w0I6Hk8OLBsqePTgXt8sUCG0T59WNtYmplbFtZucJKgxbyWfkSRquzJGkK1gKsraN5qvDuILGVffftO54MMJAOr6oANQEVm4jUFDmAUKo/2nXfCf932Ssc9tJOsbfhsXIvr8zY/g+N/+TWO53j9HEfwPRsIF6CkprEVasnuFkZdGKjBA0vJ6ku4LYYq4hxQ2PIsxeAlF1fhZjqxCzx0XXlJ2oxnBxGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=linux.intel.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z7FDRxLahFR6uDmDIwphTX0R7vjBs5HU4RejtC3PX70=;
- b=Hi2gJgTG5YVV9dsACnFK9jxAns6TYDe2PzkEJGB/iPrOFF7X2NZgB88zIa5e43M7OuI0NHvZnuj5VIEYETsFWXym5R2GANEPK0uvcTF8zK8wr31KbrcpeQs+vp4oQGfBo83b5EofhOwOV42THOcu3+Xa/J2SnwsFOi0q0lVhlnbEOvs5yuznXw9RuXAwgirUDrfKeLDN+HupHfQEWnkAtzkFZkg64D6wx4s9u18VBujQ3Ydnhs+bmj6E0xIj/6ayxgesO4S3fvcuycrk/G1oWenck7JGmdORgs7S5jHAVnFQr8Rv7Lx+ZR5d0TBmSkd18heVV3lPxits8MUc8n1QJw==
-Received: from MW4PR04CA0110.namprd04.prod.outlook.com (2603:10b6:303:83::25)
- by DM4PR12MB6184.namprd12.prod.outlook.com (2603:10b6:8:a6::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6043.38; Tue, 31 Jan 2023 17:59:14 +0000
-Received: from CO1NAM11FT031.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:83:cafe::94) by MW4PR04CA0110.outlook.office365.com
- (2603:10b6:303:83::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.38 via Frontend
- Transport; Tue, 31 Jan 2023 17:59:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- CO1NAM11FT031.mail.protection.outlook.com (10.13.174.118) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6043.22 via Frontend Transport; Tue, 31 Jan 2023 17:59:13 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 31 Jan
- 2023 09:59:05 -0800
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 31 Jan
- 2023 09:59:04 -0800
-Received: from moonraker.nvidia.com (10.127.8.13) by mail.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server id 15.2.986.36 via Frontend
- Transport; Tue, 31 Jan 2023 09:59:02 -0800
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, Wayne Chang <waynec@nvidia.com>,
-        Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH V10 6/6] arm64: defconfig: Enable UCSI support
-Date:   Tue, 31 Jan 2023 17:57:48 +0000
-Message-ID: <20230131175748.256423-7-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230131175748.256423-1-jonathanh@nvidia.com>
-References: <20230131175748.256423-1-jonathanh@nvidia.com>
+        with ESMTP id S229647AbjAaR7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 12:59:41 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBB86234ED
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 09:59:25 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id f47-20020a05600c492f00b003dc584a7b7eso5059443wmp.3
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 09:59:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/szpvn7y9gec1tyWJQBadgKS8WeEN4pwAXM4ABHxKUU=;
+        b=SsXUyMMSeCP/y7sVGkHIr+wpXtG+lNexPqRpKCZMGeB2LOgMxzjBwleq77KDiUrHwp
+         SNs3p6Z2ZLyYZyDrWO99h05TxvEa3nX9dSE2k+4IWs1ABGkpDK0yH3ARbya2Y2DQLBLQ
+         PvOrQ+aPNQM49D/a08vbA2DJI9XwdMVecs7CvJnVw6kN7/HNI1cny2fSHFE8B17TNitz
+         Hrk8XloenIKFWf8a2/EWU+eLCsv9MyWD/I1S/EQ3F4d0Jk3E9cK1fhDH/4Ol0DOOkqwO
+         MwVpmttmVDVLqScMFYgRYN0BrQ6Qgvr2Y2fyTQw/ths+an/9+uhimFl0fZk2bfFQXVLQ
+         U9RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/szpvn7y9gec1tyWJQBadgKS8WeEN4pwAXM4ABHxKUU=;
+        b=JLJWAvZXsNVddjHgEZ6i6I+QTM40cMi3QC8Nl4Q5PGvXYdHJ7uKXNxcMN+lmhUvwZW
+         mNgBhAXy7r/XBXBC9b0VMt4+ykgBe9rxr/JbQie5L5TUos5YVmBBUWoEmrt6/kyB7hj4
+         LQhyaoeahDgPKirV3f85ZeBsWF1JQWRjHAeplbm17OVWo/18Bcl6BHcP6G1BHXQatU4Q
+         JDn/Y3TdIYtZQ/8Abhu2uODYs/3jHevqWVK6miWidZTsEsTG3PzssYGoezn5ahZt7vkm
+         EyGuTgo4l4Bc+GmlW4hNdVXeN7B0jdvRJCqM98poMdW1CU3egSPQGRbZJ/I1N1HQyQAb
+         MJRA==
+X-Gm-Message-State: AO0yUKUVElS9V9iGFMULf1sonBmhTbcEMTCQ7q/Ins7K18+iDp70MtMo
+        8EY2RP97VJ5l+I0vne+6Pc7Jqw==
+X-Google-Smtp-Source: AK7set/mH8G8arPE9aWgo+oZwj285W4mdjXlicy8LcplDLyXvEcpmpH/9UUR/d6w07g+gluxQr8aGQ==
+X-Received: by 2002:a7b:c853:0:b0:3dc:5342:4132 with SMTP id c19-20020a7bc853000000b003dc53424132mr10709426wml.4.1675187964539;
+        Tue, 31 Jan 2023 09:59:24 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id p7-20020a1c5447000000b003dc433355aasm13191576wmi.18.2023.01.31.09.59.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 09:59:24 -0800 (PST)
+Message-ID: <5ecabe9e-84f2-cc3a-c213-3b623f90842e@linaro.org>
+Date:   Tue, 31 Jan 2023 18:59:21 +0100
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT031:EE_|DM4PR12MB6184:EE_
-X-MS-Office365-Filtering-Correlation-Id: 450fe0d3-858f-48a8-0a4e-08db03b4dcef
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KhJzkncrdrTOoevo6Ho0lrsU/zMRqnBGcIEGfGSArSbWhe7Jir1XZ+4uT70lm2K/+Kh8I/mBhI889T43d4XZhktMcfbTsaFpjDF8iYq+CxNz5JpTaIqehgHoGJzuI+/2gK1Sfcrmj8nWMaTF/hD1yR/RZxHiYaEAItdSpaqX+kMVccGFqh7MRBI1d75BPUsBD6+0O7CQ5yMNuOJE9gLCmRhdz1Ssuh8YHWbQYbJp60EWYutNqsvrNHkvxwjikvN4owRR30OSVGeQHL1Zz1C0weaoVWZPHz0GtGTiXAjfL09xNk8MHXJzOe+raTknzzatPP+i8DVPOlb+KBsAZHIhlNBzpI5S6kK4PnSRdD8dbQStPox1/AGcIE8rEV0fZ7J7GtbAHjLsWUunjtzRXv9fSTtJGpkj78Pbe0bfbWA8+KuIyNF2MwTmTOJAb1WpN97zW6a3Y0C+HxA3ZH8Ap1mEz36GGJiddyJShqBvRgFWfVA6IsIK3wVYRcidt1oChsymeuY6w52LOySIpkkHW5HPl6Yw5gJ9VXmADyLhhAmPZNzpdNnXLFUiLkY49yEaAX53hlCc+PwIazQCC60ra+ZqiMPAd8V2Z/Cw9VtgPZ5KQRcRQYIaVy+xb+7bEczMN26MbEk0NQp5ZK1LrjD3PCjyD6uQuU5TdliVb6zzxs3IXCz3LtwITiALhpYlZVh1EQjHJH47L5vnzUgwYUb9/jRMjQ==
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230025)(4636009)(136003)(376002)(396003)(346002)(39860400002)(451199018)(46966006)(40470700004)(36840700001)(2906002)(36756003)(82310400005)(4744005)(2616005)(110136005)(336012)(426003)(316002)(54906003)(83380400001)(47076005)(6666004)(107886003)(1076003)(40460700003)(356005)(186003)(7696005)(478600001)(26005)(70206006)(4326008)(70586007)(5660300002)(8936002)(40480700001)(86362001)(36860700001)(41300700001)(8676002)(82740400003)(7636003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2023 17:59:13.7613
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 450fe0d3-858f-48a8-0a4e-08db03b4dcef
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT031.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6184
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v5] ASoC: dt-bindings: Add tas2781 amplifier.
+Content-Language: en-US
+To:     Shenghao Ding <13916275206@139.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, broonie@kernel.org,
+        lgirdwood@gmail.com
+Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230131131735.7118-1-13916275206@139.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230131131735.7118-1-13916275206@139.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the TYPEC UCSI support and the Cypress UCSI driver that is used
-on the NVIDIA Jetson platforms.
+On 31/01/2023 14:17, Shenghao Ding wrote:
+> Create tas2781.yaml for tas2781 driver.
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
-V8 -> V10: no changes
-V7: Added in V7
+You treat my feedback selectively... some things improved, but not
+everything. I am literally repeating the same and expect different
+results from you... isn't that the definition of insanity?
 
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+Let me paste ignored parts:
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 984553d55e17..d487d0e2b8e0 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -959,6 +959,8 @@ CONFIG_TYPEC_TCPCI=m
- CONFIG_TYPEC_FUSB302=m
- CONFIG_TYPEC_TPS6598X=m
- CONFIG_TYPEC_HD3SS3220=m
-+CONFIG_TYPEC_UCSI=m
-+CONFIG_UCSI_CCG=m
- CONFIG_MMC=y
- CONFIG_MMC_BLOCK_MINORS=32
- CONFIG_MMC_ARMMMCI=y
--- 
-2.34.1
+1. Your patches are still not correctly threaded. There is no threading
+at all.
+
+I said it multiple times. What else should I say here?
+
+2. Subject: ASoC: dt-bindings: Add tas2781 amplifier
+(drop the full stop - why did you add it there?)
+
+3. Missing changelog under ---.
+I mentioned it already few times, didn't I?
+
+> 
+> Signed-off-by: Shenghao Ding <13916275206@139.com>
+> 
+> ---
+>  Changes to be committed:
+> 	new file:   Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> ---
+>  .../devicetree/bindings/sound/ti,tas2781.yaml | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> new file mode 100644
+> index 000000000..9a440d29f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 - 2023 Texas Instruments Incorporated
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments TAS2781 SmartAMP
+> +
+> +maintainers:
+> +  - Shenghao Ding <shenghao-ding@ti.com>
+> +  - Kevin Lu <kevin-lu@ti.com>
+> +
+> +description: |
+> +  The TAS2781 is a mono, digital input Class-D audio amplifier
+> +  optimized for efficiently driving high peak power into small
+> +  loudspeakers. Integrated an on-chip DSP supports Texas Instruments
+> +  Smart Amp speaker protection algorithm. The integrated speaker
+> +  voltage and current sense provides for real time
+> +  monitoring of loudspeaker behavior.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,tas2781
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: |
+> +      I2C address of the device can be in range from 0x38 to 0x40.
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: |
+> +      A GPIO line handling reset of the chip. As the line is active high,
+> +      it should be marked GPIO_ACTIVE_HIGH (see ../gpio/gpio.txt)
+
+Drop the reference to gpio.txt.
+
+I give up. I spent too much time on it while being also ignored a bit
+too much.
+
+
+Best regards,
+Krzysztof
 
