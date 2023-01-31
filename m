@@ -2,117 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B8BD682C85
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 13:27:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9909F682C8A
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 13:28:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231709AbjAaM1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 07:27:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43032 "EHLO
+        id S229956AbjAaM2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 07:28:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230177AbjAaM1I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 07:27:08 -0500
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FF0C3A90;
-        Tue, 31 Jan 2023 04:27:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675168027; x=1706704027;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=pm+2Xp9G75JHYb1LMbl4t3W66mzSj4xDQZ/8FSjmgMw=;
-  b=GESqnCWahHJhpR5ZJWD9wqpAViL4gjusMmBSNxvvtuTzmHhnJeafylhN
-   PZJwWJrRad9C9rgAHnjSXXqHLVJrYxbk77pS46NKh7c7ykVds5Kp28If7
-   UWH+6vfg7vNcQbeJzGD8aR7PxyEo2oJyDTR8x6qXYxQ0UFDrwLavOSgJ1
-   eiWYoyWB7Y6wcZ4LYDe8ZLacZIqzftkqib/h4jljtZ1UZ0LC+2MqsB4jU
-   r4qckRau/6IuHQJZlD+zvLBZU3lobjtt4VhxVNigdSNVsD345nfKuXRjm
-   YlmtOR+OaVxTuH3QbCXeM0o/05LVSC90ZiRmWua59WO8w4IHLIUBAsMrg
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="325522679"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; 
-   d="scan'208";a="325522679"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2023 04:27:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="733091691"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; 
-   d="scan'208";a="733091691"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP; 31 Jan 2023 04:27:01 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pMpj0-000FHX-2y;
-        Tue, 31 Jan 2023 14:26:58 +0200
-Date:   Tue, 31 Jan 2023 14:26:58 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     "Sahin, Okan" <Okan.Sahin@analog.com>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v3 3/5] drivers: regulator: Add ADI MAX77541/MAX77540
- Regulator Support
-Message-ID: <Y9kJEsjkG8h79tcR@smile.fi.intel.com>
-References: <20230118063822.14521-1-okan.sahin@analog.com>
- <20230118063822.14521-4-okan.sahin@analog.com>
- <Y8erlpofdk24vwCC@smile.fi.intel.com>
- <MN2PR03MB5168EC97926AB33D4D806FCCE7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
- <MN2PR03MB516865804044A798AEB5B6C0E7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
+        with ESMTP id S231737AbjAaM2O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 07:28:14 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 424CF10D1;
+        Tue, 31 Jan 2023 04:28:06 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 65F302F4;
+        Tue, 31 Jan 2023 04:28:48 -0800 (PST)
+Received: from [10.57.88.157] (unknown [10.57.88.157])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E96CE3F71E;
+        Tue, 31 Jan 2023 04:28:04 -0800 (PST)
+Message-ID: <23408b52-32f0-9098-e434-78cb85c8e75b@arm.com>
+Date:   Tue, 31 Jan 2023 12:28:00 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MN2PR03MB516865804044A798AEB5B6C0E7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: Update
+ descriptions for R-Car Gen4
+Content-Language: en-GB
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "will@kernel.org" <will@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20230123012940.1250879-1-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdX92KMeON0xC9p17kiqWT7ksEBX_NyPiiQk0fLaucDZBA@mail.gmail.com>
+ <TYBPR01MB5341B023178B4A10DE52B844D8CE9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <CAMuHMdXXnu88Tn2ucuHZK=3G18v-nCfaTYpomchRXBu3bD7UuA@mail.gmail.com>
+ <3c3e1dc2-1f66-565c-c677-2eae368e10be@arm.com>
+ <20230130193604.GA3218335-robh@kernel.org>
+ <CAMuHMdU4j3drFt6jAZPHTJMrrL7GTWHxNqMGHR-1pScqg4H2xg@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <CAMuHMdU4j3drFt6jAZPHTJMrrL7GTWHxNqMGHR-1pScqg4H2xg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 31, 2023 at 09:27:48AM +0000, Sahin, Okan wrote:
-
-First of all, please do avoid top-posting.
-
-> Sorry for second question. I do not want to bother you, but I realized that I
-> need to be sure about driver_data before sending new patch. You said that you
-> need to use pointers directly for driver_data then I fixed that part in mfd,
-> but I do not need or  use driver_data in regulator since chip_id comes from
-> mfd device so I think using like below should be enough for my
-> implementation.
+On 2023-01-31 08:20, Geert Uytterhoeven wrote:
+> Hi Rob,
 > 
-> static const struct platform_device_id max77541_regulator_platform_id[] = {
-> 	{ "max77540-regulator", },
-> 	{ "max77541-regulator", },
-> 	{  /* sentinel */  }
-> };
-> MODULE_DEVICE_TABLE(platform, max77541_regulator_platform_id);
+> On Mon, Jan 30, 2023 at 8:36 PM Rob Herring <robh@kernel.org> wrote:
+>> On Wed, Jan 25, 2023 at 10:42:13AM +0000, Robin Murphy wrote:
+>>> On 2023-01-25 08:54, Geert Uytterhoeven wrote:
+>>>> On Wed, Jan 25, 2023 at 1:49 AM Yoshihiro Shimoda
+>>>> <yoshihiro.shimoda.uh@renesas.com> wrote:
+>>>>>> From: Geert Uytterhoeven, Sent: Tuesday, January 24, 2023 11:35 PM
+>>>>>> On Mon, Jan 23, 2023 at 2:35 AM Yoshihiro Shimoda
+>>>>>> <yoshihiro.shimoda.uh@renesas.com> wrote:
+>>>>>>> Since R-Car Gen4 doens't have the main IPMMU IMSSTR register, but
+>>>>>>> each cache IPMMU has own module id. So, update descriptions of
+>>>>>>> renesas,ipmmu-main property for R-Car Gen4.
+>>>>>>>
+>>>>>>> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+>>>>
+>>>>>>> ---
+>>>>>>>    The old R-Car S4-8 datasheet had described IPMMU IMSSTR register, but
+>>>>>>>    the latest datasheet undocumented the register. So, update the propeties
+>>>>>>>    description. Note that the second argument is not used on the driver.
+>>>>>>
+>>>>>> DT describes hardware, not software policy.
+>>>>>
+>>>>> I think so.
+>>>>>
+>>>>>>>    So no behavior change.
+>>>>>>
+>>>>>> So where do we get the module id numbers to use, if they are no longer
+>>>>>> documented in the Hardware Manual?
+>>>>>
+>>>>> If so, we cannot get the module id numbers. So, should we use other
+>>>>> information which is completely fixed instead? I have some ideas:
+>>>>> 1) Just 0 (or other fixed value) if the IMSSTR register doesn't exist.
+>>>>> 2) Sequential numbers from register base offset.
+>>>>>      In R-Car S4: ipmmu_rt0 is the first node from register base offset,
+>>>>>      and ipmmu_rt1 is the second one.
+>>>>>      So, ipmmu_rt0 is 0, ipmmu_rt1 is 1, ipmmu_ds0 is 2 and ipmmu_hc is 3.
+>>>>> 3) Using base address upper 16-bits.
+>>>>>      In R-Car S4: ipmmu_rt0 is 0xee480000. So, the value is 0xee48.
+>>>>>
+>>>>> Perhaps, the option 1) is reasonable, I think. But, what do you think?
+>>>>
+>>>> I would not make up numbers, as that would cause confusion with SoCs
+>>>> where the numbers do match the hardware.
+>>>> As the driver doesn't use the module id number (it already loops
+>>>> over all domains, instead of checking IMSSTR, probably because of
+>>>> historical (R-Car Gen2) reasons?), what about dropping it from the
+>>>> property? I.e. add "minItems: 1", possibly only when compatible with
+>>>> renesas,rcar-gen4-ipmmu-vmsa?
+>>>
+>>> Right, if there really is no meaningful ID for this model then its binding
+>>> should not require one.
+>>
+>> I agree, however that makes parsing the property a pain (for both the
+>> schema and driver). This property is a matrix. The number of entries is
+>> already variable. If both dimensions are variable, we have to then look
+>> at the compatible to know how to parse it. I would go with option 1.
 > 
-> static const struct of_device_id max77541_regulator_of_id[] = {
-> 	{ .compatible = "adi,max77540-regulator", },
-> 	{ .compatible = "adi,max77541-regulator", },
-> 	{ /* sentinel */  }
-> };
-> MODULE_DEVICE_TABLE(of, max77541_regulator_of_id);
+> But it does not have to be two-dimensional.
+> The second dimension was added in commit 39bd2b6a3783b899 ("dt-bindings
+>   Improve phandle-array schemas"), but is not needed.
+> Can this be simplified again?
+
+Maybe the answer is that it's a cell-array of one item which contains a 
+bare phandle and an (optional) integer that happens to look a bit like a 
+phandle argument but isn't?
+
+Robin.
+
+> The driver doesn't care, it just checks for the presence of the
+> property, i.e. treats it as a boolean flag.
 > 
-> What do you think?
-
-If you have got all necessary data from the upper layer, why do you need to
-have an ID table here? I'm not sure I understand how this OF ID table works
-in this case.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>> A 4th option is a new property.
+> 
+> If all else fails, a new boolean flag would work...
+> 
+> Gr{oetje,eeting}s,
+> 
+>                          Geert
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                  -- Linus Torvalds
