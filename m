@@ -2,204 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2F036822C7
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 04:24:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E8C36822D6
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 04:29:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbjAaDYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 22:24:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47886 "EHLO
+        id S229505AbjAaD34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 22:29:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbjAaDYo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 22:24:44 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BB6210D;
-        Mon, 30 Jan 2023 19:24:43 -0800 (PST)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30V2LA4X016345;
-        Tue, 31 Jan 2023 03:24:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=5Ly9k2vbaRfxNYTkMAZxUzQjFn6BER4QVrRQ2fK++34=;
- b=JVr98NlFWJJynZI4nlRGsds0N0I/DSMnClZJpID478d8kdNKyJ/evFi0GnUuqPujUrI8
- 3kI1eNiOkcPSnT2b8hE6napZse7KydDXgyolXcHUg9TW+2iJDEDYraLpxDbr+abJfKfj
- 3CSznaR0M+c94RXkCAThJC6Xy71teg88HhbxngnEZ7yPMyCqzMaWe8s1TFvXh8yyPkRJ
- wfbJ5Ul2Ue1hJiTpS4pVSeshkasZHGCMEu5dw5Egk9+M9OgvH4quX9XaxDk4eQH49CF3
- 0EKDfvhSxpik0rYQhkhotFddUcJxXK60X8hVz7i6pqRHgOBhO2RVUwRMHD7Liocfoou1 QA== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ncut2nkba-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 31 Jan 2023 03:24:28 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30V3ORTl003028
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 31 Jan 2023 03:24:27 GMT
-Received: from [10.253.75.6] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 30 Jan
- 2023 19:24:21 -0800
-Message-ID: <058241be-ffa8-6fc6-7262-705ec41e849c@quicinc.com>
-Date:   Tue, 31 Jan 2023 11:23:10 +0800
+        with ESMTP id S230324AbjAaD3y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 22:29:54 -0500
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 208811CAD8;
+        Mon, 30 Jan 2023 19:29:07 -0800 (PST)
+Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Tue, 31 Jan
+ 2023 11:29:04 +0800
+Message-ID: <ad1f6ea5-f506-22f7-1f88-0291167fb7fd@amlogic.com>
+Date:   Tue, 31 Jan 2023 11:29:04 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/9] dt-bindings: arm: Add support for DSB element
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <bjorn.andersson@linaro.org>,
-        Tao Zhang <taozha@qti.qualcomm.com>
-References: <1674114105-16651-1-git-send-email-quic_taozha@quicinc.com>
- <1674114105-16651-2-git-send-email-quic_taozha@quicinc.com>
- <cd7a2eac-5d70-6dcd-ddbd-317e1cbd7d23@linaro.org>
+Subject: Re: [PATCH V6 3/3] clk: meson: s4: add support for Amlogic S4 SoC
+ peripheral clock controller
 Content-Language: en-US
-From:   Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <cd7a2eac-5d70-6dcd-ddbd-317e1cbd7d23@linaro.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
+        "qi . duan" <qi.duan@amlogic.com>
+References: <20230116074214.2326-1-yu.tu@amlogic.com>
+ <20230116074214.2326-4-yu.tu@amlogic.com>
+ <1ja62eybrv.fsf@starbuckisacylon.baylibre.com>
+ <aedb0764-b5cb-7f49-f279-51dbec070e80@amlogic.com>
+ <1jwn5hwn0w.fsf@starbuckisacylon.baylibre.com>
+ <a4ad6ac6-60c2-8f7b-fdb0-509de31db282@amlogic.com>
+ <1jy1pko0fc.fsf@starbuckisacylon.baylibre.com>
+ <e2e9045a-6e35-112f-69a7-15b080571b69@amlogic.com>
+ <1jr0vcnyf7.fsf@starbuckisacylon.baylibre.com>
+ <37e5d1a9-9379-a7ff-e288-9a4b80a0cc5f@amlogic.com>
+ <1jmt60nxa7.fsf@starbuckisacylon.baylibre.com>
+From:   Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <1jmt60nxa7.fsf@starbuckisacylon.baylibre.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: wkRiWcp08z695MHa2FB5N0gTQcoQdeFB
-X-Proofpoint-ORIG-GUID: wkRiWcp08z695MHa2FB5N0gTQcoQdeFB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-30_19,2023-01-30_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- phishscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0 spamscore=0
- suspectscore=0 mlxlogscore=951 impostorscore=0 priorityscore=1501
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301310029
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.18.29.47]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On 1/19/2023 6:44 PM, Krzysztof Kozlowski wrote:
-> On 19/01/2023 08:41, Tao Zhang wrote:
->> Add property "qcom,dsb-elem-size" to support DSB(Discrete Single
->> Bit) element for TPDA. Specifies the DSB element size supported
->> by each monitor connected to the aggregator on each port. Should
->> be specified in pairs (port, dsb element size).
+
+On 2023/1/30 18:07, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> 
+> On Mon 30 Jan 2023 at 17:59, Yu Tu <yu.tu@amlogic.com> wrote:
+> 
+>> On 2023/1/30 17:47, Jerome Brunet wrote:
+>>> [ EXTERNAL EMAIL ]
+>>> On Mon 30 Jan 2023 at 17:41, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>
+>>>> On 2023/1/30 17:06, Jerome Brunet wrote:
+>>>>> [ EXTERNAL EMAIL ]
+>>>>> On Sat 28 Jan 2023 at 18:17, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>>>
+>>>>>> On 2023/1/20 17:47, Jerome Brunet wrote:
+>>>>>>> [ EXTERNAL EMAIL ]
+>>>>>>> On Fri 20 Jan 2023 at 11:33, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>>>>>
+>>>>>>>> Hi
+>>>>>>>> On 2023/1/19 19:37, Jerome Brunet wrote:
+>>>>>>>>> [ EXTERNAL EMAIL ]
+>>>>>>>>> On Mon 16 Jan 2023 at 15:42, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>>>>>>>
+>>>>>>>>>> Add the peripherals clock controller driver in the s4 SoC family.
+>>>>>>>>>>
+>>>>>>>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>>>>>>> [...]
+>>>>>>>>>
+>>>>>>>>>> +
+>>>>>>>>>> +/* Video Clocks */
+>>>>>>>>>> +static struct clk_regmap s4_vid_pll_div = {
+>>>>>>>>>> +	.data = &(struct meson_vid_pll_div_data){
+>>>>>>>>>> +		.val = {
+>>>>>>>>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+>>>>>>>>>> +			.shift   = 0,
+>>>>>>>>>> +			.width   = 15,
+>>>>>>>>>> +		},
+>>>>>>>>>> +		.sel = {
+>>>>>>>>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+>>>>>>>>>> +			.shift   = 16,
+>>>>>>>>>> +			.width   = 2,
+>>>>>>>>>> +		},
+>>>>>>>>>> +	},
+>>>>>>>>>> +	.hw.init = &(struct clk_init_data) {
+>>>>>>>>>> +		.name = "vid_pll_div",
+>>>>>>>>>> +		/*
+>>>>>>>>>> +		 * The frequency division from the hdmi_pll clock to the vid_pll_div
+>>>>>>>>>> +		 * clock is the default value of this register. When designing the
+>>>>>>>>>> +		 * video module of the chip, a default value that can meet the
+>>>>>>>>>> +		 * requirements of the video module will be solidified according
+>>>>>>>>>> +		 * to the usage requirements of the chip, so as to facilitate chip
+>>>>>>>>>> +		 * simulation. So this is ro_ops.
+>>>>>>>>>> +		 * It is important to note that this clock is not used on this
+>>>>>>>>>> +		 * chip and is described only for the integrity of the clock tree.
+>>>>>>>>>> +		 */
+>>>>>>>>> If it is reset value and will be applicable to all the design, regarless
+>>>>>>>>> of the use-case, then yes RO ops is OK
+>>>>>>>>>
+>>>>>>>>> >From what I understand here, the value will depend on the use-case requirements.
+>>>>>>>>> This is a typical case where the DT prop "assigned-rate" should be used, not RO ops.
+>>>>>>>>
+>>>>>>>> Check the previous chip history, the actual scene is not used at all,
+>>>>>>>> basically is used in simulation. So the previous SOC was "ro_ops" without
+>>>>>>>> any problems.  This S4 SOC is not actually useful either.
+>>>>>>>>
+>>>>>>>> So when you were upstream, you had no problem making "ro_ops". I wonder if
+>>>>>>>> I could delete this useless clock, so you don't have to worry about it.
+>>>>>>> I don't know what to make of this. What is the point of adding a useless
+>>>>>>> clock ?
+>>>>>>
+>>>>>> As explained earlier this "vid_pll_div" is actually used in chip
+>>>>>> emulation. So next I'd like to know what you suggest to do with the clock?
+>>>>>>
+>>>>> If it does not exist in the actual SoC, please remove it
+>>>>>
+>>>>
+>>>> If I remove it, the "vid_pll_sel" clock will be missing a parent
+>>>> (vid_pll_div). I will use the table method and give the above reasons. Do
+>>>> you accept this method?
+>>> Either the clock exists or it does not.
+>>> If the HW actually exist, it is expected to be properly described.
+>>> If it does not, it obviously cannot be an input to another clock.
+>>> Please sort this out and make the necessary changes.
+>>>
 >>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> Signed-off-by: Tao Zhang <taozha@qti.qualcomm.com>
-> You are the same person and it is still the same organization
-> (Qualcomm), right? Only one SoB.
-I will change and update this in the next patch series.
->
->> ---
->>   .../bindings/arm/qcom,coresight-tpda.yaml          | 22 ++++++++++++++++++++++
->>   1 file changed, 22 insertions(+)
+>> The CLKCTRL_VID_PLL_CLK_DIV register is actually described, but it is not
+>> used in the actual board. According to your reply just now, description is
+>> required, but I want to know how to describe it to meet your requirements.
 >>
->> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
->> index 2ec9b5b..298db7f 100644
->> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
->> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
->> @@ -58,6 +58,26 @@ properties:
->>       minItems: 1
->>       maxItems: 2
->>   
->> +  qcom,dsb-element-size:
->> +    description: |
->> +      Specifies the DSB(Discrete Single Bit) element size supported by
->> +      each monitor connected to the aggregator on each port. Should be
->> +      specified in pairs <port, dsb element size>.
-> s/port/port number/
+>> Please give me some suggestions.
+> 
+> Implementing things is NOT about usage, it is about correctness.
+> Either there is actually a clock in the silicon you are producing at the
+> Amlogic factory, or there is not.
+> 
+> If the clock is there in the actual HW should be properly
+> described/implemented, as it "might" be used as an input to other clocks
+> - even if you personnaly don't.
+> 
+> If clock does not exists (nothing behind the registers, or broken, etc
+> ...)  then, yes you'll need to use parent tables and document this.
+> 
 
-It should be "port number" here.
+According to your suggestion, we need to describe the clock 
+(vid_pll_div).So it seems like we need to implement 
+"meson_vid_pll_div_ops" and do a commit first. Then submit the S4 SOC 
+clock driver. So change whether you take it or not?
 
-I will change "<port, dsb element size>" to "<port number, DSB element 
-size>" in the next patch series.
-
->> +
->> +      Note: The maximum value of the port number depends on how many
->> +      input ports the current TPDA has. DSB element size currently only
->> +      supports 32-bit and 64-bit.
->> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
->> +    items:
-> Are some reasonable maxItems known?
-
-This is related to hardware design, depending on how many input ports 
-the TPDA has.
-
-We cannot limit it to a reasonable maximum value from the software.
-
-According to the existing hardware design, TPDA with the most input 
-ports has about 30 input ports.
-
-But there may be TPDA with more input ports.
-
->
->> +      items:
->> +        - description: |
->> +            "port" indicates TPDA input port number
-> What is "port"? You quoted it like it was some name of variable or
-> property. Where is then?
-
-The "port" here refers to the port number of other Coresight devices 
-connected to the TPDA input port.
-
-I will change and update it in the next patch series.
-
->> +          minimum: 0
->> +        - description: |
->> +            "dsb element size" indicates dsb element size
-> "A" indicates A. This sentence does not make sense.
->
-> Also missing units.
->
-> s/dsb/DSB/
-"DSB element size" indicate the size of the element in DSB. DSB(Discrete 
-Single
-
-Bit) is a data collection unit.
-
-I will change and update it in the next patch series.
-
->
->> +          minimum: 0
->> +          maximum: 64
->> +
->>     clocks:
->>       maxItems: 1
->>   
->> @@ -100,6 +120,8 @@ examples:
->>          compatible = "qcom,coresight-tpda", "arm,primecell";
->>          reg = <0x6004000 0x1000>;
->>   
->> +       qcom,dsb-element-size = <0 32>;
->> +
->>          clocks = <&aoss_qmp>;
->>          clock-names = "apb_pclk";
->>   
-> Best regards,
-> Krzysztof
-
-Best,
-
-Tao
-
+Or if you have a better idea, let me know.
