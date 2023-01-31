@@ -2,307 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BF806825B3
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 08:45:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD9B76825E6
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 08:53:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbjAaHpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 02:45:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46880 "EHLO
+        id S229577AbjAaHxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 02:53:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbjAaHpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 02:45:17 -0500
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10C6638EBA;
-        Mon, 30 Jan 2023 23:45:15 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 40C181C0004;
-        Tue, 31 Jan 2023 07:45:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1675151114;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=wMe+6sH9kAIkOp6zpYrCxiYnhxYIO5nkKGD3Z8ma8r0=;
-        b=kut/azU7sBFwJKKha2Hf0Qt0ZLGEVip7CNkI2Hx1xDS2aW9gbjDBCVPYMFN0t5YhIGVEyF
-        hYiBnzl0ipwhmV/lrsSteBmr1Zu+OLvnxoeCywGzWHVdv+8ySOKo/qyOkpd+FvrP3eMIZz
-        RvoOqoh6E4nBbOeNQ83gcZFm+nAGAfMQge79AxgkzGmMoN/WrwksO3Eez8J3qvGlDzMLzW
-        xWdg9eAnBa88KKiAlbj5gtNSjFMHT3BmNaA9/qbSJaEtKj/VSQQYauN/ZZbeVGd1djLBPL
-        7Z4vDPDnYaRDN4adENmDTXiZuLnMoFxbnKXGaKqp8h1ErfazEJDupN/PRANAEg==
-Date:   Tue, 31 Jan 2023 08:45:08 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
+        with ESMTP id S229565AbjAaHxF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 02:53:05 -0500
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2073.outbound.protection.outlook.com [40.107.22.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC2C62196A;
+        Mon, 30 Jan 2023 23:53:03 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e2FXntYUpkLNng/fUOVAHNM9X92koMM3wVAEBTCNOoKwfBxEjwx9+s7kC7agcywSTjck1AhPWmDml5S/Dbmp23oWdF+4isAGN0BI/O+QmJt7aJFhsLO4muwNGQpjl5hNl3tGF9HbumIFQCwXWL/qMwj+uyrvD/jNN4bm1DxlPqZWTzIzEwAb6AiURV5Du2o4xIrhvefnYrE6MJaa9uJJBu9fSSBEPAORA9AiHdmGmfuJT+g9aVG+ho9YHotTQ4dOV1GUhcYSPOuJRC4ORS9dudXhrNM/pfzz4g7anUQICAzSobW58p3BTHb6NjtZvOY6OJBPsrfGFwDiLPkqVbzW2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rARa7gLtZZ52KMuUE2/RZkYq2wzXJTGiADT7AISoN/Q=;
+ b=UbjSlaeFBP39CcOHVfTdPV15HpZS2UMHa1R2jtLdmgc9GGs8b134pLTmqTXepm1HosQ8H9RVsREDK6YwiUNX1HZL9KqP1I3/SMU/TuJ1tKdB/wvRGjEXznDboE9Ov6BkRnntOpGWN1J3cEJe6McOG6drzB8EM5OANa07xlFyDX5YY8aiQ4BtsLpgEe3vbY0ckRn0pYdLoP/y50RSWpF7+gq9JXKHjTBUjLl/tjC7/y0dFwlsK+j6Tk0bdY9cfDHILN2ItBU8NxnAx6Pu+pBW8hc8CCjUJFU8hjmUo+qvgiMFUlAfBuM14L9pZWvQHFIGu8o+F2iE9JjLHvlclemOxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rARa7gLtZZ52KMuUE2/RZkYq2wzXJTGiADT7AISoN/Q=;
+ b=Cxf9exM1SdwzlquGrfvQ7i7MCegiUQbEBspQd7AGz4+MpkMWpZJHk2vHndjqHfuDsHFLTssrO/Oc80ZTz7RrljDKqqe+aGU3wKKtrYzqzDN0M93N9WYVqfu9KhHiXTjDWdJtk/K8VKtRd7ufhb8lfWPDM70r2REMGEJrQx2j9Q8=
+Received: from AS8PR04MB8676.eurprd04.prod.outlook.com (2603:10a6:20b:42b::10)
+ by AM7PR04MB6806.eurprd04.prod.outlook.com (2603:10a6:20b:103::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.22; Tue, 31 Jan
+ 2023 07:53:01 +0000
+Received: from AS8PR04MB8676.eurprd04.prod.outlook.com
+ ([fe80::4dcb:740c:bf92:954a]) by AS8PR04MB8676.eurprd04.prod.outlook.com
+ ([fe80::4dcb:740c:bf92:954a%9]) with mapi id 15.20.6043.038; Tue, 31 Jan 2023
+ 07:53:01 +0000
+From:   Hongxing Zhu <hongxing.zhu@nxp.com>
 To:     Rob Herring <robh@kernel.org>
-Cc:     Li Yang <leoyang.li@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 05/10] dt-bindings: soc: fsl: cpm_qe: Add QMC
- controller
-Message-ID: <20230131084508.32b80a1b@bootlin.com>
-In-Reply-To: <20230130183037.GA3076426-robh@kernel.org>
-References: <20230126083222.374243-1-herve.codina@bootlin.com>
-        <20230126083222.374243-6-herve.codina@bootlin.com>
-        <20230130183037.GA3076426-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+CC:     "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        Peng Fan <peng.fan@nxp.com>, "marex@denx.de" <marex@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        "tharvey@gateworks.com" <tharvey@gateworks.com>,
+        Frank Li <frank.li@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH v7 1/5] dt-bindings: imx6q-pcie: Prepare to separate the
+ Endpoint binding document
+Thread-Topic: [PATCH v7 1/5] dt-bindings: imx6q-pcie: Prepare to separate the
+ Endpoint binding document
+Thread-Index: AQHZNF78C9BPud8bZkSy2liT9jIY/663jFoAgACUmuA=
+Date:   Tue, 31 Jan 2023 07:53:01 +0000
+Message-ID: <AS8PR04MB8676776A8D900D080D1876FF8CD09@AS8PR04MB8676.eurprd04.prod.outlook.com>
+References: <1675049539-14976-1-git-send-email-hongxing.zhu@nxp.com>
+ <1675049539-14976-2-git-send-email-hongxing.zhu@nxp.com>
+ <20230130223108.GA3642291-robh@kernel.org>
+In-Reply-To: <20230130223108.GA3642291-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR04MB8676:EE_|AM7PR04MB6806:EE_
+x-ms-office365-filtering-correlation-id: 649679e6-ca14-4465-f682-08db03602d33
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: td3Rk+PdUF1e5UakiBHi+b/EP6tVDr95aecieuM2FCpIYdTVe8bB4mueIvtx1B84FB+HgXCPpVaQjXKKKU3i0J/NHbRA0+qqC3OIiUQ+QOKMUPaeNzQPbvmcxpwDMcIphoP/djzrlvcRCfsB4/0SMKebPuA4yTxgER+GULPWg3d4VgQCPMNM2s/mmmDGCHz60NrzL2uAAG2vTh2PHguDsF5/yvokKw5Wq+dzFwEYCPqdoR+Cz+fjgOiIcvZCZ5g3281Uu74MM0Bd6DkOfomsyDY7sC2Zk8i1NFRd3uV0FLa2zAwOpwkTGRVIK24I7F7o7563Sp7+XUuCscoN+pzNjqsnbb82g/Snj8RKKqPi5ljMJK0Z8+1usxXE34Owg0S042I7+f3IaWhC0jRBfBl6kxKCaIi0o1Q7iPNvLMlNyEvnyTO3cHnESRSBVCMSorj+rfgEeIQZSUcB+aMlHQp3/0I1N3z1JhxGvP0o86lRYB0EXzz2nspTmyRdju6ldXzFt0iqwWq7ziclrQVMVwBU/qNMgNVktoIig+xlPLFYvux5FViLy2eD+g21qtmnSwOq9bn1eEWQqbG1x0YvWS1zUBlBSBxntCKnEtqSGNkI8+rk2Pc16g/HbashD2841uuEnEMqXcqphwDbb7OVglGTzk7fmTPK6+EdUcI3JCTrKzjUuw0CSEz5FEIQ4Ztf2N4rjJ9tDIJL7YRb9LBtFliGrwcVIk6cfK/IOGycuIp8wXo=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8676.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(396003)(39860400002)(346002)(376002)(366004)(451199018)(7696005)(186003)(9686003)(478600001)(71200400001)(83380400001)(26005)(54906003)(38100700002)(8676002)(41300700001)(316002)(64756008)(122000001)(33656002)(6506007)(66446008)(53546011)(7416002)(66556008)(8936002)(44832011)(66946007)(52536014)(2906002)(4744005)(38070700005)(66476007)(5660300002)(76116006)(6916009)(86362001)(4326008)(55016003)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?gb2312?B?bEJVZVlocThIOXo0OXl6Q1pOZUpwYjEyZDJvVnVLQWw3Y3ZxdUhlZTgzSXJO?=
+ =?gb2312?B?djlkcmpjOHhFUU5QUjNzZTd1dXlPNjFLRW1NOFYzUGdRTEwvczN5Zjg1M1JV?=
+ =?gb2312?B?bDBhY2ZMc1RqYkhLeGI2L1JETmNqK1poR0xnNFN3OWEvN1JrVTNBUU8xeG1U?=
+ =?gb2312?B?Tlhramd5YVlFWThYZHkrYy9MRXNsc3BuWlRVeXU0WGg4QU03UlI5NHpqVHpm?=
+ =?gb2312?B?cTd6cGthZlFTN0JWMm9rRStQSW1hekVGODFmdUxvVDB2V1VxT2xQQjY0VjA2?=
+ =?gb2312?B?V0NIRWdENHNsYVZvaG0raUN5Sjc2RGlYOSt6eEZHcWtJSENUTVVUcmNlWHBi?=
+ =?gb2312?B?eWppaDMxQ0t0V3pzOUZtS24vMklJM0RLcld6ZHM2SHA1ak4zWUo4ODR3bWR1?=
+ =?gb2312?B?Vis5UWZZQUFtM0R0Mk1Vck15QzZJY0M1Mk9EVlVQV3U3bW5lTTdFZnBmZHAv?=
+ =?gb2312?B?b1ZLakc5SDNLdUY0MW5HcUNGWTlVb1daRDV1OHp4YlRWbHA4cG5lRXlrU3JF?=
+ =?gb2312?B?L1p5Q0c4RXIxQVZBNnc1K2liZjZndkdXdkJnZWx5cEh5SWtNa3Z4S2dKcURs?=
+ =?gb2312?B?YTBBVG5vZXE2d2hteWFyWC9FQmk3eEVabVNiZ1JFWEt0TUdRelNKSmhXeHRi?=
+ =?gb2312?B?aXAwQ2JEeXk0bzBqem5HRm94OThreGNZbDN6d0doYjh2QXZxREc5cjBOUkhN?=
+ =?gb2312?B?b3NNMGd3NzRJTXc3amYvYUlQWG91ODd1L1Q1MnhGWTJlSmphRjZNRzV4RXNs?=
+ =?gb2312?B?MnlkV0N3K0FOU09oZEI2NmR5Zm02UWRWNmlJaFFhZVk5b1FiL2lUQ2xFUU54?=
+ =?gb2312?B?djdDaFdtakJMT2JOM0JZRndRVHE1bWV3VW4rbzdycWhDOGQwbHFGZllwdFQ5?=
+ =?gb2312?B?aVl5Rk9aMmhlZmxhVjlEMS9WbnlXQk9tVjNsRlhwK0U1eEc5bmh6SmVreUh6?=
+ =?gb2312?B?Rk1SN3dUTG1WWUZ5dnI3Y2FveGZldDlUaWxkNHhlQU9TK2dpaVVHWGFKU00y?=
+ =?gb2312?B?dmEwdXZ5TUNRYjF2UkpmZXhhOEdtd05ZR282SVZOYzZGSkl0MjZUK1hMWUVQ?=
+ =?gb2312?B?ZTdKUHZHNmRjNVcxZjQwWG9wZFJPaVJFejJhRmNPbTRWL1I0dXFnYzhyRXhr?=
+ =?gb2312?B?QW1ubDBtQ2NSVFdjY1RLdUJZRWQ1NFJkZC95cjZxWXA1cmJET1E0MXV5elc5?=
+ =?gb2312?B?NGhtenY4eDZBUGJOS05nUmlIb21ZMnZveWlNMnBIczFNOFVWaE9SaFBkM0tm?=
+ =?gb2312?B?N2pQZGdnNUthMUJuSjZ4TDZtWnl3c3dKanlzTjFwUVQ0Z2xReGJBWkZMS3Jz?=
+ =?gb2312?B?NUFWRWFyb2xpd25SMVdTMVB0R3ZhaUN6SHY4MGNXTFlSdmR1TEJPVWxDRHBl?=
+ =?gb2312?B?Q2ZnTHRuWDZLVlBLM1UwUWU5WDExL0JsZXB2ODFNNGFPaVdheDlESERkZWFY?=
+ =?gb2312?B?bG5TS2NaUnRVSThhcUwxU1VPTUxqT09uOTZQUmtRVk01M3NYeDB5YUluMlNS?=
+ =?gb2312?B?bEhTMngzYWtyK2dwM3A0TWxITUVxYTVPNUZaN2pXU0N6ZkV6Q1JvSW1DNWox?=
+ =?gb2312?B?VHppdlIwN1hwTk1UVEhCY3hWSGczczJKamFjalBGVGorWFQxa1UrL0YxalNy?=
+ =?gb2312?B?Nndta1M5cDFuN3p6cXFXSnYxck96aUdTU0hoMDQxT3ZQUEZwbmYrSDZ6MXNJ?=
+ =?gb2312?B?aXZGQ3kvVWh6Y1AzNTg0Wk5zZlF6Y3B2cFBER3hUZm5wbEw1VjVBTi9KTEpH?=
+ =?gb2312?B?c2lRRjJab2s5M2VMbzBtTHhLYXNkZlBqYlFWaWlqb2Y3RmdXQ09NdjEyUnFu?=
+ =?gb2312?B?R1k3VkpPRnAzeWFXbmtnUEZxdExEWHVhaWFoNWlrN0VMSTJ0VjF1alN6OTBM?=
+ =?gb2312?B?MC9rblEyK2w0OVpVbzkvYnNsMGNFc0M4cXl2enBnZjg2SU8xdkM0cmpkckZM?=
+ =?gb2312?B?NmZxYXRyT0diRjZsQ05ud3UyWXR1VVI5S0ZtWjhGQkRNTHpLSSs2TW9IclVX?=
+ =?gb2312?B?OW9jdytLYTBDQ1JVRWpTUGJZWW5wRVJZY2lnSlN2TEU2aHBRdzM2Sm51WDB0?=
+ =?gb2312?B?dmR0a0R4QU5aQWl4bW56YTFpSitJaHZtamUwZ1FCcXErZ2ZiNDhESDFCRlUw?=
+ =?gb2312?Q?uSR/xHgFC4SqjA6eVPf/Y11Ej?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8676.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 649679e6-ca14-4465-f682-08db03602d33
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jan 2023 07:53:01.3024
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: exG6bEhgwF/VZhJxQXwukIcLZcokKENvnNfXinyCHHTAMcx1D3jeUKNSc/4k4Ul5t4bfyenHboAYkNn3kSsGwA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6806
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Mon, 30 Jan 2023 12:30:37 -0600
-Rob Herring <robh@kernel.org> wrote:
-
-> On Thu, Jan 26, 2023 at 09:32:17AM +0100, Herve Codina wrote:
-> > Add support for the QMC (QUICC Multichannel Controller)
-> > available in some PowerQUICC SoC such as MPC885 or MPC866.
-> >=20
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---
-> >  .../bindings/soc/fsl/cpm_qe/fsl,qmc.yaml      | 167 ++++++++++++++++++=
- =20
->=20
-> fsl,cpm1-scc-qmc.yaml
-
-Ok, will be changed in the next iteration.
-
->=20
-> >  1 file changed, 167 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fs=
-l,qmc.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.y=
-aml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
-> > new file mode 100644
-> > index 000000000000..9141a8ca183b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
-> > @@ -0,0 +1,167 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qmc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: PowerQUICC CPM QUICC Multichannel Controller (QMC)
-> > +
-> > +maintainers:
-> > +  - Herve Codina <herve.codina@bootlin.com>
-> > +
-> > +description:
-> > +  The QMC (QUICC Multichannel Controller) emulates up to 64 channels w=
-ithin one
-> > +  serial controller using the same TDM physical interface routed from =
-TSA.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - fsl,mpc885-scc-qmc
-> > +          - fsl,mpc866-scc-qmc
-> > +      - const: fsl,cpm1-scc-qmc
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: SCC (Serial communication controller) register ba=
-se
-> > +      - description: SCC parameter ram base
-> > +      - description: Dual port ram base
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: scc_regs
-> > +      - const: scc_pram
-> > +      - const: dpram
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +    description: SCC interrupt line in the CPM interrupt controller
-> > +
-> > +  fsl,tsa-serial:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    items:
-> > +      - items:
-> > +          - description: phandle to TSA node
-> > +          - enum: [1, 2, 3]
-> > +            description: |
-> > +              TSA serial interface (dt-bindings/soc/fsl,tsa.h defines =
-these
-> > +              values)
-> > +               - 1: SCC2
-> > +               - 2: SCC3
-> > +               - 3: SCC4
-> > +    description:
-> > +      Should be a phandle/number pair. The phandle to TSA node and the=
- TSA
-> > +      serial interface to use.
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +  '#chan-cells':
-> > +    const: 1 =20
->=20
-> What's this?
-
-A QMC consumer, such as "QMC audio" in this series, can have a phandle with
-an argument that points to this QMC node. For instance, in the "QMC audio"
-node, we have:
-  fsl,qmc-chan =3D <&qmc 16>;
-
-The #chan-cells property in TSA specify the presence of this argument.
-
-What do you think if I add the following description:
-   '#chan-cells':
-     const: 1
-     description:
-       QMC consumers that use a phandle to QMC need to pass the channel
-       number with this phandle.
-       For instance "fsl,qmc-chan =3D <&qmc 16>;".
-
->=20
-> > +
-> > +patternProperties:
-> > +  '^channel@([0-9]|[1-5][0-9]|6[0-3])$':
-> > +    description:
-> > +      A channel managed by this controller
-> > +    type: object
-> > +
-> > +    properties:
-> > +      reg:
-> > +        minimum: 0
-> > +        maximum: 63
-> > +        description:
-> > +          The channel number
-> > +
-> > +      fsl,operational-mode:
-> > +        $ref: /schemas/types.yaml#/definitions/string
-> > +        enum: [transparent, hdlc]
-> > +        default: transparent
-> > +        description: |
-> > +          The channel operational mode
-> > +            - hdlc: The channel handles HDLC frames
-> > +            - transparent: The channel handles raw data without any pr=
-ocessing
-> > +
-> > +      fsl,reverse-data:
-> > +        $ref: /schemas/types.yaml#/definitions/flag
-> > +        description:
-> > +          The bit order as seen on the channels is reversed,
-> > +          transmitting/receiving the MSB of each octet first.
-> > +          This flag is used only in 'transparent' mode.
-> > +
-> > +      fsl,tx-ts-mask:
-> > +        $ref: /schemas/types.yaml#/definitions/uint64
-> > +        description:
-> > +          Channel assigned Tx time-slots within the Tx time-slots rout=
-ed by the
-> > +          TSA to this cell.
-> > +
-> > +      fsl,rx-ts-mask:
-> > +        $ref: /schemas/types.yaml#/definitions/uint64
-> > +        description:
-> > +          Channel assigned Rx time-slots within the Rx time-slots rout=
-ed by the
-> > +          TSA to this cell.
-> > +
-> > +    required:
-> > +      - reg
-> > +      - fsl,tx-ts-mask
-> > +      - fsl,rx-ts-mask
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - interrupts
-> > +  - fsl,tsa-serial
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> > +  - '#chan-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/soc/fsl,tsa.h>
-> > +
-> > +    qmc@a60 {
-> > +        compatible =3D "fsl,mpc885-scc-qmc", "fsl,cpm1-scc-qmc";
-> > +        reg =3D <0xa60 0x20>,
-> > +              <0x3f00 0xc0>,
-> > +              <0x2000 0x1000>;
-> > +        reg-names =3D "scc_regs", "scc_pram", "dpram";
-> > +        interrupts =3D <27>;
-> > +        interrupt-parent =3D <&CPM_PIC>;
-> > +
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +        #chan-cells =3D <1>;
-> > +
-> > +        fsl,tsa-serial =3D <&tsa FSL_CPM_TSA_SCC4>;
-> > +
-> > +        channel@16 {
-> > +            /* Ch16 : First 4 even TS from all routed from TSA */
-> > +            reg =3D <16>;
-> > +            fsl,mode =3D "transparent";
-> > +            fsl,reverse-data;
-> > +            fsl,tx-ts-mask =3D <0x00000000 0x000000aa>;
-> > +            fsl,rx-ts-mask =3D <0x00000000 0x000000aa>;
-> > +        };
-> > +
-> > +        channel@17 {
-> > +            /* Ch17 : First 4 odd TS from all routed from TSA */
-> > +            reg =3D <17>;
-> > +            fsl,mode =3D "transparent";
-> > +            fsl,reverse-data;
-> > +            fsl,tx-ts-mask =3D <0x00000000 0x00000055>;
-> > +            fsl,rx-ts-mask =3D <0x00000000 0x00000055>;
-> > +        };
-> > +
-> > +        channel@19 {
-> > +            /* Ch19 : 8 TS (TS 8..15) from all routed from TSA */
-> > +            reg =3D <19>;
-> > +            fsl,mode =3D "hdlc";
-> > +            fsl,tx-ts-mask =3D <0x00000000 0x0000ff00>;
-> > +            fsl,rx-ts-mask =3D <0x00000000 0x0000ff00>;
-> > +        };
-> > +    };
-> > --=20
-> > 2.39.0
-> >  =20
-
-Thanks for the review,
-Herv=C3=A9
-
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSb2IgSGVycmluZyA8cm9iaEBr
+ZXJuZWwub3JnPg0KPiBTZW50OiAyMDIzxOox1MIzMcjVIDY6MzENCj4gVG86IEhvbmd4aW5nIFpo
+dSA8aG9uZ3hpbmcuemh1QG54cC5jb20+DQo+IENjOiBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxp
+bmFyby5vcmc7IGwuc3RhY2hAcGVuZ3V0cm9uaXguZGU7DQo+IHNoYXduZ3VvQGtlcm5lbC5vcmc7
+IGxvcmVuem8ucGllcmFsaXNpQGFybS5jb207IFBlbmcgRmFuDQo+IDxwZW5nLmZhbkBueHAuY29t
+PjsgbWFyZXhAZGVueC5kZTsgTWFyY2VsIFppc3dpbGVyDQo+IDxtYXJjZWwuemlzd2lsZXJAdG9y
+YWRleC5jb20+OyB0aGFydmV5QGdhdGV3b3Jrcy5jb207IEZyYW5rIExpDQo+IDxmcmFuay5saUBu
+eHAuY29tPjsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+IGxpbnV4LWFybS1rZXJuZWxA
+bGlzdHMuaW5mcmFkZWFkLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsNCj4ga2Vy
+bmVsQHBlbmd1dHJvbml4LmRlOyBkbC1saW51eC1pbXggPGxpbnV4LWlteEBueHAuY29tPg0KPiBT
+dWJqZWN0OiBSZTogW1BBVENIIHY3IDEvNV0gZHQtYmluZGluZ3M6IGlteDZxLXBjaWU6IFByZXBh
+cmUgdG8gc2VwYXJhdGUgdGhlDQo+IEVuZHBvaW50IGJpbmRpbmcgZG9jdW1lbnQNCj4gDQo+IE9u
+IE1vbiwgSmFuIDMwLCAyMDIzIGF0IDExOjMyOjE1QU0gKzA4MDAsIFJpY2hhcmQgWmh1IHdyb3Rl
+Og0KPiA+IFByZXBhcmUgdG8gY3JlYXRlIG9uZSBzZXBhcmF0ZSBEVC1zY2hlbWEgZm9yIGkuTVgg
+UENJZSBFbmRwb2ludA0KPiA+IGNvbnRyb2xsZXJzIGluIGFub3RoZXIgY29tbWl0Lg0KPiANCj4g
+VGhpcyBhbmQgcGF0Y2ggMiBzaG91bGQgYmUgMSBjb21taXQuIEl0IGlzIDEgbG9naWNhbCBjaGFu
+Z2UuIFdpdGggb25seSB0aGlzDQo+IGNvbW1pdCwgZnNsLGlteDhtKi1wY2llLWVwIGJlY29tZXMg
+dW5kb2N1bWVudGVkLg0KDQpPa2F5LCB3b3VsZCBtZXJnZSB0aGVzZSB0d28gY29tbWl0cyBpbnRv
+IG9uZS4NClRoYW5rcy4NCg0KQmVzdCBSZWdhcmRzDQpSaWNoYXJkIFpodQ0KPiANCj4gUm9iDQo=
