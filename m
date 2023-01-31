@@ -2,104 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C374683318
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 17:57:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F0568332E
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 17:59:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231599AbjAaQ5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 11:57:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33136 "EHLO
+        id S231760AbjAaQ7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 11:59:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231573AbjAaQ5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 11:57:21 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8FB31C311
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 08:57:19 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id d14so14824308wrr.9
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 08:57:19 -0800 (PST)
+        with ESMTP id S229504AbjAaQ7t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 11:59:49 -0500
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E6B5618D;
+        Tue, 31 Jan 2023 08:59:37 -0800 (PST)
+Received: by mail-ot1-x330.google.com with SMTP id 14-20020a9d010e000000b0068bdddfa263so1021609otu.2;
+        Tue, 31 Jan 2023 08:59:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JRIRICEmrabbDC+z0qM+J82wcNj3dmfUYUXd7QSBt1w=;
-        b=dy5A3IWNvdGGhkzZ4Hj/Cfw51B8qkHkcMUzU3/PlUeCci5HdMHsIC1yFgUpWlENTQT
-         O5t+pLbzM/gY0Pf8v407BzziOP0eiV1/aW2wxhteWADN1oGKiE2NO3C2kX8YnzB6NjVJ
-         AC7rtWjy01xrw/iCU9vOwsKQI9/ESEkwBSUNluB/+Xzx7mrz0dUNYCYulr+jvHz1QpFd
-         GW+Hle5B6VXl1UVMpjO/uo96iZLVLXNlcgvRhpJjWU0qARNkD5W/+gagohEizqgCGJ0K
-         O5CGmYfNn8mnZPjJIhH1Iy0lMQY9Ky2PEspg4/DhK9FN6eL3gSj7dH6tsikCwdyGDQbe
-         DLyA==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g6EHWBopwmyoZ8t02iSgYiy3q8eIFt2evLGFJVDXB0U=;
+        b=XdOQTY1YGQ8QfZ+CnRoCAPxSvGoIvfQESz//mQqz0hVMANcC7XjKrdVFCXdhrz2BNF
+         eECF5ptcXCs/i9+J55ZVQE+LXmb6k1DYAYWvPoql62pd9ZARXm4sROnlSQFWv2ngtQnP
+         MNsqFe4QUStT3sMuPqaEAUr7LbWexU7K544m6MjqHI+dlfxfhteuCDcV0g0wYlFGUcI+
+         1wtvxICsXzPJQhT4WK4Sf0OTkps/nMKl2g3rF3AIn7pq+PUYm6kuRiNVZ0LBDO/SgBdX
+         UaCRjDbLNS0JXSYhSyLGbXMQGjheWNaf7of6KQq9MmXVWXcVsOylhFiOTZ1b6m7IJZXe
+         cMOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JRIRICEmrabbDC+z0qM+J82wcNj3dmfUYUXd7QSBt1w=;
-        b=uxCVUmcNVTT57HQ11BUvoR+EBB2d0iXf3ubf1Aw8OY4qks192l0h2vpBXJofcsk+ua
-         1clNWp/WjJbhRGMlxsjzkupMno2d1K7PmiWbZYA8PTLvvJghlebSGEfZsI+8qWzGZWqQ
-         jiS/m3v14XR6aToxXIOr2GIERMeC2LgdOj6pDap1p2M8N7QcDv2k0Rekkyv6tqi/hR59
-         3Kz5CFZ85i+w2frG5TeeBDx26BlRU5hWn6WfRj2UFvNiBqgMWBQz9Jc/lAy9/7RLP2RN
-         nJPBaLICfgm5XbIIH+FlVUsolt6kTyP2CcpsLPXVsg2mVDL+5SheEwNuq4Qbc0MZuwFc
-         R77A==
-X-Gm-Message-State: AO0yUKXcpODU1Lde1hoKlw4E0G1GEZwTk9bH22HvUl1bT9luR4M2rRx5
-        ZusgRvhB+7/fNhRHCIsIFkxgwg==
-X-Google-Smtp-Source: AK7set+3+ztKUDCKlgPVjR+GgF5ntUTYGyYRvo//VfdzWE0w1Fddd6HXGe9FrQc6VumDHMX9cCqrwQ==
-X-Received: by 2002:a5d:62cb:0:b0:2bf:bdbd:25c0 with SMTP id o11-20020a5d62cb000000b002bfbdbd25c0mr18271625wrv.15.1675184238576;
-        Tue, 31 Jan 2023 08:57:18 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i6-20020adff306000000b002425be3c9e2sm15364628wro.60.2023.01.31.08.57.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 08:57:18 -0800 (PST)
-Message-ID: <a1d2ac4c-0763-5c92-be21-22820c376438@linaro.org>
-Date:   Tue, 31 Jan 2023 17:57:16 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] dt-bindings: mmc: Add cap-aggressive-pm property
-Content-Language: en-US
-To:     Hermes Zhang <chenhuiz@axis.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=g6EHWBopwmyoZ8t02iSgYiy3q8eIFt2evLGFJVDXB0U=;
+        b=4pQiAQe6rSCyxkS26jPEdi/csCEIw10qgqkYRn/rGaJkJGACU9+CpogYgKvuRihMV/
+         9EZHyJjUMjqBeswz9ZHoGRJgDHNPU6maepSdaLdl26Ik/SPxDNfFKXO0k4F+tcPyO774
+         YNDIWFykLEC2+W3zq2hq3ncSRBPYvWcXQu672FZ5WQFx2F+1ay6x7AOyvxApdqlK1tRZ
+         LGVxNpX5BC98BnHCucow59ptjoCLA5BK619vZ16Sk26x2aEiTJJWjKlUbpL+XAhuqsun
+         W//D5xgQXZ1/67c0DGsMsYgiR/6WjYkNWuzJsJbSDgsilxIvlDg1Z1Pub0FnGiiO2Quw
+         4VNg==
+X-Gm-Message-State: AO0yUKVxOu36OLAKEe60eTtdknLDTeA3yc4WpDnnWHMfI3zwEyx9SItp
+        MztmnPEO2Fcmmyn1i8hFo8Purn6t/oE=
+X-Google-Smtp-Source: AK7set9rvFfW+9ZAMZPfXChr+dNJZg99s509uTrhWOefwXgAPeCAYvt7V72eSRhgWGoWDf9frNszzg==
+X-Received: by 2002:a05:6830:4491:b0:68b:b3a2:a039 with SMTP id r17-20020a056830449100b0068bb3a2a039mr8155223otv.6.1675184376985;
+        Tue, 31 Jan 2023 08:59:36 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id e8-20020a9d5608000000b0066b9a6bf3bcsm6775819oti.12.2023.01.31.08.59.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Jan 2023 08:59:36 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 31 Jan 2023 08:59:35 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     kernel@axis.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230129023630.830764-1-chenhuiz@axis.com>
- <b43f26c9-f76c-c898-aadc-ce3ee7b7823d@linaro.org>
- <b125f25d-94c7-dd5b-28d3-3948c36ef4e0@axis.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b125f25d-94c7-dd5b-28d3-3948c36ef4e0@axis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: watchdog: allow "timer" as node name
+Message-ID: <20230131165935.GA3598170@roeck-us.net>
+References: <20221212174933.208900-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221212174933.208900-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/01/2023 07:54, Hermes Zhang wrote:
-> On 2023/1/29 18:58, Krzysztof Kozlowski wrote:
->> On 29/01/2023 03:36, Hermes Zhang wrote:
->>> This commit add a new property: cap-aggressive-pm to enable the
->> Do not use "This commit/patch".
->> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+On Mon, Dec 12, 2022 at 06:49:33PM +0100, Krzysztof Kozlowski wrote:
+> On some SoCs the watchdog device is actually mixed with timer, e.g.
+> the qcom,msm-timer on older Qualcomm SoCs where this is actually one
+> hardware block responsible for both system timer and watchdog.
 > 
-> Done
+> Allow calling such device nodes as "timer".
 > 
->>> MMC_CAP_AGGRESSIVE_PM feature for (e)MMC/SD power saving.
->> Why this is a property suitable for DT? IOW, why this isn't enabled always?
-> 
-> This property will benfit for the power consumption, but it also may 
-> degradation in performance as it will prevent the
-> 
-> the card from executing internal house-keeping operations in idle mode. 
-> So it's better to config it from DT.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Why? DT is not for policy. How you described it, this is policy or
-system tuning choice thus the job for Linux (OS), not for DT. So I will
-repeat - why this property fits the purpose of DT (describe the hardware).
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-Best regards,
-Krzysztof
-
+> ---
+> 
+> See also:
+> https://lore.kernel.org/linux-arm-msm/20221212163532.142533-1-krzysztof.kozlowski@linaro.org/T/#t
+> 
+> which causes warnings:
+> 
+> qcom-msm8960-cdp.dtb: timer@200a000: $nodename:0: 'timer@200a000' does not match '^watchdog(@.*|-[0-9a-f])?$'
+>   From schema: Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> ---
+>  Documentation/devicetree/bindings/watchdog/watchdog.yaml | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/watchdog.yaml b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
+> index e3dfb02f0ca5..b1daefec86af 100644
+> --- a/Documentation/devicetree/bindings/watchdog/watchdog.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
+> @@ -14,9 +14,14 @@ description: |
+>    This document describes generic bindings which can be used to
+>    describe watchdog devices in a device tree.
+>  
+> +select:
+> +  properties:
+> +    $nodename:
+> +      pattern: "^watchdog(@.*|-[0-9a-f])?$"
+> +
+>  properties:
+>    $nodename:
+> -    pattern: "^watchdog(@.*|-[0-9a-f])?$"
+> +    pattern: "^(timer|watchdog)(@.*|-[0-9a-f])?$"
+>  
+>    timeout-sec:
+>      description:
