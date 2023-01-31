@@ -2,89 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C601C682F4F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 15:32:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36FEA682F6B
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 15:37:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbjAaOcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 09:32:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34152 "EHLO
+        id S231476AbjAaOhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 09:37:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231614AbjAaOcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 09:32:46 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E0B4390E
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 06:32:42 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231460AbjAaOha (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 09:37:30 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E3C8136;
+        Tue, 31 Jan 2023 06:37:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1675175848; x=1706711848;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=0QgTIW/8nGL0dj03k0ypVgrXG9s41tMeuOVlaBrfweE=;
+  b=fYTboIWJRFUcYQRcPBwOyR5UUh9RkTVFEhz+mkUJxMAwwr+X8LdfQBw9
+   2kEX4iPFAMOb/zXnMjR2ofAqIMUTAkRz+W4TM4oQOnNLqSg7Z+Ml8DmsD
+   dGA53CkaT7Y236rcSXQhCHoX+1pjwOMsGNf9aItU362YUReiDbdg5tp4t
+   8u867OpODj7V3JbZEEjV5jrfDamrfXjC9TRVDRwPvRNutb9+uDjJlNWuz
+   RLh9N3Qv2pnOUO1wz6bsga8aHM6T6qh51nI5bwqpzQapbnCBAjXQZ0gzD
+   HvsEUpSaPpgBL1giJ+oTVDRI/wKLkPEnmqQMdyke4wlHMJ4p2vNf8GwZe
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,261,1669071600"; 
+   d="scan'208";a="28775433"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 31 Jan 2023 15:37:26 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 31 Jan 2023 15:37:26 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 31 Jan 2023 15:37:26 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1675175846; x=1706711846;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=0QgTIW/8nGL0dj03k0ypVgrXG9s41tMeuOVlaBrfweE=;
+  b=ORmRCo6O8RupqMat9Reeql7KrGtIjIJHKYS+oFHQ4z93SDOcikA/evMn
+   vF9RmBe1HWpM8b+Sp8UMIOx2piuXjpsPKCVN+UFov57RhvktqF8O2UA9H
+   i5AFFh4oXdDNUsx0sRXscX679LXpUsrZqM5ilh10rIINB30lY4KhqPs4D
+   fj/rMf5c9K3+bZF7RzMuvKPUHvqD8luR35E2dJyWBF2qnKmWykkekeAm7
+   iyBeIqHR3/FAjSx0R1nR/kZyCKRaOSLjtvb1Qw+kWGzWHE737KDCqFlRw
+   CO7T0/AffMpv71xHYz1sUmReMt3qQRdpFDzjI4qBVg+v4tNKeQmI1z1ck
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,261,1669071600"; 
+   d="scan'208";a="28775432"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 31 Jan 2023 15:37:26 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9089961536
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 14:32:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8329C433EF;
-        Tue, 31 Jan 2023 14:32:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675175561;
-        bh=hGEYxozapv2lFwUHx3F3CpHxfGxtk761b6hTvAin2Jw=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=h+2dlPRx5BQMyuwm+6z+ZRBuys1PqrD5uuuiPK7S+4djDefxBsLTXrYP4OIri8PLg
-         nMDrDe+lFKqjoUtF0aR/Xe9N9ibd0K+gPMA1Q/62vzOMyaZcG6h042oC0vkYQ8GFjC
-         JmEhmOYbhWEfYOIHDEWv5leUr5dPefJ6BjOrVeRM+L2DoeZMNmf7/GWFlsQ9TfZBK1
-         eCLZ/kSR6hC5oeFSWVwlOYvdRiLzVsU+pRnm06Hj/Vbl+DpQTR8ibfzKZ6x48Kdy+p
-         rhgjDsrRn4m/3t7lU3wg0F1lt347Wjqa7thN//JnZiyJuWvXN8By+Kh0lfI4K6kzAY
-         V9DP/+X1Z/GpQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3DE67280056;
+        Tue, 31 Jan 2023 15:37:26 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kiseok Jo <kiseok.jo@irondevice.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-In-Reply-To: <20230131054526.14653-1-kiseok.jo@irondevice.com>
-References: <20230131054526.14653-1-kiseok.jo@irondevice.com>
-Subject: Re: [PATCH] MAINTAINERS: add IRON DEVICE AUDIO CODEC DRIVERS
-Message-Id: <167517555954.691025.17847273688504869741.b4-ty@kernel.org>
-Date:   Tue, 31 Jan 2023 14:32:39 +0000
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/1] dt-bindings: pwm: imx: add i.MX8QXP compatible
+Date:   Tue, 31 Jan 2023 15:37:20 +0100
+Message-Id: <20230131143720.3250427-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 Jan 2023 05:45:27 +0000, Kiseok Jo wrote:
-> Add Kiseok Jo as maintainer for Iron Device audio codec drivers.
-> 
-> 
+i.MX8QXP compatible is missing in the list, add it.
 
-Applied to
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ Documentation/devicetree/bindings/pwm/imx-pwm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/1] MAINTAINERS: add IRON DEVICE AUDIO CODEC DRIVERS
-      commit: 4a639a757128debbede924736f255680740a4364
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+diff --git a/Documentation/devicetree/bindings/pwm/imx-pwm.yaml b/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+index b3da4e629341..9270fd40b95b 100644
+--- a/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+@@ -43,6 +43,7 @@ properties:
+               - fsl,imx8mn-pwm
+               - fsl,imx8mp-pwm
+               - fsl,imx8mq-pwm
++              - fsl,imx8qxp-pwm
+           - const: fsl,imx27-pwm
+ 
+   reg:
+-- 
+2.34.1
 
