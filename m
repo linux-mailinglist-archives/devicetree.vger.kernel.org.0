@@ -2,195 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C6BA6835F5
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 20:01:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8041B683600
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 20:05:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232054AbjAaTBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 14:01:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51018 "EHLO
+        id S232033AbjAaTFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 14:05:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232007AbjAaTBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 14:01:45 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FBE6582AE
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:01:44 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso11405281wmq.5
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:01:43 -0800 (PST)
+        with ESMTP id S231972AbjAaTFQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 14:05:16 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C89B45357E
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:05:14 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso11414533wmq.5
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:05:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0f5n/Bb4ZQ3NDjDGqKckIUS2qUmXXS6bLtvGcaKg4v8=;
-        b=cdxfXqElRety6rvzIlwBfnO/C4WBsJWfZ8jeoyrmxufbaHUFP6RWEQ2bt8peHS2CHX
-         V9yTNKUbAe98kiY413wXqlUwG/VEsW2YgmWauruCyeEo+k8zCoZPL2o9Po8Nqorxq1sk
-         XN1prF/g5v1Akd25JmZdQplSN5X3HRvfjRJS6tRTr1UrhXZTh0PnAk+xF/l9bCGyYsQB
-         k6+396jkxHnR2D5Ytphl4Wjqap8C0hlsMfh/qdlJ1JeTARhpxq8c9nPzNIvTImjxpT+C
-         GMRwixiuq6GeF0ElW1rqSCwjokJMVWJ6qlQC5MYHS4kR+T3ipjsCQ6wLJAnNTAUCuFaK
-         aPrw==
+        bh=YQzlHN8C5ytWD4LQULKZ+tnaW8K03J/011gZ4O7NdVs=;
+        b=vCbZXJ1rfzjUa5dN6FIKKkiKpeHVetK+tl7KKoqgwlPzhIQ+UooJsZ52A07VqUzGhI
+         PJ/6mVq88orxv5VJp5e5tzGnvj9cFS60KWJ18od5UR7/vEeUBXdhv0vyhLqaQZRLXCMQ
+         uD47GtMt8lSE5DwKzPOC7UlS6DFuVg4W8xpcaLIYCa2/Gi3T5pc0mzoBfgmioYHbqmuL
+         u1Mhz/7QY8cdU7eqyRmLLuvbKNU+hisKc/y/0Bum6ax/mXOQfnxLrtO7C5L0oS/gqeqs
+         0xS9f4N9A/3ZJTazAFLOK1X3o9xxTp/ag8mf8SnlzqJewKo0rBk6KQOqzJCSqfo/+Gep
+         4tow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0f5n/Bb4ZQ3NDjDGqKckIUS2qUmXXS6bLtvGcaKg4v8=;
-        b=z5THj0qV1WXO1JtRsM6QvwjB+pTWwvcQOQAqe/Rpx/u6IeLcOKrwl/NEIKf/oOMPCJ
-         ufE16EIoj5dwgKbCsl4VumAaGhZxTqPMv3kyinvuVgk3BTsB6zSrWM5AVYA8TduVdYbq
-         IGvhGa5Ps3REGu2akEOQn66WoK71MiS2yWvWOVz1u0j7xQJs55P+i9AdADoLdSXOVR/P
-         fnkXxU8hQZqvB4frgkxWGVamytKWUHdSQO7TCi3S4TESlGUCitocXqUZIXXqrDPM0YNK
-         WBCaJFcnpK5vXcGdpykuM5XFSga9gKff55/xnOHy5o6XuMDq+vxqSvSEiuUqI+vm9gUq
-         QNew==
-X-Gm-Message-State: AO0yUKVcJ0G19w08ZkKlrsTGQwpQaQC2QwOs0L5SAW0Q4huDG5ySSlIq
-        aeTQqH9Gl0fDuKmee5yjhOnu4w==
-X-Google-Smtp-Source: AK7set9a7FuW0Dzh6tzfAaUyOZas2h1eDn7WsexBmWEpoMAWXmh8wHpmKr7+Weg1cVXbQ8uHlMwQMg==
-X-Received: by 2002:a05:600c:5386:b0:3cf:9844:7b11 with SMTP id hg6-20020a05600c538600b003cf98447b11mr342875wmb.23.1675191702581;
-        Tue, 31 Jan 2023 11:01:42 -0800 (PST)
+        bh=YQzlHN8C5ytWD4LQULKZ+tnaW8K03J/011gZ4O7NdVs=;
+        b=vFpBNArdhR6eAZdLXSkWvLFsJ74NlP0PgNsa8Wt59kCuLnYDFGNdnyC0lGCTcMjTND
+         9J73nyu2/LPmFlMtDnqAGL+EvSR5dc1hLB+1mhn0zqDzg7Ggt4vtuFg4EIoE23SqJOMd
+         dc5zddvaY+fDqNyxmCMe6YkjYhkQctgf5V7UiN8w0yqHC0hIA9wTmkaoABqfd2PEqmsd
+         82HkM5hF66Mo+ZTqd1ZJkNuJWtxr5XedbbnPaVz1BwO9VEUoKlLw5753uZrdBb00K2Zs
+         anzQFG5HqmJwF8gOgHKQ6amhxMt6sJFBF8KANvT1VxbDqjva20+Kt0U1tyIlIb/5KdC7
+         qWWA==
+X-Gm-Message-State: AO0yUKUS9eeUNV9HOMT/tUd484CO+rAFeb76BeNoo1f/gapMdx/CJVw6
+        wRUpRwg1N8G6UtTdIIVphqS9CA==
+X-Google-Smtp-Source: AK7set+5BxSdzoPJgFTWK/Vh/UjrLFnT0l09EhoYMylWE8EAIswQxOqOvmFqGb/av2JpjnJH/tykmQ==
+X-Received: by 2002:a1c:7210:0:b0:3dc:46e8:982 with SMTP id n16-20020a1c7210000000b003dc46e80982mr13857728wmc.19.1675191913320;
+        Tue, 31 Jan 2023 11:05:13 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n15-20020a5d598f000000b002bdff778d87sm16939882wri.34.2023.01.31.11.01.40
+        by smtp.gmail.com with ESMTPSA id p9-20020a05600c358900b003dc1f466a25sm21001542wmq.25.2023.01.31.11.04.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 11:01:41 -0800 (PST)
-Message-ID: <c515aae3-88e4-948c-a856-7b45dd2caed9@linaro.org>
-Date:   Tue, 31 Jan 2023 20:01:39 +0100
+        Tue, 31 Jan 2023 11:05:12 -0800 (PST)
+Message-ID: <2a237ca0-15cd-b86c-7d9b-32014370d9dd@linaro.org>
+Date:   Tue, 31 Jan 2023 20:04:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: thinkpad-x13s: Add bluetooth
+Subject: Re: [PATCH v2 2/3] dt-bindings: net: bluetooth: Add NXP bluetooth
+ support
 Content-Language: en-US
-To:     Steev Klimaszewski <steev@kali.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>
-References: <20230131043816.4525-1-steev@kali.org>
- <20230131043816.4525-5-steev@kali.org>
+To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        alok.a.tiwari@oracle.com, hdanton@sina.com,
+        ilpo.jarvinen@linux.intel.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
+        rohit.fule@nxp.com, sherry.sun@nxp.com
+References: <20230130180504.2029440-1-neeraj.sanjaykale@nxp.com>
+ <20230130180504.2029440-3-neeraj.sanjaykale@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230131043816.4525-5-steev@kali.org>
+In-Reply-To: <20230130180504.2029440-3-neeraj.sanjaykale@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/01/2023 05:38, Steev Klimaszewski wrote:
-> Signed-off-by: Steev Klimaszewski <steev@kali.org>
-> ---
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
+On 30/01/2023 19:05, Neeraj Sanjay Kale wrote:
+> Add binding document for generic and legacy NXP bluetooth
+> chipsets.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index f936b020a71d..951438ac5946 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -24,6 +24,8 @@ / {
->  	aliases {
->  		i2c4 = &i2c4;
->  		i2c21 = &i2c21;
-> +		serial0 = &uart17;
-> +		serial1 = &uart2;
->  	};
->  
->  	wcd938x: audio-codec {
-> @@ -712,6 +714,32 @@ &qup0 {
->  	status = "okay";
->  };
->  
-> +&uart2 {
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart2_state>;
-> +
-> +	bluetooth {
-> +		compatible = "qcom,wcn6855-bt";
-> +
-> +/*
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> ---
+> v2: Resolved dt_binding_check errors. (Rob Herring)
+> v2: Modified description, added specific compatibility devices,
+> corrected indentations. (Krzysztof Kozlowski)
+> ---
+>  .../bindings/net/bluetooth/nxp-bluetooth.yaml | 40 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
+> new file mode 100644
+> index 000000000000..9c8a25396b49
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
 
-Why dead code should be in the kernel?
 
-> +		vddio-supply = <&vreg_s4a_1p8>;
-> +		vddxo-supply = <&vreg_l7a_1p8>;
-> +		vddrf-supply = <&vreg_l17a_1p3>;
-> +		vddch0-supply = <&vreg_l25a_3p3>;
-> +		vddch1-supply = <&vreg_l23a_3p3>;
-> +*/
-> +		max-speed = <3200000>;
-> +
-> +		enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-> +		swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&bt_en>;
-> +	};
-> +};
-> +
->  &qup1 {
->  	status = "okay";
->  };
-> @@ -720,6 +748,12 @@ &qup2 {
->  	status = "okay";
->  };
->  
-> +&uart17 {
-> +	compatible = "qcom,geni-debug-uart";
-> +
-> +	status = "okay";
-> +};
-> +
->  &remoteproc_adsp {
->  	firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcadsp8280.mbn";
->  
-> @@ -980,6 +1014,19 @@ hastings_reg_en: hastings-reg-en-state {
->  &tlmm {
->  	gpio-reserved-ranges = <70 2>, <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
->  
-> +	bt_en: bt-en-state {
-> +		hstp-sw-ctrl {
+Filename based on family of devices or compatible (assuming it is
+correct): nxp,w8987-bt.yaml
 
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
+Hyphen is not a correct separator between vendor prefix and device name.
 
-> +			pins = "gpio132";
-> +			function = "gpio";
-> +		};
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/bluetooth/nxp-bluetooth.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +		hstp-bt-en {
-> +			pins = "gpio133";
-> +			function = "gpio";
-> +			drive-strength = <16>;
-> +		};
-> +	};
+> +title: NXP Bluetooth chips
 > +
->  	edp_reg_en: edp-reg-en-state {
->  		pins = "gpio25";
->  		function = "gpio";
-> @@ -1001,6 +1048,27 @@ i2c4_default: i2c4-default-state {
->  		bias-disable;
->  	};
->  
-> +	uart2_state: uart2-state {
-> +		cts {
+> +description:
+> +  This binding describes UART-attached NXP bluetooth chips.
 
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
+
+This is description of binding. So in description of binding for NXP
+bluetooth chips you say that it describes NXP bluetooth chips. I don't
+think it's useful. Describe the hardware instead.
+
+> +
+> +maintainers:
+> +  - Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,w8987-bt
+> +      - nxp,w8997-bt
+> +      - nxp,w9098-bt
+> +      - nxp,iw416-bt
+> +      - nxp,iw612-bt
+
+Why "bt" suffix? Are these chips coming with other functions?
 
 
 Best regards,
