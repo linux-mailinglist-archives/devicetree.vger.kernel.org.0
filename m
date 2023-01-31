@@ -2,71 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2951682D21
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:00:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF112682D26
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:01:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231460AbjAaNAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 08:00:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35288 "EHLO
+        id S229973AbjAaNBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 08:01:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231431AbjAaNAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:00:07 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D8854C0D1;
-        Tue, 31 Jan 2023 04:59:53 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id p26so30123595ejx.13;
-        Tue, 31 Jan 2023 04:59:53 -0800 (PST)
+        with ESMTP id S229624AbjAaNBG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:01:06 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 190134C0EF;
+        Tue, 31 Jan 2023 05:01:05 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so12394735wma.1;
+        Tue, 31 Jan 2023 05:01:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tmFGl6w1T2X4Iy8+4eFf49j5NvCgFbPb0EL0ASIAaVI=;
-        b=eWXVzLfbpi3n2E+VS5aBQxpuKaAQTApd9ALBvi4nr3xCIZcR2372Q+JwCNDnh8SJ3F
-         FtiSeLIvLjfs55hR5TQ2QKb/lnp55d3hs73tb14pMvvWWJzgNZOIQfLJF8m0l+HQNglb
-         OWamgw70Ge/2LtyVYYjNGUb5CbnBsPzyLAcNDX4WSKckRQ36F4NOCLRJUxs3KpXkZ88g
-         QeVy1RS7kpdxNKzOcHZX00s//yteeMaKcSBXqQSveGB7mtqCEvxqd6Ai+CbvHFz4rRAj
-         SlkrOVQpAf8kL8EV8676ZX+jWcFiQoa73DoCueWYXzTTKNGatxGvRfzCs89y+rkFtCnq
-         9zyA==
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VcbQEiUfrn1ZLUYtm1to7N6PATT0Q4d4Al24IcBS9+8=;
+        b=gxbalLRF7g/piLUDzum6ebHhSbBaltk6UMjAP7SzNURpivtTQRNbXwLEF3xjaouFBn
+         jtFHwMyOW0WxQK0V1w2+IWl0yv85YcEJXQf6uPgkCbbSV6zGUMvwpM8jO54q0LJmsfzE
+         Sn+g6BOpSl2VHk6D7eM0XrTl34FLD9+JxoVqEcjU4QX8LfQlYpCbtWtzySRmxaTAeiN2
+         Yho9h0l1V3OoxmRXvtL6RwynC9iju0zES5zGPs6pd2AaktDox1ymMdOjA/tRnwTAIp5L
+         +woUlu2SxAF3KNorJCpALEkhhOF+HRlFpsYDcDjt9frz5AKSF7B80R8n6Bg6o4yi4UAd
+         qz3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tmFGl6w1T2X4Iy8+4eFf49j5NvCgFbPb0EL0ASIAaVI=;
-        b=xHL/0p8PnH762Luc2NYQYLKqRG+Vj4UcmGvWTDr1xCBbVgieNAcni6+7j8sR/Mo+ey
-         44sgkEjFdpSBhc57KFzmqL6TEIZhxvn70RDBiIW9bzRd5PpY27flBsFnMbpbNtfMLrpH
-         N+EVvBkgf8HCbkF3hq6P5E8G9RQvEK3IhcNXL+ke/jNYUykFGexTgrmJkyGr4to+UfZO
-         en3EUBVLM0d4FsLqJxnog5r9nK/EvS2DliWufHAm2FC1k2kdgKrOskg9UFGe/zRsD4sr
-         gKT2fcFkMyV+FppOtbmUanXrKyIdv2v6xTMBuQ5EIP/Yc5heZQYSsaaS/IGCHdqT/6aE
-         r4kA==
-X-Gm-Message-State: AO0yUKXY82r0AD68cwOMfj3mZS8K4/+PVdB0oNKf0SXwYTzI/eqhxQPg
-        HMHY11s26OMq71hUKleDVdV9Ugg6ok4AK5Ub77+1lcXXr027jAUm
-X-Google-Smtp-Source: AK7set970BlocwV52n44djBoL/Js4qvYthDu+af0gSiKo5LxU6fJE+DM2hEBIFVxOCFGQjMs5MfdOHs1/I3SDYkdMcc=
-X-Received: by 2002:a17:906:4950:b0:88a:b6ca:7d3a with SMTP id
- f16-20020a170906495000b0088ab6ca7d3amr1315292ejt.1.1675169991517; Tue, 31 Jan
- 2023 04:59:51 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1673227292.git.zhoubinbin@loongson.cn> <Y88VIXerF5Wk/9kj@mail.local>
-In-Reply-To: <Y88VIXerF5Wk/9kj@mail.local>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Tue, 31 Jan 2023 20:59:37 +0800
-Message-ID: <CAMpQs4+8m0r98eGMHO7ktS2_AuNCA_u3Yk1q06i99TdbVZJ_Cg@mail.gmail.com>
-Subject: Re: [PATCH V2 0/7] rtc: ls2x: Add support for the Loongson-2K/LS7A RTC
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, linux-rtc@vger.kernel.org,
-        linux-mips@vger.kernel.org, loongarch@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>,
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VcbQEiUfrn1ZLUYtm1to7N6PATT0Q4d4Al24IcBS9+8=;
+        b=g3ycmcJmGxADuAkDuyk85H444mLRexcacPILOnZo8ThX8ymIvqV535YvN0K3G/wTQD
+         DqhwCN2JXh/s66oK7LkyrOq4VTo803Myx4HAJ2Vahc6Xw5hARylvMuJ69wNhc9eQvhxw
+         duu3daoHEOuBYcOP5fqU7uGF+vmgITpgN1u3qnIqByhSOnuTcOw5fpfX7FADYY+tmZal
+         Qjirwv5dhD8Jo6BIulE6lNJ0VE1JHvbA/zBlPWEbvt2KL2e0CCTQ/tqHiJxvTNe3sVFC
+         AXOuaHP7I9nUKgqp+m0ak8IPNnm3pOLxbzpQOmUkNVdGawxA/U10wWXcfkXUGI5FZ+Sn
+         0m3A==
+X-Gm-Message-State: AFqh2kozHCIpCbdhCY7jkuJRE4Qd55beZonWIOkd+qWskXu7Je4tOzD7
+        RYm4T5NhmM1TBmZYyoqpsv0=
+X-Google-Smtp-Source: AMrXdXuDDJd2SOnxH8EH5v5wZHtF9KUTDRi/lGRngFPYhNv4y5IUyuOEIXA9HCw05LZe4uX1KZugCA==
+X-Received: by 2002:a05:600c:a4e:b0:3db:14d0:65be with SMTP id c14-20020a05600c0a4e00b003db14d065bemr48389876wmq.34.1675170063488;
+        Tue, 31 Jan 2023 05:01:03 -0800 (PST)
+Received: from smtpclient.apple ([167.99.200.149])
+        by smtp.gmail.com with ESMTPSA id g8-20020adfe408000000b002bdda9856b5sm14901344wrm.50.2023.01.31.05.01.01
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 31 Jan 2023 05:01:02 -0800 (PST)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
+Subject: Re: [PATCH] media: rc: add keymap for Beelink Mini MXIII remote
+From:   Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <Y9kJfPqtd98wIQ6r@gofer.mess.org>
+Date:   Tue, 31 Jan 2023 17:00:59 +0400
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Qing Zhang <zhangqing@loongson.cn>,
-        Tiezhu Yang <yangtiezhu@loongson.cn>,
-        zhaoxiao <zhaoxiao@uniontech.com>, zhzhl555@gmail.com,
-        Kelvin Cheung <keguang.zhang@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        LKML <linux-kernel@vger.kernel.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <34CD7297-AC0A-404D-B90C-D00FA861A43E@gmail.com>
+References: <20230128034117.3983105-1-christianshewitt@gmail.com>
+ <6e953652-4a24-6f3c-74e7-07c25fa1c6c1@linaro.org>
+ <Y9YwbiJz9vOBejdL@gofer.mess.org> <20230130213020.GA3541260-robh@kernel.org>
+ <Y9kJfPqtd98wIQ6r@gofer.mess.org>
+To:     Sean Young <sean@mess.org>
+X-Mailer: Apple Mail (2.3696.120.41.1.1)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -77,100 +80,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kelvin:
 
-Excuse me.
-I am submitting the Loongson-2K/LS7A RTC driver and Alexandre would
-like me to merge the ls1x rtc driver in parallel.
-Unfortunately I found out that the loongson-1 does not yet support DT
-and would like to ask if you have any plans to support DT?
+> On 31 Jan 2023, at 4:28 pm, Sean Young <sean@mess.org> wrote:
+>=20
+> On Mon, Jan 30, 2023 at 03:30:20PM -0600, Rob Herring wrote:
+>> On Sun, Jan 29, 2023 at 08:38:06AM +0000, Sean Young wrote:
+>>> On Sat, Jan 28, 2023 at 11:11:32AM +0100, Krzysztof Kozlowski wrote:
+>>>> On 28/01/2023 04:41, Christian Hewitt wrote:
+>>>>> Add a keymap and bindings for the simple IR (NEC) remote used with
+>>>>> the Beelink Mini MXIII Android STB device.
+>>>>>=20
+>>>>> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+>>>>> ---
+>>>>> .../devicetree/bindings/media/rc.yaml         |  1 +
+>>>>> drivers/media/rc/keymaps/Makefile             |  1 +
+>>>>> drivers/media/rc/keymaps/rc-beelink-mxiii.c   | 54 =
++++++++++++++++++++
+>>>>> include/media/rc-map.h                        |  1 +
+>>>>> 4 files changed, 57 insertions(+)
+>>>>> create mode 100644 drivers/media/rc/keymaps/rc-beelink-mxiii.c
+>>>>>=20
+>>>>> diff --git a/Documentation/devicetree/bindings/media/rc.yaml =
+b/Documentation/devicetree/bindings/media/rc.yaml
+>>>>> index 266f1d5cae51..f390a5d2c82d 100644
+>>>>> --- a/Documentation/devicetree/bindings/media/rc.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/media/rc.yaml
+>>>>> @@ -39,6 +39,7 @@ properties:
+>>>>>       - rc-avertv-303
+>>>>>       - rc-azurewave-ad-tu700
+>>>>>       - rc-beelink-gs1
+>>>>> +      - rc-beelink-mxiii
+>>>>=20
+>>>> Bindings are separate patches. Didn't you get such feedback =
+already?
+>>>=20
+>>> The only change for new keymaps is an added entry to the rc-map-name =
+enum.
+>>> In the past, new keymaps have been accepted with that single line in =
+the
+>>> same commit.
+>>=20
+>> It's been a checkpatch.pl warning since 2018. The separation is so =
+that=20
+>> commit messages in the DT only repo[1] make sense.
+>=20
+> Ok, makes sense.=20
 
-I think this is the prerequisite for the merge.
+I will resend v2 series(s) with the bindings separated. Are there any =
+other
+issues to address?
 
-Regards.
-
-
-Binbin
-
-
-
-
-On Tue, Jan 24, 2023 at 7:24 AM Alexandre Belloni
-<alexandre.belloni@bootlin.com> wrote:
->
-> On 09/01/2023 09:35:10+0800, Binbin Zhou wrote:
-> > Hi all:
-> >
-> > The initial DT-base ls2x rtc driver was written by Wang Xuerui, He has
-> > released five versions of patchset before, and all related mail records
-> > are shown below if you are interested:
-> >
-> > https://lore.kernel.org/all/?q=ls2x-rtc
-> >
-> > In this series of patches, based on the code above, I have added the
-> > following support:
-> >
-> > 1. Add ACPI-related support, as Loongson-3A5000 + LS7A is now ACPI-base
-> >    by default under LoongArch architecture;
-> > 2. Add rtc alarm/walarm related functions.
-> >
-> > I have tested on Loongson-3A5000LA+LS7A1000/LS7A2000, Loongson-2K1000LA
-> > and Loongson-2K0500.
-> >
-> > BTW:
-> > There have been discussions about merging the rtc drivers of ls1x and
-> > ls2x, but the following reasons made the merger difficult to achieve:
-> >
-> > 1. ls1x does not support ACPI, for it is only on MIPS-based system;
->
-> This is not a good justification, you have to support both in your
-> driver anyway, as shown by your CONFIG_ACPI ifdefery.
->
-> > 2. ls1x does not support alarm function.
->
-> It is just a matter of clearing a single bit, this is not difficult at
-> all.
->
-> >
-> > Thanks.
-> >
-> > -------
-> > Changes since v1:
-> > 1. Rebased on top of latest loongarch-next;
-> > 2. Add interrupt descriptions to the ls2k and ls7a DTS files to avoid
-> > errors when the driver gets the IRQ number, Thanks to Qing Zhang for
-> > testing;
-> > 3. Remove some inexact CONFIG_ACPI.
-> >
-> > Binbin Zhou (4):
-> >   rtc: Add support for the Loongson-2K/LS7A RTC
-> >   LoongArch: Enable LS2X RTC in loongson3_defconfig
-> >   MIPS: Loongson64: DTS: Add RTC support to LS7A
-> >   MIPS: Loongson64: DTS: Add RTC support to Loongson-2K
-> >
-> > WANG Xuerui (3):
-> >   dt-bindings: rtc: Add Loongson LS2X RTC support
-> >   MIPS: Loongson: Enable LS2X RTC in loongson3_defconfig
-> >   MIPS: Loongson: Enable LS2X RTC in loongson2k_defconfig
-> >
-> >  .../devicetree/bindings/rtc/trivial-rtc.yaml  |   2 +
-> >  arch/loongarch/configs/loongson3_defconfig    |   1 +
-> >  .../boot/dts/loongson/loongson64-2k1000.dtsi  |   7 +
-> >  arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   7 +
-> >  arch/mips/configs/loongson2k_defconfig        |   1 +
-> >  arch/mips/configs/loongson3_defconfig         |   1 +
-> >  drivers/rtc/Kconfig                           |  11 +
-> >  drivers/rtc/Makefile                          |   1 +
-> >  drivers/rtc/rtc-ls2x.c                        | 379 ++++++++++++++++++
-> >  9 files changed, 410 insertions(+)
-> >  create mode 100644 drivers/rtc/rtc-ls2x.c
-> >
-> > --
-> > 2.31.1
-> >
->
-> --
-> Alexandre Belloni, co-owner and COO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
->
+Christian=
