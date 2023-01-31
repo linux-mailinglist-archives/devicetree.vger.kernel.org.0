@@ -2,129 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9100F682AC8
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 11:46:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F142682AD0
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 11:48:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230516AbjAaKqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 05:46:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36510 "EHLO
+        id S229898AbjAaKsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 05:48:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231561AbjAaKqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 05:46:44 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF1718B2D
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 02:46:42 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso258870wms.3
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 02:46:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=1X668oKStL3UQgk1vtOVcTUMF897xaGx9I95Jlw0N/U=;
-        b=OrPO/IPa6AUBGGRmLt9hf5xOOz6SZeLS6JuroDe8W9pRA2qRwdZ1idJn60mnlOVes4
-         pU74xtw4xtx76N3OTC2ibalLI/WxQRknWSnBtg69EULKT4MLqqgkoi6cvoYvSosKpXhl
-         leQd6ZYkJczEXCm7Mr5ZOeICif+IVCO6yvL435thQzRtxo7ur1NExRbqQLmoLG6eftKx
-         3MwjRKVioSyH3064HMxIy/p7W+Rk5XMmix/2QHtq0czQEbQwQqmjG2uCanBO7cf2XnWL
-         Zz5CXSm+KfPrpoMMucAUuiajn2kRvo/fSlPYCK1jYQ58oIqxXm+BizmPI6jpSJ10cD26
-         sh1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1X668oKStL3UQgk1vtOVcTUMF897xaGx9I95Jlw0N/U=;
-        b=Br+OGJjdlHIhkgahAaEIpn/XPJMNh3vLlbFU27TxvN73Fco5QUm3om/6zt8pYk79ix
-         GJ/kGkuMQbYyPNN+iEEvPD6fpdZNCJ3lsx0WVyen6Fw59hFLlLB1O2YMo2dGjsGNJeNh
-         /1dmnFCYJE2xswVaOoqy3iwlaIwvpFxdUzqUjCgry8K61sKMPW/iP4soIeeKt3shkTUv
-         nOeoMS+5lbnmJeM+lQIXfQ+s59tJX6wbI4l6fX1ceUc4mmACOkrAQMdTyhApHe/hoxEd
-         P17vq+LOULq5/PqNQLeGSMTQxKMoqPuQvTLmrnPE/o2rbdwP45YuH2awySDlhfMlyp5l
-         IXag==
-X-Gm-Message-State: AFqh2kquc0ZK/Vskh2K5Oa+O7oo5VQwrR+Xq0CY6bUKavt428UgA90Tj
-        J7Dq+oHKTwRgdgUcJ/GdQnA55A==
-X-Google-Smtp-Source: AMrXdXuvrmnvePXvW1Oa5HrYfpUvkLBfVIV662lNWQWP4DB/O+e2lN5MBPkXa+PYQEHCkiSaLRrDLg==
-X-Received: by 2002:a05:600c:539b:b0:3da:1bb0:4d78 with SMTP id hg27-20020a05600c539b00b003da1bb04d78mr51062715wmb.14.1675162000978;
-        Tue, 31 Jan 2023 02:46:40 -0800 (PST)
-Received: from [137.44.219.8] ([137.44.219.8])
-        by smtp.gmail.com with ESMTPSA id l35-20020a05600c1d2300b003dd1bd0b915sm2567034wms.22.2023.01.31.02.46.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 02:46:40 -0800 (PST)
-Message-ID: <2c0a893f-b1c2-a77e-4ad4-409c1c778655@linaro.org>
-Date:   Tue, 31 Jan 2023 10:46:39 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory
- region as reserved
-Content-Language: en-GB, en-US
-To:     Amit Pundir <amit.pundir@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        with ESMTP id S229518AbjAaKsc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 05:48:32 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97B56166FB
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 02:48:29 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pMoBV-0001Xk-Ha; Tue, 31 Jan 2023 11:48:17 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pMoBU-0008FP-37; Tue, 31 Jan 2023 11:48:16 +0100
+Date:   Tue, 31 Jan 2023 11:48:16 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Cai Huoqing <cai.huoqing@linux.dev>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20230124182857.1524912-1-amit.pundir@linaro.org>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-Organization: Linaro
-In-Reply-To: <20230124182857.1524912-1-amit.pundir@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: add missing vref-supply
+Message-ID: <20230131104816.w5sfpcdjulr2ogze@pengutronix.de>
+References: <20230131101323.606931-1-alexander.stein@ew.tq-group.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230131101323.606931-1-alexander.stein@ew.tq-group.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Alexander,
 
-
-On 1/24/23 18:28, Amit Pundir wrote:
-> Put cont splash memory region under the reserved-memory
-> as confirmed by the downstream code as well.
-
-Can we put the framebuffer region in sdm845.dtsi? afaik the only device 
-with a non-standard address for this is Cheza, and the SDM850 devices. 
-All other devices (even the sdm845 Sony ones) have it at the same 
-address and size. The other reserved-memory regions are basically just 
-whatever MTP/QRD uses anyway.
-
-shift-axolotl currently reserves the wrong size (it only reserves the 
-size needed for it's resolution), the OnePlus 6 is also missing the region.
+On 23-01-31, Alexander Stein wrote:
+> Although this property is used right now for IIO_CHAN_INFO_SCALE,
+> this ADC has two internal reference voltages, which the driver currently
+> doesn't make use of.
 > 
-> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+> Fixes: db73419d8c06 ("dt-bindings: iio: adc: Add binding documentation for NXP IMX8QXP ADC")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
->   arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 8 ++++++++
->   1 file changed, 8 insertions(+)
+>  .../devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml          | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index f41c6d600ea8..2ae59432cbda 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -100,6 +100,14 @@ hdmi_con: endpoint {
->   		};
->   	};
->   
-> +	reserved-memory {
-> +		/* Cont splash region set up by the bootloader */
-> +		cont_splash_mem: framebuffer@9d400000 {
-> +			reg = <0x0 0x9d400000 0x0 0x2400000>;
-> +			no-map;
-> +		};
-> +	};
-> +
->   	lt9611_1v8: lt9611-vdd18-regulator {
->   		compatible = "regulator-fixed";
->   		regulator-name = "LT9611_1V8";
+> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> index 63369ba388e4..879768af0303 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> @@ -39,6 +39,9 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>  
+> +  vref-supply:
+> +    description: External ADC reference voltage supply on VREFH pad.
 
--- 
---
-Kind Regards,
-Caleb (they/them)
+Please add it to the list of required properties, we can remove it as
+soon as the driver has support for the internal reference voltages.
+
+Regards,
+  Marco
+
+> +
+>    "#io-channel-cells":
+>      const: 1
+>  
+> @@ -72,6 +75,7 @@ examples:
+>              assigned-clocks = <&clk IMX_SC_R_ADC_0>;
+>              assigned-clock-rates = <24000000>;
+>              power-domains = <&pd IMX_SC_R_ADC_0>;
+> +            vref-supply = <&reg_1v8>;
+>              #io-channel-cells = <1>;
+>          };
+>      };
+> -- 
+> 2.34.1
+> 
+> 
+> 
