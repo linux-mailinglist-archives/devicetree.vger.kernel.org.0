@@ -2,149 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80FD9682047
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 01:01:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B0E36820AB
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 01:25:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231180AbjAaAA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 19:00:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44508 "EHLO
+        id S229962AbjAaAZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 19:25:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231296AbjAaAAw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 19:00:52 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0DE62ED70;
-        Mon, 30 Jan 2023 16:00:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675123220; x=1706659220;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=WUwUPxlnqbiRmgDhKOibNerjH9tu78jzKFyyYvm0Dns=;
-  b=ahNoGFSQZ6IVRlNnLiFYdmH1erqTcOlikz2ncAWDdt4F27oEV7rLg3W/
-   VHXVwTq/y3t5WRCKUjmAEG1Ly2MMrA4QyWEMPK0zmRENQsfNydwPAGZUz
-   E1/JWyyamNLFp50NDeVO5nLSVlxwI3RNiApIouMkFjOnTKJzn+dL7isO9
-   ryJ9jfZz/VYU9hdlOYYYu1ptcz+mRjgIHDcmGlsuPuD71LOmyeHRhHzit
-   glzqoTXBLP5JTDYacRXj4jmryGaatffYBIK3+UXcMqld6xxI1kgykD3Pn
-   jKETZB5o2lifY82gl3IH+fV6a5ZipIHkrSBhALYaU2nB33AUHHoGj1izx
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="327726719"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; 
-   d="scan'208";a="327726719"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2023 16:00:19 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="614227920"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; 
-   d="scan'208";a="614227920"
-Received: from inuber-mobl5.amr.corp.intel.com (HELO [10.212.58.60]) ([10.212.58.60])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2023 16:00:18 -0800
-Message-ID: <ebf8ebed-ef79-bf18-4635-360f916877a6@linux.intel.com>
-Date:   Mon, 30 Jan 2023 17:59:26 -0600
+        with ESMTP id S230168AbjAaAZ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 19:25:28 -0500
+Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B5FE2BEFE;
+        Mon, 30 Jan 2023 16:25:25 -0800 (PST)
+Received: by mail-vs1-xe2f.google.com with SMTP id 187so14402555vsv.10;
+        Mon, 30 Jan 2023 16:25:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JPYYzJBRE2hZQZu6xxzfCtdzMijLz6xeT8V5xhIEHKM=;
+        b=q19gdCQcI3bN48xJ5ilrnrWb+j9Bt/6WCppm3scBZKhnhfjET1vHTtFeI7qgmQpJpC
+         wgIBT2OOYUbpPRfG9wvHka7/A04bCN60i0ubTqF+YWzsRP5co9fdcz0QuUzgKzToHlQm
+         S58IZnIsiXS6dBtCa9Wn6/3wdGHtjQLeuFSG3tg7LvekuWlRKP+urQ81O4w99zeORADc
+         +hdyeTtkbFyTujMmrTwIHoCAtxHoKJJsQZIQzEXJLZSis1BEbZiUFm7w720E6fxv66s8
+         2W2PvbKsdk2rd3pAx4+9tBY8xPXbjTqoOx9gmcDkFMM7Xs7LOKAwEaeNMeDzo7zjft3H
+         fWsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JPYYzJBRE2hZQZu6xxzfCtdzMijLz6xeT8V5xhIEHKM=;
+        b=uhur+zxqauoPMP2gm1afmcFSoXE0gGeFPODr7xSYwz3SgK5+BF7dOvsOi4e6nR6TnL
+         rYbPcqzzdYBIDOleb3YkErj8Eo3DLfXg85tMixz8tIgD+13zdzhRuVuFJIyDoc6djQs7
+         jzB6AOCnNjY+zOCCbo8uQNPLQbBqPVYkNuRH4bv7ObtGwhd60/FsNYs8yfEH3/RbqRx+
+         mEfj+8un1/L4/41UxEyVpA/AUVelzHMpHXODv66S1yJvaFAdkghL3oTUDflfnmgeCEDg
+         ITtE+1msdLUCp0yqNqJSVFuFFtYY8bn1ArrGQBdUrmhLT48ZKZS2GF76/2nGWnYJ0hDD
+         Ubdg==
+X-Gm-Message-State: AO0yUKV48T/rrQ6IvxeDCy31fAQBIaioItcq235Ek8RLJJc6j7/7Fi8b
+        /IH2hLG4+EP6tfSe9srShfzE1mdTBAX6DSSFdqA=
+X-Google-Smtp-Source: AK7set+U2JMLzXYydWC2YgrSAqSSIZZxKs42Kr0SvWDXmkFig3XdXMJRCovIpBgbRYzVOSKNr9VbPBNufuArOuTUZgo=
+X-Received: by 2002:a05:6102:2136:b0:3f8:6b59:61b with SMTP id
+ f22-20020a056102213600b003f86b59061bmr1014656vsg.40.1675124724233; Mon, 30
+ Jan 2023 16:25:24 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.4.2
-Subject: Re: [RFC PATCH v2 09/22] ASoC: qcom: qdsp6: Introduce USB AFE port to
- q6dsp
-Content-Language: en-US
-To:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        Thinh.Nguyen@synopsys.com, broonie@kernel.org,
-        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
-        agross@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
- <20230126031424.14582-10-quic_wcheng@quicinc.com>
- <dea77277-6971-fe27-1ae0-ed551e84b6e4@linux.intel.com>
- <5dec443d-9894-2d06-1798-c56b8f2e1e5e@quicinc.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <5dec443d-9894-2d06-1798-c56b8f2e1e5e@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230128202622.12676-1-kaehndan@gmail.com> <20230128202622.12676-2-kaehndan@gmail.com>
+ <fa320b2c-5cf5-c10a-ba63-17ccb5c992ad@linaro.org> <e4f11bda-32c1-fa9d-39d7-402e55ff1d22@linaro.org>
+In-Reply-To: <e4f11bda-32c1-fa9d-39d7-402e55ff1d22@linaro.org>
+From:   Daniel Kaehn <kaehndan@gmail.com>
+Date:   Mon, 30 Jan 2023 18:25:14 -0600
+Message-ID: <CAP+ZCCdbwzDwF2kYMQucy+5d23L3tbLQWxxWvEx_ZXWgQQdUnA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: hid: Add CP2112 HID USB to SMBus Bridge
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jikos@kernel.org, benjamin.tissoires@redhat.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Thanks for all of the comments. All feedback is ACK'd and will be
+added in v2 -- what follows is just commentary on some comments.
 
+On Sun, Jan 29, 2023 at 5:33 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 29/01/2023 12:05, Krzysztof Kozlowski wrote:
+> > On 28/01/2023 21:26, Danny Kaehn wrote:
+> >> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+> >>
+> > Thank you for your patch. There is something to discuss/improve.
+> >
+> >> The binding allows describing the chip's gpio and i2c controller in DT
+> >> using the subnodes named "gpio" and "i2c", respectively. This is
+> >> intended to be used in configurations where the CP2112 is permanently
+> >> connected in hardware.
+> >>
+> >> Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
+> >> ---
+> >>  .../bindings/hid/silabs,cp2112.yaml           | 82 +++++++++++++++++++
+> >
+> > There is no "hid" directory, so I think such devices where going to
+> > different place, didn't they?
 
-On 1/30/23 16:54, Wesley Cheng wrote:
-> Hi Pierre,
-> 
-> On 1/26/2023 7:38 AM, Pierre-Louis Bossart wrote:
->>
->>
->> On 1/25/23 21:14, Wesley Cheng wrote:
->>> The QC ADSP is able to support USB playback endpoints, so that the main
->>> application processor can be placed into lower CPU power modes.  This
->>> adds
->>> the required AFE port configurations and port start command to start an
->>> audio session.
->>>
->>> Specifically, the QC ADSP can support all potential endpoints that are
->>> exposed by the audio data interface.  This includes, feedback endpoints
->>> (both implicit and explicit) as well as the isochronous (data)
->>> endpoints.
->>> The size of audio samples sent per USB frame (microframe) will be
->>> adjusted
->>> based on information received on the feedback endpoint.
->>
->> I think you meant "support all potential endpoint types"
->>
->> It's likely that some USB devices have more endpoints than what the DSP
->> can handle, no?
->>
-> 
-> True, as we discussed before, we only handle the endpoints for the audio
-> interface.  Other endpoints, such as HID, or control is still handled by
-> the main processor.
+Good point, I didn't notice other hid-related bindings went into
+input/ -- will change
 
-The number of isoc/audio endpoints can be larger than 1 per direction,
-it's not uncommon for a USB device to have multiple connectors on the
-front side for instruments, mics, monitor speakers, you name it. Just
-google 'motu' or 'rme usb' and you'll see examples of USB devices that
-are very different from plain vanilla headsets.
+> >
+> >> +  While USB devices typically aren't described in DeviceTree, doing so with the
+> >> +  CP2112 allows use of its i2c and gpio controllers with other DT nodes when
+> >> +  the chip is expected to be found on a USB port.
+> >
+> > Drop these three and replace with description of the hardware.
 
->> And that brings me back to the question: what is a port and the
->> relationship between port/backend/endpoints?
->>
->> Sorry for being picky on terminology, but if I learned something in days
->> in standardization it's that there shouldn't be any ambiguity on
->> concepts, otherwise everyone is lost at some point.
->>
-> 
-> No worries, I can understand where you're coming from :).  After
-> re-reading some of the notations used, I can see where people may be
-> confused.
-> 
->>
->>>   static struct afe_port_map port_maps[AFE_PORT_MAX] = {
->>> +    [USB_RX] = { AFE_PORT_ID_USB_RX, USB_RX, 1, 1},
->>>       [HDMI_RX] = { AFE_PORT_ID_MULTICHAN_HDMI_RX, HDMI_RX, 1, 1},
->>>       [SLIMBUS_0_RX] = { AFE_PORT_ID_SLIMBUS_MULTI_CHAN_0_RX,
->>>                   SLIMBUS_0_RX, 1, 1},
->>
->> And if I look here a port seems to be a very specific AFE concept
->> related to interface type? Do we even need to refer to a port in the USB
->> parts?
->>
-> 
-> Well, this is a design specific to how the Q6 AFE is implemented.  There
-> is a concept for an AFE port to be opened.  However, as mentioned
-> earlier, the "port" term used in soc-usb should be more for how many USB
-> devices can be supported.
-> 
-> If there was a case the audio DSP would support more than one USB
-> device, I believe another AFE port would need to be added.
+Understood. I noticed that a similar usb-based binding included
+a similar description (net/marvell,mvusb.yaml) but I understand why
+we would not want this in new bindings.
 
+> >
+> >> +  i2c:
+> >> +    $ref: /schemas/i2c/i2c-controller.yaml#
+> >
+> > This is not specific enough. What controller is there?
+>
+> OK, assuming this is tightly wired (with cp2112 I2C controller), then
+> the compatible could be skipped as it is inferred from parent one. Yet
+> still you need description and unevaluatedProperties.
+>
 
-would the suggested infrastructure work though, even if the DSP could
-deal with multiple endpoints on different devices ? You have static
-mutexes and ops, can that scale to more than one USB device?
+Great point, will update -- I didn't quite understand that child nodes of the
+root could have properties/unevaluatedProperties/etc.. but I see now that
+that is well-documented (just not often done in existing bindings)!
+
+> >
+> > Missing unevaluatedProperties: false, anyway.
+> >
+> >> +  gpio:
+> >> +    $ref: /schemas/gpio/gpio.yaml#
+> >
+> > Same comments.
+>
+> Description, unevaluatedProperties and constraints on properties (line
+> names, reserved ranges, ranges).
+>
+
+Will add.
+
+Thanks,
+Danny Kaehn
