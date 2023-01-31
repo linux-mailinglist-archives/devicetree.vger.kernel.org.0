@@ -2,96 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CE64683787
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 21:28:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EBDB6837E9
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 21:53:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbjAaU2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 15:28:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40656 "EHLO
+        id S231569AbjAaUxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 15:53:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231211AbjAaU2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 15:28:10 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5618F2D4A;
-        Tue, 31 Jan 2023 12:28:05 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7CF37B81EB8;
-        Tue, 31 Jan 2023 20:28:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 362CBC4339B;
-        Tue, 31 Jan 2023 20:28:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675196883;
-        bh=MX7l6AfPhfgB2B89ZKvj9UQjlQBtzbgEHNVQpqnulMU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SO7BiR/XSAqaRDrI01gYfFDmjtHm5zhjkoswNhTexpnPkgnehJ8lCkXQ8zWQcNp3b
-         uQyry6c91fak3tq3zaquRwazxyjRrGMPmlwHbZ49GaZnR2CXU/DCqCXNZEYdGrfuLr
-         kxLeb7auxnlxTgIsdLrWYfxsrO9nAjQ72a+X1ITLZRdpdRQ9pTBPbczszz2W9xzsOU
-         zimktVQFZUkcut47HeNxI9raQS+qjklDWYxfDSoBzYvdQBJ73bXTh1Jd9skiFy+ocR
-         YRzR1V3MYk/Hp0zkMtibcjBhBCP6C8sS3ULX9cvNBMPSfMqteBvcQdEWuNNxR4WPa2
-         N1pAEVfRlSjtg==
-Received: by mail-vs1-f43.google.com with SMTP id k6so17403580vsk.1;
-        Tue, 31 Jan 2023 12:28:03 -0800 (PST)
-X-Gm-Message-State: AO0yUKXSe2vbGhFQS5go3swhy5RLPhe7NGAQckvKVw8l0rNSRSAnML/K
-        OBNgnYwP8OuohJeT+Vx6v3dQS3UFb33D7yYSqA==
-X-Google-Smtp-Source: AK7set+M1V3xuFlo2nAvDwvo3onui82m9KOW7r1ZM8ACmzzvcpa6Zo7eqj6vrmUYhK9e3oHNnpbua+ZwdcG8LQJLlCw=
-X-Received: by 2002:a05:6102:54aa:b0:3f5:f5f4:893c with SMTP id
- bk42-20020a05610254aa00b003f5f5f4893cmr27845vsb.85.1675196882190; Tue, 31 Jan
- 2023 12:28:02 -0800 (PST)
+        with ESMTP id S231837AbjAaUxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 15:53:24 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B759233DE;
+        Tue, 31 Jan 2023 12:53:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
+        t=1675198373; bh=HDxB0P5zwGe+abY0IPTRkMgnzZ77OEeJH9Ujawc8nac=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=IHQ0MyKh50LjZyqH4Ip8oUE4FdiyeJ4Sjz0lsxOl6lH0aRSlIS+e1565NVL9FHxzE
+         n7c4h7nmVoPj1laI6Rkru4nNHbrRKq/qLqNOnpk3Z1y2Hv06x+dhkqW/p941u63mVt
+         uQK0cDzYwRjLxofjOlczeQG0Ro8yVD/wEzBXE7xcGk5qgJqJcX98bXb8NrSKjiO9DH
+         Xl3ej7Q4hY1P4hKHr4vJX2H8xgyn+zbnXxGXCA9S8EWEicAuoYYdHdgNlr4m9b0Eqw
+         X/105Hpb2hbBURRDjTPDTRTqsLdJge2xFqkg7XREoVA4bZj5FM/+Gu11Y47y9ZqIdh
+         ds6DZD8ywsjDw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([95.223.44.193]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MWAOW-1p7ys32rJS-00XbHB; Tue, 31
+ Jan 2023 21:52:53 +0100
+Date:   Tue, 31 Jan 2023 21:52:52 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        devicetree@vger.kernel.org,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: bus: moxtet: Fix reference to SPI
+ peripheral DT properties
+Message-ID: <Y9l/pGzBCgWcLR2w@probook>
+References: <20230129123553.1284503-1-j.neuschaefer@gmx.net>
+ <20230130221626.GA3618337-robh@kernel.org>
 MIME-Version: 1.0
-References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
-In-Reply-To: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 31 Jan 2023 14:27:51 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKL3JA6nAkEHuuyxbs8-Mm=Q-nNkCmpnDApNUDVbLsvKw@mail.gmail.com>
-Message-ID: <CAL_JsqKL3JA6nAkEHuuyxbs8-Mm=Q-nNkCmpnDApNUDVbLsvKw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/6] Device tree support for Hyper-V VMBus driver
-To:     Saurabh Sengar <ssengar@linux.microsoft.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
-        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
-        daniel.lezcano@linaro.org, tglx@linutronix.de,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="syKY1ZXdedU5+4rp"
+Content-Disposition: inline
+In-Reply-To: <20230130221626.GA3618337-robh@kernel.org>
+X-Provags-ID: V03:K1:7lRz+bdu1ad+wEiPBtAh1XCwjNWoWay9EuEAnQGWvm25gFHTEu2
+ wOaeKJ4mSiOcJDyspIbXmBzBVQwPKkGGLtBeCaQME8Fhq9XjbizeUc7O8mafBtp6K6qhE60
+ R3m7hyR+g10NM9YB3TV0qzd6RzWPyKxYZRvNiKDXs8/tvYH+0SBOZIOdA+AY/ESbmX5APPU
+ 8+pGeryq83YW/ZuMAyWpA==
+UI-OutboundReport: notjunk:1;M01:P0:FJ07ktveZSg=;F8DE8xdz/2jFX+E3tkuVSisKGtM
+ LYR4sD0r/i9V4RoAYHTrHhNnY5TIIwB6rGNxvxG7+5ghcssW27hT01+YRxKo5xRBS0szDa59Y
+ 6xnD8QOA28npgBoQ+rJy5U64C/8E9POc+tX9vSLaKy0rqMKjGvIIkgUMesgPaGJyqyvU00r4j
+ BS+xBSatgawoxCtDs6EchASIsAlvZCSD3zq3LhlxyLQeDyciN+/ymg6lY4BzrQxSZysP2pErk
+ TUnpUzuCg7Kdv8oCHTzL9vcTRjIWmhJD5+UIkYww8W4WgHhkLbxRQfv2hZdcbBc2ArHdU8AdA
+ It1NtIT9AR2kRslEH6pJrJ1L1WCxhUa5gBtQvbMrXm6wk1MYD7fLEU31I8MLH8lKG7htT0DWh
+ TR78hIstjc4fIV3gqccFlp6/aorZK3kWkSJ7rX7DIDOUzd4oP/iaLOs6HgCKZc5WTkvGuqtgg
+ d6qenvbfeEi1ZO9bfKu4ZnE1AEdHS8sW3MvDfU9CSwbwx21pesGVn9/3r7syZwZ1rUrBgdZoi
+ cyDILk2wsUFQ16JDicCsBzqmjA0QEZ0DKIAyx9ObRkZ9+z4rFeXYmL0RzNxuFRieExOBYhM/F
+ knH+EoHAcFVM8SH3swHgQz4B33OwQozblqJAjWav7zNmLTCgUFEEyyRrtx4syiJSa0KoHhTdy
+ WGrvfa+NjNj7NTN8FDFtBGuVnwtfhyx4Uq6cl5bsYazeuYZ3kiJBFdJ8b23YDxf7o370NI44i
+ K085BuhcU8o9G86ZPsiSGCPJEd1rS3n0Fk/rF/K028rwDhAcI9lOJKqyL9Fc3EKZC5v1hHbGs
+ 6qb2Vhs4PJK5xkVPPIG97zNXa9RZhGOD465X/f0nYOkuEU6U2obAQfzVC2y8ms7P98Zu1ITIM
+ o0IQRwd7u7Sp1TUBwmAga66MdIciFn9rXJTvTEMwJWI/rLsk8k7hcJ6xaKWwun/psWdCuQaB3
+ UJ7T14Lt91CN9JYkjWiA+d7fCpA=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 31, 2023 at 12:10 PM Saurabh Sengar
-<ssengar@linux.microsoft.com> wrote:
->
-> This set of patches expands the VMBus driver to include device tree
-> support.
->
-> The first two patches enable compilation of Hyper-V APIs in a non-ACPI
-> build.
->
-> The third patch converts the VMBus driver from acpi to more generic
-> platform driver.
->
-> Further to add device tree documentation for VMBus, it needs to club with
-> other virtualization driver's documentation. For this rename the virtio
-> folder to more generic hypervisor, so that all the hypervisor based
-> devices can co-exist in a single place in device tree documentation. The
-> fourth patch does this renaming.
->
-> The fifth patch introduces the device tree documentation for VMBus.
->
-> The sixth patch adds device tree support to the VMBus driver. Currently
-> this is tested only for x86 and it may not work for other archs.
 
-I can read all the patches and see *what* they do. You don't really
-need to list that here. I'm still wondering *why*. That is what the
-cover letter and commit messages should answer. Why do you need DT
-support? How does this even work on x86? FDT is only enabled for
-CE4100 platform.
+--syKY1ZXdedU5+4rp
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On Mon, Jan 30, 2023 at 04:16:26PM -0600, Rob Herring wrote:
+> On Sun, Jan 29, 2023 at 01:35:53PM +0100, Jonathan Neusch=C3=A4fer wrote:
+> > spi-bus.txt has been converted to YAML and the peripheral properties
+> > have been moved to spi-controller.yaml.
+> >=20
+> > Fixes: 0a1b929356830 ("spi: Add YAML schemas for the generic SPI option=
+s")
+> > Fixes: 8762b07c95c18 ("spi: dt-bindings: add schema listing peripheral-=
+specific properties")
+> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> > ---
+> >  Documentation/devicetree/bindings/bus/moxtet.txt | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> I'm not really interested in fixes to .txt bindings. Fix it by=20
+> converting to schema if you want to.
+
+Fair enough.
+
+> By my count, there's 37 other cases, why just this one?
+
+Mainly because a patch to a large number of files seemed harder to
+coordinate well.
+
+
+Jonathan
+
+--syKY1ZXdedU5+4rp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmPZf34ACgkQCDBEmo7z
+X9v8LxAAp84UuYkoLEGgNNgB5bDiBPkYSLZtIiV/sbNbjuvjkDQz4pcxSkfKufo/
+ARMFrucQkSD3OkRfvF4L9RLmHaty1adwiKYS9pbGikfTcNI0OjAv8JVC+zxzstjg
+zHp7rxItVhRtlIsH93o8owMMCf3bhkpnRLMzfln27iUcEzTct9L610oKsrde4B7v
+S7ocuNr4+tK5tHdSjVew4CAR+YL+hxffYVZti7YKYx6PA0ip8lXALxH+2qCPGL90
+dGOWv6/7OrOGDgN4UAHIE//qr/ulpxXPVu9vjWyw5Gn58CD+TYmZgRwc2YHdqFYJ
+QsuzGW7ZrIlYJ9L6ECFThs33j67Ck0KlwqDtz5Ak/Ew1UehLL7EtPxZcRY6plmpU
+BWFxIuVh7BIcKGRQOF7WVDMqnnTz+eHVeYV7UWPft+IOE7qDvpsed9c2IY7m32ir
+fGMYoX1GJVUhEugBjnlOGLD4S+sUIkY5LF96yfWKZGV//gQRH1oTj2HJnTUj5QVw
+Rw9yW7vRaH0jnDrG1vlF7vyeTJo/y4gs23bmmdas8hu6dfORDFAgyqn+1qBl5taC
+mV/qqUiOz8TRbFaM9coFvUDIwswcSuxw7DSJ+bz5mOoZ9IQLLPpr/b9IIMWJ5qz3
+qwHJ7UmoD5AXReRvHL6toh9GKqU8KinAF5YI+SoTohuqS5b5UPQ=
+=lOlu
+-----END PGP SIGNATURE-----
+
+--syKY1ZXdedU5+4rp--
