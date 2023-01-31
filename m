@@ -2,177 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACF43682E2A
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:41:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 944E8682E30
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:42:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbjAaNlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 08:41:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52344 "EHLO
+        id S232311AbjAaNmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 08:42:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbjAaNlS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:41:18 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E971A2D75;
-        Tue, 31 Jan 2023 05:41:16 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso630368wms.3;
-        Tue, 31 Jan 2023 05:41:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UZP0P6BPjpTycjws87uMdBob8rEGrXXOXGVK5egAH/A=;
-        b=Oivea9/Iy3KwEakTbBE/jJKb7XFNmSXBXIm0CdMEk5UYzzcmCnJlik4RS24QKOjjEX
-         UQqsg/pp0PeI6SW2AYM9NXGWNYeVQxD1jy1Jyp6WOZX06+5j3l71suA95oS1QqHwft66
-         nPEgN2EzNn3s3Dxuaf4q0AqpgMkh1Ykhug8IAW8BLEjiJJN4HTChgDqFicvxasy8nG7l
-         5vBQo7J9lFU9/B+SPovlZuT8+crL1MGRLrqz0IfKXwOZTCm4TLWnkKxNAq47Em+Kh6K+
-         X1gzqO9vvfq2ZVkcRMzn3SiyC+JCzgbrdj8xmqDEeIBHC4vWXbrI5lHrkCsEw/Hlk6iS
-         ZbAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UZP0P6BPjpTycjws87uMdBob8rEGrXXOXGVK5egAH/A=;
-        b=yQPpWJVxBvqK1d2446cJupLQwzgLUJ3X+Ec7uiOwDKcd+T+SIRmp7Gq3V42gShGmaB
-         JwD6l2GwpOvbqnz/nMy2jcf9R5ZcJwbQ1wZ3cIh6Eq/wVjnwVBNlOqWlN9/NrVa/7XzT
-         XfNo0OpskkUMaMryRHvg6ubaynYRKaqQeOjcgy4x2I2TLYOzD3LKh1Q+o+KgF+JwAeXj
-         m1ndiYSVqivxpkEcYEXsgvmiNjD86kgvY0+jaYDlxkvY8MGIe/7yYKa3xEbgWbZm6vlu
-         oKMvehnfewUAPLO31UNGMM7tYPGDHptX61BMhaYX6Orak1KIHm7ZYGFozbztIFRAMtMr
-         XPFw==
-X-Gm-Message-State: AO0yUKXS5qUbAV3Vmva1NbDQFaIlr2HuO76hUWsMA+o/k9pLF5CFLe/s
-        JaBgh9EGpYkiRGGKNbQEZ1h4v9hA72E=
-X-Google-Smtp-Source: AK7set8yxn3VlOGMhryXV9o5wgcPRLjDRGFzg6jcqOwrzlU/5pigFTF/ueOTr/AKj6XbvPKhQDiuuw==
-X-Received: by 2002:a05:600c:3511:b0:3dc:58a2:38e3 with SMTP id h17-20020a05600c351100b003dc58a238e3mr8102103wmq.26.1675172475450;
-        Tue, 31 Jan 2023 05:41:15 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id y21-20020a05600c341500b003da28dfdedcsm10220004wmp.5.2023.01.31.05.41.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 05:41:14 -0800 (PST)
-Message-ID: <4ef03681-4da9-b7d6-516c-19bd37b8dc6f@gmail.com>
-Date:   Tue, 31 Jan 2023 14:41:13 +0100
+        with ESMTP id S232370AbjAaNmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:42:19 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 424294FCF5;
+        Tue, 31 Jan 2023 05:42:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=AfBzRuz0UO/lUfWWNyrD9Yc4wL4xaRinOB2IvcHpEDs=; b=O9bGmi/+mp0J/VyC2TzmwkX7W/
+        469MlqHn/bSRsOWbqD+6kdLCyW5F8nTiTtzuQRyl8D8aGe1zBqJf6hOuq2cn6W5H3kb+UpHS/nfUw
+        NtGXszdEdZ8zO8wMoVxYD4V6WshdW1jJFV+plKjJvXDhNvRx8YNritsxxTWGk5oUl/2Y=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pMqtc-003hAG-3z; Tue, 31 Jan 2023 14:42:00 +0100
+Date:   Tue, 31 Jan 2023 14:42:00 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     "Frank.Sae" <Frank.Sae@motor-comm.com>
+Cc:     Peter Geis <pgwipeout@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        yanhong.wang@starfivetech.com, xiaogang.fan@motor-comm.com,
+        fei.zhang@motor-comm.com, hua.sun@motor-comm.com,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 1/5] dt-bindings: net: Add Motorcomm yt8xxx
+ ethernet phy
+Message-ID: <Y9kaqG/b4sO4aagM@lunn.ch>
+References: <20230130063539.3700-1-Frank.Sae@motor-comm.com>
+ <20230130063539.3700-2-Frank.Sae@motor-comm.com>
+ <Y9fOHxn8rdIHuDbn@lunn.ch>
+ <18446b51-6428-d8c8-7f59-6a3b9845d2c4@motor-comm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 14/14] soc: mtk-svs: mt8183: refactor o_slope
- calculation
-Content-Language: en-US
-To:     Roger Lu <roger.lu@mediatek.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>
-Cc:     Fan Chen <fan.chen@mediatek.com>,
-        Jia-wei Chang <jia-wei.chang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230111074528.29354-1-roger.lu@mediatek.com>
- <20230111074528.29354-15-roger.lu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230111074528.29354-15-roger.lu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <18446b51-6428-d8c8-7f59-6a3b9845d2c4@motor-comm.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 11/01/2023 08:45, Roger Lu wrote:
-> The o_slope value is dependent of the o_slope_sign, refactor code to get
-> rid of unnecessary if constructs.
+> >> +properties:
+> >> +  rx-internal-delay-ps:
+> >> +    description: |
+> >> +      RGMII RX Clock Delay used only when PHY operates in RGMII mode with
+> >> +      internal delay (phy-mode is 'rgmii-id' or 'rgmii-rxid') in pico-seconds.
+> >> +    enum: [ 0, 150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500, 1650,
+> >> +            1800, 1900, 1950, 2050, 2100, 2200, 2250, 2350, 2500, 2650, 2800,
+> >> +            2950, 3100, 3250, 3400, 3550, 3700, 3850, 4000, 4150 ]
+> >> +    default: 1950
+> > 
+> > Ah! There has been a misunderstand. Yes, this changes does make sense, but > 
+> >> +
+> >> +  tx-internal-delay-ps:
+> >> +    description: |
+> >> +      RGMII TX Clock Delay used only when PHY operates in RGMII mode with
+> >> +      internal delay (phy-mode is 'rgmii-id' or 'rgmii-txid') in pico-seconds.
+> >> +    enum: [ 0, 150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500, 1650, 1800,
+> >> +            1950, 2100, 2250 ]
+> >> +    default: 150
+> > 
+> > ... i was actually trying to say this 150 is odd. Why is this not
+> > 1950?
 > 
-> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
-> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>  Tx-delay is usually adjusted by the mac (~ 2ns).
+>  So here is only fine-turn for the tx-delay.
 
-Applied, thanks!
+In general, in Linux, this is not true. The PHY inserts both
+delays. Yes, you can have the MAC insert the delay, but it then means
+the MAC needs to modify phy-mode to indicate it has inserted the
+delay, changing rgmii-id to rmgmii-rxid when it calls
+phy_connect_*(). And few MAC drivers get this correct. So i would
+avoid this. Default to 1950. And if there is a device which needs a
+fine tune, it can use 2100, or 2250 in its DTS file.
 
-> ---
->   drivers/soc/mediatek/mtk-svs.c | 51 +++++++++++++++-------------------
->   1 file changed, 22 insertions(+), 29 deletions(-)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-> index 89117807e85d..8cfbf8ffb138 100644
-> --- a/drivers/soc/mediatek/mtk-svs.c
-> +++ b/drivers/soc/mediatek/mtk-svs.c
-> @@ -1944,26 +1944,27 @@ static bool svs_mt8183_efuse_parsing(struct svs_platform *svsp)
->   	o_slope_sign = (svsp->tefuse[0] >> 7) & BIT(0);
->   
->   	ts_id = (svsp->tefuse[1] >> 9) & BIT(0);
-> -	o_slope = (svsp->tefuse[0] >> 26) & GENMASK(5, 0);
-> -
-> -	if (adc_cali_en_t == 1) {
-> -		if (!ts_id)
-> -			o_slope = 0;
-> -
-> -		if (adc_ge_t < 265 || adc_ge_t > 758 ||
-> -		    adc_oe_t < 265 || adc_oe_t > 758 ||
-> -		    o_vtsmcu[0] < -8 || o_vtsmcu[0] > 484 ||
-> -		    o_vtsmcu[1] < -8 || o_vtsmcu[1] > 484 ||
-> -		    o_vtsmcu[2] < -8 || o_vtsmcu[2] > 484 ||
-> -		    o_vtsmcu[3] < -8 || o_vtsmcu[3] > 484 ||
-> -		    o_vtsmcu[4] < -8 || o_vtsmcu[4] > 484 ||
-> -		    o_vtsabb < -8 || o_vtsabb > 484 ||
-> -		    degc_cali < 1 || degc_cali > 63) {
-> -			dev_err(svsp->dev, "bad thermal efuse, no mon mode\n");
-> -			goto remove_mt8183_svsb_mon_mode;
-> -		}
-> +	if (!ts_id) {
-> +		o_slope = 1534;
->   	} else {
-> -		dev_err(svsp->dev, "no thermal efuse, no mon mode\n");
-> +		o_slope = (svsp->tefuse[0] >> 26) & GENMASK(5, 0);
-> +		if (!o_slope_sign)
-> +			o_slope = 1534 + o_slope * 10;
-> +		else
-> +			o_slope = 1534 - o_slope * 10;
-> +	}
-> +
-> +	if (adc_cali_en_t == 0 ||
-> +	    adc_ge_t < 265 || adc_ge_t > 758 ||
-> +	    adc_oe_t < 265 || adc_oe_t > 758 ||
-> +	    o_vtsmcu[0] < -8 || o_vtsmcu[0] > 484 ||
-> +	    o_vtsmcu[1] < -8 || o_vtsmcu[1] > 484 ||
-> +	    o_vtsmcu[2] < -8 || o_vtsmcu[2] > 484 ||
-> +	    o_vtsmcu[3] < -8 || o_vtsmcu[3] > 484 ||
-> +	    o_vtsmcu[4] < -8 || o_vtsmcu[4] > 484 ||
-> +	    o_vtsabb < -8 || o_vtsabb > 484 ||
-> +	    degc_cali < 1 || degc_cali > 63) {
-> +		dev_err(svsp->dev, "bad thermal efuse, no mon mode\n");
->   		goto remove_mt8183_svsb_mon_mode;
->   	}
->   
-> @@ -1982,11 +1983,7 @@ static bool svs_mt8183_efuse_parsing(struct svs_platform *svsp)
->   		x_roomt[i] = (((format[i] * 10000) / 4096) * 10000) / gain;
->   
->   	temp0 = (10000 * 100000 / gain) * 15 / 18;
-> -
-> -	if (!o_slope_sign)
-> -		mts = (temp0 * 10) / (1534 + o_slope * 10);
-> -	else
-> -		mts = (temp0 * 10) / (1534 - o_slope * 10);
-> +	mts = (temp0 * 10) / o_slope;
->   
->   	for (idx = 0; idx < svsp->bank_max; idx++) {
->   		svsb = &svsp->banks[idx];
-> @@ -2013,11 +2010,7 @@ static bool svs_mt8183_efuse_parsing(struct svs_platform *svsp)
->   		temp0 = (degc_cali * 10 / 2);
->   		temp1 = ((10000 * 100000 / 4096 / gain) *
->   			 oe + tb_roomt * 10) * 15 / 18;
-> -
-> -		if (!o_slope_sign)
-> -			temp2 = temp1 * 100 / (1534 + o_slope * 10);
-> -		else
-> -			temp2 = temp1 * 100 / (1534 - o_slope * 10);
-> +		temp2 = temp1 * 100 / o_slope;
->   
->   		svsb->bts = (temp0 + temp2 - 250) * 4 / 10;
->   	}
+     Andrew
