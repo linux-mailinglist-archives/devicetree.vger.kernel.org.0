@@ -2,114 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E40F4682760
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 09:51:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDD226827FD
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 10:04:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231126AbjAaIvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 03:51:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33646 "EHLO
+        id S232254AbjAaJEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 04:04:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231190AbjAaIvB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 03:51:01 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FA5F46164
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 00:47:01 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1pMmHu-0003rM-8C; Tue, 31 Jan 2023 09:46:46 +0100
-Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ore@pengutronix.de>)
-        id 1pMmHu-001eLX-2U; Tue, 31 Jan 2023 09:46:45 +0100
-Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ore@pengutronix.de>)
-        id 1pMmHr-002ybe-Av; Tue, 31 Jan 2023 09:46:43 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Russell King <linux@armlinux.org.uk>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH v3 19/19] ARM: dts: imx6ul-prti6g: configure ethernet reference clock parent
-Date:   Tue, 31 Jan 2023 09:46:42 +0100
-Message-Id: <20230131084642.709385-20-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230131084642.709385-1-o.rempel@pengutronix.de>
-References: <20230131084642.709385-1-o.rempel@pengutronix.de>
+        with ESMTP id S232262AbjAaJDm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 04:03:42 -0500
+Received: from mail.tryweryn.pl (mail.tryweryn.pl [5.196.29.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E8C4B191
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 01:00:19 -0800 (PST)
+Received: by mail.tryweryn.pl (Postfix, from userid 1002)
+        id CD172A7B3B; Tue, 31 Jan 2023 08:58:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tryweryn.pl; s=mail;
+        t=1675155532; bh=Bo+/jg3TCpOeS79PpZREuOWEeqJV//jojylD9dSrSik=;
+        h=Date:From:To:Subject:From;
+        b=l9gl19MRGmmYOFW3NrqOkrYDXuY0JZWWz4kuwzw74NSsjT9vqR5WGgBd7AbDqkzya
+         0YxuFjm6pFwOrXw983v8t+54mEsC4OvGSTHPV6mKX2Of8Ap+QdW7fmLPFyt3kuRvLc
+         WOpjehs96803Heiff82HmYf+8P8d0b6J1blN22APvm769UqDvWvNyEq0/MC9IqS7Rw
+         vGshf4CgcSoLjX1BlYik5KQC8L+ATDQOf6gNlxUS9h+cNGXQ6Z9uilq0q3j8IIVT5C
+         njoqpC2ZFd8/qs7hx2q6xMwUh3Q7YgmQJseoffQ+hWEUzOpCr61TRJQGiXvJzDnxSP
+         aFkwAw900hu4Q==
+Received: by mail.tryweryn.pl for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 08:56:49 GMT
+Message-ID: <20230131082642-0.1.7v.2v36y.0.qbburvyiwq@tryweryn.pl>
+Date:   Tue, 31 Jan 2023 08:56:49 GMT
+From:   "Karol Michun" <karol.michun@tryweryn.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Prezentacja
+X-Mailer: mail.tryweryn.pl
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On this board the PHY is the ref clock provider. So, configure ethernet
-reference clock as input.
+Dzie=C5=84 dobry!
 
-Without this patch we have relatively high amount of dropped packets.
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 rozwi=C4=85zanie, kt=C3=B3re umo=C5=
+=BCliwia monitoring ka=C5=BCdego auta w czasie rzeczywistym w tym jego po=
+zycj=C4=99, zu=C5=BCycie paliwa i przebieg?
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- arch/arm/boot/dts/imx6ul-prti6g.dts | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+Dodatkowo nasze narz=C4=99dzie minimalizuje koszty utrzymania samochod=C3=
+=B3w, skraca czas przejazd=C3=B3w, a tak=C5=BCe tworzenie planu tras czy =
+dostaw.
 
-diff --git a/arch/arm/boot/dts/imx6ul-prti6g.dts b/arch/arm/boot/dts/imx6ul-prti6g.dts
-index c18390f238e1..b7c96fbe7a91 100644
---- a/arch/arm/boot/dts/imx6ul-prti6g.dts
-+++ b/arch/arm/boot/dts/imx6ul-prti6g.dts
-@@ -26,6 +26,7 @@ clock_ksz8081_out: clock-ksz8081-out {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <50000000>;
-+		clock-output-names = "enet1_ref_pad";
- 	};
- 
- 	leds {
-@@ -60,6 +61,13 @@ &can2 {
- 	status = "okay";
- };
- 
-+&clks {
-+	clocks = <&ckil>, <&osc>, <&ipp_di0>, <&ipp_di1>, <&clock_ksz8081_out>;
-+	clock-names = "ckil", "osc", "ipp_di0", "ipp_di1", "enet1_ref_pad";
-+	assigned-clocks = <&clks IMX6UL_CLK_ENET1_REF_SEL>;
-+	assigned-clock-parents = <&clock_ksz8081_out>;
-+};
-+
- &ecspi1 {
- 	cs-gpios = <&gpio4 26 GPIO_ACTIVE_LOW>;
- 	pinctrl-names = "default";
-@@ -85,12 +93,6 @@ &fec1 {
- 	pinctrl-0 = <&pinctrl_eth1>;
- 	phy-mode = "rmii";
- 	phy-handle = <&rmii_phy>;
--	clocks = <&clks IMX6UL_CLK_ENET>,
--		 <&clks IMX6UL_CLK_ENET_AHB>,
--		 <&clks IMX6UL_CLK_ENET_PTP>,
--		 <&clock_ksz8081_out>;
--	clock-names = "ipg", "ahb", "ptp",
--		      "enet_clk_ref";
- 	status = "okay";
- 
- 	mdio {
--- 
-2.30.2
+Z naszej wiedzy i do=C5=9Bwiadczenia korzysta ju=C5=BC ponad 49 tys. Klie=
+nt=C3=B3w. Monitorujemy 809 000 pojazd=C3=B3w na ca=C5=82ym =C5=9Bwiecie,=
+ co jest nasz=C4=85 najlepsz=C4=85 wizyt=C3=B3wk=C4=85.
 
+Bardzo prosz=C4=99 o e-maila zwrotnego, je=C5=9Bli mogliby=C5=9Bmy wsp=C3=
+=B3lnie om=C3=B3wi=C4=87 potencja=C5=82 wykorzystania takiego rozwi=C4=85=
+zania w Pa=C5=84stwa firmie.
+
+
+Pozdrawiam
+Karol Michun
