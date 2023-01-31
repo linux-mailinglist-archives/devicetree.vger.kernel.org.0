@@ -2,117 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2842682DA4
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:21:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27748682DAB
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:22:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230367AbjAaNVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 08:21:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59074 "EHLO
+        id S231635AbjAaNV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 08:21:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231408AbjAaNVG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:21:06 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42BE330D6;
-        Tue, 31 Jan 2023 05:20:30 -0800 (PST)
+        with ESMTP id S230432AbjAaNV6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:21:58 -0500
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D7BC5FE9
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 05:21:51 -0800 (PST)
+Received: by mail-yb1-xb36.google.com with SMTP id u72so18007856ybi.7
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 05:21:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1675171230; x=1706707230;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nc/B7599zo7bElrpIrWUHuDyejD6NgIG6t0wy6/MybE=;
-  b=Iic9Nq3FqcbHMmHlsGIn2vqUpLrfBw+UQTEN5wvMuzdnQOyGTHFmYgKp
-   IXe4xGhOaQmHuR5bccTIpLC/PulDLCMuwTpepZPvwacTlvTTm+YN1p8VP
-   PQrm5Q4Adf4jfJKiJEcApqnHZzGiBX2q1OuGn9MiDaJbcKBSL3hoHR6dJ
-   WRKgjzZkEQyos7dvesFhuHMZpohqnyV8Ua6j9EcAGjBoKDIwhQHX5yCA0
-   236Cap42wm8iR4TkPUNAC1imbpD8QyICvKRXejw5T4F1rcweLS8ux1Sac
-   yXnjKZrbFdJaktfHO5HessfFtDAEv1xH0lV9sGQGW1o5JQ7XWxcN/ceeT
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,261,1669071600"; 
-   d="scan'208";a="28772469"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 31 Jan 2023 14:20:28 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 31 Jan 2023 14:20:28 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 31 Jan 2023 14:20:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1675171228; x=1706707228;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nc/B7599zo7bElrpIrWUHuDyejD6NgIG6t0wy6/MybE=;
-  b=ceFsbqQlwoOjz7MIYjiLq2Gk9tK+cqY+T1dnHOJYi1YXWuKQqYElFIC9
-   lf1X7YhsOKhwvGw/KQOEFh5O/h7jON4aoztGbpkBEMd++oY6MhViaDqJU
-   oQFPL98/bE7ypUGT4djChmBuJRC1AgldFRtLG56FRw5nTdk0TiDpM2Xmd
-   syX0kv65ImH5jvDSBNIhpEP4BHN0sVZK7+PTLPJbqLFpFbEsW/ZuMqS2c
-   Q1AKCIjGAtuNaHkMxzLgH4/mlm3hCY1duUnnBoG/AOG7PxTKHaHxfZzYF
-   ogx3d2IWsXPJDVdQT5iaM7q/MYEy+1sjpIKtYCHbbKT0ZtcpuwJI8UZCJ
-   g==;
-X-IronPort-AV: E=Sophos;i="5.97,261,1669071600"; 
-   d="scan'208";a="28772468"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 31 Jan 2023 14:20:28 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8870F280056;
-        Tue, 31 Jan 2023 14:20:27 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Cai Huoqing <cai.huoqing@linux.dev>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: add missing vref-supply
-Date:   Tue, 31 Jan 2023 14:20:25 +0100
-Message-ID: <13201978.uLZWGnKmhe@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <CAOMZO5ArS_mx1PYs6QMjQS1CgG9XET6sbnWEuWo=Yrs084zYSA@mail.gmail.com>
-References: <20230131101323.606931-1-alexander.stein@ew.tq-group.com> <CAOMZO5ArS_mx1PYs6QMjQS1CgG9XET6sbnWEuWo=Yrs084zYSA@mail.gmail.com>
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=PS8+qSIHWKmyaRKr/7lxTJ6J5mm+kDSGr6zIeoJ549o=;
+        b=htWHRzHAwcQ0yAcUaCKKPMHpnADzNrTlXGi4VxX0uQm6MD5SZoGdgtpzL8o65lkS+J
+         oHMjPWTpazwCPHW7PkbXQ39ODcdQ1zpni0YxDqQ/UVxtfGJx/im8ae03Vi2I2Lsfm5wZ
+         Vvy1OV1p4w8Am06cqaXTgvkN5CXA83hz2FvTGR3i5oE7Gc34i9sQ6O0L09ycJxwkZnnI
+         8FetWLWHvZhRRYdbL5KJUVXWHmrOhxpgc1OnN4VU+pIzMHAiEZ9rE8AdFTrenobeV1ER
+         uoTXdc7ZBzK0MZIV7d83dCH6iWt3eI0IU6D/ynC2juhtHyRJpwH2EaR1sJmYkcBzZcDd
+         hi8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PS8+qSIHWKmyaRKr/7lxTJ6J5mm+kDSGr6zIeoJ549o=;
+        b=OUH6Mnee5y08U0/IzZo+ZcoFsBgF0uRgMcCyDH9QgqdjEmnNbGpBLp4JlPOyOaJKJ9
+         MzgraFyjISRPRNHNIVcCoMv/COw7S73vm+heCCWKN9Qof0Gr4wftjC1FkzJ8HEgGgrFv
+         WXioZ0+M7amtXZDv7x9M6Ue3241ovPMr2G9xXdvyD0Q7a9X91y0aE3kGbtKzQk5uQXgI
+         xvBX5amOYRWDkGI5+OUb3O6I8v03eTzT6k5IrebD93bGsuAmHVzXFbOZq9swwYLcr1/L
+         vCw9Te4tH6C1ON5qP1JyWaNeIAqRT7N88hYSRL7ZnfnpYCceY8R6j0NdnMmU0JdYrR71
+         3pVw==
+X-Gm-Message-State: AO0yUKUVEb5JK775OSAB/w6+//0ZomJh0VQrxj1xaa8ZdAtxEgM1494J
+        55dNRc6pVJvBciBli4+cTyVc3nLVHQarmE6JREn9uQ==
+X-Google-Smtp-Source: AK7set8/PVrN2trOeEjFNnfvyMyl2HcH5os3U2pgQpYPFiW4trjlvzIOwEyxdrdhyrEiLoAumJMcFGsPSB5DntGMFsc=
+X-Received: by 2002:a5b:c1:0:b0:80b:c9d0:c676 with SMTP id d1-20020a5b00c1000000b0080bc9d0c676mr2496081ybp.341.1675171310442;
+ Tue, 31 Jan 2023 05:21:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230130165435.2347569-1-konrad.dybcio@linaro.org>
+ <CACRpkdZjAyLUg3V7ZTzeMfUOTrndLrRX_gTFdO+amSmZkzB72Q@mail.gmail.com> <f3f70ac2-d097-b6ee-22d3-92fcfdd7c53f@linaro.org>
+In-Reply-To: <f3f70ac2-d097-b6ee-22d3-92fcfdd7c53f@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 31 Jan 2023 14:21:38 +0100
+Message-ID: <CACRpkdbD+vtiFnPHoSR9fpV5zwtdNo923frROR7Nb1nkAMP4wQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: pincfg-node: Introduce an
+ overridable way to set bias on pins
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabio,
+On Tue, Jan 31, 2023 at 12:50 AM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 
-Am Dienstag, 31. Januar 2023, 13:16:11 CET schrieb Fabio Estevam:
-> Hi Alexander,
-> 
-> On Tue, Jan 31, 2023 at 7:13 AM Alexander Stein
-> 
-> <alexander.stein@ew.tq-group.com> wrote:
-> > Although this property is used right now for IIO_CHAN_INFO_SCALE,
-> > this ADC has two internal reference voltages, which the driver currently
-> > doesn't make use of.
-> > 
-> > Fixes: db73419d8c06 ("dt-bindings: iio: adc: Add binding documentation for
-> > NXP IMX8QXP ADC") Signed-off-by: Alexander Stein
-> > <alexander.stein@ew.tq-group.com>
-> 
-> In the Subject, it would be better to mention imx8qxp-adc.
-> 
-> dt-bindings: iio: imx8qxp-adc: add missing vref-supply
+> > +#define DRIVE_STRENGTH                 9
+> > +#define DRIVE_STRENGTH_UA              10
+> >
+> > drive-strength = <8>; // 8mA drive strength
+> >
+> > bias-type = <DRIVE_STRENGTH>;
+> >
+> > OK where do I put my 8 mA now?
+> >
+> If you look at the 2/2 patch, this property only reads BIAS_
+> values, which can't coexist anyway.
 
-Nice, that's a good idea. Will change it.
+Well the DT bindings have to be consistent and clear on their
+own, no matter how Linux implements it.
 
-Thanks and best regards,
-Alexander
+But I'm sure you can make YAML verification such that it is
+impossible to use both schemes at the same time, and it's not
+like I don't understand what you're getting at.
 
+What I need as input is mainly the DT bindings people opinion
+on introducing another orthogonal way of doing something
+that is already possible to do another way, just more convenient.
+Because that is essentially what is happening here.
 
+Yours,
+Linus Walleij
