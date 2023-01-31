@@ -2,77 +2,469 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C841D68258B
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 08:29:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34DD96825B1
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 08:45:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230354AbjAaH3B convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 31 Jan 2023 02:29:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41084 "EHLO
+        id S229577AbjAaHpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 02:45:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230135AbjAaH27 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 02:28:59 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A39839CFC;
-        Mon, 30 Jan 2023 23:28:56 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id E590724E1D1;
-        Tue, 31 Jan 2023 15:28:54 +0800 (CST)
-Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 31 Jan
- 2023 15:28:54 +0800
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX066.cuchost.com
- (172.16.6.66) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 31 Jan
- 2023 15:28:54 +0800
-Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
- EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
- 15.00.1497.044; Tue, 31 Jan 2023 15:28:54 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Herbert Xu <herbert@gondor.apana.org.au>
-CC:     Olivia Mackall <olivia@selenic.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229900AbjAaHpC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 02:45:02 -0500
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 574092941B;
+        Mon, 30 Jan 2023 23:44:58 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 19426FF80C;
+        Tue, 31 Jan 2023 07:44:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1675151095;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=GM8bEcb4JjSe87Dn28iagWIQIwIJb3nlOfJ2nJLXzJ8=;
+        b=md/JaJoTdonD2P75rbw2xDr+mEoMnGmj4MRoGB0FbJflaiWedu5/nwG+hedU5YW90pHjaP
+        /BXxUFzGb25SiHLtBT71GmaOYJjB+Au5HzurHtYvkX7U2FPaNCuxdYj1erA+Z/+s8hX+uI
+        QE/sn/11atTRhGI531BOLTg/E1Ut5r6VX2f4O5jsU0lxuELfiLVWfTc+QWqTTVtiWS16NN
+        5iZH/xts8eXLe+nz2xnKGiQveiGYUy8jLBjtoZQZoinrQIWysOc8ik/tG7uSI2BJaYeMzI
+        JAlL+O0aHyfd99EKYGyrgJBzdDzBR55RFamTmovYRMHGbu7ExAaROUkrxpY70A==
+Date:   Tue, 31 Jan 2023 08:44:49 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Li Yang <leoyang.li@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH] hwrng: starfive - Enable compile testing
-Thread-Topic: [PATCH] hwrng: starfive - Enable compile testing
-Thread-Index: AQHZMj8fsXkTT9lyaUa0z6voqL4hdK64JkoA
-Date:   Tue, 31 Jan 2023 07:28:54 +0000
-Message-ID: <2b7520a85def477d9650120a0bd01860@EXMBX168.cuchost.com>
-References: <20230117015445.32500-1-jiajie.ho@starfivetech.com>
- <20230117015445.32500-3-jiajie.ho@starfivetech.com>
- <Y9OveVKTkX8cRhyP@gondor.apana.org.au>
-In-Reply-To: <Y9OveVKTkX8cRhyP@gondor.apana.org.au>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [202.188.176.82]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 01/10] dt-bindings: soc: fsl: cpm_qe: Add TSA
+ controller
+Message-ID: <20230131084449.445a4d2f@bootlin.com>
+In-Reply-To: <20230130182744.GA2974455-robh@kernel.org>
+References: <20230126083222.374243-1-herve.codina@bootlin.com>
+        <20230126083222.374243-2-herve.codina@bootlin.com>
+        <20230130182744.GA2974455-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Enable compile testing for jh7110.  Also remove the dependency on
-> HW_RANDOM.
-> 
-> Signed-off-by: Herbert Xu <herbert@gondor.apana.org.au>
-> 
+On Mon, 30 Jan 2023 12:27:44 -0600
+Hi Rob,
 
-Reviewed-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
+Rob Herring <robh@kernel.org> wrote:
 
-Thanks,
-Jia Jie
+> On Thu, Jan 26, 2023 at 09:32:13AM +0100, Herve Codina wrote:
+> > Add support for the time slot assigner (TSA)
+> > available in some PowerQUICC SoC such as MPC885
+> > or MPC866.
+> >=20
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  .../bindings/soc/fsl/cpm_qe/fsl,tsa.yaml      | 261 ++++++++++++++++++=
+ =20
+>=20
+> fsl,cpm1-tsa.yaml
+
+Right, will be change in next iteration.
+
+>=20
+> >  include/dt-bindings/soc/fsl,tsa.h             |  13 +
+> >  2 files changed, 274 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fs=
+l,tsa.yaml
+> >  create mode 100644 include/dt-bindings/soc/fsl,tsa.h
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.y=
+aml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
+> > new file mode 100644
+> > index 000000000000..d027d4c3cf10
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
+> > @@ -0,0 +1,261 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,tsa.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: PowerQUICC CPM Time-slot assigner (TSA) controller
+> > +
+> > +maintainers:
+> > +  - Herve Codina <herve.codina@bootlin.com>
+> > +
+> > +description:
+> > +  The TSA is the time-slot assigner that can be found on some PowerQUI=
+CC SoC.
+> > +  Its purpose is to route some TDM time-slots to other internal serial
+> > +  controllers.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - fsl,mpc885-tsa
+> > +          - fsl,mpc866-tsa
+> > +      - const: fsl,cpm1-tsa
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: SI (Serial Interface) register base
+> > +      - description: SI RAM base
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: si_regs
+> > +      - const: si_ram
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  '#serial-cells': =20
+>=20
+> Not a standard property. What's this for? #.*-cells applies to a=20
+> specific pattern of properties.
+
+A TSA consumer, such as QMC in this series, can have a phandle with an
+argument that points to this TSA node. For instance, in the QMC
+node, we have:
+  fsl,tsa-serial =3D <&tsa FSL_CPM_TSA_SCC4>;
+
+The #serial-cells property in TSA specify the presence of this argument.
+
+What do you think if I add the following description:
+   '#serial-cells':
+     const: 1
+     description:
+       TSA consumers that use a phandle to TSA need to pass the serial
+       identifier with this phandle (defined in dt-bindings/soc/fsl,tsa.h).
+       For instance "fsl,tsa-serial =3D <&tsa FSL_CPM_TSA_SCC4>;".
+
+>=20
+>=20
+> > +    const: 1
+> > +
+> > +patternProperties:
+> > +  '^tdm@[0-1]$':
+> > +    description:
+> > +      The TDM managed by this controller
+> > +    type: object
+> > +
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      reg:
+> > +        minimum: 0
+> > +        maximum: 1
+> > +        description:
+> > +          The TDM number for this TDM, 0 for TDMa and 1 for TDMb
+> > +
+> > +      fsl,common-rxtx-pins:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description:
+> > +          The hardware can use four dedicated pins for Tx clock, Tx sy=
+nc, Rx
+> > +          clock and Rx sync or use only two pins, Tx/Rx clock and Tx/R=
+x sync.
+> > +          Without the 'fsl,common-rxtx-pins' property, the four pins a=
+re used.
+> > +          With the 'fsl,common-rxtx-pins' property, two pins are used.
+> > +
+> > +      clocks:
+> > +        minItems: 2
+> > +        items:
+> > +          - description: External clock connected to L1RSYNC pin
+> > +          - description: External clock connected to L1RCLK pin
+> > +          - description: External clock connected to L1TSYNC pin
+> > +          - description: External clock connected to L1TCLK pin
+> > +      clock-names:
+> > +        minItems: 2
+> > +        items:
+> > +          - const: l1rsync
+> > +          - const: l1rclk
+> > +          - const: l1tsync
+> > +          - const: l1tclk
+> > +
+> > +      fsl,diagnostic-mode:
+> > +        $ref: /schemas/types.yaml#/definitions/string
+> > +        enum: [disabled, echo, internal-loopback, control-loopback] =20
+>=20
+> Seems like you would want userspace control of this, not have to make=20
+> firmware changes and reboot to change.
+
+I don't plan to give userspace control of this diagnostic mode.
+When I need to use this diagnostic mode, I plan to set this property
+in DT and reboot the system.
+
+>=20
+> > +        default: disabled
+> > +        description: |
+> > +          The diagnostic mode can be used to diagnose some communicati=
+on issues.
+> > +          It should not be set (or set to 'disabled') when diagnostic =
+is not
+> > +          needed.
+> > +          Diagnostic mode:
+> > +            - disabled:
+> > +                Diagnostic disabled (ie. normal operation)
+> > +            - echo:
+> > +                Automatic echo. Rx data is resent on Tx.
+> > +            - internal-loopback:
+> > +                The TDM transmitter is connected to the receiver. Data=
+ appears
+> > +                on Tx pin.
+> > +            - control-loopback:
+> > +                The TDM transmitter is connected to the receiver. The =
+Tx pin is
+> > +                disconnected.
+> > +
+> > +      fsl,rx-frame-sync-delay-bits:
+> > +        enum: [0, 1, 2, 3]
+> > +        default: 0
+> > +        description: |
+> > +          Receive frame sync delay in number of bits.
+> > +          Indicates the delay between the Rx sync and the first bit of=
+ the Rx
+> > +          frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits dela=
+y.
+> > +
+> > +      fsl,tx-frame-sync-delay-bits:
+> > +        enum: [0, 1, 2, 3]
+> > +        default: 0
+> > +        description: |
+> > +          Transmit frame sync delay in number of bits.
+> > +          Indicates the delay between the Tx sync and the first bit of=
+ the Tx
+> > +          frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits dela=
+y.
+> > +
+> > +      fsl,clock-falling-edge:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description:
+> > +          Data is sent on falling edge of the clock (and received on t=
+he rising
+> > +          edge). If 'clock-falling-edge' is not present, data is sent =
+on the
+> > +          rising edge (and received on the falling edge).
+> > +
+> > +      fsl,fsync-rising-edge:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description:
+> > +          Frame sync pulses are sampled with the rising edge of the ch=
+annel
+> > +          clock. If 'fsync-rising-edge' is not present, pulses are sam=
+pled with
+> > +          the falling edge.
+> > +
+> > +      fsl,double-speed-clock:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description:
+> > +          The channel clock is twice the data rate.
+> > +
+> > +      fsl,tx-ts-routes:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +        description: |
+> > +          A list of tupple that indicates the Tx time-slots routes. =20
+>=20
+> tuple
+
+Will be fixed in next iteration.
+
+>=20
+> > +            tx_ts_routes =3D =20
+>=20
+> Not the property name. Put an example in the example(s).
+
+Oups, should be fsl,tx-ts-routes.
+An example is already present in the example section.
+I will remove this example from the description in the next iteration.
+
+>=20
+> > +               < 2 0 >, /* The first 2 time slots are not used */
+> > +               < 3 1 >, /* The next 3 ones are route to SCC2 */
+> > +               < 4 0 >, /* The next 4 ones are not used */
+> > +               < 2 2 >; /* The nest 2 ones are route to SCC3 */
+> > +        items:
+> > +          items:
+> > +            - description:
+> > +                The number of time-slots
+> > +              minimum: 1
+> > +              maximum: 64
+> > +            - description: |
+> > +                The source serial interface (dt-bindings/soc/fsl,tsa.h=
+ defines
+> > +                these values)
+> > +                 - 0: No destination
+> > +                 - 1: SCC2
+> > +                 - 2: SCC3
+> > +                 - 3: SCC4
+> > +                 - 4: SMC1
+> > +                 - 5: SMC2
+> > +              enum: [0, 1, 2, 3, 4, 5]
+> > +        minItems: 1
+> > +        maxItems: 64
+> > +
+> > +      fsl,rx-ts-routes: =20
+>=20
+> You could make these a pattern instead of duplicating the constraints:=20
+>=20
+> '^fsl,[rt]x-ts-routes$'
+
+Yes, I will use the pattern to handle tx and rx.
+As mentionned in fsl,tx-ts-routes, I will remove the example from the
+description as examples are already present in the example section.
+
+>=20
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +        description: |
+> > +          A list of tupple that indicates the Rx time-slots routes.
+> > +            tx_ts_routes =3D
+> > +               < 2 0 >, /* The first 2 time slots are not used */
+> > +               < 3 1 >, /* The next 3 ones are route from SCC2 */
+> > +               < 4 0 >, /* The next 4 ones are not used */
+> > +               < 2 2 >; /* The nest 2 ones are route from SCC3 */
+> > +        items:
+> > +          items:
+> > +            - description:
+> > +                The number of time-slots
+> > +              minimum: 1
+> > +              maximum: 64
+> > +            - description: |
+> > +                The destination serial interface (dt-bindings/soc/fsl,=
+tsa.h
+> > +                defines these values)
+> > +                 - 0: No destination
+> > +                 - 1: SCC2
+> > +                 - 2: SCC3
+> > +                 - 3: SCC4
+> > +                 - 4: SMC1
+> > +                 - 5: SMC2
+> > +              enum: [0, 1, 2, 3, 4, 5]
+> > +        minItems: 1
+> > +        maxItems: 64
+> > +
+> > +    allOf:
+> > +      # If fsl,common-rxtx-pins is present, only 2 clocks are needed.
+> > +      # Else, the 4 clocks must be present.
+> > +      - if:
+> > +          required:
+> > +            - fsl,common-rxtx-pins
+> > +        then:
+> > +          properties:
+> > +            clocks:
+> > +              maxItems: 2
+> > +            clock-names:
+> > +              maxItems: 2
+> > +        else:
+> > +          properties:
+> > +            clocks:
+> > +              minItems: 4
+> > +            clock-names:
+> > +              minItems: 4
+> > +
+> > +    required:
+> > +      - reg
+> > +      - clocks
+> > +      - clock-names
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - '#address-cells'
+> > +  - '#size-cells'
+> > +  - '#serial-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/soc/fsl,tsa.h>
+> > +
+> > +    tsa@ae0 {
+> > +        compatible =3D "fsl,mpc885-tsa", "fsl,cpm1-tsa";
+> > +        reg =3D <0xae0 0x10>,
+> > +              <0xc00 0x200>;
+> > +        reg-names =3D "si_regs", "si_ram";
+> > +
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +        #serial-cells =3D <1>;
+> > +
+> > +        tdm@0 {
+> > +            /* TDMa */
+> > +            reg =3D <0>;
+> > +
+> > +            clocks =3D <&clk_l1rsynca>, <&clk_l1rclka>;
+> > +            clock-names =3D "l1rsync", "l1rclk";
+> > +
+> > +            fsl,common-rxtx-pins;
+> > +            fsl,fsync-rising-edge;
+> > +
+> > +            fsl,tx-ts-routes =3D < 2 0 >,             /* TS 0..1 */
+> > +                           < 24 FSL_CPM_TSA_SCC4 >, /* TS 2..25 */
+> > +                           < 1 0 >,                 /* TS 26 */
+> > +                           < 5 FSL_CPM_TSA_SCC3 >;  /* TS 27..31 */
+> > +
+> > +            fsl,rx-ts-routes =3D < 2 0 >,             /* TS 0..1 */
+> > +                           < 24 FSL_CPM_TSA_SCC4 >, /* 2..25 */
+> > +                           < 1 0 >,                 /* TS 26 */
+> > +                           < 5 FSL_CPM_TSA_SCC3 >;  /* TS 27..31 */
+> > +        };
+> > +    };
+> > diff --git a/include/dt-bindings/soc/fsl,tsa.h b/include/dt-bindings/so=
+c/fsl,tsa.h
+> > new file mode 100644
+> > index 000000000000..2cc44e867dbe
+> > --- /dev/null
+> > +++ b/include/dt-bindings/soc/fsl,tsa.h
+> > @@ -0,0 +1,13 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> > +
+> > +#ifndef __DT_BINDINGS_SOC_FSL_TSA_H
+> > +#define __DT_BINDINGS_SOC_FSL_TSA_H
+> > +
+> > +#define FSL_CPM_TSA_NU		0	/* Pseuso Cell Id for not used item */
+> > +#define FSL_CPM_TSA_SCC2	1
+> > +#define FSL_CPM_TSA_SCC3	2
+> > +#define FSL_CPM_TSA_SCC4	3
+> > +#define FSL_CPM_TSA_SMC1	4
+> > +#define FSL_CPM_TSA_SMC2	5
+> > +
+> > +#endif
+> > --=20
+> > 2.39.0
+> >  =20
+
+Thanks for the review,
+Herv=C3=A9
+
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
