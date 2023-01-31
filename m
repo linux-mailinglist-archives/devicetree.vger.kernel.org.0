@@ -2,99 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3345068245F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 07:17:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E7056824F1
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 07:55:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230237AbjAaGR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 01:17:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56464 "EHLO
+        id S231130AbjAaGze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 01:55:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229686AbjAaGRY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 01:17:24 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD3313B641;
-        Mon, 30 Jan 2023 22:17:23 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 567FE612E6;
-        Tue, 31 Jan 2023 06:17:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17996C433EF;
-        Tue, 31 Jan 2023 06:17:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675145842;
-        bh=GMEUHLupoK0SLnzwoNrELALifXu7rHL8trakhBe60h4=;
-        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
-        b=uxfkiJCiW5WhOuRBS4BNgeXUffWbsrOlGizOBCGS/UIl5arVe+6S/Nf0jw56N0f7C
-         XsQ2rlXcU9la577QEiw/swtUUqciaPxKIVzZzd60BpNODNekhVK4OX4RAuL9QU9UsV
-         fpz2+DDVjEprzKZ47BJgswq9feotRSfR8FH7TduQdYOXAdiisKiGEUiTki22Mk/v9+
-         Elc12LkVYARdHIqcZuu8aK+3FOSGyekfBQZSEU8ujP0bBGB5L+4hHJy4HY3PzeVFJJ
-         YkoG+RDNzk82i8gV4sDgp77pWQKxce2xU4b8/WF4anVRs7q7wajjsL4rRyQFuNWWP6
-         sn8aOoDnWg+Ag==
-Date:   Tue, 31 Jan 2023 06:17:17 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-CC:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229716AbjAaGzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 01:55:24 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8FBF28D1A;
+        Mon, 30 Jan 2023 22:55:16 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2079924E1CD;
+        Tue, 31 Jan 2023 14:55:15 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 31 Jan
+ 2023 14:55:15 +0800
+Received: from [192.168.125.128] (183.27.97.127) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 31 Jan
+ 2023 14:55:13 +0800
+Message-ID: <1ccec4ad-962b-65d7-b168-69d7e073d358@starfivetech.com>
+Date:   Tue, 31 Jan 2023 14:51:06 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 03/11] clk: starfive: Add StarFive JH7110
+ System-Top-Group clock driver
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v3_6/7=5D_riscv=3A_dts=3A_starfive=3A?= =?US-ASCII?Q?_Add_initial_StarFive_JH7110_device_tree?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <0db7824b-184d-dfae-f61d-3048392c9895@starfivetech.com>
-References: <20221220011247.35560-1-hal.feng@starfivetech.com> <20221220011247.35560-7-hal.feng@starfivetech.com> <0db7824b-184d-dfae-f61d-3048392c9895@starfivetech.com>
-Message-ID: <39F228FA-2298-4813-9BDE-7100DE920213@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+CC:     Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20230120024445.244345-1-xingyu.wu@starfivetech.com>
+ <20230120024445.244345-4-xingyu.wu@starfivetech.com>
+ <5bb5263d26b157548d7ba39f80989c69.sboyd@kernel.org>
+ <0e77bf23-b359-9884-6a8c-368e31d718a4@starfivetech.com>
+ <f6f558a0daafa454c02fe29cd904cfcd.sboyd@kernel.org>
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <f6f558a0daafa454c02fe29cd904cfcd.sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.127]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2023/1/31 8:35, Stephen Boyd wrote:
+> Quoting Xingyu Wu (2023-01-30 00:02:28)
+>> On 2023/1/26 10:33, Stephen Boyd wrote:
+>> > Quoting Xingyu Wu (2023-01-19 18:44:37)
+>> >> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-stg.c b/drivers/clk/starfive/clk-starfive-jh7110-stg.c
+>> >> new file mode 100644
+>> >> index 000000000000..c2740f44e796
+>> >> --- /dev/null
+>> >> +++ b/drivers/clk/starfive/clk-starfive-jh7110-stg.c
+> [...]
+>> >> +                               parents[i].fw_name = "nocstg_bus";
+>> >> +                       else if (pidx == JH7110_STGCLK_APB_BUS)
+>> >> +                               parents[i].fw_name = "apb_bus";
+>> > 
+>> > Can this be an array lookup instead of a pile of conditions?
+>> > 
+>> >       if (pidx < JH7110_STGCLK_END)
+>> >               ...
+>> >       else
+>> >               parents[i].fw_name = fw_table[pidx - JH7110_STGCLK_END];
+>> > 
+>> > Or even better, don't use strings at all and just make the 'pidx' number
+>> > (possibly minus the end constant) be the 'clocks' property index that
+>> > you want.
+>> 
+>> It seen to be a good way that there uses an array.
+>> Based on the another way, can I use the 'pidx' number to get the 'clock-names' property
+>> to be the parent clock name?
+> 
+> The binding is your design. It is incorrect if the binding is referencing clocks
+> provided by the same node though. If that's the case, simply use the hw
+> pointer directly.
+
+There are external clocks and some of which belong to the SYS clock part.
+Our clocks are divided into SYS, AON, STG, ISP and VOUT parts and they are different nodes.
+So I think I use the clock names maybe better than use the hw pointer.
+
+> 
+>> 
+>> > 
+>> >> +               }
+>> >> +
+>> >> +               clk->hw.init = &init;
+>> >> +               clk->idx = idx;
+>> >> +               clk->max_div = max & JH71X0_CLK_DIV_MASK;
+>> >> +
+>> >> +               ret = devm_clk_hw_register(&pdev->dev, &clk->hw);
+>> >> +               if (ret)
+>> >> +                       return ret;
+>> >> +       }
+>> >> +
+>> >> +       ret = devm_of_clk_add_hw_provider(&pdev->dev, jh7110_stgclk_get, priv);
+>> >> +       if (ret)
+>> >> +               return ret;
+>> >> +
+>> >> +       return jh7110_reset_controller_register(priv, "reset-stg", 2);
+>> > 
+>> > Is this also devm-ified?
+>> 
+>> No, it need to be freed actively. I will advise Hal Feng this.
+>> 
+> 
+> Oh, that's not good.
+
+Will add this in nest patch.
 
 
-On 31 January 2023 02:00:26 GMT, Hal Feng <hal=2Efeng@starfivetech=2Ecom> =
-wrote:
->On Tue, 20 Dec 2022 09:12:46 +0800, Hal Feng wrote:
->> From: Emil Renner Berthing <kernel@esmil=2Edk>
->>=20
->> Add initial device tree for the JH7110 RISC-V SoC by StarFive
->> Technology Ltd=2E
->>=20
->> Signed-off-by: Emil Renner Berthing <kernel@esmil=2Edk>
->> Co-developed-by: Jianlong Huang <jianlong=2Ehuang@starfivetech=2Ecom>
->> Signed-off-by: Jianlong Huang <jianlong=2Ehuang@starfivetech=2Ecom>
->> Co-developed-by: Hal Feng <hal=2Efeng@starfivetech=2Ecom>
->> Signed-off-by: Hal Feng <hal=2Efeng@starfivetech=2Ecom>
->> ---
->>  arch/riscv/boot/dts/starfive/jh7110=2Edtsi | 411 +++++++++++++++++++++=
-++
->>  1 file changed, 411 insertions(+)
->>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110=2Edtsi
->
->I wanna add i2c nodes (i2c0-6) in the next version, so someone else
->can use them when they submit i2c driver patches=2E
-
-All of the other series depend on this one for enablement,
-so unless the binding for i2c is already upstream I'd advise keeping it se=
-parate=2E
-
-Cheers,
-Conor=2E
-
+Best regards,
+Xingyu Wu
