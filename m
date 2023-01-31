@@ -2,170 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 339426828D5
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 10:29:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D00706828D9
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 10:29:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232607AbjAaJ3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 04:29:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58132 "EHLO
+        id S232650AbjAaJ3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 04:29:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232302AbjAaJ27 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 04:28:59 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73A54CDC7;
-        Tue, 31 Jan 2023 01:28:58 -0800 (PST)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30V88YNh001974;
-        Tue, 31 Jan 2023 09:28:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=oQTL0ghYcTZEQswOQIPao0jBiOAoKd9a71FE5v671Fg=;
- b=V2wFDN2A5kJYLS6Q2Mo6u1BwvX8wjoDcozsgwnJIPvyRYE/C3ytc/OTsfxE0fKzjHbhz
- AzK6huL1PBt9WltEdQ8z3NKA+DjdBOSNISBJjLRcAN1Fx4BhWRgk6s2O82JoEmNtuCa4
- xlL87119YBKC5KOCSlTNkH3Dr9g1MHnKRczGJAEICwmffAGt6lHbPHayLedtBUSVLskc
- oe7CoI4hue/VaihdH29/9Msc5R+DOWi4aA1JTmzeB37GTXfZPinqEIAFTaIf+9Ws+Jzh
- NTLWSK5GZGP8DRmi33PDn6O1gDhP1+hYyB2x49dvn5EJwFHiWl4VAVMZH/Ye/AINYxPv cQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nexb00am3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 31 Jan 2023 09:28:48 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30V9Slww009694
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 31 Jan 2023 09:28:47 GMT
-Received: from [10.50.40.197] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 31 Jan
- 2023 01:28:42 -0800
-Message-ID: <6bb22160-5966-43d3-ffba-489b77b3a095@quicinc.com>
-Date:   Tue, 31 Jan 2023 14:58:39 +0530
+        with ESMTP id S231661AbjAaJ3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 04:29:31 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8835412592
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 01:29:29 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id hx15so20214278ejc.11
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 01:29:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aRk91iZt0V7nVEmmcjUezSryXc3efPUiO2hod8kq60c=;
+        b=lmm7qvL7RUNHMdC3C3o9kT9i/U3OiGufUVJsPuGjzw4/clYbkHY1OHBjjKsOjvrhzu
+         wlBlV2HZ+Uhx7rkvvG/VOdACeG3NL7+2lrFJdX4ATN7xB5xLbjavaKlDubi5eHoacnuo
+         0pS93RyDSgdM0kMMAjQMH4X2k1qnXVIlbU0VsWl5Jz17Op4ehTSnfmVzGea1gqZFwPaH
+         VNLIIgJWKp1HUyTscLnF+ybdFYoddLKGVl20E6ptvkRLYiD4YR4js/I63k+ddYCfQ1at
+         NMkQZPnSll2x5ABjQCWq7BN+6YPXkACR2EbtIHqKLB4VeSdxHUC2oQB9tDRIKQmbg+46
+         /MiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aRk91iZt0V7nVEmmcjUezSryXc3efPUiO2hod8kq60c=;
+        b=2MBfHUJWjhTXbI2451t0Brko40vo6TecsEc1mq6mtIIEH6jYKqyBgKxc1xaNU+Mr9U
+         rs+64289ZDmKnj8O75O4BnVl5HHr6RGwJZP+AVWF+euqNzeO2f2EKfl4w2cWYu/22rBu
+         jkjCq61S9/YcPYCynV2s+oI3vuMUjBwXE8xo4NQSUINTdyW1msLe2yTpfg4eMElpN36c
+         zZQh3z6zHIeJ20L8YhflZfgtSp1cJkqIOLgPyrUQz3mV73YJLhZT7zXW9/x1djoZGvPs
+         5G5iUPiZ/FIhk9kTTUvtPDFbKFQnXrCMyd9EGkULBewc+Cl+nBuh71jf+qrUuskutvPI
+         u+gw==
+X-Gm-Message-State: AFqh2koLKFsCh86TKazpRheAgQatGJLUQUgMNdkZxrh6g1W39phuuC81
+        dDDOG9LQRb8JREHP3xHs5RxcUg==
+X-Google-Smtp-Source: AMrXdXuPnvGBiRaonxEYWamjUI2/fuicXzoJhRHIf4HzBHfB/bCMnAhTRc1GF7DwC8GeLBAM8NjctQ==
+X-Received: by 2002:a17:907:ca07:b0:7c0:a1f9:c778 with SMTP id uk7-20020a170907ca0700b007c0a1f9c778mr47614392ejc.13.1675157368093;
+        Tue, 31 Jan 2023 01:29:28 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id c23-20020a170906155700b00869f2ca6a87sm8089800ejd.135.2023.01.31.01.29.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 01:29:27 -0800 (PST)
+Message-ID: <c51ab88e-d568-8322-093e-b82f11f63a0b@linaro.org>
+Date:   Tue, 31 Jan 2023 11:29:26 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 6/6] regulator: qcom_smd: Add support to define the bootup
- voltage
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>, <quic_ipkumar@quicinc.com>
-References: <20230113150310.29709-1-quic_devipriy@quicinc.com>
- <20230113150310.29709-7-quic_devipriy@quicinc.com>
- <77d84408-166e-8a02-227a-67654a4d31f2@linaro.org>
- <df6c1cd6-ea70-e65c-b4e8-3da80697242f@quicinc.com>
- <cc037133-7c45-325f-4a1d-9855d033ae5c@linaro.org>
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <cc037133-7c45-325f-4a1d-9855d033ae5c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: LzJ7g2sKFVBevlMbIiTzXXZdbqWSM1l5
-X-Proofpoint-ORIG-GUID: LzJ7g2sKFVBevlMbIiTzXXZdbqWSM1l5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-31_04,2023-01-30_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- malwarescore=0 clxscore=1015 adultscore=0 suspectscore=0 spamscore=0
- bulkscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301310083
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 2/6] clk: qcom: ipq9574: Enable APSS clock driver
+Content-Language: en-GB
+To:     devi priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, jassisinghbrar@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org, shawnguo@kernel.org,
+        arnd@arndb.de, marcel.ziswiler@toradex.com,
+        nfraprado@collabora.com, broonie@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_poovendh@quicinc.com
+References: <20230113143647.14961-1-quic_devipriy@quicinc.com>
+ <20230113143647.14961-3-quic_devipriy@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230113143647.14961-3-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 1/27/2023 9:40 PM, Konrad Dybcio wrote:
+On 13/01/2023 16:36, devi priya wrote:
+> Enable APSS clock driver for IPQ9574 based devices
 > 
-> 
-> On 27.01.2023 17:07, Devi Priya wrote:
->>
->>
->> On 1/13/2023 9:07 PM, Konrad Dybcio wrote:
->>>
->>>
->>> On 13.01.2023 16:03, devi priya wrote:
->>>> Kernel does not know the initial voltage set by the bootloaders.
->>>> During regulator registration, the voltage variable is just declared
->>>> and it is zero. Based on that, the regulator framework considers current
->>>> the voltage as zero and tries to bring up each regulator to minimum
->>>> the supported voltage.
->>>>
->>>> This introduces a dip in the voltage during kernel boot and gets
->>>> stabilized once the voltage scaling comes into picture.
->>>>
->>>> To avoid the voltage dip, adding support to define the
->>>> bootup voltage set by the boodloaders and based on it, regulator
->>>> framework understands that proper voltage is already set
->>>>
->>>> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->>>> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
->>>> ---
->>> Or maybe hook it up to the spmi_regulator_common_get_voltage()
->>> from the SPMI regulator driver and read the real voltage instead
->>> of relying on hardcoded values thay may differ between boards?
->>>
->>> Konrad
->> In IPQ9574, SPMI regulator is not used. We are using RPM-Glink communication and the regulators are controlled by RPM.
->> In this case, we don't have an option to readback the bootup voltage and so, we have hardcoded the values
-> Unless something changed, RPM regulator framework is simply a
-> fancy front-end for communicating with the PMIC over SPMI, AFAIK..
-> 
-> Konrad
-Currently in our driver, the voltage write request will be sent to RPM 
-via GLINK which then writes it to the PMIC over I2C using the below APIs
-qcom_rpm_smd_write -> rpmsg_send
-In IPQ9574, we do not have SPMI support or the support to readback voltage.
+> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
+> ---
+>   drivers/clk/qcom/apss-ipq-pll.c         | 13 +++++++++++++
+>   drivers/mailbox/qcom-apcs-ipc-mailbox.c |  5 +++++
 
->>
->>>>    drivers/regulator/qcom_smd-regulator.c | 6 +++++-
->>>>    1 file changed, 5 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/regulator/qcom_smd-regulator.c b/drivers/regulator/qcom_smd-regulator.c
->>>> index 1eb17d378897..49a36b07397c 100644
->>>> --- a/drivers/regulator/qcom_smd-regulator.c
->>>> +++ b/drivers/regulator/qcom_smd-regulator.c
->>>> @@ -800,6 +800,7 @@ struct rpm_regulator_data {
->>>>        u32 id;
->>>>        const struct regulator_desc *desc;
->>>>        const char *supply;
->>>> +    int boot_uV; /* To store the bootup voltage set by bootloaders */
->>>>    };
->>>>      static const struct rpm_regulator_data rpm_mp5496_regulators[] = {
->>>> @@ -809,7 +810,7 @@ static const struct rpm_regulator_data rpm_mp5496_regulators[] = {
->>>>    };
->>>>      static const struct rpm_regulator_data rpm_ipq9574_mp5496_regulators[] = {
->>>> -    { "s1", QCOM_SMD_RPM_SMPA, 1, &ipq9574_mp5496_smpa1, "s1" },
->>>> +    { "s1", QCOM_SMD_RPM_SMPA, 1, &ipq9574_mp5496_smpa1, "s1", 875000 },
->>>>        {}
->>>>    };
->>>>    @@ -1394,6 +1395,9 @@ static int rpm_regulator_init_vreg(struct qcom_rpm_reg *vreg, struct device *dev
->>>>        vreg->type    = rpm_data->type;
->>>>        vreg->id    = rpm_data->id;
->>>>    +    if (rpm_data->boot_uV)
->>>> +        vreg->uV = rpm_data->boot_uV;
->>>> +
->>>>        memcpy(&vreg->desc, rpm_data->desc, sizeof(vreg->desc));
->>>>        vreg->desc.name = rpm_data->name;
->>>>        vreg->desc.supply_name = rpm_data->supply;
->> Best Regards,
->> Devi Priya
-Best Regards,
-Devi Priya
+Note, the drivers/mailbox isn't a part of the 'drivers/clk', so it 
+should go to a separate patch (and it will be handled by a different 
+maintainer).
+
+>   2 files changed, 18 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/apss-ipq-pll.c b/drivers/clk/qcom/apss-ipq-pll.c
+> index a5aea27eb867..dd0c01bf5a98 100644
+> --- a/drivers/clk/qcom/apss-ipq-pll.c
+> +++ b/drivers/clk/qcom/apss-ipq-pll.c
+> @@ -61,6 +61,18 @@ static const struct alpha_pll_config ipq8074_pll_config = {
+>   	.test_ctl_hi_val = 0x4000,
+>   };
+>   
+> +static const struct alpha_pll_config ipq9574_pll_config = {
+> +	.l = 0x3b,
+> +	.config_ctl_val = 0x200D4828,
+> +	.config_ctl_hi_val = 0x6,
+> +	.early_output_mask = BIT(3),
+> +	.aux2_output_mask = BIT(2),
+> +	.aux_output_mask = BIT(1),
+> +	.main_output_mask = BIT(0),
+> +	.test_ctl_val = 0x0,
+> +	.test_ctl_hi_val = 0x4000,
+> +};
+> +
+>   static const struct regmap_config ipq_pll_regmap_config = {
+>   	.reg_bits		= 32,
+>   	.reg_stride		= 4,
+> @@ -102,6 +114,7 @@ static int apss_ipq_pll_probe(struct platform_device *pdev)
+>   static const struct of_device_id apss_ipq_pll_match_table[] = {
+>   	{ .compatible = "qcom,ipq6018-a53pll", .data = &ipq6018_pll_config },
+>   	{ .compatible = "qcom,ipq8074-a53pll", .data = &ipq8074_pll_config },
+> +	{ .compatible = "qcom,ipq9574-a73pll", .data = &ipq9574_pll_config },
+>   	{ }
+>   };
+>   MODULE_DEVICE_TABLE(of, apss_ipq_pll_match_table);
+> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> index 0e9f9cba8668..90e74f9d7cb3 100644
+> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> @@ -33,6 +33,10 @@ static const struct qcom_apcs_ipc_data ipq6018_apcs_data = {
+>   	.offset = 8, .clk_name = "qcom,apss-ipq6018-clk"
+>   };
+>   
+> +static const struct qcom_apcs_ipc_data ipq9574_apcs_data = {
+> +	.offset = 8, .clk_name = "qcom,apss-ipq6018-clk"
+> +};
+
+As the data is identical to ipq6018's one, please don't add a duplicate 
+of it.
+
+> +
+>   static const struct qcom_apcs_ipc_data msm8916_apcs_data = {
+>   	.offset = 8, .clk_name = "qcom-apcs-msm8916-clk"
+>   };
+> @@ -143,6 +147,7 @@ static int qcom_apcs_ipc_remove(struct platform_device *pdev)
+>   static const struct of_device_id qcom_apcs_ipc_of_match[] = {
+>   	{ .compatible = "qcom,ipq6018-apcs-apps-global", .data = &ipq6018_apcs_data },
+>   	{ .compatible = "qcom,ipq8074-apcs-apps-global", .data = &ipq6018_apcs_data },
+> +	{ .compatible = "qcom,ipq9574-apcs-apps-global", .data = &ipq9574_apcs_data },
+>   	{ .compatible = "qcom,msm8916-apcs-kpss-global", .data = &msm8916_apcs_data },
+>   	{ .compatible = "qcom,msm8939-apcs-kpss-global", .data = &msm8916_apcs_data },
+>   	{ .compatible = "qcom,msm8953-apcs-kpss-global", .data = &msm8994_apcs_data },
+
+-- 
+With best wishes
+Dmitry
+
