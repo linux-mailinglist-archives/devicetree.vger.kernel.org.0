@@ -2,118 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C2AC682CD2
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 13:44:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16AD1682CDF
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 13:45:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231912AbjAaMog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 07:44:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54386 "EHLO
+        id S231947AbjAaMpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 07:45:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231915AbjAaMof (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 07:44:35 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEE164B882
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 04:44:30 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id d14so14074997wrr.9
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 04:44:30 -0800 (PST)
+        with ESMTP id S231936AbjAaMpT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 07:45:19 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D010729173
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 04:45:16 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id p26so30010471ejx.13
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 04:45:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=13nzaN0F+f/sYz2TUmotbNZznv3QFhLhfctCZvdaWMw=;
-        b=LzQuafCXiUu+/QVLuOx5+U472+tuIKY2ZoqVxBhNSMf1+0nTYu65UV++V4INo1WdLh
-         NyWEzpLR4IR7mlrKPrk932zeVkzFbqVtAhFR158sVE2A1F0+Edr9iSmRtaY0BI/+O7CO
-         65mVYDvDL1J6UgwfFJx9t4nxWofkcVaxPRzqmEIhkh5nPJM9wRnG26EQVTK0FqhkpLEa
-         OoPYssOcwDIVZ/YN9CMgYwmOdcoCqzBoP3N7o/o90MHnphM9p1P7K3nDmAduwpdVsbXA
-         aa6Yo40ZhJCs8VfFwWKOKLWbgg7RWcyJUWh3cwCGNSMlBFAmjZVI5310bnPgAfT9rpvu
-         cNrA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8xbu9OSYb70xb94Yeo31t8Oaxtx3TEHDRghlLnFGwEE=;
+        b=HOQM9HVcHNtPQArB9zdGc+O47H5Vo84d9V9VhhhQrU/5yzCLU+SMlVuEXnZEe41pPW
+         xCHkVMP0gyrDWj5XBdMUjyi6KNx3SI0bCDzcCw//4Q4eJ0BFD31xHLDO1LwVeNj/HU1n
+         pn7Yrhd9FC4tgM74wBgvGOolUVNYG7r6SnbaOrdBKMg+Kqu4XwGbYpdeBgJZXgB+tx5W
+         JS6wjUKIIWY0euwy/bDqjwp8YBzxeaXhNr7BKPX0CRbvGRHsHRdviH54iPCU6xATZPhd
+         0DvpWRLxxdpNcx2zvS58RGKJzBNRgo8/NV9p6BdhTEQOR3YIKSVo0LTqoThKIYQUrkVI
+         7IZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=13nzaN0F+f/sYz2TUmotbNZznv3QFhLhfctCZvdaWMw=;
-        b=4e3FB3oGq7NX8RBjGwgpzJhPpqV0FcuOk5xozZwmXvNTSnHntxbvL8YP4zxdLBuF9N
-         5PxrGCIxXMCSor84HCVxQvLNyvfLNcjY32kCaVdUoxTZfe+hL6TTltka8ROhJUQVTYsN
-         qZYSQhKBPnLaFUIgwZU8n9/U/NntsO4RUvU673semvoqYN1UBvNqOlrj6QEJgRA8ZRwE
-         kFefAavZ2CRWxtTgfWWglkz1GTn/l/egMJ5sQQhTDiJRLoq+UhNhsvZsFfklZjNiLn9C
-         QLbzSrrXiie1UnNXatfncJDiBOggvBByq7NsLLa9VI8TLhQa5Dsj0JhLLvDT/bkR7QGm
-         dyhA==
-X-Gm-Message-State: AO0yUKXh9U/P5Pomex5Vp9XHa75hHcC8OB9Xosw3sWiqeD4zDig4UM96
-        oK3cq+aC5Pr3u1NNnNAgiMOkyQ==
-X-Google-Smtp-Source: AK7set/j7xPrDGmbtp/qX4EpqTxjiUfqVFmdkLYAZw64K9V04dEjHh+gj+fF7FVSYTC/ycpetwe+pw==
-X-Received: by 2002:adf:ba07:0:b0:2bf:ecee:acc6 with SMTP id o7-20020adfba07000000b002bfeceeacc6mr7185523wrg.61.1675169069219;
-        Tue, 31 Jan 2023 04:44:29 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:d566:ca83:9120:7d5])
-        by smtp.gmail.com with ESMTPSA id az19-20020adfe193000000b002bdc3f5945dsm1767262wrb.89.2023.01.31.04.44.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Jan 2023 04:44:28 -0800 (PST)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH] dt-bindings: arm: qcom: add the sa8775p-ride board
-Date:   Tue, 31 Jan 2023 13:44:24 +0100
-Message-Id: <20230131124424.167827-1-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8xbu9OSYb70xb94Yeo31t8Oaxtx3TEHDRghlLnFGwEE=;
+        b=dT6uQVQpiLgDqxFt6mxklJgiRXeUBjMWq0Uv4eBM/cxDpS4UnlxJBXWfhdJ6ttC0er
+         5xjv+jtDNxyOrAaYWtmpn4M5YeyCCtxhi5/P1zuM45wpPkDWVKzopegZyNMsBPC50/U9
+         bQIGGQAdftguBzZNA8Hl941UpI9NtSX42ZZFt3Lf8rMjK5pvHbqcP2fpwVtsTJQWNhXG
+         No/PGCiHNQnMWyT/PYfjBgyTZncLmBv1WUFYes6Amxe0CynclCvTIPLNI14ijk+4U1Ps
+         W9M6oNDWqFahE1aE7FPnjZTFq89goQz8JdiYIk4FBkE9KvPnyRoAQhWj85x79pp02T8B
+         ti+A==
+X-Gm-Message-State: AO0yUKWbo+oYJKmBwpTo1v+yj9WQhYwMY8G7Jyj34QhuPh+ihLhD+VwI
+        7rzn7mD7sMQWEXw/Z3EAidZuxQ==
+X-Google-Smtp-Source: AK7set+xEX/0VUfgwRIBFa8ZDHADe1V6jD0Mhcsk+kdmw3nw7+rNAJsp1S6XWKh5HOt4IleZY/zvCw==
+X-Received: by 2002:a17:907:a0d2:b0:878:7f6e:38a7 with SMTP id hw18-20020a170907a0d200b008787f6e38a7mr3298474ejc.44.1675169115144;
+        Tue, 31 Jan 2023 04:45:15 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id hq15-20020a1709073f0f00b00877ff0c2bb0sm8411192ejc.166.2023.01.31.04.45.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 04:45:14 -0800 (PST)
+Message-ID: <7b90ce05-29ac-da1c-ca3c-c52577d131ea@linaro.org>
+Date:   Tue, 31 Jan 2023 14:45:12 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v12 02/14] drm/msm/disp/dpu: get timing engine status from
+ intf status register
+Content-Language: en-GB
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_kalyant@quicinc.com, quic_khsieh@quicinc.com,
+        quic_vproddut@quicinc.com, quic_bjorande@quicinc.com,
+        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com
+References: <1675091494-13988-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1675091494-13988-3-git-send-email-quic_vpolimer@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <1675091494-13988-3-git-send-email-quic_vpolimer@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 30/01/2023 17:11, Vinod Polimera wrote:
+> Recommended way of reading the interface timing gen status is via
+> status register. Timing gen status register will give a reliable status
+> of the interface especially during ON/OFF transitions. This support was
+> added from DPU version 5.0.0.
+> 
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> ---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c |  6 ++++--
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h | 12 +++++++-----
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c    |  8 +++++++-
+>   3 files changed, 18 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+> index cf053e8..ce6e9e6 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+> @@ -78,9 +78,11 @@
+>   
+>   #define INTF_SDM845_MASK (0)
+>   
+> -#define INTF_SC7180_MASK BIT(DPU_INTF_INPUT_CTRL) | BIT(DPU_INTF_TE)
+> +#define INTF_SC7180_MASK \
+> +	(BIT(DPU_INTF_INPUT_CTRL) | BIT(DPU_INTF_TE) | BIT(DPU_INTF_STATUS_SUPPORTED))
+>   
+> -#define INTF_SC7280_MASK INTF_SC7180_MASK | BIT(DPU_DATA_HCTL_EN)
+> +#define INTF_SC7280_MASK \
+> +	(INTF_SC7180_MASK | BIT(DPU_DATA_HCTL_EN))
 
-Document the sa8775p SoC and its reference board: sa8775p-ride.
+Not necessary anymore.
 
-Link: https://lore.kernel.org/linux-arm-msm/20230131124026.167281-1-brgl@bgdev.pl/
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+With that fixed:
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 22553637c519..6709e64a4480 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -49,6 +49,7 @@ description: |
-         qru1000
-         sa8155p
-         sa8540p
-+        sa8775p
-         sc7180
-         sc7280
-         sc8180x
-@@ -89,6 +90,7 @@ description: |
-         liquid
-         mtp
-         qrd
-+        ride
-         sbc
-         x100
- 
-@@ -805,6 +807,11 @@ properties:
-               - qcom,sa8540p-ride
-           - const: qcom,sa8540p
- 
-+      - items:
-+          - enum:
-+              - qcom,sa8775p-ride
-+          - const: qcom,sa8775p
-+
-       - items:
-           - enum:
-               - google,cheza
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+>   
+>   #define IRQ_SDM845_MASK (BIT(MDP_SSPP_TOP0_INTR) | \
+>   			 BIT(MDP_SSPP_TOP0_INTR2) | \
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> index ddab9ca..08cd1a1 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> @@ -213,17 +213,19 @@ enum {
+>   
+>   /**
+>    * INTF sub-blocks
+> - * @DPU_INTF_INPUT_CTRL         Supports the setting of pp block from which
+> - *                              pixel data arrives to this INTF
+> - * @DPU_INTF_TE                 INTF block has TE configuration support
+> - * @DPU_DATA_HCTL_EN            Allows data to be transferred at different rate
+> -                                than video timing
+> + * @DPU_INTF_INPUT_CTRL             Supports the setting of pp block from which
+> + *                                  pixel data arrives to this INTF
+> + * @DPU_INTF_TE                     INTF block has TE configuration support
+> + * @DPU_DATA_HCTL_EN                Allows data to be transferred at different rate
+> + *                                  than video timing
+> + * @DPU_INTF_STATUS_SUPPORTED       INTF block has INTF_STATUS register
+>    * @DPU_INTF_MAX
+>    */
+>   enum {
+>   	DPU_INTF_INPUT_CTRL = 0x1,
+>   	DPU_INTF_TE,
+>   	DPU_DATA_HCTL_EN,
+> +	DPU_INTF_STATUS_SUPPORTED,
+>   	DPU_INTF_MAX
+>   };
+>   
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c
+> index 7ce66bf..84ee2ef 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c
+> @@ -62,6 +62,7 @@
+>   #define   INTF_LINE_COUNT               0x0B0
+>   
+>   #define   INTF_MUX                      0x25C
+> +#define   INTF_STATUS                   0x26C
+>   
+>   #define INTF_CFG_ACTIVE_H_EN	BIT(29)
+>   #define INTF_CFG_ACTIVE_V_EN	BIT(30)
+> @@ -297,8 +298,13 @@ static void dpu_hw_intf_get_status(
+>   		struct intf_status *s)
+>   {
+>   	struct dpu_hw_blk_reg_map *c = &intf->hw;
+> +	unsigned long cap = intf->cap->features;
+> +
+> +	if (cap & BIT(DPU_INTF_STATUS_SUPPORTED))
+> +		s->is_en = DPU_REG_READ(c, INTF_STATUS) & BIT(0);
+> +	else
+> +		s->is_en = DPU_REG_READ(c, INTF_TIMING_ENGINE_EN);
+>   
+> -	s->is_en = DPU_REG_READ(c, INTF_TIMING_ENGINE_EN);
+>   	s->is_prog_fetch_en = !!(DPU_REG_READ(c, INTF_CONFIG) & BIT(31));
+>   	if (s->is_en) {
+>   		s->frame_count = DPU_REG_READ(c, INTF_FRAME_COUNT);
+
 -- 
-2.37.2
+With best wishes
+Dmitry
 
