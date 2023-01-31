@@ -2,69 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76BDA682D81
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:14:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 392CA682DDA
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 14:27:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbjAaNON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 08:14:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51176 "EHLO
+        id S232245AbjAaN1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 08:27:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230163AbjAaNOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:14:08 -0500
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B85892D4D
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 05:13:56 -0800 (PST)
-Received: by mail-yb1-xb30.google.com with SMTP id 129so18048019ybb.0
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 05:13:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lebX9VzQP7VMYHLa2vyK4hrBtzDqJ9eFCBgK4dZHGqY=;
-        b=qXtrFvc8NPvibTzkOdKNUNcSgLQUKhwmE6ALIFFlhhema+9UDs2/xEAIp+1VFL2AAa
-         9YdIL9SgKkLhDEhuwRUiuvwE+TJRxMZaSHitbLSVMLJWtVAtYkK0GK6tJyPqTuRp+uQL
-         z9Swhwf9izFHI+zJzgyEejUwavw8wqvwJqCFL7fTGGGc8rUk6bd8vUrsAR80S6dFW0CU
-         hZiVxhUNlbWJv7m3ZE4fyFtpkBPjAJ3YI9uNsWLMWDjXerT9A5FLOXeafa1i88ACzgEk
-         ucAdfE/0nfU4LAz+zOTnAF/Jz8srUae8pvFzBqYWFGMrKyNnJMDbovdndrXlESHtXAa3
-         /m+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lebX9VzQP7VMYHLa2vyK4hrBtzDqJ9eFCBgK4dZHGqY=;
-        b=DWLJ8xuyhA8cH7IWG+qnU21LKfGdNxQDt6FtsSaBQhCn6a9a4gdQp2Tw195ntsbqPj
-         ViibBXdg6gh0/qDH/DoP71EbnROWmwCTIUCIm6dD8u9JJadtHr0m0PJn1gZzGFE+itFe
-         UTnlvNZNcknOZoAcPv44VkLi7I3z+rGglmXAqJmhuitLrVhM5DnKTKOzgCXvj1hthlFK
-         g65YtJVXqm/zuowhQ+13E1TomnoRz0zhUuMHjf5y2rFqHTxmFrUCfIJKDO2oAvWwi3Uu
-         +uZWBpBTZ6DcShLkXI+LPm1PLeVX499UegUiZ29cjWj+bdWarDf8BkBbxG+x5jk9GT2S
-         GGYA==
-X-Gm-Message-State: AO0yUKXGgRK1e/1BlRgr/x5Nm10A3UevwU/K++HUZWLW7OM1PcQ0lxUt
-        +Ao9/ZilV8/9HTp1MaN1oYT/8YAzFIempsTrmpN0ZelzSrvnOgP/
-X-Google-Smtp-Source: AK7set/ssVUH1Rz89sAOJnKBoqT7NZMWXa8/qUnWnQSWqihB5+j26vSuiStV4rczYgZIb+D5YQtZAm1c0IjM0yuMuo4=
-X-Received: by 2002:a25:2fce:0:b0:83e:bd63:6dd7 with SMTP id
- v197-20020a252fce000000b0083ebd636dd7mr45490ybv.24.1675170835979; Tue, 31 Jan
- 2023 05:13:55 -0800 (PST)
+        with ESMTP id S232181AbjAaN1M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 08:27:12 -0500
+X-Greylist: delayed 365 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 31 Jan 2023 05:27:08 PST
+Received: from n169-114.mail.139.com (n169-114.mail.139.com [120.232.169.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C0C93CE3F;
+        Tue, 31 Jan 2023 05:27:07 -0800 (PST)
+X-RM-TagInfo: emlType=0                                       
+X-RM-SPAM:                                                                                        
+X-RM-SPAM-FLAG: 00000000
+Received: from localhost.localdomain (unknown[39.144.43.110])
+        by rmsmtp-lg-appmail-38-12052 (RichMail) with SMTP id 2f1463d914f4443-3b782;
+        Tue, 31 Jan 2023 21:17:42 +0800 (CST)
+X-RM-TRANSID: 2f1463d914f4443-3b782
+From:   Shenghao Ding <13916275206@139.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        broonie@kernel.org, lgirdwood@gmail.com
+Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Shenghao Ding <13916275206@139.com>
+Subject: [PATCH v5] ASoC: dt-bindings: Add tas2781 amplifier.
+Date:   Tue, 31 Jan 2023 21:17:35 +0800
+Message-Id: <20230131131735.7118-1-13916275206@139.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20221220005529.34744-1-hal.feng@starfivetech.com>
-In-Reply-To: <20221220005529.34744-1-hal.feng@starfivetech.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 31 Jan 2023 14:13:44 +0100
-Message-ID: <CACRpkdbU=Y_LVBfSctQULzFuo4tB9KxgFbv=JGHPuuok6jC8FQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/5] Basic pinctrl support for StarFive JH7110 RISC-V SoC
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Jianlong Huang <jianlong.huang@starfivetech.com>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,30 +44,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 20, 2022 at 1:55 AM Hal Feng <hal.feng@starfivetech.com> wrote:
+Create tas2781.yaml for tas2781 driver.
 
-> This patch series adds basic pinctrl support for StarFive JH7110 SoC.
-> You can simply get or review the patches at the link [1].
->
-> [1]: https://github.com/hal-feng/linux/commits/visionfive2-minimal
->
-> Changes since v2:
-> - Rebased on tag v6.1.
+Signed-off-by: Shenghao Ding <13916275206@139.com>
 
-Overall this looks OK, the DT bindings does not have any review from
-the DT people but I think they had enough time to do that and were
-properly CC:ed so not your fault.
+---
+ Changes to be committed:
+	new file:   Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+---
+ .../devicetree/bindings/sound/ti,tas2781.yaml | 87 +++++++++++++++++++
+ 1 file changed, 87 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
 
-However when I try to apply this to the pinctrl tree it fails,
-for example it seems to depend on an entry in MAINTAINERS
-which isn't upstream.
+diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+new file mode 100644
+index 000000000..9a440d29f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+@@ -0,0 +1,87 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2022 - 2023 Texas Instruments Incorporated
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TAS2781 SmartAMP
++
++maintainers:
++  - Shenghao Ding <shenghao-ding@ti.com>
++  - Kevin Lu <kevin-lu@ti.com>
++
++description: |
++  The TAS2781 is a mono, digital input Class-D audio amplifier
++  optimized for efficiently driving high peak power into small
++  loudspeakers. Integrated an on-chip DSP supports Texas Instruments
++  Smart Amp speaker protection algorithm. The integrated speaker
++  voltage and current sense provides for real time
++  monitoring of loudspeaker behavior.
++
++properties:
++  compatible:
++    enum:
++      - ti,tas2781
++
++  reg:
++    maxItems: 1
++    description: |
++      I2C address of the device can be in range from 0x38 to 0x40.
++
++  reset-gpios:
++    maxItems: 1
++    description: |
++      A GPIO line handling reset of the chip. As the line is active high,
++      it should be marked GPIO_ACTIVE_HIGH (see ../gpio/gpio.txt)
++
++  interrupts:
++    maxItems: 1
++
++  ti,audio-slots:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 4
++    description: |
++      I2c address of the device for different audio slots,
++      useless in mono case.
++
++  ti,broadcast-addr:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      Generic i2c address for all the tas2781 devices in
++      purpose of I2C broadcast during the multi-device
++      writes, useless in mono case.
++
++  '#sound-dai-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++   #include <dt-bindings/gpio/gpio.h>
++   i2c {
++     /* example with quad support, such as tablet or pad device */
++     #address-cells = <1>;
++     #size-cells = <0>;
++     quad: codec@38 {
++       compatible = "ti,tas2781";
++       reg = <0x38>;
++       #sound-dai-cells = <1>;
++       reset-gpios = < &gpio1 10 GPIO_ACTIVE_HIGH >;
++       interrupt-parent = <&gpio1>;
++       interrupts = <15>;
++       ti,audio-slots = < 0x38 /* topleft-channel */
++                          0x39 /* topright-channel */
++                          0x3a /* bottomleft-channel */
++                          0x3b /* bottomright-channel */
++                        >;
++       ti,broadcast-addr = <0x40>;
++     };
++   };
++...
+-- 
+2.34.1
 
-Can you please rebase the patches that are supposed to be
-applied to the pinctrl tree (for example normally not patch 1, the DTS
-patch) on my "devel" branch:
-https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=devel
 
-If you resend this quickly I can apply it pronto.
-
-Yours,
-Linus Walleij
