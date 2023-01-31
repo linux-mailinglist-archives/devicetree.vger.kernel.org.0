@@ -2,212 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44049682EEC
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 15:12:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51529682EF1
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 15:13:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230238AbjAaOML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 09:12:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47576 "EHLO
+        id S231764AbjAaONw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 09:13:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231657AbjAaOMK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 09:12:10 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9942D3C292;
-        Tue, 31 Jan 2023 06:12:09 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso7875972wms.4;
-        Tue, 31 Jan 2023 06:12:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P/R4cNaGlsB+JAENN+lFknhdQtCKoTDGDjvYT5VqFYM=;
-        b=KLWU9qDvFpDnQ3fhhLOgoPPyYREmXlA74zy09RxeXiR2Ge4lmO0vhaqLzO6KUYX/vY
-         h7YgZ8ntYzT9r/kbVJIxVUa2hBR1gcqdbHHiQ4bKec3smBEd54Iaq0m657ScJcmU7r3m
-         7MaL70yh1SGq6tMtwBkTHPgjpYZc8Smn0yL0qsObaWrK0qlFLWUQSGvpwrqaQzjP7TEL
-         rVfR/OoZBqHgkTNlvJBO1FPFBoHixmYgXC8EFze2ZZmRihv6Np4pL+u0N/OK5cJspZWE
-         99wM68rUuHjc65mlUNDk3E+PParN5SAzB9n7qDhWm2fL+FuAYgqR+KXoy8HyidR7w4i9
-         kElA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P/R4cNaGlsB+JAENN+lFknhdQtCKoTDGDjvYT5VqFYM=;
-        b=ZtVmJdfJ+pv42QfsD6QZUHWv+f2e+SCkYw2Wmjug/Cu36k+CHG1xwmZ/St9jyXyDM1
-         KAFBOy45h0tsudl/D72qcyxLVamjtJ/sAK17SMzl9XOa4q4QcQ48FYNz7lGQ6Z2ZAbrg
-         UXI/TsrGzqOBrXdXhYW88p+hV9DDVkmmGirWyj6fs5gAsnL8ukuEDQxPZl6zmuGFJi+7
-         WwxOger9wBGY/xR89qMBb+1skq+Do3ItFAEWre5baAbUtKvrgdX5yubna5Rjs2lMfX+T
-         z3RtdI6kMSgThTiGl5P31/RzkRttDPBC6TftFmKsU/9q/kXRWkXZOmErx0J0l1QEj60t
-         12Dg==
-X-Gm-Message-State: AO0yUKWhyR8s+OohsMSG4sf3ofJcyMrDkKw1RkZNg5Rwr56WMCj2BFbR
-        ndF+9RSBciNUhqNSELXReRE=
-X-Google-Smtp-Source: AK7set9EwXOA8F4oRABxg4bp5mFoTsnuoS5+0J4enHwxIm9aAhElvXdHee6OetPeRiI3kJ+ONMmJ4A==
-X-Received: by 2002:a1c:f014:0:b0:3dc:4318:d00d with SMTP id a20-20020a1cf014000000b003dc4318d00dmr15157427wmb.11.1675174328167;
-        Tue, 31 Jan 2023 06:12:08 -0800 (PST)
-Received: from smtpclient.apple ([167.99.200.149])
-        by smtp.gmail.com with ESMTPSA id n5-20020a5d4c45000000b002be4ff0c917sm14711874wrt.84.2023.01.31.06.12.06
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 31 Jan 2023 06:12:07 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
-Subject: Re: [PATCH] media: rc: add keymap for Beelink Mini MXIII remote
-From:   Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <Y9khL5lKbSG61pWI@gofer.mess.org>
-Date:   Tue, 31 Jan 2023 18:11:57 +0400
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229895AbjAaONv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 09:13:51 -0500
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA733C0A;
+        Tue, 31 Jan 2023 06:13:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1675174430; x=1706710430;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/BEyfGW0W/aNEviei4kNEG3m+BpXMjr5t7OGNNmaDWM=;
+  b=ioz6Nc7Ln4FiaXhcghfkBaYM7jKk6skuQ8CBvZ/D0LLVMv+UOHGT+ju+
+   5eQ03jQOzmxZB/fX7W79XkYAkP4KrFTmiXIlOxQy1GDsmK748q9DSQU8D
+   O2EKm0qWPV+VinplluWbcoBpVsfWR8Kt0Ifhw6doKjQYSQV4//6/gQzhn
+   6a4i9jgJBQpU4EluU5995lDhLVyhsyq8802iD6hZGmMds//VE+qCdkEPE
+   jqqRI9ia6vmO6Jgmm1a61Uk5noMEw4sLtqwHQzqNtiIaE/ZWmOQVHBh0N
+   1XBuyJVW4FqgLpM4QWq2kXckWw1BRcAlzSX8A08NEd933A5f+ogk0dgyW
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="392399983"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; 
+   d="scan'208";a="392399983"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2023 06:13:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="727958871"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; 
+   d="scan'208";a="727958871"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga008.fm.intel.com with ESMTP; 31 Jan 2023 06:13:03 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pMrNd-000Hgz-30;
+        Tue, 31 Jan 2023 16:13:01 +0200
+Date:   Tue, 31 Jan 2023 16:13:01 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     "Sahin, Okan" <Okan.Sahin@analog.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        LKML <linux-kernel@vger.kernel.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <38FDB059-5B8B-4885-AF4B-133F12995641@gmail.com>
-References: <20230128034117.3983105-1-christianshewitt@gmail.com>
- <Y9khL5lKbSG61pWI@gofer.mess.org>
-To:     Sean Young <sean@mess.org>
-X-Mailer: Apple Mail (2.3696.120.41.1.1)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v3 3/5] drivers: regulator: Add ADI MAX77541/MAX77540
+ Regulator Support
+Message-ID: <Y9kh7QI+1RqvLr2G@smile.fi.intel.com>
+References: <20230118063822.14521-1-okan.sahin@analog.com>
+ <20230118063822.14521-4-okan.sahin@analog.com>
+ <Y8erlpofdk24vwCC@smile.fi.intel.com>
+ <MN2PR03MB5168EC97926AB33D4D806FCCE7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <MN2PR03MB516865804044A798AEB5B6C0E7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <Y9kJEsjkG8h79tcR@smile.fi.intel.com>
+ <BY5PR03MB5153C18E65B954E9FEFD96B1E7D09@BY5PR03MB5153.namprd03.prod.outlook.com>
+ <Y9kXxP/cEBJ5gyoB@smile.fi.intel.com>
+ <BY5PR03MB51539CB52778A945C8CB788FE7D09@BY5PR03MB5153.namprd03.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BY5PR03MB51539CB52778A945C8CB788FE7D09@BY5PR03MB5153.namprd03.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jan 31, 2023 at 01:59:45PM +0000, Sahin, Okan wrote:
+> On Tue, 31 Jan 2022 4:30 PM
+> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> >On Tue, Jan 31, 2023 at 01:23:33PM +0000, Sahin, Okan wrote:
+> >> On Tue, 31 Jan 2022 3:27 PM
+> >> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> >> >On Tue, Jan 31, 2023 at 09:27:48AM +0000, Sahin, Okan wrote:
 
+...
 
-> On 31 Jan 2023, at 6:09 pm, Sean Young <sean@mess.org> wrote:
->=20
-> On Sat, Jan 28, 2023 at 03:41:17AM +0000, Christian Hewitt wrote:
->> Add a keymap and bindings for the simple IR (NEC) remote used with
->> the Beelink Mini MXIII Android STB device.
->>=20
->> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
->> ---
->> .../devicetree/bindings/media/rc.yaml         |  1 +
->> drivers/media/rc/keymaps/Makefile             |  1 +
->> drivers/media/rc/keymaps/rc-beelink-mxiii.c   | 54 =
-+++++++++++++++++++
->> include/media/rc-map.h                        |  1 +
->> 4 files changed, 57 insertions(+)
->> create mode 100644 drivers/media/rc/keymaps/rc-beelink-mxiii.c
->>=20
->> diff --git a/Documentation/devicetree/bindings/media/rc.yaml =
-b/Documentation/devicetree/bindings/media/rc.yaml
->> index 266f1d5cae51..f390a5d2c82d 100644
->> --- a/Documentation/devicetree/bindings/media/rc.yaml
->> +++ b/Documentation/devicetree/bindings/media/rc.yaml
->> @@ -39,6 +39,7 @@ properties:
->>       - rc-avertv-303
->>       - rc-azurewave-ad-tu700
->>       - rc-beelink-gs1
->> +      - rc-beelink-mxiii
->>       - rc-behold
->>       - rc-behold-columbus
->>       - rc-budget-ci-old
->> diff --git a/drivers/media/rc/keymaps/Makefile =
-b/drivers/media/rc/keymaps/Makefile
->> index ec0361b0b758..03bc9a8d355e 100644
->> --- a/drivers/media/rc/keymaps/Makefile
->> +++ b/drivers/media/rc/keymaps/Makefile
->> @@ -22,6 +22,7 @@ obj-$(CONFIG_RC_MAP) +=3D \
->> 			rc-avertv-303.o \
->> 			rc-azurewave-ad-tu700.o \
->> 			rc-beelink-gs1.o \
->> +			rc-beelink-mxiii.o \
->> 			rc-behold-columbus.o \
->> 			rc-behold.o \
->> 			rc-budget-ci-old.o \
->> diff --git a/drivers/media/rc/keymaps/rc-beelink-mxiii.c =
-b/drivers/media/rc/keymaps/rc-beelink-mxiii.c
->> new file mode 100644
->> index 000000000000..09b77295e0a3
->> --- /dev/null
->> +++ b/drivers/media/rc/keymaps/rc-beelink-mxiii.c
->> @@ -0,0 +1,54 @@
->> +// SPDX-License-Identifier: GPL-2.0+
->> +//
->> +// Copyright (C) 2019 Christian Hewitt <christianshewitt@gmail.com>
->> +
->> +#include <media/rc-map.h>
->> +#include <linux/module.h>
->> +
->> +//
->> +// Keytable for the Beelink Mini MXIII remote control
->> +//
->> +
->> +static struct rc_map_table beelink_mxiii[] =3D {
->> +	{ 0xb2dc, KEY_POWER },
->> +
->> +	{ 0xb288, KEY_MUTE },
->=20
-> I'm guessing this is the mouse button. It should say so in a comment, =
-if it
-> is.
+> >> >> Sorry for second question. I do not want to bother you, but I
+> >> >> realized that I need to be sure about driver_data before sending
+> >> >> new patch. You said that you need to use pointers directly for
+> >> >> driver_data then I fixed that part in mfd, but I do not need or
+> >> >> use driver_data in regulator since chip_id comes from mfd device so
+> >> >> I think using like below should be enough for my implementation.
+> >> >>
+> >> >> static const struct platform_device_id max77541_regulator_platform_id[] =
+> >{
+> >> >> 	{ "max77540-regulator", },
+> >> >> 	{ "max77541-regulator", },
+> >> >> 	{  /* sentinel */  }
+> >> >> };
+> >> >> MODULE_DEVICE_TABLE(platform, max77541_regulator_platform_id);
+> >> >>
+> >> >> static const struct of_device_id max77541_regulator_of_id[] = {
+> >> >> 	{ .compatible = "adi,max77540-regulator", },
+> >> >> 	{ .compatible = "adi,max77541-regulator", },
+> >> >> 	{ /* sentinel */  }
+> >> >> };
+> >> >> MODULE_DEVICE_TABLE(of, max77541_regulator_of_id);
+> >> >>
+> >> >> What do you think?
+> >> >
+> >> >If you have got all necessary data from the upper layer, why do you
+> >> >need to have an ID table here? I'm not sure I understand how this OF
+> >> >ID table works in this case.
+> >
+> >> I added it since there is regulator node in device tree. With the help
+> >> of devm_regulator_register(..), driver takes parameters of regulator
+> >> node. I also used id to select and to initialize regulator descriptors
+> >> which are chip specific. So far there is no comment about OF ID table
+> >> so I kept it. I thought I need to add both of id table and platform id
+> >> table as name matching is required to initialize platform device from mfd.
+> >
+> >For platform device is one mechanism how to enumerate device, and bind it to
+> >the driver. The OF ID table needs to be present in case you are using it for direct
+> >DT enumeration (there is also something related to MFD child nodes, but you
+> >need to check and explain how your device is enumerated by this driver).
+> >
+> >I.o.w. please clarify how the OF ID table is being used.
+> 
+> I do not use "of id table" directly in max77541-regulator.c so do I need to exclude it?
 
-It=E2=80=99s not (for once). It=E2=80=99s a rather minimal remote. =
-Nothing
-as fancy as mouse support :)
+Exactly my point. How does this OF ID table affect the device enumeration?
 
-Christian
+> However, devm_regulator_register(..) method initialize each regulator with
+> the nodes under "regulators node". If of_match in desc and name of node
+> matches, then regulator will be initialized with parameters in the node under
+> the regulators node in the device tree. Since I am using device tree to
+> initialize regulators, I added of id table. I hope I explained the situation
+> clearly.
 
-> Thanks,
-> Sean
->=20
->> +	{ 0xb282, KEY_HOME },
->> +
->> +	{ 0xb2ca, KEY_UP },
->> +	{ 0xb299, KEY_LEFT },
->> +	{ 0xb2ce, KEY_OK },
->> +	{ 0xb2c1, KEY_RIGHT },
->> +	{ 0xb2d2, KEY_DOWN },
->> +
->> +	{ 0xb2c5, KEY_MENU },
->> +	{ 0xb29a, KEY_BACK },
->> +
->> +	{ 0xb281, KEY_VOLUMEDOWN },
->> +	{ 0xb280, KEY_VOLUMEUP },
->> +};
->> +
->> +static struct rc_map_list beelink_mxiii_map =3D {
->> +	.map =3D {
->> +		.scan     =3D beelink_mxiii,
->> +		.size     =3D ARRAY_SIZE(beelink_mxiii),
->> +		.rc_proto =3D RC_PROTO_NEC,
->> +		.name     =3D RC_MAP_BEELINK_MXIII,
->> +	}
->> +};
->> +
->> +static int __init init_rc_map_beelink_mxiii(void)
->> +{
->> +	return rc_map_register(&beelink_mxiii_map);
->> +}
->> +
->> +static void __exit exit_rc_map_beelink_mxiii(void)
->> +{
->> +	rc_map_unregister(&beelink_mxiii_map);
->> +}
->> +
->> +module_init(init_rc_map_beelink_mxiii)
->> +module_exit(exit_rc_map_beelink_mxiii)
->> +
->> +MODULE_LICENSE("GPL");
->> +MODULE_AUTHOR("Christian Hewitt <christianshewitt@gmail.com");
->> diff --git a/include/media/rc-map.h b/include/media/rc-map.h
->> index 5178dcae5ff7..dadd4d27a760 100644
->> --- a/include/media/rc-map.h
->> +++ b/include/media/rc-map.h
->> @@ -225,6 +225,7 @@ struct rc_map *rc_map_get(const char *name);
->> #define RC_MAP_AVERTV_303                "rc-avertv-303"
->> #define RC_MAP_AZUREWAVE_AD_TU700        "rc-azurewave-ad-tu700"
->> #define RC_MAP_BEELINK_GS1               "rc-beelink-gs1"
->> +#define RC_MAP_BEELINK_MXIII             "rc-beelink-mxiii"
->> #define RC_MAP_BEHOLD                    "rc-behold"
->> #define RC_MAP_BEHOLD_COLUMBUS           "rc-behold-columbus"
->> #define RC_MAP_BUDGET_CI_OLD             "rc-budget-ci-old"
->> --=20
->> 2.34.1
+This is confusing. If your regulator is enumerated via DT, why do you need MFD?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
