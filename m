@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A6586835AC
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 19:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56F166835BB
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 19:55:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbjAaSv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 13:51:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42166 "EHLO
+        id S231851AbjAaSzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 13:55:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229889AbjAaSv1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 13:51:27 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBFA6DBF6
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 10:51:24 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so11389954wms.2
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 10:51:24 -0800 (PST)
+        with ESMTP id S231668AbjAaSzF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 13:55:05 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD950568A8
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 10:55:00 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id y1so15178021wru.2
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 10:55:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=CY9SU6b3wZS3mZz9rbdfa32Xi5zQER2G6OPN575iHjs=;
-        b=nNivMXLsjaiN/3aTeN/Lx6QcZcbt1RJlRnPixE1F7Fch6ltg/BBpprez8gw8Gq+dGe
-         Tgm6hry7MKyw8I8LJ8EURd7YdOTpdVj4XZBa8ecy3InRxD75HDKmvuqPGMTq1pcaVOLX
-         YB5IpVAVIhnDFW2/Xnttpt922JZhnD3Vi+aybwW0dhGIk3/M8Nm8LbMIkXE261RG0Hu/
-         +JuE4cuBaOISy6kyf0ie7V6mzTkIYXKkPFIujc+y625HNJIsBvZ2GrqJk7ZoDmBquPRE
-         yVrAi/4Z68Ria/lvveiUlx5aRDLq+MtImBN8jMiZuSyS4Bb8qBwFMhKAkSO5et3evecH
-         kM+w==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QuexQnSJj1/dEzqqzwt9cJfQTWna5k6Z7+DQSeslwSo=;
+        b=UiFzOWFB4a/3xgSp1yUwchiAQ8AKbNngi8yAmudhhCWJPkH/vxdFxKnmN52dgge+99
+         qV3JOlCLHqFjy9hcRlUHUKdwen91bD+PkvYzAYTR2ty2z7aKbQKdw1C8d4VPFkiKKTpl
+         m/VAUSTxqu8ueLRRQUL9BBaylQ7omcTh92y39KQGo3LWPTIaYWhsaG23o15L+JPz/CYO
+         KkmmixGlhfeo+NMFMvn+tXpyvnXBO2YKnH3OoRDt8BMVJWCKbQTRjKQp1zLrsVWtTC3V
+         e6mdZXE6kookzzCJ/wh3wMXHTP/qJy9S92/66UvKZkeI1tYpylvfi1+eioXQCTQRcGYS
+         yqHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CY9SU6b3wZS3mZz9rbdfa32Xi5zQER2G6OPN575iHjs=;
-        b=kCXa0UU6wjH2z57XWlPCBuHeWkLDbGXMhzlp7jGczZHgN9UyY2MeKVy9oOpEUB6I6m
-         swBli8X8BCLl1whBE3UtbfmmKqKPeNc2djQIzQ0TG0qotWv1wvVzPMQOhiRxWlUqoYPU
-         abDK+LaFxmILNTjtPAOMXQbG8YOcv7Q1zhBrJY4s/SoRpkXhsswNg2K7wM7nPVtDIVpd
-         ADMVpKeGLNUK0MvwMs8xK6qMf/LIvP5pmgv7ZjWtUlbMoZShb6sm1038mbfldEXzhTqx
-         xTKJZEGi3N/ayKrsD3TSnQBW6E1U8wjWWY2GMav1k4oyDDqr84cmlr5ZDhw4BWhoawyj
-         9Dsw==
-X-Gm-Message-State: AO0yUKWQsfZPfEACoTM9X19jbN/vgXVCgJSnx3TAcEkVGVF8V7xQ9bl/
-        YFqjMuh/zwI7ZW2IGaYOzpQ+fg==
-X-Google-Smtp-Source: AK7set9ZL+h5Ih6YWjvFiX0L4adEoDVpuqr7PReh+RMuFCV91yflLtTVzqywSFgp+6zswQ2pScIOaQ==
-X-Received: by 2002:a05:600c:19cc:b0:3dc:48ab:d8f8 with SMTP id u12-20020a05600c19cc00b003dc48abd8f8mr13739438wmq.0.1675191083438;
-        Tue, 31 Jan 2023 10:51:23 -0800 (PST)
+        bh=QuexQnSJj1/dEzqqzwt9cJfQTWna5k6Z7+DQSeslwSo=;
+        b=t5w2yo1xYk0m3waZDx8OrU7MlG4JrU6h558p3s0eMF0oJES5K4/sqP99R2l6KwHiPN
+         IImKEKDlX9Bzl3hAtFGNTRWcmwOKgMtB53+70zNCZSuqy2lJMYVSUysTiNAKgtaimQ4D
+         LDujSrHdiQiNy5wQivZYXfUItDMeHH2o7iV499IUlRvucVf5KFb4PeNCPdX1ZGWUM/sL
+         l4i/QUJDA3zYpRA8hD6s+ezo9DRlXlaPqyUzUz0FoZlBmxcY6FAIJWAy1QvipiE6fmkp
+         8wZOs/AU5X34piAmSJnzewieGLIgbcTZXA3umXvcYmtbPNIsaD3R9kB4k8tdEURZk60O
+         G/7g==
+X-Gm-Message-State: AO0yUKVoO+VeiiUi+C6+MwcZBxUjmwjsiZEbUasW6Y+xxd2WOhjILC80
+        Wfl833Yig6NjuTv1YtMCuVmJWg==
+X-Google-Smtp-Source: AK7set/71U7zFmoH6k8sW32CesgMw/oX9q60A5z4fWakNgzXRDUUedjJa/xOqvp4MjzwwWbSNWAoaQ==
+X-Received: by 2002:adf:fe86:0:b0:2bf:b36e:f6ac with SMTP id l6-20020adffe86000000b002bfb36ef6acmr30914wrr.39.1675191299268;
+        Tue, 31 Jan 2023 10:54:59 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y21-20020a05600c341500b003da28dfdedcsm10925140wmp.5.2023.01.31.10.51.21
+        by smtp.gmail.com with ESMTPSA id v9-20020a056000144900b002c3b2afae00sm112304wrx.41.2023.01.31.10.54.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 10:51:23 -0800 (PST)
-Message-ID: <63fd0037-0994-bbfd-6b99-f9dcd095cbca@linaro.org>
-Date:   Tue, 31 Jan 2023 19:51:20 +0100
+        Tue, 31 Jan 2023 10:54:58 -0800 (PST)
+Message-ID: <9a3bbaf0-eb1d-613a-a8ba-272896ef2da8@linaro.org>
+Date:   Tue, 31 Jan 2023 19:54:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
 Subject: Re: [PATCH v2 5/6] dt-bindings: hypervisor: Add dt-bindings for VMBus
+Content-Language: en-US
 To:     Saurabh Sengar <ssengar@linux.microsoft.com>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
         haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
@@ -65,7 +66,6 @@ To:     Saurabh Sengar <ssengar@linux.microsoft.com>, robh+dt@kernel.org,
         ssengar@microsoft.com
 References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
  <1675188609-20913-6-git-send-email-ssengar@linux.microsoft.com>
-Content-Language: en-US
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 In-Reply-To: <1675188609-20913-6-git-send-email-ssengar@linux.microsoft.com>
 Content-Type: text/plain; charset=UTF-8
@@ -81,40 +81,40 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 31/01/2023 19:10, Saurabh Sengar wrote:
-> Add dt-bindings for Hyper-V VMBus
 > 
 > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
-> ---
->  .../bindings/hypervisor/msft,vmbus.yaml       | 50 +++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
->  MAINTAINERS                                   |  1 +
->  3 files changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hypervisor/msft,vmbus.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hypervisor/msft,vmbus.yaml b/Documentation/devicetree/bindings/hypervisor/msft,vmbus.yaml
-> new file mode 100644
-> index 000000000000..8f50d6097c48
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hypervisor/msft,vmbus.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hypervisor/msft,vmbus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+> +  - |
+> +    / {
+> +        compatible = "foo";
+> +        model = "foo";
+> +        #address-cells = <0x02>;
+> +        #size-cells = <0x02>;
+
+Except previous comments (all of them were ignored), also:
+Drop entire part. Not related, not correct, not helping and you cannot
+have top level nodes in example.
+
 > +
-> +title: Microsoft Hyper-V VMBus device tree bindings
+> +        vmbus@ff0000000 {
+> +            #address-cells = <0x02>;
+> +            #size-cells = <0x01>;
+> +            compatible = "msft,vmbus";
+> +            ranges = <0x00 0x00 0x0f 0xf0000000 0x10000000>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 1f7a519a936f..ab74ea97535f 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -876,6 +876,8 @@ patternProperties:
+>      deprecated: true
+>    "^mscc,.*":
+>      description: Microsemi Corporation
+> +  "^msft,.*":
+> +    description: Microsoft Corporation
 
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-(other places as well...)
+Don't duplicate vendor prefixes. Drop and use correct prefix.
 
 Best regards,
 Krzysztof
