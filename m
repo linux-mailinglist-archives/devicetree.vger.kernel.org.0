@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82E1268368F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 20:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83E81683699
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 20:31:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231190AbjAaTaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 14:30:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44792 "EHLO
+        id S231956AbjAaTbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 14:31:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230443AbjAaTaF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 14:30:05 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2748410A0
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:30:03 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id m14so14768974wrg.13
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:30:03 -0800 (PST)
+        with ESMTP id S229944AbjAaTbm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 14:31:42 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06783410B7
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:31:41 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so11475457wms.2
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 11:31:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0Sqp+i041X6Qm4IzxVl4qjEyMByr/avhmwvDBw1CS5A=;
-        b=JWDsYbMsNRsCYRgxe3JdOY1OJdj2xTL65WwqfEyjvY4zLpdPz4XB0RU1ABnwHqYmMf
-         VB98xFYiPIBhHPISriWQaan36Oms3u0ZcqwbCEjd1UGkyk5Gn2lBqzWChfYJQxHgjWuS
-         XnnGwJE87oQaWHeFROmmqQJwzngjoCxw0kq8/nGOo6rWPreRdkldWyySYWXUcdHSFaW/
-         nMJPQ54JvIDdvYd4UfP31Q5tsJrPE3ktp/DHhMflUeroVIMJXwGkqFwnBr0bqzbxCXCQ
-         DuU30+O5Vpf9Mfi7GdhGT2WpVF9tiJqkQu9s20YUM2maHA+XF9IYRtNJ0o34X15VKDHY
-         cpZw==
+        bh=8jbLQVc6c4NcLPpk4YcrEqS6jnb0zXu0aRxcozDrrDw=;
+        b=ObyGEWDLK93TYPF0rI0cs3Ra6+/KcHG+nugypmJtapYohin0cVPYmSKl927VH5BZ6f
+         tTbG7iU0vS8UGGKFVv/FMuS1X02C6tFQ8Kor8WycYtV9zkKeP+tf8xNYorbuSzEyMnjq
+         Hs2ZEAYId9c1NvUxK/D4qbR8dNv7uJ06NiTRo2/3j8HVVqtgL/bfZLAqb/YBQ9HebI9i
+         /e6l2+O80ehfwjOuKQoluOfPWA/X1iv1hTcXrkAD0GFKKyoBF0taQVxuYymXkMa8y7JB
+         Alx4e9xAm1gv3SMAz+5IyYrnPaeCLborGilT21rLf9TlzeYTK2QnKkb3oamw/HLcpxOF
+         BfDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Sqp+i041X6Qm4IzxVl4qjEyMByr/avhmwvDBw1CS5A=;
-        b=G5h/90RWOOP1b++Hr3NLREP5WRfywIvWo6nQgJspOls+VwmN4L5TxJx62BWQc+7FAF
-         BxUpUJSCjVlFniMO4TCwB+h60Hx/aoX0GRyRym7FpNsxjVZ4dPKyID9SvIK5IdtELz9z
-         j/u4dIN/ydalqHaMldxwjfuOMLdIuDlvegOBGHyE54/kQkEVycQOnUuJvWStxKxFC5tn
-         j/P5FBJOXoiHq6T0r8x2NM7KKouRQml0f99m6zrBkxT+YZQFf2v0FUyn4ifx9mPVVwJD
-         58cfNdpwSeNifpehd8hFf82OLoPWY34NUygz/gJl2/vgUCwhNfN14VCeC0o82fWI/kJx
-         XTmw==
-X-Gm-Message-State: AO0yUKX/eB77Jzv74O0c4uq4o/CKIoghhTGzA0FkGOLXUCPdqPN0/RHD
-        OHN/9WQgVOwYTaMqlFXoWkOo9Q==
-X-Google-Smtp-Source: AK7set8awXxxwA/ZITfn99j4vlzEVcZiRjHcu0qDqQTK8AhEAyFv06Uvmfk/GKiGguoibgGp/mLZyg==
-X-Received: by 2002:a5d:44d2:0:b0:2bf:95dc:436b with SMTP id z18-20020a5d44d2000000b002bf95dc436bmr3801026wrr.59.1675193402350;
-        Tue, 31 Jan 2023 11:30:02 -0800 (PST)
+        bh=8jbLQVc6c4NcLPpk4YcrEqS6jnb0zXu0aRxcozDrrDw=;
+        b=vVRZYXPHuXMtNL8CEbLOZ4hZSD4wHil1R5g6NtP9b/Mv6xStVOKzMzzfSeA10hnmoK
+         8EicX1CrUUdeUS49iIdkCJYVN1iwoJbTrI5hYGzQ7PIhy96BDT5hdaBRAk3ohIZV9qKJ
+         T2bWCXMhL6gXvmmCk+TQMz63KeyUL1QYGfxUqJSh41POyPPMoWVn1wy/zzVfkDXOTJjV
+         ACebgx1mZPeKn+npQx08persmvsmlFLhHQ9yaWz34j/azteRUwb3LKqMd/f7vSpGzjlc
+         lNBZPdhh+vRdSOdiieQMq0q4fRp+i+N+6FF1FYpXcK900wIZ0wUg+458mH1vPop5TYtW
+         S2pw==
+X-Gm-Message-State: AO0yUKWWWqRd9T/jZXnr0ki/ihimLt+rHK8N2KzOoBb0gc6RVbh4YnKO
+        8lw1HCt3JBpQ1Wd8XXLSoRRagA==
+X-Google-Smtp-Source: AK7set9vJ0aBsq1GVkQMrZJF464MEAl8JPMUuQEAOZYkmfSVWb2hMh+knkqFl4MERo+XBGRi/BRtkQ==
+X-Received: by 2002:a05:600c:3d95:b0:3dc:4636:7426 with SMTP id bi21-20020a05600c3d9500b003dc46367426mr14611454wmb.13.1675193499383;
+        Tue, 31 Jan 2023 11:31:39 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l7-20020a5d5607000000b0029a06f11022sm15388477wrv.112.2023.01.31.11.30.00
+        by smtp.gmail.com with ESMTPSA id p11-20020a05600c468b00b003dc4050c97bsm189428wmo.3.2023.01.31.11.31.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 11:30:02 -0800 (PST)
-Message-ID: <141d6394-b062-1bbd-12de-06aaac038881@linaro.org>
-Date:   Tue, 31 Jan 2023 20:29:59 +0100
+        Tue, 31 Jan 2023 11:31:38 -0800 (PST)
+Message-ID: <f87d1721-c6d6-fc7d-bcdf-f66755b89966@linaro.org>
+Date:   Tue, 31 Jan 2023 20:31:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH V2 6/9] dt-bindings: qcom: add ipq5332 boards
+Subject: Re: [PATCH V2 1/9] dt-bindings: pinctrl: qcom: add IPQ5332 pinctrl
 Content-Language: en-US
 To:     Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
         agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
@@ -68,9 +68,9 @@ To:     Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20230130114702.20606-1-quic_kathirav@quicinc.com>
- <20230130114702.20606-7-quic_kathirav@quicinc.com>
+ <20230130114702.20606-2-quic_kathirav@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230130114702.20606-7-quic_kathirav@quicinc.com>
+In-Reply-To: <20230130114702.20606-2-quic_kathirav@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,35 +85,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 30/01/2023 12:46, Kathiravan Thirumoorthy wrote:
 > From: Kathiravan T <quic_kathirav@quicinc.com>
 > 
-> Document the new ipq5332 SoC/board device tree bindings
+> Add device tree bindings for IPQ5332 TLMM block.
 > 
 > Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
 > ---
-> Changes in V2:
-> 	- No changes
-> 
->  Documentation/devicetree/bindings/arm/qcom.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 22553637c519..0a339b8d2319 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -30,6 +30,7 @@ description: |
->          apq8084
->          apq8096
->          ipq4018
-> +        ipq5332
->          ipq6018
->          ipq8074
->          mdm9615
-> @@ -87,6 +88,7 @@ description: |
->          hk10-c2
->          idp
->          liquid
-> +        ap-mi01.2
 
-Now it is not correctly ordered (alphabetically).
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
