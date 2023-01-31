@@ -2,168 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49D4568341A
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 18:42:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C47BF68346A
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 18:59:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231253AbjAaRmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 12:42:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44244 "EHLO
+        id S229919AbjAaR7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 12:59:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231264AbjAaRmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 12:42:13 -0500
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 017BF577ED;
-        Tue, 31 Jan 2023 09:42:12 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id s66so13469600oib.7;
-        Tue, 31 Jan 2023 09:42:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/nQTlu24MgbwA1itsX0SvceyYlE+PA1Yy3UWZCbDfgE=;
-        b=S54Qr8+41Z6P+57CNzgSkPI6uPzQ1AoLYft7ruZy0dTsy2NmJWX3RjL09Pw76Fe513
-         aVEasY/WxXWdriPh5V8p7rafFAqInW/CzkH6ZuOL2pEzA6cpXq9YRrt+yE/HY7xz2Zy2
-         NebFji12wUByo6GIjqGNTgpQfZkC+MdfmhJqmXZCPVs4P3h2p+a06eDHRTKqKMFWZpPA
-         C3O+Urpob1AVr83BpxyKRs4fwqmnbNSJ7rg8OE/wgRHz1YScONDYzjaxo63cWTyy9IPK
-         f5ct8NAK01585tlGgDDZ1VCfxHS8ErtFHvGSk77UnwyBKqyzw6N2tSxoxtusemFVoRFf
-         bjCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/nQTlu24MgbwA1itsX0SvceyYlE+PA1Yy3UWZCbDfgE=;
-        b=GpXvgAKr/i9yRAoERqk0XXASlspYA8/zZMpk6wilafBeGFBr7K+RG2s9UkOM6G9IgQ
-         c3RQWwDAWGDZPsPUNbmWcRTlYr/lC2jzYxmvXNyZt9az8FOEgWrJAzV5Ul6SJRNEklXJ
-         4Uz3cH3XvjG3tlBL7PjVBwyAFTMWnoinX0/va4lfVIu9Xb+lBYrMrP1K79eHKegWXMxz
-         VtTZFI8hVEwrZQKCHR899y4FAsAOgTtiO88rslBfbRt4uxr3morT6vhYJaqFeDiriKl5
-         OgQkWpuQfZeTGKDkx08kjxQhC0o60RY3OIBvUNgIOAi6u4ezt+WMuC0w/Hek60x2w7kb
-         u4Sg==
-X-Gm-Message-State: AO0yUKX6hpnZ8Q3nS4MN8SUSkdiKdRJMJqQD55qdLaolmNSeMzhjv4Qg
-        CKUIkTFjtmuvnGx/im5oaBc=
-X-Google-Smtp-Source: AK7set8/IWg5wpSXT2CaR5i54+1B2bm0kh1HPX8V0UVhuDrCRFFIZdJqj0rxXmNrfCC5saC8Ns9hSw==
-X-Received: by 2002:a54:4181:0:b0:378:808d:8441 with SMTP id 1-20020a544181000000b00378808d8441mr1701718oiy.45.1675186931335;
-        Tue, 31 Jan 2023 09:42:11 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id w8-20020a056808140800b0035bd65b776bsm6032464oiv.2.2023.01.31.09.42.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Jan 2023 09:42:10 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 31 Jan 2023 09:42:09 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Andrej Picej <andrej.picej@norik.com>
-Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, Anson.Huang@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] dt-bindings: watchdog: fsl-imx: document suspend
- in wait mode
-Message-ID: <20230131174209.GA3602823@roeck-us.net>
-References: <20221104070358.426657-1-andrej.picej@norik.com>
- <20221104070358.426657-3-andrej.picej@norik.com>
+        with ESMTP id S229504AbjAaR7B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 12:59:01 -0500
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2054.outbound.protection.outlook.com [40.107.102.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B08A459ED;
+        Tue, 31 Jan 2023 09:59:00 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bcTYSK5SUM9lt1vsRdznOtQnxzN0Ir9pZC1wvhaZT8U9lA6No0+n289Z/tIirM/9DhsNQxZdTvLJl5yWjnELzn71Cs64X9u4kr7L8GXoOOCjQr99tBx/nVcPRmkRAAgOedoa5LvsYOn29PFq/JZNjkRJg3z3kBE4xXrVHUT1X1/0nZr9I+MDnfCVa4UYJRGPdbQe1YQDi//6SV3AxfIcEo00YdDdgOOH9/NNiozSXIOJUB6UjeBz5R0vLwlpoX5r33FZKFrM7VoxArvmCAqRVMaTEJW89rc3YhwXxMv4l0iM/2aZFHeK52q2GWulGQBBjAXpAduO9ZzNfmfzK38k3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GdaxQY+iAqen9DcZs0anLyxTgGq6FDDOAUDcOP+UF9s=;
+ b=M6cYHm0Y3tdfENtiSXOAYLGt7V3tlHZi5siZxbeU+2+cGkTJmbaDcCXLz5E3f6Stu/2/+FigjU34jfGXVUW9o21WzJN9O4YJqMGGmaEsC30VPxPSn9nq02shAn8BZqJpVY+p+FRc5J2gFARLoljCvHCMitvEXs/brjdnefe0Q6fn+Eezu095qGCyDVicw6hqkbX0Z3NRxRHlMWlerabh9UeVRw8Fd1IbTw6MK6DZUjINebG/M0evY6XmF7SROHj68obT6XZic2Gf9XVR/mU0PxyVOt0dHqO9oOls/0ZtE/ZNVEYXCJ1pqZyiI8rlvlnlKwA68pnmvMGuefxJ7zIyfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=linux.intel.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GdaxQY+iAqen9DcZs0anLyxTgGq6FDDOAUDcOP+UF9s=;
+ b=Ca3wjRN80oSRBCAi/jgIy8J4ALh96sJd+ca6SgKg8gk+Qdxy1GVjrCLj71cFAVPGmyazbFeuRQmN4bP3UzF5oBTL+zplDzK/MetUVEVKfTWDXxd2Ldf6pD1lAvQi/Gs5RZ0zv/oW/tivuIblKILJzgAcwwkCbAsU/PFe1oQU9s4zSX9XyJ2D1z5qRmEautxK/lgWbPGF+uSXDHjH7sTInwUqig7RBNsf6vId29ThSpoWkbM2kjwHf7l9oCLgSLD0RUi8lat/jidNLYG6FkkbtNII7Xz4OKmZ73tiwfycqwDd0m3RVSWqaSgNqHXNqiL/1SEY0L6ESiv0wYwiHRWSiw==
+Received: from MW4PR04CA0306.namprd04.prod.outlook.com (2603:10b6:303:82::11)
+ by DM6PR12MB4497.namprd12.prod.outlook.com (2603:10b6:5:2a5::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.38; Tue, 31 Jan
+ 2023 17:58:58 +0000
+Received: from CO1NAM11FT054.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:82:cafe::52) by MW4PR04CA0306.outlook.office365.com
+ (2603:10b6:303:82::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.36 via Frontend
+ Transport; Tue, 31 Jan 2023 17:58:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ CO1NAM11FT054.mail.protection.outlook.com (10.13.174.70) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6043.36 via Frontend Transport; Tue, 31 Jan 2023 17:58:57 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 31 Jan
+ 2023 09:58:49 -0800
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 31 Jan
+ 2023 09:58:49 -0800
+Received: from moonraker.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server id 15.2.986.36 via Frontend
+ Transport; Tue, 31 Jan 2023 09:58:47 -0800
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, Wayne Chang <waynec@nvidia.com>,
+        Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH V10 0/6] Add device-tree support for Cypress CYPD4226
+Date:   Tue, 31 Jan 2023 17:57:42 +0000
+Message-ID: <20230131175748.256423-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221104070358.426657-3-andrej.picej@norik.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT054:EE_|DM6PR12MB4497:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3b83ce31-84c3-4f94-b56c-08db03b4d369
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: FOgB9Zocz6JQBvKMW5987m//kZU2WkKZKrcF7OpCPMXPCadktncg9eKRjXtAnmagceGjWuvOTNuT27QsbIy87+MOMIvnJiG6PKPtaNET/UU8F8zYvTd7TRA0SXWVfH4NSls6vtlf/EyGlIorPa8W+DwOiWaWCNGbavmy1BQT6rB+26Q9hRbEdtkrRvaFw1qYsP8bEJc9O9QBLkV2LDo0zuo5mFRe7ZN4Yyi27SCsQ9+ntV++ljWrGRygcwU1D1Q+aMPAhBCM/lPW1wyaOeY0AmszTNHwWbGcIz8lMeC1mE1r/nAf5KC4ImIhBK8oPJBQPjpA/8wRDd0YAbLloM/L1hWmYIlgTZK9aMg2mxBiwEarGLlpsKNAcUNfUV6VweeXLQ872xEZL7F3GRDbAGxscRyGehp51yWb8Ao3uqcFMfE4pIakaXgYWUTpzCOT2xucz4xAhZqwv2Wf4Ro8yGpHhys+XuIAhL4ibEEtKrQbtW4mU7Z/gPAIlBRtIA53Lf8HJKBVpgFKh1gqeSEZvov8s5rT1ltVtK7KXUAOhTaYiAovcZEyoLeeg//hCi0zAz0HmNhLZU+40aqjHQWGyLQ4jO6+PNyTMGmVjlmKoUoMP1q/EU4CbmRQ7x2en3EUty0rFHzN3yoICzKmlxGepAskWJYh6Qz8NZkrloFUa4GejPN12nys8vdycItc12tAOtqhMziPUKYdefbgnQnAqGCSTEtGe629BvGuEmSQNH4Ry2kFINVJ1kGKtp/ELYDrIPZo8jzIdY/7GFRvZXeU2UX+n6jO4N684FkGSjbmddgheuY=
+X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230025)(4636009)(39860400002)(136003)(396003)(376002)(346002)(451199018)(46966006)(36840700001)(40470700004)(7696005)(2616005)(336012)(7636003)(36860700001)(36756003)(82310400005)(82740400003)(40460700003)(8936002)(86362001)(5660300002)(110136005)(54906003)(40480700001)(356005)(316002)(41300700001)(426003)(47076005)(2906002)(83380400001)(1076003)(8676002)(26005)(4326008)(186003)(478600001)(6666004)(107886003)(70206006)(966005)(70586007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2023 17:58:57.8036
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b83ce31-84c3-4f94-b56c-08db03b4d369
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT054.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4497
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 04, 2022 at 08:03:57AM +0100, Andrej Picej wrote:
-> Property "fsl,suspend-in-wait" suspends watchdog in "WAIT" mode which
-> corresponds to Linux's Suspend-to-Idle S0 mode. If this property is not
-> set and the device is put into Suspend-to-Idle mode, the watchdog
-> triggers a reset after 128 seconds.
-> 
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Add device-tree support for Cypress CYPD4226 Type-C controller and
+enable for the Jetson AGX Orin board. This series is derived from the
+series to enable USB host and device support for Jetson AGX Orin [0].
+I have split this out from that series because it was getting quite
+big.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+[0] https://lore.kernel.org/linux-tegra/20221114124053.1873316-1-waynec@nvidia.com/
 
-> ---
-> Changes in v4:
->  - combine allOf, reorder allOf so it follows example-schema, drop the
->    quotes around 'watchdog.yaml'.
-> 
-> Changes in v3:
->  - disallow the property for devices which don't support WDW bit
->    functionality with .yaml DTS allOf:if:then scheme.
-> 
-> Changes in v2:
->  - add a commit message,
->  - add a list of devices which support this functionality
-> ---
->  .../bindings/watchdog/fsl-imx-wdt.yaml        | 37 +++++++++++++++++--
->  1 file changed, 34 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-> index fb7695515be1..181f0cc5b5bd 100644
-> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-> @@ -9,9 +9,6 @@ title: Freescale i.MX Watchdog Timer (WDT) Controller
->  maintainers:
->    - Anson Huang <Anson.Huang@nxp.com>
->  
-> -allOf:
-> -  - $ref: "watchdog.yaml#"
-> -
->  properties:
->    compatible:
->      oneOf:
-> @@ -55,11 +52,45 @@ properties:
->        If present, the watchdog device is configured to assert its
->        external reset (WDOG_B) instead of issuing a software reset.
->  
-> +  fsl,suspend-in-wait:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      If present, the watchdog device is suspended in WAIT mode
-> +      (Suspend-to-Idle). Only supported on certain devices.
-> +
->  required:
->    - compatible
->    - interrupts
->    - reg
->  
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - fsl,imx25-wdt
-> +                - fsl,imx35-wdt
-> +                - fsl,imx50-wdt
-> +                - fsl,imx51-wdt
-> +                - fsl,imx53-wdt
-> +                - fsl,imx6q-wdt
-> +                - fsl,imx6sl-wdt
-> +                - fsl,imx6sll-wdt
-> +                - fsl,imx6sx-wdt
-> +                - fsl,imx6ul-wdt
-> +                - fsl,imx7d-wdt
-> +                - fsl,imx8mm-wdt
-> +                - fsl,imx8mn-wdt
-> +                - fsl,imx8mp-wdt
-> +                - fsl,imx8mq-wdt
-> +                - fsl,vf610-wdt
-> +    then:
-> +      properties:
-> +        fsl,suspend-in-wait: false
-> +
->  unevaluatedProperties: false
->  
->  examples:
+Jon Hunter (2):
+  arm64: tegra: Populate USB Type-C Controller for Jetson AGX Orin
+  arm64: defconfig: Enable UCSI support
+
+Wayne Chang (4):
+  dt-bindings: usb: Add Cypress cypd4226 Type-C controller
+  i2c: nvidia-gpu: Add ACPI property to align with device-tree
+  usb: typec: ucsi_ccg: Add OF support
+  i2c: nvidia-gpu: Remove ccgx,firmware-build property
+
+ .../bindings/usb/cypress,cypd4226.yaml        | 98 +++++++++++++++++++
+ .../nvidia/tegra234-p3737-0000+p3701-0000.dts | 78 +++++++++++++++
+ arch/arm64/configs/defconfig                  |  2 +
+ drivers/i2c/busses/i2c-nvidia-gpu.c           |  4 +-
+ drivers/usb/typec/ucsi/ucsi_ccg.c             | 22 ++++-
+ 5 files changed, 198 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
+
+-- 
+2.34.1
+
