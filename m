@@ -2,75 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE8DD682948
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 10:44:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47830682977
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 10:50:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232141AbjAaJoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 04:44:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42786 "EHLO
+        id S231234AbjAaJuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 04:50:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231905AbjAaJnh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 04:43:37 -0500
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F0E6A63;
-        Tue, 31 Jan 2023 01:43:01 -0800 (PST)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id 928A9204DC;
-        Tue, 31 Jan 2023 09:42:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1675158160; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=vatAf4PA7oDC3qG6Ue8FoZZjsEq4Bdh1B0/k8ZQrTUg=;
-        b=gMhWmTrc01TgLLV8/IeGhnFBJM4GcUYvw4lY4dB1//uRSyA/Gg5OACxbr1kveVnuJANNPG
-        4J0JY8QnzqABcd7bhm28E78+rsyHH2TTlcKBv/CSUD4kBycejiP6IrTv7rhyLtLf68CgB7
-        Y2sMD7oWVorTHewyxaIYO7EZDk0ME4c=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1675158160;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=vatAf4PA7oDC3qG6Ue8FoZZjsEq4Bdh1B0/k8ZQrTUg=;
-        b=GLY2i5COFd94mFE4jR18lrRkUMnnzt9idGAB9CoC3pHu3qqdeEh0kSlhsoOuUg+/+Q6NAd
-        uTz6Ov8dMKEExpBQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 4DB6F138E8;
-        Tue, 31 Jan 2023 09:42:40 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id 6jAfEpDi2GMAOgAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Tue, 31 Jan 2023 09:42:40 +0000
-Message-ID: <6f63f1cc-ba33-2253-cd90-e01285bc6ff1@suse.de>
-Date:   Tue, 31 Jan 2023 10:42:39 +0100
+        with ESMTP id S233089AbjAaJuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 04:50:18 -0500
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0356D11E
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 01:50:17 -0800 (PST)
+Received: by mail-vs1-xe35.google.com with SMTP id k6so15492346vsk.1
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 01:50:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ay4JjzFOi8u8tMMqeo9ypRaHpCzMeD1s8ySg55sDfvA=;
+        b=X7qkWyQt8Nmpyd8tODNC6MVvJAs6pPWPg4+UGaJtcp92pV5yFejhXVMlk9N6Ne0O/x
+         sJDx+ymPit1ElxTDAPp2M2NaD+94yYbcjDeTJeHkBQndJoaPQzDoh/O0k5kga8a0/02c
+         rvzmD7VHZTbrwQPOdYeJNYWMApcfFEkMQ96vo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ay4JjzFOi8u8tMMqeo9ypRaHpCzMeD1s8ySg55sDfvA=;
+        b=Li0WOnqA6AooaBbGZjRRSyf2MUSeJTUXK1Yw7mh1mq9uTkAXFu9bHsssuhFXwu3lmt
+         sHxevnY6aVuTH5wEJ3dPiUCYQkunRJrrL0GkOICYDIMZLZFkfJpecaFI3Gesy277tAty
+         pGqnvLZptbvU0OajJw2Wm9vvBFqgJDr1J+m3RMlfQtWqXk3IrCVJomvkYae+OqS7eY8d
+         ceg2emuKTbELmqdSJeOoCSkzXiPU5lZeHGJB+wLfWrdgae2G6Wx51sKbbAG2/7FGVlrm
+         tQp7Gc44M5P7Y1Do3us9Hrxs1OgseXt+BlkMrnv/fpfB5wEpur1p9Hl++dIMfBWyW8ot
+         ljZA==
+X-Gm-Message-State: AO0yUKVMEcbb89HsNWLW+ZRF5lrmVFhBTwRUGz7f3oP1dtKMGZfJe6Eo
+        I4Xb6hmj1vu1YBQ1lzf/UIB8oulyewtdy2Wy1CC7bA==
+X-Google-Smtp-Source: AK7set+/qcQFjgwbi+Ocj+LtBVuICC7AYNVeLlyhaPp038xPLhOSZqARwYUNLiyEVrFfSwlzmO4Suik/9e/bTguM2EY=
+X-Received: by 2002:a67:d294:0:b0:3ed:89c7:4bd2 with SMTP id
+ z20-20020a67d294000000b003ed89c74bd2mr2766641vsi.26.1675158616078; Tue, 31
+ Jan 2023 01:50:16 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 0/2] SimpleDRM: allow configuring physical width and
- height
-Content-Language: en-US
-To:     Rayyan Ansari <rayyan@ansari.sh>, dri-devel@lists.freedesktop.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev,
-        janne@jannau.net, Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
-        Hans de Goede <hdegoede@redhat.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
+References: <20230118031509.29834-1-moudy.ho@mediatek.com> <20230118031509.29834-4-moudy.ho@mediatek.com>
+In-Reply-To: <20230118031509.29834-4-moudy.ho@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 31 Jan 2023 17:50:05 +0800
+Message-ID: <CAGXv+5Gid0xT=Ru0G3d-z+ED_wKWpGYSbhwiFXRv5jqJL0vC_A@mail.gmail.com>
+Subject: Re: [PATCH v6 3/4] clk: mediatek: remove MT8195 vppsys/0/1 simple_probe
+To:     Moudy Ho <moudy.ho@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-References: <20230126182435.70544-1-rayyan@ansari.sh>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20230126182435.70544-1-rayyan@ansari.sh>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------vKdGn7SnPXKMfMFUmfsmOGd5"
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,74 +68,182 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------vKdGn7SnPXKMfMFUmfsmOGd5
-Content-Type: multipart/mixed; boundary="------------0RUuxtggqXskTXKOjH6pMaNX";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Rayyan Ansari <rayyan@ansari.sh>, dri-devel@lists.freedesktop.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev,
- janne@jannau.net, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
- Hans de Goede <hdegoede@redhat.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>
-Message-ID: <6f63f1cc-ba33-2253-cd90-e01285bc6ff1@suse.de>
-Subject: Re: [PATCH v4 0/2] SimpleDRM: allow configuring physical width and
- height
-References: <20230126182435.70544-1-rayyan@ansari.sh>
-In-Reply-To: <20230126182435.70544-1-rayyan@ansari.sh>
+On Wed, Jan 18, 2023 at 11:16 AM Moudy Ho <moudy.ho@mediatek.com> wrote:
+>
+> MT8195 VPPSYS0/1 will be probed by the compatible name in
+> the mtk-mmsys driver and then probe its own clock driver as
+> a platform driver.
+>
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>  drivers/clk/mediatek/clk-mt8195-vpp0.c | 58 +++++++++++++++++++-------
+>  drivers/clk/mediatek/clk-mt8195-vpp1.c | 58 +++++++++++++++++++-------
+>  2 files changed, 86 insertions(+), 30 deletions(-)
+>
+> diff --git a/drivers/clk/mediatek/clk-mt8195-vpp0.c b/drivers/clk/mediatek/clk-mt8195-vpp0.c
+> index bf2939c3a023..6d5800f69f6c 100644
+> --- a/drivers/clk/mediatek/clk-mt8195-vpp0.c
+> +++ b/drivers/clk/mediatek/clk-mt8195-vpp0.c
+> @@ -86,26 +86,54 @@ static const struct mtk_gate vpp0_clks[] = {
+>         GATE_VPP0_2(CLK_VPP0_WARP1_MDP_DL_ASYNC, "vpp0_warp1_mdp_dl_async", "top_wpe_vpp", 3),
+>  };
+>
+> -static const struct mtk_clk_desc vpp0_desc = {
+> -       .clks = vpp0_clks,
+> -       .num_clks = ARRAY_SIZE(vpp0_clks),
+> -};
+> +static int clk_mt8195_vpp0_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct device_node *node = dev->parent->of_node;
+> +       struct clk_onecell_data *clk_data;
 
---------------0RUuxtggqXskTXKOjH6pMaNX
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+mtk_alloc_clk_data() API changed a couple releases back. So:
 
-SGksDQoNCnRoYW5rcyBhIGxvdC4gSSd2ZSBhZGRlZCB5b3VyIHBhdGNoZXMgdG8gZHJtLW1p
-c2MtbmV4dC4gVGhleSBzaG91bGQgYmUgDQppbiBMaW51eCB2Ni40Lg0KDQpCZXN0IHJlZ2Fy
-ZHMNClRob21hcw0KDQpBbSAyNi4wMS4yMyB1bSAxOToyNCBzY2hyaWViIFJheXlhbiBBbnNh
-cmk6DQo+IEhlbGxvLA0KPiANCj4gVGhlIGZvbGxvd2luZyBwYXRjaGVzOg0KPiAtIEFkZCBz
-dXBwb3J0IGZvciBjb25maWd1cmluZyB0aGUgd2lkdGgtbW0gYW5kIGhlaWdodC1tbSBEUk0g
-bW9kZQ0KPiAgICBwcm9wZXJ0aWVzIGluIHRoZSBTaW1wbGVEUk0gZHJpdmVyIHZpYSBEZXZp
-Y2UgVHJlZQ0KPiAtIERvY3VtZW50IHRoZXNlIHR3byBuZXcgRGV2aWNlIFRyZWUgcHJvcGVy
-dGllcw0KPiANCj4gVGhpcyBpcyB1c2VmdWwgZm9yIGFsbG93aW5nIGludGVyZmFjZXMgc3Vj
-aCBhcyBQaG9zaCB0byBjYWxjdWxhdGUNCj4gcHJvcGVyIHNjYWxpbmcgdmFsdWVzIGFuZCBm
-b3IgZWFybHkgYm9vdCBjb2RlIGtub3dpbmcgaWYgaGktZHBpDQo+IHJlbmRlcmluZyBpcyBu
-ZWNlc3NhcnkuDQo+IA0KPiBDaGFuZ2VzIHNpbmNlIHYzOg0KPiAtIFVzZSBwYW5lbCBub2Rl
-DQo+IA0KPiBSYXl5YW4gQW5zYXJpICgyKToNCj4gICAgZHJtL3NpbXBsZWRybTogQWxsb3cg
-cGh5c2ljYWwgd2lkdGggYW5kIGhlaWdodCBjb25maWd1cmF0aW9uIHZpYSBwYW5lbA0KPiAg
-ICAgIG5vZGUNCj4gICAgZHQtYmluZGluZ3M6IGRpc3BsYXk6IHNpbXBsZS1mcmFtZWJ1ZmZl
-cjogRG9jdW1lbnQgdGhlIHBhbmVsIG5vZGUNCj4gDQo+ICAgLi4uL2JpbmRpbmdzL2Rpc3Bs
-YXkvc2ltcGxlLWZyYW1lYnVmZmVyLnlhbWwgIHwgIDkgKysrKysrDQo+ICAgZHJpdmVycy9n
-cHUvZHJtL3Rpbnkvc2ltcGxlZHJtLmMgICAgICAgICAgICAgIHwgMzIgKysrKysrKysrKysr
-Ky0tLS0tLQ0KPiAgIDIgZmlsZXMgY2hhbmdlZCwgMzIgaW5zZXJ0aW9ucygrKSwgOSBkZWxl
-dGlvbnMoLSkNCj4gDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZl
-ciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KTWF4
-ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQooSFJCIDM2ODA5LCBBRyBO
-w7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo=
+          struct clk_hw_onecell_data
 
---------------0RUuxtggqXskTXKOjH6pMaNX--
+> +       int r;
+>
+> -static const struct of_device_id of_match_clk_mt8195_vpp0[] = {
+> -       {
+> -               .compatible = "mediatek,mt8195-vppsys0",
+> -               .data = &vpp0_desc,
+> -       }, {
+> -               /* sentinel */
+> -       }
+> -};
+> +       clk_data = mtk_alloc_clk_data(CLK_VPP0_NR_CLK);
+> +       if (!clk_data)
+> +               return -ENOMEM;
+> +
+> +       r = mtk_clk_register_gates(node, vpp0_clks, ARRAY_SIZE(vpp0_clks), clk_data);
 
---------------vKdGn7SnPXKMfMFUmfsmOGd5
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+API changed.
 
------BEGIN PGP SIGNATURE-----
+> +       if (r)
+> +               goto free_vpp0_data;
+> +
+> +       r = of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPY4o8FAwAAAAAACgkQlh/E3EQov+AE
-dA//fz/G8qQwPJkI47+I8GMBOVSE0os63R/mcfTCuVXyWtQhEOUBELIoW99tguWlMkflPXxOMVfw
-1H18lB5liJ1wmzTb8lOdXmvA8sgpdjWnyJ7buKNIZIKPGmorPF4fHa6Wxk+Uko9Qemz4f9r6z9eN
-2OzEk+OPbUvApCF9tAm3q8+8Yazzb4O1gypgjzOmEA0cfP6plSNMJXTfSbFMUaZngHFNH0arC3OR
-NnLhIqgt255hOJhr1isUebefE8Gj98QAnPuIqBQ2r7k6vVQ1qAt7kyuhcYuELaFuMS/koioVzgng
-/oIejnRrCgw6Y9L/NWwA0RJB76Ju0CMs0kYYL7Pr6zr380TU7NN+hOq8op7lk8B7czIvgDg1hmi3
-kBAeTnsuxnSdQA8POeOEgJWaPb15LsL5gBzFlZGmJnLmwRDJ9JLtvQ+ybiY9EUlDDr0nCXBN/fPy
-Wn3tBkGEJ6D4LLB1z9FrRhJuEE/j1/4VFSNyUXbYIhpx5qsuPSulwIBr7fET/fyvCSp8O55mhOOb
-2WDM9yUQXTnpPGsnQ9F0ZlKLMV4tIT/kt0FxVe230F+la3nVsUIbdMmU3e6dRRYsVFd8mWmPqonm
-sY86vsrN/xjQOpDjRsJL8hImirw0ponZB4d4qXbTvGz/dVywnCOAriHDtAfmoM61EPVXUVkAK1qe
-wu0=
-=+yZq
------END PGP SIGNATURE-----
+              of_clk_add_provider(node, of_clk_hw_onecell_get, clk_data);
 
---------------vKdGn7SnPXKMfMFUmfsmOGd5--
+Same for the other driver.
+
+
+ChenYu
+
+> +       if (r)
+> +               goto unregister_gates;
+> +
+> +       platform_set_drvdata(pdev, clk_data);
+> +
+> +       return r;
+> +
+> +unregister_gates:
+> +       mtk_clk_unregister_gates(vpp0_clks, ARRAY_SIZE(vpp0_clks), clk_data);
+> +free_vpp0_data:
+> +       mtk_free_clk_data(clk_data);
+> +       return r;
+> +}
+> +
+> +static int clk_mt8195_vpp0_remove(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct device_node *node = dev->parent->of_node;
+> +       struct clk_hw_onecell_data *clk_data = platform_get_drvdata(pdev);
+> +
+> +       of_clk_del_provider(node);
+> +       mtk_clk_unregister_gates(vpp0_clks, ARRAY_SIZE(vpp0_clks), clk_data);
+> +       mtk_free_clk_data(clk_data);
+> +
+> +       return 0;
+> +}
+>
+>  static struct platform_driver clk_mt8195_vpp0_drv = {
+> -       .probe = mtk_clk_simple_probe,
+> -       .remove = mtk_clk_simple_remove,
+> +       .probe = clk_mt8195_vpp0_probe,
+> +       .remove = clk_mt8195_vpp0_remove,
+>         .driver = {
+>                 .name = "clk-mt8195-vpp0",
+> -               .of_match_table = of_match_clk_mt8195_vpp0,
+>         },
+>  };
+>  builtin_platform_driver(clk_mt8195_vpp0_drv);
+> diff --git a/drivers/clk/mediatek/clk-mt8195-vpp1.c b/drivers/clk/mediatek/clk-mt8195-vpp1.c
+> index ffd52c762890..3b88c69e96c9 100644
+> --- a/drivers/clk/mediatek/clk-mt8195-vpp1.c
+> +++ b/drivers/clk/mediatek/clk-mt8195-vpp1.c
+> @@ -84,26 +84,54 @@ static const struct mtk_gate vpp1_clks[] = {
+>         GATE_VPP1_1(CLK_VPP1_VPP_SPLIT_26M, "vpp1_vpp_split_26m", "clk26m", 26),
+>  };
+>
+> -static const struct mtk_clk_desc vpp1_desc = {
+> -       .clks = vpp1_clks,
+> -       .num_clks = ARRAY_SIZE(vpp1_clks),
+> -};
+> +static int clk_mt8195_vpp1_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct device_node *node = dev->parent->of_node;
+> +       struct clk_onecell_data *clk_data;
+> +       int r;
+>
+> -static const struct of_device_id of_match_clk_mt8195_vpp1[] = {
+> -       {
+> -               .compatible = "mediatek,mt8195-vppsys1",
+> -               .data = &vpp1_desc,
+> -       }, {
+> -               /* sentinel */
+> -       }
+> -};
+> +       clk_data = mtk_alloc_clk_data(CLK_VPP1_NR_CLK);
+> +       if (!clk_data)
+> +               return -ENOMEM;
+> +
+> +       r = mtk_clk_register_gates(node, vpp1_clks, ARRAY_SIZE(vpp1_clks), clk_data);
+> +       if (r)
+> +               goto free_vpp1_data;
+> +
+> +       r = of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
+> +       if (r)
+> +               goto unregister_gates;
+> +
+> +       platform_set_drvdata(pdev, clk_data);
+> +
+> +       return r;
+> +
+> +unregister_gates:
+> +       mtk_clk_unregister_gates(vpp1_clks, ARRAY_SIZE(vpp1_clks), clk_data);
+> +free_vpp1_data:
+> +       mtk_free_clk_data(clk_data);
+> +       return r;
+> +}
+> +
+> +static int clk_mt8195_vpp1_remove(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct device_node *node = dev->parent->of_node;
+> +       struct clk_hw_onecell_data *clk_data = platform_get_drvdata(pdev);
+> +
+> +       of_clk_del_provider(node);
+> +       mtk_clk_unregister_gates(vpp1_clks, ARRAY_SIZE(vpp1_clks), clk_data);
+> +       mtk_free_clk_data(clk_data);
+> +
+> +       return 0;
+> +}
+>
+>  static struct platform_driver clk_mt8195_vpp1_drv = {
+> -       .probe = mtk_clk_simple_probe,
+> -       .remove = mtk_clk_simple_remove,
+> +       .probe = clk_mt8195_vpp1_probe,
+> +       .remove = clk_mt8195_vpp1_remove,
+>         .driver = {
+>                 .name = "clk-mt8195-vpp1",
+> -               .of_match_table = of_match_clk_mt8195_vpp1,
+>         },
+>  };
+>  builtin_platform_driver(clk_mt8195_vpp1_drv);
+> --
+> 2.18.0
+>
