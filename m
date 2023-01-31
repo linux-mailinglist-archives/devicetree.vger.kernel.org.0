@@ -2,104 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4B03682156
-	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 02:20:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45241682194
+	for <lists+devicetree@lfdr.de>; Tue, 31 Jan 2023 02:52:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230241AbjAaBUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Jan 2023 20:20:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45748 "EHLO
+        id S229948AbjAaBwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Jan 2023 20:52:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230229AbjAaBUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 20:20:44 -0500
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A34D113CA
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 17:20:42 -0800 (PST)
-Received: by mail-pg1-x535.google.com with SMTP id 78so8971265pgb.8
-        for <devicetree@vger.kernel.org>; Mon, 30 Jan 2023 17:20:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WlKnm9SlBY6a95G31ugIPx75GFY5lk/gBJScYr6B/MA=;
-        b=D9rmez0+kSKL3ccFg9a8F7AC1nKa00vADDYdszu9EH8DheWWLli6rK5KQG+m5BDTun
-         lBN3WiydFkh0tenV2406XKnQtMRh6xc6n2fE0ebr1WQaK0U9SEeflAszPpkaoEczXCPa
-         XnJ1zqvgyNwoi6VrgYqpbxCLOgDdxcvws0ZfwlT70OkOSwwYd8pazHEn/kuiJtYM22J7
-         kOf9lJua0c/fv0pyYlG9F4HJa3jGoahD9mRdj1+isxbekM65F/g6qDG8KyLMcWDQWG6+
-         R8T2lbX2UzZVK83BTDKWSVk4xIjaABA2PMQlvA9tQVzbLSueVsWJKDQjFrANX9n7Nu8n
-         auYg==
+        with ESMTP id S229792AbjAaBwh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Jan 2023 20:52:37 -0500
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0608129165;
+        Mon, 30 Jan 2023 17:52:31 -0800 (PST)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-15ff0a1f735so17626984fac.5;
+        Mon, 30 Jan 2023 17:52:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WlKnm9SlBY6a95G31ugIPx75GFY5lk/gBJScYr6B/MA=;
-        b=BEGEYfbMHSQWchUvk6SyHN1jMwK63gYtbPUuLromPNF1JencfJG2G2dYZzNT1bk+7w
-         Kw2IJ4dFLFwLJxdpNj6pQei32VwBHuGG2eyRgcarZRCLOIm57/cJyvDTUUzivMj+oOQE
-         u+1NoBAA4Gmpv0WJZulu//CpLsWz2Dsl1bmW8Y+5qnwLSNZZKkNzUu8xJwZQKpt2Pon5
-         Zg+VJnujSGcWFh8xDu+WUrHHBFdrTnFp2mUkyX2lzYGhJn9VvYIgOI51ts6gaQE2Wiyf
-         B03Sxvu76c4eMjs5dOvSiRMHZjWBj0I098DqqbvjGYVHufASpJzaQJCEttDWH4mkJLvT
-         yFRQ==
-X-Gm-Message-State: AO0yUKVEAmvxlz3MlvNU3/LbcFpSGPJZME+7UNaMXLods1mgMY+vc9Jk
-        PP95OhVEP48bdmMYWzq+uxxIxEAucB90A8xjouQkag==
-X-Google-Smtp-Source: AK7set/OnrysWGmShNaN4ttMAIR9UncJ4m1eUuwNep1bR9GutY4sRTfWIiOaEY4ReHbIYjKOu7DJxRnva6K27yrlZqg=
-X-Received: by 2002:aa7:91d3:0:b0:592:61cc:5aeb with SMTP id
- z19-20020aa791d3000000b0059261cc5aebmr2113642pfa.59.1675128041704; Mon, 30
- Jan 2023 17:20:41 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YkhOVKtwqGjloVyH5HhA0nwe/ERN2VhbSaTeDIUnuS8=;
+        b=OjLQWr5jOPQZMPvnoXWdSNH5+ByMgB6O/3OlSBn6TWIlOygW9QjJZvH3vFEdXApCuM
+         5kh2pQMyMQVXDVldCMJnw3a1U/a1H6E/Vsi0psa5UhRKA/ftvIllDY1+PHXUbwc1TAG4
+         Ov+u7VIV1XukhXIzcUre3usnN0SOPIF3311BBfqYPVUMZZj+aDx6AsB9JXq1mI+0uSEL
+         9RuF4iP5Oxjym5PPEngpCU2dmI0gwC85geCLaODt4pr8NUh1p/xKbId69P6cVgp7i2YB
+         Drwk127sYlfIniCzy0t3Q4mfvR4+OsMEcyE8u4x2Ost6X+PdyPiL62OMw8CkZc/jgfe9
+         8BBA==
+X-Gm-Message-State: AO0yUKWuss6nCQkczBZc4SWOnWC1HBBDQg/F47xrbfVjYVIFFDIx8fDz
+        vkDNXfHlBsiuVOkmbKqfhA==
+X-Google-Smtp-Source: AK7set/8OytAoPy2uP+IdddqTcDlyRj6kfw+2UPVg402hqcTw/35UG6u+SQaeuAv7aBL8FshJLZteA==
+X-Received: by 2002:a05:6870:d10e:b0:163:88f7:d947 with SMTP id e14-20020a056870d10e00b0016388f7d947mr4388118oac.43.1675129950231;
+        Mon, 30 Jan 2023 17:52:30 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v9-20020a05687105c900b00163c90c1513sm1309223oan.28.2023.01.30.17.52.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jan 2023 17:52:29 -0800 (PST)
+Received: (nullmailer pid 4086481 invoked by uid 1000);
+        Tue, 31 Jan 2023 01:52:28 -0000
+Date:   Mon, 30 Jan 2023 19:52:28 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
+        marcel@holtmann.org, johan.hedberg@gmail.com, luiz.dentz@gmail.com,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        alok.a.tiwari@oracle.com, hdanton@sina.com,
+        ilpo.jarvinen@linux.intel.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, linux-serial@vger.kernel.org,
+        amitkumar.karwar@nxp.com, rohit.fule@nxp.com, sherry.sun@nxp.com
+Subject: Re: [PATCH v2 2/3] dt-bindings: net: bluetooth: Add NXP bluetooth
+ support
+Message-ID: <20230131015228.GA4082140-robh@kernel.org>
+References: <20230130180504.2029440-1-neeraj.sanjaykale@nxp.com>
+ <20230130180504.2029440-3-neeraj.sanjaykale@nxp.com>
 MIME-Version: 1.0
-References: <20230127001141.407071-1-saravanak@google.com> <20230130114839.379f08bd@xps-13>
- <CALHCpMimX63NC2P=mYdqOv339P06B4iAd10L2NpC5ALy_207vA@mail.gmail.com>
-In-Reply-To: <CALHCpMimX63NC2P=mYdqOv339P06B4iAd10L2NpC5ALy_207vA@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 30 Jan 2023 17:20:05 -0800
-Message-ID: <CAGETcx8FpmbaRm2CCwqt3BRBpgbogwP5gNB+iA5OEtuxWVTNLA@mail.gmail.com>
-Subject: Re: [PATCH v2 00/11] fw_devlink improvements
-To:     Maxim Kiselev <bigunclemax@gmail.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Linux Kernel Functional Testing <lkft@linaro.org>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230130180504.2029440-3-neeraj.sanjaykale@nxp.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -107,143 +71,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 30, 2023 at 4:09 AM Maxim Kiselev <bigunclemax@gmail.com> wrote:
->
-> Hi Saravana & Miquel.
->
-> Sorry for the long response. I finally got access to my test device
-> and tried this patch series.
->
-> And unfortunately it didn't solve my issue. I'm still getting a
-> hanging f1070000.ethernet dependency
-> from the nvmem-cell mac@6 subnode.
+On Mon, Jan 30, 2023 at 11:35:03PM +0530, Neeraj Sanjay Kale wrote:
+> Add binding document for generic and legacy NXP bluetooth
+> chipsets.
+> 
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> ---
+> v2: Resolved dt_binding_check errors. (Rob Herring)
+> v2: Modified description, added specific compatibility devices,
+> corrected indentations. (Krzysztof Kozlowski)
+> ---
+>  .../bindings/net/bluetooth/nxp-bluetooth.yaml | 40 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
+> new file mode 100644
+> index 000000000000..9c8a25396b49
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/bluetooth/nxp-bluetooth.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP Bluetooth chips
+> +
+> +description:
+> +  This binding describes UART-attached NXP bluetooth chips.
+> +
+> +maintainers:
+> +  - Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,w8987-bt
+> +      - nxp,w8997-bt
+> +      - nxp,w9098-bt
+> +      - nxp,iw416-bt
+> +      - nxp,iw612-bt
+> +
+> +  firmware-name:
+> +    description:
+> +      Specify firmware file name.
 
-Thanks for testing the series.
+default?
 
-Btw, don't top post. It's frowned upon. Top post means your reply is
-on the top before the email you are replying to. See how my first line
-of reply in inline with your email I'm replying to?
 
->
-> Here are related parts of my kernel log and device tree:
->
->
->     [    2.713302] device: 'mtd-0': device_add
->     [    2.719528] device: 'spi0': device_add
->     [    2.724180] device: 'spi0.0': device_add
->     [    2.728957] spi-nor spi0.0: mx66l51235f (65536 Kbytes)
->     [    2.735338] 7 fixed-partitions partitions found on MTD device spi0.0
->     [    2.741978] device:
-> 'f1010600.spi:m25p80@0:partitions:partition@1': device_add
->     [    2.749636] Creating 7 MTD partitions on "spi0.0":
->     [    2.754564] 0x000000000000-0x000000080000 : "SPI.U_BOOT"
->     [    2.759981] device: 'mtd0': device_add
->     [    2.764323] device: 'mtd0': device_add
->     [    2.768280] device: 'mtd0ro': device_add
->     [    2.772624] 0x0000000a0000-0x0000000c0000 : "SPI.INV_INFO"
->     [    2.778218] device: 'mtd1': device_add
->     [    2.782549] device: 'mtd1': device_add
->     [    2.786582] device: 'mtd1ro': device_add
->     ...
->     [    5.426625] mvneta_bm f10c0000.bm: Buffer Manager for network
-> controller enabled
->     [    5.492867] platform f1070000.ethernet: error -EPROBE_DEFER:
-> wait for supplier mac@6
->     [    5.528636] device: 'Fixed MDIO bus.0': device_add
->     [    5.533726] device: 'fixed-0': device_add
->     [    5.547564] device: 'f1072004.mdio-eth-mii': device_add
->     [    5.616368] device: 'f1072004.mdio-eth-mii:00': device_add
->     [    5.645127] device: 'f1072004.mdio-eth-mii:1e': device_add
->     [    5.651530] devices_kset: Moving f1070000.ethernet to end of list
->     [    5.657948] platform f1070000.ethernet: error -EPROBE_DEFER:
-> wait for supplier mac@6
->
->     spi@10600 {
->         m25p80@0 {
->             compatible = "mx66l51235l";
->
->             partitions {
->                 compatible = "fixed-partitions";
->
->                 partition@0 {
->                     label = "SPI.U_BOOT";
->                 };
->                 partition@1 {
->                     compatible = "nvmem-cells";
->                     label = "SPI.INV_INFO";
->                     macaddr: mac@6 {
->                         reg = <0x6 0x6>;
->                     };
->                 };
->                 ...
->             };
->         };
->     };
->
->     enet1: ethernet@70000 {
->         nvmem-cells = <&macaddr>;
->         nvmem-cell-names = "mac-address";
->         phy-mode = "rgmii";
->         phy = <&phy0>;
->     };
->
->
-> Maybe I should provide some additional debug info?
+No interrupts or power supplies on these chips?
 
-I took a look at it and I think I know the issue. But it'll be good if
-you can point me to the dts (not dtsi) file that corresponds to the
-board you are seeing this issue on so I can double check my guess by
-looking at the exact code/drivers.
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    uart2 {
 
-The main problem/mistake is the nvmem framework is using a "struct
-bus" instead of a "struct class" to keep a list of the nvmem devices.
-And we can't change it now because it'd affect the sysfs paths
-significantly and might break userspace ABI.
+serial {
 
-Can you try the patch at the end of this email under these
-configurations and tell me which ones fail vs pass? I don't need logs
-for any pass/failures.
-1. On top of this series
-2. Without this series
-3. On top of the series but with the call to fwnode_dev_initialized() deleted?
-4. Without this series, but with the call to fwnode_dev_initialized() deleted?
-
--Saravana
-
-Sorry about tabs to spaces conversion. Email client issue.
-
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 321d7d63e068..23d94c0ecccf 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -752,6 +752,7 @@ static int nvmem_add_cells_from_of(struct
-nvmem_device *nvmem)
- struct nvmem_device *nvmem_register(const struct nvmem_config *config)
- {
-        struct nvmem_device *nvmem;
-+       struct fwnode_handle *fwnode;
-        int rval;
-
-        if (!config->dev)
-@@ -804,9 +805,18 @@ struct nvmem_device *nvmem_register(const struct
-nvmem_config *config)
-        nvmem->keepout = config->keepout;
-        nvmem->nkeepout = config->nkeepout;
-        if (config->of_node)
--               nvmem->dev.of_node = config->of_node;
-+               fwnode = of_fwnode_handle(config->of_node);
-        else if (!config->no_of_node)
--               nvmem->dev.of_node = config->dev->of_node;
-+               fwnode = of_fwnode_handle(config->dev->of_node);
-+       device_set_node(&nvmem->dev, fwnode);
-+
-+       /*
-+        * If the fwnode doesn't have another device associated with it, mark
-+        * the fwnode as initialized since no driver is going to bind to the
-+        * nvmem.
-+        */
-+       if (fwnode && !fwnode->dev)
-+               fwnode_dev_initialized(fwnode, true);
-
-        switch (config->id) {
-        case NVMEM_DEVID_NONE:
+> +        bluetooth {
+> +          compatible = "nxp,iw416-bt";
+> +          firmware-name = "uartuart_n61x_v1.bin";
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 32dd41574930..d465c1124699 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22835,6 +22835,12 @@ L:	linux-mm@kvack.org
+>  S:	Maintained
+>  F:	mm/zswap.c
+>  
+> +NXP BLUETOOTH WIRELESS DRIVERS
+> +M:	Amitkumar Karwar <amitkumar.karwar@nxp.com>
+> +M:	Neeraj Kale <neeraj.sanjaykale@nxp.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/net/bluetooth/nxp-bluetooth.yaml
+> +
+>  THE REST
+>  M:	Linus Torvalds <torvalds@linux-foundation.org>
+>  L:	linux-kernel@vger.kernel.org
+> -- 
+> 2.34.1
+> 
