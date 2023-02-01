@@ -2,68 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0CB7686C34
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 17:56:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 638BC686C4F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 17:59:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230207AbjBAQ4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 11:56:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55312 "EHLO
+        id S231678AbjBAQ7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 11:59:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230481AbjBAQ4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 11:56:24 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D07F470B9;
-        Wed,  1 Feb 2023 08:56:23 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B68B9B821D7;
-        Wed,  1 Feb 2023 16:56:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC269C433D2;
-        Wed,  1 Feb 2023 16:56:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675270580;
-        bh=p95VTZ74s0ngq1ak6ssuGjQk341jIH4Db9h0E9DotDQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hSgfHDJfjGSCg+AbjO0MN5I/C7xaW4gTqTuMmVspHl6qh+ppLkuvnIR5E1gSUEmZr
-         mbmah0KLgRm5vdUQJzGJ4cjguLGrNrqCal+cBQYMQvW98Qx36H2RAFQ6bQHfqusGyS
-         5GRTaP0yLS+PJBZ6Ng9SbmbMvu9sEYyXx/M2J9QDrCxUiYUY7fWnPpwS4ymyA47qw9
-         6sXdWeUwOG2+G7mCiOFM4PNUXpSze6iWT3OP+Cfryr0GIGh0BYA7NeksplaN4eEFbr
-         SDOa/AMShlISPd5Z4bG4G47TGV03OffTOocohUoJzzTPV1rfZDFIuhygiircEzXJRb
-         A4rPIZFrQhT5w==
-Date:   Wed, 1 Feb 2023 17:56:17 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
-Subject: Re: [PATCH V10 2/6] i2c: nvidia-gpu: Add ACPI property to align with
- device-tree
-Message-ID: <Y9qZsTQK8G8gW6+h@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
-References: <20230131175748.256423-1-jonathanh@nvidia.com>
- <20230131175748.256423-3-jonathanh@nvidia.com>
- <db53d28c-119b-90c5-de47-bf7a3561552b@nvidia.com>
+        with ESMTP id S230432AbjBAQ7z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 11:59:55 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6EEC24C83;
+        Wed,  1 Feb 2023 08:59:53 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id z11so18374977ede.1;
+        Wed, 01 Feb 2023 08:59:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vw3JMc60QFgf7Q8TTyiPs3L7+sJqYoWAEt2y6Foay18=;
+        b=NOxxBcabypwDw5ZsGpi0n57XKkq3s7dl1TJhJ1YbZuSXySUAeUNN3HkpUWxDfQAwWP
+         Pw11X6bZJfcZDEfg16jDhfot5imVcYeZTEmsAkz6hCo/6xNPicEwtgGIJOQJWKv9nrme
+         weu0cPYCeiN9Iy+dIHXphSUSaWwTfqzzdr1D37eTxqL2sYnbfmya/pLgZ33ninNGfzAh
+         RuPGwa84Y121hqN51U5wWpKqB5jaULV8zy0RQxHgNMWHeUFPmkDVZF6RMEjRg1Gf2Udw
+         VVJogT/Z+Watc02fy0qqYgFYouSroZed9xG8dddUa9xOkolXuWLh25DefyIW+sUlv1vy
+         qufQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vw3JMc60QFgf7Q8TTyiPs3L7+sJqYoWAEt2y6Foay18=;
+        b=aT9v7IgJYxOS6NJ6bwDNSMdNJHMKX63eLzOXCIyGYvZcEvrs6qKhtMjhSU6lYFK2RF
+         2uWJOtqb7WrFic6c4EFPz0+eWlsF4QQyIK/neZqaedksNOhjLnswASPPv9tdwBIUFs69
+         pFfudZhf+IgcTxUSLxIrhOGTCXhPTH2WE1RoEqJx0uaXOesIjeh+hkHmTarE/CFYQhik
+         cGUmL9rlpH0PTP2iBxn/xuGKkKtQAobIA2cdrIzP4IwktZdXPju7wbZGIi6qTEd4jXaT
+         R3kbi3/l04DZanKHL194ROjuX+s8EDg0oF1GHZqjpkXEMEgQJjiDgtzgSlU2lee6BHc7
+         q/Ew==
+X-Gm-Message-State: AO0yUKUl8WgNa+phrMOWiWX41lnCepuP4SXKhW/W86f0gZDFyhi1VeLq
+        azwPj1Qdy+VWJrwWCV4yHBQ=
+X-Google-Smtp-Source: AK7set9j544AAoQ+SvnPoWkjwfiPgAPXI/nWj+bLA78vW8zR9X8/TrGGt5wvGremyy49kaBIO5GPrw==
+X-Received: by 2002:a05:6402:22a3:b0:4a2:662a:841a with SMTP id cx3-20020a05640222a300b004a2662a841amr2675594edb.29.1675270792145;
+        Wed, 01 Feb 2023 08:59:52 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id h1-20020a1709062dc100b0087bd2924e74sm8853959eji.205.2023.02.01.08.59.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Feb 2023 08:59:51 -0800 (PST)
+Message-ID: <68466850-ddb0-119a-ea82-636ec2c5368e@gmail.com>
+Date:   Wed, 1 Feb 2023 17:59:49 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="JUQU0uqB0ZH3qFIY"
-Content-Disposition: inline
-In-Reply-To: <db53d28c-119b-90c5-de47-bf7a3561552b@nvidia.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To:     Balsam CHIHI <bchihi@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
+        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+References: <20230124131717.128660-5-bchihi@baylibre.com>
+ <20230131153816.21709-1-bchihi@baylibre.com>
+ <ab1e4822-d5f4-79f6-ea38-47e2342ebe49@linaro.org>
+ <CAGuA+oqLiCxb1g7pwf+RwUTWHV37pXdAWUXHV51TnUy1-xUOXQ@mail.gmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH v12] thermal: drivers: mediatek: Add the Low Voltage
+ Thermal Sensor driver
+In-Reply-To: <CAGuA+oqLiCxb1g7pwf+RwUTWHV37pXdAWUXHV51TnUy1-xUOXQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,41 +87,80 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---JUQU0uqB0ZH3qFIY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
+On 01/02/2023 17:46, Balsam CHIHI wrote:
+> Hi Krzysztof,
+> 
+> Thank you very much for the review!
+> 
+> On Wed, Feb 1, 2023 at 8:55 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 31/01/2023 16:38, bchihi@baylibre.com wrote:
+>>> From: Balsam CHIHI <bchihi@baylibre.com>
+>>>
 
-> Apologies, but we appear to be missing you on this series [0].
+[...]
 
-Yup, me, the i2c-list and the dedicated maintainer for this driver:
+>>> +
+>>> +static irqreturn_t lvts_ctrl_irq_handler(struct lvts_ctrl *lvts_ctrl)
+>>> +{
+>>> +     irqreturn_t iret = IRQ_NONE;
+>>> +     u32 value, masks[] = {
+>>
+>> Don't mix different types in one declaration. u32 and a pointer are
+>> quite different types.
+> 
+> I'm not sure to understand.
+> LVTS_INT_SENSORx are not pointers but register values.
+> 
 
-$ scripts/get_maintainer.pl -f drivers/i2c/busses/i2c-nvidia-gpu.c
-Ajay Gupta <ajayg@nvidia.com>
-linux-i2c@vger.kernel.org
-linux-kernel@vger.kernel.org
+u32 mask[] is a pointer to a array of u32 values of undefined length.
 
-If Ajay Gupta is happy, you'll get my ack for free.
+[...]
 
+>>> +static int __init lvts_golden_temp_init(struct device *dev, u32 *value)
+>>
+>> You did not test it, right? Build with section mismatch analysis...
+> 
+> I'm not sure to fully understand this comment.
+> Would you explain, please?
+> 
 
---JUQU0uqB0ZH3qFIY
-Content-Type: application/pgp-signature; name="signature.asc"
+AFAIU:
 
------BEGIN PGP SIGNATURE-----
+lvts_golden_temp_init() and lvts_ctrl_init() are called from a function that is 
+not in __init section:
+lvts_domain_init()
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPama0ACgkQFA3kzBSg
-KbZ3Ew//dej9eH30wkbpqRs8i6+6ra4N51QjnoIE7iGw8zkpw0bcEvbmr/5H9xLH
-ZFTJhqP/FZzxWp7eap9z96ZQ9sin/m1c0Hqws0uVRMr3fYql8H419KsLZJ5vy2VQ
-ImeYxOu+4/KAad6x8Jsd4BsVk4DJzSfFGPQu7t3lVlSh/LgzitSZV5W755qpo1wS
-g4NncOOoHfwv95AUi6RQcGihTyV8NZcS8Sa3gfitUkg1T/xXqYqsjDYkx/wVL/nD
-PTD25TxaRoGU4wHCZmaSuUzRvLeWKE/0AK/Fzre9qeiyGcv02qG3uonY457bHfwj
-+QmosdIvWCh4vpuSd2MukYQ2NtWggxtAalKMD6D13ljCkEu9hNCn8yNR7A4cdA4c
-ApOhVfaFz362jjzLAldFwPxyFbo/Qp13MeoAKUJ/fkhMWQedt48VCBKE/CCEJO7j
-itvLPI5u5VPLHruYOgUu4BjcQe3XzFVxFh2OZnm3T0KTb4PKzmo5FOTGfKz4lDFI
-dkDox/gpBTAGmTIHy7c3nQJv2E7+/l502hVEDFeUBiVON47Vy1SQHpdo4mnQcr45
-EsScKpfL9v6+gUh9joBJ5oxEOPEQ4xpu9S/N16hwxvbfOq6HkvPOKhgR3JEBfQ1h
-dA+eutpdoYgdF+0cghfTj18cyuYBzqEornMdth1m5nUDYsZaJG0=
-=6gc6
------END PGP SIGNATURE-----
+So if you free up the first to functions after init but not the callers, things 
+can explote.
 
---JUQU0uqB0ZH3qFIY--
+[...]
+
+>>> +
+>>> +static int lvts_probe(struct platform_device *pdev)
+>>> +{
+>>> +     struct lvts_data *lvts_data;
+>>> +     struct lvts_domain *lvts_td;
+>>> +     struct device *dev = &pdev->dev;
+>>> +     struct resource *res;
+>>> +     int irq, ret;
+>>> +
+>>> +     lvts_td = devm_kzalloc(dev, sizeof(*lvts_td), GFP_KERNEL);
+>>> +     if (!lvts_td)
+>>> +             return -ENOMEM;
+>>> +
+>>> +     lvts_data = (struct lvts_data *)of_device_get_match_data(dev);
+>>
+>> Why do you need case?
+> 
+> Would you explain, please?
+> 
+
+Typo by Krysztof, he meant the cast.
+lvts_data = of_device_get_match_data(dev);
+should be good enough.
+
+Regards,
+Matthias
