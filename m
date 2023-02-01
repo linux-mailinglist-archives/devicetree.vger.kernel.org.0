@@ -2,71 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E092C686769
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 14:48:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34440686779
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 14:51:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232435AbjBANsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 08:48:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41496 "EHLO
+        id S232491AbjBANvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 08:51:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232474AbjBANsn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 08:48:43 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7339611C0;
-        Wed,  1 Feb 2023 05:48:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=3IBA2SvQ7CMb4d0SH41olODSBtddKAG/cMA2e/QMPd0=; b=0pVwh6mMTDY5zz1WtsZ4HqB0jH
-        MykexvpL9pPX5enLYCkmBXBmKY6xKVCYKmVJEjaDnRK0DReObk4HuoEqTmy/hUZcdnyv+AeHfZ+2I
-        wD69Zayjog2D1DCD+HJnFQFi1s/0uVjrdyTr++/GPAMqFOm3HLAiOhmIkqbMU6SU41vs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pNDT5-003n5k-E1; Wed, 01 Feb 2023 14:48:07 +0100
-Date:   Wed, 1 Feb 2023 14:48:07 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Frank Sae <Frank.Sae@motor-comm.com>
-Cc:     Peter Geis <pgwipeout@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        yanhong.wang@starfivetech.com, xiaogang.fan@motor-comm.com,
-        fei.zhang@motor-comm.com, hua.sun@motor-comm.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v4 5/5] net: phy: Add driver for Motorcomm
- yt8531 gigabit ethernet phy
-Message-ID: <Y9ptlylYdmcUubK5@lunn.ch>
-References: <20230201065811.3650-1-Frank.Sae@motor-comm.com>
- <20230201065811.3650-6-Frank.Sae@motor-comm.com>
+        with ESMTP id S232259AbjBANvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 08:51:15 -0500
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51580EB42;
+        Wed,  1 Feb 2023 05:51:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1675259473; x=1706795473;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=5pZy22fgi/Cqs6/TrC4Ul5oC6fmyYexDIjImkw1GxWI=;
+  b=Pdpwee/SdTekpgfvU2/tiV8hq1qJSOeTju3Z22qVTuedSWf0SiyEfSmk
+   FJI0HgXzddUKuf8Ej4QrnVfV+K0irN+WkrEi+wZtcw7aBAeXOI2fTRY47
+   9jtzY2KSS+VKw91nEKU1GLY7DfgQamvPtHSdNqfdZkEViZ0xQXls0nKBR
+   M=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 01 Feb 2023 05:51:13 -0800
+X-QCInternal: smtphost
+Received: from nalasex01b.na.qualcomm.com ([10.47.209.197])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2023 05:51:11 -0800
+Received: from hu-mohs-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Wed, 1 Feb 2023 05:51:04 -0800
+From:   Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+To:     <krzysztof.kozlowski+dt@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <quic_rohkumar@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>,
+        <konrad.dybcio@linaro.org>
+CC:     Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Subject: [PATCH 00/14] Add support for compress offload and gapless playback.
+Date:   Wed, 1 Feb 2023 19:19:33 +0530
+Message-ID: <20230201134947.1638197-1-quic_mohs@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230201065811.3650-6-Frank.Sae@motor-comm.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 01, 2023 at 02:58:11PM +0800, Frank Sae wrote:
->  Add a driver for the motorcomm yt8531 gigabit ethernet phy. We have
->  verified the driver on AM335x platform with yt8531 board. On the
->  board, yt8531 gigabit ethernet phy works in utp mode, RGMII
->  interface, supports 1000M/100M/10M speeds, and wol(magic package).
-> 
-> Signed-off-by: Frank Sae <Frank.Sae@motor-comm.com>
+Add support for compress offload and gapless playback in audioreach
+platform drivers.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Mohammad Rafi Shaik (14):
+  ALSA: compress: Update compress set params for gapless playback
+  ASoC: qcom: SC7280: audioreach: Add sc7280 hardware param fixup
+    callback
+  ASoC: q6dsp: audioreach: Add placeholder decoder for compress playback
+  ASoC: q6dsp: audioreach: Add support for compress offload commands
+  ASoC: q6dsp: audioreach: Add support to set compress params
+  ASoC: q6dsp: audioreach: Add support for sending real module ID to
+    ADSP
+  ASoC: q6dsp: q6apm-dai: Add async compress write support
+  ASoC: q6dsp: q6apm-dai: Add open/free compress DAI callbacks
+  ASoC: q6dsp: q6apm-dai: Add compress DAI and codec caps get callbacks
+  ASoC: q6dsp: q6apm-dai: Add trigger/pointer compress DAI callbacks
+  ASoC: q6dsp: q6apm-dai: Add compress set params and metadata DAI
+    callbacks
+  ASoC: q6dsp: q6apm-dai: Add mmap and copy compress DAI callbacks
+  ASoC: qdsp6: audioreach: Add MP3, AAC and FLAC compress format support
+  ASoC: q6dsp: audioreach: Add gapless feature support
 
-    Andrew
+ sound/core/compress_offload.c     |  12 +-
+ sound/soc/qcom/qdsp6/audioreach.c | 299 +++++++++++++++++--
+ sound/soc/qcom/qdsp6/audioreach.h |  56 ++++
+ sound/soc/qcom/qdsp6/q6apm-dai.c  | 464 ++++++++++++++++++++++++++++++
+ sound/soc/qcom/qdsp6/q6apm.c      | 117 ++++++++
+ sound/soc/qcom/qdsp6/q6apm.h      |   8 +
+ sound/soc/qcom/sc7280.c           |  21 +-
+ 7 files changed, 950 insertions(+), 27 deletions(-)
+
+-- 
+2.25.1
+
