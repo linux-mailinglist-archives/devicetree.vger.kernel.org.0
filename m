@@ -2,41 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26C7F6868A2
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 15:43:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5A6F68689E
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 15:43:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232548AbjBAOnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 09:43:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48814 "EHLO
+        id S232425AbjBAOnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 09:43:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232449AbjBAOnK (ORCPT
+        with ESMTP id S232081AbjBAOnK (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 09:43:10 -0500
-X-Greylist: delayed 488 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 01 Feb 2023 06:43:05 PST
-Received: from mail.fris.de (mail.fris.de [IPv6:2a01:4f8:c2c:390b::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B6282E0D0;
-        Wed,  1 Feb 2023 06:43:04 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 663D9C033A;
-        Wed,  1 Feb 2023 15:35:04 +0100 (CET)
+Received: from mail.fris.de (mail.fris.de [116.203.77.234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B44B2D168;
+        Wed,  1 Feb 2023 06:43:03 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 48769C033E;
+        Wed,  1 Feb 2023 15:35:15 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-        t=1675262104; h=from:subject:date:message-id:to:cc:mime-version:
+        t=1675262116; h=from:subject:date:message-id:to:cc:mime-version:
          content-transfer-encoding:in-reply-to:references;
-        bh=lDLZ/xjvrtcN+1CWCH6iD2koCwn6Eb1LpwYqcz6QtGM=;
-        b=bZ55zZJ5eoXQhSN7w9SMB4VCaK51BKzgXkS33yOHee5bB2bhkPDekZpgtZ93c/YxCRE4lj
-        ucP6wYBafqEQ4SNVYXa+DD8qqy3gnRx0R01rnQWNjyWybCCtgxv9zgv4i8Tf3tBUmv3lBP
-        pFRu7HlgOucmf3Eb+CbBzy9BJLSWfwcbCA6r60JD0KySH1eEtuheqw9A4zQijH8Vq8t7k9
-        nQN+AWJYpWUnuilcqLkg7GvI4deowbc2IX/ABCe8mEG/QfFOrNopolv0QVTrPFn7dSpwBg
-        Ppc3o7UfL9AtjanRkaLAay/rCZYwQW21UmgD0hn7VmgT1YuFneII41Cba86oAw==
+        bh=Dw2TOe9INXR0KNdyE/2U1NR4R/t62iyFFz/D+rvH3EY=;
+        b=oM1aKKVhGo4gLscn+2UMko2PQ1YXKH6d4Muvf1d9eKLSfZgdsAAk9BL2+NWKDco6kQWUVi
+        GNJFEXushZCzqq5/8352i/I/CdFolWd1yBQLqiG9HJA2mZop71eicMHRhyIxTJFaG9LB+F
+        u+X0TOA/HFXP5tLR3aS816HFTiCSffRYptxaeUAjQzmoGu6yOgf4jaWIqJjNeQWjWu0YfR
+        GGVM0e6o2PdBjx5u3Rl6R2gDeuVE8x06ZFoIlW2ZHkdaxVvpgofByShri4m7a5iyvcPaCE
+        YLmrj9+oYMDofBrjA+fKuKnxSv3OBI/jUHcNGnG9O3G6TLDChCYGHn3xv6Qxhg==
 From:   Frieder Schrempf <frieder@fris.de>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org,
+To:     devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>
-Subject: [PATCH 4/7] rtc: Move BSM defines to separate header for DT usage
-Date:   Wed,  1 Feb 2023 15:34:26 +0100
-Message-Id: <20230201143431.863784-5-frieder@fris.de>
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Heiko Thiery <heiko.thiery@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marek Vasut <marex@denx.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: [PATCH 6/7] arm64: dts: imx8mm-kontron: Remove useless trickle-diode-disable from RTC node
+Date:   Wed,  1 Feb 2023 15:34:28 +0100
+Message-Id: <20230201143431.863784-7-frieder@fris.de>
 In-Reply-To: <20230201143431.863784-1-frieder@fris.de>
 References: <20230201143431.863784-1-frieder@fris.de>
 MIME-Version: 1.0
@@ -53,56 +58,24 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-To be able to use the BSM defines in the devicetree, move the defines
-to a separate header within the dt-bindings directory.
+The RV3028 driver doesn't use this property. Remove it.
 
 Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 ---
- include/dt-bindings/rtc/rtc.h | 11 +++++++++++
- include/uapi/linux/rtc.h      |  6 +-----
- 2 files changed, 12 insertions(+), 5 deletions(-)
- create mode 100644 include/dt-bindings/rtc/rtc.h
+ arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/include/dt-bindings/rtc/rtc.h b/include/dt-bindings/rtc/rtc.h
-new file mode 100644
-index 000000000000..b0cc06d368c0
---- /dev/null
-+++ b/include/dt-bindings/rtc/rtc.h
-@@ -0,0 +1,11 @@
-+/* SPDX-License-Identifier: GPL-2.0 OR MIT */
-+
-+#ifndef _DT_BINDINGS_RTC_H
-+#define _DT_BINDINGS_RTC_H
-+
-+#define RTC_BSM_DISABLED	0
-+#define RTC_BSM_DIRECT		1
-+#define RTC_BSM_LEVEL		2
-+#define RTC_BSM_STANDBY		3
-+
-+#endif /* _DT_BINDINGS_RTC_H */
-diff --git a/include/uapi/linux/rtc.h b/include/uapi/linux/rtc.h
-index 97aca4503a6a..9e78c17b5733 100644
---- a/include/uapi/linux/rtc.h
-+++ b/include/uapi/linux/rtc.h
-@@ -12,6 +12,7 @@
- #ifndef _UAPI_LINUX_RTC_H_
- #define _UAPI_LINUX_RTC_H_
- 
-+#include <dt-bindings/rtc/rtc.h>
- #include <linux/const.h>
- #include <linux/ioctl.h>
- #include <linux/types.h>
-@@ -141,11 +142,6 @@ struct rtc_param {
- #define RTC_PARAM_CORRECTION		1
- #define RTC_PARAM_BACKUP_SWITCH_MODE	2
- 
--#define RTC_BSM_DISABLED	0
--#define RTC_BSM_DIRECT		1
--#define RTC_BSM_LEVEL		2
--#define RTC_BSM_STANDBY		3
--
- #define RTC_MAX_FREQ	8192
- 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
+index 5172883717d1..131f98cf5a04 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
+@@ -206,7 +206,6 @@ rtc@52 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_rtc>;
+ 		interrupts-extended = <&gpio4 1 IRQ_TYPE_LEVEL_HIGH>;
+-		trickle-diode-disable;
+ 	};
+ };
  
 -- 
 2.39.1
