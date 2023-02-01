@@ -2,100 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A19B686988
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 16:05:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E07196869C5
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 16:16:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233200AbjBAPFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 10:05:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36520 "EHLO
+        id S231856AbjBAPQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 10:16:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232108AbjBAPE0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 10:04:26 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D74B6DB05;
-        Wed,  1 Feb 2023 07:02:10 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0D19AB821A1;
-        Wed,  1 Feb 2023 15:01:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 699B2C433D2;
-        Wed,  1 Feb 2023 15:00:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675263660;
-        bh=YmsUF8dYyS1t9iHkHZl4QyzCYaAaEk1KI4sRfdsRaIg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uWU/uBx64dGc2xdxP94hbFndKoMOooiLvGJW9syKl5VW9CNhcBGfe7leZ3+USFgBz
-         END1RF7ldrpYmDuxzDaiVcl6IPJ5pG9QQ53bx1raIxWCcQDSxdCpDsa6rssURWBx4e
-         bmLZbMGPyovn5XkJpVagXH4LHEqA26B+k55d0yAn5S9Bdbc3rMwlI5PXi9yqc3QPWt
-         1PlU3MdR5rEhCNKRaOyca1wGW2JCQ/cV0KO634+pEjX3Bqgb89r47NsWW97LSRSIpp
-         GZGUqfY++Cvcb1L2sVUcukcpP72lKIVYac2xVj//PRSeeF3lXLJk+e2Pvl8LawP++J
-         cIUrK0SftDKPA==
-Date:   Wed, 1 Feb 2023 15:00:55 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kiseok Jo <kiseok.jo@irondevice.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: Drop broken irondevice,sma1303 binding
-Message-ID: <Y9p+p6wt8WugDBuH@sirena.org.uk>
-References: <20230201131059.65527-1-krzysztof.kozlowski@linaro.org>
- <1bcd61d6-810f-1239-1b6e-367e0fe87370@linaro.org>
- <Y9pxGUMWyMeXQpZM@sirena.org.uk>
- <6491d6fb-2a10-1c80-d422-8300d5a75ce4@linaro.org>
+        with ESMTP id S231736AbjBAPPm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 10:15:42 -0500
+X-Greylist: delayed 497 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 01 Feb 2023 07:15:20 PST
+Received: from out-226.mta1.migadu.com (out-226.mta1.migadu.com [IPv6:2001:41d0:203:375::e2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ADDD49976
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 07:15:19 -0800 (PST)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+        t=1675264015;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=nxqm+4IZRFfG+BFvC8+di0Y0mHZDeyM6lhNBB5I4L7U=;
+        b=GUq1RuIKjuHYjuQS0jputOzcj0/VxfTUnQhpAlMxu3EKAJpuWWXJ4wcbA/39Jk7pSv0Bcu
+        NoHJhkYBq0vLxCoNPoCwb9Wy3dweusdLPCpaRvbde4ZOvdGWPTIKuecSwKFZT7iBO1asdX
+        MlYBWxkGto5S34mB4mqwF/MTA6lJJB4=
+From:   richard.leitner@linux.dev
+Subject: [PATCH v2 0/2] panel-simple: Add InnoLux G070ACE-L01 support
+Date:   Wed, 01 Feb 2023 16:06:28 +0100
+Message-Id: <20230201-innolux-g070ace-v2-0-ebac7aaf004f@skidata.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="qLcimmkhW1yYyJm9"
-Content-Disposition: inline
-In-Reply-To: <6491d6fb-2a10-1c80-d422-8300d5a75ce4@linaro.org>
-X-Cookie: Oh no, not again.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPR/2mMC/w3LOwqAMAwA0KtIZgMxDn5uE2u0gZJCiyKId7fjG
+ 94LVYtphbV7oeht1bI3cN9BiOKnou3NwMQjMQ1o7jldD540kQTFYxcewrzooQxtbVIVtyIeYnt
+ +pfR9PyMz4h5mAAAA
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Richard Leitner <richard.leitner@skidata.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=674;
+ i=richard.leitner@skidata.com; h=from:subject:message-id;
+ bh=qICrJNgSNpd/ysAFIuK7QMeqbUpb/LYnyvOjJ/HgBBQ=;
+ b=owGbwMvMwCX2R2KahkXN7wuMp9WSGJJvNfBVv8synxZ3gD9/9u59d6c9y5i862bqvO8361hn8YSZ
+ zfc61VHKwiDGxSArpshib8zV7p5b9r5SUScXZg4rE8gQBi5OAZiIDy8jw6sZNxbmnU3UmXydZa6P8+
+ s/hb4prla3T2hrfHfyFUld9pXhf4Dm1h9dqjM+LwiZHMjz+lfoETeLT8t2Fpaq3Lb/XrJ2NT8A
+X-Developer-Key: i=richard.leitner@skidata.com; a=openpgp;
+ fpr=3F330A87476D76EF79212C6DFC189628387CFBD0
+X-Migadu-Flow: FLOW_OUT
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds support for the InnoLux G070ACE-L01 7" 800x480 TFT LCD
+panel with WLED backlight.
 
---qLcimmkhW1yYyJm9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+---
+Richard Leitner (2):
+      dt-bindings: display: simple: add support for InnoLux G070ACE-L01
+      drm/panel: simple: Add InnoLux G070ACE-L01
 
-On Wed, Feb 01, 2023 at 03:43:12PM +0100, Krzysztof Kozlowski wrote:
+ .../bindings/display/panel/panel-simple.yaml       |  2 ++
+ drivers/gpu/drm/panel/panel-simple.c               | 35 ++++++++++++++++++++++
+ 2 files changed, 37 insertions(+)
+---
+base-commit: c0b67534c95c537f7a506a06b98e5e85d72e2b7d
+change-id: 20230201-innolux-g070ace-fda21c89efe2
 
-> I tried. I started writing patch to fix few things in this binding and
-> then noticed that it is entirely empty and documents nothing.
+Best regards,
+-- 
+Richard Leitner <richard.leitner@skidata.com>
 
-I really don't see an empty binding as a major problem in and of itself,
-we can always add properties later.  Again, I can't tell what the
-problems you're seeing are.
-
-> The trouble is that soon you will send it to Linus and then it becomes
-> the ABI even though no one ever approved or reviewed the actual ABI.
-
-So send a patch to delete the property parsing code then, like I say
-removing the entire driver is very much an overraction.  The properties
-are all optional in the code.
-
---qLcimmkhW1yYyJm9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPafqYACgkQJNaLcl1U
-h9B4SQf/V/sdNWAHAktgLl/T/dtFKrx37Qe9wxNlsIs5nCLDx+P4A075LhmLQC7/
-CBRhMIjVPmWoXMvMz+QcrL1YZw4Yuqt+pMg0vOxkKuQQplPLK+sj1Os36jT+NLAR
-VXmvhhsy/ohXtnTdD7tx+YycrlQBw25Wd/iMBKzBRHoqjBFCYSyJqKcYtqxw2jqQ
-wAoxYuNJi3NIZYHlOd4qVLJTp8zGmW023L+MomhTFTimbr94npCTbz49CjVZ8B5v
-a9YHAKi3jsDWpIz45hLso5GQZvrvbvRbst3u92dAN2CXSQpb3mW75EDm+rn21TuF
-ANteV+q5cPoO2CT9zGdGYBhFYe5pLw==
-=mFhz
------END PGP SIGNATURE-----
-
---qLcimmkhW1yYyJm9--
