@@ -2,96 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C94BE6860F6
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:50:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B2C06860FE
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:53:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230013AbjBAHuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 02:50:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46748 "EHLO
+        id S231673AbjBAHxQ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 1 Feb 2023 02:53:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229827AbjBAHuu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:50:50 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C7BA3AB1;
-        Tue, 31 Jan 2023 23:50:47 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id fi26so16741415edb.7;
-        Tue, 31 Jan 2023 23:50:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=glBN85Rt3ApOQsBFR19xGhWj23PUZkptYN1w7e3kzW4=;
-        b=DRyUlm1zhhpn43neHrYjlg1b7J90De88ZvLd1hZBhVaMTp21J2NQ9m1HZ7w7kpp0VQ
-         NDDpw2l+K+2ZJEGSrD7XHt27GuJeipn56IqMuAKTXvqn7U9fBL9JwpgzlVja45KvQN5o
-         hAuKoBbDfOLSW5FaFeJB+gXrw4UziIvMc9Xff6MM4kZgDsnmfNlscfq+CZEj37TT7jzj
-         dDmO9SewftPPSYv41YLasOzkiNc48pZXo/G8Swq6HdSL2EfAk0Y1DJpPwrKTxUNWz+WG
-         y3BtbhV2F8SZ0Kjv1sBtNbEeu6JrGovtJe2oauq8vgytAt7i6t/+yDqBi2beNtO34/WZ
-         pgCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=glBN85Rt3ApOQsBFR19xGhWj23PUZkptYN1w7e3kzW4=;
-        b=h22DE/Mhz85nidZwkVaYVOUbpj48u7tTgX3oR8EEpF8PS6tgY0pHc9sKpaIzgzS5ci
-         0sTGSplumJC3wVvAb9MbwYOegJzmJSGNYkQHa62q+hZKJeU8KXTaa+8Tpq3mEgBSK6cA
-         3neH88Bflttqgww9+op6x1N9EX7w032uxya94CKH9aO5SJdwFI7jl+K8Pjl5vwszS/yj
-         dzmylKw/lX4gK02uQWPi6r5UZoOvc1glhlS5HymUpYZBYjKZlk/hqNpqGyBIYSvVAEmH
-         m/9ojOWvCWJn9O3A2nDCQmpz/N8p4ORuHyt5RL0jR5nVbIJRFYtNkg+k4MDCmtn2pNyM
-         hGXw==
-X-Gm-Message-State: AO0yUKXuvT5DFMk7Brb1LmnNVk19GErmHq5TYSn4Pv5nDkSbYm5aolNw
-        G9aPgKA3LBj8PNPWbn4bQNA=
-X-Google-Smtp-Source: AK7set9udwASp3rHYU+1pDsFfYldkdqc5fY3QHy8XaG+oyWra3rErQfyAuhCrcpz5D0ySJ2Dxu8iAQ==
-X-Received: by 2002:a50:d79b:0:b0:49e:5ffd:5be2 with SMTP id w27-20020a50d79b000000b0049e5ffd5be2mr867638edi.40.1675237845584;
-        Tue, 31 Jan 2023 23:50:45 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id j6-20020a170906474600b0088ba2de323csm2565358ejs.181.2023.01.31.23.50.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 23:50:45 -0800 (PST)
-Message-ID: <0750dcbe-6035-d49e-9d2d-93a937b5c15d@gmail.com>
-Date:   Wed, 1 Feb 2023 08:50:43 +0100
+        with ESMTP id S230013AbjBAHxP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:53:15 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE078769F;
+        Tue, 31 Jan 2023 23:53:08 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 2562C24E22E;
+        Wed,  1 Feb 2023 15:53:07 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 1 Feb
+ 2023 15:53:07 +0800
+Received: from [192.168.125.110] (183.27.97.127) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 1 Feb
+ 2023 15:53:05 +0800
+Message-ID: <abe67217-ce94-c410-5a51-3ad3a6570045@starfivetech.com>
+Date:   Wed, 1 Feb 2023 15:53:05 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH 0/4] nvmem: add and use generic MMIO NVMEM
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v3 6/7] riscv: dts: starfive: Add initial StarFive JH7110
+ device tree
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>, Icenowy Zheng <uwu@icenowy.me>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20230201064717.18410-1-zajec5@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20230201064717.18410-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221220011247.35560-1-hal.feng@starfivetech.com>
+ <20221220011247.35560-7-hal.feng@starfivetech.com> <Y6zHy9oL4xzl+6Rd@spud>
+ <dda144a8397a175f3ce092485f08896c9a66d232.camel@icenowy.me>
+ <51F38449-56BA-4260-B46F-0996FD29E169@kernel.org>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <51F38449-56BA-4260-B46F-0996FD29E169@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [183.27.97.127]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1.02.2023 07:47, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Thu, 29 Dec 2022 09:02:15 +0000, Conor Dooley wrote:
+> Hey Icenowy, Hal
 > 
-> MMIO accessible NVMEM devices should be simple enough to allow using a
-> single binding & driver for them.
+> On 29 December 2022 05:25:00 GMT, Icenowy Zheng <uwu@icenowy.me> wrote:
+>>在 2022-12-28星期三的 22:48 +0000，Conor Dooley写道：
+>>> Hey,
+>>> 
+>>> On Tue, Dec 20, 2022 at 09:12:46AM +0800, Hal Feng wrote:
+[...]
+>>> > +               U74_1: cpu@1 {
+>>> > +                       compatible = "sifive,u74-mc", "riscv";
+>>> > +                       reg = <1>;
+>>> > +                       d-cache-block-size = <64>;
+>>> > +                       d-cache-sets = <64>;
+>>> > +                       d-cache-size = <32768>;
+>>> > +                       d-tlb-sets = <1>;
+>>> > +                       d-tlb-size = <40>;
+>>> > +                       device_type = "cpu";
+>>> > +                       i-cache-block-size = <64>;
+>>> > +                       i-cache-sets = <64>;
+>>> > +                       i-cache-size = <32768>;
+>>> > +                       i-tlb-sets = <1>;
+>>> > +                       i-tlb-size = <40>;
+>>> > +                       mmu-type = "riscv,sv39";
+>>> > +                       next-level-cache = <&ccache>;
+>>> > +                       riscv,isa = "rv64imafdc";
+>>> 
+>>> That also begs the question:
+>>> Do your u74s support RV64GBC, as the (current) SiFive documentation
+>>> suggests?
+>>
+>>It supports RV64GCZbaZbb.
 > 
-> I already replaced two existing drivers. With NVMEM layouts introduced I
-> can also replace Broadcom's NVRAM driver but that work depends on my
-> pending U-Boot patchset (it provides required helpers).
+> Sweet, thanks.
+> 
+>>B is not a well-defined thing by specifications, so it should be
+>>prevented here.
+> 
+> Yah, don't worry - my next question was going to be which bits were supported :)
+> 
+> Hal, can you update the isa string in the next version please?
 
-This was meant to be marked as V2.
+The current isa description is correct. Please see my reply [1].
+Thank you.
 
-Changes:
-1. Replaced io with mmio to be clear
-2. Replaced 2 existing drivers with generic implementation
+[1] https://lore.kernel.org/all/c507e0b2-5ca3-cffe-55d2-873ed8c24e3d@starfivetech.com/
+
+Best regards,
+Hal
