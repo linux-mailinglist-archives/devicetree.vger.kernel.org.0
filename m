@@ -2,106 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E424686099
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:31:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D80A46860A5
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:33:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230221AbjBAHbn convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 1 Feb 2023 02:31:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60092 "EHLO
+        id S231214AbjBAHdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 02:33:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229893AbjBAHbm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:31:42 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D92D31C33B;
-        Tue, 31 Jan 2023 23:31:40 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 08C3124E22D;
-        Wed,  1 Feb 2023 15:31:39 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 1 Feb
- 2023 15:31:39 +0800
-Received: from [192.168.125.110] (183.27.97.127) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 1 Feb
- 2023 15:31:38 +0800
-Message-ID: <eb255bf6-ed92-d9d8-931b-9eb4212c3780@starfivetech.com>
-Date:   Wed, 1 Feb 2023 15:31:37 +0800
+        with ESMTP id S230009AbjBAHde (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:33:34 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65B1227499;
+        Tue, 31 Jan 2023 23:33:22 -0800 (PST)
+X-UUID: b3301c6ca20211eda06fc9ecc4dadd91-20230201
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=c8zIgAIM9twVEzzFeO8jvD5x33i309731TYIWFJD0ec=;
+        b=U+USV6SU1X44gtZwSiitysIs4ogeNSZNXFHD+hLVw9W0ObNrzXKENaK9xtdi0sBjOfEoHrQFojwd8ikXOMNi57KXFlBqlaWGxNqmhmbZ/xc0HCXTzCmnj0L0wWtbp7CcZDLzgJvC/pZPsoG5WoGd5ZYz2GSAtVnnNkzIKocAUoA=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.18,REQID:71dddf32-e108-4e3f-b1f3-6649def7371f,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:95
+X-CID-INFO: VERSION:1.1.18,REQID:71dddf32-e108-4e3f-b1f3-6649def7371f,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
+        :quarantine,TS:95
+X-CID-META: VersionHash:3ca2d6b,CLOUDID:68a41ef7-ff42-4fb0-b929-626456a83c14,B
+        ulkID:230201153320X3Q14PSB,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
+        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+        ,OSI:0,OSA:0
+X-CID-BVR: 0
+X-UUID: b3301c6ca20211eda06fc9ecc4dadd91-20230201
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 969479368; Wed, 01 Feb 2023 15:33:19 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Wed, 1 Feb 2023 15:33:18 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Wed, 1 Feb 2023 15:33:17 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v4,0/7] media: mediatek: vcodec: Fix power_VideoCall test fail
+Date:   Wed, 1 Feb 2023 15:33:09 +0800
+Message-ID: <20230201073316.27923-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v3 6/7] riscv: dts: starfive: Add initial StarFive JH7110
- device tree
-Content-Language: en-US
-To:     Icenowy Zheng <uwu@icenowy.me>, Conor Dooley <conor@kernel.org>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20221220011247.35560-1-hal.feng@starfivetech.com>
- <20221220011247.35560-7-hal.feng@starfivetech.com> <Y6zHy9oL4xzl+6Rd@spud>
- <dda144a8397a175f3ce092485f08896c9a66d232.camel@icenowy.me>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <dda144a8397a175f3ce092485f08896c9a66d232.camel@icenowy.me>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [183.27.97.127]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Dec 2022 13:25:00 +0800, Icenowy Zheng wrote:
-> 在 2022-12-28星期三的 22:48 +0000，Conor Dooley写道：
->> Hey,
->> 
->> On Tue, Dec 20, 2022 at 09:12:46AM +0800, Hal Feng wrote:
-[...]
->> > +               U74_1: cpu@1 {
->> > +                       compatible = "sifive,u74-mc", "riscv";
->> > +                       reg = <1>;
->> > +                       d-cache-block-size = <64>;
->> > +                       d-cache-sets = <64>;
->> > +                       d-cache-size = <32768>;
->> > +                       d-tlb-sets = <1>;
->> > +                       d-tlb-size = <40>;
->> > +                       device_type = "cpu";
->> > +                       i-cache-block-size = <64>;
->> > +                       i-cache-sets = <64>;
->> > +                       i-cache-size = <32768>;
->> > +                       i-tlb-sets = <1>;
->> > +                       i-tlb-size = <40>;
->> > +                       mmu-type = "riscv,sv39";
->> > +                       next-level-cache = <&ccache>;
->> > +                       riscv,isa = "rv64imafdc";
->> 
->> That also begs the question:
->> Do your u74s support RV64GBC, as the (current) SiFive documentation
->> suggests?
-> 
-> It supports RV64GCZbaZbb.
-> 
-> B is not a well-defined thing by specifications, so it should be
-> prevented here.
+Random getting below error message when test power_VideoCall/control.49_vp9:
+pc : __list_del_entry_valid+0xb0/0xfc
+lr : __list_del_entry_valid+0xac/0xfc
 
-Thank you for your kindly reply.
+The lat_buf in core list won't be deleted when one instance decode done.
+Will access invalid released lat_buf list when queue work continue to decode.
+Firstly, remove all unused lat_buf to the top of core list, making sure
+these buffers can be decoded in highest priority; lastly, remove all unused
+lat_buf when the instance is freed.
 
-Best regards,
-Hal
+patch 1 add params to record lat and core lat_buf count.
+patch 2 using each instance lat_buf count replace core ready list.
+patch 3 move lat_buf to the top of core list.
+patch 4 add core decode done event.
+patch 5 remove unused lat_buf.
+patch 6 making sure queue_work successfully
+patch 7 change lat thread decode error condition
+---
+changed with v3:
+- forgot to add reviewed-by for patch: 1/2/4/5/7
+changed with v2:
+- fix seek fail for patch 3
+changed with v1:
+- remove mutex for atomic for patch 1
+- add patch 6 to make sure queue_work successfully
+- add patch 7 change lat thread decode error condition
+---
+Yunfei Dong (7):
+  media: mediatek: vcodec: add params to record lat and core lat_buf
+    count
+  media: mediatek: vcodec: using each instance lat_buf count replace
+    core ready list
+  media: mediatek: vcodec: move lat_buf to the top of core list
+  media: mediatek: vcodec: add core decode done event
+  media: mediatek: vcodec: remove unused lat_buf
+  media: mediatek: vcodec: making sure queue_work successfully
+  media: mediatek: vcodec: change lat thread decode error condition
+
+ .../vcodec/mtk_vcodec_dec_stateless.c         |  6 +-
+ .../vcodec/vdec/vdec_h264_req_multi_if.c      |  2 +-
+ .../vcodec/vdec/vdec_vp9_req_lat_if.c         |  2 +-
+ .../platform/mediatek/vcodec/vdec_msg_queue.c | 95 ++++++++++++++++---
+ .../platform/mediatek/vcodec/vdec_msg_queue.h | 12 +++
+ 5 files changed, 100 insertions(+), 17 deletions(-)
+
+-- 
+2.18.0
+
