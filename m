@@ -2,121 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 138B8685FA2
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 07:06:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D4CF685FC7
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 07:31:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231857AbjBAGGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 01:06:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47062 "EHLO
+        id S230269AbjBAGbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 01:31:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231527AbjBAGGE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 01:06:04 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A4FD5CE59;
-        Tue, 31 Jan 2023 22:05:14 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3114uNh8028470;
-        Wed, 1 Feb 2023 06:04:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=bYr/uWn/HEsGCg32bIDbW7TS2fTpIi+E3pwJJh3NORA=;
- b=ZUJn08T3Ou0/mPxw+2bzXP1ENEdssIr6J31+EGswFKWP29lyclZDNut4uCvyYI6GZClw
- Kcd4F3DDG3qYdt0HXqZdAXWvBr+tIzXpMHMnSphSc98qlaQFGq5I+8y1bbT1STRxOWeQ
- 8p7i837ImkOIuBN3xpVGYBgIs9MJjqaKS0/mXVOdtKg7h9NzqE1K029lg4wWqTLfhA5z
- u0FLCfbh07baYxpYPjnNUkENjU2zq+CyPG62iMMVQjGsnYlqY5CPjljM0yKsso7ReLpp
- +zgbdvdu3FWdmRuyAqKmcaHprFG60enXTE83LRXab3pC+Td5qruVJAELa4qW6jFVnMKu gA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nexg42pd6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 01 Feb 2023 06:04:47 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31164jYh013013
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 1 Feb 2023 06:04:46 GMT
-Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Tue, 31 Jan 2023 22:04:37 -0800
-From:   Devi Priya <quic_devipriy@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <shawnguo@kernel.org>, <arnd@arndb.de>,
-        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
-        <nfraprado@collabora.com>, <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>
-Subject: [PATCH V4 7/7] arm64: defconfig: Enable IPQ9574 SoC base configs
-Date:   Wed, 1 Feb 2023 11:33:19 +0530
-Message-ID: <20230201060319.20434-8-quic_devipriy@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230201060319.20434-1-quic_devipriy@quicinc.com>
-References: <20230201060319.20434-1-quic_devipriy@quicinc.com>
+        with ESMTP id S230266AbjBAGbu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 01:31:50 -0500
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59DDA5399E;
+        Tue, 31 Jan 2023 22:31:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=NIMX5QSIbGn/ciAKNOz2rmy7HeSpbQ+nXuu7nkgLD4E=; b=sjvf26aFQaL4P/69Irl3YfBpFi
+        awyO6XJ4FbVxIC5FUin3Ls8Oda54wIOMzJnwBM3kknh0h5OFtcqdTBN85dr9dCkTAqXVhZHop3gCA
+        0D6xm5Ss5r2V4Unzzx1bRTPSaT8vFOZyqV/j+i8bRGlzlVOQmfurh9XzKDSxKNFhjuKCrcG+30VVc
+        LrRSN+UGEOeKmmd6g3LsqQ2wOr+/i6klKYzj1v1mdQPey8WTIqpqPOwtIcgtaweXeWXz4a+3P/Udx
+        bMMSwyHh0OWZSS3gGb0FZiMoeKFllEGO/k8thBewlvzews+9Farf2eMQPIsqTO1wvIbh9kRzq0OkV
+        YL3EkJrA==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1pN6el-00ATMB-Va; Wed, 01 Feb 2023 06:31:43 +0000
+Date:   Tue, 31 Jan 2023 22:31:43 -0800
+From:   Christoph Hellwig <hch@infradead.org>
+To:     Matthew Wilcox <willy@infradead.org>
+Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Linux-MM <linux-mm@kvack.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Geert Uytterhoeven <geert.uytterhoeven@gmail.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>
+Subject: Re: [QUERY]: Block region to mmap
+Message-ID: <Y9oHT1D1X9cdHLr0@infradead.org>
+References: <CA+V-a8tR1KiLSs=Psa=w7kf0zT=yU5_Ekr6-3V1MR==Wtzmksg@mail.gmail.com>
+ <Y9KQPxzHBuZGIN4U@casper.infradead.org>
+ <CA+V-a8uizF8sQgs8cfTwH3OnK+nvr2dXAoSOPTXCXLFnprHSeA@mail.gmail.com>
+ <Y9fhOFEV0kS9U06/@casper.infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nTEyfP-Yd7Y-fnHcdudzN_7gxjLo8ASO
-X-Proofpoint-ORIG-GUID: nTEyfP-Yd7Y-fnHcdudzN_7gxjLo8ASO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-01_02,2023-01-31_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 suspectscore=0 spamscore=0 phishscore=0 adultscore=0
- priorityscore=1501 impostorscore=0 mlxscore=0 clxscore=1015
- mlxlogscore=777 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2302010052
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y9fhOFEV0kS9U06/@casper.infradead.org>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enables clk & pinctrl related configs
+On Mon, Jan 30, 2023 at 03:24:40PM +0000, Matthew Wilcox wrote:
+> > Basically we are making use of the memory protection unit (MPU) so
+> > that only M-mode is allowed to access this region and S/U modes are
+> > blocked.
+> 
+> This sounds like RISC-V terminology.  I have no idea what M, S or U
+> modes are (Supervisor and User, I'd guess for the last two?)
 
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
----
- Changes in V4:
-	- No changes
 
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+Yes, M = Machine, S = Supervisor, and U = User.
+M omde is the absolutele worst idea of RISC-V and basically a mix
+of microcode and super-SMM mode.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 984553d55e17..5d6a54deef02 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -550,6 +550,7 @@ CONFIG_PINCTRL_IMX93=y
- CONFIG_PINCTRL_MSM=y
- CONFIG_PINCTRL_IPQ8074=y
- CONFIG_PINCTRL_IPQ6018=y
-+CONFIG_PINCTRL_IPQ9574=y
- CONFIG_PINCTRL_MSM8916=y
- CONFIG_PINCTRL_MSM8953=y
- CONFIG_PINCTRL_MSM8976=y
-@@ -1107,6 +1108,7 @@ CONFIG_QCOM_CLK_SMD_RPM=y
- CONFIG_QCOM_CLK_RPMH=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
-+CONFIG_IPQ_GCC_9574=y
- CONFIG_MSM_GCC_8916=y
- CONFIG_MSM_GCC_8994=y
- CONFIG_MSM_MMCC_8996=y
--- 
-2.17.1
+> Before we go too deeply into it, how much would it cost to buy all of
+> these parts and feed them into a shredder?  I'm not entirely joking;
+> if it's less than the software engineering time it'd take to develop
+> and support this feature, we should do it.
 
+The above suggests this is in no way an actual hardware problem, but the
+stupid decision is done in the M-Mode firmware.  I think it is very
+reasonable to simply not support the devices in Linux until the firmware
+is fixed.
