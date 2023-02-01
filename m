@@ -2,131 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8587E6869C8
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 16:16:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A83C56869A9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 16:11:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231736AbjBAPQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 10:16:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53174 "EHLO
+        id S232663AbjBAPLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 10:11:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231811AbjBAPPs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 10:15:48 -0500
-Received: from out-204.mta1.migadu.com (out-204.mta1.migadu.com [95.215.58.204])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAC336778F
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 07:15:19 -0800 (PST)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-        t=1675264016;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ISBw+lLJjP7BznW362jdcm4uRG8zECZCwrXeRkCYy54=;
-        b=tgYIEpHQtF/Kfu53JmIYWDDhcYwE5D/cE/tmHIxCDMDRBJQjwwThWoAEHfz1+oIwyIoCd5
-        o/FMIT31dndyeScfWf2EYmUp9OWVKOoq8l4nict1MKRrHuuWQBgPAxdl+DTisc3k3dsEWm
-        0rKfOJ5ITQR3W8lAmtqYjT9IQu4opTE=
-From:   richard.leitner@linux.dev
-Date:   Wed, 01 Feb 2023 16:06:30 +0100
-Subject: [PATCH v2 2/2] drm/panel: simple: Add InnoLux G070ACE-L01
+        with ESMTP id S232901AbjBAPLJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 10:11:09 -0500
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA7B866F8C
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 07:10:41 -0800 (PST)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 944051F8F0;
+        Wed,  1 Feb 2023 16:10:39 +0100 (CET)
+Date:   Wed, 1 Feb 2023 16:10:37 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, quic_abhinavk@quicinc.com
+Subject: Re: [v1 2/3] drm/msm/disp/dpu1: add dspps into reservation if there
+ is a ctm request
+Message-ID: <20230201151037.sm3ai2bgw35e6aar@SoMainline.org>
+References: <1675092092-26412-1-git-send-email-quic_kalyant@quicinc.com>
+ <1675092092-26412-3-git-send-email-quic_kalyant@quicinc.com>
+ <20230201111604.htgczy6yvdkywhvl@SoMainline.org>
+ <38466a0f-686d-ab19-2669-e81ca6d6ec17@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230201-innolux-g070ace-v2-2-ebac7aaf004f@skidata.com>
-References: <20230201-innolux-g070ace-v2-0-ebac7aaf004f@skidata.com>
-In-Reply-To: <20230201-innolux-g070ace-v2-0-ebac7aaf004f@skidata.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Richard Leitner <richard.leitner@skidata.com>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2026;
- i=richard.leitner@skidata.com; h=from:subject:message-id;
- bh=fBnNe8I6HAau6f0o9ypbleDL5b5fImuqgTaYxzEslLM=;
- b=owGbwMvMwCX2R2KahkXN7wuMp9WSGJJvNfAzb7R7svwCi16y9n/f1de56pmPS63h3vPecaqjjehe
- 570pHaUsDGJcDLJiiiz2xlzt7rll7ysVdXJh5rAygQxh4OIUgIk4tzP8T9+76f35H9/C0y+fC1zTz1
- Xd+Tjccsv6te+uR+zYN+P9xwqGvyKXV245HVV22yjEfMG/33vnuK1SupYjVCNjuvPm65UJLhwA
-X-Developer-Key: i=richard.leitner@skidata.com; a=openpgp;
- fpr=3F330A87476D76EF79212C6DFC189628387CFBD0
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <38466a0f-686d-ab19-2669-e81ca6d6ec17@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Richard Leitner <richard.leitner@skidata.com>
+On 2023-02-01 15:48:02, Dmitry Baryshkov wrote:
+> On 01/02/2023 13:16, Marijn Suijten wrote:
+> > On 2023-01-30 07:21:31, Kalyan Thota wrote:
+> >> Add dspp blocks into the topology for reservation, if there is a ctm
+> >> request for that composition.
+> > 
+> > DSPP
+> > 
+> >> Changes in v1:
+> >> - Minor nits (Dmitry)
+> > 
+> > This should go below the triple dashes, so that it /does not/ become
+> > part of the patch/commit that is applied to the tree (where review
+> > history is irrelevant as it can be searched for separately).
+> 
+> This is one of DRM peculiarities which we have to live with.
 
-Add InnoLux G070ACE-L01 7" 800x480 TFT LCD with WLED backlight panel
-support. Timing data was extracted from datasheet and vendor provided
-EDID file.
+Not sure I follow.  Keeping "changes since vXX" out of commit messages
+seems to be a kernel-wide convention, after all the title doesn't
+include which revision of the patch ended up being applied to the tree
+either.  Having the changelog checked in to the tree has no relevance.
 
-Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
----
- drivers/gpu/drm/panel/panel-simple.c | 35 +++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+> >> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+> >> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >> ---
+> >>   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 13 ++++++-------
+> >>   1 file changed, 6 insertions(+), 7 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> >> index 9c6817b..3bd46b4 100644
+> >> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> >> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> >> @@ -545,7 +545,8 @@ bool dpu_encoder_use_dsc_merge(struct drm_encoder *drm_enc)
+> >>   static struct msm_display_topology dpu_encoder_get_topology(
+> >>   			struct dpu_encoder_virt *dpu_enc,
+> >>   			struct dpu_kms *dpu_kms,
+> >> -			struct drm_display_mode *mode)
+> >> +			struct drm_display_mode *mode,
+> >> +			struct drm_crtc_state *crtc_state)
+> >>   {
+> >>   	struct msm_display_topology topology = {0};
+> >>   	int i, intf_count = 0;
+> >> @@ -573,11 +574,9 @@ static struct msm_display_topology dpu_encoder_get_topology(
+> >>   	else
+> >>   		topology.num_lm = (mode->hdisplay > MAX_HDISPLAY_SPLIT) ? 2 : 1;
+> >>   
+> >> -	if (dpu_enc->disp_info.intf_type == DRM_MODE_ENCODER_DSI) {
+> >> -		if (dpu_kms->catalog->dspp &&
+> >> -			(dpu_kms->catalog->dspp_count >= topology.num_lm))
+> >> -			topology.num_dspp = topology.num_lm;
+> >> -	}
+> >> +	if (dpu_kms->catalog->dspp &&
+> >> +	    crtc_state->ctm && (dpu_kms->catalog->dspp_count >= topology.num_lm))
+> > 
+> > Multiline-if-clause is typically indented with two tabs, not a half tab
+> > (4 spaces).
+> 
+> I tend to disagree here. Lately I have mostly seen it being indented to 
+> the opening parenthesis, so that nested statements also indent nicely.
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 8a3b685c2fcc..d90f86ad3789 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -2142,6 +2142,38 @@ static const struct panel_desc innolux_at070tn92 = {
- 	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
- };
- 
-+static const struct display_timing innolux_g070ace_l01_timing = {
-+	.pixelclock = { 25200000, 35000000, 35700000 },
-+	.hactive = { 800, 800, 800 },
-+	.hfront_porch = { 30, 32, 87 },
-+	.hback_porch = { 30, 32, 87 },
-+	.hsync_len = { 1, 1, 1 },
-+	.vactive = { 480, 480, 480 },
-+	.vfront_porch = { 3, 3, 3 },
-+	.vback_porch = { 13, 13, 13 },
-+	.vsync_len = { 1, 1, 4 },
-+	.flags = DISPLAY_FLAGS_DE_HIGH,
-+};
-+
-+static const struct panel_desc innolux_g070ace_l01 = {
-+	.timings = &innolux_g070ace_l01_timing,
-+	.num_timings = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 152,
-+		.height = 91,
-+	},
-+	.delay = {
-+		.prepare = 10,
-+		.enable = 50,
-+		.disable = 50,
-+		.unprepare = 500,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct display_timing innolux_g070y2_l01_timing = {
- 	.pixelclock = { 28000000, 29500000, 32000000 },
- 	.hactive = { 800, 800, 800 },
-@@ -4098,6 +4130,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "innolux,at070tn92",
- 		.data = &innolux_at070tn92,
-+	}, {
-+		.compatible = "innolux,g070ace-l01",
-+		.data = &innolux_g070ace_l01,
- 	}, {
- 		.compatible = "innolux,g070y2-l01",
- 		.data = &innolux_g070y2_l01,
+Ack, hence double-checked in a followup message; there's no concistency
+in dpu1 now but I agree that for ts=8 a 4-space-indented wraparound
+neatly aligns with the expression on the first line /and/ prevents
+inadvertently aligning with the conditional body on the next line.
 
--- 
-2.39.1
+Will fix up in my own series too, thanks!
 
+> > Nit: swap the && here?  dspp and dspp_count are related, so check ctm
+> > first or last but not in the middle - makes reading easier.
+> 
+> I think we can ignore dpu_kms->catalog->dspp completely. checking 
+> dspp_count should be enough for the purpose of the check (and note, the 
+> check for dspp/dspp_count is misleading and should be omitted).
+
+Ack, thanks!
+
+- Marijn
