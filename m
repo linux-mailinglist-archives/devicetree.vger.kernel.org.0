@@ -2,80 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E174868659A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 12:53:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 343376865A5
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 13:01:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231676AbjBALxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 06:53:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57522 "EHLO
+        id S231445AbjBAMBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 07:01:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231509AbjBALxK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 06:53:10 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 056D335A2
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 03:52:56 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id o36so6436575wms.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 03:52:55 -0800 (PST)
+        with ESMTP id S231463AbjBAMBm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 07:01:42 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C18933608F
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 04:01:36 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so1251336wmq.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 04:01:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qXmJjnvo/FFiDzkfMcuSjrP2rIaxNKinvpLHDM3lDcI=;
-        b=N0elckNXjFQvKZibhvSoRRoSC9/x4UVe0mh+gY0BT4kJJKugTLMh0K6VMgpok4HIJg
-         Dh9YfRRKj7G+JSsy0KsMy9mVNhtsD5/IPKOB6anI8Se14qS79D09V4hamsOW7W/t/OUw
-         DC4NVKRG/X2iPQPw1qftU7ruSEcTu/xupnbN9rS5TwGTCnWbdXDL8UC1/XZ6ZarZhv0Y
-         NAXjvCIzkb4IXy/wYCE72TXZxoLBlSHjOlFmscy9bN8R5F8/s6W6eXSQo31vDJ1lN7aA
-         fOFXkQ9DVgjvVJ26zKfatj74owxN6YmXerbOrPEx09gofYTkwo0ldQGHGiSvH5BkWhcS
-         a8RQ==
+        bh=6prvu2CI3NzcBWqU0N1Xpa6iVV1xGFav24j3mlsXXA4=;
+        b=In09R1A0QdGqESTC/tbUuyeGu1hlVo9zBahaCjmLsXyT9YmlXvcrYY5h4eV9Ezsnii
+         SxS1z4Xq3xRPII5NzoBuTDG1bkxeQiSXAflfnxM34O4B1w0EkmpaKZiUUnQ0usp4PgyY
+         2n5ukflsgbrsWs/Dno1DOyK3+fwOMA2+NmNfSZ5ZkJH9b+ZiE5RAoVqhdo6LgiQlgRcn
+         pv01MQninn/TwLUdLFP/0j0fi0WSwN8w2xWQfTOGFmqDSxnSSPq1w9BiAug9sODRqZ7V
+         TiWjXSQfLoeLA0UMOoZRmUvtfluMom8Z/I7A+47kNUu7Q0QjCgDiSDNJ4w/YqX4JRDyI
+         hUYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qXmJjnvo/FFiDzkfMcuSjrP2rIaxNKinvpLHDM3lDcI=;
-        b=PFsKvR7pZlj08IEKbDtqEo9fKApMRCNa10w3iM/5Dgv5kWEfIMHJqldN/zAjq/LGE+
-         BwZhi/J6QS2l8dExtEgL3TUuCPUGn1hN75s1ap+Jr0gWMruYQbNquN2qrSraOkyUKDgX
-         2Y/eLMmo86TW1VhvzjhC1XKd22qJ7gqevHGAG0vGPChtDiSCzNXOoNV8rdbhxUaEafkC
-         miSfTYfVRe3zv7fAVEQcQ5PNdMovTcFKNKk06zGnW8v3X8Csl29euWllWWfADE6PQjY2
-         R3zrPN7DoSst4Y7/qcURdkkwSu73b1/uYQuV2ivxFJfyBZdYcOtja2F+oUZ3FbCfhJup
-         +Etg==
-X-Gm-Message-State: AO0yUKVqTieXtwG5S7X0lK5ALjlPOs8dEwefVfpY67L2z48nfGbm5IsD
-        8PmcAjGFIPQRLWn4zerENzj7AQ==
-X-Google-Smtp-Source: AK7set/dRg45qD9OzdP33C522mFyZvo9JvWq76eRC7vcFbhRZPDOFP+Yn/7YzjHOSNSVsebueHhhAA==
-X-Received: by 2002:a1c:7906:0:b0:3da:db4:6105 with SMTP id l6-20020a1c7906000000b003da0db46105mr1733058wme.37.1675252374488;
-        Wed, 01 Feb 2023 03:52:54 -0800 (PST)
+        bh=6prvu2CI3NzcBWqU0N1Xpa6iVV1xGFav24j3mlsXXA4=;
+        b=2ov7lrhIgkL5pKSjG1bAgrdALTo/Zw0ncyxGPTnOBRBRXiBKJ/GTsYbAOUJ5Anpl6r
+         0lis+1bVfkdVA7bFR0Vo2k3eTPWQ9ITgUaZ+3uxeW0JtCKZCliS/YKzRoVCXQQlefzjT
+         rTI2Q8MJXBA4Sxt0sTWeJwc13bbxUC0qXX+XFxcDDG178DAhYZeCW1SYPEpVqF9TH3oh
+         gKxabMdGn+9uTeL5iKpGqQUuHNihvpaUV0qgT67SSOIRjTQ2qMkMWda53vTVg6AHxl3s
+         nKWpqN5sOs6P/sCQ53y8flhX05Dc90Kv8crrWIMZBZHHGAKj7vCY95orGSqY/WCn4iXP
+         tv9w==
+X-Gm-Message-State: AO0yUKWWqeuhb3QisB7X5vJgPPpX3XYWMQREpU4oOXYUow6lfcUaiXIJ
+        +xwPv5LM1p+ThcGKxDk6cif6dA==
+X-Google-Smtp-Source: AK7set9jSoYr+KrAD0fdumuXJ7Cz89lWI/z0xkcgMMNwyBtEpC8hJTmIUDg3r3Q6CgjkEMUjQeAWuQ==
+X-Received: by 2002:a05:600c:1d03:b0:3dd:1bcc:eb17 with SMTP id l3-20020a05600c1d0300b003dd1bcceb17mr1587144wms.28.1675252894823;
+        Wed, 01 Feb 2023 04:01:34 -0800 (PST)
 Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id j25-20020a05600c1c1900b003daf6e3bc2fsm2977865wms.1.2023.02.01.03.52.53
+        by smtp.googlemail.com with ESMTPSA id y13-20020a1c4b0d000000b003dc4aae4739sm1522444wma.27.2023.02.01.04.01.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 03:52:53 -0800 (PST)
-Message-ID: <88a8c2ef-8478-84b3-e4c9-6d3760313241@linaro.org>
-Date:   Wed, 1 Feb 2023 11:52:52 +0000
+        Wed, 01 Feb 2023 04:01:33 -0800 (PST)
+Message-ID: <0df20322-e520-1622-8da8-6dbb44705aec@linaro.org>
+Date:   Wed, 1 Feb 2023 12:01:32 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 2/4] nvmem: add generic driver for devices with MMIO
- access
+Subject: Re: [PATCH V2 3/5] firmware: scm: Modify only the DLOAD bit in TCSR
+ register for download mode
 Content-Language: en-US
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20230201064717.18410-1-zajec5@gmail.com>
- <20230201064717.18410-3-zajec5@gmail.com>
+To:     Poovendhan Selvaraj <quic_poovendh@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        jassisinghbrar@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
+        robimarko@gmail.com, dmitry.baryshkov@linaro.org,
+        nfraprado@collabora.com, broonie@kernel.org,
+        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_devipriy@quicinc.com
+References: <20230201090529.30446-1-quic_poovendh@quicinc.com>
+ <20230201090529.30446-4-quic_poovendh@quicinc.com>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230201064717.18410-3-zajec5@gmail.com>
+In-Reply-To: <20230201090529.30446-4-quic_poovendh@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,156 +90,72 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 01/02/2023 06:47, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 01/02/2023 09:05, Poovendhan Selvaraj wrote:
+> Add support to read-modify-write TCSR register to modify only DLOAD bit.
 > 
-> With nvmem layouts in place we should now work on plain content access
-> NVMEM drivers (e.g. MMIO one). Actual NVMEM content handling should go
-> to layout drivers.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> Co-developed-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
 > ---
->   drivers/nvmem/Kconfig  | 10 ++++++
->   drivers/nvmem/Makefile |  2 ++
->   drivers/nvmem/mmio.c   | 80 ++++++++++++++++++++++++++++++++++++++++++
->   3 files changed, 92 insertions(+)
->   create mode 100644 drivers/nvmem/mmio.c
+>   drivers/firmware/qcom_scm.c | 12 ++++++++----
+>   1 file changed, 8 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> index 789729ff7e50..9eb5e93f0455 100644
-> --- a/drivers/nvmem/Kconfig
-> +++ b/drivers/nvmem/Kconfig
-> @@ -170,6 +170,16 @@ config NVMEM_MICROCHIP_OTPC
->   	  This driver enable the OTP controller available on Microchip SAMA7G5
->   	  SoCs. It controls the access to the OTP memory connected to it.
+> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+> index 2000323722bf..e3435587a72d 100644
+> --- a/drivers/firmware/qcom_scm.c
+> +++ b/drivers/firmware/qcom_scm.c
+> @@ -407,7 +407,7 @@ int qcom_scm_set_remote_state(u32 state, u32 id)
+>   }
+>   EXPORT_SYMBOL(qcom_scm_set_remote_state);
 >   
-> +config NVMEM_MMIO
-> +	tristate "MMIO access based NVMEM support"
-> +	depends on HAS_IOMEM
-> +	help
-> +	  This driver provides support for NVMEM devices that can be accessed
-> +	  using MMIO.
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called nvmem-mmio.
-> +
->   config NVMEM_MTK_EFUSE
->   	tristate "Mediatek SoCs EFUSE support"
->   	depends on ARCH_MEDIATEK || COMPILE_TEST
-> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-> index 442f9a4876a5..2f2bed7cdf24 100644
-> --- a/drivers/nvmem/Makefile
-> +++ b/drivers/nvmem/Makefile
-> @@ -36,6 +36,8 @@ obj-$(CONFIG_NVMEM_MESON_MX_EFUSE)	+= nvmem_meson_mx_efuse.o
->   nvmem_meson_mx_efuse-y			:= meson-mx-efuse.o
->   obj-$(CONFIG_NVMEM_MICROCHIP_OTPC)	+= nvmem-microchip-otpc.o
->   nvmem-microchip-otpc-y			:= microchip-otpc.o
-> +obj-$(CONFIG_NVMEM_MMIO)		+= nvmem-mmio.o
-> +nvmem-mmio-y				:= mmio.o
->   obj-$(CONFIG_NVMEM_MTK_EFUSE)		+= nvmem_mtk-efuse.o
->   nvmem_mtk-efuse-y			:= mtk-efuse.o
->   obj-$(CONFIG_NVMEM_MXS_OCOTP)		+= nvmem-mxs-ocotp.o
-> diff --git a/drivers/nvmem/mmio.c b/drivers/nvmem/mmio.c
-> new file mode 100644
-> index 000000000000..19c8880dc675
-> --- /dev/null
-> +++ b/drivers/nvmem/mmio.c
-> @@ -0,0 +1,80 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2023 Rafał Miłecki <rafal@milecki.pl>
-> + */
-> +
-> +#include <linux/io.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-provider.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/slab.h>
-> +
-> +struct mmio_nvmem {
-> +	void __iomem *base;
-> +};
-> +
-> +static int mmio_nvmem_read(void *context, unsigned int offset, void *val, size_t bytes)
-> +{
-> +	struct mmio_nvmem *priv = context;
-> +
-> +	memcpy_fromio(val, priv->base, bytes);
-
-How does this work with different register strides?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int mmio_nvmem_probe(struct platform_device *pdev)
-> +{
-> +	struct nvmem_config config = {
-> +		.name = "mmio-nvmem",
+> -static int __qcom_scm_set_dload_mode(struct device *dev, bool enable)
+> +static int __qcom_scm_set_dload_mode(struct device *dev, u32 val, bool enable)
+>   {
+>   	struct qcom_scm_desc desc = {
+>   		.svc = QCOM_SCM_SVC_BOOT,
+> @@ -417,7 +417,7 @@ static int __qcom_scm_set_dload_mode(struct device *dev, bool enable)
+>   		.owner = ARM_SMCCC_OWNER_SIP,
+>   	};
+>   
+> -	desc.args[1] = enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0;
+> +	desc.args[1] = enable ? val | QCOM_SCM_BOOT_SET_DLOAD_MODE : 0;
 
 
-you could use NVMEM_DEVID_AUTO.
+It is not read-modify-write when enable == false, its just writing 0.
+
+Is this intentional?
 
 
-But this is not great, this is going to break the existing abi for 
-converted drivers. Either we find a way to pass compatible specific data 
-and override the default values.
+>   
+>   	return qcom_scm_call_atomic(__scm->dev, &desc, NULL);
+>   }
+> @@ -426,15 +426,19 @@ static void qcom_scm_set_download_mode(bool enable)
+>   {
+>   	bool avail;
+>   	int ret = 0;
+> +	u32 dload_addr_val;
+>   
+>   	avail = __qcom_scm_is_call_available(__scm->dev,
+>   					     QCOM_SCM_SVC_BOOT,
+>   					     QCOM_SCM_BOOT_SET_DLOAD_MODE);
+> +	ret = qcom_scm_io_readl(__scm->dload_mode_addr, &dload_addr_val);
+> +
+>   	if (avail) {
+> -		ret = __qcom_scm_set_dload_mode(__scm->dev, enable);
+> +		ret = __qcom_scm_set_dload_mode(__scm->dev, dload_addr_val, enable);
+>   	} else if (__scm->dload_mode_addr) {
+>   		ret = qcom_scm_io_writel(__scm->dload_mode_addr,
+> -				enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0);
+> +				enable ? dload_addr_val |
+> +					QCOM_SCM_BOOT_SET_DLOAD_MODE : 0);
 
-Also there are going to be cases where access to registers will require 
-additional resources like clks or pd.
+same here.
 
 
 --srini
 
-> +		.read_only = true,
-> +		.reg_read = mmio_nvmem_read,
-> +	};
-> +	struct device *dev = &pdev->dev;
-> +	struct mmio_nvmem *priv;
-> +	struct resource *res;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-> +	if (IS_ERR(priv->base))
-> +		return PTR_ERR(priv->base);
-> +
-> +	config.dev = dev;
-> +	config.size = resource_size(res);
-> +	config.word_size = sizeof(u8);
-> +	config.stride = sizeof(u8);
-> +	config.priv = priv;
-> +
-> +	if (!device_property_present(dev, "read-only"))
-> +		dev_warn(dev, "Writing is not supported yet");
-> +
-> +	return PTR_ERR_OR_ZERO(devm_nvmem_register(dev, &config));
-> +}
-> +
-> +static const struct of_device_id mmio_nvmem_of_match_table[] = {
-> +	{ .compatible = "mmio-nvmem", },
-> +	{},
-> +};
-> +
-> +static struct platform_driver mmio_nvmem_driver = {
-> +	.probe = mmio_nvmem_probe,
-> +	.driver = {
-> +		.name = "mmio_nvmem",
-> +		.of_match_table = mmio_nvmem_of_match_table,
-> +	},
-> +};
-> +
-> +static int __init mmio_nvmem_init(void)
-> +{
-> +	return platform_driver_register(&mmio_nvmem_driver);
-> +}
-> +
-> +subsys_initcall_sync(mmio_nvmem_init);
-> +
-> +MODULE_AUTHOR("Rafał Miłecki");
-> +MODULE_LICENSE("GPL");
-> +MODULE_DEVICE_TABLE(of, mmio_nvmem_of_match_table);
+>   	} else {
+>   		dev_err(__scm->dev,
+>   			"No available mechanism for setting download mode\n");
