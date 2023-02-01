@@ -2,86 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A210685EBA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 06:10:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDF73685F07
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 06:36:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229944AbjBAFKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 00:10:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51828 "EHLO
+        id S230138AbjBAFgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 00:36:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbjBAFKV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 00:10:21 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D882B4FAE4;
-        Tue, 31 Jan 2023 21:10:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7CD4360B0D;
-        Wed,  1 Feb 2023 05:10:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DFA43C4339B;
-        Wed,  1 Feb 2023 05:10:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675228219;
-        bh=/NjIkaljrd3Egap7rXJKp0TJO/lsHoW6pjZpsK9ELA8=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=Eqhtt4prr3LI7abi3PZIw/8+neQOiGGO3grYXPi7pmiV//qqpJcMEBaWSKYcUDpQg
-         VRkr2DD5+MgIBp4GwxXXEN9zSZNX72GjYLW8Sp1iY2EFj150iRKFGzlCtrwKlmVMJk
-         CRUQcLfRXc15nlX3+oDqEV35sMBIjAYvpuypKNa5D9Dax6okU6r6Xr3Pm+sqxlyJoG
-         uvRhKGEnL/cgjIzpog8Jpqlv1jSlD4MrNPm0FgnRP5B6dZn8OKT7mXjWIFsocEPSnX
-         usLAj0fHx4m6e6fD01sCuilXobzscsDjEscho0PEs5ymZ56OVskepvi3+ir/ld9CBm
-         WOCpm6PvUJGkQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id CA72FE21EEC;
-        Wed,  1 Feb 2023 05:10:19 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229488AbjBAFgp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 00:36:45 -0500
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1BC3B53E4E;
+        Tue, 31 Jan 2023 21:36:44 -0800 (PST)
+Received: by linux.microsoft.com (Postfix, from userid 1127)
+        id D018020B7102; Tue, 31 Jan 2023 21:36:43 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com D018020B7102
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1675229803;
+        bh=a+n6LU8y9WW4464PUW7kstwyrtfB8Fsw1PFizOcqRRw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Y/6RMiOaTDNj3OQ1aTHk1FbVvURNNJqZPCIB0Lx/33doooI6f5MYGA48YvR0eWXUL
+         KNUQ512M78xE8Jsg07VVLcCfYnClH3QCa4UonAfixtb3j+COBhJlW25VERq3EzwXCD
+         HEgemei3lgcq2MuAy3QWwLaJQrsORJz7O687RfQo=
+Date:   Tue, 31 Jan 2023 21:36:43 -0800
+From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     tglx@linutronix.de, kys@microsoft.com,
+        linux-hyperv@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        wei.liu@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mikelley@microsoft.com,
+        virtualization@lists.linux-foundation.org, haiyangz@microsoft.com,
+        decui@microsoft.com, daniel.lezcano@linaro.org,
+        ssengar@microsoft.com
+Subject: Re: [PATCH v2 4/6] dt-bindings: hypervisor: Rename virtio to
+ hypervisor
+Message-ID: <20230201053643.GA31571@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
+ <1675188609-20913-5-git-send-email-ssengar@linux.microsoft.com>
+ <167519443459.1836211.1945655170442861713.robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 net-next 0/2] net: mdio: add amlogic gxl mdio mux support
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <167522821982.27789.12071351228778814707.git-patchwork-notify@kernel.org>
-Date:   Wed, 01 Feb 2023 05:10:19 +0000
-References: <20230130151616.375168-1-jbrunet@baylibre.com>
-In-Reply-To: <20230130151616.375168-1-jbrunet@baylibre.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, khilman@baylibre.com,
-        neil.armstrong@linaro.org, da@lessconfused.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <167519443459.1836211.1945655170442861713.robh@kernel.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Mon, 30 Jan 2023 16:16:14 +0100 you wrote:
-> Add support for the MDIO multiplexer found in the Amlogic GXL SoC family.
-> This multiplexer allows to choose between the external (SoC pins) MDIO bus,
-> or the internal one leading to the integrated 10/100M PHY.
+On Tue, Jan 31, 2023 at 01:57:36PM -0600, Rob Herring wrote:
 > 
-> This multiplexer has been handled with the mdio-mux-mmioreg generic driver
-> so far. When it was added, it was thought the logic was handled by a
-> single register.
+> On Tue, 31 Jan 2023 10:10:07 -0800, Saurabh Sengar wrote:
+> > Rename virtio folder to more generic hypervisor, so that this can
+> > accommodate more devices of similar type.
+> > 
+> > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> > ---
+> >  .../devicetree/bindings/{virtio => hypervisor}/mmio.yaml        | 2 +-
+> >  .../devicetree/bindings/{virtio => hypervisor}/pci-iommu.yaml   | 2 +-
+> >  .../bindings/{virtio => hypervisor}/virtio-device.yaml          | 2 +-
+> >  MAINTAINERS                                                     | 2 +-
+> >  4 files changed, 4 insertions(+), 4 deletions(-)
+> >  rename Documentation/devicetree/bindings/{virtio => hypervisor}/mmio.yaml (95%)
+> >  rename Documentation/devicetree/bindings/{virtio => hypervisor}/pci-iommu.yaml (98%)
+> >  rename Documentation/devicetree/bindings/{virtio => hypervisor}/virtio-device.yaml (93%)
+> > 
 > 
-> [...]
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> ./Documentation/devicetree/bindings/i2c/i2c-virtio.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/virtio/virtio-device.yaml
+> ./Documentation/devicetree/bindings/gpio/gpio-virtio.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/virtio/virtio-device.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-virtio.example.dtb: i2c: False schema does not allow {'compatible': ['virtio,device22'], '#address-cells': [[1]], '#size-cells': [[0]], 'light-sensor@20': {'compatible': ['dynaimage,al3320a'], 'reg': [[32]]}, '$nodename': ['i2c']}
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-virtio.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/gpio-virtio.example.dtb: gpio: False schema does not allow {'compatible': ['virtio,device29'], 'gpio-controller': True, '#gpio-cells': [[2]], 'interrupt-controller': True, '#interrupt-cells': [[2]], '$nodename': ['gpio']}
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/gpio-virtio.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hypervisor/virtio-device.example.dtb: i2c: False schema does not allow {'compatible': ['virtio,device22'], '$nodename': ['i2c']}
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-virtio.yaml
+> 
+> doc reference errors (make refcheckdocs):
+> MAINTAINERS: Documentation/devicetree/bindings/virtio/
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1675188609-20913-5-git-send-email-ssengar@linux.microsoft.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
 
-Here is the summary with links:
-  - [v2,net-next,1/2] dt-bindings: net: add amlogic gxl mdio multiplexer
-    https://git.kernel.org/netdev/net-next/c/cc732d235126
-  - [v2,net-next,2/2] net: mdio: add amlogic gxl mdio mux support
-    https://git.kernel.org/netdev/net-next/c/9a24e1ff4326
+Hi Rob,
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+I set DT_SCHEMA_FILES as below and ran "make -j32 DT_CHECKER_FLAGS=-m dt_binding_check".
+export DT_SCHEMA_FILES=Documentation/devicetree/bindings/hypervisor
 
+But I can see only below error:
+/work/upstream/linux-next/Documentation/devicetree/bindings/hypervisor/virtio-device.example.dtb: i2c: False schema does not allow {'compatible': ['virtio,device22'], '$nodename': ['i2c']}
+        From schema: /work/upstream/linux-next/Documentation/devicetree/bindings/i2c/i2c-virtio.yaml
+
+If I unset DT_SCHEMA_FILES, I see lot many errors which are not related to my changes.
+May I know what can I do to simulate the exact behaviour of your bot.
+
+Version of all the packages look latest:
+
+$ pip3 show dtschema
+Name: dtschema
+Version: 2023.1
+Summary: DeviceTree validation schema and tools
+Home-page: https://github.com/devicetree-org/dt-schema
+Author: Rob Herring
+Author-email: robh@kernel.org
+License: BSD
+Location: /home/azureuser/.local/lib/python3.8/site-packages
+Requires: rfc3987, jsonschema, pylibfdt, ruamel.yaml
+Required-by:
+
+
+$ dt-doc-validate --version
+2023.1
+
+
+$ yamllint --version
+yamllint 1.20.0
+
+
+Regards,
+Saurabh
 
