@@ -2,118 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8262E6867B5
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 14:57:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A1936867E5
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 15:03:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231564AbjBAN5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 08:57:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51154 "EHLO
+        id S231883AbjBAODX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 09:03:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232036AbjBAN5j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 08:57:39 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36CC4D529
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 05:56:58 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id m8so8538316edd.10
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 05:56:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=pKitcKKw73X1uo1uIzQcYZyxxtvSIaIwF803pkaRmSE=;
-        b=FhJUuGyjgf0pkYLwIlP1FpcxIZB3jRzpwHy0CX43ITrZwZiv83McD06EZgYXSO4r11
-         dJobdMR8ZOSWRtyrc0Xmp8Yp4nb+hSM/6X5B0n+kJcqwp0/OagZwS+NJE7+L3tr2Vd76
-         2PddzgUBgIgwgAv7OoNTXaiAN/+iEq6wD//HY3qidEe5Kjq9oSaIYl3kw259xt92DBpx
-         YVpu7Z0QdUjOfnlV0STj1kPGyRHw1K3qJoYft1KBKvD0f4YhaM3aQC1xMkP2oznRJAXf
-         20BIwqusiH/5Juk5cXptDlDRFa+kI+LQoMHKQWAf69g58OWBPQaQ99yEWc1MsNOFf/N2
-         o7Zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pKitcKKw73X1uo1uIzQcYZyxxtvSIaIwF803pkaRmSE=;
-        b=1oyfBRlUSNK4iSsjcqzMi0p0QKNwPvYp8DQ7V37r7K/uHf0FZGg+g/VBftNAJPXigc
-         0JLs1e3nouH5SytiULqnL3yR4BnOfT6RYFYpm7MgpS20Mi5h2kDXX7FMFujmNLOWkcJF
-         15zOHyTtr6gJPPFC2qbVsbxjkFYa9muWvSbA5OclvcUZH46MbmKCN0grR4EGHlUYCLM0
-         RC1G3TUonHFh04ZywVUBI27mtvTUK/GQjT4ohdzDNOeWkfxJjl9FJ7VulrOu0T3R7CJe
-         AtNxCV17EvFCjD4BL49VXHzz8g4tkIGjRPpeLTCzFoV5Rmy3DHHv9e2+iw3q6S1Tg6z9
-         PLWA==
-X-Gm-Message-State: AO0yUKXzm5L1xiayAlIXE1co1pjIZRhsEswAMRU8pqwSlWCtfapJVcy4
-        snWCWs7at6DffEymjwmRgeJonV30k+mH4Ln/ODhroA==
-X-Google-Smtp-Source: AK7set+fW2KmoaBx/FnBrFLbvMtCz3uygU6NdCIHnSnRTpwoLCvXeW88aNhs0BlU1KBStOhx9bPS0QWyidRRPGNGZ8w=
-X-Received: by 2002:a50:f60f:0:b0:4a2:27c2:aa9a with SMTP id
- c15-20020a50f60f000000b004a227c2aa9amr643917edn.61.1675259803909; Wed, 01 Feb
- 2023 05:56:43 -0800 (PST)
-MIME-Version: 1.0
-References: <20230126161048.94089-1-bchihi@baylibre.com> <20230131140439.600164-1-bchihi@baylibre.com>
- <ab3357ad-01ec-8a1a-d627-a1543874f0ef@linaro.org> <CAGuA+oqXN3eoVyYkjuZjefPa-q542b7QLkBv+E-0a7k3U8BbFA@mail.gmail.com>
- <ad24739b-f8e7-45ad-ecd7-6d3329f01986@linaro.org>
-In-Reply-To: <ad24739b-f8e7-45ad-ecd7-6d3329f01986@linaro.org>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Wed, 1 Feb 2023 14:56:08 +0100
-Message-ID: <CAGuA+oqGDSQhUGaK8D+NQATJ_c8d0egULdQ+-S0fjHwW4moYKQ@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: thermal: mediatek: Add LVTS thermal controllers
+        with ESMTP id S231594AbjBAODW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 09:03:22 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2CE1193E7;
+        Wed,  1 Feb 2023 06:03:14 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A2D70B821A9;
+        Wed,  1 Feb 2023 14:03:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D926C433D2;
+        Wed,  1 Feb 2023 14:03:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675260192;
+        bh=2DbOtTQRhr8tnJUsWJlJ8/mz0ACGWFvVrr7Khf67Jw4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CFlfGnI1en/ZcXxspRRKujokG0KfusW/3vbZN6nQ1sBWV9M3AJirnOhHNOCa6d1rp
+         +Xo7tdZGOphyvxQmtXrdpPoUbYi84vdrNBD2JBXBOCDGEPhGQ0vcO4RCkXlFX4XuAt
+         73UZ0jmt88xKYYOPv2DmpcTWsun1xr0mhRMrWoGSYeOvpJtFdRc9deY5bI0GPnzW/M
+         3VxHq8piROjRVbKlbqSkMzyYOdE/5mw5BxPoVehnA6IFlCgUVTxjPgSXbVghdeBg/1
+         zejP3mtJa6CLBc1EMd7XvQI3tm+2C+GK8kX27LrTj+jl9NhoHwHz+IE3Y6Jpz+q8fP
+         vw6GWaKQm24Nw==
+Date:   Wed, 1 Feb 2023 14:03:05 +0000
+From:   Mark Brown <broonie@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Kiseok Jo <kiseok.jo@irondevice.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: Drop broken irondevice,sma1303 binding
+Message-ID: <Y9pxGUMWyMeXQpZM@sirena.org.uk>
+References: <20230201131059.65527-1-krzysztof.kozlowski@linaro.org>
+ <1bcd61d6-810f-1239-1b6e-367e0fe87370@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="XMD2Qw0vG4t+o25k"
+Content-Disposition: inline
+In-Reply-To: <1bcd61d6-810f-1239-1b6e-367e0fe87370@linaro.org>
+X-Cookie: Oh no, not again.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On Wed, Feb 1, 2023 at 2:37 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 01/02/2023 14:34, Balsam CHIHI wrote:
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    enum:
-> >>> +      - mediatek,mt8195-lvts-ap
-> >>> +      - mediatek,mt8195-lvts-mcu
-> >>
-> >> What about other devices? You called the file name as generic for all
-> >> Mediatek SoCs, so why only one SoC is here? Is there going to be more?
-> >> If yes, why they cannot be added now?
-> >
-> > Yes, there is another MTK SoC mt8192 that supports LVTS,
-> > I was asked in v10 of the series to remove the unimplemented SoC.
-> > It will be added later with the driver that supports it.
-> > just let me know if you still want to add mt8192 bindings in the next
-> > version without the driver.
->
-> The binding should be complete, if that's possible, so if you had mt8192
-> already there, it could stay. Anyway it's fine then.
+--XMD2Qw0vG4t+o25k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-OK, I will put back mt8192 dt-bindings.
-this is the link to the v10 patch
-"https://patchwork.kernel.org/project/linux-pm/patch/20230112152855.216072-3-bchihi@baylibre.com/",
-it will be the same in next version (v13) of series.
-it would be great if you review it in advance, so I could take into
-account the new changes if needed.
-is it possible to resend this patch under v13, to simplify the review
-and avoid breaking the series again?
+On Wed, Feb 01, 2023 at 02:13:46PM +0100, Krzysztof Kozlowski wrote:
+> On 01/02/2023 14:10, Krzysztof Kozlowski wrote:
 
->
-> Best regards,
-> Krzysztof
->
+> > Because the binding:
+> > 1. Was never tested,
+> > 2. Was never sent to Devicetree maintainers,
+> > 3. Is entirely broken and wrong, so it would have to be almost rewritten
+> >    from scratch,
+> > 4. It does not match the driver, IOW, the binding is fake.
 
-Best regards,
-Balsam
+> I understand that in general we tend to fix, not just to revert. But the
+> poor quality of this binding and the next patch, which was suppose to
+> fix it, plus complete lack of testing, means I do not believe the author
+> will send correct binding.
+
+> More over, fixing binding might require dropping incorrect properties,
+> thus changing the driver. I am not willing to do that, I doubt that
+> anyone has the time for it.
+
+It is an absolutely trivial binding as is, it is utterly
+disproportionate to delete both the binding and the driver to fix
+whatever it is that the issues you're seeing are (I can't really tell
+TBH).  Undocumented properties are a separate thing but again a revert
+is obviously disproportionate here, glancing at the driver the code is
+all well enough separated and can have default values.  Looking again I
+did miss the sysclk selection which should be dropped, clocks should use
+the clock bindings.
+
+> It's the job of submitter to work on it.
+
+It's also not the end of the world if we have a driver that isn't
+perfect.
+
+Please, try to keep things constructive.
+
+--XMD2Qw0vG4t+o25k
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPacRgACgkQJNaLcl1U
+h9Clqgf/fBAlVIkG5zw/SgqTKfN1Yg8nM89WTIvkRkH9P4VzP5/4AcY1JGgQ88LS
+wLn12hGKAm9M96JTB3HMPfBuTbF/sn2oduUU1GUx7T0sM13LVwPCM59/Kv0EZO1r
+60yUzotgLtAMP+bp6qxi5FXG+K9npW+hk7zhtZOu9ia48m3R2k1T2LfO5Ai0Mp4Q
+wJrN5nbyHtXf0MzUcVc+do/mf/1p76HP/NvvyteAoLJVg3l7gEECdws7G+/b1VZf
+xS+tjYlH9R0a1XJsJm+7rAcjlovdpMLZESIb6vHYxDJ18rdBlTsfDtSfIiWDrwof
+4cTRjKLygsYMBrleaja1+7DlW8Satg==
+=nfWJ
+-----END PGP SIGNATURE-----
+
+--XMD2Qw0vG4t+o25k--
