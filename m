@@ -2,78 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 707A7685C9D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 02:28:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0F57685CA8
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 02:35:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229863AbjBAB16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 20:27:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52198 "EHLO
+        id S229963AbjBABfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 20:35:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230207AbjBAB15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 20:27:57 -0500
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68860C151;
-        Tue, 31 Jan 2023 17:27:56 -0800 (PST)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1685cf2003aso1355371fac.12;
-        Tue, 31 Jan 2023 17:27:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3UZisrer2jiVUWM8OC9EddWtu72fSzkcUXDFx1sXqgc=;
-        b=HxPHBgFXjIT1hQlHHq5GcQddGwNQYECWmHfbNjCKcJfJR5uj6oGXgm4bWabMP8EDEH
-         jwoXunOkoL/PigpedG05GlK5orJAIPdNfTTb/xZ7ajaDfmvciXevEtPU4ypDLl73vsZr
-         ZDa1oT+cOrDBYo1IMFAsJIuCfJaM8fg3wV1mPETernbL9hBttjAuvEAm0dWmIRoZGopU
-         XBNCRhYLysTDEugtuyz4ZBnFo6e564PS/b6HXcBjdaYwpicEdAdGgZgEYpjfi5k2KEcI
-         929sT6iaETNWoNKzOzE7RLGwuTf42VCatvPY/xSmKPH7hnqvUMzYTsDYntk4AqWhbmht
-         Xe4g==
-X-Gm-Message-State: AO0yUKWFF1GeG+/YkEqrFEH82CNEC8GlhInTdy7hlOWs0sqGlsTGqO8z
-        te/vcxx98XeTL1x8NSNjzQ==
-X-Google-Smtp-Source: AK7set9evM5gxTPaMLZmGqGApIAGfUNqw7Yrj2SASyTAWucczBYUFMgXGV1DP9K7ildUQiFYOJPKWg==
-X-Received: by 2002:a05:6870:f14b:b0:163:19e1:3b8a with SMTP id l11-20020a056870f14b00b0016319e13b8amr95220oac.31.1675214875564;
-        Tue, 31 Jan 2023 17:27:55 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id nr9-20020a056870dc4900b00140d421445bsm7202265oab.11.2023.01.31.17.27.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Jan 2023 17:27:55 -0800 (PST)
-Received: (nullmailer pid 2279370 invoked by uid 1000);
-        Wed, 01 Feb 2023 01:27:54 -0000
-Date:   Tue, 31 Jan 2023 19:27:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v1 1/1] dt-bindings: Fix .gitignore
-Message-ID: <167521487245.2279300.8949761709442968191.robh@kernel.org>
-References: <20230127150225.18148-1-andriy.shevchenko@linux.intel.com>
+        with ESMTP id S229948AbjBABfT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 20:35:19 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CB814FAE0;
+        Tue, 31 Jan 2023 17:35:18 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id C0EF9CE1F6F;
+        Wed,  1 Feb 2023 01:35:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 157BFC4339B;
+        Wed,  1 Feb 2023 01:35:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675215315;
+        bh=knDY0XR4EkjmaIgy15F+qM9DAUlql49vNU3peyz0Hek=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=An/6iSd5cTu0MUvnoKKcTPuwO1211upjIrUtoCe3ckm/2QyEntUftFmQ5nVZndtdB
+         2XsISWuO5IaQ7U/5SvcZgDq8dEKntNJn16okG3TT5OUk77ns9LmH3wH4cVlhhrT4NB
+         fkbPlF+NP8IownpmBhSV2rrM4ttaQmRYcNS2tjCM9TEo3Wcw2PXaNRy349sm4r70r1
+         vLzFN1qKqgz4h9tSqyaYqqMDLlHfSHHjV8fEHsGjplGWjwhftAehSxqpNFuAyA+M4u
+         BWgFriidNL6NLMXeSlnad4zykCCSCvy3Noa4bQ7iHjDD6N1orPWgh+Yz3nqedlj0o0
+         7ZRHZuKKxfeJg==
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-169b190e1fdso677838fac.4;
+        Tue, 31 Jan 2023 17:35:15 -0800 (PST)
+X-Gm-Message-State: AO0yUKVmm8vtg4eTxfaqqQV4bWzSfxh+3W/QoR2CC8fY2ctpcBEmx0ZW
+        /f85lVW2NLiHI/VvCTyv9IzMcZ+Nf3u8kz961t0=
+X-Google-Smtp-Source: AK7set8ovKWewUNojM8tT5otQ7+J12ZeiWWmwI48LIYQMiby/06BIbG9cryG7NjOKanNJnfLIjV2s+Dun3VGa7nwsJc=
+X-Received: by 2002:a05:6871:441:b0:163:a45a:9e41 with SMTP id
+ e1-20020a056871044100b00163a45a9e41mr6476oag.194.1675215314331; Tue, 31 Jan
+ 2023 17:35:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230127150225.18148-1-andriy.shevchenko@linux.intel.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20230127150225.18148-1-andriy.shevchenko@linux.intel.com> <167521487245.2279300.8949761709442968191.robh@kernel.org>
+In-Reply-To: <167521487245.2279300.8949761709442968191.robh@kernel.org>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Wed, 1 Feb 2023 10:34:37 +0900
+X-Gmail-Original-Message-ID: <CAK7LNARNRgTSXpRou5xvwAdO=UK9Ebed0LXKgaPXgb1x7ODM+w@mail.gmail.com>
+Message-ID: <CAK7LNARNRgTSXpRou5xvwAdO=UK9Ebed0LXKgaPXgb1x7ODM+w@mail.gmail.com>
+Subject: Re: [PATCH v1 1/1] dt-bindings: Fix .gitignore
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Feb 1, 2023 at 10:27 AM Rob Herring <robh@kernel.org> wrote:
+>
+>
+> On Fri, 27 Jan 2023 17:02:25 +0200, Andy Shevchenko wrote:
+> > The tracked files should not be ignored.
+> >
+> > Fixes: 44ec8b20d1e9 ("dt-bindings: Add running yamllint to dt_binding_check")
+> > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > ---
+> >  Documentation/devicetree/bindings/.gitignore | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+>
+> Applied, thanks!
+>
 
-On Fri, 27 Jan 2023 17:02:25 +0200, Andy Shevchenko wrote:
-> The tracked files should not be ignored.
-> 
-> Fixes: 44ec8b20d1e9 ("dt-bindings: Add running yamllint to dt_binding_check")
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
->  Documentation/devicetree/bindings/.gitignore | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
 
-Applied, thanks!
+!/.yamllint
 
+
+please since this file exists in
+Documentation/devicetree/bindings, but never in sub-directories.
+
+
+
+
+
+-- 
+Best Regards
+Masahiro Yamada
