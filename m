@@ -2,123 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD457686933
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 15:58:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85AB468697A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 16:03:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232108AbjBAO6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 09:58:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33196 "EHLO
+        id S232926AbjBAPDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 10:03:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjBAO6P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 09:58:15 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE3765EFA
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 06:58:13 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id me3so52208609ejb.7
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 06:58:13 -0800 (PST)
+        with ESMTP id S232761AbjBAPDU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 10:03:20 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF38721CD
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 07:00:54 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so1676052wms.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 07:00:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1K2QLZf20WzArFF57Z/oEEEaWTDipa37/z/55nd9EU0=;
-        b=Nah5PAYnu9QEq0n/OmutLtBjUogzMhh9m73d6Xr5n7GVEgZfedfxeLFxc4lFeXx7Oz
-         k0KgkcX45oYCSXdQ2zUSlumSazh8qpkxFnCLIqQABKPjHpSzvnDjaj9+jHjM0Dh3JNfO
-         eAdUydJSCxh9ISJUGThAmA8wEb+bHcOX+3dpxf9uCkjvM3WIVQ3waeJqV3Luc9U2/+Yg
-         Q607oF5XKVzNMRK+tQSk+Fsx+zUZ3Z7uWg58B/yOjAsg6EbYb3OcWXwbEwYEasrUWkVK
-         4M/jMrpwHj6XvqSTrAJnDFxxHovYCkCp0o+b8LnJr5RU0P49g7yxpdbyg0ed1yZ2tqxR
-         EdcA==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/K9COTcFlAS0U4RierMnuwuOF33gGwaSy7WkKbceLio=;
+        b=p/mIW+z9sZEhKWaw1AJkTS2Zu7BhIw/LmqOCegv7o+hkHLMwxdO0ttGB735ElQUiP6
+         OvDw5qlRmURo5VxVWJouTgJNAg/256p2jHe+RWbexnDLiexuDxYG66z8/gmqbacg16+E
+         c7R7famAiPFfWTZIG43OUmCUmX1IluN/2c4frI54D+iP9aXOevp7rnJQM6cXHBCrvpD5
+         oZg5Uw5jO8J3BN1cfp8HjchnjjQSB1rZaZQgv6YRNT4+S/xEotguQKe6ydILMjQ9DtAS
+         kKRehybrLXynjzJrEu2Mv/UJ6zrKVwrblkPV1WSQ99YCxtSwPw3+huBfee8MQqfNPMof
+         6flg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1K2QLZf20WzArFF57Z/oEEEaWTDipa37/z/55nd9EU0=;
-        b=5Gjsff7ZvOS+CQWimD+/r+1vStPYocs0Vrter4vAaDDZkM9ywG97eVs8Jef9KriTJP
-         A8sACv3yV34HFfAJasN7EiJcd6wyv66nFsIbvIzKYHlOv9o/xwBAXnlUIDfqNjkO6Shf
-         xG6o/d70U5MCHWw+C+P1JBogWTeoI2ndtbieVU7laTA79H9xDA3OkQS3ZywoL1ZNGqkN
-         VZlrRkxfBkLcygFGta4FDy0GoccysnFbLULQ2qpF+BSJB8wuTIn/bgEvdCXMZevhyf/Z
-         rQ+qPPwTbg33jYiIGEmklARJsVIybAfPksODlpD9LQKy7qZvyNzkhm+6WWAzVP5Lh4a4
-         H6FQ==
-X-Gm-Message-State: AO0yUKXv+STcQ7eG5c7LlZhD8VvxdNWRw18TWxlkum/Lq1A69ClI7r2Y
-        cdv5Kmxy252PncgLj2Upo7YYiw==
-X-Google-Smtp-Source: AK7set8UfepV6n09w0GbCwgH4ikTcH7SQ7W6ASYt5eg4QMpwzBniDMArfRtN+7iLV0dbCgXMD++YjQ==
-X-Received: by 2002:a17:906:88a:b0:7c1:8f53:83a0 with SMTP id n10-20020a170906088a00b007c18f5383a0mr2566070eje.13.1675263492024;
-        Wed, 01 Feb 2023 06:58:12 -0800 (PST)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id bt7-20020a170906b14700b0080345493023sm10043281ejb.167.2023.02.01.06.58.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 06:58:11 -0800 (PST)
-Message-ID: <1d33eb58-95d1-643d-52cc-2888ff0cea43@linaro.org>
-Date:   Wed, 1 Feb 2023 16:58:08 +0200
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/K9COTcFlAS0U4RierMnuwuOF33gGwaSy7WkKbceLio=;
+        b=G1Pb9NL5apnJtkmINFdnSop7EpLsIbk+ntIgD3f1cObIjuTVNpkmGqYWlmLXCLGOmd
+         eeUMogBrJTXk0vXLkmiYqxG2xk9rZxJRxjpHivmrYrmMkkq1GYxpULxiJWTZusxG0xiE
+         nAaJsBna2kAImAy0MDvKIWQpsAp9XYtGiAyVp9SZNXZl9cTm51w67JpyKlsB7d80fFZL
+         iNCzQDgPYfUVH6n1YWZwr2N5uw3+UHrmxekDdzRysYLz2rvBj9eOwbsSgYqPlDap9OYM
+         Gt2roEcMyh7KrL/ecsLlUUAXJxtDikVSnsLvM0Hs/YDrP2NURvtyrKEL24FqJDPtY7vh
+         DbPw==
+X-Gm-Message-State: AO0yUKVM5+pI4KnFEXf32mNSd+d31ReTKiLtQgK2UsvlRPiH8JfOYDgk
+        SnGnoX1XQSW9ezHqQs2pgLn2Cw==
+X-Google-Smtp-Source: AK7set+cvxx+A6u/0XIDpmD66fIdcV03aPZBVGL7pbpgTOBCfVDRoPJBj2UYfsJh0iTd/FCBVR28dQ==
+X-Received: by 2002:a7b:cd17:0:b0:3db:14d0:65be with SMTP id f23-20020a7bcd17000000b003db14d065bemr2277347wmj.34.1675263617793;
+        Wed, 01 Feb 2023 07:00:17 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:d64:a4e6:40a8:8e69])
+        by smtp.gmail.com with ESMTPSA id f28-20020a5d58fc000000b002be5401ef5fsm18063754wrd.39.2023.02.01.07.00.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Feb 2023 07:00:17 -0800 (PST)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH v3 0/2] pinctrl: qcom: add dt-bindings and driver for sa8775p-tlmm
+Date:   Wed,  1 Feb 2023 16:00:09 +0100
+Message-Id: <20230201150011.200613-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 2/2] PM / devfreq: qcom: Introduce CCI devfreq driver
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     Jun Nie <jun.nie@linaro.org>, myungjoo.ham@samsung.com,
-        kyungmin.park@samsung.com, cw00.choi@samsung.com,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230201080227.473547-1-jun.nie@linaro.org>
- <20230201080227.473547-2-jun.nie@linaro.org>
- <515f4e9e-2804-e03a-26f5-f2d3ac331109@linaro.org>
- <71ba0d05-6183-95ef-9e45-cc3dd512475f@linaro.org>
- <CAA8EJpqyqC5D+O=KJnuZnWN4BwBOKcquN11nJfEp2WMSmJobBg@mail.gmail.com>
- <58a5e856-3e8b-d660-09ee-7a18b184452f@linaro.org>
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <58a5e856-3e8b-d660-09ee-7a18b184452f@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/02/2023 16:45, Bryan O'Donoghue wrote:
-> On 01/02/2023 13:41, Dmitry Baryshkov wrote:
->>>                           cci-cpufreq {
->>>                                   target-dev = <&cci_cache>;
->>>                                   cpu-to-dev-map-0 =
->>>                                           <  200000  200000000 >,
->>>                                           <  345600  200000000 >,
->>>                                           <  400000  200000000 >,
->>>                                           <  533330  297600000 >,
->>>                                           <  800000  297600000 >,
->>>                                           <  960000  297600000 >,
->>>                                           < 1113600  297000000 >,
->>>                                           < 1344000  595200000 >,
->>>                                           < 1459200  595200000 >,
->>>                                           < 1497600  595200000 >,
->>>                                           < 1651200  595200000 >;
->>>                                   cpu-to-dev-map-4 =
->>>                                           <  200000 200000000 >,
->>>                                           <  249600 200000000 >,
->>>                                           <  499200 297600000 >,
->>>                                           <  800000 297600000 >,
->>>                                           <  998400 595200000 >,
->>>                                           < 1113600 595200000 >;
->> These should map to existing opp entries.
->>
->> I ended up doing the interconnect driver that maps a clock to the
->> interconnect. Then I can use it in the cpu opp tables.
->>
-> 
-> Can you point us at what it is you are proposing ?
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-https://patchwork.kernel.org/project/linux-arm-msm/patch/20230120061417.2623751-9-dmitry.baryshkov@linaro.org/
+This series contains the device-tree bindings and the pinctrl driver for the
+SA8775P platforms.
 
-> 
-> ---
-> bod
+v2 -> v3 (Changes in DT bindings only)
+- fix the gpio pattern property (platform has 148 GPIOs)
+- add blank lines for better readability
+
+v1 -> v2:
+- squash several functions into bigger groups
+- fixed the emacX_ptp functions (they were generated automatically and the
+  script made two separate functions into one)
+- fixed the compatible and DT bindings examples
+- added missing DT properties
+- made sure the bindings pass tests
+- coding style fixes in the driver
+
+Bartosz Golaszewski (1):
+  dt-bindings: pinctrl: describe sa8775p-tlmm
+
+Yadu MG (1):
+  pinctrl: qcom: add the tlmm driver sa8775p platforms
+
+ .../bindings/pinctrl/qcom,sa8775p-tlmm.yaml   |  138 ++
+ drivers/pinctrl/qcom/Kconfig                  |    9 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-sa8775p.c        | 1537 +++++++++++++++++
+ 4 files changed, 1685 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sa8775p.c
 
 -- 
-With best wishes
-Dmitry
+2.37.2
 
