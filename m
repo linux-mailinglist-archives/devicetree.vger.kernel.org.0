@@ -2,115 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 813A46869CB
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 16:16:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A49DF6869E4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 16:18:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232606AbjBAPQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 10:16:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53202 "EHLO
+        id S231811AbjBAPST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 10:18:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232022AbjBAPPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 10:15:51 -0500
-Received: from mail-vk1-xa36.google.com (mail-vk1-xa36.google.com [IPv6:2607:f8b0:4864:20::a36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A41136A4B
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 07:15:25 -0800 (PST)
-Received: by mail-vk1-xa36.google.com with SMTP id 6so6606021vko.7
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 07:15:25 -0800 (PST)
+        with ESMTP id S232447AbjBAPRy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 10:17:54 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0214C11EA7
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 07:17:28 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id q10so17646305wrm.4
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 07:17:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=P2xP6eCF3TqKX2hPAQtTqyhRnHPd6nA+ZAl9lx1s02E=;
-        b=cPd9ZK+s9OOnXPyWMp4YxzVTUmzWE5mddvFUShs3EAUOGbyfSahgZTkFtkeEfUiX12
-         pNNTxcFBD0mva/RhwyvK7Io1ueQL9HvERq/amx0mzc4NpMB0rbJx65UGb1cPDFqtV8vD
-         ySeo01oX7qk+TeOAaGW59fg4EXTrfVZc44IZkiH45LO9pG7aixZ7T9cD9wFR1mxJjjif
-         eO5UFLZpiDZPZshCPN07y60s2zdJy7AY13+65IlTLncbdxdP93yA9Fp3Moa96T4mIwgr
-         CyiCwFC701oqylACrCbaZ6AoaVp8SfP/4Moy20GuM+mZ5R6pnqvvAl9wL2hDcFj3WPhZ
-         7Qkw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RVLkiMwFidl/M+DwCkpsxP4ftj8ZYza6IWwRBi4/7pQ=;
+        b=VNPQ/X/pqW5podXmM+4Pm71xXcIBqaG9d/J1oLSRD2Q1+9xzw6uT7JpQko04yi36aW
+         wT1xbH4utSDP9jVgA9Wa3gY/P2ObskxsziMpQOX+D/hFGW0AOCO8jgwaK+EQuo2MdfI/
+         VYOyqQMT+RrgnZxgXQKrPRS7ss+Y17Ai2KuUjpN9KAE9lBIF9lWujX7MYx77JK6TUJfh
+         nZ25QhLs66WhojLED0KSBlF7he+OojxpUcYOvXs4RibFMpqMFklreHl/f7/A5wPJ4J4X
+         eyQZBaTHfHIYwLjutg6jIBd48RdHEwRqW2s8uPhS4DaHyWzs9/Xctn+2+zKQL9OBw1GJ
+         qoTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=P2xP6eCF3TqKX2hPAQtTqyhRnHPd6nA+ZAl9lx1s02E=;
-        b=tM5hh2Oyf8wplaFmpsY2PnXhsu0ppNQue6jnJj+3V8G1+4OiLKKEne5A6rgzfhRjCe
-         sH2jtn8izWeawjxu2ZyXvSBG7xdySD4IWAfhF/HaIluTF1srtEL6LDNJb7vUK/nz3pVe
-         KnaM1E+1M2aCx8R3qSEI4aydRwf1uqeBL9/hoHNsj5TpcsN48Bt+ML5UejA6TV+ZQ0e1
-         GP8QIAF03bWi0Lrfo1RWu/aL2j6kkLQTVGCkQhWSiTpeE1JjzuCK4NwDAFwMjBQAqhux
-         ljR4aXHMuIsCzMdagzPlRFoS6S29Krnkl/W33vj7sxrdimSqnXPwIQOqdaSh2djUrme5
-         Jxbg==
-X-Gm-Message-State: AO0yUKUoVOsGDdD2Qqh2uufF5De1GV3kPsHqtJQlyt2PUcGWW7dMMdmp
-        50qwzclq1pYuB10IqIbpbfdQthI8ZNfN+x/pa3OQ5w==
-X-Google-Smtp-Source: AK7set/a9n8DhEWml4oeRIbxJr7piLem7ocXP6IYnly6d6H3q6ePiYA+VD+PX3blmVuO3ebrdTGmoiIBa20h4UH/ECM=
-X-Received: by 2002:a05:6122:691:b0:3ea:22a8:aef with SMTP id
- n17-20020a056122069100b003ea22a80aefmr383731vkq.25.1675264524773; Wed, 01 Feb
- 2023 07:15:24 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RVLkiMwFidl/M+DwCkpsxP4ftj8ZYza6IWwRBi4/7pQ=;
+        b=kI1ufCdOrZ8Il03eZ2BA6dSzOfkHA4DqJHyloCSzAXySiM0b/pg9P42c3pun3Mp5Zg
+         LkSCuKmhdE6olsjVzd6L80egWXbxgSR7gbpUPjc9zHOz8vQbyAYmKmt+M8GkIABjvwV4
+         Le3Nq7cNUBUNl0+NqIDrcpOkmS0nBLjVOeBVTu5LABpKVDQ9q4Pq116E8BC/DRGP5Jcl
+         mq6QoC5yJWP1Yf/iSKbVEnnzIswS1PB149fL9TlfcAWOsuWMnx5ZJYmZI75Dw5657XEL
+         Wb1VxFd9iGZVE/hbXyRcohV6yNP8FIcnCvhwkeOOWZZXCICiF2ylHN8O4Zgs6KBNCmjj
+         wzYA==
+X-Gm-Message-State: AO0yUKXW4pdNiknbSpJEpG1LaUylrKPz6jtZdMt0rJ7dp3dQYRYnOC76
+        N9Hf/J8Y17hMOmik3vsmLk5MsQ==
+X-Google-Smtp-Source: AK7set/nCiNy+Pzi77nIa65QImfC3rdztS1HtejxiWDwDPA66QnckjniT6lXmI3fv1qnkQSONcRnnA==
+X-Received: by 2002:a5d:4e02:0:b0:2bf:e1f8:c4b6 with SMTP id p2-20020a5d4e02000000b002bfe1f8c4b6mr2583288wrt.52.1675264645313;
+        Wed, 01 Feb 2023 07:17:25 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id t8-20020a5d6908000000b002bc7e5a1171sm17846257wru.116.2023.02.01.07.17.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Feb 2023 07:17:24 -0800 (PST)
+Message-ID: <86478fbd-590a-f94f-6cc1-f4d06a96826e@linaro.org>
+Date:   Wed, 1 Feb 2023 15:17:24 +0000
 MIME-Version: 1.0
-References: <20230201150011.200613-1-brgl@bgdev.pl> <20230201150011.200613-2-brgl@bgdev.pl>
- <e28c9048-635d-3936-e440-27e293501ff6@linaro.org>
-In-Reply-To: <e28c9048-635d-3936-e440-27e293501ff6@linaro.org>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 1 Feb 2023 16:15:13 +0100
-Message-ID: <CAMRc=Mc8gFpcB6k-qVmSAM0=iKHGBmGcqm3aV2xiyjWPG1wtvg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: describe sa8775p-tlmm
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 2/2] PM / devfreq: qcom: Introduce CCI devfreq driver
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Jun Nie <jun.nie@linaro.org>, myungjoo.ham@samsung.com,
+        kyungmin.park@samsung.com, cw00.choi@samsung.com,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230201080227.473547-1-jun.nie@linaro.org>
+ <20230201080227.473547-2-jun.nie@linaro.org>
+ <515f4e9e-2804-e03a-26f5-f2d3ac331109@linaro.org>
+ <71ba0d05-6183-95ef-9e45-cc3dd512475f@linaro.org>
+ <CAA8EJpqyqC5D+O=KJnuZnWN4BwBOKcquN11nJfEp2WMSmJobBg@mail.gmail.com>
+ <58a5e856-3e8b-d660-09ee-7a18b184452f@linaro.org>
+ <1d33eb58-95d1-643d-52cc-2888ff0cea43@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <1d33eb58-95d1-643d-52cc-2888ff0cea43@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 1, 2023 at 4:13 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 01/02/2023 16:00, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Add DT bindings for the TLMM controller on sa8775p platforms.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->
->
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +    tlmm: pinctrl@f000000 {
-> > +        compatible = "qcom,sa8775p-tlmm";
-> > +        reg = <0xf000000 0x1000000>;
-> > +        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> > +        gpio-controller;
-> > +        #gpio-cells = <2>;
-> > +        interrupt-controller;
-> > +        #interrupt-cells = <2>;
-> > +        gpio-ranges = <&tlmm 0 0 149>;
->
-> You have 148 GPIOs, so s/149/148/.
->
-> I'll fix other bindings as we have such mistake in several places.
->
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> Best regards,
-> Krzysztof
->
+On 01/02/2023 14:58, Dmitry Baryshkov wrote:
+> On 01/02/2023 16:45, Bryan O'Donoghue wrote:
+>> On 01/02/2023 13:41, Dmitry Baryshkov wrote:
+>>>>                           cci-cpufreq {
+>>>>                                   target-dev = <&cci_cache>;
+>>>>                                   cpu-to-dev-map-0 =
+>>>>                                           <  200000  200000000 >,
+>>>>                                           <  345600  200000000 >,
+>>>>                                           <  400000  200000000 >,
+>>>>                                           <  533330  297600000 >,
+>>>>                                           <  800000  297600000 >,
+>>>>                                           <  960000  297600000 >,
+>>>>                                           < 1113600  297000000 >,
+>>>>                                           < 1344000  595200000 >,
+>>>>                                           < 1459200  595200000 >,
+>>>>                                           < 1497600  595200000 >,
+>>>>                                           < 1651200  595200000 >;
+>>>>                                   cpu-to-dev-map-4 =
+>>>>                                           <  200000 200000000 >,
+>>>>                                           <  249600 200000000 >,
+>>>>                                           <  499200 297600000 >,
+>>>>                                           <  800000 297600000 >,
+>>>>                                           <  998400 595200000 >,
+>>>>                                           < 1113600 595200000 >;
+>>> These should map to existing opp entries.
+>>>
+>>> I ended up doing the interconnect driver that maps a clock to the
+>>> interconnect. Then I can use it in the cpu opp tables.
+>>>
+>>
+>> Can you point us at what it is you are proposing ?
+> 
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/20230120061417.2623751-9-dmitry.baryshkov@linaro.org/
+> 
 
-Ah, cr*p, sorry for missing it. Linus - can you change it when
-applying? I don't want to send more noise.
+Is there no driver code too ?
 
-Bart
