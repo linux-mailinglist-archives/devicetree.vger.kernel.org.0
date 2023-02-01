@@ -2,137 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 752846860B3
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:33:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AC266860BC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:36:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231964AbjBAHdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 02:33:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33950 "EHLO
+        id S229940AbjBAHf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 02:35:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231910AbjBAHdj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:33:39 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A5468A41;
-        Tue, 31 Jan 2023 23:33:31 -0800 (PST)
-X-UUID: b82fd7a2a20211eda06fc9ecc4dadd91-20230201
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=GdM+CxNswjU0Sm0RCB0Us5l9zdkJ+nj/JYBJ+VUqKrY=;
-        b=Yd8XgR4VMExwZyTPWSlxDeUiYxP1TPfv4YHoEKHPpJvZPGsqfu8pW08nN5DQevgwgvfyv86LGPdJYCn2AHcZmx0HL86bs9AjLeSTUekkPfGc5aIpZFGenTLDKGlCp9XN/CKRPMaReiowMrC3ce9Wcf70JwaMrymiTCynoHjblXc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.18,REQID:84f7041a-0b6d-4bea-8c14-d11c498fa6ed,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:-30,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACT
-        ION:release,TS:-55
-X-CID-META: VersionHash:3ca2d6b,CLOUDID:cfa51ef7-ff42-4fb0-b929-626456a83c14,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:2,IP:nil,UR
-        L:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
-X-CID-BVR: 0
-X-UUID: b82fd7a2a20211eda06fc9ecc4dadd91-20230201
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1216760531; Wed, 01 Feb 2023 15:33:28 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Wed, 1 Feb 2023 15:33:26 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Wed, 1 Feb 2023 15:33:25 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v4,7/7] media: mediatek: vcodec: change lat thread decode error condition
-Date:   Wed, 1 Feb 2023 15:33:16 +0800
-Message-ID: <20230201073316.27923-8-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230201073316.27923-1-yunfei.dong@mediatek.com>
-References: <20230201073316.27923-1-yunfei.dong@mediatek.com>
+        with ESMTP id S230268AbjBAHf4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:35:56 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3A0851C59
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:35:46 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id q8so11942341wmo.5
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:35:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zMO4O6XLeS+CmaJzPkiM5TKqYcGSkxjv6mv/iv+doFM=;
+        b=BE7kDWz7n+PSYdH2iN/bRL9Yj3r9hEX7mC1i1JpjP3qijwDoncOQyuOQKXUjB3LWPf
+         o0p6DsrqJbn51CiyvJBP51I60gtfqT8bVzLizs++wndzf3XqtvZ6i9buxRaZ7rrPg9wJ
+         vkeLWVcBlAvWruSbadDs7ydy5N3L7l7QMg7rx5kV4SIO7kvJ2eZ84EQyftys1Xi9fPiO
+         jhZQ9bXQHvifASMJnuhJrgTWkN/QBRd6FxrkBx+uPYlcc5tJlAP5e68o6j2bPO8O84V0
+         kgXa7tim9VnqYP4gA5mM3CHuCSoXsf2JlY5W9gyBw8yXrv7XDTTXAqLMNY+TBWnWE670
+         EDwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zMO4O6XLeS+CmaJzPkiM5TKqYcGSkxjv6mv/iv+doFM=;
+        b=6PsSZQWAwLRvMs5QqjQgWg8lw+PexEOFQXeaKMdOEuMaN/HZoCX0nzzJ8ZopLximww
+         2ZkGH1Y8cqYX8KlROvhDRa5oq+TQVTEhmv8POUcl78e2LkbXg9HvNXMx75chAsxnfvij
+         7iENotppe7OhrDf01g8VSVhO4NOtOdAIO+dxw9uZietSKrUuwiuBoxq1ey7WSX+SOn5p
+         5FvqwXUgGBVHWnKpYxbxS74x54vw0G5eT8MydvseQe6DN6DXZN6at+JsYmI1E4cBYz+s
+         N7ZmHEdwJyzHB6AjHlxXjMJX5H15RtbkTEw1Gn/M2RUOILoOEHUi/CzzIyw5xJ3TeRN1
+         y+VQ==
+X-Gm-Message-State: AO0yUKUASmND7DEtoL5Y0FQYvFWFBDZqPH8YRXiMzyefYCi/cfRWUdGn
+        lxAnGx1XLbAzsGs0Z+3x5/apWw==
+X-Google-Smtp-Source: AK7set/lXNHxnDU1hTSORqG2FBydX0NnEOY9kA1Iw6Uh7VHpr2eLvUZ+/+3JSVisozXeJS/LSHrmJA==
+X-Received: by 2002:a7b:c00d:0:b0:3da:f5d1:c677 with SMTP id c13-20020a7bc00d000000b003daf5d1c677mr688028wmb.35.1675236945369;
+        Tue, 31 Jan 2023 23:35:45 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id q6-20020a05600c46c600b003dc54344764sm845248wmo.48.2023.01.31.23.35.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 23:35:44 -0800 (PST)
+Message-ID: <58b7924e-07aa-fc62-d7a6-c5d453964486@linaro.org>
+Date:   Wed, 1 Feb 2023 08:35:42 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3] dt-bindings: pwm: Convert Amlogic Meson PWM binding
+Content-Language: en-US
+To:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        linux-pwm@vger.kernel.org
+References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
+ <c92b9e51-bb69-0712-0b29-3db3c9a29f8b@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c92b9e51-bb69-0712-0b29-3db3c9a29f8b@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If lat thread can't get lat buffer, it should be that current instance
-don't be schedulded, the driver can't free the src buffer directly.
+On 30/01/2023 21:34, Heiner Kallweit wrote:
+> Convert Amlogic Meson PWM binding to yaml.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v2:
+> - fix clocks and clock-names
+> - consider that more than one compatible may be set
+> v3:
+> - remove minItem/maxItem properties for compatible
+> ---
+>  .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 71 +++++++++++++++++++
+>  .../devicetree/bindings/pwm/pwm-meson.txt     | 29 --------
+>  2 files changed, 71 insertions(+), 29 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> new file mode 100644
+> index 000000000..750642e76
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic PWM
+> +
+> +maintainers:
+> +  - Heiner Kallweit <hkallweit1@gmail.com>
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
 
-Fixes: 7b182b8d9c85 ("media: mediatek: vcodec: Refactor get and put capture buffer flow")
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c     | 6 ++++--
- .../platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c  | 2 +-
- .../platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c     | 2 +-
- 3 files changed, 6 insertions(+), 4 deletions(-)
+Drop items
 
-diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c
-index ffbcee04dc26..04beb3f08eea 100644
---- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c
-+++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c
-@@ -258,8 +258,10 @@ static void mtk_vdec_worker(struct work_struct *work)
- 		if (src_buf_req)
- 			v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
- 	} else {
--		v4l2_m2m_src_buf_remove(ctx->m2m_ctx);
--		v4l2_m2m_buf_done(vb2_v4l2_src, state);
-+		if (ret != -EAGAIN) {
-+			v4l2_m2m_src_buf_remove(ctx->m2m_ctx);
-+			v4l2_m2m_buf_done(vb2_v4l2_src, state);
-+		}
- 		v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
- 	}
- }
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-index 8f262e86bb05..07774b6a3dbd 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-@@ -574,7 +574,7 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 	lat_buf = vdec_msg_queue_dqbuf(&inst->ctx->msg_queue.lat_ctx);
- 	if (!lat_buf) {
- 		mtk_vcodec_err(inst, "failed to get lat buffer");
--		return -EINVAL;
-+		return -EAGAIN;
- 	}
- 	share_info = lat_buf->private_data;
- 	src_buf_info = container_of(bs, struct mtk_video_dec_buf, bs_buffer);
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
-index cbb6728b8a40..cf16cf2807f0 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
-@@ -2070,7 +2070,7 @@ static int vdec_vp9_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 	lat_buf = vdec_msg_queue_dqbuf(&instance->ctx->msg_queue.lat_ctx);
- 	if (!lat_buf) {
- 		mtk_vcodec_err(instance, "Failed to get VP9 lat buf\n");
--		return -EBUSY;
-+		return -EAGAIN;
- 	}
- 	pfc = (struct vdec_vp9_slice_pfc *)lat_buf->private_data;
- 	if (!pfc) {
--- 
-2.18.0
+> +          - enum:
+> +              - amlogic,meson8b-pwm
+> +              - amlogic,meson-gxbb-pwm
+> +              - amlogic,meson-gxbb-ao-pwm
+> +              - amlogic,meson-axg-ee-pwm
+> +              - amlogic,meson-axg-ao-pwm
+> +              - amlogic,meson-g12a-ee-pwm
+> +              - amlogic,meson-g12a-ao-pwm-ab
+> +              - amlogic,meson-g12a-ao-pwm-cd
+> +              - amlogic,meson-s4-pwm
+
+Best regards,
+Krzysztof
 
