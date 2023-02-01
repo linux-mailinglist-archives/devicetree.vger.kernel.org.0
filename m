@@ -2,156 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D86E7686C74
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 18:10:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74091686C7D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 18:12:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230246AbjBARKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 12:10:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37876 "EHLO
+        id S231908AbjBARMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 12:12:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbjBARKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 12:10:53 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2108.outbound.protection.outlook.com [40.107.20.108])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBCD359B;
-        Wed,  1 Feb 2023 09:10:52 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KTex56OCEZua8ZRjGutLAK+HRz2oYp38phxaYj3t9dUkVP76DyM2VSuEkFEXDfMTLlcCKmQ+GziFK3L6uEc92OLRFI6jk7mw/VtnLrFf6cT1JvYc55oDwqbHJF2oCNQW5tHMhKGGY8997ctcWGYcrZ4F5y6JDaT3PV864rFWQN9gVNQjhOoyJFGiOHTWbimW2XtvxSHrxX2JGuqeJC00PQmLvYDl6OV/CvquZJ8IlqBFQ7vg4s9ax9vahW8J86Opy4VoQOFXXozdAwX6gR47lGGKsptJdiICgiopvmZfYG5IkscbYRbDGDZTnpLMoyexLOQM9U4V53XhZXvXQScLKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3RNrd8L4F83Tadnb/Q2zTf0zmJoI21F27ETdPoSvrn4=;
- b=TReLRS2UWXB4xHazQxEEVAjGX8y7Yz1RkU8HOU+jDgk0drq7p4vqWhblKwGpsBPRn9alQUczlOncMDuK52DWJ5WHhetJLr3imQ7xKK+thHVJMQrz5x0FCW0EedVAhgdKeh5OY4+0p95/vKmSO+XKgOszMqnhSlOewqKcct7ZA+1//GG+j+aw07TQrB5/Tg4h/QLd1SnYsLOQwm6E1TzzTbCjelP4LKTQlaWJbej5zKXNUBT9As4eVJkcAnwTzoY/YQ5FjFwTsK9oOxs386o5iCEG2AyZLdd/1+NAHknKxWelqtM/d3OVHk5j27iU8Xmir+AhicTh6kQhr0SSYuK+og==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mt.com; dmarc=pass action=none header.from=mt.com; dkim=pass
- header.d=mt.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mt.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3RNrd8L4F83Tadnb/Q2zTf0zmJoI21F27ETdPoSvrn4=;
- b=CDsJ9RWJaILoob7UK9vegTkpzg7CcENZ3eWh5ZvOZA5OqE8gsb+w0btOXcevetgZZCHptnFQ3YQNnctL3uG1SNgTgOVZ6gHD1CN1U6ZQWSpKqezT2wtZKfYprtS0cy53ZbomHZpSuSC86YDbUyFXXxJcnV7cuW2C2tlTH9n8YdRK31+slftda2FTRKbKpx+78fBRM7qvosV038LfQAbC5o3deQwJ+lvYgu5mQPp9+7IYf2xA2jvabuOA/0fnEIB7vywV6Bxb4mHetoxIdTaoq09CzP6MbZTS+c5LjWvq8VT3VdyfQrmqCIOLXGFsxmw7vNIUPVantQatzWQKLOq+OA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mt.com;
-Received: from PAXPR03MB7617.eurprd03.prod.outlook.com (2603:10a6:102:1d8::15)
- by GVXPR03MB8380.eurprd03.prod.outlook.com (2603:10a6:150:6::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.36; Wed, 1 Feb
- 2023 17:10:48 +0000
-Received: from PAXPR03MB7617.eurprd03.prod.outlook.com
- ([fe80::e071:305e:9102:6d89]) by PAXPR03MB7617.eurprd03.prod.outlook.com
- ([fe80::e071:305e:9102:6d89%8]) with mapi id 15.20.6043.038; Wed, 1 Feb 2023
- 17:10:46 +0000
-From:   Manuel Traut <manuel.traut@mt.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Manuel Traut <manuel.traut@mt.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: input: pwm-beeper: add volume
-Date:   Wed,  1 Feb 2023 18:10:25 +0100
-Message-Id: <20230201171025.965276-1-manuel.traut@mt.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <d4c1da7b-5b49-6bbf-4470-b3f2eef7f745@linaro.org>
-References: <d4c1da7b-5b49-6bbf-4470-b3f2eef7f745@linaro.org>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR3P281CA0118.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a3::13) To PAXPR03MB7617.eurprd03.prod.outlook.com
- (2603:10a6:102:1d8::15)
+        with ESMTP id S231974AbjBARMQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 12:12:16 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 244967C713
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 09:12:11 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id dr8so31830553ejc.12
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 09:12:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aIk8eTkHo9ODpAtWDwlPuTWs0EkV2MBMW4e9Fd7x0Bg=;
+        b=Xd9IQ8CygVxb+cxSfiP0jxkT3PjUDD6/f4eBckP5BXvNvGVln9bD02GRS/vkVI7i4L
+         2Gi7M8D/vin+eFf0XBTM4TQRKXhNkJX+vqskmCmmcsMSZam5s6nuEr+HRMrZJ+Hq6GTx
+         wNIsopA4ascfllYHWOpPubwNcFkL6NJRm/Ig/Et1ImCxpnFdZvfEFdpApfYkWv3SDid4
+         +7OGBu1HcIiDUworcCzhMQPwh0opbqc0YLCYsYnM5qPXhSdUFQtyy9UmemFgaF0bGy2F
+         NNWhcww1mqBr0ME6Ond7HaAFnipwrsUeP8xQ1iXa4mel/AB3rSMzS+KLw+DvJ5K4lDz1
+         Dt0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aIk8eTkHo9ODpAtWDwlPuTWs0EkV2MBMW4e9Fd7x0Bg=;
+        b=3jCJpDT6mLR6cyJgbwOJe3BxvAENEq3BFasqrKaHz9Xt0wLI8sbtkviC6bLrRqzkS1
+         qK/w4VTrbYhUx5ZQj6huqHn1jiZNsyT54tisVVtXjt6JvlaVICGE/PpsZqXPhkX8Et5C
+         NNP0j/Laro4kMAeks/Qd1vgf6Z/sv+Oos+lzAA0zZ/7fPcLSn6SCeiulr/VMI3z/NBow
+         yN007Ip4y3IiWqUN2D4G0rIaKARqKTTZVh8omPsrUMI5pGrxifmylRzcX33zXGbtDc2F
+         MO0+TPfPsx+N1iLfzzzL1z0INB6gjma4DSZJiGo4o6mOqMSPTVtseP+AOTfB9r6cwgsd
+         meiQ==
+X-Gm-Message-State: AO0yUKU8wQ/5v6LbsRt4OJslPGfi/cPwM+/+5WFH1gLehicSOdA2J5kE
+        2mHQW3gkBv5LyLQTS6Los7eOLA==
+X-Google-Smtp-Source: AK7set/nFljA0OyJjPBvnk643gWGAo83BWFR6mbUZYcU9GRlajhBxQ3DgRyxoercqjfd1D96harVtg==
+X-Received: by 2002:a17:906:16d4:b0:88a:7408:384c with SMTP id t20-20020a17090616d400b0088a7408384cmr3167010ejd.47.1675271529484;
+        Wed, 01 Feb 2023 09:12:09 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id ay10-20020a170906d28a00b00882f9130eb3sm7183306ejb.223.2023.02.01.09.12.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Feb 2023 09:12:09 -0800 (PST)
+Message-ID: <2a0ce32c-d100-d5c3-ac0c-ccd7100a2c06@linaro.org>
+Date:   Wed, 1 Feb 2023 19:12:08 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR03MB7617:EE_|GVXPR03MB8380:EE_
-X-MS-Office365-Filtering-Correlation-Id: 485be0dc-a0c2-4048-002b-08db04773c19
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8oUgHuFjakiwKVOyL8iftLp1mdYQtWr/bA1Lk9yQlUu71G/d/zVrdumikTlpA/TqrSEx87Bbwky+is7Vd7EUlbejIip/hRcHxXiHyrdgbIhFVTE5satr8la5qIzX+4Wizi0Wv9yYsZm/5TlN+qWZqmiF9nKILZWBdMBaO4At7fB4wUsuor6h42IOMIS+j7CWa+emZx3dqxoLlQrFUkiWgkWECkQd6xDTcNvHuyV28d8OpS5oWpfJBGC6YlkmT0s4RQaAOrhXlosRLV/cBcHJj0YiWvhtAdwrMzdYgYqUk2pXPZWLGZUYTRT13xtg2tdV5rucyP+05iE1+utZopR/3J471Rb4ttkQlSl9mYXOR5ZnaQxofa2N9frTex9hN9riAySeJzh+9FKFutZXQN7cNnvYIy8zJReiLVBHL344mJ40DUGRbInndCgic8FdCe7RJMeVjIdPnGiGMogEvTVGjhK2OJhSmoLK30/08nLfJv6t5/NozujtbEePwWlbYQfwk1SuIEC3ugkdj+gwDG2n7HZuVrpMPb4HyNnDp//EmdJ48mtb6G62rlXBx6WHHqvsE0a88NUsgHlW3UhGiqzIPeA2DuP8ByEPdKjbVlNaglnAhn+ITJjQPmBw6oq4GaUw+M6I/OHfvQn+4Hj4djHNA1IbDab/o9ZghX+8pzXXQq3iwZTvf4p1P7MEYSmfIyWVxw3iXXo4+G8gulL/zSZfyA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR03MB7617.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(39860400002)(396003)(136003)(366004)(346002)(376002)(451199018)(36756003)(6486002)(2906002)(52116002)(54906003)(40140700001)(6666004)(86362001)(478600001)(38100700002)(38350700002)(2616005)(6506007)(1076003)(8676002)(6916009)(316002)(4326008)(5660300002)(8936002)(44832011)(41300700001)(66946007)(6512007)(26005)(66556008)(186003)(66476007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xtZD18KGbQzGTIVi33e0H8merAugOwrmUZRERdq2ZRS52drnqbhO7zdMGFNf?=
- =?us-ascii?Q?10EoZeXMRni/ap+DW8a9SMueb6fxqxOr5hfpRzxRXLnh74NPfpM7Di0zC0Wn?=
- =?us-ascii?Q?2Fj/HajilVj6hiEQU4RgN1Fd3q1iBGCqJjA+OpkJemZe3sOkM/m82SRRZKzh?=
- =?us-ascii?Q?c9hC4kYtA/YvgyyisGS3rLOzTt5/evACJ8AZ/0PStYXNn2XcFBKLsCVWSeNv?=
- =?us-ascii?Q?rpBJGajQSoLvh7BxotkI+GxteeJokE94cLUSotOvs8ZUJMrg70HNFFb8gXMO?=
- =?us-ascii?Q?xU/TwkIHk+goroz/lOLE1aaGwFU4HgnLTufI+pfAOAx6m3htW/hB/yDiaWTR?=
- =?us-ascii?Q?DbvJU3gwkIgGexLeuzvbscS8gQUr5RLzvAYMKcAUSOLjn9IcHsknqMZ6T2tf?=
- =?us-ascii?Q?SFzGZyQ5TpxC2DWjA7KnY0BFT902K4TmRyWzDA9K1QE7O1qrTcWnovD7qNNw?=
- =?us-ascii?Q?dI32R8Ir0GV60TseQ1EMbynJccNzJTDOKwmziqe8s4peRa90ccNmANtAWqT7?=
- =?us-ascii?Q?JeMm9PpX1f9KxSS73q4AH563XIB5AvGZrb/h6sImd60Ab5OJUl85hj/yq1uG?=
- =?us-ascii?Q?ecg4Hmv4+EX88lpG/FbG8F4AP371Sy59tiki9D56M9rgqFqLdJTuXJx+nwum?=
- =?us-ascii?Q?SQILM8x+Phxy6PxJNnPKBU7HYXlzlDNiyGXrJxkFYVlokv9DY/9P/MypPwwo?=
- =?us-ascii?Q?Jy7ANqfAMxBzebqb17DXnFQ5jEtM5/LJBEo0zYVrV5G0CkWPrm2YyXoJD5rC?=
- =?us-ascii?Q?CwhhdG54pF+46guGJD51kSxKZBHhRIzOfuh3UUfAauV3NM4u8m5DxvpKUxUs?=
- =?us-ascii?Q?/1BD3x8Df8rrMkqtE12QOw7Hxy75DrQeuT4AGbO7lhiYxxth87GoAVrysBF8?=
- =?us-ascii?Q?cAfqlqF6cxPkY+pHRPIKZA3Br/DRw5pwLo+SculTgJKCfcRJkFVUwp+YERJZ?=
- =?us-ascii?Q?GMlvd4iGaggdsAt8veov0186E3h6tIR9YRQRqmDVmgHbYpLgvljKr1uJoq6s?=
- =?us-ascii?Q?lrt/vPw6J21Nz4azY8hc4lq4nu7lDAaV+v9khTBRBfU6tdmco4LL3vJace2y?=
- =?us-ascii?Q?NWE7oHM/+s5NLMm+nfwofTcHa5WAZFfiO4Fa/EyMFA2qhV/YhbcZwpnb+i4w?=
- =?us-ascii?Q?6argcy7zP54kah8tbXqFWYN95nv/x+AnVFCM8kuos4xFIaE31D+V/juxohI5?=
- =?us-ascii?Q?BQdQSouQr5HQyZ+idGP00DvqHALwlWxfwOU9QyDVj4E1x4ii5q/I9eSCqpnU?=
- =?us-ascii?Q?T8W9wUasRXsrTVoeFK1ZfSACNtkrDeB+gIVsk5pxvwGe8MdWXAqhoTiUb6Iy?=
- =?us-ascii?Q?P6Crhu3NNcpX1V3YUFIPvWwAJ7bCjs4MrZFOp98xNniRfJxMjsLHkZ/Lu8NI?=
- =?us-ascii?Q?xpAE+srFwMJ+/OxieGJ+qigT4VBufDMG2z/PyywUkzGaQv2ZkcnUl84Q7R88?=
- =?us-ascii?Q?lLOeIN+4YyriJUwASOYr+XVYmTlobxssWMFL7+u0WuExDXg9RoBC6COe5Hrq?=
- =?us-ascii?Q?K93TVBGWM1pHg6mBVevl2yzI4Yxcf2V9d6bJdIIT+1zqM2citL3OOE8q1HIj?=
- =?us-ascii?Q?ttzzsqoRK2S79mf8Gp5T/Tji7nffzyMBYVbQWbPL?=
-X-OriginatorOrg: mt.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 485be0dc-a0c2-4048-002b-08db04773c19
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR03MB7617.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Feb 2023 17:10:46.4931
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fb4c0aee-6cd2-482f-a1a5-717e7c02496b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sw3v3kDizIzgbMWrqtDWBpsJ+mMexdz+zZBVQknpAeskpxKHmBIyhJChKHZxbJNJreIezf7IqNS8ApWmxt9aeA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR03MB8380
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/2] PM / devfreq: qcom: Introduce CCI devfreq driver
+Content-Language: en-GB
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     Jun Nie <jun.nie@linaro.org>, myungjoo.ham@samsung.com,
+        kyungmin.park@samsung.com, cw00.choi@samsung.com,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230201080227.473547-1-jun.nie@linaro.org>
+ <20230201080227.473547-2-jun.nie@linaro.org>
+ <515f4e9e-2804-e03a-26f5-f2d3ac331109@linaro.org>
+ <71ba0d05-6183-95ef-9e45-cc3dd512475f@linaro.org>
+ <CAA8EJpqyqC5D+O=KJnuZnWN4BwBOKcquN11nJfEp2WMSmJobBg@mail.gmail.com>
+ <58a5e856-3e8b-d660-09ee-7a18b184452f@linaro.org>
+ <1d33eb58-95d1-643d-52cc-2888ff0cea43@linaro.org>
+ <86478fbd-590a-f94f-6cc1-f4d06a96826e@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <86478fbd-590a-f94f-6cc1-f4d06a96826e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an array of supported volume levels and a default volume level.
+On 01/02/2023 17:17, Bryan O'Donoghue wrote:
+> On 01/02/2023 14:58, Dmitry Baryshkov wrote:
+>> On 01/02/2023 16:45, Bryan O'Donoghue wrote:
+>>> On 01/02/2023 13:41, Dmitry Baryshkov wrote:
+>>>>>                           cci-cpufreq {
+>>>>>                                   target-dev = <&cci_cache>;
+>>>>>                                   cpu-to-dev-map-0 =
+>>>>>                                           <  200000  200000000 >,
+>>>>>                                           <  345600  200000000 >,
+>>>>>                                           <  400000  200000000 >,
+>>>>>                                           <  533330  297600000 >,
+>>>>>                                           <  800000  297600000 >,
+>>>>>                                           <  960000  297600000 >,
+>>>>>                                           < 1113600  297000000 >,
+>>>>>                                           < 1344000  595200000 >,
+>>>>>                                           < 1459200  595200000 >,
+>>>>>                                           < 1497600  595200000 >,
+>>>>>                                           < 1651200  595200000 >;
+>>>>>                                   cpu-to-dev-map-4 =
+>>>>>                                           <  200000 200000000 >,
+>>>>>                                           <  249600 200000000 >,
+>>>>>                                           <  499200 297600000 >,
+>>>>>                                           <  800000 297600000 >,
+>>>>>                                           <  998400 595200000 >,
+>>>>>                                           < 1113600 595200000 >;
+>>>> These should map to existing opp entries.
+>>>>
+>>>> I ended up doing the interconnect driver that maps a clock to the
+>>>> interconnect. Then I can use it in the cpu opp tables.
+>>>>
+>>>
+>>> Can you point us at what it is you are proposing ?
+>>
+>> https://patchwork.kernel.org/project/linux-arm-msm/patch/20230120061417.2623751-9-dmitry.baryshkov@linaro.org/
+>>
+> Is there no driver code too ?
 
-Signed-off-by: Manuel Traut <manuel.traut@mt.com>
----
- .../devicetree/bindings/input/pwm-beeper.yaml      | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+There are two parts, one is the 'CBF clock' driver, which just provides 
+a clock, another part actually connects the clock and interconnect. 
+Initially I implemented it as a part of the CBF driver (see 
+https://patchwork.kernel.org/project/linux-arm-msm/patch/20230120061417.2623751-5-dmitry.baryshkov@linaro.org/), 
+next revision will move the interconnect part to drivers/interconnect.
 
-diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.yaml b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
-index 1ebc3a46d934..7ea2954cdd6a 100644
---- a/Documentation/devicetree/bindings/input/pwm-beeper.yaml
-+++ b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
-@@ -25,6 +25,18 @@ properties:
-   beeper-hz:
-     description: bell frequency in Hz
- 
-+  volume-levels-bp:
-+    description: >
-+      Please note that the actual volume of most beepers is
-+      highly non-linear, which means that low volume levels
-+      are probably somewhere in the range of 10 to 300 (0.1-3%
-+      duty cycle).
-+    maximum: 5000
-+
-+  default-volume-level-bp:
-+    description: >
-+      The default volume level.
-+
- required:
-   - compatible
-   - pwms
-@@ -36,4 +48,6 @@ examples:
-     beeper {
-       compatible = "pwm-beeper";
-       pwms = <&pwm0>;
-+      volume-levels-bp = <0 80 200 400 5000>;
-+      default-volume-level-bp = <80>;
-     };
 -- 
-2.39.1
+With best wishes
+Dmitry
 
