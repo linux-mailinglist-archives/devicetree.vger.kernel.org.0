@@ -2,147 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB020686FDA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 21:46:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84A01687044
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 22:04:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231364AbjBAUpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 15:45:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53342 "EHLO
+        id S229551AbjBAVEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 16:04:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbjBAUp1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 15:45:27 -0500
-Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [5.144.164.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56B977B7AC;
-        Wed,  1 Feb 2023 12:45:02 -0800 (PST)
-Received: from localhost.localdomain (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229481AbjBAVEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 16:04:00 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3F186B99B
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 13:03:58 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id A2EF920396;
-        Wed,  1 Feb 2023 21:45:00 +0100 (CET)
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jonathan Cameron <jic23@kernel.org>, iio@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 52E5D8562C;
+        Wed,  1 Feb 2023 22:03:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1675285437;
+        bh=1HF/gPPUzSUVReiwMXN8d70KApWxHl35P7s5ttJUG+A=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Otq02K2fZAEr+tu3Xu9x9FxsBzKuL8wxKDPaxjoxc7/DIqm8U5g4jOCMcFuQwf+dQ
+         oPyqOIMsC4rxDEyc5AMfwe49b521ocGrjsyoG8ouCcce22K8CrKtV4UXX6gi6Mr5Hi
+         JI6eWKtKAxbLVc+pEF5FsdmrQwkbU23Xour+YO77wmUdDOn742mQGUf32+sIok+pob
+         ZqmuGcPFHmYT2ut0AliV/6W0X/+OIJaw53c7GudrDMEOiuY2LMCvfc46umpiKV8sHw
+         QoVER9UnU+te0z0wM7t6HWK0hHbWX5R9taGQTjReHb88I5bimqe0GfDoXtwYbfnxMQ
+         2QpnK7mYP5yOg==
+Message-ID: <8c32ccf5-d5b4-1b11-94e7-f741658902be@denx.de>
+Date:   Wed, 1 Feb 2023 22:03:55 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/9] ARM: dts: imx28-m28/sps1: Convert to use label
+ references
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH v3 3/3] dt-bindings: iio: adc: Require generic adc-chan name for channel nodes
-Date:   Wed,  1 Feb 2023 21:44:47 +0100
-Message-Id: <20230201204447.542385-4-marijn.suijten@somainline.org>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230201204447.542385-1-marijn.suijten@somainline.org>
-References: <20230201204447.542385-1-marijn.suijten@somainline.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Wolfgang Grandegger <wg@aries-embedded.de>
+References: <20230201203338.9525-1-stefan.wahren@i2se.com>
+ <20230201203338.9525-3-stefan.wahren@i2se.com>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230201203338.9525-3-stefan.wahren@i2se.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As discussed in [1] it is more convenient to use a generic adc-chan node
-name for ADC channels while storing a friendly - board-specific instead
-of PMIC-specific - name in the label, if/when desired to overwrite the
-channel description already contained (but previously unused) in the
-driver [2].
+On 2/1/23 21:33, Stefan Wahren wrote:
+> These board files still use node name and unit address to
+> reference parts from the imx28.dtsi . This causes a lot of
+> redundancy. So use label references in orer to make it
+> easier to maintain.
+> 
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> Cc: Marek Vasut <marex@denx.de>
 
-Replace the .* name pattern with the adc-chan literal, but leave the
-label property optional for bindings to choose to fall back a channel
-label hardcoded in the driver [2] instead.
-
-[1]: https://lore.kernel.org/linux-arm-msm/20221106193018.270106-1-marijn.suijten@somainline.org/T/#u
-[2]: https://lore.kernel.org/linux-arm-msm/20230116220909.196926-4-marijn.suijten@somainline.org/
-
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
----
- .../bindings/iio/adc/qcom,spmi-vadc.yaml         | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-index bd6e0d6f6e0c..9b1a60fe7599 100644
---- a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-@@ -54,7 +54,7 @@ required:
-   - '#io-channel-cells'
- 
- patternProperties:
--  "^.*@[0-9a-f]+$":
-+  "^adc-chan@[0-9a-f]+$":
-     type: object
-     additionalProperties: false
-     description: |
-@@ -148,7 +148,7 @@ allOf:
- 
-     then:
-       patternProperties:
--        "^.*@[0-9a-f]+$":
-+        "^adc-chan@[0-9a-f]+$":
-           properties:
-             qcom,decimation:
-               enum: [ 512, 1024, 2048, 4096 ]
-@@ -171,7 +171,7 @@ allOf:
- 
-     then:
-       patternProperties:
--        "^.*@[0-9a-f]+$":
-+        "^adc-chan@[0-9a-f]+$":
-           properties:
-             qcom,decimation:
-               enum: [ 256, 512, 1024 ]
-@@ -194,7 +194,7 @@ allOf:
- 
-     then:
-       patternProperties:
--        "^.*@[0-9a-f]+$":
-+        "^adc-chan@[0-9a-f]+$":
-           properties:
-             qcom,decimation:
-               enum: [ 250, 420, 840 ]
-@@ -217,7 +217,7 @@ allOf:
- 
-     then:
-       patternProperties:
--        "^.*@[0-9a-f]+$":
-+        "^adc-chan@[0-9a-f]+$":
-           properties:
-             qcom,decimation:
-               enum: [ 85, 340, 1360 ]
-@@ -292,16 +292,18 @@ examples:
-             #io-channel-cells = <1>;
- 
-             /* Other properties are omitted */
--            xo-therm@44 {
-+            adc-chan@44 {
-                 reg = <PMK8350_ADC7_AMUX_THM1_100K_PU>;
-                 qcom,ratiometric;
-                 qcom,hw-settle-time = <200>;
-+                label = "xo_therm";
-             };
- 
--            conn-therm@47 {
-+            adc-chan@47 {
-                 reg = <PM8350_ADC7_AMUX_THM4_100K_PU(1)>;
-                 qcom,ratiometric;
-                 qcom,hw-settle-time = <200>;
-+                label = "conn_therm";
-             };
-         };
-     };
--- 
-2.39.1
-
++CC Wolfgang , since this is M28 SoM .
