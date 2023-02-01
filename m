@@ -2,66 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A380686194
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 09:24:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BF3C686199
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 09:27:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232006AbjBAIYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 03:24:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38506 "EHLO
+        id S231735AbjBAI1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 03:27:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231986AbjBAIYA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 03:24:00 -0500
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 941C45DC19
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 00:23:59 -0800 (PST)
-Received: by mail-vs1-xe35.google.com with SMTP id y8so18860235vsq.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 00:23:59 -0800 (PST)
+        with ESMTP id S230156AbjBAI1L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 03:27:11 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83FA45EFAF
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 00:27:09 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so744169wmb.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 00:27:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QxrSISGq+nm987pWEjhCXdxOzzXqLRcFMhyKMBMFxIs=;
-        b=M7NIH1HYH98LP7pSFAXoZ89ifYgjXxayxeDyr95YBO+LdJYZ3gx4DJGhBeSRPS/3bO
-         BEyjEIIjI3GgSyi5sJJHumoQIWNIw+OpJS81aydLD93zjbk7A0r33jy/PsYi5k8FRPJ+
-         OIjSnkWY3wAvTGrhpbnK13wF4PxTcRfCvqo+0=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xcqaKTvkrWswwNjAisVqJkEic8s+QfkjvGkfxYTZrLU=;
+        b=mNicKAAddL8Ncg85u3jIb8XXSMga5R11jorShMeXovaTkQ4JfSvd8c35ZF4FQNTI7C
+         +V/B7cMNqbCz9gW1jUkmQkY9Q7j+VJncOWsGBorVEY3a/P8HHmIT0RzLsU+4jfwQ/EWj
+         UCPSuloe62QIvEaPfWJ8gNCgOc2bUgLy/Lea6KeCeD17/GXte2sUvG0+ZRgddQiAJ1ct
+         PF0DAYsMIkj98hgYt5y/3lEU9Ohp+k77blko2LhtAt7JUX8WmT5TVgMLzyxTfUCv/dTo
+         7j1M4s579/dukoXc4aD5kReudIxbaQIkRW0JaA2r8tS/X4mleNVz+s5jWPeQeDvFr0Pz
+         o9Dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QxrSISGq+nm987pWEjhCXdxOzzXqLRcFMhyKMBMFxIs=;
-        b=ZYThYxp9WRg0aMr0KYDp2jEvFjRsjf6RfUls1rv/uMt1ZT3jp+B5NwMOCCMhQOI9f0
-         wa0TA/ybFPPtsfjgfdPsv6hQt2ewgZdLp5lbA78mICSXETf2rAewN4bJMYWhqE7nI80G
-         nh3xYCEf33NoEpR6KSC5CnpkJPrHD6tydvJqPgpWYuX00S4VKskY4GMZ7oEhqiXZ+40N
-         A3gnz3RpnZkjuhSS3tKvXONLN/tyBWiaHwIeQ+HhIYLcvqYbudrUl39BXoRKUSgDsTeh
-         2M5vcxPVud+xBHVeGtdJuhipV0wLNxzNyc8XDOYLWQVqIrpZ98r73PCoFmtfLUvs6Fwp
-         f43w==
-X-Gm-Message-State: AO0yUKX21gw8sF6hjm3d6EzIE4u0DIROiBWHe0RUGJ6x2ty10RXWM6ZG
-        2CE3y62gS09FWDKMxazsTPZST6dAKQA3/0nsjQrIwQ==
-X-Google-Smtp-Source: AK7set9FuoQIF0gvgaW2XnYZ7Gcfgt0mCFA74ijOGFQCMA+N2fIYaPkYKfEBXw+x5mqQ5DmuMj693skMwY6aFK0oNVM=
-X-Received: by 2002:a67:fc92:0:b0:3f7:93c4:9e56 with SMTP id
- x18-20020a67fc92000000b003f793c49e56mr335385vsp.85.1675239838728; Wed, 01 Feb
- 2023 00:23:58 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xcqaKTvkrWswwNjAisVqJkEic8s+QfkjvGkfxYTZrLU=;
+        b=zxrz6aYJNAQS6wpyVzyS8d3XxE79y7bfwz4fWELgwt9O01TXiyfPCb1JKcFzT+JnX0
+         sW+P8Gm/MkiIVcMrMvAbxSPrnQAo4tzs7mvyRaIu+feZCvO7cp88qZLy+HNRfBW4+Rfl
+         kal0VRON9zZ4RrtPbDhUB0SV0qTuajkkDuAihHuH+J8L5WeuTXca/MYEdx4zn3FbDBB3
+         xkWmoCADInVxmhtBRFfE8PZ+Lhp8P+yuZsCKLyEzEl7QotRliS6ibZtlk81K0q+bEaxW
+         bB4U4T2rHLb4L2JG7fUGBkYsepo96MNnxKBkQjSLP6XQrR/cq6gYNRr7beH56qTxClDW
+         rfkg==
+X-Gm-Message-State: AO0yUKWwoqwG/cQ4xc1+HCqLOO7dXyhVFdzLp2BUK4HAQDWp59Z43Fd/
+        jMAmJbbqzPhDMg1EWjTnYsf67TXHYDmkKkxK
+X-Google-Smtp-Source: AK7set+dt7bnRcY9++vYrESIwx1xJoUTy3pJRYjmCioerZ6qEc2wVMsL4gqxMLT9EvmGbC6R0X/TdA==
+X-Received: by 2002:a05:600c:46c7:b0:3de:720c:10ff with SMTP id q7-20020a05600c46c700b003de720c10ffmr1127755wmo.40.1675240028047;
+        Wed, 01 Feb 2023 00:27:08 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id r38-20020a05600c322600b003dd7edcc960sm909468wmp.45.2023.02.01.00.27.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Feb 2023 00:27:07 -0800 (PST)
+Message-ID: <4df3ec7a-e4af-89bc-9eda-21150395a935@linaro.org>
+Date:   Wed, 1 Feb 2023 09:27:05 +0100
 MIME-Version: 1.0
-References: <20230130033305.31830-1-allen-kh.cheng@mediatek.com>
-In-Reply-To: <20230130033305.31830-1-allen-kh.cheng@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 1 Feb 2023 16:23:47 +0800
-Message-ID: <CAGXv+5E2r5T+Okrsz4biksCRF7DfPkBSbbgeKCsidg1MgOL3FA@mail.gmail.com>
-Subject: Re: [PATCH 0/6] media: mediatek: Update video decoder nodes for
- MT8195 and MT8192
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 1/2] dt-bindings: improve wb,mbl-gpio binding
+ documentation.
+Content-Language: en-US
+To:     nl250060@ncr.com, Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, yunfei.dong@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230126-gpio-mmio-fix-v2-0-38397aace340@ncr.com>
+ <20230126-gpio-mmio-fix-v2-1-38397aace340@ncr.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230126-gpio-mmio-fix-v2-1-38397aace340@ncr.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,31 +79,177 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 31/01/2023 14:49, Niall Leonard via B4 Submission Endpoint wrote:
+> From: Niall Leonard <nl250060@ncr.com>
+> 
+> Convert existing wd,mbl-gpio binding documentation to YAML and add
+> new optional propery "no-input".
 
-On Mon, Jan 30, 2023 at 11:33 AM Allen-KH Cheng
-<allen-kh.cheng@mediatek.com> wrote:
->
-> This series is based on matthias github, for-next. Since there is a
-> dependence in the following series, I send it for them.
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=702423
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=702078
->
-> Allen-KH Cheng (3):
->   media: dt-bindings: media: mediatek: Rename child node names for
->     decoder
->   media: dt-bindings: media: mediatek: Remove "dma-ranges" property for
->     decoder
->   arm64: dts: mt8192: Add video-codec nodes
->
-> Yunfei Dong (3):
->   media: dt-bindings: media: mediatek: vcodec: adapt to the
->     'clock-names' of different platforms
->   media: dt-bindings: media: mediatek: vcodec: Change the max reg value
->     to 2
->   arm64: dts: mt8195: Add video decoder node
+Subject: drop full stop
 
-Whole series is:
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+Subject: improve is vague. Instead: convert to DT schema
+
+
+> 
+> Signed-off-by: Niall Leonard <nl250060@ncr.com>
+> ---
+>  .../devicetree/bindings/gpio/wd,mbl-gpio.txt       | 38 -----------
+>  .../devicetree/bindings/gpio/wd,mbl-gpio.yaml      | 78 ++++++++++++++++++++++
+>  2 files changed, 78 insertions(+), 38 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt b/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+> deleted file mode 100644
+> index 038c3a6a1f4d..000000000000
+> --- a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+> +++ /dev/null
+> @@ -1,38 +0,0 @@
+> -Bindings for the Western Digital's MyBook Live memory-mapped GPIO controllers.
+> -
+> -The Western Digital MyBook Live has two memory-mapped GPIO controllers.
+> -Both GPIO controller only have a single 8-bit data register, where GPIO
+> -state can be read and/or written.
+> -
+> -Required properties:
+> -	- compatible: should be "wd,mbl-gpio"
+> -	- reg-names: must contain
+> -		"dat" - data register
+> -	- reg: address + size pairs describing the GPIO register sets;
+> -		order must correspond with the order of entries in reg-names
+> -	- #gpio-cells: must be set to 2. The first cell is the pin number and
+> -			the second cell is used to specify the gpio polarity:
+> -			0 = active high
+> -			1 = active low
+> -	- gpio-controller: Marks the device node as a gpio controller.
+> -
+> -Optional properties:
+> -	- no-output: GPIOs are read-only.
+> -
+> -Examples:
+> -	gpio0: gpio0@e0000000 {
+> -		compatible = "wd,mbl-gpio";
+> -		reg-names = "dat";
+> -		reg = <0xe0000000 0x1>;
+> -		#gpio-cells = <2>;
+> -		gpio-controller;
+> -	};
+> -
+> -	gpio1: gpio1@e0100000 {
+> -		compatible = "wd,mbl-gpio";
+> -		reg-names = "dat";
+> -		reg = <0xe0100000 0x1>;
+> -		#gpio-cells = <2>;
+> -		gpio-controller;
+> -		no-output;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.yaml b/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.yaml
+> new file mode 100644
+> index 000000000000..d1c72a42c5bc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/wd,mbl-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Western Digital's MyBook Live memory-mapped GPIO controllers.
+
+Drop full stop.
+
+> +
+> +maintainers:
+> +  - Niall Leonard <nl250060@ncr.com>
+> +
+> +description: |+
+> +  Bindings for the Western Digital's MyBook Live memory-mapped GPIO controllers.
+
+Drop "Bindings for". Actually drop entire line - it's redundant, you
+repeat the title.
+
+> +
+> +  The Western Digital MyBook Live has two memory-mapped GPIO controllers.
+> +  Both GPIO controller only have a single 8-bit data register, where GPIO
+> +  state can be read and/or written.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - wd,mbl-gpio
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dat
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +  no-output:
+> +    description: GPIOs are read-only.
+> +
+> +  no-input:
+> +    description: GPIOs are write-only.
+
+
+Split adding new property into separate patch. Each patch should do one
+logical change. New feature is another logical change. Conversion is
+that logical change (with any fixes needed for successful conversion,
+but not with new features).
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg-names
+> +  - reg
+> +  - '#gpio-cells'
+
+Use consistent quotes - either ' or "
+
+> +  - gpio-controller
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpio0: gpio0@e0000000 {
+
+gpio@
+
+(0 is not correct name of node)
+
+> +        compatible = "wd,mbl-gpio";
+> +        reg-names = "dat";
+> +        reg = <0xe0000000 0x1>;
+> +        #gpio-cells = <2>;
+> +        gpio-controller;
+> +    };
+> +
+> +    gpio1: gpio1@e0100000 {
+
+gpio@
+
+> +        compatible = "wd,mbl-gpio";
+> +        reg-names = "dat";
+> +        reg = <0xe0100000 0x1>;
+> +        #gpio-cells = <2>;
+> +        gpio-controller;
+> +        no-output;
+> +    };
+> +
+
+Drop all examples below, they are not needed. Actually even these two
+above could be combined as they differ with only one property.
+
+Best regards,
+Krzysztof
+
