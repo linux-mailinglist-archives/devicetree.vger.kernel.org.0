@@ -2,68 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB69E6862D1
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 10:30:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1734E6862DA
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 10:30:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231874AbjBAJaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 04:30:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49494 "EHLO
+        id S232001AbjBAJaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 04:30:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231945AbjBAJ37 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 04:29:59 -0500
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86C7C5D11D
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 01:29:58 -0800 (PST)
-Received: by mail-yb1-xb2a.google.com with SMTP id d132so21563092ybb.5
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 01:29:58 -0800 (PST)
+        with ESMTP id S231977AbjBAJat (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 04:30:49 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A506C6186D
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 01:30:44 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id a3so9967248wrt.6
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 01:30:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KhoolhMckxqWrv235zYZtPF4tzr8Frco5OS8VwOn2is=;
-        b=pLY0/9QKC1kVar9Ri59+RLs67IzOAeA3gq5tohm8s5M07NOiKDT/bN959IoCB+WRLQ
-         qzyuOfZ6Zdu/JMgc4CU5rhOTOhTdaqVOhfYWExYiqL6d/TtfP9fhDV2l4qcT/QTCt1U2
-         q8ilAQFJ+hryST6wUIGJkASyf/G/mIBybt7XdF4oWfdLOSegF8M4itmpRfZIb5nwqdCF
-         bly3vlAd5/LPMsoOLSuhxC0dRjATNTXsLa66qfMpHceIJ1y+QvRPlB8pmy/DZtEB2A75
-         INNgAv9tFDJ/4e0dCV7hW3oCSB4y1GtG2QhvJH+Bwnfh4X6qqqBb9JTmEj5PlGEVHqNg
-         vWQQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4LlR0RsEf83QhBEyiH1MSeAg+XqhUdFOt8lIoBlqVcs=;
+        b=L6xH7cMwYYIA8vy5pNcyed5puA2tc7jLBfwK5iVNLCsIVo9Pb4YpuyngYg+8UEwsoM
+         pGtF/bCUOOU5wHxCSNRB+AxTeNeygVucOYK8QqYfP5XnhgPGdDpST5+axJbQ79O/uPF9
+         qy5FnQa9oJC+Fe4yvA/IvrAfajRkEIoRjA4MHywNwbsTZ//rIrCkeLOKhwoRGwfbfEQD
+         pusntWuU3AgHeBBHRU3ebY2LduEgRGRnfTdW1Z+G3eo0nOwX159vHHl5kR+GSVOyn/j+
+         nPLkoPJp9xTlgiybKN0eNoYXKn9efFFSS0TbgdLd/ndWbEUzEFgMEFDq05p+GEuPn5s5
+         tZbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KhoolhMckxqWrv235zYZtPF4tzr8Frco5OS8VwOn2is=;
-        b=Rou6ufESxEbFPzqkWgdBdNWhPLrHy0prFi2wM7uoTKsXQmVnGIGNM1Pn7GX6V1Oke4
-         yb1XTdlf8WZxIjB5bOp/6YoeDxvrf9Q7D8mXsxe/EPkyMn5juNzGcvNe9fgqYFmLyi+Z
-         +dygcOkRszBCWB4tUQ9NX7pBS/KVwoVoh268/xjaetFZakI95YTFIkvMrZD43r4JDzu+
-         ld7gRGqn8+4ClQJROm1p96QOs9byh6BpC487Vni73Mh5VmyoXphah3mI39/NY5x16tkt
-         PlN1AzRjoYXTixvrEQA1iCOhlO4adOwQHcSvtwzW9OoTnkXa3Mt1aDSYu9pH0/e3fy4c
-         JCoA==
-X-Gm-Message-State: AO0yUKVSkIpqVz8op6+THFfVd17msBvdzMY2CCwA4zo01T4bhsWS9Tux
-        ayRg5yxtTCvuiRgNexUjBUvdArIU0WLuLIqawr9vZQ==
-X-Google-Smtp-Source: AK7set+tuVRLZ4AdP759wfl1fZTnbBKhFP0FPnAP3xxxUrZJxw2TvTMOScsMLNI+hFXGM9nye6SOMa0E7/3wCeDwUsc=
-X-Received: by 2002:a25:910:0:b0:83e:bd63:6dd7 with SMTP id
- 16-20020a250910000000b0083ebd636dd7mr227209ybj.24.1675243797830; Wed, 01 Feb
- 2023 01:29:57 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4LlR0RsEf83QhBEyiH1MSeAg+XqhUdFOt8lIoBlqVcs=;
+        b=DrFbJQ6MZbDXS158PFVf33iE0JBvkZ3ELVh6BdrZhuWr4+vqpWbUbzPI0xBG5CkOUW
+         pDHI9Sn7n+wEslddT41/onxmLOK3DIdDi041VJNmCnXs9jeP+BoOh+DiLorMPm8tVDQe
+         3MgHTgNV1BlCz08r8SWC4J6qo5cIFV+zcb69KPN8ntS3kaj92yMAfbherH+UY48i7+mM
+         i3AC8igAaKppQRK6SvXq6Z6ai+l29c0keskP7pJGNKotAxNFnK9CjAIXUfzbR5QgFDmy
+         tIwWHwiQ+NWzpJYCsnl+K0U/yvsma/xaG+UKBJyu39GtDijSdIHc+WC9kZ7idkKTt9Mn
+         +4zA==
+X-Gm-Message-State: AO0yUKW75CQ5Tlih0FzTyzpq+p+D2XvXwwQ8jDgeuGaWLZEbaAz7KGpZ
+        bZZnb3y0FxXc3yMLjJPze+OZSQ==
+X-Google-Smtp-Source: AK7set+dOrsrn5l39562mA3YKWM1Y4NP7NdyFe8DO8g/arcPF70Dr64ExGSb4lK4IUTGhUbN//N04g==
+X-Received: by 2002:a5d:4d01:0:b0:2b6:7876:3cd4 with SMTP id z1-20020a5d4d01000000b002b678763cd4mr1808704wrt.16.1675243843008;
+        Wed, 01 Feb 2023 01:30:43 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id t27-20020adfa2db000000b002366553eca7sm16709388wra.83.2023.02.01.01.30.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Feb 2023 01:30:42 -0800 (PST)
+Message-ID: <0186a2c9-35ba-a90d-360f-0f931dda7ed0@linaro.org>
+Date:   Wed, 1 Feb 2023 10:30:39 +0100
 MIME-Version: 1.0
-References: <20230123211758.563383-1-jic23@kernel.org> <20230123211758.563383-13-jic23@kernel.org>
- <6abc3265-75a2-1fa6-803e-6066a81b8ec5@linaro.org> <20230124094344.00003e67@Huawei.com>
-In-Reply-To: <20230124094344.00003e67@Huawei.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 1 Feb 2023 10:29:46 +0100
-Message-ID: <CACRpkdZrgLQsR-BkT-FG4HvJv3fvQ1ETRcaJYAXahOcM5mcYOw@mail.gmail.com>
-Subject: Re: [PATCH 12/12] dt-bindings: iio: accel: Add ADIS16203 Inclinometer
-To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Barry Song <baohua@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH V2 4/5] arm64: defconfig: Enable scm download mode config
+ for IPQ9574 SoC.
+Content-Language: en-US
+To:     Poovendhan Selvaraj <quic_poovendh@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        jassisinghbrar@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
+        robimarko@gmail.com, dmitry.baryshkov@linaro.org,
+        nfraprado@collabora.com, broonie@kernel.org,
+        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_devipriy@quicinc.com
+References: <20230201090529.30446-1-quic_poovendh@quicinc.com>
+ <20230201090529.30446-5-quic_poovendh@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230201090529.30446-5-quic_poovendh@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,18 +88,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 24, 2023 at 10:43 AM Jonathan Cameron
-<Jonathan.Cameron@huawei.com> wrote:
+On 01/02/2023 10:05, Poovendhan Selvaraj wrote:
+> Enables scm download mode config.
 
-> > This won't work. It's an list. You need:
-> > items:
-> >   enum:
-> >      .....
->
-> Gah. I'm still rubbish at writing these things. I guess I just
-> don't do them often enough.
+Subject: drop full stop.
 
-No the dtschema YAML is just really hard. Don't beat yourself up about it.
+This patch misses explanation why it is needed and why it should be
+enabled for all SoCs.
 
-Yours,
-Linus Walleij
+> 
+> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+> ---
+
+Best regards,
+Krzysztof
+
