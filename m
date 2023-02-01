@@ -2,250 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EEC86864CE
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 11:54:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D22D6864D9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 11:56:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232280AbjBAKyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 05:54:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56286 "EHLO
+        id S232287AbjBAK4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 05:56:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232287AbjBAKyC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 05:54:02 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 96A955CE68;
-        Wed,  1 Feb 2023 02:53:59 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7CE121424;
-        Wed,  1 Feb 2023 02:54:41 -0800 (PST)
-Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D60683F882;
-        Wed,  1 Feb 2023 02:53:57 -0800 (PST)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bin Liu <b-liu@ti.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        with ESMTP id S231799AbjBAK4t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 05:56:49 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3808F59E5B
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 02:56:48 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id y1so16921784wru.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 02:56:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nl7xjwnlIFO9cTPnHakzqSLtSfVZPcvJWgfAb9UTMgg=;
+        b=yMwEZzFJds1B31S8gN6Gtf3DXOsheuyX+qdKKzQ1XkldQSxHFEm+qWlYJCE95L51pm
+         gmFplAF3bDfpnRBjiuWm7sxaIPnZNbkwY4FHvtv4KquGN8IuauXG1mTjvKXslADq7RQw
+         X7EGQSFtfGh2vS9VVUcKMXowGNKmeQbwBymnOoPl0JB7DB/3CVhBYYdJ9KyVIYEjU1yi
+         kW2WXgrylGrw4gWvwTBtJrYMFWa2aW3G9PgeRaIETAbdyNhZNnP2dp0sD158O3ieDN9V
+         ZQV6FMqiMlKV3/IaU1Zms6aVa9y7DPuxEWuOGAiPmsikz3NJhHpZlQAPW6Tbf7WiNYzX
+         nl1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Nl7xjwnlIFO9cTPnHakzqSLtSfVZPcvJWgfAb9UTMgg=;
+        b=wCuUmI5f2fX5+l/z2Co7jylVj05tWzjZNHH+QbYBlAriXCFVlSYwLpGWX4J6bsXOLO
+         sJYONOtI40Y4BR98y5ng8BzYHBtz4OcqB0yYYLwdx6dyCSeya2d8LIsJeIaOhWN3u8tN
+         KYiaJbPsSPLOAEzmZIdfssJMK+zFTefkgcB++TPvHacRfGOJmw+QqHtlXJQQlP4hz+ji
+         n7758K6Zb3vPYtBewHEBHfzBRzSLDrLliilia73dYnsXQaTENtaUhQ63npcYbdnjUUGl
+         aMNSlnena9HPA+tcr0PQv2zem4kijMapnbVOi8UB/4wfLCr0YNZa7UQoF7iY3JPpjVNv
+         xnLA==
+X-Gm-Message-State: AO0yUKX8koKVkq7klSLMFiw+r+JKjPHnQ5XQZ0aoK37iyzpUvbBIEfQq
+        e9VlnVEfp7qcWGST4oZUfWKBhg==
+X-Google-Smtp-Source: AK7set+KPB702v3Zc0QEXCUeeDFVfwvU1Lo9YL4UGHj4SIr90S4Y+aj9ttU3Tq07PI/5GAwPH9ZT0w==
+X-Received: by 2002:adf:fc88:0:b0:2bf:d137:9945 with SMTP id g8-20020adffc88000000b002bfd1379945mr1887395wrr.51.1675249006727;
+        Wed, 01 Feb 2023 02:56:46 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:bad9:621b:618e:38d6? ([2a01:e0a:982:cbb0:bad9:621b:618e:38d6])
+        by smtp.gmail.com with ESMTPSA id v9-20020a056000144900b002c3b2afae00sm1870583wrx.41.2023.02.01.02.56.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Feb 2023 02:56:46 -0800 (PST)
+Message-ID: <604029c8-3286-8514-ec35-6c5cb1b7a38a@linaro.org>
+Date:   Wed, 1 Feb 2023 11:56:45 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
+ binding
+Content-Language: en-US
+To:     Heiner Kallweit <hkallweit1@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: [PATCH v6 3/3] usb: musb: sunxi: Introduce config struct
-Date:   Wed,  1 Feb 2023 10:53:48 +0000
-Message-Id: <20230201105348.1815461-4-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230201105348.1815461-1-andre.przywara@arm.com>
-References: <20230201105348.1815461-1-andre.przywara@arm.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
+ <285b7b4b-4fd4-be5f-266c-96b1ee6f4cbf@gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <285b7b4b-4fd4-be5f-266c-96b1ee6f4cbf@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently the probe routine explicitly compares the compatible string of
-the device node to figure out which features and quirks a certain
-Allwinner MUSB model requires. This gets harder to maintain for new
-SoCs.
+Hi Heiner,
 
-Add a struct sunxi_musb_cfg that names the features and quirks
-explicitly, and create instances of this struct for every type of MUSB
-device we support. Then bind this to the compatible strings via the OF
-data feature.
+On 30/01/2023 22:00, Heiner Kallweit wrote:
+> Convert Amlogic Meson pinctrl binding to yaml.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v2:
+> - consider that more than one compatible can be set
+> - remove bus part from example
+> v3:
+> - remove minItem/maxItem properties for compatible
+> ---
+>   .../pinctrl/amlogic,meson-pinctrl.yaml        | 122 ++++++++++++++++++
+>   .../bindings/pinctrl/meson,pinctrl.txt        |  94 --------------
+>   2 files changed, 122 insertions(+), 94 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+> 
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- drivers/usb/musb/sunxi.c | 103 ++++++++++++++++++++++++++-------------
- 1 file changed, 70 insertions(+), 33 deletions(-)
+<snip>
 
-diff --git a/drivers/usb/musb/sunxi.c b/drivers/usb/musb/sunxi.c
-index 4b368d16a73ad..9b622cd9b2bd5 100644
---- a/drivers/usb/musb/sunxi.c
-+++ b/drivers/usb/musb/sunxi.c
-@@ -15,6 +15,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_device.h>
- #include <linux/phy/phy-sun4i-usb.h>
- #include <linux/platform_device.h>
- #include <linux/reset.h>
-@@ -67,6 +68,13 @@
- #define SUNXI_MUSB_FL_NO_CONFIGDATA		7
- #define SUNXI_MUSB_FL_PHY_MODE_PEND		8
- 
-+struct sunxi_musb_cfg {
-+	const struct musb_hdrc_config *hdrc_config;
-+	bool has_sram;
-+	bool has_reset;
-+	bool no_configdata;
-+};
-+
- /* Our read/write methods need access and do not get passed in a musb ref :| */
- static struct musb *sunxi_musb;
- 
-@@ -621,11 +629,10 @@ static const struct musb_platform_ops sunxi_musb_ops = {
- 	.post_root_reset_end = sunxi_musb_post_root_reset_end,
- };
- 
--/* Allwinner OTG supports up to 5 endpoints */
--#define SUNXI_MUSB_MAX_EP_NUM	6
- #define SUNXI_MUSB_RAM_BITS	11
- 
--static struct musb_fifo_cfg sunxi_musb_mode_cfg[] = {
-+/* Allwinner OTG supports up to 5 endpoints */
-+static struct musb_fifo_cfg sunxi_musb_mode_cfg_5eps[] = {
- 	MUSB_EP_FIFO_SINGLE(1, FIFO_TX, 512),
- 	MUSB_EP_FIFO_SINGLE(1, FIFO_RX, 512),
- 	MUSB_EP_FIFO_SINGLE(2, FIFO_TX, 512),
-@@ -639,9 +646,7 @@ static struct musb_fifo_cfg sunxi_musb_mode_cfg[] = {
- };
- 
- /* H3/V3s OTG supports only 4 endpoints */
--#define SUNXI_MUSB_MAX_EP_NUM_H3	5
--
--static struct musb_fifo_cfg sunxi_musb_mode_cfg_h3[] = {
-+static struct musb_fifo_cfg sunxi_musb_mode_cfg_4eps[] = {
- 	MUSB_EP_FIFO_SINGLE(1, FIFO_TX, 512),
- 	MUSB_EP_FIFO_SINGLE(1, FIFO_RX, 512),
- 	MUSB_EP_FIFO_SINGLE(2, FIFO_TX, 512),
-@@ -652,31 +657,33 @@ static struct musb_fifo_cfg sunxi_musb_mode_cfg_h3[] = {
- 	MUSB_EP_FIFO_SINGLE(4, FIFO_RX, 512),
- };
- 
--static const struct musb_hdrc_config sunxi_musb_hdrc_config = {
--	.fifo_cfg       = sunxi_musb_mode_cfg,
--	.fifo_cfg_size  = ARRAY_SIZE(sunxi_musb_mode_cfg),
-+static const struct musb_hdrc_config sunxi_musb_hdrc_config_5eps = {
-+	.fifo_cfg       = sunxi_musb_mode_cfg_5eps,
-+	.fifo_cfg_size  = ARRAY_SIZE(sunxi_musb_mode_cfg_5eps),
- 	.multipoint	= true,
- 	.dyn_fifo	= true,
--	.num_eps	= SUNXI_MUSB_MAX_EP_NUM,
-+	/* Two FIFOs per endpoint, plus ep_0. */
-+	.num_eps	= (ARRAY_SIZE(sunxi_musb_mode_cfg_5eps) / 2) + 1,
- 	.ram_bits	= SUNXI_MUSB_RAM_BITS,
- };
- 
--static struct musb_hdrc_config sunxi_musb_hdrc_config_h3 = {
--	.fifo_cfg       = sunxi_musb_mode_cfg_h3,
--	.fifo_cfg_size  = ARRAY_SIZE(sunxi_musb_mode_cfg_h3),
-+static const struct musb_hdrc_config sunxi_musb_hdrc_config_4eps = {
-+	.fifo_cfg       = sunxi_musb_mode_cfg_4eps,
-+	.fifo_cfg_size  = ARRAY_SIZE(sunxi_musb_mode_cfg_4eps),
- 	.multipoint	= true,
- 	.dyn_fifo	= true,
--	.num_eps	= SUNXI_MUSB_MAX_EP_NUM_H3,
-+	/* Two FIFOs per endpoint, plus ep_0. */
-+	.num_eps	= (ARRAY_SIZE(sunxi_musb_mode_cfg_4eps) / 2) + 1,
- 	.ram_bits	= SUNXI_MUSB_RAM_BITS,
- };
- 
--
- static int sunxi_musb_probe(struct platform_device *pdev)
- {
- 	struct musb_hdrc_platform_data	pdata;
- 	struct platform_device_info	pinfo;
- 	struct sunxi_glue		*glue;
- 	struct device_node		*np = pdev->dev.of_node;
-+	const struct sunxi_musb_cfg	*cfg;
- 	int ret;
- 
- 	if (!np) {
-@@ -713,29 +720,25 @@ static int sunxi_musb_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	}
- 	pdata.platform_ops	= &sunxi_musb_ops;
--	if (!of_device_is_compatible(np, "allwinner,sun8i-h3-musb"))
--		pdata.config = &sunxi_musb_hdrc_config;
--	else
--		pdata.config = &sunxi_musb_hdrc_config_h3;
-+
-+	cfg = of_device_get_match_data(&pdev->dev);
-+	if (!cfg)
-+		return -EINVAL;
-+
-+	pdata.config = cfg->hdrc_config;
- 
- 	glue->dev = &pdev->dev;
- 	INIT_WORK(&glue->work, sunxi_musb_work);
- 	glue->host_nb.notifier_call = sunxi_musb_host_notifier;
- 
--	if (of_device_is_compatible(np, "allwinner,sun4i-a10-musb") ||
--	    of_device_is_compatible(np, "allwinner,suniv-f1c100s-musb")) {
-+	if (cfg->has_sram)
- 		set_bit(SUNXI_MUSB_FL_HAS_SRAM, &glue->flags);
--	}
- 
--	if (of_device_is_compatible(np, "allwinner,sun6i-a31-musb"))
-+	if (cfg->has_reset)
- 		set_bit(SUNXI_MUSB_FL_HAS_RESET, &glue->flags);
- 
--	if (of_device_is_compatible(np, "allwinner,sun8i-a33-musb") ||
--	    of_device_is_compatible(np, "allwinner,sun8i-h3-musb") ||
--	    of_device_is_compatible(np, "allwinner,suniv-f1c100s-musb")) {
--		set_bit(SUNXI_MUSB_FL_HAS_RESET, &glue->flags);
-+	if (cfg->no_configdata)
- 		set_bit(SUNXI_MUSB_FL_NO_CONFIGDATA, &glue->flags);
--	}
- 
- 	glue->clk = devm_clk_get(&pdev->dev, NULL);
- 	if (IS_ERR(glue->clk)) {
-@@ -813,12 +816,46 @@ static int sunxi_musb_remove(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static const struct sunxi_musb_cfg sun4i_a10_musb_cfg = {
-+	.hdrc_config = &sunxi_musb_hdrc_config_5eps,
-+	.has_sram = true,
-+};
-+
-+static const struct sunxi_musb_cfg sun6i_a31_musb_cfg = {
-+	.hdrc_config = &sunxi_musb_hdrc_config_5eps,
-+	.has_reset = true,
-+};
-+
-+static const struct sunxi_musb_cfg sun8i_a33_musb_cfg = {
-+	.hdrc_config = &sunxi_musb_hdrc_config_5eps,
-+	.has_reset = true,
-+	.no_configdata = true,
-+};
-+
-+static const struct sunxi_musb_cfg sun8i_h3_musb_cfg = {
-+	.hdrc_config = &sunxi_musb_hdrc_config_4eps,
-+	.has_reset = true,
-+	.no_configdata = true,
-+};
-+
-+static const struct sunxi_musb_cfg suniv_f1c100s_musb_cfg = {
-+	.hdrc_config = &sunxi_musb_hdrc_config_5eps,
-+	.has_sram = true,
-+	.has_reset = true,
-+	.no_configdata = true,
-+};
-+
- static const struct of_device_id sunxi_musb_match[] = {
--	{ .compatible = "allwinner,sun4i-a10-musb", },
--	{ .compatible = "allwinner,sun6i-a31-musb", },
--	{ .compatible = "allwinner,sun8i-a33-musb", },
--	{ .compatible = "allwinner,sun8i-h3-musb", },
--	{ .compatible = "allwinner,suniv-f1c100s-musb", },
-+	{ .compatible = "allwinner,sun4i-a10-musb",
-+	  .data = &sun4i_a10_musb_cfg, },
-+	{ .compatible = "allwinner,sun6i-a31-musb",
-+	  .data = &sun6i_a31_musb_cfg, },
-+	{ .compatible = "allwinner,sun8i-a33-musb",
-+	  .data = &sun8i_a33_musb_cfg, },
-+	{ .compatible = "allwinner,sun8i-h3-musb",
-+	  .data = &sun8i_h3_musb_cfg, },
-+	{ .compatible = "allwinner,suniv-f1c100s-musb",
-+	  .data = &suniv_f1c100s_musb_cfg, },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, sunxi_musb_match);
--- 
-2.25.1
+Please send new versions as separate threads, or keep the same thread structure othwerwise
+it highly confuses humans & b4 when applying the patches...
+
+Assuming new revision: v2 ([PATCH v2] dt-bindings: pwm: Convert Amlogic Meson PWM binding)
+Assuming new revision: v4 ([PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding)
+Assuming new revision: v5 ([PATCH v2] dt-bindings: interrupt-controller: Convert Amlogic Meson GPIO interrupt controller binding)
+Assuming new revision: v6 ([PATCH v3] dt-bindings: interrupt-controller: Convert Amlogic Meson GPIO interrupt controller binding)
+Assuming new revision: v7 ([PATCH v2] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding)
+
+Thanks,
+Neil
 
