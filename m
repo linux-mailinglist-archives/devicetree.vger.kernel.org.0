@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5F57686572
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 12:32:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 821CA68658B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 12:46:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230294AbjBALc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 06:32:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49186 "EHLO
+        id S229597AbjBALqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 06:46:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230508AbjBALcV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 06:32:21 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FB9A60C9D
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 03:32:18 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id u21so17353451edv.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 03:32:18 -0800 (PST)
+        with ESMTP id S229963AbjBALqc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 06:46:32 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D5CC539B4
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 03:46:28 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id y1so17058295wru.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 03:46:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DlwhsXjEnUWBuvOS3y+L+yIP8gcjGDDxDY/9YpgT1J0=;
-        b=Fin4rOBsEx26VggqOY8HWUDZaTQa2KzJgc5TKFyFI+llcywDd9NGM8+LKu6WX3VsmY
-         cw80R6DELBl+LsMbBriHOTD3wRrRBh42RpNIkx3jz+mon75vXxKKTbzJQPBnh7gFvLM8
-         Fomue/Mv1ig3P0/J4pibs4U2+hOlkY+951MGmQUcn3TQrb0DnIqjk08KigQyrBvJccgD
-         adVZU1e8paz2dydAdmZ8HByWG1+ByE7kHq1kais/i2c4wuS9Sh/KeIZKcXu7lA2LqJDC
-         iLsypLAHf4fHbC3Wt+8NfDJgtOQvZUxlXstUIWWFVzeF/FZPx9lXqrv7roBKa6YBjMqb
-         ZLxA==
+        bh=/oez8AUAftX1zJ0SA+UvNi7X27OzDC/qlpA3BbcU7l0=;
+        b=Cdn+s0ZE6QVu4mi+Ioq2kDUpND2AT6VZIpijAz89k2wX9cHp5G+LbQqWU+DiL1vf8k
+         o4lpBAquerK3vfIu1VuTov4Kc21afSZkD9SCq9IMomSk9Ky1b2sv3LT1X0D/iSSyxPoM
+         am1MIdgMKfOAfD0RNwkHcmfjiRJ92p7N9IollD3vCoASRSTm7Ablz8/K7X0Pjyg9Fvfa
+         qXpvt5UEg6UbgcaTXDq2BlnM3XvtrptXSAYTggUED5DxT2P7RZyA07Xg9BDlM2J7G6NT
+         sSeUzXkz1LbYeXIPK9espZGOhyfkoYZfDOQJW8F9E5HfhnWQsFr+ifm6Zcd/YH4HGnLM
+         /+oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DlwhsXjEnUWBuvOS3y+L+yIP8gcjGDDxDY/9YpgT1J0=;
-        b=BtPKqiM5sUiVAS19Yja1Z3uMnm0vVOkb2iF0eszVy8xfDUbs9GtbBMFiKzz7cAzHaQ
-         E3fbTPcln3Vmu1YwG3Zh7pB5YqY3gHx5cfkpt7N8L+8SkisIufHmQJJi9a16oiL6nKfn
-         9SzsltSnWAc+ve9Rg2jtsp24gdzzDEeKUqnOVsh6dFiMqOcLKaIt8Glf9yI2w4i+39qx
-         bIuaLRUgkdGaEpfCGts8K22yG9MHNIVZ9bWD6zrC3dhxw0tNVe/V/p01OMSTafdqzTiL
-         o8GoUuNoyCYXE0ba7HM4DBGlxkrGbgYLzbYgZkFN4qsxO01NgAEw9YSc3i3jZNluzfVs
-         5sYw==
-X-Gm-Message-State: AO0yUKX9Op7AzNdkrpEf+qDiNaU9R5DCdkPQcMPXxXEh4b9Qouff3omy
-        e8+AOjOX3RuIDuPxpBPQZOkAh9Bt6pekSHtM
-X-Google-Smtp-Source: AK7set/FgWtS4x+n2SnGkxpJIErFGVtXW/VeFv+kvHRT8+l3UUvA9cr+9RdFCfSqxeyqWyowBKz57w==
-X-Received: by 2002:a05:6402:1c84:b0:4a2:64eb:26ea with SMTP id cy4-20020a0564021c8400b004a264eb26eamr1684943edb.42.1675251136653;
-        Wed, 01 Feb 2023 03:32:16 -0800 (PST)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id j23-20020aa7c0d7000000b0046892e493dcsm9669024edp.26.2023.02.01.03.32.15
+        bh=/oez8AUAftX1zJ0SA+UvNi7X27OzDC/qlpA3BbcU7l0=;
+        b=mB8phuoVH/+KWjii6CQfpXOZOz099Eh5XPvbsCIHuLczMJ7sLm/ogE6NLYKqxgbN1Z
+         zK4nbdbQFJWFOizBJEOFmdTMaKN41oFXTc68P6t37512V00KoHU2oF0MJh5IynrGVySE
+         V6U7ioCsGaKB9qA+9hoffyyANmWOEuGYKRk2KZ9xVhP0GINzTz6GLqvec8HXvhT5emIg
+         Yfx2/U8qtlUWcy072jJ+hCIjbKjxy3KQIqL6P1dWS+2vYqSQe56OaBgc8O3md6udB0/t
+         AMrZSlP2IKI2yQD9u3clE9f0dEcogfAYKlgsB6G3jOHue8Si/2CmQGsCIl5NtxiFIpoU
+         muEw==
+X-Gm-Message-State: AO0yUKU96MMCXi4XGDF96HrEZO24vptvFBFeW3uRovI40qD8oe1ci/qh
+        aoQYMxdTPTEs6hMlHFIt0Pt0bw==
+X-Google-Smtp-Source: AK7set8S6wL8+KxPQDIovLNftJR31PT8NwmtUAnAWXTN7UmhNXqTDH+yUHKWTSmGb+Wp4n5lJLs5mQ==
+X-Received: by 2002:a5d:4352:0:b0:2be:12a8:9f75 with SMTP id u18-20020a5d4352000000b002be12a89f75mr1770411wrr.55.1675251986695;
+        Wed, 01 Feb 2023 03:46:26 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id q3-20020adff503000000b002bfae1398bbsm17665550wro.42.2023.02.01.03.46.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 03:32:16 -0800 (PST)
-Message-ID: <515f4e9e-2804-e03a-26f5-f2d3ac331109@linaro.org>
-Date:   Wed, 1 Feb 2023 13:32:14 +0200
+        Wed, 01 Feb 2023 03:46:26 -0800 (PST)
+Message-ID: <71ba0d05-6183-95ef-9e45-cc3dd512475f@linaro.org>
+Date:   Wed, 1 Feb 2023 11:46:25 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
+ Thunderbird/102.7.0
 Subject: Re: [PATCH 2/2] PM / devfreq: qcom: Introduce CCI devfreq driver
-To:     Jun Nie <jun.nie@linaro.org>, myungjoo.ham@samsung.com,
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jun Nie <jun.nie@linaro.org>, myungjoo.ham@samsung.com,
         kyungmin.park@samsung.com, cw00.choi@samsung.com
 Cc:     bryan.odonoghue@linaro.org, linux-pm@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20230201080227.473547-1-jun.nie@linaro.org>
  <20230201080227.473547-2-jun.nie@linaro.org>
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230201080227.473547-2-jun.nie@linaro.org>
+ <515f4e9e-2804-e03a-26f5-f2d3ac331109@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <515f4e9e-2804-e03a-26f5-f2d3ac331109@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -76,28 +78,167 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/02/2023 10:02, Jun Nie wrote:
-> Cache Coherent Interconnect (CCI) is used by some Qualcomm SoCs. This
-> driver is introduced so that its freqency can be adjusted. And regulator
-> associated with opp table can be also adjusted accordingly which is
-> shared with cpu cluster.
+On 01/02/2023 11:32, Dmitry Baryshkov wrote:
+> On 01/02/2023 10:02, Jun Nie wrote:
+>> Cache Coherent Interconnect (CCI) is used by some Qualcomm SoCs. This
+>> driver is introduced so that its freqency can be adjusted. And regulator
+>> associated with opp table can be also adjusted accordingly which is
+>> shared with cpu cluster.
+>>
+>> Signed-off-by: Jun Nie <jun.nie@linaro.org>
+>> ---
+>>   drivers/devfreq/Kconfig    |   9 +++
+>>   drivers/devfreq/Makefile   |   1 +
+>>   drivers/devfreq/qcom-cci.c | 162 +++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 172 insertions(+)
+>>   create mode 100644 drivers/devfreq/qcom-cci.c
 > 
-> Signed-off-by: Jun Nie <jun.nie@linaro.org>
-> ---
->   drivers/devfreq/Kconfig    |   9 +++
->   drivers/devfreq/Makefile   |   1 +
->   drivers/devfreq/qcom-cci.c | 162 +++++++++++++++++++++++++++++++++++++
->   3 files changed, 172 insertions(+)
->   create mode 100644 drivers/devfreq/qcom-cci.c
+> Could you please describe in some additional details what are you trying 
+> to achieve? Should the CCI frequency be scaled manually or does it 
+> follow the cluster frequency? Do clusters vote on the CCI frequency?
+> 
+> I'm inclined to ask if it is possible to shift this to the cpufreq OPP 
+> tables?
+> 
 
-Could you please describe in some additional details what are you trying 
-to achieve? Should the CCI frequency be scaled manually or does it 
-follow the cluster frequency? Do clusters vote on the CCI frequency?
+Might not be so easy to just append CCI opps to the cluster frequency opps
 
-I'm inclined to ask if it is possible to shift this to the cpufreq OPP 
-tables?
+                 cci_cache: qcom,cci {
+                         compatible = "qcom,msm8939-cci";
+                         clock-names = "devfreq_clk";
+                         clocks = <&apcs2>;
+                         governor = "cpufreq";
+                         operating-points-v2 = <&cci_opp_table>;
+                         power-domains = <&cpr>;
+                         power-domain-names = "cpr";
+                         nvmem-cells = <&cpr_efuse_speedbin_pvs>;
+                         nvmem-cell-names = "cpr_efuse_speedbin_pvs";
+                 };
 
--- 
-With best wishes
-Dmitry
+                 devfreq-cpufreq {
+                         cci-cpufreq {
+                                 target-dev = <&cci_cache>;
+                                 cpu-to-dev-map-0 =
+                                         <  200000  200000000 >,
+                                         <  345600  200000000 >,
+                                         <  400000  200000000 >,
+                                         <  533330  297600000 >,
+                                         <  800000  297600000 >,
+                                         <  960000  297600000 >,
+                                         < 1113600  297000000 >,
+                                         < 1344000  595200000 >,
+                                         < 1459200  595200000 >,
+                                         < 1497600  595200000 >,
+                                         < 1651200  595200000 >;
+                                 cpu-to-dev-map-4 =
+                                         <  200000 200000000 >,
+                                         <  249600 200000000 >,
+                                         <  499200 297600000 >,
+                                         <  800000 297600000 >,
+                                         <  998400 595200000 >,
+                                         < 1113600 595200000 >;
+                         };
+                 };
 
+         cci_opp_table: cci-opp-table {
+                 compatible = "operating-points-v2";
+
+                 opp-200000000 {
+                         opp-hz = /bits/ 64 <200000000>;
+                         opp-supported-hw = <0x3f>;
+                         required-opps = <&cpr_opp3>;
+                 };
+
+                 opp-297600000 {
+                         opp-hz = /bits/ 64 <297600000>;
+                         opp-supported-hw = <0x3f>;
+                         required-opps = <&cpr_opp12>;
+                 };
+
+                 opp-400000000-cpr14 {
+                         opp-hz = /bits/ 64 <400000000>;
+                         opp-supported-hw = <0x1>;
+                         required-opps = <&cpr_opp14>;
+                 };
+
+                 opp-400000000-cpr15 {
+                         opp-hz = /bits/ 64 <400000000>;
+                         opp-supported-hw = <0x3e>;
+                         required-opps = <&cpr_opp15>;
+                 };
+
+                 opp-595200000 {
+                         opp-hz = /bits/ 64 <595200000>;
+                         opp-supported-hw = <0x3f>;
+                         required-opps = <&cpr_opp17>;
+                 };
+         };
+
+
+         cpr_opp_table: cpr-opp-table {
+                 compatible = "operating-points-v2-qcom-level";
+
+                 cpr_opp1: opp1 {
+                         opp-hz = /bits/ 64 <200000000>;
+                         opp-level = <1>;
+                         qcom,opp-fuse-level = <1>;
+                 };
+                 cpr_opp2: opp2 {
+                         opp-hz = /bits/ 64 <345600000>;
+                         opp-level = <2>;
+                         qcom,opp-fuse-level = <1>;
+                 };
+                 cpr_opp3: opp3 {
+                         opp-hz = /bits/ 64 <400000000>;
+                         opp-level = <3>;
+                         qcom,opp-fuse-level = <1>;
+                 };
+                 cpr_opp4: opp4 {
+                         opp-hz = /bits/ 64 <422400000>;
+                         opp-level = <4>;
+                         qcom,opp-fuse-level = <2>;
+                 };
+                 cpr_opp5: opp5 {
+                         opp-hz = /bits/ 64 <499200000>;
+                         opp-level = <5>;
+                         qcom,opp-fuse-level = <2>;
+                 };
+                 cpr_opp6: opp6 {
+                         opp-hz = /bits/ 64 <533330000>;
+                         opp-level = <6>;
+                         qcom,opp-fuse-level = <2>;
+                 };
+                 cpr_opp7: opp7 {
+                         opp-hz = /bits/ 64 <652800000>;
+                         opp-level = <7>;
+                         qcom,opp-fuse-level = <2>;
+                 };
+                 cpr_opp8: opp8 {
+                         opp-hz = /bits/ 64 <729600000>;
+                         opp-level = <8>;
+                         qcom,opp-fuse-level = <2>;
+                 };
+                 cpr_opp9: opp9 {
+                         opp-hz = /bits/ 64 <800000000>;
+                         opp-level = <9>;
+                         qcom,opp-fuse-level = <2>;
+                 };
+                 cpr_opp10: opp10 {
+                         opp-hz = /bits/ 64 <806400000>;
+                         opp-level = <10>;
+                         qcom,opp-fuse-level = <2>;
+                 };
+                 cpr_opp11: opp11 {
+                         opp-hz = /bits/ 64 <883200000>;
+                         opp-level = <11>;
+                         qcom,opp-fuse-level = <2>;
+                 };
+                 cpr_opp12: opp12 {
+                         opp-hz = /bits/ 64 <960000000>;
+                         opp-level = <12>;
+                         qcom,opp-fuse-level = <2>;
+                 };
+         };
+
+---
+bod
