@@ -2,138 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C797686041
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:05:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36187686057
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:12:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230269AbjBAHFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 02:05:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48286 "EHLO
+        id S230189AbjBAHLz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 02:11:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231751AbjBAHFm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:05:42 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 529358A5B
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:05:25 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id q10-20020a1cf30a000000b003db0edfdb74so1913047wmq.1
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:05:25 -0800 (PST)
+        with ESMTP id S231546AbjBAHLw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:11:52 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAF357AA6
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:11:51 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id j32-20020a05600c1c2000b003dc4fd6e61dso610236wms.5
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:11:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e8gKGvK+r7EDr5He9Gl8MsjplN89RsEBb0xFGFSeoWY=;
-        b=ZDfGYSydUbs+W/mZ/JEdD6Q+8lcaLxLNi99HmCRr8gzdobuZMw/guj3LdnXcCx0jfS
-         i/DhUZgi36mxwP7NxLmv/bIWDlAEd3yc/osBtAxPRl9qH8KIMR349F6AFdABhD0Qtn0I
-         HSXoUmkKir6bff3h+lW+pB/Z6iRz6Ai4zv38CN1gpBrya5U682EU/6QBVmCPDYDVISYV
-         d2oMFyDeR7jUfDue8RH6lTl0NRpDwaVv06H4rEPbemSqpTVQGx29KqonFPRPoXIoJSyM
-         nTBEfeMaLzABTZMAIS0EzErF5H5641OBt4VdmoZuijfWPIN8aeuwXKeNd2jAvv526ZVF
-         LYgQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cn9LZKnUiXYPN0HrV8FpuolH+EcmV36idl0jPM8Bs7g=;
+        b=xULa/7uKAzVNHnAjrjCp9bVHGfDdSgVls4B3o+aiUOTV71IywmXVOFH7OcwQRPAvJ7
+         o4ekM/su0yqeVM3iZCXiPw8O3u2X6XfDGArz2H/Jpluck7lVJPyaR7zTZKiDC17mZ6uU
+         LNCR6kaYks2FVZFKDnlbpvujlu1UBSXPdfYB7/tPGUnmX0XtlF/7gBiwCr6p2S+1vw6x
+         KCiQltH7fAyBus7kyq+2VWrbTOAUfhEkc1ZrQ+P8F0OcOPi/bItCnidq+VUWduy3iHnu
+         hVfpdfZ2HrshxO7ANs0DY3mirg1Xu7jECm+ERSKSelXhozgIYiUYALyVDI+nUvb0UZFj
+         VJ+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=e8gKGvK+r7EDr5He9Gl8MsjplN89RsEBb0xFGFSeoWY=;
-        b=kM8I9Xp6TtOuNJ/lWNpWFWjNq73xDbx0WhhVSlHt+yATYMEAFF6BQZJxT6FCBtEBwc
-         bww7BQj3Y1iBpBy0E5lS0ObYXYcak8A/xVnnxn4Uvn68dxboNojlvuGreXyY3u1mxyN/
-         iyAxPuPc3dioEGUyNj7BzjpGL8JffrVJ1Q4eZp1X896QS15riFEQZ/SsSiLu9M4dMOtc
-         /Gr07NTbQRM6erd5woWol++9un0MNiAXK+IkoFbR07joF9AxiP9PVpSx7NUXB68G/alT
-         3vbUxDpZhQf+8WBDr+Kvqp+wlCgKHcWNl/w/j9QsQk1+DkaNesvFNFlatXQ3l16bt2+W
-         IJYg==
-X-Gm-Message-State: AO0yUKX/a4UvhmzqFaWLsQRDBtaCEgirOqvsv9bZJIgeWOriHXIaQiRM
-        qJW2REimommZKhIvFStKV016rw==
-X-Google-Smtp-Source: AK7set+k/wPPr1ZjoqjkmJ3suXeJsAYSrNEbwNPRfVbpz2KUV//5EoU3DiEoIgpuYmPe3INabtxGwA==
-X-Received: by 2002:a05:600c:4fd3:b0:3dc:5b88:e6dd with SMTP id o19-20020a05600c4fd300b003dc5b88e6ddmr914970wmq.10.1675235123776;
-        Tue, 31 Jan 2023 23:05:23 -0800 (PST)
-Received: from smtpclient.apple (global-5-143.n-2.net.cam.ac.uk. [131.111.5.143])
-        by smtp.gmail.com with ESMTPSA id r12-20020a05600c35cc00b003d9fba3c7a4sm800681wmq.16.2023.01.31.23.05.23
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 31 Jan 2023 23:05:23 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
-Subject: Re: [QUERY]: Block region to mmap
-From:   Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <Y9oHT1D1X9cdHLr0@infradead.org>
-Date:   Wed, 1 Feb 2023 07:05:22 +0000
-Cc:     Matthew Wilcox <willy@infradead.org>,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Linux-MM <linux-mm@kvack.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert.uytterhoeven@gmail.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <11BE997B-93C7-4D38-99BF-FD025A1FB945@jrtc27.com>
-References: <CA+V-a8tR1KiLSs=Psa=w7kf0zT=yU5_Ekr6-3V1MR==Wtzmksg@mail.gmail.com>
- <Y9KQPxzHBuZGIN4U@casper.infradead.org>
- <CA+V-a8uizF8sQgs8cfTwH3OnK+nvr2dXAoSOPTXCXLFnprHSeA@mail.gmail.com>
- <Y9fhOFEV0kS9U06/@casper.infradead.org> <Y9oHT1D1X9cdHLr0@infradead.org>
-To:     Christoph Hellwig <hch@infradead.org>
-X-Mailer: Apple Mail (2.3696.120.41.1.1)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cn9LZKnUiXYPN0HrV8FpuolH+EcmV36idl0jPM8Bs7g=;
+        b=SBp4YPv+RP5HL934J3antwBAcuBoBnttRi9Gk1UIRy21dNB51OYLXm0yXdi23jSe0X
+         AZA2IaFBfZBw5E/cr2ue1kapiI9/ckjvOoXzKFAJ24x0jwCi5gfvR3+B88rCiSD3kZ2s
+         DverYP/BbkWolVXEUbGlkNRLVsMa3YlLeLiPdxuGiWJdmiCjJoiR1Jt+BXwgS1+pj0xX
+         DIElwctOHWxJ5R+DMfX7LMxQdAb80VmvKaLH20oD8K5gOq/bj5lcu+jnJp/LVbdvL4Zw
+         zd8qzPf60eQ0WR9X1g/PNlG849FItrRxrRUEjW6K9/kDtQc2V75K5MP3aIKjOyatmRw4
+         ccdg==
+X-Gm-Message-State: AO0yUKWMKf2pgrku+HCt17HIqWuDJswveVS7k5Rh49HPMhtvd8gLHeVY
+        9qcyKbA4Kbhn8fZuuFNCvdfgYIsECTtF+WrN
+X-Google-Smtp-Source: AK7set/sqXRZ6V1JnblJNIQrhR6jqsQ/X0zsu4VBAYE/A3nGGIdQrfitkZ9AQ2RPkzdeaCl+ugfyYg==
+X-Received: by 2002:a05:600c:3b89:b0:3dc:19d1:3c13 with SMTP id n9-20020a05600c3b8900b003dc19d13c13mr891765wms.12.1675235510442;
+        Tue, 31 Jan 2023 23:11:50 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id m4-20020a05600c4f4400b003dc36981727sm858730wmq.14.2023.01.31.23.11.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 23:11:50 -0800 (PST)
+Message-ID: <17542e28-36dd-2bb6-6c04-49df9433a67a@linaro.org>
+Date:   Wed, 1 Feb 2023 08:11:48 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 14/15] ASoC: dt-bindings: renesas: add R8A779G0 V4H
+Content-Language: en-US
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
+Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org
+References: <87a61y6t8e.wl-kuninori.morimoto.gx@renesas.com>
+ <87pmau5ejk.wl-kuninori.morimoto.gx@renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <87pmau5ejk.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1 Feb 2023, at 06:31, Christoph Hellwig <hch@infradead.org> wrote:
-> On Mon, Jan 30, 2023 at 03:24:40PM +0000, Matthew Wilcox wrote:
->>> Basically we are making use of the memory protection unit (MPU) so
->>> that only M-mode is allowed to access this region and S/U modes are
->>> blocked.
->>=20
->> This sounds like RISC-V terminology.  I have no idea what M, S or U
->> modes are (Supervisor and User, I'd guess for the last two?)
->=20
->=20
-> Yes, M =3D Machine, S =3D Supervisor, and U =3D User.
-> M omde is the absolutele worst idea of RISC-V and basically a mix
-> of microcode and super-SMM mode.
->=20
->> Before we go too deeply into it, how much would it cost to buy all of
->> these parts and feed them into a shredder?  I'm not entirely joking;
->> if it's less than the software engineering time it'd take to develop
->> and support this feature, we should do it.
->=20
-> The above suggests this is in no way an actual hardware problem, but =
-the
-> stupid decision is done in the M-Mode firmware.  I think it is very
-> reasonable to simply not support the devices in Linux until the =
-firmware
-> is fixed.
+On 01/02/2023 03:02, Kuninori Morimoto wrote:
+> 
 
-No, it really is a hardware spec violation. Virtual addresses within
-the magic range bypass translation with no way to turn it off. The
-firmware is being (has been?) patched to block those accesses at the
-physical memory protection level so any attempt to use those virtual
-addresses will fault, but if Linux wants to support this cursed
-hardware and its gross spec violation then it needs to forbid any
-allocation of the VA range.
+Blank line above From?
 
-This magic range also overlaps with the default base address used for
-both GNU ld and LLVM LLD, for added entertainment, so almost every
-position-dependent binary that exists in the world for RISC-V cannot be
-run on this hardware. One could change that for future binaries, but
-that doesn=E2=80=99t seem right to me... IMO this hardware is even more =
-=E2=80=9Cnot
-RISC-V=E2=80=9D than the D1 with its page table mess, but I don=E2=80=99t =
-think we=E2=80=99ll
-ever see RISC-V International come out and say that, so it=E2=80=99s up =
-to the
-open-source communities to decide what they want to support and what
-they view as too much of a violation to be acceptable.
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> 
+> Document R-Car V4H (R8A779G0), and R-Car Gen4 SoC bindings.
+> 
+> Link: https://lore.kernel.org/r/87zga6t5r4.wl-kuninori.morimoto.gx@renesas.com
 
-Jess
+The Link is a tag added by maintainers pointing to applied version of
+the patch. This does not look correct...
+
+Don't you wanted to just reference v1 under ---?
+
+Best regards,
+Krzysztof
 
