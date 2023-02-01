@@ -2,145 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F321B686CAD
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 18:19:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0087686CB1
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 18:20:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbjBARTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 12:19:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45110 "EHLO
+        id S232079AbjBARUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 12:20:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232041AbjBARTX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 12:19:23 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 771274DE00
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 09:19:21 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id dr8so31890954ejc.12
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 09:19:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zaEIeCiOrKHpCOtlR5RrYuYkrDweJDnGW6XjiZXdYqw=;
-        b=S7J3fHKz7eoWsPIozlLaOcfDxUT6CU8eGxhhLcngjMrvGQujfyBhnoTo8zV8YbV7I5
-         XKzpfcXL4/uH6WpTE9gL1It3699RLW3YxA6FwGgC31T8EnzAjWKUn9gikFOhdWYto/zI
-         jH93fTOjKfm8Q9bjhgXEwJkaFraSLye8uhrIeK8oq7hL8HobfGPpr75HP5qjqVzjjeQZ
-         YsHcbDa+3EPi5nl0nfsOQ+jU/FYp45RCyzX8nh51aTm4R2nxbJun3MkZm/1h5uCl39jO
-         +jKnYTe4on6YFPGRimPmzSTeLEsICWEOZvdW666rTLjHPMtbMol9N2ZXzZujUlkBArAW
-         ElRw==
+        with ESMTP id S232055AbjBARUN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 12:20:13 -0500
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D21FF4F36F;
+        Wed,  1 Feb 2023 09:20:09 -0800 (PST)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-16346330067so24419855fac.3;
+        Wed, 01 Feb 2023 09:20:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zaEIeCiOrKHpCOtlR5RrYuYkrDweJDnGW6XjiZXdYqw=;
-        b=GM38GZmHoKkQYyNTlPL9XVkZe1kG0TFAdJXPL38IBIHEGaQhqqF6Kd8TcVR23yT46F
-         FHeT39+6CvbYBFRuzqcLaCMUXGdvSRL3oAll/BFKv4nRQ+FBaayc5WUaYBxHP8U0Af9N
-         PyYHx41qdi5oAKAyX8kCB7eweYPZacbb1FZo35bVLhIXp/6oL5g5AHQJSHlg98FXPuoi
-         j23Fo8jxovjB5M6AuMDe4hLSLliy791feeX/hkS3M3NLLU1V46GSVxylRDjWPW6PQTJf
-         3AJK0T/37IuV2MddFeRlSWKWVFDOUwYrr1F+xufLg/JHpv0aC2BT2p+BiNB0tkXWJpCN
-         EPHQ==
-X-Gm-Message-State: AO0yUKVS4CM3q2UOjCGU9OQlNYr7nROpXwYs7Gehblykx82Uw5tsaNZ9
-        KxnJ6jSadNWU23CM4CJI+y3Jhw==
-X-Google-Smtp-Source: AK7set8+DE09XcJZzYSicBIUvVpus1QzP6iRGUcYVUuihrlXVmIxky/e9/LE8wo+/+Zt86xjWOPzDQ==
-X-Received: by 2002:a17:907:6d02:b0:877:5dbc:da84 with SMTP id sa2-20020a1709076d0200b008775dbcda84mr4102789ejc.72.1675271960025;
-        Wed, 01 Feb 2023 09:19:20 -0800 (PST)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id qu21-20020a170907111500b00884c611145fsm6644803ejb.62.2023.02.01.09.19.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 09:19:19 -0800 (PST)
-Message-ID: <9c86f610-b8f8-a6e5-396a-1f6339c8529f@linaro.org>
-Date:   Wed, 1 Feb 2023 19:19:18 +0200
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JvS6IzC8bwewPncy4ABn16veV+Ux4xgWqkXAqCcyLxY=;
+        b=i1ymH9eG1KTE8s//6Zg7bEKO+1EgQlH+OSfPTDFvkT+Ph3XWGefVK4qwuBR/817YaM
+         6w3TyXA9HBVCgxg8ECWlbopFV2zDwYXOdh5edKivDeOpyZBy+Kz9Tddd3ecGF9S8Hth5
+         +d1M7kI+pGGnEfHf10WE89bxfUU9Bkg9qKUfdB1CI9KuE4qGzXryIAubC+wUGP5/mMCv
+         qlCkeVSLDeZiNgBxv/gMCEfhpIAyBInhFniNcouU266Mcq+8NXsBTFS7qzxbQ0PCgUj9
+         p6qjoYp4kDkQu5QMS7MWCrRL+G3b/QN3kqnleMEquKnPF9dUEwo8D6vpUrH22PLVzpaU
+         +Bdw==
+X-Gm-Message-State: AO0yUKUHqUlcZgVrhZgeyRuGN5XoWxF0rdxxsphBaxsxhvXheJJVtlQo
+        6ohjlCdS0uWIFLBO4OXcTA==
+X-Google-Smtp-Source: AK7set/BDnVzkpsE8Teoq5qX/sm2jzdvxGaWqxAltLjnnVeHkNBTa305CN2wWkzToMcN1ClyGheccg==
+X-Received: by 2002:a05:6871:28e:b0:166:732f:243b with SMTP id i14-20020a056871028e00b00166732f243bmr1364046oae.52.1675272009003;
+        Wed, 01 Feb 2023 09:20:09 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q42-20020a05687082aa00b001676a4dc22bsm1312853oae.58.2023.02.01.09.20.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Feb 2023 09:20:08 -0800 (PST)
+Received: (nullmailer pid 3750008 invoked by uid 1000);
+        Wed, 01 Feb 2023 17:20:07 -0000
+Date:   Wed, 1 Feb 2023 11:20:07 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Youghandhar Chintala <quic_youghand@quicinc.com>, kvalo@kernel.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
+        ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt: bindings: add dt entry for XO calibration
+ support
+Message-ID: <20230201172007.GA3733090-robh@kernel.org>
+References: <20230131140345.6193-1-quic_youghand@quicinc.com>
+ <20230131140345.6193-2-quic_youghand@quicinc.com>
+ <622ef51f-643e-5eb5-3884-3f22bf4fa9be@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 2/2] PM / devfreq: qcom: Introduce CCI devfreq driver
-Content-Language: en-GB
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     Jun Nie <jun.nie@linaro.org>, myungjoo.ham@samsung.com,
-        kyungmin.park@samsung.com, cw00.choi@samsung.com,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230201080227.473547-1-jun.nie@linaro.org>
- <20230201080227.473547-2-jun.nie@linaro.org>
- <515f4e9e-2804-e03a-26f5-f2d3ac331109@linaro.org>
- <71ba0d05-6183-95ef-9e45-cc3dd512475f@linaro.org>
- <CAA8EJpqyqC5D+O=KJnuZnWN4BwBOKcquN11nJfEp2WMSmJobBg@mail.gmail.com>
- <58a5e856-3e8b-d660-09ee-7a18b184452f@linaro.org>
- <1d33eb58-95d1-643d-52cc-2888ff0cea43@linaro.org>
- <86478fbd-590a-f94f-6cc1-f4d06a96826e@linaro.org>
- <2a0ce32c-d100-d5c3-ac0c-ccd7100a2c06@linaro.org>
- <8eb9ba9b-dce8-5ece-6c2a-7e7a758c75ab@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <8eb9ba9b-dce8-5ece-6c2a-7e7a758c75ab@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <622ef51f-643e-5eb5-3884-3f22bf4fa9be@linaro.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/02/2023 19:16, Bryan O'Donoghue wrote:
-> On 01/02/2023 17:12, Dmitry Baryshkov wrote:
->> On 01/02/2023 17:17, Bryan O'Donoghue wrote:
->>> On 01/02/2023 14:58, Dmitry Baryshkov wrote:
->>>> On 01/02/2023 16:45, Bryan O'Donoghue wrote:
->>>>> On 01/02/2023 13:41, Dmitry Baryshkov wrote:
->>>>>>>                           cci-cpufreq {
->>>>>>>                                   target-dev = <&cci_cache>;
->>>>>>>                                   cpu-to-dev-map-0 =
->>>>>>>                                           <  200000  200000000 >,
->>>>>>>                                           <  345600  200000000 >,
->>>>>>>                                           <  400000  200000000 >,
->>>>>>>                                           <  533330  297600000 >,
->>>>>>>                                           <  800000  297600000 >,
->>>>>>>                                           <  960000  297600000 >,
->>>>>>>                                           < 1113600  297000000 >,
->>>>>>>                                           < 1344000  595200000 >,
->>>>>>>                                           < 1459200  595200000 >,
->>>>>>>                                           < 1497600  595200000 >,
->>>>>>>                                           < 1651200  595200000 >;
->>>>>>>                                   cpu-to-dev-map-4 =
->>>>>>>                                           <  200000 200000000 >,
->>>>>>>                                           <  249600 200000000 >,
->>>>>>>                                           <  499200 297600000 >,
->>>>>>>                                           <  800000 297600000 >,
->>>>>>>                                           <  998400 595200000 >,
->>>>>>>                                           < 1113600 595200000 >;
->>>>>> These should map to existing opp entries.
->>>>>>
->>>>>> I ended up doing the interconnect driver that maps a clock to the
->>>>>> interconnect. Then I can use it in the cpu opp tables.
->>>>>>
->>>>>
->>>>> Can you point us at what it is you are proposing ?
->>>>
->>>> https://patchwork.kernel.org/project/linux-arm-msm/patch/20230120061417.2623751-9-dmitry.baryshkov@linaro.org/
->>>>
->>> Is there no driver code too ?
->>
->> There are two parts, one is the 'CBF clock' driver, which just 
->> provides a clock, another part actually connects the clock and 
->> interconnect. Initially I implemented it as a part of the CBF driver 
->> (see 
->> https://patchwork.kernel.org/project/linux-arm-msm/patch/20230120061417.2623751-5-dmitry.baryshkov@linaro.org/), next revision will move the interconnect part to drivers/interconnect.
->>
+On Tue, Jan 31, 2023 at 07:02:16PM +0100, Krzysztof Kozlowski wrote:
+> On 31/01/2023 15:03, Youghandhar Chintala wrote:
+> > Add dt binding to get XO calibration data support for Wi-Fi RF clock.
 > 
-> Ah so just to be clear - discussing with Dmitry - CCI has its own set of 
-> fuses.
+> Use subject prefixes matching the subsystem (which you can get for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching).
+> Hint: dt-bindings: net: qcom,ath11k:
 > 
-> We have fusebin settings for clusterX and CCI.
+> > 
+> > Signed-off-by: Youghandhar Chintala <quic_youghand@quicinc.com>
+> > ---
+> >  .../devicetree/bindings/net/wireless/qcom,ath11k.yaml         | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> > index f7cf135aa37f..205ee949daba 100644
+> > --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> > +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> > @@ -41,6 +41,10 @@ properties:
+> >          * reg
+> >          * reg-names
+> >  
+> > +  xo-cal-data:
+> > +    description:
+> > +      XO cal offset to be configured in XO trim register
 > 
-> So, I think we agree this means a separate driver for cci is warranted.
+> Missing type. I also do not understand what's this and why some register
+> offset should be stored in DT. Please give us some justification why
+> this is suitable for DT.
 
-Yes.
+I think that's a voltage offset or something, but you are right, we 
+shouldn't have to guess.
 
--- 
-With best wishes
-Dmitry
+It needs a vendor prefix, too.
 
+Rob
