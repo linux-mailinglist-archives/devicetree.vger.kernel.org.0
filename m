@@ -2,113 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67F756860C8
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:38:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F8CA6860E8
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:47:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231938AbjBAHi5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 02:38:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39074 "EHLO
+        id S232007AbjBAHrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 02:47:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231939AbjBAHi5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:38:57 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC9D551C59
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:38:51 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id f47-20020a05600c492f00b003dc584a7b7eso654957wmp.3
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:38:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rruAmV9Uf5Hcl9hQCEy5robAKir9unM5ck997RFMX8I=;
-        b=FwBoEPVRCogQqe9FwjlzFft0Yxyu7UPcvYex7ji4jlsu95uk9nYCx1cEOEUSki+gkx
-         zCHJXMksh3fWfV54ewKL50IhcuElkTz3Cot5aHKBjnIExMbB95i8wGhgDlI/tUb/cFKT
-         JkDUHYlxfd5PfOPHgxjTEVU61qjzu0lWaP2jGov6x3zJYG9J4CJvwGTl8DouXu2ITrcL
-         zG1vyN+tSsTo2ixiP+1ZddVu9n2fQ/3f3rlkDF0nl49pi99p0GKALZ/4puE0L6nyBXhl
-         qGsfi/Br8MOdmpjgL4ppSJt/03t4hCgSlDWLlXaBXHV62a/Uf741AFd8Mt18IstcvqmW
-         O+OA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rruAmV9Uf5Hcl9hQCEy5robAKir9unM5ck997RFMX8I=;
-        b=YqoXcMAapa3Wrld9D6OBgxFJOqcpIkaW0qKD5tMuM/03Djv3YZ+3YAajF9mB4QimPS
-         kRGrG4AAbgDv4+rKqRhXZSIDebTzxuIU1tViW5OHLYnxJPc6SkynkLl+M/sbgYTHk4gG
-         ZLVY1zipY6oVXZbroE4p+cSYfeZCAH4LKID0eb3w1Ucb0BU5hI4sIIqFGsKwHPbvdJhS
-         HC5cydhEMJMqn3hLqjZ6gCKLJq+tukZwmmp2q6/Rhzel15gFCEr6fkegihJ/Kb+kpxgP
-         BDJpHiSiEJzRW8nHW5FXejVaRvfkVofi4PU0S0a0GYQ772sCIe2ZLrE9OA2J5nPAUlEJ
-         WCIg==
-X-Gm-Message-State: AO0yUKW8cl4oTelZBULURJMPXq+S3JvNWIZwtSOxBZI3J1J2cf3FPH9Y
-        bs835dEKZZxalyGYE/Rm6gDplQ==
-X-Google-Smtp-Source: AK7set92R7HYwYsOrLSUKb+5aTwkUFUbqOC2ASSd7D2z7qSN8UK8bmDodyucNPdtXWOYT5Tw8IvPxQ==
-X-Received: by 2002:a05:600c:4f07:b0:3db:15b1:fb28 with SMTP id l7-20020a05600c4f0700b003db15b1fb28mr1002455wmq.19.1675237130432;
-        Tue, 31 Jan 2023 23:38:50 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y6-20020a7bcd86000000b003dc4480df80sm845229wmj.34.2023.01.31.23.38.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 23:38:50 -0800 (PST)
-Message-ID: <31e979dd-f4e9-081e-1bf2-e44dffc4e70f@linaro.org>
-Date:   Wed, 1 Feb 2023 08:38:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 2/3] dt-bindings: rtc: moxart: use proper names for gpio
- properties
-Content-Language: en-US
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        with ESMTP id S230207AbjBAHqn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:46:43 -0500
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5243B5D12B;
+        Tue, 31 Jan 2023 23:46:09 -0800 (PST)
+Received: (Authenticated sender: gregory.clement@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 1500CE0003;
+        Wed,  1 Feb 2023 07:46:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1675237567;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=z25cfYozFGO7GRW7aRvp/LnRji5Y6L8B9ioccgyMGOo=;
+        b=FVczT2DdcQRv21R6CZfD8lXiI6mt72zNv/4Dsv1FyVceB+PrtVgU3PeLgVGrLg2otMRWqe
+        hR4dxyxdOb+hwvssL6bMIjIeajlHUISohPD3bvgqjMmplFkgaw0aUcOQ+AuaJgiGJjVhFY
+        hUIIehahUdvRMoUx1F5FXX8IZZxu6hip3gzHuXxAbYQ7KG6h3rq6+siyp+CHGKbLPITWYY
+        4igq1MEU9EzThXmhOeM9BKwX8T3FL2fe6vhBXiEIpsFK9+48TiZGUm2k28ZlQuo6dVK+wU
+        WVOB85Jl9inH8Vnak10doHqSRMhMCGtIa6KS15Zl39TNPUoBoSBKiJOegpwE+Q==
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230201054815.4112632-1-dmitry.torokhov@gmail.com>
- <20230201054815.4112632-2-dmitry.torokhov@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230201054815.4112632-2-dmitry.torokhov@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: Fix compatible strings for Armada
+ 3720 boards
+In-Reply-To: <20220713125644.3117-1-pali@kernel.org>
+References: <20220713125644.3117-1-pali@kernel.org>
+Date:   Wed, 01 Feb 2023 08:46:05 +0100
+Message-ID: <87h6w5bzgi.fsf@BL-laptop>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/02/2023 06:48, Dmitry Torokhov wrote:
-> MOXA ART RTC driver has been switched to gpiod API and is now using
-> properly named properties for its gpios (with gpiolib implementing a
-> quirk to recognize legacy names). Change binding document to use
-> proper names as well.
-> 
-> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Pali Roh=C3=A1r <pali@kernel.org> writes:
+
+> All Armada 3720 boards have Armada 3720 processor which is of Armada 3700
+> family and do not have Armada 3710 processor. So none of them should have
+> compatible string for Armada 3710 processor.
+>
+> Fix compatible string for all these boards by removing wrong processor
+> string "marvell,armada3710" and adding family string "marvell,armada3700"
+> as the last one. (Note that this is same way how are defined Armada 3710
+> DTS files).
+>
+> Signed-off-by: Pali Roh=C3=A1r <pali@kernel.org>
+
+
+Fixedd a marge conflict and applied on mvebu/dt64
+
+Thanks,
+
+Gregory
+
 > ---
->  .../devicetree/bindings/rtc/moxa,moxart-rtc.txt      | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.txt b/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.txt
-> index c9d3ac1477fe..1374df7bf9d6 100644
-> --- a/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.txt
-> +++ b/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.txt
-> @@ -3,15 +3,15 @@ MOXA ART real-time clock
->  Required properties:
->  
->  - compatible : Should be "moxa,moxart-rtc"
-> -- gpio-rtc-sclk : RTC sclk gpio, with zero flags
-> -- gpio-rtc-data : RTC data gpio, with zero flags
-> -- gpio-rtc-reset : RTC reset gpio, with zero flags
-> +- rtc-sclk-gpios : RTC sclk gpio, with zero flags
-> +- rtc-data-gpios : RTC data gpio, with zero flags
-> +- rtc-reset-gpios : RTC reset gpio, with zero flags
+>  arch/arm64/boot/dts/marvell/armada-3720-db.dts                  | 2 +-
+>  arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts    | 2 +-
+>  arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts   | 2 +-
+>  arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts | 2 +-
+>  arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts      | 2 +-
+>  arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts         | 2 +-
+>  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts          | 2 +-
+>  arch/arm64/boot/dts/marvell/armada-372x.dtsi                    | 2 +-
+>  8 files changed, 8 insertions(+), 8 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-db.dts b/arch/arm64/=
+boot/dts/marvell/armada-3720-db.dts
+> index bd4e61d5448e..0cfb38492021 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-db.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-db.dts
+> @@ -18,7 +18,7 @@
+>=20=20
+>  / {
+>  	model =3D "Marvell Armada 3720 Development Board DB-88F3720-DDR3";
+> -	compatible =3D "marvell,armada-3720-db", "marvell,armada3720", "marvell=
+,armada3710";
+> +	compatible =3D "marvell,armada-3720-db", "marvell,armada3720", "marvell=
+,armada3700";
+>=20=20
+>  	chosen {
+>  		stdout-path =3D "serial0:115200n8";
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts=
+ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts
+> index 5c4d8f379704..6715a19c1483 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts
+> @@ -18,7 +18,7 @@
+>  / {
+>  	model =3D "Globalscale Marvell ESPRESSOBin Board (eMMC)";
+>  	compatible =3D "globalscale,espressobin-emmc", "globalscale,espressobin=
+",
+> -		     "marvell,armada3720", "marvell,armada3710";
+> +		     "marvell,armada3720", "marvell,armada3700";
+>  };
+>=20=20
+>  &sdhci0 {
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dt=
+s b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> index 070725b81be5..447760b69850 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> @@ -13,7 +13,7 @@
+>  / {
+>  	model =3D "Globalscale Marvell ESPRESSOBin Ultra Board";
+>  	compatible =3D "globalscale,espressobin-ultra", "marvell,armada3720",
+> -		     "marvell,armada3710";
+> +		     "marvell,armada3700";
+>=20=20
+>  	aliases {
+>  		/* ethernet1 is WAN port */
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.=
+dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+> index 75401eab4d42..2a8aa3901a9f 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+> @@ -19,7 +19,7 @@
+>  	model =3D "Globalscale Marvell ESPRESSOBin Board V7 (eMMC)";
+>  	compatible =3D "globalscale,espressobin-v7-emmc", "globalscale,espresso=
+bin-v7",
+>  		     "globalscale,espressobin", "marvell,armada3720",
+> -		     "marvell,armada3710";
+> +		     "marvell,armada3700";
+>=20=20
+>  	aliases {
+>  		/* ethernet1 is wan port */
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts b=
+/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+> index 48a7f50fb427..b03af87611a9 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+> @@ -18,7 +18,7 @@
+>  / {
+>  	model =3D "Globalscale Marvell ESPRESSOBin Board V7";
+>  	compatible =3D "globalscale,espressobin-v7", "globalscale,espressobin",
+> -		     "marvell,armada3720", "marvell,armada3710";
+> +		     "marvell,armada3720", "marvell,armada3700";
+>=20=20
+>  	aliases {
+>  		/* ethernet1 is wan port */
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts b/ar=
+ch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
+> index 1542d836c090..c5a834b33b77 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
+> @@ -16,5 +16,5 @@
+>=20=20
+>  / {
+>  	model =3D "Globalscale Marvell ESPRESSOBin Board";
+> -	compatible =3D "globalscale,espressobin", "marvell,armada3720", "marvel=
+l,armada3710";
+> +	compatible =3D "globalscale,espressobin", "marvell,armada3720", "marvel=
+l,armada3700";
+>  };
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arc=
+h/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> index caf9c8529fca..5840ed129309 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> @@ -14,7 +14,7 @@
+>  / {
+>  	model =3D "CZ.NIC Turris Mox Board";
+>  	compatible =3D "cznic,turris-mox", "marvell,armada3720",
+> -		     "marvell,armada3710";
+> +		     "marvell,armada3700";
+>=20=20
+>  	aliases {
+>  		spi0 =3D &spi0;
+> diff --git a/arch/arm64/boot/dts/marvell/armada-372x.dtsi b/arch/arm64/bo=
+ot/dts/marvell/armada-372x.dtsi
+> index 5ce55bdbb995..02ae1e153288 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-372x.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-372x.dtsi
+> @@ -13,7 +13,7 @@
+>=20=20
+>  / {
+>  	model =3D "Marvell Armada 3720 SoC";
+> -	compatible =3D "marvell,armada3720", "marvell,armada3710";
+> +	compatible =3D "marvell,armada3720", "marvell,armada3700";
+>=20=20
+>  	cpus {
+>  		cpu1: cpu@1 {
+> --=20
+> 2.20.1
+>
 
-Your driver breaks the ABI, doesn't it? If not, how are the old
-properties parsed?
-
-Best regards,
-Krzysztof
-
+--=20
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
