@@ -2,122 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D22D6864D9
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 11:56:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 664FB6864DB
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 11:57:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232287AbjBAK4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 05:56:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57752 "EHLO
+        id S232063AbjBAK5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 05:57:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231799AbjBAK4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 05:56:49 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3808F59E5B
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 02:56:48 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id y1so16921784wru.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 02:56:48 -0800 (PST)
+        with ESMTP id S231799AbjBAK5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 05:57:00 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B329CDD7;
+        Wed,  1 Feb 2023 02:56:58 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id iv8-20020a05600c548800b003db04a0a46bso2349439wmb.0;
+        Wed, 01 Feb 2023 02:56:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nl7xjwnlIFO9cTPnHakzqSLtSfVZPcvJWgfAb9UTMgg=;
-        b=yMwEZzFJds1B31S8gN6Gtf3DXOsheuyX+qdKKzQ1XkldQSxHFEm+qWlYJCE95L51pm
-         gmFplAF3bDfpnRBjiuWm7sxaIPnZNbkwY4FHvtv4KquGN8IuauXG1mTjvKXslADq7RQw
-         X7EGQSFtfGh2vS9VVUcKMXowGNKmeQbwBymnOoPl0JB7DB/3CVhBYYdJ9KyVIYEjU1yi
-         kW2WXgrylGrw4gWvwTBtJrYMFWa2aW3G9PgeRaIETAbdyNhZNnP2dp0sD158O3ieDN9V
-         ZQV6FMqiMlKV3/IaU1Zms6aVa9y7DPuxEWuOGAiPmsikz3NJhHpZlQAPW6Tbf7WiNYzX
-         nl1g==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LinfPfwdc69r+5MS9+W8GWtbQTG5CSXHZBHVy7HHbcc=;
+        b=d9PgESiUcaaRDq+WJ3qIgUQfDcb66ZTE97cDw7SP6ZgJ3dD3SeK72xuDAnSYhmTgnq
+         /wpB10A26l+EJ3cf+WDXXjHtkOZQX+0iGr4nLsuWOH6fZ3ADULkg0w6ayIs+izB5KSi3
+         BilQgqt1RChReSbl/E+QB82h9uyKf+ipLBKu2aLDxw1DHdtsRaKE6d9prSeFiURA7Sds
+         UpTOPVYZicbDAuMSU2Ajfb77KnWRDP3xSOClB6BFn7p2uYWGHRq8sf2qLel5NtGxWeRV
+         1Vpiht2CFIr3Y0u6shqlmXHt0q7gl47P+Hfu4euynXC9rExcBXgf1ooc3cr52Ta87HJ0
+         3F/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Nl7xjwnlIFO9cTPnHakzqSLtSfVZPcvJWgfAb9UTMgg=;
-        b=wCuUmI5f2fX5+l/z2Co7jylVj05tWzjZNHH+QbYBlAriXCFVlSYwLpGWX4J6bsXOLO
-         sJYONOtI40Y4BR98y5ng8BzYHBtz4OcqB0yYYLwdx6dyCSeya2d8LIsJeIaOhWN3u8tN
-         KYiaJbPsSPLOAEzmZIdfssJMK+zFTefkgcB++TPvHacRfGOJmw+QqHtlXJQQlP4hz+ji
-         n7758K6Zb3vPYtBewHEBHfzBRzSLDrLliilia73dYnsXQaTENtaUhQ63npcYbdnjUUGl
-         aMNSlnena9HPA+tcr0PQv2zem4kijMapnbVOi8UB/4wfLCr0YNZa7UQoF7iY3JPpjVNv
-         xnLA==
-X-Gm-Message-State: AO0yUKX8koKVkq7klSLMFiw+r+JKjPHnQ5XQZ0aoK37iyzpUvbBIEfQq
-        e9VlnVEfp7qcWGST4oZUfWKBhg==
-X-Google-Smtp-Source: AK7set+KPB702v3Zc0QEXCUeeDFVfwvU1Lo9YL4UGHj4SIr90S4Y+aj9ttU3Tq07PI/5GAwPH9ZT0w==
-X-Received: by 2002:adf:fc88:0:b0:2bf:d137:9945 with SMTP id g8-20020adffc88000000b002bfd1379945mr1887395wrr.51.1675249006727;
-        Wed, 01 Feb 2023 02:56:46 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:bad9:621b:618e:38d6? ([2a01:e0a:982:cbb0:bad9:621b:618e:38d6])
-        by smtp.gmail.com with ESMTPSA id v9-20020a056000144900b002c3b2afae00sm1870583wrx.41.2023.02.01.02.56.45
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LinfPfwdc69r+5MS9+W8GWtbQTG5CSXHZBHVy7HHbcc=;
+        b=Lf1e+6fkJqNq3N9CAsdqCxlMZCaipoFDPZWl71OuZHXg7VfOwKyMGT2tCuZeK5bDSY
+         K3dzEJdPnrOQijw1K/VjoKhT0g1L2BbEEN+HOS7P5NE8LhDm8FP006f7GWoRlajLMr96
+         Kn/ciWepXJXEolG8OJ2BhsiEFMD3w847L8aQCCX7nlTB+yYFg/RgCG976/RTxw1pr/+B
+         68aRAzpsqcrXsHnDxHbXID3Kr1rh9wFOFS8A90akfjyaNtfTBXPmmENnilPcJMR9PPle
+         BPLCX809f5cwHt5wJ6Li92TiBH0KG9VI4g6G8qfGgJar2vi2c22TklDtTzICJ0XWPIX0
+         jbZg==
+X-Gm-Message-State: AO0yUKV4Kh2czdgisTcYl0LIjCfYKLGHZiMVydW62v2Jmt1jebebJkuH
+        My3dc3asRpWk0sE35rzYpss=
+X-Google-Smtp-Source: AK7set/YIe/I+C+MEjw/u4XskuAdX7Srwo/ASJLfYgnYv2wbXKrk75N0foIaGyXaEO3k+QVkOVLCEQ==
+X-Received: by 2002:a05:600c:601b:b0:3dc:557f:6129 with SMTP id az27-20020a05600c601b00b003dc557f6129mr1566953wmb.2.1675249016755;
+        Wed, 01 Feb 2023 02:56:56 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id l16-20020a1c7910000000b003dc1d668866sm1357736wme.10.2023.02.01.02.56.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 02:56:46 -0800 (PST)
-Message-ID: <604029c8-3286-8514-ec35-6c5cb1b7a38a@linaro.org>
-Date:   Wed, 1 Feb 2023 11:56:45 +0100
+        Wed, 01 Feb 2023 02:56:56 -0800 (PST)
+Message-ID: <f5e283bf-2cd2-779e-eb2d-ef36f4780153@gmail.com>
+Date:   Wed, 1 Feb 2023 11:56:54 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
- binding
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 1/2] arm64: dts: mediatek: mt7622: Add missing
+ pwm-cells to pwm node
 Content-Language: en-US
-To:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
- <285b7b4b-4fd4-be5f-266c-96b1ee6f4cbf@gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <285b7b4b-4fd4-be5f-266c-96b1ee6f4cbf@gmail.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org, john@phrozen.org, sean.wang@mediatek.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20221128112028.58021-1-angelogioacchino.delregno@collabora.com>
+ <20221128112028.58021-2-angelogioacchino.delregno@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20221128112028.58021-2-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiner,
 
-On 30/01/2023 22:00, Heiner Kallweit wrote:
-> Convert Amlogic Meson pinctrl binding to yaml.
+
+On 28/11/2022 12:20, AngeloGioacchino Del Regno wrote:
+> Specify #pwm-cells on pwm@11006000 to make it actually usable.
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Fixes: ae457b7679c4 ("arm64: dts: mt7622: add SoC and peripheral related device nodes")
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Applied, thanks!
+
 > ---
-> v2:
-> - consider that more than one compatible can be set
-> - remove bus part from example
-> v3:
-> - remove minItem/maxItem properties for compatible
-> ---
->   .../pinctrl/amlogic,meson-pinctrl.yaml        | 122 ++++++++++++++++++
->   .../bindings/pinctrl/meson,pinctrl.txt        |  94 --------------
->   2 files changed, 122 insertions(+), 94 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl.yaml
->   delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+>   arch/arm64/boot/dts/mediatek/mt7622.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-
-<snip>
-
-Please send new versions as separate threads, or keep the same thread structure othwerwise
-it highly confuses humans & b4 when applying the patches...
-
-Assuming new revision: v2 ([PATCH v2] dt-bindings: pwm: Convert Amlogic Meson PWM binding)
-Assuming new revision: v4 ([PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding)
-Assuming new revision: v5 ([PATCH v2] dt-bindings: interrupt-controller: Convert Amlogic Meson GPIO interrupt controller binding)
-Assuming new revision: v6 ([PATCH v3] dt-bindings: interrupt-controller: Convert Amlogic Meson GPIO interrupt controller binding)
-Assuming new revision: v7 ([PATCH v2] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding)
-
-Thanks,
-Neil
-
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> index 146e18b5b1f4..f321c6d0fd7c 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> @@ -435,6 +435,7 @@ uart3: serial@11005000 {
+>   	pwm: pwm@11006000 {
+>   		compatible = "mediatek,mt7622-pwm";
+>   		reg = <0 0x11006000 0 0x1000>;
+> +		#pwm-cells = <2>;
+>   		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_LOW>;
+>   		clocks = <&topckgen CLK_TOP_PWM_SEL>,
+>   			 <&pericfg CLK_PERI_PWM_PD>,
