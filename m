@@ -2,120 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29915686B57
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 17:15:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB70D686B73
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 17:23:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231718AbjBAQPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 11:15:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51638 "EHLO
+        id S230214AbjBAQXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 11:23:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231285AbjBAQPc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 11:15:32 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 094F5B3
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 08:15:31 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id hn2-20020a05600ca38200b003dc5cb96d46so1777536wmb.4
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 08:15:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Akhmn5actGLIdiBKY1RGD6tVXjYHB9tU5fwD4dusjfk=;
-        b=zBQ73vo7dvJsJ+CtZXk/NRBVjxrmhbQUB76WVjxpO0oevyeVPpEwF9Lh7S3wdr2k/R
-         7ziUWECCiCoJO25xCbmKULg+l7tOaIu9Pbw/UAEo50BJR7wfaKwwBo0hRBzYrncVnbJb
-         VxZVQ3p3jwVzbZWyq0nFo5pOttVFu2u9HAJvzXMo2z1ueiwrsa6THSAmbiJsqh3IHiNS
-         kq2oFtkDH9/t/7ri3Mmq0o3X+89mVhrfSJf/+Bn+A6UPCChcvX2vUsAwVxFaJUcNEoOw
-         GVwryHvoEP6+stLVooB16s0HoiSWYMqMCs+798XWMu+1AQRZfOB69je8Z/EhwLnVQXtK
-         3Q7Q==
+        with ESMTP id S230032AbjBAQXB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 11:23:01 -0500
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 796B87692;
+        Wed,  1 Feb 2023 08:22:59 -0800 (PST)
+Received: by mail-ot1-f50.google.com with SMTP id d21-20020a056830005500b0068bd2e0b25bso2674381otp.1;
+        Wed, 01 Feb 2023 08:22:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Akhmn5actGLIdiBKY1RGD6tVXjYHB9tU5fwD4dusjfk=;
-        b=mx/KB/k4cyFdR9dSUDJpV9qBBgxKgcgckwigcaoVocgcgUBqh3QM87n/szNTPEMp9C
-         wW8NWsEkEdv7lervK3L00qTrXy08iq+1mIA+9dXw45deIjl5PdzqmOZL+oM7NC5vpjNR
-         RIhHq1JtMawXdSMm5O6lrwRqCAYfxA7r82brZBOHSUSHzH11E7Ttez4AQrgze9xVnh1q
-         PcxO+8OlZpUJCil9kU90iSRywscBAkOUzd8EM+J4QfRiQobVnzPIgkZvGmeMRYzVcOaT
-         JBdxEQai8+KdyJ8qkzUBn0kEJSswiZBJy6ewq00MGSBG3ayeQNKDcyn23j7ZJ1USrh+A
-         sQ2A==
-X-Gm-Message-State: AO0yUKXxCWH/EGPD9/2BwwFvQJBMQjkbWLDaOxzD70WG4XPNlqmWrqj1
-        cQfgsgHxvzxDhMBo+PlAGMBLzw==
-X-Google-Smtp-Source: AK7set9b2w9VpCLvBN3+NqeaahdJlaPN4olEcUe0FTfkdcB4Kt9xYgGmXdXsMwrGnwEQhDaVIJmfmA==
-X-Received: by 2002:a05:600c:1e0b:b0:3da:1e35:dfec with SMTP id ay11-20020a05600c1e0b00b003da1e35dfecmr2773018wmb.4.1675268129611;
-        Wed, 01 Feb 2023 08:15:29 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l13-20020adff48d000000b002366e3f1497sm17683823wro.6.2023.02.01.08.15.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 08:15:29 -0800 (PST)
-Message-ID: <d4c1da7b-5b49-6bbf-4470-b3f2eef7f745@linaro.org>
-Date:   Wed, 1 Feb 2023 17:15:27 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R40wPAUHV11BoLIxg3n5Gsakpb6u6fji29HG4MLTY4o=;
+        b=ZvFFJCwwwAO5Fw1Nns7IPmazHQaJlzIN9/v1oCydo0HvK7kY0RFIwhQSjjgLZyuJUm
+         MHDmgz5GNcbNktx5xPlpIu2l1f4NBkvb+URZ8qxz3Rvcepk2lTmCJ/WAhTLGmPsgHF7Q
+         1IfjrzDjFi1pwHlZzpfJa01GFKX8/37Wr58d/8WVm6sAxnOrgHUDL9unIDpPXKwwn6uS
+         80R03qbbTubUAhFTVirhAhrbuMTB2IYJo6oQDEHIQMHANXYfiXMr/iuux9Eh6jpQtcX2
+         zoFLPbURJh/4obhdvufupXmM8lnkWY4UQMFiJYzqto4qbbzKwuQ2cD1upj3DXfAVDddu
+         Z1XA==
+X-Gm-Message-State: AO0yUKXxX/LsCcy/EpEGHYSaUpA5CSE+mbVcJVAxeuryhNXmJDYu4Px3
+        uk999iDhSLi77v+oWvmhI7tKHEClTw==
+X-Google-Smtp-Source: AK7set/UX1tfLsIgf/HC8D7E26Rttu7INRWLZgG9CGpFRsZtZJmjwG0t2Ty7lv8janpvOOJu5kq1nA==
+X-Received: by 2002:a05:6830:2b1f:b0:68b:c04d:79ca with SMTP id l31-20020a0568302b1f00b0068bc04d79camr2413569otv.33.1675268578345;
+        Wed, 01 Feb 2023 08:22:58 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c20-20020a9d6854000000b006864ccdb053sm5694860oto.26.2023.02.01.08.22.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Feb 2023 08:22:58 -0800 (PST)
+Received: (nullmailer pid 3575712 invoked by uid 1000);
+        Wed, 01 Feb 2023 16:22:57 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Frank Rowand <frowand.list@gmail.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     Michal Suchanek <msuchanek@suse.de>, linuxppc-dev@lists.ozlabs.org,
+        "Erhard F ." <erhard_f@mailbox.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4] of: Make OF framebuffer device names unique
+Date:   Wed,  1 Feb 2023 10:22:47 -0600
+Message-Id: <20230201162247.3575506-1-robh@kernel.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v10 3/4] dt-bindings: input: pwm-beeper: add volume
-Content-Language: en-US
-To:     Manuel Traut <manuel.traut@mt.com>, linux-kernel@vger.kernel.org
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230201152128.614439-1-manuel.traut@mt.com>
- <20230201152128.614439-4-manuel.traut@mt.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230201152128.614439-4-manuel.traut@mt.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/02/2023 16:21, Manuel Traut wrote:
-> Adds an array of supported volume levels and a default volume level.
+From: Michal Suchanek <msuchanek@suse.de>
 
-Adds -> Add
+Since Linux 5.19 this error is observed:
 
+sysfs: cannot create duplicate filename '/devices/platform/of-display'
 
-> 
-> Signed-off-by: Manuel Traut <manuel.traut@mt.com>
-> ---
->  .../devicetree/bindings/input/pwm-beeper.yaml   | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
+This is because multiple devices with the same name 'of-display' are
+created on the same bus. Update the code to create numbered device names
+for the displays.
 
-Thank you for your patch. There is something to discuss/improve.
+Also, fix a node refcounting issue when exiting the boot display loop.
 
-> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.yaml b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
-> index 1ebc3a46d934..6599e28ba5e6 100644
-> --- a/Documentation/devicetree/bindings/input/pwm-beeper.yaml
-> +++ b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
-> @@ -25,6 +25,21 @@ properties:
->    beeper-hz:
->      description: bell frequency in Hz
->  
-> +  volume-levels-bp:
-> +    description: >
-> +      Array of PWM duty cycle values that correspond to
-> +      linear volume levels. These need to be in the range of
-> +      0 to 5000, while 0 means 0% duty cycle (mute) and 5000
-> +      means 50% duty cycle (max volume).
+cc: linuxppc-dev@lists.ozlabs.org
+References: https://bugzilla.kernel.org/show_bug.cgi?id=216095
+Fixes: 52b1b46c39ae ("of: Create platform devices for OF framebuffers")
+Reported-by: Erhard F. <erhard_f@mailbox.org>
+Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
+Signed-off-by: Michal Suchanek <msuchanek@suse.de>
+Link: https://lore.kernel.org/r/20230120180958.30798-1-msuchanek@suse.de
+[robh: Rework to avoid node refcount leaks]
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ drivers/of/platform.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-Is range 0-5000 limitation of the device? If so, this should not be
-free-form text, but "maximum: 5000" (minimum is 0 anyway).
-
-> +      Please note that the actual volume of most beepers is
-> +      highly non-linear, which means that low volume levels
-> +      are probably somewhere in the range of 10 to 300 (0.1-3%
-> +      duty cycle).
-
-
-Best regards,
-Krzysztof
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index 81c8c227ab6b..b3878a98d27f 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -525,6 +525,7 @@ static int __init of_platform_default_populate_init(void)
+ 	if (IS_ENABLED(CONFIG_PPC)) {
+ 		struct device_node *boot_display = NULL;
+ 		struct platform_device *dev;
++		int display_number = 0;
+ 		int ret;
+ 
+ 		/* Check if we have a MacOS display without a node spec */
+@@ -555,16 +556,23 @@ static int __init of_platform_default_populate_init(void)
+ 			if (!of_get_property(node, "linux,opened", NULL) ||
+ 			    !of_get_property(node, "linux,boot-display", NULL))
+ 				continue;
+-			dev = of_platform_device_create(node, "of-display", NULL);
++			dev = of_platform_device_create(node, "of-display.0", NULL);
++			of_node_put(node);
+ 			if (WARN_ON(!dev))
+ 				return -ENOMEM;
+ 			boot_display = node;
++			display_number++;
+ 			break;
+ 		}
+ 		for_each_node_by_type(node, "display") {
++			char buf[14];
++			const char *of_display_format = "of-display.%d";
++
+ 			if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
+ 				continue;
+-			of_platform_device_create(node, "of-display", NULL);
++			ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
++			if (ret < sizeof(buf))
++				of_platform_device_create(node, buf, NULL);
+ 		}
+ 
+ 	} else {
+-- 
+2.39.0
 
