@@ -2,173 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F8D2686C18
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 17:51:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 778E5686C16
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 17:51:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230245AbjBAQvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 11:51:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51422 "EHLO
+        id S229651AbjBAQvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 11:51:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbjBAQvn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 11:51:43 -0500
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27D7773749;
-        Wed,  1 Feb 2023 08:51:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675270302; x=1706806302;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MPihZ1keAuSkK2h3BqSj6sByR6pdBoovP1rP5iabTMc=;
-  b=hO57vMUbGulckjuO467lb/UfMOhSwBj0WlP7uO5qwiU9XwApi/xwuu50
-   8fTjc1AmIEHlsCUrY5kgUFlMFn+v+aUGypuVD/cmO9/zEHiflbJpS0aSu
-   P83k+v8AE5B6fZv+yhV8fvYHpcC7GN5cz2qarmJ4mkyeMOmG5vClmXn97
-   pgpOqIrKnpAzOOKeCQ8KubBYANPriwbZENZkvDmXT/5UER1ZN5EZ08xhR
-   j4WT8fYRrt4Ln+5FJthRrL2Yt74sxVOmX7AP7drGzVLyaJEMSRWTf0DPe
-   WiQXzCmEZRIj7aKSFYbhufLW6NH6QyKDhzZGb+KAzVCa9HrdN0FebVYjk
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="390588968"
-X-IronPort-AV: E=Sophos;i="5.97,263,1669104000"; 
-   d="scan'208";a="390588968"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2023 08:51:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="993755960"
-X-IronPort-AV: E=Sophos;i="5.97,263,1669104000"; 
-   d="scan'208";a="993755960"
-Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
-  by fmsmga005.fm.intel.com with ESMTP; 01 Feb 2023 08:51:36 -0800
-Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pNGKe-0005ay-0A;
-        Wed, 01 Feb 2023 16:51:36 +0000
-Date:   Thu, 2 Feb 2023 00:50:38 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Mohammad Rafi Shaik <quic_mohs@quicinc.com>,
-        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
-        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, devicetree@vger.kernel.org,
-        konrad.dybcio@linaro.org
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Subject: Re: [PATCH 10/14] ASoC: q6dsp: q6apm-dai: Add trigger/pointer
- compress DAI callbacks
-Message-ID: <202302020014.J221iZHe-lkp@intel.com>
-References: <20230201134947.1638197-11-quic_mohs@quicinc.com>
+        with ESMTP id S229597AbjBAQvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 11:51:35 -0500
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D5CB95DC1A;
+        Wed,  1 Feb 2023 08:51:33 -0800 (PST)
+Received: by linux.microsoft.com (Postfix, from userid 1127)
+        id 97AB020B7102; Wed,  1 Feb 2023 08:51:33 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 97AB020B7102
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1675270293;
+        bh=KJbAwCn0TGn9+iQ2/tVx4JONaQBj9mJvNHGMDGM632U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=M9+xi+rv2I/V3tvdmJwTYKVfNxwHXrhk3YuFjRx9VmV1lc+o1A9Wu+cOUOX6Iwt4w
+         qWbJ0+X0KIq3CtjGHl5FYFxixRmdGMvV2Cg828Y6P7R6uOVC5mS0IIHIsKt7uR60/B
+         23Hq+dq0qXf7mxfRScckrGtO4KqjHpYAcUEiu/XI=
+Date:   Wed, 1 Feb 2023 08:51:33 -0800
+From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
+        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com
+Subject: Re: [PATCH v2 6/6] Driver: VMBus: Add device tree support
+Message-ID: <20230201165133.GA24116@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
+ <1675188609-20913-7-git-send-email-ssengar@linux.microsoft.com>
+ <CAL_JsqK_7eTTrSd6EKDGy9A8kC5w6cjVEtSi3CB1M7Awj+zg6g@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230201134947.1638197-11-quic_mohs@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAL_JsqK_7eTTrSd6EKDGy9A8kC5w6cjVEtSi3CB1M7Awj+zg6g@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mohammad,
+On Tue, Jan 31, 2023 at 02:12:53PM -0600, Rob Herring wrote:
+> On Tue, Jan 31, 2023 at 12:10 PM Saurabh Sengar
+> <ssengar@linux.microsoft.com> wrote:
+> >
+> > Update the driver to support device tree boot as well along with ACPI.
+> > At present the device tree parsing only provides the mmio region info
+> > and is not the exact copy of ACPI parsing. This is sufficient to cater
+> > all the current device tree usecases for VMBus.
+> >
+> > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> > ---
+> >  drivers/hv/vmbus_drv.c | 75 ++++++++++++++++++++++++++++++++++++++++--
+> >  1 file changed, 73 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
+> > index 49030e756b9f..1741f1348f9f 100644
+> > --- a/drivers/hv/vmbus_drv.c
+> > +++ b/drivers/hv/vmbus_drv.c
+> > @@ -2152,7 +2152,7 @@ void vmbus_device_unregister(struct hv_device *device_obj)
+> >         device_unregister(&device_obj->device);
+> >  }
+> >
+> > -
+> > +#ifdef CONFIG_ACPI
+> >  /*
+> >   * VMBUS is an acpi enumerated device. Get the information we
+> >   * need from DSDT.
+> > @@ -2262,6 +2262,7 @@ static acpi_status vmbus_walk_resources(struct acpi_resource *res, void *ctx)
+> >
+> >         return AE_OK;
+> >  }
+> > +#endif
+> >
+> >  static void vmbus_mmio_remove(void)
+> >  {
+> > @@ -2282,7 +2283,7 @@ static void vmbus_mmio_remove(void)
+> >         }
+> >  }
+> >
+> > -static void vmbus_reserve_fb(void)
+> > +static void __maybe_unused vmbus_reserve_fb(void)
+> >  {
+> >         resource_size_t start = 0, size;
+> >         struct pci_dev *pdev;
+> > @@ -2442,6 +2443,7 @@ void vmbus_free_mmio(resource_size_t start, resource_size_t size)
+> >  }
+> >  EXPORT_SYMBOL_GPL(vmbus_free_mmio);
+> >
+> > +#ifdef CONFIG_ACPI
+> 
+> It's better to put C 'if (!IS_ENABLED(CONFIG_ACPI)' code in the
 
-Thank you for the patch! Perhaps something to improve:
+I wanted to have separate function for ACPI and device tree flow, which
+can be easily maintained with #ifdef. Please let me know if its fine.
 
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on next-20230201]
-[cannot apply to tiwai-sound/for-next tiwai-sound/for-linus linus/master v6.2-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> >  static int vmbus_acpi_add(struct platform_device *pdev)
+> >  {
+> >         acpi_status result;
+> > @@ -2496,10 +2498,68 @@ static int vmbus_acpi_add(struct platform_device *pdev)
+> >                 vmbus_mmio_remove();
+> >         return ret_val;
+> >  }
+> > +#else
+> > +
+> > +static int vmbus_device_add(struct platform_device *pdev)
+> > +{
+> > +       struct resource **cur_res = &hyperv_mmio;
+> > +       struct device_node *np;
+> > +       u32 *ranges, len;
+> > +       u64 start;
+> > +       int nr_ranges, child_cells = 2, cur_cell = 0, ret = 0;
+> > +
+> > +       hv_dev = pdev;
+> > +       np = pdev->dev.of_node;
+> > +
+> > +       nr_ranges = device_property_count_u32(&pdev->dev, "ranges");
+> 
+> Parsing ranges yourself is a bad sign. It's a standard property and we
+> have functions which handle it. If those don't work, then something is
+> wrong with your DT or they need to be fixed/expanded.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mohammad-Rafi-Shaik/ALSA-compress-Update-compress-set-params-for-gapless-playback/20230201-215622
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20230201134947.1638197-11-quic_mohs%40quicinc.com
-patch subject: [PATCH 10/14] ASoC: q6dsp: q6apm-dai: Add trigger/pointer compress DAI callbacks
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20230202/202302020014.J221iZHe-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/2b44c079fb2d53ef9e13fc7d7b257fd4c6f4b56a
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Mohammad-Rafi-Shaik/ALSA-compress-Update-compress-set-params-for-gapless-playback/20230201-215622
-        git checkout 2b44c079fb2d53ef9e13fc7d7b257fd4c6f4b56a
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash sound/soc/
+I find all the  standard functions which parse "ranges" property are doing
+much more then I need. Our requirement is to only pass the mmio memory range
+and size, I couldn't find any standard API doing this.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+I see some of the drivers are using these APIs to parse ranges property hence
+I follwed those examples. I will be happy to improve it if I get any better
+alternative.
 
-All warnings (new ones prefixed by >>):
+> 
+> > +       if (nr_ranges < 0)
+> > +               return nr_ranges;
+> > +       ranges = kcalloc(nr_ranges, sizeof(u32), GFP_KERNEL);
+> > +       if (!ranges)
+> > +               return -ENOMEM;
+> > +
+> > +       if (device_property_read_u32_array(&pdev->dev, "ranges", ranges, nr_ranges)) {
+> > +               ret =  -EINVAL;
+> > +               goto free_ranges;
+> > +       }
+> > +
+> > +       while (cur_cell < nr_ranges) {
+> > +               struct resource *res;
+> > +
+> > +               /* The first u64 in the ranges description isn't used currently. */
+> > +               cur_cell = cur_cell + child_cells;
+> > +               start = ranges[cur_cell++];
+> > +               start = (start << 32) | ranges[cur_cell++];
+> > +               len = ranges[cur_cell++];
+> 
+> To expand my last point, the format of ranges is <child_addr
+> parent_addr length>. That's not what your 'ranges' has. You've also
+> just ignored '#address-cells' and '#size-cells'.
 
-   sound/soc/qcom/qdsp6/q6apm-dai.c:152:6: warning: no previous prototype for 'event_handler_compr' [-Wmissing-prototypes]
-     152 | void event_handler_compr(uint32_t opcode, uint32_t token,
-         |      ^~~~~~~~~~~~~~~~~~~
->> sound/soc/qcom/qdsp6/q6apm-dai.c:576:5: warning: no previous prototype for 'q6apm_dai_compr_trigger' [-Wmissing-prototypes]
-     576 | int q6apm_dai_compr_trigger(struct snd_soc_component *component,
-         |     ^~~~~~~~~~~~~~~~~~~~~~~
->> sound/soc/qcom/qdsp6/q6apm-dai.c:610:5: warning: no previous prototype for 'q6apm_dai_compr_ack' [-Wmissing-prototypes]
-     610 | int q6apm_dai_compr_ack(struct snd_soc_component *component, struct snd_compr_stream *stream,
-         |     ^~~~~~~~~~~~~~~~~~~
+Got it. However I need to check if there is any standard API which can
+give me these values, otherwise I may have to parse these as well :(
 
+Regards,
+Saurabh
 
-vim +/q6apm_dai_compr_trigger +576 sound/soc/qcom/qdsp6/q6apm-dai.c
-
-   575	
- > 576	int q6apm_dai_compr_trigger(struct snd_soc_component *component,
-   577				    struct snd_compr_stream *stream, int cmd)
-   578	{
-   579		struct snd_compr_runtime *runtime = stream->runtime;
-   580		struct q6apm_dai_rtd *prtd = runtime->private_data;
-   581		int ret = 0;
-   582	
-   583		switch (cmd) {
-   584		case SNDRV_PCM_TRIGGER_START:
-   585		case SNDRV_PCM_TRIGGER_RESUME:
-   586		case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-   587			ret = q6apm_write_async_compr(prtd->graph, prtd->pcm_count, 0, 0, NO_TIMESTAMP);
-   588			break;
-   589		case SNDRV_PCM_TRIGGER_STOP:
-   590			break;
-   591		case SNDRV_PCM_TRIGGER_SUSPEND:
-   592		case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-   593			break;
-   594		case SND_COMPR_TRIGGER_NEXT_TRACK:
-   595			prtd->next_track = true;
-   596			prtd->next_track_stream_id = (prtd->graph->id == 1 ? 2 : 1);
-   597			break;
-   598		case SND_COMPR_TRIGGER_DRAIN:
-   599		case SND_COMPR_TRIGGER_PARTIAL_DRAIN:
-   600			prtd->notify_on_drain = true;
-   601			break;
-   602		default:
-   603			ret = -EINVAL;
-   604			break;
-   605		}
-   606	
-   607		return ret;
-   608	}
-   609	
- > 610	int q6apm_dai_compr_ack(struct snd_soc_component *component, struct snd_compr_stream *stream,
-   611				size_t count)
-   612	{
-   613		struct snd_compr_runtime *runtime = stream->runtime;
-   614		struct q6apm_dai_rtd *prtd = runtime->private_data;
-   615		unsigned long flags;
-   616	
-   617		spin_lock_irqsave(&prtd->lock, flags);
-   618		prtd->bytes_received += count;
-   619		spin_unlock_irqrestore(&prtd->lock, flags);
-   620	
-   621		return count;
-   622	}
-   623	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+> 
+> > +
+> > +               res = kzalloc(sizeof(*res), GFP_ATOMIC);
+> > +               if (!res) {
+> > +                       ret = -ENOMEM;
+> > +                       goto free_ranges;
+> > +               }
+> > +
+> > +               res->name = "hyperv mmio";
+> > +               res->flags = IORESOURCE_MEM | IORESOURCE_MEM_64;
+> > +               res->start = start;
+> > +               res->end = start + len;
+> > +
+> > +               *cur_res = res;
+> > +               cur_res = &res->sibling;
+> > +       }
+> > +
+> > +free_ranges:
+> > +       kfree(ranges);
+> > +       return ret;
+> > +}
+> > +#endif
+> >
+> >  static int vmbus_platform_driver_probe(struct platform_device *pdev)
+> >  {
+> > +#ifdef CONFIG_ACPI
+> >         return vmbus_acpi_add(pdev);
+> > +#else
+> > +       return vmbus_device_add(pdev);
+> > +#endif
+> >  }
+> >
+> >  static int vmbus_platform_driver_remove(struct platform_device *pdev)
+> > @@ -2645,6 +2705,16 @@ static int vmbus_bus_resume(struct device *dev)
+> >  #define vmbus_bus_resume NULL
+> >  #endif /* CONFIG_PM_SLEEP */
+> >
+> > +static const struct of_device_id vmbus_of_match[] = {
+> > +       {
+> > +               .compatible = "msft,vmbus",
+> > +       },
+> > +       {
+> > +               /* sentinel */
+> > +       },
+> > +};
+> > +MODULE_DEVICE_TABLE(of, vmbus_of_match);
+> > +
+> >  static const struct acpi_device_id vmbus_acpi_device_ids[] = {
+> >         {"VMBUS", 0},
+> >         {"VMBus", 0},
+> > @@ -2679,6 +2749,7 @@ static struct platform_driver vmbus_platform_driver = {
+> >         .driver = {
+> >                 .name = "vmbus",
+> >                 .acpi_match_table = ACPI_PTR(vmbus_acpi_device_ids),
+> > +               .of_match_table = of_match_ptr(vmbus_of_match),
+> >                 .pm = &vmbus_bus_pm,
+> >                 .probe_type = PROBE_FORCE_SYNCHRONOUS,
+> >         }
+> > --
+> > 2.25.1
+> >
