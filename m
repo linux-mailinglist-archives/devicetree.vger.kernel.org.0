@@ -2,44 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F2226861B8
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 09:32:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B970C686145
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 09:08:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232194AbjBAIcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 03:32:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42014 "EHLO
+        id S231760AbjBAIIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 03:08:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232167AbjBAIcT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 03:32:19 -0500
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 253A760CA6;
-        Wed,  1 Feb 2023 00:32:18 -0800 (PST)
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id DD115200E0C;
-        Wed,  1 Feb 2023 09:32:16 +0100 (CET)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A7421200E61;
-        Wed,  1 Feb 2023 09:32:16 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id C8BCB180222F;
-        Wed,  1 Feb 2023 16:32:14 +0800 (+08)
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        l.stach@pengutronix.de, shawnguo@kernel.org,
-        lorenzo.pieralisi@arm.com, peng.fan@nxp.com, marex@denx.de,
-        marcel.ziswiler@toradex.com, tharvey@gateworks.com,
-        frank.li@nxp.com
-Cc:     hongxing.zhu@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, linux-imx@nxp.com
-Subject: [PATCH v8 4/4] arm64: dts: Add i.MX8MP PCIe EP support
-Date:   Wed,  1 Feb 2023 16:06:53 +0800
-Message-Id: <1675238813-18048-5-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1675238813-18048-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1675238813-18048-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        with ESMTP id S230273AbjBAIIh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 03:08:37 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A1D22A22
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 00:08:35 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id d14so16443980wrr.9
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 00:08:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fPMQb9ClpEWunoZz1SRe7U0hhsmgySgDI2+LUjx4p1s=;
+        b=Wnvz4a5tihLzWQ3UGZK5oxgZvkkZABlKkArVeCdLwp0FnuzvvFHfJqA7i29ZsuH5mt
+         NB/JSGhuiTfbuEV09T5RltL4eloJo2pyUNrQQaIBWqmid4vGirVGr0ZlOfXcddYWM2Dz
+         CoWMeE0mQ7Opa57MlGv7udJLN+IU7udA1FujAx1G5KVQQEEQJIoQ041elSVEXGI5O3Dp
+         ny9+UaQqgs3yD5JDWECyMc8koD3rStLcN0IsuVWGLKk3nQtb8J8ZruWO740jgV/18nu7
+         dUW/HWWSb+kjonp+rRzVWq1JXYzPEG1YSr54GR+KbnjUPGYoWJk1AG7tOc7yuEv7BZxn
+         uK2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fPMQb9ClpEWunoZz1SRe7U0hhsmgySgDI2+LUjx4p1s=;
+        b=TxkHQPq0L5FeJYjLbTMXIzsv+DaWuogUT70MvuL+lN6nJ1TEC+FJZGc19AupZUsMzh
+         G8tXhpUVwO3zsPqR3Qftg9PJtnImWDgC//Z0UR2uSYwzJmp+G61lHdQ7/UeSGM/3fsBW
+         goAVR/vD634xu1XCoRn1PM81JcXPMNMQwlyO2mcmtWKD0+QSmYUIY8LE42XiC1nL9lTA
+         5IYmH2evbpL17PqKLVm6Usks9uEMcGop9wFB3IHJpHHwor9kRfkg7nDpxag6rF4JE8AN
+         Qjd8Q/2dxzu1ZPax4rfIbBx94zhKRqt5+DSPvhGChy7EA2XB0viq/poWPDoxt3PAukoL
+         azsQ==
+X-Gm-Message-State: AO0yUKVbcBVQGFR+ZiYmVJaFlrspM5UiJRy6DqTbXSfvoAia4u8YdulU
+        GzxDVhk+MghoexjyGIYTSljClQ==
+X-Google-Smtp-Source: AK7set9AeNdwZS/UJ9g7Dad8wwPgTBxvI+2rWkgtcVhilHAuC/iLNmynZ6qONCst5pTutyqG1/HQHw==
+X-Received: by 2002:a5d:65c6:0:b0:2bf:d17c:609b with SMTP id e6-20020a5d65c6000000b002bfd17c609bmr1361527wrw.64.1675238914573;
+        Wed, 01 Feb 2023 00:08:34 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id m3-20020a056000180300b002755e301eeasm16731971wrh.100.2023.02.01.00.08.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Feb 2023 00:08:34 -0800 (PST)
+Message-ID: <a738fdec-0218-e0a5-8750-e39ff87967a5@linaro.org>
+Date:   Wed, 1 Feb 2023 09:08:31 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 2/5] dt-bindings: mfd: Add ADI MAX77541/MAX77540
+Content-Language: en-US
+To:     "Sahin, Okan" <Okan.Sahin@analog.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+References: <20230118063822.14521-1-okan.sahin@analog.com>
+ <20230118063822.14521-3-okan.sahin@analog.com>
+ <c4433cba-ce35-e5d3-f04b-ba8f9f501732@linaro.org>
+ <MN2PR03MB51685B56D49CBB590BBE6B7EE7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <04ac07ef-ee4b-abb8-9fb2-114e3a646a2f@linaro.org>
+ <MN2PR03MB5168884376CEE35E73739A95E7D09@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <f67f81fd-c770-45b2-9c5e-7ea53e956db9@linaro.org>
+ <MN2PR03MB5168CACCB1367E84DECEFC62E7D19@MN2PR03MB5168.namprd03.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <MN2PR03MB5168CACCB1367E84DECEFC62E7D19@MN2PR03MB5168.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,50 +93,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add i.MX8MP PCIe EP support.
+On 01/02/2023 08:46, Sahin, Okan wrote:
+>> "bindings are before usage" - what's unclear?
+>>
+>> How can you use binding before defining it?
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> Hi Krysztof,
+> 
+> It is crystal clear that "bindings are before usage", but what I want to know is what is the correct order of patchset for mfd device? Max77541 is multi-functional device. It has both adc and regulator subdevices. I thought I need to put mfd driver first, yet it looks wrong to me right now?
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 26 +++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+MFD driver is also usually the last.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index a19224fe1a6a..2f84b8b0118e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1309,6 +1309,32 @@ pcie: pcie@33800000 {
- 			status = "disabled";
- 		};
- 
-+		pcie_ep: pcie-ep@33800000 {
-+			compatible = "fsl,imx8mp-pcie-ep";
-+			reg = <0x33800000 0x000400000>, <0x18000000 0x08000000>;
-+			reg-names = "dbi", "addr_space";
-+			clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
-+				 <&clk IMX8MP_CLK_HSIO_AXI>,
-+				 <&clk IMX8MP_CLK_PCIE_ROOT>;
-+			clock-names = "pcie", "pcie_bus", "pcie_aux";
-+			assigned-clocks = <&clk IMX8MP_CLK_PCIE_AUX>;
-+			assigned-clock-rates = <10000000>;
-+			assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_50M>;
-+			num-lanes = <1>;
-+			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>; /* eDMA */
-+			interrupt-names = "dma";
-+			fsl,max-link-speed = <3>;
-+			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_PCIE>;
-+			resets = <&src IMX8MP_RESET_PCIE_CTRL_APPS_EN>,
-+				 <&src IMX8MP_RESET_PCIE_CTRL_APPS_TURNOFF>;
-+			reset-names = "apps", "turnoff";
-+			phys = <&pcie_phy>;
-+			phy-names = "pcie-phy";
-+			num-ib-windows = <4>;
-+			num-ob-windows = <4>;
-+			status = "disabled";
-+		};
-+
- 		gpu3d: gpu@38000000 {
- 			compatible = "vivante,gc";
- 			reg = <0x38000000 0x8000>;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
