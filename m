@@ -2,366 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09A34686E67
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 19:51:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CF24686E69
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 19:54:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232203AbjBASvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 13:51:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53902 "EHLO
+        id S231934AbjBASyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 13:54:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232124AbjBASvi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 13:51:38 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1B986FD19
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 10:51:35 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id ud5so54262732ejc.4
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 10:51:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BXwPKycQJ/C87AlI+nKmlQwJn9IdzArLVEPpu/KGX3Y=;
-        b=f+m3AFgZ/zN5mbTCPX05t7GVaX7jgVb9Fx4+QTfI0WnTjXhzDXodaZxTWUcBMe3qhA
-         2NUuHo8sVFFJFpQP8Sja4KKR1oMq68bntD7Anhh8Y4WcFR7mf9p0Fs1nNp9GjF3ls76Y
-         W8F0VHdYEgHkN6hs/GnHcfbJbUfJSla7hjY7kgcY2ChEePLJnVS/0muDPBoftcowKIqR
-         CEgRbjeKwF2+tkZu6BhXu670Ee9fdYX2sp1QMlstKq1uE+xws+yxoFevRLsvNhCxTTdr
-         4PLPw/tidAAg2v6Y7CAcP6Pang8D9gaR1ClYM3WhTV/jrXQE92YQpYIH6CyEhXTwbDq6
-         +r9A==
+        with ESMTP id S231531AbjBASyF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 13:54:05 -0500
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5F877CCAF;
+        Wed,  1 Feb 2023 10:54:04 -0800 (PST)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-1631b928691so24742215fac.11;
+        Wed, 01 Feb 2023 10:54:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BXwPKycQJ/C87AlI+nKmlQwJn9IdzArLVEPpu/KGX3Y=;
-        b=p3LZoKWjgBp5+M5DTERnbPf+qxeMwRmqCnRkz+IbtdLrOSaGn0DRBmCRjha1RKts52
-         8Pm1tNSiU+DUeOdLfsnc4mJmzBninCHoErMEgnyVMsMy/0stqdYAc8gT9RJ5d4bzTZrX
-         t42NIuXDbVFM3Xj1yS9Q49lz5xM00QFWlpr0uznLoNBbnUEsqbFct6Wczy4o9rHBLgdH
-         QGMbTvnmjOOyf1IHcCFrE9Ufpt2NrnLsBp6cS+IGZW0lbJL2gyB6T6XEfLzNaDtJkswO
-         lXUI/HseiRG6JLt0Nw7UHopgieoAK/Id58jgb7s2xvyw+gsWx5sg/1sZPGMZIrKDjAZK
-         vClg==
-X-Gm-Message-State: AO0yUKXXLU8LZgBY++2TPQI8pEbjPTDSyEsf82xAfAjnk1TsgpZD/3zL
-        sGQxvGm7WNq+bGE/WUMgOhne3w==
-X-Google-Smtp-Source: AK7set+OmZB1EWJIySAzihrguYe0Qq5D3jqRTiHe0dRrZF9bTMJyr8KoEcCrkyVBNFrsYOFwKYhsSw==
-X-Received: by 2002:a17:906:6a24:b0:888:d373:214d with SMTP id qw36-20020a1709066a2400b00888d373214dmr4547576ejc.29.1675277494358;
-        Wed, 01 Feb 2023 10:51:34 -0800 (PST)
-Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
-        by smtp.gmail.com with ESMTPSA id ce4-20020a170906b24400b0078d3f96d293sm10423836ejb.30.2023.02.01.10.51.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 10:51:33 -0800 (PST)
-Message-ID: <6c4cf46d-e4cf-dc9c-193a-e5dd77723b9f@linaro.org>
-Date:   Wed, 1 Feb 2023 19:51:31 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0sMQc0PK6ObdJHfFL3hGtO0pIoGyC7nHbzdlT3Spl2Y=;
+        b=U1QHfyTbP3VlaK23DTIIDEp6dUcroQLBXgBhukcW5vl2g7ndahJ+NLGrQnnvUifnwA
+         GiO/0r9HA1+Ym3ulLIm66vdYpVP32g8ARjGviYkKgf5OXxmjbxr3t2bYpgwSJcGnYkRF
+         +aOcesl1/1/EggI+wMMBe6O0FYPSQ534+lJHXQ7FfOdiXUQBdm0dRf2gaRm1uZQLedAC
+         7mDyWQ0I6X9u9+lRgNf2Qneuj14HQ4mzHx+gDn+oNgYglwW4fcRcc+ON9zl6Y17lbhLT
+         iy3/DNz2Y1w4VtiCb67MwEYb491yMwydPPMe2wuzpL6m20Qq93smKiku1vEIQ6Nn1v0t
+         6o1w==
+X-Gm-Message-State: AO0yUKX77fbHNVhySGCwxMChqUlTjvY+CgXiqLbvGo2j+GcAbXBYgXr9
+        UN6cLl7ByJNb/kUPE0wEycD/ACLZIA==
+X-Google-Smtp-Source: AK7set+x4JYggnZQEp7fWaOZYSgRM7McC3+rmo9BC9jTfy4gSLLBzuRh3gqarJNb/Hc9cF/IrLdkpg==
+X-Received: by 2002:a05:6870:ac20:b0:163:573b:3e8d with SMTP id kw32-20020a056870ac2000b00163573b3e8dmr1535116oab.30.1675277643870;
+        Wed, 01 Feb 2023 10:54:03 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u16-20020a056870701000b0014fd7e7c3fesm7904092oae.27.2023.02.01.10.54.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Feb 2023 10:54:03 -0800 (PST)
+Received: (nullmailer pid 4146388 invoked by uid 1000);
+        Wed, 01 Feb 2023 18:54:02 -0000
+Date:   Wed, 1 Feb 2023 12:54:02 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        devicetree@vger.kernel.org, hayashi.kunihiko@socionext.com,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
+        mhiramat@kernel.org, rafal@milecki.pl,
+        srinivas.kandagatla@linaro.org
+Subject: Re: [PATCH 3/4] nvmem: mtk-efuse: replace driver with a generic MMIO
+ one
+Message-ID: <20230201185402.GA4084724-robh@kernel.org>
+References: <20230201064717.18410-4-zajec5@gmail.com>
+ <20230201084821.1719839-1-michael@walle.cc>
+ <8452b341-8695-05d8-9d03-47c9aeca0ec7@gmail.com>
+ <017a17eb99ac2b2c858d27b65c5dd372@walle.cc>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: sdm670: add opps for peripherals
-Content-Language: en-US
-To:     Richard Acayan <mailingradian@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Odelu Kukatla <quic_okukatla@quicinc.com>,
-        Luca Weiss <luca@z3ntu.xyz>
-References: <20230201010020.84586-1-mailingradian@gmail.com>
- <20230201010020.84586-3-mailingradian@gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230201010020.84586-3-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <017a17eb99ac2b2c858d27b65c5dd372@walle.cc>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 1.02.2023 02:00, Richard Acayan wrote:
-> The interconnects are now in place. Add Operating Performance Points for
-> them to allow the kernel to properly manage them.
-You're really mostly adding interconnect paths in this patch.
-
+On Wed, Feb 01, 2023 at 11:46:01AM +0100, Michael Walle wrote:
+> > Before I convert brcm,nvram to NVMEM layout I need some binding & driver
+> > providing MMIO device access. How to handle that?
 > 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
-For the contents though:
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  arch/arm64/boot/dts/qcom/sdm670.dtsi | 109 +++++++++++++++++++++++++++
->  1 file changed, 109 insertions(+)
+> I'm not arguing against having the mmio nvmem driver. But I don't
+> think we should sacrifice possible write access with other drivers. And
+> I presume write access won't be possible with your generic driver as it
+> probably isn't just a memcpy_toio().
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> index 02f14692dd9d..c5f839dd1c6e 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> @@ -10,6 +10,7 @@
->  #include <dt-bindings/clock/qcom,rpmh.h>
->  #include <dt-bindings/dma/qcom-gpi.h>
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interconnect/qcom,sdm670-rpmh.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/phy/phy-qcom-qusb2.h>
->  #include <dt-bindings/power/qcom-rpmpd.h>
-> @@ -430,6 +431,10 @@ sdhc_1: mmc@7c4000 {
->  				 <&gcc GCC_SDCC1_ICE_CORE_CLK>,
->  				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>;
->  			clock-names = "iface", "core", "xo", "ice", "bus";
-> +			interconnects = <&aggre1_noc MASTER_EMMC 0 &aggre1_noc SLAVE_A1NOC_SNOC 0>,
-> +					<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_EMMC_CFG 0>;
-> +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
-> +			operating-points-v2 = <&sdhc1_opp_table>;
->  
->  			iommus = <&apps_smmu 0x140 0xf>;
->  
-> @@ -442,6 +447,38 @@ sdhc_1: mmc@7c4000 {
->  			non-removable;
->  
->  			status = "disabled";
-> +
-> +			sdhc1_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-20000000 {
-> +					opp-hz = /bits/ 64 <20000000>;
-> +					required-opps = <&rpmhpd_opp_min_svs>;
-> +					opp-peak-kBps = <80000 80000>;
-> +					opp-avg-kBps = <52286 80000>;
-> +				};
-> +
-> +				opp-50000000 {
-> +					opp-hz = /bits/ 64 <50000000>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +					opp-peak-kBps = <200000 100000>;
-> +					opp-avg-kBps = <130718 100000>;
-> +				};
-> +
-> +				opp-100000000 {
-> +					opp-hz = /bits/ 64 <100000000>;
-> +					required-opps = <&rpmhpd_opp_svs>;
-> +					opp-peak-kBps = <200000 130000>;
-> +					opp-avg-kBps = <130718 130000>;
-> +				};
-> +
-> +				opp-384000000 {
-> +					opp-hz = /bits/ 64 <384000000>;
-> +					required-opps = <&rpmhpd_opp_nom>;
-> +					opp-peak-kBps = <4096000 4096000>;
-> +					opp-avg-kBps = <1338562 1338562>;
-> +				};
-> +			};
->  		};
->  
->  		gpi_dma0: dma-controller@800000 {
-> @@ -477,6 +514,8 @@ qupv3_id_0: geniqup@8c0000 {
->  			#address-cells = <2>;
->  			#size-cells = <2>;
->  			ranges;
-> +			interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>;
-> +			interconnect-names = "qup-core";
->  			status = "disabled";
->  
->  			i2c0: i2c@880000 {
-> @@ -490,6 +529,10 @@ i2c0: i2c@880000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma0 0 0 QCOM_GPI_I2C>,
->  				       <&gpi_dma0 1 0 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -507,6 +550,10 @@ i2c1: i2c@884000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma0 0 1 QCOM_GPI_I2C>,
->  				       <&gpi_dma0 1 1 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -524,6 +571,10 @@ i2c2: i2c@888000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma0 0 2 QCOM_GPI_I2C>,
->  				       <&gpi_dma0 1 2 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -541,6 +592,10 @@ i2c3: i2c@88c000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma0 0 3 QCOM_GPI_I2C>,
->  				       <&gpi_dma0 1 3 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -558,6 +613,10 @@ i2c4: i2c@890000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma0 0 4 QCOM_GPI_I2C>,
->  				       <&gpi_dma0 1 4 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -575,6 +634,10 @@ i2c5: i2c@894000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma0 0 5 QCOM_GPI_I2C>,
->  				       <&gpi_dma0 1 5 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -592,6 +655,10 @@ i2c6: i2c@898000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma0 0 6 QCOM_GPI_I2C>,
->  				       <&gpi_dma0 1 6 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -609,6 +676,10 @@ i2c7: i2c@89c000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-> +						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma0 0 7 QCOM_GPI_I2C>,
->  				       <&gpi_dma0 1 7 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -649,6 +720,8 @@ qupv3_id_1: geniqup@ac0000 {
->  			#address-cells = <2>;
->  			#size-cells = <2>;
->  			ranges;
-> +			interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>;
-> +			interconnect-names = "qup-core";
->  			status = "disabled";
->  
->  			i2c8: i2c@a80000 {
-> @@ -662,6 +735,10 @@ i2c8: i2c@a80000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma1 0 0 QCOM_GPI_I2C>,
->  				       <&gpi_dma1 1 0 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -679,6 +756,10 @@ i2c9: i2c@a84000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma1 0 1 QCOM_GPI_I2C>,
->  				       <&gpi_dma1 1 1 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -696,6 +777,10 @@ i2c10: i2c@a88000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma1 0 2 QCOM_GPI_I2C>,
->  				       <&gpi_dma1 1 2 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -713,6 +798,10 @@ i2c11: i2c@a8c000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma1 0 3 QCOM_GPI_I2C>,
->  				       <&gpi_dma1 1 3 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -730,6 +819,10 @@ i2c12: i2c@a90000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma1 0 4 QCOM_GPI_I2C>,
->  				       <&gpi_dma1 1 4 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -747,6 +840,10 @@ i2c13: i2c@a94000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma1 0 5 QCOM_GPI_I2C>,
->  				       <&gpi_dma1 1 5 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -764,6 +861,10 @@ i2c14: i2c@a98000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma1 0 6 QCOM_GPI_I2C>,
->  				       <&gpi_dma1 1 6 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -781,6 +882,10 @@ i2c15: i2c@a9c000 {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				power-domains = <&rpmhpd SDM670_CX>;
-> +				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-> +						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->  				dmas = <&gpi_dma1 0 7 QCOM_GPI_I2C>,
->  				       <&gpi_dma1 1 7 QCOM_GPI_I2C>;
->  				dma-names = "tx", "rx";
-> @@ -1028,6 +1133,10 @@ usb_1: usb@a6f8800 {
->  
->  			resets = <&gcc GCC_USB30_PRIM_BCR>;
->  
-> +			interconnects = <&aggre2_noc MASTER_USB3 0 &mem_noc SLAVE_EBI_CH0 0>,
-> +					<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_USB3 0>;
-> +			interconnect-names = "usb-ddr", "apps-usb";
-> +
->  			status = "disabled";
->  
->  			usb_1_dwc3: usb@a600000 {
+> It is a great fallback for some nvmem peripherals which just maps a
+> memory region, but doesn't replace a proper driver for an nvmem device.
+> 
+> What bothers me the most isn't the driver change. The driver can be
+> resurrected once someone will do proper write access, but the generic
+> "mediatek,efuse" compatible together with the comment above the older
+> compatible string. These imply that you should use "mediatek,efuse",
+> but we don't know if all mediatek efuse peripherals will be the
+> same - esp. for writing which is usually more complex than the reading.
+
+Because the kernel can't pick the "best" driver when there are multiple 
+matches, it's all Mediatek platforms use the generic driver or all use 
+the Mediatek driver.
+
+Personally, I think it is easy enough to revive the driver if needed 
+unless writing is a soon and likely feature.
+
+The other way to share is providing library functions for drivers to 
+use. Then the Mediatek driver can use the generic read functions and 
+custom write functions.
+
+> nitpick btw: why not "nvmem-mmio"?
+> 
+> So it's either:
+>  (1) compatible = "mediatek,mt8173-efuse"
+>  (2) compatible = "mediatek,mt8173-efuse", "mmio-nvmem"
+> 
+> (1) will be supported any anyway for older dts and you need to add
+> the specific compatibles to the nvmem-mmio driver - or keep the
+> driver as is.
+> 
+> With (2) you wouldn't need to do that and the kernel can load the
+> proper driver if available or fall back to the nvmem-mmio one. I'd
+> even make that one "default y" so it will be available on future
+> kernels and boards can already make use of the nvmem device even
+> if there is no proper driver for them.
+> 
+> I'd prefer (2). Dunno what the dt maintainers agree.
+
+No because you are changing the DT. The DT can't change when you want to 
+change drivers. This thinking is one reason why 'generic' bindings are 
+rejected.
+
+Rob
