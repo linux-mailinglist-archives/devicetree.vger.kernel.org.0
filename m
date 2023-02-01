@@ -2,84 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE19A68682F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 15:26:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5B09686831
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 15:26:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231215AbjBAO0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 09:26:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39044 "EHLO
+        id S231817AbjBAO0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 09:26:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229719AbjBAO0M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 09:26:12 -0500
-Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D41C2CFD9;
-        Wed,  1 Feb 2023 06:26:11 -0800 (PST)
-Received: from [192.168.1.103] (31.173.80.8) by msexch01.omp.ru (10.188.4.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.14; Wed, 1 Feb 2023
- 17:26:01 +0300
-Subject: Re: [PATCH v6 2/3] usb: musb: sunxi: add support for the F1C100s MUSB
- controller
-To:     Andre Przywara <andre.przywara@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bin Liu <b-liu@ti.com>
-CC:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-sunxi@lists.linux.dev>
-References: <20230201105348.1815461-1-andre.przywara@arm.com>
- <20230201105348.1815461-3-andre.przywara@arm.com>
-From:   Sergey Shtylyov <s.shtylyov@omp.ru>
-Organization: Open Mobile Platform
-Message-ID: <b06e8182-3784-09e7-3270-70a60ee09966@omp.ru>
-Date:   Wed, 1 Feb 2023 17:26:00 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        with ESMTP id S229719AbjBAO0s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 09:26:48 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 069A43D91B;
+        Wed,  1 Feb 2023 06:26:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1675261607; x=1706797607;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=71c35E+QlELiDoCRu9TrKbxnNSfXkZbgGsnlKAeDVBU=;
+  b=gAmzrnFS3kr+f+f0P5VTEyR02XhSwrZ7CrD6sYYAzYsfCNymKxqg8Z5Y
+   u7x242FObY1YKrd23RAULtZhcvN5VfPc0sRoshI2vLt8IjQwE8wCHXLeb
+   wTBl9hyyXUKb1zqSyi4F7Aji0lGDrxW0rN4FlVY9xY1L8fXcrhBOuz63e
+   4=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 01 Feb 2023 06:26:46 -0800
+X-QCInternal: smtphost
+Received: from nalasex01a.na.qualcomm.com ([10.47.209.196])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2023 06:26:45 -0800
+Received: from [10.50.40.201] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 1 Feb 2023
+ 06:26:36 -0800
+Message-ID: <fd8ab034-7a50-0d28-dbfc-601a30f97af7@quicinc.com>
+Date:   Wed, 1 Feb 2023 19:56:33 +0530
 MIME-Version: 1.0
-In-Reply-To: <20230201105348.1815461-3-andre.przywara@arm.com>
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 3/6] arm64: defconfig: Enable ipq6018 apss clock and PLL
+ controller
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [31.173.80.8]
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 5.9.59, Database issued on: 02/01/2023 14:07:31
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 59
-X-KSE-AntiSpam-Info: Lua profiles 175180 [Feb 01 2023]
-X-KSE-AntiSpam-Info: Version: 5.9.59.0
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 502 502 69dee8ef46717dd3cb3eeb129cb7cc8dab9e30f6
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info: {relay has no DNS name}
-X-KSE-AntiSpam-Info: {SMTP from is not routable}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 31.173.80.8 in (user)
- b.barracudacentral.org}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 31.173.80.8 in (user) dbl.spamhaus.org}
-X-KSE-AntiSpam-Info: 127.0.0.199:7.1.2;omp.ru:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1
-X-KSE-AntiSpam-Info: ApMailHostAddress: 31.173.80.8
-X-KSE-AntiSpam-Info: {DNS response errors}
-X-KSE-AntiSpam-Info: Rate: 59
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 02/01/2023 14:11:00
-X-KSE-AttachmentFiltering-Interceptor-Info: protection disabled
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 2/1/2023 12:45:00 PM
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <jassisinghbrar@gmail.com>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <nfraprado@collabora.com>,
+        <broonie@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_poovendh@quicinc.com>
+References: <20230113143647.14961-1-quic_devipriy@quicinc.com>
+ <20230113143647.14961-4-quic_devipriy@quicinc.com>
+ <b8b90989-4bc9-f3a9-516e-2101bfc2293d@linaro.org>
+From:   Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <b8b90989-4bc9-f3a9-516e-2101bfc2293d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,39 +76,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/1/23 1:53 PM, Andre Przywara wrote:
+Thanks for taking time to review the patch
 
-> From: Icenowy Zheng <uwu@icenowy.me>
+On 1/31/2023 3:01 PM, Dmitry Baryshkov wrote:
+> On 13/01/2023 16:36, devi priya wrote:
+>> Enable the PLL controller and IPQ6018 APSS clock controller
 > 
-> The suniv SoC has a MUSB controller like the one in A33, but with a SRAM
-> region to be claimed.
+> ... it is used on several IPQ platforms to clock the CPU so it should be 
+> enabled and built-in.
 > 
-> Add support for it.
+Okay, got it. Will update the commit message as suggested in V2
+>>
+>> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
 > 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  drivers/usb/musb/sunxi.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
+> Just to check: is the capitalization correct in your name here and 
+> everywhere else? (please excuse my ignorance here, I do not know all the 
+> spelling/capitalization rules).
 > 
-> diff --git a/drivers/usb/musb/sunxi.c b/drivers/usb/musb/sunxi.c
-> index 7f9a999cd5ff1..4b368d16a73ad 100644
-> --- a/drivers/usb/musb/sunxi.c
-> +++ b/drivers/usb/musb/sunxi.c
-> @@ -722,14 +722,17 @@ static int sunxi_musb_probe(struct platform_device *pdev)
->  	INIT_WORK(&glue->work, sunxi_musb_work);
->  	glue->host_nb.notifier_call = sunxi_musb_host_notifier;
->  
-> -	if (of_device_is_compatible(np, "allwinner,sun4i-a10-musb"))
-> +	if (of_device_is_compatible(np, "allwinner,sun4i-a10-musb") ||
-> +	    of_device_is_compatible(np, "allwinner,suniv-f1c100s-musb")) {
->  		set_bit(SUNXI_MUSB_FL_HAS_SRAM, &glue->flags);
-> +	}
-
-  Why {} around single statement?
-
-
-[...]
-
-MBR, Sergey
+Sure, will change the naming style to Camel Case
+>> ---
+>>   arch/arm64/configs/defconfig | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+>> index e0ae0996d5ad..8de3979b10a3 100644
+>> --- a/arch/arm64/configs/defconfig
+>> +++ b/arch/arm64/configs/defconfig
+>> @@ -1092,6 +1092,7 @@ CONFIG_QCOM_CLK_APCS_MSM8916=y
+>>   CONFIG_QCOM_CLK_APCC_MSM8996=y
+>>   CONFIG_QCOM_CLK_SMD_RPM=y
+>>   CONFIG_QCOM_CLK_RPMH=y
+>> +CONFIG_IPQ_APSS_6018=y
+>>   CONFIG_IPQ_GCC_6018=y
+>>   CONFIG_IPQ_GCC_8074=y
+>>   CONFIG_IPQ_GCC_9574=y
+> 
+Best Regards,
+Devi Priya
