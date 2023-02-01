@@ -2,155 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DA30686F95
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 21:15:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FA96686FA1
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 21:21:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229451AbjBAUPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 15:15:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44396 "EHLO
+        id S229926AbjBAUVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 15:21:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229884AbjBAUPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 15:15:55 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DB266187F;
-        Wed,  1 Feb 2023 12:15:52 -0800 (PST)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id B826F1257;
-        Wed,  1 Feb 2023 21:15:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1675282550;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=dw3R/I+yQHjbga5kkUsb3LzIPZtMRUNJ7Qu6UJsxVlc=;
-        b=Ecugun7uzW1hw7a3z38sfJT+nhgz3Z1Q3neEokWdTu86aqzBtqesqoSFkhm3jA8Rvh/ftl
-        5dwia8olYcp67iwQ8YxIp1DiTo79YKVtrDC/IbFp2h9Z1EJSj9rCMLJle1/ZFdy4rzNA4o
-        6wMVHimniMcNaMjAI8i91cRTRD7Qm8Q/HrCDKcQykwB6dw4844dKiy5gjdzMjyQkT1GKWI
-        V71hCZexWpugNzXH8n8/Flbbpberea0MN08Zviv0ywthtaAxBolNtlqtEGvBHgV+3i/3CI
-        nGfoTZPsg0eikF19TNwkz1u+PsESr3ZCvjU6JidAD/Xoi//8ZbCBXFGHI3qnzA==
-MIME-Version: 1.0
-Date:   Wed, 01 Feb 2023 21:15:50 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Rob Herring <robh@kernel.org>
-Cc:     =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>,
-        devicetree@vger.kernel.org, hayashi.kunihiko@socionext.com,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
-        mhiramat@kernel.org, rafal@milecki.pl,
-        srinivas.kandagatla@linaro.org
-Subject: Re: [PATCH 3/4] nvmem: mtk-efuse: replace driver with a generic MMIO
- one
-In-Reply-To: <20230201185402.GA4084724-robh@kernel.org>
-References: <20230201064717.18410-4-zajec5@gmail.com>
- <20230201084821.1719839-1-michael@walle.cc>
- <8452b341-8695-05d8-9d03-47c9aeca0ec7@gmail.com>
- <017a17eb99ac2b2c858d27b65c5dd372@walle.cc>
- <20230201185402.GA4084724-robh@kernel.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <1b3024876259eab4464db9ca676a884f@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+        with ESMTP id S229608AbjBAUVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 15:21:14 -0500
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2068.outbound.protection.outlook.com [40.107.93.68])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436BE4609B;
+        Wed,  1 Feb 2023 12:21:13 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ABEnMw4U8i13AnT0cVlFByIXhMMt0Nj6PzkoCaIj830FF6an0j4bN2JdSpQh2sekYIVlEr1HYF1vnJXVF1RC0UgH0vUS3x2BR1OM1kuGM9ZXunJUTfWAE02/yjIaDiDfXY6pOX2E/8ACELB1BiCru9eAD/dRGm3fya3GnzLMn5vYSZVqdrB6RUZvnOo5h3ZTvzi0HZKQO8N/0NaO7JRl/dAYBGQYTzfEXBITC3eggW+hbyrePuubYczKNXD/zxD4TL+MQKJTOnlQgmsuv9kCC5QgymCoAWPhHuR3GG4ve3ObtEiVXWpLHP1QwbeRB20h2cpfX4Ppq1gUNUxg4jFlhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2BC56wKLORgMC98xJegsBORHaytkyTLdX7T02iA4Vd4=;
+ b=d/5+pYS6018PQv2K7nrERfmlR4NxbE729S90lDqIdpDesl6Gq+ncPqjqdA3tMaLlb4GsR8KoIHVWK8PFW6+L8ecxkYRMym8gK6BWhzCAfGDRpgPCCb/LewdUM1EXEDpaPFZBTlblO8Lon1Ii+m7kQoHcqsmtN8OMvkcRXvBMSSLR14G3x99w+Ui+FJbabnqlmnBrf2Idnubf4OLraZ+vlqc/Z2RMoUjPrG8pQ/sUCqKrKjm3nx+vJomk38GO6wzUulott+fDf9CyjWha1d7yE1UeenDSkj18ulK8vxvBDS1Lhvu5qAVYtn7vwMMCl1FUWi2347Ehc1JghLKXMyxL+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2BC56wKLORgMC98xJegsBORHaytkyTLdX7T02iA4Vd4=;
+ b=glBzd/+V5GEsLvQ9U17NIn5TzdGYj8Z61L7i/JpVWbTPCB0ltjDJxcgSzRY1lkQutpncPArfkgAdrAsibEn4PaMIkYJ5n4N08M3a/7xHStAXx0IRjQJX3B4CNBX98GCILtMIu7BQ533dNcDW89ro3peZ3GX1fjArTDq40s4c/cHh2YkbYsaIDq1D+1F7SP2cPJ6mpGvgpmlDRJdJjgfH/HyDuarYJAR4wOCs5vBki4b6vWAza2QrhdZKcj7rJzBT0tFjlP456wYzervBj8yd1Ha11JQ59H9GqrXF4xAc+geF23ol0FIUfq5z1aanlt4jsThEeZuU8r7QqODJMRWWCA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ MW4PR12MB7431.namprd12.prod.outlook.com (2603:10b6:303:225::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.38; Wed, 1 Feb
+ 2023 20:21:11 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::5464:997b:389:4b07]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::5464:997b:389:4b07%8]) with mapi id 15.20.6043.038; Wed, 1 Feb 2023
+ 20:21:11 +0000
+Message-ID: <b7576f93-45e5-7d5c-29e1-e95a2e58f118@nvidia.com>
+Date:   Wed, 1 Feb 2023 20:21:03 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V10 2/6] i2c: nvidia-gpu: Add ACPI property to align with
+ device-tree
+Content-Language: en-US
+To:     Wolfram Sang <wsa@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>,
+        Ajay Gupta <ajayg@nvidia.com>
+References: <20230131175748.256423-1-jonathanh@nvidia.com>
+ <20230131175748.256423-3-jonathanh@nvidia.com>
+ <db53d28c-119b-90c5-de47-bf7a3561552b@nvidia.com> <Y9qZsTQK8G8gW6+h@ninjato>
+From:   Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <Y9qZsTQK8G8gW6+h@ninjato>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-ClientProxiedBy: LO2P265CA0334.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:a4::34) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|MW4PR12MB7431:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7e598cb2-b7d8-402c-fdc0-08db0491dc0b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: oWEOH3slr/4ijVGEputdb36lIjJihyrVNW0w/WY2F4nnU3Y6TxJODtRpc0lM5+iV/bE8FPsaxVusO4DMko5mqOUOldSaZeP1ZvG0o5oIwkV8uauBMxF1yxx760DamNUXF2+L+xj9p5vJ/7xSl/dcllI8B8AdL+M680tNID4FIv8pdLFBaV8jcufT5z+7Dxa3a/TI7u1lIvEyba7iekGt3qv7X+hby3zLYvac+Qehl0yEkzoxJpbhB6KP/4Kv9jIlGqzU/U8oLMcIyii/e3ISB0L+XgH/Vcnibmn+wr3FniugnsEqJ0WJGrBdPNxMeJzbol/qTVJmMCRUWDJrkV9BL2ub/3HugWa9nqCdqXrrs1DB50qubjXWAfwzdWGSfn1VyCoDwWYANrzMYMeZHWW7r+Uuv0L57rf3uY9vLv1EO3x7//ef5Wh6XD96lVWfdn+2eD5+8vmwwXjWYjNUjdXdiQOuTJJwbk1CRdtmv00jGW/ez4r8fk/pygDCSRA29dn1IzqMB7r7fNLhJbMyi5uqtIvA3mPamFEfJbv6g7wj6D8Lrf3AURa5O4lHM8QP5gTzD3huuKdp4P1Q6B3Vw2/kSl2gm/x6mNP2Gqqh2TD9zcL++ihU36nnNpy4osVRky7sbmKeFW9DWfp1jbT0Tx2SioOVlm77hPDDskN3Qxbeq7lj+ufmPjlAHlbzOEIXrnWgYfx1euW0bltvXosPzsDh4vc9GPowFUzyxMviZYuUljKCyKmnt8RQVx5vMCamvRjg
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(376002)(396003)(136003)(346002)(39860400002)(451199018)(8676002)(66476007)(66556008)(66946007)(2616005)(6636002)(110136005)(316002)(6666004)(186003)(53546011)(36756003)(6512007)(6486002)(478600001)(6506007)(38100700002)(86362001)(4744005)(31686004)(921005)(2906002)(31696002)(5660300002)(8936002)(41300700001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z0R6VTNEeEhwZnhIU1lhdEdpbnhqMkk2K3FVK0dTdi9ldDNMSjF4aXVhZGh6?=
+ =?utf-8?B?c0IzaE85N2lzYWx4aGZFem5qdmdCVmVqdXFHeXZYaUtUa2F0Q3orTVFRcDJ5?=
+ =?utf-8?B?bmlzSG9XNkhSMlNNaDlYbGkxWDlNdTluZzVjZWFScnh2Q1FQa1BtODV5OWcw?=
+ =?utf-8?B?TlU2ZURJYml4dkk4d1RqdVhUN1BhRjRBWWNDUzNhZG5DMHpKSERsWElsczlT?=
+ =?utf-8?B?ZGFqdUJVSjJrTXN0cm1EcmV2UEhkVDZZZE15bDFINVNvRFB1eVZnaFhhUkdy?=
+ =?utf-8?B?YlUwclJDSGE3aVFDSnd4cEVFbzhCWUpWSWtpbEZKNXVuSEtTWVdNSDZGOHpE?=
+ =?utf-8?B?UGMvaWVlaFJHOXNCby9SaE1uSEdkQXZmeUZUdjkwUHVxUTd5aVlaQXpqcU96?=
+ =?utf-8?B?L0F1cDRxQ21CR1BRWXZqMUpBSkNVV0ExNUlGUEdGQkowYnVickVwOHBWb2x0?=
+ =?utf-8?B?TDFnY09CeEc1WUYrb3NvMUE0dURwS0ZMK0YwS0gyVFRndWtrRnhxeEtTZ3Az?=
+ =?utf-8?B?ZDRPYWwyZ1Zld2dxUGlWTnMySENzMU8zZFZ3S2hBc0o0YzVNYTlGZ2paRmpy?=
+ =?utf-8?B?RWhRZGdWRTJVRVpaRFZJRFlrUU5NTlFTU2dndlVrRkpXdUVWQkozb3U3WGhB?=
+ =?utf-8?B?NFRmbW16cTFMMEkybGh0RjY5eFI2bVdpTFpZaDh2Yjc0VW94c3hYSjJMSmpn?=
+ =?utf-8?B?a3pKdWtWMXlwUmE2U3AyOWRUVkNlMFpHcUJRSys0NVBUNjFJaGljdmcvbEdZ?=
+ =?utf-8?B?MzgyQ2RRNE9oNm1hdkV6Lzh4ODA1KzRLSjdtRmFwellic2FldzZuUVFtbzRO?=
+ =?utf-8?B?Y0VaVC9UMVJOUkw2WjBWK2MvalVoclBXOXlqVWVYMHg2SXd0WFpwaWNZbSt0?=
+ =?utf-8?B?aHdWWldZWmtpOFVSU2R0THl4dWVMaTM4b0ZXbE9PRGtZejU3L1ovUUVYLzNn?=
+ =?utf-8?B?bW1jSFpyTkkzVU45SFAwY1B4NHF4eXhnMHFEZm5kcnNMYTB6bVd2S24zd1Zj?=
+ =?utf-8?B?ckpubWJwTTM0TUptK1Q1OEZHUFBrYlNIMXlxY3NOaFROZFdzbU5pZFhpT094?=
+ =?utf-8?B?L2RaQkF0M2FGSmgzaVh5dGkvOVBCaktqbUtpUGV3WmJzSEVHTURJL2xuVnlP?=
+ =?utf-8?B?dzgwZTdIZnd2Qk1WSkpHUjYxVVBjYzBwbnh3aTFIdS92M0VRUWx3NTdERFM1?=
+ =?utf-8?B?cEU5dkxKUWZoUUtmYkhHdTFIT2ZMWGZvU2hxMXlvNHdHdkhEV1NxWlE5OW4x?=
+ =?utf-8?B?VldlTUZnam9KWmk4YzdsRDNHai9YTElDZm1jWDB0SStsVkFvTmpuZEp0eU02?=
+ =?utf-8?B?SEY4REkzMHlsVnQrNW0zN1M3akR3WWhOU2docUdwRXhtakZHdkhDY0RXK0NX?=
+ =?utf-8?B?M3BDNFRnYTFIWDhDaThtMWRrWFNpeXhpQStRQUtSczFTUE1kWlMxSEtnVWVm?=
+ =?utf-8?B?WEdlaDUybG5CU2ltb3ZyYWwxL29Ubk56ZDMrODdKM0o0YjdjdXA2cVYwbWpj?=
+ =?utf-8?B?VWZwTW9Lell3eVd1UitZaU5VRlJ0WjNxYUlMSnVubHJpazlFUkF5aDR2eU9w?=
+ =?utf-8?B?NC9MYXhaYkdybjVaSEc4WERmeHZScW0wMWFSbVFKTTZPQVQ0WFdRMEJxQ2R5?=
+ =?utf-8?B?dTlIdys0U0JWL3Zvb2JFYVdhQk5iUlNtOEo0UWJWTXU4bHN0VWRmN3dRRnE2?=
+ =?utf-8?B?MXhObjM4REVzUmR2T0JRRE5QNjZoN1Vnb1VFWUxDcTRXU3R1cUVOcXBORVcw?=
+ =?utf-8?B?MGNkamxvajBXVzhMZE91RmdabVFSVW0zL1NOYk5ERzZlNHozamZTejNYL1M1?=
+ =?utf-8?B?NFpmWWs2dnNTNEw4WVlhRzJoN2krckRpd3pJdldqOXpPZmVHeFFJam5aVXY1?=
+ =?utf-8?B?SVpjVG1mMmlHZWN6VEk3WEgzeklSQ0s4WDRmbWtodVhjSTh2M0VjNUxtZHB0?=
+ =?utf-8?B?WjZ0UHFNbnhUS0FOckdlbnlCNEVCNy92QllUOUZsbFM2QjAyMlZwOHdjZjRN?=
+ =?utf-8?B?ZmpxMG9odkN6NDl3Tm5vZ01iam5zS3BsOENnMFkzNm5tcERJclRjQ2RHR1Z6?=
+ =?utf-8?B?ZS9LaWpJcmJ5Y3VHWVhOYXh6dTFmcGJVejFDclVGSEx6K1J3Nm1PZU1PalFK?=
+ =?utf-8?B?YmNjWFdtdzUvcU1rampMNldlVjJlN3E2U0h4WU9pVjFEQmRGTzhhYytTYTgx?=
+ =?utf-8?B?TjlkQ3ZqWXpobEorUWFWUW9RNTh4MHpSWmI2dkZEdHZnVWI5dTdyY0xaS0U0?=
+ =?utf-8?B?cTF3bzdIOG82bC9Ya3RWeWJTMStnPT0=?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e598cb2-b7d8-402c-fdc0-08db0491dc0b
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Feb 2023 20:21:11.4255
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rsEn3Husq3o0IvQ7KlFLyYuSI7MgKZpdU7RyVKZbbQaHNt7SZ3gZoiZfsXShVHPiAl9GBNVCot++I8pN2UMFgw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7431
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2023-02-01 19:54, schrieb Rob Herring:
-> On Wed, Feb 01, 2023 at 11:46:01AM +0100, Michael Walle wrote:
->> > Before I convert brcm,nvram to NVMEM layout I need some binding & driver
->> > providing MMIO device access. How to handle that?
->> 
->> I'm not arguing against having the mmio nvmem driver. But I don't
->> think we should sacrifice possible write access with other drivers. 
->> And
->> I presume write access won't be possible with your generic driver as 
->> it
->> probably isn't just a memcpy_toio().
->> 
->> It is a great fallback for some nvmem peripherals which just maps a
->> memory region, but doesn't replace a proper driver for an nvmem 
->> device.
->> 
->> What bothers me the most isn't the driver change. The driver can be
->> resurrected once someone will do proper write access, but the generic
->> "mediatek,efuse" compatible together with the comment above the older
->> compatible string. These imply that you should use "mediatek,efuse",
->> but we don't know if all mediatek efuse peripherals will be the
->> same - esp. for writing which is usually more complex than the 
->> reading.
+
+On 01/02/2023 16:56, Wolfram Sang wrote:
 > 
-> Because the kernel can't pick the "best" driver when there are multiple
-> matches, it's all Mediatek platforms use the generic driver or all use
-> the Mediatek driver.
-
-Isn't that the whole point of having multiple compatible strings?
-   compatible = "fsl,imx27-mmc", "fsl,imx21-mmc";
-The OS might either load the driver for "fsl,imx21-mmc" or one for
-"fsl,imx27-mmc", with the latter considered to be the preferred one.
-
-> Personally, I think it is easy enough to revive the driver if needed
-> unless writing is a soon and likely feature.
-
-That what was actually triggered my initial reply. We are planning a
-new board with a mediatek SoC and we'll likely need the write support.
-
-But I thought the "mediatek,efuse" was a new compatible with this patch
-and the (new!) comment make it looks like these compatible are 
-deprecated
-in favor of "mmio-nvmem". Which would make it impossible to distinguish
-between the different efuse peripherals and thus make it impossible to
-add write support.
-
-> The other way to share is providing library functions for drivers to
-> use. Then the Mediatek driver can use the generic read functions and
-> custom write functions.
+>> Apologies, but we appear to be missing you on this series [0].
 > 
->> nitpick btw: why not "nvmem-mmio"?
->> 
->> So it's either:
->>  (1) compatible = "mediatek,mt8173-efuse"
->>  (2) compatible = "mediatek,mt8173-efuse", "mmio-nvmem"
->> 
->> (1) will be supported any anyway for older dts and you need to add
->> the specific compatibles to the nvmem-mmio driver - or keep the
->> driver as is.
->> 
->> With (2) you wouldn't need to do that and the kernel can load the
->> proper driver if available or fall back to the nvmem-mmio one. I'd
->> even make that one "default y" so it will be available on future
->> kernels and boards can already make use of the nvmem device even
->> if there is no proper driver for them.
->> 
->> I'd prefer (2). Dunno what the dt maintainers agree.
+> Yup, me, the i2c-list and the dedicated maintainer for this driver:
 > 
-> No because you are changing the DT. The DT can't change when you want 
-> to
-> change drivers. This thinking is one reason why 'generic' bindings are
-> rejected.
+> $ scripts/get_maintainer.pl -f drivers/i2c/busses/i2c-nvidia-gpu.c
+> Ajay Gupta <ajayg@nvidia.com>
+> linux-i2c@vger.kernel.org
+> linux-kernel@vger.kernel.org
+> 
+> If Ajay Gupta is happy, you'll get my ack for free.
 
-There is no change in the DT. Newer bindings will have
 
-   compatible = "vendor,ip-block", "mmio-nvmem"
+Adding Ajay.
 
-when the ip block is compatible with mmio-nvmem. Otherwise I don't get
-why there is a mmio-nvmem compatible at all. Just having
+Jon
 
-   compatible = "mmio-nvmem"
-
-looks wrong as it would just work correctly in some minor cases, i.e.
-when write support is just a memcpy_toio() - or we deliberately ignore
-any write support. But even then, you always tell people to add specific
-compatibles for the case when quirks are needed..
-
--michael
+-- 
+nvpublic
