@@ -2,63 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91F26686366
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 11:07:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17D5F686383
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 11:15:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231856AbjBAKHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 05:07:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46702 "EHLO
+        id S231846AbjBAKPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 05:15:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231752AbjBAKHC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 05:07:02 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A79E56227F;
-        Wed,  1 Feb 2023 02:06:41 -0800 (PST)
+        with ESMTP id S230236AbjBAKPy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 05:15:54 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E952ED46;
+        Wed,  1 Feb 2023 02:15:53 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4A99FB81F2D;
-        Wed,  1 Feb 2023 10:06:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A07F3C433D2;
-        Wed,  1 Feb 2023 10:06:29 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 57C6CB8212E;
+        Wed,  1 Feb 2023 10:15:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD693C433EF;
+        Wed,  1 Feb 2023 10:15:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675245996;
-        bh=SLnoyaEacnsPS2Yh3z9JeolmCwJoPt310N3QnpHVhJc=;
+        s=k20201202; t=1675246551;
+        bh=4F/4o9bF1W2DN0Tz9O4TNOCLMwNbDxBuiXPZyCpB0gs=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=J79rcS/6tptKFy0f4jXmE8h08JGZFSxobTZ+PxvUt7DYMAhXeI124TFzwLzcAwZR5
-         nuzCvRasfYhbsbf5jRRQpOlx8C5L6/fA2NWMFlaC/xJcNTUGX3zUJnXye10gfD6XQa
-         vAvin56Ypbci1HV034pM8qQxbNsJmzEn9komIf/IZD1sbJzxhnAKe9pixxioust39W
-         ksGqRErrBPdNno4rjOa8sy6kjFR9+Gqcdpx5GHm3tAEtfpz0BqgBGJs3XlfxAnKfs0
-         Zlq4QH7/M4KGVYqKxx1uhloomaG18a2WuMoTxmwdm4jb7xswcMW3qJCz85BkXXTLL9
-         PDFuAuG4SL3hQ==
-Date:   Wed, 1 Feb 2023 10:06:26 +0000
+        b=X6igeg86uPp8w2LARhr1dVShiLvJlu602IgYEwsfwmNCqSbfImHEtymayqwOCwoCx
+         mnoOXuiBB0Dgxhfw67E7Xd2XhQd//LHoTx0kcgSDKhels8D3aPm9fTGqgDlwBdau3R
+         b6OpM6GQrYrZ2+JJ8pJ/gMVp/X0WbiX8xmSwifwyuBXiOxFKnV5Cs3lLTTrTsE5Pzy
+         UB47pRjlwTtvIpiAflR9ODXgiHMs47Kbj+v+qAY2JsP0sgT3JvYJ+hKK+8DVa9ESXm
+         2MnOO8w0ruL0fgWwVktbuVS57MXKrYW+FyL7P6w2PGUFCiiF8XLNGAGXoBxOBeoyd6
+         P6xL6IwbYp+Tw==
+Date:   Wed, 1 Feb 2023 10:15:43 +0000
 From:   Lee Jones <lee@kernel.org>
-To:     Poovendhan Selvaraj <quic_poovendh@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        jassisinghbrar@gmail.com, catalin.marinas@arm.com, will@kernel.org,
-        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
-        robimarko@gmail.com, dmitry.baryshkov@linaro.org,
-        nfraprado@collabora.com, broonie@kernel.org,
-        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_devipriy@quicinc.com
-Subject: Re: [PATCH V2 5/5] dt-bindings: tcsr: Add compatible for IPQ9574
-Message-ID: <Y9o5onFcETRUmqGt@google.com>
-References: <20230201090529.30446-1-quic_poovendh@quicinc.com>
- <20230201090529.30446-6-quic_poovendh@quicinc.com>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     patchwork-bot+netdevbpf@kernel.org,
+        Colin Foster <colin.foster@in-advantage.com>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux@armlinux.org.uk,
+        richardcochran@gmail.com, f.fainelli@gmail.com, andrew@lunn.ch,
+        UNGLinuxDriver@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.manoil@nxp.com, vladimir.oltean@nxp.com, pabeni@redhat.com,
+        edumazet@google.com, davem@davemloft.net,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH v5 net-next 00/13] add support for the the vsc7512
+ internal copper phys
+Message-ID: <Y9o7z0Ddbwus0M1R@google.com>
+References: <20230127193559.1001051-1-colin.foster@in-advantage.com>
+ <167514242005.16180.6859220313239539967.git-patchwork-notify@kernel.org>
+ <Y9jaDvtvzPxIrgFi@google.com>
+ <20230131114538.43e68eb3@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230201090529.30446-6-quic_poovendh@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230131114538.43e68eb3@kernel.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,32 +64,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 01 Feb 2023, Poovendhan Selvaraj wrote:
+On Tue, 31 Jan 2023, Jakub Kicinski wrote:
 
-> Add the tcsr compatible string for IPQ9574 SoC
+> On Tue, 31 Jan 2023 09:06:22 +0000 Lee Jones wrote:
+> > Please don't do that.  The commits do not have proper Acked-by tags.
+> > 
+> > The plan is to merge these via MFD and send out a pull-request to an
+> > immutable branch.  However, if you're prepared to convert all of the:
+> > 
+> >   Acked-for-MFD-by: Lee Jones <lee@kernel.org>
+> > 
+> > to
+> > 
+> >   Acked-by: Lee Jones <lee@kernel.org>
 > 
-> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
->  1 file changed, 1 insertion(+)
-
-Nit: Subject should be "dt-bindings: mfd: ..."
-
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> index d463fb47278f..8cd0005fc8c7 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> @@ -30,6 +30,7 @@ properties:
->            - qcom,tcsr-apq8084
->            - qcom,tcsr-ipq6018
->            - qcom,tcsr-ipq8064
-> +          - qcom,tcsr-ipq9574
->            - qcom,tcsr-mdm9615
->            - qcom,tcsr-msm8226
->            - qcom,tcsr-msm8660
-> -- 
-> 2.17.1
+> Sorry, I must have been blind yesterday because I definitely double
+> checked this doesn't touch mfd code. And it does :/
 > 
+> The patches should not be sent for net-next if they are not supposed 
+> to be applied directly. Or at the very least says something about
+> merging in the cover letter!
+> 
+> > ... and send out a pull request to a succinct (only these patches) and
+> > immutable branch then that is also an acceptable solution.
+> > 
+> > Please let me know what works best for you.
+> 
+> Sorry for messing up again. Stable branch would obviously had been best.
+> Do we have to take action now, or can we just wait for the trees to
+> converge during the merge window?
+
+Russell explained to me (off-list) that the net-next branch is immutable
+and the only way to fix this would be to revert the whole set.
+
+Let's not go to that much trouble this time.
+
+It does mean that I cannot take any more commits on the affected files,
+but that shouldn't be a big deal seeing how far into the release cycle
+we are.
+
+No real harm done.
 
 -- 
 Lee Jones [李琼斯]
