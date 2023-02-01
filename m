@@ -2,356 +2,317 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A8C86864F9
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 12:03:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8EDA686510
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 12:11:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231984AbjBALDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 06:03:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33100 "EHLO
+        id S232390AbjBALLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 06:11:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232063AbjBALDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 06:03:07 -0500
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B25E55BB;
-        Wed,  1 Feb 2023 03:02:57 -0800 (PST)
-Received: by mail-pg1-x52b.google.com with SMTP id 7so7295460pgh.7;
-        Wed, 01 Feb 2023 03:02:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DceIlcz7tCoQ/WNnHU3QRL3ZPrUM/et/4+cwphHyZVo=;
-        b=YMERq+jo+9nZx8onlIiHnvFPFUn6mdyeEqXO431QYRoVmiQ9Q116SA2p1q3tykzO5Y
-         P+NR0gK2LRaV5brvBSNkSeqsOyaD7eTpFJUMK7sipoVkFXRP7HSUTiy+xDCtSMmUfdSm
-         bVie87GA2WCCSufqEcDn6JTTGy48nEATS/dmaiwcdsA067fEENPkwg4MAwXLO3mKkvYQ
-         ngGnoTeP+68sj/ROTY6VzNzmpe+J1KGZ3EoHXANAmxltFfIfMYT4PPPNxK2xi4ivDjr2
-         /3+K6DZHbwkQ+SdD8j1atNVRH7rCiklINWxbI1BBdqovCse9fWThIO/BUOgWiCvViRxw
-         Aq0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DceIlcz7tCoQ/WNnHU3QRL3ZPrUM/et/4+cwphHyZVo=;
-        b=Oap/gQ5DX2zJ2cWHCWOj9o/9037HUcJFsawInfXYKBwF2unrerm4QX/65/UlI0hqye
-         cBcwbafqsvutUoj2fmZpU5ETKIocv93Zg36LVgSZcR1WHg9r7OqoZi5b8iAYoKQ5r0sK
-         LPDWDnXHsej3ey1ZQxscyzC3wzJvqk3BfuK16CctKPQNzcFcEBNexhDm8BFvwIgQVHTM
-         qAzt00MjH8CNu49dJtVoM+o6NddEWTKlBANxJAObimuk50zXnC3iK8vSd33sUyDU2yLY
-         T/GQmHe3QMPxIpUl62sy3mqTVkIBW4ebyX8e15htE3m0zNbFq7kw417bSlhwcJzy/gf6
-         QgUg==
-X-Gm-Message-State: AO0yUKXvuf+MSkQSN6iA0NuSa0QWtoXqqDVIPiK2sMiLmZ4DHulKyqzz
-        k6kLTIlAU8jYWPWr1Udi68NG4SIbwBa+Gg==
-X-Google-Smtp-Source: AK7set8Hus/TW6hqB7rmqLK7f4INwf+AwZC03ro8sJa0NADi/Yem3ot2EmnSfzmQwET4ZkZvjkZRsQ==
-X-Received: by 2002:a05:6a00:10c8:b0:593:c648:f836 with SMTP id d8-20020a056a0010c800b00593c648f836mr2515637pfu.3.1675249376175;
-        Wed, 01 Feb 2023 03:02:56 -0800 (PST)
-Received: from [172.30.1.94] ([14.32.163.5])
-        by smtp.gmail.com with ESMTPSA id s9-20020a62e709000000b0058de0998f17sm11127029pfh.154.2023.02.01.03.02.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 03:02:55 -0800 (PST)
-Message-ID: <cee1778f-70a0-4bb5-a18f-4dd89cf62a2e@gmail.com>
-Date:   Wed, 1 Feb 2023 20:02:51 +0900
+        with ESMTP id S231967AbjBALLI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 06:11:08 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19CC0518DD;
+        Wed,  1 Feb 2023 03:11:00 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 311BAO7W095237;
+        Wed, 1 Feb 2023 05:10:24 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1675249824;
+        bh=C2fkhzDKpyC6VYBjXs0epirB6kkQ1d7SHJaX7hY3p5M=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Kd3elvazf8+kce8AdbbtUdUzRirqwPadF0fPGxFHnfxBtAKUlrOTMGFP4lce9y5wQ
+         j4RT3xYu7Rk5dIfpoDse84jM9sFXwU32pvGT/gtoT1bWAShi08/qbvKA7q8KDuI7Zy
+         iUm/Sb/bG8V7jYIfuixeEvW+QXwFq7E0WWWbtaQM=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 311BAOvh004554
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 1 Feb 2023 05:10:24 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 1
+ Feb 2023 05:10:24 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 1 Feb 2023 05:10:24 -0600
+Received: from [10.24.69.114] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 311BAIUQ129851;
+        Wed, 1 Feb 2023 05:10:18 -0600
+Message-ID: <703df816-e7bf-dfef-4a55-6fd784f5854c@ti.com>
+Date:   Wed, 1 Feb 2023 16:40:17 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 2/2] PM / devfreq: qcom: Introduce CCI devfreq driver
-To:     Jun Nie <jun.nie@linaro.org>, myungjoo.ham@samsung.com,
-        kyungmin.park@samsung.com, cw00.choi@samsung.com
-Cc:     bryan.odonoghue@linaro.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230201080227.473547-1-jun.nie@linaro.org>
- <20230201080227.473547-2-jun.nie@linaro.org>
-From:   Chanwoo Choi <cwchoi00@gmail.com>
+Subject: Re: [EXTERNAL] Re: [PATCH v3 1/2] dt-bindings: net: Add ICSSG
+ Ethernet Driver bindings
 Content-Language: en-US
-In-Reply-To: <20230201080227.473547-2-jun.nie@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Tero Kristo <t-kristo@ti.com>,
+        Suman Anna <s-anna@ti.com>, Roger Quadros <rogerq@kernel.org>,
+        YueHaibing <yuehaibing@huawei.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <andrew@lunn.ch>
+CC:     <nm@ti.com>, <ssantosh@kernel.org>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20221223110930.1337536-1-danishanwar@ti.com>
+ <20221223110930.1337536-2-danishanwar@ti.com>
+ <b17e9a32-cfdb-223c-f500-c897061753f6@linaro.org>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <b17e9a32-cfdb-223c-f500-c897061753f6@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Krzysztof,
 
-On 23. 2. 1. 17:02, Jun Nie wrote:
-> Cache Coherent Interconnect (CCI) is used by some Qualcomm SoCs. This
-> driver is introduced so that its freqency can be adjusted. And regulator
-> associated with opp table can be also adjusted accordingly which is
-> shared with cpu cluster.
+On 23/12/22 17:01, Krzysztof Kozlowski wrote:
+> On 23/12/2022 12:09, MD Danish Anwar wrote:
+>> From: Puranjay Mohan <p-mohan@ti.com>
+>>
+>> Add a YAML binding document for the ICSSG Programmable real time unit
+>> based Ethernet driver. This driver uses the PRU and PRUSS consumer APIs
+>> to interface the PRUs and load/run the firmware for supporting ethernet
+>> functionality.
+>>
+>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+>> Signed-off-by: Md Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  .../bindings/net/ti,icssg-prueth.yaml         | 174 ++++++++++++++++++
+>>  1 file changed, 174 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>> new file mode 100644
+>> index 000000000000..7659f5fd3132
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>> @@ -0,0 +1,174 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/ti,icssg-prueth.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title:
+>> +  Texas Instruments ICSSG PRUSS Ethernet
 > 
-> Signed-off-by: Jun Nie <jun.nie@linaro.org>
-> ---
->  drivers/devfreq/Kconfig    |   9 +++
->  drivers/devfreq/Makefile   |   1 +
->  drivers/devfreq/qcom-cci.c | 162 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 172 insertions(+)
->  create mode 100644 drivers/devfreq/qcom-cci.c
+> Keep it in one line.
 > 
-> diff --git a/drivers/devfreq/Kconfig b/drivers/devfreq/Kconfig
-> index 9754d8b31621..6f3f1872f3fb 100644
-> --- a/drivers/devfreq/Kconfig
-> +++ b/drivers/devfreq/Kconfig
-> @@ -130,6 +130,15 @@ config ARM_MEDIATEK_CCI_DEVFREQ
->  	  buck voltages and update a proper CCI frequency. Use the notification
->  	  to get the regulator status.
->  
-> +config ARM_QCOM_CCI_DEVFREQ
-> +	tristate "QUALCOMM CCI DEVFREQ Driver"
-> +	depends on ARCH_QCOM || COMPILE_TEST
-> +	select DEVFREQ_GOV_PASSIVE
-> +	help
-> +	  This adds a devfreq driver for Qualcomm Cache Coherent Interconnect which
-> +	  shares the same regulator with the cpu cluster. This driver can track a
-> +	  proper regulator state while CCI frequency is updated.
 
-Maybe, this driver use the passive governor because as this description,
-the regulator is shared with cpu cluster. But, as I commented below,
-you use the 'userspace' governor in probe. is it right?
+Sure, I'll do it.
 
-> +
->  config ARM_RK3399_DMC_DEVFREQ
->  	tristate "ARM RK3399 DMC DEVFREQ Driver"
->  	depends on (ARCH_ROCKCHIP && HAVE_ARM_SMCCC) || \
-> diff --git a/drivers/devfreq/Makefile b/drivers/devfreq/Makefile
-> index bf40d04928d0..f2526d8c168d 100644
-> --- a/drivers/devfreq/Makefile
-> +++ b/drivers/devfreq/Makefile
-> @@ -12,6 +12,7 @@ obj-$(CONFIG_ARM_EXYNOS_BUS_DEVFREQ)	+= exynos-bus.o
->  obj-$(CONFIG_ARM_IMX_BUS_DEVFREQ)	+= imx-bus.o
->  obj-$(CONFIG_ARM_IMX8M_DDRC_DEVFREQ)	+= imx8m-ddrc.o
->  obj-$(CONFIG_ARM_MEDIATEK_CCI_DEVFREQ)	+= mtk-cci-devfreq.o
-> +obj-$(CONFIG_ARM_QCOM_CCI_DEVFREQ)	+= qcom-cci.o
->  obj-$(CONFIG_ARM_RK3399_DMC_DEVFREQ)	+= rk3399_dmc.o
->  obj-$(CONFIG_ARM_SUN8I_A33_MBUS_DEVFREQ)	+= sun8i-a33-mbus.o
->  obj-$(CONFIG_ARM_TEGRA_DEVFREQ)		+= tegra30-devfreq.o
-> diff --git a/drivers/devfreq/qcom-cci.c b/drivers/devfreq/qcom-cci.c
-> new file mode 100644
-> index 000000000000..21b5f133cddc
-> --- /dev/null
-> +++ b/drivers/devfreq/qcom-cci.c
-> @@ -0,0 +1,162 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2023 Linaro Ltd.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/devfreq.h>
-> +#include <linux/device.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-consumer.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pm_opp.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +
-> +#define SPEED_PVS(s, p) ((s << 16) | p)
+>> +
+>> +maintainers:
+>> +  - Puranjay Mohan <p-mohan@ti.com>
+>> +  - Md Danish Anwar <danishanwar@ti.com>
+>> +
+>> +description:
+>> +  Ethernet based on the Programmable Real-Time
+>> +  Unit and Industrial Communication Subsystem.
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/remoteproc/ti,pru-consumer.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ti,am654-icssg-prueth  # for AM65x SoC family
+>> +
+>> +  sram:
+>> +    description:
+>> +      phandle to MSMC SRAM node
+> 
+> Where does the definition of this come from? If from nowhere, usually
+> you need vendor prefix and type/ref.
+> 
 
-What it meaning of PVS? Could you add the comment for 'PVS' and 's', 'p'?
+It is phandle to sram node in SoC DT file. I'll change it to ti,sram as it is
+TI specific. I'll also add $ref: /schemas/types.yaml#/definitions/phandle
 
-> +
-> +struct qcom_cci {
-> +	struct devfreq_dev_profile profile;
-> +	struct devfreq *devfreq;
-> +	struct clk *clk;
-> +};
-> +
-> +static int qcom_cci_target(struct device *dev,
-> +		unsigned long *freq, u32 flags)
+>> +
+>> +  dmas:
+>> +    maxItems: 10
+>> +
+>> +  dma-names:
+>> +    items:
+>> +      - const: tx0-0
+>> +      - const: tx0-1
+>> +      - const: tx0-2
+>> +      - const: tx0-3
+>> +      - const: tx1-0
+>> +      - const: tx1-1
+>> +      - const: tx1-2
+>> +      - const: tx1-3
+>> +      - const: rx0
+>> +      - const: rx1
+>> +
+>> +  ethernet-ports:
+>> +    type: object
+>> +    properties:
+>> +      '#address-cells':
+>> +        const: 1
+>> +      '#size-cells':
+>> +        const: 0
+>> +
+>> +    patternProperties:
+>> +      ^port@[0-1]$:
+>> +        type: object
+>> +        description: ICSSG PRUETH external ports
+>> +
+>> +        $ref: ethernet-controller.yaml#
+>> +
+>> +        unevaluatedProperties: false
+>> +        additionalProperties: false
+> 
+> You cannot have both. Did you test the binding? I doubt it...
+> 
 
-Actually, this line is not long. You can type it on one line as following:
+Sorry, must have missed it in testing. I will remove additionalProperties and
+just keep unevaluatedProperties.
 
-static int qcom_cci_target(struct device *dev, unsigned long *freq, u32 flags)
+>> +        properties:
+>> +          reg:
+>> +            items:
+>> +              - enum: [0, 1]
+>> +            description: ICSSG PRUETH port number
+>> +
+>> +          ti,syscon-rgmii-delay:
+>> +            $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +            description:
+>> +              phandle to system controller node and register offset
+>> +              to ICSSG control register for RGMII transmit delay
+> 
+> You need to describe the items. And in your own bindings from TI you
+> will even find example...
+> 
 
-> +{
-> +	struct dev_pm_opp *new_opp;
-> +	int ret;
+Sure. I'll describe the items for this.
 
-As I mentioned belwo, this local variable is not needed
-if just return PTR_ERR(new_opp).
+>> +
+>> +        required:
+>> +          - reg
+>> +
+>> +  ti,mii-g-rt:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: |
+>> +      phandle to MII_G_RT module's syscon regmap.
+>> +
+>> +  ti,mii-rt:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: |
+>> +      phandle to MII_RT module's syscon regmap
+> 
+> Why do you have so many phandles? Aren't you missing some phys?
+> 
 
-> +
-> +	new_opp = devfreq_recommended_opp(dev, freq, flags);
-> +	if (IS_ERR(new_opp)) {
-> +		ret = PTR_ERR(new_opp);
-> +		dev_err(dev, "failed to get recommended opp: %d\n", ret);
-> +		return ret;
+That is because control bits were sprinkled around System Control register so
+we need to use syscon regmap to access them.
 
-Better to add 'return PTR_ERR(new_opp)' without 'ret' local variable.
+>> +
+>> +  interrupts:
+>> +    minItems: 2
+> 
+> Drop minItems
+> 
 
-> +	}
-> +	dev_pm_opp_put(new_opp);
-> +
-> +	return dev_pm_opp_set_rate(dev, *freq);
-> +}
-> +
-> +static int qcom_cci_get_cur_freq(struct device *dev, unsigned long *freq)
-> +{
-> +	struct qcom_cci *priv = dev_get_drvdata(dev);
-> +
-> +	*freq = clk_get_rate(priv->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int qcom_get_dev_version(struct nvmem_cell *speedbin_nvmem)
-> +{
-> +	int speed = 0, pvs = 0;
-> +	u8 *speedbin;
-> +	size_t len;
-> +
-> +	speedbin = nvmem_cell_read(speedbin_nvmem, &len);
-> +	if (IS_ERR(speedbin))
-> +		return PTR_ERR(speedbin);
-> +
-> +	speed = (speedbin[0xc] >> 2) & 0x7;
-> +	pvs = (speedbin[0x3] >> 5 & 0x1) | ((speedbin[0x6] >> 2 & 0x3) << 1);
+Sure. I'll drop minItems.
 
-Actually, 0xc, 0x3, 0x7, 0x1 and so on. It is impossible to understand
-the meaning of this hex value. Plesae add the constant defintion 
-for the readability. 
+>> +    maxItems: 2
+>> +    description: |
+>> +      Interrupt specifiers to TX timestamp IRQ.
+>> +
+>> +  interrupt-names:
+>> +    items:
+>> +      - const: tx_ts0
+>> +      - const: tx_ts1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - sram
+>> +  - ti,mii-g-rt
+> 
+> Keep same order as in properties:.
+> 
 
-> +	kfree(speedbin);
-> +
-> +	/* Convert speedbin and PVS into version bit map */
-> +	switch (SPEED_PVS(speed, pvs)) {
-> +	case SPEED_PVS(0, 0): return 0x1;
-> +	case SPEED_PVS(2, 0): return 0x2;
-> +	case SPEED_PVS(2, 2): return 0x4;
-> +	case SPEED_PVS(4, 0): return 0x8;
-> +	case SPEED_PVS(5, 0): return 0x10;
-> +	case SPEED_PVS(5, 6): return 0x20;
-> +	default:
-> +		return 0x1;> +	}
-> +}
-> +
-> +static void qcom_cci_exit(struct device *dev)
-> +{
-> +	dev_pm_opp_of_remove_table(dev);
-> +}
-> +
-> +static int qcom_cci_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct qcom_cci *priv;
-> +	const char *gov = DEVFREQ_GOV_USERSPACE;
+Sure, I will make sure it has same order as in properties.
 
-Even if you select 'DEVFREQ_GOV_PASSIVE' on Kconfig,
-Is it right that this driver use the userspace governor?
+>> +  - dmas
+>> +  - dma-names
+>> +  - ethernet-ports
+>> +  - interrupts
+>> +  - interrupt-names
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +
+> 
+> No need for blank line.
+> 
 
+I'll remove this blank line.
 
-> +	struct device_node *np = dev->of_node;
-> +	struct nvmem_cell *speedbin_nvmem;
-> +	int ret;
-> +	u32 version;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(priv->clk)) {
-> +		ret = PTR_ERR(priv->clk);
-> +		dev_err(dev, "failed to fetch clk: %d\n", ret);
-> +		return ret;
+>> +    /* Example k3-am654 base board SR2.0, dual-emac */
+>> +    pruss2_eth: pruss2_eth {
+> 
+> No underscores in node names.
+> 
+> Node names should be generic.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
 
-You can use dev_err_probe as following:
+I will change the node name 'pruss2_eth' to generic for example 'ethernet'.
 
-	return dev_err_probe(dev, ret, "failed to fetch clk: %d\n", ret);
+>> +        compatible = "ti,am654-icssg-prueth";
+>> +        pinctrl-names = "default";
+>> +        pinctrl-0 = <&icssg2_rgmii_pins_default>;
+>> +        sram = <&msmc_ram>;
+>> +
+>> +        ti,prus = <&pru2_0>, <&rtu2_0>, <&tx_pru2_0>,
+>> +                  <&pru2_1>, <&rtu2_1>, <&tx_pru2_1>;
+>> +        firmware-name = "ti-pruss/am65x-pru0-prueth-fw.elf",
+>> +                        "ti-pruss/am65x-rtu0-prueth-fw.elf",
+>> +                        "ti-pruss/am65x-txpru0-prueth-fw.elf",
+>> +                        "ti-pruss/am65x-pru1-prueth-fw.elf",
+>> +                        "ti-pruss/am65x-rtu1-prueth-fw.elf",
+>> +                        "ti-pruss/am65x-txpru1-prueth-fw.elf";
+> 
+> I really doubt it was tested... and maybe there will be no testing from
+> Rob's bot due to dependency.
+> 
+> Please post dt_binding_check testing results.
+> 
 
-> +	}
-> +	platform_set_drvdata(pdev, priv);
-> +
-> +	/* Check whether we have profiled speed version per chip */
-> +	speedbin_nvmem = of_nvmem_cell_get(np, NULL);
-> +	if (IS_ERR(speedbin_nvmem))
-> +		return PTR_ERR(speedbin_nvmem);
+I had run dt_binding check before posting, must have missed these errors. I
+will be careful to check for this errors before posting patches.
 
-I recommend that you need to add the fail log with dev_err.
+I will post new revision after doing the above mentioned changes. I will make
+sure to do testing properly.
 
-> +
-> +	version = qcom_get_dev_version(speedbin_nvmem);
-> +	dev_info(dev, "%s: set opp table version 0x%x\n", __func__, version);
-
-Don't need to use '__func__' because dev_info will print the module name.
-It is enough.
-
-> +
-> +	nvmem_cell_put(speedbin_nvmem);
-> +	ret = dev_pm_opp_set_supported_hw(dev, &version, 1);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to set supported hardware\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = dev_pm_opp_of_add_table(dev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to get OPP table\n");
-> +		return ret;
-> +	}
-> +
-> +	priv->profile.target = qcom_cci_target;
-> +	priv->profile.exit = qcom_cci_exit;
-> +	priv->profile.get_cur_freq = qcom_cci_get_cur_freq;
-> +	priv->profile.initial_freq = clk_get_rate(priv->clk);
-> +
-> +	priv->devfreq = devm_devfreq_add_device(dev, &priv->profile,
-> +						gov, NULL);
-> +	if (IS_ERR(priv->devfreq)) {
-> +		ret = PTR_ERR(priv->devfreq);
-> +		dev_err(dev, "failed to add devfreq device: %d\n", ret);
-> +		goto err;
-
-Need to goto 'err_remove_opp_table' instead of 'err'.
-
-> +	}
-> +
-> +	return 0;
-> +
-> +err:
-> +	dev_pm_opp_of_remove_table(dev);
-> +	return ret;
-
-For more correct exception handling, need to change it as following:
-
-err_remove_opp_table:
-	dev_pm_opp_of_remove_table(dev);
-err:
-	return ret;
-
-> +}
-> +
-> +static const struct of_device_id qcom_cci_of_match[] = {
-> +	{ .compatible = "qcom,msm8939-cci"},
-> +	{ /* sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, qcom_cci_of_match);
-> +
-> +static struct platform_driver qcom_cci_platdrv = {
-> +	.probe		= qcom_cci_probe,
-> +	.driver = {
-> +		.name	= "qcom-cci-devfreq",
-> +		.of_match_table = qcom_cci_of_match,
-> +	},
-> +};
-> +module_platform_driver(qcom_cci_platdrv);
-> +
-> +MODULE_DESCRIPTION("QCOM cci frequency scaling driver");
-
-cci is the abbreviation. You need to use the captical letter as following:
-
-MODULE_DESCRIPTION("QCOM CCI frequency scaling driver");
-
-> +MODULE_AUTHOR("Jun Nie <jun.nie@linaro.org>");
-> +MODULE_LICENSE("GPL");
+> Best regards,
+> Krzysztof
+> 
 
 -- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
-
+Thanks and Regards,
+Danish.
