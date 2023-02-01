@@ -2,25 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3101F686522
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 12:16:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0253468654B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 12:21:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231697AbjBALQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 06:16:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39338 "EHLO
+        id S232213AbjBALV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 06:21:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbjBALQI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 06:16:08 -0500
-Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [IPv6:2001:4b7a:2000:18::170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5BBD4858E
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 03:16:07 -0800 (PST)
+        with ESMTP id S232193AbjBALVz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 06:21:55 -0500
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DFE6113E4
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 03:21:54 -0800 (PST)
 Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 4FF0A20134;
-        Wed,  1 Feb 2023 12:16:05 +0100 (CET)
-Date:   Wed, 1 Feb 2023 12:16:04 +0100
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 09F92201BE;
+        Wed,  1 Feb 2023 12:21:52 +0100 (CET)
+Date:   Wed, 1 Feb 2023 12:21:50 +0100
 From:   Marijn Suijten <marijn.suijten@somainline.org>
 To:     Kalyan Thota <quic_kalyant@quicinc.com>
 Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
@@ -29,87 +29,42 @@ Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
         dianders@chromium.org, swboyd@chromium.org,
         quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
         quic_abhinavk@quicinc.com
-Subject: Re: [v1 2/3] drm/msm/disp/dpu1: add dspps into reservation if there
- is a ctm request
-Message-ID: <20230201111604.htgczy6yvdkywhvl@SoMainline.org>
+Subject: Re: [v1 1/3] drm/msm/disp/dpu1: clear dspp reservations in rm release
+Message-ID: <20230201112150.ukoz55duvag7dzkm@SoMainline.org>
 References: <1675092092-26412-1-git-send-email-quic_kalyant@quicinc.com>
- <1675092092-26412-3-git-send-email-quic_kalyant@quicinc.com>
+ <1675092092-26412-2-git-send-email-quic_kalyant@quicinc.com>
+ <20230201111031.dqdketybw3pqpywx@SoMainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1675092092-26412-3-git-send-email-quic_kalyant@quicinc.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230201111031.dqdketybw3pqpywx@SoMainline.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-01-30 07:21:31, Kalyan Thota wrote:
-> Add dspp blocks into the topology for reservation, if there is a ctm
-> request for that composition.
-
-DSPP
-
-> Changes in v1:
-> - Minor nits (Dmitry)
-
-This should go below the triple dashes, so that it /does not/ become
-part of the patch/commit that is applied to the tree (where review
-history is irrelevant as it can be searched for separately).
-
-> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
+On 2023-02-01 12:10:33, Marijn Suijten wrote:
+> On 2023-01-30 07:21:30, Kalyan Thota wrote:
+> > Clear dspp reservations from the global state during
+> > rm release
 > 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> index 9c6817b..3bd46b4 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> @@ -545,7 +545,8 @@ bool dpu_encoder_use_dsc_merge(struct drm_encoder *drm_enc)
->  static struct msm_display_topology dpu_encoder_get_topology(
->  			struct dpu_encoder_virt *dpu_enc,
->  			struct dpu_kms *dpu_kms,
-> -			struct drm_display_mode *mode)
-> +			struct drm_display_mode *mode,
-> +			struct drm_crtc_state *crtc_state)
->  {
->  	struct msm_display_topology topology = {0};
->  	int i, intf_count = 0;
-> @@ -573,11 +574,9 @@ static struct msm_display_topology dpu_encoder_get_topology(
->  	else
->  		topology.num_lm = (mode->hdisplay > MAX_HDISPLAY_SPLIT) ? 2 : 1;
->  
-> -	if (dpu_enc->disp_info.intf_type == DRM_MODE_ENCODER_DSI) {
-> -		if (dpu_kms->catalog->dspp &&
-> -			(dpu_kms->catalog->dspp_count >= topology.num_lm))
-> -			topology.num_dspp = topology.num_lm;
-> -	}
-> +	if (dpu_kms->catalog->dspp &&
-> +	    crtc_state->ctm && (dpu_kms->catalog->dspp_count >= topology.num_lm))
-
-Multiline-if-clause is typically indented with two tabs, not a half tab
-(4 spaces).
-
-Nit: swap the && here?  dspp and dspp_count are related, so check ctm
-first or last but not in the middle - makes reading easier.
-
-> +		topology.num_dspp = topology.num_lm;
->  
->  	topology.num_enc = 0;
->  	topology.num_intf = intf_count;
-> @@ -643,7 +642,7 @@ static int dpu_encoder_virt_atomic_check(
->  		}
->  	}
->  
-> -	topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, adj_mode);
-> +	topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, adj_mode, crtc_state);
->  
->  	/* Reserve dynamic resources now. */
->  	if (!ret) {
-> -- 
-> 2.7.4
+> DSPP, and a period at the end of a sentence.  Also noticing inconsistent
+> linebreaks across these patches, stick to 72 chars.
 > 
+> > Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> 
+> Should this be considered a fix to be backported, or is it harmless?  If
+> so:
+> 
+> Fixes: e47616df008b ("drm/msm/dpu: add support for color processing blocks in dpu driver")
+
+Right, it should, Dmitry also requested this in v1.
+
+- Marijn
