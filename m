@@ -2,73 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6D47685CB9
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 02:41:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E65CB685CC3
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 02:44:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231292AbjBABlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 20:41:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57630 "EHLO
+        id S231441AbjBABoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 20:44:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231296AbjBABlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 20:41:14 -0500
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A4D59541;
-        Tue, 31 Jan 2023 17:41:11 -0800 (PST)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-16346330067so21770889fac.3;
-        Tue, 31 Jan 2023 17:41:11 -0800 (PST)
+        with ESMTP id S231376AbjBABoo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 20:44:44 -0500
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF3A45264;
+        Tue, 31 Jan 2023 17:44:43 -0800 (PST)
+Received: by mail-oi1-f181.google.com with SMTP id s17so3589682ois.10;
+        Tue, 31 Jan 2023 17:44:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ARcpraQzdyShL/3uOhJbU55iw6ZjqLdVd5dZPXUPPKs=;
-        b=zi4gjtCkk4rz0m6/OWIkWQIDD3GWdzY5Dhwc06EnkeJ5UMNJiDgqtIyAtloc9j4zXn
-         nOI9XA8e1TEXuhN2u2iwZ6MoasRG8SyoRxCs/2CwCRxAp/gXxPnPZQVr3pYGmnHm67hQ
-         amFhv003OCdcp2nO9KsQb9N3cBOgsmyhyZUZCFGlLDLxmcC29imPSvsVaQlLag0j+v/e
-         i6yey/5Y7OM/h2mY7sax+pA2t+JVxw4RfhjIhRLD73kg+xsLPcrOQxbhAN9EJxGypWJf
-         cnbQngvGY7I+vHcSw+E2+NhbLUj/+F8xB7mtrF4gxsDjcTebEqlgUDetemxqhjDgQp/u
-         74MQ==
-X-Gm-Message-State: AO0yUKXJfkKHxGAF+RakHVSfDUBHC+vT1LEk2betZIbVECKIWtXsXFfh
-        fLVE+/nCzWI8qljh+s4ckw==
-X-Google-Smtp-Source: AK7set+7vdv8wCpcZTaEjMIlQXTj5qX8pbN6bW9oRbbgZSH7MorUaN+g7rqVEpjZGOJmdPN5Wr2Oyg==
-X-Received: by 2002:a05:6870:315:b0:15f:b59a:55f1 with SMTP id m21-20020a056870031500b0015fb59a55f1mr123340oaf.16.1675215670603;
-        Tue, 31 Jan 2023 17:41:10 -0800 (PST)
+        bh=fXwTZgiPmgELyuj9MUwWX8YzaCtDhA3ytFvllU7DMXs=;
+        b=lGmJuSdYkOm75qM1KJlOYW+O8AAvbyLqRtFxM5vYqreg9ksW+JibVXk8QrzkYWfWhV
+         eLwIumzc4lOEMQTvBhWa+mNCp+DaW02dHl0Yd2vNpgmw7tZiQOVqFMxlDzYdupxMancB
+         oHc7TCujr261IPi3xHGpoQpfPCnKpVLgVLnjVvwTvEXdmEYe3PCfnEZMTC9DK/Hs0Ttt
+         85YMxiv/VO+xQYhCCD0/jEBkL97xe3fWEC0/XDUSDM7xZ+F6TNgCAixp39rwLwjaFfb2
+         l3i2duR0tauGLZEOkCmNk0zjd5l7NKnyMUIJRxKD72yFj9+O7SSV5lBFZiJgE76OWSdp
+         arAw==
+X-Gm-Message-State: AO0yUKVt/So7whsT17VL6O3H/ghu1JuLxQXC80DJszV7nUKE3ohMNGwS
+        /XohyJWJLhffCMT3SxR+8Q==
+X-Google-Smtp-Source: AK7set+FZoHi7elOF65zpP8ZutGk1Jngax+dH8ZskVeZ8YY0Mo5VpXGo0yGCn4+eTAs/apLAEMHCQg==
+X-Received: by 2002:aca:110f:0:b0:378:477c:3e0e with SMTP id 15-20020aca110f000000b00378477c3e0emr302653oir.45.1675215883089;
+        Tue, 31 Jan 2023 17:44:43 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id lm27-20020a0568703d9b00b0015f83e16a10sm7267887oab.44.2023.01.31.17.41.09
+        by smtp.gmail.com with ESMTPSA id s33-20020a0568302aa100b0068bd3001922sm3076967otu.45.2023.01.31.17.44.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Jan 2023 17:41:10 -0800 (PST)
-Received: (nullmailer pid 2293844 invoked by uid 1000);
-        Wed, 01 Feb 2023 01:41:09 -0000
-Date:   Tue, 31 Jan 2023 19:41:09 -0600
+        Tue, 31 Jan 2023 17:44:42 -0800 (PST)
+Received: (nullmailer pid 2297811 invoked by uid 1000);
+        Wed, 01 Feb 2023 01:44:41 -0000
+Date:   Tue, 31 Jan 2023 19:44:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Richard Leitner <richard.leitner@skidata.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        linux-staging@lists.linux.dev,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        linux-media@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v4 02/21] dt-bindings: display: tegra: vi: add 'vip'
- property and example
-Message-ID: <167521566867.2293789.16573974181219415861.robh@kernel.org>
-References: <20230130141603.323221-1-luca.ceresoli@bootlin.com>
- <20230130141603.323221-3-luca.ceresoli@bootlin.com>
+To:     Jia Jie Ho <jiajie.ho@starfivetech.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        linux-kernel@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        linux-crypto@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: crypto: Add StarFive crypto module
+Message-ID: <167521588146.2297772.10966946099496116680.robh@kernel.org>
+References: <20230130154242.112613-1-jiajie.ho@starfivetech.com>
+ <20230130154242.112613-2-jiajie.ho@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230130141603.323221-3-luca.ceresoli@bootlin.com>
+In-Reply-To: <20230130154242.112613-2-jiajie.ho@starfivetech.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -80,29 +69,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 30 Jan 2023 15:15:44 +0100, Luca Ceresoli wrote:
-> The Tegra20 VI peripheral can receive parallel input from the VIP parallel
-> input module. Add it to the allowed properties and augment the existing
-> nvidia,tegra20-vi example to show a 'vip' property.
+On Mon, 30 Jan 2023 23:42:39 +0800, Jia Jie Ho wrote:
+> Add documentation to describe StarFive cryptographic engine.
 > 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> 
+> Co-developed-by: Huan Feng <huan.feng@starfivetech.com>
+> Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
+> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
 > ---
-> 
-> Changed in v4:
->  - complete the removal of 'channel@0'
-> 
-> Changed in v3 (suggested by Rob Herring):
->  - drop 'endpoint', unneeded as there's no extra properties in the
->    endpoints
-> 
-> Changed in v2 (suggested by Krzysztof Kozlowski):
->  - rename "i2c3" -> "ic2"
->  - add review tag
-> ---
->  .../display/tegra/nvidia,tegra20-vi.yaml      | 59 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 60 insertions(+)
+>  .../crypto/starfive,jh7110-crypto.yaml        | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/starfive,jh7110-crypto.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
