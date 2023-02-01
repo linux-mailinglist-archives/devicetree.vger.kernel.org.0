@@ -2,276 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00FB1686033
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C797686041
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:05:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231300AbjBAHEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 02:04:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46410 "EHLO
+        id S230269AbjBAHFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 02:05:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230282AbjBAHEE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:04:04 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8DF711C;
-        Tue, 31 Jan 2023 23:03:40 -0800 (PST)
+        with ESMTP id S231751AbjBAHFm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:05:42 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 529358A5B
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:05:25 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id q10-20020a1cf30a000000b003db0edfdb74so1913047wmq.1
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:05:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1675235021; x=1706771021;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=zZzUBgAz009x45fbn90mob7kNuwe+12Mpt+4kTnJGyU=;
-  b=mPTp31HBtF5JckAO4gfTG2XZ5d21yVaB95DL/Pj64VIob7ikEDNg+BRS
-   IC5e0YzuBNVl0wkX+yI1jJ9fDj90G9UodIna6w86YwhxWdV25Ta2EVJfe
-   VXT9aQD0fb8wJOL6jSitlWq1SZpUjpD/w2dZx+NzxRf1XDz0jUVUfyzfo
-   sXoCPHhDG3Qclc3yQbYZGh4nNaEaBilW2FB3dH1fZIGI5PZW9h/uTt+bJ
-   Ll9mUfepCZlZVs5L5P+r1HfY4+bHzRPP2ocbm01xFxo7YeVXEQsCDpDj6
-   hHTaUurMdJq9cLG/t2Cxw9uGY5dON7/KRUiu5ylr0DyASRdIdzTiTxKFX
-   w==;
-X-IronPort-AV: E=Sophos;i="5.97,263,1669071600"; 
-   d="scan'208";a="28787735"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 01 Feb 2023 08:03:38 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 01 Feb 2023 08:03:38 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 01 Feb 2023 08:03:38 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1675235018; x=1706771018;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=zZzUBgAz009x45fbn90mob7kNuwe+12Mpt+4kTnJGyU=;
-  b=iq4STJFus1ppexBYHB/5+Vmg4VQGhzwOVB3v561Fp1quIbDKHrk4BacD
-   D2tTdyT9mZYeHafIMTDa2/ULiAs+u9xjCNuq1SOQgKz+2wd7Kc5RvCoQc
-   +eKJa8M1xwjva1cFVhqeVOO6O9iJ6HIYy8BaoJzsiRrbJ+kk3z5FRBxnl
-   a5a1PpKYpBGXPZsWtoFtnltqkWUGf7dZpkJ8/HxNoHWf14qiuHHn4uCKz
-   6fE7gcfTD2HIWCT2TfpBVW5I7p/iG5BJZrBMeFtfPtTfE3zvG5ZbxJYAg
-   5y3F0p9r771p7rMCwnbaT0bwjFusvqXVKHKDYFMmb7sMI4iu9/1zbp1mg
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,263,1669071600"; 
-   d="scan'208";a="28787734"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 01 Feb 2023 08:03:38 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7043F280056;
-        Wed,  1 Feb 2023 08:03:38 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        d=jrtc27.com; s=gmail.jrtc27.user;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e8gKGvK+r7EDr5He9Gl8MsjplN89RsEBb0xFGFSeoWY=;
+        b=ZDfGYSydUbs+W/mZ/JEdD6Q+8lcaLxLNi99HmCRr8gzdobuZMw/guj3LdnXcCx0jfS
+         i/DhUZgi36mxwP7NxLmv/bIWDlAEd3yc/osBtAxPRl9qH8KIMR349F6AFdABhD0Qtn0I
+         HSXoUmkKir6bff3h+lW+pB/Z6iRz6Ai4zv38CN1gpBrya5U682EU/6QBVmCPDYDVISYV
+         d2oMFyDeR7jUfDue8RH6lTl0NRpDwaVv06H4rEPbemSqpTVQGx29KqonFPRPoXIoJSyM
+         nTBEfeMaLzABTZMAIS0EzErF5H5641OBt4VdmoZuijfWPIN8aeuwXKeNd2jAvv526ZVF
+         LYgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=e8gKGvK+r7EDr5He9Gl8MsjplN89RsEBb0xFGFSeoWY=;
+        b=kM8I9Xp6TtOuNJ/lWNpWFWjNq73xDbx0WhhVSlHt+yATYMEAFF6BQZJxT6FCBtEBwc
+         bww7BQj3Y1iBpBy0E5lS0ObYXYcak8A/xVnnxn4Uvn68dxboNojlvuGreXyY3u1mxyN/
+         iyAxPuPc3dioEGUyNj7BzjpGL8JffrVJ1Q4eZp1X896QS15riFEQZ/SsSiLu9M4dMOtc
+         /Gr07NTbQRM6erd5woWol++9un0MNiAXK+IkoFbR07joF9AxiP9PVpSx7NUXB68G/alT
+         3vbUxDpZhQf+8WBDr+Kvqp+wlCgKHcWNl/w/j9QsQk1+DkaNesvFNFlatXQ3l16bt2+W
+         IJYg==
+X-Gm-Message-State: AO0yUKX/a4UvhmzqFaWLsQRDBtaCEgirOqvsv9bZJIgeWOriHXIaQiRM
+        qJW2REimommZKhIvFStKV016rw==
+X-Google-Smtp-Source: AK7set+k/wPPr1ZjoqjkmJ3suXeJsAYSrNEbwNPRfVbpz2KUV//5EoU3DiEoIgpuYmPe3INabtxGwA==
+X-Received: by 2002:a05:600c:4fd3:b0:3dc:5b88:e6dd with SMTP id o19-20020a05600c4fd300b003dc5b88e6ddmr914970wmq.10.1675235123776;
+        Tue, 31 Jan 2023 23:05:23 -0800 (PST)
+Received: from smtpclient.apple (global-5-143.n-2.net.cam.ac.uk. [131.111.5.143])
+        by smtp.gmail.com with ESMTPSA id r12-20020a05600c35cc00b003d9fba3c7a4sm800681wmq.16.2023.01.31.23.05.23
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 31 Jan 2023 23:05:23 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
+Subject: Re: [QUERY]: Block region to mmap
+From:   Jessica Clarke <jrtc27@jrtc27.com>
+In-Reply-To: <Y9oHT1D1X9cdHLr0@infradead.org>
+Date:   Wed, 1 Feb 2023 07:05:22 +0000
+Cc:     Matthew Wilcox <willy@infradead.org>,
+        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Linux-MM <linux-mm@kvack.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+        Arnd Bergmann <arnd@arndb.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH 2/2] media: i2c: imx290: Add support for the mono sensor variant.
-Date:   Wed, 01 Feb 2023 08:03:36 +0100
-Message-ID: <5647238.DvuYhMxLoT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230131190700.3476796-3-dave.stevenson@raspberrypi.com>
-References: <20230131190700.3476796-1-dave.stevenson@raspberrypi.com> <20230131190700.3476796-3-dave.stevenson@raspberrypi.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert.uytterhoeven@gmail.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <11BE997B-93C7-4D38-99BF-FD025A1FB945@jrtc27.com>
+References: <CA+V-a8tR1KiLSs=Psa=w7kf0zT=yU5_Ekr6-3V1MR==Wtzmksg@mail.gmail.com>
+ <Y9KQPxzHBuZGIN4U@casper.infradead.org>
+ <CA+V-a8uizF8sQgs8cfTwH3OnK+nvr2dXAoSOPTXCXLFnprHSeA@mail.gmail.com>
+ <Y9fhOFEV0kS9U06/@casper.infradead.org> <Y9oHT1D1X9cdHLr0@infradead.org>
+To:     Christoph Hellwig <hch@infradead.org>
+X-Mailer: Apple Mail (2.3696.120.41.1.1)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dave,
+On 1 Feb 2023, at 06:31, Christoph Hellwig <hch@infradead.org> wrote:
+> On Mon, Jan 30, 2023 at 03:24:40PM +0000, Matthew Wilcox wrote:
+>>> Basically we are making use of the memory protection unit (MPU) so
+>>> that only M-mode is allowed to access this region and S/U modes are
+>>> blocked.
+>>=20
+>> This sounds like RISC-V terminology.  I have no idea what M, S or U
+>> modes are (Supervisor and User, I'd guess for the last two?)
+>=20
+>=20
+> Yes, M =3D Machine, S =3D Supervisor, and U =3D User.
+> M omde is the absolutele worst idea of RISC-V and basically a mix
+> of microcode and super-SMM mode.
+>=20
+>> Before we go too deeply into it, how much would it cost to buy all of
+>> these parts and feed them into a shredder?  I'm not entirely joking;
+>> if it's less than the software engineering time it'd take to develop
+>> and support this feature, we should do it.
+>=20
+> The above suggests this is in no way an actual hardware problem, but =
+the
+> stupid decision is done in the M-Mode firmware.  I think it is very
+> reasonable to simply not support the devices in Linux until the =
+firmware
+> is fixed.
 
-Am Dienstag, 31. Januar 2023, 20:07:00 CET schrieb Dave Stevenson:
-> The IMX290 module is available as either mono or colour (Bayer).
-> 
-> Update the driver so that it can advertise the correct mono
-> formats instead of the colour ones.
-> 
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> ---
->  drivers/media/i2c/imx290.c | 47 ++++++++++++++++++++++++--------------
->  1 file changed, 30 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-> index 49d6c8bdec41..a370f1102334 100644
-> --- a/drivers/media/i2c/imx290.c
-> +++ b/drivers/media/i2c/imx290.c
-> @@ -13,6 +13,7 @@
->  #include <linux/gpio/consumer.h>
->  #include <linux/i2c.h>
->  #include <linux/module.h>
-> +#include <linux/of_device.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/regmap.h>
->  #include <linux/regulator/consumer.h>
-> @@ -177,6 +178,7 @@ struct imx290 {
->  	struct clk *xclk;
->  	struct regmap *regmap;
->  	u8 nlanes;
-> +	u8 mono;
-> 
->  	struct v4l2_subdev sd;
->  	struct media_pad pad;
-> @@ -414,7 +416,8 @@ static inline int imx290_modes_num(const struct imx290
-> *imx290) }
-> 
->  struct imx290_format_info {
-> -	u32 code;
-> +	/* Array of codes. [0] is for colour, [1] is for mono. */
-> +	u32 code[2];
+No, it really is a hardware spec violation. Virtual addresses within
+the magic range bypass translation with no way to turn it off. The
+firmware is being (has been?) patched to block those accesses at the
+physical memory protection level so any attempt to use those virtual
+addresses will fault, but if Linux wants to support this cursed
+hardware and its gross spec violation then it needs to forbid any
+allocation of the VA range.
 
-Please use a define for that.
+This magic range also overlaps with the default base address used for
+both GNU ld and LLVM LLD, for added entertainment, so almost every
+position-dependent binary that exists in the world for RISC-V cannot be
+run on this hardware. One could change that for future binaries, but
+that doesn=E2=80=99t seem right to me... IMO this hardware is even more =
+=E2=80=9Cnot
+RISC-V=E2=80=9D than the D1 with its page table mess, but I don=E2=80=99t =
+think we=E2=80=99ll
+ever see RISC-V International come out and say that, so it=E2=80=99s up =
+to the
+open-source communities to decide what they want to support and what
+they view as too much of a violation to be acceptable.
 
->  	u8 bpp;
->  	const struct imx290_regval *regs;
->  	unsigned int num_regs;
-> @@ -422,26 +425,27 @@ struct imx290_format_info {
-> 
->  static const struct imx290_format_info imx290_formats[] = {
->  	{
-> -		.code = MEDIA_BUS_FMT_SRGGB10_1X10,
-> +		.code = { MEDIA_BUS_FMT_SRGGB10_1X10, 
-MEDIA_BUS_FMT_Y10_1X10 },
->  		.bpp = 10,
->  		.regs = imx290_10bit_settings,
->  		.num_regs = ARRAY_SIZE(imx290_10bit_settings),
->  	}, {
-> -		.code = MEDIA_BUS_FMT_SRGGB12_1X12,
-> +		.code = { MEDIA_BUS_FMT_SRGGB12_1X12, 
-MEDIA_BUS_FMT_Y12_1X12 },
->  		.bpp = 12,
->  		.regs = imx290_12bit_settings,
->  		.num_regs = ARRAY_SIZE(imx290_12bit_settings),
->  	}
->  };
-> 
-> -static const struct imx290_format_info *imx290_format_info(u32 code)
-> +static const struct imx290_format_info *
-> +imx290_format_info(const struct imx290 *imx290, u32 code)
->  {
->  	unsigned int i;
-> 
->  	for (i = 0; i < ARRAY_SIZE(imx290_formats); ++i) {
->  		const struct imx290_format_info *info = 
-&imx290_formats[i];
-> 
-> -		if (info->code == code)
-> +		if (info->code[imx290->mono] == code)
->  			return info;
->  	}
-> 
-> @@ -536,7 +540,7 @@ static int imx290_set_black_level(struct imx290 *imx290,
-> const struct v4l2_mbus_framefmt *format,
->  				  unsigned int black_level, int *err)
->  {
-> -	unsigned int bpp = imx290_format_info(format->code)->bpp;
-> +	unsigned int bpp = imx290_format_info(imx290, format->code)->bpp;
-> 
->  	return imx290_write(imx290, IMX290_BLKLEVEL,
->  			    black_level >> (16 - bpp), err);
-> @@ -548,7 +552,7 @@ static int imx290_setup_format(struct imx290 *imx290,
->  	const struct imx290_format_info *info;
->  	int ret;
-> 
-> -	info = imx290_format_info(format->code);
-> +	info = imx290_format_info(imx290, format->code);
-> 
->  	ret = imx290_set_register_array(imx290, info->regs, info->num_regs);
->  	if (ret < 0) {
-> @@ -844,10 +848,12 @@ static int imx290_enum_mbus_code(struct v4l2_subdev
-> *sd, struct v4l2_subdev_state *sd_state,
->  				 struct v4l2_subdev_mbus_code_enum 
-*code)
->  {
-> +	const struct imx290 *imx290 = to_imx290(sd);
-> +
->  	if (code->index >= ARRAY_SIZE(imx290_formats))
->  		return -EINVAL;
-> 
-> -	code->code = imx290_formats[code->index].code;
-> +	code->code = imx290_formats[code->index].code[imx290->mono];
-> 
->  	return 0;
->  }
-> @@ -859,7 +865,7 @@ static int imx290_enum_frame_size(struct v4l2_subdev
-> *sd, const struct imx290 *imx290 = to_imx290(sd);
->  	const struct imx290_mode *imx290_modes = imx290_modes_ptr(imx290);
-> 
-> -	if (!imx290_format_info(fse->code))
-> +	if (!imx290_format_info(imx290, fse->code))
->  		return -EINVAL;
-> 
->  	if (fse->index >= imx290_modes_num(imx290))
-> @@ -888,8 +894,8 @@ static int imx290_set_fmt(struct v4l2_subdev *sd,
->  	fmt->format.width = mode->width;
->  	fmt->format.height = mode->height;
-> 
-> -	if (!imx290_format_info(fmt->format.code))
-> -		fmt->format.code = imx290_formats[0].code;
-> +	if (!imx290_format_info(imx290, fmt->format.code))
-> +		fmt->format.code = imx290_formats[0].code[imx290->mono];
-> 
->  	fmt->format.field = V4L2_FIELD_NONE;
-> 
-> @@ -1177,16 +1183,29 @@ static s64 imx290_check_link_freqs(const struct
-> imx290 *imx290, return 0;
->  }
-> 
-> +static const struct of_device_id imx290_of_match[] = {
-> +	{ .compatible = "sony,imx290" },
-> +	{ .compatible = "sony,imx290-mono", .data = (void *)1 },
-
-Would you mind using a model specific struct? I have a patch on my stack 
-adding support for imx327. There are some imx327 specific writes to registers 
-during initialization. I do not mind adding this struct later though.
-
-Best regards
-Alexander
-
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx290_of_match);
-> +
->  static int imx290_parse_dt(struct imx290 *imx290)
->  {
-> +	struct i2c_client *client = to_i2c_client(imx290->dev);
->  	/* Only CSI2 is supported for now: */
->  	struct v4l2_fwnode_endpoint ep = {
->  		.bus_type = V4L2_MBUS_CSI2_DPHY
->  	};
-> +	const struct of_device_id *match;
->  	struct fwnode_handle *endpoint;
->  	int ret;
->  	s64 fq;
-> 
-> +	match = i2c_of_match_device(imx290_of_match, client);
-> +	if (match)
-> +		imx290->mono = match->data ? 1 : 0;
-> +
->  	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(imx290->dev), 
-NULL);
->  	if (!endpoint) {
->  		dev_err(imx290->dev, "Endpoint node not found\n");
-> @@ -1351,12 +1370,6 @@ static void imx290_remove(struct i2c_client *client)
->  	pm_runtime_set_suspended(imx290->dev);
->  }
-> 
-> -static const struct of_device_id imx290_of_match[] = {
-> -	{ .compatible = "sony,imx290" },
-> -	{ /* sentinel */ }
-> -};
-> -MODULE_DEVICE_TABLE(of, imx290_of_match);
-> -
->  static struct i2c_driver imx290_i2c_driver = {
->  	.probe_new  = imx290_probe,
->  	.remove = imx290_remove,
-
-
-
+Jess
 
