@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35BE4686A47
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 16:30:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B0E8686A4C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 16:30:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231897AbjBAPa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 10:30:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41274 "EHLO
+        id S232099AbjBAPaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 10:30:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231305AbjBAPa0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 10:30:26 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6603B1117E
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 07:30:24 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so1679380wma.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 07:30:24 -0800 (PST)
+        with ESMTP id S231716AbjBAPai (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 10:30:38 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5B8D274BA
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 07:30:35 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso1699737wms.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 07:30:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=e2vajhQRGz6tVBbUNED/4hod8rqStI0ha++lJD4Wrmo=;
-        b=cBV/3Rnb8c4xCJsid84iSTM6xdYv9y+2SentKtI7JrEYTvuVQOKMgGw4ZSM2+vLTNy
-         UFDhLv7HUbUN43yVbaWSl2A7vlho0ZXsjR1vjVIhmW6N9HGxrKjeZPW68yXuoULYUoCi
-         KyHvHf0xFIsbnAMdI3P1HLDFMyIPgJSHuyS67SYv0lJltSTRR1GTlYjsbaG2e2GuK5dy
-         qfDLp1Kzq0PW1wK9HVeeDu4pd662b00tT4FVxdq4c/RurTCuqNvb1spNStdVjFM3o5Mv
-         RVyFE3JlwEQ+DcwDGSi5KAQwREUnTGFDOcaiy97D0uW1p0HHTyStZzWYa0dP3eckLY+s
-         ni/A==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+yFMfHAkjUDblLlWHVZSYqqN498dZqtZtB7jcm99lH8=;
+        b=P69JYgkUILRcU/LLDR66GsXPRDrZ2phcrXvvbt3odNO/hNLQzhUsqF+SRTzUj4ZevT
+         9MRN8wWZL5khOUOwHCe/q1Bwz7Z8KxuCsQpedqK+A+xYS7cslW/lalWauswo2eGvtHEg
+         bFZUIzgObD+0Kt7swpAvjYMrZtYVOZAmw59X6UNvgGIhla8YVNo1ACNs/VQWJ0kG5PP7
+         i+VOxz7niQ5gmG++Vq+sYbFbTllyj0Kv0ljSGeUfJYCd6HiN/GVxiHBphSZ72K5j+Qmp
+         gdgHkhHisyLHZzljpMo57zpgAu9rKupqzEKthIffLDCIzpZcC4b425yAqPYZgfjK27gd
+         LroQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e2vajhQRGz6tVBbUNED/4hod8rqStI0ha++lJD4Wrmo=;
-        b=sMyx3dzZ6nuRashxMHV/zfgwUwCx66v4V1bSk9+L0LISw7DL4LWH/q1gZUvLIMCihf
-         kTPN4pp2bCsC1def9OreEzGR+0QRek36ovDC389nBOvg9S3YFYF1rLSbtOcv5ddpee9s
-         vdLzTk8mVtTLCqEFAD/SUC8V5weKlcxEShnjel1R3WRipfdsDzJAvGXoT7RX+qBh2puZ
-         MWOgjApT5MIY7/KmYGsUu0oPtzIcRU42N1YdIKhZJEX85T8XPlZKArC/lijIen4zOZPi
-         aaA6yPWBDqxOsaOt5BQZUfT0Or7Al/1EM1HBklSRHigDVqi8k51y27Uh/7CD18LsDB6p
-         6T3w==
-X-Gm-Message-State: AO0yUKXJl6avH4Hsrq0jlU29Oikkr+dgHceJNU7DccusP7O/+wI73wAt
-        740W2gKqZFIrV8gcUroUXb/eYQ==
-X-Google-Smtp-Source: AK7set8zbyrq/7G4eviSWTfVxnY/oF5bveG5azjEqpjLmK0AW/sRGPyTWzabN/xGU6QJCgqXlYQfYg==
-X-Received: by 2002:a05:600c:3b17:b0:3db:2e06:4091 with SMTP id m23-20020a05600c3b1700b003db2e064091mr2605005wms.37.1675265422970;
-        Wed, 01 Feb 2023 07:30:22 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+yFMfHAkjUDblLlWHVZSYqqN498dZqtZtB7jcm99lH8=;
+        b=J+KtVVFpSZnPSCU/xyOevSkcV0xyiPTpyfIu0E0jQNbr4X2Oyh618PAseGUDXLEIm3
+         KIwQPXaLkXDOJpUx2Ri6lDDbDyVeo0T5G2XiD8TTtl3ZswVg0eodGerQ8v87RGbxgN6f
+         338EE3WUur+sCXjSUxp2mL0CRV/mGx0Nr2uqB535N6jvZoJPKyavBO4mXGz53yMKG4jF
+         QDF+FZKmTrAAgarK5J2whiGglPzVNxjpKoqsicKCmAJT7tyo1f1uEAC5uNLHc+GY55Sm
+         nxtJcv3s08Rwcb16+yg+8UboveBpstZl2oFL6gS9jcy0ci8NDmWq+yb7x3PcWqlGI3g2
+         BPRw==
+X-Gm-Message-State: AO0yUKUD1FwGIL+54GNoFgaC9BctmD89mq1DCOC3ISTLwG5KCAASgcMI
+        QfvhvTLcSxjLsuHRzSXZy0pEew==
+X-Google-Smtp-Source: AK7set9qPY9BG9Uq0BAn3+LzX/IMvJwx7QPL5mLDwFnJAQ3KYRPNRxuoFxmHuHHNbEX/cpg/4i1uww==
+X-Received: by 2002:a05:600c:b8e:b0:3da:fa42:bbf2 with SMTP id fl14-20020a05600c0b8e00b003dafa42bbf2mr2617121wmb.28.1675265434267;
+        Wed, 01 Feb 2023 07:30:34 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p11-20020a1c544b000000b003dc4fd6e624sm2168032wmi.19.2023.02.01.07.30.21
+        by smtp.gmail.com with ESMTPSA id p11-20020a1c544b000000b003dc4fd6e624sm2168032wmi.19.2023.02.01.07.30.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Feb 2023 07:30:22 -0800 (PST)
+        Wed, 01 Feb 2023 07:30:33 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -65,43 +66,53 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/7] dt-bindings: pinctrl: qcom,msm8226: correct GPIO name pattern
-Date:   Wed,  1 Feb 2023 16:30:13 +0100
-Message-Id: <20230201153019.269718-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/7] dt-bindings: pinctrl: qcom,msm8909: correct GPIO name pattern and example
+Date:   Wed,  1 Feb 2023 16:30:14 +0100
+Message-Id: <20230201153019.269718-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230201153019.269718-1-krzysztof.kozlowski@linaro.org>
+References: <20230201153019.269718-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MSM8226 TLMM pin controller has GPIOs 0-116, so correct the pattern
-to bring back missing 107-109.
+The MSM8909 TLMM pin controller has GPIOs 0-112, so narrow the pattern
+and gpio-ranges in the example.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml        | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
-index a29b8a9e1f31..6cb667fa8665 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
-@@ -56,7 +56,7 @@ $defs:
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
+index 449e6e34be61..85082adc1811 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
+@@ -63,7 +63,7 @@ $defs:
            subnode.
          items:
            oneOf:
--            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-1][0-6])$"
-+            - pattern: "^gpio([0-9]|[1-9][0-9]|10[0-9]|11[0-6])$"
-             - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data ]
-         minItems: 1
-         maxItems: 36
+-            - pattern: "^gpio([0-9]|[1-9][0-9]|10[0-9]|11[0-7])$"
++            - pattern: "^gpio([0-9]|[1-9][0-9]|10[0-9]|11[0-2])$"
+             - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd,
+                       sdc2_data, qdsd_clk, qdsd_cmd, qdsd_data0, qdsd_data1,
+                       qdsd_data2, qdsd_data3 ]
+@@ -127,7 +127,7 @@ examples:
+         interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+         gpio-controller;
+         #gpio-cells = <2>;
+-        gpio-ranges = <&tlmm 0 0 117>;
++        gpio-ranges = <&tlmm 0 0 113>;
+         interrupt-controller;
+         #interrupt-cells = <2>;
+ 
 -- 
 2.34.1
 
