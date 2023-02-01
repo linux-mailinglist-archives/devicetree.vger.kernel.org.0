@@ -2,110 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1398686076
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:19:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8BBE68607F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:22:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231478AbjBAHTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 02:19:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54102 "EHLO
+        id S230189AbjBAHWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 02:22:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230522AbjBAHTk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:19:40 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C21F410B2
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:19:38 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id k16so11940675wms.2
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:19:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=raudraL3zAjAAmoNIOlfcGUuWKzInNWE+GXv3K4A1Wo=;
-        b=m9se2slJYwQkxrv9qNzIutCcs0g1mnQWEBAIxZ1DvKc6ZSuBNDqfNZD2xZmD3Govuh
-         LYBYhPi3ArKQl5KHFiRQtzLmw4nYKnG/HCGenL+QGpN4gyOEKl0t7FI1GtAhPGb+2KS5
-         Km58jaFgYBMmZl1VCTDVROCLxzJBfeTxVVA32ptuptpS/7Sv65P8lkHa/4TN7U3CkqrR
-         OljkP0UB06Kx9eLrQA3+TGKHs8eSRfFv7aPJ/PiLEOTh/b1i/Gxy5w+ouyXYzsixuXZ4
-         uol97sFvIgr0GOrrGxOw3CgSkLSWMNouZRzEbuvGF23Oz8EnRTt8h4o0s8VJV6kczDut
-         AbXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=raudraL3zAjAAmoNIOlfcGUuWKzInNWE+GXv3K4A1Wo=;
-        b=G4bgj5jvpcjKGgya5a0kig9oJHLy9+olaQU2tGTrie4vvkM0TRER/O8RP7zzlh8LMN
-         eEst/fIl61PDYNRD5S8LXQoapz6S+lXPKWvLoTxTdjDY0l9VApGQW7KOqsnRiLpcsgTR
-         akN6TPsyqHfpssxKTDOhSKGXm20twNdhGMNRF07GFR3NfdnqqQJa54uedM0pd6IbDP6C
-         wpraz3FNyBVS8Fbf17P2qfX3tC4m8jIF3lqZQtcmSHv++oYZWMc7PjV1xsUyUTtBhAoh
-         H6LyU0lPwX2gu0cOFF3AxTih1fHMl1ZkF1mLKx9mI2mCzmLVL+YT6bfUhGzCpR51knKt
-         WAzw==
-X-Gm-Message-State: AO0yUKWS00wLylARzej4hCcKXgX6aAMqfx3Xq7QMqgs8RPe+Q/pTryO6
-        osr1mA8j2dOt/fLdEDPvf3Bv5A==
-X-Google-Smtp-Source: AK7set/zj6tX2KJgI7hwRv5MVFG0m283U6CNWH1TBdX/5vF7J3XXXtOAyPRI5ejKGCHGilNLZPrZbw==
-X-Received: by 2002:a05:600c:3c9a:b0:3dc:c5c:b94f with SMTP id bg26-20020a05600c3c9a00b003dc0c5cb94fmr596981wmb.39.1675235976640;
-        Tue, 31 Jan 2023 23:19:36 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j33-20020a05600c1c2100b003db0ad636d1sm798556wms.28.2023.01.31.23.19.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 23:19:36 -0800 (PST)
-Message-ID: <472e86b4-2f81-1bd9-13e1-30778d10c89f@linaro.org>
-Date:   Wed, 1 Feb 2023 08:19:33 +0100
+        with ESMTP id S229761AbjBAHWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:22:00 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEFE647EE3;
+        Tue, 31 Jan 2023 23:21:56 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id CC90F24E226;
+        Wed,  1 Feb 2023 15:21:49 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 1 Feb
+ 2023 15:21:49 +0800
+Received: from [192.168.125.110] (183.27.97.127) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 1 Feb
+ 2023 15:21:48 +0800
+Message-ID: <c507e0b2-5ca3-cffe-55d2-873ed8c24e3d@starfivetech.com>
+Date:   Wed, 1 Feb 2023 15:21:48 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 2/4] Bluetooth: hci_qca: Add support for QTI Bluetooth
- chip wcn6855
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v3 6/7] riscv: dts: starfive: Add initial StarFive JH7110
+ device tree
 Content-Language: en-US
-To:     Steev Klimaszewski <steev@kali.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+To:     Conor Dooley <conor@kernel.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>
-References: <a18751a0-f51b-0a3a-58ff-2062a9dc46fb@linaro.org>
- <20230201030538.56293-1-steev@kali.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230201030538.56293-1-steev@kali.org>
-Content-Type: text/plain; charset=UTF-8
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221220011247.35560-1-hal.feng@starfivetech.com>
+ <20221220011247.35560-7-hal.feng@starfivetech.com> <Y6zHy9oL4xzl+6Rd@spud>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <Y6zHy9oL4xzl+6Rd@spud>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [183.27.97.127]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/02/2023 04:05, Steev Klimaszewski wrote:
->> On 31/01/2023 05:38, Steev Klimaszewski wrote:
->>> Added regulators,GPIOs and changes required to power on/off wcn6855.
->>> Added support for firmware download for wcn6855.
->>>
->>> This is based on commit d8f97da1b92d ("Bluetooth: hci_qca: Add support for QTI Bluetooth chip wcn6750")
+On Wed, 28 Dec 2022 22:48:43 +0000, Conor Dooley wrote:
+> Hey,
 > 
->> Drop. If that commit is merged, how is it useful to keep it in git
->> history forever?
+> On Tue, Dec 20, 2022 at 09:12:46AM +0800, Hal Feng wrote:
+>> From: Emil Renner Berthing <kernel@esmil.dk>
+>> 
+>> Add initial device tree for the JH7110 RISC-V SoC by StarFive
+>> Technology Ltd.
+>> 
+>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>> Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+>> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+>> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
+>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+>> ---
+>>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 411 +++++++++++++++++++++++
+>>  1 file changed, 411 insertions(+)
+>>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> 
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> new file mode 100644
+>> index 000000000000..64d260ea1f29
+>> --- /dev/null
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> @@ -0,0 +1,411 @@
+>> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+>> +/*
+>> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+>> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +#include <dt-bindings/clock/starfive,jh7110-crg.h>
+>> +#include <dt-bindings/reset/starfive,jh7110-crg.h>
+>> +
+>> +/ {
+>> +	compatible = "starfive,jh7110";
+>> +	#address-cells = <2>;
+>> +	#size-cells = <2>;
+>> +
+>> +	cpus {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		S76_0: cpu@0 {
+>> +			compatible = "sifive,u74-mc", "riscv";
 > 
-> Sorry if that wasn't clear enough, what I meant to say here is that I used that
-> commit id as the basis for my work, and it's not based on having access to the
-> schematics or spec sheets.
+> The label here says S76 but the compatible says u74-mc.
 
-Hm, I still don't find it useful then.
+U74-MC has 5 cores including 1 * S7 core and 4 * U74 cores.
+
+> Which is correct? Your docs say S7 and S76, so I would imagine that it
+> is actually an S76?
+
+I found SiFive website [1] call it S76, but call it S7 in other places.
+So I misunderstood this. Considering the ISA difference you described
+as below, I think it's proper to change the label to "S7_0".
+
+[1] https://www.sifive.com/cores/essential
+
+> 
+>> +			reg = <0>;
+>> +			d-cache-block-size = <64>;
+>> +			d-cache-sets = <64>;
+>> +			d-cache-size = <8192>;
+>> +			d-tlb-sets = <1>;
+>> +			d-tlb-size = <40>;
+>> +			device_type = "cpu";
+>> +			i-cache-block-size = <64>;
+>> +			i-cache-sets = <64>;
+>> +			i-cache-size = <16384>;
+>> +			i-tlb-sets = <1>;
+>> +			i-tlb-size = <40>;
+>> +			mmu-type = "riscv,sv39";
+>> +			next-level-cache = <&ccache>;
+>> +			riscv,isa = "rv64imac";
+> 
+> While I was poking around trying to see if there was some logic behind
+> that compatible, I noticed that SiFive's docs for the S76 say it is
+> RV64GBC *but* the docs for the u74-mc say "4xRV64GBC and 1xRV64IMAC".
+> I assume that rv64imac is the correct one here?
+
+Yes, "RV64IMAC" is correct. The monitor core in U74-MC is a
+S7-series core, not S76.
+
+> 
+>> +			tlb-split;
+>> +			status = "disabled";
+>> +
+>> +			cpu0_intc: interrupt-controller {
+>> +				compatible = "riscv,cpu-intc";
+>> +				interrupt-controller;
+>> +				#interrupt-cells = <1>;
+>> +			};
+>> +		};
+>> +
+>> +		U74_1: cpu@1 {
+>> +			compatible = "sifive,u74-mc", "riscv";
+>> +			reg = <1>;
+>> +			d-cache-block-size = <64>;
+>> +			d-cache-sets = <64>;
+>> +			d-cache-size = <32768>;
+>> +			d-tlb-sets = <1>;
+>> +			d-tlb-size = <40>;
+>> +			device_type = "cpu";
+>> +			i-cache-block-size = <64>;
+>> +			i-cache-sets = <64>;
+>> +			i-cache-size = <32768>;
+>> +			i-tlb-sets = <1>;
+>> +			i-tlb-size = <40>;
+>> +			mmu-type = "riscv,sv39";
+>> +			next-level-cache = <&ccache>;
+>> +			riscv,isa = "rv64imafdc";
+> 
+> That also begs the question:
+> Do your u74s support RV64GBC, as the (current) SiFive documentation
+> suggests?
+
+Actually, U74 doesn't support the full B extension, and the SiFive doc [1]
+describes the ISA of U74 is "RV64GC_Zba_Zbb_Sscofpmf" which "G" includes
+"IMAFD". "_Zba_Zbb_Sscofpmf" is not shown in other device trees such as
+jh7100.dtsi and fu740-c000.dtsi, so I didn't show them here.
+
+[1] https://sifive.cdn.prismic.io/sifive/2dd11994-693c-4360-8aea-5453d8642c42_u74mc_core_complex_manual_21G3.pdf
 
 Best regards,
-Krzysztof
-
+Hal
