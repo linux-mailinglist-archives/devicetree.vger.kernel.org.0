@@ -2,58 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A1936867E5
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 15:03:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 130EF68681E
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 15:23:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231883AbjBAODX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 09:03:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57596 "EHLO
+        id S232403AbjBAOX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 09:23:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231594AbjBAODW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 09:03:22 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2CE1193E7;
-        Wed,  1 Feb 2023 06:03:14 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A2D70B821A9;
-        Wed,  1 Feb 2023 14:03:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D926C433D2;
-        Wed,  1 Feb 2023 14:03:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675260192;
-        bh=2DbOtTQRhr8tnJUsWJlJ8/mz0ACGWFvVrr7Khf67Jw4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CFlfGnI1en/ZcXxspRRKujokG0KfusW/3vbZN6nQ1sBWV9M3AJirnOhHNOCa6d1rp
-         +Xo7tdZGOphyvxQmtXrdpPoUbYi84vdrNBD2JBXBOCDGEPhGQ0vcO4RCkXlFX4XuAt
-         73UZ0jmt88xKYYOPv2DmpcTWsun1xr0mhRMrWoGSYeOvpJtFdRc9deY5bI0GPnzW/M
-         3VxHq8piROjRVbKlbqSkMzyYOdE/5mw5BxPoVehnA6IFlCgUVTxjPgSXbVghdeBg/1
-         zejP3mtJa6CLBc1EMd7XvQI3tm+2C+GK8kX27LrTj+jl9NhoHwHz+IE3Y6Jpz+q8fP
-         vw6GWaKQm24Nw==
-Date:   Wed, 1 Feb 2023 14:03:05 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kiseok Jo <kiseok.jo@irondevice.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: Drop broken irondevice,sma1303 binding
-Message-ID: <Y9pxGUMWyMeXQpZM@sirena.org.uk>
-References: <20230201131059.65527-1-krzysztof.kozlowski@linaro.org>
- <1bcd61d6-810f-1239-1b6e-367e0fe87370@linaro.org>
+        with ESMTP id S232411AbjBAOXZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 09:23:25 -0500
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6359C6811E;
+        Wed,  1 Feb 2023 06:23:20 -0800 (PST)
+Received: by mail-ot1-f54.google.com with SMTP id r17-20020a056830449100b0068bb088317aso4629577otv.12;
+        Wed, 01 Feb 2023 06:23:20 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=u6R05L+oKQbQDl8uREuRw0KJjcK3jQble/xRJpOhSC8=;
+        b=Yi7Xbs48W4n8l4a6Om/bpslvESkEdjo3CAl52NfpRsPwbU3H/aY0rQVMTQ//5ifG1v
+         Hh21zgDjNCCtNY5PZUx3J3owuOGHfASuoclj8Uug1j07OI3psnA6OyXF6bU8XwpMsXPm
+         r4Zmax5t5Lzj96Usu1JmwXJHGbhm8sbgE7JN4LOH8fmg2L9e+ytEXZcy4H/s47UbIUrK
+         dX7DF9hI0iUSw/LTUOt3p1+l1BzutrM/4EOzDviRi+n4gtT2AweuMt2GDnkj9vg6Cac3
+         PpfhgryODeSa+IcucNqDh7aG7z1Z6nyh/Bc/eOoK+u6o756OHQqzSrXhT4cAZormhCBi
+         zaZA==
+X-Gm-Message-State: AO0yUKUys7WUGEGZmz6sybTmdCOJc26dM2pO0i+2u3wwsrrAbl5tc9uV
+        8Ns1t2xSo5aonMP1gOrimv5y9mOhIA==
+X-Google-Smtp-Source: AK7set/J3o9QIOKVB9FvjOVAZ5BZ3l6w1/SRn7M6R4wLuH/EwUUSeRnlTPvCDSf5vIhn3+J8sxQz5g==
+X-Received: by 2002:a05:6830:1245:b0:68b:e2a3:8ef1 with SMTP id s5-20020a056830124500b0068be2a38ef1mr918568otp.35.1675261399443;
+        Wed, 01 Feb 2023 06:23:19 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k26-20020a9d761a000000b00670679748f9sm8038628otl.49.2023.02.01.06.23.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Feb 2023 06:23:18 -0800 (PST)
+Received: (nullmailer pid 3335047 invoked by uid 1000);
+        Wed, 01 Feb 2023 14:23:18 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="XMD2Qw0vG4t+o25k"
-Content-Disposition: inline
-In-Reply-To: <1bcd61d6-810f-1239-1b6e-367e0fe87370@linaro.org>
-X-Cookie: Oh no, not again.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Jun Nie <jun.nie@linaro.org>
+Cc:     kyungmin.park@samsung.com, devicetree@vger.kernel.org,
+        myungjoo.ham@samsung.com, bryan.odonoghue@linaro.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        cw00.choi@samsung.com
+In-Reply-To: <20230201080227.473547-1-jun.nie@linaro.org>
+References: <20230201080227.473547-1-jun.nie@linaro.org>
+Message-Id: <167526125547.3331953.6245964862513509015.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Add Qualcomm CCI
+ dt-bindings
+Date:   Wed, 01 Feb 2023 08:23:18 -0600
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -61,58 +66,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---XMD2Qw0vG4t+o25k
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, 01 Feb 2023 16:02:26 +0800, Jun Nie wrote:
+> Add devicetree binding of Qualcomm CCI on MSM8939.
+> 
+> Signed-off-by: Jun Nie <jun.nie@linaro.org>
+> ---
+>  .../bindings/interconnect/qcom,cci.yaml       | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,cci.yaml
+> 
 
-On Wed, Feb 01, 2023 at 02:13:46PM +0100, Krzysztof Kozlowski wrote:
-> On 01/02/2023 14:10, Krzysztof Kozlowski wrote:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> > Because the binding:
-> > 1. Was never tested,
-> > 2. Was never sent to Devicetree maintainers,
-> > 3. Is entirely broken and wrong, so it would have to be almost rewritten
-> >    from scratch,
-> > 4. It does not match the driver, IOW, the binding is fake.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/interconnect/qcom,cci.yaml:43:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
-> I understand that in general we tend to fix, not just to revert. But the
-> poor quality of this binding and the next patch, which was suppose to
-> fix it, plus complete lack of testing, means I do not believe the author
-> will send correct binding.
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/interconnect/qcom,cci.example.dts'
+Documentation/devicetree/bindings/interconnect/qcom,cci.yaml:43:1: found character '\t' that cannot start any token
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/interconnect/qcom,cci.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/interconnect/qcom,cci.yaml:43:1: found character '\t' that cannot start any token
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interconnect/qcom,cci.yaml: ignoring, error parsing file
+make: *** [Makefile:1508: dt_binding_check] Error 2
 
-> More over, fixing binding might require dropping incorrect properties,
-> thus changing the driver. I am not willing to do that, I doubt that
-> anyone has the time for it.
+doc reference errors (make refcheckdocs):
 
-It is an absolutely trivial binding as is, it is utterly
-disproportionate to delete both the binding and the driver to fix
-whatever it is that the issues you're seeing are (I can't really tell
-TBH).  Undocumented properties are a separate thing but again a revert
-is obviously disproportionate here, glancing at the driver the code is
-all well enough separated and can have default values.  Looking again I
-did miss the sysclk selection which should be dropped, clocks should use
-the clock bindings.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230201080227.473547-1-jun.nie@linaro.org
 
-> It's the job of submitter to work on it.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-It's also not the end of the world if we have a driver that isn't
-perfect.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Please, try to keep things constructive.
+pip3 install dtschema --upgrade
 
---XMD2Qw0vG4t+o25k
-Content-Type: application/pgp-signature; name="signature.asc"
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPacRgACgkQJNaLcl1U
-h9Clqgf/fBAlVIkG5zw/SgqTKfN1Yg8nM89WTIvkRkH9P4VzP5/4AcY1JGgQ88LS
-wLn12hGKAm9M96JTB3HMPfBuTbF/sn2oduUU1GUx7T0sM13LVwPCM59/Kv0EZO1r
-60yUzotgLtAMP+bp6qxi5FXG+K9npW+hk7zhtZOu9ia48m3R2k1T2LfO5Ai0Mp4Q
-wJrN5nbyHtXf0MzUcVc+do/mf/1p76HP/NvvyteAoLJVg3l7gEECdws7G+/b1VZf
-xS+tjYlH9R0a1XJsJm+7rAcjlovdpMLZESIb6vHYxDJ18rdBlTsfDtSfIiWDrwof
-4cTRjKLygsYMBrleaja1+7DlW8Satg==
-=nfWJ
------END PGP SIGNATURE-----
-
---XMD2Qw0vG4t+o25k--
