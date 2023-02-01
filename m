@@ -2,214 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AAFF6862FD
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 10:41:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0906A686300
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 10:42:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229955AbjBAJlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 04:41:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57674 "EHLO
+        id S232090AbjBAJmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 04:42:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231835AbjBAJlq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 04:41:46 -0500
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C39D45D133;
-        Wed,  1 Feb 2023 01:41:44 -0800 (PST)
-Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 01 Feb 2023 18:41:43 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 341DD2058B4F;
-        Wed,  1 Feb 2023 18:41:43 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Wed, 1 Feb 2023 18:41:50 +0900
-Received: from [10.212.157.12] (unknown [10.212.157.12])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 954C27366;
-        Wed,  1 Feb 2023 18:41:42 +0900 (JST)
-Message-ID: <bed0a57c-a880-0b6f-f97d-d2b40c7cb17f@socionext.com>
-Date:   Wed, 1 Feb 2023 18:41:42 +0900
+        with ESMTP id S231857AbjBAJmJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 04:42:09 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F5AD5EF97;
+        Wed,  1 Feb 2023 01:42:01 -0800 (PST)
+Received: from pendragon.ideasonboard.com (unknown [193.209.96.36])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DE489505;
+        Wed,  1 Feb 2023 10:41:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1675244519;
+        bh=M/MHomcjcCn4XroQOgrgcI0/sd/srmSceu6sHey7G88=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vX2idoyciOfF83kYW0eDhlnWZ95i6rLwtbR2jFBD2aF1ObxigX3CgeKA7hP8MULcM
+         bowZRQR0sVj67tV5d4wwQD/6bDrCh405oCbvs1nZouh2EzM4LoU1ozX2eUqttq4Cvn
+         ZcaRXrIUTI4Qp1o8BEIquikpmp/layzlO4sA16g8=
+Date:   Wed, 1 Feb 2023 11:41:56 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     yuji2.ishikawa@toshiba.co.jp
+Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl, mchehab@kernel.org,
+        nobuhiro1.iwamatsu@toshiba.co.jp, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rafael.j.wysocki@intel.com,
+        broonie@kernel.org, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/6] media: platform: visconti: Add Toshiba Visconti
+ Video Input Interface driver
+Message-ID: <Y9oz5MDMmopBq5h9@pendragon.ideasonboard.com>
+References: <20230111022433.25950-1-yuji2.ishikawa@toshiba.co.jp>
+ <20230111022433.25950-3-yuji2.ishikawa@toshiba.co.jp>
+ <Y8cjqoztUTIL61dP@valkosipuli.retiisi.eu>
+ <TYAPR01MB62010040B750701D253C47CB92D19@TYAPR01MB6201.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 2/4] nvmem: add generic driver for devices with MMIO
- access
-Content-Language: en-US
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20230201064717.18410-1-zajec5@gmail.com>
- <20230201064717.18410-3-zajec5@gmail.com>
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-In-Reply-To: <20230201064717.18410-3-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <TYAPR01MB62010040B750701D253C47CB92D19@TYAPR01MB6201.jpnprd01.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello Ishikawa-san,
 
-On 2023/02/01 15:47, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, Feb 01, 2023 at 02:02:43AM +0000, yuji2.ishikawa@toshiba.co.jp wrote:
+> Hello Sakari,
 > 
-> With nvmem layouts in place we should now work on plain content access
-> NVMEM drivers (e.g. MMIO one). Actual NVMEM content handling should go
-> to layout drivers.
+> Sorry for sending the reply again. 
+> My mail agent posted the previous one with HTML format.
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->   drivers/nvmem/Kconfig  | 10 ++++++
->   drivers/nvmem/Makefile |  2 ++
->   drivers/nvmem/mmio.c   | 80 ++++++++++++++++++++++++++++++++++++++++++
->   3 files changed, 92 insertions(+)
->   create mode 100644 drivers/nvmem/mmio.c
+> Thank you for reviewing and your comments.
 > 
-> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> index 789729ff7e50..9eb5e93f0455 100644
-> --- a/drivers/nvmem/Kconfig
-> +++ b/drivers/nvmem/Kconfig
-> @@ -170,6 +170,16 @@ config NVMEM_MICROCHIP_OTPC
->   	  This driver enable the OTP controller available on Microchip SAMA7G5
->   	  SoCs. It controls the access to the OTP memory connected to it.
+> > -----Original Message-----
+> > From: Sakari Ailus sakari.ailus@iki.fi
+> > Sent: Wednesday, January 18, 2023 7:40 AM
+> > To: ishikawa yuji(石川 悠司 ○ＲＤＣ□ＡＩＴＣ○ＥＡ開)
+> > yuji2.ishikawa@toshiba.co.jp
+> > Cc: Hans Verkuil hverkuil@xs4all.nl; Laurent Pinchart
+> > laurent.pinchart@ideasonboard.com; Mauro Carvalho Chehab
+> > mchehab@kernel.org; iwamatsu nobuhiro(岩松 信洋 □ＳＷＣ◯ＡＣＴ)
+> > nobuhiro1.iwamatsu@toshiba.co.jp; Rob Herring robh+dt@kernel.org;
+> > Krzysztof Kozlowski krzysztof.kozlowski+dt@linaro.org; Rafael J . Wysocki
+> > rafael.j.wysocki@intel.com; Mark Brown broonie@kernel.org;
+> > linux-media@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> > linux-kernel@vger.kernel.org; devicetree@vger.kernel.org
+> > Subject: Re: [PATCH v5 2/6] media: platform: visconti: Add Toshiba Visconti
+> > Video Input Interface driver
+
+[snip]
+
+> > > diff --git a/drivers/media/platform/visconti/hwd_viif_reg.h b/drivers/media/platform/visconti/hwd_viif_reg.h
+> > > new file mode 100644
+> > > index 00000000000..b7f43c5fe95
+> > > --- /dev/null
+> > > +++ b/drivers/media/platform/visconti/hwd_viif_reg.h
+> > > @@ -0,0 +1,2802 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+> > > +/* Toshiba Visconti Video Capture Support
+> > > + *
+> > > + * (C) Copyright 2022 TOSHIBA CORPORATION
+> > > + * (C) Copyright 2022 Toshiba Electronic Devices & Storage Corporation
+> > > + */
+> > > +
+> > > +#ifndef HWD_VIIF_REG_H
+> > > +#define HWD_VIIF_REG_H
+> > > +
+> > > +/**
+> > > + * struct hwd_viif_csi2host_reg - Registers for VIIF CSI2HOST control
+> > > + */
+> > > +struct hwd_viif_csi2host_reg {
+> > > +    u32 RESERVED_A_1;
+> > > +    u32 CSI2RX_NLANES;
+> > > +    u32 CSI2RX_RESETN;
+> > > +    u32 CSI2RX_INT_ST_MAIN;
+> > > +    u32 CSI2RX_DATA_IDS_1;
+> > > +    u32 CSI2RX_DATA_IDS_2;
+> > > +    u32 RESERVED_B_1[10];
+> > > +    u32 CSI2RX_PHY_SHUTDOWNZ;
+> > > +    u32 CSI2RX_PHY_RSTZ;
+> > > +    u32 CSI2RX_PHY_RX;
+> > > +    u32 CSI2RX_PHY_STOPSTATE;
+> > > +    u32 CSI2RX_PHY_TESTCTRL0;
+> > > +    u32 CSI2RX_PHY_TESTCTRL1;
+> > > +    u32 RESERVED_B_2[34];
+> > > +    u32 CSI2RX_INT_ST_PHY_FATAL;
+> > > +    u32 CSI2RX_INT_MSK_PHY_FATAL;
+> > > +    u32 CSI2RX_INT_FORCE_PHY_FATAL;
+> > > +    u32 RESERVED_B_3[1];
+> > > +    u32 CSI2RX_INT_ST_PKT_FATAL;
+> > > +    u32 CSI2RX_INT_MSK_PKT_FATAL;
+> > > +    u32 CSI2RX_INT_FORCE_PKT_FATAL;
+> > > +    u32 RESERVED_B_4[1];
+> > > +    u32 CSI2RX_INT_ST_FRAME_FATAL;
+> > > +    u32 CSI2RX_INT_MSK_FRAME_FATAL;
+> > > +    u32 CSI2RX_INT_FORCE_FRAME_FATAL;
+> > > +    u32 RESERVED_B_5[1];
+> > > +    u32 CSI2RX_INT_ST_PHY;
+> > > +    u32 CSI2RX_INT_MSK_PHY;
+> > > +    u32 CSI2RX_INT_FORCE_PHY;
+> > > +    u32 RESERVED_B_6[1];
+> > > +    u32 CSI2RX_INT_ST_PKT;
+> > > +    u32 CSI2RX_INT_MSK_PKT;
+> > > +    u32 CSI2RX_INT_FORCE_PKT;
+> > > +    u32 RESERVED_B_7[1];
+> > > +    u32 CSI2RX_INT_ST_LINE;
+> > > +    u32 CSI2RX_INT_MSK_LINE;
+> > > +    u32 CSI2RX_INT_FORCE_LINE;
+> > > +    u32 RESERVED_B_8[113];
+> > > +    u32 RESERVED_A_2;
+> > > +    u32 RESERVED_A_3;
+> > > +    u32 RESERVED_A_4;
+> > > +    u32 RESERVED_A_5;
+> > > +    u32 RESERVED_A_6;
+> > > +    u32 RESERVED_B_9[58];
+> > > +    u32 RESERVED_A_7;
+> > 
+> > These should be lower case, they're struct members.
+> > 
+> > This way of defining a hardware register interface is highly
+> > unconventional. I'm not saying no to it, not now at least, but something
+> > should be done to make this more robust against accidental changes: adding
+> > a field in the middle changes the address of anything that comes after it,
+> > and it's really difficult to say from the code alone that the address of a
+> > given register is what it's intended to be. Maybe pahole would still help?
+> > But some documentation would be needed in that case.
+> > 
+> > I wonder what others think.
 > 
-> +config NVMEM_MMIO
-> +	tristate "MMIO access based NVMEM support"
-> +	depends on HAS_IOMEM
-> +	help
-> +	  This driver provides support for NVMEM devices that can be accessed
-> +	  using MMIO.
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called nvmem-mmio.
-> +
->   config NVMEM_MTK_EFUSE
->   	tristate "Mediatek SoCs EFUSE support"
->   	depends on ARCH_MEDIATEK || COMPILE_TEST
-> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-> index 442f9a4876a5..2f2bed7cdf24 100644
-> --- a/drivers/nvmem/Makefile
-> +++ b/drivers/nvmem/Makefile
-> @@ -36,6 +36,8 @@ obj-$(CONFIG_NVMEM_MESON_MX_EFUSE)	+=
-> nvmem_meson_mx_efuse.o
->   nvmem_meson_mx_efuse-y			:= meson-mx-efuse.o
->   obj-$(CONFIG_NVMEM_MICROCHIP_OTPC)	+= nvmem-microchip-otpc.o
->   nvmem-microchip-otpc-y			:= microchip-otpc.o
-> +obj-$(CONFIG_NVMEM_MMIO)		+= nvmem-mmio.o
-> +nvmem-mmio-y				:= mmio.o
->   obj-$(CONFIG_NVMEM_MTK_EFUSE)		+= nvmem_mtk-efuse.o
->   nvmem_mtk-efuse-y			:= mtk-efuse.o
->   obj-$(CONFIG_NVMEM_MXS_OCOTP)		+= nvmem-mxs-ocotp.o
-> diff --git a/drivers/nvmem/mmio.c b/drivers/nvmem/mmio.c
-> new file mode 100644
-> index 000000000000..19c8880dc675
-> --- /dev/null
-> +++ b/drivers/nvmem/mmio.c
-> @@ -0,0 +1,80 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2023 Rafał Miłecki <rafal@milecki.pl>
-> + */
-> +
-> +#include <linux/io.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-provider.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/slab.h>
-> +
-> +struct mmio_nvmem {
-> +	void __iomem *base;
-> +};
-> +
-> +static int mmio_nvmem_read(void *context, unsigned int offset, void *val,
-> size_t bytes)
-> +{
-> +	struct mmio_nvmem *priv = context;
-> +
-> +	memcpy_fromio(val, priv->base, bytes);
-> +
-> +	return 0;
-> +}
-> +
-> +static int mmio_nvmem_probe(struct platform_device *pdev)
-> +{
-> +	struct nvmem_config config = {
-> +		.name = "mmio-nvmem",
+> I understand the risk.
+> I'll remove these struct-style definition and introduce macro style definition.
+> I've hesitated this migration simply because it seemed difficult to complete without any defects 
+> especially on calculating the offset of each member.
+> I try find a series of operations that will complete the migration safely.
 
-The fixed name breaks sysfs for multiple nvmem instances.
+I agree with you about the migration risk. Maybe a script that parses
+the header file and generates macros would take less time to implement
+than doing it manually, and would be safer ?
 
-     sysfs: cannot create duplicate filename '/bus/nvmem/devices/mmio-nvmem0'
+> > > +};
+> > > +
 
-> +		.read_only = true,
+-- 
+Regards,
 
-As Michael said in the mediatek patch,
-I also think it's hard to make read-only fixed in the generic driver.
-
-> +		.reg_read = mmio_nvmem_read,
-> +	};
-> +	struct device *dev = &pdev->dev;
-> +	struct mmio_nvmem *priv;
-> +	struct resource *res;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-> +	if (IS_ERR(priv->base))
-> +		return PTR_ERR(priv->base);
-> +
-> +	config.dev = dev;
-> +	config.size = resource_size(res);
-> +	config.word_size = sizeof(u8);
-> +	config.stride = sizeof(u8);
-> +	config.priv = priv;
-> +
-> +	if (!device_property_present(dev, "read-only"))
-> +		dev_warn(dev, "Writing is not supported yet");
-
-Isn't the logic opposite?
-Anyway, the driver doesn't use "read-only" properties for selection.
-
-> +
-> +	return PTR_ERR_OR_ZERO(devm_nvmem_register(dev, &config));
-> +}
-> +
-> +static const struct of_device_id mmio_nvmem_of_match_table[] = {
-> +	{ .compatible = "mmio-nvmem", },
-> +	{},
-> +};
-> +
-> +static struct platform_driver mmio_nvmem_driver = {
-> +	.probe = mmio_nvmem_probe,
-> +	.driver = {
-> +		.name = "mmio_nvmem",
-> +		.of_match_table = mmio_nvmem_of_match_table,
-> +	},
-> +};
-> +
-> +static int __init mmio_nvmem_init(void)
-> +{
-> +	return platform_driver_register(&mmio_nvmem_driver);
-> +}
-> +
-> +subsys_initcall_sync(mmio_nvmem_init);
-> +
-> +MODULE_AUTHOR("Rafał Miłecki");
-> +MODULE_LICENSE("GPL");
-> +MODULE_DEVICE_TABLE(of, mmio_nvmem_of_match_table);
-
-Thank you,
-
----
-Best Regards
-Kunihiko Hayashi
+Laurent Pinchart
