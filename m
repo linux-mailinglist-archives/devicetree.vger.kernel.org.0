@@ -2,237 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 778E5686C16
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 17:51:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0CB7686C34
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 17:56:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbjBAQvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 11:51:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51212 "EHLO
+        id S230207AbjBAQ4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 11:56:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbjBAQvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 11:51:35 -0500
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D5CB95DC1A;
-        Wed,  1 Feb 2023 08:51:33 -0800 (PST)
-Received: by linux.microsoft.com (Postfix, from userid 1127)
-        id 97AB020B7102; Wed,  1 Feb 2023 08:51:33 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 97AB020B7102
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1675270293;
-        bh=KJbAwCn0TGn9+iQ2/tVx4JONaQBj9mJvNHGMDGM632U=;
+        with ESMTP id S230481AbjBAQ4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 11:56:24 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D07F470B9;
+        Wed,  1 Feb 2023 08:56:23 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B68B9B821D7;
+        Wed,  1 Feb 2023 16:56:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC269C433D2;
+        Wed,  1 Feb 2023 16:56:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675270580;
+        bh=p95VTZ74s0ngq1ak6ssuGjQk341jIH4Db9h0E9DotDQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=M9+xi+rv2I/V3tvdmJwTYKVfNxwHXrhk3YuFjRx9VmV1lc+o1A9Wu+cOUOX6Iwt4w
-         qWbJ0+X0KIq3CtjGHl5FYFxixRmdGMvV2Cg828Y6P7R6uOVC5mS0IIHIsKt7uR60/B
-         23Hq+dq0qXf7mxfRScckrGtO4KqjHpYAcUEiu/XI=
-Date:   Wed, 1 Feb 2023 08:51:33 -0800
-From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
-        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
-        daniel.lezcano@linaro.org, tglx@linutronix.de,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com
-Subject: Re: [PATCH v2 6/6] Driver: VMBus: Add device tree support
-Message-ID: <20230201165133.GA24116@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
- <1675188609-20913-7-git-send-email-ssengar@linux.microsoft.com>
- <CAL_JsqK_7eTTrSd6EKDGy9A8kC5w6cjVEtSi3CB1M7Awj+zg6g@mail.gmail.com>
+        b=hSgfHDJfjGSCg+AbjO0MN5I/C7xaW4gTqTuMmVspHl6qh+ppLkuvnIR5E1gSUEmZr
+         mbmah0KLgRm5vdUQJzGJ4cjguLGrNrqCal+cBQYMQvW98Qx36H2RAFQ6bQHfqusGyS
+         5GRTaP0yLS+PJBZ6Ng9SbmbMvu9sEYyXx/M2J9QDrCxUiYUY7fWnPpwS4ymyA47qw9
+         6sXdWeUwOG2+G7mCiOFM4PNUXpSze6iWT3OP+Cfryr0GIGh0BYA7NeksplaN4eEFbr
+         SDOa/AMShlISPd5Z4bG4G47TGV03OffTOocohUoJzzTPV1rfZDFIuhygiircEzXJRb
+         A4rPIZFrQhT5w==
+Date:   Wed, 1 Feb 2023 17:56:17 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
+Subject: Re: [PATCH V10 2/6] i2c: nvidia-gpu: Add ACPI property to align with
+ device-tree
+Message-ID: <Y9qZsTQK8G8gW6+h@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
+References: <20230131175748.256423-1-jonathanh@nvidia.com>
+ <20230131175748.256423-3-jonathanh@nvidia.com>
+ <db53d28c-119b-90c5-de47-bf7a3561552b@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="JUQU0uqB0ZH3qFIY"
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqK_7eTTrSd6EKDGy9A8kC5w6cjVEtSi3CB1M7Awj+zg6g@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <db53d28c-119b-90c5-de47-bf7a3561552b@nvidia.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 31, 2023 at 02:12:53PM -0600, Rob Herring wrote:
-> On Tue, Jan 31, 2023 at 12:10 PM Saurabh Sengar
-> <ssengar@linux.microsoft.com> wrote:
-> >
-> > Update the driver to support device tree boot as well along with ACPI.
-> > At present the device tree parsing only provides the mmio region info
-> > and is not the exact copy of ACPI parsing. This is sufficient to cater
-> > all the current device tree usecases for VMBus.
-> >
-> > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
-> > ---
-> >  drivers/hv/vmbus_drv.c | 75 ++++++++++++++++++++++++++++++++++++++++--
-> >  1 file changed, 73 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
-> > index 49030e756b9f..1741f1348f9f 100644
-> > --- a/drivers/hv/vmbus_drv.c
-> > +++ b/drivers/hv/vmbus_drv.c
-> > @@ -2152,7 +2152,7 @@ void vmbus_device_unregister(struct hv_device *device_obj)
-> >         device_unregister(&device_obj->device);
-> >  }
-> >
-> > -
-> > +#ifdef CONFIG_ACPI
-> >  /*
-> >   * VMBUS is an acpi enumerated device. Get the information we
-> >   * need from DSDT.
-> > @@ -2262,6 +2262,7 @@ static acpi_status vmbus_walk_resources(struct acpi_resource *res, void *ctx)
-> >
-> >         return AE_OK;
-> >  }
-> > +#endif
-> >
-> >  static void vmbus_mmio_remove(void)
-> >  {
-> > @@ -2282,7 +2283,7 @@ static void vmbus_mmio_remove(void)
-> >         }
-> >  }
-> >
-> > -static void vmbus_reserve_fb(void)
-> > +static void __maybe_unused vmbus_reserve_fb(void)
-> >  {
-> >         resource_size_t start = 0, size;
-> >         struct pci_dev *pdev;
-> > @@ -2442,6 +2443,7 @@ void vmbus_free_mmio(resource_size_t start, resource_size_t size)
-> >  }
-> >  EXPORT_SYMBOL_GPL(vmbus_free_mmio);
-> >
-> > +#ifdef CONFIG_ACPI
-> 
-> It's better to put C 'if (!IS_ENABLED(CONFIG_ACPI)' code in the
 
-I wanted to have separate function for ACPI and device tree flow, which
-can be easily maintained with #ifdef. Please let me know if its fine.
+--JUQU0uqB0ZH3qFIY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> 
-> >  static int vmbus_acpi_add(struct platform_device *pdev)
-> >  {
-> >         acpi_status result;
-> > @@ -2496,10 +2498,68 @@ static int vmbus_acpi_add(struct platform_device *pdev)
-> >                 vmbus_mmio_remove();
-> >         return ret_val;
-> >  }
-> > +#else
-> > +
-> > +static int vmbus_device_add(struct platform_device *pdev)
-> > +{
-> > +       struct resource **cur_res = &hyperv_mmio;
-> > +       struct device_node *np;
-> > +       u32 *ranges, len;
-> > +       u64 start;
-> > +       int nr_ranges, child_cells = 2, cur_cell = 0, ret = 0;
-> > +
-> > +       hv_dev = pdev;
-> > +       np = pdev->dev.of_node;
-> > +
-> > +       nr_ranges = device_property_count_u32(&pdev->dev, "ranges");
-> 
-> Parsing ranges yourself is a bad sign. It's a standard property and we
-> have functions which handle it. If those don't work, then something is
-> wrong with your DT or they need to be fixed/expanded.
 
-I find all the  standard functions which parse "ranges" property are doing
-much more then I need. Our requirement is to only pass the mmio memory range
-and size, I couldn't find any standard API doing this.
+> Apologies, but we appear to be missing you on this series [0].
 
-I see some of the drivers are using these APIs to parse ranges property hence
-I follwed those examples. I will be happy to improve it if I get any better
-alternative.
+Yup, me, the i2c-list and the dedicated maintainer for this driver:
 
-> 
-> > +       if (nr_ranges < 0)
-> > +               return nr_ranges;
-> > +       ranges = kcalloc(nr_ranges, sizeof(u32), GFP_KERNEL);
-> > +       if (!ranges)
-> > +               return -ENOMEM;
-> > +
-> > +       if (device_property_read_u32_array(&pdev->dev, "ranges", ranges, nr_ranges)) {
-> > +               ret =  -EINVAL;
-> > +               goto free_ranges;
-> > +       }
-> > +
-> > +       while (cur_cell < nr_ranges) {
-> > +               struct resource *res;
-> > +
-> > +               /* The first u64 in the ranges description isn't used currently. */
-> > +               cur_cell = cur_cell + child_cells;
-> > +               start = ranges[cur_cell++];
-> > +               start = (start << 32) | ranges[cur_cell++];
-> > +               len = ranges[cur_cell++];
-> 
-> To expand my last point, the format of ranges is <child_addr
-> parent_addr length>. That's not what your 'ranges' has. You've also
-> just ignored '#address-cells' and '#size-cells'.
+$ scripts/get_maintainer.pl -f drivers/i2c/busses/i2c-nvidia-gpu.c
+Ajay Gupta <ajayg@nvidia.com>
+linux-i2c@vger.kernel.org
+linux-kernel@vger.kernel.org
 
-Got it. However I need to check if there is any standard API which can
-give me these values, otherwise I may have to parse these as well :(
+If Ajay Gupta is happy, you'll get my ack for free.
 
-Regards,
-Saurabh
 
-> 
-> > +
-> > +               res = kzalloc(sizeof(*res), GFP_ATOMIC);
-> > +               if (!res) {
-> > +                       ret = -ENOMEM;
-> > +                       goto free_ranges;
-> > +               }
-> > +
-> > +               res->name = "hyperv mmio";
-> > +               res->flags = IORESOURCE_MEM | IORESOURCE_MEM_64;
-> > +               res->start = start;
-> > +               res->end = start + len;
-> > +
-> > +               *cur_res = res;
-> > +               cur_res = &res->sibling;
-> > +       }
-> > +
-> > +free_ranges:
-> > +       kfree(ranges);
-> > +       return ret;
-> > +}
-> > +#endif
-> >
-> >  static int vmbus_platform_driver_probe(struct platform_device *pdev)
-> >  {
-> > +#ifdef CONFIG_ACPI
-> >         return vmbus_acpi_add(pdev);
-> > +#else
-> > +       return vmbus_device_add(pdev);
-> > +#endif
-> >  }
-> >
-> >  static int vmbus_platform_driver_remove(struct platform_device *pdev)
-> > @@ -2645,6 +2705,16 @@ static int vmbus_bus_resume(struct device *dev)
-> >  #define vmbus_bus_resume NULL
-> >  #endif /* CONFIG_PM_SLEEP */
-> >
-> > +static const struct of_device_id vmbus_of_match[] = {
-> > +       {
-> > +               .compatible = "msft,vmbus",
-> > +       },
-> > +       {
-> > +               /* sentinel */
-> > +       },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, vmbus_of_match);
-> > +
-> >  static const struct acpi_device_id vmbus_acpi_device_ids[] = {
-> >         {"VMBUS", 0},
-> >         {"VMBus", 0},
-> > @@ -2679,6 +2749,7 @@ static struct platform_driver vmbus_platform_driver = {
-> >         .driver = {
-> >                 .name = "vmbus",
-> >                 .acpi_match_table = ACPI_PTR(vmbus_acpi_device_ids),
-> > +               .of_match_table = of_match_ptr(vmbus_of_match),
-> >                 .pm = &vmbus_bus_pm,
-> >                 .probe_type = PROBE_FORCE_SYNCHRONOUS,
-> >         }
-> > --
-> > 2.25.1
-> >
+--JUQU0uqB0ZH3qFIY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPama0ACgkQFA3kzBSg
+KbZ3Ew//dej9eH30wkbpqRs8i6+6ra4N51QjnoIE7iGw8zkpw0bcEvbmr/5H9xLH
+ZFTJhqP/FZzxWp7eap9z96ZQ9sin/m1c0Hqws0uVRMr3fYql8H419KsLZJ5vy2VQ
+ImeYxOu+4/KAad6x8Jsd4BsVk4DJzSfFGPQu7t3lVlSh/LgzitSZV5W755qpo1wS
+g4NncOOoHfwv95AUi6RQcGihTyV8NZcS8Sa3gfitUkg1T/xXqYqsjDYkx/wVL/nD
+PTD25TxaRoGU4wHCZmaSuUzRvLeWKE/0AK/Fzre9qeiyGcv02qG3uonY457bHfwj
++QmosdIvWCh4vpuSd2MukYQ2NtWggxtAalKMD6D13ljCkEu9hNCn8yNR7A4cdA4c
+ApOhVfaFz362jjzLAldFwPxyFbo/Qp13MeoAKUJ/fkhMWQedt48VCBKE/CCEJO7j
+itvLPI5u5VPLHruYOgUu4BjcQe3XzFVxFh2OZnm3T0KTb4PKzmo5FOTGfKz4lDFI
+dkDox/gpBTAGmTIHy7c3nQJv2E7+/l502hVEDFeUBiVON47Vy1SQHpdo4mnQcr45
+EsScKpfL9v6+gUh9joBJ5oxEOPEQ4xpu9S/N16hwxvbfOq6HkvPOKhgR3JEBfQ1h
+dA+eutpdoYgdF+0cghfTj18cyuYBzqEornMdth1m5nUDYsZaJG0=
+=6gc6
+-----END PGP SIGNATURE-----
+
+--JUQU0uqB0ZH3qFIY--
