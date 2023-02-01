@@ -2,111 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4DF2686D75
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 18:55:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BFA2686D7B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 18:57:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231224AbjBARzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 12:55:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44330 "EHLO
+        id S231200AbjBAR5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 12:57:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbjBARzH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 12:55:07 -0500
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 132697E061;
-        Wed,  1 Feb 2023 09:55:06 -0800 (PST)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-16346330067so24557049fac.3;
-        Wed, 01 Feb 2023 09:55:06 -0800 (PST)
+        with ESMTP id S229612AbjBAR5Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 12:57:16 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EC4B7D9AB
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 09:57:15 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id ud5so53821717ejc.4
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 09:57:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TOFsxXHlxqXlA48qiMJeRgdKOO85/Un+y+0ovI7eg9s=;
+        b=SNUcBIWjdhnSifyDAOpYUNmlHlyBwOo9WpeUSlITBB1jweyACIgKX/hE4+PbBJY9BQ
+         RH9JLG17cSJHCTxph+W0jg/1kjSwadyrEsR24WUz69HNOIr0zTFVrjC9xszm1jDCoB3V
+         uXaxoan0q7fr0FaDPgBmDkM6uZByZPtVyWVZXfQ9H3AME8WQebRHWBfmp3zCj92vfruy
+         720/4go2C3Yp0ybgFm/leBflp9MmjBes5CUeFl2wdFR09gE+3XNIx3etQbiQ4ckQQYFF
+         c3ODKR7xf2sd55cvVBvm0xKh2oMGIcgVHM8Hj9t5Szqbqlwn2MgwniEfz6DZhD1LlQRf
+         jwvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CEDXzkUnTaGxqSEpoBtaF5rFfC7AazGaCNNqR0PWFh8=;
-        b=LKfCsGkOYfTWWZH+TN8KbDhSja85sTmHOPYJli7iCyg2WzfyrkFLppJ5GK/5535rwJ
-         lugJM6Yel+8yTdi06Zl7d6iAj7xI/ILrRB9gWTznQq3GoiNnL/cQwqoriflo66MwdvHI
-         W5b3m5WnOLrpA07TsTyy8VUlzdiNej/F+SU9VSOpGlAVEMeRPasgvF+JZV1Z2hgVb/1W
-         RLf4E0XLQ/poBuYBlYC9hJ5lnelxCP2c/Ldw8afGtAzTyTVksg4oaSquMPTUu6JwQr8A
-         b34CMvl7uIjHZt+rsVptV9hsaLXVZR4v49LeFyteqUE8KpMtpTqzNX0BssfW/gDY81P0
-         BQvA==
-X-Gm-Message-State: AO0yUKXcjggvaQh1PuJAysoi0fPQue3wyjJFA6lGt2fFWbL8tc8aOm8P
-        L7DXz1PuQIgugoGvXH0VocV9CTC/hA==
-X-Google-Smtp-Source: AK7set/2t6g8eqTss4lchvXfIxSzxti/TyKEgsDavfk/quCjCWN+kHo7xEEkmJlRAqdAbLF5kJSKyQ==
-X-Received: by 2002:a05:6870:c69b:b0:163:def0:60b9 with SMTP id cv27-20020a056870c69b00b00163def060b9mr3805824oab.5.1675274105271;
-        Wed, 01 Feb 2023 09:55:05 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id cd26-20020a056830621a00b0068be61a7ac6sm1778573otb.56.2023.02.01.09.55.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Feb 2023 09:55:04 -0800 (PST)
-Received: (nullmailer pid 4084519 invoked by uid 1000);
-        Wed, 01 Feb 2023 17:55:04 -0000
-Date:   Wed, 1 Feb 2023 11:55:04 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: rtc: moxart: use proper names for gpio
- properties
-Message-ID: <20230201175504.GA4075318-robh@kernel.org>
-References: <20230201054815.4112632-1-dmitry.torokhov@gmail.com>
- <20230201054815.4112632-2-dmitry.torokhov@gmail.com>
- <31e979dd-f4e9-081e-1bf2-e44dffc4e70f@linaro.org>
- <Y9qQHj70SN/3fZCc@google.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TOFsxXHlxqXlA48qiMJeRgdKOO85/Un+y+0ovI7eg9s=;
+        b=jZ9vFgtEjXE3XcMplazHO9RHhKgV7a67D9e5xSGOu/MrwVvV9ixXPYN/v/p3hqfLtZ
+         JU/dbjoWOG31tETdY/XzC0ERwKUHFkPjLe9sr3xxm/eHujY0tIdCJZSzOAb+98maSmtC
+         3Sstbmb/Zc+0PyFLl2RTReU1Vbe8KGRLcNSBDnXIWiEuGVzetOmBHsqd/xJ/mtZZ2Gbm
+         9md25WDCDbkvauqxu/ltvsFVKKPDaouSyS78KV3RCy6RJNTq/BEAtwtg7UaVKt0axdoY
+         /35VlenJbFqYywnBd9RwW2x3Pc0zE96wOAT8YMAn9cVfBGx+DiPrPJxlda5Nm48ZC/kf
+         u6XA==
+X-Gm-Message-State: AO0yUKVGCDrzLpsWeYeSJm8AnurpbimMsEtzH/DET6z8mHBAmmyLOPgP
+        F+y8xjNX4gxbc4foJDqcHgWAWJYnxB8=
+X-Google-Smtp-Source: AK7set8u9NBpkH3sd96Za/IN2WsP6wrucWFFBzodpos6r0bO8ltj/mKpzcWPQltTninqrv7bhS4dVQ==
+X-Received: by 2002:a17:906:5450:b0:87b:daca:aa1a with SMTP id d16-20020a170906545000b0087bdacaaa1amr2614878ejp.45.1675274233842;
+        Wed, 01 Feb 2023 09:57:13 -0800 (PST)
+Received: from ?IPV6:2a01:c23:b912:d400:3963:7bc4:12b:ddb3? (dynamic-2a01-0c23-b912-d400-3963-7bc4-012b-ddb3.c23.pool.telefonica.de. [2a01:c23:b912:d400:3963:7bc4:12b:ddb3])
+        by smtp.googlemail.com with ESMTPSA id p7-20020a170906b20700b0088478517830sm6755950ejz.83.2023.02.01.09.57.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Feb 2023 09:57:13 -0800 (PST)
+Message-ID: <618af59e-2e0f-7192-6411-620f49fcdcaf@gmail.com>
+Date:   Wed, 1 Feb 2023 18:57:10 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y9qQHj70SN/3fZCc@google.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] arm(64): dts: meson: adjust order of some compatibles
+Content-Language: en-US
+To:     neil.armstrong@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <e7b3fd1e-69eb-e66e-8abc-72b7c5fa975d@gmail.com>
+ <b5a29098-53b2-c940-0b1f-4dff40d97e44@linaro.org>
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <b5a29098-53b2-c940-0b1f-4dff40d97e44@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 01, 2023 at 08:15:26AM -0800, Dmitry Torokhov wrote:
-> On Wed, Feb 01, 2023 at 08:38:48AM +0100, Krzysztof Kozlowski wrote:
-> > On 01/02/2023 06:48, Dmitry Torokhov wrote:
-> > > MOXA ART RTC driver has been switched to gpiod API and is now using
-> > > properly named properties for its gpios (with gpiolib implementing a
-> > > quirk to recognize legacy names). Change binding document to use
-> > > proper names as well.
-> > > 
-> > > Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> > > ---
-> > >  .../devicetree/bindings/rtc/moxa,moxart-rtc.txt      | 12 ++++++------
-> > >  1 file changed, 6 insertions(+), 6 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.txt b/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.txt
-> > > index c9d3ac1477fe..1374df7bf9d6 100644
-> > > --- a/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.txt
-> > > +++ b/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.txt
-> > > @@ -3,15 +3,15 @@ MOXA ART real-time clock
-> > >  Required properties:
-> > >  
-> > >  - compatible : Should be "moxa,moxart-rtc"
-> > > -- gpio-rtc-sclk : RTC sclk gpio, with zero flags
-> > > -- gpio-rtc-data : RTC data gpio, with zero flags
-> > > -- gpio-rtc-reset : RTC reset gpio, with zero flags
-> > > +- rtc-sclk-gpios : RTC sclk gpio, with zero flags
-> > > +- rtc-data-gpios : RTC data gpio, with zero flags
-> > > +- rtc-reset-gpios : RTC reset gpio, with zero flags
-> > 
-> > Your driver breaks the ABI, doesn't it? If not, how are the old
-> > properties parsed?
+On 01.02.2023 18:32, Neil Armstrong wrote:
+> Hi Heiner,
 > 
-> It does not. As I mentioned in the driver code patch, commit
-> eaf1a29665cd ("gpiolib: of: add a quirk for legacy names in MOXA ART
-> RTC") makes sure gpiolib falls back to trying old variants if it can't
-> locate properly formatted names.
+> On 01/02/2023 18:30, Heiner Kallweit wrote:
+>> During review of a new yaml binding, affecting these dts, it turned out
+>> that some compatibles aren't ordered as they should be. Order should be
+>> most specific to least specific.
+>>
+>> Suggested-by: Rob Herring <robh+dt@kernel.org>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> ---
+>>   arch/arm/boot/dts/meson8b.dtsi              | 4 ++--
+>>   arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 4 ++--
+>>   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 4 ++--
+>>   3 files changed, 6 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+>> index d5a3fe21e..5979209fe 100644
+>> --- a/arch/arm/boot/dts/meson8b.dtsi
+>> +++ b/arch/arm/boot/dts/meson8b.dtsi
+>> @@ -580,8 +580,8 @@ &ethmac {
+>>   };
+>>     &gpio_intc {
+>> -    compatible = "amlogic,meson-gpio-intc",
+>> -             "amlogic,meson8b-gpio-intc";
+>> +    compatible = "amlogic,meson8b-gpio-intc",
+>> +             "amlogic,meson-gpio-intc";
+>>       status = "okay";
+>>   };
+>>   diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>> index 923d2d8bb..12ef6e81c 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>> @@ -300,8 +300,8 @@ &ethmac {
+>>   };
+>>     &gpio_intc {
+>> -    compatible = "amlogic,meson-gpio-intc",
+>> -             "amlogic,meson-gxbb-gpio-intc";
+>> +    compatible = "amlogic,meson-gxbb-gpio-intc",
+>> +             "amlogic,meson-gpio-intc";
+>>       status = "okay";
+>>   };
+>>   diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+>> index 04e9d0f1b..af912f698 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+>> @@ -312,8 +312,8 @@ &clkc_AO {
+>>   };
+>>     &gpio_intc {
+>> -    compatible = "amlogic,meson-gpio-intc",
+>> -             "amlogic,meson-gxl-gpio-intc";
+>> +    compatible = "amlogic,meson-gxl-gpio-intc",
+>> +             "amlogic,meson-gpio-intc";
+>>       status = "okay";
+>>   };
+>>   
+> 
+> Please send a new clean patchset with the associated bindings changes then this patch,
+> and split ARM and arm64 in 2 patches.
+> 
+Shouldn't this patch be first? Else make dtbs_check will complain.
 
-A dtb with the new names and a kernel without the gpiod conversion would 
-be broken. Up to the platform whether they care really.
+> Neil
 
-Rob
