@@ -2,116 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3832B685DB6
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 04:10:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 024A8685DC0
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 04:13:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229876AbjBADKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 22:10:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42200 "EHLO
+        id S230189AbjBADNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 22:13:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbjBADKJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 22:10:09 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F240619D;
-        Tue, 31 Jan 2023 19:10:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675221008; x=1706757008;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hG0Cqd9tAcf9bnbBhEdpsPgvTCJitgXKwvwPCaj9CO8=;
-  b=UpUbRuW9Y945dLAHXmWHcSxnooUZDmPsltN7KpJ95OH77KHryL3s8FB5
-   mD1N89fvEshXC44+OoDzzwJyQpAYefg3rp8gmk2Fq1QqtikYTJbdzMsHB
-   zkvgx6kBQQ+JA114894B/tvULi63LP8mjpkylh4X+0shT/DppYSZnlrIp
-   yGh0RhkQJlYexBLp3jaEw6DVTZE/Vd9PahnDp09cIfF7hV+XEdZ5md+Nl
-   0cszVJuMYXhxkjb1yX5TFnQ7MpxGQ56SlYHAnmSriotexhWIh6XqOfAcQ
-   hPDIxZGSxQAwMXPjEfMXpPtWh9ZdGOqD8VFR2PmlpRpzAtN4NfWwW/QpN
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10607"; a="414233287"
-X-IronPort-AV: E=Sophos;i="5.97,263,1669104000"; 
-   d="scan'208";a="414233287"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2023 19:09:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10607"; a="695185072"
-X-IronPort-AV: E=Sophos;i="5.97,263,1669104000"; 
-   d="scan'208";a="695185072"
-Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 31 Jan 2023 19:09:41 -0800
-Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pN3VE-0004ys-1B;
-        Wed, 01 Feb 2023 03:09:40 +0000
-Date:   Wed, 1 Feb 2023 11:09:28 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     bchihi@baylibre.com, daniel.lezcano@linaro.org,
-        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
-        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
-        p.zabel@pengutronix.de
-Cc:     oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Subject: Re: [PATCH v12] thermal: drivers: mediatek: Add the Low Voltage
- Thermal Sensor driver
-Message-ID: <202302011058.17Vvc1pN-lkp@intel.com>
-References: <20230131153816.21709-1-bchihi@baylibre.com>
+        with ESMTP id S230295AbjBADNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 22:13:53 -0500
+Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A005B458AF
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 19:13:51 -0800 (PST)
+Received: by mail-oo1-xc32.google.com with SMTP id x15-20020a4ab90f000000b004e64a0a967fso1833472ooo.2
+        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 19:13:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kali.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D3YwzPamfjwuuQEM2RnT++paWIr3qoCEOZrgbHTxW64=;
+        b=MOgnvtiSozTzruoGwOmugYaSILZTBMfknxbWXgCDJACJwzf+1UZiN6+wiVvYcGk7hS
+         3Ykc1fwKnTojw9Wm5OgQ8BpUoCLku3rvaI6tXVMYcDPxb8EO0TGKuEg2lJdlHlffzY5a
+         iAboOfuZ4vOqXbRUNRdi0zokHiNFc/+JgGWKVrYe96+3Kr5blF0F6cweRCcXlGX4x1db
+         IGJ7W4sTAxOhfIK1M43AFkfPidRW9hlU8lEti2zi/bOGTaWXtJWHZOId244O+adzZvKb
+         OHDLWj+X3dgw5XqRV8SZ9NJ1hPRrN6QWZ4qCWmkmFHyhZTcb1x9WI92nbJdES5N0a+9m
+         QO6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=D3YwzPamfjwuuQEM2RnT++paWIr3qoCEOZrgbHTxW64=;
+        b=r0YY5HyRR3sBumh6FwC+a2JWWUo+947XrTRSHn8na4C6P6YJT7Q3gZSOYYT/D3N5jY
+         NxxOVQPkQy8YMJpCBDk2NCMNb6ZS4WIMvmPENoprKS0RiKOecN+wIADJGqoD5oD1mgiD
+         fjiJ1irisUPv8ZkP4c3DS2eRm7WZiaDdP5giF4KyWDqJOTlKY3xbbq040xRfIKceZNoF
+         gq/Ho2zRzzqiMfJhCkyF6P+m+SaMfEqEU+GnMeajsZT4/GSYZHoZBuSXeQDWQVLRTokl
+         r3A+D9zEYxdkwIgiwrU4jF+bJkHPVOrwBPf8WkAiQLpxkGyLzlUg3B+027ohEQV3kOuW
+         ekHw==
+X-Gm-Message-State: AO0yUKUwbusebLqTqzhPxRHwSvmvRLYI8ngiYYsfBk5RCihPtc4+Tx1h
+        EpHCkQei1ijaug2gBOcAAMJcsw==
+X-Google-Smtp-Source: AK7set9KsGzjn5wBbpVtqFW2yRyYfDcWH3ZWqT6jjr/GW26QHQ0Hxu1/dF14CQcqYitui3cWEdRFBw==
+X-Received: by 2002:a4a:a2c9:0:b0:517:640f:5905 with SMTP id r9-20020a4aa2c9000000b00517640f5905mr464907ool.3.1675221230905;
+        Tue, 31 Jan 2023 19:13:50 -0800 (PST)
+Received: from localhost (23-118-233-243.lightspeed.snantx.sbcglobal.net. [23.118.233.243])
+        by smtp.gmail.com with ESMTPSA id k68-20020a4a4a47000000b005176974faf3sm3557618oob.35.2023.01.31.19.13.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Jan 2023 19:13:50 -0800 (PST)
+From:   Steev Klimaszewski <steev@kali.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Mark Pearson <markpearson@lenovo.com>
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: thinkpad-x13s: Add bluetooth
+Date:   Tue, 31 Jan 2023 21:13:49 -0600
+Message-Id: <20230201031349.56405-1-steev@kali.org>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <c515aae3-88e4-948c-a856-7b45dd2caed9@linaro.org>
+References: <c515aae3-88e4-948c-a856-7b45dd2caed9@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230131153816.21709-1-bchihi@baylibre.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Balsam,
+>On 31/01/2023 05:38, Steev Klimaszewski wrote:
+>> Signed-off-by: Steev Klimaszewski <steev@kali.org>
+>> ---
+>>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 68 +++++++++++++++++++
+>>  1 file changed, 68 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+>> index f936b020a71d..951438ac5946 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+>> @@ -24,6 +24,8 @@ / {
+>>  	aliases {
+>>  		i2c4 = &i2c4;
+>>  		i2c21 = &i2c21;
+>> +		serial0 = &uart17;
+>> +		serial1 = &uart2;
+>>  	};
+>>  
+>>  	wcd938x: audio-codec {
+>> @@ -712,6 +714,32 @@ &qup0 {
+>>  	status = "okay";
+>>  };
+>>  
+>> +&uart2 {
+>> +	status = "okay";
+>> +
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&uart2_state>;
+>> +
+>> +	bluetooth {
+>> +		compatible = "qcom,wcn6855-bt";
+>> +
+>> +/*
 
-Thank you for the patch! Yet something to improve:
+> Why dead code should be in the kernel?
+
+As mentioned in the cover letter, this is a bit closer to an RFC than ready to
+go in, and I do apologize that it wasn't clear enough.  I do not have access to
+the schematics, and based on my reading of the schema for bluetooth, these
+entries are supposed to be required, however, like the wcn6750, I have dummy
+data entered into the qca_soc_data_wcn6855 struct.  I know that these should be
+there, I just do not have access to the correct information to put, if that
+makes sense?
 
 
+<snip>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/UPDATE-20230131-234122/bchihi-baylibre-com/thermal-drivers-mediatek-Relocate-driver-to-mediatek-folder/20230124-211910
-base:   the 4th patch of https://lore.kernel.org/r/20230124131717.128660-5-bchihi%40baylibre.com
-patch link:    https://lore.kernel.org/r/20230131153816.21709-1-bchihi%40baylibre.com
-patch subject: [PATCH v12] thermal: drivers: mediatek: Add the Low Voltage Thermal Sensor driver
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20230201/202302011058.17Vvc1pN-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/5646ebf6f10ff0fc60c04d8c57523f7c44526b41
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review UPDATE-20230131-234122/bchihi-baylibre-com/thermal-drivers-mediatek-Relocate-driver-to-mediatek-folder/20230124-211910
-        git checkout 5646ebf6f10ff0fc60c04d8c57523f7c44526b41
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=s390 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=s390 SHELL=/bin/bash
+>Does not look like you tested the DTS against bindings. Please run `make
+>dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+>for instructions).
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+Correct I had not, but I have now, and will make the corrections test and they
+will be included in v3.
 
-All errors (new ones prefixed by >>):
+>Best regards,
+>Krzysztof
 
->> drivers/thermal/mediatek/lvts_thermal.c:20:10: fatal error: dt-bindings/thermal/mediatek,lvts-thermal.h: No such file or directory
-      20 | #include <dt-bindings/thermal/mediatek,lvts-thermal.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
+I appreciate the guidance for what I was doing incorrectly.
 
-
-vim +20 drivers/thermal/mediatek/lvts_thermal.c
-
-  > 20	#include <dt-bindings/thermal/mediatek,lvts-thermal.h>
-    21	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+-- steev
