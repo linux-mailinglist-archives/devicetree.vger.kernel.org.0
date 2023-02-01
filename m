@@ -2,166 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 734F9686C88
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 18:13:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC70B686C94
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 18:15:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232118AbjBARN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 12:13:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40448 "EHLO
+        id S231656AbjBARPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 12:15:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232005AbjBARNK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 12:13:10 -0500
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C1BECC04;
-        Wed,  1 Feb 2023 09:13:04 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id s66so16284838oib.7;
-        Wed, 01 Feb 2023 09:13:04 -0800 (PST)
+        with ESMTP id S231963AbjBARPa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 12:15:30 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CD849029
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 09:15:27 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id q5so18030510wrv.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 09:15:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VM7mwmX9y0aJv/l2uTcSI1qbCpT1RPYq3liCjHZTP+o=;
+        b=XRIkjgyeFPF6oVGnLplxETaiAK3bOqM3Ssgkjrto+d1BBGcsDVBRtn3tUvkzzI0MQL
+         ED755Tx+4nNxnoGfYRt9alOASVN30bDSIuqGaFQ0r+YpT1XfzpulyCcb7TQsg3mZADyS
+         35LrhYqTU4iTXLQ2o1G8IhcXG9l28CQgWKJY5gjrOHNkpsKMveQ8V+j5nf+hPds+pzVs
+         6luJGMMDKX0DXVHPFUIyUfJHfctSrKgTeuWo17SA9a7q1jy1kDk8nBDZ//8hh21stl2J
+         R2nNOZ4hmTOiYvDZ11eRYKRqNtNcOnk8q1JEI4DOpShgexdnaVROW0ok6DKNtqoEppSM
+         IuAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pTT6vZ5iHjnalpPNssmSbl29PhZdc5VcdM+DVzHurmw=;
-        b=ZyBEfDYtp5TJYf5JqpLvAmVHpY6xKx/N5hP+KNKpYhu2kWOF9fi+ruzlsYd9zGH/jL
-         hYKjDesRcOUAnt3HZ+6MEEMJgRVgTPpuQyUJJ6ViHe8H5zdiwq71LwkmBtU5rvgPTLpK
-         wrXW1WsQjoYf4BdZFYEqzEYR8ltfIjFL0LfO2+zFRXIIkziQe3gGwX5gvFp+2C6fUid8
-         rlJ0TjXEWZCdRS34rpaTtUu36BFwLOKgnjOVV2CFZ2BM1p9CGITKto+jXtpI6uJbF80T
-         uas7V8bbDtAHmcwgEO96gzPej4CdrjcsDTgshtac1wy/oVwIXlDqBRisXpaznlD6Grbc
-         m1mQ==
-X-Gm-Message-State: AO0yUKVz8deUU9RCP50nVHJT8HrFdcQvJpLSaXFJ2gLiqKWEUYh4cGru
-        GXKZFurYviEVJiB4biuOVQ==
-X-Google-Smtp-Source: AK7set/Q3V23dp7mKwXccI7KFQBUKCUaOUrzdXAxKdKGV/QYcZJThdLz6qKE6su4zvbCHkKcRjF+Qw==
-X-Received: by 2002:a05:6808:1913:b0:378:5f8c:45b4 with SMTP id bf19-20020a056808191300b003785f8c45b4mr1874203oib.18.1675271583392;
-        Wed, 01 Feb 2023 09:13:03 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r133-20020acaa88b000000b00367080ab4casm525848oie.35.2023.02.01.09.13.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Feb 2023 09:13:03 -0800 (PST)
-Received: (nullmailer pid 3681788 invoked by uid 1000);
-        Wed, 01 Feb 2023 17:13:01 -0000
-Date:   Wed, 1 Feb 2023 11:13:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Nipun Gupta <nipun.gupta@amd.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, eric.auger@redhat.com,
-        alex.williamson@redhat.com, cohuck@redhat.com,
-        song.bao.hua@hisilicon.com, mchehab+huawei@kernel.org,
-        maz@kernel.org, f.fainelli@gmail.com, jeffrey.l.hugo@gmail.com,
-        saravanak@google.com, Michael.Srba@seznam.cz, mani@kernel.org,
-        yishaih@nvidia.com, jgg@ziepe.ca, jgg@nvidia.com,
-        robin.murphy@arm.com, will@kernel.org, joro@8bytes.org,
-        masahiroy@kernel.org, ndesaulniers@google.com,
-        rdunlap@infradead.org, linux-arm-kernel@lists.infradead.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, okaya@kernel.org,
-        harpreet.anand@amd.com, nikhil.agarwal@amd.com,
-        michal.simek@amd.com, git@amd.com
-Subject: Re: [PATCH v7 3/7] dt-bindings: bus: add CDX bus controller for
- versal net
-Message-ID: <20230201171301.GA3606391-robh@kernel.org>
-References: <20230131084049.23698-1-nipun.gupta@amd.com>
- <20230131084049.23698-4-nipun.gupta@amd.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VM7mwmX9y0aJv/l2uTcSI1qbCpT1RPYq3liCjHZTP+o=;
+        b=MZ8ilc4fnKhxCDsT1oCLej4/G9WJ753OGH30imRCmV+pXuv110rcj4kHM2JXX/9w3B
+         QdUBFEHqy2cW1BymW9cr5trkYl6HpTOdrPU6KI65mfgo4Sg0OY2ChDsa77PJY7w5erAf
+         rEYknHXYaPysiaG9OvT6G2d5Kv5o6MOvdQTHM67A5zeIzs0fLHJwmPoFWcr9HxUhDuK9
+         +rqUeJGp+j2FhxH3JGTzGlPKdgBGzqSnlV8S8mdl8PK1U5dC8a2kMVcpPquYjfjALcg5
+         gaFJpk+cfHqjcoFV/hvMCfuhKJAvej7MrDrvy/Ne3BmeWYEZbCCRN1IJJ6sNi1400hAb
+         /Tbg==
+X-Gm-Message-State: AO0yUKWncWkd//mOHfvHR1O3Law0EAYlA7f1/IKp+QTv20/rXjmr9guI
+        xKTK/Hi+UR+Q6k/2QYZw8x5IzQ==
+X-Google-Smtp-Source: AK7set+RvUdCnGg9f/Z1WgAuKSiAy0GjWjR9zmuoD/dpeP8vUs7xYvPEf7CzAuuSk3sJte/nKCFOcg==
+X-Received: by 2002:a5d:4b4e:0:b0:242:eb5:254f with SMTP id w14-20020a5d4b4e000000b002420eb5254fmr2220071wrs.48.1675271725729;
+        Wed, 01 Feb 2023 09:15:25 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id v14-20020adfe4ce000000b002bfafadb22asm18404133wrm.87.2023.02.01.09.15.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Feb 2023 09:15:25 -0800 (PST)
+Message-ID: <d60e9b7c-fdd5-2b5e-a449-d796718fb95f@linaro.org>
+Date:   Wed, 1 Feb 2023 18:15:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230131084049.23698-4-nipun.gupta@amd.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 0/6] Device tree support for Hyper-V VMBus driver
+Content-Language: en-US
+To:     Saurabh Singh Sengar <ssengar@linux.microsoft.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
+        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com
+References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
+ <CAL_JsqKL3JA6nAkEHuuyxbs8-Mm=Q-nNkCmpnDApNUDVbLsvKw@mail.gmail.com>
+ <20230201020449.GC20379@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <20230201145146.GA3352796-robh@kernel.org>
+ <20230201163455.GA21409@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230201163455.GA21409@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 31, 2023 at 02:10:45PM +0530, Nipun Gupta wrote:
-> Add CDX bus controller device tree bindings for versal-net
-> devices.
+On 01/02/2023 17:34, Saurabh Singh Sengar wrote:
+>> Also see my comment on v1 about running DT validation on your dtb. I'm 
+>> sure running it would point out other issues. Such as the root level 
+>> comaptible string(s) need to be documented. You need cpu nodes, 
+>> interrupt controller, timers, etc. Those all have to be documented.
 > 
-> Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
-> ---
->  .../bindings/bus/xlnx,versal-net-cdx.yaml     | 68 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/xlnx,versal-net-cdx.yaml
+> I will be changing the parent node to soc node as suggested by Krzysztof
+> in other thread.
 > 
-> diff --git a/Documentation/devicetree/bindings/bus/xlnx,versal-net-cdx.yaml b/Documentation/devicetree/bindings/bus/xlnx,versal-net-cdx.yaml
-> new file mode 100644
-> index 000000000000..8452185b9d70
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/xlnx,versal-net-cdx.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/xlnx,versal-net-cdx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: AMD CDX bus controller
-> +
-> +description: |
-> +  CDX bus controller for AMD devices is implemented to dynamically
-> +  detect CDX bus and devices on these bus using the firmware.
-> +  The CDX bus manages multiple FPGA based hardware devices, which
-> +  can support network, crypto or any other specialized type of
-> +  devices. These FPGA based devices can be added/modified dynamically
-> +  on run-time.
-> +
-> +  All devices on the CDX bus will have a unique streamid (for IOMMU)
-> +  and a unique device ID (for MSI) corresponding to a requestor ID
-> +  (one to one associated with the device). The streamid and deviceid
-> +  are used to configure SMMU and GIC-ITS respectively.
-> +
-> +  iommu-map property is used to define the set of stream ids
-> +  corresponding to each device and the associated IOMMU.
-> +
-> +  The MSI writes are accompanied by sideband data (Device ID).
-> +  The msi-map property is used to associate the devices with the
-> +  device ID as well as the associated ITS controller.
-> +
-> +  rproc property (xlnx,rproc) is used to identify the remote processor
-> +  with which APU (Application Processor Unit) interacts to find out
-> +  the bus and device configuration.
-> +
-> +maintainers:
-> +  - Nipun Gupta <nipun.gupta@amd.com>
-> +  - Nikhil Agarwal <nikhil.agarwal@amd.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,versal-net-cdx
-> +
-> +  iommu-map: true
-> +
-> +  msi-map: true
-> +
-> +  xlnx,rproc:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      phandle to the remoteproc_r5 rproc node using which APU interacts
-> +      with remote processor.
-> +
-> +required:
-> +  - compatible
-> +  - iommu-map
-> +  - msi-map
-> +  - xlnx,rproc
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    cdx {
-> +        compatible = "xlnx,versal-net-cdx";
-> +        /* define map for RIDs 250-259 */
-> +        iommu-map = <250 &smmu 250 10>;
-> +        /* define msi map for RIDs 250-259 */
-> +        msi-map = <250 &its 250 10>;
-> +        xlnx,rproc = <&remoteproc_r5>;
+> soc {
+>         #address-cells = <2>;
+>         #size-cells = <2>;
+> 
+> 	vmbus@ff0000000 {
+>             #address-cells = <2>;
+>             #size-cells = <1>;
+>             compatible = "Microsoft,vmbus";
+>             ranges = <0x00 0x00 0x0f 0xf0000000 0x10000000>;
+>         };
+> };
+> 
+> This will be sufficient.
 
-There's no addresses associated with this bus? Like the address range 
-the devices are at. You should have 'ranges' whether Linux needs it yet 
-or not.
+It will be ok for the example, but will not be ok for supporting your
+use case. Please solve all the points from Rob's comment above. Where is
+their documentation?
 
-Rob
+Best regards,
+Krzysztof
+
