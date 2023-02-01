@@ -2,109 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A7716868C0
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 15:45:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2F266868C6
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 15:46:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232789AbjBAOpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 09:45:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48854 "EHLO
+        id S232578AbjBAOqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 09:46:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232536AbjBAOpa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 09:45:30 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11C066B9A5
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 06:45:03 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so1564281wmb.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 06:45:02 -0800 (PST)
+        with ESMTP id S232740AbjBAOqO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 09:46:14 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAA916AC9F
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 06:46:00 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id y1so17562685wru.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 06:46:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=D3cxAKq3W6GNmm99bqwhkQT0fOr9iLLRhZZR6J2sGvQ=;
-        b=F7lRECosIkJ3E5HvHCJYzmL5WrWrxDsrCO537GZjANosTWxVk9cd8NON8083pm+KdC
-         kSVqpnGfX/PzU3OZ8R1oPcJJEk+a0YSjKTmt5/5CCnl3eQElf42BTeFFBERDWWI8/h4R
-         FBCjdQaUET8GbGYpj8WZ2hKW1wVjREC8ZAQvM5DjKqntuFvPYlU6ayyQfBXUb3dEa/Xz
-         qYrvr9iMKfgifFswnFUCm2z54vQHocY7VRFZa/4PwPrzjkTktUWpsudU0xKhyRHJvhvP
-         oobSqeGI0vk1fPAbEjhoB0ORLVPAHHNF71eV9uweva1KHXCkUZ5bVCfKZ8q+yAFEjW2I
-         7S5Q==
+        bh=XpnCE8JGjFYZkEnYSegdA0ax2WJNTJlDZWJpuD3D+rw=;
+        b=Wx+yAea0y5hkZjxAOAAkqJTFOD8zR9I5at+0Akzs4NOUMX/DfICY9Aetnu2a1wokHS
+         9yuM3zkSazoXDZoTJu+GEzPj15LGFpPcd2IfgdC5hzMGoUQNWxX1KfxC+u2tCyYb9zZx
+         xuAHrIJ7/7jo3shG6e1NqybFPaDvaKK73+LTZBhBaG71s+zXtGn+wsKO8FMMdeq1YNow
+         Clng6HyXw2LXDma1LDBoZj0j4/K2ZM+m6WyhXGFiNcTQG4TGykQj1ChQgVAsiFOJwVO+
+         5KUDPr7UUt92Om37wcmAN9RdZo/L08F81j+6XjavFyHFd8DQxMYogJyz+qGGERu1fHcj
+         1Fqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D3cxAKq3W6GNmm99bqwhkQT0fOr9iLLRhZZR6J2sGvQ=;
-        b=qfqsgl/WDDmCQ8HBqhNV3lNG1VWb/+E/50sq4w4F8mDxGLXx7OL6bZPFGfkOFaUb9J
-         2VIJBS/Yclq7ERuF+5fQNRdV4hhXt5+z/khW9bD/izBt5gUcVUrpgZsu5O6SvIFQHim9
-         RZbn4JSVOJnIuelhZ7iKaCGgnohYQjJej61wiF0yiiF7uwR0U3QFNVV8RHP84xpx3+P0
-         q62QtEo+rGZw2cAutkPJ3xzzZYXIfqqwrPld1CjtfmE7TWyqgV5PU7bAKqcTSqERHdgX
-         A4BNuIa+1WSEfHmu9HfycJOou08AgjduG1MC6cVx4/qWTqvyKOP6SmD0SCIvs1Hm46yD
-         D1DQ==
-X-Gm-Message-State: AO0yUKV/vl4Lhz8n1n+crHlksIBTEkNXGp2z5YkUdXzX0iNFUdFPwE16
-        Y2kQM8n70xL1IouZXmoQ+FAhSg==
-X-Google-Smtp-Source: AK7set/je/28Ve1sxehfaX5nK3YqtyP3YXDQHPF2Xn/Ma37QbEgVUVA1hCsoLo4QKRhVfzlmwg5adw==
-X-Received: by 2002:a05:600c:4e4f:b0:3dd:1c45:a90e with SMTP id e15-20020a05600c4e4f00b003dd1c45a90emr2490817wmq.25.1675262701628;
-        Wed, 01 Feb 2023 06:45:01 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p11-20020a1c544b000000b003dc4fd6e624sm2037613wmi.19.2023.02.01.06.44.59
+        bh=XpnCE8JGjFYZkEnYSegdA0ax2WJNTJlDZWJpuD3D+rw=;
+        b=o9mkXNaAeekaD7HlJXUFPycFaChKHIVLzygq8lKg4mV2UokfaLq7NPfhXfmHEQx2M4
+         QxO0EV0uTBvZ5pxrDYarzJbPzvpPkEVX9Zb33iCeGJLM6qAisSIak1H3ytEvmzGfRtA5
+         IVdnkM72zLFRyVPHcxVeKYrxWQuXRbH1Erc8S8/HvRCLze3cxRGGP9OGx/s2oLjDDulv
+         ne0kmxiRx+QC6xfQrFWfZA7ol/1Jq4NAs6dCg39dF4iWtVG4m7ItkNs2jg3sCnHjJHps
+         64emLjoe1aBmc15fzQrup6kX85GpZnFb2Iy3vPccZuhW656a6KKKLzJWPwR/UVpEQQD9
+         fmaQ==
+X-Gm-Message-State: AO0yUKVsLKmMEtRqRVX3kJ9KYkE5JRG6bzLX2/XJEAHeQtRf3ApMv0Oy
+        ocj/k/DIjahjoOqKDNNDkuWfJw==
+X-Google-Smtp-Source: AK7set8NOvE0q6Hpfi0AAbA+qgWOmHpwHVUwMAQ1IEXZss2RV/422mWcVVVZ8aBgCUa6BhWkrolm4Q==
+X-Received: by 2002:a5d:4d84:0:b0:2bf:eb0e:ccb8 with SMTP id b4-20020a5d4d84000000b002bfeb0eccb8mr2754766wru.37.1675262759346;
+        Wed, 01 Feb 2023 06:45:59 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id d3-20020adffbc3000000b002bdd155ca4dsm17483619wrs.48.2023.02.01.06.45.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 06:45:00 -0800 (PST)
-Message-ID: <9dc413ab-c8a4-f248-d714-8c96346bd186@linaro.org>
-Date:   Wed, 1 Feb 2023 15:44:59 +0100
+        Wed, 01 Feb 2023 06:45:58 -0800 (PST)
+Message-ID: <58a5e856-3e8b-d660-09ee-7a18b184452f@linaro.org>
+Date:   Wed, 1 Feb 2023 14:45:57 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v4 3/5] drivers: iio: adc: Add ADI MAX77541 ADC Support
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 2/2] PM / devfreq: qcom: Introduce CCI devfreq driver
 Content-Language: en-US
-To:     Okan Sahin <okan.sahin@analog.com>
-Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org
-References: <20230201103534.108136-1-okan.sahin@analog.com>
- <20230201103534.108136-4-okan.sahin@analog.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230201103534.108136-4-okan.sahin@analog.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     Jun Nie <jun.nie@linaro.org>, myungjoo.ham@samsung.com,
+        kyungmin.park@samsung.com, cw00.choi@samsung.com,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230201080227.473547-1-jun.nie@linaro.org>
+ <20230201080227.473547-2-jun.nie@linaro.org>
+ <515f4e9e-2804-e03a-26f5-f2d3ac331109@linaro.org>
+ <71ba0d05-6183-95ef-9e45-cc3dd512475f@linaro.org>
+ <CAA8EJpqyqC5D+O=KJnuZnWN4BwBOKcquN11nJfEp2WMSmJobBg@mail.gmail.com>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <CAA8EJpqyqC5D+O=KJnuZnWN4BwBOKcquN11nJfEp2WMSmJobBg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/02/2023 11:35, Okan Sahin wrote:
-> The MAX77541 has an 8-bit Successive Approximation Register (SAR) ADC
-> with four multiplexers for supporting the telemetry feature.
+On 01/02/2023 13:41, Dmitry Baryshkov wrote:
+>>                           cci-cpufreq {
+>>                                   target-dev = <&cci_cache>;
+>>                                   cpu-to-dev-map-0 =
+>>                                           <  200000  200000000 >,
+>>                                           <  345600  200000000 >,
+>>                                           <  400000  200000000 >,
+>>                                           <  533330  297600000 >,
+>>                                           <  800000  297600000 >,
+>>                                           <  960000  297600000 >,
+>>                                           < 1113600  297000000 >,
+>>                                           < 1344000  595200000 >,
+>>                                           < 1459200  595200000 >,
+>>                                           < 1497600  595200000 >,
+>>                                           < 1651200  595200000 >;
+>>                                   cpu-to-dev-map-4 =
+>>                                           <  200000 200000000 >,
+>>                                           <  249600 200000000 >,
+>>                                           <  499200 297600000 >,
+>>                                           <  800000 297600000 >,
+>>                                           <  998400 595200000 >,
+>>                                           < 1113600 595200000 >;
+> These should map to existing opp entries.
 > 
-> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
-> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> ---
->  drivers/iio/adc/Kconfig        |  11 ++
->  drivers/iio/adc/Makefile       |   1 +
->  drivers/iio/adc/max77541-adc.c | 200 +++++++++++++++++++++++++++++++++
->  3 files changed, 212 insertions(+)
->  create mode 100644 drivers/iio/adc/max77541-adc.c
+> I ended up doing the interconnect driver that maps a clock to the
+> interconnect. Then I can use it in the cpu opp tables.
 > 
 
-The comment about subject prefixes applies also here and to other patches.
+Can you point us at what it is you are proposing ?
 
-Best regards,
-Krzysztof
-
+---
+bod
