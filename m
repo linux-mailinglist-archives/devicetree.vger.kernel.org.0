@@ -2,96 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 419CD68613E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 09:06:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC3C68613B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 09:05:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbjBAIGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 03:06:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55486 "EHLO
+        id S230479AbjBAIFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 03:05:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231719AbjBAIGH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 03:06:07 -0500
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C8DB3C3F;
-        Wed,  1 Feb 2023 00:06:02 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 7579A5C009C;
-        Wed,  1 Feb 2023 03:06:01 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Wed, 01 Feb 2023 03:06:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1675238761; x=1675325161; bh=05fE/HK6Dq
-        vQfuvfJUrtINoSrSYug5Jz6pNScpWDd9M=; b=gdDAzdJnUgARfIEeRZCLlY2AtO
-        v74aILYBuJUkN5gVMmUtlosl9ppOfH60aqfSoj07Kl6G7zkPDXIcc1Tn7WqGsCSY
-        JHWRmXGc5FjMONZaMfY5WnKfh4+yNPKjapKm7nBNB4gkUJE1FMz0/yaIXkasXZYr
-        Bc1mldhanJo4qytC7b/hiwGs9IV4mRSuggQP/az3Ybajn7Z0am77Hnl5ZJMZym3H
-        vWd/exHbA6TIoDYIzC+RjUXaZJ1HDmXkDOaZTvPw4zzphBjM2enPEEOSrQOYwuoZ
-        QZzR+YVnbCYoWnucl0BxQmxUZqRR2YZ+y9GhCgcrf+tynOql1uNkVhNyJ/cw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1675238761; x=1675325161; bh=05fE/HK6DqvQfuvfJUrtINoSrSYu
-        g5Jz6pNScpWDd9M=; b=XnK7mTbGT+y2VJPvrPrYkQusdgUqVG+arE0ljbCtLobt
-        xF7R0hFy26tIba5+FFbfuDjPITdtTJywip6T8hEWQUscePYDJ7v+IzjQsead5HQg
-        j54GeZEWOtyXWA/zoi+NWPqgM8vaodQf9A6s7F1nneQc3xLQ1dR1G0GAPw2gaY3A
-        WPculnNFTznKCI1DJmPz7teFuBAB/N4B5VAWHrsG9g28p+n5bGtTj1P7xc1sPsgN
-        kGqaf5MdAfjxWayKoHJX6lVgBfmZ4BOer/Mj44RDf6m3Rn/sqIhLcUzccNIJVMOR
-        0K/E/yN5n+IJMexHT8W4XElTCgy+E91qRKJz7KE+ag==
-X-ME-Sender: <xms:aB3aY0kNRkhEsKKc7NW05bFZlBy0UWXoQG814K_VbXZ6oRacZ0YgdA>
-    <xme:aB3aYz1aBYvMbdLtkMaXJsJdBRmcsfPlBVZMlSTXO070uA5tuWD7Sbpx8jfRoAg3S
-    R9KeXnnBzq6L5r9fR0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudefhedguddukecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
-    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:aB3aYyqS9g0SH2SwMkDNfyVSdWwWQ_3vkD-Y8I2CJK8T08FGcXImjA>
-    <xmx:aB3aYwlk6ejAUhE8GGyoNRtrsjcSfpj2rncyHbwPj8DgBJQQXj9lsw>
-    <xmx:aB3aYy1yzx3pB_HtgiksIP1tWk8igi724QtNhtyVToNDcf8KbDHNCQ>
-    <xmx:aR3aY4PmUfRE7zHhmGRTa3xNtxToXlz0tv-QKwHcrevHDVzY3GqBPw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 4D56FB60450; Wed,  1 Feb 2023 03:06:00 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-107-g82c3c54364-fm-20230131.002-g82c3c543
-Mime-Version: 1.0
-Message-Id: <b064f754-4d94-4c0d-ad27-e0ad223d022c@app.fastmail.com>
-In-Reply-To: <11BE997B-93C7-4D38-99BF-FD025A1FB945@jrtc27.com>
-References: <CA+V-a8tR1KiLSs=Psa=w7kf0zT=yU5_Ekr6-3V1MR==Wtzmksg@mail.gmail.com>
- <Y9KQPxzHBuZGIN4U@casper.infradead.org>
- <CA+V-a8uizF8sQgs8cfTwH3OnK+nvr2dXAoSOPTXCXLFnprHSeA@mail.gmail.com>
- <Y9fhOFEV0kS9U06/@casper.infradead.org> <Y9oHT1D1X9cdHLr0@infradead.org>
- <11BE997B-93C7-4D38-99BF-FD025A1FB945@jrtc27.com>
-Date:   Wed, 01 Feb 2023 09:05:41 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Jessica Clarke" <jrtc27@jrtc27.com>,
-        "Christoph Hellwig" <hch@infradead.org>
-Cc:     "Matthew Wilcox" <willy@infradead.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Linux-MM <linux-mm@kvack.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Geert Uytterhoeven" <geert.uytterhoeven@gmail.com>,
-        "Fabrizio Castro" <fabrizio.castro.jz@renesas.com>,
-        "Biju Das" <biju.das.jz@bp.renesas.com>,
-        "Chris Paterson" <Chris.Paterson2@renesas.com>
-Subject: Re: [QUERY]: Block region to mmap
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        with ESMTP id S229972AbjBAIFr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 03:05:47 -0500
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 921D93C3F;
+        Wed,  1 Feb 2023 00:05:46 -0800 (PST)
+Received: by linux.microsoft.com (Postfix, from userid 1127)
+        id 5593520B7102; Wed,  1 Feb 2023 00:05:46 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 5593520B7102
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1675238746;
+        bh=4UJWvH169wmPf2CQEU3PxFk0o58iKhADWRB5Z84oPmE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=e0JsI591cGjic34SUhd4G9lmFyAE5wldPAdICUe37sN9t+Rbvn5Tm7WHXI4yJZz5+
+         EtZQkvsaTRp3yGvHem2gCMs4orPJuDLEzsA9UrIAp9UIzLPbbFSplbpCLuPL50YF7u
+         CnLN4mb18308pS5acdH7iS9MW939sAFEqS8r9JDA=
+Date:   Wed, 1 Feb 2023 00:05:46 -0800
+From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
+        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com
+Subject: Re: [PATCH v2 5/6] dt-bindings: hypervisor: Add dt-bindings for VMBus
+Message-ID: <20230201080546.GA15047@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
+ <1675188609-20913-6-git-send-email-ssengar@linux.microsoft.com>
+ <9a3bbaf0-eb1d-613a-a8ba-272896ef2da8@linaro.org>
+ <20230201015723.GB20379@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <6cd98ec5-3d0e-eb91-b2a5-9781439ae483@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6cd98ec5-3d0e-eb91-b2a5-9781439ae483@linaro.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -99,38 +56,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 1, 2023, at 08:05, Jessica Clarke wrote:
-> On 1 Feb 2023, at 06:31, Christoph Hellwig <hch@infradead.org> wrote:
->> On Mon, Jan 30, 2023 at 03:24:40PM +0000, Matthew Wilcox wrote:
->> 
->>> Before we go too deeply into it, how much would it cost to buy all of
->>> these parts and feed them into a shredder?  I'm not entirely joking;
->>> if it's less than the software engineering time it'd take to develop
->>> and support this feature, we should do it.
->> 
->> The above suggests this is in no way an actual hardware problem, but the
->> stupid decision is done in the M-Mode firmware.  I think it is very
->> reasonable to simply not support the devices in Linux until the firmware
->> is fixed.
->
-> No, it really is a hardware spec violation. Virtual addresses within
-> the magic range bypass translation with no way to turn it off. The
-> firmware is being (has been?) patched to block those accesses at the
-> physical memory protection level so any attempt to use those virtual
-> addresses will fault, but if Linux wants to support this cursed
-> hardware and its gross spec violation then it needs to forbid any
-> allocation of the VA range.
+On Wed, Feb 01, 2023 at 08:23:48AM +0100, Krzysztof Kozlowski wrote:
+> On 01/02/2023 02:57, Saurabh Singh Sengar wrote:
+> > On Tue, Jan 31, 2023 at 07:54:56PM +0100, Krzysztof Kozlowski wrote:
+> >> On 31/01/2023 19:10, Saurabh Sengar wrote:
+> >>>
+> >>> Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> >>
+> >>> +  - |
+> >>> +    / {
+> >>> +        compatible = "foo";
+> >>> +        model = "foo";
+> >>> +        #address-cells = <0x02>;
+> >>> +        #size-cells = <0x02>;
+> >>
+> >> Except previous comments (all of them were ignored),
+> > 
+> > Thank you for your comments, I have tried to address them all in this version
+> > but I may have missed few. I will go and look again all the emails, but if
+> > there is any thing which you can point again and we can start a new dicussion
+> > from here will be very helpful.
+> > 
+> > I think one concern was related to use of 'reg' or 'ranges', and I 
+> > thought this patch will give clarity that I intend to use 'ranges'
+> > without any child node. Is this acceptable ?
+> 
+> There were several comments.
 
-For a local build of an embedded system it's probably enough to
-set CONFIG_DEFAULT_MMAP_MIN_ADDR and CONFIG_LSM_MMAP_MIN_ADDR
-in order to force userspace outside of the broken address
-range.
+Ok, let me reply to all of your comments from previous thread to avoid
+any confusion. Hope this is fine.
 
-If that configuration can no longer run most regular userspace
-binaries, there is probably not much need to detect the hardware
-that needs it and do this automatically in the kernel, beyond
-perhaps some platform specific code that refuses to boot unless
-the config options are set this way on the affected chip
-revisions.
+> 
+> > 
+> > 
+> >> also:
+> >> Drop entire part. Not related, not correct, not helping and you cannot
+> >> have top level nodes in example.
+> > 
+> > If I dont use the top level node, the parent address cells are assumed to be 1,
+> > and I get below warning. If there is better way to address this warning, please
+> > suggest I will work on it.
+> > 
+> > Warning (ranges_format): /example-0/vmbus@ff0000000:ranges: "ranges" property has invalid length (20 bytes) (parent #address-cells == 1, child #address-cells == 2, #size-cells == 1)
+> 
+> Then use soc just like every other example.
 
-     Arnd
+Thanks for suggestion, I will fix this in V3
+
+Regards,
+Saurabh
+
+> 
+> 
+> Best regards,
+> Krzysztof
