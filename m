@@ -2,140 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF87B6865C3
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 13:14:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F10676865DE
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 13:24:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231754AbjBAMOB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 07:14:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38234 "EHLO
+        id S231620AbjBAMYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 07:24:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231646AbjBAMOA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 07:14:00 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAA8C23D9E
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 04:13:58 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pNBzm-00044S-HQ; Wed, 01 Feb 2023 13:13:46 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pNBzj-0008Hb-J5; Wed, 01 Feb 2023 13:13:43 +0100
-Date:   Wed, 1 Feb 2023 13:13:43 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Cai Huoqing <cai.huoqing@linux.dev>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S231302AbjBAMYQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 07:24:16 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF6C923D9E;
+        Wed,  1 Feb 2023 04:24:14 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so1237032wma.1;
+        Wed, 01 Feb 2023 04:24:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5NXeygwaQpVhvvyoIfJEG0rtDRDaeZnCcjZ3p7DxynU=;
+        b=kGMj/9EuKpvBCoAS0DyvEcY2pb7pGkqUKT85bBe7bFbOvQQlJ5EbYB5Qajdec16WuA
+         cezG0jdYDet88QdgNdztxokxGr1gRCZV97tzQvnAqfNt94dBYMMc+rTBP8tDpURpuR+I
+         MqH/JUORO17a/oUoPoq6CjC8ghTsSvf/WSFPCbSUzYkVDnT4YLhVSW/pvjCi1G0JsPji
+         3ROEcThmlfRGPySPHOpeUqM4DnrZ2QI3C5Gqu7jpNqkhKDeKm0358Oc8kI9h4FPSfzra
+         NDh5werIkF0/BuZUmc+HK0d7FC1k5KwwGLavTTp6RQQkGVc1XZ5hgEPDLAvWQcALH7Nu
+         UAkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5NXeygwaQpVhvvyoIfJEG0rtDRDaeZnCcjZ3p7DxynU=;
+        b=jazdfJ58oB/kTzphpu2JGwfunZEG0dVMmqDNhCEsvTqXQDUcy8Ac5km1McypHP8RTO
+         nA1fkDPBJ0C0wAVZZis9gyaQTi1O9p1U1Qag+pF0uLymhFgPVYBF75BT9l/a1mlkbmO7
+         U64oXgZ64S5kqoky7jsL16mqld+OB0Y3EnMM5az6Eo4dl7pUrdvZcXvUGPzqltIlt1jF
+         1OmOIzUCoMyk8St4N3gUuu17zgl2XF7e5ej/3YGYAoEURkgkiX0HWnt7TllmKh5rULc3
+         Lpcz5rOPca8twV1wOjiSQ2y25J/33zoD1+Os48RxzBgcG/skwIrZ/sTfLJiA9o9ZHRmS
+         lLPw==
+X-Gm-Message-State: AO0yUKU9pAUQcT1GFV40TkmhD1xI7xmDeaasUw0b+zJP/Jj+yM+2pOdl
+        Att0zcvxR4ahARhyIAPADRg=
+X-Google-Smtp-Source: AK7set+AJxtFxtJnhlRu+9+rAujgOdwo1SlUDYOgPkXUXvN5pI91jKGPYipsr54QFjPp32w8dBCZPQ==
+X-Received: by 2002:a7b:c8ce:0:b0:3d9:ebf9:7004 with SMTP id f14-20020a7bc8ce000000b003d9ebf97004mr1878075wml.29.1675254253412;
+        Wed, 01 Feb 2023 04:24:13 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id u1-20020a05600c00c100b003a3442f1229sm1591451wmm.29.2023.02.01.04.24.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Feb 2023 04:24:12 -0800 (PST)
+Message-ID: <ac19ed51-75a5-58d7-5f1b-6faf9ef2b3b4@gmail.com>
+Date:   Wed, 1 Feb 2023 13:24:11 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 3/3] arm64: dts: mediatek: enable USB device port for
+ mt8195-demo board
+Content-Language: en-US
+To:     Macpaul Lin <macpaul.lin@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: add missing vref-supply
-Message-ID: <20230201121343.vk2t2dfpbvhflols@pengutronix.de>
-References: <20230131101323.606931-1-alexander.stein@ew.tq-group.com>
- <20230131104816.w5sfpcdjulr2ogze@pengutronix.de>
- <1850476.tdWV9SEqCh@steina-w>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1850476.tdWV9SEqCh@steina-w>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        linux-usb@vger.kernel.org,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+References: <20230105092809.14214-1-macpaul.lin@mediatek.com>
+ <20230105092809.14214-3-macpaul.lin@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20230105092809.14214-3-macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
 
-On 23-01-31, Alexander Stein wrote:
-> Hi Marco,
-> 
-> thanks for the feedback.
-> 
-> Am Dienstag, 31. Januar 2023, 11:48:16 CET schrieb Marco Felsch:
-> > Hi Alexander,
-> > 
-> > On 23-01-31, Alexander Stein wrote:
-> > > Although this property is used right now for IIO_CHAN_INFO_SCALE,
-> > > this ADC has two internal reference voltages, which the driver currently
-> > > doesn't make use of.
-> > > 
-> > > Fixes: db73419d8c06 ("dt-bindings: iio: adc: Add binding documentation for
-> > > NXP IMX8QXP ADC") Signed-off-by: Alexander Stein
-> > > <alexander.stein@ew.tq-group.com>
-> > > ---
-> > > 
-> > >  .../devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml          | 4 ++++
-> > >  1 file changed, 4 insertions(+)
-> > > 
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> > > b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml index
-> > > 63369ba388e4..879768af0303 100644
-> > > --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> > > +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> > > 
-> > > @@ -39,6 +39,9 @@ properties:
-> > >    power-domains:
-> > >      maxItems: 1
-> > > 
-> > > +  vref-supply:
-> > > +    description: External ADC reference voltage supply on VREFH pad.
-> > 
-> > Please add it to the list of required properties, we can remove it as
-> > soon as the driver has support for the internal reference voltages.
-> 
-> I was thinking in doing so before as well. But DT describes the hardware, and 
-> this ADC apparently would be functioning without a reference voltage on that 
-> pad, using a different one. What the driver actual does is a different matter.
 
-I have also thought about it first but than I checked the RM which says
-that "multi-reference selection" is chip dependent.
+On 05/01/2023 10:28, Macpaul Lin wrote:
+> 1. Enable USB device port (USB port0).
+> 2. Enable u2 speed for other USB HOST (USB port1/2/3).
+> 3. Configure mt6360 (TYPEC) related pinctrls.
+> 
+> Note: Full dual-role switch capability requires TYPEC MUX driver and dts
+> update will be send in separate patches.
+> 
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 51 ++++++++++++++++++++
+>   1 file changed, 51 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> index 07a864cb8b54..207bb5f4c58f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> @@ -12,6 +12,7 @@
+>   #include <dt-bindings/input/input.h>
+>   #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
+>   #include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
+> +#include <dt-bindings/usb/pd.h>
+>   
+>   / {
+>   	model = "MediaTek MT8195 demo board";
+> @@ -380,6 +381,22 @@
+>   		};
+>   	};
+>   
+> +	mt6360_pins: mt6360-pins {
+> +		pins {
+> +			pinmux = <PINMUX_GPIO100__FUNC_GPIO100>,
+> +				 <PINMUX_GPIO101__FUNC_GPIO101>;
+> +			input-enable;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+> +	u3_p0_vbus: u3_p0vbusdefault {
+> +		pins_cmd_dat {
+> +			pinmux = <PINMUX_GPIO63__FUNC_VBUSVALID>;
+> +			input-enable;
+> +		};
+> +	};
+> +
+>   	uart0_pins: uart0-pins {
+>   		pins {
+>   			pinmux = <PINMUX_GPIO98__FUNC_UTXD0>,
+> @@ -393,6 +410,14 @@
+>   				 <PINMUX_GPIO103__FUNC_URXD1>;
+>   		};
+>   	};
+> +
+> +	usb_otg_vbus: usb-otg-vbus-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "otg-vbus";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		enable-active-high;
+> +	};
+>   };
+>   
+>   
+> @@ -412,6 +437,22 @@
+>   	status = "okay";
+>   };
+>   
+> +&u3port0 {
+> +	status = "okay";
+> +};
+> +
+> +&u2port1 {
+> +	status = "okay";
+> +};
+> +
+> +&u2port2 {
+> +	status = "okay";
+> +};
+> +
+> +&u2port3 {
+> +	status = "okay";
+> +};
+> +
+>   &u3phy0 {
+>   	status = "okay";
+>   };
+> @@ -428,6 +469,16 @@
+>   	status = "okay";
+>   };
+>   
+> +&ssusb {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&u3_p0_vbus>;
+> +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+> +	dr_mode = "otg";
+> +	mediatek,usb3-drd;
+
+What it that used for?
+git grep didn't gave me any hit.
 
 Regards,
-  Marco
+Matthias
 
-
-> 
-> Best regards,
-> Alexander
-> 
-> > Regards,
-> >   Marco
-> > 
-> > > +
-> > > 
-> > >    "#io-channel-cells":
-> > >      const: 1
-> > > 
-> > > @@ -72,6 +75,7 @@ examples:
-> > >              assigned-clocks = <&clk IMX_SC_R_ADC_0>;
-> > >              assigned-clock-rates = <24000000>;
-> > >              power-domains = <&pd IMX_SC_R_ADC_0>;
-> > > 
-> > > +            vref-supply = <&reg_1v8>;
-> > > 
-> > >              #io-channel-cells = <1>;
-> > >          
-> > >          };
-> > >      
-> > >      };
-> 
-> 
-> 
-> 
-> 
+> +	usb-role-switch;
+> +	status = "okay";
+> +};
+> +
+>   &xhci0 {
+>   	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+>   	vbus-supply = <&otg_vbus_regulator>;
