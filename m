@@ -2,352 +2,276 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6FF2686016
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 07:59:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00FB1686033
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:04:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231473AbjBAG7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 01:59:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40660 "EHLO
+        id S231300AbjBAHEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 02:04:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231543AbjBAG6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 01:58:39 -0500
-Received: from out28-218.mail.aliyun.com (out28-218.mail.aliyun.com [115.124.28.218])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0443B46140;
-        Tue, 31 Jan 2023 22:58:35 -0800 (PST)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436328|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00946298-0.254234-0.736303;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047203;MF=frank.sae@motor-comm.com;NM=1;PH=DS;RN=18;RT=18;SR=0;TI=SMTPD_---.R6w70-L_1675234710;
-Received: from sun-VirtualBox..(mailfrom:Frank.Sae@motor-comm.com fp:SMTPD_---.R6w70-L_1675234710)
-          by smtp.aliyun-inc.com;
-          Wed, 01 Feb 2023 14:58:31 +0800
-From:   Frank Sae <Frank.Sae@motor-comm.com>
-To:     Peter Geis <pgwipeout@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230282AbjBAHEE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:04:04 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8DF711C;
+        Tue, 31 Jan 2023 23:03:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1675235021; x=1706771021;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=zZzUBgAz009x45fbn90mob7kNuwe+12Mpt+4kTnJGyU=;
+  b=mPTp31HBtF5JckAO4gfTG2XZ5d21yVaB95DL/Pj64VIob7ikEDNg+BRS
+   IC5e0YzuBNVl0wkX+yI1jJ9fDj90G9UodIna6w86YwhxWdV25Ta2EVJfe
+   VXT9aQD0fb8wJOL6jSitlWq1SZpUjpD/w2dZx+NzxRf1XDz0jUVUfyzfo
+   sXoCPHhDG3Qclc3yQbYZGh4nNaEaBilW2FB3dH1fZIGI5PZW9h/uTt+bJ
+   Ll9mUfepCZlZVs5L5P+r1HfY4+bHzRPP2ocbm01xFxo7YeVXEQsCDpDj6
+   hHTaUurMdJq9cLG/t2Cxw9uGY5dON7/KRUiu5ylr0DyASRdIdzTiTxKFX
+   w==;
+X-IronPort-AV: E=Sophos;i="5.97,263,1669071600"; 
+   d="scan'208";a="28787735"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 01 Feb 2023 08:03:38 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 01 Feb 2023 08:03:38 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 01 Feb 2023 08:03:38 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1675235018; x=1706771018;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=zZzUBgAz009x45fbn90mob7kNuwe+12Mpt+4kTnJGyU=;
+  b=iq4STJFus1ppexBYHB/5+Vmg4VQGhzwOVB3v561Fp1quIbDKHrk4BacD
+   D2tTdyT9mZYeHafIMTDa2/ULiAs+u9xjCNuq1SOQgKz+2wd7Kc5RvCoQc
+   +eKJa8M1xwjva1cFVhqeVOO6O9iJ6HIYy8BaoJzsiRrbJ+kk3z5FRBxnl
+   a5a1PpKYpBGXPZsWtoFtnltqkWUGf7dZpkJ8/HxNoHWf14qiuHHn4uCKz
+   6fE7gcfTD2HIWCT2TfpBVW5I7p/iG5BJZrBMeFtfPtTfE3zvG5ZbxJYAg
+   5y3F0p9r771p7rMCwnbaT0bwjFusvqXVKHKDYFMmb7sMI4iu9/1zbp1mg
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,263,1669071600"; 
+   d="scan'208";a="28787734"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 01 Feb 2023 08:03:38 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7043F280056;
+        Wed,  1 Feb 2023 08:03:38 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        yanhong.wang@starfivetech.com
-Cc:     xiaogang.fan@motor-comm.com, fei.zhang@motor-comm.com,
-        hua.sun@motor-comm.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Frank <Frank.Sae@motor-comm.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH net-next v4 5/5] net: phy: Add driver for Motorcomm yt8531 gigabit ethernet phy
-Date:   Wed,  1 Feb 2023 14:58:11 +0800
-Message-Id: <20230201065811.3650-6-Frank.Sae@motor-comm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230201065811.3650-1-Frank.Sae@motor-comm.com>
-References: <20230201065811.3650-1-Frank.Sae@motor-comm.com>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH 2/2] media: i2c: imx290: Add support for the mono sensor variant.
+Date:   Wed, 01 Feb 2023 08:03:36 +0100
+Message-ID: <5647238.DvuYhMxLoT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230131190700.3476796-3-dave.stevenson@raspberrypi.com>
+References: <20230131190700.3476796-1-dave.stevenson@raspberrypi.com> <20230131190700.3476796-3-dave.stevenson@raspberrypi.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- Add a driver for the motorcomm yt8531 gigabit ethernet phy. We have
- verified the driver on AM335x platform with yt8531 board. On the
- board, yt8531 gigabit ethernet phy works in utp mode, RGMII
- interface, supports 1000M/100M/10M speeds, and wol(magic package).
+Hi Dave,
 
-Signed-off-by: Frank Sae <Frank.Sae@motor-comm.com>
----
- drivers/net/phy/Kconfig     |   2 +-
- drivers/net/phy/motorcomm.c | 208 +++++++++++++++++++++++++++++++++++-
- 2 files changed, 207 insertions(+), 3 deletions(-)
+Am Dienstag, 31. Januar 2023, 20:07:00 CET schrieb Dave Stevenson:
+> The IMX290 module is available as either mono or colour (Bayer).
+> 
+> Update the driver so that it can advertise the correct mono
+> formats instead of the colour ones.
+> 
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> ---
+>  drivers/media/i2c/imx290.c | 47 ++++++++++++++++++++++++--------------
+>  1 file changed, 30 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
+> index 49d6c8bdec41..a370f1102334 100644
+> --- a/drivers/media/i2c/imx290.c
+> +++ b/drivers/media/i2c/imx290.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/i2c.h>
+>  #include <linux/module.h>
+> +#include <linux/of_device.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+> @@ -177,6 +178,7 @@ struct imx290 {
+>  	struct clk *xclk;
+>  	struct regmap *regmap;
+>  	u8 nlanes;
+> +	u8 mono;
+> 
+>  	struct v4l2_subdev sd;
+>  	struct media_pad pad;
+> @@ -414,7 +416,8 @@ static inline int imx290_modes_num(const struct imx290
+> *imx290) }
+> 
+>  struct imx290_format_info {
+> -	u32 code;
+> +	/* Array of codes. [0] is for colour, [1] is for mono. */
+> +	u32 code[2];
 
-diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-index f5df2edc94a5..54874555c921 100644
---- a/drivers/net/phy/Kconfig
-+++ b/drivers/net/phy/Kconfig
-@@ -257,7 +257,7 @@ config MOTORCOMM_PHY
- 	tristate "Motorcomm PHYs"
- 	help
- 	  Enables support for Motorcomm network PHYs.
--	  Currently supports the YT8511, YT8521, YT8531S Gigabit Ethernet PHYs.
-+	  Currently supports YT85xx Gigabit Ethernet PHYs.
- 
- config NATIONAL_PHY
- 	tristate "National Semiconductor PHYs"
-diff --git a/drivers/net/phy/motorcomm.c b/drivers/net/phy/motorcomm.c
-index bdc6a55d59f1..ee7c37dfdca0 100644
---- a/drivers/net/phy/motorcomm.c
-+++ b/drivers/net/phy/motorcomm.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * Motorcomm 8511/8521/8531S PHY driver.
-+ * Motorcomm 8511/8521/8531/8531S PHY driver.
-  *
-  * Author: Peter Geis <pgwipeout@gmail.com>
-  * Author: Frank <Frank.Sae@motor-comm.com>
-@@ -14,6 +14,7 @@
- 
- #define PHY_ID_YT8511		0x0000010a
- #define PHY_ID_YT8521		0x0000011a
-+#define PHY_ID_YT8531		0x4f51e91b
- #define PHY_ID_YT8531S		0x4f51e91a
- 
- /* YT8521/YT8531S Register Overview
-@@ -517,6 +518,61 @@ static int ytphy_set_wol(struct phy_device *phydev, struct ethtool_wolinfo *wol)
- 	return phy_restore_page(phydev, old_page, ret);
- }
- 
-+static int yt8531_set_wol(struct phy_device *phydev,
-+			  struct ethtool_wolinfo *wol)
-+{
-+	const u16 mac_addr_reg[] = {
-+		YTPHY_WOL_MACADDR2_REG,
-+		YTPHY_WOL_MACADDR1_REG,
-+		YTPHY_WOL_MACADDR0_REG,
-+	};
-+	const u8 *mac_addr;
-+	u16 mask, val;
-+	int ret;
-+	u8 i;
-+
-+	if (wol->wolopts & WAKE_MAGIC) {
-+		mac_addr = phydev->attached_dev->dev_addr;
-+
-+		/* Store the device address for the magic packet */
-+		for (i = 0; i < 3; i++) {
-+			ret = ytphy_write_ext_with_lock(phydev, mac_addr_reg[i],
-+							((mac_addr[i * 2] << 8)) |
-+							(mac_addr[i * 2 + 1]));
-+			if (ret < 0)
-+				return ret;
-+		}
-+
-+		/* Enable WOL feature */
-+		mask = YTPHY_WCR_PULSE_WIDTH_MASK | YTPHY_WCR_INTR_SEL;
-+		val = YTPHY_WCR_ENABLE | YTPHY_WCR_INTR_SEL;
-+		val |= YTPHY_WCR_TYPE_PULSE | YTPHY_WCR_PULSE_WIDTH_672MS;
-+		ret = ytphy_modify_ext_with_lock(phydev, YTPHY_WOL_CONFIG_REG,
-+						 mask, val);
-+		if (ret < 0)
-+			return ret;
-+
-+		/* Enable WOL interrupt */
-+		ret = phy_modify(phydev, YTPHY_INTERRUPT_ENABLE_REG, 0,
-+				 YTPHY_IER_WOL);
-+		if (ret < 0)
-+			return ret;
-+	} else {
-+		/* Disable WOL feature */
-+		mask = YTPHY_WCR_ENABLE | YTPHY_WCR_INTR_SEL;
-+		ret = ytphy_modify_ext_with_lock(phydev, YTPHY_WOL_CONFIG_REG,
-+						 mask, 0);
-+
-+		/* Disable WOL interrupt */
-+		ret = phy_modify(phydev, YTPHY_INTERRUPT_ENABLE_REG,
-+				 YTPHY_IER_WOL, 0);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int yt8511_read_page(struct phy_device *phydev)
- {
- 	return __phy_read(phydev, YT8511_PAGE_SELECT);
-@@ -767,6 +823,17 @@ static int ytphy_rgmii_clk_delay_config(struct phy_device *phydev)
- 	return ytphy_modify_ext(phydev, YT8521_RGMII_CONFIG1_REG, mask, val);
- }
- 
-+static int ytphy_rgmii_clk_delay_config_with_lock(struct phy_device *phydev)
-+{
-+	int ret;
-+
-+	phy_lock_mdio_bus(phydev);
-+	ret = ytphy_rgmii_clk_delay_config(phydev);
-+	phy_unlock_mdio_bus(phydev);
-+
-+	return ret;
-+}
-+
- /**
-  * yt8521_probe() - read chip config then set suitable polling_mode
-  * @phydev: a pointer to a &struct phy_device
-@@ -891,6 +958,43 @@ static int yt8521_probe(struct phy_device *phydev)
- 					  val);
- }
- 
-+static int yt8531_probe(struct phy_device *phydev)
-+{
-+	struct device_node *node = phydev->mdio.dev.of_node;
-+	u16 mask, val;
-+	u32 freq;
-+
-+	if (of_property_read_u32(node, "motorcomm,clk-out-frequency-hz", &freq))
-+		freq = YTPHY_DTS_OUTPUT_CLK_DIS;
-+
-+	switch (freq) {
-+	case YTPHY_DTS_OUTPUT_CLK_DIS:
-+		mask = YT8531_SCR_SYNCE_ENABLE;
-+		val = 0;
-+		break;
-+	case YTPHY_DTS_OUTPUT_CLK_25M:
-+		mask = YT8531_SCR_SYNCE_ENABLE | YT8531_SCR_CLK_SRC_MASK |
-+		       YT8531_SCR_CLK_FRE_SEL_125M;
-+		val = YT8531_SCR_SYNCE_ENABLE |
-+		      FIELD_PREP(YT8531_SCR_CLK_SRC_MASK,
-+				 YT8531_SCR_CLK_SRC_REF_25M);
-+		break;
-+	case YTPHY_DTS_OUTPUT_CLK_125M:
-+		mask = YT8531_SCR_SYNCE_ENABLE | YT8531_SCR_CLK_SRC_MASK |
-+		       YT8531_SCR_CLK_FRE_SEL_125M;
-+		val = YT8531_SCR_SYNCE_ENABLE | YT8531_SCR_CLK_FRE_SEL_125M |
-+		      FIELD_PREP(YT8531_SCR_CLK_SRC_MASK,
-+				 YT8531_SCR_CLK_SRC_PLL_125M);
-+		break;
-+	default:
-+		phydev_warn(phydev, "Freq err:%u\n", freq);
-+		return -EINVAL;
-+	}
-+
-+	return ytphy_modify_ext_with_lock(phydev, YTPHY_SYNCE_CFG_REG, mask,
-+					  val);
-+}
-+
- /**
-  * ytphy_utp_read_lpa() - read LPA then setup lp_advertising for utp
-  * @phydev: a pointer to a &struct phy_device
-@@ -1387,6 +1491,94 @@ static int yt8521_config_init(struct phy_device *phydev)
- 	return phy_restore_page(phydev, old_page, ret);
- }
- 
-+static int yt8531_config_init(struct phy_device *phydev)
-+{
-+	struct device_node *node = phydev->mdio.dev.of_node;
-+	int ret;
-+
-+	ret = ytphy_rgmii_clk_delay_config_with_lock(phydev);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (of_property_read_bool(node, "motorcomm,auto-sleep-disabled")) {
-+		/* disable auto sleep */
-+		ret = ytphy_modify_ext_with_lock(phydev,
-+						 YT8521_EXTREG_SLEEP_CONTROL1_REG,
-+						 YT8521_ESC1R_SLEEP_SW, 0);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	if (of_property_read_bool(node, "motorcomm,keep-pll-enabled")) {
-+		/* enable RXC clock when no wire plug */
-+		ret = ytphy_modify_ext_with_lock(phydev,
-+						 YT8521_CLOCK_GATING_REG,
-+						 YT8521_CGR_RX_CLK_EN, 0);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+/**
-+ * yt8531_link_change_notify() - Adjust the tx clock direction according to
-+ * the current speed and dts config.
-+ * @phydev: a pointer to a &struct phy_device
-+ *
-+ * NOTE: This function is only used to adapt to VF2 with JH7110 SoC. Please
-+ * keep "motorcomm,tx-clk-adj-enabled" not exist in dts when the soc is not
-+ * JH7110.
-+ */
-+static void yt8531_link_change_notify(struct phy_device *phydev)
-+{
-+	struct device_node *node = phydev->mdio.dev.of_node;
-+	bool tx_clk_adj_enabled = false;
-+	bool tx_clk_1000_inverted;
-+	bool tx_clk_100_inverted;
-+	bool tx_clk_10_inverted;
-+	u16 val = 0;
-+	int ret;
-+
-+	if (of_property_read_bool(node, "motorcomm,tx-clk-adj-enabled"))
-+		tx_clk_adj_enabled = true;
-+
-+	if (!tx_clk_adj_enabled)
-+		return;
-+
-+	if (of_property_read_bool(node, "motorcomm,tx-clk-10-inverted"))
-+		tx_clk_10_inverted = true;
-+	if (of_property_read_bool(node, "motorcomm,tx-clk-100-inverted"))
-+		tx_clk_100_inverted = true;
-+	if (of_property_read_bool(node, "motorcomm,tx-clk-1000-inverted"))
-+		tx_clk_1000_inverted = true;
-+
-+	if (phydev->speed < 0)
-+		return;
-+
-+	switch (phydev->speed) {
-+	case SPEED_1000:
-+		if (tx_clk_1000_inverted)
-+			val = YT8521_RC1R_TX_CLK_SEL_INVERTED;
-+		break;
-+	case SPEED_100:
-+		if (tx_clk_100_inverted)
-+			val = YT8521_RC1R_TX_CLK_SEL_INVERTED;
-+		break;
-+	case SPEED_10:
-+		if (tx_clk_10_inverted)
-+			val = YT8521_RC1R_TX_CLK_SEL_INVERTED;
-+		break;
-+	default:
-+		return;
-+	}
-+
-+	ret = ytphy_modify_ext_with_lock(phydev, YT8521_RGMII_CONFIG1_REG,
-+					 YT8521_RC1R_TX_CLK_SEL_INVERTED, val);
-+	if (ret < 0)
-+		phydev_warn(phydev, "Modify TX_CLK_SEL err:%d\n", ret);
-+}
-+
- /**
-  * yt8521_prepare_fiber_features() -  A small helper function that setup
-  * fiber's features.
-@@ -1969,6 +2161,17 @@ static struct phy_driver motorcomm_phy_drvs[] = {
- 		.suspend	= yt8521_suspend,
- 		.resume		= yt8521_resume,
- 	},
-+	{
-+		PHY_ID_MATCH_EXACT(PHY_ID_YT8531),
-+		.name		= "YT8531 Gigabit Ethernet",
-+		.probe		= yt8531_probe,
-+		.config_init	= yt8531_config_init,
-+		.suspend	= genphy_suspend,
-+		.resume		= genphy_resume,
-+		.get_wol	= ytphy_get_wol,
-+		.set_wol	= yt8531_set_wol,
-+		.link_change_notify = yt8531_link_change_notify,
-+	},
- 	{
- 		PHY_ID_MATCH_EXACT(PHY_ID_YT8531S),
- 		.name		= "YT8531S Gigabit Ethernet",
-@@ -1990,7 +2193,7 @@ static struct phy_driver motorcomm_phy_drvs[] = {
- 
- module_phy_driver(motorcomm_phy_drvs);
- 
--MODULE_DESCRIPTION("Motorcomm 8511/8521/8531S PHY driver");
-+MODULE_DESCRIPTION("Motorcomm 8511/8521/8531/8531S PHY driver");
- MODULE_AUTHOR("Peter Geis");
- MODULE_AUTHOR("Frank");
- MODULE_LICENSE("GPL");
-@@ -1998,6 +2201,7 @@ MODULE_LICENSE("GPL");
- static const struct mdio_device_id __maybe_unused motorcomm_tbl[] = {
- 	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8511) },
- 	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8521) },
-+	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8531) },
- 	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8531S) },
- 	{ /* sentinel */ }
- };
--- 
-2.34.1
+Please use a define for that.
+
+>  	u8 bpp;
+>  	const struct imx290_regval *regs;
+>  	unsigned int num_regs;
+> @@ -422,26 +425,27 @@ struct imx290_format_info {
+> 
+>  static const struct imx290_format_info imx290_formats[] = {
+>  	{
+> -		.code = MEDIA_BUS_FMT_SRGGB10_1X10,
+> +		.code = { MEDIA_BUS_FMT_SRGGB10_1X10, 
+MEDIA_BUS_FMT_Y10_1X10 },
+>  		.bpp = 10,
+>  		.regs = imx290_10bit_settings,
+>  		.num_regs = ARRAY_SIZE(imx290_10bit_settings),
+>  	}, {
+> -		.code = MEDIA_BUS_FMT_SRGGB12_1X12,
+> +		.code = { MEDIA_BUS_FMT_SRGGB12_1X12, 
+MEDIA_BUS_FMT_Y12_1X12 },
+>  		.bpp = 12,
+>  		.regs = imx290_12bit_settings,
+>  		.num_regs = ARRAY_SIZE(imx290_12bit_settings),
+>  	}
+>  };
+> 
+> -static const struct imx290_format_info *imx290_format_info(u32 code)
+> +static const struct imx290_format_info *
+> +imx290_format_info(const struct imx290 *imx290, u32 code)
+>  {
+>  	unsigned int i;
+> 
+>  	for (i = 0; i < ARRAY_SIZE(imx290_formats); ++i) {
+>  		const struct imx290_format_info *info = 
+&imx290_formats[i];
+> 
+> -		if (info->code == code)
+> +		if (info->code[imx290->mono] == code)
+>  			return info;
+>  	}
+> 
+> @@ -536,7 +540,7 @@ static int imx290_set_black_level(struct imx290 *imx290,
+> const struct v4l2_mbus_framefmt *format,
+>  				  unsigned int black_level, int *err)
+>  {
+> -	unsigned int bpp = imx290_format_info(format->code)->bpp;
+> +	unsigned int bpp = imx290_format_info(imx290, format->code)->bpp;
+> 
+>  	return imx290_write(imx290, IMX290_BLKLEVEL,
+>  			    black_level >> (16 - bpp), err);
+> @@ -548,7 +552,7 @@ static int imx290_setup_format(struct imx290 *imx290,
+>  	const struct imx290_format_info *info;
+>  	int ret;
+> 
+> -	info = imx290_format_info(format->code);
+> +	info = imx290_format_info(imx290, format->code);
+> 
+>  	ret = imx290_set_register_array(imx290, info->regs, info->num_regs);
+>  	if (ret < 0) {
+> @@ -844,10 +848,12 @@ static int imx290_enum_mbus_code(struct v4l2_subdev
+> *sd, struct v4l2_subdev_state *sd_state,
+>  				 struct v4l2_subdev_mbus_code_enum 
+*code)
+>  {
+> +	const struct imx290 *imx290 = to_imx290(sd);
+> +
+>  	if (code->index >= ARRAY_SIZE(imx290_formats))
+>  		return -EINVAL;
+> 
+> -	code->code = imx290_formats[code->index].code;
+> +	code->code = imx290_formats[code->index].code[imx290->mono];
+> 
+>  	return 0;
+>  }
+> @@ -859,7 +865,7 @@ static int imx290_enum_frame_size(struct v4l2_subdev
+> *sd, const struct imx290 *imx290 = to_imx290(sd);
+>  	const struct imx290_mode *imx290_modes = imx290_modes_ptr(imx290);
+> 
+> -	if (!imx290_format_info(fse->code))
+> +	if (!imx290_format_info(imx290, fse->code))
+>  		return -EINVAL;
+> 
+>  	if (fse->index >= imx290_modes_num(imx290))
+> @@ -888,8 +894,8 @@ static int imx290_set_fmt(struct v4l2_subdev *sd,
+>  	fmt->format.width = mode->width;
+>  	fmt->format.height = mode->height;
+> 
+> -	if (!imx290_format_info(fmt->format.code))
+> -		fmt->format.code = imx290_formats[0].code;
+> +	if (!imx290_format_info(imx290, fmt->format.code))
+> +		fmt->format.code = imx290_formats[0].code[imx290->mono];
+> 
+>  	fmt->format.field = V4L2_FIELD_NONE;
+> 
+> @@ -1177,16 +1183,29 @@ static s64 imx290_check_link_freqs(const struct
+> imx290 *imx290, return 0;
+>  }
+> 
+> +static const struct of_device_id imx290_of_match[] = {
+> +	{ .compatible = "sony,imx290" },
+> +	{ .compatible = "sony,imx290-mono", .data = (void *)1 },
+
+Would you mind using a model specific struct? I have a patch on my stack 
+adding support for imx327. There are some imx327 specific writes to registers 
+during initialization. I do not mind adding this struct later though.
+
+Best regards
+Alexander
+
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, imx290_of_match);
+> +
+>  static int imx290_parse_dt(struct imx290 *imx290)
+>  {
+> +	struct i2c_client *client = to_i2c_client(imx290->dev);
+>  	/* Only CSI2 is supported for now: */
+>  	struct v4l2_fwnode_endpoint ep = {
+>  		.bus_type = V4L2_MBUS_CSI2_DPHY
+>  	};
+> +	const struct of_device_id *match;
+>  	struct fwnode_handle *endpoint;
+>  	int ret;
+>  	s64 fq;
+> 
+> +	match = i2c_of_match_device(imx290_of_match, client);
+> +	if (match)
+> +		imx290->mono = match->data ? 1 : 0;
+> +
+>  	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(imx290->dev), 
+NULL);
+>  	if (!endpoint) {
+>  		dev_err(imx290->dev, "Endpoint node not found\n");
+> @@ -1351,12 +1370,6 @@ static void imx290_remove(struct i2c_client *client)
+>  	pm_runtime_set_suspended(imx290->dev);
+>  }
+> 
+> -static const struct of_device_id imx290_of_match[] = {
+> -	{ .compatible = "sony,imx290" },
+> -	{ /* sentinel */ }
+> -};
+> -MODULE_DEVICE_TABLE(of, imx290_of_match);
+> -
+>  static struct i2c_driver imx290_i2c_driver = {
+>  	.probe_new  = imx290_probe,
+>  	.remove = imx290_remove,
+
+
+
 
