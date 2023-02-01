@@ -2,82 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AC266860BC
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:36:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72FC16860BE
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 08:37:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229940AbjBAHf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 02:35:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37144 "EHLO
+        id S231220AbjBAHhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 02:37:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230268AbjBAHf4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:35:56 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3A0851C59
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:35:46 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id q8so11942341wmo.5
-        for <devicetree@vger.kernel.org>; Tue, 31 Jan 2023 23:35:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zMO4O6XLeS+CmaJzPkiM5TKqYcGSkxjv6mv/iv+doFM=;
-        b=BE7kDWz7n+PSYdH2iN/bRL9Yj3r9hEX7mC1i1JpjP3qijwDoncOQyuOQKXUjB3LWPf
-         o0p6DsrqJbn51CiyvJBP51I60gtfqT8bVzLizs++wndzf3XqtvZ6i9buxRaZ7rrPg9wJ
-         vkeLWVcBlAvWruSbadDs7ydy5N3L7l7QMg7rx5kV4SIO7kvJ2eZ84EQyftys1Xi9fPiO
-         jhZQ9bXQHvifASMJnuhJrgTWkN/QBRd6FxrkBx+uPYlcc5tJlAP5e68o6j2bPO8O84V0
-         kgXa7tim9VnqYP4gA5mM3CHuCSoXsf2JlY5W9gyBw8yXrv7XDTTXAqLMNY+TBWnWE670
-         EDwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zMO4O6XLeS+CmaJzPkiM5TKqYcGSkxjv6mv/iv+doFM=;
-        b=6PsSZQWAwLRvMs5QqjQgWg8lw+PexEOFQXeaKMdOEuMaN/HZoCX0nzzJ8ZopLximww
-         2ZkGH1Y8cqYX8KlROvhDRa5oq+TQVTEhmv8POUcl78e2LkbXg9HvNXMx75chAsxnfvij
-         7iENotppe7OhrDf01g8VSVhO4NOtOdAIO+dxw9uZietSKrUuwiuBoxq1ey7WSX+SOn5p
-         5FvqwXUgGBVHWnKpYxbxS74x54vw0G5eT8MydvseQe6DN6DXZN6at+JsYmI1E4cBYz+s
-         N7ZmHEdwJyzHB6AjHlxXjMJX5H15RtbkTEw1Gn/M2RUOILoOEHUi/CzzIyw5xJ3TeRN1
-         y+VQ==
-X-Gm-Message-State: AO0yUKUASmND7DEtoL5Y0FQYvFWFBDZqPH8YRXiMzyefYCi/cfRWUdGn
-        lxAnGx1XLbAzsGs0Z+3x5/apWw==
-X-Google-Smtp-Source: AK7set/lXNHxnDU1hTSORqG2FBydX0NnEOY9kA1Iw6Uh7VHpr2eLvUZ+/+3JSVisozXeJS/LSHrmJA==
-X-Received: by 2002:a7b:c00d:0:b0:3da:f5d1:c677 with SMTP id c13-20020a7bc00d000000b003daf5d1c677mr688028wmb.35.1675236945369;
-        Tue, 31 Jan 2023 23:35:45 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q6-20020a05600c46c600b003dc54344764sm845248wmo.48.2023.01.31.23.35.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Jan 2023 23:35:44 -0800 (PST)
-Message-ID: <58b7924e-07aa-fc62-d7a6-c5d453964486@linaro.org>
-Date:   Wed, 1 Feb 2023 08:35:42 +0100
+        with ESMTP id S230043AbjBAHhl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 02:37:41 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0231118B00;
+        Tue, 31 Jan 2023 23:37:40 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3117KSXN022135;
+        Wed, 1 Feb 2023 07:37:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=2RT/rhOGg20Q+aPg/QtSGgkYbu9VZL/9P3ketB6kPqk=;
+ b=LQ/7qDEhioRLEhoWzz4yPMlBNeYxPXGs2TA//H3FKU7WarSwH4qAm3YdRwdV2wOiDZ/I
+ vbE7r2duu/Ykg+T6Jw80F1gBCHgssYjGXuTDjVaTTyOKYW9pVzUn4edxuEJ494/vBVNy
+ PiNmFaHCR06z67c6rAZTAbqmglQNG4Jc7fPodMIddY3bl41wFX9eT3Z9zMQm/8XjnTrV
+ 6uhq56W0/Vr0AaxEjUb6vPsocIK3t34phXhH07j33unuEvKOYLPQK4xo/MFR2Ov+LD1+
+ m4YYAHryH474CHy3pfrSBpEnoSrSQj9F1JDNA5JJkd/uAiTctCRfwlmOOqr5mn4z95ji Jw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nfkj280ym-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 01 Feb 2023 07:37:20 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3117bJ7C002070
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 1 Feb 2023 07:37:19 GMT
+Received: from [10.216.7.142] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 31 Jan
+ 2023 23:37:10 -0800
+Message-ID: <b716d809-cf9e-dbcc-fe8f-265852bbaa83@quicinc.com>
+Date:   Wed, 1 Feb 2023 13:07:07 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3] dt-bindings: pwm: Convert Amlogic Meson PWM binding
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 3/5] firmware: scm: Modify only the DLOAD bit in TCSR
+ register for download mode
 Content-Language: en-US
-To:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+To:     Lee Jones <lee@kernel.org>
+CC:     Guru Das Srinagesh <quic_gurus@quicinc.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
+        <nfraprado@collabora.com>, <broonie@kernel.org>,
+        <robimarko@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        linux-pwm@vger.kernel.org
-References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
- <c92b9e51-bb69-0712-0b29-3db3c9a29f8b@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c92b9e51-bb69-0712-0b29-3db3c9a29f8b@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_devipriy@quicinc.com>
+References: <20230113160012.14893-1-quic_poovendh@quicinc.com>
+ <20230113160012.14893-4-quic_poovendh@quicinc.com>
+ <20230114011606.GA24659@quicinc.com>
+ <659c81b0-b75e-9a6f-bd26-878bb9868397@quicinc.com>
+ <Y9QHDXfpAETnCHi9@google.com>
+From:   POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>
+In-Reply-To: <Y9QHDXfpAETnCHi9@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: QU5VhwnqqD0-9g7SFJCaGnTzsRmKa2vw
+X-Proofpoint-GUID: QU5VhwnqqD0-9g7SFJCaGnTzsRmKa2vw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-01_03,2023-01-31_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ adultscore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
+ phishscore=0 spamscore=0 malwarescore=0 mlxlogscore=799 priorityscore=1501
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302010065
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,61 +94,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/01/2023 21:34, Heiner Kallweit wrote:
-> Convert Amlogic Meson PWM binding to yaml.
-> 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
-> v2:
-> - fix clocks and clock-names
-> - consider that more than one compatible may be set
-> v3:
-> - remove minItem/maxItem properties for compatible
-> ---
->  .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 71 +++++++++++++++++++
->  .../devicetree/bindings/pwm/pwm-meson.txt     | 29 --------
->  2 files changed, 71 insertions(+), 29 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> new file mode 100644
-> index 000000000..750642e76
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic PWM
-> +
-> +maintainers:
-> +  - Heiner Kallweit <hkallweit1@gmail.com>
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
 
-Drop items
+On 1/27/2023 10:47 PM, Lee Jones wrote:
+> On Fri, 27 Jan 2023, POOVENDHAN SELVARAJ wrote:
+>
+>> On 1/14/2023 6:46 AM, Guru Das Srinagesh wrote:
+>>> On Jan 13 2023 21:30, Poovendhan Selvaraj wrote:
+>>>> Add support to read-modify-write TCSR register to modify only DLOAD bit.
+>>> Could you please add more details on what problem this patch is fixing, and why
+>>> this patch is needed?
+>>>
+>>> CrashDump collection is based on the DLOAD bit of TCSR register. To retain other bits, we read the register and modify only the DLOAD bit as the other bits have their own significance.
+>>>
+>>> Thank you.
+>>>
+>>> Guru Das.
+>>>
+>>> Regards,
+>>> Poovendhan S
+> Could you please fix your email client.
+>
+> I have no idea which text is yours, in any of your mails.
 
-> +          - enum:
-> +              - amlogic,meson8b-pwm
-> +              - amlogic,meson-gxbb-pwm
-> +              - amlogic,meson-gxbb-ao-pwm
-> +              - amlogic,meson-axg-ee-pwm
-> +              - amlogic,meson-axg-ao-pwm
-> +              - amlogic,meson-g12a-ee-pwm
-> +              - amlogic,meson-g12a-ao-pwm-ab
-> +              - amlogic,meson-g12a-ao-pwm-cd
-> +              - amlogic,meson-s4-pwm
+Okay, will fix it.
 
-Best regards,
-Krzysztof
+Regards,
+Poovendhan S
 
