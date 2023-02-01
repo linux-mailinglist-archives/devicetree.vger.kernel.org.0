@@ -2,139 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 718076864AA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 11:47:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 245676864C4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 11:53:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232063AbjBAKrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 05:47:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52304 "EHLO
+        id S232257AbjBAKxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 05:53:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231482AbjBAKrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 05:47:22 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B91944239;
-        Wed,  1 Feb 2023 02:47:20 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3117uhbu010480;
-        Wed, 1 Feb 2023 10:47:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=++5oz/wf4CKFYQhluK6ApEm/28aDTUiINogCA77NbaM=;
- b=Lc9Ah5p0zfe1hmtPC3rv+aEmDwb7cXTvuy1apM4ezDQPpKxq28dIiEW+HQ0OBGjXZFwo
- 5vZNsbqG9TveUxj7TQRVTrFVvJn+xoJqFsma+prjS/+6/02sWfom8qrnOIKc9a4xEY0G
- p0F1HEyPzFTnt31ZqRRCA1TZ0+uGOflNuEktL2kHE77x2HUDalP/wDZCXwBFCG4Z8VRE
- DqIY33RIV6nItTnAypxyMasmojdUxfHrQer0+rZtgz9QPTRnjoth5dqDQkKyNZl9BWB0
- P86yrnhjK2MQoSdLZNosJCVdqLJbhL0CLqbxiN1ritYfuYXWVxEyFubjFMIsQ8fieIMA Gg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nfkj3rfwm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 01 Feb 2023 10:46:59 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 311AkwH8010347
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 1 Feb 2023 10:46:58 GMT
-Received: from [10.50.40.201] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 1 Feb 2023
- 02:46:49 -0800
-Message-ID: <8dbdc5c2-58a3-32b8-5583-b216ae51ec95@quicinc.com>
-Date:   Wed, 1 Feb 2023 16:16:46 +0530
+        with ESMTP id S230369AbjBAKxP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 05:53:15 -0500
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 55FD644BDD;
+        Wed,  1 Feb 2023 02:53:14 -0800 (PST)
+Received: by linux.microsoft.com (Postfix, from userid 1127)
+        id 1042920B74F7; Wed,  1 Feb 2023 02:53:14 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 1042920B74F7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1675248794;
+        bh=u6xY+MjMRo8fO7fdvwYCp6a/E0wL/T2x+iwrgYUQBA4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=V/T21LLk285Lc3xQ3YEJ2yYzCwz37PZFw0s0JZPHeJAGbtfX0bdEszVUIq6veJe4J
+         5fRyxzl2aJ8mRayr1QgasGIyKYfLky7w430pj20/L0KTH/0QsrM/s86sIoTRFKMJhC
+         kFu3wjomkuvMuwrY0erQDWOw2sG5togbWMFdclhc=
+Date:   Wed, 1 Feb 2023 02:53:14 -0800
+From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
+        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com
+Subject: Re: [PATCH 4/4] dt-bindings: hv: Add dt-bindings for VMBus
+Message-ID: <20230201105314.GA5733@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <1673887688-19151-1-git-send-email-ssengar@linux.microsoft.com>
+ <1673887688-19151-5-git-send-email-ssengar@linux.microsoft.com>
+ <f74fe561-dc20-0681-12af-4a4782a060be@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V4 6/7] arm64: dts: qcom: Add ipq9574 SoC and AL02 board
- support
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <shawnguo@kernel.org>, <arnd@arndb.de>,
-        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
-        <nfraprado@collabora.com>, <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>
-References: <20230201060319.20434-1-quic_devipriy@quicinc.com>
- <20230201060319.20434-7-quic_devipriy@quicinc.com>
- <91ddc32e-0e59-fe49-b8c2-b33b962c943e@linaro.org>
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <91ddc32e-0e59-fe49-b8c2-b33b962c943e@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: HxSh4rYJCRBbys7ipcTXSsPvzCas8hNh
-X-Proofpoint-ORIG-GUID: HxSh4rYJCRBbys7ipcTXSsPvzCas8hNh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-01_04,2023-01-31_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- lowpriorityscore=0 malwarescore=0 mlxscore=0 adultscore=0 impostorscore=0
- suspectscore=0 mlxlogscore=837 clxscore=1015 priorityscore=1501
- spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302010093
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f74fe561-dc20-0681-12af-4a4782a060be@linaro.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jan 16, 2023 at 07:53:07PM +0100, Krzysztof Kozlowski wrote:
+> On 16/01/2023 17:48, Saurabh Sengar wrote:
+> > Add dt-bindings for Hyper-V VMBus
+> 
+> Missing full stop.
+> 
+> Subject: drop second/last, redundant "dt-bindings for". The
+> "dt-bindings" prefix is already stating that these are bindings.
 
+Will fix in v3.
 
-On 2/1/2023 1:07 PM, Krzysztof Kozlowski wrote:
-> On 01/02/2023 07:03, Devi Priya wrote:
->> Add initial device tree support for Qualcomm IPQ9574 SoC and AL02 board
->>
->> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
->> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->> Co-developed-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
->> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->> ---
 > 
+> > 
+> > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> > ---
+> >  .../devicetree/bindings/hv/msft,vmbus.yaml         | 34 ++++++++++++++++++++++
+> >  1 file changed, 34 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/hv/msft,vmbus.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/hv/msft,vmbus.yaml b/Documentation/devicetree/bindings/hv/msft,vmbus.yaml
+> > new file mode 100644
+> > index 0000000..66cb426
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/hv/msft,vmbus.yaml
+> > @@ -0,0 +1,34 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/hv/msft,vmbus.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Microsoft Hyper-V VMBus device tree bindings
 > 
->> +
->> +		sdhc_1: mmc@7804000 {
->> +			compatible = "qcom,ipq9574-sdhci", "qcom,sdhci-msm-v5";
->> +			reg = <0x07804000 0x1000>, <0x07805000 0x1000>;
->> +			reg-names = "hc", "cqhci";
->> +
->> +			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "hc_irq", "pwr_irq";
->> +
->> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
->> +				 <&gcc GCC_SDCC1_APPS_CLK>,
->> +				 <&xo_board_clk>;
->> +			clock-names = "iface", "core", "xo";
->> +			mmc-ddr-1_8v;
->> +			mmc-hs200-1_8v;
->> +			mmc-hs400-1_8v;
->> +			mmc-hs400-enhanced-strobe;
->> +			max-frequency = <384000000>;
->> +			bus-width = <8>;
-> 
-> None of these 6 are properties of the SoC. Move them to the DTS.
-> 
-Sure, will do
+> Drop "device tree bindings"
 
+Will fix in v3
+
+> 
+> > +
+> > +maintainers:
+> > +  - Saurabh Sengar <ssengar@linux.microsoft.com>
+> > +
+> > +description:
+> > +  VMBus is a software bus that implement the protocols for communication
+> > +  between the root or host OS and guest OSs (virtual machines).
+> 
+> Why this cannot be auto-discoverable? Why do you need OF for this?
+
+This is a virtulization device, and I guess we have discussed this in greater
+length in other thread.
+
+> 
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: msft,vmbus
+> > +
+> > +  ranges :
+> > +    const: <0x00 0x00 0x0f 0xf0000000 0x10000000>
+> 
+> Did you test the bindings?
+> 
+> This property does not look correct. If you have static addresses, you
+> do not need OF. What do you want to discover here?
+
+fixed in v2
+
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - ranges
+> > +
+> > +examples:
+> > +  - |
+> > +        vmbus {
+> 
+> Use 4 spaces for example indentation.
+
+Fix in v2
+
+> 
+> > +		#address-cells = <0x02>;
+> > +		#size-cells = <0x01>;
+> 
+> That's not correct style. Drop hex notation. Drop leading zeros.
+
+Will fix in v3
+
+> 
+> But anyway you did not test the bindings. This cannot work. Try.
+> 
+> > +		compatible = "msft,vmbus";
+> 
+> compatible is a first property.
+
+fixed in v2
+
+> 
+> > +		ranges = <0x00 0x00 0x0f 0xf0000000 0x10000000>;
+> 
+> What do you translate? There is no reg, no unit address.
+
+Commented on v2 thread, if there is any further concern using ranges
+please let me know.
+
+> 
+> > +	};
+> 
 > Best regards,
 > Krzysztof
-> 
-Best Regards,
-Devi Priya
