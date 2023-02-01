@@ -2,60 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A735168649E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 11:46:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3EB56864A4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 11:46:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231984AbjBAKqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 05:46:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51668 "EHLO
+        id S231226AbjBAKqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 05:46:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231482AbjBAKqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 05:46:08 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDBEC40E1;
-        Wed,  1 Feb 2023 02:46:03 -0800 (PST)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 2D365126A;
-        Wed,  1 Feb 2023 11:46:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1675248362;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=j/Nn9vIhP684Dyg+/S9/KC+Ry8ajbwCM27GQszn7uBE=;
-        b=FnLre03ttlykqOT5twpuMP6FFFU/GYDMLPiJbQ5x24R+62f9zZOmq2Hyk6bmnNBuzHTQfT
-        IZEEqRBz7xQlkCmBWiZEVNeTNOkuDofAWU8loul7jmBGWNDayoA9/BLmZAz5YL7r93SQoT
-        yRrLi2QTW0mlVV7Hjo8V5bojgKCJTzdq5rT6GFR3yXtCk6ludx6P5waPGvrPROTxmBHoGD
-        ZLK4g8TkisopCQZVl3P5jW97q+ZbA6Xh18Us3SqNelTexKVihoIW7/y/DLKpKl+zeOvxqN
-        7agL0pEnv+68qKRhnu34IBbhTqMid7TPcUAJzwT7mN6fNx6sf0N0PX4imDdcRA==
+        with ESMTP id S231482AbjBAKqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 05:46:30 -0500
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B0A440E1;
+        Wed,  1 Feb 2023 02:46:29 -0800 (PST)
+Received: by mail-pl1-x62f.google.com with SMTP id e6so9806684plg.12;
+        Wed, 01 Feb 2023 02:46:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AUIDXs9pFeYpg0JJL8STfbB3nM1CcCUhwisXrhJfAAM=;
+        b=l8WNEQ9SvYdyZQRAjfm5ablK3/zs4fuOHehguRkSkPQFTErQbOdaF3orWDwzhXNZ7k
+         xVgDKuAnHEJZma73Oj0ME2D2yKsRfJTiBl8uU87GgpbYEAKxGWx2vwQWd3oBMOQ3GmaZ
+         l0RutbLAcEFrt/5yigdM0NTq2zVklxU+xJ2Oda/TcDsscsKcih65OzsOR0+ecn7zwZyJ
+         GMj727581SM7ERTRmgmtMRikN9pxzMRx7N1MZLhYsfg/zCE9QgCbwfJmNupF05NV/spP
+         gBqwO3v+s8iMfAkvP8ycX5rh6mNBvHwSUBMMQXF7+HQouJ6BWvf0DRyMcJIh40cEEULL
+         Dq2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AUIDXs9pFeYpg0JJL8STfbB3nM1CcCUhwisXrhJfAAM=;
+        b=Gy/GR+CJoyHamumeCb2nbypskHheZpO2kn4YjbOR97PN4/Q9gEDIHvzSbOodm8au65
+         iaj62rviPnC6Sva/G7GMLh0EOTm08Qvz4qnkoz4QJmtGuzA90i8f7Dp/aOkuYXWKznSY
+         PpnAITjVgsQUulCwJQnl39672yMSXaXyo332w2sl21Z6/viE04fUxE/s2dAuGiy7eMsb
+         zLhFdpDebOI3kHs5jKZPAKguo5MSQQo0oAeSn4T2ET/w1rEDQpwERcWNwnDj6BzGxzJz
+         kwkAPQ7Yh2JFn83LXvgePM/4cJwJr1a+5JS2BCJ6VSUEdpcQDM8/ggd6x37UHDrZSXb8
+         6p7A==
+X-Gm-Message-State: AO0yUKXfZkIw2RmbEmUv70sxd2nPe8nHDzT4CvCED9VV0+/xsJfERegU
+        gvXSiTi2ZpXCI7BB/TfKGlg9a0sfRgJeZQ==
+X-Google-Smtp-Source: AK7set/zh0nW9LMqP9zql8cFuqWvXMtng3dDc+aZmg4qrmFTMIs9ZtUBAbQuoTLao22Hf1JxYAHFVw==
+X-Received: by 2002:a17:902:db05:b0:192:aecb:232b with SMTP id m5-20020a170902db0500b00192aecb232bmr2682092plx.18.1675248388482;
+        Wed, 01 Feb 2023 02:46:28 -0800 (PST)
+Received: from [172.30.1.94] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id x17-20020a170902821100b001963c423400sm11393855pln.240.2023.02.01.02.46.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Feb 2023 02:46:28 -0800 (PST)
+Message-ID: <c8f09693-75b9-1266-6133-f31e7bfbb4cf@gmail.com>
+Date:   Wed, 1 Feb 2023 19:46:24 +0900
 MIME-Version: 1.0
-Date:   Wed, 01 Feb 2023 11:46:01 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
-Cc:     devicetree@vger.kernel.org, hayashi.kunihiko@socionext.com,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
-        mhiramat@kernel.org, rafal@milecki.pl, robh+dt@kernel.org,
-        srinivas.kandagatla@linaro.org
-Subject: Re: [PATCH 3/4] nvmem: mtk-efuse: replace driver with a generic MMIO
- one
-In-Reply-To: <8452b341-8695-05d8-9d03-47c9aeca0ec7@gmail.com>
-References: <20230201064717.18410-4-zajec5@gmail.com>
- <20230201084821.1719839-1-michael@walle.cc>
- <8452b341-8695-05d8-9d03-47c9aeca0ec7@gmail.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <017a17eb99ac2b2c858d27b65c5dd372@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Add Qualcomm CCI
+ dt-bindings
+Content-Language: en-US
+To:     Jun Nie <jun.nie@linaro.org>, myungjoo.ham@samsung.com,
+        kyungmin.park@samsung.com, cw00.choi@samsung.com
+Cc:     bryan.odonoghue@linaro.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230201080227.473547-1-jun.nie@linaro.org>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+In-Reply-To: <20230201080227.473547-1-jun.nie@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,41 +76,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Before I convert brcm,nvram to NVMEM layout I need some binding & 
-> driver
-> providing MMIO device access. How to handle that?
+Hi,
 
-I'm not arguing against having the mmio nvmem driver. But I don't
-think we should sacrifice possible write access with other drivers. And
-I presume write access won't be possible with your generic driver as it
-probably isn't just a memcpy_toio().
+In order to track the changes of dt-binding, 
+please add the info as following:
 
-It is a great fallback for some nvmem peripherals which just maps a
-memory region, but doesn't replace a proper driver for an nvmem device.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 7f86d02cb427..e13e61218987 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6047,6 +6047,7 @@ S:        Maintained
+ T:     git git://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git
+ F:     Documentation/devicetree/bindings/devfreq/
+ F:     Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
++F:     Documentation/devicetree/bindings/interconnect/qcom,cci.yam
+ F:     drivers/devfreq/
+ F:     include/linux/devfreq.h
+ F:     include/trace/events/devfreq.h
 
-What bothers me the most isn't the driver change. The driver can be
-resurrected once someone will do proper write access, but the generic
-"mediatek,efuse" compatible together with the comment above the older
-compatible string. These imply that you should use "mediatek,efuse",
-but we don't know if all mediatek efuse peripherals will be the
-same - esp. for writing which is usually more complex than the reading.
 
-nitpick btw: why not "nvmem-mmio"?
+On 23. 2. 1. 17:02, Jun Nie wrote:
+> Add devicetree binding of Qualcomm CCI on MSM8939.
+> 
+> Signed-off-by: Jun Nie <jun.nie@linaro.org>
+> ---
+>  .../bindings/interconnect/qcom,cci.yaml       | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,cci.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,cci.yaml b/Documentation/devicetree/bindings/interconnect/qcom,cci.yaml
+> new file mode 100644
+> index 000000000000..100c440ba220
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,cci.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interconnect/mediatek,cci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Cache Coherent Interconnect (CCI) frequency and voltage scaling
+> +
+> +maintainers:
+> +  - Jun Nie <jun.nie@linaro.org>
+> +
+> +description: |
+> +  Qualcomm Cache Coherent Interconnect (CCI) is a hardware engine used by
+> +  MSM8939. The driver is to scale its frequency and adjust the voltage in
+> +  hardware accordingly. The voltage provider is modeled as power domain on
+> +  MSM8939, so power domain dts node is required.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,msm8939-cci
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  operating-points-v2: true
+> +  opp-table:
+> +    type: object
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - operating-points-v2
+> +  - nvmem-cells
+> +  - power-domains
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    cci: cci {
+> +        compatible = "qcom,msm8939-cci";
+> +	clocks = <&apcs2>;
+> +	operating-points-v2 = <&cci_opp_table>;
+> +	power-domains = <&cpr>;
+> +	nvmem-cells = <&cpr_efuse_speedbin_pvs>;
+> +    };
+> +
+> +    cci_opp_table: cci-opp-table {
+> +	compatible = "operating-points-v2";
+> +
+> +	cci_opp1: opp-200000000 {
+> +	       opp-hz = /bits/ 64 <200000000>;
+> +	       opp-supported-hw = <0x3f>;
+> +	       required-opps = <&cpr_opp3>;
+> +	};
+> +
+> +	cci_opp2: opp-297600000 {
+> +	       opp-hz = /bits/ 64 <297600000>;
+> +	       opp-supported-hw = <0x3f>;
+> +	       required-opps = <&cpr_opp12>;
+> +	};
+> +
+> +	cci_opp3: opp-400000000 {
+> +	       opp-hz = /bits/ 64 <400000000>;
+> +	       opp-supported-hw = <0x1>;
+> +	       required-opps = <&cpr_opp14>;
+> +	};
+> +
+> +	cci_opp4: opp-400000000 {
+> +	       opp-hz = /bits/ 64 <400000000>;
+> +	       opp-supported-hw = <0x3e>;
+> +	       required-opps = <&cpr_opp15>;
+> +	};
+> +
+> +	cci_opp5: opp-595200000 {
+> +	       opp-hz = /bits/ 64 <595200000>;
+> +	       opp-supported-hw = <0x3f>;
+> +	       required-opps = <&cpr_opp17>;
+> +	};
+> +    };
 
-So it's either:
-  (1) compatible = "mediatek,mt8173-efuse"
-  (2) compatible = "mediatek,mt8173-efuse", "mmio-nvmem"
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
 
-(1) will be supported any anyway for older dts and you need to add
-the specific compatibles to the nvmem-mmio driver - or keep the
-driver as is.
-
-With (2) you wouldn't need to do that and the kernel can load the
-proper driver if available or fall back to the nvmem-mmio one. I'd
-even make that one "default y" so it will be available on future
-kernels and boards can already make use of the nvmem device even
-if there is no proper driver for them.
-
-I'd prefer (2). Dunno what the dt maintainers agree.
-
--michael
