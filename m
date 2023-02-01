@@ -2,187 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05114686646
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 13:52:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0810686650
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 13:59:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232047AbjBAMwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 07:52:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33276 "EHLO
+        id S231357AbjBAM7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 07:59:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231716AbjBAMwp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 07:52:45 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78A1F47096;
-        Wed,  1 Feb 2023 04:52:42 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id hx15so31578949ejc.11;
-        Wed, 01 Feb 2023 04:52:42 -0800 (PST)
+        with ESMTP id S229487AbjBAM7C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 07:59:02 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DFCEB451
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 04:59:00 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id h16so17195365wrz.12
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 04:59:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s73ifM/SGJg1qWbb1F0qGdO4iVeRR4zkqzeI/0R0Puw=;
-        b=f6DK+bZhL+XeyPDJMXKNl+cQLLt+ITGl2bvjR+uAQva8eH/MW4ccF2RBviJ3pr13lg
-         XKMdz8aSkzbPWjIoMHSXrrBI7ZAuSbnKCx/B4uZ6GxmzBMrSKowQ3vSegozchswOKeH4
-         9ESaDVsZ9FMT6edFyi4AyVjPnRgLj27xT6SAihfLOm8NzSxEDVDHM8eyUBzUcKNmwVlK
-         8Q53G5jBXRKgqxIC3S7DiPSJ1lAY5Ec9bDB8JyFZhVaCsOev3ltYkrC33TSFz197e/Qd
-         jDkcEYtqqp10QL0xoPJAqdaOclalYuNWPYZYhR9/CUM9/uuBmrBcondYqCp7QfFncYnQ
-         yx1Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TkRgoBvsamoZEywHKvCbV9XJyi8yWA+6MbvImGKamXs=;
+        b=hBTgJjuMuqMdpBJHlKBExlPRRNfyr43zRQIVCYYhHv3Pj/65MJVea6JwDlt9kIVcnS
+         rq+pDRMRQk5aFUKi4QxPpbhagu0uVnI3llVEkytALJ9BIseU1fqj34s9KHM/QA+jJu+a
+         aFffmNTQYWGBeCleAZLH3hSwTItAMWv+UgZVKcuGAYRtXFytvtECeXB0/G4xDAeroYMD
+         CAhIZ6yaDQe5+aEwequcRV8W3HOkErwd6tVkxnx1WN2M1EGu0iFsIknKTU9RMW2ex62I
+         Bh6j6dZIvGic4WKnFuE9WOULb6MIRe0GN2wcoEvLlBhjRXOn1CbhDSW40Ge62HQf741c
+         4g0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s73ifM/SGJg1qWbb1F0qGdO4iVeRR4zkqzeI/0R0Puw=;
-        b=Gy5Jg2lfxGf19WyJyeLAH+qivmYwvEgnpU1It1Qkhek/XY9KLCVCYmrmhiAiK+QhlF
-         QKGxsAO2vv5tb/d/DF3EiJBxmotVVQRAuouwEWFacih7zmlhlljzV63AxV/B7fT9T+T2
-         27MtcgDMQHyVrksj/0Qq0GWK/nrNM9zwha2UZrH/Th9lMdH29Apug31fgBvJnImn0wqt
-         TQSWZEkm3QwtRDe/3Csh1SJMW2tNtoYIGR46nmE6+B1LzZM6YGEJOdSwfLYBjORtCEbE
-         eZfcSzBgkrTkz9vkFr0V04b1jO6ZJ5MDEV7rkxFNOsBZQ8VQH9yKZknLn41yJs+n/Gsy
-         +HKg==
-X-Gm-Message-State: AO0yUKV2AoyYx3YH+1j63sqnOc0BIfc2jbYUxxrm4umWtyUJJHduLo+6
-        gYwNHY3eeRmUZit38yFKPYqQwKibsNk=
-X-Google-Smtp-Source: AK7set8awN7Y3MaxfDGrUB6gIljlgp01+QdcLh12MEzoApuKmBvKlYENrQt6Rz0EOFT2k/2fZU9i1Q==
-X-Received: by 2002:a17:906:4c86:b0:87c:81ec:4cc with SMTP id q6-20020a1709064c8600b0087c81ec04ccmr2392941eju.55.1675255960860;
-        Wed, 01 Feb 2023 04:52:40 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id m21-20020a1709062b9500b0086621d9d9b0sm9919484ejg.81.2023.02.01.04.52.38
+        bh=TkRgoBvsamoZEywHKvCbV9XJyi8yWA+6MbvImGKamXs=;
+        b=OL5vPLJJqZtpm19ktMjrIdK57VRhLXvRRyzNL+BVkNFxEQGxs/Z6fYcR6FEaAAZCSQ
+         qnNLi8h08EgTWwZS3TdThrl63x3X8pU5cMY3lcjRiBKqZRHNJ267in4CRce1w3/7gWEj
+         GvctHP/KFzVy+GCg8FirSXEKgiclBdKh3Gox9aSki3o80Jyh3G6gtINriQ6J4Ct+1hfG
+         sOzrvuIXuJNSsnQNk5zV3EdhaqCPugfrZnEDs9cb7h+akY/iiBRJB+nIQu4SAoXbUDl/
+         wm7yVveLJGK0YEZKNDh9H2LLy/KPPFqv1tGDL7ZjHHKQ6SrM2kJb4jTq3yDQqP8AQ5Vv
+         Y6GQ==
+X-Gm-Message-State: AO0yUKX/YXnhbTG0sRTWHHE7DagxVK4M9lvq+dAhWlZUmmU+sDmDNvq0
+        V0h6jxH3PvzWOuMpvfURbJKAeg==
+X-Google-Smtp-Source: AK7set+ETqVjMTMjZpLUkwhOb9Vi3pV69kQ/Xge9mO9uq+whMqZKH4SBd3uJuKrlCR1q6hKJS1jMbw==
+X-Received: by 2002:a5d:53ca:0:b0:2bf:cefa:fd8f with SMTP id a10-20020a5d53ca000000b002bfcefafd8fmr1584833wrw.44.1675256338708;
+        Wed, 01 Feb 2023 04:58:58 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id k7-20020adfb347000000b002bfe5efca78sm10431486wrd.98.2023.02.01.04.58.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 04:52:40 -0800 (PST)
-Message-ID: <c834dc47-02f7-d6e0-60c6-ce42b3255c86@gmail.com>
-Date:   Wed, 1 Feb 2023 13:52:38 +0100
+        Wed, 01 Feb 2023 04:58:57 -0800 (PST)
+Message-ID: <a6e89f75-7391-171e-3cab-77d3b9f9a0cf@linaro.org>
+Date:   Wed, 1 Feb 2023 13:58:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] ASoC: dt-bindings: irondevice,sma1303.yaml: Fix about
+ breaking the checks
+To:     Kiseok Jo <kiseok.jo@irondevice.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        linux-usb@vger.kernel.org,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>, yow-shin.liou@mediatek.com,
-        ben.lok@mediatek.com
-References: <20230105092809.14214-1-macpaul.lin@mediatek.com>
- <0ae6a31c-9a7b-ff05-08e1-eed96e672bd9@collabora.com>
- <7851a7a2-a2bc-c460-a53a-52a8f94e3969@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: mediatek: Introduce MT8195 LAPTOP and
- IOT's USB configurations
-In-Reply-To: <7851a7a2-a2bc-c460-a53a-52a8f94e3969@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+References: <20230131050946.14385-1-kiseok.jo@irondevice.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230131050946.14385-1-kiseok.jo@irondevice.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+On 31/01/2023 06:09, Kiseok Jo wrote:
+> Fix the bindings checks like syntax error.
+> 
+> Signed-off-by: Kiseok Jo <kiseok.jo@irondevice.com>
+> Reported-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/sound/irondevice,sma1303.yaml          | 13 ++++++-------
+>  1 file changed, 6 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml b/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
+> index eb87374cc812..162c52606635 100644
+> --- a/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
+> +++ b/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
 
-On 11/01/2023 06:37, Macpaul Lin wrote:
-> 
-> 
-> On 1/9/23 23:13, AngeloGioacchino Del Regno wrote:
->> Il 05/01/23 10:28, Macpaul Lin ha scritto:
->>> Introduce the split MT8195 laptop and iot USB configurations.
->>> The hardware specifications for LAPTOP devices is different from IOT
->>> devices. The major differences include some hardware constrains for
->>> dual-role switch for USB controllers in different configurations,
->>> especially for power management and other control flows as well.
->>>
->>> Here are some hardware specifiction differences listed:
->>>    1. LAPTOP (Cherry Tomato boards) don't support USB gadget (device mode).
->>>    2. IOT devices must support multiple gadget devices and host mode.
->>>    3. Dual-role switch is not fully supported. Only USB PORT0 support
->>>       dual-role switch.
->>>    4. Power management is designed in primary and secondary dominator.
->>>       For a dual-role port, the device controller is the primary controller
->>>       for power management; while the host controller is the secondary.
->>>       LAPTOP devices should remove device nodes for avoiding abnormal
->>>       behavior.
->>>
->>> This modifcation is to add USB configurations "mt8195-laptop-usb.dtsi"
->>> for LAPTOP devices, and add "mt8195-iot-usb.dtsi" for IOT devices.
->>>
->>> To remove common USB configurations for mt8195.dtsi and switch includes
->>> dtsi these new files for the boards will come in next patch.
->>>
->>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
->>
->> I'm mostly sure that there's no reason to split the two configurations.
->>
->> I agree in that Tomato doesn't support gadget mode on the Type-A port and I
->> honestly don't currently know (and I'll test that later!) if it would be possible
->> to act as gadget on any of the two Type-C ports.
->> Of course I agree on the fact that a laptop acting as a gadget may not be useful,
->> but that's not something that I want to judge, as someone may find a usecase.
->>
->> In any case, even if Tomato does *not* support gadget mode on *any* port at all,
->> I wonder why we wouldn't be able to probe MTU3 (and correctly describe the SoC)
->> on Chromebooks but only on MT8195-based IoT boards...
->> ...and in case there's any real issue, we can always force host mode (with a
->> generic  devicetree property!) on the MTU3 on Tomato.
-> 
-> We are sorry it cannot be achieved by even setting "force host mode" to usb 
-> device node. At least, it cannot be done on MT8195.
-> 
-> The basic reason is the power requirements for USB host on a LAPTOP are 
-> different from those on an IoT device.
-> 
-> The main cause is low power management. The hardware of each device port is 
-> different on MT8195. Even the bit fields definition in registers were different.
-> 
-> Some details such as sequence need to be coordinated with the SPM firmware. When 
-> a device hardware is involved in runtime PM, function like remote wakeup and 
-> other suspend/resume behavior will be abnormal for a LAPTOP device. If we split 
-> the dtsi for different devices, people can choose different configuration in SPM 
-> firmware in coreboot or in TF-A to meet the requirement. Hence we'd better not 
-> to get more messy code in Linux driver.
-> 
+I would actually prefer to revert... patch was never reviewed (never
+CC'ed to all maintainers as requested by get_maintainer.pl) and will
+need more fixes after that fix. Eh, more patches to come.
 
-I'm not sure I understand everything here. If the XHCI device is a child of the 
-mtu3 node then we have problems with some SPM firmware that is not coordinated 
-with the runtime PM functions of the kernel?
+Best regards,
+Krzysztof
 
-Fixing that in the device tree sounds wrong here. I think the real fix would be, 
-to fix the SPM firmware, so that it can deal with that.
-
-Or is there more to it? If so what? In that case can we try to ignore the 
-runtime PM in the MTU3 kernel driver?
-
-I'm not an USB expert but to me it looks very strange that we can have the XHCI 
-devices nodes as 'standalone' or as children of mtu3. We should try to describe 
-the HW as it is in DT.
-
-Regards,
-Matthias
-
->> Finally, if we're able to add MTU3 to Tomato boards, this means that we won't be
->> seeing these two DTSI files and that USB nodes are still going to all lie in the
->> main `mt8195.dtsi` file, without all this duplication that I'm seeing here.
->>
->> What do you think?
->>
->> Regards,
->> Angelo
->>
-> 
-> Thanks for the suggestion, we hope the next platform in the future could avoid 
-> this issue and reduce some duplicate dts.
-> 
-> Macpaul Lin
