@@ -2,113 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 356E0686674
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 14:13:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A6AF6866A3
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 14:17:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232078AbjBANNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 08:13:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42686 "EHLO
+        id S230526AbjBANRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 08:17:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231660AbjBANNy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 08:13:54 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F93838677
-        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 05:13:51 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id n13so5631336wmr.4
-        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 05:13:51 -0800 (PST)
+        with ESMTP id S230043AbjBANRq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 08:17:46 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A80A52ED66;
+        Wed,  1 Feb 2023 05:17:45 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id ml19so27759020ejb.0;
+        Wed, 01 Feb 2023 05:17:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NBVSqHRFtG/oRQBhwtv4eQUlLsJwKfgYGxR//a3EtVY=;
-        b=CawsGJou9VXLSTLiSbX94s6GV0QPhhZLeRf5TV1XVsktftepDsXJYJblOBAdRuQB9o
-         rmE+KByzfmAVrZctCx3YP7a2gNbfNWKpVs5EfjJoYQxQOJV/kkBP465DkNhH0cS9+73E
-         /LOxy8+De01bfA5Vp+5bTC9yeqs24OTuY1iFUivKuSkQAc1gegbgJdwpvw3WeOCg65k0
-         DHUz+knydv1eaoUm0WZFLJYbpCwqQsq38571FXTWd86VI/y9fdgZBwCjX0kmTLzRLQeP
-         ENbI4oAdMAh59CWpPwkevxfGUzsvMXRr5MSmwYRIh8EaUr1Lu55D4+SVdtLBa9K6ifTw
-         XkTQ==
+        bh=Q18/Ed4T8GStZk15GEcB47v5vCjiaTS4iyhypSPJu1c=;
+        b=JmXFrwpatuTq3LWhLPd7SSN+VgTLrGv+Pu0GTsto+GV3gVuqhNQzDP0DAYx8jkcH7H
+         9uYGH4EqNmL7p8U28TW3R6zVUxJy38aQjFuUn3fo35iHwDM160C47Lz/2jdw8eN/cERU
+         USFpn+VWil/vlRk99jIox78vAyUngLoi9nzE3q7N1tdxjsa5Xk7jl6ehiqsfFzj+cumV
+         mit4XvpMf/fXrIAv5/bCFI3Av7S25h9AbQ+64EEG3a8zJlpt17StKkBFvBV3ee+UyPvd
+         /pA8a2JjvkSZKdXerzJ9n2CGPmK1gF0wovbttM4oKYkA9LD94QarxUF8OWnpGCY/nK5a
+         +ddw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NBVSqHRFtG/oRQBhwtv4eQUlLsJwKfgYGxR//a3EtVY=;
-        b=gffGg8fgKbpbCFk2T94CLU7xd5Wq5sMj0aJNEMqQhWQ/0PXoIVgGxTgmFr7nva9J7h
-         QII1rAlvbBqKiIned/yzqWt9A3RBeG8u/F6QmS8hnL/o+jQvoh8LI+8v5/rdDw/a+QlR
-         W9Ms4hi75DLHbwTuNKEj9M/81mqCto2HtwVIjVAEvft5BpSwYJOc4GGfbdwxTnFNF2Ge
-         jqRz8v2kZ0k/2wuZgi1Ob42VtLkWvGpnLYMNeSkgYwhouOgVNV9R6MMeW91XoVJSnL+f
-         9NdSFF5//U6E5FIW4U51vwmr0i+bqv7RqL7y/yG2EpjA0rhpMaMrUFFSKhsLZ0QdPFWZ
-         nNHw==
-X-Gm-Message-State: AO0yUKXaip1N/2GoDKV+mgywTfBsQzEn4mGYSuPqToj7LDaIuao5Q9+p
-        cYRB8BoQScuCHJfK9IvtHSUXCg==
-X-Google-Smtp-Source: AK7set+yf3Nsm5C9ZeM11L6U4K6PWqyZeCiqzJ6QeAuVfoj2t+QoDJCDauh2FgNVUvOi6P2O7Ttkww==
-X-Received: by 2002:a05:600c:1c9b:b0:3dc:5240:53b6 with SMTP id k27-20020a05600c1c9b00b003dc524053b6mr2211877wms.6.1675257229667;
-        Wed, 01 Feb 2023 05:13:49 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o9-20020a05600c4fc900b003dc1300eab0sm1965656wmq.33.2023.02.01.05.13.47
+        bh=Q18/Ed4T8GStZk15GEcB47v5vCjiaTS4iyhypSPJu1c=;
+        b=QQ71RH2eYdOgI15QjTfXpB7cOqNH6ew9wP5zgSkdk7gEHfgZ8YPdOonvCE5j5kuGo9
+         7WkxCWZLtiQ0Ng4zMMXkL0p58rA0iOWQNOF/Ro4diIeFusVzfd1QrrqH0zvGyWnVuH2J
+         Dtg/OC4gy2Ta7hRENeYwJSG62rRVr4Wmh0l4qU8VcVnOJ59KmSY3JQYDzSPpNIR4DVSX
+         /3FX3x3lvb9lkaJ2Bva85H9ynTEpAruHAZg3S1WwAolGLegZxmyDVD1SuRRyj8rgCn4V
+         8nWzvMtYrrINPVapAnkuazVJyOBWlKg1kC3Q/2S/hEsdH+w4joWHuTGIbF6Om7DCrbAt
+         860Q==
+X-Gm-Message-State: AO0yUKW8FFSCYmy6jDAyW9WwqaWq1DCUsw7/IwfZsk+FIt7Ej9nVp1mZ
+        uPdOen9zyZaCe6Ausaf999I=
+X-Google-Smtp-Source: AK7set9lneu1cp3XEMIAG3dTmb/E4Cbk7JJqwigXvxQL2oOBvz03WVsu3DzW8iGx9S4B1h+zd2Mcrw==
+X-Received: by 2002:a17:906:c2d3:b0:7c1:1e5a:ed10 with SMTP id ch19-20020a170906c2d300b007c11e5aed10mr2260655ejb.8.1675257464189;
+        Wed, 01 Feb 2023 05:17:44 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id z16-20020a170906435000b007b935641971sm9946719ejm.5.2023.02.01.05.17.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 05:13:49 -0800 (PST)
-Message-ID: <1bcd61d6-810f-1239-1b6e-367e0fe87370@linaro.org>
-Date:   Wed, 1 Feb 2023 14:13:46 +0100
+        Wed, 01 Feb 2023 05:17:43 -0800 (PST)
+Message-ID: <8b9e509c-2ff8-7948-17a8-54c2d98713cb@gmail.com>
+Date:   Wed, 1 Feb 2023 14:17:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] ASoC: dt-bindings: Drop broken irondevice,sma1303 binding
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v5] arm64: dts: mt8173-elm: Switch to SMC watchdog
 Content-Language: en-US
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Pin-yen Lin <treapking@chromium.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Evan Benn <evanbenn@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Eizan Miyamoto <eizan@chromium.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Kiseok Jo <kiseok.jo@irondevice.com>
-References: <20230201131059.65527-1-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230201131059.65527-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20220729053254.220585-1-treapking@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220729053254.220585-1-treapking@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/02/2023 14:10, Krzysztof Kozlowski wrote:
-> This reverts entire SMA1303 submission:
+
+
+On 29/07/2022 07:32, Pin-yen Lin wrote:
+> Switch to SMC watchdog because we need direct control of HW watchdog
+> registers from kernel. The corresponding firmware was uploaded in
+> https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405.
 > 
-> 1. commit 1c24d12b68fa ("ASoC: dt-bindings: irondevice,sma1303.yaml: Fix about breaking the checks")
-> 2. commit dcf6d2ef0e82 ("ASoC: Modified the schema binding and added the vendor prefixes.")
-> 3. commit 5b28c049ff53 ("ASoC: SMA1303: Fix spelling mistake "Invald" -> "Invalid"")
-> 4. commit 68cd394efd0f ("ASoC: The Iron Device SMA1303 is a boosted Class-D audio amplifier.")
-> 
-> Because the binding:
-> 1. Was never tested,
-> 2. Was never sent to Devicetree maintainers,
-> 3. Is entirely broken and wrong, so it would have to be almost rewritten
->    from scratch,
-> 4. It does not match the driver, IOW, the binding is fake.
-> 
-> We cannot accept drivers with broken bindings and make it an ABI.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+
+Applied, sorry for the delay!
+
+Matthias
+
 > ---
-
-I understand that in general we tend to fix, not just to revert. But the
-poor quality of this binding and the next patch, which was suppose to
-fix it, plus complete lack of testing, means I do not believe the author
-will send correct binding.
-
-More over, fixing binding might require dropping incorrect properties,
-thus changing the driver. I am not willing to do that, I doubt that
-anyone has the time for it.
-
-It's the job of submitter to work on it.
-
-Best regards,
-Krzysztof
-
+> 
+> Changes in v5:
+> - Remove redundant new line.
+> 
+> Changes in v4:
+> - Rename the watchdog node (smc_watchdog -> watchdog)
+> - Correct the patch summary (mt8173-oak -> mt8173-elm)
+> 
+> Changes in v3:
+> - Remove /delete-node/ and create a new node for SMC watchdog.
+> 
+> Changes in v2:
+> - Move the modifications to mt8173-elm.dtsi and add some comments.
+> 
+>   arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> index e21feb85d822..abe3140cfcc6 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> @@ -161,6 +161,18 @@ hdmi_connector_in: endpoint {
+>   			};
+>   		};
+>   	};
+> +
+> +	watchdog {
+> +		compatible = "arm,smc-wdt";
+> +	};
+> +};
+> +
+> +/*
+> + * Disable the original MMIO watch dog and switch to the SMC watchdog, which
+> + * operates on the same MMIO.
+> + */
+> +&watchdog {
+> +	status = "disabled";
+>   };
+>   
+>   &mfg_async {
