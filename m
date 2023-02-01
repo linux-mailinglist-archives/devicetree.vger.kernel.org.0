@@ -2,168 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADD02686B0C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 17:02:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5480E686B24
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 17:07:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232487AbjBAQCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 11:02:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41162 "EHLO
+        id S232726AbjBAQHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 11:07:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230011AbjBAQCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 11:02:11 -0500
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2087.outbound.protection.outlook.com [40.107.237.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7F0D172A;
-        Wed,  1 Feb 2023 08:02:10 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SpBS0bgYL03pja0Ib51vWplUsWxliKq0kGF7bIa7eB9D7waS8TO3dN+l4xyp/C9uS/qESo32QFU3jO5ZiYBhfm2NGNE5Juc7yqlyBtS1/1f1FBoDjoWaulBHkZ4riaEPKZ1zxIZmPdl69j8seVrSU68kqPXuEXz6t72g8njh53kV13wYVQJVEXnH0sMzX9zGTPrzypRUvDVeOI3j5EvmXYV+z4Ko4tvMB+ywgmcTIi/c4RRjepeB0UQyRuQy7TJM+HCl7ZXTye9J+7qAQRqtXiFsJzOFaWocRM2O65NdTHzy65bH8rINdJPdhnIFgwXm/OyPgY2sG0VpcWxIld47HQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cQ2u/HTwqKNmm/SMZYwvVOYG+qczj/imK79IxdBYypI=;
- b=Vqmdh+hDP72rFtei4iVOFiFijVUHgSUYv1M9Kc6PdvZnwbqglttZZnbAODDZthfwRs8bRfV8x0TRf0l9hwrNH+L3NPzhwFJjxCRrvT0NOrkDYCLFSbQi4G25Rztdz3niGCTHe4nYEtivIkCvFYK0OFWBRE7Ru8/F/GLmPfptgyTNoadepGpZK5CARc+atLzJz+1u87vaF5506QPGexPk4vbHZn/r0avqfAOV+VH+tn/rm94/2e503GOAGEzf8/AdksrXcXGPUWpq7Iq6UgwpfSpcVNtyd8veBxjFh7hKohGfSljck7HC79ga7UUTmqG9qIAnRRjSpi3lPepAyEsvaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cQ2u/HTwqKNmm/SMZYwvVOYG+qczj/imK79IxdBYypI=;
- b=oxKf48MyHcD9KcIOXrtNT2MaUUSaZZ+JhZT9V8kteVOpvkAkhXxPw88k2TWEO2lfrf6XhLSf0gxTqBIkPfTP6PTRE1SH1VFgsnfSkzFnaseMjXRhsqPYV4hKoWTGJ49n2CTpTKVt4JXHlfuJHNf8w1nRNwdtzinvlSsYRHIOAwF1nIRBsC+nnZl1GllhQcyHHpy+1dvMOSxiP2ETj3zkC0kx01YSdvf2HWYpGAQtMLHlIcXCELCNa0ptlueVa8IN1NhemQBbQyCFamtYPKHEdLv0bF893Dwg69DPsJ1RwD5aLU1YNf9XkxbyDLrBVykRy6DTxOlJFTxjPcdFdtfYCg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- BY5PR12MB4870.namprd12.prod.outlook.com (2603:10b6:a03:1de::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6064.23; Wed, 1 Feb 2023 16:02:07 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::5464:997b:389:4b07]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::5464:997b:389:4b07%8]) with mapi id 15.20.6043.038; Wed, 1 Feb 2023
- 16:02:07 +0000
-Message-ID: <936488c6-f86d-3552-1a35-1039eca55c00@nvidia.com>
-Date:   Wed, 1 Feb 2023 16:01:59 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V10 4/6] i2c: nvidia-gpu: Remove ccgx,firmware-build
- property
-Content-Language: en-US
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S232973AbjBAQHq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 11:07:46 -0500
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE09774C3C;
+        Wed,  1 Feb 2023 08:07:42 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1675267660; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=lfYmpWgL0UaaxXjNCpQCXxzyOZubao8dXEmV8np09uCsLGtIwp9RZ7ybyg4gRNvFCn
+    SyzaWLcHmxt3RqehjpeXbIxAtZ9rhmGrLd4NAGGAFIAF/fKcXStaBS84fc/lgw8yJmR+
+    XKLXzKXldNIli++qqP+L0drOcor6N8Y4nVfVdtDA+RyxIi55E1vbXZ5Of9ZsjzlRnO6Q
+    g65wbt1XjLUCDQcJ4upSwGdFsrb+7mdTCWKHhBa8x/WWF3MY1Ew/cGCbVpI/TcyJtQH7
+    xGjIx+zlBFj03aU498UyznLj+vT84A6Y6OWti6qeNmLo95zGCbUURqvaUCZ2geXMvno5
+    YXxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1675267660;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=5EWlNg+XhFGtz1hJ7SAiKe/vHMaM/9hIzu2dnaeJK2k=;
+    b=ZSRkH013oKcZjawQAgn5JOQFjvR4w8LyMmCXxVkEv3BrKD3nq6Wr3AC8I0lROWlPxh
+    WKlCVQ4kgbBgncjjIWocFGbXa5Ys2Z+PW7/80kjqv6RQJsBiwUuemM24YQutGtzFIvQ4
+    59oN/Sj7xQrWvgWu3nwcibujHm9GI2rfpUvQVwwcH6WpDZubsK1gf86fouo6cWxR0Pwd
+    UjrVF2tBZ8+YPPIC5AqgmxC01wXvr9KLOvTV242pwOQXrkcqO58EPpkM1TVnWE1e/GSj
+    gGMZppRIAIdsPbaj0yvZZHHv8q7vdOcBecaPCCJlCEOBEMOb3eKRMArOg3f4cwMQ8pT1
+    IQeQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1675267660;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=5EWlNg+XhFGtz1hJ7SAiKe/vHMaM/9hIzu2dnaeJK2k=;
+    b=SxfynlKLzBt0nR54NB7KB87PCmv42ibHGWHJTbLpIo5nINxPKAVbOoT33i7/MW/M11
+    74pID6Yn4KKsn+c7yXuc95IuGjKI332mgJhW9rnX8l0wuPBxK/DsM8V0EcjZ/lAqPCKk
+    qyZIdoz6gIbwjYfpH3SsWKoIwfQQ3A1fjMQaWxS/P+4N6hRTml6iC/GaBOThqY0Hhszb
+    r1zEdgxeYhgGcl60A/nFGMC8DR4U72WvewP82I54CT56shKopgcpwje06fGb1rSp9o8l
+    JCr4y9FRyubE+2NApkpRVEXnfnxgBjLNW4Em3FDO6vTesT8H6PGGjbyNu9nf4kaCF9gy
+    wXpg==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267EpF+OQRc4obTF5+XwHE="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.2.2 DYNA|AUTH)
+    with ESMTPSA id eee9e2z11G7eUqH
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Wed, 1 Feb 2023 17:07:40 +0100 (CET)
+Date:   Wed, 1 Feb 2023 17:07:33 +0100
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
-References: <20230131175748.256423-1-jonathanh@nvidia.com>
- <20230131175748.256423-5-jonathanh@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <20230131175748.256423-5-jonathanh@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO2P265CA0082.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:8::22) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+        Richard Acayan <mailingradian@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        krishna Lanka <quic_vamslank@quicinc.com>,
+        Iskren Chernev <me@iskren.info>,
+        Martin Botka <martin.botka@somainline.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 7/7] dt-bindings: pinctrl: qcom: correct gpio-ranges in
+ examples
+Message-ID: <Y9qORcPIuq4IZcL1@gerhold.net>
+References: <20230201153019.269718-1-krzysztof.kozlowski@linaro.org>
+ <20230201153019.269718-7-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|BY5PR12MB4870:EE_
-X-MS-Office365-Filtering-Correlation-Id: beab92a9-be30-450a-9f36-08db046dab2d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KwiruOJ+4nBT2EpTdBS/MuZzQyeelIYN6pn4x9nDuipbVlBte6R9s4wjiViGiz2IulrM5sFlatU8BfHHRJ5C30ddq0KkLZQsxrod0C5rqbWseyMU7r46go9zWTmctSxSUYxHMpgtJONU5Va7UCXN019i/s4fQmHGlbxmB4JuWdd9LPq9JwrpDuPeYkCjLx15wIhBiu3j20Vl/kSRH1LSPcSH1Q5J0zNpa3SKuKpzq4hZtV09yCWy7HTUpccdJvvoSuXIl96ZwjC7+EszI5DQwOFUCipSHwyg2wN1mSXtXlsEogPEs8mCCGCmCpbNAf/FNOB+E3miAIUyl2OmoHhxrDGilE3xzI/uxWGuhrnk6GKhQBcLl0S6RFbCZb/dIPRymqsxKPPULh0uFXt5RK30IvQIWN17GERsd4EJvnKJztRJDRzBnM9/1aplKZKQVDd+IoQ1wcV7YmshRuCASYBodfHu75xdAOz4R18tSKtmZReFHMR4L4MqFfB/nUHntOFtMmrKPzR6VFB7CEseWr2w7fbflDvJK83NxixvMykvn+MCgpuqrJXX4HUzI5i89rnO1AjtMmWasTjRbMwM6TuIDKVqBgmLBuMbdL0BcKc1XhnMZ8Fppxva/cAbaSdXfUGS3o/q3P2w1lydpRqqrRNn9lCHfsnOijT8KxUE2c0klkmWEu/8P002bqVwuVCV7eUlScjT/CPEboSxFmPcXcrKh7v664UOPbdk1xwNOUVieXs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(136003)(396003)(366004)(346002)(39860400002)(451199018)(6512007)(53546011)(186003)(107886003)(478600001)(6506007)(6486002)(2906002)(83380400001)(31696002)(86362001)(36756003)(316002)(5660300002)(8676002)(110136005)(41300700001)(8936002)(31686004)(2616005)(6666004)(4326008)(66946007)(38100700002)(66556008)(66476007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WGp0S1c5YXN3QysvQWdHQWtWRGMxVGl5QjR1bTQwSHBPdmI0ZDZwODNQcENF?=
- =?utf-8?B?WXc1dThzVjl3ajNuSVN4YlQyc2Y1cHVkQWxNSnNNb2FRaTNLWVdNcmxDSHJR?=
- =?utf-8?B?VWdZdnIxaVpITTR4RytTaCtHWmswekhnS1NBamVZdW8zUy9JUFBHdzRRaENv?=
- =?utf-8?B?S09FYlFtUnd4SUZTdmZSU3l5bVkxdis0Slg0NjljTXlvMTVaOGtwTlgzaC91?=
- =?utf-8?B?VVBpRjRZM2FYeDJpZmZLNUZVaXh1VmhKaE1kd0ViTWJPT21tQkd4MVFJZ0Fj?=
- =?utf-8?B?Q1Q4WXBFYWY3cFJaNjhvdFRBcXAxYVhvVjBnY0VaYzdxZWpBQmJ6SDVzbXU2?=
- =?utf-8?B?ZHpuWG4xdTErVjRZblFNVXhBNlNrQTVCdnVRalZxU2d3MlhJZkI5ZGFIU2NM?=
- =?utf-8?B?S2QvZGpINlYwdkM5aEl0S0ZaRDdZNWJFWFBVSUdBNm83WnFNbmNJSUYrT1BB?=
- =?utf-8?B?WkdkV00zUllhSVFEdzFtYndPRi9tSGdHQVdoOXpxaUR2aVlNbUtTWlg1VlBk?=
- =?utf-8?B?a2syaGJLeWFwQVVnU0kyTS9ERUY0TDFGZ0MxNUJ1Z3BtRkQ3Tm5xYnF2OWdH?=
- =?utf-8?B?QmJ2ZzBFbm9BaHpMeTV6K0lUVjVUQUZhUkxkUWpESi8wcHc4QnI0RTdxd3Zk?=
- =?utf-8?B?aXdSazJjU1pBMUdUTElhSlh1L3ZVTmM2dERBSFU4c1BmTFRWbGlPR3c5d0c4?=
- =?utf-8?B?UTJzQU5JWjhiVW1XTE5jYmZ3Z04xeWVDSkY1NTIwMEx4dXF5d2V0Q0VNMHpp?=
- =?utf-8?B?WHZnYlZNd3BPQ1IrRUdTUW8ySWFnalBnVTdOaFFBQ0JzVkNQekNIM2xrNjlH?=
- =?utf-8?B?ajhHQkNiQks1ZmFiY0tDODRIRXE0d0p3VTM0OXFtcFR0ZENkRjBFb2YybFFS?=
- =?utf-8?B?WWNCeVpMMW9HaDJFTFFWNThScCsvbm9LWk9ic29Sd256eVBEOVkxNU4rVysy?=
- =?utf-8?B?REplRlRqNExKMDg1UnhLdDZRQnZWbGRkQmMxSUxlU2xmbGdWQ1RsSDVyaERS?=
- =?utf-8?B?ei9waFBtN1laMDV3N0w2eTgyNTNEVkRINm1YMitBeGd4RlJkajZLTVNoRUE5?=
- =?utf-8?B?a0ZTd0hUTzdZb1NJTWlMTTVZQlpVZG44VHN0cTVSbVFmUlhIQUUwTTYwTDZL?=
- =?utf-8?B?UU43Q2lVYm4zNTdYT21HWVJLNmkyRmZPaWprVDRLU3ZlS0RCMlVxUGdUSUt5?=
- =?utf-8?B?QjNjL3hsUGo0ekRsWHJ0a0dnRkxPbndUTWNYaitSQUFKL1ZMemt1c1BrejVU?=
- =?utf-8?B?Q1VxYU5RVjdibnhQTFJKSk5XWk1heW1xaENIdnJaT3BZOEtWWnEwTXhtMWN4?=
- =?utf-8?B?ZkF2R21RK3VSTEthNWplNThFOFFmalFJTzBjV0FxU3RXNkhPQXBxNnBaMzc1?=
- =?utf-8?B?SHZHbW1JTmhSUWlFc3p0QjhEVjdKbWptTUEzekVleEtGNjR4bDYxdVJ0Q2hV?=
- =?utf-8?B?L1d5Yk9VZ0NoclVDUnBleG9DTzhsSm1mb0ZwOWZyUSs1RE9KTmpmVWUwZWpV?=
- =?utf-8?B?Yy9KRUNOWEJhWm05c0JHem0wT1psN0VKLytWY3VmSkt3bENXNzZXbWtEWlFE?=
- =?utf-8?B?UjNkZW9SVEJIZERLZTJMSGNYc2ZGRHVEVC95Z2hMMXhMcVg1MUZkaFp5ZGRo?=
- =?utf-8?B?Zm00Qm45UmZNSGZKQ3ViaGdwZHBzN2YzM1hCR0FrSHhzZDd4MFg5U0xoRS9w?=
- =?utf-8?B?bVBJMklmYnlIZTRRWWVUN2MrclNFa2xlaGRzRm5jVW1tZk41SVBlZHBWQ3hX?=
- =?utf-8?B?ZFpqUmRmazJlS2hFWmdDTVV2Nk9EZTJPaEkzM2Z1citZYlJYUSt2STIzUFN2?=
- =?utf-8?B?VkJTR3FRR3REQ3o1eWVld0pJOTlpNFc0clVMSnFNZUc2WmpxMjRpN0dsdDRM?=
- =?utf-8?B?NXYvUEU0d21sLzNIK01xcHpJZS9OdjliV0FBcVpuWDdTWWlvclZ2WDRXZ0JX?=
- =?utf-8?B?eEt3QS9GUkwxeUk4cE5mdWR3b0FRSGdkejk5bEQ1QTJVM0crVmtSRFFtRFBT?=
- =?utf-8?B?NUtTa1oyZ3JaQ0k5UFZqUnhlQ2xpd05SNlVCeDFmLzI4YXBUZ0Y5c1B2RlFq?=
- =?utf-8?B?M1NxaVhxdkNsb1RrYkJBK0ZlUzA2WDA1VXNTSk5tbm92ck9udk50QUh2RWJJ?=
- =?utf-8?B?ZVpzVWpTVVdTTWRXWnZDOEQydS9rczk0Z2c5WnY4MENNNm9FcEdVZ0JkNTJX?=
- =?utf-8?B?K3JDQklsc292SDZJOWliVU1UcDJRb0JmWEpJRHhHQVY4NjJYZTlSeVVZN1FH?=
- =?utf-8?B?M25aZ2FYa2lmcVZibUR4blQ5MlNBPT0=?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: beab92a9-be30-450a-9f36-08db046dab2d
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Feb 2023 16:02:07.7115
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: N6Zs/tspciYNRuT2WPqz3Ajf8VBinQ1wQI5ikvzIlJWuGky+zfZSQcA/K70j6mnLBE3yULbTvIqEl2JUB21daA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4870
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230201153019.269718-7-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding Wolfram.
+On Wed, Feb 01, 2023 at 04:30:19PM +0100, Krzysztof Kozlowski wrote:
+> Correct the number of GPIOs in gpio-ranges to match reality.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On 31/01/2023 17:57, Jon Hunter wrote:
-> From: Wayne Chang <waynec@nvidia.com>
-> 
-> Now the Cypress CCG driver has been updated to support the
-> 'firmware-name' property to align with device-tree, remove the
-> 'ccgx,firmware-build' property as this is no longer needed.
-> 
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+AFAICT the current gpio-ranges do match the number of GPIOs (ngpios) in
+the pinctrl drivers for all/most of the platforms you update below. It
+looks like the special UFS_RESET pins are also exported as GPIOs in
+addition to the real GPIOs. I'm not sure if this is intended or a
+mistake.
+
+In any case, the gpio-ranges should match the "ngpios" in the driver,
+otherwise the driver exposes more GPIOs than advertised by the DT.
+
+So I think the same change should be made in the driver as well if the
+UFS pins are not supposed to be exposed as GPIOs.
+
+Thanks,
+Stephan
+
 > ---
-> V6 -> V10: no changes
-> V5: Added this patch from V3
+>  .../devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.yaml        | 2 +-
+>  .../devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml         | 2 +-
+>  Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml | 2 +-
+>  .../devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.yaml        | 2 +-
+>  Documentation/devicetree/bindings/pinctrl/qcom,sdx65-tlmm.yaml  | 2 +-
+>  Documentation/devicetree/bindings/pinctrl/qcom,sm6115-tlmm.yaml | 2 +-
+>  Documentation/devicetree/bindings/pinctrl/qcom,sm6125-tlmm.yaml | 2 +-
+>  Documentation/devicetree/bindings/pinctrl/qcom,sm6350-tlmm.yaml | 2 +-
+>  .../devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.yaml        | 2 +-
+>  Documentation/devicetree/bindings/pinctrl/qcom,sm8450-tlmm.yaml | 2 +-
+>  Documentation/devicetree/bindings/pinctrl/qcom,sm8550-tlmm.yaml | 2 +-
+>  11 files changed, 11 insertions(+), 11 deletions(-)
 > 
->   drivers/i2c/busses/i2c-nvidia-gpu.c | 3 +--
->   1 file changed, 1 insertion(+), 2 deletions(-)
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.yaml
+> index f33792a1af6c..77a5aaefddbe 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.yaml
+> @@ -138,7 +138,7 @@ examples:
+>          #gpio-cells = <2>;
+>          interrupt-controller;
+>          #interrupt-cells = <2>;
+> -        gpio-ranges = <&tlmm 0 0 120>;
+> +        gpio-ranges = <&tlmm 0 0 119>;
+>          wakeup-parent = <&pdc>;
+>  
+>          dp_hot_plug_det: dp-hot-plug-det-state {
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml
+> index 97b27d6835e9..854bbb5b6f5d 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml
+> @@ -128,7 +128,7 @@ examples:
+>          #gpio-cells = <2>;
+>          interrupt-controller;
+>          #interrupt-cells = <2>;
+> -        gpio-ranges = <&tlmm 0 0 230>;
+> +        gpio-ranges = <&tlmm 0 0 228>;
+>  
+>          gpio-wo-subnode-state {
+>              pins = "gpio1";
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml
+> index f586b3aa138e..03c7b5c97599 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml
+> @@ -119,7 +119,7 @@ examples:
+>          #gpio-cells = <2>;
+>          interrupt-controller;
+>          #interrupt-cells = <2>;
+> -        gpio-ranges = <&tlmm 0 0 151>;
+> +        gpio-ranges = <&tlmm 0 0 150>;
+>  
+>          qup-i2c9-state {
+>              pins = "gpio6", "gpio7";
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.yaml
+> index 23d7c030fec0..a08e4557d8b7 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.yaml
+> @@ -134,7 +134,7 @@ examples:
+>          #gpio-cells = <2>;
+>          interrupt-controller;
+>          #interrupt-cells = <2>;
+> -        gpio-ranges = <&tlmm 0 0 151>;
+> +        gpio-ranges = <&tlmm 0 0 150>;
+>          wakeup-parent = <&pdc_intc>;
+>  
+>          ap-suspend-l-hog {
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdx65-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdx65-tlmm.yaml
+> index 89c5562583d1..96375f58fa22 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sdx65-tlmm.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdx65-tlmm.yaml
+> @@ -140,7 +140,7 @@ examples:
+>          reg = <0x03000000 0xdc2000>;
+>          gpio-controller;
+>          #gpio-cells = <2>;
+> -        gpio-ranges = <&tlmm 0 0 109>;
+> +        gpio-ranges = <&tlmm 0 0 108>;
+>          interrupt-controller;
+>          #interrupt-cells = <2>;
+>          interrupts = <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-tlmm.yaml
+> index 29325483cd2b..d35db4f4581b 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-tlmm.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-tlmm.yaml
+> @@ -121,7 +121,7 @@ examples:
+>          #gpio-cells = <2>;
+>          interrupt-controller;
+>          #interrupt-cells = <2>;
+> -        gpio-ranges = <&tlmm 0 0 114>;
+> +        gpio-ranges = <&tlmm 0 0 113>;
+>  
+>          sdc2_on_state: sdc2-on-state {
+>              clk-pins {
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-tlmm.yaml
+> index c9bc4893e8e8..83848950cc3b 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-tlmm.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-tlmm.yaml
+> @@ -125,7 +125,7 @@ examples:
+>          reg-names = "west", "south", "east";
+>          interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+>          gpio-controller;
+> -        gpio-ranges = <&tlmm 0 0 134>;
+> +        gpio-ranges = <&tlmm 0 0 133>;
+>          #gpio-cells = <2>;
+>          interrupt-controller;
+>          #interrupt-cells = <2>;
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-tlmm.yaml
+> index d95935fcc8b5..3fe1f1668fbc 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-tlmm.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-tlmm.yaml
+> @@ -142,7 +142,7 @@ examples:
+>          #gpio-cells = <2>;
+>          interrupt-controller;
+>          #interrupt-cells = <2>;
+> -        gpio-ranges = <&tlmm 0 0 157>;
+> +        gpio-ranges = <&tlmm 0 0 156>;
+>  
+>          gpio-wo-subnode-state {
+>              pins = "gpio1";
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.yaml
+> index 4376a9bd4d70..4c9ad9079e69 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.yaml
+> @@ -136,7 +136,7 @@ examples:
+>                <0x03d00000 0x300000>;
+>          reg-names = "west", "east", "north", "south";
+>          interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> -        gpio-ranges = <&tlmm 0 0 176>;
+> +        gpio-ranges = <&tlmm 0 0 175>;
+>          gpio-controller;
+>          #gpio-cells = <2>;
+>          interrupt-controller;
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-tlmm.yaml
+> index 56c8046f1be0..c4cec40cbb92 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-tlmm.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-tlmm.yaml
+> @@ -124,7 +124,7 @@ examples:
+>          reg = <0x0f100000 0x300000>;
+>          gpio-controller;
+>          #gpio-cells = <2>;
+> -        gpio-ranges = <&tlmm 0 0 211>;
+> +        gpio-ranges = <&tlmm 0 0 210>;
+>          interrupt-controller;
+>          #interrupt-cells = <2>;
+>          interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-tlmm.yaml
+> index a457425ba112..6ecc1ad6ccd4 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-tlmm.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-tlmm.yaml
+> @@ -136,7 +136,7 @@ examples:
+>          reg = <0x0f100000 0x300000>;
+>          gpio-controller;
+>          #gpio-cells = <2>;
+> -        gpio-ranges = <&tlmm 0 0 211>;
+> +        gpio-ranges = <&tlmm 0 0 210>;
+>          interrupt-controller;
+>          #interrupt-cells = <2>;
+>          interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> -- 
+> 2.34.1
 > 
-> diff --git a/drivers/i2c/busses/i2c-nvidia-gpu.c b/drivers/i2c/busses/i2c-nvidia-gpu.c
-> index 6d81ea530a83..a8b99e7f6262 100644
-> --- a/drivers/i2c/busses/i2c-nvidia-gpu.c
-> +++ b/drivers/i2c/busses/i2c-nvidia-gpu.c
-> @@ -259,8 +259,7 @@ static const struct pci_device_id gpu_i2c_ids[] = {
->   MODULE_DEVICE_TABLE(pci, gpu_i2c_ids);
->   
->   static const struct property_entry ccgx_props[] = {
-> -	/* Use FW built for NVIDIA (nv) only */
-> -	PROPERTY_ENTRY_U16("ccgx,firmware-build", ('n' << 8) | 'v'),
-> +	/* Use FW built for NVIDIA GPU only */
->   	PROPERTY_ENTRY_STRING("firmware-name", "nvidia,gpu"),
->   	{ }
->   };
-
--- 
-nvpublic
