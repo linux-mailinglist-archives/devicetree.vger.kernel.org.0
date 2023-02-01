@@ -2,165 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 245676864C4
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 11:53:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A1B96864C8
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 11:54:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232257AbjBAKxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 05:53:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55764 "EHLO
+        id S232292AbjBAKyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 05:54:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230369AbjBAKxP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 05:53:15 -0500
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 55FD644BDD;
-        Wed,  1 Feb 2023 02:53:14 -0800 (PST)
-Received: by linux.microsoft.com (Postfix, from userid 1127)
-        id 1042920B74F7; Wed,  1 Feb 2023 02:53:14 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 1042920B74F7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1675248794;
-        bh=u6xY+MjMRo8fO7fdvwYCp6a/E0wL/T2x+iwrgYUQBA4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=V/T21LLk285Lc3xQ3YEJ2yYzCwz37PZFw0s0JZPHeJAGbtfX0bdEszVUIq6veJe4J
-         5fRyxzl2aJ8mRayr1QgasGIyKYfLky7w430pj20/L0KTH/0QsrM/s86sIoTRFKMJhC
-         kFu3wjomkuvMuwrY0erQDWOw2sG5togbWMFdclhc=
-Date:   Wed, 1 Feb 2023 02:53:14 -0800
-From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com
-Subject: Re: [PATCH 4/4] dt-bindings: hv: Add dt-bindings for VMBus
-Message-ID: <20230201105314.GA5733@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <1673887688-19151-1-git-send-email-ssengar@linux.microsoft.com>
- <1673887688-19151-5-git-send-email-ssengar@linux.microsoft.com>
- <f74fe561-dc20-0681-12af-4a4782a060be@linaro.org>
+        with ESMTP id S230369AbjBAKx4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 05:53:56 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6323D5AB58;
+        Wed,  1 Feb 2023 02:53:54 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 408BC4B3;
+        Wed,  1 Feb 2023 02:54:36 -0800 (PST)
+Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 98EC53F882;
+        Wed,  1 Feb 2023 02:53:52 -0800 (PST)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bin Liu <b-liu@ti.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: [PATCH v6 0/3] usb: musb: sunxi: add F1C100s MUSB support
+Date:   Wed,  1 Feb 2023 10:53:45 +0000
+Message-Id: <20230201105348.1815461-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f74fe561-dc20-0681-12af-4a4782a060be@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 16, 2023 at 07:53:07PM +0100, Krzysztof Kozlowski wrote:
-> On 16/01/2023 17:48, Saurabh Sengar wrote:
-> > Add dt-bindings for Hyper-V VMBus
-> 
-> Missing full stop.
-> 
-> Subject: drop second/last, redundant "dt-bindings for". The
-> "dt-bindings" prefix is already stating that these are bindings.
+Hi,
 
-Will fix in v3.
+this is a split off from the combined USB/DT Allwinner F1C100s support
+series[1], with just the (MUSB) USB patches.
+There were no code changes in v5 or v6, those are just rebases and
+resends.
+============================
 
-> 
-> > 
-> > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
-> > ---
-> >  .../devicetree/bindings/hv/msft,vmbus.yaml         | 34 ++++++++++++++++++++++
-> >  1 file changed, 34 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/hv/msft,vmbus.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/hv/msft,vmbus.yaml b/Documentation/devicetree/bindings/hv/msft,vmbus.yaml
-> > new file mode 100644
-> > index 0000000..66cb426
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hv/msft,vmbus.yaml
-> > @@ -0,0 +1,34 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/hv/msft,vmbus.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Microsoft Hyper-V VMBus device tree bindings
-> 
-> Drop "device tree bindings"
+This patchset introduces support for the F1C100s USB controller, which
+just consists of a MUSB controller variant and some USB PHY. The USB PHY
+support bits are already in -next.
+Patch 1 adds the compatible string to the binding, patch 2 introduces
+that compatible string to the driver, and lets it pick the appropriate
+flags.
+As this came up in reviews, patch 3 cleans up the SoC specific
+configuration bits in the driver, to make future additions easier.
 
-Will fix in v3
+Please have a look and apply, if possible.
 
-> 
-> > +
-> > +maintainers:
-> > +  - Saurabh Sengar <ssengar@linux.microsoft.com>
-> > +
-> > +description:
-> > +  VMBus is a software bus that implement the protocols for communication
-> > +  between the root or host OS and guest OSs (virtual machines).
-> 
-> Why this cannot be auto-discoverable? Why do you need OF for this?
+Cheers,
+Andre.
 
-This is a virtulization device, and I guess we have discussed this in greater
-length in other thread.
+[1] https://lore.kernel.org/linux-arm-kernel/20230111015332.172021-1-andre.przywara@arm.com/
 
-> 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: msft,vmbus
-> > +
-> > +  ranges :
-> > +    const: <0x00 0x00 0x0f 0xf0000000 0x10000000>
-> 
-> Did you test the bindings?
-> 
-> This property does not look correct. If you have static addresses, you
-> do not need OF. What do you want to discover here?
+Changelog v5 ... v6:
+- just keep MUSB driver and binding patches
+- add Jernej's Reviewed-by:
+- Rebase on top of gregkh/usb/usb-next
 
-fixed in v2
+Changelog v4 ... v5:
+- Rebase on top to v6.2-rc1
 
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - ranges
-> > +
-> > +examples:
-> > +  - |
-> > +        vmbus {
-> 
-> Use 4 spaces for example indentation.
+Changelog v3 ... v4:
+- Dropped the PHY patches, they go via a different tree and need a
+  different base
+- rebased on top of linux-sunxi/sunxi/for-next (provides H616 USB)
+- musb DT binding: use enum
+- musb cleanup: use musb_hdrc_config config pointer directly
+- musb cleanup: use const where possible
+- drop partitions from Popstick DTS file
+- clarify Popstick has a USB type-A *plug*
+- add tags
 
-Fix in v2
+Changelog v2 ... v3:
+- remove redundant "Device Tree Bindings" suffix in DT binding doc title
+- add BSD license to binding doc file (as per checkpatch)
+- fix some commit message title prefixes
+- use proper plural spelling for usb0_id_det-gpios
+- popstick.dts: Reorder otg_sram node reference alphabetically
+- popstick.dts: Add regulator- prefix to 3.3V regulator node name
+- popstick.dts: Fix status, compatible and reg property order
+- popstick.dts: Drop unneeded mmc0 and spi0 aliases
+- add patch to clean up sunxi MUSB driver
+- add Acks and Reviewed-by's
 
-> 
-> > +		#address-cells = <0x02>;
-> > +		#size-cells = <0x01>;
-> 
-> That's not correct style. Drop hex notation. Drop leading zeros.
+Changelog v1 ... v2:
+- USB PHY binding: clarify the relation with other phy-sun4i-usb bindings
+- Add Popstick binding and .dts patches
 
-Will fix in v3
 
-> 
-> But anyway you did not test the bindings. This cannot work. Try.
-> 
-> > +		compatible = "msft,vmbus";
-> 
-> compatible is a first property.
+Andre Przywara (1):
+  usb: musb: sunxi: Introduce config struct
 
-fixed in v2
+Icenowy Zheng (2):
+  dt-bindings: usb: sunxi-musb: add F1C100s MUSB compatible string
+  usb: musb: sunxi: add support for the F1C100s MUSB controller
 
-> 
-> > +		ranges = <0x00 0x00 0x0f 0xf0000000 0x10000000>;
-> 
-> What do you translate? There is no reg, no unit address.
+ .../usb/allwinner,sun4i-a10-musb.yaml         | 10 +-
+ drivers/usb/musb/sunxi.c                      | 99 +++++++++++++------
+ 2 files changed, 76 insertions(+), 33 deletions(-)
 
-Commented on v2 thread, if there is any further concern using ranges
-please let me know.
+-- 
+2.25.1
 
-> 
-> > +	};
-> 
-> Best regards,
-> Krzysztof
