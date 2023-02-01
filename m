@@ -2,79 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDA30686D52
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 18:45:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F86C686D56
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 18:46:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230189AbjBARpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 12:45:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39572 "EHLO
+        id S230218AbjBARqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 12:46:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjBARpv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 12:45:51 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A29765CD08;
-        Wed,  1 Feb 2023 09:45:48 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id m2so53245502ejb.8;
-        Wed, 01 Feb 2023 09:45:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Pme95IJRkV5XLQXbsPO4wq0L5GK5jF10IaE5SUoe0QE=;
-        b=Nsm/KgHKdb5jfv0AWCtWdIaqg1nLXN+X4ml6vEjJdW8zQ9rsLl1hBpTlnupHOK9WfV
-         PvdJZ+0weAv6CE9ngqHpk9THMEyPt3ONsSQ/VRqmrGynZU7XobLdGo2ziBpeX6R25EDa
-         r7bwOPzhIB4TCSw7Iccsl6vpcjfG9HSofd1viA5kk27Too5FvMckCJBiP9mz/nDwdZ/i
-         35SCqEtHn4qLEhW6Rtv4ojfUDx3pd3yAYTYTAwDSWbo/3HxE3/KsTt2ig97mt5+hs1Sh
-         nLlKXMKUXmTnLQCicXwszOqcHxa0tMAvRT2vhtocyJeVuPKrGXIWuy0vq3YOtUmcN+PW
-         I5ag==
+        with ESMTP id S229451AbjBARqm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 12:46:42 -0500
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC995113C4;
+        Wed,  1 Feb 2023 09:46:40 -0800 (PST)
+Received: by mail-oo1-f43.google.com with SMTP id 123-20020a4a0681000000b004faa9c6f6b9so2012719ooj.11;
+        Wed, 01 Feb 2023 09:46:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Pme95IJRkV5XLQXbsPO4wq0L5GK5jF10IaE5SUoe0QE=;
-        b=YuFWGbq/Ct6cUNtMpMGpXoWVDmKZ/j1xc5XdY6R+53esIbGMCYz2gGmMHYVZNrrrX+
-         Rgti2K/vyLCrgsbepMDpdLzfCvpXS1HmUlKPX0n49Lpm8rgVS+mPultAeRgw/eUlDplo
-         oIn2Zeh0+5cwLq1x1bTWwTVyhH9GM49Jw6VfkcpKa5U2YETkuCAL1DEGuEaxk7uEog4t
-         X6kEOPbMeQ5WNTCRavPXa/jU/63cxPpcr9//YRaOAXBcpu7X5u1I0dd0odliCXWchiGJ
-         1zFusipv48pSRTon0hdLt8A4eBjey/rh6oOxyUfFQ9Z3f4SeXiABavzBDjl+qaYHn8HP
-         oiCw==
-X-Gm-Message-State: AO0yUKWESJF7EyRiArQy4dSRQhsGWkhnCsUzBE+r+Ns8ndVWiQrF1jkD
-        QBJhOe2jeTV5+dWfULlrObU=
-X-Google-Smtp-Source: AK7set+d1Dsd9a92qBdnIOyZP42sjjCfsTL9ooxVRr+fGgtswYmO5aRgQVz5RhV8RuEpkHPf7lwPgg==
-X-Received: by 2002:a17:906:22c7:b0:877:ef84:c7de with SMTP id q7-20020a17090622c700b00877ef84c7demr2821233eja.61.1675273547111;
-        Wed, 01 Feb 2023 09:45:47 -0800 (PST)
-Received: from ?IPV6:2a01:c23:b912:d400:3963:7bc4:12b:ddb3? (dynamic-2a01-0c23-b912-d400-3963-7bc4-012b-ddb3.c23.pool.telefonica.de. [2a01:c23:b912:d400:3963:7bc4:12b:ddb3])
-        by smtp.googlemail.com with ESMTPSA id dy25-20020a05640231f900b0049e210884dasm10017113edb.15.2023.02.01.09.45.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Feb 2023 09:45:46 -0800 (PST)
-Message-ID: <aaa73903-1837-d9c8-8c45-54b4473fd548@gmail.com>
-Date:   Wed, 1 Feb 2023 18:45:39 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B5ieMICCVHRQ7377at7SykjLSFOGHCDvEdg4MaUlrEI=;
+        b=qSgBbUBs/DD1q1iQtlukZaTlvv2fN++P+GJT96ddRAMuwV0036uDHdMrUu4ZiLOe2K
+         XllIvU1SsYHY3PA+a2XhpSmsqxnfWNzSaJ5ihQb1WdiseVoQ09RPL0PnQvTeuAhdRgZX
+         HuRbcvbmrUbxlmU5Lol0FYPeiyBQayMYHkmX1x8iom5+W8uzWaQj4Q0aLh3XuZlq/bgQ
+         9aG+RC0em5CVEtTEsn4s5KQWAglHx3VcmP3/CYXOJZL/t+Qe55cScrkx7waH+NEXfl3q
+         nQPT304sDiJ8OgloTlGiVmbGzb/4ubUetD7ymg2V8P+b7ZuvzRA8tjWSa6NDPblgLVEj
+         qrAA==
+X-Gm-Message-State: AO0yUKV4BfFmoJ296qHODrHQZP17XQB7/hsAEu+ohriglBlVi67RukEO
+        MVRKp6+Uvv21X9t4TpAbUw==
+X-Google-Smtp-Source: AK7set+96DYcWpNNDjOz3WVmZYP3qKBM36nDwTflxgqE4s8Zv/Y+Hek1aSYQygLj/tx4aDfNUN4/8A==
+X-Received: by 2002:a05:6820:131:b0:517:3cd0:5505 with SMTP id i17-20020a056820013100b005173cd05505mr1635601ood.3.1675273599932;
+        Wed, 01 Feb 2023 09:46:39 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j4-20020a4a92c4000000b004a3d98b2ccdsm7630636ooh.42.2023.02.01.09.46.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Feb 2023 09:46:39 -0800 (PST)
+Received: (nullmailer pid 4050504 invoked by uid 1000);
+        Wed, 01 Feb 2023 17:46:38 -0000
+Date:   Wed, 1 Feb 2023 11:46:38 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Saurabh Singh Sengar <ssengar@linux.microsoft.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
+        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com
+Subject: Re: [PATCH v2 6/6] Driver: VMBus: Add device tree support
+Message-ID: <20230201174638.GA3872117-robh@kernel.org>
+References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
+ <1675188609-20913-7-git-send-email-ssengar@linux.microsoft.com>
+ <CAL_JsqK_7eTTrSd6EKDGy9A8kC5w6cjVEtSi3CB1M7Awj+zg6g@mail.gmail.com>
+ <20230201165133.GA24116@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     linux-pwm@vger.kernel.org,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v4] dt-bindings: pwm: Convert Amlogic Meson PWM binding
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230201165133.GA24116@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,135 +70,154 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Amlogic Meson PWM binding to yaml.
+On Wed, Feb 01, 2023 at 08:51:33AM -0800, Saurabh Singh Sengar wrote:
+> On Tue, Jan 31, 2023 at 02:12:53PM -0600, Rob Herring wrote:
+> > On Tue, Jan 31, 2023 at 12:10 PM Saurabh Sengar
+> > <ssengar@linux.microsoft.com> wrote:
+> > >
+> > > Update the driver to support device tree boot as well along with ACPI.
+> > > At present the device tree parsing only provides the mmio region info
+> > > and is not the exact copy of ACPI parsing. This is sufficient to cater
+> > > all the current device tree usecases for VMBus.
+> > >
+> > > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> > > ---
+> > >  drivers/hv/vmbus_drv.c | 75 ++++++++++++++++++++++++++++++++++++++++--
+> > >  1 file changed, 73 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
+> > > index 49030e756b9f..1741f1348f9f 100644
+> > > --- a/drivers/hv/vmbus_drv.c
+> > > +++ b/drivers/hv/vmbus_drv.c
+> > > @@ -2152,7 +2152,7 @@ void vmbus_device_unregister(struct hv_device *device_obj)
+> > >         device_unregister(&device_obj->device);
+> > >  }
+> > >
+> > > -
+> > > +#ifdef CONFIG_ACPI
+> > >  /*
+> > >   * VMBUS is an acpi enumerated device. Get the information we
+> > >   * need from DSDT.
+> > > @@ -2262,6 +2262,7 @@ static acpi_status vmbus_walk_resources(struct acpi_resource *res, void *ctx)
+> > >
+> > >         return AE_OK;
+> > >  }
+> > > +#endif
+> > >
+> > >  static void vmbus_mmio_remove(void)
+> > >  {
+> > > @@ -2282,7 +2283,7 @@ static void vmbus_mmio_remove(void)
+> > >         }
+> > >  }
+> > >
+> > > -static void vmbus_reserve_fb(void)
+> > > +static void __maybe_unused vmbus_reserve_fb(void)
+> > >  {
+> > >         resource_size_t start = 0, size;
+> > >         struct pci_dev *pdev;
+> > > @@ -2442,6 +2443,7 @@ void vmbus_free_mmio(resource_size_t start, resource_size_t size)
+> > >  }
+> > >  EXPORT_SYMBOL_GPL(vmbus_free_mmio);
+> > >
+> > > +#ifdef CONFIG_ACPI
+> > 
+> > It's better to put C 'if (!IS_ENABLED(CONFIG_ACPI)' code in the
+> 
+> I wanted to have separate function for ACPI and device tree flow, which
+> can be easily maintained with #ifdef. Please let me know if its fine.
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v2:
-- fix clocks and clock-names
-- consider that more than one compatible may be set
-v3:
-- remove minItem/maxItem properties for compatible
-v4:
-- remove not needed "items" before "enum"
----
- .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 70 +++++++++++++++++++
- .../devicetree/bindings/pwm/pwm-meson.txt     | 29 --------
- 2 files changed, 70 insertions(+), 29 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
- delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
+Yes, you can have separate functions:
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-new file mode 100644
-index 000000000..527864a4d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic PWM
-+
-+maintainers:
-+  - Heiner Kallweit <hkallweit1@gmail.com>
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - amlogic,meson8b-pwm
-+          - amlogic,meson-gxbb-pwm
-+          - amlogic,meson-gxbb-ao-pwm
-+          - amlogic,meson-axg-ee-pwm
-+          - amlogic,meson-axg-ao-pwm
-+          - amlogic,meson-g12a-ee-pwm
-+          - amlogic,meson-g12a-ao-pwm-ab
-+          - amlogic,meson-g12a-ao-pwm-cd
-+          - amlogic,meson-s4-pwm
-+      - items:
-+          - const: amlogic,meson-gx-pwm
-+          - const: amlogic,meson-gxbb-pwm
-+      - items:
-+          - const: amlogic,meson-gx-ao-pwm
-+          - const: amlogic,meson-gxbb-ao-pwm
-+      - items:
-+          - const: amlogic,meson8-pwm
-+          - const: amlogic,meson8b-pwm
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    oneOf:
-+      - items:
-+          - enum: [clkin0, clkin1]
-+      - items:
-+          - const: clkin0
-+          - const: clkin1
-+
-+  "#pwm-cells":
-+    const: 3
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pwm@8550 {
-+      compatible = "amlogic,meson-gxbb-pwm";
-+      reg = <0x08550 0x10>;
-+      clocks = <&xtal>, <&xtal>;
-+      clock-names = "clkin0", "clkin1";
-+      #pwm-cells = <3>;
-+    };
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-deleted file mode 100644
-index bd02b0a14..000000000
---- a/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-+++ /dev/null
-@@ -1,29 +0,0 @@
--Amlogic Meson PWM Controller
--============================
--
--Required properties:
--- compatible: Shall contain "amlogic,meson8b-pwm"
--                         or "amlogic,meson-gxbb-pwm"
--                         or "amlogic,meson-gxbb-ao-pwm"
--                         or "amlogic,meson-axg-ee-pwm"
--                         or "amlogic,meson-axg-ao-pwm"
--                         or "amlogic,meson-g12a-ee-pwm"
--                         or "amlogic,meson-g12a-ao-pwm-ab"
--                         or "amlogic,meson-g12a-ao-pwm-cd"
--- #pwm-cells: Should be 3. See pwm.yaml in this directory for a description of
--  the cells format.
--
--Optional properties:
--- clocks: Could contain one or two parents clocks phandle for each of the two
--  PWM channels.
--- clock-names: Could contain at least the "clkin0" and/or "clkin1" names.
--
--Example:
--
--	pwm_ab: pwm@8550 {
--		compatible = "amlogic,meson-gxbb-pwm";
--		reg = <0x0 0x08550 0x0 0x10>;
--		#pwm-cells = <3>;
--		clocks = <&xtal>, <&xtal>;
--		clock-names = "clkin0", "clkin1";
--	}
--- 
-2.39.1
+static int vmbus_acpi_add(struct platform_device *pdev)
+{
+	if (!IS_ENABLED(CONFIG_ACPI))
+		return -ENODEV;
 
+	...
+}
+
+The compiler will throw away the function in the end if CONFIG_ACPI is 
+not enabled.
+
+That is easier for us to maintain because it reduces the combinations to 
+build.
+
+> 
+> > 
+> > >  static int vmbus_acpi_add(struct platform_device *pdev)
+> > >  {
+> > >         acpi_status result;
+> > > @@ -2496,10 +2498,68 @@ static int vmbus_acpi_add(struct platform_device *pdev)
+> > >                 vmbus_mmio_remove();
+> > >         return ret_val;
+> > >  }
+> > > +#else
+> > > +
+> > > +static int vmbus_device_add(struct platform_device *pdev)
+> > > +{
+> > > +       struct resource **cur_res = &hyperv_mmio;
+> > > +       struct device_node *np;
+> > > +       u32 *ranges, len;
+> > > +       u64 start;
+> > > +       int nr_ranges, child_cells = 2, cur_cell = 0, ret = 0;
+> > > +
+> > > +       hv_dev = pdev;
+> > > +       np = pdev->dev.of_node;
+> > > +
+> > > +       nr_ranges = device_property_count_u32(&pdev->dev, "ranges");
+> > 
+> > Parsing ranges yourself is a bad sign. It's a standard property and we
+> > have functions which handle it. If those don't work, then something is
+> > wrong with your DT or they need to be fixed/expanded.
+> 
+> I find all the  standard functions which parse "ranges" property are doing
+> much more then I need. Our requirement is to only pass the mmio memory range
+> and size, I couldn't find any standard API doing this.
+
+You can't just change how standard properties work to suit your needs.
+
+We shouldn't even be having this discussion because we have tools to 
+check all this now. dtc does some and dtschema does a lot more.
+
+> I see some of the drivers are using these APIs to parse ranges property hence
+> I follwed those examples. I will be happy to improve it if I get any better
+> alternative.
+
+You can always find bad examples to follow...
+
+> > > +       if (nr_ranges < 0)
+> > > +               return nr_ranges;
+> > > +       ranges = kcalloc(nr_ranges, sizeof(u32), GFP_KERNEL);
+> > > +       if (!ranges)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       if (device_property_read_u32_array(&pdev->dev, "ranges", ranges, nr_ranges)) {
+> > > +               ret =  -EINVAL;
+> > > +               goto free_ranges;
+> > > +       }
+> > > +
+> > > +       while (cur_cell < nr_ranges) {
+> > > +               struct resource *res;
+> > > +
+> > > +               /* The first u64 in the ranges description isn't used currently. */
+> > > +               cur_cell = cur_cell + child_cells;
+> > > +               start = ranges[cur_cell++];
+> > > +               start = (start << 32) | ranges[cur_cell++];
+> > > +               len = ranges[cur_cell++];
+> > 
+> > To expand my last point, the format of ranges is <child_addr
+> > parent_addr length>. That's not what your 'ranges' has. You've also
+> > just ignored '#address-cells' and '#size-cells'.
+> 
+> Got it. However I need to check if there is any standard API which can
+> give me these values, otherwise I may have to parse these as well :(
+
+for_each_of_range()
+
+That is not how linux works. When the core code doesn't do what you 
+want, you adapt it to your needs. You don't work around it. Read 
+this[1].
+
+Rob
+
+[1] https://lwn.net/Articles/443531/
