@@ -2,106 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 142C7685CB3
-	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 02:39:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6D47685CB9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Feb 2023 02:41:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231157AbjBABjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Jan 2023 20:39:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56420 "EHLO
+        id S231292AbjBABlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Jan 2023 20:41:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229863AbjBABje (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 20:39:34 -0500
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 928AB521DE;
-        Tue, 31 Jan 2023 17:39:33 -0800 (PST)
-Received: by linux.microsoft.com (Postfix, from userid 1127)
-        id 4375620E0A43; Tue, 31 Jan 2023 17:39:33 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 4375620E0A43
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1675215573;
-        bh=XpQhT9NIysGEPHEUWmwIA/c/PHSo1/eWTpwuRKMmvg0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FI7f/O4pB0kP0feT1rxwZ3ENwxscMoUDw009gs/ywZN8iGkk4GWwo3XJ8WdkJoTfc
-         PY5EFxZWAN05OZh0kAjsjXsVkOrejuKMAAnCWUZO5SiQz9ZEyaEjgf6Lcw97/IS84h
-         ao7rpsSOa59l0b/dsPtvbOHTTeBiCyEXxXM1e2gk=
-Date:   Tue, 31 Jan 2023 17:39:33 -0800
-From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com
-Subject: Re: [PATCH v2 5/6] dt-bindings: hypervisor: Add dt-bindings for VMBus
-Message-ID: <20230201013933.GA20379@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
- <1675188609-20913-6-git-send-email-ssengar@linux.microsoft.com>
- <63fd0037-0994-bbfd-6b99-f9dcd095cbca@linaro.org>
+        with ESMTP id S231296AbjBABlO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Jan 2023 20:41:14 -0500
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A4D59541;
+        Tue, 31 Jan 2023 17:41:11 -0800 (PST)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-16346330067so21770889fac.3;
+        Tue, 31 Jan 2023 17:41:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ARcpraQzdyShL/3uOhJbU55iw6ZjqLdVd5dZPXUPPKs=;
+        b=zi4gjtCkk4rz0m6/OWIkWQIDD3GWdzY5Dhwc06EnkeJ5UMNJiDgqtIyAtloc9j4zXn
+         nOI9XA8e1TEXuhN2u2iwZ6MoasRG8SyoRxCs/2CwCRxAp/gXxPnPZQVr3pYGmnHm67hQ
+         amFhv003OCdcp2nO9KsQb9N3cBOgsmyhyZUZCFGlLDLxmcC29imPSvsVaQlLag0j+v/e
+         i6yey/5Y7OM/h2mY7sax+pA2t+JVxw4RfhjIhRLD73kg+xsLPcrOQxbhAN9EJxGypWJf
+         cnbQngvGY7I+vHcSw+E2+NhbLUj/+F8xB7mtrF4gxsDjcTebEqlgUDetemxqhjDgQp/u
+         74MQ==
+X-Gm-Message-State: AO0yUKXJfkKHxGAF+RakHVSfDUBHC+vT1LEk2betZIbVECKIWtXsXFfh
+        fLVE+/nCzWI8qljh+s4ckw==
+X-Google-Smtp-Source: AK7set+7vdv8wCpcZTaEjMIlQXTj5qX8pbN6bW9oRbbgZSH7MorUaN+g7rqVEpjZGOJmdPN5Wr2Oyg==
+X-Received: by 2002:a05:6870:315:b0:15f:b59a:55f1 with SMTP id m21-20020a056870031500b0015fb59a55f1mr123340oaf.16.1675215670603;
+        Tue, 31 Jan 2023 17:41:10 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id lm27-20020a0568703d9b00b0015f83e16a10sm7267887oab.44.2023.01.31.17.41.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Jan 2023 17:41:10 -0800 (PST)
+Received: (nullmailer pid 2293844 invoked by uid 1000);
+        Wed, 01 Feb 2023 01:41:09 -0000
+Date:   Tue, 31 Jan 2023 19:41:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Richard Leitner <richard.leitner@skidata.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        linux-staging@lists.linux.dev,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-media@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v4 02/21] dt-bindings: display: tegra: vi: add 'vip'
+ property and example
+Message-ID: <167521566867.2293789.16573974181219415861.robh@kernel.org>
+References: <20230130141603.323221-1-luca.ceresoli@bootlin.com>
+ <20230130141603.323221-3-luca.ceresoli@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <63fd0037-0994-bbfd-6b99-f9dcd095cbca@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230130141603.323221-3-luca.ceresoli@bootlin.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 31, 2023 at 07:51:20PM +0100, Krzysztof Kozlowski wrote:
-> On 31/01/2023 19:10, Saurabh Sengar wrote:
-> > Add dt-bindings for Hyper-V VMBus
-> > 
-> > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
-> > ---
-> >  .../bindings/hypervisor/msft,vmbus.yaml       | 50 +++++++++++++++++++
-> >  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
-> >  MAINTAINERS                                   |  1 +
-> >  3 files changed, 53 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/hypervisor/msft,vmbus.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/hypervisor/msft,vmbus.yaml b/Documentation/devicetree/bindings/hypervisor/msft,vmbus.yaml
-> > new file mode 100644
-> > index 000000000000..8f50d6097c48
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hypervisor/msft,vmbus.yaml
-> > @@ -0,0 +1,50 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/hypervisor/msft,vmbus.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Microsoft Hyper-V VMBus device tree bindings
-> 
-> This is a friendly reminder during the review process.
-> 
-> It seems my previous comments were not fully addressed. Maybe my
-> feedback got lost between the quotes, maybe you just forgot to apply it.
-> Please go back to the previous discussion and either implement all
-> requested changes or keep discussing them.
-> 
-> Thank you.
-> 
-> (other places as well...)
 
-Hi Krzysztof,
-
-Thank you for the review. Sorry I missed this, will fix in V3.
-The patches have gone significant modification, and I have thought
-I have fixed all the comments you have provided hence didnt send the
-follow up discussion. Apparently, I may have missed few will look again
-and fix in next version.
-
-Regards,
-Saurabh
-
+On Mon, 30 Jan 2023 15:15:44 +0100, Luca Ceresoli wrote:
+> The Tegra20 VI peripheral can receive parallel input from the VIP parallel
+> input module. Add it to the allowed properties and augment the existing
+> nvidia,tegra20-vi example to show a 'vip' property.
 > 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> 
+> ---
+> 
+> Changed in v4:
+>  - complete the removal of 'channel@0'
+> 
+> Changed in v3 (suggested by Rob Herring):
+>  - drop 'endpoint', unneeded as there's no extra properties in the
+>    endpoints
+> 
+> Changed in v2 (suggested by Krzysztof Kozlowski):
+>  - rename "i2c3" -> "ic2"
+>  - add review tag
+> ---
+>  .../display/tegra/nvidia,tegra20-vi.yaml      | 59 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 60 insertions(+)
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
