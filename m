@@ -2,82 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4931B68899E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 23:20:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BFDD6889B1
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 23:27:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231712AbjBBWUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 17:20:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41908 "EHLO
+        id S231903AbjBBW1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 17:27:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbjBBWUf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 17:20:35 -0500
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC1ED5084A
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 14:20:34 -0800 (PST)
-Received: by mail-yb1-xb2a.google.com with SMTP id u72so4134541ybi.7
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 14:20:34 -0800 (PST)
+        with ESMTP id S231462AbjBBW1L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 17:27:11 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE17F14E96
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 14:27:09 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id eq11so3523895edb.6
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 14:27:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fGcZobRTdH/JxXnU9+WBJ4Rh+WSSCFdcKJ2+1POHNc8=;
-        b=qj18/+psCD8U249ZAMhJdxVzTrH9/NzO0ysNy7vc4Z5Gz8NyY7dofSKriHP/IYTedj
-         v4xgASQ9lHE5zMbriwpfxz2+/caVXXxnoPj+xNeGVLTkNCzjOK95aOt0zdqdUIn27Kzp
-         GHkYLsggyKsWSpc8gQ34mo10ooRzMLHHtGn382SGD4SvEDzY1/FRa86CbCI5JlpnHL37
-         sxJJtP91lYSRR9npj20Q4g23YeYG22G7RVuYs+x6whRgNyDwaJDENkYUdMzppL4PBqR9
-         2KhbNA1NvOtLHR9FuawBtmbFOM6fpphf63/OP1kk47ztnz8PjFtPaYvb/HWqhkuGuwXe
-         cuyA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=htsoF+0dAV+soqelwMOxu8OLAjWrlwNcAr2UdCMs8v4=;
+        b=H44bIUH3EWCmyadBXYgygjbXAYlG952xbCVe1R1Lu41LfJ1MmT88QhdPiPtdCYjY/O
+         YN7AIIIYhSd8vN0BMDcOk85ky+avOHAvXDS8YwOJ70AQNwRum7QO+1uCqgRcP4Q9/0XB
+         tTnYzrDXzovj4h/qsdjE4ONlN94GjXrWB6cGW4GvssCqAl1M129TpWzB4mwtdIVG7bz0
+         9LfJEw01Htor7po8vMgfUnmp1Gqexw/Q3+T3KrFFyhMafMeWKZnmEH1SyFVmjt+p4SA4
+         IJEcaU5aZL61WgoCPjWbnR0EBZWkl4JCk/lAX8UNAUSoIWR4CcCugFsTKWb8u0S+eTdk
+         EWfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fGcZobRTdH/JxXnU9+WBJ4Rh+WSSCFdcKJ2+1POHNc8=;
-        b=dI0RcRuC0fgoQFEieaSXxyzgF3bxYnfHFExgnsWTISB5xZdzRFWRr4QEiStBahKsQE
-         nqY4wLrn1A4Ee4ooN5hdZOE/VLPuErPCXPWZ4d0WSlLcD5punuoXlHcLioA8vqtQk4hO
-         kGKlKakCpYMj8d+V6EJpIMYdGwjC2Q8E2NA7AuFaD/0lGJpM7FaoN4Mxi0eHrvqRdLg+
-         pLjs8BGk3luxTXtURfRKbcj2JebcyHM2evjcHlKL+r8Tokg26CMSdwv+hQfobifIVogw
-         9RsEGgqa2c8LYwAYKSMAUb6FraOFMERrTN0k5/Itrx2pHZwr1QCHZEsxUM2M096dwm1N
-         oZ9Q==
-X-Gm-Message-State: AO0yUKXoCALtmGNwbDZpbsfivaoa35o9ew4akErV6WduCsmimVG//wbZ
-        wtujcey4wviBwd5Aao5inRLzSqiLZ8JfP6mElJMImg==
-X-Google-Smtp-Source: AK7set8e1FAip5uCDI4KXqLOBcMrFExpDUcB0oVoLeXIQG/31VIhhFAXhZPv/eW2iatFYpSbsSsL6OZP8uElMyxzkmg=
-X-Received: by 2002:a25:5bd6:0:b0:80b:66c5:9fc5 with SMTP id
- p205-20020a255bd6000000b0080b66c59fc5mr980309ybb.210.1675376434121; Thu, 02
- Feb 2023 14:20:34 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=htsoF+0dAV+soqelwMOxu8OLAjWrlwNcAr2UdCMs8v4=;
+        b=nu5ZZyh51wrkvY+CMWdvU27e8g0+qI2XWQuKaZCn83aiMDgmEG1n5NzzGJm0AgZGMk
+         XYOYwct7O5uSerhNvlGFq0VFm/brCuzGZyFx/B76rbw/f2T+pd7sJ6uH7Cw0ylSy/Gvq
+         1i3gLtLt30N5ZEp6wL5a02uHXPcDZ+QC+AIdpFq3iA9zcYHe3xrEeNWstgue2wtaAOLb
+         nXoZ373lARbKNk+bHkPjpIHqPMSEq+UmAZ1E29E24hN5bTFt+TNfjA3q1L7ttsPi4BH+
+         dDfrGfwbzz+FXUwrQBYNF8zFQXFYkEF+qZoWJ7rYC7paM0cFAP9/CXIBARp3n1xAxqwk
+         Y0/Q==
+X-Gm-Message-State: AO0yUKVJx0keSanLjuqEXS1qzIlPSm22yG4PbZS4/hiHqTrCqAWBTaX/
+        ywOA4MwGYDI1xF+Ot0WUrM/cOA==
+X-Google-Smtp-Source: AK7set/yLIBMIxVVa09c0abZawIa36KcE8yzXqO5U2V8ePOTwQhiJEGkap+3ftH4iHbY8R7Pb99vPw==
+X-Received: by 2002:a05:6402:34cc:b0:49b:67c5:3044 with SMTP id w12-20020a05640234cc00b0049b67c53044mr9046173edc.4.1675376828243;
+        Thu, 02 Feb 2023 14:27:08 -0800 (PST)
+Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id s22-20020aa7cb16000000b004a236384909sm303300edt.10.2023.02.02.14.27.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Feb 2023 14:27:07 -0800 (PST)
+Message-ID: <22f191c4-5346-8fe7-690d-9422775bb2d5@linaro.org>
+Date:   Fri, 3 Feb 2023 00:27:06 +0200
 MIME-Version: 1.0
-References: <20230202143305.21789-1-m.zatovic1@gmail.com>
-In-Reply-To: <20230202143305.21789-1-m.zatovic1@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 2 Feb 2023 23:20:23 +0100
-Message-ID: <CACRpkdYSG6zuqyd9W0f4HgwzD2S9dLXv+9Scg0NYWvoPdf8LHA@mail.gmail.com>
-Subject: Re: [PATCHv2 0/4] Wiegand bus driver and GPIO bit-banged controller
-To:     =?UTF-8?B?TWFydGluIFphxaVvdmnEjQ==?= <m.zatovic1@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        martin.petersen@oracle.com, beanhuo@micron.com, arnd@arndb.de,
-        avri.altman@wdc.com, iwona.winiarska@intel.com,
-        fmdefrancesco@gmail.com, dipenp@nvidia.com, ogabbay@kernel.org,
-        bvanassche@acm.org, mathieu.poirier@linaro.org,
-        yangyicong@hisilicon.com, dan.j.williams@intel.com,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.0.2
+Subject: Re: [PATCH v8 5/9] dt-bindings: qcom-qce: document clocks and
+ clock-names as optional
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20230202135036.2635376-1-vladimir.zapolskiy@linaro.org>
+ <20230202135036.2635376-6-vladimir.zapolskiy@linaro.org>
+ <32c23da1-45f0-82a4-362d-ae5c06660e20@linaro.org>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <32c23da1-45f0-82a4-362d-ae5c06660e20@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+Hi Krzysztof,
 
-the whole patch set looks very sensible to me, I see there is still some
-DT binding things to fix (it is a somewhat moving target, so expected)
-but the whole design looks very sound to me, so from a GPIO point
-of view (which is a minor thing though):
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+On 2/2/23 15:53, Krzysztof Kozlowski wrote:
+> On 02/02/2023 14:50, Vladimir Zapolskiy wrote:
+>> From: Neil Armstrong <neil.armstrong@linaro.org>
+>>
+>> On certain Snapdragon processors, the crypto engine clocks are enabled by
+>> default by security firmware.
+> 
+> Then probably we should not require them only on these variants.
 
-Yours,
-Linus Walleij
+the rationale is clear, but here comes a minor problem, older platforms
+require clocks, when newer ones do not. When a generic SoC-specific compatible
+is introduced, let say "qcom,ipq4019-qce", it itself requires the clocks,
+but then newer platforms can not be based on this particular compatible,
+otherwise they will require clocks and this comes as invalid.
+
+How to resolve it properly, shall there be another generic SoC-specific
+compatible without clocks and NOT based on that "qcom,ipq4019-qce" compatible?
+
+By the way, QCE on SM8150 also shall not need the clocks.
+
+--
+Best wishes,
+Vladimir
