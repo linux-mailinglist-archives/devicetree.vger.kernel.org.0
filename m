@@ -2,116 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72D85688047
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 15:40:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95B7768807A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 15:50:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232447AbjBBOkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 09:40:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50440 "EHLO
+        id S230502AbjBBOuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 09:50:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232453AbjBBOkV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 09:40:21 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38A6E8B7DB
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 06:40:20 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1pNal0-0003lC-Rj; Thu, 02 Feb 2023 15:40:10 +0100
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:fff9:bfd9:c514:9ad9])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 4382D16D655;
-        Thu,  2 Feb 2023 14:40:08 +0000 (UTC)
-Date:   Thu, 2 Feb 2023 15:40:00 +0100
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH 12/12] can: rcar_canfd: Add transceiver support
-Message-ID: <20230202144000.2qvtnorgig52jfhw@pengutronix.de>
-References: <cover.1674499048.git.geert+renesas@glider.be>
- <e825b50a843ffe40e33f34e4d858c07c1b2ff259.1674499048.git.geert+renesas@glider.be>
- <CAMuHMdXtiC-Oo01Y-vCbokjF=L+YXMN=TucgqCS4Vtcg5gt==g@mail.gmail.com>
+        with ESMTP id S231712AbjBBOtu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 09:49:50 -0500
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8E2E3918A6;
+        Thu,  2 Feb 2023 06:48:54 -0800 (PST)
+Received: by linux.microsoft.com (Postfix, from userid 1127)
+        id B0F6620B7102; Thu,  2 Feb 2023 06:48:43 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com B0F6620B7102
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1675349323;
+        bh=gjpf4tmCpJspm7R09KDz9PoxVO973A9P+dcFaqNYhig=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eWqOL1KUEIVforAPnG/YSYfnmeUMryD+fqy9Q57F9tkXrRfSx+Su5JWbomxYbdmcy
+         CKlZgQMTBWuYSM6yg4YfewcXLiImUqk3mpjdV3RVFN3XM8db2cWP4TA0JudUTRBReR
+         vxr9HDphRSm4fwZx3TBOPdSrQ7wJibPkxCfXfXao=
+Date:   Thu, 2 Feb 2023 06:48:43 -0800
+From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
+To:     "Michael Kelley (LINUX)" <mikelley@microsoft.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        KY Srinivasan <kys@microsoft.com>,
+        Haiyang Zhang <haiyangz@microsoft.com>,
+        "wei.liu@kernel.org" <wei.liu@kernel.org>,
+        Dexuan Cui <decui@microsoft.com>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "virtualization@lists.linux-foundation.org" 
+        <virtualization@lists.linux-foundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
+        Saurabh Singh Sengar <ssengar@microsoft.com>
+Subject: Re: [PATCH v2 2/6] Drivers: hv: allow non ACPI compilation for
+ hv_is_hibernation_supported
+Message-ID: <20230202144843.GA11173@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
+ <1675188609-20913-3-git-send-email-ssengar@linux.microsoft.com>
+ <BYAPR21MB1688813B65EEDB79554E30D4D7D19@BYAPR21MB1688.namprd21.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="evlpwhhurau3f4do"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdXtiC-Oo01Y-vCbokjF=L+YXMN=TucgqCS4Vtcg5gt==g@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <BYAPR21MB1688813B65EEDB79554E30D4D7D19@BYAPR21MB1688.namprd21.prod.outlook.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Feb 01, 2023 at 05:47:44PM +0000, Michael Kelley (LINUX) wrote:
+> From: Saurabh Sengar <ssengar@linux.microsoft.com> Sent: Tuesday, January 31, 2023 10:10 AM
+> > 
+> > acpi_sleep_state_supported API is only define for CONFIG_ACPI flag and
+> > thus it can't be used for non-ACPI builds. Initaly there won't be
+> 
+> s/Initaly/Initially/
 
---evlpwhhurau3f4do
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+OK
 
-On 24.01.2023 19:41:03, Geert Uytterhoeven wrote:
-> On Mon, Jan 23, 2023 at 7:56 PM Geert Uytterhoeven
-> <geert+renesas@glider.be> wrote:
-> > Add support for CAN transceivers described as PHYs.
-> >
-> > While simple CAN transceivers can do without, this is needed for CAN
-> > transceivers like NXP TJR1443 that need a configuration step (like
-> > pulling standby or enable lines), and/or impose a bitrate limit.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> 
+> > hibernate support for non ACPI builds.
+> 
+> s/hibernate/hibernation/
+
+OK
+
+> 
+> > 
+> > This change will help adding device tree support in subsequent commits.
+> > 
+> > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
 > > ---
-> > This depends on "[PATCH 1/7] phy: Add devm_of_phy_optional_get() helper=
-".
-> > https://lore.kernel.org/all/f53a1bcca637ceeafb04ce3540a605532d3bc34a.16=
-74036164.git.geert+renesas@glider.be
->=20
-> v2: "[PATCH v2 3/9] phy: Add devm_of_phy_optional_get() helper"
->     https://lore.kernel.org/all/4cd0069bcff424ffc5c3a102397c02370b91985b.=
-1674584626.git.geert+renesas@glider.be
->=20
-> I'll keep you updated when/if this ends up on an immutable branch.
+> >  drivers/hv/hv_common.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
+> > index 52a6f89ccdbd..370ec20d1993 100644
+> > --- a/drivers/hv/hv_common.c
+> > +++ b/drivers/hv/hv_common.c
+> > @@ -234,7 +234,11 @@ EXPORT_SYMBOL_GPL(hv_setup_dma_ops);
+> > 
+> >  bool hv_is_hibernation_supported(void)
+> >  {
+> > +#ifdef CONFIG_ACPI
+> >  	return !hv_root_partition && acpi_sleep_state_supported(ACPI_STATE_S4);
+> > +#else
+> > +	return false;
+> > +#endif
+> 
+> Is this patch needed?  If CONFIG_ACPI is not set, then per
+> arch/x86/Kconfig, CONFIG_ACPI_SYSTEM_POWER_STATES_SUPPORT
+> is not selected.  In that case, the #ifdef in include/acpi/acpi_bus.h
+> provides a stub for acpi_sleep_state_supported() that returns "false".
+> So it seems like the existing code should compile and correctly return
+> "false" when CONFIG_ACPI is not set.
 
-Should I take the patches 1...11 for can-next/main?
+You are right, if CONFIG_ACPI_SYSTEM_POWER_STATES_SUPPORT is not set
+acpi_sleep_state_supported will return false, but this is applicable only
+when CONFIG_ACPI is enable. If CONFIG_ACPI is not enable both these
+functions are not defined.
 
-regards,
-Marc
+Regards,
+Saurabh
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
 
---evlpwhhurau3f4do
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmPbyz0ACgkQvlAcSiqK
-BOg8HAf9EAiSb3vx5n466VIpvilTXE4tuHZJ7M8t+LG4FIc2/IxyaW2sxvc0KljI
-CSwWsA5H1gxycXPSfHwZ1Z0R0z5b7HzLqCKRsmCJszEciTBsGyg5qfNuI4GgwRWN
-Oy09kEK0CpsOClClaGOlla+9xhWhoiFT8yIScbTDfNGDaCl9wa16gdZnFUHwT4RH
-VTpNvCLP07ZzaVloA0hAK4Laza0UXjngmJINlb/CX2glcj6KbZc0uUtDiFMixqDo
-eZIbAYVjux5Ai/FXftLSsYrVRsqr4X53eYzyY7UQ9laPBgGQktdmcWTtkdF3urxJ
-PpGWA43PLDvW1K/yI2zVA/bD4b6pXA==
-=hK01
------END PGP SIGNATURE-----
-
---evlpwhhurau3f4do--
+> 
+> Michael
+> 
+> >  }
+> >  EXPORT_SYMBOL_GPL(hv_is_hibernation_supported);
+> > 
+> > --
+> > 2.25.1
