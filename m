@@ -2,76 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07EB86887F2
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 21:01:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55CD2688814
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 21:11:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230372AbjBBUBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 15:01:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47586 "EHLO
+        id S232632AbjBBUL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 15:11:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230003AbjBBUBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 15:01:53 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7B8774A5E
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 12:01:51 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id k4so9314707eje.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 12:01:51 -0800 (PST)
+        with ESMTP id S232512AbjBBUL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 15:11:28 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6F367C711
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 12:11:26 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id a2so2493671wrd.6
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 12:11:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fxM9HSg7LJAXbn7ENAypRMHLklYazMOh09jYix5Uw6E=;
-        b=TrgOINh6q9JsQaHyOaEFAUKvJS025pXWFlHU3arvlNbLBnK3qcsGuaaMCbjbJN04ZO
-         3IlOf2lr6noFQliEHbf+rC9NgB3jAok4fEfbVtF+MywGorktax/oUFYU1xpF5Zau1qmB
-         8hq5h44U+elUuZzAW8XFbnpkXiY8ssOyfB4dr13WJ/qtnykslbWA66MGAzupbFzoz7K0
-         CJdyB6VXLW++6J0RmyCOgXWJrSnDfUguUwDCMrVjiMZ/xIElI3SKLwY0Fxxvp7z/1b2g
-         1plpTYByibYUq0+1x1yJo9bnQHj9K2HIQ7G+X0SMfqGPKuPxlrjKkNeU7vHb+r+ZpDOm
-         wQrA==
+        bh=QKfaeFsL9aNMopdxufkp2IOj7NlS3f6gXB+wFqAzJTE=;
+        b=vN3JI2ARCpraaEdQM11FGCQMOlnUl2EiBsUJBDzBVNgo+a+KL47mY0XwyQxzuuUwKT
+         Kid2yDxAk9fG4c7EQ7W3dH0jMRpCc6rXZGwnA65wacGBSS/Xjh9mhYQ3rDYt7Ks0olqL
+         qVY5H74w1ARtlNL5Z2YYH/FcM1TZsw7lBFQUHV4QCwLG/2CZtq8XBtNfTWTnaw7It3ri
+         Y2NlZNStd0XgikC9ARIVVMsuwiXvcx1TH3l31zP7I4oK1ljbiwBNAdkwjIJD1uYARB59
+         82F/ZqveA9BhXIJ1xZoUNwQPMBa7fLcMKEW/MUY7RcERm/uDTvqxcB6lkidtIwzs1O6B
+         PigQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fxM9HSg7LJAXbn7ENAypRMHLklYazMOh09jYix5Uw6E=;
-        b=xTZ0LF+iHvaVO7vjWmu1Dr70fswQw+4hAWZqJhC752o6Xioj/PzED5T4ntfyHJSCf5
-         +wYb1ERJGE2zk4pnzOMrUnsIpsNAzsto97SHPDz4AGpD2Tmfi35BTXwE87K5MC1LZp/L
-         iqI/3++VVGhyjvXV7KaJmX1Q7HMFWPHyhn3lNjaDW7w9F3j818orej+Wwjsz3IuzXB0I
-         rMa760v73/hDCds4MgeHqA0mcGxe851ugSGIDrFQGlyMWuM11FEiYXg2fudz9AYgUu0q
-         K7onX2OVI5neLqIHBwMuYsJ4mFm2sOkXFmnnKIY/kndVLmKfr76ylWsHEsUSk0z1wNoG
-         Mzbg==
-X-Gm-Message-State: AO0yUKW69N+JQU9gv7g/q98pKKbb0HU1Lo5J1Yi3De+JzT9zbTN+aUae
-        q97kZxIs8Dhx6O32WJ3KSpCyTA==
-X-Google-Smtp-Source: AK7set9JKwd3BkoJ3sv3/meRokBhU/jYIVthMrh8D+corP149rVnlLcP+5twV+Gr3Na6gp+EK9USwA==
-X-Received: by 2002:a17:906:3885:b0:877:6a03:9ad4 with SMTP id q5-20020a170906388500b008776a039ad4mr7284363ejd.56.1675368110320;
-        Thu, 02 Feb 2023 12:01:50 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id 1-20020a170906318100b008787134a939sm257789ejy.18.2023.02.02.12.01.49
+        bh=QKfaeFsL9aNMopdxufkp2IOj7NlS3f6gXB+wFqAzJTE=;
+        b=UUh6PbBXsy9ecDivVfTcw/UIo9foFRaWM81rwZdCE4AiVWOruOgk1mICAzRZ9m3gKo
+         yV6C2Wf1D7bQ450sS2qsG9Dgj/lpB0T+GWNUrOrFNJN3AVlwwpGhPrpxro78Vgp1AzNu
+         lSGpxOPFvyaRMREvnk1ckdkl3qGZEoBkoF1IJzKJwtwGeoP+hfBMJa8AEhuXKLspdVSS
+         REBKdDZDeVghwAS+pWR8d8qvZLNfOi3gEhKjE7YJ7GpfO+TykOkqolKnQB3T9RiYkAWZ
+         teGkBTeaiIkFLvVKJiTIIeY85ddelSFyVvszGaSolUt/V9DImvOP1LobqHGmgp+8Naox
+         BBgA==
+X-Gm-Message-State: AO0yUKWyDqNQLXM0wkX+GqzDSg6AZ+D7pcIrBaIyGzTZ/wTnNl9wNosC
+        qIJdck65W5nwzXBLkhGWNrEvYw==
+X-Google-Smtp-Source: AK7set8XUGbekPpUIIJngK7BITDv4/cpkt+nT79mBe4msI9gfzSCAJH5ZupP7KZdQ0oyf4bB2i+fYQ==
+X-Received: by 2002:adf:e5c9:0:b0:2bf:e5fe:3674 with SMTP id a9-20020adfe5c9000000b002bfe5fe3674mr6256312wrn.24.1675368685149;
+        Thu, 02 Feb 2023 12:11:25 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l25-20020adfa399000000b002bdd155ca4dsm316869wrb.48.2023.02.02.12.11.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 12:01:49 -0800 (PST)
-Message-ID: <a3b6560a-764f-203f-4926-871c814a556a@linaro.org>
-Date:   Thu, 2 Feb 2023 22:01:48 +0200
+        Thu, 02 Feb 2023 12:11:24 -0800 (PST)
+Message-ID: <f4a545c3-ef1f-39f0-25fd-d9563a950ce2@linaro.org>
+Date:   Thu, 2 Feb 2023 21:11:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 4/6] dt-bindings: mailbox: qcom: add compatible for the
- IPQ5332 SoC
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Kathiravan T <quic_kathirav@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230202145208.2328032-1-quic_kathirav@quicinc.com>
- <20230202145208.2328032-5-quic_kathirav@quicinc.com>
- <3a346606-576b-ab89-78f5-5bbaca729090@linaro.org>
- <8766f07e-a5d2-b59c-d130-f8cc2da64556@linaro.org>
-In-Reply-To: <8766f07e-a5d2-b59c-d130-f8cc2da64556@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v4 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
+To:     Maarten Zanders <maarten.zanders@mind.be>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230202101032.26737-1-maarten.zanders@mind.be>
+ <20230202101032.26737-2-maarten.zanders@mind.be>
+ <20eb5589-8287-90bd-3703-2818b61c6ba3@linaro.org>
+ <b9c6c74b-65d2-46bf-bd7c-e031d420f31c@mind.be>
+ <5fbb6d80-7280-604a-3e1e-4bd98e9776cd@linaro.org>
+ <fa47912f-ec10-f22b-0447-0b7c998711b3@mind.be>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <fa47912f-ec10-f22b-0447-0b7c998711b3@mind.be>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -81,39 +82,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 22:00, Dmitry Baryshkov wrote:
-> On 02/02/2023 17:35, Krzysztof Kozlowski wrote:
->> On 02/02/2023 15:52, Kathiravan T wrote:
->>> Add the mailbox compatible for the IPQ5332 SoC.
->>>
->>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
->>> ---
->>>   .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml     | 3 +++
->>>   1 file changed, 3 insertions(+)
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
->>> index 943f9472ae10..8d8cd1bbe67e 100644
->>> --- 
->>> a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
->>> +++ 
->>> b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
->>> @@ -18,6 +18,7 @@ properties:
->>>       oneOf:
->>
->> - items:
->>      - enum:
->>          - qcom,ipq5332-apcs-apps-global
->>      - const: qcom,ipq6018-apcs-apps-global
->>
->> and drop the next patch
+On 02/02/2023 15:12, Maarten Zanders wrote:
 > 
-> Is it still ok even if the two devices are not fully compatible (iow, 
-> using different PLL types)?
+> On 2/2/23 14:43, Krzysztof Kozlowski wrote:
+>>
+>> Strings in DTS are usually easier to for humans to read, but it's not a
+>> requirement to use them. The problem of storing register values is that
+>> binding is tied/coupled with hardware programming model, so you cannot
+>> add a new device if the register value is a bit different (e.g.
+>> LP55XX_CP_OFF is 0x1). You need entire new binding for such case. With
+>> string - no need.
+> I understand and this is why I started with the string in the first 
+> place (as suggested by yourself in V1).
+>> With binding constants (IDs) also no need, so was this
+>> the intention? Just to be clear - it is then ID or binding constant, not
+>> a value for hardware register.
+>>
+> For simplicity sake, yes, now the setting is propagating directly into 
+> the register as a bit value. But this is how the current implementation 
+> of the drivers work. If we add a device in the future which indeed has 
+> different bit mappings, that driver will have to do a mapping of the DT 
+> binding to its own bit field definitions. I consider this DT binding as 
+> the "master", which is now conveniently chosen to match the register values.
 
-Ignore my question, I mixed the A53 and APCS clocks.
+OK, that makes sense.
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
