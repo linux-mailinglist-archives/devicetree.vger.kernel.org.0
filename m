@@ -2,97 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB0E26884FD
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 18:00:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C52616884E6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 17:57:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232418AbjBBRAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 12:00:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35444 "EHLO
+        id S231775AbjBBQ5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 11:57:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232287AbjBBRAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 12:00:06 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE3CB6EDDA
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 09:00:03 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so1938476wms.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 09:00:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RhWcv5ExWaP3//OnTLElwVyp8DmK2Pshcf2EZSENjBg=;
-        b=S59BU50BWaDwXZXUjhHPMPQGa7RFaMvglYDORCeXz5DaTmSlUJ2pEeHpVpvG1odNcn
-         2/pJ/ApUNg8czmIkCXmqq94V4vHr0lpDUY1HXzt63FSvGvTx/543eX5t3veDdyCnIfAk
-         5/6DMQ9TqnW/4suGIJVNiXNXj1ypi5g3KnXflobuo6jM3mSUP69IEQxmPX0K0dZF7Bec
-         5UJUrww+pMs2a7TzET06rDEcgb+YhC+41FHr1MlwZAeobNe7ABaVjgqsFEAoLElR58SP
-         TtJ7XRHL8jHflHSjoptLYiEFMOf6TltMRO3uKW653hr0XZv25puj4uxx0hS0nXvs17vg
-         idFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RhWcv5ExWaP3//OnTLElwVyp8DmK2Pshcf2EZSENjBg=;
-        b=oZvThVqL60udqJbOaK2PWM245WahdBBioQukIfIQGnkS9QAX2EGAVEU3nVUzP3VxKs
-         4B189g9dOZWTXg2FyYtA6ZTerSFbpL4z+Cy3pXHwaFjmOdDNuSutmaJYqdR8amskMR0A
-         L9NxFhFZltwMYgNv7fR9gqK7fhqvpCSE+csmSCnkw3aawZofi3Cy64Ry4keY8fi/kBey
-         b67DG7ineTpX9TCJCNv1EhnzZUfANfE00N3agthNo/HBz8qkYzayOZlbLogg1iwYT/6C
-         DQL+s86HqfCKVNf89KXuPA14872XQrii4RIjWENmzcPbkC9+8KlwwUsoR4ywur+YD0/G
-         1HEQ==
-X-Gm-Message-State: AO0yUKUV0iGF6/SUOfzOS7igLEqxiHfTrEPrWUfOn/T3Y05Cr3C7LzgA
-        dAYK1M2Xi5YNsH+bO2l+c+bj3Q==
-X-Google-Smtp-Source: AK7set8Mz6f9IAFqisS/S6MhfAxrzntIV6lhfSiMTdk8c1G+CNehf5jH9DotPDB/8tObaNdLMHytCw==
-X-Received: by 2002:a05:600c:1e13:b0:3d9:f836:3728 with SMTP id ay19-20020a05600c1e1300b003d9f8363728mr6856891wmb.11.1675357202092;
-        Thu, 02 Feb 2023 09:00:02 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id he7-20020a05600c540700b003df5be8987esm3632611wmb.20.2023.02.02.09.00.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 09:00:01 -0800 (PST)
-Message-ID: <9bc34d9a-e4f3-272e-1ebd-c717509b709b@linaro.org>
-Date:   Thu, 2 Feb 2023 18:00:00 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [RFC v3 1/7] dt-bindings: mfd: qcom,spmi-pmic: Add pattern
- property for phy
-Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229608AbjBBQ47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 11:56:59 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABE7665EF4;
+        Thu,  2 Feb 2023 08:56:58 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6488FB82746;
+        Thu,  2 Feb 2023 16:56:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8122BC433D2;
+        Thu,  2 Feb 2023 16:56:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675357016;
+        bh=Gvq02b9P/lXWWu1impdnZP8MBf9Vgtl3EK37Xtq1PQY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=g6munLSfCJTT/MJhvhOdAaWevLr6cf8ENrbjUT7sQ2y3l4t+9YxjG+959fqA1goDb
+         7HGK5SiYdhXksOCUMVmtkvPVGtXMvZy6GGdG8jBdS4nKgLgF4eEulQVO7Z0IelXdot
+         FoLevu/DV84ngi/wlAavP2+wOu9qRxA85iq/G485Ekuh3zvPns9M+jiKwLHM0yicKP
+         7rFr+nvh0LU2E1Zj5EW2BVQc8n+pTlnhUWKMWUC8TSCKMjwZbLJhtlmIMB6ktEjxrl
+         9H5HvWSkX5a3cdAg9SRrsDjmB0UJ0uwQXegFNSJlpfHbrnV4pVRLfYnOhBRprdKkYE
+         cPXI8tddOUi2Q==
+Date:   Thu, 2 Feb 2023 17:10:52 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-phy@lists.infradead.org
-References: <20230202133816.4026990-1-abel.vesa@linaro.org>
- <20230202133816.4026990-2-abel.vesa@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202133816.4026990-2-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: add missing vref-supply
+Message-ID: <20230202171052.502ec666@jic23-huawei>
+In-Reply-To: <20230201121343.vk2t2dfpbvhflols@pengutronix.de>
+References: <20230131101323.606931-1-alexander.stein@ew.tq-group.com>
+        <20230131104816.w5sfpcdjulr2ogze@pengutronix.de>
+        <1850476.tdWV9SEqCh@steina-w>
+        <20230201121343.vk2t2dfpbvhflols@pengutronix.de>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 14:38, Abel Vesa wrote:
-> The phy pattern property will be used for providing eUSB2 repeater
-> functionality. This will be modelled as a Qualcomm PHY driver.
+On Wed, 1 Feb 2023 13:13:43 +0100
+Marco Felsch <m.felsch@pengutronix.de> wrote:
+
+> Hi Alexander,
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
+> On 23-01-31, Alexander Stein wrote:
+> > Hi Marco,
+> > 
+> > thanks for the feedback.
+> > 
+> > Am Dienstag, 31. Januar 2023, 11:48:16 CET schrieb Marco Felsch:  
+> > > Hi Alexander,
+> > > 
+> > > On 23-01-31, Alexander Stein wrote:  
+> > > > Although this property is used right now for IIO_CHAN_INFO_SCALE,
+> > > > this ADC has two internal reference voltages, which the driver currently
+> > > > doesn't make use of.
+> > > > 
+> > > > Fixes: db73419d8c06 ("dt-bindings: iio: adc: Add binding documentation for
+> > > > NXP IMX8QXP ADC") Signed-off-by: Alexander Stein
+> > > > <alexander.stein@ew.tq-group.com>
+> > > > ---
+> > > > 
+> > > >  .../devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml          | 4 ++++
+> > > >  1 file changed, 4 insertions(+)
+> > > > 
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> > > > b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml index
+> > > > 63369ba388e4..879768af0303 100644
+> > > > --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> > > > +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> > > > 
+> > > > @@ -39,6 +39,9 @@ properties:
+> > > >    power-domains:
+> > > >      maxItems: 1
+> > > > 
+> > > > +  vref-supply:
+> > > > +    description: External ADC reference voltage supply on VREFH pad.  
+> > > 
+> > > Please add it to the list of required properties, we can remove it as
+> > > soon as the driver has support for the internal reference voltages.  
+> > 
+> > I was thinking in doing so before as well. But DT describes the hardware, and 
+> > this ADC apparently would be functioning without a reference voltage on that 
+> > pad, using a different one. What the driver actual does is a different matter.  
+> 
+> I have also thought about it first but than I checked the RM which says
+> that "multi-reference selection" is chip dependent.
 
-You need to re-order your patches to keep everything bisectable.
+Oh goody. So is it detectable?
 
-Best regards,
-Krzysztof
+If we are going to stick to a single compatible rather than adding them for
+the variants with and without this feature, should probably add a note at least
+to say it is required for some parts.
+
+Also, link if public would be good for purposes of discussion as my google
+fu didn't find relevant doc. (assuming it's public)
+
+
+Jonathan
+
+
+> 
+> Regards,
+>   Marco
+> 
+> 
+> > 
+> > Best regards,
+> > Alexander
+> >   
+> > > Regards,
+> > >   Marco
+> > >   
+> > > > +
+> > > > 
+> > > >    "#io-channel-cells":
+> > > >      const: 1
+> > > > 
+> > > > @@ -72,6 +75,7 @@ examples:
+> > > >              assigned-clocks = <&clk IMX_SC_R_ADC_0>;
+> > > >              assigned-clock-rates = <24000000>;
+> > > >              power-domains = <&pd IMX_SC_R_ADC_0>;
+> > > > 
+> > > > +            vref-supply = <&reg_1v8>;
+> > > > 
+> > > >              #io-channel-cells = <1>;
+> > > >          
+> > > >          };
+> > > >      
+> > > >      };  
+> > 
+> > 
+> > 
+> > 
+> >   
 
