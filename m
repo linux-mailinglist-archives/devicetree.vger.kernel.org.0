@@ -2,114 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 930596880BA
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 15:54:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA2926880DD
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 16:00:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232756AbjBBOyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 09:54:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60314 "EHLO
+        id S232735AbjBBPAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 10:00:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232771AbjBBOxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 09:53:47 -0500
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8CF190399;
-        Thu,  2 Feb 2023 06:53:21 -0800 (PST)
-Received: by mail-qt1-f180.google.com with SMTP id m26so2034429qtp.9;
-        Thu, 02 Feb 2023 06:53:21 -0800 (PST)
+        with ESMTP id S232503AbjBBPAG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 10:00:06 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60A2841081
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 07:00:02 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id v6-20020a17090ad58600b00229eec90a7fso6083484pju.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 07:00:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hjtSMcHdo/6LQulLVHOl8CPb0d7hVaersYbne3X+bik=;
+        b=zD1E9RVv6wVZMCze1+4pkl1PKVfZrFaNrEnCtfVqtxMutX3tSn1R3IuVi8wXqBa6P4
+         zkHB7WD8EZJordFXOW310lBfbWLS0loyhQaRJ6GtbcTFQSuSUiH6WjThav0zun+OIEBw
+         P4fIgWFFWP1gxlgS/Zgouibh4BGlxtBcI94SM/T7TEjdyfB2KyPPeA3iseJAVpIFdP6D
+         iClQL/jWN05/4EayDiAEXERg3PdellksQkzqpSzHLnuFPOGMixExvAE2MjIJ4rOPqfuF
+         KKPMa4p8jy/9VjI5YRF6hwbkBRK6khrRF+sIpnaGaGcBr3pDvPRz75Oaqi5SNzAFJSWN
+         TmBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KVmz0ZGGG5hNzR9A7sThGYZm5Ftof8Kw2ogOSsC2SYs=;
-        b=3Rc7w39PxaQXBYQp+Kp3jT/9Y7eDCKF5K54dHhUq6yDZyBVmyOrpYhJdHot5R0esYI
-         7lJKq5QTM0C7a5/3Q7QQLWWUqvSBTsTJB4JZ2rOFDMdlTTdaU1J7w8SGLrSqS0cVQljh
-         eKPpD9uk/XxZI/+JRcWq3hBLhcIVyPLeZWB8fDUush8JdT5V219Rg5833PGu8MydJv2S
-         8pL9s2HzCK7BRr632Vw9sL28JoAM41WBHSDDSUkklUV4nihvNbG9Z3IYQ8bYN60Bla4X
-         J3ejTFYalsNu3bbCnLM0XEax6A76JyF+SR1tFA4yrxtuB9ZOElnrvzMqXEiNvVZEYFJ5
-         oZ/g==
-X-Gm-Message-State: AO0yUKXtun/rOa0XIPGJIqeOqZ4IBmi9PTFuOhyi5rVeYr1EIox/XxqX
-        1yB8a68oscze0QgoTLA0TCPvan3ZLV+FTA==
-X-Google-Smtp-Source: AK7set9Q2amItF0Syp10S9qUJiZrSVkz4tHmvvby0gtZafYJAJ2Pp9oIPqk994eOfNn8jX1lUweVZA==
-X-Received: by 2002:a05:622a:190a:b0:3b9:b808:9eb8 with SMTP id w10-20020a05622a190a00b003b9b8089eb8mr13271583qtc.58.1675349600667;
-        Thu, 02 Feb 2023 06:53:20 -0800 (PST)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id a17-20020ac86111000000b003b0766cd169sm13942544qtm.2.2023.02.02.06.53.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 06:53:20 -0800 (PST)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-50660e2d2ffso29606307b3.1;
-        Thu, 02 Feb 2023 06:53:19 -0800 (PST)
-X-Received: by 2002:a0d:f106:0:b0:507:86ae:c733 with SMTP id
- a6-20020a0df106000000b0050786aec733mr850721ywf.358.1675349599638; Thu, 02 Feb
- 2023 06:53:19 -0800 (PST)
+        bh=hjtSMcHdo/6LQulLVHOl8CPb0d7hVaersYbne3X+bik=;
+        b=csGDGOoLU0BK/qUU8By5SILvNKzirUY3LzfB2HT/y97GtmvVnFDpNUO4XOHcKU9BDh
+         k/D+XmvBRHty1mr0/ew2LnueBIgqSo93Dc6r9oJvy37rWfwoJBhRpxfI2YOuPM6VtE/4
+         tj1mwduJbF+971GV4V0XvubLAZJU/Kd5zRzcT3v4kXEtlTOFNKq5V8zPJD7xHrF3N0aP
+         FNGiN0C9QBda0RH1JXr3VSdRiKLdOP5447xrTvhyyBfam0RC9ikOwPX/CnbRMn+Kox1F
+         jW2jJ/xbUKHd3Ai0Vylvn+yRWu4MTw3VdMcFNtsmzzXE63MCtsVfM5hBRTg/4eeKB9E1
+         yycg==
+X-Gm-Message-State: AO0yUKVhbPmsdBIp2cGdLIwfPwKiryjr7nZf+cRl77Ez59kagGAs9E4w
+        fjkyUr4Ha2paC7lhT0V1G4xrby7Fw1z6mQ0oiz3Mmw==
+X-Google-Smtp-Source: AK7set9YKduFWnTdTRlctnFptPfKDcEe5mltzTPrSDe8AB+1hnqam2H1UBHfk2HaxsG9DmoA9IT8Hmk2x9+IrlfWkjs=
+X-Received: by 2002:a17:902:e807:b0:198:a084:faa9 with SMTP id
+ u7-20020a170902e80700b00198a084faa9mr1529979plg.33.1675350001791; Thu, 02 Feb
+ 2023 07:00:01 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1674499048.git.geert+renesas@glider.be> <e825b50a843ffe40e33f34e4d858c07c1b2ff259.1674499048.git.geert+renesas@glider.be>
- <CAMuHMdXtiC-Oo01Y-vCbokjF=L+YXMN=TucgqCS4Vtcg5gt==g@mail.gmail.com> <20230202144000.2qvtnorgig52jfhw@pengutronix.de>
-In-Reply-To: <20230202144000.2qvtnorgig52jfhw@pengutronix.de>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 2 Feb 2023 15:53:08 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUm+ExFCspjk6OO3pvZ-mW8dOiZe7bS2r-ys0S=CBAT-Q@mail.gmail.com>
-Message-ID: <CAMuHMdUm+ExFCspjk6OO3pvZ-mW8dOiZe7bS2r-ys0S=CBAT-Q@mail.gmail.com>
-Subject: Re: [PATCH 12/12] can: rcar_canfd: Add transceiver support
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230129023630.830764-1-chenhuiz@axis.com> <b43f26c9-f76c-c898-aadc-ce3ee7b7823d@linaro.org>
+ <b125f25d-94c7-dd5b-28d3-3948c36ef4e0@axis.com> <a1d2ac4c-0763-5c92-be21-22820c376438@linaro.org>
+In-Reply-To: <a1d2ac4c-0763-5c92-be21-22820c376438@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 2 Feb 2023 15:59:25 +0100
+Message-ID: <CAPDyKFqX+1HBPmgXC9Apdb02F25J9ZTKRByqZQZn6Xx4Kf=Efg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: Add cap-aggressive-pm property
+To:     Hermes Zhang <chenhuiz@axis.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, Vinod <vkoul@kernel.org>
+        kernel@axis.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
-
-On Thu, Feb 2, 2023 at 3:40 PM Marc Kleine-Budde <mkl@pengutronix.de> wrote:
-> On 24.01.2023 19:41:03, Geert Uytterhoeven wrote:
-> > On Mon, Jan 23, 2023 at 7:56 PM Geert Uytterhoeven
-> > <geert+renesas@glider.be> wrote:
-> > > Add support for CAN transceivers described as PHYs.
-> > >
-> > > While simple CAN transceivers can do without, this is needed for CAN
-> > > transceivers like NXP TJR1443 that need a configuration step (like
-> > > pulling standby or enable lines), and/or impose a bitrate limit.
-> > >
-> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > ---
-> > > This depends on "[PATCH 1/7] phy: Add devm_of_phy_optional_get() helper".
-> > > https://lore.kernel.org/all/f53a1bcca637ceeafb04ce3540a605532d3bc34a.1674036164.git.geert+renesas@glider.be
-> >
-> > v2: "[PATCH v2 3/9] phy: Add devm_of_phy_optional_get() helper"
-> >     https://lore.kernel.org/all/4cd0069bcff424ffc5c3a102397c02370b91985b.1674584626.git.geert+renesas@glider.be
-> >
-> > I'll keep you updated when/if this ends up on an immutable branch.
+On Tue, 31 Jan 2023 at 17:57, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> Should I take the patches 1...11 for can-next/main?
+> On 30/01/2023 07:54, Hermes Zhang wrote:
+> > On 2023/1/29 18:58, Krzysztof Kozlowski wrote:
+> >> On 29/01/2023 03:36, Hermes Zhang wrote:
+> >>> This commit add a new property: cap-aggressive-pm to enable the
+> >> Do not use "This commit/patch".
+> >> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+> >
+> > Done
+> >
+> >>> MMC_CAP_AGGRESSIVE_PM feature for (e)MMC/SD power saving.
+> >> Why this is a property suitable for DT? IOW, why this isn't enabled always?
+> >
+> > This property will benfit for the power consumption, but it also may
+> > degradation in performance as it will prevent the
+> >
+> > the card from executing internal house-keeping operations in idle mode.
+> > So it's better to config it from DT.
+>
+> Why? DT is not for policy. How you described it, this is policy or
+> system tuning choice thus the job for Linux (OS), not for DT. So I will
+> repeat - why this property fits the purpose of DT (describe the hardware).
+>
 
-That would be great, thanks!
+I guess the HW perspective here, is that it might not fit all
+platforms nor the actual eMMC/SD card to support this feature.
+However, it still seems like a policy rather than a strict HW
+constraint.
 
-I had hoped Vinod would have applied the dependency, and provided
-an immutable branch, as originally planned.
+Perhaps there is a way to figure out in the host driver, to
+conditionally set the MMC_CAP_AGGRESSIVE_PM for the host, when needed
+instead?
 
-Alternatively, I can send a v2 of 12/12 that does not rely on the
-new helper, and convert it later.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Kind regards
+Uffe
