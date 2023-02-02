@@ -2,121 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B74F16872DB
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 02:13:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C380687330
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 02:54:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229892AbjBBBNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 20:13:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59048 "EHLO
+        id S231343AbjBBByp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 20:54:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229940AbjBBBNR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 20:13:17 -0500
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2D6A53547;
-        Wed,  1 Feb 2023 17:13:14 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.west.internal (Postfix) with ESMTP id 7E7BF320039A;
-        Wed,  1 Feb 2023 20:13:13 -0500 (EST)
-Received: from imap50 ([10.202.2.100])
-  by compute6.internal (MEProxy); Wed, 01 Feb 2023 20:13:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1675300393; x=1675386793; bh=QfLsF1O5sT
-        /gmSokHoHo9s2t1jshMacmGtTiB4l9UAQ=; b=a7w6MKlNWW4oPSerpo9oV2gf+W
-        LB4sT68ejtdouSAjpoH+IuoBPATqnxcJzBFAhlHKgabyqD1mMS2ecI2sYl4KrB7h
-        juQ0Hxg4Qw+VKmFUQ0Up5S9x9ZjITaekuQrMPnpjGGsUf52v3fbD3EQ802WGMjvJ
-        OZtxniJFZEaEZbgTb4Z2g8ZKRV9s5cH195QGVMRNBuejCgxc4JeNcxV9Lw5MRvUF
-        6S//RhIw1VwBfUE30ULW+HKb7PNCBWba8sR66+wDwLLxENfCtXGfpW8s761dTfN4
-        wi4ilgCZRSQXI4jWKoJy4m2r6kgtmL9+cmpy+hs9j90hwbv4CmWp9axZACsQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1675300393; x=1675386793; bh=QfLsF1O5sT/gmSokHoHo9s2t1jsh
-        MacmGtTiB4l9UAQ=; b=Upo+msoxxyqhXo6uCWcfsWFmg+9iijrl3/bvmoA5+ZMT
-        QagKho9s6GBUyO4d/sVvph+WcGMZpZ5U2B1eWJADclFcZ8eK12u5osyIsdiiO/+5
-        E3TVc7iMoYHXglpfd22wd9sVGZUIYKcQh5SKa+USkTUuWVkQcSN9uIhyA+9NoKq4
-        ORlRPTwBRx8qlDkhpgiIxYzN7QQaa2ZaTz8I2NP59g/rowACmwbGD0Uwgoq9JFfv
-        jc6rS/U7YRQB4/9YoSqupj4Ii0RoSsV0MlvYVejOLZ0Zv0RonSHAN1k6jk/RFi3Q
-        Fo+G7XfR46FN1ukwyxUlhm+1lPNQsQtIq87Yl1k5hg==
-X-ME-Sender: <xms:KA7bY5rc5j29EyVBKrv11btTVxkm2m8k-9eo9_UrY6xXXJ7BzJnEPw>
-    <xme:KA7bY7plbPdGQhBLETcfGfgR5s7BrRf_Qz2pacnp2JoOXm5xOs3cJAmeB28zm0JeT
-    sFq0zxRjYNnP5MbQA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudefjedgfeehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehn
-    ughrvgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtf
-    frrghtthgvrhhnpedvvedvieeuteehiefftdfhjeevvdetffevgffhhfeuudffhedvkeef
-    veeiueejleenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgr
-    uh
-X-ME-Proxy: <xmx:KA7bY2PEZMfATTCg1IwmjS8mKs3xIia0yjiadtYenWMSOJpTK82dqw>
-    <xmx:KA7bY078f5jo6n2dhWCV-5JEBDVFJ7pFRHpUeAvP522XxmFeHFy5Ug>
-    <xmx:KA7bY45FWGP67bdrtONAIdkr4TSmUIO0CBAuHHqGWq6bVGSgov_Jag>
-    <xmx:KQ7bY5HM5Gg5_pGdPyWHEcJ_zLYbBhAbkl20GNIuipY-3VqlweAxKQ>
-Feedback-ID: idfb84289:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 92F721700089; Wed,  1 Feb 2023 20:13:12 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-107-g82c3c54364-fm-20230131.002-g82c3c543
-Mime-Version: 1.0
-Message-Id: <206f0e93-059d-4657-8359-0c5080797c76@app.fastmail.com>
-In-Reply-To: <Y9ppGn0rLfnA3vz6@enigma.ccjz.io>
-References: <20230110042533.12894-1-clayc@hpe.com>
- <7734c165-5918-4677-b8d4-f7d5a3ed37d5@app.fastmail.com>
- <Y9kbsRsRcOnGS0ps@enigma.ccjz.io> <Y9ppGn0rLfnA3vz6@enigma.ccjz.io>
-Date:   Thu, 02 Feb 2023 11:42:49 +1030
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     clayc <clayc@hpe.com>
-Cc:     linux-kernel@vger.kernel.org, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        verdun@hpe.com, nick.hawkins@hpe.com,
-        "Arnd Bergmann" <arnd@arndb.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Russell King" <linux@armlinux.org.uk>,
-        "Olof Johansson" <olof@lixom.net>
-Subject: Re: [PATCH 0/5] ARM: Add GXP SROM Support
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229957AbjBBByo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 20:54:44 -0500
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2052.outbound.protection.outlook.com [40.107.255.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A76723C287;
+        Wed,  1 Feb 2023 17:54:42 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JE7n6RfVKlIuN6cKgZcT90oRcyMJKj+oTUx3K6OsJevs8HpYgtXuPVCO7aklfpFaGlEyV4DgG81VPtgBllByPAiT2l0A1nbNmf6IEzPdVuVI6Vhob6UpHCREkXDNlfn3rb5g3X1K3iT+yFRk2WaDwsC1NR/WcZXp8M996fITpkA3eGEcFYXxTZ3vb6Q4R3fy1Xfnct3fY7qtT+Y5ojOxnYA3k94wiNIK4YdrRjPYGwJ87z6NrAXx/XiHE05igC77eqow6m1STm5YosL4IZfcI0gzLrK0WCb/BFmfHaMVqqDRHiqwM2Yy4O8+9/ySdzLdYYsCb1CMKBAfJ9G9RijtKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/YAx88bP+6qDwTpthDiGWjcZiebBQVfUHZBcK26d0LU=;
+ b=nGC25M2mVHKeouyDztVVav5I+i5HgjAN5cdFhqWc3WB3DLT4ts1RS12VzZgWr9pyQ3ryL105N8IUBiiTXljO8QyN1LJYbihncfUbVHCLykIeuXf2xotzq26BD9evvBm0MMToJ+wJq4OqOJUtmQxRqeEb2gzhaznH368LYtAYz6rc8iRXqHT7fB/nuTykNuAgbibIFg/twS5KXwLLy0yG9S+xoYKZ2Aw0ABq7T/NT5aS9u/JACqEiIyq/qgS4/1fhFYiAKuB2p9IvAJi7kjqujNFYyJ6ZRFicVyMKS4zVUVJDzgkUbxDD4LmT6Y3VpPryf4N6RWXpRekI8LY3zsPjvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=irondevice.com; dmarc=pass action=none
+ header.from=irondevice.com; dkim=pass header.d=irondevice.com; arc=none
+Received: from SLXP216MB0077.KORP216.PROD.OUTLOOK.COM (2603:1096:100:7::23) by
+ PS2P216MB1282.KORP216.PROD.OUTLOOK.COM (2603:1096:301:a0::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6064.25; Thu, 2 Feb 2023 01:54:40 +0000
+Received: from SLXP216MB0077.KORP216.PROD.OUTLOOK.COM
+ ([fe80::3d9:7f82:fa73:e727]) by SLXP216MB0077.KORP216.PROD.OUTLOOK.COM
+ ([fe80::3d9:7f82:fa73:e727%7]) with mapi id 15.20.6064.022; Thu, 2 Feb 2023
+ 01:54:40 +0000
+From:   Ki-Seok Jo <kiseok.jo@irondevice.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: Drop broken irondevice,sma1303 binding
+Thread-Topic: [PATCH] ASoC: dt-bindings: Drop broken irondevice,sma1303
+ binding
+Thread-Index: AQHZNj6z/oQKqHubAEaPcBezJAe7N666EYoAgAANx4CAAAs2AIAABPOAgAC2qMA=
+Date:   Thu, 2 Feb 2023 01:54:40 +0000
+Message-ID: <SLXP216MB00776F066D70DB2F3F77B09E8CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
+References: <20230201131059.65527-1-krzysztof.kozlowski@linaro.org>
+ <1bcd61d6-810f-1239-1b6e-367e0fe87370@linaro.org>
+ <Y9pxGUMWyMeXQpZM@sirena.org.uk>
+ <6491d6fb-2a10-1c80-d422-8300d5a75ce4@linaro.org>
+ <Y9p+p6wt8WugDBuH@sirena.org.uk>
+In-Reply-To: <Y9p+p6wt8WugDBuH@sirena.org.uk>
+Accept-Language: ko-KR, en-US
+Content-Language: ko-KR
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=irondevice.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SLXP216MB0077:EE_|PS2P216MB1282:EE_
+x-ms-office365-filtering-correlation-id: 2cc8de75-e744-47fd-8ecf-08db04c07288
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 6nxEzAn5hXDtQyZIy6Vkm7MoQ5EBVO4o/tvdaHh2VU+H2wXAQVBWN6W0iNTVSkt2rV1GwzGjIRVzH9TYbZD9oThxikcva5YHBPUeOvnHRkiJ1lKfq/2XIezC4beRPE/fuZkkkHoeGa+FLw3y2CLPWZsWumrJd7UXvkrHS71ieBxYxqLs74f+04rvMsxEAUwBq/dKnNJkBLnRpx8JmwKMpuA/EXYSNQRuLqwTJOD2rF77ZwJuHRiZGaKbmPih6V223LbZ4oMVj104/7SefsxyvXpaavUMztucrzwegrz4EAjfzul3eNyMtISEkCh34DU/myr4Drtzg+TKayTU6o4itb4LqsnDgvDNxC52akXvTang9cWPx3z+SkOLdMBTupyWRXTt9Nf0VL4oeP9JRYqO7JLdjBLeJNqKKq12tZ4P2g79bQjXZ0LCk5gqTvWdutX81fT70Ft+zkjbD/fzUavS4VVpAgUBMD5MnPBNy41xAMf90mwZOzzTdhjsdNahLiMAkyZapesDxThqSMgXur6yIIMIOFyb1P38nqd1ZdVmucr5cfExcLPUqZU2KDpAsYZIDUowCQdRuWcYyWKhozRBk4edfQBmkbQuty+CvYmWaN0y1ZNtznFoUX6Pd/lDqz9NbrBGA1rqSBBBlGoRxjxlhjKHpUQtRg2ZcRwlyqgTDn/WH9D7m7Rhv/y6qaxM2R9l
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SLXP216MB0077.KORP216.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230025)(366004)(376002)(136003)(39840400004)(396003)(346002)(451199018)(478600001)(122000001)(110136005)(54906003)(316002)(38100700002)(71200400001)(83380400001)(7696005)(7416002)(6506007)(99936003)(86362001)(5660300002)(2906002)(38070700005)(33656002)(186003)(52536014)(8676002)(26005)(9686003)(4326008)(76116006)(41300700001)(66476007)(66556008)(66946007)(64756008)(8936002)(66446008)(55016003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?VYduGrpM/6iaWRYTP/mcoGo2NpuHnPC0MYtG2iPAs/FIh8K7ET9FiSgTcR7N?=
+ =?us-ascii?Q?RB+mYGBNK17mHLVz1IhTYVUtPoV/gbsnArQzWxdzv6faEZ9XOO6LqsdQ92/v?=
+ =?us-ascii?Q?MN1K/08KtU3RYsc/CQKIHS76VPUHB8G4JJfeDS9UTnb5tvtWaDls9c//bK3c?=
+ =?us-ascii?Q?jP0UruPQjtr/eoiO4ciIOGWb7+UIlCXBLjm5DLSdK8HzgTLcP0qUh8+EF9eW?=
+ =?us-ascii?Q?WgaUI11m/hgErEfrMl8YNjludaodOjNci9BB+60pDrpVqw0rtXpoADr8laNV?=
+ =?us-ascii?Q?D5xp1G8YW/uyqyHUhYPw1W/MIFJMM/+fLrU72WqT9PM+Oxmyvzcgq76Qy+bD?=
+ =?us-ascii?Q?dt8/ufuV4uwTIeRr1zRfJYsRtk6eUL9vauU7EGH6FISDj0O2gLzkcadgE0iS?=
+ =?us-ascii?Q?ZoY1SpBQE6rxZr8CVS9NAJey+rfU7Ws5PVLWFPN+vuo9xHXUDLY3EoEpWFtL?=
+ =?us-ascii?Q?bqB7iRwfPRp8oJr4KxzbTN4ZrsFAD7S/yqgb+2Z0YV2shQFloNI1ijC8uP+Q?=
+ =?us-ascii?Q?ABPfoDsxesooAD2z5+pr4ADXi6aN4O8wZQl/PTq/43/+Nm8EBtRxdGZ+MBAD?=
+ =?us-ascii?Q?sE8yujEiNK+l/iOZAWCki/LRUuQS5BzMWMsQ+3qvHZH3Wfs0FuVsazzqBl8O?=
+ =?us-ascii?Q?vnzaNy6PC8ihfBNqm8FEB5xPVBjjpAVgjCF8svyqmLDdY69OFMuLjFrXyXiq?=
+ =?us-ascii?Q?Z8o/3TjkX0AAtwsjAtjpibvIjZXo91QXNivkl66owHQSu006fhls/5UXAdSD?=
+ =?us-ascii?Q?icVJ3YWRbY9v07SQ4gnZSSv1w1Y/KNyMQlz6m5NLTcVQffnJG2onlQIIqwxh?=
+ =?us-ascii?Q?9lbjMKOa0cJ4hz66qNu4+VaijpRKRKQU5swiccKDvtp4vO+wobAKmh+JwU0g?=
+ =?us-ascii?Q?8WhhNf+iqKLUp2GAzzBR80ZQnkAgYZ+jzUfobEBydRzbTvJ98WnpjVOBeNII?=
+ =?us-ascii?Q?ScB44GYi6jzh4PwwWHJeUGlIXf10JGqSV3IC6dU/7PQm11lyBsHI+Srt1+tF?=
+ =?us-ascii?Q?XDLwWT83H55nZrwrxSxRpxC8fI+ZCKRmqXp2GPTQd/DRA3oTJRGw40pC9IuB?=
+ =?us-ascii?Q?4MAbnwpMnIg4i708ZrLlZ+Nx0gWiccJzd2ixBDO3P3yJezfG8W4inOqeg/0/?=
+ =?us-ascii?Q?OYiQe7TgmHhYly8qwFKE1og4MziiRsMPi0CpnxOljjPkk7m0R3vTxQwZZTWH?=
+ =?us-ascii?Q?Oyt7t7LO6Vne/60JtgJ/Wxmvjsb2CD0gg3qv0dgg0QXP6E0LFdC7IC6S5Zbp?=
+ =?us-ascii?Q?1wGEsQIoKZZgMCXLSNAnfeRi4LUDK2XyEr+q5cSxxw8m3RhtoQfNnbFnCPx5?=
+ =?us-ascii?Q?liurLIUjwW+QYpSH5agmRK2jxzAZgnCIucZWVWRX9ouIrn0FjT4kctpZUbyu?=
+ =?us-ascii?Q?wg1rgHAQHeRlinPXzqTpaxEWXC14S6ZsnmHeo7s9LnDa/Q71n68PAcyOJ4IQ?=
+ =?us-ascii?Q?4CeksdIfCCdlO5f8IedIhL+H/pBU9NHe5CLPAw+aDHIYFdKZDSI9XjQSuVXC?=
+ =?us-ascii?Q?ls4FLTf2qdK/Xwc4Fp95XDsZYOFHP5zt9hD65tNHu7tlm9VWXLhBJg5T1kVZ?=
+ =?us-ascii?Q?v7C6VxTDwH8ZcthhmSxgI6pbiMD6UE/D19dmTEjb?=
+Content-Type: multipart/mixed;
+        boundary="_002_SLXP216MB00776F066D70DB2F3F77B09E8CD69SLXP216MB0077KORP_"
+MIME-Version: 1.0
+X-OriginatorOrg: irondevice.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SLXP216MB0077.KORP216.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2cc8de75-e744-47fd-8ecf-08db04c07288
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2023 01:54:40.4216
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b4849faa-3337-494e-a76a-cb25a3b3d7d1
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: j5KnsCfeR7RUhiIhnP9mSg/Y9dubxSpgIeFx2pcSz7K6QoWM2BsVZTr7xudn+uYpp+RoAS2YFgs9DJQhYoQjXdfUacF6GPRxqfJP3VDrYG8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PS2P216MB1282
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--_002_SLXP216MB00776F066D70DB2F3F77B09E8CD69SLXP216MB0077KORP_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+> On Wed, Feb 01, 2023 at 03:43:12PM +0100, Krzysztof Kozlowski wrote:
+>=20
+> > I tried. I started writing patch to fix few things in this binding and
+> > then noticed that it is entirely empty and documents nothing.
+>=20
+> I really don't see an empty binding as a major problem in and of itself,
+> we can always add properties later.  Again, I can't tell what the problem=
+s
+> you're seeing are.
+>=20
+> > The trouble is that soon you will send it to Linus and then it becomes
+> > the ABI even though no one ever approved or reviewed the actual ABI.
+>=20
+> So send a patch to delete the property parsing code then, like I say
+> removing the entire driver is very much an overraction.  The properties a=
+re
+> all optional in the code.
+
+Ok. I'm sorry for not checking correctly.
+I only reviewed using the full source build and checkpatch.pl.
+But I missed the config setting...
+
+So, could I get the information how to test the binding files?
+From what I've checked now, using make dt_binding_check, right?
+
+I'll try to read again like submitting-patches.rst and writing-bindings.rst=
+.
+And then re-write the patch. I'm sorry again for not checking properly.
 
 
-On Wed, 1 Feb 2023, at 23:58, Clay Chang wrote:
-> Hi Andrew,
->
-> On Tue, Jan 31, 2023 at 09:46:42PM +0800, Clay Chang wrote:
->> > I'm trying to understand whether we can find some common ground with
->> > controlling e.g. Aspeed's BMCs LPC peripherals based on Arnd's query[1],
->> > but the description is a bit too vague right now for me to be able to do
->> > that.
->> > 
->> > [1] https://lore.kernel.org/all/66ef9643-b47e-428d-892d-7c1cbd358a5d@app.fastmail.com/
->> > 
->> > Andrew
->
-> I briefly studied driver/soc/aspeed/aspeed-lpc-ctrl.c, and IMO the
-> similarity between HPE GXP driver and Aspeed's could be that we both
-> expose the LPC memory addresses or registers for configuration purposes.
-> However, the functions to be configured could vary. There are a few sets
-> of registers that HPE wants to expose for configuration in the future.
+Thanks Mark and Krzysztof to feedback.
 
-The talk of "exposing registers" feels concerning - we're trying not to 
-do that directly. Instead we want to lift out an API that constrains 
-the behaviour a bit but works for both of us if there's overlap in 
-functionality.
+Best Regards,
+Kiseok Jo
 
-Can you point to any documentation of the behaviour of your hardware? 
-It's still a little vague to me.
+--_002_SLXP216MB00776F066D70DB2F3F77B09E8CD69SLXP216MB0077KORP_
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: signature.asc
+Content-Disposition: attachment; filename="signature.asc"; size=499;
+	creation-date="Thu, 02 Feb 2023 01:54:40 GMT";
+	modification-date="Thu, 02 Feb 2023 01:54:40 GMT"
+Content-Transfer-Encoding: base64
 
-Andrew
+LS0tLS1CRUdJTiBQR1AgU0lHTkFUVVJFLS0tLS0NCg0KaVFFekJBQUJDZ0FkRmlFRXJlWm9xbWRY
+R0xXZjRwL3FKTmFMY2wxVWg5QUZBbVBhZnFZQUNna1FKTmFMY2wxVQ0KaDlCNFNRZi9WL3NkTldB
+SEFrdGdMbC9UL2R0RktyeDM3UWU5d3hObHNJczVuQ0xEeCtQNEEwNzVMaG1MUUM3Lw0KQ0JSaE1J
+alZQbVdvWE12TXorUWNyTDFZWnc0WXVxdCtwTWcwdk94a0t1UVFwbFBMSytzajFPczM2alQrTkxB
+Ug0KVlhtdmhoc3kvb2hYdG5UZEQ3dHgrWXljcmxRQncyNVdkL2lNQkt6QlJIb3FqQkZDWVN5SnFL
+Y1l0cXh3MmpxUQ0Kd0FveFl1TkppM05JWllIbE9kNHFWTEpUcDh6R21XMDIzTCtNb21oVEZUaW1i
+cjk0bnBDVGJ6NDlDalZaOEI1dg0KYTlZSEFLaTNqc0RXcEl6NDVoTHNvNUdRWnZydmJ2UmJzdDN1
+OTJkQU4yQ1hTUXBiM21XNzVFRG0rcm4yMVR1Rg0KQU50ZVYrcTVjUG9PMkNUOXpHZEdZQmhGWWU1
+cEx3PT0NCj1tRmh6DQotLS0tLUVORCBQR1AgU0lHTkFUVVJFLS0tLS0NCg==
+
+--_002_SLXP216MB00776F066D70DB2F3F77B09E8CD69SLXP216MB0077KORP_--
