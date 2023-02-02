@@ -2,108 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA2926880DD
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 16:00:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67D2E6880EC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 16:02:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232735AbjBBPAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 10:00:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39876 "EHLO
+        id S231904AbjBBPCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 10:02:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232503AbjBBPAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 10:00:06 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60A2841081
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 07:00:02 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id v6-20020a17090ad58600b00229eec90a7fso6083484pju.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 07:00:02 -0800 (PST)
+        with ESMTP id S232152AbjBBPCO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 10:02:14 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C24C921B9;
+        Thu,  2 Feb 2023 07:02:02 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id mf7so6732106ejc.6;
+        Thu, 02 Feb 2023 07:02:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hjtSMcHdo/6LQulLVHOl8CPb0d7hVaersYbne3X+bik=;
-        b=zD1E9RVv6wVZMCze1+4pkl1PKVfZrFaNrEnCtfVqtxMutX3tSn1R3IuVi8wXqBa6P4
-         zkHB7WD8EZJordFXOW310lBfbWLS0loyhQaRJ6GtbcTFQSuSUiH6WjThav0zun+OIEBw
-         P4fIgWFFWP1gxlgS/Zgouibh4BGlxtBcI94SM/T7TEjdyfB2KyPPeA3iseJAVpIFdP6D
-         iClQL/jWN05/4EayDiAEXERg3PdellksQkzqpSzHLnuFPOGMixExvAE2MjIJ4rOPqfuF
-         KKPMa4p8jy/9VjI5YRF6hwbkBRK6khrRF+sIpnaGaGcBr3pDvPRz75Oaqi5SNzAFJSWN
-         TmBw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AK8RJ/5wsSk833KBMZzt5YZaWG5BWPXHye5F6n2Sqww=;
+        b=Mhc19gRW/scfcgge9UMISxNUN6s69BN9+dQpXO4f8WPvCOP0fizKIUwlK0Pka2BxOf
+         Czd0mMZkgubGbwshXF1UU6INhJlqxqBeRzGwO7A8gYkt2cpFpn/sYWbohTFY1pfoKwAN
+         VFyw1H4yTeXAlaSJZw+UDTpgsD/j3djB4PktM2dWZkfqRQyIAEjFSH0iqMtOVAznYIIc
+         AoadjAtr+boF3612QhsrvvpZoHM3cXJ69fpuL0gdqpXndst5dTg/eVlELnvlS+ibz39f
+         dAJ09TFj5Wvo7uVhbVnBCwCBYGwWvnlP18jomteKzZoIFIBKpZxjFrgDfO3gt1ci89LY
+         bmqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hjtSMcHdo/6LQulLVHOl8CPb0d7hVaersYbne3X+bik=;
-        b=csGDGOoLU0BK/qUU8By5SILvNKzirUY3LzfB2HT/y97GtmvVnFDpNUO4XOHcKU9BDh
-         k/D+XmvBRHty1mr0/ew2LnueBIgqSo93Dc6r9oJvy37rWfwoJBhRpxfI2YOuPM6VtE/4
-         tj1mwduJbF+971GV4V0XvubLAZJU/Kd5zRzcT3v4kXEtlTOFNKq5V8zPJD7xHrF3N0aP
-         FNGiN0C9QBda0RH1JXr3VSdRiKLdOP5447xrTvhyyBfam0RC9ikOwPX/CnbRMn+Kox1F
-         jW2jJ/xbUKHd3Ai0Vylvn+yRWu4MTw3VdMcFNtsmzzXE63MCtsVfM5hBRTg/4eeKB9E1
-         yycg==
-X-Gm-Message-State: AO0yUKVhbPmsdBIp2cGdLIwfPwKiryjr7nZf+cRl77Ez59kagGAs9E4w
-        fjkyUr4Ha2paC7lhT0V1G4xrby7Fw1z6mQ0oiz3Mmw==
-X-Google-Smtp-Source: AK7set9YKduFWnTdTRlctnFptPfKDcEe5mltzTPrSDe8AB+1hnqam2H1UBHfk2HaxsG9DmoA9IT8Hmk2x9+IrlfWkjs=
-X-Received: by 2002:a17:902:e807:b0:198:a084:faa9 with SMTP id
- u7-20020a170902e80700b00198a084faa9mr1529979plg.33.1675350001791; Thu, 02 Feb
- 2023 07:00:01 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AK8RJ/5wsSk833KBMZzt5YZaWG5BWPXHye5F6n2Sqww=;
+        b=N5oCgoveK2WXwcjfneK9V/psDB82arRwXCt+IUPCs8tBNKAy7kwyVYbRIhD2tXiKWe
+         P6g+0W+KC8Mgi4UNn+irX2IHrjqPIWlamUDjR8B/+ilpgw9tTDvvEpgVBNPxAydMqFfk
+         LGvbNams5NyjzvabNCd8OQZRv3cvCkFxzPiPNnGogdM2vWU64ZrCQM7gu3yHMlM40Pd/
+         ovTDdBGeBXcSP8lInDDRepQEv+tBDbwwxvpKyOGDhNd6bvdgNcVnXGo9/s/6wCc/kMpI
+         nE7TzaMFbGZjCITaGQBcgvQkJxBXpEb5GE5WlUMQ1+jeGdk6hyO2PiFkbMBrriOYA788
+         XthQ==
+X-Gm-Message-State: AO0yUKXroZTsCFEIUCOvnlk4y7o4Bv0zykbWkMNY9QWo941KJqJ1fm/b
+        qYsFauGJDtZTfldJkmKs/hc=
+X-Google-Smtp-Source: AK7set+BWJlS7YlV2HjVqiP/z5s0EhW92x9qVJ1mbI42Mcv0A/Rc3bk2UjxgdPXaUK/o5Tfu+xQCBQ==
+X-Received: by 2002:a17:906:1f47:b0:881:277:b77a with SMTP id d7-20020a1709061f4700b008810277b77amr6757235ejk.65.1675350120542;
+        Thu, 02 Feb 2023 07:02:00 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id e24-20020a17090681d800b0087bda70d3efsm10161601ejx.118.2023.02.02.07.01.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Feb 2023 07:01:59 -0800 (PST)
+Message-ID: <41eafd31-558d-613c-69ef-15230a80db5c@gmail.com>
+Date:   Thu, 2 Feb 2023 16:01:58 +0100
 MIME-Version: 1.0
-References: <20230129023630.830764-1-chenhuiz@axis.com> <b43f26c9-f76c-c898-aadc-ce3ee7b7823d@linaro.org>
- <b125f25d-94c7-dd5b-28d3-3948c36ef4e0@axis.com> <a1d2ac4c-0763-5c92-be21-22820c376438@linaro.org>
-In-Reply-To: <a1d2ac4c-0763-5c92-be21-22820c376438@linaro.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 2 Feb 2023 15:59:25 +0100
-Message-ID: <CAPDyKFqX+1HBPmgXC9Apdb02F25J9ZTKRByqZQZn6Xx4Kf=Efg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: Add cap-aggressive-pm property
-To:     Hermes Zhang <chenhuiz@axis.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v6 0/6] add support for MT8195 VPPSYS on MMSYS and MUTEX
+Content-Language: en-US
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        kernel@axis.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230118032122.29956-1-moudy.ho@mediatek.com>
+ <cd82e2a1-dbf4-88ee-f658-f695ae9ef56a@gmail.com>
+In-Reply-To: <cd82e2a1-dbf4-88ee-f658-f695ae9ef56a@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 Jan 2023 at 17:57, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 30/01/2023 07:54, Hermes Zhang wrote:
-> > On 2023/1/29 18:58, Krzysztof Kozlowski wrote:
-> >> On 29/01/2023 03:36, Hermes Zhang wrote:
-> >>> This commit add a new property: cap-aggressive-pm to enable the
-> >> Do not use "This commit/patch".
-> >> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> >
-> > Done
-> >
-> >>> MMC_CAP_AGGRESSIVE_PM feature for (e)MMC/SD power saving.
-> >> Why this is a property suitable for DT? IOW, why this isn't enabled always?
-> >
-> > This property will benfit for the power consumption, but it also may
-> > degradation in performance as it will prevent the
-> >
-> > the card from executing internal house-keeping operations in idle mode.
-> > So it's better to config it from DT.
->
-> Why? DT is not for policy. How you described it, this is policy or
-> system tuning choice thus the job for Linux (OS), not for DT. So I will
-> repeat - why this property fits the purpose of DT (describe the hardware).
->
 
-I guess the HW perspective here, is that it might not fit all
-platforms nor the actual eMMC/SD card to support this feature.
-However, it still seems like a policy rather than a strict HW
-constraint.
 
-Perhaps there is a way to figure out in the host driver, to
-conditionally set the MMC_CAP_AGGRESSIVE_PM for the host, when needed
-instead?
+On 02/02/2023 13:40, Matthias Brugger wrote:
+> Whole series queued for the next merge window.
+> 
 
-Kind regards
-Uffe
+I encountered some compile errors, so I deleted the whole series, please fix and 
+resubmit. Thanks
+
+drivers/soc/mediatek/mtk-mmsys.c: In function 'mtk_mmsys_vpp_rsz_merge_config':
+drivers/soc/mediatek/mtk-mmsys.c:261:9: error: too few arguments to function 
+'mtk_mmsys_update_bits'
+   261 |         mtk_mmsys_update_bits(dev_get_drvdata(dev), reg, ~0, enable);
+       |         ^~~~~~~~~~~~~~~~~~~~~
+drivers/soc/mediatek/mtk-mmsys.c:129:13: note: declared here
+   129 | static void mtk_mmsys_update_bits(struct mtk_mmsys *mmsys, u32 offset, 
+u32 mask, u32 val,
+       |             ^~~~~~~~~~~~~~~~~~~~~
+drivers/soc/mediatek/mtk-mmsys.c: In function 'mtk_mmsys_vpp_rsz_dcm_config':
+drivers/soc/mediatek/mtk-mmsys.c:270:9: error: too few arguments to function 
+'mtk_mmsys_update_bits'
+   270 |         mtk_mmsys_update_bits(dev_get_drvdata(dev),
+       |         ^~~~~~~~~~~~~~~~~~~~~
+drivers/soc/mediatek/mtk-mmsys.c:129:13: note: declared here
+   129 | static void mtk_mmsys_update_bits(struct mtk_mmsys *mmsys, u32 offset, 
+u32 mask, u32 val,
+       |             ^~~~~~~~~~~~~~~~~~~~~
+drivers/soc/mediatek/mtk-mmsys.c:273:9: error: too few arguments to function 
+'mtk_mmsys_update_bits'
+   273 |         mtk_mmsys_update_bits(dev_get_drvdata(dev),
+       |         ^~~~~~~~~~~~~~~~~~~~~
+drivers/soc/mediatek/mtk-mmsys.c:129:13: note: declared here
+   129 | static void mtk_mmsys_update_bits(struct mtk_mmsys *mmsys, u32 offset, 
+u32 mask, u32 val,
+       |             ^~~~~~~~~~~~~~~~~~~~~
+drivers/soc/mediatek/mtk-mmsys.c:278:9: error: too few arguments to function 
+'mtk_mmsys_update_bits'
+   278 |         mtk_mmsys_update_bits(dev_get_drvdata(dev),
+       |         ^~~~~~~~~~~~~~~~~~~~~
+drivers/soc/mediatek/mtk-mmsys.c:129:13: note: declared here
+   129 | static void mtk_mmsys_update_bits(struct mtk_mmsys *mmsys, u32 offset, 
+u32 mask, u32 val,
+       |             ^~~~~~~~~~~~~~~~~~~~~
+drivers/soc/mediatek/mtk-mmsys.c:281:9: error: too few arguments to function 
+'mtk_mmsys_update_bits'
+   281 |         mtk_mmsys_update_bits(dev_get_drvdata(dev),
+       |         ^~~~~~~~~~~~~~~~~~~~~
+drivers/soc/mediatek/mtk-mmsys.c:129:13: note: declared here
+   129 | static void mtk_mmsys_update_bits(struct mtk_mmsys *mmsys, u32 offset, 
+u32 mask, u32 val,
+       |             ^~~~~~~~~~~~~~~~~~~~~
+
+Regards,
+Matthias
+
+> Thanks!
+> 
+> On 18/01/2023 04:21, Moudy Ho wrote:
+>> Changes since v5:
+>> - Depend on :
+>>    [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=713031
+>>
+>> Changes since v4:
+>> - Rebase on linux-next.
+>> - Remove MMSYS fallback compatible.
+>> - Migrate MT8195 VPPSYS0/1 from clock to mtk-mmsys driver.
+>>
+>> Changes since v3:
+>> - Rebase on linux-next.
+>>
+>> Changes since v2:
+>> - Depend on :
+>>    [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=681097
+>> - Split dts settings into two patches based on belonging to MMSYS or MUTEX.
+>>
+>> Changes since v1:
+>> - Depend on :
+>>    [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=681097
+>> - Add compatible names to VPPSYS0 and VPPSYS1 in MMSYS binding file.
+>> - Fix VPPSYS's MMSYS and MUTEX dts to pass the dtsb_check.
+>> - Rename mtk_mmsys_merge_config() and mtk_mmsys_rsz_dcm_config() to
+>>    mtk_mmsys_vpp_rsz_merge_config() and mtk_mmsys_vpp_rsz_dcm_config().
+>> - Clean up mtk_mmsys_vpp_rsz_dcm_config().
+>> - Add a comment to mtk_mutex_write_mod() and clean it up for use in more
+>>    than 32 mods.
+>>
+>> Hi,
+>>
+>> This series add support for MT8195's two VPPSYS(Video Processor Pipe Subsystem),
+>> under which there will be corresponding MMSYS and MUTEX settings that
+>> need to be configured.
+>>
+>> Moudy Ho (1):
+>>    arm64: dts: mediatek: mt8195: add MUTEX configuration for VPPSYS
+>>
+>> Roy-CW.Yeh (5):
+>>    dt-bindings: soc: mediatek: Add support for MT8195 VPPSYS
+>>    arm64: dts: mediatek: mt8195: add MMSYS configuration for VPPSYS
+>>    soc: mediatek: mmsys: add config api for RSZ switching and DCM
+>>    soc: mediatek: mutex: Add mtk_mutex_set_mod support to set MOD1
+>>    soc: mediatek: mutex: support MT8195 VPPSYS
+>>
+>>   .../bindings/soc/mediatek/mediatek,mutex.yaml |   1 +
+>>   arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  26 +++-
+>>   drivers/soc/mediatek/mt8195-mmsys.h           |  13 ++
+>>   drivers/soc/mediatek/mtk-mmsys.c              |  42 ++++++
+>>   drivers/soc/mediatek/mtk-mutex.c              | 135 +++++++++++++++++-
+>>   include/linux/soc/mediatek/mtk-mmsys.h        |   4 +
+>>   include/linux/soc/mediatek/mtk-mutex.h        |  35 +++++
+>>   7 files changed, 245 insertions(+), 11 deletions(-)
+>>
