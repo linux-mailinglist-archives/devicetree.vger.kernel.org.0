@@ -2,94 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02575687DE1
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 13:52:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EB14687DF0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 13:54:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232000AbjBBMwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 07:52:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51946 "EHLO
+        id S232254AbjBBMyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 07:54:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229690AbjBBMwE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 07:52:04 -0500
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7386EA7
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 04:52:03 -0800 (PST)
-Received: by mail-yb1-xb29.google.com with SMTP id x139so1973540ybe.13
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 04:52:03 -0800 (PST)
+        with ESMTP id S231836AbjBBMyf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 07:54:35 -0500
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD48B457ED
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 04:54:33 -0800 (PST)
+Received: by mail-yb1-xb2e.google.com with SMTP id b1so1991092ybn.11
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 04:54:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=iTEsYvNbhZUvr3t5FDyaBPDIayK5soN0V1YA6KoE95Q=;
-        b=PPfSS12X5711vg3bhuNrJmUVkzvhGet/0lNfQTXDPw/wtNntkEWqMG9cO2+AQaapQi
-         MZJcaRC71fY2ZMHLvVtk19QBWC1mCJPijp0uWxSPYRqKKnRf1wK8sVEE8LuBsjsuG+5t
-         x1Qfdfr93US48KlEdOPNzlN6NNSHJoWxD+ccOAxBTB+PoK6YHr6Fn8j8ialUwaevYP2c
-         aixY6bNdQwbQ+vFjTT8ZPOtdFdyJvVNLLrIZFSz/pqtkbGzYjg1HuIz6De2bTmz4GpwA
-         Qam0sl8kV1yAtcdu12tzoopbHGDis2sPmqKBDume7Nod8LxoXbavP03tvajPG2IFZ/lT
-         sPbg==
+        bh=Hou2cpFBpeYFXDjBngNxUrkbjF+eRNy5ueebEuZYyZQ=;
+        b=D7N1rGfNtk+hVf8eAwCjQmKZlTV+LjudLUiUdxC1DYZxkJ7TPk1xdmrU7ZUlp1MNOp
+         iYIl+scDP8BaLzYbePblz0If/LgYb4apxSDsg1Rp84h+XvuFDnNW4ZH0jZQlojWm9ABt
+         ECB18wQ1z+kIE6F3Qdg3QoBOLLqhLykYhQ1TrWhjRgpY9SANz+KiEp1eLkCRcS+9SI+v
+         WdYEhSZQi7UnzC1YxOEtA/jeMBtHbkwTZyneDRb5tLL2ahdjC56c6U6/BOJM7OQIvXTw
+         evgrfv1Jut2TJ4CWvyDXV4JXse+Kuxl9AAsle1hToSRY0z9OXrpHnzJRTBjb7P2ciPvS
+         /MJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=iTEsYvNbhZUvr3t5FDyaBPDIayK5soN0V1YA6KoE95Q=;
-        b=MENKdVxAxSnnpehq8ZR6ipaos8+uU7qYqiePPTvO91v4b/J0OmHUl7bg9cdowaLxzB
-         Qk7Cr/YZt7bU96cblI03BNxMme5HZzQDO4v0sAWcUDze/uCC6R7gNx35/Fvv1F7YDmNF
-         ifsoPC5B0GHVghV85uox7Kb8FXef3womNH2hL4aGHO5l0RLjKYzKoDlARIpEQSxJBcRY
-         9y1w7ucoK/3xz+ZA/YrAwIZ6kyfhmqFfSWGt3sz0FCgW1yLNLBlgUcVCT+GuPVO/pIGf
-         2bBOcbo+LEJyul8dCr0vOvlS+EoEsHnebpl0OvXcEQQ4HwLP8qryXtpySBVGaWH0hkvl
-         1Wfg==
-X-Gm-Message-State: AO0yUKWsNmc54e/6Vl49qNJNxMpJPJwLPp6aZGJBkJbDBYJNmAG4KisW
-        blugnrfPZ4ApUyA3LG2Pe0onZ6syarbUDVWkraL+YQ==
-X-Google-Smtp-Source: AK7set/IzybDVeByN7olzBbtRq2zPCd8ReB2ZColcl64XBQe7/HYO17UuFBtuhM1xYbR1EXmfXF7asG9PYGE8qn+MFw=
+        bh=Hou2cpFBpeYFXDjBngNxUrkbjF+eRNy5ueebEuZYyZQ=;
+        b=RgH4eMu5djMHakNhIuubHtNauyOskp50ntiAkqS4NcYg6ctSGjpQQgWnh4qatS3NQ1
+         9WZNyh13m/QwFt0fPxEJPWB0QsEtl+1Q+SC4kNP8C1oD2RXEZfRpVZ9y3WIBOuxcnne+
+         qeaaUxseYHYb6irMYqrkIuMAowUnham4jnb5A89ZfDk6KypCXpIfSQM4qsG4McNH9wUr
+         xFCa/h5SNMcBYbWrO2YxcYpz9Lz5886fsjlVx46E6XU8n5kgERwZRFX2O/WlthxGfZKn
+         LWR2kAkdBcwkUly0SNRXnn1e0MxlqkybjfjCCFVDfDUSS3M+k2boYXcSk7GZoDXEx1Q6
+         Z4Ug==
+X-Gm-Message-State: AO0yUKXSGROv7Xe/0EZp7msbpfunEI4kfGLCUoDGNfXwkfRYmK5V8ez5
+        kQvP/7uga1G0lCOOY8qjiE1W51YvnZYErsVHeXj/ww==
+X-Google-Smtp-Source: AK7set9JcP4LrmflM2Vg6wAshx+OZbIoXMQmJnLVzau1kHRpZ2Qk6Tzv2+8Kf+dRoEUlxIU3UHfaYHhnIjYMwvPjxZ0=
 X-Received: by 2002:a25:fe0a:0:b0:7ca:9b40:72a7 with SMTP id
- k10-20020a25fe0a000000b007ca9b4072a7mr435003ybe.130.1675342322566; Thu, 02
- Feb 2023 04:52:02 -0800 (PST)
+ k10-20020a25fe0a000000b007ca9b4072a7mr435653ybe.130.1675342473108; Thu, 02
+ Feb 2023 04:54:33 -0800 (PST)
 MIME-Version: 1.0
-References: <20221207131731.1291517-1-william.qiu@starfivetech.com>
- <20221207131731.1291517-3-william.qiu@starfivetech.com> <CACRpkdYP7MokLdRtxX9w7p80c=wHDHsoTYWrU53CnpsZ7o6aGg@mail.gmail.com>
- <4529a646-1faf-c858-cfbe-1560ebeb1fba@starfivetech.com>
-In-Reply-To: <4529a646-1faf-c858-cfbe-1560ebeb1fba@starfivetech.com>
+References: <20230201150011.200613-1-brgl@bgdev.pl> <CACRpkdYEQkxEJ23Xt4hjwu3Jxct-QXZktdzze5Pf6SBNYj80Fg@mail.gmail.com>
+ <CAMRc=MdDwSi+DDJmn3Yrnh5m8EK5EJEfLrejXHN0+0k41DKx3w@mail.gmail.com>
+In-Reply-To: <CAMRc=MdDwSi+DDJmn3Yrnh5m8EK5EJEfLrejXHN0+0k41DKx3w@mail.gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 2 Feb 2023 13:51:51 +0100
-Message-ID: <CACRpkdYAP_WYwfiFxXybqqa8OJw98cxUwJgW0RUCgLLGaV+LJQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] mmc: starfive: Add sdio/emmc driver support
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+Date:   Thu, 2 Feb 2023 13:54:21 +0100
+Message-ID: <CACRpkdbLjcGUvycX9p=hYjMwS6UJOkUTOJvbEcNtddx5mnbSuQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] pinctrl: qcom: add dt-bindings and driver for sa8775p-tlmm
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 2, 2023 at 12:10 PM William Qiu
-<william.qiu@starfivetech.com> wrote:
-> On 2022/12/9 5:09, Linus Walleij wrote:
-
-> >> +       priv->syscon_offset = args.args[0];
-> >> +       priv->syscon_shift  = args.args[1];
-> >> +       priv->syscon_mask   = args.args[2];
+On Thu, Feb 2, 2023 at 9:25 AM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> On Wed, Feb 1, 2023 at 11:46 PM Linus Walleij <linus.walleij@linaro.org> wrote:
 > >
-> > Why should these three things be in the device tree instead of being derived
-> > from the compatible-string or just plain hard-coded as #defines?
-> > I don't get it.
+> > On Wed, Feb 1, 2023 at 4:00 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
 > >
-> Hi Linus,
+> > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > >
+> > > This series contains the device-tree bindings and the pinctrl driver for the
+> > > SA8775P platforms.
+> > >
+> > > v2 -> v3 (Changes in DT bindings only)
+> > > - fix the gpio pattern property (platform has 148 GPIOs)
+> > > - add blank lines for better readability
+> >
+> > v3 patch set applied, fixing the 149->148 number in the example
+> > in patch 1!
+> >
 >
-> I'm sorry to bother you, but as for the definition of syscon, after discussing with
-> my colleagues, we think it is easier to distinguish SDIO0 and SDIO1 by defining it in
-> the device tree, and the code compatibility is better.
+> Thanks! Seems like only patch 1/2 got into your branch?
 
-OK sounds good looking forward to seeing the result :)
+That's confusing, it looks to me like they are both there?
+https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=devel
+
+Isn't "pinctrl: qcom: add the tlmm driver sa8775p platforms" patch 2/2?
 
 Yours,
 Linus Walleij
