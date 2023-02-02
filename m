@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 507D8688419
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 17:20:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B06468841F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 17:20:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232130AbjBBQUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 11:20:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57178 "EHLO
+        id S232766AbjBBQUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 11:20:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232922AbjBBQTr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 11:19:47 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A5B16B01A
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 08:19:45 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id j32-20020a05600c1c2000b003dc4fd6e61dso4099471wms.5
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 08:19:45 -0800 (PST)
+        with ESMTP id S232960AbjBBQTs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 11:19:48 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74F3E28858
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 08:19:46 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id q10-20020a1cf30a000000b003db0edfdb74so4288641wmq.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 08:19:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DgeAUb8nlJmXzc8cpw6rDfJT0U0Yi27jRpa30uyE/SQ=;
-        b=PPZUN+ebJgHxincZRdcVIWQHbELBuf72NhLldy4dp7P+P1uUQJiCWTUL94g0deJy4d
-         EgsFgiG2qvC1ssAI/qreen7G08Dp7s1DeJhJP3wuBh/uaGJwPesiH7AKEgga9wzlk91G
-         owIzCRcPrs9wEqQy6vEDir5zPtDXUaShI3ixg7A24hqyTl0h+doXs89do8OF0D8wTgOg
-         PiQXhkI4EvwAczir3B3kG2KI51Kkvf2++P53TRfeY9EH0YUV+KPMh/7s4xoaGsE5w1oZ
-         gHM8VPygeaBSZK8VWsMqgn/f8mzFWkm9I0QpTG63tTb8OqmBhEnMMpMpeXNKchN/Igva
-         56lw==
+        bh=sdvxk4K8UkI7vr33u4ZlD0OvMvVuptkdT6rfsFjNwhQ=;
+        b=qWhiUsQDmOzc3KM7VK7rsM5y1TjYRlXOJseMoEzNdRBkQb6eFm1S9JmGRgrMmf4/Kn
+         K0TPAgAVcMHzLZj+95bCN37KqH6gHO+oRezv7sNNqw8OJX2a/hgi0OyAAJMgy7enxIxc
+         nqyAQfWvAha4lBQs9lNM78rcy58oMYvn9d+GyGmUOWk5Kr2nwAZQNtYL7czB3q/Icxrb
+         Fi1FzGFR5kp3L3/bTU23aKAVx384IMAUhXRwIrRBfUjLc+lyYduyl/dHqq3scGUKhzMr
+         tXP38aB3r+pSievKBfUhAkINVjLl61xwlxSAOWqzLH8Er4Vhxyhq74a/s9bNZKDEJbTm
+         G1SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DgeAUb8nlJmXzc8cpw6rDfJT0U0Yi27jRpa30uyE/SQ=;
-        b=LPYtVHm0rfXGYOfjR9Cxj5QieU2jWcNDlxP8215ltde95zB400EZrIzqxQy5YhaOdD
-         MNbA5Bb1nI3g/Qah5UEbpfDW1MRIdwHRRp+D1Wg2eAUxMEgAnsazuYypVcd6ALeXTKLz
-         WtFUJ3UJydniQadZ29NcKUyI3v+aKGF3lYf1XZ3Xa5s2mW6IFXDmkajdx3dQ/zMxaZCV
-         KjeuxYmGL46Zv0sxSdR15yr9UfW6toBH7GlegHlSjlZeNg7W+Btmcx85KN3lAEuxApLu
-         bJDfD0Pcnc8lqdzRvAFczQVZIDXnt1/UHUztoaGWLZVcBKke+dbK3sBwxyWoD2BFN3A0
-         EPoA==
-X-Gm-Message-State: AO0yUKW3EawJ9YKdQFyHPQ3PRLSJOeJJmAvltTtz7eWr19zFATNGkar3
-        zOyAnPMqD9yV3CFwShpa0Sj6pw==
-X-Google-Smtp-Source: AK7set+OXfKZljGHSc3JwzuuWUDftF9vo/5sXNWHKceOefcOUR5p7vViZiOZxF4KPB/8K6QdH6Qocw==
-X-Received: by 2002:a05:600c:4f53:b0:3dd:97d6:8f2a with SMTP id m19-20020a05600c4f5300b003dd97d68f2amr6586138wmq.33.1675354783910;
-        Thu, 02 Feb 2023 08:19:43 -0800 (PST)
+        bh=sdvxk4K8UkI7vr33u4ZlD0OvMvVuptkdT6rfsFjNwhQ=;
+        b=1IPGj7vKlg9GY5OhyA4PKP7hoEiyju4vBkCJB/fEZJahGIVRrdYYqpktJK26rXXuo1
+         KH8QafrM3JzDqShEJIVRroKUM1kjIKFHeA2SZNeg//3cV9NJoqbaN3trRQqUy61bLe5A
+         GUtONFg6eY3rrvhfh/Y1pHuCZgY0AqDkvGpJ+zcUimiOps5TvztwwQpEEy+ukPZbJXiy
+         Chn1YyrKsfk5lZHoPCCc8lrLHPd6hA2rFmP+K6gbFeL0CbL/fQTrO1b98Fvonh+GpBFT
+         MW7aq1k0q6wL1xnQ3PIXlXCpFwBx4M/i8DMHf96giKNaVXVbKllPNKRB/LqhDlfmPLEy
+         ESgg==
+X-Gm-Message-State: AO0yUKUroPV0t3w+lCirNgPG9kd+3LdaAzlJbsJHPiqvifjZKvIDXa9n
+        VYqPMn/Z6jGwbVu0xG7OAa0c0w==
+X-Google-Smtp-Source: AK7set8SmzO+W6/8siPFiSDH0ZrVBMTrTjzHTdqjx7Xv4qiJze3y+6NClLcOPVE3yZvI0NrupltgIQ==
+X-Received: by 2002:a05:600c:cca:b0:3db:bc5:b2ae with SMTP id fk10-20020a05600c0cca00b003db0bc5b2aemr6020523wmb.41.1675354784998;
+        Thu, 02 Feb 2023 08:19:44 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h16-20020a05600c351000b003dc521f336esm212416wmq.14.2023.02.02.08.19.42
+        by smtp.gmail.com with ESMTPSA id h16-20020a05600c351000b003dc521f336esm212416wmq.14.2023.02.02.08.19.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Feb 2023 08:19:43 -0800 (PST)
+        Thu, 02 Feb 2023 08:19:44 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 06/13] arm64: dts: qcom: msm8994: add compatible fallback to mailbox
-Date:   Thu,  2 Feb 2023 17:18:49 +0100
-Message-Id: <20230202161856.385825-7-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 07/13] arm64: dts: qcom: msm8998: add compatible fallback to mailbox
+Date:   Thu,  2 Feb 2023 17:18:50 +0100
+Message-Id: <20230202161856.385825-8-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230202161856.385825-1-krzysztof.kozlowski@linaro.org>
 References: <20230202161856.385825-1-krzysztof.kozlowski@linaro.org>
@@ -76,27 +76,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MSM8994 mailbox is compatible with MSM8953.
+MSM8998 mailbox is compatible with MSM8953.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8994.dtsi | 3 ++-
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-index 9ff9d35496d2..8afd9ec29ac8 100644
---- a/arch/arm64/boot/dts/qcom/msm8994.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-@@ -351,7 +351,8 @@ intc: interrupt-controller@f9000000 {
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index 8bc1c59127e5..f4df41f7d957 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -2490,7 +2490,8 @@ glink-edge {
  		};
  
- 		apcs: mailbox@f900d000 {
--			compatible = "qcom,msm8994-apcs-kpss-global", "syscon";
-+			compatible = "qcom,msm8994-apcs-kpss-global",
-+				     "qcom,msm8953-apcs-kpss-global", "syscon";
- 			reg = <0xf900d000 0x2000>;
+ 		apcs_glb: mailbox@17911000 {
+-			compatible = "qcom,msm8998-apcs-hmss-global";
++			compatible = "qcom,msm8998-apcs-hmss-global",
++				     "qcom,msm8953-apcs-kpss-global";
+ 			reg = <0x17911000 0x1000>;
+ 
  			#mbox-cells = <1>;
- 		};
 -- 
 2.34.1
 
