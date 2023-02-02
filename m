@@ -2,410 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 402646886B9
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 19:38:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F571688720
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 19:54:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232815AbjBBSin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 13:38:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46170 "EHLO
+        id S233048AbjBBSyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 13:54:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232776AbjBBSi2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 13:38:28 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DA259EE7
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 10:37:59 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id j32-20020a05600c1c2000b003dc4fd6e61dso4380695wms.5
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 10:37:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hNkK7n1gdK5bZpNBPCRIcpLI77Rcdq2rEX/DU1R2Fos=;
-        b=ShNujbh7Uw+FH7IY/9O1xBRK1vih2pHf3JyC1wgA29zLBNAsa5r5v0c+Eadpxho0h5
-         Mkn28S0O5f2FQai+81gHhAs9gkqu7Q97hDI5EXojEYF4kNR6Cm4yNvz3cEllHrM78VXu
-         nan00ycMv1Hod9iFIK55gABsx3zwPO4k8Gtg/bpUlrbpC/kMgTJSSseJRBg/2ttGW1QO
-         68NcgYIHxQ95DZwyoD+YfURgFQNcl/NXOwnOxfc/ZHsyFPvZ+dL3gf1O9f429Xmb/uye
-         enBER2iumIUfzdPjPAvjDmYrBDss3+Y9rC5pHBsY05m6YkIdXhiQzN0BMq5AP6vK6TiS
-         nY4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hNkK7n1gdK5bZpNBPCRIcpLI77Rcdq2rEX/DU1R2Fos=;
-        b=ZkE5bnRIjTjQ2zF/GiQerC4lCJKkMOjAddrEFa/XtILyBt2em3XgWXNaHXnhr+0jbd
-         X6ud0li/XKBR235srgxLSzwhVZB/d3rilYDMw0fdoR+W5k++tFprbG8d7549qS839c0P
-         54yzEJRyKI18xFncxLKaAWbJkbubIgqp8tD1lYh80e/OH6EgHHwVWLsWZLVySpFRaCO9
-         BZFBVT2JEzvCJN1nMIdjwsoRzTt0/OXmrfKPa3m4Dz/SIm0UGIMvW7LcGOxQu2kkICwq
-         v4hK2DyVZgqTOmpWxAyCKnE9CbIkZZqdv8Zeo1DBrPDq6AUKv+L+JbVpVyhke3lhj6LP
-         NAFQ==
-X-Gm-Message-State: AO0yUKUaBjRgrDc5zf0PSgxJuA625YZ6ja0PAjqxvt0eSUjUqL3bW2sy
-        ulIDWgmUuDjqvN3UWcnTE5ANKQ==
-X-Google-Smtp-Source: AK7set8y13eSjMB0cMN19eKMdBoEmkJ5gJU4sdVO0QmisYcmRl8Khh4gkesip9roQt0SBZGaegrElQ==
-X-Received: by 2002:a05:600c:474f:b0:3df:e549:bd00 with SMTP id w15-20020a05600c474f00b003dfe549bd00mr151845wmo.1.1675363077182;
-        Thu, 02 Feb 2023 10:37:57 -0800 (PST)
-Received: from localhost.localdomain (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.googlemail.com with ESMTPSA id p12-20020a5d48cc000000b00241fab5a296sm164664wrs.40.2023.02.02.10.37.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Feb 2023 10:37:56 -0800 (PST)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 9/9] ASoC: dt-bindings: meson: convert axg sound card control to schema
-Date:   Thu,  2 Feb 2023 19:36:53 +0100
-Message-Id: <20230202183653.486216-10-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230202183653.486216-1-jbrunet@baylibre.com>
-References: <20230202183653.486216-1-jbrunet@baylibre.com>
+        with ESMTP id S232677AbjBBSyN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 13:54:13 -0500
+X-Greylist: delayed 766 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 02 Feb 2023 10:54:11 PST
+Received: from out-125.mta1.migadu.com (out-125.mta1.migadu.com [IPv6:2001:41d0:203:375::7d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7C0A13D63
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 10:54:11 -0800 (PST)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+        t=1675363233;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=hKkuIcBhnMPwQqCjwGuPemg+WsdnyWvGvpoWQlaePW8=;
+        b=SLyiMiDQazrs0FMT+pfThaR2L+4JAEfLk1mOBotS0v+tmE2TwajVRZTjUHA3uFDSxS1byk
+        l4aCl1UGjmKsoZ/PqtdZUen4Ti9BENkmhRkKR8GD1IeNpEvhWOlhonN3L0wgVG3TMV60qT
+        IeVASyUaHw3Xa3TSpUIN0B0EE1JHleY=
+Date:   Thu, 02 Feb 2023 18:40:32 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From:   "Konstantin Ryabitsev" <konstantin.ryabitsev@linux.dev>
+Message-ID: <e3b80d80bb6e2ec5db7fac427d0a44b7@linux.dev>
+Subject: Re: [PATCH v4 0/3] Add USB/DP combo PHY config for SM6350
+To:     "Luca Weiss" <luca.weiss@fairphone.com>,
+        "Vinod Koul" <vkoul@kernel.org>
+Cc:     "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "Kishon Vijay Abraham I" <kishon@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "Johan Hovold" <johan+linaro@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CQ84AYQ4TTU1.JLLJCL8OFCFQ@otso>
+References: <CQ84AYQ4TTU1.JLLJCL8OFCFQ@otso>
+ <20230120-sm6350-usbphy-v4-0-4d700a90ba16@fairphone.com>
+ <Y9u4cAK+uKXuu+uL@matsya>
+X-Migadu-Flow: FLOW_OUT
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the DT binding documentation for the Amlogic axg sound card to
-schema.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- .../bindings/sound/amlogic,axg-sound-card.txt | 124 ------------
- .../sound/amlogic,axg-sound-card.yaml         | 182 ++++++++++++++++++
- 2 files changed, 182 insertions(+), 124 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt
- create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt
-deleted file mode 100644
-index 80b411296480..000000000000
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt
-+++ /dev/null
-@@ -1,124 +0,0 @@
--Amlogic AXG sound card:
--
--Required properties:
--
--- compatible: "amlogic,axg-sound-card"
--- model : User specified audio sound card name, one string
--
--Optional properties:
--
--- audio-aux-devs : List of phandles pointing to auxiliary devices
--- audio-widgets : Please refer to widgets.txt.
--- audio-routing : A list of the connections between audio components.
--
--Subnodes:
--
--- dai-link: Container for dai-link level properties and the CODEC
--	    sub-nodes. There should be at least one (and probably more)
--	    subnode of this type.
--
--Required dai-link properties:
--
--- sound-dai: phandle and port of the CPU DAI.
--
--Required TDM Backend dai-link properties:
--- dai-format : CPU/CODEC common audio format
--
--Optional TDM Backend dai-link properties:
--- dai-tdm-slot-rx-mask-{0,1,2,3}: Receive direction slot masks
--- dai-tdm-slot-tx-mask-{0,1,2,3}: Transmit direction slot masks
--				  When omitted, mask is assumed to have to no
--				  slots. A valid must have at one slot, so at
--				  least one these mask should be provided with
--				  an enabled slot.
--- dai-tdm-slot-num : Please refer to tdm-slot.txt.
--		     If omitted, slot number is set to accommodate the largest
--		     mask provided.
--- dai-tdm-slot-width : Please refer to tdm-slot.txt. default to 32 if omitted.
--- mclk-fs : Multiplication factor between stream rate and mclk
--
--Backend dai-link subnodes:
--
--- codec: dai-link representing backend links should have at least one subnode.
--	 One subnode for each codec of the dai-link.
--	 dai-link representing frontend links have no codec, therefore have no
--	 subnodes
--
--Required codec subnodes properties:
--
--- sound-dai: phandle and port of the CODEC DAI.
--
--Optional codec subnodes properties:
--
--- dai-tdm-slot-tx-mask : Please refer to tdm-slot.txt.
--- dai-tdm-slot-rx-mask : Please refer to tdm-slot.txt.
--
--Example:
--
--sound {
--	compatible = "amlogic,axg-sound-card";
--	model = "AXG-S420";
--	audio-aux-devs = <&tdmin_a>, <&tdmout_c>;
--	audio-widgets = "Line", "Lineout",
--			"Line", "Linein",
--			"Speaker", "Speaker1 Left",
--			"Speaker", "Speaker1 Right";
--			"Speaker", "Speaker2 Left",
--			"Speaker", "Speaker2 Right";
--	audio-routing = "TDMOUT_C IN 0", "FRDDR_A OUT 2",
--			"SPDIFOUT IN 0", "FRDDR_A OUT 3",
--			"TDM_C Playback", "TDMOUT_C OUT",
--			"TDMIN_A IN 2", "TDM_C Capture",
--			"TDMIN_A IN 5", "TDM_C Loopback",
--			"TODDR_A IN 0", "TDMIN_A OUT",
--			"Lineout", "Lineout AOUTL",
--			"Lineout", "Lineout AOUTR",
--			"Speaker1 Left", "SPK1 OUT_A",
--			"Speaker2 Left", "SPK2 OUT_A",
--			"Speaker1 Right", "SPK1 OUT_B",
--			"Speaker2 Right", "SPK2 OUT_B",
--			"Linein AINL", "Linein",
--			"Linein AINR", "Linein";
--
--	dai-link@0 {
--		sound-dai = <&frddr_a>;
--	};
--
--	dai-link@1 {
--		sound-dai = <&toddr_a>;
--	};
--
--	dai-link@2 {
--		sound-dai = <&tdmif_c>;
--		dai-format = "i2s";
--		dai-tdm-slot-tx-mask-2 = <1 1>;
--		dai-tdm-slot-tx-mask-3 = <1 1>;
--		dai-tdm-slot-rx-mask-1 = <1 1>;
--		mclk-fs = <256>;
--
--		codec@0 {
--			sound-dai = <&lineout>;
--		};
--
--		codec@1 {
--			sound-dai = <&speaker_amp1>;
--		};
--
--		codec@2 {
--			sound-dai = <&speaker_amp2>;
--		};
--
--		codec@3 {
--			sound-dai = <&linein>;
--		};
--
--	};
--
--	dai-link@3 {
--		sound-dai = <&spdifout>;
--
--		codec {
--			sound-dai = <&spdif_dit>;
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
-new file mode 100644
-index 000000000000..185cd9fbeda1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
-@@ -0,0 +1,182 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/amlogic,axg-sound-card.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic AXG sound card
-+
-+maintainers:
-+  - Jerome Brunet <jbrunet@baylibre.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: amlogic,axg-sound-card
-+
-+  audio-aux-devs:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: list of auxiliary devices
-+
-+  audio-routing:
-+    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-+    description: |-
-+      A list of the connections between audio components. Each entry is a
-+      pair of strings, the first being the connection's sink, the second
-+      being the connection's source.
-+
-+  audio-widgets:
-+    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-+    description: |-
-+      A list off component DAPM widget. Each entry is a pair of strings,
-+      the first being the widget type, the second being the widget name
-+
-+  model:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: User specified audio sound card name
-+
-+patternProperties:
-+  "^dai-link-[0-9]+$":
-+    type: object
-+    additionalProperties: false
-+    description: |-
-+      dai-link child nodes:
-+        Container for dai-link level properties and the CODEC sub-nodes.
-+        There should be at least one (and probably more) subnode of this type
-+
-+    properties:
-+      dai-format:
-+        $ref: /schemas/types.yaml#/definitions/string
-+        enum: [ i2s, left-j, dsp_a ]
-+
-+      dai-tdm-slot-num:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: |
-+          Number of slots in use. If omitted, slot number is set to
-+          accommodate the largest mask provided.
-+        maximum: 32
-+
-+      dai-tdm-slot-width:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: Width in bits for each slot
-+        enum: [ 8, 16, 20, 24, 32 ]
-+        default: 32
-+
-+      mclk-fs:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: |-
-+          Multiplication factor between the frame rate and master clock
-+          rate
-+
-+      sound-dai:
-+        $ref: /schemas/types.yaml#/definitions/phandle-array
-+        description: phandle of the CPU DAI
-+
-+    patternProperties:
-+      "^dai-tdm-slot-(t|r)x-mask-[0-3]$":
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        description: |-
-+          Transmit and receive cpu slot masks of each TDM lane
-+          When omitted, mask is assumed to have to no slots. A valid
-+          interface must have at least one slot, so at least one these
-+          mask should be provided with an enabled slot.
-+
-+      "^codec(-[0-9]+)?$":
-+        type: object
-+        additionalProperties: false
-+        description: |-
-+          dai-link representing backend links should have at least one subnode.
-+          One subnode for each codec of the dai-link. dai-link representing
-+          frontend links have no codec, therefore have no subnodes
-+
-+        properties:
-+          sound-dai:
-+            $ref: /schemas/types.yaml#/definitions/phandle-array
-+            description: phandle of the codec DAI
-+
-+        patternProperties:
-+          "^dai-tdm-slot-(t|r)x-mask$":
-+            $ref: /schemas/types.yaml#/definitions/uint32-array
-+            description: Transmit and receive codec slot masks
-+
-+        required:
-+          - sound-dai
-+
-+    required:
-+      - sound-dai
-+
-+required:
-+  - model
-+  - dai-link-0
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    sound {
-+        compatible = "amlogic,axg-sound-card";
-+        model = "AXG-S420";
-+        audio-aux-devs = <&tdmin_a>, <&tdmout_c>;
-+        audio-widgets = "Line", "Lineout",
-+                        "Line", "Linein",
-+                        "Speaker", "Speaker1 Left",
-+                        "Speaker", "Speaker1 Right",
-+                        "Speaker", "Speaker2 Left",
-+                        "Speaker", "Speaker2 Right";
-+        audio-routing = "TDMOUT_C IN 0", "FRDDR_A OUT 2",
-+                        "SPDIFOUT IN 0", "FRDDR_A OUT 3",
-+                        "TDM_C Playback", "TDMOUT_C OUT",
-+                        "TDMIN_A IN 2", "TDM_C Capture",
-+                        "TDMIN_A IN 5", "TDM_C Loopback",
-+                        "TODDR_A IN 0", "TDMIN_A OUT",
-+                        "Lineout", "Lineout AOUTL",
-+                        "Lineout", "Lineout AOUTR",
-+                        "Speaker1 Left", "SPK1 OUT_A",
-+                        "Speaker2 Left", "SPK2 OUT_A",
-+                        "Speaker1 Right", "SPK1 OUT_B",
-+                        "Speaker2 Right", "SPK2 OUT_B",
-+                        "Linein AINL", "Linein",
-+                        "Linein AINR", "Linein";
-+
-+        dai-link-0 {
-+               sound-dai = <&frddr_a>;
-+        };
-+
-+        dai-link-1 {
-+               sound-dai = <&toddr_a>;
-+        };
-+
-+        dai-link-2 {
-+                sound-dai = <&tdmif_c>;
-+                dai-format = "i2s";
-+                dai-tdm-slot-tx-mask-2 = <1 1>;
-+                dai-tdm-slot-tx-mask-3 = <1 1>;
-+                dai-tdm-slot-rx-mask-1 = <1 1>;
-+                mclk-fs = <256>;
-+
-+                codec-0 {
-+                       sound-dai = <&lineout>;
-+                };
-+
-+                codec-1 {
-+                       sound-dai = <&speaker_amp1>;
-+                };
-+
-+                codec-2 {
-+                       sound-dai = <&speaker_amp2>;
-+                };
-+
-+                codec-3 {
-+                       sound-dai = <&linein>;
-+                };
-+        };
-+
-+        dai-link-3 {
-+                sound-dai = <&spdifout>;
-+
-+                codec {
-+                       sound-dai = <&spdif_dit>;
-+                };
-+        };
-+    };
-+
--- 
-2.39.0
-
+February 2, 2023 8:39 AM, "Luca Weiss" <luca.weiss@fairphone.com> wrote:=
+=0A> On Thu Feb 2, 2023 at 2:19 PM CET, Vinod Koul wrote:=0A>> Signed-off=
+-by: Luca Weiss <luca.weiss@fairphone.com>=0A>> =0A>> cover doesnt need s=
+ob :)=0A> =0A> That comes from b4 ;)=0A> https://b4.docs.kernel.org=0A=0A=
+There's a number of subsystems that will use the cover letter as the base=
+ message for the merge commit, which is why the signoff is added to the c=
+over.=0A=0A-K
