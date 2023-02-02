@@ -2,164 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD4046887B5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 20:44:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BD886887C9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 20:50:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229988AbjBBToS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 14:44:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37428 "EHLO
+        id S232637AbjBBTu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 14:50:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbjBBToQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 14:44:16 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5F9E3A5;
-        Thu,  2 Feb 2023 11:44:15 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id h24so4564837lfv.6;
-        Thu, 02 Feb 2023 11:44:14 -0800 (PST)
+        with ESMTP id S232129AbjBBTu4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 14:50:56 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB16B6AC99
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 11:50:54 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id v13so3141668eda.11
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 11:50:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Rd7kT/8tJcFEXchoRyQMnasMBTHYEkNO+aCP72ohTdQ=;
-        b=RF0WK8SpEC+vqYABtaQMiRUaOoW3slBnOWi0J/jNWhbr0nbE3n9EUmobrXNtUoTebq
-         XAhQJOVnMq0I0s0D4aWnGH3W995PNGmGg8tuA9ta3zPYV3/kbxseSbdWHfdwix4W928+
-         Cb84Un1O6Zt4rChCPjiiHSLPy3kf5FtqLNzbWRvJYRJFaP7q8HazqNZRYBTl030EFdkZ
-         YWI1W+00ZEsjM32Pk6pVdeWHzybKU0pgXymeEnqPksYArrhGaxMpAaMSk+Vf/2F8rVDE
-         tFa1V5OCv35xFXSjqogD96Ghdj85ItCtUoJKsztmru0qA3/UDHEaick1Q8S07ejjyOJF
-         IPiQ==
+        bh=vU6b1/DyW9VF99p038CT5rL7cz19rU/zHJDhT4ApbFc=;
+        b=qFo6Zs4zc/E7ttK81jaTeAILjmRH5v3tgoYVgjr6j/geeokXq8B3VKC1pad3rpZa5z
+         Hx9aluvyOeNlG/2t/IxUqJKbWmnWj8CdxyMA1jK8k/tj9FveSRBkAaYJC2Ks7QmLpinM
+         ho7p6AP7jt5VbSWhkHP8/2a0cLQP/b98mdx9WZGKea13BendXKvIiiLPwEp4sQg8W9Kr
+         4kPHEyZP2DzxfUYQpUpP7nLPaXwQ3NPYdyzX29/ZCFhWw1uNQqzcOktQep/WzBX59D0r
+         YeVPI49AW2fyIGS8rPUAfXPADxjZXADDlQGjJGGpUbZ+TB2SMs0YW4F/lM/HadrYG4Rr
+         S93Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rd7kT/8tJcFEXchoRyQMnasMBTHYEkNO+aCP72ohTdQ=;
-        b=r3qOG/ftSzqE5ud4pns7FRdg6X6XKr8AhXlWfyrDRyn+GC0gDa+BRvEeoRAMbEhiQ5
-         ODAN4j4yOQn3zSo0l6jbzJHXlBOfUjQafqZUt2fgIFolzXaNa0ijJdwCVfv6SPgGoADr
-         3rzbGmX/t9pt18CMj7SD3EbRKDWLsMyvHsF2HiYDQO0MTFDMgPGSrSp6wDCEGq5nhec6
-         X4PlxFRVlSOb6pH/rjdGwBx93uCxDtp1zFhs/vM8nF21ZETopsSXQuNsmaXwov/NeOTR
-         v3rltUUoAMT4yVbZHKYaVeDPPwW/j2/gNokq59lSTMeEOfw2szEoUHk4MX45xrk0szrS
-         FtCw==
-X-Gm-Message-State: AO0yUKU6N8B3RTsway7nz8rvQC6ANVNxXxjOKEmXTd5gmhPeT5/OYEe9
-        dV7wI8iTibhSCZm7b7+AK4k=
-X-Google-Smtp-Source: AK7set/i5qFQMeHr8m6as7nzFHFJ0I2T9wnYlyJfxm3tDEiP6zZ2ZCF+JP8mzIHANAGBMc9l+So33g==
-X-Received: by 2002:ac2:510a:0:b0:4d0:1f8b:b1bd with SMTP id q10-20020ac2510a000000b004d01f8bb1bdmr1941719lfb.32.1675367053145;
-        Thu, 02 Feb 2023 11:44:13 -0800 (PST)
-Received: from [10.0.0.100] (host-213-145-197-218.kaisa-laajakaista.fi. [213.145.197.218])
-        by smtp.gmail.com with ESMTPSA id s26-20020a19771a000000b004d57fc74f2csm26484lfc.266.2023.02.02.11.44.11
+        bh=vU6b1/DyW9VF99p038CT5rL7cz19rU/zHJDhT4ApbFc=;
+        b=DeIDxuShr5tWrW0oqKbKybIrKKid3EOnMzFrsIkm4ynTYsrkOaMYtiYX92ELc6RjVR
+         GwGUUZWosE8/wdLMa/K5bKn6TpRWSUVs8JuXpohdj+AgoQbaWZ+Kdkn4QiKFyfo/+0M1
+         qpY87J9DiclEMAsRHd9diAympBeRrqLtOlZ0Ox8Gk9ouG7DJzo5NX1waAo9fo5NzHvpD
+         h46LsZW7dQOTqstmnZ8NGzaWhkLKOQ1ca17lR1HIHgAbrK7Cv99bBJxp0TPv/U2KhaI1
+         zM6gjfAzB3c+RAGPVLyBdJxgzV1i38KU0QYFb50She09ztyLNghX5uIDOF54R0ZI4BOh
+         dBIQ==
+X-Gm-Message-State: AO0yUKXeZQPlMxeqj2z/cKYVfVKRRwtx8MY/q5+zvJstpAP56o+xm1DX
+        UReSnVCfwSyCxBPPmxmVWPOoYw==
+X-Google-Smtp-Source: AK7set9amC5pThCDH+9E/vyf4TogzP4SRLeuHMPo01KOUugOmYukuiSJFsLqp102YzKiW0olzQcJrQ==
+X-Received: by 2002:a05:6402:22a7:b0:4a2:2d79:dce2 with SMTP id cx7-20020a05640222a700b004a22d79dce2mr7371719edb.10.1675367453255;
+        Thu, 02 Feb 2023 11:50:53 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id er18-20020a056402449200b0046892e493dcsm150837edb.26.2023.02.02.11.50.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 11:44:12 -0800 (PST)
-Message-ID: <df621345-1afd-1e0a-bd28-b5bd3e483e6d@gmail.com>
-Date:   Thu, 2 Feb 2023 21:46:32 +0200
+        Thu, 02 Feb 2023 11:50:52 -0800 (PST)
+Message-ID: <093a50dc-8f9e-39c9-ba31-906628e54e35@linaro.org>
+Date:   Thu, 2 Feb 2023 21:50:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH] dt-bindings: ti,k3: Use common ti,k3-sci-common.yaml
- schema
-To:     Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+Subject: Re: [PATCH v6 11/12] arm64: dts: qcom: sm8550: Add PCIe PHYs and
+ controllers nodes
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Cc:     Peter Ujfalusi <peter.ujfalusi@ti.com>, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230125221339.3057322-1-robh@kernel.org>
-Content-Language: en-US
-From:   =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-In-Reply-To: <20230125221339.3057322-1-robh@kernel.org>
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20230202123902.3831491-1-abel.vesa@linaro.org>
+ <20230202123902.3831491-12-abel.vesa@linaro.org>
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230202123902.3831491-12-abel.vesa@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 26/01/2023 00:13, Rob Herring wrote:
-> Instead of redefining the 'ti,sci' and 'ti,sci-dev-id' properties multiple
-> times, reference the common schema where they are defined. Most cases
-> using these properties already do this, just udma and ringacc need to be
-> fixed.
-
-Acked-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
-
+On 02/02/2023 14:39, Abel Vesa wrote:
+> Add PCIe controllers and PHY nodes.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->   .../devicetree/bindings/dma/ti/k3-udma.yaml         |  9 +--------
->   .../devicetree/bindings/soc/ti/k3-ringacc.yaml      | 13 ++++---------
->   2 files changed, 5 insertions(+), 17 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
-> index 7ff428ad3aae..97f6ae9b1236 100644
-> --- a/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
-> @@ -44,6 +44,7 @@ description: |
+> This patch does not have a v3, but since it is now part of the same
+> patchset with the controller and the phy drivers patches, I had to
+> bump the version to 4.
+> 
+> The v5 was here:
+> https://lore.kernel.org/all/20230124124714.3087948-12-abel.vesa@linaro.org/
+> 
+> Changes since v5:
+>   * renamed nocsr_com to phy_nocsr as discussed off-list with Bjorn and Johan
+> 
+> Changes since v4:
+>   * renamed noc_aggr_4 back to noc_aggr
+>   * moved pinctrl properties out to MTP dts
+>   * renamed nocsr to nocsr_com
+> 
+> Changes since v2:
+>   * renamed the pcie_1_link_down_reset to simply link_down
+>   * dropped the pipe from clock-names
+>   * renamed aggre clock-names to noc_aggr_4
+>   * dropped the _pcie infix from cnoc_pcie_sf_axi
+>   * dropped the aux_phy clock from the pcie1
 >   
->   allOf:
->     - $ref: "../dma-controller.yaml#"
-> +  - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
+> Changes since v1:
+>   * ordered pcie related nodes alphabetically in MTP dts
+>   * dropped the pipe_mux, phy_pipe and ref clocks from the pcie nodes
+>   * dropped the child node from the phy nodes, like Johan suggested,
+>     and updated to use the sc8280xp binding scheme
+>   * changed "pcie_1_nocsr_com_phy_reset" 2nd reset name of pcie1_phy
+>     to "nocsr"
+>   * reordered all pcie nodes properties to look similar to the ones
+>     from sc8280xp
+> 
+> 
+>   arch/arm64/boot/dts/qcom/sm8550.dtsi | 203 ++++++++++++++++++++++++++-
+>   1 file changed, 200 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index be2d85ee1f20..a85d2ae7d155 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -740,9 +740,9 @@ gcc: clock-controller@100000 {
+>   			#reset-cells = <1>;
+>   			#power-domain-cells = <1>;
+>   			clocks = <&bi_tcxo_div2>, <&sleep_clk>,
+> -				 <0>,
+> -				 <0>,
+> -				 <0>,
+> +				 <&pcie0_phy>,
+> +				 <&pcie1_phy>,
+> +				 <&pcie_1_phy_aux_clk>,
+>   				 <&ufs_mem_phy 0>,
+>   				 <&ufs_mem_phy 1>,
+>   				 <&ufs_mem_phy 2>,
+> @@ -1641,6 +1641,203 @@ mmss_noc: interconnect@1780000 {
+>   			qcom,bcm-voters = <&apps_bcm_voter>;
+>   		};
 >   
->   properties:
->     "#dma-cells":
-> @@ -78,14 +79,6 @@ properties:
->   
->     msi-parent: true
->   
-> -  ti,sci:
-> -    description: phandle to TI-SCI compatible System controller node
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> -
-> -  ti,sci-dev-id:
-> -    description: TI-SCI device id of UDMAP
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> -
->     ti,ringacc:
->       description: phandle to the ring accelerator node
->       $ref: /schemas/types.yaml#/definitions/phandle
-> diff --git a/Documentation/devicetree/bindings/soc/ti/k3-ringacc.yaml b/Documentation/devicetree/bindings/soc/ti/k3-ringacc.yaml
-> index ddea3d41971d..22cf9002fee7 100644
-> --- a/Documentation/devicetree/bindings/soc/ti/k3-ringacc.yaml
-> +++ b/Documentation/devicetree/bindings/soc/ti/k3-ringacc.yaml
-> @@ -25,6 +25,9 @@ description: |
->     The Ring Accelerator is a hardware module that is responsible for accelerating
->     management of the packet queues. The K3 SoCs can have more than one RA instances
->   
-> +allOf:
-> +  - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
+> +		pcie0: pci@1c00000 {
+> +			device_type = "pci";
+> +			compatible = "qcom,pcie-sm8550";
+> +			reg = <0 0x01c00000 0 0x3000>,
+> +			      <0 0x60000000 0 0xf1d>,
+> +			      <0 0x60000f20 0 0xa8>,
+> +			      <0 0x60001000 0 0x1000>,
+> +			      <0 0x60100000 0 0x100000>;
+> +			reg-names = "parf", "dbi", "elbi", "atu", "config";
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
+> +				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
+> +			bus-range = <0x00 0xff>;
 > +
->   properties:
->     compatible:
->       items:
-> @@ -54,14 +57,6 @@ properties:
->       $ref: /schemas/types.yaml#/definitions/uint32
->       description: TI-SCI RM subtype for GP ring range
->   
-> -  ti,sci:
-> -    $ref: /schemas/types.yaml#/definitions/phandle-array
-> -    description: phandle on TI-SCI compatible System controller node
-> -
-> -  ti,sci-dev-id:
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> -    description: TI-SCI device id of the ring accelerator
-> -
->   required:
->     - compatible
->     - reg
-> @@ -72,7 +67,7 @@ required:
->     - ti,sci
->     - ti,sci-dev-id
->   
-> -additionalProperties: false
-> +unevaluatedProperties: false
->   
->   examples:
->     - |
+> +			dma-coherent;
+> +
+> +			linux,pci-domain = <0>;
+> +			num-lanes = <2>;
+> +
+> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "msi";
+> +
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 0x7>;
+> +			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+> +					<0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+> +					<0 0 0 3 &intc 0 0 0 151 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
+> +					<0 0 0 4 &intc 0 0 0 152 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
+> +
+> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+> +				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
+> +				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
+> +				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
+> +				 <&gcc GCC_DDRSS_PCIE_SF_QTB_CLK>,
+> +				 <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>;
+> +			clock-names = "aux",
+> +				      "cfg",
+> +				      "bus_master",
+> +				      "bus_slave",
+> +				      "slave_q2a",
+> +				      "ddrss_sf_tbu",
+> +				      "noc_aggr";
+> +
+> +			interconnects = <&pcie_noc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&gem_noc MASTER_APPSS_PROC 0 &cnoc_main SLAVE_PCIE_0 0>;
+> +			interconnect-names = "pcie-mem", "cpu-pcie";
+> +
+> +			iommus = <&apps_smmu 0x1400 0x7f>;
+> +			iommu-map = <0x0   &apps_smmu 0x1400 0x1>,
+> +				    <0x100 &apps_smmu 0x1401 0x1>;
+> +
+> +			resets = <&gcc GCC_PCIE_0_BCR>;
+> +			reset-names = "pci";
+> +
+> +			power-domains = <&gcc PCIE_0_GDSC>;
+> +
+> +			phys = <&pcie0_phy>;
+> +			phy-names = "pciephy";
+> +
+> +			perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
+> +			wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+
+As we have moved pinctrl to board files, it would be logical to also 
+move these gpios to the board file too. Following the same logic, each 
+board can use it's own set of perst/wake gpios for PCIe.
+
+> +
+> +			status = "disabled";
+> +		};
+> +
+[skipped the rest]
 
 -- 
-Péter
+With best wishes
+Dmitry
+
