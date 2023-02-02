@@ -2,928 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 682FB68830B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 16:48:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1B476882CF
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 16:39:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233086AbjBBPse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 10:48:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49586 "EHLO
+        id S232596AbjBBPjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 10:39:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233054AbjBBPsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 10:48:25 -0500
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAD38C14C;
-        Thu,  2 Feb 2023 07:47:54 -0800 (PST)
-Received: from toolbox.int.toradex.com ([213.55.225.17]) by mrelay.perfora.net
- (mreueus003 [74.208.5.2]) with ESMTPSA (Nemesis) id 0MVw6g-1p8ABP1T4K-00X4vH;
- Thu, 02 Feb 2023 16:33:24 +0100
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     devicetree@vger.kernel.org
-Cc:     Liu Ying <victor.liu@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-imx@nxp.com, Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Vasut <marex@denx.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Reinhold Mueller <reinhold.mueller@emtrion.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH v6 10/10] arm64: dts: freescale: add apalis imx8 aka quadmax carrier board support
-Date:   Thu,  2 Feb 2023 16:32:20 +0100
-Message-Id: <20230202153221.197308-11-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20230202153221.197308-1-marcel@ziswiler.com>
-References: <20230202153221.197308-1-marcel@ziswiler.com>
+        with ESMTP id S232265AbjBBPjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 10:39:16 -0500
+Received: from BN6PR00CU002-vft-obe.outbound.protection.outlook.com (mail-eastus2azlp170110002.outbound.protection.outlook.com [IPv6:2a01:111:f403:c110::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A3342DF1;
+        Thu,  2 Feb 2023 07:38:52 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=edU8gyxn9jrapp7tif526GkWijYc8c9S3M21nFQCTMVR8WIHi9O+lhyYTTZVYYrv5RglTEPdU6KySrqgmYiFFLlAJZk9lIqCrlHn5ZwEUBccEQw1VyjT1udvX+nvsEEv7ppA88M7R/ThooC6HH5zyF6utS8zzFn7oD60SjqULsTTBYl6+uzfeOrx7GyxoI5ltKkJDoaeBrZ8wWZC6OIFQVC4Xs2IcM8GQsk6UMT8mlVG7rsnTYxwrQWAoijqnoDT1dwTWaRZVT3B64kml+VUHcNdXsQ5rzvQSmlWSbfcGGEYJfaXo851L/+tiuZwtH1m+PmLaFb96NEdGwd6esea8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7yFwmGMG+dweQ30eHyhyamkDpZfRqps8zqMZ1tcNLBU=;
+ b=eoSTgaIMyakkoOKGBmliKxHCIM2Ai5cMtIMp97N4Xp9xKnhTNJAsaZ15WecrPmtAQ494zkAdZPnJh7Ga4nEvq5Gz5SwdX8HJfRVyX8AI+StqzC7NDMDIRGcqIEAM8m02jjHJXSloLskDoxkbQG4e4aum5aG+3bLz+h42RQrjDqsRrKpECkUodH3dLNkn820zgZMroTQdtjsHbRY8MtNi84bY3aopJ1yH8m+Y22vM6eZuKeckI3So4Kwly7Atcv5jdWo/QbQaq0PIGaXC00GN0TRrbVhPpEThWQrKNA++afpYe6I3fdSHNWFzkflgbWbKarKcaCOa09KRPS52XDxZ5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microsoft.com; dmarc=pass action=none
+ header.from=microsoft.com; dkim=pass header.d=microsoft.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7yFwmGMG+dweQ30eHyhyamkDpZfRqps8zqMZ1tcNLBU=;
+ b=i9R5AGI/Ta/nIK/OpkC21fdutkrroYdOd4m04vxOfxcwurLadkFWvSTaJjxFTxAE3dgGRjzaLgF652FfSyUnAZU5Sg9hRWTTCjLAYRRqUYF2BD4FSX5Q6jCPC/pv6zPYRLY2RgnPgHAci1BZxEQJpD+Q60KXbJG3dOXMz7OZR9k=
+Received: from BYAPR21MB1688.namprd21.prod.outlook.com (2603:10b6:a02:bf::26)
+ by PH0PR21MB1992.namprd21.prod.outlook.com (2603:10b6:510:1f::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.6; Thu, 2 Feb
+ 2023 15:33:13 +0000
+Received: from BYAPR21MB1688.namprd21.prod.outlook.com
+ ([fe80::9a9e:c614:a89f:396e]) by BYAPR21MB1688.namprd21.prod.outlook.com
+ ([fe80::9a9e:c614:a89f:396e%7]) with mapi id 15.20.6086.007; Thu, 2 Feb 2023
+ 15:33:13 +0000
+From:   "Michael Kelley (LINUX)" <mikelley@microsoft.com>
+To:     Saurabh Singh Sengar <ssengar@linux.microsoft.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        KY Srinivasan <kys@microsoft.com>,
+        Haiyang Zhang <haiyangz@microsoft.com>,
+        "wei.liu@kernel.org" <wei.liu@kernel.org>,
+        Dexuan Cui <decui@microsoft.com>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "virtualization@lists.linux-foundation.org" 
+        <virtualization@lists.linux-foundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
+        Saurabh Singh Sengar <ssengar@microsoft.com>
+Subject: RE: [PATCH v2 2/6] Drivers: hv: allow non ACPI compilation for
+ hv_is_hibernation_supported
+Thread-Topic: [PATCH v2 2/6] Drivers: hv: allow non ACPI compilation for
+ hv_is_hibernation_supported
+Thread-Index: AQHZNZ9IFQFykaMu2kK/hQ0cFp0eSq66XU6AgAFiV4CAAAv2AA==
+Date:   Thu, 2 Feb 2023 15:33:13 +0000
+Message-ID: <BYAPR21MB1688C48CC77B43BC81B2E3E9D7D69@BYAPR21MB1688.namprd21.prod.outlook.com>
+References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
+ <1675188609-20913-3-git-send-email-ssengar@linux.microsoft.com>
+ <BYAPR21MB1688813B65EEDB79554E30D4D7D19@BYAPR21MB1688.namprd21.prod.outlook.com>
+ <20230202144843.GA11173@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+In-Reply-To: <20230202144843.GA11173@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_ActionId=26de2dce-0d04-4a76-aa95-b16be2b3d53a;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_ContentBits=0;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Enabled=true;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Method=Standard;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Name=Internal;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_SetDate=2023-02-02T15:31:31Z;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_SiteId=72f988bf-86f1-41af-91ab-2d7cd011db47;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microsoft.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BYAPR21MB1688:EE_|PH0PR21MB1992:EE_
+x-ms-office365-filtering-correlation-id: edefa456-7c7a-49b9-bca5-08db0532cc2d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: y59kEgExVufJt94AdcBAjn1seMRmklet4FrRCB8EK1zSlb1s9vvtBEbwFzA+5FwTdYJn5IohMKGuGNTy5UFweAI+1LUYVk7r//TvA27MA14LtzMtjoMYq2y7dQUOvCp/JZpEWSoQU7U3aMo3iRNMamXWzz73Sj9H7ZU1X//SJ4U/ScfE6qYWVZ2OX72zlDCqHTfVJpX8WGrHpysWds/K7FC7Avul46LFpG4i2qy5kRmI2y1B7cG6tl8NeAOIB77G6dnjVkwklVlzpQCwCyUzNs4ApZWIL+SbBVAz+J0+Log1LdmxOiKCGVDpjtjcrQnt3Sng6C+TsoWEuaNROCbB3CsBenpppZ1/w+xTWg9F29h6u49yGShOeNERNdzJRLoaLdUs4dv2usYkQFvKQWMshWuvC7XzsVnM4zu24byGvZUp8lbjs9XfthDu48QA/Qz/NDIRJiQanLXH2UIo7Dz28+h6AFBYrqTplVGIxxfBcbu+O1ba/IKHC7l6suPXgfQQVXY7Yuq8fYDAUe8r09AcKokmhv8orKHYOdnJCJvcdx2LiI9DilWw55YH3mj5kH9648bY2MpTgeUDorhre7cpVMIjwFO7ynp0npaCnlKpCWwYafvaSY6Mzyh1hDmULUEDvCpZWWdglBcfDkdxj5T6n7rhXd28EifILyeggKiwfXVlMMx8eSqjDJLbk7V7DOnYE8R44vhfSN4h98l0Wiruzv7LPGfG5apY9CjXIPiXQ1y5G/FH5qBai9PIEg9FLlgt
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR21MB1688.namprd21.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(396003)(366004)(376002)(346002)(39860400002)(136003)(451199018)(38070700005)(38100700002)(55016003)(82950400001)(4326008)(64756008)(66446008)(66556008)(66476007)(66946007)(82960400001)(8676002)(7696005)(6862004)(76116006)(8936002)(5660300002)(86362001)(52536014)(41300700001)(107886003)(9686003)(6506007)(26005)(186003)(478600001)(316002)(10290500003)(54906003)(71200400001)(33656002)(122000001)(8990500004)(2906002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?UbbQNW4pBTzwulFtJwA24JhgixbA4zme+tzwB3fDfJYn5ZkwqhS+gtatlDgE?=
+ =?us-ascii?Q?lU2E0UNLLS9f9SZVPzvZu+9LT5UUj7VJqyfHBPLmBnTn9uiltE5pN5DzMf0O?=
+ =?us-ascii?Q?lp3sn5qskBx0sWlGV0aCBWLrFjXA43WvxZs55+rimu/fQHWvF6hWGt3s4e77?=
+ =?us-ascii?Q?WFarxSaN8JotIeZeU8FUK1SWliTvR0+fX58BXOy/rzV56I3OlSjiDljI+y/x?=
+ =?us-ascii?Q?B8k3k/qbTCpUoD5RJIMbyEl3QYa1ceoOQCeuE3tieDp7TOEGKDWuUW6VT44/?=
+ =?us-ascii?Q?w3GhYWX6YuQWgNsYjG9mg3cPHML6eZKDBGSzLfsx/+wYwpyzhCF3izM1QJ9i?=
+ =?us-ascii?Q?eApDsYIm3UEPfM6cvmtzPdHTau4oMMIUQHwmYjM89dUBkIW6dVbnv8Ln+GUa?=
+ =?us-ascii?Q?oiUZko1p6+3i5fx0Q7L0rAVqwBppaWQHNnKs5EdiESHrXY6mY8Mav3iodHYh?=
+ =?us-ascii?Q?QIvvsFKECE/Kq/TAYqo6izzlE6gEuJC5MFASEiM9HeO7gQAMWIyDqMTKc9Vd?=
+ =?us-ascii?Q?gfD5mTuvi7j8G0jyHjNTyuoPiAah6AyjIjf+SAySwSdQ3ZiAVglA9cwR+l3E?=
+ =?us-ascii?Q?4tK6IIDFb7Vp22LvzZCPUH/KNgyUubsqy/dTElFSr8EGUEXutiJHe8B6M5Xy?=
+ =?us-ascii?Q?AOX91KzIJv8XQ5ncF/kAML2t7xyPV2CHpiX1Y7dA2YZNgoqjPeNPyLbPOujY?=
+ =?us-ascii?Q?fv2IOWlDncCtvjyNwDnneuFj1RveQ1L19PoSlxJYu9kj90BjGZy5PDUsMQ+Q?=
+ =?us-ascii?Q?35yXYdcmHoyD7N2+AxTAOddAzkKnRsGUlqT+8zJxn5PX8I+bjixgTb9mnZTk?=
+ =?us-ascii?Q?4BAHNP1f0ZwhUAlDwrPvb2Z7jofS7+br8X4JDhP1rtJ1nwiLaFjMKA+jYRkx?=
+ =?us-ascii?Q?KASL96E8htCajIeX+Hb2FB7NRf+4ySx365qGkd/fGtDpeZ0TVXSmTjWvt/li?=
+ =?us-ascii?Q?bzv/ZjCCcV588KFdEcxKqiIqci8hh9Z6U7XHZekf44PXkth8tzidn+XY0O/D?=
+ =?us-ascii?Q?4mOaPkgbuetGS0l7Q1SdMgw6CSpYw5GCLGK9Sw4uO3b4uENGxt5gORXtUU5z?=
+ =?us-ascii?Q?zGCOiGk+W0Ajr/AnZ41tPb76NmvM1t6hAdAlDrph4qaPCJCCGlifVqWoc/uz?=
+ =?us-ascii?Q?1yVHaNs4rY+B6fUFQQO/xeQT3o+dxN4yNkYQnUSiwOuaxydmbOjCToGQ8js1?=
+ =?us-ascii?Q?sA2SOi6TkydV7B5XpxvfXE9W3TgdM6btqIvSTTDqayKdtD2tOnRM8lQO2NXN?=
+ =?us-ascii?Q?rc9tuWm6mSrG6FF5soxDDEEPBaL5Ix5MRmzDbhJbckJ0GGyRIKvhx4GGs3cH?=
+ =?us-ascii?Q?MhqB8r/HG1uB9lDkT4GS9XQYxkb06q9BLUZjm7BXpxo/RUbbkizbz7RLQq87?=
+ =?us-ascii?Q?8SZXsZKqONR0ItRFVhxIA/WKrGI8umiIuwkGVb4btA89svdshQiGY50as5sr?=
+ =?us-ascii?Q?Vve2gpPH+boWqo1nYALsVDGlPVBIDE6BM5UoW1RxMPf78zNzvsBrTmtWDdD3?=
+ =?us-ascii?Q?NgvFnhsRUr5udcMLf3woXczHgHu4FKXpk3lWRKxYL8aburSgEBtYtoP7hIOO?=
+ =?us-ascii?Q?sbb2/B9KSZnHBgLXbUTX3UQgRZ7QIR3zODWTEjrRX5XFGtcbncdTck2SUEvn?=
+ =?us-ascii?Q?mw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:4NooJNZyE6PmPVu+XzFlu2w+XHsZtLWbr8O46W1UgzYAfTJdFOZ
- IrIyaVj8/Ro2yXF2Sy5dmc4NRh9V9gPZCKU5KmQt4JxxAfw1JtgNHDUi2uPxkf1XwhyagtW
- WauM3FQrPLVGfSe/gkRJQkxhM6Je8V5bv4H6OerzfNlhDcTUxJ3Kd7ad+irQ8GRHZXYfteg
- rBipCfhxDRjv3ivHzCKmw==
-UI-OutboundReport: notjunk:1;M01:P0:tMf3pWk1/i8=;LcIOf8Eg1CWeRiFyPlhkrtbgbCD
- Er+8493IPnQ0yq/ai63zhG4aT7hqoRmI/tYYqRbudNbHwbnJf4XD/QmN65ctT9QVE5Q8YqKsy
- 2YSgCnLhoQPaa4hTJ0F9hc3xo3/KOOEKnsTUS99tsyQlj6VB9Pc50uRvWKI5lZn+TThPqjZAR
- YH3+rLdZ1XX7OpmvgTZtHo0TL73LfTCLssAxyOC4E4441gPKZVX1RV7fWlsPKFJjHS1fGYjXl
- fkol3zH3dQkUGNPfZRBK6/suD/PSXRrqarYpCOTbxQEKTW2Xt0kWp/kGOTbuFfBRwurl1zTWA
- UwfFpUGEhmNiOdLmIzm77R5fWpUd5FO273r2+JouYiwve+nouNTZ6FaIWoldebX5liP/K+Fw7
- GJomJkqF0dG0XPZio2IHxv7fEi7kXT+2xomb4MqwMYDDuT/CUFWjHGBnX31Mvj03xJkogxyS2
- 3lhYtJC6noyhIPPRmAMBEdYCJDKdVYx/et9rIT0CvdjQdtTze0GiFDdQou0V4oIiPlp25VYn7
- cpANj7u05TXiKvc8M0dA8uaRKGgN23Azd93C0gRQZWRSkQf8H7JMsM3p6tyvbTDikwjmIbY4N
- ei96CEhtozW0sghXpJrhyuqTi6/cf6J/ikKzQyFuhEZOP7ua2GLnrKyx2mJfvxWbhMMOEshrN
- g2Uj8yKrABzItUYEgZBcCKJWRnHpCwDurRqcqMCavS4Qlgx0O5tE9JYCUk5lwOI=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: microsoft.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR21MB1688.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: edefa456-7c7a-49b9-bca5-08db0532cc2d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2023 15:33:13.4954
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: h2m3jz9EsERCSZ8HdVT1WPzvORUCuLSOHB4Vwlt3RKIdeT/Gpn0xlfjKQq8M1XcgqVWtJ51nTZ2jWak+BVx4Iij1uuym7hZbhLAZRBjwQy4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR21MB1992
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        SPF_HELO_PASS,SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+From: Saurabh Singh Sengar <ssengar@linux.microsoft.com> Sent: Thursday, Fe=
+bruary 2, 2023 6:49 AM
+>=20
+> On Wed, Feb 01, 2023 at 05:47:44PM +0000, Michael Kelley (LINUX) wrote:
+> > From: Saurabh Sengar <ssengar@linux.microsoft.com> Sent: Tuesday, Janua=
+ry 31,
+> 2023 10:10 AM
+> > >
+> > > acpi_sleep_state_supported API is only define for CONFIG_ACPI flag an=
+d
+> > > thus it can't be used for non-ACPI builds. Initaly there won't be
+> >
+> > s/Initaly/Initially/
+>=20
+> OK
+>=20
+> >
+> > > hibernate support for non ACPI builds.
+> >
+> > s/hibernate/hibernation/
+>=20
+> OK
+>=20
+> >
+> > >
+> > > This change will help adding device tree support in subsequent commit=
+s.
+> > >
+> > > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> > > ---
+> > >  drivers/hv/hv_common.c | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > >
+> > > diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
+> > > index 52a6f89ccdbd..370ec20d1993 100644
+> > > --- a/drivers/hv/hv_common.c
+> > > +++ b/drivers/hv/hv_common.c
+> > > @@ -234,7 +234,11 @@ EXPORT_SYMBOL_GPL(hv_setup_dma_ops);
+> > >
+> > >  bool hv_is_hibernation_supported(void)
+> > >  {
+> > > +#ifdef CONFIG_ACPI
+> > >  	return !hv_root_partition && acpi_sleep_state_supported(ACPI_STATE_=
+S4);
+> > > +#else
+> > > +	return false;
+> > > +#endif
+> >
+> > Is this patch needed?  If CONFIG_ACPI is not set, then per
+> > arch/x86/Kconfig, CONFIG_ACPI_SYSTEM_POWER_STATES_SUPPORT
+> > is not selected.  In that case, the #ifdef in include/acpi/acpi_bus.h
+> > provides a stub for acpi_sleep_state_supported() that returns "false".
+> > So it seems like the existing code should compile and correctly return
+> > "false" when CONFIG_ACPI is not set.
+>=20
+> You are right, if CONFIG_ACPI_SYSTEM_POWER_STATES_SUPPORT is not set
+> acpi_sleep_state_supported will return false, but this is applicable only
+> when CONFIG_ACPI is enable. If CONFIG_ACPI is not enable both these
+> functions are not defined.
+>=20
 
-The previous patch added the device tree to support Toradex Apalis
-iMX8 [1] aka QuadMax a computer on module which can be used on
-different carrier boards which this patch introduces.
+Indeed, you are right.  Most of include/acpi/acpi_bus.h is bracketed with
+#ifdef CONFIG_ACPI, including the stub acpi_sleep_state_supported().
+Oh well. :-(
 
-The module consists of an NXP i.MX 8 family SoC (either i.MX 8QuadMax or
-8QuadPlus), two PF8100 PMICs, a KSZ9131 Gigabit Ethernet PHY, 2, 4 or 8
-GB of LPDDR4 RAM, an eMMC, an SGTL5000 analogue audio codec, an USB3503A
-USB HSIC hub, an optional I2C EEPROM plus an optional Bluetooth/Wi-Fi
-module.
-
-Anything that is not self-contained on the module is disabled by
-default.
-
-The carrier board device trees contained in this patch include the
-module's device tree and enable the supported peripherals of the
-carrier board.
-
-Some level of display functionality just landed upstream but requires
-further integration/testing on our side. Therefore, currently only
-basic console UART, eMMC and Ethernet functionality work fine.
-
-As there is no i.MX 8QuadPlus device tree upstream those have been
-dropped. However, apart from an error message during boot about it
-failing to bring up the second Cortex-A72 core this boots fine on
-QuadPlus' as well.
-
-[1] https://www.toradex.com/computer-on-modules/apalis-arm-family/nxp-imx-8
-
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-
----
-
-(no changes since v5)
-
-Changes in v5:
-- Remove LVDS PWM support waiting for Liu's patches to land first.
-- Remove bkl1_pwm functionality depending on the above.
-- Squashing all Apalis iMX8 specific device tree patches. As outlined by
-  Krzysztof reviewers may simply use b4 diff.
-
-Changes in v4:
-- Shorten subject.
-
-Changes in v3:
-- Only use V1.1 compatible for V1.1 module dtsi.
-- Split patch into separate module and carrier boards parts as suggested
-  by Shawn.
-- Put reg after compatible as requested by Shawn.
-- Move atmel_mxt_ts and rtc_i2c into module dtsi to save such
-  duplications as suggested by Shawn.
-- Change iomuxc pinctrl indent style as suggested by Shawn.
-- Change led node names to the preferred first form as suggested by
-  Shawn. While at it also add color (yikes), default-state and function
-  properties and remove the deprecated label property.
-- Put enable-active-high properties after the gpio ones as suggested by
-  Shawn. Thanks!
-- Remove adc node's vref-supply and accompanying reg_vref_1v8 regulator
-  node.
-- Rename gpio-hogs adherring to dt schema naming convention.
-
- arch/arm64/boot/dts/freescale/Makefile        |   5 +
- .../boot/dts/freescale/imx8-apalis-eval.dtsi  | 144 ++++++++++
- .../dts/freescale/imx8-apalis-ixora-v1.1.dtsi | 220 ++++++++++++++
- .../dts/freescale/imx8-apalis-ixora-v1.2.dtsi | 270 ++++++++++++++++++
- .../boot/dts/freescale/imx8qm-apalis-eval.dts |  16 ++
- .../freescale/imx8qm-apalis-ixora-v1.1.dts    |  16 ++
- .../dts/freescale/imx8qm-apalis-v1.1-eval.dts |  16 ++
- .../imx8qm-apalis-v1.1-ixora-v1.1.dts         |  16 ++
- .../imx8qm-apalis-v1.1-ixora-v1.2.dts         |  16 ++
- 9 files changed, 719 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-apalis-eval.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-apalis-ixora-v1.1.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-eval.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.1.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.2.dts
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index ef6f364eaa18..c0d621d1d86e 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -112,6 +112,11 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-pico-pi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-thor96.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-rmb3.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-zest.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8qm-apalis-eval.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8qm-apalis-ixora-v1.1.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8qm-apalis-v1.1-eval.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8qm-apalis-v1.1-ixora-v1.1.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8qm-apalis-v1.1-ixora-v1.2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qm-mek.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-ai_ml.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-eval-v3.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-new file mode 100644
-index 000000000000..685d4294f4f1
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-@@ -0,0 +1,144 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/ {
-+	aliases {
-+		rtc0 = &rtc_i2c;
-+		rtc1 = &rtc;
-+	};
-+
-+	reg_usb_host_vbus: regulator-usb-host-vbus {
-+		regulator-name = "VCC USBH2(ABCD) / USBH(3|4)";
-+	};
-+};
-+
-+&adc0 {
-+	status = "okay";
-+};
-+
-+&adc1 {
-+	status = "okay";
-+};
-+
-+/* TODO: Audio Mixer */
-+
-+/* TODO: Asynchronous Sample Rate Converter (ASRC) */
-+
-+/* TODO: Display Controller */
-+
-+/* TODO: DPU */
-+
-+/* Apalis ETH1 */
-+&fec1 {
-+	status = "okay";
-+};
-+
-+/* Apalis CAN1 */
-+&flexcan1 {
-+	status = "okay";
-+};
-+
-+/* Apalis CAN2 */
-+&flexcan2 {
-+	status = "okay";
-+};
-+
-+/* TODO: GPU */
-+
-+/* Apalis I2C1 */
-+&i2c2 {
-+	status = "okay";
-+
-+	/* M41T0M6 real time clock on carrier board */
-+	rtc_i2c: rtc@68 {
-+		status = "okay";
-+	};
-+};
-+
-+/* Apalis I2C3 (CAM) */
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+/* Apalis SPI1 */
-+&lpspi0 {
-+	status = "okay";
-+};
-+
-+/* Apalis SPI2 */
-+&lpspi2 {
-+	status = "okay";
-+};
-+
-+/* Apalis UART3 */
-+&lpuart0 {
-+	status = "okay";
-+};
-+
-+/* Apalis UART1 */
-+&lpuart1 {
-+	status = "okay";
-+};
-+
-+/* Apalis UART4 */
-+&lpuart2 {
-+	status = "okay";
-+};
-+
-+/* Apalis UART2 */
-+&lpuart3 {
-+	status = "okay";
-+};
-+
-+/* Apalis PWM3, MXM3 pin 6 */
-+&lsio_pwm0 {
-+	status = "okay";
-+};
-+
-+/* Apalis PWM4, MXM3 pin 8 */
-+&lsio_pwm1 {
-+	status = "okay";
-+};
-+
-+/* Apalis PWM1, MXM3 pin 2 */
-+&lsio_pwm2 {
-+	status = "okay";
-+};
-+
-+/* Apalis PWM2, MXM3 pin 4 */
-+&lsio_pwm3 {
-+	status = "okay";
-+};
-+
-+/* TODO: Apalis PCIE1 */
-+
-+/* TODO: Apalis BKL1_PWM */
-+
-+/* TODO: Apalis DAP1 */
-+
-+/* TODO: Apalis Analogue Audio */
-+
-+/* TODO: Apalis SATA1 */
-+
-+/* TODO: Apalis SPDIF1 */
-+
-+/* TODO: Apalis USBH2, Apalis USBH3 and on-module Wi-Fi via on-module HSIC Hub */
-+
-+/* Apalis USBO1 */
-+&usbotg1 {
-+	status = "okay";
-+};
-+
-+/* TODO: Apalis USBH4 SuperSpeed */
-+
-+/* Apalis MMC1 */
-+&usdhc2 {
-+	status = "okay";
-+};
-+
-+/* Apalis SD1 */
-+&usdhc3 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-new file mode 100644
-index 000000000000..987dcaa43343
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-@@ -0,0 +1,220 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	aliases {
-+		rtc0 = &rtc_i2c;
-+		rtc1 = &rtc;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_leds_ixora>;
-+
-+		/* LED_4_GREEN / MXM3_188 */
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			default-state = "off";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&lsio_gpio5 27 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* LED_4_RED / MXM3_178 */
-+		led-2 {
-+			color = <LED_COLOR_ID_RED>;
-+			default-state = "off";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&lsio_gpio5 29 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* LED_5_GREEN / MXM3_152 */
-+		led-3 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			default-state = "off";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&lsio_gpio5 20 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* LED_5_RED / MXM3_156 */
-+		led-4 {
-+			color = <LED_COLOR_ID_RED>;
-+			default-state = "off";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&lsio_gpio5 21 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	reg_usb_host_vbus: regulator-usb-host-vbus {
-+		regulator-name = "VCC_USBH(2|4)";
-+	};
-+};
-+
-+&adc0 {
-+	status = "okay";
-+};
-+
-+&adc1 {
-+	status = "okay";
-+};
-+
-+/* TODO: Audio Mixer */
-+
-+/* TODO: Asynchronous Sample Rate Converter (ASRC) */
-+
-+/* TODO: Display Controller */
-+
-+/* TODO: DPU */
-+
-+/* Apalis ETH1 */
-+&fec1 {
-+	status = "okay";
-+};
-+
-+/* Apalis CAN1 */
-+&flexcan1 {
-+	status = "okay";
-+};
-+
-+/* Apalis CAN2 */
-+&flexcan2 {
-+	status = "okay";
-+};
-+
-+/* TODO: GPU */
-+
-+/* Apalis I2C1 */
-+&i2c2 {
-+	status = "okay";
-+
-+	/* M41T0M6 real time clock on carrier board */
-+	rtc_i2c: rtc@68 {
-+		status = "okay";
-+	};
-+};
-+
-+/* Apalis I2C3 (CAM) */
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl-0 = <&pinctrl_cam1_gpios>, <&pinctrl_dap1_gpios>,
-+		    <&pinctrl_esai0_gpios>, <&pinctrl_fec2_gpios>,
-+		    <&pinctrl_gpio3>, <&pinctrl_gpio4>, <&pinctrl_gpio_usbh_oc_n>,
-+		    <&pinctrl_lpuart1ctrl>, <&pinctrl_lvds0_i2c0_gpio>,
-+		    <&pinctrl_lvds1_i2c0_gpios>, <&pinctrl_mipi_dsi_0_1_en>,
-+		    <&pinctrl_mipi_dsi1_gpios>, <&pinctrl_mlb_gpios>,
-+		    <&pinctrl_qspi1a_gpios>, <&pinctrl_sata1_act>,
-+		    <&pinctrl_sim0_gpios>, <&pinctrl_uart24_forceoff>,
-+		    <&pinctrl_usdhc1_gpios>;
-+
-+	pinctrl_leds_ixora: ledsixoragrp {
-+		fsl,pins = <IMX8QM_USDHC2_DATA1_LSIO_GPIO5_IO27	0x06000061>, /* LED_4_GREEN */
-+			   <IMX8QM_USDHC2_DATA3_LSIO_GPIO5_IO29	0x06000061>, /* LED_4_RED */
-+			   <IMX8QM_USDHC1_DATA5_LSIO_GPIO5_IO20	0x06000061>, /* LED_5_GREEN */
-+			   <IMX8QM_USDHC1_DATA6_LSIO_GPIO5_IO21	0x06000061>; /* LED_5_RED */
-+	};
-+
-+	pinctrl_uart24_forceoff: uart24forceoffgrp {
-+		fsl,pins = <IMX8QM_USDHC2_CMD_LSIO_GPIO5_IO25		0x00000021>;
-+	};
-+};
-+
-+/* Apalis SPI1 */
-+&lpspi0 {
-+	status = "okay";
-+};
-+
-+/* Apalis SPI2 */
-+&lpspi2 {
-+	status = "okay";
-+};
-+
-+/* Apalis UART3 */
-+&lpuart0 {
-+	status = "okay";
-+};
-+
-+/* Apalis UART1 */
-+&lpuart1 {
-+	status = "okay";
-+};
-+
-+/* Apalis UART4 */
-+&lpuart2 {
-+	status = "okay";
-+};
-+
-+/* Apalis UART2 */
-+&lpuart3 {
-+	status = "okay";
-+};
-+
-+&lsio_gpio5 {
-+	ngpios = <32>;
-+	gpio-line-names = "gpio5-00", "gpio5-01", "gpio5-02", "gpio5-03",
-+			  "gpio5-04", "gpio5-05", "gpio5-06", "gpio5-07",
-+			  "gpio5-08", "gpio5-09", "gpio5-10", "gpio5-11",
-+			  "gpio5-12", "gpio5-13", "gpio5-14", "gpio5-15",
-+			  "gpio5-16", "gpio5-17", "gpio5-18", "gpio5-19",
-+			  "LED-5-GREEN", "LED-5-RED", "gpio5-22", "gpio5-23",
-+			  "gpio5-24", "UART24-FORCEOFF", "gpio5-26",
-+			  "LED-4-GREEN", "gpio5-28", "LED-4-RED", "gpio5-30",
-+			  "gpio5-31";
-+};
-+
-+/* Apalis PWM3, MXM3 pin 6 */
-+&lsio_pwm0 {
-+	status = "okay";
-+};
-+
-+/* Apalis PWM4, MXM3 pin 8 */
-+&lsio_pwm1 {
-+	status = "okay";
-+};
-+
-+/* Apalis PWM1, MXM3 pin 2 */
-+&lsio_pwm2 {
-+	status = "okay";
-+};
-+
-+/* Apalis PWM2, MXM3 pin 4 */
-+&lsio_pwm3 {
-+	status = "okay";
-+};
-+
-+/* TODO: Apalis PCIE1 */
-+
-+/* TODO: Apalis BKL1_PWM */
-+
-+/* TODO: Apalis DAP1 */
-+
-+/* TODO: Analogue Audio */
-+
-+/* TODO: Apalis SATA1 */
-+
-+/* TODO: Apalis SPDIF1 */
-+
-+/* TODO: Apalis USBH2, Apalis USBH3 and on-module Wi-Fi via on-module HSIC Hub */
-+
-+/* Apalis USBO1 */
-+&usbotg1 {
-+	status = "okay";
-+};
-+
-+/* TODO: Apalis USBH4 SuperSpeed */
-+
-+/* Apalis MMC1 */
-+&usdhc2 {
-+	bus-width = <4>;
-+	pinctrl-0 = <&pinctrl_usdhc2_4bit>, <&pinctrl_mmc1_cd>;
-+	pinctrl-1 = <&pinctrl_usdhc2_4bit_100mhz>, <&pinctrl_mmc1_cd>;
-+	pinctrl-2 = <&pinctrl_usdhc2_4bit_200mhz>, <&pinctrl_mmc1_cd>;
-+	pinctrl-3 = <&pinctrl_usdhc2_4bit_sleep>, <&pinctrl_mmc1_cd_sleep>;
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-new file mode 100644
-index 000000000000..e39ee4970816
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-@@ -0,0 +1,270 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	aliases {
-+		rtc0 = &rtc_i2c;
-+		rtc1 = &rtc;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_leds_ixora>;
-+
-+		/* LED_4_GREEN / MXM3_188 */
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			default-state = "off";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&lsio_gpio5 27 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* LED_4_RED / MXM3_178 */
-+		led-2 {
-+			color = <LED_COLOR_ID_RED>;
-+			default-state = "off";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&lsio_gpio5 29 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* LED_5_GREEN / MXM3_152 */
-+		led-3 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			default-state = "off";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&lsio_gpio5 20 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* LED_5_RED / MXM3_156 */
-+		led-4 {
-+			color = <LED_COLOR_ID_RED>;
-+			default-state = "off";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&lsio_gpio5 21 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	reg_3v3_vmmc: regulator-3v3-vmmc {
-+		compatible = "regulator-fixed";
-+		/* MMC1_PWR_CTRL */
-+		gpio = <&lsio_gpio5 19 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_enable_3v3_vmmc>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "3v3_vmmc";
-+	};
-+
-+	reg_can1_supply: regulator-can1-supply {
-+		compatible = "regulator-fixed";
-+		gpio = <&lsio_gpio5 22 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_enable_can1_power>;
-+		regulator-name = "can1_supply";
-+	};
-+
-+	reg_can2_supply: regulator-can2-supply {
-+		compatible = "regulator-fixed";
-+		gpio = <&lsio_gpio2 8 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_sata1_act>;
-+		regulator-name = "can2_supply";
-+	};
-+
-+	reg_usb_host_vbus: regulator-usb-host-vbus {
-+		regulator-name = "VCC_USBH(2|4)";
-+	};
-+};
-+
-+&adc0 {
-+	status = "okay";
-+};
-+
-+&adc1 {
-+	status = "okay";
-+};
-+
-+/* TODO: Audio Mixer */
-+
-+/* TODO: Asynchronous Sample Rate Converter (ASRC) */
-+
-+/* TODO: Display Controller */
-+
-+/* TODO: DPU */
-+
-+/* Apalis ETH1 */
-+&fec1 {
-+	status = "okay";
-+};
-+
-+/* Apalis CAN1 */
-+&flexcan1 {
-+	xceiver-supply = <&reg_can1_supply>;
-+	status = "okay";
-+};
-+
-+/* Apalis CAN2 */
-+&flexcan2 {
-+	xceiver-supply = <&reg_can2_supply>;
-+	status = "okay";
-+};
-+
-+/* TODO: GPU */
-+
-+/* Apalis I2C1 */
-+&i2c2 {
-+	status = "okay";
-+
-+	eeprom: eeprom@50 {
-+		compatible = "atmel,24c02";
-+		pagesize = <16>;
-+		reg = <0x50>;
-+	};
-+
-+	/* M41T0M6 real time clock on carrier board */
-+	rtc_i2c: rtc@68 {
-+		status = "okay";
-+	};
-+};
-+
-+/* Apalis I2C3 (CAM) */
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl-0 = <&pinctrl_cam1_gpios>, <&pinctrl_dap1_gpios>,
-+		    <&pinctrl_esai0_gpios>, <&pinctrl_fec2_gpios>,
-+		    <&pinctrl_gpio3>, <&pinctrl_gpio4>, <&pinctrl_gpio_usbh_oc_n>,
-+		    <&pinctrl_lpuart1ctrl>, <&pinctrl_lvds0_i2c0_gpio>,
-+		    <&pinctrl_lvds1_i2c0_gpios>, <&pinctrl_mipi_dsi_0_1_en>,
-+		    <&pinctrl_mipi_dsi1_gpios>, <&pinctrl_mlb_gpios>,
-+		    <&pinctrl_qspi1a_gpios>, <&pinctrl_sim0_gpios>,
-+		    <&pinctrl_uart24_forceoff>, <&pinctrl_usdhc1_gpios>;
-+
-+	/* PMIC MMC1 power-switch */
-+	pinctrl_enable_3v3_vmmc: enable3v3vmmcgrp {
-+		fsl,pins = <IMX8QM_USDHC1_DATA4_LSIO_GPIO5_IO19	0x00000021>; /* MXM3_148, PMIC */
-+	};
-+
-+	/* FlexCAN PMIC */
-+	pinctrl_enable_can1_power: enablecan1powergrp {
-+		fsl,pins = <IMX8QM_USDHC1_DATA7_LSIO_GPIO5_IO22	0x00000021>; /* MXM3_158, PMIC */
-+	};
-+
-+	pinctrl_leds_ixora: ledsixoragrp {
-+		fsl,pins = <IMX8QM_USDHC2_DATA1_LSIO_GPIO5_IO27	0x06000061>, /* LED_4_GREEN */
-+			   <IMX8QM_USDHC2_DATA3_LSIO_GPIO5_IO29	0x06000061>, /* LED_4_RED */
-+			   <IMX8QM_USDHC1_DATA5_LSIO_GPIO5_IO20	0x06000061>, /* LED_5_GREEN */
-+			   <IMX8QM_USDHC1_DATA6_LSIO_GPIO5_IO21	0x06000061>; /* LED_5_RED */
-+	};
-+
-+	pinctrl_uart24_forceoff: uart24forceoffgrp {
-+		fsl,pins = <IMX8QM_USDHC2_CMD_LSIO_GPIO5_IO25		0x00000021>;
-+	};
-+};
-+
-+/* Apalis SPI1 */
-+&lpspi0 {
-+	status = "okay";
-+};
-+
-+/* Apalis SPI2 */
-+&lpspi2 {
-+	status = "okay";
-+};
-+
-+/* Apalis UART3 */
-+&lpuart0 {
-+	status = "okay";
-+};
-+
-+/* Apalis UART1 */
-+&lpuart1 {
-+	status = "okay";
-+};
-+
-+/* Apalis UART4 */
-+&lpuart2 {
-+	status = "okay";
-+};
-+
-+/* Apalis UART2 */
-+&lpuart3 {
-+	status = "okay";
-+};
-+
-+&lsio_gpio5 {
-+	ngpios = <32>;
-+	gpio-line-names = "gpio5-00", "gpio5-01", "gpio5-02", "gpio5-03",
-+			  "gpio5-04", "gpio5-05", "gpio5-06", "gpio5-07",
-+			  "gpio5-08", "gpio5-09", "gpio5-10", "gpio5-11",
-+			  "gpio5-12", "gpio5-13", "gpio5-14", "gpio5-15",
-+			  "gpio5-16", "gpio5-17", "gpio5-18", "gpio5-19",
-+			  "LED-5-GREEN", "LED-5-RED", "gpio5-22", "gpio5-23",
-+			  "gpio5-24", "UART24-FORCEOFF", "gpio5-26",
-+			  "LED-4-GREEN", "gpio5-28", "LED-4-RED", "gpio5-30",
-+			  "gpio5-31";
-+};
-+
-+/* Apalis PWM3, MXM3 pin 6 */
-+&lsio_pwm0 {
-+	status = "okay";
-+};
-+
-+/* Apalis PWM4, MXM3 pin 8 */
-+&lsio_pwm1 {
-+	status = "okay";
-+};
-+
-+/* Apalis PWM1, MXM3 pin 2 */
-+&lsio_pwm2 {
-+	status = "okay";
-+};
-+
-+/* Apalis PWM2, MXM3 pin 4 */
-+&lsio_pwm3 {
-+	status = "okay";
-+};
-+
-+/* TODO: Apalis PCIE1 */
-+
-+/* TODO: Apalis BKL1_PWM */
-+
-+/* TODO: Apalis DAP1 */
-+
-+/* TODO: Analogue Audio */
-+
-+/* TODO: Apalis SATA1 */
-+
-+/* TODO: Apalis SPDIF1 */
-+
-+/* TODO: Apalis USBH2, Apalis USBH3 and on-module Wi-Fi via on-module HSIC Hub */
-+
-+/* Apalis USBO1 */
-+&usbotg1 {
-+	status = "okay";
-+};
-+
-+/* TODO: Apalis USBH4 SuperSpeed */
-+
-+/* Apalis MMC1 */
-+&usdhc2 {
-+	bus-width = <4>;
-+	cap-power-off-card;
-+	/delete-property/ no-1-8-v;
-+	pinctrl-0 = <&pinctrl_usdhc2_4bit>, <&pinctrl_mmc1_cd>;
-+	pinctrl-1 = <&pinctrl_usdhc2_4bit_100mhz>, <&pinctrl_mmc1_cd>;
-+	pinctrl-2 = <&pinctrl_usdhc2_4bit_200mhz>, <&pinctrl_mmc1_cd>;
-+	pinctrl-3 = <&pinctrl_usdhc2_4bit_sleep>, <&pinctrl_mmc1_cd_sleep>;
-+	vmmc-supply = <&reg_3v3_vmmc>;
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-apalis-eval.dts b/arch/arm64/boot/dts/freescale/imx8qm-apalis-eval.dts
-new file mode 100644
-index 000000000000..5ab0921eb599
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-apalis-eval.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8qm-apalis.dtsi"
-+#include "imx8-apalis-eval.dtsi"
-+
-+/ {
-+	model = "Toradex Apalis iMX8QM/QP on Apalis Evaluation Board";
-+	compatible = "toradex,apalis-imx8-eval",
-+		     "toradex,apalis-imx8",
-+		     "fsl,imx8qm";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-apalis-ixora-v1.1.dts b/arch/arm64/boot/dts/freescale/imx8qm-apalis-ixora-v1.1.dts
-new file mode 100644
-index 000000000000..68ce58dc7102
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-apalis-ixora-v1.1.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8qm-apalis.dtsi"
-+#include "imx8-apalis-ixora-v1.1.dtsi"
-+
-+/ {
-+	model = "Toradex Apalis iMX8QM/QP on Apalis Ixora V1.1 Carrier Board";
-+	compatible = "toradex,apalis-imx8-ixora-v1.1",
-+		     "toradex,apalis-imx8",
-+		     "fsl,imx8qm";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-eval.dts b/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-eval.dts
-new file mode 100644
-index 000000000000..c8ff75831556
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-eval.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8qm-apalis-v1.1.dtsi"
-+#include "imx8-apalis-eval.dtsi"
-+
-+/ {
-+	model = "Toradex Apalis iMX8QM V1.1 on Apalis Evaluation Board";
-+	compatible = "toradex,apalis-imx8-v1.1-eval",
-+		     "toradex,apalis-imx8-v1.1",
-+		     "fsl,imx8qm";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.1.dts b/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.1.dts
-new file mode 100644
-index 000000000000..ad7f644968fa
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.1.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8qm-apalis-v1.1.dtsi"
-+#include "imx8-apalis-ixora-v1.1.dtsi"
-+
-+/ {
-+	model = "Toradex Apalis iMX8QM V1.1 on Apalis Ixora V1.1 Carrier Board";
-+	compatible = "toradex,apalis-imx8-v1.1-ixora-v1.1",
-+		     "toradex,apalis-imx8-v1.1",
-+		     "fsl,imx8qm";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.2.dts b/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.2.dts
-new file mode 100644
-index 000000000000..3b2e8c93b846
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.2.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8qm-apalis-v1.1.dtsi"
-+#include "imx8-apalis-ixora-v1.2.dtsi"
-+
-+/ {
-+	model = "Toradex Apalis iMX8QM V1.1 on Apalis Ixora V1.2 Carrier Board";
-+	compatible = "toradex,apalis-imx8-v1.1-ixora-v1.2",
-+		     "toradex,apalis-imx8-v1.1",
-+		     "fsl,imx8qm";
-+};
--- 
-2.36.1
-
+Michael
