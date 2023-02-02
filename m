@@ -2,160 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F6FA68881A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 21:13:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4CDC68882D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 21:20:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232750AbjBBUN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 15:13:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55428 "EHLO
+        id S230373AbjBBUUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 15:20:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232573AbjBBUN0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 15:13:26 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3789456480
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 12:13:25 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id m14so2739979wrg.13
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 12:13:25 -0800 (PST)
+        with ESMTP id S230504AbjBBUUX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 15:20:23 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BCB54390D
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 12:20:21 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id l8so2332205wms.3
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 12:20:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1Mc/xaxMClUd+iZwnvlYiGDh8sCfZ7txe4S/VfjiJo0=;
-        b=CTKK5zVBQIiM2ZNG2b/WsQHNX87h8kXn9n63OWxK60sT5zG5tGIkW9aW92RBjbKx4H
-         mWDYcjHQVICjqLd9O/v98hP2HYXUqNGeZ+q97vJd+AcT4WSFxHGnNtc1MDwOkcAk3p3Z
-         j+1AjeerHEbsxXCCM1O702xmUggORoC5iv8V/aDzHci7BcgVJd7bhxHgszapTwh8ek5K
-         q/6Lmxr2kzVnxBbWq7/htu2SMXsk5S0fhOhjk9aWgOOYMPQe3fJV5q3HoSNdpr9TLrtm
-         QVz4SJMaxSFcta8NBXZhAw2OrrRw2b1x2VOMyTGVl6rOvQlkHtBj2Ti23T7SlUAzwu+n
-         Ooag==
+        bh=gxuF7ikYyogA9U/SKS/lBdTNIB/rmyK+rN+ghcq+5Gg=;
+        b=YtcfjKeQe4R8XxIviX07Q8WBX8Vi0UnVCO48+c//4YAsQV9RQjg6rgRJThl7jIUyr8
+         w3UiAFdbUApX6YUAgYwOMLsxRVjN9N5Cjfznr/bUmB89iLPXgzGZ4/FhdNN7CuUy7G4z
+         PPLE/jnKsatmlXXizaeFSBnBs4INJjBtmkbM841tUsmceAXwr4P9NIsVITpN3S92aV1a
+         qkuzitecsVTc5Y/EjKg2wUs0PQJxxlKE269TmKXxh++Dj84tqD/EnPwksUXs7oocQjE3
+         GqY7E9lmK386FA9fOLtztO6WqetOYbXG62+fIM3+xabetyx4hOM2+WEPw1IFdXfD3016
+         zcpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Mc/xaxMClUd+iZwnvlYiGDh8sCfZ7txe4S/VfjiJo0=;
-        b=ykBgQtizUUOOGjQ/A/Dr8GvsCRWtyIUbnw7L+PQoNfnzYcRxLONzxVZQqwr8EJTRjD
-         FyC0dFgpUu9mTxUX8hXr/g+cmcnKZseXY6wY5h62oNyYYILIHSkynARb/W25y/xzvclV
-         ExfByKY+OS6XK2pTteHQt2BR3dzqo49X8VPk9S0PWbwSkwj9Ohpl0aowD/W5xdhmn5Eb
-         zac8YreIbY8zj/vQxfYL5I0I8eYnfTz7NGlhCwNLhHoyI1XH8SuHXJ7gUOGZKKJAaNsH
-         cy8CifRJyG8iP3b/ZE4mWLT16GR1LGC9lZ7HVBjNJpIbxzTZfoFBTvKr8GKzFrU7UzeR
-         gTMQ==
-X-Gm-Message-State: AO0yUKXlCPSYclh72aZYuiwjkUL7yjTTdnQ0xNTABuj6Y1wSp7If2Jns
-        4Vc9Hwilj6oP/QVvdH0p/actaQ==
-X-Google-Smtp-Source: AK7set9sUrbys5hAtykvo71RuvHH/h3Rtv/uhcagXWwgXfysolM3UaVSrAzU8ypG64zqJDE71tk0SA==
-X-Received: by 2002:adf:f452:0:b0:2bf:ddf6:5063 with SMTP id f18-20020adff452000000b002bfddf65063mr6736633wrp.35.1675368803734;
-        Thu, 02 Feb 2023 12:13:23 -0800 (PST)
+        bh=gxuF7ikYyogA9U/SKS/lBdTNIB/rmyK+rN+ghcq+5Gg=;
+        b=wXEuM7edSrYIDawgtSyzqN6oK9y8bYiliOB1qbwaQWZiuSXmT+4ApzgbJPgxQwwfKM
+         7si5PKyMNZIx+cdzTqry+fuWEXhZla3ZanF9rP0A5vCNbjC3NgeRBhUsuAPsWGmvNPJH
+         Rko8o83btq49AOQKnw/LOwBn2Kj4t7LOxnxtNO/+MMIMa2aZjeoODzsX0mR0VgcUoLjc
+         9taVLiix5yLVT4gDtef0JYzQ5Rjdam0HoTnEiF8Ae8crNeDyUdrwLu7uchT27XCqp2n+
+         mSlOq4MzSD4/pQfvgV2DcwFH3hvlE3erMjIIZu4ThOl5w2LPd5XlCikb6rcvQ6QCPc5y
+         JMNQ==
+X-Gm-Message-State: AO0yUKWEr5KGDhHH54LsC39v/C19p/zHUWqXIusvmkBmmJBLjCMmt+9S
+        y8fuS5m98L5q+IYt2h10vroNbEaSk9zcCpAt
+X-Google-Smtp-Source: AK7set/6HicccIrBPUPcG8gnvN9JgVUga6wXuJJFuLIZEau8lXFbwLo27g+SR7h6J2MzpYOmbv8/Jg==
+X-Received: by 2002:a05:600c:46c7:b0:3de:720c:10ff with SMTP id q7-20020a05600c46c700b003de720c10ffmr7511935wmo.40.1675369219258;
+        Thu, 02 Feb 2023 12:20:19 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id s8-20020a5d5108000000b0024cb961b6aesm278729wrt.104.2023.02.02.12.13.22
+        by smtp.gmail.com with ESMTPSA id r13-20020a05600c35cd00b003dc5b59ed7asm837131wmq.11.2023.02.02.12.20.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 12:13:23 -0800 (PST)
-Message-ID: <28cf0c1f-ee5f-79e4-609a-2cdd24db9f1c@linaro.org>
-Date:   Thu, 2 Feb 2023 21:13:21 +0100
+        Thu, 02 Feb 2023 12:20:18 -0800 (PST)
+Message-ID: <4111d645-478a-e55f-60bd-4ecbef077183@linaro.org>
+Date:   Thu, 2 Feb 2023 21:20:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v4 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
+Subject: Re: [PATCH] Fixed the schema binding according to test
 Content-Language: en-US
-To:     Maarten Zanders <maarten.zanders@mind.be>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+To:     Ki-Seok Jo <kiseok.jo@irondevice.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230202101032.26737-1-maarten.zanders@mind.be>
- <20230202101032.26737-2-maarten.zanders@mind.be>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20230202090715.18384-1-kiseok.jo@irondevice.com>
+ <ac140660-0df0-8b43-3585-17511a280830@linaro.org>
+ <SLXP216MB0077A1B1F744D74A5B338F0C8CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202101032.26737-2-maarten.zanders@mind.be>
+In-Reply-To: <SLXP216MB0077A1B1F744D74A5B338F0C8CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 11:10, Maarten Zanders wrote:
-> Add a binding to configure the internal charge pump for lp55xx.
+On 02/02/2023 10:55, Ki-Seok Jo wrote:
+>> Thank you for your patch. There is something to discuss/improve.
+>>
+>> On 02/02/2023 10:07, Kiseok Jo wrote:
+>>> Modified according to the writing-schema.rst file and tested.
+>>
+>> Use imperative, not past tense (Fixed->Fix, Modified->Modify).
 > 
-> Signed-off-by: Maarten Zanders <maarten.zanders@mind.be>
-> ---
+> Okay. I got it. I'll do that when I rewrite it. Thanks.
 > 
-> Notes:
->     v1: implement as bool to disable charge pump
->     v2: rewrite to use string configuration, supporting all modes
->     v3: simplification by replacing string option by u8 constant,
->         removing previous Reviewed-by tags as it's a complete
->         rewrite of the patch.
->     v4: added notes
+>>>
+>>> Signed-off-by: Kiseok Jo <kiseok.jo@irondevice.com>
+>>
+>> Use subject prefixes matching the subsystem (which you can get for example
+>> with `git log --oneline -- DIRECTORY_OR_FILE` on the directory your patch
+>> is touching). Therefore it should be:
+>> "ASoC: dt-bindings: irondevice,sma1303: Rework binding and add missing
+>> properties"
+>>
 > 
->  .../devicetree/bindings/leds/leds-lp55xx.yaml          |  8 ++++++++
->  include/dt-bindings/leds/leds-lp55xx.h                 | 10 ++++++++++
->  2 files changed, 18 insertions(+)
->  create mode 100644 include/dt-bindings/leds/leds-lp55xx.h
+> Oh, thank you for good information. I feel like I still lack a lot.
+> I'll apply it. Thanks!
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-> index ae607911f1db..22e63d89d770 100644
-> --- a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-> +++ b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-> @@ -66,6 +66,12 @@ properties:
->    '#size-cells':
->      const: 0
->  
-> +  ti,charge-pump-mode:
-> +    description:
-> +      Set the operating mode of the internal charge pump as defined in
-> +      <dt-bindings/leds/leds-lp55xx.h>. Defaults to auto.
-> +    $ref: /schemas/types.yaml#/definitions/uint8
+>>
+>>> ---
+>>>  .../bindings/sound/irondevice,sma1303.yaml    | 46 +++++++++++++++++--
+>>>  1 file changed, 43 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
+>>> b/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
+>>> index 162c52606635..35d9a046ef75 100644
+>>> --- a/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
+>>> +++ b/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
+>>> @@ -10,22 +10,62 @@ maintainers:
+>>>    - Kiseok Jo <kiseok.jo@irondevice.com>
+>>>
+>>>  description:
+>>> -  SMA1303 digital class-D audio amplifier with an integrated boost
+>> converter.
+>>> +  SMA1303 digital class-D audio amplifier  with an integrated boost
+>>> + converter.
+>>>
+>>>  allOf:
+>>> -  - $ref: name-prefix.yaml#
+>>> +  - $ref: dai-common.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - irondevice,sma1303
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  '#sound-dai-cells':
+>>> +    const: 1
+>>> +
+>>> +  i2c-retry:
+>>> +    description: number of retries for I2C regmap.
+>>
+>> Why do you need this? Why this fits the purpose of DT (or IOW why this
+>> differs between boards)?
+> 
+> When working with drivers on mulitiple platforms, there were cases where
+> I2C did not work properly dpending on the AP or setting.
+> So I made it possible to set a few retry settings, and then check or do
+> other actions. Retry is performed only when I2C fails.
+> 
+> And each device may have a different pull-up resisor or strength,
+> so there may be differences between boards.
 
-This should be then uint32
+None of I2C drivers need it (except SBS battery), so it should not be
+needed here. If you have wrong pin setup, this one should be corrected
+instead.
 
-default: 3
-(and drop last sentence about default)
+> 
+> Could that property be a problem?
+> 
+>>> +    maximum: 49
+>>> +    default: 3
+>>> +
+>>> +  tdm-slot-rx:
+>>> +    description: set the tdm rx start slot.
+>>
+>> Aren't you now re-writing dai-tdm-slot-rx-mask property? Same for tx below.
+>>
+> 
+> It can be the same as audio DAI's tdm slot, I think but there are cases
+> where it is set differently, so I omitted it separately.
 
-> +
->  patternProperties:
->    '^multi-led@[0-8]$':
->      type: object
-> @@ -152,6 +158,7 @@ additionalProperties: false
->  examples:
->    - |
->      #include <dt-bindings/leds/common.h>
-> +    #include <dt-bindings/leds/leds-lp55xx.h>
->  
->      i2c {
->          #address-cells = <1>;
-> @@ -164,6 +171,7 @@ examples:
->              reg = <0x32>;
->              clock-mode = /bits/ 8 <2>;
->              pwr-sel = /bits/ 8 <3>;	/* D1~9 connected to VOUT */
-> +            ti,charge-pump-mode = /bits/ 8 <LP55XX_CP_BYPASS>;
->  
->              led@0 {
->                  reg = <0>;
-> diff --git a/include/dt-bindings/leds/leds-lp55xx.h b/include/dt-bindings/leds/leds-lp55xx.h
-> new file mode 100644
-> index 000000000000..8f59c1c12dee
-> --- /dev/null
-> +++ b/include/dt-bindings/leds/leds-lp55xx.h
-> @@ -0,0 +1,10 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
+Unfortunately I still do not understand why do you need it. Use generic
+DAI/TDM properties.
 
-Dual license.
+> 
+>>> +    maximum: 7
+>>> +    default: 0
+>>> +
+>>> +  tdm-slot-tx:
+>>> +    description: set the tdm tx start slot.
+>>> +    maximum: 7
+>>> +    default: 0
+>>> +
+>>> +  sys-clk-id:
+>>> +    description: select the using system clock.
+>>
+>> What does it mean? Why do you need such property instead of clocks?
+> 
+> This can receive an external clock, but it can use internal clock.
+> Should I write all the clock descriptions in case?
 
-> +#ifndef _DT_BINDINGS_LEDS_LP55XX_H
-> +#define _DT_BINDINGS_LEDS_LP55XX_H
-> +
-> +#define LP55XX_CP_OFF		0
-> +#define LP55XX_CP_BYPASS	1
-> +#define LP55XX_CP_BOOST		2
-> +#define LP55XX_CP_AUTO		3
-> +
-> +#endif /* _DT_BINDINGS_LEDS_LP55XX_H */
+How do you configure and enable external clock with this property? I
+don't see it. If the device has clock input, this should be "clocks". If
+it is omitted, then internal clock is used.
+
+
 
 Best regards,
 Krzysztof
