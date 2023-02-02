@@ -2,58 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAA8F687E70
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 14:19:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2C40687E8A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 14:25:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232253AbjBBNTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 08:19:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49096 "EHLO
+        id S231485AbjBBNZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 08:25:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232084AbjBBNTv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 08:19:51 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E60447F306;
-        Thu,  2 Feb 2023 05:19:50 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9B6B0B82662;
-        Thu,  2 Feb 2023 13:19:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FEEBC4339C;
-        Thu,  2 Feb 2023 13:19:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675343988;
-        bh=cgyO6oENOnGLZEDMSFb7vIWhYFOJKLrgcd5FRlRWzRY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OeMK7BAps8cxAwwxSB6OMyScSi0s1hP4yKWA+9+p9cJPxDw0Ie85bGL6YrGWPDHPe
-         DKBDJWIqrcJ4aRMdeV2EXMtbpePjQhJVfjscB/8Dmr4tM7qPufCGBUDqROHxDskze7
-         KGz4uOCdRlO3SKSyFqKSNeFupbwHmpuDyqksSwANnEEsrkdE6S6Pup0718AFuAXEeA
-         ne/Cgev/ikzvXh6Ho8g4Z5A+eDt9RjXJ9tHjKSozdMq9oxl/wAQ+wqEWv3/vtcwa2e
-         QRicWhqSpib0UFZpAdSowTzPIRZ8oPpKByhxPAbWgTs7J6eH1ZQ+zW9oczULwYn9np
-         mXMtfOHI9y7Og==
-Date:   Thu, 2 Feb 2023 18:49:44 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     Andy Gross <agross@kernel.org>,
+        with ESMTP id S229714AbjBBNZR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 08:25:17 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D88FE8C407
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 05:25:15 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id j32-20020a05600c1c2000b003dc4fd6e61dso3710579wms.5
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 05:25:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kW5GxFMKVLm3HHfRK3v8PPMjbddlT4O3IPT99HE/Mdc=;
+        b=CBIqXA7Kgxrf8BHQf5K/34k0csj53P975JOjOt0SDNjojgK3zm6MlxAIjprO/6JQvh
+         18ArNoWT+GZTk5CWBXr7gaoehYMyWpAN0Vc/lcTpGf+Ym/Zf08hyaPA93XYZvPfNiLxF
+         eJHMcGk2sqvgYFBmj3+JK7huj4YSiuhvnz/W7jvyimf/eAtstRhhMdNHJU4QW7QEaksR
+         e1imYZm9BoUYw/2YPiRdB6/+kqZCuCzf/OaNKZlGwUpW4V+QLH1S2+lbppyAWOuDtx7x
+         6qJM9SZmaLkA8Y2jcYwDsJzZVfJHYOG4sdTDuvDHAHW8PHq+6jaud66JtGDUGfp72i0z
+         ur+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kW5GxFMKVLm3HHfRK3v8PPMjbddlT4O3IPT99HE/Mdc=;
+        b=n/LaFr7uDV4NGc8hH+6ZQ8FBWkQlYRxTOuL5xT0X5GJMmQQ6JSRqTbqH6Kj/3YQ1+J
+         flKe1ocmDSpHiFocVQjSxAoLZOnRZF9DKF6tTj4Te2U1fq4E7ipEXGf2vulLE0whhpLh
+         b9AmKE3V/6zOTDO1OeVZi3moKrPmVQFE+ZtpsmbBk4n/PFrxWzM2VmF55/CYanyK69XE
+         XCU0En7YQxuGdY8vdB4Rw/vkPlgNW7vmx7bEwi3dVetGxw007ROVD9vf+EVTW37rJRN6
+         WZuzG3BdBWlePOBpz1Q0pBuLkKiSYz/gupXHLV60Ow9rZmekdIqS5lPa3Y4TGCp7j0MD
+         NDcA==
+X-Gm-Message-State: AO0yUKUi6Ux+U2uxbxxIWWG+G8+P7zWNqdzCYFWi2SPM8RpMFB9TgXCI
+        nH6fScxS/nGWAyjn1/5sndix1Q==
+X-Google-Smtp-Source: AK7set/umYm3AxRIMiTJLCmzwgUPXHfzHXF9tHlRDDK11lrloBCjQJgDoa+gvL7INbbSCP7tQZIbCA==
+X-Received: by 2002:a05:600c:b8e:b0:3da:fa42:bbf2 with SMTP id fl14-20020a05600c0b8e00b003dafa42bbf2mr6088694wmb.28.1675344314431;
+        Thu, 02 Feb 2023 05:25:14 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id e22-20020a05600c449600b003db06224953sm4690943wmo.41.2023.02.02.05.25.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Feb 2023 05:25:13 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 0/3] Add USB/DP combo PHY config for SM6350
-Message-ID: <Y9u4cAK+uKXuu+uL@matsya>
-References: <20230120-sm6350-usbphy-v4-0-4d700a90ba16@fairphone.com>
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/8] sm8550: Add USB HC and PHYs support
+Date:   Thu,  2 Feb 2023 15:25:03 +0200
+Message-Id: <20230202132511.3983095-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230120-sm6350-usbphy-v4-0-4d700a90ba16@fairphone.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,45 +74,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-23, 14:29, Luca Weiss wrote:
-> While this patchset started out as just adding a dedicated init sequence
-> for SM6350 since USB PHY init didn't work in some cases, now it's also
-> migrating the phy config and dts over to a new format.
-> 
-> Also note, that the DP portions are pratically untested since TCPM
-> (type-C port manager) and possibly other components aren't brought up
-> yet.
+This patchset adds support for USB for Qualcomm SM8550 platform.
 
-Applied 1-2, thanks
+This patchset is based on top of the following patchset:
+https://lore.kernel.org/all/20230202123902.3831491-1-abel.vesa@linaro.org/
 
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+Abel Vesa (8):
+  dt-bindings: phy: Add qcom,snps-eusb2-phy schema file
+  phy: qcom: Add QCOM SNPS eUSB2 driver
+  dt-bindings: phy: qcom,qmp-usb: Document SM8550 compatible
+  phy: qcom-qmp: pcs-usb: Add v6 register offsets
+  phy: qcom-qmp: Add v6 DP register offsets
+  phy: qcom-qmp-combo: Add support for SM8550
+  arm64: dts: qcom: sm8550: Add USB PHYs and controller nodes
+  arm64: dts: qcom: sm8550-mtp: Add USB PHYs and HC nodes
 
-cover doesnt need sob :)
-
-> ---
-> Changes in v4:
-> - Fix dp_serdes offsets in driver, add dp_txa & dp_txb fields (as in v2)
-> - Fix order of resets in dtsi
-> - Link to v3: https://lore.kernel.org/r/20221130081430.67831-1-luca.weiss@fairphone.com
-> 
-> ---
-> Luca Weiss (3):
->       dt-bindings: phy: qcom,qmp-usb3-dp: Add sm6350 compatible
->       phy: qcom-qmp-combo: Add config for SM6350
->       arm64: dts: qcom: sm6350: Use specific qmpphy compatible
-> 
->  .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         |   1 +
->  arch/arm64/boot/dts/qcom/sm6350.dtsi               |  54 +++-----
->  drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 139 ++++++++++++++++++++-
->  3 files changed, 154 insertions(+), 40 deletions(-)
-> ---
-> base-commit: d514392f17fd4d386cfadde7f849d97db4ca1fb0
-> change-id: 20230120-sm6350-usbphy-87c5e3f0218e
-> 
-> Best regards,
-> -- 
-> Luca Weiss <luca.weiss@fairphone.com>
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    |   1 +
+ .../bindings/phy/qcom,snps-eusb2-phy.yaml     |  74 +++
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts       |  22 +
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  92 +++-
+ drivers/phy/qualcomm/Kconfig                  |   9 +
+ drivers/phy/qualcomm/Makefile                 |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c     | 410 ++++++++++++++++-
+ .../phy/qualcomm/phy-qcom-qmp-pcs-usb-v6.h    |  31 ++
+ drivers/phy/qualcomm/phy-qcom-qmp.h           |   4 +
+ drivers/phy/qualcomm/phy-qcom-snps-eusb2.c    | 423 ++++++++++++++++++
+ 10 files changed, 1061 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-usb-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
 
 -- 
-~Vinod
+2.34.1
+
