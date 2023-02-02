@@ -2,179 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F3AA687B70
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 12:03:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63EE5687BB2
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 12:10:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232445AbjBBLDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 06:03:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58914 "EHLO
+        id S231903AbjBBLKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 06:10:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232620AbjBBLCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 06:02:11 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61B468AC1F;
-        Thu,  2 Feb 2023 03:02:10 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4533D61AEA;
-        Thu,  2 Feb 2023 11:02:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1B71C4339B;
-        Thu,  2 Feb 2023 11:02:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675335728;
-        bh=lzDIUBwozYSnkNAtq+CbXRRVFuVSaq6m9YLSNh7qQGc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MoJmx3pzVPOfdioUSvGq2DqDBcmghnKSAm4WKHhY1lPV58gO+92ShLq4EzyxcbnNY
-         Jf+OdjwR1imNuLA/e9WQH249Z9jr/lbBxU1znZGtQ7eSS2Y9btxdFV+kAh4d4GlKeB
-         vj6o8j9R8WO8WzQDBH4aXVZDRAJQW0w6i3Y8/P7oSvOjGqTAJxZZ3wSg8cbT5e699A
-         3zHWZKizXZA6Xsry1mnf7nzqiIkCuYCJnhDV30We5RpfeF6IUZrHZaQ2GwzGoDQiyG
-         QOF09Mhp1+jMIBZPrar5kffHQbUpUD8XFIBbO5klhiBXIOX2LQOr+eyPSKGHqvk6nQ
-         kVPlLKoHGwbLA==
-Date:   Thu, 2 Feb 2023 12:02:02 +0100
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Daire.McNamara@microchip.com
-Cc:     linux-riscv@lists.infradead.org, kw@linux.com,
-        Conor.Dooley@microchip.com, devicetree@vger.kernel.org,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, linux-pci@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        bhelgaas@google.com
-Subject: Re: [PATCH v3 00/11] PCI: microchip: Partition address translations
-Message-ID: <Y9uYKp24fHGkqI5Z@lpieralisi>
-References: <20230111125323.1911373-1-daire.mcnamara@microchip.com>
- <d5a5ba3b01953c9db435f2371adee6e2b61d26dd.camel@microchip.com>
+        with ESMTP id S232460AbjBBLKD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 06:10:03 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DF236AC86;
+        Thu,  2 Feb 2023 03:09:35 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 312AZamq000969;
+        Thu, 2 Feb 2023 11:09:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=t6iPFNPeYgRzyXRHfMsbwcJXOpplwMl9gokhd0iu2vk=;
+ b=QRf7IzX8VRv0Szgl5FbhKhtfKS009CZLIRjYM5emLa+VrJYKkX6CFwmouVIsi3yFL/lt
+ Hp0OBfsBbHzRTpV7KkJa/vY7VPqcp/QOPqrjSoUr7Wet5+W9DQyShIYoQZ/t3XLbniAL
+ fBkVpkhNxbnTx2eQtGkAkkf/VPlg+XPjQaSgZY8UjWw+JfQcZJ1A8SOjbPvSxGGJ68FM
+ OHVdHBfeNi/z5M/81+8MEKby4SWX2wCl9Yr3N5ci1k7lQWG71fwNXf0iD7/Jq+Rm2Yf8
+ Mpo86nHffJIUYvuZNyJ4IWxcfDHJ58Rvj9sU7s8n0VtSimJNuFTIzePiW5Avmj+HhQm+ dw== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nfqsyagbp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 02 Feb 2023 11:09:31 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 312B9Uw3023663
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 2 Feb 2023 11:09:30 GMT
+Received: from [10.50.17.72] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 2 Feb 2023
+ 03:09:23 -0800
+Message-ID: <05c01db8-1ca1-475f-8cb4-41fddff8b85a@quicinc.com>
+Date:   Thu, 2 Feb 2023 16:39:19 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d5a5ba3b01953c9db435f2371adee6e2b61d26dd.camel@microchip.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 6/6] regulator: qcom_smd: Add support to define the bootup
+ voltage
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_poovendh@quicinc.com>, <quic_ipkumar@quicinc.com>
+References: <20230113150310.29709-1-quic_devipriy@quicinc.com>
+ <20230113150310.29709-7-quic_devipriy@quicinc.com>
+ <77d84408-166e-8a02-227a-67654a4d31f2@linaro.org>
+ <df6c1cd6-ea70-e65c-b4e8-3da80697242f@quicinc.com>
+ <cc037133-7c45-325f-4a1d-9855d033ae5c@linaro.org>
+ <6bb22160-5966-43d3-ffba-489b77b3a095@quicinc.com>
+ <de6e69d6-18cd-2732-9a18-f4dfd29be6dd@linaro.org>
+From:   Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <de6e69d6-18cd-2732-9a18-f4dfd29be6dd@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8YlC8aBvDPrsPPWW_mNqLBdRyymzxTEI
+X-Proofpoint-ORIG-GUID: 8YlC8aBvDPrsPPWW_mNqLBdRyymzxTEI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-02_02,2023-02-02_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 bulkscore=0 phishscore=0 spamscore=0 lowpriorityscore=0
+ malwarescore=0 clxscore=1015 mlxscore=0 mlxlogscore=999 priorityscore=1501
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302020101
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 31, 2023 at 05:03:00PM +0000, Daire.McNamara@microchip.com wrote:
-> Hi all,
+
+
+On 1/31/2023 6:14 PM, Konrad Dybcio wrote:
 > 
-> Just touching base here.  Can I take it that things are in-hand, and
-> this patchset is moving into the kernel or is there something I need to
-> do at my end?
-
-I will have a look shortly, sorry for the delay.
-
-Thanks,
-Lorenzo
-
-> best regards
-> daire
 > 
-> On Wed, 2023-01-11 at 12:53 +0000, daire.mcnamara@microchip.com wrote:
-> > From: Daire McNamara <daire.mcnamara@microchip.com>
-> > 
-> > Changes since v2:
-> > - Replaced GENMASK(63,0) with GENMASK_ULL(63,0) to remove warning
-> > - Added patch to avoid warning on cast of argument to
-> > devm_add_action_or_reset()
-> > - Added patch to enable building driver as a module
-> > 
-> > Changes since v1:
-> > - Removed unused variables causing compile warnings
-> > - Removed incorrect Signed-off-by: tags
-> > - Capitalised msi and msi-x
-> > - Capitalised FIC and respelled busses to buses
-> > - Capitalised all comments
-> > - Renamed fabric inter connect to Fabric Interface Controller as per
-> > PolarFire SoC TRM
-> > 
-> > Microchip PolarFire SoC is a 64-bit device and has DDR starting at
-> > 0x80000000 and 0x1000000000. Its PCIe rootport is connected to the
-> > CPU
-> > Coreplex via an FPGA fabric. The AXI connections between the Coreplex
-> > and
-> > the fabric are 64-bit and the AXI connections between the fabric and
-> > the
-> > rootport are 32-bit.  For the CPU CorePlex to act as an AXI-Master to
-> > the
-> > PCIe devices and for the PCIe devices to act as bus masters to DDR at
-> > these
-> > base addresses, the fabric can be customised to add/remove offsets
-> > for bits
-> > 38-32 in each direction. These offsets, if present, vary with each
-> > customer's design.
-> > 
-> > To support this variety, the rootport driver must know how much
-> > address
-> > translation (both inbound and outbound) is performed by a particular
-> > customer design and how much address translation must be provided by
-> > the
-> > rootport.
-> > 
-> > This patchset contains a parent/child dma-ranges scheme suggested by
-> > Rob
-> > Herring. It creates an FPGA PCIe parent bus which wraps the PCIe
-> > rootport
-> > and implements a parsing scheme where the root port identifies what
-> > address
-> > translations are performed by the FPGA fabric parent bus, and what
-> > address translations must be done by the rootport itself.
-> > 
-> > See 
-> > https://lore.kernel.org/linux-pci/20220902142202.2437658-1-daire.mcnamara@microchip.com/
-> > for the relevant previous patch submission discussion.
-> > 
-> > It also re-partitions the probe() and init() functions as suggested
-> > by
-> > Bjorn Helgaas to make them more maintainable as the init() function
-> > had
-> > become too large.
-> > 
-> > It also contains some minor fixes and clean-ups that are pre-
-> > requisites:
-> > - to align register, offset, and mask names with the hardware
-> > documentation
-> >   and to have the register definitions appear in the same order as in
-> > the
-> >   hardware documentation;
-> > - to harvest the MSI information from the hardware configuration
-> > register
-> >   as these depend on the FPGA fabric design and can vary with
-> > different
-> >   customer designs;
-> > - to clean up interrupt initialisation to make it more maintainable;
-> > - to fix SEC and DED interrupt handling.
-> > 
-> > I expect Conor will take the dts patch via the soc tree once the PCIe
-> > parts
-> > of the series are accepted.
-> > 
-> > Conor Dooley (1):
-> >   riscv: dts: microchip: add parent ranges and dma-ranges for IKRD
-> >     v2022.09
-> > 
-> > Daire McNamara (10):
-> >   PCI: microchip: Correct the DED and SEC interrupt bit offsets
-> >   PCI: microchip: Remove cast warning for devm_add_action_or_reset()
-> > arg
-> >   PCI: microchip: enable building this driver as a module
-> >   PCI: microchip: Align register, offset, and mask names with hw docs
-> >   PCI: microchip: Enable event handlers to access bridge and ctrl
-> > ptrs
-> >   PCI: microchip: Clean up initialisation of interrupts
-> >   PCI: microchip: Gather MSI information from hardware config
-> > registers
-> >   PCI: microchip: Re-partition code between probe() and init()
-> >   PCI: microchip: Partition outbound address translation
-> >   PCI: microchip: Partition inbound address translation
-> > 
-> >  .../dts/microchip/mpfs-icicle-kit-fabric.dtsi |  62 +-
-> >  drivers/pci/controller/Kconfig                |   2 +-
-> >  drivers/pci/controller/pcie-microchip-host.c  | 688 +++++++++++++---
-> > --
-> >  3 files changed, 533 insertions(+), 219 deletions(-)
-> > 
-> > 
-> > base-commit: 3c1f24109dfc4fb1a3730ed237e50183c6bb26b3
+> On 31.01.2023 10:28, Devi Priya wrote:
+>>
+>>
+>> On 1/27/2023 9:40 PM, Konrad Dybcio wrote:
+>>>
+>>>
+>>> On 27.01.2023 17:07, Devi Priya wrote:
+>>>>
+>>>>
+>>>> On 1/13/2023 9:07 PM, Konrad Dybcio wrote:
+>>>>>
+>>>>>
+>>>>> On 13.01.2023 16:03, devi priya wrote:
+>>>>>> Kernel does not know the initial voltage set by the bootloaders.
+>>>>>> During regulator registration, the voltage variable is just declared
+>>>>>> and it is zero. Based on that, the regulator framework considers current
+>>>>>> the voltage as zero and tries to bring up each regulator to minimum
+>>>>>> the supported voltage.
+>>>>>>
+>>>>>> This introduces a dip in the voltage during kernel boot and gets
+>>>>>> stabilized once the voltage scaling comes into picture.
+>>>>>>
+>>>>>> To avoid the voltage dip, adding support to define the
+>>>>>> bootup voltage set by the boodloaders and based on it, regulator
+>>>>>> framework understands that proper voltage is already set
+>>>>>>
+>>>>>> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>>>>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>>>>>> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
+>>>>>> ---
+>>>>> Or maybe hook it up to the spmi_regulator_common_get_voltage()
+>>>>> from the SPMI regulator driver and read the real voltage instead
+>>>>> of relying on hardcoded values thay may differ between boards?
+>>>>>
+>>>>> Konrad
+>>>> In IPQ9574, SPMI regulator is not used. We are using RPM-Glink communication and the regulators are controlled by RPM.
+>>>> In this case, we don't have an option to readback the bootup voltage and so, we have hardcoded the values
+>>> Unless something changed, RPM regulator framework is simply a
+>>> fancy front-end for communicating with the PMIC over SPMI, AFAIK..
+>>>
+>>> Konrad
+>> Currently in our driver, the voltage write request will be sent to RPM via GLINK which then writes it to the PMIC over I2C using the below APIs
+>> qcom_rpm_smd_write -> rpmsg_send
+>> In IPQ9574, we do not have SPMI support or the support to readback voltage.
+> Okay, I didn't quite catch that there's *only* an i2c PMIC on this
+> platform.. Looking at the MP5496 datasheet though, reading back
+> the voltage should be possible via simply reading the fields that
+> are used to set it.
+> 
+> Konrad
+The CPR regulator operates in closed loop mode and the RPM can 
+independently update the PMIC voltage.
+So, Performing an i2c read to the PMIC would introduce conflicts when 
+RPM uses the i2c for any of the voltage write or read operations.
+>>
+>>>>
+>>>>>>     drivers/regulator/qcom_smd-regulator.c | 6 +++++-
+>>>>>>     1 file changed, 5 insertions(+), 1 deletion(-)
+>>>>>>
+>>>>>> diff --git a/drivers/regulator/qcom_smd-regulator.c b/drivers/regulator/qcom_smd-regulator.c
+>>>>>> index 1eb17d378897..49a36b07397c 100644
+>>>>>> --- a/drivers/regulator/qcom_smd-regulator.c
+>>>>>> +++ b/drivers/regulator/qcom_smd-regulator.c
+>>>>>> @@ -800,6 +800,7 @@ struct rpm_regulator_data {
+>>>>>>         u32 id;
+>>>>>>         const struct regulator_desc *desc;
+>>>>>>         const char *supply;
+>>>>>> +    int boot_uV; /* To store the bootup voltage set by bootloaders */
+>>>>>>     };
+>>>>>>       static const struct rpm_regulator_data rpm_mp5496_regulators[] = {
+>>>>>> @@ -809,7 +810,7 @@ static const struct rpm_regulator_data rpm_mp5496_regulators[] = {
+>>>>>>     };
+>>>>>>       static const struct rpm_regulator_data rpm_ipq9574_mp5496_regulators[] = {
+>>>>>> -    { "s1", QCOM_SMD_RPM_SMPA, 1, &ipq9574_mp5496_smpa1, "s1" },
+>>>>>> +    { "s1", QCOM_SMD_RPM_SMPA, 1, &ipq9574_mp5496_smpa1, "s1", 875000 },
+>>>>>>         {}
+>>>>>>     };
+>>>>>>     @@ -1394,6 +1395,9 @@ static int rpm_regulator_init_vreg(struct qcom_rpm_reg *vreg, struct device *dev
+>>>>>>         vreg->type    = rpm_data->type;
+>>>>>>         vreg->id    = rpm_data->id;
+>>>>>>     +    if (rpm_data->boot_uV)
+>>>>>> +        vreg->uV = rpm_data->boot_uV;
+>>>>>> +
+>>>>>>         memcpy(&vreg->desc, rpm_data->desc, sizeof(vreg->desc));
+>>>>>>         vreg->desc.name = rpm_data->name;
+>>>>>>         vreg->desc.supply_name = rpm_data->supply;
+>>>> Best Regards,
+>>>> Devi Priya
+>> Best Regards,
+>> Devi Priya
