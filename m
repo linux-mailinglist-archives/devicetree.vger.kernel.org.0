@@ -2,517 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64BE8687BFD
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 12:16:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96CE1687C13
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 12:19:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230017AbjBBLQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 06:16:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46080 "EHLO
+        id S231478AbjBBLT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 06:19:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231864AbjBBLPg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 06:15:36 -0500
-Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A3AF88CEA
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 03:15:30 -0800 (PST)
-Received: by mail-vs1-xe2f.google.com with SMTP id 3so1440607vsq.7
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 03:15:30 -0800 (PST)
+        with ESMTP id S230218AbjBBLT3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 06:19:29 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0188B23672
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 03:19:27 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id f7so1629466edw.5
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 03:19:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=d6MILAtYljfCuJ2rbAsOv6nZw8ymBePKx8Ljd3HUcQU=;
-        b=aidTM+hRNE+dPGYvMMO7Pwltdh+Bg3hF8Y4qlOfogmjS7Mdf05GSKEiywGm7u0MiP1
-         9qwqaE0K3k3fDgi+ezKMpnvOykQVkHpZrO1pTlWyjAFT4f0XtPWPLTueaECb0uYhEod+
-         JtvkfrqbWZUc37R17bZasP+3lGCwYUo8EtvRYeUM3CIr9LCwfAXCYXbLIiM4lDrcg/tM
-         nKzFL/Hy8Z1bCFAQg4Zkn0qnrhr5ons3R3bMIB5xLTrnOikVn1YWhyFUmTQ9U/FsSFmk
-         ek9n9X4+cNsn2tOgG8ZQ6JdkiFCNIKqyZ9hCgShbraGGDAossfHYu0DblctFx2tIMo7z
-         fBmA==
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5lqBGy3xyiLZ+uDQPzZ1hsLEdYkc91Ze4wrm9P+Lw80=;
+        b=RJwRtlKXAU2yQGFCUlKvMZBg3wHojpszX+YYkT1OAyb1nukVCBTsHmoHRtSP8GAYNg
+         Poc83j6BNYiJ8ewxRNBaitufk3cTBuYTonbJi48av2yUiLsubOF2ajHIn+8CkdV6AHLm
+         z81WuJwWJUdNj8gEu97EUuud/+UeT/Yy9wboCffYYCrS+Ydgos9eUuhwabRiZZUPPEFD
+         +0YX7bG/soas5GZ92Vo0Zp8Ta4T77lfzIjYBdclPaE4SdremAStzXBP+MY2ujhj16EjY
+         2m/nnLBThX4V9DVnkkYKo32s2WLYu9Sx2JOOrHX89cnzr++Yk+2NdR7Vzf8o43WupCq5
+         71ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d6MILAtYljfCuJ2rbAsOv6nZw8ymBePKx8Ljd3HUcQU=;
-        b=VlmOjVAedt8Iy+FQWOx8XJXIyu+eBhgi5xBC9rnAFjGHNcq2kFRVMBW53J10r2xuur
-         dbhrGTEesnSJUvzj5nug+SWtvxslJgqBT4tu0hF62Iwd4UA+AukLMHkI9CIKSnNQ1t8H
-         tk57xNats8BTlBkRzkzqXiEK6gssnSNG4qMMGSwho47Uvj0iyKxnc0Cos2Xy4EqYi/9X
-         LP9VGNUkkWVnTZK/UHdljXvUfFm/WH8Z98z+HmiR/qrV0eUTt5kp6iwVAbtfIau9q8aj
-         0NmQfVwVC7FNomQ7AI5Rznt8zg9ly/r2EC9LusdGE2MxZSyUe1RWOdhb7ZaeoCnTmv8N
-         41BQ==
-X-Gm-Message-State: AO0yUKUEqDgS5pPWyqLBBZZgl4+AdyV5UKVbYle0+gom7TwreWyLnUA+
-        BEt7PUF8Y9kGtazeH8Q+Q81bkXkKJ2x12Ta0FIw0gA==
-X-Google-Smtp-Source: AK7set8xPoNoio9ogT4z1BtLLg9M34F6lI+dZi06jX1JCyNa996jS2Hb7u//bw/TmOKO1FxkjuUY0APs4oluHHSO4kU=
-X-Received: by 2002:a67:ebc1:0:b0:3d0:d172:3a02 with SMTP id
- y1-20020a67ebc1000000b003d0d1723a02mr979617vso.41.1675336529341; Thu, 02 Feb
- 2023 03:15:29 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5lqBGy3xyiLZ+uDQPzZ1hsLEdYkc91Ze4wrm9P+Lw80=;
+        b=Ofqfm+vdXgBus8Mfu3z1dwx5tV4V/5PSzdizrYfVBhH00TPq5iAzUL27vguGVwUmCG
+         HGU0VwcA3nJIvx4Ok9ZU1YY8IF1Aej6PrnUW4BMjXwkHqewaJ6mSDgC8anBdw5vKf+rM
+         9n+SK+RHjLL9TDCYDizG9aspw0Xv9oM7NS9wUk/RiWOGsHLLGmM+C2hYxnfHLD/rKnpQ
+         meALtfDLkDqzpZaMzvZ1zwi3/ZspgP6C1S2Vn2pXJ+xWSi044CjP1R4Ky077PSKUZknG
+         wgx8Ya8YVVDUlAXWsSTHB+OyL4ogKDzJIJgr930A5JBFtC6chl7uiiJ9QZTJl7KKJ524
+         Mq6Q==
+X-Gm-Message-State: AO0yUKV5YEIG7iq2yM6ZwJ0yt68P9GIIxr8qQGn2Cb+ewK5lkpLlzbpG
+        8AVuVQ8huEn8NvnURczXRJpWy4wAsY/ZFHnB
+X-Google-Smtp-Source: AK7set/vEiR/9/5KwI31m2BtJbT7NVoCdcuzNNO/1JzUew9cQH1z9NQ6sS/gMsYr4isYZn/LvUPTVg==
+X-Received: by 2002:a05:6402:4cb:b0:492:8c77:7da9 with SMTP id n11-20020a05640204cb00b004928c777da9mr5414198edw.9.1675336765547;
+        Thu, 02 Feb 2023 03:19:25 -0800 (PST)
+Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
+        by smtp.gmail.com with ESMTPSA id a20-20020a50ff14000000b004a211283100sm9249762edu.44.2023.02.02.03.19.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Feb 2023 03:19:25 -0800 (PST)
+Message-ID: <d90e1d20-37f7-19c8-1375-dc6cf8856097@linaro.org>
+Date:   Thu, 2 Feb 2023 12:19:22 +0100
 MIME-Version: 1.0
-References: <20230124105643.1737250-1-etienne.carriere@linaro.org> <20230124105643.1737250-2-etienne.carriere@linaro.org>
-In-Reply-To: <20230124105643.1737250-2-etienne.carriere@linaro.org>
-From:   Sumit Garg <sumit.garg@linaro.org>
-Date:   Thu, 2 Feb 2023 16:45:17 +0530
-Message-ID: <CAFA6WYPwS=L_cNDO5GjwA9aWHZAvbKYG46CRs6kG5QK613ESBQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] optee: multiplex tee interrupt events on optee
- async notif irq
-To:     Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Pascal Paillet <p.paillet@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v2] arm64: dts: qcom: msm8992-lg-bullhead: Correct memory
+ overlaps with the SMEM and MPSS memory regions
+To:     Jamie Douglass <jamiemdouglass@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Petr Vorel <petr.vorel@gmail.com>,
+        Dominik Kobinski <dominikkobinski314@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Petr Vorel <pvorel@suse.cz>
+References: <20230202054819.16079-1-jamiemdouglass@gmail.com>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230202054819.16079-1-jamiemdouglass@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Jan 2023 at 16:26, Etienne Carriere
-<etienne.carriere@linaro.org> wrote:
->
-> Implements an irqchip in optee driver to relay interrupts notified
-> from OP-TEE world to the Linux OS. Optee registers up to 1 interrupt
-> controller and identifies each line with a line number from 0 to
-> UINT16_MAX.
->
-> Existing optee async notif uses an irq for OP-TEE to signal Linux of a
-> pending event. The implementation binds each event (an async notif value)
-> to the awaking of a waiting thread or the processing of some TEE
-> background (bottom half) tasks to be scheduled. The interrupt
-> notification service added by this change allows TEE to relay interrupt
-> signals to Linux on secure interrupt occurrences where the end consumer
-> of the signal lives in normal world.
 
-Why do we need OP-TEE as a mediator when the end consumer of an
-interrupt is Linux? Is it some kind of hardware limitation that we
-can't granularly assign interrupts among Linux and OP-TEE?
 
--Sumit
-
->
-> When optee driver initializes, it negotiates with the TEE whether
-> interrupt notification is supported or not. The feature is enabled
-> if both Linux kernel and OP-TEE support it.
->
-> OP-TEE defines 2 SMC function IDs for non-secure world to control
-> interrupt events.
->
-> SMC function OPTEE_SMC_GET_NOTIF_IT allows non-secure world to
-> retrieve pending interrupts by grapes up to 5 lines. The function also
-> reports whether there are pending async values targeting suspended
-> threaded sequences execution and whether TEE has background threaded
-> work to do (async notif value 0 was retrieved).
->
-> SMC function OPTEE_SMC_CONFIG_NOTIF_IT configures the insterrupt line
-> for masking and enabling state and wakeup source.
->
-> Cc: Jens Wiklander <jens.wiklander@linaro.org>
-> Cc: Marc Zyngier <maz@kernel.org>
-> Cc: Sumit Garg <sumit.garg@linaro.org>
->
-> Co-developed-by: Pascal Paillet <p.paillet@foss.st.com>
-> Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
-> Co-developed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+On 2.02.2023 06:48, Jamie Douglass wrote:
+> The memory region reserved by a previous commit (see fixes tag below)
+> overlaps with the SMEM and MPSS memory regions, causing error messages in
+> dmesg:
+> 	OF: reserved mem: OVERLAP DETECTED!
+> 	reserved@5000000 (0x0000000005000000--0x0000000007200000)
+> 	overlaps with smem_region@6a00000
+> 	(0x0000000006a00000--0x0000000006c00000)
+> 
+> 	OF: reserved mem: OVERLAP DETECTED!
+> 	reserved@6c00000 (0x0000000006c00000--0x0000000007200000)
+> 	overlaps with memory@7000000
+> 	(0x0000000007000000--0x000000000ca00000)
+> 
+> This patch resolves both of these by splitting the previously reserved
+> memory region into two sections either side of the SMEM region and by
+> cutting off the second memory region to 0x7000000.
+> 
+> Fixes: 22c7e1a0fa45 ("arm64: dts: msm8992-bullhead: add memory hole region")
+> Signed-off-by: Jamie Douglass <jamiemdouglass@gmail.com>
+> Reviewed-by: Petr Vorel <pvorel@suse.cz>
+> Tested-by: Petr Vorel <pvorel@suse.cz>
+> 
 > ---
-> Changes since v1:
-> - Removed dependency on optee per-cpu irq notification.
-> - Change SMC function ID API to retrieves up to 5 optee irq events,
->   the optee bottom half event and returns if other async notifications
->   are pending, in a single invocation.
-> - Implement only mask/unmask irqchip handlers with a 2nd SMC function
->   to mask/unmask a optee irq in OP-TEE world from an interrupt context.
-> - Added Cc: tags.
+> v1 -> v2: Added detail about second memory overlap and fixed commit to commit
+> message
 > ---
->  drivers/tee/optee/optee_private.h |  10 ++
->  drivers/tee/optee/optee_smc.h     |  88 ++++++++++++++++-
->  drivers/tee/optee/smc_abi.c       | 158 ++++++++++++++++++++++++++++--
->  3 files changed, 249 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/tee/optee/optee_private.h b/drivers/tee/optee/optee_private.h
-> index 04ae58892608..f467409e02e9 100644
-> --- a/drivers/tee/optee/optee_private.h
-> +++ b/drivers/tee/optee/optee_private.h
-> @@ -94,11 +94,21 @@ struct optee_supp {
->         struct completion reqs_c;
->  };
->
-> +/*
-> + * struct optee_smc - optee smc communication struct
-> + * @invoke_fn          handler function to invoke secure monitor
-> + * @memremaped_shm     virtual address of memory in shared memory pool
-> + * @sec_caps:          secure world capabilities defined by
-> + *                     OPTEE_SMC_SEC_CAP_* in optee_smc.h
-> + * @notif_irq          interrupt used as async notification by OP-TEE or 0
-> + * @domain             interrupt domain registered by OP-TEE driver
-> + */
->  struct optee_smc {
->         optee_invoke_fn *invoke_fn;
->         void *memremaped_shm;
->         u32 sec_caps;
->         unsigned int notif_irq;
-> +       struct irq_domain *domain;
->  };
->
->  /**
-> diff --git a/drivers/tee/optee/optee_smc.h b/drivers/tee/optee/optee_smc.h
-> index 73b5e7760d10..df32ad18eddb 100644
-> --- a/drivers/tee/optee/optee_smc.h
-> +++ b/drivers/tee/optee/optee_smc.h
-> @@ -226,7 +226,8 @@ struct optee_smc_get_shm_config_result {
->   * a3  Bit[7:0]: Number of parameters needed for RPC to be supplied
->   *               as the second MSG arg struct for
->   *               OPTEE_SMC_CALL_WITH_ARG
-> - *     Bit[31:8]: Reserved (MBZ)
-> + *     Bit[23:8]: The maximum interrupt event notification number
-> + *     Bit[31:24]: Reserved (MBZ)
->   * a4-7        Preserved
->   *
->   * Error return register usage:
-> @@ -254,6 +255,11 @@ struct optee_smc_get_shm_config_result {
->  #define OPTEE_SMC_SEC_CAP_ASYNC_NOTIF          BIT(5)
->  /* Secure world supports pre-allocating RPC arg struct */
->  #define OPTEE_SMC_SEC_CAP_RPC_ARG              BIT(6)
-> +/* Secure world supports interrupt events notification to normal world */
-> +#define OPTEE_SMC_SEC_CAP_IT_NOTIF             BIT(7)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi b/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
+> index 79de9cc395c4..5e375ea73c79 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
+> @@ -53,8 +53,13 @@ cont_splash_mem: memory@3400000 {
+>  			no-map;
+>  		};
+>  
+> -		removed_region: reserved@5000000 {
+> -			reg = <0 0x05000000 0 0x2200000>;
+> +		reserved@5000000 {
+> +			reg = <0x0 0x05000000 0x0 0x1a00000>;
+> +			no-map;
+> +		};
 > +
-> +#define OPTEE_SMC_SEC_CAP_MAX_NOTIF_IT_MASK    GENMASK(23, 8)
-> +#define OPTEE_SMC_SEC_CAP_MAX_NOTIF_IT_SHIFT   8
->
->  #define OPTEE_SMC_FUNCID_EXCHANGE_CAPABILITIES 9
->  #define OPTEE_SMC_EXCHANGE_CAPABILITIES \
-> @@ -426,6 +432,86 @@ struct optee_smc_disable_shm_cache_result {
->  /* See OPTEE_SMC_CALL_WITH_REGD_ARG above */
->  #define OPTEE_SMC_FUNCID_CALL_WITH_REGD_ARG    19
->
-> +/*
-> + * Retrieve up to 5 pending interrupt event notified by OP-TEE world
-> + * and whether threaded event are pending on OP-TEE async notif
-> + * controller, all this since the last call of this function.
-> + *
-> + * OP-TEE keeps a record of all posted interrupt notification events.
-> + * When the async notif interrupt is received by
-> + * non-secure world, this function should be called until all pended
-> + * interrupt events have been retrieved. When an interrupt event is
-> + * retrieved it is cleared from the record in OP-TEE world.
-> + *
-> + * It is expected that this function is called from an interrupt handler
-> + * in normal world.
-> + *
-> + * Call requests usage:
-> + * a0  SMC Function ID, OPTEE_SMC_GET_NOTIF_IT
-> + * a1-6        Not used
-> + * a7  Hypervisor Client ID register
-> + *
-> + * Normal return register usage:
-> + * a0  OPTEE_SMC_RETURN_OK
-> + * a1  Bit[7:0]: Number of pending interrupt carried in a1..a5
-> + *     Bit[8]: OPTEE_SMC_NOTIF_IT_PENDING if other interrupt(s) are pending
-> + *     Bit[9]: OPTEE_SMC_NOTIF_ASYNC_PENDING if an threaded event is pending
-> + *     Bit[10]: OPTEE_SMC_NOTIF_DO_BOTTOM_HALF if retrieved bottom half notif
-> + *     Bit[15:11]: Reserved for furture use, MBZ
-> + *     Bit[31:16]: Pending interrupt line value if a1 & 0xFF >= 1
-> + * a2  Bit[15:0]:  Pending interrupt line value if a1 & 0xFF >= 2
-> + *     Bit[31:16]: Pending interrupt line value if a1 & 0xFF >= 3
-> + * a3  Bit[15:0]:  Pending interrupt line value if a1 & 0xFF >= 4
-> + *     Bit[31:16]: Pending interrupt line value if a1 & 0xFF == 5
-> + * a4-7        Preserved
-> + *
-> + * Not supported return register usage:
-> + * a0  OPTEE_SMC_RETURN_ENOTAVAIL
-> + * a1-7        Preserved
-> + */
-> +#define OPTEE_SMC_NOTIF_IT_COUNT_MASK          GENMASK(7, 0)
-> +#define OPTEE_SMC_NOTIF_IT_PENDING             BIT(8)
-> +#define OPTEE_SMC_NOTIF_VALUE_PENDING          BIT(9)
-> +#define OPTEE_SMC_NOTIF_DO_BOTTOM_HALF         BIT(10)
-> +
-> +#define OPTEE_SMC_FUNCID_GET_NOTIF_IT          20
-> +#define OPTEE_SMC_GET_NOTIF_IT \
-> +       OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_GET_NOTIF_IT)
-> +
-> +/*
-> + * Configure an interrupt notification event
-> + *
-> + * It is expected that this function is called from an interrupt handler
-> + * in normal world.
-> + *
-> + * Call requests usage:
-> + * a0  SMC Function ID, OPTEE_SMC_CONFIGURE_NOTIF_IT
-> + * a1  Interrupt identifier value
-> + * a2  Bit[0]: 1 to configure interrupt mask with a3[bit 0], else 0
-> + *     Bit[31:1] Reserved for future use, MBZ
-> + * a3  Bit[0]: 1 to mask the interrupt, 0 to unmask (applies if a2[bit 0]=1)
-> + *     Bit[31:1] Reserved for future use, MBZ
-> + * a4-6        Reserved for furture use, MBZ
-> + * a7  Hypervisor Client ID register
-> + *
-> + * Normal return register usage:
-> + * a0  OPTEE_SMC_RETURN_OK
-> + * a1-7        Preserved
-> + *
-> + * Not supported return register usage:
-> + * a0  OPTEE_SMC_RETURN_ENOTAVAIL
-> + * a1-7        Preserved
-> + *
-> + * Invalid command with provided arguments return usage:
-> + * a0  OPTEE_SMC_RETURN_EBADCMD
-> + * a1-7        Preserved
-> + */
-> +#define OPTEE_SMC_NOTIF_CONFIG_MASK            BIT(0)
-> +
-> +#define OPTEE_SMC_FUNCID_CONFIGURE_NOTIF_IT    21
-> +#define OPTEE_SMC_CONFIGURE_NOTIF_IT \
-> +       OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_CONFIGURE_NOTIF_IT)
-> +
->  /*
->   * Resume from RPC (for example after processing a foreign interrupt)
->   *
-> diff --git a/drivers/tee/optee/smc_abi.c b/drivers/tee/optee/smc_abi.c
-> index a1c1fa1a9c28..9f4fdd28f04a 100644
-> --- a/drivers/tee/optee/smc_abi.c
-> +++ b/drivers/tee/optee/smc_abi.c
-> @@ -977,6 +977,71 @@ static int optee_smc_stop_async_notif(struct tee_context *ctx)
->   * 5. Asynchronous notification
->   */
->
-> +static void config_notif_it(optee_invoke_fn *invoke_fn, u32 it_value,
-> +                           u32 op_mask, u32 val_mask)
-> +{
-> +       struct arm_smccc_res res = { };
-> +
-> +       invoke_fn(OPTEE_SMC_CONFIGURE_NOTIF_IT, it_value, op_mask, val_mask,
-> +                 0, 0, 0, 0, &res);
-> +}
-> +
-> +static void optee_it_irq_mask(struct irq_data *d)
-> +{
-> +       struct optee *optee = d->domain->host_data;
-> +
-> +       config_notif_it(optee->smc.invoke_fn, d->hwirq, OPTEE_SMC_NOTIF_CONFIG_MASK,
-> +                       OPTEE_SMC_NOTIF_CONFIG_MASK);
-> +}
-> +
-> +static void optee_it_irq_unmask(struct irq_data *d)
-> +{
-> +       struct optee *optee = d->domain->host_data;
-> +
-> +       config_notif_it(optee->smc.invoke_fn, d->hwirq, OPTEE_SMC_NOTIF_CONFIG_MASK, 0);
-> +}
-> +
-> +static struct irq_chip optee_it_irq_chip = {
-> +       .name = "optee-it",
-> +       .irq_mask = optee_it_irq_mask,
-> +       .irq_unmask = optee_it_irq_unmask,
-> +};
-> +
-> +static int optee_it_alloc(struct irq_domain *d, unsigned int virq,
-> +                         unsigned int nr_irqs, void *data)
-> +{
-> +       struct irq_fwspec *fwspec = data;
-> +       irq_hw_number_t hwirq;
-> +
-> +       hwirq = fwspec->param[0];
-> +
-> +       irq_domain_set_hwirq_and_chip(d, virq, hwirq, &optee_it_irq_chip, d->host_data);
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct irq_domain_ops optee_it_irq_domain_ops = {
-> +       .alloc = optee_it_alloc,
-> +       .free = irq_domain_free_irqs_common,
-> +};
-> +
-> +static int optee_irq_domain_init(struct platform_device *pdev,
-> +                                struct optee *optee, u_int max_it)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct device_node *np = dev->of_node;
-> +
-> +       optee->smc.domain = irq_domain_add_linear(np, max_it,
-> +                                                 &optee_it_irq_domain_ops,
-> +                                                 optee);
-> +       if (!optee->smc.domain) {
-> +               dev_err(dev, "Unable to add irq domain\n");
-> +               return -ENOMEM;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
->  static u32 get_async_notif_value(optee_invoke_fn *invoke_fn, bool *value_valid,
->                                  bool *value_pending)
->  {
-> @@ -991,6 +1056,60 @@ static u32 get_async_notif_value(optee_invoke_fn *invoke_fn, bool *value_valid,
->         return res.a1;
->  }
->
-> +static void forward_irq(struct optee *optee, unsigned int id)
-> +{
-> +       if (generic_handle_domain_irq(optee->smc.domain, id)) {
-> +               pr_err("No consumer for optee irq %u, it will be masked\n", id);
-> +               config_notif_it(optee->smc.invoke_fn, id,
-> +                               OPTEE_SMC_NOTIF_CONFIG_MASK,
-> +                               OPTEE_SMC_NOTIF_CONFIG_MASK);
-> +       }
-> +}
-> +
-> +static void retrieve_pending_irqs(struct optee *optee, bool *async_value_pending,
-> +                                 bool *do_bottom_half)
-> +
-> +{
-> +       struct arm_smccc_res res;
-> +       bool it_pending;
-> +       ssize_t cnt;
-> +       const unsigned int lsb_mask = GENMASK(15, 0);
-> +       const unsigned int msb_shift = 16;
-> +
-> +       *async_value_pending = false;
-> +       *do_bottom_half = false;
-> +
-> +       do {
-> +               optee->smc.invoke_fn(OPTEE_SMC_GET_NOTIF_IT, 0, 0, 0, 0, 0, 0, 0, &res);
-> +
-> +               if (res.a0)
-> +                       return;
-> +
-> +               if (res.a1 & OPTEE_SMC_NOTIF_DO_BOTTOM_HALF)
-> +                       *do_bottom_half = true;
-> +
-> +               it_pending = res.a1 & OPTEE_SMC_NOTIF_IT_PENDING;
-> +               cnt = res.a1 & OPTEE_SMC_NOTIF_IT_COUNT_MASK;
-> +               if (cnt > 5 || (!cnt && it_pending)) {
-> +                       WARN_ONCE(0, "Unexpected interrupt notif count %zi\n", cnt);
-> +                       break;
-> +               }
-> +
-> +               if (--cnt >= 0)
-> +                       forward_irq(optee, res.a1 >> msb_shift);
-> +               if (--cnt >= 0)
-> +                       forward_irq(optee, res.a2 & lsb_mask);
-> +               if (--cnt >= 0)
-> +                       forward_irq(optee, res.a2 >> msb_shift);
-> +               if (--cnt >= 0)
-> +                       forward_irq(optee, res.a3 & lsb_mask);
-> +               if (--cnt >= 0)
-> +                       forward_irq(optee, res.a3 >> msb_shift);
-> +       } while (it_pending);
-> +
-> +       *async_value_pending = res.a1 & OPTEE_SMC_NOTIF_VALUE_PENDING;
-> +}
-> +
->  static irqreturn_t notif_irq_handler(int irq, void *dev_id)
->  {
->         struct optee *optee = dev_id;
-> @@ -999,9 +1118,14 @@ static irqreturn_t notif_irq_handler(int irq, void *dev_id)
->         bool value_pending;
->         u32 value;
->
-> -       do {
-> -               value = get_async_notif_value(optee->smc.invoke_fn,
-> -                                             &value_valid, &value_pending);
-> +       if (optee->smc.sec_caps & OPTEE_SMC_SEC_CAP_IT_NOTIF)
-> +               retrieve_pending_irqs(optee, &value_pending, &do_bottom_half);
-> +       else
-> +               value_pending = true;
-> +
-> +       while (value_pending) {
-> +               value = get_async_notif_value(optee->smc.invoke_fn, &value_valid,
-> +                                             &value_pending);
->                 if (!value_valid)
->                         break;
->
-> @@ -1009,10 +1133,11 @@ static irqreturn_t notif_irq_handler(int irq, void *dev_id)
->                         do_bottom_half = true;
->                 else
->                         optee_notif_send(optee, value);
-> -       } while (value_pending);
-> +       };
->
->         if (do_bottom_half)
->                 return IRQ_WAKE_THREAD;
-> +
->         return IRQ_HANDLED;
->  }
->
-> @@ -1048,6 +1173,9 @@ static void optee_smc_notif_uninit_irq(struct optee *optee)
->                         free_irq(optee->smc.notif_irq, optee);
->                         irq_dispose_mapping(optee->smc.notif_irq);
->                 }
-> +
-> +               if (optee->smc.sec_caps & OPTEE_SMC_SEC_CAP_IT_NOTIF)
-> +                       irq_domain_remove(optee->smc.domain);
->         }
->  }
->
-> @@ -1187,13 +1315,14 @@ static bool optee_msg_api_revision_is_compatible(optee_invoke_fn *invoke_fn)
->
->  static bool optee_msg_exchange_capabilities(optee_invoke_fn *invoke_fn,
->                                             u32 *sec_caps, u32 *max_notif_value,
-> +                                           u32 *max_notif_it,
->                                             unsigned int *rpc_param_count)
->  {
->         union {
->                 struct arm_smccc_res smccc;
->                 struct optee_smc_exchange_capabilities_result result;
->         } res;
-> -       u32 a1 = 0;
-> +       u32 a1 = OPTEE_SMC_SEC_CAP_IT_NOTIF;
->
->         /*
->          * TODO This isn't enough to tell if it's UP system (from kernel
-> @@ -1219,6 +1348,12 @@ static bool optee_msg_exchange_capabilities(optee_invoke_fn *invoke_fn,
->         else
->                 *rpc_param_count = 0;
->
-> +       if (*sec_caps & OPTEE_SMC_SEC_CAP_IT_NOTIF)
-> +               *max_notif_it = (res.result.data & OPTEE_SMC_SEC_CAP_MAX_NOTIF_IT_MASK) >>
-> +                               OPTEE_SMC_SEC_CAP_MAX_NOTIF_IT_SHIFT;
-> +       else
-> +               *max_notif_it = 0;
-> +
->         return true;
->  }
->
-> @@ -1364,6 +1499,7 @@ static int optee_probe(struct platform_device *pdev)
->         struct tee_device *teedev;
->         struct tee_context *ctx;
->         u32 max_notif_value;
-> +       u32 max_notif_it;
->         u32 arg_cache_flags;
->         u32 sec_caps;
->         int rc;
-> @@ -1385,7 +1521,7 @@ static int optee_probe(struct platform_device *pdev)
->         }
->
->         if (!optee_msg_exchange_capabilities(invoke_fn, &sec_caps,
-> -                                            &max_notif_value,
-> +                                            &max_notif_value, &max_notif_it,
->                                              &rpc_param_count)) {
->                 pr_warn("capabilities mismatch\n");
->                 return -EINVAL;
-> @@ -1506,6 +1642,16 @@ static int optee_probe(struct platform_device *pdev)
->                         irq_dispose_mapping(irq);
->                         goto err_notif_uninit;
->                 }
-> +
-> +               if (sec_caps & OPTEE_SMC_SEC_CAP_IT_NOTIF) {
-> +                       rc = optee_irq_domain_init(pdev, optee, max_notif_it);
-> +                       if (rc) {
-> +                               free_irq(optee->smc.notif_irq, optee);
-> +                               irq_dispose_mapping(irq);
-> +                               goto err_notif_uninit;
-> +                       }
-> +               }
-> +
->                 enable_async_notif(optee->smc.invoke_fn);
->                 pr_info("Asynchronous notifications enabled\n");
->         }
-> --
-> 2.25.1
->
+> +		reserved@6c00000 {
+> +			reg = <0x0 0x06c00000 0x0 0x400000>;
+>  			no-map;
+>  		};
+>  	};
