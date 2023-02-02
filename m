@@ -2,276 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83214688847
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 21:31:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DACCB688858
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 21:41:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229761AbjBBUbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 15:31:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36042 "EHLO
+        id S232504AbjBBUlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 15:41:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbjBBUbf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 15:31:35 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2422C675
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 12:31:33 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id y1so2831554wru.2
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 12:31:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=x/zX3eATasfp7Ut9J+Nd1XQ1UCaNVcFGST/BLSWzf0g=;
-        b=km5d4eAR0gniCaMFx3btr5UnSAlsPWQqZySH+u5/hxHSkXfaSvpREsjb2e6cyWVEme
-         AT70Hpdh+WJkkS/isNReU1LFkR1OqNvKAI+RX4KCLLuIaoL3Wa7ZZ4OcjbZS1O6aSN4l
-         g6OljW4NOZANkm2AdR+dJldDAy4k9Y8gLtRwA42I32k5j8hUhSKrvObGYJU73Yp/0o58
-         t3IDaYWaqEDqrKXpi3ntrzo8GOYEAIFhA6xi/QbLR2eKbHk7opGmoOOPti2BSAmzIPrt
-         2IE1c8PAViwp04iEFg2HtKBMhXGDCx4epuGvyxGMmS3Zf+qVOytfE4mumnxs+PnOkb/N
-         rNIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x/zX3eATasfp7Ut9J+Nd1XQ1UCaNVcFGST/BLSWzf0g=;
-        b=LagAYsQmEllssFoV54UYu4m7n0eVDNQDO9jvV23Pn+vOluuPHD2C08tq/21l9ogIZV
-         kCnAaC+jK86lczyV0GTzcK6sTgjpQIx5nZ1a2tC/8LCZAV3o88TJl9UtUv9e8cuOkvi9
-         AFhQd95ltUfr3G8CMKdOMQpya2I20kJvEQpw9oXOv25pBJrynsF0D3VjosZ+EsP7h8SQ
-         PoGcy7fCNycwRsdnYuk0HRFwNu1kJUhe7/2FbPsVFd6AqKnnlGD651dgsiNQbttTJ1Hf
-         gcgeip7m3nP5VUiYBK4lGRQtFuzubMGm0rUwm6NF+ch+kL1t9S5Un3ZvgWbVDyR8DOkY
-         1qHg==
-X-Gm-Message-State: AO0yUKU6rne9YpD+7aMpK3IRlO0NbvihRD010+EsG6mE6Oku6eviTj3N
-        wHkX1tlJ02io3sziAemrxgWckQ==
-X-Google-Smtp-Source: AK7set/vC10NCI0B09J9Pd5MVjLuTyxP7IBs8Q6L1WPVizjbupVoOw7LXBcOF2nSDOa7fLC/7etuPQ==
-X-Received: by 2002:a05:6000:1c19:b0:2bf:f024:de5e with SMTP id ba25-20020a0560001c1900b002bff024de5emr7294027wrb.55.1675369892424;
-        Thu, 02 Feb 2023 12:31:32 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o7-20020a05600002c700b002be5bdbe40csm392997wry.27.2023.02.02.12.31.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 12:31:32 -0800 (PST)
-Message-ID: <ac0f6165-490a-d850-0ad4-a3c014f9d2e9@linaro.org>
-Date:   Thu, 2 Feb 2023 21:31:29 +0100
+        with ESMTP id S232795AbjBBUk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 15:40:59 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89BA0721CB;
+        Thu,  2 Feb 2023 12:40:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1675370455; x=1706906455;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Dca+SSdV2iPqpOOIalDHL2cowscJyYtLtR0+FpBaxhg=;
+  b=EtZzn1fIfcevyVOJY85wGFJg3xYox71VhIfBnKQBz12YpwHTFoR0vAx9
+   NXW9it+hJDNw5MZL28/lv62iACzdWNsRlIoUl7O3VRajfwmA7fqGosR+R
+   +N7hw8QToqgwP41BicsZRRs1gWweiTDQHeg/xSNAc5KfaUzMHayRv97d4
+   2KltSm0IaCn5X5GIJlw6sq1BTvN71qUIPTA4gEVz5P2DE5+JGKjuhid9+
+   Z1jIjeb3eFWvYm5jjDdNjbnaVSBVgS1xjzF9zg317vn3DMEqVz3QbdYIk
+   QmDBamGDW36Xjg5tYekvQhPdvhpbioBE/8Mf8wm0yh02rFkGVp41NI1QG
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="414772484"
+X-IronPort-AV: E=Sophos;i="5.97,268,1669104000"; 
+   d="scan'208";a="414772484"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2023 12:40:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="839335709"
+X-IronPort-AV: E=Sophos;i="5.97,268,1669104000"; 
+   d="scan'208";a="839335709"
+Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 02 Feb 2023 12:40:49 -0800
+Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pNgO1-0006pp-0V;
+        Thu, 02 Feb 2023 20:40:49 +0000
+Date:   Fri, 3 Feb 2023 04:39:57 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        martin.petersen@oracle.com, beanhuo@micron.com, arnd@arndb.de,
+        avri.altman@wdc.com, iwona.winiarska@intel.com,
+        fmdefrancesco@gmail.com, dipenp@nvidia.com, ogabbay@kernel.org,
+        bvanassche@acm.org, mathieu.poirier@linaro.org,
+        yangyicong@hisilicon.com, dan.j.williams@intel.com,
+        devicetree@vger.kernel.org, linus.walleij@linaro.org,
+        Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
+Subject: Re: [PATCHv2 4/4] wiegand: add Wiegand GPIO bit-banged controller
+ driver
+Message-ID: <202302030403.qE5eN2x8-lkp@intel.com>
+References: <20230202143305.21789-5-m.zatovic1@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v9 1/4] dt-bindings: imx6q-pcie: Restruct i.MX PCIe schema
-Content-Language: en-US
-To:     Richard Zhu <hongxing.zhu@nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, l.stach@pengutronix.de,
-        shawnguo@kernel.org, lorenzo.pieralisi@arm.com, peng.fan@nxp.com,
-        marex@denx.de, marcel.ziswiler@toradex.com, tharvey@gateworks.com,
-        frank.li@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-References: <1675323337-19358-1-git-send-email-hongxing.zhu@nxp.com>
- <1675323337-19358-2-git-send-email-hongxing.zhu@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1675323337-19358-2-git-send-email-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230202143305.21789-5-m.zatovic1@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 08:35, Richard Zhu wrote:
-> Restruct i.MX PCIe schema, derive the common properties, thus they can
-> be shared by both the RC and Endpoint schema.
-> 
-> Update the description of fsl,imx6q-pcie.yaml, and move the EP mode
-> compatible to fsl,imx6q-pcie-ep.yaml.
-> 
-> Add support for i.MX8M PCIe Endpoint modes, and update the MAINTAINER
-> accordingly.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> ---
->  .../bindings/pci/fsl,imx6q-pcie-common.yaml   | 285 ++++++++++++++++++
->  .../bindings/pci/fsl,imx6q-pcie-ep.yaml       |  83 +++++
->  .../bindings/pci/fsl,imx6q-pcie.yaml          | 247 +--------------
->  MAINTAINERS                                   |   2 +
->  4 files changed, 376 insertions(+), 241 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
->  create mode 100644 Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> new file mode 100644
-> index 000000000000..f291f7529622
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> @@ -0,0 +1,285 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX6 PCIe RC/EP controller
-> +
-> +maintainers:
-> +  - Lucas Stach <l.stach@pengutronix.de>
-> +  - Richard Zhu <hongxing.zhu@nxp.com>
-> +
-> +description:
-> +  Generic Freescale i.MX PCIe Root Port and Endpoint controller
-> +  properties.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx6q-pcie
-> +      - fsl,imx6sx-pcie
-> +      - fsl,imx6qp-pcie
-> +      - fsl,imx7d-pcie
-> +      - fsl,imx8mq-pcie
-> +      - fsl,imx8mm-pcie
-> +      - fsl,imx8mp-pcie
-> +      - fsl,imx8mm-pcie-ep
-> +      - fsl,imx8mq-pcie-ep
-> +      - fsl,imx8mp-pcie-ep
+Hi Martin,
 
-Compatibles are not part of common schema. Are you saying that EP
-compatible is valid for PCIE not working as endpoint? This does not make
-sense. The common part is only the part which is common. Compatible is
-not common, not shared.
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.2-rc6 next-20230202]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Martin-Za-ovi/dt-bindings-wiegand-add-Wiegand-controller-common-properties/20230202-223510
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230202143305.21789-5-m.zatovic1%40gmail.com
+patch subject: [PATCHv2 4/4] wiegand: add Wiegand GPIO bit-banged controller driver
+config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230203/202302030403.qE5eN2x8-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/d2c4bf0953d186dba735c1f95b5c25ff5523872c
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Martin-Za-ovi/dt-bindings-wiegand-add-Wiegand-controller-common-properties/20230202-223510
+        git checkout d2c4bf0953d186dba735c1f95b5c25ff5523872c
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/wiegand/wiegand-gpio.c:51:9: warning: no previous prototype for 'payload_len_show' [-Wmissing-prototypes]
+      51 | ssize_t payload_len_show(struct device *dev, struct device_attribute *attr,
+         |         ^~~~~~~~~~~~~~~~
+>> drivers/wiegand/wiegand-gpio.c:61:9: warning: no previous prototype for 'payload_len_store' [-Wmissing-prototypes]
+      61 | ssize_t payload_len_store(struct device *dev, struct device_attribute *attr,
+         |         ^~~~~~~~~~~~~~~~~
+>> drivers/wiegand/wiegand-gpio.c:79:6: warning: no previous prototype for 'wiegand_gpio_send_bit' [-Wmissing-prototypes]
+      79 | void wiegand_gpio_send_bit(struct wiegand_gpio *wiegand_gpio, bool value,
+         |      ^~~~~~~~~~~~~~~~~~~~~
+>> drivers/wiegand/wiegand-gpio.c:198:5: warning: no previous prototype for 'wiegand_gpio_transfer_message' [-Wmissing-prototypes]
+     198 | int wiegand_gpio_transfer_message(struct wiegand_device *dev, u8 *message,
+         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-Also missing required: block.
+vim +/payload_len_show +51 drivers/wiegand/wiegand-gpio.c
 
-(...)
+    47	
+    48	/*
+    49	 * Attribute file for setting payload length of Wiegand messages.
+    50	 */
+  > 51	ssize_t payload_len_show(struct device *dev, struct device_attribute *attr,
+    52									 char *buf)
+    53	{
+    54		struct wiegand_gpio *wiegand_gpio = (struct wiegand_gpio *)
+    55								dev->driver_data;
+    56		struct wiegand_controller *ctlr = wiegand_gpio->ctlr;
+    57	
+    58		return sysfs_emit(buf, "%u\n", ctlr->payload_len);
+    59	}
+    60	
+  > 61	ssize_t payload_len_store(struct device *dev, struct device_attribute *attr,
+    62							const char *buf, size_t count)
+    63	{
+    64		struct wiegand_gpio *wiegand_gpio = (struct wiegand_gpio *)
+    65								dev->driver_data;
+    66		struct wiegand_controller *ctlr = wiegand_gpio->ctlr;
+    67	
+    68		return store_ulong(&(ctlr->payload_len), buf, count,
+    69							WIEGAND_MAX_PAYLEN_BYTES * 8);
+    70	}
+    71	DEVICE_ATTR_RW(payload_len);
+    72	
+    73	/*
+    74	 * To send a bit of value 1 following the wiegand protocol, one must set
+    75	 * the wiegand_data_hi to low for the duration of pulse. Similarly to send
+    76	 * a bit of value 0, the wiegand_data_lo is set to low for pulse duration.
+    77	 * This way the two lines are never low at the same time.
+    78	 */
+  > 79	void wiegand_gpio_send_bit(struct wiegand_gpio *wiegand_gpio, bool value,
+    80									bool last)
+    81	{
+    82		u32 pulse_len = wiegand_gpio->ctlr->pulse_len;
+    83		u32 interval_len = wiegand_gpio->ctlr->interval_len;
+    84		u32 frame_gap = wiegand_gpio->ctlr->frame_gap;
+    85		struct gpio_desc *gpio = value ? wiegand_gpio->gpio_data_hi
+    86						: wiegand_gpio->gpio_data_lo;
+    87	
+    88		gpiod_set_value_cansleep(gpio, 0);
+    89		udelay(pulse_len);
+    90		gpiod_set_value_cansleep(gpio, 1);
+    91	
+    92		if (last)
+    93			udelay(frame_gap - pulse_len);
+    94		else
+    95			udelay(interval_len - pulse_len);
+    96	}
+    97	
+    98	/* This function is used for writing from file in dev directory */
+    99	static int wiegand_gpio_write_by_bits(struct wiegand_gpio *wiegand_gpio,
+   100									u16 bitlen)
+   101	{
+   102		size_t i;
+   103		bool bit_value, is_last_bit;
+   104	
+   105		for (i = 0; i < bitlen; i++) {
+   106			bit_value = ((wiegand_gpio->data[i / 8] >> (7 - (i % 8)))
+   107										& 0x01);
+   108			is_last_bit = (i + 1) == bitlen;
+   109			wiegand_gpio_send_bit(wiegand_gpio, bit_value, is_last_bit);
+   110		}
+   111	
+   112		return 0;
+   113	}
+   114	
+   115	static ssize_t wiegand_gpio_get_user_data(struct wiegand_gpio *wiegand_gpio,
+   116						char __user const *buf, size_t len)
+   117	{
+   118		size_t rc;
+   119	
+   120		if (len > WIEGAND_MAX_PAYLEN_BYTES)
+   121			return -EBADMSG;
+   122	
+   123		rc = copy_from_user(&wiegand_gpio->data[0], buf,
+   124							WIEGAND_MAX_PAYLEN_BYTES);
+   125		if (rc < 0)
+   126			return rc;
+   127	
+   128		return len;
+   129	}
+   130	
+   131	static int wiegand_gpio_frelease(struct inode *ino, struct file *filp)
+   132	{
+   133		struct wiegand_gpio_instance *info = filp->private_data;
+   134		struct wiegand_gpio *wiegand_gpio = info->dev;
+   135	
+   136		mutex_lock(&wiegand_gpio->mutex);
+   137		info->flags = 0;
+   138		mutex_unlock(&wiegand_gpio->mutex);
+   139	
+   140		kfree(info);
+   141	
+   142		return 0;
+   143	}
+   144	
+   145	static ssize_t wiegand_gpio_fwrite(struct file *filp, char __user const *buf,
+   146							size_t len, loff_t *offset)
+   147	{
+   148		struct wiegand_gpio_instance *info = filp->private_data;
+   149		struct wiegand_gpio *wiegand_gpio = info->dev;
+   150		u32 msg_length = wiegand_gpio->ctlr->payload_len;
+   151		int rc;
+   152	
+   153		if (buf == NULL || len == 0 || len * 8 < msg_length)
+   154			return -EINVAL;
+   155	
+   156		rc = wiegand_gpio_get_user_data(wiegand_gpio, buf, len);
+   157		if (rc < 0)
+   158			return rc;
+   159	
+   160		wiegand_gpio_write_by_bits(wiegand_gpio, msg_length);
+   161	
+   162		return len;
+   163	}
+   164	
+   165	static int wiegand_gpio_fopen(struct inode *ino, struct file *filp)
+   166	{
+   167		int rc;
+   168		struct wiegand_gpio_instance *info;
+   169		struct wiegand_gpio *wiegand_gpio = container_of(filp->f_op,
+   170								 struct wiegand_gpio,
+   171								 fops);
+   172		mutex_lock(&wiegand_gpio->mutex);
+   173		if ((filp->f_flags & O_ACCMODE) == O_RDONLY ||
+   174					(filp->f_flags & O_ACCMODE) == O_RDWR) {
+   175			dev_err(wiegand_gpio->dev, "Device is write only\n");
+   176			rc = -EIO;
+   177			goto err;
+   178		}
+   179		info = kzalloc(sizeof(*info), GFP_KERNEL);
+   180		if (!info) {
+   181			rc = -ENOMEM;
+   182			goto err;
+   183		}
+   184	
+   185		info->dev = wiegand_gpio;
+   186		info->flags = filp->f_flags;
+   187		mutex_unlock(&wiegand_gpio->mutex);
+   188	
+   189		filp->private_data = info;
+   190	
+   191		return 0;
+   192	err:
+   193		mutex_unlock(&wiegand_gpio->mutex);
+   194		return rc;
+   195	}
+   196	
+   197	/* This function is used by device drivers */
+ > 198	int wiegand_gpio_transfer_message(struct wiegand_device *dev, u8 *message,
+   199									u8 msg_bitlen)
+   200	{
+   201		struct wiegand_controller *ctlr = dev->controller;
+   202		struct wiegand_gpio *wiegand_gpio = wiegand_master_get_devdata(ctlr);
+   203		u8 msg_bytelength = (msg_bitlen % 8) ?
+   204					(msg_bitlen / 8) + 1 : (msg_bitlen / 8);
+   205	
+   206		memcpy(wiegand_gpio->data, message, msg_bytelength);
+   207		wiegand_gpio_write_by_bits(wiegand_gpio, msg_bitlen);
+   208	
+   209		return 0;
+   210	}
+   211	
 
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> new file mode 100644
-> index 000000000000..f651bc3fcaf7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie-ep.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX6 PCIe Endpoint controller
-> +
-> +maintainers:
-> +  - Lucas Stach <l.stach@pengutronix.de>
-> +  - Richard Zhu <hongxing.zhu@nxp.com>
-> +
-> +description: |+
-> +  This PCIe controller is based on the Synopsys DesignWare PCIe IP and
-> +  thus inherits all the common properties defined in snps,dw-pcie-ep.yaml.
-> +  The controller instances are dual mode where in they can work either in
-> +  Root Port mode or Endpoint mode but one at a time.
-> +
-> +properties:
-> +  reg:
-> +    minItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: addr_space
-> +
-> +  interrupts:
-> +    items:
-> +      - description: builtin eDMA interrupter.
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: dma
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - num-lanes
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-
-Several of these should be required by common schema/
-
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/snps,dw-pcie-ep.yaml#
-> +  - $ref: /schemas/pci/fsl,imx6q-pcie-common.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +    #include <dt-bindings/power/imx8mp-power.h>
-> +    #include <dt-bindings/reset/imx8mp-reset.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    pcie_ep: pcie-ep@33800000 {
-> +      compatible = "fsl,imx8mp-pcie-ep";
-> +      reg = <0x33800000 0x000400000>, <0x18000000 0x08000000>;
-> +      reg-names = "dbi", "addr_space";
-> +      clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
-> +               <&clk IMX8MP_CLK_HSIO_AXI>,
-> +               <&clk IMX8MP_CLK_PCIE_ROOT>;
-> +      clock-names = "pcie", "pcie_bus", "pcie_aux";
-> +      assigned-clocks = <&clk IMX8MP_CLK_PCIE_AUX>;
-> +      assigned-clock-rates = <10000000>;
-> +      assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_50M>;
-> +      num-lanes = <1>;
-> +      interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>; /* eDMA */
-> +      interrupt-names = "dma";
-> +      fsl,max-link-speed = <3>;
-> +      power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_PCIE>;
-> +      resets = <&src IMX8MP_RESET_PCIE_CTRL_APPS_EN>,
-> +               <&src IMX8MP_RESET_PCIE_CTRL_APPS_TURNOFF>;
-> +      reset-names = "apps", "turnoff";
-> +      phys = <&pcie_phy>;
-> +      phy-names = "pcie-phy";
-> +      num-ib-windows = <4>;
-> +      num-ob-windows = <4>;
-> +      status = "disabled";
-
-Drop status
-
-> +    };
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> index f13f87fddb3d..db1d0a04bde4 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> @@ -13,21 +13,13 @@ maintainers:
->  description: |+
->    This PCIe host controller is based on the Synopsys DesignWare PCIe IP
->    and thus inherits all the common properties defined in snps,dw-pcie.yaml.
-> +  The controller instances are dual mode where in they can work either in
-> +  Root Port mode or Endpoint mode but one at a time.
->  
-> -properties:
-> -  compatible:
-> -    enum:
-> -      - fsl,imx6q-pcie
-> -      - fsl,imx6sx-pcie
-> -      - fsl,imx6qp-pcie
-> -      - fsl,imx7d-pcie
-> -      - fsl,imx8mq-pcie
-> -      - fsl,imx8mm-pcie
-> -      - fsl,imx8mp-pcie
-
-Compatibles should stay because these are not valid for EP schema.
-
-> -      - fsl,imx8mm-pcie-ep
-> -      - fsl,imx8mq-pcie-ep
-> -      - fsl,imx8mp-pcie-ep
-> +  See fsl,imx6q-pcie-ep.yaml for details on the Endpoint mode device tree
-> +  bindings.
->  
-
-	
-Best regards,
-Krzysztof
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
