@@ -2,173 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DA27687819
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:01:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A912E68782F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:03:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232353AbjBBJBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 04:01:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43980 "EHLO
+        id S232448AbjBBJDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 04:03:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232409AbjBBJB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:01:27 -0500
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7177A2D46;
-        Thu,  2 Feb 2023 01:01:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675328485; x=1706864485;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=za/ubQr/+93gCMuJJ1xC8ZQWhY/KbUwbbbwQt6HxEIc=;
-  b=EOZnOQZ4fDhfVPi3dYTMZNjGYDR2Q7cSnKEayRSAl5g91SFY6LCnaIp9
-   rTmgsV/P3UFQfjRe78fUsoo0ZPPx07lHuRsjuEpCvJOw9r7dnb83FhgNK
-   TJdo6LZ6ene5/YkplBHUO1mtSIB8SPVfdTHDTi4cSiTM5kswH49eM0eHw
-   iMtuDF5eeytekgYnaEhL7EB6gaDL/SrJYgEJhGyS4Kyz3u4Z63ob+Wcp7
-   oFB+lW+D1sCHpV1zvITrRD3MFRRUMZ+IWrIGVncTWYsJ9Y6zPrTr7eHya
-   gWMp/bs8Fntmw9yULbrSsUxsogW/mWyHIHFa226p89WgzeJ45C2fVdc69
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="330530292"
-X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; 
-   d="scan'208";a="330530292"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2023 01:01:24 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="728775050"
-X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; 
-   d="scan'208";a="728775050"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2023 01:01:19 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-        by kekkonen.fi.intel.com (Postfix) with SMTP id E68591218DC;
-        Thu,  2 Feb 2023 11:01:13 +0200 (EET)
-Date:   Thu, 2 Feb 2023 11:01:13 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S232295AbjBBJDg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:03:36 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C7CC152
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 01:03:35 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id hn2-20020a05600ca38200b003dc5cb96d46so3172998wmb.4
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 01:03:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7F5YTzHrVyr8QuuHkXVmJUZpVCaBRGUSFsoCx+3N03A=;
+        b=YRPfCH+G/7MHufVPyLtQ5D6FdhMqwLFJYSOac8c/Rj1F2Jbm+ohgMFD5UqVOzA9n+N
+         zXg/aNARZWYNUeouOB6k/YqLD3EfqO1J6wzwMs+J7FuaMnQwn+DU/qRwvsoQZanwlmA3
+         sfAPy1q3gHeva2N+wieTu4yxYo9TCnFXGLrt8aokgh0ChRIAqMfcVuJiLhmcsDXXfqK8
+         HQTXR7anVDaTR/8M+X3+cVq/DYB051MgGJ/tNGPkixjwlPM5aZOjMiMDO6ExEwZAffRZ
+         XojjWXnGuUNdEZx4ai8C7958LsMP3SdayNjk08nH6vVeSksYfzLeqTMYKwxrJbifaNbP
+         I5pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7F5YTzHrVyr8QuuHkXVmJUZpVCaBRGUSFsoCx+3N03A=;
+        b=H05bmSDad2dv6sYFthp+hXWUNO/GDsNjl6aeEIai0lK8FbWYdXV1cWahYDIcfdJMtM
+         mFETJHzhgfcSo0wUHgFYmc2r2TBCjqkCqHgVmW2U9SaCwtIOTyeEaiSshHU1k6hNHKJR
+         Xir2w9d2pErbqhd4y7j5xnAKtwuKvybCqMPVZuzdGyYs1m9FIbyUyHDYmm2Hjxvmke61
+         3uKPVQbCkBTeEI5X+sWVvXoHyZV6r/QpCD4JhyV5OdrxyTseAsEQLRKqRgLkneJkBkQw
+         +craLXk57K1ICWVGga9XQpAL1vWQBY1DuNKCzQwoFeozRY6C8TcM8s6T9fzNl8uO1Is/
+         7Lhg==
+X-Gm-Message-State: AO0yUKVNoMeokbHl8uFvlOw2tYvVd/ujnXjy0isV5nHggLlTCxgNDy6O
+        tx+uD3wc5DlbkVjNt16CFzsQFw==
+X-Google-Smtp-Source: AK7set9lAC5MNe/nu7qxCknw/Oxh/cCzvtvfddKrsencwwfHUr3rd+VCW9H823WXjZIkxGD/S6ERcg==
+X-Received: by 2002:a05:600c:4f03:b0:3dd:e86e:8827 with SMTP id l3-20020a05600c4f0300b003dde86e8827mr5019102wmq.4.1675328613859;
+        Thu, 02 Feb 2023 01:03:33 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id ip23-20020a05600ca69700b003dc59d6f2f8sm3877475wmb.17.2023.02.02.01.03.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Feb 2023 01:03:33 -0800 (PST)
+Message-ID: <a21e7783-cb1c-8fec-78e7-bdffcd5e25f1@linaro.org>
+Date:   Thu, 2 Feb 2023 10:03:31 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] ASoC: dt-bindings: Drop broken irondevice,sma1303 binding
+Content-Language: en-US
+To:     Ki-Seok Jo <kiseok.jo@irondevice.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Mikhail Rudenko <mike.rudenko@gmail.com>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH v2 2/2] media: i2c: add imx415 cmos image sensor driver
-Message-ID: <Y9t72at49U97brb/@kekkonen.localdomain>
-References: <20230124060107.3922237-1-michael.riesch@wolfvision.net>
- <20230124060107.3922237-3-michael.riesch@wolfvision.net>
- <Y9EKqwfDSsF31dLZ@kekkonen.localdomain>
- <395807d3-e242-5779-5c6d-06d750357b8c@wolfvision.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <395807d3-e242-5779-5c6d-06d750357b8c@wolfvision.net>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230201131059.65527-1-krzysztof.kozlowski@linaro.org>
+ <1bcd61d6-810f-1239-1b6e-367e0fe87370@linaro.org>
+ <Y9pxGUMWyMeXQpZM@sirena.org.uk>
+ <6491d6fb-2a10-1c80-d422-8300d5a75ce4@linaro.org>
+ <Y9p+p6wt8WugDBuH@sirena.org.uk>
+ <SLXP216MB00776F066D70DB2F3F77B09E8CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
+ <SLXP216MB0077228B6071F62B183F4D648CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
+ <6439a587-0b65-a037-1013-b697e19000a4@linaro.org>
+ <SLXP216MB0077847FB6CF0EF4511E3A628CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <SLXP216MB0077847FB6CF0EF4511E3A628CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+On 02/02/2023 09:58, Ki-Seok Jo wrote:
+>>> Is there anything else I should do?
+>>
+>> Correct the binding:
+>> 1. Add all properties - just open example-schema and your file and
+>> document everything 2. Fix non-existing reference (there is no such file
+>> as name-prefix.yaml) 3. i2c_bus -> i2c
+> 
+> Fortunately, I modified the 3thigns you said, and I also tested with the
+> above command with the contents.
+> 
+> So, I'll send the patch file again.
+> If it has any other problems, please give me feedback.
 
-On Fri, Jan 27, 2023 at 11:43:33AM +0100, Michael Riesch wrote:
-> Hi Sakari,
-> 
-> Thanks for your review. The majority of your comments are clear, I'll
-> spin a v3 next week. Just a few things:
-> 
-> On 1/25/23 11:55, Sakari Ailus wrote:
-> > [...]
-> >> +++ b/drivers/media/i2c/imx415.c
-> >> @@ -0,0 +1,1296 @@
-> >> +// SPDX-License-Identifier: GPL-2.0-only
-> >> +/*
-> >> + * Driver for the Sony IMX415 CMOS Image Sensor.
-> >> + *
-> >> + * Copyright (C) 2022 WolfVision GmbH.
-> > 
-> > You can use 2023 now.
-> 
-> Time flies, doesn't it... :-)
-> 
-> > [...]
-> >> +static int imx415_stream_on(struct imx415 *sensor)
-> >> +{
-> >> +	int ret;
-> >> +
-> >> +	ret = imx415_write(sensor, IMX415_MODE, IMX415_MODE_OPERATING);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	/* wait at least 24 ms for internal regulator stabilization */
-> >> +	msleep(30);
-> > 
-> > This is a very, very long time to wait for a regulator. Most probably
-> > either the time is too long or we're waiting for something else.
-> 
-> I just realized that both msleep calls are after setting the mode to
-> operating, i.e., after getting the sensor out of standby. The other
-> instance of this code (see below) documents that clearly, but this
-> "regulator stabilization" comment here is seems wrong indeed.
-> 
-> >> +
-> >> +	return imx415_write(sensor, IMX415_XMSTA, IMX415_XMSTA_START);
-> >> +}
-> >> [...]>> +static int imx415_subdev_init(struct imx415 *sensor)
-> >> +{
-> >> +	struct i2c_client *client = to_i2c_client(sensor->dev);
-> >> +	int ret;
-> >> +
-> >> +	v4l2_i2c_subdev_init(&sensor->subdev, client, &imx415_subdev_ops);
-> >> +
-> >> +	ret = imx415_ctrls_init(sensor);
-> >> +	if (ret < 0)
-> >> +		return ret;
-> >> +
-> >> +	sensor->subdev.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> > 
-> > Add V4L2_SUBDEV_FL_HAS_EVENTS.
-> 
-> Just for my understanding: why is this required/a good idea?
-> 
-> >> [...]
-> >> +static int imx415_identify_model(struct imx415 *sensor)
-> >> +{
-> >> +	int model, ret;
-> >> +
-> >> +	/*
-> >> +	 * While most registers can be read when the sensor is in standby, this
-> >> +	 * is not the case of the sensor info register :-(
-> >> +	 */
-> >> +	ret = imx415_write(sensor, IMX415_MODE, IMX415_MODE_OPERATING);
-> >> +	if (ret < 0)
-> >> +		return dev_err_probe(sensor->dev, ret,
-> >> +				     "failed to get sensor out of standby\n");
-> >> +
-> >> +	/*
-> >> +	 * According to the datasheet we have to wait at least 63 us after
-> >> +	 * leaving standby mode. But this doesn't work even after 30 ms.
-> >> +	 * So probably this should be 63 ms and therefore we wait for 80 ms.
-> >> +	 */
-> >> +	msleep(80);
-> > 
-> > Wow.
-> 
-> This is the other occurrence of this long sleep. We could refactor this
-> code into a imx415_wakeup() method if desired. Otherwise, we need to
-> align the sleep period and the explanation at least.
+My revert was not applied, thus please send incremental fix to the bindings.
 
-I'm ok with the code, it's just a very, very long delay.
+Best regards,
+Krzysztof
 
--- 
-Sakari Ailus
