@@ -2,167 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22626687871
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:10:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B67A5687887
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:15:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232559AbjBBJKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 04:10:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52442 "EHLO
+        id S230323AbjBBJPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 04:15:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232019AbjBBJKR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:10:17 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E253480028
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 01:10:07 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so817523wms.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 01:10:07 -0800 (PST)
+        with ESMTP id S229916AbjBBJPp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:15:45 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 099281730
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 01:15:44 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id q10so1059037wrm.4
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 01:15:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GuHqxHFmMDzLu09crUNJ3iVIgq0Eo+XKZ1UhzXbjGWY=;
-        b=y6m5QULbu4jNV5tebNlgGWntIbntCPYG8aX60ks12N3geKsIihcX9z19Y4nqRXvGjE
-         AUVwhql2QqiBWVet+4bDO4tXJhOKGTf3Glgm421z8gQ1iqZ61seX6SBCHY0JJlP9uzhb
-         I0nNgGmhOjq9kVRPhQNUjewmLbOHKUKK1B1AVqslbLZk4/P+3sIVbi7BKF98+XPevHKG
-         y9Y+4x1M7BaElF2emPWqrAXSXmMOUuUKx9xq2sdGLuyYtwfSbB/gSOwfwwdcxsBb5lMO
-         PdbGHI7+vRSz9G7+imxZ7j/9Z95I3KySDZ/GWwFXRJaAw/L/uKppe/9gSLE2tcS231vo
-         oJRg==
+        bh=RC/waujmzDR6aaO1i7Us/eAJ3rIYO70QGCYk2/l27l4=;
+        b=GcCHg1yC0pMmEeKvVNrj2xH0zliRUfXnUm7/tZud3ZC30eDF3n8BSFtKoP5KuS1Qg5
+         ZLxdgocNnGLz+3UviJzDAqpIEWObD4Ku1HUxIE/uv+FxJzBHT343NpCygZFVyvmxHT1c
+         M7IBtmc36Coou7oAFCVrq4FobzyVbZvpegt3PLLqal1YxLXGYfI8r3CaE6D0qBm+DbHE
+         /zR+C4QGww9Fg9GKAH9vTQDLz6RCW1xVawbLvPd9K+nYkkJUyd29ESha8aa5jOMr1PHJ
+         73Vs9t3WpywdW7NgaP9O5QcgZ/K2x04KZhZ3UF89rA2Pxw6bcyqupsQTn5MzSXI8fuRX
+         J6dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GuHqxHFmMDzLu09crUNJ3iVIgq0Eo+XKZ1UhzXbjGWY=;
-        b=jXxJY3CPtsOpImXgRPYhd/q5tEnfUDtlHTfNwxozEU6ggsUP7WYqS7ibhJrYkMZ6SI
-         W6S8nsyHmQjTnMiidY0/knCsUJcSm6IxxuKmcvodEYojxbXh0aVh9VKMaZeBkr3wmJGG
-         Cuj/t6ldezLYDej7/VsEmpY/3fKjxUvApWcEMFnJD57ZpfKZXerCF0a4tf9w9AOAIGjI
-         5JbxAuIYRlY+LALXLpOLdrPl2Ig5p0nU535p4yUNFGJKtLdfa1xdRd4/BYqmx4/XUMcB
-         0uq2wLXxKV3tSj/cPQZhzFK9tjwjz8w9y+ZZfwgq7exw1Oh2d/j78mPnkQ+YZdKEflXr
-         Okyg==
-X-Gm-Message-State: AO0yUKV5JFR8wlFNfLuYqPnvu1ZLKdoesZqFMzELa84q86oaN/U5wQKM
-        PdLMf797ZFpQtLEMscrHLzFIEA==
-X-Google-Smtp-Source: AK7set9K7JX00ufo3veGqKxE4YjIj8gUfpXxTTBR+WIGPUu7UI16cfzONV2wgp8xVOk6CMHqvUKP8w==
-X-Received: by 2002:a7b:c8c6:0:b0:3df:9858:c03b with SMTP id f6-20020a7bc8c6000000b003df9858c03bmr1306017wml.16.1675329006288;
-        Thu, 02 Feb 2023 01:10:06 -0800 (PST)
+        bh=RC/waujmzDR6aaO1i7Us/eAJ3rIYO70QGCYk2/l27l4=;
+        b=8RpiVrCAXf3WEIS9n014BaFsI5AVeyKh7oZOQkKkfLPpNKQcWuAiFT0zfOpSrQzeNO
+         fULwEGy3LmpRUuSmszpshlShjAlvQb53ggaDfnM/JIrAQ7O8TA7TG3l9gKi7SxF8SgyM
+         03SQgELtLAoFSajvNvRlrBg0+Xms8DMcp7zKC9kv0GGclyY74Qq46otrJjqr9ZKVYzp3
+         938eSYqwS74Z7UD6dhbcJBJ7QROEit7mMzeVL87iPjkSloZgu8K6Y/Wzq0vrcfsFfktg
+         h5REDoiAIVSYTMPw1TlHITw5PhMLQru7ba+omwtYYKKOBLUP4D8NTwk9nginDKPDsqP/
+         x/ZQ==
+X-Gm-Message-State: AO0yUKUwq2PhFgIu1HMndb+jpm18HKe0BBWhhmx6//G+bs87VWI8NFfJ
+        NVKQZCOdFG3lgw8bJ5j9/NXooQ==
+X-Google-Smtp-Source: AK7set+HjM7/u7nGSanVRFA3UE2vWW8KqzZsfA7RaoTdtFUbko0OLTyEmitcnfANKME1fUsKzxDBCA==
+X-Received: by 2002:a5d:6d4b:0:b0:2bf:f44b:7a28 with SMTP id k11-20020a5d6d4b000000b002bff44b7a28mr4861946wri.29.1675329342542;
+        Thu, 02 Feb 2023 01:15:42 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t1-20020a1c7701000000b003b47b80cec3sm4046965wmi.42.2023.02.02.01.10.05
+        by smtp.gmail.com with ESMTPSA id z14-20020a5d640e000000b002bfb5bda59asm19403954wru.25.2023.02.02.01.15.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 01:10:05 -0800 (PST)
-Message-ID: <50b797aa-adfe-b3d8-79db-c3ee2cb72f6a@linaro.org>
-Date:   Thu, 2 Feb 2023 10:10:04 +0100
+        Thu, 02 Feb 2023 01:15:42 -0800 (PST)
+Message-ID: <ac140660-0df0-8b43-3585-17511a280830@linaro.org>
+Date:   Thu, 2 Feb 2023 10:15:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/7] dt-bindings: rtc: Move RV3028 to separate binding
- file
+Subject: Re: [PATCH] Fixed the schema binding according to test
 Content-Language: en-US
-To:     Frieder Schrempf <frieder@fris.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Rob Herring <robh@kernel.org>,
-        Thierry Reding <treding@nvidia.com>
-References: <20230201143431.863784-1-frieder@fris.de>
- <20230201143431.863784-2-frieder@fris.de>
+To:     Kiseok Jo <kiseok.jo@irondevice.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+References: <20230202090715.18384-1-kiseok.jo@irondevice.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230201143431.863784-2-frieder@fris.de>
+In-Reply-To: <20230202090715.18384-1-kiseok.jo@irondevice.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/02/2023 15:34, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+Thank you for your patch. There is something to discuss/improve.
+
+On 02/02/2023 10:07, Kiseok Jo wrote:
+> Modified according to the writing-schema.rst file and tested.
+
+Use imperative, not past tense (Fixed->Fix, Modified->Modify).
+
 > 
-> The RV3028 driver uses properties that are not covered by the
-> trivial-rtc bindings. Use custom bindings for it.
-> 
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> Signed-off-by: Kiseok Jo <kiseok.jo@irondevice.com>
+
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching). Therefore it should be:
+"ASoC: dt-bindings: irondevice,sma1303: Rework binding and add missing
+properties"
+
+
+
 > ---
->  .../bindings/rtc/microcrystal,rv3028.yaml     | 56 +++++++++++++++++++
->  .../devicetree/bindings/rtc/trivial-rtc.yaml  |  2 -
->  2 files changed, 56 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
+>  .../bindings/sound/irondevice,sma1303.yaml    | 46 +++++++++++++++++--
+>  1 file changed, 43 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml b/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
-> new file mode 100644
-> index 000000000000..4667ba86fd0c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/microcrystal,rv3028.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip RV-3028 RTC
-> +
-> +allOf:
-> +  - $ref: "rtc.yaml#"
-
-Drop quotes
-
-> +
-> +maintainers:
-> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> diff --git a/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml b/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
+> index 162c52606635..35d9a046ef75 100644
+> --- a/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
+> +++ b/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
+> @@ -10,22 +10,62 @@ maintainers:
+>    - Kiseok Jo <kiseok.jo@irondevice.com>
+>  
+>  description:
+> -  SMA1303 digital class-D audio amplifier with an integrated boost converter.
+> +  SMA1303 digital class-D audio amplifier
+> +  with an integrated boost converter.
+>  
+>  allOf:
+> -  - $ref: name-prefix.yaml#
+> +  - $ref: dai-common.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    const: microcrystal,rv3028
+> +    enum:
+> +      - irondevice,sma1303
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +  '#sound-dai-cells':
+> +    const: 1
 > +
-> +  start-year: true
+> +  i2c-retry:
+> +    description: number of retries for I2C regmap.
 
-This should be dropped as well and then...
+Why do you need this? Why this fits the purpose of DT (or IOW why this
+differs between boards)?
 
+> +    maximum: 49
+> +    default: 3
 > +
-> +  trickle-resistor-ohms:
-> +    enum:
-> +      - 3000
-> +      - 5000
-> +      - 9000
-> +      - 15000
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
+> +  tdm-slot-rx:
+> +    description: set the tdm rx start slot.
 
-...switch to unevaluatedProperties: false
+Aren't you now re-writing dai-tdm-slot-rx-mask property? Same for tx below.
 
+
+> +    maximum: 7
+> +    default: 0
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
+> +  tdm-slot-tx:
+> +    description: set the tdm tx start slot.
+> +    maximum: 7
+> +    default: 0
 > +
-> +        rtc@51 {
+> +  sys-clk-id:
+> +    description: select the using system clock.
 
-Rob's pointed missing testing.
+What does it mean? Why do you need such property instead of clocks?
 
-But more important - please rebase your patches on current tree. Looks
-like all the changes are already done...
+> +    default: 3
+>  
+>  required:
+>    - compatible
+>    - reg
+> +  - '#sound-dai-cells'
+>  
 
 Best regards,
 Krzysztof
