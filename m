@@ -2,67 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D6A0688B2F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 00:56:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F267C688B38
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 00:59:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233065AbjBBX4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 18:56:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36344 "EHLO
+        id S233040AbjBBX7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 18:59:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231486AbjBBX4C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 18:56:02 -0500
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88BD66B000;
-        Thu,  2 Feb 2023 15:56:01 -0800 (PST)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-169b190e1fdso4774575fac.4;
-        Thu, 02 Feb 2023 15:56:01 -0800 (PST)
+        with ESMTP id S230496AbjBBX7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 18:59:19 -0500
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1CE8728DC;
+        Thu,  2 Feb 2023 15:59:18 -0800 (PST)
+Received: by mail-oo1-f44.google.com with SMTP id i21-20020a4ad395000000b00517895ed15dso358649oos.0;
+        Thu, 02 Feb 2023 15:59:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FqDDQUprkp1RMVEhPX4Z2c/ZbDmiqbbtu00RKbuLR3E=;
-        b=w0mohhn6AaIy7f9nsVlIRUToba7NUWRSRoThUm97JR15cIX9j0xcAx/b6nJehEZSk1
-         Dpa/VwM/moOvXUE34UDRq34NF0eVqrWmKiNQkXu5qzN7UdsAKbRQCJxelBq6KWAfuyD/
-         Q5BypEgA23fCBykFnjn7nWrV66wa7W5BVAi8kNxrkpapT1Bbebv1TGwcpSF2nIQ+0KjP
-         aHrEF2vBUOYiQsMp/LYoyNhe+U8ClyeDS8ZtO1e1V5zTkYcEhx/Z2G48sivznYItLlVW
-         QCxp32SbLKrY9O9X78eyTkttG7a2yK75Q68kvnSPTTPaXsJ1jTEQaX28DLVb379iHzLD
-         ud4w==
-X-Gm-Message-State: AO0yUKUrim3AjLValUXsm30TK4lyUiEHu65ME8CZvl7EQhvXYaSyeXYk
-        iO2aP/fW16Df9f32HGbimQ==
-X-Google-Smtp-Source: AK7set+dbGbrNIcluar5fAocvaRBcFMmz7IVlvibjKaNo3DwlgCzLj/Y5YIaUqblHgecoFoJRxRGpg==
-X-Received: by 2002:a05:6870:c69f:b0:163:a45a:9fe1 with SMTP id cv31-20020a056870c69f00b00163a45a9fe1mr4315971oab.2.1675382160774;
-        Thu, 02 Feb 2023 15:56:00 -0800 (PST)
+        bh=kHRn6g6VO9qHC/zkbF0I44iV0NS7zFU7u308GKXqOBQ=;
+        b=PTpXcCIB+9U61kg6B9FdiEngy5Im2PGRuYEiVnZtFyxBFEVROzhsyho/NkD+fAN6E/
+         HnQLYlRcG7dyxDcgABthYhhVggom/E1K0NuKe2Nu+VFCidYMU8/Prm8h59wK85c4jYTn
+         YfgBSAHxdymCgaT1Is2Q7UsQtCJp7o/kgU02Ualw4FKQ/eeUWQn0FU7InvKLOfFbw0QI
+         izi4En5lZCLpC26W/Amplub8n/CwO6uqn/uPwTZpYtz8MQJEJi5xtoka3Zc8jrjlo+qV
+         isG1JBZXjjxtNxD42QO0PQLFHZE4lVnULW1aDpbP1rotPDQ3H/gzYtw/65kmnL1UdmqO
+         FTAw==
+X-Gm-Message-State: AO0yUKXvP2xskiRodsLSG0PJAEMYiV9+JbTpHuz8TZKHkKdnWixl5F6Q
+        ZKcul8JD6oDNYEcdvXFdUqNztllkjg==
+X-Google-Smtp-Source: AK7set/EfNNUEXa4onluz3yIFamqI3YXbaMdlrs2eUnpSZwSyN55HuN6Rpb+vqo9LRAKvLhBsIQTVA==
+X-Received: by 2002:a4a:988a:0:b0:517:586a:9386 with SMTP id a10-20020a4a988a000000b00517586a9386mr3693920ooj.3.1675382358143;
+        Thu, 02 Feb 2023 15:59:18 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r6-20020a4ae5c6000000b005177543fafdsm371957oov.40.2023.02.02.15.55.59
+        by smtp.gmail.com with ESMTPSA id v32-20020a4a9763000000b004f73632d096sm414619ooi.6.2023.02.02.15.59.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Feb 2023 15:56:00 -0800 (PST)
-Received: (nullmailer pid 2928953 invoked by uid 1000);
-        Thu, 02 Feb 2023 23:55:59 -0000
-Date:   Thu, 2 Feb 2023 17:55:59 -0600
+        Thu, 02 Feb 2023 15:59:17 -0800 (PST)
+Received: (nullmailer pid 2932596 invoked by uid 1000);
+        Thu, 02 Feb 2023 23:59:16 -0000
+Date:   Thu, 2 Feb 2023 17:59:16 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Frank Sae <Frank.Sae@motor-comm.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        Peter Geis <pgwipeout@gmail.com>, xiaogang.fan@motor-comm.com,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>,
-        yanhong.wang@starfivetech.com, Rob Herring <robh+dt@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>, fei.zhang@motor-comm.com,
-        devicetree@vger.kernel.org, hua.sun@motor-comm.com,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 1/5] dt-bindings: net: Add Motorcomm yt8xxx
- ethernet phy
-Message-ID: <167538215850.2928914.15833109785194194912.robh@kernel.org>
-References: <20230202030037.9075-1-Frank.Sae@motor-comm.com>
- <20230202030037.9075-2-Frank.Sae@motor-comm.com>
+To:     Mukesh Ojha <quic_mojha@quicinc.com>
+Cc:     linux-hardening@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
+        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net
+Subject: Re: [PATCH v5 1/2] dt-bindings: ramoops: Add support to get the
+ region dynamically
+Message-ID: <20230202235916.GA2931100-robh@kernel.org>
+References: <1675330081-15029-1-git-send-email-quic_mojha@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230202030037.9075-2-Frank.Sae@motor-comm.com>
+In-Reply-To: <1675330081-15029-1-git-send-email-quic_mojha@quicinc.com>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -74,18 +65,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Thu, 02 Feb 2023 11:00:33 +0800, Frank Sae wrote:
->  Add a YAML binding document for the Motorcomm yt8xxx Ethernet phy.
+On Thu, Feb 02, 2023 at 02:58:00PM +0530, Mukesh Ojha wrote:
+> The reserved memory region for ramoops is assumed to be at a
+> fixed and known location when read from the devicetree. This
+> is not desirable in an environment where it is preferred the
+> region to be dynamically allocated at runtime, as opposed to
+> being fixed at compile time.
 > 
-> Signed-off-by: Frank Sae <Frank.Sae@motor-comm.com>
-> ---
->  .../bindings/net/motorcomm,yt8xxx.yaml        | 117 ++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  MAINTAINERS                                   |   1 +
->  3 files changed, 120 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
-> 
+> So, update the ramoops binding by using some reserve memory
+> property to allocate the ramoops region dynamically.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+Sorry, but I still don't think this belongs in DT as I commented on v4.
