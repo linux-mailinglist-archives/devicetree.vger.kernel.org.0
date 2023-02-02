@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2433A6886AA
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 19:38:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52E246886AE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 19:38:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232256AbjBBSiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 13:38:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45658 "EHLO
+        id S232716AbjBBSiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 13:38:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232290AbjBBSiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 13:38:08 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13DE637F3A
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 10:37:33 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id q10so2563803wrm.4
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 10:37:33 -0800 (PST)
+        with ESMTP id S232746AbjBBSiQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 13:38:16 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31BA1E4
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 10:37:39 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id a2so2281335wrd.6
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 10:37:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QeIfWHDa2fvM5jUnMkL8MI7fcZ0bv0i4OOCgMKL446E=;
-        b=l06A1cmXwgKENlFdGLp7sC4/eyJqhQGFvt4WqG9szuR7KAzjP3ilZlD2hOQqUJNRqD
-         y3ckO43HNJ3hiNoIuABaBoCYWYdHAr2oVhJXGyhd0e3wQfZdsBGSaJJleNkYc+7imVdc
-         jQrNTRkmnSzPebl/3WAjEkdFAkMP81O7guCTHQzCMtxl09H0Q2KgM7/MCLQDnpg5DCBj
-         +dGns2SgfBT/jHvrCuq1PRHBINCr7tyy/gk/Erwt2XpcxqtESE3Qz8vzRbe/KQzjqJzF
-         DRUXob7GENdxln0PH2KRCPhBsLN3/lzLRlG9s5jKXszXTeTJY073AMpEBT8ZL6ApjJ8Y
-         xzrQ==
+        bh=hZDf/HLHsmXllvXlzMaBba2wF4a3xInBovmR2gll1NE=;
+        b=xaYuudaLyB+uAk3PVQ8DP1LP3TKOxSqkpwctcjT4Z0iVbrSjlIK7ROCuOD4TzGetXo
+         tgqj0nGRsRQJe072REFgPgVjHQ61dQkyQ5aEa/e1iHKNSevRrsRIF1xECSFXNThvxi8q
+         PwFwhy/U4yfMzR+lsF4xgGiPi+SKpVMSj4sxR3WM/+My7FdcSoHpJmJ23HL4wFjcipNM
+         JTB+yER/k59c2hjSoR533p4BYEdcUx7B5RLfR0YaDmPSpm/sp83jQTcs18KIfbZhK2du
+         ELJ9eRv3HiVXVpuad6m6/Z/hcVB7PWmib8ZJlJvx+Py4/mEjinnOAWxXh9fSxRK0LwYM
+         NhEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=QeIfWHDa2fvM5jUnMkL8MI7fcZ0bv0i4OOCgMKL446E=;
-        b=OBcSyi7g9/cPFBBvQEaQAwNM7X3k+r71V4PkGaq7LzXiTQFZKdb6Z3hWxzCUQn3Wrr
-         g5cQfPl6Ye9zhzhir/AWMEARLx6Nflh7wACGYxMEoW+B4DsfGSOjw73X2+PotoNilLH7
-         Vn59VZIxhn71IVQFyInPFJzD0nrBwSpxDxHE6JM6oTyBE6qABHH3bV28DnbwtLqarSJl
-         6jre96dfSVWioV0tSpURTxt3Y16x71ZMrp0hHSaGNz0ltab9UTunbN+4+/P81CpJQ+5S
-         ivRXyLSNxg0pgnu2u82+LmuiJ1lbxqnCkhK3NJ6XO/RVi6xuXESYS69ifxo2naq/2P7W
-         0P5Q==
-X-Gm-Message-State: AO0yUKVW5QDTdynm+HeP4IeieDJFmPS/f5VlPTFAtQ4RIL1YR9wDRzP1
-        8036x9pxInX5Hy0IMXz2zYQq+g==
-X-Google-Smtp-Source: AK7set/gl7mkCo0fFqVVU8e+mU0M0fxQBGITq/co13H8UNB+GuXOO3uWbLmrv5x5yRG3W+gngOal/Q==
-X-Received: by 2002:adf:9c8e:0:b0:2c1:28dc:1561 with SMTP id d14-20020adf9c8e000000b002c128dc1561mr6380662wre.44.1675363050459;
-        Thu, 02 Feb 2023 10:37:30 -0800 (PST)
+        bh=hZDf/HLHsmXllvXlzMaBba2wF4a3xInBovmR2gll1NE=;
+        b=d1/SM3QdxKkV8o4kb/bT6HKkNuLuV1Gl0LhvQQjnsxiCPAglVf7nOJpeNWFdjxcicx
+         9HYvlWCPE9NVTUi929+pgStsMc5IeNRioHc2f1zvUThKJtOcTmaeHlx8UkA0DoMyolf1
+         Hi6Jqe8EVHDdb6UvNOtjxXDPXj8mNm1NnbZNmeUvzKdHjClPrhb0x5Ifsln7LpF/Z70N
+         M8eaWtTS0C/MVOvLbBYImorKFDK/kk1DcaUphJOehZWG06LGR/qsW1eaNXxeIm3iv+gU
+         UlzOLszHkF0hqC8QwQOM5TgA6ZrcS4+e3sCg7seS+47rxoTxpzFcJW24WGsOvQLhQio3
+         BGXQ==
+X-Gm-Message-State: AO0yUKUlmtz7jiFG1nqPwwv0OT/QPB1g1kFhhCZ27Xea3VprH2kV+jMH
+        +90Hh77zROkoxkwVv1jQO/1Ltw==
+X-Google-Smtp-Source: AK7set87mrYHNE/0/I372ct8ZaVBEWpNKw4XOYrrrvcmO7iVSYhOhxapZ0+s93W5U33cXIJHeAn8Sg==
+X-Received: by 2002:a5d:6da3:0:b0:2bf:ae11:c40c with SMTP id u3-20020a5d6da3000000b002bfae11c40cmr7784287wrs.32.1675363054576;
+        Thu, 02 Feb 2023 10:37:34 -0800 (PST)
 Received: from localhost.localdomain (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.googlemail.com with ESMTPSA id p12-20020a5d48cc000000b00241fab5a296sm164664wrs.40.2023.02.02.10.37.27
+        by smtp.googlemail.com with ESMTPSA id p12-20020a5d48cc000000b00241fab5a296sm164664wrs.40.2023.02.02.10.37.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Feb 2023 10:37:30 -0800 (PST)
+        Thu, 02 Feb 2023 10:37:34 -0800 (PST)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org
@@ -59,9 +59,9 @@ Cc:     Jerome Brunet <jbrunet@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 2/9] ASoC: dt-bindings: meson: fix gx-card codec node regex
-Date:   Thu,  2 Feb 2023 19:36:46 +0100
-Message-Id: <20230202183653.486216-3-jbrunet@baylibre.com>
+Subject: [PATCH 3/9] ASoC: dt-bindings: meson: convert axg tdm interface to schema
+Date:   Thu,  2 Feb 2023 19:36:47 +0100
+Message-Id: <20230202183653.486216-4-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230202183653.486216-1-jbrunet@baylibre.com>
 References: <20230202183653.486216-1-jbrunet@baylibre.com>
@@ -77,28 +77,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'codec' is a valid node name when there is a single codec
-in the link. Fix the node regular expression to apply this.
+Convert the DT binding documentation for the Amlogic tdm interface to
+schema.
 
-Fixes: fd00366b8e41 ("ASoC: meson: gx: add sound card dt-binding documentation")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../devicetree/bindings/sound/amlogic,gx-sound-card.yaml        | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/sound/amlogic,axg-tdm-iface.txt  | 22 -------
+ .../bindings/sound/amlogic,axg-tdm-iface.yaml | 59 +++++++++++++++++++
+ 2 files changed, 59 insertions(+), 22 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-index 5b8d59245f82..b358fd601ed3 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-+++ b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-@@ -62,7 +62,7 @@ patternProperties:
-         description: phandle of the CPU DAI
- 
-     patternProperties:
--      "^codec-[0-9]+$":
-+      "^codec(-[0-9]+)?$":
-         type: object
-         additionalProperties: false
-         description: |-
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt
+deleted file mode 100644
+index cabfb26a5f22..000000000000
+--- a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-* Amlogic Audio TDM Interfaces
+-
+-Required properties:
+-- compatible: 'amlogic,axg-tdm-iface'
+-- clocks: list of clock phandle, one for each entry clock-names.
+-- clock-names: should contain the following:
+-  * "sclk" : bit clock.
+-  * "lrclk": sample clock
+-  * "mclk" : master clock
+-	     -> optional if the interface is in clock slave mode.
+-- #sound-dai-cells: must be 0.
+-
+-Example of TDM_A on the A113 SoC:
+-
+-tdmif_a: audio-controller@0 {
+-	compatible = "amlogic,axg-tdm-iface";
+-	#sound-dai-cells = <0>;
+-	clocks = <&clkc_audio AUD_CLKID_MST_A_MCLK>,
+-		 <&clkc_audio AUD_CLKID_MST_A_SCLK>,
+-		 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
+-	clock-names = "mclk", "sclk", "lrclk";
+-};
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.yaml
+new file mode 100644
+index 000000000000..362414fc9a9b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Audio TDM Interfaces
++
++maintainers:
++  - Jerome Brunet <jbrunet@baylibre.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  $nodename:
++    pattern: "^audio-controller-.*"
++
++  compatible:
++    items:
++      - const: 'amlogic,axg-tdm-iface'
++
++  "#sound-dai-cells":
++    const: 0
++
++  clocks:
++    minItems: 2
++    items:
++      - description: Bit clock
++      - description: Sample clock
++      - description: Master clock #optional
++
++  clock-names:
++    minItems: 2
++    items:
++      - const: sclk
++      - const: lrclk
++      - const: mclk
++
++required:
++  - compatible
++  - "#sound-dai-cells"
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/axg-audio-clkc.h>
++
++    tdmif_a: audio-controller-0 {
++        compatible = "amlogic,axg-tdm-iface";
++        #sound-dai-cells = <0>;
++        clocks = <&clkc_audio AUD_CLKID_MST_A_SCLK>,
++                 <&clkc_audio AUD_CLKID_MST_A_LRCLK>,
++                 <&clkc_audio AUD_CLKID_MST_A_MCLK>;
++        clock-names = "sclk", "lrclk", "mclk";
++    };
 -- 
 2.39.0
 
