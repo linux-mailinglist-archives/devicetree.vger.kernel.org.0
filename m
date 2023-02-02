@@ -2,127 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EA9C688451
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 17:25:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 393C4688479
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 17:33:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232083AbjBBQZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 11:25:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37788 "EHLO
+        id S229666AbjBBQdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 11:33:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229804AbjBBQZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 11:25:17 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 220FF93F0
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 08:25:06 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id f47-20020a05600c492f00b003dc584a7b7eso4117262wmp.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 08:25:06 -0800 (PST)
+        with ESMTP id S229608AbjBBQdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 11:33:08 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8223311EAA
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 08:33:03 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id d14so2219677wrr.9
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 08:33:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xKkQ/MGYg75Krl7zSnOxIL9rasEvYWJbhYfIJlw/MJE=;
-        b=VoppvjbP97+x6wLZbumvfPPdxVNlasPUlw9jNftlxNfy8mPVVNtmggL+2ShSgBe8M2
-         5ENqCsAlY6CeslsI5+h+Sv/gTCpznE1L072jzeDK/jPPuFSjZNEWrqeouJpUGmcOO5qW
-         0ovjNG1NcTgB+qh663kL+4F1Ub80QHJtnAD7FmpCLDp44UjbHbeExNtVn/yhpCfeuZZf
-         gkgSPU7IRjqoEOlCBkQF5otqWDtojKUYTyquE9G/hOsKpw7RS8mwbh5A6tsm77niUfDg
-         9NPnTcOgzkiNpJg3ZpE5DCi3sAf0h/5qOPANnFLRr5aHGzCL/gyfhRl68fs0fmBkAu69
-         xnrQ==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=x+y+o/Wjd2NwudZ2nm6ZyEg3Aj1gsA3hyrscQ3Yxhh0=;
+        b=NhqLwXJennmkEBzy7M5keLNElRd6jggbjgsfzEfw36x+ET93hlQpIqBvHCvEPYKdcf
+         9ESdhznNjkO+4cNAoK5096MXEmxDjpRlItE/LlK99RMgUq1i5LK2GIPGHvQXr5WqJv/6
+         +UQ2YGDMXiEEA3iyEwVnR1k0y6VsP+kIXFMHweE26aCZIIXrD36YI/oukh4ze+RmNltv
+         XbPss7nPpZtL3OWRmKxWGn2o7mjM4dAE4kJbtGJrEfA1Gutf/9NEOe1Yj2OqFKVStNGv
+         yG+VwzrFQJRLJJAzKZszMmpKvy2Z8nY4vWnjbxKHPzbXzE+ogczeBgzqbWAr3F2NblQy
+         y2dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xKkQ/MGYg75Krl7zSnOxIL9rasEvYWJbhYfIJlw/MJE=;
-        b=1AtGq3T/xwGPGiLn8qcLue4CdvRuWkRO/ZvCeECWst5+XAIytCuhzpQjxYzRmT95Yv
-         3h410+RRgq4Vug86xsJkOtTbv7WAURr8GunPd/ujITyt/omdf4NHKpmkBNW1jo+ArsOD
-         cPINDePchHgiMkD97Fiv1kXNBz4tzctZB+3aBElxo6/J1Boddoqm179+I2WqWWJDp7W7
-         Y0KuMAbkc34MIyfHYBOaS6sWGhgD3W2dw0sh5AEbovQw8rG5eiRNI5VESFw5IPOwnKUj
-         +j50eSUZR7M/1LEJOiAIw8Cnxv500pDrwniWViugf6qSQ1OO8zeOqrrHDX7ldkJk7reU
-         ozUQ==
-X-Gm-Message-State: AO0yUKXvhLEUybMZClPLrvgjLOIF0Y/cxBbjV192oHFxmn5S3ENaTU/6
-        X48APJQItp1DW46YbOeo+VLz5VCOMa+0oNYB
-X-Google-Smtp-Source: AK7set8aBQAyjofXakT1skJQOIhl0iX3vO6X+TF2rtqyHnfL/CNseXBsu8Llf7cxLMReWw7evMX2lg==
-X-Received: by 2002:a05:600c:4e55:b0:3d9:e5d3:bf with SMTP id e21-20020a05600c4e5500b003d9e5d300bfmr6521824wmq.32.1675355104701;
-        Thu, 02 Feb 2023 08:25:04 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y10-20020a05600c364a00b003daf7721bb3sm5084687wmq.12.2023.02.02.08.25.03
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x+y+o/Wjd2NwudZ2nm6ZyEg3Aj1gsA3hyrscQ3Yxhh0=;
+        b=zDyRfK54KXElRy0FSMvgV7f0HCk5i+i8Bm4BzfiSaPJo0SD6MfpZUyzgdetkNMLSf+
+         kmx2Il5LZzcHeQf/1j1v2il0inIo6MUJIxtNynrCjVrP4FX37prQDuO24PNJhqJQSUu9
+         MCfjOaGQ0cmHz0bw78ZYcvB3dTePRZeq9V4EKq/yqYRRx9n1hvELFQQ2jgMu1Y52lMIz
+         Cqty/H5IlSJKxMb5jhJC4y6aivhEBt/ikTZhSYYvTP9YIL3kazhIrBLAVhZ7sBHYCR68
+         qxAjkNZm0LBHykMLGnR0Jj+dhIudy6qwcpgYacFyWhjB3JHCQFNj8dNwcFLs3NTh09W6
+         +deA==
+X-Gm-Message-State: AO0yUKUQ9NxNIv2Ju4/19XoZLLNJb9lJn7xX7EjV8cCm437WQwCj3MRg
+        GNM1tvTVfjd1+jue42zW3NJpuA==
+X-Google-Smtp-Source: AK7set8eRf4Ge+qR3bh/ypq9RkQrO+GZz7CPDskr/v1RpP9diYU0jhW3yp8mu4JWchabCjgN3LvfyA==
+X-Received: by 2002:a05:6000:110d:b0:2bf:c0f2:4b0 with SMTP id z13-20020a056000110d00b002bfc0f204b0mr6402311wrw.19.1675355581548;
+        Thu, 02 Feb 2023 08:33:01 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ce5b:78ab:f662:ef0d? ([2a01:e0a:982:cbb0:ce5b:78ab:f662:ef0d])
+        by smtp.gmail.com with ESMTPSA id p6-20020a5d48c6000000b002bfc0558ecdsm19941965wrs.113.2023.02.02.08.32.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 08:25:04 -0800 (PST)
-Message-ID: <7ed270eb-decc-3a5d-589f-bf8175fac0d3@linaro.org>
-Date:   Thu, 2 Feb 2023 17:25:02 +0100
+        Thu, 02 Feb 2023 08:33:00 -0800 (PST)
+Message-ID: <5363960d-8ca1-aaf0-3721-f5d3a1575da2@linaro.org>
+Date:   Thu, 2 Feb 2023 17:32:54 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH] dt-bindings: mmc: Add cap-aggressive-pm property
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v8 5/9] dt-bindings: qcom-qce: document clocks and
+ clock-names as optional
 Content-Language: en-US
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Hermes Zhang <chenhuiz@axis.com>
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        kernel@axis.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230129023630.830764-1-chenhuiz@axis.com>
- <b43f26c9-f76c-c898-aadc-ce3ee7b7823d@linaro.org>
- <b125f25d-94c7-dd5b-28d3-3948c36ef4e0@axis.com>
- <a1d2ac4c-0763-5c92-be21-22820c376438@linaro.org>
- <CAPDyKFqX+1HBPmgXC9Apdb02F25J9ZTKRByqZQZn6Xx4Kf=Efg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAPDyKFqX+1HBPmgXC9Apdb02F25J9ZTKRByqZQZn6Xx4Kf=Efg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org
+References: <20230202135036.2635376-1-vladimir.zapolskiy@linaro.org>
+ <20230202135036.2635376-6-vladimir.zapolskiy@linaro.org>
+ <32c23da1-45f0-82a4-362d-ae5c06660e20@linaro.org>
+ <36b6f8f2-c438-f5e6-b48f-326e8b709de8@linaro.org>
+ <a2e4dff0-af8f-dccb-9074-8244b054c448@linaro.org>
+ <61eb2a01-762e-b83b-16b7-2c9b178407da@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <61eb2a01-762e-b83b-16b7-2c9b178407da@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 15:59, Ulf Hansson wrote:
-> On Tue, 31 Jan 2023 at 17:57, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+On 02/02/2023 17:16, Vladimir Zapolskiy wrote:
+> On 2/2/23 16:21, Neil Armstrong wrote:
+>> On 02/02/2023 15:04, Vladimir Zapolskiy wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 2/2/23 15:53, Krzysztof Kozlowski wrote:
+>>>> On 02/02/2023 14:50, Vladimir Zapolskiy wrote:
+>>>>> From: Neil Armstrong <neil.armstrong@linaro.org>
+>>>>>
+>>>>> On certain Snapdragon processors, the crypto engine clocks are enabled by
+>>>>> default by security firmware.
+>>>>
+>>>> Then probably we should not require them only on these variants.
+>>>
+>>> I don't have the exact list of the affected SoCs, I believe Neil can provide
+>>> such a list, if you find it crucial.
 >>
->> On 30/01/2023 07:54, Hermes Zhang wrote:
->>> On 2023/1/29 18:58, Krzysztof Kozlowski wrote:
->>>> On 29/01/2023 03:36, Hermes Zhang wrote:
->>>>> This commit add a new property: cap-aggressive-pm to enable the
->>>> Do not use "This commit/patch".
->>>> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
->>>
->>> Done
->>>
->>>>> MMC_CAP_AGGRESSIVE_PM feature for (e)MMC/SD power saving.
->>>> Why this is a property suitable for DT? IOW, why this isn't enabled always?
->>>
->>> This property will benfit for the power consumption, but it also may
->>> degradation in performance as it will prevent the
->>>
->>> the card from executing internal house-keeping operations in idle mode.
->>> So it's better to config it from DT.
->>
->> Why? DT is not for policy. How you described it, this is policy or
->> system tuning choice thus the job for Linux (OS), not for DT. So I will
->> repeat - why this property fits the purpose of DT (describe the hardware).
+>> It's the case for SM8350, SM8450 & SM8550.
 >>
 > 
-> I guess the HW perspective here, is that it might not fit all
-> platforms nor the actual eMMC/SD card to support this feature.
-> However, it still seems like a policy rather than a strict HW
-> constraint.
+> On SM8250 there is no QCE clocks also, so I'll add it to the list, and I hope
+> that now the list is complete.
 > 
-> Perhaps there is a way to figure out in the host driver, to
-> conditionally set the MMC_CAP_AGGRESSIVE_PM for the host, when needed
-> instead?
+> It could be that the relevant platforms are the ones with 'qcom,no-clock-support'
+> property of QCE in the downstream.
+> 
 
-What also worries me is that there is no user of this property: no DTS,
-no driver, so it is tricky to deduct out when it is applicable.
+Yes this is what I figured out with the 5.10 device-trees I have checkouted.
 
-Anyway things which might be obvious for the submitter, might not be for
-the reviewer, thus I would really like to see justification why
-different boards (or memories) need this property.
-
-Best regards,
-Krzysztof
+Neil
 
