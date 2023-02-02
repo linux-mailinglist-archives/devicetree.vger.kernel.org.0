@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D37BB687AB7
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 11:47:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBE72687ABF
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 11:47:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232178AbjBBKr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 05:47:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43498 "EHLO
+        id S232949AbjBBKre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 05:47:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232731AbjBBKrF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 05:47:05 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B7A973054
+        with ESMTP id S232539AbjBBKrG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 05:47:06 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EBE68A7C8
         for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 02:46:41 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so1031666wms.2
+Received: by mail-wm1-x32b.google.com with SMTP id q10-20020a1cf30a000000b003db0edfdb74so3838174wmq.1
         for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 02:46:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MAA7Ke5DBl8xbt1zInP+vTJBK9tUzjj+nLzA4OXjzeA=;
-        b=EOt0foLfLMId0YC8cimHzXIl4ngL688Jju0RgrlX5GNvyz7d5qIzrq8036dEJKkYo4
-         cIveJ9yBxlD6y3HvKx8YM4R33pw8IdWNj0RcoY6BeMKzVdKwVx6BAaJpAtT4nm8COHU/
-         erPzzND9I1hc3Vfm9C0Fgg2I7H7qs1eZn6ISQSwEiEuxQyF55BzCfqQXYp5DFGO01WfR
-         CBy6CzKzySBKhKuRHF9jLauLV7aApqNA7HocUHCqBz/G7vWfiInlKQu+Ob+j16sdlSIt
-         pDlcGmrQLSVD8WQ1WlgxnVC9cTEEkT3JRRIXwfjDmkYq/bBtt1MM1QHKO9xa6C98dWNr
-         u6vg==
+        bh=Vsl9i9PR9xIBvk9d/QNjecKRQT6bhvU1gZ+MPBAKYIc=;
+        b=cNrqwyZ+Ot05xc2GKcyvVpdVcLtxwFvnqM+6WLzyICsLC/QJoRNRuoJBuSDb+yuWxw
+         iqzW26Ln4DDtI/8t56ro+95Z7afloi3YacDkqySFETeJ/zN5FyZDyCsAkegHlbQUO4Mz
+         CumrdQRTq4V1OPDzbiLrUP0S2ryAwk4kX3VIbPVl8V4eH1v4gQkQuMecSUOxltJUrHWs
+         p43YiNdTTxBQi5HsvnDZCykwxYHiAbkS5fxYHsRZJHs33dsNDyp5x+5PAN0jmUEB8tDl
+         Jm4HLbVoqte35YbdiTtnYmDoKHE5Mr+k2iBxiIPONvXRWaESM29+CY30e+FtLFXaTiK+
+         3m6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=MAA7Ke5DBl8xbt1zInP+vTJBK9tUzjj+nLzA4OXjzeA=;
-        b=mQxAWoRc40h14DmN8IkiqrrKuZj+BdIIeMQo+2xx/q03FRaetrU3NR+NjU5C/SB8ih
-         LHaDNpFmiUZM6Q0ShbocDldTHJ0tiIYOXZ5MC8AIa+XDLC+AHWHKYVtnAmtHjsStQtBm
-         DSkGMseEa1urDFkV06PGfaQkRLb1rZ3lY/CcpgkZExrbRwTrzWvQZiTQCB1WVSVwr8+W
-         VbYNEUoXfs87CcH9hPhkoEfBbP3z5O3D8jzBJmIAjsrild8xSpcR08LKYVu0C2YnbsCc
-         rnKJHgTYWz4Pe376RgV3LlG+4Qi9Jscu0L93wwJyd1nzjC2ps4ScgK3Vm1yHavO+cI72
-         31oQ==
-X-Gm-Message-State: AO0yUKVJdg1PF66hkDDzu/Z2qAXy9GEHFkM1l/snaSbRz6bP+TW1SE0X
-        3fO6/Dm1AIB9KGBobHoRL8UOZg==
-X-Google-Smtp-Source: AK7set9k4GeZSBgG+mX7KWsL8+q02LZIWp4HJV19r+V6fICEJgXCu2bE16suXo3iuSavpmHD5JpdCA==
-X-Received: by 2002:a05:600c:3caa:b0:3da:270b:ba6b with SMTP id bg42-20020a05600c3caa00b003da270bba6bmr5245110wmb.41.1675334764887;
-        Thu, 02 Feb 2023 02:46:04 -0800 (PST)
+        bh=Vsl9i9PR9xIBvk9d/QNjecKRQT6bhvU1gZ+MPBAKYIc=;
+        b=u4UXbKYo0y0LI+DuuPN9xs8Qx+vytuZe8EdKxGd83g+EkWG3qpaIQWoEpgx5e5I+sL
+         +VDn8IsEkYMh23wfs//CI9ICtOjfyimK/B4sQM/xpbyx1/iX43mmSdunUs9ExvcQZtGG
+         eHyH9A5fj1ePOzaYTT+CEHUWnwwPKssbS93bCjrLCy3gJBhjgUGeNcVA1PqyVHyzVt30
+         Xp6VM+fOCAR9hVF7kjjJTjyozAf8NQbwp6YVY64N3GxLJj1upcXQWfn7KhoI6vlu3HII
+         bWMFMCI5pqH6S6pb17hN3qdlXOIwT3atnkE3shT+Zj/ceZui0t+JTrR+1O1PwWNGqqNg
+         ed8A==
+X-Gm-Message-State: AO0yUKVV+1u5agjCkW38gfK7ZkxjufhKwoI+7CWaXmyBBmmd+4zDCSci
+        E0u9GTmBaHFkc/DTmcOnBm5KxA==
+X-Google-Smtp-Source: AK7set+9D9+qU7CuocALvUhiIpLYQzG3x3yel9az0gJxjOwKrbNnfj+lcyLDXCEJCvIFAWXitJ8nDw==
+X-Received: by 2002:a05:600c:3b18:b0:3df:e1d8:cd8f with SMTP id m24-20020a05600c3b1800b003dfe1d8cd8fmr276052wms.6.1675334766670;
+        Thu, 02 Feb 2023 02:46:06 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n24-20020a05600c181800b003dc3f195abesm4307329wmp.39.2023.02.02.02.46.03
+        by smtp.gmail.com with ESMTPSA id n24-20020a05600c181800b003dc3f195abesm4307329wmp.39.2023.02.02.02.46.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Feb 2023 02:46:04 -0800 (PST)
+        Thu, 02 Feb 2023 02:46:06 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -63,9 +63,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 08/10] ARM: dts: qcom: sdx55: correct TLMM gpio-ranges
-Date:   Thu,  2 Feb 2023 11:44:50 +0100
-Message-Id: <20230202104452.299048-9-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 09/10] arm64: dts: qcom: msm8953: correct TLMM gpio-ranges
+Date:   Thu,  2 Feb 2023 11:44:51 +0100
+Message-Id: <20230202104452.299048-10-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230202104452.299048-1-krzysztof.kozlowski@linaro.org>
 References: <20230202104452.299048-1-krzysztof.kozlowski@linaro.org>
@@ -73,8 +73,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,24 +82,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Correct the number of GPIOs in TLMM pin controller.
 
+Fixes: 9fb08c801923 ("arm64: dts: qcom: Add MSM8953 device tree")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/qcom-sdx55.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/msm8953.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
-index a9433d1e4f54..f1553e1e40db 100644
---- a/arch/arm/boot/dts/qcom-sdx55.dtsi
-+++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
-@@ -560,7 +560,7 @@ tlmm: pinctrl@f100000 {
+diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+index 4e17bc9f8167..610f3e3fc0c2 100644
+--- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+@@ -399,7 +399,7 @@ tlmm: pinctrl@1000000 {
+ 			reg = <0x1000000 0x300000>;
+ 			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+ 			gpio-controller;
+-			gpio-ranges = <&tlmm 0 0 155>;
++			gpio-ranges = <&tlmm 0 0 142>;
  			#gpio-cells = <2>;
  			interrupt-controller;
  			#interrupt-cells = <2>;
--			gpio-ranges = <&tlmm 0 0 109>;
-+			gpio-ranges = <&tlmm 0 0 108>;
- 		};
- 
- 		sram@1468f000 {
 -- 
 2.34.1
 
