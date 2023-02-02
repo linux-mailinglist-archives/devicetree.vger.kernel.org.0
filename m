@@ -2,149 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CD636877C0
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 09:44:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 417436877D5
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 09:49:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231624AbjBBIo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 03:44:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58210 "EHLO
+        id S232157AbjBBItK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 03:49:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231829AbjBBIom (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 03:44:42 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8983186635
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 00:44:39 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id d4-20020a05600c3ac400b003db1de2aef0so760719wms.2
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 00:44:39 -0800 (PST)
+        with ESMTP id S231855AbjBBIs5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 03:48:57 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0102D70D5C
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 00:48:49 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id j32-20020a05600c1c2000b003dc4fd6e61dso3149759wms.5
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 00:48:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zSdGfZDhD9SG6czAcftql0hcyxrwJGaxYjADtCqEBXo=;
-        b=VWNE8vJlCbaY2J05+r4g+pR+CFHynx4X0NHo7DRKjSu1AXREUATK5Muf8MRTaT3p0t
-         4ffWkkwDFQqkDKOMZ0BfeYlv6u1M8Y4xwKVn3OV5GLa6G5L6ge6acJY6Nnz43xfpIEdf
-         KXzNQSbn1Q3yIIGMZ5vBTeANx9DwSVVv/VQZhtK0fjcTnRBJaoqc9yTsl3gOqu5mPtI3
-         mvurJwtfheuqCKSfDu/DOSdqlrXn8jxeS2BpzhdD25+nQFFhtf4cgfG83GjNNkR03aIL
-         vtY9c67oCapbUCE4IWBFGEKwftr25UGRd+NZYDhVCRTIJ+N1NKfn8pzLsRhPcptzkBwA
-         2c2A==
+        bh=ZFT65b50EEkiLEb2HaxzSzyGNIdf4jjjnZMZ02pNxbc=;
+        b=LP0ZUiSsyi4nHzQoQvqdAPlPOzLOSvBFSP0kmazyxzYLGIk75m9Xk3IPbRL8T3rcuR
+         GGFcVGodyYDh7va4H9PezI3kk2e2fsTIB/B04QqljXElgfNm8TBn/TczP+T17mhCrtO+
+         MXq0f9NBQYTwmUqUV3BcHSaqsUdRoUir3ZHt4mj+9To0UWWc78XauRnojqnLNvSjmkR/
+         p1knqfu+Zmb8qL9OvgJthh9o5ZsFKJ5iT/IffPcsMJEOYjj+/7WGG6IX73D1fFywhnmO
+         zOSYMdjFcHzuysUJOACYY1NbbtOf8ZgT7xyxleQ8+OHioyY/gmjaVVtIAbbVLXbGOJUJ
+         kPww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zSdGfZDhD9SG6czAcftql0hcyxrwJGaxYjADtCqEBXo=;
-        b=CNGXpCWdG+qp3EJqTNU274vP3ZxHWrmSZULRGnJUg36Qex3bbtTuK4AfR5cRwq6Bcr
-         kt/eMHFza54i/E3+YylIgdP2C/dgdT+Lg6ymg1cByHV+7AzOpJXXj3jxHLWJRNYB5zfL
-         1DZ3dSkWo6D2bhiMvf4lZAmpR87BPjJQFBuew22uba25YnHD/GaG7H+su2T4fFlpH0RU
-         I6oqDryMLfxznnlB2faPYzS64MjszTSSlgh6RNOoPRKiizzYBwv10AuvHwlatf0k8Xlf
-         UK50ycYeHdReWHt9JblCWExMGL57mHA+ZTMEh3P8ESAWoJN/3/H45eK1/TFaq+/DponG
-         +OhA==
-X-Gm-Message-State: AO0yUKVrPcx9bxphQWN8agqSHYSWjN6ljO8R7tXJoHS4LYqkMw25dEWD
-        MpDFWx7wXDjJcjXYxgCUbAn/6g==
-X-Google-Smtp-Source: AK7set9WwxqLeD78t9sZUqS6ql4d1ZeQ8t6LBkKAYoDpz6+6y5ykC46oY5UyQz2yTcokR5gG8zah7w==
-X-Received: by 2002:a05:600c:3d8c:b0:3dd:62fe:9914 with SMTP id bi12-20020a05600c3d8c00b003dd62fe9914mr5018345wmb.18.1675327478086;
-        Thu, 02 Feb 2023 00:44:38 -0800 (PST)
+        bh=ZFT65b50EEkiLEb2HaxzSzyGNIdf4jjjnZMZ02pNxbc=;
+        b=PVcXG+8eqExHCo3dTcs83bKjaLpLW7nMjjxk3WcDEBW/FFdAFOoL1Mk1Wcx/5lqdZA
+         v83PZuEoYh7XVDOd81XXNaPywh0ZHF1f8oEpgwspBni0NcECmUh3nJouDOVpc1AzHGNs
+         X5VtgL+FyD9/+xN9Fe7WhUKdjNeiP1flISqJ7BQHsCoTMUCaAAQWsSlWEZr7uNEp953m
+         eqjK2NH3LpkE7xd2/6Ys6Yln5hvGCO/XYCW+UlGTAktvUZiY0FXpEGsxY+w49TzTFFUv
+         wS1JBBermHj33M0kzqKDTD70C7AuUitpGWcUWy8XAOvGVz0ZnKMJ1qdLeawUYpoWXhLJ
+         Yzug==
+X-Gm-Message-State: AO0yUKW6T0nkwheSTbnPzZC92zyRmvolAyx95RZ23NJ4v2mL6gV7ygMm
+        avlSK3r2+pXuJusriuh0Vkh68Q==
+X-Google-Smtp-Source: AK7set9QgHEGWI3XpDTcnKQyVSSTiAZeUr5//8Ru1lLuQLb2MMrZYTyyPXZEUw0AMbZfhxmjbeikYw==
+X-Received: by 2002:a05:600c:c12:b0:3df:df24:8f94 with SMTP id fm18-20020a05600c0c1200b003dfdf248f94mr512838wmb.27.1675327728536;
+        Thu, 02 Feb 2023 00:48:48 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r17-20020a05600c459100b003dee8c5d814sm4021173wmo.24.2023.02.02.00.44.36
+        by smtp.gmail.com with ESMTPSA id k10-20020adff28a000000b002b9b9445149sm11474924wro.54.2023.02.02.00.48.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 00:44:37 -0800 (PST)
-Message-ID: <6439a587-0b65-a037-1013-b697e19000a4@linaro.org>
-Date:   Thu, 2 Feb 2023 09:44:35 +0100
+        Thu, 02 Feb 2023 00:48:48 -0800 (PST)
+Message-ID: <24bac8be-c301-8efd-4392-e10db00d17f7@linaro.org>
+Date:   Thu, 2 Feb 2023 09:48:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH] ASoC: dt-bindings: Drop broken irondevice,sma1303 binding
-To:     Ki-Seok Jo <kiseok.jo@irondevice.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+Subject: Re: [PATCH v2] arm64: dts: renesas: v2mevk2: Add uSD card and eMMC
+ support
+Content-Language: en-US
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230201131059.65527-1-krzysztof.kozlowski@linaro.org>
- <1bcd61d6-810f-1239-1b6e-367e0fe87370@linaro.org>
- <Y9pxGUMWyMeXQpZM@sirena.org.uk>
- <6491d6fb-2a10-1c80-d422-8300d5a75ce4@linaro.org>
- <Y9p+p6wt8WugDBuH@sirena.org.uk>
- <SLXP216MB00776F066D70DB2F3F77B09E8CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
- <SLXP216MB0077228B6071F62B183F4D648CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
-Content-Language: en-US
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>
+References: <20230130191152.182826-1-fabrizio.castro.jz@renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SLXP216MB0077228B6071F62B183F4D648CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
+In-Reply-To: <20230130191152.182826-1-fabrizio.castro.jz@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,LOTS_OF_MONEY,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 06:28, Ki-Seok Jo wrote:
->>>> I tried. I started writing patch to fix few things in this binding
->>>> and then noticed that it is entirely empty and documents nothing.
->>>
->>> I really don't see an empty binding as a major problem in and of
->>> itself, we can always add properties later.  Again, I can't tell what
->>> the problems you're seeing are.
->>>
->>>> The trouble is that soon you will send it to Linus and then it
->>>> becomes the ABI even though no one ever approved or reviewed the
->> actual ABI.
->>>
->>> So send a patch to delete the property parsing code then, like I say
->>> removing the entire driver is very much an overraction.  The
->>> properties are all optional in the code.
->>
->> Ok. I'm sorry for not checking correctly.
->> I only reviewed using the full source build and checkpatch.pl.
->> But I missed the config setting...
->>
->> So, could I get the information how to test the binding files?
->> From what I've checked now, using make dt_binding_check, right?
->>
->> I'll try to read again like submitting-patches.rst and writing-
->> bindings.rst.
->> And then re-write the patch. I'm sorry again for not checking properly.
->>
->>
->> Thanks Mark and Krzysztof to feedback.
->>
->> Best Regards,
->> Kiseok Jo
+On 30/01/2023 20:11, Fabrizio Castro wrote:
+> The RZ/V2M EVK comes with a slot for a uSD card, and an eMMC.
+> Add support for the both of them.
 > 
-> So, was the entire thing dropped, or was only the binding dropped?
-> If they are not also, can I just patch in the current state?
+> Please note that the pinctrl driver for RZ/V2M doesn't support
+> interrupts yet, therefore the card detect pin has been connected
+> to the SDHI IP directly in this patch.
+> We'll connect the card detect pin to its corresponding GPIO when
+> we'll have driver support for interrupts in the RZ/V2M pinctrl
+> driver.
 > 
-> And I tested the rewritten file with the following command.
-> 
->   make dt_binding_check DT_SCHEMA_FILES=irondevice,sma1303.yaml
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
 
-Yes.
+> +
+> +
 
-> 
-> Is there anything else I should do?
+Just one blank line
 
-Correct the binding:
-1. Add all properties - just open example-schema and your file and
-document everything
-2. Fix non-existing reference (there is no such file as name-prefix.yaml)
-3. i2c_bus -> i2c
+>  &extal_clk {
+>  	clock-frequency = <48000000>;
+>  };
+> @@ -69,6 +118,26 @@ &i2c2 {
+>  };
+>  
+>  &pinctrl {
+> +	emmc_pins: emmc {
+> +		emmc_pins_data {
 
-
-> 
-> Thanks to your help, I think I am becoming a better developer.
-> I'll try harder. Thanks so much!
-> 
-> Best regards,
-> Kiseok Jo
+No underscores in node names.
 
 Best regards,
 Krzysztof
