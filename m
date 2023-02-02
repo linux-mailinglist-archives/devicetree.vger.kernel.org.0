@@ -2,154 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8955687F8A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 15:09:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 053C7687F9F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 15:12:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231897AbjBBOJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 09:09:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56334 "EHLO
+        id S232089AbjBBOMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 09:12:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231814AbjBBOJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 09:09:49 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47A8388CF7
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 06:09:48 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id d26so1754779eds.12
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 06:09:48 -0800 (PST)
+        with ESMTP id S232098AbjBBOMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 09:12:41 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94163903B1
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 06:12:18 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id bk15so6264506ejb.9
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 06:12:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=mind.be; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Juz5ueJFXhL7XKrszOQfs1PBXZrl+c4YL8+rqK6U1U8=;
-        b=j+WEHtOCCfA7VlRwL3Iqo65d8MZ3CI+SwAlrN5hO4rNGo+gqFwATS9fqlJq0nJTLxW
-         5zY3WEL3+fCQvy8mpdZzFfDHJbCmZ9Kbtb4wm6vd8DgQC7FXZsvva0ZFIMbo5QBaNrdd
-         YfRAleetYwSoObIcZpWVx2kkVzhZPZn3W6x7yedvDbnhRavShn8cb4Bc5Gc+WT55AsdA
-         pbA9dJuhSdxrSCuMhqj94VOAG2nxgiW8iOkj7md17E8VRCMgk2FnaIjUZFOQqYqlP+nB
-         HWVr5BTar24Pr20pp5RdPNnOlKk/XfpTMB8/54smOyTgcDyvXVoaFCJ5x1SvnNV5RJnH
-         QDmw==
+        bh=36/zgaiJ3vcUE+pkQOajDZH6QDOEpwsWqGv3Wm8E224=;
+        b=EK6nadhuEaV8/bpB6M/w+DhVhgMHM/ojZE5vxrq+EfdfFUvwOgIqSH3L4tNKlC6Sd8
+         Vmsq7jITSfA0j6gy2KX4epK0gFHegv/hQEabaabFLVQINHSAh0Mbo/qdiZJPd7auchGA
+         QJ4kK2sAUqbSwz67zAtZFXDkLZS+jV/azIs7SzeGk0J4Sskz9dOKI+WHFSk19XjK0r7D
+         dVJwIXfrT16BBPbtPRwAmtM7rfHpa2g1eE7zVtkZE8S6pQpHi+1nRrax0NDLdCyr4Xy5
+         5wggYfsdFL5GwIvN+a2BsphV7pvV6OSl9F+CfTv+i3BGPdS7kL6VJTLKIK7wzCJII1+V
+         Inaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Juz5ueJFXhL7XKrszOQfs1PBXZrl+c4YL8+rqK6U1U8=;
-        b=wKdHIPlzi2qUH66Oyb+ZQjfNw2HHkcY72V042pKcaWEzQVTJcI5eF0WFZpHJlu300O
-         uTlo4tGcGRtDiLElUi5OmIWZeAdtN0oNbf6wWTu3hmn3n2WnSV5/A3RLhIAEIze3X85+
-         Wm33erQt365n0+aTsO8vRNt1qg3mjN2niZfOwmnVVjz3Elzd6HbIT4eAXNbmCvxsMPBk
-         L4MQrT/+l9XPJLLGo0hrjUeXItT+zKhfhsJwh/ax9PM8lSgQ/C9QTyFQOEThZMNgq+Kv
-         VM0eEtwvhqYFeezKitlkkHKl7AZ3Hzz4oxVDs07BfCSYJ0K+Jo9eMyVGQfxbL0i5ROcp
-         Hocw==
-X-Gm-Message-State: AO0yUKXecx1Gtr8zKdppI7Q+gDIyDcA63OFYnaKYzCPwAL1GL0LkkTAW
-        reRCtCl3tvkuqAyfJ3vmVlx+9g==
-X-Google-Smtp-Source: AK7set/VHn/9zc33kX4W55nqc1RPP2cZPMZ9u7RS018t6p6yIh4L+e2MMUigyutlhqIzXxHqdt80PQ==
-X-Received: by 2002:a05:6402:34cc:b0:4a2:5b11:1a51 with SMTP id w12-20020a05640234cc00b004a25b111a51mr6831769edc.2.1675346986772;
-        Thu, 02 Feb 2023 06:09:46 -0800 (PST)
-Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id z3-20020a50eb43000000b0045b4b67156fsm11197555edp.45.2023.02.02.06.09.45
+        bh=36/zgaiJ3vcUE+pkQOajDZH6QDOEpwsWqGv3Wm8E224=;
+        b=Xv/HGRXwiDisnoL5eX92//JzPq5fRZ6E09bnEIstiOcb/g1yFtffXItVwkze+lVH2B
+         H+8STPfgB7OHmSX1MwhUT4RLoCKbj8yzY8K9TJeYhNyMBskyIoUNk1fruQLbcOXBWX2w
+         5fUwk5AEIiSkR1Bn1DdPL7ktTMyPUOw1tukJASuPphyKEsFwGPoNRID38fw+mFRMg+9r
+         k+n/7ePQt6AdaENu2k4NgTzFXrclr657SdW607CesaL3FmI0KMGzYnygxS44nGoiNU7K
+         4ylMJFujTATiTKylKBh8Hi6bPIuOyspC2YVCxQzdLikkX+yXOd0Lg76n1wG2q4BGqs3w
+         Z7Gg==
+X-Gm-Message-State: AO0yUKXaO/6c2Y4yvUrakyXESogulGz1R/PyFhJEvlOUi/qriQFHZ1kP
+        +ksPksat35UnkuLvNIoIMHgqzQ==
+X-Google-Smtp-Source: AK7set/C2r51EVGqTuEG/Rb/gzpA5AZ8AYxxnc51SdCQFpqUHRd98fzR5Gq/YRCQIrSCTYVSFIjIZQ==
+X-Received: by 2002:a17:906:5e17:b0:882:1b70:8967 with SMTP id n23-20020a1709065e1700b008821b708967mr6633491eju.35.1675347129645;
+        Thu, 02 Feb 2023 06:12:09 -0800 (PST)
+Received: from [192.168.2.9] (78-22-137-109.access.telenet.be. [78.22.137.109])
+        by smtp.gmail.com with ESMTPSA id w20-20020a170906d21400b008897858bb06sm5903041ejz.119.2023.02.02.06.12.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 06:09:46 -0800 (PST)
-Message-ID: <65aefb8a-7384-ce0c-9aab-cb8fd38bc1c6@linaro.org>
-Date:   Thu, 2 Feb 2023 16:09:44 +0200
+        Thu, 02 Feb 2023 06:12:08 -0800 (PST)
+Message-ID: <fa47912f-ec10-f22b-0447-0b7c998711b3@mind.be>
+Date:   Thu, 2 Feb 2023 15:12:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.2
-Subject: Re: [PATCH v8 6/9] dt-bindings: qcom-qce: Add new SoC compatible
- strings for qcom-qce
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v4 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Jordan Crouse <jorcrous@amazon.com>
-References: <20230202135036.2635376-1-vladimir.zapolskiy@linaro.org>
- <20230202135036.2635376-7-vladimir.zapolskiy@linaro.org>
- <0fc4c509-2db4-0bce-75c6-11835d6987d0@linaro.org>
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <0fc4c509-2db4-0bce-75c6-11835d6987d0@linaro.org>
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230202101032.26737-1-maarten.zanders@mind.be>
+ <20230202101032.26737-2-maarten.zanders@mind.be>
+ <20eb5589-8287-90bd-3703-2818b61c6ba3@linaro.org>
+ <b9c6c74b-65d2-46bf-bd7c-e031d420f31c@mind.be>
+ <5fbb6d80-7280-604a-3e1e-4bd98e9776cd@linaro.org>
+From:   Maarten Zanders <maarten.zanders@mind.be>
+In-Reply-To: <5fbb6d80-7280-604a-3e1e-4bd98e9776cd@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On 2/2/23 15:57, Krzysztof Kozlowski wrote:
-> On 02/02/2023 14:50, Vladimir Zapolskiy wrote:
->> From: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->>
->> Newer Qualcomm chips support newer versions of the qce crypto IP, so add
->> soc specific compatible strings for qcom-qce instead of using crypto
->> IP version specific ones.
->>
->> Keep the old strings for backward-compatibility, but mark them as
->> deprecated.
->>
->> Cc: Bjorn Andersson <andersson@kernel.org>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Tested-by: Jordan Crouse <jorcrous@amazon.com>
->> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->> ---
->>   .../devicetree/bindings/crypto/qcom-qce.yaml  | 19 +++++++++++++++++--
->>   1 file changed, 17 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
->> index a159089e8a6a..4e0b63b85267 100644
->> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
->> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
->> @@ -15,7 +15,22 @@ description:
->>   
->>   properties:
->>     compatible:
->> -    const: qcom,crypto-v5.1
->> +    oneOf:
->> +      - const: qcom,crypto-v5.1
->> +        deprecated: true
->> +        description: Kept only for ABI backward compatibility
->> +      - items:
-> 
-> Drop items.
-> 
->> +          - enum:
->> +              - qcom,ipq4019-qce
->> +              - qcom,ipq6018-qce
->> +              - qcom,ipq8074-qce
->> +              - qcom,msm8996-qce
->> +              - qcom,sdm845-qce
->> +              - qcom,sm8150-qce
->> +              - qcom,sm8250-qce
->> +              - qcom,sm8350-qce
->> +              - qcom,sm8450-qce
->> +              - qcom,sm8550-qce
-> 
-> Unfortunately my comments from v6 was not addressed, nor responded to.
-> 
-> We already got a public comment from community that we handle Qualcomm
-> bindings in a too loose way. I don't think we should be doing this (so
-> keep ignoring ABI), just for the sanity of cleanup.
-> 
-> It's fine to discuss it with me, but since v6 there was no discussion,
-> so let's be clear here - NAK on ABI break.
+On 2/2/23 14:43, Krzysztof Kozlowski wrote:
+>
+> Strings in DTS are usually easier to for humans to read, but it's not a
+> requirement to use them. The problem of storing register values is that
+> binding is tied/coupled with hardware programming model, so you cannot
+> add a new device if the register value is a bit different (e.g.
+> LP55XX_CP_OFF is 0x1). You need entire new binding for such case. With
+> string - no need.
+I understand and this is why I started with the string in the first 
+place (as suggested by yourself in V1).
+> With binding constants (IDs) also no need, so was this
+> the intention? Just to be clear - it is then ID or binding constant, not
+> a value for hardware register.
+>
+For simplicity sake, yes, now the setting is propagating directly into 
+the register as a bit value. But this is how the current implementation 
+of the drivers work. If we add a device in the future which indeed has 
+different bit mappings, that driver will have to do a mapping of the DT 
+binding to its own bit field definitions. I consider this DT binding as 
+the "master", which is now conveniently chosen to match the register values.
 
-Can you please elaborate, what is the ABI break you find here?
+Cheers,
 
-As for me it looks like an incremental change, thus I don't understand
-your comment why ABI is broken.
-
---
-Best wishes,
-Vladimir
+Maarten
