@@ -2,156 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE131687F04
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 14:43:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3E19687F10
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 14:47:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230372AbjBBNnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 08:43:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41616 "EHLO
+        id S232265AbjBBNrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 08:47:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjBBNnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 08:43:46 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5826379232
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 05:43:43 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id t7so1752899wrp.5
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 05:43:43 -0800 (PST)
+        with ESMTP id S232084AbjBBNrh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 08:47:37 -0500
+Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com [IPv6:2607:f8b0:4864:20::a2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E1DF8FB6E
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 05:47:22 -0800 (PST)
+Received: by mail-vk1-xa2a.google.com with SMTP id q76so893264vkb.4
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 05:47:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4IuSBfwdRJaPAhZzO8F4JMNkHZ9z06+R3aWpV/S9ID8=;
-        b=kFS4JafDnLw5OwhranVBljxjUKLv6RW9ovDJDCkfHCLcC9m9Knalx0s7suDgqtvxsQ
-         n8srlscOrYfVJZbJWToImGoEA1mUzpXXEg9mmdeBU+JSfyC8oXMW1DrsvrOFNInQC20K
-         kvbJkGyN3TMaAgrYZHp4QEPrVT3rNpB2dbegvysETLunrUoI8SAFPdghDepo0xS89eGg
-         oDNhLk6/IVPxmxRXFjC3dWbPneUKB73RWmgYHMT7NtWTpLA9SkkXbG6kBZXT/BsBnnnS
-         flCnEQPwvKiLTp5ZPn/6gWnS7UAaHSUmcwqtycArNaBliKjvvj8XDjl9k+APCAl8Tl1E
-         pbLw==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=j4oCXdup8n6v8+NV1Y2tr9d5t5xzk71vogTRfgmjQAo=;
+        b=1e4Nqng+igmZ/sjJvxRnooaGcY+pPB2sg/FxoprfRpsjC5cQW8IZFzHDJJAbwwaY78
+         4NplP5dAh0zX4BcyTqf6pG1twOZPFll0xuyW6ikhN3RiLlVbWs/ko8SgrK7gGN1v49TS
+         trjUctTtWZ+98Uvm6w1ywzwfQOAmW2FspORdBESQdAYv3+WOuPD3Ckw5HjqNggqJiLO0
+         aTot93GIXsE/VprawkW07yqvz7UdANVnaDD8sMdpwKSHByyF/ittLdo3AAu6ws3Zbgoc
+         lejTDW61JzTbRqsDEyRipHtceS0DhEdebaVBX89rgNnj9qIlb9HG8r8W14q9JJlvQdGz
+         aYvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4IuSBfwdRJaPAhZzO8F4JMNkHZ9z06+R3aWpV/S9ID8=;
-        b=QVfU92aOFD8NwTDq12QQC8nCWu1LOzL9ZePJvTmCRI0Mij5kPIu5A/FML5mzQbLIsA
-         yvmCLqYnJrRJwKRTjcnk5iNwFfJpe+bHRm7tQaIF1ssn00tSqXjV/W1pSNfrgdOvPDrJ
-         YholBcb4MbyTkXj870ewNMV5SFmexrHyddUXQjbZeaIJRsj2lois4OHYymeQHc7Va8zO
-         qXPqJT0whNUJHYcxO2dvwykN22VW4K1K9UVQwSALiQe9t67oQrerAtHNNLpeV7+9xu3A
-         4rWyBG5t6ynNNiQGV7ciMSqclobKCSwnELsidoOOKMgvbEH+xDYQbAqX/hOYEDMBzKuW
-         7d/Q==
-X-Gm-Message-State: AO0yUKXYEEtM6QMugNEkJ5Mwh4sdoOHfWtL7mAfhaS/XQb0yjvP87vOC
-        Xv5SFODkq6Zn8tjU2Pt2R1sNSg==
-X-Google-Smtp-Source: AK7set/PYZx0K9JVcjwfky3PcFVLTHgC2W+/v/STvIrEFvWO2Jf8TbeCmt8yJbztZxnkD1byfx5FeQ==
-X-Received: by 2002:a05:6000:a0f:b0:2bf:afaf:9d71 with SMTP id co15-20020a0560000a0f00b002bfafaf9d71mr6875831wrb.48.1675345421918;
-        Thu, 02 Feb 2023 05:43:41 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r8-20020adfda48000000b002be25db0b7bsm19979573wrl.10.2023.02.02.05.43.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 05:43:41 -0800 (PST)
-Message-ID: <5fbb6d80-7280-604a-3e1e-4bd98e9776cd@linaro.org>
-Date:   Thu, 2 Feb 2023 14:43:39 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j4oCXdup8n6v8+NV1Y2tr9d5t5xzk71vogTRfgmjQAo=;
+        b=Z67lQB0O7Q71tJl6YeO6s6ulc/WnGpAjX8aQJ9IuIMwNUHPEnTp70GZbUSHp3+9NiG
+         hPiEMCiGGTTHObgOX4q61AxxL9H1SIqY9lmyHkn7oaZLd8LeedlwPWiWcLtcXgS43tU3
+         Ch9O1cECr0qD1sKZqtx2tUr5JmkgeUrIjMFwlrgW/Xknd/HWoZ2kJRwsDhF0+HPImq4u
+         3AFaNaE0HbgX0G7DpK0/uI7rmYjZj/+LHeDHANLTT0lWzFqFDJhP6k68NW/3hnPGD3NP
+         g/QkEDNk3TMcuSiOoq4uFcH5jvsUVS1JOA1b40pxFpKvRXh/l0Oi0FSQmQgBqMcPuGU6
+         GnMA==
+X-Gm-Message-State: AO0yUKUHoRY3YSGZIhTKOtqjJWMLJf9h1/yeOHhRBwOYgIw67A6UuNYv
+        0vhrJNPKaz19Fek5VOgVkqN3FMfz7uyZV8n1n5S/LQ==
+X-Google-Smtp-Source: AK7set9hPhIWcpZYmygU9JQRV/1iD1bXGVCi4ox3CXAnd/nPJK3j3mhMIvfPBqdsldpRjnsmjXk2Q0qfO2TpUHdjtcE=
+X-Received: by 2002:a05:6122:1688:b0:3e1:db78:6cd9 with SMTP id
+ 8-20020a056122168800b003e1db786cd9mr909715vkl.25.1675345641149; Thu, 02 Feb
+ 2023 05:47:21 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v4 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
-Content-Language: en-US
-To:     Maarten Zanders <maarten.zanders@mind.be>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+References: <20230201150011.200613-1-brgl@bgdev.pl> <CACRpkdYEQkxEJ23Xt4hjwu3Jxct-QXZktdzze5Pf6SBNYj80Fg@mail.gmail.com>
+ <CAMRc=MdDwSi+DDJmn3Yrnh5m8EK5EJEfLrejXHN0+0k41DKx3w@mail.gmail.com> <CACRpkdbLjcGUvycX9p=hYjMwS6UJOkUTOJvbEcNtddx5mnbSuQ@mail.gmail.com>
+In-Reply-To: <CACRpkdbLjcGUvycX9p=hYjMwS6UJOkUTOJvbEcNtddx5mnbSuQ@mail.gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Thu, 2 Feb 2023 14:47:10 +0100
+Message-ID: <CAMRc=Me2wQTvx83nZSuaiagO3Z02Q55p6u1pXKnx9LkF10OY1g@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] pinctrl: qcom: add dt-bindings and driver for sa8775p-tlmm
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230202101032.26737-1-maarten.zanders@mind.be>
- <20230202101032.26737-2-maarten.zanders@mind.be>
- <20eb5589-8287-90bd-3703-2818b61c6ba3@linaro.org>
- <b9c6c74b-65d2-46bf-bd7c-e031d420f31c@mind.be>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b9c6c74b-65d2-46bf-bd7c-e031d420f31c@mind.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 14:35, Maarten Zanders wrote:
-> First off, bear with me here, I only recently started upstreaming 
-> patches to kernel. It still feels like navigating an extremely busy 
-> shipping lane... Either way, your feedback is highly valued.
-> 
-> On 2/2/23 14:15, Krzysztof Kozlowski wrote:
->>
->>> diff --git a/include/dt-bindings/leds/leds-lp55xx.h b/include/dt-bindings/leds/leds-lp55xx.h
->>> new file mode 100644
->>> index 000000000000..8f59c1c12dee
->>> --- /dev/null
->>> +++ b/include/dt-bindings/leds/leds-lp55xx.h
->>> @@ -0,0 +1,10 @@
->>> +/* SPDX-License-Identifier: GPL-2.0 */
->>> +#ifndef _DT_BINDINGS_LEDS_LP55XX_H
->>> +#define _DT_BINDINGS_LEDS_LP55XX_H
->>> +
->>> +#define LP55XX_CP_OFF		0
->>> +#define LP55XX_CP_BYPASS	1
->>> +#define LP55XX_CP_BOOST		2
->>> +#define LP55XX_CP_AUTO		3
->> Additionally, these are not used, so it's a dead binding. Drop. Sorry,
->> this is not the approach you should take.
->>
->> Best regards,
->> Krzysztof
->>
-> These definitions are intended to be used in the DTS's, so it seems 
-> normal to me that most of them go unused in the code? What am I missing?
+On Thu, Feb 2, 2023 at 1:54 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Thu, Feb 2, 2023 at 9:25 AM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> > On Wed, Feb 1, 2023 at 11:46 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > >
+> > > On Wed, Feb 1, 2023 at 4:00 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> > >
+> > > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > > >
+> > > > This series contains the device-tree bindings and the pinctrl driver for the
+> > > > SA8775P platforms.
+> > > >
+> > > > v2 -> v3 (Changes in DT bindings only)
+> > > > - fix the gpio pattern property (platform has 148 GPIOs)
+> > > > - add blank lines for better readability
+> > >
+> > > v3 patch set applied, fixing the 149->148 number in the example
+> > > in patch 1!
+> > >
+> >
+> > Thanks! Seems like only patch 1/2 got into your branch?
+>
+> That's confusing, it looks to me like they are both there?
+> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=devel
+>
+> Isn't "pinctrl: qcom: add the tlmm driver sa8775p platforms" patch 2/2?
+>
 
-Bindings mean drivers are using them. Your driver is not using it. It's
-a register value, isn't it? Register values are not suitable for
-bindings. There is no need for them to be in bindings.
+Strange, didn't see it there before. Anyway, thanks a lot!
 
-> 
-> As for the changes v2 > v3, this was based on input I got on v2 from Lee 
-> Jones, maintainer for leds, on the implementation of the parsing of this 
-> option:
-> 
->>> +	pdata->charge_pump_mode = LP55XX_CP_AUTO;
->>> +	ret = of_property_read_string(np, "ti,charge-pump-mode", &pm);
->>> +	if (!ret) {
->>> +		for (cp_mode = LP55XX_CP_OFF;
->>> +		     cp_mode < ARRAY_SIZE(charge_pump_modes);
->>> +		     cp_mode++) {
->>> +			if (!strcasecmp(pm, charge_pump_modes[cp_mode])) {
->>> +				pdata->charge_pump_mode = cp_mode;
->>> +				break;
->>> +			}
->>> +		}
->>> +	}
->> A little over-engineered, no?
->>
->> Why not make the property a numerical value, then simply:
->>
->>    ret = of_property_read_u32(np, "ti,charge-pump-mode", &pdata->charge_pump_mode);
->>    if (ret)
->>            data->charge_pump_mode = LP55XX_CP_AUTO;
-> 
-> I found examples of similar configuration options of both types with 
-> other drivers in the kernel tree (ie string & uint8). I can appreciate 
-> both viewpoints but unfortunately cannot comply with both.
-
-Strings in DTS are usually easier to for humans to read, but it's not a
-requirement to use them. The problem of storing register values is that
-binding is tied/coupled with hardware programming model, so you cannot
-add a new device if the register value is a bit different (e.g.
-LP55XX_CP_OFF is 0x1). You need entire new binding for such case. With
-string - no need. With binding constants (IDs) also no need, so was this
-the intention? Just to be clear - it is then ID or binding constant, not
-a value for hardware register.
-
-Best regards,
-Krzysztof
-
+Bart
