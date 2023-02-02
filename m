@@ -2,138 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D538A687DA5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 13:41:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 033BD687E29
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 13:59:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbjBBMlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 07:41:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40250 "EHLO
+        id S229988AbjBBM7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 07:59:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbjBBMlt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 07:41:49 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 699188DAFD;
-        Thu,  2 Feb 2023 04:41:12 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id a2so1301920wrd.6;
-        Thu, 02 Feb 2023 04:41:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uqbgRqyTVLRbe/zevz7M7Ult5EWX7ZO+3KY6VnfNffA=;
-        b=ixgo/Ztz3YhqK1Tx+im0ksvpFeC9dnwA2/UW2untG+lMVxspfHWYpARW9LxbP9SRts
-         dDuJjo4jT7LYiDN5FDwL9k2ZZJAgWMl2dOdNBwmm5puMrGvO0v3F957GfhPrvSBnxP40
-         irwbeX9UEowPJxusMiZOQt4qGQhijxzzU+J1PmoQ5xeIAdc8pTSAmyUv6Yl9CFq9G/5F
-         xhraGrt7MeUNKrfWB89vrdxMCswvQeFEKJiJfRMD6Rfohrm8OpdfexlubS+WBNT3ypHF
-         V5fGeF84hG13oEEhUcn6gfk+xftOtDgUtyavflq//SV9lOfxLdRadIXCvi0eFXfD+G76
-         8OJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uqbgRqyTVLRbe/zevz7M7Ult5EWX7ZO+3KY6VnfNffA=;
-        b=tAolWi2wzVUDf9oZPjgHotgFVFcJJUEjFOheGHT8vMXX022xZlNue+YAGye+IX1Gia
-         kInzfT2Z+CbSrMmcx1x6+r4COqPY/RmDyyLoWoCqbgQxXRDOBr1otk5PghZVbzIVom3L
-         lBNv0UGdiZ9gFUpZwygL2SUccQnaYy+TMk6KmUnMUYv5xKDhPxZ17XbMLYJ12OsUyETe
-         mIotDOPa2Z1Orb6zTtoMmddYnrTvCRyxwk7t9nKz5/b49FIyWvcsHWr4o2cVnFDIxYZz
-         W8nXnBN+8jsD/bgD8O9dkngk6soydk3il8q1Y8+B49z2ybaTeZB6S5jqSB7S68ME+WIH
-         Tncw==
-X-Gm-Message-State: AO0yUKVfouS0YOhRhzqcwaNvhA3LW3onDjJx8mDWyPUfuGSSVzJ/SM9C
-        LBH/qi31mccf1yzEefRrPN8lF223lXBgSg==
-X-Google-Smtp-Source: AK7set9aEuxXXfoNrQHqYo270n4J50ZYLhNmtpJb/+iD6yWf6MxfBT/EoBt7tbs96HbAiffh857HzA==
-X-Received: by 2002:a5d:6ad0:0:b0:2bf:9527:ce62 with SMTP id u16-20020a5d6ad0000000b002bf9527ce62mr4907395wrw.60.1675341642666;
-        Thu, 02 Feb 2023 04:40:42 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id r28-20020adfa15c000000b002bfd137ecddsm18017534wrr.11.2023.02.02.04.40.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 04:40:42 -0800 (PST)
-Message-ID: <cd82e2a1-dbf4-88ee-f658-f695ae9ef56a@gmail.com>
-Date:   Thu, 2 Feb 2023 13:40:40 +0100
+        with ESMTP id S232145AbjBBM7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 07:59:34 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16A1C8F271;
+        Thu,  2 Feb 2023 04:59:14 -0800 (PST)
+X-UUID: dd003a96a2f611ed945fc101203acc17-20230202
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=58VVwq5R0SeVWSTuqEd+Zn7+PpfZGMiJHhHOV+5UOXU=;
+        b=GsA7nA++86YWeUqE+Gyy4LLCuolRv0C53a3gQitonVW04ldOQBoaKEyRsc7gG51TslDtCk8zIUkctABETenRRBaC4cfQUC9/fz3prl6X3wOB7KGELo9CH68NxyLpFWXmjOuIL53L8qe5NdQ8fIOTZV9qVEcf9Ud97DmEm2gtqNc=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.18,REQID:2aa0d170-7b81-42c9-acc8-a10b94ef6169,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:95
+X-CID-INFO: VERSION:1.1.18,REQID:2aa0d170-7b81-42c9-acc8-a10b94ef6169,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
+        :quarantine,TS:95
+X-CID-META: VersionHash:3ca2d6b,CLOUDID:17ccb68d-8530-4eff-9f77-222cf6e2895b,B
+        ulkID:2302022041080ZUO6MYN,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
+        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+        ,OSI:0,OSA:0
+X-CID-BVR: 0,NGT
+X-UUID: dd003a96a2f611ed945fc101203acc17-20230202
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 511999643; Thu, 02 Feb 2023 20:41:07 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 2 Feb 2023 20:41:05 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Thu, 2 Feb 2023 20:41:05 +0800
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>
+CC:     Fan Chen <fan.chen@mediatek.com>, Roger Lu <roger.lu@mediatek.com>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v5 0/3] Enhance SVS's robustness
+Date:   Thu, 2 Feb 2023 20:41:01 +0800
+Message-ID: <20230202124104.16504-1-roger.lu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v6 0/6] add support for MT8195 VPPSYS on MMSYS and MUTEX
-Content-Language: en-US
-To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230118032122.29956-1-moudy.ho@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230118032122.29956-1-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Whole series queued for the next merge window.
+SVS driver got accepted upstream but still has room to be improved.
+Therefore, we add these patches to fix issues and coding style.
 
-Thanks!
+Change since v4:
+- Rebase unmerged patches and resend to patchwork
 
-On 18/01/2023 04:21, Moudy Ho wrote:
-> Changes since v5:
-> - Depend on :
->    [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=713031
-> 
-> Changes since v4:
-> - Rebase on linux-next.
-> - Remove MMSYS fallback compatible.
-> - Migrate MT8195 VPPSYS0/1 from clock to mtk-mmsys driver.
-> 
-> Changes since v3:
-> - Rebase on linux-next.
-> 
-> Changes since v2:
-> - Depend on :
->    [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=681097
-> - Split dts settings into two patches based on belonging to MMSYS or MUTEX.
-> 
-> Changes since v1:
-> - Depend on :
->    [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=681097
-> - Add compatible names to VPPSYS0 and VPPSYS1 in MMSYS binding file.
-> - Fix VPPSYS's MMSYS and MUTEX dts to pass the dtsb_check.
-> - Rename mtk_mmsys_merge_config() and mtk_mmsys_rsz_dcm_config() to
->    mtk_mmsys_vpp_rsz_merge_config() and mtk_mmsys_vpp_rsz_dcm_config().
-> - Clean up mtk_mmsys_vpp_rsz_dcm_config().
-> - Add a comment to mtk_mutex_write_mod() and clean it up for use in more
->    than 32 mods.
-> 
-> Hi,
-> 
-> This series add support for MT8195's two VPPSYS(Video Processor Pipe Subsystem),
-> under which there will be corresponding MMSYS and MUTEX settings that
-> need to be configured.
-> 
-> Moudy Ho (1):
->    arm64: dts: mediatek: mt8195: add MUTEX configuration for VPPSYS
-> 
-> Roy-CW.Yeh (5):
->    dt-bindings: soc: mediatek: Add support for MT8195 VPPSYS
->    arm64: dts: mediatek: mt8195: add MMSYS configuration for VPPSYS
->    soc: mediatek: mmsys: add config api for RSZ switching and DCM
->    soc: mediatek: mutex: Add mtk_mutex_set_mod support to set MOD1
->    soc: mediatek: mutex: support MT8195 VPPSYS
-> 
->   .../bindings/soc/mediatek/mediatek,mutex.yaml |   1 +
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  26 +++-
->   drivers/soc/mediatek/mt8195-mmsys.h           |  13 ++
->   drivers/soc/mediatek/mtk-mmsys.c              |  42 ++++++
->   drivers/soc/mediatek/mtk-mutex.c              | 135 +++++++++++++++++-
->   include/linux/soc/mediatek/mtk-mmsys.h        |   4 +
->   include/linux/soc/mediatek/mtk-mutex.h        |  35 +++++
->   7 files changed, 245 insertions(+), 11 deletions(-)
-> 
+Tested on:
+MT8183 Platform (kernel v5.10)
+MT8192 Platform (kernel v5.4)
+
+Roger Lu (3):
+  soc: mediatek: mtk-svs: use svs get efuse common function
+  soc: mediatek: mtk-svs: use common function to disable restore
+    voltages
+  soc: mediatek: mtk-svs: add thermal voltage compensation if needed
+
+ drivers/soc/mediatek/mtk-svs.c | 142 +++++++++++++--------------------
+ 1 file changed, 56 insertions(+), 86 deletions(-)
+
+
