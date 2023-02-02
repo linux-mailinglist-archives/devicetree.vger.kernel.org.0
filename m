@@ -2,282 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B186E687988
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:55:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F52687990
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:56:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231935AbjBBJy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 04:54:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35678 "EHLO
+        id S230131AbjBBJ4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 04:56:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232374AbjBBJyh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:54:37 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D979020;
-        Thu,  2 Feb 2023 01:54:35 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3127wW2G031383;
-        Thu, 2 Feb 2023 09:54:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=6rXl8dSJnZs0jESUNgI+UiBKW8vkiOT2FSKcrPymees=;
- b=SZWB3HbzxpT0a1707Fy5e+S882ZchJyJH8RCN0oNI8lyFTmwGmKDQIE5CBEqZRd5Sx5t
- a70lHpmYdvY/5efWOWxv8xEAxka0BjrUTib/BcLcbic5RqZMUFmvSnQkJ/GTUADI+WDe
- hYKwsCubYy7Xta/vbP2ml3v9l7eSQSybgpAYUJXcqRWekIkMb476FTJQwVV9vR0aQKME
- bmTdz7uqgNriqSUzaJneeYoV1jXM9oOxYLXvo7eiq67BxUt603xttagC7J4l/0NGbd34
- GNirG4GOcj9wVnlzk/ZtNkiAxN1wwHry4oQbMRUoXfgJLm5rJrFTZfQBOm0ixttB7kQJ tA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nfkj4at3u-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 02 Feb 2023 09:54:31 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3129sU7C028437
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 2 Feb 2023 09:54:30 GMT
-Received: from [10.50.17.72] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 2 Feb 2023
- 01:54:24 -0800
-Message-ID: <3a215439-3ecf-4384-9df6-72a22e6e3457@quicinc.com>
-Date:   Thu, 2 Feb 2023 15:24:15 +0530
+        with ESMTP id S232167AbjBBJ4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:56:11 -0500
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2050.outbound.protection.outlook.com [40.107.215.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 531D987D09
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 01:55:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KtapLIUTNpk5bmoiMRQe8Bk1i9xfdieg6YBJzSM1wL48AVg4iRwygd/pvv+B9hUC8OTFOMygSPENDoJYCDbqind8lVS2Wfugw+70tmS2fmEN7BHuK04clOJX/queDA4mAdKKU9AKlEF2Nx2k+gK0dlnfxSJXdZ9o339okGU+ErKRbZn40ky73AnBE+gDmQmqD7+gC/slCvxEZE7c48mgyxMEVEVRM84gVOMsY2mME5r5HSqS1l6dk+3tr1Yp+EI+ucycxzoh86dF46/mgVY+gJH/W/bjsuo+fNjZveDmb2d1fZvP69hFUSD14E528LHJIEumE4+v3xG12/bzAkSxVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GT2aXiYJgEtS1ICzCGe9FgyMrR/zdulL2+MANfNkR1E=;
+ b=XvmqE6YJdqwkuAHTGnWC/t2Jxi6QdoGPmEx5nVNb/jhSikY7sPUh3178Pzxs2yOce/zD3Da56jC1zTj8S+Iy9RbwzMyrS1Vqd8obxFesgaxnovWGUdV/81wuULko/KbHVnUG4JxuYDrJYKKtiJgbJGgsBXk+WEh5DJ3o0MegwStvBIr2xbcup0pyxKQTEtf2vo8OK+lM5nWIxjxPuqPCZ2MdsywaPCnALvVbg2PnPYMYiTYaFqbNcB0+vS25U8RwK8Rv/2cHYQEFvHz+2hE/Sc42FcQXHHX7QVfqdXIRl7Uv5FBLJDZjABF1hs3sb//hVB6o3JR70rwkDv4scIJ4+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=irondevice.com; dmarc=pass action=none
+ header.from=irondevice.com; dkim=pass header.d=irondevice.com; arc=none
+Received: from SLXP216MB0077.KORP216.PROD.OUTLOOK.COM (2603:1096:100:7::23) by
+ SLXP216MB0063.KORP216.PROD.OUTLOOK.COM (2603:1096:100:10::21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6064.23; Thu, 2 Feb 2023 09:55:47 +0000
+Received: from SLXP216MB0077.KORP216.PROD.OUTLOOK.COM
+ ([fe80::3d9:7f82:fa73:e727]) by SLXP216MB0077.KORP216.PROD.OUTLOOK.COM
+ ([fe80::3d9:7f82:fa73:e727%7]) with mapi id 15.20.6064.022; Thu, 2 Feb 2023
+ 09:55:47 +0000
+From:   Ki-Seok Jo <kiseok.jo@irondevice.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] Fixed the schema binding according to test
+Thread-Topic: [PATCH] Fixed the schema binding according to test
+Thread-Index: AQHZNuYvdGkbgSjfQEmX9bKJTMPyKK67YAkAgAALN7A=
+Date:   Thu, 2 Feb 2023 09:55:47 +0000
+Message-ID: <SLXP216MB0077A1B1F744D74A5B338F0C8CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
+References: <20230202090715.18384-1-kiseok.jo@irondevice.com>
+ <ac140660-0df0-8b43-3585-17511a280830@linaro.org>
+In-Reply-To: <ac140660-0df0-8b43-3585-17511a280830@linaro.org>
+Accept-Language: ko-KR, en-US
+Content-Language: ko-KR
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=irondevice.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SLXP216MB0077:EE_|SLXP216MB0063:EE_
+x-ms-office365-filtering-correlation-id: 0d58a704-c28c-41a6-3f34-08db0503a8ae
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Akt9JOfB+a2sdBblYsPkr6V1bHhc2x6FZEHA+ah1dgBvXc6CFjfZfzpZLokHlQy/2BjXsfu0p0GK9/Bm2IlIkE/8wQgvoaYdpL5tgrAGFI3yPZaXpchUP1/6SiKDWPML3IHCOeyZiUYF7Uv7+OAiDFE60kgIjVmniT6ThAG5zQ33NZqBDsd6cQeH16FIcs3koaB63Lf2uzPlUZhDSyx8xc1szYcX8Ttq/Yni5cHUfSa3iTFQ4qDJLfs9f6z+aXhh8Nycxn4o4pAwKHxEX1wMOpit5LuNkmJTGZm2rR62XbqrzaZBU4eTUofYW3DzJRgUMtG2atxRvsnnaj1IblmVwQZ2tTq4ie9GXCk48L++Z7Vm4z07dmZX35pxWtcOmabAHts2m8UBX6DbsHeuPv2iZg9Dnawjk1l7XqKiU7GaAJDhZ59DwrqHhjveV3H4hK+mDLkH2lkRNAtNt+vdhAbJysIfa9UxA4Oc/Y6/8XfizSKLuPWukBktqANEYGFBaey3CgjJn++rdwHGTqCI0MUKTnRv9UOyOjI+hH0FcFcytCeGkKIVKNreW5rj1SPjFgAORuv5dAssB9xk4sLulyKEBzv3rDR6pN37J1ZR9PYbCuIghjQaoL0eJAbA1FCB1TZvWTmfgsUGEGDotBYeFoME/tZASPCCw4MIkFP2mBPPh5EnGU56I3QKas0n3PReh71TWISU7KYtPYNEsF4BULc2qg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SLXP216MB0077.KORP216.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230025)(136003)(346002)(396003)(366004)(39840400004)(376002)(451199018)(71200400001)(54906003)(110136005)(83380400001)(2906002)(7696005)(33656002)(122000001)(316002)(26005)(38100700002)(66556008)(66476007)(76116006)(53546011)(66946007)(186003)(9686003)(478600001)(66446008)(6506007)(52536014)(8676002)(86362001)(41300700001)(55016003)(8936002)(64756008)(38070700005)(5660300002)(4326008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZXZXK245a3NvKy9CQ3pFQVIvejlwd3luZDh6cEQxWTg4aXNncnJrZ0p5R0FW?=
+ =?utf-8?B?RUVNak1RS3pzVHRmSVA2bm1QNjg0d0sxODU3U0d4bjE3MVUwOGVCYkovZHdu?=
+ =?utf-8?B?OHY5TVM3MGZ6MUw1azlIOWZUak9qQW1LSmNGdHVxL240R3I3Mm92T3FHQ3VK?=
+ =?utf-8?B?dWlzM0w1ZU1wNGMrYW1NWFBBVkNyeVJ4a1dYR2FWYnV2MlNDSFQ3dkQ4R0Fw?=
+ =?utf-8?B?c29YN2U3MnRqYTM2MjlYUGNYOFc4OUhpanNjTDVkV1NZOE0zWTR2cmVHVG5I?=
+ =?utf-8?B?alM2TmJKTVpTajY0UFBRczRGR1U1bERTb0lKeWhSMlJ4SzVBYUlrRGdjNDBX?=
+ =?utf-8?B?Y0QvV2RKWXBrTmd5TUpGRVVwVHliNStsNXVORU11NllzMWRkYW1UQnpnRkdE?=
+ =?utf-8?B?Q1F4NVNocE5JcitISnhpc05YSE1PZXBJU2FjZlNMQVNFUVFKQ3dXVUtGNGJn?=
+ =?utf-8?B?NkJtUmNTUUdPWDMxU0twYWlwVnNoL0xtNDV5OHYzajlRajhBT2pob0NqeVhI?=
+ =?utf-8?B?K1FKYXd5TE5OZHFPdWJzd0Z4QmxVaGRwcHJ6ekNoQ091NGVUVHNpQ3duNHo3?=
+ =?utf-8?B?K3V2a05yeW9QNFMvcnlVY1BqVkpUekw3WXFTR2N3bnBlTi9BWXBjeGRlUFR0?=
+ =?utf-8?B?djR3dXdTNmpMV3grTXBDeUxWSGFtVC9SQ2piWHQvMTB2WEcvbkkyaXhVdmx0?=
+ =?utf-8?B?S1J1MnJ4amxXakQ0dDI2OTNQZnZXN05paFFMd0pMQWZVa25tOTB2L2dkd2JQ?=
+ =?utf-8?B?a2QxQXJrajhyQ05QYkl6cWhBdjcxSTVLclQ0QUJqWE1XeHhYMzlRbFNaV2dW?=
+ =?utf-8?B?YmNwMmpiUW5IbEp6OVorYU0wVjVKS1FBZlVaQWl5azNoKzVDVjV1MHpnMW9u?=
+ =?utf-8?B?Q3I4eTRBcTY0WCtrNWFZL3FIMnFsK3VpU2xoN25SRlVpQjJCZXhDdDNtL1RC?=
+ =?utf-8?B?RVIrUVY5T1BkdzhMdkpnMWJ1V1NyRkVmTCtzQXVINVJOMHgxRGhzU1g1Z2s3?=
+ =?utf-8?B?QjlLZlEydEp5ZXRWU1A0VjNrSnRLMWc1YU1uQUV2dDdObCtFWXMzeVNuK2ox?=
+ =?utf-8?B?RGVJRFRlNDZOSTc5cVpLMGRvSjE3OUQ5UUNPbGJtbGIxelh1YklEdW52d2VL?=
+ =?utf-8?B?cHg4NlZrbXIyTUx3WFRibERTdzdYRkpTQUEwTjhNc21zUVFXQWhwdUM2Wmdi?=
+ =?utf-8?B?dFBJNEN4MXNvbnpmU1NZQndvbkVjbGRiMkpHdTRoUWQ4L2dCY2ZNc3hmRUUy?=
+ =?utf-8?B?aTRvUFVzRHhYd0RzenhURDErTW5scUI4dFFPcDkyV25HSHpaeU5rcDhYMjE5?=
+ =?utf-8?B?ZFZQTlo4c1lHYlZlY1RtbXduVHdJRGVBam1KMFFXV3Q1ajVkL3JCRGtZbEdC?=
+ =?utf-8?B?V1ZBSlUzMmg2NVlyZ0twQ3hLSnRFOHFVSy84WU9GRDRKK3NkTTg1REVDWUk1?=
+ =?utf-8?B?YVByYW1kNXRtZjMwR1hnVVJBNG44Y2IxOTkvR1pNYUZPWWlSdFhpaExGajNL?=
+ =?utf-8?B?N1RZdEhOU0VIZHNvSUFreGgwSzJoamFJMkFiNGNSbTBLVTZaYUh5L3hWRkRL?=
+ =?utf-8?B?V2IrS3IxTVk5UHZCazB4SVV6d3NiK2VnemJmOE9hUHVaQW5FaTNCKzBoOFo0?=
+ =?utf-8?B?VmxFYzV1WTludDd0ZFJNMkZ4Z3hXZEY2N0R6U0U0ZC9rdmkzT1c1bTdTWkhh?=
+ =?utf-8?B?ZWFOZmlaQlkwUHZUKzhudEZkZ0wvaGhSa0NHZEZIU3V1NzRpV2tCekFNY0w1?=
+ =?utf-8?B?SjU3N1FwT3BuWGpVQ2hSbjMzVXltQmI0UWV6cFJKNU1kL25iZDB3bHVGbmxu?=
+ =?utf-8?B?RHNSK2UxZHJMRDlWdFNkVXJNbGtOWXVMeU01ZmU5QkZwYkNwM2tqekx2WDAz?=
+ =?utf-8?B?RjVJZjRhQXpFM0pydU1CNTgxeWdlc2NCTjd3WnlJd3U0S1VqWlFSYmhNT0Qw?=
+ =?utf-8?B?ZGZVanRFYVIvdjJLQjdVTm96YTJYMnhxQU9Qd283SDVVMkptb0xHb2tvYlB4?=
+ =?utf-8?B?TllMRmVVRmM5Kzc3OU9EcFZoT2xwbERiS0cvTndlVWVCS1psRXJoY0o0RGll?=
+ =?utf-8?B?UzczOHdrQ2lpaUdDbDkwelR4MDZGTkxkRGJzY1hTTjU3Q21tUVgvUCtpR3FZ?=
+ =?utf-8?Q?bZORWXPXIaRd6oLhmLamJ+ilV?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: ipq9574: Add cpufreq & RPM related
- nodes
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>
-References: <20230113150310.29709-1-quic_devipriy@quicinc.com>
- <20230113150310.29709-6-quic_devipriy@quicinc.com>
- <4114bf50-67bf-e11c-5304-f2c6dcc0063d@linaro.org>
-Content-Language: en-US
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <4114bf50-67bf-e11c-5304-f2c6dcc0063d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: g5Xe3rX2vtqdbiLss6g5rm-xYuNwzaTt
-X-Proofpoint-ORIG-GUID: g5Xe3rX2vtqdbiLss6g5rm-xYuNwzaTt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-02_02,2023-01-31_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- impostorscore=0 mlxscore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 suspectscore=0 mlxlogscore=999 spamscore=0 phishscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302020092
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: irondevice.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SLXP216MB0077.KORP216.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d58a704-c28c-41a6-3f34-08db0503a8ae
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2023 09:55:47.5933
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b4849faa-3337-494e-a76a-cb25a3b3d7d1
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9uJV5ujW0QBCFQ6PTeG3UZRG3q51ksuhByulGCN5pmuR5UOKT6lfCueDG+V3spxnQRqQ/ln77DfxmC69caUjZaF7hfR9uXWxXN6LNhph6vU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SLXP216MB0063
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks konrad for taking time to review the patch!
-
-On 1/13/2023 9:02 PM, Konrad Dybcio wrote:
-> 
-> 
-> On 13.01.2023 16:03, devi priya wrote:
->> Add CPU Freq and RPM related nodes in the device tree
-> These two are wildly different things, barely related to one
-> another and can very well be introduced in separate patches.
-> Please do so.
-> 
->>
->> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 80 +++++++++++++++++++++++++++
->>   1 file changed, 80 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> index 5a2244b437ed..79fa5d91882c 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> @@ -9,6 +9,7 @@
->>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->>   #include <dt-bindings/clock/qcom,gcc-ipq9574.h>
->>   #include <dt-bindings/reset/qcom,gcc-ipq9574.h>
->> +#include <dt-bindings/clock/qcom,apss-ipq.h>
-> Please sort the includes alphabetically.
-Sure, okay
-> 
->>   
->>   / {
->>   	interrupt-parent = <&intc>;
->> @@ -75,6 +76,10 @@
->>   			reg = <0x0>;
->>   			enable-method = "psci";
->>   			next-level-cache = <&L2_0>;
->> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
->> +			clock-names = "cpu";
->> +			operating-points-v2 = <&cpu_opp_table>;
->> +			cpu0-supply = <&ipq9574_s1>;
-> Why is this cpu0-supply and the rest are cpu-supply? Neither of them
-> seem particularly documented, by the way..
-Sure, will check and update this in V2
-> 
-> 
->>   		};
->>   
->>   		CPU1: cpu@1 {
->> @@ -83,6 +88,10 @@
->>   			reg = <0x1>;
->>   			enable-method = "psci";
->>   			next-level-cache = <&L2_0>;
->> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
->> +			clock-names = "cpu";
->> +			operating-points-v2 = <&cpu_opp_table>;
->> +			cpu-supply = <&ipq9574_s1>;
->>   		};
->>   
->>   		CPU2: cpu@2 {
->> @@ -91,6 +100,10 @@
->>   			reg = <0x2>;
->>   			enable-method = "psci";
->>   			next-level-cache = <&L2_0>;
->> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
->> +			clock-names = "cpu";
->> +			operating-points-v2 = <&cpu_opp_table>;
->> +			cpu-supply = <&ipq9574_s1>;
->>   		};
->>   
->>   		CPU3: cpu@3 {
->> @@ -99,6 +112,10 @@
->>   			reg = <0x3>;
->>   			enable-method = "psci";
->>   			next-level-cache = <&L2_0>;
->> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
->> +			clock-names = "cpu";
->> +			operating-points-v2 = <&cpu_opp_table>;
->> +			cpu-supply = <&ipq9574_s1>;
->>   		};
->>   
->>   		L2_0: l2-cache {
->> @@ -107,6 +124,42 @@
->>   		};
->>   	};
->>   
->> +	cpu_opp_table: opp-table-cpu {
-> Alphabetically this goes after memory
-Okay
-> 
->> +		compatible = "operating-points-v2";
->> +		opp-shared;
->> +
->> +		opp-936000000 {
->> +			opp-hz = /bits/ 64 <936000000>;
->> +			opp-microvolt = <725000>;
->> +			clock-latency-ns = <200000>;
->> +		};
-> Please add a newline between each subnode.
-Okay
-> 
->> +		opp-1104000000 {
->> +			opp-hz = /bits/ 64 <1104000000>;
->> +			opp-microvolt = <787500>;
->> +			clock-latency-ns = <200000>;
->> +		};
->> +		opp-1416000000 {
->> +			opp-hz = /bits/ 64 <1416000000>;
->> +			opp-microvolt = <862500>;
->> +			clock-latency-ns = <200000>;
->> +		};
->> +		opp-1488000000 {
->> +			opp-hz = /bits/ 64 <1488000000>;
->> +			opp-microvolt = <925000>;
->> +			clock-latency-ns = <200000>;
->> +		};
->> +		opp-1800000000 {
->> +			opp-hz = /bits/ 64 <1800000000>;
->> +			opp-microvolt = <987500>;
->> +			clock-latency-ns = <200000>;
->> +		};
->> +		opp-2208000000 {
->> +			opp-hz = /bits/ 64 <2208000000>;
->> +			opp-microvolt = <1062500>;
->> +			clock-latency-ns = <200000>;
->> +		};
->> +	};
->> +
->>   	memory@40000000 {
->>   		device_type = "memory";
->>   		/* We expect the bootloader to fill in the size */
->> @@ -128,6 +181,11 @@
->>   		#size-cells = <2>;
->>   		ranges;
->>   
->> +		rpm_msg_ram: memory@60000 {
->> +			reg = <0x0 0x00060000 0x0 0x6000>;
->> +			no-map;
->> +		};
->> +
->>   		tz_region: memory@4a600000 {
->>   			reg = <0x0 0x4a600000 0x0 0x400000>;
->>   			no-map;
->> @@ -324,6 +382,28 @@
->>   		};
->>   	};
->>   
->> +	rpm-glink {
->> +		compatible = "qcom,glink-rpm";
->> +		interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
->> +		qcom,rpm-msg-ram = <&rpm_msg_ram>;
->> +		mboxes = <&apcs_glb 0>;
->> +
->> +		rpm_requests: glink-channel {
->> +			compatible = "qcom,rpm-ipq9574";
->> +			qcom,glink-channels = "rpm_requests";
->> +
->> +			regulators {
->> +				compatible = "qcom,rpm-ipq9574-mp5496-regulators";
-> The regulators are board-specific and should not be included in the
-> SoC DTSI. If this is a very common configuration, you may split that
-> into ipq9574-mp5496.dtsi, for example. Or ipq9574-pmics.dtsi if it's
-> coupled with more PMICs.
-Got it. Will move this to the board DT
-> 
->> +
->> +				ipq9574_s1: s1 {
->> +					regulator-min-microvolt = <587500>;
->> +					regulator-max-microvolt = <1075000>;
->> +					regulator-always-on;
-> Won't this break CPU retention?
-> 
-> You're holding a vote on it from the CPU devices, so it should be
-> always enabled when the CPUs are oneline (as far as Linux is
-> concerned).
-> 
-> 
-> Or maybe Linux will think it's enabled and RPM will quietly park
-> it when it decides it's good to do so.. but will it with an active
-> request.. not sure, really.. just something to consider..
-> 
-Sure, will check this and update accordingly in V2
-> Konrad
->> +				};
->> +			};
->> +		};
->> +	};
->> +
->>   	timer {
->>   		compatible = "arm,armv8-timer";
->>   		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-Best Regards,
-Devi Priya
+PiBUaGFuayB5b3UgZm9yIHlvdXIgcGF0Y2guIFRoZXJlIGlzIHNvbWV0aGluZyB0byBkaXNjdXNz
+L2ltcHJvdmUuDQo+IA0KPiBPbiAwMi8wMi8yMDIzIDEwOjA3LCBLaXNlb2sgSm8gd3JvdGU6DQo+
+ID4gTW9kaWZpZWQgYWNjb3JkaW5nIHRvIHRoZSB3cml0aW5nLXNjaGVtYS5yc3QgZmlsZSBhbmQg
+dGVzdGVkLg0KPiANCj4gVXNlIGltcGVyYXRpdmUsIG5vdCBwYXN0IHRlbnNlIChGaXhlZC0+Rml4
+LCBNb2RpZmllZC0+TW9kaWZ5KS4NCg0KT2theS4gSSBnb3QgaXQuIEknbGwgZG8gdGhhdCB3aGVu
+IEkgcmV3cml0ZSBpdC4gVGhhbmtzLg0KDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBLaXNlb2sg
+Sm8gPGtpc2Vvay5qb0Bpcm9uZGV2aWNlLmNvbT4NCj4gDQo+IFVzZSBzdWJqZWN0IHByZWZpeGVz
+IG1hdGNoaW5nIHRoZSBzdWJzeXN0ZW0gKHdoaWNoIHlvdSBjYW4gZ2V0IGZvciBleGFtcGxlDQo+
+IHdpdGggYGdpdCBsb2cgLS1vbmVsaW5lIC0tIERJUkVDVE9SWV9PUl9GSUxFYCBvbiB0aGUgZGly
+ZWN0b3J5IHlvdXIgcGF0Y2gNCj4gaXMgdG91Y2hpbmcpLiBUaGVyZWZvcmUgaXQgc2hvdWxkIGJl
+Og0KPiAiQVNvQzogZHQtYmluZGluZ3M6IGlyb25kZXZpY2Usc21hMTMwMzogUmV3b3JrIGJpbmRp
+bmcgYW5kIGFkZCBtaXNzaW5nDQo+IHByb3BlcnRpZXMiDQo+IA0KDQpPaCwgdGhhbmsgeW91IGZv
+ciBnb29kIGluZm9ybWF0aW9uLiBJIGZlZWwgbGlrZSBJIHN0aWxsIGxhY2sgYSBsb3QuDQpJJ2xs
+IGFwcGx5IGl0LiBUaGFua3MhDQoNCj4gDQo+ID4gLS0tDQo+ID4gIC4uLi9iaW5kaW5ncy9zb3Vu
+ZC9pcm9uZGV2aWNlLHNtYTEzMDMueWFtbCAgICB8IDQ2ICsrKysrKysrKysrKysrKysrLS0NCj4g
+PiAgMSBmaWxlIGNoYW5nZWQsIDQzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pDQo+ID4N
+Cj4gPiBkaWZmIC0tZ2l0DQo+ID4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+c291bmQvaXJvbmRldmljZSxzbWExMzAzLnlhbWwNCj4gPiBiL0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9zb3VuZC9pcm9uZGV2aWNlLHNtYTEzMDMueWFtbA0KPiA+IGluZGV4IDE2
+MmM1MjYwNjYzNS4uMzVkOWEwNDZlZjc1IDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9zb3VuZC9pcm9uZGV2aWNlLHNtYTEzMDMueWFtbA0KPiA+ICsr
+KyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb3VuZC9pcm9uZGV2aWNlLHNt
+YTEzMDMueWFtbA0KPiA+IEBAIC0xMCwyMiArMTAsNjIgQEAgbWFpbnRhaW5lcnM6DQo+ID4gICAg
+LSBLaXNlb2sgSm8gPGtpc2Vvay5qb0Bpcm9uZGV2aWNlLmNvbT4NCj4gPg0KPiA+ICBkZXNjcmlw
+dGlvbjoNCj4gPiAtICBTTUExMzAzIGRpZ2l0YWwgY2xhc3MtRCBhdWRpbyBhbXBsaWZpZXIgd2l0
+aCBhbiBpbnRlZ3JhdGVkIGJvb3N0DQo+IGNvbnZlcnRlci4NCj4gPiArICBTTUExMzAzIGRpZ2l0
+YWwgY2xhc3MtRCBhdWRpbyBhbXBsaWZpZXIgIHdpdGggYW4gaW50ZWdyYXRlZCBib29zdA0KPiA+
+ICsgY29udmVydGVyLg0KPiA+DQo+ID4gIGFsbE9mOg0KPiA+IC0gIC0gJHJlZjogbmFtZS1wcmVm
+aXgueWFtbCMNCj4gPiArICAtICRyZWY6IGRhaS1jb21tb24ueWFtbCMNCj4gPiArDQo+ID4gK3By
+b3BlcnRpZXM6DQo+ID4gKyAgY29tcGF0aWJsZToNCj4gPiArICAgIGVudW06DQo+ID4gKyAgICAg
+IC0gaXJvbmRldmljZSxzbWExMzAzDQo+ID4gKw0KPiA+ICsgIHJlZzoNCj4gPiArICAgIG1heEl0
+ZW1zOiAxDQo+ID4gKw0KPiA+ICsgICcjc291bmQtZGFpLWNlbGxzJzoNCj4gPiArICAgIGNvbnN0
+OiAxDQo+ID4gKw0KPiA+ICsgIGkyYy1yZXRyeToNCj4gPiArICAgIGRlc2NyaXB0aW9uOiBudW1i
+ZXIgb2YgcmV0cmllcyBmb3IgSTJDIHJlZ21hcC4NCj4gDQo+IFdoeSBkbyB5b3UgbmVlZCB0aGlz
+PyBXaHkgdGhpcyBmaXRzIHRoZSBwdXJwb3NlIG9mIERUIChvciBJT1cgd2h5IHRoaXMNCj4gZGlm
+ZmVycyBiZXR3ZWVuIGJvYXJkcyk/DQoNCldoZW4gd29ya2luZyB3aXRoIGRyaXZlcnMgb24gbXVs
+aXRpcGxlIHBsYXRmb3JtcywgdGhlcmUgd2VyZSBjYXNlcyB3aGVyZQ0KSTJDIGRpZCBub3Qgd29y
+ayBwcm9wZXJseSBkcGVuZGluZyBvbiB0aGUgQVAgb3Igc2V0dGluZy4NClNvIEkgbWFkZSBpdCBw
+b3NzaWJsZSB0byBzZXQgYSBmZXcgcmV0cnkgc2V0dGluZ3MsIGFuZCB0aGVuIGNoZWNrIG9yIGRv
+DQpvdGhlciBhY3Rpb25zLiBSZXRyeSBpcyBwZXJmb3JtZWQgb25seSB3aGVuIEkyQyBmYWlscy4N
+Cg0KQW5kIGVhY2ggZGV2aWNlIG1heSBoYXZlIGEgZGlmZmVyZW50IHB1bGwtdXAgcmVzaXNvciBv
+ciBzdHJlbmd0aCwNCnNvIHRoZXJlIG1heSBiZSBkaWZmZXJlbmNlcyBiZXR3ZWVuIGJvYXJkcy4N
+Cg0KQ291bGQgdGhhdCBwcm9wZXJ0eSBiZSBhIHByb2JsZW0/DQoNCj4gPiArICAgIG1heGltdW06
+IDQ5DQo+ID4gKyAgICBkZWZhdWx0OiAzDQo+ID4gKw0KPiA+ICsgIHRkbS1zbG90LXJ4Og0KPiA+
+ICsgICAgZGVzY3JpcHRpb246IHNldCB0aGUgdGRtIHJ4IHN0YXJ0IHNsb3QuDQo+IA0KPiBBcmVu
+J3QgeW91IG5vdyByZS13cml0aW5nIGRhaS10ZG0tc2xvdC1yeC1tYXNrIHByb3BlcnR5PyBTYW1l
+IGZvciB0eCBiZWxvdy4NCj4gDQoNCkl0IGNhbiBiZSB0aGUgc2FtZSBhcyBhdWRpbyBEQUkncyB0
+ZG0gc2xvdCwgSSB0aGluayBidXQgdGhlcmUgYXJlIGNhc2VzDQp3aGVyZSBpdCBpcyBzZXQgZGlm
+ZmVyZW50bHksIHNvIEkgb21pdHRlZCBpdCBzZXBhcmF0ZWx5Lg0KDQo+ID4gKyAgICBtYXhpbXVt
+OiA3DQo+ID4gKyAgICBkZWZhdWx0OiAwDQo+ID4gKw0KPiA+ICsgIHRkbS1zbG90LXR4Og0KPiA+
+ICsgICAgZGVzY3JpcHRpb246IHNldCB0aGUgdGRtIHR4IHN0YXJ0IHNsb3QuDQo+ID4gKyAgICBt
+YXhpbXVtOiA3DQo+ID4gKyAgICBkZWZhdWx0OiAwDQo+ID4gKw0KPiA+ICsgIHN5cy1jbGstaWQ6
+DQo+ID4gKyAgICBkZXNjcmlwdGlvbjogc2VsZWN0IHRoZSB1c2luZyBzeXN0ZW0gY2xvY2suDQo+
+IA0KPiBXaGF0IGRvZXMgaXQgbWVhbj8gV2h5IGRvIHlvdSBuZWVkIHN1Y2ggcHJvcGVydHkgaW5z
+dGVhZCBvZiBjbG9ja3M/DQoNClRoaXMgY2FuIHJlY2VpdmUgYW4gZXh0ZXJuYWwgY2xvY2ssIGJ1
+dCBpdCBjYW4gdXNlIGludGVybmFsIGNsb2NrLg0KU2hvdWxkIEkgd3JpdGUgYWxsIHRoZSBjbG9j
+ayBkZXNjcmlwdGlvbnMgaW4gY2FzZT8NCg0KPiA+ICsgICAgZGVmYXVsdDogMw0KPiA+DQo+ID4g
+IHJlcXVpcmVkOg0KPiA+ICAgIC0gY29tcGF0aWJsZQ0KPiA+ICAgIC0gcmVnDQo+ID4gKyAgLSAn
+I3NvdW5kLWRhaS1jZWxscycNCj4gPg0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YN
+Cg0KVGhhbmsgeW91IGZvciBxdWljayByZXNwb25zZSENCkknbGwgdGFrZSBhIGxvb2sgdG8gc2Vl
+IGlmIHRoZXJlIGFyZSBhbnkgb3RoZXIgaXNzdWVzLg0KDQpUaGFua3MuDQoNCkJlc3QgcmVnYXJk
+cywNCktpc2VvayBKbw0KDQo=
