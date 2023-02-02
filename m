@@ -2,208 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 611C36883B4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 17:08:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0900E6883C2
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 17:09:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231731AbjBBQIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 11:08:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47736 "EHLO
+        id S232083AbjBBQJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 11:09:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230147AbjBBQIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 11:08:41 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1B2A23865
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 08:08:37 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id mf7so7343073ejc.6
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 08:08:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ag2PAuDWK0xJDjx0Dz1G8siIr398zPG0JUR9wP2tdSM=;
-        b=MAnvAtw0Mu7853Dl/ymO1cF1tA+56s2b2/PDyvZjGnne11RYR7UKNOa1YH2u9YoqDj
-         pLSHn0ulZjrYHLm7BqzOFnweq14h4jc1qPRNZGGbcWaWfSS2bEQzchFeAUQMS9ie0/w2
-         R/L4I9Lrd/zgo2S8PGbP1v7xPsUImVriky3PtZFOf6eKX6ehwGrya1zjSgNsNbBhKWsO
-         TBfku3wZT8VXV/yKeRrXHfp/l4X26+iLUEqoNFurFUnx9CZpKSkHWZpE2SZt8GP6BWv4
-         lL3qLtmv6xm5tLBdGgC8t+qopsmTxjLjHxi41pmCiz++thY/Bb3C6jRX2a31bcUIXGse
-         LkmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ag2PAuDWK0xJDjx0Dz1G8siIr398zPG0JUR9wP2tdSM=;
-        b=BJuu7GNTY+zIVXHzJnwfJ4p0n7Os2dd1LAMN5iVhRFYVIjEUNT8uWhyIW8v6HTxa/r
-         U5NhZDq4w0Yf2oasGaA0S9pfrrdbVrwRApLZhcC+p3JD4S8RqIkAE108lZ9ImAymqvzu
-         QTN61YIG8d1KrctYJDHnpvef6So2akaTck/000n40G2sQzGHX8XRVaitk1othATcBtgw
-         FeqjVRD3ghbAqcsSIWClGNus3Nv+hf/6CVBzY8Ix5HSNq1p/JiycvXWSTKYNATShC5PE
-         Cv7BU7TAyfVd/9hhPQRmEIP00v/nOKIKSfdgHFCTd1mowkrxmwxT+pKQuStq1TaLMtHK
-         NlYQ==
-X-Gm-Message-State: AO0yUKUrwCb0XJ0+NCSmcKCUeixLUNl2hNVVAYrddv2ijZgwmW5hRanI
-        oUS4/7Zt5Zye+NYe1iZQRAi4lG8kxP22Xvej
-X-Google-Smtp-Source: AK7set8ZhNHF5l0Xm2gmRt/hHGJJPQI3vwqC/Jr1DB7im2azln99tAWGaeWuwEWrOU6K856BNR2Txw==
-X-Received: by 2002:a17:906:bc8d:b0:88a:a335:4921 with SMTP id lv13-20020a170906bc8d00b0088aa3354921mr7656976ejb.56.1675353408739;
-        Thu, 02 Feb 2023 07:56:48 -0800 (PST)
-Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
-        by smtp.gmail.com with ESMTPSA id h11-20020aa7de0b000000b004a21304f5a0sm9632443edv.72.2023.02.02.07.56.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 07:56:48 -0800 (PST)
-Message-ID: <1948642d-dab9-4f20-9408-de7c952b9109@linaro.org>
-Date:   Thu, 2 Feb 2023 16:56:46 +0100
+        with ESMTP id S232297AbjBBQJm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 11:09:42 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D94556B036;
+        Thu,  2 Feb 2023 08:09:38 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 71AF661BF4;
+        Thu,  2 Feb 2023 16:09:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54ABEC433EF;
+        Thu,  2 Feb 2023 16:09:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675354177;
+        bh=xjNBvclZKFnIHn9hRQhrxBHvSbPwMKJe/L5bKZulUDM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YKwX9vpOm7OPqRcBWD60/Kcla5InDbtRaafHfflIRtWCcFuEscArPK7Z1O2px2hiz
+         PoR6bR4dy7UePHOGngn1BGINwwcmRhCjt9xulXO+gV8O909OctHENGX9EkKynHVP2p
+         2plz2lqZrjOnkQYxDzcW1yxDPGTYLhyE+nX28LtVHKf3D+DxFZc718+NZ+KtscHv8S
+         6O9DQoTp1gtB7frsriKqaBoNdirBk5ktfBq1FKK3FayD7GZR5M0EKUqE5vUkotW2YM
+         m0/DTMLvSCDVVDKpOiBpxhTXOO8rhXuitPP2kImZ+oZTk5LzApRg94WusgYUrXP2n9
+         aw3zRwi7sStQg==
+Date:   Thu, 2 Feb 2023 17:09:31 +0100
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     Matt Ranostay <mranostay@ti.com>, robh@kernel.org
+Cc:     rogerq@kernel.org, kw@linux.com, bhelgaas@google.com,
+        krzysztof.kozlowski@linaro.org, vigneshr@ti.com,
+        tjoseph@cadence.com, sergio.paracuellos@gmail.com,
+        pthombar@cadence.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 3/5] PCI: j721e: Add PCIe 4x lane selection support
+Message-ID: <Y9vgO51IRfx1by3P@lpieralisi>
+References: <20221124081221.1206167-1-mranostay@ti.com>
+ <20221124081221.1206167-4-mranostay@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 1/6] clk: qcom: apss-ipq-pll: refactor the driver to
- accommodate different PLL types
-Content-Language: en-US
-To:     Kathiravan T <quic_kathirav@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230202145208.2328032-1-quic_kathirav@quicinc.com>
- <20230202145208.2328032-2-quic_kathirav@quicinc.com>
- <97e9ae36-6736-0db8-4044-4e874c5af5f4@linaro.org>
- <9ebaa72c-e4d5-ddb4-9d3c-f0d669465991@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <9ebaa72c-e4d5-ddb4-9d3c-f0d669465991@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221124081221.1206167-4-mranostay@ti.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
+I think your comment:
 
-On 2.02.2023 16:37, Kathiravan T wrote:
-> 
-> On 2/2/2023 8:45 PM, Konrad Dybcio wrote:
->>
->> On 2.02.2023 15:52, Kathiravan T wrote:
->>> APSS PLL found on the IPQ8074 and IPQ6018 are of type Huayra PLL. But,
->>> IPQ5332 APSS PLL is of type Stromer Plus. To accommodate both these PLLs,
->>> refactor the driver to take the clk_alpha_pll, alpha_pll_config via device
->>> data.
->>>
->>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
->>> ---
->>>   drivers/clk/qcom/apss-ipq-pll.c | 55 +++++++++++++++++++++------------
->>>   1 file changed, 36 insertions(+), 19 deletions(-)
->>>
->>> diff --git a/drivers/clk/qcom/apss-ipq-pll.c b/drivers/clk/qcom/apss-ipq-pll.c
->>> index a5aea27eb867..6e815e8b7fe4 100644
->>> --- a/drivers/clk/qcom/apss-ipq-pll.c
->>> +++ b/drivers/clk/qcom/apss-ipq-pll.c
->>> @@ -8,20 +8,22 @@
->>>     #include "clk-alpha-pll.h"
->>>   -static const u8 ipq_pll_offsets[] = {
->>> -    [PLL_OFF_L_VAL] = 0x08,
->>> -    [PLL_OFF_ALPHA_VAL] = 0x10,
->>> -    [PLL_OFF_USER_CTL] = 0x18,
->>> -    [PLL_OFF_CONFIG_CTL] = 0x20,
->>> -    [PLL_OFF_CONFIG_CTL_U] = 0x24,
->>> -    [PLL_OFF_STATUS] = 0x28,
->>> -    [PLL_OFF_TEST_CTL] = 0x30,
->>> -    [PLL_OFF_TEST_CTL_U] = 0x34,
->>> +static const u8 ipq_pll_offsets[][PLL_OFF_MAX_REGS] = {
->>> +    [CLK_ALPHA_PLL_TYPE_HUAYRA] =  {
->> Is it really huayra? The definition in clk-alpha-pll.c is
->> different..
-> 
-> 
-> As per the HW document, yes it is Huayra. When you say "different", I understand these offsets are not matching with the one in clk-alpha-pll.c right? I checked with the sub system owner and they said it is expected since these PLLs are specific to each subsystem(A53 and GCC), so the offsets are different.
-Okay, that makes sense. Could you please leave a comment about this
-in the code?
+https://lore.kernel.org/linux-pci/CAL_JsqJ5cOLXhD-73esmhVwMEWGT+w3SJC14Z0jY4tQJQRA7iw@mail.gmail.com
 
-Konrad
+was related to the commit log wording and not necessarily
+the actual diff. Please let me know if you are happy with
+this change and I shall merge the series.
+
+Thanks,
+Lorenzo
+
+On Thu, Nov 24, 2022 at 12:12:19AM -0800, Matt Ranostay wrote:
+> Add support for setting of two-bit field that allows selection of 4x lane
+> PCIe which was previously limited to only 2x lanes.
 > 
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+>  drivers/pci/controller/cadence/pci-j721e.c | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
 > 
-> Thanks,
+> diff --git a/drivers/pci/controller/cadence/pci-j721e.c b/drivers/pci/controller/cadence/pci-j721e.c
+> index 8990f58d64d5..dab3db9be6d8 100644
+> --- a/drivers/pci/controller/cadence/pci-j721e.c
+> +++ b/drivers/pci/controller/cadence/pci-j721e.c
+> @@ -42,7 +42,6 @@ enum link_status {
+>  };
+>  
+>  #define J721E_MODE_RC			BIT(7)
+> -#define LANE_COUNT_MASK			BIT(8)
+>  #define LANE_COUNT(n)			((n) << 8)
+>  
+>  #define GENERATION_SEL_MASK		GENMASK(1, 0)
+> @@ -52,6 +51,7 @@ struct j721e_pcie {
+>  	struct clk		*refclk;
+>  	u32			mode;
+>  	u32			num_lanes;
+> +	u32			max_lanes;
+>  	void __iomem		*user_cfg_base;
+>  	void __iomem		*intd_cfg_base;
+>  	u32			linkdown_irq_regfield;
+> @@ -205,11 +205,15 @@ static int j721e_pcie_set_lane_count(struct j721e_pcie *pcie,
+>  {
+>  	struct device *dev = pcie->cdns_pcie->dev;
+>  	u32 lanes = pcie->num_lanes;
+> +	u32 mask = GENMASK(8, 8);
+>  	u32 val = 0;
+>  	int ret;
+>  
+> +	if (pcie->max_lanes == 4)
+> +		mask = GENMASK(9, 8);
+> +
+>  	val = LANE_COUNT(lanes - 1);
+> -	ret = regmap_update_bits(syscon, offset, LANE_COUNT_MASK, val);
+> +	ret = regmap_update_bits(syscon, offset, mask, val);
+>  	if (ret)
+>  		dev_err(dev, "failed to set link count\n");
+>  
+> @@ -439,6 +443,8 @@ static int j721e_pcie_probe(struct platform_device *pdev)
+>  	ret = of_property_read_u32(node, "num-lanes", &num_lanes);
+>  	if (ret || num_lanes > data->max_lanes)
+>  		num_lanes = 1;
+> +
+> +	pcie->max_lanes = data->max_lanes;
+>  	pcie->num_lanes = num_lanes;
+>  
+>  	if (dma_set_mask_and_coherent(dev, DMA_BIT_MASK(48)))
+> -- 
+> 2.38.GIT
 > 
-> Kathiravan T.
-> 
-> 
->>
->>
->> Konrad
->>> +        [PLL_OFF_L_VAL] = 0x08,
->>> +        [PLL_OFF_ALPHA_VAL] = 0x10,
->>> +        [PLL_OFF_USER_CTL] = 0x18,
->>> +        [PLL_OFF_CONFIG_CTL] = 0x20,
->>> +        [PLL_OFF_CONFIG_CTL_U] = 0x24,
->>> +        [PLL_OFF_STATUS] = 0x28,
->>> +        [PLL_OFF_TEST_CTL] = 0x30,
->>> +        [PLL_OFF_TEST_CTL_U] = 0x34,
->>> +    },
->>>   };
->>>   -static struct clk_alpha_pll ipq_pll = {
->>> +static struct clk_alpha_pll ipq_pll_huayra = {
->>>       .offset = 0x0,
->>> -    .regs = ipq_pll_offsets,
->>> +    .regs = ipq_pll_offsets[CLK_ALPHA_PLL_TYPE_HUAYRA],
->>>       .flags = SUPPORTS_DYNAMIC_UPDATE,
->>>       .clkr = {
->>>           .enable_reg = 0x0,
->>> @@ -61,6 +63,21 @@ static const struct alpha_pll_config ipq8074_pll_config = {
->>>       .test_ctl_hi_val = 0x4000,
->>>   };
->>>   +struct apss_pll_data {
->>> +    struct clk_alpha_pll *pll;
->>> +    const struct alpha_pll_config *pll_config;
->>> +};
->>> +
->>> +static struct apss_pll_data ipq8074_pll_data = {
->>> +    .pll = &ipq_pll_huayra,
->>> +    .pll_config = &ipq8074_pll_config,
->>> +};
->>> +
->>> +static struct apss_pll_data ipq6018_pll_data = {
->>> +    .pll = &ipq_pll_huayra,
->>> +    .pll_config = &ipq6018_pll_config,
->>> +};
->>> +
->>>   static const struct regmap_config ipq_pll_regmap_config = {
->>>       .reg_bits        = 32,
->>>       .reg_stride        = 4,
->>> @@ -71,7 +88,7 @@ static const struct regmap_config ipq_pll_regmap_config = {
->>>     static int apss_ipq_pll_probe(struct platform_device *pdev)
->>>   {
->>> -    const struct alpha_pll_config *ipq_pll_config;
->>> +    const struct apss_pll_data *data;
->>>       struct device *dev = &pdev->dev;
->>>       struct regmap *regmap;
->>>       void __iomem *base;
->>> @@ -85,23 +102,23 @@ static int apss_ipq_pll_probe(struct platform_device *pdev)
->>>       if (IS_ERR(regmap))
->>>           return PTR_ERR(regmap);
->>>   -    ipq_pll_config = of_device_get_match_data(&pdev->dev);
->>> -    if (!ipq_pll_config)
->>> +    data = of_device_get_match_data(&pdev->dev);
->>> +    if (!data)
->>>           return -ENODEV;
->>>   -    clk_alpha_pll_configure(&ipq_pll, regmap, ipq_pll_config);
->>> +    clk_alpha_pll_configure(data->pll, regmap, data->pll_config);
->>>   -    ret = devm_clk_register_regmap(dev, &ipq_pll.clkr);
->>> +    ret = devm_clk_register_regmap(dev, &data->pll->clkr);
->>>       if (ret)
->>>           return ret;
->>>         return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
->>> -                       &ipq_pll.clkr.hw);
->>> +                       &data->pll->clkr.hw);
->>>   }
->>>     static const struct of_device_id apss_ipq_pll_match_table[] = {
->>> -    { .compatible = "qcom,ipq6018-a53pll", .data = &ipq6018_pll_config },
->>> -    { .compatible = "qcom,ipq8074-a53pll", .data = &ipq8074_pll_config },
->>> +    { .compatible = "qcom,ipq6018-a53pll", .data = &ipq6018_pll_data },
->>> +    { .compatible = "qcom,ipq8074-a53pll", .data = &ipq8074_pll_data },
->>>       { }
->>>   };
->>>   MODULE_DEVICE_TABLE(of, apss_ipq_pll_match_table);
