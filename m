@@ -2,82 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BFDD6889B1
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 23:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A89426889BD
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 23:28:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231903AbjBBW1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 17:27:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45456 "EHLO
+        id S232842AbjBBW2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 17:28:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231462AbjBBW1L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 17:27:11 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE17F14E96
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 14:27:09 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id eq11so3523895edb.6
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 14:27:09 -0800 (PST)
+        with ESMTP id S233317AbjBBW2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 17:28:37 -0500
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E52F5CFD7
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 14:28:36 -0800 (PST)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-4a263c4ddbaso46622827b3.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 14:28:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=htsoF+0dAV+soqelwMOxu8OLAjWrlwNcAr2UdCMs8v4=;
-        b=H44bIUH3EWCmyadBXYgygjbXAYlG952xbCVe1R1Lu41LfJ1MmT88QhdPiPtdCYjY/O
-         YN7AIIIYhSd8vN0BMDcOk85ky+avOHAvXDS8YwOJ70AQNwRum7QO+1uCqgRcP4Q9/0XB
-         tTnYzrDXzovj4h/qsdjE4ONlN94GjXrWB6cGW4GvssCqAl1M129TpWzB4mwtdIVG7bz0
-         9LfJEw01Htor7po8vMgfUnmp1Gqexw/Q3+T3KrFFyhMafMeWKZnmEH1SyFVmjt+p4SA4
-         IJEcaU5aZL61WgoCPjWbnR0EBZWkl4JCk/lAX8UNAUSoIWR4CcCugFsTKWb8u0S+eTdk
-         EWfg==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=xYHYyCk0Uk2jKz+BSxgBQ9AdeZqvnor3lzbcWcmYzSE=;
+        b=nWAVD9UCkiGgNNR6RDSDBB64X6TZzBF+Rs5zhnPVI8JQKfTW64CiVrzCpzvpKr9sUW
+         nKhHwXL60EAuMxto3sMXYPBFgmaQCoYxHn3XySbd/DuTSs0BKjTH8mlS2WrSOt/S5g+H
+         fjlJRexHmOjVTnwDtef/w0xdADZVcdT5R16kk6ptrKH4dpRzHS7Oq1tPgbpBpLjZUfxP
+         kj3VGUPmIGr5u9tQs/w0AnsLv/6oSXLNw3JDU3AvozwGaLCL8/nN6TI4gBUPIFgJ7bo9
+         UCVoVV6PdFmx+VVzneMukpGT1sSEDuNGdAsKpLrHtw1TrfyMaRm3UcMqzvtUfb15jNmO
+         D0Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=htsoF+0dAV+soqelwMOxu8OLAjWrlwNcAr2UdCMs8v4=;
-        b=nu5ZZyh51wrkvY+CMWdvU27e8g0+qI2XWQuKaZCn83aiMDgmEG1n5NzzGJm0AgZGMk
-         XYOYwct7O5uSerhNvlGFq0VFm/brCuzGZyFx/B76rbw/f2T+pd7sJ6uH7Cw0ylSy/Gvq
-         1i3gLtLt30N5ZEp6wL5a02uHXPcDZ+QC+AIdpFq3iA9zcYHe3xrEeNWstgue2wtaAOLb
-         nXoZ373lARbKNk+bHkPjpIHqPMSEq+UmAZ1E29E24hN5bTFt+TNfjA3q1L7ttsPi4BH+
-         dDfrGfwbzz+FXUwrQBYNF8zFQXFYkEF+qZoWJ7rYC7paM0cFAP9/CXIBARp3n1xAxqwk
-         Y0/Q==
-X-Gm-Message-State: AO0yUKVJx0keSanLjuqEXS1qzIlPSm22yG4PbZS4/hiHqTrCqAWBTaX/
-        ywOA4MwGYDI1xF+Ot0WUrM/cOA==
-X-Google-Smtp-Source: AK7set/yLIBMIxVVa09c0abZawIa36KcE8yzXqO5U2V8ePOTwQhiJEGkap+3ftH4iHbY8R7Pb99vPw==
-X-Received: by 2002:a05:6402:34cc:b0:49b:67c5:3044 with SMTP id w12-20020a05640234cc00b0049b67c53044mr9046173edc.4.1675376828243;
-        Thu, 02 Feb 2023 14:27:08 -0800 (PST)
-Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id s22-20020aa7cb16000000b004a236384909sm303300edt.10.2023.02.02.14.27.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 14:27:07 -0800 (PST)
-Message-ID: <22f191c4-5346-8fe7-690d-9422775bb2d5@linaro.org>
-Date:   Fri, 3 Feb 2023 00:27:06 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xYHYyCk0Uk2jKz+BSxgBQ9AdeZqvnor3lzbcWcmYzSE=;
+        b=u9qCzjMvihQs2x97V7sD20/PPNIW6sog2fmQhwEqskJpNgKrE1DGltoWvg1oej7ytb
+         4ZgkLTXEq015iUM/GFWX1mAgTZY+4PGO64smLLWA3NCrf2APHaccmcFKk8G6IdQCJADf
+         k9wEf8wBWWH2+qb/L997JAK10E6mZHv062njk3aXS0gGBA73QOo3s+tVGl6ueP+Y249z
+         5akWutEv1xIh8+eOIKqKnYfHptWs0Pd86MvOoasLFnOLcCG45mXN2iPLkTrWeD2PWIqF
+         nb74l84XPcU6+XZEFW5HHIACYcG7OABK43Aya+gXkyzUtoMPO5SHAVpB+3OjahMXBiHv
+         zSRw==
+X-Gm-Message-State: AO0yUKVl6YM0Ef3iFOMST2es0tMMsQNAsEYVvd0Cu0Ve+YmO8J94Sb45
+        QGufHrz7jYrXz9r4tP1/CbjGWe83aaUHsZpovX/cl9sgyzbSHg==
+X-Google-Smtp-Source: AK7set9tiyqBptIgECT4gz7vMnDVbMgEyqORV3g7fqx360QWQA8YTMy9wa+AnpGZQjChyeYW/LLFlq9e2OcdIBVM9MI=
+X-Received: by 2002:a81:d46:0:b0:4ff:e4bc:b56f with SMTP id
+ 67-20020a810d46000000b004ffe4bcb56fmr894826ywn.488.1675376915341; Thu, 02 Feb
+ 2023 14:28:35 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.2
-Subject: Re: [PATCH v8 5/9] dt-bindings: qcom-qce: document clocks and
- clock-names as optional
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+References: <20230202104452.299048-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230202104452.299048-1-krzysztof.kozlowski@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 2 Feb 2023 23:28:24 +0100
+Message-ID: <CACRpkdb_OHXfAGMYwFv3gzRWyDJw6=eNuJedteMxiEvPtQxvWw@mail.gmail.com>
+Subject: Re: [PATCH v2 00/10] pinctrl/ARM/arm64: qcom: correct TLMM
+ gpio-ranges and GPIO pin names
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20230202135036.2635376-1-vladimir.zapolskiy@linaro.org>
- <20230202135036.2635376-6-vladimir.zapolskiy@linaro.org>
- <32c23da1-45f0-82a4-362d-ae5c06660e20@linaro.org>
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <32c23da1-45f0-82a4-362d-ae5c06660e20@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Vinod Koul <vkoul@kernel.org>,
+        Vladimir Lypak <vladimir.lypak@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>, Iskren Chernev <me@iskren.info>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,28 +76,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Thu, Feb 2, 2023 at 11:45 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-On 2/2/23 15:53, Krzysztof Kozlowski wrote:
-> On 02/02/2023 14:50, Vladimir Zapolskiy wrote:
->> From: Neil Armstrong <neil.armstrong@linaro.org>
->>
->> On certain Snapdragon processors, the crypto engine clocks are enabled by
->> default by security firmware.
-> 
-> Then probably we should not require them only on these variants.
+> Changes since v1:
+> 1. Match the driver's ngpios (so usually include the ufs-reset where
+>    applicable). Several patches were dropped, other rewritten.
+> 2. Add tags
 
-the rationale is clear, but here comes a minor problem, older platforms
-require clocks, when newer ones do not. When a generic SoC-specific compatible
-is introduced, let say "qcom,ipq4019-qce", it itself requires the clocks,
-but then newer platforms can not be based on this particular compatible,
-otherwise they will require clocks and this comes as invalid.
+Needless to say I'm a big fan of the series:
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-How to resolve it properly, shall there be another generic SoC-specific
-compatible without clocks and NOT based on that "qcom,ipq4019-qce" compatible?
+Will you send me a pull request for the pinctrl things as soon as
+you feel confident it is finished, and I'll queue it up for v6.3?
 
-By the way, QCE on SM8150 also shall not need the clocks.
-
---
-Best wishes,
-Vladimir
+Yours,
+Linus Walleij
