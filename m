@@ -2,100 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80D46687B01
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 12:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F3AA687B70
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 12:03:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232039AbjBBLAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 06:00:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58012 "EHLO
+        id S232445AbjBBLDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 06:03:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231726AbjBBLAv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 06:00:51 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 163676CCBF
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 03:00:49 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id v13so1549810eda.11
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 03:00:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mind.be; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hwqA0bBFdWXpkidocitSvFjFmrRrthZmwzOeQ241hAw=;
-        b=aipaeHLyimbrh1xIjYjK59ul9gAgvIOJ2htzisG3cM9E9fQBV4j9HyoWNS9L6ksC+8
-         3ojfsravWZC4EKP3hZbJN2NzYSKOU9CdewMmamb/G0tVnZ8zr+J+KQFvwneJ9hyvGC3g
-         yKFLProLre67toexwebebS1Ffcsfjm9VbjROVnCnpFILS7rm/9XfLKMKfky/AKMYtTBr
-         nV5tBgxlmzoPrSwUB8Q8dJKssXQiiuVneolusJouMWwU2YmPjwH/NK9XB/cIASBFTNU4
-         5F7a9H8sg0eCgKiSNNxsy2FV1UNaNz16KOWLBhvBrmYNfZFA7o086Z52L4dfUaLgXbH1
-         NZOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hwqA0bBFdWXpkidocitSvFjFmrRrthZmwzOeQ241hAw=;
-        b=iWMTMW9RA5TgyroFzkgVpiFHYCzsJWhvRWuvYQ/JW38kA/ycPC1GNwO6az5YwpjLWr
-         7FQiVSe2oA5K9GHqC4A1ZD6/xkV759+9rmVD9G0v4O1h4xixWue5O6y+4606NRzdnEVi
-         t45abYk/MgVXQdh4kvgWz+1yfTAqXV5h20zL8ii2FHpq7NT8HhhF+e6VTf+s3+8jn8hZ
-         jvidXp8IHzphNEwS0F2MD8KaZboMDnHLSBHiKWfol4nXhJdBdJLuvU7d0HdLv68Lwueu
-         9vXFN6i4JvmDeEXqHE54cSU/tEDLlc7fzh216jNiUTHOnMHMsZTlUXyx8+fJZx7Rp9vm
-         pn3w==
-X-Gm-Message-State: AO0yUKWmRk+8UwZMu9DrzuEktar2vwj18W1rQtebQRdTeF1DsGnfff7a
-        CoznGXAweV7yvKYtetpF6YthIA==
-X-Google-Smtp-Source: AK7set+lY4LEQD/RMWmnBoE2nzZ+sWoTI4ZajAngUzcOw3CeU/millZuUm/cSZxcpezLou5yUZOWVA==
-X-Received: by 2002:a05:6402:2b8a:b0:499:d1ca:6d83 with SMTP id fj10-20020a0564022b8a00b00499d1ca6d83mr5436747edb.2.1675335647543;
-        Thu, 02 Feb 2023 03:00:47 -0800 (PST)
-Received: from [192.168.2.9] (78-22-137-109.access.telenet.be. [78.22.137.109])
-        by smtp.gmail.com with ESMTPSA id r24-20020aa7cfd8000000b00495c3573b36sm11183798edy.32.2023.02.02.03.00.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 03:00:47 -0800 (PST)
-Message-ID: <74f30b27-6999-0f67-48e7-85f0acd19cb9@mind.be>
-Date:   Thu, 2 Feb 2023 12:00:46 +0100
+        with ESMTP id S232620AbjBBLCL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 06:02:11 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61B468AC1F;
+        Thu,  2 Feb 2023 03:02:10 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4533D61AEA;
+        Thu,  2 Feb 2023 11:02:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1B71C4339B;
+        Thu,  2 Feb 2023 11:02:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675335728;
+        bh=lzDIUBwozYSnkNAtq+CbXRRVFuVSaq6m9YLSNh7qQGc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MoJmx3pzVPOfdioUSvGq2DqDBcmghnKSAm4WKHhY1lPV58gO+92ShLq4EzyxcbnNY
+         Jf+OdjwR1imNuLA/e9WQH249Z9jr/lbBxU1znZGtQ7eSS2Y9btxdFV+kAh4d4GlKeB
+         vj6o8j9R8WO8WzQDBH4aXVZDRAJQW0w6i3Y8/P7oSvOjGqTAJxZZ3wSg8cbT5e699A
+         3zHWZKizXZA6Xsry1mnf7nzqiIkCuYCJnhDV30We5RpfeF6IUZrHZaQ2GwzGoDQiyG
+         QOF09Mhp1+jMIBZPrar5kffHQbUpUD8XFIBbO5klhiBXIOX2LQOr+eyPSKGHqvk6nQ
+         kVPlLKoHGwbLA==
+Date:   Thu, 2 Feb 2023 12:02:02 +0100
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     Daire.McNamara@microchip.com
+Cc:     linux-riscv@lists.infradead.org, kw@linux.com,
+        Conor.Dooley@microchip.com, devicetree@vger.kernel.org,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, linux-pci@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        bhelgaas@google.com
+Subject: Re: [PATCH v3 00/11] PCI: microchip: Partition address translations
+Message-ID: <Y9uYKp24fHGkqI5Z@lpieralisi>
+References: <20230111125323.1911373-1-daire.mcnamara@microchip.com>
+ <d5a5ba3b01953c9db435f2371adee6e2b61d26dd.camel@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v3 0/2] leds: lp55xx: configure internal charge pump
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230202092325.21241-1-maarten.zanders@mind.be>
- <71c9963c-98e3-d90b-116a-68a295feb24a@linaro.org>
-Content-Language: en-US
-From:   Maarten Zanders <maarten.zanders@mind.be>
-In-Reply-To: <71c9963c-98e3-d90b-116a-68a295feb24a@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d5a5ba3b01953c9db435f2371adee6e2b61d26dd.camel@microchip.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for your feedback. V4 has been sent.
+On Tue, Jan 31, 2023 at 05:03:00PM +0000, Daire.McNamara@microchip.com wrote:
+> Hi all,
+> 
+> Just touching base here.  Can I take it that things are in-hand, and
+> this patchset is moving into the kernel or is there something I need to
+> do at my end?
 
-On 2/2/23 10:34, Krzysztof Kozlowski wrote:
-> On 02/02/2023 10:23, Maarten Zanders wrote:
->> A new option in the devicetree "ti,charge-pump-mode" allows the user to
->> configure the charge pump in a certain mode. The previous implementation
->> was "auto" mode, which remains the default.
->>
->> v1 of the patch implemented a bool to disable the charge pump and had some
->> issues in the yaml binding.
->>
->> v2 implemented all options of the charge pump as a string which was too
->> complex to parse & check.
->>
->> v3 (this version) replaces the string by constants.
-> Please resend without ignoring the feedback.
->
-> Best regards,
-> Krzysztof
->
+I will have a look shortly, sorry for the delay.
+
+Thanks,
+Lorenzo
+
+> best regards
+> daire
+> 
+> On Wed, 2023-01-11 at 12:53 +0000, daire.mcnamara@microchip.com wrote:
+> > From: Daire McNamara <daire.mcnamara@microchip.com>
+> > 
+> > Changes since v2:
+> > - Replaced GENMASK(63,0) with GENMASK_ULL(63,0) to remove warning
+> > - Added patch to avoid warning on cast of argument to
+> > devm_add_action_or_reset()
+> > - Added patch to enable building driver as a module
+> > 
+> > Changes since v1:
+> > - Removed unused variables causing compile warnings
+> > - Removed incorrect Signed-off-by: tags
+> > - Capitalised msi and msi-x
+> > - Capitalised FIC and respelled busses to buses
+> > - Capitalised all comments
+> > - Renamed fabric inter connect to Fabric Interface Controller as per
+> > PolarFire SoC TRM
+> > 
+> > Microchip PolarFire SoC is a 64-bit device and has DDR starting at
+> > 0x80000000 and 0x1000000000. Its PCIe rootport is connected to the
+> > CPU
+> > Coreplex via an FPGA fabric. The AXI connections between the Coreplex
+> > and
+> > the fabric are 64-bit and the AXI connections between the fabric and
+> > the
+> > rootport are 32-bit.  For the CPU CorePlex to act as an AXI-Master to
+> > the
+> > PCIe devices and for the PCIe devices to act as bus masters to DDR at
+> > these
+> > base addresses, the fabric can be customised to add/remove offsets
+> > for bits
+> > 38-32 in each direction. These offsets, if present, vary with each
+> > customer's design.
+> > 
+> > To support this variety, the rootport driver must know how much
+> > address
+> > translation (both inbound and outbound) is performed by a particular
+> > customer design and how much address translation must be provided by
+> > the
+> > rootport.
+> > 
+> > This patchset contains a parent/child dma-ranges scheme suggested by
+> > Rob
+> > Herring. It creates an FPGA PCIe parent bus which wraps the PCIe
+> > rootport
+> > and implements a parsing scheme where the root port identifies what
+> > address
+> > translations are performed by the FPGA fabric parent bus, and what
+> > address translations must be done by the rootport itself.
+> > 
+> > See 
+> > https://lore.kernel.org/linux-pci/20220902142202.2437658-1-daire.mcnamara@microchip.com/
+> > for the relevant previous patch submission discussion.
+> > 
+> > It also re-partitions the probe() and init() functions as suggested
+> > by
+> > Bjorn Helgaas to make them more maintainable as the init() function
+> > had
+> > become too large.
+> > 
+> > It also contains some minor fixes and clean-ups that are pre-
+> > requisites:
+> > - to align register, offset, and mask names with the hardware
+> > documentation
+> >   and to have the register definitions appear in the same order as in
+> > the
+> >   hardware documentation;
+> > - to harvest the MSI information from the hardware configuration
+> > register
+> >   as these depend on the FPGA fabric design and can vary with
+> > different
+> >   customer designs;
+> > - to clean up interrupt initialisation to make it more maintainable;
+> > - to fix SEC and DED interrupt handling.
+> > 
+> > I expect Conor will take the dts patch via the soc tree once the PCIe
+> > parts
+> > of the series are accepted.
+> > 
+> > Conor Dooley (1):
+> >   riscv: dts: microchip: add parent ranges and dma-ranges for IKRD
+> >     v2022.09
+> > 
+> > Daire McNamara (10):
+> >   PCI: microchip: Correct the DED and SEC interrupt bit offsets
+> >   PCI: microchip: Remove cast warning for devm_add_action_or_reset()
+> > arg
+> >   PCI: microchip: enable building this driver as a module
+> >   PCI: microchip: Align register, offset, and mask names with hw docs
+> >   PCI: microchip: Enable event handlers to access bridge and ctrl
+> > ptrs
+> >   PCI: microchip: Clean up initialisation of interrupts
+> >   PCI: microchip: Gather MSI information from hardware config
+> > registers
+> >   PCI: microchip: Re-partition code between probe() and init()
+> >   PCI: microchip: Partition outbound address translation
+> >   PCI: microchip: Partition inbound address translation
+> > 
+> >  .../dts/microchip/mpfs-icicle-kit-fabric.dtsi |  62 +-
+> >  drivers/pci/controller/Kconfig                |   2 +-
+> >  drivers/pci/controller/pcie-microchip-host.c  | 688 +++++++++++++---
+> > --
+> >  3 files changed, 533 insertions(+), 219 deletions(-)
+> > 
+> > 
+> > base-commit: 3c1f24109dfc4fb1a3730ed237e50183c6bb26b3
