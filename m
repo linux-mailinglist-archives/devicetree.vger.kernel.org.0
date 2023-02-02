@@ -2,147 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6E37687F60
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 14:57:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B858687F6E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 14:59:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231725AbjBBN5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 08:57:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49940 "EHLO
+        id S231695AbjBBN7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 08:59:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229710AbjBBN5d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 08:57:33 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A165233C3
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 05:57:32 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id o18so1794265wrj.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 05:57:32 -0800 (PST)
+        with ESMTP id S231546AbjBBN7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 08:59:40 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63AC643447;
+        Thu,  2 Feb 2023 05:59:39 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id v10so2073934edi.8;
+        Thu, 02 Feb 2023 05:59:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fQv4EInwan8kcb6xlAJfnG13F2BxITSAq/Y5jRVwQo0=;
-        b=x51hm61597wc7e9dh0Zf5RrLS9xoJlkjSd2cuztMK12X4bPW8RWK/L4Mt5Xhq+Ijk+
-         1vv/9QOw0MZP6MO1VGukgf/GnKBCISd9zTmCeOKJXKIsrRANmqrhRd0OCqNpUBjLmq/S
-         J0DOIAyo8H/DhzmQxMEkJTTsGZCbXc9XEVjNK6SzAkcYzmafm0gApHuex04XGBIu827y
-         tsZMcN4KoHOTBYqoupBEt0nuzRnm7uyGL8o0dL9Vl1gsKYBAjIRgWrZfK1HtN0WCyzfI
-         N+lvUl4sMO1QLRkeFxDUl15MjdklI5zB7FzMGgpe2uouvKXnU+9XReqhoryvmoNskdla
-         K1zg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7C4yOiCfMP0qj/5KoOd6moIn3AHrcKCsnXClv4cfnTU=;
+        b=JLeYM8r6D7I8hxEIZGXSNrXiCOM1r6JaTyiPcGesBFtSNBlrYczTEh5y7VHxbMwY3p
+         E17554goaZ5Rh1MR/xAnCOXn1XNvKmOxhhvifW3UisCHMNV8L0m4aU3CQdmOBTo59u6E
+         T+NB9+bvs4/7prBq3D9RmiJNaxzfyS9Z2X/EpA8MrfQjm2Xx4vX1dLYVq2FNn2KvJx4d
+         2MFTVmdBSUEW/s70LJvEOJcqQilYpMcWAKWg1WGCzuZH4thNkulTiz8vWgC5Qs/FCoit
+         qT4knHMcXpi2WmzqiC/FP3ZEM5eQVfsdsJB8d9vME9hMszTEF3V6DTKPKj9AO+32mpen
+         UdTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fQv4EInwan8kcb6xlAJfnG13F2BxITSAq/Y5jRVwQo0=;
-        b=D+iiJSZNUG1EHF/Fz2hsYyIT4naR19nKwFTG5XZiXKpDIux0XRqJVQ27eCM8FBwcKc
-         c2Rix4zrp8yaN4kj8zAY/V03SH1MbgNewAZcUE7/+tAbU8AUQEgfRLIZYTfg6HvfD1cH
-         eMxCkL9D7mr6idDa5W8YTVCmR2xNAz59AfsrtclDxdCqJ5e4sAOgEgKpych6b6yMoj90
-         O0MV/L2a0TN07QL4CwT8DousB2/vy7xw0tmMHL8BV0HHDcK4IDYq3yQk/kYHqH+Y37Ok
-         GPajfwV5TpfzgJcJKJ0NAu+COwD5L9wOCAOz40K5eUYZDzcuhTOlJCgCC4OeM9xEFTvu
-         5kXA==
-X-Gm-Message-State: AO0yUKUNORSHhfRCYMVIeirL1AqWRkVJV/vxTjfpSvLYZesrjPPja8gr
-        9TBQpzzZ+dyKzQ89bjElAakzwg==
-X-Google-Smtp-Source: AK7set+A2VYSe/rRtYkeW/HISsxVTJg51Q8BnDYOun/Cta+g0XP3PniMXBuPCTYNKFMRdGxmjbeiiQ==
-X-Received: by 2002:a05:6000:16c4:b0:2bf:ce9a:c19f with SMTP id h4-20020a05600016c400b002bfce9ac19fmr6601726wrf.34.1675346251140;
-        Thu, 02 Feb 2023 05:57:31 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l16-20020adffe90000000b002b8fe58d6desm19351447wrr.62.2023.02.02.05.57.29
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=7C4yOiCfMP0qj/5KoOd6moIn3AHrcKCsnXClv4cfnTU=;
+        b=ydW6UgV6YJpCGDzYt5xs+ob881btU3bpAfM9emnSLw/paXwDB2pRrehUBaN/faFKmO
+         zjWqHCCAkncRlJhG2DlKgcu8ZOJrUfUAlRpM4OmIEJ+Ik1IetHhOobdfkweIWI8qEA56
+         t5cCSryMgm6EPs4zkQzRvjn7eKSfSm2mndCAymZfmxKO/FBjXt7JcUlmULUSO773gMHO
+         akSo2W4dYAOtv5MlvXPM99U2ZqGvqEcVHmI9anWtHS61d2P3I9bDLivHkl8+/sw2HnMn
+         Fu3P7oj0Xw8rsk/fim3vOvoueIwfajGcVvOfB0mTf+iLR6f3k+ZqgwtGcf9MgAJpUZ1a
+         zz1g==
+X-Gm-Message-State: AO0yUKXGVc51pgYWZqEQDpl3VrdTLP9HIxz9CoBxa3LrIB5awza64uS+
+        w+RvGUBpzJo5Vn7O0lCdoZM=
+X-Google-Smtp-Source: AK7set+2cZg5uKgjKIT+gcK65XOYzB/T6/0Z7PWmZujYuCIp5ZQcCHjkg4wT6MFMnqE2zF8hXbAtzA==
+X-Received: by 2002:aa7:c70c:0:b0:4a2:6c9a:ad19 with SMTP id i12-20020aa7c70c000000b004a26c9aad19mr6082501edq.17.1675346377847;
+        Thu, 02 Feb 2023 05:59:37 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id p2-20020a05640210c200b00499e5659988sm11120854edu.68.2023.02.02.05.59.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 05:57:30 -0800 (PST)
-Message-ID: <0fc4c509-2db4-0bce-75c6-11835d6987d0@linaro.org>
-Date:   Thu, 2 Feb 2023 14:57:28 +0100
+        Thu, 02 Feb 2023 05:59:37 -0800 (PST)
+Message-ID: <f8747552-d23b-c4cd-cb17-5033fb7f8eb6@gmail.com>
+Date:   Thu, 2 Feb 2023 14:59:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v8 6/9] dt-bindings: qcom-qce: Add new SoC compatible
- strings for qcom-qce
+ Thunderbird/102.3.0
+From:   Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1] dt-bindings: usb: rockchip,dwc3: update inno usb2 phy
+ binding name
+To:     gregkh@linuxfoundation.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Language: en-US
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Jordan Crouse <jorcrous@amazon.com>
-References: <20230202135036.2635376-1-vladimir.zapolskiy@linaro.org>
- <20230202135036.2635376-7-vladimir.zapolskiy@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202135036.2635376-7-vladimir.zapolskiy@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 14:50, Vladimir Zapolskiy wrote:
-> From: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> 
-> Newer Qualcomm chips support newer versions of the qce crypto IP, so add
-> soc specific compatible strings for qcom-qce instead of using crypto
-> IP version specific ones.
-> 
-> Keep the old strings for backward-compatibility, but mark them as
-> deprecated.
-> 
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Tested-by: Jordan Crouse <jorcrous@amazon.com>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->  .../devicetree/bindings/crypto/qcom-qce.yaml  | 19 +++++++++++++++++--
->  1 file changed, 17 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> index a159089e8a6a..4e0b63b85267 100644
-> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> @@ -15,7 +15,22 @@ description:
->  
->  properties:
->    compatible:
-> -    const: qcom,crypto-v5.1
-> +    oneOf:
-> +      - const: qcom,crypto-v5.1
-> +        deprecated: true
-> +        description: Kept only for ABI backward compatibility
-> +      - items:
+The binding for the inno usb2 phy was given a name in more a common format,
+so update the reference in rockchip,dwc3.yaml as well.
 
-Drop items.
+Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> +          - enum:
-> +              - qcom,ipq4019-qce
-> +              - qcom,ipq6018-qce
-> +              - qcom,ipq8074-qce
-> +              - qcom,msm8996-qce
-> +              - qcom,sdm845-qce
-> +              - qcom,sm8150-qce
-> +              - qcom,sm8250-qce
-> +              - qcom,sm8350-qce
-> +              - qcom,sm8450-qce
-> +              - qcom,sm8550-qce
+diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+index edb130c78..422dcc156 100644
+--- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+@@ -15,7 +15,7 @@ description:
+   Phy documentation is provided in the following places.
 
-Unfortunately my comments from v6 was not addressed, nor responded to.
+   USB2.0 PHY
+-  Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
++  Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
 
-We already got a public comment from community that we handle Qualcomm
-bindings in a too loose way. I don't think we should be doing this (so
-keep ignoring ABI), just for the sanity of cleanup.
-
-It's fine to discuss it with me, but since v6 there was no discussion,
-so let's be clear here - NAK on ABI break.
-
-Best regards,
-Krzysztof
+   Type-C PHY
+   Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
+--
+2.20.1
 
