@@ -2,74 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C78A56888F5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 22:26:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77D3A68893A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 22:50:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230432AbjBBV0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 16:26:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37784 "EHLO
+        id S229915AbjBBVuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 16:50:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232816AbjBBV0P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 16:26:15 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CCE473056;
-        Thu,  2 Feb 2023 13:26:14 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1A3B6B82878;
-        Thu,  2 Feb 2023 21:26:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64382C433D2;
-        Thu,  2 Feb 2023 21:26:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675373171;
-        bh=W3AjyQkHsWUf6ay8jgNtEs+jDZGB5ySJ+PvHC36iymc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Fqz8oEDaC0pm9msf1bl82X05/7cYVXF/gNC08TXfH2ttImmdnfrLRNcAWAwLLcGm6
-         Lh/2mshRsNKsoK0QRGn/3nzCCTo11cj9RrAqnal1/TYJh0wQPBBVsii8bHtZlN2ENu
-         W1g0OqgoY2Phy3SnFOMdAdIovXN7GFJvGDnao/mN3VKJdohIAiLqkPsHXsDb6V4UMc
-         Yf3Yi+Fee4gqPT5sDV0NweMVCk5Fw0NcaGM6KlBMPgAMgsx+guVvlQNUncgW0viqlC
-         qtdnNwK1MUK4tmVKf7BZfZggh1OThY7LuImHw2VvzT8cFdkKsxZMpPXoF5FfqKOIEK
-         QfGHJupa18A4w==
-Date:   Thu, 2 Feb 2023 22:26:09 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Andy Shevchenko <andy@kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Peibao Liu <liupeibao@loongson.cn>
-Subject: Re: [PATCH V11 2/3] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
- controller
-Message-ID: <Y9wqcWHBO9y/xKfO@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Andy Shevchenko <andy@kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Peibao Liu <liupeibao@loongson.cn>
-References: <cover.1675167975.git.zhoubinbin@loongson.cn>
- <c6d7ee649e73536c62f665d11b0504029bd5613a.1675167975.git.zhoubinbin@loongson.cn>
+        with ESMTP id S230011AbjBBVuI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 16:50:08 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 616BF1A95E;
+        Thu,  2 Feb 2023 13:49:26 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id j21so2632758oie.4;
+        Thu, 02 Feb 2023 13:49:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UXW7/lUbSjpYWVlJlGqM54KI3OSQHsjjhBbib+nvF1g=;
+        b=3RJNa7koinc7mEk3ppZBfApN6JOlzUaRZIAjEebEfqQNyCM3TY6zeGKo/qeiEu5F8t
+         kpk/9O1CAybIN6q7LnhNALvQBzv1MoXtqPWjagTfCODulKJwiJOd+85wzJZGqOY/sxvl
+         TNkCY+GHTg15Ifjut/H5MdEYXDQuhRJ1yZpyFNPwysiNlRSRcoKs5skUZ+ynNlxgRAPi
+         y6B8GiSTTuUMKPSR30Jd2uq7o7g/lgNOt5vklPHrQptp47SP9UDeU0sYjJnawTK3/Bek
+         sHxi5PG5QqhheWvXJ+wea5ASRQe+PmwYF9Xue6x6izw9istQjYeQ0d1eOqzhbZSYEUH0
+         jYxA==
+X-Gm-Message-State: AO0yUKWtGEwbDu2NJ6oZ5o9kRfqw3zlqDQ5i8KuyO1uRRUASDgqw0X7+
+        ctTTT8LWJlIRvdEVz+3fEg==
+X-Google-Smtp-Source: AK7set990Xxf5sx8jmyGReXFqOd7t3qi2d4ril4HjTaHWa86PG/UDSm2/3qj0/UOtZb8eORu+AVCUA==
+X-Received: by 2002:a05:6808:20a:b0:35e:910d:10e6 with SMTP id l10-20020a056808020a00b0035e910d10e6mr3670327oie.9.1675374519648;
+        Thu, 02 Feb 2023 13:48:39 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r24-20020a0568080ab800b003783caeaf61sm169035oij.13.2023.02.02.13.48.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Feb 2023 13:48:39 -0800 (PST)
+Received: (nullmailer pid 2780551 invoked by uid 1000);
+        Thu, 02 Feb 2023 21:48:38 -0000
+Date:   Thu, 2 Feb 2023 15:48:38 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     linux-rockchip@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: usb: rockchip,dwc3: update inno usb2 phy
+ binding name
+Message-ID: <167537451786.2780496.5603789940127974377.robh@kernel.org>
+References: <f8747552-d23b-c4cd-cb17-5033fb7f8eb6@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Cs5t7USZHMZZKuI0"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c6d7ee649e73536c62f665d11b0504029bd5613a.1675167975.git.zhoubinbin@loongson.cn>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <f8747552-d23b-c4cd-cb17-5033fb7f8eb6@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -77,42 +66,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Cs5t7USZHMZZKuI0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 02 Feb 2023 14:59:35 +0100, Johan Jonker wrote:
+> The binding for the inno usb2 phy was given a name in more a common format,
+> so update the reference in rockchip,dwc3.yaml as well.
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-On Tue, Jan 31, 2023 at 08:37:31PM +0800, Binbin Zhou wrote:
-> This I2C module is integrated into the Loongson-2K SoCs and Loongson
-> LS7A bridge chip.
->=20
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> Reviewed-by: Andy Shevchenko <andy@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
-Applied to for-next, thank you and all the reviewers!
-
-If you like to maintain the driver, please send an addition to the
-MAINTAINERS file in a seperate patch. That would be great!
-
-
---Cs5t7USZHMZZKuI0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPcKnAACgkQFA3kzBSg
-Kbb9hBAAn/ENrQRrLTsNXOb+h1W+3dKdvAU7Q1MZsTKMvKfEqYXA/qB3agngvtdh
-wjeBpCVcmlvEwo/shFseEdMeedYQkhonVydcxkcJfyHQKFkbgPYF9FQ9boCINpR5
-k1fpt6azn8fRD1zOJJ/EvcKaaIV9JSLqvp0OgVpaIepNMtEdDWjJj5zQhqDBOw2Z
-jpICbpPpzYDK/D5sCXiLSxM0XjKFm3SGGVMekNRV5a/N/25Nwdtxk3wbvx4BixT3
-NBg4hfl3vfBnDaAqTacSW9EnpZUJ0dyHyMQ75rLaGcjScAGYQ/rR+6da4y2I1t7g
-ubjuRg68FAPjU8RjYR6eha8ocI84WFA6UQMU1VvJYwvTYqTsz8SMFth6E6QOJfti
-4GEVoE/JyiLFEBRvD/jE4Xej5SehknZO3VChm2qGNvZzdLB2aW/Ua4xVJIDY7P04
-h1bvZ2qSGz5zrmXGZ38Z7HbF1SY31Wh983CKsjTbZs0f1+9hhVMBgFhUc5J9FyCa
-MfE/GjRNrvoEXAjEGCseulUaDkxtW11chPebcFwEp07cVA0Tm7IVUswKG//eMmYb
-auIGwlYW2kbMnBDSJoTYS/ClJE0W0HOu/WiOt9kNih58e2gZKugazyKQ8+FsSPri
-kKUj2ALDzjNg/EWE4l46JsJV9UhmTS1LBYmRlIdTq9pZD59xtG0=
-=ErXU
------END PGP SIGNATURE-----
-
---Cs5t7USZHMZZKuI0--
