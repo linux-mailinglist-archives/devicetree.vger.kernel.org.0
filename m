@@ -2,65 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECE4E6886F4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 19:45:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 294C568871A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 19:51:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232915AbjBBSpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 13:45:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56258 "EHLO
+        id S231546AbjBBSvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 13:51:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232755AbjBBSpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 13:45:49 -0500
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 367D110278;
-        Thu,  2 Feb 2023 10:45:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675363526; x=1706899526;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=Zcy2tttflYiEzp2wxyvhKwM3EOAC9OK1BIvQNjHWusc=;
-  b=J42/qhaSpFZdx2opGQ/FJx1568JXVuzbGDoqGfM0BoQc7h4zyJcPD56x
-   03XFwJgc9ZtuFzkRa9ODpPb2XnSdCUfURFzXZeXlgk+CE7tOn/so0kJzL
-   J+5bjbQXZPJJBny4HL2YqU0rEQyKmh8hCHNHqC1yxEFkvzKMnLxlZa3kT
-   H4a3vIxUEyPyYOpxmdBu99gS0kBmYO21C0eDLHGHgMAZ3xfy3DQC41au2
-   hpQpZOCgck144N45zAY83wYYuV+PxeqqV82T3Ib433f4/Ts+HhwoLaCJi
-   mm6UbBIIm/3vXMmlbBg644GpYSrUdYPZdyyUFnMrrIP9njNRpCnv8CyGA
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="327179245"
-X-IronPort-AV: E=Sophos;i="5.97,268,1669104000"; 
-   d="scan'208";a="327179245"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2023 10:45:10 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="789391119"
-X-IronPort-AV: E=Sophos;i="5.97,268,1669104000"; 
-   d="scan'208";a="789391119"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.249.35.116])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2023 10:45:07 -0800
-Message-ID: <3cd284e8-9487-077a-a835-f8241f336bda@intel.com>
-Date:   Thu, 2 Feb 2023 20:45:02 +0200
+        with ESMTP id S232387AbjBBSvp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 13:51:45 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B261940DF;
+        Thu,  2 Feb 2023 10:51:44 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id f16-20020a17090a9b1000b0023058bbd7b2so2100264pjp.0;
+        Thu, 02 Feb 2023 10:51:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4bhsb2fuNBYHSupvvVBEu0/2p/VPgtQRHARS0fdgrQw=;
+        b=fl54cRpow83IgMccmr8VLx+5n6ALA6aKE7LvaqSpcL0YwJW0bFklnlB8hQXu4VcTVW
+         gItWqrnMYNO9QNdUxMVUI9EoAZl8tr2NveBRgvf1gserVwkApBhu/ayywcdjYpxZjmDO
+         eZf+eHZqzLO8do22o3NrXU6v1b5PyZ/cRs67oe9g7uE5GG8Rffuydw/rAUj02Wb/KGP8
+         LyPt47y9yJJo1CgIrwXb0JCh+A2tAfXvVZoEsydT7QlQBQWzUJ01tsKMi9vrhxFWm6vj
+         LqPt7IVfX7KGWOUL6HE/SbP3ZepXr/sbBWF2NPAbAFWZ5hrZznIFjCjL1GyGtDcS3W70
+         NE7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4bhsb2fuNBYHSupvvVBEu0/2p/VPgtQRHARS0fdgrQw=;
+        b=PvMCytJgB2K3/Z3t13s3J1WgtJoycfKmabseU1YAU6s4Y/LLvMVgZL88XwGC/dwR8g
+         fw42W3U6OvR75j6mXn8EWxlBzDtSyr00Rdmx1bDtGT7+stKEnzVs8JhrfVjQnkqY4HSh
+         Seuf+kcaHtIvPKaxznByRSnyXPb2g20QYCX/3hBetyKhOvI2PZxT7m5XHAwOlhXMcTQt
+         h5rZpswhO+MJhkMdnoEs7U9jKKSWd8zonZW6YPc0IX06gQPO7DtecU39AkSww1jd9pRX
+         r3uL3dLn5c+nIDDXEph/ySet5A4c5e/XyZyer6/IFP7Tbc3byawaskrmZ3buKnmY+9yX
+         4uiQ==
+X-Gm-Message-State: AO0yUKUnWKS53BrchkVYq9n+Zk3RSVm3XKiP7KoTP01VnvFyKo5be8KQ
+        DoWpCyPUeHB0Wvy6S9OmHjXrSlraLY4=
+X-Google-Smtp-Source: AK7set/wqo5Bc3GMCe1/MUkp7nQGbr3XI+EomgafXQ2z1Flem72j6vha4fXv9v355t8kF+fn2LG8bQ==
+X-Received: by 2002:a17:90b:3a86:b0:22c:9782:e718 with SMTP id om6-20020a17090b3a8600b0022c9782e718mr7623682pjb.0.1675363903802;
+        Thu, 02 Feb 2023 10:51:43 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:6b75:4990:9ed8:d8dc])
+        by smtp.gmail.com with ESMTPSA id fw2-20020a17090b128200b0022c01ab2899sm176362pjb.49.2023.02.02.10.51.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Feb 2023 10:51:43 -0800 (PST)
+Date:   Thu, 2 Feb 2023 10:51:39 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Patrice Chotard <patrice.chotard@foss.st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alain Volmat <avolmat@me.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: stihxxx-b2120: fix polarity of reset line
+ of tsin0 port
+Message-ID: <Y9wGO0Q//TIKwTTE@google.com>
+References: <YzcSqZdpNbdINp4Q@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.7.1
-Subject: Re: [PATCH v2 5/5] drivers: mmc: sdhci-cadence: Add debug option for
- sdhci-cadence driver.
-Content-Language: en-US
-To:     Piyush Malgujar <pmalgujar@marvell.com>, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        yamada.masahiro@socionext.com, devicetree@vger.kernel.org
-Cc:     jannadurai@marvell.com, cchavva@marvell.com
-References: <20230123192735.21136-1-pmalgujar@marvell.com>
- <20230123192735.21136-6-pmalgujar@marvell.com>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20230123192735.21136-6-pmalgujar@marvell.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YzcSqZdpNbdINp4Q@google.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,151 +74,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/01/23 21:27, Piyush Malgujar wrote:
-> From: Jayanthi Annadurai <jannadurai@marvell.com>
+On Fri, Sep 30, 2022 at 09:00:41AM -0700, Dmitry Torokhov wrote:
+> According to c8sectpfe driver code we first drive reset line low and
+> then high to reset the port, therefore the reset line is supposed to
+> be annotated as "active low". This will be important when we convert
+> the driver to gpiod API.
 > 
-> Use Kernel config CONFIG_MMC_DEBUG to support dumping PHY and host
-> controller register configuration for debug.
-> 
-> Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
-> Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
+> Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 > ---
->  drivers/mmc/host/sdhci-cadence.c | 104 +++++++++++++++++++++++++++++++
->  1 file changed, 104 insertions(+)
+
+Gentle ping on this one...
+
 > 
-> diff --git a/drivers/mmc/host/sdhci-cadence.c b/drivers/mmc/host/sdhci-cadence.c
-> index baee0f98deac975ab92cf3e09a1edec5d3a59021..9aad7468ee9b7fe2755f343ac7ab1f5da8c63947 100644
-> --- a/drivers/mmc/host/sdhci-cadence.c
-> +++ b/drivers/mmc/host/sdhci-cadence.c
-> @@ -115,6 +115,10 @@
->  #define	SDHCI_CDNS_SD6_PHY_DLL_SLAVE_CLK_WR_DELAY		GENMASK(15, 8)
->  #define	SDHCI_CDNS_SD6_PHY_DLL_SLAVE_READ_DQS_DELAY		GENMASK(7, 0)
->  
-> +#define SDHCI_CDNS_SD6_PHY_DLL_OBS_REG0				0x201C
-> +#define SDHCI_CDNS_SD6_PHY_DLL_OBS_REG1				0x2020
-> +#define SDHCI_CDNS_SD6_PHY_DLL_OBS_REG2				0x2024
-> +
->  #define SDHCI_CDNS_SD6_PHY_CTRL					0x2080
->  #define	SDHCI_CDNS_SD6_PHY_CTRL_PHONY_DQS_TIMING		GENMASK(9, 4)
->  
-> @@ -969,6 +973,104 @@ static void sdhci_cdns_sd6_calc_phy(struct sdhci_cdns_sd6_phy *phy)
->  	}
->  }
->  
-> +#ifdef CONFIG_MMC_DEBUG
+> v2: fixed typo in the subject, added Patrice's reviewed-by
+> 
+>  arch/arm/boot/dts/stihxxx-b2120.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/stihxxx-b2120.dtsi b/arch/arm/boot/dts/stihxxx-b2120.dtsi
+> index 2aa94605d3d4..d52a7aaa1074 100644
+> --- a/arch/arm/boot/dts/stihxxx-b2120.dtsi
+> +++ b/arch/arm/boot/dts/stihxxx-b2120.dtsi
+> @@ -178,7 +178,7 @@ tsin0: port {
+>  				tsin-num = <0>;
+>  				serial-not-parallel;
+>  				i2c-bus = <&ssc2>;
+> -				reset-gpios = <&pio15 4 GPIO_ACTIVE_HIGH>;
+> +				reset-gpios = <&pio15 4 GPIO_ACTIVE_LOW>;
+>  				dvb-card = <STV0367_TDA18212_NIMA_1>;
+>  			};
+>  		};
+> -- 
+> 2.38.0.rc1.362.ged0d419d3c-goog
+> 
+> 
+> -- 
+> Dmitry
 
-So why not just use dev_dbg?
-
-> +
-> +#define DEBUG_DRV       pr_info
-
-DEBUG_DRV is not needed
-
-> +
-> +static void sdhci_cdns_sd6_phy_dump(struct sdhci_cdns_sd6_phy *phy)
-> +{
-> +	DEBUG_DRV("PHY Timings\n");
-> +	DEBUG_DRV("mode %d t_sdclk %d\n", phy->mode, phy->t_sdclk);
-> +
-> +	DEBUG_DRV("cp_clk_wr_delay %d\n", phy->settings.cp_clk_wr_delay);
-> +	DEBUG_DRV("cp_clk_wrdqs_delay %d\n", phy->settings.cp_clk_wrdqs_delay);
-> +	DEBUG_DRV("cp_data_select_oe_end %d\n", phy->settings.cp_data_select_oe_end);
-> +	DEBUG_DRV("cp_dll_bypass_mode %d\n", phy->settings.cp_dll_bypass_mode);
-> +	DEBUG_DRV("cp_dll_locked_mode %d\n", phy->settings.cp_dll_locked_mode);
-> +	DEBUG_DRV("cp_dll_start_point %d\n", phy->settings.cp_dll_start_point);
-> +	DEBUG_DRV("cp_io_mask_always_on %d\n", phy->settings.cp_io_mask_always_on);
-> +	DEBUG_DRV("cp_io_mask_end %d\n", phy->settings.cp_io_mask_end);
-> +	DEBUG_DRV("cp_io_mask_start %d\n", phy->settings.cp_io_mask_start);
-> +	DEBUG_DRV("cp_rd_del_sel %d\n", phy->settings.cp_rd_del_sel);
-> +	DEBUG_DRV("cp_read_dqs_cmd_delay %d\n", phy->settings.cp_read_dqs_cmd_delay);
-> +	DEBUG_DRV("cp_read_dqs_delay %d\n", phy->settings.cp_read_dqs_delay);
-> +	DEBUG_DRV("cp_sw_half_cycle_shift %d\n", phy->settings.cp_sw_half_cycle_shift);
-> +	DEBUG_DRV("cp_sync_method %d\n", phy->settings.cp_sync_method);
-> +	DEBUG_DRV("cp_use_ext_lpbk_dqs %d\n", phy->settings.cp_use_ext_lpbk_dqs);
-> +	DEBUG_DRV("cp_use_lpbk_dqs %d\n", phy->settings.cp_use_lpbk_dqs);
-> +	DEBUG_DRV("cp_use_phony_dqs %d\n", phy->settings.cp_use_phony_dqs);
-> +	DEBUG_DRV("cp_use_phony_dqs_cmd %d\n", phy->settings.cp_use_phony_dqs_cmd);
-> +	DEBUG_DRV("sdhc_extended_rd_mode %d\n", phy->settings.sdhc_extended_rd_mode);
-> +	DEBUG_DRV("sdhc_extended_wr_mode %d\n", phy->settings.sdhc_extended_wr_mode);
-> +
-> +	DEBUG_DRV("sdhc_hcsdclkadj %d\n", phy->settings.sdhc_hcsdclkadj);
-> +	DEBUG_DRV("sdhc_idelay_val %d\n", phy->settings.sdhc_idelay_val);
-> +	DEBUG_DRV("sdhc_rdcmd_en %d\n", phy->settings.sdhc_rdcmd_en);
-> +	DEBUG_DRV("sdhc_rddata_en %d\n", phy->settings.sdhc_rddata_en);
-> +	DEBUG_DRV("sdhc_rw_compensate %d\n", phy->settings.sdhc_rw_compensate);
-> +	DEBUG_DRV("sdhc_sdcfsh %d\n", phy->settings.sdhc_sdcfsh);
-> +	DEBUG_DRV("sdhc_sdcfsl %d\n", phy->settings.sdhc_sdcfsl);
-> +	DEBUG_DRV("sdhc_wrcmd0_dly %d %d\n",
-> +		  phy->settings.sdhc_wrcmd0_dly, phy->settings.sdhc_wrcmd0_sdclk_dly);
-> +	DEBUG_DRV("sdhc_wrcmd1_dly %d %d\n",
-> +		  phy->settings.sdhc_wrcmd1_dly, phy->settings.sdhc_wrcmd1_sdclk_dly);
-> +	DEBUG_DRV("sdhc_wrdata0_dly %d %d\n",
-> +		  phy->settings.sdhc_wrdata0_dly, phy->settings.sdhc_wrdata0_sdclk_dly);
-> +
-> +	DEBUG_DRV("sdhc_wrdata1_dly %d %d\n",
-> +		  phy->settings.sdhc_wrdata1_dly, phy->settings.sdhc_wrdata1_sdclk_dly);
-> +	DEBUG_DRV("hs200_tune_val %d\n", phy->settings.hs200_tune_val);
-> +}
-> +
-> +static void sdhci_cdns_sd6_dump(struct sdhci_cdns_priv *priv)
-> +{
-> +	struct sdhci_cdns_sd6_phy *phy = priv->phy;
-> +	int id;
-> +
-> +	sdhci_cdns_sd6_phy_dump(phy);
-> +
-> +	DEBUG_DRV("Host controller Register Dump\n");
-> +	for (id = 0; id < 14; id++)
-> +		DEBUG_DRV("HRS%d 0x%x\n", id, readl(priv->hrs_addr + (id * 4)));
-> +
-> +	id = 29;
-> +	DEBUG_DRV("HRS%d 0x%x\n", id, readl(priv->hrs_addr + (id * 4)));
-> +	id = 30;
-> +	DEBUG_DRV("HRS%d 0x%x\n", id, readl(priv->hrs_addr + (id * 4)));
-> +
-> +	for (id = 0; id < 27; id++)
-> +		DEBUG_DRV("SRS%d 0x%x\n", id, readl(priv->hrs_addr + 0x200 + (id * 4)));
-> +
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DQS_TIMING 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DQS_TIMING));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_GATE_LPBK 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_GATE_LPBK));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DLL_MASTER 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DLL_MASTER));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DLL_SLAVE 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DLL_SLAVE));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_CTRL 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_CTRL));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_GPIO_CTRL0 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_GPIO_CTRL0));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DQ_TIMING 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DQ_TIMING));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DLL_OBS_REG0 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DLL_OBS_REG0));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DLL_OBS_REG1 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DLL_OBS_REG1));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DLL_OBS_REG2 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DLL_OBS_REG2));
-> +}
-> +
-> +#else
-> +
-> +static inline void sdhci_cdns_sd6_dump(struct sdhci_cdns_priv *priv)
-> +{
-> +}
-> +
-> +#endif
-> +
->  static int sdhci_cdns_sd6_get_delay_params(struct device *dev, struct sdhci_cdns_priv *priv)
->  {
->  	struct sdhci_cdns_sd6_phy *phy = priv->phy;
-> @@ -1373,6 +1475,8 @@ static void sdhci_cdns_sd6_set_clock(struct sdhci_host *host,
->  		pr_debug("%s: phy init failed\n", __func__);
->  
->  	sdhci_set_clock(host, clock);
-> +
-> +	sdhci_cdns_sd6_dump(priv);
->  }
->  
->  static int sdhci_cdns_sd4_phy_probe(struct platform_device *pdev,
-
+-- 
+Dmitry
