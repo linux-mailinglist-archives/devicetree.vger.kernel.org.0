@@ -2,117 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 721416877E0
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 09:50:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 706346877F4
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 09:54:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231888AbjBBIut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 03:50:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34388 "EHLO
+        id S232024AbjBBIyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 03:54:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229851AbjBBIur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 03:50:47 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DC968395F
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 00:50:37 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id bk16so969480wrb.11
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 00:50:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lWsS/bWtmzpN07I8KCqWUmAN50eHOe+8qZxUIv9ebfk=;
-        b=DhE+qH2Jh0jcOidrifO6y3KFacKb/NTJtxQwmSfveojslNuY0ynUu/hmWt0zwGCl5j
-         RwIdGLze1WSWVVjV7f1TgHiVfI11qs2KRaP5FwfCwCTPzoOg8nFexWn7AxSetvk6ILNM
-         hzaxsAjh6Nxu+lBRdwDLnCkD9tNq5rrxZHfCUjoC4F+mbgGQ09sxZDNQUnrDBvrhJZW7
-         qMfBGpToy9EUsu025mNOZWYh1QoZRXzGG6k2YIjkIRYrWITr+/YqCAB15BBnHG8+8k3b
-         8wrFk6y+gzBQbtylAYs/jBG5R+zK01THylvRZocRcZgY6f6rQ6uQ8O7N56tWq6peDI4Q
-         9erQ==
+        with ESMTP id S232171AbjBBIyD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 03:54:03 -0500
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1203E193E4
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 00:53:42 -0800 (PST)
+Received: by mail-qt1-f177.google.com with SMTP id bb40so1159751qtb.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 00:53:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lWsS/bWtmzpN07I8KCqWUmAN50eHOe+8qZxUIv9ebfk=;
-        b=mf0k4Eq8p9Y6vU9mkVjVzQ35Fg4PHzIj3raqmupzbgYhBHss0n0/BkcZl/+G2ng3cA
-         EVPlNpZoUcN/+J8c1AkjtcqHql8Vqah04T4qu/opEdNQdJzsRGIZgBf/itfGIZLANn5w
-         grBF4z3RglOzFU7tWCEDOfrjx9rJX2rQEXEr440Z4vZlGx/cC3nfst8IFifm6ClIt/mx
-         GYIWQdtRadg9IKS2qZr+wMrPR8eImscFdIAwJ7Rkp+6Ey6EhR2XKUuMeroyJA3zKP3Wy
-         kPP2bOrD3fgFRmrmaor4hbPnTUV2VYb6gH5O9DRburA4fZoSZ4cHxI2J5jBLGl803tF9
-         y5wg==
-X-Gm-Message-State: AO0yUKXTwv6fUTDa8JRvjEVEaeI/+ob5dRsoeMQpcsxBB6OdRteUtrd1
-        S+qli85UeXUslYeEH0qAgHx2gy3BXMbaAQ6+
-X-Google-Smtp-Source: AK7set9myootvaumTc3dok0xH8h+eb7NWBe3lMq35UW9l8J+0ooRSfnkXePoQFIOiooeOPeghyIV/Q==
-X-Received: by 2002:adf:c713:0:b0:2bf:e9dc:5536 with SMTP id k19-20020adfc713000000b002bfe9dc5536mr5744516wrg.45.1675327835629;
-        Thu, 02 Feb 2023 00:50:35 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id e10-20020a5d500a000000b002be0b1e556esm18993213wrt.59.2023.02.02.00.50.34
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RbRNzSOCTkb85xcFH4UljrdPnfMc38Sjfdj2ACsM8nw=;
+        b=7NLjM8hdI0ZydUFX7S7rLB7o9xaculpUN4bSmC/fQtR2nhCRasOP3UX1IX4ImlVUCe
+         mUSMroWCV85N8cOGR4zeaBmeNBF/hyP8iioxrwvDZ/9+oLH6MuLAvrMsPD1QMjQGec8F
+         kG3kLwRZqi7lqLZGB0WLUc03AeUOL7dL7XfZnNVMvTDAKspPL9gsuMQzM/HrDuV/GpHa
+         M12oIHh7THlfbVH/m9h5ys3paMVtXlbIa+p5AudOWkyBx657g+PH2dQoMM/BLYHsT9zi
+         g4SdvHGGTfjAF3tqdlE1/CichSxNA7zbo+kvXrSImu2S+wPLEVd8BQfjDQvFx9PaJ204
+         /dUQ==
+X-Gm-Message-State: AO0yUKWLJ4SreWguhFzTWdav2ZqNZQE+Kd5YEO9TPETSqOSmo6Yws8VB
+        FHVGr0mCekjVk8BBorzlimQLV70di3ZUdA==
+X-Google-Smtp-Source: AK7set//ut/oO6f2GYsqMNyY1AdEOJGyOg3SMA5STiZQdvFfZlDQgHPPtfxJecjS5h/zkoFxGcwfkg==
+X-Received: by 2002:ac8:5f8f:0:b0:3b8:58d0:b4d5 with SMTP id j15-20020ac85f8f000000b003b858d0b4d5mr10161720qta.0.1675328021114;
+        Thu, 02 Feb 2023 00:53:41 -0800 (PST)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id e4-20020ac84904000000b003b84d549ca8sm5469141qtq.10.2023.02.02.00.53.40
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 00:50:35 -0800 (PST)
-Message-ID: <d046c9b3-3cd0-0e2c-4db4-50e8e772bfb0@linaro.org>
-Date:   Thu, 2 Feb 2023 09:50:33 +0100
+        Thu, 02 Feb 2023 00:53:40 -0800 (PST)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-4a263c4ddbaso18189067b3.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 00:53:40 -0800 (PST)
+X-Received: by 2002:a81:ac17:0:b0:51d:f0a4:64dc with SMTP id
+ k23-20020a81ac17000000b0051df0a464dcmr558493ywh.384.1675328020617; Thu, 02
+ Feb 2023 00:53:40 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 3/3] dt-bindings: iio: adc: Require generic adc-chan
- name for channel nodes
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Jonathan Cameron <jic23@kernel.org>, iio@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20230201204447.542385-1-marijn.suijten@somainline.org>
- <20230201204447.542385-4-marijn.suijten@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230201204447.542385-4-marijn.suijten@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <87a61y6t8e.wl-kuninori.morimoto.gx@renesas.com> <87pmau5ejk.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87pmau5ejk.wl-kuninori.morimoto.gx@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 2 Feb 2023 09:53:29 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW_QHmODAKvn_GwHHUWw-=z4Tdq0NkhdK2u2piG_YgB-Q@mail.gmail.com>
+Message-ID: <CAMuHMdW_QHmODAKvn_GwHHUWw-=z4Tdq0NkhdK2u2piG_YgB-Q@mail.gmail.com>
+Subject: Re: [PATCH 14/15] ASoC: dt-bindings: renesas: add R8A779G0 V4H
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/02/2023 21:44, Marijn Suijten wrote:
-> As discussed in [1] it is more convenient to use a generic adc-chan node
-> name for ADC channels while storing a friendly - board-specific instead
-> of PMIC-specific - name in the label, if/when desired to overwrite the
-> channel description already contained (but previously unused) in the
-> driver [2].
-> 
-> Replace the .* name pattern with the adc-chan literal, but leave the
-> label property optional for bindings to choose to fall back a channel
-> label hardcoded in the driver [2] instead.
-> 
-> [1]: https://lore.kernel.org/linux-arm-msm/20221106193018.270106-1-marijn.suijten@somainline.org/T/#u
-> [2]: https://lore.kernel.org/linux-arm-msm/20230116220909.196926-4-marijn.suijten@somainline.org/
-> 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
->  .../bindings/iio/adc/qcom,spmi-vadc.yaml         | 16 +++++++++-------
->  1 file changed, 9 insertions(+), 7 deletions(-)
-> 
+Hi Morimoto-san,
 
+On Wed, Feb 1, 2023 at 3:11 AM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+>
+> Document R-Car V4H (R8A779G0), and R-Car Gen4 SoC bindings.
+>
+> Link: https://lore.kernel.org/r/87zga6t5r4.wl-kuninori.morimoto.gx@renesas.com
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks for your patch, which is now commit f76fec606d07b43d ("ASoC:
+dt-bindings: renesas: add R8A779G0 V4H") in sound-asoc/for-next
 
-Best regards,
-Krzysztof
+> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> @@ -46,6 +46,10 @@ properties:
+>                - renesas,rcar_sound-r8a77990  # R-Car E3
+>                - renesas,rcar_sound-r8a77995  # R-Car D3
+>            - const: renesas,rcar_sound-gen3
+> +      # for Gen4 SoC
+> +      - items:
+> +          - const: renesas,rcar_sound-r8a779g0  # R-Car V4H
+> +          - const: renesas,rcar_sound-gen4
+>        # for Generic
+>        - enum:
+>            - renesas,rcar_sound-gen1
 
+I think you forgot to update the reg-names section below, as it
+doesn't match its user in
+https://lore.kernel.org/all/877cx0anfe.wl-kuninori.morimoto.gx@renesas.com
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
