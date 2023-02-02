@@ -2,107 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A912E68782F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:03:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6154687838
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:05:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232448AbjBBJDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 04:03:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45490 "EHLO
+        id S232079AbjBBJFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 04:05:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232295AbjBBJDg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:03:36 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C7CC152
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 01:03:35 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id hn2-20020a05600ca38200b003dc5cb96d46so3172998wmb.4
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 01:03:35 -0800 (PST)
+        with ESMTP id S230508AbjBBJFL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:05:11 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42E935BA1
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 01:05:09 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id q5so1073470wrv.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 01:05:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7F5YTzHrVyr8QuuHkXVmJUZpVCaBRGUSFsoCx+3N03A=;
-        b=YRPfCH+G/7MHufVPyLtQ5D6FdhMqwLFJYSOac8c/Rj1F2Jbm+ohgMFD5UqVOzA9n+N
-         zXg/aNARZWYNUeouOB6k/YqLD3EfqO1J6wzwMs+J7FuaMnQwn+DU/qRwvsoQZanwlmA3
-         sfAPy1q3gHeva2N+wieTu4yxYo9TCnFXGLrt8aokgh0ChRIAqMfcVuJiLhmcsDXXfqK8
-         HQTXR7anVDaTR/8M+X3+cVq/DYB051MgGJ/tNGPkixjwlPM5aZOjMiMDO6ExEwZAffRZ
-         XojjWXnGuUNdEZx4ai8C7958LsMP3SdayNjk08nH6vVeSksYfzLeqTMYKwxrJbifaNbP
-         I5pw==
+        bh=Aas7g+6SlCahM4/JlKt9tccnwstoDHT1GhyyZDuflH0=;
+        b=KQzCWLPYLz6sS6DcKgNPc6EFZAxwOkCbtTsexR217dSXUPbHC3nYi2WxD9DQDjED05
+         ffQv1kIBRUlDvjY399KnyQs2maAWoJV0bEQBlNxBtJZLWbxODpZrpFPQPIi3Lx8jKOWy
+         s4o6+XeIpUuyggvq+nOxU9B3lR6HK3+/QXK2RhkFdLgj9I6RM6tb3VOGxbO4p7h9pJD8
+         /G5nJNrbnLjvxBit8PEoSrElFW5YRSVBfWsYN2r6C8tiIHfTinvZFgqQjbbk4nmuXRvm
+         LXG7kjYnd32dZn8O8uMcCgkqiPvkwVySm+eLsUN7E8IWquoWwLrXMBwfNkvS54U1og81
+         tymQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7F5YTzHrVyr8QuuHkXVmJUZpVCaBRGUSFsoCx+3N03A=;
-        b=H05bmSDad2dv6sYFthp+hXWUNO/GDsNjl6aeEIai0lK8FbWYdXV1cWahYDIcfdJMtM
-         mFETJHzhgfcSo0wUHgFYmc2r2TBCjqkCqHgVmW2U9SaCwtIOTyeEaiSshHU1k6hNHKJR
-         Xir2w9d2pErbqhd4y7j5xnAKtwuKvybCqMPVZuzdGyYs1m9FIbyUyHDYmm2Hjxvmke61
-         3uKPVQbCkBTeEI5X+sWVvXoHyZV6r/QpCD4JhyV5OdrxyTseAsEQLRKqRgLkneJkBkQw
-         +craLXk57K1ICWVGga9XQpAL1vWQBY1DuNKCzQwoFeozRY6C8TcM8s6T9fzNl8uO1Is/
-         7Lhg==
-X-Gm-Message-State: AO0yUKVNoMeokbHl8uFvlOw2tYvVd/ujnXjy0isV5nHggLlTCxgNDy6O
-        tx+uD3wc5DlbkVjNt16CFzsQFw==
-X-Google-Smtp-Source: AK7set9lAC5MNe/nu7qxCknw/Oxh/cCzvtvfddKrsencwwfHUr3rd+VCW9H823WXjZIkxGD/S6ERcg==
-X-Received: by 2002:a05:600c:4f03:b0:3dd:e86e:8827 with SMTP id l3-20020a05600c4f0300b003dde86e8827mr5019102wmq.4.1675328613859;
-        Thu, 02 Feb 2023 01:03:33 -0800 (PST)
+        bh=Aas7g+6SlCahM4/JlKt9tccnwstoDHT1GhyyZDuflH0=;
+        b=HgJx9MlKv/B7zXVhNcgNZvkJZHRLVFM19euGAKljSJ3Pq6EGbP2nei7kv3OG5Wh5HZ
+         parhdFgvwU12e7Im8QFVUodpd9IAcxAWAHseRiTAUuI2u+0GfI3qekD9BXmnVrupH4X7
+         GbAPOwg6R5E+zhVSVChhfemDS3cxC7J6Y9bi6Z2undrzhJRF+9ou4jmpAabtjN8+01X5
+         +iEbaz9BZX69M493O1FChjitozHqgjEvO/N4aszCeypUGc0NHjf3K4cjeX9/2MTFtz1o
+         D7jLIKWCGjzKjSvPnkYcMuUnXMWpoQniH8rybN8TCqKRHDm2FcM2wrts9OsbpClqX39M
+         9tIw==
+X-Gm-Message-State: AO0yUKUT/g25UaGdpUz+69tGgVvacTFqOGeS8yF7CPFidd+5hYDP4upS
+        vSGU2MYkhZ6xidZP9mVh39HuPg==
+X-Google-Smtp-Source: AK7set8ZOU9bRmC1mxzolKIaIbHjOQkCc9aGTdJjEUm4NNeCFulVKYIvbggDfwzjSNz4W+mMWkA4Yw==
+X-Received: by 2002:a5d:6850:0:b0:2bf:e443:ea6e with SMTP id o16-20020a5d6850000000b002bfe443ea6emr4661447wrw.57.1675328707834;
+        Thu, 02 Feb 2023 01:05:07 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id ip23-20020a05600ca69700b003dc59d6f2f8sm3877475wmb.17.2023.02.02.01.03.32
+        by smtp.gmail.com with ESMTPSA id f9-20020a056000128900b002bf95500254sm8356055wrx.64.2023.02.02.01.05.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 01:03:33 -0800 (PST)
-Message-ID: <a21e7783-cb1c-8fec-78e7-bdffcd5e25f1@linaro.org>
-Date:   Thu, 2 Feb 2023 10:03:31 +0100
+        Thu, 02 Feb 2023 01:05:07 -0800 (PST)
+Message-ID: <b8703dbe-9b4e-86e7-b24d-ff3b3c315327@linaro.org>
+Date:   Thu, 2 Feb 2023 10:05:04 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH] ASoC: dt-bindings: Drop broken irondevice,sma1303 binding
+Subject: Re: [PATCH V5 7/7] arm64: defconfig: Enable IPQ9574 SoC base configs
 Content-Language: en-US
-To:     Ki-Seok Jo <kiseok.jo@irondevice.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230201131059.65527-1-krzysztof.kozlowski@linaro.org>
- <1bcd61d6-810f-1239-1b6e-367e0fe87370@linaro.org>
- <Y9pxGUMWyMeXQpZM@sirena.org.uk>
- <6491d6fb-2a10-1c80-d422-8300d5a75ce4@linaro.org>
- <Y9p+p6wt8WugDBuH@sirena.org.uk>
- <SLXP216MB00776F066D70DB2F3F77B09E8CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
- <SLXP216MB0077228B6071F62B183F4D648CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
- <6439a587-0b65-a037-1013-b697e19000a4@linaro.org>
- <SLXP216MB0077847FB6CF0EF4511E3A628CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
+To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linus.walleij@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
+        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
+        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
+        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_poovendh@quicinc.com
+References: <20230202083031.10457-1-quic_devipriy@quicinc.com>
+ <20230202083031.10457-8-quic_devipriy@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SLXP216MB0077847FB6CF0EF4511E3A628CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
+In-Reply-To: <20230202083031.10457-8-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 09:58, Ki-Seok Jo wrote:
->>> Is there anything else I should do?
->>
->> Correct the binding:
->> 1. Add all properties - just open example-schema and your file and
->> document everything 2. Fix non-existing reference (there is no such file
->> as name-prefix.yaml) 3. i2c_bus -> i2c
-> 
-> Fortunately, I modified the 3thigns you said, and I also tested with the
-> above command with the contents.
-> 
-> So, I'll send the patch file again.
-> If it has any other problems, please give me feedback.
+On 02/02/2023 09:30, Devi Priya wrote:
+> Enables clk & pinctrl related configs
 
-My revert was not applied, thus please send incremental fix to the bindings.
+"for Qualcomm IPQ9574 SoC".
+
+Because defconfig is for all sub-architectures, thus IPQ9574 is
+non-obvious for most of people.
+
+With above:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
