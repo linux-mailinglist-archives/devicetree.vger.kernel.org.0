@@ -2,81 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C139688A1A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 23:59:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B945688A9D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 00:17:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232799AbjBBW7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 17:59:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60828 "EHLO
+        id S231679AbjBBXRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 18:17:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232152AbjBBW7R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 17:59:17 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 558777C72E
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 14:58:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1675378711;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=lEHSVIVicg+eRhy1uVj7EmYyc3zjgu6fM5PclI9TmE8=;
-        b=BFUdLU2MOhaax2keJcfRCvlFI41twSwR3JZCo5b4+rQBOUmdXuVD0y/Dd2Q/VKhrCUQi0p
-        uHWrzpES9hhyQZiq0jMN7DRSPQbbJOGI740O6NxnZKE9+73pQ1JU7ywNkCN8xgAKi0FiVf
-        t3fNQgSZXD8iO6RbB2A0zcyKUczNeBc=
-Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
- [209.85.166.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-583--fwTndrlPtOn7lX0-enCpQ-1; Thu, 02 Feb 2023 17:58:30 -0500
-X-MC-Unique: -fwTndrlPtOn7lX0-enCpQ-1
-Received: by mail-il1-f199.google.com with SMTP id i14-20020a056e020d8e00b003034b93bd07so2201370ilj.14
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 14:58:30 -0800 (PST)
+        with ESMTP id S230173AbjBBXRe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 18:17:34 -0500
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D83C423D97;
+        Thu,  2 Feb 2023 15:17:29 -0800 (PST)
+Received: by mail-ot1-f53.google.com with SMTP id e12-20020a0568301e4c00b0068bc93e7e34so916863otj.4;
+        Thu, 02 Feb 2023 15:17:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lEHSVIVicg+eRhy1uVj7EmYyc3zjgu6fM5PclI9TmE8=;
-        b=YC1SXoTT00czUbJZM1vZ/r1c9YJC+IGCLCFMZ3WF6MbnUmZaEgaXGzKyXqTGaUQ20t
-         ShjpK4EyllyxY3S5jnKXfLlerCwVCmIxwaVZ32ZaQaPaRBsjxA3T2euBXEFyzrKQA57D
-         oQXd8/PzjR4pANQpm9BBGJGTCNQ1Cb1J5olY3buaOwVR+0fP+ceC04BNZFs0c23XcrqW
-         uyTeoGd2kmx9Go7qSWOn6IdASqe/UnPxoUvedAf9oeLWimfvdsBICxnjAaLK4p99nwiP
-         ni5L+GAqgQ1RBn6lT6OA7F6Psa0oEClOYJ1cFonC0DOHL882IQx6z/81OMlUA83uf1Uc
-         WR7w==
-X-Gm-Message-State: AO0yUKUCtCET4zjFFPCAxhiYjedxm7V+tby8XJ6vZL8EMwGYKLnYWW36
-        ykuJjGmUfHuzQAexpqkNxFtU8Exs95G/CVoqOoE/3vcjTT9Ij7ZrpMFXfPN9vmsw+RNfBPJgpw1
-        v/SXRqk7mtvwkaHBTE7tFHA==
-X-Received: by 2002:a5d:8456:0:b0:71c:1516:1b09 with SMTP id w22-20020a5d8456000000b0071c15161b09mr4724957ior.0.1675378709567;
-        Thu, 02 Feb 2023 14:58:29 -0800 (PST)
-X-Google-Smtp-Source: AK7set9sgMoyXqOZL07OUt40qn/JePX4OLj4TW1cUpkZcRm14UaauZJKfKVhAH9sT0rma+zI8iaoYQ==
-X-Received: by 2002:a5d:8456:0:b0:71c:1516:1b09 with SMTP id w22-20020a5d8456000000b0071c15161b09mr4724941ior.0.1675378709288;
-        Thu, 02 Feb 2023 14:58:29 -0800 (PST)
-Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id z12-20020a02938c000000b0039ea34dffcdsm305250jah.129.2023.02.02.14.58.27
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=x6+YD6IXci0DRMRu2WdWwnlfWwhkErY5wLNu+9o8ClU=;
+        b=SEdhKwKbbpxZoZnVdqmoS2w2T5fohYG/aJJZGhic2xTvXaBYuo9aT61RaCWQZ3Uzkm
+         XqI7eAZwZ4Y5oxJRpxEaF3b8XN4vFoQlTM7eHHSqZ0Z3AbG3A8acimd1J01N3hLCX1AW
+         ZB5PMTF+r0BVxH9hT/TKvm0khe6UN62/oSo5AzAt/snlOyrEbivowdLOKWr6QLNVzS+u
+         QId1zKmfM3i8BfPXvZT2OXHdph+umv4DtkIWS1PwHjhKzCaMjVcvExdBxzb9dHcs/99Z
+         mHPTqPm2FlKHy92CaUPIZo3Pbk5bzE9LdRysUmiU6elnOPsK4Ufqupny346gWx3ATJUp
+         1N4A==
+X-Gm-Message-State: AO0yUKX2+ffSfniE3ls7PpJ0gHxCyUffv+9oqLUzCSOtIkKVbwDYKvNd
+        WyUqe+2k0CjF7MgzD+D8WOABuwDTAA==
+X-Google-Smtp-Source: AK7set/W+rdvCdAEUX/V7wxeXR6WBs4+3ypheYP8+QC+6MPyTvEirhPsiGn0zyWM+rG3tU4zxaYemw==
+X-Received: by 2002:a9d:798c:0:b0:68b:e2bb:8027 with SMTP id h12-20020a9d798c000000b0068be2bb8027mr3905749otm.14.1675379849086;
+        Thu, 02 Feb 2023 15:17:29 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id h26-20020a9d641a000000b0067781a9292asm429317otl.2.2023.02.02.15.17.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Feb 2023 14:58:28 -0800 (PST)
-Date:   Thu, 2 Feb 2023 17:58:26 -0500
-From:   Brian Masney <bmasney@redhat.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Thu, 02 Feb 2023 15:17:28 -0800 (PST)
+Received: (nullmailer pid 2886180 invoked by uid 1000);
+        Thu, 02 Feb 2023 23:17:27 -0000
+Date:   Thu, 2 Feb 2023 17:17:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFT PATCH 05/14] arm64: dts: qcom: sc8280xp: correct TLMM
- gpio-ranges
-Message-ID: <Y9xAEoc0QXe222D0@x1>
-References: <20230201155105.282708-1-krzysztof.kozlowski@linaro.org>
- <20230201155105.282708-6-krzysztof.kozlowski@linaro.org>
+        dmaengine@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: ti,k3: Use common ti,k3-sci-common.yaml
+ schema
+Message-ID: <167537984602.2886078.411236741378963603.robh@kernel.org>
+References: <20230125221339.3057322-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230201155105.282708-6-krzysztof.kozlowski@linaro.org>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+In-Reply-To: <20230125221339.3057322-1-robh@kernel.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,43 +69,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 01, 2023 at 04:50:56PM +0100, Krzysztof Kozlowski wrote:
-> Correct the number of GPIOs in TLMM pin controller.
+
+On Wed, 25 Jan 2023 16:13:39 -0600, Rob Herring wrote:
+> Instead of redefining the 'ti,sci' and 'ti,sci-dev-id' properties multiple
+> times, reference the common schema where they are defined. Most cases
+> using these properties already do this, just udma and ringacc need to be
+> fixed.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../devicetree/bindings/dma/ti/k3-udma.yaml         |  9 +--------
+>  .../devicetree/bindings/soc/ti/k3-ringacc.yaml      | 13 ++++---------
+>  2 files changed, 5 insertions(+), 17 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index fa2d0d7d1367..17e8c26a9ae6 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -3533,7 +3533,7 @@ tlmm: pinctrl@f100000 {
->  			#gpio-cells = <2>;
->  			interrupt-controller;
->  			#interrupt-cells = <2>;
-> -			gpio-ranges = <&tlmm 0 0 230>;
-> +			gpio-ranges = <&tlmm 0 0 228>;
->  		};
 
-I verified that this count matches what's in downstream.
-
-Reviewed-by: Brian Masney <bmasney@redhat.com>
-
-
-However, I noticed in upstream that we're using this reg property:
-
-   reg = <0 0x0f100000 0 0x300000>;
-
-Downstream has a different base address and a wider size. Note: I added
-spaces for easy comparison.
-
-   reg = <  0x0F000000   0x1000000>;
-
-I don't have access to the appropriate documents to see which is
-correct. I assume the base address in upstream is at least correct since
-pinctrl is working on this platform.
-
-Brian
+Applied, thanks!
 
