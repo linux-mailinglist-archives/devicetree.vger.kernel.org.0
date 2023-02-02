@@ -2,149 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DA0D687463
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 05:23:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40B32687474
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 05:35:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230091AbjBBEXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 23:23:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57400 "EHLO
+        id S230481AbjBBEf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 23:35:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229632AbjBBEXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 23:23:17 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE07151C6F;
-        Wed,  1 Feb 2023 20:23:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675311794; x=1706847794;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jRjDoncShj8+SssxokKgsGrrecQq1hGkUGW2vyCqEh0=;
-  b=UANfDHhxCQuGbKePnFUAefodDR+/fh2cFQfYB6DHHoftuyGap3TT/nno
-   y+2YuBiBurBrvbs1kyrqVLlaGHvBEnV+pgMPmtxVRc0rjaxNB/y3/Kt5U
-   xXEJnwZU7Q/P920ig8DD02qcC+aIn2N/ey4/yPdx1NQ1QRAZY90+ftt2a
-   5NRPtVTLeWwgS74eihSO12R9VDqLxsws77aehAwQiWwp0lAb//fXxZM/X
-   5jqrWqQfhDcj3SKrEQtWlFIU+4stvivfM0GoFwXJ4V5OJuNwabiv3O3ye
-   wmdQnk7v1/NDXy15pxkGTvj0Zv3ntqqzia93wS4GRZbclf+43btq1zdPO
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="311992907"
-X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; 
-   d="scan'208";a="311992907"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2023 20:23:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="642736779"
-X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; 
-   d="scan'208";a="642736779"
-Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 01 Feb 2023 20:23:09 -0800
-Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pNR7s-00068m-34;
-        Thu, 02 Feb 2023 04:23:08 +0000
-Date:   Thu, 2 Feb 2023 12:22:34 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Kalyan Thota <quic_kalyant@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
-        quic_abhinavk@quicinc.com, marijn.suijten@somainline.org
-Subject: Re: [v1 3/3] drm/msm/disp/dpu1: reserve the resources on topology
- change
-Message-ID: <202302021238.o9yx7MKs-lkp@intel.com>
-References: <1675092092-26412-4-git-send-email-quic_kalyant@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1675092092-26412-4-git-send-email-quic_kalyant@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229881AbjBBEf5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 23:35:57 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8D1253E54
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 20:35:55 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id 88so783163pjo.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 20:35:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6Gkj3ggiCbZ84l1wyhC/7UEwOHQf/756d2zbjoNC2xI=;
+        b=tSWFxMLyPur9VVM50fXn79GYe93MgfsPKzfSizif+0vHEffezrLR3YcDXoOA6rGsLg
+         MOBTDILMkZSEsNlYkGjhpRgdiJxvSsgSA1VSYAPqK3/GQ2qcf+Xxx2DhDrtwf21eFjKm
+         j0RSfNrSKcCqjRkqRvkjvZPIiAybg44ogWSroRsToDsF1JfG65C6EcKMAx91Foa8ZOXh
+         sbMyPIgY1fnz+y4OM1plJLMstbMHQJFLn36g14hhU7r9hNYYG214fQKFvlQpBQZfcTdO
+         ltr1BW1fhDjzvqC5coJtii2YxxKlWZi71Uos1Vaw++ZqTwKDhOrGOlCsWwMl6wmxsP1T
+         YS8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6Gkj3ggiCbZ84l1wyhC/7UEwOHQf/756d2zbjoNC2xI=;
+        b=o8eJd1gnj5l7sqf7FcsjzguTAaKX4ScSIOcsl/Gusx6aOWh6MT6dfWnVoJ71Cx6hm9
+         ty/QCxr35k/0cLWLqg4JaTFDfC7v+nd1J1zUzfd5NgSqjMD2jMLbFr5c8Tk2BNWvitPq
+         5lJAMXeHZgE0ZbKhut53wfc8XdArPuivIR94Qh4s5QY8zn+uefZ6oBChoPL1r/dxZ9Oh
+         RJ/+hv63f1dxfga7TVc6JBJ+Q+u5WRk2SZbZIfyP7OwNT62yrmz8/NTRxJnCnkeI3EHv
+         Xp94CojMUwGqHVa+zuPI2Hbq+2kzOhfweEoTknldDgK4sfEtuSCnqh83XRaxIyQGUBmg
+         njJA==
+X-Gm-Message-State: AO0yUKUz+4uZJRxpVEgiqr+ASAJy5oTdL1k4sh2uTV0qnyMwmaJLMBWw
+        BEGxPXLcmCnJ8rYU7MRv3dxf0Q==
+X-Google-Smtp-Source: AK7set8f1+cC9uG76QNxKI3IoHCHwtn0yh/uZ8Peu6TYqhnAR5vbM7P0GbvjYHbUJXmDA+4KeDBYRg==
+X-Received: by 2002:a05:6a20:428b:b0:be:982b:ed86 with SMTP id o11-20020a056a20428b00b000be982bed86mr6930315pzj.29.1675312554962;
+        Wed, 01 Feb 2023 20:35:54 -0800 (PST)
+Received: from localhost ([135.180.226.51])
+        by smtp.gmail.com with ESMTPSA id j26-20020a633c1a000000b004daae45558dsm11431697pga.8.2023.02.01.20.35.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Feb 2023 20:35:54 -0800 (PST)
+Date:   Wed, 01 Feb 2023 20:35:54 -0800 (PST)
+X-Google-Original-Date: Wed, 01 Feb 2023 07:43:28 PST (-0800)
+Subject:     Re: [PATCH v3 4/6] RISC-V: Use Zicboz in clear_page when available
+In-Reply-To: <20230130120128.1349464-5-ajones@ventanamicro.com>
+CC:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, apatel@ventanamicro.com,
+        Atish Patra <atishp@rivosinc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, Conor Dooley <conor.dooley@microchip.com>,
+        robh@kernel.org, jszhang@kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     ajones@ventanamicro.com
+Message-ID: <mhng-39982208-6bbb-4be7-83c6-5c05da8bebc1@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kalyan,
+On Mon, 30 Jan 2023 04:01:26 PST (-0800), ajones@ventanamicro.com wrote:
+> Using memset() to zero a 4K page takes 563 total instructions
+> where 20 are branches. clear_page() with Zicboz takes 150 total
+> instructions where 16 are branches. We could reduce the numbers
+> by further unrolling, but, since the cboz block size isn't fixed,
+> we'd need a Duff device to ensure we don't execute too many
+> unrolled steps. Also, cbo.zero doesn't take an offset, so each
+> unrolled step requires it and an add instruction. This increases
+> the chance for icache misses if we unroll many times. For these
+> reasons we only unroll four times. Unrolling four times should be
+> safe as it supports cboz block sizes up to 1K when used with 4K
+> pages and it's only 24 to 32 bytes of unrolled instructions.
+>
+> Another note about the Duff device idea is that it would probably
+> be best to store the number of steps needed at boot time and then
+> load the value in clear_page(). Calculating it in clear_page(),
+> particularly without the Zbb extension, would not be efficient.
+>
+> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  arch/riscv/Kconfig                | 13 +++++++++++
+>  arch/riscv/include/asm/insn-def.h |  4 ++++
+>  arch/riscv/include/asm/page.h     |  6 +++++-
+>  arch/riscv/lib/Makefile           |  1 +
+>  arch/riscv/lib/clear_page.S       | 36 +++++++++++++++++++++++++++++++
+>  5 files changed, 59 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/riscv/lib/clear_page.S
+>
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index 33bbdc33cef8..3759a2f6edd5 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -432,6 +432,19 @@ config RISCV_ISA_ZICBOM
+>
+>  	   If you don't know what to do here, say Y.
+>
+> +config RISCV_ISA_ZICBOZ
+> +	bool "Zicboz extension support for faster zeroing of memory"
+> +	depends on !XIP_KERNEL && MMU
+> +	select RISCV_ALTERNATIVE
+> +	default y
+> +	help
+> +	   Enable the use of the ZICBOZ extension (cbo.zero instruction)
+> +	   when available.
+> +
+> +	   The Zicboz extension is used for faster zeroing of memory.
+> +
+> +	   If you don't know what to do here, say Y.
+> +
+>  config TOOLCHAIN_HAS_ZIHINTPAUSE
+>  	bool
+>  	default y
+> diff --git a/arch/riscv/include/asm/insn-def.h b/arch/riscv/include/asm/insn-def.h
+> index e01ab51f50d2..6960beb75f32 100644
+> --- a/arch/riscv/include/asm/insn-def.h
+> +++ b/arch/riscv/include/asm/insn-def.h
+> @@ -192,4 +192,8 @@
+>  	INSN_I(OPCODE_MISC_MEM, FUNC3(2), __RD(0),		\
+>  	       RS1(base), SIMM12(2))
+>
+> +#define CBO_zero(base)						\
+> +	INSN_I(OPCODE_MISC_MEM, FUNC3(2), __RD(0),		\
+> +	       RS1(base), SIMM12(4))
+> +
+>  #endif /* __ASM_INSN_DEF_H */
+> diff --git a/arch/riscv/include/asm/page.h b/arch/riscv/include/asm/page.h
+> index 9f432c1b5289..ccd168fe29d2 100644
+> --- a/arch/riscv/include/asm/page.h
+> +++ b/arch/riscv/include/asm/page.h
+> @@ -49,10 +49,14 @@
+>
+>  #ifndef __ASSEMBLY__
+>
+> +#ifdef CONFIG_RISCV_ISA_ZICBOZ
+> +void clear_page(void *page);
+> +#else
+>  #define clear_page(pgaddr)			memset((pgaddr), 0, PAGE_SIZE)
+> +#endif
+>  #define copy_page(to, from)			memcpy((to), (from), PAGE_SIZE)
+>
+> -#define clear_user_page(pgaddr, vaddr, page)	memset((pgaddr), 0, PAGE_SIZE)
+> +#define clear_user_page(pgaddr, vaddr, page)	clear_page(pgaddr)
+>  #define copy_user_page(vto, vfrom, vaddr, topg) \
+>  			memcpy((vto), (vfrom), PAGE_SIZE)
+>
+> diff --git a/arch/riscv/lib/Makefile b/arch/riscv/lib/Makefile
+> index 25d5c9664e57..9ee5e2ab5143 100644
+> --- a/arch/riscv/lib/Makefile
+> +++ b/arch/riscv/lib/Makefile
+> @@ -5,5 +5,6 @@ lib-y			+= memset.o
+>  lib-y			+= memmove.o
+>  lib-$(CONFIG_MMU)	+= uaccess.o
+>  lib-$(CONFIG_64BIT)	+= tishift.o
+> +lib-$(CONFIG_RISCV_ISA_ZICBOZ)	+= clear_page.o
+>
+>  obj-$(CONFIG_FUNCTION_ERROR_INJECTION) += error-inject.o
+> diff --git a/arch/riscv/lib/clear_page.S b/arch/riscv/lib/clear_page.S
+> new file mode 100644
+> index 000000000000..49f29139a5b6
+> --- /dev/null
+> +++ b/arch/riscv/lib/clear_page.S
+> @@ -0,0 +1,36 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2023 Ventana Micro Systems Inc.
+> + */
+> +
+> +#include <linux/linkage.h>
+> +#include <asm/asm.h>
+> +#include <asm/alternative-macros.h>
+> +#include <asm/hwcap.h>
+> +#include <asm/insn-def.h>
+> +#include <asm/page.h>
+> +
+> +/* void clear_page(void *page) */
+> +ENTRY(__clear_page)
+> +WEAK(clear_page)
+> +	li	a2, PAGE_SIZE
+> +	ALTERNATIVE("j .Lno_zicboz", "nop",
+> +		    0, RISCV_ISA_EXT_ZICBOZ, CONFIG_RISCV_ISA_ZICBOZ)
+> +	la	a1, riscv_cboz_block_size
+> +	lw	a1, 0(a1)
 
-Thank you for the patch! Yet something to improve:
+You should be able to just "lw a1, riscv_cboz_block_size", which can 
+sometimes generate better code.
 
-[auto build test ERROR on drm-misc/drm-misc-next]
-[also build test ERROR on drm/drm-next drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.2-rc6 next-20230201]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +	add	a2, a0, a2
+> +.Lzero_loop:
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kalyan-Thota/drm-msm-disp-dpu1-clear-dspp-reservations-in-rm-release/20230130-232224
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/1675092092-26412-4-git-send-email-quic_kalyant%40quicinc.com
-patch subject: [v1 3/3] drm/msm/disp/dpu1: reserve the resources on topology change
-config: riscv-randconfig-r042-20230130 (https://download.01.org/0day-ci/archive/20230202/202302021238.o9yx7MKs-lkp@intel.com/config)
-compiler: clang version 16.0.0 (https://github.com/llvm/llvm-project 4196ca3278f78c6e19246e54ab0ecb364e37d66a)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install riscv cross compiling tool for clang build
-        # apt-get install binutils-riscv64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/4c49c3233fc18f3b746a96b5ff4ce5008da3bfec
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Kalyan-Thota/drm-msm-disp-dpu1-clear-dspp-reservations-in-rm-release/20230130-232224
-        git checkout 4c49c3233fc18f3b746a96b5ff4ce5008da3bfec
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/gpu/drm/msm/
+We were talking about this in the patchwork call: this risks overflow if 
+the block size is bigger than a quarter of a page.  That's probably 
+pretty rare, but given that there's already an alternative for the jump 
+it's easy to check.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c:2091:6: error: conflicting types for 'dpu_encoder_prepare_commit'
-   void dpu_encoder_prepare_commit(struct drm_encoder *drm_enc)
-        ^
-   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h:155:6: note: previous declaration is here
-   void dpu_encoder_prepare_commit(struct drm_encoder *drm_enc,
-        ^
-   1 error generated.
---
->> drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c:443:38: error: too few arguments to function call, expected 2, have 1
-                           dpu_encoder_prepare_commit(encoder);
-                           ~~~~~~~~~~~~~~~~~~~~~~~~~~        ^
-   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h:155:6: note: 'dpu_encoder_prepare_commit' declared here
-   void dpu_encoder_prepare_commit(struct drm_encoder *drm_enc,
-        ^
-   1 error generated.
-
-
-vim +/dpu_encoder_prepare_commit +2091 drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-
-ae4d721ce10057a Abhinav Kumar     2022-04-26  2090  
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27 @2091  void dpu_encoder_prepare_commit(struct drm_encoder *drm_enc)
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2092  {
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2093  	struct dpu_encoder_virt *dpu_enc;
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2094  	struct dpu_encoder_phys *phys;
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2095  	int i;
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2096  
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2097  	if (!drm_enc) {
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2098  		DPU_ERROR("invalid encoder\n");
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2099  		return;
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2100  	}
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2101  	dpu_enc = to_dpu_encoder_virt(drm_enc);
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2102  
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2103  	for (i = 0; i < dpu_enc->num_phys_encs; i++) {
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2104  		phys = dpu_enc->phys_encs[i];
-b6fadcade627040 Drew Davenport    2019-12-06  2105  		if (phys->ops.prepare_commit)
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2106  			phys->ops.prepare_commit(phys);
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2107  	}
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2108  }
-25fdd5933e4c0f5 Jeykumar Sankaran 2018-06-27  2109  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	bltu	a0, a2, .Lzero_loop
+> +	ret
+> +.Lno_zicboz:
+> +	li	a1, 0
+> +	tail	__memset
+> +END(__clear_page)
