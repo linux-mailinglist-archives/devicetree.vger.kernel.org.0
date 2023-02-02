@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1301A6878EE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:34:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B7936878F9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:35:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232234AbjBBJeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 04:34:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42164 "EHLO
+        id S232544AbjBBJfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 04:35:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232395AbjBBJeE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:34:04 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C9C66F708
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 01:33:56 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso851905wms.4
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 01:33:55 -0800 (PST)
+        with ESMTP id S232667AbjBBJez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:34:55 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 814418CAA3
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 01:34:26 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id q10so1105153wrm.4
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 01:34:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=H09QHxNeoCXQ1wOs5uX5+X8RxKFEgQBRGhj52BhstFA=;
-        b=Cdwp3qY+c6Ow4apxcPArveNT84h/K16vjo0WqVqdIcQZ+oclk57RDVB/FZMcuvyLdT
-         0Y/3VVo39EsD+rH2UuBMwoUywz7LTNh2ff6JK5cLZ39GDNcNpBfYjFtvQZsAgCMxIrQS
-         cEVG/xHxn34q9E53Ty05Mm4ZwinL+4vSu9Rmuh/fHoNl2vV0CvMHYPAOM98+JLkSHdWk
-         YEPpYpOpQFc/hBqWgkoTo8W/7WdrvzDJ4+3Ox8+3Fbz4Uj5dkTrMuCwSI82nwmGyTERy
-         c4WFWGWaVKyHDqCRzOyKFDvZANWA3NQfgE6YGtOA5yA8l5Ndc4q4wjgh/anRQAQSisLd
-         vicQ==
+        bh=/jcIVaYwLzqhUyW7aVV/2uyJbb9dz1K7nROEBojvkbc=;
+        b=v8URH2KYh2aUFd5hhaZ9YAERkce9uXimpfeG7uMjsXky6GHsJ8ZcYPO+6AdUKJHazq
+         Y1NlmlkmrV15I7L6z9Y6wKhONXvStGJRcQlLD5OpNETvgmghUFHqPlipoK2xI180KwHp
+         66eCQpnygg2QDc+ftOwTFXHBy0v4C2XYggvC6AhhEYEggtq1B0UTIgqtHJGjyikRTkXs
+         1iLYJgyYkg6S3NL7pO0+ISkK3/YoTAfQVoutNhZlRGgfWbKXVpnMfp93UD5ySprgwVXj
+         DKIzLzg9Y3G92v5RjX+2JiNYsTwKGzfmbU2iJRCD48pN2EAZjiJshovBuKOi8xHqqP0G
+         R/+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H09QHxNeoCXQ1wOs5uX5+X8RxKFEgQBRGhj52BhstFA=;
-        b=txWEKGY9Xn2BXplfto6Rn4wTtAjVrMiBs6vvWrQ84Tr1lI8HgRc9oA1yn89ubEGy55
-         mVsZBfPpB5od9Ct1A8GEx+kJ03/QD60WoSyZLkBrxDO2/GxMve2eIdKWx7UY3UeV0lE8
-         nlhCY1KxrWE36mbkiNNRCqKbz2Z7ut1eeSJ3sM0E8kEPUp9ozAnVKEKEWqJbnCpNToCq
-         lbtxTZM/NvD22vsbvcl2uXwO3tNKx9gusrB4N9lPrzj87W61wDeEk9m5NQJYIqT6kW0f
-         rS/p73aw8VCwQE5cZbcgBkPX/H1JsCmQKByMWHI92Nq+vxjT8JdmJyABds7x6epZv573
-         zaoQ==
-X-Gm-Message-State: AO0yUKXXNXGCFw8LccLrQAiBdbhzTPK1g94mN+aZmC/ywB5xXZxu+/JT
-        ZLfBfLM0/U7Uz0p7/ccSDNxy8g==
-X-Google-Smtp-Source: AK7set/+rQvUFqlsAkRs1BGOMFIQlEk1J/k1cx9lTGnjwVLNdtnrNdV9c2ux8pPA45NvjnmloJxnhQ==
-X-Received: by 2002:a05:600c:1e8d:b0:3df:deb5:6ff5 with SMTP id be13-20020a05600c1e8d00b003dfdeb56ff5mr829753wmb.24.1675330434645;
-        Thu, 02 Feb 2023 01:33:54 -0800 (PST)
+        bh=/jcIVaYwLzqhUyW7aVV/2uyJbb9dz1K7nROEBojvkbc=;
+        b=jExgnVSLVbCghNEMNFU003x4o/FfFtTS/pevNlMDEiVLBPKdCYlUv7Gxpuv9sC6V4Q
+         f3Gn+R7ljeb5+W3kwuTzAPM5ACMVPLBtgDMhrGvQG6YrFlj9LS4n9fcoKkNfc9IuymJn
+         ncpOxPKIbQnojll/wVsb/8pSonkvaZ3u8roL4rrmE1atVZgkN7ky91TBnP8XfRoRvU7k
+         +2wLmoyNLPeXW9klAWQ7B5usEq2ahK2UMTqhrXZqUlWYiWdGWImKhFxITk6SrGpmUKru
+         CN87MCYXf/GmcBGfmpc8uD+hp0jtRRzU1SOKTJqlt3PjGfngThgGPclAyn80n2Dwkdsl
+         Qaxw==
+X-Gm-Message-State: AO0yUKWgeWlshnOg0EmMNwecaPLX4tvby9+dN2eJhr/fJuHojNBXD3TE
+        ra6StwsTXLux0qEUXkqourWhBQ==
+X-Google-Smtp-Source: AK7set/p/ZjNzmPMl3Z/we3foySlIRKgwQnT6uMw2CF+xHMJTxIzpM00/pI2PLs7ZsvWrX4+GLJY5w==
+X-Received: by 2002:a5d:6d05:0:b0:2bf:ee65:b0b0 with SMTP id e5-20020a5d6d05000000b002bfee65b0b0mr6224355wrq.41.1675330462974;
+        Thu, 02 Feb 2023 01:34:22 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r9-20020a05600c158900b003dc4ecfc4d7sm3934579wmf.29.2023.02.02.01.33.53
+        by smtp.gmail.com with ESMTPSA id b14-20020a05600010ce00b0029e1aa67fd2sm19467485wrx.115.2023.02.02.01.34.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 01:33:54 -0800 (PST)
-Message-ID: <a3883306-97b6-0f50-a0a3-62a42c9b79f3@linaro.org>
-Date:   Thu, 2 Feb 2023 10:33:53 +0100
+        Thu, 02 Feb 2023 01:34:22 -0800 (PST)
+Message-ID: <71c9963c-98e3-d90b-116a-68a295feb24a@linaro.org>
+Date:   Thu, 2 Feb 2023 10:34:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
+Subject: Re: [PATCH v3 0/2] leds: lp55xx: configure internal charge pump
 Content-Language: en-US
 To:     Maarten Zanders <maarten.zanders@mind.be>,
         Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
@@ -64,15 +64,13 @@ To:     Maarten Zanders <maarten.zanders@mind.be>,
 Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230202092325.21241-1-maarten.zanders@mind.be>
- <20230202092325.21241-2-maarten.zanders@mind.be>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202092325.21241-2-maarten.zanders@mind.be>
+In-Reply-To: <20230202092325.21241-1-maarten.zanders@mind.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,22 +78,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 02/02/2023 10:23, Maarten Zanders wrote:
-> Add a binding to configure the internal charge pump for lp55xx.
+> A new option in the devicetree "ti,charge-pump-mode" allows the user to
+> configure the charge pump in a certain mode. The previous implementation
+> was "auto" mode, which remains the default.
 > 
+> v1 of the patch implemented a bool to disable the charge pump and had some
+> issues in the yaml binding.
+> 
+> v2 implemented all options of the charge pump as a string which was too
+> complex to parse & check.
+> 
+> v3 (this version) replaces the string by constants.
 
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions. However, there's no need to repost patches *only* to add the
-tags. The upstream maintainer will do that for acks received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-If a tag was not added on purpose, please state why and what changed.
+Please resend without ignoring the feedback.
 
 Best regards,
 Krzysztof
