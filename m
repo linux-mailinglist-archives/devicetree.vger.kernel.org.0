@@ -2,190 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A3F7687874
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:11:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22626687871
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:10:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232479AbjBBJLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 04:11:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54182 "EHLO
+        id S232559AbjBBJKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 04:10:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232466AbjBBJKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:10:50 -0500
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2058.outbound.protection.outlook.com [40.107.215.58])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04ADC6A333
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 01:10:28 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M2/+PSfxUBnvjDnqhyISaJPIi3kfcUhp0OoMj9Nye8punEghy6SXENEYu4VjxbqFVo+Ogm34XUDjZ3RjzoG3FZHIQifPYK6ZUZnT5J3FDc9E7Q/qFTNZuwoiEo2NTEi6G/ybeTb+qVc3oTYopnpCUNKRZxRRhGkEIyelPIC7Tvfifhjmlr2ecefN/uCH+7fM1hhu63il1rUj9DhSVLnZTau/RfAmek/AoQiGAZkUqMIm4VZTr7LmHaXNXRiIDdLdgRQVi4VkprEtSk32u0smhTsTyuy1TIEUcHr1ziOpVJTySddThSVZpPi9QBl7Z6HT7L5ZtwV2Q4RMbxzhFeH7Kw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7Uhn1JHoEqpi/Ev+RHQ1pQBhcJAzQ0TQLB2eige6WVo=;
- b=HIAJsYCmcX8aAHoPLRVqtZ1J0p82rimuKG6xNLxbbPN9pRL9XVD9SuH0SbiClZ29I8vjSIS6GmYBTrIFxtMMtXdEmlqNcQbDcgFP89P+zCAEcixlAG2rXaQTwYp5OBfnocbz1J8Qk4lOWQDhQrq6tms1EQ4DS1FVpCcmVE8tQLHMmLb9SfNt+kuBx1LJJiQxaioh4cGtYgvLzWtGxYPSKDQOC014eyp5Rhepq7X1KSeVNxFb9iGDRZb/oVu/XL+L3ZqgwYAk8PviMvlpaRnhyM1ZZCRmTqsQ1HqUgwQowagkJ9U/n0wdKiMjdgs/UFIOZd+iRujENoqO0FKlqvWWYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=irondevice.com; dmarc=pass action=none
- header.from=irondevice.com; dkim=pass header.d=irondevice.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=irondevice.com;
-Received: from SLXP216MB0077.KORP216.PROD.OUTLOOK.COM (2603:1096:100:7::23) by
- SE2P216MB1943.KORP216.PROD.OUTLOOK.COM (2603:1096:101:f9::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6064.22; Thu, 2 Feb 2023 09:10:25 +0000
-Received: from SLXP216MB0077.KORP216.PROD.OUTLOOK.COM
- ([fe80::3d9:7f82:fa73:e727]) by SLXP216MB0077.KORP216.PROD.OUTLOOK.COM
- ([fe80::3d9:7f82:fa73:e727%7]) with mapi id 15.20.6064.022; Thu, 2 Feb 2023
- 09:10:25 +0000
-From:   Kiseok Jo <kiseok.jo@irondevice.com>
-To:     Kiseok Jo <kiseok.jo@irondevice.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Subject: [PATCH] Fixed the schema binding according to test
-Date:   Thu,  2 Feb 2023 09:07:14 +0000
-Message-Id: <20230202090715.18384-1-kiseok.jo@irondevice.com>
-X-Mailer: git-send-email 2.20.1
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: SL2P216CA0094.KORP216.PROD.OUTLOOK.COM (2603:1096:101:3::9)
- To SLXP216MB0077.KORP216.PROD.OUTLOOK.COM (2603:1096:100:7::23)
+        with ESMTP id S232019AbjBBJKR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:10:17 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E253480028
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 01:10:07 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so817523wms.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 01:10:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GuHqxHFmMDzLu09crUNJ3iVIgq0Eo+XKZ1UhzXbjGWY=;
+        b=y6m5QULbu4jNV5tebNlgGWntIbntCPYG8aX60ks12N3geKsIihcX9z19Y4nqRXvGjE
+         AUVwhql2QqiBWVet+4bDO4tXJhOKGTf3Glgm421z8gQ1iqZ61seX6SBCHY0JJlP9uzhb
+         I0nNgGmhOjq9kVRPhQNUjewmLbOHKUKK1B1AVqslbLZk4/P+3sIVbi7BKF98+XPevHKG
+         y9Y+4x1M7BaElF2emPWqrAXSXmMOUuUKx9xq2sdGLuyYtwfSbB/gSOwfwwdcxsBb5lMO
+         PdbGHI7+vRSz9G7+imxZ7j/9Z95I3KySDZ/GWwFXRJaAw/L/uKppe/9gSLE2tcS231vo
+         oJRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GuHqxHFmMDzLu09crUNJ3iVIgq0Eo+XKZ1UhzXbjGWY=;
+        b=jXxJY3CPtsOpImXgRPYhd/q5tEnfUDtlHTfNwxozEU6ggsUP7WYqS7ibhJrYkMZ6SI
+         W6S8nsyHmQjTnMiidY0/knCsUJcSm6IxxuKmcvodEYojxbXh0aVh9VKMaZeBkr3wmJGG
+         Cuj/t6ldezLYDej7/VsEmpY/3fKjxUvApWcEMFnJD57ZpfKZXerCF0a4tf9w9AOAIGjI
+         5JbxAuIYRlY+LALXLpOLdrPl2Ig5p0nU535p4yUNFGJKtLdfa1xdRd4/BYqmx4/XUMcB
+         0uq2wLXxKV3tSj/cPQZhzFK9tjwjz8w9y+ZZfwgq7exw1Oh2d/j78mPnkQ+YZdKEflXr
+         Okyg==
+X-Gm-Message-State: AO0yUKV5JFR8wlFNfLuYqPnvu1ZLKdoesZqFMzELa84q86oaN/U5wQKM
+        PdLMf797ZFpQtLEMscrHLzFIEA==
+X-Google-Smtp-Source: AK7set9K7JX00ufo3veGqKxE4YjIj8gUfpXxTTBR+WIGPUu7UI16cfzONV2wgp8xVOk6CMHqvUKP8w==
+X-Received: by 2002:a7b:c8c6:0:b0:3df:9858:c03b with SMTP id f6-20020a7bc8c6000000b003df9858c03bmr1306017wml.16.1675329006288;
+        Thu, 02 Feb 2023 01:10:06 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id t1-20020a1c7701000000b003b47b80cec3sm4046965wmi.42.2023.02.02.01.10.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Feb 2023 01:10:05 -0800 (PST)
+Message-ID: <50b797aa-adfe-b3d8-79db-c3ee2cb72f6a@linaro.org>
+Date:   Thu, 2 Feb 2023 10:10:04 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SLXP216MB0077:EE_|SE2P216MB1943:EE_
-X-MS-Office365-Filtering-Correlation-Id: 53e40c9a-a298-46ee-e4b2-08db04fd5231
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: s4ajiNjP/zO0VEOPYnYF0Tb/b5muJKRMEerydPNZx1Ongir8Bb5muBR5/l0hrNP6wFl+OWJO1pSHvbrrFV3qG8k0ciEEC76bkoGvEmfWxiditbScgPrvaOXYzyyrX/FKdEloZLPZ8X47CIw6fPoaBQl9aBu6mmxaA6Ucs+sqGG+9WmM8mN6CYYiQ05wTLzKsc5LUX/9V/vcWSSGSCYDv1BDbGTU9MiUdBotsnXDzzvD5XEyzK22FmDzK7PVMdq+NH2QwKDI06XP88zAf1ZlGXbfmW9QpVwIU/YJSHQ63AqJ991ccffbVGOGuVyrK/X0NBenp2EWjteKWY8aJqcCBzdJqAVY4dt0HTxRb1zuShK3EVZGBPE4y1kkmWd5CLiP8aZ/Mn+X8Y5Yez5jZUbWsthE9Ppw7MLq1zsBMlZd91sFf63G7EYbuNXgvuroqrnlZEZzf3UbXlhO9eYrVhq5kyVhDzdpKyj/raLYLum3/yDo5ZHoSy2p7GC4nWPtgqRsL8inxdXaPN9gPR0TwNPcM1ySk4HSKDcfRF10woUVfHLNr/zzL1R7H7OjRCSfEqltLeu1UtTVt1OC0iX/+Rt8B82tRqpKqGs/CHOzE1PEpgFg4GKJgd3DO3sGClfIr8s8NpvToG4M2L8G2DEgJcInkX0iC4zh6qlMuxV6tWhUfhvgBxsp5yG7aka+daY8Djs8d5UTulYRlhe/wUbiFXdu+5g==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SLXP216MB0077.KORP216.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230025)(396003)(376002)(346002)(136003)(39840400004)(366004)(451199018)(83380400001)(2906002)(478600001)(38350700002)(44832011)(6486002)(38100700002)(41300700001)(36756003)(52116002)(2616005)(66556008)(6512007)(66476007)(86362001)(6506007)(6666004)(26005)(186003)(8936002)(66946007)(5660300002)(110136005)(8676002)(316002)(1076003)(4326008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?96xSYwvmr3S3l/c+oelSQBarciBe/51hznoqP0e2pWVV4w8U3iN8UQIg9/Vh?=
- =?us-ascii?Q?ik7GhkGOUUc5C2Mbah9TmJq3k/RRJ56BRffsT67hBewi6vIfSbb4fz4OOosO?=
- =?us-ascii?Q?YfQpEnL+Gw6zXgdwaSpr3L4AzsiBPvWgDw6CizviRxOWItLlpoJuW70HmFJF?=
- =?us-ascii?Q?swEsLnr4MiQQ9j3ukcqQ5Cm7dNTq3WfUTX+d9A9ZlFNosgTLKPXhHGF6FeiN?=
- =?us-ascii?Q?If0oqOVscG0zgNQyJWU04cjbPAyz6/vf3yiGo/arj013Qtr5UkGn8S/QV3Of?=
- =?us-ascii?Q?CQ+9zpiPCvipRFtZ8etzsvMXwIaPVIoQ/kzSqxrmzGckoH/oeow59zKym8bI?=
- =?us-ascii?Q?G44+lkoLXasahcJacn9fRUhxZIPhKMAZLclCD4hKbWUZXjmPzxUs0Icco4WL?=
- =?us-ascii?Q?c0C7Npp2TlGp2Ghh4+BtvGF0Gnu4jfnAOY84t5/W4uKCvu3MHQ5ibaOwV2nS?=
- =?us-ascii?Q?GoNfSNARNCMlhRzty6c5Dloa/56t0GWOX3CpE11nV7KIUlKNWFayfLb/8w3g?=
- =?us-ascii?Q?2nHokHZ80xWOX72rJNSoEC1S0lWXF8ddp15zicAOsfoRWKF6VCRHAbXhbFlW?=
- =?us-ascii?Q?WeU09EDNr+554fL30Nng1Apv/4nGJPzR2ma9ijxgY6/zGZLNuyBhoZxfnlEN?=
- =?us-ascii?Q?biTIklAI8qES6JUPJ9ndTOoyzRthO+Uh+MiYF/f2faGePXShlF52xx+lK+SK?=
- =?us-ascii?Q?+Mm0EDGMdqo4vS+1NM++8IxdfgGoazZvMPDEy8h72DPAWKEJttue9qb2MPFM?=
- =?us-ascii?Q?Vcpd4WzB38oiKpTjVDY2LpNyOIrLSIJ6ZoNCpzz3u+1REbs99jN70u3sjpln?=
- =?us-ascii?Q?CvNgHKyUxe2DPwpqnZUUyqiMAS0unnEyXlWdmvqqZMJfBWJCQ8P0X+UfLkGo?=
- =?us-ascii?Q?XLDe/26aotOg7smpehLkhk4mcmo0S6x1HvxMTf9mOcSsMDW8+FkjCnAzdqLe?=
- =?us-ascii?Q?bI/ztoi7lYbg5x1EQYF2j+KC8A01r4EqcC9LpLztTKz63aofImUuaY/YcC9i?=
- =?us-ascii?Q?SKRaEshjEIaoHooi+9JC3yUk+8kBeVZ9AJh9CuY1XrpOUx/wg5QcvkGDtXYt?=
- =?us-ascii?Q?lNgIUSHTr98754S/E5BOmiYWlQOgdbTi/UMILCDUYtqDYXmGYdqkPuwKlJs3?=
- =?us-ascii?Q?XOVAOfadSa4T/FzYFXQAeiDZG0zgkrRC4ZFJoV53oyF46+lmHXc/VQOTjJZX?=
- =?us-ascii?Q?Ql5whz7GgAS0fI/DIChtgILnBBDsOt30AQQCnNxYsTi++gVpcHK7NE/WKdwK?=
- =?us-ascii?Q?9Y37tvYKoIXixbSiGoCF0OMOJBtiyXMLOROgpuyL0ksveinOocoUf+crEhgu?=
- =?us-ascii?Q?ps/nMeHAgFG9kg8i4HPY7QuwdAej8s47h7GvJwOXo1wsA7UjYzpXAOlMkTVw?=
- =?us-ascii?Q?uLkTT0v+VToCuXVtfgoyO2jYvNKw8edrN4huYtrgO5vTI0x8C+wIfhvXCS3I?=
- =?us-ascii?Q?BDvpYjJFAAnMHZQtcvp1eaC1gxvKFI0VgetLoDNrqCyinyjj+6EVDqhBQJNG?=
- =?us-ascii?Q?x5/dUTpludni7gNSB33IzdWOSaLjuYB8rzgoQ+QaVU0rhNcgMAS4WteUwUSn?=
- =?us-ascii?Q?JJYcFqzEj3sR+Os268OXE/2h9Hs/RMWq9XGlG2bTPGzoFlf/1l9AGfziS5JA?=
- =?us-ascii?Q?1w=3D=3D?=
-X-OriginatorOrg: irondevice.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53e40c9a-a298-46ee-e4b2-08db04fd5231
-X-MS-Exchange-CrossTenant-AuthSource: SLXP216MB0077.KORP216.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2023 09:10:25.6858
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b4849faa-3337-494e-a76a-cb25a3b3d7d1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kCSUO6cCb8wL9eoiFkng29ByfdY0I+8M3ylCxAZ6MEhTq/s8fMJH6E8bYDC5GomlI9qNlZVqJ/zsJO2qxDFqNBrg8/hMxQyBaBZcgR6RQQI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE2P216MB1943
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/7] dt-bindings: rtc: Move RV3028 to separate binding
+ file
+Content-Language: en-US
+To:     Frieder Schrempf <frieder@fris.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <treding@nvidia.com>
+References: <20230201143431.863784-1-frieder@fris.de>
+ <20230201143431.863784-2-frieder@fris.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230201143431.863784-2-frieder@fris.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modified according to the writing-schema.rst file and tested.
+On 01/02/2023 15:34, Frieder Schrempf wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+> 
+> The RV3028 driver uses properties that are not covered by the
+> trivial-rtc bindings. Use custom bindings for it.
+> 
+> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> ---
+>  .../bindings/rtc/microcrystal,rv3028.yaml     | 56 +++++++++++++++++++
+>  .../devicetree/bindings/rtc/trivial-rtc.yaml  |  2 -
+>  2 files changed, 56 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml b/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
+> new file mode 100644
+> index 000000000000..4667ba86fd0c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/microcrystal,rv3028.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip RV-3028 RTC
+> +
+> +allOf:
+> +  - $ref: "rtc.yaml#"
 
-Signed-off-by: Kiseok Jo <kiseok.jo@irondevice.com>
----
- .../bindings/sound/irondevice,sma1303.yaml    | 46 +++++++++++++++++--
- 1 file changed, 43 insertions(+), 3 deletions(-)
+Drop quotes
 
-diff --git a/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml b/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
-index 162c52606635..35d9a046ef75 100644
---- a/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
-+++ b/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
-@@ -10,22 +10,62 @@ maintainers:
-   - Kiseok Jo <kiseok.jo@irondevice.com>
- 
- description:
--  SMA1303 digital class-D audio amplifier with an integrated boost converter.
-+  SMA1303 digital class-D audio amplifier
-+  with an integrated boost converter.
- 
- allOf:
--  - $ref: name-prefix.yaml#
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - irondevice,sma1303
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#sound-dai-cells':
-+    const: 1
-+
-+  i2c-retry:
-+    description: number of retries for I2C regmap.
-+    maximum: 49
-+    default: 3
-+
-+  tdm-slot-rx:
-+    description: set the tdm rx start slot.
-+    maximum: 7
-+    default: 0
-+
-+  tdm-slot-tx:
-+    description: set the tdm tx start slot.
-+    maximum: 7
-+    default: 0
-+
-+  sys-clk-id:
-+    description: select the using system clock.
-+    default: 3
- 
- required:
-   - compatible
-   - reg
-+  - '#sound-dai-cells'
- 
- additionalProperties: false
- 
- examples:
-   - |
--    i2c_bus {
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-         amplifier@1e {
-             compatible = "irondevice,sma1303";
-             reg = <0x1e>;
-+            #sound-dai-cells = <1>;
-+            i2c-retry = <5>;
-+            tdm-slot-rx = <0>;
-+            tdm-slot-tx = <2>;
-+            sys-clk-id = <3>;
-         };
-     };
+> +
+> +maintainers:
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: microcrystal,rv3028
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  start-year: true
 
-base-commit: e33d4c4f1e2de74cfea556d75eef0886d5b7d472
--- 
-2.20.1
+This should be dropped as well and then...
+
+> +
+> +  trickle-resistor-ohms:
+> +    enum:
+> +      - 3000
+> +      - 5000
+> +      - 9000
+> +      - 15000
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+
+...switch to unevaluatedProperties: false
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        rtc@51 {
+
+Rob's pointed missing testing.
+
+But more important - please rebase your patches on current tree. Looks
+like all the changes are already done...
+
+Best regards,
+Krzysztof
 
