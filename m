@@ -2,113 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5499687FDC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 15:23:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C720E688030
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 15:33:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232421AbjBBOXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 09:23:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39276 "EHLO
+        id S232446AbjBBOdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 09:33:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232396AbjBBOXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 09:23:10 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3638728D05
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 06:23:05 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id hn2-20020a05600ca38200b003dc5cb96d46so3834858wmb.4
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 06:23:04 -0800 (PST)
+        with ESMTP id S232375AbjBBOdQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 09:33:16 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0BDE6DFC6;
+        Thu,  2 Feb 2023 06:33:11 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id me3so6476667ejb.7;
+        Thu, 02 Feb 2023 06:33:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YB4h/C/CtbFY4rXmucKBqG0MqbmHC4KWkwhlRlIb+2I=;
-        b=bzo3nwG7ZmwfN9KX3sxXEcPruFfXZNJTO5B2WFHTKCYsxSVEzj+Y6q35NuOHb84umr
-         cq5wnf0sUjSTAleMT8Fum8Iac+2tBlg/2F486oM7FdVjQ66EpIRpraiRWfW0MhFXeU4W
-         nF3gmIXQl9wLgpOnwKz5/7Z+4G4Lj/RZza1yZC7x/l6Li/ar9PVMLZ5aBuoN7t2GLphI
-         wB5hNk5q1rqAKAL5bgKJJInH72Rjrm2dg5u0oKufxSGEtvcQ52jknKvSGfdrGNAreO1p
-         zsRd9kBWMQTolj1TajyH0FlTmRxpGIyfVUD+2DgXd+c8V16+T1Ss69clGoqAHFXwxLho
-         kCRg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DHsKnCrkXhOuDYV6+psb/tAdbPB1L9cKyhHKv9nMf6Y=;
+        b=jDvvFl1HOwLXc0lbexFGVnSiiWaY+hhv9rMr5kUceI/zzR0eQV4gXV4+jzbe2CH7Or
+         4jizr+0XBF6cFSgmDJf5MszV48SOf1KU1aScqcdb60stjZiPS6PUCwvUDvMCOaKs0QYo
+         6lFWaXTYz1aknDvr3UfH4r4VGpG9LPo+axd7OVHJ7G3iXulq0YtmnAK1viZvW837RsTu
+         awZxD4U3yc6QgN4a3HoXWLZy8vXb5BDXl7f2+IsKQoNotyPH60soQubKufK/Fl0A0kys
+         dsk0Ijf8TQcGS5PyYlOaVZ6wiuuK41CtwXso8VpeyD08InIa9mP2bIpUYMl6KErKRbEA
+         f7jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YB4h/C/CtbFY4rXmucKBqG0MqbmHC4KWkwhlRlIb+2I=;
-        b=J8yNoVf8JcIsuOHVWnAGPaQ59gr2XRgOhIoy36vwoXwxw246G5tfRBZtGOP+uVI2TH
-         st1QJb1ZWAmBPxG67EigJsp6saQVqCKgGtj/KPDLXFaWQWEtTfJgcPlx42JyFJVNCXvo
-         Sgxwtd32r6sl1Z92rsw0URxJG2us1Rer8B029P/lrEK6jafxXaBArQDQ1oQXmfZG9qcq
-         hVeB06b7Gw/R+xZeLCrSU2MXVeVnB78KK03HxSWDtiOaBIVO1Km+q20g1F9uDAb3sfgo
-         e7nr/WPim983QO3Bv0BXaImmSYC5vXRMcTpCHFFZwBS2LpXBnmmN6PBVJ4+xRcmlZpr+
-         rScw==
-X-Gm-Message-State: AO0yUKXVAJKWgc4DmC6vda08k66Sx7UdgoR+mRQIrAafLfJDZAuveOpC
-        g6RE/dbm87wruZrpnSQz9QCnrg==
-X-Google-Smtp-Source: AK7set/HE5p2w/dzpHWaV2sxuNs7PJNgTft5opkJSpseRkiLmxy5Popw8z4rysmsYdiYCtz3baLOrQ==
-X-Received: by 2002:a05:600c:5491:b0:3dc:16d3:8c95 with SMTP id iv17-20020a05600c549100b003dc16d38c95mr6366493wmb.30.1675347783631;
-        Thu, 02 Feb 2023 06:23:03 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u6-20020a5d4346000000b002bc84c55758sm21647028wrr.63.2023.02.02.06.23.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 06:23:03 -0800 (PST)
-Message-ID: <cc0cc6a0-2403-82e5-fff0-630dcce99b89@linaro.org>
-Date:   Thu, 2 Feb 2023 15:23:01 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DHsKnCrkXhOuDYV6+psb/tAdbPB1L9cKyhHKv9nMf6Y=;
+        b=O4wWjOTsqxmCfWhiV2/mT5VQRArZ7alhSv4fu8mjgFd1qs5FISWrb1Twejg2Q8oFv3
+         P+lrHuTNAt8RK+3ChWdD03zCnRITXqgCZuwMYEp4GWOW4jJmWz6NzcYZZmMTfax5FGfj
+         tGpoBaui08LhtDCc5bC5Fyf7bbfepf+0Py5ESGsUFBUWMG1PjGYDYu+TdQarUri+Aeml
+         tHYfqtakt4R2Sl8x1tRtcPURxhWa/e0m4z+G6auk8cEIfX8GeQe99ewZbcXe5reQ7l9L
+         HmAArL84mqfCounEizc23pwh6eGyOpZy7LHG9ACVlABJq/tAlvXk6ByB0DSOIKcB272U
+         w6ww==
+X-Gm-Message-State: AO0yUKXCRd8sHBjmoZSLuCleZ/dEPjAB8ofulCXIxSz/UfNu45KxPNvs
+        gKvJUrjnqQGCjfr/oXEacnYo1Pts6P1dWg==
+X-Google-Smtp-Source: AK7set9YH61SsDQpzrCjhRdmXusAByNf2t2Y7y9NvtsXebSPFTPdIDbKu7QwrbLLU6TjpFEuu3mwYA==
+X-Received: by 2002:a17:906:8a43:b0:861:4671:a834 with SMTP id gx3-20020a1709068a4300b008614671a834mr5664657ejc.71.1675348389392;
+        Thu, 02 Feb 2023 06:33:09 -0800 (PST)
+Received: from fedora.local.tbs-biometrics.cz (176-74-132-138.netdatacomm.cz. [176.74.132.138])
+        by smtp.gmail.com with ESMTPSA id h17-20020a1709066d9100b0087856bd9dbbsm11814237ejt.97.2023.02.02.06.33.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Feb 2023 06:33:08 -0800 (PST)
+From:   =?UTF-8?q?Martin=20Za=C5=A5ovi=C4=8D?= <m.zatovic1@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        gregkh@linuxfoundation.org, martin.petersen@oracle.com,
+        beanhuo@micron.com, arnd@arndb.de, avri.altman@wdc.com,
+        iwona.winiarska@intel.com, fmdefrancesco@gmail.com,
+        dipenp@nvidia.com, ogabbay@kernel.org, bvanassche@acm.org,
+        mathieu.poirier@linaro.org, yangyicong@hisilicon.com,
+        dan.j.williams@intel.com, devicetree@vger.kernel.org,
+        linus.walleij@linaro.org,
+        =?UTF-8?q?Martin=20Za=C5=A5ovi=C4=8D?= <m.zatovic1@gmail.com>
+Subject: [PATCHv2 0/4] Wiegand bus driver and GPIO bit-banged controller
+Date:   Thu,  2 Feb 2023 15:33:01 +0100
+Message-Id: <20230202143305.21789-1-m.zatovic1@gmail.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v8 5/9] dt-bindings: qcom-qce: document clocks and
- clock-names as optional
-Content-Language: en-US
-To:     neil.armstrong@linaro.org,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org
-References: <20230202135036.2635376-1-vladimir.zapolskiy@linaro.org>
- <20230202135036.2635376-6-vladimir.zapolskiy@linaro.org>
- <32c23da1-45f0-82a4-362d-ae5c06660e20@linaro.org>
- <36b6f8f2-c438-f5e6-b48f-326e8b709de8@linaro.org>
- <a2e4dff0-af8f-dccb-9074-8244b054c448@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a2e4dff0-af8f-dccb-9074-8244b054c448@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 15:21, Neil Armstrong wrote:
-> On 02/02/2023 15:04, Vladimir Zapolskiy wrote:
->> Hi Krzysztof,
->>
->> On 2/2/23 15:53, Krzysztof Kozlowski wrote:
->>> On 02/02/2023 14:50, Vladimir Zapolskiy wrote:
->>>> From: Neil Armstrong <neil.armstrong@linaro.org>
->>>>
->>>> On certain Snapdragon processors, the crypto engine clocks are enabled by
->>>> default by security firmware.
->>>
->>> Then probably we should not require them only on these variants.
->>
->> I don't have the exact list of the affected SoCs, I believe Neil can provide
->> such a list, if you find it crucial.
-> 
-> It's the case for SM8350, SM8450 & SM8550.
+Hello,
 
-So let's keep them required for explicit list of compatibles (older
-devices).
+Thank you for your feedback on the last version.
 
-Best regards,
-Krzysztof
+I came to a realization, that it is for the best to let message
+formats and checksum calculation be handled by device drivers.
+Support of these options was removed from the bus driver.
+
+The GPIO bitbanging controller driver contained two attribute
+files - format and payload_len. The format file is obviously not
+needed anymore, however I have decided to keep the payload_len
+file. It seems to me to be the best way to communicate this
+information to the controller driver. This information needs
+to be provided especially in order for the /dev file to work
+properly(as the driver has no idea where the message ends). If
+there is a better way to approach this problem, please let me
+know.
+
+Device drivers will not face the same problem, as the length of
+a message is passed with every call of the transfer_message()
+function.
+
+CHANGELOG since v1:
+- added dt-bindings for wiegand_gpio driver
+- dt_binding_check now passes
+- added help texts to Kconfig files
+- removed controller list from bus driver
+- removed the option to add a device from another driver (along
+  with wiegand_baord_info structure)
+- moved the bus driver to drivers/wiegand/
+- removed all explicit castings, used specific getters instead
+- fixed indentation
+- removed fromat attribute from controller structure
+- removed format implementation from wiegand_gpio driver
+
+Martin Zaťovič (4):
+  dt-bindings: wiegand: add Wiegand controller common properties
+  wiegand: add Wiegand bus driver
+  dt-bindings: wiegand: add GPIO bitbanged Wiegand documentation
+  wiegand: add Wiegand GPIO bit-banged controller driver
+
+ .../ABI/testing/sysfs-driver-wiegand-gpio     |   9 +
+ .../bindings/wiegand/wiegand-controller.yaml  |  50 ++
+ .../bindings/wiegand/wiegand-gpio.yaml        |  51 ++
+ MAINTAINERS                                   |  14 +
+ drivers/Kconfig                               |   2 +
+ drivers/Makefile                              |   1 +
+ drivers/wiegand/Kconfig                       |  28 +
+ drivers/wiegand/Makefile                      |   2 +
+ drivers/wiegand/wiegand-gpio.c                | 324 +++++++++++
+ drivers/wiegand/wiegand.c                     | 543 ++++++++++++++++++
+ include/linux/wiegand.h                       | 177 ++++++
+ 11 files changed, 1201 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-wiegand-gpio
+ create mode 100644 Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml
+ create mode 100644 Documentation/devicetree/bindings/wiegand/wiegand-gpio.yaml
+ create mode 100644 drivers/wiegand/Kconfig
+ create mode 100644 drivers/wiegand/Makefile
+ create mode 100644 drivers/wiegand/wiegand-gpio.c
+ create mode 100644 drivers/wiegand/wiegand.c
+ create mode 100644 include/linux/wiegand.h
+
+-- 
+2.39.1
 
