@@ -2,227 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BD886887C9
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 20:50:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D4E46887EE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 21:00:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232637AbjBBTu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 14:50:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41312 "EHLO
+        id S232677AbjBBUAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 15:00:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232129AbjBBTu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 14:50:56 -0500
+        with ESMTP id S232710AbjBBUAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 15:00:30 -0500
 Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB16B6AC99
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 11:50:54 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id v13so3141668eda.11
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 11:50:54 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F005480006
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 12:00:25 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id x7so3256931edr.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 12:00:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vU6b1/DyW9VF99p038CT5rL7cz19rU/zHJDhT4ApbFc=;
-        b=qFo6Zs4zc/E7ttK81jaTeAILjmRH5v3tgoYVgjr6j/geeokXq8B3VKC1pad3rpZa5z
-         Hx9aluvyOeNlG/2t/IxUqJKbWmnWj8CdxyMA1jK8k/tj9FveSRBkAaYJC2Ks7QmLpinM
-         ho7p6AP7jt5VbSWhkHP8/2a0cLQP/b98mdx9WZGKea13BendXKvIiiLPwEp4sQg8W9Kr
-         4kPHEyZP2DzxfUYQpUpP7nLPaXwQ3NPYdyzX29/ZCFhWw1uNQqzcOktQep/WzBX59D0r
-         YeVPI49AW2fyIGS8rPUAfXPADxjZXADDlQGjJGGpUbZ+TB2SMs0YW4F/lM/HadrYG4Rr
-         S93Q==
+        bh=3NoqwPWGdPAAWq3tFe6UZV9Xjkz8TFbiEHT4UnURl68=;
+        b=Tn28cTUSKVUffrD7pCt/S1MhVB2RkrGSUwZX/JySWEYfCCwjY0OGIbyUa/ZCwJFffY
+         apfQkcw3TMBqChoq4X37lw40vtgOLTx0jwMxK7xd21TYs7M7uNtqkxqK6tJTIA4jbk3F
+         lr0s8xjSde00oNu5sxyac8YAn4DJakT1oN6Njx39tGn6hpYtheIen5hx2aqhR6Q6XWgZ
+         JJBKXwZVfTZd4jDAnnZFQ26FFZJYJz5Xq7PSi5/c9He0Q22yjnj0KWOcTs5yvPthItKq
+         kNmTSaCq/aB65gkTgiS8uHjYmW/GwH25E6jurgCa8WKKM7cVdmra1RyC1mbhWMD2PaVB
+         mOfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vU6b1/DyW9VF99p038CT5rL7cz19rU/zHJDhT4ApbFc=;
-        b=DeIDxuShr5tWrW0oqKbKybIrKKid3EOnMzFrsIkm4ynTYsrkOaMYtiYX92ELc6RjVR
-         GwGUUZWosE8/wdLMa/K5bKn6TpRWSUVs8JuXpohdj+AgoQbaWZ+Kdkn4QiKFyfo/+0M1
-         qpY87J9DiclEMAsRHd9diAympBeRrqLtOlZ0Ox8Gk9ouG7DJzo5NX1waAo9fo5NzHvpD
-         h46LsZW7dQOTqstmnZ8NGzaWhkLKOQ1ca17lR1HIHgAbrK7Cv99bBJxp0TPv/U2KhaI1
-         zM6gjfAzB3c+RAGPVLyBdJxgzV1i38KU0QYFb50She09ztyLNghX5uIDOF54R0ZI4BOh
-         dBIQ==
-X-Gm-Message-State: AO0yUKXeZQPlMxeqj2z/cKYVfVKRRwtx8MY/q5+zvJstpAP56o+xm1DX
-        UReSnVCfwSyCxBPPmxmVWPOoYw==
-X-Google-Smtp-Source: AK7set9amC5pThCDH+9E/vyf4TogzP4SRLeuHMPo01KOUugOmYukuiSJFsLqp102YzKiW0olzQcJrQ==
-X-Received: by 2002:a05:6402:22a7:b0:4a2:2d79:dce2 with SMTP id cx7-20020a05640222a700b004a22d79dce2mr7371719edb.10.1675367453255;
-        Thu, 02 Feb 2023 11:50:53 -0800 (PST)
+        bh=3NoqwPWGdPAAWq3tFe6UZV9Xjkz8TFbiEHT4UnURl68=;
+        b=nwBdMSUYu19Cml87kJer6+QyZuNV4IsMfn0L3lMp25qwEOkHs4ASkTZvcb6Xuw9Gdi
+         Yh/PnDBUXL1RhzBaIAK27uHbfmzHHaTsNBJazxzivdrDPD9h0q7mZiyyaVpKF+9SrHe3
+         ZPNmclRz6VTds4LTENP6NmyHAHiMu1zwn+xY6xn9q0wPhLB1njUk2CObkEb2HOcaVHQd
+         vFdtwT1yKmlysnY+UtVaAktclzsTXW4oQZe6g8hC9E3E6Ec58ZL4JgZasOCBJHs2Al7X
+         INUIng0ztl2KZ/1qqFgCE9LyHaAHh4pPPrzcINRzrqPXC/Fb4rfLQk/5dJeJwmE9Jwin
+         foMg==
+X-Gm-Message-State: AO0yUKUb15qgSFpc5QEeBi2Ks8wOX96zEAVhw1x1f3iqvIxyKOCvU7pB
+        sz/0KxX2f/2UPmIefbv5snKYBg==
+X-Google-Smtp-Source: AK7set+rkkWRJNhGP6gyYP8lfc64qT2+M4TGBD1kvog85pXPp56JMHboaZCnQxFv3pufpNjZiZNnxQ==
+X-Received: by 2002:a05:6402:5288:b0:49d:a87f:ba7b with SMTP id en8-20020a056402528800b0049da87fba7bmr7635461edb.39.1675368024344;
+        Thu, 02 Feb 2023 12:00:24 -0800 (PST)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id er18-20020a056402449200b0046892e493dcsm150837edb.26.2023.02.02.11.50.51
+        by smtp.gmail.com with ESMTPSA id el8-20020a056402360800b004a2470f920esm160692edb.25.2023.02.02.12.00.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 11:50:52 -0800 (PST)
-Message-ID: <093a50dc-8f9e-39c9-ba31-906628e54e35@linaro.org>
-Date:   Thu, 2 Feb 2023 21:50:51 +0200
+        Thu, 02 Feb 2023 12:00:23 -0800 (PST)
+Message-ID: <8766f07e-a5d2-b59c-d130-f8cc2da64556@linaro.org>
+Date:   Thu, 2 Feb 2023 22:00:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v6 11/12] arm64: dts: qcom: sm8550: Add PCIe PHYs and
- controllers nodes
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20230202123902.3831491-1-abel.vesa@linaro.org>
- <20230202123902.3831491-12-abel.vesa@linaro.org>
+Subject: Re: [PATCH 4/6] dt-bindings: mailbox: qcom: add compatible for the
+ IPQ5332 SoC
 Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kathiravan T <quic_kathirav@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230202145208.2328032-1-quic_kathirav@quicinc.com>
+ <20230202145208.2328032-5-quic_kathirav@quicinc.com>
+ <3a346606-576b-ab89-78f5-5bbaca729090@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230202123902.3831491-12-abel.vesa@linaro.org>
+In-Reply-To: <3a346606-576b-ab89-78f5-5bbaca729090@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 14:39, Abel Vesa wrote:
-> Add PCIe controllers and PHY nodes.
+On 02/02/2023 17:35, Krzysztof Kozlowski wrote:
+> On 02/02/2023 15:52, Kathiravan T wrote:
+>> Add the mailbox compatible for the IPQ5332 SoC.
+>>
+>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml     | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+>> index 943f9472ae10..8d8cd1bbe67e 100644
+>> --- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+>> +++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+>> @@ -18,6 +18,7 @@ properties:
+>>       oneOf:
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
+> - items:
+>      - enum:
+>          - qcom,ipq5332-apcs-apps-global
+>      - const: qcom,ipq6018-apcs-apps-global
 > 
-> This patch does not have a v3, but since it is now part of the same
-> patchset with the controller and the phy drivers patches, I had to
-> bump the version to 4.
-> 
-> The v5 was here:
-> https://lore.kernel.org/all/20230124124714.3087948-12-abel.vesa@linaro.org/
-> 
-> Changes since v5:
->   * renamed nocsr_com to phy_nocsr as discussed off-list with Bjorn and Johan
-> 
-> Changes since v4:
->   * renamed noc_aggr_4 back to noc_aggr
->   * moved pinctrl properties out to MTP dts
->   * renamed nocsr to nocsr_com
-> 
-> Changes since v2:
->   * renamed the pcie_1_link_down_reset to simply link_down
->   * dropped the pipe from clock-names
->   * renamed aggre clock-names to noc_aggr_4
->   * dropped the _pcie infix from cnoc_pcie_sf_axi
->   * dropped the aux_phy clock from the pcie1
->   
-> Changes since v1:
->   * ordered pcie related nodes alphabetically in MTP dts
->   * dropped the pipe_mux, phy_pipe and ref clocks from the pcie nodes
->   * dropped the child node from the phy nodes, like Johan suggested,
->     and updated to use the sc8280xp binding scheme
->   * changed "pcie_1_nocsr_com_phy_reset" 2nd reset name of pcie1_phy
->     to "nocsr"
->   * reordered all pcie nodes properties to look similar to the ones
->     from sc8280xp
-> 
-> 
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 203 ++++++++++++++++++++++++++-
->   1 file changed, 200 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index be2d85ee1f20..a85d2ae7d155 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -740,9 +740,9 @@ gcc: clock-controller@100000 {
->   			#reset-cells = <1>;
->   			#power-domain-cells = <1>;
->   			clocks = <&bi_tcxo_div2>, <&sleep_clk>,
-> -				 <0>,
-> -				 <0>,
-> -				 <0>,
-> +				 <&pcie0_phy>,
-> +				 <&pcie1_phy>,
-> +				 <&pcie_1_phy_aux_clk>,
->   				 <&ufs_mem_phy 0>,
->   				 <&ufs_mem_phy 1>,
->   				 <&ufs_mem_phy 2>,
-> @@ -1641,6 +1641,203 @@ mmss_noc: interconnect@1780000 {
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
-> +		pcie0: pci@1c00000 {
-> +			device_type = "pci";
-> +			compatible = "qcom,pcie-sm8550";
-> +			reg = <0 0x01c00000 0 0x3000>,
-> +			      <0 0x60000000 0 0xf1d>,
-> +			      <0 0x60000f20 0 0xa8>,
-> +			      <0 0x60001000 0 0x1000>,
-> +			      <0 0x60100000 0 0x100000>;
-> +			reg-names = "parf", "dbi", "elbi", "atu", "config";
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
-> +				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
-> +			bus-range = <0x00 0xff>;
-> +
-> +			dma-coherent;
-> +
-> +			linux,pci-domain = <0>;
-> +			num-lanes = <2>;
-> +
-> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "msi";
-> +
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 0x7>;
-> +			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
-> +					<0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
-> +					<0 0 0 3 &intc 0 0 0 151 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
-> +					<0 0 0 4 &intc 0 0 0 152 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
-> +
-> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
-> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
-> +				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
-> +				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
-> +				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
-> +				 <&gcc GCC_DDRSS_PCIE_SF_QTB_CLK>,
-> +				 <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>;
-> +			clock-names = "aux",
-> +				      "cfg",
-> +				      "bus_master",
-> +				      "bus_slave",
-> +				      "slave_q2a",
-> +				      "ddrss_sf_tbu",
-> +				      "noc_aggr";
-> +
-> +			interconnects = <&pcie_noc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>,
-> +					<&gem_noc MASTER_APPSS_PROC 0 &cnoc_main SLAVE_PCIE_0 0>;
-> +			interconnect-names = "pcie-mem", "cpu-pcie";
-> +
-> +			iommus = <&apps_smmu 0x1400 0x7f>;
-> +			iommu-map = <0x0   &apps_smmu 0x1400 0x1>,
-> +				    <0x100 &apps_smmu 0x1401 0x1>;
-> +
-> +			resets = <&gcc GCC_PCIE_0_BCR>;
-> +			reset-names = "pci";
-> +
-> +			power-domains = <&gcc PCIE_0_GDSC>;
-> +
-> +			phys = <&pcie0_phy>;
-> +			phy-names = "pciephy";
-> +
-> +			perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-> +			wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+> and drop the next patch
 
-As we have moved pinctrl to board files, it would be logical to also 
-move these gpios to the board file too. Following the same logic, each 
-board can use it's own set of perst/wake gpios for PCIe.
-
-> +
-> +			status = "disabled";
-> +		};
-> +
-[skipped the rest]
+Is it still ok even if the two devices are not fully compatible (iow, 
+using different PLL types)?
 
 -- 
 With best wishes
