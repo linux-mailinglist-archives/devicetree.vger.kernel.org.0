@@ -2,165 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B67A5687887
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:15:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F7FD687888
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 10:16:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230323AbjBBJPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 04:15:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59044 "EHLO
+        id S230259AbjBBJQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 04:16:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229916AbjBBJPp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:15:45 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 099281730
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 01:15:44 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id q10so1059037wrm.4
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 01:15:43 -0800 (PST)
+        with ESMTP id S229916AbjBBJQ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 04:16:26 -0500
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B94F210D3;
+        Thu,  2 Feb 2023 01:16:25 -0800 (PST)
+Received: by mail-pf1-x42a.google.com with SMTP id g9so724249pfo.5;
+        Thu, 02 Feb 2023 01:16:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RC/waujmzDR6aaO1i7Us/eAJ3rIYO70QGCYk2/l27l4=;
-        b=GcCHg1yC0pMmEeKvVNrj2xH0zliRUfXnUm7/tZud3ZC30eDF3n8BSFtKoP5KuS1Qg5
-         ZLxdgocNnGLz+3UviJzDAqpIEWObD4Ku1HUxIE/uv+FxJzBHT343NpCygZFVyvmxHT1c
-         M7IBtmc36Coou7oAFCVrq4FobzyVbZvpegt3PLLqal1YxLXGYfI8r3CaE6D0qBm+DbHE
-         /zR+C4QGww9Fg9GKAH9vTQDLz6RCW1xVawbLvPd9K+nYkkJUyd29ESha8aa5jOMr1PHJ
-         73Vs9t3WpywdW7NgaP9O5QcgZ/K2x04KZhZ3UF89rA2Pxw6bcyqupsQTn5MzSXI8fuRX
-         J6dg==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=u7YQu/WO3eM+W94Axx2uArQXlfnP7ugStkR0HzuieuI=;
+        b=O9mxZuGxBQeDOutz5w00gArk1DwRjWPniGOOjKmeapgVBf/9Bfn4uxlnr814v6+j+p
+         v1v4BXcLWScRYfwbCeZ3tfmDN+/b8qmUe4wA0Y7/R5ULXEf49DXIq1pDlQpNGzS9QuLg
+         zOIQhbbvtgl0hswdDULZUvjzUWzJOMB53b52kbcwQMPlxvHEHH9nLr0wRrMOwNWYlOfK
+         WzoUGj+jFhIlWljQzSmMpM/Du3nAggktkt1AfyKntjeLi4DSv9D7jrrqqU88APGcSwRe
+         GgTjQUqk8O6vXW6b1Tl8uCb8ZqwtRm+NUhmaxo912MNiSlKGxUyHPCPEFfeRYYF8etBT
+         sPZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RC/waujmzDR6aaO1i7Us/eAJ3rIYO70QGCYk2/l27l4=;
-        b=8RpiVrCAXf3WEIS9n014BaFsI5AVeyKh7oZOQkKkfLPpNKQcWuAiFT0zfOpSrQzeNO
-         fULwEGy3LmpRUuSmszpshlShjAlvQb53ggaDfnM/JIrAQ7O8TA7TG3l9gKi7SxF8SgyM
-         03SQgELtLAoFSajvNvRlrBg0+Xms8DMcp7zKC9kv0GGclyY74Qq46otrJjqr9ZKVYzp3
-         938eSYqwS74Z7UD6dhbcJBJ7QROEit7mMzeVL87iPjkSloZgu8K6Y/Wzq0vrcfsFfktg
-         h5REDoiAIVSYTMPw1TlHITw5PhMLQru7ba+omwtYYKKOBLUP4D8NTwk9nginDKPDsqP/
-         x/ZQ==
-X-Gm-Message-State: AO0yUKUwq2PhFgIu1HMndb+jpm18HKe0BBWhhmx6//G+bs87VWI8NFfJ
-        NVKQZCOdFG3lgw8bJ5j9/NXooQ==
-X-Google-Smtp-Source: AK7set+HjM7/u7nGSanVRFA3UE2vWW8KqzZsfA7RaoTdtFUbko0OLTyEmitcnfANKME1fUsKzxDBCA==
-X-Received: by 2002:a5d:6d4b:0:b0:2bf:f44b:7a28 with SMTP id k11-20020a5d6d4b000000b002bff44b7a28mr4861946wri.29.1675329342542;
-        Thu, 02 Feb 2023 01:15:42 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z14-20020a5d640e000000b002bfb5bda59asm19403954wru.25.2023.02.02.01.15.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 01:15:42 -0800 (PST)
-Message-ID: <ac140660-0df0-8b43-3585-17511a280830@linaro.org>
-Date:   Thu, 2 Feb 2023 10:15:40 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u7YQu/WO3eM+W94Axx2uArQXlfnP7ugStkR0HzuieuI=;
+        b=GKkGXAkUrQAkoPoc0pQOrgMeySqx6kpweACtcuzok9WnKswM0s/BlUZD/pyCqeEZEu
+         quAXZQOJ2XR4nq6/CNNx1qShBFTBa6p3qOI3SmJlX10jnsRNwJ1NYWbj1lA913Cws5nj
+         Mbyp8q22o2ogTtCiZuH573rSez7nQEBG+JLJMuSbekKp4uHqlZ8O3gnSAWJ99CpDc476
+         Q03ppn1Xt6QsPcWENtzpf3SRYDRSSZS4n1IsY9nRn3YOvk/6VKHIxijwvvwqX/6t0xhj
+         1c8R1VzmV6d21uzLNlTcEhXXJXzRGORpXGm3U3U1V2BqyQIVGnd6cbhvyaq6VZYNcIRB
+         cZwg==
+X-Gm-Message-State: AO0yUKVpIkZxWmacP4ZpnCRueTMZip54sGNGhRrxBdtoplrj2IhmuA2m
+        puLlZeQBcrNfmlcFe9cQAfjTEP+c1RltwgOvLGk=
+X-Google-Smtp-Source: AK7set/491DAqjUqdii7EeQPEwXiEjaCYsfj/TOFzJKuhijlTWcyilh8ZJ37x0W4yleGdnWnKgo+L0LsWJ/Q7iM+Gh4=
+X-Received: by 2002:a62:cdcf:0:b0:58b:c6d6:d8fb with SMTP id
+ o198-20020a62cdcf000000b0058bc6d6d8fbmr1230063pfg.15.1675329385132; Thu, 02
+ Feb 2023 01:16:25 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] Fixed the schema binding according to test
-Content-Language: en-US
-To:     Kiseok Jo <kiseok.jo@irondevice.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-References: <20230202090715.18384-1-kiseok.jo@irondevice.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202090715.18384-1-kiseok.jo@irondevice.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230113164449.906002-1-robimarko@gmail.com> <20230113164449.906002-8-robimarko@gmail.com>
+ <7c5dfa87-41df-4ba7-b0e4-72c8386402a8@app.fastmail.com>
+In-Reply-To: <7c5dfa87-41df-4ba7-b0e4-72c8386402a8@app.fastmail.com>
+From:   Robert Marko <robimarko@gmail.com>
+Date:   Thu, 2 Feb 2023 10:16:14 +0100
+Message-ID: <CAOX2RU5Y642gWMSaK6fJ2tz=9N2AO-1fFhL5=wfLeTWWkVjz7Q@mail.gmail.com>
+Subject: Re: [PATCH v2 8/9] arm64: dts: qcom: ipq8074: fix Gen3 PCIe node
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>, bhelgaas@google.com,
+        lpieralisi@kernel.org, Rob Herring <robh@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Manivannan Sadhasivam <mani@kernel.org>, svarbanov@mm-sol.com,
+        shawn.guo@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thank you for your patch. There is something to discuss/improve.
+On Mon, 30 Jan 2023 at 18:11, Arnd Bergmann <arnd@arndb.de> wrote:
+>
+> On Fri, Jan 13, 2023, at 17:44, Robert Marko wrote:
+> > IPQ8074 comes in 2 silicon versions:
+> > * v1 with 2x Gen2 PCIe ports and QMP PHY-s
+> > * v2 with 1x Gen3 and 1x Gen2 PCIe ports and QMP PHY-s
+> >
+> > v2 is the final and production version that is actually supported by the
+> > kernel, however it looks like PCIe related nodes were added for the v1 SoC.
+> >
+> > Finish the PCIe fixup by using the correct compatible, adding missing ATU
+> > register space, declaring max-link-speed, use correct ranges, add missing
+> > clocks and resets.
+> >
+> > Fixes: 33057e1672fe ("ARM: dts: ipq8074: Add pcie nodes")
+> > Signed-off-by: Robert Marko <robimarko@gmail.com>
+>
+> I was reading through the pull request today and saw this patch
+> along with the Gen2 one:
+>
+>
+> > @@ -871,9 +873,9 @@ pcie0: pci@20000000 {
+> >                       phy-names = "pciephy";
+> >
+> >                       ranges = <0x81000000 0 0x20200000 0x20200000
+> > -                               0 0x100000   /* downstream I/O */
+> > +                               0 0x10000>, /* downstream I/O */
+>
+> Fixing the length here seems fine, but the bus-side address
+> still looks wrong: 0x20200000 is way outside of the usual
+> port ranges from 0 to 0x10000 on the local bus.
+>
+> > -                               0x82000000 0 0x20300000 0x20300000
+> > -                               0 0xd00000>; /* non-prefetchable memory */
+> > +                              <0x82000000 0 0x20220000 0x20220000
+> > +                               0 0xfde0000>; /* non-prefetchable memory */
+>
+> I see the total size of the memory space is under 256MB. Are you
+> sure that there is no 64-bit BAR in addition to this?
+>
+> I also see commit 7d1158c984d3 ("arm64: dts: qcom: sm8550: Add
+> PCIe PHYs and controllers nodes") introduce the same broken
+> I/O port range (oversized 1MB space wiht an identity map) for a
+> new SoC. This should probably be fixed as well, along with
+> reviewing the other ones.
+>
+> Has the I/O space mapping on any of these actually been tested,
+> or just copied from one SoC to another? Very few devices actually
+> use I/O space, so it wouldn't be surprising if it never worked
+> in the first place.
 
-On 02/02/2023 10:07, Kiseok Jo wrote:
-> Modified according to the writing-schema.rst file and tested.
+Hi Arnd,
+As pointed out in the commit description, the ranges property was copied
+from the QCA-s downstream 5.4 kernel [1] as I dont have any documentation
+on the SoC.
 
-Use imperative, not past tense (Fixed->Fix, Modified->Modify).
+I have runtime tested this on Xiaomi AX3600 which has a QCA9889 card on the
+Gen3 PCIe port, and on Xiaomi AX9000 which has QCA9889 on Gen2 port
+and QCN9074 on the Gen3 port and they are working fine.
 
-> 
-> Signed-off-by: Kiseok Jo <kiseok.jo@irondevice.com>
+[1] https://git.codelinaro.org/clo/qsdk/oss/kernel/linux-ipq-5.4/-/blob/NHSS.QSDK.12.3.r2/arch/arm64/boot/dts/qcom/ipq8074.dtsi#L834
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching). Therefore it should be:
-"ASoC: dt-bindings: irondevice,sma1303: Rework binding and add missing
-properties"
-
-
-
-> ---
->  .../bindings/sound/irondevice,sma1303.yaml    | 46 +++++++++++++++++--
->  1 file changed, 43 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml b/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
-> index 162c52606635..35d9a046ef75 100644
-> --- a/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
-> +++ b/Documentation/devicetree/bindings/sound/irondevice,sma1303.yaml
-> @@ -10,22 +10,62 @@ maintainers:
->    - Kiseok Jo <kiseok.jo@irondevice.com>
->  
->  description:
-> -  SMA1303 digital class-D audio amplifier with an integrated boost converter.
-> +  SMA1303 digital class-D audio amplifier
-> +  with an integrated boost converter.
->  
->  allOf:
-> -  - $ref: name-prefix.yaml#
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - irondevice,sma1303
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#sound-dai-cells':
-> +    const: 1
-> +
-> +  i2c-retry:
-> +    description: number of retries for I2C regmap.
-
-Why do you need this? Why this fits the purpose of DT (or IOW why this
-differs between boards)?
-
-> +    maximum: 49
-> +    default: 3
-> +
-> +  tdm-slot-rx:
-> +    description: set the tdm rx start slot.
-
-Aren't you now re-writing dai-tdm-slot-rx-mask property? Same for tx below.
-
-
-> +    maximum: 7
-> +    default: 0
-> +
-> +  tdm-slot-tx:
-> +    description: set the tdm tx start slot.
-> +    maximum: 7
-> +    default: 0
-> +
-> +  sys-clk-id:
-> +    description: select the using system clock.
-
-What does it mean? Why do you need such property instead of clocks?
-
-> +    default: 3
->  
->  required:
->    - compatible
->    - reg
-> +  - '#sound-dai-cells'
->  
-
-Best regards,
-Krzysztof
-
+Regards,
+Robert
+>
+>        Arnd
