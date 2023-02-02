@@ -2,165 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C52616884E6
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 17:57:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A4C0688567
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 18:31:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231775AbjBBQ5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 11:57:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33370 "EHLO
+        id S231510AbjBBRbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 12:31:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjBBQ47 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 11:56:59 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABE7665EF4;
-        Thu,  2 Feb 2023 08:56:58 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6488FB82746;
-        Thu,  2 Feb 2023 16:56:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8122BC433D2;
-        Thu,  2 Feb 2023 16:56:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675357016;
-        bh=Gvq02b9P/lXWWu1impdnZP8MBf9Vgtl3EK37Xtq1PQY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=g6munLSfCJTT/MJhvhOdAaWevLr6cf8ENrbjUT7sQ2y3l4t+9YxjG+959fqA1goDb
-         7HGK5SiYdhXksOCUMVmtkvPVGtXMvZy6GGdG8jBdS4nKgLgF4eEulQVO7Z0IelXdot
-         FoLevu/DV84ngi/wlAavP2+wOu9qRxA85iq/G485Ekuh3zvPns9M+jiKwLHM0yicKP
-         7rFr+nvh0LU2E1Zj5EW2BVQc8n+pTlnhUWKMWUC8TSCKMjwZbLJhtlmIMB6ktEjxrl
-         9H5HvWSkX5a3cdAg9SRrsDjmB0UJ0uwQXegFNSJlpfHbrnV4pVRLfYnOhBRprdKkYE
-         cPXI8tddOUi2Q==
-Date:   Thu, 2 Feb 2023 17:10:52 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S231712AbjBBRbH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 12:31:07 -0500
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982BF6E424;
+        Thu,  2 Feb 2023 09:31:03 -0800 (PST)
+Received: from g550jk.localnet (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 9589FCD5C6;
+        Thu,  2 Feb 2023 17:31:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1675359061; bh=0eZaB2Z6pp9+ZJxkb/c8fWlD+Xrf4XZo1SLRMLsglys=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=ebC0Zzh1lLyL079pX/RhFRSVn2M5hRnBTUav4w7mThX21GdtLr08DDxkwPGX12CsH
+         DSdn71JLhkXMCWCbXPIyiFodbdh9X8B+c4RtYwPnrly/hyCxG9Lpgo2TMWC2GUlozw
+         C449PAl9K1b9rsKoEXS4CMCnd8KLsbhATupRGvFU=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: add missing vref-supply
-Message-ID: <20230202171052.502ec666@jic23-huawei>
-In-Reply-To: <20230201121343.vk2t2dfpbvhflols@pengutronix.de>
-References: <20230131101323.606931-1-alexander.stein@ew.tq-group.com>
-        <20230131104816.w5sfpcdjulr2ogze@pengutronix.de>
-        <1850476.tdWV9SEqCh@steina-w>
-        <20230201121343.vk2t2dfpbvhflols@pengutronix.de>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
+        Stephan Gerhold <stephan@gerhold.net>,
+        Vinod Koul <vkoul@kernel.org>,
+        Vladimir Lypak <vladimir.lypak@gmail.com>,
+        Iskren Chernev <me@iskren.info>, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 01/10] dt-bindings: pinctrl: qcom,msm8226: correct GPIO name
+ pattern
+Date:   Thu, 02 Feb 2023 18:31:00 +0100
+Message-ID: <1772950.3VsfAaAtOV@z3ntu.xyz>
+In-Reply-To: <20230202104452.299048-2-krzysztof.kozlowski@linaro.org>
+References: <20230202104452.299048-1-krzysztof.kozlowski@linaro.org>
+ <20230202104452.299048-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 1 Feb 2023 13:13:43 +0100
-Marco Felsch <m.felsch@pengutronix.de> wrote:
-
-> Hi Alexander,
+On Donnerstag, 2. Februar 2023 11:44:43 CET Krzysztof Kozlowski wrote:
+> The MSM8226 TLMM pin controller has GPIOs 0-116, so correct the pattern
+> to bring back missing 107-109.
 > 
-> On 23-01-31, Alexander Stein wrote:
-> > Hi Marco,
-> > 
-> > thanks for the feedback.
-> > 
-> > Am Dienstag, 31. Januar 2023, 11:48:16 CET schrieb Marco Felsch:  
-> > > Hi Alexander,
-> > > 
-> > > On 23-01-31, Alexander Stein wrote:  
-> > > > Although this property is used right now for IIO_CHAN_INFO_SCALE,
-> > > > this ADC has two internal reference voltages, which the driver currently
-> > > > doesn't make use of.
-> > > > 
-> > > > Fixes: db73419d8c06 ("dt-bindings: iio: adc: Add binding documentation for
-> > > > NXP IMX8QXP ADC") Signed-off-by: Alexander Stein
-> > > > <alexander.stein@ew.tq-group.com>
-> > > > ---
-> > > > 
-> > > >  .../devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml          | 4 ++++
-> > > >  1 file changed, 4 insertions(+)
-> > > > 
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> > > > b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml index
-> > > > 63369ba388e4..879768af0303 100644
-> > > > --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> > > > +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> > > > 
-> > > > @@ -39,6 +39,9 @@ properties:
-> > > >    power-domains:
-> > > >      maxItems: 1
-> > > > 
-> > > > +  vref-supply:
-> > > > +    description: External ADC reference voltage supply on VREFH pad.  
-> > > 
-> > > Please add it to the list of required properties, we can remove it as
-> > > soon as the driver has support for the internal reference voltages.  
-> > 
-> > I was thinking in doing so before as well. But DT describes the hardware, and 
-> > this ADC apparently would be functioning without a reference voltage on that 
-> > pad, using a different one. What the driver actual does is a different matter.  
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: Luca Weiss <luca@z3ntu.xyz>
+
+> ---
+>  .../devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml       | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> I have also thought about it first but than I checked the RM which says
-> that "multi-reference selection" is chip dependent.
+> diff --git
+> a/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
+> b/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml index
+> a29b8a9e1f31..6cb667fa8665 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
+> @@ -56,7 +56,7 @@ $defs:
+>            subnode.
+>          items:
+>            oneOf:
+> -            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-1][0-6])$"
+> +            - pattern: "^gpio([0-9]|[1-9][0-9]|10[0-9]|11[0-6])$"
+>              - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd,
+> sdc2_data ] minItems: 1
+>          maxItems: 36
 
-Oh goody. So is it detectable?
-
-If we are going to stick to a single compatible rather than adding them for
-the variants with and without this feature, should probably add a note at least
-to say it is required for some parts.
-
-Also, link if public would be good for purposes of discussion as my google
-fu didn't find relevant doc. (assuming it's public)
 
 
-Jonathan
-
-
-> 
-> Regards,
->   Marco
-> 
-> 
-> > 
-> > Best regards,
-> > Alexander
-> >   
-> > > Regards,
-> > >   Marco
-> > >   
-> > > > +
-> > > > 
-> > > >    "#io-channel-cells":
-> > > >      const: 1
-> > > > 
-> > > > @@ -72,6 +75,7 @@ examples:
-> > > >              assigned-clocks = <&clk IMX_SC_R_ADC_0>;
-> > > >              assigned-clock-rates = <24000000>;
-> > > >              power-domains = <&pd IMX_SC_R_ADC_0>;
-> > > > 
-> > > > +            vref-supply = <&reg_1v8>;
-> > > > 
-> > > >              #io-channel-cells = <1>;
-> > > >          
-> > > >          };
-> > > >      
-> > > >      };  
-> > 
-> > 
-> > 
-> > 
-> >   
 
