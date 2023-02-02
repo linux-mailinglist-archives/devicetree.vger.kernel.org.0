@@ -2,58 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2C36688117
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 16:07:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D0F3688159
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 16:12:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231245AbjBBPG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 10:06:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48308 "EHLO
+        id S229801AbjBBPMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 10:12:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231860AbjBBPG6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 10:06:58 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6711241081
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 07:06:50 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1pNbAf-0008BG-UJ; Thu, 02 Feb 2023 16:06:41 +0100
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:fff9:bfd9:c514:9ad9])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 7C23B16D6AE;
-        Thu,  2 Feb 2023 15:06:40 +0000 (UTC)
-Date:   Thu, 2 Feb 2023 16:06:32 +0100
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        with ESMTP id S232066AbjBBPMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 10:12:45 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32E0592EDE;
+        Thu,  2 Feb 2023 07:12:16 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6C7DB61BAC;
+        Thu,  2 Feb 2023 15:12:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C732AC433D2;
+        Thu,  2 Feb 2023 15:12:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675350729;
+        bh=FADAJ7fzOlAj6IlWfkCJlp2pM9Mc7N/7WkC1EFkVr6E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=D+JWXkktcZdpk+sJtWfWAUm/6ii8C9Z6B0+YMXdmxO+2q0Tv7ih8mv2D40/kIAaF3
+         GGv/znKepBtd8jW7asVpLY7ZPIhbREaNIuaT9ydleVbx+itZqwa6BPiOXdtY8w3raO
+         EmQT+3Dv7RBhD/4FwSn3qyntQU0U+WCxXa7ima3A8xoYNPjXQb7/GsL6eoTZAvTKtu
+         bT+vzQkcLpvVtyuBClIPmNb7Xyzrk+e/lmgqyjT3MCdEM1UpZCyH8UvSpTMqCyiA/Q
+         GSJLSGscUgYl0siR5b0oFIRalHhMKqBW0Ewl+LWa1UpBPKQQtbTzqXcL6XKHZKeZfi
+         jRF1g5Dijx9gA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1pNbGL-0003yq-C3; Thu, 02 Feb 2023 16:12:34 +0100
+Date:   Thu, 2 Feb 2023 16:12:33 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, Vinod <vkoul@kernel.org>
-Subject: Re: [PATCH 12/12] can: rcar_canfd: Add transceiver support
-Message-ID: <20230202150632.oo57ap7bdapsvrum@pengutronix.de>
-References: <cover.1674499048.git.geert+renesas@glider.be>
- <e825b50a843ffe40e33f34e4d858c07c1b2ff259.1674499048.git.geert+renesas@glider.be>
- <CAMuHMdXtiC-Oo01Y-vCbokjF=L+YXMN=TucgqCS4Vtcg5gt==g@mail.gmail.com>
- <20230202144000.2qvtnorgig52jfhw@pengutronix.de>
- <CAMuHMdUm+ExFCspjk6OO3pvZ-mW8dOiZe7bS2r-ys0S=CBAT-Q@mail.gmail.com>
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 16/24] rtc: pm8xxx: add support for nvmem offset
+Message-ID: <Y9vS4TpVHDnGN0G/@hovoldconsulting.com>
+References: <20230126142057.25715-1-johan+linaro@kernel.org>
+ <20230126142057.25715-17-johan+linaro@kernel.org>
+ <Y9PpQkW3Rtm+bi2V@mail.local>
+ <Y9Py/+GpI8x8ldDG@hovoldconsulting.com>
+ <Y9P2L9sNiHIZt3On@mail.local>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ysn2wruqisnvr6g6"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdUm+ExFCspjk6OO3pvZ-mW8dOiZe7bS2r-ys0S=CBAT-Q@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+In-Reply-To: <Y9P2L9sNiHIZt3On@mail.local>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,51 +67,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 27, 2023 at 05:05:03PM +0100, Alexandre Belloni wrote:
+> On 27/01/2023 16:51:27+0100, Johan Hovold wrote:
 
---ysn2wruqisnvr6g6
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> > > > @@ -380,9 +478,23 @@ static int pm8xxx_rtc_probe(struct platform_device *pdev)
+> > > >  	rtc_dd->allow_set_time = of_property_read_bool(pdev->dev.of_node,
+> > > >  						      "allow-set-time");
+> > > >  
+> > > > +	rtc_dd->nvmem_cell = devm_nvmem_cell_get(&pdev->dev, "offset");
+> > > 
+> > > Maybe we should get something more specific than just "offset" so this
+> > > could be parsed in the RTC core at some point (this is the second RTC to
+> > > behave like this)
+> > 
+> > Yes, that thought crossed my mind, but it's an nvmem cell name (label)
+> > and not a generic devicetree property. If you look at the binding
+> > document I think the name makes sense given the current description, and
+> > I'm not sure changing to something like 'base' would be much of an
+> > improvement.
+> > 
+> > I also don't expect there to be more broken RTCs out there like these
+> > ones. Hopefully Qualcomm will even get this fixed at some point
+> > themselves.
+> > 
+> > And I assume you were think of the old Atmel driver which uses a timer
+> > counter and a scratch register as a base? That one is also a bit
+> > different in that the timer can be reset, just not set.
+> 
+> Nope, I'm thinking about the gamecube one and probably the nintendo
+> switch one which seems to behave similarly (no driver in the kernel
+> though).
 
-On 02.02.2023 15:53:08, Geert Uytterhoeven wrote:
-> > > > This depends on "[PATCH 1/7] phy: Add devm_of_phy_optional_get() he=
-lper".
-> > > > https://lore.kernel.org/all/f53a1bcca637ceeafb04ce3540a605532d3bc34=
-a.1674036164.git.geert+renesas@glider.be
-> > >
-> > > v2: "[PATCH v2 3/9] phy: Add devm_of_phy_optional_get() helper"
-> > >     https://lore.kernel.org/all/4cd0069bcff424ffc5c3a102397c02370b919=
-85b.1674584626.git.geert+renesas@glider.be
-> > >
-> > > I'll keep you updated when/if this ends up on an immutable branch.
-> >
-> > Should I take the patches 1...11 for can-next/main?
->=20
-> That would be great, thanks!
+Found the gamecube one now (misread you comment above to imply that it
+was also out of tree).
 
-Done.
+That one is also different in that the timer in that RTC can also be
+set (e.g. like the atmel one), but for consistency with some firmware an
+offset also needs to be read from SRAM (not NVRAM) and applied. That
+offset is also never updated by Linux.
 
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---ysn2wruqisnvr6g6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmPb0XUACgkQvlAcSiqK
-BOiYSQf/dww3uYISi+pDI+cb5AR/nPAOePMdK4fmnzb4rD6krh1kz+qtMw8m/9SL
-bIoNHUiKaMaa++egDvkujwG93Fj47mHpHo4vtgaLxQ6GbQDM4MJnsY7/b+ep0JJ3
-NfNR+sooJ/dBPtKKOgQsvKGL0gl8BOu7dAMDyc4mIZzLUpoHL8jakOxNJ1NVzPOj
-SpqcqQVSQyQiqzk+qXiFApfcy8M2Az+wqmAbdmzJlAVqkKZn7DQm6tF7VeifPjY2
-sNF+n2d798m1Yh30NI/qyApZArlNBPnwx81DXdh0FgsAoXtz7lWnVvHouzrl2Pwn
-RApokq2V0zAC1/ujdzSOuWi/4pJazg==
-=x3zi
------END PGP SIGNATURE-----
-
---ysn2wruqisnvr6g6--
+Johan
