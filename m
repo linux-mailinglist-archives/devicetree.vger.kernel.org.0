@@ -2,104 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3E19687F10
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 14:47:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D3C6687F18
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 14:48:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232265AbjBBNrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 08:47:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43812 "EHLO
+        id S232124AbjBBNs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 08:48:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232084AbjBBNrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 08:47:37 -0500
-Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com [IPv6:2607:f8b0:4864:20::a2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E1DF8FB6E
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 05:47:22 -0800 (PST)
-Received: by mail-vk1-xa2a.google.com with SMTP id q76so893264vkb.4
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 05:47:22 -0800 (PST)
+        with ESMTP id S232365AbjBBNsx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 08:48:53 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D5506B379
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 05:48:47 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso1437760wms.3
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 05:48:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=j4oCXdup8n6v8+NV1Y2tr9d5t5xzk71vogTRfgmjQAo=;
-        b=1e4Nqng+igmZ/sjJvxRnooaGcY+pPB2sg/FxoprfRpsjC5cQW8IZFzHDJJAbwwaY78
-         4NplP5dAh0zX4BcyTqf6pG1twOZPFll0xuyW6ikhN3RiLlVbWs/ko8SgrK7gGN1v49TS
-         trjUctTtWZ+98Uvm6w1ywzwfQOAmW2FspORdBESQdAYv3+WOuPD3Ckw5HjqNggqJiLO0
-         aTot93GIXsE/VprawkW07yqvz7UdANVnaDD8sMdpwKSHByyF/ittLdo3AAu6ws3Zbgoc
-         lejTDW61JzTbRqsDEyRipHtceS0DhEdebaVBX89rgNnj9qIlb9HG8r8W14q9JJlvQdGz
-         aYvg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FXWkxe4SGYrdicnMh5rkVUAJtMp3X+h/Oh/J72q42w0=;
+        b=sL1zkrAXk1PUP45V9lsSyfUIb9FI/G82o0YOI8DfymdoiDWWlZI39mZj1E7vnnFJlJ
+         lWt16Ad6v8uDpp/A0fr/JwOPI0HuXwYxXi1TzvyWVpsGNN2ao6z5ocXJOM6OfGwZOwOU
+         LDR8GDczMOk3xzd2XY6W/IUjEQFs/w2U9yXUYeEqWx5npX4NDt+SoFdeJgvxVH1h03F1
+         vWSqiuTFc5dX9DQORX/rKBrLdjkxNac8gjhEYJbeJGKnvoQXGj3PpKc9gEca3yRJ6ZFt
+         sPG8XJZzjrrvVeo/1y8rUnmSU/hjk8eaGmUtRfn/d3bKFalU8FMhNzyIvYNxP0L5PNOi
+         v1Aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j4oCXdup8n6v8+NV1Y2tr9d5t5xzk71vogTRfgmjQAo=;
-        b=Z67lQB0O7Q71tJl6YeO6s6ulc/WnGpAjX8aQJ9IuIMwNUHPEnTp70GZbUSHp3+9NiG
-         hPiEMCiGGTTHObgOX4q61AxxL9H1SIqY9lmyHkn7oaZLd8LeedlwPWiWcLtcXgS43tU3
-         Ch9O1cECr0qD1sKZqtx2tUr5JmkgeUrIjMFwlrgW/Xknd/HWoZ2kJRwsDhF0+HPImq4u
-         3AFaNaE0HbgX0G7DpK0/uI7rmYjZj/+LHeDHANLTT0lWzFqFDJhP6k68NW/3hnPGD3NP
-         g/QkEDNk3TMcuSiOoq4uFcH5jvsUVS1JOA1b40pxFpKvRXh/l0Oi0FSQmQgBqMcPuGU6
-         GnMA==
-X-Gm-Message-State: AO0yUKUHoRY3YSGZIhTKOtqjJWMLJf9h1/yeOHhRBwOYgIw67A6UuNYv
-        0vhrJNPKaz19Fek5VOgVkqN3FMfz7uyZV8n1n5S/LQ==
-X-Google-Smtp-Source: AK7set9hPhIWcpZYmygU9JQRV/1iD1bXGVCi4ox3CXAnd/nPJK3j3mhMIvfPBqdsldpRjnsmjXk2Q0qfO2TpUHdjtcE=
-X-Received: by 2002:a05:6122:1688:b0:3e1:db78:6cd9 with SMTP id
- 8-20020a056122168800b003e1db786cd9mr909715vkl.25.1675345641149; Thu, 02 Feb
- 2023 05:47:21 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FXWkxe4SGYrdicnMh5rkVUAJtMp3X+h/Oh/J72q42w0=;
+        b=YmALo4aho7DHl71W8AztIC5b4N4HwpcF4lnAXu9Sad1ALm/Ip3lTKSjkUd2Jl1wIbe
+         vIRUJhjlF6a9Ubpy98wLUC+i9WdSyKoma8ZNi9uE1NKrwbiUkd3QUShdfFagE9VJj0RR
+         m1wq9UL8tUdpTcvJa2K+0u5s/6+Us+yzXuzml1pb8UP3hsWAbXNhOkJVw6O4JSCIza/h
+         nsBrBX7fjcACIPkGeXltb8VfyxNTbhQkS59JxfIFwWKRmmNxtej4nVU+sN7q6/PApwCE
+         J1UxDMYIVdYFz6s4/VF07t3KuvVRn75NLeGOCulzMD+lp/ZOjba6Zcth5Po4njlq4iVb
+         1OTA==
+X-Gm-Message-State: AO0yUKVN27efEVGHkzFLKxyqfRkgj2G0DbFxO8pKki+1j9KzDJjvopif
+        VXP6etDlK5IDDGOQqwRr/20QmA==
+X-Google-Smtp-Source: AK7set+Zr97degZEX4dpQhdLC+wc8OxR5OxdmJYt+sL3wkIkp9CvXbAznlZpl1Lvqi1NhPwG6EYcXA==
+X-Received: by 2002:a05:600c:3ba5:b0:3d3:4007:9c88 with SMTP id n37-20020a05600c3ba500b003d340079c88mr6646078wms.18.1675345726237;
+        Thu, 02 Feb 2023 05:48:46 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id k24-20020a05600c0b5800b003cfa622a18asm4867041wmr.3.2023.02.02.05.48.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Feb 2023 05:48:45 -0800 (PST)
+Message-ID: <963e3b8c-16a5-76d6-7810-d56ed548ebfa@linaro.org>
+Date:   Thu, 2 Feb 2023 14:48:44 +0100
 MIME-Version: 1.0
-References: <20230201150011.200613-1-brgl@bgdev.pl> <CACRpkdYEQkxEJ23Xt4hjwu3Jxct-QXZktdzze5Pf6SBNYj80Fg@mail.gmail.com>
- <CAMRc=MdDwSi+DDJmn3Yrnh5m8EK5EJEfLrejXHN0+0k41DKx3w@mail.gmail.com> <CACRpkdbLjcGUvycX9p=hYjMwS6UJOkUTOJvbEcNtddx5mnbSuQ@mail.gmail.com>
-In-Reply-To: <CACRpkdbLjcGUvycX9p=hYjMwS6UJOkUTOJvbEcNtddx5mnbSuQ@mail.gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Thu, 2 Feb 2023 14:47:10 +0100
-Message-ID: <CAMRc=Me2wQTvx83nZSuaiagO3Z02Q55p6u1pXKnx9LkF10OY1g@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] pinctrl: qcom: add dt-bindings and driver for sa8775p-tlmm
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] dt-bindings: watchdog: qcom-wdt: add the interrupts
+ property
+Content-Language: en-US
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230130134328.178591-1-brgl@bgdev.pl>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230130134328.178591-1-brgl@bgdev.pl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 2, 2023 at 1:54 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Thu, Feb 2, 2023 at 9:25 AM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
-> > On Wed, Feb 1, 2023 at 11:46 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > >
-> > > On Wed, Feb 1, 2023 at 4:00 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
-> > >
-> > > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > > >
-> > > > This series contains the device-tree bindings and the pinctrl driver for the
-> > > > SA8775P platforms.
-> > > >
-> > > > v2 -> v3 (Changes in DT bindings only)
-> > > > - fix the gpio pattern property (platform has 148 GPIOs)
-> > > > - add blank lines for better readability
-> > >
-> > > v3 patch set applied, fixing the 149->148 number in the example
-> > > in patch 1!
-> > >
-> >
-> > Thanks! Seems like only patch 1/2 got into your branch?
->
-> That's confusing, it looks to me like they are both there?
-> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=devel
->
-> Isn't "pinctrl: qcom: add the tlmm driver sa8775p platforms" patch 2/2?
->
+On 30/01/2023 14:43, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> The interrupts property is used in all nodes using this binding but not
+> defined in the document itself - hence dtbs_check fails for them. Add
+> the property and update the example.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  .../devicetree/bindings/watchdog/qcom-wdt.yaml        | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 
-Strange, didn't see it there before. Anyway, thanks a lot!
+dfn in lore would save you some effort (or my pending branch which I
+shared on IRC):
 
-Bart
+https://lore.kernel.org/all/20230113103346.29381-6-krzysztof.kozlowski@linaro.org/
+
+Best regards,
+Krzysztof
+
