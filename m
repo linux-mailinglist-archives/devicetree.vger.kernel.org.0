@@ -2,353 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82734687388
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 04:01:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5A316873CF
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 04:27:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231434AbjBBDBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Feb 2023 22:01:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40528 "EHLO
+        id S230347AbjBBD1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Feb 2023 22:27:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231646AbjBBDBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 22:01:15 -0500
-Received: from out28-193.mail.aliyun.com (out28-193.mail.aliyun.com [115.124.28.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 575BA78AC4;
-        Wed,  1 Feb 2023 19:01:10 -0800 (PST)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436316|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00946298-0.254234-0.736303;FP=17941338626237517524|1|1|10|0|-1|-1|-1;HT=ay29a033018047208;MF=frank.sae@motor-comm.com;NM=1;PH=DS;RN=18;RT=18;SR=0;TI=SMTPD_---.R7sRqoM_1675306865;
-Received: from sun-VirtualBox..(mailfrom:Frank.Sae@motor-comm.com fp:SMTPD_---.R7sRqoM_1675306865)
-          by smtp.aliyun-inc.com;
-          Thu, 02 Feb 2023 11:01:06 +0800
-From:   Frank Sae <Frank.Sae@motor-comm.com>
-To:     Peter Geis <pgwipeout@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        yanhong.wang@starfivetech.com
-Cc:     xiaogang.fan@motor-comm.com, fei.zhang@motor-comm.com,
-        hua.sun@motor-comm.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Frank <Frank.Sae@motor-comm.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH net-next v5 5/5] net: phy: Add driver for Motorcomm yt8531 gigabit ethernet phy
-Date:   Thu,  2 Feb 2023 11:00:37 +0800
-Message-Id: <20230202030037.9075-6-Frank.Sae@motor-comm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230202030037.9075-1-Frank.Sae@motor-comm.com>
-References: <20230202030037.9075-1-Frank.Sae@motor-comm.com>
+        with ESMTP id S231575AbjBBD1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Feb 2023 22:27:45 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E037A4B3
+        for <devicetree@vger.kernel.org>; Wed,  1 Feb 2023 19:27:41 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id s67so405309pgs.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Feb 2023 19:27:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NEs5w/Zuj5wi2jqaUcX6USJbxYIAIBIiduwj0besJYU=;
+        b=Er9p4ruloeDgtE97PWkkgGUfOMgTWGb33ZGTtzso4x+xbGjyvYTtB3szmIC5iY+gBG
+         UbGbF09HlC+/NT099w43eGqGvM7SaOjhHEx2E+B/4Qo+GJ3uVcOEi+suPTokZ1cjQmJQ
+         RJ9Oo/9PhDsk7TZRoChqnxAAn5ryxPkfP9pALXBwvS5IJjpQPy7t7It5+O/yKXhqZC87
+         dysYwdK1TiMwAqv2CWWfpGVG4lgeJPKyLairBIs9nAkhR5XD8Zaz8Js/V4QwFhexldP/
+         10aqJe4HAkgjE04U4wPDH6KVqghzg9hKbVnVLrnen+qxt96CiPDpj50GrT5iT5t7NWR5
+         SBRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NEs5w/Zuj5wi2jqaUcX6USJbxYIAIBIiduwj0besJYU=;
+        b=ZAvbnM2wFg8l9JfmqjAWj+YrV1LKgMDFmwad0/QBOpfA57QbnoH+FxIRt9qzkAvzBo
+         1XD8RaPlZTh+3LIw8KHsKWg5RyN93PFni7YFast2zFkA+JqVWvD7yUB4QNWF+2P+0h7p
+         SIrY3HrtZhR0fIpdHo2UztcreZRZMdHpZxsMEAX3BpcwTmbcrY5Smr8irHj5gzFLw0uu
+         ebyHxKb2Bd+YoAeODz/18i8ux5dSLf6Qz5sHr+vR/gnCyGfh/iEHIWHJfXMS9DhGsPvH
+         mWIEXE+YFDFNYClayxh+JcoIFpJqVCRhsSW2nXSgB1lI8K3T8AeAQd64XvZibvsBgCY3
+         54ow==
+X-Gm-Message-State: AO0yUKVS3vxKXOnHGsDrQdxRoCq6pXNyGzhMyHTHSGWJYnFeSSVYB7L8
+        fBrsQyZqpcUuTwoY0DNOgDcLuYu4GxqqMaiRwgXUyQ==
+X-Google-Smtp-Source: AK7set822feNK2aygLQhxg0zxiYQdkrAh7n34aKi0XQ7S7HdOj1+Gw0U91RA9yWTIGj9Fw8fujtqKQHV5HIhDmdGVxs=
+X-Received: by 2002:a65:408d:0:b0:4de:7028:d2fc with SMTP id
+ t13-20020a65408d000000b004de7028d2fcmr825133pgp.122.1675308460516; Wed, 01
+ Feb 2023 19:27:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230118091122.2205452-1-dmitry.baryshkov@linaro.org>
+ <CAL_JsqJ=0neiZ4wkPiMqJMT4E1O_xO0uLrTmEGUcnZMqxkw4UQ@mail.gmail.com>
+ <CAGETcx8Xy5OzsbW3123esxsbQJq-SqDkP1S5g2mmwzoCz4shtQ@mail.gmail.com>
+ <20230125190926.GA2697290-robh@kernel.org> <505fc434-c31f-726e-b1cb-0bbfd5f83490@linaro.org>
+ <CAGETcx-f9vy7MDB2vFWP9CL26UY7W65oJArvhzksCu8QG6Y4nw@mail.gmail.com> <CAA8EJpo-mFxq+eGW=YaMxea+zi2Z64QWocuO36aNsM7Wmtu3sA@mail.gmail.com>
+In-Reply-To: <CAA8EJpo-mFxq+eGW=YaMxea+zi2Z64QWocuO36aNsM7Wmtu3sA@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 1 Feb 2023 19:27:03 -0800
+Message-ID: <CAGETcx-koZH3U7fHXErxOHESdvLME1O+2hs2j-OixoYcmmpMgQ@mail.gmail.com>
+Subject: Re: [RESEND PATCH] of: property: do not create clocks device link for
+ clock controllers
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Abel Vesa <abel.vesa@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- Add a driver for the motorcomm yt8531 gigabit ethernet phy. We have
- verified the driver on AM335x platform with yt8531 board. On the
- board, yt8531 gigabit ethernet phy works in utp mode, RGMII
- interface, supports 1000M/100M/10M speeds, and wol(magic package).
+On Fri, Jan 27, 2023 at 8:41 PM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Fri, 27 Jan 2023 at 01:12, Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > On Thu, Jan 26, 2023 at 2:51 PM Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> > >
+> > > On 25/01/2023 21:09, Rob Herring wrote:
+> > > > On Tue, Jan 24, 2023 at 06:12:15PM -0800, Saravana Kannan wrote:
+> > > >> On Wed, Jan 18, 2023 at 5:35 AM Rob Herring <robh+dt@kernel.org> wrote:
+> > > >>>
+> > > >>> On Wed, Jan 18, 2023 at 3:11 AM Dmitry Baryshkov
+> > > >>> <dmitry.baryshkov@linaro.org> wrote:
+> > > >>>>
+> > > >>>> Do not create device link for clock controllers. Some of the clocks
+> > > >>>> provided to the device via OF can be the clocks that are just parents to
+> > > >>>> the clocks provided by this clock controller. Clock subsystem already
+> > > >>>> has support for handling missing clock parents correctly (clock
+> > > >>>> orphans). Later when the parent clock is registered, clocks get
+> > > >>>> populated properly.
+> > > >>>>
+> > > >>>> An example of the system where this matters is the SDM8450 MTP board
+> > > >>>> (see arch/arm64/boot/dts/qcom/sdm845-mtp.dts). Here the dispcc uses
+> > > >>>> clocks provided by dsi0_phy and dsi1_phy device tree nodes. However the
+> > > >>>> dispcc itself provides clocks to both PHYs, to the PHY parent device,
+> > > >>>> etc. With just dsi0_phy in place devlink is able to break the
+> > > >>>> dependency, but with two PHYs, dispcc doesn't get probed at all, thus
+> > > >>>> breaking display support.
+> > > >>>>
+> > > >>>> Cc: Bjorn Andersson <andersson@kernel.org>
+> > > >>>> Cc: Stephen Boyd <sboyd@kernel.org>
+> > > >>>> Cc: Saravana Kannan <saravanak@google.com>
+> > > >>>> Cc: Abel Vesa <abel.vesa@linaro.org>
+> > > >>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > >>>> ---
+> > > >>>>
+> > > >>>> This patch has been posted a year ago in January 2022 ([1]). Since that time
+> > > >>>> Saravana failed to produce patches to assist in debugging the issue
+> > > >>>> ([2]) or to fix the issue ([3]). The issue we observe has been described
+> > > >>>> by Abel at ([4]). As we work on adding support for Dual DSI
+> > > >>>> configurations, the issue becomes more and more important, since binding
+> > > >>>> the whole display subsystem fails.
+> > > >>
+> > > >> I did send out a patch series[1] to try and fix this. Heck I even
+> > > >> talked about this in LPC 2022. So I don't think it's accurate to say I
+> > > >> didn't help debug this or fix this. There's some email thread in lore
+> > > >> where Abel gave more details and I figured out the issue and we didn't
+> > > >> need any more debugging. And then I sent out [1]. Sorry I missed you
+> > > >> in the cc lise for [1] -- I try to keep track of everyone to cc but
+> > > >> things slip through the cracks sometimes. But at the same time, it's
+> > > >> easy to check for emails from me before saying I didn't help or didn't
+> > > >> send out fixes :)
+> > > >>
+> > > >> If you do try to give [1] a shot, there are a bunch of bugs that
+> > > >> people pointed out for which I gave fixes on top of [1] in the
+> > > >> replies. I was supposed to work on v2 over the holidays, but that
+> > > >> didn't happen because of stuff outside my control.
+> > > >>
+> > > >>> That's ample time to fix this, so I intend to apply this. But I'll
+> > > >>> give it a few days for comments.
+> > > >>
+> > > >> Rob, I'd recommend not applying this because it'll fix it for Dmitry
+> > > >> but break someone else's use case. That's the whole reason it takes me
+> > > >> a while to send out patches -- it's easy to fix it for a subset of
+> > > >> devices, but fixing something without breaking someone else is harder
+> > > >> (I still believe it's doable) and it takes a while to test them on all
+> > > >> the devices I want to test before sending them out.
+> > >
+> > > This case is really simple, I think. Clock controllers (and
+> > > clock-core-framework) are prepared to handle clock orphans properly.
+> > > Moreover they have been supposed to work in such way for quite a while.
+> > > In other words, I don't think we should save them from this
+> > > -EPROBE_DEFERRED.
+> >
+> > A clock controller can depend on other clock controllers for non clock
+> > tree reasons. For example, it might need a clock ON to access its
+> > registers. So, while the CCF can handle orphans properly, that's not
+> > the only dependency. Also, fw_devlink is not just about probing
+> > either. It also has to do with proper sync_state() callbacks.
+>
+> Just a question, please excuse if I'm misunderstanding it. Does
+> fw_devlink created this way also impose any runtime PM dependencies?
+>
+> >
+> > Also, I already fixed the issue you are referring to while not
+> > breaking the conditions I'm referring to. So, I don't know why you are
+> > so opposed to that. See Abel's Tested-by here:
+> > https://lore.kernel.org/lkml/YvonlAwXAoXTUTZe@linaro.org/
+> >
+> > > Thus I think it is better to let them continue doing their job of
+> > > handling probe deferrals on their own, at least for the time being.
+> >
+> > I'm pretty sure your patch will break other Qualcomm platforms because
+> > they depend on sync_state() callbacks to boot up properly when
+> > all/most of their drivers are built as modules.
+>
+> Qualcomm platforms did not use sync state for clock controllers. Only
+> for the icc drivers.
+>
+> >
+> > > And
+> > > then, when your patches are finished, we can think about reenabling
+> > > current behaviour. As a reminder, currently, all Qualcomm platforms
+> > > trying to use double DSI configuration are broken and have to use
+> > > fw_devlink= kernel params.
+> >
+> > I'm/was working on sending out the v2 when I got your email. Hold
+> > tight please. It shouldn't take too long.
+>
+> I'll give v2 a test next week, thank you!
 
-Signed-off-by: Frank Sae <Frank.Sae@motor-comm.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
- drivers/net/phy/Kconfig     |   2 +-
- drivers/net/phy/motorcomm.c | 208 +++++++++++++++++++++++++++++++++++-
- 2 files changed, 207 insertions(+), 3 deletions(-)
+Nudge... I rushed out the series for you.
 
-diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-index f5df2edc94a5..54874555c921 100644
---- a/drivers/net/phy/Kconfig
-+++ b/drivers/net/phy/Kconfig
-@@ -257,7 +257,7 @@ config MOTORCOMM_PHY
- 	tristate "Motorcomm PHYs"
- 	help
- 	  Enables support for Motorcomm network PHYs.
--	  Currently supports the YT8511, YT8521, YT8531S Gigabit Ethernet PHYs.
-+	  Currently supports YT85xx Gigabit Ethernet PHYs.
- 
- config NATIONAL_PHY
- 	tristate "National Semiconductor PHYs"
-diff --git a/drivers/net/phy/motorcomm.c b/drivers/net/phy/motorcomm.c
-index bdc6a55d59f1..ee7c37dfdca0 100644
---- a/drivers/net/phy/motorcomm.c
-+++ b/drivers/net/phy/motorcomm.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * Motorcomm 8511/8521/8531S PHY driver.
-+ * Motorcomm 8511/8521/8531/8531S PHY driver.
-  *
-  * Author: Peter Geis <pgwipeout@gmail.com>
-  * Author: Frank <Frank.Sae@motor-comm.com>
-@@ -14,6 +14,7 @@
- 
- #define PHY_ID_YT8511		0x0000010a
- #define PHY_ID_YT8521		0x0000011a
-+#define PHY_ID_YT8531		0x4f51e91b
- #define PHY_ID_YT8531S		0x4f51e91a
- 
- /* YT8521/YT8531S Register Overview
-@@ -517,6 +518,61 @@ static int ytphy_set_wol(struct phy_device *phydev, struct ethtool_wolinfo *wol)
- 	return phy_restore_page(phydev, old_page, ret);
- }
- 
-+static int yt8531_set_wol(struct phy_device *phydev,
-+			  struct ethtool_wolinfo *wol)
-+{
-+	const u16 mac_addr_reg[] = {
-+		YTPHY_WOL_MACADDR2_REG,
-+		YTPHY_WOL_MACADDR1_REG,
-+		YTPHY_WOL_MACADDR0_REG,
-+	};
-+	const u8 *mac_addr;
-+	u16 mask, val;
-+	int ret;
-+	u8 i;
-+
-+	if (wol->wolopts & WAKE_MAGIC) {
-+		mac_addr = phydev->attached_dev->dev_addr;
-+
-+		/* Store the device address for the magic packet */
-+		for (i = 0; i < 3; i++) {
-+			ret = ytphy_write_ext_with_lock(phydev, mac_addr_reg[i],
-+							((mac_addr[i * 2] << 8)) |
-+							(mac_addr[i * 2 + 1]));
-+			if (ret < 0)
-+				return ret;
-+		}
-+
-+		/* Enable WOL feature */
-+		mask = YTPHY_WCR_PULSE_WIDTH_MASK | YTPHY_WCR_INTR_SEL;
-+		val = YTPHY_WCR_ENABLE | YTPHY_WCR_INTR_SEL;
-+		val |= YTPHY_WCR_TYPE_PULSE | YTPHY_WCR_PULSE_WIDTH_672MS;
-+		ret = ytphy_modify_ext_with_lock(phydev, YTPHY_WOL_CONFIG_REG,
-+						 mask, val);
-+		if (ret < 0)
-+			return ret;
-+
-+		/* Enable WOL interrupt */
-+		ret = phy_modify(phydev, YTPHY_INTERRUPT_ENABLE_REG, 0,
-+				 YTPHY_IER_WOL);
-+		if (ret < 0)
-+			return ret;
-+	} else {
-+		/* Disable WOL feature */
-+		mask = YTPHY_WCR_ENABLE | YTPHY_WCR_INTR_SEL;
-+		ret = ytphy_modify_ext_with_lock(phydev, YTPHY_WOL_CONFIG_REG,
-+						 mask, 0);
-+
-+		/* Disable WOL interrupt */
-+		ret = phy_modify(phydev, YTPHY_INTERRUPT_ENABLE_REG,
-+				 YTPHY_IER_WOL, 0);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int yt8511_read_page(struct phy_device *phydev)
- {
- 	return __phy_read(phydev, YT8511_PAGE_SELECT);
-@@ -767,6 +823,17 @@ static int ytphy_rgmii_clk_delay_config(struct phy_device *phydev)
- 	return ytphy_modify_ext(phydev, YT8521_RGMII_CONFIG1_REG, mask, val);
- }
- 
-+static int ytphy_rgmii_clk_delay_config_with_lock(struct phy_device *phydev)
-+{
-+	int ret;
-+
-+	phy_lock_mdio_bus(phydev);
-+	ret = ytphy_rgmii_clk_delay_config(phydev);
-+	phy_unlock_mdio_bus(phydev);
-+
-+	return ret;
-+}
-+
- /**
-  * yt8521_probe() - read chip config then set suitable polling_mode
-  * @phydev: a pointer to a &struct phy_device
-@@ -891,6 +958,43 @@ static int yt8521_probe(struct phy_device *phydev)
- 					  val);
- }
- 
-+static int yt8531_probe(struct phy_device *phydev)
-+{
-+	struct device_node *node = phydev->mdio.dev.of_node;
-+	u16 mask, val;
-+	u32 freq;
-+
-+	if (of_property_read_u32(node, "motorcomm,clk-out-frequency-hz", &freq))
-+		freq = YTPHY_DTS_OUTPUT_CLK_DIS;
-+
-+	switch (freq) {
-+	case YTPHY_DTS_OUTPUT_CLK_DIS:
-+		mask = YT8531_SCR_SYNCE_ENABLE;
-+		val = 0;
-+		break;
-+	case YTPHY_DTS_OUTPUT_CLK_25M:
-+		mask = YT8531_SCR_SYNCE_ENABLE | YT8531_SCR_CLK_SRC_MASK |
-+		       YT8531_SCR_CLK_FRE_SEL_125M;
-+		val = YT8531_SCR_SYNCE_ENABLE |
-+		      FIELD_PREP(YT8531_SCR_CLK_SRC_MASK,
-+				 YT8531_SCR_CLK_SRC_REF_25M);
-+		break;
-+	case YTPHY_DTS_OUTPUT_CLK_125M:
-+		mask = YT8531_SCR_SYNCE_ENABLE | YT8531_SCR_CLK_SRC_MASK |
-+		       YT8531_SCR_CLK_FRE_SEL_125M;
-+		val = YT8531_SCR_SYNCE_ENABLE | YT8531_SCR_CLK_FRE_SEL_125M |
-+		      FIELD_PREP(YT8531_SCR_CLK_SRC_MASK,
-+				 YT8531_SCR_CLK_SRC_PLL_125M);
-+		break;
-+	default:
-+		phydev_warn(phydev, "Freq err:%u\n", freq);
-+		return -EINVAL;
-+	}
-+
-+	return ytphy_modify_ext_with_lock(phydev, YTPHY_SYNCE_CFG_REG, mask,
-+					  val);
-+}
-+
- /**
-  * ytphy_utp_read_lpa() - read LPA then setup lp_advertising for utp
-  * @phydev: a pointer to a &struct phy_device
-@@ -1387,6 +1491,94 @@ static int yt8521_config_init(struct phy_device *phydev)
- 	return phy_restore_page(phydev, old_page, ret);
- }
- 
-+static int yt8531_config_init(struct phy_device *phydev)
-+{
-+	struct device_node *node = phydev->mdio.dev.of_node;
-+	int ret;
-+
-+	ret = ytphy_rgmii_clk_delay_config_with_lock(phydev);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (of_property_read_bool(node, "motorcomm,auto-sleep-disabled")) {
-+		/* disable auto sleep */
-+		ret = ytphy_modify_ext_with_lock(phydev,
-+						 YT8521_EXTREG_SLEEP_CONTROL1_REG,
-+						 YT8521_ESC1R_SLEEP_SW, 0);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	if (of_property_read_bool(node, "motorcomm,keep-pll-enabled")) {
-+		/* enable RXC clock when no wire plug */
-+		ret = ytphy_modify_ext_with_lock(phydev,
-+						 YT8521_CLOCK_GATING_REG,
-+						 YT8521_CGR_RX_CLK_EN, 0);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+/**
-+ * yt8531_link_change_notify() - Adjust the tx clock direction according to
-+ * the current speed and dts config.
-+ * @phydev: a pointer to a &struct phy_device
-+ *
-+ * NOTE: This function is only used to adapt to VF2 with JH7110 SoC. Please
-+ * keep "motorcomm,tx-clk-adj-enabled" not exist in dts when the soc is not
-+ * JH7110.
-+ */
-+static void yt8531_link_change_notify(struct phy_device *phydev)
-+{
-+	struct device_node *node = phydev->mdio.dev.of_node;
-+	bool tx_clk_adj_enabled = false;
-+	bool tx_clk_1000_inverted;
-+	bool tx_clk_100_inverted;
-+	bool tx_clk_10_inverted;
-+	u16 val = 0;
-+	int ret;
-+
-+	if (of_property_read_bool(node, "motorcomm,tx-clk-adj-enabled"))
-+		tx_clk_adj_enabled = true;
-+
-+	if (!tx_clk_adj_enabled)
-+		return;
-+
-+	if (of_property_read_bool(node, "motorcomm,tx-clk-10-inverted"))
-+		tx_clk_10_inverted = true;
-+	if (of_property_read_bool(node, "motorcomm,tx-clk-100-inverted"))
-+		tx_clk_100_inverted = true;
-+	if (of_property_read_bool(node, "motorcomm,tx-clk-1000-inverted"))
-+		tx_clk_1000_inverted = true;
-+
-+	if (phydev->speed < 0)
-+		return;
-+
-+	switch (phydev->speed) {
-+	case SPEED_1000:
-+		if (tx_clk_1000_inverted)
-+			val = YT8521_RC1R_TX_CLK_SEL_INVERTED;
-+		break;
-+	case SPEED_100:
-+		if (tx_clk_100_inverted)
-+			val = YT8521_RC1R_TX_CLK_SEL_INVERTED;
-+		break;
-+	case SPEED_10:
-+		if (tx_clk_10_inverted)
-+			val = YT8521_RC1R_TX_CLK_SEL_INVERTED;
-+		break;
-+	default:
-+		return;
-+	}
-+
-+	ret = ytphy_modify_ext_with_lock(phydev, YT8521_RGMII_CONFIG1_REG,
-+					 YT8521_RC1R_TX_CLK_SEL_INVERTED, val);
-+	if (ret < 0)
-+		phydev_warn(phydev, "Modify TX_CLK_SEL err:%d\n", ret);
-+}
-+
- /**
-  * yt8521_prepare_fiber_features() -  A small helper function that setup
-  * fiber's features.
-@@ -1969,6 +2161,17 @@ static struct phy_driver motorcomm_phy_drvs[] = {
- 		.suspend	= yt8521_suspend,
- 		.resume		= yt8521_resume,
- 	},
-+	{
-+		PHY_ID_MATCH_EXACT(PHY_ID_YT8531),
-+		.name		= "YT8531 Gigabit Ethernet",
-+		.probe		= yt8531_probe,
-+		.config_init	= yt8531_config_init,
-+		.suspend	= genphy_suspend,
-+		.resume		= genphy_resume,
-+		.get_wol	= ytphy_get_wol,
-+		.set_wol	= yt8531_set_wol,
-+		.link_change_notify = yt8531_link_change_notify,
-+	},
- 	{
- 		PHY_ID_MATCH_EXACT(PHY_ID_YT8531S),
- 		.name		= "YT8531S Gigabit Ethernet",
-@@ -1990,7 +2193,7 @@ static struct phy_driver motorcomm_phy_drvs[] = {
- 
- module_phy_driver(motorcomm_phy_drvs);
- 
--MODULE_DESCRIPTION("Motorcomm 8511/8521/8531S PHY driver");
-+MODULE_DESCRIPTION("Motorcomm 8511/8521/8531/8531S PHY driver");
- MODULE_AUTHOR("Peter Geis");
- MODULE_AUTHOR("Frank");
- MODULE_LICENSE("GPL");
-@@ -1998,6 +2201,7 @@ MODULE_LICENSE("GPL");
- static const struct mdio_device_id __maybe_unused motorcomm_tbl[] = {
- 	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8511) },
- 	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8521) },
-+	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8531) },
- 	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8531S) },
- 	{ /* sentinel */ }
- };
--- 
-2.34.1
-
+-Saravana
