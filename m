@@ -2,150 +2,440 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF6F7687E02
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 13:56:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38545687DCC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 13:47:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231954AbjBBM4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 07:56:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56286 "EHLO
+        id S230456AbjBBMrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 07:47:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231705AbjBBM4d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 07:56:33 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F7C457ED;
-        Thu,  2 Feb 2023 04:56:26 -0800 (PST)
-X-UUID: dd01f6cea2f611ed945fc101203acc17-20230202
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=f+xt4bcbFiz4Lh0mpdZVAB1dKu8+XdSuSho8xqSktpI=;
-        b=hddLKCzykIibfzu6QJ0HjLH+JHZbVDAqrbVzxaNfv6gD375T9ccub0QanqinD9tTv/O3zmOD2kAJOZZOojLfPpt2QMN1cw/c/olY5ZYcrix5McmRK66gv2PVGapMBDx3FMpNgJ9WU09gzz274FqEGEMSNvohZWz19DtjcaJzOgo=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.18,REQID:a50ac5e0-698f-4714-bcfb-41da3adb4993,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:95
-X-CID-INFO: VERSION:1.1.18,REQID:a50ac5e0-698f-4714-bcfb-41da3adb4993,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
-        :quarantine,TS:95
-X-CID-META: VersionHash:3ca2d6b,CLOUDID:b0f71b56-dd49-462e-a4be-2143a3ddc739,B
-        ulkID:230202204108QDICUXC0,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,CO
-        L:0,OSI:0,OSA:0
-X-CID-BVR: 0
-X-UUID: dd01f6cea2f611ed945fc101203acc17-20230202
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 451315629; Thu, 02 Feb 2023 20:41:07 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 2 Feb 2023 20:41:06 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 2 Feb 2023 20:41:06 +0800
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>
-CC:     Fan Chen <fan.chen@mediatek.com>, Roger Lu <roger.lu@mediatek.com>,
-        Jia-wei Chang <jia-wei.chang@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v5 3/3] soc: mediatek: mtk-svs: add thermal voltage compensation if needed
-Date:   Thu, 2 Feb 2023 20:41:04 +0800
-Message-ID: <20230202124104.16504-4-roger.lu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230202124104.16504-1-roger.lu@mediatek.com>
-References: <20230202124104.16504-1-roger.lu@mediatek.com>
+        with ESMTP id S229608AbjBBMrd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 07:47:33 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34EA98DAF4
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 04:46:58 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id o36so1306753wms.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 04:46:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CMREe2uGtxx1nQqz2nFqLj1yAVyLLBzCpm3Pj5KHG8I=;
+        b=SW9cZKxm6PgkcityeOHL1ayZKT2W6D1zVMZ6bNuiJgTu9MXtyRqW5+dNNzjeBUwD5g
+         Ys+sYrByLF0Hmg9rXGBLmLUE8Z98ellVKsw5yzzgizraZM7YT5vTv2/Qf98Ls82FrrVc
+         gGNFGNYoSoVav5FHCf2eaiMYK5zzXLYYkwyNrAqHPXw+t11K0q95H99dBQbe7RcQM+t4
+         bKV0y2w46+6Kpz3n4zHq3Zgkt9IkK45+O71qGcZTGJNjRvtkFMabQElvHWcCu+nbSlcf
+         Cb6yhTz0P0a9nrdS+g6sYeV6WaZeUEBbKPIGWTJW1D69td/hlPzRt3kkxaW5tdV+CNp0
+         AYaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CMREe2uGtxx1nQqz2nFqLj1yAVyLLBzCpm3Pj5KHG8I=;
+        b=ubbo2KRl1p6QsR84WmqCnPj7I62blRyTyrjTHHGrIXd4jmbuqxLNOLRHyJP5NRTJ66
+         fgC0bFUSd9kdGh4YSGJ38EGtAldP36P7OEeDzrx7ufKNx8wncMPjydZNODS3tcHqMuWv
+         ZgOxGJKJScLnDZQ9NTQqPocRx7RhbS+UnQZ+9bkkcZ0c63SMsMbsMFPhOg8t5NQ75mCI
+         u3Km0+54UzMWPUUoV3g4DH9TT89xiNrB2Yck6Ze9wMhTMt9OJlG4biacT++AxjuQ2NJB
+         bhmS2jwp2JSOG9Wjh2OxApf3Mjm0yIyvKeQ9u1+hVu7NbqK6jU1UJbSufC/TfgQ4iF0M
+         AnFw==
+X-Gm-Message-State: AO0yUKWDcgg0337TAjO4g0D20v1yK1LhC4U+QZp3FZfzwpn8uloK+VSJ
+        N+uu76HxT7rWymXx00hx/WMgiA==
+X-Google-Smtp-Source: AK7set+WNwJz4TnWff/70DvPPqlwttfQ1PgMlqPF7yWZ8USPZa5eZhEZX2n5IkEZfQl71fh0KES7VA==
+X-Received: by 2002:a05:600c:540d:b0:3dc:1687:9b9a with SMTP id he13-20020a05600c540d00b003dc16879b9amr5702617wmb.37.1675341978409;
+        Thu, 02 Feb 2023 04:46:18 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id bd16-20020a05600c1f1000b003db0ee277b2sm4763745wmb.5.2023.02.02.04.46.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Feb 2023 04:46:17 -0800 (PST)
+Message-ID: <4db1c760-10d9-3a22-106a-dda141dd5381@linaro.org>
+Date:   Thu, 2 Feb 2023 12:46:14 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
-        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v9 10/27] gunyah: rsc_mgr: Add VM lifecycle RPC
+Content-Language: en-US
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Alex Elder <elder@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>
+Cc:     Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
+ <20230120224627.4053418-11-quic_eberman@quicinc.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230120224627.4053418-11-quic_eberman@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some extreme test environment may keep IC temperature very low or very high
-during system boot stage. For stability concern, we add thermal voltage
-compenstation if needed no matter svs bank phase is in init02 or mon mode.
 
-Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/soc/mediatek/mtk-svs.c | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-index 299f580847bd..e104866d1ab5 100644
---- a/drivers/soc/mediatek/mtk-svs.c
-+++ b/drivers/soc/mediatek/mtk-svs.c
-@@ -558,7 +558,7 @@ static int svs_adjust_pm_opp_volts(struct svs_bank *svsb)
- 	}
- 
- 	/* Get thermal effect */
--	if (svsb->phase == SVSB_PHASE_MON) {
-+	if (!IS_ERR_OR_NULL(svsb->tzd)) {
- 		ret = thermal_zone_get_temp(svsb->tzd, &tzone_temp);
- 		if (ret || (svsb->temp > SVSB_TEMP_UPPER_BOUND &&
- 			    svsb->temp < SVSB_TEMP_LOWER_BOUND)) {
-@@ -573,7 +573,8 @@ static int svs_adjust_pm_opp_volts(struct svs_bank *svsb)
- 			temp_voffset += svsb->tzone_ltemp_voffset;
- 
- 		/* 2-line bank update all opp volts when running mon mode */
--		if (svsb->type == SVSB_HIGH || svsb->type == SVSB_LOW) {
-+		if (svsb->phase == SVSB_PHASE_MON && (svsb->type == SVSB_HIGH ||
-+						      svsb->type == SVSB_LOW)) {
- 			opp_start = 0;
- 			opp_stop = svsb->opp_count;
- 		}
-@@ -589,11 +590,6 @@ static int svs_adjust_pm_opp_volts(struct svs_bank *svsb)
- 			/* do nothing */
- 			goto unlock_mutex;
- 		case SVSB_PHASE_INIT02:
--			svsb_volt = max(svsb->volt[i], svsb->vmin);
--			opp_volt = svs_bank_volt_to_opp_volt(svsb_volt,
--							     svsb->volt_step,
--							     svsb->volt_base);
--			break;
- 		case SVSB_PHASE_MON:
- 			svsb_volt = max(svsb->volt[i] + temp_voffset, svsb->vmin);
- 			opp_volt = svs_bank_volt_to_opp_volt(svsb_volt,
-@@ -1683,7 +1679,7 @@ static int svs_bank_resource_setup(struct svs_platform *svsp)
- 			}
- 		}
- 
--		if (svsb->mode_support & SVSB_MODE_MON) {
-+		if (!IS_ERR_OR_NULL(svsb->tzone_name)) {
- 			svsb->tzd = thermal_zone_get_zone_by_name(svsb->tzone_name);
- 			if (IS_ERR(svsb->tzd)) {
- 				dev_err(svsb->dev, "cannot get \"%s\" thermal zone\n",
-@@ -2127,6 +2123,7 @@ static struct svs_bank svs_mt8192_banks[] = {
- 		.type			= SVSB_LOW,
- 		.set_freq_pct		= svs_set_bank_freq_pct_v3,
- 		.get_volts		= svs_get_bank_volts_v3,
-+		.tzone_name		= "gpu1",
- 		.volt_flags		= SVSB_REMOVE_DVTFIXED_VOLT,
- 		.mode_support		= SVSB_MODE_INIT02,
- 		.opp_count		= MAX_OPP_ENTRIES,
-@@ -2144,6 +2141,10 @@ static struct svs_bank svs_mt8192_banks[] = {
- 		.core_sel		= 0x0fff0100,
- 		.int_st			= BIT(0),
- 		.ctl0			= 0x00540003,
-+		.tzone_htemp		= 85000,
-+		.tzone_htemp_voffset	= 0,
-+		.tzone_ltemp		= 25000,
-+		.tzone_ltemp_voffset	= 7,
- 	},
- 	{
- 		.sw_id			= SVSB_GPU,
--- 
-2.18.0
+On 20/01/2023 22:46, Elliot Berman wrote:
+> Add Gunyah Resource Manager RPC to launch an unauthenticated VM.
+> 
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> ---
+>   drivers/virt/gunyah/Makefile      |   2 +-
+>   drivers/virt/gunyah/rsc_mgr.h     |  36 +++++
+>   drivers/virt/gunyah/rsc_mgr_rpc.c | 238 ++++++++++++++++++++++++++++++
+>   include/linux/gunyah_rsc_mgr.h    |  55 +++++++
+>   4 files changed, 330 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/virt/gunyah/rsc_mgr_rpc.c
+> 
+> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
+> index cc864ff5abbb..de29769f2f3f 100644
+> --- a/drivers/virt/gunyah/Makefile
+> +++ b/drivers/virt/gunyah/Makefile
+> @@ -2,5 +2,5 @@
+>   
+>   obj-$(CONFIG_GUNYAH) += gunyah.o
+>   
+> -gunyah_rsc_mgr-y += rsc_mgr.o
+> +gunyah_rsc_mgr-y += rsc_mgr.o rsc_mgr_rpc.o
+>   obj-$(CONFIG_GUNYAH) += gunyah_rsc_mgr.o
+> diff --git a/drivers/virt/gunyah/rsc_mgr.h b/drivers/virt/gunyah/rsc_mgr.h
+> index 824749e63a54..2f12f31a2ea6 100644
+> --- a/drivers/virt/gunyah/rsc_mgr.h
+> +++ b/drivers/virt/gunyah/rsc_mgr.h
+> @@ -68,4 +68,40 @@ struct gh_rm;
+>   int gh_rm_call(struct gh_rm *rsc_mgr, u32 message_id, void *req_buff, size_t req_buff_size,
+>   		void **resp_buf, size_t *resp_buff_size);
+>   
+> +/* Message IDs: VM Management */
+> +#define GH_RM_RPC_VM_ALLOC_VMID			0x56000001
+> +#define GH_RM_RPC_VM_DEALLOC_VMID		0x56000002
+> +#define GH_RM_RPC_VM_START			0x56000004
+> +#define GH_RM_RPC_VM_STOP			0x56000005
+> +#define GH_RM_RPC_VM_CONFIG_IMAGE		0x56000009
+> +#define GH_RM_RPC_VM_INIT			0x5600000B
+> +#define GH_RM_RPC_VM_GET_HYP_RESOURCES		0x56000020
+> +#define GH_RM_RPC_VM_GET_VMID			0x56000024
+> +
+> +struct gh_vm_common_vmid_req {
+> +	__le16 vmid;
+> +	__le16 reserved0;
+> +} __packed;
+> +
+> +/* Call: VM_STOP */
+> +struct gh_vm_stop_req {
+> +	__le16 vmid;
+> +	u8 flags; /* currently not used */
+> +	u8 reserved;
+> +	__le32 stop_reason; /* currently not used */
+> +} __packed;
+> +
+> +/* Call: VM_CONFIG_IMAGE */
+> +struct gh_vm_config_image_req {
+> +	__le16 vmid;
+> +	__le16 auth_mech;
+> +	__le32 mem_handle;
+> +	__le64 image_offset;
+> +	__le64 image_size;
+> +	__le64 dtb_offset;
+> +	__le64 dtb_size;
+> +} __packed;
+> +
+> +/* Call: GET_HYP_RESOURCES */
+> +
+>   #endif
+> diff --git a/drivers/virt/gunyah/rsc_mgr_rpc.c b/drivers/virt/gunyah/rsc_mgr_rpc.c
+> new file mode 100644
+> index 000000000000..b6935dfac1fe
+> --- /dev/null
+> +++ b/drivers/virt/gunyah/rsc_mgr_rpc.c
+> @@ -0,0 +1,238 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/gunyah_rsc_mgr.h>
+> +
+> +#include "rsc_mgr.h"
+> +
+> +/*
+> + * Several RM calls take only a VMID as a parameter and give only standard
+> + * response back. Deduplicate boilerplate code by using this common call.
+> + */
+> +static int gh_rm_common_vmid_call(struct gh_rm *rm, u32 message_id, u16 vmid)
+> +{
+> +	void *resp;
+> +	struct gh_vm_common_vmid_req req_payload = {
+> +		.vmid = cpu_to_le16(vmid),
+> +	};
+> +	size_t resp_size;
+> +	int ret;
+> +
+> +	ret = gh_rm_call(rm, message_id, &req_payload, sizeof(req_payload), &resp, &resp_size);
+> +	if (!ret && resp_size) {
 
+Am struggling to understand these type of checks in success case, when a 
+command is not expecting any response why are we checking for response 
+here, This sounds like a bug in either RM or hypervisor.
+
+Or Is this something that happens due to some firmware behaviour?
+Could you elobrate on this.
+
+
+> +		pr_warn("Unexpected payload size: %ld Expected: 0", resp_size);
+> +		dump_stack();
+> +		kfree(resp);
+> +		return -EBADMSG;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * gh_rm_alloc_vmid() - Allocate a new VM in Gunyah. Returns the VM identifier.
+> + * @vmid: Use GH_VMID_INVAL or GH_VMID_SELF (0) to dynamically allocate a VM. A reserved VMID can
+> + *        be supplied to request allocation of a platform-defined VM.
+> + *
+> + * Returns - the allocated VMID or negative value on error
+> + */
+> +int gh_rm_alloc_vmid(struct gh_rm *rm, u16 vmid)
+> +{
+> +	void *resp;
+> +	struct gh_vm_common_vmid_req req_payload = {
+> +		.vmid = cpu_to_le16(vmid),
+we pass vmid that is recevied  here.
+
+> +	};
+> +	struct gh_vm_alloc_vmid_resp *resp_payload;
+> +	size_t resp_size;
+> +	int ret;
+> +
+> +	if (vmid == GH_VMID_INVAL)
+> +		vmid = 0;
+
+then we change this to 0.
+
+> +
+> +	ret = gh_rm_call(rm, GH_RM_RPC_VM_ALLOC_VMID, &req_payload, sizeof(req_payload), &resp,
+> +			&resp_size);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!vmid) {
+then here we check agaist zero.
+
+Why not just do
+
+if (vmid == GH_VMID_INVAL || vmid == GH_VMID_SELF)
+
+this will make core more reader friendly and match to what is in kerneldoc.
+
+> +		if (resp_size != sizeof(*resp_payload)) {
+> +			pr_warn("%s: unexpected payload size: %ld Expected: %ld", __func__,
+> +				resp_size, sizeof(*resp_payload));
+> +			ret = -EBADMSG;
+> +		} else {
+> +			resp_payload = resp;
+> +			ret = le16_to_cpu(resp_payload->vmid);
+> +		}
+> +	}
+> +	kfree(resp);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(gh_rm_alloc_vmid);
+> +
+> +/**
+> + * gh_rm_dealloc_vmid() - Dispose the VMID
+> + * @vmid: VM identifier
+> + */
+> +int gh_rm_dealloc_vmid(struct gh_rm *rm, u16 vmid)
+> +{
+> +	return gh_rm_common_vmid_call(rm, GH_RM_RPC_VM_DEALLOC_VMID, vmid);
+> +}
+> +EXPORT_SYMBOL_GPL(gh_rm_dealloc_vmid);
+> +
+> +/**
+> + * gh_rm_vm_start() - Move the VM into "ready to run" state
+> + * @vmid: VM identifier
+> + *
+> + * On VMs which use proxy scheduling, vcpu_run is needed to actually run the VM.
+> + * On VMs which use Gunyah's scheduling, the vCPUs start executing in accordance with Gunyah
+> + * scheduling policies.
+> + */
+> +int gh_rm_vm_start(struct gh_rm *rm, u16 vmid)
+> +{
+> +	return gh_rm_common_vmid_call(rm, GH_RM_RPC_VM_START, vmid);
+> +}
+> +EXPORT_SYMBOL_GPL(gh_rm_vm_start);
+> +
+> +/**
+> + * gh_rm_vm_stop() - Send a request to Resource Manager VM to stop a VM.
+> + * @vmid: VM identifier
+> + *
+> + * Returns - 0 on success; negative value on failure
+> + */
+> +int gh_rm_vm_stop(struct gh_rm *rm, u16 vmid)
+> +{
+> +	struct gh_vm_stop_req req_payload = {
+> +		.vmid = cpu_to_le16(vmid),
+> +	};
+> +	void *resp;
+> +	size_t resp_size;
+> +	int ret;
+> +
+> +	ret = gh_rm_call(rm, GH_RM_RPC_VM_STOP, &req_payload, sizeof(req_payload),
+> +			&resp, &resp_size);
+> +	if (!ret && resp_size) {
+same comment as the first one.
+> +		pr_warn("%s: unexpected payload size: %ld Expected: 0", __func__, resp_size);
+> +		kfree(resp);
+> +		return -EBADMSG;
+> +	}
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(gh_rm_vm_stop);
+> +
+> +int gh_rm_vm_configure(struct gh_rm *rm, u16 vmid, enum gh_rm_vm_auth_mechanism auth_mechanism,
+> +		u32 mem_handle, u64 image_offset, u64 image_size, u64 dtb_offset, u64 dtb_size)
+> +{
+> +	struct gh_vm_config_image_req req_payload = { 0 };
+> +	void *resp;
+> +	size_t resp_size;
+> +	int ret;
+> +
+> +	req_payload.vmid = cpu_to_le16(vmid);
+> +	req_payload.auth_mech = cpu_to_le16(auth_mechanism);
+> +	req_payload.mem_handle = cpu_to_le32(mem_handle);
+> +	req_payload.image_offset = cpu_to_le64(image_offset);
+> +	req_payload.image_size = cpu_to_le64(image_size);
+> +	req_payload.dtb_offset = cpu_to_le64(dtb_offset);
+> +	req_payload.dtb_size = cpu_to_le64(dtb_size);
+> +
+> +	ret = gh_rm_call(rm, GH_RM_RPC_VM_CONFIG_IMAGE, &req_payload, sizeof(req_payload),
+> +			&resp, &resp_size);
+> +	if (!ret && resp_size) {
+same comment as the first one.
+> +		pr_warn("%s: unexpected payload size: %ld Expected: 0", __func__, resp_size);
+> +		kfree(resp);
+> +		return -EBADMSG;
+> +	}
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(gh_rm_vm_configure);
+> +
+> +/**
+> + * gh_rm_vm_init() - Move the VM to initialized state.
+> + * @vmid: VM identifier
+> + *
+> + * RM will allocate needed resources for the VM. After gh_rm_vm_init, gh_rm_get_hyp_resources()
+> + * can be called to learn of the capabilities we can use with the new VM.
+> + *
+> + * Returns - 0 on success; negative value on failure
+> + */
+> +int gh_rm_vm_init(struct gh_rm *rm, u16 vmid)
+> +{
+> +	return gh_rm_common_vmid_call(rm, GH_RM_RPC_VM_INIT, vmid);
+> +}
+> +EXPORT_SYMBOL_GPL(gh_rm_vm_init);
+> +
+> +/**
+> + * gh_rm_get_hyp_resources() - Retrieve hypervisor resources (capabilities) associated with a VM
+> + * @vmid: VMID of the other VM to get the resources of
+> + * @resources: Set by gh_rm_get_hyp_resources and contains the returned hypervisor resources.
+> + *
+> + * Returns - 0 on success; negative value on failure
+> + */
+> +int gh_rm_get_hyp_resources(struct gh_rm *rm, u16 vmid,
+> +				struct gh_rm_hyp_resources **resources)
+> +{
+> +	struct gh_rm_hyp_resources *resp;
+> +	size_t resp_size;
+> +	int ret;
+> +	struct gh_vm_common_vmid_req req_payload = {
+> +		.vmid = cpu_to_le16(vmid),
+> +	};
+> +
+> +	ret = gh_rm_call(rm, GH_RM_RPC_VM_GET_HYP_RESOURCES,
+> +			 &req_payload, sizeof(req_payload),
+> +			 (void **)&resp, &resp_size);
+we can go upto 100 chars.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!resp_size)
+> +		return -EBADMSG;
+
+This is again another check that falls under the first category, how can 
+a command pass and return incorrect responses?
+
+Or are we doing to many unnecessary checks?
+
+> +
+> +	if (resp_size < struct_size(resp, entries, 0) ||
+> +		resp_size != struct_size(resp, entries, le32_to_cpu(resp->n_entries))) {
+> +		kfree(resp);
+> +		return -EBADMSG;
+> +	}
+> +
+> +	*resources = resp;
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(gh_rm_get_hyp_resources);
+> +
+> +/**
+> + * gh_rm_get_vmid() - Retrieve VMID of this virtual machine
+> + * @vmid: Filled with the VMID of this VM
+> + */
+> +int gh_rm_get_vmid(struct gh_rm *rm, u16 *vmid)
+> +{
+> +	static u16 cached_vmid = GH_VMID_INVAL;
+> +	__le16 *resp;
+> +	size_t resp_size;
+> +	int ret;
+> +
+> +	if (cached_vmid != GH_VMID_INVAL) {
+> +		*vmid = cached_vmid;
+> +		return 0;
+> +	}
+> +
+> +	ret = gh_rm_call(rm, GH_RM_RPC_VM_GET_VMID, NULL, 0, (void **)&resp, &resp_size);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (resp_size != sizeof(*resp)) {
+> +		pr_warn("%s: unexpected payload size: %ld Expected: %ld", __func__,
+> +			resp_size, sizeof(*resp));
+> +		ret = -EBADMSG;
+> +		goto out;
+> +	}
+> +
+> +	*vmid = cached_vmid = le16_to_cpu(*resp);
+> +out:
+> +	kfree(resp);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(gh_rm_get_vmid);
