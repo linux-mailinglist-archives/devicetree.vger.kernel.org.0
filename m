@@ -2,124 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 393C4688479
-	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 17:33:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD6FE68847E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Feb 2023 17:33:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbjBBQdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 11:33:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44478 "EHLO
+        id S231463AbjBBQdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 11:33:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjBBQdI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 11:33:08 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8223311EAA
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 08:33:03 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id d14so2219677wrr.9
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 08:33:02 -0800 (PST)
+        with ESMTP id S229608AbjBBQdp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 11:33:45 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3427769B05
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 08:33:42 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id q10so2239055wrm.4
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 08:33:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=x+y+o/Wjd2NwudZ2nm6ZyEg3Aj1gsA3hyrscQ3Yxhh0=;
-        b=NhqLwXJennmkEBzy7M5keLNElRd6jggbjgsfzEfw36x+ET93hlQpIqBvHCvEPYKdcf
-         9ESdhznNjkO+4cNAoK5096MXEmxDjpRlItE/LlK99RMgUq1i5LK2GIPGHvQXr5WqJv/6
-         +UQ2YGDMXiEEA3iyEwVnR1k0y6VsP+kIXFMHweE26aCZIIXrD36YI/oukh4ze+RmNltv
-         XbPss7nPpZtL3OWRmKxWGn2o7mjM4dAE4kJbtGJrEfA1Gutf/9NEOe1Yj2OqFKVStNGv
-         yG+VwzrFQJRLJJAzKZszMmpKvy2Z8nY4vWnjbxKHPzbXzE+ogczeBgzqbWAr3F2NblQy
-         y2dA==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ELhAk9cmPsEFAZpdfPOCHRf6Rnr5gKS4WgJbFOoKs04=;
+        b=Ops8gJoXuzFr1QL91bR08/jWApYqV65k1CXQwmYeh1wfsrjCyt7uSHgnq/FWhLImmg
+         Y9d/mFMdkI/nEs47hsoIKYRXxyWomze8NDn2zzxQ8TurA60Mp5dETyIp/EZVa5+ShsEF
+         QDtHflsj4lzBLaVrQ1UETUbVuEEuzNZRH35AOGGWcUV3asFKc2saDDVx8jtWh5zjjhZZ
+         ylr6iup02ZEQHQCRsdZKYWweOsKygP+YhK9WK4O3nYOTtUVF6kVPAi6vEBBTHVT15SBI
+         sLxg6JAls+67Gy6R1T2gZ0cqPgeIQJz0nDtKvPpkhpMYXMAwrVpSZmyySa+wD1y617yB
+         gldA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=x+y+o/Wjd2NwudZ2nm6ZyEg3Aj1gsA3hyrscQ3Yxhh0=;
-        b=zDyRfK54KXElRy0FSMvgV7f0HCk5i+i8Bm4BzfiSaPJo0SD6MfpZUyzgdetkNMLSf+
-         kmx2Il5LZzcHeQf/1j1v2il0inIo6MUJIxtNynrCjVrP4FX37prQDuO24PNJhqJQSUu9
-         MCfjOaGQ0cmHz0bw78ZYcvB3dTePRZeq9V4EKq/yqYRRx9n1hvELFQQ2jgMu1Y52lMIz
-         Cqty/H5IlSJKxMb5jhJC4y6aivhEBt/ikTZhSYYvTP9YIL3kazhIrBLAVhZ7sBHYCR68
-         qxAjkNZm0LBHykMLGnR0Jj+dhIudy6qwcpgYacFyWhjB3JHCQFNj8dNwcFLs3NTh09W6
-         +deA==
-X-Gm-Message-State: AO0yUKUQ9NxNIv2Ju4/19XoZLLNJb9lJn7xX7EjV8cCm437WQwCj3MRg
-        GNM1tvTVfjd1+jue42zW3NJpuA==
-X-Google-Smtp-Source: AK7set8eRf4Ge+qR3bh/ypq9RkQrO+GZz7CPDskr/v1RpP9diYU0jhW3yp8mu4JWchabCjgN3LvfyA==
-X-Received: by 2002:a05:6000:110d:b0:2bf:c0f2:4b0 with SMTP id z13-20020a056000110d00b002bfc0f204b0mr6402311wrw.19.1675355581548;
-        Thu, 02 Feb 2023 08:33:01 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:ce5b:78ab:f662:ef0d? ([2a01:e0a:982:cbb0:ce5b:78ab:f662:ef0d])
-        by smtp.gmail.com with ESMTPSA id p6-20020a5d48c6000000b002bfc0558ecdsm19941965wrs.113.2023.02.02.08.32.57
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ELhAk9cmPsEFAZpdfPOCHRf6Rnr5gKS4WgJbFOoKs04=;
+        b=xkMt2EFqp6iwrFbQCe4rmcBEm5P+960TYXoareQJghIXYNqxDHD8p8VraNKSmJIFU1
+         qvLrTl+blE+6KGvf0ArldIZOeXGLZdLnp9ls8EfGdUxH/c9yefS3LC5WRDAFxDHKInfh
+         436mLktMjpHcqeviwBMBDM8n0bOJFgz7xeRdu2sO5Hfo6UarfohO07J2YyjmlO8Ydmpb
+         c3zBQl0cMeB7/2EPXqENXFU7vl72f7wBIgjj6jQNeBBoZIcvkjxe7SfcR3+z8N5fep4N
+         bwEhLs+ZI4MwQh0vhXzHsPpUZWBl/bBgrnENG3GjW8JH22P/C4XsRtNajXNyIn9/x4ao
+         Nz7Q==
+X-Gm-Message-State: AO0yUKW6sO/3DJNe254bclqzBL4Y6wHFOAAUe066fiQZ2Xqbv/SqGBwc
+        x2LrF4zMQDkU/0RSE0vhrluMUg==
+X-Google-Smtp-Source: AK7set8Kr1+4XSAPiGPRYfumuWZuFHg32pJQbheua8CIT1j8p0VuhRy0BL287FCD6xQHjlmbhHELQA==
+X-Received: by 2002:a05:6000:151:b0:2bf:ec0f:af79 with SMTP id r17-20020a056000015100b002bfec0faf79mr6357504wrx.63.1675355620765;
+        Thu, 02 Feb 2023 08:33:40 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id u13-20020a05600c19cd00b003dc434b39c2sm5599993wmq.26.2023.02.02.08.33.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 08:33:00 -0800 (PST)
-Message-ID: <5363960d-8ca1-aaf0-3721-f5d3a1575da2@linaro.org>
-Date:   Thu, 2 Feb 2023 17:32:54 +0100
+        Thu, 02 Feb 2023 08:33:40 -0800 (PST)
+Message-ID: <fa6dc60c-3799-d384-da24-f282b7cbd3ef@linaro.org>
+Date:   Thu, 2 Feb 2023 17:33:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v8 5/9] dt-bindings: qcom-qce: document clocks and
- clock-names as optional
+Subject: Re: [PATCH 00/13] mailbox/arm64/ qcom: rework compatibles for
+ fallback
 Content-Language: en-US
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org
-References: <20230202135036.2635376-1-vladimir.zapolskiy@linaro.org>
- <20230202135036.2635376-6-vladimir.zapolskiy@linaro.org>
- <32c23da1-45f0-82a4-362d-ae5c06660e20@linaro.org>
- <36b6f8f2-c438-f5e6-b48f-326e8b709de8@linaro.org>
- <a2e4dff0-af8f-dccb-9074-8244b054c448@linaro.org>
- <61eb2a01-762e-b83b-16b7-2c9b178407da@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <61eb2a01-762e-b83b-16b7-2c9b178407da@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230202161856.385825-1-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230202161856.385825-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 17:16, Vladimir Zapolskiy wrote:
-> On 2/2/23 16:21, Neil Armstrong wrote:
->> On 02/02/2023 15:04, Vladimir Zapolskiy wrote:
->>> Hi Krzysztof,
->>>
->>> On 2/2/23 15:53, Krzysztof Kozlowski wrote:
->>>> On 02/02/2023 14:50, Vladimir Zapolskiy wrote:
->>>>> From: Neil Armstrong <neil.armstrong@linaro.org>
->>>>>
->>>>> On certain Snapdragon processors, the crypto engine clocks are enabled by
->>>>> default by security firmware.
->>>>
->>>> Then probably we should not require them only on these variants.
->>>
->>> I don't have the exact list of the affected SoCs, I believe Neil can provide
->>> such a list, if you find it crucial.
->>
->> It's the case for SM8350, SM8450 & SM8550.
->>
+On 02/02/2023 17:18, Krzysztof Kozlowski wrote:
+> Hi,
 > 
-> On SM8250 there is no QCE clocks also, so I'll add it to the list, and I hope
-> that now the list is complete.
-> 
-> It could be that the relevant platforms are the ones with 'qcom,no-clock-support'
-> property of QCE in the downstream.
+> If entire approach is accepted (and correct), there are no dependencies and
+> patches can be picked independently.  Although the best in the same cycle, so
+> there will be no new `dtbs_check` warnings.
 > 
 
-Yes this is what I figured out with the 5.10 device-trees I have checkouted.
+This patchset will conflict with:
+https://lore.kernel.org/all/20230126230319.3977109-2-dmitry.baryshkov@linaro.org/
 
-Neil
+In few places it actually re-does Dmitry's patch, so probably we should
+both come with unified solution.
+
+Best regards,
+Krzysztof
 
