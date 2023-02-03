@@ -2,160 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED4A06893FF
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 10:39:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDDF468940C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 10:41:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232230AbjBCJh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 04:37:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56912 "EHLO
+        id S233032AbjBCJlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 04:41:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232119AbjBCJhx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 04:37:53 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5882B9B6F7;
-        Fri,  3 Feb 2023 01:37:33 -0800 (PST)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3139FqZp016986;
-        Fri, 3 Feb 2023 09:37:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : reply-to : references : mime-version :
- content-type : in-reply-to; s=qcppdkim1;
- bh=DkWeRsx6m2sDvLrRz65hCVeFQnCd0Ddk5CBoHHoxEAU=;
- b=Ay/vxQ2b3wXqQLlZVTlHow64iviS4TOx1BHyZwRnocLP9J8sJLU8Bixp2b1SseWZPJLD
- GGP/k3hzqxZFONf907GZmlCO9cOpLh+Z5UZCzlTBXOIoxEgQmh42wcqz+1ZApYJ1WeX6
- TUMcnkD17ALjxQJ/9bsBvVgDp6tEt6nW6g8+2QcNu+8pQlHSck0nAUkWr8HDEmnEEgL2
- hMpyr5Cdhske/0YLAYpl7tY1M1l0fEthjHbQ+ZTChuT7hQWieQMMZ0JjPGAIbwDND8sY
- dzMLDg7MUUjbYdjFC4V96X3+rifc7UVJZOy27u0KmLUN3wCVzGeLo0wNLLC/bdjpxsvv JQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ngahqtsgm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 03 Feb 2023 09:37:16 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3139bE7P011923
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 3 Feb 2023 09:37:14 GMT
-Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 3 Feb 2023
- 01:37:08 -0800
-Date:   Fri, 3 Feb 2023 15:07:04 +0530
-From:   Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Carl van Schaik" <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S233038AbjBCJkq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 04:40:46 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95C299B6FF
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 01:40:32 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id q8so3387953wmo.5
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 01:40:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=BcOFFh4ezLvd92fNkjmz7wpV7RsvIbDnXNZc1TtGyfE=;
+        b=eXU3zeOvIS/sTiVvmDUhiTLRt6DYkGsjsFI1AX0qQb+Lg0yPfNg7WquyWULEMsAqc2
+         ZIZeFSJ5CAoW5nL5Ft/UIgrcUry9QB797rFehtOyLalYzeVP4IEAGrV4/J62yuAiaH0O
+         YK9kygwBhv/t9PBzbSUkC/vyoBgGtrNmJGhUVLspgxAy4lvs0EYULgVMcZsSXLDzLmfz
+         J5R5FAIleJ+jEyDEWvgt5njPch6JHQNk+xmyerW3JV7jPlHeiMiiyCGXtY7My8Nz96YP
+         3t3OZy2zPAyn0fO7zC8NAl4yePwNNZt5O8RcWhyeDaSYHqMHtlM+fg4jynGcBI+oflZa
+         K2Lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BcOFFh4ezLvd92fNkjmz7wpV7RsvIbDnXNZc1TtGyfE=;
+        b=FMWBll3c+L+JyQnMVcrqP8BnsHkr52K8dst29yYQcL9PFtkoI0EYFIm2BKr+d4OyTp
+         pKgjhnVcxzkLsAQlCAiqX+LWDnGupag541l+k/0N8nTAheFXK/2/HHgDWeUo7NkPmRTG
+         KUhJYGlzxRHcWN99WH65dHf1M7lGZAiRi4Vqk2IOzGwXGAkSAC6pXQ0Wvoyv9rViLgAO
+         1D3G5JWIR9Zh2wGQEhfyXxiMzerPJKeUn2ZvlJc3yVyrhOnBWuzfLZ/1O0wwJuZw9LT5
+         Lm6kBVI/knfpjTwvB4gb6Ea0zcxuWDraDcJ07PmzcrhRmLf9R7ylTZhZJF0Z1I9yNHH4
+         TvIw==
+X-Gm-Message-State: AO0yUKXPmtKDxUPh5evEHre1bmDQPhxauLnCrX0vrOSDT1VIot2IoRc+
+        6WrYnQ/514oPN3qqBgJyMXHsfg==
+X-Google-Smtp-Source: AK7set9EIfUGCgZ5uGTG32ryzvXSU83lqMxBe2h4wXPjYKidwJ8U3BQjmte0UPJpZ9LnkSIAYZKdnA==
+X-Received: by 2002:a7b:cb07:0:b0:3d9:719a:8f7d with SMTP id u7-20020a7bcb07000000b003d9719a8f7dmr8813045wmj.35.1675417231027;
+        Fri, 03 Feb 2023 01:40:31 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id q14-20020a7bce8e000000b003dc49e0132asm7027471wmj.1.2023.02.03.01.40.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Feb 2023 01:40:30 -0800 (PST)
+References: <20230202183653.486216-1-jbrunet@baylibre.com>
+ <20230202183653.486216-6-jbrunet@baylibre.com>
+ <512edf50-a74d-815d-1278-39fdeb1c2d35@linaro.org>
+User-agent: mu4e 1.8.10; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v9 21/27] gunyah: vm_mgr: Add framework to add VM
- Functions
-Message-ID: <20230203093704.GC332@quicinc.com>
-Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
- <20230120224627.4053418-22-quic_eberman@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/9] ASoC: dt-bindings: meson: convert axg pdm to schema
+Date:   Fri, 03 Feb 2023 10:37:51 +0100
+In-reply-to: <512edf50-a74d-815d-1278-39fdeb1c2d35@linaro.org>
+Message-ID: <1jtu03m6ia.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-In-Reply-To: <20230120224627.4053418-22-quic_eberman@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: dC_-8lVFVfsmcQqToeSBM2k1hEzN59H3
-X-Proofpoint-GUID: dC_-8lVFVfsmcQqToeSBM2k1hEzN59H3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-03_05,2023-02-02_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- impostorscore=0 phishscore=0 bulkscore=0 priorityscore=1501
- mlxlogscore=999 malwarescore=0 adultscore=0 suspectscore=0
- lowpriorityscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2302030087
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Elliot Berman <quic_eberman@quicinc.com> [2023-01-20 14:46:20]:
 
-> +static struct gunyah_vm_function_driver *__find_function(const char name[GUNYAH_FUNCTION_NAME_SIZE])
-> +	__must_hold(functions_lock)
-> +{
-> +	struct gunyah_vm_function_driver *iter, *drv = NULL;
-> +
-> +	list_for_each_entry(iter, &functions, list) {
-> +		if (!strncmp(iter->name, name, GUNYAH_FUNCTION_NAME_SIZE)) {
-> +			drv = iter;
-> +			break;
-> +		}
-> +	}
+On Fri 03 Feb 2023 at 09:01, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Not sure how much of a hot path this is going to sit in. I can imagine VM boot
-to be in fast path for some cases (VMs spawned on usecase boundaries - I think
-some VMs like in Amazon firecracker boot in fraction of a second). This
-indirection could cost that a bit (linear search + strcmp for the right
-function). IMHO a direct interface (ex: ADD_IOEVENTFD) will be more efficient.
+> On 02/02/2023 19:36, Jerome Brunet wrote:
 
-> +void gunyah_vm_function_unregister(struct gunyah_vm_function_driver *drv)
-> +{
-> +	struct gunyah_vm_function *f, *iter;
-> +
-> +	mutex_lock(&functions_lock);
-> +	list_for_each_entry_safe(f, iter, &drv->instances, drv_list)
-> +		gh_vm_remove_function(f);
-> +	list_del(&drv->list);
-> +	mutex_unlock(&functions_lock);
+[...]
 
-This seems to allow essential functions to be unregistered while there are still
-active users. For example, it would allow ioeventfd or irqfd module to be
-unloaded while there are VMs depending on it. I think it would be better if we
-allow module unload (aka function_unregister) only after dependent VMs are stopped.
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - "#sound-dai-cells"
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +if:
+>
+> Keep in allOf here (need to move ref from top to here)
+>
 
-> +static long gh_vm_rm_function(struct gunyah_vm *ghvm, struct gh_vm_function *fn)
-> +{
-> +	long r = 0;
-> +	struct gunyah_vm_function *f, *iter;
-> +
-> +	r = mutex_lock_interruptible(&functions_lock);
-> +	if (r)
-> +		return r;
-> +
-> +	list_for_each_entry_safe(f, iter, &ghvm->functions, vm_list) {
-> +		if (!memcmp(&f->fn, fn, sizeof(*fn)))
-> +			gh_vm_remove_function(f);
-> +	}
-> +
+I'm not sure I get it. As it is, it seems to have the effect I had in
+mind while trying with dt_bindings_check.
 
-I think we should return some error (for ioctl atleast) if given function was
-not found.
+What does it do when putting the conditional under the AllOf section ?
 
-> +struct gh_vm_function {
-> +	char name[GUNYAH_FUNCTION_NAME_SIZE];
-> +	union {
-> +		char data[GUNYAH_FUNCTION_MAX_ARG_SIZE];
-> +	};
-
-Can you find a way to optimize this memory/time usage? For example, in case of
-ioevents we strictly need 28 bytes, but end up consuming 1kB.
-Also we end up comparing 1024 bytes during REMOVE_FUNCTION when strictly 28
-bytes or fewer bytes comparison was required in case of ioeventfd.
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        enum:
+>> +          - amlogic,g12a-pdm
+>> +          - amlogic,sm1-pdm
+>> +then:
+>> +  properties:
+>> +    resets:
+>> +      items:
+>> +        - description: Dedicated device reset line
+>
+> Define properties in top level properties.
+>
+>> +
+>> +  required:
+>> +    - resets
+>> +
+>> +unevaluatedProperties: false
+>
+>
+> Best regards,
+> Krzysztof
 
