@@ -2,149 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6292168A26B
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 20:03:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADBBD68A2BE
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 20:17:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232766AbjBCTDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 14:03:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47744 "EHLO
+        id S233119AbjBCTRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 14:17:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231894AbjBCTDF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 14:03:05 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A75C22D51;
-        Fri,  3 Feb 2023 11:03:00 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id gr7so17976508ejb.5;
-        Fri, 03 Feb 2023 11:03:00 -0800 (PST)
+        with ESMTP id S232529AbjBCTRY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 14:17:24 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F9311F
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 11:17:22 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso4636502wms.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 11:17:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=29jIzExya+RWfAW2Qbt80/MjJ8msw/RiyH3xynOp0go=;
-        b=oMo2cuU46YEgGPpTn9tuc/nAV/JSYX82IVQ6fcR+rdup7Ro+7QIAvMc7u6RiSGRj8k
-         lp9nfSG/RpNEUhNlVlr3aHuBI3aSguVow4NcnE/ewGe34lBGVWV/kqNWsJOy1OnK0t3L
-         NZOTslwltVza66DDVjiccIrt9Mj1iqvf0MvFj5aktxMyYaVyCUNmLfbTYpETGvQoZZLl
-         Zlo8M52dFVI2lLPRKKBBQ/2yVXzejK05Re6uVMSp9ZwTa2kwn4pNA69mS2AJNWjKeppQ
-         bpYZT5kzF3xGiYl5fSPXLPZdkqxZ5TeagP+owJI5o0IjNhddaRbAOFg5AEXmSVoieJpR
-         VfXA==
+        d=raspberrypi.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NMYcoycLdQPDhvNJ8NTYUjLBtRJcOozpMT/JV8HIjUU=;
+        b=l2YCsMMPR9b54JbdHSOWxzYTL4vHe5MGAxH2fNXpsaaoligB0DdsY1TsyU54z1EvJe
+         JTZY+MyWm2t9iYsjHIRmbUb72U5LnKWwUZM4/NETnOhzXt6uSO6NQfiF3gY3CZOaMSqm
+         AxBPENI8fhtY3x1sryAy3U8jRzuFuMJFpvZfjUur9rXberpM/cHz8ZhWL88NgESTeMBu
+         aoo6HdGTKsnWp+mKd8PsGyXB9VGPRpTDt+t09rvuwVghfwUIjI95GxZLSCdwIiWPv4v9
+         1PXqkQv0L7ebas9g84DMEpEK7FJs9x0EGMcHffHaKNy5jb5wvSua5kJ9uwPa7p9F6s9Y
+         pK6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=29jIzExya+RWfAW2Qbt80/MjJ8msw/RiyH3xynOp0go=;
-        b=mADOZsRQVImyvq8ySKXVTPvwyibvORlcQ6h8KCBRibTN4pOBTfRfWoSYTw2kM6Ax7I
-         Ez4GOs6SltM0qrtZnK2GqwnvDs4hid91/YOWvGq24za//AgI9cQNACWpoYHQGbXdFadQ
-         FrF+MhKMgZhV+lvYzzZUKIatFKsvQSt9TOdjyTMTssi9G5W9gxrHJW/qlT8v0HeM4eCQ
-         VUVYRXIebwmRjNKDv4d7i0VUR9J6yAej+hi/VWqYse6tAqbD+PIx9SeLP4f1LC7awV8i
-         R08eoGRcmtr4AWIANOvm71oHhyuNZqYvJW3zMHjrc49zfs0Dvgk7cakixRq8aMXDaz8G
-         5Sww==
-X-Gm-Message-State: AO0yUKWFhahNCgA4W5pYwL1T4q31WIPMn2yZdOjvEtUeesiz6ugXLgwt
-        ZjzwadSrhwH5uYwGSZmV6WYflrLKSjk=
-X-Google-Smtp-Source: AK7set86/Odr/8QqbXvAfvz/JdLTn2GEOFrSEDN8hur+e37l2t1Wm16nqqBVtmjhNt40O7gBxDbSww==
-X-Received: by 2002:a17:907:d68c:b0:88f:8ae1:8bca with SMTP id wf12-20020a170907d68c00b0088f8ae18bcamr6189194ejc.62.1675450979058;
-        Fri, 03 Feb 2023 11:02:59 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id f17-20020a170906049100b00871f66bf354sm1710990eja.204.2023.02.03.11.02.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 11:02:57 -0800 (PST)
-Message-ID: <87f5097d-1cd0-e09f-e759-8592a9165ea6@gmail.com>
-Date:   Fri, 3 Feb 2023 20:02:54 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NMYcoycLdQPDhvNJ8NTYUjLBtRJcOozpMT/JV8HIjUU=;
+        b=NCCI2XG1Jht/+dzz4j47AXz8B4oPhRgjf4BKiOGPLBOYIZaCQid/RySvvAjrkWyBP/
+         Tos8wPbhnQYPMX//jGak3gBNSKSlTFGYZDY1EYd1xtuZ9v7zghmgTuWCnslbj9TOajU0
+         jX1u835O07bRPJ63BniavSRD1BglR9v1QcwxrqdUDFTkay2uPcGaza2aHyxOnL9g04FE
+         0k0ZjPyBA1QOjnoEJdHAgXEbH09NOoRFPAvtfKBezGw23QjZDLnHmHcrmGqoe9meUBve
+         SiwU/dibgdEcI10mJ4mNNa89GI1L3IDhN1/gpB0ShXsi+KwdiXAI5lE83S/BAzADSnkQ
+         IygA==
+X-Gm-Message-State: AO0yUKWL9wJP4+jiK8Eb+dJwicLwPAo/yLh4ShWZGgM1eErkzR7D1foT
+        4wppN3+jLGa+eeik1vacSsjtuA==
+X-Google-Smtp-Source: AK7set9mo8i2Xkq53GyWQH0NJcp8KXAxbLA5LPGPWg3g5BMZ0NWfcBbd+VF5YqDJDMVnRtariPhA9g==
+X-Received: by 2002:a05:600c:3d1a:b0:3da:1e3e:1ce8 with SMTP id bh26-20020a05600c3d1a00b003da1e3e1ce8mr10841715wmb.13.1675451840676;
+        Fri, 03 Feb 2023 11:17:20 -0800 (PST)
+Received: from dave-Ubuntu2204.pitowers.org ([93.93.133.154])
+        by smtp.googlemail.com with ESMTPSA id l20-20020a05600c089400b003dc41a9836esm3349263wmp.43.2023.02.03.11.17.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Feb 2023 11:17:20 -0800 (PST)
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: [PATCH v2 0/2] Add support for mono version of Sony IMX290 sensor
+Date:   Fri,  3 Feb 2023 19:16:42 +0000
+Message-Id: <20230203191644.947643-1-dave.stevenson@raspberrypi.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v6 01/17] dt-bindings: display: rockchip: convert
- rockchip-lvds.txt to YAML
-To:     Rob Herring <robh@kernel.org>
-Cc:     heiko@sntech.de, hjc@rock-chips.com,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        airlied@gmail.com, daniel@ffwll.ch, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, robert.foss@linaro.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, philippe.cornu@foss.st.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
-        linus.walleij@linaro.org, inki.dae@samsung.com,
-        sw0312.kim@samsung.com, kyungmin.park@samsung.com,
-        alim.akhtar@samsung.com, linux-samsung-soc@vger.kernel.org
-References: <67771143-fd83-383d-41b2-68e8707134e8@gmail.com>
- <20230203182119.GA615242-robh@kernel.org>
-Content-Language: en-US
-From:   Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <20230203182119.GA615242-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The IMX290 comes in both mono and colour variants, but has no runtime way
+of determining which is connected.
+These patches adds support for either option.
 
+Changes from v1:
+- Renamed compatible from "sony,imx290-mono" to "sony,imx290llr" which is the
+  actual model number for the mono sensor.
+- Added an additional sony,imx290lqr as a synonym for the existing colour
+  "sony,imx290".
+- Broken description into paragraphs.
+- Reworked the driver to take a struct for each compatible, rather than just
+  the mono/colour status.
 
-On 2/3/23 19:21, Rob Herring wrote:
-> On Thu, Dec 22, 2022 at 03:22:14PM +0100, Johan Jonker wrote:
->> Convert rockchip-lvds.txt to YAML.
->>
->> Changed:
->>   Add power-domains property.
->>   Requirements between PX30 and RK3288
->>
->> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> ---
->>
->> Changed V3:
->>   Filename matching compatible style
->>   Drop "Regulator phandle for "
->>   Specify properties and requirements per SoC
->>   Sort order and restyle
->>
->> Changed V2:
->>   Fix title
->> ---
->>  .../display/rockchip/rockchip,lvds.yaml       | 170 ++++++++++++++++++
->>  .../display/rockchip/rockchip-lvds.txt        |  92 ----------
->>  2 files changed, 170 insertions(+), 92 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,lvds.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
-> 
+Dave Stevenson (2):
+  media: dt-bindings: media: i2c: Add mono version to IMX290 bindings
+  media: i2c: imx290: Add support for the mono sensor variant.
 
-> What's the plan for these patches? Don't see them in linux-next still. 
-> Do you want me to take patches 1-8?
+ .../bindings/media/i2c/sony,imx290.yaml       | 16 +++-
+ drivers/media/i2c/imx290.c                    | 81 +++++++++++++++----
+ 2 files changed, 76 insertions(+), 21 deletions(-)
 
-Hi,
+-- 
+2.34.1
 
-The display patches normally go through the DRM git.
-Patch 2 must merge with grf.yaml.
-Heiko has merged now 3 PHY related patches to grf.yaml first.
-
-[PATCH v6 02/17] dt-bindings: soc: rockchip: grf: add rockchip,lvds.yaml
-
-See current
-https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/log/?h=for-next&qt=grep&q=jonker
-
-Not sure what Heiko's plans are.
-Patch 2 replaces  only a description text and some accolades removal, so not "too" important.
-
-I urgent then you could merge without conflict:
-1, 3-8
-
-Patch 2 requires some adjusted now depending on the grf.yaml current next state.
-
-Johan
-
-
-
-
-
-
-
-> 
-> Rob
