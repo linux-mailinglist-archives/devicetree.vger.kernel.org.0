@@ -2,100 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF691689651
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 11:31:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27400689693
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 11:32:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233710AbjBCKa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 05:30:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50312 "EHLO
+        id S233628AbjBCK30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 05:29:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233828AbjBCKaB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 05:30:01 -0500
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70272113F2;
-        Fri,  3 Feb 2023 02:29:17 -0800 (PST)
-Received: by mail-qt1-x82e.google.com with SMTP id c2so4912265qtw.5;
-        Fri, 03 Feb 2023 02:29:17 -0800 (PST)
+        with ESMTP id S233676AbjBCK3D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 05:29:03 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 109AC29E07
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 02:28:17 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id h12so4193618wrv.10
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 02:28:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vfuhgXfiuM4itbEp0wsMDuwUE5taCY5Of7R2crb0yls=;
+        b=QtIo7hDwypMjs1ayHveLxUXphvWeSI5xwcGI/n+VKQ9IqXhhG4kcwGtXUu/vRjf/od
+         YUr3BKqkfPGf3+L0btpgnfP1w982LkuxjlH+XmMd1PZRbp7e1g3Q6O0T/fLPh4U7NriA
+         iYwhC0QqVuw/7ZZ9sT8wF8049G5DzVRnMLecvaN+x6/YlCrReoEsShptM+q68h6qMx+E
+         qVMNwqZw40XxL7KUEItpO6nrdPUrF5HSSkJxOHaQi/DZNEMtEpXuR61tw9HAl6GH7srK
+         eaYOVNItctUCnUS6itvN5bpcHWCSIGoafNAZFkgni/UkH1euU/swa5pRH3+pl5AnFIBN
+         teDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OONFnhP6I7zS1Y45r5yPBZWg15dDNXvDl8f/Zu5HTcU=;
-        b=Wp23sLXNjAl0bxpO8bSwKoLWp94GH/+zDoeayrEvKX1eTQYMuEIfgZtAzpyiC8V/w3
-         ZDOd6uUAEHXCTLp7XkFQ2mcMOx+KnIqqK3vQqAcpw+E78ss+cj8eWglD9zyRB0CBc6sT
-         Q9dXxU12rI5V6b/Z1u4J9kEj5ResUSl0Q0xAG6F7Y0aQ4AbrIABQiqiAeKQU6XjuLBn1
-         T+kkZRme/8bip+OGa1IWt1/hjRNOKnhOt8Ntw3Jf78bv8Z0PsqSQfP8zAy0tWHaXJVJx
-         5KVYnMfsKVCGDn//a3yHJ0axYYI0bQWYXeoQYAmnP86y5wBPNtB0jFxSlQa3cj3Jv3Ok
-         LmjQ==
-X-Gm-Message-State: AO0yUKVdmdQwLCRH8f+Pd3QI36j1SwGcRGNmqOOz3mP5feSESim9wIEY
-        ubvRbA68/cl6kr36tqTzlQtyPVo9BKh2WA==
-X-Google-Smtp-Source: AK7set+5y6WlzlnaaWHFL9VgmZh50b+SAvZ7gYg/TkeZ8tI9v1LmT2BnSF8v/TPWEX0O72SNJgZC/A==
-X-Received: by 2002:a05:622a:14ca:b0:3b8:1d89:e01b with SMTP id u10-20020a05622a14ca00b003b81d89e01bmr18325326qtx.23.1675420095800;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vfuhgXfiuM4itbEp0wsMDuwUE5taCY5Of7R2crb0yls=;
+        b=lDWo1XTSc1TvN/oFz3Rx8plC/IHx87D+quIHK5/EsP3j5JlwlmsvRtz0TzD+xdN1Sw
+         sV+kyTEanaYwL7CZg1UhUjckTcTq+ack65mPYZEwePXZzXaRtKjsyyvy1oDoBKkKwP7N
+         Gdjl7QSREk6lA8a2hEW9w01U2Y4qpAQmoC5Q3mY/KCQ5yAGxKYYxpMY0J/o9isjH3b0d
+         DLHCJuE2F7NgNYv98VRfyZyhcvY69LInJfjoHYMUgOEkxX7ACDQ47QFO9ZmoipJqU18y
+         lT3bEAceC8dG4/la02Bunl0MaSiVoCXYcjg6od9aLeSI1tZp5WmXf+YKJdCALdUB8N2h
+         vbTw==
+X-Gm-Message-State: AO0yUKWmRD+DffCrjuIkEQ3+YvlosrJHkZmR6TkkVwYmUomtLGuQnF8m
+        AjwJD0taTX+VFjilHiL5YZQKmw==
+X-Google-Smtp-Source: AK7set8OdEktKa6eSHIzDj43RE/IqiWzVM0PL4mNk9djNsAS4aAuappLZqr8yfR9XQnFX9wZNCZpVw==
+X-Received: by 2002:a5d:4530:0:b0:293:1868:3a14 with SMTP id j16-20020a5d4530000000b0029318683a14mr7126925wra.0.1675420095568;
         Fri, 03 Feb 2023 02:28:15 -0800 (PST)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id dt23-20020a05620a479700b0071a49ac0e05sm1489828qkb.111.2023.02.03.02.28.15
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id y3-20020adfd083000000b002bfbda53b98sm1640251wrh.35.2023.02.03.02.28.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
         Fri, 03 Feb 2023 02:28:15 -0800 (PST)
-Received: by mail-yb1-f180.google.com with SMTP id a1so5675459ybj.9;
-        Fri, 03 Feb 2023 02:28:15 -0800 (PST)
-X-Received: by 2002:a25:820a:0:b0:7d5:b884:3617 with SMTP id
- q10-20020a25820a000000b007d5b8843617mr1035225ybk.380.1675420094927; Fri, 03
- Feb 2023 02:28:14 -0800 (PST)
+Message-ID: <d43b44f7-fb7a-1443-af7c-07bf059dcde4@linaro.org>
+Date:   Fri, 3 Feb 2023 11:28:13 +0100
 MIME-Version: 1.0
-References: <20230203101624.474611-1-tudor.ambarus@linaro.org>
-In-Reply-To: <20230203101624.474611-1-tudor.ambarus@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 3 Feb 2023 11:28:03 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVeDbTGLBAk5QWGQGf=o6g25t341FjGTmNsHw0_sDOceg@mail.gmail.com>
-Message-ID: <CAMuHMdVeDbTGLBAk5QWGQGf=o6g25t341FjGTmNsHw0_sDOceg@mail.gmail.com>
-Subject: Re: [PATCH] tree-wide: trivial: s/ a SPI/ an SPI/
-To:     Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc:     trivial@kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-        netdev@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-gpio@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-mips@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-wireless@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-rtc@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        linux-staging@lists.linux.dev, linux-usb@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/2] media: dt-bindings: media: i2c: Add imx327 version to
+ IMX327 bindings
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230203102439.237527-1-alexander.stein@ew.tq-group.com>
+ <20230203102439.237527-2-alexander.stein@ew.tq-group.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230203102439.237527-2-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tudor,
+On 03/02/2023 11:24, Alexander Stein wrote:
+> The imx290 driver can be used for both imx290 and imx327 as they have a
+> similar register set and configuration. imx327 lacks 8 lanes LVDS and
+> 120 FPS support.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-On Fri, Feb 3, 2023 at 11:17 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
-> The deciding factor for when a/an should be used is the sound
-> that begins the word which follows these indefinite articles,
-> rather than the letter which does. Use "an SPI" (SPI begins
-> with the consonant letter S, but the S is pronounced with its
-> letter name, "es.").
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-While I agree with your pronunciation, I believe the SPI maintainer
-(which you forgot to CC) pronounces it in James Bond-style, i.e. rhymes
-with "spy" ;-)
+Best regards,
+Krzysztof
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
