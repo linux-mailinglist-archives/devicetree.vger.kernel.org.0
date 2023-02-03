@@ -2,136 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0194E689EC6
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 17:02:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EFCA689ED1
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 17:05:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232866AbjBCQC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 11:02:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35376 "EHLO
+        id S232975AbjBCQFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 11:05:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231866AbjBCQC1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 11:02:27 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C16F39D063
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 08:02:24 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1pNyVz-0004Uw-SP; Fri, 03 Feb 2023 17:02:15 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1pNyVy-0001d2-2W; Fri, 03 Feb 2023 17:02:14 +0100
-Date:   Fri, 3 Feb 2023 17:02:14 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, kernel@pegutronix.de,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH 18/18] dt-bindings: devfreq: event: convert Rockchip DFI
- binding to yaml
-Message-ID: <20230203160214.GZ13319@pengutronix.de>
-References: <20230203125012.3804008-1-s.hauer@pengutronix.de>
- <20230203125012.3804008-19-s.hauer@pengutronix.de>
- <ed9c3224-2f1a-c335-3028-6c23f40f57f4@kernel.org>
+        with ESMTP id S233297AbjBCQFG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 11:05:06 -0500
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F866A2A4C;
+        Fri,  3 Feb 2023 08:05:03 -0800 (PST)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-51ba4b1b9feso73909487b3.11;
+        Fri, 03 Feb 2023 08:05:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7wIYdPVdo9w8wJeFawgcWpGlCHgpXqP0aU2proD/z4A=;
+        b=h7Y+KCF7rYYuzKa23/XVH7EqKMk5LTZnVw2PqeMnOFM+xWLo9NJHdhJ7VXQEzh/jEQ
+         43USwhMjApuBXpP8uDT4/9ZWtcfiac4as5JkOYvgtFByz33C36/DfwkQOIfY4SCuqGDK
+         Hv9r2B8MXFnnKurrI2YIIpkW+iLxoK+7IxwMN41GkLxe5SYkAMuhmyEdUiIf3h+NbtlV
+         Vjrsgdy/0uWZlA6GCyhPVQQLTybtIXlZAYgovWjXFPEmbkXmJ1R6oNLeW1Q9wjp7INOt
+         dpYwOYdzkRdvH3M1sRrIE5bOaaFyPkuU4ojNBjyPoq103GnN5D0iyOl6ib+Yx3KeeBsY
+         CkPA==
+X-Gm-Message-State: AO0yUKUt0cK5Wr875sm9z9U0bJzP+91+5+O4ghRPfaBfRmU8ORcDIFi3
+        96J/1/Ux8eteagW4UXGq2OK0nBZCNN5sEw==
+X-Google-Smtp-Source: AK7set/a/Eq2gP6R7fciPiamzKQR29gjZ+vbzZcYT0ptMjiTbNLQIWRvobf0piyfY0iq11BERjizRw==
+X-Received: by 2002:a0d:d648:0:b0:506:4342:1a2d with SMTP id y69-20020a0dd648000000b0050643421a2dmr7042060ywd.12.1675440302426;
+        Fri, 03 Feb 2023 08:05:02 -0800 (PST)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id r195-20020a37a8cc000000b0071ddbe8fe23sm2101905qke.24.2023.02.03.08.05.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Feb 2023 08:05:02 -0800 (PST)
+Received: by mail-yb1-f179.google.com with SMTP id 74so6528236ybl.12;
+        Fri, 03 Feb 2023 08:05:01 -0800 (PST)
+X-Received: by 2002:a5b:941:0:b0:865:e214:f4e3 with SMTP id
+ x1-20020a5b0941000000b00865e214f4e3mr352487ybq.604.1675440301482; Fri, 03 Feb
+ 2023 08:05:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ed9c3224-2f1a-c335-3028-6c23f40f57f4@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230113062339.1909087-1-hch@lst.de> <11e2e0a8-eabe-2d8c-d612-9cdd4bcc3648@physik.fu-berlin.de>
+ <20230116071306.GA15848@lst.de> <40dc1bc1-d9cd-d9be-188e-5167ebae235c@physik.fu-berlin.de>
+ <20230203071423.GA24833@lst.de> <afd056a95d21944db1dc0c9708f692dd1f7bb757.camel@physik.fu-berlin.de>
+ <20230203083037.GA30738@lst.de> <d10fe31b2af6cf4e03618f38ca9d3ca5c72601ed.camel@physik.fu-berlin.de>
+ <CAMuHMdUitVfW088YOmqYm4kwbKwkwb22fAakHcu6boxv7dXDfQ@mail.gmail.com> <f6a60193-a5d1-c42c-158a-4b0bfe9c7538@infradead.org>
+In-Reply-To: <f6a60193-a5d1-c42c-158a-4b0bfe9c7538@infradead.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 3 Feb 2023 17:04:49 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWJ3XOBewDoU8umAHc6b83hJQge5xjY3Cxx03AvoiR7iQ@mail.gmail.com>
+Message-ID: <CAMuHMdWJ3XOBewDoU8umAHc6b83hJQge5xjY3Cxx03AvoiR7iQ@mail.gmail.com>
+Subject: Re: remove arch/sh
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+        Christoph Hellwig <hch@lst.de>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-sh@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 03, 2023 at 04:14:56PM +0100, Krzysztof Kozlowski wrote:
-> On 03/02/2023 13:50, Sascha Hauer wrote:
-> > Convert the Rockchip DFI binding to yaml. While at it add the newly
-> > supported rk3568-dfi to the binding.
-> > 
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> 
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC.  It might happen, that command when run on an older
-> kernel, gives you outdated entries.  Therefore please be sure you base
-> your patches on recent Linux kernel.
+Hi Randy,
 
-That's what I did. I skipped you and Rob because I know you're wathcing
-the list anyway.
+On Fri, Feb 3, 2023 at 4:57 PM Randy Dunlap <rdunlap@infradead.org> wrote:
+> Is this "sh64" still accurate and applicable? from Documentation/kbuild/kbuild.rst:
+>
+> But some architectures such as x86 and sparc have aliases.
+>
+> - x86: i386 for 32 bit, x86_64 for 64 bit
+> - sh: sh for 32 bit, sh64 for 64 bit <<<<<<<<<<<<<<<
+> - sparc: sparc32 for 32 bit, sparc64 for 64 bit
 
-> > diff --git a/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.yaml b/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.yaml
-> > new file mode 100644
-> > index 0000000000000..e082a0df7895a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.yaml
-> 
-> rockchip,dfi.yaml
+No, support for sh64 was removed in commit 37744feebc086908
+("sh: remove sh5 support") in v5.8.
 
-ok.
+Gr{oetje,eeting}s,
 
-> 
-> > @@ -0,0 +1,38 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/devfreq/event/rockchip-dfi.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Rockchip DFI
-> > +
-> > +maintainers:
-> > +  - Sascha Hauer <s.hauer@pengutronix.de>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - rk3399-dfi
-> > +      - rk3568-dfi
-> 
-> These are not correct compatibles.
+                        Geert
 
-What's wrong with them?
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> 
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  rockchip,pmu:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      Phandle to the syscon managing the "PMU general register files".
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> 
-> clocks were required
-
-They are no longer, the RK3568 doesn't have a clock. Do I have to add
-something to make the clock optional on RK3568 only?
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
