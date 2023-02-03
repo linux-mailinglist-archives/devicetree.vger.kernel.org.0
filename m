@@ -2,150 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E5ED68975B
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 11:57:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E273689773
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 12:03:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233093AbjBCK4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 05:56:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47166 "EHLO
+        id S231205AbjBCLDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 06:03:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233098AbjBCK4L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 05:56:11 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7486D77507
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 02:56:03 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id qw12so14290362ejc.2
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 02:56:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BdYRjOM1n9bt8CN7mBjbmqA+shKAXX8Ovt8jaNWTShU=;
-        b=TTe8dPHkBNkUesxIWp8id6+kZt6bBhVLN1AbM9Q2yUCXy0U0dQnhiMNlSNMCzYlgVh
-         ZJW5B+IG4lEzWL1mLjJWKnN8UQFbKZMQPETLWbYmHSN0LcAy/We92w1jDFhdutqAY0XS
-         5AuBsWSWyyfvrOr6kJ315r7Lcv3OK9WY0u+NshplJxk9jO3CUwvRdr9gDuhaUcAJEel2
-         Rxk6vJlam0U+WN0pRVaHVSDFYHhIJTyfbexAko7p3nLyc6AiCCJc/MLchscD7GbZqEre
-         lCD6Dl3muFeI/L+0vtEjM8LVGU+9/lNYdSaHB03zKVEfGZTlRD99lLBWIaMdfvO+Xuu/
-         W3MA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BdYRjOM1n9bt8CN7mBjbmqA+shKAXX8Ovt8jaNWTShU=;
-        b=z5cMuVpqbAjdfXYYD1GzMPhMRGVthNbNXiVoPa7RlE5TBwZ38nwR+OkwB46cxVEm/S
-         kLM9aicBniweByBIvhxQ0vKgqz7xXZ2d/DILXQko0RQp0J5Bi3c34xECijFltxaqkhwD
-         piklLZlL8n/qcdrQA7CGD+rXixLq+gz60lKels1ZD1QIqe49KVpOFmo/Mt2QhncdLOv6
-         zGKNK5oWSgKEav7ofMn0S6TlqRkJwgNOH07P69/qwbl9innB17sTzallpag9edQNsALX
-         N8O8AByCjjtwg6M53biWCpKfOWNJbS+oHfYq8FQchSx07jON59ULn0u6VXVOa6Xi63eY
-         qXpA==
-X-Gm-Message-State: AO0yUKVAJ4XtsXiXemIqmo0KgW6z1mhUh8C7FXMXnXRITNwxemWedv40
-        t0Wq+ChUKpF8pPZqJGNtdf1oXQ==
-X-Google-Smtp-Source: AK7set+MxWM0+nZqvviW/bwAcAGYQkQyWGDadUbnUIpVzeXcg1uw20STr4HiMhMPlosIWq5Jv3GQrA==
-X-Received: by 2002:a17:906:9610:b0:878:5e84:e1d6 with SMTP id s16-20020a170906961000b008785e84e1d6mr11002336ejx.75.1675421761914;
-        Fri, 03 Feb 2023 02:56:01 -0800 (PST)
-Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
-        by smtp.gmail.com with ESMTPSA id p2-20020a170906498200b00878803d4049sm1219445eju.93.2023.02.03.02.55.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 02:56:01 -0800 (PST)
-Message-ID: <e34f36b0-35a8-0b77-e6ab-49851213108e@linaro.org>
-Date:   Fri, 3 Feb 2023 11:55:58 +0100
+        with ESMTP id S231233AbjBCLDa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 06:03:30 -0500
+X-Greylist: delayed 3606 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 03 Feb 2023 03:03:28 PST
+Received: from 2.mo550.mail-out.ovh.net (2.mo550.mail-out.ovh.net [178.32.119.250])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8918054216
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 03:03:28 -0800 (PST)
+Received: from director3.ghost.mail-out.ovh.net (unknown [10.109.143.232])
+        by mo550.mail-out.ovh.net (Postfix) with ESMTP id BE55C1FF59
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 09:48:09 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-trzjr (unknown [10.110.171.34])
+        by director3.ghost.mail-out.ovh.net (Postfix) with ESMTPS id E77B81FE4B;
+        Fri,  3 Feb 2023 09:48:07 +0000 (UTC)
+Received: from armadeus.com ([37.59.142.105])
+        by ghost-submission-6684bf9d7b-trzjr with ESMTPSA
+        id Kfx/NFfY3GMuiAAAFbqr6Q
+        (envelope-from <sebastien.szymanski@armadeus.com>); Fri, 03 Feb 2023 09:48:07 +0000
+Authentication-Results: garm.ovh; auth=pass (GARM-105G006547cce2a-5f84-4d18-9f7d-4eb472201753,
+                    ACA1AB562B47CA922D8F764747C6655C70CF283B) smtp.auth=sebastien.szymanski@armadeus.com
+X-OVh-ClientIp: 90.19.171.247
+Message-ID: <46eb7d7e-4e44-e0d8-c591-30e06757900c@armadeus.com>
+Date:   Fri, 3 Feb 2023 10:44:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH V6 2/7] clk: qcom: Add Global Clock Controller driver for
- IPQ9574
-To:     Kathiravan T <quic_kathirav@quicinc.com>,
-        Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
-        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
-        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_arajkuma@quicinc.com,
-        quic_anusha@quicinc.com, quic_poovendh@quicinc.com
-References: <20230202150619.22425-1-quic_devipriy@quicinc.com>
- <20230202150619.22425-3-quic_devipriy@quicinc.com>
- <1d144aa4-6f0f-b10f-1d32-4acf4e06ae85@quicinc.com>
+ Thunderbird/102.7.1
 Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1d144aa4-6f0f-b10f-1d32-4acf4e06ae85@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230201203338.9525-1-stefan.wahren@i2se.com>
+From:   =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Subject: Re: [PATCH 0/9] ARM: dts: imx28: Clean up older DTS files
+In-Reply-To: <20230201203338.9525-1-stefan.wahren@i2se.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Ovh-Tracer-Id: 15589491585585769240
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrudegtddgtdehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfvfevfhfhufgjtgfgsehtkeertddtfeejnecuhfhrohhmpefurogsrghsthhivghnucfuiiihmhgrnhhskhhiuceoshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmqeenucggtffrrghtthgvrhhnpeetvdelleevvdejiefgieegvdeiffetgfeiteegkeefgeduvdevtdduhfdttdeukeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeduvdejrddtrddtrddupdefjedrheelrddugedvrddutdehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeoshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheehtddpmhhouggvpehsmhhtphhouhht
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
-
-On 3.02.2023 06:47, Kathiravan T wrote:
+On 2/1/23 21:33, Stefan Wahren wrote:
+> Since the imx28 belongs to the early ARM platforms which has been
+> adapted to DT, a lot of these DTS files are not in the best shape.
+> So this series tries to address this by using label references
+> and SPDX tags.
 > 
-> On 2/2/2023 8:36 PM, Devi Priya wrote:
->> Add Global Clock Controller (GCC) driver for ipq9574 based devices
->>
->> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
->> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->> ---
-
-[...]
-
->> +static int gcc_ipq9574_probe(struct platform_device *pdev)
->> +{
->> +    struct regmap *regmap;
->> +    struct qcom_cc_desc ipq9574_desc = gcc_ipq9574_desc;
->> +
->> +    regmap = qcom_cc_map(pdev, &ipq9574_desc);
->> +    if (IS_ERR(regmap))
->> +        return PTR_ERR(regmap);
->> +
->> +    return qcom_cc_really_probe(pdev, &ipq9574_desc, regmap);
+> Theses patches doesn't include functional changes. The resulting
+> DTB files has been verified with dtdiff.
 > 
+> Stefan Wahren (9):
+>    ARM: dts: imx28-apf28: Convert to use label references
+>    ARM: dts: imx28-m28/sps1: Convert to use label references
+>    ARM: dts: imx28-apx4devkit: Convert to use label references
+>    ARM: dts: imx28-cfa10036: Convert to use label references
+>    ARM: dts: imx28-duckbill: Convert to use label references
+>    ARM: dts: imx28-duckbill-2: Include base board
+>    ARM: dts: imx28-evk: Convert to use label references
+>    ARM: dts: imx28-ts4600: Convert to use label references
+>    ARM: dts: imx28-tx28: add SPDX-License-Identifier
 > 
-> can we use qcom_cc_probe as suggested here https://lore.kernel.org/linux-arm-msm/84f68577f5629e6ef6d6b14357a79f84.sboyd@kernel.org/ ?
-Yes we can.
+>   arch/arm/boot/dts/imx28-apf28.dts             |  96 ++--
+>   arch/arm/boot/dts/imx28-apf28dev.dts          | 312 ++++++------
+>   arch/arm/boot/dts/imx28-apx4devkit.dts        | 380 +++++++-------
+>   arch/arm/boot/dts/imx28-cfa10036.dts          | 193 ++++----
+>   arch/arm/boot/dts/imx28-cfa10049.dts          | 454 +++++++++--------
+>   arch/arm/boot/dts/imx28-cfa10055.dts          | 224 +++++----
+>   arch/arm/boot/dts/imx28-cfa10056.dts          | 146 +++---
+>   arch/arm/boot/dts/imx28-cfa10057.dts          | 252 +++++-----
+>   arch/arm/boot/dts/imx28-cfa10058.dts          | 186 ++++---
+>   arch/arm/boot/dts/imx28-duckbill-2-485.dts    | 174 +------
+>   .../arm/boot/dts/imx28-duckbill-2-enocean.dts | 198 +-------
+>   arch/arm/boot/dts/imx28-duckbill-2-spi.dts    | 211 ++------
+>   arch/arm/boot/dts/imx28-duckbill-2.dts        | 256 +++++-----
+>   arch/arm/boot/dts/imx28-duckbill.dts          | 196 ++++----
+>   arch/arm/boot/dts/imx28-evk.dts               | 462 +++++++++---------
+>   arch/arm/boot/dts/imx28-m28.dtsi              |  44 +-
+>   arch/arm/boot/dts/imx28-m28cu3.dts            | 354 +++++++-------
+>   arch/arm/boot/dts/imx28-m28evk.dts            | 420 ++++++++--------
+>   arch/arm/boot/dts/imx28-sps1.dts              | 201 ++++----
+>   arch/arm/boot/dts/imx28-ts4600.dts            |  80 ++-
+>   arch/arm/boot/dts/imx28-tx28.dts              |  38 +-
+>   21 files changed, 2142 insertions(+), 2735 deletions(-)
+> 
 
-When you're answering a long long long long email, please cut off
-parts that you aren't replying to, I had to scroll and scroll and
-scroll and scroll to get to this sentence and I'm not even sure if
-you said something inbetween that I missed..
+FYI, such changes have been rejected years ago:
 
-Konrad
-> 
-> 
->> +}
->> +
->> +static struct platform_driver gcc_ipq9574_driver = {
->> +    .probe = gcc_ipq9574_probe,
->> +    .driver = {
->> +        .name   = "qcom,gcc-ipq9574",
->> +        .of_match_table = gcc_ipq9574_match_table,
->> +    },
->> +};
->> +
->> +static int __init gcc_ipq9574_init(void)
->> +{
->> +    return platform_driver_register(&gcc_ipq9574_driver);
->> +}
->> +core_initcall(gcc_ipq9574_init);
->> +
->> +static void __exit gcc_ipq9574_exit(void)
->> +{
->> +    platform_driver_unregister(&gcc_ipq9574_driver);
->> +}
->> +module_exit(gcc_ipq9574_exit);
->> +
->> +MODULE_DESCRIPTION("Qualcomm Technologies, Inc. GCC IPQ9574 Driver");
->> +MODULE_LICENSE("GPL");
+https://lore.kernel.org/linux-arm-kernel/20140512141814.GE8330@dragon/
+
+Regards,
+
+-- 
+Sébastien Szymanski, Armadeus Systems
+Software engineer
+
