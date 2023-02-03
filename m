@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE5C3689080
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:19:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94B616890A8
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:21:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232475AbjBCHRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 02:17:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39244 "EHLO
+        id S232148AbjBCHUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 02:20:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232409AbjBCHRo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:17:44 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B901D921A8
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 23:17:42 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id a2so3517792wrd.6
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 23:17:42 -0800 (PST)
+        with ESMTP id S231821AbjBCHUm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:20:42 -0500
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29BF193AF1
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 23:20:07 -0800 (PST)
+Received: by mail-ua1-x929.google.com with SMTP id j1so817326uan.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 23:20:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7AIgxCweWs4+DnxABoHv8HSYkYCkBtQd6RKyyeXAI4o=;
-        b=hGVzxC6EWGSen7yIJrc27Vu0co0n3zGYIxJm6/ZvKpEHu4xXqXrn2jaWb8XYSI+w9a
-         fpzN1wSy9EnL+biWpukc3T7bFFfwi3pvq/Yl1egkmre2acTVXWmlLIuNIqPX5mg+kLFs
-         gCe24kzyKsvpC4P47r9oDhKka+8c7BMEYaZQwRiA1usqjUXWDDDmnF0a4GpXNKxeiHzK
-         YTRaf7g6op8gIk0P+TcjUNwunnQegnrS898aIT3Ys2dVO85DdsgWxTrhgaaY8QaFts7S
-         48ju5jSbYTD8P0MV4rEIHxByDMwSTzdN/fqxfslLfqsykHCr8XEEI0JG6keXQHRtBDjP
-         nGrg==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MOfBdQlx5iGO79hp8GsvnYFdh/l1zehQMo7xs4q/oVo=;
+        b=bw9lxWd5kf3X9mhBe+WB1U+QwWcYI4VrH7OvmBQFXuoORIoxkZ3jr0gLLLSSxjPz4H
+         EQksKl9SXFqjvrLRMbTkV78zb8/E8qZwTFjxJzW8hdYpqcTNw2CJUFr8S2TVihsdAo9e
+         YhQ19YicgiTlK5DRjMxRBzVkgMmzcFWrjRqMk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7AIgxCweWs4+DnxABoHv8HSYkYCkBtQd6RKyyeXAI4o=;
-        b=1Dcll7Nu4tMiuu0KGkSVxSv5AMMvbGJEPKUXVcsieIeHFWuLw6mwV/2klWTTkkMSOT
-         TZTQofdRGkd0qrx2M/C8NHw3XM5HJLgE1o6Y1Sm6uY+234S9Mb/9PAiMHXVb2tSYN9er
-         o05ir/J4uFADGuete606Z4lIcJyGxTlJVbwXCTEZqSpPGw3ab+H8lBY9zY/YsHSQgAhp
-         AIGyUkRQpFgAdAz3Xvh942C7VTe4ZieaYraAl+VPQaOpPQkJ85uNDgH9Ux51XYulb7gW
-         5jtOzz3N848uI7P+jsd3PquHVpzB8KNsy6638tm/xvipDX6G3jO16+nbseUxANwy6Uaz
-         AXdg==
-X-Gm-Message-State: AO0yUKWDsg72cthVVwqAOsEfJRu8Z9yfDwXXLC6GltmmX2gwyfkfZJrS
-        tmkj8UvjNG3zN1v+w9vX5zPCmg==
-X-Google-Smtp-Source: AK7set+e8woENYsUqYAhyzTz/ne5s8s2T6I/2mq2Ioe8we0VVJyKEUc6koF8sPz1v08iVWL9pCM0/A==
-X-Received: by 2002:a5d:610c:0:b0:2c2:6541:7af7 with SMTP id v12-20020a5d610c000000b002c265417af7mr7151784wrt.66.1675408662307;
-        Thu, 02 Feb 2023 23:17:42 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q16-20020adff950000000b002bff574a250sm1291828wrr.2.2023.02.02.23.17.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Feb 2023 23:17:41 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Iskren Chernev <me@iskren.info>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-gpio@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: (subset) [PATCH v2 07/10] dt-bindings: pinctrl: qcom: correct gpio-ranges in examples
-Date:   Fri,  3 Feb 2023 08:17:27 +0100
-Message-Id: <167540864401.6835.15877953602860075826.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230202104452.299048-8-krzysztof.kozlowski@linaro.org>
-References: <20230202104452.299048-1-krzysztof.kozlowski@linaro.org> <20230202104452.299048-8-krzysztof.kozlowski@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MOfBdQlx5iGO79hp8GsvnYFdh/l1zehQMo7xs4q/oVo=;
+        b=AbNRNalnS6lyH7hjP9oX3gb+NNCdngi3o9EFq8zCxHcUzQmA2yYxEFl/cwAgVuQYet
+         AmmukybnnWx5B/h/mCAe25Dtr3SpvTY7P3MH+zpR3oicbOWffzUJmmXYAVtPuKmb0k1q
+         DGcgYxPw10zkoZe3wbe1YCzorCMVTNtUQ3bY3fwlb1xVnZc7+dNi/6N6Yt6A73JM5/Se
+         Gk8hpl4p0GlXr7jjq1HVugY72aT8KG50stODNx0mtwlPTh4Fhe4i/GVAojRvQwNkEpn6
+         C9MHMUYb+qxJhszVXS4psCKB/HVkAxDgqI6LLneOxW+gaRlCP2iS6Ux5UklU5H511nOn
+         3DiA==
+X-Gm-Message-State: AO0yUKVUsX4SIktns3PkCsi1q1rKX8+GG4gM1Q1xbpGW5713ujzFNi49
+        vp8M75RV3fLBLkg/eJLs8SbBVOPtfUB3jsCg10vfpA==
+X-Google-Smtp-Source: AK7set/xR1ke0jWZt68bY6r2crHse1vwXsGaqnSXeErrScT1IfzUL7oiEe6uQtdtx91KsG76eEPfb4WI2IpvFowxPtM=
+X-Received: by 2002:ab0:6ca4:0:b0:5f0:4676:e4f1 with SMTP id
+ j4-20020ab06ca4000000b005f04676e4f1mr1475913uaa.44.1675408800845; Thu, 02 Feb
+ 2023 23:20:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <20230119124848.26364-1-Garmin.Chang@mediatek.com> <20230119124848.26364-13-Garmin.Chang@mediatek.com>
+In-Reply-To: <20230119124848.26364-13-Garmin.Chang@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 3 Feb 2023 15:19:49 +0800
+Message-ID: <CAGXv+5Fysy4iCvHEXWtf5oXCHkaKezPqcrGd8QzhnaTrYdyecA@mail.gmail.com>
+Subject: Re: [PATCH v5 12/19] clk: mediatek: Add MT8188 vdosys0 clock support
+To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-clk@vger.kernel.org, netdev@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,16 +73,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2 Feb 2023 11:44:49 +0100, Krzysztof Kozlowski wrote:
-> Correct the number of GPIOs in gpio-ranges to match reality.
-> 
-> 
+On Thu, Jan 19, 2023 at 8:54 PM Garmin.Chang <Garmin.Chang@mediatek.com> wrote:
+>
+> Add MT8188 vdosys0 clock controller which provides clock gate
+> control in video system. This is integrated with mtk-mmsys
+> driver which will populate device by platform_device_register_data
+> to start vdosys clock driver.
+>
+> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
+> ---
+>  drivers/clk/mediatek/Makefile          |   3 +-
+>  drivers/clk/mediatek/clk-mt8188-vdo0.c | 134 +++++++++++++++++++++++++
+>  2 files changed, 136 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/clk/mediatek/clk-mt8188-vdo0.c
+>
+> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
+> index 7d09e9fc6538..df78c0777fef 100644
+> --- a/drivers/clk/mediatek/Makefile
+> +++ b/drivers/clk/mediatek/Makefile
+> @@ -86,7 +86,8 @@ obj-$(CONFIG_COMMON_CLK_MT8186) += clk-mt8186-mcu.o clk-mt8186-topckgen.o clk-mt
+>  obj-$(CONFIG_COMMON_CLK_MT8188) += clk-mt8188-apmixedsys.o clk-mt8188-topckgen.o \
+>                                    clk-mt8188-peri_ao.o clk-mt8188-infra_ao.o \
+>                                    clk-mt8188-cam.o clk-mt8188-ccu.o clk-mt8188-img.o \
+> -                                  clk-mt8188-ipe.o clk-mt8188-mfg.o clk-mt8188-vdec.o
+> +                                  clk-mt8188-ipe.o clk-mt8188-mfg.o clk-mt8188-vdec.o \
+> +                                  clk-mt8188-vdo0.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192) += clk-mt8192.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192_AUDSYS) += clk-mt8192-aud.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192_CAMSYS) += clk-mt8192-cam.o
+> diff --git a/drivers/clk/mediatek/clk-mt8188-vdo0.c b/drivers/clk/mediatek/clk-mt8188-vdo0.c
+> new file mode 100644
+> index 000000000000..30dd64374ace
+> --- /dev/null
+> +++ b/drivers/clk/mediatek/clk-mt8188-vdo0.c
+> @@ -0,0 +1,134 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// Copyright (c) 2022 MediaTek Inc.
+> +// Author: Garmin Chang <garmin.chang@mediatek.com>
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/platform_device.h>
+> +#include <dt-bindings/clock/mediatek,mt8188-clk.h>
+> +
+> +#include "clk-gate.h"
+> +#include "clk-mtk.h"
+> +
+> +static const struct mtk_gate_regs vdo0_0_cg_regs = {
+> +       .set_ofs = 0x104,
+> +       .clr_ofs = 0x108,
+> +       .sta_ofs = 0x100,
+> +};
+> +
+> +static const struct mtk_gate_regs vdo0_1_cg_regs = {
+> +       .set_ofs = 0x114,
+> +       .clr_ofs = 0x118,
+> +       .sta_ofs = 0x110,
+> +};
+> +
+> +static const struct mtk_gate_regs vdo0_2_cg_regs = {
+> +       .set_ofs = 0x124,
+> +       .clr_ofs = 0x128,
+> +       .sta_ofs = 0x120,
+> +};
+> +
+> +#define GATE_VDO0_0(_id, _name, _parent, _shift)                       \
+> +       GATE_MTK(_id, _name, _parent, &vdo0_0_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+> +
+> +#define GATE_VDO0_1(_id, _name, _parent, _shift)                       \
+> +       GATE_MTK(_id, _name, _parent, &vdo0_1_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+> +
+> +#define GATE_VDO0_2(_id, _name, _parent, _shift)                       \
+> +       GATE_MTK(_id, _name, _parent, &vdo0_2_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+> +
+> +#define GATE_VDO0_2_FLAGS(_id, _name, _parent, _shift, _flags)         \
+> +       GATE_MTK_FLAGS(_id, _name, _parent, &vdo0_2_cg_regs, _shift,    \
+> +       &mtk_clk_gate_ops_setclr, _flags)
+> +
+> +static const struct mtk_gate vdo0_clks[] = {
+> +       /* VDO0_0 */
+> +       GATE_VDO0_0(CLK_VDO0_DISP_OVL0, "vdo0_disp_ovl0", "top_vpp", 0),
+> +       GATE_VDO0_0(CLK_VDO0_FAKE_ENG0, "vdo0_fake_eng0", "top_vpp", 2),
+> +       GATE_VDO0_0(CLK_VDO0_DISP_CCORR0, "vdo0_disp_ccorr0", "top_vpp", 4),
+> +       GATE_VDO0_0(CLK_VDO0_DISP_MUTEX0, "vdo0_disp_mutex0", "top_vpp", 6),
+> +       GATE_VDO0_0(CLK_VDO0_DISP_GAMMA0, "vdo0_disp_gamma0", "top_vpp", 8),
+> +       GATE_VDO0_0(CLK_VDO0_DISP_DITHER0, "vdo0_disp_dither0", "top_vpp", 10),
+> +       GATE_VDO0_0(CLK_VDO0_DISP_WDMA0, "vdo0_disp_wdma0", "top_vpp", 17),
+> +       GATE_VDO0_0(CLK_VDO0_DISP_RDMA0, "vdo0_disp_rdma0", "top_vpp", 19),
+> +       GATE_VDO0_0(CLK_VDO0_DSI0, "vdo0_dsi0", "top_vpp", 21),
+> +       GATE_VDO0_0(CLK_VDO0_DSI1, "vdo0_dsi1", "top_vpp", 22),
+> +       GATE_VDO0_0(CLK_VDO0_DSC_WRAP0, "vdo0_dsc_wrap0", "top_vpp", 23),
+> +       GATE_VDO0_0(CLK_VDO0_VPP_MERGE0, "vdo0_vpp_merge0", "top_vpp", 24),
+> +       GATE_VDO0_0(CLK_VDO0_DP_INTF0, "vdo0_dp_intf0", "top_vpp", 25),
+> +       GATE_VDO0_0(CLK_VDO0_DISP_AAL0, "vdo0_disp_aal0", "top_vpp", 26),
+> +       GATE_VDO0_0(CLK_VDO0_INLINEROT0, "vdo0_inlinerot0", "top_vpp", 27),
+> +       GATE_VDO0_0(CLK_VDO0_APB_BUS, "vdo0_apb_bus", "top_vpp", 28),
+> +       GATE_VDO0_0(CLK_VDO0_DISP_COLOR0, "vdo0_disp_color0", "top_vpp", 29),
+> +       GATE_VDO0_0(CLK_VDO0_MDP_WROT0, "vdo0_mdp_wrot0", "top_vpp", 30),
+> +       GATE_VDO0_0(CLK_VDO0_DISP_RSZ0, "vdo0_disp_rsz0", "top_vpp", 31),
+> +       /* VDO0_1 */
+> +       GATE_VDO0_1(CLK_VDO0_DISP_POSTMASK0, "vdo0_disp_postmask0", "top_vpp", 0),
+> +       GATE_VDO0_1(CLK_VDO0_FAKE_ENG1, "vdo0_fake_eng1", "top_vpp", 1),
+> +       GATE_VDO0_1(CLK_VDO0_DL_ASYNC2, "vdo0_dl_async2", "top_vpp", 5),
+> +       GATE_VDO0_1(CLK_VDO0_DL_RELAY3, "vdo0_dl_relay3", "top_vpp", 6),
+> +       GATE_VDO0_1(CLK_VDO0_DL_RELAY4, "vdo0_dl_relay4", "top_vpp", 7),
+> +       GATE_VDO0_1(CLK_VDO0_SMI_GALS, "vdo0_smi_gals", "top_vpp", 10),
+> +       GATE_VDO0_1(CLK_VDO0_SMI_COMMON, "vdo0_smi_common", "top_vpp", 11),
+> +       GATE_VDO0_1(CLK_VDO0_SMI_EMI, "vdo0_smi_emi", "top_vpp", 12),
+> +       GATE_VDO0_1(CLK_VDO0_SMI_IOMMU, "vdo0_smi_iommu", "top_vpp", 13),
+> +       GATE_VDO0_1(CLK_VDO0_SMI_LARB, "vdo0_smi_larb", "top_vpp", 14),
+> +       GATE_VDO0_1(CLK_VDO0_SMI_RSI, "vdo0_smi_rsi", "top_vpp", 15),
+> +       /* VDO0_2 */
+> +       GATE_VDO0_2(CLK_VDO0_DSI0_DSI, "vdo0_dsi0_dsi", "top_dsi_occ", 0),
+> +       GATE_VDO0_2(CLK_VDO0_DSI1_DSI, "vdo0_dsi1_dsi", "top_dsi_occ", 8),
+> +       GATE_VDO0_2_FLAGS(CLK_VDO0_DP_INTF0_DP_INTF, "vdo0_dp_intf0_dp_intf",
+> +               "top_edp", 16, CLK_SET_RATE_PARENT),
+> +};
+> +
+> +static int clk_mt8188_vdo0_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct device_node *node = dev->parent->of_node;
+> +       struct clk_hw_onecell_data *clk_data;
+> +       int r;
+> +
+> +       clk_data = mtk_alloc_clk_data(CLK_VDO0_NR_CLK);
+> +       if (!clk_data)
+> +               return -ENOMEM;
+> +
+> +       r = mtk_clk_register_gates(node, vdo0_clks, ARRAY_SIZE(vdo0_clks), clk_data);
 
-Applied, thanks!
+This API was changed. Please rebase onto the latest -next and update.
 
-[07/10] dt-bindings: pinctrl: qcom: correct gpio-ranges in examples
-        https://git.kernel.org/krzk/linux-dt/c/6f4e10ffa8fbccf220f7c5c869e8373065b9ef7d
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Angelo (CC-ed) also mentioned a new simple probe variant for non-DT
+clock drivers is being developed. He didn't mention a timeline though.
