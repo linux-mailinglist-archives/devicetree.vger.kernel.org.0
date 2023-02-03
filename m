@@ -2,171 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B39C7689DE2
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 16:17:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EA37689DFB
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 16:21:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233959AbjBCPRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 10:17:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57182 "EHLO
+        id S232519AbjBCPSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 10:18:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235212AbjBCPQ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 10:16:29 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00050A6423
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 07:14:34 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so2614679wms.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 07:14:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xoHwZU+cWQXTJUAoXfICLN7SVVTwbgwEtqjg8VeFKLk=;
-        b=4NjEY1AGatFNGFa9jkxwMZ1sdWAL7LvfrpD/mrwjtx20MEWVd6A5SHBQ/p0/XFGf3/
-         h8MYRcIrgyjBLG3q8MTKpu1Ll+Ae19v8WCNYTEdm4pPeMh69pVOjeijjLNrY3AvhdbKZ
-         2EdsVKXC62uVpA5LpSspAZBYR/2iJTxRD56eKxcgLsc7eE5z8Y97ZJ6zoBMkdq2tfhyn
-         ioYJR1sHVq7i/YSya2dV0banxGr+BNUW7tg/uaITuuz7MY2pPYGw5aT0g0jtJg3Mbwyw
-         Leo9Q3zNC7cGytjtRrUVkYAJaIH30auv5ivtVwFJlPDDq7tzlU0SnwOvg8xrqCic29ZZ
-         VDdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xoHwZU+cWQXTJUAoXfICLN7SVVTwbgwEtqjg8VeFKLk=;
-        b=RaeEIMFEtpMzt6YfUpynFIFzQax8t0WjopOUGwjDT7yZZ2CUnbOlXe+jCyPl72MeMB
-         kFiZyDUs5O8v19t8z9E9zgATejaf+N+RkepalJ1D7FJn3mS/69DiTunfw9BdAiP8yvUp
-         5GYiqZRtdjk+xWd9VySUToW7BpbuSKnog91cZkJDzFwuaoR8h8S/e3OZXnTRdHl8rjFD
-         aDZDfJF9QUHNz/45DXgXVw3rEyes8rvtKMBxE0tDXV3dR20n1bGR0xOOyOpJk/rs7FvB
-         RN3T4tTw15qOcCTs2rQoT2TFrdHEVwX41k2xcl3xIoS7vz/WT81SRASlVA5qHC7L0ZF0
-         xxdQ==
-X-Gm-Message-State: AO0yUKUkUkDVz0IB6w1xzF9ttWe7d1DfgAKCl+XNSNc4B6yUgGmF6+a0
-        LKQR7Cm85CbTD50s1xCiW2uF8Q==
-X-Google-Smtp-Source: AK7set+TZOa/QpgWZbA2Z1iDxGZMdFjbssOBfc1aGV5wp+5zqmoeBKoYca0HfpOh2j5JfqJXa6hIow==
-X-Received: by 2002:a05:600c:1d8a:b0:3dc:50b8:67d7 with SMTP id p10-20020a05600c1d8a00b003dc50b867d7mr10265173wms.11.1675437206814;
-        Fri, 03 Feb 2023 07:13:26 -0800 (PST)
-Received: from localhost ([2a01:cb1a:d:9cd7:1733:6588:b4e9:c6d3])
-        by smtp.gmail.com with ESMTPSA id n36-20020a05600c3ba400b003dc54eef495sm3351939wms.24.2023.02.03.07.13.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Feb 2023 07:13:26 -0800 (PST)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Jiri Valek - 2N <jiriv@axis.com>, linux-input@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, u.kleine-koenig@pengutronix.de, jiriv@axis.com
-Subject: Re: [PATCH v4 2/2] Input: cap11xx - add support for cap1203,
- cap1293 and cap1298
-In-Reply-To: <20230111131111.475270-3-jiriv@axis.com>
-References: <20230111131111.475270-1-jiriv@axis.com>
- <20230111131111.475270-3-jiriv@axis.com>
-Date:   Fri, 03 Feb 2023 16:13:23 +0100
-Message-ID: <87mt5ulr3g.fsf@baylibre.com>
+        with ESMTP id S234108AbjBCPSU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 10:18:20 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B1695CD21;
+        Fri,  3 Feb 2023 07:15:43 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D4246B82AF1;
+        Fri,  3 Feb 2023 15:15:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0B9FC433D2;
+        Fri,  3 Feb 2023 15:14:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675437303;
+        bh=x0NLukImJJDpktA+YghswEFtxNLyI5xpCIdNlCmuBO4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=NLUBn4h/CKILAGCpjGu0PzQnrUCRnVJbM6dZx7IIfZywK5lylTRd8Avflxpbo09Q9
+         xQh545o7xNOt9qNyT2m5rcTqJgOm9ejCcQrbPVLOdZ8zQirekTYRrPOYoaRELSPbP+
+         MZVsIk2wd94x2Civ0+bm9wZohVR08BZ1C6Mr5TFGnrATDaM5CNhzU77xPG1lGEKKHL
+         34iY8ZdLhmQ7CBUp8sdh/+obu+7giWUNwSMp8JC8C1+Kr3uOeaScfCIbYxSCq2wYfW
+         kde7404ixw4A57qmXhwmIx+yUTCY5PAphPEJlxLrc76ji4EvL8mi0LUtosVWw4LdBp
+         dEynRBEqO5BBw==
+Message-ID: <ed9c3224-2f1a-c335-3028-6c23f40f57f4@kernel.org>
+Date:   Fri, 3 Feb 2023 16:14:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 18/18] dt-bindings: devfreq: event: convert Rockchip DFI
+ binding to yaml
+To:     Sascha Hauer <s.hauer@pengutronix.de>, linux-pm@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, kernel@pegutronix.de,
+        Michael Riesch <michael.riesch@wolfvision.net>
+References: <20230203125012.3804008-1-s.hauer@pengutronix.de>
+ <20230203125012.3804008-19-s.hauer@pengutronix.de>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20230203125012.3804008-19-s.hauer@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 11, 2023 at 14:11, Jiri Valek - 2N <jiriv@axis.com> wrote:
+On 03/02/2023 13:50, Sascha Hauer wrote:
+> Convert the Rockchip DFI binding to yaml. While at it add the newly
+> supported rk3568-dfi to the binding.
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 
-> Add basic support for more CAP1xxx sensors.
-> All models from CAP1xxx family are register-compatible.
-> Some advanced features are not used and disabled by default.
->
-> Reported-by: kernel test robot <lkp@xxxxxxxxx>
-> Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
-
-Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
-
-Small nitpick below
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
 
 > ---
-> Changes in v2:
->   - Fixed if statement.
->   
-> Changes in v3:
->   - Model names sorted alphabetically.
->
-> Changes in v4
->   - No changes.
->
->  drivers/input/keyboard/cap11xx.c | 19 +++++++++++++++++--
->  1 file changed, 17 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/input/keyboard/cap11xx.c b/drivers/input/keyboard/cap11xx.c
-> index 79afd0386e3f..ce27168302a8 100644
-> --- a/drivers/input/keyboard/cap11xx.c
-> +++ b/drivers/input/keyboard/cap11xx.c
-> @@ -98,14 +98,20 @@ enum {
->  	CAP1106,
->  	CAP1126,
->  	CAP1188,
-> +	CAP1203,
->  	CAP1206,
-> +	CAP1293,
-> +	CAP1298
->  };
->  
->  static const struct cap11xx_hw_model cap11xx_devices[] = {
->  	[CAP1106] = { .product_id = 0x55, .num_channels = 6, .num_leds = 0, .no_gain = false },
->  	[CAP1126] = { .product_id = 0x53, .num_channels = 6, .num_leds = 2, .no_gain = false },
->  	[CAP1188] = { .product_id = 0x50, .num_channels = 8, .num_leds = 8, .no_gain = false },
-> +	[CAP1203] = { .product_id = 0x6d, .num_channels = 3, .num_leds = 0, .no_gain = true },
->  	[CAP1206] = { .product_id = 0x67, .num_channels = 6, .num_leds = 0, .no_gain = true },
-> +	[CAP1293] = { .product_id = 0x6f, .num_channels = 3, .num_leds = 0, .no_gain = false },
-> +	[CAP1298] = { .product_id = 0x71, .num_channels = 8, .num_leds = 0, .no_gain = false },
->  };
->  
->  static const struct reg_default cap11xx_reg_defaults[] = {
-> @@ -377,7 +383,8 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
->  	if (error < 0)
->  		return error;
->  
-> -	dev_info(dev, "CAP11XX detected, revision 0x%02x\n", rev);
-> +	dev_info(dev, "CAP11XX detected, model %s, revision 0x%02x\n",
-> +			id->name, rev);
->  	node = dev->of_node;
->  
->  	if (!of_property_read_u32(node, "microchip,sensor-gain", &gain32)) {
-> @@ -390,7 +397,9 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
->  			dev_err(dev, "Invalid sensor-gain value %d\n", gain32);
->  	}
->  
-> -	if (id->driver_data != CAP1206) {
-> +	if ((id->driver_data == CAP1106) ||
-> +		(id->driver_data == CAP1126) ||
-> +		(id->driver_data == CAP1188)) {
+>  .../bindings/devfreq/event/rockchip-dfi.txt   | 18 ---------
+>  .../bindings/devfreq/event/rockchip-dfi.yaml  | 38 +++++++++++++++++++
+>  2 files changed, 38 insertions(+), 18 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
+>  create mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt b/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
+> deleted file mode 100644
+> index 148191b0fc158..0000000000000
+> --- a/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
+> +++ /dev/null
+> @@ -1,18 +0,0 @@
+> -
+> -* Rockchip rk3399 DFI device
+> -
+> -Required properties:
+> -- compatible: Must be "rockchip,rk3399-dfi".
+> -- reg: physical base address of each DFI and length of memory mapped region
+> -- rockchip,pmu: phandle to the syscon managing the "pmu general register files"
+> -- clocks: phandles for clock specified in "clock-names" property
+> -- clock-names : the name of clock used by the DFI, must be "pclk_ddr_mon";
+> -
+> -Example:
+> -	dfi: dfi@ff630000 {
+> -		compatible = "rockchip,rk3399-dfi";
+> -		reg = <0x00 0xff630000 0x00 0x4000>;
+> -		rockchip,pmu = <&pmugrf>;
+> -		clocks = <&cru PCLK_DDR_MON>;
+> -		clock-names = "pclk_ddr_mon";
+> -	};
+> diff --git a/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.yaml b/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.yaml
+> new file mode 100644
+> index 0000000000000..e082a0df7895a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.yaml
 
-checkpatch --strict is not happy about this indendation:
-CHECK: Alignment should match open parenthesis
+rockchip,dfi.yaml
 
->  		if (of_property_read_bool(node, "microchip,irq-active-high")) {
->  			error = regmap_update_bits(priv->regmap,
->  						   CAP11XX_REG_CONFIG2,
-> @@ -483,7 +492,10 @@ static const struct of_device_id cap11xx_dt_ids[] = {
->  	{ .compatible = "microchip,cap1106", },
->  	{ .compatible = "microchip,cap1126", },
->  	{ .compatible = "microchip,cap1188", },
-> +	{ .compatible = "microchip,cap1203", },
->  	{ .compatible = "microchip,cap1206", },
-> +	{ .compatible = "microchip,cap1293", },
-> +	{ .compatible = "microchip,cap1298", },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, cap11xx_dt_ids);
-> @@ -492,7 +504,10 @@ static const struct i2c_device_id cap11xx_i2c_ids[] = {
->  	{ "cap1106", CAP1106 },
->  	{ "cap1126", CAP1126 },
->  	{ "cap1188", CAP1188 },
-> +	{ "cap1203", CAP1203 },
->  	{ "cap1206", CAP1206 },
-> +	{ "cap1293", CAP1293 },
-> +	{ "cap1298", CAP1298 },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(i2c, cap11xx_i2c_ids);
-> -- 
-> 2.25.1
+> @@ -0,0 +1,38 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/devfreq/event/rockchip-dfi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip DFI
+> +
+> +maintainers:
+> +  - Sascha Hauer <s.hauer@pengutronix.de>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rk3399-dfi
+> +      - rk3568-dfi
+
+These are not correct compatibles.
+
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  rockchip,pmu:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon managing the "PMU general register files".
+> +
+> +required:
+> +  - compatible
+> +  - reg
+
+clocks were required
+
+> +
+> +additionalProperties: false
+
+Best regards,
+Krzysztof
+
