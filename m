@@ -2,172 +2,326 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A8D0688ECA
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 06:06:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4D77688EFD
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 06:32:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230496AbjBCFG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 00:06:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59600 "EHLO
+        id S231465AbjBCFc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 00:32:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbjBCFG5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 00:06:57 -0500
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2057.outbound.protection.outlook.com [40.107.215.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AD8E6591
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 21:06:54 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=msC2kwFhQi9BsFnoA+rDSB68Ey1PS80gJ/vlBADtMtxV6l/tevF8tr1ht2dnlnH/yxE/eMnM3zdHa5QLX5/b4Y6GzwThU0/C6lEVEg3lwveup1k9vQtxio0FD7rSC1We5JBoAea8iVFkPohIOnfa8dg6u6NF21byfQngxLKjgWhNAcU2cuAurWcFJskv0G8injIhAKGrNuzAaiM1C+NU5A1+zFw3PTcEvLY+kGzoRpumrNGCogN/QcSlN90VQHgQtX4aFLwLMk229SbSfpiMspzDgR3j4xt17TRd0HZExBv/rNbR3RmC59pMCPjNhjcX0s1nhI9PW3I2PDpmUPTymQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xW1L8KqF5xajctQejuWle2o7rab6Ju4n2vMldx347a8=;
- b=GRdD6Peg0narGGxvkq76XunzOjkoSXt4bRZcryX/m8GSRBAQy5sHLSSZWu38vBm1cYwEWoBfx/+tV4QbVPHzNylxL36z2i7HxunG0eVLYYJTscpc4ir3C3FS1nQp9jOecVJErhjVy/lMInT3u2GECgbfz0zfL8gpmRp9j97OocTBvZm1yzy6ImHLgA2bLOLXuMsC5XCnijaNzfbEsVZs/2Nt+baKBy+B7LwsPZcEz5U957TTXTsJx9znMKdezWzLuJ2McZ5o8ViLpeoed568JCSdg2FTVerahb8MXyBBsJGT68Py5djbhfAdTAsVGjUnH3rA6qj+KfqkUO7sDyjN/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=irondevice.com; dmarc=pass action=none
- header.from=irondevice.com; dkim=pass header.d=irondevice.com; arc=none
-Received: from SLXP216MB0077.KORP216.PROD.OUTLOOK.COM (2603:1096:100:7::23) by
- SL2P216MB1327.KORP216.PROD.OUTLOOK.COM (2603:1096:101:11::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6064.28; Fri, 3 Feb 2023 05:06:51 +0000
-Received: from SLXP216MB0077.KORP216.PROD.OUTLOOK.COM
- ([fe80::3d9:7f82:fa73:e727]) by SLXP216MB0077.KORP216.PROD.OUTLOOK.COM
- ([fe80::3d9:7f82:fa73:e727%7]) with mapi id 15.20.6064.028; Fri, 3 Feb 2023
- 05:06:51 +0000
-From:   Ki-Seok Jo <kiseok.jo@irondevice.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] Fixed the schema binding according to test
-Thread-Topic: [PATCH] Fixed the schema binding according to test
-Thread-Index: AQHZNuYvdGkbgSjfQEmX9bKJTMPyKK67YAkAgAALN7CAAK57gIAAkx1g
-Date:   Fri, 3 Feb 2023 05:06:50 +0000
-Message-ID: <SLXP216MB00777901D3E60C271FB54E3E8CD79@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
-References: <20230202090715.18384-1-kiseok.jo@irondevice.com>
- <ac140660-0df0-8b43-3585-17511a280830@linaro.org>
- <SLXP216MB0077A1B1F744D74A5B338F0C8CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
- <4111d645-478a-e55f-60bd-4ecbef077183@linaro.org>
-In-Reply-To: <4111d645-478a-e55f-60bd-4ecbef077183@linaro.org>
-Accept-Language: ko-KR, en-US
-Content-Language: ko-KR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=irondevice.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SLXP216MB0077:EE_|SL2P216MB1327:EE_
-x-ms-office365-filtering-correlation-id: 2ddc6c5f-718d-4092-7203-08db05a475b0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6R6fNy/GyHwGgnVTddDozUKrLG5oFXpXQ0Cn4Na4iMtxgixgAsWTsaQBKnr2+MlifeNsgd5llHJ26ZLWFMaLF48ByzbyCjBL9p2JwzXKaptNuZ1ZxwPoQYnoeXLtDvVl7FweBhJzakFc1CFlz6g+fCTGgYa2Fv/HIPpDUDxKk+c4sMKlAbNALO9TKikhXR2K6sSGkgvJj1yeV9XWfF0EwdnDn04JxYpDsS82jbThBZmwXoOxyMC43993/Nb/4d1pUfyonT9fAQgMfh5pnPPqZaZ9D1Ng/3vDaSV/gHIQNoGMDOo5B1xWOK5UBcUX1GuyydcuGs7w4cOWUt7sLxn635fbGkOLVf7riSRrQmlq7qZ3WLgEJWkvpQHPV63vHtG5vl5szd9lwMa91hCCy68PaObXTpI9/fP1IneBZphCTBAWB2lJ2KuH6Al3eFhNe2cz3dTH67k3pID9I7yiSazLjSiDVH/fNhtxnt8YN58j2OWZ8QUWjzJnLHyy99FOpDRIvVXeKnd1fcjcyDLXClQZU7WxJKHGqfEcSJKcyFbETobBE+Bg50ThnvdLPocvNnZNLgYGLaKKd51LS43jFIZqd3BDM6ri3zU4+hggZQnEbQQGoGi0PJiDg0jJNs6cui+0hqTEoNmlf/mCOiv6tHWXCAfCcTVat7XTcq4snRZewCVAQbWTfOdu+OhbRQXCezWIL5s404NkPxQNqHa72mGn1A==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SLXP216MB0077.KORP216.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230025)(346002)(366004)(376002)(396003)(39830400003)(136003)(451199018)(83380400001)(316002)(71200400001)(110136005)(54906003)(2906002)(33656002)(38100700002)(122000001)(64756008)(66946007)(66446008)(9686003)(66556008)(76116006)(66476007)(26005)(186003)(7696005)(478600001)(52536014)(86362001)(4326008)(41300700001)(8936002)(55016003)(6506007)(8676002)(5660300002)(38070700005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?azBzQ1JyR1ZuVkhQSFhsWllpajlZbmNHMXlVbi9VZDJ2VWllQVZNZzRJRjky?=
- =?utf-8?B?WFJSc0kycGMrU2VRVDV3UzlNMDZYLzF6SlJrZ1p4N3lNN09Vc1hiRzBYRytz?=
- =?utf-8?B?UEhIVWR5OWp2eHREUkoxWVIyZkFQMG9DNDlxeW5aUm95ek1CYkltLzh1dWdo?=
- =?utf-8?B?THoxaGtLK29UNndXRmlFU3M1Y29XbnlWZXkvZHBiTnl3Z3FoNVRyc1pOa0J0?=
- =?utf-8?B?V1pQNmZ4NXQzQzloSnVNcDZ4V3lCdlhjNkRQazFEM0tmQjRHamtXZWg2THY3?=
- =?utf-8?B?RkpMQ2xUYkdYMVFkNVU0WGlhcDBpREFHVGI1TGd6SGc4Ni93VGJya1Voc3Jk?=
- =?utf-8?B?RXk0OWtjcnFLdm5RNTVud2VmMkwvVHRpcEY3K3NjTlRCSmRYNWZFYUl4TEFW?=
- =?utf-8?B?TUM0dFA4aUpyaWdCVWlLRW9TQXFjWTF6MUNBakN0N0l5UXQ0S3BNZUJVM1NG?=
- =?utf-8?B?akZGZ1QrVCs1MXJjQS8yd0hOektoZWR1UkloWklTWmVoMjgvUmRkb25Jbmto?=
- =?utf-8?B?eVRHTWExYXpkYkRVZVAyd2R4dlNRWHdGdEJGVUFuTDY1dVZETVQ5SDJEdkZl?=
- =?utf-8?B?aG9raE1VbmE1c3M2TnlnQU1tOUJIUEUxMXl4Z2E2UkkxTEVxUTZoOEp2S2E0?=
- =?utf-8?B?RW92UllLQ2ZremhqNWZYMkhXTHRuMlRpdUpueGNzdUUzWWNPclJMbno5a3lR?=
- =?utf-8?B?dnhuTCt2bXZPRzZSemlqTU9ER25SZ21nb1R1VFN2UEVTSk8yYm15ei81cmc1?=
- =?utf-8?B?elFTZXpidGNJQlVKKzZFcTg1Nzh3NFI0ajA0d2oyYWVqSTNwSWo2RVZuVHN1?=
- =?utf-8?B?MlFYOTBreS9YRHhnSDd6UjVoSkE0SDRZVTAxdWpsNDA2RVlhZDh3Qm5uTllT?=
- =?utf-8?B?SnptSEJWdVM4eEpXLzc5R1hQMzNHeC83RzZkV0xYc1FwQ0MyM2xxQ0R3M3Fh?=
- =?utf-8?B?MjlmVmdUWDBPeDdYZ2drTFNYMzhzd0trYVpXM2dVMnl1RGlRN0FUNXljMkhn?=
- =?utf-8?B?QnNQbFFlS1Jsd09FSXdEYUxOOUZpYzBmOFJYUDJqOXp0bzVsaWttNis4QU1r?=
- =?utf-8?B?SjRUUUJmanlXclNveUZZZ21SZ0VYQnJDbzN1N1JpdmtxaFUzWmNWclNhZVdk?=
- =?utf-8?B?YjArNlEvSDRPYUpXdWYxWlhnQnVnMnRneHJaVFlHSEoxUkJ1dVpZeFIydDFY?=
- =?utf-8?B?SjFOMmR0V0ZnWUU4SkVPRUR1R0ROMzRJQlRQQnFWZVBKM3l1QVIzUVBDYXpK?=
- =?utf-8?B?MjBnKzZXZEJMb3RuRnphdHVETHBpWkNOZG5kT0t4MnBFckJBYkFTNGx3WnFk?=
- =?utf-8?B?aVl5ZnQvbnA1MkkwUmdLSERvOXpVYnU0QlI2R2R5SnpiQjhUOXVZQVI5NmlX?=
- =?utf-8?B?R2tRUnE5a2NyaXB2a1FKZjN5MWlnbWI5bUNFYXFBQksrUzFTRVRvNlZZMnQv?=
- =?utf-8?B?TC96Rmw4SVlMaU0vM1NwWkdSaFFRaFcwbkJOR05kUlVmN3orQmJ5bWZZNnlQ?=
- =?utf-8?B?NEMyenYrTTQzbm8rQjlza3VWSEkrM2RKNFVUeDFENjBJNWRISXpURmRuZkVX?=
- =?utf-8?B?dUthWDZmQUw5M2pVaUMwOXBacmlaeFl2c2RONGoxQmlyZEVHcVFKdnFxdDVK?=
- =?utf-8?B?L2tPRGlpdWI5VUdvV3JFTmpyNjdtd2xXS3JmaWwyd0llYmc2Ukxqak9rUHNx?=
- =?utf-8?B?RWVVem91Z3BmTXZLbVNKN0U3UGgvc0I1dE9kVmYvdVNQa09kSUQ0Ky9pVTAx?=
- =?utf-8?B?MWVEcnRBNkxqSmxlZm4vMHhQRUdPUFM4RStBZHdHaUY5SnJmY1B3Y2Y3N29S?=
- =?utf-8?B?N2twYlRWSUlvaE1VNm02T0ZTeU9ZcTlXTWZpNTVtN2pFQ0hHSDRVQllyaEx5?=
- =?utf-8?B?QnNyd1JHRmpIbFdPYnhXdkpiOVpib2drZm1xcEZERFRXOHdack1UcDlkeFlp?=
- =?utf-8?B?S2pCbitsaytzSFE4QVAvOEcvR3A5eEVhbmFSLzNQcVFIbXBqcXA3MElrMkF4?=
- =?utf-8?B?TmdLVEE0RW1TY1dqQlMxV2IzTVh6ZGxUNU1tOWNYOEN1bGlxNzVoOHhXOTVr?=
- =?utf-8?B?YUx5aGxldHZQeHZnOUlXWnJFQnpwai92Ry8ra2N1QlQ2V2trYmp0dDRJSjAw?=
- =?utf-8?Q?J2C4ogWQKQTBz6zoieLCGkZGC?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S230180AbjBCFc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 00:32:26 -0500
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D999E2B2A4;
+        Thu,  2 Feb 2023 21:32:24 -0800 (PST)
+Received: by linux.microsoft.com (Postfix, from userid 1127)
+        id 70BB520B74F9; Thu,  2 Feb 2023 21:32:24 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 70BB520B74F9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1675402344;
+        bh=h5wQJLQB/g7tGVzdSJdGiPKml6oH5lii4nP9Bv8SEwk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iNqGozZuOBaTlji6yI7ghbU0m0TAKQs3uR1R6F/nJXJJoBW7HIOyX/soIZHsacUBd
+         gr90Ej4dcChkUBiihY4iyJS3AFuANNncjENkvxLspiUa3aSDcSBG/i7CuTh18e94YV
+         kbrCTpxjPyag7ahkgG5OzA9/ekaOt7j6OPywLqH0=
+Date:   Thu, 2 Feb 2023 21:32:24 -0800
+From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
+To:     "Michael Kelley (LINUX)" <mikelley@microsoft.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        KY Srinivasan <kys@microsoft.com>,
+        Haiyang Zhang <haiyangz@microsoft.com>,
+        "wei.liu@kernel.org" <wei.liu@kernel.org>,
+        Dexuan Cui <decui@microsoft.com>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "virtualization@lists.linux-foundation.org" 
+        <virtualization@lists.linux-foundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
+        Saurabh Singh Sengar <ssengar@microsoft.com>
+Subject: Re: [PATCH v2 3/6] Drivers: hv: vmbus: Convert acpi_device to
+ platform_device
+Message-ID: <20230203053224.GA1834@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
+ <1675188609-20913-4-git-send-email-ssengar@linux.microsoft.com>
+ <BYAPR21MB1688C6978F68D904ABC00911D7D19@BYAPR21MB1688.namprd21.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: irondevice.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SLXP216MB0077.KORP216.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ddc6c5f-718d-4092-7203-08db05a475b0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2023 05:06:51.0017
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b4849faa-3337-494e-a76a-cb25a3b3d7d1
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: UszkEOkzHmYyK2bucuibbLxyzF2A7Pm81TaX2lfgsQJS98km3aRYSQ1U/6egaUyKjOV+FcAGhaDJTpMh3hGtjdaskATghgshoDyn/elcW4U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SL2P216MB1327
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BYAPR21MB1688C6978F68D904ABC00911D7D19@BYAPR21MB1688.namprd21.prod.outlook.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+ID4gPiArDQo+ID4gPiA+ICsgIGkyYy1yZXRyeToNCj4gPiA+ID4gKyAgICBkZXNjcmlwdGlv
-bjogbnVtYmVyIG9mIHJldHJpZXMgZm9yIEkyQyByZWdtYXAuDQo+ID4gPg0KPiA+ID4gV2h5IGRv
-IHlvdSBuZWVkIHRoaXM/IFdoeSB0aGlzIGZpdHMgdGhlIHB1cnBvc2Ugb2YgRFQgKG9yIElPVyB3
-aHkNCj4gPiA+IHRoaXMgZGlmZmVycyBiZXR3ZWVuIGJvYXJkcyk/DQo+ID4NCj4gPiBXaGVuIHdv
-cmtpbmcgd2l0aCBkcml2ZXJzIG9uIG11bGl0aXBsZSBwbGF0Zm9ybXMsIHRoZXJlIHdlcmUgY2Fz
-ZXMNCj4gPiB3aGVyZSBJMkMgZGlkIG5vdCB3b3JrIHByb3Blcmx5IGRwZW5kaW5nIG9uIHRoZSBB
-UCBvciBzZXR0aW5nLg0KPiA+IFNvIEkgbWFkZSBpdCBwb3NzaWJsZSB0byBzZXQgYSBmZXcgcmV0
-cnkgc2V0dGluZ3MsIGFuZCB0aGVuIGNoZWNrIG9yDQo+ID4gZG8gb3RoZXIgYWN0aW9ucy4gUmV0
-cnkgaXMgcGVyZm9ybWVkIG9ubHkgd2hlbiBJMkMgZmFpbHMuDQo+ID4NCj4gPiBBbmQgZWFjaCBk
-ZXZpY2UgbWF5IGhhdmUgYSBkaWZmZXJlbnQgcHVsbC11cCByZXNpc29yIG9yIHN0cmVuZ3RoLCBz
-bw0KPiA+IHRoZXJlIG1heSBiZSBkaWZmZXJlbmNlcyBiZXR3ZWVuIGJvYXJkcy4NCj4gDQo+IE5v
-bmUgb2YgSTJDIGRyaXZlcnMgbmVlZCBpdCAoZXhjZXB0IFNCUyBiYXR0ZXJ5KSwgc28gaXQgc2hv
-dWxkIG5vdCBiZQ0KPiBuZWVkZWQgaGVyZS4gSWYgeW91IGhhdmUgd3JvbmcgcGluIHNldHVwLCB0
-aGlzIG9uZSBzaG91bGQgYmUgY29ycmVjdGVkDQo+IGluc3RlYWQuDQoNCk9rYXksIEkgYWdyZWUu
-IEl0IGRvZXNuJ3Qgc2VlbSBuZWNlc3NhcnkuDQpJJ2xsIHJlbW92ZSB0aGlzIHByb3BlcnR5LiBU
-aGFua3MhDQoNCj4gPiA+ID4gKyAgdGRtLXNsb3Qtcng6DQo+ID4gPiA+ICsgICAgZGVzY3JpcHRp
-b246IHNldCB0aGUgdGRtIHJ4IHN0YXJ0IHNsb3QuDQo+ID4gPg0KPiA+ID4gQXJlbid0IHlvdSBu
-b3cgcmUtd3JpdGluZyBkYWktdGRtLXNsb3QtcngtbWFzayBwcm9wZXJ0eT8gU2FtZSBmb3IgdHgN
-Cj4gYmVsb3cuDQo+ID4gPg0KPiA+DQo+ID4gSXQgY2FuIGJlIHRoZSBzYW1lIGFzIGF1ZGlvIERB
-SSdzIHRkbSBzbG90LCBJIHRoaW5rIGJ1dCB0aGVyZSBhcmUNCj4gPiBjYXNlcyB3aGVyZSBpdCBp
-cyBzZXQgZGlmZmVyZW50bHksIHNvIEkgb21pdHRlZCBpdCBzZXBhcmF0ZWx5Lg0KPiBVbmZvcnR1
-bmF0ZWx5IEkgc3RpbGwgZG8gbm90IHVuZGVyc3RhbmQgd2h5IGRvIHlvdSBuZWVkIGl0LiBVc2Ug
-Z2VuZXJpYw0KPiBEQUkvVERNIHByb3BlcnRpZXMuDQoNCkxvb2tpbmcgYmFjaywgaXQgc2VlbXMg
-dG8gYmUgdGhlIHNhbWUgYXMgdGhlIGRhaS10ZG0tc2xvdC1yeC1tYXNrLg0KSXQgc2VlbXMgdG8g
-YmUgY29ycmVjdCB0byBtYXAgdGhlIGFtcCBmdW5jdGlvbiBpbiB0aGUgZHJpdmVyLg0KDQpIb3dl
-dmVyLCBJIGxvb2tlZCBmb3IgdGhlIG9uZXMgdXNlZCBpbiBvdGhlciBhbXBsaWZpZXIgZHJpdmVy
-cywNCk1vc3Qgb2YgdGhlbSB3ZXJlIGFkZGVkIHRvIHRoZSB1c2VyIGNvbnRyb2wgdXNpbmcgbWl4
-ZXIuDQoNCkNvbWUgdG8gdGhpbmsgb2YgaXQsIHRoZXJlIGFyZSBtYW55IGNhc2VzIHdoZXJlIHRo
-ZSBURE0gc2xvdCBpcw0KY2hhbmdlZCBhZnRlciB0aGUgZHJpdmVyIGlzIGNvbm5lY3RlZC4NCg0K
-PiA+ID4gPiArICBzeXMtY2xrLWlkOg0KPiA+ID4gPiArICAgIGRlc2NyaXB0aW9uOiBzZWxlY3Qg
-dGhlIHVzaW5nIHN5c3RlbSBjbG9jay4NCj4gPiA+DQo+ID4gPiBXaGF0IGRvZXMgaXQgbWVhbj8g
-V2h5IGRvIHlvdSBuZWVkIHN1Y2ggcHJvcGVydHkgaW5zdGVhZCBvZiBjbG9ja3M/DQo+ID4NCj4g
-PiBUaGlzIGNhbiByZWNlaXZlIGFuIGV4dGVybmFsIGNsb2NrLCBidXQgaXQgY2FuIHVzZSBpbnRl
-cm5hbCBjbG9jay4NCj4gPiBTaG91bGQgSSB3cml0ZSBhbGwgdGhlIGNsb2NrIGRlc2NyaXB0aW9u
-cyBpbiBjYXNlPw0KPiANCj4gSG93IGRvIHlvdSBjb25maWd1cmUgYW5kIGVuYWJsZSBleHRlcm5h
-bCBjbG9jayB3aXRoIHRoaXMgcHJvcGVydHk/IEkgZG9uJ3QNCj4gc2VlIGl0LiBJZiB0aGUgZGV2
-aWNlIGhhcyBjbG9jayBpbnB1dCwgdGhpcyBzaG91bGQgYmUgImNsb2NrcyIuIElmIGl0IGlzDQo+
-IG9taXR0ZWQsIHRoZW4gaW50ZXJuYWwgY2xvY2sgaXMgdXNlZC4NCj4gDQoNCkJhc2ljYWxseSwg
-dGhpcyB2YWx1ZSBpcyBzZXQgd2l0aCBzZXRfc3lzY2xrIGluIHRoZSBkYWkgb3BlcmF0aW9ucy4N
-ClNvLCBJIGFsc28gZ2V0IHRoZSBjbGtfaWQgZnJvbSB0aGlzIGZ1bmN0aW9uIGFuZCBzZXQgaXQu
-DQpGcm9tIHRoZSBwb2ludCBvZiB2aWV3IG9mIHRoZSBjb2RlYyBkcml2ZXIsIHRoZXJlIGFyZSBj
-YXNlIHdoZXJlIHRoZSBtYWNoaW5lDQpkcml2ZXIgZG9lcyBub3QgZ2l2ZSB0aGlzIHZhbHVlKGNs
-a19pZCkuDQoNClNvIHRoaXMgaXMgYSBwcm9wZXJ0eSB0aGF0IGNhbiBzZXQgYW4gaW5pdGlhbCB2
-YWx1ZS4NCkl0J3Mgbm90IHJlcXVpZWQgdmFsdWUuDQoNCkFsbCB0aHJlZSBwcm9wZXJ0aWVzIG1l
-bnRpb25lZCBhYm92ZSBhcmUgb3B0aW9uYWwuDQpTbywgaWYgaXQgbmVlZCB0byBiZSByZW1vdmVk
-LCBpdCdzIG9rYXkuDQpCdXQgSSB0aGluayBpdCBzZWVtcyBjb3JyZWN0IHRvIHJlZ2lzdGVyIHRo
-ZSBzZWNvbmQgaXRlbSh0ZG0gc2xvdCkgYXMgYSBtaXhlci4NCg0KVGhhbmsgeW91IGZvciB5b3Vy
-IGdvb2QgZmVlYmFjayENCg0KQmVzdCByZWdhcmRzLA0KS2lzZW9rIEpvDQo=
+On Wed, Feb 01, 2023 at 06:32:29PM +0000, Michael Kelley (LINUX) wrote:
+> From: Saurabh Sengar <ssengar@linux.microsoft.com> Sent: Tuesday, January 31, 2023 10:10 AM
+> > 
+> > Use more generic platform device instead of acpi device. Also rename the
+> > function vmbus_acpi_remove to more generic name vmbus_mmio_remove.
+> > 
+> > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> > ---
+> >  drivers/hv/vmbus_drv.c | 78 +++++++++++++++++++++++++-----------------
+> >  1 file changed, 46 insertions(+), 32 deletions(-)
+> > 
+> > diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
+> > index d24dd65b33d4..49030e756b9f 100644
+> > --- a/drivers/hv/vmbus_drv.c
+> > +++ b/drivers/hv/vmbus_drv.c
+> > @@ -12,6 +12,7 @@
+> >  #include <linux/init.h>
+> >  #include <linux/module.h>
+> >  #include <linux/device.h>
+> > +#include <linux/platform_device.h>
+> >  #include <linux/interrupt.h>
+> >  #include <linux/sysctl.h>
+> >  #include <linux/slab.h>
+> > @@ -44,7 +45,7 @@ struct vmbus_dynid {
+> >  	struct hv_vmbus_device_id id;
+> >  };
+> > 
+> > -static struct acpi_device  *hv_acpi_dev;
+> > +static struct platform_device  *hv_dev;
+> > 
+> >  static int hyperv_cpuhp_online;
+> > 
+> > @@ -143,7 +144,7 @@ static DEFINE_MUTEX(hyperv_mmio_lock);
+> > 
+> >  static int vmbus_exists(void)
+> >  {
+> > -	if (hv_acpi_dev == NULL)
+> > +	if (hv_dev == NULL)
+> >  		return -ENODEV;
+> > 
+> >  	return 0;
+> > @@ -932,7 +933,7 @@ static int vmbus_dma_configure(struct device *child_device)
+> >  	 * On x86/x64 coherence is assumed and these calls have no effect.
+> >  	 */
+> >  	hv_setup_dma_ops(child_device,
+> > -		device_get_dma_attr(&hv_acpi_dev->dev) == DEV_DMA_COHERENT);
+> > +		device_get_dma_attr(&hv_dev->dev) == DEV_DMA_COHERENT);
+> >  	return 0;
+> >  }
+> > 
+> > @@ -2090,7 +2091,7 @@ int vmbus_device_register(struct hv_device
+> > *child_device_obj)
+> >  		     &child_device_obj->channel->offermsg.offer.if_instance);
+> > 
+> >  	child_device_obj->device.bus = &hv_bus;
+> > -	child_device_obj->device.parent = &hv_acpi_dev->dev;
+> > +	child_device_obj->device.parent = &hv_dev->dev;
+> >  	child_device_obj->device.release = vmbus_device_release;
+> > 
+> >  	child_device_obj->device.dma_parms = &child_device_obj->dma_parms;
+> > @@ -2262,7 +2263,7 @@ static acpi_status vmbus_walk_resources(struct
+> > acpi_resource *res, void *ctx)
+> >  	return AE_OK;
+> >  }
+> > 
+> > -static void vmbus_acpi_remove(struct acpi_device *device)
+> > +static void vmbus_mmio_remove(void)
+> >  {
+> >  	struct resource *cur_res;
+> >  	struct resource *next_res;
+> > @@ -2441,13 +2442,15 @@ void vmbus_free_mmio(resource_size_t start,
+> > resource_size_t size)
+> >  }
+> >  EXPORT_SYMBOL_GPL(vmbus_free_mmio);
+> > 
+> > -static int vmbus_acpi_add(struct acpi_device *device)
+> > +static int vmbus_acpi_add(struct platform_device *pdev)
+> >  {
+> >  	acpi_status result;
+> >  	int ret_val = -ENODEV;
+> > -	struct acpi_device *ancestor;
+> > +	struct platform_device *ancestor;
+> > +	struct acpi_device *adev = to_acpi_device(&pdev->dev);
+> 
+> This doesn't work.  The argument to vmbus_acpi_add() is a struct
+> platform_device, which has a struct device embedded in it (not a
+> pointer).   to_acpi_device() takes a struct device as an argument,
+> assuming that the struct device is embedded in a struct
+> acpi_device, which is not the case here.  The resulting local
+> variable adev is actually pointing to some (perhaps negative)
+> offset within the struct platform_device, and uses of adev are
+> getting unknown random data from within (or before) the
+> struct platform_device.
+
+Please discard my earlier reply on this. I will fix it in V3.
+Thanks for pointing this.
+
+> 
+> > 
+> > -	hv_acpi_dev = device;
+> > +	hv_dev = pdev;
+> > +	adev->fwnode.dev = &pdev->dev;
+> > 
+> >  	/*
+> >  	 * Older versions of Hyper-V for ARM64 fail to include the _CCA
+> > @@ -2456,15 +2459,16 @@ static int vmbus_acpi_add(struct acpi_device *device)
+> >  	 * up the ACPI device to behave as if _CCA is present and indicates
+> >  	 * hardware coherence.
+> >  	 */
+> > -	ACPI_COMPANION_SET(&device->dev, device);
+> > +	ACPI_COMPANION_SET(&pdev->dev, ACPI_COMPANION(&pdev->dev));
+> 
+> This statement seems tautological.  If ACPI_COMPANION(&pdev->dev)
+> returns a valid result,  why would the ACPI companion for &pdev->dev
+> need to be set?  The original code was setting the ACPI companion for the
+> embedded struct device to be the struct acpi_device.   I forget why this
+> wasn't already done for the VMBus device when it was originally parsed
+> from the ACPI DSDT ... 
+
+This need to be changed to:
+ACPI_COMPANION_SET(&adev_node->dev, adev_node)
+will fix this as well.
+
+> 
+> >  	if (IS_ENABLED(CONFIG_ACPI_CCA_REQUIRED) &&
+> > -	    device_get_dma_attr(&device->dev) == DEV_DMA_NOT_SUPPORTED) {
+> > +	    device_get_dma_attr(&pdev->dev) == DEV_DMA_NOT_SUPPORTED) {
+> > +		struct acpi_device *adev_node = ACPI_COMPANION(&pdev->dev);
+> 
+> If earlier code in this function can get a correct pointer to the struct acpi_device,
+> then this statement shouldn't be necessary.  You already have it.
+
+agree, will fix
+
+> 
+> >  		pr_info("No ACPI _CCA found; assuming coherent device I/O\n");
+> > -		device->flags.cca_seen = true;
+> > -		device->flags.coherent_dma = true;
+> > +		adev_node->flags.cca_seen = true;
+> > +		adev_node->flags.coherent_dma = true;
+> >  	}
+> > 
+> > -	result = acpi_walk_resources(device->handle, METHOD_NAME__CRS,
+> > +	result = acpi_walk_resources(ACPI_HANDLE(&pdev->dev), METHOD_NAME__CRS,
+> 
+> Again, if you have a correct pointer to the struct acpi_device, then adev->handle
+> (like the original code) should be simpler than looking it up again with ACPI_HANDLE().  
+
+OK
+
+> 
+> >  					vmbus_walk_resources, NULL);
+> > 
+> >  	if (ACPI_FAILURE(result))
+> > @@ -2473,9 +2477,9 @@ static int vmbus_acpi_add(struct acpi_device *device)
+> >  	 * Some ancestor of the vmbus acpi device (Gen1 or Gen2
+> >  	 * firmware) is the VMOD that has the mmio ranges. Get that.
+> >  	 */
+> > -	for (ancestor = acpi_dev_parent(device); ancestor;
+> > -	     ancestor = acpi_dev_parent(ancestor)) {
+> > -		result = acpi_walk_resources(ancestor->handle, METHOD_NAME__CRS,
+> > +	for (ancestor = to_platform_device(pdev->dev.parent); ancestor;
+> > +	     ancestor = to_platform_device(ancestor->dev.parent)) {
+> > +		result = acpi_walk_resources(ACPI_HANDLE(&ancestor->dev), METHOD_NAME__CRS,
+> 
+> Similarly, if you get a correct pointer to the struct acpi_device, does the above
+> code need any changes?  I'm hoping not.
+
+Will try to clean this up as well.
+
+Regards,
+Saurabh
+
+> 
+> >  					     vmbus_walk_resources, NULL);
+> > 
+> >  		if (ACPI_FAILURE(result))
+> > @@ -2489,10 +2493,21 @@ static int vmbus_acpi_add(struct acpi_device *device)
+> > 
+> >  acpi_walk_err:
+> >  	if (ret_val)
+> > -		vmbus_acpi_remove(device);
+> > +		vmbus_mmio_remove();
+> >  	return ret_val;
+> >  }
+> > 
+> > +static int vmbus_platform_driver_probe(struct platform_device *pdev)
+> > +{
+> > +	return vmbus_acpi_add(pdev);
+> > +}
+> > +
+> > +static int vmbus_platform_driver_remove(struct platform_device *pdev)
+> > +{
+> > +	vmbus_mmio_remove();
+> > +	return 0;
+> > +}
+> > +
+> >  #ifdef CONFIG_PM_SLEEP
+> >  static int vmbus_bus_suspend(struct device *dev)
+> >  {
+> > @@ -2658,15 +2673,15 @@ static const struct dev_pm_ops vmbus_bus_pm = {
+> >  	.restore_noirq	= vmbus_bus_resume
+> >  };
+> > 
+> > -static struct acpi_driver vmbus_acpi_driver = {
+> > -	.name = "vmbus",
+> > -	.ids = vmbus_acpi_device_ids,
+> > -	.ops = {
+> > -		.add = vmbus_acpi_add,
+> > -		.remove = vmbus_acpi_remove,
+> > -	},
+> > -	.drv.pm = &vmbus_bus_pm,
+> > -	.drv.probe_type = PROBE_FORCE_SYNCHRONOUS,
+> > +static struct platform_driver vmbus_platform_driver = {
+> > +	.probe = vmbus_platform_driver_probe,
+> > +	.remove = vmbus_platform_driver_remove,
+> > +	.driver = {
+> > +		.name = "vmbus",
+> > +		.acpi_match_table = ACPI_PTR(vmbus_acpi_device_ids),
+> > +		.pm = &vmbus_bus_pm,
+> > +		.probe_type = PROBE_FORCE_SYNCHRONOUS,
+> > +	}
+> >  };
+> > 
+> >  static void hv_kexec_handler(void)
+> > @@ -2750,12 +2765,11 @@ static int __init hv_acpi_init(void)
+> >  	/*
+> >  	 * Get ACPI resources first.
+> >  	 */
+> > -	ret = acpi_bus_register_driver(&vmbus_acpi_driver);
+> > -
+> > +	ret = platform_driver_register(&vmbus_platform_driver);
+> >  	if (ret)
+> >  		return ret;
+> > 
+> > -	if (!hv_acpi_dev) {
+> > +	if (!hv_dev) {
+> >  		ret = -ENODEV;
+> >  		goto cleanup;
+> >  	}
+> > @@ -2785,8 +2799,8 @@ static int __init hv_acpi_init(void)
+> >  	return 0;
+> > 
+> >  cleanup:
+> > -	acpi_bus_unregister_driver(&vmbus_acpi_driver);
+> > -	hv_acpi_dev = NULL;
+> > +	platform_driver_unregister(&vmbus_platform_driver);
+> > +	hv_dev = NULL;
+> >  	return ret;
+> >  }
+> > 
+> > @@ -2839,7 +2853,7 @@ static void __exit vmbus_exit(void)
+> > 
+> >  	cpuhp_remove_state(hyperv_cpuhp_online);
+> >  	hv_synic_free();
+> > -	acpi_bus_unregister_driver(&vmbus_acpi_driver);
+> > +	platform_driver_unregister(&vmbus_platform_driver);
+> >  }
+> > 
+> > 
+> > --
+> > 2.25.1
