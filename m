@@ -2,79 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 744386898D5
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 13:32:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF9726898D0
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 13:32:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233013AbjBCMcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 07:32:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42226 "EHLO
+        id S233022AbjBCMcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 07:32:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233010AbjBCMcQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 07:32:16 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4E75B5B8;
-        Fri,  3 Feb 2023 04:32:14 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id f47-20020a05600c492f00b003dc584a7b7eso5896258wmp.3;
-        Fri, 03 Feb 2023 04:32:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6eCtsGF41WjTzwj4MiFKnyo2/eolWQk6TBMwedwS+GA=;
-        b=kIyp6KZ9t6gqZ422axb8Y3xXddye1aQeR3SpqwKHb9KL+wwEeTlv45VdsnqpwibyUF
-         FYERsxE76QWspJEMIlt0kDV4Il2sZlaZLzRwtSD9I2t6iQQLD/b2+B02dOV5h2mHphYN
-         BsOpj5uLCAnBECldPaMKcPFsk/ZmI1M2W+kAVJT6mpjsMmwZGDMnG1R4PEUujP6dukOI
-         gVpjB51enE9NjNHZBLXSIAk0Lrs01vr1GOarE5poGB/4NgxhCE2yMxHuQJ2u33cogE8x
-         O190KYijsBCbVyqoBhyxkQAlGMyxJfy9SX1tH2suQ+LPkVivuCxmGqNFcWNpMx5KswML
-         4c0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6eCtsGF41WjTzwj4MiFKnyo2/eolWQk6TBMwedwS+GA=;
-        b=aMho3twtTYzonj5QfJeMjqBVbgQ89Rpr+gK88TY95xFwQYdGW/ykAjLGByXwn5KVYW
-         k2cQudm0maIhoqGzwGnVc48yrn5gogAcYDWPObeE0taznthHeZ3PAq6CvFSHBS3hvGwq
-         SrBoFmCeXjhkKPIXvreSYK4dq0m0XQWp8uK8rCFkf1EdKG1xxmYyGH1DxKS3Nn4ZbhFV
-         yxhw2u5ombZG2NAhh95c2HvONFFs1y+5KkVSG5INarsOHhK04w1KTLAGJG9yTpSLmL9d
-         W6HKEHemh/wm1XLkE202Y2Ngage090XlMPLojCOd4jEUKTklefZP7wa4hI+rYPMuo+WX
-         tcuQ==
-X-Gm-Message-State: AO0yUKXYnf7Ax3PALGh+OdK8iGn+4+3rU8Gu9VcgZdSZYV1lrf1Vk2di
-        pz9l+4YxnzGgLgJTZCZhFo4=
-X-Google-Smtp-Source: AK7set/bhNPKI2837cPL0+Z8686YxoP/jGLaYlKihTYitHEjiZgeRhGyDr5j2uRpvxfFiiS27awlMg==
-X-Received: by 2002:a05:600c:3b14:b0:3dc:5c86:12f3 with SMTP id m20-20020a05600c3b1400b003dc5c8612f3mr11940588wms.1.1675427533293;
-        Fri, 03 Feb 2023 04:32:13 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id h9-20020a05600c314900b003dfeea6a85csm82235wmo.31.2023.02.03.04.32.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 04:32:12 -0800 (PST)
-Message-ID: <fb36ce3f-dd67-32b5-7ce0-ad15dd3b540a@gmail.com>
-Date:   Fri, 3 Feb 2023 13:32:11 +0100
+        with ESMTP id S233034AbjBCMch (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 07:32:37 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5D5679F3A;
+        Fri,  3 Feb 2023 04:32:34 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 66798B82A20;
+        Fri,  3 Feb 2023 12:32:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 795C9C43444;
+        Fri,  3 Feb 2023 12:32:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675427552;
+        bh=iJge+MFqjbzizxQCThk6ckFPnVqDT96ToH0Ft3Tw/hQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Cb+FiVf/u22D5ODmDsgmYB8x4z6jjnH3mAnoWdFnxki4XJTKMQBiz5uhRsfODBXgO
+         GeWrObErqwhYm49IJTiu1MgdZYxii+TaVIiN8buzRpT9pi7nOe0w4hjd/fEOjTLxBG
+         kmpHBUVtAleOKUDYGP/4Xg4PCozDxNijxu7qVKxB2iRWgH0793gRrJ0kilVEo6gKsq
+         5QT0ueotzjpqQAgBvq5DhuXquHQW4S+yg7TzAi0/snNwmXlQNQl1xyVsdABEIkeF6e
+         vYxsCnMJxuoYKab+IinW/T9AsopCmSgayyZwwmpJ1nPZBlIocNuAmYn2oKahxX1Rze
+         UYNiOt6C2cX0g==
+Message-ID: <9c2c0e88-41d8-f9ec-d934-2d1752696b1a@kernel.org>
+Date:   Fri, 3 Feb 2023 13:32:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/2] dt-bindings: PCI: mediatek-gen3: Add support for
+ controlling power and reset
 Content-Language: en-US
-To:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230105170735.1637416-1-msp@baylibre.com>
- <20230105170735.1637416-4-msp@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH 3/8] soc: mediatek: pm-domains: Create bus protection
- operation functions
-In-Reply-To: <20230105170735.1637416-4-msp@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+To:     =?UTF-8?B?SmlhbiBZYW5nICjmnajmiKwp?= <Jian.Yang@mediatek.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        =?UTF-8?B?Smlhbmp1biBXYW5nICjnjovlu7rlhpsp?= 
+        <Jianjun.Wang@mediatek.com>, "kw@linux.com" <kw@linux.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        Ryder Lee <Ryder.Lee@mediatek.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        =?UTF-8?B?SmlleXkgWWFuZyAo5p2o5rSBKQ==?= <Jieyy.Yang@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?Q2h1YW5qaWEgTGl1ICjmn7PkvKDlmIkp?= 
+        <Chuanjia.Liu@mediatek.com>,
+        =?UTF-8?B?UWl6aG9uZyBDaGVuZyAo56iL5ZWf5b+gKQ==?= 
+        <Qizhong.Cheng@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        =?UTF-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
+        <Rex-BC.Chen@mediatek.com>,
+        =?UTF-8?B?RGF2aWQtWUggQ2hpdSAo6YKx6Yi657+UKQ==?= 
+        <David-YH.Chiu@mediatek.com>
+References: <20230111032830.20447-1-jian.yang@mediatek.com>
+ <20230111032830.20447-3-jian.yang@mediatek.com>
+ <dccfa004-1d40-acc0-6220-9232193b648f@kernel.org>
+ <8d954de7f9507099bd9bea6801f446f80bd832aa.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <8d954de7f9507099bd9bea6801f446f80bd832aa.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,115 +83,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 05/01/2023 18:07, Markus Schneider-Pargmann wrote:
-> Separate the register access used for bus protection enable/disable into
-> their own functions. These will be used later for WAY_EN bits.
+On 03/02/2023 10:38, Jian Yang (杨戬) wrote:
+>>> +  pcie12v-supply:
+>>> +    description:
+>>> +      The regulator phandle that provides 12V power to downstream
+>>> component.
+>>> +
+>>> +  dsc-reset-gpios:
+>>> +    description:
+>>> +      The reset GPIO of a downstream component.
+>>
+>> Why you cannot use standard reset-gpios property?
 > 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> ---
->   drivers/soc/mediatek/mtk-pm-domains.c | 68 +++++++++++++++------------
->   1 file changed, 39 insertions(+), 29 deletions(-)
+> The "dsc-reset-gpios" represents an extra reset pin other than PERST#
+> required by a PCIe downstream device. But the "reset-gpios", described
+> in "pci.txt", represents the PERST#. So I tend to add a new property to
+> meet this requirement.
+
+OK
+
+>>
+>>> +    description:
+>>> +      The delay time between assertion and de-assertion of a
+>>> downstream
+>>> +      component's reset GPIO.
+>>
+>> Why this should be a property of DT?
 > 
-> diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
-> index 4333cd297405..999e1f6c86b0 100644
-> --- a/drivers/soc/mediatek/mtk-pm-domains.c
-> +++ b/drivers/soc/mediatek/mtk-pm-domains.c
-> @@ -117,26 +117,50 @@ static int scpsys_sram_disable(struct scpsys_domain *pd)
->   					MTK_POLL_TIMEOUT);
->   }
->   
-> +static int scpsys_bus_protect_clear(const struct scpsys_bus_prot_data *bpd,
-> +				    struct regmap *regmap)
-> +{
-> +	u32 val;
-> +	u32 sta_mask = bpd->bus_prot_sta_mask;
-> +
-> +	if (bpd->bus_prot_reg_update)
-> +		regmap_clear_bits(regmap, bpd->bus_prot_clr, bpd->bus_prot_set_clr_mask);
-> +	else
-> +		regmap_write(regmap, bpd->bus_prot_clr, bpd->bus_prot_set_clr_mask);
-> +
-> +	if (bpd->ignore_clr_ack)
-> +		return 0;
-> +
-> +	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta,
-> +					val, !(val & sta_mask),
-> +					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> +}
-> +
+> Same as the reason I described above. I suppose we need to add a
+> property to let user determine the delay time due to differences
+> in requirements between various devices.
 
-NIT: please move this function below
-static int scpsys_bus_protect_enable(struct scpsys_domain *pd) {...}
+No, I don't think we want individual properties like that. There is
+ongoing discussion about this:
+https://lore.kernel.org/all/20221214095342.937303-1-alexander.stein@ew.tq-group.com/
 
-This allows for better readability.
+Feedback is welcomed - there. Don't create your own half-baked delays
+for different hardware designs.
 
-> +static int scpsys_bus_protect_set(const struct scpsys_bus_prot_data *bpd,
-> +				  struct regmap *regmap)
-> +{
-> +	u32 val;
-> +	u32 sta_mask = bpd->bus_prot_sta_mask;
-> +
-> +	if (bpd->bus_prot_reg_update)
-> +		regmap_set_bits(regmap, bpd->bus_prot_set, bpd->bus_prot_set_clr_mask);
-> +	else
-> +		regmap_write(regmap, bpd->bus_prot_set, bpd->bus_prot_set_clr_mask);
-> +
-> +	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta,
-> +					val, (val & sta_mask) == sta_mask,
-> +					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> +}
-> +
->   static int _scpsys_bus_protect_enable(const struct scpsys_bus_prot_data *bpd, struct regmap *regmap)
->   {
->   	int i, ret;
->   
->   	for (i = 0; i < SPM_MAX_BUS_PROT_DATA; i++) {
-> -		u32 val;
-> -		u32 set_clr_mask = bpd[i].bus_prot_set_clr_mask;
-> -		u32 sta_mask = bpd[i].bus_prot_sta_mask;
-> -
-> -		if (!set_clr_mask)
-> +		if (!bpd[i].bus_prot_set_clr_mask)
->   			break;
->   
-> -		if (bpd[i].bus_prot_reg_update)
-> -			regmap_set_bits(regmap, bpd[i].bus_prot_set, set_clr_mask);
-> -		else
-> -			regmap_write(regmap, bpd[i].bus_prot_set, set_clr_mask);
-> -
-> -		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
-> -					       val, (val & sta_mask) == sta_mask,
-> -					       MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> +		ret = scpsys_bus_protect_set(&bpd[i], regmap);
->   		if (ret)
->   			return ret;
->   	}
-> @@ -161,24 +185,10 @@ static int _scpsys_bus_protect_disable(const struct scpsys_bus_prot_data *bpd,
->   	int i, ret;
->   
->   	for (i = SPM_MAX_BUS_PROT_DATA - 1; i >= 0; i--) {
-> -		u32 val;
-> -		u32 set_clr_mask = bpd[i].bus_prot_set_clr_mask;
-> -		u32 sta_mask = bpd[i].bus_prot_sta_mask;
-> -
-> -		if (!set_clr_mask)
-> -			continue;
-> -
-> -		if (bpd[i].bus_prot_reg_update)
-> -			regmap_clear_bits(regmap, bpd[i].bus_prot_clr, set_clr_mask);
-> -		else
-> -			regmap_write(regmap, bpd[i].bus_prot_clr, set_clr_mask);
-> -
-> -		if (bpd[i].ignore_clr_ack)
-> +		if (!bpd[i].bus_prot_set_clr_mask)
->   			continue;
->   
-> -		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
-> -					       val, !(val & sta_mask),
-> -					       MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> +		ret = scpsys_bus_protect_clear(&bpd[i], regmap);
->   		if (ret)
->   			return ret;
->   	}
+Best regards,
+Krzysztof
+
