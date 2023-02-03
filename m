@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBF9A68917F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 09:04:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A2EF68918A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 09:05:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232716AbjBCIDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 03:03:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41402 "EHLO
+        id S231932AbjBCIE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 03:04:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231510AbjBCICl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 03:02:41 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AF2D95D16
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 00:01:13 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id r2so3866877wrv.7
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 00:01:13 -0800 (PST)
+        with ESMTP id S232294AbjBCIDo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 03:03:44 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAAA5170D
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 00:02:49 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id k16so3218984wms.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 00:02:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7m8f9EyCur2NoecBf9EPSiUVhxuV7BmfZLxYwGH5PkE=;
-        b=guxpr1oTjCCk//LD7tIEzHxIsGt3+k3YvQpKzhFw13be5VyuYmjdsNPg+igN6mJTZP
-         zGlnrReMLxiB3J+1drmNswO3Qb49rGsbvCfnMzZqu0Ie+/XV4N5FbfwjID+ijTM7hPHP
-         GIbxK9BhQLfytmAUWdUM+/gNq+GnZ0OsuywF/SbMQKsr93PH1fIC+vt7Y2Lmueu9gUaM
-         poRSdxMhbnhui64JU/44IJi4GKxbOtspEAv28RD9NbSMDAp4owHo0nUf+D1xZWZBM8Ok
-         gNoOyCoDx9XR7rm687E88E+/uuJISQKkIsyCZtTsNxy7lYuBjzsPX/YK70zuCjgz49r4
-         tpiw==
+        bh=j/BqAshhUQwOb3XRj7imW0y64r6HrCHnAtk8R5uEluo=;
+        b=rq7Eu0AMSJYRKJazkb10W8riHm1cFWqvmIxseSjsriU+YZ5WzlIwiVcSb+yMDtoMQc
+         QlVwfaT5Xep7ONtrUjmbXYzlVppvCON28e/aFwCduAtLMDMN2WijfK105l4ccfbHj37t
+         6OPt7OK58i56G7Bg/cOaZyXUvtHN21w5Zl0b8Hf9EqGfzJa6WG3eLWNEjaFcHdyUXoIU
+         f96np5sFywJx3Ioo7OGmN3x+9S6/BXbGI06lxlKVSb8ouzQfNR8QiDI9Ef43YlajuS+k
+         noVi5OcH39f3cOBa0lEK6iDEFs3op3kFMNGDq5v2o/+GyOG4JYpUTJlxn0zzKtdGjYMj
+         S7gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7m8f9EyCur2NoecBf9EPSiUVhxuV7BmfZLxYwGH5PkE=;
-        b=YQR3zCIayRIvbQNLp7BJtGSwv22ipmojNnw7c1AP1G48AGEQ5g2WFK+hfvl49WUZcI
-         RIHtGAXj4w6jKNJuKpID8vwaVCB+S3BE0H04Em+6M/t4yJ/ilI1Y8m0BsUMo+tlHYjKH
-         gAQYpsFMwfyd7udc75R4e02aHPCVdKLva4AEXN3AjoWBM6OdUnW3hJnd2dr3l5d5Ubrl
-         X/QN7GtAm1fky8csosekKC9aMM+sJSVszlf3ICNY5osHWwZXZ8Efx4L56pI3y1yme02l
-         anAtrRPqjadY7JOBY8xN4PmxgoqRo6C2fR1Bsjq5aEP0UPa/3joKGsjsmI3mRb142+YR
-         Ehiw==
-X-Gm-Message-State: AO0yUKU5PUDCvCwh5it+LEhE/65cYx1WSHj9z0sa2JVkVQDUeO9ot9yq
-        d9uaYwCOpEwuurbDlOUyXxPvLGjUZNsmIp8R
-X-Google-Smtp-Source: AK7set9OdHSazUeReB4su41/k86JE+27eq8f+sbDll2GVZYYoVPbsF3D45zzdlnihWnmoVcfG3+U3w==
-X-Received: by 2002:a05:6000:144f:b0:2bf:95d6:4789 with SMTP id v15-20020a056000144f00b002bf95d64789mr3757520wrx.2.1675411272156;
-        Fri, 03 Feb 2023 00:01:12 -0800 (PST)
+        bh=j/BqAshhUQwOb3XRj7imW0y64r6HrCHnAtk8R5uEluo=;
+        b=aiSQ6mt9uuP3/85HE/d6V6c+Bz4rfWWNZvyY1A9reGsFwyaHq3yCzKoR11DjU4X2fC
+         1Ty8gdSH11CqTQ9mixVi5fJc71vi/kOtT5V5VlJCsu7KOirrVm1HoM2tYz2btpiMeK7H
+         G/TXkZTM80gQ1wXcmX+25ntPn6+fbku1B9cyHIFXWPgSF3Igp+ZPSVvUoZm0eMG4Uh/Z
+         VrSq32ENB1/EO2Pxju2tJyaaQ5H6XzSiAsHatoCkF3WlhOLN2NClPNR/9AhBmZaQBDil
+         cjonWri4JzIpQHTek0ZPEEy+2DZ6hS6fPtmKnzV2zo+9isoefVtCKx66nGsmBe7LiF77
+         HLZw==
+X-Gm-Message-State: AO0yUKXqheEmsPoPx4Bx372uJeRrjEQ3VcGctZQWEqvgZzQ5OikmTYpo
+        kDT3A2AcMKbsEBHZkVjL5ytzHi5xA977zPlW
+X-Google-Smtp-Source: AK7set/Vb7i53/SV+BeFDBTbUdIAfdaPM5HH1OgiUxRcY1vKNvD0ss4XksA9GmnEstT0xSJMQn7pKA==
+X-Received: by 2002:a05:600c:1e87:b0:3dc:353c:8b44 with SMTP id be7-20020a05600c1e8700b003dc353c8b44mr8608293wmb.5.1675411368292;
+        Fri, 03 Feb 2023 00:02:48 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q6-20020adfab06000000b002bfcc940014sm1393485wrc.82.2023.02.03.00.01.10
+        by smtp.gmail.com with ESMTPSA id y6-20020a7bcd86000000b003dc4480df80sm7031839wmj.34.2023.02.03.00.02.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 00:01:11 -0800 (PST)
-Message-ID: <512edf50-a74d-815d-1278-39fdeb1c2d35@linaro.org>
-Date:   Fri, 3 Feb 2023 09:01:09 +0100
+        Fri, 03 Feb 2023 00:02:47 -0800 (PST)
+Message-ID: <6e6ed493-4748-46ca-7a26-fe9cf6e2377a@linaro.org>
+Date:   Fri, 3 Feb 2023 09:02:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 5/9] ASoC: dt-bindings: meson: convert axg pdm to schema
+Subject: Re: [PATCH 6/9] ASoC: dt-bindings: meson: convert axg fifo to schema
 Content-Language: en-US
 To:     Jerome Brunet <jbrunet@baylibre.com>,
         Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
@@ -66,14 +66,15 @@ Cc:     linux-amlogic@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-kernel@vger.kernel.org
 References: <20230202183653.486216-1-jbrunet@baylibre.com>
- <20230202183653.486216-6-jbrunet@baylibre.com>
+ <20230202183653.486216-7-jbrunet@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202183653.486216-6-jbrunet@baylibre.com>
+In-Reply-To: <20230202183653.486216-7-jbrunet@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,65 +82,70 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 02/02/2023 19:36, Jerome Brunet wrote:
-> Convert the DT binding documentation for the Amlogic axg PDM device to
+> Convert the DT binding documentation for the Amlogic axg audio FIFOs to
 > schema.
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  .../bindings/sound/amlogic,axg-pdm.txt        | 29 -------
->  .../bindings/sound/amlogic,axg-pdm.yaml       | 86 +++++++++++++++++++
->  2 files changed, 86 insertions(+), 29 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+>  .../bindings/sound/amlogic,axg-fifo.txt       |  34 -----
+>  .../bindings/sound/amlogic,axg-fifo.yaml      | 116 ++++++++++++++++++
+>  2 files changed, 116 insertions(+), 34 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
 > deleted file mode 100644
-> index 716878107a24..000000000000
-> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
+> index fa4545ed81ca..000000000000
+> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
 > +++ /dev/null
-> @@ -1,29 +0,0 @@
-> -* Amlogic Audio PDM input
+> @@ -1,34 +0,0 @@
+> -* Amlogic Audio FIFO controllers
 > -
 > -Required properties:
-> -- compatible: 'amlogic,axg-pdm' or
-> -	      'amlogic,g12a-pdm' or
-> -	      'amlogic,sm1-pdm'
+> -- compatible: 'amlogic,axg-toddr' or
+> -	      'amlogic,axg-toddr' or
+> -	      'amlogic,g12a-frddr' or
+> -	      'amlogic,g12a-toddr' or
+> -	      'amlogic,sm1-frddr' or
+> -	      'amlogic,sm1-toddr'
 > -- reg: physical base address of the controller and length of memory
 > -       mapped region.
-> -- clocks: list of clock phandle, one for each entry clock-names.
-> -- clock-names: should contain the following:
-> -  * "pclk"   : peripheral clock.
-> -  * "dclk"   : pdm digital clock
-> -  * "sysclk" : dsp system clock
+> -- interrupts: interrupt specifier for the fifo.
+> -- clocks: phandle to the fifo peripheral clock provided by the audio
+> -	  clock controller.
+> -- resets: list of reset phandle, one for each entry reset-names.
+> -- reset-names: should contain the following:
+> -  * "arb" : memory ARB line (required)
+> -  * "rst" : dedicated device reset line (optional)
 > -- #sound-dai-cells: must be 0.
+> -- amlogic,fifo-depth: The size of the controller's fifo in bytes. This
+> -  		      is useful for determining certain configuration such
+> -		      as the flush threshold of the fifo
 > -
-> -Optional property:
-> -- resets: phandle to the dedicated reset line of the pdm input.
+> -Example of FRDDR A on the A113 SoC:
 > -
-> -Example of PDM on the A113 SoC:
-> -
-> -pdm: audio-controller@ff632000 {
-> -	compatible = "amlogic,axg-pdm";
-> -	reg = <0x0 0xff632000 0x0 0x34>;
+> -frddr_a: audio-controller@1c0 {
+> -	compatible = "amlogic,axg-frddr";
+> -	reg = <0x0 0x1c0 0x0 0x1c>;
 > -	#sound-dai-cells = <0>;
-> -	clocks = <&clkc_audio AUD_CLKID_PDM>,
-> -		 <&clkc_audio AUD_CLKID_PDM_DCLK>,
-> -		 <&clkc_audio AUD_CLKID_PDM_SYSCLK>;
-> -	clock-names = "pclk", "dclk", "sysclk";
+> -	interrupts = <GIC_SPI 88 IRQ_TYPE_EDGE_RISING>;
+> -	clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
+> -	resets = <&arb AXG_ARB_FRDDR_A>;
+> -	fifo-depth = <512>;
 > -};
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml
 > new file mode 100644
-> index 000000000000..d3da2f8ba7b1
+> index 000000000000..f6222ad08880
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
-> @@ -0,0 +1,86 @@
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml
+> @@ -0,0 +1,116 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/sound/amlogic,axg-pdm.yaml#
+> +$id: http://devicetree.org/schemas/sound/amlogic,axg-fifo.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Amlogic Audio AXG PDM input
+> +title: Amlogic AXG Audio FIFO controllers
 > +
 > +maintainers:
 > +  - Jerome Brunet <jbrunet@baylibre.com>
@@ -150,34 +156,29 @@ On 02/02/2023 19:36, Jerome Brunet wrote:
 > +properties:
 > +  $nodename:
 > +    pattern: "^audio-controller@.*"
-
-Drop
-
 > +
 > +  compatible:
 > +    oneOf:
 > +      - items:
 > +          - enum:
-> +              - amlogic,g12a-pdm
-> +              - amlogic,sm1-pdm
-> +          - const:
-> +              amlogic,axg-pdm
-
-One line.
-
-Please use the same coding style as we have in other bindings or
-example-schema.
-
+> +              - amlogic,axg-toddr
+> +              - amlogic,axg-frddr
 > +      - items:
-
-Drop items
-
+> +          - enum:
+> +              - amlogic,g12a-toddr
+> +              - amlogic,sm1-toddr
 > +          - const:
-> +              amlogic,axg-pdm
-
-Keep in one line.
-
+> +              amlogic,axg-toddr
+> +      - items:
+> +          - enum:
+> +              - amlogic,g12a-frddr
+> +              - amlogic,sm1-frddr
+> +          - const:
+> +              amlogic,axg-frddr
 > +
+
+All usual comments apply.
+
 > +  reg:
 > +    maxItems: 1
 > +
@@ -187,46 +188,30 @@ Keep in one line.
 > +  clocks:
 > +    items:
 > +      - description: Peripheral clock
-> +      - description: PDM digital clock
-> +      - description: DSP system clock
 > +
-> +  clock-names:
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  resets:
 > +    items:
-> +      - const: pclk
-> +      - const: dclk
-> +      - const: sysclk
+> +      - description: Memory ARB line
+> +      - description: Dedicated device reset line
+
+This won't work without minItems and you should see errors on your DTS
+or in dt_binding_check
+
+> +
+> +  reset-names: true
+
+minItems
+maxItems
+
+> +
+> +  amlogic,fifo-depth:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Size of the controller's fifo in bytes
 > +
 > +required:
-> +  - compatible
-> +  - reg
-> +  - "#sound-dai-cells"
-> +  - clocks
-> +  - clock-names
-> +
-> +if:
-
-Keep in allOf here (need to move ref from top to here)
-
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - amlogic,g12a-pdm
-> +          - amlogic,sm1-pdm
-> +then:
-> +  properties:
-> +    resets:
-> +      items:
-> +        - description: Dedicated device reset line
-
-Define properties in top level properties.
-
-> +
-> +  required:
-> +    - resets
-> +
-> +unevaluatedProperties: false
-
 
 Best regards,
 Krzysztof
