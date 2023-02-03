@@ -2,119 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EECB689306
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 10:03:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A71A668931D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 10:10:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232466AbjBCJCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 04:02:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57700 "EHLO
+        id S230504AbjBCJJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 04:09:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232369AbjBCJCi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 04:02:38 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C095892C03
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 01:02:36 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id f47-20020a05600c492f00b003dc584a7b7eso5504181wmp.3
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 01:02:36 -0800 (PST)
+        with ESMTP id S232603AbjBCJJr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 04:09:47 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803DB1C32C
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 01:09:45 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id t7so4030187wrp.5
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 01:09:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/2aiCKLplfBwX38ykcuLOaza164bQFv98FeeJ7x8FKo=;
-        b=IHQ5dxA3E39PcS7l2mnGFejvdya63XtTLOxXnNaryTsGL35LJ3P+W/+O17cVjN8CBQ
-         Vl6p8iCa92W+Bu1vt/TtpQWNT+PWjT9bh1y6rw+cex5hKQXLX43+uKpdpAmdfre6v2mR
-         WrrjjAi4C83DWeIGYezsmNofS4KltrsaCgdkqNQCchLxcCbxxslmo1v+8YMSSj5H8wXD
-         9lqIogxZrRFuLtDW2Nn/LfXX9oS6pgul6Hhon+6Ok4ZQ+GJsPJ8Y0ZzcCtJkw0O8TWy0
-         P2ycUmuIIT4PKBItag7PSuzMiIAiHFtefp0lCHOuQNXyjj7KAg461XnqtG+4ChxQ1vJD
-         bXvQ==
+        bh=MHn45+vnENK/TVFtx99s7WoA9gA2YZddyjnUzP5s16c=;
+        b=AMN5K4po0wih1uiCioK2NDKoMhZFPH7TpH9vUPEsXKmokVADyzbPdoWoVoFMz1jRD7
+         mcSs4Z9hgfq5SsEakOIiz1qASOlNVRvCpGuodPSZEvdMIP2bKxJ6AnUb9mOSrJqbaqyh
+         WIiEYKwRuBWljB1udt3BVDR1cBJCNRm7FhwTsvRzCSs5SXRJHQrO3BzNlYVkSCd5A6VG
+         PO9Tcx38k31bAUvAe5YgpnJo7d/hacCaYIVzA6XTJyBG06y+tUHqNoEkxWPL17QKEXlD
+         sEESzc5OYdKaBfnhGc8XDj0Gos37AH5EsUjvwDARWezGpHlrVlHwh/7g3ebCAiRevVjw
+         Fh1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/2aiCKLplfBwX38ykcuLOaza164bQFv98FeeJ7x8FKo=;
-        b=EVnSnw91UEG1pvtKCXZTHBxwW8Ufe9XaosTfmbqiBW7R4neSHJWT/AG6ClcNLUx4sq
-         wXXQaFEDDcryJfck7UctRqLL9XVenVHB4ysjhuh4BfeK5kmOsLS/Jg7OFiWmlwTrDQkB
-         oX0nC3ZOG646Z8RqrblmEAsMWNaFkLQm4o7E8Si6LsuPMfzCJvmFwgsIpmnPF26F5lXt
-         mWSAcdYXu5KY+x6OQxYyzBWn5Ra6B6EKILanPfrT3xUSXBUaelvOUpdTY1lQ5Gwr6k1M
-         3r76hLZC3c1KSZYSoZjthG6eDF61ubYGqTfbd9dx8hToD9WeQh7X7COVIG2eU4Lr6k/z
-         wIcQ==
-X-Gm-Message-State: AO0yUKUxQKzdS2vAmiuqEZDA6uqSpYIYh7JNdJJJfyXIxoNFB4MeWpIS
-        5NQKMXHuN8LMvCDAadrJoRYAWw==
-X-Google-Smtp-Source: AK7set8fAEK8Uz2xDND8RKaAbMEMsT8CBVBEB/JVTCIULoPRT91JYLEobcoPWf0bjmDyTEvfWixQTQ==
-X-Received: by 2002:a05:600c:4f06:b0:3da:b40f:7a55 with SMTP id l6-20020a05600c4f0600b003dab40f7a55mr3958239wmq.6.1675414955338;
-        Fri, 03 Feb 2023 01:02:35 -0800 (PST)
+        bh=MHn45+vnENK/TVFtx99s7WoA9gA2YZddyjnUzP5s16c=;
+        b=evebR/XPRaeq7iu3rn+IRnAGzh1hhuHEnC9dx1+/V7ZmgAy8cwSTqwft5RTCk6QQXn
+         Gt537OWG8TkGaECwlhw8jY1vuh8PH4xLo4Mb25LMr/H/uq4yf1OqcbXPtybVnEuA3zcE
+         ZaMH+9RmKfAsjOLaw+FgqTzJtb5qr9UkhdJOzQN25WBSH4nSYoAkapqIHoL5Qp/3k2gR
+         Baxr9TBVgGNDSLl/rGvnlpcVE+/8WtI8MvjoMgbHP/YBfLWLV5UAxVP3xtfj4KtRxse9
+         4pKwC/fCAUzpXocjH0vSvFuNUiLoXVQacCyy7ZtJ414rKltg0xfnroQm9tYzxSO0zZuN
+         Wh3Q==
+X-Gm-Message-State: AO0yUKW0y70EOrJ9qONOeBqX3p8tRQwxPpcXyR4ekJXXO7TVI5ZvikZZ
+        ELBfntlo5uYG/n/+H89yT5hXjQ==
+X-Google-Smtp-Source: AK7set84hsw/7fWJrGnI1HI7nN5pusbfTFUXGtJoj7Z/splNoJLWpDd3zxqfsMBSwstHnOGC7Hp9iw==
+X-Received: by 2002:a5d:61ca:0:b0:2bf:d14a:21dd with SMTP id q10-20020a5d61ca000000b002bfd14a21ddmr10487360wrv.29.1675415384078;
+        Fri, 03 Feb 2023 01:09:44 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t6-20020a05600c450600b003dc433bb5e1sm2331776wmo.9.2023.02.03.01.02.34
+        by smtp.gmail.com with ESMTPSA id f9-20020a5d4dc9000000b002bfb37497a8sm1478281wru.31.2023.02.03.01.09.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 01:02:35 -0800 (PST)
-Message-ID: <3c5bda9f-08b9-f2ba-6951-9fc614d4debc@linaro.org>
-Date:   Fri, 3 Feb 2023 10:02:33 +0100
+        Fri, 03 Feb 2023 01:09:43 -0800 (PST)
+Message-ID: <46974ae7-5f7f-8fc1-4ea8-fe77b58f5bfb@linaro.org>
+Date:   Fri, 3 Feb 2023 10:09:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v3 3/3] riscv: dts: starfive: Add mmc node
+Subject: Re: [PATCH] ASoC: dt-bindings: renesas: adjust to R-Car Gen4
 Content-Language: en-US
-To:     William Qiu <william.qiu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20230203081913.81968-1-william.qiu@starfivetech.com>
- <20230203081913.81968-4-william.qiu@starfivetech.com>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
+Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org
+References: <87zg9vk0ex.wl-kuninori.morimoto.gx@renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230203081913.81968-4-william.qiu@starfivetech.com>
+In-Reply-To: <87zg9vk0ex.wl-kuninori.morimoto.gx@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/02/2023 09:19, William Qiu wrote:
-> This adds the mmc node for the StarFive JH7110 SoC.
-
-Do not use "This xxx". Use imperative mode.
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-> Set mmco node to emmc and set mmc1 node to sd.
+On 03/02/2023 02:22, Kuninori Morimoto wrote:
 > 
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> 
+> R-Car Gen4 is not compatible with Gen3, this patch adjusts
+> to R-Car Gen4.
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+> The "required" with if - then - else on "rcar_sound,ssi" is
+> always match to "then" even though it is checking "renesas,rcar_sound-gen4" or not.
+> Why ?? Is it my fault ??
+> 
+>  .../bindings/sound/renesas,rsnd.yaml          | 62 ++++++++++++++-----
+>  1 file changed, 46 insertions(+), 16 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> index d106de00c6b2..9a88b1c34e72 100644
+> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> @@ -106,7 +106,9 @@ properties:
+>      items:
+>        oneOf:
+>          - const: ssi-all
+> +        - const: clkin
+>          - pattern: '^ssi\.[0-9]$'
+> +        - pattern: '^ssiu\.[0-9]$'
+>          - pattern: '^src\.[0-9]$'
+>          - pattern: '^mix\.[0-1]$'
+>          - pattern: '^ctu\.[0-1]$'
+> @@ -254,10 +256,20 @@ properties:
+>            no-busif:
+>              description: BUSIF is not used when [mem -> SSI] via DMA case
+>              $ref: /schemas/types.yaml#/definitions/flag
+> -        required:
+> -          - interrupts
+> -          - dmas
+> -          - dma-names
+> +        allOf:
+> +          - if:
+> +              properties:
+> +                compatible:
+> +                  contains:
+> +                    const: renesas,rcar_sound-gen4
+> +            then:
+> +              required:
+> +                - interrupts
+> +            else:
+> +              required:
+> +                - interrupts
+
+This does not make sense - you just require it always.
 
 
-> +
->  &gmac0_rmii_refin {
->  	clock-frequency = <50000000>;
->  };
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index 64d260ea1f29..ae1a664e7af5 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -370,6 +370,11 @@ syscrg: clock-controller@13020000 {
->  			#reset-cells = <1>;
->  		};
+
+> +                - dmas
+> +                - dma-names
+>      additionalProperties: false
 >  
-> +		sysreg: syscon@13030000 {
-> +			compatible = "starfive,sysreg", "syscon";
+>    # For DAI base
+> @@ -307,18 +319,36 @@ allOf:
+>                - ssi
+>                - adg
+>      else:
+> -      properties:
+> -        reg:
+> -          maxItems: 5
+> -        reg-names:
+> -          maxItems: 5
+> -          items:
+> -            enum:
+> -              - scu
+> -              - adg
+> -              - ssiu
+> -              - ssi
+> -              - audmapp
+> +      if:
 
-No:
-1. Undocumented.
-2. A bit too generic. You should have here SoC specific compatible as
-well (either as second or third compatible, if all your SoCs share
-register layout).
+Please do not embed if within another if, unless strictly necessary. It
+gets unmanageable.
 
-> +			reg = <0x0 0x13030000 0x0 0x1000>;
-> +		};
-> +
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              const: renesas,rcar_sound-gen4
+> +      then:
+> +        properties:
+> +          reg:
+
+minItems
+
+> +            maxItems: 4
+> +          reg-names:
+> +            maxItems: 4
+
+Drop
+
+> +            items:
+> +              enum:
+> +                - adg
+> +                - ssiu
+> +                - ssi
+> +                - sdmc
+> +      else:
+> +        properties:
+> +          reg:
+
+minItems
+
+> +            maxItems: 5
+> +          reg-names:
+> +            maxItems: 5
+
+Drop
+
 
 Best regards,
 Krzysztof
