@@ -2,70 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A8DE68975D
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 11:57:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E5ED68975B
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 11:57:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232123AbjBCK4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 05:56:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47070 "EHLO
+        id S233093AbjBCK4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 05:56:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233060AbjBCK4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 05:56:24 -0500
-Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94101721DE
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 02:56:13 -0800 (PST)
-Received: by mail-ua1-x92c.google.com with SMTP id u16so80187uaa.3
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 02:56:13 -0800 (PST)
+        with ESMTP id S233098AbjBCK4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 05:56:11 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7486D77507
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 02:56:03 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id qw12so14290362ejc.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 02:56:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=nOuZ7FWsN6MrrC9sg1gIZtTV4wY9KaukHJUsIQSiEEI=;
-        b=RMb4zQIUyTglhYwOS5mRVvYLQwa373IuWg6WtgmIrsuqweAO0lUJ08FRKQRhmzOzUx
-         /N2fcmhyoAvvjm+e6KRDGcrpXqi0dQcf9aGVq+306keL8GdqDuyFgwQlPJHnTXcNvGiG
-         t6sp8IkqXvErvfALzYLUAQoLQarKHc53PJsuwuWYdT6BXk7e42xiSGht/5exSSBshGUm
-         ueJMBFHFKEe1VeFOLQ+pW9xJkv1QYMDs0E0GRDC0EKYSjXVTUxp0Oaw8aIq2PCcqhocN
-         YfIGvyCM4uTP1STIxAcr1MN6hozEm4DLeGO8NgmUJ2jemi1gFDGlX3IU4tpGS8Y5cQdr
-         UlRQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BdYRjOM1n9bt8CN7mBjbmqA+shKAXX8Ovt8jaNWTShU=;
+        b=TTe8dPHkBNkUesxIWp8id6+kZt6bBhVLN1AbM9Q2yUCXy0U0dQnhiMNlSNMCzYlgVh
+         ZJW5B+IG4lEzWL1mLjJWKnN8UQFbKZMQPETLWbYmHSN0LcAy/We92w1jDFhdutqAY0XS
+         5AuBsWSWyyfvrOr6kJ315r7Lcv3OK9WY0u+NshplJxk9jO3CUwvRdr9gDuhaUcAJEel2
+         Rxk6vJlam0U+WN0pRVaHVSDFYHhIJTyfbexAko7p3nLyc6AiCCJc/MLchscD7GbZqEre
+         lCD6Dl3muFeI/L+0vtEjM8LVGU+9/lNYdSaHB03zKVEfGZTlRD99lLBWIaMdfvO+Xuu/
+         W3MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nOuZ7FWsN6MrrC9sg1gIZtTV4wY9KaukHJUsIQSiEEI=;
-        b=MjiiAjsFfDik82Zl+NYOZSJu2ZG8mdO79Ty50Fxa3Vh238fZVTms9UHb/dFUjMcv1d
-         mlrkr6IWQWinPAFxN9LQ1eWjPMso8kTTkAlno7e27NxQtenElM4+4diHokv2fJ6s6Z8q
-         xbNTGUss/pWpdsyMY16vu55ZLvKzkbJ4qfG/5EeADosT3pPcUG32f3B8hN5Od3ZzksyP
-         6VOKVGEA5hz64giQ6tF/v2lE7sc+HfvKPLSJXCxdgzs1LYyGtLUFo3BhRRlTHy5kadyT
-         Hq8JAG4q5tN2nxrKYh5LWC2K13pyfdBuQedX7FNeEAKbV0PoR429wfyppA0Y5P3IfsVv
-         UGxg==
-X-Gm-Message-State: AO0yUKXF5ffgg4tltDtrVd/rBGt30xTPYXSPoNCt4C1d/vVahx60D6Zz
-        voYxuSsaWCkluYGhg2sGf9CvLi/4dT4o7M3HSnTa8w==
-X-Google-Smtp-Source: AK7set/1a5vyavZDupR+OWrVdKgR4QCPsfHYmNonU/m4H2ynVhoqxzlor2Pi8PrfJhKuI2lUX+gH6EkFpnXfN8MM8YQ=
-X-Received: by 2002:ab0:49e9:0:b0:662:b4d9:ff5f with SMTP id
- f38-20020ab049e9000000b00662b4d9ff5fmr1570182uad.46.1675421772612; Fri, 03
- Feb 2023 02:56:12 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BdYRjOM1n9bt8CN7mBjbmqA+shKAXX8Ovt8jaNWTShU=;
+        b=z5cMuVpqbAjdfXYYD1GzMPhMRGVthNbNXiVoPa7RlE5TBwZ38nwR+OkwB46cxVEm/S
+         kLM9aicBniweByBIvhxQ0vKgqz7xXZ2d/DILXQko0RQp0J5Bi3c34xECijFltxaqkhwD
+         piklLZlL8n/qcdrQA7CGD+rXixLq+gz60lKels1ZD1QIqe49KVpOFmo/Mt2QhncdLOv6
+         zGKNK5oWSgKEav7ofMn0S6TlqRkJwgNOH07P69/qwbl9innB17sTzallpag9edQNsALX
+         N8O8AByCjjtwg6M53biWCpKfOWNJbS+oHfYq8FQchSx07jON59ULn0u6VXVOa6Xi63eY
+         qXpA==
+X-Gm-Message-State: AO0yUKVAJ4XtsXiXemIqmo0KgW6z1mhUh8C7FXMXnXRITNwxemWedv40
+        t0Wq+ChUKpF8pPZqJGNtdf1oXQ==
+X-Google-Smtp-Source: AK7set+MxWM0+nZqvviW/bwAcAGYQkQyWGDadUbnUIpVzeXcg1uw20STr4HiMhMPlosIWq5Jv3GQrA==
+X-Received: by 2002:a17:906:9610:b0:878:5e84:e1d6 with SMTP id s16-20020a170906961000b008785e84e1d6mr11002336ejx.75.1675421761914;
+        Fri, 03 Feb 2023 02:56:01 -0800 (PST)
+Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
+        by smtp.gmail.com with ESMTPSA id p2-20020a170906498200b00878803d4049sm1219445eju.93.2023.02.03.02.55.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Feb 2023 02:56:01 -0800 (PST)
+Message-ID: <e34f36b0-35a8-0b77-e6ab-49851213108e@linaro.org>
+Date:   Fri, 3 Feb 2023 11:55:58 +0100
 MIME-Version: 1.0
-References: <20230203102439.237527-1-alexander.stein@ew.tq-group.com> <20230203102439.237527-3-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20230203102439.237527-3-alexander.stein@ew.tq-group.com>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Fri, 3 Feb 2023 10:55:55 +0000
-Message-ID: <CAPY8ntDd06gLmETbi0S=2Y3ES40_5HJ_zZ0sx+cbHwtPq-XHow@mail.gmail.com>
-Subject: Re: [PATCH 2/2] media: i2c: imx290: Add support for imx327 variant
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH V6 2/7] clk: qcom: Add Global Clock Controller driver for
+ IPQ9574
+To:     Kathiravan T <quic_kathirav@quicinc.com>,
+        Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linus.walleij@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
+        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
+        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
+        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_arajkuma@quicinc.com,
+        quic_anusha@quicinc.com, quic_poovendh@quicinc.com
+References: <20230202150619.22425-1-quic_devipriy@quicinc.com>
+ <20230202150619.22425-3-quic_devipriy@quicinc.com>
+ <1d144aa4-6f0f-b10f-1d32-4acf4e06ae85@quicinc.com>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <1d144aa4-6f0f-b10f-1d32-4acf4e06ae85@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,226 +88,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander
-
-On Fri, 3 Feb 2023 at 10:24, Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
->
-> Both sensors are quite similar. Their specs only differ regarding LVDS
-> and parallel output but are identical regarding MIPI-CSI-2 interface.
-> But they use a different init setting of hard-coded values, taken from
-> the datasheet.
->
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  drivers/media/i2c/imx290.c | 88 +++++++++++++++++++++++++++++++++-----
->  1 file changed, 77 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-> index e642e1df520d..337252b2ec15 100644
-> --- a/drivers/media/i2c/imx290.c
-> +++ b/drivers/media/i2c/imx290.c
-> @@ -164,6 +164,36 @@
->  #define CLK_74_25      1
->  #define NUM_CLK                2
->
-> +enum imx290_model {
-> +       IMX290,
-> +       IMX290_MONO,
-> +       IMX327,
-> +};
-> +
-> +struct imx290_device_data {
-> +       enum imx290_model model;
-> +       const char *name;
-> +       u8 mono;
-> +};
-> +
-> +static const struct imx290_device_data imx290_models[] = {
-> +       [IMX290] = {
-> +               .model = IMX290,
-> +               .name = "imx290",
-> +               .mono = 0,
-> +       },
-> +       [IMX290_MONO] = {
-> +               .model = IMX290_MONO,
-> +               .name = "imx290-mono",
-> +               .mono = 1,
-> +       },
-> +       [IMX327] = {
-> +               .model = IMX327,
-> +               .name = "imx327",
-> +               .mono = 0,
-> +       },
-> +};
-> +
->  struct imx290_regval {
->         u32 reg;
->         u32 val;
-> @@ -210,9 +240,9 @@ struct imx290 {
->         struct device *dev;
->         struct clk *xclk;
->         struct regmap *regmap;
-> +       const struct imx290_device_data *devdata;
->         u32 xclk_freq;
->         u8 nlanes;
-> -       u8 mono;
->
->         struct v4l2_subdev sd;
->         struct media_pad pad;
-> @@ -240,7 +270,7 @@ static inline struct imx290 *to_imx290(struct v4l2_subdev *_sd)
->   * Modes and formats
->   */
->
-> -static const struct imx290_regval imx290_global_init_settings[] = {
-> +static const struct imx290_regval imx290_global_init_settings_290[] = {
->         { IMX290_WINWV_OB, 12 },
->         { IMX290_WINPH, 0 },
->         { IMX290_WINPV, 0 },
-> @@ -292,6 +322,23 @@ static const struct imx290_regval imx290_global_init_settings[] = {
->         { IMX290_REG_8BIT(0x33b3), 0x04 },
->  };
->
-> +static const struct imx290_regval imx290_global_init_settings_327[] = {
-> +       { IMX290_WINWV_OB, 12 },
-> +       { IMX290_WINPH, 0 },
-> +       { IMX290_WINPV, 0 },
-> +       { IMX290_WINWH, 1948 },
-> +       { IMX290_WINWV, 1097 },
-> +       { IMX290_XSOUTSEL, IMX290_XSOUTSEL_XVSOUTSEL_VSYNC |
-> +                          IMX290_XSOUTSEL_XHSOUTSEL_HSYNC },
-> +       { IMX290_REG_8BIT(0x3011), 0x0A },
-
-What datasheet are you working from? Mine (2019/03/25) has a
-correction listed at v0.3 of:
-Register 3011h setting 0Ah -> 02h
-
-> +       { IMX290_REG_8BIT(0x3012), 0x64 },
-> +       { IMX290_REG_8BIT(0x3013), 0x00 },
-> +       { IMX290_REG_8BIT(0x309e), 0x4A },
-> +       { IMX290_REG_8BIT(0x309f), 0x4A },
-
-309e/f undocumented in my datasheet beyond "default value 5Ah, set to "4Ah"".
-Not documented in imx290 or imx462 datasheets either. I'll read it
-back from IMX290 and IMX462 when I get to the office and see if 0x4a
-is the default anyway, in which case it can be generic.
-
-> +       { IMX290_REG_8BIT(0x3128), 0x04 },
-
-Correction v0.3 - register address 3128h deleted.
-
-> +       { IMX290_REG_8BIT(0x313b), 0x41 },
-
-Correction v0.3 - Register address 313Bh setting 41h -> 61h.
 
 
-I'll check the defaults on imx290 and imx462, because there is no harm
-in adding those register writes if they happen to be the defaults.
-There is also a fair amount of duplication between
-imx290_global_init_settings_290 and imx290_global_init_settings_327 -
-it'd be nice to reduce it down to the minimum set of diffs.
+On 3.02.2023 06:47, Kathiravan T wrote:
+> 
+> On 2/2/2023 8:36 PM, Devi Priya wrote:
+>> Add Global Clock Controller (GCC) driver for ipq9574 based devices
+>>
+>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>> ---
 
-> +};
-> +
->  static const struct imx290_regval imx290_37_125mhz_clock[] = {
->         { IMX290_EXTCK_FREQ, 0x2520 },
->         { IMX290_INCKSEL7, 0x49 },
-> @@ -558,7 +605,7 @@ imx290_format_info(const struct imx290 *imx290, u32 code)
->         for (i = 0; i < ARRAY_SIZE(imx290_formats); ++i) {
->                 const struct imx290_format_info *info = &imx290_formats[i];
->
-> -               if (info->code[imx290->mono] == code)
-> +               if (info->code[imx290->devdata->mono] == code)
->                         return info;
->         }
->
-> @@ -957,11 +1004,27 @@ static int imx290_start_streaming(struct imx290 *imx290,
->                                   struct v4l2_subdev_state *state)
->  {
->         const struct v4l2_mbus_framefmt *format;
-> +       const struct imx290_regval *regs;
-> +       unsigned int reg_num;
->         int ret;
->
-> +       switch (imx290->devdata->model) {
-> +       case IMX290:
-> +       case IMX290_MONO:
-> +               regs = imx290_global_init_settings_290;
-> +               reg_num = ARRAY_SIZE(imx290_global_init_settings_290);
-> +               break;
-> +       case IMX327:
-> +               regs = imx290_global_init_settings_327;
-> +               reg_num = ARRAY_SIZE(imx290_global_init_settings_327);
-> +               break;
-> +       default:
-> +               dev_err(imx290->dev, "Invalid model: %u\n", imx290->devdata->model);
-> +               return -EINVAL;
-> +       }
-> +
->         /* Set init register settings */
-> -       ret = imx290_set_register_array(imx290, imx290_global_init_settings,
-> -                                       ARRAY_SIZE(imx290_global_init_settings));
-> +       ret = imx290_set_register_array(imx290, regs, reg_num);
->         if (ret < 0) {
->                 dev_err(imx290->dev, "Could not set init registers\n");
->                 return ret;
-> @@ -1072,7 +1135,7 @@ static int imx290_enum_mbus_code(struct v4l2_subdev *sd,
->         if (code->index >= ARRAY_SIZE(imx290_formats))
->                 return -EINVAL;
->
-> -       code->code = imx290_formats[code->index].code[imx290->mono];
-> +       code->code = imx290_formats[code->index].code[imx290->devdata->mono];
->
->         return 0;
->  }
-> @@ -1114,7 +1177,7 @@ static int imx290_set_fmt(struct v4l2_subdev *sd,
->         fmt->format.height = mode->height;
->
->         if (!imx290_format_info(imx290, fmt->format.code))
-> -               fmt->format.code = imx290_formats[0].code[imx290->mono];
-> +               fmt->format.code = imx290_formats[0].code[imx290->devdata->mono];
->
->         fmt->format.field = V4L2_FIELD_NONE;
->         fmt->format.colorspace = V4L2_COLORSPACE_RAW;
-> @@ -1422,8 +1485,9 @@ static s64 imx290_check_link_freqs(const struct imx290 *imx290,
->  }
->
->  static const struct of_device_id imx290_of_match[] = {
-> -       { .compatible = "sony,imx290" },
-> -       { .compatible = "sony,imx290-mono", .data = (void *)1 },
-> +       { .compatible = "sony,imx290", .data = &imx290_models[IMX290] },
-> +       { .compatible = "sony,imx290-mono", .data = &imx290_models[IMX290_MONO] },
-> +       { .compatible = "sony,imx327",  .data = &imx290_models[IMX327] },
+[...]
 
-Based on Laurent's requests my parent to this set will be switching to
-imx290 (as legacy), imx290lqr and imx290llr as the compatible strings.
-imx327 ought to follow the same pattern.
+>> +static int gcc_ipq9574_probe(struct platform_device *pdev)
+>> +{
+>> +    struct regmap *regmap;
+>> +    struct qcom_cc_desc ipq9574_desc = gcc_ipq9574_desc;
+>> +
+>> +    regmap = qcom_cc_map(pdev, &ipq9574_desc);
+>> +    if (IS_ERR(regmap))
+>> +        return PTR_ERR(regmap);
+>> +
+>> +    return qcom_cc_really_probe(pdev, &ipq9574_desc, regmap);
+> 
+> 
+> can we use qcom_cc_probe as suggested here https://lore.kernel.org/linux-arm-msm/84f68577f5629e6ef6d6b14357a79f84.sboyd@kernel.org/ ?
+Yes we can.
 
-  Dave
+When you're answering a long long long long email, please cut off
+parts that you aren't replying to, I had to scroll and scroll and
+scroll and scroll to get to this sentence and I'm not even sure if
+you said something inbetween that I missed..
 
->         { /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, imx290_of_match);
-> @@ -1441,8 +1505,7 @@ static int imx290_parse_dt(struct imx290 *imx290)
->         s64 fq;
->
->         match = i2c_of_match_device(imx290_of_match, client);
-> -       if (match)
-> -               imx290->mono = match->data ? 1 : 0;
-> +       imx290->devdata = match->data;
->
->         endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(imx290->dev), NULL);
->         if (!endpoint) {
-> @@ -1561,6 +1624,9 @@ static int imx290_probe(struct i2c_client *client)
->         if (ret)
->                 goto err_pm;
->
-> +       v4l2_i2c_subdev_set_name(&imx290->sd, client,
-> +                                imx290->devdata->name, NULL);
-> +
->         /*
->          * Finally, register the V4L2 subdev. This must be done after
->          * initializing everything as the subdev can be used immediately after
-> --
-> 2.34.1
->
+Konrad
+> 
+> 
+>> +}
+>> +
+>> +static struct platform_driver gcc_ipq9574_driver = {
+>> +    .probe = gcc_ipq9574_probe,
+>> +    .driver = {
+>> +        .name   = "qcom,gcc-ipq9574",
+>> +        .of_match_table = gcc_ipq9574_match_table,
+>> +    },
+>> +};
+>> +
+>> +static int __init gcc_ipq9574_init(void)
+>> +{
+>> +    return platform_driver_register(&gcc_ipq9574_driver);
+>> +}
+>> +core_initcall(gcc_ipq9574_init);
+>> +
+>> +static void __exit gcc_ipq9574_exit(void)
+>> +{
+>> +    platform_driver_unregister(&gcc_ipq9574_driver);
+>> +}
+>> +module_exit(gcc_ipq9574_exit);
+>> +
+>> +MODULE_DESCRIPTION("Qualcomm Technologies, Inc. GCC IPQ9574 Driver");
+>> +MODULE_LICENSE("GPL");
