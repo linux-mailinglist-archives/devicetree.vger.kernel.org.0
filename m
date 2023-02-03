@@ -2,112 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5200B68A378
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 21:18:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A24468A381
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 21:21:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232699AbjBCUSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 15:18:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58132 "EHLO
+        id S232119AbjBCUVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 15:21:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233002AbjBCUSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 15:18:15 -0500
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 930F820073;
-        Fri,  3 Feb 2023 12:18:11 -0800 (PST)
-Received: by mail-oo1-f47.google.com with SMTP id 123-20020a4a0681000000b004faa9c6f6b9so606301ooj.11;
-        Fri, 03 Feb 2023 12:18:11 -0800 (PST)
+        with ESMTP id S231593AbjBCUVi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 15:21:38 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12948A87A8
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 12:21:34 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so6823079wmb.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 12:21:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=m5sLjr7aYK315tj89Xz8yTzw8nhiBSznb+bT5o725x0=;
+        b=HLoFOX9M38kF2qyUXFQwXqSnMduKtNxMFBrU5CvSYknJxcduZ84ZUxf/VVFfkk+dwR
+         /WLjnjiBsb1y6V6GqLtfXH8j5KJDNyoWTaR76slT+yDk3LZqAJB1XDDj/ITC4vfTaEDc
+         qFfA1b2qa/H9ba7GlMKHQAetHgjPTM8d4A5x2BWt0AEtogp1MPI5kISnP7fI+Rk6HQNR
+         h71USPCrKliJYX5PoXeGf3p8mOTdD+tGnDRL5uvNeBQpeuYIDUzK7vnKZM0nDi3JChGc
+         rML/UuG3wp30vrDrWJF1gFFn9XzjnHdc5MkgTBcQ5cZL/ZP8JUtO3UVYFG8JILgMYRMf
+         2gQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=oV7cKs+Szf31+vVz6WWua+p5h+0X4GhPfD48jKFPFWA=;
-        b=cPWA4yRPcMGyIw0FUv9c9Vpykcvo2e+eFBsIo0/Kni6wSdtfJDZ4zGk5WPYXZT9hVW
-         Wp2ogEXfyeDrON3a8rJAsjcCZrf1WR4FFpOz2b5iQxgVXrYvETeYSNpww0cLynfcUZUh
-         eGPPiyViwYl8SRZWEyznKd24kdIysr1lOQEjRak80PVkgrietWkFKBeSonIDnrMw+Ol1
-         yWeIGHAqLQOrlERVSLt0J8NFO0ZjDQapiPPQUP+jBQz9P0UVEXDbNO6rQ6RTq/RwUaHi
-         iJwXE0m0/bnp4o7gaROhZI8B7GJwnFEHZ03LCoq3yzb/f3FgeWxk4VD/D+SpL6T9yPCB
-         IqIQ==
-X-Gm-Message-State: AO0yUKWGCS11YEorcoOOEYv/gwubElGCU/Nf9JyodcgESi5zL8MEpH5S
-        5fL6kaoS5TqDMDbDRgSaVw==
-X-Google-Smtp-Source: AK7set/S0Ap+7JFi+KM1s+lEfgy4prFJ9nFrDC3/Ra/Hwq/IY1xtmriuQVpTYL7NYOw7MMPFZBRU6g==
-X-Received: by 2002:a4a:3915:0:b0:51a:2fe9:2a8f with SMTP id m21-20020a4a3915000000b0051a2fe92a8fmr3877690ooa.7.1675455490941;
-        Fri, 03 Feb 2023 12:18:10 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w1-20020a4a2741000000b004f269f9b8f3sm810690oow.25.2023.02.03.12.18.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Feb 2023 12:18:10 -0800 (PST)
-Received: (nullmailer pid 825646 invoked by uid 1000);
-        Fri, 03 Feb 2023 20:18:09 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=m5sLjr7aYK315tj89Xz8yTzw8nhiBSznb+bT5o725x0=;
+        b=MWcvKIgYQtc2A6L7DPttuzRxSNIFAViX1/2AAa94c3w9BhUTQf3A8RKE58dUlkHNfR
+         BVJiJBldufYVNS1uaYVpqCeZvn7bJcCHmtEmfzuzs23aXJSjuuDOAZt2DMYM82f69gQk
+         gHL/seDbaKbQRtcbGjO6johbtr8BQ2kVsd5/qpKPl/yDeopPENkQHOVcJG5sxQC8Kxlb
+         MXg/xqYr/6aAhan4CNJcekWs8479Y5+a4/1gs77ukbmWzQNDvTn8JlFFuiEPPU05raHb
+         ByrHhIRuU7isRvQ/JMd0ki0s5yN3g6/I7F6YuAKOL10e4K13dE1pw4w6hdGXVaxTC1Hj
+         iLHw==
+X-Gm-Message-State: AO0yUKX7ZOFWLKlyZV890AlmDqDtIUaHDLWxm9/DU2CP8H9oX9hJe7FH
+        JepxcohCUjoWXRVVc+qGpwkxRI9vzz2MxPr/
+X-Google-Smtp-Source: AK7set8Gpfp/Oz+hFP5DrhCusCPg/cotAzMpidE7HBO1Avb+cX25jy40Vo3VZeQupr3Q20OM5Hxk4g==
+X-Received: by 2002:a05:600c:444f:b0:3da:c07:c5fe with SMTP id v15-20020a05600c444f00b003da0c07c5femr10596494wmn.5.1675455692569;
+        Fri, 03 Feb 2023 12:21:32 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id g10-20020a05600c310a00b003de77597f16sm3803784wmo.21.2023.02.03.12.21.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Feb 2023 12:21:32 -0800 (PST)
+Message-ID: <f9d9bbfc-507d-2092-6ae8-f80ab3d23bd1@linaro.org>
+Date:   Fri, 3 Feb 2023 21:21:30 +0100
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-rockchip@lists.infradead.org,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        linux-pm@vger.kernel.org, kernel@pegutronix.de,
-        devicetree@vger.kernel.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>, Will Deacon <will@kernel.org>
-In-Reply-To: <20230203125012.3804008-19-s.hauer@pengutronix.de>
-References: <20230203125012.3804008-1-s.hauer@pengutronix.de>
- <20230203125012.3804008-19-s.hauer@pengutronix.de>
-Message-Id: <167545520027.820286.11574503514985446223.robh@kernel.org>
-Subject: Re: [PATCH 18/18] dt-bindings: devfreq: event: convert Rockchip
- DFI binding to yaml
-Date:   Fri, 03 Feb 2023 14:18:09 -0600
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 9/9] ASoC: dt-bindings: meson: convert axg sound card
+ control to schema
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20230202183653.486216-1-jbrunet@baylibre.com>
+ <20230202183653.486216-10-jbrunet@baylibre.com>
+ <f229e181-c56d-6ec7-2a1c-754690f70438@linaro.org>
+ <1jfsbmn7ql.fsf@starbuckisacylon.baylibre.com>
+ <fede7119-4a9b-76a1-ae1a-7af5dd8d1032@linaro.org>
+ <1jbkmamtfg.fsf@starbuckisacylon.baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1jbkmamtfg.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Fri, 03 Feb 2023 13:50:12 +0100, Sascha Hauer wrote:
-> Convert the Rockchip DFI binding to yaml. While at it add the newly
-> supported rk3568-dfi to the binding.
+On 03/02/2023 20:34, Jerome Brunet wrote:
 > 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  .../bindings/devfreq/event/rockchip-dfi.txt   | 18 ---------
->  .../bindings/devfreq/event/rockchip-dfi.yaml  | 38 +++++++++++++++++++
->  2 files changed, 38 insertions(+), 18 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
->  create mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.yaml
+> On Fri 03 Feb 2023 at 18:59, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
+>> On 03/02/2023 15:13, Jerome Brunet wrote:
+>>>>> +          Multiplication factor between the frame rate and master clock
+>>>>> +          rate
+>>>>> +
+>>>>> +      sound-dai:
+>>>>> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>>
+>>>> Old binding was saying it is just phandle
+>>>
+>>> It is just a phandle but the bindings used to have problem with phandle
+>>> that had cells.
+>>>
+>>> See:
+>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml?h=v6.2-rc6&id=d031d99b02eaf7363c33f5b27b38086cc8104082
+>>>
+>>> Was it wrong or did the situation change since then ?
+>>
+>> Then define it as having cells:
+>>
+>> https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
+>>
+> 
+> The card is provided with the phandle.
+> Whether or not the phandle has cells or not has nothing do with card
+> driver. The card just consums sound-dai. I don't understand this comment.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+You said this is only a phandle. Then you have just two options - either
+this is one phandle without arguments (then change it as I asked
+originally) or this is one phandle with arguments (then change it to
+define the arguments like in example I gave you).
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.example.dtb: /example-0/dfi@fe230000: failed to match any schema with compatible: ['rockchip,rk3568-dfi']
-
-doc reference errors (make refcheckdocs):
-Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml: Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230203125012.3804008-19-s.hauer@pengutronix.de
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
