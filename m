@@ -2,205 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 757E0689014
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:05:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E10C8689013
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:05:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231542AbjBCHDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 02:03:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54620 "EHLO
+        id S231732AbjBCHFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 02:05:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230020AbjBCHDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:03:44 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1EEF4860A;
-        Thu,  2 Feb 2023 23:03:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1675407804; x=1706943804;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=3TgWBWT+IFUzF9icb3lQ8a18CFkOqA7ocw41oKgnicY=;
-  b=nGzZO+7tRve7GGh6snlg2Nnty5JpPMyNX2DCAwkjkjwp4E8B3bvtOiKh
-   k1quZP877K3JF69Bv8OZjbJvswFahlW6Bi69I1Eo8Kv7GcseoE7ULJ1C7
-   FDgPvorbk/xe2affYJ5t+kw3uHz18GbvTvh4wfXzajpmLOR7bFpZ4d8hj
-   U2wSn/A0TQxrUDDsmTh9V0dOH6QXVyE/BRK5LfPH0rOSL8Qx5/Rtv0hgG
-   X4KV16++p17rfUmiJ0vtsUnPTg5+GiKyRuWAX35TzGCFTxgSRpk0/XRX+
-   HFBrSM0Jc5ub6pxYz6NVUyRKZ+ipJi41N2qKNCFpRW1FsojouSRopEf8F
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,269,1669071600"; 
-   d="scan'208";a="28843869"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 03 Feb 2023 08:03:21 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 03 Feb 2023 08:03:21 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 03 Feb 2023 08:03:21 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1675407801; x=1706943801;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=3TgWBWT+IFUzF9icb3lQ8a18CFkOqA7ocw41oKgnicY=;
-  b=CgXCG4S2MQPDq+3tkK0lBp4bDZOW59fc6HO95WoaKZwxUCBRdYUpYgSl
-   /HYGjAgvKMvEdmJ5GtdSQWV7NfSpMt//4K2KfmQrKi3FTNyG8h3usONIf
-   9/7R+2eXjc24Wis/GAuA59zskCIfvluafihD0l4AkjrYdXcpze/C1i9a0
-   dlVbKvxzR4GJaYJ+XX/RUzr8gZq0PW1FtN9jfYxmgyEVOv7xldtxZ08T6
-   7IzNcsCVdyUf0Z7Jwl0iSvlybAQndKKlfBx4D8k8vn1NXrnvFZV4LYoIy
-   tBmz/7sqaTOez592UsW0FOZ1YRCCOovBlGQFvQc/ydvjjIN/F3liBb4ek
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.97,269,1669071600"; 
-   d="scan'208";a="28843868"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 03 Feb 2023 08:03:21 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 68B9A280056;
-        Fri,  3 Feb 2023 08:03:21 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>,
-        Jonathan Cameron <jic23@kernel.org>
-Cc:     Cai Huoqing <cai.huoqing@linux.dev>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S231478AbjBCHFL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:05:11 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3F08FB5B;
+        Thu,  2 Feb 2023 23:04:51 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 281A924E1EC;
+        Fri,  3 Feb 2023 15:04:48 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 3 Feb
+ 2023 15:04:48 +0800
+Received: from [192.168.125.110] (113.72.144.84) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 3 Feb
+ 2023 15:04:47 +0800
+Message-ID: <7c6583eb-2c03-a584-1faf-8cbd44674175@starfivetech.com>
+Date:   Fri, 3 Feb 2023 15:04:46 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v3 4/5] pinctrl: starfive: Add StarFive JH7110 sys
+ controller driver
+Content-Language: en-US
+To:     Andreas Schwab <schwab@suse.de>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: add missing vref-supply
-Date:   Fri, 03 Feb 2023 08:03:18 +0100
-Message-ID: <1922814.PYKUYFuaPT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230202171052.502ec666@jic23-huawei>
-References: <20230131101323.606931-1-alexander.stein@ew.tq-group.com> <20230201121343.vk2t2dfpbvhflols@pengutronix.de> <20230202171052.502ec666@jic23-huawei>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Jianlong Huang <jianlong.huang@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221220005529.34744-1-hal.feng@starfivetech.com>
+ <20221220005529.34744-5-hal.feng@starfivetech.com> <mvm4js6zthr.fsf@suse.de>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <mvm4js6zthr.fsf@suse.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.144.84]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Am Donnerstag, 2. Februar 2023, 18:10:52 CET schrieb Jonathan Cameron:
-> On Wed, 1 Feb 2023 13:13:43 +0100
+On Tue, 31 Jan 2023 15:08:48 +0100, Andreas Schwab wrote:
+> On Dez 20 2022, Hal Feng wrote:
 > 
-> Marco Felsch <m.felsch@pengutronix.de> wrote:
-> > Hi Alexander,
-> > 
-> > On 23-01-31, Alexander Stein wrote:
-> > > Hi Marco,
-> > > 
-> > > thanks for the feedback.
-> > > 
-> > > Am Dienstag, 31. Januar 2023, 11:48:16 CET schrieb Marco Felsch:
-> > > > Hi Alexander,
-> > > > 
-> > > > On 23-01-31, Alexander Stein wrote:
-> > > > > Although this property is used right now for IIO_CHAN_INFO_SCALE,
-> > > > > this ADC has two internal reference voltages, which the driver
-> > > > > currently
-> > > > > doesn't make use of.
-> > > > > 
-> > > > > Fixes: db73419d8c06 ("dt-bindings: iio: adc: Add binding
-> > > > > documentation for
-> > > > > NXP IMX8QXP ADC") Signed-off-by: Alexander Stein
-> > > > > <alexander.stein@ew.tq-group.com>
-> > > > > ---
-> > > > > 
-> > > > >  .../devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml          | 4
-> > > > >  ++++
-> > > > >  1 file changed, 4 insertions(+)
-> > > > > 
-> > > > > diff --git
-> > > > > a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> > > > > b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> > > > > index
-> > > > > 63369ba388e4..879768af0303 100644
-> > > > > --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> > > > > 
-> > > > > @@ -39,6 +39,9 @@ properties:
-> > > > >    power-domains:
-> > > > >      maxItems: 1
-> > > > > 
-> > > > > +  vref-supply:
-> > > > > +    description: External ADC reference voltage supply on VREFH
-> > > > > pad.
-> > > > 
-> > > > Please add it to the list of required properties, we can remove it as
-> > > > soon as the driver has support for the internal reference voltages.
-> > > 
-> > > I was thinking in doing so before as well. But DT describes the
-> > > hardware, and this ADC apparently would be functioning without a
-> > > reference voltage on that pad, using a different one. What the driver
-> > > actual does is a different matter.> 
-> > I have also thought about it first but than I checked the RM which says
-> > that "multi-reference selection" is chip dependent.
-
-Nice for pointing this out. I wasn't aware that there are differences.
-
-> Oh goody. So is it detectable?
-
-That's my problem. I didn't find any source of information which chips do 
-support multiple references and which don't.
-Marco, do you have some information on this?
-
-> If we are going to stick to a single compatible rather than adding them for
-> the variants with and without this feature, should probably add a note at
-> least to say it is required for some parts.
-
-That's a good idea. I'm okay with that, until there is more information 
-available.
-
-Best regards
-Alexander
-
-> Also, link if public would be good for purposes of discussion as my google
-> fu didn't find relevant doc. (assuming it's public)
+>> diff --git a/drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c b/drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c
+>> new file mode 100644
+>> index 000000000000..85df9d0ae1de
+>> --- /dev/null
+>> +++ b/drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c
+>> @@ -0,0 +1,979 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Pinctrl / GPIO driver for StarFive JH7110 SoC
+>> + *
+>> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
+>> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+>> + */
+>> +
+>> +#include <linux/bits.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/gpio/driver.h>
+>> +#include <linux/io.h>
+>> +#include <linux/mod_devicetable.h>
+>> +#include <linux/module.h>
+>> +#include <linux/mutex.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/reset.h>
+>> +#include <linux/spinlock.h>
+>> +
+>> +#include <linux/pinctrl/pinctrl.h>
+>> +#include <linux/pinctrl/pinmux.h>
+>> +
+>> +#include <dt-bindings/pinctrl/starfive,jh7110-pinctrl.h>
+>> +
+>> +#include "../core.h"
+>> +#include "../pinctrl-utils.h"
+>> +#include "../pinmux.h"
+>> +#include "../pinconf.h"
+>> +#include "pinctrl-starfive-jh7110.h"
 > 
+> This misses a couple of headers, see commit 042b93c9b666.
 > 
-> Jonathan
-> 
-> > Regards,
-> > 
-> >   Marco
-> >   
-> > > Best regards,
-> > > Alexander
-> > > 
-> > > > Regards,
-> > > > 
-> > > >   Marco
-> > > >   
-> > > > > +
-> > > > > 
-> > > > >    "#io-channel-cells":
-> > > > >      const: 1
-> > > > > 
-> > > > > @@ -72,6 +75,7 @@ examples:
-> > > > >              assigned-clocks = <&clk IMX_SC_R_ADC_0>;
-> > > > >              assigned-clock-rates = <24000000>;
-> > > > >              power-domains = <&pd IMX_SC_R_ADC_0>;
-> > > > > 
-> > > > > +            vref-supply = <&reg_1v8>;
-> > > > > 
-> > > > >              #io-channel-cells = <1>;
-> > > > >          
-> > > > >          };
-> > > > >      
-> > > > >      };
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c: In function 'jh7110_pin_dbg_show':
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:100:9: error: implicit declaration of function 'seq_printf'; did you mean 'bstr_printf'? [-Werror=implicit-function-declaration]
+>   100 |         seq_printf(s, "%s", dev_name(pctldev->dev));
+>       |         ^~~~~~~~~~
+>       |         bstr_printf
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c: At top level:
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:538:21: error: variable 'jh7110_pinconf_ops' has initializer but incomplete type
+>   538 | static const struct pinconf_ops jh7110_pinconf_ops = {
+>       |                     ^~~~~~~~~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:539:10: error: 'const struct pinconf_ops' has no member named 'pin_config_get'
+>   539 |         .pin_config_get         = jh7110_pinconf_get,
+>       |          ^~~~~~~~~~~~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:539:35: warning: excess elements in struct initializer
+>   539 |         .pin_config_get         = jh7110_pinconf_get,
+>       |                                   ^~~~~~~~~~~~~~~~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:539:35: note: (near initialization for 'jh7110_pinconf_ops')
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:540:10: error: 'const struct pinconf_ops' has no member named 'pin_config_group_get'
+>   540 |         .pin_config_group_get   = jh7110_pinconf_group_get,
+>       |          ^~~~~~~~~~~~~~~~~~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:540:35: warning: excess elements in struct initializer
+>   540 |         .pin_config_group_get   = jh7110_pinconf_group_get,
+>       |                                   ^~~~~~~~~~~~~~~~~~~~~~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:540:35: note: (near initialization for 'jh7110_pinconf_ops')
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:541:10: error: 'const struct pinconf_ops' has no member named 'pin_config_group_set'
+>   541 |         .pin_config_group_set   = jh7110_pinconf_group_set,
+>       |          ^~~~~~~~~~~~~~~~~~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:541:35: warning: excess elements in struct initializer
+>   541 |         .pin_config_group_set   = jh7110_pinconf_group_set,
+>       |                                   ^~~~~~~~~~~~~~~~~~~~~~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:541:35: note: (near initialization for 'jh7110_pinconf_ops')
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:542:10: error: 'const struct pinconf_ops' has no member named 'pin_config_dbg_show'
+>   542 |         .pin_config_dbg_show    = jh7110_pinconf_dbg_show,
+>       |          ^~~~~~~~~~~~~~~~~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:542:35: warning: excess elements in struct initializer
+>   542 |         .pin_config_dbg_show    = jh7110_pinconf_dbg_show,
+>       |                                   ^~~~~~~~~~~~~~~~~~~~~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:542:35: note: (near initialization for 'jh7110_pinconf_ops')
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:543:10: error: 'const struct pinconf_ops' has no member named 'is_generic'
+>   543 |         .is_generic             = true,
+>       |          ^~~~~~~~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:543:35: warning: excess elements in struct initializer
+>   543 |         .is_generic             = true,
+>       |                                   ^~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:543:35: note: (near initialization for 'jh7110_pinconf_ops')
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c: In function 'jh7110_gpio_request':
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:548:16: error: implicit declaration of function 'pinctrl_gpio_request' [-Werror=implicit-function-declaration]
+>   548 |         return pinctrl_gpio_request(gc->base + gpio);
+>       |                ^~~~~~~~~~~~~~~~~~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c: In function 'jh7110_gpio_free':
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:553:9: error: implicit declaration of function 'pinctrl_gpio_free' [-Werror=implicit-function-declaration]
+>   553 |         pinctrl_gpio_free(gc->base + gpio);
+>       |         ^~~~~~~~~~~~~~~~~
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c: At top level:
+> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:538:33: error: storage size of 'jh7110_pinconf_ops' isn't known
+>   538 | static const struct pinconf_ops jh7110_pinconf_ops = {
+>       |                                 ^~~~~~~~~~~~~~~~~~
+> cc1: some warnings being treated as errors
+> make[4]: *** [../scripts/Makefile.build:253: drivers/pinctrl/starfive/pinctrl-starfive-jh7110.o] Error 1
 
+Will add the missing headers. Thanks for your feedback.
 
-
-
+Best regards,
+Hal
