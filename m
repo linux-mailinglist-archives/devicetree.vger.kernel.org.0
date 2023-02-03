@@ -2,72 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50104689585
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 11:24:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 601A468960C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 11:31:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233209AbjBCKWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 05:22:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44932 "EHLO
+        id S233346AbjBCK0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 05:26:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233309AbjBCKWT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 05:22:19 -0500
-Received: from mail.8bytes.org (mail.8bytes.org [IPv6:2a01:238:42d9:3f00:e505:6202:4f0c:f051])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 747F1305F5;
-        Fri,  3 Feb 2023 02:22:01 -0800 (PST)
-Received: from 8bytes.org (p200300c27714bc0086ad4f9d2505dd0d.dip0.t-ipconnect.de [IPv6:2003:c2:7714:bc00:86ad:4f9d:2505:dd0d])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.8bytes.org (Postfix) with ESMTPSA id EF54A223E73;
-        Fri,  3 Feb 2023 11:21:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
-        s=default; t=1675419696;
-        bh=aNTbAULS7WsWPSOr/TReq3Mz/0kZAyyR8eXbUDeUWRM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UpFKNyxyIFsx8S0NQ982PN/4BwNkSFDbL+Z6uxkQO7EOPZwdC7j0iinDL/mrr4t4o
-         lbBvvvtO1il46wDSoJOxxL8HLq1ao/yAc51Lxf9uUUqeEsNGxlWRIFy9nVftaVN5AR
-         FYo6IKSmNUkRFivi0or3CecJPjM8amf0bnh5IYe40fc9dZ7KevQMvybu5pnoJfrMb/
-         Jal6Tat9buiK45YnJbkalAIbLjcUVAjG8nx8mHQtZWjKuNZeM92JZuz9Ilnpzb8mD2
-         HGCVb5OMIahRuKf8HfCZnRmz+hGVGTyxifIBTaJDbcvEOYNnOCGRnZNTiPKALxNbZU
-         MXIMMmFt89MEg==
-Date:   Fri, 3 Feb 2023 11:21:29 +0100
-From:   Joerg Roedel <joro@8bytes.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, iommu@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH v2 0/6] iommu/sun50i: Allwinner D1 support
-Message-ID: <Y9zgKUUjjPq8ifPn@8bytes.org>
-References: <20230103010903.11181-1-samuel@sholland.org>
- <Y8qvIRXcCdLZjDCK@8bytes.org>
+        with ESMTP id S233397AbjBCKZA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 05:25:00 -0500
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B124625290;
+        Fri,  3 Feb 2023 02:24:31 -0800 (PST)
+Received: by mail-qt1-f176.google.com with SMTP id g7so4878169qto.11;
+        Fri, 03 Feb 2023 02:24:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Nqgawi8X0VJ7ktaDq/HQw3QZiJnimJOm65jxzmqBcak=;
+        b=FMg6jPIs7zJVYb4vV9/UcdK5rKil2GD/typeJyhfCOm17lqseO27ZkvVqJd2MDsZ47
+         +cfzqg8rSPmGgHoYLxh1rIghVkn/u0udG2PmFRn5DNvodxejx2D3GWk/tYWRIW7lvyhM
+         9YGSKkznPyWZPeVcKua6yj5ZPDA/XY+UeqJTB32U4dLk/kTdY+3Ll02YFJOmQgUOHl+h
+         99LnW8QJoEY2/pSagreTxlHgL7mSykRl+z5LFEJJc8eC0fsCL3yXRwRWs+4L/EzxypcD
+         zLo9ba+W2fKnlvAXpbZLcMUyoxdaWhtdnshswk6nv1oulwc/ionA1lOLfMSH3TFt0OPb
+         QfQw==
+X-Gm-Message-State: AO0yUKUk1Ka3byqOFb6XdKnWi6+v4tPGWSs7HJtGGGqWeoMppoIbk0F9
+        S/RIxTqmzV46lq3dfUBn0DCznfGLIJs4iw==
+X-Google-Smtp-Source: AK7set/ZQsUGUGT/49iEtKCNGLLIjtoxiW68cszRNfmZ16XEzBOnsOZ3qhT79jH9e01leNRgAuBHZQ==
+X-Received: by 2002:a05:622a:414:b0:3b6:3508:2a3e with SMTP id n20-20020a05622a041400b003b635082a3emr19185851qtx.4.1675419861182;
+        Fri, 03 Feb 2023 02:24:21 -0800 (PST)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id e18-20020ac86712000000b003b9a505627bsm1288741qtp.79.2023.02.03.02.24.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Feb 2023 02:24:20 -0800 (PST)
+Received: by mail-yb1-f182.google.com with SMTP id x139so5630491ybe.13;
+        Fri, 03 Feb 2023 02:24:20 -0800 (PST)
+X-Received: by 2002:a25:ada1:0:b0:839:c329:be37 with SMTP id
+ z33-20020a25ada1000000b00839c329be37mr1059112ybi.89.1675419860256; Fri, 03
+ Feb 2023 02:24:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y8qvIRXcCdLZjDCK@8bytes.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1674499048.git.geert+renesas@glider.be> <e825b50a843ffe40e33f34e4d858c07c1b2ff259.1674499048.git.geert+renesas@glider.be>
+ <CAMuHMdXtiC-Oo01Y-vCbokjF=L+YXMN=TucgqCS4Vtcg5gt==g@mail.gmail.com>
+ <20230202144000.2qvtnorgig52jfhw@pengutronix.de> <CAMuHMdUm+ExFCspjk6OO3pvZ-mW8dOiZe7bS2r-ys0S=CBAT-Q@mail.gmail.com>
+ <20230202150632.oo57ap7bdapsvrum@pengutronix.de>
+In-Reply-To: <20230202150632.oo57ap7bdapsvrum@pengutronix.de>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 3 Feb 2023 11:24:08 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX0iHUvyFYSdQJFLOzatjgHDnHYDzVvWFukYpXKbq7RxA@mail.gmail.com>
+Message-ID: <CAMuHMdX0iHUvyFYSdQJFLOzatjgHDnHYDzVvWFukYpXKbq7RxA@mail.gmail.com>
+Subject: Re: [PATCH 12/12] can: rcar_canfd: Add transceiver support
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, Vinod <vkoul@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Samuel,
+Hi Marc,
 
-On Fri, Jan 20, 2023 at 04:11:30PM +0100, Joerg Roedel wrote:
-> Once this is fixed I will include the arm/allwinner branch into my next
-> branch again.
+On Thu, Feb 2, 2023 at 4:06 PM Marc Kleine-Budde <mkl@pengutronix.de> wrote:
+> On 02.02.2023 15:53:08, Geert Uytterhoeven wrote:
+> > > > > This depends on "[PATCH 1/7] phy: Add devm_of_phy_optional_get() helper".
+> > > > > https://lore.kernel.org/all/f53a1bcca637ceeafb04ce3540a605532d3bc34a.1674036164.git.geert+renesas@glider.be
+> > > >
+> > > > v2: "[PATCH v2 3/9] phy: Add devm_of_phy_optional_get() helper"
+> > > >     https://lore.kernel.org/all/4cd0069bcff424ffc5c3a102397c02370b91985b.1674584626.git.geert+renesas@glider.be
+> > > >
+> > > > I'll keep you updated when/if this ends up on an immutable branch.
+> > >
+> > > Should I take the patches 1...11 for can-next/main?
+> >
+> > That would be great, thanks!
+>
+> Done.
 
-Since there was no reply to this I nuked the patches from the IOMMU
-tree. If this is still relevant please resubmit them after the next
-merge window.
+Thank you!
+Meanwhile, the dependency for 12/12 is now available as an immutable
+branch, cfr. https://lore.kernel.org/all/Y9za4a8qyapi4CWD@matsya
 
-Regards,
+Thanks again!
 
-	Joerg
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
