@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B5076893C3
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 10:31:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B41C36893CB
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 10:32:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232591AbjBCJbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 04:31:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48810 "EHLO
+        id S230372AbjBCJcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 04:32:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231994AbjBCJbI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 04:31:08 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11D7220D11
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 01:31:01 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id ba1so5145wrb.5
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 01:31:00 -0800 (PST)
+        with ESMTP id S232749AbjBCJcC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 04:32:02 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 062302A983
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 01:31:51 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id j25so539379wrc.4
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 01:31:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RsIvhlNhsuqxFf9ZP6UUldQV5rhEIuniVcY9EEdflHQ=;
-        b=dS9U7K4hx5+UHNLv0nbXOEx175H0lar03m9RgJtrk67LYO8KhBbp6DLmDIht4HFRou
-         i+HddtcrDo1LT2wjnJ8Az4t1RBPKk3f18ghM+k1jPJ5BHJ4Wlz56SufdXNRd/mSbDX3I
-         WQrwRs67You+4kPoYchd4zUH59vbnYAjqBqoir45C+7D3cPpbNy+eEyH4s3URfxc5soX
-         p3NlVS7Bnj40hO02bZzwvlc6DFF3vyywR/blHFdfKQxOdO4UrrUunYD8ozM2PB7mmyaZ
-         tRQNH8hLYWc0M9r0VNcwmxF3q5D6CmmQRSALwuWVnidB1wEuvtQGQcvgBK38a67OR2C/
-         pACA==
+        bh=ZLZKs+NjL0TFo7ln+lij4JTo5422p4aB6l2ScqAewVw=;
+        b=rlfWsuI5q8Z982O+FU17OhKBoAPVnw58ompS1VCcVJNzCXMDTpJS7GPHpgkimHJd96
+         l99Si1tWBJGSZyvvcaTlXLRiYac6CUbpbCBzfN+42UiiyMDVuW7y2ycQQ2prQEIulVRy
+         MGLA2xL3zT+eEcd3pL4/Bak+ZgJJPjdnM2mhfY4YXdd8s+Szph/H0XIahnD9NWVO1unY
+         jgqGwx1wFE0LgoPtykIB3wPNu9ytEnOlxhgasy/h+83WMjK7QcbyQFXCfDYiCYEjpbro
+         dGPKqR/v+S7tvzvOqYglYMIuQUm5/jkukactAb8SBs7sCEYnLElfvditQ1HYnlkz28yV
+         X8dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RsIvhlNhsuqxFf9ZP6UUldQV5rhEIuniVcY9EEdflHQ=;
-        b=E0U0bFgk3cHt5tobNOSP7r8LNjmwhVx6FR+BFc+bjOonwoDHxPId3vOERCXCNRjI+w
-         NDj5oW2uV59QzkoyKt4mDeCyW0HWGmXDca59yPEvvnrq0PxCH91WUSreRvrOWuj1LgY6
-         wTngkbg7ho9acFUZbLo6OMv5y6MiQm5uSZkLhaPXommbLPG2b1KnePnWNmoBjqgWd0BY
-         AcGe4mv3gTwGFIy8iv3zDI9MkcSGeXYh/Czpue19J5f2Txs4mgWpfO3XddhZ8BYyoqb+
-         mz03d0JaM+V9kf/CHEqK2FE5qlHRuzqu5qNrVZFGeNGbBcmW7q67NPVXAMyMaCkl1X9E
-         QGfA==
-X-Gm-Message-State: AO0yUKVFHZ8P5I/PwWBIMAf+3viAwtibFTlBm4Xz/C5NI2k7QUigSinB
-        x4HSm0JSnfljqRjxiyLRldnYfQ==
-X-Google-Smtp-Source: AK7set9mhThVU4ZMUNjEG8Lt9BDIM9Z02zk0GC4q6tDH4m3bgoRblmm6ZN9SDVH1XSK5Yz/djY/Wfw==
-X-Received: by 2002:adf:f705:0:b0:2bf:bb0a:e486 with SMTP id r5-20020adff705000000b002bfbb0ae486mr8457821wrp.30.1675416659339;
-        Fri, 03 Feb 2023 01:30:59 -0800 (PST)
+        bh=ZLZKs+NjL0TFo7ln+lij4JTo5422p4aB6l2ScqAewVw=;
+        b=IMr0WGifIAzZ3AVDK1Yr7I2oMKEKxGbZcLCzapqc24Uj5Akux84uuVwEU9PYZaiE3g
+         iqczTaiE4tGHpxwUewqYO3oSYy3zgmZN4QBixma8VHO1Rjghhx+IPdkEf2xcQhcPeRlM
+         KwphL6owiuDnQjC/AJZoakuRzKHs/2vGv0N9Qs0EERfRPp0o+B420Ysbt6kRHpLU+pq6
+         js3Nc7Fs8KK0eNckmaH7+ZEYDywbm8bQ8w8I8v1+aduVsw5ZzhJ78slGS9C/fZfXsO76
+         UPx/7A/ptLLxIVdYOpRlYSfSabOuKL0h2Os+7ADqh74ZRr7apAHNUESgfFccvISq8ZY6
+         LY2A==
+X-Gm-Message-State: AO0yUKUg+TD7jIfMka9H6bk1sGN4pMItjyWKwU5v8SieyQpfeAzncLb4
+        ejsJiWHHbsk5S8MRwEkXoWQr6g==
+X-Google-Smtp-Source: AK7set8FSDnMiu36YywbP3RsL+o7sMLNDyyGYFopZvqFmUAIBWH8OBwVKKB8vw+reKj+yUNDf716IQ==
+X-Received: by 2002:a5d:6c6d:0:b0:2bf:d6f9:23d6 with SMTP id r13-20020a5d6c6d000000b002bfd6f923d6mr9551863wrz.45.1675416709374;
+        Fri, 03 Feb 2023 01:31:49 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n3-20020a5d6b83000000b002366553eca7sm1508672wrx.83.2023.02.03.01.30.57
+        by smtp.gmail.com with ESMTPSA id d2-20020a056000186200b002bddd75a83fsm1669419wri.8.2023.02.03.01.31.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 01:30:58 -0800 (PST)
-Message-ID: <ab9a4a7f-a8fa-fa29-95e9-941096359de1@linaro.org>
-Date:   Fri, 3 Feb 2023 10:30:55 +0100
+        Fri, 03 Feb 2023 01:31:49 -0800 (PST)
+Message-ID: <eee0f8ee-2abb-9de6-b032-b3cf412bf558@linaro.org>
+Date:   Fri, 3 Feb 2023 10:31:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v3 3/3] riscv: dts: starfive: Add mmc node
+Subject: Re: [PATCH v2 18/22] arm64: defconfig: enable Qualcomm SDAM nvmem
+ driver
 Content-Language: en-US
-To:     William Qiu <william.qiu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20230203081913.81968-1-william.qiu@starfivetech.com>
- <20230203081913.81968-4-william.qiu@starfivetech.com>
- <3c5bda9f-08b9-f2ba-6951-9fc614d4debc@linaro.org>
- <afe28108-9b85-982c-90ee-8cd58c9b6fb2@starfivetech.com>
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230202155448.6715-1-johan+linaro@kernel.org>
+ <20230202155448.6715-19-johan+linaro@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <afe28108-9b85-982c-90ee-8cd58c9b6fb2@starfivetech.com>
+In-Reply-To: <20230202155448.6715-19-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,52 +84,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/02/2023 10:23, William Qiu wrote:
+On 02/02/2023 16:54, Johan Hovold wrote:
+> The SDAM nvmem driver can be used to access the Shared Direct Access
+> Memory Module registers in some Qualcomm PMICs.
 > 
-> 
-> On 2023/2/3 17:02, Krzysztof Kozlowski wrote:
->> On 03/02/2023 09:19, William Qiu wrote:
->>> This adds the mmc node for the StarFive JH7110 SoC.
->>
->> Do not use "This xxx". Use imperative mode.
->> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
->>
->>> Set mmco node to emmc and set mmc1 node to sd.
->>>
->>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->>
->>
->>> +
->>>  &gmac0_rmii_refin {
->>>  	clock-frequency = <50000000>;
->>>  };
->>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>> index 64d260ea1f29..ae1a664e7af5 100644
->>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>> @@ -370,6 +370,11 @@ syscrg: clock-controller@13020000 {
->>>  			#reset-cells = <1>;
->>>  		};
->>>  
->>> +		sysreg: syscon@13030000 {
->>> +			compatible = "starfive,sysreg", "syscon";
->>
->> No:
->> 1. Undocumented.
->> 2. A bit too generic. You should have here SoC specific compatible as
->> well (either as second or third compatible, if all your SoCs share
->> register layout).
->>
-> 
-> Hi Krzysztof,
-> 
-> As for the compatible, I will change it to "starfive,jh7110-sysreg"
-> in next version,but for undocumented, I don't get it, can you
-> clarify that.
-> Thank you anyway.
+> These registers can specifically be used to store a time offset on
+> platforms where the PMIC RTC time registers are read-only in order to
+> allow the RTC time to be updated.
 
-You need bindings for it. I don't see it in linux-next, cover letter
-dependencies nor here.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
