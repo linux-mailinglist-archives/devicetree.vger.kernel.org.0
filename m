@@ -2,79 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9F0568A44A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 22:10:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E53768A45C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 22:12:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232616AbjBCVKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 16:10:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50112 "EHLO
+        id S233327AbjBCVMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 16:12:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232372AbjBCVJc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 16:09:32 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 552EAA703C
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 13:08:42 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id m14so5723824wrg.13
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 13:08:42 -0800 (PST)
+        with ESMTP id S232875AbjBCVMw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 16:12:52 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AA957298
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 13:12:51 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id u10so1754979wmj.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 13:12:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y2BiUcMD8Gl7xNduYrxgFh6P8/MvqGGdxXMYMad5DGg=;
-        b=bAoCPRbAJBt+JF6p7NKN9nUbWJCzl9JgjlWwo4oWw0i1RxjTM5Xyd3hBMM4yK0bc1l
-         sY9jd40kD0RQ8Zc9pcOCO63jt9iGEOwdzupNjIcDIjKO0HUTpuJtrF0AS5BMKq6thQjC
-         xpJNWW49e1Cn9xfM4deqkZhVxJAcSsc2HaWIIxY54hveHg4XwKYLUU1ZTMkdxb4qWrdU
-         +RnduDoAsaACX2CEJZaGjADO2ziICn4ZWlPKpvGSWLZ4BGDo+x4uF6muKL7dPTXzIpLT
-         wGQRKyV4B5lNBKZF//ENrSNvuaKUPCfnHIrR51Yox+KHXIZqco/qTahBtFps/LzFulf9
-         ooOA==
+        bh=G37x/Hi3mUa++UD5bFJfX5WwZsig/fMJR1p/pLXMk50=;
+        b=uVwWM/AMdXoS+B9uE3cp49dAROtUCwaTQv4BE1JSK7oyJEjfp4VJ3BdxKwTB+7bby8
+         yeZ+RuVigcMHj79cMPzZGEjf/p1MOjUXTIAD/hnllc9prnMhU6uab7ePqGCJZh1xil41
+         21CUl3iujSJpFr4vVs0OPOBfHfNu7DKd3Zm/b7oRn+wbk8OCnSA7cfr5F6FaE0mA8OsE
+         9VSeoPLANg5lQzAazXMbXVLcKIEnAn0cha1G6R6pO7CH2N/XChZgOSpA5fh6C/AkzLBD
+         v5IxhEhRrOb0FutnBrkgma91wEQ4X62bBzzOoEk8LlaSXrjrNwIB9VCIAVLkA4k838os
+         kYWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y2BiUcMD8Gl7xNduYrxgFh6P8/MvqGGdxXMYMad5DGg=;
-        b=MYwazFkE6mnBxqErJOf4dnbJE2DiYatVqePIOG9LRs33gjsyKqccTVTp7eusYT8YsX
-         HhegWGr8/nVqoQOabwuFv9F6wIZ7caWSVs/F5lX9JIkzUNJ2Ib8Ybur3coeQl1O2Xl84
-         pfdfpeX6Ler8HlSp9U0AMtAffdJIzasTXkvwp3fTYHsY3ndni10sfMdnO0Gje+fEZxdH
-         0vMMsRQCAv4ShKjPA8uqoZUCezAPqb0XKI2hHJiZqVBguP2Mnqtk0vIxubiWqdtdi6T0
-         BRl5Dvz2OMa4EF8a5RlYmehROPyzfV+teqBfxT3pIp15Oio5pt+pOTfE/EgEBGrMVHne
-         lrFw==
-X-Gm-Message-State: AO0yUKUBmLVZy11N/YV9Ccsx16R+X8a14QSEJogne3VVDs8Ll2Lf3Qs5
-        V+uZnVIFKCXTGeKN6WeyQkLopQ==
-X-Google-Smtp-Source: AK7set9LoC2I3Ut0tnBQJCbcQRTGFMaNn+AQqxFQZJnMCPPocj+BKAfYbgUifsaihdzUDgpi6FNoQA==
-X-Received: by 2002:a5d:6f15:0:b0:2bc:8130:ccb8 with SMTP id ay21-20020a5d6f15000000b002bc8130ccb8mr10578220wrb.40.1675458520814;
-        Fri, 03 Feb 2023 13:08:40 -0800 (PST)
+        bh=G37x/Hi3mUa++UD5bFJfX5WwZsig/fMJR1p/pLXMk50=;
+        b=HQVsHugDUkZ4xmVxVZJ1ZmwOdkPu34+pnxL2yUQ9zr/nAXZGVUulgW1gVhPlCpce5N
+         va57davA3yoVoF664A1ADOblamTVC2YEElhLkSy/0qbAH7mahMiFi1lQXI3KLpqlkIbJ
+         dSPbZB0S03utXcGi4FX0XXeJltN/f5go62qpYze7uLHjPIJWV+Fb2uRUFm97pXfJBHab
+         /koQc5pYeFOGW+ZnGjJN6Vtx8Jy4EZDDCV+Xgj+5+A5a45BsRFnrKMjpETqcMbR8eHf5
+         V4O/HBB0AxMwbQJPqG7DqtwY2i+8v64bGA+17HuigvCQ2Lp4LsdaZ9ChlrZ8OYUwMq94
+         7+8A==
+X-Gm-Message-State: AO0yUKXgJNKC9+iNfCXpsJhNlgTPB9zxFefZzBMY3geRdzfW0g1buYfd
+        NSA2b0YJL8OlPeF2UOpUyaxCWA==
+X-Google-Smtp-Source: AK7set9MYytH/zcC6sWFQBbf4kFuYn49tyUOuaemIo6IIQ3yfZ+C8wmYq0QbsUBap2YBOZf+IZbCpQ==
+X-Received: by 2002:a05:600c:3556:b0:3db:331b:bd57 with SMTP id i22-20020a05600c355600b003db331bbd57mr11301033wmq.23.1675458769063;
+        Fri, 03 Feb 2023 13:12:49 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id bj24-20020a0560001e1800b002bded7da2b8sm2882153wrb.102.2023.02.03.13.08.39
+        by smtp.gmail.com with ESMTPSA id f1-20020a1cc901000000b003df14531724sm8142346wmb.21.2023.02.03.13.12.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 13:08:40 -0800 (PST)
-Message-ID: <5651774d-3f60-ebb1-0613-83917d8c4bd9@linaro.org>
-Date:   Fri, 3 Feb 2023 22:08:38 +0100
+        Fri, 03 Feb 2023 13:12:48 -0800 (PST)
+Message-ID: <697aa7b5-9c9b-eb4f-8111-c9a396d9d191@linaro.org>
+Date:   Fri, 3 Feb 2023 22:12:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH RFC 1/3] dt-bindings: net: Add network-class schema for
- mac-address properties
+Subject: Re: [PATCH 5/9] ARM: dts: exynos: move exynos-bus nodes out of soc in
+ Exynos4412
 Content-Language: en-US
-To:     Janne Grunau <j@jannau.net>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mailing List <devicetree-spec@vger.kernel.org>,
-        Kalle Valo <kvalo@kernel.org>, van Spriel <arend@broadcom.com>,
-        =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org
-References: <20230203-dt-bindings-network-class-v1-0-452e0375200d@jannau.net>
- <20230203-dt-bindings-network-class-v1-1-452e0375200d@jannau.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230203-dt-bindings-network-class-v1-1-452e0375200d@jannau.net>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>,
+        Henrik Grimler <henrik@grimler.se>,
+        Chanwoo Choi <cw00.choi@samsung.com>
+References: <20230125094513.155063-1-krzysztof.kozlowski@linaro.org>
+ <20230125094513.155063-5-krzysztof.kozlowski@linaro.org>
+ <CGME20230129104220eucas1p15b70f73be86fa5600cfe170d22869836@eucas1p1.samsung.com>
+ <29841f64-360b-1426-e1fd-dd4c64ee5455@linaro.org>
+ <b3f31e71-fa1a-e0c0-fdfa-f65674ccc5cd@samsung.com>
+ <d54792c5-2842-e5b9-26b8-1f52471211a9@linaro.org>
+ <111f7364-0d7b-b4c5-721f-69c00d4619e2@samsung.com>
+ <dc0c3fa9-a6d4-e1c1-7cc8-13b206e3b31f@linaro.org>
+In-Reply-To: <dc0c3fa9-a6d4-e1c1-7cc8-13b206e3b31f@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -85,36 +91,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/02/2023 14:56, Janne Grunau wrote:
-> The ethernet-controller schema specifies "mac-address" and
-> "local-mac-address" but other network devices such as wireless network
-> adapters use mac addresses as well.
-> The Devicetree Specification, Release v0.3 specifies in section 4.3.1
-> a generic "Network Class Binding" with "address-bits", "mac-address",
-> "local-mac-address" and "max-frame-size". This schema specifies the
-> "address-bits" property and moves "local-mac-address" and "mac-address"
-> over from ethernet-controller.yaml.
-> The schema currently does not restrict MAC address size based on
-> address-bits.
+On 03/02/2023 21:34, Krzysztof Kozlowski wrote:
+> On 03/02/2023 12:51, Marek Szyprowski wrote:
+>> On 03.02.2023 12:46, Krzysztof Kozlowski wrote:
+>>> On 03/02/2023 12:45, Marek Szyprowski wrote:
+>>>> On 29.01.2023 11:42, Krzysztof Kozlowski wrote:
+>>>>> On 25/01/2023 10:45, Krzysztof Kozlowski wrote:
+>>>>>> The soc node is supposed to have only device nodes with MMIO addresses,
+>>>>>> as reported by dtc W=1:
+>>>>>>
+>>>>>>     exynos4412.dtsi:407.20-413.5:
+>>>>>>       Warning (simple_bus_reg): /soc/bus-acp: missing or empty reg/ranges property
+>>>>>>
+>>>>>> and dtbs_check:
+>>>>>>
+>>>>>>     exynos4412-i9300.dtb: soc: bus-acp:
+>>>>>>       {'compatible': ['samsung,exynos-bus'], 'clocks': [[7, 456]], 'clock-names': ['bus'], 'operating-points-v2': [[132]], 'status': ['okay'], 'devfreq': [[117]]} should not be valid under {'type': 'object'}
+>>>>>>
+>>>>>> Move the bus nodes and their OPP tables out of SoC to fix this.
+>>>>>> Re-order them alphabetically while moving and put some of the OPP tables
+>>>>>> in device nodes (if they are not shared).
+>>>>>>
+>>>>> Applied.
+>>>> I don't have a good news. It looks that this change is responsible for
+>>>> breaking boards that were rock-stable so far, like Odroid U3. I didn't
+>>>> manage to analyze what exactly causes the issue, but it looks that the
+>>>> exynos-bus devfreq driver somehow depends on the order of the nodes:
+>>>>
+>>>> (before)
+>>>>
+>>>> # dmesg | grep exynos-bus
+>>>> [    6.415266] exynos-bus: new bus device registered: soc:bus-dmc
+>>>> (100000 KHz ~ 400000 KHz)
+>>>> [    6.422717] exynos-bus: new bus device registered: soc:bus-acp
+>>>> (100000 KHz ~ 267000 KHz)
+>>>> [    6.454323] exynos-bus: new bus device registered: soc:bus-c2c
+>>>> (100000 KHz ~ 400000 KHz)
+>>>> [    6.489944] exynos-bus: new bus device registered: soc:bus-leftbus
+>>>> (100000 KHz ~ 200000 KHz)
+>>>> [    6.493990] exynos-bus: new bus device registered: soc:bus-rightbus
+>>>> (100000 KHz ~ 200000 KHz)
+>>>> [    6.494612] exynos-bus: new bus device registered: soc:bus-display
+>>>> (160000 KHz ~ 200000 KHz)
+>>>> [    6.494932] exynos-bus: new bus device registered: soc:bus-fsys
+>>>> (100000 KHz ~ 134000 KHz)
+>>>> [    6.495246] exynos-bus: new bus device registered: soc:bus-peri (
+>>>> 50000 KHz ~ 100000 KHz)
+>>>> [    6.495577] exynos-bus: new bus device registered: soc:bus-mfc
+>>>> (100000 KHz ~ 200000 KHz)
+>>>>
+>>>> (after)
+>>>>
+>>>> # dmesg | grep exynos-bus
+>>>>
+>>>> [    6.082032] exynos-bus: new bus device registered: bus-dmc (100000
+>>>> KHz ~ 400000 KHz)
+>>>> [    6.122726] exynos-bus: new bus device registered: bus-leftbus
+>>>> (100000 KHz ~ 200000 KHz)
+>>>> [    6.146705] exynos-bus: new bus device registered: bus-mfc (100000
+>>>> KHz ~ 200000 KHz)
+>>>> [    6.181632] exynos-bus: new bus device registered: bus-peri ( 50000
+>>>> KHz ~ 100000 KHz)
+>>>> [    6.204770] exynos-bus: new bus device registered: bus-rightbus
+>>>> (100000 KHz ~ 200000 KHz)
+>>>> [    6.211087] exynos-bus: new bus device registered: bus-acp (100000
+>>>> KHz ~ 267000 KHz)
+>>>> [    6.216936] exynos-bus: new bus device registered: bus-c2c (100000
+>>>> KHz ~ 400000 KHz)
+>>>> [    6.225748] exynos-bus: new bus device registered: bus-display
+>>>> (160000 KHz ~ 200000 KHz)
+>>>> [    6.242978] exynos-bus: new bus device registered: bus-fsys (100000
+>>>> KHz ~ 134000 KHz)
+>>>>
+>>>> This is definitely a driver bug, but so far it worked fine, so this is a
+>>>> regression that need to be addressed somehow...
+>>>
+>>> Thanks for checking, but what is exactly the bug? The devices registered
+>>> - just with different name.
+>>
+>> The bug is that the board fails to boot from time to time, freezing 
+>> after registering PPMU counters...
+> 
+> My U3 with and without this patch, reports several warnings:
+> iommu_group_do_set_platform_dma()
+> exynos_iommu_domain_free()
+> clk_core_enable()
+> 
+> and finally:
+> rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+> 
+> and keeps stalling.
+> 
+> At least on next-20230203. Except all these (which anyway make board
+> unbootable) look fine around PMU and exynos-bus.
 
-A nit below
+I also booted few times my next/dt branch (with this patch) and no
+problems. How reproducible is the issue you experience?
 
->          phy-mode:
-> diff --git a/Documentation/devicetree/bindings/net/network-class.yaml b/Documentation/devicetree/bindings/net/network-class.yaml
-> new file mode 100644
-> index 000000000000..676aec1c458e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/network-class.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/network-class.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Network Class Bindings
-
-s/Bindings/Common Properties/
 Best regards,
 Krzysztof
 
