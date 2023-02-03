@@ -2,136 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFC21689022
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:07:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFE3B68902D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:10:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232198AbjBCHGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 02:06:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57798 "EHLO
+        id S232470AbjBCHJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 02:09:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229837AbjBCHGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:06:21 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C83E130F8;
-        Thu,  2 Feb 2023 23:06:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3BB5961DA4;
-        Fri,  3 Feb 2023 07:06:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6F15C433D2;
-        Fri,  3 Feb 2023 07:06:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675407979;
-        bh=KXmmvj9TMKpfjwzMXsQf9r4+Pnolpsn1ylx8jVAqHq4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=SlMchVuj9lWinpQEd6uO7qvFe1o5sSoHew8GZICqzzXxU3AnDyQ1PtbIKzKDJnQtN
-         SaBTH8JpX2O3W9fmxl86ZQjMElhe31oy0HpHwUN9YaunGdw3brSE2UBQ5B0vfX5HpT
-         5ZBXF2BBjNvXz12w8zBEIzhTLHcZzeKMGU1MrP+O38ryVNA8IJyxhv7ZHFG3GWrlUA
-         hy9VFw62KaTgN67NnjwZC7+KgRMSF+mdLCMGvMrPOCinIAoevmR91CH+SG7Gb2EO1s
-         TnNstzKrasg/8qyIme/sOgJ6fIYOjoSDKmrC4C9gU2FR+m5+ai4TVVGqQOgs+ZQH03
-         qGzzpD9JaJq0Q==
-Message-ID: <b71bd201-81ec-ffa0-f7ff-4a63795beb28@kernel.org>
-Date:   Fri, 3 Feb 2023 08:06:13 +0100
+        with ESMTP id S232127AbjBCHJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:09:46 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25F8D68AE2
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 23:09:32 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id h16so3758298wrz.12
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 23:09:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=91H7aAbtElqTaptJ9Vb0dyS9FKfuyA5IbH1LTzOZk1w=;
+        b=kxIW9UUpSvaia8/H81GLavJ4mQWTC9NVIF/UM8mTgquarXVcOYW223Tp1ZbgavI1u7
+         2OCqXuAkDBtFRPciI5sntZWnwYqZEjZzskVKWufTIDy7NQNMgH0pg4MV8gAHiHtY9VR3
+         0hcBk2FtFixn+Ot9diJncYJwYaKiytsJiCtQwf6CgqZ06g1fXS+SlbtLcGyRyt5gcHRA
+         hpzfB3KH3SfxhQth5axvjIiwVLi1AmSiljimg8k/I84mFBVytz1RSqGvqTLcVC6tL6D/
+         sqElxkSTdl5eV/XCsViXTGPTK5YR18lY7c5xvF3BF/eWlofQ9DuvgmoT7LYI+Gmg/j3I
+         7K+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=91H7aAbtElqTaptJ9Vb0dyS9FKfuyA5IbH1LTzOZk1w=;
+        b=4Xm3ia5F8DlXaLcdUGy5lm1gUX09sQ1hXKAGPqXZGesbtrcDh7rs1zJIAxkp6H8MXJ
+         1a53vlY/tZkr4nsgcfBAx2hKTPzLt1VWUk21rwZTqnA8wAzkHwqJnmhhCKWfvZIjHrlc
+         1d4IopGq4zztyB1mTEBpKfMPSV5WNIVdL9cfK+eHYRuPmSqk1HhLxuiEJBSFezeisFZI
+         /uV8YF5XG6Ac0Til3kE0vmNGNB5N+nQ9NyUgVU053GRqNdlwBsY0pR9SVsvTCqm1ozjd
+         aR9asmZPELekAQhp1hu0yx6JEHm9Ct0IuAFk8Q1YgFQyYZaSUyBaPvPG1Zl9Rebam4L0
+         m0Aw==
+X-Gm-Message-State: AO0yUKWM2t3jZ9LnJX9UKT386cKFvD2Zm+o0uFReUqyxK4WPp7zdjhYv
+        8StSH6x9vAKLSxde4RZ2FOgXdQ==
+X-Google-Smtp-Source: AK7set8TwQRjsPo9v5JN/ENZh1nluMWyKJJlKIkzIlbEhiGRce7jfa72hOsMKBiovU00TszO03eK6g==
+X-Received: by 2002:a05:6000:184a:b0:2bf:d2fe:8647 with SMTP id c10-20020a056000184a00b002bfd2fe8647mr11234697wri.70.1675408170631;
+        Thu, 02 Feb 2023 23:09:30 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id f9-20020a5d4dc9000000b002bfb37497a8sm1245058wru.31.2023.02.02.23.09.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Feb 2023 23:09:30 -0800 (PST)
+Message-ID: <870f6ec5-5378-760b-7a30-324ee2d178cf@linaro.org>
+Date:   Fri, 3 Feb 2023 08:09:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Add Qualcomm CCI
- dt-bindings
-To:     Jun Nie <jun.nie@linaro.org>
-Cc:     myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-        cw00.choi@samsung.com, bryan.odonoghue@linaro.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230201080227.473547-1-jun.nie@linaro.org>
- <9ab7383b-f3ed-3e48-d275-3c8933be5f2f@kernel.org>
- <CABymUCNKvm9+_ascdcWAgA1xGYKPhyO5C97-+rTTK739v+UEew@mail.gmail.com>
- <957f2bd0-d249-169b-04cc-242b9fcf8c6b@kernel.org>
- <CABymUCMA9fxGjKAxLhpnSxr92t-oFDfe=mOSiLWb4Jjbzs=n8g@mail.gmail.com>
+Subject: Re: [PATCH v4 6/7] riscv: dts: starfive: jh7110: Add ethernet device
+ node
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <CABymUCMA9fxGjKAxLhpnSxr92t-oFDfe=mOSiLWb4Jjbzs=n8g@mail.gmail.com>
+To:     yanhong wang <yanhong.wang@starfivetech.com>,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20230118061701.30047-1-yanhong.wang@starfivetech.com>
+ <20230118061701.30047-7-yanhong.wang@starfivetech.com>
+ <55f020de-6058-67d2-ea68-6006186daee3@linaro.org>
+ <f22614b4-80ae-8b16-b53e-e43c44722668@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <f22614b4-80ae-8b16-b53e-e43c44722668@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/02/2023 04:45, Jun Nie wrote:
-> Krzysztof Kozlowski <krzk@kernel.org> 于2023年2月2日周四 17:42写道：
->>
->> On 02/02/2023 10:29, Jun Nie wrote:
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - qcom,msm8939-cci
->>>>> +
->>>>> +  clocks:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  operating-points-v2: true
->>>>> +  opp-table:
->>>>> +    type: object
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - clocks
->>>>> +  - operating-points-v2
->>>>> +  - nvmem-cells
->>>>
->>>> ?? You cannot require properties which are not present.
->>>>
->>>>> +  - power-domains
->>>>
->>>> Same here.
->>>>
+On 03/02/2023 04:14, yanhong wang wrote:
+> 
+> 
+> On 2023/1/18 23:51, Krzysztof Kozlowski wrote:
+>> On 18/01/2023 07:17, Yanhong Wang wrote:
+>>> Add JH7110 ethernet device node to support gmac driver for the JH7110
+>>> RISC-V SoC.
 >>>
->>> So the properties should be added later, after cpr and fuse nodes are
->>> available in mainline, right?
+>>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+>>> ---
+>>>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 93 ++++++++++++++++++++++++
+>>>  1 file changed, 93 insertions(+)
+>>>
+>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>>> index c22e8f1d2640..c6de6e3b1a25 100644
+>>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>>> @@ -433,5 +433,98 @@
+>>>  			reg-shift = <2>;
+>>>  			status = "disabled";
+>>>  		};
+>>> +
+>>> +		stmmac_axi_setup: stmmac-axi-config {
 >>
->> No, binding should be complete, so why would you skip some properties? I
->> don't see here dependency on other bindings. Unless I missed here
->> something and there is a dependency? But then what kind? Do you
->> reference other schema?
+>> Why your bindings example is different?
 >>
->> Best regards,
->> Krzysztof
->>
-> Sorry, it is a copy/modified error with overlooking some added properties.
 > 
-> +        cci_opp3: opp-cpr14-400000000 {
-> +            opp-hz = /bits/ 64 <400000000>;
-> +            opp-supported-hw = <0x1>;
-> +            required-opps = <&cpr_opp14>;
-> +        };
-> +
-> +        cci_opp4: opp-cpr15-400000000 {
-
-This does not answer my concerns at all. Please include all relevant
-properties in your bindings.
-
-> Documentation/devicetree/bindings/interconnect/qcom,cci.example.dtb:
-> opp-table-cci: Unevaluated properties are not allowed
-> ('opp-cpr14-400000000', 'opp-cpr15-400000000' were unexpected)
+> There are two gmacs on the StarFive VF2 board, and the two
+> gmacs use the same configuration on axi, so the 
+> stmmac_axi_setup is independent, which is different
+> from the bindings example.
 > 
-> Do you know how to fix this dts check warning?
+> 
+>> Were the bindings tested? Ahh, no they were not... Can you send only
+>> tested patches?
+>>
+>> Was this tested?
+>>
+> Yes, the bindings have been tested on the StarFive VF2 board and work normally.
 
-Don't add properties which are not allowed or do not name properties in
-a way it is not allowed.
-
-> The cci_opp3 and cci_opp4 have the same frequency but with different
-> requirements to
-
-So you used the same node names... how do you expect such code to
-compile? In current form bindings do not allow such setup. If you think
-that OS should allow and support it, then change the bindings.
+Then please tell me how did you test the bindings on the board? How is
+it even possible and how the board is related to bindings? As you could
+easily see from Rob's reply they fail, so I have doubts that they were
+tested. If you still claim they were - please paste the output from
+testing command.
 
 
 Best regards,
