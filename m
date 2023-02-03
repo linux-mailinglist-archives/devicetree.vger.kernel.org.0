@@ -2,217 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A2EF68918A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 09:05:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8A6D689189
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 09:05:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231932AbjBCIE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 03:04:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41238 "EHLO
+        id S232673AbjBCIFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 03:05:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232294AbjBCIDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 03:03:44 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAAA5170D
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 00:02:49 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id k16so3218984wms.2
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 00:02:49 -0800 (PST)
+        with ESMTP id S232919AbjBCIE7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 03:04:59 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FBC1928E5
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 00:03:36 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id b3so6687130lfv.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 00:03:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j/BqAshhUQwOb3XRj7imW0y64r6HrCHnAtk8R5uEluo=;
-        b=rq7Eu0AMSJYRKJazkb10W8riHm1cFWqvmIxseSjsriU+YZ5WzlIwiVcSb+yMDtoMQc
-         QlVwfaT5Xep7ONtrUjmbXYzlVppvCON28e/aFwCduAtLMDMN2WijfK105l4ccfbHj37t
-         6OPt7OK58i56G7Bg/cOaZyXUvtHN21w5Zl0b8Hf9EqGfzJa6WG3eLWNEjaFcHdyUXoIU
-         f96np5sFywJx3Ioo7OGmN3x+9S6/BXbGI06lxlKVSb8ouzQfNR8QiDI9Ef43YlajuS+k
-         noVi5OcH39f3cOBa0lEK6iDEFs3op3kFMNGDq5v2o/+GyOG4JYpUTJlxn0zzKtdGjYMj
-         S7gA==
+        d=lessconfused.com; s=lessconfused;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZGYEX31cIOUlSxZudKjVopVzn91z3Ew01YpLoqcpKls=;
+        b=S/60yaFdQiaph4QS9kkuj+ea2XwVyrywllXnGIQ+IkTP+ldBv+p6rxiVqeUDCnzyWH
+         LHu9uivsd8Fw/uvmqtQIHvF63F2lo/DeYreDaQUnzGc9jpytJm6bB65qfBvXfdvsGX4Q
+         HdFSE+S/rVYBUN1CVlRW1dCBSYIaGYgdwAI/4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j/BqAshhUQwOb3XRj7imW0y64r6HrCHnAtk8R5uEluo=;
-        b=aiSQ6mt9uuP3/85HE/d6V6c+Bz4rfWWNZvyY1A9reGsFwyaHq3yCzKoR11DjU4X2fC
-         1Ty8gdSH11CqTQ9mixVi5fJc71vi/kOtT5V5VlJCsu7KOirrVm1HoM2tYz2btpiMeK7H
-         G/TXkZTM80gQ1wXcmX+25ntPn6+fbku1B9cyHIFXWPgSF3Igp+ZPSVvUoZm0eMG4Uh/Z
-         VrSq32ENB1/EO2Pxju2tJyaaQ5H6XzSiAsHatoCkF3WlhOLN2NClPNR/9AhBmZaQBDil
-         cjonWri4JzIpQHTek0ZPEEy+2DZ6hS6fPtmKnzV2zo+9isoefVtCKx66nGsmBe7LiF77
-         HLZw==
-X-Gm-Message-State: AO0yUKXqheEmsPoPx4Bx372uJeRrjEQ3VcGctZQWEqvgZzQ5OikmTYpo
-        kDT3A2AcMKbsEBHZkVjL5ytzHi5xA977zPlW
-X-Google-Smtp-Source: AK7set/Vb7i53/SV+BeFDBTbUdIAfdaPM5HH1OgiUxRcY1vKNvD0ss4XksA9GmnEstT0xSJMQn7pKA==
-X-Received: by 2002:a05:600c:1e87:b0:3dc:353c:8b44 with SMTP id be7-20020a05600c1e8700b003dc353c8b44mr8608293wmb.5.1675411368292;
-        Fri, 03 Feb 2023 00:02:48 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y6-20020a7bcd86000000b003dc4480df80sm7031839wmj.34.2023.02.03.00.02.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 00:02:47 -0800 (PST)
-Message-ID: <6e6ed493-4748-46ca-7a26-fe9cf6e2377a@linaro.org>
-Date:   Fri, 3 Feb 2023 09:02:46 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZGYEX31cIOUlSxZudKjVopVzn91z3Ew01YpLoqcpKls=;
+        b=Z+srbpeGgByD90VFYbPPOjiQb2nugmYtpjNfEcFpmX2Orp7/78el2fNkpGCYTx3lur
+         fK4YxXnQAsw6T+lZZRkfcjRS8rnpDHbUWrdEL2ISuk7C5q6tGVySd6Z6mWrHlRZ415fW
+         sBjT4TQiV8wgJL90xGeJHP2rc4HkLYKCuSDXEy908m+X1F4wRRw8ecoIrXHHU7dMh9Wp
+         Kc4RRsDDljc7ap9s/SPutafTfYrDjMTH0YjRBaLB+cBJx3J4rewUD7NS/5fhirNefffw
+         MXbJVYTZ5lEQZG9FMyxxpjHUERGpolV1PjbSvJluIVXruXv6f9FE4oWazTji3+myFEB7
+         xVow==
+X-Gm-Message-State: AO0yUKUzbao6nnYTYoEQ0VZnZZOB+Vta3FrVPKg76oMTRWaJkXCQ0Qg5
+        O6FCfjdtGiSeBgVPNblpiPfaleueTRR0SQNWWfTrjA==
+X-Google-Smtp-Source: AK7set91XwnaYcZbBk/Yz9RWLdFi3h485mqp5EUXwdslWc6MSPZlMY9ANjRIQq6nkxM/JF5EMtZO+TPQ/q336fuis0Y=
+X-Received: by 2002:a05:6512:4005:b0:4b1:7c15:e922 with SMTP id
+ br5-20020a056512400500b004b17c15e922mr1719439lfb.214.1675411414892; Fri, 03
+ Feb 2023 00:03:34 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 6/9] ASoC: dt-bindings: meson: convert axg fifo to schema
-Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Cc:     linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
+References: <d9721029-780e-09f1-0207-72d3897032a4@gmail.com>
+ <f06d1676-4fce-846d-d8fe-fa68439b119e@linaro.org> <84d40502-fe1a-ef61-e945-9c581557f528@gmail.com>
+ <1jedrg6mkl.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jedrg6mkl.fsf@starbuckisacylon.baylibre.com>
+From:   Da Xue <da@lessconfused.com>
+Date:   Fri, 3 Feb 2023 03:03:23 -0500
+Message-ID: <CACdvmAhW-uDUK-iL4HT1PgEnRHrBmNr26Q6M=wBYcpZ8=DF4Tg@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: amlogic: Make mmc host controller
+ interrupts level-sensitive
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>, neil.armstrong@linaro.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20230202183653.486216-1-jbrunet@baylibre.com>
- <20230202183653.486216-7-jbrunet@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202183653.486216-7-jbrunet@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 19:36, Jerome Brunet wrote:
-> Convert the DT binding documentation for the Amlogic axg audio FIFOs to
-> schema.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  .../bindings/sound/amlogic,axg-fifo.txt       |  34 -----
->  .../bindings/sound/amlogic,axg-fifo.yaml      | 116 ++++++++++++++++++
->  2 files changed, 116 insertions(+), 34 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-> deleted file mode 100644
-> index fa4545ed81ca..000000000000
-> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-> +++ /dev/null
-> @@ -1,34 +0,0 @@
-> -* Amlogic Audio FIFO controllers
-> -
-> -Required properties:
-> -- compatible: 'amlogic,axg-toddr' or
-> -	      'amlogic,axg-toddr' or
-> -	      'amlogic,g12a-frddr' or
-> -	      'amlogic,g12a-toddr' or
-> -	      'amlogic,sm1-frddr' or
-> -	      'amlogic,sm1-toddr'
-> -- reg: physical base address of the controller and length of memory
-> -       mapped region.
-> -- interrupts: interrupt specifier for the fifo.
-> -- clocks: phandle to the fifo peripheral clock provided by the audio
-> -	  clock controller.
-> -- resets: list of reset phandle, one for each entry reset-names.
-> -- reset-names: should contain the following:
-> -  * "arb" : memory ARB line (required)
-> -  * "rst" : dedicated device reset line (optional)
-> -- #sound-dai-cells: must be 0.
-> -- amlogic,fifo-depth: The size of the controller's fifo in bytes. This
-> -  		      is useful for determining certain configuration such
-> -		      as the flush threshold of the fifo
-> -
-> -Example of FRDDR A on the A113 SoC:
-> -
-> -frddr_a: audio-controller@1c0 {
-> -	compatible = "amlogic,axg-frddr";
-> -	reg = <0x0 0x1c0 0x0 0x1c>;
-> -	#sound-dai-cells = <0>;
-> -	interrupts = <GIC_SPI 88 IRQ_TYPE_EDGE_RISING>;
-> -	clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
-> -	resets = <&arb AXG_ARB_FRDDR_A>;
-> -	fifo-depth = <512>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml
-> new file mode 100644
-> index 000000000000..f6222ad08880
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml
-> @@ -0,0 +1,116 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/amlogic,axg-fifo.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic AXG Audio FIFO controllers
-> +
-> +maintainers:
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^audio-controller@.*"
-> +
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - amlogic,axg-toddr
-> +              - amlogic,axg-frddr
-> +      - items:
-> +          - enum:
-> +              - amlogic,g12a-toddr
-> +              - amlogic,sm1-toddr
-> +          - const:
-> +              amlogic,axg-toddr
-> +      - items:
-> +          - enum:
-> +              - amlogic,g12a-frddr
-> +              - amlogic,sm1-frddr
-> +          - const:
-> +              amlogic,axg-frddr
-> +
+On Fri, Jan 27, 2023 at 10:10 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+>
+> On Fri 27 Jan 2023 at 14:02, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>
+> > On 27.01.2023 08:59, Neil Armstrong wrote:
+> >> Hi,
+> >>
+> >> On 26/01/2023 15:03, Heiner Kallweit wrote:
+> >>> The usage of edge-triggered interrupts lead to lost interrupts under load,
+> >>> see [0]. This was confirmed to be fixed by using level-triggered
+> >>> interrupts.
+> >>> The report was about SDIO. However, as the host controller is the same
+> >>> for SD and MMC, apply the change to all mmc controller instances.
+> >>
+> >> Thanks, I applied it in for-next so it runs on the CI tests.
+> >>
+> >>>
+> >>> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
+> >>>
+> >>> Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
+> >>
+> >> I think we should find a better Fixes or perhaps split in 3 so it targets the
+> >> right commit adding the nodes for each family.
+> >>
+> > This would be the cleanest option, right. Practically it shouldn't make
+> > much of a difference. The chosen commit is from 2019, SDIO interrupt
+> > support has been added just recently, and regarding MMC/SD it seems no
+> > problems caused by edge-triggered interrupts are known.
+>
+> ... Well, I wonder is this might be linked to instabilities seen with
+> very high speed mode (such as SDR104) and DDR modes. We have seen quite
+> a lot of those over the years. In any case, if it helps stabilize the
+> MMC on amlogic, it would be great if it can be picked up by stable.
 
-All usual comments apply.
+On S905X, I'm still getting SDR104 failures with this change at both
+208MHz and 150MHz so maybe not completely.
 
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +  clocks:
-> +    items:
-> +      - description: Peripheral clock
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    items:
-> +      - description: Memory ARB line
-> +      - description: Dedicated device reset line
+[    9.071641] mmc1: tuning execution failed: -5
+[    9.579765] mmc1: tuning execution failed: -5
+[    9.761580] mmc1: tuning execution failed: -5
+[    9.871836] mmc1: tuning execution failed: -5
 
-This won't work without minItems and you should see errors on your DTS
-or in dt_binding_check
-
-> +
-> +  reset-names: true
-
-minItems
-maxItems
-
-> +
-> +  amlogic,fifo-depth:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Size of the controller's fifo in bytes
-> +
-> +required:
-
-Best regards,
-Krzysztof
-
+>
+> >
+> >> If the test doesn't report any breakage, I'll probably ask you that.
+> >>
+> > Sure.
+> >
+> >> Neil
+> >>
+> > Heiner
+>
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
