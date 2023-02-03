@@ -2,87 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AFA6689E56
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 16:34:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42D44689E63
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 16:36:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232600AbjBCPd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 10:33:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48702 "EHLO
+        id S231205AbjBCPgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 10:36:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232463AbjBCPd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 10:33:57 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D076C101;
-        Fri,  3 Feb 2023 07:33:53 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5B0DC890;
-        Fri,  3 Feb 2023 16:33:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1675438432;
-        bh=fJkl9CAORGIkT6BIuLDLkQQjolu5v1t/zilLrJLaP30=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=HqtQazw4SA8pN0X8rhRqgkmYms1LGmxOCFvxtSrqNLsng7CuCXgspzf0cxDpfZT2x
-         6KU1QEjZlBqGjkI9XxR/0FpkBNoIrPd4DLBw/JeDxaOrPQQdnnpGnZUSpkjma3X/TI
-         6H/IEXKWyXima/RvUUMy8MKZEALHgzMTZzREkD0A=
-Message-ID: <ab6f52bb-a3f5-afda-c037-f009153a0bb6@ideasonboard.com>
-Date:   Fri, 3 Feb 2023 17:33:48 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v7 3/6] drm/tidss: Add support for AM625 DSS
-Content-Language: en-US
-To:     Aradhya Bhatia <a-bhatia1@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232999AbjBCPgh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 10:36:37 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4E206F217;
+        Fri,  3 Feb 2023 07:36:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1675438571;
+        bh=P9k19nklnfp8zjyr98WNbqWJ3pcfo/IFbSsgLrUsy0k=;
+        h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+         References;
+        b=T6h+QaHdfOlZU59CWJmZFrYc/pPROYjzeEQGH3qQYBFuEoVY/ngJkBaE18nek+RXE
+         km1dHXLzOS6M9uRcPhF+IKIrn0mi6pFDNW2ZQKk9naknHdGZyYaABfRdsc07bNGM+O
+         b5FI4a+ij1HKdqrIDJN7Euf04jY8fP8Vu/psEEdBoMdjoTkH0v9HtJS+VJ6o/5d00w
+         2xIW3jv/2ojoMg0JUI61qgcDfXmGxPu2dJRv5A/14SduMQQ5A6+cNVFgGmGdCRaVVv
+         sfOIlGQC32vcPcsCu7YO1W9bkHrXT2/ZCjCJFDmBnwfKjxjaJEubQ/O7RfGwhEoFQz
+         L6JPNCpF2NO6g==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([80.245.79.254]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1M5fIW-1pHvhR0GK2-007Er5; Fri, 03
+ Feb 2023 16:36:11 +0100
+Date:   Fri, 03 Feb 2023 16:36:09 +0100
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     arinc9.unal@gmail.com, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230125113529.13952-1-a-bhatia1@ti.com>
- <20230125113529.13952-4-a-bhatia1@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20230125113529.13952-4-a-bhatia1@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        erkin.bozoglu@xeront.com, Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>
+Subject: Re: [PATCH v2 4/5] arm: dts: mt7623: mux phy0 on Bananapi BPI-R2
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <20230201185656.17164-5-arinc.unal@arinc9.com>
+References: <20230201185656.17164-1-arinc.unal@arinc9.com> <20230201185656.17164-5-arinc.unal@arinc9.com>
+Message-ID: <AC473057-266B-4403-9270-8007E0EC257C@public-files.de>
+MIME-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:Fq66cXMQ7PDgT5kGmMVa//WAyfmtO+lqAVvGSRCIkiotxM+5zae
+ hpCM7/ymJTzxKiIsmZ6UpbzfhYiXdfLtEdDtKgf8FmprazS7xUlB0ORoHEy+s03zkrWMg49
+ 1oyG9cbnZ6tnVwWKSCh7rRQrOL/DDf1xem5g/86ZdiwtxAYzu0vzfO5YA+4NOPYLXIWnixt
+ AWKrr7bLrNMzZPbjoaPdA==
+UI-OutboundReport: notjunk:1;M01:P0:OaLRXKJrZrY=;m3lYOpzBzjojWR5/McbyO4NliuO
+ dhiQB6ATa4YIR3JTXFewyWafUnlOQiKIj2kNswENbzcshkDKsXHa6aD/9OT+hIgRrojAHUTXf
+ YoZkfV04uYiK7r9xWPq9Agc+Nv5yLbq6xw2uKENExfi23fgsm+nVUwDbyiX8cuBM3j/E9Slls
+ B88+YamCV/kz/+6ac+8Ti/Wg5ORaBRsrWp+7YR8bv6h2c/JlEgOZsgaPqt8qAei+h0Fb6LA5B
+ xueYNgIDSQFXT190ALitKA1qhi6hY9JF6CQmhIpt78kHNQWXvGt1pesA33mn+MqHxb4NKmfix
+ fEx+OJzicpd33qnFny2ME9GNvbM03NuBF/jNREVsgXiu8JrVrTKVU/x+pI8jeXoeEpOyWmlgA
+ 15M5TVFh7YUyHQZjjSxmm8JekrbfPFaYgi7TC+nEHHGJ05OFgK5ryIWhV3TQCHEdfOP2jQFGZ
+ 02Ol/9+36vZvfl7jHzManClEeN649f1wKji1HAOu9hajTCGtX2d1luUSipoevRFrif81S/srB
+ SEsvD1fJxvCcTCYCRBipCzExbD1K1eTdH5iujGs9aIj86g2eGGrrj3jbP1gonO29h57HAMi1T
+ P59e0g4J87y4enBerz7snXXgN46HCEWQTzgxoj6AswddqORuutUyzj2crN8E5MuBtoSXW3ahr
+ 75k3rZty7T9zpiPyIQOuqLYGqLHuebsNCNWLO8n/n5v25wY/q4RvDxr2yd6vHaDPjfZanZAQG
+ T2hqT3LXCPJ6QwBDNGaIQaRbyqLwsUtn6SYQEWVuJhgDTh8wN+nWs8wzsTE+6rbBG8zdECSQZ
+ OINg5bFPOJgs90g641uqpRQ8nx1h3TPgEiPEieHR2KCfZmATBEx5/Al85Xsa1Ow2JFJLzRPYg
+ 89T4V7YvtMn4axskqaQsKqLinIBqNubiovPCNt5pVKZcbryiAkLY7ia1ABr25CKlkLCIaLYuv
+ kX90uF0ipN6FMh9GqDzAYbS2Ljw=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/01/2023 13:35, Aradhya Bhatia wrote:
-> Add support for the DSS controller on TI's new AM625 SoC in the tidss
-> driver.
-> 
-> The first video port (VP0) in am625-dss can output OLDI signals through
-> 2 OLDI TXes. A 3rd output port has been added with "DISPC_PORT_OLDI" bus
-> type.
+Am 1=2E Februar 2023 19:56:55 MEZ schrieb arinc9=2Eunal@gmail=2Ecom:
+>From: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc=2Eunal@arinc9=2Ecom>
+>
+>Mux the MT7530 switch's phy0 to gmac5 which is wired to the SoC's gmac1=
+=2E
+>This achieves 2 Gbps total bandwidth to the CPU using the second RGMII=2E
+>
+>With this, the interface name to access phy0 changes from wan to eth1=2E
+>
+>Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc=2Eunal@arinc9=2Ecom>
+>---
+> arch/arm/boot/dts/mt7623n-bananapi-bpi-r2=2Edts | 15 ++++++++++-----
+> 1 file changed, 10 insertions(+), 5 deletions(-)
+>
+>diff --git a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2=2Edts b/arch/arm/b=
+oot/dts/mt7623n-bananapi-bpi-r2=2Edts
+>index dc9b4f99eb8b=2E=2E64700253fd35 100644
+>--- a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2=2Edts
+>+++ b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2=2Edts
+>@@ -182,6 +182,12 @@ fixed-link {
+> 	};
+> };
+>=20
+>+&gmac1 {
+>+	status =3D "okay";
+>+	phy-mode =3D "rgmii";
+>+	phy-handle =3D <&ethphy0>;
+>+};
+>+
+> &eth {
+> 	status =3D "okay";
+>=20
+>@@ -189,6 +195,10 @@ mdio-bus {
+> 		#address-cells =3D <1>;
+> 		#size-cells =3D <0>;
+>=20
+>+		ethphy0: ethernet-phy@0 {
+>+			reg =3D <0>;
+>+		};
+>+
+> 		switch@1f {
+> 			compatible =3D "mediatek,mt7530";
+> 			reg =3D <0x1f>;
+>@@ -200,11 +210,6 @@ ports {
+> 				#address-cells =3D <1>;
+> 				#size-cells =3D <0>;
+>=20
+>-				port@0 {
+>-					reg =3D <0>;
+>-					label =3D "wan";
+>-				};
+>-
+> 				port@1 {
+> 					reg =3D <1>;
+> 					label =3D "lan0";
 
-Not a big thing here as you add support for a new SoC, but the ordering 
-of the patches is not optimal. Here you add the AM625 DSS support, but 
-then you continue actually adding the DSS support (well, mainly OLDI) in 
-the following patches.
+Hi
 
-I think patch 6 could be before this patch. Parts of patch 4 could also 
-be before this patch. The AM65X renames from patch 5 could be before 
-this patch.
+I still see Problem with "renaming" the wan from users PoV=2E I got anothe=
+r way of using second gmac for wan some time ago using vlan-aware bridge (h=
+ave not tested with recent kernel versions)=2E
 
-I'm mainly thinking of a case where someone uses AM625 and is bisecting 
-a problem. What happens if his board uses OLDI, and he happens to hit 
-one of these patches during bisect? If the display just stays black, but 
-otherwise everything works fine, then no problem. But if it crashes or 
-starts spamming sync losts or such or gives errors, it's not so nice.
+Maybe this works for you too? If yes imho it will be a better way=2E
 
-  Tomi
+https://github=2Ecom/frank-w/BPI-Router-Linux/commit/c92b648bac996b34dc75a=
+4fff15d7fb429bfe74b
 
+Have same for r64/mt7622 in my tree=2E=2E=2E
+
+It should use eth1 for wan-traffic too but is full userspace configuration=
+ without breaking userspace for users not wanting it=2E
+regards Frank
