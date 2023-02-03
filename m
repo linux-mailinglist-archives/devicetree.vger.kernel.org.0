@@ -2,80 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA19F688F9F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 07:23:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A4A9688FBA
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 07:33:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231761AbjBCGX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 01:23:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59900 "EHLO
+        id S230140AbjBCGds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 01:33:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjBCGX4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 01:23:56 -0500
-Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A1B551C6A
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 22:23:55 -0800 (PST)
-Received: by mail-vs1-xe34.google.com with SMTP id d66so4337240vsd.9
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 22:23:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=87XVyWNqDZs7OnynGfVzLfoOyWepgm8p9Mf1bGJRDhA=;
-        b=R+yrD6SZeW3NvQBjviyOyHYp6ou3qyz5Ef+Q1DOKtEcnv5KLX2fJ8IYoW2fAiLuwvn
-         M8HpKfYkv6EDwINyv1bjkZVZrUvV6BvZ+S20c8cqG7VvhYupNPsggSIZWCsRApY9lkCi
-         ijuc4soU+v7kDYz8Q5eQSBHNJw0OTeMtcIRRQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=87XVyWNqDZs7OnynGfVzLfoOyWepgm8p9Mf1bGJRDhA=;
-        b=PGIOvS+T7ISE1w0O8NSmOeq0551WNzdl359Yr3OQcTxQnx/xRIksvEssglXhIcXjXd
-         r7Oh/LeVF6iLv0YPGY7a4y209lyxdf0Vnzbrq13Tsgmy94IYsAQQ23s6m+k2DUwrCi+f
-         nVcoEmw2/T2Tae7ge8UIULIsc63Hdh/9zLNyu7SHC3pt04Ixm7TTz5myDExkDYckGH5F
-         ilKYX8TZbVo7KqNBN/YorgFiWRh6p1ljsi9M3YN8L5OKpXrMlfK6la2xPEiYdQAWiehA
-         /LW+c0rpoAHrg+l7P6iEioo2x99FGNa8f6FI3hYTCDIFsM27nV7OGhB4Wdmlh2fV0rJq
-         2Q0w==
-X-Gm-Message-State: AO0yUKWFoKY2B25Z/uwzrNrqRKLsUFZTE/WmBmSy0R2mTXQBRxj1p0Bh
-        /LSBwfh/6OyPhRN7DfIEDp6xDDy/dz5ubkBbKquchg==
-X-Google-Smtp-Source: AK7set8tKApF3KpW1F9+oUsByrETerJjqd7LwwHR/1bzmqGkRDHXiULZXnQLIlhRK3pyp8ur/uPZ2RsN4nlsQmw4Zls=
-X-Received: by 2002:a05:6102:23f2:b0:3ed:89c7:4bd2 with SMTP id
- p18-20020a05610223f200b003ed89c74bd2mr1649078vsc.26.1675405434514; Thu, 02
- Feb 2023 22:23:54 -0800 (PST)
+        with ESMTP id S229602AbjBCGdr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 01:33:47 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D87755BD;
+        Thu,  2 Feb 2023 22:33:45 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3135HhfC001674;
+        Fri, 3 Feb 2023 06:33:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=SuTIbaGSUcvGKk8oWpdqXguJe8chLfMFfh4n4U1RKs8=;
+ b=mZD2JtqJu+cWl3fP93Br3vKp5cHWzCFhBH9psjywYzvpHDbvZufgS0D3HT3dfQRolSZS
+ Y/qyg7ScoyONLFzhk4uWTj0XrsDFh8F4ohXFZq3ONPiY7grkYC9EjkS4teitFzmzzftQ
+ sZxJHPux3o72JA6A8JmSb2NnIAa4Q8Wdzi6sjOq7dPunr9+viQL/H42QX9ypt7og0DyH
+ xUgOLYwQpYFhYomZqinlkD0IHYcVjn1kDsc6sVZUOYb6x8Jv4EVp5vLsxcbyuKuk4weh
+ bX5KacHx+9vucHqWCg7zC6tU3wP0Q8sJ45RUeU5YCu72e2BqVzfHe9vtprgwTe7ymoKF eg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nfnyhmx6k-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 03 Feb 2023 06:33:26 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3136XPV2016299
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 3 Feb 2023 06:33:25 GMT
+Received: from [10.216.51.161] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 2 Feb 2023
+ 22:33:20 -0800
+Message-ID: <de86d4ce-b9a9-9202-c7b9-ea49e9b1d41b@quicinc.com>
+Date:   Fri, 3 Feb 2023 12:03:17 +0530
 MIME-Version: 1.0
-References: <20230119124848.26364-1-Garmin.Chang@mediatek.com>
-In-Reply-To: <20230119124848.26364-1-Garmin.Chang@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 3 Feb 2023 14:23:43 +0800
-Message-ID: <CAGXv+5F-4Tyf1Yn7BYYMkPVyRQffEpx709F6+T65M1J+LfUPvg@mail.gmail.com>
-Subject: Re: [PATCH v5 00/19] MediaTek MT8188 clock support
-To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-clk@vger.kernel.org, netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 02/14] ASoC: qcom: SC7280: audioreach: Add sc7280 hardware
+ param fixup callback
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+CC:     <krzysztof.kozlowski+dt@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <robh+dt@kernel.org>, <quic_plai@quicinc.com>,
+        <bgoswami@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        <devicetree@vger.kernel.org>, <konrad.dybcio@linaro.org>
+References: <20230201134947.1638197-1-quic_mohs@quicinc.com>
+ <20230201134947.1638197-3-quic_mohs@quicinc.com>
+ <Y9p57qn9+Pig9igE@sirena.org.uk>
+From:   Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+In-Reply-To: <Y9p57qn9+Pig9igE@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: FQhYFWnXTTN1IudxQWb0NB1blKm9qU0h
+X-Proofpoint-ORIG-GUID: FQhYFWnXTTN1IudxQWb0NB1blKm9qU0h
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-03_03,2023-02-02_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=630
+ priorityscore=1501 bulkscore=0 adultscore=0 spamscore=0 clxscore=1011
+ impostorscore=0 suspectscore=0 mlxscore=0 lowpriorityscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302030058
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19, 2023 at 8:49 PM Garmin.Chang <Garmin.Chang@mediatek.com> wrote:
+
+On 2/1/2023 8:10 PM, Mark Brown wrote:
+> On Wed, Feb 01, 2023 at 07:19:35PM +0530, Mohammad Rafi Shaik wrote:
 >
-> Base on tag: next-20230119, linux-next/master
-
-There are some recent changes to the MediaTek clk driver library
-that makes this series incompatible. Could you rebase onto next-202302xx
-and send a new version?
-
-Thanks
+>> +#define DEFAULT_SAMPLE_RATE_48K	48000
+> Why are we bothering with a define here given that the define also
+> encodes the value and it's only used in once place?
+okay, will remove it.
+>
+>>   	for_each_card_prelinks(card, i, link) {
+>>   		link->init = sc7280_init;
+>>   		link->ops = &sc7280_ops;
+>> +		if (link->no_pcm == 1)
+>> +			link->be_hw_params_fixup = sc7280_snd_be_hw_params_fixup;
+> We only set the fixup in the case where there's no PCM but we removed
+> the constraint in all cases - isn't the constraint needed otherwise?
+okay, will add conditional check for constraint and will only do if 
+no_pcm is zero.
