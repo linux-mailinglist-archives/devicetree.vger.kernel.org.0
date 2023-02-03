@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5136A689DD6
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 16:17:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F1FD689DAB
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 16:17:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234124AbjBCPNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 10:13:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49362 "EHLO
+        id S234252AbjBCPNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 10:13:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234126AbjBCPNa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 10:13:30 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD15925970
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 07:11:24 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id r2so4916964wrv.7
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 07:11:24 -0800 (PST)
+        with ESMTP id S234253AbjBCPNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 10:13:32 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70D072597D
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 07:11:28 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id m14so4890555wrg.13
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 07:11:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=z00QFSg5fVcrySrHGuabqZsbM/ZJ+bdAmvNEl/IlbFE=;
-        b=Kxrz9ZoDTD1ayWdVNyzujaJqvvx35vMnc5j0E0tdBlkp7LipJ3Xz+ERyGdS3ffAg56
-         mOzKC7vcLq/sexz4/2Kq4b2ty70+lwdtS03f7e5xI2/tegdkX6k9e0yBPm5Ai3v1WLC3
-         K++3vIptEJLNGzpDh75ILFwf64cv4E2W3nlocB8CCXE79Ghe+K6ucbargnWAqdPhTjke
-         WF7KUhAlEx27n+SIoYE65ngEgjxQd0YmBCs0zZKawtZUv+DlSOy41/CMvdefOZOkODqK
-         8xbU1OPKwtqLpppCPfZYv4JEKVwNC8lnljCeoXBvo8dtvzLe+a95j643B7IoL5ZdoJLm
-         7Knw==
+        bh=kGmKrLVAinuf+Yd12cozByuxIVGNNesLNwLCgObEIhQ=;
+        b=bQZOosridMitZ85XsgNASWSpQbIYYoe6OaCkcZsZrIoOgpcKlBglkK6Qade9fgx/5v
+         GDvMJr9l+4KgLMHQ5XrNClvSRIzqC5KgVO0xxuDZyK01TQUJtSjIhZmGZUhj/qFmVOvL
+         qtxnIiKrqKDgABE94zs+vBa81Ep9bhaTQ3gqUjBhhmekeAseaZS5LHDtx/ShyIs3NiJI
+         YAA4rCFd7EwVKSegcClHu/eEIMQtX8XsYuGQ1FQj/aBTIUx4HUp0Gv3ueunTHpa6HAoY
+         T+RDAQi8slgRqGO81NTBCIA82nxDzoOnFgm8MhNoBcPRPMBw9FyCO4Ushv+goxc2yF/N
+         iOnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=z00QFSg5fVcrySrHGuabqZsbM/ZJ+bdAmvNEl/IlbFE=;
-        b=v4+Z9EQyPapkAHMuzW25YimhisDCBVfr01SFlzT6S0e6iUq7kDKuuumRJYHqgu3hGn
-         BO9E22RgSQ+yd9vSpehFXuH52Iyb95oohC529WdrBsNQiWvropCwfDLWuVbX8UkSLJEg
-         kBF9IIvBdnisLZnaZg1WLuYI4hvMYI9U4k/EtIs2oftzf5Eh0bUsicSxD1nw+I6LCCBq
-         bMr/prveoGJuKDqD6W8W0MQPZOZmBi7THSkd0F/yWAoJLnq/4SgywXKCJ0wa+51wIWYq
-         SK0Hk7ccB6WQDdsk6rjzN/ZK/HOmVht03FyyXM6aGHqUdi2DeCmxabyBYBF7Uh2R7vWg
-         cE7w==
-X-Gm-Message-State: AO0yUKUHLuYRWKRtwq8cktDFwcTsKCwZ+F9VGFeHRiNoAo1TCsFyJIXW
-        Ed2Jv2UB6mGKAZ5fo0QXPxxN8w==
-X-Google-Smtp-Source: AK7set/nBo6gEk5xmjiB5XAsO7w9bdeq4Pg/vVtdVLcygItzNfhM73dKYxtfcLWILvzxHGBxdUmQmg==
-X-Received: by 2002:a05:6000:1005:b0:2bf:b35d:2797 with SMTP id a5-20020a056000100500b002bfb35d2797mr8865341wrx.11.1675437031675;
-        Fri, 03 Feb 2023 07:10:31 -0800 (PST)
+        bh=kGmKrLVAinuf+Yd12cozByuxIVGNNesLNwLCgObEIhQ=;
+        b=hhgZJ/TI1VghW7vf8HIoic4Du7Ijv3HfX8uYCy9IR+czDPDzJEFiKcoSvbnIs2hyf/
+         OJ0tOI1eFKzJTSUa0RqIXfQWpfuORCgWT3R5ecVy9Yatv5UgOpsuIsQmq5z9H9DEhlcW
+         j5swzKo942yLmL3ESviG55DrctTHO9MeUdW3DP5GC8xMVlfMIbNl1oOnBTTSVBxZ5hWk
+         MYGMqaiRFFb/0KEFiJvnDkNAIle6VXZT9h0fF73VNbIuBhsmgTi+BkR7cuxex7rwloDp
+         tlO23G3PadbMufFf1bHzG5A92f+g7hu8uPjOep98/byo8W8ra+Fgz6ttBh5mBnyDKpYA
+         r/8g==
+X-Gm-Message-State: AO0yUKUUBFMaH4b4bNPhPf80aa3RnkycSauDX95mOYLSm6JEvto/ucvy
+        4urKuBA1sMaapcVkXCWIlCp4Vg==
+X-Google-Smtp-Source: AK7set9gQ5JH74bSBe4RleWOEM98URh1eZ02Rn1u6lvKIWMrueK9oJ7Gcfw/lDY1mRKdSvkvzqGRRA==
+X-Received: by 2002:a05:6000:1e07:b0:2bf:f7e9:2a18 with SMTP id bj7-20020a0560001e0700b002bff7e92a18mr4243608wrb.45.1675437033335;
+        Fri, 03 Feb 2023 07:10:33 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h4-20020a5d5044000000b002bdf3809f59sm2202419wrt.38.2023.02.03.07.10.30
+        by smtp.gmail.com with ESMTPSA id h4-20020a5d5044000000b002bdf3809f59sm2202419wrt.38.2023.02.03.07.10.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Feb 2023 07:10:31 -0800 (PST)
+        Fri, 03 Feb 2023 07:10:33 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
@@ -67,12 +67,12 @@ Cc:     =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
         phone-devel@vger.kernel.org, replicant@osuosl.org,
         ~postmarketos/upstreaming@lists.sr.ht,
         Henrik Grimler <henrik@grimler.se>
-Subject: Re: (subset) [PATCH 2/8] dt-bindings: phy: samsung,dp-video-phy: deprecate syscon phandle
-Date:   Fri,  3 Feb 2023 16:10:25 +0100
-Message-Id: <167543702106.62628.8149272469590302211.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH 3/8] dt-bindings: phy: samsung,mipi-video-phy: deprecate syscon phandle
+Date:   Fri,  3 Feb 2023 16:10:26 +0100
+Message-Id: <167543702106.62628.547907360569271270.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230127194057.186458-3-krzysztof.kozlowski@linaro.org>
-References: <20230127194057.186458-1-krzysztof.kozlowski@linaro.org> <20230127194057.186458-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230127194057.186458-4-krzysztof.kozlowski@linaro.org>
+References: <20230127194057.186458-1-krzysztof.kozlowski@linaro.org> <20230127194057.186458-4-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -85,8 +85,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 Jan 2023 20:40:51 +0100, Krzysztof Kozlowski wrote:
-> The DisplayPort phy is actually part of the Power Management Unit system
+On Fri, 27 Jan 2023 20:40:52 +0100, Krzysztof Kozlowski wrote:
+> The MIPI phy is actually part of the Power Management Unit system
 > controller, thus it should be its child, instead of sibling node with
 > syscon phandle.
 > 
@@ -94,8 +94,8 @@ On Fri, 27 Jan 2023 20:40:51 +0100, Krzysztof Kozlowski wrote:
 
 Applied, thanks!
 
-[2/8] dt-bindings: phy: samsung,dp-video-phy: deprecate syscon phandle
-      https://git.kernel.org/krzk/linux/c/0092b7ab96e77e6e315d0f5d3965608da32b3843
+[3/8] dt-bindings: phy: samsung,mipi-video-phy: deprecate syscon phandle
+      https://git.kernel.org/krzk/linux/c/4694dd1b9d43f5b8af710b8e4efc25d3cf388a00
 
 Best regards,
 -- 
