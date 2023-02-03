@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B12868A107
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 18:58:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA17468A10F
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 18:59:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232924AbjBCR6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 12:58:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37540 "EHLO
+        id S231755AbjBCR7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 12:59:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232723AbjBCR6W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 12:58:22 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 592EBCA17
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 09:58:16 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so6581859wma.1
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 09:58:16 -0800 (PST)
+        with ESMTP id S233013AbjBCR7g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 12:59:36 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 634A96C10B
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 09:59:31 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id y1so5382899wru.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 09:59:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lN+M6aiUbCqF46CC1crDFxdVf7hLTQ+IRNqaZ978vd8=;
-        b=S1EjWXdz//eVBIiu80y0i58Nwfp/vPB6JlRYf2vOiL5xiefMP2zINH+qTlJJbRKItY
-         WPrNVD0VpVMglADIzRh8Ojmkhb+O/yZ6DvaCEfVRF7ZEnrTYtwIF13YFx5XNMFgIj8rE
-         uWSA5IlhAOYI0mTPHGzK+xv/oXOiRT/JZGYpW3WMtyFcdn+ofmFkqIFIURJEvwE7FM7Q
-         2TMKBxnxWIbBXDhy/h1s540I8b9ylHqaLRjlafMhockTDHZP+qIiT44NeP9mnh4zsA0s
-         Xclq547eR3BpKU4H5GOz04EFZ1KWSUjYUabfKn1PAQqCB0mIirpl0MmXm/DFU5UC11ms
-         1l5A==
+        bh=UnkV8eglfBQ3m7iE71cgfuq2SGzc7qznHVEMOlIyJ5k=;
+        b=txMUNSAB2UzgNJC5K8ThvnqZcmDr9Xbfbuga4hMfATueyFe2FumlAI/I6oBTc9hSia
+         baW6RsfPnETMBqGXWrZ/Lkqo5ZBLO77S6wFuMUn06uUTlmnQdaRUzUOjDqm+vv6rG1Ra
+         b3BIPdH5JqeKuhOq8r3MqVDKUCda0NJ2GQbrmZ1IU4WgtC5UxTZxv80pruA73eaDRnF7
+         sTi0S6ckGPDrfkNLw3Yz8+uY8OKf152X8h0z+h3tBgVnIoRo8x1m6CUquIXukViwnCQw
+         I7PXau1BdzrMMgTjbZOVvam9wswmA9AMH4CUTxrk3IbSqJOqqnlB4A/YPyUK11O6k2jW
+         Ebgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lN+M6aiUbCqF46CC1crDFxdVf7hLTQ+IRNqaZ978vd8=;
-        b=hkIgIQMHkmQ5KTs6cVTF4Uds6SF67mHbx6bplU4Cz/CC+BesvXJwjuYhYdlOKTwVjP
-         y159b3hsJ2CpFSeG/Dk5V0x1Er0yhaBpBfyCbsXybIsnQg4vPJGFaJTSBd59gasJkquj
-         RwLg/HScSAojFH7wsD8yV5lGbJaKndXCJZnLWWmIFZLKAgJGFXyIr0k8N2oNzb8yIzuT
-         Ec5Yu0CxnPhzQHKjUnSgUfP9SoE1We4Bd5+7t1Fb+nw6Maf6e8dOBICDxTuG2AD/YaoZ
-         aBkV7D1qsOX2cpU5vnRA1exnj+ve6z/Uzhwv8JmQOZc9XlehXp3u7OrxqCGAlJkXVCdT
-         +J3g==
-X-Gm-Message-State: AO0yUKW19sLWvtofCSx4dWP0KeZB6yPd2BzxMGEkN2RdC5LW7V+XnFET
-        O99aamZPpJsjCi6d7/idKLYQIsZjw/0Wva8T
-X-Google-Smtp-Source: AK7set/XQawmCDWrVyjPwzNZBBNVKsO+g4KUQAE8B9uS3eeB81KjPN+ttS8KXCXrBfkXJpYejKU66Q==
-X-Received: by 2002:a05:600c:510e:b0:3dc:59e9:9285 with SMTP id o14-20020a05600c510e00b003dc59e99285mr11539024wms.18.1675447094889;
-        Fri, 03 Feb 2023 09:58:14 -0800 (PST)
+        bh=UnkV8eglfBQ3m7iE71cgfuq2SGzc7qznHVEMOlIyJ5k=;
+        b=SiQ7zR3/Kqti+4I/ZskN+D4+xfVD1HBbpxrlL6Zb4pryxI0KfK7RdMMFP4MtmEZzS0
+         x4yow9n7jfHCMtBqD7ypaHmw5WnvFhJHNk92gPZiI+w/M9I+ko0iHJ2CleZluVG1XyC2
+         O6A+A5ajOW5vU57Dl4/dMnrAyM2d8azU6wYZ5fi/Y4acejtrW51fZHlSPIsimiEKuMcX
+         qSITRunS05KtUCwo48Rrc8B6rz95ptvws8dZcIGjCq144LGTVPbXn1xcJKzbIYYi1RpX
+         cwcggkO2JTUW80Ni5Rzm9Ug2rR1I1/ViAkl2I+RQ8wUPblhMsXS5GmjmRzRKwr2rrSn+
+         aAuA==
+X-Gm-Message-State: AO0yUKVFVkGHIJwLNjef4EUpeFGIy58eAQOV5/IS/K9HRr5eYT9h5AhF
+        BhXVqM1u+9NXCCWgu6zrRXsMzw==
+X-Google-Smtp-Source: AK7set+Tfe3BDkZewBOqFV5KXz7+EuxIJvkv67VKmNkAgrrkoHAC1MxgyKcfMByhaN7MOoO8d5gHWg==
+X-Received: by 2002:a5d:5982:0:b0:2bf:eec5:3912 with SMTP id n2-20020a5d5982000000b002bfeec53912mr10791579wri.34.1675447169866;
+        Fri, 03 Feb 2023 09:59:29 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p2-20020a05600c358200b003dc4ecfc4d7sm3609686wmq.29.2023.02.03.09.58.13
+        by smtp.gmail.com with ESMTPSA id h12-20020adff4cc000000b002c3d814cc63sm1758281wrp.76.2023.02.03.09.59.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 09:58:14 -0800 (PST)
-Message-ID: <d72f2c93-934c-67fe-0afd-96bc52b12a9f@linaro.org>
-Date:   Fri, 3 Feb 2023 18:58:12 +0100
+        Fri, 03 Feb 2023 09:59:29 -0800 (PST)
+Message-ID: <fede7119-4a9b-76a1-ae1a-7af5dd8d1032@linaro.org>
+Date:   Fri, 3 Feb 2023 18:59:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 6/9] ASoC: dt-bindings: meson: convert axg fifo to schema
+Subject: Re: [PATCH 9/9] ASoC: dt-bindings: meson: convert axg sound card
+ control to schema
 Content-Language: en-US
 To:     Jerome Brunet <jbrunet@baylibre.com>,
         Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
@@ -66,87 +67,42 @@ Cc:     linux-amlogic@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-kernel@vger.kernel.org
 References: <20230202183653.486216-1-jbrunet@baylibre.com>
- <20230202183653.486216-7-jbrunet@baylibre.com>
- <6e6ed493-4748-46ca-7a26-fe9cf6e2377a@linaro.org>
- <1jmt5un9u4.fsf@starbuckisacylon.baylibre.com>
+ <20230202183653.486216-10-jbrunet@baylibre.com>
+ <f229e181-c56d-6ec7-2a1c-754690f70438@linaro.org>
+ <1jfsbmn7ql.fsf@starbuckisacylon.baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1jmt5un9u4.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jfsbmn7ql.fsf@starbuckisacylon.baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/02/2023 14:27, Jerome Brunet wrote:
-> 
-
->>> +  resets:
->>> +    items:
->>> +      - description: Memory ARB line
->>> +      - description: Dedicated device reset line
->>
->> This won't work without minItems and you should see errors on your DTS
->> or in dt_binding_check
->>
-> 
-> The example provided here worked but there is indeed a warning with the
-> axg-frddr variant.
-> 
-> I'm adding a 2nd example so it does not happen again.
-
-If the difference is only in one property, no need. If the difference is
-in more properties - then could be. We do not keep examples for every
-trivial change, because the assumption is that submitter tests DTS as well.
-
-> 
+On 03/02/2023 15:13, Jerome Brunet wrote:
+>>> +          Multiplication factor between the frame rate and master clock
+>>> +          rate
 >>> +
->>> +  reset-names: true
+>>> +      sound-dai:
+>>> +        $ref: /schemas/types.yaml#/definitions/phandle-array
 >>
->> minItems
->> maxItems
+>> Old binding was saying it is just phandle
 > 
-> Adding this causes troubles with the reset-names definitions in the 'if'
-> clause. If I put min: 1, max: 2 and min: 2 in the 'then' clause I get:
+> It is just a phandle but the bindings used to have problem with phandle
+> that had cells.
 > 
->> Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml: allOf:1:then:properties:reset-names: 'oneOf' conditional failed, one must be fixed:
->>        [{'const': 'arb'}, {'const': 'rst'}] is too long
->>        [{'const': 'arb'}, {'const': 'rst'}] is too short
->>        False schema does not allow 2
->>        1 was expected
->>        hint: "minItems" is only needed if less than the "items" list length
->>        from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-
-Probably because rest of binding does not match. One way is like this:
-
-https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
-
+> See:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml?h=v6.2-rc6&id=d031d99b02eaf7363c33f5b27b38086cc8104082
 > 
-> The older devices just have the 'arb' reset.
-> Newer devices have a 2nd reset line (called rst here)
-> 
-> If I just restrict the min and max, it would be valid for the older
-> devices to have 'rst' only - but it is not valid.
+> Was it wrong or did the situation change since then ?
 
-How? Why would you define for old devices "rst" as one name if this is
-not correct?
+Then define it as having cells:
 
-> 
-> With just 'true', it works as expected (throw errors if an incorrect
-> name or number of names is passed). Min and Max comes from the items list.
-
-Because the rest is not in recommended way. Once you implement it in
-recommended way, there will be no such...
-
-> 
-> Any suggestions ?
-
-Implement rest of comments.
+https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
 
 
 Best regards,
