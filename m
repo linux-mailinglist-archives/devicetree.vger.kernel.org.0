@@ -2,124 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4991568A0FA
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 18:56:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B12868A107
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 18:58:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231302AbjBCR4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 12:56:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35344 "EHLO
+        id S232924AbjBCR6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 12:58:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231216AbjBCR4l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 12:56:41 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9C381CF79;
-        Fri,  3 Feb 2023 09:56:40 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 313HHJMs007086;
-        Fri, 3 Feb 2023 17:56:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : reply-to : references : mime-version :
- content-type : in-reply-to; s=qcppdkim1;
- bh=02KT45rBrJ4pSEsR3ymDPFQ/Q7yUORWGKR/1Ihcy3i4=;
- b=e4cO3uJrTp5d/ejqFs1JvXhj4LKJmY5O0vG00Tgm6+2Vw1xawi8YCt7wlmsTP8CI2wpj
- upnDtkJ/ej5lKhAwPiuaMqXUYCX3k4Ityo2wucgdOFg+cB+gkvHrmSL1T2DiYHToEZyu
- 31mw4pkbzTpOZSnGGl7qzjYKRWKuP4MluYxGqXJvQAFDaYlvzfeCK7jRCv8bidiXP46d
- iyz47O5VsXP/TFzFKFgCmRL7VKh4nsHOFpEJj7tn4uA7WI0J+ZJ6y5zH0guxlzZJbQCN
- Dhgln3gVP8zMBSn5w9k8JhCXBr7caZekN5HfD0EknVah06WKyJeLnf1xOGQXvSAGb9Vl Kg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ngns2j7f8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 03 Feb 2023 17:56:27 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 313HuQta025792
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 3 Feb 2023 17:56:26 GMT
-Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 3 Feb 2023
- 09:56:19 -0800
-Date:   Fri, 3 Feb 2023 23:26:16 +0530
-From:   Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Carl van Schaik" <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v9 21/27] gunyah: vm_mgr: Add framework to add VM
- Functions
-Message-ID: <20230203175616.GD332@quicinc.com>
-Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
- <20230120224627.4053418-22-quic_eberman@quicinc.com>
- <20230203093704.GC332@quicinc.com>
+        with ESMTP id S232723AbjBCR6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 12:58:22 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 592EBCA17
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 09:58:16 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so6581859wma.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 09:58:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lN+M6aiUbCqF46CC1crDFxdVf7hLTQ+IRNqaZ978vd8=;
+        b=S1EjWXdz//eVBIiu80y0i58Nwfp/vPB6JlRYf2vOiL5xiefMP2zINH+qTlJJbRKItY
+         WPrNVD0VpVMglADIzRh8Ojmkhb+O/yZ6DvaCEfVRF7ZEnrTYtwIF13YFx5XNMFgIj8rE
+         uWSA5IlhAOYI0mTPHGzK+xv/oXOiRT/JZGYpW3WMtyFcdn+ofmFkqIFIURJEvwE7FM7Q
+         2TMKBxnxWIbBXDhy/h1s540I8b9ylHqaLRjlafMhockTDHZP+qIiT44NeP9mnh4zsA0s
+         Xclq547eR3BpKU4H5GOz04EFZ1KWSUjYUabfKn1PAQqCB0mIirpl0MmXm/DFU5UC11ms
+         1l5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lN+M6aiUbCqF46CC1crDFxdVf7hLTQ+IRNqaZ978vd8=;
+        b=hkIgIQMHkmQ5KTs6cVTF4Uds6SF67mHbx6bplU4Cz/CC+BesvXJwjuYhYdlOKTwVjP
+         y159b3hsJ2CpFSeG/Dk5V0x1Er0yhaBpBfyCbsXybIsnQg4vPJGFaJTSBd59gasJkquj
+         RwLg/HScSAojFH7wsD8yV5lGbJaKndXCJZnLWWmIFZLKAgJGFXyIr0k8N2oNzb8yIzuT
+         Ec5Yu0CxnPhzQHKjUnSgUfP9SoE1We4Bd5+7t1Fb+nw6Maf6e8dOBICDxTuG2AD/YaoZ
+         aBkV7D1qsOX2cpU5vnRA1exnj+ve6z/Uzhwv8JmQOZc9XlehXp3u7OrxqCGAlJkXVCdT
+         +J3g==
+X-Gm-Message-State: AO0yUKW19sLWvtofCSx4dWP0KeZB6yPd2BzxMGEkN2RdC5LW7V+XnFET
+        O99aamZPpJsjCi6d7/idKLYQIsZjw/0Wva8T
+X-Google-Smtp-Source: AK7set/XQawmCDWrVyjPwzNZBBNVKsO+g4KUQAE8B9uS3eeB81KjPN+ttS8KXCXrBfkXJpYejKU66Q==
+X-Received: by 2002:a05:600c:510e:b0:3dc:59e9:9285 with SMTP id o14-20020a05600c510e00b003dc59e99285mr11539024wms.18.1675447094889;
+        Fri, 03 Feb 2023 09:58:14 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id p2-20020a05600c358200b003dc4ecfc4d7sm3609686wmq.29.2023.02.03.09.58.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Feb 2023 09:58:14 -0800 (PST)
+Message-ID: <d72f2c93-934c-67fe-0afd-96bc52b12a9f@linaro.org>
+Date:   Fri, 3 Feb 2023 18:58:12 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-In-Reply-To: <20230203093704.GC332@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YpG8-ONnZ_wPj4MJJBKvgU-vb4mH8Op8
-X-Proofpoint-ORIG-GUID: YpG8-ONnZ_wPj4MJJBKvgU-vb4mH8Op8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-03_17,2023-02-03_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
- spamscore=0 malwarescore=0 priorityscore=1501 suspectscore=0 mlxscore=0
- adultscore=0 mlxlogscore=881 impostorscore=0 phishscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302030164
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 6/9] ASoC: dt-bindings: meson: convert axg fifo to schema
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20230202183653.486216-1-jbrunet@baylibre.com>
+ <20230202183653.486216-7-jbrunet@baylibre.com>
+ <6e6ed493-4748-46ca-7a26-fe9cf6e2377a@linaro.org>
+ <1jmt5un9u4.fsf@starbuckisacylon.baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1jmt5un9u4.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Srivatsa Vaddagiri <quic_svaddagi@quicinc.com> [2023-02-03 15:07:14]:
-
-> * Elliot Berman <quic_eberman@quicinc.com> [2023-01-20 14:46:20]:
+On 03/02/2023 14:27, Jerome Brunet wrote:
 > 
-> > +static struct gunyah_vm_function_driver *__find_function(const char name[GUNYAH_FUNCTION_NAME_SIZE])
-> > +	__must_hold(functions_lock)
-> > +{
-> > +	struct gunyah_vm_function_driver *iter, *drv = NULL;
-> > +
-> > +	list_for_each_entry(iter, &functions, list) {
-> > +		if (!strncmp(iter->name, name, GUNYAH_FUNCTION_NAME_SIZE)) {
-> > +			drv = iter;
-> > +			break;
-> > +		}
-> > +	}
+
+>>> +  resets:
+>>> +    items:
+>>> +      - description: Memory ARB line
+>>> +      - description: Dedicated device reset line
+>>
+>> This won't work without minItems and you should see errors on your DTS
+>> or in dt_binding_check
+>>
 > 
-> Not sure how much of a hot path this is going to sit in. I can imagine VM boot
-> to be in fast path for some cases (VMs spawned on usecase boundaries - I think
-> some VMs like in Amazon firecracker boot in fraction of a second). This
-> indirection could cost that a bit (linear search + strcmp for the right
-> function). IMHO a direct interface (ex: ADD_IOEVENTFD) will be more efficient.
+> The example provided here worked but there is indeed a warning with the
+> axg-frddr variant.
+> 
+> I'm adding a 2nd example so it does not happen again.
 
-At the minimum, I think you can make iter->name an enum, which will make the
-search faster.
+If the difference is only in one property, no need. If the difference is
+in more properties - then could be. We do not keep examples for every
+trivial change, because the assumption is that submitter tests DTS as well.
 
--vatsa
+> 
+>>> +
+>>> +  reset-names: true
+>>
+>> minItems
+>> maxItems
+> 
+> Adding this causes troubles with the reset-names definitions in the 'if'
+> clause. If I put min: 1, max: 2 and min: 2 in the 'then' clause I get:
+> 
+>> Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml: allOf:1:then:properties:reset-names: 'oneOf' conditional failed, one must be fixed:
+>>        [{'const': 'arb'}, {'const': 'rst'}] is too long
+>>        [{'const': 'arb'}, {'const': 'rst'}] is too short
+>>        False schema does not allow 2
+>>        1 was expected
+>>        hint: "minItems" is only needed if less than the "items" list length
+>>        from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+
+Probably because rest of binding does not match. One way is like this:
+
+https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+
+> 
+> The older devices just have the 'arb' reset.
+> Newer devices have a 2nd reset line (called rst here)
+> 
+> If I just restrict the min and max, it would be valid for the older
+> devices to have 'rst' only - but it is not valid.
+
+How? Why would you define for old devices "rst" as one name if this is
+not correct?
+
+> 
+> With just 'true', it works as expected (throw errors if an incorrect
+> name or number of names is passed). Min and Max comes from the items list.
+
+Because the rest is not in recommended way. Once you implement it in
+recommended way, there will be no such...
+
+> 
+> Any suggestions ?
+
+Implement rest of comments.
+
+
+Best regards,
+Krzysztof
 
