@@ -2,165 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14E3A68A647
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 23:43:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 536C668A654
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 23:50:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233126AbjBCWn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 17:43:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57124 "EHLO
+        id S232809AbjBCWuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 17:50:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231176AbjBCWn1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 17:43:27 -0500
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7901725BB6;
-        Fri,  3 Feb 2023 14:43:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675464206; x=1707000206;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uBWBIwLYGQ7ThsqQoIqSuUOO/Yc5dY/pPpXOJxipOMI=;
-  b=C/6/haqY11IcWbYyfll4pBZ+1ScdoN2xxHSLKORbbYWfDGTnMnYfenZV
-   PSlUw0HZc3Up4/j5K8E9kEMb3QNt/aukC2bkuH8306f08Nj58DLKI/LPe
-   MAXqaHUhBBozDCp5lTzEsIGpHaO0PRH4DK2Ap1G3usQ7UPHc8Ciux97fN
-   iv8frRZQpFJhbyup3+Qeg6nej+3agKkpg42NAVYH9nqmcyU/7T0yDVJUO
-   sJOok75xoMR/VuUSwvg01gZFlfD8qqQsV0a0Wix61fPNk34++YxaWP66K
-   zTNpwuDus3LgoXDoUz0TF0y7sw2UfbxmD7wn1U6/B0GjDnJSNfTN/cPAh
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="391269832"
-X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; 
-   d="scan'208";a="391269832"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2023 14:43:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="696279972"
-X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; 
-   d="scan'208";a="696279972"
-Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 03 Feb 2023 14:43:20 -0800
-Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pO4m7-0000or-1B;
-        Fri, 03 Feb 2023 22:43:19 +0000
-Date:   Sat, 4 Feb 2023 06:42:19 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        martin.petersen@oracle.com, beanhuo@micron.com, arnd@arndb.de,
-        avri.altman@wdc.com, iwona.winiarska@intel.com,
-        fmdefrancesco@gmail.com, dipenp@nvidia.com, ogabbay@kernel.org,
-        bvanassche@acm.org, mathieu.poirier@linaro.org,
-        yangyicong@hisilicon.com, dan.j.williams@intel.com,
-        devicetree@vger.kernel.org, linus.walleij@linaro.org,
-        Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
-Subject: Re: [PATCHv2 2/4] wiegand: add Wiegand bus driver
-Message-ID: <202302040653.thgxkOi8-lkp@intel.com>
-References: <20230202143305.21789-3-m.zatovic1@gmail.com>
+        with ESMTP id S233008AbjBCWuu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 17:50:50 -0500
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AED74ED2
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 14:50:46 -0800 (PST)
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20230203225043euoutp015d99d2ed466600bf157304354999ad71~Acjdmy8_t0680506805euoutp01R
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 22:50:43 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20230203225043euoutp015d99d2ed466600bf157304354999ad71~Acjdmy8_t0680506805euoutp01R
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1675464643;
+        bh=fmzngyA8ptBKcBGSeyS4q9rTlL5d3Gfnfw9j7mZIjew=;
+        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+        b=G83F5yZohko677CXDxsm9+wX+0QqlRqocryUuvygHOvRhWC72+AqidHzvmKccYJZA
+         cKreZXStxG/X9yU1Wd5ltRBI7VB9fb+XB8TqicSQxycyu/LebCnDXx/YdBokPY1qRd
+         ZY0JY2jd4AoYzsi8vXp3dYllPlzjlEn6GlTrM7ls=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20230203225042eucas1p17b82825c8a6c34ad9bd70aa99868f4a0~Acjc9Fb0Y0556505565eucas1p1K;
+        Fri,  3 Feb 2023 22:50:42 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 9C.82.13597.2CF8DD36; Fri,  3
+        Feb 2023 22:50:42 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20230203225041eucas1p10fa99a1d02eeeb50a49289ad2b39302f~AcjcCpfjB2824928249eucas1p1j;
+        Fri,  3 Feb 2023 22:50:41 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20230203225041eusmtrp2b0bc4b5eeda725df3cb025d940ad7e39~Acjb9a5310986709867eusmtrp2M;
+        Fri,  3 Feb 2023 22:50:41 +0000 (GMT)
+X-AuditID: cbfec7f4-1f1ff7000000351d-1d-63dd8fc2af08
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 15.1E.02722.1CF8DD36; Fri,  3
+        Feb 2023 22:50:41 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20230203225041eusmtip2acb48be8f3acb4a078920434e4894b12~AcjbL58-30811508115eusmtip2w;
+        Fri,  3 Feb 2023 22:50:41 +0000 (GMT)
+Message-ID: <6a9fcdc9-3fe7-e8fc-3a51-385d516c6323@samsung.com>
+Date:   Fri, 3 Feb 2023 23:50:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230202143305.21789-3-m.zatovic1@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0)
+        Gecko/20100101 Thunderbird/102.6.1
+Subject: Re: [PATCH 5/9] ARM: dts: exynos: move exynos-bus nodes out of soc
+ in Exynos4412
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>,
+        Henrik Grimler <henrik@grimler.se>,
+        Chanwoo Choi <cw00.choi@samsung.com>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <697aa7b5-9c9b-eb4f-8111-c9a396d9d191@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKKsWRmVeSWpSXmKPExsWy7djP87qH+u8mG8ycbGzxYN42NovrX56z
+        Wsw/co7V4u2SXYwW/Y9fM1v0vXjIbLH39VZ2i02Pr7FaXN41h81ixvl9TBZn/k1lsVjwx85i
+        3RpBi9a9R9gtNn//y+jA77Fz1l12j6NX7rF6bFrVyeZx59oeNo/NS+o9/t9Zy+7xpbmb1aNv
+        yypGj8+b5AI4o7hsUlJzMstSi/TtErgymp4vYS7oVK/oPuHXwLhOoYuRk0NCwERi/fI1zF2M
+        XBxCAisYJdpWX2SDcL4wSlyZPpcFwvnMKDFv+kV2mJaJ3+cwQSSWM0osW3+OEcL5yCgxaepl
+        FpAqXgE7iZsLr4F1sAioSCy5N48dIi4ocXLmE6AaDg5RgRSJTX/KQMLCAtESi/7eYQWxmQXE
+        JW49mQ+2QETgGZPEzK2tTBCJ54wSt/+ygdhsAoYSXW+72EDmcALtWr4mBaJEXqJ562xmiEM3
+        c0rsu8wPYbtIzJmxhw3CFpZ4dXwL1DMyEv93QuySEGhnlFjw+z6UM4FRouH5LUaIKmuJO+d+
+        gS1jFtCUWL9LHyLsKPFwy1+wsIQAn8SNt4IQN/BJTNo2nRkizCvR0SYEUa0mMev4Ori1By9c
+        Yp7AqDQLKVBmIfl+FpJvZiHsXcDIsopRPLW0ODc9tdgoL7Vcrzgxt7g0L10vOT93EyMw5Z3+
+        d/zLDsblrz7qHWJk4mA8xCjBwawkwrv89J1kId6UxMqq1KL8+KLSnNTiQ4zSHCxK4rzatieT
+        hQTSE0tSs1NTC1KLYLJMHJxSDUzuQqvulS5md0s/lu8eKKPDHfFR58vChg/3FrR9vSjFLXKg
+        fOWb2ZPMr4sUBUU0nni4Tq1oeVuu5xHVK2wS505eEc7PPXsnXSpP27X29r1dJ5xFWZJr1jFu
+        qlE5qXem1++6+I2T4to7Vps2t04wL07uXtDSqfL6ZzV7sdU6w7JXApePeh1e/nYlx4QrKSvm
+        eVXldyUpXZSrPvFuEZ/K97e7D87IvyoWfbtWe0rEv3ufK3ptOUu09t54t+Pf1DscDvtcPGvf
+        MJhceZ+mzSl4fd3GGyX8hYlvGTXvRD8W9zOtPDLjUKfyS3nh7Q9t38YHT7SOLJHd3GfvXefk
+        +qbyOee/ldx/pf4bp/h/y1oy1U2JpTgj0VCLuag4EQB6WRuA6AMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrJIsWRmVeSWpSXmKPExsVy+t/xe7oH++8mG7z6YmDxYN42NovrX56z
+        Wsw/co7V4u2SXYwW/Y9fM1v0vXjIbLH39VZ2i02Pr7FaXN41h81ixvl9TBZn/k1lsVjwx85i
+        3RpBi9a9R9gtNn//y+jA77Fz1l12j6NX7rF6bFrVyeZx59oeNo/NS+o9/t9Zy+7xpbmb1aNv
+        yypGj8+b5AI4o/RsivJLS1IVMvKLS2yVog0tjPQMLS30jEws9QyNzWOtjEyV9O1sUlJzMstS
+        i/TtEvQymp4vYS7oVK/oPuHXwLhOoYuRk0NCwERi4vc5TCC2kMBSRom7F4Ug4jISJ6c1sELY
+        whJ/rnWxdTFyAdW8Z5ToaL8IluAVsJO4ufAaO4jNIqAiseTePHaIuKDEyZlPWEBsUYEUiebn
+        J8HqhQWiJdY8PwK2jFlAXOLWk/lMIENFBJ4xSTx+vo0FxGEWeM4ocX9rEyvEul4WickTZ4CN
+        YhMwlOh6C3IHBwcn0Orla1IgJplJdG3tYoSw5SWat85mnsAoNAvJIbOQLJyFpGUWkpYFjCyr
+        GEVSS4tz03OLDfWKE3OLS/PS9ZLzczcxAuN827Gfm3cwznv1Ue8QIxMH4yFGCQ5mJRHe5afv
+        JAvxpiRWVqUW5ccXleakFh9iNAWGxkRmKdHkfGCiySuJNzQzMDU0MbM0MLU0M1YS5/Us6EgU
+        EkhPLEnNTk0tSC2C6WPi4JRqYArqeOh05M0u3bWlSyLOT2WbzR17UDjh+gQuA0HND6teCqcd
+        3T37IE/65o9chYuPvPnyY6JO5QuxSXMvxNYyzYtQnV00P3h7MNdV8++GH7a4SvQ2xU1y3338
+        tpzf/U8XVRe8OK/1P/ZJslnkS6WftdrrbsVw3JxVEvlHOjc3Ija/u3KX7j3j1w37K74crnyQ
+        8mGdwZ9563e5cK/5s0I3T0zmuqidLvfvaz8/FnIeSAh/VGezM+vBASk91TOvDGyVz1fyvOGQ
+        f7fBniHr44LEyM9LHO7eel6adLdFbKXPVsv+z881UuXcnd4te6De3dnL3yg3VW/h5N/93RPM
+        Yl9OXv9mz/wn4aXGoUemX7HNeM2qxFKckWioxVxUnAgAuUDV+nwDAAA=
+X-CMS-MailID: 20230203225041eucas1p10fa99a1d02eeeb50a49289ad2b39302f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20230129104220eucas1p15b70f73be86fa5600cfe170d22869836
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20230129104220eucas1p15b70f73be86fa5600cfe170d22869836
+References: <20230125094513.155063-1-krzysztof.kozlowski@linaro.org>
+        <20230125094513.155063-5-krzysztof.kozlowski@linaro.org>
+        <CGME20230129104220eucas1p15b70f73be86fa5600cfe170d22869836@eucas1p1.samsung.com>
+        <29841f64-360b-1426-e1fd-dd4c64ee5455@linaro.org>
+        <b3f31e71-fa1a-e0c0-fdfa-f65674ccc5cd@samsung.com>
+        <d54792c5-2842-e5b9-26b8-1f52471211a9@linaro.org>
+        <111f7364-0d7b-b4c5-721f-69c00d4619e2@samsung.com>
+        <dc0c3fa9-a6d4-e1c1-7cc8-13b206e3b31f@linaro.org>
+        <697aa7b5-9c9b-eb4f-8111-c9a396d9d191@linaro.org>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+On 03.02.2023 22:12, Krzysztof Kozlowski wrote:
+> On 03/02/2023 21:34, Krzysztof Kozlowski wrote:
+>> On 03/02/2023 12:51, Marek Szyprowski wrote:
+>>> On 03.02.2023 12:46, Krzysztof Kozlowski wrote:
+>>>> On 03/02/2023 12:45, Marek Szyprowski wrote:
+>>>>> On 29.01.2023 11:42, Krzysztof Kozlowski wrote:
+>>>>>> On 25/01/2023 10:45, Krzysztof Kozlowski wrote:
+>>>>>>> The soc node is supposed to have only device nodes with MMIO addresses,
+>>>>>>> as reported by dtc W=1:
+>>>>>>>
+>>>>>>>      exynos4412.dtsi:407.20-413.5:
+>>>>>>>        Warning (simple_bus_reg): /soc/bus-acp: missing or empty reg/ranges property
+>>>>>>>
+>>>>>>> and dtbs_check:
+>>>>>>>
+>>>>>>>      exynos4412-i9300.dtb: soc: bus-acp:
+>>>>>>>        {'compatible': ['samsung,exynos-bus'], 'clocks': [[7, 456]], 'clock-names': ['bus'], 'operating-points-v2': [[132]], 'status': ['okay'], 'devfreq': [[117]]} should not be valid under {'type': 'object'}
+>>>>>>>
+>>>>>>> Move the bus nodes and their OPP tables out of SoC to fix this.
+>>>>>>> Re-order them alphabetically while moving and put some of the OPP tables
+>>>>>>> in device nodes (if they are not shared).
+>>>>>>>
+>>>>>> Applied.
+>>>>> I don't have a good news. It looks that this change is responsible for
+>>>>> breaking boards that were rock-stable so far, like Odroid U3. I didn't
+>>>>> manage to analyze what exactly causes the issue, but it looks that the
+>>>>> exynos-bus devfreq driver somehow depends on the order of the nodes:
+>>>>>
+>>>>> (before)
+>>>>>
+>>>>> # dmesg | grep exynos-bus
+>>>>> [    6.415266] exynos-bus: new bus device registered: soc:bus-dmc
+>>>>> (100000 KHz ~ 400000 KHz)
+>>>>> [    6.422717] exynos-bus: new bus device registered: soc:bus-acp
+>>>>> (100000 KHz ~ 267000 KHz)
+>>>>> [    6.454323] exynos-bus: new bus device registered: soc:bus-c2c
+>>>>> (100000 KHz ~ 400000 KHz)
+>>>>> [    6.489944] exynos-bus: new bus device registered: soc:bus-leftbus
+>>>>> (100000 KHz ~ 200000 KHz)
+>>>>> [    6.493990] exynos-bus: new bus device registered: soc:bus-rightbus
+>>>>> (100000 KHz ~ 200000 KHz)
+>>>>> [    6.494612] exynos-bus: new bus device registered: soc:bus-display
+>>>>> (160000 KHz ~ 200000 KHz)
+>>>>> [    6.494932] exynos-bus: new bus device registered: soc:bus-fsys
+>>>>> (100000 KHz ~ 134000 KHz)
+>>>>> [    6.495246] exynos-bus: new bus device registered: soc:bus-peri (
+>>>>> 50000 KHz ~ 100000 KHz)
+>>>>> [    6.495577] exynos-bus: new bus device registered: soc:bus-mfc
+>>>>> (100000 KHz ~ 200000 KHz)
+>>>>>
+>>>>> (after)
+>>>>>
+>>>>> # dmesg | grep exynos-bus
+>>>>>
+>>>>> [    6.082032] exynos-bus: new bus device registered: bus-dmc (100000
+>>>>> KHz ~ 400000 KHz)
+>>>>> [    6.122726] exynos-bus: new bus device registered: bus-leftbus
+>>>>> (100000 KHz ~ 200000 KHz)
+>>>>> [    6.146705] exynos-bus: new bus device registered: bus-mfc (100000
+>>>>> KHz ~ 200000 KHz)
+>>>>> [    6.181632] exynos-bus: new bus device registered: bus-peri ( 50000
+>>>>> KHz ~ 100000 KHz)
+>>>>> [    6.204770] exynos-bus: new bus device registered: bus-rightbus
+>>>>> (100000 KHz ~ 200000 KHz)
+>>>>> [    6.211087] exynos-bus: new bus device registered: bus-acp (100000
+>>>>> KHz ~ 267000 KHz)
+>>>>> [    6.216936] exynos-bus: new bus device registered: bus-c2c (100000
+>>>>> KHz ~ 400000 KHz)
+>>>>> [    6.225748] exynos-bus: new bus device registered: bus-display
+>>>>> (160000 KHz ~ 200000 KHz)
+>>>>> [    6.242978] exynos-bus: new bus device registered: bus-fsys (100000
+>>>>> KHz ~ 134000 KHz)
+>>>>>
+>>>>> This is definitely a driver bug, but so far it worked fine, so this is a
+>>>>> regression that need to be addressed somehow...
+>>>> Thanks for checking, but what is exactly the bug? The devices registered
+>>>> - just with different name.
+>>> The bug is that the board fails to boot from time to time, freezing
+>>> after registering PPMU counters...
+>> My U3 with and without this patch, reports several warnings:
+>> iommu_group_do_set_platform_dma()
+>> exynos_iommu_domain_free()
+>> clk_core_enable()
+>>
+>> and finally:
+>> rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+>>
+>> and keeps stalling.
+>>
+>> At least on next-20230203. Except all these (which anyway make board
+>> unbootable) look fine around PMU and exynos-bus.
+> I also booted few times my next/dt branch (with this patch) and no
+> problems. How reproducible is the issue you experience?
 
-I love your patch! Yet something to improve:
+IOMMU needs a fixup, that has been merged today:
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.2-rc6 next-20230203]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+https://lore.kernel.org/all/20230123093102.12392-1-m.szyprowski@samsung.com/
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Martin-Za-ovi/dt-bindings-wiegand-add-Wiegand-controller-common-properties/20230202-223510
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230202143305.21789-3-m.zatovic1%40gmail.com
-patch subject: [PATCHv2 2/4] wiegand: add Wiegand bus driver
-config: ia64-randconfig-s042-20230204 (https://download.01.org/0day-ci/archive/20230204/202302040653.thgxkOi8-lkp@intel.com/config)
-compiler: ia64-linux-gcc (GCC) 12.1.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # apt-get install sparse
-        # sparse version: v0.6.4-39-gce1a6720-dirty
-        # https://github.com/intel-lab-lkp/linux/commit/5dc4c223e5bb967973f6fbcbea5d45ee1f95db97
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Martin-Za-ovi/dt-bindings-wiegand-add-Wiegand-controller-common-properties/20230202-223510
-        git checkout 5dc4c223e5bb967973f6fbcbea5d45ee1f95db97
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=ia64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=ia64 SHELL=/bin/bash drivers/wiegand/
+I was initially convinced that this freeze is somehow related to this 
+IOMMU fixup, but it turned out that the devfreq is a source of the problems.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+The freeze happens here about 1 of 10 boots, usually with kernel 
+compiled from multi_v7_defconfig, while loading the PPMU modules. It 
+happens on your next/dt branch too.
 
-All errors (new ones prefixed by >>):
-
-   drivers/wiegand/wiegand.c: In function 'of_register_wiegand_device':
->> drivers/wiegand/wiegand.c:106:14: error: implicit declaration of function 'of_modalias_node'; did you mean 'of_match_node'? [-Werror=implicit-function-declaration]
-     106 |         rc = of_modalias_node(nc, wiegand->modalias, sizeof(wiegand->modalias));
-         |              ^~~~~~~~~~~~~~~~
-         |              of_match_node
-   cc1: some warnings being treated as errors
-
-
-vim +106 drivers/wiegand/wiegand.c
-
-    91	
-    92	static struct wiegand_device *of_register_wiegand_device(
-    93							struct wiegand_controller *ctlr,
-    94							struct device_node *nc)
-    95	{
-    96		struct wiegand_device *wiegand;
-    97		int rc;
-    98	
-    99		wiegand = wiegand_alloc_device(ctlr);
-   100		if (!wiegand) {
-   101			dev_err(&ctlr->dev, "wiegad_device alloc error for %pOF\n", nc);
-   102			rc = -ENOMEM;
-   103			goto err_out;
-   104		}
-   105	
- > 106		rc = of_modalias_node(nc, wiegand->modalias, sizeof(wiegand->modalias));
-   107		if (rc < 0) {
-   108			dev_err(&ctlr->dev, "cannot find modalias for %pOF\n", nc);
-   109			goto err_out;
-   110		}
-   111	
-   112		of_node_get(nc);
-   113		wiegand->dev.of_node = nc;
-   114		wiegand->dev.fwnode = of_fwnode_handle(nc);
-   115	
-   116		rc = wiegand_add_device(wiegand);
-   117		if (rc) {
-   118			dev_err(&ctlr->dev, "wiegand_device register error %pOF\n", nc);
-   119			goto err_of_node_put;
-   120		}
-   121	
-   122		/* check if more devices are connected to the bus */
-   123		if (ctlr->device_count > 1)
-   124			dev_warn(&ctlr->dev, "Wiegand is a point-to-point bus, it is advised to only connect one device per Wiegand bus. The devices may not communicate using the same pulse length, format or else.\n");
-   125	
-   126		return wiegand;
-   127	
-   128	err_of_node_put:
-   129		of_node_put(nc);
-   130	err_out:
-   131		wiegand_dev_put(wiegand);
-   132		return ERR_PTR(rc);
-   133	}
-   134	
-
+Best regards
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
