@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D99A68992E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 13:50:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C883D689924
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 13:50:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232999AbjBCMuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 07:50:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54658 "EHLO
+        id S232876AbjBCMuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 07:50:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232590AbjBCMut (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 07:50:49 -0500
+        with ESMTP id S232970AbjBCMui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 07:50:38 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3855F99D7E
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 04:50:48 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB1059B6C9
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 04:50:34 -0800 (PST)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1pNvWE-0000bb-5T; Fri, 03 Feb 2023 13:50:18 +0100
+        id 1pNvWE-0000bc-5R; Fri, 03 Feb 2023 13:50:18 +0100
 Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1pNvWB-002OqH-Vf; Fri, 03 Feb 2023 13:50:17 +0100
+        id 1pNvWC-002OqI-0B; Fri, 03 Feb 2023 13:50:17 +0100
 Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1pNvWA-000Zll-3J; Fri, 03 Feb 2023 13:50:14 +0100
+        id 1pNvWA-000Zlp-3u; Fri, 03 Feb 2023 13:50:14 +0100
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     linux-pm@vger.kernel.org
 Cc:     linux-rockchip@lists.infradead.org,
@@ -37,9 +37,9 @@ Cc:     linux-rockchip@lists.infradead.org,
         Mark Rutland <mark.rutland@arm.com>, kernel@pegutronix.de,
         Michael Riesch <michael.riesch@wolfvision.net>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH 11/18] PM / devfreq: rockchip-dfi: Handle LPDDR2 correctly
-Date:   Fri,  3 Feb 2023 13:50:05 +0100
-Message-Id: <20230203125012.3804008-12-s.hauer@pengutronix.de>
+Subject: [PATCH 12/18] PM / devfreq: rockchip-dfi: Handle LPDDR4X
+Date:   Fri,  3 Feb 2023 13:50:06 +0100
+Message-Id: <20230203125012.3804008-13-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20230203125012.3804008-1-s.hauer@pengutronix.de>
 References: <20230203125012.3804008-1-s.hauer@pengutronix.de>
@@ -58,42 +58,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the downstream driver the DDRMON_CTRL_LPDDR23 bit must be
-set for both LPDDR2 and LPDDR3. Add the missing LPDDR2 case and while
-at it turn the if/else if/else into switch/case which makes it easier
-to read.
+In the DFI driver LPDDR4X can be handled in the same way as LPDDR4. Add
+the missing case.
 
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
- drivers/devfreq/event/rockchip-dfi.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ drivers/devfreq/event/rockchip-dfi.c | 1 +
+ include/soc/rockchip/rockchip_grf.h  | 1 +
+ 2 files changed, 2 insertions(+)
 
 diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-index 78cb594bd2a81..92ee61c96a1a9 100644
+index 92ee61c96a1a9..dc48d9c26f599 100644
 --- a/drivers/devfreq/event/rockchip-dfi.c
 +++ b/drivers/devfreq/event/rockchip-dfi.c
-@@ -82,12 +82,19 @@ static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
- 	writel_relaxed(HIWORD_UPDATE(0, 0xffff), dfi_regs + DDRMON_CTRL);
- 
- 	/* set ddr type to dfi */
--	if (dfi->ddr_type == ROCKCHIP_DDRTYPE_LPDDR3)
-+	switch (dfi->ddr_type) {
-+	case ROCKCHIP_DDRTYPE_LPDDR2:
-+	case ROCKCHIP_DDRTYPE_LPDDR3:
- 		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR23, DDRMON_CTRL_DDR_TYPE_MASK),
+@@ -89,6 +89,7 @@ static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
  			       dfi_regs + DDRMON_CTRL);
--	else if (dfi->ddr_type == ROCKCHIP_DDRTYPE_LPDDR4)
-+		break;
-+	case ROCKCHIP_DDRTYPE_LPDDR4:
+ 		break;
+ 	case ROCKCHIP_DDRTYPE_LPDDR4:
++	case ROCKCHIP_DDRTYPE_LPDDR4X:
  		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR4, DDRMON_CTRL_DDR_TYPE_MASK),
  			       dfi_regs + DDRMON_CTRL);
-+		break;
-+	default:
-+		break;
-+	}
+ 		break;
+diff --git a/include/soc/rockchip/rockchip_grf.h b/include/soc/rockchip/rockchip_grf.h
+index dc77bb762a05a..7150a3362b142 100644
+--- a/include/soc/rockchip/rockchip_grf.h
++++ b/include/soc/rockchip/rockchip_grf.h
+@@ -11,5 +11,6 @@
+ #define ROCKCHIP_DDRTYPE_LPDDR2	5
+ #define ROCKCHIP_DDRTYPE_LPDDR3	6
+ #define ROCKCHIP_DDRTYPE_LPDDR4	7
++#define ROCKCHIP_DDRTYPE_LPDDR4X	8
  
- 	/* enable count, use software mode */
- 	writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_SOFTWARE_EN, DDRMON_CTRL_SOFTWARE_EN),
+ #endif /* __SOC_ROCKCHIP_GRF_H */
 -- 
 2.30.2
 
