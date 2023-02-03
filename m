@@ -2,432 +2,338 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39DEB689FB0
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 17:51:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC400689FBC
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 17:55:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233544AbjBCQvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 11:51:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42456 "EHLO
+        id S233221AbjBCQzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 11:55:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233545AbjBCQv0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 11:51:26 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DCD6A9D4A
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 08:51:16 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id hx15so16924151ejc.11
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 08:51:16 -0800 (PST)
+        with ESMTP id S233355AbjBCQzi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 11:55:38 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FF9245F47
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 08:55:36 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id bk15so16995216ejb.9
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 08:55:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9H+7eu0nKo3RQkzvEs2GR39wpNecSbntvidjbbSX1cA=;
-        b=XWgl1miqEhDyUgWUqx5UwU2/DNele/Ymr2GysXqyFvM7EDjymyzTHNQL5FdWs7WOSd
-         CFszJwShP4mChWBBfSH4sz3Z+NVP+YnGJ9JN2iTffiU6kNe7v+cv8nowevMIjY6GDvPz
-         Rbbr2uy2y9YunMtdGl5Sd/PB0SB/r1mWDlL/lKPHVWLhP9SBVEm0CtyfChLQ/kjZrqd1
-         7Chv4VdK2MS552pmrofmFv4pmAEkW2UetTqhN97T3ttJjXtY4xttT0uA0OAe073tH20w
-         AuCxL2xcUfQvmvVM54qOVrtcPrGKN7aj5Nr5glGwJTvut27n2aiszoiE13+h968sPtnR
-         GdaA==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=rCBqh8Ci/hqs3gPTf4KLfMh7FGnfBkn4zFDZ/nxc920=;
+        b=aUX2UMuGGtds9sxCf+q61gS0NuOePO38kX8wkhGE+KxRONYTweFKP1dSmtfzr83kwA
+         J+pW4qeuOYEX/kzo4s+lVewlHtMaSRepzoFd+VrDpmbySs5ieVt/Cc/yMtC5cacouQa1
+         D5SdUY4HEUzfmP0n4qAEpHmrl3i+Hjc/GRT7n3iywHDeSEtRzCtz4BkyMhv7qtq31tes
+         nI+RcCjc+r7HV9Kc6LRVdiui/bO11B7/xUE9shHb7yJ5nY1aWzHBsYCMrxCoQmJTMt45
+         A6ktB6bkjmuZEldPBKJLJQhyopL5gl8X1AKHXlxr05cK76reExjlZgUombq9+0c1S34X
+         AqoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9H+7eu0nKo3RQkzvEs2GR39wpNecSbntvidjbbSX1cA=;
-        b=GCDKJHybpn1OROkH3eGtnnis0I44EVnYjV55edpBAYlLoLlEQpuhPwX5YYJUE7DWC8
-         Ja3oiSS76kqxyFlL2ORnhvGN0IaYRzZ1Lwdhb+XG3GF7lzTWNteXxWeEnHznzTZDKrS6
-         JCNWN1f6fQofR4BG3+FQEZNNTkjfq1Q2AwS1mD0fRsbLddwfB9oMYXNQlWx38Ikq/JUt
-         4IL3xJxGfTCBJZIsftPgiDJBMJoCu6di8JLYIw06ptUvkfpb8Iclu7fkZL+mTy2UKs25
-         w4W5jyJY3MTyei/5IKB8nOXApS43/Y2OmSFQVNUUTY1/FydD9lt+xqbsjw7C4jYHi2Rn
-         Qzqw==
-X-Gm-Message-State: AO0yUKV5smNBS4y5ud0+Qijca+dRUYKiXGG4Pb5RepSETg7ZJxNTNLmm
-        g6eEd+0lpkd/YLe8Cc8KLuwC5Q==
-X-Google-Smtp-Source: AK7set/FJqUMcqpkulM8FoKVPvO1SihaJHrmGlj4OWLQ1VoDLsSjJ22/1UX/o5SMinpCJsqP9VCUTA==
-X-Received: by 2002:a17:906:4941:b0:88c:a3f0:4e3f with SMTP id f1-20020a170906494100b0088ca3f04e3fmr11322529ejt.22.1675443074631;
-        Fri, 03 Feb 2023 08:51:14 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id jo10-20020a170906f6ca00b00878812a8d14sm1608469ejb.85.2023.02.03.08.51.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 08:51:14 -0800 (PST)
-Message-ID: <6f326ed7-6799-b965-fe3a-1f046546ed44@linaro.org>
-Date:   Fri, 3 Feb 2023 18:51:13 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rCBqh8Ci/hqs3gPTf4KLfMh7FGnfBkn4zFDZ/nxc920=;
+        b=SSlsmf4vKP5oQfE2WuRuOxwM3dQJf/4986410fzNGrTYZCCsDp7Aff939aQwXOgAvk
+         hN1/DyGb1P+Rz4ROquwJ1bmFhQwFeDWgeNA+L+ZjiHkebIAChF/EwQzjfA3laxpY4SM5
+         RufBU+hf5BkmsiLupaLFVnDQQRKoV8kDPoI1/h9zwL09fyz0ZWxrgUPw9DCvc95eGaLH
+         VgVv0xQ6IZ7POTXCqDlD1V6a8fI6HI8T5eBotHPQlCMxfSK499ckz8kjCpksMxnvM7nM
+         jy51BkiMxFOKkP2PhoferJnh5u6ntXqgByhZrg3SnWo4BQT71vEgp4NHGc1fogT52b32
+         bM0A==
+X-Gm-Message-State: AO0yUKX6iBE2kLka8Asdn/6UbhChFjlHd3rO4GOFcrxoRbHHOMXcUgxO
+        ctyFzh0f0vYO/z5xp6WnBCvxG/FpyWmF4f8jCmbNRA==
+X-Google-Smtp-Source: AK7set9AGau3jLyjvQVLJXMJGXRW9FTmqNFqvQFe19QZAn1RIUIAPobsbCVidbKPSV73Mpok5V4Bx30BmXelY1HDqTU=
+X-Received: by 2002:a17:906:e0d7:b0:7c0:fa5f:a032 with SMTP id
+ gl23-20020a170906e0d700b007c0fa5fa032mr2521300ejb.112.1675443334539; Fri, 03
+ Feb 2023 08:55:34 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [RFC v3 4/7] phy: qcom: Add QCOM SNPS eUSB2 repeater driver
-Content-Language: en-GB
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-phy@lists.infradead.org
-References: <20230202133816.4026990-1-abel.vesa@linaro.org>
- <20230202133816.4026990-5-abel.vesa@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230202133816.4026990-5-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230124105643.1737250-1-etienne.carriere@linaro.org>
+ <20230124105643.1737250-3-etienne.carriere@linaro.org> <Y9zkQTXLzOzYqtV+@jade>
+In-Reply-To: <Y9zkQTXLzOzYqtV+@jade>
+From:   Etienne Carriere <etienne.carriere@linaro.org>
+Date:   Fri, 3 Feb 2023 17:55:23 +0100
+Message-ID: <CAN5uoS8B7ib3+UGxnQYJfJ2gCb2YRh_yULVCi5A8n+8-dG8h-A@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] optee: add enable/disable/set_wake handlers to
+ optee irqs
+To:     Jens Wiklander <jens.wiklander@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        Sumit Garg <sumit.garg@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 15:38, Abel Vesa wrote:
-> PM8550B contains a eUSB2 repeater used for making the eUSB2 from
-> SM8550 USB 2.0 compliant. This can be modelled SW-wise as a Phy.
-> So add a new phy driver for it.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->   drivers/phy/qualcomm/Kconfig                  |   9 +
->   drivers/phy/qualcomm/Makefile                 |   1 +
->   .../phy/qualcomm/phy-qcom-eusb2-repeater.c    | 278 ++++++++++++++++++
->   3 files changed, 288 insertions(+)
->   create mode 100644 drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
-> 
-> diff --git a/drivers/phy/qualcomm/Kconfig b/drivers/phy/qualcomm/Kconfig
-> index 27b5a2a3637d..a70631b04522 100644
-> --- a/drivers/phy/qualcomm/Kconfig
-> +++ b/drivers/phy/qualcomm/Kconfig
-> @@ -79,6 +79,15 @@ config PHY_QCOM_SNPS_EUSB2
->   	  chipsets. The PHY is paired with a Synopsys DWC3 USB controller
->   	  on Qualcomm SOCs.
->   
-> +config PHY_QCOM_EUSB2_REPEATER
-> +	tristate "Qualcomm SNPS eUSB2 Repeater Driver"
-> +	depends on OF && (ARCH_QCOM || COMPILE_TEST)
-> +	select GENERIC_PHY
-> +	help
-> +	  Enable support for the USB high-speed SNPS eUSB2 repeater on Qualcomm
-> +	  PMICs. The repeater is paired with a Synopsys eUSB2 Phy
-> +	  on Qualcomm SOCs.
-> +
->   config PHY_QCOM_USB_HS
->   	tristate "Qualcomm USB HS PHY module"
->   	depends on USB_ULPI_BUS
-> diff --git a/drivers/phy/qualcomm/Makefile b/drivers/phy/qualcomm/Makefile
-> index 3ee118f4dfc7..7dcba9537b69 100644
-> --- a/drivers/phy/qualcomm/Makefile
-> +++ b/drivers/phy/qualcomm/Makefile
-> @@ -14,6 +14,7 @@ obj-$(CONFIG_PHY_QCOM_QMP)		+= \
->   
->   obj-$(CONFIG_PHY_QCOM_QUSB2)		+= phy-qcom-qusb2.o
->   obj-$(CONFIG_PHY_QCOM_SNPS_EUSB2)	+= phy-qcom-snps-eusb2.o
-> +obj-$(CONFIG_PHY_QCOM_EUSB2_REPEATER)	+= phy-qcom-eusb2-repeater.o
->   obj-$(CONFIG_PHY_QCOM_USB_HS) 		+= phy-qcom-usb-hs.o
->   obj-$(CONFIG_PHY_QCOM_USB_HSIC) 	+= phy-qcom-usb-hsic.o
->   obj-$(CONFIG_PHY_QCOM_USB_HS_28NM)	+= phy-qcom-usb-hs-28nm.o
-> diff --git a/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c b/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
-> new file mode 100644
-> index 000000000000..f7f822f2973f
-> --- /dev/null
-> +++ b/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
-> @@ -0,0 +1,278 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2023, Linaro Limited
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/regmap.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/phy/phy.h>
-> +
-> +/* eUSB2 status registers */
-> +#define EUSB2_RPTR_STATUS		0x08
-> +#define	RPTR_OK				BIT(7)
-> +
-> +/* eUSB2 control registers */
-> +#define EUSB2_EN_CTL1			0x46
-> +#define EUSB2_RPTR_EN			BIT(7)
-> +
-> +#define PHY_HOST_MODE			BIT(0)
-> +#define EUSB2_FORCE_EN_5		0xE8
-> +#define F_CLK_19P2M_EN			BIT(6)
-> +#define F_CLK_19P2M_EN_SHIFT		6
+On Fri, 3 Feb 2023 at 11:39, Jens Wiklander <jens.wiklander@linaro.org> wrote:
+>
+> On Tue, Jan 24, 2023 at 11:56:43AM +0100, Etienne Carriere wrote:
+> > Implements OP-TEE's It Notif PTA API to deactivate and activate an
+> > interrupt notifier and to configure the wakeup capability
+> > of that interrupt. These controls are useful for efficient power
+> > management of the device when an interrupt controller resources is
+> > hosted in OP-TEE world.
+> >
+> > When OP-TEE does not implement the It Notif PTA, the related handlers
+> > simply return with success. If OP-TEE exposes the PTA services, they
+> > are invoked on enable, disable and set_wake irqchip operations.
+> >
+> > Cc: Jens Wiklander <jens.wiklander@linaro.org>
+> > Cc: Marc Zyngier <maz@kernel.org>
+> > Cc: Sumit Garg <sumit.garg@linaro.org>
+> >
+> > Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+> > ---
+> > Changes since v1:
+> > - Patch added in v2 series for power-up/down and wakeup configuration
+> >   of the irq chip.
+> > ---
+> >  drivers/tee/optee/optee_private.h |   2 +
+> >  drivers/tee/optee/smc_abi.c       | 157 ++++++++++++++++++++++++++++++
+> >  2 files changed, 159 insertions(+)
+> >
+> > diff --git a/drivers/tee/optee/optee_private.h b/drivers/tee/optee/optee_private.h
+> > index f467409e02e9..257bb505a1fb 100644
+> > --- a/drivers/tee/optee/optee_private.h
+> > +++ b/drivers/tee/optee/optee_private.h
+> > @@ -166,6 +166,7 @@ struct optee_ops {
+> >   * @scan_bus_done    flag if device registation was already done.
+> >   * @scan_bus_wq              workqueue to scan optee bus and register optee drivers
+> >   * @scan_bus_work    workq to scan optee bus and register optee drivers
+> > + * @notif_it_pta_ctx    TEE context for invoking interrupt conif services
+>
+> We already have "ctx" above, why do we need another TEE context?
+>
 
-Drop the _SHIFT defines please, they don't add anything on top of 
-previous defines (and don't seem to be used anyway).
+True, not needed. I'll remove it.
 
-> +
-> +#define EUSB2_FORCE_VAL_5		0xED
-> +#define V_CLK_19P2M_EN			BIT(6)
-> +#define V_CLK_19P2M_EN_SHIFT		6
-> +
-> +#define EUSB2_TUNE_IUSB2		0x51
-> +#define EUSB2_TUNE_SQUELCH_U		0x54
-> +#define EUSB2_TUNE_USB2_PREEM		0x57
-> +
-> +#define QCOM_EUSB2_REPEATER_INIT_CFG(o, v)	\
-> +	{					\
-> +		.offset = o,			\
-> +		.val = v,			\
-> +	}
-> +
-> +enum repeater_mode {
-> +	REPEATER_HOST_MODE,
-> +	REPEATER_PERIPH_MODE,
-> +};
+Thanks,
+Etienne
 
-I think this is unused now.
-
-> +
-> +struct eusb2_repeater_init_tbl {
-> +	unsigned int offset;
-> +	unsigned int val;
-> +};
-> +
-> +struct eusb2_repeater_cfg {
-> +	const struct eusb2_repeater_init_tbl *init_tbl;
-> +	int init_tbl_num;
-> +	/* regulators to be requested */
-> +	const char * const *vreg_list;
-> +	int num_vregs;
-> +};
-> +
-> +struct eusb2_repeater {
-> +	struct device *dev;
-> +	struct regmap *regmap;
-> +	struct phy *phy;
-> +	struct regulator_bulk_data *vregs;
-> +	const struct eusb2_repeater_cfg *cfg;
-> +	u16 base;
-> +	enum phy_mode mode;
-> +};
-> +
-> +static const char * const pm8550b_vreg_l[] = {
-> +	"vdd18", "vdd3",
-> +};
-> +
-> +static const struct eusb2_repeater_init_tbl pm8550b_init_tbl[] = {
-> +	QCOM_EUSB2_REPEATER_INIT_CFG(EUSB2_TUNE_IUSB2, 0x8),
-> +	QCOM_EUSB2_REPEATER_INIT_CFG(EUSB2_TUNE_SQUELCH_U, 0x3),
-> +	QCOM_EUSB2_REPEATER_INIT_CFG(EUSB2_TUNE_USB2_PREEM, 0x5),
-> +};
-> +
-> +static const struct eusb2_repeater_cfg pm8550b_eusb2_cfg = {
-> +	.init_tbl	= pm8550b_init_tbl,
-> +	.init_tbl_num	= ARRAY_SIZE(pm8550b_init_tbl),
-> +	.vreg_list	= pm8550b_vreg_l,
-> +	.num_vregs	= ARRAY_SIZE(pm8550b_vreg_l),
-> +};
-> +
-> +static int eusb2_repeater_init_vregs(struct eusb2_repeater *rptr)
-> +{
-> +	int num = rptr->cfg->num_vregs;
-> +	struct device *dev = rptr->dev;
-> +	int i;
-> +
-> +	rptr->vregs = devm_kcalloc(dev, num, sizeof(*rptr->vregs), GFP_KERNEL);
-> +	if (!rptr->vregs)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < num; i++)
-> +		rptr->vregs[i].supply = rptr->cfg->vreg_list[i];
-> +
-> +	return devm_regulator_bulk_get(dev, num, rptr->vregs);
-> +}
-> +
-> +static int eusb2_repeater_init(struct phy *phy)
-> +{
-> +	struct eusb2_repeater *rptr = phy_get_drvdata(phy);
-> +	const struct eusb2_repeater_init_tbl *init_tbl = rptr->cfg->init_tbl;
-> +	int num = rptr->cfg->init_tbl_num;
-> +	int ret = 0;
-> +	u32 val;
-> +	int i;
-> +
-> +	ret = regulator_bulk_enable(rptr->cfg->num_vregs, rptr->vregs);
-> +	if (ret)
-> +		return ret;
-> +
-> +	regmap_update_bits(rptr->regmap, rptr->base + EUSB2_EN_CTL1,
-> +				EUSB2_RPTR_EN, EUSB2_RPTR_EN);
-> +
-> +	for (i = 0; i < num; i++)
-> +		regmap_update_bits(rptr->regmap,
-> +					rptr->base + init_tbl[i].offset,
-> +					init_tbl[i].val, init_tbl[i].val);
-
-I'd move this to a separate function. Then you can use it in the 
-set_mode() too.
-
-> +
-> +	ret = regmap_read_poll_timeout(rptr->regmap,
-> +					rptr->base + EUSB2_RPTR_STATUS, val,
-> +					val & RPTR_OK, 10, 5);
-> +	if (ret)
-> +		dev_err(rptr->dev, "initialization timed-out\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static int eusb2_repeater_set_mode(struct phy *phy,
-> +					enum phy_mode mode, int submode)
-> +{
-> +	struct eusb2_repeater *rptr = phy_get_drvdata(phy);
-> +
-> +	switch (mode) {
-> +	case PHY_MODE_USB_HOST:
-> +		/*
-> +		 * CM.Lx is prohibited when repeater is already into Lx state as
-> +		 * per eUSB 1.2 Spec. Below implement software workaround until
-> +		 * PHY and controller is fixing seen observation.
-> +		 */
-> +		regmap_update_bits(rptr->regmap, rptr->base + EUSB2_FORCE_EN_5,
-> +				F_CLK_19P2M_EN, F_CLK_19P2M_EN);
-> +		regmap_update_bits(rptr->regmap, rptr->base + EUSB2_FORCE_VAL_5,
-> +				V_CLK_19P2M_EN, V_CLK_19P2M_EN);
-> +		break;
-> +	case PHY_MODE_USB_DEVICE:
-> +		/*
-> +		 * In device mode clear host mode related workaround as there
-> +		 * is no repeater reset available, and enable/disable of
-> +		 * repeater doesn't clear previous value due to shared
-> +		 * regulators (say host <-> device mode switch).
-> +		 */
-> +		regmap_update_bits(rptr->regmap, rptr->base + EUSB2_FORCE_EN_5,
-> +				F_CLK_19P2M_EN, 0);
-> +		regmap_update_bits(rptr->regmap, rptr->base + EUSB2_FORCE_VAL_5,
-> +				V_CLK_19P2M_EN, 0);
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int eusb2_repeater_exit(struct phy *phy)
-> +{
-> +	struct eusb2_repeater *rptr = phy_get_drvdata(phy);
-> +
-> +	return regulator_bulk_disable(rptr->cfg->num_vregs, rptr->vregs);
-> +}
-> +
-> +
-> +static const struct phy_ops eusb2_repeater_ops = {
-> +	.init		= eusb2_repeater_init,
-> +	.exit		= eusb2_repeater_exit,
-> +	.set_mode	= eusb2_repeater_set_mode,
-> +	.owner		= THIS_MODULE,
-> +};
-> +
-> +static int eusb2_repeater_probe(struct platform_device *pdev)
-> +{
-> +	struct eusb2_repeater *rptr;
-> +	struct device *dev = &pdev->dev;
-> +	struct phy_provider *phy_provider;
-> +	struct device_node *np;
-> +	u32 res;
-> +	int ret;
-> +
-> +	np = of_node_get(dev->of_node);
-
-Do you really need to increase the refcount here? I thought that we can 
-use dev->of_node straight away.
-
-> +
-> +	rptr = devm_kzalloc(dev, sizeof(*rptr), GFP_KERNEL);
-> +	if (!rptr)
-> +		goto err_node_put;
-> +
-> +	rptr->dev = dev;
-> +	dev_set_drvdata(dev, rptr);
-> +
-> +	rptr->cfg = of_device_get_match_data(dev);
-> +	if (!rptr->cfg)
-> +		goto err_node_put;
-> +
-> +	rptr->regmap = dev_get_regmap(dev->parent, NULL);
-> +	if (!rptr->regmap)
-> +		goto err_node_put;
-> +
-> +	ret = of_property_read_u32(np, "reg", &res);
-> +	if (ret < 0)
-> +		goto err_node_put;
-> +
-> +	rptr->base = res;
-> +
-> +	ret = eusb2_repeater_init_vregs(rptr);
-> +	if (ret < 0) {
-> +		dev_err(dev, "unable to get supplies\n");
-> +		goto err_node_put;
-> +	}
-> +
-> +	rptr->phy = devm_phy_create(dev, np, &eusb2_repeater_ops);
-> +	if (IS_ERR(rptr->phy)) {
-> +		ret = PTR_ERR(rptr->phy);
-> +		dev_err(dev, "failed to create PHY: %d\n", ret);
-> +		goto err_node_put;
-> +	}
-> +
-> +	phy_set_drvdata(rptr->phy, rptr);
-> +
-> +	of_node_put(np);
-> +
-> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +	if (IS_ERR(phy_provider))
-> +		return PTR_ERR(phy_provider);
-> +
-> +	dev_info(dev, "Registered Qcom-eUSB2 repeater\n");
-> +
-> +	return 0;
-> +
-> +err_node_put:
-> +	of_node_put(np);
-> +	return ret;
-> +}
-> +
-> +static int eusb2_repeater_remove(struct platform_device *pdev)
-> +{
-> +	struct eusb2_repeater *rptr = platform_get_drvdata(pdev);
-> +
-> +	if (!rptr)
-> +		return 0;
-> +
-> +	eusb2_repeater_exit(rptr->phy);
-> +	return 0;
-> +}
-> +
-> +
-> +static const struct of_device_id eusb2_repeater_of_match_table[] = {
-> +	{
-> +		.compatible = "qcom,pm8550b-eusb2-repeater",
-> +		.data = &pm8550b_eusb2_cfg,
-> +	},
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, eusb2_repeater_of_match_table);
-> +
-> +static struct platform_driver eusb2_repeater_driver = {
-> +	.probe		= eusb2_repeater_probe,
-> +	.remove		= eusb2_repeater_remove,
-> +	.driver = {
-> +		.name	= "qcom-eusb2-repeater",
-> +		.of_match_table = eusb2_repeater_of_match_table,
-> +	},
-> +};
-> +
-> +module_platform_driver(eusb2_repeater_driver);
-> +
-> +MODULE_DESCRIPTION("Qualcomm PMIC eUSB2 Repeater driver");
-> +MODULE_LICENSE("GPL v2");
-
--- 
-With best wishes
-Dmitry
-
+> Thanks,
+> Jens
+>
+> >   */
+> >  struct optee {
+> >       struct tee_device *supp_teedev;
+> > @@ -185,6 +186,7 @@ struct optee {
+> >       bool   scan_bus_done;
+> >       struct workqueue_struct *scan_bus_wq;
+> >       struct work_struct scan_bus_work;
+> > +     struct tee_context *notif_it_pta_ctx;
+> >  };
+> >
+> >  struct optee_session {
+> > diff --git a/drivers/tee/optee/smc_abi.c b/drivers/tee/optee/smc_abi.c
+> > index 9f4fdd28f04a..95adf8c93c98 100644
+> > --- a/drivers/tee/optee/smc_abi.c
+> > +++ b/drivers/tee/optee/smc_abi.c
+> > @@ -52,6 +52,43 @@
+> >   */
+> >  #define OPTEE_MIN_STATIC_POOL_ALIGN    9 /* 512 bytes aligned */
+> >
+> > +/*
+> > + * Interrupt notification can be configured using Notif-IT PTA services.
+> > + * Below are the PTA UUID and its API commands.
+> > + */
+> > +#define PTA_IT_NOTIF_UUID \
+> > +     UUID_INIT(0x4461e5c7, 0xb523, 0x4b73, 0xac, 0xed, 0x75, 0xad, \
+> > +               0x2b, 0x9b, 0x59, 0xa1)
+> > +
+> > +/*
+> > + * PTA_IT_NOTIF_ACTIVATE_DETECTION - Enable a interrupt notification
+> > + *
+> > + * [in]  params[0].value.a     Interrupt ID
+> > + */
+> > +#define PTA_IT_NOTIF_ACTIVATE_DETECTION              0
+> > +
+> > +/*
+> > + * PTA_IT_NOTIF_DEACTIVATE_DETECTION - Disable a interrupt notification
+> > + *
+> > + * [in]  params[0].value.a     Interrupt ID
+> > + */
+> > +#define PTA_IT_NOTIF_DEACTIVATE_DETECTION    1
+> > +
+> > +/*
+> > + * PTA_IT_NOTIF_ENABLE_WAKEUP_SOURCE - Enable an interrupt wakeup source
+> > + *
+> > + * [in]  params[0].value.a     Interrupt ID
+> > + */
+> > +#define PTA_IT_NOTIF_ENABLE_WAKEUP_SOURCE    2
+> > +
+> > +/*
+> > + * PTA_IT_NOTIF_ENABLE_WAKEUP_SOURCE - Disable an interrupt wakeup source
+> > + *
+> > + * [in]  params[0].value.a     Interrupt ID
+> > + */
+> > +#define PTA_IT_NOTIF_DISABLE_WAKEUP_SOURCE   3
+> > +
+> > +
+> >  /*
+> >   * 1. Convert between struct tee_param and struct optee_msg_param
+> >   *
+> > @@ -977,6 +1014,92 @@ static int optee_smc_stop_async_notif(struct tee_context *ctx)
+> >   * 5. Asynchronous notification
+> >   */
+> >
+> > +static int optee_ctx_match(struct tee_ioctl_version_data *ver, const void *data)
+> > +{
+> > +     return ver->impl_id == TEE_IMPL_ID_OPTEE;
+> > +}
+> > +
+> > +static void init_optee_pta_context(struct optee *optee)
+> > +{
+> > +     struct tee_context *ctx = NULL;
+> > +     const uuid_t pta_uuid = PTA_IT_NOTIF_UUID;
+> > +     struct tee_ioctl_open_session_arg sess_arg;
+> > +     int ret;
+> > +
+> > +     ctx = tee_client_open_context(NULL, optee_ctx_match, NULL, NULL);
+> > +     if (IS_ERR(ctx))
+> > +             return;
+> > +
+> > +     memset(&sess_arg, 0, sizeof(sess_arg));
+> > +     export_uuid(sess_arg.uuid, &pta_uuid);
+> > +     sess_arg.clnt_login = TEE_IOCTL_LOGIN_REE_KERNEL;
+> > +
+> > +     ret = tee_client_open_session(ctx, &sess_arg, NULL);
+> > +     if ((ret < 0) || (sess_arg.ret != 0)) {
+> > +             pr_err("Can't open IT_NOTIF PTA session: %#x\n", sess_arg.ret);
+> > +             tee_client_close_context(ctx);
+> > +             return;
+> > +     }
+> > +
+> > +     tee_client_close_session(ctx, sess_arg.session);
+> > +
+> > +     optee->notif_it_pta_ctx = ctx;
+> > +}
+> > +
+> > +static void release_optee_pta_context(struct optee *optee)
+> > +{
+> > +     if (optee->notif_it_pta_ctx) {
+> > +             tee_client_close_context(optee->notif_it_pta_ctx);
+> > +             optee->notif_it_pta_ctx = NULL;
+> > +     }
+> > +}
+> > +
+> > +static int invoke_optee_pta(struct optee *optee, unsigned int command,
+> > +                         unsigned int irq_id)
+> > +{
+> > +     const uuid_t pta_uuid = PTA_IT_NOTIF_UUID;
+> > +     struct tee_ioctl_open_session_arg sess_arg;
+> > +     struct tee_ioctl_invoke_arg inv_arg;
+> > +     struct tee_param param[1];
+> > +     int ret;
+> > +
+> > +     if (!optee->notif_it_pta_ctx)
+> > +             return -ENOENT;
+> > +
+> > +     memset(&sess_arg, 0, sizeof(sess_arg));
+> > +     export_uuid(sess_arg.uuid, &pta_uuid);
+> > +     sess_arg.clnt_login = TEE_IOCTL_LOGIN_REE_KERNEL;
+> > +
+> > +     ret = tee_client_open_session(optee->notif_it_pta_ctx, &sess_arg, NULL);
+> > +     if ((ret < 0) || (sess_arg.ret != 0)) {
+> > +             pr_err("tee_client_open_session failed, err: %#x\n", sess_arg.ret);
+> > +             if (!ret)
+> > +                     ret = -EINVAL;
+> > +             return ret;
+> > +     }
+> > +
+> > +     memset(&inv_arg, 0, sizeof(inv_arg));
+> > +     inv_arg.session = sess_arg.session;
+> > +     inv_arg.func = command;
+> > +     inv_arg.num_params = 1;
+> > +
+> > +     memset(&param, 0, sizeof(param));
+> > +     param[0].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INPUT;
+> > +     param[0].u.value.a = irq_id;
+> > +
+> > +     ret = tee_client_invoke_func(optee->notif_it_pta_ctx, &inv_arg, param);
+> > +     if ((ret < 0) || (inv_arg.ret != 0)) {
+> > +             pr_err("tee_client_invoke_func failed, ret: %d, err: %#x\n",
+> > +                    ret, inv_arg.ret);
+> > +             if (!ret)
+> > +                     ret = -EINVAL;
+> > +     }
+> > +
+> > +     tee_client_close_session(optee->notif_it_pta_ctx, sess_arg.session);
+> > +
+> > +     return ret;
+> > +}
+> > +
+> >  static void config_notif_it(optee_invoke_fn *invoke_fn, u32 it_value,
+> >                           u32 op_mask, u32 val_mask)
+> >  {
+> > @@ -1001,10 +1124,40 @@ static void optee_it_irq_unmask(struct irq_data *d)
+> >       config_notif_it(optee->smc.invoke_fn, d->hwirq, OPTEE_SMC_NOTIF_CONFIG_MASK, 0);
+> >  }
+> >
+> > +static void optee_it_irq_disable(struct irq_data *d)
+> > +{
+> > +     struct optee *optee = d->domain->host_data;
+> > +
+> > +     (void)invoke_optee_pta(optee, PTA_IT_NOTIF_DEACTIVATE_DETECTION, d->hwirq);
+> > +}
+> > +
+> > +static void optee_it_irq_enable(struct irq_data *d)
+> > +{
+> > +     struct optee *optee = d->domain->host_data;
+> > +
+> > +     (void)invoke_optee_pta(optee, PTA_IT_NOTIF_ACTIVATE_DETECTION, d->hwirq);
+> > +}
+> > +
+> > +static int optee_it_irq_set_wake(struct irq_data *d, unsigned int on)
+> > +{
+> > +     struct optee *optee = d->domain->host_data;
+> > +     u32 command;
+> > +
+> > +     if (on)
+> > +             command = PTA_IT_NOTIF_ENABLE_WAKEUP_SOURCE;
+> > +     else
+> > +             command = PTA_IT_NOTIF_DISABLE_WAKEUP_SOURCE;
+> > +
+> > +     return invoke_optee_pta(optee, command, d->hwirq);
+> > +}
+> > +
+> >  static struct irq_chip optee_it_irq_chip = {
+> >       .name = "optee-it",
+> >       .irq_mask = optee_it_irq_mask,
+> >       .irq_unmask = optee_it_irq_unmask,
+> > +     .irq_disable = optee_it_irq_disable,
+> > +     .irq_enable = optee_it_irq_enable,
+> > +     .irq_set_wake = optee_it_irq_set_wake,
+> >  };
+> >
+> >  static int optee_it_alloc(struct irq_domain *d, unsigned int virq,
+> > @@ -1463,6 +1616,7 @@ static int optee_smc_remove(struct platform_device *pdev)
+> >               optee_disable_shm_cache(optee);
+> >
+> >       optee_smc_notif_uninit_irq(optee);
+> > +     release_optee_pta_context(optee);
+> >
+> >       optee_remove_common(optee);
+> >
+> > @@ -1650,6 +1804,8 @@ static int optee_probe(struct platform_device *pdev)
+> >                               irq_dispose_mapping(irq);
+> >                               goto err_notif_uninit;
+> >                       }
+> > +
+> > +                     init_optee_pta_context(optee);
+> >               }
+> >
+> >               enable_async_notif(optee->smc.invoke_fn);
+> > @@ -1687,6 +1843,7 @@ static int optee_probe(struct platform_device *pdev)
+> >               optee_disable_shm_cache(optee);
+> >       optee_smc_notif_uninit_irq(optee);
+> >       optee_unregister_devices();
+> > +     release_optee_pta_context(optee);
+> >  err_notif_uninit:
+> >       optee_notif_uninit(optee);
+> >  err_close_ctx:
+> > --
+> > 2.25.1
+> >
