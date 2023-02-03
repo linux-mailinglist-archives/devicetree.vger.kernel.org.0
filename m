@@ -2,148 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79A2068A442
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 22:08:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9F0568A44A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 22:10:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232932AbjBCVIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 16:08:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51664 "EHLO
+        id S232616AbjBCVKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 16:10:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232970AbjBCVIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 16:08:14 -0500
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F5DDAF539;
-        Fri,  3 Feb 2023 13:06:56 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id 20so4485649oix.5;
-        Fri, 03 Feb 2023 13:06:56 -0800 (PST)
+        with ESMTP id S232372AbjBCVJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 16:09:32 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 552EAA703C
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 13:08:42 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id m14so5723824wrg.13
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 13:08:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Y2BiUcMD8Gl7xNduYrxgFh6P8/MvqGGdxXMYMad5DGg=;
+        b=bAoCPRbAJBt+JF6p7NKN9nUbWJCzl9JgjlWwo4oWw0i1RxjTM5Xyd3hBMM4yK0bc1l
+         sY9jd40kD0RQ8Zc9pcOCO63jt9iGEOwdzupNjIcDIjKO0HUTpuJtrF0AS5BMKq6thQjC
+         xpJNWW49e1Cn9xfM4deqkZhVxJAcSsc2HaWIIxY54hveHg4XwKYLUU1ZTMkdxb4qWrdU
+         +RnduDoAsaACX2CEJZaGjADO2ziICn4ZWlPKpvGSWLZ4BGDo+x4uF6muKL7dPTXzIpLT
+         wGQRKyV4B5lNBKZF//ENrSNvuaKUPCfnHIrR51Yox+KHXIZqco/qTahBtFps/LzFulf9
+         ooOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1M3uCygjl6A7JEgAG4k6+cW+0sg8+m53vsWpI9AOYpU=;
-        b=647zWnkQFz0Xl6IfS49gNxT3GGpnWPu/Pynls/qASVM0W2zXQuKoluddJYDRph5C2n
-         n4Lpx/shk3EiblEbgj52JfnBb5ZGNced/HUpC9kFQBfBsxXJt4wzbw6CfCVRxLPBpCA2
-         y4v8HIQXq0EeOfn5LAU0OSoUIKCZ4rEz4D9H15mK87XI1HtzbyAUT65yL11aGNT4SvOI
-         Y0rWsxA6cemjPeF/0TgKWGIFa+Oc1+g0pr/slXNEJae8/JYPnF/MV+4F8WgdCJukIZ50
-         eDwWv7jOkR+yCya570Z6L4X5oiMdvrsNV80EJPx3N7/ki9q8sE/8OlWGCOaqnO8abCDk
-         ts2w==
-X-Gm-Message-State: AO0yUKVEcMM3fp7nk2DrsSFBNtpZhNYmWnNvvpzGUVhgJt+1S4ojd7lE
-        oIEVaSD95/dA1XoVAS7MvAQJVy81ow==
-X-Google-Smtp-Source: AK7set+H/nG7YyvidvAYYh3VYdVW5g3Srm/T1GZeEAdyv/8iFdAFcD9Vzx0MLXCuqnk5RWAl3H/0OQ==
-X-Received: by 2002:a05:6808:1187:b0:35e:d286:2317 with SMTP id j7-20020a056808118700b0035ed2862317mr6590582oil.25.1675458415510;
-        Fri, 03 Feb 2023 13:06:55 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m38-20020a05683032a600b0068d56f93d73sm1598677ott.26.2023.02.03.13.06.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Feb 2023 13:06:55 -0800 (PST)
-Received: (nullmailer pid 893142 invoked by uid 1000);
-        Fri, 03 Feb 2023 21:06:54 -0000
-Date:   Fri, 3 Feb 2023 15:06:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 1/4] dt-bindings: nvmem: mmio: new binding for MMIO
- accessible NVMEM devices
-Message-ID: <20230203210654.GA877968-robh@kernel.org>
-References: <20230201064717.18410-1-zajec5@gmail.com>
- <20230201064717.18410-2-zajec5@gmail.com>
+        bh=Y2BiUcMD8Gl7xNduYrxgFh6P8/MvqGGdxXMYMad5DGg=;
+        b=MYwazFkE6mnBxqErJOf4dnbJE2DiYatVqePIOG9LRs33gjsyKqccTVTp7eusYT8YsX
+         HhegWGr8/nVqoQOabwuFv9F6wIZ7caWSVs/F5lX9JIkzUNJ2Ib8Ybur3coeQl1O2Xl84
+         pfdfpeX6Ler8HlSp9U0AMtAffdJIzasTXkvwp3fTYHsY3ndni10sfMdnO0Gje+fEZxdH
+         0vMMsRQCAv4ShKjPA8uqoZUCezAPqb0XKI2hHJiZqVBguP2Mnqtk0vIxubiWqdtdi6T0
+         BRl5Dvz2OMa4EF8a5RlYmehROPyzfV+teqBfxT3pIp15Oio5pt+pOTfE/EgEBGrMVHne
+         lrFw==
+X-Gm-Message-State: AO0yUKUBmLVZy11N/YV9Ccsx16R+X8a14QSEJogne3VVDs8Ll2Lf3Qs5
+        V+uZnVIFKCXTGeKN6WeyQkLopQ==
+X-Google-Smtp-Source: AK7set9LoC2I3Ut0tnBQJCbcQRTGFMaNn+AQqxFQZJnMCPPocj+BKAfYbgUifsaihdzUDgpi6FNoQA==
+X-Received: by 2002:a5d:6f15:0:b0:2bc:8130:ccb8 with SMTP id ay21-20020a5d6f15000000b002bc8130ccb8mr10578220wrb.40.1675458520814;
+        Fri, 03 Feb 2023 13:08:40 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id bj24-20020a0560001e1800b002bded7da2b8sm2882153wrb.102.2023.02.03.13.08.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Feb 2023 13:08:40 -0800 (PST)
+Message-ID: <5651774d-3f60-ebb1-0613-83917d8c4bd9@linaro.org>
+Date:   Fri, 3 Feb 2023 22:08:38 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230201064717.18410-2-zajec5@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH RFC 1/3] dt-bindings: net: Add network-class schema for
+ mac-address properties
+Content-Language: en-US
+To:     Janne Grunau <j@jannau.net>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mailing List <devicetree-spec@vger.kernel.org>,
+        Kalle Valo <kvalo@kernel.org>, van Spriel <arend@broadcom.com>,
+        =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org
+References: <20230203-dt-bindings-network-class-v1-0-452e0375200d@jannau.net>
+ <20230203-dt-bindings-network-class-v1-1-452e0375200d@jannau.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230203-dt-bindings-network-class-v1-1-452e0375200d@jannau.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 01, 2023 at 07:47:14AM +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> With the NVMEM layouts binding in place we should now use:
-> 1. NVMEM device access bindings
-> 2. NVMEM content description bindings
-> 
-> This binding allows describing NVMEM devices that can be MMIO accessed.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  .../devicetree/bindings/nvmem/mmio.yaml       | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/mmio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/mmio.yaml b/Documentation/devicetree/bindings/nvmem/mmio.yaml
+On 03/02/2023 14:56, Janne Grunau wrote:
+> The ethernet-controller schema specifies "mac-address" and
+> "local-mac-address" but other network devices such as wireless network
+> adapters use mac addresses as well.
+> The Devicetree Specification, Release v0.3 specifies in section 4.3.1
+> a generic "Network Class Binding" with "address-bits", "mac-address",
+> "local-mac-address" and "max-frame-size". This schema specifies the
+> "address-bits" property and moves "local-mac-address" and "mac-address"
+> over from ethernet-controller.yaml.
+> The schema currently does not restrict MAC address size based on
+> address-bits.
+
+A nit below
+
+>          phy-mode:
+> diff --git a/Documentation/devicetree/bindings/net/network-class.yaml b/Documentation/devicetree/bindings/net/network-class.yaml
 > new file mode 100644
-> index 000000000000..27e3f6142769
+> index 000000000000..676aec1c458e
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/mmio.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/net/network-class.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/nvmem/mmio.yaml#
+> +$id: http://devicetree.org/schemas/net/network-class.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: MMIO access based NVMEM
-> +
-> +description: |
-> +  This binding describes simple NVMEM devices that can be accessed by using MMIO
-> +  (memory-mapped I/O access).
-> +
-> +  It's a generic solution for providing NVMEM content access. The way of
-> +  handling actual content may be device specific and can be described using a
-> +  proper layout.
+> +title: Network Class Bindings
 
-Please add some guidance based on the discussion about when this should 
-and shouldn't be used. Specifically, anything with potential write 
-accesses should use a device specific compatible and not the generic 
-one.
+s/Bindings/Common Properties/
+Best regards,
+Krzysztof
 
-> +
-> +maintainers:
-> +  - Rafał Miłecki <rafal@milecki.pl>
-> +
-> +allOf:
-> +  - $ref: nvmem.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: mmio-nvmem
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reg-io-width:
-> +    description: |
-> +      The size (in bytes) of the IO accesses that should be performed
-> +      on the device.
-> +    enum: [1, 2, 4, 8]
-> +
-> +required:
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    nvmem@10000 {
-> +        compatible = "mmio-nvmem";
-> +        reg = <0x10000000 0x10000>;
-> +    };
-> -- 
-> 2.34.1
-> 
