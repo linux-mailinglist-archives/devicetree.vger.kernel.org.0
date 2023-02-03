@@ -2,187 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92B4268A394
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 21:34:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB28668A397
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 21:35:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231598AbjBCUeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 15:34:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36016 "EHLO
+        id S231171AbjBCUfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 15:35:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232198AbjBCUeQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 15:34:16 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 040498F536
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 12:34:14 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id q10-20020a1cf30a000000b003db0edfdb74so6095691wmq.1
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 12:34:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BVXxUwhcHF2tonhrlazZYSJHdPH8Rmy7YehT5ics9zY=;
-        b=wi0mMR6NDBX5fD2fDRhfs5BVdC+wkwQtMvHe5rTAcBT6ljgw36vUfZSHSeBzkowkLQ
-         Q1x+2x6O70LzqPwWMtOfXMdsA2QXp27maoV/x2NnXvqD90KEDswk3kM2SHQsP8ZZuWk2
-         6cXo4mJY9SBr0skJByuhhFAEhHMZE3iqT5rxZDPABxorNm/OG6pIvWLZk7PS2PEx2ygi
-         GYyQlIg6F1Taj6rCntpWt3DG7ZRWWbOeSw/qij/MML3rqa99MhUkTOp8VRFEXF0qPT6N
-         eUIirAf3XYgeD4Bzq5g9NGs3ZdYlwPBaeF4ISg3qdkg8fjR5Qv7lt8gwGHf9lNPqWnzn
-         jWjg==
+        with ESMTP id S230042AbjBCUfN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 15:35:13 -0500
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9540D8F536;
+        Fri,  3 Feb 2023 12:35:11 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-142b72a728fso8018295fac.9;
+        Fri, 03 Feb 2023 12:35:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BVXxUwhcHF2tonhrlazZYSJHdPH8Rmy7YehT5ics9zY=;
-        b=aR2JkIlO0+Su+tHo36stAfCq9pzR2KR2tBzrE4bhw3jQrstuUuWhH5Docy2bC99a+0
-         3aLXta/sv83qWujGY8ehM/fKw37QMHFdEBTbtGBBJtNP46uV558uqKMLdP7JAxdFs+e/
-         PYST58YNK8WWgIISNfxZH0Ef7jn3Ua2tie3/saFRlvRXGDSVTkhGv9Wc9d9yMoFgySWx
-         LpE+oxthbecsrafa05imaLexrfJcdunAVkj6eKjKl5HQIf9Bwya6YTqz2bUwpO+8nbPC
-         KAkOFRUKm4R9EPYz9a9W8Ja28rF12cfiusKB16uVY7qP0pmuvp/GObDQ/r/hRteRE8cX
-         zCOQ==
-X-Gm-Message-State: AO0yUKUFpcA8mMCsh4VfYrX0kolrdygQvPuDbafeoYvefOM0v/wnImzG
-        AwrR9cM63PSSoZ5uI+QXMS8/Yw==
-X-Google-Smtp-Source: AK7set8EU1dHwiTiqWQ8QaG4TBnIAM1EfbgbcUUxi5KPtJSrEOQ/1SxBHYKq8jpAte0EBDbzZ5ijiA==
-X-Received: by 2002:a05:600c:3845:b0:3da:1bb0:4d78 with SMTP id s5-20020a05600c384500b003da1bb04d78mr10791488wmr.14.1675456452477;
-        Fri, 03 Feb 2023 12:34:12 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id hg15-20020a05600c538f00b003df7b40f99fsm6632746wmb.11.2023.02.03.12.34.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 12:34:11 -0800 (PST)
-Message-ID: <dc0c3fa9-a6d4-e1c1-7cc8-13b206e3b31f@linaro.org>
-Date:   Fri, 3 Feb 2023 21:34:09 +0100
+        bh=s9ERBz4ssqzLzKfbT0hTgsoHU4vAavbohSqKdl8iOO8=;
+        b=XVkZIdTlJTX44BwQXo5td+8aQPwNNqs8eVT04j9olUiWXcHg1buZBCboi+LO8pDb2p
+         ezTlU7Eaai2WwZGdC7hnDiRTs51ab4ikthjuB2ryk0/gPjBOw21szhJ4yOEjeRnvE5tl
+         ubzdphcyCJwbhP4RTPhiIGRyWbnn6pA5IgqnlGWd9c+TEPi/8qJKNZ/JhEz7pEQkZFlr
+         pDKXpFL3rLeADKp0wF2e95l9AFWMR0Bh8bdw0plqXnLKfumB9iA36tIj6/7y7tQOwEtZ
+         oKeDaz3vRvFe3eEkTHuL61g1eOg4Y+y9BDBxBDkJhDXQeiq6UDQ5L4oapOloBJo0J/OI
+         1UtQ==
+X-Gm-Message-State: AO0yUKWyzlNMZiRhIFxRjP2Fu93s4iiXfIqTcUf3holRyXJFEcAZhyIT
+        ogW0RSYvnYBZJTY8pI62gA==
+X-Google-Smtp-Source: AK7set9oqxoeYrd3aWmIQC9WtHQxxY9KfVyuW6tXP+N3qYxM5BuyCw8u/DRFl64vlrHDIX4b8mA9wg==
+X-Received: by 2002:a05:6871:411:b0:163:cd07:a5a5 with SMTP id d17-20020a056871041100b00163cd07a5a5mr6163877oag.56.1675456510702;
+        Fri, 03 Feb 2023 12:35:10 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id g1-20020a056870a24100b0014fe4867dc7sm1173616oai.56.2023.02.03.12.35.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Feb 2023 12:35:10 -0800 (PST)
+Received: (nullmailer pid 843783 invoked by uid 1000);
+        Fri, 03 Feb 2023 20:35:08 -0000
+Date:   Fri, 3 Feb 2023 14:35:08 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        gregkh@linuxfoundation.org, martin.petersen@oracle.com,
+        beanhuo@micron.com, arnd@arndb.de, avri.altman@wdc.com,
+        iwona.winiarska@intel.com, fmdefrancesco@gmail.com,
+        dipenp@nvidia.com, ogabbay@kernel.org, bvanassche@acm.org,
+        mathieu.poirier@linaro.org, yangyicong@hisilicon.com,
+        dan.j.williams@intel.com, devicetree@vger.kernel.org,
+        linus.walleij@linaro.org
+Subject: Re: [PATCHv2 1/4] dt-bindings: wiegand: add Wiegand controller
+ common properties
+Message-ID: <20230203203508.GA841469-robh@kernel.org>
+References: <20230202143305.21789-1-m.zatovic1@gmail.com>
+ <20230202143305.21789-2-m.zatovic1@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 5/9] ARM: dts: exynos: move exynos-bus nodes out of soc in
- Exynos4412
-Content-Language: en-US
-To:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>,
-        Henrik Grimler <henrik@grimler.se>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-References: <20230125094513.155063-1-krzysztof.kozlowski@linaro.org>
- <20230125094513.155063-5-krzysztof.kozlowski@linaro.org>
- <CGME20230129104220eucas1p15b70f73be86fa5600cfe170d22869836@eucas1p1.samsung.com>
- <29841f64-360b-1426-e1fd-dd4c64ee5455@linaro.org>
- <b3f31e71-fa1a-e0c0-fdfa-f65674ccc5cd@samsung.com>
- <d54792c5-2842-e5b9-26b8-1f52471211a9@linaro.org>
- <111f7364-0d7b-b4c5-721f-69c00d4619e2@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <111f7364-0d7b-b4c5-721f-69c00d4619e2@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230202143305.21789-2-m.zatovic1@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/02/2023 12:51, Marek Szyprowski wrote:
-> On 03.02.2023 12:46, Krzysztof Kozlowski wrote:
->> On 03/02/2023 12:45, Marek Szyprowski wrote:
->>> On 29.01.2023 11:42, Krzysztof Kozlowski wrote:
->>>> On 25/01/2023 10:45, Krzysztof Kozlowski wrote:
->>>>> The soc node is supposed to have only device nodes with MMIO addresses,
->>>>> as reported by dtc W=1:
->>>>>
->>>>>     exynos4412.dtsi:407.20-413.5:
->>>>>       Warning (simple_bus_reg): /soc/bus-acp: missing or empty reg/ranges property
->>>>>
->>>>> and dtbs_check:
->>>>>
->>>>>     exynos4412-i9300.dtb: soc: bus-acp:
->>>>>       {'compatible': ['samsung,exynos-bus'], 'clocks': [[7, 456]], 'clock-names': ['bus'], 'operating-points-v2': [[132]], 'status': ['okay'], 'devfreq': [[117]]} should not be valid under {'type': 'object'}
->>>>>
->>>>> Move the bus nodes and their OPP tables out of SoC to fix this.
->>>>> Re-order them alphabetically while moving and put some of the OPP tables
->>>>> in device nodes (if they are not shared).
->>>>>
->>>> Applied.
->>> I don't have a good news. It looks that this change is responsible for
->>> breaking boards that were rock-stable so far, like Odroid U3. I didn't
->>> manage to analyze what exactly causes the issue, but it looks that the
->>> exynos-bus devfreq driver somehow depends on the order of the nodes:
->>>
->>> (before)
->>>
->>> # dmesg | grep exynos-bus
->>> [    6.415266] exynos-bus: new bus device registered: soc:bus-dmc
->>> (100000 KHz ~ 400000 KHz)
->>> [    6.422717] exynos-bus: new bus device registered: soc:bus-acp
->>> (100000 KHz ~ 267000 KHz)
->>> [    6.454323] exynos-bus: new bus device registered: soc:bus-c2c
->>> (100000 KHz ~ 400000 KHz)
->>> [    6.489944] exynos-bus: new bus device registered: soc:bus-leftbus
->>> (100000 KHz ~ 200000 KHz)
->>> [    6.493990] exynos-bus: new bus device registered: soc:bus-rightbus
->>> (100000 KHz ~ 200000 KHz)
->>> [    6.494612] exynos-bus: new bus device registered: soc:bus-display
->>> (160000 KHz ~ 200000 KHz)
->>> [    6.494932] exynos-bus: new bus device registered: soc:bus-fsys
->>> (100000 KHz ~ 134000 KHz)
->>> [    6.495246] exynos-bus: new bus device registered: soc:bus-peri (
->>> 50000 KHz ~ 100000 KHz)
->>> [    6.495577] exynos-bus: new bus device registered: soc:bus-mfc
->>> (100000 KHz ~ 200000 KHz)
->>>
->>> (after)
->>>
->>> # dmesg | grep exynos-bus
->>>
->>> [    6.082032] exynos-bus: new bus device registered: bus-dmc (100000
->>> KHz ~ 400000 KHz)
->>> [    6.122726] exynos-bus: new bus device registered: bus-leftbus
->>> (100000 KHz ~ 200000 KHz)
->>> [    6.146705] exynos-bus: new bus device registered: bus-mfc (100000
->>> KHz ~ 200000 KHz)
->>> [    6.181632] exynos-bus: new bus device registered: bus-peri ( 50000
->>> KHz ~ 100000 KHz)
->>> [    6.204770] exynos-bus: new bus device registered: bus-rightbus
->>> (100000 KHz ~ 200000 KHz)
->>> [    6.211087] exynos-bus: new bus device registered: bus-acp (100000
->>> KHz ~ 267000 KHz)
->>> [    6.216936] exynos-bus: new bus device registered: bus-c2c (100000
->>> KHz ~ 400000 KHz)
->>> [    6.225748] exynos-bus: new bus device registered: bus-display
->>> (160000 KHz ~ 200000 KHz)
->>> [    6.242978] exynos-bus: new bus device registered: bus-fsys (100000
->>> KHz ~ 134000 KHz)
->>>
->>> This is definitely a driver bug, but so far it worked fine, so this is a
->>> regression that need to be addressed somehow...
->>
->> Thanks for checking, but what is exactly the bug? The devices registered
->> - just with different name.
+On Thu, Feb 02, 2023 at 03:33:02PM +0100, Martin Zaťovič wrote:
+> Weigand bus is defined by a Wiegand controller node. This node
+> can contain one or more device nodes for devices attached to
+> the controller(it is advised to only connect one device as Wiegand
+> is a point-to-point bus).
 > 
-> The bug is that the board fails to boot from time to time, freezing 
-> after registering PPMU counters...
+> Wiegand controller needs to specify several attributes such as
+> the pulse length in order to function properly. These attributes
+> are documented here.
+> 
+> Signed-off-by: Martin Zaťovič <m.zatovic1@gmail.com>
+> ---
+>  .../bindings/wiegand/wiegand-controller.yaml  | 50 +++++++++++++++++++
+>  MAINTAINERS                                   |  5 ++
+>  2 files changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml b/Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml
+> new file mode 100644
+> index 000000000000..fed90e01e56f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/wiegand/wiegand-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Wiegand Generic Controller Common Properties
+> +
+> +maintainers:
+> +  - Martin Zaťovič <martin.zatovic@tbs-biometrics.com>
+> +
+> +description:
+> +  Wiegand busses can be described with a node for the Wiegand controller device
+> +  and a set of child nodes for each SPI slave on the bus.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^wiegand(@.*|-[0-9a-f])?$"
+> +
+> +  pulse-len-us:
+> +    description: |
+> +      Length of the low pulse in microseconds.
+> +
+> +  interval-len-us:
+> +    description: |
+> +      Length of a whole bit (both the pulse and the high phase) in microseconds.
+> +
+> +  frame-gap-us:
+> +    description: |
+> +      Length of the last bit of a frame (both the pulse and the high phase) in
+> +      microseconds.
+> +
+> +required:
+> +  - compatible
+> +  - pulse-len-us
+> +  - interval-len-us
+> +  - frame-gap-us
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    wiegand@f00 {
+> +        compatible = "wiegand-foo";
 
-My U3 with and without this patch, reports several warnings:
-iommu_group_do_set_platform_dma()
-exynos_iommu_domain_free()
-clk_core_enable()
+You've got a real example in the bitbanged schema, just drop the fake 
+one here. You can put about anything in here because it is not getting 
+validated.
 
-and finally:
-rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
-
-and keeps stalling.
-
-At least on next-20230203. Except all these (which anyway make board
-unbootable) look fine around PMU and exynos-bus.
-
-Best regards,
-Krzysztof
-
+> +        pulse-len-us = <50>;
+> +        interval-len-us = <2000>;
+> +        frame-gap-us = <2000>;
+> +
+> +        /* devices */
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7f86d02cb427..db9624d93af0 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22428,6 +22428,11 @@ L:	linux-input@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/hid/hid-wiimote*
+>  
+> +WIEGAND BUS DRIVER
+> +M:	Martin Zaťovič <m.zatovic1@gmail.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml
+> +
+>  WILOCITY WIL6210 WIRELESS DRIVER
+>  L:	linux-wireless@vger.kernel.org
+>  S:	Orphan
+> -- 
+> 2.39.1
+> 
