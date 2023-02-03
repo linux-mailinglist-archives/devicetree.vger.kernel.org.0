@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30F11689928
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 13:50:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D99A68992E
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 13:50:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233045AbjBCMum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 07:50:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54428 "EHLO
+        id S232999AbjBCMuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 07:50:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233034AbjBCMuj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 07:50:39 -0500
+        with ESMTP id S232590AbjBCMut (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 07:50:49 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E27C9A807
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 04:50:36 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3855F99D7E
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 04:50:48 -0800 (PST)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1pNvWE-0000bY-5O; Fri, 03 Feb 2023 13:50:18 +0100
+        id 1pNvWE-0000bb-5T; Fri, 03 Feb 2023 13:50:18 +0100
 Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1pNvWB-002OqB-Ol; Fri, 03 Feb 2023 13:50:16 +0100
+        id 1pNvWB-002OqH-Vf; Fri, 03 Feb 2023 13:50:17 +0100
 Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1pNvWA-000Zlc-2b; Fri, 03 Feb 2023 13:50:14 +0100
+        id 1pNvWA-000Zll-3J; Fri, 03 Feb 2023 13:50:14 +0100
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     linux-pm@vger.kernel.org
 Cc:     linux-rockchip@lists.infradead.org,
@@ -37,9 +37,9 @@ Cc:     linux-rockchip@lists.infradead.org,
         Mark Rutland <mark.rutland@arm.com>, kernel@pegutronix.de,
         Michael Riesch <michael.riesch@wolfvision.net>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH 10/18] PM / devfreq: rockchip-dfi: Add RK3568 support
-Date:   Fri,  3 Feb 2023 13:50:04 +0100
-Message-Id: <20230203125012.3804008-11-s.hauer@pengutronix.de>
+Subject: [PATCH 11/18] PM / devfreq: rockchip-dfi: Handle LPDDR2 correctly
+Date:   Fri,  3 Feb 2023 13:50:05 +0100
+Message-Id: <20230203125012.3804008-12-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20230203125012.3804008-1-s.hauer@pengutronix.de>
 References: <20230203125012.3804008-1-s.hauer@pengutronix.de>
@@ -58,86 +58,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds RK3568 support to the DFI driver. The driver itself doesn't
-need a change, only initialization differs from the currently supported
-RK3399.
+According to the downstream driver the DDRMON_CTRL_LPDDR23 bit must be
+set for both LPDDR2 and LPDDR3. Add the missing LPDDR2 case and while
+at it turn the if/else if/else into switch/case which makes it easier
+to read.
 
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
- drivers/devfreq/event/rockchip-dfi.c | 24 ++++++++++++++++++++++++
- include/soc/rockchip/rk3568_grf.h    | 12 ++++++++++++
- 2 files changed, 36 insertions(+)
- create mode 100644 include/soc/rockchip/rk3568_grf.h
+ drivers/devfreq/event/rockchip-dfi.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-index 035984d3c7b01..78cb594bd2a81 100644
+index 78cb594bd2a81..92ee61c96a1a9 100644
 --- a/drivers/devfreq/event/rockchip-dfi.c
 +++ b/drivers/devfreq/event/rockchip-dfi.c
-@@ -23,6 +23,7 @@
+@@ -82,12 +82,19 @@ static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
+ 	writel_relaxed(HIWORD_UPDATE(0, 0xffff), dfi_regs + DDRMON_CTRL);
  
- #include <soc/rockchip/rockchip_grf.h>
- #include <soc/rockchip/rk3399_grf.h>
-+#include <soc/rockchip/rk3568_grf.h>
+ 	/* set ddr type to dfi */
+-	if (dfi->ddr_type == ROCKCHIP_DDRTYPE_LPDDR3)
++	switch (dfi->ddr_type) {
++	case ROCKCHIP_DDRTYPE_LPDDR2:
++	case ROCKCHIP_DDRTYPE_LPDDR3:
+ 		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR23, DDRMON_CTRL_DDR_TYPE_MASK),
+ 			       dfi_regs + DDRMON_CTRL);
+-	else if (dfi->ddr_type == ROCKCHIP_DDRTYPE_LPDDR4)
++		break;
++	case ROCKCHIP_DDRTYPE_LPDDR4:
+ 		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR4, DDRMON_CTRL_DDR_TYPE_MASK),
+ 			       dfi_regs + DDRMON_CTRL);
++		break;
++	default:
++		break;
++	}
  
- #define DMC_MAX_CHANNELS	2
- 
-@@ -209,6 +210,24 @@ static int rk3399_dfi_init(struct rockchip_dfi *dfi)
- 	return 0;
- };
- 
-+static int rk3568_dfi_init(struct rockchip_dfi *dfi)
-+{
-+	struct regmap *regmap_pmu = dfi->regmap_pmu;
-+	u32 reg2, reg3;
-+
-+	regmap_read(regmap_pmu, RK3568_PMUGRF_OS_REG2, &reg2);
-+	regmap_read(regmap_pmu, RK3568_PMUGRF_OS_REG3, &reg3);
-+
-+	dfi->ddr_type = FIELD_GET(RK3568_PMUGRF_OS_REG2_DRAMTYPE_INFO, reg2);
-+
-+	if (FIELD_GET(RK3568_PMUGRF_OS_REG3_SYSREG_VERSION, reg3) >= 0x3)
-+		dfi->ddr_type |= FIELD_GET(RK3568_PMUGRF_OS_REG3_DRAMTYPE_INFO_V3, reg3) << 3;
-+
-+	dfi->channel_mask = 1;
-+
-+	return 0;
-+};
-+
- struct rockchip_dfi_devtype_data {
- 	int (*init)(struct rockchip_dfi *dfi);
- };
-@@ -217,8 +236,13 @@ static struct rockchip_dfi_devtype_data rk3399_devtype_data = {
- 	.init = rk3399_dfi_init,
- };
- 
-+static struct rockchip_dfi_devtype_data rk3568_devtype_data = {
-+	.init = rk3568_dfi_init,
-+};
-+
- static const struct of_device_id rockchip_dfi_id_match[] = {
- 	{ .compatible = "rockchip,rk3399-dfi", .data = &rk3399_devtype_data },
-+	{ .compatible = "rockchip,rk3568-dfi", .data = &rk3568_devtype_data },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, rockchip_dfi_id_match);
-diff --git a/include/soc/rockchip/rk3568_grf.h b/include/soc/rockchip/rk3568_grf.h
-new file mode 100644
-index 0000000000000..575584e9d8834
---- /dev/null
-+++ b/include/soc/rockchip/rk3568_grf.h
-@@ -0,0 +1,12 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+#ifndef __SOC_RK3568_GRF_H
-+#define __SOC_RK3568_GRF_H
-+
-+#define RK3568_PMUGRF_OS_REG2		0x208
-+#define RK3568_PMUGRF_OS_REG2_DRAMTYPE_INFO		GENMASK(15, 13)
-+
-+#define RK3568_PMUGRF_OS_REG3		0x20c
-+#define RK3568_PMUGRF_OS_REG3_DRAMTYPE_INFO_V3		GENMASK(13, 12)
-+#define RK3568_PMUGRF_OS_REG3_SYSREG_VERSION		GENMASK(31, 28)
-+
-+#endif /* __SOC_RK3568_GRF_H */
+ 	/* enable count, use software mode */
+ 	writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_SOFTWARE_EN, DDRMON_CTRL_SOFTWARE_EN),
 -- 
 2.30.2
 
