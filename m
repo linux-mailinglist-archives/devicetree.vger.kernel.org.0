@@ -2,80 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5414E68A386
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 21:28:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92B4268A394
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 21:34:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231171AbjBCU2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 15:28:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32978 "EHLO
+        id S231598AbjBCUeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 15:34:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232835AbjBCU2F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 15:28:05 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 613B0B763
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 12:28:03 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso6845008wms.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 12:28:03 -0800 (PST)
+        with ESMTP id S232198AbjBCUeQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 15:34:16 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 040498F536
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 12:34:14 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id q10-20020a1cf30a000000b003db0edfdb74so6095691wmq.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 12:34:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OcaR471TXAjGr31MjNbqXuBFmDxa1S6cNX7l4YGYmRI=;
-        b=SezcXEcWF/dRKemlQQqQWL8NAYRbNZuSckOdAlUWdAlQWpoWXU5+usWAHMA82BZBLg
-         CXMBSlZbEGaxjypt6Nfl0LkI9duN6m5fNPGEgGmIGAZOb5oCE5TO/Od8nQwCnEPL40N0
-         zbUDICs8/GZ8i596nTr05XvUC7rjuRvdgdoAkptotziPI32OLe9w9GB3a75qEeMMne0x
-         UeQMPNIIWo2T08GbT02VdVoXOskEeQOdTZohR5myokK1bR3slxoQ7DzJMiGISiAKXEuk
-         5d6EiVdMUeAWT2NKr/JXCVXQ6bLsF6Hnct6TneOHGvketNvDbD5c9etecDSFFEnA+AJj
-         EcOg==
+        bh=BVXxUwhcHF2tonhrlazZYSJHdPH8Rmy7YehT5ics9zY=;
+        b=wi0mMR6NDBX5fD2fDRhfs5BVdC+wkwQtMvHe5rTAcBT6ljgw36vUfZSHSeBzkowkLQ
+         Q1x+2x6O70LzqPwWMtOfXMdsA2QXp27maoV/x2NnXvqD90KEDswk3kM2SHQsP8ZZuWk2
+         6cXo4mJY9SBr0skJByuhhFAEhHMZE3iqT5rxZDPABxorNm/OG6pIvWLZk7PS2PEx2ygi
+         GYyQlIg6F1Taj6rCntpWt3DG7ZRWWbOeSw/qij/MML3rqa99MhUkTOp8VRFEXF0qPT6N
+         eUIirAf3XYgeD4Bzq5g9NGs3ZdYlwPBaeF4ISg3qdkg8fjR5Qv7lt8gwGHf9lNPqWnzn
+         jWjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OcaR471TXAjGr31MjNbqXuBFmDxa1S6cNX7l4YGYmRI=;
-        b=UrytAmsB3Kyro4UTve9IgZjQ/HnJzvWEGXObbhGI6VqEIMMbaBh4UhjXD3gVZm3psy
-         LxlxE+LfLZrZ9Pf3Bsf4MiKBQNW8qCAy8vd3XNTC2GwCt0ELKI3E/4dy9ab2EGe4Pbhn
-         nbd6xbqhsjZFspSU3W+lJH8wKVRw4EkVB7zkWHTFRXHkk6+WWFZnyZNT9ONZiQQpvvLA
-         ueSJnBs7OSoaHL9mgrejpGfxz4IvyuNAMkEAk3BJZ4hDyRi/fES8vLor5LNRu8OhEv93
-         7hUHpgAOVhWQubqrrceZBVUx2j+p/JUYoniwJhDNLGVKS3ggwv0+YF/uwpDYqsgypryU
-         QUNA==
-X-Gm-Message-State: AO0yUKX8CvzywKDpCRBqY7jVhd3IKJ8bU6efjirohgJdPhMx+gelCOwn
-        /khtasdBJwkpNg5W5iwZY6Dcng==
-X-Google-Smtp-Source: AK7set96RpaTqpX9Bfu005sId7DrlnJXnLTXqwwUkaTAzF2cO0cHdxloiYdhXNMOBbDNxsyHPR3krw==
-X-Received: by 2002:a05:600c:1c06:b0:3d9:fb89:4e3d with SMTP id j6-20020a05600c1c0600b003d9fb894e3dmr11971335wms.28.1675456081778;
-        Fri, 03 Feb 2023 12:28:01 -0800 (PST)
+        bh=BVXxUwhcHF2tonhrlazZYSJHdPH8Rmy7YehT5ics9zY=;
+        b=aR2JkIlO0+Su+tHo36stAfCq9pzR2KR2tBzrE4bhw3jQrstuUuWhH5Docy2bC99a+0
+         3aLXta/sv83qWujGY8ehM/fKw37QMHFdEBTbtGBBJtNP46uV558uqKMLdP7JAxdFs+e/
+         PYST58YNK8WWgIISNfxZH0Ef7jn3Ua2tie3/saFRlvRXGDSVTkhGv9Wc9d9yMoFgySWx
+         LpE+oxthbecsrafa05imaLexrfJcdunAVkj6eKjKl5HQIf9Bwya6YTqz2bUwpO+8nbPC
+         KAkOFRUKm4R9EPYz9a9W8Ja28rF12cfiusKB16uVY7qP0pmuvp/GObDQ/r/hRteRE8cX
+         zCOQ==
+X-Gm-Message-State: AO0yUKUFpcA8mMCsh4VfYrX0kolrdygQvPuDbafeoYvefOM0v/wnImzG
+        AwrR9cM63PSSoZ5uI+QXMS8/Yw==
+X-Google-Smtp-Source: AK7set8EU1dHwiTiqWQ8QaG4TBnIAM1EfbgbcUUxi5KPtJSrEOQ/1SxBHYKq8jpAte0EBDbzZ5ijiA==
+X-Received: by 2002:a05:600c:3845:b0:3da:1bb0:4d78 with SMTP id s5-20020a05600c384500b003da1bb04d78mr10791488wmr.14.1675456452477;
+        Fri, 03 Feb 2023 12:34:12 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q9-20020a1ce909000000b003dc34edacf8sm8466662wmc.31.2023.02.03.12.28.00
+        by smtp.gmail.com with ESMTPSA id hg15-20020a05600c538f00b003df7b40f99fsm6632746wmb.11.2023.02.03.12.34.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 12:28:01 -0800 (PST)
-Message-ID: <79474344-0bf1-ba0e-6bae-0ccb4e3a3aee@linaro.org>
-Date:   Fri, 3 Feb 2023 21:27:59 +0100
+        Fri, 03 Feb 2023 12:34:11 -0800 (PST)
+Message-ID: <dc0c3fa9-a6d4-e1c1-7cc8-13b206e3b31f@linaro.org>
+Date:   Fri, 3 Feb 2023 21:34:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 9/9] ASoC: dt-bindings: meson: convert axg sound card
- control to schema
+Subject: Re: [PATCH 5/9] ARM: dts: exynos: move exynos-bus nodes out of soc in
+ Exynos4412
 Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Cc:     linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
+To:     Marek Szyprowski <m.szyprowski@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20230202183653.486216-1-jbrunet@baylibre.com>
- <20230202183653.486216-10-jbrunet@baylibre.com>
- <f229e181-c56d-6ec7-2a1c-754690f70438@linaro.org>
- <1jfsbmn7ql.fsf@starbuckisacylon.baylibre.com>
- <fede7119-4a9b-76a1-ae1a-7af5dd8d1032@linaro.org>
- <1jbkmamtfg.fsf@starbuckisacylon.baylibre.com>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>,
+        Henrik Grimler <henrik@grimler.se>,
+        Chanwoo Choi <cw00.choi@samsung.com>
+References: <20230125094513.155063-1-krzysztof.kozlowski@linaro.org>
+ <20230125094513.155063-5-krzysztof.kozlowski@linaro.org>
+ <CGME20230129104220eucas1p15b70f73be86fa5600cfe170d22869836@eucas1p1.samsung.com>
+ <29841f64-360b-1426-e1fd-dd4c64ee5455@linaro.org>
+ <b3f31e71-fa1a-e0c0-fdfa-f65674ccc5cd@samsung.com>
+ <d54792c5-2842-e5b9-26b8-1f52471211a9@linaro.org>
+ <111f7364-0d7b-b4c5-721f-69c00d4619e2@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1jbkmamtfg.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <111f7364-0d7b-b4c5-721f-69c00d4619e2@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -86,33 +90,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/02/2023 20:34, Jerome Brunet wrote:
-> 
-> On Fri 03 Feb 2023 at 18:59, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 03/02/2023 15:13, Jerome Brunet wrote:
->>>>> +          Multiplication factor between the frame rate and master clock
->>>>> +          rate
->>>>> +
->>>>> +      sound-dai:
->>>>> +        $ref: /schemas/types.yaml#/definitions/phandle-array
->>>>
->>>> Old binding was saying it is just phandle
+On 03/02/2023 12:51, Marek Szyprowski wrote:
+> On 03.02.2023 12:46, Krzysztof Kozlowski wrote:
+>> On 03/02/2023 12:45, Marek Szyprowski wrote:
+>>> On 29.01.2023 11:42, Krzysztof Kozlowski wrote:
+>>>> On 25/01/2023 10:45, Krzysztof Kozlowski wrote:
+>>>>> The soc node is supposed to have only device nodes with MMIO addresses,
+>>>>> as reported by dtc W=1:
+>>>>>
+>>>>>     exynos4412.dtsi:407.20-413.5:
+>>>>>       Warning (simple_bus_reg): /soc/bus-acp: missing or empty reg/ranges property
+>>>>>
+>>>>> and dtbs_check:
+>>>>>
+>>>>>     exynos4412-i9300.dtb: soc: bus-acp:
+>>>>>       {'compatible': ['samsung,exynos-bus'], 'clocks': [[7, 456]], 'clock-names': ['bus'], 'operating-points-v2': [[132]], 'status': ['okay'], 'devfreq': [[117]]} should not be valid under {'type': 'object'}
+>>>>>
+>>>>> Move the bus nodes and their OPP tables out of SoC to fix this.
+>>>>> Re-order them alphabetically while moving and put some of the OPP tables
+>>>>> in device nodes (if they are not shared).
+>>>>>
+>>>> Applied.
+>>> I don't have a good news. It looks that this change is responsible for
+>>> breaking boards that were rock-stable so far, like Odroid U3. I didn't
+>>> manage to analyze what exactly causes the issue, but it looks that the
+>>> exynos-bus devfreq driver somehow depends on the order of the nodes:
 >>>
->>> It is just a phandle but the bindings used to have problem with phandle
->>> that had cells.
+>>> (before)
 >>>
->>> See:
->>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml?h=v6.2-rc6&id=d031d99b02eaf7363c33f5b27b38086cc8104082
+>>> # dmesg | grep exynos-bus
+>>> [    6.415266] exynos-bus: new bus device registered: soc:bus-dmc
+>>> (100000 KHz ~ 400000 KHz)
+>>> [    6.422717] exynos-bus: new bus device registered: soc:bus-acp
+>>> (100000 KHz ~ 267000 KHz)
+>>> [    6.454323] exynos-bus: new bus device registered: soc:bus-c2c
+>>> (100000 KHz ~ 400000 KHz)
+>>> [    6.489944] exynos-bus: new bus device registered: soc:bus-leftbus
+>>> (100000 KHz ~ 200000 KHz)
+>>> [    6.493990] exynos-bus: new bus device registered: soc:bus-rightbus
+>>> (100000 KHz ~ 200000 KHz)
+>>> [    6.494612] exynos-bus: new bus device registered: soc:bus-display
+>>> (160000 KHz ~ 200000 KHz)
+>>> [    6.494932] exynos-bus: new bus device registered: soc:bus-fsys
+>>> (100000 KHz ~ 134000 KHz)
+>>> [    6.495246] exynos-bus: new bus device registered: soc:bus-peri (
+>>> 50000 KHz ~ 100000 KHz)
+>>> [    6.495577] exynos-bus: new bus device registered: soc:bus-mfc
+>>> (100000 KHz ~ 200000 KHz)
 >>>
->>> Was it wrong or did the situation change since then ?
+>>> (after)
+>>>
+>>> # dmesg | grep exynos-bus
+>>>
+>>> [    6.082032] exynos-bus: new bus device registered: bus-dmc (100000
+>>> KHz ~ 400000 KHz)
+>>> [    6.122726] exynos-bus: new bus device registered: bus-leftbus
+>>> (100000 KHz ~ 200000 KHz)
+>>> [    6.146705] exynos-bus: new bus device registered: bus-mfc (100000
+>>> KHz ~ 200000 KHz)
+>>> [    6.181632] exynos-bus: new bus device registered: bus-peri ( 50000
+>>> KHz ~ 100000 KHz)
+>>> [    6.204770] exynos-bus: new bus device registered: bus-rightbus
+>>> (100000 KHz ~ 200000 KHz)
+>>> [    6.211087] exynos-bus: new bus device registered: bus-acp (100000
+>>> KHz ~ 267000 KHz)
+>>> [    6.216936] exynos-bus: new bus device registered: bus-c2c (100000
+>>> KHz ~ 400000 KHz)
+>>> [    6.225748] exynos-bus: new bus device registered: bus-display
+>>> (160000 KHz ~ 200000 KHz)
+>>> [    6.242978] exynos-bus: new bus device registered: bus-fsys (100000
+>>> KHz ~ 134000 KHz)
+>>>
+>>> This is definitely a driver bug, but so far it worked fine, so this is a
+>>> regression that need to be addressed somehow...
 >>
->> Then define it as having cells:
->>
->> https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
+>> Thanks for checking, but what is exactly the bug? The devices registered
+>> - just with different name.
+> 
+> The bug is that the board fails to boot from time to time, freezing 
+> after registering PPMU counters...
 
-Eh, it is already defined, so my advice is incorrect. Drop the ref and
-define maxItems.
+My U3 with and without this patch, reports several warnings:
+iommu_group_do_set_platform_dma()
+exynos_iommu_domain_free()
+clk_core_enable()
+
+and finally:
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+
+and keeps stalling.
+
+At least on next-20230203. Except all these (which anyway make board
+unbootable) look fine around PMU and exynos-bus.
 
 Best regards,
 Krzysztof
