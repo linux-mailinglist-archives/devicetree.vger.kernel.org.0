@@ -2,194 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A71A668931D
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 10:10:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4B7E68938D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 10:23:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230504AbjBCJJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 04:09:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33846 "EHLO
+        id S232653AbjBCJVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 04:21:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232603AbjBCJJr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 04:09:47 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803DB1C32C
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 01:09:45 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id t7so4030187wrp.5
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 01:09:45 -0800 (PST)
+        with ESMTP id S232613AbjBCJUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 04:20:35 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FC6F9A83D
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 01:19:11 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id u10so300393wmj.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 01:19:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MHn45+vnENK/TVFtx99s7WoA9gA2YZddyjnUzP5s16c=;
-        b=AMN5K4po0wih1uiCioK2NDKoMhZFPH7TpH9vUPEsXKmokVADyzbPdoWoVoFMz1jRD7
-         mcSs4Z9hgfq5SsEakOIiz1qASOlNVRvCpGuodPSZEvdMIP2bKxJ6AnUb9mOSrJqbaqyh
-         WIiEYKwRuBWljB1udt3BVDR1cBJCNRm7FhwTsvRzCSs5SXRJHQrO3BzNlYVkSCd5A6VG
-         PO9Tcx38k31bAUvAe5YgpnJo7d/hacCaYIVzA6XTJyBG06y+tUHqNoEkxWPL17QKEXlD
-         sEESzc5OYdKaBfnhGc8XDj0Gos37AH5EsUjvwDARWezGpHlrVlHwh/7g3ebCAiRevVjw
-         Fh1Q==
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=k37em+iSA4pp8shcy4mhDg2LmO0zZyrhvJ8r9gNWLJ0=;
+        b=hW8YY1DMLlxd9jNvgjF+foIj96CLaP2x6fGEN3RnsYoKyYKBlhoDG+DL3eFeCgMJ+G
+         hTaESuTAECCmfVVmS1lN9FtWFm4hVY/im6yf/WTfqBwFNoZLq+aNv1MDOPVkHRQ0JFIa
+         UrdAYTMdEqZk2cFbiif32JoTZU+uc8cF4B2q8TcMsmY5fllCeIlrPaJUcIxTf9j/y+v8
+         rV9Hm7hMffgjydBAhYbpVjTtbrHLykfzyc9+/fwG/eSt2NDB93/AgPCQztfNsVuTkeJ9
+         9GlnAdXKsAg5wa5XWMN+XNpoXpz/c4oukZh+KgF0KBzHseDzFaaV53Go8l738VYj6kgg
+         NClw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MHn45+vnENK/TVFtx99s7WoA9gA2YZddyjnUzP5s16c=;
-        b=evebR/XPRaeq7iu3rn+IRnAGzh1hhuHEnC9dx1+/V7ZmgAy8cwSTqwft5RTCk6QQXn
-         Gt537OWG8TkGaECwlhw8jY1vuh8PH4xLo4Mb25LMr/H/uq4yf1OqcbXPtybVnEuA3zcE
-         ZaMH+9RmKfAsjOLaw+FgqTzJtb5qr9UkhdJOzQN25WBSH4nSYoAkapqIHoL5Qp/3k2gR
-         Baxr9TBVgGNDSLl/rGvnlpcVE+/8WtI8MvjoMgbHP/YBfLWLV5UAxVP3xtfj4KtRxse9
-         4pKwC/fCAUzpXocjH0vSvFuNUiLoXVQacCyy7ZtJ414rKltg0xfnroQm9tYzxSO0zZuN
-         Wh3Q==
-X-Gm-Message-State: AO0yUKW0y70EOrJ9qONOeBqX3p8tRQwxPpcXyR4ekJXXO7TVI5ZvikZZ
-        ELBfntlo5uYG/n/+H89yT5hXjQ==
-X-Google-Smtp-Source: AK7set84hsw/7fWJrGnI1HI7nN5pusbfTFUXGtJoj7Z/splNoJLWpDd3zxqfsMBSwstHnOGC7Hp9iw==
-X-Received: by 2002:a5d:61ca:0:b0:2bf:d14a:21dd with SMTP id q10-20020a5d61ca000000b002bfd14a21ddmr10487360wrv.29.1675415384078;
-        Fri, 03 Feb 2023 01:09:44 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f9-20020a5d4dc9000000b002bfb37497a8sm1478281wru.31.2023.02.03.01.09.43
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k37em+iSA4pp8shcy4mhDg2LmO0zZyrhvJ8r9gNWLJ0=;
+        b=lBnlciG1vyHCfqx1HXOG02Uf5/6w2obSS/avHgmKSrW21I9fsIFukt1r1Wdqedid1k
+         MTJI2wK9/1tOIXqBTl/EEUcidEDtDI8T5c0BGvjlRcL4SVgpCIHGr0FJfkQx+b7WQAWE
+         DJMssH17pz2c0oVSUCb8W1TMezAbQCEU1GNXsduh0qv0HVHXmaeEXCQPNqj9H6zvgR+w
+         Nsu8e2Tce+Ac8JBB3IbEC+xtgmkZOovedZbUQ6TqBZDWwKXDCJ75zLP3EjPa6lTKUaG/
+         tkqYCCGIsFzph4/VQWNjukimVDM0TA8GUGgruWth2FjbHsTEttOFh0MHaXN0v+6HIOcD
+         lcRg==
+X-Gm-Message-State: AO0yUKV+u6Tp7E4lhvC0w2TC7y7tXFlV1vdiN0MwGp2e0E3Jm7mWtmFf
+        ECmttcr3ryG6WINeNPPflX4XawHZhfo8zs5sjvE=
+X-Google-Smtp-Source: AK7set/GYFh4y3+97uGQ1U+qyS7rnb64ienSjSRieFpcYKYgKW8VBKY4nXFj4D2ARmH2eRfTsz3GLw==
+X-Received: by 2002:a7b:cb85:0:b0:3da:1357:4ca2 with SMTP id m5-20020a7bcb85000000b003da13574ca2mr9816355wmi.11.1675415949575;
+        Fri, 03 Feb 2023 01:19:09 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:7407:d8b9:ec7a:537? ([2a01:e0a:982:cbb0:7407:d8b9:ec7a:537])
+        by smtp.gmail.com with ESMTPSA id m13-20020a05600c3b0d00b003dc51c48f0bsm7999595wms.19.2023.02.03.01.19.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 01:09:43 -0800 (PST)
-Message-ID: <46974ae7-5f7f-8fc1-4ea8-fe77b58f5bfb@linaro.org>
-Date:   Fri, 3 Feb 2023 10:09:42 +0100
+        Fri, 03 Feb 2023 01:19:09 -0800 (PST)
+Message-ID: <261fb8cd-5043-3b2d-2c9a-2e602678517c@linaro.org>
+Date:   Fri, 3 Feb 2023 10:19:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH] ASoC: dt-bindings: renesas: adjust to R-Car Gen4
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v8 9/9] crypto: qce: core: Add new compatibles for qce
+ crypto driver
 Content-Language: en-US
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
-Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org
-References: <87zg9vk0ex.wl-kuninori.morimoto.gx@renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <87zg9vk0ex.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Jordan Crouse <jorcrous@amazon.com>
+References: <20230202135036.2635376-1-vladimir.zapolskiy@linaro.org>
+ <20230202135036.2635376-10-vladimir.zapolskiy@linaro.org>
+ <6577abf2-7717-b952-13d7-9143200f24fc@linaro.org>
+ <397bcc25-dd5e-808f-a38b-15e6c18db669@linaro.org>
+ <8cf36a4b-2070-2e79-c06d-b0ec06d8b9f7@linaro.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <8cf36a4b-2070-2e79-c06d-b0ec06d8b9f7@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/02/2023 02:22, Kuninori Morimoto wrote:
+On 02/02/2023 15:20, Krzysztof Kozlowski wrote:
+> On 02/02/2023 15:15, Vladimir Zapolskiy wrote:
+>> Hi Krzysztof,
+>>
+>> On 2/2/23 16:01, Krzysztof Kozlowski wrote:
+>>> On 02/02/2023 14:50, Vladimir Zapolskiy wrote:
+>>>> From: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>>>
+>>>> Since we decided to use soc specific compatibles for describing
+>>>> the qce crypto IP nodes in the device-trees, adapt the driver
+>>>> now to handle the same.
+>>>>
+>>>> Keep the old deprecated compatible strings still in the driver,
+>>>> to ensure backward compatibility.
+>>>>
+>>>> Cc: Bjorn Andersson <andersson@kernel.org>
+>>>> Cc: Rob Herring <robh@kernel.org>
+>>>> Cc: herbert@gondor.apana.org.au
+>>>> Tested-by: Jordan Crouse <jorcrous@amazon.com>
+>>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>>> [vladimir: added more SoC specfic compatibles]
+>>>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>>>> ---
+>>>>    drivers/crypto/qce/core.c | 12 ++++++++++++
+>>>>    1 file changed, 12 insertions(+)
+>>>>
+>>>> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+>>>> index 8e496fb2d5e2..2420a5ff44d1 100644
+>>>> --- a/drivers/crypto/qce/core.c
+>>>> +++ b/drivers/crypto/qce/core.c
+>>>> @@ -291,8 +291,20 @@ static int qce_crypto_remove(struct platform_device *pdev)
+>>>>    }
+>>>>    
+>>>>    static const struct of_device_id qce_crypto_of_match[] = {
+>>>> +	/* Following two entries are deprecated (kept only for backward compatibility) */
+>>>>    	{ .compatible = "qcom,crypto-v5.1", },
+>>>>    	{ .compatible = "qcom,crypto-v5.4", },
+>>>> +	/* Add compatible strings as per updated dt-bindings, here: */
+>>>> +	{ .compatible = "qcom,ipq4019-qce", },
+>>>> +	{ .compatible = "qcom,ipq6018-qce", },
+>>>> +	{ .compatible = "qcom,ipq8074-qce", },
+>>>> +	{ .compatible = "qcom,msm8996-qce", },
+>>>> +	{ .compatible = "qcom,sdm845-qce", },
+>>>> +	{ .compatible = "qcom,sm8150-qce", },
+>>>> +	{ .compatible = "qcom,sm8250-qce", },
+>>>> +	{ .compatible = "qcom,sm8350-qce", },
+>>>> +	{ .compatible = "qcom,sm8450-qce", },
+>>>> +	{ .compatible = "qcom,sm8550-qce", },
+>>> I did not agree with this at v7 and I still do not agree. We already did
+>>> some effort to clean this pattern in other drivers, so to make it clear
+>>> - driver does not need 10 compatibles because they are the same.
+>>
+>> Here is a misunderstanding, the compatibles are not the same and it shall
+>> not be assumed this way, only the current support of the IP on different SoCs
+>> in the driver is the same.
+
+It seems the IP version is discoverable, in this case it's perfectly valid
+to have a generic compatible along a soc specific compatible.
+
+It has been done and validated multiple times, like for the ARM Mali Bifrost [1]
+
+I'll propose then to add a generic "qcom,crypto" as fallback to
+all of those new compatibles and clearly document that this is only
+for crypto IP cores versions that have the runtime version discoverable.
+
+We could even add a major version generic fallback compatible like "qcom,crypto-v5" or "qcom,crypto-v5.x"
+to differentiate from older crypto devices.
+
+Neil
+
 > 
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> They are the same for the driver. It's the same what we fixed for SDHCI
+> and other cases. Why this should be treated differently?
 > 
-> R-Car Gen4 is not compatible with Gen3, this patch adjusts
-> to R-Car Gen4.
+>>
+>> Later on every minor found difference among IPs will require to break DTB ABI,
+>> if all of the particular SoC specific comaptibles are not listed.
 > 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> ---
-> The "required" with if - then - else on "rcar_sound,ssi" is
-> always match to "then" even though it is checking "renesas,rcar_sound-gen4" or not.
-> Why ?? Is it my fault ??
+> No, why? Why SDHCI and hundreds of other devices are not affected and
+> this one is?
 > 
->  .../bindings/sound/renesas,rsnd.yaml          | 62 ++++++++++++++-----
->  1 file changed, 46 insertions(+), 16 deletions(-)
+> Best regards,
+> Krzysztof
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> index d106de00c6b2..9a88b1c34e72 100644
-> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> @@ -106,7 +106,9 @@ properties:
->      items:
->        oneOf:
->          - const: ssi-all
-> +        - const: clkin
->          - pattern: '^ssi\.[0-9]$'
-> +        - pattern: '^ssiu\.[0-9]$'
->          - pattern: '^src\.[0-9]$'
->          - pattern: '^mix\.[0-1]$'
->          - pattern: '^ctu\.[0-1]$'
-> @@ -254,10 +256,20 @@ properties:
->            no-busif:
->              description: BUSIF is not used when [mem -> SSI] via DMA case
->              $ref: /schemas/types.yaml#/definitions/flag
-> -        required:
-> -          - interrupts
-> -          - dmas
-> -          - dma-names
-> +        allOf:
-> +          - if:
-> +              properties:
-> +                compatible:
-> +                  contains:
-> +                    const: renesas,rcar_sound-gen4
-> +            then:
-> +              required:
-> +                - interrupts
-> +            else:
-> +              required:
-> +                - interrupts
 
-This does not make sense - you just require it always.
-
-
-
-> +                - dmas
-> +                - dma-names
->      additionalProperties: false
->  
->    # For DAI base
-> @@ -307,18 +319,36 @@ allOf:
->                - ssi
->                - adg
->      else:
-> -      properties:
-> -        reg:
-> -          maxItems: 5
-> -        reg-names:
-> -          maxItems: 5
-> -          items:
-> -            enum:
-> -              - scu
-> -              - adg
-> -              - ssiu
-> -              - ssi
-> -              - audmapp
-> +      if:
-
-Please do not embed if within another if, unless strictly necessary. It
-gets unmanageable.
-
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              const: renesas,rcar_sound-gen4
-> +      then:
-> +        properties:
-> +          reg:
-
-minItems
-
-> +            maxItems: 4
-> +          reg-names:
-> +            maxItems: 4
-
-Drop
-
-> +            items:
-> +              enum:
-> +                - adg
-> +                - ssiu
-> +                - ssi
-> +                - sdmc
-> +      else:
-> +        properties:
-> +          reg:
-
-minItems
-
-> +            maxItems: 5
-> +          reg-names:
-> +            maxItems: 5
-
-Drop
-
-
-Best regards,
-Krzysztof
-
+[1] https://lore.kernel.org/all/20190401080949.14550-1-narmstrong@baylibre.com/
