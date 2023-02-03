@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85BC068918B
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 09:05:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72388689197
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 09:07:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232685AbjBCIFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 03:05:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44274 "EHLO
+        id S232476AbjBCIF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 03:05:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232934AbjBCIFA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 03:05:00 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A2D71B31C
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 00:03:38 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso5437516wms.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 00:03:38 -0800 (PST)
+        with ESMTP id S229785AbjBCIFR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 03:05:17 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D1EB945FC
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 00:04:01 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id q8so3207471wmo.5
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 00:04:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HO/wOlTKv2ZXyBQ/Aq4ZwUrxkA17nVhS0gL6sWJfJgU=;
-        b=a9KKsDInAF1Re4LhiLxP3wdQs0pGWYrQHdmV6QmNbAWyZpX8mzHTBsD1QFyTIwx20Z
-         6B+CNYeaIDaMeTDISok2fJVRBZAgxiTZArvhTbSTiD0zEVNCV6BHc6CSVMH7Gtl4GQyr
-         ysPAjJGcj0tcIE+Br4FQm0ztrXBNaJ4Vx5k5ySDS0feEq8SbPnSVA8rX2zbXyZlWgCeC
-         kuCNg4czlNc6buYVJkBQEOoUWGU9YauzZextYJyaw1Y/vXjG0rwN3kC7hmMgoKqCCOp4
-         j8TPpa/0qF35omFlAmoehM1RCroVpAQq4QwZhuDoIhVa8cvZFFPUqq72T6UWXouXUCpA
-         i4EQ==
+        bh=5n5nzjeWYrzvFdzePtFgwKj0yhRVHY39hpZH36NwKnk=;
+        b=VKuUvjTlX5a1O4eMIYlvvN7JZ19j0qIbN/KBLlJ4miIJCOS10HO5/biPIEzBjlaL8j
+         wJOvFnYXDW/rxLJ/vC2Rh4Bc2rlBVhGOiku0lr+ZhbhOS8GhO3f9cA2XiAx/6XYRgqkg
+         1hIRoiQgIXUBb7+LNc3WmyBNsaY2aS9QxITLZPA//DroZJQRHVZblV0r0NKP4wFGJjC9
+         hEZLRCCW7BSem7OjHHznc7HSP0JqQrilzIwTzuvMQEXzFA5sR+evvkygqIRDw/6lx3CI
+         K+0VwdnsBVuNbJlu7QE1JAGddfd1n4i74dNRpgLBL6cJ+UbGfpFQREllpUEYWxfnFdRY
+         3/uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HO/wOlTKv2ZXyBQ/Aq4ZwUrxkA17nVhS0gL6sWJfJgU=;
-        b=NLs/dZH424h8X21pnS/lGLccemUjsun0qSt+2VUJlvQQqEfFseIuyS3TR2uoJYK1rR
-         IZPnwtbfMF80+99GDgRSu5PdAWFuMPp2S0JeXKAF+yqSihoHRofCviO9scok/62Puhoq
-         KjDTcAHfs4vYfYz0mditx8sorJPnOqL3dz2Ym/PZimHRKo1+j3XKm/f54ZXg61bdw9zv
-         s4fd3DvtXdM8b2Fxqvvp/9hj4WfrdjoKWkI5w+QScrxhHCn8XhJ6lx5rKXjNSEYMdE8b
-         5FwpS3rvu760PDX8W3Ah0gjdGl+mVj1yCf/gdTfrzTlHueZzLYwvLcCDSuVF0iO3JYa9
-         Nf7A==
-X-Gm-Message-State: AO0yUKXI3QY7yKLyXLdcyWfFcwff8rGzF7c9AIpwBSarqSKpyTYs7F/K
-        avwuxCFhdlnga4omuJfETDlHYQ==
-X-Google-Smtp-Source: AK7set8u+cmZ7lz8PRUKAve3w16hS2Y87x6C560Uz3vJTv2lGOkxZM8qBpNk5O2HUja+PkE9yv2U6Q==
-X-Received: by 2002:a05:600c:16c4:b0:3db:2098:17c0 with SMTP id l4-20020a05600c16c400b003db209817c0mr10351012wmn.29.1675411416947;
-        Fri, 03 Feb 2023 00:03:36 -0800 (PST)
+        bh=5n5nzjeWYrzvFdzePtFgwKj0yhRVHY39hpZH36NwKnk=;
+        b=j4oe21/BIe7rdEA/ZLU+jDHQgNOchfJjGzwlkYWFOrFYzdt0mV88+Ia9aBqBDwRup4
+         oqVReE5OIGxDZ4LuX5lgJB2F3OQG9buNkwpOi6uEBAW3GM1QUE/unxSZ3jbzmdZajTdh
+         NOawDAFZp9AMe5HJNLvmzhYDdqzFpw9DEbMaXB+nBE8mwRk9tLCwdjTtQ+RokGHuOJKw
+         7s10WtMY2wL750K6oQzt3So8x4DZ/oY8KOSNsUqfgqGyIQ3wqS6bZUNIl25vg9Cx9TS8
+         S75lbo49NuBn+eInlooR/gHuVf3zFlhPVUrW3wJB0bksTwq6JVptXEpkDc5vRUO8rD07
+         1YWw==
+X-Gm-Message-State: AO0yUKXqA9DCvP7AWlJohEMK2A6Cx02Gx8YuH/nFrlAQcQ2mx04uhDtO
+        pt6w5NSAjO+2MTJEtVh6kakwGw==
+X-Google-Smtp-Source: AK7set8ndf5+O2ob1W8PMCs/4gc2zLHq73SYbJTh14EOpBU1XesXZgsXJjKB3N2Hs3hq6EQctUIVZw==
+X-Received: by 2002:a05:600c:3d88:b0:3d2:3f55:f757 with SMTP id bi8-20020a05600c3d8800b003d23f55f757mr8759506wmb.20.1675411440191;
+        Fri, 03 Feb 2023 00:04:00 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z4-20020a05600c0a0400b003dfdeb57027sm4215674wmp.38.2023.02.03.00.03.35
+        by smtp.gmail.com with ESMTPSA id q10-20020a05600c330a00b003dc3f195abesm1839823wmp.39.2023.02.03.00.03.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 00:03:36 -0800 (PST)
-Message-ID: <bdf35849-b1c9-224c-9d11-3fa57d224335@linaro.org>
-Date:   Fri, 3 Feb 2023 09:03:35 +0100
+        Fri, 03 Feb 2023 00:03:59 -0800 (PST)
+Message-ID: <3ac4c315-cff1-b313-6936-2fe5ca87c350@linaro.org>
+Date:   Fri, 3 Feb 2023 09:03:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 7/9] ASoC: dt-bindings: meson: convert axg spdif input to
+Subject: Re: [PATCH 8/9] ASoC: dt-bindings: meson: convert axg spdif output to
  schema
 Content-Language: en-US
 To:     Jerome Brunet <jbrunet@baylibre.com>,
@@ -67,9 +67,9 @@ Cc:     linux-amlogic@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-kernel@vger.kernel.org
 References: <20230202183653.486216-1-jbrunet@baylibre.com>
- <20230202183653.486216-8-jbrunet@baylibre.com>
+ <20230202183653.486216-9-jbrunet@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202183653.486216-8-jbrunet@baylibre.com>
+In-Reply-To: <20230202183653.486216-9-jbrunet@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,63 +83,61 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 02/02/2023 19:36, Jerome Brunet wrote:
-> Convert the DT binding documentation for the Amlogic axg spdif input to
+> Convert the DT binding documentation for the Amlogic axg spdif output to
 > schema.
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  .../bindings/sound/amlogic,axg-spdifin.txt    | 27 ------
->  .../bindings/sound/amlogic,axg-spdifin.yaml   | 90 +++++++++++++++++++
->  2 files changed, 90 insertions(+), 27 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.yaml
+>  .../bindings/sound/amlogic,axg-spdifout.txt   | 25 ------
+>  .../bindings/sound/amlogic,axg-spdifout.yaml  | 83 +++++++++++++++++++
+>  2 files changed, 83 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
 > deleted file mode 100644
-> index df92a4ecf288..000000000000
-> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
+> index 28381dd1f633..000000000000
+> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
 > +++ /dev/null
-> @@ -1,27 +0,0 @@
-> -* Amlogic Audio SPDIF Input
+> @@ -1,25 +0,0 @@
+> -* Amlogic Audio SPDIF Output
 > -
 > -Required properties:
-> -- compatible: 'amlogic,axg-spdifin' or
-> -	      'amlogic,g12a-spdifin' or
-> -	      'amlogic,sm1-spdifin'
-> -- interrupts: interrupt specifier for the spdif input.
+> -- compatible: 'amlogic,axg-spdifout' or
+> -	      'amlogic,g12a-spdifout' or
+> -	      'amlogic,sm1-spdifout'
 > -- clocks: list of clock phandle, one for each entry clock-names.
 > -- clock-names: should contain the following:
 > -  * "pclk" : peripheral clock.
-> -  * "refclk" : spdif input reference clock
+> -  * "mclk" : master clock
 > -- #sound-dai-cells: must be 0.
 > -
 > -Optional property:
-> -- resets: phandle to the dedicated reset line of the spdif input.
+> -- resets: phandle to the dedicated reset line of the spdif output.
 > -
 > -Example on the A113 SoC:
 > -
-> -spdifin: audio-controller@400 {
-> -	compatible = "amlogic,axg-spdifin";
-> -	reg = <0x0 0x400 0x0 0x30>;
+> -spdifout: audio-controller@480 {
+> -	compatible = "amlogic,axg-spdifout";
+> -	reg = <0x0 0x480 0x0 0x50>;
 > -	#sound-dai-cells = <0>;
-> -	interrupts = <GIC_SPI 87 IRQ_TYPE_EDGE_RISING>;
-> -	clocks = <&clkc_audio AUD_CLKID_SPDIFIN>,
-> -		 <&clkc_audio AUD_CLKID_SPDIFIN_CLK>;
-> -	clock-names = "pclk", "refclk";
+> -	clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
+> -		 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
+> -	clock-names = "pclk", "mclk";
 > -};
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.yaml
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.yaml
 > new file mode 100644
-> index 000000000000..4f7e4c21acc1
+> index 000000000000..c661ce7f8b9d
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.yaml
-> @@ -0,0 +1,90 @@
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.yaml
+> @@ -0,0 +1,83 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/sound/amlogic,axg-spdifin.yaml#
+> +$id: http://devicetree.org/schemas/sound/amlogic,axg-spdifout.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Amlogic Audio AXG SPDIF Input
+> +title: Amlogic Audio AXG SPDIF Output
 > +
 > +maintainers:
 > +  - Jerome Brunet <jbrunet@baylibre.com>
@@ -154,20 +152,17 @@ On 02/02/2023 19:36, Jerome Brunet wrote:
 > +  compatible:
 > +    oneOf:
 > +      - items:
+> +          - const:
+> +              amlogic,axg-spdifout
 
 All usual comments apply.
 
-> +          - const:
-> +              amlogic,axg-spdifin
 > +      - items:
 > +          - enum:
-> +              - amlogic,g12a-spdifin
-> +              - amlogic,sm1-spdifin
+> +              - amlogic,g12a-spdifout
+> +              - amlogic,sm1-spdifout
 > +          - const:
-> +              amlogic,axg-spdifin
-
-All usual comments apply.
-
+> +              amlogic,axg-spdifout
 > +
 > +  reg:
 > +    maxItems: 1
@@ -178,15 +173,12 @@ All usual comments apply.
 > +  clocks:
 > +    items:
 > +      - description: Peripheral clock
-> +      - description: SPDIF input reference clock
+> +      - description: SPDIF output master clock
 > +
 > +  clock-names:
 > +    items:
 > +      - const: pclk
-> +      - const: refclk
-> +
-> +  interrupts:
-> +    maxItems: 1
+> +      - const: mclk
 > +
 > +required:
 > +  - compatible
@@ -194,15 +186,14 @@ All usual comments apply.
 > +  - "#sound-dai-cells"
 > +  - clocks
 > +  - clock-names
-> +  - interrupts
 > +
 > +if:
 > +  properties:
 > +    compatible:
 > +      contains:
 > +        enum:
-> +          - amlogic,g12a-spdifin
-> +          - amlogic,sm1-spdifin
+> +          - amlogic,g12a-spdifout
+> +          - amlogic,sm1-spdifout
 > +then:
 > +  properties:
 > +    resets:
@@ -217,13 +208,11 @@ All usual comments apply.
 > +examples:
 > +  - |
 > +    #include <dt-bindings/clock/axg-audio-clkc.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
 > +
-> +    spdifin: audio-controller@400 {
-> +    	compatible = "amlogic,axg-spdifin";
+> +    spdifout: audio-controller@480 {
+> +    	compatible = "amlogic,axg-spdifout";
 
-Fix indentation.
+Indentation.
 
 
 Best regards,
