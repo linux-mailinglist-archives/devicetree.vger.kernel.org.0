@@ -2,88 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AAD168A0DF
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 18:52:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FD4D68A0E8
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 18:54:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233521AbjBCRwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 12:52:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58748 "EHLO
+        id S231989AbjBCRyM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 12:54:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233443AbjBCRwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 12:52:34 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF62430D8
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 09:52:31 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id h12so5336907wrv.10
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 09:52:31 -0800 (PST)
+        with ESMTP id S232149AbjBCRyH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 12:54:07 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C5837F00
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 09:54:06 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id d14so5339755wrr.9
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 09:54:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KmjVKJVNE4p0j+Wyyo3MOrblEjNwWmONecNkJ41UOZg=;
-        b=P5z38eXFsQoTu1QIoMFvy/78RMkXHgHgMVfoYAqxDavm8FjsTvYuIchRYL6nyE2tWl
-         vvdcWeIaB0RJzoXTPngpqXAsULysJFiJUke640pWWsnnz8ee30D1AyJqGAwxoj2Ypare
-         njWcbtFUaxK1JDQQbI/fOTTkk9nyB3h531V7tC2D8TCLDJ9v89NSx8WicE3R+tTahbGI
-         BLlf9D+uFgD4PpqaPdYGUaiFwze4nbg6z9de4ihm1Ij0Gy+IU+x2QMEBqMinOFeUPrvB
-         1GTEbuf5mCrXZy0pGWEiHUmFDnOdl8X3OVG2phjZQC+OCe9phynr8+ppmeuezl9l/4mT
-         qoVA==
+        bh=64/VDuUQiW+Vf3xea9SdqjgxeztAbXQzDh6Wov0b1Zo=;
+        b=MiESMRJeHTeosOgc+Zit64s/0KsfzCYox3nX5HMgTerJ3Vj2/PxImwLUOXO63HifSb
+         hY3i9w0/7z8R6dgpA4+G7ra2D/4T4R78aOAEX/uO0O9sPEZqswM1GQsn9jdSA+vE2RXq
+         Re+XeIT491Pu8UBDPZszcyWJLScsV2l69Q7Hta+LEWvBODzDgT6M4obDhmUmzoK4cHp4
+         hCbkorq1HjQGsO+CmZgZPWrv91+Q0qXQx9Uq99XYoaBpsk0OSiRe5DuOrLTrARIbX/Rw
+         3I7fkc9QTVWdKznZz3utw7nPd+CMewiTKbBBUMcrD0PmrVFJtviCGdEKWZTt4IgL3bAu
+         OhOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KmjVKJVNE4p0j+Wyyo3MOrblEjNwWmONecNkJ41UOZg=;
-        b=XOztYzB9zfcvFg6ukST4QH/kQ80t1L0sIZl88zcPaEp28ljCgY5dJQ4xn/I/cUOa7h
-         wgr+714Pv/4xS244rNJ+teczBCk6bulela6LFbh2C0qMIVRS5OLZbXSKjqySfhg1bZEF
-         7BW3X4FdnX6Rm34380gvU18Zum4HHkw0v98cjvawSeeVGCi/ZtD05s7E2zh4UpVHcfpq
-         n91sBSUNmVeUoSrFXz7pw5bQ4I2nQN/BB/uMTmoaP8A9pFi8/BDpViqywylxsrE2EpXc
-         jdQrCPxPNY2JC6zZZJX73SjZ+CICJemQWxauWJN+1wqZwMDy3H2c94LnK+4aD3T05RmY
-         jsBA==
-X-Gm-Message-State: AO0yUKXzvnBMh8EXb9inpRYEodhP1ap0JZj6FBfCdHE9ZAfJJLrofF5R
-        nop+x+o5DLAQ1eojeCG3aeDnbw==
-X-Google-Smtp-Source: AK7set8nE4xPG4ibW2gkzMyyKv7N1bKtyNIlqkHHzmlOiBLJRTStNDHCspXirR3GOWbLJSLOYlPuDw==
-X-Received: by 2002:a5d:67c4:0:b0:2c3:be89:7c33 with SMTP id n4-20020a5d67c4000000b002c3be897c33mr3987354wrw.22.1675446750458;
-        Fri, 03 Feb 2023 09:52:30 -0800 (PST)
+        bh=64/VDuUQiW+Vf3xea9SdqjgxeztAbXQzDh6Wov0b1Zo=;
+        b=JqUgnzcvN4Mvj1fnDMCPulU47qZKENmztcfGpalA+ci/tz8n56a32ZCC6P0aTYaNX4
+         6Xi7X6bF9mDj89tUg3YpU/Lg1lVb6M1ICY5hqQUeJoinqbFgBDtKeytkGvsXQ3wkRlXR
+         V6aTqL5Gdr9u7F0cKo78PI7cFz5EmDzGUgCpAYQ1asgsBtTVO2LwxZkTdj+UcX5NGbn4
+         zjUacK111xxbA5kT+dKz7Fox1DdoVHtLW5jvxCbU0QH40c9VCG1NAEi+urF3iNk1gouX
+         Mecb81+gQPEOzIRZp0WNffz1DmVyJjiU7Lebwbi+tVYQrftzzu+5+//HLpFWCaTDXPZ1
+         NUQw==
+X-Gm-Message-State: AO0yUKXkCZfIE1YR7P64IxhTizPf0k09ANCH6Awsq1bNYUIECphHuvhF
+        ZKdTjhOtxL/7zOZ8Uwj4Emz60g==
+X-Google-Smtp-Source: AK7set8C1hagDBeGxpuByAoF/bYki9T5Zrg5yh+v7Y7uNnn+YhIqnqw3/BynIyQMxVUgLdzFTAdj5A==
+X-Received: by 2002:a5d:5c09:0:b0:2be:5c4a:de6b with SMTP id cc9-20020a5d5c09000000b002be5c4ade6bmr10102366wrb.3.1675446844584;
+        Fri, 03 Feb 2023 09:54:04 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d2-20020a056000186200b002bddd75a83fsm2773492wri.8.2023.02.03.09.52.29
+        by smtp.gmail.com with ESMTPSA id f17-20020a5d4dd1000000b002bfad438811sm2480187wru.74.2023.02.03.09.54.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 09:52:30 -0800 (PST)
-Message-ID: <035fe556-b1c8-6073-9474-af8b63998d43@linaro.org>
-Date:   Fri, 3 Feb 2023 18:52:28 +0100
+        Fri, 03 Feb 2023 09:54:04 -0800 (PST)
+Message-ID: <3b81bd45-766b-fe26-d9ec-2097e1fe5a0b@linaro.org>
+Date:   Fri, 3 Feb 2023 18:54:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] dt-bindings: sram: qcom,imem: document sm8450
+Subject: Re: [PATCH v4 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
 Content-Language: en-US
-To:     Mukesh Ojha <quic_mojha@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Maarten Zanders <maarten.zanders@mind.be>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <1675443891-31709-1-git-send-email-quic_mojha@quicinc.com>
+References: <20230202101032.26737-1-maarten.zanders@mind.be>
+ <20230202101032.26737-2-maarten.zanders@mind.be>
+ <28cf0c1f-ee5f-79e4-609a-2cdd24db9f1c@linaro.org>
+ <1452beba-19b0-7417-716e-a255c6aaa739@mind.be>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1675443891-31709-1-git-send-email-quic_mojha@quicinc.com>
+In-Reply-To: <1452beba-19b0-7417-716e-a255c6aaa739@mind.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/02/2023 18:04, Mukesh Ojha wrote:
-> Add compatible for sm8450 IMEM.
+On 03/02/2023 16:38, Maarten Zanders wrote:
 > 
-> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> ---
+> On 2/2/23 21:13, Krzysztof Kozlowski wrote:
+>> + ti,charge-pump-mode:
+>>> +    description:
+>>> +      Set the operating mode of the internal charge pump as defined in
+>>> +      <dt-bindings/leds/leds-lp55xx.h>. Defaults to auto.
+>>> +    $ref: /schemas/types.yaml#/definitions/uint8
+>> This should be then uint32
+> 
+> Why is that? I specifically chose uint8 because other settings for LED 
+> are also uint8. The implementation is also uint8. I surely hope we'll 
+> never get to >256 modes for a charge pump.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Because all IDs are unsigned int.
 
 Best regards,
 Krzysztof
