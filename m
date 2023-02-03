@@ -2,52 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F21B6689204
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 09:23:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25820689221
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 09:27:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233034AbjBCIVb convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 3 Feb 2023 03:21:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57812 "EHLO
+        id S232993AbjBCIXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 03:23:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232749AbjBCIVK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 03:21:10 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 184DB6DB2E;
-        Fri,  3 Feb 2023 00:19:43 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id B102024E28F;
-        Fri,  3 Feb 2023 16:19:16 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 3 Feb
- 2023 16:19:16 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX168.cuchost.com (172.16.6.78) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Fri, 3 Feb 2023 16:19:15 +0800
-From:   William Qiu <william.qiu@starfivetech.com>
-To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        William Qiu <william.qiu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 3/3] riscv: dts: starfive: Add mmc node
-Date:   Fri, 3 Feb 2023 16:19:13 +0800
-Message-ID: <20230203081913.81968-4-william.qiu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230203081913.81968-1-william.qiu@starfivetech.com>
-References: <20230203081913.81968-1-william.qiu@starfivetech.com>
+        with ESMTP id S232877AbjBCIXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 03:23:06 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A6389B701;
+        Fri,  3 Feb 2023 00:21:43 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3135HX2b017013;
+        Fri, 3 Feb 2023 08:20:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=vGCDi8mazy8C2ArRV8P4USNLAvgRgQFuyX5QpQr8bXI=;
+ b=JD7lBvVRfUiWpb7ra75gvs1SS70jJvuY17QPkdPaoCY5hA5ywIc9Vz/XpmADZWJG5ikf
+ 1cmjisa80G2Rd6aIJABY/F+CiF5L+TSmb+h/XBtiLuxwl3kpWb+0BnPCIiKdJOcc+Dke
+ t4+fuoRRGiAQpwbnxGF15qlH5BqpYLD4/44BYVeW5Jc5Cs1lhZl92u+R8k2cVviND4WF
+ IYp6bTbCCKcRH+ueS+PZwUJcSYiEboKCBkfSOv6v7vkKOQb/T5t5mYkxr9Y08ZMz3qRR
+ FHBPXTG4zJmMOHrGaRRQMhdzjoTmqyNBSZ28pw80zWmYvz2i+zVnBesyW2t71c9uV26U 0w== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ngahqtme9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 03 Feb 2023 08:20:42 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3138Kfnh013369
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 3 Feb 2023 08:20:41 GMT
+Received: from [10.216.62.140] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 3 Feb 2023
+ 00:20:37 -0800
+Message-ID: <d2af0b0c-718a-a625-3630-05631d0e310c@quicinc.com>
+Date:   Fri, 3 Feb 2023 13:50:34 +0530
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v5 1/2] dt-bindings: ramoops: Add support to get the
+ region dynamically
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-hardening@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <keescook@chromium.org>, <tony.luck@intel.com>,
+        <gpiccoli@igalia.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <corbet@lwn.net>
+References: <1675330081-15029-1-git-send-email-quic_mojha@quicinc.com>
+ <20230202235916.GA2931100-robh@kernel.org>
+From:   Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <20230202235916.GA2931100-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: m_x_UGIBt3jvA9wc_qwpE2Y9If-Y-5vC
+X-Proofpoint-GUID: m_x_UGIBt3jvA9wc_qwpE2Y9If-Y-5vC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-03_04,2023-02-02_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxscore=0
+ impostorscore=0 phishscore=0 bulkscore=0 priorityscore=1501
+ mlxlogscore=747 malwarescore=0 adultscore=0 suspectscore=0
+ lowpriorityscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2302030076
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,103 +82,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the mmc node for the StarFive JH7110 SoC.
-Set mmco node to emmc and set mmc1 node to sd.
 
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 23 ++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 37 +++++++++++++++++++
- 2 files changed, 60 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index c60280b89c73..e1a0248e907f 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -42,6 +42,29 @@ &rtc_osc {
- 	clock-frequency = <32768>;
- };
- 
-+&mmc0 {
-+	max-frequency = <100000000>;
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	cap-mmc-hw-reset;
-+	post-power-on-delay-ms = <200>;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	max-frequency = <100000000>;
-+	bus-width = <4>;
-+	no-sdio;
-+	no-mmc;
-+	broken-cd;
-+	cap-sd-highspeed;
-+	post-power-on-delay-ms = <200>;
-+	status = "okay";
-+};
-+
- &gmac0_rmii_refin {
- 	clock-frequency = <50000000>;
- };
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 64d260ea1f29..ae1a664e7af5 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -370,6 +370,11 @@ syscrg: clock-controller@13020000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		sysreg: syscon@13030000 {
-+			compatible = "starfive,sysreg", "syscon";
-+			reg = <0x0 0x13030000 0x0 0x1000>;
-+		};
-+
- 		gpio: gpio@13040000 {
- 			compatible = "starfive,jh7110-sys-pinctrl";
- 			reg = <0x0 0x13040000 0x0 0x10000>;
-@@ -407,5 +412,37 @@ gpioa: gpio@17020000 {
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 		};
-+
-+		mmc0: mmc@16010000 {
-+			compatible = "starfive,jh7110-mmc";
-+			reg = <0x0 0x16010000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
-+				 <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
-+			clock-names = "biu","ciu";
-+			resets = <&syscrg JH7110_SYSRST_SDIO0_AHB>;
-+			reset-names = "reset";
-+			interrupts = <74>;
-+			fifo-depth = <32>;
-+			fifo-watermark-aligned;
-+			data-addr = <0>;
-+			starfive,sysreg = <&sysreg 0x14 0x1a 0x7c000000>;
-+			status = "disabled";
-+		};
-+
-+		mmc1: mmc@16020000 {
-+			compatible = "starfive,jh7110-mmc";
-+			reg = <0x0 0x16020000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SDIO1_AHB>,
-+				 <&syscrg JH7110_SYSCLK_SDIO1_SDCARD>;
-+			clock-names = "biu","ciu";
-+			resets = <&syscrg JH7110_SYSRST_SDIO1_AHB>;
-+			reset-names = "reset";
-+			interrupts = <75>;
-+			fifo-depth = <32>;
-+			fifo-watermark-aligned;
-+			data-addr = <0>;
-+			starfive,sysreg = <&sysreg 0x9c 0x1 0x3e>;
-+			status = "disabled";
-+		};
- 	};
- };
--- 
-2.34.1
+On 2/3/2023 5:29 AM, Rob Herring wrote:
+> On Thu, Feb 02, 2023 at 02:58:00PM +0530, Mukesh Ojha wrote:
+>> The reserved memory region for ramoops is assumed to be at a
+>> fixed and known location when read from the devicetree. This
+>> is not desirable in an environment where it is preferred the
+>> region to be dynamically allocated at runtime, as opposed to
+>> being fixed at compile time.
+>>
+>> So, update the ramoops binding by using some reserve memory
+>> property to allocate the ramoops region dynamically.
+> 
+> Sorry, but I still don't think this belongs in DT as I commented on v4
+Do you mean, we should not even document this here ? or are you against 
+the size property mentioned in this patch.
 
+-Mukesh
