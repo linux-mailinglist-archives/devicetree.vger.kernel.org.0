@@ -2,157 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1E77688E5A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 05:01:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C5AE688F01
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 06:33:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbjBCEBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 23:01:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40868 "EHLO
+        id S231866AbjBCFdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 00:33:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232340AbjBCEBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 23:01:47 -0500
-Received: from n169-114.mail.139.com (n169-114.mail.139.com [120.232.169.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E5706A30E;
-        Thu,  2 Feb 2023 20:01:36 -0800 (PST)
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM:                                                                                        
-X-RM-SPAM-FLAG: 00000000
-Received: from localhost.localdomain (unknown[183.194.156.72])
-        by rmsmtp-lg-appmail-43-12057 (RichMail) with SMTP id 2f1963dc8710dba-5c12d;
-        Fri, 03 Feb 2023 12:01:24 +0800 (CST)
-X-RM-TRANSID: 2f1963dc8710dba-5c12d
-From:   Shenghao Ding <13916275206@139.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        broonie@kernel.org, lgirdwood@gmail.com
-Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Shenghao Ding <13916275206@139.com>
-Subject: [PATCH v5] ASoC: dt-bindings: Add tas2781 amplifier
-Date:   Fri,  3 Feb 2023 12:01:15 +0800
-Message-Id: <20230203040115.27321-1-13916275206@139.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229711AbjBCFdH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 00:33:07 -0500
+X-Greylist: delayed 1698 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 02 Feb 2023 21:33:04 PST
+Received: from formenos.hmeau.com (167-179-156-38.a7b39c.syd.nbn.aussiebb.net [167.179.156.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C5934226;
+        Thu,  2 Feb 2023 21:33:03 -0800 (PST)
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
+        id 1pNoFN-0071Su-1R; Fri, 03 Feb 2023 13:04:26 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 03 Feb 2023 13:04:25 +0800
+Date:   Fri, 3 Feb 2023 13:04:25 +0800
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lionel Debieve <lionel.debieve@foss.st.com>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 0/6] crypto: stm32 hash - reuse for Ux500
+Message-ID: <Y9yV2fJbumrUDW5a@gondor.apana.org.au>
+References: <20221227-ux500-stm32-hash-v3-0-32ee12cd6f06@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
-        FROM_LOCAL_HEX,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221227-ux500-stm32-hash-v3-0-32ee12cd6f06@linaro.org>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
+        PDS_RDNS_DYNAMIC_FP,RDNS_DYNAMIC,SPF_HELO_NONE,SPF_SOFTFAIL
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Create tas2781.yaml for tas2781 driver.
+On Wed, Jan 25, 2023 at 01:23:06AM +0100, Linus Walleij wrote:
+> By taking some small portions of the Ux500 HASH driver and
+> adding to the STM32 driver, it turns out we can support both
+> platforms with the more modern STM32 driver.
+> 
+> The STM32 driver is more modern and compact thanks to using
+> things like the crypto engine.
+> 
+> We add a polled mode since the Ux500 does not have any
+> interrupt. Incidentally, this could perhaps be re-used to
+> implement synchronous mode, if this is desireable.
+> 
+> To: Herbert Xu <herbert@gondor.apana.org.au>
+> To: "David S. Miller" <davem@davemloft.net>
+> To: Rob Herring <robh+dt@kernel.org>
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> To: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> To: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> To: Lionel Debieve <lionel.debieve@foss.st.com>
+> Cc: linux-crypto@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> 
+> ---
+> Changes in v3:
+> - Allocate the synchronous fallback algorithm in .cra_init()
+>   and free it in .cra_exit().
+> - Pick up some review tags.
+> - Link to v2: https://lore.kernel.org/r/20221227-ux500-stm32-hash-v2-0-bc443bc44ca4@linaro.org
+> 
+> Changes in v2:
+> - Use an else-clause in the DT bindings.
+> - Fix up issues pointed out by Lionel in the driver extension.
+> - Dropped the patch converting dma_mode to a bool after
+>   Lionel explained how this works.
+> - Link to v1: https://lore.kernel.org/r/20221227-ux500-stm32-hash-v1-0-b637ac4cda01@linaro.org
+> 
+> ---
+> Linus Walleij (6):
+>       dt-bindings: crypto: Let STM32 define Ux500 HASH
+>       crypto: stm32/hash: Simplify code
+>       crypto: stm32/hash: Use existing busy poll function
+>       crypto: stm32/hash: Wait for idle before final CPU xmit
+>       crypto: stm32/hash: Support Ux500 hash
+>       crypto: ux500/hash - delete driver
+> 
+>  .../devicetree/bindings/crypto/st,stm32-hash.yaml  |   23 +-
+>  drivers/crypto/Kconfig                             |   10 -
+>  drivers/crypto/Makefile                            |    1 -
+>  drivers/crypto/stm32/stm32-hash.c                  |  266 ++-
+>  drivers/crypto/ux500/Kconfig                       |   22 -
+>  drivers/crypto/ux500/Makefile                      |    7 -
+>  drivers/crypto/ux500/hash/Makefile                 |   11 -
+>  drivers/crypto/ux500/hash/hash_alg.h               |  398 ----
+>  drivers/crypto/ux500/hash/hash_core.c              | 1966 --------------------
+>  9 files changed, 249 insertions(+), 2455 deletions(-)
+> ---
+> base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
+> change-id: 20221227-ux500-stm32-hash-9ee26834292f
+> 
+> Best regards,
+> -- 
+> Linus Walleij <linus.walleij@linaro.org>
 
-Signed-off-by: Shenghao Ding <13916275206@139.com>
-
----
-Changes in v5:
- - Drop the full stop in the Subject.
- - Drop the reset-gpios reference to gpio.txt.
- - Add Changelog.
- Changes to be committed:
-	new file:   Documentation/devicetree/bindings/sound/ti,tas2781.yaml
----
- .../devicetree/bindings/sound/ti,tas2781.yaml | 87 +++++++++++++++++++
- 1 file changed, 87 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-new file mode 100644
-index 000000000000..8af44792a904
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-@@ -0,0 +1,87 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2022 - 2023 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments TAS2781 SmartAMP
-+
-+maintainers:
-+  - Shenghao Ding <shenghao-ding@ti.com>
-+  - Kevin Lu <kevin-lu@ti.com>
-+
-+description: |
-+  The TAS2781 is a mono, digital input Class-D audio amplifier
-+  optimized for efficiently driving high peak power into small
-+  loudspeakers. Integrated an on-chip DSP supports Texas Instruments
-+  Smart Amp speaker protection algorithm. The integrated speaker
-+  voltage and current sense provides for real time
-+  monitoring of loudspeaker behavior.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tas2781
-+
-+  reg:
-+    maxItems: 1
-+    description: |
-+      I2C address of the device can be in range from 0x38 to 0x40.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: |
-+      A GPIO line handling reset of the chip. As the line is active high,
-+      it should be marked GPIO_ACTIVE_HIGH.
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ti,audio-slots:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 1
-+    maxItems: 4
-+    description: |
-+      I2c address of the device for different audio slots,
-+      useless in mono case.
-+
-+  ti,broadcast-addr:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Generic i2c address for all the tas2781 devices in
-+      purpose of I2C broadcast during the multi-device
-+      writes, useless in mono case.
-+
-+  '#sound-dai-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   #include <dt-bindings/gpio/gpio.h>
-+   i2c {
-+     /* example with quad support, such as tablet or pad device */
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     quad: codec@38 {
-+       compatible = "ti,tas2781";
-+       reg = <0x38>;
-+       #sound-dai-cells = <1>;
-+       reset-gpios = < &gpio1 10 GPIO_ACTIVE_HIGH >;
-+       interrupt-parent = <&gpio1>;
-+       interrupts = <15>;
-+       ti,audio-slots = < 0x38 /* topleft-channel */
-+                          0x39 /* topright-channel */
-+                          0x3a /* bottomleft-channel */
-+                          0x3b /* bottomright-channel */
-+                        >;
-+       ti,broadcast-addr = <0x40>;
-+     };
-+   };
-+...
+All applied.  Thanks.
 -- 
-2.34.1
-
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
