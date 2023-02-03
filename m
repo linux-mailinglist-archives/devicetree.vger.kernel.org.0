@@ -2,161 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 805E0689B79
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 15:21:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24B92689B80
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 15:23:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230042AbjBCOVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 09:21:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40298 "EHLO
+        id S232477AbjBCOXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 09:23:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231546AbjBCOVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 09:21:09 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC59113CB;
-        Fri,  3 Feb 2023 06:20:43 -0800 (PST)
+        with ESMTP id S232165AbjBCOXU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 09:23:20 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E74B367ED
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 06:23:15 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id ml19so15934041ejb.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 06:23:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1675434044; x=1706970044;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nry1T94df9OQlSpOX/lRpiFLZljoy07EtiJ/B+IqtPI=;
-  b=LCVXp8H3dmWAvo9+5zNYclg+ZvXjOwb36E5VFLu3Yupt/9x5G14IVhpM
-   tU7mdltXPoeMblmq0egkaa0Ct2S2YK1uNtqoU1j72+cZ2B/fhreER0Nz6
-   YFOC34Oy1QsA0lzN4UvGG2MIxOMefBvhRTND8X0AUzjR6D0K6uVd+x08V
-   sL0T2AadarJuL8H7NTZNN3qeBa/QpXdKawZdgahSmKQQt+n2BQAAlq/Bt
-   NWF4kcmKwO53DJQEMLvVdXMYPtqKXUrZZG6xgGulVUF1Rn1B19eJuf7H7
-   1fCil9j5SoZrfDYuxaxb+TNStuHpbFIUt5YHNo3ic4a4K/eEWftb3Lw1B
-   g==;
-X-IronPort-AV: E=Sophos;i="5.97,270,1669071600"; 
-   d="scan'208";a="28858447"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 03 Feb 2023 15:20:42 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 03 Feb 2023 15:20:42 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 03 Feb 2023 15:20:42 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1675434042; x=1706970042;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nry1T94df9OQlSpOX/lRpiFLZljoy07EtiJ/B+IqtPI=;
-  b=Ue9oICqZ9cyvuPmumaZY4OzHIL1voMqd5YHRlRKyh7ZetB7Q/k0ai7ui
-   c9FH5Wmb/zppmRIMJQrtLgCpBCmz5JWBbIdivvZK4r2+CfIZbEGauP3aL
-   5LaudZRO14/Za+tlWdqSOmvWKWpjEdiWCSVuGAgrU8moY8eIgrO6/MDbx
-   PQaNjACUtMV06G3DDvv4zd3rW92zFvTM8ED1cFSdAuodq/aDYsRixvRSF
-   YpqdXP1qLZfvpPJhn5a6VJUMy7kPG/Z+7I7yehU8LQ9xsms0VC6WxhaE4
-   0AgSRvLWkwZuyIowZLzw9RYMB/rJOsLBPiBApx/dePR2aX4x8KF9sRMd3
-   g==;
-X-IronPort-AV: E=Sophos;i="5.97,270,1669071600"; 
-   d="scan'208";a="28858446"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 03 Feb 2023 15:20:41 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 81E7C280072;
-        Fri,  3 Feb 2023 15:20:41 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jrpekdfBnuZdpOMig/MdY4DX2twN+6+zh9yRntM5/rg=;
+        b=ek1gBgVXY2mwhavFpt5kt9wRzQn/Jkvjf0TasZj3tdIHZT+aXjKjPFLcyjxX1BB9Xj
+         +VWhxWfIAPMjM6C8PYaIFTOa79HONL+vc/C5TyubDcazVPx/nb6unz6nhiPtC4NVKd0t
+         RPL1+yoYjMbIkxucAJlL1YRLUSqV+MizTwtnrUmI+GginMkTKJnnqwdQXBDzNUeVhni4
+         pO4gUJdH9E0L8wY2t60tyzh4yCqOIBVjrzM1KhYdJ0hU4R/SZv3MBZzLAO3eHvcTfllj
+         4qzIFB23AaHiTWT8RUcjdf6FHe9Y6QYYOai82J8+Qfxw0VYNZI3a5N0bTAWyOqyn4lcV
+         koLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jrpekdfBnuZdpOMig/MdY4DX2twN+6+zh9yRntM5/rg=;
+        b=yOzU/nqRRM6ol5xFO4J8/bEIzLcN5E9caxp0tG5QjCdKGdpoWLAm3hk9TY6ye4qPfo
+         hpvPqYHQqavMYA5IgVqZz82MLDy0Wel/+2FSLvmQbUAKhe+EqF++fcJOGa85maqQAXzC
+         jh95vidna9XFs/N9tb1O+VlPsS7VCQ1zRs9/NIWTlNITZoA/p4/X1q9avKkv56i/4n4Z
+         +l0Fd0m1I3CaRW+YwtyW3SA8Jr1AsXPs1CqSoX4nAPTctd4tOmLK6Aqk0rxOHc2IObEr
+         tJpr6uh3VrC2l//1EQ4Fk6V9iITC291MBXX8OW2Bh4lVFYgLxETlf468x0OrVdTDminX
+         6GGg==
+X-Gm-Message-State: AO0yUKVip+Hs2jb1jT8lC4n3Xc29y0tF3+y9n7Bs7bleoIYfwhrXFuZH
+        H/5IYKw+jpzLqPjTxq7TIenVBw==
+X-Google-Smtp-Source: AK7set/vS8Zwf2QJYKpOKaAw9XVXRWcYCx/Ya9PjzC8Xa1zWhjudq/NNa+/hUOCtjyMtVxiFZWZbQw==
+X-Received: by 2002:a17:906:135a:b0:881:d1ad:1640 with SMTP id x26-20020a170906135a00b00881d1ad1640mr10198956ejb.57.1675434194035;
+        Fri, 03 Feb 2023 06:23:14 -0800 (PST)
+Received: from localhost.localdomain (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
+        by smtp.gmail.com with ESMTPSA id h10-20020a1709070b0a00b0087758f5ecd1sm1415008ejl.194.2023.02.03.06.23.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Feb 2023 06:23:13 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: add missing vref-supply
-Date:   Fri, 03 Feb 2023 15:20:41 +0100
-Message-ID: <3214924.aeNJFYEL58@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230203141217.et55oxbtxcilg3ig@pengutronix.de>
-References: <20230131101323.606931-1-alexander.stein@ew.tq-group.com> <1922814.PYKUYFuaPT@steina-w> <20230203141217.et55oxbtxcilg3ig@pengutronix.de>
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm8450-nagara: Correct firmware paths
+Date:   Fri,  3 Feb 2023 15:23:09 +0100
+Message-Id: <20230203142309.1106349-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 3. Februar 2023, 15:12:17 CET schrieb Marco Felsch:
-> Hi,
-> 
-> On 23-02-03, Alexander Stein wrote:
-> 
-> ...
-> 
-> > > > > > > +  vref-supply:
-> > > > > > > +    description: External ADC reference voltage supply on VREFH
-> > > > > > > pad.
-> > > > > > 
-> > > > > > Please add it to the list of required properties, we can remove it
-> > > > > > as
-> > > > > > soon as the driver has support for the internal reference
-> > > > > > voltages.
-> > > > > 
-> > > > > I was thinking in doing so before as well. But DT describes the
-> > > > > hardware, and this ADC apparently would be functioning without a
-> > > > > reference voltage on that pad, using a different one. What the
-> > > > > driver
-> > > > > actual does is a different matter.>
-> > > > 
-> > > > I have also thought about it first but than I checked the RM which
-> > > > says
-> > > > that "multi-reference selection" is chip dependent.
-> > 
-> > Nice for pointing this out. I wasn't aware that there are differences.
-> > 
-> > > Oh goody. So is it detectable?
-> > 
-> > That's my problem. I didn't find any source of information which chips do
-> > support multiple references and which don't.
-> > Marco, do you have some information on this?
-> 
-> You can download the RM from the NXP website but you need an account for
-> it:
-> https://www.nxp.com/products/processors-and-microcontrollers/arm-processors/
-> i-mx-applications-processors/i-mx-8-applications-processors/i-mx-8-family-ar
-> m-cortex-a53-cortex-a72-virtualization-vision-3d-graphics-4k-video:i.MX8
-> 
-> Or is this the wrong model? The naming scheme is quite confusing to me.
+Nagara is definitely not SM8350, fix it!
 
-That's i.MX8 (imx8qm), the bindings are for i.MX8X (imx8qxp/imx8dxp). But I 
-assume the ADC is similar/identical.
+Fixes: c53532f7825c ("arm64: dts: qcom: pdx223: correct firmware paths")
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-> > > If we are going to stick to a single compatible rather than adding them
-> > > for
-> > > the variants with and without this feature, should probably add a note
-> > > at
-> > > least to say it is required for some parts.
-> > 
-> > That's a good idea. I'm okay with that, until there is more information
-> > available.
-> 
-> According the RM there is a bit which can be read: Multi Vref
-> Implemented (MVI).
-
-Ah, nice. So there is a hardware feature. From the RM I have available it is 
-set for both imx8qm and imx8qxp. Given that I will not mark this as required, 
-but add a comment regarding this feature bit.
-
-Best regards,
-Alexander
-
-> Regards,
->   Marco
-
-
-
+diff --git a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
+index 68d15f7651f3..d503899f3947 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
+@@ -891,17 +891,17 @@ &pon_resin {
+ };
+ 
+ &remoteproc_adsp {
+-	firmware-name = "qcom/sm8350/Sony/nagara/adsp.mbn";
++	firmware-name = "qcom/sm8450/Sony/nagara/adsp.mbn";
+ 	status = "okay";
+ };
+ 
+ &remoteproc_cdsp {
+-	firmware-name = "qcom/sm8350/Sony/nagara/cdsp.mbn";
++	firmware-name = "qcom/sm8450/Sony/nagara/cdsp.mbn";
+ 	status = "okay";
+ };
+ 
+ &remoteproc_slpi {
+-	firmware-name = "qcom/sm8350/Sony/nagara/slpi.mbn";
++	firmware-name = "qcom/sm8450/Sony/nagara/slpi.mbn";
+ 	status = "okay";
+ };
+ 
+-- 
+2.39.1
 
