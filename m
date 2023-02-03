@@ -2,109 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 601A468960C
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 11:31:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2837E68966D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 11:32:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233346AbjBCK0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 05:26:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47798 "EHLO
+        id S233513AbjBCKZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 05:25:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233397AbjBCKZA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 05:25:00 -0500
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B124625290;
-        Fri,  3 Feb 2023 02:24:31 -0800 (PST)
-Received: by mail-qt1-f176.google.com with SMTP id g7so4878169qto.11;
-        Fri, 03 Feb 2023 02:24:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Nqgawi8X0VJ7ktaDq/HQw3QZiJnimJOm65jxzmqBcak=;
-        b=FMg6jPIs7zJVYb4vV9/UcdK5rKil2GD/typeJyhfCOm17lqseO27ZkvVqJd2MDsZ47
-         +cfzqg8rSPmGgHoYLxh1rIghVkn/u0udG2PmFRn5DNvodxejx2D3GWk/tYWRIW7lvyhM
-         9YGSKkznPyWZPeVcKua6yj5ZPDA/XY+UeqJTB32U4dLk/kTdY+3Ll02YFJOmQgUOHl+h
-         99LnW8QJoEY2/pSagreTxlHgL7mSykRl+z5LFEJJc8eC0fsCL3yXRwRWs+4L/EzxypcD
-         zLo9ba+W2fKnlvAXpbZLcMUyoxdaWhtdnshswk6nv1oulwc/ionA1lOLfMSH3TFt0OPb
-         QfQw==
-X-Gm-Message-State: AO0yUKUk1Ka3byqOFb6XdKnWi6+v4tPGWSs7HJtGGGqWeoMppoIbk0F9
-        S/RIxTqmzV46lq3dfUBn0DCznfGLIJs4iw==
-X-Google-Smtp-Source: AK7set/ZQsUGUGT/49iEtKCNGLLIjtoxiW68cszRNfmZ16XEzBOnsOZ3qhT79jH9e01leNRgAuBHZQ==
-X-Received: by 2002:a05:622a:414:b0:3b6:3508:2a3e with SMTP id n20-20020a05622a041400b003b635082a3emr19185851qtx.4.1675419861182;
-        Fri, 03 Feb 2023 02:24:21 -0800 (PST)
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
-        by smtp.gmail.com with ESMTPSA id e18-20020ac86712000000b003b9a505627bsm1288741qtp.79.2023.02.03.02.24.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 02:24:20 -0800 (PST)
-Received: by mail-yb1-f182.google.com with SMTP id x139so5630491ybe.13;
-        Fri, 03 Feb 2023 02:24:20 -0800 (PST)
-X-Received: by 2002:a25:ada1:0:b0:839:c329:be37 with SMTP id
- z33-20020a25ada1000000b00839c329be37mr1059112ybi.89.1675419860256; Fri, 03
- Feb 2023 02:24:20 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1674499048.git.geert+renesas@glider.be> <e825b50a843ffe40e33f34e4d858c07c1b2ff259.1674499048.git.geert+renesas@glider.be>
- <CAMuHMdXtiC-Oo01Y-vCbokjF=L+YXMN=TucgqCS4Vtcg5gt==g@mail.gmail.com>
- <20230202144000.2qvtnorgig52jfhw@pengutronix.de> <CAMuHMdUm+ExFCspjk6OO3pvZ-mW8dOiZe7bS2r-ys0S=CBAT-Q@mail.gmail.com>
- <20230202150632.oo57ap7bdapsvrum@pengutronix.de>
-In-Reply-To: <20230202150632.oo57ap7bdapsvrum@pengutronix.de>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 3 Feb 2023 11:24:08 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX0iHUvyFYSdQJFLOzatjgHDnHYDzVvWFukYpXKbq7RxA@mail.gmail.com>
-Message-ID: <CAMuHMdX0iHUvyFYSdQJFLOzatjgHDnHYDzVvWFukYpXKbq7RxA@mail.gmail.com>
-Subject: Re: [PATCH 12/12] can: rcar_canfd: Add transceiver support
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        with ESMTP id S233471AbjBCKZV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 05:25:21 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43A928C1D6;
+        Fri,  3 Feb 2023 02:24:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1675419896; x=1706955896;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=R+eLmORD+0rW/2s7vE0AZji0mukDMbdK7TGsIj7PzWQ=;
+  b=E17wm3dg71nAqZCDZMAmlBc1diAr6wG3XlTdl5SpraioHY/zZVTdJ19E
+   m5Osg8oMw88rQdMcyPC2V0U4Px5lOALnMvZ23ybi4Y8D2Na9su2phEB5U
+   BeIVgAG4Zyadmbp/DSZ/v0BKUCkJO35QefhW26BgHTCzLurTir6NBYKHC
+   GT8w8G54Gi7ZB3RD8/Ynqo+IpdO20JD8ubizdthCfCZrclXI5khVIUlh4
+   RSTNEX3ppwQmctgsYiY9ZTmip5BEM+Uf5gkBryRlf+MVfAH2Spjrwk+XM
+   F9Bn8v4HR3t3t011QE7+ImbklKJLKqMD1Za8hlfTjTFYBpoqsAy4Fnrms
+   w==;
+X-IronPort-AV: E=Sophos;i="5.97,270,1669071600"; 
+   d="scan'208";a="28851849"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 03 Feb 2023 11:24:46 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 03 Feb 2023 11:24:46 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 03 Feb 2023 11:24:46 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1675419886; x=1706955886;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=R+eLmORD+0rW/2s7vE0AZji0mukDMbdK7TGsIj7PzWQ=;
+  b=ZYATnYUlCUxa6nz5xHsm6VgZsEx+9fqN3doMFUoewmAQ4iHb4u6wDtsL
+   ga6zCeBlWcD3/iWPKOpVQ1XLFw+jRAYLfdhKpd5UTilTeVpK2Nqa+kZ7q
+   yhP4C0w4CIPaVhrXuwQ9T3WwT2/+d9CrQj6iAioSQ39p78vnlXrnU3WSF
+   02jNb0Cdk23vorIiUB41qFN3ghBR9zVfj65OXonTpHe74eBdxfRjkahaO
+   IJ57bIGYcbc6QI6HIIwZydK5KhWsWCw02xJnn/iAShm82MKph9j93ZK0G
+   yh8iQ6cQWzh4UwfJTW75JemEg/L4CKGzmBEkDxBoYcFoN6Y3979NH/y8U
+   g==;
+X-IronPort-AV: E=Sophos;i="5.97,270,1669071600"; 
+   d="scan'208";a="28851848"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 03 Feb 2023 11:24:46 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id AC7BC280056;
+        Fri,  3 Feb 2023 11:24:45 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, Vinod <vkoul@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] media: i2c: imx290: imx327 support
+Date:   Fri,  3 Feb 2023 11:24:37 +0100
+Message-Id: <20230203102439.237527-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+Hi,
 
-On Thu, Feb 2, 2023 at 4:06 PM Marc Kleine-Budde <mkl@pengutronix.de> wrote:
-> On 02.02.2023 15:53:08, Geert Uytterhoeven wrote:
-> > > > > This depends on "[PATCH 1/7] phy: Add devm_of_phy_optional_get() helper".
-> > > > > https://lore.kernel.org/all/f53a1bcca637ceeafb04ce3540a605532d3bc34a.1674036164.git.geert+renesas@glider.be
-> > > >
-> > > > v2: "[PATCH v2 3/9] phy: Add devm_of_phy_optional_get() helper"
-> > > >     https://lore.kernel.org/all/4cd0069bcff424ffc5c3a102397c02370b91985b.1674584626.git.geert+renesas@glider.be
-> > > >
-> > > > I'll keep you updated when/if this ends up on an immutable branch.
-> > >
-> > > Should I take the patches 1...11 for can-next/main?
-> >
-> > That would be great, thanks!
->
-> Done.
+this series adds support imx327 to existing imx290 driver. The differences
+in specs is that imx327 lacks support for 8 lanes LVDS (LVDS not used in
+driver anyway) and 120 FPS (currently only 60 FPS supported).
+Although just magic numbers, imx327 has a specific set of init register to
+be written.
+This series is based on [1] and [2] which adds imx290-mono support.
 
-Thank you!
-Meanwhile, the dependency for 12/12 is now available as an immutable
-branch, cfr. https://lore.kernel.org/all/Y9za4a8qyapi4CWD@matsya
+Best regards,
+Alexander
 
-Thanks again!
+[1] https://lore.kernel.org/linux-media/20230131190700.3476796-2-dave.stevenson@raspberrypi.com/
+[2] https://lore.kernel.org/linux-media/20230131192016.3476937-3-dave.stevenson@raspberrypi.com/
 
+Alexander Stein (2):
+  media: dt-bindings: media: i2c: Add imx327 version to IMX327 bindings
+  media: i2c: imx290: Add support for imx327 variant
 
-Gr{oetje,eeting}s,
+ .../bindings/media/i2c/sony,imx290.yaml       |  1 +
+ drivers/media/i2c/imx290.c                    | 88 ++++++++++++++++---
+ 2 files changed, 78 insertions(+), 11 deletions(-)
 
-                        Geert
+-- 
+2.34.1
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
