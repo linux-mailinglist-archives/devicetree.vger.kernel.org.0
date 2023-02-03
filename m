@@ -2,158 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94DC06898E9
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 13:35:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F423B6898E1
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 13:35:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233151AbjBCMfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 07:35:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45752 "EHLO
+        id S232507AbjBCMfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 07:35:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232491AbjBCMfS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 07:35:18 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 730B65FE5;
-        Fri,  3 Feb 2023 04:35:09 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 313ANVlV026075;
-        Fri, 3 Feb 2023 12:34:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=mMBR5w+q1boHomjumnwZghbt93c2LBQycWI9O28G1Bw=;
- b=CPsxI74jIauecLH2Bfc3VrcDLfN7OjDae+wtVjSmmp8fXtlDHVBw6r32krn0Bb4uilJN
- z6nCzRuI7sN9H+PRak9fH3GCnGhqHycuuKk5l7BPjFngnpt/0pwxK62cN4Q6FSY1gfo8
- EXBl0JBnhhIOnHzdlZQZxurjN0GFvno/iSAIbdt/ri7yBbDFeBJz6mBos4BOGV2D010S
- d2xP7MCzI/rcjO8bqT9W3Q0AttMSBUFykHbtQRWd5vy64DChEwGCf5TTyXjbBPegX+SP
- KxB6fLS9IcQBiDwXJzQLi31G2jq6DdokpGEzwaJutPqH3G2xFLFGesj5pLDXzJYGv+D3 Sw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ngh1ka69c-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 03 Feb 2023 12:34:47 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 313CYkvl012258
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 3 Feb 2023 12:34:46 GMT
-Received: from [10.50.53.202] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 3 Feb 2023
- 04:34:37 -0800
-Message-ID: <b3c1e629-179f-d2c3-d3eb-3556a7df10ae@quicinc.com>
-Date:   Fri, 3 Feb 2023 18:04:34 +0530
+        with ESMTP id S233098AbjBCMfU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 07:35:20 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 461BE125AB
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 04:35:12 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so5917344wmb.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 04:35:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0fS5h/6A8JqyaZ0AF5IugOshgaAjg1/k1ZgrK3n4WYo=;
+        b=nUBWefrCTlVLguPtGahCXnxqTOLdmiJzegJUWs0kasPrEsNLjwP+xhBI8rwLu62YOz
+         YLJ2lwCeVM3efZlThlK8v3QdFbRv/E/qrPoS+rUPSvxh5pjLUI8p9MKBMMTcZ638RcPI
+         ZnVBxYsnVYQFBcMjg9FbFX6+GAkFL3ZlKHSpIwQKTMW2NmmxyaBTqXQwG0qu7GqUFzbl
+         Ev7kHMaj2z0lbTObcZPnSwMBvl/3YYSOtetdMoLkUl8A2+9v11OskQEtg2ALkmrmRTK0
+         BZtDjBx/HaH5KKFlCVqP+UmJgtyfRM/3qcVZnqVUWC692BmA913f3nLl0FVEXJiY3cGN
+         dd7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0fS5h/6A8JqyaZ0AF5IugOshgaAjg1/k1ZgrK3n4WYo=;
+        b=6IX3SgVkrOEthzzkGPpVUrAHv2G7XBo/rtIGboSiO/J6MKgR4IEp/LWXURac0g35SC
+         BHYN/hyIRUgCTsrNJN09x/GuFk+DCUP88VfBEjN8sCa6ojh+bttJrIxBEMc1Rx6T9+8O
+         Em1twv0ips6oQfV5Uv1ISE9VMauISOu4dp5at0v4ISGjrHN7XxpVZa5LIfjHMiLsstJA
+         ZzwLcqgiNLGdDW0hhn29nX8xJm/9KcP+OQEQuiciowiypApEPb9tIIkbItJ4n6iHxFZu
+         aUfxCjzfYAAqYkDQ2njx1aY6DOkT4Xq0/+AHysRQ7mcUk/X0QZb08w5H56taI6mfGNCW
+         DIuQ==
+X-Gm-Message-State: AO0yUKUwquJ3unKoX7zRNxwowVPSkRLKkK2Rj8J8M4Aztsg9FvYue4OD
+        kfZ9E+di21PNnAXAe4PhHExY6+OWjPilGbt6
+X-Google-Smtp-Source: AK7set9n7hhpjyjI6s+IRKBEa3a9h5wmUDUXkS1L5NWrawy7DRPpdQZxuiMzFiz08oatXJozgCxUDw==
+X-Received: by 2002:a05:600c:1c16:b0:3de:c612:df56 with SMTP id j22-20020a05600c1c1600b003dec612df56mr9134223wms.15.1675427710851;
+        Fri, 03 Feb 2023 04:35:10 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id k10-20020a7bc30a000000b003dfee43863fsm265822wmj.26.2023.02.03.04.35.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Feb 2023 04:35:10 -0800 (PST)
+Message-ID: <bcfb143d-1d1b-590b-ac7d-7624f9069708@linaro.org>
+Date:   Fri, 3 Feb 2023 13:35:09 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH V6 2/7] clk: qcom: Add Global Clock Controller driver for
- IPQ9574
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Devi Priya <quic_devipriy@quicinc.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <shawnguo@kernel.org>, <arnd@arndb.de>,
-        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
-        <nfraprado@collabora.com>, <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_arajkuma@quicinc.com>,
-        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
-References: <20230202150619.22425-1-quic_devipriy@quicinc.com>
- <20230202150619.22425-3-quic_devipriy@quicinc.com>
- <1d144aa4-6f0f-b10f-1d32-4acf4e06ae85@quicinc.com>
- <e34f36b0-35a8-0b77-e6ab-49851213108e@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v4 1/3] dt-bindings: reset: syscon-reboot: Add priority
+ property
 Content-Language: en-US
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-In-Reply-To: <e34f36b0-35a8-0b77-e6ab-49851213108e@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220820102925.29476-1-pali@kernel.org>
+ <20221226114513.4569-1-pali@kernel.org>
+ <20230122112744.vdfho4mzpgm6oucm@pali>
+ <20230203121610.zung35qrozvoauz6@mercury.elektranox.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230203121610.zung35qrozvoauz6@mercury.elektranox.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: s73mYnFUxvt8OOjaVYgOTjdnQIb7LJA5
-X-Proofpoint-ORIG-GUID: s73mYnFUxvt8OOjaVYgOTjdnQIb7LJA5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-03_08,2023-02-03_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- suspectscore=0 spamscore=0 clxscore=1015 priorityscore=1501
- mlxlogscore=999 adultscore=0 malwarescore=0 bulkscore=0 impostorscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302030115
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 2/3/2023 4:25 PM, Konrad Dybcio wrote:
->
-> On 3.02.2023 06:47, Kathiravan T wrote:
->> On 2/2/2023 8:36 PM, Devi Priya wrote:
->>> Add Global Clock Controller (GCC) driver for ipq9574 based devices
+On 03/02/2023 13:16, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Sun, Jan 22, 2023 at 12:27:44PM +0100, Pali Rohár wrote:
+>> On Monday 26 December 2022 12:45:11 Pali Rohár wrote:
+>>> This new optional priority property allows to specify custom priority level
+>>> of reset device. Prior this change priority level was hardcoded to 192 and
+>>> not possible to specify or change. Specifying other value is needed for
+>>> some boards. Default level when not specified stays at 192 as before.
 >>>
->>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
->>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->>> ---
-> [...]
->
->>> +static int gcc_ipq9574_probe(struct platform_device *pdev)
->>> +{
->>> +    struct regmap *regmap;
->>> +    struct qcom_cc_desc ipq9574_desc = gcc_ipq9574_desc;
->>> +
->>> +    regmap = qcom_cc_map(pdev, &ipq9574_desc);
->>> +    if (IS_ERR(regmap))
->>> +        return PTR_ERR(regmap);
->>> +
->>> +    return qcom_cc_really_probe(pdev, &ipq9574_desc, regmap);
+>>> Signed-off-by: Pali Rohár <pali@kernel.org>
 >>
->> can we use qcom_cc_probe as suggested here https://lore.kernel.org/linux-arm-msm/84f68577f5629e6ef6d6b14357a79f84.sboyd@kernel.org/ ?
-> Yes we can.
->
-> When you're answering a long long long long email, please cut off
-> parts that you aren't replying to, I had to scroll and scroll and
-> scroll and scroll to get to this sentence and I'm not even sure if
-> you said something inbetween that I missed..
+>> Reminder: Any plan how to handle these patches?
+> 
+> Please don't top-post :) Sorry, I'm a bit slow with processing
+> patches this cycle. Technically this was also throwing a DT
+> warning reported by the bot, so I expected a new version. Anyways,
+> I fixed the DT warning myself and applied patches 1-2.
 
+Everyone was expecting new version, so that checks pass. We should not
+take known-broken code, because then the duty to check for other errors
+is on you Sebastian. :)
 
-Got it, Thanks.
+Best regards,
+Krzysztof
 
-
->
-> Konrad
->>
->>> +}
->>> +
->>> +static struct platform_driver gcc_ipq9574_driver = {
->>> +    .probe = gcc_ipq9574_probe,
->>> +    .driver = {
->>> +        .name   = "qcom,gcc-ipq9574",
->>> +        .of_match_table = gcc_ipq9574_match_table,
->>> +    },
->>> +};
->>> +
->>> +static int __init gcc_ipq9574_init(void)
->>> +{
->>> +    return platform_driver_register(&gcc_ipq9574_driver);
->>> +}
->>> +core_initcall(gcc_ipq9574_init);
->>> +
->>> +static void __exit gcc_ipq9574_exit(void)
->>> +{
->>> +    platform_driver_unregister(&gcc_ipq9574_driver);
->>> +}
->>> +module_exit(gcc_ipq9574_exit);
->>> +
->>> +MODULE_DESCRIPTION("Qualcomm Technologies, Inc. GCC IPQ9574 Driver");
->>> +MODULE_LICENSE("GPL");
