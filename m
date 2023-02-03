@@ -2,60 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BF6468A2DE
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 20:22:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A88468A323
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 20:37:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231366AbjBCTVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 14:21:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57782 "EHLO
+        id S233682AbjBCThx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 14:37:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232618AbjBCTVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 14:21:22 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8FB571987;
-        Fri,  3 Feb 2023 11:21:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8A54FB82BA2;
-        Fri,  3 Feb 2023 19:21:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F9EC433EF;
-        Fri,  3 Feb 2023 19:21:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675452078;
-        bh=a0GsiNBZfOuCuESojYNwJ1g3/tM+bS7UT/gPekmd0Q8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=crVgcvrIPGgF+lQkCFF5Sr+6Z9yj4qF40B4XrR0wMUv9thYcEcreaj2/wW4uqLnze
-         RGV+331O3KN+nXb94w10VFjH8VhcBX/2TsqTPH6UbevtTxPCDDkcUkuwAjz4YFtp2e
-         x6UjXMjmpezYlS8iFSKFqq3c69rkkeNpdw7a33H3GeZZWI9pR2mK8mHCl7RHeoyJXX
-         Bir0bxvhMHotuW4uGb1go0LMUOkkbyyoUjKfYmoSizw26j12G7tNqlzNI8c8VCoIVF
-         H7DYcdJqKWlatnCYZZBOC6IkBB5Bo9UjovU5fDDBJo/ffnUSAyAq/icDCvV78XLniA
-         G9DHcjd3aqfWg==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233282AbjBCTho (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 14:37:44 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8164AA8A23
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 11:37:42 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id y1so5598800wru.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 11:37:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=db6MYL6B1qCC0WghXqCqpmCV3BHmf50h/GnlGcgDEws=;
+        b=NejcbZPMYGHRsiENQYz73HwZK/9UL8brsL56ssuMEEaDh7BfaeG5MgjlQC13JxmepS
+         M0sYVmEsXS7mgyYEFXcu4HOW8U7sS38JF88Ic27hOSq1v25TcP8kgLdAdw9iypZUoOz1
+         GTZ4vYsVM8mntAcvCueB0/hgRoiTp/G2YeyAwFXMIxTxCjXaztDHASyidKEKxWE+HcTZ
+         ZGXUyltBkanzVFc2TNFwKp6tjcusPMlQYO/sIubxAXr/971nn9I2CplF5cDqUc1vvQk9
+         fWbn4v/41QLAhtgfB/9U5F1fwFL96fXJ1N9HTRd0mzYAr0uk/PapTsrZNdEEcCBZW4wq
+         bxVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=db6MYL6B1qCC0WghXqCqpmCV3BHmf50h/GnlGcgDEws=;
+        b=qSfFaujnXAOIkqQ0MhnSO7vGE3lz1rkQrrm+aPoyDSbHtCBPkIS2+CArd7IWxAhQZn
+         VJOp5tneZPj/LqbrKQVSeB/F4iWVehTTCgd85Kw3k2E9U1R0Eo/5K3eq1e1D+/xV1k3n
+         3sKbEePGJ3dKP5/v7d3YDkyKH1zPhf4HCVYMfX8DVLAZWJ2iTU4FnvA+Daf6Il2ts10T
+         pPzcdPZrx6fW/4O1EheFCafKWevAMjwKkT456Irc5MxfcZK8pI/LQfE+Nwblv8qGWyg3
+         j0VTyWXo1LXTErZji25IXKhICUOH8Urt5kcJ/yNZ8sB8IhLGWix4dsuYd7cKxiyYNRZH
+         o2Vg==
+X-Gm-Message-State: AO0yUKV9LT5djjkfD3oanBLrNB+3Vruei2O1WEedYV7CgeMmvYlf1Dgt
+        uK8hFb5N6HWWeRZ4mmdEQ5EZ8g==
+X-Google-Smtp-Source: AK7set95ZxUhUht3lmVwu6Z+ambqGhwtxGfLtaPaosE/50HAbN2VkxWC/Qzfga+8oosSaxr+m9qmXw==
+X-Received: by 2002:adf:fa84:0:b0:2bf:ae15:ac15 with SMTP id h4-20020adffa84000000b002bfae15ac15mr9307669wrr.62.1675453061095;
+        Fri, 03 Feb 2023 11:37:41 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+        by smtp.gmail.com with ESMTPSA id o15-20020adfa10f000000b002bddaea7a0bsm2744105wro.57.2023.02.03.11.37.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Feb 2023 11:37:40 -0800 (PST)
+References: <20230202183653.486216-1-jbrunet@baylibre.com>
+ <20230202183653.486216-10-jbrunet@baylibre.com>
+ <f229e181-c56d-6ec7-2a1c-754690f70438@linaro.org>
+ <1jfsbmn7ql.fsf@starbuckisacylon.baylibre.com>
+ <fede7119-4a9b-76a1-ae1a-7af5dd8d1032@linaro.org>
+User-agent: mu4e 1.8.10; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Andy Gross <agross@kernel.org>, Sean Paul <sean@poorly.run>,
-        Rob Clark <robdclark@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>, devicetree@vger.kernel.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8350: use qcom,sm8350-dsi-ctrl compatibles
-Date:   Fri,  3 Feb 2023 13:21:14 -0600
-Message-Id: <167545206738.231526.12336122899683141674.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230118032024.1715857-1-dmitry.baryshkov@linaro.org>
-References: <20230118032024.1715857-1-dmitry.baryshkov@linaro.org>
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 9/9] ASoC: dt-bindings: meson: convert axg sound card
+ control to schema
+Date:   Fri, 03 Feb 2023 20:34:21 +0100
+In-reply-to: <fede7119-4a9b-76a1-ae1a-7af5dd8d1032@linaro.org>
+Message-ID: <1jbkmamtfg.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -63,17 +81,35 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 18 Jan 2023 05:20:24 +0200, Dmitry Baryshkov wrote:
-> Add the per-SoC (qcom,sm8350-dsi-ctrl) compatible strings to DSI nodes
-> to follow the pending DSI bindings changes.
-> 
-> 
+On Fri 03 Feb 2023 at 18:59, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Applied, thanks!
+> On 03/02/2023 15:13, Jerome Brunet wrote:
+>>>> +          Multiplication factor between the frame rate and master clock
+>>>> +          rate
+>>>> +
+>>>> +      sound-dai:
+>>>> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>
+>>> Old binding was saying it is just phandle
+>> 
+>> It is just a phandle but the bindings used to have problem with phandle
+>> that had cells.
+>> 
+>> See:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml?h=v6.2-rc6&id=d031d99b02eaf7363c33f5b27b38086cc8104082
+>> 
+>> Was it wrong or did the situation change since then ?
+>
+> Then define it as having cells:
+>
+> https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
+>
 
-[1/1] arm64: dts: qcom: sm8350: use qcom,sm8350-dsi-ctrl compatibles
-      commit: d7133d6d25fbc9374447e2ca4e23a04023824779
+The card is provided with the phandle.
+Whether or not the phandle has cells or not has nothing do with card
+driver. The card just consums sound-dai. I don't understand this comment.
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+>
+> Best regards,
+> Krzysztof
+
