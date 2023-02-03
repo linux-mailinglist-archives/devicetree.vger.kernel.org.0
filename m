@@ -2,55 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43B5B689F07
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 17:22:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED236689F5C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 17:35:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232055AbjBCQWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 11:22:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45000 "EHLO
+        id S231905AbjBCQfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 11:35:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232835AbjBCQWo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 11:22:44 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3368CA6C24;
-        Fri,  3 Feb 2023 08:22:42 -0800 (PST)
-Received: from mercury (unknown [37.81.76.207])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S232356AbjBCQf0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 11:35:26 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88027A8411;
+        Fri,  3 Feb 2023 08:35:25 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C4CE86602F11;
-        Fri,  3 Feb 2023 16:22:40 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675441360;
-        bh=8/iOl1JkoX4qzoBl5tfa+91+8Fdoznk/0+WMSVeGStI=;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1C97861F7D;
+        Fri,  3 Feb 2023 16:35:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB6A5C4339C;
+        Fri,  3 Feb 2023 16:35:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675442124;
+        bh=/xuLcChyU7Pzr2vcsg493O/hVSbnaqC1sOgZcvm3wb8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SrCWBebtElx6IbYQfwqbuUc70cojJ8u5yErG8ybQ+bUFTnhAEh4O6SePQ02LozJBc
-         0yy7g0mEhDw2d6MQSMW48Skyl8TESqk1J7KnhGM6jWKlTIFO5wvm3JAqeVbnt0EQpt
-         LRLgxyN8+MMCUefhS/ZHisEEE/mhnMAwczg0PB3VGRSq3WdLL1847zVyd5yDy2hV0Q
-         tEW+LAiw7Q+o7ynuAzfrCigyUcsOW3AI2omULNdkRlq8kg561Lfspb51dNNaouaw1F
-         KkErLtYuC0S2PWP3j9o1uKtmEQfWSo81sxjqzy7j34/4JDyaIm8ajxLnhhSjKBOgD9
-         BXtG5oyE7qHaQ==
-Received: by mercury (Postfix, from userid 1000)
-        id 7BBA51060930; Fri,  3 Feb 2023 17:22:38 +0100 (CET)
-Date:   Fri, 3 Feb 2023 17:22:38 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     cy_huang@richtek.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        alina_yu@richtek.com, u0084500@gmail.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v8 0/3] Add Richtek RT9471 3A battery charger
- support
-Message-ID: <20230203162238.sbc7gemv6tqzdnka@mercury.elektranox.org>
-References: <1673590666-24618-1-git-send-email-cy_huang@richtek.com>
+        b=JwFKDf9O6ztCdu09S6c3i156FoqGbMGLjMOh550zDhq9gmif4NtgqWrs7uBSGSlJq
+         ylfB5yKVouipjPafxjns3jGiGU6epzMow/pYVqaGcPsKBnbjffJc1EIPOb7YTWSS3D
+         qTvLXJf34OQAQZECd/krqTUkEXAb610fmVqhAEuL+MtVburpBXL67gRTC0AMJopZjn
+         ypekEwNlaXIg9ZyEPzDzKOELZ4APziq7PRWs1eH4YD4SG66hWP1d+TFFwYPFnc2PVT
+         Tak556qfq4fhscrLp+TKsaTB+72u9Z4coJ4zzqbAITuLEunZJsXRjf+1BE+5/QJ3w8
+         IajnbZrEghb6g==
+Date:   Fri, 3 Feb 2023 17:35:17 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+Cc:     michal.simek@xilinx.com, michal.simek@amd.com,
+        devicetree@vger.kernel.org, andrew@lunn.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, git@amd.com, srinivas.goud@amd.com,
+        shubhrajyoti.datta@amd.com, manion05gk@gmail.com,
+        Raviteja Narayanam <raviteja.narayanam@xilinx.com>
+Subject: Re: [PATCH V4 1/9] i2c: xiic: Add standard mode support for > 255
+ byte
+Message-ID: <Y903xcqw6DXnrvbS@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
+        michal.simek@xilinx.com, michal.simek@amd.com,
+        devicetree@vger.kernel.org, andrew@lunn.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, git@amd.com, srinivas.goud@amd.com,
+        shubhrajyoti.datta@amd.com, manion05gk@gmail.com,
+        Raviteja Narayanam <raviteja.narayanam@xilinx.com>
+References: <1675330898-563-1-git-send-email-manikanta.guntupalli@amd.com>
+ <1675330898-563-2-git-send-email-manikanta.guntupalli@amd.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lriez7o432fxn5yb"
+        protocol="application/pgp-signature"; boundary="jfKArVcXu/70hkcU"
 Content-Disposition: inline
-In-Reply-To: <1673590666-24618-1-git-send-email-cy_huang@richtek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1675330898-563-2-git-send-email-manikanta.guntupalli@amd.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -58,48 +70,54 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---lriez7o432fxn5yb
+--jfKArVcXu/70hkcU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-On Fri, Jan 13, 2023 at 02:17:43PM +0800, cy_huang@richtek.com wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
+On Thu, Feb 02, 2023 at 03:11:30PM +0530, Manikanta Guntupalli wrote:
+> From: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
 >=20
-> This patch set is to add Richtek RT9471 charger support.
+> read transfers
 >=20
-> The RT9471/D is a highly-integrated 3A switch mode battery charge managem=
-ent
-> and system power path management device for single cell Li-Ion and Li-pol=
-ymer
-> battery. The low impedance power path optimizes switch-mode operation
-> efficiency, reduces battery charging time and extends battery life during
-> discharging phase.
+> Added standard mode for AXI I2C controller to enable read transfers
+> of size more than 255 bytes. The driver selects standard mode in the
+> following scenarios.
+>=20
+> 1. If a single message request comes from user space, requesting a
+> read of more than 255 bytes
+>=20
+> 2. If a message set request comes from user space consisting of many
+> messages and if any one of them is a read operation, irrespective
+> of the size of transfer. (This is done because it is observed that
+> repeated start operation is not happening in dynamic mode read as
+> expected in a message set request from user space.)
+>=20
+> Signed-off-by: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
+> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+> Acked-by: Michal Simek <michal.simek@amd.com>
 
-Thanks, queued.
+Applied to for-next, thanks!
 
--- Sebastian
 
---lriez7o432fxn5yb
+--jfKArVcXu/70hkcU
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmPdNM4ACgkQ2O7X88g7
-+ppU3g//UHXAjrO5UO2/uND/9xYdTMPt93sY2oPu1e80jedO8H/2LLzas2TpDJeQ
-Mb1FqzJoJRyVTqFBJpnA/RaQA6evZoLsp/ch2Va1jX4MqbtkIK0tIoBGtwBDnRQ8
-u/jZptJLSJ2MpHcqUNXenuCpPQs9Nr7KNaLbd+YnBbrdCxzbMod58wGtSH6yjJrL
-btVvkGkG7dO7xGkFOoFTgSpa7KtgP3rToH1sNcTPQnJ9PJJwXiXXIesm6iymYXhR
-ae4NtuWHFZKT/UPsBSOue7sVu/bKGM03mlaEy11lCUk9kDvkCamna/NmdyU07kCx
-cWfomG0Gk8D+RkXTOYi8lOsR7CgRTxsP+ef1tZBXHIGdLZ6pLbjOcdA2yxFemvGl
-ssl4XoWZp/At1+sjhErJS4uZ4GWg8sZ4xpR15+uoMfxHB4uNO2psFGDBIEhc09C8
-xyX/WdTPqtUNi7zymFdQsiREzX3Y/Cqa+QyON2lsDpcXO2TEdHX5nAdswuQJsBnN
-A7UZfqq+zra9KQo0Lz8ujCjEQvtwgJZLDLZJo4cVTdhtbfyXgLDSOmVOj5u8RT6A
-k1fJSHELuSxBlJbJxQMVRVVTO0+KuzFRDOQpLfQUjBgrY8Wb38vn8kENthCnRgiq
-dyWyvG1yYDA+nyJX8lCZ+TJcp7yK2F7PG2F6NZKEwsU83Je1FTs=
-=8trH
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPdN8EACgkQFA3kzBSg
+KbYD6RAAo+9VdhdbWabq4Bh4ga6uNf+ompDhTZ82L9PP8bMG6Q6m1o1vdH6Qo6mK
+0ToFeDFBP3wSoRNWo6pVwCn7N+8aefGhsFbUXPnqZi/pGjZjosCFYn4fI7YQJdFZ
+ETJAkIBhKTYHzg1sw+xOxVsDilAkE4JpWdM8HK2L4dmFMgnyFeQSjrGvEz3Pm3mV
+qsZaZDstktFw4YzKimlLBINSV5QtWsZq8KeCo/SkKNLW//lBtoOlIfsdU2vcYDh6
+WPsV7DPy8JhPTVkCs5fjg2aRZEmxCznQmoPVFtt2Mb5aoJi0la3r2pr0KmS3kkBr
+QuECjc3BDoPS5tuegXUVULcvtQmyzVBS6J6VmxEONn/D0tCjZAm7qMdArXe/S3ns
+FvK6X8hLmKTFrasoEdDtK99zs0780dlwlznSJVFobs3WpdSIeZ1IZpTiNYf6JhT4
+o4sfWhXXbOmfqs3mPFHEx1JJLtftEZLN/75Z74mJgnnNKzfVWAsncj/Qwgyc6GMV
+dyP5/1Y+6TNN57wX6PemptkUadK8gaqbxOeXktzmR7Eul4KE44qrcMzpHLGKQIv3
+XIilGPexyvwivS0eF6CRUwTXbf+4dRW29D3oPNDdFw+M10ntcHy7v+lyJWJ/rqm4
+s/mXEShk3ur1CT87WazmaBg7Cu/DuOov7DYSBXR59VLnsMufvTI=
+=84ht
 -----END PGP SIGNATURE-----
 
---lriez7o432fxn5yb--
+--jfKArVcXu/70hkcU--
