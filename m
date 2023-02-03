@@ -2,131 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4471168900E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:03:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 757E0689014
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:05:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232096AbjBCHDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 02:03:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54134 "EHLO
+        id S231542AbjBCHDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 02:03:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232054AbjBCHDN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:03:13 -0500
-Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com [IPv6:2607:f8b0:4864:20::a2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31C33911B1
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 23:02:33 -0800 (PST)
-Received: by mail-vk1-xa2a.google.com with SMTP id l20so2109309vkm.11
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 23:02:32 -0800 (PST)
+        with ESMTP id S230020AbjBCHDo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:03:44 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1EEF4860A;
+        Thu,  2 Feb 2023 23:03:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZHxnq4NIAvqcaAQqKPv9unLZ6dk9i+ul3lPvliSm8to=;
-        b=i+piRv4aM1OJLjMLD6b35atiMLDBkWlgdjMTQx2ceBe7f2oj2MubVl2GOeYz8svWBL
-         JCj0B5LIykOnqKn1Xzvx0lbNKW5MiDYo4R6gEjjpfX9UxpMYpTu3fny1wERq2gd70BU+
-         wy/PsccjJ2lZMarPhrYApiZegzi/vuPR6d/r0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZHxnq4NIAvqcaAQqKPv9unLZ6dk9i+ul3lPvliSm8to=;
-        b=K3vi/Jzv67tfyVNQdhtVQPKVVnyq9407D92ee9u9FibDIYtnqIEmqpoLURko0Sb8w2
-         tkvV2EabSjrO99hSsNIaVZAf4iV7GY/Wq8jjYh201jFW4gc5HdqbZ62pOicP8lpc9poN
-         XHhHykdfM6qNUffYyM1uQCQrpIe3O9P1wU4fwfk0hGgEy2rTeA575VQ5FHT+MkGHCEhJ
-         dI/Mwhu+lz18BjtSfjza0972Ue6wcbEZRCvefTUjGHI22N4Tv5wtJ2u2+pMl6h8hUcFf
-         0oPjn0Vm4SUzVQUM9a+k0xRujb8BViLsie/wIZgNJzIH5jblbm+7oJ4jGhpEfcFV9KO/
-         drOQ==
-X-Gm-Message-State: AO0yUKWvrk5minb1+1eEVHbQI1JWgApXan7SJj6cLnJ7QIPOUbGgAjdC
-        9aThIB+uoq5KXHPyQx5qHChItVusxst5Os24bxGgdA==
-X-Google-Smtp-Source: AK7set+aTOijar/puEUL78ABZvo/AOqIKUR8h1vEUaV4Q1CRoGlXDNr1x4ZpVZTctOHPDyk/5tzwRCQVHGrQ0dN6omE=
-X-Received: by 2002:a05:6122:131:b0:3e8:8f:f3a7 with SMTP id
- a17-20020a056122013100b003e8008ff3a7mr1321932vko.30.1675407752112; Thu, 02
- Feb 2023 23:02:32 -0800 (PST)
-MIME-Version: 1.0
-References: <20230119124848.26364-1-Garmin.Chang@mediatek.com> <20230119124848.26364-11-Garmin.Chang@mediatek.com>
-In-Reply-To: <20230119124848.26364-11-Garmin.Chang@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 3 Feb 2023 15:02:21 +0800
-Message-ID: <CAGXv+5FGCVSihGu5diCQ1Q=jPRHz7RQ2KrXk-13LL4z1wbkfjg@mail.gmail.com>
-Subject: Re: [PATCH v5 10/19] clk: mediatek: Add MT8188 mfgcfg clock support
-To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1675407804; x=1706943804;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=3TgWBWT+IFUzF9icb3lQ8a18CFkOqA7ocw41oKgnicY=;
+  b=nGzZO+7tRve7GGh6snlg2Nnty5JpPMyNX2DCAwkjkjwp4E8B3bvtOiKh
+   k1quZP877K3JF69Bv8OZjbJvswFahlW6Bi69I1Eo8Kv7GcseoE7ULJ1C7
+   FDgPvorbk/xe2affYJ5t+kw3uHz18GbvTvh4wfXzajpmLOR7bFpZ4d8hj
+   U2wSn/A0TQxrUDDsmTh9V0dOH6QXVyE/BRK5LfPH0rOSL8Qx5/Rtv0hgG
+   X4KV16++p17rfUmiJ0vtsUnPTg5+GiKyRuWAX35TzGCFTxgSRpk0/XRX+
+   HFBrSM0Jc5ub6pxYz6NVUyRKZ+ipJi41N2qKNCFpRW1FsojouSRopEf8F
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,269,1669071600"; 
+   d="scan'208";a="28843869"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 03 Feb 2023 08:03:21 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 03 Feb 2023 08:03:21 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 03 Feb 2023 08:03:21 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1675407801; x=1706943801;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=3TgWBWT+IFUzF9icb3lQ8a18CFkOqA7ocw41oKgnicY=;
+  b=CgXCG4S2MQPDq+3tkK0lBp4bDZOW59fc6HO95WoaKZwxUCBRdYUpYgSl
+   /HYGjAgvKMvEdmJ5GtdSQWV7NfSpMt//4K2KfmQrKi3FTNyG8h3usONIf
+   9/7R+2eXjc24Wis/GAuA59zskCIfvluafihD0l4AkjrYdXcpze/C1i9a0
+   dlVbKvxzR4GJaYJ+XX/RUzr8gZq0PW1FtN9jfYxmgyEVOv7xldtxZ08T6
+   7IzNcsCVdyUf0Z7Jwl0iSvlybAQndKKlfBx4D8k8vn1NXrnvFZV4LYoIy
+   tBmz/7sqaTOez592UsW0FOZ1YRCCOovBlGQFvQc/ydvjjIN/F3liBb4ek
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.97,269,1669071600"; 
+   d="scan'208";a="28843868"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 03 Feb 2023 08:03:21 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 68B9A280056;
+        Fri,  3 Feb 2023 08:03:21 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     Cai Huoqing <cai.huoqing@linux.dev>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-clk@vger.kernel.org, netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: add missing vref-supply
+Date:   Fri, 03 Feb 2023 08:03:18 +0100
+Message-ID: <1922814.PYKUYFuaPT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230202171052.502ec666@jic23-huawei>
+References: <20230131101323.606931-1-alexander.stein@ew.tq-group.com> <20230201121343.vk2t2dfpbvhflols@pengutronix.de> <20230202171052.502ec666@jic23-huawei>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19, 2023 at 8:50 PM Garmin.Chang <Garmin.Chang@mediatek.com> wrote:
->
-> Add MT8188 mfg clock controller which provides clock gate
-> control for GPU.
->
-> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
-> ---
->  drivers/clk/mediatek/Makefile         |  2 +-
->  drivers/clk/mediatek/clk-mt8188-mfg.c | 47 +++++++++++++++++++++++++++
->  2 files changed, 48 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/clk/mediatek/clk-mt8188-mfg.c
->
-> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-> index 4a599122f761..a0fd87a882b5 100644
-> --- a/drivers/clk/mediatek/Makefile
-> +++ b/drivers/clk/mediatek/Makefile
-> @@ -86,7 +86,7 @@ obj-$(CONFIG_COMMON_CLK_MT8186) += clk-mt8186-mcu.o clk-mt8186-topckgen.o clk-mt
->  obj-$(CONFIG_COMMON_CLK_MT8188) += clk-mt8188-apmixedsys.o clk-mt8188-topckgen.o \
->                                    clk-mt8188-peri_ao.o clk-mt8188-infra_ao.o \
->                                    clk-mt8188-cam.o clk-mt8188-ccu.o clk-mt8188-img.o \
-> -                                  clk-mt8188-ipe.o
-> +                                  clk-mt8188-ipe.o clk-mt8188-mfg.o
->  obj-$(CONFIG_COMMON_CLK_MT8192) += clk-mt8192.o
->  obj-$(CONFIG_COMMON_CLK_MT8192_AUDSYS) += clk-mt8192-aud.o
->  obj-$(CONFIG_COMMON_CLK_MT8192_CAMSYS) += clk-mt8192-cam.o
-> diff --git a/drivers/clk/mediatek/clk-mt8188-mfg.c b/drivers/clk/mediatek/clk-mt8188-mfg.c
-> new file mode 100644
-> index 000000000000..57b0afb5f4df
-> --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-mt8188-mfg.c
-> @@ -0,0 +1,47 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +//
-> +// Copyright (c) 2022 MediaTek Inc.
-> +// Author: Garmin Chang <garmin.chang@mediatek.com>
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/platform_device.h>
-> +#include <dt-bindings/clock/mediatek,mt8188-clk.h>
-> +
-> +#include "clk-gate.h"
-> +#include "clk-mtk.h"
-> +
-> +static const struct mtk_gate_regs mfgcfg_cg_regs = {
-> +       .set_ofs = 0x4,
-> +       .clr_ofs = 0x8,
-> +       .sta_ofs = 0x0,
-> +};
-> +
-> +#define GATE_MFG(_id, _name, _parent, _shift)                          \
-> +       GATE_MTK_FLAGS(_id, _name, _parent, &mfgcfg_cg_regs, _shift,    \
-> +                      &mtk_clk_gate_ops_setclr, CLK_SET_RATE_PARENT)
-> +
-> +static const struct mtk_gate mfgcfg_clks[] = {
-> +       GATE_MFG(CLK_MFGCFG_BG3D, "mfgcfg_bg3d", "top_mfg_core_tmp", 0),
+Hi,
 
-Are you sure the parent isn't "mfg_ck_fast_ref"?
+Am Donnerstag, 2. Februar 2023, 18:10:52 CET schrieb Jonathan Cameron:
+> On Wed, 1 Feb 2023 13:13:43 +0100
+> 
+> Marco Felsch <m.felsch@pengutronix.de> wrote:
+> > Hi Alexander,
+> > 
+> > On 23-01-31, Alexander Stein wrote:
+> > > Hi Marco,
+> > > 
+> > > thanks for the feedback.
+> > > 
+> > > Am Dienstag, 31. Januar 2023, 11:48:16 CET schrieb Marco Felsch:
+> > > > Hi Alexander,
+> > > > 
+> > > > On 23-01-31, Alexander Stein wrote:
+> > > > > Although this property is used right now for IIO_CHAN_INFO_SCALE,
+> > > > > this ADC has two internal reference voltages, which the driver
+> > > > > currently
+> > > > > doesn't make use of.
+> > > > > 
+> > > > > Fixes: db73419d8c06 ("dt-bindings: iio: adc: Add binding
+> > > > > documentation for
+> > > > > NXP IMX8QXP ADC") Signed-off-by: Alexander Stein
+> > > > > <alexander.stein@ew.tq-group.com>
+> > > > > ---
+> > > > > 
+> > > > >  .../devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml          | 4
+> > > > >  ++++
+> > > > >  1 file changed, 4 insertions(+)
+> > > > > 
+> > > > > diff --git
+> > > > > a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> > > > > b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> > > > > index
+> > > > > 63369ba388e4..879768af0303 100644
+> > > > > --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> > > > > 
+> > > > > @@ -39,6 +39,9 @@ properties:
+> > > > >    power-domains:
+> > > > >      maxItems: 1
+> > > > > 
+> > > > > +  vref-supply:
+> > > > > +    description: External ADC reference voltage supply on VREFH
+> > > > > pad.
+> > > > 
+> > > > Please add it to the list of required properties, we can remove it as
+> > > > soon as the driver has support for the internal reference voltages.
+> > > 
+> > > I was thinking in doing so before as well. But DT describes the
+> > > hardware, and this ADC apparently would be functioning without a
+> > > reference voltage on that pad, using a different one. What the driver
+> > > actual does is a different matter.> 
+> > I have also thought about it first but than I checked the RM which says
+> > that "multi-reference selection" is chip dependent.
 
-ChenYu
+Nice for pointing this out. I wasn't aware that there are differences.
+
+> Oh goody. So is it detectable?
+
+That's my problem. I didn't find any source of information which chips do 
+support multiple references and which don't.
+Marco, do you have some information on this?
+
+> If we are going to stick to a single compatible rather than adding them for
+> the variants with and without this feature, should probably add a note at
+> least to say it is required for some parts.
+
+That's a good idea. I'm okay with that, until there is more information 
+available.
+
+Best regards
+Alexander
+
+> Also, link if public would be good for purposes of discussion as my google
+> fu didn't find relevant doc. (assuming it's public)
+> 
+> 
+> Jonathan
+> 
+> > Regards,
+> > 
+> >   Marco
+> >   
+> > > Best regards,
+> > > Alexander
+> > > 
+> > > > Regards,
+> > > > 
+> > > >   Marco
+> > > >   
+> > > > > +
+> > > > > 
+> > > > >    "#io-channel-cells":
+> > > > >      const: 1
+> > > > > 
+> > > > > @@ -72,6 +75,7 @@ examples:
+> > > > >              assigned-clocks = <&clk IMX_SC_R_ADC_0>;
+> > > > >              assigned-clock-rates = <24000000>;
+> > > > >              power-domains = <&pd IMX_SC_R_ADC_0>;
+> > > > > 
+> > > > > +            vref-supply = <&reg_1v8>;
+> > > > > 
+> > > > >              #io-channel-cells = <1>;
+> > > > >          
+> > > > >          };
+> > > > >      
+> > > > >      };
+
+
+
+
