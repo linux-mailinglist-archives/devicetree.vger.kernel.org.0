@@ -2,70 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18F32689C48
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 15:56:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18621689C4B
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 15:56:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232411AbjBCO4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 09:56:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37668 "EHLO
+        id S232554AbjBCO4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 09:56:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232300AbjBCO4C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 09:56:02 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17C8345F68
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 06:56:01 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso6214369wms.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 06:56:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:sender
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=GE8LRefBbCr+vfDK+OAPRXSUgs+NOR142JeKY5u24zc=;
-        b=gVLHbXSFArNyVySbKLYtIAbS7wOVw2/uF/7sFj1V2kQyD+OBs0IMZz6moOQLkH8p0r
-         zuwe9faHu/8YamWSB5HU9WLJQ9uoTOqd96AjLwUffqwKAr0EKRNfb/Mq6XIkpMqEpa5C
-         kUJGoC+v/lRH4cZv6btzkNVIvI2zcq8xl/PBLMSSXxk8dk7+VczpQNIZtQGSezjkcnwo
-         PQ0zfatYfyrm5cdMBns4US5evzsSW+cFbSnW9jEFuXdJ4XNHz69G4XtIvQQttOfELFuX
-         EVuWH65V1X9CMGuQEpKMM2T4+BgH6heHlnLQ34e1KBngPH8LyWNVvhfTMA3nv4FpsV4m
-         8qjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:sender
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GE8LRefBbCr+vfDK+OAPRXSUgs+NOR142JeKY5u24zc=;
-        b=NIY9YihIj79FGPNUiXodvUSj1YhlIFNr7Fa0licABPlpVsY6qL3CqfhNn0zTgARbOf
-         jd2I0jUTBwi8s9FLUzWSZuNoUN+idephWvegjSMHG947Vb7FRkF0LMAg2Jlw0FbtAXj2
-         hyknGoSJAB+QcVScKCOFUsGXC2Fx+K4d4e2setnOStLsUrEGNRqnHimJVnIhJ9n97K88
-         rJLQ5/j+MzTzlRoLckIwTD8NoPuUKEEHKP7licCch5IVmRt7rfOn4gvny9ZZ5LB/G/me
-         odYlshCMoAH/HqYfZkRcsoHusBr4WW5w/y7wY/LMIR1EU7uZXE5DbA6xvRCypoiOz5NW
-         N2sg==
-X-Gm-Message-State: AO0yUKXMXH15T0notP8N0kNxCE5ItOH+06c8cOZDEwefJ9ti2kLDM8QA
-        AHscl/qDjOWZD+GZS+8Lt9WLx0ubCpNwA9SK4ok=
-X-Google-Smtp-Source: AK7set8eM/FKZMeOZp5dEOwzN74dSpKypZJhDF906hgMPRd8mfG+Hg3Sg2xPhWjL9YFq34trlg5irNBxFCwrH/5B/cg=
-X-Received: by 2002:a05:600c:5569:b0:3df:e1d9:8914 with SMTP id
- ja9-20020a05600c556900b003dfe1d98914mr341691wmb.189.1675436159398; Fri, 03
- Feb 2023 06:55:59 -0800 (PST)
+        with ESMTP id S233039AbjBCO4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 09:56:09 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8C6E8B7E9;
+        Fri,  3 Feb 2023 06:56:04 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 39F6B61D94;
+        Fri,  3 Feb 2023 14:56:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9D1CC4339B;
+        Fri,  3 Feb 2023 14:56:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675436163;
+        bh=bHTwdQUfTMFSZm5VtpOoEQH5hZ/O5gwP6aGVUcpUMpI=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=T2KVSpJUj9K690EgAN5EuTtJGGxDCTHELFkwiKcrgx8WIw8ACPr0OdzILjMcuGVHH
+         w/nwhMDgvMyG5luAYTt/Atp0Fkwe02Dc2ezLQseA0dVRCUXnlpJ+9ea6glnCUfRbmh
+         yKKRudgzhFJoKR2Z9gb8CWEql9vGIAS7FC1Z/ViFNF5dkvryXoelnQPi9nP9nc+sUK
+         VUma/CzQzhj+1cbiU0aTddu23R3ZpzjCOmFiPUlxgrQDbNDzVXXRmic06VuWh7O0i8
+         ezt45RNs1R4ZaOpniUVkHtYwS4gS/5/+mfY97oIpNvzPGJ8OGED9v6CjOuPbDIlOG1
+         nARdhXFeG2IwQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Jerome Brunet <jbrunet@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230202183653.486216-1-jbrunet@baylibre.com>
+References: <20230202183653.486216-1-jbrunet@baylibre.com>
+Subject: Re: (subset) [PATCH 0/9] ASoC: dt-bindings: meson: covert axg
+ audio to schema
+Message-Id: <167543616131.928818.17902040818579023398.b4-ty@kernel.org>
+Date:   Fri, 03 Feb 2023 14:56:01 +0000
 MIME-Version: 1.0
-Sender: dareadja5@gmail.com
-Received: by 2002:a05:6020:4710:b0:259:ad88:21bb with HTTP; Fri, 3 Feb 2023
- 06:55:58 -0800 (PST)
-From:   Kayla Manthey <sergeantkayllamanthey@gmail.com>
-Date:   Fri, 3 Feb 2023 14:55:58 +0000
-X-Google-Sender-Auth: YeauNz1P6sTBHUxFP3WntVqGFL0
-Message-ID: <CAE9bZtNgCnc6DJ4cN88CyUew6oLNNkiCuqHnaLRvYJfpCgsmjA@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.0
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dia duit a st=C3=B3r, an bhfuair t=C3=BA mo theachtaireacht roimhe seo?, Go
-raibh maith agat.
+On Thu, 02 Feb 2023 19:36:44 +0100, Jerome Brunet wrote:
+> Convert AXG audio dt-binding documentation to schema
+> 
+> Jerome Brunet (9):
+>   ASoC: dt-bindings: create component common schema
+>   ASoC: dt-bindings: meson: fix gx-card codec node regex
+>   ASoC: dt-bindings: meson: convert axg tdm interface to schema
+>   ASoC: dt-bindings: meson: convert axg tdm formatters to schema
+>   ASoC: dt-bindings: meson: convert axg pdm to schema
+>   ASoC: dt-bindings: meson: convert axg fifo to schema
+>   ASoC: dt-bindings: meson: convert axg spdif input to schema
+>   ASoC: dt-bindings: meson: convert axg spdif output to schema
+>   ASoC: dt-bindings: meson: convert axg sound card control to schema
+> 
+> [...]
+
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/9] ASoC: dt-bindings: create component common schema
+      commit: e398bbb9834a2f6cbe27cbd72956159ecc92055f
+[2/9] ASoC: dt-bindings: meson: fix gx-card codec node regex
+      commit: 480b26226873c88e482575ceb0d0a38d76e1be57
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
