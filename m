@@ -2,125 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF9726898D0
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 13:32:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94DC06898E9
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 13:35:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233022AbjBCMcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 07:32:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42676 "EHLO
+        id S233151AbjBCMfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 07:35:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233034AbjBCMch (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 07:32:37 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5D5679F3A;
-        Fri,  3 Feb 2023 04:32:34 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 66798B82A20;
-        Fri,  3 Feb 2023 12:32:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 795C9C43444;
-        Fri,  3 Feb 2023 12:32:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675427552;
-        bh=iJge+MFqjbzizxQCThk6ckFPnVqDT96ToH0Ft3Tw/hQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Cb+FiVf/u22D5ODmDsgmYB8x4z6jjnH3mAnoWdFnxki4XJTKMQBiz5uhRsfODBXgO
-         GeWrObErqwhYm49IJTiu1MgdZYxii+TaVIiN8buzRpT9pi7nOe0w4hjd/fEOjTLxBG
-         kmpHBUVtAleOKUDYGP/4Xg4PCozDxNijxu7qVKxB2iRWgH0793gRrJ0kilVEo6gKsq
-         5QT0ueotzjpqQAgBvq5DhuXquHQW4S+yg7TzAi0/snNwmXlQNQl1xyVsdABEIkeF6e
-         vYxsCnMJxuoYKab+IinW/T9AsopCmSgayyZwwmpJ1nPZBlIocNuAmYn2oKahxX1Rze
-         UYNiOt6C2cX0g==
-Message-ID: <9c2c0e88-41d8-f9ec-d934-2d1752696b1a@kernel.org>
-Date:   Fri, 3 Feb 2023 13:32:21 +0100
+        with ESMTP id S232491AbjBCMfS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 07:35:18 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 730B65FE5;
+        Fri,  3 Feb 2023 04:35:09 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 313ANVlV026075;
+        Fri, 3 Feb 2023 12:34:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=mMBR5w+q1boHomjumnwZghbt93c2LBQycWI9O28G1Bw=;
+ b=CPsxI74jIauecLH2Bfc3VrcDLfN7OjDae+wtVjSmmp8fXtlDHVBw6r32krn0Bb4uilJN
+ z6nCzRuI7sN9H+PRak9fH3GCnGhqHycuuKk5l7BPjFngnpt/0pwxK62cN4Q6FSY1gfo8
+ EXBl0JBnhhIOnHzdlZQZxurjN0GFvno/iSAIbdt/ri7yBbDFeBJz6mBos4BOGV2D010S
+ d2xP7MCzI/rcjO8bqT9W3Q0AttMSBUFykHbtQRWd5vy64DChEwGCf5TTyXjbBPegX+SP
+ KxB6fLS9IcQBiDwXJzQLi31G2jq6DdokpGEzwaJutPqH3G2xFLFGesj5pLDXzJYGv+D3 Sw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ngh1ka69c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 03 Feb 2023 12:34:47 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 313CYkvl012258
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 3 Feb 2023 12:34:46 GMT
+Received: from [10.50.53.202] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 3 Feb 2023
+ 04:34:37 -0800
+Message-ID: <b3c1e629-179f-d2c3-d3eb-3556a7df10ae@quicinc.com>
+Date:   Fri, 3 Feb 2023 18:04:34 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 2/2] dt-bindings: PCI: mediatek-gen3: Add support for
- controlling power and reset
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH V6 2/7] clk: qcom: Add Global Clock Controller driver for
+ IPQ9574
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Devi Priya <quic_devipriy@quicinc.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <p.zabel@pengutronix.de>, <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
+        <nfraprado@collabora.com>, <broonie@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
+References: <20230202150619.22425-1-quic_devipriy@quicinc.com>
+ <20230202150619.22425-3-quic_devipriy@quicinc.com>
+ <1d144aa4-6f0f-b10f-1d32-4acf4e06ae85@quicinc.com>
+ <e34f36b0-35a8-0b77-e6ab-49851213108e@linaro.org>
 Content-Language: en-US
-To:     =?UTF-8?B?SmlhbiBZYW5nICjmnajmiKwp?= <Jian.Yang@mediatek.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        =?UTF-8?B?Smlhbmp1biBXYW5nICjnjovlu7rlhpsp?= 
-        <Jianjun.Wang@mediatek.com>, "kw@linux.com" <kw@linux.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        Ryder Lee <Ryder.Lee@mediatek.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        =?UTF-8?B?SmlleXkgWWFuZyAo5p2o5rSBKQ==?= <Jieyy.Yang@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?Q2h1YW5qaWEgTGl1ICjmn7PkvKDlmIkp?= 
-        <Chuanjia.Liu@mediatek.com>,
-        =?UTF-8?B?UWl6aG9uZyBDaGVuZyAo56iL5ZWf5b+gKQ==?= 
-        <Qizhong.Cheng@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        =?UTF-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
-        <Rex-BC.Chen@mediatek.com>,
-        =?UTF-8?B?RGF2aWQtWUggQ2hpdSAo6YKx6Yi657+UKQ==?= 
-        <David-YH.Chiu@mediatek.com>
-References: <20230111032830.20447-1-jian.yang@mediatek.com>
- <20230111032830.20447-3-jian.yang@mediatek.com>
- <dccfa004-1d40-acc0-6220-9232193b648f@kernel.org>
- <8d954de7f9507099bd9bea6801f446f80bd832aa.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <8d954de7f9507099bd9bea6801f446f80bd832aa.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <e34f36b0-35a8-0b77-e6ab-49851213108e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: s73mYnFUxvt8OOjaVYgOTjdnQIb7LJA5
+X-Proofpoint-ORIG-GUID: s73mYnFUxvt8OOjaVYgOTjdnQIb7LJA5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-03_08,2023-02-03_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ suspectscore=0 spamscore=0 clxscore=1015 priorityscore=1501
+ mlxlogscore=999 adultscore=0 malwarescore=0 bulkscore=0 impostorscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302030115
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/02/2023 10:38, Jian Yang (杨戬) wrote:
->>> +  pcie12v-supply:
->>> +    description:
->>> +      The regulator phandle that provides 12V power to downstream
->>> component.
+
+On 2/3/2023 4:25 PM, Konrad Dybcio wrote:
+>
+> On 3.02.2023 06:47, Kathiravan T wrote:
+>> On 2/2/2023 8:36 PM, Devi Priya wrote:
+>>> Add Global Clock Controller (GCC) driver for ipq9574 based devices
+>>>
+>>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+>>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+>>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>>> ---
+> [...]
+>
+>>> +static int gcc_ipq9574_probe(struct platform_device *pdev)
+>>> +{
+>>> +    struct regmap *regmap;
+>>> +    struct qcom_cc_desc ipq9574_desc = gcc_ipq9574_desc;
 >>> +
->>> +  dsc-reset-gpios:
->>> +    description:
->>> +      The reset GPIO of a downstream component.
+>>> +    regmap = qcom_cc_map(pdev, &ipq9574_desc);
+>>> +    if (IS_ERR(regmap))
+>>> +        return PTR_ERR(regmap);
+>>> +
+>>> +    return qcom_cc_really_probe(pdev, &ipq9574_desc, regmap);
 >>
->> Why you cannot use standard reset-gpios property?
-> 
-> The "dsc-reset-gpios" represents an extra reset pin other than PERST#
-> required by a PCIe downstream device. But the "reset-gpios", described
-> in "pci.txt", represents the PERST#. So I tend to add a new property to
-> meet this requirement.
+>> can we use qcom_cc_probe as suggested here https://lore.kernel.org/linux-arm-msm/84f68577f5629e6ef6d6b14357a79f84.sboyd@kernel.org/ ?
+> Yes we can.
+>
+> When you're answering a long long long long email, please cut off
+> parts that you aren't replying to, I had to scroll and scroll and
+> scroll and scroll to get to this sentence and I'm not even sure if
+> you said something inbetween that I missed..
 
-OK
 
+Got it, Thanks.
+
+
+>
+> Konrad
 >>
->>> +    description:
->>> +      The delay time between assertion and de-assertion of a
->>> downstream
->>> +      component's reset GPIO.
->>
->> Why this should be a property of DT?
-> 
-> Same as the reason I described above. I suppose we need to add a
-> property to let user determine the delay time due to differences
-> in requirements between various devices.
-
-No, I don't think we want individual properties like that. There is
-ongoing discussion about this:
-https://lore.kernel.org/all/20221214095342.937303-1-alexander.stein@ew.tq-group.com/
-
-Feedback is welcomed - there. Don't create your own half-baked delays
-for different hardware designs.
-
-Best regards,
-Krzysztof
-
+>>> +}
+>>> +
+>>> +static struct platform_driver gcc_ipq9574_driver = {
+>>> +    .probe = gcc_ipq9574_probe,
+>>> +    .driver = {
+>>> +        .name   = "qcom,gcc-ipq9574",
+>>> +        .of_match_table = gcc_ipq9574_match_table,
+>>> +    },
+>>> +};
+>>> +
+>>> +static int __init gcc_ipq9574_init(void)
+>>> +{
+>>> +    return platform_driver_register(&gcc_ipq9574_driver);
+>>> +}
+>>> +core_initcall(gcc_ipq9574_init);
+>>> +
+>>> +static void __exit gcc_ipq9574_exit(void)
+>>> +{
+>>> +    platform_driver_unregister(&gcc_ipq9574_driver);
+>>> +}
+>>> +module_exit(gcc_ipq9574_exit);
+>>> +
+>>> +MODULE_DESCRIPTION("Qualcomm Technologies, Inc. GCC IPQ9574 Driver");
+>>> +MODULE_LICENSE("GPL");
