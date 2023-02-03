@@ -2,75 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D44689E63
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 16:36:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E272689E6F
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 16:38:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231205AbjBCPgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 10:36:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50590 "EHLO
+        id S233010AbjBCPiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 10:38:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232999AbjBCPgh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 10:36:37 -0500
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4E206F217;
-        Fri,  3 Feb 2023 07:36:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
-        s=s31663417; t=1675438571;
-        bh=P9k19nklnfp8zjyr98WNbqWJ3pcfo/IFbSsgLrUsy0k=;
-        h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
-         References;
-        b=T6h+QaHdfOlZU59CWJmZFrYc/pPROYjzeEQGH3qQYBFuEoVY/ngJkBaE18nek+RXE
-         km1dHXLzOS6M9uRcPhF+IKIrn0mi6pFDNW2ZQKk9naknHdGZyYaABfRdsc07bNGM+O
-         b5FI4a+ij1HKdqrIDJN7Euf04jY8fP8Vu/psEEdBoMdjoTkH0v9HtJS+VJ6o/5d00w
-         2xIW3jv/2ojoMg0JUI61qgcDfXmGxPu2dJRv5A/14SduMQQ5A6+cNVFgGmGdCRaVVv
-         sfOIlGQC32vcPcsCu7YO1W9bkHrXT2/ZCjCJFDmBnwfKjxjaJEubQ/O7RfGwhEoFQz
-         L6JPNCpF2NO6g==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [127.0.0.1] ([80.245.79.254]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1M5fIW-1pHvhR0GK2-007Er5; Fri, 03
- Feb 2023 16:36:11 +0100
-Date:   Fri, 03 Feb 2023 16:36:09 +0100
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     arinc9.unal@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        erkin.bozoglu@xeront.com, Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>
-Subject: Re: [PATCH v2 4/5] arm: dts: mt7623: mux phy0 on Bananapi BPI-R2
-User-Agent: K-9 Mail for Android
-Reply-to: frank-w@public-files.de
-In-Reply-To: <20230201185656.17164-5-arinc.unal@arinc9.com>
-References: <20230201185656.17164-1-arinc.unal@arinc9.com> <20230201185656.17164-5-arinc.unal@arinc9.com>
-Message-ID: <AC473057-266B-4403-9270-8007E0EC257C@public-files.de>
+        with ESMTP id S232295AbjBCPiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 10:38:54 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 709BF8AC07
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 07:38:33 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id me3so16384235ejb.7
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 07:38:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mind.be; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W9D1MtwohWAcSI+dqXIF3V/F6XwBaTkRzipfSL8tRIU=;
+        b=PbovNEv5EDv8GaV3xzbWFWOX+wZxwnJ9wtulJadvd2aJPRPjEEu1TZCv3EjkV71nPi
+         fvBH87FI1O+w1rsup6XgFuEwdu/zVnDm2ji/Gyc1twP0A+r9is+43dGJR06R0cLaoi8v
+         nBURDhCsdtg8SrH918xCJT8f15aB1wcFe1or/rF3/Kgd/YJj7VJtIeUsUaMIK20FewWY
+         qJdMRXWabVH6X6Wu0SpAJvgiKpRXDWfrngTjMIpyi8++gJtWTjXohFjSd9CONnXWov0Z
+         oRM7NEd+BPQcEqzSocE1jvlB3TKB4Guf+tIDTY5XYNYhHRD65l99H0i/o1sW7galLsBf
+         oCwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=W9D1MtwohWAcSI+dqXIF3V/F6XwBaTkRzipfSL8tRIU=;
+        b=Q+Yc/8oG0cTW+7YxGEiesKdgEO10q0FIzxFKRDyBOFd5jN7Ii9bZGxztfAWuUoeLxW
+         jMlzd79bWSTB281I55iLmAh9l1nXSuZ+qCq/NpbENsDzyWM3hQjfzP3unghIE57MJHaf
+         tQdmn4uSWc2aSoUd3U2kl9egiergg9XjIjU95FZMsf9Fa8pdBWtmIQ+HN21HCT3fSrVw
+         2pXOWQ4kWqKTFq/eq4DgcuGY5QsLSnl7Jv97qbkWTvQBmSsgm0vzdvumB7ql8GFtUXUp
+         NAEh7VAityH+MRaOwSeEGByxOFFtTRwM7aIUWNA8UvctivRbYk0wKMCZtHGVchlDurGk
+         dE7w==
+X-Gm-Message-State: AO0yUKVdmVFCeaNm0G99pWdz5q4VRKTfYXcDGgCA90UbMAYNj/qIZjyf
+        yrMRrXo4C7sunfqL7vzB6lIaWyxD5sc/lcp7
+X-Google-Smtp-Source: AK7set/n1bZMm/DBcUP7HFdnSACAio4aFr1UdewcRdhd8EFQdo2q7K4Jfxhz/uNDcak+BP0sUq+x0w==
+X-Received: by 2002:a17:906:2d4a:b0:883:5b33:e019 with SMTP id e10-20020a1709062d4a00b008835b33e019mr10385242eji.61.1675438712037;
+        Fri, 03 Feb 2023 07:38:32 -0800 (PST)
+Received: from [192.168.2.9] (78-22-137-109.access.telenet.be. [78.22.137.109])
+        by smtp.gmail.com with ESMTPSA id p2-20020a170906498200b00878803d4049sm1541899eju.93.2023.02.03.07.38.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Feb 2023 07:38:30 -0800 (PST)
+Message-ID: <1452beba-19b0-7417-716e-a255c6aaa739@mind.be>
+Date:   Fri, 3 Feb 2023 16:38:29 +0100
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Fq66cXMQ7PDgT5kGmMVa//WAyfmtO+lqAVvGSRCIkiotxM+5zae
- hpCM7/ymJTzxKiIsmZ6UpbzfhYiXdfLtEdDtKgf8FmprazS7xUlB0ORoHEy+s03zkrWMg49
- 1oyG9cbnZ6tnVwWKSCh7rRQrOL/DDf1xem5g/86ZdiwtxAYzu0vzfO5YA+4NOPYLXIWnixt
- AWKrr7bLrNMzZPbjoaPdA==
-UI-OutboundReport: notjunk:1;M01:P0:OaLRXKJrZrY=;m3lYOpzBzjojWR5/McbyO4NliuO
- dhiQB6ATa4YIR3JTXFewyWafUnlOQiKIj2kNswENbzcshkDKsXHa6aD/9OT+hIgRrojAHUTXf
- YoZkfV04uYiK7r9xWPq9Agc+Nv5yLbq6xw2uKENExfi23fgsm+nVUwDbyiX8cuBM3j/E9Slls
- B88+YamCV/kz/+6ac+8Ti/Wg5ORaBRsrWp+7YR8bv6h2c/JlEgOZsgaPqt8qAei+h0Fb6LA5B
- xueYNgIDSQFXT190ALitKA1qhi6hY9JF6CQmhIpt78kHNQWXvGt1pesA33mn+MqHxb4NKmfix
- fEx+OJzicpd33qnFny2ME9GNvbM03NuBF/jNREVsgXiu8JrVrTKVU/x+pI8jeXoeEpOyWmlgA
- 15M5TVFh7YUyHQZjjSxmm8JekrbfPFaYgi7TC+nEHHGJ05OFgK5ryIWhV3TQCHEdfOP2jQFGZ
- 02Ol/9+36vZvfl7jHzManClEeN649f1wKji1HAOu9hajTCGtX2d1luUSipoevRFrif81S/srB
- SEsvD1fJxvCcTCYCRBipCzExbD1K1eTdH5iujGs9aIj86g2eGGrrj3jbP1gonO29h57HAMi1T
- P59e0g4J87y4enBerz7snXXgN46HCEWQTzgxoj6AswddqORuutUyzj2crN8E5MuBtoSXW3ahr
- 75k3rZty7T9zpiPyIQOuqLYGqLHuebsNCNWLO8n/n5v25wY/q4RvDxr2yd6vHaDPjfZanZAQG
- T2hqT3LXCPJ6QwBDNGaIQaRbyqLwsUtn6SYQEWVuJhgDTh8wN+nWs8wzsTE+6rbBG8zdECSQZ
- OINg5bFPOJgs90g641uqpRQ8nx1h3TPgEiPEieHR2KCfZmATBEx5/Al85Xsa1Ow2JFJLzRPYg
- 89T4V7YvtMn4axskqaQsKqLinIBqNubiovPCNt5pVKZcbryiAkLY7ia1ABr25CKlkLCIaLYuv
- kX90uF0ipN6FMh9GqDzAYbS2Ljw=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v4 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230202101032.26737-1-maarten.zanders@mind.be>
+ <20230202101032.26737-2-maarten.zanders@mind.be>
+ <28cf0c1f-ee5f-79e4-609a-2cdd24db9f1c@linaro.org>
+Content-Language: en-US
+From:   Maarten Zanders <maarten.zanders@mind.be>
+In-Reply-To: <28cf0c1f-ee5f-79e4-609a-2cdd24db9f1c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,75 +80,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 1=2E Februar 2023 19:56:55 MEZ schrieb arinc9=2Eunal@gmail=2Ecom:
->From: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc=2Eunal@arinc9=2Ecom>
->
->Mux the MT7530 switch's phy0 to gmac5 which is wired to the SoC's gmac1=
-=2E
->This achieves 2 Gbps total bandwidth to the CPU using the second RGMII=2E
->
->With this, the interface name to access phy0 changes from wan to eth1=2E
->
->Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc=2Eunal@arinc9=2Ecom>
->---
-> arch/arm/boot/dts/mt7623n-bananapi-bpi-r2=2Edts | 15 ++++++++++-----
-> 1 file changed, 10 insertions(+), 5 deletions(-)
->
->diff --git a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2=2Edts b/arch/arm/b=
-oot/dts/mt7623n-bananapi-bpi-r2=2Edts
->index dc9b4f99eb8b=2E=2E64700253fd35 100644
->--- a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2=2Edts
->+++ b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2=2Edts
->@@ -182,6 +182,12 @@ fixed-link {
-> 	};
-> };
->=20
->+&gmac1 {
->+	status =3D "okay";
->+	phy-mode =3D "rgmii";
->+	phy-handle =3D <&ethphy0>;
->+};
->+
-> &eth {
-> 	status =3D "okay";
->=20
->@@ -189,6 +195,10 @@ mdio-bus {
-> 		#address-cells =3D <1>;
-> 		#size-cells =3D <0>;
->=20
->+		ethphy0: ethernet-phy@0 {
->+			reg =3D <0>;
->+		};
->+
-> 		switch@1f {
-> 			compatible =3D "mediatek,mt7530";
-> 			reg =3D <0x1f>;
->@@ -200,11 +210,6 @@ ports {
-> 				#address-cells =3D <1>;
-> 				#size-cells =3D <0>;
->=20
->-				port@0 {
->-					reg =3D <0>;
->-					label =3D "wan";
->-				};
->-
-> 				port@1 {
-> 					reg =3D <1>;
-> 					label =3D "lan0";
 
-Hi
+On 2/2/23 21:13, Krzysztof Kozlowski wrote:
+> + ti,charge-pump-mode:
+>> +    description:
+>> +      Set the operating mode of the internal charge pump as defined in
+>> +      <dt-bindings/leds/leds-lp55xx.h>. Defaults to auto.
+>> +    $ref: /schemas/types.yaml#/definitions/uint8
+> This should be then uint32
 
-I still see Problem with "renaming" the wan from users PoV=2E I got anothe=
-r way of using second gmac for wan some time ago using vlan-aware bridge (h=
-ave not tested with recent kernel versions)=2E
+Why is that? I specifically chose uint8 because other settings for LED 
+are also uint8. The implementation is also uint8. I surely hope we'll 
+never get to >256 modes for a charge pump.
 
-Maybe this works for you too? If yes imho it will be a better way=2E
 
-https://github=2Ecom/frank-w/BPI-Router-Linux/commit/c92b648bac996b34dc75a=
-4fff15d7fb429bfe74b
+> default: 3
+> (and drop last sentence about default)
+OK
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> Dual license.
 
-Have same for r64/mt7622 in my tree=2E=2E=2E
+OK
 
-It should use eth1 for wan-traffic too but is full userspace configuration=
- without breaking userspace for users not wanting it=2E
-regards Frank
+Best regards,
+Maarten
+
