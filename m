@@ -2,72 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27915689A27
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 14:51:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F2A5689A33
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 14:52:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232346AbjBCNuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 08:50:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60290 "EHLO
+        id S233060AbjBCNwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 08:52:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232000AbjBCNuv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 08:50:51 -0500
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C15E9A82C;
-        Fri,  3 Feb 2023 05:50:37 -0800 (PST)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3139pYul027545;
-        Fri, 3 Feb 2023 14:50:05 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=quyuHnd52UYk2m8I58kZLilahHwXYAvRNaQN+/UHriA=;
- b=2MNrCRIIgLAG9Tu1cxSDCxD8Jprxjh+PrgHaGeYOGVtvxunRgBx3wtuUDn9aiblplZIN
- TRUlyO8StlXCSmPixiJ2doLww2jZMrmeP7H+kl0H0phlAKQDYnueKNac5LD7hyh0sBFj
- WzfSKksF7/s2JN329RT97asyy/ZS/xDRKPciUrc/IjOm0TFmMQ13wbbzZjNwi6SfZ6WN
- bGg+DH10DFkdhYbfL0X783WXsKlIYa6Ldm4Ky9nNcncwQpln0ZhMa4dm1+jnujZX5HW0
- ZvK/omGsLXW57AMlgGkw8Hyr11SsbDeAT4aHsHO4w5NPHKcd309fZpFEHY6dlZV7+r6Q qA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3nfny5f85v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 03 Feb 2023 14:50:05 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0504610002A;
-        Fri,  3 Feb 2023 14:50:03 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F2F36218615;
-        Fri,  3 Feb 2023 14:50:02 +0100 (CET)
-Received: from [10.252.18.17] (10.252.18.17) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Fri, 3 Feb
- 2023 14:50:02 +0100
-Message-ID: <527eaa1f-f663-8a92-00b5-b0329240b922@foss.st.com>
-Date:   Fri, 3 Feb 2023 14:50:00 +0100
+        with ESMTP id S232204AbjBCNwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 08:52:13 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74A2B9AFC2;
+        Fri,  3 Feb 2023 05:51:56 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id s124so4197825oif.1;
+        Fri, 03 Feb 2023 05:51:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=T0jj9gHXQzeTegxc5ifle/pC5AQPQL/9erpLdHEPqBc=;
+        b=1ZB8r7Z7iQ3P7JM5IRVKLKvNODm5ob/5ij3dT25eut+aI3Vf17PQUuwyE2dqdj8VEs
+         2KEntXtCEW68uWHDZN41Lt5HSZag8ntWTkM8k/a5wtIPf5YKx2sqf3xFaghnhTunXs6F
+         GPlv2Yt4Zp1RXsVIdLTIbPhd3Ppey+RQKq8PJ0wf107oNZcpF5PBUsIomW+/4uIuhxaN
+         rzGlntMbq7qRghCQqjiMmhC1ZywAcKICY0+64KIN833H5YdnDcttlscQcO9EW/f85fYZ
+         3Ejn+unaLEH86zouM1mBXazTx666TPxEIa4eQFK2UOoShxqgGu7D5bPdL3z0n3PVKd00
+         NIag==
+X-Gm-Message-State: AO0yUKXZ9LBRpifBEpWG0F5R1oe3y7EVkQUMfk72zpyjNQWnqd16peNq
+        3fTKA583eyR6b0ZthjIXyw==
+X-Google-Smtp-Source: AK7set9GnMjZPQwg4ZvZ1OCLOCzeHoNXp6WHCRFHCa42vbc9O0oYiYLXbh6m33mjRk69hL37c6pQwQ==
+X-Received: by 2002:aca:408b:0:b0:370:ac59:7226 with SMTP id n133-20020aca408b000000b00370ac597226mr4042902oia.11.1675432315646;
+        Fri, 03 Feb 2023 05:51:55 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s191-20020acaa9c8000000b003631fe1810dsm793426oie.47.2023.02.03.05.51.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Feb 2023 05:51:55 -0800 (PST)
+Received: (nullmailer pid 4088845 invoked by uid 1000);
+        Fri, 03 Feb 2023 13:51:54 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2] ARM: dts: stihxxx-b2120: fix polarity of reset line of
- tsin0 port
-Content-Language: en-US
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alain Volmat <avolmat@me.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <YzcSqZdpNbdINp4Q@google.com> <Y9wGO0Q//TIKwTTE@google.com>
-From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <Y9wGO0Q//TIKwTTE@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.252.18.17]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-03_13,2023-02-03_01,2022-06-22_01
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, robh+dt@kernel.org, jun.li@nxp.com,
+        balbi@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org
+In-Reply-To: <20230203014526.1461386-1-peng.fan@oss.nxp.com>
+References: <20230203014526.1461386-1-peng.fan@oss.nxp.com>
+Message-Id: <167543212276.4084541.17286318072815310709.robh@kernel.org>
+Subject: Re: [PATCH V2] dt-bindings: usb: snps,dwc3: support i.MX8MQ
+Date:   Fri, 03 Feb 2023 07:51:54 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -75,50 +64,61 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 2/2/23 19:51, Dmitry Torokhov wrote:
-> On Fri, Sep 30, 2022 at 09:00:41AM -0700, Dmitry Torokhov wrote:
->> According to c8sectpfe driver code we first drive reset line low and
->> then high to reset the port, therefore the reset line is supposed to
->> be annotated as "active low". This will be important when we convert
->> the driver to gpiod API.
->>
->> Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
->> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
->> ---
+On Fri, 03 Feb 2023 09:45:26 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Gentle ping on this one...
-
-Hi Dmitry
-
-Sorry for the delay, i will push a STi pull request including your patch.
-
-Patrice
-
+> i.MX8MQ use Synopsys DesignWare USB3 Controller IP, so add the
+> compatible.
 > 
->>
->> v2: fixed typo in the subject, added Patrice's reviewed-by
->>
->>  arch/arm/boot/dts/stihxxx-b2120.dtsi | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm/boot/dts/stihxxx-b2120.dtsi b/arch/arm/boot/dts/stihxxx-b2120.dtsi
->> index 2aa94605d3d4..d52a7aaa1074 100644
->> --- a/arch/arm/boot/dts/stihxxx-b2120.dtsi
->> +++ b/arch/arm/boot/dts/stihxxx-b2120.dtsi
->> @@ -178,7 +178,7 @@ tsin0: port {
->>  				tsin-num = <0>;
->>  				serial-not-parallel;
->>  				i2c-bus = <&ssc2>;
->> -				reset-gpios = <&pio15 4 GPIO_ACTIVE_HIGH>;
->> +				reset-gpios = <&pio15 4 GPIO_ACTIVE_LOW>;
->>  				dvb-card = <STV0367_TDA18212_NIMA_1>;
->>  			};
->>  		};
->> -- 
->> 2.38.0.rc1.362.ged0d419d3c-goog
->>
->>
->> -- 
->> Dmitry
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
 > 
+> V2:
+>  Rebased on linux-next, remove power-domains from v1
+> 
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 12 +++++++-----
+>  1 file changed, 7 insertions(+), 5 deletions(-)
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/rockchip,dwc3.example.dtb: usb@fe800000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3399-dwc3', 'snps,dwc3'] is too long
+	'fsl,imx8mq-dwc3' was expected
+	'snps,dwc3' was expected
+	'synopsys,dwc3' was expected
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/rockchip,dwc3.example.dtb: usb@fe800000: Unevaluated properties are not allowed ('compatible' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/rockchip,dwc3.example.dtb: usb@fe800000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3399-dwc3', 'snps,dwc3'] is too long
+	'fsl,imx8mq-dwc3' was expected
+	'snps,dwc3' was expected
+	'synopsys,dwc3' was expected
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/rockchip,dwc3.example.dtb: usb@fe800000: Unevaluated properties are not allowed ('compatible' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/rockchip,dwc3.example.dtb: usb@fe800000: Unevaluated properties are not allowed ('dr_mode' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230203014526.1461386-1-peng.fan@oss.nxp.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
