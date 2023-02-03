@@ -2,67 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAA3D689129
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:45:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F7BD689132
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:47:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232054AbjBCHop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 02:44:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60790 "EHLO
+        id S231510AbjBCHrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 02:47:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231821AbjBCHoo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:44:44 -0500
-Received: from mail-vs1-xe2b.google.com (mail-vs1-xe2b.google.com [IPv6:2607:f8b0:4864:20::e2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF1975C0E4
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 23:44:42 -0800 (PST)
-Received: by mail-vs1-xe2b.google.com with SMTP id i188so4500649vsi.8
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 23:44:42 -0800 (PST)
+        with ESMTP id S230496AbjBCHrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:47:45 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FF5F206BC
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 23:47:44 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id k16so3196786wms.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 23:47:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vAOaUx7T7Cu+LAftmHHRVB4VKcZ+Xc3uW8+s1X+hVZw=;
-        b=gq5MUrSJ/9JtIgYyV4JN/4/n6VuMG6198scgG+JIkoi8kmWUXwxGjjSNARrolmvhZn
-         3IyjSgrRNP8+a511vwEdpLF2Gh4Q7HjwFowxQAGr6KXocKOdqJYeSA0U2Vx5YMzbANJb
-         gediuIB8q0cH3IN0PkzEhpxtvVA8Cu8H+WCUs=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GlzCgLEPZ69auNVfPwbs/k4QDSpIwTCL3k0EZ2tSlBM=;
+        b=PAIAnE2BATdpoT1ce0rQ28Kakyc6oP+fK5eZ7MZGwg6pO0XkkLHR7K7O8G78u6CYss
+         UNxfDmBs6rd+BrxkIDHyWrTk3BcLUe/pcMgDWNjxUnak4ofjUgNunQDfhh0TQHpCLW6H
+         3yp5orDjScmQzNszwo+a6N4OVYlTAIRrdVlU3KmDxhQB9A50lCN4NsStbBLQoj8MCs+Q
+         oDqrHrRuQowpbtCJ2S/oITMD256IM2nFXK7xBqu+f/AyTF4xmi981Ck7ZcZKju5k6b9H
+         2w4uiTB1MX8Y9HQZPhic1E8RudHoexDIQtJGEBYVlsPyrrlAqcGeGpEtspmNYs4m5oTm
+         7sZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vAOaUx7T7Cu+LAftmHHRVB4VKcZ+Xc3uW8+s1X+hVZw=;
-        b=uRk+rNEMYgrb1xdLME/Nsqg1Nq/eoD8a3+Hzu/ge20gnFzJuQwPiS1QGGT8XmonD7B
-         JpKCBifSkQFHJrwekyTrpROZLhl5hu1Xb8xAZ1kFu5bHHsZNZntufx5VEHjdkv6WAG7c
-         5GF2P9C5JFSmtbjRdbNHKw/Qes8APra7iCp7t2x0Z5DyI2P6BW45hg9IqDBACzxTl/4h
-         F8rWA0vi8p0R6nN+OZPNUCC5/cMTnPzhNyDnpPfMgFJKmWibGzCzgd+1XPlI5k5XZlP0
-         G4/p9Ei0aCWZi9CehD5GRtHaGVWkUYsS5l0hsktEVcAKHtEQ3yqCVOFuhB/loUYhacPY
-         wE4A==
-X-Gm-Message-State: AO0yUKXalYtNjT6b5FkjNE+/9+JRS9c0CL4jNU0Pgtlb1NB5pBrssXQw
-        Cmlvg+cuv2GXE4uNpThKqKfYWhJ0D9I42+aXiYc17Q==
-X-Google-Smtp-Source: AK7set9CUantc+6n4V8N9/P3Re52vaOGFzASoC6rAwLJRywAMVfCLbAqy5Q1tFyIRU7hq97adRki14ON3Yk4OLLgar4=
-X-Received: by 2002:a05:6102:23f2:b0:3ed:89c7:4bd2 with SMTP id
- p18-20020a05610223f200b003ed89c74bd2mr1682282vsc.26.1675410282031; Thu, 02
- Feb 2023 23:44:42 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GlzCgLEPZ69auNVfPwbs/k4QDSpIwTCL3k0EZ2tSlBM=;
+        b=FbU/7/Kgrsi6iUx1FOj2QwznZy+Bl37zKJ3eqjnp561lGXdkIc44fpqvsmMITcb2ij
+         us0YxrIQ8W2LLtpWDwWc3hK5t9K+JGc+1vWpsmbVnJqb4dbaS1KWA956Qs/Z12Suci74
+         mDYqZ0a72WK/NSVw9TGqqjygKxWZT0TazFrmPkwo9xqJebDEJuQGjJhu7Ihm3fCZmNIz
+         4c0sVXCVqyb/XmDOj59JSI4Oc4L6EIkuCXgdU41b2Lh3Fed9Yjz2VT5Ow4mDoRvjWK59
+         TEBJO+tPtydlhwYIhLIlPx2b9tlhQo1DqvJydg/P7xGpY/19Xe8PVXBLaW4mGFyKmoCf
+         4k2g==
+X-Gm-Message-State: AO0yUKVPcTbY45zzjVVFy4Pap/OoYe+J0P5OlSLYPOBNQBgbFfXNES62
+        6tQK+0PCrPANzDooRIrz9xjc7Q==
+X-Google-Smtp-Source: AK7set8b6KYrDgJsDUasCRzNkPZH+h6KVrjKEJhah8oImVOIgUZnGx02Z+tXqXj/z7YbwM/PbXFd/w==
+X-Received: by 2002:a05:600c:c06:b0:3dc:5a7c:f8ad with SMTP id fm6-20020a05600c0c0600b003dc5a7cf8admr10740538wmb.21.1675410462746;
+        Thu, 02 Feb 2023 23:47:42 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id j11-20020a5d604b000000b002b57bae7174sm1347095wrt.5.2023.02.02.23.47.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Feb 2023 23:47:42 -0800 (PST)
+Message-ID: <e7ad1251-12b5-4161-8b51-f51ee77d0eb2@linaro.org>
+Date:   Fri, 3 Feb 2023 08:47:40 +0100
 MIME-Version: 1.0
-References: <20230119124848.26364-1-Garmin.Chang@mediatek.com> <20230119124848.26364-3-Garmin.Chang@mediatek.com>
-In-Reply-To: <20230119124848.26364-3-Garmin.Chang@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 3 Feb 2023 15:44:31 +0800
-Message-ID: <CAGXv+5FwJ-bO760bd=dz4K60KUsKV6M66MGribg_B9T0pcb0cQ@mail.gmail.com>
-Subject: Re: [PATCH v5 02/19] clk: mediatek: Add MT8188 apmixedsys clock support
-To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 4/9] ASoC: dt-bindings: meson: convert axg tdm formatters
+ to schema
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-clk@vger.kernel.org, netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        linux-kernel@vger.kernel.org
+References: <20230202183653.486216-1-jbrunet@baylibre.com>
+ <20230202183653.486216-5-jbrunet@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230202183653.486216-5-jbrunet@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,173 +81,151 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19, 2023 at 8:54 PM Garmin.Chang <Garmin.Chang@mediatek.com> wrote:
->
-> Add MT8188 apmixedsys clock controller which provides Plls
-> generated from SoC 26m and ssusb clock gate control.
->
-> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
+On 02/02/2023 19:36, Jerome Brunet wrote:
+> Convert the DT binding documentation for the Amlogic tdm formatters to
+> schema.
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  drivers/clk/mediatek/Kconfig                 |  11 ++
->  drivers/clk/mediatek/Makefile                |   1 +
->  drivers/clk/mediatek/clk-mt8188-apmixedsys.c | 154 +++++++++++++++++++
->  3 files changed, 166 insertions(+)
->  create mode 100644 drivers/clk/mediatek/clk-mt8188-apmixedsys.c
->
-> diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-> index 22e8e79475ee..f02b679f71d0 100644
-> --- a/drivers/clk/mediatek/Kconfig
-> +++ b/drivers/clk/mediatek/Kconfig
-> @@ -565,6 +565,17 @@ config COMMON_CLK_MT8186
->         help
->           This driver supports MediaTek MT8186 clocks.
->
-> +config COMMON_CLK_MT8188
-> +       bool "Clock driver for MediaTek MT8188"
-> +       depends on ARM64 || COMPILE_TEST
-> +       select COMMON_CLK_MEDIATEK
-> +       default ARCH_MEDIATEK
-> +       help
-> +         This driver supports MediaTek MT8188 basic clocks and clocks
-> +         required for various peripheral found on MediaTek. Choose
-> +         M or Y here if you want to use clocks such as peri_ao,
-> +         infra_ao, etc.
-> +
->  config COMMON_CLK_MT8192
->         bool "Clock driver for MediaTek MT8192"
->         depends on ARM64 || COMPILE_TEST
-> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-> index e24080fd6e7f..13ab8deb362c 100644
-> --- a/drivers/clk/mediatek/Makefile
-> +++ b/drivers/clk/mediatek/Makefile
-> @@ -83,6 +83,7 @@ obj-$(CONFIG_COMMON_CLK_MT8186) += clk-mt8186-mcu.o clk-mt8186-topckgen.o clk-mt
->                                    clk-mt8186-mfg.o clk-mt8186-mm.o clk-mt8186-wpe.o \
->                                    clk-mt8186-img.o clk-mt8186-vdec.o clk-mt8186-venc.o \
->                                    clk-mt8186-cam.o clk-mt8186-mdp.o clk-mt8186-ipe.o
-> +obj-$(CONFIG_COMMON_CLK_MT8188) += clk-mt8188-apmixedsys.o
->  obj-$(CONFIG_COMMON_CLK_MT8192) += clk-mt8192.o
->  obj-$(CONFIG_COMMON_CLK_MT8192_AUDSYS) += clk-mt8192-aud.o
->  obj-$(CONFIG_COMMON_CLK_MT8192_CAMSYS) += clk-mt8192-cam.o
-> diff --git a/drivers/clk/mediatek/clk-mt8188-apmixedsys.c b/drivers/clk/mediatek/clk-mt8188-apmixedsys.c
+>  .../sound/amlogic,axg-tdm-formatters.txt      | 36 --------
+>  .../sound/amlogic,axg-tdm-formatters.yaml     | 90 +++++++++++++++++++
+>  2 files changed, 90 insertions(+), 36 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
+> deleted file mode 100644
+> index 5996c0cd89c2..000000000000
+> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
+> +++ /dev/null
+> @@ -1,36 +0,0 @@
+> -* Amlogic Audio TDM formatters
+> -
+> -Required properties:
+> -- compatible: 'amlogic,axg-tdmin' or
+> -	      'amlogic,axg-tdmout' or
+> -	      'amlogic,g12a-tdmin' or
+> -	      'amlogic,g12a-tdmout' or
+> -	      'amlogic,sm1-tdmin' or
+> -	      'amlogic,sm1-tdmout
+> -- reg: physical base address of the controller and length of memory
+> -       mapped region.
+> -- clocks: list of clock phandle, one for each entry clock-names.
+> -- clock-names: should contain the following:
+> -  * "pclk"     : peripheral clock.
+> -  * "sclk"     : bit clock.
+> -  * "sclk_sel" : bit clock input multiplexer.
+> -  * "lrclk"    : sample clock
+> -  * "lrclk_sel": sample clock input multiplexer
+> -
+> -Optional property:
+> -- resets: phandle to the dedicated reset line of the tdm formatter.
+> -
+> -Example of TDMOUT_A on the S905X2 SoC:
+> -
+> -tdmout_a: audio-controller@500 {
+> -	compatible = "amlogic,axg-tdmout";
+> -	reg = <0x0 0x500 0x0 0x40>;
+> -	resets = <&clkc_audio AUD_RESET_TDMOUT_A>;
+> -	clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
+> -		 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
+> -		 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
+> -		 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>,
+> -		 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>;
+> -	clock-names = "pclk", "sclk", "sclk_sel",
+> -		      "lrclk", "lrclk_sel";
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml
 > new file mode 100644
-> index 000000000000..8d73ae3a0da8
+> index 000000000000..f618724411de
 > --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-mt8188-apmixedsys.c
-> @@ -0,0 +1,154 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +//
-> +// Copyright (c) 2022 MediaTek Inc.
-> +// Author: Garmin Chang <garmin.chang@mediatek.com>
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml
+> @@ -0,0 +1,90 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <dt-bindings/clock/mediatek,mt8188-clk.h>
+> +title: Amlogic Audio AXG TDM formatters
 > +
-> +#include "clk-gate.h"
-> +#include "clk-mtk.h"
-> +#include "clk-pll.h"
+> +maintainers:
+> +  - Jerome Brunet <jbrunet@baylibre.com>
 > +
-> +static const struct mtk_gate_regs apmixed_cg_regs = {
-> +       .set_ofs = 0x8,
-> +       .clr_ofs = 0x8,
-> +       .sta_ofs = 0x8,
-> +};
+> +allOf:
+> +  - $ref: component-common.yaml#
 > +
-> +#define GATE_APMIXED(_id, _name, _parent, _shift)                      \
-> +       GATE_MTK(_id, _name, _parent, &apmixed_cg_regs, _shift, &mtk_clk_gate_ops_no_setclr_inv)
-> +
-> +static const struct mtk_gate apmixed_clks[] = {
-> +       GATE_APMIXED(CLK_APMIXED_PLL_SSUSB26M_EN, "pll_ssusb26m_en", "clk26m", 1),
-> +};
-> +
-> +#define MT8188_PLL_FMAX                (3800UL * MHZ)
-> +#define MT8188_PLL_FMIN                (1500UL * MHZ)
-> +#define MT8188_INTEGER_BITS    8
-> +
-> +#define PLL(_id, _name, _reg, _pwr_reg, _en_mask, _flags,              \
-> +           _rst_bar_mask, _pcwbits, _pd_reg, _pd_shift,                \
-> +           _tuner_reg, _tuner_en_reg, _tuner_en_bit,                   \
-> +           _pcw_reg, _pcw_shift, _pcw_chg_reg,                         \
-> +           _en_reg, _pll_en_bit) {                                     \
-> +               .id = _id,                                              \
-> +               .name = _name,                                          \
-> +               .reg = _reg,                                            \
-> +               .pwr_reg = _pwr_reg,                                    \
-> +               .en_mask = _en_mask,                                    \
-> +               .flags = _flags,                                        \
-> +               .rst_bar_mask = _rst_bar_mask,                          \
-> +               .fmax = MT8188_PLL_FMAX,                                \
-> +               .fmin = MT8188_PLL_FMIN,                                \
-> +               .pcwbits = _pcwbits,                                    \
-> +               .pcwibits = MT8188_INTEGER_BITS,                        \
-> +               .pd_reg = _pd_reg,                                      \
-> +               .pd_shift = _pd_shift,                                  \
-> +               .tuner_reg = _tuner_reg,                                \
-> +               .tuner_en_reg = _tuner_en_reg,                          \
-> +               .tuner_en_bit = _tuner_en_bit,                          \
-> +               .pcw_reg = _pcw_reg,                                    \
-> +               .pcw_shift = _pcw_shift,                                \
-> +               .pcw_chg_reg = _pcw_chg_reg,                            \
-> +               .en_reg = _en_reg,                                      \
-> +               .pll_en_bit = _pll_en_bit,                              \
-> +       }
-> +
-> +static const struct mtk_pll_data plls[] = {
-> +       PLL(CLK_APMIXED_ETHPLL, "ethpll", 0x044C, 0x0458, 0,
-> +           0, 0, 22, 0x0450, 24, 0, 0, 0, 0x0450, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_MSDCPLL, "msdcpll", 0x0514, 0x0520, 0,
-> +           0, 0, 22, 0x0518, 24, 0, 0, 0, 0x0518, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_TVDPLL1, "tvdpll1", 0x0524, 0x0530, 0,
-> +           0, 0, 22, 0x0528, 24, 0, 0, 0, 0x0528, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_TVDPLL2, "tvdpll2", 0x0534, 0x0540, 0,
-> +           0, 0, 22, 0x0538, 24, 0, 0, 0, 0x0538, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_MMPLL, "mmpll", 0x0544, 0x0550, 0xff000000,
-> +           HAVE_RST_BAR, BIT(23), 22, 0x0548, 24, 0, 0, 0, 0x0548, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_MAINPLL, "mainpll", 0x045C, 0x0468, 0xff000000,
-> +           HAVE_RST_BAR, BIT(23), 22, 0x0460, 24, 0, 0, 0, 0x0460, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_IMGPLL, "imgpll", 0x0554, 0x0560, 0,
-> +           0, 0, 22, 0x0558, 24, 0, 0, 0, 0x0558, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_UNIVPLL, "univpll", 0x0504, 0x0510, 0xff000000,
-> +           HAVE_RST_BAR, BIT(23), 22, 0x0508, 24, 0, 0, 0, 0x0508, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_ADSPPLL, "adsppll", 0x042C, 0x0438, 0,
-> +           0, 0, 22, 0x0430, 24, 0, 0, 0, 0x0430, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_APLL1, "apll1", 0x0304, 0x0314, 0,
-> +           0, 0, 32, 0x0308, 24, 0x0034, 0x0000, 12, 0x030C, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_APLL2, "apll2", 0x0318, 0x0328, 0,
-> +           0, 0, 32, 0x031C, 24, 0x0038, 0x0000, 13, 0x0320, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_APLL3, "apll3", 0x032C, 0x033C, 0,
-> +           0, 0, 32, 0x0330, 24, 0x003C, 0x0000, 14, 0x0334, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_APLL4, "apll4", 0x0404, 0x0414, 0,
-> +           0, 0, 32, 0x0408, 24, 0x0040, 0x0000, 15, 0x040C, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_APLL5, "apll5", 0x0418, 0x0428, 0,
-> +           0, 0, 32, 0x041C, 24, 0x0044, 0x0000, 16, 0x0420, 0, 0, 0, 9),
-> +       PLL(CLK_APMIXED_MFGPLL, "mfgpll", 0x0340, 0x034C, 0,
-> +           0, 0, 22, 0x0344, 24, 0, 0, 0, 0x0344, 0, 0, 0, 9),
-> +};
-> +
-> +static const struct of_device_id of_match_clk_mt8188_apmixed[] = {
-> +       { .compatible = "mediatek,mt8188-apmixedsys", },
-> +       {}
-> +};
-> +
-> +static int clk_mt8188_apmixed_probe(struct platform_device *pdev)
-> +{
-> +       struct clk_hw_onecell_data *clk_data;
-> +       struct device_node *node = pdev->dev.of_node;
-> +       int r;
-> +
-> +       clk_data = mtk_alloc_clk_data(CLK_APMIXED_NR_CLK);
-> +       if (!clk_data)
-> +               return -ENOMEM;
-> +
-> +       r = mtk_clk_register_plls(node, plls, ARRAY_SIZE(plls), clk_data);
-> +       if (r)
-> +               goto free_apmixed_data;
-> +
-> +       r = mtk_clk_register_gates_with_dev(node, apmixed_clks,
-> +               ARRAY_SIZE(apmixed_clks), clk_data, NULL);
+> +properties:
+> +  $nodename:
+> +    pattern: "^audio-controller@.*"
 
-This API is gone. Please replace it with mtk_clk_register_clks. And please
-pass in the |struct device| pointer.
+Drop.
 
-ChenYu
+> +
+> +  compatible:
+> +    oneOf:
+
+Drop oneOf.
+
+> +      - enum:
+> +          - amlogic,g12a-tdmout
+> +          - amlogic,sm1-tdmout
+> +          - amlogic,axg-tdmout
+> +          - amlogic,g12a-tdmin
+> +          - amlogic,sm1-tdmin
+> +          - amlogic,axg-tdmin
+> +
+> +  clocks:
+> +    items:
+> +      - description: Peripheral clock
+> +      - description: Bit clock
+> +      - description: Bit clock input multiplexer
+> +      - description: Sample clock
+> +      - description: Sample clock input multiplexer
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pclk
+> +      - const: sclk
+> +      - const: sclk_sel
+> +      - const: lrclk
+> +      - const: lrclk_sel
+> +
+> +  reg:
+> +    maxItems: 1
+
+Missing property resets
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +if:
+
+Put it under allOf.
+
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - amlogic,g12a-tdmin
+> +          - amlogic,sm1-tdmin
+> +          - amlogic,g12a-tdmout
+> +          - amlogic,sm1-tdmout
+> +then:
+> +  properties:
+> +    resets:
+
+Properties are defined in top-level. You can disallow it for other variants.
+
+> +      items:
+> +        - description: Dedicated device reset line
+> +
+> +  required:
+> +    - resets
+Best regards,
+Krzysztof
+
