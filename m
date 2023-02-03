@@ -2,439 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 809DF689B97
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 15:28:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 768ED689B74
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 15:19:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232755AbjBCO2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 09:28:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46322 "EHLO
+        id S233537AbjBCOTB convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 3 Feb 2023 09:19:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230042AbjBCO2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 09:28:41 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E4446DFF4
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 06:28:38 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id d14so4793535wrr.9
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 06:28:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=rp7gK9JaoFD2R09zAmrVW+yQPICqej6NE2E1Xqu4LQs=;
-        b=KFnwV263WTYdLgF4LxxNoOcx+r/+v2sGiNNBhFeEPtji+gZYChfPiHsMc7mnJ69WkF
-         y1aWIfFmwUp12tlEPhRiitdqDdRXm2avXfW3XP8IwPClWhWxhHwtOqSWvII+WZE+yp85
-         yxLxMHNTnSj/5W9jUC77lq5yrrMvc5hqgWJ3057PRXeCxwmmZXXhar82+eqYSkqdZaNw
-         GNEiQjMo1wTacw1qHEpoge8HmoFwIUUF+1gsyBvA9QspyGojLgmcqRkyR5WfYZvb8vQm
-         O5n/mq5rbzxi6mfQ95W28aozIOIO/CKwtZIvv00b3+x5Kmg6JA/cmLC7I72ayEXBpeHQ
-         HfAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rp7gK9JaoFD2R09zAmrVW+yQPICqej6NE2E1Xqu4LQs=;
-        b=rF+yRkGBjT4qzIrbcluSlZ/f3NiEQsEBL0GN2/xwVq83RWCyJ7c4zsNHXcvA/qFfAa
-         R4JcgrCARZ8icG7k+ExTVCY16t583Up3Hf6ZzlXytVoibYMK2BQh3g+LSqof3YklrvF9
-         2SWX/3QIhTGpGM54AGdTsPG8XudFH9gyISSmCcg7wL5s/gTWgm+eHhxhns2bitJUfE61
-         oVvztf0dcPgfmsTiV/6Nj3pYDoJE7UjhAf+BdFZltTBUR+xL9qdNlOyFZ36vEaD1AJOA
-         eVhD6QapL9SxmCTSswUcCW5vllEXF8CyG4V9LXOa6p4RnUcHkioSM2YLGdaMg7K/o+6m
-         a/yg==
-X-Gm-Message-State: AO0yUKWoQ5gg5U7jeocs++IO4UfUFJ45IVp/VvC2RahnV+pIfPoAE8hG
-        BGZLmNprEpqsgQUaopNiVhe2zw==
-X-Google-Smtp-Source: AK7set93G5PXT3Ql9/3C2A3IxbdGVENeyXEqF5PF+p6xWUVX3iXdV3gZzpp6t8poVlFGTcyP/Rl5Lw==
-X-Received: by 2002:a5d:4e4f:0:b0:2bf:b7e3:6d69 with SMTP id r15-20020a5d4e4f000000b002bfb7e36d69mr8749694wrt.2.1675434516818;
-        Fri, 03 Feb 2023 06:28:36 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id n18-20020adfe792000000b002238ea5750csm2075086wrm.72.2023.02.03.06.28.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Feb 2023 06:28:36 -0800 (PST)
-References: <20230202183653.486216-1-jbrunet@baylibre.com>
- <20230202183653.486216-10-jbrunet@baylibre.com>
- <f229e181-c56d-6ec7-2a1c-754690f70438@linaro.org>
-User-agent: mu4e 1.8.10; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Cc:     linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232467AbjBCOSY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 09:18:24 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52CE61CAD0;
+        Fri,  3 Feb 2023 06:18:07 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id EE43E24E020;
+        Fri,  3 Feb 2023 22:18:03 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 3 Feb
+ 2023 22:18:04 +0800
+Received: from ubuntu.localdomain (113.72.144.84) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 3 Feb
+ 2023 22:18:02 +0800
+From:   Hal Feng <hal.feng@starfivetech.com>
+To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 9/9] ASoC: dt-bindings: meson: convert axg sound card
- control to schema
-Date:   Fri, 03 Feb 2023 15:13:01 +0100
-In-reply-to: <f229e181-c56d-6ec7-2a1c-754690f70438@linaro.org>
-Message-ID: <1jfsbmn7ql.fsf@starbuckisacylon.baylibre.com>
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andreas Schwab <schwab@suse.de>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
+        Jianlong Huang <jianlong.huang@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/4] Basic pinctrl support for StarFive JH7110 RISC-V SoC
+Date:   Fri, 3 Feb 2023 22:17:57 +0800
+Message-ID: <20230203141801.59083-1-hal.feng@starfivetech.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [113.72.144.84]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series adds basic pinctrl support for StarFive JH7110 SoC.
 
-On Fri 03 Feb 2023 at 09:09, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Changes since v3:
+- Rebased on Linus's "devel" branch of linux-pinctrl repo, which was based on
+  on tag v6.2-rc1.
+- Dropped patch 1.
+Patch 2 & 3:
+- Added a reference for '-pins$' patternProperties.
+- Put "additionalProperties: false" before properties section. (by Rob)
+- Improved the description.
+- Changed the node name in examples from "gpio" to "pinctrl".
+Patch 4:
+- Added some missing headers. (by Andreas)
 
-> On 02/02/2023 19:36, Jerome Brunet wrote:
->> Convert the DT binding documentation for the Amlogic axg sound card to
->> schema.
->> 
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>  .../bindings/sound/amlogic,axg-sound-card.txt | 124 ------------
->>  .../sound/amlogic,axg-sound-card.yaml         | 182 ++++++++++++++++++
->>  2 files changed, 182 insertions(+), 124 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt
->>  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt
->> deleted file mode 100644
->> index 80b411296480..000000000000
->> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt
->> +++ /dev/null
->> @@ -1,124 +0,0 @@
->> -Amlogic AXG sound card:
->> -
->> -Required properties:
->> -
->> -- compatible: "amlogic,axg-sound-card"
->> -- model : User specified audio sound card name, one string
->> -
->> -Optional properties:
->> -
->> -- audio-aux-devs : List of phandles pointing to auxiliary devices
->> -- audio-widgets : Please refer to widgets.txt.
->> -- audio-routing : A list of the connections between audio components.
->> -
->> -Subnodes:
->> -
->> -- dai-link: Container for dai-link level properties and the CODEC
->> -	    sub-nodes. There should be at least one (and probably more)
->> -	    subnode of this type.
->> -
->> -Required dai-link properties:
->> -
->> -- sound-dai: phandle and port of the CPU DAI.
->> -
->> -Required TDM Backend dai-link properties:
->> -- dai-format : CPU/CODEC common audio format
->> -
->> -Optional TDM Backend dai-link properties:
->> -- dai-tdm-slot-rx-mask-{0,1,2,3}: Receive direction slot masks
->> -- dai-tdm-slot-tx-mask-{0,1,2,3}: Transmit direction slot masks
->> -				  When omitted, mask is assumed to have to no
->> -				  slots. A valid must have at one slot, so at
->> -				  least one these mask should be provided with
->> -				  an enabled slot.
->> -- dai-tdm-slot-num : Please refer to tdm-slot.txt.
->> -		     If omitted, slot number is set to accommodate the largest
->> -		     mask provided.
->> -- dai-tdm-slot-width : Please refer to tdm-slot.txt. default to 32 if omitted.
->> -- mclk-fs : Multiplication factor between stream rate and mclk
->> -
->> -Backend dai-link subnodes:
->> -
->> -- codec: dai-link representing backend links should have at least one subnode.
->> -	 One subnode for each codec of the dai-link.
->> -	 dai-link representing frontend links have no codec, therefore have no
->> -	 subnodes
->> -
->> -Required codec subnodes properties:
->> -
->> -- sound-dai: phandle and port of the CODEC DAI.
->> -
->> -Optional codec subnodes properties:
->> -
->> -- dai-tdm-slot-tx-mask : Please refer to tdm-slot.txt.
->> -- dai-tdm-slot-rx-mask : Please refer to tdm-slot.txt.
->> -
->> -Example:
->> -
->> -sound {
->> -	compatible = "amlogic,axg-sound-card";
->> -	model = "AXG-S420";
->> -	audio-aux-devs = <&tdmin_a>, <&tdmout_c>;
->> -	audio-widgets = "Line", "Lineout",
->> -			"Line", "Linein",
->> -			"Speaker", "Speaker1 Left",
->> -			"Speaker", "Speaker1 Right";
->> -			"Speaker", "Speaker2 Left",
->> -			"Speaker", "Speaker2 Right";
->> -	audio-routing = "TDMOUT_C IN 0", "FRDDR_A OUT 2",
->> -			"SPDIFOUT IN 0", "FRDDR_A OUT 3",
->> -			"TDM_C Playback", "TDMOUT_C OUT",
->> -			"TDMIN_A IN 2", "TDM_C Capture",
->> -			"TDMIN_A IN 5", "TDM_C Loopback",
->> -			"TODDR_A IN 0", "TDMIN_A OUT",
->> -			"Lineout", "Lineout AOUTL",
->> -			"Lineout", "Lineout AOUTR",
->> -			"Speaker1 Left", "SPK1 OUT_A",
->> -			"Speaker2 Left", "SPK2 OUT_A",
->> -			"Speaker1 Right", "SPK1 OUT_B",
->> -			"Speaker2 Right", "SPK2 OUT_B",
->> -			"Linein AINL", "Linein",
->> -			"Linein AINR", "Linein";
->> -
->> -	dai-link@0 {
->> -		sound-dai = <&frddr_a>;
->> -	};
->> -
->> -	dai-link@1 {
->> -		sound-dai = <&toddr_a>;
->> -	};
->> -
->> -	dai-link@2 {
->> -		sound-dai = <&tdmif_c>;
->> -		dai-format = "i2s";
->> -		dai-tdm-slot-tx-mask-2 = <1 1>;
->> -		dai-tdm-slot-tx-mask-3 = <1 1>;
->> -		dai-tdm-slot-rx-mask-1 = <1 1>;
->> -		mclk-fs = <256>;
->> -
->> -		codec@0 {
->> -			sound-dai = <&lineout>;
->> -		};
->> -
->> -		codec@1 {
->> -			sound-dai = <&speaker_amp1>;
->> -		};
->> -
->> -		codec@2 {
->> -			sound-dai = <&speaker_amp2>;
->> -		};
->> -
->> -		codec@3 {
->> -			sound-dai = <&linein>;
->> -		};
->> -
->> -	};
->> -
->> -	dai-link@3 {
->> -		sound-dai = <&spdifout>;
->> -
->> -		codec {
->> -			sound-dai = <&spdif_dit>;
->> -		};
->> -	};
->> -};
->> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
->> new file mode 100644
->> index 000000000000..185cd9fbeda1
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
->> @@ -0,0 +1,182 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/sound/amlogic,axg-sound-card.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Amlogic AXG sound card
->> +
->> +maintainers:
->> +  - Jerome Brunet <jbrunet@baylibre.com>
->> +
->> +properties:
->> +  compatible:
->> +    items:
->
-> Drop
->
->> +      - const: amlogic,axg-sound-card
->
-> And here you can keep such code in one line?
->
->> +
->> +  audio-aux-devs:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    description: list of auxiliary devices
->
-> min/maxItems
+  v3: https://lore.kernel.org/all/20221220005529.34744-1-hal.feng@starfivetech.com/
 
-Auxiliary devices are not mandatory and there is no limit on how many a
-sound card may have. Any number of item is valid.
+Changes since v2:
+- Rebased on tag v6.1.
+Patch 1:
+- Renamed pinctrl-starfive-jh7110.h to
+  starfive,jh7110-pinctrl.h. (by Krzysztof)
+- Separated the register values in the binding header and stored them in
+  a new file arch/riscv/boot/dts/starfive/jh7110-pinfunc.h. (by Krzysztof)
+- Split patch 1 into sys part and aon part. Merged them into patch 2
+  and patch 3 respectively.
+Patch 2 & 3:
+- Dropped "reg-names" and the description of "interrupts". Dropped quotes
+  behind "$ref" and kept consisitent quotes. (by Krzysztof)
+- Moved gpio properties behind interrupt properties.
+- Moved "required" behind "patternProperties". (by Krzysztof)
+- Rewrote the examples of bindings. (by Krzysztof and Emil)
+- Added Co-developed-by tag for Emil.
+- Dropped unused "clocks" property in patch 3.
+Patch 4 & 5:
+- Renamed "pinctrl-starfive.*" to "pinctrl-starfive-jh7110.*" and replaced
+  all "starfive_" prefix with "jh7110_" in these files. (by Emil)
+- Dropped macro GPIO_NUM_PER_WORD. (by Emil)
+- Dropped unused flag member in starfive_pinctrl_soc_info structure. (by Emil)
+- Renamed "pinctrl-jh7110-sys.c" to "pinctrl-starfive-jh7110-sys.c".
+  Renamed "pinctrl-jh7110-aon.c" to "pinctrl-starfive-jh7110-aon.c". (by Emil)
+- Added individual Kconfig options for sys and aon pinctrl drivers. (by Emil)
+- Made the sys and aon pinctrl drivers be modules. (by Emil)
+- Added "JH7110_" prefix for macro SYS_GPO_PDA_0_74_CFG,
+  SYS_GPO_PDA_89_94_CFG and AON_GPO_PDA_0_5_CFG. (by Emil)
+- Dropped jh7110_sys_pinctrl_probe() and jh7110_aon_pinctrl_probe().
+  Got the match data in the common jh7110_pinctrl_probe() and used it
+  to probe. (by Emil)
+- Dropped the of_match_ptr macro(). (by Emil)
+- Set the MODULE_LICENSE as "GPL" according to commit bf7fbeeae6db.
 
->
->> +
->> +  audio-routing:
->> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
->> +    description: |-
->> +      A list of the connections between audio components. Each entry is a
->> +      pair of strings, the first being the connection's sink, the second
->> +      being the connection's source.
->> +
->> +  audio-widgets:
->> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
->> +    description: |-
->> +      A list off component DAPM widget. Each entry is a pair of strings,
->> +      the first being the widget type, the second being the widget name
->> +
->> +  model:
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    description: User specified audio sound card name
->> +
->> +patternProperties:
->> +  "^dai-link-[0-9]+$":
->> +    type: object
->> +    additionalProperties: false
->> +    description: |-
->
-> Drop |-
->
->> +      dai-link child nodes:
->
-> Drop, this is not a property list.
->
->> +        Container for dai-link level properties and the CODEC sub-nodes.
->> +        There should be at least one (and probably more) subnode of this type
->> +
->> +    properties:
->> +      dai-format:
->> +        $ref: /schemas/types.yaml#/definitions/string
->> +        enum: [ i2s, left-j, dsp_a ]
->> +
->> +      dai-tdm-slot-num:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description: |
->> +          Number of slots in use. If omitted, slot number is set to
->> +          accommodate the largest mask provided.
->> +        maximum: 32
->> +
->> +      dai-tdm-slot-width:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description: Width in bits for each slot
->> +        enum: [ 8, 16, 20, 24, 32 ]
->> +        default: 32
->> +
->> +      mclk-fs:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description: |-
->
-> Drop |-
-> Drop it everywhere where not needed
->
->> +          Multiplication factor between the frame rate and master clock
->> +          rate
->> +
->> +      sound-dai:
->> +        $ref: /schemas/types.yaml#/definitions/phandle-array
->
-> Old binding was saying it is just phandle
+  v2: https://lore.kernel.org/all/20221118011108.70715-1-hal.feng@starfivetech.com/
 
-It is just a phandle but the bindings used to have problem with phandle
-that had cells.
+Changes since v1:
+- Rebased on tag v6.1-rc5.
+- Dropped patch 22 and 23 since they were merged in v6.1-rc1.
+- Removed some unused macros and register values which do not belong to
+  bindings. Simplified pinctrl definitions in patch 24. (by Krzysztof)
+- Split the bindings into sys pinctrl bindings and aon pinctrl bindings,
+  and split patch 25 into two patches.
+- Made the bindings follow generic pinctrl bindings. (by Krzysztof)
+- Fixed some wrong indentation in bindings, and checked it with
+  `make dt_binding_check`.
+- Split the patch 26 into two patches which added sys and aon pinctrl
+  driver respectively.
+- Restructured the pinctrl drivers so made them follow generic pinctrl
+  bindings. Rewrote `dt_node_to_map` and extracted the public code to make
+  it clearer.
 
-See:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml?h=v6.2-rc6&id=d031d99b02eaf7363c33f5b27b38086cc8104082
+  v1: https://lore.kernel.org/all/20220929143225.17907-1-hal.feng@linux.starfivetech.com/
 
-Was it wrong or did the situation change since then ?
+Jianlong Huang (4):
+  dt-bindings: pinctrl: Add StarFive JH7110 sys pinctrl
+  dt-bindings: pinctrl: Add StarFive JH7110 aon pinctrl
+  pinctrl: starfive: Add StarFive JH7110 sys controller driver
+  pinctrl: starfive: Add StarFive JH7110 aon controller driver
 
->
->> +        description: phandle of the CPU DAI
->> +
->> +    patternProperties:
->> +      "^dai-tdm-slot-(t|r)x-mask-[0-3]$":
->> +        $ref: /schemas/types.yaml#/definitions/uint32-array
->> +        description: |-
->
-> Drop |-
->
->> +          Transmit and receive cpu slot masks of each TDM lane
->> +          When omitted, mask is assumed to have to no slots. A valid
->> +          interface must have at least one slot, so at least one these
->> +          mask should be provided with an enabled slot.
->> +
->> +      "^codec(-[0-9]+)?$":
->> +        type: object
->> +        additionalProperties: false
->> +        description: |-
->> +          dai-link representing backend links should have at least one subnode.
->> +          One subnode for each codec of the dai-link. dai-link representing
->> +          frontend links have no codec, therefore have no subnodes
->> +
->> +        properties:
->> +          sound-dai:
->> +            $ref: /schemas/types.yaml#/definitions/phandle-array
->
-> phandle
->
->> +            description: phandle of the codec DAI
->> +
->> +        patternProperties:
->> +          "^dai-tdm-slot-(t|r)x-mask$":
->> +            $ref: /schemas/types.yaml#/definitions/uint32-array
->> +            description: Transmit and receive codec slot masks
->
-> Are you sure codec has dai-tdm-slot-....?
+ .../pinctrl/starfive,jh7110-aon-pinctrl.yaml  | 123 +++
+ .../pinctrl/starfive,jh7110-sys-pinctrl.yaml  | 141 +++
+ MAINTAINERS                                   |   8 +-
+ drivers/pinctrl/starfive/Kconfig              |  33 +
+ drivers/pinctrl/starfive/Makefile             |   4 +
+ .../starfive/pinctrl-starfive-jh7110-aon.c    | 177 ++++
+ .../starfive/pinctrl-starfive-jh7110-sys.c    | 449 ++++++++
+ .../starfive/pinctrl-starfive-jh7110.c        | 982 ++++++++++++++++++
+ .../starfive/pinctrl-starfive-jh7110.h        |  70 ++
+ .../pinctrl/starfive,jh7110-pinctrl.h         | 137 +++
+ 10 files changed, 2121 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh7110-aon-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh7110-sys-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/starfive/pinctrl-starfive-jh7110-aon.c
+ create mode 100644 drivers/pinctrl/starfive/pinctrl-starfive-jh7110-sys.c
+ create mode 100644 drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c
+ create mode 100644 drivers/pinctrl/starfive/pinctrl-starfive-jh7110.h
+ create mode 100644 include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
 
-Yes. Both CPU and and codecs have slots.
-
-A classic case is a CPU with 2 codecs attached
-Codec #0 plays slots 0,1
-Codec #1 plays slots 2,3
-
-CPU tx slots is       <1, 1, 1, 1>
-Codec #0 rx slots is  <1, 1, 0, 0>
-Codec #1 rx slots is  <0, 0, 1, 1>
-
->
->> +
->> +        required:
->> +          - sound-dai
->> +
->> +    required:
->> +      - sound-dai
->> +
->> +required:
->> +  - model
->> +  - dai-link-0
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    sound {
->> +        compatible = "amlogic,axg-sound-card";
->> +        model = "AXG-S420";
->> +        audio-aux-devs = <&tdmin_a>, <&tdmout_c>;
->> +        audio-widgets = "Line", "Lineout",
->> +                        "Line", "Linein",
->> +                        "Speaker", "Speaker1 Left",
->> +                        "Speaker", "Speaker1 Right",
->> +                        "Speaker", "Speaker2 Left",
->> +                        "Speaker", "Speaker2 Right";
->> +        audio-routing = "TDMOUT_C IN 0", "FRDDR_A OUT 2",
->> +                        "SPDIFOUT IN 0", "FRDDR_A OUT 3",
->> +                        "TDM_C Playback", "TDMOUT_C OUT",
->> +                        "TDMIN_A IN 2", "TDM_C Capture",
->> +                        "TDMIN_A IN 5", "TDM_C Loopback",
->> +                        "TODDR_A IN 0", "TDMIN_A OUT",
->> +                        "Lineout", "Lineout AOUTL",
->> +                        "Lineout", "Lineout AOUTR",
->> +                        "Speaker1 Left", "SPK1 OUT_A",
->> +                        "Speaker2 Left", "SPK2 OUT_A",
->> +                        "Speaker1 Right", "SPK1 OUT_B",
->> +                        "Speaker2 Right", "SPK2 OUT_B",
->> +                        "Linein AINL", "Linein",
->> +                        "Linein AINR", "Linein";
->> +
->> +        dai-link-0 {
->> +               sound-dai = <&frddr_a>;
->
-> Use 4 spaces for example indentation.
->
->> +        };
->> +
->> +        dai-link-1 {
->> +               sound-dai = <&toddr_a>;
->> +        };
->
-> Best regards,
-> Krzysztof
+-- 
+2.38.1
 
