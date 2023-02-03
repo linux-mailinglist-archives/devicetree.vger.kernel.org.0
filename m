@@ -2,106 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E272689E6F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 16:38:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF02D689EA5
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 16:57:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233010AbjBCPiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 10:38:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53054 "EHLO
+        id S233199AbjBCP5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 10:57:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232295AbjBCPiy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 10:38:54 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 709BF8AC07
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 07:38:33 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id me3so16384235ejb.7
-        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 07:38:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mind.be; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=W9D1MtwohWAcSI+dqXIF3V/F6XwBaTkRzipfSL8tRIU=;
-        b=PbovNEv5EDv8GaV3xzbWFWOX+wZxwnJ9wtulJadvd2aJPRPjEEu1TZCv3EjkV71nPi
-         fvBH87FI1O+w1rsup6XgFuEwdu/zVnDm2ji/Gyc1twP0A+r9is+43dGJR06R0cLaoi8v
-         nBURDhCsdtg8SrH918xCJT8f15aB1wcFe1or/rF3/Kgd/YJj7VJtIeUsUaMIK20FewWY
-         qJdMRXWabVH6X6Wu0SpAJvgiKpRXDWfrngTjMIpyi8++gJtWTjXohFjSd9CONnXWov0Z
-         oRM7NEd+BPQcEqzSocE1jvlB3TKB4Guf+tIDTY5XYNYhHRD65l99H0i/o1sW7galLsBf
-         oCwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W9D1MtwohWAcSI+dqXIF3V/F6XwBaTkRzipfSL8tRIU=;
-        b=Q+Yc/8oG0cTW+7YxGEiesKdgEO10q0FIzxFKRDyBOFd5jN7Ii9bZGxztfAWuUoeLxW
-         jMlzd79bWSTB281I55iLmAh9l1nXSuZ+qCq/NpbENsDzyWM3hQjfzP3unghIE57MJHaf
-         tQdmn4uSWc2aSoUd3U2kl9egiergg9XjIjU95FZMsf9Fa8pdBWtmIQ+HN21HCT3fSrVw
-         2pXOWQ4kWqKTFq/eq4DgcuGY5QsLSnl7Jv97qbkWTvQBmSsgm0vzdvumB7ql8GFtUXUp
-         NAEh7VAityH+MRaOwSeEGByxOFFtTRwM7aIUWNA8UvctivRbYk0wKMCZtHGVchlDurGk
-         dE7w==
-X-Gm-Message-State: AO0yUKVdmVFCeaNm0G99pWdz5q4VRKTfYXcDGgCA90UbMAYNj/qIZjyf
-        yrMRrXo4C7sunfqL7vzB6lIaWyxD5sc/lcp7
-X-Google-Smtp-Source: AK7set/n1bZMm/DBcUP7HFdnSACAio4aFr1UdewcRdhd8EFQdo2q7K4Jfxhz/uNDcak+BP0sUq+x0w==
-X-Received: by 2002:a17:906:2d4a:b0:883:5b33:e019 with SMTP id e10-20020a1709062d4a00b008835b33e019mr10385242eji.61.1675438712037;
-        Fri, 03 Feb 2023 07:38:32 -0800 (PST)
-Received: from [192.168.2.9] (78-22-137-109.access.telenet.be. [78.22.137.109])
-        by smtp.gmail.com with ESMTPSA id p2-20020a170906498200b00878803d4049sm1541899eju.93.2023.02.03.07.38.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Feb 2023 07:38:30 -0800 (PST)
-Message-ID: <1452beba-19b0-7417-716e-a255c6aaa739@mind.be>
-Date:   Fri, 3 Feb 2023 16:38:29 +0100
+        with ESMTP id S233117AbjBCP5k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 10:57:40 -0500
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FF0B9E9C9;
+        Fri,  3 Feb 2023 07:57:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=RABYZKQEnf0QK23SEeW3xVSQhJGlQ3o0a9xB2pxXdFg=; b=mxbhKN8eDLHf3sRbpUD1Pm5ad9
+        DUxn/adCxDe6jPyxHF/gdCrJDf3lsIsIixEOuV8CpNuzkiX752ZBaf0wsnY0b2i3cM9FUEcN20eX2
+        rIR05AXVLD17i/oQNhbkjja3UIifH2qUWnxDkJqAUC7NG8o6c1/1J2q0zeQmeJMRLojURzkVBUv7W
+        j9O4rmt4LMN1wjI6tRgPyBaBqiFphCrvwmB0uTJBDK4DzjkMj6rO8E5wNKaysJXqmttqL9r4yHFrh
+        f47+XS3tx6LOOWc7AZ91W6sFA96KtfzRuvr3oItFzuKm5u8MGjDHAAIf0SDJC5iX+lV71N215QhEo
+        +ggV+adQ==;
+Received: from [2601:1c2:d00:6a60::9526]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1pNyR8-002pf0-3m; Fri, 03 Feb 2023 15:57:14 +0000
+Message-ID: <f6a60193-a5d1-c42c-158a-4b0bfe9c7538@infradead.org>
+Date:   Fri, 3 Feb 2023 07:57:12 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v4 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230202101032.26737-1-maarten.zanders@mind.be>
- <20230202101032.26737-2-maarten.zanders@mind.be>
- <28cf0c1f-ee5f-79e4-609a-2cdd24db9f1c@linaro.org>
+ Thunderbird/102.6.1
+Subject: Re: remove arch/sh
 Content-Language: en-US
-From:   Maarten Zanders <maarten.zanders@mind.be>
-In-Reply-To: <28cf0c1f-ee5f-79e4-609a-2cdd24db9f1c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+Cc:     Christoph Hellwig <hch@lst.de>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-sh@vger.kernel.org
+References: <20230113062339.1909087-1-hch@lst.de>
+ <11e2e0a8-eabe-2d8c-d612-9cdd4bcc3648@physik.fu-berlin.de>
+ <20230116071306.GA15848@lst.de>
+ <40dc1bc1-d9cd-d9be-188e-5167ebae235c@physik.fu-berlin.de>
+ <20230203071423.GA24833@lst.de>
+ <afd056a95d21944db1dc0c9708f692dd1f7bb757.camel@physik.fu-berlin.de>
+ <20230203083037.GA30738@lst.de>
+ <d10fe31b2af6cf4e03618f38ca9d3ca5c72601ed.camel@physik.fu-berlin.de>
+ <CAMuHMdUitVfW088YOmqYm4kwbKwkwb22fAakHcu6boxv7dXDfQ@mail.gmail.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <CAMuHMdUitVfW088YOmqYm4kwbKwkwb22fAakHcu6boxv7dXDfQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi--
 
-On 2/2/23 21:13, Krzysztof Kozlowski wrote:
-> + ti,charge-pump-mode:
->> +    description:
->> +      Set the operating mode of the internal charge pump as defined in
->> +      <dt-bindings/leds/leds-lp55xx.h>. Defaults to auto.
->> +    $ref: /schemas/types.yaml#/definitions/uint8
-> This should be then uint32
+On 2/3/23 02:33, Geert Uytterhoeven wrote:
+> Hi Adrian,
+> 
+> On Fri, Feb 3, 2023 at 11:29 AM John Paul Adrian Glaubitz
+> <glaubitz@physik.fu-berlin.de> wrote:
+>> On Fri, 2023-02-03 at 09:30 +0100, Christoph Hellwig wrote:
+>>> On Fri, Feb 03, 2023 at 09:24:46AM +0100, John Paul Adrian Glaubitz wrote:
+>>>> Since this is my very first time stepping up as a kernel maintainer, I was hoping
+>>>> to get some pointers on what to do to make this happen.
+>>>>
+>>>> So far, we have set up a new kernel tree and I have set up a local development and
+>>>> test environment for SH kernels using my SH7785LCR board as the target platform.
+>>>>
+>>>> Do I just need to send a patch asking to change the corresponding entry in the
+>>>> MAINTAINERS file?
+>>>
+>>> I'm not sure a there is a document, but:
+>>>
+>>>  - add the MAINTAINERS change to your tree
+>>>  - ask Stephen to get your tree included in linux-next
+>>>
+>>> then eventually send a pull request to Linus with all of that.  Make
+>>> sure it's been in linux-next for a while.
+>>
+>> OK, thanks for the pointers! Will try to get this done by next week.
+>>
+>> We're still discussing among SuperH developer community whether there will be a second
+>> maintainer, so please bear with us a few more days. I will collect patches in the
+>> meantime.
+> 
+> Thanks a lot!
+> 
+> If you need any help with process, setup, ... don't hesitate to ask
+> (on e.g. #renesas-soc on Libera).
 
-Why is that? I specifically chose uint8 because other settings for LED 
-are also uint8. The implementation is also uint8. I surely hope we'll 
-never get to >256 modes for a charge pump.
+While Adrian and Geert are reading this, I have a question:
+
+Is this "sh64" still accurate and applicable? from Documentation/kbuild/kbuild.rst:
+
+But some architectures such as x86 and sparc have aliases.
+
+- x86: i386 for 32 bit, x86_64 for 64 bit
+- sh: sh for 32 bit, sh64 for 64 bit <<<<<<<<<<<<<<<
+- sparc: sparc32 for 32 bit, sparc64 for 64 bit
 
 
-> default: 3
-> (and drop last sentence about default)
-OK
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> Dual license.
 
-OK
-
-Best regards,
-Maarten
-
+Thanks.
+-- 
+~Randy
