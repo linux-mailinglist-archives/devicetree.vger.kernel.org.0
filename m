@@ -2,78 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E58E6890F0
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:35:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A2116890F9
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:36:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232071AbjBCHfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 02:35:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52340 "EHLO
+        id S230180AbjBCHfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 02:35:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230180AbjBCHfI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:35:08 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56F4C92C24
-        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 23:35:05 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id l21-20020a05600c1d1500b003dfe462b7e4so1151252wms.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 23:35:05 -0800 (PST)
+        with ESMTP id S231593AbjBCHfh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:35:37 -0500
+Received: from mail-vk1-xa29.google.com (mail-vk1-xa29.google.com [IPv6:2607:f8b0:4864:20::a29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 499B092EF8
+        for <devicetree@vger.kernel.org>; Thu,  2 Feb 2023 23:35:32 -0800 (PST)
+Received: by mail-vk1-xa29.google.com with SMTP id q76so2157464vkb.4
+        for <devicetree@vger.kernel.org>; Thu, 02 Feb 2023 23:35:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9gvQASbJh6yblI9HLyL9BA1AkxK02X0X1bUuLfHjS6Y=;
-        b=uvHAkCKKv9jaLTrqclc+YVwEWVbeYCsDqBz5CikpYJdSmwzrCleQR62GK7K0D37bNP
-         fmkOAhkd8wqfq9PwXnM6BD9S9VCCX/B2KjvMtxnQMB79KwGzHfl+fyv45gqf+0YkuJXD
-         jD1CRBgqm24LZfS5q1DDLSr6KqrPZTQfUrb5kTm0aGFMeq5G5kTlKf71CQEuWnOC651g
-         mojiFDvUpnYjnbMosKrLsbFFoYJQevpLHYCI48lQlq0HqN3YapZ3ekn5v9yYMiijh2Mb
-         jId3jJaz/grbRiGMbHEm8k8F00U4fjqYfxbuK6ddJXHgvhJtEgJxzppUVE1dMuD7uOWy
-         jnNg==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=AkKgrxVtZhQxSONi4mk383sSipaazdfy79UZwbu7LCA=;
+        b=YaqaCciX+IQ7qb0JPqPL3F+olVqEx+rL8hmTtZvnveB/Z8JalKdSfRUj3PXehcPsjU
+         ynh8xrrJXJH1Bo6LpaBCQDCv8+uE517ODLWpmqxqIQyJbF2ZOka159q3R0wsMwPaVQwb
+         shkvQdaPVnxzLpEpS4UHk33pATTucXUJAzngc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9gvQASbJh6yblI9HLyL9BA1AkxK02X0X1bUuLfHjS6Y=;
-        b=kB5fikQGNc3OSrVOLW/53eI1Vcu+LXW2Y/ta/Bcp+fvY6mPdkivBC1cTg0jM4zdiVG
-         xEzHrEDm8Oahyru6CRugZFdcWJzCK7iFek3EBce6xFaPBE2V9qMcQ+hI4dePftQxLoXJ
-         NEafPX1DvG6uHj0LYSZ0a8Qj8yXLRAi+CNclkGaP+k7NbbAHjVkMMo9pTb/4wbMRsIX6
-         YpsGgMnFhV9w8irKcglz8s3Pcj1JOb6c5s6CDzm5NiHKS9lKg/h0vJccydu5wgT88hkS
-         /Mc3oM52fIz8us6S4Wy2LksCExkxqQfdSd2v/aN09tr4phUAbRCGLC+ZxL3ZLhb79iwA
-         F8Qw==
-X-Gm-Message-State: AO0yUKX2YjeN3FLcceSOiJ8ev1QEAI5m/JzT/O3ntolePurxDZRvIrrV
-        66SQhe9nj305DOn8rUblq+VfBNKdXJLvkP6o
-X-Google-Smtp-Source: AK7set+7EQCDSY4lF1NxTlzO55C4gJXKZ5UPoTpj3TVQyOoTlojUpxEF5Vu/3xdr8QIeYTz6cspCPQ==
-X-Received: by 2002:a05:600c:198b:b0:3df:3bd6:63e5 with SMTP id t11-20020a05600c198b00b003df3bd663e5mr6822647wmq.12.1675409703874;
-        Thu, 02 Feb 2023 23:35:03 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r13-20020a05600c35cd00b003dc5b59ed7asm2021121wmq.11.2023.02.02.23.35.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Feb 2023 23:35:03 -0800 (PST)
-Message-ID: <1b2e69f2-a527-2db9-d45a-3b493b6bad5e@linaro.org>
-Date:   Fri, 3 Feb 2023 08:35:01 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AkKgrxVtZhQxSONi4mk383sSipaazdfy79UZwbu7LCA=;
+        b=sNAMT1bavC7+9rv06Bdr2EgfL7UxkUMlcTQE2lyhP4yrPhVNl+1f2PfYifofCrKBcp
+         tZVfE/vXRoZRSevYIibi0fIeKjIM0eqIEdzkmPR1ZHJRiD87+YXNl68LtHrZGxe/xA5m
+         tVcGt97ll8Xd79hRoLfmcbtn5jqxBeoD2+Lxa47dRTGefuhrU7LJZnmF2tn5IEcaPa5T
+         hPDS048LGWNLrhG3aUgYzWQzfnoquN/31OoEjMP/kKUO3CU541sjYwiUgpVqXuHxmkiH
+         O3UhPGrmyrhx6diFKitHj3DfeQj45A1IdYS4H/yDW+MDSTM4eKp3h1lw5ke91JqmbeyQ
+         ilbQ==
+X-Gm-Message-State: AO0yUKVI4dCDX8FkkT+zT2ez8Vi1fM3owGXSrY+WR6k1nC84B6QlOdYb
+        RxwGkZxpEKv/qI0ZmHvgkpcO1D7LkxjtA1f0db4g5IDRbnObG5ow
+X-Google-Smtp-Source: AK7set+ydZo1xK08XzQiIdVMXeF86jeg+nEbaJ0PaU5MCzigQQoRvVh26Hknwek82Mxaj2Vv6qoXoTbhzZr2fHGzv9E=
+X-Received: by 2002:a05:6122:131:b0:3e8:8f:f3a7 with SMTP id
+ a17-20020a056122013100b003e8008ff3a7mr1333466vko.30.1675409731381; Thu, 02
+ Feb 2023 23:35:31 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] Fixed the schema binding according to test
-Content-Language: en-US
-To:     Ki-Seok Jo <kiseok.jo@irondevice.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+References: <20230119124848.26364-1-Garmin.Chang@mediatek.com> <20230119124848.26364-17-Garmin.Chang@mediatek.com>
+In-Reply-To: <20230119124848.26364-17-Garmin.Chang@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 3 Feb 2023 15:35:20 +0800
+Message-ID: <CAGXv+5HD9PaCAJ-R8dmTkKV_-kc3+wvkZaAKPtcgmVZVqz7KhQ@mail.gmail.com>
+Subject: Re: [PATCH v5 16/19] clk: mediatek: Add MT8188 vppsys1 clock support
+To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20230202090715.18384-1-kiseok.jo@irondevice.com>
- <ac140660-0df0-8b43-3585-17511a280830@linaro.org>
- <SLXP216MB0077A1B1F744D74A5B338F0C8CD69@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
- <4111d645-478a-e55f-60bd-4ecbef077183@linaro.org>
- <SLXP216MB00777901D3E60C271FB54E3E8CD79@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SLXP216MB00777901D3E60C271FB54E3E8CD79@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-clk@vger.kernel.org, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,33 +70,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/02/2023 06:06, Ki-Seok Jo wrote:
->>>>> +  sys-clk-id:
->>>>> +    description: select the using system clock.
->>>>
->>>> What does it mean? Why do you need such property instead of clocks?
->>>
->>> This can receive an external clock, but it can use internal clock.
->>> Should I write all the clock descriptions in case?
->>
->> How do you configure and enable external clock with this property? I don't
->> see it. If the device has clock input, this should be "clocks". If it is
->> omitted, then internal clock is used.
->>
-> 
-> Basically, this value is set with set_sysclk in the dai operations.
-> So, I also get the clk_id from this function and set it.
-> From the point of view of the codec driver, there are case where the machine
-> driver does not give this value(clk_id).
+On Thu, Jan 19, 2023 at 8:58 PM Garmin.Chang <Garmin.Chang@mediatek.com> wrote:
+>
+> Add MT8188 vppsys1 clock controller which provides clock gate
+> controller for Video Processor Pipe.
+>
+> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
+> ---
+>  drivers/clk/mediatek/Makefile          |   2 +-
+>  drivers/clk/mediatek/clk-mt8188-vpp1.c | 138 +++++++++++++++++++++++++
+>  2 files changed, 139 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/clk/mediatek/clk-mt8188-vpp1.c
+>
+> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
+> index 48deecc6b520..37663de293bf 100644
+> --- a/drivers/clk/mediatek/Makefile
+> +++ b/drivers/clk/mediatek/Makefile
+> @@ -88,7 +88,7 @@ obj-$(CONFIG_COMMON_CLK_MT8188) += clk-mt8188-apmixedsys.o clk-mt8188-topckgen.o
+>                                    clk-mt8188-cam.o clk-mt8188-ccu.o clk-mt8188-img.o \
+>                                    clk-mt8188-ipe.o clk-mt8188-mfg.o clk-mt8188-vdec.o \
+>                                    clk-mt8188-vdo0.o clk-mt8188-vdo1.o clk-mt8188-venc.o \
+> -                                  clk-mt8188-vpp0.o
+> +                                  clk-mt8188-vpp0.o clk-mt8188-vpp1.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192) += clk-mt8192.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192_AUDSYS) += clk-mt8192-aud.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192_CAMSYS) += clk-mt8192-cam.o
+> diff --git a/drivers/clk/mediatek/clk-mt8188-vpp1.c b/drivers/clk/mediatek/clk-mt8188-vpp1.c
+> new file mode 100644
+> index 000000000000..2bff3a52c93f
+> --- /dev/null
+> +++ b/drivers/clk/mediatek/clk-mt8188-vpp1.c
+> @@ -0,0 +1,138 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// Copyright (c) 2022 MediaTek Inc.
+> +// Author: Garmin Chang <garmin.chang@mediatek.com>
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/platform_device.h>
+> +#include <dt-bindings/clock/mediatek,mt8188-clk.h>
+> +
+> +#include "clk-gate.h"
+> +#include "clk-mtk.h"
+> +
+> +static const struct mtk_gate_regs vpp1_0_cg_regs = {
+> +       .set_ofs = 0x104,
+> +       .clr_ofs = 0x108,
+> +       .sta_ofs = 0x100,
+> +};
+> +
+> +static const struct mtk_gate_regs vpp1_1_cg_regs = {
+> +       .set_ofs = 0x114,
+> +       .clr_ofs = 0x118,
+> +       .sta_ofs = 0x110,
+> +};
+> +
+> +#define GATE_VPP1_0(_id, _name, _parent, _shift)                       \
+> +       GATE_MTK(_id, _name, _parent, &vpp1_0_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+> +
+> +#define GATE_VPP1_1(_id, _name, _parent, _shift)                       \
+> +       GATE_MTK(_id, _name, _parent, &vpp1_1_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+> +
+> +static const struct mtk_gate vpp1_clks[] = {
+> +       /* VPP1_0 */
+> +       GATE_VPP1_0(CLK_VPP1_SVPP1_MDP_OVL, "vpp1_svpp1_mdp_ovl", "top_vpp", 0),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP1_MDP_TCC, "vpp1_svpp1_mdp_tcc", "top_vpp", 1),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP1_MDP_WROT, "vpp1_svpp1_mdp_wrot", "top_vpp", 2),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP1_VPP_PAD, "vpp1_svpp1_vpp_pad", "top_vpp", 3),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP2_MDP_WROT, "vpp1_svpp2_mdp_wrot", "top_vpp", 4),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP2_VPP_PAD, "vpp1_svpp2_vpp_pad", "top_vpp", 5),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP3_MDP_WROT, "vpp1_svpp3_mdp_wrot", "top_vpp", 6),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP3_VPP_PAD, "vpp1_svpp3_vpp_pad", "top_vpp", 7),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP1_MDP_RDMA, "vpp1_svpp1_mdp_rdma", "top_vpp", 8),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP1_MDP_FG, "vpp1_svpp1_mdp_fg", "top_vpp", 9),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP2_MDP_RDMA, "vpp1_svpp2_mdp_rdma", "top_vpp", 10),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP2_MDP_FG, "vpp1_svpp2_mdp_fg", "top_vpp", 11),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP3_MDP_RDMA, "vpp1_svpp3_mdp_rdma", "top_vpp", 12),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP3_MDP_FG, "vpp1_svpp3_mdp_fg", "top_vpp", 13),
+> +       GATE_VPP1_0(CLK_VPP1_VPP_SPLIT, "vpp1_vpp_split", "top_vpp", 14),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP2_VDO0_DL_RELAY, "vpp1_svpp2_vdo0_dl_relay", "top_vpp", 15),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP1_MDP_RSZ, "vpp1_svpp1_mdp_rsz", "top_vpp", 16),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP1_MDP_TDSHP, "vpp1_svpp1_mdp_tdshp", "top_vpp", 17),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP1_MDP_COLOR, "vpp1_svpp1_mdp_color", "top_vpp", 18),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP3_VDO1_DL_RELAY, "vpp1_svpp3_vdo1_dl_relay", "top_vpp", 19),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP2_MDP_RSZ, "vpp1_svpp2_mdp_rsz", "top_vpp", 20),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP2_VPP_MERGE, "vpp1_svpp2_vpp_merge", "top_vpp", 21),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP2_MDP_TDSHP, "vpp1_svpp2_mdp_tdshp", "top_vpp", 22),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP2_MDP_COLOR, "vpp1_svpp2_mdp_color", "top_vpp", 23),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP3_MDP_RSZ, "vpp1_svpp3_mdp_rsz", "top_vpp", 24),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP3_VPP_MERGE, "vpp1_svpp3_vpp_merge", "top_vpp", 25),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP3_MDP_TDSHP, "vpp1_svpp3_mdp_tdshp", "top_vpp", 26),
+> +       GATE_VPP1_0(CLK_VPP1_SVPP3_MDP_COLOR, "vpp1_svpp3_mdp_color", "top_vpp", 27),
+> +       GATE_VPP1_0(CLK_VPP1_GALS5, "vpp1_gals5", "top_vpp", 28),
+> +       GATE_VPP1_0(CLK_VPP1_GALS6, "vpp1_gals6", "top_vpp", 29),
+> +       GATE_VPP1_0(CLK_VPP1_LARB5, "vpp1_larb5", "top_vpp", 30),
+> +       GATE_VPP1_0(CLK_VPP1_LARB6, "vpp1_larb6", "top_vpp", 31),
+> +       /* VPP1_1 */
+> +       GATE_VPP1_1(CLK_VPP1_SVPP1_MDP_HDR, "vpp1_svpp1_mdp_hdr", "top_vpp", 0),
+> +       GATE_VPP1_1(CLK_VPP1_SVPP1_MDP_AAL, "vpp1_svpp1_mdp_aal", "top_vpp", 1),
+> +       GATE_VPP1_1(CLK_VPP1_SVPP2_MDP_HDR, "vpp1_svpp2_mdp_hdr", "top_vpp", 2),
+> +       GATE_VPP1_1(CLK_VPP1_SVPP2_MDP_AAL, "vpp1_svpp2_mdp_aal", "top_vpp", 3),
+> +       GATE_VPP1_1(CLK_VPP1_SVPP3_MDP_HDR, "vpp1_svpp3_mdp_hdr", "top_vpp", 4),
+> +       GATE_VPP1_1(CLK_VPP1_SVPP3_MDP_AAL, "vpp1_svpp3_mdp_aal", "top_vpp", 5),
+> +       GATE_VPP1_1(CLK_VPP1_DISP_MUTEX, "vpp1_disp_mutex", "top_vpp", 7),
+> +       GATE_VPP1_1(CLK_VPP1_SVPP2_VDO1_DL_RELAY, "vpp1_svpp2_vdo1_dl_relay", "top_vpp", 8),
+> +       GATE_VPP1_1(CLK_VPP1_SVPP3_VDO0_DL_RELAY, "vpp1_svpp3_vdo0_dl_relay", "top_vpp", 9),
+> +       GATE_VPP1_1(CLK_VPP1_VPP0_DL_ASYNC, "vpp1_vpp0_dl_async", "top_vpp", 10),
+> +       GATE_VPP1_1(CLK_VPP1_VPP0_DL1_RELAY, "vpp1_vpp0_dl1_relay", "top_vpp", 11),
+> +       GATE_VPP1_1(CLK_VPP1_LARB5_FAKE_ENG, "vpp1_larb5_fake_eng", "top_vpp", 12),
+> +       GATE_VPP1_1(CLK_VPP1_LARB6_FAKE_ENG, "vpp1_larb6_fake_eng", "top_vpp", 13),
+> +       GATE_VPP1_1(CLK_VPP1_HDMI_META, "vpp1_hdmi_meta", "top_vpp", 16),
+> +       GATE_VPP1_1(CLK_VPP1_VPP_SPLIT_HDMI, "vpp1_vpp_split_hdmi", "top_vpp", 17),
+> +       GATE_VPP1_1(CLK_VPP1_DGI_IN, "vpp1_dgi_in", "top_vpp", 18),
+> +       GATE_VPP1_1(CLK_VPP1_DGI_OUT, "vpp1_dgi_out", "top_vpp", 19),
+> +       GATE_VPP1_1(CLK_VPP1_VPP_SPLIT_DGI, "vpp1_vpp_split_dgi", "top_vpp", 20),
+> +       GATE_VPP1_1(CLK_VPP1_DL_CON_OCC, "vpp1_dl_con_occ", "top_vpp", 21),
+> +       GATE_VPP1_1(CLK_VPP1_VPP_SPLIT_26M, "vpp1_vpp_split_26m", "top_vpp", 26),
+> +};
+> +
+> +static int clk_mt8188_vpp1_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct device_node *node = dev->parent->of_node;
+> +       struct clk_hw_onecell_data *clk_data;
+> +       int r;
+> +
+> +       clk_data = mtk_alloc_clk_data(CLK_VPP1_NR_CLK);
+> +       if (!clk_data)
+> +               return -ENOMEM;
+> +
+> +       r = mtk_clk_register_gates(node, vpp1_clks, ARRAY_SIZE(vpp1_clks), clk_data);
 
-It's entirely different discussion. You did not document the
-clocks/values for it and just wrote "select the using", so like a "bool"
-property.
+Same here. Please update.
 
-You need bindings documenting the clocks. Use the same name as here:
-https://lore.kernel.org/all/20221022162742.21671-2-aidanmacdonald.0x0@gmail.com/
+Once fixed,
 
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
