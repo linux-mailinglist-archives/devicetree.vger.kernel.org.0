@@ -2,119 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E273689773
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 12:03:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB44468977A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 12:07:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231205AbjBCLDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 06:03:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51174 "EHLO
+        id S231171AbjBCLHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 06:07:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231233AbjBCLDa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 06:03:30 -0500
-X-Greylist: delayed 3606 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 03 Feb 2023 03:03:28 PST
-Received: from 2.mo550.mail-out.ovh.net (2.mo550.mail-out.ovh.net [178.32.119.250])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8918054216
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 03:03:28 -0800 (PST)
-Received: from director3.ghost.mail-out.ovh.net (unknown [10.109.143.232])
-        by mo550.mail-out.ovh.net (Postfix) with ESMTP id BE55C1FF59
-        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 09:48:09 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-trzjr (unknown [10.110.171.34])
-        by director3.ghost.mail-out.ovh.net (Postfix) with ESMTPS id E77B81FE4B;
-        Fri,  3 Feb 2023 09:48:07 +0000 (UTC)
-Received: from armadeus.com ([37.59.142.105])
-        by ghost-submission-6684bf9d7b-trzjr with ESMTPSA
-        id Kfx/NFfY3GMuiAAAFbqr6Q
-        (envelope-from <sebastien.szymanski@armadeus.com>); Fri, 03 Feb 2023 09:48:07 +0000
-Authentication-Results: garm.ovh; auth=pass (GARM-105G006547cce2a-5f84-4d18-9f7d-4eb472201753,
-                    ACA1AB562B47CA922D8F764747C6655C70CF283B) smtp.auth=sebastien.szymanski@armadeus.com
-X-OVh-ClientIp: 90.19.171.247
-Message-ID: <46eb7d7e-4e44-e0d8-c591-30e06757900c@armadeus.com>
-Date:   Fri, 3 Feb 2023 10:44:49 +0100
+        with ESMTP id S231347AbjBCLHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 06:07:11 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F27372644
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 03:07:09 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id ud5so14346136ejc.4
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 03:07:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AkQ8Gz4j/geHcEad/4Eauy1yNTF7OO2D+brLgcLvLOo=;
+        b=bIa1jBCPI5MWhjL0rRPnJN7kCSzLkePkj2byuaF4LkJSK7i059EOqSRIKaq/egcsWn
+         q7lDpxltYyEJ74vGv0hGLN3Mg/jAAfy2proI4RMVLagxNlKuqpkj26dHM8iOgxZDbDKZ
+         9iXmSEeCVr+rLCabe1LR84R4byjKOVC0MXMoZRMuzNkQUH7m8xXQ4LKu78bPKCukoPa0
+         9QIHhRDXiLWV+SB9rLuZCnQauR9A2It/1tHpHiye0ctyhbEFXjMviq1IduUueMEHtflS
+         gUHGiuEFmraZiPPCb5NdjqVDwaAS0NodsgJdjEVK9e3XvireT7bB9yUdonxAfvBUmboS
+         bBjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AkQ8Gz4j/geHcEad/4Eauy1yNTF7OO2D+brLgcLvLOo=;
+        b=Opvj7WnsYArTw072SuqD1mwZubCroOAHuaniFUvhJY+D3vgQ+XbT4dfVPVEnDtrzXY
+         qAkH5fhWegM99syUs8Jt/jQ1uzPsp7gGDzDRUcHq+Y/7YsOwJN8eckXVUtuff5fASLaU
+         N+EtzVEINTqSXY9MK/vwQ9VwSRg+4rK/dyPqr+XiPC4gGT3iJzn1YhkyNFS4U/AgWAMM
+         0LQJYPXXcGuwuuJ9IqaatOloy/CXXwuTngey8z8qsQ6n+oNt4IwC/LGlcNmyYVfliqIz
+         A6h6vecXO/LEhmewDw+MHwQ4XwNQtjBzf0pmJQPPQtFoLdrFx5hhlV2octXJL0xW5Xv+
+         ZomQ==
+X-Gm-Message-State: AO0yUKUMxH7hVBWSVpTteXugS/o7/XbQvEdbs7kS4CAtIGSoq5vwNY1D
+        OkRVc/pkRQ+tPFUEwlrFzM4eXKdi6XHZ4CTxtK5PnQ==
+X-Google-Smtp-Source: AK7set9W9wLn3JZ8MrFzo0VuFe/HAuvajC0zCNwULGTi/uQ9VI1ybXodYpHBrfydldHh9/xqXzDFQFITEAIkXYRU2Zo=
+X-Received: by 2002:a17:906:1803:b0:7c0:f45e:22ff with SMTP id
+ v3-20020a170906180300b007c0f45e22ffmr3345979eje.104.1675422428182; Fri, 03
+ Feb 2023 03:07:08 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230201203338.9525-1-stefan.wahren@i2se.com>
-From:   =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-Subject: Re: [PATCH 0/9] ARM: dts: imx28: Clean up older DTS files
-In-Reply-To: <20230201203338.9525-1-stefan.wahren@i2se.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 15589491585585769240
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrudegtddgtdehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfvfevfhfhufgjtgfgsehtkeertddtfeejnecuhfhrohhmpefurogsrghsthhivghnucfuiiihmhgrnhhskhhiuceoshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmqeenucggtffrrghtthgvrhhnpeetvdelleevvdejiefgieegvdeiffetgfeiteegkeefgeduvdevtdduhfdttdeukeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeduvdejrddtrddtrddupdefjedrheelrddugedvrddutdehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeoshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheehtddpmhhouggvpehsmhhtphhouhht
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230124131717.128660-5-bchihi@baylibre.com> <20230131153816.21709-1-bchihi@baylibre.com>
+ <ab1e4822-d5f4-79f6-ea38-47e2342ebe49@linaro.org> <CAGuA+oqLiCxb1g7pwf+RwUTWHV37pXdAWUXHV51TnUy1-xUOXQ@mail.gmail.com>
+ <8662c6bd-b32d-3d3d-b3b7-7f4aeb028309@linaro.org>
+In-Reply-To: <8662c6bd-b32d-3d3d-b3b7-7f4aeb028309@linaro.org>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Fri, 3 Feb 2023 12:06:32 +0100
+Message-ID: <CAGuA+or+rKzZaVO--yhBuOnUrL1+LhJAwxLsNcTif4t9W0TFWA@mail.gmail.com>
+Subject: Re: [PATCH v12] thermal: drivers: mediatek: Add the Low Voltage
+ Thermal Sensor driver
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi Krzysztof,
 
-On 2/1/23 21:33, Stefan Wahren wrote:
-> Since the imx28 belongs to the early ARM platforms which has been
-> adapted to DT, a lot of these DTS files are not in the best shape.
-> So this series tries to address this by using label references
-> and SPDX tags.
-> 
-> Theses patches doesn't include functional changes. The resulting
-> DTB files has been verified with dtdiff.
-> 
-> Stefan Wahren (9):
->    ARM: dts: imx28-apf28: Convert to use label references
->    ARM: dts: imx28-m28/sps1: Convert to use label references
->    ARM: dts: imx28-apx4devkit: Convert to use label references
->    ARM: dts: imx28-cfa10036: Convert to use label references
->    ARM: dts: imx28-duckbill: Convert to use label references
->    ARM: dts: imx28-duckbill-2: Include base board
->    ARM: dts: imx28-evk: Convert to use label references
->    ARM: dts: imx28-ts4600: Convert to use label references
->    ARM: dts: imx28-tx28: add SPDX-License-Identifier
-> 
->   arch/arm/boot/dts/imx28-apf28.dts             |  96 ++--
->   arch/arm/boot/dts/imx28-apf28dev.dts          | 312 ++++++------
->   arch/arm/boot/dts/imx28-apx4devkit.dts        | 380 +++++++-------
->   arch/arm/boot/dts/imx28-cfa10036.dts          | 193 ++++----
->   arch/arm/boot/dts/imx28-cfa10049.dts          | 454 +++++++++--------
->   arch/arm/boot/dts/imx28-cfa10055.dts          | 224 +++++----
->   arch/arm/boot/dts/imx28-cfa10056.dts          | 146 +++---
->   arch/arm/boot/dts/imx28-cfa10057.dts          | 252 +++++-----
->   arch/arm/boot/dts/imx28-cfa10058.dts          | 186 ++++---
->   arch/arm/boot/dts/imx28-duckbill-2-485.dts    | 174 +------
->   .../arm/boot/dts/imx28-duckbill-2-enocean.dts | 198 +-------
->   arch/arm/boot/dts/imx28-duckbill-2-spi.dts    | 211 ++------
->   arch/arm/boot/dts/imx28-duckbill-2.dts        | 256 +++++-----
->   arch/arm/boot/dts/imx28-duckbill.dts          | 196 ++++----
->   arch/arm/boot/dts/imx28-evk.dts               | 462 +++++++++---------
->   arch/arm/boot/dts/imx28-m28.dtsi              |  44 +-
->   arch/arm/boot/dts/imx28-m28cu3.dts            | 354 +++++++-------
->   arch/arm/boot/dts/imx28-m28evk.dts            | 420 ++++++++--------
->   arch/arm/boot/dts/imx28-sps1.dts              | 201 ++++----
->   arch/arm/boot/dts/imx28-ts4600.dts            |  80 ++-
->   arch/arm/boot/dts/imx28-tx28.dts              |  38 +-
->   21 files changed, 2142 insertions(+), 2735 deletions(-)
-> 
+On Wed, Feb 1, 2023 at 6:12 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 01/02/2023 17:46, Balsam CHIHI wrote:
+> >>> +#ifdef CONFIG_MTK_LVTS_THERMAL_DEBUGFS
+> >>> +
+> >>> +static struct dentry *root;
+> >>
+> >> How do you handle two instances of driver?
+> >
+> > This root node is the topmost directory for debugfs called 'lvts', the
+> > different driver instances are below this. It is a singleton.
+>
+> Indeed. What about removal? Aren't you remobing entire directory
+> structure on first device removal?
+>
 
-FYI, such changes have been rejected years ago:
+For now, the driver only supports one instance.
+I will find a way to handle this when the driver supports more instances.
+Is this suggestion OK for you?
 
-https://lore.kernel.org/linux-arm-kernel/20140512141814.GE8330@dragon/
+> (...)
+>
+> >>> +
+> >>> +     of_property_for_each_string(np, "nvmem-cell-names", prop, cell_=
+name) {
+> >>> +             size_t len;
+> >>> +             u8 *efuse;
+> >>> +
+> >>> +             cell =3D of_nvmem_cell_get(np, cell_name);
+> >>> +             if (IS_ERR(cell)) {
+> >>> +                     dev_dbg(dev, "Failed to get cell '%s'\n", cell_=
+name);
+> >>
+> >> Is this an error? If so, why debug? dbg is not for errors.
+> >
+> > AFAIK using dev_dbg does not increase ELF size when DEBUG is disabled.
+> > If this is not a good reason for you, then I will change it to dev_err.
+>
+> But also dev_dbg are not visible in error or warn level logs. If this is
+> not an error, then indeed dev_dbg could be fine. But errors should be
+> verbose.
 
-Regards,
+OK,
+I will replace all "dev_dbg" with "dev_err" in this function.
 
--- 
-Sébastien Szymanski, Armadeus Systems
-Software engineer
+>
+> >
+> >>
+> >>> +                     return PTR_ERR(cell);
+> >>> +             }
+> >>> +
+> >>> +             efuse =3D nvmem_cell_read(cell, &len);
+> >>> +
+> >>> +             nvmem_cell_put(cell);
+> >>> +
+> >>> +             if (IS_ERR(efuse)) {
+> >>> +                     dev_dbg(dev, "Failed to read cell '%s'\n", cell=
+_name);
+> >>> +                     return PTR_ERR(efuse);
+> >>> +             }
+> >>> +
+> >>> +             lvts_td->calib =3D devm_krealloc(dev, lvts_td->calib,
+> >>> +                                            lvts_td->calib_len + len=
+, GFP_KERNEL);
+> >>> +             if (!lvts_td->calib)
+> >>> +                     return -ENOMEM;
+> >>> +
+> >>> +             memcpy(lvts_td->calib + lvts_td->calib_len, efuse, len)=
+;
+> >>> +
+> >>> +             lvts_td->calib_len +=3D len;
+> >>> +
+> >>> +             kfree(efuse);
+> >>> +     }
+> >>> +
+> >>> +     return 0;
+> >>> +}
+> >>> +
+> >>> +static int __init lvts_golden_temp_init(struct device *dev, u32 *val=
+ue)
+> >>
+> >> You did not test it, right? Build with section mismatch analysis...
+> >
+> > I'm not sure to fully understand this comment.
+> > Would you explain, please?
+>
+> git grep -i "section mismatch" leads to lib/Kconfig.debug and
+> DEBUG_SECTION_MISMATCH
 
+__init is removed from all functions.
+
+>
+> (...)
+>
+> >>> +static struct lvts_ctrl_data mt8195_lvts_data_ctrl[] =3D {
+> >>
+> >> Why this cannot be const?
+> >
+> > I've got the following warning when I added "const"
+> > drivers/thermal/mediatek/lvts_thermal.c:1286:27: warning:
+> > initialization discards =E2=80=98const=E2=80=99 qualifier from pointer =
+target type
+> > [-Wdiscarded-qualifiers]
+> >  1286 |         .lvts_ctrl      =3D mt8195_lvts_data_ctrl,
+> >       |                           ^~~~~~~~~~~~~~~~~~~~~~~~~
+>
+> As with every const... Do you need lvts_ctrl to be non-const? If yes,
+> then how do you handle multiple devices (singleton)?
+>
+
+I found a fix for this it was simple.
+add const here as you suggested
+and in other function parameters every time we use this variable.
+
+> Best regards,
+> Krzysztof
+>
+
+Thank you for the review!
+
+Best regards,
+Balsam
