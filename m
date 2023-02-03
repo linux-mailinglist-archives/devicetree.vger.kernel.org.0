@@ -2,102 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E79689222
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 09:27:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E39AE689238
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 09:27:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231862AbjBCI0p convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 3 Feb 2023 03:26:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36036 "EHLO
+        id S232297AbjBCI1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 03:27:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232435AbjBCI0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 03:26:22 -0500
-Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F17E395D08;
-        Fri,  3 Feb 2023 00:24:59 -0800 (PST)
-Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
-          by outpost.zedat.fu-berlin.de (Exim 4.95)
-          with esmtps (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@zedat.fu-berlin.de>)
-          id 1pNrNI-003Nx4-Ij; Fri, 03 Feb 2023 09:24:48 +0100
-Received: from p57bd9464.dip0.t-ipconnect.de ([87.189.148.100] helo=[192.168.178.81])
-          by inpost2.zedat.fu-berlin.de (Exim 4.95)
-          with esmtpsa (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@physik.fu-berlin.de>)
-          id 1pNrNI-0042Ei-Ac; Fri, 03 Feb 2023 09:24:48 +0100
-Message-ID: <afd056a95d21944db1dc0c9708f692dd1f7bb757.camel@physik.fu-berlin.de>
-Subject: Re: remove arch/sh
-From:   John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-sh@vger.kernel.org
-Date:   Fri, 03 Feb 2023 09:24:46 +0100
-In-Reply-To: <20230203071423.GA24833@lst.de>
-References: <20230113062339.1909087-1-hch@lst.de>
-         <11e2e0a8-eabe-2d8c-d612-9cdd4bcc3648@physik.fu-berlin.de>
-         <20230116071306.GA15848@lst.de>
-         <40dc1bc1-d9cd-d9be-188e-5167ebae235c@physik.fu-berlin.de>
-         <20230203071423.GA24833@lst.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.3 
+        with ESMTP id S232403AbjBCI0k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 03:26:40 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E80601817E
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 00:26:36 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id k4so13303265eje.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 00:26:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=C+/90X5VKUOPdYQSfgyJKgH8aAEJvZdqb0gJuf8F3P4=;
+        b=mumRdETGnQ3PVEkTLbeobaUDC/+veipzaawXb4KKFpaEEgErudMTINCn+fQMgN6w4m
+         q/HWz9sA6Pnro2viSP9kpMKoLidWsHmeeycJpZIqvkte2wXjGJOqHpTmZCCei/51uyoH
+         mZj7de6KzsFE78uWn0KAGdu4qzswRX9HZU5P4J2c4vWDKL8wJgf9pEJbdL03FFJLGgKa
+         MubaIPUdfvC59+zpWslhqFwCSpf5axjjZQc/Hidcl2Hh2AVjDZYRCRSiOKamZmv+QAEZ
+         H7pd3nhz/F7qzwfh3XK2dO7bIXeo9Y1kKlfRJ9/ibINkP5szAXzNlIkm7GsXj3bomXCH
+         U3zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C+/90X5VKUOPdYQSfgyJKgH8aAEJvZdqb0gJuf8F3P4=;
+        b=mAGcngAebiHYcdT0YvHf8KngIOh/Bp73ACT2a8P3f+ALiF7TYm3+OTPDplI9c8B3Qh
+         4ihKKJkC4puc+1bKs5Ze4sJovy/nRb1t4sSsA7WpHrUtQHIRPPjXGKjBCn127HhS2yRM
+         dhG6f5ky53heJWQoB08hsJJYoSpZLgpQThfwyeiUjH28oK5j3JGUZP3HdTIeN0HvEXo9
+         UDb00jiTaoP/EnOOIdH88Dd1aFxNThHI1wZLYKonDrWVnomWQ6hSIXOzGM7wEYaQoBaJ
+         eMFiHohYsTV23jK0SG3dI5JjPn+7aSP1pMeaGmJfvWVKn7/LnUGgGw06R7CyYPGtdVBz
+         Rm/g==
+X-Gm-Message-State: AO0yUKVTh+dMUWBmb/MpSaZfsDLwaRN6045D5niW973GXCHPho4AuoiO
+        s5gSh3hsuz0B0P5Nay7nuDPswg==
+X-Google-Smtp-Source: AK7set/nPc6abpHzzr2F+jWhqUYyknvQk4Ia//I/a82fvwvcUB869++d2wVBnTp56iiwNLBqhQANvQ==
+X-Received: by 2002:a17:907:1393:b0:86d:4517:a4f1 with SMTP id vs19-20020a170907139300b0086d4517a4f1mr8825173ejb.5.1675412795443;
+        Fri, 03 Feb 2023 00:26:35 -0800 (PST)
+Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id lb2-20020a170907784200b0084d494b24dcsm1021553ejc.161.2023.02.03.00.26.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Feb 2023 00:26:34 -0800 (PST)
+Message-ID: <43c7cf3f-f463-90da-23f9-f6b76d9f729f@linaro.org>
+Date:   Fri, 3 Feb 2023 10:26:33 +0200
 MIME-Version: 1.0
-X-Original-Sender: glaubitz@physik.fu-berlin.de
-X-Originating-IP: 87.189.148.100
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.0.2
+Subject: Re: [PATCH v8 5/9] dt-bindings: qcom-qce: document clocks and
+ clock-names as optional
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20230202135036.2635376-1-vladimir.zapolskiy@linaro.org>
+ <20230202135036.2635376-6-vladimir.zapolskiy@linaro.org>
+ <32c23da1-45f0-82a4-362d-ae5c06660e20@linaro.org>
+ <22f191c4-5346-8fe7-690d-9422775bb2d5@linaro.org>
+ <ad8812e6-7dc2-5575-c44d-3f4f62aeb9e9@linaro.org>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <ad8812e6-7dc2-5575-c44d-3f4f62aeb9e9@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Christoph!
+Hi Krzysztof,
 
-On Fri, 2023-02-03 at 08:14 +0100, Christoph Hellwig wrote:
-> On Mon, Jan 16, 2023 at 09:52:10AM +0100, John Paul Adrian Glaubitz wrote:
-> > We have had a discussion between multiple people invested in the SuperH port and
-> > I have decided to volunteer as a co-maintainer of the port to support Rich Felker
-> > when he isn't available.
+On 2/3/23 10:17, Krzysztof Kozlowski wrote:
+> On 02/02/2023 23:27, Vladimir Zapolskiy wrote:
+>> Hi Krzysztof,
+>>
+>> On 2/2/23 15:53, Krzysztof Kozlowski wrote:
+>>> On 02/02/2023 14:50, Vladimir Zapolskiy wrote:
+>>>> From: Neil Armstrong <neil.armstrong@linaro.org>
+>>>>
+>>>> On certain Snapdragon processors, the crypto engine clocks are enabled by
+>>>> default by security firmware.
+>>>
+>>> Then probably we should not require them only on these variants.
+>>
+>> the rationale is clear, but here comes a minor problem, older platforms
+>> require clocks, when newer ones do not. When a generic SoC-specific compatible
+>> is introduced, let say "qcom,ipq4019-qce", it itself requires the clocks,
+>> but then newer platforms can not be based on this particular compatible,
+>> otherwise they will require clocks and this comes as invalid.
+>>
+>> How to resolve it properly, shall there be another generic SoC-specific
+>> compatible without clocks and NOT based on that "qcom,ipq4019-qce" compatible?
+>>
+>> By the way, QCE on SM8150 also shall not need the clocks.
 > 
-> So, this still isn't reflected in MAINTAINERS in linux-next.  When
-> do you plan to take over?
+> Assuming you have:
+> 1. ipq4019 requiring clocks
+> 2. msm8996 compatible with ipq4019, requiring clocks
+> 3. ipq6018 compatible with ipq4019, not requiring clocks
+> 
+> allOf:
+>    - if:
+>        properties:
+>          compatible:
+>            enum:
+>               - ipq4019-qce
+>      then:
+>        required:
+>          - clocks
+> 
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+>              enum:
+>                 - msm8996-qce
+>      then:
+>        required:
+>          - clocks
+> 
+> That's not pretty.
+> 
+> Another solution is to make non-clock-requiring variants as their own
+> family:
+> 
+> 1. msm8996-qce, ipq4019-qce
+> 2. sm8550-qce, sm8150-qce
+> 
+> and then in the driver you need two entries - ipq4019 and sm8150.
+> 
+> I like the latter, because for clock-requiring variants your driver
+> should actually get them and require. For non-clock-requiring variants,
+> you just skip the clocks (do not fail). Therefore you need different
+> driver data for these two families.
 
-Since this is my very first time stepping up as a kernel maintainer, I was hoping
-to get some pointers on what to do to make this happen.
+many thanks for the detailed explanation, the first of two solutions will
+be even more clumsy and convoluted, since there should be lists split into
+two baskets.
 
-So far, we have set up a new kernel tree and I have set up a local development and
-test environment for SH kernels using my SH7785LCR board as the target platform.
+Thus I will go with the second variant and add two family compatibles.
 
-Do I just need to send a patch asking to change the corresponding entry in the
-MAINTAINERS file?
-
-> What platforms will remain supported and what can we start dropping due to
-> being unused and unmaintained?
-
-This has not been sorted out yet.
-
-Adrian
-
--- 
- .''`.  John Paul Adrian Glaubitz
-: :' :  Debian Developer
-`. `'   Physicist
-  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
+--
+Best wishes,
+Vladimir
