@@ -2,129 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF02D689EA5
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 16:57:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0194E689EC6
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 17:02:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233199AbjBCP5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 10:57:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59918 "EHLO
+        id S232866AbjBCQC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 11:02:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233117AbjBCP5k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 10:57:40 -0500
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FF0B9E9C9;
-        Fri,  3 Feb 2023 07:57:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-        bh=RABYZKQEnf0QK23SEeW3xVSQhJGlQ3o0a9xB2pxXdFg=; b=mxbhKN8eDLHf3sRbpUD1Pm5ad9
-        DUxn/adCxDe6jPyxHF/gdCrJDf3lsIsIixEOuV8CpNuzkiX752ZBaf0wsnY0b2i3cM9FUEcN20eX2
-        rIR05AXVLD17i/oQNhbkjja3UIifH2qUWnxDkJqAUC7NG8o6c1/1J2q0zeQmeJMRLojURzkVBUv7W
-        j9O4rmt4LMN1wjI6tRgPyBaBqiFphCrvwmB0uTJBDK4DzjkMj6rO8E5wNKaysJXqmttqL9r4yHFrh
-        f47+XS3tx6LOOWc7AZ91W6sFA96KtfzRuvr3oItFzuKm5u8MGjDHAAIf0SDJC5iX+lV71N215QhEo
-        +ggV+adQ==;
-Received: from [2601:1c2:d00:6a60::9526]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1pNyR8-002pf0-3m; Fri, 03 Feb 2023 15:57:14 +0000
-Message-ID: <f6a60193-a5d1-c42c-158a-4b0bfe9c7538@infradead.org>
-Date:   Fri, 3 Feb 2023 07:57:12 -0800
+        with ESMTP id S231866AbjBCQC1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 11:02:27 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C16F39D063
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 08:02:24 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1pNyVz-0004Uw-SP; Fri, 03 Feb 2023 17:02:15 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1pNyVy-0001d2-2W; Fri, 03 Feb 2023 17:02:14 +0100
+Date:   Fri, 3 Feb 2023 17:02:14 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, kernel@pegutronix.de,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH 18/18] dt-bindings: devfreq: event: convert Rockchip DFI
+ binding to yaml
+Message-ID: <20230203160214.GZ13319@pengutronix.de>
+References: <20230203125012.3804008-1-s.hauer@pengutronix.de>
+ <20230203125012.3804008-19-s.hauer@pengutronix.de>
+ <ed9c3224-2f1a-c335-3028-6c23f40f57f4@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: remove arch/sh
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Cc:     Christoph Hellwig <hch@lst.de>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-sh@vger.kernel.org
-References: <20230113062339.1909087-1-hch@lst.de>
- <11e2e0a8-eabe-2d8c-d612-9cdd4bcc3648@physik.fu-berlin.de>
- <20230116071306.GA15848@lst.de>
- <40dc1bc1-d9cd-d9be-188e-5167ebae235c@physik.fu-berlin.de>
- <20230203071423.GA24833@lst.de>
- <afd056a95d21944db1dc0c9708f692dd1f7bb757.camel@physik.fu-berlin.de>
- <20230203083037.GA30738@lst.de>
- <d10fe31b2af6cf4e03618f38ca9d3ca5c72601ed.camel@physik.fu-berlin.de>
- <CAMuHMdUitVfW088YOmqYm4kwbKwkwb22fAakHcu6boxv7dXDfQ@mail.gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <CAMuHMdUitVfW088YOmqYm4kwbKwkwb22fAakHcu6boxv7dXDfQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ed9c3224-2f1a-c335-3028-6c23f40f57f4@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi--
-
-On 2/3/23 02:33, Geert Uytterhoeven wrote:
-> Hi Adrian,
+On Fri, Feb 03, 2023 at 04:14:56PM +0100, Krzysztof Kozlowski wrote:
+> On 03/02/2023 13:50, Sascha Hauer wrote:
+> > Convert the Rockchip DFI binding to yaml. While at it add the newly
+> > supported rk3568-dfi to the binding.
+> > 
+> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 > 
-> On Fri, Feb 3, 2023 at 11:29 AM John Paul Adrian Glaubitz
-> <glaubitz@physik.fu-berlin.de> wrote:
->> On Fri, 2023-02-03 at 09:30 +0100, Christoph Hellwig wrote:
->>> On Fri, Feb 03, 2023 at 09:24:46AM +0100, John Paul Adrian Glaubitz wrote:
->>>> Since this is my very first time stepping up as a kernel maintainer, I was hoping
->>>> to get some pointers on what to do to make this happen.
->>>>
->>>> So far, we have set up a new kernel tree and I have set up a local development and
->>>> test environment for SH kernels using my SH7785LCR board as the target platform.
->>>>
->>>> Do I just need to send a patch asking to change the corresponding entry in the
->>>> MAINTAINERS file?
->>>
->>> I'm not sure a there is a document, but:
->>>
->>>  - add the MAINTAINERS change to your tree
->>>  - ask Stephen to get your tree included in linux-next
->>>
->>> then eventually send a pull request to Linus with all of that.  Make
->>> sure it's been in linux-next for a while.
->>
->> OK, thanks for the pointers! Will try to get this done by next week.
->>
->> We're still discussing among SuperH developer community whether there will be a second
->> maintainer, so please bear with us a few more days. I will collect patches in the
->> meantime.
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC.  It might happen, that command when run on an older
+> kernel, gives you outdated entries.  Therefore please be sure you base
+> your patches on recent Linux kernel.
+
+That's what I did. I skipped you and Rob because I know you're wathcing
+the list anyway.
+
+> > diff --git a/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.yaml b/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.yaml
+> > new file mode 100644
+> > index 0000000000000..e082a0df7895a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.yaml
 > 
-> Thanks a lot!
+> rockchip,dfi.yaml
+
+ok.
+
 > 
-> If you need any help with process, setup, ... don't hesitate to ask
-> (on e.g. #renesas-soc on Libera).
+> > @@ -0,0 +1,38 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/devfreq/event/rockchip-dfi.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Rockchip DFI
+> > +
+> > +maintainers:
+> > +  - Sascha Hauer <s.hauer@pengutronix.de>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - rk3399-dfi
+> > +      - rk3568-dfi
+> 
+> These are not correct compatibles.
 
-While Adrian and Geert are reading this, I have a question:
+What's wrong with them?
 
-Is this "sh64" still accurate and applicable? from Documentation/kbuild/kbuild.rst:
+> 
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  rockchip,pmu:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      Phandle to the syscon managing the "PMU general register files".
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> 
+> clocks were required
 
-But some architectures such as x86 and sparc have aliases.
+They are no longer, the RK3568 doesn't have a clock. Do I have to add
+something to make the clock optional on RK3568 only?
 
-- x86: i386 for 32 bit, x86_64 for 64 bit
-- sh: sh for 32 bit, sh64 for 64 bit <<<<<<<<<<<<<<<
-- sparc: sparc32 for 32 bit, sparc64 for 64 bit
+Sascha
 
-
-
-Thanks.
 -- 
-~Randy
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
