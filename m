@@ -2,66 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45764689F71
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 17:38:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A943689F8D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 17:49:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233170AbjBCQiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 11:38:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32844 "EHLO
+        id S233341AbjBCQtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 11:49:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233184AbjBCQiP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 11:38:15 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA879FF25;
-        Fri,  3 Feb 2023 08:38:03 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A2DC6B82B5B;
-        Fri,  3 Feb 2023 16:38:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0578C433EF;
-        Fri,  3 Feb 2023 16:38:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675442281;
-        bh=Lqgox4v/VMs326ZId2+JDDTRKV0sKRpXB4mOeX/kCg8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=khaTyNVnQ0eiwHqfHOjx1YYcFzUi5QiX/pUi9So9oWd4U6LVVcqEV8SAm3JPbK1VQ
-         wUmN+sj0RoJ2hEAzjy0ZLqgdjXvBkm/BdHM8dN2XEODc/oBs/GAMDc06byCbBb+HWd
-         B09fQ6y4EQtlyP3J3PXYrrq5mUKqTSwXJFJnS/z1AlXPGIJpj/kp/fsU0hOh3nDNSx
-         40IvsdNgZnw+gLryKFXXOGr2gtnE6TcYuFDZrQIouDRdokwROfX5Bc5jgHZnuzW9CV
-         cNpTmb88JRo9dBwEYRGeEdf0ZHdYY+y1yIIUOKc77LTjOEtmOOhQ4GIYufcWsZcbUy
-         Fooqk4beW1GWg==
-Date:   Fri, 3 Feb 2023 17:37:58 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-Cc:     michal.simek@xilinx.com, michal.simek@amd.com,
-        devicetree@vger.kernel.org, andrew@lunn.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, git@amd.com, srinivas.goud@amd.com,
-        shubhrajyoti.datta@amd.com, manion05gk@gmail.com,
-        Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-Subject: Re: [PATCH V4 6/9] i2c: xiic: Remove interrupt enable/disable in Rx
- path
-Message-ID: <Y904ZrqCXBjY75sA@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
-        michal.simek@xilinx.com, michal.simek@amd.com,
-        devicetree@vger.kernel.org, andrew@lunn.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, git@amd.com, srinivas.goud@amd.com,
-        shubhrajyoti.datta@amd.com, manion05gk@gmail.com,
-        Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-References: <1675330898-563-1-git-send-email-manikanta.guntupalli@amd.com>
- <1675330898-563-7-git-send-email-manikanta.guntupalli@amd.com>
+        with ESMTP id S233312AbjBCQtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 11:49:02 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06DF769521
+        for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 08:49:01 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id q10-20020a1cf30a000000b003db0edfdb74so5856248wmq.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 08:49:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=e7fygOdZsaKNxAZfY0Nswu9GQwo+E0g2Om6LbR6cFEI=;
+        b=UakTA1yo55uI6IxCEGC8dvi2NMX0aJaywq3sGxRp3vZjASo6VacmEoo29lmw1jA9oZ
+         vpQpFyaVtLnSM3RzAmqzK2BSjIr0z4OLj3Roan959PrConZ0u3MfzSQldi5Y4B5fGJcb
+         XDGd1QdaKQL+Y9ohtNa8euoR8Tkjy3hJ+KFZ1CvzT5aGP/AF/VRsRc0uGZALIjooSidr
+         NJUxFMTfUAY4lI90FKEpRKnIHkRYaOl+AJFRHAiTaUFocplZyeNZ7QCAYo2jZ9KRHzEw
+         MRvl03QraFdET0Tdgdvg+1SfBFFxBRi4NAlViPrB3pDvVS0KLabnTep7jt790HbUi7uo
+         J3xQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e7fygOdZsaKNxAZfY0Nswu9GQwo+E0g2Om6LbR6cFEI=;
+        b=S4wJ8gxoLdSghu1VaCFMs+MoanqFKEzlaTFs1Gv00POdJLueMFcbCe4Wl2Wz67SvQA
+         FoZq/z/i5aU4Z+WiF+wbk8y5cgBgrfm28KdYua7JxYMhgxrYgiz7OJu8RUd6sa/N16RR
+         9cihVJi4x+m30Y7tIlJjn125iBFHC6ltLtMzJt7ztE9cP3mq6wSYMJgEl3KeOzsuXDeb
+         uSR3g+pe038C57p/hNuWVOtEMq6n/t2+/1Tz1jy6InyjU4TD4dD/RJ9pDkZC7+0hfd9D
+         Q6nmIep6wFiW163l/K+OHa2gx72hHMRnhzcIjH7hRm/0zZJyZ9fhs2/kLaKr3y9jL6TH
+         FYBg==
+X-Gm-Message-State: AO0yUKWbHLtIv/v1zz7SDtCie9Ge/+O5x7ohqEHF5v6gFPeLdlb3DHpp
+        0WujLyfgo1eNxZZRCtxkXtkRbQ==
+X-Google-Smtp-Source: AK7set9TShnTLHbIW6/3pFDi/PX83KRo46a/xv9wdTY72kFHj9XQ+9+Bw6MA81M1FTrL+vS58KxoMQ==
+X-Received: by 2002:a05:600c:3b1e:b0:3dc:4d94:62de with SMTP id m30-20020a05600c3b1e00b003dc4d9462demr10240148wms.14.1675442939439;
+        Fri, 03 Feb 2023 08:48:59 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id i21-20020a05600c355500b003dc4b4dea31sm3503247wmq.27.2023.02.03.08.48.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Feb 2023 08:48:59 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/5] dt-bindings: pinctrl: qcom,sc7280-lpass-lpi: correct GPIO name pattern
+Date:   Fri,  3 Feb 2023 17:48:50 +0100
+Message-Id: <20230203164854.390080-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="sw54ZbL/ereHNorW"
-Content-Disposition: inline
-In-Reply-To: <1675330898-563-7-git-send-email-manikanta.guntupalli@amd.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,44 +74,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The SC7280 LPASS pin controller has GPIOs 0-14, so narrow the pattern of
+possible GPIO names.
 
---sw54ZbL/ereHNorW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Thu, Feb 02, 2023 at 03:11:35PM +0530, Manikanta Guntupalli wrote:
-> From: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
->=20
-> 'DYNAMIC_MODE_READ_BROKEN_BIT' quirk added in the driver,
-> effected IP versions no longer enter dynamic mode.
-> So, remove local_irq_save/local_irq_restore APIs from driver.
->=20
-> Signed-off-by: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> Acked-by: Michal Simek <michal.simek@amd.com>
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+index f7ec8a4f664f..e51feb4c0700 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+@@ -59,7 +59,7 @@ $defs:
+           subnode.
+         items:
+           oneOf:
+-            - pattern: "^gpio([0-9]|[1-9][0-9])$"
++            - pattern: "^gpio([0-9]|1[0-4])$"
+         minItems: 1
+         maxItems: 15
+ 
+-- 
+2.34.1
 
-Applied to for-next, thanks!
-
-
---sw54ZbL/ereHNorW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPdOGYACgkQFA3kzBSg
-KbbYtw//eGvZf6MuWEbrxHeEeU1yPDVRAJw4I6FIaowYfplhFhVmAFLD5aqaQCia
-2JOq1IEVMi/GfMS0ibXXfysvsRBLhdjAhg0tQtlU9OYJ3Lj01zYESWPerxpVdz45
-hrQUe4+LmVXacy9i3iKxLgHuypcr6Fz6zFwgRuOp33fU/5YYjNLmh3ty+KuO79bj
-vPdNR04VAcZOaKl19I4S7d2exqJ/qq4unLyxlQ5PvUa9OAKBzAXiMg3xe2CFqKnv
-S++gJyEGU/HZ8sA2oO4gnvVfqJxtz/2uY0eZcS56D2NeqITUBnrtiigpfSvk0C2x
-wc8LemkcfsOYI5gmzuqZsyL+hVj7xAD/IHbOnx78Plne6Dn7XznhAzMsgiDygyB2
-2i+O1F6RVXMWG/l3v6fx9191t3Q3/cMZ3ur1AArFBUizCpDp6/CKPr0f50BIfvGz
-gzZIMsQRxlVxSp2K+JU7AgsWZueXqNQQsMd22mRgtYXweISer9VfsVaHtmBg12Pp
-H/i1hFg69Y+vybRKzqVgmQVJ5DFA5r3ZSOheYONWj1diKqJx6NXWdsXbgQ5SG8Kf
-AjBWHjjJHzH45Rd1eA5Wic72hCZ8kKPoOzNVaiFoHNfJBWHAKd0FCRbov4pirkFQ
-n2jRwdX9MEoeHCKY7oYIdIH8L5z9mvlX6+5H8AMnf8XKv/YVV9Y=
-=SHOg
------END PGP SIGNATURE-----
-
---sw54ZbL/ereHNorW--
