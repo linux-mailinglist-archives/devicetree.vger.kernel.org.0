@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADBBD68A2BE
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 20:17:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E03068A2C0
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 20:17:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233119AbjBCTRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 14:17:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55190 "EHLO
+        id S233488AbjBCTR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 14:17:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232529AbjBCTRY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 14:17:24 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F9311F
+        with ESMTP id S232529AbjBCTRZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 14:17:25 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC996206AF
         for <devicetree@vger.kernel.org>; Fri,  3 Feb 2023 11:17:22 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso4636502wms.3
+Received: by mail-wm1-x333.google.com with SMTP id n13so4617756wmr.4
         for <devicetree@vger.kernel.org>; Fri, 03 Feb 2023 11:17:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=raspberrypi.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NMYcoycLdQPDhvNJ8NTYUjLBtRJcOozpMT/JV8HIjUU=;
-        b=l2YCsMMPR9b54JbdHSOWxzYTL4vHe5MGAxH2fNXpsaaoligB0DdsY1TsyU54z1EvJe
-         JTZY+MyWm2t9iYsjHIRmbUb72U5LnKWwUZM4/NETnOhzXt6uSO6NQfiF3gY3CZOaMSqm
-         AxBPENI8fhtY3x1sryAy3U8jRzuFuMJFpvZfjUur9rXberpM/cHz8ZhWL88NgESTeMBu
-         aoo6HdGTKsnWp+mKd8PsGyXB9VGPRpTDt+t09rvuwVghfwUIjI95GxZLSCdwIiWPv4v9
-         1PXqkQv0L7ebas9g84DMEpEK7FJs9x0EGMcHffHaKNy5jb5wvSua5kJ9uwPa7p9F6s9Y
-         pK6A==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kfzqUS/ISMtqujGi5r+HM5qWXhRYCbGlaSQrST7SLwo=;
+        b=dqutk9GlnBQSpuKhf1i5+Rm8vNkS4vE/hyvmT23IPkT7VXUAtxGDGHPIx8YJ84g/IW
+         XPEvYSeaEG1Cv/06WGwkOHJfApD5TKaLHi4VnF64/CqXo19l1mlnj7Ly8tOFp0gOJTf3
+         5HY3l4xwFoVFDmKiIMdLtlIJGRkyTS1OJqEo50ZRCn8Imq7JU4uCeevjkr9If+Fbl3zD
+         dwkJNvc7X800g/+LVhF+ySeJvk7N6KgfIkrgLHwX5b7cR8wQ1fttYrg6HinVTfi5S0Ig
+         bZ51AQYTvoysYp60UMpL+SjGp0PnZa9HnwqOssfW9s4nWBGrzbrrY9/ABzDQREpm+N/H
+         0vlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NMYcoycLdQPDhvNJ8NTYUjLBtRJcOozpMT/JV8HIjUU=;
-        b=NCCI2XG1Jht/+dzz4j47AXz8B4oPhRgjf4BKiOGPLBOYIZaCQid/RySvvAjrkWyBP/
-         Tos8wPbhnQYPMX//jGak3gBNSKSlTFGYZDY1EYd1xtuZ9v7zghmgTuWCnslbj9TOajU0
-         jX1u835O07bRPJ63BniavSRD1BglR9v1QcwxrqdUDFTkay2uPcGaza2aHyxOnL9g04FE
-         0k0ZjPyBA1QOjnoEJdHAgXEbH09NOoRFPAvtfKBezGw23QjZDLnHmHcrmGqoe9meUBve
-         SiwU/dibgdEcI10mJ4mNNa89GI1L3IDhN1/gpB0ShXsi+KwdiXAI5lE83S/BAzADSnkQ
-         IygA==
-X-Gm-Message-State: AO0yUKWL9wJP4+jiK8Eb+dJwicLwPAo/yLh4ShWZGgM1eErkzR7D1foT
-        4wppN3+jLGa+eeik1vacSsjtuA==
-X-Google-Smtp-Source: AK7set9mo8i2Xkq53GyWQH0NJcp8KXAxbLA5LPGPWg3g5BMZ0NWfcBbd+VF5YqDJDMVnRtariPhA9g==
-X-Received: by 2002:a05:600c:3d1a:b0:3da:1e3e:1ce8 with SMTP id bh26-20020a05600c3d1a00b003da1e3e1ce8mr10841715wmb.13.1675451840676;
-        Fri, 03 Feb 2023 11:17:20 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kfzqUS/ISMtqujGi5r+HM5qWXhRYCbGlaSQrST7SLwo=;
+        b=F/K3biFl4Dd719boK5rqx8Qo8UPdc4v1yB6P58+JAxc4usxQf8I/ZjW3tGkX8l+sj1
+         P1F2AN4PPsUjGf29omRXIUEW8BdOGwCKGj2mGkzzs8Xy3HDj+iXwfrmrTuKHR0Ft8hWx
+         tYSa6HdsQWZ4IxLlUE6ujls8NxI4BC5s3jFtlfE2IzA/TQZrqWqPBWPnEQdrlDPk4Mud
+         NNGgAQ5M58/yBOAOf+9YCChSDKRbA7wB1MKk+njnYn2j1rO+RHz4MeTpaGfzu/0CV1vb
+         3ss+NVjvKCs0vnInS9oGhApN+OSWSCh+pRhjAErOc2LzUAc6gM1N2lCLwny2nFFL2Ba5
+         qzcw==
+X-Gm-Message-State: AO0yUKUiWgk1fi1RI4qPmYI632Y6plhYPURRQe4+cxTqcOEOOkesrQnl
+        6k0wQlk+0ehMWOMC7CKA2rHz0A==
+X-Google-Smtp-Source: AK7set+wRgr97cAa7Ylthm7pFC6qkj1IxU8Sqeie6yidZdvWqrjtKmsWEw/gmvkT9NwRIg0awEg6SA==
+X-Received: by 2002:a1c:7906:0:b0:3d3:49db:9b25 with SMTP id l6-20020a1c7906000000b003d349db9b25mr10830652wme.26.1675451841452;
+        Fri, 03 Feb 2023 11:17:21 -0800 (PST)
 Received: from dave-Ubuntu2204.pitowers.org ([93.93.133.154])
         by smtp.googlemail.com with ESMTPSA id l20-20020a05600c089400b003dc41a9836esm3349263wmp.43.2023.02.03.11.17.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Feb 2023 11:17:20 -0800 (PST)
+        Fri, 03 Feb 2023 11:17:21 -0800 (PST)
 From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
 To:     Manivannan Sadhasivam <mani@kernel.org>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -56,11 +57,14 @@ To:     Manivannan Sadhasivam <mani@kernel.org>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         linux-media@vger.kernel.org, devicetree@vger.kernel.org,
         Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: [PATCH v2 0/2] Add support for mono version of Sony IMX290 sensor
-Date:   Fri,  3 Feb 2023 19:16:42 +0000
-Message-Id: <20230203191644.947643-1-dave.stevenson@raspberrypi.com>
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/2] media: dt-bindings: media: i2c: Add mono version to IMX290 bindings
+Date:   Fri,  3 Feb 2023 19:16:43 +0000
+Message-Id: <20230203191644.947643-2-dave.stevenson@raspberrypi.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230203191644.947643-1-dave.stevenson@raspberrypi.com>
+References: <20230203191644.947643-1-dave.stevenson@raspberrypi.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,27 +76,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The IMX290 comes in both mono and colour variants, but has no runtime way
-of determining which is connected.
-These patches adds support for either option.
+The IMX290 module is available as either monochrome or colour and
+the variant is not detectable at runtime.
 
-Changes from v1:
-- Renamed compatible from "sony,imx290-mono" to "sony,imx290llr" which is the
-  actual model number for the mono sensor.
-- Added an additional sony,imx290lqr as a synonym for the existing colour
-  "sony,imx290".
-- Broken description into paragraphs.
-- Reworked the driver to take a struct for each compatible, rather than just
-  the mono/colour status.
+Add a new compatible string for the monochrome version.
 
-Dave Stevenson (2):
-  media: dt-bindings: media: i2c: Add mono version to IMX290 bindings
-  media: i2c: imx290: Add support for the mono sensor variant.
+Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/media/i2c/sony,imx290.yaml          | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
- .../bindings/media/i2c/sony,imx290.yaml       | 16 +++-
- drivers/media/i2c/imx290.c                    | 81 +++++++++++++++----
- 2 files changed, 76 insertions(+), 21 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+index 21377daae026..dacecb0cd9aa 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+@@ -12,15 +12,23 @@ maintainers:
+ 
+ description: |-
+   The Sony IMX290 is a 1/2.8-Inch CMOS Solid-state image sensor with Square
+-  Pixel for Color Cameras. It is programmable through I2C and 4-wire
+-  interfaces. The sensor output is available via CMOS logic parallel SDR
+-  output, Low voltage LVDS DDR output and CSI-2 serial data output. The CSI-2
+-  bus is the default. No bindings have been defined for the other busses.
++  Pixel, available in either mono or colour variants.
++  It is programmable through I2C and 4-wire interfaces.
++
++  The sensor output is available via CMOS logic parallel SDR output, Low voltage
++  LVDS DDR output and CSI-2 serial data output. The CSI-2 bus is the default.
++  No bindings have been defined for the other busses.
++
++  imx290lqr is the full model identifier for the colour variant. "sony,imx290"
++  is treated the same as this as it was the original compatible string.
++  imx290llr is the mono version of the sensor.
+ 
+ properties:
+   compatible:
+     enum:
+       - sony,imx290
++      - sony,imx290lqr
++      - sony,imx290llr
+ 
+   reg:
+     maxItems: 1
 -- 
 2.34.1
 
