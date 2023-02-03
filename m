@@ -2,130 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD42A689EE5
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 17:07:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40ADC689F01
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 17:22:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232718AbjBCQHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 11:07:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38754 "EHLO
+        id S232409AbjBCQWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 11:22:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231168AbjBCQHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 11:07:41 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 461549E9ED;
-        Fri,  3 Feb 2023 08:07:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230038AbjBCQWT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 11:22:19 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7C48A641F;
+        Fri,  3 Feb 2023 08:22:18 -0800 (PST)
+Received: from mercury (unknown [37.81.76.207])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B2E8B61F7F;
-        Fri,  3 Feb 2023 16:07:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C04FC433D2;
-        Fri,  3 Feb 2023 16:07:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675440459;
-        bh=zKmjPVFEtNDSBXoOI9UXflM0Sd030QsBid++FCTj9a8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=KCZFCV0l0H/S8DfZ12ZyuwUPpalMdOIG4AQnLd51yD76Q1ONGjslziezKEteefy5J
-         baLG7VSVB92tcZvq3dvulixb2uBE3HK1OKHEOeA9MeGq70fY/dhGdTQ4LI1PCeHtka
-         +qslJuriyAOi7B6Yxx0fDk9Ae27ItNvamV5bKoAIea26TgXdNFyhchbA0smWIgi0nE
-         Ac23dx2EQNy67fPe+LBz6KinbcJo38qORfKMPBvyFN1wFKKwd5biXzgVtTIbQ8pAag
-         ic03GSWR/aC8m3zE0g4cKFlAUlxjmnybkVfCtYPJPCpPK2S4V/aVy3hJmhBXEPFJZF
-         rAOUVt1zzqzoA==
-Received: by mail-vs1-f50.google.com with SMTP id j7so5813111vsl.11;
-        Fri, 03 Feb 2023 08:07:39 -0800 (PST)
-X-Gm-Message-State: AO0yUKW9lxaabhNRQh93JhZCR9UcWxeV9tUvdFKhBunsksPsQ89D9qc/
-        X37aYO56CaAhdcTp0yQSRwDAa9J2G69m6xPx1A==
-X-Google-Smtp-Source: AK7set+p/4oE02Qtrd3KwUPO2TJMoCv7VYc0zIaV/SZKSXWLDPZxq/rLmvpgU5zF2KcbzmAfoLSdEu2R7mH3ELmM7nc=
-X-Received: by 2002:a67:eb03:0:b0:3ea:c8c:48a5 with SMTP id
- a3-20020a67eb03000000b003ea0c8c48a5mr1730235vso.53.1675440457975; Fri, 03 Feb
- 2023 08:07:37 -0800 (PST)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1084D6602F11;
+        Fri,  3 Feb 2023 16:22:17 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1675441337;
+        bh=RuY5iusY+NWNJyjFIpLuOk+R0feDymEetOVTrgygBxM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lb+LKL5cJpzJKtEdiCgkURg63v6dHETpZe0Gj0QFSMzBndU7alMynFq5Vh1+toZsU
+         YZ988LQbNW2N+0fMNdCcYd3rM9z7L2H2/fBSPZPcUCEFAs21ZBVEUhHBRrUPN2kPuW
+         7omBBABfsVOKvPAMHlsrCPXIFdx2uQeTRgrrWZKlC5HW+Z1rkCHy108Q4LgSQlSBSJ
+         VU2gW0Ug/+9levFz/r6aeWG3oMAtAY7SF2GRyusjYpy7LEBc6IMyzfY6rDBFEsS6pM
+         UglA3200xsMe+fWi2IHdlu7aD5h/rlEg1lxamW/UVsi+jGTVDeYympZS+/8r636awq
+         58wfu8mVahf2w==
+Received: by mercury (Postfix, from userid 1000)
+        id 985E81060930; Fri,  3 Feb 2023 17:22:13 +0100 (CET)
+Date:   Fri, 3 Feb 2023 17:22:13 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        chiaen_wu@richtek.com, cy_huang@richtek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 RESEND 0/3] Add Richtek RT9467 5A Battery Charger
+ support
+Message-ID: <20230203162213.7kisugbsza4suds5@mercury.elektranox.org>
+References: <cover.1672730839.git.chiaen_wu@richtek.com>
 MIME-Version: 1.0
-References: <20230111032830.20447-1-jian.yang@mediatek.com> <20230111032830.20447-3-jian.yang@mediatek.com>
-In-Reply-To: <20230111032830.20447-3-jian.yang@mediatek.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 3 Feb 2023 10:07:26 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+eAQ-M9a+9g7Kk3GC9WjE_4mZXXrsdm4PucOJ4p2QYVQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+eAQ-M9a+9g7Kk3GC9WjE_4mZXXrsdm4PucOJ4p2QYVQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: PCI: mediatek-gen3: Add support for
- controlling power and reset
-To:     Jian Yang <jian.yang@mediatek.com>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        chuanjia.liu@mediatek.com, jieyy.yang@mediatek.com,
-        qizhong.cheng@mediatek.com, rex-bc.chen@mediatek.com,
-        david-yh.chiu@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="rdxpduh6xl6np7d5"
+Content-Disposition: inline
+In-Reply-To: <cover.1672730839.git.chiaen_wu@richtek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 10, 2023 at 9:28 PM Jian Yang <jian.yang@mediatek.com> wrote:
->
-> From: "jian.yang" <jian.yang@mediatek.com>
->
-> Add new properties to support control power supplies and reset pin of
-> a downstream component.
->
-> Signed-off-by: jian.yang <jian.yang@mediatek.com>
+
+--rdxpduh6xl6np7d5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Tue, Jan 03, 2023 at 03:29:55PM +0800, ChiaEn Wu wrote:
+> From: ChiaEn Wu <chiaen_wu@richtek.com>
+>=20
+> This patch set is to add Richtek RT9467 5A Battery Charger support.
+>=20
+> RT9467 is a switch-mode single cell Li-Ion/Li-Polymer battery charger
+> for portable applications.
+>=20
+> It integrates a synchronous PWM controller, power MOSFETs,
+> input current sensing and regulation, high-accuracy voltage regulation,
+> and charge termination. The charge current is regulated through
+> integrated sensing resistors.
+>=20
+> The RT9467 also features USB On-The-Go (OTG) support. It also integrates
+> D+/D- pin for USB host/charging port detection.
+>=20
+> Thank you,
+> ChiaEn Wu
 > ---
->  .../bindings/pci/mediatek-pcie-gen3.yaml      | 23 +++++++++++++++++++
->  1 file changed, 23 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> index 7e8c7a2a5f9b..46149cc63989 100644
-> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> @@ -84,6 +84,29 @@ properties:
->      items:
->        enum: [ phy, mac ]
->
-> +  pcie1v8-supply:
-> +    description:
-> +      The regulator phandle that provides 1.8V power to downstream component.
-> +
-> +  pcie3v3-supply:
-> +    description:
-> +      The regulator phandle that provides 3.3V power to downstream component.
-> +
-> +  pcie12v-supply:
-> +    description:
-> +      The regulator phandle that provides 12V power to downstream component.
 
-While in some bindings we've allowed these in the host bridge node,
-that is a mistake. These should be in the root port node. You probably
-don't have one in DT, so add one.
+Thanks, queued.
 
-> +
-> +  dsc-reset-gpios:
-> +    description:
-> +      The reset GPIO of a downstream component.
-> +    maxItems: 1
-> +
-> +  dsc-reset-msleep:
+-- Sebastian
 
-Doesn't the PCI spec define this time? We're talking about PERST#, right?
+--rdxpduh6xl6np7d5
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +    description:
-> +      The delay time between assertion and de-assertion of a downstream
-> +      component's reset GPIO.
-> +    maxItems: 1
-> +
->    clocks:
->      minItems: 4
->      maxItems: 6
-> --
-> 2.18.0
->
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmPdNLIACgkQ2O7X88g7
++poMdRAAkBj9DK3QoW2SJymVljr0kaa3LI2X7whMKaIyIs8uoz8EsRago9/d9Sav
+fytuiTa4/amZ+mUXZOsvRyN0h/KHvutfUwtotRx7z7zsKkZFlnZG/sKgjQuMQqwJ
+ln0U/A9Oh2o275tYm73OeCQDQWUktq768Zf/w0qtfPDqtpbX1bHi9XikiowlMWq/
+7WzfVV1K5LHHqfT4oZZ2vkngx2eGC6pxNU/X+paUjNM9JEBd28UTuOaGBYH755KG
+k1h5cfrhHWaiuAZp6jvlTTgBChcwebUzBXL2MRgV4GQASnr9ucX1hyyIXsDaNCI0
+kFgy80q54pIWuZe3mWA52FD2ASSy8aNSelf6ku4MKW+nvPotJIsdQxS5BiI7NceJ
+4AZmw00NA4yFwYKYOFl6BpPM1i4XLFCPLB++qrRQS/dx9FMp4eyOuNaEdZRIeEFT
+vXppjoHC8wz5diWDU58rFM455qbHeyZgZwrfV0ktCxJKx7nDR5EChwEGfN2qmNLw
+SAx14fTUhVvsmNsgzOY5yc+jQYS5z55ZRHzvqN54myS0wxcx2uemO2bjXgm6K23S
+bAmBMTTk1mGGLJYfATVTX5Fo5egbDOtoZI+2Mam7l7KT0rGJX+7lWXCKh3/DZcfD
+fL/8dKHZ6Birh14zIJmXJnBmFXps/2z3QLAEZBLPozL0WMgI2ZE=
+=cMRA
+-----END PGP SIGNATURE-----
+
+--rdxpduh6xl6np7d5--
