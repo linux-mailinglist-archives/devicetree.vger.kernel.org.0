@@ -2,210 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5905688C74
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 02:24:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C8AB688C9A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 02:34:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231478AbjBCBYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Feb 2023 20:24:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51792 "EHLO
+        id S230169AbjBCBen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Feb 2023 20:34:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231546AbjBCBYf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 20:24:35 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEED884B64;
-        Thu,  2 Feb 2023 17:24:33 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3131JYgp025024;
-        Fri, 3 Feb 2023 01:23:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=OsB6/Mh/Ws2MNKlRmvc0v3bTZKseg4POlIFzfO/1NAk=;
- b=Qh9sG0gAHDo2lKmx/xs1rvmbPJ+i8zhcHscS8oXrqyF7wZR3fUoOMSxqVRPO98jgyeHs
- ugrtxb0EyRHTvi2mz0uoOu0gpSR3s+ytGurdKLC6rrrB6LuMI4ucqVYWMWN0mfe9vm89
- UcwmIdBCVOaQdwxhZwgscLpGZjQREXk/DdbZkDSDXAToRQRwItrM0jdj5EkKq9mjs0B7
- QDfUd/8fn9ANOvcuQaVBFhSrmATWPTEQemAlobqDomSQvDqPlbknunt1m9K5SrYrqPEV
- AXnTI48RQcp6xEwXaSB+U2cF0MN/d4j2m8uyOXRkTF9J8nAoOoKecLNHh+BLqfUEPAK3 aQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nfnyhmcbf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 03 Feb 2023 01:23:48 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3131NlCa016718
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 3 Feb 2023 01:23:47 GMT
-Received: from [10.110.106.32] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 2 Feb 2023
- 17:23:46 -0800
-Message-ID: <a494e063-f0a0-2a71-5b7b-cb247efa245c@quicinc.com>
-Date:   Thu, 2 Feb 2023 17:23:46 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [RFC PATCH v2 09/22] ASoC: qcom: qdsp6: Introduce USB AFE port to
- q6dsp
+        with ESMTP id S231438AbjBCBel (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Feb 2023 20:34:41 -0500
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2071.outbound.protection.outlook.com [40.107.8.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1FBA6B00E;
+        Thu,  2 Feb 2023 17:34:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oeH5IM/Z93z+4rBte0n3fZfIYwrG74BAIz5ufPYm8fvjfuHnq743LirXEBRu1hQIu4I1IIz94eqKb8m8hQyWhEnJtTl3rNeh323Sjga1rD3gPDvLErTfZgBgX35Kddh+rt/X0vgOnVzjaU8z6CQ5ixMVrLvAF86LK4gjRTsxJwuqEclf5WKkr9owgDqx0Jfc8k5z5I57or7rM/lCDDyptHIWrRP4tL0gnhWsVsaSoV7u3Ta0lkmO+EHuzDqHFDDWRRHAW/7v0EW4xQsAkFIvCetVVJLm1c7gXG48UVAjliEsuunOZu84tk+dX3oRe8m/ebdcafWGtpsvX1Tlufh3pg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=a2FQ+/EaAvO5CCOR0IsobEk03Mg07AjpJsyaEweAKjs=;
+ b=R7RIFz066emYr0bJ4hQOjN3kohcFzm5wLnJfmzzpIr5EFsttgMXU/xCKM2lm5upjPb1zqob1CG3tiOcdepeoatEPxhr7DgyiIXqoEmUQ+XVYSdKHPXPDNAqAwnTNVmOckWMvedaFgCszJqUuMUWmmey7cQa+iE6otgs8UaREztgykBCRDL63m+x+WM/ZARsgsEoFEUU6O+CxYU3b8KW7MbVSWvBVkVyD84tHwulKcP5pR+x8fF395DnbvtjTajaZ3vCpKqDlpbf9CdeoskEAkaDux6dy5plYvZbzgQe5V4rT+9tb2Q56qUsLutlNk+9YP7g9rd/9lvt+GKDwbQaTEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a2FQ+/EaAvO5CCOR0IsobEk03Mg07AjpJsyaEweAKjs=;
+ b=myt8gC80QetMwfXfSeF0DUP63LJJEbcfuyhRpAKcL+TkSi1zY0woTXRBpClXGHzMJphaJUKVssPGlBKoFY8A66geSHVVDaPFzkj64dntg3G4IStUys3fsYU248SvRP/5IiZ9G5apbVKMHB8Ua7JpHFwLdGFWMiEj2fqqyxcFB2vsfF/ZgaonqrDtQiP8VWaCQ4J9D2cg4x3zYBnP0snxzs99janC16798dDwTxIIuzaZddER6cp93bnAJ+siX0KVVw7A6xSSgjKBTNETYG8W3gGzfkhIkwLT15Qq9kuKyV3yHsezzW2mHF6KO4ogm+QdH/h7JuUYiwGs6Jx8pLr9SQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=suse.com;
+Received: from AS8PR04MB8465.eurprd04.prod.outlook.com (2603:10a6:20b:348::19)
+ by DBBPR04MB7740.eurprd04.prod.outlook.com (2603:10a6:10:1ee::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.27; Fri, 3 Feb
+ 2023 01:34:19 +0000
+Received: from AS8PR04MB8465.eurprd04.prod.outlook.com
+ ([fe80::5c50:6906:e9a4:5b9f]) by AS8PR04MB8465.eurprd04.prod.outlook.com
+ ([fe80::5c50:6906:e9a4:5b9f%9]) with mapi id 15.20.6064.028; Fri, 3 Feb 2023
+ 01:34:19 +0000
+Message-ID: <ed92063b-bb4f-f726-e4a5-16a503226957@suse.com>
+Date:   Fri, 3 Feb 2023 09:34:08 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
 Content-Language: en-US
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <lgirdwood@gmail.com>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
-        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <agross@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_jackp@quicinc.com>,
-        <quic_plai@quicinc.com>
-References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
- <20230126031424.14582-10-quic_wcheng@quicinc.com>
- <dea77277-6971-fe27-1ae0-ed551e84b6e4@linux.intel.com>
- <5dec443d-9894-2d06-1798-c56b8f2e1e5e@quicinc.com>
- <ebf8ebed-ef79-bf18-4635-360f916877a6@linux.intel.com>
- <fa35124c-682f-8045-6733-c71f9ce8df9e@quicinc.com>
- <de03c6b1-b6d6-0045-ea60-6ae800913e95@linux.intel.com>
-From:   Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <de03c6b1-b6d6-0045-ea60-6ae800913e95@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Qu Wenruo <wqu@suse.com>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+References: <20221018151407.63395-1-sebastian.reichel@collabora.com>
+ <c119bd9c-0b90-4096-a988-9d0312c3dbcd@suse.com>
+ <20221121182836.kwkbnonulcwfzbg4@mercury.elektranox.org>
+ <f3415e9d-ae8d-201b-a9d7-07d3e9bd3bf3@suse.com>
+Subject: Re: [PATCHv3 0/9] RK3588 Clock and Reset Support
+In-Reply-To: <f3415e9d-ae8d-201b-a9d7-07d3e9bd3bf3@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: KCqg9973o3enm9jrQAYKp0I7rG7EY1SL
-X-Proofpoint-ORIG-GUID: KCqg9973o3enm9jrQAYKp0I7rG7EY1SL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-02_16,2023-02-02_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=502
- priorityscore=1501 bulkscore=0 adultscore=0 spamscore=0 clxscore=1015
- impostorscore=0 suspectscore=0 mlxscore=0 lowpriorityscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302030011
+X-ClientProxiedBy: SJ0PR03CA0018.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a::23) To AS8PR04MB8465.eurprd04.prod.outlook.com
+ (2603:10a6:20b:348::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8465:EE_|DBBPR04MB7740:EE_
+X-MS-Office365-Filtering-Correlation-Id: c43f5ee3-5917-4177-2563-08db0586c4bc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xRZJ7YBuJUBSHFKGK+JSfmnfLsEoL7XDl7K2od6RlDlU3Uq/W8wNcdRXn2vsGp1CRckXRke9aVvRW2u7rnJ7AmO+Qt6YrOUWFHqjwdo0HXPbcJVIYrtLeS9Wfnn+ZQHjEC/ZphlSpjJfgVZ4i2vUq393anh6gKWsv+jinMq6jVhnjByMgI82oh8FLc75eoLIAP7BvRKIkIPkllouSzn8YNN+zZpQ+rifT4LX6EcdefAxIsstQJ58jwLzBT4b/SBDLV8IJrAPQFycyeIzOdYznQUJPqHN6gmQwKzDoK9QkpGExhx9IrwiiAG6XvJjEQF8SF9y0RmXhW1YBWZA1Am77asBDOGzRWFG+jo3Wir34QnLUiS4Qdsva/+JXTPXvx0uwl1tIPOcMRJGTkaUZQQh7UqMP6PQGgKA8ARue2eRCbhNXpseTYV0kfhtBxYRxFbfMaAkBlahKtFp2UeE2c+5YmelXnCcULUNFbyUALyWy1NgZm0w18UHn+x4gnlnMxrcEG2O25JIboO5XjRlB7ZxrFn1orBFx5N9+jj1adt+6bh4Gie8VX0ehUdBIXYvdzNYDRv0O6mSyrAQwB0MOPykLhaSbkyYqcHnHl4tF2NtADUiRnMnBnY0YIIOIVGQQ4/Fot6bECF8pp0TtmC2ClUAqVNqYYw3DD9/OIBbm41ElQO6TIOo/EqOJWv5kAdpWDVB70aAy0345MVtHOEUVCKi9va/RKXJuHh5i+NDNh5pc+P1LtAT/UML4hjkt/viDpAk4omwmJINe1slKQUlcLtnxXA+L1+iUNQrxYXZPHWb8WRSb0XjCYDnJLPE69sx168y
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8465.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(346002)(396003)(136003)(366004)(376002)(39860400002)(451199018)(36756003)(478600001)(66476007)(66556008)(83380400001)(6916009)(66946007)(4326008)(38100700002)(8676002)(54906003)(316002)(186003)(6512007)(966005)(6666004)(6486002)(6506007)(53546011)(7416002)(5660300002)(41300700001)(2616005)(86362001)(8936002)(31696002)(66899018)(31686004)(2906002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RlFSWm9SZlUzZ1hIOHdIK2tPNTcrbjJWNWkvTXFsemdlMXZoSFNQSFNWaEpj?=
+ =?utf-8?B?U0FRbnhvUUJsZjBTeURWY0dYTmRsZnlMQmJITjZBS3JyKzFSU1J5S0NQUUp4?=
+ =?utf-8?B?aHk4dTBBeFV6MUVRT3VFSDhTUmJVcklES285M2pOVWE2dzJ1SHIvOHJQbVh3?=
+ =?utf-8?B?UzFwZmZNSU9kaGFXQTB0ZndoUjlqWmlrV1J4ckhVaFcvdnZWdE9scnhnQXcv?=
+ =?utf-8?B?QmRtUVpPRVU4YkZxb1dnaDJ2bFZBMGNmNnVMQ0NPSE9CZVU4ZVV5THVpUGE0?=
+ =?utf-8?B?bFJ1dkQwSlQrN012cVdPWmR4ZXhIZHJKanFvT0F0dUc4R2xJNTA2WGRQMjVJ?=
+ =?utf-8?B?cndQd09GRlVnTFFpaG10WEJZV0dsRGRoN0w0VUcrZkQ4YmxtaUhTK04zZXZI?=
+ =?utf-8?B?OEpnQm8xbk1Zcm1vT2NLRTNyb3hZOUVJMXh5L2JhWDRUWTUvaDkyK2QrOHd5?=
+ =?utf-8?B?YW5KeWxFd3c4LzFHc0kyUzh3U0g0alRoeDhtUm5hSExJT0wxUnhzVENLZGZ1?=
+ =?utf-8?B?SGFYeWF3VmN6elppdEU0ZmJzSS9DVXhybUdkb2Y5M2QwNnFYNTZES2EvM2RQ?=
+ =?utf-8?B?ZERhbUM5c1Frc1JOQU5MdUI4b1pkbWwrYnRKRGg2WitHNE5UNEFuTnNCekla?=
+ =?utf-8?B?dnMrZy9pYkljbm1xeHdmaHVhR2lMNmpZMnAwa0p3aGEwOW1LOEFTemNsR0Vl?=
+ =?utf-8?B?ZGlTaW5nRDdvamdCWU00aTJFa2NXczVyZEhramZrVEg5V3pJbDlJZWpRYk9S?=
+ =?utf-8?B?czQzM29XbWM0L21rRzYyUnZnWnkzSkowZGtiVUFMSWRGQVl2OW1Kdis2Uytl?=
+ =?utf-8?B?VXhsMzc3ZDhGdTRac3p5cXd2U014SWVVWEFOZ29BNUxlakw5QkpiMkJxODcx?=
+ =?utf-8?B?ZVZJY1VaZm9NWVcxcnNESmJ2QldLYTVZdWEyZGRmSzUzZitQR0pGZWNvZjJt?=
+ =?utf-8?B?Q29JVmZCZFl2UHlKZnkvZ3lWK215UnVXci81bmI1d2hrWTBVVG5VU0l6TW1x?=
+ =?utf-8?B?YU1weTJBUXBLaHZlOUtpNzNENnNwRGdnZnFCeGU5aGk2T1paZXhPZGJhR0Vn?=
+ =?utf-8?B?NlFvRFl4NnJKNWF6Ui9qN2NrUFh4MzhrOHJmVkdTQ29QVFpzRUZHMERtZzhn?=
+ =?utf-8?B?UnM1VXE1ZFFQdFdQck5PUUtvNFo4SU56WWlOdG5UZHR5RzdudnBjZGRYV2Iz?=
+ =?utf-8?B?YkREUnhkRERXcnFROXRkWVZkVlgrZVZHOGVQM2g0alcyc2R1MVNnVmJJZy9t?=
+ =?utf-8?B?YWZFVVhiSDJ1RzZkQlpxZlc3RUNuVW5icDhxbVRUM0VnQVRhNVVoSHA2ZGNF?=
+ =?utf-8?B?OE9Jc2gxQXhmTG1yeHh0N2M1QnZGRHBlTWZVMjM4NXI5MldaOFhIVFluNGNF?=
+ =?utf-8?B?cXdMd1JkTW95cnNkZndGanNZVUUzRm9nRWlhUE84Z3VuUFl0NUdYZCtnSzIw?=
+ =?utf-8?B?QjN2L1c2K2l0c05CTmZZR1ZPMjI2ODJJUjVmVVRlekFiTHdMd2RQNFk0VnZh?=
+ =?utf-8?B?V2VvazY5VUdLRUIxM0dnU3dzcGt2dExyTnZvejR6bWFMS2haSlZsekp3WkVH?=
+ =?utf-8?B?TzdJWURiY1R2aUd4dEZUQzl1N1cvcUcrWm80QUtPY2RVZ1hNaHJOLzVFZ3hG?=
+ =?utf-8?B?MzVDWVpOTnlteFdXenAwWFpiZVFGRjkzT3l4cVo5WldONXVRVkkyUHdkNUw0?=
+ =?utf-8?B?ZUR0cm5jYkQ4Nk9MNFUwRnlqWmNHR3FZSTR2YVYvVXdhNGE0TmFCNDF3cmwr?=
+ =?utf-8?B?TXFScERwM0xRL1pSMzBYbzIwZk5FelNiTzcwZk56SXpmTUd3YjJTdzJudGsx?=
+ =?utf-8?B?bEU3Z1dFdTRzR241cDJocC9EekhUc2pxRDZ4L0JZOE5JdFFjamQwRktJR0NC?=
+ =?utf-8?B?bXJuYmpzS2o4VzVCU2luRlBaVlk3emJHRjFGS1VpMFpBTjRVR1Y0OTBTQ3Zi?=
+ =?utf-8?B?d3RJOGVZeS90bGQ5T3dwS2JrSUdwSitjSzNPL0YvYllRZFBmbmYyeWY1d0Ex?=
+ =?utf-8?B?eEpUY3gyZWM1eGd3VGVFR0xRMnhqOGNUM1RpVSs4K29mNnlhcEhBSzlhQWJu?=
+ =?utf-8?B?V1k4Vjk3L1VmZFpOaWNsUDloaG5BOHFyN091cE0xNlcxdzhXbytIQzVNWE1w?=
+ =?utf-8?B?MkQrZndUbklueUE3a0Mwb29lVDNLZ3lKOFM2bWMwYzVkTUZsY2NYYU5RVXBj?=
+ =?utf-8?Q?/q7o27w9L4TopH4niffF+W4=3D?=
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c43f5ee3-5917-4177-2563-08db0586c4bc
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8465.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2023 01:34:18.9509
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GO/k1V7VD0Bnym9+O01WxBvfifjLia0hjZ3hT4gcpuV9f99ewncJo04y/SCmoO/l
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7740
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pierre,
 
-On 1/31/2023 7:02 PM, Pierre-Louis Bossart wrote:
+
+On 2023/2/2 14:10, Qu Wenruo wrote:
 > 
 > 
-> On 1/31/23 20:40, Wesley Cheng wrote:
->> Hi Pierre,
+> On 2022/11/22 02:28, Sebastian Reichel wrote:
+>> Hi Qu,
 >>
->> On 1/30/2023 3:59 PM, Pierre-Louis Bossart wrote:
+>> On Mon, Nov 21, 2022 at 04:52:22PM +0800, Qu Wenruo wrote:
+>>> On 2022/10/18 23:13, Sebastian Reichel wrote:
+>>>> This has been part of a bigger patchset adding basic rk3588 support.
+>>>> Since that gets more and more out of hand, I'm now sending patches
+>>>> for each subsystem as individual patchset.
 >>>
+>>> Awesome work! Thanks for the work to bring upstream support for RK3588.
 >>>
->>> On 1/30/23 16:54, Wesley Cheng wrote:
->>>> Hi Pierre,
->>>>
->>>> On 1/26/2023 7:38 AM, Pierre-Louis Bossart wrote:
->>>>>
->>>>>
->>>>> On 1/25/23 21:14, Wesley Cheng wrote:
->>>>>> The QC ADSP is able to support USB playback endpoints, so that the
->>>>>> main
->>>>>> application processor can be placed into lower CPU power modes.  This
->>>>>> adds
->>>>>> the required AFE port configurations and port start command to
->>>>>> start an
->>>>>> audio session.
->>>>>>
->>>>>> Specifically, the QC ADSP can support all potential endpoints that are
->>>>>> exposed by the audio data interface.  This includes, feedback
->>>>>> endpoints
->>>>>> (both implicit and explicit) as well as the isochronous (data)
->>>>>> endpoints.
->>>>>> The size of audio samples sent per USB frame (microframe) will be
->>>>>> adjusted
->>>>>> based on information received on the feedback endpoint.
->>>>>
->>>>> I think you meant "support all potential endpoint types"
->>>>>
->>>>> It's likely that some USB devices have more endpoints than what the DSP
->>>>> can handle, no?
->>>>>
->>>>
->>>> True, as we discussed before, we only handle the endpoints for the audio
->>>> interface.  Other endpoints, such as HID, or control is still handled by
->>>> the main processor.
+>>> This upstream work is especially important since the vendor kernel 
+>>> has so
+>>> many weird things and is never properly tested using newer tool chains.
 >>>
->>> The number of isoc/audio endpoints can be larger than 1 per direction,
->>> it's not uncommon for a USB device to have multiple connectors on the
->>> front side for instruments, mics, monitor speakers, you name it. Just
->>> google 'motu' or 'rme usb' and you'll see examples of USB devices that
->>> are very different from plain vanilla headsets.
->>>
+>>> But considering the support has been split into different patchset, 
+>>> is there
+>>> a git repo that I can fetch all the patches and test it on my Rock5B 
+>>> board?
 >>
->> Thanks for the reference.
+>> try linux-next + 
+>> https://lore.kernel.org/all/20221121175814.68927-1-sebastian.reichel@collabora.com/
 >>
->> I tried to do some research on the RME USB audio devices, and they
->> mentioned that they do have a "class compliant mode," which is for
->> compatibility w/ Linux hosts.  I didn't see a vendor specific USB SND
->> driver matching the USB VID/PID either, so I am assuming that it uses
->> the USB SND driver as is.(and that Linux doesn't currently support their
->> vendor specific mode)  In that case, the device should conform to the
->> UAC2.0 spec (same statement seen on UAC3.0), which states in Section
->> 4.9.1 Standard AS Interface Descriptor Table 4-26:
+>> It should boot, but that's about it. For Rock 5B there is not even
+>> ethernet support, since that needs PCIe. Ideally the DT series makes
+>> it in time for the 6.2 merge window.
 >>
->> "4 bNumEndpoints 1 Number Number of endpoints used by this
->> interface (excluding endpoint 0). Must be
->> either 0 (no data endpoint), 1 (data
->> endpoint) or 2 (data and explicit feedback
->> endpoint)."
->>
->> So each audio streaming interface should only have 1 data and
->> potentially 1 feedback.  However, this device does expose a large number
->> of channels (I saw up to 18 channels), which the USB backend won't be
->> able to support.  I still need to check how ASoC behaves if I pass in a
->> profile that the backend can't support.
->>
->> Maybe in the non-class compliant/vendor based class driver, they have
->> the support for multiple EPs per data interface?  I don't have one of
->> these devices on hand, so I can't confirm that.
+>> Alternatively my working branch (I rebase that!) is available here:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-misc.git/log/?h=rk3588
+>> It adds PMIC, thermal and cpufrequency support.
 > 
-> Look at Figure 3-1 in the UAC2 spec, it shows it's perfectly legal to
-> have multiple Audio Streaming interfaces - but one Audio Control
-> interface only.
+> Sorry for the late reply, finally got my extra rock5b to do experiments.
+> (The existing one is now a VM host for 24x7 fstests runs)
 > 
-> The fact that there is a restriction to 1 or 2 endpoints per Audio
-> Streaming interface does not really matter if in the end there are
-> multiple endpoints and concurrent isoc transfers happening to/from the
-> same USB device.
+> [TEST REPORT]
+> Yes, I got the expected-to-work parts working:
+> 
+> - ttyS2 (serial@feb50000)
+>    Both earlycon and later initialized console.
+> 
+> - eMMC (mmc@fe2e0000)
+>    The rootfs read write seems fine.
+> 
+>    The latest code seems to have sdmmc, but ironically I don't have
+>    any sdcard at hand right now...
+> 
+> [PCIE ENABLEMENT]
+> Personally speaking, I can not care less about things like GMAC (Rock5B 
+> uses r8125), nor USB (PCIE rules them all) nor graphics (serial is good 
+> neough).
+> 
+> Thus I'm trying to see if I can re-use the rk3568 pcie drivers.
 
-So the reason I wanted to mention the max number of EPs within the audio 
-streaming descriptor is because the USB SND driver currently creates 
-streams based off of the number of AS desc:
+It looks like the current code (in the repo) still lacks the dt-bindings 
+for the resets. Like SRST_PCIE*_POWER_UP and SRST_P_PCIE*.
 
-static int snd_usb_create_streams(struct snd_usb_audio *chip, int ctrlif)
-{
-...
-	for (i = 0; i < assoc->bInterfaceCount; i++) {
-		int intf = assoc->bFirstInterface + i;
-		if (intf != ctrlif)
-			snd_usb_create_stream(chip, ctrlif, intf);
-	}
+Otherwise a quick glance into the vendor driver doesn't show much 
+difference in the 3568 and 3588 pcie driver.
+(Except the extra bifurcation part, which is not utilized by any RK3588 
+boards yet)
 
-"assoc" is the audio control interface desc.  In the end, when userspace 
-initiates a playback session, it operates on the streams created (which 
-contains at max 1 isoc and 1 feedback ep)
+Thanks,
+Qu
 
-In short, the audio DSP doesn't need to consider handling more than 1 
-isoc ep (and potentially 1 feedback).  I believe that each audio stream 
-creates a separate PCM device, so userspace is still free to attempt to 
-activate another audio stream.  I believe # of PCM devices created 
-matches the # of streams, so when userspace does activate another 
-session, it would be on an entirely different substream, and can be 
-handled through the USB SND (non-offload) path.  If attempted to open 
-the substream used by the offload path, then we would reject is based on 
-the new change.
-
-Thanks
-Wesley Cheng
+> 
+> It looks like unlike RK3399, this time we need PHY for PCIE, and it is 
+> already done in rk3568 pcie controller, and the core AIX->PCIE is done 
+> by the designware core, thus it looks feasible to reuse the driver?
+> 
+> But I can be totally wrong, since I'm really just a newbie in arm world.
+> 
+> Any hint on the PCIE bus bringup? Or what I can help for the PCIE bringup?
+> 
+> I know RK3588S seems to cut the PCIE3 lanes completely, and droped one 
+> PCIE2.0 lane, but I don't know the address for the cut one...
+> 
+> [VENDOR KERNEL PCIE BUG]
+> Another thing I noticed with vendor (5.10.x) kernel is, the PCIE link up 
+> is unreliable, causing random reset.
+> Maybe the incoming upstream bring up can fix it?
+> 
+> Thanks,
+> Qu
+> 
+>>
+>> -- Sebastian
