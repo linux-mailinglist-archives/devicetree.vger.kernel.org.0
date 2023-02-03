@@ -2,168 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E10C8689013
-	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:05:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFC21689022
+	for <lists+devicetree@lfdr.de>; Fri,  3 Feb 2023 08:07:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231732AbjBCHFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 02:05:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56504 "EHLO
+        id S232198AbjBCHGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 02:06:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231478AbjBCHFL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:05:11 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3F08FB5B;
-        Thu,  2 Feb 2023 23:04:51 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 281A924E1EC;
-        Fri,  3 Feb 2023 15:04:48 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 3 Feb
- 2023 15:04:48 +0800
-Received: from [192.168.125.110] (113.72.144.84) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 3 Feb
- 2023 15:04:47 +0800
-Message-ID: <7c6583eb-2c03-a584-1faf-8cbd44674175@starfivetech.com>
-Date:   Fri, 3 Feb 2023 15:04:46 +0800
+        with ESMTP id S229837AbjBCHGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 02:06:21 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C83E130F8;
+        Thu,  2 Feb 2023 23:06:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3BB5961DA4;
+        Fri,  3 Feb 2023 07:06:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6F15C433D2;
+        Fri,  3 Feb 2023 07:06:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675407979;
+        bh=KXmmvj9TMKpfjwzMXsQf9r4+Pnolpsn1ylx8jVAqHq4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=SlMchVuj9lWinpQEd6uO7qvFe1o5sSoHew8GZICqzzXxU3AnDyQ1PtbIKzKDJnQtN
+         SaBTH8JpX2O3W9fmxl86ZQjMElhe31oy0HpHwUN9YaunGdw3brSE2UBQ5B0vfX5HpT
+         5ZBXF2BBjNvXz12w8zBEIzhTLHcZzeKMGU1MrP+O38ryVNA8IJyxhv7ZHFG3GWrlUA
+         hy9VFw62KaTgN67NnjwZC7+KgRMSF+mdLCMGvMrPOCinIAoevmR91CH+SG7Gb2EO1s
+         TnNstzKrasg/8qyIme/sOgJ6fIYOjoSDKmrC4C9gU2FR+m5+ai4TVVGqQOgs+ZQH03
+         qGzzpD9JaJq0Q==
+Message-ID: <b71bd201-81ec-ffa0-f7ff-4a63795beb28@kernel.org>
+Date:   Fri, 3 Feb 2023 08:06:13 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v3 4/5] pinctrl: starfive: Add StarFive JH7110 sys
- controller driver
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Add Qualcomm CCI
+ dt-bindings
+To:     Jun Nie <jun.nie@linaro.org>
+Cc:     myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
+        cw00.choi@samsung.com, bryan.odonoghue@linaro.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230201080227.473547-1-jun.nie@linaro.org>
+ <9ab7383b-f3ed-3e48-d275-3c8933be5f2f@kernel.org>
+ <CABymUCNKvm9+_ascdcWAgA1xGYKPhyO5C97-+rTTK739v+UEew@mail.gmail.com>
+ <957f2bd0-d249-169b-04cc-242b9fcf8c6b@kernel.org>
+ <CABymUCMA9fxGjKAxLhpnSxr92t-oFDfe=mOSiLWb4Jjbzs=n8g@mail.gmail.com>
 Content-Language: en-US
-To:     Andreas Schwab <schwab@suse.de>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Jianlong Huang <jianlong.huang@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20221220005529.34744-1-hal.feng@starfivetech.com>
- <20221220005529.34744-5-hal.feng@starfivetech.com> <mvm4js6zthr.fsf@suse.de>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <mvm4js6zthr.fsf@suse.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.144.84]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <CABymUCMA9fxGjKAxLhpnSxr92t-oFDfe=mOSiLWb4Jjbzs=n8g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 Jan 2023 15:08:48 +0100, Andreas Schwab wrote:
-> On Dez 20 2022, Hal Feng wrote:
+On 03/02/2023 04:45, Jun Nie wrote:
+> Krzysztof Kozlowski <krzk@kernel.org> 于2023年2月2日周四 17:42写道：
+>>
+>> On 02/02/2023 10:29, Jun Nie wrote:
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - qcom,msm8939-cci
+>>>>> +
+>>>>> +  clocks:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  operating-points-v2: true
+>>>>> +  opp-table:
+>>>>> +    type: object
+>>>>> +
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - clocks
+>>>>> +  - operating-points-v2
+>>>>> +  - nvmem-cells
+>>>>
+>>>> ?? You cannot require properties which are not present.
+>>>>
+>>>>> +  - power-domains
+>>>>
+>>>> Same here.
+>>>>
+>>>
+>>> So the properties should be added later, after cpr and fuse nodes are
+>>> available in mainline, right?
+>>
+>> No, binding should be complete, so why would you skip some properties? I
+>> don't see here dependency on other bindings. Unless I missed here
+>> something and there is a dependency? But then what kind? Do you
+>> reference other schema?
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> Sorry, it is a copy/modified error with overlooking some added properties.
 > 
->> diff --git a/drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c b/drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c
->> new file mode 100644
->> index 000000000000..85df9d0ae1de
->> --- /dev/null
->> +++ b/drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c
->> @@ -0,0 +1,979 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Pinctrl / GPIO driver for StarFive JH7110 SoC
->> + *
->> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
->> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
->> + */
->> +
->> +#include <linux/bits.h>
->> +#include <linux/clk.h>
->> +#include <linux/gpio/driver.h>
->> +#include <linux/io.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/module.h>
->> +#include <linux/mutex.h>
->> +#include <linux/of.h>
->> +#include <linux/of_device.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/reset.h>
->> +#include <linux/spinlock.h>
->> +
->> +#include <linux/pinctrl/pinctrl.h>
->> +#include <linux/pinctrl/pinmux.h>
->> +
->> +#include <dt-bindings/pinctrl/starfive,jh7110-pinctrl.h>
->> +
->> +#include "../core.h"
->> +#include "../pinctrl-utils.h"
->> +#include "../pinmux.h"
->> +#include "../pinconf.h"
->> +#include "pinctrl-starfive-jh7110.h"
-> 
-> This misses a couple of headers, see commit 042b93c9b666.
-> 
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c: In function 'jh7110_pin_dbg_show':
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:100:9: error: implicit declaration of function 'seq_printf'; did you mean 'bstr_printf'? [-Werror=implicit-function-declaration]
->   100 |         seq_printf(s, "%s", dev_name(pctldev->dev));
->       |         ^~~~~~~~~~
->       |         bstr_printf
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c: At top level:
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:538:21: error: variable 'jh7110_pinconf_ops' has initializer but incomplete type
->   538 | static const struct pinconf_ops jh7110_pinconf_ops = {
->       |                     ^~~~~~~~~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:539:10: error: 'const struct pinconf_ops' has no member named 'pin_config_get'
->   539 |         .pin_config_get         = jh7110_pinconf_get,
->       |          ^~~~~~~~~~~~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:539:35: warning: excess elements in struct initializer
->   539 |         .pin_config_get         = jh7110_pinconf_get,
->       |                                   ^~~~~~~~~~~~~~~~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:539:35: note: (near initialization for 'jh7110_pinconf_ops')
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:540:10: error: 'const struct pinconf_ops' has no member named 'pin_config_group_get'
->   540 |         .pin_config_group_get   = jh7110_pinconf_group_get,
->       |          ^~~~~~~~~~~~~~~~~~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:540:35: warning: excess elements in struct initializer
->   540 |         .pin_config_group_get   = jh7110_pinconf_group_get,
->       |                                   ^~~~~~~~~~~~~~~~~~~~~~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:540:35: note: (near initialization for 'jh7110_pinconf_ops')
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:541:10: error: 'const struct pinconf_ops' has no member named 'pin_config_group_set'
->   541 |         .pin_config_group_set   = jh7110_pinconf_group_set,
->       |          ^~~~~~~~~~~~~~~~~~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:541:35: warning: excess elements in struct initializer
->   541 |         .pin_config_group_set   = jh7110_pinconf_group_set,
->       |                                   ^~~~~~~~~~~~~~~~~~~~~~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:541:35: note: (near initialization for 'jh7110_pinconf_ops')
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:542:10: error: 'const struct pinconf_ops' has no member named 'pin_config_dbg_show'
->   542 |         .pin_config_dbg_show    = jh7110_pinconf_dbg_show,
->       |          ^~~~~~~~~~~~~~~~~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:542:35: warning: excess elements in struct initializer
->   542 |         .pin_config_dbg_show    = jh7110_pinconf_dbg_show,
->       |                                   ^~~~~~~~~~~~~~~~~~~~~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:542:35: note: (near initialization for 'jh7110_pinconf_ops')
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:543:10: error: 'const struct pinconf_ops' has no member named 'is_generic'
->   543 |         .is_generic             = true,
->       |          ^~~~~~~~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:543:35: warning: excess elements in struct initializer
->   543 |         .is_generic             = true,
->       |                                   ^~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:543:35: note: (near initialization for 'jh7110_pinconf_ops')
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c: In function 'jh7110_gpio_request':
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:548:16: error: implicit declaration of function 'pinctrl_gpio_request' [-Werror=implicit-function-declaration]
->   548 |         return pinctrl_gpio_request(gc->base + gpio);
->       |                ^~~~~~~~~~~~~~~~~~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c: In function 'jh7110_gpio_free':
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:553:9: error: implicit declaration of function 'pinctrl_gpio_free' [-Werror=implicit-function-declaration]
->   553 |         pinctrl_gpio_free(gc->base + gpio);
->       |         ^~~~~~~~~~~~~~~~~
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c: At top level:
-> ../drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c:538:33: error: storage size of 'jh7110_pinconf_ops' isn't known
->   538 | static const struct pinconf_ops jh7110_pinconf_ops = {
->       |                                 ^~~~~~~~~~~~~~~~~~
-> cc1: some warnings being treated as errors
-> make[4]: *** [../scripts/Makefile.build:253: drivers/pinctrl/starfive/pinctrl-starfive-jh7110.o] Error 1
+> +        cci_opp3: opp-cpr14-400000000 {
+> +            opp-hz = /bits/ 64 <400000000>;
+> +            opp-supported-hw = <0x1>;
+> +            required-opps = <&cpr_opp14>;
+> +        };
+> +
+> +        cci_opp4: opp-cpr15-400000000 {
 
-Will add the missing headers. Thanks for your feedback.
+This does not answer my concerns at all. Please include all relevant
+properties in your bindings.
+
+> Documentation/devicetree/bindings/interconnect/qcom,cci.example.dtb:
+> opp-table-cci: Unevaluated properties are not allowed
+> ('opp-cpr14-400000000', 'opp-cpr15-400000000' were unexpected)
+> 
+> Do you know how to fix this dts check warning?
+
+Don't add properties which are not allowed or do not name properties in
+a way it is not allowed.
+
+> The cci_opp3 and cci_opp4 have the same frequency but with different
+> requirements to
+
+So you used the same node names... how do you expect such code to
+compile? In current form bindings do not allow such setup. If you think
+that OS should allow and support it, then change the bindings.
+
 
 Best regards,
-Hal
+Krzysztof
+
