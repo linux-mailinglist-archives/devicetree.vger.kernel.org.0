@@ -2,63 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B67B68AD52
-	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 00:06:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5902568AD56
+	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 00:07:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbjBDXGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Feb 2023 18:06:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58568 "EHLO
+        id S231134AbjBDXHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Feb 2023 18:07:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229687AbjBDXF7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 18:05:59 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D046C22029;
-        Sat,  4 Feb 2023 15:05:58 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id v13so8346909eda.11;
-        Sat, 04 Feb 2023 15:05:58 -0800 (PST)
+        with ESMTP id S229560AbjBDXHE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 18:07:04 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDE58233CE;
+        Sat,  4 Feb 2023 15:07:03 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id bk15so24737098ejb.9;
+        Sat, 04 Feb 2023 15:07:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=SsffKkQbD1Qv01ydUNK4favIJJi7ReNERIe710JhOLc=;
-        b=QX1kKPY2S9den3sFFq9zBF6oaoNhXwtsiXVec6pyWYmj5eaQemIMz1mM+QULn39HDz
-         dYBNcKmZIKouYOSXeXneMDWL8gaAoIIV+VOMaKVmvq8YO+SRxuLpj5I2OliK4gd8rMsz
-         zKgzAPPtIqnyTpLmWZiGNQNDFPuCvJMRMN9m8t3U0mACWmDd66k3QV6PldYWHfWjhVpG
-         d2NiJ2UGwHnHLoYNJ/nHQuiuHQb9Mj1cIuMBuIZj5rro9C89naZqXZPVJ/9uNmhsQYKY
-         IParG5s9MhY67K+abbJILJN4d2HL8Zsv+4b74cX9aFtvzdrc0QAt8JF5l9byhuchfaMg
-         5L+Q==
+        bh=bcb1s9VJkccwiv9hfLYBUmr2IZ71QXiGTqX43dsIWtA=;
+        b=iqKZ7/2QMGcNBHl2zhcSWT0Go4Cnn83/XFH+fJ8f93K67lUCYdXWcSgQOCF43tCbe0
+         Y3CPT9M0KORfH4ZpO5coHLvsitVIPkgC23pzq1MPZQn5muBUIWDKwpP0ztsCs4WWyIAF
+         AGxweuS/dOBKUgWxtLqZbU8VzPt3hEFN6Q3sao4TbKeb8qR8krcFaM4bXSgtc9NP7ViM
+         LTGWij20RPkSMZmb19GRAfrWSgHZQIZGxVN8pJrC25rxRjzxWs2YxCC/tl2C/hpksP1c
+         +TcmDirlh6/7DBswXvv9tOOux7rJHGzpQM+SVj0bdI5zHmdccbsrR1x12ZWbvP7Xjj4L
+         yOFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SsffKkQbD1Qv01ydUNK4favIJJi7ReNERIe710JhOLc=;
-        b=bVwgxmhRvnFB1oo03J11SkhdYwyKCSH7YmDreK9T01tsU5EPovEK8hg9qhTlNRVkdL
-         mIBUeMKXfuu88maQ8HBEAg32a97vVcRFaVMSBZUC25wrbVE2WEKniHp6l1qtTYeKb9v/
-         X23rShVnDUhVYRBL1U2pe9GAPmNG1d8B71wXySQCSpv01lZsWNrbS1a+O7DV4039jAAT
-         ckZEh1aOG1uOiN/tKhDwP9uFIPftNXYsXDgFQ6KVl53TAaTz0TJWy0/OR+05joFJqfrc
-         nujldMBkglVIw+0AjR3cs/1vXus7fq60khscbrllmwCkqtRydmFe0tKbF1Qgymlxrs+5
-         +Gww==
-X-Gm-Message-State: AO0yUKVx1qM+u8hNc55kthPSXA2FZCN2YcunMLNDGLhQ3aV6ONftXUSG
-        /gTY69/LDZkiyI08PnblsW4PK7qab9iwoVHRaSU=
-X-Google-Smtp-Source: AK7set8QzdCT6rdHSN26GRk6gqcqpBSqwKuLjmP897qShiN/tHqfvEeG/Nr2ga8bMvWh7H7Y/+Kp68maCVfvhkCUaRE=
-X-Received: by 2002:a05:6402:1110:b0:48e:b978:cf63 with SMTP id
- u16-20020a056402111000b0048eb978cf63mr3883209edv.57.1675551957173; Sat, 04
- Feb 2023 15:05:57 -0800 (PST)
+        bh=bcb1s9VJkccwiv9hfLYBUmr2IZ71QXiGTqX43dsIWtA=;
+        b=xehjflKaFEOaOvBzAmZDEhA9Skn1DFzlUr4yyuszyxVbS+saGbi5SqfI1KggXHfZHm
+         GOoZPkwPiI/qbltjqk/GZwUx7cNwhC2i8wKW/PL7MOQ03Ndsst4LO5NOPkUTaG2sAWBH
+         d75RrGC5ndpQ7FPcPwaB5RRK8PHg/XyB7yIPWsMiQQnBBvK1UHtQ3eoUffkJDvw4qLmA
+         r4xmvy+nw5XDUOzbPiehbuL19d/n13+qM8uNZ6vwBf6QT82B6ADBvBboeKhKR2ORX5e2
+         JQbloLMHQOfSpVo6FgRNW+lOR/M/ZmD9gWbFkiearWD1VCQ/ofyttzfZFJIEuNUMygQ9
+         IHlQ==
+X-Gm-Message-State: AO0yUKXhsedWl38YMLk1WOGOMrbZh2ZXA+igI+plxhlSiDcsCHEW5L39
+        uFSmmRUPkV6ZSdoQwNwhRBi0tqPDR4c/JpxqeTI=
+X-Google-Smtp-Source: AK7set8dlk/12WJdxLKyI1EkZFKpAReFptsRHZJwEP5g7SdpXMu2cnevSl2MhoMzH8y5Q51SWKBrguS9muf+ZfrC1aE=
+X-Received: by 2002:a17:907:9916:b0:886:2823:423e with SMTP id
+ ka22-20020a170907991600b008862823423emr4321280ejc.284.1675552021901; Sat, 04
+ Feb 2023 15:07:01 -0800 (PST)
 MIME-Version: 1.0
-References: <20230202141520.40003-1-avromanov@sberdevices.ru>
-In-Reply-To: <20230202141520.40003-1-avromanov@sberdevices.ru>
+References: <8df4ceec-663c-dc68-d775-5caeb02c0cca@gmail.com> <66f77c32-2678-3e31-fb00-1294ccaa6045@gmail.com>
+In-Reply-To: <66f77c32-2678-3e31-fb00-1294ccaa6045@gmail.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sun, 5 Feb 2023 00:05:46 +0100
-Message-ID: <CAFBinCC7=QR3Dd_N8VN-L7CpFWETTTehNo6j54f9Y53w8emwUQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] arm64: dts: meson-a1: add gpio_intc node
-To:     Alexey Romanov <avromanov@sberdevices.ru>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        neil.armstrong@linaro.org, khilman@baylibre.com,
-        jbrunet@baylibre.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@sberdevices.ru
+Date:   Sun, 5 Feb 2023 00:06:51 +0100
+Message-ID: <CAFBinCC+4WLgWFn6bPrRVnRwZ46_Fi0gVoh6nHwV2BEwFQgh=A@mail.gmail.com>
+Subject: Re: [PATCH 1/4] arm: dts: meson: adjust order of some compatibles
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>, linux-pwm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
@@ -70,17 +78,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexey,
-
-On Thu, Feb 2, 2023 at 3:15 PM Alexey Romanov <avromanov@sberdevices.ru> wrote:
+On Wed, Feb 1, 2023 at 9:02 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
 >
-> Add gpio interrupt controller node.
+> During review of a new yaml binding, affecting these dts, it turned out
+> that some compatibles aren't ordered as they should be. Order should be
+> most specific to least specific.
 >
-> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
-I have no way to verify the register offset or interrupt numbers.
-Overall it looks good though, so:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
-
-Best regards,
-Martin
+> Suggested-by: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
