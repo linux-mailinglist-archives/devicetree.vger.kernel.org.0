@@ -2,185 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A297D68A9EB
-	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 14:08:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E468C68AA05
+	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 14:30:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231614AbjBDNIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Feb 2023 08:08:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58584 "EHLO
+        id S230126AbjBDNay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Feb 2023 08:30:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231521AbjBDNIE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 08:08:04 -0500
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C03028846;
-        Sat,  4 Feb 2023 05:07:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
-        s=s31663417; t=1675516042;
-        bh=4d6uDZEW3xj/itubMwviUpA+yDytdRhgIPQgLyFYiNw=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=k5r/S7UzGLA1U3fBnx5W7kjfmm5TCMeKoVVW3kTdtNDu3SXz39YjMhoaqNR3TcXfp
-         J6p6R3D69BY/pBNWiQ1AB5/R7/zhWU/bgAg/DnD/pF2N1aRyQ5L2y7oQ35DNYbgNw+
-         qmOuIE7Znvwmdi4UcbzCJqp8G48jH9xlYsQytbEuTrMS8smrJEJx3bNdPPasboAl3Y
-         W3scERnjaF/I0+NHLPvLAWIhu9FQsHfoTwnc9QBDAxHwDPzYyP3kdL1d1LV7ZYPliS
-         udIPW3ZdAQCgGhhd/44d+n7pEaPf3pmOYUfBHvj2ih5fNniVrOwgUsBnSaVfogUBxi
-         rzDQEdlkRaDqw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [157.180.225.92] ([157.180.225.92]) by web-mail.gmx.net
- (3c-app-gmx-bs72.server.lan [172.19.170.208]) (via HTTP); Sat, 4 Feb 2023
- 14:07:22 +0100
-MIME-Version: 1.0
-Message-ID: <trinity-3c3b11eb-2503-4637-b8f6-05686bd1ad88-1675516042495@3c-app-gmx-bs72>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
-Cc:     arinc9.unal@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231171AbjBDNax (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 08:30:53 -0500
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68660CC36
+        for <devicetree@vger.kernel.org>; Sat,  4 Feb 2023 05:30:51 -0800 (PST)
+Received: by mail-pf1-x442.google.com with SMTP id t17so5570418pfj.0
+        for <devicetree@vger.kernel.org>; Sat, 04 Feb 2023 05:30:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FVkdJLwyfwU33wlGnUCxAKm5k44RcZQqior6oaFvcuE=;
+        b=XfyrlbJL6GXcFIz5XpUaWJNvkmTsRb5QUwHie4CTObeVqXW0WSWgZA6m9Iq9DOT3a2
+         Hw+fBePPOzPq/MrBuP3xBx7m9EbozC6e05a0ai8ItCuv0nrMXj2PYMxbenIv3Taz/vAv
+         AqGCtNwKNQHzA5ZI2zvjz+/QxoDgqYACbLgoc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FVkdJLwyfwU33wlGnUCxAKm5k44RcZQqior6oaFvcuE=;
+        b=TwukhnzmZ3qQiZ8XQoCXVFJhlUk2YYr7yG/PlCUM4zifw6EL60cxWsNolNhWOUt6AA
+         1yZHrarvIdyADQuJ0Vpntucij5vI1/ZmG9BsvzP3/QsYJP5GDMQ4mDC3IOTDegw07ln7
+         pY8N1uJ8te3Pkt/YuDDccLG/+EJCfMCYOzvjwLbESo9jL/hlPrTXIepT9Ecb+6gnA0Cc
+         D1WyX44Goca9It3lRYLaB/nz0S+aB5lt22W+7zNfOJCg/TQbvIgJp4lXIxdqVC9osoLr
+         ZHcL1Fyf96YY5k4aP4S5XABtklbSypCskRmGRKEsxE15kj4B/rPwnkdvMZEOsB2b95IG
+         RVZA==
+X-Gm-Message-State: AO0yUKUQF6PK4xC6GEWedY/ZniidBFmV8WTNIuGtnRFHmUWgR5zev2Um
+        9W6tEymJY/PgN1QSDFhW5q3nVA==
+X-Google-Smtp-Source: AK7set+9iHtCCYOSfEMYujSJDtSXZN/ujD2frcnZL18RY+S+5asJRhXbTQnQ3sqA2Na2InRuHuRE0Q==
+X-Received: by 2002:a62:3286:0:b0:59c:8937:435e with SMTP id y128-20020a623286000000b0059c8937435emr784064pfy.28.1675517450787;
+        Sat, 04 Feb 2023 05:30:50 -0800 (PST)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:c1ad:2bdc:7b5a:72e3])
+        by smtp.gmail.com with ESMTPSA id 144-20020a621596000000b00593ce7ebbaasm3655639pfv.184.2023.02.04.05.30.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 04 Feb 2023 05:30:50 -0800 (PST)
+From:   Pin-yen Lin <treapking@chromium.org>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        erkin.bozoglu@xeront.com, Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>
-Subject: Aw: Re:  Re: [PATCH v2 4/5] arm: dts: mt7623: mux phy0 on Bananapi
- BPI-R2
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>
+Cc:     linux-kernel@vger.kernel.org,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>, Hsin-Yi Wang <hsinyi@chromium.org>,
+        devicetree@vger.kernel.org, Pin-yen Lin <treapking@chromium.org>,
+        Allen Chen <allen.chen@ite.com.tw>,
+        Lyude Paul <lyude@redhat.com>, linux-acpi@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
+        Xin Ji <xji@analogixsemi.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        chrome-platform@lists.linux.dev,
+        Alex Deucher <alexander.deucher@amd.com>,
+        Andi Shyti <andi.shyti@linux.intel.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        Imre Deak <imre.deak@intel.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        =?UTF-8?q?Jos=C3=A9=20Exp=C3=B3sito?= <jose.exposito89@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        Thierry Reding <treding@nvidia.com>
+Subject: [PATCH v11 0/9] Register Type-C mode-switch in DP bridge endpoints
+Date:   Sat,  4 Feb 2023 21:30:31 +0800
+Message-Id: <20230204133040.1236799-1-treapking@chromium.org>
+X-Mailer: git-send-email 2.39.1.519.gcb327c4b5f-goog
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date:   Sat, 4 Feb 2023 14:07:22 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <f628db9c-cf61-e1bc-2160-0c8d1caa0fbe@arinc9.com>
-References: <20230201185656.17164-1-arinc.unal@arinc9.com>
- <20230201185656.17164-5-arinc.unal@arinc9.com>
- <AC473057-266B-4403-9270-8007E0EC257C@public-files.de>
- <75d3758a-5502-03a4-b3a2-990f9339705b@arinc9.com>
- <trinity-ec3920c5-a96a-4edf-9ff1-4bf07e7b4d07-1675506452617@3c-app-gmx-bs72>
- <trinity-a01f321e-0973-417e-9a25-9350f63ece37-1675511027203@3c-app-gmx-bs72>
- <f628db9c-cf61-e1bc-2160-0c8d1caa0fbe@arinc9.com>
-Content-Transfer-Encoding: quoted-printable
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:2f7IPHsaQ3ie6c1OE7RdMDBst8fc99xmyWkxGQE6mdqo3Q9nkhqgDxT2q2YVhWGBY+8f1
- g+JJx9fkzmOXlVO49aU2pPjHRK0SEhIGOjEgi74WgwpCnl9P+u3mPT9SNeAaacqq4zeSAQ/+6+Qz
- SZ4e7h1zFScV98n4fr1CUbOYsXBuKVs7ybmXfUoNR2PyCIXZ1Zp3fl2k+QJ9PnjpxFbvjSzGX8Ad
- NLCFWe75a+hjtzX9Lh+wRKEmilHv5ssDpQTphdtdU51du+6AwnZ7dMScQvxTh2pkFERcEuq7znyF
- Ls=
-UI-OutboundReport: notjunk:1;M01:P0:cJEiZ27hpLg=;y/wlEQMmdnR8E/AxCLSuhWSxKIS
- UfDyP6HUnDlHi3NsaCaauT0KK15iFA1Qw0XAHFNZzjnKyzWX+QEjxoHKTGf0XjwZb73PjYQeB
- TioacBowbdM5W9IcQJ/vlnybkg6+AlAI8z2cWmOXWOtRw5vSfpI9S94IIibqgbOa/h3ocHL7g
- 1WzHFUd4GPDGrVfv6XQnBvIL+b1tSIdlAiiyekbV/z53ukK+vtxK4uEVz/2lGVxJEPjs6o6gD
- H7UXTVAJ6dP1fXAM9vITmtAmt87M8unOQpAHwksdh09HVNqe3OaNtR2/xKNGmYGPCGW149H5+
- jOUpn9g8uErT6aZApGwf09u4legp9OkdvQL26hX/zbqlvDfWLRRYubUmAso4F9NjXcfqYIK6K
- mFmwmIE6m8gB+kRmD2Dfj5azf139Qu5Ys78/yf/ExxvU48kY6si5iC+7Bc9E7x7AZtqo2IFgz
- vMDaCB6FN5NbMEtNO7BdYIyb8zfB1zmgndYZt/z/4QoCfuQ5Wvjf1iKgVbBpaOdOBihne0ldI
- f9gn9jO2C7WfMBsQKxPucbVJIyV9XWDLQmvPnGHa8gtnSfT65Q708uWW9JeYLS64y31NxIRcN
- hgc2rbRSpUoHTcT8voSrlB7AeEzTJyHaSdrgXtMhrLjLteJ6GZEa+DCKRa6CbGbzt7ZENo/69
- jESVmMTCOQa1cL5Gg5a0KBJHTq9ryEM6J6xDuV085d6+1PkFWBVHzASeTQcyKLvaJqmDCMydG
- 8Ag7Y5FxcuyaZ6BYcOX64Y3J0tILrjqh9ZJ+m9za+vQAczx5LpSLiiaudFSpOS9a41PbGrUbu
- nhi4yCFGT6zjOBUfO66H11dQ==
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
 
-> Gesendet: Samstag, 04=2E Februar 2023 um 13:12 Uhr
-> Von: "Ar=C4=B1n=C3=A7 =C3=9CNAL" <arinc=2Eunal@arinc9=2Ecom>
-> An: "Frank Wunderlich" <frank-w@public-files=2Ede>
-> Cc: arinc9=2Eunal@gmail=2Ecom, "Rob Herring" <robh+dt@kernel=2Eorg>, "Kr=
-zysztof Kozlowski" <krzysztof=2Ekozlowski+dt@linaro=2Eorg>, "Matthias Brugg=
-er" <matthias=2Ebgg@gmail=2Ecom>, devicetree@vger=2Ekernel=2Eorg, linux-arm=
--kernel@lists=2Einfradead=2Eorg, linux-mediatek@lists=2Einfradead=2Eorg, li=
-nux-kernel@vger=2Ekernel=2Eorg, erkin=2Ebozoglu@xeront=2Ecom, "Sean Wang" <=
-sean=2Ewang@mediatek=2Ecom>, "DENG Qingfang" <dqfext@gmail=2Ecom>
-> Betreff: Re: Aw: Re: [PATCH v2 4/5] arm: dts: mt7623: mux phy0 on Banana=
-pi BPI-R2
->
-> On 4=2E02=2E2023 14:43, Frank Wunderlich wrote:
-> >> Gesendet: Samstag, 04=2E Februar 2023 um 11:27 Uhr
-> >> Von: "Frank Wunderlich" <frank-w@public-files=2Ede>
-> >> An: "Ar=C4=B1n=C3=A7 =C3=9CNAL" <arinc=2Eunal@arinc9=2Ecom>
-> >> Cc: arinc9=2Eunal@gmail=2Ecom, "Rob Herring" <robh+dt@kernel=2Eorg>, =
-"Krzysztof Kozlowski" <krzysztof=2Ekozlowski+dt@linaro=2Eorg>, "Matthias Br=
-ugger" <matthias=2Ebgg@gmail=2Ecom>, devicetree@vger=2Ekernel=2Eorg, linux-=
-arm-kernel@lists=2Einfradead=2Eorg, linux-mediatek@lists=2Einfradead=2Eorg,=
- linux-kernel@vger=2Ekernel=2Eorg, erkin=2Ebozoglu@xeront=2Ecom, "Sean Wang=
-" <sean=2Ewang@mediatek=2Ecom>, "DENG Qingfang" <dqfext@gmail=2Ecom>
-> >> Betreff: Aw: Re: [PATCH v2 4/5] arm: dts: mt7623: mux phy0 on Bananap=
-i BPI-R2
-> >>
-> >> Hi aranc,
-> >>
-> >> have tested this series, basicly it works, but i get only ~620 Mbits/=
-sec (much more i will need on wan) in tx-mode of r2, rx-mode (iperf3 -c IP =
--R on r2) gets full 939 Mbits/sec=2E Both no retransmitts=2E
-> >>
-> >> tried with my laptop which gets 940Mbit/sec in tx mode too=2E=2E=2Eot=
-her end is a R2 with 5=2E15 connected to lan0 (and eth1+aux enabled, dmesg =
-clean so far=2E=2E=2Efor the "kernel log flooded"-comment)=2E
-> >>
-> >> maybe gmac1 needs to be tweaked a bit (clock-settings)?
-> >>
-> >> can you confirm this with your board?
-> >=20
-> > tested the vlan_aware way with 5=2E15=2E80 and got better result
-> >=20
-> > ip link add br0 type bridge vlan_filtering 1
-> > ip l set aux master br0
-> > ip l set wan master br0
-> > bridge vlan add vid 99 dev wan
-> > bridge vlan add vid 99 dev aux
-> > bridge vlan
-> > ip l s eth1 up
-> > ip l s wan up
-> > ip a a 192=2E168=2E0=2E11/24 dev eth1
-> > ip l s br0 up
-> > ip l s aux up
-> >=20
-> > i see traffic on eth1 increasing and iperf3 shows in both directions ~=
-940Mbit/s, no strange mesages in dmesg while testing=2E=2E=2Ewhere do you s=
-ee these?
->=20
-> You didn't put eth1 on a bridge=2E I suggest you read my mails with high=
-er=20
-> attention so both of our time is spent efficiently=2E
+This series introduces bindings for anx7625/it6505 to register Type-C
+mode-switch in their output endpoints, and use data-lanes property to
+describe the pin connections.
 
-sorry if i misseed this detail, but it was not part of the instructions i =
-got from mtk and did not found it in our mail-conversion=2E why do i need t=
-o add the gmac into the bridge??
+This series is not directly related to the built-in mux in anx7625,
+which automatically switches between the two orientations of a single
+Type-C connector. This series adds support of registering mode switches
+for two downstream devices, while we use orientation switches for two
+orientations of the Type-C connector.
 
-the gmac is connected physically to mt7531 p5, and my vlan_aware bridge br=
-idges this port (aux=3Dp5) with wan,=20
-so i see no need to add eth1 to this bridge too=2E=2E=2Etraffic on wan is =
-tagged with vlan 99 and leaving untagged
-on aux which is arriving eth1=2E=2E=2E
+The first two patch modifies fwnode_graph_devcon_matches and
+cros_typec_init_ports to enable the registration of the switches.
 
-> > tested vlan-way with 6=2E2 and felix' Patches to more comparable with =
-your test=2E=2E=2Eand got same result (~625Mbit/s in tx and 940Mbit/s in rx=
--mode=3D-R on r2)=2E=2E=2Eso it seems anything between 5=2E15 and 6=2E2 red=
-uced gmac1 tx bandwidth=2E
->=20
-> I don't see an incentive to investigate unless the issue is confirmed on=
-=20
-> a daily netdev/net-next=2Egit main tree=2E
+Patch 4~6 introduce the bindings for anx7625 and the corresponding driver
+modifications.
 
-have same result on net-next/main with your series, no additional patches =
-on top except adding my build-script and defconfig=2E
+Patch 7~9 add similar bindings and driver changes for it6505.
 
-> >=20
-> > to summarize:
-> >=20
-> > i get same result with your patches and my old vlan_bridge way with sa=
-me codebase=2E=2E=2Ehow do i see your problem with the vlan-bridge-way? Do =
-you test with bpi-r2 or only any other board and change r2 to have same DT?
->=20
-> I tested this only on a Bananapi BPI-R2 using the devicetree with this=
-=20
-> series applied on a few days old netdev/net-next=2Egit main tree=2E
+v10: https://lore.kernel.org/all/20230112042104.4107253-1-treapking@chromium.org/
+v9: https://lore.kernel.org/all/20230109084101.265664-1-treapking@chromium.org/
+v8: https://lore.kernel.org/all/20230107102231.23682-1-treapking@chromium.org/
+v7: https://lore.kernel.org/all/20230105132457.4125372-1-treapking@chromium.org/
+v6: https://lore.kernel.org/all/20221124102056.393220-1-treapking@chromium.org/
+v5: https://lore.kernel.org/linux-usb/20220622173605.1168416-1-pmalani@chromium.org/
 
-btw=2E i do this in my currently very limited free time in short chunks, s=
-o please forgive me if i miss a detail=2E
+Changes in v11:
+- Added missing fwnode_handle_put in drivers/base/property.c
+- Collected Acked-by tag
+- Use fwnode helpers instead of DT
+- Moved the helpers to a new file
+- Use "reg" instead of "data-lanes" to determine the port number
+- Updated the description of the endpoints in the bindings
+- Referenced video-interfaces.yaml instead for the endpoints binding
+- Removed duplicated definitions from inherited schema
+- Moved the "data-lanes" parsing logics to bridge drivers
+- Removed Kconfig dependencies for the bridge drivers
+- Updated the usage of the private bridge driver data
+- Added a clarification on the anx7625 built-in mux in the cover letter
 
-> Ar=C4=B1n=C3=A7
+Changes in v10:
+- Collected Reviewed-by and Tested-by tags
+- Replaced "void *" with "typec_mux_set_fn_t" for mux_set callbacks
+- Print out the node name when errors on parsing DT
+- Use dev_dbg instead of dev_warn when no Type-C switch nodes available
+- Made the return path of drm_dp_register_mode_switch clearer
+- Added a TODO for implementing orientation switch for anx7625
+- Updated the commit message for the absence of orientation switch
+- Fixed typo in the commit message
+
+Changes in v9:
+- Collected Reviewed-by tag
+- Fixed subject prefix again
+- Changed the naming of the example node for it6505
+
+Changes in v8:
+- Fixed the build issue when CONFIG_TYPEC=m
+- Fixed some style issues
+- Fixed the subject prefixes for the bindings patch
+- Fixed the bindings for data-lanes properties
+
+Changes in v7:
+- Fix the long comment lines
+- Extracted the common codes to a helper function
+- Fixed style issues in anx7625 driver
+- Removed DT property validation in anx7625 driver.
+- Fixed style issues in it6505 driver
+- Removed the redundant sleep in it6505 driver
+- Removed DT property validation in it6505 driver
+- Rebased to drm-misc-next
+- Fixed indentations in bindings patches
+- Added a new patch to fix indentations in Kconfig
+
+Changes in v6:
+- Changed it6505_typec_mux_set callback function to accommodate with
+  the latest drm-misc patches
+- Changed the driver implementation to accommodate with the new binding
+- Dropped typec-switch binding and use endpoints and data-lanes properties
+  to describe the pin connections
+- Added new patches (patch 1,2,4) to fix probing issues
+- Changed the bindings of it6505/anx7625 and modified the drivers
+  accordingly
+- Merged it6505/anx7625 driver changes into a single patch
+
+Pin-yen Lin (7):
+  drm/display: Add Type-C switch helpers
+  dt-bindings: display: bridge: anx7625: Add mode-switch support
+  drm/bridge: anx7625: Check for Type-C during panel registration
+  drm/bridge: anx7625: Register Type C mode switches
+  dt-bindings: display: bridge: it6505: Add mode-switch support
+  drm/bridge: it6505: Fix Kconfig indentation
+  drm/bridge: it6505: Register Type C mode switches
+
+Prashant Malani (2):
+  device property: Add remote endpoint to devcon matcher
+  platform/chrome: cros_ec_typec: Purge blocking switch devlinks
+
+ .../display/bridge/analogix,anx7625.yaml      |  94 ++++++++-
+ .../bindings/display/bridge/ite,it6505.yaml   | 101 ++++++++--
+ drivers/base/property.c                       |  16 ++
+ drivers/gpu/drm/bridge/Kconfig                |  20 +-
+ drivers/gpu/drm/bridge/analogix/anx7625.c     | 162 +++++++++++++++-
+ drivers/gpu/drm/bridge/analogix/anx7625.h     |  20 ++
+ drivers/gpu/drm/bridge/ite-it6505.c           | 179 +++++++++++++++++-
+ drivers/gpu/drm/display/Makefile              |   1 +
+ drivers/gpu/drm/display/drm_dp_typec_helper.c | 114 +++++++++++
+ drivers/platform/chrome/cros_ec_typec.c       |  10 +
+ include/drm/display/drm_dp_helper.h           |  31 +++
+ 11 files changed, 717 insertions(+), 31 deletions(-)
+ create mode 100644 drivers/gpu/drm/display/drm_dp_typec_helper.c
+
+-- 
+2.39.1.519.gcb327c4b5f-goog
+
