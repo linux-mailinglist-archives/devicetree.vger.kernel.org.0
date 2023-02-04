@@ -2,109 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B422868AB30
-	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 17:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95DA268AB97
+	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 18:16:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232489AbjBDQ1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Feb 2023 11:27:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45522 "EHLO
+        id S232568AbjBDRQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Feb 2023 12:16:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232230AbjBDQ13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 11:27:29 -0500
-X-Greylist: delayed 71215 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 04 Feb 2023 08:27:25 PST
-Received: from out-183.mta1.migadu.com (out-183.mta1.migadu.com [95.215.58.183])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B236211156
-        for <devicetree@vger.kernel.org>; Sat,  4 Feb 2023 08:27:25 -0800 (PST)
-Date:   Sat, 4 Feb 2023 17:27:15 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
-        t=1675528043;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=i6CjYk8EtEf6fAK6NSdNEXA8dI2Iw2y8gEGpp/id1NY=;
-        b=F6cP3CajJGx3wXlb8Lu+U6S5k0cMuusHCgbFcNrzhJ0P/87aOWHJDHsP+Lbv0HVHDe9RX6
-        Ks/9jvHG9mDea9Kz1si19/efKKoInDFfcPN7ItdWxOQUDxROoeDWPi5r7amJofTD44tOvw
-        tzOvvR6U/i/nk3hIKLr+lLtH9GDspOw=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   Henrik Grimler <henrik@grimler.se>
-To:     David Virag <virag.david003@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        alim.akhtar@samsung.com, m.szyprowski@samsung.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 1/2] arm64: dts: exynos: drop mshc aliases
-Message-ID: <Y96HY3D/JDk9t1MU@localhost>
-References: <20230203204000.14410-1-henrik@grimler.se>
- <20230203204000.14410-2-henrik@grimler.se>
- <398401ce6a1e37b42f895b86fa2ed90c2676e15a.camel@gmail.com>
- <6c528b24aa94751d568d3b43bd00a4795964b3ae.camel@gmail.com>
+        with ESMTP id S232098AbjBDRQw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 12:16:52 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B61711BCF;
+        Sat,  4 Feb 2023 09:16:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=Rz2wOIqPJZoO1YMR0cT+YJTPsv/AXO3X485DH8BF1nU=; b=fZbe5zpPLTA1Jg2yRN6RjqixfX
+        9cTWIUv5vfI1FJpaCr4kPo2trL/AiTmGcL8094Ii4hAgYKjaGRkc+L/sib7PxenptO2Lxt+8LisRl
+        tE175eRIFdGTmCPiH50lsXV9Cjo2q99ILChfI5QV4udEmW5QkK5gYMgp1uB409+EHDmI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pOM9c-0046CH-PA; Sat, 04 Feb 2023 18:16:44 +0100
+Date:   Sat, 4 Feb 2023 18:16:44 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     yanhong wang <yanhong.wang@starfivetech.com>,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v4 0/7] Add Ethernet driver for StarFive JH7110 SoC
+Message-ID: <Y96S/MMzC92cOkbX@lunn.ch>
+References: <20230118061701.30047-1-yanhong.wang@starfivetech.com>
+ <Y8h/D7I7/2KhgM00@spud>
+ <81217dc9-5673-f7eb-3114-b39de8302687@starfivetech.com>
+ <958E7B1C-E0FF-416A-85AD-783682BA8B54@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6c528b24aa94751d568d3b43bd00a4795964b3ae.camel@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+In-Reply-To: <958E7B1C-E0FF-416A-85AD-783682BA8B54@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David,
+> >For the patchs of yt8531, see [1]
+> >
+> >1 - https://patchwork.kernel.org/project/netdevbpf/cover/20230202030037.9075-1-Frank.Sae@motor-comm.com/
+> 
+> Please put that info into the cover of the next round of your submission then.
 
-On Sat, Feb 04, 2023 at 01:45:15PM +0100, David Virag wrote:
-> On Sat, 2023-02-04 at 12:43 +0100, David Virag wrote:
-> > On Fri, 2023-02-03 at 21:39 +0100, Henrik Grimler wrote:
-> > > They are no longer needed after commit a13e8ef6008d ("mmc: dw_mmc:
-> > > exynos: use common_caps").
-> > > 
-> > > Signed-off-by: Henrik Grimler <henrik@grimler.se>
-> > > ---
-> > >  arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi | 2 --
-> > >  arch/arm64/boot/dts/exynos/exynos7-espresso.dts       | 2 --
-> > >  2 files changed, 4 deletions(-)
-> [...]
-> > In dw_mmc-exynos.c, there's a caps array specified like this:
-> > 
-> > /* Common capabilities of Exynos4/Exynos5 SoC */
-> > static unsigned long exynos_dwmmc_caps[4] = {
-> >         MMC_CAP_1_8V_DDR | MMC_CAP_8_BIT_DATA,
-> >         0,
-> >         0,
-> >         0,
-> > };
-> > 
-> > As I understand these capabilities are added to the mmc controllers
-> > based on mshc alias id. Shouldn't these capabilities be moved to
-> > device-tree before removing these aliases? This also applies to the
-> > 32bit arm patch. If I understand correctly, removing these aliases
-> > without adding the capabilities to dt removes the capability
-> > "MMC_CAP_1_8V_DDR" and "MMC_CAP_8_BIT_DATA" from mshc_0/mmc_0.
+These patches just got merged, so it is less of an issue now. Just
+make sure you are testing with net-next.
 
-Thanks for pointing this out (I should have seen it already), will
-send a new version to update device trees and remove the need for
-those mshc alias based capabilities.
+You might need an updated DT blob, the binding for the PHY had a few
+changes between the initial version to what actually got merged.
 
-> Actually, it defaults to 0, so these capabilities will be added to all
-> mmc nodes, not just those with mshc0 alias. That may cause problems.
-
-I think I see what you mean: ctrl_id will be set to 0 if mshc alias is
-missing, and then caps is set as
-    mmc->caps |= drv_data->caps[ctrl_id];
-where
-    drv_data->caps[0] = MMC_CAP_1_8V_DDR | MMC_CAP_8_BIT_DATA
-
-Should be fixed in next version of patchset then in any case, maybe it
-deserves a "Fixes:" tag as well, will have a look in git history if
-there is a particular commit that introduced this situation.
-
-> Best regards,
-> David
-
-Best regards,
-Henrik Grimler
+     Andrew
