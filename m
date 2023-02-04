@@ -2,120 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E03F568AAAE
-	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 15:49:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45C2368AB04
+	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 16:51:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233602AbjBDOtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Feb 2023 09:49:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47690 "EHLO
+        id S231398AbjBDPvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Feb 2023 10:51:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233955AbjBDOtt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 09:49:49 -0500
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 948D535273;
-        Sat,  4 Feb 2023 06:49:45 -0800 (PST)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 0B1115C00EC;
-        Sat,  4 Feb 2023 09:49:45 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Sat, 04 Feb 2023 09:49:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; t=1675522185; x=
-        1675608585; bh=gMF2GYBH1UtrzPcwansQiHlAFbQcqh9mttTQYrPJ6Fk=; b=L
-        xUMCZHVeWVpTjgMEckVHJJ2xwG8302Y+EFEninU5mI5Az3XieJ+wFnic4r78V5BC
-        BdioDdnnpsaCQTptXOMCBfAVVwcNmqcPooinD2woY96DRkDMSUFMHgExRDWSaN1K
-        ITjRktPngy2YIsL/uLYxMfzkRAI24SYqqJvd7eQ0q8qFSEmoZM6RiXbINYV9Bb8S
-        YjYtQzCeWkkh90K1iY9fxGq7GGeCX9E1/a+TCAbVPBOdNnRogZAe+zrnQ0aJngW3
-        2gePpo0d6JtXMrcQ1T1fXRlYalrPiMTv97V+4CaSCcHMojSun91iZlNqD4AYLUz3
-        jrHZ4RboTqHSCCyvbnZYg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1675522185; x=
-        1675608585; bh=gMF2GYBH1UtrzPcwansQiHlAFbQcqh9mttTQYrPJ6Fk=; b=j
-        4Hwd0wmVUOsbmo/ozZmsrivkhAeC8BAmMSEp9MDCPkNDTJjrjns/Ah24Cbqf4TgR
-        XHvY/XI0ZAQFryw37+szzVGHk39mTNPlY7fcxeARNXLqlHwSuJPUTdxDElbxe8nO
-        hg53hgu0s1oP7KeqtVv9X931nW8qYqMmDNkZbMCjPypxtH61s3NUpG9VX8Z74y4K
-        6p9p6cuvgkTFwP8tgU2Wz107xsTJ+6dq5QzM3VMVTGgPn9wMpNF111jRVRRQDMco
-        wt/FAY1/s2/HGyI4l1Wms87w39uk4YylfrJsn/pvaZU/3aKqfncJMvCtZzXwIeG9
-        PlAs4cEbbX1VHbbbMQG4g==
-X-ME-Sender: <xms:iHDeYx4LV1QEi-Tjgm-rM6U07FpVIdikQEOQAd5yLx2oDWqtERxk9Q>
-    <xme:iHDeY-7LqqjHEN3YORxLqrti-j9radWayFGESMZeMbb2JA_T5omStAoTkXbBKmKhU
-    fv-8sS6MJkZ5cqk5g>
-X-ME-Received: <xmr:iHDeY4cAuZ5uuruZ6ncS4JmS3IjKZYvTbUlrSv3wxmOWwawE0JlstrZWfzzftv1aOIVcDBESnWRcFh7k-86zAi5Ox5EV5jaRBwOJ2ao8YXGqtXTMSCPVsDfb1g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudegvddgieekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepkfffgggfvfevfhfhufgjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpeejgfffhfdujeeftdeuudeguedttefgieetffffheejuefguedv
-    heejteeftdfftdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:iHDeY6LvlZ7wOnTn0YYcH7j-jKc6jrnqVUe09Y0LJwIZ2oOFFD22bw>
-    <xmx:iHDeY1JYvtxYbdCaZrzOP7ert_TxMPV2hJNqb5L2BhKyjoK_ud05VA>
-    <xmx:iHDeYzzj4wglxWykOC-5YLfBikH-jJJ9IHM9N_ZSU_IQvK-x6FtAtA>
-    <xmx:iXDeY_w8ab8XNThP-41BpYCbGop_9p0l9YFQQSgdDyz4p-dWbb27iA>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 4 Feb 2023 09:49:43 -0500 (EST)
-Message-ID: <6302b081-fab5-2eea-1a56-5ad903ff7d54@sholland.org>
-Date:   Sat, 4 Feb 2023 08:49:48 -0600
+        with ESMTP id S231347AbjBDPvW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 10:51:22 -0500
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E80D30290;
+        Sat,  4 Feb 2023 07:51:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1675525862; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=mQsJipZtdQgXEqOmZ8v8pAgLCNXaekgbEJPfnORBSlu55YEfOjtCipcRU/CeU77LeRVeiFXCXbBb8ZiTHYhmsET+/3UBjl+HbvIG6vgXcY7eGXrDP47H9H4JRrDY5zW05u7XG31kR3o2F7Etfwfg/JNQOyyo6x+Isnh+OSE/S8M=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1675525862; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=9Is2bS/JDlsK/QwiHcaEE4s56YD3nWP7IFxCKBI5QJk=; 
+        b=mxxZEcvwOKoPbh2AegG2yFp2Ge53+hpycZDAeH2Ab8nNIACmvlwIPwhw5o9NH08CRop9ONiSoiJDlsnWxRXWErX8Hg+35v+YRGUh/8sxsA6a0hxjuea4RJrdqS7Pyt1K1g/WqkJYJ5b52DEPJ38piijOKerjXIbr6a9hpxuVsaE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1675525862;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=9Is2bS/JDlsK/QwiHcaEE4s56YD3nWP7IFxCKBI5QJk=;
+        b=Wi0hFGAPunx9ZfQXgQsq7MSpgE7ResmnViNk9tEvbBHkbnG+AHyQ0S0U+151XAfy
+        kTI8ltaX2YG/KSG/E4Uxz3gccbkVUMEKJ0Qhop86C3dp5aNYXAd0mP9I8Mq0UAKt2LI
+        KfTawugtOlU/78fv8pxkIb97+hf7+/R9Qr+fod3A=
+Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1675525860054747.0245916605178; Sat, 4 Feb 2023 07:51:00 -0800 (PST)
+Message-ID: <822f0d6e-ef25-2cb7-acd9-9e74a680c09a@arinc9.com>
+Date:   Sat, 4 Feb 2023 18:50:55 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: Aw: Re: Re: [PATCH v2 4/5] arm: dts: mt7623: mux phy0 on Bananapi
+ BPI-R2
 Content-Language: en-US
-To:     Joerg Roedel <joro@8bytes.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     arinc9.unal@gmail.com, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, iommu@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>
-References: <20230103010903.11181-1-samuel@sholland.org>
- <Y8qvIRXcCdLZjDCK@8bytes.org> <Y9zgKUUjjPq8ifPn@8bytes.org>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v2 0/6] iommu/sun50i: Allwinner D1 support
-In-Reply-To: <Y9zgKUUjjPq8ifPn@8bytes.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        erkin.bozoglu@xeront.com, Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+References: <20230201185656.17164-1-arinc.unal@arinc9.com>
+ <20230201185656.17164-5-arinc.unal@arinc9.com>
+ <AC473057-266B-4403-9270-8007E0EC257C@public-files.de>
+ <75d3758a-5502-03a4-b3a2-990f9339705b@arinc9.com>
+ <trinity-ec3920c5-a96a-4edf-9ff1-4bf07e7b4d07-1675506452617@3c-app-gmx-bs72>
+ <trinity-a01f321e-0973-417e-9a25-9350f63ece37-1675511027203@3c-app-gmx-bs72>
+ <f628db9c-cf61-e1bc-2160-0c8d1caa0fbe@arinc9.com>
+ <trinity-3c3b11eb-2503-4637-b8f6-05686bd1ad88-1675516042495@3c-app-gmx-bs72>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <trinity-3c3b11eb-2503-4637-b8f6-05686bd1ad88-1675516042495@3c-app-gmx-bs72>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Joerg,
-
-On 2/3/23 04:21, Joerg Roedel wrote:
-> On Fri, Jan 20, 2023 at 04:11:30PM +0100, Joerg Roedel wrote:
->> There is a conflict between these patches and changes in the IOMMU
->> core branch. With those merged in there is a compile warning about 
->> sun50i_iommu_detach_domain() being unused. Fixing that requires
->> removing of 3-4 functions, which I am not sure is the right
->> solution.
->>
->> Once this is fixed I will include the arm/allwinner branch into my
->> next branch again.
+On 4.02.2023 16:07, Frank Wunderlich wrote:
+> Hi
 > 
-> Since there was no reply to this I nuked the patches from the IOMMU 
-> tree. If this is still relevant please resubmit them after the next 
-> merge window.
+>> Gesendet: Samstag, 04. Februar 2023 um 13:12 Uhr
+>> Von: "Arınç ÜNAL" <arinc.unal@arinc9.com>
+>> An: "Frank Wunderlich" <frank-w@public-files.de>
+>> Cc: arinc9.unal@gmail.com, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Matthias Brugger" <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, erkin.bozoglu@xeront.com, "Sean Wang" <sean.wang@mediatek.com>, "DENG Qingfang" <dqfext@gmail.com>
+>> Betreff: Re: Aw: Re: [PATCH v2 4/5] arm: dts: mt7623: mux phy0 on Bananapi BPI-R2
+>>
+>> On 4.02.2023 14:43, Frank Wunderlich wrote:
+>>>> Gesendet: Samstag, 04. Februar 2023 um 11:27 Uhr
+>>>> Von: "Frank Wunderlich" <frank-w@public-files.de>
+>>>> An: "Arınç ÜNAL" <arinc.unal@arinc9.com>
+>>>> Cc: arinc9.unal@gmail.com, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Matthias Brugger" <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, erkin.bozoglu@xeront.com, "Sean Wang" <sean.wang@mediatek.com>, "DENG Qingfang" <dqfext@gmail.com>
+>>>> Betreff: Aw: Re: [PATCH v2 4/5] arm: dts: mt7623: mux phy0 on Bananapi BPI-R2
+>>>>
+>>>> Hi aranc,
+>>>>
+>>>> have tested this series, basicly it works, but i get only ~620 Mbits/sec (much more i will need on wan) in tx-mode of r2, rx-mode (iperf3 -c IP -R on r2) gets full 939 Mbits/sec. Both no retransmitts.
+>>>>
+>>>> tried with my laptop which gets 940Mbit/sec in tx mode too...other end is a R2 with 5.15 connected to lan0 (and eth1+aux enabled, dmesg clean so far...for the "kernel log flooded"-comment).
+>>>>
+>>>> maybe gmac1 needs to be tweaked a bit (clock-settings)?
+>>>>
+>>>> can you confirm this with your board?
+>>>
+>>> tested the vlan_aware way with 5.15.80 and got better result
+>>>
+>>> ip link add br0 type bridge vlan_filtering 1
+>>> ip l set aux master br0
+>>> ip l set wan master br0
+>>> bridge vlan add vid 99 dev wan
+>>> bridge vlan add vid 99 dev aux
+>>> bridge vlan
+>>> ip l s eth1 up
+>>> ip l s wan up
+>>> ip a a 192.168.0.11/24 dev eth1
+>>> ip l s br0 up
+>>> ip l s aux up
+>>>
+>>> i see traffic on eth1 increasing and iperf3 shows in both directions ~940Mbit/s, no strange mesages in dmesg while testing...where do you see these?
+>>
+>> You didn't put eth1 on a bridge. I suggest you read my mails with higher
+>> attention so both of our time is spent efficiently.
+> 
+> sorry if i misseed this detail, but it was not part of the instructions i got from mtk and did not found it in our mail-conversion. why do i need to add the gmac into the bridge??
 
-I am not sure what the right solution is here either, and I have not had
-the chance to look at it again. With my limited understanding of how the
-default domain logic works, and the fact that the IOMMU driver only
-supports one domain, it seems the driver should keep that domain enabled
-permanently, regardless of which devices are attached. So my patch 2
-would be wrong. I will investigate and send a v3 after the merge window.
+I was going to say, to put the host(s) connected to the wan port on the 
+same network as other ports, but using the wan interface for that 
+instead would work. Cool, we can cross this off the list.
 
-Regards,
-Samuel
+> 
+> the gmac is connected physically to mt7531 p5, and my vlan_aware bridge bridges this port (aux=p5) with wan,
+> so i see no need to add eth1 to this bridge too...traffic on wan is tagged with vlan 99 and leaving untagged
+> on aux which is arriving eth1...
+> 
+>>> tested vlan-way with 6.2 and felix' Patches to more comparable with your test...and got same result (~625Mbit/s in tx and 940Mbit/s in rx-mode=-R on r2)...so it seems anything between 5.15 and 6.2 reduced gmac1 tx bandwidth.
+>>
+>> I don't see an incentive to investigate unless the issue is confirmed on
+>> a daily netdev/net-next.git main tree.
+> 
+> have same result on net-next/main with your series, no additional patches on top except adding my build-script and defconfig.
+
+Finding the cause of reduced network performance is quite a challenging 
+task. The only person I know that gives this a serious approach is Rafał 
+Miłecki. There are scripts and things they share on the openwrt-devel 
+mailing list along with details of their investigation, usually for 
+Broadcom SoCs.
+
+I'm no good in this so I'm not going to do anything about it. There are 
+issues with the MediaTek ethernet and MT7530 DSA subdriver that 
+completely break communication which I want to have them addressed.
+
+Arınç
