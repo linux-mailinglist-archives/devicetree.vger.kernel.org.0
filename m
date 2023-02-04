@@ -2,163 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D96FB68A842
-	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 05:43:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BACFE68A847
+	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 05:50:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232637AbjBDEnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Feb 2023 23:43:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36548 "EHLO
+        id S233019AbjBDEuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Feb 2023 23:50:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232611AbjBDEnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 23:43:21 -0500
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C55C252B5;
-        Fri,  3 Feb 2023 20:43:19 -0800 (PST)
-Received: by mail-qt1-x82d.google.com with SMTP id g18so5505487qtb.6;
-        Fri, 03 Feb 2023 20:43:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UxXKGR9ltFdKDl8mSCieW1oHKLB8nv28bH/fp3/rD9Q=;
-        b=LH+/iZF7HBV/S7Xu2nv3FpyfWu5Huh1+YzFFfqLGOtEPgihdZjiGyGITckoBS8rkRy
-         eFuuYKcL6vCQZbyAki1wkhnl4L4teABf4KeXuH7jPGYAHEiUHauV6BBYTWCLlH/S4TEF
-         PArcNV5ldTmaZOE7yUKZxxgXgrX5HdEFX+3z/7LPHATmo+XFZPPx5OfBW/lnBgWR6k8Y
-         8FMMxBgmhcyjjg+5o+Tcp+xBxbOAxfvWzusujSwJehEq9ri1kTJsFJoTCPDIV8+SGeUo
-         6NZp5sha0knnojT9ZKzSGy4bms/ahCgFWjqQxOHXWWVjKiF+JOygdgKy8bWKJjzeBlOs
-         0wZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UxXKGR9ltFdKDl8mSCieW1oHKLB8nv28bH/fp3/rD9Q=;
-        b=P9UXrtX+ThUZ9dXU6vzd1tkOEXwkgLJbDLjqe4W35dBQrSEJT+PaqEg6GOB5wUUxUA
-         KQNC1/mwkxgUNbT39IwL1FYPcq8JNmxwj2HKTXjWCcNoG/gabeAk7qti6tYmifI0FLKK
-         67dFW2KznrrMegDEdnli2HLbRPmjIOAP7tl5VKdHRtkswk2gyKxnMyArWIdHePy63qCA
-         EWuRqXBjnf7lAheyIhSUBo2dA6Rd6D/cpx+1/JJjwFdPBgtNLjW6J2NtRBjAqHV+4sEW
-         S8gd2k2JJDtX8/YMN/3rzNSa7NhEOqm/Kuw6m8UyYN4Kl7HNSKzbRV+ssoFsbCOdMVJ+
-         0ZmA==
-X-Gm-Message-State: AO0yUKUyiNSMVFnX/r8IaM6crdWMaj+wsU0E0lnyhK/gSmy6MLx8oOoR
-        hixJRpRQ0xKAE+9IOSRFcTY=
-X-Google-Smtp-Source: AK7set/lLKkrAGKutVgi4jr5I9+Cu2czUItSKLcD05Owdkr6qDJ8GFzep44BVvRnOmYye2Boa2jrGA==
-X-Received: by 2002:a05:622a:312:b0:3b7:ec1b:1fa7 with SMTP id q18-20020a05622a031200b003b7ec1b1fa7mr22922879qtw.43.1675485798335;
-        Fri, 03 Feb 2023 20:43:18 -0800 (PST)
-Received: from DANNY-DESKTOP.localdomain (071-013-243-092.res.spectrum.com. [71.13.243.92])
-        by smtp.gmail.com with ESMTPSA id l23-20020ac84597000000b003b85ed59fa2sm2882135qtn.50.2023.02.03.20.43.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Feb 2023 20:43:18 -0800 (PST)
-From:   Danny Kaehn <kaehndan@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com
-Cc:     devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: [PATCH v2 4/4] HID: cp2112: Devicetree Support
-Date:   Fri,  3 Feb 2023 22:43:13 -0600
-Message-Id: <20230204044313.364-5-kaehndan@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230204044313.364-1-kaehndan@gmail.com>
-References: <20230204044313.364-1-kaehndan@gmail.com>
+        with ESMTP id S229987AbjBDEui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Feb 2023 23:50:38 -0500
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C9B6187F;
+        Fri,  3 Feb 2023 20:50:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1675486236; x=1707022236;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eqgGciLsAYrfeY4BTuA+7hyygKm5BHIi0UdbiRPqWrw=;
+  b=QelTXUSMJDBJ7XHbdO6+cHv4GcBO+ogb7OZQXBAwq2DCqNKH83s26FoW
+   EYe3YhsFcuqFuJgsLezvx0CiPkZx283vS7DqrNU8LMAh22ibtzRfDz7VC
+   awdEcUNte0UZeLwluOVAoBR8S8qv04/rgcMH8yG6sG18zjX1+YnkZgfOy
+   eMfRfJeusTB3sQqxrECO9faqm9rtCQj8DfRM2wq+1rmsloVYEiIJpbei2
+   EPfItpGrSbfI9rART0FEQ4Ij1Y0l2Z0yHJ7cHaJMwMoKkUX3KCVjOPngj
+   sjXYaOkhJ/6CpzWadmhcBInv6l+tX3I3exdZ0YJ3tNRQw9ITOl1PMNMdq
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="327553180"
+X-IronPort-AV: E=Sophos;i="5.97,272,1669104000"; 
+   d="scan'208";a="327553180"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2023 20:50:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="839822123"
+X-IronPort-AV: E=Sophos;i="5.97,272,1669104000"; 
+   d="scan'208";a="839822123"
+Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 03 Feb 2023 20:50:32 -0800
+Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pOAVT-00013J-2X;
+        Sat, 04 Feb 2023 04:50:31 +0000
+Date:   Sat, 4 Feb 2023 12:49:49 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sascha Hauer <s.hauer@pengutronix.de>, linux-pm@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, kernel@pegutronix.de,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH 18/18] dt-bindings: devfreq: event: convert Rockchip DFI
+ binding to yaml
+Message-ID: <202302041211.DPhrQayE-lkp@intel.com>
+References: <20230203125012.3804008-19-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230203125012.3804008-19-s.hauer@pengutronix.de>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bind i2c and gpio interfaces to subnodes with names
-"i2c" and "gpio" if they exist, respectively. This
-allows the gpio and i2c controllers to be described
-in DT as usual. Additionally, support configuring the
-i2c bus speed from the clock-frequency property.
+Hi Sascha,
 
-Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
----
- drivers/hid/hid-cp2112.c | 22 ++++++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
+I love your patch! Perhaps something to improve:
 
-diff --git a/drivers/hid/hid-cp2112.c b/drivers/hid/hid-cp2112.c
-index 27cadadda7c9..aa634accdfb0 100644
---- a/drivers/hid/hid-cp2112.c
-+++ b/drivers/hid/hid-cp2112.c
-@@ -1234,6 +1234,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 	u8 buf[3];
- 	struct cp2112_smbus_config_report config;
- 	struct gpio_irq_chip *girq;
-+	struct i2c_timings timings;
- 	int ret;
- 
- 	dev = devm_kzalloc(&hdev->dev, sizeof(*dev), GFP_KERNEL);
-@@ -1292,6 +1293,10 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 		goto err_power_normal;
- 	}
- 
-+	dev->adap.dev.of_node   = of_get_child_by_name(hdev->dev.of_node, "i2c");
-+	i2c_parse_fw_timings(&dev->adap.dev, &timings, true);
-+
-+	config.clock_speed = cpu_to_be32(timings.bus_freq_hz);
- 	config.retry_time = cpu_to_be16(1);
- 
- 	ret = cp2112_hid_output(hdev, (u8 *)&config, sizeof(config),
-@@ -1300,7 +1305,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 		hid_err(hdev, "error setting SMBus config\n");
- 		if (ret >= 0)
- 			ret = -EIO;
--		goto err_power_normal;
-+		goto err_free_i2c_of;
- 	}
- 
- 	hid_set_drvdata(hdev, (void *)dev);
-@@ -1322,7 +1327,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 
- 	if (ret) {
- 		hid_err(hdev, "error registering i2c adapter\n");
--		goto err_power_normal;
-+		goto err_free_i2c_of;
- 	}
- 
- 	hid_dbg(hdev, "adapter registered\n");
-@@ -1336,6 +1341,9 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 	dev->gc.ngpio			= 8;
- 	dev->gc.can_sleep		= 1;
- 	dev->gc.parent			= &hdev->dev;
-+#if IS_ENABLED(CONFIG_OF_GPIO)
-+	dev->gc.of_node			= of_get_child_by_name(hdev->dev.of_node, "gpio");
-+#endif
- 
- 	dev->irq.name = "cp2112-gpio";
- 	dev->irq.irq_startup = cp2112_gpio_irq_startup;
-@@ -1376,7 +1384,12 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- err_gpiochip_remove:
- 	gpiochip_remove(&dev->gc);
- err_free_i2c:
-+#if IS_ENABLED(CONFIG_OF_GPIO)
-+	of_node_put(dev->gc.of_node);
-+#endif
- 	i2c_del_adapter(&dev->adap);
-+err_free_i2c_of:
-+	of_node_put(dev->adap.dev.of_node);
- err_power_normal:
- 	hid_hw_power(hdev, PM_HINT_NORMAL);
- err_hid_close:
-@@ -1391,6 +1404,11 @@ static void cp2112_remove(struct hid_device *hdev)
- 	struct cp2112_device *dev = hid_get_drvdata(hdev);
- 	int i;
- 
-+	of_node_put(dev->adap.dev.of_node);
-+#if IS_ENABLED(CONFIG_OF_GPIO)
-+	of_node_put(dev->gc.of_node);
-+#endif
-+
- 	sysfs_remove_group(&hdev->dev.kobj, &cp2112_attr_group);
- 	i2c_del_adapter(&dev->adap);
- 
+[auto build test WARNING on rockchip/for-next]
+[also build test WARNING on arm/for-next arm/fixes arm64/for-next/core clk/clk-next kvmarm/next shawnguo/for-next soc/for-next xilinx-xlnx/master linus/master v6.2-rc6 next-20230203]
+[cannot apply to chanwoo/devfreq-testing]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Sascha-Hauer/PM-devfreq-rockchip-dfi-Embed-desc-into-private-data-struct/20230203-205252
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+patch link:    https://lore.kernel.org/r/20230203125012.3804008-19-s.hauer%40pengutronix.de
+patch subject: [PATCH 18/18] dt-bindings: devfreq: event: convert Rockchip DFI binding to yaml
+reproduce:
+        # https://github.com/intel-lab-lkp/linux/commit/b6385ff60bdb4b1b2895d87a7f294fde81f10ee9
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Sascha-Hauer/PM-devfreq-rockchip-dfi-Embed-desc-into-private-data-struct/20230203-205252
+        git checkout b6385ff60bdb4b1b2895d87a7f294fde81f10ee9
+        make menuconfig
+        # enable CONFIG_COMPILE_TEST, CONFIG_WARN_MISSING_DOCUMENTS, CONFIG_WARN_ABI_ERRORS
+        make htmldocs
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> Warning: Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml references a file that doesn't exist: Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
