@@ -2,106 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13BDF68ACE5
-	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 23:32:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D38E668ACF1
+	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 23:57:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232661AbjBDWcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Feb 2023 17:32:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51984 "EHLO
+        id S230130AbjBDW5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Feb 2023 17:57:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232543AbjBDWcu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 17:32:50 -0500
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4929023C5C
-        for <devicetree@vger.kernel.org>; Sat,  4 Feb 2023 14:32:43 -0800 (PST)
-Received: by mail-pj1-x102e.google.com with SMTP id j1so2486854pjd.0
-        for <devicetree@vger.kernel.org>; Sat, 04 Feb 2023 14:32:43 -0800 (PST)
+        with ESMTP id S229448AbjBDW5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 17:57:01 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5058320077
+        for <devicetree@vger.kernel.org>; Sat,  4 Feb 2023 14:57:00 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id k4so24782788eje.1
+        for <devicetree@vger.kernel.org>; Sat, 04 Feb 2023 14:57:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
+        d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=TCubKHsyMQJF8LMl1XgSOrfeBF7lBTY/RGmJLycWlaU=;
-        b=G2+vuASwFpuwWTpilhz1IvtVsiUT9WhCHPg3bHDt/5F+ZoUeYQwXI0GHaH/YaKtytT
-         o1acMo5Mlm9cllOyD5PirVkDAsyvv3CP6uyWR+LaTPS1ROgZi0SnUgG8oPPxwGDdvf2H
-         Luf92Ex8l5lVs6qa9X7drp1/LtoiKUv6uQViswIbJn67mpOnBEQ7U8Nir6vHJjl4A/oJ
-         +5ukHAB+inYG8Le10OO2jEj7EmNeHwW7lkjz8nuxXrYC+JIa5v+c8qtK+v9w+HDq7apx
-         KU2y4mG6YSECFfteheftSjttr13wzYo3LIzXiFwWhQHZEs641AvyDiOb9vOPwrpjxbKw
-         BE5A==
+        bh=++3ki4CrWn8PwCbV12Du3KDkubTTSliZE+lFg3FXWZA=;
+        b=G6iygtZPFbdD/FLo8tr9r/DmPuXfJxDSYVI/rNJzOq/GHgdHyoLGBn6YJuFDXM0Lf0
+         6S9CQDJdXkMFB0EMa+z3LnDKwnFitIf0tcwk+929vdWDwkmF3N2xoQr/wjsfXSNtZApY
+         qRNVJm8aNRvO1QkNHoK5l4B1Un6QHQE65e96rT5KPrLvpLrqWORKapfVmUj7AGLelZBn
+         L62smTxMu5gfX/c2eGgPQt1Ef/BmkLiEEon96Nw1sRiJKn3wJ1bwtP+TH0Bn3HtO6EXb
+         LaObnPyuLZmPd+J3PmeMTZYjVJMm5/+dcsjjOmRzc4EVlF1M+eL7k2ACBNAf1uA3y/uY
+         +vkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TCubKHsyMQJF8LMl1XgSOrfeBF7lBTY/RGmJLycWlaU=;
-        b=6grrRLOv6GDiqMc/X5XMbWFMTUzLLRGjx3N7ckEOlJPZl0y8kquDh2PWZmo3x0EcHK
-         i2I10qGmHLhDE2tv+jMeGn3twseP5bDtzLqcIbUtOiTSrqReXi1lSSZYFRKx+35d2USY
-         hD16Nb0gw3M+Hz5+PQQTLFPu66sEqw4DTjyetKEh6zC2ELNgzCQLoFm1ZcxUecqnn0jb
-         tPy7/UuQPw3oKp724QXw8MGe817nU9jRihS8Q68iqJ1fWzADphBQU828lp2+f14oPGDa
-         ok5aM4oDOaNJJ2yRSvWYb1DfMi7wxQQLlmaP91n4LoAvVfYz6VlAVxA6UEuuEr+cg1Xx
-         VbQA==
-X-Gm-Message-State: AO0yUKU6Q+STWaaq+tc/iq/hbQrXYl01s5hZKT88yw2X4UB9viqJk/yf
-        ZLJXFqhJ041v7V+S8HpQX/3nEVBI/kiUJ4BchPwS5g==
-X-Google-Smtp-Source: AK7set+WTHxq5oO63yGH1Y9Xnzv5N1lAd2jXSDL3AuczoyplN2Tu7uL6IRfi3QFZwCS/cMVnCxbzD3B8jbvtM9uZpe8=
-X-Received: by 2002:a17:90a:656:b0:226:cff8:6472 with SMTP id
- q22-20020a17090a065600b00226cff86472mr2232226pje.73.1675549962139; Sat, 04
- Feb 2023 14:32:42 -0800 (PST)
+        bh=++3ki4CrWn8PwCbV12Du3KDkubTTSliZE+lFg3FXWZA=;
+        b=IjjDibiIRN4tgPrreMfFNGuCKOnHucFj7N7KEFm6pKrfpBjvG1vkHoP3HYmb1q72/e
+         HxmA10g/kDkm75S8dOlx9nHfLGYczDyoPrutha/gaszIwjLoCRPrY8olOzUxXGdc0kE7
+         YxwkdF/IrggomLLchCeng3gLlJsYXuXIP1AR5R7HK0bSvBlXooONZyP2+niDZHwlStRG
+         ZFkXQooKZrWk/phEX5u2ojALzRAZXlvWeMnf8QqpJQgFo4PnHNqx3/sCSCXMwjpbDv8c
+         AbENl0qo5o2ke0CxnX0iP+GcmNLJvsCAj5NdhlJtnGpTQEVo8FhpnBr5cD4hTvP4KtWb
+         +FQQ==
+X-Gm-Message-State: AO0yUKXB1Qt6VPtdppRQxlatILk1Pywx4yTywRfdfyltsaEncseOa8aX
+        EVBQ90/zWAkFaVuU4a7u8MBFeSg/KIW7iuB9gRI=
+X-Google-Smtp-Source: AK7set+txf4e33E1Ec5PHP4R/1tRJoemicr5j11xoXShzF1b6MM4YFfNPE3KII06yr1QECYsDjVsxMqYKHgJ1uricNM=
+X-Received: by 2002:a17:907:9916:b0:886:2823:423e with SMTP id
+ ka22-20020a170907991600b008862823423emr4316559ejc.284.1675551418807; Sat, 04
+ Feb 2023 14:56:58 -0800 (PST)
 MIME-Version: 1.0
-References: <20230127001141.407071-1-saravanak@google.com> <20230127001141.407071-5-saravanak@google.com>
- <20230130143153.67dsxn4lugfetfwb@bogus> <Y9fe2arI8afeURWn@smile.fi.intel.com>
- <CAGETcx9aPp+JU-hO+fGyGps6jaoKoFzZd2zzy5YZBKoU8G=OhA@mail.gmail.com> <20230131101337.376mnrvhltbsychd@bogus>
-In-Reply-To: <20230131101337.376mnrvhltbsychd@bogus>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Sat, 4 Feb 2023 14:32:05 -0800
-Message-ID: <CAGETcx9Jc1YAV49+gJWo0gFh1rxJ3nwBCw_CKYhAREBwvq5Kcw@mail.gmail.com>
-Subject: Re: [PATCH v2 04/11] gpiolib: Clear the gpio_device's fwnode
- initialized flag before adding
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Linux Kernel Functional Testing <lkft@linaro.org>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
+References: <cb62dfc0-cb3d-beba-6d0b-8db18583dda0@gmail.com>
+ <285b7b4b-4fd4-be5f-266c-96b1ee6f4cbf@gmail.com> <20230201020647.GA2318275-robh@kernel.org>
+ <b0e502fa-ef11-df82-ad45-9367ff7c75b3@gmail.com>
+In-Reply-To: <b0e502fa-ef11-df82-ad45-9367ff7c75b3@gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Sat, 4 Feb 2023 23:56:47 +0100
+Message-ID: <CAFBinCDHtX2W=Sh4ffUbugn+XVH2UcXWKH2Q63W9G074x6o7zw@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -109,113 +73,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 31, 2023 at 2:13 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> On Mon, Jan 30, 2023 at 08:01:17PM -0800, Saravana Kannan wrote:
-> > On Mon, Jan 30, 2023 at 7:14 AM Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> wrote:
-> > >
-> > > On Mon, Jan 30, 2023 at 02:31:53PM +0000, Sudeep Holla wrote:
-> > > > On Thu, Jan 26, 2023 at 04:11:31PM -0800, Saravana Kannan wrote:
-> > > > > Registering an irqdomain sets the flag for the fwnode. But having the
-> > > > > flag set when a device is added is interpreted by fw_devlink to mean the
-> > > > > device has already been initialized and will never probe. This prevents
-> > > > > fw_devlink from creating device links with the gpio_device as a
-> > > > > supplier. So, clear the flag before adding the device.
-> > >
-> > > ...
-> > >
-> > > > > +   /*
-> > > > > +    * If fwnode doesn't belong to another device, it's safe to clear its
-> > > > > +    * initialized flag.
-> > > > > +    */
-> > > > > +   if (!gdev->dev.fwnode->dev)
-> > > > > +           fwnode_dev_initialized(gdev->dev.fwnode, false);
-> > > >
-> > > > This is the one causing the kernel crash during the boot on FVP which
-> > > > Naresh has reported. Just reverted this and was able to boot, confirming
-> > > > the issue with this patch.
-> > >
-> > > I'm wondering if
-> > >
-> > >         if (!dev_fwnode(&gdev->dev)->dev)
-> > >                 fwnode_dev_initialized(&dev_fwnode(gdev->dev), false);
-> > >
-> > > works.
+Hi Heiner,
+
+On Wed, Feb 1, 2023 at 11:13 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+[...]
+> >> +      - items:
+> >> +          - const: amlogic,meson8m2-aobus-pinctrl
+> >> +          - const: amlogic,meson8-aobus-pinctrl
+> >> +      - items:
+> >> +          - const: amlogic,meson8m2-cbus-pinctrl
+> >> +          - const: amlogic,meson8-cbus-pinctrl
 > >
-> > No, that won't help. The problem was that with arm32, we have gpio
-> > devices created without any of_node or fwnode. So I can't assume
-> > fwnode will always be present.
+> > Again, can't have both with and without the fallback allowed.
 > >
+> Hi Martin,
 >
-> Correct, and this one is not even arm32. But it is just reusing a driver
-> that needs to be supported even on arm32.
->
-> Not sure on how to proceed. As a simple way to check, I added a NULL check
-> for fwnode building on top of Andy's suggestion[1]. That works.
->
-> Also the driver in question on arm64 FVP model is drivers/mfd/vexpress-sysreg.c
-> mfd_add_device() in drivers/mfd/mfd-core.c allows addition of devices without
-> of_node/fwnode. I am sure returning error like[2] will break many platforms
-> but I just wanted to confirm the root cause and [2] fixes the boot without
-> NULL check for fwnode in gpiochip_setup_dev().
->
-> Hope this helps.
+> meson8m2 is the only chip version having a fallback for the
+> pinctrl compatible. Is this fallback really needed?
+> Looking at the driver it seems that both compatibles
+> are handled identically.
+Back in the day we decided to duplicate the Meson8 driver code just to
+add four new pin functions that are added by the Meson8m2 SoC
+generation:
+"eth_rxd2", "eth_rxd3", "eth_txd2", "eth_txd3"
 
-Thanks for debugging it for me Sudeep. Incorporated into my v3.
+The compatible string was defined with a similar approach: since
+Meson8m2 just adds a few bits to the Meson8 pin controller it's
+backwards compatible.
 
--Saravana
+If the fallback has to be removed then I'm okay with that but I would
+like to understand it first.
+So far I thought that Rob basically asked to remove the following two
+compatible strings from the enum (as they're listed separately with
+their fallbacks):
+- amlogic,meson8m2-cbus-pinctrl
+- amlogic,meson8m2-aobus-pinctrl
 
->
-> --
-> Regards,
-> Sudeep
->
-> [1]
->
-> -->8
-> diff --git i/drivers/gpio/gpiolib.c w/drivers/gpio/gpiolib.c
-> index b23140c6485f..e162f13aa2c9 100644
-> --- i/drivers/gpio/gpiolib.c
-> +++ w/drivers/gpio/gpiolib.c
-> @@ -577,13 +577,15 @@ static void gpiodevice_release(struct device *dev)
->  static int gpiochip_setup_dev(struct gpio_device *gdev)
->  {
->         int ret;
-> +       struct fwnode_handle *fwnode = dev_fwnode(&gdev->dev);
->
->         /*
->          * If fwnode doesn't belong to another device, it's safe to clear its
->          * initialized flag.
->          */
-> -       if (!gdev->dev.fwnode->dev)
-> -               fwnode_dev_initialized(gdev->dev.fwnode, false);
-> +       if (fwnode && !fwnode->dev)
-> +               fwnode_dev_initialized(fwnode, false);
-> +
->         ret = gcdev_register(gdev, gpio_devt);
->         if (ret)
->                 return ret;
->
-> [2]
->
-> -->8
->
-> diff --git i/drivers/mfd/mfd-core.c w/drivers/mfd/mfd-core.c
-> index 16d1861e9682..3b2c4b0e9a2a 100644
-> --- i/drivers/mfd/mfd-core.c
-> +++ w/drivers/mfd/mfd-core.c
-> @@ -231,9 +231,11 @@ static int mfd_add_device(struct device *parent, int id,
->                         }
->                 }
->
-> -               if (!pdev->dev.of_node)
-> +               if (!pdev->dev.of_node) {
->                         pr_warn("%s: Failed to locate of_node [id: %d]\n",
->                                 cell->name, platform_id);
-> +                       goto fail_alias;
-> +               }
->         }
->
->         mfd_acpi_add_device(cell, pdev);
->
+
+Best regards,
+Martin
