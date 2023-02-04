@@ -2,92 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB8E68A97B
-	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 11:28:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65A6968A99D
+	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 12:16:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230187AbjBDK2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Feb 2023 05:28:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53942 "EHLO
+        id S232679AbjBDLQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Feb 2023 06:16:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229746AbjBDK2D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 05:28:03 -0500
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC68206AE;
-        Sat,  4 Feb 2023 02:27:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
-        s=s31663417; t=1675506452;
-        bh=TQm9ieRv5B09nA3PAa1PAhtz6bSCFkESNEOIL8L9PhM=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=e/SqE1lDQs3/toO9p5vOPJdC+nVYg1tk+mDdWIkRWqESaHbI10EyG4a15OxEmQaVw
-         hV4zkaBBobH6vXMtiPGt6+oevdRnE0xIhzKgRfznhthTySj7PDqz2MxkQxa+EV97z4
-         NgsSZopxc+kzmHAaeugb8PIer69ytNC/NKHezHJTM+XxN6GcqKE9+xo6PUTBXVp2em
-         9ENvh6jWupG3zD+IEGhhzTnv9DPdjWUAKvid6Tjjr/rU8FTU91oao91BITsSZfPuky
-         iCxxGvN7DaVzmka/Xiwl+43iRieZWgWjG9vjLhyJykeFfLeBq0jHiqRFy81ifN1v0N
-         GGygXljgpJybA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [157.180.225.92] ([157.180.225.92]) by web-mail.gmx.net
- (3c-app-gmx-bs72.server.lan [172.19.170.208]) (via HTTP); Sat, 4 Feb 2023
- 11:27:32 +0100
+        with ESMTP id S231499AbjBDLQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 06:16:48 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05983305D2
+        for <devicetree@vger.kernel.org>; Sat,  4 Feb 2023 03:16:47 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id r27so2836442wrr.1
+        for <devicetree@vger.kernel.org>; Sat, 04 Feb 2023 03:16:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=jAUUoB6Fjeu0/lIGXQvuX4/tL5vm4B25eu86co/9WUk=;
+        b=f2VzxbeJ4J8SnyUPEaO+X8/IbhzVnEeUjqGDKkHKFtLZJ3+nFDJH66E0R2Faw3TKVP
+         Fwruo2n7t3A3diGoryTDYV78IeiF9v9d3agU+X5wlhUdh1S79peLLOYrLu1/laVJsZZy
+         rHNMnNfQmOi2Lp9bf/tdUAQd4dA9Z0oJ3dOCW9ph9F1DujY4WIyaWHsidwJHecntjYvi
+         BsVYZb7uZZD6R2RElsc/ZvSc1FHzF6KWYatqPyvtUVblgdHVRQmw5F6g7CIx5HY/mJfd
+         yMI2c//sSZUJ4SDRz9ud19H9RxPmR3I1B/hGDUYGRs++YdEQWUI5GdTU1dZDHcBDZQJd
+         E1IA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jAUUoB6Fjeu0/lIGXQvuX4/tL5vm4B25eu86co/9WUk=;
+        b=iRDij7tmrF5y6Mb4L65fcadiZa81fmSqfbVcGcGaqrHRBs8LfHbUhh0xJxwG0t8JQE
+         /2AffjIl4IrAkYdh6ixziJPrs1TXeQjyrVY3ARRiAZuyYMvORGCSDdT3yDAj6fvsh+sE
+         hK3B8jb3IuKWV2OrMuBYtAAd/wx5dbabcmjnc46PNcnbUEXj+D+HRlTQbIE9Fpiayegp
+         UkchOnr48YDi0BQUhQthqdujrCDMBa7qS6b+nCWQ0Cj+C4sikmnspWunw94a7t4vqwGg
+         oHe/jyJzI6AD50wGVwX+BIY7B0teeCF9c9tYgEMf3fMzg0+4FTd2QWmGMQSpv+nTr0l6
+         vG9A==
+X-Gm-Message-State: AO0yUKVQ6mE/DazQmVGuwW/FGZUk6criiK3HwryjiH9myFxq0zqeH+rJ
+        Shpfq85d77yKbC3lvYe3o+z8Sw==
+X-Google-Smtp-Source: AK7set+uyna7tu+ZOI9aDM/7MhG5n/BQC3GzhmaD9iax0kaxgRm3XNbpXQ2HPWRjZgzuWN3gicv6Bw==
+X-Received: by 2002:a5d:5284:0:b0:2c3:d296:7a84 with SMTP id c4-20020a5d5284000000b002c3d2967a84mr3783681wrv.17.1675509405536;
+        Sat, 04 Feb 2023 03:16:45 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id v7-20020adfebc7000000b002bc7e5a1171sm4216678wrn.116.2023.02.04.03.14.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 04 Feb 2023 03:16:44 -0800 (PST)
+Message-ID: <1dcbf0b2-4346-8f74-2e57-73081cfe2e8e@linaro.org>
+Date:   Sat, 4 Feb 2023 12:14:52 +0100
 MIME-Version: 1.0
-Message-ID: <trinity-ec3920c5-a96a-4edf-9ff1-4bf07e7b4d07-1675506452617@3c-app-gmx-bs72>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
-Cc:     arinc9.unal@gmail.com, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 1/2] dt-bindings: media: rc: add rc-beelink-mxiii
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Sean Young <sean@mess.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        erkin.bozoglu@xeront.com, Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>
-Subject: Aw: Re: [PATCH v2 4/5] arm: dts: mt7623: mux phy0 on Bananapi
- BPI-R2
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230204074501.3421910-1-christianshewitt@gmail.com>
+ <20230204074501.3421910-2-christianshewitt@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230204074501.3421910-2-christianshewitt@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Date:   Sat, 4 Feb 2023 11:27:32 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <75d3758a-5502-03a4-b3a2-990f9339705b@arinc9.com>
-References: <20230201185656.17164-1-arinc.unal@arinc9.com>
- <20230201185656.17164-5-arinc.unal@arinc9.com>
- <AC473057-266B-4403-9270-8007E0EC257C@public-files.de>
- <75d3758a-5502-03a4-b3a2-990f9339705b@arinc9.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:c986fcPlX4Ooen57ZAsZI0v2Yr5gNsX/1CTe4qNxcW5X99bLBmBFzw1ZpGrQpvfYPoycP
- cVedJWKkyCyU1Tg73x1tq5Z8GGGgGFdLqq4CnoKY4CXtDCm+OdJ25BPx7WWfUjPaET4bkCXnQkBv
- VJKg0z3wBAN1WShT9ozrT69beX4iE5QVG/9IjTWASyoSq7OJpFBlHE3V78D1wgDHacV4YKPBAzzJ
- +53qy5TxXoiyrIrT2FpnDL350VoxN6UouGb2JdzxtY2jhCJGdyh2prXYm/i5XS7TH9l0DG1nKVZa
- ZU=
-UI-OutboundReport: notjunk:1;M01:P0:Bw/EWLX9TdI=;JrT8R8+e0Rj9R2TqIcm7voib42M
- J9cyBYh2rNxoAOlzMIJEezkbGbB+dtR3G1Sca/0txnIsvMVamGEixTZajJKkKQ7WWw5XhipaT
- STENGATDGymObLbTusXAdYfME2xgwwCdqgE7ANBl9ZPw4bw/Z/gWQ8v1Y/iQ1pqM8EHUjXR3D
- L5XdyhHhpY7R0grdQ/5R8jxPUCekbcUUu/FiOCxnlKuVm52ISypgEutXxdeauDYk6pr1LtN5b
- m7QU4DfG4gNoulZYyPHX+F0OqT0N8eY2tHhBCAvajWIcQRi4StvkY7hHAqhgZVyCKONUp+TEk
- 5b6QFUHmcQXAoLve0bsU02TUGTw99Kc8FLQZ8oMIWR2NKfnyqcrVs5w7wPdAR4JlRdpE3Qv5H
- 49a+mxT81epnsofuW1086MT3lIShxKkiRreThzIktrMOg0BaVDPafwSVGXiI7UbbWyFJO0kPh
- AaOyS/LQpslLYFdySQdU5XNMIpGPkHqJqksJBET1xP/Tnhabv1MPTt+KyVicEBYxhL95UMgAj
- /1Xi0VkaHGkOPzoIBOhKJtBN/H/ToYsqzzuZrWdWxzDXhw0GqvzpCTd7qA+rVgcbkJdG9gIf3
- 2MYb9TitSadMpVI/vNXVcFh6gssOddPt2UVookHzSlbcWtk/EZANeDgrUW8mW9rqjrauktiWp
- 9G/NTiSatChiMIPY69AT20PH/W5CHCSiMHNrguIQqAa/PJvgBBkTyZGpKGVsViTDUNp3NpTjw
- G0mKXu/dZqJemzM/LosyUV22lBjXxmOYRj3BFhVPJHUCYWZH/kPhzaHihEK/9HhYTZmlkBCIF
- ZlcJWXRfn7rE61Ky9jZ0WxEVJulbpQhbQhqM8GfcG6Q1Y=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi aranc,
+On 04/02/2023 08:45, Christian Hewitt wrote:
+> Add a binding for the rc-beelink-mxiii remote keymap
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/media/rc.yaml | 1 +
 
-have tested this series, basicly it works, but i get only ~620 Mbits/sec (much more i will need on wan) in tx-mode of r2, rx-mode (iperf3 -c IP -R on r2) gets full 939 Mbits/sec. Both no retransmitts.
 
-tried with my laptop which gets 940Mbit/sec in tx mode too...other end is a R2 with 5.15 connected to lan0 (and eth1+aux enabled, dmesg clean so far...for the "kernel log flooded"-comment).
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-maybe gmac1 needs to be tweaked a bit (clock-settings)?
+Best regards,
+Krzysztof
 
-can you confirm this with your board?
-
-regards Frank
