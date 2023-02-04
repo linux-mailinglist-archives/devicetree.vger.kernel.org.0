@@ -2,157 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D10068A8BF
-	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 08:13:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67DB868A8D0
+	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 08:45:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232165AbjBDHNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Feb 2023 02:13:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37404 "EHLO
+        id S231171AbjBDHpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Feb 2023 02:45:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229877AbjBDHNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 02:13:12 -0500
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36EE61A481;
-        Fri,  3 Feb 2023 23:13:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-        bh=H/qDAs0aG9wKJfINKmJuWustItYw8wCMUlwnF3oMGdU=; b=z5u9JO2WNGqw2FmnLGZV+STHzI
-        u+lGL5wRuHWmUQNjKyfFxv3qNlXXX7xe0DZttGfSCbKw8zJFexb09aVjYtIWAd3qQteWKAcQK2e+u
-        dWaoDJ+UAIozY3S9d/1dF03b1eGimxKlxC/HloEOJC28jyDHXbzyUDIxRrHu196+wabf4VN+U8nbL
-        N1JstiDtDEtDLDnfdNNjhG69rMSkOhs6KTF0rGQOz4mMOsh7b1QzjEnTZe2KCUMQKQQf4W35uSUQT
-        KpWwhzmydA0ngbslng2MhmxFlkKFArfMBXl8RI7G8Ml8V03248Bnqid4iRnf+d/EaYbjGNyIgOLsP
-        SKpKA+hw==;
-Received: from [2601:1c2:d00:6a60::9526]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1pOCjT-004cp8-Ep; Sat, 04 Feb 2023 07:13:07 +0000
-Message-ID: <b70e8b58-e981-1222-4d79-1e408ad60f18@infradead.org>
-Date:   Fri, 3 Feb 2023 23:13:05 -0800
+        with ESMTP id S229449AbjBDHpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 02:45:09 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC4017167;
+        Fri,  3 Feb 2023 23:45:08 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id a2so6129354wrd.6;
+        Fri, 03 Feb 2023 23:45:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vi23fWS6AbqcC/EHm6LEeuRMdq+4C0t28dniBnsKSyw=;
+        b=O+KhABVpghMPPtrq2guyS0hz4odNOKgTzu/oVSamAh00RRleZRSkGBbMR8qnVHABPh
+         vUEP41OLdSVCNTauPunl6XFExN7dUCDuhMdE3Mi6GrQOB//+aVqpXAw3tVF7IGu23Wh5
+         HEpLJV+kfdybfUHtYDh6+r+UKCt0wZ7jRhAthqpLiu2dITx7QdiIHumb7iPLIXT7+8Ur
+         dYIpcxlhsyhwk9cD5FEJ41Cs68yRV/x0B/f31c56AjOvqh2mVBG7Ya0znc9QDdQWpP9x
+         gdCNoxiJSB6r6iByCbRpFNjhYRh7DEHeCW6BJCcTaTj65c05p0iIWzqs6hoa/uOJKN6L
+         +YPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vi23fWS6AbqcC/EHm6LEeuRMdq+4C0t28dniBnsKSyw=;
+        b=IsnhXtJ00WtkH0v7n70/NXHiDKhouGuQgSUBtzpPvyKi3tvd9O2y5QRccgUgEXkVMo
+         KaStZSWv7LGG2tNLY0NZvvBuFhm4e+p29Xklxdo6IxaGbw9nzn4rp7WcyEvsDRx73eMu
+         lwvz1xPYG9CRjxGvRJpcQi3c/WPiZo7xtRyJAvbHv2mGwPvjR9cVvp67si0aEyKmV1X/
+         1pFz6PozO7V9jSLtI/arsavtr45rvNvyajT286jZDov5vxzoBjcGk14k6SyA20kz/BgB
+         3j7dsWX5cLLEhX6tn4wpoiQugWMJNhKyBF3QCoY8LoxR4V574d5jJu354OzGOccPaVsG
+         tGzA==
+X-Gm-Message-State: AO0yUKXR6cmnLDtTmg07KpcR9XYikYb6InPYZh5QsROeuuBakKW0AkFj
+        DM9+4R8i+8NijnTDr6hNPJw=
+X-Google-Smtp-Source: AK7set+p5IYw4urrrNtzVH7M1FRDr9IFZf/VnXa0Kw4ejbTUTLwR8Ie8/Wq6AL1hY9oo3VORPd7BQQ==
+X-Received: by 2002:adf:de8f:0:b0:2c3:db5b:7280 with SMTP id w15-20020adfde8f000000b002c3db5b7280mr2205110wrl.56.1675496706068;
+        Fri, 03 Feb 2023 23:45:06 -0800 (PST)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id f2-20020a5d50c2000000b00267bcb1bbe5sm3735814wrt.56.2023.02.03.23.45.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Feb 2023 23:45:05 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Sean Young <sean@mess.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v2 0/2] media: rc: add keymap and bindings for Beelink Mini MXIII remote
+Date:   Sat,  4 Feb 2023 07:44:59 +0000
+Message-Id: <20230204074501.3421910-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2] sh: init: use OF_EARLY_FLATTREE for early init
-Content-Language: en-US
-To:     "D. Jeff Dionne" <djeffdionne@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Rich Felker <dalias@libc.org>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-        linux-sh@vger.kernel.org
-References: <20230204055116.22591-1-rdunlap@infradead.org>
- <C8F0719C-0C0A-45F0-A4DA-66DE807DECDA@gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <C8F0719C-0C0A-45F0-A4DA-66DE807DECDA@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds bindings and keymap for the Beelink Mini MXIII Android
+STB device. This is a very simple remote with a real MUTE button (not a
+mouse button remapped).
 
+Changes since v1:
+- Split bindings and keymap into separate patches
 
-On 2/3/23 23:05, D. Jeff Dionne wrote:
-> Randy, which SH3 chipset target are you building for?  Of course all that stay need to be converted to device tree, but a DT SH3 proof of existence that you build for already will surely cover good swath of the missing drivers.
-> 
+Christian Hewitt (2):
+  dt-bindings: media: rc: add rc-beelink-mxiii
+  media: rc: add Beelink Mini MXIII keymap
 
-Hi Jeff,
-I don't have a specific target.  I'm just fixing a build error.
-
-> 
->> On Feb 4, 2023, at 14:51, Randy Dunlap <rdunlap@infradead.org> wrote:
->>
->> When CONFIG_OF_EARLY_FLATTREE and CONFIG_SH_DEVICE_TREE are not set,
->> SH3 build fails with a call to early_init_dt_scan(), so in
->> arch/sh/kernel/setup.c and arch/sh/kernel/head_32.S, use
->> CONFIG_OF_EARLY_FLATTREE instead of CONFIG_OF_FLATTREE.
->>
->> Fixes this build error:
->> ../arch/sh/kernel/setup.c: In function 'sh_fdt_init':
->> ../arch/sh/kernel/setup.c:262:26: error: implicit declaration of function 'early_init_dt_scan' [-Werror=implicit-function-declaration]
->>  262 |         if (!dt_virt || !early_init_dt_scan(dt_virt)) {
->>
->> Fixes: 03767daa1387 ("sh: fix build regression with CONFIG_OF && !CONFIG_OF_FLATTREE")
->> Fixes: eb6b6930a70f ("sh: fix memory corruption of unflattened device tree")
->> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
->> Suggested-by: Rob Herring <robh+dt@kernel.org>
->> Cc: Frank Rowand <frowand.list@gmail.com>
->> Cc: devicetree@vger.kernel.org
->> Cc: Rich Felker <dalias@libc.org>
->> Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
->> Cc: Arnd Bergmann <arnd@arndb.de>
->> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
->> Cc: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
->> Cc: linux-sh@vger.kernel.org
->> ---
->> v2: use Suggested-by: for Rob.
->>    add more Cc's.
->>
->> arch/sh/kernel/head_32.S |    6 +++---
->> arch/sh/kernel/setup.c   |    4 ++--
->> 2 files changed, 5 insertions(+), 5 deletions(-)
->>
->> diff arch/sh/kernel/setup.c arch/sh/kernel/setup.c
->> diff -- a/arch/sh/kernel/setup.c b/arch/sh/kernel/setup.c
->> --- a/arch/sh/kernel/setup.c
->> +++ b/arch/sh/kernel/setup.c
->> @@ -244,7 +244,7 @@ void __init __weak plat_early_device_set
->> {
->> }
->>
->> -#ifdef CONFIG_OF_FLATTREE
->> +#ifdef CONFIG_OF_EARLY_FLATTREE
->> void __ref sh_fdt_init(phys_addr_t dt_phys)
->> {
->> 	static int done = 0;
->> @@ -326,7 +326,7 @@ void __init setup_arch(char **cmdline_p)
->> 	/* Let earlyprintk output early console messages */
->> 	sh_early_platform_driver_probe("earlyprintk", 1, 1);
->>
->> -#ifdef CONFIG_OF_FLATTREE
->> +#ifdef CONFIG_OF_EARLY_FLATTREE
->> #ifdef CONFIG_USE_BUILTIN_DTB
->> 	unflatten_and_copy_device_tree();
->> #else
->> diff -- a/arch/sh/kernel/head_32.S b/arch/sh/kernel/head_32.S
->> --- a/arch/sh/kernel/head_32.S
->> +++ b/arch/sh/kernel/head_32.S
->> @@ -64,7 +64,7 @@ ENTRY(_stext)
->> 	ldc	r0, r6_bank
->> #endif
->>
->> -#ifdef CONFIG_OF_FLATTREE
->> +#ifdef CONFIG_OF_EARLY_FLATTREE
->> 	mov	r4, r12		! Store device tree blob pointer in r12
->> #endif
->> 	
->> @@ -315,7 +315,7 @@ ENTRY(_stext)
->> 10:		
->> #endif
->>
->> -#ifdef CONFIG_OF_FLATTREE
->> +#ifdef CONFIG_OF_EARLY_FLATTREE
->> 	mov.l	8f, r0		! Make flat device tree available early.
->> 	jsr	@r0
->> 	 mov	r12, r4
->> @@ -346,7 +346,7 @@ ENTRY(stack_start)
->> 5:	.long	start_kernel
->> 6:	.long	cpu_init
->> 7:	.long	init_thread_union
->> -#if defined(CONFIG_OF_FLATTREE)
->> +#if defined(CONFIG_OF_EARLY_FLATTREE)
->> 8:	.long	sh_fdt_init
->> #endif
->>
-> 
+ .../devicetree/bindings/media/rc.yaml         |  1 +
+ drivers/media/rc/keymaps/Makefile             |  1 +
+ drivers/media/rc/keymaps/rc-beelink-mxiii.c   | 57 +++++++++++++++++++
+ include/media/rc-map.h                        |  1 +
+ 4 files changed, 60 insertions(+)
+ create mode 100644 drivers/media/rc/keymaps/rc-beelink-mxiii.c
 
 -- 
-~Randy
+2.34.1
+
