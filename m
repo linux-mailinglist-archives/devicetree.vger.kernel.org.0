@@ -2,74 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1059768A9C8
-	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 13:45:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A297D68A9EB
+	for <lists+devicetree@lfdr.de>; Sat,  4 Feb 2023 14:08:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229746AbjBDMpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Feb 2023 07:45:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47842 "EHLO
+        id S231614AbjBDNIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Feb 2023 08:08:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230187AbjBDMpW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 07:45:22 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDD121F5EF;
-        Sat,  4 Feb 2023 04:45:19 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id h12so6748883wrv.10;
-        Sat, 04 Feb 2023 04:45:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5o4VrqO+lpoBcJhRS/ry6wtaBgkv6sRhf4TTq3fFYGU=;
-        b=if6dR3Riu9dfFRElqlkoiExFSN0oFvJdPijCKvWRhIw7/N1luihtf9E54Gb10bPGCF
-         qdrtERUJk83SYzAD+ZXbs7vpNHfsO4xqEOq6d2ggamTLYvQ9A5RTMPAlhkFYQlUW32mQ
-         KUijL9VtQFAl6V2lKdBob1gcLSkoXLD8zFJjyGwpBJUxhMmVHzFNSEXFN/ieC3zk83JZ
-         eNcaRBvgSMj998qCGaAbdDCnjjz2dTlm2gEh/ihiX6McHR8gN9L5fAWx/TKX2f0Q3pmJ
-         kkJGLLNAJCT+FSSQaPcYhykgGlC9lag7wvXZMmPxCEQZnrMBIVOjwMLzXh+acZ4FicVF
-         ChJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=5o4VrqO+lpoBcJhRS/ry6wtaBgkv6sRhf4TTq3fFYGU=;
-        b=zsV66TKBFZkm5NN4ZL5gtcx0envFm6eLWHf5fFCcxGGy5YdzX2DWLUMf0ylIz7EbBP
-         LHoURYuyCvylhfVl6rjYeGtOTb+SG5vQSMruOQT8AiU0gg5PmukBm78q/hJ4F/RFtqMn
-         zIhNlbPmKcWcaIPjHYWRaSNVXI2vZKg18PBR99t7luw6h1ZdUpzC64riUjxGNWJZ0UJW
-         OCVfPlSi6hR1d2nBdOmAaUqOm1k2aVdiYVifPBSaJg36aPLCYd627atm5xq7i1jPpDPV
-         LPTXBROBnjDVetVZlsR/xEXr6fh5LhEO1sxUrVectpBdRNpXRKhcwa6bqORgDuQLr84Q
-         aZhQ==
-X-Gm-Message-State: AO0yUKUm9BMVzUEXKQYZGKXIN7S7gGfS5lqESEFOx0cefiyGXIYbb1Ts
-        kmFKG4YqXm94SHUZUGTVezU=
-X-Google-Smtp-Source: AK7set8wk4C6Ekf8Xwfo2NAOz7nxHbT8manxu13zfaDYG04nPGjvzYBFJ/I9KmIPHqdVwiTl6JSaBQ==
-X-Received: by 2002:a5d:4452:0:b0:2bf:e9fb:f1d4 with SMTP id x18-20020a5d4452000000b002bfe9fbf1d4mr12038787wrr.38.1675514718189;
-        Sat, 04 Feb 2023 04:45:18 -0800 (PST)
-Received: from ?IPv6:2a02:ab88:368f:2080:d12e:7ef:c89a:f600? ([2a02:ab88:368f:2080:d12e:7ef:c89a:f600])
-        by smtp.gmail.com with ESMTPSA id t6-20020adfa2c6000000b002be063f6820sm4482827wra.81.2023.02.04.04.45.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Feb 2023 04:45:17 -0800 (PST)
-Message-ID: <6c528b24aa94751d568d3b43bd00a4795964b3ae.camel@gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: exynos: drop mshc aliases
-From:   David Virag <virag.david003@gmail.com>
-To:     Henrik Grimler <henrik@grimler.se>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
-        m.szyprowski@samsung.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Date:   Sat, 04 Feb 2023 13:45:15 +0100
-In-Reply-To: <398401ce6a1e37b42f895b86fa2ed90c2676e15a.camel@gmail.com>
-References: <20230203204000.14410-1-henrik@grimler.se>
-         <20230203204000.14410-2-henrik@grimler.se>
-         <398401ce6a1e37b42f895b86fa2ed90c2676e15a.camel@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3 
+        with ESMTP id S231521AbjBDNIE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 08:08:04 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C03028846;
+        Sat,  4 Feb 2023 05:07:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1675516042;
+        bh=4d6uDZEW3xj/itubMwviUpA+yDytdRhgIPQgLyFYiNw=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=k5r/S7UzGLA1U3fBnx5W7kjfmm5TCMeKoVVW3kTdtNDu3SXz39YjMhoaqNR3TcXfp
+         J6p6R3D69BY/pBNWiQ1AB5/R7/zhWU/bgAg/DnD/pF2N1aRyQ5L2y7oQ35DNYbgNw+
+         qmOuIE7Znvwmdi4UcbzCJqp8G48jH9xlYsQytbEuTrMS8smrJEJx3bNdPPasboAl3Y
+         W3scERnjaF/I0+NHLPvLAWIhu9FQsHfoTwnc9QBDAxHwDPzYyP3kdL1d1LV7ZYPliS
+         udIPW3ZdAQCgGhhd/44d+n7pEaPf3pmOYUfBHvj2ih5fNniVrOwgUsBnSaVfogUBxi
+         rzDQEdlkRaDqw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [157.180.225.92] ([157.180.225.92]) by web-mail.gmx.net
+ (3c-app-gmx-bs72.server.lan [172.19.170.208]) (via HTTP); Sat, 4 Feb 2023
+ 14:07:22 +0100
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Message-ID: <trinity-3c3b11eb-2503-4637-b8f6-05686bd1ad88-1675516042495@3c-app-gmx-bs72>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
+Cc:     arinc9.unal@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        erkin.bozoglu@xeront.com, Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>
+Subject: Aw: Re:  Re: [PATCH v2 4/5] arm: dts: mt7623: mux phy0 on Bananapi
+ BPI-R2
+Content-Type: text/plain; charset=UTF-8
+Date:   Sat, 4 Feb 2023 14:07:22 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <f628db9c-cf61-e1bc-2160-0c8d1caa0fbe@arinc9.com>
+References: <20230201185656.17164-1-arinc.unal@arinc9.com>
+ <20230201185656.17164-5-arinc.unal@arinc9.com>
+ <AC473057-266B-4403-9270-8007E0EC257C@public-files.de>
+ <75d3758a-5502-03a4-b3a2-990f9339705b@arinc9.com>
+ <trinity-ec3920c5-a96a-4edf-9ff1-4bf07e7b4d07-1675506452617@3c-app-gmx-bs72>
+ <trinity-a01f321e-0973-417e-9a25-9350f63ece37-1675511027203@3c-app-gmx-bs72>
+ <f628db9c-cf61-e1bc-2160-0c8d1caa0fbe@arinc9.com>
+Content-Transfer-Encoding: quoted-printable
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:2f7IPHsaQ3ie6c1OE7RdMDBst8fc99xmyWkxGQE6mdqo3Q9nkhqgDxT2q2YVhWGBY+8f1
+ g+JJx9fkzmOXlVO49aU2pPjHRK0SEhIGOjEgi74WgwpCnl9P+u3mPT9SNeAaacqq4zeSAQ/+6+Qz
+ SZ4e7h1zFScV98n4fr1CUbOYsXBuKVs7ybmXfUoNR2PyCIXZ1Zp3fl2k+QJ9PnjpxFbvjSzGX8Ad
+ NLCFWe75a+hjtzX9Lh+wRKEmilHv5ssDpQTphdtdU51du+6AwnZ7dMScQvxTh2pkFERcEuq7znyF
+ Ls=
+UI-OutboundReport: notjunk:1;M01:P0:cJEiZ27hpLg=;y/wlEQMmdnR8E/AxCLSuhWSxKIS
+ UfDyP6HUnDlHi3NsaCaauT0KK15iFA1Qw0XAHFNZzjnKyzWX+QEjxoHKTGf0XjwZb73PjYQeB
+ TioacBowbdM5W9IcQJ/vlnybkg6+AlAI8z2cWmOXWOtRw5vSfpI9S94IIibqgbOa/h3ocHL7g
+ 1WzHFUd4GPDGrVfv6XQnBvIL+b1tSIdlAiiyekbV/z53ukK+vtxK4uEVz/2lGVxJEPjs6o6gD
+ H7UXTVAJ6dP1fXAM9vITmtAmt87M8unOQpAHwksdh09HVNqe3OaNtR2/xKNGmYGPCGW149H5+
+ jOUpn9g8uErT6aZApGwf09u4legp9OkdvQL26hX/zbqlvDfWLRRYubUmAso4F9NjXcfqYIK6K
+ mFmwmIE6m8gB+kRmD2Dfj5azf139Qu5Ys78/yf/ExxvU48kY6si5iC+7Bc9E7x7AZtqo2IFgz
+ vMDaCB6FN5NbMEtNO7BdYIyb8zfB1zmgndYZt/z/4QoCfuQ5Wvjf1iKgVbBpaOdOBihne0ldI
+ f9gn9jO2C7WfMBsQKxPucbVJIyV9XWDLQmvPnGHa8gtnSfT65Q708uWW9JeYLS64y31NxIRcN
+ hgc2rbRSpUoHTcT8voSrlB7AeEzTJyHaSdrgXtMhrLjLteJ6GZEa+DCKRa6CbGbzt7ZENo/69
+ jESVmMTCOQa1cL5Gg5a0KBJHTq9ryEM6J6xDuV085d6+1PkFWBVHzASeTQcyKLvaJqmDCMydG
+ 8Ag7Y5FxcuyaZ6BYcOX64Y3J0tILrjqh9ZJ+m9za+vQAczx5LpSLiiaudFSpOS9a41PbGrUbu
+ nhi4yCFGT6zjOBUfO66H11dQ==
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,39 +84,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2023-02-04 at 12:43 +0100, David Virag wrote:
-> On Fri, 2023-02-03 at 21:39 +0100, Henrik Grimler wrote:
-> > They are no longer needed after commit a13e8ef6008d ("mmc: dw_mmc:
-> > exynos: use common_caps").
+Hi
+
+> Gesendet: Samstag, 04=2E Februar 2023 um 13:12 Uhr
+> Von: "Ar=C4=B1n=C3=A7 =C3=9CNAL" <arinc=2Eunal@arinc9=2Ecom>
+> An: "Frank Wunderlich" <frank-w@public-files=2Ede>
+> Cc: arinc9=2Eunal@gmail=2Ecom, "Rob Herring" <robh+dt@kernel=2Eorg>, "Kr=
+zysztof Kozlowski" <krzysztof=2Ekozlowski+dt@linaro=2Eorg>, "Matthias Brugg=
+er" <matthias=2Ebgg@gmail=2Ecom>, devicetree@vger=2Ekernel=2Eorg, linux-arm=
+-kernel@lists=2Einfradead=2Eorg, linux-mediatek@lists=2Einfradead=2Eorg, li=
+nux-kernel@vger=2Ekernel=2Eorg, erkin=2Ebozoglu@xeront=2Ecom, "Sean Wang" <=
+sean=2Ewang@mediatek=2Ecom>, "DENG Qingfang" <dqfext@gmail=2Ecom>
+> Betreff: Re: Aw: Re: [PATCH v2 4/5] arm: dts: mt7623: mux phy0 on Banana=
+pi BPI-R2
+>
+> On 4=2E02=2E2023 14:43, Frank Wunderlich wrote:
+> >> Gesendet: Samstag, 04=2E Februar 2023 um 11:27 Uhr
+> >> Von: "Frank Wunderlich" <frank-w@public-files=2Ede>
+> >> An: "Ar=C4=B1n=C3=A7 =C3=9CNAL" <arinc=2Eunal@arinc9=2Ecom>
+> >> Cc: arinc9=2Eunal@gmail=2Ecom, "Rob Herring" <robh+dt@kernel=2Eorg>, =
+"Krzysztof Kozlowski" <krzysztof=2Ekozlowski+dt@linaro=2Eorg>, "Matthias Br=
+ugger" <matthias=2Ebgg@gmail=2Ecom>, devicetree@vger=2Ekernel=2Eorg, linux-=
+arm-kernel@lists=2Einfradead=2Eorg, linux-mediatek@lists=2Einfradead=2Eorg,=
+ linux-kernel@vger=2Ekernel=2Eorg, erkin=2Ebozoglu@xeront=2Ecom, "Sean Wang=
+" <sean=2Ewang@mediatek=2Ecom>, "DENG Qingfang" <dqfext@gmail=2Ecom>
+> >> Betreff: Aw: Re: [PATCH v2 4/5] arm: dts: mt7623: mux phy0 on Bananap=
+i BPI-R2
+> >>
+> >> Hi aranc,
+> >>
+> >> have tested this series, basicly it works, but i get only ~620 Mbits/=
+sec (much more i will need on wan) in tx-mode of r2, rx-mode (iperf3 -c IP =
+-R on r2) gets full 939 Mbits/sec=2E Both no retransmitts=2E
+> >>
+> >> tried with my laptop which gets 940Mbit/sec in tx mode too=2E=2E=2Eot=
+her end is a R2 with 5=2E15 connected to lan0 (and eth1+aux enabled, dmesg =
+clean so far=2E=2E=2Efor the "kernel log flooded"-comment)=2E
+> >>
+> >> maybe gmac1 needs to be tweaked a bit (clock-settings)?
+> >>
+> >> can you confirm this with your board?
 > >=20
-> > Signed-off-by: Henrik Grimler <henrik@grimler.se>
-> > ---
-> > =C2=A0arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi | 2 --
-> > =C2=A0arch/arm64/boot/dts/exynos/exynos7-espresso.dts=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 2 --
-> > =C2=A02 files changed, 4 deletions(-)
-[...]
-> In dw_mmc-exynos.c, there's a caps array specified like this:
+> > tested the vlan_aware way with 5=2E15=2E80 and got better result
+> >=20
+> > ip link add br0 type bridge vlan_filtering 1
+> > ip l set aux master br0
+> > ip l set wan master br0
+> > bridge vlan add vid 99 dev wan
+> > bridge vlan add vid 99 dev aux
+> > bridge vlan
+> > ip l s eth1 up
+> > ip l s wan up
+> > ip a a 192=2E168=2E0=2E11/24 dev eth1
+> > ip l s br0 up
+> > ip l s aux up
+> >=20
+> > i see traffic on eth1 increasing and iperf3 shows in both directions ~=
+940Mbit/s, no strange mesages in dmesg while testing=2E=2E=2Ewhere do you s=
+ee these?
 >=20
-> /* Common capabilities of Exynos4/Exynos5 SoC */
-> static unsigned long exynos_dwmmc_caps[4] =3D {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0MMC_CAP_1_8V_DDR | MMC_CA=
-P_8_BIT_DATA,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A00,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A00,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A00,
-> };
+> You didn't put eth1 on a bridge=2E I suggest you read my mails with high=
+er=20
+> attention so both of our time is spent efficiently=2E
+
+sorry if i misseed this detail, but it was not part of the instructions i =
+got from mtk and did not found it in our mail-conversion=2E why do i need t=
+o add the gmac into the bridge??
+
+the gmac is connected physically to mt7531 p5, and my vlan_aware bridge br=
+idges this port (aux=3Dp5) with wan,=20
+so i see no need to add eth1 to this bridge too=2E=2E=2Etraffic on wan is =
+tagged with vlan 99 and leaving untagged
+on aux which is arriving eth1=2E=2E=2E
+
+> > tested vlan-way with 6=2E2 and felix' Patches to more comparable with =
+your test=2E=2E=2Eand got same result (~625Mbit/s in tx and 940Mbit/s in rx=
+-mode=3D-R on r2)=2E=2E=2Eso it seems anything between 5=2E15 and 6=2E2 red=
+uced gmac1 tx bandwidth=2E
 >=20
-> As I understand these capabilities are added to the mmc controllers
-> based on mshc alias id. Shouldn't these capabilities be moved to
-> device-tree before removing these aliases? This also applies to the
-> 32bit arm patch. If I understand correctly, removing these aliases
-> without adding the capabilities to dt removes the capability
-> "MMC_CAP_1_8V_DDR" and "MMC_CAP_8_BIT_DATA" from mshc_0/mmc_0.
+> I don't see an incentive to investigate unless the issue is confirmed on=
+=20
+> a daily netdev/net-next=2Egit main tree=2E
 
-Actually, it defaults to 0, so these capabilities will be added to all
-mmc nodes, not just those with mshc0 alias. That may cause problems.
+have same result on net-next/main with your series, no additional patches =
+on top except adding my build-script and defconfig=2E
 
+> >=20
+> > to summarize:
+> >=20
+> > i get same result with your patches and my old vlan_bridge way with sa=
+me codebase=2E=2E=2Ehow do i see your problem with the vlan-bridge-way? Do =
+you test with bpi-r2 or only any other board and change r2 to have same DT?
+>=20
+> I tested this only on a Bananapi BPI-R2 using the devicetree with this=
+=20
+> series applied on a few days old netdev/net-next=2Egit main tree=2E
 
-Best regards,
-David
+btw=2E i do this in my currently very limited free time in short chunks, s=
+o please forgive me if i miss a detail=2E
+
+> Ar=C4=B1n=C3=A7
