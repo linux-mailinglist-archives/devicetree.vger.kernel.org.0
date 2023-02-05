@@ -2,253 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F45168B00D
-	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 14:49:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C7EA68B02F
+	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 15:09:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229720AbjBENtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Feb 2023 08:49:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44762 "EHLO
+        id S229572AbjBEOJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Feb 2023 09:09:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229719AbjBENtj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 08:49:39 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCE931CAD3;
-        Sun,  5 Feb 2023 05:49:36 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 315DnAik077705;
-        Sun, 5 Feb 2023 07:49:10 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1675604950;
-        bh=4K3NBMriPuHZ8NsACDGfe6RqivI8ybuDVKXRpjALZsQ=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=ocx4iKCS65DqpDf3Dvw2z9mRkiIIaG4Zo08a6uF6XoScIBc5h0440HtWGJP7wWNFe
-         K1avyD3HddLv432adYNSXy/zbtyD7PJQopaXcCmaxoau97keY5j5vJXO0JEd7tFPGr
-         Xgi1Ls6oZwaJNvW+BecjIvmvYhN+nRNPTFcM3nBo=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 315DnAoA089522
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 5 Feb 2023 07:49:10 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sun, 5
- Feb 2023 07:49:09 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Sun, 5 Feb 2023 07:49:09 -0600
-Received: from [10.250.235.106] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 315Dn5eU018475;
-        Sun, 5 Feb 2023 07:49:05 -0600
-Message-ID: <b1a70d18-4528-30a0-f15f-d9dda49504c1@ti.com>
-Date:   Sun, 5 Feb 2023 19:19:04 +0530
+        with ESMTP id S229519AbjBEOJP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 09:09:15 -0500
+X-Greylist: delayed 365 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 05 Feb 2023 06:09:13 PST
+Received: from mailserver.pboenig.de (pboenig.de [90.187.254.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A86001F91D
+        for <devicetree@vger.kernel.org>; Sun,  5 Feb 2023 06:09:13 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CE1BB2A6
+        for <devicetree@vger.kernel.org>; Sun,  5 Feb 2023 15:03:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pboenig.de; s=dkim;
+        t=1675605787; h=from:subject:date:message-id:to:mime-version:content-type:
+         content-transfer-encoding:content-language;
+        bh=H9TMjwce2P2uHUnansdWxX78u8TY7lxuIKPqazZ0LLk=;
+        b=cPGPThT5HJAuMEu1PLzcQ8GscgS1MMDNnyps5tRyh3UOgs8+rMQmxNDfl4Zjx74gD0tiAq
+        ElJcF+pEP6aGyYdbHiOmAyetMmb0Ccytym1s6BhgUNCRNp5cgSPRyoiPpuPh8Qhp6usgsu
+        x675ZsRuyTar+FJApmB+W2tIGSsjJhzOwGgswxaI39gska7xanCwqb/n8SCJ3Kr1kZ5lKi
+        vfGxHJWihHG8Eqkb8hvCeBNMTWF3WMPESh1H97sFYPGm27lW10SoX4zbXsls+4g4RMB2yK
+        +Ra/uxiLXb+JaxChJEjF1CLn7cnmpaBZj/sGUa6aLt/oddgtPZl6SVj9h7LTbQ==
+Message-ID: <d090e405-9193-5a40-7d72-8d8666fa8b30@pboenig.de>
+Date:   Sun, 5 Feb 2023 15:03:05 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v7 5/6] drm/tidss: Add IO CTRL and Power support for OLDI
- TX in am625
-Content-Language: en-US
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-CC:     DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230125113529.13952-1-a-bhatia1@ti.com>
- <20230125113529.13952-6-a-bhatia1@ti.com>
- <0dc36f3c-22c8-7440-96a6-7d3ad96daf40@ideasonboard.com>
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <0dc36f3c-22c8-7440-96a6-7d3ad96daf40@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From:   =?UTF-8?Q?Patrice_B=c3=b6nig?= <mailinglist@pboenig.de>
+Subject: question about port labeling
+To:     devicetree@vger.kernel.org
+Content-Language: de-DE
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+through my work I have suddenly to deal with the device tree, it‘s my
+first time. The platform I am dealing with is a Xilinx UltraScale+ with
+Petalinux.
+
+In the FPGA a video chain is set up. It contains different IP-Cores but
+not all IP-Cores are from Xilinx we also use custom ones.
+
+Yesterday I wanted to compile the Petalinux, but got an error that a
+label (port connection, found in pl.dtsi) was not found in the device
+tree. This is because it was the connection from a Xilinx IP-Core to a
+custom one (video_cropper), which could not be recognized. I fixed the
+error by adding in and out ports to the node of the custom IP-Core ->
+snipped from system-user.dtsi
+
+&sdi_rx_input_SDI_IN_2_video_cropper_0 {
+
+     video_cropper_2_port0: ports {
+         port@0 {
+             compatible = "rme,mkfcrop";
+             rme,width = <1920>;
+             rme,height = <1080>;
+             rme,hor-offset = <0>;
+             rme,vert-offset = <0>;
+             direction = "input";
+             reg = <0>;
+	sdi_rx_input_SDI_IN_2_video_cropper_0sdi_rx_input_SDI_IN_2_v_smpte_uhdsdi_rx_ss: endpoint {
+                 remote-endpoint =
+<&sdirx_outsdi_rx_input_SDI_IN_2_v_smpte_uhdsdi_rx_ss>;
+             };
+         };
+
+         port@1 {
+             compatible = "rme,mkfcrop";
+             rme,width = <1920>;
+             rme,height = <1080>;
+             rme,hor-offset = <0>;
+             rme,vert-offset = <0>;
+             direction = "output";
+             reg = <1>;
+             video_cropper_2_out: endpoint {
+                 remote-endpoint = <&sdi_rx_input_SDI_IN_2_v_proc_ss_0>;
+             };
+         };
+     };
+};
 
 
-On 03-Feb-23 20:49, Tomi Valkeinen wrote:
-> On 25/01/2023 13:35, Aradhya Bhatia wrote:
->> The ctrl mmr module of the AM625 is different from the AM65X SoC. Thus
->> the ctrl mmr registers that supported the OLDI TX power have become
->> different in AM625 SoC.
->>
->> The common mode voltage of the LVDS buffers becomes random when the
->> bandgap reference is turned off. This causes uncertainity in the LVDS
->> Data and Clock signal outputs, making it behave differently under
->> different conditions and panel setups. The bandgap reference must be
->> powered on before using the OLDI IOs, to keep the common voltage trimmed
->> down to desired levels.
->>
->> Add support to enable/disable OLDI IO signals as well as the bandgap
->> reference circuit for the LVDS signals.
->>
->> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->> ---
->>
->> Note:
->> - Dropped Tomi Valkeinen's reviewed-by tag in this patch because I did
->>    not implement one of his comments which suggested to remove the
->>    'oldi_supported' variable. While the oldi support is indeed based on
->>    SoC variations, keeping that variable helps take into account the case
->>    where an OLDI supporting SoC by-passes OLDI TXes and gives out DPI
->>    video signals straight from DSS.
-> 
-> Hmm why is that relevent for this patch? It doesn't use oldi_supported
-> or the new has_oldi.
 
-It doesn't. Not directly atleast. In the previous version of this patch,
-there was a mention of 'oldi_supported' and your tag was conditional to
-that variable getting removed. Instead, I renamed the variable.
 
-> 
->>   drivers/gpu/drm/tidss/tidss_dispc.c      | 57 +++++++++++++++++++-----
->>   drivers/gpu/drm/tidss/tidss_dispc_regs.h | 40 ++++++++++++-----
->>   2 files changed, 76 insertions(+), 21 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
->> index 37a73e309330..0e03557bc142 100644
->> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
->> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
->> @@ -934,21 +934,56 @@ int dispc_vp_bus_check(struct dispc_device *dispc, u32 hw_videoport,
->>     static void dispc_oldi_tx_power(struct dispc_device *dispc, bool power)
->>   {
->> -    u32 val = power ? 0 : OLDI_PWRDN_TX;
->> +    u32 val;
->>         if (WARN_ON(!dispc->oldi_io_ctrl))
->>           return;
->>   -    regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT0_IO_CTRL,
->> -               OLDI_PWRDN_TX, val);
->> -    regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT1_IO_CTRL,
->> -               OLDI_PWRDN_TX, val);
->> -    regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT2_IO_CTRL,
->> -               OLDI_PWRDN_TX, val);
->> -    regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT3_IO_CTRL,
->> -               OLDI_PWRDN_TX, val);
->> -    regmap_update_bits(dispc->oldi_io_ctrl, OLDI_CLK_IO_CTRL,
->> -               OLDI_PWRDN_TX, val);
->> +    if (dispc->feat->subrev == DISPC_AM65X) {
-> 
-> Slight nitpick, but I think switch-case makes sense for the subrev. Even
-> if there are just two options here, using switch makes the structure clearer.
+The compilation went without errors but WHY? The output port
+"remote-endpoint = <&sdi_rx_input_SDI_IN_2_v_proc_ss_0>;" points to the
+label of the node found in the pl.dtsi, but not to the input port of
+this node (it has no input port label) -> snipped from pl.dtsi
 
-Alright. I will make the edit.
+                 sdi_rx_input_SDI_IN_2_v_proc_ss_0: v_proc_ss@a0240000 {
+                         clock-names = "aclk_axis", "aclk_ctrl";
+                         clocks = <&zynqmp_clk 72>, <&zynqmp_clk 71>;
+                         compatible = "xlnx,v-proc-ss-2.3",
+"xlnx,vpss-scaler-2.2", "xlnx,v-vpss-scaler-2.2", "xlnx,vpss-scaler";
+                         reg = <0x0 0xa0240000 0x0 0x40000>;
+                         reset-gpios = <&gpio_resets_axi_gpio_resets 5 0 1>;
+                         xlnx,colorspace-support = <0>;
+                         xlnx,csc-enable-window = "true";
+                         xlnx,enable-csc = "false";
+                         xlnx,h-scaler-phases = <64>;
+                         xlnx,h-scaler-taps = <6>;
+                         xlnx,max-height = <1125>;
+                         xlnx,max-num-phases = <64>;
+                         xlnx,max-width = <2200>;
+                         xlnx,num-hori-taps = <6>;
+                         xlnx,num-vert-taps = <6>;
+                         xlnx,pix-per-clk = <2>;
+                         xlnx,samples-per-clk = <2>;
+                         xlnx,scaler-algorithm = <2>;
+                         xlnx,topology = <0>;
+                         xlnx,use-uram = <0>;
+                         xlnx,v-scaler-phases = <64>;
+                         xlnx,v-scaler-taps = <6>;
+                         xlnx,video-width = <10>;
+                         scaler_portssdi_rx_input_SDI_IN_2_v_proc_ss_0:
+ports {
+                                 #address-cells = <1>;
+                                 #size-cells = <0>;
 
-> 
->> +        val = power ? 0 : AM65X_OLDI_PWRDN_TX;
->> +
->> +        regmap_update_bits(dispc->oldi_io_ctrl, AM65X_OLDI_DAT0_IO_CTRL,
->> +                   AM65X_OLDI_PWRDN_TX, val);
->> +        regmap_update_bits(dispc->oldi_io_ctrl, AM65X_OLDI_DAT1_IO_CTRL,
->> +                   AM65X_OLDI_PWRDN_TX, val);
->> +        regmap_update_bits(dispc->oldi_io_ctrl, AM65X_OLDI_DAT2_IO_CTRL,
->> +                   AM65X_OLDI_PWRDN_TX, val);
->> +        regmap_update_bits(dispc->oldi_io_ctrl, AM65X_OLDI_DAT3_IO_CTRL,
->> +                   AM65X_OLDI_PWRDN_TX, val);
->> +        regmap_update_bits(dispc->oldi_io_ctrl, AM65X_OLDI_CLK_IO_CTRL,
->> +                   AM65X_OLDI_PWRDN_TX, val);
->> +
->> +    } else if (dispc->feat->subrev == DISPC_AM625) {
->> +        if (power) {
->> +            switch (dispc->oldi_mode) {
->> +            case OLDI_MODE_SINGLE_LINK:
->> +                /* Power down OLDI TX 1 */
->> +                val = AM625_OLDI1_PWRDN_TX;
->> +                break;
->> +
->> +            case OLDI_MODE_CLONE_SINGLE_LINK:
->> +            case OLDI_MODE_DUAL_LINK:
->> +                /* No Power down */
->> +                val = 0;
->> +                break;
->> +
->> +            default:
->> +                /* Power down both OLDI TXes and LVDS Bandgap */
->> +                val = AM625_OLDI0_PWRDN_TX | AM625_OLDI1_PWRDN_TX |
->> +                      AM625_OLDI_PWRDN_BG;
->> +                break;
->> +            }
->> +
->> +        } else {
->> +            /* Power down both OLDI TXes and LVDS Bandgap */
->> +            val = AM625_OLDI0_PWRDN_TX | AM625_OLDI1_PWRDN_TX |
->> +                  AM625_OLDI_PWRDN_BG;
->> +        }
->> +
->> +        regmap_update_bits(dispc->oldi_io_ctrl, AM625_OLDI_PD_CTRL,
->> +                   AM625_OLDI0_PWRDN_TX | AM625_OLDI1_PWRDN_TX |
->> +                   AM625_OLDI_PWRDN_BG, val);
->> +    }
->>   }
->>     static void dispc_set_num_datalines(struct dispc_device *dispc,
->> diff --git a/drivers/gpu/drm/tidss/tidss_dispc_regs.h b/drivers/gpu/drm/tidss/tidss_dispc_regs.h
->> index 13feedfe5d6d..b2a148e96022 100644
->> --- a/drivers/gpu/drm/tidss/tidss_dispc_regs.h
->> +++ b/drivers/gpu/drm/tidss/tidss_dispc_regs.h
->> @@ -227,17 +227,37 @@ enum dispc_common_regs {
->>   #define DISPC_VP_DSS_DMA_THREADSIZE_STATUS    0x174 /* J721E */
->>     /*
->> - * OLDI IO_CTRL register offsets. On AM654 the registers are found
->> - * from CTRL_MMR0, there the syscon regmap should map 0x14 bytes from
->> - * CTRLMMR0P1_OLDI_DAT0_IO_CTRL to CTRLMMR0P1_OLDI_CLK_IO_CTRL
->> - * register range.
->> + * OLDI IO and PD CTRL register offsets.
->> + * These registers are found in the CTRL_MMR0, where the syscon regmap should map
->> + *
->> + * 1. 0x14 bytes from CTRLMMR0P1_OLDI_DAT0_IO_CTRL to CTRLMMR0P1_OLDI_CLK_IO_CTRL
->> + * register range for the AM65X DSS, and
->> + *
->> + * 2. 0x200 bytes from OLDI0_DAT0_IO_CTRL to OLDI_LB_CTRL register range for the
->> + * AM625 DSS.
->>    */
->> -#define OLDI_DAT0_IO_CTRL            0x00
->> -#define OLDI_DAT1_IO_CTRL            0x04
->> -#define OLDI_DAT2_IO_CTRL            0x08
->> -#define OLDI_DAT3_IO_CTRL            0x0C
->> -#define OLDI_CLK_IO_CTRL            0x10
->>   -#define OLDI_PWRDN_TX                BIT(8)
->> +/* -- For AM65X OLDI TX -- */
->> +/* Register offsets */
->> +#define AM65X_OLDI_DAT0_IO_CTRL            0x00
->> +#define AM65X_OLDI_DAT1_IO_CTRL            0x04
->> +#define AM65X_OLDI_DAT2_IO_CTRL            0x08
->> +#define AM65X_OLDI_DAT3_IO_CTRL            0x0C
->> +#define AM65X_OLDI_CLK_IO_CTRL            0x10
->> +
->> +/* Power control bits */
->> +#define AM65X_OLDI_PWRDN_TX            BIT(8)
->> +
->> +/* -- For AM625 OLDI TX -- */
->> +/* Register offsets */
->> +#define AM625_OLDI_PD_CTRL            0x100
->> +#define AM625_OLDI_LB_CTRL            0x104
->> +
->> +/* Power control bits */
->> +#define AM625_OLDI0_PWRDN_TX            BIT(0)
->> +#define AM625_OLDI1_PWRDN_TX            BIT(1)
->> +
->> +/* LVDS Bandgap reference Enable/Disable */
->> +#define AM625_OLDI_PWRDN_BG            BIT(8)
->>     #endif /* __TIDSS_DISPC_REGS_H */
-> 
-> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> 
->  Tomi
-> 
-Regards
-Aradhya
+scaler_port1sdi_rx_input_SDI_IN_2_v_proc_ss_0: port@1 {
+                                         /* For xlnx,video-format user
+needs to fill as per their requirement */
+                                         reg = <1>;
+                                         xlnx,video-format = <3>;
+                                         xlnx,video-width = <10>;
+
+sca_outsdi_rx_input_SDI_IN_2_v_proc_ss_0: endpoint {
+                                                 remote-endpoint =
+<&sdi_rx_input_SDI_IN_2_v_frmbuf_wr_0sdi_rx_input_SDI_IN_2_v_proc_ss_0>;
+                                         };
+                                 };
+
+scaler_port0sdi_rx_input_SDI_IN_2_v_proc_ss_0: port@0 {
+                                         /* For xlnx,video-format user
+needs to fill as per their requirement */
+                                         reg = <0>;
+                                         xlnx,video-format = <3>;
+                                         xlnx,video-width = <10>;
+                                 };
+                         };
+                 };
+
+
+
+Sorry for the bad formatting of the snippets.
+
+kind regards,
+Patrice
