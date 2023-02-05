@@ -2,178 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 887DF68B04F
-	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 15:39:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61E7C68B065
+	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 15:54:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229567AbjBEOjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Feb 2023 09:39:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57622 "EHLO
+        id S229615AbjBEOyw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Feb 2023 09:54:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbjBEOjc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 09:39:32 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F231C31B;
-        Sun,  5 Feb 2023 06:39:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 13ED960BA9;
-        Sun,  5 Feb 2023 14:39:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7B95C433D2;
-        Sun,  5 Feb 2023 14:39:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675607970;
-        bh=IwndUhI0nyBuym7OP5+YwXCaj3c/10tKeMH+GWbtzls=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=MiK4Dlvr/flWyxwwfqQzbbbpLRjkywQsin6mEFzuXIx8TCBT1eWSCkSEWx8nRHTeL
-         WsRtOrzdIhaioSSfkRnC6YgAcobq6Pr/YmPBYW8jb86GT26fReWReuX4gsqR0/SsGr
-         U6LJozYt8uFxkV0mUZMH6lLvfc1o39UdMzu7S82uphQjEp3vl4wqiVromlbFKcz5qf
-         8WW0nV9RlzwBnngTp+4eMYKdCmC9OQhaIFulDPSoIbCTqiJbwhwYhywiZbtRYL6lt5
-         mC9PCSk/WL7CXVcE3romKqqP4+1+p/OzTp5/zs3+6bDAe1hFSSZ17Iv17P94elHBKe
-         zHDrgR6ZY6pOA==
-Date:   Sun, 5 Feb 2023 14:53:31 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Angel Iglesias <ang.iglesiasg@gmail.com>
-Cc:     linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/7] iio: pressure: bmp280: Add support for new
- sensor BMP580
-Message-ID: <20230205145331.1d67b5e6@jic23-huawei>
-In-Reply-To: <97a234ddac057eea1e6790d7fa4a66564abec2ed.1674954271.git.ang.iglesiasg@gmail.com>
-References: <cover.1674954271.git.ang.iglesiasg@gmail.com>
-        <97a234ddac057eea1e6790d7fa4a66564abec2ed.1674954271.git.ang.iglesiasg@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
+        with ESMTP id S229511AbjBEOyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 09:54:51 -0500
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D89861ABEC;
+        Sun,  5 Feb 2023 06:54:50 -0800 (PST)
+Received: by mail-qt1-x829.google.com with SMTP id h24so10434308qtr.0;
+        Sun, 05 Feb 2023 06:54:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gjcSqStCuN5BIIinHdXYJtbpb7OVNAUIe6HudY9Vp7Y=;
+        b=hLs7wxeXj5FjoFbXakwtyVLmi+mgcYihEvK1n6eUQ5XIyYN+d67cRXlW9dv56QatVA
+         aX5tWcAxElKTfpdR5TQ3oP4UhjUw/2eOoJx4RpQbp4Zm6kkjnSAca70WvcI9MNrXPvhw
+         yyDpwi8tNLy3/OSD6VgwwbasmNVBW+3Vrwt9W4a1xP2fOluozgsJgJ3nfePg/Cg+wcda
+         Vm4bDKOJcDV4qWyIMRjkVwlpisuJVmswW6cM6Wcu8rJdI+9vOqP99v6euX2qCeVg/VzW
+         k0DCDp9wxEvtK0RxzomyXuxTxWSD7/iQEkugRSh9gbik2da7Rb8362c1Yy4Zp4DMmGY+
+         xomg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gjcSqStCuN5BIIinHdXYJtbpb7OVNAUIe6HudY9Vp7Y=;
+        b=tlsI2DbmBEgncjQx6HlDIh8N3z4ZdBZVXVIsRDJtZzG2qvqkpAqpEe1tI7IPJjrlGs
+         I/AoIfz18G1PcDNzxEam5Hc6zXOcku0wSDeeJce83pEYqnwWMcxm6TY1S90eHbGyZ7p/
+         XojsdjAlrqsqmjqDWBvDG1On26NOITLNfoELWBWdlsaGLTM2EjSZ9j52uzmmbHGf0Hab
+         HWXF/bN8MssBejSyIueGxyW8QyLggaPbtTLdD9TKnBhPzUo4wtoE1FjNxP6pzmMXsNh+
+         4Kd3CwTmVuhj3KIiq4I3XQKNT1Xew6fPvx2/acOfGpwwMRXJAkZZ7hZMXQcZX7lGrRdV
+         AE9w==
+X-Gm-Message-State: AO0yUKUe/LxeHsh0fuy8YLiYygRHUZ6FI1EKTWgn1blSd02+QsruUlRe
+        hhOBbEzdjqQF8gZCWkSrCo4=
+X-Google-Smtp-Source: AK7set83bgJQI1A3fEiGoSQfXaxQcbv6+t8mbiioCiONA9FDNz17pPn2X0mP66NJ6oeamf0eixYvNw==
+X-Received: by 2002:ac8:5f46:0:b0:3b9:a63e:35c0 with SMTP id y6-20020ac85f46000000b003b9a63e35c0mr33296789qta.16.1675608889842;
+        Sun, 05 Feb 2023 06:54:49 -0800 (PST)
+Received: from DANNY-DESKTOP.localdomain (071-013-243-092.res.spectrum.com. [71.13.243.92])
+        by smtp.gmail.com with ESMTPSA id b5-20020a37b205000000b00719165e9e72sm5560048qkf.91.2023.02.05.06.54.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Feb 2023 06:54:49 -0800 (PST)
+From:   Danny Kaehn <kaehndan@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jikos@kernel.org, benjamin.tissoires@redhat.com
+Cc:     devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: [PATCH v3 0/4] DeviceTree Support for USB-HID Devices and CP2112
+Date:   Sun,  5 Feb 2023 08:54:46 -0600
+Message-Id: <20230205145450.3396-1-kaehndan@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 29 Jan 2023 02:33:07 +0100
-Angel Iglesias <ang.iglesiasg@gmail.com> wrote:
+This patchset allows USB-HID devices to have DeviceTree bindings through sharing
+the USB of_node with the HID driver, and adds such a binding and driver
+implementation for the CP2112 USB to SMBus Bridge (which necessitated the
+USB-HID change). This change allows a CP2112 permanently attached in hardware to
+be described in DT and interoperate with other drivers, and exposed the threaded
+interrupt bug fixed in patch 0003.
 
-> Adds compatibility with the new sensor generation, the BMP580.
-> 
-> The measurement and initialization codepaths are adapted from
-> the device datasheet and the repository from manufacturer at
-> https://github.com/boschsensortec/BMP5-Sensor-API.
-> 
-> Signed-off-by: Angel Iglesias <ang.iglesiasg@gmail.com>
-> 
+Changes in v3:
+ - Additional fixups to silabs,cp2112.yaml to address comments
 
-Hi Angel,
+Changes in v2:
+ - Added more detail to silabs,cp2112.yaml dt-binding
+ - Moved silabs,cp2112.yaml to /Documentation/devicetree/bindings/input
+ - Added support for setting smbus clock-frequency from DT in hid-cp2112.c
+ - Added freeing of of_nodes on error paths of _probe in hid-cp2112.c
 
-As you are doing one more version anyway, a few really minor comments inline.
+Danny Kaehn (4):
+  dt-bindings: input: Add CP2112 HID USB to SMBus Bridge
+  HID: usbhid: Share USB device devicetree node with child HID device
+  HID: cp2112: Fix driver not registering GPIO IRQ chip as threaded
+  HID: cp2112: Devicetree Support
 
-Thanks,
+ .../bindings/input/silabs,cp2112.yaml         | 112 ++++++++++++++++++
+ drivers/hid/hid-cp2112.c                      |  23 +++-
+ drivers/hid/usbhid/hid-core.c                 |   2 +
+ 3 files changed, 135 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/silabs,cp2112.yaml
 
-Jonathan
-
-> diff --git a/drivers/iio/pressure/bmp280-core.c b/drivers/iio/pressure/bmp280-core.c
-> index 22addaaa5393..c65fb4025ad9 100644
-> --- a/drivers/iio/pressure/bmp280-core.c
-> +++ b/drivers/iio/pressure/bmp280-core.c
-
->  /*
->   * These enums are used for indexing into the array of compensation
->   * parameters for BMP280.
-> @@ -1216,6 +1252,303 @@ const struct bmp280_chip_info bmp380_chip_info = {
->  };
->  EXPORT_SYMBOL_NS(bmp380_chip_info, IIO_BMP280);
->  
-> +/*
-> + * BMP5xx soft reset procedure
-
-Wild cards are often a bad idea, even in comments.  Tend to end up covering
-some device that works differently.  With that in mind, not sure this comment
-adds anything over the function name.
-
-> + */
-> +static int bmp580_soft_reset(struct bmp280_data *data)
-> +{
-> +	unsigned int reg;
-> +	int ret;
-> +
-> +	/* Write reset word to CMD register */
-Not that informative as comments go.
-
-> +	ret = regmap_write(data->regmap, BMP580_REG_CMD, BMP580_CMD_SOFT_RESET);
-> +	if (ret) {
-> +		dev_err(data->dev, "failed to send reset command to device\n");
-> +		return ret;
-> +	}
-> +	/* Wait 2ms for reset completion */
-nor is this one - drop them both.
-> +	usleep_range(2000, 2500);
-> +
-> +	/* Dummy read of chip_id */
-Now this one is good as not obvious why read is here so keep it!
-> +	ret = regmap_read(data->regmap, BMP580_REG_CHIP_ID, &reg);
-> +	if (ret) {
-> +		dev_err(data->dev, "failed to reestablish comms after reset\n");
-> +		return ret;
-> +	}
-> +
-> +	/* Check if POR bit is set on interrupt reg */
-Not sure the comment adds anything not obviously from code.  I'd be inclined
-to drop it.
-> +	ret = regmap_read(data->regmap, BMP580_REG_INT_STATUS, &reg);
-> +	if (ret) {
-> +		dev_err(data->dev, "error reading interrupt status register\n");
-> +		return ret;
-> +	}
-> +	if (!(reg & BMP580_INT_STATUS_POR_MASK)) {
-> +		dev_err(data->dev, "error resetting sensor\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * Contrary to previous sensors families, compensation algorithm is builtin.
-> + * We are only required to read the register raw data and adapt the ranges
-> + * for what is expected on IIO ABI.
-> + */
-> +
-> +static int bmp580_read_temp(struct bmp280_data *data, int *val)
-> +{
-> +	s32 raw_temp;
-> +	int ret;
-> +
-> +	ret = regmap_bulk_read(data->regmap, BMP580_REG_TEMP_XLSB, data->buf,
-> +			       sizeof(data->buf));
-> +	if (ret) {
-> +		dev_err(data->dev, "failed to read temperature\n");
-> +		return ret;
-> +	}
-> +
-> +	raw_temp = get_unaligned_le24(data->buf);
-> +	if (raw_temp == BMP580_TEMP_SKIPPED) {
-> +		dev_err(data->dev, "reading temperature skipped\n");
-> +		return -EIO;
-> +	}
-> +
-> +	/*
-> +	 * Temperature is returned in Celsius degrees in fractional
-> +	 * form down 2^16. We reescale by x1000 to return milli Celsius
-> +	 * to respect IIO ABI.
-> +	 */
-> +	*val = (raw_temp * 1000) >> 16;
-
-Why not use IIO_VAL_FRACTION_LOG2 and keep the precision?
-
-> +	return IIO_VAL_INT;
-> +}
-
+-- 
+2.25.1
 
