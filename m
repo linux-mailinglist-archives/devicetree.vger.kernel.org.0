@@ -2,117 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72B6268B039
-	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 15:12:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F05468B04B
+	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 15:32:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229570AbjBEOMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Feb 2023 09:12:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52620 "EHLO
+        id S229595AbjBEOcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Feb 2023 09:32:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjBEOMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 09:12:51 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C20E026A6;
-        Sun,  5 Feb 2023 06:12:47 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1pOfks-00077L-Ly; Sun, 05 Feb 2023 15:12:30 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Rob Herring <robh@kernel.org>, Johan Jonker <jbx6244@gmail.com>
-Cc:     hjc@rock-chips.com, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org, airlied@gmail.com, daniel@ffwll.ch,
-        andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com,
-        philippe.cornu@foss.st.com, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
-        linus.walleij@linaro.org, inki.dae@samsung.com,
-        sw0312.kim@samsung.com, kyungmin.park@samsung.com,
-        alim.akhtar@samsung.com, linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v6 01/17] dt-bindings: display: rockchip: convert
- rockchip-lvds.txt to YAML
-Date:   Sun, 05 Feb 2023 15:12:29 +0100
-Message-ID: <5647788.DvuYhMxLoT@diego>
-In-Reply-To: <87f5097d-1cd0-e09f-e759-8592a9165ea6@gmail.com>
-References: <67771143-fd83-383d-41b2-68e8707134e8@gmail.com>
- <20230203182119.GA615242-robh@kernel.org>
- <87f5097d-1cd0-e09f-e759-8592a9165ea6@gmail.com>
+        with ESMTP id S229508AbjBEOcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 09:32:12 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 267BE1CF7F;
+        Sun,  5 Feb 2023 06:32:11 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 315EVmHq001124;
+        Sun, 5 Feb 2023 08:31:48 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1675607508;
+        bh=YZuVF63MW2U2mNEZ5pPQ0LVoy/puMzmMfHN/t2Px0oI=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=mlehZzBcbBYF4y/UmxPvMJu6jMEBD2ZVWGXgEJ2oHXhwAcL7CQD//hoQWcbvoqIaP
+         QNLNMN4mSzQ8Xxs9GprAWgjif/4mQF9ErYmbgIURVXoh31+ZtOh8wAR2L36HhWoLZQ
+         VhkUt/FHGdsERU1gYNpjr4HhgQ0T4K9Sx8806FJo=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 315EVmxN013296
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 5 Feb 2023 08:31:48 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sun, 5
+ Feb 2023 08:31:48 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Sun, 5 Feb 2023 08:31:48 -0600
+Received: from [10.250.235.106] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 315EVhgh016739;
+        Sun, 5 Feb 2023 08:31:44 -0600
+Message-ID: <1662a593-8a5d-9214-8a3e-ef2699a35265@ti.com>
+Date:   Sun, 5 Feb 2023 20:01:43 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v7 3/6] drm/tidss: Add support for AM625 DSS
+Content-Language: en-US
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+CC:     DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20230125113529.13952-1-a-bhatia1@ti.com>
+ <20230125113529.13952-4-a-bhatia1@ti.com>
+ <ab6f52bb-a3f5-afda-c037-f009153a0bb6@ideasonboard.com>
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <ab6f52bb-a3f5-afda-c037-f009153a0bb6@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Am Freitag, 3. Februar 2023, 20:02:54 CET schrieb Johan Jonker:
-> 
-> On 2/3/23 19:21, Rob Herring wrote:
-> > On Thu, Dec 22, 2022 at 03:22:14PM +0100, Johan Jonker wrote:
-> >> Convert rockchip-lvds.txt to YAML.
-> >>
-> >> Changed:
-> >>   Add power-domains property.
-> >>   Requirements between PX30 and RK3288
-> >>
-> >> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> >> Reviewed-by: Rob Herring <robh@kernel.org>
-> >> ---
-> >>
-> >> Changed V3:
-> >>   Filename matching compatible style
-> >>   Drop "Regulator phandle for "
-> >>   Specify properties and requirements per SoC
-> >>   Sort order and restyle
-> >>
-> >> Changed V2:
-> >>   Fix title
-> >> ---
-> >>  .../display/rockchip/rockchip,lvds.yaml       | 170 ++++++++++++++++++
-> >>  .../display/rockchip/rockchip-lvds.txt        |  92 ----------
-> >>  2 files changed, 170 insertions(+), 92 deletions(-)
-> >>  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,lvds.yaml
-> >>  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
-> > 
-> 
-> > What's the plan for these patches? Don't see them in linux-next still. 
-> > Do you want me to take patches 1-8?
-> 
-> Hi,
-> 
-> The display patches normally go through the DRM git.
-> Patch 2 must merge with grf.yaml.
-> Heiko has merged now 3 PHY related patches to grf.yaml first.
-> 
-> [PATCH v6 02/17] dt-bindings: soc: rockchip: grf: add rockchip,lvds.yaml
-> 
-> See current
-> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/log/?h=for-next&qt=grep&q=jonker
-> 
-> Not sure what Heiko's plans are.
-> Patch 2 replaces  only a description text and some accolades removal, so not "too" important.
-> 
-> I urgent then you could merge without conflict:
-> 1, 3-8
-
-So I've applied patches 1-7 to the drm-tree now.
-
-For the GRF-patch, I've dropped the quotes changes, as they are somewhat
-unrelated to the lvds inclusion and so prevented any conflicts when applying
-the rest to the DRM tree.
-
-@Rob, if you could pick the fusb302 patch (number8), that would be great
-
-Thanks
-Heiko
 
 
+On 03-Feb-23 21:03, Tomi Valkeinen wrote:
+> On 25/01/2023 13:35, Aradhya Bhatia wrote:
+>> Add support for the DSS controller on TI's new AM625 SoC in the tidss
+>> driver.
+>>
+>> The first video port (VP0) in am625-dss can output OLDI signals through
+>> 2 OLDI TXes. A 3rd output port has been added with "DISPC_PORT_OLDI" bus
+>> type.
+> 
+> Not a big thing here as you add support for a new SoC, but the ordering
+> of the patches is not optimal. Here you add the AM625 DSS support, but
+> then you continue actually adding the DSS support (well, mainly OLDI) in
+> the following patches.
+> 
+> I think patch 6 could be before this patch. Parts of patch 4 could also
+> be before this patch. The AM65X renames from patch 5 could be before
+> this patch.
+
+I can move whole of Patch 6 and even of Patch 4 before this one. I have
+mentioned 'AM625-DSS' in a couple comments which I can make generic,
+and the rest everything is SoC-agnostic.
+
+I haven't tried this, but my concern is if we break patch 5 into 2
+separate patches,
+
+i. AM65X rename plus SoC based switch case, and
+ii. Addition of AM625 SoC case
+
+then I might have to overwrite some changes implemented during (i) in
+(ii). I don't suppose that would be okay, would it?
+
+Also, is it important to keep the compatible-addition patches of
+DT-binding and driver next to each other in the series? Or should
+the DT-binding patches should be the first ones? Just curious! =)
+
+> 
+> I'm mainly thinking of a case where someone uses AM625 and is bisecting
+> a problem. What happens if his board uses OLDI, and he happens to hit
+> one of these patches during bisect? If the display just stays black, but
+> otherwise everything works fine, then no problem. But if it crashes or
+> starts spamming sync losts or such or gives errors, it's not so nice.
+> 
+You are right! This certainly makes sense.
+
+
+Regards
+Aradhya
