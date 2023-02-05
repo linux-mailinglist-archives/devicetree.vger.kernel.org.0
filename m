@@ -2,135 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF4DC68ADC1
-	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 02:06:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C81368AE39
+	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 05:16:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229648AbjBEBGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Feb 2023 20:06:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54512 "EHLO
+        id S229502AbjBEEQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Feb 2023 23:16:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbjBEBGi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 20:06:38 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32C8723D9C;
-        Sat,  4 Feb 2023 17:06:37 -0800 (PST)
-Received: from mercury (93.85-246-81.adsl-static.isp.belgacom.be [81.246.85.93])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9362A6601E92;
-        Sun,  5 Feb 2023 01:06:35 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675559195;
-        bh=0/+HCuANW0/ZP4TBdMMnN50TbFZPDp2Asr7+laT78yY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MSe3V+tR42TT+00/V1Xo1KvyrrX0F3dC3OJmGTJru38u1aE3dHin4/aV9FezgC6lB
-         59cS0rC+cJwmogj23t+RFr69o0d9IVziz1mBh0S4VthRTcFmYrX6uVfJmflLbvxyha
-         Cuu64LyJzgylRJPUaKc1ZZPZ4ykDCWlMkBvG7oEPFvE6idR5f21zx6TiXQhlU9AW/R
-         +3UWzR5mxiBdahGCGQdQDcwIyImJHFEh9MV3guxY/ckA3DvxlbFcMGW8mTTTQ9OWV7
-         AjjwciOVO1gGTjJrHseV8WjSVOT6BuJhvOKw/L1XwsfbfJRtJ8xhzmR+UmStKH7vcU
-         8gDmQ1frPt+uQ==
-Received: by mercury (Postfix, from userid 1000)
-        id 87EB710609C9; Sun,  5 Feb 2023 02:06:32 +0100 (CET)
-Date:   Sun, 5 Feb 2023 02:06:32 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Lee Jones <lee@kernel.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCHv6 05/11] mfd: rk808: split into core and i2c
-Message-ID: <20230205010632.wt5m3a7w7k62w6se@mercury.elektranox.org>
-References: <20230127181244.160887-1-sebastian.reichel@collabora.com>
- <20230127181244.160887-6-sebastian.reichel@collabora.com>
- <Y95jJYlqDayiaMP1@google.com>
- <Y95lSpUaOnbSAOIC@google.com>
+        with ESMTP id S229478AbjBEEQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 23:16:12 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD8B06E93;
+        Sat,  4 Feb 2023 20:16:09 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id dr8so25587516ejc.12;
+        Sat, 04 Feb 2023 20:16:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=pGmjAtSpm7T3NYEfTdl7rNgWicn+a5Oe3VNo+Eoz3Lw=;
+        b=MU+TGrCw1MEvbZ+QAC6jqR6MOQaR8PyyMr0RhYg3EKTVT8b2coqtS1GyEnQ/0zDjWX
+         PbrT9j7vMPNrPHiUnKwZB7gGyYHbrQvlI1DkF4ss4b8nKYLt4PubrWJj2aujM4gC26Yy
+         zX72cXs5xCD9rf9JKL6D3/hxzvoGV5Q2s4OGLXdasOb3wfv7u6ljXWnB3iPbljQerT0B
+         JH59fZyXEgO62k2RByu2DnWh0IpzckNI9UxswsE3YyUL1xAeh2LNnLpnjztnfZYHd0ft
+         R9fj0VL0N0bGNRxoH61Iz2OJ3YJF+Ad2NrufSAML4Sw/A1iMJIUwxSuMCy8HZSOwovkn
+         2cbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pGmjAtSpm7T3NYEfTdl7rNgWicn+a5Oe3VNo+Eoz3Lw=;
+        b=AFUok83iXGxqXYXk/0Cq5+hjG8aZxUBppWZiimypC0AnOFYRkwYH+aMmbwbsEekEwh
+         0wlea9U9PxGrtK8ilZqPwfv7651NNy6iqkoHi1ZHy6P2G2blxGbjNO+YikEUOmFy+Qzb
+         tuGTB6cA1wMpczSbtAp+0eKHVLXXf0u0c8sLV+rEpzfBi2P2SCNXKLP3sdkqwLI5mvf6
+         3Jrmxjyrv74WqsbMpmCcSEKSp8gu/sTNnM7R8PQjGpyfFBsJbReFOmFXcyaW7zFy6d7f
+         AvbcxvII1hw1E3pTQEbznK9+7oDS65go/BpOoQjj7JGZBWUQ2TBlwANM3d2ZysvFukjo
+         i0jA==
+X-Gm-Message-State: AO0yUKWhPNogVdD0vVyyIDtRvmlmjfY9ik4y5DaB01VvXnraQoZhCNjw
+        j900RF/NH2xVURT2mU+52hG/jut8YSZY/K4A3Bw=
+X-Google-Smtp-Source: AK7set/Phq0+sMz3EXPsbZ2Dwtggp95sagZP3NNxuR0p3KAlHS0KLI+JnJOts17T5uTN0oi6OC8KCse3Bq8AdieGaL4=
+X-Received: by 2002:a17:906:1781:b0:878:7d2c:6ba4 with SMTP id
+ t1-20020a170906178100b008787d2c6ba4mr4606698eje.42.1675570568186; Sat, 04 Feb
+ 2023 20:16:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="qwl6y6rrtwcef27f"
-Content-Disposition: inline
-In-Reply-To: <Y95lSpUaOnbSAOIC@google.com>
+References: <20230126230319.3977109-1-dmitry.baryshkov@linaro.org> <92240215-b336-48c8-d9f0-a33890f44907@linaro.org>
+In-Reply-To: <92240215-b336-48c8-d9f0-a33890f44907@linaro.org>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Sat, 4 Feb 2023 22:15:56 -0600
+Message-ID: <CABb+yY3WXt0NBoh+spgYXj3L_72s_L-W+hqz+sbKNyD0HgU_vw@mail.gmail.com>
+Subject: Re: [PATCH v5 0/7] clk: qcom: msm8996: add APCS clock driver
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 27, 2023 at 12:15 PM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On 27/01/2023 01:03, Dmitry Baryshkov wrote:
+> > The sys_apcs_aux clock can be used by CPU and CBF clock drivers to drive
+> > those clocks from GPLL0 while doing initial setup. Add simple driver to
+> > setup and export this clock.
+>
+> Jassi, please excuse me for this ping. Since the only questions are
+> related to the clock driver (and hopefully they all are resolved), do
+> you plan to merge the patches 1-6 for 6.3?
+>
+They have the required acks, so yes I will pick 1-6 (not 7).
 
---qwl6y6rrtwcef27f
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Lee,
-
-On Sat, Feb 04, 2023 at 02:01:46PM +0000, Lee Jones wrote:
-> On Sat, 04 Feb 2023, Lee Jones wrote:
-> > On Fri, 27 Jan 2023, Sebastian Reichel wrote:
-> > > Split rk808 into a core and an i2c part in preperation for
-> > > SPI support.
-> > >=20
-> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > > ---
-> > >  drivers/clk/Kconfig                   |   2 +-
-> > >  drivers/input/misc/Kconfig            |   2 +-
-> > >  drivers/mfd/Kconfig                   |   7 +-
-> > >  drivers/mfd/Makefile                  |   3 +-
-> > >  drivers/mfd/{rk808.c =3D> rk8xx-core.c} | 209 +++++-----------------=
-----
-> > >  drivers/mfd/rk8xx-i2c.c               | 200 ++++++++++++++++++++++++
-> > >  drivers/pinctrl/Kconfig               |   2 +-
-> > >  drivers/power/supply/Kconfig          |   2 +-
-> > >  drivers/regulator/Kconfig             |   2 +-
-> > >  drivers/rtc/Kconfig                   |   2 +-
-> > >  include/linux/mfd/rk808.h             |   6 +
-> > >  sound/soc/codecs/Kconfig              |   2 +-
-> > >  12 files changed, 256 insertions(+), 183 deletions(-)
-> > >  rename drivers/mfd/{rk808.c =3D> rk8xx-core.c} (76%)
-> > >  create mode 100644 drivers/mfd/rk8xx-i2c.c
-> >=20
-> > Looks like you completely ignored (no response / no action) my review of
-> > v4.  This submission is therefore not getting one!  All comments can be
-> > superimposed from v4.
->=20
-> s/v4/v5/
-
-not sure what you are talking about. I dropped the PM wrappers and
-added a new patch moving the driver to use OF match. There were no
-other comments as far as I can tell. Did I miss a second mail with
-more comments?
-
--- Sebastian
-
---qwl6y6rrtwcef27f
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmPfAQsACgkQ2O7X88g7
-+prcPQ//eszrU24MFC5Y+5iGOaGdQNIx5ftzeIJNJBwYVllRJ12qns5IJavJb3bO
-j2KePqz80vwBzjQjtaFrid3dDUp+5Kip6spWCbu1mD0zPCj9xNUmWdFn78oZJRvN
-U9VYMRqeGBEmh4F/2dXaDd1KpZ+Yv042fCi0er5X2LMi0OE2RtlaE62l4XTKTCB7
-Kzzj/5Hv0DicX/Ecoq2ys7OcCWy7wG9hilyGYABZCWtAICoGCVMtLA8DwO+YNcDL
-wg0RRRJGkUrIZ91MIFDSxsYiElqil5tNaEhqBg+XfEzjEZeZEJR/Bw59rTNvBvIn
-DqkpT0C6e1kxn5aoaExjwMPmxRx9spq71V8EAQ71ZL9HIQNmQPXiyhmXMJUVuW1p
-gHctZpXTwQpvqoy18NtoQ/6ZWTuNwUHqhn3z16SND0x5Uekp95zuN3YJvBrn4YIf
-niEwpVUWnCUmrMAxxp9Cue5TaRpLPHk9WzWxaX5cIykOKrS0eN2NBINipTTEItZs
-/2mntr82tvbsBQwQCYSWsmf0X7/4oA4IfF06M/xXKwsbQNlA6vBgKpffA1kxgKPR
-8jHLlDUKVFB+RNvCiHRMkE4WBUlpliZqyRq1te8TS9Knhbz0Jj0fnbpn+G8Hu+wg
-TswdQcjKJjAOHrJ3n7w+yHMUH9T3rooo+cTbf3HxO4Qn7Wrqp2o=
-=x1Im
------END PGP SIGNATURE-----
-
---qwl6y6rrtwcef27f--
+thanks
