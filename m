@@ -2,68 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C81368AE39
-	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 05:16:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0B9D68AEC5
+	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 08:57:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbjBEEQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Feb 2023 23:16:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60284 "EHLO
+        id S229448AbjBEH5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Feb 2023 02:57:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjBEEQM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Feb 2023 23:16:12 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD8B06E93;
-        Sat,  4 Feb 2023 20:16:09 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id dr8so25587516ejc.12;
-        Sat, 04 Feb 2023 20:16:09 -0800 (PST)
+        with ESMTP id S229437AbjBEH5f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 02:57:35 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF0461F5F2
+        for <devicetree@vger.kernel.org>; Sat,  4 Feb 2023 23:57:33 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so5178819wms.0
+        for <devicetree@vger.kernel.org>; Sat, 04 Feb 2023 23:57:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=pGmjAtSpm7T3NYEfTdl7rNgWicn+a5Oe3VNo+Eoz3Lw=;
-        b=MU+TGrCw1MEvbZ+QAC6jqR6MOQaR8PyyMr0RhYg3EKTVT8b2coqtS1GyEnQ/0zDjWX
-         PbrT9j7vMPNrPHiUnKwZB7gGyYHbrQvlI1DkF4ss4b8nKYLt4PubrWJj2aujM4gC26Yy
-         zX72cXs5xCD9rf9JKL6D3/hxzvoGV5Q2s4OGLXdasOb3wfv7u6ljXWnB3iPbljQerT0B
-         JH59fZyXEgO62k2RByu2DnWh0IpzckNI9UxswsE3YyUL1xAeh2LNnLpnjztnfZYHd0ft
-         R9fj0VL0N0bGNRxoH61Iz2OJ3YJF+Ad2NrufSAML4Sw/A1iMJIUwxSuMCy8HZSOwovkn
-         2cbQ==
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2KwxawGhHrGD7Cjciesgq8Dek9FKWiGaG8buzbGZFkk=;
+        b=D8O5qLY/PSR31AbVtCwLDd+4KwQ97JcH9YFQMq9tISaak/KKZ9dIPSdjJZttBsf/Ju
+         TJcLd+aGOngSHFGU09TL7KBb27HVoV3VYsa8prIDpkW8WQybYFToXCGVLq6vMp7hn5es
+         2hyAeQTrhFaevheD6u2wM/j5gqgeNfcvB2VGPLokRfj4LcNaArrL6MzgTWrMTS0fDN5c
+         RrBHmOASz2A5rf/3rwWhAsMmYgDNw5USTY/0P/nNOxFUEVlba7FIwAoMcgcYAEW/FZCR
+         y0v9KavRXgML5t3s9L6kiSe6uZ4w1llAgCp609PEjJl/LvR5if/pRK3bR3Y4ut71KzI8
+         4zQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pGmjAtSpm7T3NYEfTdl7rNgWicn+a5Oe3VNo+Eoz3Lw=;
-        b=AFUok83iXGxqXYXk/0Cq5+hjG8aZxUBppWZiimypC0AnOFYRkwYH+aMmbwbsEekEwh
-         0wlea9U9PxGrtK8ilZqPwfv7651NNy6iqkoHi1ZHy6P2G2blxGbjNO+YikEUOmFy+Qzb
-         tuGTB6cA1wMpczSbtAp+0eKHVLXXf0u0c8sLV+rEpzfBi2P2SCNXKLP3sdkqwLI5mvf6
-         3Jrmxjyrv74WqsbMpmCcSEKSp8gu/sTNnM7R8PQjGpyfFBsJbReFOmFXcyaW7zFy6d7f
-         AvbcxvII1hw1E3pTQEbznK9+7oDS65go/BpOoQjj7JGZBWUQ2TBlwANM3d2ZysvFukjo
-         i0jA==
-X-Gm-Message-State: AO0yUKWhPNogVdD0vVyyIDtRvmlmjfY9ik4y5DaB01VvXnraQoZhCNjw
-        j900RF/NH2xVURT2mU+52hG/jut8YSZY/K4A3Bw=
-X-Google-Smtp-Source: AK7set/Phq0+sMz3EXPsbZ2Dwtggp95sagZP3NNxuR0p3KAlHS0KLI+JnJOts17T5uTN0oi6OC8KCse3Bq8AdieGaL4=
-X-Received: by 2002:a17:906:1781:b0:878:7d2c:6ba4 with SMTP id
- t1-20020a170906178100b008787d2c6ba4mr4606698eje.42.1675570568186; Sat, 04 Feb
- 2023 20:16:08 -0800 (PST)
-MIME-Version: 1.0
-References: <20230126230319.3977109-1-dmitry.baryshkov@linaro.org> <92240215-b336-48c8-d9f0-a33890f44907@linaro.org>
-In-Reply-To: <92240215-b336-48c8-d9f0-a33890f44907@linaro.org>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Sat, 4 Feb 2023 22:15:56 -0600
-Message-ID: <CABb+yY3WXt0NBoh+spgYXj3L_72s_L-W+hqz+sbKNyD0HgU_vw@mail.gmail.com>
-Subject: Re: [PATCH v5 0/7] clk: qcom: msm8996: add APCS clock driver
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2KwxawGhHrGD7Cjciesgq8Dek9FKWiGaG8buzbGZFkk=;
+        b=n++AhKTy5FaKgypcTG7yX3MZIOXw5SMwWbSJpP1tzHAKaugHOuWaEh8I4Y8x7exGKB
+         JLOpRUr+af9Hv3qocmuH9r6Sspa7McsMeIfmVZz4iKBf5xblq8tf2wjSc85R9lJdspUd
+         t8kx502oDtFNcNj9KpCOirE1QxOjm56oqlKsM3xTLUNN0ViTJiPH+xcU4fd+PlGrOo7U
+         9Tg/SH/mFF/YhCZbqLt+M/gkRsDZvAVb79p2rrICZv6hJ4+D6ww5o7HPrf4cyZ0w4JNR
+         N9mJZtjJGavfuKh3P5G2PNkJs16nS9c/59DL/EJnsHf7s7us3ER/cAffbHcIHY6/Ng/O
+         e3NQ==
+X-Gm-Message-State: AO0yUKW/Zoh0wmM7txzRb0eu+w972MjSPCC/PLvxD/9aBvUUTeCjDJe5
+        Jt1Q0W8aiyrkGzy+BEoHQRc=
+X-Google-Smtp-Source: AK7set9uhqLS5dyxfl2QAI2MGrrkJQ28Zlj2FHtRgLUQ7ZNTgFqeHMPW97wBgozLNE46beIUv15wFg==
+X-Received: by 2002:a05:600c:3504:b0:3df:30c9:4865 with SMTP id h4-20020a05600c350400b003df30c94865mr14174489wmq.26.1675583852409;
+        Sat, 04 Feb 2023 23:57:32 -0800 (PST)
+Received: from smtpclient.apple ([2a01:e0a:982:cbb0:3cf9:9123:e7f6:d530])
+        by smtp.gmail.com with ESMTPSA id k32-20020a05600c1ca000b003ddf2865aeasm13595438wms.41.2023.02.04.23.57.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 04 Feb 2023 23:57:32 -0800 (PST)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+From:   Neil Armstrong <narmstrong.kernel@gmail.com>
+Mime-Version: 1.0 (1.0)
+Subject: Re: [PATCH v3] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding
+Date:   Sun, 5 Feb 2023 08:57:21 +0100
+Message-Id: <9DA78049-10C9-47D6-B36B-9B7E1067385A@gmail.com>
+References: <6dcf6333-f75a-f7ec-8ce9-fbbfb81d1a60@gmail.com>
+Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+In-Reply-To: <6dcf6333-f75a-f7ec-8ce9-fbbfb81d1a60@gmail.com>
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+X-Mailer: iPhone Mail (20C65)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -74,18 +76,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 27, 2023 at 12:15 PM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On 27/01/2023 01:03, Dmitry Baryshkov wrote:
-> > The sys_apcs_aux clock can be used by CPU and CBF clock drivers to drive
-> > those clocks from GPLL0 while doing initial setup. Add simple driver to
-> > setup and export this clock.
->
-> Jassi, please excuse me for this ping. Since the only questions are
-> related to the clock driver (and hopefully they all are resolved), do
-> you plan to merge the patches 1-6 for 6.3?
->
-They have the required acks, so yes I will pick 1-6 (not 7).
 
-thanks
+> Le 5 f=C3=A9vr. 2023 =C3=A0 01:05, Heiner Kallweit <hkallweit1@gmail.com> a=
+ =C3=A9crit :
+>=20
+> =EF=BB=BFOn 04.02.2023 23:56, Martin Blumenstingl wrote:
+>> Hi Heiner,
+>>=20
+>> On Wed, Feb 1, 2023 at 11:13 PM Heiner Kallweit <hkallweit1@gmail.com> wr=
+ote:
+>> [...]
+>>>>> +      - items:
+>>>>> +          - const: amlogic,meson8m2-aobus-pinctrl
+>>>>> +          - const: amlogic,meson8-aobus-pinctrl
+>>>>> +      - items:
+>>>>> +          - const: amlogic,meson8m2-cbus-pinctrl
+>>>>> +          - const: amlogic,meson8-cbus-pinctrl
+>>>>=20
+>>>> Again, can't have both with and without the fallback allowed.
+>>>>=20
+>>> Hi Martin,
+>>>=20
+>>> meson8m2 is the only chip version having a fallback for the
+>>> pinctrl compatible. Is this fallback really needed?
+>>> Looking at the driver it seems that both compatibles
+>>> are handled identically.
+>> Back in the day we decided to duplicate the Meson8 driver code just to
+>> add four new pin functions that are added by the Meson8m2 SoC
+>> generation:
+>> "eth_rxd2", "eth_rxd3", "eth_txd2", "eth_txd3"
+>>=20
+>> The compatible string was defined with a similar approach: since
+>> Meson8m2 just adds a few bits to the Meson8 pin controller it's
+>> backwards compatible.
+>>=20
+>> If the fallback has to be removed then I'm okay with that but I would
+>> like to understand it first.
+>> So far I thought that Rob basically asked to remove the following two
+>> compatible strings from the enum (as they're listed separately with
+>> their fallbacks):
+>> - amlogic,meson8m2-cbus-pinctrl
+>> - amlogic,meson8m2-aobus-pinctrl
+>>=20
+> Right, this should be sufficient. There's no place where the 8m2 pinctrl
+> compatibles are used w/o fallback.
+>=20
+> Then the hopefully final version of the binding is almost ready.
+> I'm just still checking whether there's any way in yaml to specify
+> a reg-names list with mandatory and optional names. Doesn't seem so.
+
+It=E2=80=99s possible with minItems/maxItems and allOf:if/else to specify di=
+fferent min/max for each compatible
+
+Neil
+
+>=20
+>>=20
+>> Best regards,
+>> Martin
+>=20
+> Heiner
