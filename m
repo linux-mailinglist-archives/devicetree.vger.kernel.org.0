@@ -2,129 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F05468B04B
-	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 15:32:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 887DF68B04F
+	for <lists+devicetree@lfdr.de>; Sun,  5 Feb 2023 15:39:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229595AbjBEOcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Feb 2023 09:32:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56376 "EHLO
+        id S229567AbjBEOjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Feb 2023 09:39:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbjBEOcM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 09:32:12 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 267BE1CF7F;
-        Sun,  5 Feb 2023 06:32:11 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 315EVmHq001124;
-        Sun, 5 Feb 2023 08:31:48 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1675607508;
-        bh=YZuVF63MW2U2mNEZ5pPQ0LVoy/puMzmMfHN/t2Px0oI=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=mlehZzBcbBYF4y/UmxPvMJu6jMEBD2ZVWGXgEJ2oHXhwAcL7CQD//hoQWcbvoqIaP
-         QNLNMN4mSzQ8Xxs9GprAWgjif/4mQF9ErYmbgIURVXoh31+ZtOh8wAR2L36HhWoLZQ
-         VhkUt/FHGdsERU1gYNpjr4HhgQ0T4K9Sx8806FJo=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 315EVmxN013296
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 5 Feb 2023 08:31:48 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sun, 5
- Feb 2023 08:31:48 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Sun, 5 Feb 2023 08:31:48 -0600
-Received: from [10.250.235.106] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 315EVhgh016739;
-        Sun, 5 Feb 2023 08:31:44 -0600
-Message-ID: <1662a593-8a5d-9214-8a3e-ef2699a35265@ti.com>
-Date:   Sun, 5 Feb 2023 20:01:43 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v7 3/6] drm/tidss: Add support for AM625 DSS
-Content-Language: en-US
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        with ESMTP id S229490AbjBEOjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 09:39:32 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F231C31B;
+        Sun,  5 Feb 2023 06:39:31 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 13ED960BA9;
+        Sun,  5 Feb 2023 14:39:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7B95C433D2;
+        Sun,  5 Feb 2023 14:39:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675607970;
+        bh=IwndUhI0nyBuym7OP5+YwXCaj3c/10tKeMH+GWbtzls=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=MiK4Dlvr/flWyxwwfqQzbbbpLRjkywQsin6mEFzuXIx8TCBT1eWSCkSEWx8nRHTeL
+         WsRtOrzdIhaioSSfkRnC6YgAcobq6Pr/YmPBYW8jb86GT26fReWReuX4gsqR0/SsGr
+         U6LJozYt8uFxkV0mUZMH6lLvfc1o39UdMzu7S82uphQjEp3vl4wqiVromlbFKcz5qf
+         8WW0nV9RlzwBnngTp+4eMYKdCmC9OQhaIFulDPSoIbCTqiJbwhwYhywiZbtRYL6lt5
+         mC9PCSk/WL7CXVcE3romKqqP4+1+p/OzTp5/zs3+6bDAe1hFSSZ17Iv17P94elHBKe
+         zHDrgR6ZY6pOA==
+Date:   Sun, 5 Feb 2023 14:53:31 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Angel Iglesias <ang.iglesiasg@gmail.com>
+Cc:     linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-CC:     DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230125113529.13952-1-a-bhatia1@ti.com>
- <20230125113529.13952-4-a-bhatia1@ti.com>
- <ab6f52bb-a3f5-afda-c037-f009153a0bb6@ideasonboard.com>
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <ab6f52bb-a3f5-afda-c037-f009153a0bb6@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 5/7] iio: pressure: bmp280: Add support for new
+ sensor BMP580
+Message-ID: <20230205145331.1d67b5e6@jic23-huawei>
+In-Reply-To: <97a234ddac057eea1e6790d7fa4a66564abec2ed.1674954271.git.ang.iglesiasg@gmail.com>
+References: <cover.1674954271.git.ang.iglesiasg@gmail.com>
+        <97a234ddac057eea1e6790d7fa4a66564abec2ed.1674954271.git.ang.iglesiasg@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 29 Jan 2023 02:33:07 +0100
+Angel Iglesias <ang.iglesiasg@gmail.com> wrote:
 
-
-On 03-Feb-23 21:03, Tomi Valkeinen wrote:
-> On 25/01/2023 13:35, Aradhya Bhatia wrote:
->> Add support for the DSS controller on TI's new AM625 SoC in the tidss
->> driver.
->>
->> The first video port (VP0) in am625-dss can output OLDI signals through
->> 2 OLDI TXes. A 3rd output port has been added with "DISPC_PORT_OLDI" bus
->> type.
+> Adds compatibility with the new sensor generation, the BMP580.
 > 
-> Not a big thing here as you add support for a new SoC, but the ordering
-> of the patches is not optimal. Here you add the AM625 DSS support, but
-> then you continue actually adding the DSS support (well, mainly OLDI) in
-> the following patches.
+> The measurement and initialization codepaths are adapted from
+> the device datasheet and the repository from manufacturer at
+> https://github.com/boschsensortec/BMP5-Sensor-API.
 > 
-> I think patch 6 could be before this patch. Parts of patch 4 could also
-> be before this patch. The AM65X renames from patch 5 could be before
-> this patch.
-
-I can move whole of Patch 6 and even of Patch 4 before this one. I have
-mentioned 'AM625-DSS' in a couple comments which I can make generic,
-and the rest everything is SoC-agnostic.
-
-I haven't tried this, but my concern is if we break patch 5 into 2
-separate patches,
-
-i. AM65X rename plus SoC based switch case, and
-ii. Addition of AM625 SoC case
-
-then I might have to overwrite some changes implemented during (i) in
-(ii). I don't suppose that would be okay, would it?
-
-Also, is it important to keep the compatible-addition patches of
-DT-binding and driver next to each other in the series? Or should
-the DT-binding patches should be the first ones? Just curious! =)
-
+> Signed-off-by: Angel Iglesias <ang.iglesiasg@gmail.com>
 > 
-> I'm mainly thinking of a case where someone uses AM625 and is bisecting
-> a problem. What happens if his board uses OLDI, and he happens to hit
-> one of these patches during bisect? If the display just stays black, but
-> otherwise everything works fine, then no problem. But if it crashes or
-> starts spamming sync losts or such or gives errors, it's not so nice.
-> 
-You are right! This certainly makes sense.
+
+Hi Angel,
+
+As you are doing one more version anyway, a few really minor comments inline.
+
+Thanks,
+
+Jonathan
+
+> diff --git a/drivers/iio/pressure/bmp280-core.c b/drivers/iio/pressure/bmp280-core.c
+> index 22addaaa5393..c65fb4025ad9 100644
+> --- a/drivers/iio/pressure/bmp280-core.c
+> +++ b/drivers/iio/pressure/bmp280-core.c
+
+>  /*
+>   * These enums are used for indexing into the array of compensation
+>   * parameters for BMP280.
+> @@ -1216,6 +1252,303 @@ const struct bmp280_chip_info bmp380_chip_info = {
+>  };
+>  EXPORT_SYMBOL_NS(bmp380_chip_info, IIO_BMP280);
+>  
+> +/*
+> + * BMP5xx soft reset procedure
+
+Wild cards are often a bad idea, even in comments.  Tend to end up covering
+some device that works differently.  With that in mind, not sure this comment
+adds anything over the function name.
+
+> + */
+> +static int bmp580_soft_reset(struct bmp280_data *data)
+> +{
+> +	unsigned int reg;
+> +	int ret;
+> +
+> +	/* Write reset word to CMD register */
+Not that informative as comments go.
+
+> +	ret = regmap_write(data->regmap, BMP580_REG_CMD, BMP580_CMD_SOFT_RESET);
+> +	if (ret) {
+> +		dev_err(data->dev, "failed to send reset command to device\n");
+> +		return ret;
+> +	}
+> +	/* Wait 2ms for reset completion */
+nor is this one - drop them both.
+> +	usleep_range(2000, 2500);
+> +
+> +	/* Dummy read of chip_id */
+Now this one is good as not obvious why read is here so keep it!
+> +	ret = regmap_read(data->regmap, BMP580_REG_CHIP_ID, &reg);
+> +	if (ret) {
+> +		dev_err(data->dev, "failed to reestablish comms after reset\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Check if POR bit is set on interrupt reg */
+Not sure the comment adds anything not obviously from code.  I'd be inclined
+to drop it.
+> +	ret = regmap_read(data->regmap, BMP580_REG_INT_STATUS, &reg);
+> +	if (ret) {
+> +		dev_err(data->dev, "error reading interrupt status register\n");
+> +		return ret;
+> +	}
+> +	if (!(reg & BMP580_INT_STATUS_POR_MASK)) {
+> +		dev_err(data->dev, "error resetting sensor\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * Contrary to previous sensors families, compensation algorithm is builtin.
+> + * We are only required to read the register raw data and adapt the ranges
+> + * for what is expected on IIO ABI.
+> + */
+> +
+> +static int bmp580_read_temp(struct bmp280_data *data, int *val)
+> +{
+> +	s32 raw_temp;
+> +	int ret;
+> +
+> +	ret = regmap_bulk_read(data->regmap, BMP580_REG_TEMP_XLSB, data->buf,
+> +			       sizeof(data->buf));
+> +	if (ret) {
+> +		dev_err(data->dev, "failed to read temperature\n");
+> +		return ret;
+> +	}
+> +
+> +	raw_temp = get_unaligned_le24(data->buf);
+> +	if (raw_temp == BMP580_TEMP_SKIPPED) {
+> +		dev_err(data->dev, "reading temperature skipped\n");
+> +		return -EIO;
+> +	}
+> +
+> +	/*
+> +	 * Temperature is returned in Celsius degrees in fractional
+> +	 * form down 2^16. We reescale by x1000 to return milli Celsius
+> +	 * to respect IIO ABI.
+> +	 */
+> +	*val = (raw_temp * 1000) >> 16;
+
+Why not use IIO_VAL_FRACTION_LOG2 and keep the precision?
+
+> +	return IIO_VAL_INT;
+> +}
 
 
-Regards
-Aradhya
