@@ -2,169 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9FBC68C048
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:38:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84E8F68C053
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:41:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231468AbjBFOiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 09:38:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56500 "EHLO
+        id S229892AbjBFOlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 09:41:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231364AbjBFOiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:38:24 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1B723132
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 06:38:19 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id a2so10293626wrd.6
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 06:38:18 -0800 (PST)
+        with ESMTP id S229868AbjBFOlO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:41:14 -0500
+Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C546E8F
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 06:41:13 -0800 (PST)
+Received: by mail-vs1-xe2d.google.com with SMTP id k4so12864664vsc.4
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 06:41:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Sf/528wXAQUAwrFpLgVFCwIJzpqE7FME4cXLMCiQ9q4=;
-        b=SFl9P6mJB4sMOiUWh46YPfTw67evHCpobeIYqBGB3FXcLQE7OI+Whm6vEJ+dz1b73C
-         WVODA1ekHEt8t+KimKYEuXwF3FbAL06LLNVA6G6hQAz7O9BXpIRFP28xlgjYEBzQQMa2
-         T+FrUB8SvWWNVBLcSxSoFwPwGI4KmBhYIVE9K0Xu2fhIiMPHGF0uc7lltqcKRKpnBeyW
-         dc4guszP3mI/UGFFf2znZlrMByVFFmjz2snKGOYfS8SSI1NMzhY8ZeVIQFOCca0WDNAm
-         bafVZp6pu9jliK2/II2xsSYdKo/yUp+fcQV8y5jJY956gMaeE/ogLOUaJigRIQoxIpyT
-         /FMA==
+        d=raspberrypi.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+w2S6uyVtXl+N2TMG+jPE/D1AfMS4lPC+s07COsfjC4=;
+        b=Gkw2CYUqNkvGNddpf5mzEy8CKX9fECexBRUqQpc9iA3SS+k9ZQaZAwE1T13fFIT8Ry
+         CwE3eyxjq9VbVoMkpIL4F+5fFxlxEy6LfWSvLvnSH754Qv6EsGn9CR6ATs0ZhUavuGGQ
+         6ofIaRlCKQs6T8OiNixvxTludfoIiUUqUp2j4L4ds4e7f8dATd6XRhrPFWLqWJ84hrpD
+         aeY0BRq/wRgl8vCK4BG1e/t9zWN54fn829aR4DQW7EDlLIiTcscvLs4+kOo0XpzP7XyI
+         BGHttIn1ewROQCtqjc95kHd8aCMNdkxLFeg8fNG2fy7gTx42gy8N1NKDMFhpqUGmWAMG
+         6Xxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sf/528wXAQUAwrFpLgVFCwIJzpqE7FME4cXLMCiQ9q4=;
-        b=6DcCQUq3WdYubv8bOs4j/K+quMJ1tbtUW4eU/lHQoau3WICSOnlVKbMqs19OYroBo8
-         qXljhK97cS4hGMdbLV4+1Nf9rYjwGqCXIQK/cKaeCuDoeXocvw7BN8TRX4hA9pBRu9wZ
-         ayDZxm46sWtxs+ERPjVnPJrEBsipl678o52/GRXZyF4o7xQcVz5v3EYYNY675VT7BWy7
-         /4O9oGJAoD9DJkLcKzSPOX1GhPbvpEmHXG4MymKoxRfL5PXJ0tqMS2zLBOzEJTIHhC7l
-         UYh0LTvymGosuujXYcDL3rf72cUWB3u7Gyvbv0jMLQlSzSZKfOMvmybUO31tsFO3fNog
-         K1OA==
-X-Gm-Message-State: AO0yUKX1dgAKDjkbiCCjhnWN1ohuf6WgntJmcgzvngLQS31gQ9tvfh10
-        M1N3oTQKrvbaNuWqI9n23mi+BQ==
-X-Google-Smtp-Source: AK7set9WEiQQfj69zfozOpjUPK78PzdVOxESwEbgbyE39wzmtW0iMjikdve/zkaIsPj3uSNQsEa5yg==
-X-Received: by 2002:a5d:46cf:0:b0:2c3:ea6b:ef83 with SMTP id g15-20020a5d46cf000000b002c3ea6bef83mr3042598wrs.12.1675694297531;
-        Mon, 06 Feb 2023 06:38:17 -0800 (PST)
-Received: from [172.17.59.64] (wifi-eduroam-trans.univ-tlse3.fr. [195.220.58.237])
-        by smtp.googlemail.com with ESMTPSA id o1-20020a5d4a81000000b002c3d67aac74sm8510523wrq.88.2023.02.06.06.38.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 06:38:17 -0800 (PST)
-Message-ID: <ea30d169-2ae6-2744-fbfd-01bbbba36554@linaro.org>
-Date:   Mon, 6 Feb 2023 15:38:15 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+w2S6uyVtXl+N2TMG+jPE/D1AfMS4lPC+s07COsfjC4=;
+        b=Losuq0hgQ08ob/aFf6aUH4y9WXAMFuih9P1OaOxbHSAP/GSkYH/duzP/6o1xyOT0vN
+         ejV5EQ/R+lc+Q0SQ8YaHxmRuBbpBlrumEoydXSjR/ke+kCZwwjDhv3RyYcb3FAPZOz9M
+         Z9AQD2X5V/gRPY6R6nO+wU4R35ihFWV9UvYojTzNMvkcPWO0/Mvz//MryqTo4HYbxPS6
+         ok7uvZ6A8Yeo/2K5V/Kn61GPH+7B+yD3lb1rh0qTklZ0VjfKYwtauc9kbZf946RZMKHE
+         KCHvJOgeh3MMBW1Dn3q8ynYgYeIhyEbld/r3nlOaciZm4CrPkQrW0fJHMzi3hoxieAPj
+         L/5w==
+X-Gm-Message-State: AO0yUKVEEyJwcPETVOIBwRZnilsJJLBl2jAyKLkwnmyop5Xgc5QG0+JS
+        cJ6XERPjNO28EOJt0jDxm6MngxUZbQ8BXRHLV5LbdA==
+X-Google-Smtp-Source: AK7set+QQR5FP1Nt8AoVS79J0ipjnkwFjl2MdrJADwEI0BpeLY7y/rNqbWpyj/vrV/6Cp9QMpHBBLpWFQBRVsqk5Gjo=
+X-Received: by 2002:a67:ef41:0:b0:3f2:edef:718f with SMTP id
+ k1-20020a67ef41000000b003f2edef718fmr3206633vsr.28.1675694472222; Mon, 06 Feb
+ 2023 06:41:12 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v12] thermal: drivers: mediatek: Add the Low Voltage
- Thermal Sensor driver
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     bchihi@baylibre.com, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-References: <20230124131717.128660-5-bchihi@baylibre.com>
- <20230131153816.21709-1-bchihi@baylibre.com>
- <ab1e4822-d5f4-79f6-ea38-47e2342ebe49@linaro.org>
- <20230206140713.GB15176@linaro.org>
- <b6a24ff7-4154-f2b4-88b1-a8a87c30d30a@linaro.org>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <b6a24ff7-4154-f2b4-88b1-a8a87c30d30a@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
+References: <20230206131731.548795-1-alexander.stein@ew.tq-group.com> <20230206131731.548795-3-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20230206131731.548795-3-alexander.stein@ew.tq-group.com>
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date:   Mon, 6 Feb 2023 14:40:56 +0000
+Message-ID: <CAPY8ntBzi8kccb6qVkHxs02Ae1fC0emLdo5CQd4uQ9PkJySGeQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] media: i2c: imx290: Add support for imx327 variant
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/02/2023 15:30, Krzysztof Kozlowski wrote:
-> On 06/02/2023 15:07, Daniel Lezcano wrote:
->> On Wed, Feb 01, 2023 at 08:55:07AM +0100, Krzysztof Kozlowski wrote:
->>> On 31/01/2023 16:38, bchihi@baylibre.com wrote:
->>>> From: Balsam CHIHI <bchihi@baylibre.com>
->>>>
->>>> The Low Voltage Thermal Sensor (LVTS) is a multiple sensors, multi
->>>> controllers contained in a thermal domain.
->>>>
->>>> A thermal domains can be the MCU or the AP.
->>>>
->>>> Each thermal domains contain up to seven controllers, each thermal
->>>> controller handle up to four thermal sensors.
->>>>
->>>> The LVTS has two Finite State Machines (FSM), one to handle the
->>>> functionin temperatures range like hot or cold temperature and another
->>>> one to handle monitoring trip point. The FSM notifies via interrupts
->>>> when a trip point is crossed.
->>>>
->>>
->>> (...)
->>>
->>>> +
->>>> +struct lvts_domain {
->>>> +	struct lvts_ctrl *lvts_ctrl;
->>>> +	struct reset_control *reset;
->>>> +	struct clk *clk;
->>>> +	int num_lvts_ctrl;
->>>> +	void __iomem *base;
->>>> +	size_t calib_len;
->>>> +	u8 *calib;
->>>> +};
->>>> +
->>>> +#ifdef CONFIG_MTK_LVTS_THERMAL_DEBUGFS
->>>> +
->>>> +static struct dentry *root;
->>>
->>> How do you handle two instances of driver?
->>
->> For now, we can put the entry in /sys/kernel/debug/<dev_name>
->>
->> I'm preparing a debugfs series for the thermal framework and that will provide
->> an entry to hook in for the sensors debugfs if available
-> 
-> The code looked like it does not support it at all. I think it would
-> remove entries from second instance, while unbinding the first (or the
-> opposite).
+Hi Alexander
 
-Yes, and you are right.
+Thanks for the patch.
 
-So instead of having:
+On Mon, 6 Feb 2023 at 13:17, Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> Both sensors are quite similar. Their specs only differ regarding LVDS
+> and parallel output but are identical regarding MIPI-CSI-2 interface.
+> But they use a different init setting of hard-coded values, taken from
+> the datasheet.
+>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> Note: The call to v4l2_i2c_subdev_set_name will change the device name
+> shown to userspace. So now 'imx290lqr' will be shown instead of 'imx290'.
 
-/sys/kernel/debugfs/lvts/lvts@mcu
+This is going to cause grief as we already have a Pi libcamera
+pipeline handler and tuning that relies on the entity name being
+"imx290", so changing that is going to cause issues.
 
-We will have:
+From userspace, the difference between lqr and llr is already reported
+via the different colour formats supported (RGGB10 & RGGB12 vs Y10 &
+Y12), so there is no need to provide the full part number. If there is
+a need to distinguish imx327 vs imx290 in userspace, then I'd propose
+just using the base model identifier.
 
-/sys/kernel/debugfs/lvts@mcu
+>  drivers/media/i2c/imx290.c | 58 ++++++++++++++++++++++++++++++++++++--
+>  1 file changed, 55 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
+> index 1cfdd700bca5..0bfbce8853e6 100644
+> --- a/drivers/media/i2c/imx290.c
+> +++ b/drivers/media/i2c/imx290.c
+> @@ -173,10 +173,13 @@ enum imx290_colour_variant {
+>  enum imx290_model {
+>         IMX290_MODEL_IMX290LQR,
+>         IMX290_MODEL_IMX290LLR,
+> +       IMX290_MODEL_IMX327LQR,
+>  };
+>
+>  struct imx290_model_info {
+>         enum imx290_colour_variant colour_variant;
+> +       enum imx290_model model;
+> +       const char *name;
+>  };
+>
+>  enum imx290_clk_freq {
+> @@ -272,10 +275,14 @@ static const struct imx290_regval imx290_global_init_settings[] = {
+>         { IMX290_WINWV, 1097 },
+>         { IMX290_XSOUTSEL, IMX290_XSOUTSEL_XVSOUTSEL_VSYNC |
+>                            IMX290_XSOUTSEL_XHSOUTSEL_HSYNC },
+> -       { IMX290_REG_8BIT(0x300f), 0x00 },
+> -       { IMX290_REG_8BIT(0x3010), 0x21 },
+> +       { IMX290_REG_8BIT(0x3011), 0x02 },
+>         { IMX290_REG_8BIT(0x3012), 0x64 },
+>         { IMX290_REG_8BIT(0x3013), 0x00 },
+> +};
+> +
+> +static const struct imx290_regval imx290_global_init_settings_290[] = {
+> +       { IMX290_REG_8BIT(0x300f), 0x00 },
+> +       { IMX290_REG_8BIT(0x3010), 0x21 },
+>         { IMX290_REG_8BIT(0x3016), 0x09 },
+>         { IMX290_REG_8BIT(0x3070), 0x02 },
+>         { IMX290_REG_8BIT(0x3071), 0x11 },
+> @@ -328,6 +335,12 @@ static const struct imx290_regval xclk_regs[][IMX290_NUM_CLK_REGS] = {
+>         },
+>  };
+>
+> +static const struct imx290_regval imx290_global_init_settings_327[] = {
+> +       { IMX290_REG_8BIT(0x309e), 0x4A },
+> +       { IMX290_REG_8BIT(0x309f), 0x4A },
+> +       { IMX290_REG_8BIT(0x313b), 0x61 },
+> +};
+> +
+>  static const struct imx290_regval imx290_1080p_settings[] = {
+>         /* mode settings */
+>         { IMX290_WINWV_OB, 12 },
+> @@ -999,9 +1012,11 @@ static int imx290_start_streaming(struct imx290 *imx290,
+>                                   struct v4l2_subdev_state *state)
+>  {
+>         const struct v4l2_mbus_framefmt *format;
+> +       const struct imx290_regval *regs;
+> +       unsigned int reg_num;
+>         int ret;
+>
+> -       /* Set init register settings */
+> +       /* Set common init register settings */
+>         ret = imx290_set_register_array(imx290, imx290_global_init_settings,
+>                                         ARRAY_SIZE(imx290_global_init_settings));
+>         if (ret < 0) {
+> @@ -1009,6 +1024,28 @@ static int imx290_start_streaming(struct imx290 *imx290,
+>                 return ret;
+>         }
+>
+> +       switch (imx290->model->model) {
+> +       case IMX290_MODEL_IMX290LQR:
+> +       case IMX290_MODEL_IMX290LLR:
+> +               regs = imx290_global_init_settings_290;
+> +               reg_num = ARRAY_SIZE(imx290_global_init_settings_290);
+> +               break;
+> +       case IMX290_MODEL_IMX327LQR:
+> +               regs = imx290_global_init_settings_327;
+> +               reg_num = ARRAY_SIZE(imx290_global_init_settings_327);
+> +               break;
+> +       default:
+> +               dev_err(imx290->dev, "Invalid model: %u\n", imx290->model->model);
+> +               return -EINVAL;
+> +       }
 
-Later, when the other domain is added, we will have:
+switch/case here, or add a pointer to struct imx290_model_info?
+Keeping all the configuration for the different models in struct
+imx290_model_info has an appeal to me.
 
-/sys/kernel/debugfs/lvts@mcu
-/sys/kernel/debugfs/lvts@ap
+  Dave
 
-Each instance takes care of removing its own entry
-
-When I'll introduce thermal debugfs, I'll take care of massaging the 
-driver to have them like:
-
-/sys/kernel/debugfs/thermal/thermal_zone/0/sensors/lvts@mcu,0
-/sys/kernel/debugfs/thermal/thermal_zone/1/sensors/lvts@ap,1
-
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+> +
+> +       /* Set init register settings */
+> +       ret = imx290_set_register_array(imx290, regs, reg_num);
+> +       if (ret < 0) {
+> +               dev_err(imx290->dev, "Could not set init registers\n");
+> +               return ret;
+> +       }
+> +
+>         /* Set clock parameters based on mode and xclk */
+>         ret = imx290_set_clock(imx290);
+>         if (ret < 0) {
+> @@ -1479,9 +1516,18 @@ static s64 imx290_check_link_freqs(const struct imx290 *imx290,
+>  static const struct imx290_model_info imx290_models[] = {
+>         [IMX290_MODEL_IMX290LQR] = {
+>                 .colour_variant = IMX290_VARIANT_COLOUR,
+> +               .model = IMX290_MODEL_IMX290LQR,
+> +               .name = "imx290lqr",
+>         },
+>         [IMX290_MODEL_IMX290LLR] = {
+>                 .colour_variant = IMX290_VARIANT_MONO,
+> +               .model = IMX290_MODEL_IMX290LLR,
+> +               .name = "imx290llr",
+> +       },
+> +       [IMX290_MODEL_IMX327LQR] = {
+> +               .colour_variant = IMX290_VARIANT_COLOUR,
+> +               .model = IMX290_MODEL_IMX327LQR,
+> +               .name = "imx327lqr",
+>         },
+>  };
+>
+> @@ -1496,6 +1542,9 @@ static const struct of_device_id imx290_of_match[] = {
+>         }, {
+>                 .compatible = "sony,imx290llr",
+>                 .data = &imx290_models[IMX290_MODEL_IMX290LLR],
+> +       }, {
+> +               .compatible = "sony,imx327lqr",
+> +               .data = &imx290_models[IMX290_MODEL_IMX327LQR],
+>         },
+>         { /* sentinel */ },
+>  };
+> @@ -1630,6 +1679,9 @@ static int imx290_probe(struct i2c_client *client)
+>         if (ret)
+>                 goto err_pm;
+>
+> +       v4l2_i2c_subdev_set_name(&imx290->sd, client,
+> +                                imx290->model->name, NULL);
+> +
+>         /*
+>          * Finally, register the V4L2 subdev. This must be done after
+>          * initializing everything as the subdev can be used immediately after
+> --
+> 2.34.1
+>
