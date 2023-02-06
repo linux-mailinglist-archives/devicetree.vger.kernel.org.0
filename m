@@ -2,259 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2963A68C84E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 22:11:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D20C68C85A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 22:13:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229661AbjBFVLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 16:11:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33592 "EHLO
+        id S229695AbjBFVNn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 16:13:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbjBFVLr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 16:11:47 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3587121A2A
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 13:11:46 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id ba1so7653503wrb.5
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 13:11:46 -0800 (PST)
+        with ESMTP id S229654AbjBFVNn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 16:13:43 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 507534218;
+        Mon,  6 Feb 2023 13:13:42 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id lu11so38093185ejb.3;
+        Mon, 06 Feb 2023 13:13:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rC86KoAvXpv+8wZFzH+REYSTORb7w+ZYErKX8Nx95k4=;
-        b=aSVunq7LHPF7onCKmJhaCmW36uSCjAfmH491zyI3iOAEpcl2DjyoIWNSiSzrpS6xTN
-         upTQqioc+CftRH4JrFM+YnVw1Fygwo+S/Bmeqrn+FExwLMXGhbighCEImkB3LbEHfxB3
-         pPZEdv3WoqjTjdS4qov4cnpM7+NBDQNjWuCMv5+UH3CEDixCf7Lt6Xjcbj1Mzs/OZvKR
-         NIrWVWjKbBThOFzik29zXn6n1X6BbSxVcjsS+gIYopq+4F5xkjuGoi/EaJf8uHQ77hTV
-         DNFFo8Khah5P/qRfg9uC1+q9FUEOXdBpUgPFZDZUYtrmH9uDxG67PQD0Cf4Aw0YX5lEO
-         5g8Q==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VZtS5vyMO1j5bifjBnwS+OCCtmHppSGHkVWDdflpcgQ=;
+        b=oP0XSEHQC5aWdClkeRnAbGc7ZoYQnto0IF7DVciCduEdRoBXp7b6ibFnUX2+EQTUzi
+         lcXMi28emzQ8NkxhAv03VfY3uYx33fkMRhSGV1wUtOzRVVmXI5PT5InZ/30pLPmOetz8
+         JCoOEl5fYU4NlBcuqU7PAzTDvlY+3HI0TKTnoMJZigL1uRPZjI8dHbh4DcPNCjijJpIk
+         zpMFWbyFMitMbdV7UysPYr19tVmtWaFh/KQ9uws/dvT2LfVf3SqWNlzW+KgGQTFd4+pU
+         6/T31ATcW82RKJM4zpGwFlDnBXJk5Wfv1jvrTbr1jg5o8jyQPxiwOyLUjaNjMMy2jRln
+         1jwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rC86KoAvXpv+8wZFzH+REYSTORb7w+ZYErKX8Nx95k4=;
-        b=p1BqRFlQoRRXwA4SpgBKAf0WaYu4vczyW+M+yNBWvIMxz92q/4WcQtAW9JQgWaU0sl
-         OU25Gzh+b1YHP6Sm0P4udWJpu7aREZHOqc0HKpSwOIdU/b0et0e9KPPu69IA9iApf4Xa
-         iyATXse6rGc7k+XjS2twP9JjM0Q3t9nm1XPeh7dbXIt5ItU5SGMLNzYeE/6dF0t6sMUv
-         h3ZGLWQ1Ho7+agP5mYmk2sFKDfwLLCbdZVaUolR/pule07lEKzcVnC2Aw8Wr0NJxr+c8
-         8L2mR6S3wrE2P2o/YMdypT2UQ4K9nNVJywjyjYcMfBT4x5iJpTujkdS4f5Fck2WyDf3x
-         Slgg==
-X-Gm-Message-State: AO0yUKWNUmKeHTBsisJMRetjegRm437t3f19R3MGFCIOWF0HScypRn+b
-        nYb++smqsFI8llNHtXnLBV1/HA==
-X-Google-Smtp-Source: AK7set+qn6JxHyM5CZ+BNMLpM0YVwl27RX//R4K9ijKxYLiMqPu6rBJSBm8bbDpbDwvYPgV3Q3MdRQ==
-X-Received: by 2002:a05:6000:1378:b0:2c3:f00c:ebb5 with SMTP id q24-20020a056000137800b002c3f00cebb5mr269377wrz.47.1675717904648;
-        Mon, 06 Feb 2023 13:11:44 -0800 (PST)
-Received: from smtpclient.apple (global-5-143.n-2.net.cam.ac.uk. [131.111.5.143])
-        by smtp.gmail.com with ESMTPSA id j5-20020a5d5645000000b002c3efee2f4bsm1530879wrw.80.2023.02.06.13.11.43
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 06 Feb 2023 13:11:44 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
-Subject: Re: [PATCH v2 0/6] RISC-V Hardware Probing User Interface
-From:   Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <20230206201455.1790329-1-evan@rivosinc.com>
-Date:   Mon, 6 Feb 2023 21:11:42 +0000
-Cc:     Palmer Dabbelt <palmer@rivosinc.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jisheng Zhang <jszhang@kernel.org>, linux-doc@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Andrew Bresticker <abrestic@rivosinc.com>,
-        Atish Patra <atishp@rivosinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Celeste Liu <coelacanthus@outlook.com>,
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VZtS5vyMO1j5bifjBnwS+OCCtmHppSGHkVWDdflpcgQ=;
+        b=ip2KndtHLF0bJ3z8NFRLUDWribl4xe2X7xhrZ46mUbmed6icGhdhWJtinNy8lnwbKR
+         qRkZEyAsmyI+zqZ3LHHDz3uvoq74c2i2BKNzg/TeHBUkFoC9l8PjZfviJt7fDSHiSOhk
+         UHud6LRnBNuhDPV+RFfQhxSvkrYpJJAsdB6m9AoNVYcAe8qI3H+A3MKZNCDiT9Z6Ai2B
+         2CWl2jQx1ItjzmTYwITe5J068gDKhiRukYbQUjFumS8TrlP+FTh3LeveVI/De7PpzaGj
+         Cr7IGdplpWiU9Ri029M0EU+D98ukYZlMnuZSTIqzlz2obrnn1WO8meObpPtDy0fl/W5Z
+         blog==
+X-Gm-Message-State: AO0yUKUBv0Deq30Vu4AbJ4oCtOJPWfePR1gPTQ9Sh2LO2bie7/WZB0OE
+        7HEnXA9os55+UGgfY+7utW4=
+X-Google-Smtp-Source: AK7set+3+FsYuhkU78K71Ir/e1the4l9Da6i5qqPjBJa0HxQQTAfi7NQdSv/CePdjqnOZ734eAFJVw==
+X-Received: by 2002:a17:906:a102:b0:878:5e84:e1da with SMTP id t2-20020a170906a10200b008785e84e1damr804504ejy.27.1675718020715;
+        Mon, 06 Feb 2023 13:13:40 -0800 (PST)
+Received: from ?IPV6:2a01:c23:c485:9100:38f3:3203:b326:71ab? (dynamic-2a01-0c23-c485-9100-38f3-3203-b326-71ab.c23.pool.telefonica.de. [2a01:c23:c485:9100:38f3:3203:b326:71ab])
+        by smtp.googlemail.com with ESMTPSA id d20-20020a17090694d400b0088e682e3a4csm5877799ejy.185.2023.02.06.13.13.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Feb 2023 13:13:40 -0800 (PST)
+Message-ID: <63b86083-1b05-d851-d141-d3578e4dc724@gmail.com>
+Date:   Mon, 6 Feb 2023 22:13:34 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 3/4] dt-bindings: pwm: Convert Amlogic Meson PWM binding
+Content-Language: en-US
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Qinglin Pan <panqinglin2020@iscas.ac.cn>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Shuah Khan <shuah@kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Xianting Tian <xianting.tian@linux.alibaba.com>,
-        Tsukasa OI <research_trasio@irq.a4lg.com>,
-        Tobias Klauser <tklauser@distanz.ch>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Vineet Gupta <vineetg@rivosinc.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Ruizhe Pan <c141028@gmail.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        linux-kselftest@vger.kernel.org, slewis@rivosinc.com,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Conor Dooley <conor@kernel.org>, dram <dramforever@live.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        Guo Ren <guoren@kernel.org>, Dao Lu <daolu@rivosinc.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <212CC1BD-31FF-4B8B-B05D-89C5245EE8A7@jrtc27.com>
-References: <20230206201455.1790329-1-evan@rivosinc.com>
-To:     Evan Green <evan@rivosinc.com>
-X-Mailer: Apple Mail (2.3696.120.41.1.1)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>, linux-pwm@vger.kernel.org
+References: <8df4ceec-663c-dc68-d775-5caeb02c0cca@gmail.com>
+ <5b83767e-c53d-316f-df10-45a39dbd9c88@gmail.com>
+ <20230206082317.ygvixvhjqppz4nmy@pengutronix.de>
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <20230206082317.ygvixvhjqppz4nmy@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6 Feb 2023, at 20:14, Evan Green <evan@rivosinc.com> wrote:
->=20
->=20
-> These are very much up for discussion, as it's a pretty big new user
-> interface and it's quite a bit different from how we've historically
-> done things: this isn't just providing an ISA string to userspace, =
-this
-> has its own format for providing information to userspace.
->=20
-> There's been a bunch of off-list discussions about this, including at
-> Plumbers.  The original plan was to do something involving providing =
-an
-> ISA string to userspace, but ISA strings just aren't sufficient for a
-> stable ABI any more: in order to parse an ISA string users need the
-> version of the specifications that the string is written to, the =
-version
-> of each extension (sometimes at a finer granularity than the RISC-V
-> releases/versions encode), and the expected use case for the ISA =
-string
-> (ie, is it a U-mode or M-mode string).  That's a lot of complexity to
-> try and keep ABI compatible and it's probably going to continue to =
-grow,
-> as even if there's no more complexity in the specifications we'll have
-> to deal with the various ISA string parsing oddities that end up all
-> over userspace.
->=20
-> Instead this patch set takes a very different approach and provides a =
-set
-> of key/value pairs that encode various bits about the system.  The big
-> advantage here is that we can clearly define what these mean so we can
-> ensure ABI stability, but it also allows us to encode information =
-that's
-> unlikely to ever appear in an ISA string (see the misaligned access
-> performance, for example).  The resulting interface looks a lot like
-> what arm64 and x86 do, and will hopefully fit well into something like
-> ACPI in the future.
->=20
-> The actual user interface is a syscall.  I'm not really sure that's =
-the
-> right way to go about this, but it makes for flexible prototying.
-> Various other approaches have been talked about like making HWCAP2 a
-> pointer, having a VDSO routine, or exposing this via sysfs.  Those =
-seem
-> like generally reasonable approaches, but I've yet to figure out a way
-> to get the general case working without a syscall as that's the only =
-way
-> I've come up with to deal with the heterogenous CPU case.  Happy to =
-hear
-> if someone has a better idea, though, as I don't really want to add a
-> syscall if we can avoid it.
+On 06.02.2023 09:23, Uwe Kleine-König wrote:
+> Hello,
+> 
+> On Wed, Feb 01, 2023 at 09:00:21PM +0100, Heiner Kallweit wrote:
+>> Convert Amlogic Meson PWM binding to yaml.
+>>
+>> Reviewed-by: Rob Herring <robh+dt@kernel.org>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> 
+> How is supposed to pick up this patch? Does it go in together with the
+> other patches in this series via amlogic/arm; or is there an expectation
+> that it enters via PWM?
+> 
+Neil,
+are you going to take this via the amlogic tree?
 
-Please work with https://github.com/riscv-non-isa/riscv-c-api-doc as
-it=E2=80=99s crucial we have a portable standard interface for =
-applications to
-query this information that works on OSes other than Linux. This can be
-backed by whatever you want, whether a syscall, magic VDSO thing,
-sysfs, etc, but it=E2=80=99s key that the exposed interface outside of =
-libc is
-not Linux-specific otherwise we=E2=80=99re going to get fragmentation in =
-this
-space.
-
-I would encourage figuring out the right shape for the exposed
-interface first before continuing to refine details of how that
-information gets communicated between the kernel and libc.
-
-Jess
-
-> An example series in glibc exposing this syscall and using it in an
-> ifunc selector for memcpy can be found at [1].
->=20
-> [1] =
-https://public-inbox.org/libc-alpha/20230206194819.1679472-1-evan@rivosinc=
-.com/T/#t
->=20
-> Changes in v2:
-> - Changed the interface to look more like poll(). Rather than =
-supplying
->   key_offset and getting back an array of values with numerically
->   contiguous keys, have the user pre-fill the key members of the =
-array,
->   and the kernel will fill in the corresponding values. For any key it
->   doesn't recognize, it will set the key of that element to -1. This
->   allows usermode to quickly ask for exactly the elements it cares
->   about, and not get bogged down in a back and forth about newer keys
->   that older kernels might not recognize. In other words, the kernel
->   can communicate that it doesn't recognize some of the keys while
->   still providing the data for the keys it does know.
-> - Added a shortcut to the cpuset parameters that if a size of 0 and
->   NULL is provided for the CPU set, the kernel will use a cpu mask of
->   all online CPUs. This is convenient because I suspect most callers
->   will only want to act on a feature if it's supported on all CPUs, =
-and
->   it's a headache to dynamically allocate an array of all 1s, not to
->   mention a waste to have the kernel loop over all of the offline =
-bits.
-> - Fixed logic error in if(of_property_read_string...) that caused =
-crash
-> - Include cpufeature.h in cpufeature.h to avoid undeclared variable
->   warning.
-> - Added a _MASK define
-> - Fix random checkpatch complaints
-> - Updated the selftests to the new API and added some more.
-> - Fixed indentation, comments in .S, and general checkpatch =
-complaints.
->=20
-> Evan Green (4):
->  RISC-V: Move struct riscv_cpuinfo to new header
->  RISC-V: Add a syscall for HW probing
->  RISC-V: hwprobe: Support probing of misaligned access performance
->  selftests: Test the new RISC-V hwprobe interface
->=20
-> Palmer Dabbelt (2):
->  RISC-V: hwprobe: Add support for RISCV_HWPROBE_BASE_BEHAVIOR_IMA
->  dt-bindings: Add RISC-V misaligned access performance
->=20
-> .../devicetree/bindings/riscv/cpus.yaml       |  15 ++
-> Documentation/riscv/hwprobe.rst               |  66 ++++++
-> Documentation/riscv/index.rst                 |   1 +
-> arch/riscv/include/asm/cpufeature.h           |  23 +++
-> arch/riscv/include/asm/hwprobe.h              |  13 ++
-> arch/riscv/include/asm/smp.h                  |   9 +
-> arch/riscv/include/asm/syscall.h              |   3 +
-> arch/riscv/include/uapi/asm/hwprobe.h         |  35 ++++
-> arch/riscv/include/uapi/asm/unistd.h          |   8 +
-> arch/riscv/kernel/cpu.c                       |  11 +-
-> arch/riscv/kernel/cpufeature.c                |  31 ++-
-> arch/riscv/kernel/sys_riscv.c                 | 192 +++++++++++++++++-
-> tools/testing/selftests/Makefile              |   1 +
-> tools/testing/selftests/riscv/Makefile        |  58 ++++++
-> .../testing/selftests/riscv/hwprobe/Makefile  |  10 +
-> .../testing/selftests/riscv/hwprobe/hwprobe.c |  89 ++++++++
-> .../selftests/riscv/hwprobe/sys_hwprobe.S     |  12 ++
-> tools/testing/selftests/riscv/libc.S          |  46 +++++
-> 18 files changed, 613 insertions(+), 10 deletions(-)
-> create mode 100644 Documentation/riscv/hwprobe.rst
-> create mode 100644 arch/riscv/include/asm/cpufeature.h
-> create mode 100644 arch/riscv/include/asm/hwprobe.h
-> create mode 100644 arch/riscv/include/uapi/asm/hwprobe.h
-> create mode 100644 tools/testing/selftests/riscv/Makefile
-> create mode 100644 tools/testing/selftests/riscv/hwprobe/Makefile
-> create mode 100644 tools/testing/selftests/riscv/hwprobe/hwprobe.c
-> create mode 100644 tools/testing/selftests/riscv/hwprobe/sys_hwprobe.S
-> create mode 100644 tools/testing/selftests/riscv/libc.S
->=20
-> --=20
-> 2.25.1
->=20
->=20
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> Best regards
+> Uwe
+> 
+Heiner
 
