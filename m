@@ -2,136 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7917168B5C5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 07:50:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFE7E68B618
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 08:13:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229503AbjBFGuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 01:50:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46058 "EHLO
+        id S229680AbjBFHNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 02:13:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjBFGuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 01:50:12 -0500
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A347B745
-        for <devicetree@vger.kernel.org>; Sun,  5 Feb 2023 22:50:11 -0800 (PST)
-Received: by mail-qt1-f174.google.com with SMTP id f10so11826346qtv.1
-        for <devicetree@vger.kernel.org>; Sun, 05 Feb 2023 22:50:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K3CzclB8/eZsMkMoV4mMOQY2qhDIrhVs5iADbEvdkfc=;
-        b=uTul6/Yl1mcVkYf1TdTGEbz5yB0q7A+Jsa+PXBizlG14n4oG1CwH01g/chE3qgKXUI
-         r++e42Jv5Z2jjmuFPj1iLn8E/Hu50vtUzG2Fyv2L2botwsfH1YUKqXFijMAQ6Ijh/HSR
-         OQDKvRKaZL/Gyqvw/cAMfIjqBRUOVmkQLKVy4yK4CoT7MyJHlI+ZYKzHrc5zeR301pFn
-         Hl3xNEGo/aRCWA7CyamV2E8vIMMX+TLnMS21YdR9l4wUz0nS37w7Ox6j3i0YmHfbO0iK
-         DXbgerKTn0h6LHYG3bF10F9EFUhVIt+TIn6UC5bl9AeBGOSiulQFN27qm19EHVldFG7y
-         iDww==
-X-Gm-Message-State: AO0yUKWm2TUcmR6eIlAGVu3qnPCov16zTM+M4hLRUQBLfrM0dw9bltJA
-        XS6JLbaVqiq5HBQHPCbh3MxXMQHR5aFQeg==
-X-Google-Smtp-Source: AK7set9NkvywEOAwaunPP5fBQ6DDk/i5h+UbyNefV097uvWI70PIArDXqgEIEGrbC3zbT0Qb/MKgLA==
-X-Received: by 2002:ac8:57d6:0:b0:3b8:6bd7:6057 with SMTP id w22-20020ac857d6000000b003b86bd76057mr35949261qta.68.1675666209892;
-        Sun, 05 Feb 2023 22:50:09 -0800 (PST)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id e21-20020ac80115000000b003b62e9c82ebsm6808244qtg.48.2023.02.05.22.50.09
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Feb 2023 22:50:09 -0800 (PST)
-Received: by mail-yb1-f178.google.com with SMTP id 23so5996394ybf.10
-        for <devicetree@vger.kernel.org>; Sun, 05 Feb 2023 22:50:09 -0800 (PST)
-X-Received: by 2002:a5b:2c1:0:b0:89c:b633:73a6 with SMTP id
- h1-20020a5b02c1000000b0089cb63373a6mr126962ybp.365.1675666209120; Sun, 05 Feb
- 2023 22:50:09 -0800 (PST)
+        with ESMTP id S229566AbjBFHNJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 02:13:09 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 670DC12875;
+        Sun,  5 Feb 2023 23:13:07 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3165vlDF003536;
+        Mon, 6 Feb 2023 07:12:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=DmFiP85FP/vxcQ0rmFb24P05jX+s/4Cj7aPv9HsHrH0=;
+ b=bbz58a6WMyExPkRLrXvGY+byeVObWLL4+xXm9dEhxQre9CyYbHd+AL8kveR9pNBypvyY
+ rZt4LuQ0lpfaZfYDSqOVHZjioCgM1UfBOiyyMnNqXFyM8kag4nvM1VOIzFWlqbIwN+RT
+ /CpoK4kU2uu82XtDYq6fOuPMk/l+owv2+xmYzO+p9WXgQR2peUVlH3AssgycokfWS7jh
+ +oFaVTb5g/CEHCDztzRwGL83JGdjzMzGWkUwTqI37jb2n7k+X9Rg78BhZt0nXZhcHI/f
+ AluWMAAOpkhdksch135YAFQGTrN/jpfeDUnCJXKcavDvS3KzLC3M/3IItVoJv1pufm1y Sg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nhghv2uhk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 06 Feb 2023 07:12:45 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3167CiMZ006914
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 6 Feb 2023 07:12:44 GMT
+Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Sun, 5 Feb 2023 23:12:36 -0800
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+To:     <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <dmitry.baryshkov@linaro.org>, <marcel.ziswiler@toradex.com>,
+        <nfraprado@collabora.com>, <robimarko@gmail.com>,
+        <quic_gurus@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>,
+        Kathiravan T <quic_kathirav@quicinc.com>
+Subject: [PATCH V3 0/9] Add minimal boot support for IPQ5332
+Date:   Mon, 6 Feb 2023 12:42:08 +0530
+Message-ID: <20230206071217.29313-1-quic_kathirav@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <87zg9vk0ex.wl-kuninori.morimoto.gx@renesas.com>
- <46974ae7-5f7f-8fc1-4ea8-fe77b58f5bfb@linaro.org> <87k00vqzw2.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87k00vqzw2.wl-kuninori.morimoto.gx@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 6 Feb 2023 07:49:57 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVFy62v8WC3H6f5NggTdJsk=2FmJqUR8L3XkT3jcKUj5A@mail.gmail.com>
-Message-ID: <CAMuHMdVFy62v8WC3H6f5NggTdJsk=2FmJqUR8L3XkT3jcKUj5A@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: renesas: adjust to R-Car Gen4
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: xExxf9W8ishTxxW-UyPeNRgMXrY_liy7
+X-Proofpoint-ORIG-GUID: xExxf9W8ishTxxW-UyPeNRgMXrY_liy7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-06_03,2023-02-03_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ bulkscore=0 impostorscore=0 spamscore=0 suspectscore=0 malwarescore=0
+ mlxlogscore=526 lowpriorityscore=0 mlxscore=0 priorityscore=1501
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302060061
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Morimoto-san,
+The IPQ5332 is Qualcomm's 802.11ax SoC for Routers, Gateways and
+Access Points.
 
-On Mon, Feb 6, 2023 at 4:03 AM Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> > > The "required" with if - then - else on "rcar_sound,ssi" is
-> > > always match to "then" even though it is checking "renesas,rcar_sound-gen4" or not.
-> > > Why ?? Is it my fault ??
->
-> I'm not sure why but some "if - then - else" doesn't work correctly for me.
-> One concern is that it is under "patternProperties".
-> Non "patternProperties" case is works well.
->
-> This is just sample case.
-> In below case, only gen4 case requires "foo/bar" if my understanding was correct.
-> But I get error "foo/bar are required" on *all* compatible.
->
-> It is my fault ?
->
-> --- sample -----------
->   rcar_sound,ssi:
->     ...
->     patternProperties:
->       "^ssi-[0-9]$":
->         ...
->         allOf:
->           - if:
->               properties:
->                 compatible:
->                   contains:
-> =>                  const: renesas,rcar_sound-gen4
->             then:
->               required:
-> =>              - foo
-> =>              - bar
+This series adds minimal board boot support for ipq5332-mi01.2 board.
 
-As it is under patternProperties, the "if: properties" applies to the
-properties under the ssi node, where you do not have any compatible
-value (and definitely not the "renesas,rcar_sound-gen4" value, which
-belongs to the _parent_ of the ssi node).
+Also, this series depends on the below patch
+https://lore.kernel.org/linux-arm-msm/20230120082631.22053-1-quic_kathirav@quicinc.com/
 
-So I think the only solution is to move the "if" up, and thus duplicate
-the ssi node description:
+Changes in V3:
+	- Detailed change log is present in respective patches
+	- V2 can be found at
+	  https://lore.kernel.org/linux-arm-msm/20230130114702.20606-1-quic_kathirav@quicinc.com/
 
-    if:
-        properties:
-            compatible:
-                contains:
-                    const: renesas,rcar_sound-gen4
-    then:
-        patternProperties:
-            "^ssi-[0-9]$":
-                ...
-    else:
-        patternProperties:
-            "^ssi-[0-9]$":
-                ...
+Changes in V2:
+	- Rebased on linux-next/master
+	- Dropped the 'dt-bindings: mmc: sdhci-msm: add IPQ5332 compatible',
+	  since it is already part of linux-next/master
+	- Added a new patch 'clk: qcom: ipq5332: mark GPLL4 as critical temporarily'
+	- Detailed change log is present in respective patches
+	- V1 can be found at
+	  https://lore.kernel.org/linux-arm-msm/20230125104520.89684-1-quic_kathirav@quicinc.com/
 
-Gr{oetje,eeting}s,
 
-                        Geert
+Kathiravan T (9):
+  dt-bindings: pinctrl: qcom: add IPQ5332 pinctrl
+  pinctrl: qcom: Introduce IPQ5332 TLMM driver
+  clk: qcom: Add STROMER PLUS PLL type for IPQ5332
+  dt-bindings: clock: Add Qualcomm IPQ5332 GCC
+  clk: qcom: add Global Clock controller (GCC) driver for IPQ5332 SoC
+  dt-bindings: qcom: add ipq5332 boards
+  dt-bindings: firmware: qcom,scm: document IPQ5332 SCM
+  arm64: dts: qcom: add IPQ5332 SoC and MI01.2 board support
+  arm64: defconfig: Enable IPQ5332 SoC base configs
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+ .../devicetree/bindings/arm/qcom.yaml         |    7 +
+ .../bindings/clock/qcom,ipq5332-gcc.yaml      |   61 +
+ .../bindings/firmware/qcom,scm.yaml           |    1 +
+ .../bindings/pinctrl/qcom,ipq5332-tlmm.yaml   |  134 +
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts   |   75 +
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         |  268 ++
+ arch/arm64/configs/defconfig                  |    2 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-alpha-pll.c              |   11 +
+ drivers/clk/qcom/clk-alpha-pll.h              |    1 +
+ drivers/clk/qcom/gcc-ipq5332.c                | 3850 +++++++++++++++++
+ drivers/pinctrl/qcom/Kconfig                  |   10 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-ipq5332.c        |  861 ++++
+ include/dt-bindings/clock/qcom,ipq5332-gcc.h  |  356 ++
+ 17 files changed, 5648 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq5332-tlmm.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5332.dtsi
+ create mode 100644 drivers/clk/qcom/gcc-ipq5332.c
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-ipq5332.c
+ create mode 100644 include/dt-bindings/clock/qcom,ipq5332-gcc.h
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+2.17.1
+
