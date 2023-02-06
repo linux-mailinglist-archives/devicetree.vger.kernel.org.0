@@ -2,243 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84E8F68C053
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:41:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE6E868C073
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:49:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229892AbjBFOlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 09:41:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58226 "EHLO
+        id S229839AbjBFOtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 09:49:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229868AbjBFOlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:41:14 -0500
-Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C546E8F
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 06:41:13 -0800 (PST)
-Received: by mail-vs1-xe2d.google.com with SMTP id k4so12864664vsc.4
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 06:41:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+w2S6uyVtXl+N2TMG+jPE/D1AfMS4lPC+s07COsfjC4=;
-        b=Gkw2CYUqNkvGNddpf5mzEy8CKX9fECexBRUqQpc9iA3SS+k9ZQaZAwE1T13fFIT8Ry
-         CwE3eyxjq9VbVoMkpIL4F+5fFxlxEy6LfWSvLvnSH754Qv6EsGn9CR6ATs0ZhUavuGGQ
-         6ofIaRlCKQs6T8OiNixvxTludfoIiUUqUp2j4L4ds4e7f8dATd6XRhrPFWLqWJ84hrpD
-         aeY0BRq/wRgl8vCK4BG1e/t9zWN54fn829aR4DQW7EDlLIiTcscvLs4+kOo0XpzP7XyI
-         BGHttIn1ewROQCtqjc95kHd8aCMNdkxLFeg8fNG2fy7gTx42gy8N1NKDMFhpqUGmWAMG
-         6Xxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+w2S6uyVtXl+N2TMG+jPE/D1AfMS4lPC+s07COsfjC4=;
-        b=Losuq0hgQ08ob/aFf6aUH4y9WXAMFuih9P1OaOxbHSAP/GSkYH/duzP/6o1xyOT0vN
-         ejV5EQ/R+lc+Q0SQ8YaHxmRuBbpBlrumEoydXSjR/ke+kCZwwjDhv3RyYcb3FAPZOz9M
-         Z9AQD2X5V/gRPY6R6nO+wU4R35ihFWV9UvYojTzNMvkcPWO0/Mvz//MryqTo4HYbxPS6
-         ok7uvZ6A8Yeo/2K5V/Kn61GPH+7B+yD3lb1rh0qTklZ0VjfKYwtauc9kbZf946RZMKHE
-         KCHvJOgeh3MMBW1Dn3q8ynYgYeIhyEbld/r3nlOaciZm4CrPkQrW0fJHMzi3hoxieAPj
-         L/5w==
-X-Gm-Message-State: AO0yUKVEEyJwcPETVOIBwRZnilsJJLBl2jAyKLkwnmyop5Xgc5QG0+JS
-        cJ6XERPjNO28EOJt0jDxm6MngxUZbQ8BXRHLV5LbdA==
-X-Google-Smtp-Source: AK7set+QQR5FP1Nt8AoVS79J0ipjnkwFjl2MdrJADwEI0BpeLY7y/rNqbWpyj/vrV/6Cp9QMpHBBLpWFQBRVsqk5Gjo=
-X-Received: by 2002:a67:ef41:0:b0:3f2:edef:718f with SMTP id
- k1-20020a67ef41000000b003f2edef718fmr3206633vsr.28.1675694472222; Mon, 06 Feb
- 2023 06:41:12 -0800 (PST)
-MIME-Version: 1.0
-References: <20230206131731.548795-1-alexander.stein@ew.tq-group.com> <20230206131731.548795-3-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20230206131731.548795-3-alexander.stein@ew.tq-group.com>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Mon, 6 Feb 2023 14:40:56 +0000
-Message-ID: <CAPY8ntBzi8kccb6qVkHxs02Ae1fC0emLdo5CQd4uQ9PkJySGeQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] media: i2c: imx290: Add support for imx327 variant
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229483AbjBFOtT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:49:19 -0500
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E3431556F;
+        Mon,  6 Feb 2023 06:49:17 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id 1998A60008;
+        Mon,  6 Feb 2023 14:49:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1675694956;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=jssNCiN7d9s4FVYSLSQNiyVO3Ef91kZOrafXDxLBvCU=;
+        b=COQcQzPd++3+6kKr86fsnQKxAAOXJW0JTXfd8ACn3wA00LkZxrNz1Kn7mpHSDeIAA+FzP6
+        4leRgqa2DKiybYvDlArlGTc0dc7bvn6zgIdD+n22GPxMCm0hLeLNqL9KyvhyWtL6GMeVYM
+        u/p8VmGw9k650IasMSMs6PHscy2j8mkzlgdPD0d8c8OUXb1ij0r4LAvmcfvs1kVld330CJ
+        nZToQi9xBPezbHbOn5iUdeIBu5Z7Z2JDERNeNMs4sL4KfjLAEPuUg2r+nUHJTP6vDszJWR
+        qIvMgrFa3/WPw+6MaalIuHFzC/SHl9bcRGTDnKlP6zIbDVm5a0pwyW04X34TrA==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH 0/3] Add the Infineon PEB2466 codec support
+Date:   Mon,  6 Feb 2023 15:49:01 +0100
+Message-Id: <20230206144904.91078-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.39.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander
+Hi,
 
-Thanks for the patch.
+The Infineon PEB2466 codec is a programmable DSP-based four channels
+codec with filters capabilities.
+It also provides signals as GPIOs.
 
-On Mon, 6 Feb 2023 at 13:17, Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
->
-> Both sensors are quite similar. Their specs only differ regarding LVDS
-> and parallel output but are identical regarding MIPI-CSI-2 interface.
-> But they use a different init setting of hard-coded values, taken from
-> the datasheet.
->
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> Note: The call to v4l2_i2c_subdev_set_name will change the device name
-> shown to userspace. So now 'imx290lqr' will be shown instead of 'imx290'.
+Best regards,
+Herve Codina
 
-This is going to cause grief as we already have a Pi libcamera
-pipeline handler and tuning that relies on the entity name being
-"imx290", so changing that is going to cause issues.
+Herve Codina (3):
+  dt-bindings: sound: Add the Infineon PEB2466 codec
+  ASoC: codecs: Add support for the Infineon PEB2466 codec
+  MAINTAINERS: add the Infineon PEB2466 codec entry
 
-From userspace, the difference between lqr and llr is already reported
-via the different colour formats supported (RGGB10 & RGGB12 vs Y10 &
-Y12), so there is no need to provide the full part number. If there is
-a need to distinguish imx327 vs imx290 in userspace, then I'd propose
-just using the base model identifier.
+ .../bindings/sound/infineon,peb2466.yaml      |   91 +
+ MAINTAINERS                                   |    7 +
+ sound/soc/codecs/Kconfig                      |   12 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/peb2466.c                    | 2071 +++++++++++++++++
+ 5 files changed, 2183 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/infineon,peb2466.yaml
+ create mode 100644 sound/soc/codecs/peb2466.c
 
->  drivers/media/i2c/imx290.c | 58 ++++++++++++++++++++++++++++++++++++--
->  1 file changed, 55 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-> index 1cfdd700bca5..0bfbce8853e6 100644
-> --- a/drivers/media/i2c/imx290.c
-> +++ b/drivers/media/i2c/imx290.c
-> @@ -173,10 +173,13 @@ enum imx290_colour_variant {
->  enum imx290_model {
->         IMX290_MODEL_IMX290LQR,
->         IMX290_MODEL_IMX290LLR,
-> +       IMX290_MODEL_IMX327LQR,
->  };
->
->  struct imx290_model_info {
->         enum imx290_colour_variant colour_variant;
-> +       enum imx290_model model;
-> +       const char *name;
->  };
->
->  enum imx290_clk_freq {
-> @@ -272,10 +275,14 @@ static const struct imx290_regval imx290_global_init_settings[] = {
->         { IMX290_WINWV, 1097 },
->         { IMX290_XSOUTSEL, IMX290_XSOUTSEL_XVSOUTSEL_VSYNC |
->                            IMX290_XSOUTSEL_XHSOUTSEL_HSYNC },
-> -       { IMX290_REG_8BIT(0x300f), 0x00 },
-> -       { IMX290_REG_8BIT(0x3010), 0x21 },
-> +       { IMX290_REG_8BIT(0x3011), 0x02 },
->         { IMX290_REG_8BIT(0x3012), 0x64 },
->         { IMX290_REG_8BIT(0x3013), 0x00 },
-> +};
-> +
-> +static const struct imx290_regval imx290_global_init_settings_290[] = {
-> +       { IMX290_REG_8BIT(0x300f), 0x00 },
-> +       { IMX290_REG_8BIT(0x3010), 0x21 },
->         { IMX290_REG_8BIT(0x3016), 0x09 },
->         { IMX290_REG_8BIT(0x3070), 0x02 },
->         { IMX290_REG_8BIT(0x3071), 0x11 },
-> @@ -328,6 +335,12 @@ static const struct imx290_regval xclk_regs[][IMX290_NUM_CLK_REGS] = {
->         },
->  };
->
-> +static const struct imx290_regval imx290_global_init_settings_327[] = {
-> +       { IMX290_REG_8BIT(0x309e), 0x4A },
-> +       { IMX290_REG_8BIT(0x309f), 0x4A },
-> +       { IMX290_REG_8BIT(0x313b), 0x61 },
-> +};
-> +
->  static const struct imx290_regval imx290_1080p_settings[] = {
->         /* mode settings */
->         { IMX290_WINWV_OB, 12 },
-> @@ -999,9 +1012,11 @@ static int imx290_start_streaming(struct imx290 *imx290,
->                                   struct v4l2_subdev_state *state)
->  {
->         const struct v4l2_mbus_framefmt *format;
-> +       const struct imx290_regval *regs;
-> +       unsigned int reg_num;
->         int ret;
->
-> -       /* Set init register settings */
-> +       /* Set common init register settings */
->         ret = imx290_set_register_array(imx290, imx290_global_init_settings,
->                                         ARRAY_SIZE(imx290_global_init_settings));
->         if (ret < 0) {
-> @@ -1009,6 +1024,28 @@ static int imx290_start_streaming(struct imx290 *imx290,
->                 return ret;
->         }
->
-> +       switch (imx290->model->model) {
-> +       case IMX290_MODEL_IMX290LQR:
-> +       case IMX290_MODEL_IMX290LLR:
-> +               regs = imx290_global_init_settings_290;
-> +               reg_num = ARRAY_SIZE(imx290_global_init_settings_290);
-> +               break;
-> +       case IMX290_MODEL_IMX327LQR:
-> +               regs = imx290_global_init_settings_327;
-> +               reg_num = ARRAY_SIZE(imx290_global_init_settings_327);
-> +               break;
-> +       default:
-> +               dev_err(imx290->dev, "Invalid model: %u\n", imx290->model->model);
-> +               return -EINVAL;
-> +       }
+-- 
+2.39.1
 
-switch/case here, or add a pointer to struct imx290_model_info?
-Keeping all the configuration for the different models in struct
-imx290_model_info has an appeal to me.
-
-  Dave
-
-> +
-> +       /* Set init register settings */
-> +       ret = imx290_set_register_array(imx290, regs, reg_num);
-> +       if (ret < 0) {
-> +               dev_err(imx290->dev, "Could not set init registers\n");
-> +               return ret;
-> +       }
-> +
->         /* Set clock parameters based on mode and xclk */
->         ret = imx290_set_clock(imx290);
->         if (ret < 0) {
-> @@ -1479,9 +1516,18 @@ static s64 imx290_check_link_freqs(const struct imx290 *imx290,
->  static const struct imx290_model_info imx290_models[] = {
->         [IMX290_MODEL_IMX290LQR] = {
->                 .colour_variant = IMX290_VARIANT_COLOUR,
-> +               .model = IMX290_MODEL_IMX290LQR,
-> +               .name = "imx290lqr",
->         },
->         [IMX290_MODEL_IMX290LLR] = {
->                 .colour_variant = IMX290_VARIANT_MONO,
-> +               .model = IMX290_MODEL_IMX290LLR,
-> +               .name = "imx290llr",
-> +       },
-> +       [IMX290_MODEL_IMX327LQR] = {
-> +               .colour_variant = IMX290_VARIANT_COLOUR,
-> +               .model = IMX290_MODEL_IMX327LQR,
-> +               .name = "imx327lqr",
->         },
->  };
->
-> @@ -1496,6 +1542,9 @@ static const struct of_device_id imx290_of_match[] = {
->         }, {
->                 .compatible = "sony,imx290llr",
->                 .data = &imx290_models[IMX290_MODEL_IMX290LLR],
-> +       }, {
-> +               .compatible = "sony,imx327lqr",
-> +               .data = &imx290_models[IMX290_MODEL_IMX327LQR],
->         },
->         { /* sentinel */ },
->  };
-> @@ -1630,6 +1679,9 @@ static int imx290_probe(struct i2c_client *client)
->         if (ret)
->                 goto err_pm;
->
-> +       v4l2_i2c_subdev_set_name(&imx290->sd, client,
-> +                                imx290->model->name, NULL);
-> +
->         /*
->          * Finally, register the V4L2 subdev. This must be done after
->          * initializing everything as the subdev can be used immediately after
-> --
-> 2.34.1
->
