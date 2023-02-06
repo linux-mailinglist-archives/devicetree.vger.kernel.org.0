@@ -2,78 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F2AF68BA0D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 11:26:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E1268BA77
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 11:37:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230345AbjBFK0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 05:26:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51926 "EHLO
+        id S230206AbjBFKgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 05:36:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjBFK0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 05:26:21 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DBE2974F;
-        Mon,  6 Feb 2023 02:26:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 03FB960DFE;
-        Mon,  6 Feb 2023 10:26:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E23C7C433D2;
-        Mon,  6 Feb 2023 10:26:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1675679179;
-        bh=hofFteh/cFa0t9JuQJU5c688q+YXS0ej76e1fu9jJZA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ixuvhrmy+LdVwCf/jTRpAOixnwIarEcv8DYZ6QTNtSD4ccuKuNj23jRmAvtZ1s3K6
-         L9UpxxgSi3rYhEA6c/JOyuZ33zJW6WY/0bGbNos7uyaPmJX+ra0aL//q/7SwUD06ZQ
-         5FCbQb+ejFXO3T0lVEAHdma9os5a+UlrAxnHz56M=
-Date:   Mon, 6 Feb 2023 11:26:16 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Zhou Furong <furong.zhou@linux.intel.com>
-Cc:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, martin.petersen@oracle.com,
-        beanhuo@micron.com, arnd@arndb.de, avri.altman@wdc.com,
-        iwona.winiarska@intel.com, fmdefrancesco@gmail.com,
-        dipenp@nvidia.com, ogabbay@kernel.org, bvanassche@acm.org,
-        mathieu.poirier@linaro.org, yangyicong@hisilicon.com,
-        dan.j.williams@intel.com, devicetree@vger.kernel.org,
-        linus.walleij@linaro.org
-Subject: Re: [PATCHv2 2/4] wiegand: add Wiegand bus driver
-Message-ID: <Y+DVyPUXBliomobN@kroah.com>
-References: <20230202143305.21789-1-m.zatovic1@gmail.com>
- <20230202143305.21789-3-m.zatovic1@gmail.com>
- <Y9ynYmIhygqp3U5u@kroah.com>
- <cd6bd118-68ef-1742-fd9d-08a65872b02c@linux.intel.com>
+        with ESMTP id S231226AbjBFKex (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 05:34:53 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0D252367B
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 02:34:08 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id o36so8310917wms.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 02:34:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mxcbcYd9yM82GRoEiNqLK6kFAvDnYbetYCZ2WHY7tl0=;
+        b=oOCz+x6xMtkHfCn/UFoxpvWOBqVNrzoSaCRBvDP9ng3efAm12zRu+1g8vQc9nLYS2o
+         SnlRlRqBV9eYnTp+HtlaNFnMvcmf1i4rHputHf4hdYb9Tfn0se5xQ+BNvSenuCGbiIjN
+         2i19dexf8lUESiJZQYX8G5Cg5YVRyG/X6liEmp5Fl/WHI7e4TOzDz11S8iQrxU5Lozwl
+         9fpCaOZTnVq8gDGoc1hhdT26/6SoyRxjoJZZYm5tf5QZablCt2VTrUhOLodL0QKAVSqS
+         c+539e5leueCdsl92RhlquIGJxEUASESTsfbN5nH2n3A4jq/DAtAdQiESNoGoIUUsSAw
+         1xFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mxcbcYd9yM82GRoEiNqLK6kFAvDnYbetYCZ2WHY7tl0=;
+        b=x+mlFOyyE8WDFh3CW6Glku5vVA25erXWO+t1IdL0EKSm2StYWQGWPFSkeJpGoFewO0
+         ccTc9kS/PLteDr9D96yK03eDHFy/A64LE4PriYxBpW5+EWq+CuRVmXsC1D+GyeZ7KWCF
+         AZeu4CumGWmnKvUWRBxeLE2LepM3C3iwPlN5DAXO6+8F1CDYO/Zrloa15nNlSD6zk0UK
+         Tltpd6JzsFxjRiW6+U9gWp1oQpqBmSR5DoZZnXKmKSUeSRFF5frqQyAbj3017RZxyPOT
+         HVJB3t1IHDmUrhshqSj1jQl8iBbQb0T+BbhyMvo8KWcu0G1y65WgX0gsMjzmUSSw6+nb
+         5uXA==
+X-Gm-Message-State: AO0yUKVXiG1TL3cm58b+koPBkQ3IiMLvkN+xWpUVOopMHE6J+Sb1ZtSj
+        pB0HJPObhkSrNk5FWE1QBZX2Yg==
+X-Google-Smtp-Source: AK7set/vDvn10a+fQdAU96ODN7IXb+vtLvWxhVPv8Zvs8cIL0xewS3e+HPO0gyTVmaYVvrbsaOQTSQ==
+X-Received: by 2002:a05:600c:3c96:b0:3da:516:19ed with SMTP id bg22-20020a05600c3c9600b003da051619edmr18037107wmb.29.1675679604943;
+        Mon, 06 Feb 2023 02:33:24 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n9-20020a05600c3b8900b003d9aa76dc6asm16715024wms.0.2023.02.06.02.33.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Feb 2023 02:33:24 -0800 (PST)
+Message-ID: <f1665a8f-5b5b-7d98-a94e-d1b1df04afdf@linaro.org>
+Date:   Mon, 6 Feb 2023 11:33:22 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cd6bd118-68ef-1742-fd9d-08a65872b02c@linux.intel.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/5] dt-bindings: display: msm: dp-controller: document
+ SM8450 compatible
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230206-topic-sm8450-upstream-dp-controller-v1-0-f1345872ed19@linaro.org>
+ <20230206-topic-sm8450-upstream-dp-controller-v1-1-f1345872ed19@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230206-topic-sm8450-upstream-dp-controller-v1-1-f1345872ed19@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 06, 2023 at 05:49:44PM +0800, Zhou Furong wrote:
+On 06/02/2023 11:17, Neil Armstrong wrote:
+> The SM8450 & SM350 shares the same DT TX IP version, use the
+> SM8350 compatible as fallback for SM8450.
 > 
-> > > +
-> > > +#include <linux/device.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/of.h>
-> > > +#include <linux/of_device.h>
-> > > +#include <linux/slab.h>
-> > > +#include <linux/wiegand.h>
-> > > +#include <linux/dma-mapping.h>
-> > > +#include <linux/dmaengine.h>
-> > > +#include <linux/property.h>
-> > > +
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> please order headers
+> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> index 0e8d8df686dc..98bae326e655 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> @@ -25,6 +25,10 @@ properties:
+>        - qcom,sc8280xp-edp
+>        - qcom,sdm845-dp
+>        - qcom,sm8350-dp
+> +      - items:
+> +          - enum:
+> +            - qcom,sm8450-dp
 
-Why?  What order?  For what gain?
+Indentation looks wrong here. Testing should fail, did you test it?
+
+Best regards,
+Krzysztof
 
