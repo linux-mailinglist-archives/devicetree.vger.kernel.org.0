@@ -2,123 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AB7D68BFE9
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:20:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 866E168C005
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:27:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbjBFOUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 09:20:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40352 "EHLO
+        id S231233AbjBFO1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 09:27:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbjBFOUf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:20:35 -0500
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A085D170B
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 06:20:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1675693231; x=1678285231;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=q5FIAJjK7joiRJaf0JPpzOWdUDayNYkOXzSXsHkAAp0=;
-        b=KgzbUKyQ629vS5AexuyD+Ay67GEgjXzFY+HVUXOfym45ISa/3w2FIVxCi8S8lli8
-        SwWvgQnG4MV9pEgkyXKU6LPJb2krgdmBpPtLOsUaM4rEQCpm73X4m+PjqH4jzoA4
-        R96OG137u13qiPCy+pqC4m8ZpE2qvGhHwG17tEgOUyU=;
-X-AuditID: ac14000a-923ff70000007ecb-8f-63e10caf0ce8
-Received: from Diagnostix.phytec.de (Diagnostix.phytec.de [172.25.0.14])
-        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (Client did not present a certificate)
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 30.CE.32459.FAC01E36; Mon,  6 Feb 2023 15:20:31 +0100 (CET)
-Received: from Florix.phytec.de (172.25.0.13) by Diagnostix.phytec.de
- (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Mon, 6 Feb
- 2023 15:20:31 +0100
-Received: from Florix.phytec.de ([fe80::a802:84f9:c56c:4c6d]) by
- florix.phytec.de ([fe80::a802:84f9:c56c:4c6d%5]) with mapi id 15.01.2375.018;
- Mon, 6 Feb 2023 15:20:31 +0100
-From:   Dominik Haller <D.Haller@phytec.de>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "sam@ravnborg.org" <sam@ravnborg.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "upstream@phytec.de" <upstream@phytec.de>
-Subject: Re: [PATCH 2/2] drm/panel: simple: Add EDT ETML1010G0DKA panel
-Thread-Topic: [PATCH 2/2] drm/panel: simple: Add EDT ETML1010G0DKA panel
-Thread-Index: AQHYt+xq34hFG5cNnESyWWcHUzxQe67C67mA
-Date:   Mon, 6 Feb 2023 14:20:31 +0000
-Message-ID: <ba13246c-3838-4993-12ef-420d82730b28@phytec.de>
-References: <20220818124518.42080-1-d.haller@phytec.de>
- <20220818124518.42080-2-d.haller@phytec.de>
-In-Reply-To: <20220818124518.42080-2-d.haller@phytec.de>
-Accept-Language: en-DE, de-DE, en-US
-Content-Language: aa
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.0.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C3392DDF7449474AA06C6F09FE10890A@phytec.de>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBIsWRmVeSWpSXmKPExsWyRpKBT3c9z8Nkg4v7DCzmHznHanHl63s2
-        i74XD5ktWvceYbdY8XMro8XPXfNYHNg8ds66y+6xaVUnm8eda3vYPO53H2fyWDLtKpvH501y
-        AWxRXDYpqTmZZalF+nYJXBkTFvxiKTglXvF67Sr2BsY/Yl2MnBwSAiYSt25eZOxi5OIQEljL
-        JHHqfSOU85hR4t31eSwQzkZGiZZvl5lAWtgENCVeTr3NCpIQEbjBKHF24XewFmaQquOd7Ywg
-        VcIC7hJdv7pYQWwRAQ+JxQ+fMUHYRhIvD59lB7FZBFQkZj0/wAxi8wrYSLy6sxQsLiSQKrH9
-        3RmwXk4BC4k931rAZjIC1d9++QvMZhYQkei9DhGXEBCQWLLnPDOELSrx8vE/VghbXuLErWlA
-        ezmA6jUl1u/Sh2i1kFj99TQzhK0oMaX7ITvECYISJ2c+YZnAKD4LyYZZCN2zkHTPQtI9C0n3
-        AkbWVYxCuZnJ2alFmdl6BRmVJanJeimpmxhBsSvCwLWDsW+OxyFGJg7GQ4wSHMxKIrymBx4k
-        C/GmJFZWpRblxxeV5qQWH2KU5mBREue938OUKCSQnliSmp2aWpBaBJNl4uCUamCsEG6QYsyQ
-        L9Y93t/Vt2jxzEhTljCfdS0ey92Yg4y9AvvX/WEWveBr8FegYdGEhwXnj5v9fatT29hhWLxq
-        vt/VkoZtr25zcse9/Ws18d6fYKveWY1npzt7Td6n/ydW7qHyHDu71oZrX0Vl564WylykM/VM
-        zOy0ZK+nK3K+Ref+15KdV7prqYsSS3FGoqEWc1FxIgCNOD4LywIAAA==
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229949AbjBFO1W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:27:22 -0500
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB7BC2707
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 06:27:20 -0800 (PST)
+Received: by mail-yb1-xb4a.google.com with SMTP id u8-20020a258408000000b00880a7cc9684so5520247ybk.13
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 06:27:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=4qqnrGkVhs9Vc4bivD45fxgO+no6959irDZQgiBvynQ=;
+        b=aU5LgoD87HNQDMM6kdWC+HI88B2eqXW/hyZ40asuoB9u29j3Jt4jLJqwCGxAipiUgO
+         /E+u/yRG9sLqgS8qo4/KoH9OKz72x7llBOGEl7vOShmStMlvDam6BroGlvwWqwMlTjip
+         ILKvVLw6fbzHJW5OFg3/ympPbW/5edttt7TZ9GBq8GvbZgsZAOrKHK8Cch76lpiHn7cx
+         6CNBybLegfgEo4gSsDMJzDhVmqv2CXahZblflhWTSVS8NbZnP5g7n1hlM49a0p2w9SDs
+         25tSeY8A3gnrIOUGukXG6giph4Ze8b7aMt1NZKib4z3ikv8AveOgNMeMkOFLsxWRE90P
+         BoCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4qqnrGkVhs9Vc4bivD45fxgO+no6959irDZQgiBvynQ=;
+        b=XzyE8q4AQyoEMPnG/73MggDpEOb0xN4P6ah/kFWDsgZIFAlgScau/5hYb2PYLfaEhw
+         0zWAJ8CzRDhGwh8Ed9HRYV9jzvpEiapa849EyEypk/jHoFfY+VseEFBthThZaLD93jSu
+         3mtWvZaMIFVJrrTW31Q0HmoMGZ9jDhfySQB86zpYK6WrepqTWzhCddCtcHwNGuV9xAND
+         KR8JuwwPfwvigaF79FKhN2UR5ZVUCvPujk/DzC1O4VBC1ZzZuxY3bR/gBqowlEbDrgwO
+         55FGhDwVCPb68x4qurrXVSKsEGfg5gI+uMABdMlnhhm5/D8bC0ULCAIik4NVrSMt+ru4
+         9zjg==
+X-Gm-Message-State: AO0yUKXchI+tB9PD+YViM3v3PNgScaUt/AOctp5gLVqvMf6p1TcGaPGm
+        gd4RVnii0EPUGKOMwuL1rNb4COfklv5thvE=
+X-Google-Smtp-Source: AK7set+zEVPM0p7yMnswQPtt3wYKg8y3aDA7rz/3kbSqsy9NgvFzYi6BgDZwRaNbyiV49huUxWExWR1QvRWe7QU=
+X-Received: from liumartin.ntc.corp.google.com ([2401:fa00:fc:202:9373:4bd4:5bf3:5d5c])
+ (user=liumartin job=sendgmr) by 2002:a05:690c:38c:b0:524:ae14:59ac with SMTP
+ id bh12-20020a05690c038c00b00524ae1459acmr16ywb.5.1675693639587; Mon, 06 Feb
+ 2023 06:27:19 -0800 (PST)
+Date:   Mon,  6 Feb 2023 22:27:14 +0800
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.39.1.519.gcb327c4b5f-goog
+Message-ID: <20230206142714.4151047-1-liumartin@google.com>
+Subject: [PATCH] of: reserved-mem: expose reserved-mem details via debugfs
+From:   Martin Liu <liumartin@google.com>
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        surenb@google.com, minchan@kernel.org, tkjos@google.com,
+        liumartin@google.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGVsbG8sDQoNCnBpbmcgaGVyZSwgdGhpcyBvbmUgZ290IGZvcmdvdHRlbi4NCkl0IHN0aWxsIGFw
-cGxpZXMgb24gZHJtLW1pc2MtbmV4dCBhbmQgdjYuMi1yYzcNCg0KDQpPbiAxOC4wOC4yMiAxNDo0
-NSwgRG9taW5payBIYWxsZXIgd3JvdGU6DQo+IEFkZCBzdXBwb3J0IGZvciB0aGUgRURUIEVUTUwx
-MDEwRzBES0EgMTAuMSIgMTI4MHg4MDAgTFZEUyBwYW5lbC4NCj4NCj4gU2lnbmVkLW9mZi1ieTog
-RG9taW5payBIYWxsZXIgPGQuaGFsbGVyQHBoeXRlYy5kZT4NCj4gLS0tDQo+ICAgZHJpdmVycy9n
-cHUvZHJtL3BhbmVsL3BhbmVsLXNpbXBsZS5jIHwgMjkgKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKw0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAyOSBpbnNlcnRpb25zKCspDQo+DQo+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vcGFuZWwvcGFuZWwtc2ltcGxlLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vcGFuZWwvcGFuZWwtc2ltcGxlLmMNCj4gaW5kZXggZjllMWY4NWRhZWY3Li45MzE0ZGIyNGFi
-NTEgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9wYW5lbC9wYW5lbC1zaW1wbGUuYw0K
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vcGFuZWwvcGFuZWwtc2ltcGxlLmMNCj4gQEAgLTE3Nzks
-NiArMTc3OSwzMiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHBhbmVsX2Rlc2MgZWR0X2V0bWwwNzAw
-eTVkaGEgPSB7DQo+ICAgCS5jb25uZWN0b3JfdHlwZSA9IERSTV9NT0RFX0NPTk5FQ1RPUl9MVkRT
-LA0KPiAgIH07DQo+ICAgDQo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9kaXNwbGF5X21vZGUg
-ZWR0X2V0bWwxMDEwZzBka2FfbW9kZSA9IHsNCj4gKwkuY2xvY2sgPSA3MDAwMCwNCj4gKwkuaGRp
-c3BsYXkgPSAxMjgwLA0KPiArCS5oc3luY19zdGFydCA9IDEyODAgKyAxMDAsDQo+ICsJLmhzeW5j
-X2VuZCA9IDEyODAgKyAxMDAgKyAxOSwNCj4gKwkuaHRvdGFsID0gMTI4MCArIDEwMCArIDE5ICsg
-NDEsDQo+ICsJLnZkaXNwbGF5ID0gODAwLA0KPiArCS52c3luY19zdGFydCA9IDgwMCArIDQsDQo+
-ICsJLnZzeW5jX2VuZCA9IDgwMCArIDQgKyA0LA0KPiArCS52dG90YWwgPSA4MDAgKyA0ICsgNCAr
-IDE1LA0KPiArCS5mbGFncyA9IERSTV9NT0RFX0ZMQUdfUEhTWU5DIHwgRFJNX01PREVfRkxBR19Q
-VlNZTkMsDQo+ICt9Ow0KPiArDQo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IHBhbmVsX2Rlc2MgZWR0
-X2V0bWwxMDEwZzBka2EgPSB7DQo+ICsJLm1vZGVzID0gJmVkdF9ldG1sMTAxMGcwZGthX21vZGUs
-DQo+ICsJLm51bV9tb2RlcyA9IDEsDQo+ICsJLmJwYyA9IDgsDQo+ICsJLnNpemUgPSB7DQo+ICsJ
-CS53aWR0aCA9IDIxNiwNCj4gKwkJLmhlaWdodCA9IDEzNSwNCj4gKwl9LA0KPiArCS5idXNfZm9y
-bWF0ID0gTUVESUFfQlVTX0ZNVF9SR0I4ODhfMVg3WDRfU1BXRywNCj4gKwkuYnVzX2ZsYWdzID0g
-RFJNX0JVU19GTEFHX0RFX0hJR0gsDQo+ICsJLmNvbm5lY3Rvcl90eXBlID0gRFJNX01PREVfQ09O
-TkVDVE9SX0xWRFMsDQo+ICt9Ow0KPiArDQo+ICAgc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fZGlz
-cGxheV9tb2RlIGVkdF9ldG12NTcwZzJkaHVfbW9kZSA9IHsNCj4gICAJLmNsb2NrID0gMjUxNzUs
-DQo+ICAgCS5oZGlzcGxheSA9IDY0MCwNCj4gQEAgLTQwNTcsNiArNDA4Myw5IEBAIHN0YXRpYyBj
-b25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIHBsYXRmb3JtX29mX21hdGNoW10gPSB7DQo+ICAgCX0s
-IHsNCj4gICAJCS5jb21wYXRpYmxlID0gImVkdCxldG1sMDcwMHk1ZGhhIiwNCj4gICAJCS5kYXRh
-ID0gJmVkdF9ldG1sMDcwMHk1ZGhhLA0KPiArCX0sIHsNCj4gKwkJLmNvbXBhdGlibGUgPSAiZWR0
-LGV0bWwxMDEwZzBka2EiLA0KPiArCQkuZGF0YSA9ICZlZHRfZXRtbDEwMTBnMGRrYSwNCj4gICAJ
-fSwgew0KPiAgIAkJLmNvbXBhdGlibGUgPSAiZWR0LGV0bXY1NzBnMmRodSIsDQo+ICAgCQkuZGF0
-YSA9ICZlZHRfZXRtdjU3MGcyZGh1LA0KDQoNCi0tIA0KUEhZVEVDIE1lc3N0ZWNobmlrIEdtYkgg
-fCBCYXJjZWxvbmEtQWxsZWUgMSB8IDU1MTI5IE1haW56LCBHZXJtYW55DQoNCkdlc2Now6RmdHNm
-w7xocmVyOiBEaXBsLi1JbmcuIE1pY2hhZWwgTWl0ZXpraSwgRGlwbC4tSW5nLiBCb2RvIEh1YmVy
-IHwNCkhhbmRlbHNyZWdpc3RlciBNYWlueiBIUkIgNDY1NiB8IEZpbmFuemFtdCBNYWluei1NaXR0
-ZSB8IFN0Lk5yLg0KMjY2NTAwNjA4LCBERSAxNDkwNTk4NTUNCg0K
+It's important to know reserved-mem information in mobile world
+since reserved memory via device tree keeps increased in platform
+(e.g., 45% in our platform). Therefore, it's crucial to know the
+reserved memory sizes breakdown for the memory accounting.
+
+This patch shows the reserved memory breakdown under debugfs to
+make them visible.
+
+Below is an example output:
+cat $debugfs/reserved_mem/show
+0x00000009fc400000..0x00000009ffffffff (   61440 KB )   map     reusable test1
+0x00000009f9000000..0x00000009fc3fffff (   53248 KB )   map     reusable test2
+0x00000000ffdf0000..0x00000000ffffffff (    2112 KB )   map non-reusable test3
+0x00000009f6000000..0x00000009f8ffffff (   49152 KB )   map     reusable test4
+...
+0x00000000fd902000..0x00000000fd909fff (      32 KB ) nomap non-reusable test38
+0x00000000fd90a000..0x00000000fd90bfff (       8 KB ) nomap non-reusable test39
+Total 39 regions, 1446140 KB
+
+Signed-off-by: Martin Liu <liumartin@google.com>
+---
+ drivers/of/of_reserved_mem.c | 39 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 65f3b02a0e4e..a73228e07c8c 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -23,6 +23,7 @@
+ #include <linux/memblock.h>
+ #include <linux/kmemleak.h>
+ #include <linux/cma.h>
++#include <linux/debugfs.h>
+ 
+ #include "of_private.h"
+ 
+@@ -446,3 +447,41 @@ struct reserved_mem *of_reserved_mem_lookup(struct device_node *np)
+ 	return NULL;
+ }
+ EXPORT_SYMBOL_GPL(of_reserved_mem_lookup);
++
++#if defined(CONFIG_DEBUG_FS)
++static int of_reserved_mem_debug_show(struct seq_file *m, void *private)
++{
++	unsigned int i;
++	size_t sum = 0;
++
++	for (i = 0; i < reserved_mem_count; i++) {
++		const struct reserved_mem *rmem = &reserved_mem[i];
++		unsigned long node = rmem->fdt_node;
++		phys_addr_t end = rmem->base + rmem->size - 1;
++		bool nomap = (of_get_flat_dt_prop(node, "no-map", NULL)) != NULL;
++		bool reusable = (of_get_flat_dt_prop(node, "reusable", NULL)) != NULL;
++
++		sum += rmem->size;
++		seq_printf(m, "%pa..%pa ( %7lu KB ) %5s %12s %s\n", &rmem->base,
++			   &end, rmem->size / 1024,
++			   nomap ? "nomap" : "map",
++			   reusable ? "reusable" : "non-reusable",
++			   rmem->name ? rmem->name : "unknown");
++	}
++	seq_printf(m, "Total %d regions, %zu KB\n",
++		   reserved_mem_count,
++		   sum / 1024);
++	return 0;
++}
++DEFINE_SHOW_ATTRIBUTE(of_reserved_mem_debug);
++
++static int __init of_reserved_mem_init_debugfs(void)
++{
++	struct dentry *root = debugfs_create_dir("reserved_mem", NULL);
++
++	debugfs_create_file("show", 0444, root,
++			    NULL, &of_reserved_mem_debug_fops);
++	return 0;
++}
++device_initcall(of_reserved_mem_init_debugfs);
++#endif
+-- 
+2.39.1.519.gcb327c4b5f-goog
+
