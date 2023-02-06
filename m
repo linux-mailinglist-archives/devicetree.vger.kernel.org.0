@@ -2,72 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B007268B3D2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 02:28:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A296B68B3DD
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 02:33:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbjBFB2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Feb 2023 20:28:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35528 "EHLO
+        id S229627AbjBFBdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Feb 2023 20:33:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbjBFB2C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 20:28:02 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B053612F0F;
-        Sun,  5 Feb 2023 17:28:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4980660BAD;
-        Mon,  6 Feb 2023 01:28:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42610C433D2;
-        Mon,  6 Feb 2023 01:27:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675646880;
-        bh=t9G8OoFLpiW3MTHtj2kJ4MrcZSlxmCfX1CehvS4POC8=;
-        h=From:To:Cc:Subject:Date:From;
-        b=H4z+BB38w50oBUjOo94JnKmg0bADEyBr2xlmWL89xxdd+xKX77WA8YcKCX4CGf/3t
-         j8CwnAT0XgMuYMzxsmtjOvQGRZnupXtQ9S3F/67TAzD4hbtgusyCBiO61agv87eRlu
-         GyBBo5KwZo18xiQY++xlhiumHPcR1YRnYQTjvmorMW31VPvMq3+fslOmo8WMhtb+Be
-         R0xI8bMH4hFCb5sgrMDZm/PnhHmIbDbo/yqY+kAOUia1DZnYmq71gxEcpW0YZi7Vby
-         DdB0Hfy0i12Wv6FssrNVERVMjpycq2+Bq2VySk83TMyKtOxMqIXSaN2+QUUTZcHmly
-         p8Uq/FU6fQ3yw==
-From:   Masahiro Yamada <masahiroy@kernel.org>
-To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: [PATCH] .gitattributes: use 'dts' diff driver for *.dtso
-Date:   Mon,  6 Feb 2023 10:27:54 +0900
-Message-Id: <20230206012754.2771051-1-masahiroy@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229543AbjBFBdk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 20:33:40 -0500
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E06C1ADE2
+        for <devicetree@vger.kernel.org>; Sun,  5 Feb 2023 17:33:35 -0800 (PST)
+Received: by mail-pf1-x42a.google.com with SMTP id w20so7321407pfn.4
+        for <devicetree@vger.kernel.org>; Sun, 05 Feb 2023 17:33:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kR2veBWbyNFgGYItTwFdh8lQbfIA4xIECeB4pO18LrU=;
+        b=PFwbPgvDzQZdf/HQcszjkJRBI+TWwVFkCgQ1pTZtuRTIo/wlIT3BHJKZePYl3rA+JP
+         95hFB5vyzqBz1Jc54SILNs4ShJ7POM1/z2u66WJgYrGohpZnBl1sBMdI0mKh7YShxBiz
+         2w1gVgSrKCBfhH4ANXDeYDIYzg7AsUBAinEloUsjVb7gYNAHQoWVKnGUFh6d4pnFpoQb
+         1Q95oO5u5QznQa0IK6GWq/1414ezGBU9VQsaDUenD0Pmd8P7aAztAaPsq9YWbsbIqMc2
+         poo5WlAJbhJjVL7wJeGcis+SKQ5KrWaWg/FwaNXAFve7SvEGnI7TLg35saERb0k96x+I
+         luxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kR2veBWbyNFgGYItTwFdh8lQbfIA4xIECeB4pO18LrU=;
+        b=g0cXwPa8aCcPq4Os8iYUoCRe+k1HB81wi6PKJKKEq6yiSlzPdTmgBSy1oqYCU9oMcj
+         G472ebFlL1ri6Qb9GVA91YOQ72OT+PxSfCcqAx4YXyDu+Hh0y3Y8y78YaJ/Bgz20b9PV
+         ZKUychh3Z9l2ExoU6qTEJISnNXE3murBwDVbSev7sSlVqjF7WoI2Pwi8PlLGE9zQ6Hwc
+         EM2bxugiz2mNOgrT7PrjBJulx9yNobMS9b4OiQiJbvKizrkWHPgJyaXSJ9xQpTMWpo7L
+         Ntv9Bixb5ZEc+PqIRhf4eda7QOB6W9C0b4w1kOBOCdH80OvCJSMLbNOGmgB1JfwYw2e8
+         HHdA==
+X-Gm-Message-State: AO0yUKVPSxLT0n127x4jmI4N1vp8f9GMX8ogPoKwOZWU27F0Olodu1j5
+        Ad1VKlLw3H8rirXW6hf6vtVh5nKaTEVIPXi0TiBcIA==
+X-Google-Smtp-Source: AK7set8u1D8Yx0Ns1ik9250I6OIYVxsmLToiLi2hjLdTsjiKPoILrZB8aX+YQXBoINv9ErwXZE6Ko7BYs7yfuVc+TPE=
+X-Received: by 2002:a62:1a57:0:b0:593:bac2:b49 with SMTP id
+ a84-20020a621a57000000b00593bac20b49mr4285651pfa.44.1675647214386; Sun, 05
+ Feb 2023 17:33:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230127001141.407071-1-saravanak@google.com> <20230130085542.38546-1-naresh.kamboju@linaro.org>
+ <CAGETcx_411fVxsM-ZMK7j2Bvkmi2TKPbzSuD+03M3cb7WKHfJw@mail.gmail.com>
+ <20230131101813.goaoy32qvrowvyyb@bogus> <CALHCpMijXAgQx2qq8g8zdq=6AHwP+g5WVBjjry=v+dKEq9KDLw@mail.gmail.com>
+ <CAGETcx_UvW819m1Y-QU_ySB1nG_RegKKT06=YjkK=C_qjbAySw@mail.gmail.com> <CALHCpMha_1nXt4rUe+A184XSWpyNk0_PkYjWZ+tUN7BJWqENLA@mail.gmail.com>
+In-Reply-To: <CALHCpMha_1nXt4rUe+A184XSWpyNk0_PkYjWZ+tUN7BJWqENLA@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Sun, 5 Feb 2023 17:32:57 -0800
+Message-ID: <CAGETcx_uri6exkv1Jkzmc4PyEam9yjuH2H1zrq4LYNtJ+XDMWw@mail.gmail.com>
+Subject: Re: [PATCH v2 00/11] fw_devlink improvements
+To:     Maxim Kiselev <bigunclemax@gmail.com>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        abel.vesa@linaro.org, alexander.stein@ew.tq-group.com,
+        andriy.shevchenko@linux.intel.com, brgl@bgdev.pl,
+        colin.foster@in-advantage.com, cristian.marussi@arm.com,
+        devicetree@vger.kernel.org, dianders@chromium.org,
+        djrscally@gmail.com, dmitry.baryshkov@linaro.org,
+        festevam@gmail.com, fido_max@inbox.ru, frowand.list@gmail.com,
+        geert+renesas@glider.be, geert@linux-m68k.org,
+        gregkh@linuxfoundation.org, heikki.krogerus@linux.intel.com,
+        jpb@kernel.org, jstultz@google.com, kernel-team@android.com,
+        kernel@pengutronix.de, lenb@kernel.org, linus.walleij@linaro.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux@roeck-us.net, lkft@linaro.org, luca.weiss@fairphone.com,
+        magnus.damm@gmail.com, martin.kepplinger@puri.sm, maz@kernel.org,
+        miquel.raynal@bootlin.com, rafael@kernel.org, robh+dt@kernel.org,
+        s.hauer@pengutronix.de, sakari.ailus@linux.intel.com,
+        shawnguo@kernel.org, tglx@linutronix.de, tony@atomide.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now we have the third extension for DT source files (overlay).
+On Fri, Feb 3, 2023 at 1:39 AM Maxim Kiselev <bigunclemax@gmail.com> wrote:
+>
+> =D0=BF=D1=82, 3 =D1=84=D0=B5=D0=B2=D1=80. 2023 =D0=B3. =D0=B2 09:07, Sara=
+vana Kannan <saravanak@google.com>:
+> >
+> > On Thu, Feb 2, 2023 at 9:36 AM Maxim Kiselev <bigunclemax@gmail.com> wr=
+ote:
+> > >
+> > > Hi Saravana,
+> > >
+> > > > Can you try the patch at the end of this email under these
+> > > > configurations and tell me which ones fail vs pass? I don't need lo=
+gs
+> > >
+> > > I did these tests and here is the results:
+> >
+> > Did you hand edit the In-Reply-To: in the header? Because in the
+> > thread you are reply to the wrong email, but the context in your email
+> > seems to be from the right email.
+> >
+> > For example, see how your reply isn't under the email you are replying
+> > to in this thread overview:
+> > https://lore.kernel.org/lkml/20230127001141.407071-1-saravanak@google.c=
+om/#r
+> >
+> > > 1. On top of this series - Not works
+> > > 2. Without this series    - Works
+> > > 3. On top of the series with the fwnode_dev_initialized() deleted - N=
+ot works
+> > > 4. Without this series, with the fwnode_dev_initialized() deleted  - =
+Works
+> > >
+> > > So your nvmem/core.c patch helps only when it is applied without the =
+series.
+> > > But despite the fact that this helps to avoid getting stuck at probin=
+g
+> > > my ethernet device, there is still regression.
+> > >
+> > > When the ethernet module is loaded it takes a lot of time to drop dep=
+endency
+> > > from the nvmem-cell with mac address.
+> > >
+> > > Please look at the kernel logs below.
+> >
+> > The kernel logs below really aren't that useful for me in their
+> > current state. See more below.
+> >
+> > ---8<---- <snip> --->8----
+> >
+> > > P.S. Your nvmem patch definitely helps to avoid a device probe stuck
+> > > but look like it is not best way to solve a problem which we discusse=
+d
+> > > in the MTD thread.
+> > >
+> > > P.P.S. Also I don't know why your nvmem-cell patch doesn't help when =
+it was
+> > > applied on top of this series. Maybe I missed something.
+> >
+> > Yeah, I'm not too sure if the test was done correctly. You also didn't
+> > answer my question about the dts from my earlier email.
+> > https://lore.kernel.org/lkml/CAGETcx8FpmbaRm2CCwqt3BRBpgbogwP5gNB+iA5OE=
+tuxWVTNLA@mail.gmail.com/#t
+> >
+> > So, can you please retest config 1 with all pr_debug and dev_dbg in
+> > drivers/core/base.c changed to the _info variants? And then share the
+> > kernel log from the beginning of boot? Maybe attach it to the email so
+> > it doesn't get word wrapped by your email client. And please point me
+> > to the .dts that corresponds to your board. Without that, I can't
+> > debug much.
+> >
+> > Thanks,
+> > Saravana
+>
+> > Did you hand edit the In-Reply-To: in the header? Because in the
+> > thread you are reply to the wrong email, but the context in your email
+> > seems to be from the right email.
+>
+> Sorry for that, it seems like I accidently deleted it.
+>
+> > So, can you please retest config 1 with all pr_debug and dev_dbg in
+> > drivers/core/base.c changed to the _info variants? And then share the
+> > kernel log from the beginning of boot? Maybe attach it to the email so
+> > it doesn't get word wrapped by your email client. And please point me
+> > to the .dts that corresponds to your board. Without that, I can't
+> > debug much.
+>
+> Ok, I retested config 1 with all _debug logs changed to the _info. I
+> added the kernel log and the dts file to the attachment of this email.
 
-Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
----
+Ah, so your device is not supported/present upstream? Even though it's
+not upstream, I'll help fix this because it should fix what I believe
+are unreported issues in upstream.
 
- .gitattributes | 1 +
- 1 file changed, 1 insertion(+)
+Ok I know why configs 1 - 4 behaved the way they did and why my test
+patch didn't help.
 
-diff --git a/.gitattributes b/.gitattributes
-index 4b32eaa9571e..a49e9ee50e9f 100644
---- a/.gitattributes
-+++ b/.gitattributes
-@@ -2,3 +2,4 @@
- *.h   diff=cpp
- *.dtsi diff=dts
- *.dts  diff=dts
-+*.dtso diff=dts
--- 
-2.34.1
+After staring at mtd/nvmem code for a few hours I think mtd/nvmem
+interaction is kind of a mess. mtd core creates "partition" platform
+devices (including for nvmem-cells) that are probed by drivers in
+drivers/nvmem. However, there's no driver for "nvmem-cells" partition
+platform device. However, the nvmem core creates nvmem_device when
+nvmem_register() is called by MTD or these partition platform devices
+created by MTD. But these nvmem_devices are added to a nvmem_bus but
+the bus has no means to even register a driver (it should really be a
+nvmem_class and not nvmem_bus). And the nvmem_device sometimes points
+to the DT node of the MTD device or sometimes the partition platform
+devices or maybe no DT node at all.
 
+So it's a mess of multiple devices pointing to the same DT node with
+no clear way to identify which ones will point to a DT node and which
+ones will probe and which ones won't. In the future, we shouldn't
+allow adding new compatible strings for partitions for which we don't
+plan on adding nvmem drivers.
+
+Can you give the patch at the end of the email a shot? It should fix
+the issue with this series and without this series. It just avoids
+this whole mess by not creating useless platform device for
+nvmem-cells compatible DT nodes.
+
+Thanks,
+Saravana
+
+diff --git a/drivers/mtd/mtdpart.c b/drivers/mtd/mtdpart.c
+index d442fa94c872..88a213f4d651 100644
+--- a/drivers/mtd/mtdpart.c
++++ b/drivers/mtd/mtdpart.c
+@@ -577,6 +577,7 @@ static int mtd_part_of_parse(struct mtd_info *master,
+ {
+        struct mtd_part_parser *parser;
+        struct device_node *np;
++       struct device_node *child;
+        struct property *prop;
+        struct device *dev;
+        const char *compat;
+@@ -594,6 +595,10 @@ static int mtd_part_of_parse(struct mtd_info *master,
+        else
+                np =3D of_get_child_by_name(np, "partitions");
+
++       for_each_child_of_node(np, child)
++               if (of_device_is_compatible(child, "nvmem-cells"))
++                       of_node_set_flag(child, OF_POPULATED);
++
+        of_property_for_each_string(np, "compatible", prop, compat) {
+                parser =3D mtd_part_get_compatible_parser(compat);
+                if (!parser)
