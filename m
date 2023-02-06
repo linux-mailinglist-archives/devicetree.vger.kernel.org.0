@@ -2,151 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC55468C120
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 16:15:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C0C468C128
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 16:16:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229806AbjBFPPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 10:15:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52496 "EHLO
+        id S229518AbjBFPQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 10:16:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbjBFPPL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 10:15:11 -0500
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2455C1EBCE;
-        Mon,  6 Feb 2023 07:15:09 -0800 (PST)
+        with ESMTP id S229686AbjBFPQv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 10:16:51 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8906A1EBCE
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 07:16:49 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id o18so10711979wrj.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 07:16:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1675696510;
-  x=1707232510;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=JS7h8g3ctjeRZPbI69EcSH0Wy8aIzGJjjvYaYMytls0=;
-  b=mZ0YByfYI5jQxwprZoFbnevdmRmdXo96fTnwoVpuFYufMoKKQJacgGCt
-   LhxfFmQcQWcHOnbjL20qqobGpEErVh6yDWtanmj3Q6HueD6d/NKutSPf7
-   Q3RSMKHMLN0RwGbFheDjjNnkj58MBslI3izbpFgtl3g+/QZa12ZMzlmOB
-   OVcCNHlzV0ew0/ngq7CAANjGeueA1bjT8R34PA8s/njc1G1fyAWNkZp59
-   dZWqgBLPFKFd1Lu3tGG4nLQi+J49fZBY4gAhbw5FuOCausnBvsFsHUXo3
-   sdiZ66SglQwBonIePtac1wNVodpo24JU5oQmimvk2li4Yiuuij53fz6tm
-   A==;
-From:   Jiri Valek - 2N <jiriv@axis.com>
-To:     <linux-input@vger.kernel.org>
-CC:     <devicetree@vger.kernel.org>, <dmitry.torokhov@gmail.com>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <u.kleine-koenig@pengutronix.de>, <mkorpershoek@baylibre.com>,
-        <jiriv@axis.com>
-Subject: [PATCH v5 2/2] Input: cap11xx - add support for cap1203, cap1293 and cap1298
-Date:   Mon, 6 Feb 2023 16:13:31 +0100
-Message-ID: <20230206151331.184634-3-jiriv@axis.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230206151331.184634-1-jiriv@axis.com>
-References: <20230206151331.184634-1-jiriv@axis.com>
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9SFdYqwIRRlNKq2URvMK10oESSfAvdxIceymEVS/gdY=;
+        b=fR0O5cF5pgSH2SuVjl1H+Emhoznau6V7siwuLySYoFghvoF3oHy8kGJRaNHIsQP0lP
+         274zUfPWLXdQjnbCg5UU4BvLB2Sc5eluuBkGKidHkJ4Qt9b4cHW7VJ9PBJVg0VD9IKZR
+         vqAWUnEu7P2YrWdyXnmRjkvKTFSRfAkcvH2HDXXL9USQWzjIXgzwIbj3L8l5/RmH9n6E
+         ICjsIxjyIuO6k/du8BnToB9hx3AwwLZySwDDsrMmwgw6yAlXjruJAludEfYD+TykAjHZ
+         T4riGd1nAQ4V9OEomb2T3lmlccq1dPzfE8vOx1dUcNHPVSOoliAltP63h/f/UiUGfU/3
+         Ni+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9SFdYqwIRRlNKq2URvMK10oESSfAvdxIceymEVS/gdY=;
+        b=Bi1SS2O5NdkLKilnELuZ6urMLDFd37oDUPCY0+PPdUQq/0UHJXMWNy9g7YSi57Okat
+         uXMW0G/TGeDdshsrC6/po1IMnLPg0NaGJQaoIwrAGWihtpVoi7qI/oviKoxYF9hoE9bS
+         CyuYJHLouycV4baLNqdNGWnwYwBOvKw46kzdzLe5Mym236x5VWi2g50DKj93eynxpvuj
+         GHc9wi/WuQQhN+naQTUhoWf3I2lG8nws+FyKYPDqeVQXfpBcQO+fc9p943ZE3CPP0WHE
+         GgycrmZLa1b4blWJ6bt73IR5wiOguwrbeeSHHCY+vORuybY+I+bz4MqIvYJwAZK2BTpO
+         xMEg==
+X-Gm-Message-State: AO0yUKV4m3reU8SVPkUKELJwh23WwBUf0W1chUqkND6NB3yRpkP2l7or
+        xR3Zb1OvRz2VQjswongVUjDp6Q==
+X-Google-Smtp-Source: AK7set+O0Wi8N8N03D+TgkpXo7bFEjAzH/AXnvYy/oLnJfM42DQgG7nqshL9KOiTp/SaOyz+Hq6PTg==
+X-Received: by 2002:adf:eb10:0:b0:2c3:d8f0:547a with SMTP id s16-20020adfeb10000000b002c3d8f0547amr10144094wrn.1.1675696608141;
+        Mon, 06 Feb 2023 07:16:48 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id r12-20020a05600c35cc00b003d9fba3c7a4sm17673253wmq.16.2023.02.06.07.16.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Feb 2023 07:16:47 -0800 (PST)
+Message-ID: <6a4be407-6d35-7629-8b3d-59be10cab83e@linaro.org>
+Date:   Mon, 6 Feb 2023 16:16:45 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.0.5.60]
-X-ClientProxiedBy: se-mail04w.axis.com (10.20.40.10) To se-mail01w.axis.com
- (10.20.40.7)
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 1/3] dt-bindings: power: supply: Add Lenovo Yoga C630
+ EC
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230205152809.2233436-1-dmitry.baryshkov@linaro.org>
+ <20230205152809.2233436-2-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230205152809.2233436-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic support for more CAP1xxx sensors.
-All models from CAP1xxx family are register-compatible.
-Some advanced features are not used and disabled by default.
+On 05/02/2023 16:28, Dmitry Baryshkov wrote:
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> 
+> Add binding for the Embedded Controller found in the Qualcomm
+> Snapdragon-based Lenovo Yoga C630.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Reported-by: kernel test robot <lkp@xxxxxxxxx>
-Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
----
-Changes in v2:
-  - Fixed if statement.
-  
-Changes in v3:
-  - Model names sorted alphabetically.
+Loooks ok for me.
 
-Changes in v4
-  - No changes.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Changes in v5:
-  - Fix indentation.
+If there is going to be resend, three nits below:
 
- drivers/input/keyboard/cap11xx.c | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/input/keyboard/cap11xx.c b/drivers/input/keyboard/cap11xx.c
-index 79afd0386e3f..040696d0e49c 100644
---- a/drivers/input/keyboard/cap11xx.c
-+++ b/drivers/input/keyboard/cap11xx.c
-@@ -98,14 +98,20 @@ enum {
- 	CAP1106,
- 	CAP1126,
- 	CAP1188,
-+	CAP1203,
- 	CAP1206,
-+	CAP1293,
-+	CAP1298
- };
- 
- static const struct cap11xx_hw_model cap11xx_devices[] = {
- 	[CAP1106] = { .product_id = 0x55, .num_channels = 6, .num_leds = 0, .no_gain = false },
- 	[CAP1126] = { .product_id = 0x53, .num_channels = 6, .num_leds = 2, .no_gain = false },
- 	[CAP1188] = { .product_id = 0x50, .num_channels = 8, .num_leds = 8, .no_gain = false },
-+	[CAP1203] = { .product_id = 0x6d, .num_channels = 3, .num_leds = 0, .no_gain = true },
- 	[CAP1206] = { .product_id = 0x67, .num_channels = 6, .num_leds = 0, .no_gain = true },
-+	[CAP1293] = { .product_id = 0x6f, .num_channels = 3, .num_leds = 0, .no_gain = false },
-+	[CAP1298] = { .product_id = 0x71, .num_channels = 8, .num_leds = 0, .no_gain = false },
- };
- 
- static const struct reg_default cap11xx_reg_defaults[] = {
-@@ -377,7 +383,8 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
- 	if (error < 0)
- 		return error;
- 
--	dev_info(dev, "CAP11XX detected, revision 0x%02x\n", rev);
-+	dev_info(dev, "CAP11XX detected, model %s, revision 0x%02x\n",
-+		 id->name, rev);
- 	node = dev->of_node;
- 
- 	if (!of_property_read_u32(node, "microchip,sensor-gain", &gain32)) {
-@@ -390,7 +397,9 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
- 			dev_err(dev, "Invalid sensor-gain value %d\n", gain32);
- 	}
- 
--	if (id->driver_data != CAP1206) {
-+	if (id->driver_data == CAP1106 ||
-+	    id->driver_data == CAP1126 ||
-+	    id->driver_data == CAP1188) {
- 		if (of_property_read_bool(node, "microchip,irq-active-high")) {
- 			error = regmap_update_bits(priv->regmap,
- 						   CAP11XX_REG_CONFIG2,
-@@ -483,7 +492,10 @@ static const struct of_device_id cap11xx_dt_ids[] = {
- 	{ .compatible = "microchip,cap1106", },
- 	{ .compatible = "microchip,cap1126", },
- 	{ .compatible = "microchip,cap1188", },
-+	{ .compatible = "microchip,cap1203", },
- 	{ .compatible = "microchip,cap1206", },
-+	{ .compatible = "microchip,cap1293", },
-+	{ .compatible = "microchip,cap1298", },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, cap11xx_dt_ids);
-@@ -492,7 +504,10 @@ static const struct i2c_device_id cap11xx_i2c_ids[] = {
- 	{ "cap1106", CAP1106 },
- 	{ "cap1126", CAP1126 },
- 	{ "cap1188", CAP1188 },
-+	{ "cap1203", CAP1203 },
- 	{ "cap1206", CAP1206 },
-+	{ "cap1293", CAP1293 },
-+	{ "cap1298", CAP1298 },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, cap11xx_i2c_ids);
--- 
-2.25.1
+> ---
+>  .../power/supply/lenovo,yoga-c630-ec.yaml     | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml b/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
+> new file mode 100644
+> index 000000000000..37977344f157
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/lenovo,yoga-c630-ec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Lenovo Yoga C630 Embedded Controller.
+
+Drop trailing full stop
+
+(...)
+
+> +
+> +examples:
+> +  - |+
+
+Just:
+  - |
+
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c1 {
+
+Just: "i2c"
+
+> +        clock-frequency = <400000>;
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+
+
+Best regards,
+Krzysztof
 
