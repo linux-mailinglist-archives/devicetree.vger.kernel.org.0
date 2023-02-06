@@ -2,81 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0899568BB2E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:20:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7D7068BB43
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:22:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbjBFLU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 06:20:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37592 "EHLO
+        id S229778AbjBFLWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 06:22:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229959AbjBFLU0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:20:26 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B41A593EF
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 03:20:24 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id i38so227082eda.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 03:20:24 -0800 (PST)
+        with ESMTP id S229522AbjBFLWB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:22:01 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32531714F
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 03:21:59 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id l14so1354160eds.4
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 03:21:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uhqMPSXHkvCWfILufq4Ld5aNdSejDT2hVXfv3Ko2CUk=;
-        b=raPqjNh3bznGcgDJNpjJBoLmU9KWkSOkMrFpN7R1Hgnir1F0Uqs123HqifgHra8qQi
-         EAMz90ugLBZPLTZ3LmsJD1AT4+N6KRqgbdAoxb+oL860KL+oHsW60dI90Tspq5hhBVcF
-         jgbIJ9LO4oabGBLUewmdyw5AxF+uY634xAsdogI/47oL2guzk4+kGzQePDmJjZCUf1s9
-         qnJjRHiFVMR4FmFqXG5KiLfYDhJZh11oQngLr6eoKjqSnPaCR9T3/yYJHws6sqOpQEQT
-         MniwC2wyCE+o/0l/HWIJPV4rpLL6rSBr/KPhIiqwuL3M6dZZFy0Y6SV7egdvEjH4vrPL
-         Suaw==
+        bh=ZK68PbjBgg4M4gPDk5TqCOuYlcFHTmMeQziL+2MsNis=;
+        b=h2975W79UPeeiMEZ9AHtojxXjXqOEhIDNnOz1yRgLa3z3fTqwO5ib5AUvbn9kl8Xus
+         eI8miGLIVwq79HupZGifhB8PqSOJOrF3JDBYP9XNQu6f96B9HxrjXCkpZnSvKxzx3/2M
+         ULpkreJdUypaoZ4c537hHg2Mc8bA3z7ON/M2VvT/4XImGF+E34CktBe/FPDQi92zzIzu
+         Dv0whz5pE5h+HT/IjJWz9A/ZKv6/8yQWVSpYxMnOpxzV8RqxdMraMlxriEBf42SlCKQ1
+         mHjsp0TkTypKa8fR7mjQEXGmXuRe4rni2pR3H3xMhNAKgnTn0n9siJbq78W6jHRBRfEs
+         Z26g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uhqMPSXHkvCWfILufq4Ld5aNdSejDT2hVXfv3Ko2CUk=;
-        b=OHVSwjZc01wrJIrSzph+7ZZW1HqyBa4geGA9DIgVTKD2HVYUh/4i40lYn/v/9UO0bb
-         PnS7GXHUPetQRMtm8IeZUaSoNOUvZ7LY36C+q3ZlafTVM5aDw3dCDBxb9wwfhTUsOxRs
-         fpA0aMOnrQQXIOkukPHpuYBcHfXs+fuB3t0MkuMZpOjnjbffnFLBMCrLR5ix5jQG5FsJ
-         l27iKSjPtdZ/Ev/q49WkevsCF4H+U+26mbdjz+hP/dN6XMNkrJHjTqJREz/WAi9MuPaK
-         sfYRUhenXht/bEldqZaxDP+yVTYtZI/CTzS+dmbjDchTyDNYoJnnH6KhW5s0OQ2FNomm
-         +GhQ==
-X-Gm-Message-State: AO0yUKX3bzygnf4MgFNigiCPVoORcmuEg6Pt8fwdt9JqeY1M5zj8z2BK
-        QdK1HSUpaxJznVbYOFvAU+tIUQ==
-X-Google-Smtp-Source: AK7set/hlkKx+T8IiESp6Csj2ct0GVBLugzKhydhbyw/fPZb4IlnO73KtOwKu/XBQbnVKeR1sPtxPw==
-X-Received: by 2002:a05:6402:3603:b0:4a0:e237:2cef with SMTP id el3-20020a056402360300b004a0e2372cefmr20831204edb.4.1675682423357;
-        Mon, 06 Feb 2023 03:20:23 -0800 (PST)
+        bh=ZK68PbjBgg4M4gPDk5TqCOuYlcFHTmMeQziL+2MsNis=;
+        b=LLOZqTQaNcexTQfrEUl63ZQwgq+Nx78scIGEBJtD04QjEipr9UjgOOkfVsgxcVMwaU
+         prxKADJ9SNM0Beoonthas8QK7jAyJGwcudz4dB3kH/JG/qSxJm8gDfiXeO6yR8sw90lu
+         wn8dfkL9hKznw/ZtHlicNDmoKHTkmgH64ibnIk8pSytYuWGFC1s264RBmi+vVkjYlRMz
+         OSaFwEv4WDyLh6LJGysDHkGU7xP+qbhq9Dx2vVj6E387OQHtQpea350amTZWykV2d1O8
+         LWKzIDKpggld6RUJcyB6RPD3gUN9kssBzu5GEdx3Nxbs4xhG4IZ8k8eKaVuKfAlj3AmB
+         wUsg==
+X-Gm-Message-State: AO0yUKVyw9DyR0oo7yQqTAeBplnthMiNJaJiB5olig+NC2N+DzgkxY5E
+        n/qW6x9gOlqhw9TK+4yN0SB7FQ==
+X-Google-Smtp-Source: AK7set9MAC+HCPhW7u6DHBaY5VdUEuLOfkagFMD0u5hl4QeVmrZYor/UME665PgvQT+hcODcQdZlcA==
+X-Received: by 2002:a50:fe86:0:b0:4a0:e415:d39f with SMTP id d6-20020a50fe86000000b004a0e415d39fmr17308791edt.41.1675682518249;
+        Mon, 06 Feb 2023 03:21:58 -0800 (PST)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id v17-20020aa7dbd1000000b004a249a97d84sm4903348edt.23.2023.02.06.03.20.22
+        by smtp.gmail.com with ESMTPSA id h23-20020aa7c957000000b00487fc51c532sm4971343edt.33.2023.02.06.03.21.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 03:20:23 -0800 (PST)
-Message-ID: <a2ad7b78-d848-df9d-2646-476cb306c505@linaro.org>
-Date:   Mon, 6 Feb 2023 13:20:21 +0200
+        Mon, 06 Feb 2023 03:21:57 -0800 (PST)
+Message-ID: <5c2df97d-43a3-ccdb-267e-4dc5485dbeb2@linaro.org>
+Date:   Mon, 6 Feb 2023 13:21:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/5] dt-bindings: display: msm: dp-controller: document
- SM8450 compatible
+Subject: Re: [PATCH 2/8] arm64: dts: qcom: sm8450: add
+ RPMH_REGULATOR_LEVEL_LOW_SVS_L1
 Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230206-topic-sm8450-upstream-dp-controller-v1-0-f1345872ed19@linaro.org>
- <20230206-topic-sm8450-upstream-dp-controller-v1-1-f1345872ed19@linaro.org>
- <f1665a8f-5b5b-7d98-a94e-d1b1df04afdf@linaro.org>
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org
+References: <20230206002735.2736935-1-dmitry.baryshkov@linaro.org>
+ <20230206002735.2736935-4-dmitry.baryshkov@linaro.org>
+ <a38a7ba4-a336-3ad2-7dcd-4eb2195eb0ef@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <f1665a8f-5b5b-7d98-a94e-d1b1df04afdf@linaro.org>
+In-Reply-To: <a38a7ba4-a336-3ad2-7dcd-4eb2195eb0ef@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,37 +89,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/02/2023 12:33, Krzysztof Kozlowski wrote:
-> On 06/02/2023 11:17, Neil Armstrong wrote:
->> The SM8450 & SM350 shares the same DT TX IP version, use the
->> SM8350 compatible as fallback for SM8450.
+On 06/02/2023 12:44, Konrad Dybcio wrote:
+> 
+> 
+> On 6.02.2023 01:27, Dmitry Baryshkov wrote:
+>> Add another power saving state used on SM8350.
 >>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 >> ---
->>   Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 4 ++++
->>   1 file changed, 4 insertions(+)
+>>   include/dt-bindings/power/qcom-rpmpd.h | 1 +
+> Wrong patch once more?
+
+This patch is wrong and was sent by mistake
+
+> 
+> Konrad
+>>   1 file changed, 1 insertion(+)
 >>
->> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->> index 0e8d8df686dc..98bae326e655 100644
->> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->> @@ -25,6 +25,10 @@ properties:
->>         - qcom,sc8280xp-edp
->>         - qcom,sdm845-dp
->>         - qcom,sm8350-dp
->> +      - items:
->> +          - enum:
->> +            - qcom,sm8450-dp
-> 
-> Indentation looks wrong here. Testing should fail, did you test it?
-
-Moreover it also breaks dt-schema, see 
-https://github.com/devicetree-org/dt-schema/issues/98
-
-> 
-> Best regards,
-> Krzysztof
-> 
+>> diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+>> index 4a30d10e6b7d..1bf8e87ecd7e 100644
+>> --- a/include/dt-bindings/power/qcom-rpmpd.h
+>> +++ b/include/dt-bindings/power/qcom-rpmpd.h
+>> @@ -211,6 +211,7 @@
+>>   #define RPMH_REGULATOR_LEVEL_MIN_SVS	48
+>>   #define RPMH_REGULATOR_LEVEL_LOW_SVS_D1	56
+>>   #define RPMH_REGULATOR_LEVEL_LOW_SVS	64
+>> +#define RPMH_REGULATOR_LEVEL_LOW_SVS_L1	80
+>>   #define RPMH_REGULATOR_LEVEL_SVS	128
+>>   #define RPMH_REGULATOR_LEVEL_SVS_L0	144
+>>   #define RPMH_REGULATOR_LEVEL_SVS_L1	192
 
 -- 
 With best wishes
