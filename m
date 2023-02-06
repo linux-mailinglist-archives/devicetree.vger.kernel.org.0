@@ -2,123 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A66E668C7D0
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 21:40:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EA0D68C82F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 22:02:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230362AbjBFUkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 15:40:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42006 "EHLO
+        id S229515AbjBFVC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 16:02:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230351AbjBFUkg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 15:40:36 -0500
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFA467D81;
-        Mon,  6 Feb 2023 12:40:35 -0800 (PST)
-Received: from [192.168.178.23] (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 420E2D1D6A;
-        Mon,  6 Feb 2023 20:40:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1675716033; bh=seYDTlxpMzvQVtMfNvABd2LwuWxm1YJSIuqTsjMROQ0=;
-        h=From:Date:Subject:References:In-Reply-To:To:Cc;
-        b=ZkJzW+HiurRMvK6zM3RziYdnQ6CQ3iVKDX1MMXj8zZAeb/wbBt21peEfGWNNrzNIO
-         Qf5AvX/qNwCo5GFHYHcUmjqb/PnPhrrAzNx8Jk4BIj6j+ciKydBo5sLjlz79PLW3VC
-         Vwoy/GyvVZwOFmus9R/a3Iwrq1rDKhe0fDn0z8fc=
-From:   Luca Weiss <luca@z3ntu.xyz>
-Date:   Mon, 06 Feb 2023 21:40:18 +0100
-Subject: [PATCH v2 5/5] ARM: dts: qcom: msm8974-oneplus-bacon: Add
- notification LED
+        with ESMTP id S229739AbjBFVCx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 16:02:53 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B198A24CBB;
+        Mon,  6 Feb 2023 13:02:41 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4E87F60FD7;
+        Mon,  6 Feb 2023 21:02:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D186C433EF;
+        Mon,  6 Feb 2023 21:02:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675717360;
+        bh=EFRCzFpjkHfDn0Vt4RI0YMMBe/BYikr6pWN8qSbSd3Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=A++NswBZxlfPBvKJSGQcHkAEBFVQFYqQmZ77aEVzm/9tSD4+24bj3UpeiSNUnIZbm
+         Ok3XwzktHKG/nZrKwC7N6k+l/JvsWDX37feMpCG5KzEE5M4g3u/gw750pfAowRaEp9
+         +BRCPoQtHWKJT196WhOKXHMXLbw9bDabyHefysZiikP+lRgA/Q2WdO79DTxQxxX0nu
+         osn48FXPdzjJR0eGrcTOPmjPuX+lmtY6nn8V8Rvk/3qQdva9lSnTIaCg+DrJqswbu/
+         2aa3iKVjOGCQlS2zhnTZh+Exj8/nf2NzkGzlThR6P0uR8yQbJapON49DkZpViiXDE2
+         XAvRLJ9+45vlg==
+Date:   Mon, 6 Feb 2023 13:04:55 -0800
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Mukesh Ojha <quic_mojha@quicinc.com>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>, agross@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8450: Add IMEM and PIL info
+ region
+Message-ID: <20230206210455.xgrvtvknkor4nllx@ripper>
+References: <1675443891-31709-1-git-send-email-quic_mojha@quicinc.com>
+ <1675443891-31709-2-git-send-email-quic_mojha@quicinc.com>
+ <cc30f686-dec7-db85-cf0d-c6c685a623ce@linaro.org>
+ <d1dc0c9b-eab2-0287-d0a2-ead44ecee5ce@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230122-msm8974-bacon-features-v2-5-06bb83c20a58@z3ntu.xyz>
-References: <20230122-msm8974-bacon-features-v2-0-06bb83c20a58@z3ntu.xyz>
-In-Reply-To: <20230122-msm8974-bacon-features-v2-0-06bb83c20a58@z3ntu.xyz>
-To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
-X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1319; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=seYDTlxpMzvQVtMfNvABd2LwuWxm1YJSIuqTsjMROQ0=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBj4WW+mUJuyLk9BQkGprDfxlRyZNuunRkz5zOCH
- FqK/HYoEpyJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCY+FlvgAKCRBy2EO4nU3X
- VswPD/wKDjVqF4QFKUAcYRtkolZouxmnvYmksqixKfon+Py8QjfSktMW074uXOZ2WqntQIkOaSE
- 7Lyp8RNjHvcrZ47HpVdOvkMzpYEyvF045/LTacuWZtlnnFyR0G4UjSg6tC17OHCQ26FKTPlD5E8
- JgsOfucC3DUn20t5X3Hab2yjZR+HxIaWo0YBJEpBZL+Wo8aO7wbXdMb15En6rFwIlUJPGPyDhZv
- +xatnXEEI0NrKh3//jsBWNih+lVOwg74Zfb2VIXFp+nz94AOZ3byUw1qOMAWJVVDaumNhhLfgFo
- cxjtbE9I+ghLuwOCuidnGkASOZrMZq4/G4VWSqqmkXQ9V2xaPtu+cL0Uk1PIHHycDqdZx7STkhL
- 11zhJo20BrhUh4NlQR5oVL0o4gEdAuFDvwHscbUxS4mIglSsWA2UD1oIzVkVMOkbCDBW6/1xnH+
- gIRbbFAhgD1scVLg8tkkzoeAwuFb+XbM1eqyBc8/eii1IUyZ31AX3b2OyN4EOPVnHI1hXt5pNVl
- L1WzoZSYZOtu2YDE7d/IQOrR3BfM+2PHAuRYBUK73vIkvPdPshqiwbszC2lIkiXWaCLGOeambY+
- 9f7yEsC/a0WFP84YKOGzYoPM6NdDSJM7Hinq6f3kwITzqbWF7GWfrABnCP+me3mL7jYCx9/gbg3
- pRyEDWNzmjQVGYQ==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d1dc0c9b-eab2-0287-d0a2-ead44ecee5ce@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the node describing the sn3193 that's used to provide notification
-LED.
+On Mon, Feb 06, 2023 at 08:06:13PM +0530, Mukesh Ojha wrote:
+> 
+> 
+> On 2/4/2023 3:07 AM, Konrad Dybcio wrote:
+> > 
+> > 
+> > On 3.02.2023 18:04, Mukesh Ojha wrote:
+> > > Add a simple-mfd representing IMEM on SM8450 and define the PIL
+> > > relocation info region, so that post mortem tools will be able
+> > > to locate the loaded remoteprocs.
+> > > 
+> > > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> > > ---
+> >  From XBL:
+> > 
+> > 0x14680000, 0x0002A000, "IMEM Base"
+> > 
+> > Is there anything in that wider address range that would interest
+> > us? I recall Alex once dug into that when diving into IPA, but
+> > I can not recall the conclusion..
+> Spec-wise, yes IPA do own these 0x146A8000 - 0x146AA000 .
+> But, not sure what they use it for.
+> 
 
-Unfortunately the driver currently supports neither multicolor API nor
-using the properties function & color, so we use label instead.
+The DT should not reflect the organization structure. Let's see if Alex
+have any input on this.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- .../arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts | 28 ++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+Thanks,
+Bjorn
 
-diff --git a/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts b/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts
-index a4b5d680c097..8d2a054d8fee 100644
---- a/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts
-+++ b/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts
-@@ -114,6 +114,34 @@ led@0 {
- 			default-brightness = <80>;
- 		};
- 	};
-+
-+	led-controller@68 {
-+		compatible = "si-en,sn3193";
-+		reg = <0x68>;
-+
-+		shutdown-gpios = <&tlmm 45 GPIO_ACTIVE_HIGH>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@1 {
-+			reg = <1>;
-+			label = "red:status";
-+			led-max-microamp = <17500>;
-+		};
-+
-+		led@2 {
-+			reg = <2>;
-+			label = "green:status";
-+			led-max-microamp = <17500>;
-+		};
-+
-+		led@3 {
-+			reg = <3>;
-+			label = "blue:status";
-+			led-max-microamp = <17500>;
-+		};
-+	};
- };
- 
- &blsp1_i2c6 {
-
--- 
-2.39.1
-
+> -Mukesh
+> > 
+> > Konrad
+> > >   arch/arm64/boot/dts/qcom/sm8450.dtsi | 15 +++++++++++++++
+> > >   1 file changed, 15 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > index 5704750..474ea1b 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > @@ -3536,6 +3536,21 @@
+> > >   			};
+> > >   		};
+> > > +		sram@146aa000 {
+> > > +			compatible = "qcom,sm8450-imem", "syscon", "simple-mfd";
+> > > +			reg = <0 0x146aa000 0 0x1000>;
+> > > +
+> > > +			#address-cells = <1>;
+> > > +			#size-cells = <1>;
+> > > +
+> > > +			ranges = <0 0 0x146aa000 0x1000>;
+> > > +
+> > > +			pil-reloc@94c {
+> > > +				compatible = "qcom,pil-reloc-info";
+> > > +				reg = <0x94c 0xc8>;
+> > > +			};
+> > > +		};
+> > > +
+> > >   		apps_rsc: rsc@17a00000 {
+> > >   			label = "apps_rsc";
+> > >   			compatible = "qcom,rpmh-rsc";
