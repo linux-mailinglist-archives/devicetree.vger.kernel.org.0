@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39CF368BB16
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:16:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72B0468BB1B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:16:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229632AbjBFLQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 06:16:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34970 "EHLO
+        id S229522AbjBFLQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 06:16:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbjBFLQ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:16:27 -0500
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB04C1F901
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 03:16:25 -0800 (PST)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-4a263c4ddbaso151577537b3.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 03:16:25 -0800 (PST)
+        with ESMTP id S229765AbjBFLQy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:16:54 -0500
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 714571F90F
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 03:16:53 -0800 (PST)
+Received: by mail-yb1-xb2d.google.com with SMTP id cf30so8607540ybb.11
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 03:16:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=XZC91XAGFSD4Jgm836rEJDed9llUVd+tekKed+BLYHY=;
-        b=c4rCwoptOb4RPx2NbQSer5RaOsGX6z0nWO+g2UAqEHMgfW2ZCOypnrXNLoiunbqkNQ
-         FwQMlncAJSTckq0h6ev2bvIJEs8M7MTAK+Qxhe6lNvkU9ynFy9eBMT6AEohrB7J42zW1
-         eMETaw332+79HfYZY5j1hrTCueaMONRcvCWpQSkFFy2KveljdIuptm3QGYgRleRWxDYe
-         9T7U/1uTJLQzfA6zStQnVoY6eVhTR56gjaYnlYFDfkzdySKhwXoQNKiRoFq9Yw/ojkzg
-         dm0lbd5hg0e6ofjgqn3bqrwEBqvvtEvoWz5hl0q4sQwLAk14Us5jMqtzJROQaxKSgFEI
-         gSQg==
+        bh=OhxKDPJ6pOym9wJrPSDn71eM4IFziSGMQNizjmAwcs0=;
+        b=yngQCW1XtBSRUvg+eDFMSrevq+9xgT2G5jqyq/sC8i4HPEnHF24+rnzVRnFIwaNe/W
+         aEmOjz/Wy75oXttuYRgMizxCxwzWMchOHiEBHc+zWKTW1v/kuFCTUg3rmSb8a9yMFsdA
+         lbGEAoyW+Pk2oR8BFf3SOQLH5vlLpbgDNC3OwNfWOIJvZ/jUlYkWJV46md5cjj/hfv9l
+         5vjSB8g7Me/FAvwo4WU2A/xpt0HPS5KX9o4z9Ug8H/ybFRav/napMo+2HxV9YrIqXSBv
+         vzKoEmZD7KpE4dse7MB4z3inU1jYMwH2rS0nIy4SsC07+BZLgnlhYJdujDUtya7IgH5h
+         4q0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=XZC91XAGFSD4Jgm836rEJDed9llUVd+tekKed+BLYHY=;
-        b=k18bR4ET4mnr2hqCfwK9oiPjveFugmByKb+k2O/X2rzlHdaUbA1CAa1l0r38FU+tjj
-         b8Dd2dYF3nXwsAHoxo6OS0Mja5A9i3H/ok17LdonQXNCRHBfZuVxsV8Uay8JKHXNb9qZ
-         rK/8OL8XsL5uoeGDOFjY+QNypsl7y59WrLQ4WqatFvjpvQTrFAU/cRWpFrKoYRidNy8i
-         c526WX6CzIVokN4nfBy7qgV8terDFMZstlHEQCZTuOpB3y2ZV+aGsMJdh5+O770y/U+/
-         Sq8VXd3audclrx4kJpS9FL1vGFpoiuFkU4geuxrsHnwHyUzec3OLq6C4x7dynxJfB5xv
-         lc1Q==
-X-Gm-Message-State: AO0yUKUBV3w2PRYrFE14zoIRhR6pqK8NdLTrUWoD4blCaUBmmBe0d9kD
-        mdc+IqHu6gdY9Ln6IjzhTqzNB2A3ErpPCdofEFKgdw==
-X-Google-Smtp-Source: AK7set9Oqj9VvQkiilHzqiJ4Luq0FpfpoEheonprr87C40jeFpsD15F4cL3eOi/ZZcW4sDhGb3Zw2WFlYht7iH9JHdk=
-X-Received: by 2002:a0d:e846:0:b0:52a:8896:6dc7 with SMTP id
- r67-20020a0de846000000b0052a88966dc7mr46642ywe.130.1675682184947; Mon, 06 Feb
- 2023 03:16:24 -0800 (PST)
+        bh=OhxKDPJ6pOym9wJrPSDn71eM4IFziSGMQNizjmAwcs0=;
+        b=O65ADC5+VFjFu5jSADpXdCsbXmkjoVPRDI2sqKTjQz4JWvQEZe5flOHfgMk/wHaNUn
+         aEBdhtqc/Ks7mQLqCq1xJcajzBDsnM8X/yhebMn8Bt9oBOGpHV5a01Uqv/N0FkVXEPA/
+         Os9SINJLw73G7L5HTOyUvI6tHe8ndVn8el+uKJRcLPe6iPIhf4Iy7Vdd8Cip+e70mced
+         gbGUTwiXbU0vatgw2nnXLplozX42xOHiI+aWFM4LJgsl9ZcHuvkfalHNMYJI4cb6ERQb
+         jRurfpSjEiU+kN0QEEfD4RlXzp5LXt+lEGuT1VfATXyPYSyW0/WTJjouIaMsy31ZCanj
+         ryEg==
+X-Gm-Message-State: AO0yUKVQy/tlyYdPJJqcCm98FhiLIP+qqxmPAp3lryR5g2IH6xOhTg+A
+        APqmrghDu2XTchuiQUrRw8iB/i1oKIYvk3Fq8opr6g==
+X-Google-Smtp-Source: AK7set9tqy6b4zeUvwk2evpXxc5HvlqRofYrPkB2gfafiAdMKqcOGqZWzzw4GxME18lt7NUusauYGgG1H/IM+65HYms=
+X-Received: by 2002:a5b:ecf:0:b0:89b:fd9e:81a4 with SMTP id
+ a15-20020a5b0ecf000000b0089bfd9e81a4mr278952ybs.341.1675682212686; Mon, 06
+ Feb 2023 03:16:52 -0800 (PST)
 MIME-Version: 1.0
-References: <20230203174645.597053-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230203174645.597053-1-krzysztof.kozlowski@linaro.org>
+References: <20230203174645.597053-1-krzysztof.kozlowski@linaro.org> <20230203174645.597053-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230203174645.597053-2-krzysztof.kozlowski@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 6 Feb 2023 12:16:13 +0100
-Message-ID: <CACRpkdaKYdDoTqVPogzZc6t1+Ho4-ruj6mWFeZwWcCkM9BKndg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom,sm8550-lpass-lpi-pinctrl:
- add SM8550 LPASS
+Date:   Mon, 6 Feb 2023 12:16:41 +0100
+Message-ID: <CACRpkdaCnFScB2PKsVCC8w4uTgyL6eKuh5DSgrr3DxqEE51qAg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] pinctrl: qcom: pinctrl-sm8550-lpass-lpi: add SM8550 LPASS
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -76,7 +75,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Fri, Feb 3, 2023 at 6:46 PM Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 
-> Add bidings for pin controller in Low Power Audio SubSystem (LPASS).
+> Add druver for pin controller in Low Power Audio SubSystem (LPASS).  The
+> driver is similar to SM8450 LPASS pin controller, with differences in
+> few pin groups (qua_mi2s -> i2s0).
 >
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
