@@ -2,121 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11CBD68C761
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 21:15:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FC7168C781
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 21:19:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230020AbjBFUPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 15:15:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50960 "EHLO
+        id S230244AbjBFUTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 15:19:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229899AbjBFUPt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 15:15:49 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2ABE29E20
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 12:15:34 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id j1so6862108pjd.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 12:15:34 -0800 (PST)
+        with ESMTP id S230248AbjBFUTd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 15:19:33 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D16F42CC48
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 12:19:07 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id fi26so12880732edb.7
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 12:19:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ggzc1GTHoLiBAu4kfMHEm/fbizYyfDbBZlVMBkPr/K4=;
-        b=LJTUsmkjEjxAWc1IoFf2wxj/67dVsvTcPqb/jJBjxsyqYyVz3ScQAmEmLk7rLdnoH2
-         0G+w1w7rUgLxoJG6JGeK3oBnyoikVbeT2iqgsNILC3XuFyOKGDcmP6bbCSZGhfVOECgU
-         3sXnzYhBeGAERqormKcypgWG9XWhAAPUpOh4F6QyBmnObP3SI24BGHjffKmGOd2C6h6M
-         nFlREjaXPwWSA4WBnjQF1PYXsDM8gl0fe+zFGdgbvHUSF0tQ9pj4/mXQRf2gDg9e6iTA
-         ZA4SYFH9Hgm45V+ECqXetPqrjaeYznz677JdCHLdnP+AJ8p2xJmxcea26IMGvNKEjbXU
-         86dw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YpSBEYnC1yN1Z48asglOX+KVnSlBsHak3KW73YE2TaY=;
+        b=s9pgKZv6vt41rE7EzzpJpXmOr8fEaNHTztldIuVXDDqVfSasjl0BdM+YCYYLO7FI8j
+         kAwYc1wep9rcIEHW4U9+b8nl4MPCpdIMbhVFY2XORAaEB/Be3SzjtYIcR/quaYvu8IgF
+         ON01RjCIkRDY3QJh7VI+qAx+VM3S6AR394PONdrpTVQKg88aZDFm+db5EnUWIKFAB+/3
+         g55mHYoOqsrG4EY2lWxJZDWL82fxrAnywPNM74BaNGQg3ei5MfnZ4qcOgcOh1UArAd2n
+         LzgYa/5PP6CorgICmOMufzvuZ0y/NLkztmzJM/LCMnROIbxXKrPGJak69BAhnahjeHAP
+         OWiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ggzc1GTHoLiBAu4kfMHEm/fbizYyfDbBZlVMBkPr/K4=;
-        b=ge/pKejFEKWXU1usumIz/Ah5JoW6/bhFawJvMNRSCyXazEkMwtqaW5foPNy99uVD9Z
-         X+DD45dWbKykOQq/0e0jE6aOIddRPH2GYNtIr5o/bDI857XAyNWEIX1qr7o6HUo8HmL0
-         sa7AnFN4ArDiv8l06NHqT37T7KKlaq6I/S1HIqoN+oC+lNd9DpRWwXH7Ss1gNKcaXxCD
-         zwBC2/tQQl/QmjN1PyD8E1GOpAQRBYaot8VrIucZMORnh5fxwJ4ti5OZqYH4rWTcyusF
-         soVRNt9hgfJJmQCuKu+axovx4Lx26jjHjc1Q7JiV6cjzHPh50S/CDBbUerPp3bxe8PLD
-         tXrQ==
-X-Gm-Message-State: AO0yUKXma8XJ1Nh7Os2FZO6BUuTjkxwqGlGXM7u0jmn7/0xbSuXRE0eA
-        dhTcizZng4WywFKzlazc/3g4+A==
-X-Google-Smtp-Source: AK7set/bTb9lu1cNF6xPBp2fVUYIdNuGgf1zzRTNh18SIWd68l70lafUBIHe2ViUvh3qp2wqLmLP9w==
-X-Received: by 2002:a17:90a:54:b0:230:acb2:e3f0 with SMTP id 20-20020a17090a005400b00230acb2e3f0mr840256pjb.33.1675714534354;
-        Mon, 06 Feb 2023 12:15:34 -0800 (PST)
-Received: from evan.ba.rivosinc.com ([66.220.2.162])
-        by smtp.gmail.com with ESMTPSA id k10-20020a63ab4a000000b004df4fbb9823sm6425079pgp.68.2023.02.06.12.15.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Feb 2023 12:15:33 -0800 (PST)
-From:   Evan Green <evan@rivosinc.com>
-To:     Palmer Dabbelt <palmer@rivosinc.com>
-Cc:     Conor Dooley <conor@kernel.org>, vineetg@rivosinc.com,
-        heiko@sntech.de, slewis@rivosinc.com,
-        Evan Green <evan@rivosinc.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: [PATCH v2 4/6] dt-bindings: Add RISC-V misaligned access performance
-Date:   Mon,  6 Feb 2023 12:14:53 -0800
-Message-Id: <20230206201455.1790329-5-evan@rivosinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230206201455.1790329-1-evan@rivosinc.com>
-References: <20230206201455.1790329-1-evan@rivosinc.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YpSBEYnC1yN1Z48asglOX+KVnSlBsHak3KW73YE2TaY=;
+        b=lsFTswc/218gJ55xbuwz/0BL2YF+0Vmw9Blzq0uqBzeEysuPUKhu0bi5iwbar4oI9W
+         24eBjk2YkzIZ60/62c6RxxTxrVNnEpnE5kObkgFyMQRxC+gMK0iPQyz3Iek1HpmkAzPi
+         uZJWnz6XTQR65/1SWbD/Jvd/DX8gFbdujFlLq5akYkKehSElkHacaX7gwE7dNXDzHsHp
+         W8a0Enq1oDy3UH0C1soeNkn1/58tZC8ldxzYy+CQFJyc4ah6skCmUxPtM8l2GzO5nVHH
+         kbY1A20DHPVs6A2gB8yCWclIHf6R5kIY0LOT/6wsHvkGqSHSGTbZXXyNHTeYtvyIIElf
+         nGuw==
+X-Gm-Message-State: AO0yUKW8jhvgD8IQ8/aNsbDXrGsCOx5DFdFOBSgxYTpaJPElqVK6UXXr
+        OSd0w72jP0D4cNMMHnYUEDMK+w==
+X-Google-Smtp-Source: AK7set+93id+gKLuBNqT3Prum9OcgkVfpgKbUX+ICOlvjJ2gZ2QBT5DFEuY9o/3ohDGDi2lvDi2s1Q==
+X-Received: by 2002:a50:d7da:0:b0:4aa:b36a:7601 with SMTP id m26-20020a50d7da000000b004aab36a7601mr998335edj.24.1675714744222;
+        Mon, 06 Feb 2023 12:19:04 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id i3-20020aa7c9c3000000b004a087d1d313sm5478682edt.64.2023.02.06.12.19.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Feb 2023 12:19:03 -0800 (PST)
+Message-ID: <6ee1f7d7-a923-8f93-f68b-decdc263987a@linaro.org>
+Date:   Mon, 6 Feb 2023 21:19:00 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 2/8] dt-bindings: power: qcom,rpmpd: add
+ RPMH_REGULATOR_LEVEL_LOW_SVS_L1
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+References: <20230206145707.122937-1-dmitry.baryshkov@linaro.org>
+ <20230206145707.122937-3-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230206145707.122937-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Palmer Dabbelt <palmer@rivosinc.com>
 
-This key allows device trees to specify the performance of misaligned
-accesses to main memory regions from each CPU in the system.
 
-Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
-Signed-off-by: Evan Green <evan@rivosinc.com>
----
+On 6.02.2023 15:57, Dmitry Baryshkov wrote:
+> Add define for another power saving state used on SM8350 for the GPU.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-(no changes since v1)
-
- Documentation/devicetree/bindings/riscv/cpus.yaml | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index c6720764e765..2c09bd6f2927 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -85,6 +85,21 @@ properties:
-     $ref: "/schemas/types.yaml#/definitions/string"
-     pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:_[hsxz](?:[a-z])+)*$
- 
-+  riscv,misaligned-access-performance:
-+    description:
-+      Identifies the performance of misaligned memory accesses to main memory
-+      regions.  There are three flavors of unaligned access performance: "emulated"
-+      means that misaligned accesses are emulated via software and thus
-+      extremely slow, "slow" means that misaligned accesses are supported by
-+      hardware but still slower that aligned accesses sequences, and "fast"
-+      means that misaligned accesses are as fast or faster than the
-+      cooresponding aligned accesses sequences.
-+    $ref: "/schemas/types.yaml#/definitions/string"
-+    enum:
-+      - emulated
-+      - slow
-+      - fast
-+
-   # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
-   timebase-frequency: false
- 
--- 
-2.25.1
-
+Konrad
+>  include/dt-bindings/power/qcom-rpmpd.h | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+> index 4a30d10e6b7d..1bf8e87ecd7e 100644
+> --- a/include/dt-bindings/power/qcom-rpmpd.h
+> +++ b/include/dt-bindings/power/qcom-rpmpd.h
+> @@ -211,6 +211,7 @@
+>  #define RPMH_REGULATOR_LEVEL_MIN_SVS	48
+>  #define RPMH_REGULATOR_LEVEL_LOW_SVS_D1	56
+>  #define RPMH_REGULATOR_LEVEL_LOW_SVS	64
+> +#define RPMH_REGULATOR_LEVEL_LOW_SVS_L1	80
+>  #define RPMH_REGULATOR_LEVEL_SVS	128
+>  #define RPMH_REGULATOR_LEVEL_SVS_L0	144
+>  #define RPMH_REGULATOR_LEVEL_SVS_L1	192
