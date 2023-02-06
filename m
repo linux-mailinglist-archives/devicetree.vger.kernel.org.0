@@ -2,160 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77F9C68BAD4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 11:57:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B74CD68BAD8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 11:58:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229580AbjBFK5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 05:57:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54090 "EHLO
+        id S229616AbjBFK6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 05:58:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229528AbjBFK5m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 05:57:42 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30BDEFF02
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 02:57:41 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id r3so1479619edq.13
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 02:57:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+9Gdf/2MjGZogoBIVbjV9E7gaQxvRNf+5azMe9hz9GY=;
-        b=cKlvvlV1MGIpOq1x/OezrMnsVT6hOtG8mgq3AMtaKVqrMg5ex4653EcefGF7VCU7ok
-         teEKLCLT0B4ni/PO7EJCvwmLBaP1ap0zC+IUFafrmpNUqVFIHcyVwOssQ44FHtHOKfbI
-         nULI1QIrTvXxx22TmPuu+dqqOUs0nb+iKvx+8NQa6771QaidlJiaMqDq8Oeq+EP3g4Dp
-         io/iLBgGap9HoreOnMvfh8Zces9ggdjJn5noPYBA6n3rN3neq9nKt8iO6lajkZlbaWCk
-         tdmtmfXsI42K3PPhzr0BFtEtcy00rTuGhcmcQur02xRbJ6KsjuuqNbp9w5EOyOuIi0SO
-         R/MQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+9Gdf/2MjGZogoBIVbjV9E7gaQxvRNf+5azMe9hz9GY=;
-        b=h3V4HCFegzvd5iK1fd/RUpXlnvx6768WymvkpcVY0bb+n2V8AcxEKpzqka7MSa033J
-         hE1C5Zw2SufGCG/omyDqGzkFNHn9k1EayyV1evOEtsnDybteFfMykBsnjHYMB5UyoXGF
-         iGBPgZjtJx7teLo/5pTM9hXhvwkFvFaA2eZCQ6RB/lETuH2HXO7Mz5wGChMBFMivbOjo
-         l9w3kNGK6lYcnQa4NRRPh3/kW28o0iZ3ytOEUbeC76Cgv5SHbFrTM2OjVHNcIDe4OxKv
-         nkw/izSIGaCbvPKrdoEKmVXw81y7GQwq7VXUVLTIR0h0fH1ZCDhDFkXgjOS9LFh/nmKt
-         g4tw==
-X-Gm-Message-State: AO0yUKXy4oSoAFtuGSdhI/1gHuBlcDZyOIRCRNRveq9hdnHtzZNs6lTG
-        Ci5NFz+m1eYJCcpjfcyhOwBEY9V8ckZ+h31Y
-X-Google-Smtp-Source: AK7set848nDphnldzbj3Q8XWmjilP7Ti0PyzogSDzYf6E75tifBm/Bc56/LAMokGe6LGFsB/8x4kBA==
-X-Received: by 2002:a50:ee92:0:b0:4a0:e234:5351 with SMTP id f18-20020a50ee92000000b004a0e2345351mr22652476edr.15.1675681059790;
-        Mon, 06 Feb 2023 02:57:39 -0800 (PST)
-Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
-        by smtp.gmail.com with ESMTPSA id b11-20020aa7c6cb000000b004a986403dc1sm4473379eds.1.2023.02.06.02.57.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 02:57:39 -0800 (PST)
-Message-ID: <21074b46-1278-b442-1d32-a0ae3ae19ca2@linaro.org>
-Date:   Mon, 6 Feb 2023 11:57:36 +0100
+        with ESMTP id S229521AbjBFK6b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 05:58:31 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE9BF13DED;
+        Mon,  6 Feb 2023 02:58:30 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F300C7FE;
+        Mon,  6 Feb 2023 11:58:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1675681108;
+        bh=zoIMDWM7LoINFvyuwq3msMMQv8f9FV9gmc4+56s2czY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=owJSnbMD50UvE1/FVYON3b0CKen7jBK1sNC5p4PYVkXhqtKVTH6sMjC+fHluo0Aw8
+         QCq7zViTb08kheQGcs6chLZbklOegr9gO8/sefL28DkqQ2UXrfP93j/RCg9k3ehxdw
+         i+k7TlSD5eXqalI3SyEgAnGKuLksQEh+8h5IiGXk=
+Message-ID: <12ba1f03-d6dd-c9c5-abf0-e9298dc22f28@ideasonboard.com>
+Date:   Mon, 6 Feb 2023 12:58:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: c630: Add Embedded Controller
- node
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v7 3/6] drm/tidss: Add support for AM625 DSS
+To:     Aradhya Bhatia <a-bhatia1@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230205152809.2233436-1-dmitry.baryshkov@linaro.org>
- <20230205152809.2233436-4-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230205152809.2233436-4-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+Cc:     DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20230125113529.13952-1-a-bhatia1@ti.com>
+ <20230125113529.13952-4-a-bhatia1@ti.com>
+ <ab6f52bb-a3f5-afda-c037-f009153a0bb6@ideasonboard.com>
+ <1662a593-8a5d-9214-8a3e-ef2699a35265@ti.com>
+Content-Language: en-US
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <1662a593-8a5d-9214-8a3e-ef2699a35265@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5.02.2023 16:28, Dmitry Baryshkov wrote:
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+On 05/02/2023 16:31, Aradhya Bhatia wrote:
 > 
-> The Embedded Controller in the Lenovo Yoga C630 is accessible on &i2c1
-> and provides battery and adapter status, as well as altmode
-> notifications for the second USB Type-C port.
 > 
-> Add a definition for the EC.
+> On 03-Feb-23 21:03, Tomi Valkeinen wrote:
+>> On 25/01/2023 13:35, Aradhya Bhatia wrote:
+>>> Add support for the DSS controller on TI's new AM625 SoC in the tidss
+>>> driver.
+>>>
+>>> The first video port (VP0) in am625-dss can output OLDI signals through
+>>> 2 OLDI TXes. A 3rd output port has been added with "DISPC_PORT_OLDI" bus
+>>> type.
+>>
+>> Not a big thing here as you add support for a new SoC, but the ordering
+>> of the patches is not optimal. Here you add the AM625 DSS support, but
+>> then you continue actually adding the DSS support (well, mainly OLDI) in
+>> the following patches.
+>>
+>> I think patch 6 could be before this patch. Parts of patch 4 could also
+>> be before this patch. The AM65X renames from patch 5 could be before
+>> this patch.
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
+> I can move whole of Patch 6 and even of Patch 4 before this one. I have
+> mentioned 'AM625-DSS' in a couple comments which I can make generic,
+> and the rest everything is SoC-agnostic.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> index 7038a0f7c06e..cf56ce68081c 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> @@ -352,6 +352,33 @@ zap-shader {
->  &i2c1 {
->  	status = "okay";
->  	clock-frequency = <400000>;
-> +
-> +	embedded-controller@70 {
-> +		compatible = "lenovo,yoga-c630-ec";
-> +		reg = <0x70>;
-> +
-> +		interrupts-extended = <&tlmm 20 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&ec_int_state>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		connector@0 {
-> +			compatible = "usb-c-connector";
-> +			reg = <0>;
-> +			power-role = "source";
-> +			data-role = "host";
-> +		};
-> +
-> +		connector@1 {
-> +			compatible = "usb-c-connector";
-> +			reg = <1>;
-> +			power-role = "source";
-> +			data-role = "host";
-> +		};
-> +	};
->  };
->  
->  &i2c3 {
-> @@ -652,6 +679,14 @@ mode_pin_active: mode-pin-state {
->  		input-enable;
->  		bias-disable;
->  	};
-> +
-> +	ec_int_state: ec-int-state {
-> +		pins = "gpio20";
-> +		function = "gpio";
-> +
-> +		input-enable;
-> +		bias-disable;
-Unnecessary newline + most other trees do bias- before input/output-
+> I haven't tried this, but my concern is if we break patch 5 into 2
+> separate patches,
+> 
+> i. AM65X rename plus SoC based switch case, and
+> ii. Addition of AM625 SoC case
+> 
+> then I might have to overwrite some changes implemented during (i) in
+> (ii). I don't suppose that would be okay, would it?
 
-Other than that
+I'm not sure I follow here. Wouldn't (i) be a valid patch in its own? 
+Nothing wrong in expanding that later (even if you end up changing a lot 
+of it).
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+That said, I don't think this is a very important topic. There are only 
+a few commits in the history that might be problematic. A simple fix 
+would be to add all the features first, and only last add the compatible 
+string for am625.
 
-Konrad
-> +	};
->  };
->  
->  &uart6 {
+Or do all the changes for am625 in a single patch, and try to implement 
+all the generic restructuring work before that.
+
+Here we do have to change the vp-to-output mapping management, so maybe 
+the second option won't be simple enough, and it's better to do the 
+am625 changes in pieces, as in the first option.
+
+So, it's really up to you. Just wanted to raise this possible issue so 
+that you are aware of it and can do any easy fixes (if there are such).
+
+> Also, is it important to keep the compatible-addition patches of
+> DT-binding and driver next to each other in the series? Or should
+> the DT-binding patches should be the first ones? Just curious! =)
+
+I believe the convention is to have the DT-binding changes before you 
+add the compatible string to the driver (if I recall right checkpatch or 
+some other checking tool complains if you add a driver for a compatible 
+that doesn't have a DT binding). Generic restructurings could be before 
+the DT patch, of course, but usually I like to keep the DT binding 
+changes at the very beginning of the series.
+
+  Tomi
+
