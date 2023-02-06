@@ -2,167 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB20868C3EB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 17:56:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B1B968C3FA
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 17:58:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230019AbjBFQ4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 11:56:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35192 "EHLO
+        id S230408AbjBFQ6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 11:58:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229834AbjBFQ4l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 11:56:41 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 066A9268C;
-        Mon,  6 Feb 2023 08:56:39 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 316GuEqO004598;
-        Mon, 6 Feb 2023 10:56:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1675702574;
-        bh=v9ZYSO/ymnvx8bWPKuYYeREqbLf0jUXDtJGQaIeZtvg=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=oBUDxHoeGOaG1FEQnvgsQPGGV+DYB1aj9L670uQuOpPW9hGlmBjvKwTEV9jIueag0
-         cGAPhWnQzW0B0da6TFvfwUqYPjAKcByHDjHxYeVvAWpbOD2gaR+ITAoVbOxvCTlOoh
-         nZWCymQzLXf69YeeT9eToZGqO2biYa9uDxCNiVL0=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 316GuE8i110007
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 6 Feb 2023 10:56:14 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 6
- Feb 2023 10:56:14 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 6 Feb 2023 10:56:14 -0600
-Received: from [10.250.235.106] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 316Gu85B046178;
-        Mon, 6 Feb 2023 10:56:08 -0600
-Message-ID: <d0a6be9e-1597-bd1a-84f3-390820e73a98@ti.com>
-Date:   Mon, 6 Feb 2023 22:26:07 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v7 3/6] drm/tidss: Add support for AM625 DSS
-Content-Language: en-US
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230280AbjBFQ6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 11:58:39 -0500
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B37E629419;
+        Mon,  6 Feb 2023 08:58:38 -0800 (PST)
+Received: by mail-oi1-f180.google.com with SMTP id p185so10290108oif.2;
+        Mon, 06 Feb 2023 08:58:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=d5HsWLvQOuHFKzGWoHB2eju1CyQHrR5+UaXJ/E9U2eU=;
+        b=VCT6O3mYqXZFeIokTsDMwk9q872Bz0pRtvtHiyaw7LEFA+l+G4psyERMpNPm56jK/M
+         p5+vEgbdKPOng6kQhgcb//jdSYvIfOMZzrsvkEQ7c0apfAi4vLO2SXWT5898qW3IliXt
+         Uv7pF6BKvjAL1n7Xfk+cKAZQPZIa6UGFsH0aY+/v9VmXVXJM48Cpkmd3in/7zMylsJc+
+         gIcIv0BvtDBBdUiggT8BDRq3Rt1+S1aQuJRqIP2TaMMbOxLiY0dFhUUN/djpvlPWNsfh
+         fWGnwhfaepf/umpCW7C3WGWqsYRq/SRtDS7u8t49soJF7ZILz2V67Lb2cFuBdCBeN7ql
+         1HwA==
+X-Gm-Message-State: AO0yUKUAEym3DVyNJA+JIO3rXNTRecNsee8Ppphqn676fdNBoiF0Yymq
+        yo3NBuHzyg71d/f4Bmz8bg==
+X-Google-Smtp-Source: AK7set9nRPAIxHlnzSBT2PS1eSMOfZARnW082uMttgb0GupUOnsY2r4h+qvGUhNDO3WfoyVyRoJ1JA==
+X-Received: by 2002:a05:6808:1448:b0:378:5a94:8b22 with SMTP id x8-20020a056808144800b003785a948b22mr12326300oiv.47.1675702717513;
+        Mon, 06 Feb 2023 08:58:37 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b10-20020aca220a000000b0037ac16ea874sm4354964oic.10.2023.02.06.08.58.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Feb 2023 08:58:37 -0800 (PST)
+Received: (nullmailer pid 223060 invoked by uid 1000);
+        Mon, 06 Feb 2023 16:58:36 -0000
+Date:   Mon, 6 Feb 2023 10:58:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Lars-Peter Clausen <lars@metafoo.de>
+Cc:     Wolfram Sang <wsa@kernel.org>, Michal Simek <michal.simek@amd.com>,
+        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-CC:     DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230125113529.13952-1-a-bhatia1@ti.com>
- <20230125113529.13952-4-a-bhatia1@ti.com>
- <ab6f52bb-a3f5-afda-c037-f009153a0bb6@ideasonboard.com>
- <1662a593-8a5d-9214-8a3e-ef2699a35265@ti.com>
- <12ba1f03-d6dd-c9c5-abf0-e9298dc22f28@ideasonboard.com>
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <12ba1f03-d6dd-c9c5-abf0-e9298dc22f28@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: i2c: cadence: Document
+ `cdns,fifo-depth` property
+Message-ID: <20230206165836.GA216424-robh@kernel.org>
+References: <20230205230208.58355-1-lars@metafoo.de>
+ <20230205230208.58355-2-lars@metafoo.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230205230208.58355-2-lars@metafoo.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi,
-
-On 06-Feb-23 16:28, Tomi Valkeinen wrote:
-> On 05/02/2023 16:31, Aradhya Bhatia wrote:
->>
->>
->> On 03-Feb-23 21:03, Tomi Valkeinen wrote:
->>> On 25/01/2023 13:35, Aradhya Bhatia wrote:
->>>> Add support for the DSS controller on TI's new AM625 SoC in the tidss
->>>> driver.
->>>>
->>>> The first video port (VP0) in am625-dss can output OLDI signals through
->>>> 2 OLDI TXes. A 3rd output port has been added with "DISPC_PORT_OLDI" bus
->>>> type.
->>>
->>> Not a big thing here as you add support for a new SoC, but the ordering
->>> of the patches is not optimal. Here you add the AM625 DSS support, but
->>> then you continue actually adding the DSS support (well, mainly OLDI) in
->>> the following patches.
->>>
->>> I think patch 6 could be before this patch. Parts of patch 4 could also
->>> be before this patch. The AM65X renames from patch 5 could be before
->>> this patch.
->>
->> I can move whole of Patch 6 and even of Patch 4 before this one. I have
->> mentioned 'AM625-DSS' in a couple comments which I can make generic,
->> and the rest everything is SoC-agnostic.
->>
->> I haven't tried this, but my concern is if we break patch 5 into 2
->> separate patches,
->>
->> i. AM65X rename plus SoC based switch case, and
->> ii. Addition of AM625 SoC case
->>
->> then I might have to overwrite some changes implemented during (i) in
->> (ii). I don't suppose that would be okay, would it?
+On Sun, Feb 05, 2023 at 03:02:08PM -0800, Lars-Peter Clausen wrote:
+> The depth of the FIFO of the Cadence I2C controller IP is a synthesis
+> configuration parameter. Different instances of the IP can have different
+> values. For correct operation software needs to be aware of the size of the
+> FIFO.
 > 
-> I'm not sure I follow here. Wouldn't (i) be a valid patch in its own?
-> Nothing wrong in expanding that later (even if you end up changing a lot
-> of it).
+> Add the documentation for the devicetree property that describes the FIFO
+> depth of the IP core.
 > 
-
-(i) would be a valid patch, but implementing (ii) would over-write
-certain changes done in (i), albeit small changes in terms of brackets
-and indents. That didn't feel right initially and hence the question.
-
-> That said, I don't think this is a very important topic. There are only
-> a few commits in the history that might be problematic. A simple fix
-> would be to add all the features first, and only last add the compatible
-> string for am625.
+> The default value of 16 is for backwards compatibility reasons with
+> existing hardware descriptions where this property is not specified and
+> software has assumed that the FIFO depth is 16.
 > 
-> Or do all the changes for am625 in a single patch, and try to implement
-> all the generic restructuring work before that.
+> Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
+> ---
+>  Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> Here we do have to change the vp-to-output mapping management, so maybe
-> the second option won't be simple enough, and it's better to do the
-> am625 changes in pieces, as in the first option.
+> diff --git a/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml b/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
+> index 2e95cda7262a..3daa2fa73257 100644
+> --- a/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
+> @@ -38,6 +38,12 @@ properties:
+>      description: |
+>        Input clock name.
+>  
+> +  cdns,fifo-depth:
+
+We already have:
+
+fifo-size
+rx-fifo-size
+tx-fifo-size
+fifo-depth
+tx-fifo-depth
+rx-fifo-depth
+
+And we have cdns,fifo-depth too (among other vendor specific ones), but 
+pick a non-vendor specific one.
+
+
+> +    description:
+> +      Size of the data FIFO in words.
+
+What's the word size? Use bytes.
+
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    default: 16
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -57,4 +63,6 @@ examples:
+>          clock-frequency = <400000>;
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+> +
+> +        cdns,fifo-depth = <8>;
+>      };
+> -- 
+> 2.30.2
 > 
-
-Yeah, the first option does seem a little less complicated. Will try to
-re-order this as much clearly as possible.
-
-> So, it's really up to you. Just wanted to raise this possible issue so
-> that you are aware of it and can do any easy fixes (if there are such).
-> 
->> Also, is it important to keep the compatible-addition patches of
->> DT-binding and driver next to each other in the series? Or should
->> the DT-binding patches should be the first ones? Just curious! =)
-> 
-> I believe the convention is to have the DT-binding changes before you
-> add the compatible string to the driver (if I recall right checkpatch or
-> some other checking tool complains if you add a driver for a compatible
-> that doesn't have a DT binding). Generic restructurings could be before
-> the DT patch, of course, but usually I like to keep the DT binding
-> changes at the very beginning of the series.
-> 
-
-Okay, I will keep the compatible-append in the binding as the first
-patch in the series, before the other general structurings.
-
-Thank you!
-
-
-Regards
-Aradhya
