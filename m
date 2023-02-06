@@ -2,123 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E302C68C137
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 16:20:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0469C68C1BF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 16:37:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbjBFPUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 10:20:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55986 "EHLO
+        id S230419AbjBFPhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 10:37:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjBFPUp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 10:20:45 -0500
-Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F41162688;
-        Mon,  6 Feb 2023 07:20:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-        s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=jDTlzOWtOMv/82+V+6OYKq6Ja3r8e9P3RDz9hYc8/YQ=; b=c/NWQERl/Bl2qniBFv21j2RezG
-        5b6Ql63K/Fn1/S97xCHjeAv1KZ+U9y8HGxgkVkpotOSI/D6ll8c7/vciyCM5mgXlmiq+lNX56a78P
-        r4Kf1/Jj/w6tZeJJA7J1ud2pEtsuY1MSGEUH79aoI6gn62MNHY2dgICwgcFk2SNeXpmmx+t129aXq
-        EVzBHbfmfae75SOp5AjSEv7ZMt3PSN9w12uKXfpOahpOuOALXWEESKxmjVc0m5S2vhLLTz1yZQMK1
-        3TWPVAl2gsTbfRcywcLEMOHQC4nmRFwEpyft6iFJTuZJroFrNn108pzmZV98yK47A6sx/vd+e/ipR
-        TMHauPWw==;
-Received: from sslproxy06.your-server.de ([78.46.172.3])
-        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <lars@metafoo.de>)
-        id 1pP3IQ-00008E-1W; Mon, 06 Feb 2023 16:20:42 +0100
-Received: from [136.25.87.181] (helo=[192.168.86.26])
-        by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1pP3IP-000Esc-LT; Mon, 06 Feb 2023 16:20:41 +0100
-Message-ID: <018dc6a2-0bde-b387-3dd2-e87ec302cfd1@metafoo.de>
-Date:   Mon, 6 Feb 2023 07:20:38 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 2/2] dt-bindings: i2c: cadence: Document `cdns,fifo-depth`
- property
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>
-Cc:     Michal Simek <michal.simek@amd.com>,
-        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229992AbjBFPhI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 10:37:08 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A9AA2A998;
+        Mon,  6 Feb 2023 07:35:55 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id k13so12526265plg.0;
+        Mon, 06 Feb 2023 07:35:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VFAbb0Q992diuRUuGb5zzfTb2heUqqslWuNG7BHd+yw=;
+        b=GBmNCuzez9ViTbo5c31j8U7hoafrS4Hf2kTye8ahc4Abeoj1Ee3GASHIhmJK7w9gyn
+         GHvLHWsI59WKRaYUwL31G2QDgNtXBMMq0EXqvwbO4uD+n4oo/r+1RPGIW79HHm+qi2dX
+         BO3VV1RbFijXSmd/E+AWs9Q5Ev6WrCC+biMYhsUK4CgOyHpfZJ35NMrKjSVbAKYKrR2D
+         fKz1EHQ2H1xUIfwz+tUXrFa+u4D8K4tAUvMo6M7anvaIWEaiU+IZYKty3nBxPYeT6C9y
+         cGzVGOUKfaqav04heydFDtYjFz1fOFvl1tDikQeYaW6vwGaYdMc9SDb0BBKyoPkoNkYN
+         1mGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VFAbb0Q992diuRUuGb5zzfTb2heUqqslWuNG7BHd+yw=;
+        b=Jbdz0O4ERq+dG33CBj9n0LrHNuShudeU06heTx6AnOsuIuCEFSAKDLka2jz0QEsgg/
+         PYYnweCCxsrKhWl9BHmXN5F632amkZnYjd1hAG/R95gv1jyd3+bXXg66mTPc+V21VlvK
+         JT1LlxQv9tMU4bw0C3oqnD26F6XSW1jDuKD75oiEBzagFLvS5qA/rIqCTlKdyeZytwpp
+         tgkm1EvZE8fzLvuMd1Dbhu18wNRQU4uJsF5VsHeQrA5Dldyd0A+FQYp0wenbmHNbrq1+
+         tY1HNrOOoY2q8Um6j+IBYmhz8E+qLlihUU8hON/gy3vkctcO0QLoV+jpz3Pu8+NTJ9vW
+         faNQ==
+X-Gm-Message-State: AO0yUKXkEhvVVjE1/SGAJrRbmhJR3sVfq8lcH56DQLDBmbE32eSp5LlR
+        kMIv8yrXBDUzdFLekNw3EXo=
+X-Google-Smtp-Source: AK7set+Qq712Bfv+AuekZLeLJcQT4YU4H9ICuPwDYw37RtiqHrDF/vgnFMZzQe8TkU4x2JeeSMtlwQ==
+X-Received: by 2002:a17:90b:4b8a:b0:22c:afa2:4783 with SMTP id lr10-20020a17090b4b8a00b0022cafa24783mr21747537pjb.39.1675697696308;
+        Mon, 06 Feb 2023 07:34:56 -0800 (PST)
+Received: from localhost.localdomain ([14.139.38.195])
+        by smtp.googlemail.com with ESMTPSA id p11-20020a17090a4f0b00b00230c425adbcsm1696091pjh.20.2023.02.06.07.34.51
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Mon, 06 Feb 2023 07:34:55 -0800 (PST)
+From:   Vijaya Anand <sunrockers8@gmail.com>
+Cc:     sunrockers8@gmail.com, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230205230208.58355-1-lars@metafoo.de>
- <20230205230208.58355-2-lars@metafoo.de>
- <06920579-74d2-8e35-a534-8a65dee322d1@linaro.org>
-From:   Lars-Peter Clausen <lars@metafoo.de>
-In-Reply-To: <06920579-74d2-8e35-a534-8a65dee322d1@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.103.7/26804/Mon Feb  6 09:47:07 2023)
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings : misc : aspeed,cvic interrupt controller : convert the binding document to yaml
+Date:   Mon,  6 Feb 2023 21:03:09 +0530
+Message-Id: <20230206153325.43692-1-sunrockers8@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for the review.
+    Convert the binding document for ASPEED AST2400 and AST2500 coprocessor interrupt controller
+    from txt to yaml so one could validate dt-entries correctly and any future additions can go
+    into yaml format. The options for compatability described according to the example given.
+---
+ .../devicetree/bindings/misc/aspeed,cvic.txt  | 35 ----------
+ .../devicetree/bindings/misc/aspeed,cvic.yaml | 67 +++++++++++++++++++
+ 2 files changed, 67 insertions(+), 35 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/misc/aspeed,cvic.txt
+ create mode 100644 Documentation/devicetree/bindings/misc/aspeed,cvic.yaml
 
-On 2/5/23 23:41, Krzysztof Kozlowski wrote:
-> On 06/02/2023 00:02, Lars-Peter Clausen wrote:
->> The depth of the FIFO of the Cadence I2C controller IP is a synthesis
->> configuration parameter. Different instances of the IP can have different
->> values. For correct operation software needs to be aware of the size of the
->> FIFO.
-> Cannot this be inferred from compatible?
-
-The compatible string currently encodes the version of the IP core. The 
-FIFO depth is an orthogonal setting. You could of course encode both the 
-version and FIFO depth as part of the compatible string. But you'd end 
-up with a combinatorial explosion of compatible strings. Like
-
-cdns,i2c-r1p10-fifo-depth-2, ... cdns,i2c-r1p10-fifo-depth-16, ..., 
-cdns,i2c-r1p10-fifo-depth-256, cdns,i2c-r1p14-fifo-depth-2, ... 
-cdns,i2c-r1p14-fifo-depth-16, ..., cdns,i2c-r1p14-fifo-depth-256,
-
->
->> Add the documentation for the devicetree property that describes the FIFO
->> depth of the IP core.
->>
->> The default value of 16 is for backwards compatibility reasons with
->> existing hardware descriptions where this property is not specified and
->> software has assumed that the FIFO depth is 16.
->>
->> Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
->> ---
->>   Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml b/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
->> index 2e95cda7262a..3daa2fa73257 100644
->> --- a/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
->> +++ b/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
->> @@ -38,6 +38,12 @@ properties:
->>       description: |
->>         Input clock name.
->>   
->> +  cdns,fifo-depth:
->> +    description:
->> +      Size of the data FIFO in words.
->> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> Drop quotes.
->
->> +    default: 16
-> maximum
-> minimum?
-
-Will add a enum, since it has to be a power of two.
-
-
+diff --git a/Documentation/devicetree/bindings/misc/aspeed,cvic.txt b/Documentation/devicetree/bindings/misc/aspeed,cvic.txt
+deleted file mode 100644
+index d62c783d1d5e..000000000000
+--- a/Documentation/devicetree/bindings/misc/aspeed,cvic.txt
++++ /dev/null
+@@ -1,35 +0,0 @@
+-* ASPEED AST2400 and AST2500 coprocessor interrupt controller
+-
+-This file describes the bindings for the interrupt controller present
+-in the AST2400 and AST2500 BMC SoCs which provides interrupt to the
+-ColdFire coprocessor.
+-
+-It is not a normal interrupt controller and it would be rather
+-inconvenient to create an interrupt tree for it as it somewhat shares
+-some of the same sources as the main ARM interrupt controller but with
+-different numbers.
+-
+-The AST2500 supports a SW generated interrupt
+-
+-Required properties:
+-- reg: address and length of the register for the device.
+-- compatible: "aspeed,cvic" and one of:
+-		"aspeed,ast2400-cvic"
+-	      or
+-		"aspeed,ast2500-cvic"
+-
+-- valid-sources: One cell, bitmap of supported sources for the implementation
+-
+-Optional properties;
+-- copro-sw-interrupts: List of interrupt numbers that can be used as
+-		       SW interrupts from the ARM to the coprocessor.
+-		       (AST2500 only)
+-
+-Example:
+-
+-	cvic: copro-interrupt-controller@1e6c2000 {
+-		compatible = "aspeed,ast2500-cvic";
+-		valid-sources = <0xffffffff>;
+-		copro-sw-interrupts = <1>;
+-		reg = <0x1e6c2000 0x80>;
+-	};
+diff --git a/Documentation/devicetree/bindings/misc/aspeed,cvic.yaml b/Documentation/devicetree/bindings/misc/aspeed,cvic.yaml
+new file mode 100644
+index 000000000000..bbff0418fa2c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/misc/aspeed,cvic.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/misc/aspeed,cvic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ASPEED AST2400 and AST2500 coprocessor interrupt controller
++
++maintainers: 
++  - Benjamin Herrenschmidt <benh@kernel.crashing.org>
++  - Rob Herring <robh@kernel.org>
++
++description: |
++  This file describes the bindings for the interrupt controller present
++  in the AST2400 and AST2500 BMC SoCs which provides interrupt to the
++  ColdFire coprocessor.
++
++  It is not a normal interrupt controller and it would be rather
++  inconvenient to create an interrupt tree for it as it somewhat shares
++  some of the same sources as the main ARM interrupt controller but with
++  different numbers.
++
++  The AST2500 supports a SW generated interruptThe Soft Decision Forward Error Correction (SDFEC) Engine is a Hard IP block
++  which provides high-throughput LDPC and Turbo Code implementations.
++  The LDPC decode & encode functionality is capable of covering a range of
++  customer specified Quasi-cyclic (QC) codes. The Turbo decode functionality
++  principally covers codes used by LTE. The FEC Engine offers significant
++  power and area savings versus implementations done in the FPGA fabric.
++
++properties:
++
++  compatible:
++    enum: 
++      - aspeed,ast2400-cvic
++      - aspeed,ast2500-cvic
++
++  reg:
++    maxItems: 1
++    description: address and length of the register for the device.
++  
++  valid-sources:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: One cell, bitmap of supported sources for the implementation
++
++  copro-sw-interrupts:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: |
++                  List of interrupt numbers that can be used as
++                  SW interrupts from the ARM to the coprocessor.
++                  (AST2500 only)
++
++required:
++  - compatible
++  - reg
++  - valid-sources
++
++additionalProperties: false
++
++examples:
++  - |
++    cvic: copro-interrupt-controller@1e6c2000 
++    {
++        compatible = "aspeed,ast2500-cvic";
++        valid-sources = <0xffffffff>;
++        copro-sw-interrupts = <1>;
++        reg = <0x1e6c2000 0x80>;
++    };
+-- 
+2.37.1 (Apple Git-137.1)
 
