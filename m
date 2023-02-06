@@ -2,114 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA24268BBE2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:42:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE83368BC14
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:53:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229828AbjBFLml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 06:42:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53908 "EHLO
+        id S229573AbjBFLw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 06:52:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbjBFLml (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:42:41 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3F3565B0;
-        Mon,  6 Feb 2023 03:42:38 -0800 (PST)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3166KBHh003454;
-        Mon, 6 Feb 2023 11:42:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=2AkN329K6J+91VYzBSNBGV3qS2/+ZXQLtTRYt0TZRG0=;
- b=YP6o5PT6XaAgW6lBHHMXOlQCramnKS0OKaQp05U3WakVK8Ze51EK+3YpqqDg0HOZa+V9
- dFddCWdfN1LTbB7tKNBNAYk8DjvxiUXdTODn2FG0wFuJpEVGq7EpikRVVjmXqYFfPgbV
- MH1xZPBmNQnJx0VBjkRKQY5S5nvEyCsK9IjE1w8+sPYpEm44tbm5bEqeJXwWwIN1BlAZ
- IhQy6zc1nG55WIHk886qaIHqkb6mE/pJNhyyKWTIq0acPaN9wscvST4HERYPSg1urSL6
- KFN2y5DSo3qQHrCUll1kU3uKE4xiFndGvA7XF8TP4uq8nuFokSQAhMfIeE4DdTx/E1FZ oA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nhff2kjue-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 06 Feb 2023 11:42:20 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 316BgIC1005857
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 6 Feb 2023 11:42:18 GMT
-Received: from [10.50.19.98] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 6 Feb 2023
- 03:42:11 -0800
-Message-ID: <b5f08d0b-6009-39bb-1819-322a8dc056c4@quicinc.com>
-Date:   Mon, 6 Feb 2023 17:12:08 +0530
+        with ESMTP id S229514AbjBFLw6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:52:58 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 547C5CDDE;
+        Mon,  6 Feb 2023 03:52:56 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 316BqgO3116929;
+        Mon, 6 Feb 2023 05:52:42 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1675684362;
+        bh=PTxMHa0MqV4C75EK6VqoyZC5BlthQBdTPqrUQAlejpI=;
+        h=From:To:CC:Subject:Date;
+        b=tOGPFVebvb058jyCRb1We92C+SUrc3Sl+iiVLPazihlhA/crzFKwbqRjW70vWWx0a
+         xlbn9fuCQX26ype+8TFiaJUHgUDlkJTqeI5/bYx3/dVIzAlfIAVUU3tMhWdDMtnqpc
+         2mkeeClISTvXYyIsluzuXU6B+tNc3DIJWxy4K298=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 316Bqg36026683
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 6 Feb 2023 05:52:42 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 6
+ Feb 2023 05:52:41 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 6 Feb 2023 05:52:41 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 316Bqfcm031834;
+        Mon, 6 Feb 2023 05:52:41 -0600
+From:   Devarsh Thakkar <devarsht@ti.com>
+To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>
+CC:     <hnagalla@ti.com>, <praneeth@ti.com>, <a-bhatia1@ti.com>,
+        <j-luthra@ti.com>, <devarsht@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am62a7-sk: Enable full 4GB DDR
+Date:   Mon, 6 Feb 2023 17:22:40 +0530
+Message-ID: <20230206115240.6026-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH V3 0/9] Add minimal boot support for IPQ5332
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <shawnguo@kernel.org>, <arnd@arndb.de>,
-        <dmitry.baryshkov@linaro.org>, <marcel.ziswiler@toradex.com>,
-        <nfraprado@collabora.com>, <robimarko@gmail.com>,
-        <quic_gurus@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_varada@quicinc.com>,
-        <quic_srichara@quicinc.com>
-References: <20230206071217.29313-1-quic_kathirav@quicinc.com>
- <CACRpkdbtEFCSKX8VcD9bAZLy-PYfwVCRKYwXJmh0hnK2Nroq0A@mail.gmail.com>
-Content-Language: en-US
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-In-Reply-To: <CACRpkdbtEFCSKX8VcD9bAZLy-PYfwVCRKYwXJmh0hnK2Nroq0A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: iWipT9JYFiain5QlH-cLgyurHdlkRwe6
-X-Proofpoint-GUID: iWipT9JYFiain5QlH-cLgyurHdlkRwe6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-06_05,2023-02-06_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- spamscore=0 impostorscore=0 priorityscore=1501 bulkscore=0 mlxlogscore=900
- suspectscore=0 lowpriorityscore=0 mlxscore=0 phishscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2302060100
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+AM62A7-SK board has 4GB LPDDR4 Micron MT53E2G32D4DE-046 AUT:B memory but
+only 2GB was enabled early.
 
-On 2/6/2023 4:55 PM, Linus Walleij wrote:
-> Hi Kathiravan,
->
-> thanks for your patches!
->
-> On Mon, Feb 6, 2023 at 8:12 AM Kathiravan T <quic_kathirav@quicinc.com> wrote:
->
->> Kathiravan T (9):
->>    dt-bindings: pinctrl: qcom: add IPQ5332 pinctrl
->>    pinctrl: qcom: Introduce IPQ5332 TLMM driver
-> I have applied these two patches to the pin control tree for v6.3.
+Enable full 4GB memory by updating the latter 2GB memory region
+which gets mapped to 0x0880000000 i.e. DDR16SS0_SDRAM as referred in
+Table 2-1. AM62A Common SoC Memory of AM62Ax TRM.
 
+TRM : https://www.ti.com/lit/zip/spruj16
 
-Thanks a lot Linus!
+Logs:
+Link : https://gist.github.com/devarsht/e85b6af89c01ddadb3a62f3e5f196af8
 
+Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
->
-> I see no reason to wait for more review since Krzysztof acked the
-> bindings and the driver isn't invasive at all, any problems can certainly
-> be fixed up in-tree.
->
-> Yours,
-> Linus Walleij
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+index 5c9012141ee2..f6a67f072dca 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+@@ -27,8 +27,9 @@
+ 
+ 	memory@80000000 {
+ 		device_type = "memory";
+-		/* 2G RAM */
+-		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
++		/* 4G RAM */
++		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
++		      <0x00000008 0x80000000 0x00000000 0x80000000>;
+ 	};
+ 
+ 	reserved-memory {
+-- 
+2.17.1
+
