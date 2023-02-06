@@ -2,132 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5711C68C024
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:33:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFBE068C03B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:36:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbjBFOdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 09:33:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51020 "EHLO
+        id S230308AbjBFOg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 09:36:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbjBFOdb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:33:31 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 105DB234E2
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 06:33:29 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id ml19so34899029ejb.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 06:33:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RHaeRZqGHYAtIxM6Dz50lpu040N8lRz141Rm2pL5rVo=;
-        b=jF1s45DfufJwWZ57OB4BhZN/fdCEcCANg5872Lpc2HV2Ir2Mncxbo/xAhZJfUnR3L+
-         zj/iqQibSO2essYu11V5ZoaCOO1G8tKqVEw+x1gL3ETrubdC6B68mNHS4+lJGYXSzrXu
-         orW5CjFvL/UrHYWJjZ8cV+5pZ+/s8jq4GoMsOmhkPKIWkNXm0D6Gnilexls3a7htxx6D
-         /25skRRaDV+Gz0xrN/fO6uxRvlSPOWnSXL06w/EXUgmzB9QU+iA7gSZAByL4V9Z/WFL3
-         g4urT34lwmdyWPzF1tFaoARTuuhrRNCW3FK5ZrJQXnjAxjvMTBeUgl7MN1sDOzeoiag9
-         IQNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RHaeRZqGHYAtIxM6Dz50lpu040N8lRz141Rm2pL5rVo=;
-        b=hO7jM9i2X6+k93a/r0mcDmpqr76iGMsLBTJmQPMI4fZKjoCaMPYfyZmbQ+giS7jieX
-         hRAUsBGRhIqDQ8Qh/98j7aXNm9D7PQQs2Z20Qh0whs7xcIV0EMFcuwnxmERSk2ie6V6G
-         H8ds6bT9ihv9TLO0B7/6tPE5HgXU4gmkI14SuNwR4K1mAOShQoGlLnQup1DAlGZ4+mR6
-         MILwjL1ngsyqBjR8CXZaZfrsb5nlrLJsI8LByvoZ8JqVtnfDOVqofBjnBQthvlY3aPpy
-         N1TE/rZlVKtVYPxcEEz+RJsMCylEgeANEsiLqT5OvM0K+F+BduCWMdT7fhFLhyDSYfxV
-         opMg==
-X-Gm-Message-State: AO0yUKXITnCBgUlV0l5al5lPrQUZatjFJ7m+GdRa7N88XEjA9WlkO2ea
-        y1iHvW0GdIS1270430007IuOH3x5j6ayLU5t3JeiMA==
-X-Google-Smtp-Source: AK7set9F4u722OkpXBvTbwVo7eCQ7QLvmQTwkMqIg2LACU7M2aYX2ATRDdPXXoHFDCXc6U7xCq0cgsgND0rwHzgdHtY=
-X-Received: by 2002:a17:906:1803:b0:7c0:f45e:22ff with SMTP id
- v3-20020a170906180300b007c0f45e22ffmr6633853eje.104.1675694007671; Mon, 06
- Feb 2023 06:33:27 -0800 (PST)
+        with ESMTP id S231245AbjBFOg1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:36:27 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1E8024C92;
+        Mon,  6 Feb 2023 06:36:25 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 316Bv47H017711;
+        Mon, 6 Feb 2023 14:36:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=TETDB0LeiUCmf0+tJvAW84Dy4wJip4Q7KldqyimddL8=;
+ b=jmjneK2odiCS9U3rBC89UzPmUiZU8XKOXop+zUu5f4oXNMIB1LlhqoBLnA0NdhXbFF3S
+ vuvBMnn5QCCpPWVSSnauE9de2A7ccgj70Xfvut2b6lIb0Ubx9Eab8CDJm0xXxbLXFgSO
+ dC7jUo4wSZi8qJLq4tV+F6VJ7wzgLV7bx9qxJgoxF+inm2wSsz1V20yLnW4/I01Vjjad
+ faqMJ4Vknfse+bgs2/34AVWUXskzH+mSDXBFE6ZDzGrMR6N4lsoFMhzyw/PhC1fHILmt
+ INh8oh6tb6C5xn7M9V4fRXpcENLUMDqiF0JG8ZA3ijhFs0gBV8gCsNiyAuwtKxaBxCjb gA== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nhechby1r-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 06 Feb 2023 14:36:22 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 316EaLaT016908
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 6 Feb 2023 14:36:21 GMT
+Received: from [10.216.55.169] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 6 Feb 2023
+ 06:36:17 -0800
+Message-ID: <d1dc0c9b-eab2-0287-d0a2-ead44ecee5ce@quicinc.com>
+Date:   Mon, 6 Feb 2023 20:06:13 +0530
 MIME-Version: 1.0
-References: <20230124131717.128660-5-bchihi@baylibre.com> <20230131153816.21709-1-bchihi@baylibre.com>
- <ab1e4822-d5f4-79f6-ea38-47e2342ebe49@linaro.org> <20230206140713.GB15176@linaro.org>
-In-Reply-To: <20230206140713.GB15176@linaro.org>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Mon, 6 Feb 2023 15:32:51 +0100
-Message-ID: <CAGuA+oo2Zzb2=v6DDwy5R2Y_u_jvpbbAUZDeKssKe9Af14fo8w@mail.gmail.com>
-Subject: Re: [PATCH v12] thermal: drivers: mediatek: Add the Low Voltage
- Thermal Sensor driver
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
-        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
-        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8450: Add IMEM and PIL info
+ region
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1675443891-31709-1-git-send-email-quic_mojha@quicinc.com>
+ <1675443891-31709-2-git-send-email-quic_mojha@quicinc.com>
+ <cc30f686-dec7-db85-cf0d-c6c685a623ce@linaro.org>
+From:   Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <cc30f686-dec7-db85-cf0d-c6c685a623ce@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 5iQp1wmX4FYfvQOq-vRbeKaEQ-GSUrc_
+X-Proofpoint-ORIG-GUID: 5iQp1wmX4FYfvQOq-vRbeKaEQ-GSUrc_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-06_07,2023-02-06_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ adultscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0
+ mlxlogscore=756 priorityscore=1501 mlxscore=0 phishscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302060126
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
-
-On Mon, Feb 6, 2023 at 3:07 PM Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
->
-> On Wed, Feb 01, 2023 at 08:55:07AM +0100, Krzysztof Kozlowski wrote:
-> > On 31/01/2023 16:38, bchihi@baylibre.com wrote:
-> > > From: Balsam CHIHI <bchihi@baylibre.com>
-> > >
-> > > The Low Voltage Thermal Sensor (LVTS) is a multiple sensors, multi
-> > > controllers contained in a thermal domain.
-> > >
-> > > A thermal domains can be the MCU or the AP.
-> > >
-> > > Each thermal domains contain up to seven controllers, each thermal
-> > > controller handle up to four thermal sensors.
-> > >
-> > > The LVTS has two Finite State Machines (FSM), one to handle the
-> > > functionin temperatures range like hot or cold temperature and another
-> > > one to handle monitoring trip point. The FSM notifies via interrupts
-> > > when a trip point is crossed.
-> > >
-> >
-> > (...)
-> >
-> > > +
-> > > +struct lvts_domain {
-> > > +   struct lvts_ctrl *lvts_ctrl;
-> > > +   struct reset_control *reset;
-> > > +   struct clk *clk;
-> > > +   int num_lvts_ctrl;
-> > > +   void __iomem *base;
-> > > +   size_t calib_len;
-> > > +   u8 *calib;
-> > > +};
-> > > +
-> > > +#ifdef CONFIG_MTK_LVTS_THERMAL_DEBUGFS
-> > > +
-> > > +static struct dentry *root;
-> >
-> > How do you handle two instances of driver?
->
-> For now, we can put the entry in /sys/kernel/debug/<dev_name>
-
-Yes, sure.
-I will do the necessary changes.
-
->
-> I'm preparing a debugfs series for the thermal framework and that will provide
-> an entry to hook in for the sensors debugfs if available
-
-It would be a good feature!
-good luck!
 
 
-Best regards,
-Balsam.
+On 2/4/2023 3:07 AM, Konrad Dybcio wrote:
+> 
+> 
+> On 3.02.2023 18:04, Mukesh Ojha wrote:
+>> Add a simple-mfd representing IMEM on SM8450 and define the PIL
+>> relocation info region, so that post mortem tools will be able
+>> to locate the loaded remoteprocs.
+>>
+>> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+>> ---
+>  From XBL:
+> 
+> 0x14680000, 0x0002A000, "IMEM Base"
+> 
+> Is there anything in that wider address range that would interest
+> us? I recall Alex once dug into that when diving into IPA, but
+> I can not recall the conclusion..
+Spec-wise, yes IPA do own these 0x146A8000 - 0x146AA000 .
+But, not sure what they use it for.
+
+-Mukesh
+> 
+> Konrad
+>>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 15 +++++++++++++++
+>>   1 file changed, 15 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>> index 5704750..474ea1b 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>> @@ -3536,6 +3536,21 @@
+>>   			};
+>>   		};
+>>   
+>> +		sram@146aa000 {
+>> +			compatible = "qcom,sm8450-imem", "syscon", "simple-mfd";
+>> +			reg = <0 0x146aa000 0 0x1000>;
+>> +
+>> +			#address-cells = <1>;
+>> +			#size-cells = <1>;
+>> +
+>> +			ranges = <0 0 0x146aa000 0x1000>;
+>> +
+>> +			pil-reloc@94c {
+>> +				compatible = "qcom,pil-reloc-info";
+>> +				reg = <0x94c 0xc8>;
+>> +			};
+>> +		};
+>> +
+>>   		apps_rsc: rsc@17a00000 {
+>>   			label = "apps_rsc";
+>>   			compatible = "qcom,rpmh-rsc";
