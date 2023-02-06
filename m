@@ -2,99 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13B0568BBD4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:38:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA24268BBE2
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:42:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbjBFLil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 06:38:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50634 "EHLO
+        id S229828AbjBFLml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 06:42:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229828AbjBFLii (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:38:38 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB2A818ABE;
-        Mon,  6 Feb 2023 03:38:34 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 1E9A424E1C6;
-        Mon,  6 Feb 2023 19:38:25 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 6 Feb
- 2023 19:38:25 +0800
-Received: from localhost.localdomain (183.27.96.33) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 6 Feb
- 2023 19:38:24 +0800
-From:   Walker Chen <walker.chen@starfivetech.com>
-To:     <linux-riscv@lists.infradead.org>, <dmaengine@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        "Walker Chen" <walker.chen@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1 3/3] riscv: dts: starfive: add dma controller node
-Date:   Mon, 6 Feb 2023 19:38:11 +0800
-Message-ID: <20230206113811.23133-4-walker.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230206113811.23133-1-walker.chen@starfivetech.com>
-References: <20230206113811.23133-1-walker.chen@starfivetech.com>
+        with ESMTP id S229561AbjBFLml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:42:41 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3F3565B0;
+        Mon,  6 Feb 2023 03:42:38 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3166KBHh003454;
+        Mon, 6 Feb 2023 11:42:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=2AkN329K6J+91VYzBSNBGV3qS2/+ZXQLtTRYt0TZRG0=;
+ b=YP6o5PT6XaAgW6lBHHMXOlQCramnKS0OKaQp05U3WakVK8Ze51EK+3YpqqDg0HOZa+V9
+ dFddCWdfN1LTbB7tKNBNAYk8DjvxiUXdTODn2FG0wFuJpEVGq7EpikRVVjmXqYFfPgbV
+ MH1xZPBmNQnJx0VBjkRKQY5S5nvEyCsK9IjE1w8+sPYpEm44tbm5bEqeJXwWwIN1BlAZ
+ IhQy6zc1nG55WIHk886qaIHqkb6mE/pJNhyyKWTIq0acPaN9wscvST4HERYPSg1urSL6
+ KFN2y5DSo3qQHrCUll1kU3uKE4xiFndGvA7XF8TP4uq8nuFokSQAhMfIeE4DdTx/E1FZ oA== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nhff2kjue-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 06 Feb 2023 11:42:20 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 316BgIC1005857
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 6 Feb 2023 11:42:18 GMT
+Received: from [10.50.19.98] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 6 Feb 2023
+ 03:42:11 -0800
+Message-ID: <b5f08d0b-6009-39bb-1819-322a8dc056c4@quicinc.com>
+Date:   Mon, 6 Feb 2023 17:12:08 +0530
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.96.33]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH V3 0/9] Add minimal boot support for IPQ5332
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <dmitry.baryshkov@linaro.org>, <marcel.ziswiler@toradex.com>,
+        <nfraprado@collabora.com>, <robimarko@gmail.com>,
+        <quic_gurus@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <quic_varada@quicinc.com>,
+        <quic_srichara@quicinc.com>
+References: <20230206071217.29313-1-quic_kathirav@quicinc.com>
+ <CACRpkdbtEFCSKX8VcD9bAZLy-PYfwVCRKYwXJmh0hnK2Nroq0A@mail.gmail.com>
+Content-Language: en-US
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <CACRpkdbtEFCSKX8VcD9bAZLy-PYfwVCRKYwXJmh0hnK2Nroq0A@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: iWipT9JYFiain5QlH-cLgyurHdlkRwe6
+X-Proofpoint-GUID: iWipT9JYFiain5QlH-cLgyurHdlkRwe6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-06_05,2023-02-06_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
+ spamscore=0 impostorscore=0 priorityscore=1501 bulkscore=0 mlxlogscore=900
+ suspectscore=0 lowpriorityscore=0 mlxscore=0 phishscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302060100
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding the dma controller node for the Starfive JH7110 SoC.
 
-Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/jh7110.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+On 2/6/2023 4:55 PM, Linus Walleij wrote:
+> Hi Kathiravan,
+>
+> thanks for your patches!
+>
+> On Mon, Feb 6, 2023 at 8:12 AM Kathiravan T <quic_kathirav@quicinc.com> wrote:
+>
+>> Kathiravan T (9):
+>>    dt-bindings: pinctrl: qcom: add IPQ5332 pinctrl
+>>    pinctrl: qcom: Introduce IPQ5332 TLMM driver
+> I have applied these two patches to the pin control tree for v6.3.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index cfbaff4ea64b..1628c0f33fab 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -412,6 +412,26 @@
- 			#gpio-cells = <2>;
- 		};
- 
-+		dma: dma-controller@16050000 {
-+			compatible = "starfive,axi-dma";
-+			reg = <0x0 0x16050000 0x0 0x10000>;
-+			clocks = <&stgcrg JH7110_STGCLK_DMA1P_AXI>,
-+				 <&stgcrg JH7110_STGCLK_DMA1P_AHB>;
-+			clock-names = "core-clk", "cfgr-clk";
-+			resets = <&stgcrg JH7110_STGRST_DMA1P_AXI>,
-+				 <&stgcrg JH7110_STGRST_DMA1P_AHB>;
-+			reset-names = "axi-rst", "ahb-rst";
-+			interrupts = <73>;
-+			#dma-cells = <1>;
-+			dma-channels = <4>;
-+			snps,dma-masters = <1>;
-+			snps,data-width = <3>;
-+			snps,num-hs-if = <56>;
-+			snps,block-size = <65536 65536 65536 65536>;
-+			snps,priority = <0 1 2 3>;
-+			snps,axi-max-burst-len = <16>;
-+		};
-+
- 		aoncrg: clock-controller@17000000 {
- 			compatible = "starfive,jh7110-aoncrg";
- 			reg = <0x0 0x17000000 0x0 0x10000>;
--- 
-2.17.1
 
+Thanks a lot Linus!
+
+
+>
+> I see no reason to wait for more review since Krzysztof acked the
+> bindings and the driver isn't invasive at all, any problems can certainly
+> be fixed up in-tree.
+>
+> Yours,
+> Linus Walleij
