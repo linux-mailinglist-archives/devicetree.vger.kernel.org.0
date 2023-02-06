@@ -2,95 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD69F68C8CD
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 22:30:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8B6D68C8F6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 22:49:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229447AbjBFVay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 16:30:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48048 "EHLO
+        id S230163AbjBFVtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 16:49:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbjBFVax (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 16:30:53 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB48F10E6;
-        Mon,  6 Feb 2023 13:30:52 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 316L60SI002709;
-        Mon, 6 Feb 2023 21:30:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=zbR5LulAkMDAwasH7HVAV3wgUEtOGkuSRw4Nc4x62YI=;
- b=U7SjhRJYz8CwVbM+Xari4paPf0x+K8tf2HQmofDjj6yK8FgStyhkIRj+aLXm3uQL16NQ
- IhtvdS3WM6bAvk/IfjjNOkQ2fcKiqEKbRnHcJRFwfdmg0t2qVuj27TDRLtJHQveovxqz
- 1Aue84D4wC1YW9Wg8qprUmNnkp5q6hfgKhY9DnmZMKIjyEy7jCRFMBnpMJ6N9IAEbgo9
- avDhY1PsMou/JeafaWTfxNIjOtj1A4qyMCFq6jNbT+CliGcRpQt2ayMatwucPAuuCRXC
- zeLEmmDW8xccOQmr+RztXgtKduhA1qdYK50GuSvfEgn9eYYH/rv71UVVOfu2hvq6nKTG aA== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nhey74rxt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 06 Feb 2023 21:30:33 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 316LUVHl025673
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 6 Feb 2023 21:30:31 GMT
-Received: from [10.134.67.48] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 6 Feb 2023
- 13:30:31 -0800
-Message-ID: <7d73182d-9662-196a-2831-6ab50fb08040@quicinc.com>
-Date:   Mon, 6 Feb 2023 13:30:30 -0800
+        with ESMTP id S230232AbjBFVtl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 16:49:41 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4DF301A2;
+        Mon,  6 Feb 2023 13:49:11 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id p185so11001618oif.2;
+        Mon, 06 Feb 2023 13:49:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ZFI+/lEvE5K9+MX/lX7wGVqblszW07L3zZfHhu2VpE8=;
+        b=i0nzIKP+oJPN3n1pL5H+wlaJE5pVygsEGbCrb5XuS4Dr0naE8V0QXIc5URhEYT17/0
+         sc0a1oijm9kBlrxIoSUQSKXyi6FYCHImi0BN0aDMeW9C+WxmiPmVzuZFG1zICyAmVZht
+         kMRIQbO6m0gwHTb3/2s4IY9s2hWQXb3Fo60QQJDbBSu6meW7Ff9mUk93ji7kKmBDBslF
+         /E97x202+1eNkSGFjolavkVCgteaKakluU658bojLYL8wi2tattUfV/LT4sR30XSCGeH
+         46DQ1LdGcZEqEyAepst2A05wG4L5J/ySGmtJlmie3drjXnj5FMJRD1CSlQ1NCCVl9HR2
+         kBLQ==
+X-Gm-Message-State: AO0yUKVLqIVdaGe8zCz7zajDHLov2y+xWUN0qPKL+Gyb/McainGGAhBx
+        UW7Nr+lVWAjHE/BMVogiCw==
+X-Google-Smtp-Source: AK7set/b9EK0D0dcwYXOHIkT9giyg++xP/90Rp97QYsgMQU7HZYqOVA5S9DL/zc4egmaNaVWRMDoUQ==
+X-Received: by 2002:a05:6808:3cf:b0:36e:bb55:d51a with SMTP id o15-20020a05680803cf00b0036ebb55d51amr104844oie.52.1675720150212;
+        Mon, 06 Feb 2023 13:49:10 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bm49-20020a0568081ab100b0035c073aa0d8sm4716586oib.18.2023.02.06.13.49.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Feb 2023 13:49:09 -0800 (PST)
+Received: (nullmailer pid 1563640 invoked by uid 1000);
+        Mon, 06 Feb 2023 21:49:09 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v9 22/27] virt: gunyah: Add resource tickets
-Content-Language: en-US
-To:     Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Evan Green <evan@rivosinc.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>, heiko@sntech.de,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
- <20230120224627.4053418-23-quic_eberman@quicinc.com>
- <20230206095010.GF332@quicinc.com>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <20230206095010.GF332@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: vxeY4GnvZkx7rE5pfUFshOJZXft8JnD5
-X-Proofpoint-GUID: vxeY4GnvZkx7rE5pfUFshOJZXft8JnD5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-06_07,2023-02-06_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- mlxlogscore=999 priorityscore=1501 adultscore=0 suspectscore=0 mlxscore=0
- malwarescore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302060186
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        slewis@rivosinc.com, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, vineetg@rivosinc.com,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+In-Reply-To: <20230206201455.1790329-5-evan@rivosinc.com>
+References: <20230206201455.1790329-1-evan@rivosinc.com>
+ <20230206201455.1790329-5-evan@rivosinc.com>
+Message-Id: <167571795981.1495930.2331543227113728240.robh@kernel.org>
+Subject: Re: [PATCH v2 4/6] dt-bindings: Add RISC-V misaligned access
+ performance
+Date:   Mon, 06 Feb 2023 15:49:09 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -98,106 +71,51 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 2/6/2023 1:50 AM, Srivatsa Vaddagiri wrote:
-> * Elliot Berman <quic_eberman@quicinc.com> [2023-01-20 14:46:21]:
+On Mon, 06 Feb 2023 12:14:53 -0800, Evan Green wrote:
+> From: Palmer Dabbelt <palmer@rivosinc.com>
 > 
->> +int ghvm_add_resource_ticket(struct gunyah_vm *ghvm, struct gunyah_vm_resource_ticket *ticket)
->> +{
->> +	struct gunyah_vm_resource_ticket *iter;
->> +	struct gunyah_resource *ghrsc;
->> +	int ret = 0;
->> +
->> +	mutex_lock(&ghvm->resources_lock);
->> +	list_for_each_entry(iter, &ghvm->resource_tickets, list) {
->> +		if (iter->resource_type == ticket->resource_type && iter->label == ticket->label) {
->> +			ret = -EEXIST;
->> +			goto out;
->> +		}
->> +	}
->> +
->> +	if (!try_module_get(ticket->owner)) {
->> +		ret = -ENODEV;
->> +		goto out;
->> +	}
->> +
->> +	list_add(&ticket->list, &ghvm->resource_tickets);
->> +	INIT_LIST_HEAD(&ticket->resources);
->> +
->> +	list_for_each_entry(ghrsc, &ghvm->resources, list) {
->> +		if (ghrsc->type == ticket->resource_type && ghrsc->rm_label == ticket->label) {
->> +			if (!ticket->populate(ticket, ghrsc))
->> +				list_move(&ghrsc->list, &ticket->resources);
+> This key allows device trees to specify the performance of misaligned
+> accesses to main memory regions from each CPU in the system.
 > 
-> Do we need the search to continue in case of a hit? 'gh_vm_add_resource' seems to
-> break loop on first occurrence.
+> Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
+> Signed-off-by: Evan Green <evan@rivosinc.com>
+> ---
 > 
-> Also do we have examples of more than one 'gunyah_resource' being associated
-> with same 'gunyah_vm_resource_ticket'?  Both vcpu and irqfd tickets seem to deal
-> with just one resource?
+> (no changes since v1)
+> 
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
 
-I'll mention this in the commit text as well.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Resources are created by Gunyah as configured in the VM's devicetree 
-configuration. Gunyah doesn't process the label and that makes it 
-possible for userspace to create multiple resources with the same label. 
-The kernel needs to be prepared for that to happen. IMO, this isn't a 
-framework issue, so I've chosen the policy to be "many-to-one": resource 
-tickets can bind to many resources and resources are bound to only one 
-ticket. If the resource ticket handler isn't designed to accept multiple 
-resources, they can skip/ignore any further populate callbacks.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/riscv/cpus.yaml:91:72: [error] syntax error: mapping values are not allowed here (syntax)
 
->>   static int gh_vm_start(struct gunyah_vm *ghvm)
->>   {
->>   	struct gunyah_vm_memory_mapping *mapping;
->>   	u64 dtb_offset;
->>   	u32 mem_handle;
->> -	int ret;
->> +	struct gunyah_resource *ghrsc;
->> +	struct gh_rm_hyp_resources *resources;
->> +	int ret, i;
->>   
->>   	down_write(&ghvm->status_lock);
->>   	if (ghvm->vm_status != GH_RM_VM_STATUS_NO_STATE) {
->> @@ -241,6 +314,22 @@ static int gh_vm_start(struct gunyah_vm *ghvm)
->>   		goto err;
->>   	}
->>   
->> +	ret = gh_rm_get_hyp_resources(ghvm->rm, ghvm->vmid, &resources);
->> +	if (ret) {
->> +		pr_warn("Failed to get hypervisor resources for VM: %d\n", ret);
->> +		goto err;
->> +	}
->> +
->> +	for (i = 0; i < le32_to_cpu(resources->n_entries); i++) {
-> 
-> minor nit: not sure if we can rely on compiler to optimize this, but it would
-> be better if we run le32_to_cpu once and use the result in loop.
-> 
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/riscv/cpus.example.dts'
+Documentation/devicetree/bindings/riscv/cpus.yaml:91:72: mapping values are not allowed here
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/riscv/cpus.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/riscv/cpus.yaml:91:72: mapping values are not allowed here
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/cpus.yaml: ignoring, error parsing file
+make: *** [Makefile:1508: dt_binding_check] Error 2
 
-Done.
+doc reference errors (make refcheckdocs):
 
->> +		ghrsc = gh_rm_alloc_resource(ghvm->rm, &resources->entries[i]);
->> +		if (!ghrsc) {
->> +			ret = -ENOMEM;
->> +			goto err;
->> +		}
->> +
->> +		gh_vm_add_resource(ghvm, ghrsc);
-> 
-> Shouldn't we have gh_vm_add_resource()->  ticket->populate() return a result and
-> in case of failure we should bail out from this loop?
-> 
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230206201455.1790329-5-evan@rivosinc.com
 
-I'm hesitant to treat the resource ticket rejecting the resource as a 
-bail condition.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Userspace is able to detect when functions didn't get set up and I 
-wanted to avoid adding further complexity to kernel drivers.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
->> +	}
->> +
->>   	ret = gh_rm_vm_start(ghvm->rm, ghvm->vmid);
->>   	if (ret) {
->>   		pr_warn("Failed to start VM: %d\n", ret);
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
