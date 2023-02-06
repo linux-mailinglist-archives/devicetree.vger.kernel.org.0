@@ -2,281 +2,337 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B73D768BA80
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 11:39:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 127FD68BA89
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 11:40:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229578AbjBFKjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 05:39:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34454 "EHLO
+        id S229672AbjBFKkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 05:40:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231223AbjBFKip (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 05:38:45 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E6ACDBFA;
-        Mon,  6 Feb 2023 02:38:02 -0800 (PST)
-Received: from pendragon.ideasonboard.com (unknown [109.136.43.56])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BD23B4DA;
-        Mon,  6 Feb 2023 11:36:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1675679805;
-        bh=9s/ln2Fbj6UQOSq3Eb3fv0asoO3SHMlB2wOoqR2Nsvo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Zxy35lIxkK72PXZgb5VthfC4il/NVk24+8GU5DJwVyQhiwHa2asWlrIn14te4207C
-         bxA4Lkq0MTl/eP/7spC7dec2eS8IDIiR9RHTNzSJ9jgEsqkoDAf5Lb2Gk0abWsvJb3
-         BrUUdN8dOKYmXTT0RIsv+8gqR3m6inJifKhkTSt8=
-Date:   Mon, 6 Feb 2023 12:36:44 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Volodymyr Kharuk <vkh@melexis.com>
-Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hyun Kwon <hyun.kwon@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] media: dt-bindings: media: i2c: Add mlx7502x
- camera sensor binding
-Message-ID: <Y+DYPGcl2CW2tRjS@pendragon.ideasonboard.com>
-References: <cover.1657786765.git.vkh@melexis.com>
- <712c1acff963238e685cbd5c4a1b91f0ec7f9061.1657786765.git.vkh@melexis.com>
- <Ys/qq4hIQ25KXB2/@pendragon.ideasonboard.com>
- <20220715153243.GA18207@vkh-ThinkPad-T490>
+        with ESMTP id S229766AbjBFKk1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 05:40:27 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF47B457;
+        Mon,  6 Feb 2023 02:40:07 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 316Ad9PP090498;
+        Mon, 6 Feb 2023 04:39:09 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1675679949;
+        bh=z4nwf/VDXcG4CYg6semyecFfe3EixsrC45ZlYCcCgyo=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=RT62vdH1NqF55aEsgFUHUh704Y0HdoUSB7SBVZzn+tAZOpbFu/qMM/Tj6R/1H0bZ9
+         ZUDqiauBAx4VoGfzIeep6rji88RYZzsNPkburPfdWe9P8EQ2dsbCQNgHHF/2NzuvfR
+         D76SK8422cFLPI6VapvenHFYaxiamt4KHenJm2CU=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 316Ad9J6097075
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 6 Feb 2023 04:39:09 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 6
+ Feb 2023 04:39:08 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 6 Feb 2023 04:39:08 -0600
+Received: from [10.24.69.114] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 316Ad2pl002451;
+        Mon, 6 Feb 2023 04:39:03 -0600
+Message-ID: <81dc1c83-3e66-4612-9011-cf70fb624529@ti.com>
+Date:   Mon, 6 Feb 2023 16:09:02 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220715153243.GA18207@vkh-ThinkPad-T490>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [EXTERNAL] Re: [PATCH v4 1/2] dt-bindings: net: Add ICSSG
+ Ethernet Driver bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        YueHaibing <yuehaibing@huawei.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <andrew@lunn.ch>
+CC:     <nm@ti.com>, <ssantosh@kernel.org>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230206060708.3574472-1-danishanwar@ti.com>
+ <20230206060708.3574472-2-danishanwar@ti.com>
+ <e0ab9ea1-59b7-506f-1e77-231a0cdc09bf@linaro.org>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <e0ab9ea1-59b7-506f-1e77-231a0cdc09bf@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Volodymyr,
+Hi Krzysztof,
 
-I've just realized your previous e-mail felt through the cracks. Sorry
-about that. Please see below for comments.
+Thanks for the comments.
 
-On Fri, Jul 15, 2022 at 06:32:43PM +0300, Volodymyr Kharuk wrote:
-> On Thu, Jul 14, 2022 at 01:06:35PM +0300, Laurent Pinchart wrote:
-> > On Thu, Jul 14, 2022 at 11:34:47AM +0300, Volodymyr Kharuk wrote:
-> > > Add device tree binding of the mlx7502x and update MAINTAINERS
-> > > 
-> > > Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
-> > > ---
-> > >  .../bindings/media/i2c/melexis,mlx7502x.yaml  | 146 ++++++++++++++++++
-> > >  MAINTAINERS                                   |   1 +
-> > >  2 files changed, 147 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> > > new file mode 100644
-> > > index 000000000000..4ac91f7a26b6
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> > > @@ -0,0 +1,146 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/melexis,mlx7502x.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Melexis ToF 7502x MIPI CSI-2 Sensor
-> > > +
-> > > +maintainers:
-> > > +  - Volodymyr Kharuk <vkh@melexis.com>
-> > > +
-> > > +description: |-
-> > > +  Melexis ToF 7502x sensors has a CSI-2 output. It supports 2 and 4 lanes,
-> > > +  and mipi speeds are 300, 600, 704, 800, 904, 960Mbs. Supported format is RAW12.
-> > > +  Sensor 75026 is QVGA, while 75027 is VGA sensor.
-> > > +  If you use compatible = "melexis,mlx7502x", then autodetect will be called.
-> > 
-> > I'd move this last line as a description of the compatible property, but
-> > I'm also not sure this should be mentioned in the DT bindings, as it's a
-> > driver implementation detail. I'm actually not sure we should support it
-> > with three different compatible values as proposed, as without this
-> > documentation users will have a hard time figuring out what compatible
-> > value to pick.
-> > 
-> > One option would be to support the following three compatible values:
-> > 
-> > 	compatible = "melexis,mlx75026", "melexis,mlx7502x";
-> > 	compatible = "melexis,mlx75027", "melexis,mlx7502x";
-> > 	compatible = "melexis,mlx7502x";
-> > 
-> > The last one only would trigger autodetection. I'm still not sure how to
-> > document that properly in bindings though.
-> > 
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - enum:
-> > > +          - melexis,mlx7502x
-> > > +          - melexis,mlx75026
-> > > +          - melexis,mlx75027
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  assigned-clocks: true
-> > > +  assigned-clock-parents: true
-> > > +  assigned-clock-rates: true
-> > > +
-> > > +  clocks:
-> > > +    description: Clock frequency 8MHz
-> > > +    maxItems: 1
-> > > +
-> > > +  vdda-supply:
-> > > +    description:
-> > > +      Definition of the regulator used as analog power supply(2.7V).
-> > > +
-> > > +  vddif-supply:
-> > > +    description:
-> > > +      Definition of the regulator used as interface power supply(1.8V).
-> > > +
-> > > +  vddd-supply:
-> > > +    description:
-> > > +      Definition of the regulator used as digital power supply(1.2V).
-> > > +
-> > > +  vdmix-supply:
-> > > +    description:
-> > > +      Definition of the regulator used as mixed driver power supply(1.2V).
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +    description: Reset Sensor GPIO Control (active low)
-> > > +
-> > > +  melexis,trig-gpios:
-> > > +    maxItems: 1
-> > > +    description:
-> > > +      Hardware Trigger GPIO Control (active low)
-> > > +      When the hardware trigger mode is enabled, this GPIO is used to generate
-> > > +      a low level impulse for about 100us. The impulse triggers a new
-> > > +      measurement cycle.
-> > > +
-> > > +  melexis,leden-gpios:
-> > > +    maxItems: 1
-> > > +    description:
-> > > +      Led driver enable GPIO Control (active high)
-> > > +      This GPIO notifies the illumination driver when it is safe to use led
-> > > +      signals from the sensor.
-> > 
-> > As far as I understand this isn't an input of the sensor, but a signal
-> > that is driven by the driver and controls the separate illuminator. It
-> > shouldn't be specified in this binding, as it's not a property of the
-> > sensor. You should instead have a DT node for the illumination driver.
->
-> Yes, you are right. There are illuminators, which are not ready to accept
-> the signal from the sensor, if pin levels are not right. So I need to
-> notify illuminator somehow.  Can the illumination driver be as a V4L2
-> subdevice? Then I can notify the illuminator via s_stream. In another
-> case it can damage the illuminator. What do you think?
+On 06/02/23 13:20, Krzysztof Kozlowski wrote:
+> On 06/02/2023 07:07, MD Danish Anwar wrote:
+>> From: Puranjay Mohan <p-mohan@ti.com>
+>>
+>> Add a YAML binding document for the ICSSG Programmable real time unit
+>> based Ethernet driver. This driver uses the PRU and PRUSS consumer APIs
+> 
+> You add a binding for the hardware, not for driver.
+> 
+>> to interface the PRUs and load/run the firmware for supporting ethernet
+>> functionality.
+> 
+> Subject: drop second/last, redundant "driver bindings". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> 
 
-It can be a separate subdev, yes. There are flash-related controls in
-V4L2, maybe some of them would cover your use cases ? We have a few
-flash drivers in upstream that you can look at for inspiration, for
-instance drivers/media/i2c/lm3560.c or drivers/media/i2c/adp1653.c.
+Sure I will modify the subject and commit description.
 
-> > > +  port:
-> > > +    description: MIPI CSI-2 transmitter port
-> > > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +
-> > > +    properties:
-> > > +      endpoint:
-> > > +        $ref: /schemas/media/video-interfaces.yaml#
-> > > +        unevaluatedProperties: false
-> > > +
-> > > +        properties:
-> > > +          data-lanes:
-> > > +            oneOf:
-> > > +              - items:
-> > > +                  - const: 1
-> > > +                  - const: 2
-> > > +              - items:
-> > > +                  - const: 1
-> > > +                  - const: 2
-> > > +                  - const: 3
-> > > +                  - const: 4
-> > > +
-> > > +          clock-noncontinuous: true
-> > > +          link-frequencies: true
-> > > +
-> > > +        required:
-> > > +          - data-lanes
-> > > +          - link-frequencies
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - clocks
-> > > +  - port
-> > 
-> > Let's make the supplies mandatory too, as the chip can't operate without
-> > them.
->
-> Ok
->
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/gpio/gpio.h>
-> > > +
-> > > +    i2c {
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <0>;
-> > > +
-> > > +        mlx7502x: camera@57 {
-> > > +            compatible = "melexis,mlx7502x";
-> > > +            reg = <0x57>;
-> > > +            clocks = <&mlx7502x_clk>;
-> > > +
-> > > +            assigned-clocks = <&mlx7502x_clk>;
-> > > +            assigned-clock-parents = <&mlx7502x_clk_parent>;
-> > > +            assigned-clock-rates = <8000000>;
-> > > +
-> > > +            vddd-supply = <&mlx_7502x_reg>;
-> > > +
-> > > +            reset-gpios = <&gpio_exp 6 GPIO_ACTIVE_HIGH>;
-> > > +            melexis,trig-gpios = <&gpio_exp 2 GPIO_ACTIVE_HIGH>;
-> > > +            melexis,leden-gpios = <&gpio_exp 7 GPIO_ACTIVE_HIGH>;
-> > > +
-> > > +            port {
-> > > +                mlx7502x_out_mipi_csi2: endpoint {
-> > > +                    remote-endpoint = <&mipi_csi2_from_mlx7502x>;
-> > > +                    data-lanes = <1 2 3 4>;
-> > > +                    link-frequencies = /bits/ 64 < 960000000
-> > > +                                                   904000000
-> > > +                                                   800000000
-> > > +                                                   704000000
-> > > +                                                   600000000
-> > > +                                                   300000000 >;
-> > > +                };
-> > > +            };
-> > > +        };
-> > > +    };
-> > > +
-> > > +...
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index 1a68d888ee14..b00a726bb3db 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -12678,6 +12678,7 @@ M:	Volodymyr Kharuk <vkh@melexis.com>
-> > >  L:	linux-media@vger.kernel.org
-> > >  S:	Supported
-> > >  W:	http://www.melexis.com
-> > > +F:	Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> > >  F:	include/uapi/linux/mlx7502x.h
-> > >  
-> > >  MELFAS MIP4 TOUCHSCREEN DRIVER
+>>
+>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+>> Signed-off-by: Md Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  .../bindings/net/ti,icssg-prueth.yaml         | 179 ++++++++++++++++++
+>>  1 file changed, 179 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>> new file mode 100644
+>> index 000000000000..e4dee01a272a
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>> @@ -0,0 +1,179 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/ti,icssg-prueth.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Texas Instruments ICSSG PRUSS Ethernet
+>> +
+>> +maintainers:
+>> +  - Md Danish Anwar <danishanwar@ti.com>
+>> +
+>> +description:
+>> +  Ethernet based on the Programmable Real-Time
+>> +  Unit and Industrial Communication Subsystem.
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/remoteproc/ti,pru-consumer.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ti,am654-icssg-prueth  # for AM65x SoC family
+>> +
+>> +  ti,sram:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      phandle to MSMC SRAM node
+>> +
+>> +  dmas:
+>> +    maxItems: 10
+>> +
+>> +  dma-names:
+>> +    items:
+>> +      - const: tx0-0
+>> +      - const: tx0-1
+>> +      - const: tx0-2
+>> +      - const: tx0-3
+>> +      - const: tx1-0
+>> +      - const: tx1-1
+>> +      - const: tx1-2
+>> +      - const: tx1-3
+>> +      - const: rx0
+>> +      - const: rx1
+>> +
+>> +  ethernet-ports:
+> 
+> Bring some order or logic in the order of the properties. Keep the
+> ethernet-ports as last property.
+> 
+
+Sure, I will re-arrange them.
+
+>> +    type: object
+>> +    additionalProperties: false
+> 
+> Blank line
+> 
+>> +    properties:
+>> +      '#address-cells':
+>> +        const: 1
+>> +      '#size-cells':
+>> +        const: 0
+>> +
+>> +    patternProperties:
+>> +      ^port@[0-1]$:
+>> +        type: object
+>> +        description: ICSSG PRUETH external ports
+>> +
+
+At least one ethernet port is required. Should I add the below line here for this?
+
+   minItems: 1
+
+>> Drop blank line
+> 
+>> +        $ref: ethernet-controller.yaml#
+>> +
+> 
+> Drop blank line
+> 
+>> +        unevaluatedProperties: false
+>> +
+>> +        properties:
+>> +          reg:
+>> +            items:
+>> +              - enum: [0, 1]
+>> +            description: ICSSG PRUETH port number
+>> +
+>> +          interrupts-extended:
+> 
+> Just "interrupts"
+
+I will drop / add blank lines and change this to just "interrupts".
+
+>> +            maxItems: 1
+>> +
+>> +          ti,syscon-rgmii-delay:
+>> +            items:
+>> +              - items:
+>> +                  - description: phandle to system controller node
+>> +                  - description: The offset to ICSSG control register
+>> +            $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +            description:
+>> +              phandle to system controller node and register offset
+>> +              to ICSSG control register for RGMII transmit delay
+>> +
+>> +        required:
+>> +          - reg
+> 
+> required for ethernet-ports - at least one port is required, isn't it?
+
+Yes, at least one ethernet port is required. Should I add "minItems: 1" in
+patternProperties section or should I add a new required section in
+patternProperties and mention something like port@0 as required?
+
+>> +
+>> +  ti,mii-g-rt:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: |
+>> +      phandle to MII_G_RT module's syscon regmap.
+>> +
+>> +  ti,mii-rt:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: |
+>> +      phandle to MII_RT module's syscon regmap
+>> +
+>> +  interrupts:
+>> +    maxItems: 2
+>> +    description: |
+>> +      Interrupt specifiers to TX timestamp IRQ.
+>> +
+>> +  interrupt-names:
+>> +    items:
+>> +      - const: tx_ts0
+>> +      - const: tx_ts1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - ti,sram
+>> +  - dmas
+>> +  - dma-names
+>> +  - ethernet-ports
+>> +  - ti,mii-g-rt
+>> +  - interrupts
+>> +  - interrupt-names
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    /* Example k3-am654 base board SR2.0, dual-emac */
+>> +    pruss2_eth: ethernet {
+>> +        compatible = "ti,am654-icssg-prueth";
+>> +        pinctrl-names = "default";
+>> +        pinctrl-0 = <&icssg2_rgmii_pins_default>;
+>> +        ti,sram = <&msmc_ram>;
+>> +
+>> +        ti,prus = <&pru2_0>, <&rtu2_0>, <&tx_pru2_0>,
+>> +                  <&pru2_1>, <&rtu2_1>, <&tx_pru2_1>;
+>> +        firmware-name = "ti-pruss/am65x-pru0-prueth-fw.elf",
+>> +                        "ti-pruss/am65x-rtu0-prueth-fw.elf",
+>> +                        "ti-pruss/am65x-txpru0-prueth-fw.elf",
+>> +                        "ti-pruss/am65x-pru1-prueth-fw.elf",
+>> +                        "ti-pruss/am65x-rtu1-prueth-fw.elf",
+>> +                        "ti-pruss/am65x-txpru1-prueth-fw.elf";
+>> +        ti,pruss-gp-mux-sel = <2>,      /* MII mode */
+>> +                              <2>,
+>> +                              <2>,
+>> +                              <2>,      /* MII mode */
+>> +                              <2>,
+>> +                              <2>;
+>> +        dmas = <&main_udmap 0xc300>, /* egress slice 0 */
+>> +               <&main_udmap 0xc301>, /* egress slice 0 */
+>> +               <&main_udmap 0xc302>, /* egress slice 0 */
+>> +               <&main_udmap 0xc303>, /* egress slice 0 */
+>> +               <&main_udmap 0xc304>, /* egress slice 1 */
+>> +               <&main_udmap 0xc305>, /* egress slice 1 */
+>> +               <&main_udmap 0xc306>, /* egress slice 1 */
+>> +               <&main_udmap 0xc307>, /* egress slice 1 */
+>> +               <&main_udmap 0x4300>, /* ingress slice 0 */
+>> +               <&main_udmap 0x4301>; /* ingress slice 1 */
+>> +        dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
+>> +                    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
+>> +                    "rx0", "rx1";
+>> +        ti,mii-g-rt = <&icssg2_mii_g_rt>;
+>> +        interrupts = <24 0 2>, <25 1 3>;
+> 
+> Aren't you open-coding some IRQ flags?
+> 
+
+These values are not open coded here. These values are the expected values for
+interrupt node.
+
+Here,
+
+Cell 1 -> PRU System event number
+Cell 2 -> PRU channel
+Cell 3 -> PRU host_event (target)
+
+This is documented in detail in
+Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+
+I also missed mentioning "interrupt-parent" in example section. I will add
+interrupt-parent in next revision.
+
+interrupt-parent = <&icssg2_intc>;
+
+>> +        interrupt-names = "tx_ts0", "tx_ts1";
+>> +        ethernet-ports {
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
 -- 
-Regards,
-
-Laurent Pinchart
+Thanks and Regards,
+Danish.
