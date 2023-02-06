@@ -2,240 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBF9F68BFEB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:21:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8E5B68BFC5
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:15:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbjBFOVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 09:21:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40516 "EHLO
+        id S229826AbjBFOPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 09:15:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbjBFOVB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:21:01 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 105FC170B
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 06:21:00 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id m8so11793667edd.10
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 06:20:59 -0800 (PST)
+        with ESMTP id S231387AbjBFOOk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:14:40 -0500
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72AC828D3B
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 06:14:14 -0800 (PST)
+Received: by mail-qt1-x829.google.com with SMTP id z5so12835155qtn.8
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 06:14:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MV6XLW6L8RW/R5+2kFS4UxYTCoNjk3wANf/VdVgvmZQ=;
-        b=obrZxPMx4cCoF2qc7FG3fKEj4DDxkgrHCWDr7RlB6Oaxp5rEo5zKuXAPU1AmaKEeEh
-         EmZGBYes6wS0kfe4Qwsz2msSfFGjyQh7/YeC5skCU72siY0GFnjXK4U9DI5212hKSl5g
-         zyW7X80NdKh+zrtsBiRdrMLHP7HEUZAY9MFgMxGsbBBS+2rueZmRdbZt2qfl0r0irexz
-         gkZp4xZP3p2fHiHzSjvJlKg9Q+nGIv/5BZOjkgsFLubn2DQfhOOip5qyfv64Umai11YO
-         vkpd3VhbRkUMiQqik8FyLEBUjYLtfkEeSE6IJ7iOktAbzRaQKPtDENwTbxQwViA6dFTQ
-         AOAw==
+        bh=QSDx7lR4lbIKush7SukTE/OhPs2fEUoC37d6gBX19uU=;
+        b=ERC064jLHsU/zmzw8RoyeU8P0SzprwSyrytyxl8CwLx+EClBHm9jC4OIs6DvpVHiKT
+         bCVzy3h1qM4tXtLnhXZep+n3YNCG1lFKmdcMhA2cD/gh/QUjtXepRZpyCVeQgGre1X2X
+         KnrtRxVQcz4oQRyjwKS6GLKe56g3hydKvlM6r5Ri8d3XJGWpNUnajCefgwTI4WqNL4cU
+         sru/1dQ7034KdBpTgZtly4j1p8UzyMfQFsQwIt9qdgyJXub8KYNnDl4XCuVQMqnl8C7N
+         nPj0QdiOoP5w7Mhs1gNph2awEUtYHg+xob1ow+eIUvy+fwqgdX0BK68LA16ae23n1gqu
+         GhmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MV6XLW6L8RW/R5+2kFS4UxYTCoNjk3wANf/VdVgvmZQ=;
-        b=aYA+TLhxbfofNjnn48nxnw2jgeISj58BsVlHY3R8AU55jo5pTwD+wgv/iAt17rEymz
-         PuCBuRokeGCd909eqBuIJrvQae/kHN78HJ/kcTc3NooehYAzBk/2SHRh9K0ZXlBOP/fU
-         n0yUuJeTnPXMmCZPX1me1v62Gx+Sntv/Kx5BoI93mtDF7BCcryeMDp5U9dXzfir1mT0R
-         qSRdDvecpjV7lm4nLoLSRGtOiHQ7djgqYG9LP/g3ZSHQB5XDLe+ku4ZhNUwDIBkN2YtP
-         WVGrDnp0lnCsdkLTUGj1B57jJtkoq4abVVq7Legmfvt3Ux0XtITWqWNevobLETVeXtLX
-         yJZw==
-X-Gm-Message-State: AO0yUKX5nd+4yuwqjjCyHwgfHxe3K7S0UUJzxXcjDCtE/gMHAkdnR6Ds
-        620bG2cp2i1aYcuWQ+dQEM/QlmziUT5FoUSx
-X-Google-Smtp-Source: AK7set93k49Ql3FZZglKm5wgbtW71CXolFsNzmsS9eVK2BZe0KhoIkey+fpXQLvYvnx4gjmaF3Bu3A==
-X-Received: by 2002:a05:6402:500c:b0:49e:4254:60a9 with SMTP id p12-20020a056402500c00b0049e425460a9mr24946255eda.29.1675692479239;
-        Mon, 06 Feb 2023 06:07:59 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id i5-20020a1709064ec500b00877e1bb54b0sm5536958ejv.53.2023.02.06.06.07.57
+        bh=QSDx7lR4lbIKush7SukTE/OhPs2fEUoC37d6gBX19uU=;
+        b=k30KLzxqRYhzU31kZUCyviAia+zNMGm41zpRWriU8MUk1Z60IVRqcASA3C5USDfFKv
+         JPp+gifsxEnb8BngAk3GaAcpff2Se94BwN9tn0XWtmPHHK+0Y5a9nQeKr6OHfmvhsf6J
+         NgOaUraLJZcQ8V4A3oGA7oBmr8HLFufCdlzL4BOYpUxbRLzdvkmcRvStsNYaI5s5Yf8T
+         /8I9IoiuLhBskh1LP8hPAvGCbh/6yUKPoxUB1wwiTaFfMr6jaaKEPbXnzH9E91McP2p0
+         6TrCeha3a/eSAC52/KDGTqyArS6k1s5DMeZlrHNHKo1tzZHWCyJN0dyX5Xn6EiKNEjXZ
+         3A7A==
+X-Gm-Message-State: AO0yUKWs5FT98Aktu+8ZtXPOF6CPGFMJyOr7PpB/bAyFZlU/9wjvXubR
+        rKQtjjNajtNGvp2sgUOkC1G1CQ==
+X-Google-Smtp-Source: AK7set/JWkzW8hDZXUKQoVbyq7UY837wooVRU+m9/HcISd93PIQ91tjIFTNU42WVbQ6ZqGK+UUiStg==
+X-Received: by 2002:ac8:574f:0:b0:3b9:bd28:bb6c with SMTP id 15-20020ac8574f000000b003b9bd28bb6cmr31965755qtx.36.1675692849691;
+        Mon, 06 Feb 2023 06:14:09 -0800 (PST)
+Received: from [172.22.22.4] ([98.61.227.136])
+        by smtp.googlemail.com with ESMTPSA id d136-20020a37688e000000b006fa4ac86bfbsm7475775qkc.55.2023.02.06.06.14.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 06:07:58 -0800 (PST)
-Message-ID: <94fc3698-3568-87d8-7263-68de9ca53eab@linaro.org>
-Date:   Mon, 6 Feb 2023 16:07:57 +0200
+        Mon, 06 Feb 2023 06:14:09 -0800 (PST)
+Message-ID: <78e7d084-4e76-c9f1-c627-b1256772ef9d@linaro.org>
+Date:   Mon, 6 Feb 2023 08:14:07 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH V7 2/7] clk: qcom: Add Global Clock Controller driver for
- IPQ9574
-Content-Language: en-GB
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
-        nfraprado@collabora.com, broonie@kernel.org,
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v9 09/27] gunyah: rsc_mgr: Add resource manager RPC core
+Content-Language: en-US
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>
+Cc:     Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-References: <20230206103337.21000-1-quic_devipriy@quicinc.com>
- <20230206103337.21000-3-quic_devipriy@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230206103337.21000-3-quic_devipriy@quicinc.com>
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
+ <20230120224627.4053418-10-quic_eberman@quicinc.com>
+ <94d6f57b-de3b-1135-5a30-d1cb156581cb@linaro.org>
+From:   Alex Elder <elder@linaro.org>
+In-Reply-To: <94d6f57b-de3b-1135-5a30-d1cb156581cb@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/02/2023 12:33, Devi Priya wrote:
-> Add Global Clock Controller (GCC) driver for ipq9574 based devices
+On 2/2/23 5:53 AM, Srinivas Kandagatla wrote:
+>>
+>> +struct gh_rm_rpc_hdr {
+>> +    u8 api;
+>> +    u8 type;
+>> +    __le16 seq;
+>> +    __le32 msg_id;
+>> +} __packed;
+>> +
+> #define GH_RM_RPC_HDR_SZ    sizeof(struct gh_rm_rpc_hdr)
 > 
-> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
->   Changes in V7:
-> 	- Used qcom_cc_probe instead of qcom_cc_really_probe in
-> 	  gcc_ipq9574_probe
-> 
->   drivers/clk/qcom/Kconfig       |    8 +
->   drivers/clk/qcom/Makefile      |    1 +
->   drivers/clk/qcom/gcc-ipq9574.c | 4295 ++++++++++++++++++++++++++++++++
->   3 files changed, 4304 insertions(+)
->   create mode 100644 drivers/clk/qcom/gcc-ipq9574.c
-> 
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 5ab4b7dfe3c2..a9f01d67a500 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -173,6 +173,14 @@ config IPQ_GCC_8074
->   	  i2c, USB, SD/eMMC, etc. Select this for the root clock
->   	  of ipq8074.
->   
-> +config IPQ_GCC_9574
-> +	tristate "IPQ9574 Global Clock Controller"
-> +	help
-> +	  Support for global clock controller on ipq9574 devices.
-> +	  Say Y if you want to use peripheral devices such as UART, SPI,
-> +	  i2c, USB, SD/eMMC, etc. Select this for the root clock
-> +	  of ipq9574.
-> +
->   config MSM_GCC_8660
->   	tristate "MSM8660 Global Clock Controller"
->   	help
-> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> index 3194465dd02c..51e6e5eb187b 100644
-> --- a/drivers/clk/qcom/Makefile
-> +++ b/drivers/clk/qcom/Makefile
-> @@ -27,6 +27,7 @@ obj-$(CONFIG_IPQ_GCC_4019) += gcc-ipq4019.o
->   obj-$(CONFIG_IPQ_GCC_6018) += gcc-ipq6018.o
->   obj-$(CONFIG_IPQ_GCC_806X) += gcc-ipq806x.o
->   obj-$(CONFIG_IPQ_GCC_8074) += gcc-ipq8074.o
-> +obj-$(CONFIG_IPQ_GCC_9574) += gcc-ipq9574.o
->   obj-$(CONFIG_IPQ_LCC_806X) += lcc-ipq806x.o
->   obj-$(CONFIG_MDM_GCC_9607) += gcc-mdm9607.o
->   obj-$(CONFIG_MDM_GCC_9615) += gcc-mdm9615.o
-> diff --git a/drivers/clk/qcom/gcc-ipq9574.c b/drivers/clk/qcom/gcc-ipq9574.c
-> new file mode 100644
-> index 000000000000..718106a9ac7b
-> --- /dev/null
-> +++ b/drivers/clk/qcom/gcc-ipq9574.c
+> You could use this in most of the places where sizeof is being called.
 
-[skipped]
+I'll repeat my point here.  I see no value in hiding
+the size of the structure behind a defined symbol.
 
-> +static struct clk_branch gcc_snoc_pcie3_2lane_s_clk = {
-> +	.halt_reg = 0x2e054,
-> +	.clkr = {
-> +		.enable_reg = 0x2e054,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data) {
-> +			.name = "gcc_snoc_pcie3_2lane_s_clk",
-> +			.parent_hws = (const struct clk_hw *[]) {
-> +				&pcie3_axi_s_clk_src.clkr.hw
-> +			},
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_regmap_mux pcie0_pipe_clk_src = {
-> +	.reg = 0x28064,
-> +	.shift = 8,
-> +	.width = 2,
-> +	.parent_map = gcc_pcie30_phy0_pipe_clk_xo_map,
-> +	.clkr = {
-> +		.hw.init = &(struct clk_init_data) {
-> +			.name = "pcie0_pipe_clk_src",
-> +			.parent_data = gcc_pcie30_phy0_pipe_clk_xo,
-> +			.num_parents = ARRAY_SIZE(gcc_pcie30_phy0_pipe_clk_xo),
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_regmap_mux_closest_ops,
+Use sizeof(*pointer) (if possible) or sizeof(struct foo) in
+the code; it makes it very clear that it's not something
+other than a simple object/structure size.
 
-
-clk_regmap_phy_mux_ops ?
-
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_regmap_mux pcie1_pipe_clk_src = {
-> +	.reg = 0x29064,
-> +	.shift = 8,
-> +	.width = 2,
-> +	.parent_map = gcc_pcie30_phy1_pipe_clk_xo_map,
-> +	.clkr = {
-> +		.hw.init = &(struct clk_init_data) {
-> +			.name = "pcie1_pipe_clk_src",
-> +			.parent_data = gcc_pcie30_phy1_pipe_clk_xo,
-> +			.num_parents = ARRAY_SIZE(gcc_pcie30_phy1_pipe_clk_xo),
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_regmap_mux_closest_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_regmap_mux pcie2_pipe_clk_src = {
-> +	.reg = 0x2a064,
-> +	.shift = 8,
-> +	.width = 2,
-> +	.parent_map = gcc_pcie30_phy2_pipe_clk_xo_map,
-> +	.clkr = {
-> +		.hw.init = &(struct clk_init_data) {
-> +			.name = "pcie2_pipe_clk_src",
-> +			.parent_data = gcc_pcie30_phy2_pipe_clk_xo,
-> +			.num_parents = ARRAY_SIZE(gcc_pcie30_phy2_pipe_clk_xo),
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_regmap_mux_closest_ops,
-
-clk_regmap_phy_mux_ops ?
-
-
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_regmap_mux pcie3_pipe_clk_src = {
-> +	.reg = 0x2b064,
-> +	.shift = 8,
-> +	.width = 2,
-> +	.parent_map = gcc_pcie30_phy3_pipe_clk_xo_map,
-> +	.clkr = {
-> +		.hw.init = &(struct clk_init_data) {
-> +			.name = "pcie3_pipe_clk_src",
-> +			.parent_data = gcc_pcie30_phy3_pipe_clk_xo,
-> +			.num_parents = ARRAY_SIZE(gcc_pcie30_phy3_pipe_clk_xo),
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_regmap_mux_closest_ops,
-
-clk_regmap_phy_mux_ops ?
-
-> +		},
-> +	},
-> +};
-
--- 
-With best wishes
-Dmitry
-
+					-Alex
