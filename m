@@ -2,89 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3185268C078
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:49:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 328DB68C09C
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:57:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231599AbjBFOtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 09:49:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34900 "EHLO
+        id S230256AbjBFO5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 09:57:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231567AbjBFOte (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:49:34 -0500
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B82125E25;
-        Mon,  6 Feb 2023 06:49:29 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPA id 11B9360011;
-        Mon,  6 Feb 2023 14:49:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1675694967;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=DCdYyqkSk91FGT2k2pmAC91uCq4Q0ikwYZO1U2uUWbc=;
-        b=OP2hH2uBf0k0FjW+qDpKsiyI4NEqaiPGXNjF0y8inO3q50Fg4X6ThDa7XY3yPVx1vTcpIz
-        EHUtbquhVj0NRMMgQRH88N7CQrbbjhjPS1MvSTtoSgYIHhORRbF1vBJPz9bCc4xaOTLBFY
-        txCPHhwfRQMj6ggpQv4fSNvstpp62MkeIbEZNR/Exf3/HBb5Tfp6b6uSB5CHo3bBlZKfF8
-        wSfB9VnEbMIrHZVxTu5dXQLhNavJ3li5UQo2xIC3LhchZwR0+a/ksk9fcp/F2TKzEm/tWl
-        jn2iiUxbDiNrUTO2uoQOxaLKykF8xhw7D25rt22Jt6ff+l13iu4iO2MzKU0vCg==
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S230149AbjBFO5P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:57:15 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0BEE2367B
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 06:57:10 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id hx15so34857014ejc.11
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 06:57:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cLuf1U+2WjifV8fnrslcwZDFA4TZvCGB2iPkwtWqNUI=;
+        b=oq9jViBl3HA8dQj59yZsQcWYKhAEvJWr1Mqzc1nDjWd3kRLMlEJmDIhfOc2l+p9NLd
+         sEyjvRaMXAsm/bYtTpQnIz65QqWwNZzD2ixnXeIv/n7h0wwjcYKGqo5UlUhhHj/+UxhN
+         Vjip+0N5Gcg9eBr6e9L2FgnlD02pMQtDmefHpu6L6q15uOGJwGLd6Q+iHLS5qDhwcnpv
+         jcH/BDXAdXafNKaM0EBgworEii3bTIRcz1nDLBmzdKEdZFuwosxwjqEO4W6y868kqLfD
+         btVyftrdECwXZvuYQTLDMsH366OL3edNWQJg4/Ues9yHsG8FHbMc5frF17qLpR6RVgFB
+         TLKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cLuf1U+2WjifV8fnrslcwZDFA4TZvCGB2iPkwtWqNUI=;
+        b=6qmKVjSryoq9SPcrkJsLBYWZ7iVRS+Ke8qhpebXRQmLqCpQtHS8WGgrVtrNzQGPhYO
+         L7QCtDODt4zXzhy85IcmaqnG7kAKaz2TZ83XH/swW0qYfB44fo2hOQgDWrC0r8aKoJ+S
+         Tc2CFlPae6UNorN10pfWpPzCVg9e4cR8uwrNGy3KkSerGjZYenTC2tqM98JOM7z59Mrf
+         e4tys0YmDVANZitlRfHzhqEeH1chvUj0AGJW7noKPMnhC0CJb51sWwyMSJMudnPuNrDS
+         0+92Vw9mFie1f0jol5PSPh3DAyyP/8WhtO8yus5Stmq6ucY9dBP7BBwlFDn/KrDjMB0l
+         yW5A==
+X-Gm-Message-State: AO0yUKXUZ9uA7j5WXJ+HTiqhOVBC8trUSU3cW4OUnUxAR4ZikqbsEsTk
+        YyeuzN70Dk07mQu4+ybZ3XOQVg==
+X-Google-Smtp-Source: AK7set/oKvZyc+ZrfLJPgnfOVLJVKoAm0Z0SgsTUoA8rN3b3dRK6zhySANFVfe+x2ByyCb7N0W7vLw==
+X-Received: by 2002:a17:907:7ba9:b0:87b:d3dd:e0ca with SMTP id ne41-20020a1709077ba900b0087bd3dde0camr13140091ejc.26.1675695429234;
+        Mon, 06 Feb 2023 06:57:09 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id gw1-20020a170906f14100b0087bd4e34eb8sm5495533ejb.203.2023.02.06.06.57.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Feb 2023 06:57:08 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH 3/3] MAINTAINERS: add the Infineon PEB2466 codec entry
-Date:   Mon,  6 Feb 2023 15:49:04 +0100
-Message-Id: <20230206144904.91078-4-herve.codina@bootlin.com>
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+Subject: [PATCH v2 0/8] arm64: dts: qcom: sm8350: enable GPU on the HDK board
+Date:   Mon,  6 Feb 2023 16:56:59 +0200
+Message-Id: <20230206145707.122937-1-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230206144904.91078-1-herve.codina@bootlin.com>
-References: <20230206144904.91078-1-herve.codina@bootlin.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After contributing the driver, add myself as the maintainer for the
-Infineon PEB2466 codec.
+Add A660 device to the Qualcomm SM8350 platform and enable it for the
+sm8350-hdk board. Unfortunately while adding the GPU & related devices I
+noticed that DT nodes on SM8350 are greatly out of the preagreed order,
+so patches 4-6 reorder DT nodes to follow the agreement.
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Changes since v1:
+- Fixed the subject and commit message for patch 1
+- Fixed GMU's clocks to follow the vendor kernel
+- Marked Adreno SMMU as dma-coherent
+- Dropped comments targeting sm8350 v1, we do not support that chip
+  revision.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cd22e8e06561..0cd8a4d1f7b0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10184,6 +10184,13 @@ L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	drivers/iio/pressure/dps310.c
- 
-+INFINEON PEB2466 ASoC CODEC
-+M:	Herve Codina <herve.codina@bootlin.com>
-+L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/sound/infineon,peb2466.yaml
-+F:	sound/soc/codecs/peb2466.c
-+
- INFINIBAND SUBSYSTEM
- M:	Jason Gunthorpe <jgg@nvidia.com>
- M:	Leon Romanovsky <leonro@nvidia.com>
+Dmitry Baryshkov (8):
+  dt-bindings: clock: Merge qcom,gpucc-sm8350 into qcom,gpucc.yaml
+  dt-bindings: power: qcom,rpmpd: add RPMH_REGULATOR_LEVEL_LOW_SVS_L1
+  dt-bindings: display/msm/gmu: add Adreno 660 support
+  arm64: dts: qcom: sm8350: reorder device nodes
+  arm64: dts: qcom: sm8350: move more nodes to correct place
+  arm64: dts: qcom: sm8350: finish reordering nodes
+  arm64: dts: qcom: sm8350: add GPU, GMU, GPU CC and SMMU nodes
+  arm64: dts: qcom: sm8350-hdk: enable GPU
+
+ .../bindings/clock/qcom,gpucc-sm8350.yaml     |   71 -
+ .../devicetree/bindings/clock/qcom,gpucc.yaml |    2 +
+ .../devicetree/bindings/display/msm/gmu.yaml  |    1 +
+ arch/arm64/boot/dts/qcom/sm8350-hdk.dts       |    8 +
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          | 2512 +++++++++--------
+ include/dt-bindings/power/qcom-rpmpd.h        |    1 +
+ 6 files changed, 1357 insertions(+), 1238 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,gpucc-sm8350.yaml
+
 -- 
 2.39.1
 
