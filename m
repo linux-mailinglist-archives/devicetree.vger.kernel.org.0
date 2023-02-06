@@ -2,91 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6495F68C746
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 21:09:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 443A168C75A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 21:15:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbjBFUJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 15:09:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47344 "EHLO
+        id S230159AbjBFUPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 15:15:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229676AbjBFUJH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 15:09:07 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCE9E1C7EB
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 12:09:05 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id pj3so12718461pjb.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 12:09:05 -0800 (PST)
+        with ESMTP id S229509AbjBFUPS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 15:15:18 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9DA21E296
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 12:15:15 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id bx22so9818612pjb.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 12:15:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g8zQ21lgm/+hysyLZDWkcJECUGjBC4CaZ4mgsX1s5q0=;
-        b=O9Ya8X/CYW79qvsDBwCU4QasH/GJVsFJdbauSxy3ALcMP6Td/e++Sr2/Kk6Y/0Bi8A
-         HExajCOknNGEaSGBqbSIS45SYN+jvrVOYSflvwXC3/9Qjgfb0vkmu/mC3BtSnmYO9Azo
-         YPq/Mke+7pPZKPUQgwb8ALjXPF1KrfIvJzJ39kARqaWQOILz2ekiU1kAmdv7kLwwoYFq
-         Swvoy0nXykBQyGQaOv/e5ca1b3v6nwtm5i0x5rsR/qHbJEI7HvDPoGHOVfAIrnCwXGAV
-         Ve4YLBD8wxoPxTg47Ch0cATZ7vPGTBikjD33kVkmh+AQic7pGD32UqcBXm345/EvJKI8
-         8QpA==
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MxVFygB+s6JhMTYYGUwxJSOFTRuFYcBJHXW1ILzDh4s=;
+        b=dE/VgE4aiAPBGl3Wx3OM4FAd+oDs1q+MILDu2tmzY7z0mFl5OEXDRMVxfXg36LlJR4
+         O37G+Sc9qsM73DZ6nVYZtk0JZjLjeCKvw508klbl6ceZfF/4+s0Xo1D3IzwG7DR30VZk
+         sUOhCVVQY+C9X7zCHFCJVXNAvdaEPzVap90KA4Tx8rQ7acUt6zG2EPRvFgMW+u/twjhs
+         JSNaoNn+nD0Oq2dkRB3C17Xjqz3FibkAfDEe6jG4HXEtn+wcMnYsEX2yzjnRhPfoJQMp
+         gbYbcnxByjshQW9jsnB0IGo7JlzYKzHY3DiGIDVU0QMyGNGWztrFxwVigcUvyHNg4rGX
+         Tj7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g8zQ21lgm/+hysyLZDWkcJECUGjBC4CaZ4mgsX1s5q0=;
-        b=P1uXrJGRm727YKX1yZ8ONSmKOMjbG+lgw5Y9Hfp0MYKDBxs3ah7PYXoskNFS3AkWu9
-         +W/nfzEjbUMY3HT6JGYjfSoJ4Wr/pVvTmRKfKutQUnZTIAyx+FAlnM0FRp1hQ4w30GJ8
-         8i6gYgV4J9WRT0ZF473TWbRY9p/gyUb5hRqzwEcQA4HaYCc1QreJQ+UeCjp+nx4k5sDb
-         RomDtF1klqTJPSgmrhrBE8OX2YWFz12+ruIJ2HHrHKI44eNwG005rhcp0nvWgK1/1sGg
-         0mMaeuJafQCo9yqLgadXpAbo/XoL+FCPORQODFw484HxSuW2U86Yq1i/n4PWBejtx0n3
-         ltLA==
-X-Gm-Message-State: AO0yUKX0BY7yrhYqyfbojXT/8hUhuv131dHd6X/kuvj7PCXNSri5QoqY
-        kwnnFH/NTVN6IHKBB0Qkx8gqssXcTgkE2BUjQATPVA==
-X-Google-Smtp-Source: AK7set/KBPOtO+P54MX/LciN9urMG1z25fzyBFed50xf4hc+H6GtlXs0JkU2MZxc6mAROsbMMvV71vF/eDS3vFQiFbE=
-X-Received: by 2002:a17:90a:187:b0:22c:ad5e:e1e3 with SMTP id
- 7-20020a17090a018700b0022cad5ee1e3mr3608581pjc.141.1675714144798; Mon, 06 Feb
- 2023 12:09:04 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MxVFygB+s6JhMTYYGUwxJSOFTRuFYcBJHXW1ILzDh4s=;
+        b=voDuo6r7Zni7JMCKdt7Pbuc88Vy0uCLGOROhF5LBT0kjkzq7bz8qWpMtrbUcXoOkjw
+         vuz/uZE5q78JIDVh85MCfLN52889q8z547KnZ7G11fX1mchxH9xOoQR0boN2QUxvnndr
+         CZ4i1LmqOHiNj3tAYT3Mc9/Dse4W3q7Sn6aLxyDxphZnkujOgi0nMRb8XOzgUbTMln+/
+         rIrdKfMtsZt4DL7dHt9KKHNMvAHWE/Ab6xIXmHEQ2Zs+Q3+ZP3t9Qb6ZXqDBD+P5ldWx
+         DALiHL5h8cUuL4IP3XuZkwcbb0Z+33R+ZtE44lSVLi4VUGWnwXelb3lWDIljoIZSr/sT
+         wXRg==
+X-Gm-Message-State: AO0yUKU6++qZIGNgNVDPkvntiWT52goFvkP3ROcjpQ1PFnD3BpxPaCb3
+        mMG44JrBBevdVkOrsp/VhE7h4Q==
+X-Google-Smtp-Source: AK7set97KVIZp2KqBRd3V9YN6e2IalxIwrU2sjpVKl1CrB2R7mS0EHe5J+f4YiuXO1YRqBuyZB8O/A==
+X-Received: by 2002:a05:6a20:e413:b0:c0:c905:7b23 with SMTP id nh19-20020a056a20e41300b000c0c9057b23mr290481pzb.48.1675714515334;
+        Mon, 06 Feb 2023 12:15:15 -0800 (PST)
+Received: from evan.ba.rivosinc.com ([66.220.2.162])
+        by smtp.gmail.com with ESMTPSA id k10-20020a63ab4a000000b004df4fbb9823sm6425079pgp.68.2023.02.06.12.15.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Feb 2023 12:15:14 -0800 (PST)
+From:   Evan Green <evan@rivosinc.com>
+To:     Palmer Dabbelt <palmer@rivosinc.com>
+Cc:     Conor Dooley <conor@kernel.org>, vineetg@rivosinc.com,
+        heiko@sntech.de, slewis@rivosinc.com,
+        Evan Green <evan@rivosinc.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Andrew Bresticker <abrestic@rivosinc.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Atish Patra <atishp@rivosinc.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Celeste Liu <coelacanthus@outlook.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Dao Lu <daolu@rivosinc.com>, Guo Ren <guoren@kernel.org>,
+        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Qinglin Pan <panqinglin2020@iscas.ac.cn>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ruizhe Pan <c141028@gmail.com>, Shuah Khan <shuah@kernel.org>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        Tobias Klauser <tklauser@distanz.ch>,
+        Tsukasa OI <research_trasio@irq.a4lg.com>,
+        Xianting Tian <xianting.tian@linux.alibaba.com>,
+        devicetree@vger.kernel.org, dram <dramforever@live.com>,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: [PATCH v2 0/6] RISC-V Hardware Probing User Interface
+Date:   Mon,  6 Feb 2023 12:14:49 -0800
+Message-Id: <20230206201455.1790329-1-evan@rivosinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230127001141.407071-1-saravanak@google.com> <20230130085542.38546-1-naresh.kamboju@linaro.org>
- <CAGETcx_411fVxsM-ZMK7j2Bvkmi2TKPbzSuD+03M3cb7WKHfJw@mail.gmail.com>
- <20230131101813.goaoy32qvrowvyyb@bogus> <CALHCpMijXAgQx2qq8g8zdq=6AHwP+g5WVBjjry=v+dKEq9KDLw@mail.gmail.com>
- <CAGETcx_UvW819m1Y-QU_ySB1nG_RegKKT06=YjkK=C_qjbAySw@mail.gmail.com>
- <CALHCpMha_1nXt4rUe+A184XSWpyNk0_PkYjWZ+tUN7BJWqENLA@mail.gmail.com>
- <CAGETcx_uri6exkv1Jkzmc4PyEam9yjuH2H1zrq4LYNtJ+XDMWw@mail.gmail.com> <20230206103912.7db5ed72@xps-13>
-In-Reply-To: <20230206103912.7db5ed72@xps-13>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 6 Feb 2023 12:08:28 -0800
-Message-ID: <CAGETcx-0VboaAeoa+_AqDtrDj6v6ZytFj6pU-FVyAu-pk-hG6A@mail.gmail.com>
-Subject: Re: [PATCH v2 00/11] fw_devlink improvements
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Maxim Kiselev <bigunclemax@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>,
-        abel.vesa@linaro.org, alexander.stein@ew.tq-group.com,
-        andriy.shevchenko@linux.intel.com, brgl@bgdev.pl,
-        colin.foster@in-advantage.com, cristian.marussi@arm.com,
-        devicetree@vger.kernel.org, dianders@chromium.org,
-        djrscally@gmail.com, dmitry.baryshkov@linaro.org,
-        festevam@gmail.com, fido_max@inbox.ru, frowand.list@gmail.com,
-        geert+renesas@glider.be, geert@linux-m68k.org,
-        gregkh@linuxfoundation.org, heikki.krogerus@linux.intel.com,
-        jpb@kernel.org, jstultz@google.com, kernel-team@android.com,
-        kernel@pengutronix.de, lenb@kernel.org, linus.walleij@linaro.org,
-        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux@roeck-us.net, lkft@linaro.org, luca.weiss@fairphone.com,
-        magnus.damm@gmail.com, martin.kepplinger@puri.sm, maz@kernel.org,
-        rafael@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
-        sakari.ailus@linux.intel.com, shawnguo@kernel.org,
-        tglx@linutronix.de, tony@atomide.com,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,233 +97,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 6, 2023 at 1:39 AM Miquel Raynal <miquel.raynal@bootlin.com> wr=
-ote:
->
-> Hi Saravana,
->
-> + Srinivas, nvmem maintainer
->
-> saravanak@google.com wrote on Sun, 5 Feb 2023 17:32:57 -0800:
->
-> > On Fri, Feb 3, 2023 at 1:39 AM Maxim Kiselev <bigunclemax@gmail.com> wr=
-ote:
-> > >
-> > > =D0=BF=D1=82, 3 =D1=84=D0=B5=D0=B2=D1=80. 2023 =D0=B3. =D0=B2 09:07, =
-Saravana Kannan <saravanak@google.com>:
-> > > >
-> > > > On Thu, Feb 2, 2023 at 9:36 AM Maxim Kiselev <bigunclemax@gmail.com=
-> wrote:
-> > > > >
-> > > > > Hi Saravana,
-> > > > >
-> > > > > > Can you try the patch at the end of this email under these
-> > > > > > configurations and tell me which ones fail vs pass? I don't nee=
-d logs
-> > > > >
-> > > > > I did these tests and here is the results:
-> > > >
-> > > > Did you hand edit the In-Reply-To: in the header? Because in the
-> > > > thread you are reply to the wrong email, but the context in your em=
-ail
-> > > > seems to be from the right email.
-> > > >
-> > > > For example, see how your reply isn't under the email you are reply=
-ing
-> > > > to in this thread overview:
-> > > > https://lore.kernel.org/lkml/20230127001141.407071-1-saravanak@goog=
-le.com/#r
-> > > >
-> > > > > 1. On top of this series - Not works
-> > > > > 2. Without this series    - Works
-> > > > > 3. On top of the series with the fwnode_dev_initialized() deleted=
- - Not works
-> > > > > 4. Without this series, with the fwnode_dev_initialized() deleted=
-  - Works
-> > > > >
-> > > > > So your nvmem/core.c patch helps only when it is applied without =
-the series.
-> > > > > But despite the fact that this helps to avoid getting stuck at pr=
-obing
-> > > > > my ethernet device, there is still regression.
-> > > > >
-> > > > > When the ethernet module is loaded it takes a lot of time to drop=
- dependency
-> > > > > from the nvmem-cell with mac address.
-> > > > >
-> > > > > Please look at the kernel logs below.
-> > > >
-> > > > The kernel logs below really aren't that useful for me in their
-> > > > current state. See more below.
-> > > >
-> > > > ---8<---- <snip> --->8----
-> > > >
-> > > > > P.S. Your nvmem patch definitely helps to avoid a device probe st=
-uck
-> > > > > but look like it is not best way to solve a problem which we disc=
-ussed
-> > > > > in the MTD thread.
-> > > > >
-> > > > > P.P.S. Also I don't know why your nvmem-cell patch doesn't help w=
-hen it was
-> > > > > applied on top of this series. Maybe I missed something.
-> > > >
-> > > > Yeah, I'm not too sure if the test was done correctly. You also did=
-n't
-> > > > answer my question about the dts from my earlier email.
-> > > > https://lore.kernel.org/lkml/CAGETcx8FpmbaRm2CCwqt3BRBpgbogwP5gNB+i=
-A5OEtuxWVTNLA@mail.gmail.com/#t
-> > > >
-> > > > So, can you please retest config 1 with all pr_debug and dev_dbg in
-> > > > drivers/core/base.c changed to the _info variants? And then share t=
-he
-> > > > kernel log from the beginning of boot? Maybe attach it to the email=
- so
-> > > > it doesn't get word wrapped by your email client. And please point =
-me
-> > > > to the .dts that corresponds to your board. Without that, I can't
-> > > > debug much.
-> > > >
-> > > > Thanks,
-> > > > Saravana
-> > >
-> > > > Did you hand edit the In-Reply-To: in the header? Because in the
-> > > > thread you are reply to the wrong email, but the context in your em=
-ail
-> > > > seems to be from the right email.
-> > >
-> > > Sorry for that, it seems like I accidently deleted it.
-> > >
-> > > > So, can you please retest config 1 with all pr_debug and dev_dbg in
-> > > > drivers/core/base.c changed to the _info variants? And then share t=
-he
-> > > > kernel log from the beginning of boot? Maybe attach it to the email=
- so
-> > > > it doesn't get word wrapped by your email client. And please point =
-me
-> > > > to the .dts that corresponds to your board. Without that, I can't
-> > > > debug much.
-> > >
-> > > Ok, I retested config 1 with all _debug logs changed to the _info. I
-> > > added the kernel log and the dts file to the attachment of this email=
-.
-> >
-> > Ah, so your device is not supported/present upstream? Even though it's
-> > not upstream, I'll help fix this because it should fix what I believe
-> > are unreported issues in upstream.
-> >
-> > Ok I know why configs 1 - 4 behaved the way they did and why my test
-> > patch didn't help.
-> >
-> > After staring at mtd/nvmem code for a few hours I think mtd/nvmem
-> > interaction is kind of a mess.
->
-> nvmem is a recent subsystem but mtd carries a lot of legacy stuff we
-> cannot really re-wire without breaking users, so nvmem on top of mtd
-> of course inherit from the fragile designs in place.
 
-Thanks for the context. Yeah, I figured. That's why I explicitly
-limited my comment to "interaction". Although, I'd love to see the MTD
-parsers all be converted to proper drivers that probe. MTD is
-essentially repeating the driver matching logic. I think it can be
-cleaned up to move to proper drivers and still not break backward
-compatibility. Not saying it'll be trivial, but it should be possible.
-Ironically MTD uses mtd_class but has real drivers that work on the
-device (compared to nvmem_bus below).
+These are very much up for discussion, as it's a pretty big new user
+interface and it's quite a bit different from how we've historically
+done things: this isn't just providing an ISA string to userspace, this
+has its own format for providing information to userspace.
 
-> > mtd core creates "partition" platform
-> > devices (including for nvmem-cells) that are probed by drivers in
-> > drivers/nvmem. However, there's no driver for "nvmem-cells" partition
-> > platform device. However, the nvmem core creates nvmem_device when
-> > nvmem_register() is called by MTD or these partition platform devices
-> > created by MTD. But these nvmem_devices are added to a nvmem_bus but
-> > the bus has no means to even register a driver (it should really be a
-> > nvmem_class and not nvmem_bus).
->
-> Srinivas, do you think we could change this?
+There's been a bunch of off-list discussions about this, including at
+Plumbers.  The original plan was to do something involving providing an
+ISA string to userspace, but ISA strings just aren't sufficient for a
+stable ABI any more: in order to parse an ISA string users need the
+version of the specifications that the string is written to, the version
+of each extension (sometimes at a finer granularity than the RISC-V
+releases/versions encode), and the expected use case for the ISA string
+(ie, is it a U-mode or M-mode string).  That's a lot of complexity to
+try and keep ABI compatible and it's probably going to continue to grow,
+as even if there's no more complexity in the specifications we'll have
+to deal with the various ISA string parsing oddities that end up all
+over userspace.
 
-Yeah, this part gets a bit tricky. It depends on whether the sysfs
-files for nvmem devices is considered an ABI. Changing from bus to
-class would change the sysfs path for nvmem devices from:
-/sys/class/nvmem to /sys/bus/nvmem
+Instead this patch set takes a very different approach and provides a set
+of key/value pairs that encode various bits about the system.  The big
+advantage here is that we can clearly define what these mean so we can
+ensure ABI stability, but it also allows us to encode information that's
+unlikely to ever appear in an ISA string (see the misaligned access
+performance, for example).  The resulting interface looks a lot like
+what arm64 and x86 do, and will hopefully fit well into something like
+ACPI in the future.
 
-> > And the nvmem_device sometimes points
-> > to the DT node of the MTD device or sometimes the partition platform
-> > devices or maybe no DT node at all.
->
-> I guess this comes from the fact that this is not strongly defined in
-> mtd and depends on the situation (not mentioning 20 years of history
-> there as well). "mtd" is a bit inconsistent on what it means. Older
-> designs mixed: controllers, ECC engines when relevant and memories;
-> while these three components are completely separated. Hence
-> sometimes the mtd device ends up being the top level controller,
-> sometimes it's just one partition...
->
-> But I'm surprised not all of them point to a DT node. Could you show us
-> an example? Because that might likely be unexpected (or perhaps I am
-> missing something).
+The actual user interface is a syscall.  I'm not really sure that's the
+right way to go about this, but it makes for flexible prototying.
+Various other approaches have been talked about like making HWCAP2 a
+pointer, having a VDSO routine, or exposing this via sysfs.  Those seem
+like generally reasonable approaches, but I've yet to figure out a way
+to get the general case working without a syscall as that's the only way
+I've come up with to deal with the heterogenous CPU case.  Happy to hear
+if someone has a better idea, though, as I don't really want to add a
+syscall if we can avoid it.
 
-Well, the logic that sets the DT node for nvmem_device is like so:
+An example series in glibc exposing this syscall and using it in an
+ifunc selector for memcpy can be found at [1].
 
-        if (config->of_node)
-                nvmem->dev.of_node =3D config->of_node;
-        else if (!config->no_of_node)
-                nvmem->dev.of_node =3D config->dev->of_node;
+[1] https://public-inbox.org/libc-alpha/20230206194819.1679472-1-evan@rivosinc.com/T/#t
 
-So there's definitely a path (where both if's could be false) where
-the DT node will not get set. I don't know if that path is possible
-with the existing users of nvmem_register(), but it's definitely
-possible.
+Changes in v2:
+ - Changed the interface to look more like poll(). Rather than supplying
+   key_offset and getting back an array of values with numerically
+   contiguous keys, have the user pre-fill the key members of the array,
+   and the kernel will fill in the corresponding values. For any key it
+   doesn't recognize, it will set the key of that element to -1. This
+   allows usermode to quickly ask for exactly the elements it cares
+   about, and not get bogged down in a back and forth about newer keys
+   that older kernels might not recognize. In other words, the kernel
+   can communicate that it doesn't recognize some of the keys while
+   still providing the data for the keys it does know.
+ - Added a shortcut to the cpuset parameters that if a size of 0 and
+   NULL is provided for the CPU set, the kernel will use a cpu mask of
+   all online CPUs. This is convenient because I suspect most callers
+   will only want to act on a feature if it's supported on all CPUs, and
+   it's a headache to dynamically allocate an array of all 1s, not to
+   mention a waste to have the kernel loop over all of the offline bits.
+ - Fixed logic error in if(of_property_read_string...) that caused crash
+ - Include cpufeature.h in cpufeature.h to avoid undeclared variable
+   warning.
+ - Added a _MASK define
+ - Fix random checkpatch complaints
+ - Updated the selftests to the new API and added some more.
+ - Fixed indentation, comments in .S, and general checkpatch complaints.
 
-> > So it's a mess of multiple devices pointing to the same DT node with
-> > no clear way to identify which ones will point to a DT node and which
-> > ones will probe and which ones won't. In the future, we shouldn't
-> > allow adding new compatible strings for partitions for which we don't
-> > plan on adding nvmem drivers.
-> >
-> > Can you give the patch at the end of the email a shot? It should fix
-> > the issue with this series and without this series. It just avoids
-> > this whole mess by not creating useless platform device for
-> > nvmem-cells compatible DT nodes.
->
-> Thanks a lot for your help.
+Evan Green (4):
+  RISC-V: Move struct riscv_cpuinfo to new header
+  RISC-V: Add a syscall for HW probing
+  RISC-V: hwprobe: Support probing of misaligned access performance
+  selftests: Test the new RISC-V hwprobe interface
 
-No problem. I want fw_devlink to work for everyone.
+Palmer Dabbelt (2):
+  RISC-V: hwprobe: Add support for RISCV_HWPROBE_BASE_BEHAVIOR_IMA
+  dt-bindings: Add RISC-V misaligned access performance
 
-> >
-> > Thanks,
-> > Saravana
-> >
-> > diff --git a/drivers/mtd/mtdpart.c b/drivers/mtd/mtdpart.c
-> > index d442fa94c872..88a213f4d651 100644
-> > --- a/drivers/mtd/mtdpart.c
-> > +++ b/drivers/mtd/mtdpart.c
-> > @@ -577,6 +577,7 @@ static int mtd_part_of_parse(struct mtd_info *maste=
-r,
-> >  {
-> >         struct mtd_part_parser *parser;
-> >         struct device_node *np;
-> > +       struct device_node *child;
-> >         struct property *prop;
-> >         struct device *dev;
-> >         const char *compat;
-> > @@ -594,6 +595,10 @@ static int mtd_part_of_parse(struct mtd_info *mast=
-er,
-> >         else
-> >                 np =3D of_get_child_by_name(np, "partitions");
-> >
-> > +       for_each_child_of_node(np, child)
-> > +               if (of_device_is_compatible(child, "nvmem-cells"))
-> > +                       of_node_set_flag(child, OF_POPULATED);
->
-> What about a comment explaining why we need that in the final patch
-> (with a comment)? Otherwise it's a little bit obscure.
+ .../devicetree/bindings/riscv/cpus.yaml       |  15 ++
+ Documentation/riscv/hwprobe.rst               |  66 ++++++
+ Documentation/riscv/index.rst                 |   1 +
+ arch/riscv/include/asm/cpufeature.h           |  23 +++
+ arch/riscv/include/asm/hwprobe.h              |  13 ++
+ arch/riscv/include/asm/smp.h                  |   9 +
+ arch/riscv/include/asm/syscall.h              |   3 +
+ arch/riscv/include/uapi/asm/hwprobe.h         |  35 ++++
+ arch/riscv/include/uapi/asm/unistd.h          |   8 +
+ arch/riscv/kernel/cpu.c                       |  11 +-
+ arch/riscv/kernel/cpufeature.c                |  31 ++-
+ arch/riscv/kernel/sys_riscv.c                 | 192 +++++++++++++++++-
+ tools/testing/selftests/Makefile              |   1 +
+ tools/testing/selftests/riscv/Makefile        |  58 ++++++
+ .../testing/selftests/riscv/hwprobe/Makefile  |  10 +
+ .../testing/selftests/riscv/hwprobe/hwprobe.c |  89 ++++++++
+ .../selftests/riscv/hwprobe/sys_hwprobe.S     |  12 ++
+ tools/testing/selftests/riscv/libc.S          |  46 +++++
+ 18 files changed, 613 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/riscv/hwprobe.rst
+ create mode 100644 arch/riscv/include/asm/cpufeature.h
+ create mode 100644 arch/riscv/include/asm/hwprobe.h
+ create mode 100644 arch/riscv/include/uapi/asm/hwprobe.h
+ create mode 100644 tools/testing/selftests/riscv/Makefile
+ create mode 100644 tools/testing/selftests/riscv/hwprobe/Makefile
+ create mode 100644 tools/testing/selftests/riscv/hwprobe/hwprobe.c
+ create mode 100644 tools/testing/selftests/riscv/hwprobe/sys_hwprobe.S
+ create mode 100644 tools/testing/selftests/riscv/libc.S
 
-This wasn't meant to be reviewed :) Just a quick patch to make sure
-I'm going down the right path. Once Maxim confirms I was going to roll
-this into a proper patch.
+-- 
+2.25.1
 
-But point noted. Will add a comment.
-
-Thanks,
-Saravana
