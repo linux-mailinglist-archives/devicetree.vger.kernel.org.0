@@ -2,110 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB66368C727
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 20:59:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6495F68C746
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 21:09:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbjBFT71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 14:59:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42592 "EHLO
+        id S229556AbjBFUJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 15:09:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230270AbjBFT7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 14:59:24 -0500
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08A02A157;
-        Mon,  6 Feb 2023 11:59:22 -0800 (PST)
-Received: by mail-oi1-f182.google.com with SMTP id v15so3522524oie.9;
-        Mon, 06 Feb 2023 11:59:22 -0800 (PST)
+        with ESMTP id S229676AbjBFUJH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 15:09:07 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCE9E1C7EB
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 12:09:05 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id pj3so12718461pjb.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 12:09:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g8zQ21lgm/+hysyLZDWkcJECUGjBC4CaZ4mgsX1s5q0=;
+        b=O9Ya8X/CYW79qvsDBwCU4QasH/GJVsFJdbauSxy3ALcMP6Td/e++Sr2/Kk6Y/0Bi8A
+         HExajCOknNGEaSGBqbSIS45SYN+jvrVOYSflvwXC3/9Qjgfb0vkmu/mC3BtSnmYO9Azo
+         YPq/Mke+7pPZKPUQgwb8ALjXPF1KrfIvJzJ39kARqaWQOILz2ekiU1kAmdv7kLwwoYFq
+         Swvoy0nXykBQyGQaOv/e5ca1b3v6nwtm5i0x5rsR/qHbJEI7HvDPoGHOVfAIrnCwXGAV
+         Ve4YLBD8wxoPxTg47Ch0cATZ7vPGTBikjD33kVkmh+AQic7pGD32UqcBXm345/EvJKI8
+         8QpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=kfUXbuBiDM9nMlhtgfoicYGOlCIHH58e/8hdvSE8jJ4=;
-        b=S7dMYRD1lNWt0tCYpZU7VzLUrf7DcuoLtzYbL3RWwRcRf8EKrRhWNFac2kRyQW94BY
-         DOqAtA4DqvhkwDVGAV8UM+UDXtAgcxD0OB2lRjpagZtgHKUsi+0C+qf/kVrp4hMKROml
-         2Eye+CfwNyPbcyJhJLuVHvsdHRAASNy4dzqKEHu6djIbd6MZO4RfXE1kJSJNmh+3nUYv
-         vgbUDbIdd0f8Uy7hjT0eUojiS9oXhN+eLY6jTsuMFoVP2Amp8xtDWOUKJt36OX598atx
-         GDUtiyxcHZKcx3sLw0sVyusc3NM8tzavMCmcDdPTiPkSFCJmo93161Q6RIKZ+L4DShOp
-         yt0g==
-X-Gm-Message-State: AO0yUKXb4DsI5aLai1zabEJ7JYKHI5vBD/ibZ+41YFfWNPza+DlJBapa
-        fNEbKP/jvZ0Qe0tCaRznQQ==
-X-Google-Smtp-Source: AK7set/6Imd/3QnF67lbWtxRUQQuY9+VZu9NFwfZLt5/o89SdZ4M12nskxoufA3QrLtMbKAI2XInqA==
-X-Received: by 2002:a05:6808:4296:b0:364:e9af:f254 with SMTP id dq22-20020a056808429600b00364e9aff254mr254470oib.49.1675713560836;
-        Mon, 06 Feb 2023 11:59:20 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l5-20020a056808020500b0037834b1a20bsm4678259oie.0.2023.02.06.11.59.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Feb 2023 11:59:20 -0800 (PST)
-Received: (nullmailer pid 1217213 invoked by uid 1000);
-        Mon, 06 Feb 2023 19:59:19 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=g8zQ21lgm/+hysyLZDWkcJECUGjBC4CaZ4mgsX1s5q0=;
+        b=P1uXrJGRm727YKX1yZ8ONSmKOMjbG+lgw5Y9Hfp0MYKDBxs3ah7PYXoskNFS3AkWu9
+         +W/nfzEjbUMY3HT6JGYjfSoJ4Wr/pVvTmRKfKutQUnZTIAyx+FAlnM0FRp1hQ4w30GJ8
+         8i6gYgV4J9WRT0ZF473TWbRY9p/gyUb5hRqzwEcQA4HaYCc1QreJQ+UeCjp+nx4k5sDb
+         RomDtF1klqTJPSgmrhrBE8OX2YWFz12+ruIJ2HHrHKI44eNwG005rhcp0nvWgK1/1sGg
+         0mMaeuJafQCo9yqLgadXpAbo/XoL+FCPORQODFw484HxSuW2U86Yq1i/n4PWBejtx0n3
+         ltLA==
+X-Gm-Message-State: AO0yUKX0BY7yrhYqyfbojXT/8hUhuv131dHd6X/kuvj7PCXNSri5QoqY
+        kwnnFH/NTVN6IHKBB0Qkx8gqssXcTgkE2BUjQATPVA==
+X-Google-Smtp-Source: AK7set/KBPOtO+P54MX/LciN9urMG1z25fzyBFed50xf4hc+H6GtlXs0JkU2MZxc6mAROsbMMvV71vF/eDS3vFQiFbE=
+X-Received: by 2002:a17:90a:187:b0:22c:ad5e:e1e3 with SMTP id
+ 7-20020a17090a018700b0022cad5ee1e3mr3608581pjc.141.1675714144798; Mon, 06 Feb
+ 2023 12:09:04 -0800 (PST)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20230206153449.596326-3-jbrunet@baylibre.com>
-References: <20230206153449.596326-1-jbrunet@baylibre.com>
- <20230206153449.596326-3-jbrunet@baylibre.com>
-Message-Id: <167571334291.1212116.1869881432057405431.robh@kernel.org>
-Subject: Re: [PATCH v2 2/7] ASoC: dt-bindings: meson: convert axg tdm
- formatters to schema
-Date:   Mon, 06 Feb 2023 13:59:19 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20230127001141.407071-1-saravanak@google.com> <20230130085542.38546-1-naresh.kamboju@linaro.org>
+ <CAGETcx_411fVxsM-ZMK7j2Bvkmi2TKPbzSuD+03M3cb7WKHfJw@mail.gmail.com>
+ <20230131101813.goaoy32qvrowvyyb@bogus> <CALHCpMijXAgQx2qq8g8zdq=6AHwP+g5WVBjjry=v+dKEq9KDLw@mail.gmail.com>
+ <CAGETcx_UvW819m1Y-QU_ySB1nG_RegKKT06=YjkK=C_qjbAySw@mail.gmail.com>
+ <CALHCpMha_1nXt4rUe+A184XSWpyNk0_PkYjWZ+tUN7BJWqENLA@mail.gmail.com>
+ <CAGETcx_uri6exkv1Jkzmc4PyEam9yjuH2H1zrq4LYNtJ+XDMWw@mail.gmail.com> <20230206103912.7db5ed72@xps-13>
+In-Reply-To: <20230206103912.7db5ed72@xps-13>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 6 Feb 2023 12:08:28 -0800
+Message-ID: <CAGETcx-0VboaAeoa+_AqDtrDj6v6ZytFj6pU-FVyAu-pk-hG6A@mail.gmail.com>
+Subject: Re: [PATCH v2 00/11] fw_devlink improvements
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Maxim Kiselev <bigunclemax@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        abel.vesa@linaro.org, alexander.stein@ew.tq-group.com,
+        andriy.shevchenko@linux.intel.com, brgl@bgdev.pl,
+        colin.foster@in-advantage.com, cristian.marussi@arm.com,
+        devicetree@vger.kernel.org, dianders@chromium.org,
+        djrscally@gmail.com, dmitry.baryshkov@linaro.org,
+        festevam@gmail.com, fido_max@inbox.ru, frowand.list@gmail.com,
+        geert+renesas@glider.be, geert@linux-m68k.org,
+        gregkh@linuxfoundation.org, heikki.krogerus@linux.intel.com,
+        jpb@kernel.org, jstultz@google.com, kernel-team@android.com,
+        kernel@pengutronix.de, lenb@kernel.org, linus.walleij@linaro.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux@roeck-us.net, lkft@linaro.org, luca.weiss@fairphone.com,
+        magnus.damm@gmail.com, martin.kepplinger@puri.sm, maz@kernel.org,
+        rafael@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        sakari.ailus@linux.intel.com, shawnguo@kernel.org,
+        tglx@linutronix.de, tony@atomide.com,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Feb 6, 2023 at 1:39 AM Miquel Raynal <miquel.raynal@bootlin.com> wr=
+ote:
+>
+> Hi Saravana,
+>
+> + Srinivas, nvmem maintainer
+>
+> saravanak@google.com wrote on Sun, 5 Feb 2023 17:32:57 -0800:
+>
+> > On Fri, Feb 3, 2023 at 1:39 AM Maxim Kiselev <bigunclemax@gmail.com> wr=
+ote:
+> > >
+> > > =D0=BF=D1=82, 3 =D1=84=D0=B5=D0=B2=D1=80. 2023 =D0=B3. =D0=B2 09:07, =
+Saravana Kannan <saravanak@google.com>:
+> > > >
+> > > > On Thu, Feb 2, 2023 at 9:36 AM Maxim Kiselev <bigunclemax@gmail.com=
+> wrote:
+> > > > >
+> > > > > Hi Saravana,
+> > > > >
+> > > > > > Can you try the patch at the end of this email under these
+> > > > > > configurations and tell me which ones fail vs pass? I don't nee=
+d logs
+> > > > >
+> > > > > I did these tests and here is the results:
+> > > >
+> > > > Did you hand edit the In-Reply-To: in the header? Because in the
+> > > > thread you are reply to the wrong email, but the context in your em=
+ail
+> > > > seems to be from the right email.
+> > > >
+> > > > For example, see how your reply isn't under the email you are reply=
+ing
+> > > > to in this thread overview:
+> > > > https://lore.kernel.org/lkml/20230127001141.407071-1-saravanak@goog=
+le.com/#r
+> > > >
+> > > > > 1. On top of this series - Not works
+> > > > > 2. Without this series    - Works
+> > > > > 3. On top of the series with the fwnode_dev_initialized() deleted=
+ - Not works
+> > > > > 4. Without this series, with the fwnode_dev_initialized() deleted=
+  - Works
+> > > > >
+> > > > > So your nvmem/core.c patch helps only when it is applied without =
+the series.
+> > > > > But despite the fact that this helps to avoid getting stuck at pr=
+obing
+> > > > > my ethernet device, there is still regression.
+> > > > >
+> > > > > When the ethernet module is loaded it takes a lot of time to drop=
+ dependency
+> > > > > from the nvmem-cell with mac address.
+> > > > >
+> > > > > Please look at the kernel logs below.
+> > > >
+> > > > The kernel logs below really aren't that useful for me in their
+> > > > current state. See more below.
+> > > >
+> > > > ---8<---- <snip> --->8----
+> > > >
+> > > > > P.S. Your nvmem patch definitely helps to avoid a device probe st=
+uck
+> > > > > but look like it is not best way to solve a problem which we disc=
+ussed
+> > > > > in the MTD thread.
+> > > > >
+> > > > > P.P.S. Also I don't know why your nvmem-cell patch doesn't help w=
+hen it was
+> > > > > applied on top of this series. Maybe I missed something.
+> > > >
+> > > > Yeah, I'm not too sure if the test was done correctly. You also did=
+n't
+> > > > answer my question about the dts from my earlier email.
+> > > > https://lore.kernel.org/lkml/CAGETcx8FpmbaRm2CCwqt3BRBpgbogwP5gNB+i=
+A5OEtuxWVTNLA@mail.gmail.com/#t
+> > > >
+> > > > So, can you please retest config 1 with all pr_debug and dev_dbg in
+> > > > drivers/core/base.c changed to the _info variants? And then share t=
+he
+> > > > kernel log from the beginning of boot? Maybe attach it to the email=
+ so
+> > > > it doesn't get word wrapped by your email client. And please point =
+me
+> > > > to the .dts that corresponds to your board. Without that, I can't
+> > > > debug much.
+> > > >
+> > > > Thanks,
+> > > > Saravana
+> > >
+> > > > Did you hand edit the In-Reply-To: in the header? Because in the
+> > > > thread you are reply to the wrong email, but the context in your em=
+ail
+> > > > seems to be from the right email.
+> > >
+> > > Sorry for that, it seems like I accidently deleted it.
+> > >
+> > > > So, can you please retest config 1 with all pr_debug and dev_dbg in
+> > > > drivers/core/base.c changed to the _info variants? And then share t=
+he
+> > > > kernel log from the beginning of boot? Maybe attach it to the email=
+ so
+> > > > it doesn't get word wrapped by your email client. And please point =
+me
+> > > > to the .dts that corresponds to your board. Without that, I can't
+> > > > debug much.
+> > >
+> > > Ok, I retested config 1 with all _debug logs changed to the _info. I
+> > > added the kernel log and the dts file to the attachment of this email=
+.
+> >
+> > Ah, so your device is not supported/present upstream? Even though it's
+> > not upstream, I'll help fix this because it should fix what I believe
+> > are unreported issues in upstream.
+> >
+> > Ok I know why configs 1 - 4 behaved the way they did and why my test
+> > patch didn't help.
+> >
+> > After staring at mtd/nvmem code for a few hours I think mtd/nvmem
+> > interaction is kind of a mess.
+>
+> nvmem is a recent subsystem but mtd carries a lot of legacy stuff we
+> cannot really re-wire without breaking users, so nvmem on top of mtd
+> of course inherit from the fragile designs in place.
 
-On Mon, 06 Feb 2023 16:34:44 +0100, Jerome Brunet wrote:
-> Convert the DT binding documentation for the Amlogic tdm formatters to
-> schema.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  .../sound/amlogic,axg-tdm-formatters.txt      | 36 --------
->  .../sound/amlogic,axg-tdm-formatters.yaml     | 88 +++++++++++++++++++
->  2 files changed, 88 insertions(+), 36 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml
-> 
+Thanks for the context. Yeah, I figured. That's why I explicitly
+limited my comment to "interaction". Although, I'd love to see the MTD
+parsers all be converted to proper drivers that probe. MTD is
+essentially repeating the driver matching logic. I think it can be
+cleaned up to move to proper drivers and still not break backward
+compatibility. Not saying it'll be trivial, but it should be possible.
+Ironically MTD uses mtd_class but has real drivers that work on the
+device (compared to nvmem_bus below).
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > mtd core creates "partition" platform
+> > devices (including for nvmem-cells) that are probed by drivers in
+> > drivers/nvmem. However, there's no driver for "nvmem-cells" partition
+> > platform device. However, the nvmem core creates nvmem_device when
+> > nvmem_register() is called by MTD or these partition platform devices
+> > created by MTD. But these nvmem_devices are added to a nvmem_bus but
+> > the bus has no means to even register a driver (it should really be a
+> > nvmem_class and not nvmem_bus).
+>
+> Srinivas, do you think we could change this?
 
-yamllint warnings/errors:
+Yeah, this part gets a bit tricky. It depends on whether the sysfs
+files for nvmem devices is considered an ABI. Changing from bus to
+class would change the sysfs path for nvmem devices from:
+/sys/class/nvmem to /sys/bus/nvmem
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/sound/component-common.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.example.dtb: audio-controller@500: False schema does not allow {'compatible': ['amlogic,g12a-tdmout'], 'reg': [[1280, 64]], 'resets': [[4294967295, 12]], 'clocks': [[4294967295, 35], [4294967295, 127], [4294967295, 120], [4294967295, 134], [4294967295, 134]], 'clock-names': ['pclk', 'sclk', 'sclk_sel', 'lrclk', 'lrclk_sel'], '$nodename': ['audio-controller@500']}
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml
+> > And the nvmem_device sometimes points
+> > to the DT node of the MTD device or sometimes the partition platform
+> > devices or maybe no DT node at all.
+>
+> I guess this comes from the fact that this is not strongly defined in
+> mtd and depends on the situation (not mentioning 20 years of history
+> there as well). "mtd" is a bit inconsistent on what it means. Older
+> designs mixed: controllers, ECC engines when relevant and memories;
+> while these three components are completely separated. Hence
+> sometimes the mtd device ends up being the top level controller,
+> sometimes it's just one partition...
+>
+> But I'm surprised not all of them point to a DT node. Could you show us
+> an example? Because that might likely be unexpected (or perhaps I am
+> missing something).
 
-doc reference errors (make refcheckdocs):
+Well, the logic that sets the DT node for nvmem_device is like so:
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230206153449.596326-3-jbrunet@baylibre.com
+        if (config->of_node)
+                nvmem->dev.of_node =3D config->of_node;
+        else if (!config->no_of_node)
+                nvmem->dev.of_node =3D config->dev->of_node;
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+So there's definitely a path (where both if's could be false) where
+the DT node will not get set. I don't know if that path is possible
+with the existing users of nvmem_register(), but it's definitely
+possible.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+> > So it's a mess of multiple devices pointing to the same DT node with
+> > no clear way to identify which ones will point to a DT node and which
+> > ones will probe and which ones won't. In the future, we shouldn't
+> > allow adding new compatible strings for partitions for which we don't
+> > plan on adding nvmem drivers.
+> >
+> > Can you give the patch at the end of the email a shot? It should fix
+> > the issue with this series and without this series. It just avoids
+> > this whole mess by not creating useless platform device for
+> > nvmem-cells compatible DT nodes.
+>
+> Thanks a lot for your help.
 
-pip3 install dtschema --upgrade
+No problem. I want fw_devlink to work for everyone.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> >
+> > Thanks,
+> > Saravana
+> >
+> > diff --git a/drivers/mtd/mtdpart.c b/drivers/mtd/mtdpart.c
+> > index d442fa94c872..88a213f4d651 100644
+> > --- a/drivers/mtd/mtdpart.c
+> > +++ b/drivers/mtd/mtdpart.c
+> > @@ -577,6 +577,7 @@ static int mtd_part_of_parse(struct mtd_info *maste=
+r,
+> >  {
+> >         struct mtd_part_parser *parser;
+> >         struct device_node *np;
+> > +       struct device_node *child;
+> >         struct property *prop;
+> >         struct device *dev;
+> >         const char *compat;
+> > @@ -594,6 +595,10 @@ static int mtd_part_of_parse(struct mtd_info *mast=
+er,
+> >         else
+> >                 np =3D of_get_child_by_name(np, "partitions");
+> >
+> > +       for_each_child_of_node(np, child)
+> > +               if (of_device_is_compatible(child, "nvmem-cells"))
+> > +                       of_node_set_flag(child, OF_POPULATED);
+>
+> What about a comment explaining why we need that in the final patch
+> (with a comment)? Otherwise it's a little bit obscure.
 
+This wasn't meant to be reviewed :) Just a quick patch to make sure
+I'm going down the right path. Once Maxim confirms I was going to roll
+this into a proper patch.
+
+But point noted. Will add a comment.
+
+Thanks,
+Saravana
