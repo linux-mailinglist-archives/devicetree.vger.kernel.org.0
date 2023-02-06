@@ -2,194 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5369568B94A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 11:01:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF3D968B9BB
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 11:17:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229988AbjBFKBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 05:01:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54698 "EHLO
+        id S230250AbjBFKRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 05:17:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230102AbjBFKBZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 05:01:25 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2DEE1353F;
-        Mon,  6 Feb 2023 02:01:23 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D4967660302F;
-        Mon,  6 Feb 2023 10:01:21 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675677682;
-        bh=Obi+vQT5xnaobAxtXIDP6ufWD0ahrxBt2y0sg2Yn4lw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PS6kLO5BoOHCEh7QCx7k5NBBfdXTqFo0TCWhCsb19kjBClbMiS2KQYSeigzDbmqGR
-         UT4yCtLQnDY32M64hpAP3otBPkJd2X5HHQzUeS4fkctwppbm2rBmGYGDkR9g82rcS5
-         SLgYXwC3fa8zNc/19L+ELDqwVNaGk6Az9NFc9rLvdRW6eQUDZjnftwCzAFA9NLW2qz
-         Yxn8Xvw0dMff2E9MdLN2uaYZZZrGMiD82SHkFca+sruLMC2/ceQdUqrYlwGQzwU6xa
-         1XXt2TXVR8mtZN6CbcQhC1aNHMpDYTY6cPsKInPvft4iJFQ6oVMmRFBFNIO8MsqbEs
-         kF37EFB3kzwfQ==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     sboyd@kernel.org
-Cc:     mturquette@baylibre.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com,
-        edward-jw.yang@mediatek.com, johnson.wang@mediatek.com,
-        wenst@chromium.org, miles.chen@mediatek.com,
-        chun-jie.chen@mediatek.com, rex-bc.chen@mediatek.com,
-        jose.exposito89@gmail.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: [PATCH v3 7/7] clk: mediatek: mt8195: Add support for frequency hopping through FHCTL
-Date:   Mon,  6 Feb 2023 11:01:05 +0100
-Message-Id: <20230206100105.861720-8-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230206100105.861720-1-angelogioacchino.delregno@collabora.com>
-References: <20230206100105.861720-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S230313AbjBFKRR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 05:17:17 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 363CE20D0A
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 02:17:08 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so10382714wma.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 02:17:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ECLgssVp2+bg2uFJklAasE7I/B347mZ8WaMyAeM0/jA=;
+        b=hccyvptxNEdbZS2bFikl5YVsWsL9ysycwSeADpUl06MoB2uR6b9Fxgc/VD4sib2qNO
+         AmtyrdLReL2DULKBTxMTc/yzOLCkxFogsmjWTdp+P5XQxjoHmnIaCljUsqHazPopv3zv
+         a7YWUqZ1m/DoaXOfv7jOKcH0qnh6LKtUv2CQ6gjHA2C3bTtWwaOAxS1ZCsUI8cVelqq7
+         TEkgaN5RpynBbg5AM69okYlVfX1jIpzkkIzlBnOnfwDnkwxE0hGdAR4DwulslX5axWId
+         yNjoz8fccOmUOJnbdTcHoqJXnNT74cfPnJn4BVSNnSMNMAbflECWMgy4DgQs0UfnCMVo
+         beAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ECLgssVp2+bg2uFJklAasE7I/B347mZ8WaMyAeM0/jA=;
+        b=Xo9PPPVdF/3VPOfm6fFCuQIh28Q9fciaktDv/Bwf/Qhy7SxBkb3cx9SW5NuBpYJQjJ
+         eTDHRNLqUS7nH8de2IzSZuLS8IdW7M6xgqDWyoDvjpplktf6iOG/I+uEPfe3bjPPTyir
+         FMQ6aU8h7QaSPjhEjeYR7KtEI2EIld4vZ07zBeUBc/djZLsMXtBf+2lbQoUfopdTA+p2
+         8LHM41ZniWKUcfAtzHx/GYTe7aAjFMADSfklj9ErC4OwS0K43J4irEGaWPXBwCwWv5Pd
+         xbbXvKqMJ8D9CmvnbkhWLCMxvhLer7rTUUqfOfUI188t7PrV9S3Ty3PQJdYtdYW75JuK
+         A+Bw==
+X-Gm-Message-State: AO0yUKWKfwqF/X4s8msv0tzoyQ6gXnnwK+PqKr7dugHSFO5xZeEjjSCo
+        RBQ1hVDN2A2GsbmfYaZLa3KE1Q==
+X-Google-Smtp-Source: AK7set9UcskWalsS526NI7k6oICy996A65UPdHGtRgLBl32BvJlhQmPMEkxrmg1d73XR3h35ORuOPQ==
+X-Received: by 2002:a05:600c:5118:b0:3dc:1dc3:7a05 with SMTP id o24-20020a05600c511800b003dc1dc37a05mr18083029wms.10.1675678626774;
+        Mon, 06 Feb 2023 02:17:06 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id w15-20020a05600c474f00b003db0bb81b6asm11314201wmo.1.2023.02.06.02.17.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Feb 2023 02:17:06 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 0/5] arm64: dts: qcom: add DP Controller to SM8350 & SM8450
+ DTS
+Date:   Mon, 06 Feb 2023 11:17:03 +0100
+Message-Id: <20230206-topic-sm8450-upstream-dp-controller-v1-0-f1345872ed19@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ/T4GMC/x2NywrCMBAAf6Xs2YU1tlL8FfGQx2oDaRJ20yKU/
+ rvB48xh5gBliazwGA4Q3qPGkjtcLwP4xeYPYwydwZC5kaE7tlKjR13ncSLcqjZhu2Ko6EtuUlJ
+ iQUM0jdaZmQJDLzmrjE5s9ktv5S2lLqvwO37/6+frPH91MIoOigAAAA==
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add FHCTL parameters and register PLLs through FHCTL to add support
-for frequency hopping and SSC. FHCTL will be enabled only on PLLs
-specified in devicetree.
+Switch the QMP PHY to the newly documented USB3/DP Combo PHY
+bindings at [1] and add the DP controller nodes.
 
-This commit brings functional changes only upon addition of
-devicetree configuration.
+The DP output is shared with the USB3 SuperSpeed lanes and is
+usually connected to an USB-C port which Altmode is controlled
+by the PMIC Glink infrastructure in discution at [2] & [3].
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+DT changes tying the DP controller to the USB-C port on the HDK
+boards will be sent later.
+
+Bindings dependencies at [1]
+
+[1] https://lore.kernel.org/all/20230206-topic-sm8350-upstream-usb-dp-combo-phy-v1-1-ed849ae6b849@linaro.org/
+[2] https://lore.kernel.org/all/20230201041853.1934355-1-quic_bjorande@quicinc.com/
+[3] https://lore.kernel.org/all/20230130-topic-sm8450-upstream-pmic-glink-v1-0-0b0acfad301e@linaro.org/
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/clk/mediatek/clk-mt8195-apmixedsys.c | 69 +++++++++++++++++++-
- 1 file changed, 66 insertions(+), 3 deletions(-)
+Neil Armstrong (5):
+      dt-bindings: display: msm: dp-controller: document SM8450 compatible
+      arm64: dts: qcom: sm8350: switch to combo usb3/dp phy
+      arm64: dts: qcom: sm8350: add dp controller
+      arm64: dst: qcom: sm8450: switch to usb3/dp combo phy
+      arm64: dst: qcom: sm8450: add dp controller
 
-diff --git a/drivers/clk/mediatek/clk-mt8195-apmixedsys.c b/drivers/clk/mediatek/clk-mt8195-apmixedsys.c
-index 1bc917f2667e..c0db31ce0741 100644
---- a/drivers/clk/mediatek/clk-mt8195-apmixedsys.c
-+++ b/drivers/clk/mediatek/clk-mt8195-apmixedsys.c
-@@ -3,9 +3,11 @@
- // Copyright (c) 2021 MediaTek Inc.
- // Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
- 
-+#include "clk-fhctl.h"
- #include "clk-gate.h"
- #include "clk-mtk.h"
- #include "clk-pll.h"
-+#include "clk-pllfh.h"
- 
- #include <dt-bindings/clock/mt8195-clk.h>
- #include <linux/of_device.h>
-@@ -105,6 +107,61 @@ static const struct mtk_pll_data plls[] = {
- 	    0, 0, 22, 0x0158, 24, 0, 0, 0, 0x0158, 0, 0x0158, 0, 9),
- };
- 
-+enum fh_pll_id {
-+	FH_ARMPLL_LL,
-+	FH_ARMPLL_BL,
-+	FH_MEMPLL,
-+	FH_ADSPPLL,
-+	FH_NNAPLL,
-+	FH_CCIPLL,
-+	FH_MFGPLL,
-+	FH_TVDPLL2,
-+	FH_MPLL,
-+	FH_MMPLL,
-+	FH_MAINPLL,
-+	FH_MSDCPLL,
-+	FH_IMGPLL,
-+	FH_VDECPLL,
-+	FH_TVDPLL1,
-+	FH_NR_FH,
-+};
-+
-+#define FH(_pllid, _fhid, _offset) {					\
-+		.data = {						\
-+			.pll_id = _pllid,				\
-+			.fh_id = _fhid,					\
-+			.fh_ver = FHCTL_PLLFH_V2,			\
-+			.fhx_offset = _offset,				\
-+			.dds_mask = GENMASK(21, 0),			\
-+			.slope0_value = 0x6003c97,			\
-+			.slope1_value = 0x6003c97,			\
-+			.sfstrx_en = BIT(2),				\
-+			.frddsx_en = BIT(1),				\
-+			.fhctlx_en = BIT(0),				\
-+			.tgl_org = BIT(31),				\
-+			.dvfs_tri = BIT(31),				\
-+			.pcwchg = BIT(31),				\
-+			.dt_val = 0x0,					\
-+			.df_val = 0x9,					\
-+			.updnlmt_shft = 16,				\
-+			.msk_frddsx_dys = GENMASK(23, 20),		\
-+			.msk_frddsx_dts = GENMASK(19, 16),		\
-+		},							\
-+	}
-+
-+static struct mtk_pllfh_data pllfhs[] = {
-+	FH(CLK_APMIXED_ADSPPLL, FH_ADSPPLL, 0x78),
-+	FH(CLK_APMIXED_NNAPLL, FH_NNAPLL, 0x8c),
-+	FH(CLK_APMIXED_MFGPLL, FH_MFGPLL, 0xb4),
-+	FH(CLK_APMIXED_TVDPLL2, FH_TVDPLL2, 0xc8),
-+	FH(CLK_APMIXED_MMPLL, FH_MMPLL, 0xf0),
-+	FH(CLK_APMIXED_MAINPLL, FH_MAINPLL, 0x104),
-+	FH(CLK_APMIXED_MSDCPLL, FH_MSDCPLL, 0x118),
-+	FH(CLK_APMIXED_IMGPLL, FH_IMGPLL, 0x12c),
-+	FH(CLK_APMIXED_VDECPLL, FH_VDECPLL, 0x140),
-+	FH(CLK_APMIXED_TVDPLL2, FH_TVDPLL1, 0x154),
-+};
-+
- static const struct of_device_id of_match_clk_mt8195_apmixed[] = {
- 	{ .compatible = "mediatek,mt8195-apmixedsys", },
- 	{}
-@@ -114,13 +171,17 @@ static int clk_mt8195_apmixed_probe(struct platform_device *pdev)
- {
- 	struct clk_hw_onecell_data *clk_data;
- 	struct device_node *node = pdev->dev.of_node;
-+	const u8 *fhctl_node = "mediatek,mt8195-fhctl";
- 	int r;
- 
- 	clk_data = mtk_alloc_clk_data(CLK_APMIXED_NR_CLK);
- 	if (!clk_data)
- 		return -ENOMEM;
- 
--	r = mtk_clk_register_plls(node, plls, ARRAY_SIZE(plls), clk_data);
-+	fhctl_parse_dt(fhctl_node, pllfhs, ARRAY_SIZE(pllfhs));
-+
-+	r = mtk_clk_register_pllfhs(node, plls, ARRAY_SIZE(plls),
-+				    pllfhs, ARRAY_SIZE(pllfhs), clk_data);
- 	if (r)
- 		goto free_apmixed_data;
- 
-@@ -140,7 +201,8 @@ static int clk_mt8195_apmixed_probe(struct platform_device *pdev)
- unregister_gates:
- 	mtk_clk_unregister_gates(apmixed_clks, ARRAY_SIZE(apmixed_clks), clk_data);
- unregister_plls:
--	mtk_clk_unregister_plls(plls, ARRAY_SIZE(plls), clk_data);
-+	mtk_clk_unregister_pllfhs(plls, ARRAY_SIZE(plls), pllfhs,
-+				  ARRAY_SIZE(pllfhs), clk_data);
- free_apmixed_data:
- 	mtk_free_clk_data(clk_data);
- 	return r;
-@@ -153,7 +215,8 @@ static int clk_mt8195_apmixed_remove(struct platform_device *pdev)
- 
- 	of_clk_del_provider(node);
- 	mtk_clk_unregister_gates(apmixed_clks, ARRAY_SIZE(apmixed_clks), clk_data);
--	mtk_clk_unregister_plls(plls, ARRAY_SIZE(plls), clk_data);
-+	mtk_clk_unregister_pllfhs(plls, ARRAY_SIZE(plls), pllfhs,
-+				  ARRAY_SIZE(pllfhs), clk_data);
- 	mtk_free_clk_data(clk_data);
- 
- 	return 0;
+ .../bindings/display/msm/dp-controller.yaml        |   4 +
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               | 117 +++++++++++++++-----
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts            |   4 +-
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 118 ++++++++++++++++-----
+ 4 files changed, 190 insertions(+), 53 deletions(-)
+---
+base-commit: ea4dabbb4ad7eb52632a2ca0b8f89f0ea7c55dcf
+change-id: 20230206-topic-sm8450-upstream-dp-controller-20054ab280de
+
+Best regards,
 -- 
-2.39.1
+Neil Armstrong <neil.armstrong@linaro.org>
 
