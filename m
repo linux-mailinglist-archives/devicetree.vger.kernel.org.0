@@ -2,209 +2,327 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95CF768C536
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 18:54:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2352868C557
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 19:02:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230252AbjBFRye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 12:54:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51870 "EHLO
+        id S230161AbjBFSCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 13:02:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230198AbjBFRyb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 12:54:31 -0500
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1FAB61F5C8;
-        Mon,  6 Feb 2023 09:54:30 -0800 (PST)
-Received: from linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net (linux.microsoft.com [13.77.154.182])
-        by linux.microsoft.com (Postfix) with ESMTPSA id D541120C7E22;
-        Mon,  6 Feb 2023 09:54:28 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com D541120C7E22
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1675706068;
-        bh=kv/i0skTIQvHGuOqg6IvE4yvIUe6D8o/sc/yx8wo9AU=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=BVltVqViESplLS404Ok1Qrd5iAX1ruwM2n6LtmSJgotsz/yEYoGnyHy/m6Hq1GTyy
-         Xp0ER8LUH1tTpMykd+Nhhpji+bYaK3Y76F09nc5APehvUv1Q5E7q4C8CU6ZAlNnsao
-         PkFl7FLs71r1RVwAfer35+pvhgzSqsilt7JCsAUk=
-From:   Saurabh Sengar <ssengar@linux.microsoft.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com, dphadke@linux.microsoft.com
-Subject: [PATCH v3 6/6] Driver: VMBus: Add device tree support
-Date:   Mon,  6 Feb 2023 09:54:20 -0800
-Message-Id: <1675706060-22361-7-git-send-email-ssengar@linux.microsoft.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1675706060-22361-1-git-send-email-ssengar@linux.microsoft.com>
-References: <1675706060-22361-1-git-send-email-ssengar@linux.microsoft.com>
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230154AbjBFSCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 13:02:05 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 350EA2CC7B;
+        Mon,  6 Feb 2023 10:02:03 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 25C624DA;
+        Mon,  6 Feb 2023 19:02:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1675706521;
+        bh=oo6MHAcMuopZkUN1KuzkgmsAsw83OHcriy3TYLY5hKk=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=RlM1d69q/koXxpXrLwwnhiRnR5SLBfLGBcSotRv19WEdmMV2O+D85kYYhoSj6BtDn
+         D9Nyzaa2NxMhOTMoLMsfdqfu7MvHm0ZB2SKYt1DVrol3Iq9CSKsvj32AtOgS4C515/
+         wu3UQyp8i6DOKQtiuBFrWWQC+O0joPoPhaTmhnWY=
+Message-ID: <9756884e-af5a-10df-a01b-9f4752ba894c@ideasonboard.com>
+Date:   Mon, 6 Feb 2023 20:01:57 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v7 1/6] drm/tidss: Remove Video Port to Output Port
+ coupling
+Content-Language: en-US
+To:     Aradhya Bhatia <a-bhatia1@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+Cc:     Nishanth Menon <nm@ti.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Jai Luthra <j-luthra@ti.com>, Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20230125113529.13952-1-a-bhatia1@ti.com>
+ <20230125113529.13952-2-a-bhatia1@ti.com>
+ <300c0351-6ee0-d703-bd53-bc4c0fe3af0f@ideasonboard.com>
+ <94cf519a-a72f-89d8-fe2a-9fa795ede6ac@ti.com>
+ <c858250d-1406-dc3d-58d7-687cd891e7a5@ideasonboard.com>
+ <d352043e-9101-e191-dd67-b88fb1cfdf92@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <d352043e-9101-e191-dd67-b88fb1cfdf92@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the driver to support device tree boot as well along with ACPI.
-At present the device tree parsing only provides the mmio region info
-and is not the exact copy of ACPI parsing. This is sufficient to cater
-all the current device tree usecases for VMBus.
+On 06/02/2023 19:34, Aradhya Bhatia wrote:
+> 
+> On 06-Feb-23 18:35, Tomi Valkeinen wrote:
+>> On 05/02/2023 15:08, Aradhya Bhatia wrote:
+>>> Hi Tomi,
+>>>
+>>> Thanks for the review!
+>>>
+>>> On 03-Feb-23 16:53, Tomi Valkeinen wrote:
+>>>> On 25/01/2023 13:35, Aradhya Bhatia wrote:
+>>>>> Make DSS Video Ports agnostic of output bus types.
+>>>>>
+>>>>> DSS controllers have had a 1-to-1 coupling between its VPs and its
+>>>>> output ports. This no longer stands true for the new AM625 DSS. This
+>>>>> coupling, hence, has been removed by renaming the 'vp_bus_type' to
+>>>>> 'output_port_bus_type' because the VPs are essentially agnostic of the
+>>>>> bus type and it is the output ports which have a bus type.
+>>>>>
+>>>>> The AM625 DSS has 2 VPs but requires 3 output ports to support its
+>>>>> Dual-Link OLDI video output coming from a single VP.
+>>>>
+>>>> Not a biggie, but this sentence is a bit odd here at the end. Shouldn't
+>>>> it be after the "...stands true for the new AM625 DSS."?
+>>>
+>>> Yes! It should be. Will make the edit.
+>>>
+>>>>
+>>>>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>>>>> ---
+>>>>>     drivers/gpu/drm/tidss/tidss_dispc.c | 47 +++++++++++++++++------------
+>>>>>     drivers/gpu/drm/tidss/tidss_dispc.h | 21 +++++++------
+>>>>>     drivers/gpu/drm/tidss/tidss_drv.h   |  5 +--
+>>>>>     drivers/gpu/drm/tidss/tidss_irq.h   |  2 +-
+>>>>>     drivers/gpu/drm/tidss/tidss_kms.c   | 12 ++++----
+>>>>>     5 files changed, 48 insertions(+), 39 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
+>>>>> index 165365b515e1..c1c4faccbddc 100644
+>>>>> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+>>>>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+>>>>> @@ -61,7 +61,7 @@ const struct dispc_features dispc_k2g_feats = {
+>>>>>         .min_pclk_khz = 4375,
+>>>>>           .max_pclk_khz = {
+>>>>> -        [DISPC_VP_DPI] = 150000,
+>>>>> +        [DISPC_PORT_DPI] = 150000,
+>>>>>         },
+>>>>>           /*
+>>>>> @@ -96,7 +96,6 @@ const struct dispc_features dispc_k2g_feats = {
+>>>>>         .vp_name = { "vp1" },
+>>>>>         .ovr_name = { "ovr1" },
+>>>>>         .vpclk_name =  { "vp1" },
+>>>>> -    .vp_bus_type = { DISPC_VP_DPI },
+>>>>>           .vp_feat = { .color = {
+>>>>>                 .has_ctm = true,
+>>>>> @@ -109,6 +108,9 @@ const struct dispc_features dispc_k2g_feats = {
+>>>>>         .vid_name = { "vid1" },
+>>>>>         .vid_lite = { false },
+>>>>>         .vid_order = { 0 },
+>>>>> +
+>>>>> +    .num_output_ports = 1,
+>>>>> +    .output_port_bus_type = { DISPC_PORT_DPI },
+>>>>>     };
+>>>>
+>>>> Just thinking out loud, as these will get more complex in the future,
+>>>> maybe we should finally group them with struct. E.g. we could define
+>>>> struct array for vps, like (just hacky example):
+>>>>
+>>>>       struct {
+>>>>           const char *name;
+>>>>           const char *clkname;
+>>>>           struct tidss_vp_feat feat;
+>>>>       } vps[TIDSS_MAX_PORTS];
+>>>>
+>>>> and then use them as:
+>>>>
+>>>>       .vps = {
+>>>>           {
+>>>>               .name = "kala",
+>>>>               .clkname = "kissa",
+>>>>               .feat.color.has_ctm = true,
+>>>>           }, {
+>>>>               .name = "kala2",
+>>>>               .clkname = "kissa2",
+>>>>               .feat.color.has_ctm = false,
+>>>>           },
+>>>>       },
+>>>>
+>>>> Perhaps something to try in the future.
+>>>>
+>>>
+>>> Yes, agreed! Having that structure will tidy this up.
+>>> I will keep this under future work.
+>>>
+>>>>>     static const u16 tidss_am65x_common_regs[DISPC_COMMON_REG_TABLE_LEN] = {
+>>>>> @@ -140,8 +142,8 @@ static const u16 tidss_am65x_common_regs[DISPC_COMMON_REG_TABLE_LEN] = {
+>>>>>       const struct dispc_features dispc_am65x_feats = {
+>>>>>         .max_pclk_khz = {
+>>>>> -        [DISPC_VP_DPI] = 165000,
+>>>>> -        [DISPC_VP_OLDI] = 165000,
+>>>>> +        [DISPC_PORT_DPI] = 165000,
+>>>>> +        [DISPC_PORT_OLDI] = 165000,
+>>>>>         },
+>>>>>           .scaling = {
+>>>>> @@ -171,7 +173,6 @@ const struct dispc_features dispc_am65x_feats = {
+>>>>>         .vp_name = { "vp1", "vp2" },
+>>>>>         .ovr_name = { "ovr1", "ovr2" },
+>>>>>         .vpclk_name =  { "vp1", "vp2" },
+>>>>> -     .vp_bus_type = { DISPC_VP_OLDI, DISPC_VP_DPI },
+>>>>>         .vp_feat = { .color = {
+>>>>>                 .has_ctm = true,
+>>>>> @@ -185,6 +186,9 @@ const struct dispc_features dispc_am65x_feats = {
+>>>>>         .vid_name = { "vid", "vidl1" },
+>>>>>         .vid_lite = { false, true, },
+>>>>>         .vid_order = { 1, 0 },
+>>>>> +
+>>>>> +    .num_output_ports = 2,
+>>>>> +    .output_port_bus_type = { DISPC_PORT_OLDI, DISPC_PORT_DPI },
+>>>>>     };
+>>>>>       static const u16 tidss_j721e_common_regs[DISPC_COMMON_REG_TABLE_LEN] = {
+>>>>> @@ -229,8 +233,8 @@ static const u16 tidss_j721e_common_regs[DISPC_COMMON_REG_TABLE_LEN] = {
+>>>>>       const struct dispc_features dispc_j721e_feats = {
+>>>>>         .max_pclk_khz = {
+>>>>> -        [DISPC_VP_DPI] = 170000,
+>>>>> -        [DISPC_VP_INTERNAL] = 600000,
+>>>>> +        [DISPC_PORT_DPI] = 170000,
+>>>>> +        [DISPC_PORT_INTERNAL] = 600000,
+>>>>>         },
+>>>>>           .scaling = {
+>>>>> @@ -260,9 +264,7 @@ const struct dispc_features dispc_j721e_feats = {
+>>>>>         .vp_name = { "vp1", "vp2", "vp3", "vp4" },
+>>>>>         .ovr_name = { "ovr1", "ovr2", "ovr3", "ovr4" },
+>>>>>         .vpclk_name = { "vp1", "vp2", "vp3", "vp4" },
+>>>>> -    /* Currently hard coded VP routing (see dispc_initial_config()) */
+>>>>> -    .vp_bus_type =    { DISPC_VP_INTERNAL, DISPC_VP_DPI,
+>>>>> -              DISPC_VP_INTERNAL, DISPC_VP_DPI, },
+>>>>> +
+>>>>
+>>>> I think this line feed is extra.
+>>>
+>>> Okay! Will remove that from all SoC feat structs.
+>>>
+>>>>
+>>>>>         .vp_feat = { .color = {
+>>>>>                 .has_ctm = true,
+>>>>>                 .gamma_size = 1024,
+>>>>> @@ -273,6 +275,11 @@ const struct dispc_features dispc_j721e_feats = {
+>>>>>         .vid_name = { "vid1", "vidl1", "vid2", "vidl2" },
+>>>>>         .vid_lite = { 0, 1, 0, 1, },
+>>>>>         .vid_order = { 1, 3, 0, 2 },
+>>>>> +
+>>>>> +    .num_output_ports = 4,
+>>>>> +    /* Currently hard coded VP routing (see dispc_initial_config()) */
+>>>>> +    .output_port_bus_type =    { DISPC_PORT_INTERNAL, DISPC_PORT_DPI,
+>>>>> +              DISPC_PORT_INTERNAL, DISPC_PORT_DPI, },
+>>>>
+>>>> Indent doesn't look right (but it might be just because this is a diff).
+>>>
+>>> I may have missed indenting this.
+>>>
+>>>>
+>>>>>     };
+>>>>>       static const u16 *dispc_common_regmap;
+>>>>> @@ -287,12 +294,12 @@ struct dispc_device {
+>>>>>        void __iomem *base_common;
+>>>>>        void __iomem *base_vid[TIDSS_MAX_PLANES];
+>>>>> -    void __iomem *base_ovr[TIDSS_MAX_PORTS];
+>>>>> -    void __iomem *base_vp[TIDSS_MAX_PORTS];
+>>>>> +    void __iomem *base_ovr[TIDSS_MAX_VPS];
+>>>>> +    void __iomem *base_vp[TIDSS_MAX_VPS];
+>>>>>        struct regmap *oldi_io_ctrl;
+>>>>> -    struct clk *vp_clk[TIDSS_MAX_PORTS];
+>>>>> +    struct clk *vp_clk[TIDSS_MAX_VPS];
+>>>>>           const struct dispc_features *feat;
+>>>>>     @@ -300,7 +307,7 @@ struct dispc_device {
+>>>>>           bool is_enabled;
+>>>>> -    struct dss_vp_data vp_data[TIDSS_MAX_PORTS];
+>>>>> +    struct dss_vp_data vp_data[TIDSS_MAX_VPS];
+>>>>>           u32 *fourccs;
+>>>>>         u32 num_fourccs;
+>>>>> @@ -851,7 +858,7 @@ int dispc_vp_bus_check(struct dispc_device *dispc, u32 hw_videoport,
+>>>>>             return -EINVAL;
+>>>>>         }
+>>>>> -    if (dispc->feat->vp_bus_type[hw_videoport] != DISPC_VP_OLDI &&
+>>>>> +    if (dispc->feat->output_port_bus_type[hw_videoport] != DISPC_PORT_OLDI &&
+>>>>
+>>>> Hmm, so is the hw_videoport a vp index or an output index? Sounds like
+>>>> the former, so it's not right, even if at the moment they're identical.
+>>>> We need some kind of mapping between those.
+>>>>
+>>>
+>>> It is indeed a vp index. And yes, I can come up with a mapping mechanism.
+>>>
+>>>> If the mapping can be changed (or just defined in the DT), I think we
+>>>> need a variable in struct dispc_device, which tells the output to which
+>>>> a videoport is connected to. Or vice versa, I'm not sure which direction
+>>>> we need more. If the mapping is always the same on all SoC (but I don't
+>>>> think so), we can have it in the feats.
+>>>>
+>>>
+>>> As of now, the mapping is always same. But I would like to make is
+>>> generalized for future. Hence, I am considering to keep the variable in
+>>> struct dispc_device.
+>>>
+>>> My question though would be, how would one be able to find which kind
+>>> of device is the port connected to, if it is connected to a bridge? For
+>>> example, in case of panels, we have a "connector_type" variable in
+>>> drm_panel which tells what kind of sink it is. But there is no such
+>>> thing in drm_bridge.
+>>>
+>>> This is required because what if we can connect an videoport to either
+>>> an LVDS/OLDI bridge or a DPI bridge.
+>>
+>> The connector type shouldn't matter.
+>>
+>> The DSS has VPs and outputs. The VPs are "generic" and identical to each
+>> other, except in their possible connections to the outputs. The outputs,
+>> at least at the moment, are DPI, LVDS and internal, where internal is
+>> basically just DPI.
+>>
+>> Those are the three different cases we are interested in within the dss
+>> driver, right? Does it matter where the DPI or LVDS output goes?
+>>
+> 
+> I believe it does. =)
+> 
+> While the VPs do always transmit DPI signals, the code in tidss_dispc.c
+> uses the information of the bus connected at the endpoint to configure
+> the OLDI parameters, and to turn OLDI IOs on and off in
+> dispc_vp_(prepare/unprepare).
+> 
+> Up until now, the outputs have been fixed (VP0 -> OLDI, VP1 -> DPI), and
+> the code used the enum dispc_vp_bus_type to differntiate between LVDS or
+> DPI requirements. But for a general case where output from VP0 could
+> either use the OLDI TXes and send out LVDS signals OR bypass the OLDI
+> TXes and send out DPI signals directly, we would need a mechanism to
+> find out which sink is present at the end, LVDS or DPI.
+> 
+> I assumed, with that mechanism, we could (re)configure the vp-to-output
+> mapping, which then would be used in the various places in
+> tidss_dispc.c.
 
-Currently device tree is supported only for x86 systems.
+But we should already know all that. Say, on AM625, we have three ports 
+(or "outputs") (defined in DT), OLDI1, DPI, OLDI2. If there's an 
+endpoint configured for the first port, we know we need to set up OLDI, 
+and we need a VP for it. If the hardware mapping between VPs and outputs 
+is hardcoded, we know directly that VP0 is needed, and it's used for 
+OLDI. So now we have the mapping of VP0 -> OLDI (port1).
 
-Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
----
-[V3]
-- Changed the logic to use generic api (for_each_of_range) for parsing "ranges".
-- Remove dependency of ACPI for HYPERV in case of x86.
+If (say) VP0 could alternatively be used for DPI output, then we'd see 
+the second port, DPI, having an endpoint configured. Having both OLDI1 
+and DPI endpoints would be invalid, of course.
 
- drivers/hv/Kconfig     |  4 +--
- drivers/hv/vmbus_drv.c | 60 ++++++++++++++++++++++++++++++++++++++++--
- 2 files changed, 60 insertions(+), 4 deletions(-)
+So "how would one be able to find which kind of device is the port 
+connected to" is irrelevant, I think. We know the output port, so we 
+know the bus type, and we don't really need to know anything else about 
+what's there behind the bus.
 
-diff --git a/drivers/hv/Kconfig b/drivers/hv/Kconfig
-index 0747a8f1fcee..7e44d4246d8d 100644
---- a/drivers/hv/Kconfig
-+++ b/drivers/hv/Kconfig
-@@ -4,8 +4,8 @@ menu "Microsoft Hyper-V guest support"
- 
- config HYPERV
- 	tristate "Microsoft Hyper-V client drivers"
--	depends on ACPI && ((X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
--		|| (ARM64 && !CPU_BIG_ENDIAN))
-+	depends on (X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
-+		|| (ACPI && ARM64 && !CPU_BIG_ENDIAN)
- 	select PARAVIRT
- 	select X86_HV_CALLBACK_VECTOR if X86
- 	select VMAP_PFN
-diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
-index 9d6e0d02b834..5cbc541a20b5 100644
---- a/drivers/hv/vmbus_drv.c
-+++ b/drivers/hv/vmbus_drv.c
-@@ -20,6 +20,7 @@
- #include <linux/completion.h>
- #include <linux/hyperv.h>
- #include <linux/kernel_stat.h>
-+#include <linux/of_address.h>
- #include <linux/clockchips.h>
- #include <linux/cpu.h>
- #include <linux/sched/isolation.h>
-@@ -2152,7 +2153,7 @@ void vmbus_device_unregister(struct hv_device *device_obj)
- 	device_unregister(&device_obj->device);
- }
- 
--
-+#ifdef CONFIG_ACPI
- /*
-  * VMBUS is an acpi enumerated device. Get the information we
-  * need from DSDT.
-@@ -2262,6 +2263,7 @@ static acpi_status vmbus_walk_resources(struct acpi_resource *res, void *ctx)
- 
- 	return AE_OK;
- }
-+#endif
- 
- static int vmbus_mmio_remove(void)
- {
-@@ -2282,7 +2284,7 @@ static int vmbus_mmio_remove(void)
- 	}
- }
- 
--static void vmbus_reserve_fb(void)
-+static void __maybe_unused vmbus_reserve_fb(void)
- {
- 	resource_size_t start = 0, size;
- 	struct pci_dev *pdev;
-@@ -2442,6 +2444,7 @@ void vmbus_free_mmio(resource_size_t start, resource_size_t size)
- }
- EXPORT_SYMBOL_GPL(vmbus_free_mmio);
- 
-+#ifdef CONFIG_ACPI
- static int vmbus_acpi_add(struct platform_device *pdev)
- {
- 	acpi_status result;
-@@ -2494,10 +2497,52 @@ static int vmbus_acpi_add(struct platform_device *pdev)
- 		vmbus_mmio_remove();
- 	return ret_val;
- }
-+#else
-+
-+static int vmbus_device_add(struct platform_device *pdev)
-+{
-+	struct resource **cur_res = &hyperv_mmio;
-+	struct of_range range;
-+	struct of_range_parser parser;
-+	struct device_node *np;
-+	int ret = 0;
-+
-+	hv_dev = &pdev->dev;
-+	np = pdev->dev.of_node;
-+
-+	ret = of_range_parser_init(&parser, np);
-+	if (ret) {
-+		dev_err(hv_dev, "Failed to parse resources.\n");
-+		return ret;
-+	}
-+
-+	for_each_of_range(&parser, &range) {
-+		struct resource *res;
-+
-+		res = kzalloc(sizeof(*res), GFP_ATOMIC);
-+		if (!res)
-+			return -ENOMEM;
-+
-+		res->name = "hyperv mmio";
-+		res->flags = IORESOURCE_MEM | IORESOURCE_MEM_64;
-+		res->start = range.pci_addr;
-+		res->end = range.pci_addr + range.size;
-+
-+		*cur_res = res;
-+		cur_res = &res->sibling;
-+	}
-+
-+	return ret;
-+}
-+#endif
- 
- static int vmbus_platform_driver_probe(struct platform_device *pdev)
- {
-+#ifdef CONFIG_ACPI
- 	return vmbus_acpi_add(pdev);
-+#else
-+	return vmbus_device_add(pdev);
-+#endif
- }
- 
- static int vmbus_platform_driver_remove(struct platform_device *pdev)
-@@ -2643,6 +2688,16 @@ static int vmbus_bus_resume(struct device *dev)
- #define vmbus_bus_resume NULL
- #endif /* CONFIG_PM_SLEEP */
- 
-+static const struct of_device_id vmbus_of_match[] = {
-+	{
-+		.compatible = "microsoft,vmbus",
-+	},
-+	{
-+		/* sentinel */
-+	},
-+};
-+MODULE_DEVICE_TABLE(of, vmbus_of_match);
-+
- static const struct acpi_device_id vmbus_acpi_device_ids[] = {
- 	{"VMBUS", 0},
- 	{"VMBus", 0},
-@@ -2677,6 +2732,7 @@ static struct platform_driver vmbus_platform_driver = {
- 	.driver = {
- 		.name = "vmbus",
- 		.acpi_match_table = ACPI_PTR(vmbus_acpi_device_ids),
-+		.of_match_table = of_match_ptr(vmbus_of_match),
- 		.pm = &vmbus_bus_pm,
- 		.probe_type = PROBE_FORCE_SYNCHRONOUS,
- 	}
--- 
-2.25.1
+Or is there some detail I'm missing here?
+
+  Tomi
 
