@@ -2,137 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 859A168C6B0
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 20:21:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5B8C68C6DD
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 20:33:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229952AbjBFTVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 14:21:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50566 "EHLO
+        id S229930AbjBFTdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 14:33:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbjBFTVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 14:21:47 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14280A25F
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 11:21:46 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id z13so1962937wmp.2
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 11:21:45 -0800 (PST)
+        with ESMTP id S230190AbjBFTdW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 14:33:22 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39B262384F
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 11:33:19 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id z13so1994066wmp.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 11:33:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KGhlandvp32zJuT9yzD1H530+wjS7yGNPZyYGw6c5iw=;
-        b=RK9KdUt9G34mb44xh/5h3OJn/2y9DCQCHJYG6331S3Nkcfl1SCla9sdyBucGntiPxP
-         fCwsuLQRfMDC19jPGH1Y7GtU7tj7qiU+PNQ9WWEc9RdVP7nGXvPJ1whG7edf62isi0WJ
-         9hY/eOpkb+YzwOk7lCraIXsxuQRi2r3r0WGQQUCCsSVgxAV0n7+DM7Wqb4Ph4/ZV5WuJ
-         2BzG6Bys/oFKYCIL40QiJjohO9wOQasfG/5PnsgCj7Dmr/+j84I2kvOCRHhTLFAIn3Gp
-         7rlmaIm9O+vHBDwcnfD0bj856GTRBl1D7nA+L9/lE1Wr4pZiY507foIqIiNwdphuGrZy
-         W5ew==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OQAWcnBlImqpI8dh4fMJUJ4uLuslVZFojFS90E2YNEE=;
+        b=KbOLSuz5sGWWK7dHMkv8zGADe7M8qgs5BFVn7L46N6R3TXmVg9cJMtz3F1HjvU3McB
+         3HNS8XdeC7qsXimdqUQu8woKnmJbknQ4un29W0Z3I7FOI3+ccbmW8P8J7j7I32MEzyeq
+         h4wNqaKp72hM8THzFErBUXKjTv2xwzQguI/GGOJWgXbGMLXn4NXb7ugBDgwtJcMcgQH7
+         8f4uBajafCKH63L3e5Kt/O+3EIAPvu9MlJddXTIkx3Fe9ziKliSCO59HWMuH4QA8/LFh
+         9Pw59JDso5dJjRPINPuqMjdaNfCTqioWzJO+qpXlZaT4SZy1y96tigBTbpDFzvaANdWe
+         Coyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KGhlandvp32zJuT9yzD1H530+wjS7yGNPZyYGw6c5iw=;
-        b=EQ4dlDqOzSLTxwo3b1wF8PRqow7PFPKppFfBpCZvWoDT+aUKiUg31XflstsigrPUdd
-         FHGkspN8+4gl0JQJKNWtY5fhxi/auqGdDqQp+Xph7eCP2uknNlViqYbxixwKXpIOAYIB
-         emFPsi8+/DJMGaL1ZLGaYfZJsmNgUF/n3V7UqvgOfmcXic+TZn8CCjtSR2tYCpIyuVhL
-         1urOI/EJMvm0HWQtYbT/DOJ9Si4KRevrcU2qR+pk7iDOLHOrLOzv+E3GejsdTKCfPW3w
-         WaE5fwfk6wE7OzCYE4s8cfp/35eZaBPq9JR7cCsGaYXPjyV9GQJTwuoSy17cT97UAJbh
-         c3Ng==
-X-Gm-Message-State: AO0yUKVOF3Erte6GXgHDefFwPHQH+cuGMTjtuzhA7V8M9E5cZTbtpMAH
-        y6AONdqrVZNkolb3+sHnWjRRhQ==
-X-Google-Smtp-Source: AK7set/SDIe02vvcqIXxVdYR1JTowEX0cXIGhrq4GDN8fP/pcdD3VeaD4VIm3863dwYdvnDd4WXa9w==
-X-Received: by 2002:a05:600c:1714:b0:3df:dc29:d69 with SMTP id c20-20020a05600c171400b003dfdc290d69mr676718wmn.36.1675711304635;
-        Mon, 06 Feb 2023 11:21:44 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r13-20020a05600c35cd00b003dc5b59ed7asm12549446wmq.11.2023.02.06.11.21.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 11:21:44 -0800 (PST)
-Message-ID: <a711905e-dbfb-4258-62be-250a9549a9c4@linaro.org>
-Date:   Mon, 6 Feb 2023 20:21:42 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 7/7] ASoC: dt-bindings: meson: convert axg sound card
- control to schema
-Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Cc:     linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OQAWcnBlImqpI8dh4fMJUJ4uLuslVZFojFS90E2YNEE=;
+        b=itO9f8sLMKC1BJ8saHhd9dATI8hjw6LDKR+NKyOYaHd2GX7QCrzITS7oQ5b9q5s4Ac
+         /PBKRUHl12ByqT2omINgT8lpOUHHr84L2Gc2LvHEOIMqebU8VfqTAYqoNS+ZYJwU/GzC
+         s/tn7u3uSONryeR6Sz1ehm9DayYOm/r5BK86qMvaK1NJMa/G2ecipIx351v5ydh9qjED
+         0IyorGsky37cfZvGa/HmAW2JwO0RoNWLjhWnM9P+0rG9cHmBtSXm7rO63AtXL/Ulb5OQ
+         njK7U+sDfaK0GcTjzOzSk6p3nHRbo1NPioU99R3auOfWNZbs+kYv7n42oeyla7EtY3kX
+         QHXg==
+X-Gm-Message-State: AO0yUKWrrPiF6fzi0Dk15ZCbkaC3eqRPsCswA68IW5zRIrxnFWxbV+H/
+        NMzinKADHAh9HFDwV/JGPy4bRA==
+X-Google-Smtp-Source: AK7set8Wq9hruDY7Cyh2+1+BQehRoY/JRRLJGz2O8xHgkkEXbm1aPoTVQ5cOlFCXglnhOTHEx8uZ9w==
+X-Received: by 2002:a05:600c:920:b0:3dd:af7a:53ed with SMTP id m32-20020a05600c092000b003ddaf7a53edmr791250wmp.11.1675711997717;
+        Mon, 06 Feb 2023 11:33:17 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l4-20020a05600c2cc400b003dfefe115b9sm9351021wmc.0.2023.02.06.11.33.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Feb 2023 11:33:17 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20230206153449.596326-1-jbrunet@baylibre.com>
- <20230206153449.596326-8-jbrunet@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230206153449.596326-8-jbrunet@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: remoteproc: qcom,sm8550-pas: correct power domains
+Date:   Mon,  6 Feb 2023 20:33:13 +0100
+Message-Id: <20230206193313.30667-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/02/2023 16:34, Jerome Brunet wrote:
-> Convert the DT binding documentation for the Amlogic axg sound card to
-> schema.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  .../bindings/sound/amlogic,axg-sound-card.txt | 124 ------------
->  .../sound/amlogic,axg-sound-card.yaml         | 183 ++++++++++++++++++
->  2 files changed, 183 insertions(+), 124 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
-> 
+Correct CDSP and MPSS power domains to match what is used in DTS and the
+Linux driver:
 
+  sm8550-mtp.dtb: remoteproc@32300000: power-domain-names: ['cx', 'mxc', 'nsp'] is too long
 
-Thank you for your patch. There is something to discuss/improve.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml   | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-
-> -};
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
-> new file mode 100644
-> index 000000000000..b7459fad0e7f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
-> @@ -0,0 +1,183 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/amlogic,axg-sound-card.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic AXG sound card
-> +
-> +maintainers:
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,axg-sound-card
-> +
-> +  audio-aux-devs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: list of auxiliary devices
-> +
-> +  audio-routing:
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +    description: |
-
-You still have everywhere | which should be removed. Here and in almost
-every other description when no special formatting is needed.
-
-
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+index ae612809e260..fe216aa531ed 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+@@ -99,22 +99,22 @@ allOf:
+       properties:
+         compatible:
+           enum:
+-            - qcom,sm8550-cdsp-pas
++            - qcom,sm8550-mpss-pas
+     then:
+       properties:
+         power-domains:
+           items:
+             - description: CX power domain
+-            - description: MXC power domain
++            - description: MSS power domain
+         power-domain-names:
+           items:
+             - const: cx
+-            - const: mxc
++            - const: mss
+   - if:
+       properties:
+         compatible:
+           enum:
+-            - qcom,sm8550-mpss-pas
++            - qcom,sm8550-cdsp-pas
+     then:
+       properties:
+         power-domains:
+-- 
+2.34.1
 
