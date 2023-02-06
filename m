@@ -2,53 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BE8968BFD2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:16:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AB7D68BFE9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:20:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbjBFOQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 09:16:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33142 "EHLO
+        id S229582AbjBFOUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 09:20:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbjBFOQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:16:07 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95AE521A1A;
-        Mon,  6 Feb 2023 06:15:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=Uwm//uEvfmmKxmoWhqyZTBRjYJjdixdhrA7x2SH7ohw=; b=0+7QLZWW47PHov4bvCcj7Lf26c
-        mTtvafXGbP+ERtJRTwpwHOnITOkkhUpcFXpT6mD+gCleRH1k02T3ZnYrZKqQGLx5sTSNhB02RNYpN
-        ymjYsrtqT31c7YtIdwfJ/NwsU9SdGfWQJhgi+bD2JR+Pz/Trv2JRwRDeu9q9aQVLAghs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pP2HB-004D8x-R5; Mon, 06 Feb 2023 15:15:21 +0100
-Date:   Mon, 6 Feb 2023 15:15:21 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     MD Danish Anwar <danishanwar@ti.com>
-Cc:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, nm@ti.com,
-        ssantosh@kernel.org, srk@ti.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/2] net: ti: icssg-prueth: Add ICSSG ethernet driver
-Message-ID: <Y+ELeSQX+GWS5N2p@lunn.ch>
-References: <20230206060708.3574472-1-danishanwar@ti.com>
- <20230206060708.3574472-3-danishanwar@ti.com>
+        with ESMTP id S229508AbjBFOUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:20:35 -0500
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A085D170B
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 06:20:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1675693231; x=1678285231;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=q5FIAJjK7joiRJaf0JPpzOWdUDayNYkOXzSXsHkAAp0=;
+        b=KgzbUKyQ629vS5AexuyD+Ay67GEgjXzFY+HVUXOfym45ISa/3w2FIVxCi8S8lli8
+        SwWvgQnG4MV9pEgkyXKU6LPJb2krgdmBpPtLOsUaM4rEQCpm73X4m+PjqH4jzoA4
+        R96OG137u13qiPCy+pqC4m8ZpE2qvGhHwG17tEgOUyU=;
+X-AuditID: ac14000a-923ff70000007ecb-8f-63e10caf0ce8
+Received: from Diagnostix.phytec.de (Diagnostix.phytec.de [172.25.0.14])
+        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 30.CE.32459.FAC01E36; Mon,  6 Feb 2023 15:20:31 +0100 (CET)
+Received: from Florix.phytec.de (172.25.0.13) by Diagnostix.phytec.de
+ (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Mon, 6 Feb
+ 2023 15:20:31 +0100
+Received: from Florix.phytec.de ([fe80::a802:84f9:c56c:4c6d]) by
+ florix.phytec.de ([fe80::a802:84f9:c56c:4c6d%5]) with mapi id 15.01.2375.018;
+ Mon, 6 Feb 2023 15:20:31 +0100
+From:   Dominik Haller <D.Haller@phytec.de>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "sam@ravnborg.org" <sam@ravnborg.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "upstream@phytec.de" <upstream@phytec.de>
+Subject: Re: [PATCH 2/2] drm/panel: simple: Add EDT ETML1010G0DKA panel
+Thread-Topic: [PATCH 2/2] drm/panel: simple: Add EDT ETML1010G0DKA panel
+Thread-Index: AQHYt+xq34hFG5cNnESyWWcHUzxQe67C67mA
+Date:   Mon, 6 Feb 2023 14:20:31 +0000
+Message-ID: <ba13246c-3838-4993-12ef-420d82730b28@phytec.de>
+References: <20220818124518.42080-1-d.haller@phytec.de>
+ <20220818124518.42080-2-d.haller@phytec.de>
+In-Reply-To: <20220818124518.42080-2-d.haller@phytec.de>
+Accept-Language: en-DE, de-DE, en-US
+Content-Language: aa
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.0.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <C3392DDF7449474AA06C6F09FE10890A@phytec.de>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230206060708.3574472-3-danishanwar@ti.com>
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBIsWRmVeSWpSXmKPExsWyRpKBT3c9z8Nkg4v7DCzmHznHanHl63s2
+        i74XD5ktWvceYbdY8XMro8XPXfNYHNg8ds66y+6xaVUnm8eda3vYPO53H2fyWDLtKpvH501y
+        AWxRXDYpqTmZZalF+nYJXBkTFvxiKTglXvF67Sr2BsY/Yl2MnBwSAiYSt25eZOxi5OIQEljL
+        JHHqfSOU85hR4t31eSwQzkZGiZZvl5lAWtgENCVeTr3NCpIQEbjBKHF24XewFmaQquOd7Ywg
+        VcIC7hJdv7pYQWwRAQ+JxQ+fMUHYRhIvD59lB7FZBFQkZj0/wAxi8wrYSLy6sxQsLiSQKrH9
+        3RmwXk4BC4k931rAZjIC1d9++QvMZhYQkei9DhGXEBCQWLLnPDOELSrx8vE/VghbXuLErWlA
+        ezmA6jUl1u/Sh2i1kFj99TQzhK0oMaX7ITvECYISJ2c+YZnAKD4LyYZZCN2zkHTPQtI9C0n3
+        AkbWVYxCuZnJ2alFmdl6BRmVJanJeimpmxhBsSvCwLWDsW+OxyFGJg7GQ4wSHMxKIrymBx4k
+        C/GmJFZWpRblxxeV5qQWH2KU5mBREue938OUKCSQnliSmp2aWpBaBJNl4uCUamCsEG6QYsyQ
+        L9Y93t/Vt2jxzEhTljCfdS0ey92Yg4y9AvvX/WEWveBr8FegYdGEhwXnj5v9fatT29hhWLxq
+        vt/VkoZtr25zcse9/Ws18d6fYKveWY1npzt7Td6n/ydW7qHyHDu71oZrX0Vl564WylykM/VM
+        zOy0ZK+nK3K+Ref+15KdV7prqYsSS3FGoqEWc1FxIgCNOD4LywIAAA==
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
@@ -58,70 +83,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +enum mii_mode {
-> +	MII_MODE_MII = 0,
-> +	MII_MODE_RGMII,
-> +	MII_MODE_SGMII
-
-There is no mention of SGMII anywhere else. And in a couple of places,
-the code makes the assumption that if it is not RGMII it is MII.
-
-Does the hardware really support SGMII?
-
-> +static int prueth_config_rgmiidelay(struct prueth *prueth,
-> +				    struct device_node *eth_np,
-> +				    phy_interface_t phy_if)
-> +{
-
-...
-
-> +	if (phy_if == PHY_INTERFACE_MODE_RGMII_ID ||
-> +	    phy_if == PHY_INTERFACE_MODE_RGMII_TXID)
-> +		rgmii_tx_id |= ICSSG_CTRL_RGMII_ID_MODE;
-> +
-> +	regmap_update_bits(ctrl_mmr, icssgctrl_reg, ICSSG_CTRL_RGMII_ID_MODE, rgmii_tx_id);
-
-Here you are adding the TX delay if the phy-mode indicates it should
-be added.
-
-> +static int prueth_netdev_init(struct prueth *prueth,
-> +			      struct device_node *eth_node)
-> +{
-
-> +	ret = of_get_phy_mode(eth_node, &emac->phy_if);
-> +	if (ret) {
-> +		dev_err(prueth->dev, "could not get phy-mode property\n");
-> +		goto free;
-> +	}
-
-> +	ret = prueth_config_rgmiidelay(prueth, eth_node, emac->phy_if);
-> +	if (ret)
-> +		goto free;
-> +
-
-Reading it from DT and calling the delay function.
-
-> +static int prueth_probe(struct platform_device *pdev)
-> +{
-
-
-> +	/* register the network devices */
-> +	if (eth0_node) {
-> +		ret = register_netdev(prueth->emac[PRUETH_MAC0]->ndev);
-> +		if (ret) {
-> +			dev_err(dev, "can't register netdev for port MII0");
-> +			goto netdev_exit;
-> +		}
-> +
-> +		prueth->registered_netdevs[PRUETH_MAC0] = prueth->emac[PRUETH_MAC0]->ndev;
-> +
-> +		emac_phy_connect(prueth->emac[PRUETH_MAC0]);
-
-And this is connecting the MAC and the PHY, where emac_phy_connect()
-passes emac->phy_if to phylib.
-
-What i don't see anywhere is you changing emac->phy_if to indicate the
-MAC has inserted the TX delay, and so the PHY should not.
-
-    Andrew
-
+SGVsbG8sDQoNCnBpbmcgaGVyZSwgdGhpcyBvbmUgZ290IGZvcmdvdHRlbi4NCkl0IHN0aWxsIGFw
+cGxpZXMgb24gZHJtLW1pc2MtbmV4dCBhbmQgdjYuMi1yYzcNCg0KDQpPbiAxOC4wOC4yMiAxNDo0
+NSwgRG9taW5payBIYWxsZXIgd3JvdGU6DQo+IEFkZCBzdXBwb3J0IGZvciB0aGUgRURUIEVUTUwx
+MDEwRzBES0EgMTAuMSIgMTI4MHg4MDAgTFZEUyBwYW5lbC4NCj4NCj4gU2lnbmVkLW9mZi1ieTog
+RG9taW5payBIYWxsZXIgPGQuaGFsbGVyQHBoeXRlYy5kZT4NCj4gLS0tDQo+ICAgZHJpdmVycy9n
+cHUvZHJtL3BhbmVsL3BhbmVsLXNpbXBsZS5jIHwgMjkgKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKw0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAyOSBpbnNlcnRpb25zKCspDQo+DQo+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vcGFuZWwvcGFuZWwtc2ltcGxlLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vcGFuZWwvcGFuZWwtc2ltcGxlLmMNCj4gaW5kZXggZjllMWY4NWRhZWY3Li45MzE0ZGIyNGFi
+NTEgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9wYW5lbC9wYW5lbC1zaW1wbGUuYw0K
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vcGFuZWwvcGFuZWwtc2ltcGxlLmMNCj4gQEAgLTE3Nzks
+NiArMTc3OSwzMiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHBhbmVsX2Rlc2MgZWR0X2V0bWwwNzAw
+eTVkaGEgPSB7DQo+ICAgCS5jb25uZWN0b3JfdHlwZSA9IERSTV9NT0RFX0NPTk5FQ1RPUl9MVkRT
+LA0KPiAgIH07DQo+ICAgDQo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9kaXNwbGF5X21vZGUg
+ZWR0X2V0bWwxMDEwZzBka2FfbW9kZSA9IHsNCj4gKwkuY2xvY2sgPSA3MDAwMCwNCj4gKwkuaGRp
+c3BsYXkgPSAxMjgwLA0KPiArCS5oc3luY19zdGFydCA9IDEyODAgKyAxMDAsDQo+ICsJLmhzeW5j
+X2VuZCA9IDEyODAgKyAxMDAgKyAxOSwNCj4gKwkuaHRvdGFsID0gMTI4MCArIDEwMCArIDE5ICsg
+NDEsDQo+ICsJLnZkaXNwbGF5ID0gODAwLA0KPiArCS52c3luY19zdGFydCA9IDgwMCArIDQsDQo+
+ICsJLnZzeW5jX2VuZCA9IDgwMCArIDQgKyA0LA0KPiArCS52dG90YWwgPSA4MDAgKyA0ICsgNCAr
+IDE1LA0KPiArCS5mbGFncyA9IERSTV9NT0RFX0ZMQUdfUEhTWU5DIHwgRFJNX01PREVfRkxBR19Q
+VlNZTkMsDQo+ICt9Ow0KPiArDQo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IHBhbmVsX2Rlc2MgZWR0
+X2V0bWwxMDEwZzBka2EgPSB7DQo+ICsJLm1vZGVzID0gJmVkdF9ldG1sMTAxMGcwZGthX21vZGUs
+DQo+ICsJLm51bV9tb2RlcyA9IDEsDQo+ICsJLmJwYyA9IDgsDQo+ICsJLnNpemUgPSB7DQo+ICsJ
+CS53aWR0aCA9IDIxNiwNCj4gKwkJLmhlaWdodCA9IDEzNSwNCj4gKwl9LA0KPiArCS5idXNfZm9y
+bWF0ID0gTUVESUFfQlVTX0ZNVF9SR0I4ODhfMVg3WDRfU1BXRywNCj4gKwkuYnVzX2ZsYWdzID0g
+RFJNX0JVU19GTEFHX0RFX0hJR0gsDQo+ICsJLmNvbm5lY3Rvcl90eXBlID0gRFJNX01PREVfQ09O
+TkVDVE9SX0xWRFMsDQo+ICt9Ow0KPiArDQo+ICAgc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fZGlz
+cGxheV9tb2RlIGVkdF9ldG12NTcwZzJkaHVfbW9kZSA9IHsNCj4gICAJLmNsb2NrID0gMjUxNzUs
+DQo+ICAgCS5oZGlzcGxheSA9IDY0MCwNCj4gQEAgLTQwNTcsNiArNDA4Myw5IEBAIHN0YXRpYyBj
+b25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIHBsYXRmb3JtX29mX21hdGNoW10gPSB7DQo+ICAgCX0s
+IHsNCj4gICAJCS5jb21wYXRpYmxlID0gImVkdCxldG1sMDcwMHk1ZGhhIiwNCj4gICAJCS5kYXRh
+ID0gJmVkdF9ldG1sMDcwMHk1ZGhhLA0KPiArCX0sIHsNCj4gKwkJLmNvbXBhdGlibGUgPSAiZWR0
+LGV0bWwxMDEwZzBka2EiLA0KPiArCQkuZGF0YSA9ICZlZHRfZXRtbDEwMTBnMGRrYSwNCj4gICAJ
+fSwgew0KPiAgIAkJLmNvbXBhdGlibGUgPSAiZWR0LGV0bXY1NzBnMmRodSIsDQo+ICAgCQkuZGF0
+YSA9ICZlZHRfZXRtdjU3MGcyZGh1LA0KDQoNCi0tIA0KUEhZVEVDIE1lc3N0ZWNobmlrIEdtYkgg
+fCBCYXJjZWxvbmEtQWxsZWUgMSB8IDU1MTI5IE1haW56LCBHZXJtYW55DQoNCkdlc2Now6RmdHNm
+w7xocmVyOiBEaXBsLi1JbmcuIE1pY2hhZWwgTWl0ZXpraSwgRGlwbC4tSW5nLiBCb2RvIEh1YmVy
+IHwNCkhhbmRlbHNyZWdpc3RlciBNYWlueiBIUkIgNDY1NiB8IEZpbmFuemFtdCBNYWluei1NaXR0
+ZSB8IFN0Lk5yLg0KMjY2NTAwNjA4LCBERSAxNDkwNTk4NTUNCg0K
