@@ -2,78 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2645968C2F3
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 17:19:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80D0E68C2CE
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 17:17:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231821AbjBFQTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 11:19:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58170 "EHLO
+        id S231263AbjBFQRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 11:17:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231827AbjBFQTA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 11:19:00 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF0C84C16;
-        Mon,  6 Feb 2023 08:18:12 -0800 (PST)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 316EblRK017049;
-        Mon, 6 Feb 2023 16:18:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=pigy6jeTtpYZvby5td3Q68connby5clrqLgTZq1E9mQ=;
- b=RyjMHMe+IbA+LqcWfYHxNP3YeuSbS4zeZSSMPdFUU5ifZRauvvA+oz5kFiIEZIaLfdpq
- DAlYB4T8jbuc2JpmeVdGJUaYFr3QGo1ykIm7ZUXjI91NKAVrY3Ffp/cxevfPlquTIN84
- pYcFcfyzUqmXyhZ3pvktRZ6SblUxbxa3ga1cZyimuuqVc9tsyBj1BDFv6Xa8TRJOoWO+
- XH2BXe6lPNOGvMkXw8xY2Ppmptg3jjX1/j8QTEn20nlPhmRk29rOF0Tt6nMOpUomER2b
- WERG4pMUrqgkXbkjDOvCPg3EZa+dJ8QCHup/z9po0i8t9bJxzXdLDUCExNsb7mE0f7ul Vg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nhfrev4n6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 06 Feb 2023 16:18:03 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 316GI2PN001673
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 6 Feb 2023 16:18:02 GMT
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Mon, 6 Feb 2023 08:17:56 -0800
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <broonie@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <dianders@chromium.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>, <alsa-devel@alsa-project.org>,
-        <quic_rjendra@quicinc.com>, <konrad.dybcio@somainline.org>,
-        <mka@chromium.org>, <quic_mohs@quicinc.com>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: [PATCH v5 8/8] dt-bindings: remoteproc: qcom: sc7280-adsp-pil: Add missing properties
-Date:   Mon, 6 Feb 2023 21:46:41 +0530
-Message-ID: <1675700201-12890-9-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1675700201-12890-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1675700201-12890-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S230411AbjBFQRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 11:17:08 -0500
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71B4830E5
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 08:17:03 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:5f4c:1e23:9c34:1a39])
+        by xavier.telenet-ops.be with bizsmtp
+        id HsH02900V3XDBUl01sH0VD; Mon, 06 Feb 2023 17:17:01 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtp (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pP4Ad-008DXU-ML;
+        Mon, 06 Feb 2023 17:17:00 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pP4Au-00Emwu-IZ;
+        Mon, 06 Feb 2023 17:17:00 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     David Gibson <david@gibson.dropbear.id.au>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] fdtoverlay: Remove bogus type info from help text
+Date:   Mon,  6 Feb 2023 17:16:59 +0100
+Message-Id: <20230206161659.3524743-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: YiPvVyq0WKPsjllBdvHB4NL7wiZMJJ7v
-X-Proofpoint-GUID: YiPvVyq0WKPsjllBdvHB4NL7wiZMJJ7v
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-06_07,2023-02-06_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- lowpriorityscore=0 spamscore=0 clxscore=1015 impostorscore=0 mlxscore=0
- malwarescore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
- phishscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2302060141
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,104 +46,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add reg-names and power-domain-names for remoteproc ADSP pheripheral
-loader. Add firmware-name property to distinguish and load different
-firmware binaries of various vendors.
-Change qcom,halt-regs property phandle to tcsr_1 from tcsr_mutex.
-Also add required-opps property and change power domain from LCX to CX,
-which is actual PD to be controlled, for setting appropriate
-performance state.
-This is to make compatible with remoteproc ADSP PIL driver and
-latest device tree changes.
+"fdtoverlay -h" shows a.o.:
 
-Fixes: 8490a99586ab ("dt-bindings: remoteproc: qcom: Add SC7280 ADSP support")
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+    <type>	s=string, i=int, u=unsigned, x=hex
+	    Optional modifier prefix:
+		    hh or b=byte, h=2 byte, l=4 byte (default)
+
+However, unlike fdtget and fdtput, fdtoverlay does not support the
+"-t"/"--type" option.
+
+Fixes: 42409146f2db22d7 ("fdtoverlay: A tool that applies overlays")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- .../bindings/remoteproc/qcom,sc7280-adsp-pil.yaml  | 30 +++++++++++++++++++---
- 1 file changed, 26 insertions(+), 4 deletions(-)
+Applies to linux/scripts/dtc/, too.
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
-index 94ca7a0..7addc7d 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
-@@ -23,6 +23,11 @@ properties:
-       - description: qdsp6ss register
-       - description: efuse q6ss register
- 
-+  reg-names:
-+    items:
-+      - const: qdsp6ss_base
-+      - const: lpass_efuse
-+
-   iommus:
-     items:
-       - description: Phandle to apps_smmu node with sid mask
-@@ -57,7 +62,11 @@ properties:
- 
-   power-domains:
-     items:
--      - description: LCX power domain
-+      - description: CX power domain
-+
-+  power-domain-names:
-+    items:
-+      - const: cx
- 
-   resets:
-     items:
-@@ -73,6 +82,12 @@ properties:
-     maxItems: 1
-     description: Reference to the reserved-memory for the Hexagon core
- 
-+  firmware-name:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description:
-+      The name of the firmware which should be loaded for this remote
-+      processor.
-+
-   qcom,halt-regs:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     description:
-@@ -80,7 +95,7 @@ properties:
-       four offsets within syscon for q6, modem, nc and qv6 halt registers.
-     items:
-       - items:
--          - description: phandle to TCSR_MUTEX registers
-+          - description: phandle to TCSR_1 registers
-           - description: offset to the Q6 halt register
-           - description: offset to the modem halt register
-           - description: offset to the nc halt register
-@@ -100,6 +115,10 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description: Reference to the AOSS side-channel message RAM.
- 
-+  required-opps:
-+    description:
-+      A phandle to an OPP node describing required MMCX performance point.
-+
-   glink-edge:
-     $ref: qcom,glink-edge.yaml#
-     type: object
-@@ -167,13 +186,16 @@ examples:
-                  <&gcc GCC_CFG_NOC_LPASS_CLK>;
-         clock-names = "xo", "gcc_cfg_noc_lpass";
- 
--        power-domains = <&rpmhpd SC7280_LCX>;
-+        power-domains = <&rpmhpd SC7280_CX>;
-+        power-domain-names = "cx";
-+
-+        required-opps = <&rpmhpd_opp_nom>;
- 
-         resets = <&pdc_reset PDC_AUDIO_SYNC_RESET>,
-                  <&aoss_reset AOSS_CC_LPASS_RESTART>;
-         reset-names = "pdc_sync", "cc_lpass";
- 
--        qcom,halt-regs = <&tcsr_mutex 0x23000 0x25000 0x28000 0x33000>;
-+        qcom,halt-regs = <&tcsr_1 0x23000 0x25000 0x28000 0x33000>;
- 
-         memory-region = <&adsp_mem>;
- 
+ fdtoverlay.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/fdtoverlay.c b/fdtoverlay.c
+index 5350af65679f7fbd..cac6b6576c289c18 100644
+--- a/fdtoverlay.c
++++ b/fdtoverlay.c
+@@ -23,9 +23,7 @@
+ /* Usage related data. */
+ static const char usage_synopsis[] =
+ 	"apply a number of overlays to a base blob\n"
+-	"	fdtoverlay <options> [<overlay.dtbo> [<overlay.dtbo>]]\n"
+-	"\n"
+-	USAGE_TYPE_MSG;
++	"	fdtoverlay <options> [<overlay.dtbo> [<overlay.dtbo>]]";
+ static const char usage_short_opts[] = "i:o:v" USAGE_COMMON_SHORT_OPTS;
+ static struct option const usage_long_opts[] = {
+ 	{"input",            required_argument, NULL, 'i'},
 -- 
-2.7.4
+2.34.1
 
