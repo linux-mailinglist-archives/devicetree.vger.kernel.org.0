@@ -2,87 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 258B268BB75
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:27:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A24668BB80
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:28:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230057AbjBFL1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 06:27:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42742 "EHLO
+        id S229738AbjBFL2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 06:28:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbjBFL1H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:27:07 -0500
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCD6412857
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 03:27:02 -0800 (PST)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-520dad0a7d2so151219417b3.5
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 03:27:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=GJR7iIBYxeHMKeEYc9yJlmGGl4YAGtrHLk1xmdfWkjY=;
-        b=cEiqbsgShNHfgqVqwAK88z6dPmS5LNgW4KwIyRVk3eWmxUXP0lv1ECQABJxp4IuAW4
-         08SmBAO/PDsRaPrMqDLjT3iOOCqXXb/OLe791QjQFGztN3jDiPclnERlhhuQg37GtVIK
-         uruJuMVn/c+RFufhHvA1+2oVj6SHkahm3MvAtdj2UdPrjz981YKz03DmWmA/Mml3Ebo2
-         vgLuq6z4a1wu8/LSs5sn3+RErEjRdU1L1PTnIJqzqC0aArFJrsaTANiqN1TlCwSK+P+p
-         k+lZZZF0sQH3lVORlgXpVQUkbl1FE8R1/ZFV35uUjtD4VSBn4jrBaeuXzuqVkGAB60uh
-         pFeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GJR7iIBYxeHMKeEYc9yJlmGGl4YAGtrHLk1xmdfWkjY=;
-        b=Xtm+2cELfdL9pkc+bX8hYj8RP8baPSVktLWjS04LPskUXPTcrZcJysuQ747Z2jb5Ob
-         AHUZKEap5d7w7VRjpSjIj0MSY25QfK5A/y8ze9I5rJDrlgAq5vTlmd1dsXnFh8x+0dy1
-         XyOvqGgVZYVcLcH7ea/QtT0cPULa3TJyr3ZzJ1BOyxRBuCeEHCyj+cNxRzoH7bmw1ydu
-         ZNJP/dvRwQDa3ZlIZIsdGsaN2M7k6PcALj4NB1suy67hO+bI8jNgxM5bGpsFG+Hw7WpB
-         P7HwJbquXLP8stBT6WlkJ9waBnYr1qvGAdoOeJLxaX7dV4QAYwoXDyCGKDVf7Re7bIK3
-         /RHg==
-X-Gm-Message-State: AO0yUKX/m8WsxZQK+Sh17mGPLWZrQC18N+gfu4rQpRM1R8A65fOshgz3
-        qlF2ZUR8Byp5JbyoAjh+qPN4xi65guQmpDDNK+ODSg==
-X-Google-Smtp-Source: AK7set8L3VLeOObm9qWRrIhVr41MTYoDvVibtG9Ay2RHWLmtjUwNSvhhckk7653hSCZoO5nkPQYJMfhJ+CrdMrR5rTM=
-X-Received: by 2002:a05:690c:b18:b0:4f3:8d0e:edce with SMTP id
- cj24-20020a05690c0b1800b004f38d0eedcemr1702307ywb.185.1675682822071; Mon, 06
- Feb 2023 03:27:02 -0800 (PST)
+        with ESMTP id S229678AbjBFL2p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:28:45 -0500
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA0653C03;
+        Mon,  6 Feb 2023 03:28:40 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1675682895; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=RY6R5BOppnWZR3jpmEhe40gafeLLD0Ldm9ihovKmn3SUsznINGz7ftWJHvp/ZRTiPm6K3IYSlGO51pjvcK+59kvhv0Gf5QkJjJRk9SUZkKp6Sv0Q5n5YgbL+Tn3Yx/Tw51BP9wLYAIdhp6TO5ltV6LqD4G9EZK1cy5jFKTNpUAM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1675682895; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=o/sww2PbahsgG/SAcgenvXBIa7XT0lp/YW4WEWaKfcw=; 
+        b=ShCBsALaMyzTbOnM6w0h7Rggp/wn6XAX10bXm4eiV39e7WN/nBqP5iXTYJa1F3fou3ZA1LtQ6yFzFEATGDFAGzF66Ub6dHnSqPbdfpydU13oMEeqcTEQXSHEP5m++ggyfv2X2NJq6XT5y0lPQ179EH11FccFcv23WFCCUu2fm6I=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=linux.beauty;
+        spf=pass  smtp.mailfrom=me@linux.beauty;
+        dmarc=pass header.from=<me@linux.beauty>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1675682895;
+        s=zmail; d=linux.beauty; i=me@linux.beauty;
+        h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=o/sww2PbahsgG/SAcgenvXBIa7XT0lp/YW4WEWaKfcw=;
+        b=TtPu6En2UvuBluR94/4iW4wnlOrYmezEsG29p4rtk4BOW7tyCm/8cj2yylszWtRK
+        6Wck6C0nDLjyN0jIxqU/t1IeKwvFIn7r6XUe3BqWJtuMWPdE1QkK5r59nQuq94lbXmH
+        ut5NfyzmpMQNzOYH/mTYe2SSFvV1CxilNRQLCwOI=
+Received: from mail.zoho.com by mx.zohomail.com
+        with SMTP id 1675682895015699.3058709392761; Mon, 6 Feb 2023 03:28:15 -0800 (PST)
+Date:   Mon, 06 Feb 2023 19:28:14 +0800
+From:   Li Chen <me@linux.beauty>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+Cc:     "li chen" <lchen@ambarella.com>,
+        "michael turquette" <mturquette@baylibre.com>,
+        "stephen boyd" <sboyd@kernel.org>,
+        "rob herring" <robh+dt@kernel.org>,
+        "krzysztof kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "moderated list:arm/ambarella soc support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:common clk framework" <linux-clk@vger.kernel.org>,
+        "open list:open firmware and flattened device tree bindings" 
+        <devicetree@vger.kernel.org>,
+        "open list" <linux-kernel@vger.kernel.org>,
+        "arnd bergmann" <arnd@arndb.de>
+Message-ID: <186267bd495.c0d336602542450.72693939722996463@linux.beauty>
+In-Reply-To: <33c2038b-5e06-4eb2-82b8-007bb735bfb1@linaro.org>
+References: <20230123073305.149940-1-lchen@ambarella.com>
+ <20230123073305.149940-8-lchen@ambarella.com>
+ <0c19efb4-3bca-f500-ca24-14b9d24369ef@linaro.org>
+ <87y1prgdyu.wl-me@linux.beauty>
+ <b26a52ff-6b8a-8a64-7189-346cd2b0d705@linaro.org>
+ <87tu0ehl88.wl-me@linux.beauty>
+ <ec9fc589-2612-3315-3550-83b68bead926@linaro.org>
+ <87sffyhgvw.wl-me@linux.beauty>
+ <f70def8e-b148-616f-a93e-c2a8fb85be03@linaro.org>
+ <185f3b3a330.11c135c37327076.6300919877819761183@linux.beauty> <33c2038b-5e06-4eb2-82b8-007bb735bfb1@linaro.org>
+Subject: Re: [PATCH 07/15] dt-bindings: clock: Add Ambarella clock bindings
 MIME-Version: 1.0
-References: <03627216-54b5-5d9b-f91d-adcd637819e3@gmail.com> <137b56f0-8e86-f705-4ba7-d5dfe3c0b477@gmail.com>
-In-Reply-To: <137b56f0-8e86-f705-4ba7-d5dfe3c0b477@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 6 Feb 2023 12:26:50 +0100
-Message-ID: <CACRpkda3TNyLqy5ZSKMsp8E+Tzys8o1h=q6qSoBCta+08BYZ_w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/8] dt-bindings: pinctrl: rockchip,pinctrl: mark gpio
- sub nodes of pinctrl as deprecated
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kever.yang@rock-chips.com, sjg@chromium.org,
-        philipp.tomsich@vrull.eu, john@metanate.com,
-        quentin.schulz@theobroma-systems.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 21, 2023 at 12:08 PM Johan Jonker <jbx6244@gmail.com> wrote:
+Hi Krzysztof ,
 
-> Mark gpio sub nodes of pinctrl as deprecated.
-> Gpio nodes are now placed in the root of the device tree.
-> The relation to pinctrl is now described with the
-> "gpio-ranges" property.
->
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+ ---- On Fri, 27 Jan 2023 23:08:09 +0800  Krzysztof Kozlowski  wrote --- 
+ > On 27/01/2023 15:48, Li Chen wrote:
+ > >  > 
+ > >  > but what you are saying is that there is no separate clock controller
+ > >  > device with its own IO address but these clocks are part of rct_syscon.
+ > >  > Then model it that way in DTS. The rct_syscon is then your clock
+ > >  > controller and all these fake gclk-core and gclk-ddr nodes should be gone.
+ > > 
+ > > Ok, I will remove these fake nodes, and model the hardware as:
+ > > 
+ > > rct_syscon node
+ > > | clock node(pll, div, mux, composite  clocks live in the same driver)
+ > > | other periphal nodes
+ > 
+ > You need clock node if it takes any resources. If it doesn't, you do not
+ > need it.
 
-This patch applied to the pinctrl tree.
+If the only hardware resource the clock node can take is its parent clock(clocks = <&osc>;),
+then can I have this clock node?
 
-Yours,
-Linus Walleij
+Regards,
+Li
