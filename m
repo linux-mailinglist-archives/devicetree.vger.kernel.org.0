@@ -2,121 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7244468C8FC
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 22:50:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1274D68C956
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 23:28:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229590AbjBFVux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 16:50:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57086 "EHLO
+        id S229737AbjBFW2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 17:28:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbjBFVuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 16:50:52 -0500
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 173B42DE55;
-        Mon,  6 Feb 2023 13:50:28 -0800 (PST)
-Received: by mail-oi1-f173.google.com with SMTP id 20so10210448oix.5;
-        Mon, 06 Feb 2023 13:50:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=TComHy6fZylroVxyyvSSlsSThHII6Mu4hEBfm8EqSnQ=;
-        b=wzcgRGz00UQEDrm6wOLuvKXuTvB5rwVlO0eaTY1L4+SX8QIGvV0SFhKJ79vw8RCOfU
-         3aIQkj2vffP9okUNAg429LO+yyrNI/1qDS1pUJG1yP4uUgy1lNHDkzj4CHu0rms9JJlC
-         TfggjfNFmiLPl4yXbclfpNiS11jgvnqB1277QspPjBIewp6OsxTrpJhw/tCGElx3eMRv
-         iMSyNoy2GarWtgsWjC14iWpvjfd6tUBLI878zXFOIUWGk+DW42IweKEBQYLNqaENl4OS
-         GBpFeQP+oEWQbeh2r1pbxyZsf6l+jCGY6lqluCfzkiZqhZZ1GFiebkiRfk61m0L5ndsG
-         kcBA==
-X-Gm-Message-State: AO0yUKVf1pIZv4nlOlZJU/OrkeBigg3FVsRyPZ5k+CKyBlH1JjAuOtpW
-        s/YVzYIcM9Nu7o8t055eCA==
-X-Google-Smtp-Source: AK7set/hYpEoCmUec9o7ktPTMXf736j7C/JoYG/gvXF5wTwFwEmDcTGWh8hMqjewMfZtm/XdF/MBdg==
-X-Received: by 2002:aca:1c03:0:b0:378:4a78:2bba with SMTP id c3-20020aca1c03000000b003784a782bbamr134479oic.18.1675720209074;
-        Mon, 06 Feb 2023 13:50:09 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x4-20020a9d6284000000b006865f605ce3sm5495840otk.54.2023.02.06.13.50.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Feb 2023 13:50:08 -0800 (PST)
-Received: (nullmailer pid 1564985 invoked by uid 1000);
-        Mon, 06 Feb 2023 21:50:08 -0000
+        with ESMTP id S229732AbjBFW2c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 17:28:32 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D30E511EBB;
+        Mon,  6 Feb 2023 14:28:26 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2C31661057;
+        Mon,  6 Feb 2023 22:28:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D16C4C433A0;
+        Mon,  6 Feb 2023 22:28:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675722505;
+        bh=19z9W9tEqs9ej+0LkD2U7qqxqXr+U+U4fUJmpaY7s5Q=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=lMI9JETKqF0vNLNbMeVmWeFrX74IP976PXkuQtH4iuVgLOGJVlppR545NCKW8onWr
+         9oEmBQ1ILV3qoCIsHQPPUQf8M/+9DW3B+YrQQlheaMEUbjZOIgf0cQTkt1cB7L3RAQ
+         i25x9ekFkdx2Zi6VzFPvapz+2wOcEl3TDqRNwSnQOZKWdSnrUomU7VVIzvnXxZ6n3N
+         Wu4RyXND4kH8ucgsBsIMpcRT/7ELmCGqR2650y8rYrcgSGrJMZcI8C++/uC5hKhGaf
+         yIpAtgLaJIKFt2IXh8Jlt7f8GvCFr6Uz5zGOWDDbX4dvJhoQPGccMW9vCPEEIVWnLo
+         H898ymLr7XAEw==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/4] soc: qcom: Introduce PMIC GLINK
+Date:   Mon,  6 Feb 2023 14:30:32 -0800
+Message-Id: <167572263441.3569822.11639506996276775147.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20220818031512.319310-1-bjorn.andersson@linaro.org>
+References: <20220818031512.319310-1-bjorn.andersson@linaro.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        phone-devel@vger.kernel.org
-In-Reply-To: <20230206-ov2685-dtschema-v1-1-9e4da3474c10@z3ntu.xyz>
-References: <20230206-ov2685-dtschema-v1-1-9e4da3474c10@z3ntu.xyz>
-Message-Id: <167572017056.1564123.13342855865502188090.robh@kernel.org>
-Subject: Re: [PATCH] media: dt-bindings: ov2685: convert to dtschema
-Date:   Mon, 06 Feb 2023 15:50:08 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Mon, 06 Feb 2023 21:23:16 +0100, Luca Weiss wrote:
-> Convert the text-based dt-bindings to yaml.
+On Wed, 17 Aug 2022 20:15:08 -0700, Bjorn Andersson wrote:
+> This implements the base PMIC GLINK driver, a power_supply driver and a driver
+> for the USB Type-C altmode protocol. This has been tested and shown to provide
+> battery information, USB Type-C switch and mux requests and DisplayPort
+> notifications on SC8180X, SC8280XP and SM8350.
 > 
-> Changes from original txt:
-> * Take wording for various properties from other yaml bindings, this
->   removes e.g. volt amount from schema since it isn't really relevant
->   and the datasheet is a better source.
-> * Don't make reset-gpios a required property since it can be tied to
->   DOVDD instead.
+> Bjorn Andersson (4):
+>   dt-bindings: soc: qcom: Introduce PMIC GLINK binding
+>   soc: qcom: pmic_glink: Introduce base PMIC GLINK driver
+>   soc: qcom: pmic_glink: Introduce altmode support
+>   power: supply: Introduce Qualcomm PMIC GLINK power supply
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->  .../devicetree/bindings/media/i2c/ov2685.txt       |  41 ---------
->  .../devicetree/bindings/media/i2c/ovti,ov2685.yaml | 101 +++++++++++++++++++++
->  MAINTAINERS                                        |   1 +
->  3 files changed, 102 insertions(+), 41 deletions(-)
-> 
+> [...]
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied, thanks!
 
-yamllint warnings/errors:
+[1/4] dt-bindings: soc: qcom: Introduce PMIC GLINK binding
+      commit: 68d868adc121f68edde0f4c0e16923103b868945
+[2/4] soc: qcom: pmic_glink: Introduce base PMIC GLINK driver
+      commit: 58ef4ece1e41ac525db3e79529909683325d85df
+[3/4] soc: qcom: pmic_glink: Introduce altmode support
+      commit: 080b4e24852b1d5b66929f69344e6c3eeb963941
+[4/4] power: supply: Introduce Qualcomm PMIC GLINK power supply
+      (no commit info)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: 'clocks' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: 'clock-names' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: 'dvdd-supply' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: 'avdd-supply' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: 'dovdd-supply' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230206-ov2685-dtschema-v1-1-9e4da3474c10@z3ntu.xyz
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
