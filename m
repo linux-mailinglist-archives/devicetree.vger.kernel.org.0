@@ -2,156 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43DDC68C21A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 16:47:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA55D68C256
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 16:56:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230104AbjBFPrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 10:47:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54322 "EHLO
+        id S229941AbjBFP4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 10:56:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229969AbjBFPrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 10:47:04 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1978A18A88;
-        Mon,  6 Feb 2023 07:46:42 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C715560F4E;
-        Mon,  6 Feb 2023 15:46:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31F41C433AC;
-        Mon,  6 Feb 2023 15:46:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675698392;
-        bh=joRqx9Li9igfnC0oG6IHKkgO3cLoL5bazL6HXykW/Yk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JKn8eNaNJ4rikGY741Uy2+0jJ1t1CJnAt8eg4J/uwsGU91pzRtO8LzlwrMivN/3gp
-         NceZa7of2rRpKnlzWWzal3WG40MtjMiIMZbaaoryIEx5QnsmTtPNSjX1udoaGNzRgT
-         G+0+/6/mSUKlYDeinY+kmlCkoNaAKjbzQ/q6lmdGksIlr79l0R/s2IlClC45wK/H/E
-         fJpyE8hsh7Nvh7Mo7QpuruZlyTxIR5J+/Sc4WgFdeTJJXmiyjrjIITLKZjrsHzdSZd
-         FEGytUJ0kxZNmw6G78c7gyEYYv0ewaiHvm/ZsVrn0EfCLdlY3P0oMyVb9DDjyQy+q2
-         tg7Sjb+4UeVag==
-Received: by mail-vs1-f47.google.com with SMTP id g3so1731094vsr.10;
-        Mon, 06 Feb 2023 07:46:32 -0800 (PST)
-X-Gm-Message-State: AO0yUKUYdTS3kojaJmbY1uJoPKr4UCcTxOdztk7JNXWFG3p/nyEuaTEs
-        YkF8Ljkj5pG/VAVwMddO1mGoXxanUQA0pWv3+A==
-X-Google-Smtp-Source: AK7set8Tk9obdWMlC2bGawE53EVM/Oy5EZ7J8YanM63uhthmowerxVZw/LM6nc9a1zR0V1hhJv6Nifwjl9aigUei0n0=
-X-Received: by 2002:a67:cc1d:0:b0:3f3:5ce0:85ab with SMTP id
- q29-20020a67cc1d000000b003f35ce085abmr38443vsl.26.1675698390984; Mon, 06 Feb
- 2023 07:46:30 -0800 (PST)
+        with ESMTP id S229788AbjBFP4X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 10:56:23 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23256B452
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 07:56:22 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id hx15so35408653ejc.11
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 07:56:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=R5aG9yUx3+RsKOGhqIxlDkttMY7Lz3117m3KBfSIG3U=;
+        b=ln+WhwS8Uyigxc5Gnss11vx6nzgAuxUrnLrv8bJOxc+RJmOJ3/2kNZZa3NLyn4BMQ9
+         /AsMB1tQSVLgU5v1jx1VxYwoeahNi4TRg2Nd6nd0zyz2WObIQTco+ghsOZrlY690Htr3
+         5hdkq+PBfo1LgWqSWE4nlCNJJ8+b2geCyh2Z3fUWVYQuBkshVYnnmR9roPheD35qwLAH
+         NEw53mfQmxIlqinkB0sXu7Yd329r+XQIt+dkNB1VjEc+wpeeoVJtMJcfir7hftmcaTCn
+         dwaECsMyTq3Gw/cLcAoZa3C/Pp5V6IdXrUvmSrTpcot9U8bpIIEfl75pKnWyXHltyHhb
+         awxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=R5aG9yUx3+RsKOGhqIxlDkttMY7Lz3117m3KBfSIG3U=;
+        b=ofRZDR8WJ2i+KPAV/M+/IJNOIyZxn7UvjvehnnGxA8V2u54x+HZV/ChyrYX7G42J6B
+         PSIhhygy1Hq1+rRHGIcForqDAg7duyAzKPcOVyhOEiqaG0g8AXva6oiulcIM+sfG78vJ
+         x4xuyvhQlcl+H1uAe5DfM99bTbIm+0fJhOBaKQuzeOemPBL/Y8hyZn9digxTUQ888oEz
+         DddXZa4L+lI05BxnesVPzxb1urla/W+KagfvTf62MDx6m7AlWb27QPTACPfn6w5S0QwZ
+         IFFgosOboSejkN4TR5KvA0c0nwXS3sWpwKb7cAKLzJ7Xzhq1ugWQ5tjzYRHsZG+lACB7
+         L0YA==
+X-Gm-Message-State: AO0yUKVuNNj3EIVIsph76kfBLWFwIYtGnT/bFw9snvu5/HR5PFc/OVZm
+        TXobnnZP5lcGtPOk2c2ZXS8fPw==
+X-Google-Smtp-Source: AK7set/iNMGOtXNUGESWgPCw/qmCvhXZ8ZEIwZILk5ehq2gbfQ+oHtkXOGRKznvedDf1xavrCXRh8g==
+X-Received: by 2002:a17:907:9c07:b0:88d:ba89:183b with SMTP id ld7-20020a1709079c0700b0088dba89183bmr15326023ejc.12.1675698980736;
+        Mon, 06 Feb 2023 07:56:20 -0800 (PST)
+Received: from [192.168.1.101] (abyl20.neoplus.adsl.tpnet.pl. [83.9.31.20])
+        by smtp.gmail.com with ESMTPSA id r6-20020a056402018600b0049f29a7c0d6sm5288267edv.34.2023.02.06.07.56.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Feb 2023 07:56:20 -0800 (PST)
+Message-ID: <da834fe0-afe2-b701-fe0b-315338bc6c40@linaro.org>
+Date:   Mon, 6 Feb 2023 16:56:18 +0100
 MIME-Version: 1.0
-References: <67771143-fd83-383d-41b2-68e8707134e8@gmail.com>
- <20230203182119.GA615242-robh@kernel.org> <87f5097d-1cd0-e09f-e759-8592a9165ea6@gmail.com>
- <5647788.DvuYhMxLoT@diego>
-In-Reply-To: <5647788.DvuYhMxLoT@diego>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 6 Feb 2023 09:46:19 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJJcRx0XAJmsS6Q-AmNGDd+bWPVgW1yLBq6o2kmxiEFAg@mail.gmail.com>
-Message-ID: <CAL_JsqJJcRx0XAJmsS6Q-AmNGDd+bWPVgW1yLBq6o2kmxiEFAg@mail.gmail.com>
-Subject: Re: [PATCH v6 01/17] dt-bindings: display: rockchip: convert
- rockchip-lvds.txt to YAML
-To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc:     Johan Jonker <jbx6244@gmail.com>, hjc@rock-chips.com,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        airlied@gmail.com, daniel@ffwll.ch, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, robert.foss@linaro.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, philippe.cornu@foss.st.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
-        linus.walleij@linaro.org, inki.dae@samsung.com,
-        sw0312.kim@samsung.com, kyungmin.park@samsung.com,
-        alim.akhtar@samsung.com, linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] arm64: dts: qcom: sm8550: add GPR and LPASS pin
+ controller
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+References: <20230206150744.513967-1-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230206150744.513967-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 5, 2023 at 8:12 AM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
->
-> Hi,
->
-> Am Freitag, 3. Februar 2023, 20:02:54 CET schrieb Johan Jonker:
-> >
-> > On 2/3/23 19:21, Rob Herring wrote:
-> > > On Thu, Dec 22, 2022 at 03:22:14PM +0100, Johan Jonker wrote:
-> > >> Convert rockchip-lvds.txt to YAML.
-> > >>
-> > >> Changed:
-> > >>   Add power-domains property.
-> > >>   Requirements between PX30 and RK3288
-> > >>
-> > >> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> > >> Reviewed-by: Rob Herring <robh@kernel.org>
-> > >> ---
-> > >>
-> > >> Changed V3:
-> > >>   Filename matching compatible style
-> > >>   Drop "Regulator phandle for "
-> > >>   Specify properties and requirements per SoC
-> > >>   Sort order and restyle
-> > >>
-> > >> Changed V2:
-> > >>   Fix title
-> > >> ---
-> > >>  .../display/rockchip/rockchip,lvds.yaml       | 170 +++++++++++++++=
-+++
-> > >>  .../display/rockchip/rockchip-lvds.txt        |  92 ----------
-> > >>  2 files changed, 170 insertions(+), 92 deletions(-)
-> > >>  create mode 100644 Documentation/devicetree/bindings/display/rockch=
-ip/rockchip,lvds.yaml
-> > >>  delete mode 100644 Documentation/devicetree/bindings/display/rockch=
-ip/rockchip-lvds.txt
-> > >
-> >
-> > > What's the plan for these patches? Don't see them in linux-next still=
-.
-> > > Do you want me to take patches 1-8?
-> >
-> > Hi,
-> >
-> > The display patches normally go through the DRM git.
-> > Patch 2 must merge with grf.yaml.
-> > Heiko has merged now 3 PHY related patches to grf.yaml first.
-> >
-> > [PATCH v6 02/17] dt-bindings: soc: rockchip: grf: add rockchip,lvds.yam=
-l
-> >
-> > See current
-> > https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.gi=
-t/log/?h=3Dfor-next&qt=3Dgrep&q=3Djonker
-> >
-> > Not sure what Heiko's plans are.
-> > Patch 2 replaces  only a description text and some accolades removal, s=
-o not "too" important.
-> >
-> > I urgent then you could merge without conflict:
-> > 1, 3-8
->
-> So I've applied patches 1-7 to the drm-tree now.
 
-That would have been good a month ago. Now these won't land til 6.4.
-:( For that reason, if it is after the drm-misc cutoff, I prefer to
-take DT bindings via my tree.
 
-> For the GRF-patch, I've dropped the quotes changes, as they are somewhat
-> unrelated to the lvds inclusion and so prevented any conflicts when apply=
-ing
-> the rest to the DRM tree.
+On 6.02.2023 16:07, Krzysztof Kozlowski wrote:
+> Add the ADSP GPR (Generic Packet Router) and LPASS LPI (Low Power Audio
+> SubSystem Low Power Island) pin controller nodes used as part of audio
+> subsystem on SM8550.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> LPI bindings:
+> https://lore.kernel.org/linux-arm-msm/20230203174645.597053-1-krzysztof.kozlowski@linaro.org/T/#t
+> 
+> IOMMUS on qcom,q6apm-dais:
+> https://lore.kernel.org/linux-arm-msm/20230206150532.513468-1-krzysztof.kozlowski@linaro.org/T/#u
+> ---
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 55 ++++++++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index 6ff135191ee0..c26892bddcf0 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -13,7 +13,9 @@
+>  #include <dt-bindings/interconnect/qcom,sm8550-rpmh.h>
+>  #include <dt-bindings/mailbox/qcom-ipcc.h>
+>  #include <dt-bindings/power/qcom-rpmpd.h>
+> +#include <dt-bindings/soc/qcom,gpr.h>
+>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+> +#include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
+>  #include <dt-bindings/phy/phy-qcom-qmp.h>
+>  #include <dt-bindings/thermal/thermal.h>
+>  
+> @@ -1996,6 +1998,19 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+>  			};
+>  		};
+>  
+> +		lpass_tlmm: pinctrl@6e80000 {
+> +			compatible = "qcom,sm8550-lpass-lpi-pinctrl";
+> +			reg = <0 0x06e80000 0 0x20000>,
+> +			      <0 0x0725a000 0 0x10000>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&lpass_tlmm 0 0 23>;
+> +
+> +			clocks = <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +			clock-names = "core", "audio";
+> +		};
+> +
+>  		lpass_lpiaon_noc: interconnect@7400000 {
+>  			compatible = "qcom,sm8550-lpass-lpiaon-noc";
+>  			reg = <0 0x07400000 0 0x19080>;
+> @@ -3513,6 +3528,46 @@ compute-cb@7 {
+>  							 <&apps_smmu 0x1067 0x0>;
+>  					};
+>  				};
+> +
+> +				gpr {
+> +					compatible = "qcom,gpr";
+> +					qcom,glink-channels = "adsp_apps";
+> +					qcom,domain = <GPR_DOMAIN_ID_ADSP>;
+> +					qcom,intents = <512 20>;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					q6apm: service@1 {
+> +						compatible = "qcom,q6apm";
+> +						reg = <GPR_APM_MODULE_IID>;
+> +						#sound-dai-cells = <0>;
+> +						qcom,protection-domain = "avs/audio",
+> +									 "msm/adsp/audio_pd";
+> +
+> +						q6apmdai: dais {
+> +							compatible = "qcom,q6apm-dais";
+> +							iommus = <&apps_smmu 0x1001 0x0080>,
+nit - 0x80
 
-Only 1 hunk needed to be dropped to avoid the conflict (which also
-dropped quotes). If all the quote changes were dropped, please send
-another patch for that.
+Otherwise:
 
-> @Rob, if you could pick the fusb302 patch (number8), that would be great
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Will do.
-
-Rob
+Konrad
+> +								 <&apps_smmu 0x1061 0x0>;
+> +						};
+> +
+> +						q6apmbedai: bedais {
+> +							compatible = "qcom,q6apm-lpass-dais";
+> +							#sound-dai-cells = <1>;
+> +						};
+> +					};
+> +
+> +					q6prm: service@2 {
+> +						compatible = "qcom,q6prm";
+> +						reg = <GPR_PRM_MODULE_IID>;
+> +						qcom,protection-domain = "avs/audio",
+> +									 "msm/adsp/audio_pd";
+> +
+> +						q6prmcc: clock-controller {
+> +							compatible = "qcom,q6prm-lpass-clocks";
+> +							#clock-cells = <2>;
+> +						};
+> +					};
+> +				};
+>  			};
+>  		};
+>  
