@@ -2,99 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE83368BC14
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F46668BC1D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:55:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbjBFLw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 06:52:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33320 "EHLO
+        id S229943AbjBFLy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 06:54:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbjBFLw6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:52:58 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 547C5CDDE;
-        Mon,  6 Feb 2023 03:52:56 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 316BqgO3116929;
-        Mon, 6 Feb 2023 05:52:42 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1675684362;
-        bh=PTxMHa0MqV4C75EK6VqoyZC5BlthQBdTPqrUQAlejpI=;
-        h=From:To:CC:Subject:Date;
-        b=tOGPFVebvb058jyCRb1We92C+SUrc3Sl+iiVLPazihlhA/crzFKwbqRjW70vWWx0a
-         xlbn9fuCQX26ype+8TFiaJUHgUDlkJTqeI5/bYx3/dVIzAlfIAVUU3tMhWdDMtnqpc
-         2mkeeClISTvXYyIsluzuXU6B+tNc3DIJWxy4K298=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 316Bqg36026683
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 6 Feb 2023 05:52:42 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 6
- Feb 2023 05:52:41 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 6 Feb 2023 05:52:41 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 316Bqfcm031834;
-        Mon, 6 Feb 2023 05:52:41 -0600
-From:   Devarsh Thakkar <devarsht@ti.com>
-To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <kristo@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>
-CC:     <hnagalla@ti.com>, <praneeth@ti.com>, <a-bhatia1@ti.com>,
-        <j-luthra@ti.com>, <devarsht@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am62a7-sk: Enable full 4GB DDR
-Date:   Mon, 6 Feb 2023 17:22:40 +0530
-Message-ID: <20230206115240.6026-1-devarsht@ti.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S229930AbjBFLyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:54:54 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB0B61448A;
+        Mon,  6 Feb 2023 03:54:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1675684493; x=1707220493;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=lis3l5zmiwseEfKMd6n3wB7+kL79DdnDESv5iBtuvlg=;
+  b=ldfHT85lb4fvGa/cnacFMyc1FZUUvpGIyUQTN6EC+eUT9noi5/fKHB7/
+   M5BZITaxG4QwH4IkewLz7++qSTVrhanv78jxmydo0VKeg0QVTPyTGCZ+e
+   lqfIg2GT94tsr46HvtvVl0bgBuo5iyruFJeSqNsG6z6YkpkfDnU9/8aky
+   7RYsY4p6a/OrrBN3sv2MGDRAgFdQt/Tyzk24uRmnFiFJAZ912oNxsJDVK
+   W+MvtvdH73XOYVJwy0opLXAg//f/KkcGGDJrQlrOFRLhhhERPnTXvzPnl
+   lHnXt01zPsHDISLDoSouPJNWimxMmI+3JO1OnRdRkX3mDZP3T0ieMBHDl
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.97,276,1669071600"; 
+   d="scan'208";a="28889043"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 06 Feb 2023 12:54:50 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 06 Feb 2023 12:54:51 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 06 Feb 2023 12:54:51 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1675684491; x=1707220491;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=lis3l5zmiwseEfKMd6n3wB7+kL79DdnDESv5iBtuvlg=;
+  b=Ivw1UsC6U+znm/d+OjC/oOSKWApTkwhBHF1Xa9Q0GZbwzZvRxKETlPR3
+   3XbPZ1QtgZ6to+9Z8zv7iPic61Mm2Db5RNFshLwAXepbBmPC7bVm3uy2t
+   YkRI7c9ItiBljzN7yphSDXuNFP8U1X8gDX8/L8JuvD+7KDBwNHN7p42pz
+   861xbQjgFIZAuguTxaZwFzwRWKpUZTZWZBzbM236pBMxHki/TnCVlL1e6
+   ZPT/fNDSf4OVnOHRNrEudZkahKLDnQOUJ/jBFWDEpEfrwxUosWVBKN6iG
+   NfuPhuPhyiM1Z80X9Tr067xeUgTdjN+uSV/WE9hpTtSCKmleUxfqlm26U
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,276,1669071600"; 
+   d="scan'208";a="28889041"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 06 Feb 2023 12:54:50 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 41641280056;
+        Mon,  6 Feb 2023 12:54:50 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: add missing vref-supply
+Date:   Mon, 06 Feb 2023 12:54:47 +0100
+Message-ID: <3215933.aeNJFYEL58@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230204001333.ywrkty3an3cbuq33@pengutronix.de>
+References: <20230131101323.606931-1-alexander.stein@ew.tq-group.com> <3214924.aeNJFYEL58@steina-w> <20230204001333.ywrkty3an3cbuq33@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM62A7-SK board has 4GB LPDDR4 Micron MT53E2G32D4DE-046 AUT:B memory but
-only 2GB was enabled early.
+Hi Marco,
 
-Enable full 4GB memory by updating the latter 2GB memory region
-which gets mapped to 0x0880000000 i.e. DDR16SS0_SDRAM as referred in
-Table 2-1. AM62A Common SoC Memory of AM62Ax TRM.
+Am Samstag, 4. Februar 2023, 01:13:33 CET schrieb Marco Felsch:
+> HI Alexander,
+> 
+> On 23-02-03, Alexander Stein wrote:
+> > Am Freitag, 3. Februar 2023, 15:12:17 CET schrieb Marco Felsch:
+> > > Hi,
+> > > 
+> > > On 23-02-03, Alexander Stein wrote:
+> > > 
+> > > ...
+> > > 
+> > > > > > > > > +  vref-supply:
+> > > > > > > > > +    description: External ADC reference voltage supply on
+> > > > > > > > > VREFH
+> > > > > > > > > pad.
+> > > > > > > > 
+> > > > > > > > Please add it to the list of required properties, we can
+> > > > > > > > remove it
+> > > > > > > > as
+> > > > > > > > soon as the driver has support for the internal reference
+> > > > > > > > voltages.
+> > > > > > > 
+> > > > > > > I was thinking in doing so before as well. But DT describes the
+> > > > > > > hardware, and this ADC apparently would be functioning without a
+> > > > > > > reference voltage on that pad, using a different one. What the
+> > > > > > > driver
+> > > > > > > actual does is a different matter.>
+> > > > > > 
+> > > > > > I have also thought about it first but than I checked the RM which
+> > > > > > says
+> > > > > > that "multi-reference selection" is chip dependent.
+> > > > 
+> > > > Nice for pointing this out. I wasn't aware that there are differences.
+> > > > 
+> > > > > Oh goody. So is it detectable?
+> > > > 
+> > > > That's my problem. I didn't find any source of information which chips
+> > > > do
+> > > > support multiple references and which don't.
+> > > > Marco, do you have some information on this?
+> > > 
+> > > You can download the RM from the NXP website but you need an account for
+> > > it:
+> > > https://www.nxp.com/products/processors-and-microcontrollers/arm-process
+> > > ors/
+> > > i-mx-applications-processors/i-mx-8-applications-processors/i-mx-8-fami
+> > > ly-ar
+> > > m-cortex-a53-cortex-a72-virtualization-vision-3d-graphics-4k-video:i.MX
+> > > 8
+> > > 
+> > > Or is this the wrong model? The naming scheme is quite confusing to me.
+> > 
+> > That's i.MX8 (imx8qm), the bindings are for i.MX8X (imx8qxp/imx8dxp). But
+> > I
+> > assume the ADC is similar/identical.
+> > 
+> > > > > If we are going to stick to a single compatible rather than adding
+> > > > > them
+> > > > > for
+> > > > > the variants with and without this feature, should probably add a
+> > > > > note
+> > > > > at
+> > > > > least to say it is required for some parts.
+> > > > 
+> > > > That's a good idea. I'm okay with that, until there is more
+> > > > information
+> > > > available.
+> > > 
+> > > According the RM there is a bit which can be read: Multi Vref
+> > > Implemented (MVI).
+> > 
+> > Ah, nice. So there is a hardware feature. From the RM I have available it
+> > is set for both imx8qm and imx8qxp. Given that I will not mark this as
+> > required, but add a comment regarding this feature bit.
+> 
+> Can you check the comments about the refsel please? Since this is the
+> important part.  Since the RM above states that this bit will indicate a
+> multiref device but it can also the case that, you have a chip with just
+> on ref selection option (external). I can't check this since I don't
+> have the RM for this. @NXP can you give us more information please?
 
-TRM : https://www.ti.com/lit/zip/spruj16
+I would assume if MVI is 0 REFSEL should be considered reserved.
+Both imx8qm and imx8qxp have MVI set, even imx1170 has this bit set. So I am 
+not aware of any SoC with MVI not being set.
 
-Logs:
-Link : https://gist.github.com/devarsht/e85b6af89c01ddadb3a62f3e5f196af8
+Best regards,
+Alexander
 
-Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index 5c9012141ee2..f6a67f072dca 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -27,8 +27,9 @@
- 
- 	memory@80000000 {
- 		device_type = "memory";
--		/* 2G RAM */
--		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
-+		/* 4G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-+		      <0x00000008 0x80000000 0x00000000 0x80000000>;
- 	};
- 
- 	reserved-memory {
--- 
-2.17.1
 
