@@ -2,161 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 265FF68C359
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 17:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85A3B68C364
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 17:32:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbjBFQau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 11:30:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43236 "EHLO
+        id S230024AbjBFQb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 11:31:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjBFQat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 11:30:49 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6848BBAE;
-        Mon,  6 Feb 2023 08:30:46 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 2305724E01A;
-        Tue,  7 Feb 2023 00:30:44 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Feb
- 2023 00:30:44 +0800
-Received: from [172.16.16.234] (113.72.145.145) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Feb
- 2023 00:30:43 +0800
-Message-ID: <ca8fb8fd-aa1a-bcef-122f-83bc8647d01d@starfivetech.com>
-Date:   Tue, 7 Feb 2023 00:30:41 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 1/4] dt-bindings: pinctrl: Add StarFive JH7110 sys
- pinctrl
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+        with ESMTP id S229523AbjBFQb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 11:31:58 -0500
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A701FBBAE;
+        Mon,  6 Feb 2023 08:31:56 -0800 (PST)
+Received: by soltyk.jannau.net (Postfix, from userid 1000)
+        id DDDA626F72A; Mon,  6 Feb 2023 17:31:54 +0100 (CET)
+Date:   Mon, 6 Feb 2023 17:31:54 +0100
+From:   Janne Grunau <j@jannau.net>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andreas Schwab <schwab@suse.de>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
-        Jianlong Huang <jianlong.huang@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20230203141801.59083-1-hal.feng@starfivetech.com>
- <20230203141801.59083-2-hal.feng@starfivetech.com>
- <20230206161016.GA156592-robh@kernel.org>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <20230206161016.GA156592-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.145]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Mailing List <devicetree-spec@vger.kernel.org>,
+        Kalle Valo <kvalo@kernel.org>, van Spriel <arend@broadcom.com>,
+        =?iso-8859-1?B?Suly9G1l?= Pouiller <jerome.pouiller@silabs.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org
+Subject: Re: [PATCH RFC 0/3] dt-bindings: net: Add network-class.yaml schema
+Message-ID: <20230206163154.GA9004@jannau.net>
+References: <20230203-dt-bindings-network-class-v1-0-452e0375200d@jannau.net>
+ <CAL_JsqKD7gD86_B93M19rBCWn+rmSw24vOGEhqi9Nvne1Xixwg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKD7gD86_B93M19rBCWn+rmSw24vOGEhqi9Nvne1Xixwg@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Feb 2023 10:10:16 -0600, Rob Herring wrote:
-> On Fri, Feb 03, 2023 at 10:17:58PM +0800, Hal Feng wrote:
->> diff --git a/Documentation/devicetree/bindings/pinctrl/starfive,jh7110-sys-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/starfive,jh7110-sys-pinctrl.yaml
->> new file mode 100644
->> index 000000000000..22554e68ec91
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pinctrl/starfive,jh7110-sys-pinctrl.yaml
->> @@ -0,0 +1,141 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pinctrl/starfive,jh7110-sys-pinctrl.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: StarFive JH7110 SYS Pin Controller
->> +
->> +description: |
->> +  Bindings for the JH7110 RISC-V SoC from StarFive Technology Ltd.
->> +
->> +  Out of the SoC's many pins only the ones named PAD_GPIO0 to PAD_GPIO63
->> +  can be multiplexed and have configurable bias, drive strength,
->> +  schmitt trigger etc.
->> +  Some peripherals have their I/O go through the 64 "GPIOs". This also
->> +  includes a number of other UARTs, I2Cs, SPIs, PWMs etc.
->> +  All these peripherals are connected to all 64 GPIOs such that
->> +  any GPIO can be set up to be controlled by any of the peripherals.
->> +
->> +maintainers:
->> +  - Jianlong Huang <jianlong.huang@starfivetech.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: starfive,jh7110-sys-pinctrl
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  interrupt-controller: true
->> +
->> +  '#interrupt-cells':
->> +    const: 2
->> +
->> +  gpio-controller: true
->> +
->> +  '#gpio-cells':
->> +    const: 2
->> +
->> +patternProperties:
->> +  '-[0-9]+$':
->> +    type: object
->> +    additionalProperties: false
->> +    patternProperties:
->> +      '-pins$':
->> +        type: object
->> +        description: |
->> +          A pinctrl node should contain at least one subnode representing the
->> +          pinctrl groups available on the machine. Each subnode will list the
->> +          pins it needs, and how they should be configured, with regard to
->> +          muxer configuration, bias, input enable/disable, input schmitt
->> +          trigger enable/disable, slew-rate and drive strength.
->> +        $ref: /schemas/pinctrl/pincfg-node.yaml
+On 2023-02-03 08:41:28 -0600, Rob Herring wrote:
+> On Fri, Feb 3, 2023 at 7:56 AM Janne Grunau <j@jannau.net> wrote:
+> >
+> > The Devicetree Specification, Release v0.3 specifies in section 4.3.1
+> > a "Network Class Binding". This covers MAC address and maximal frame
+> > size properties. "local-mac-address" and "mac-address" with a fixed
+> > address-size of 48 bits is already in the ethernet-controller.yaml
+> > schema so move those over.
+> > I think the only commonly used values for address-size are 48 and 64
+> > bits (EUI-48 and EUI-64). Unfortunately I was not able to restrict the
+> > mac-address size based on the address-size. This seems to be an side
+> > effect of the array definition and I was not able to restrict "minItems"
+> > or "maxItems" based on the address-size value in an "if"-"then"-"else"
+> > block.
+> > An easy way out would be to restrict address-size to 48-bits for now.
 > 
-> On 2nd look, this should be:
-> 
-> allOf:
->   - $ref: /schemas/pinctrl/pincfg-node.yaml
->   - $ref: /schemas/pinctrl/pinmux-node.yaml
+> I've never seen 64-bits used...
 
-Will fix accordingly. Thanks.
+ZigBee and 6LoWPAN use 64-bits for example. Let's hardcode 48 bits for 
+now as that's what all in-tree devicetrees implicitly use. If needed it 
+can be changed later.
 
+> > I've ignored "max-frame-size" since the description in
+> > ethernet-controller.yaml claims there is a contradiction in the
+> > Devicetree specification. I suppose it is describing the property
+> > "max-frame-size" with "Specifies maximum packet length ...".
 > 
->> +        additionalProperties: false
->> +
->> +        properties:
->> +          pinmux:
->> +            description: |
->> +              The list of GPIOs and their mux settings that properties in the
->> +              node apply to. This should be set using the GPIOMUX or PINMUX
->> +              macros.
->> +            $ref: /schemas/pinctrl/pinmux-node.yaml#/properties/pinmux
-> 
-> And drop this.
-> 
-> Same in other patch. With that, Reviewed-by stands.
+> Please include it and we'll fix the spec. It is clearly wrong. 2 nios
+> boards use 1518 and the consumer for them says it is MTU. Everything
+> else clearly uses mtu with 1500 or 9000.
 
-Will fix it. Thank you for your review.
+Ok, the example in the pdf is 'max-frame-size = <1518>;'. I'll include 
+it with the description of ethernet-controller.yaml which specifies it 
+as MTU.
 
-Best regards,
-Hal
+Janne
