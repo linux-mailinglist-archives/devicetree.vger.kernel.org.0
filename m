@@ -2,86 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3124568BBEB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:45:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87F2068BBCA
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 12:38:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229899AbjBFLo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 06:44:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55204 "EHLO
+        id S229486AbjBFLia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 06:38:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229909AbjBFLo5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:44:57 -0500
-X-Greylist: delayed 954 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 06 Feb 2023 03:44:55 PST
-Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC44655B0
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 03:44:55 -0800 (PST)
-DKIM-Signature: a=rsa-sha256; b=pwNoh53zSBmBCQymA1A73yZMN+0pfiYxOlY6bG81bzq76IFSfT+u8tGD8uuO6338M/rP3SSDI0pz84ygZyH8kPBw3IJ/6aqpjQ1239Rf9piLm2AnZSE5yuGsZN5Cv9kxOytR3eA9RYjkUQ8Z32ClLtBK3p7SWu0IxTx1BVCmQbqlqVPz6RSAhE2z6nSFRouaA/8SLqBNTLIP9zWHJJQs06y3rVs+jVQsCsmGPqjDaBEfpgp5t6+7S+nnOLws9YC2XzFdbMBpgncQbrYw3M9KB/xufY+oPh8JDlAmKLs4eW0st7rfHD7RfM6sv4EIPR8qXuwYM+ivqCMUYgz5Lff+RA==; s=purelymail3; d=iskren.info; v=1; bh=T/yO6Xxr1HxiBprUxHkrxxP2Yx1hXModjuOsaTP4Epw=; h=Received:Subject:To:From;
-DKIM-Signature: a=rsa-sha256; b=ajp0D1WAL/e3KeWrCCX6oXJ8e+/zC3ir8S2HUYXgyA1BrEDdkZd49o5TbCqdwes+kNmPEGIDMX2Q5k+1qQggOzxugnddJIoLFHz6YDqILFbSWD0aK4vsl1i7YTsknYdaSECk4YbNThDEWb+XVBnFvZ0PqXAOrOk5q6dAdHaNr0jwxB6JNvtGFksD6/EK5KS0LM0je25kmSYhAcXxHVkKDIuOKpPsV/iHpuSiTw6s2xd3ZY4F32+pcVPMqoAVXPGmmSx5/FG+qtvX809iVKPkEge+7mnzPi3jl7yyWm42PnOc7top9odiZ+rotZO98iaJHQdO704OLnExabFBvkYu+g==; s=purelymail3; d=purelymail.com; v=1; bh=T/yO6Xxr1HxiBprUxHkrxxP2Yx1hXModjuOsaTP4Epw=; h=Feedback-ID:Received:Subject:To:From;
-Feedback-ID: 10275:2339:null:purelymail
-X-Pm-Original-To: devicetree@vger.kernel.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1101737953;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Mon, 06 Feb 2023 11:28:24 +0000 (UTC)
-Message-ID: <1444542c-d522-2aa1-fdde-40f14b464847@iskren.info>
-Date:   Mon, 6 Feb 2023 13:28:20 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 10/10] arm64: dts: qcom: sm6115: correct TLMM
- gpio-ranges
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S229478AbjBFLi3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 06:38:29 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AA3618160;
+        Mon,  6 Feb 2023 03:38:26 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 427E124E16F;
+        Mon,  6 Feb 2023 19:38:23 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 6 Feb
+ 2023 19:38:23 +0800
+Received: from localhost.localdomain (183.27.96.33) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 6 Feb
+ 2023 19:38:22 +0800
+From:   Walker Chen <walker.chen@starfivetech.com>
+To:     <linux-riscv@lists.infradead.org>, <dmaengine@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Vinod Koul <vkoul@kernel.org>,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230202104452.299048-1-krzysztof.kozlowski@linaro.org>
- <20230202104452.299048-11-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From:   Iskren Chernev <me@iskren.info>
-In-Reply-To: <20230202104452.299048-11-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor@kernel.org>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        "Walker Chen" <walker.chen@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 0/3] Add DMA driver for StarFive JH7110 SoC
+Date:   Mon, 6 Feb 2023 19:38:08 +0800
+Message-ID: <20230206113811.23133-1-walker.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [183.27.96.33]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series adds dma support for the StarFive JH7110 RISC-V SoC.
+The first patch adds device tree binding. The second patch includes dma
+driver. The last patch adds device node of dma to JH7110 dts.
+
+The series has been tested on the VisionFive 2 board which equip with
+JH7110 SoC and works normally.
+
+The last patch should be applied after the following patchset:
+https://lore.kernel.org/all/20230120024445.244345-1-xingyu.wu@starfivetech.com/
+
+Walker Chen (3):
+  dt-bindings: dma: snps,dw-axi-dmac: Update resets and add
+    snps,num-hs-if
+  dma: dw-axi-dmac: Add support for StarFive DMA
+  riscv: dts: starfive: add dma controller node
+
+ .../bindings/dma/snps,dw-axi-dmac.yaml        | 17 ++++++++++++-
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 20 +++++++++++++++
+ .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 25 ++++++++++++++++---
+ drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  3 +++
+ 4 files changed, 60 insertions(+), 5 deletions(-)
 
 
-On 2/2/23 12:44, Krzysztof Kozlowski wrote:
-> Correct the number of GPIOs in TLMM pin controller.
-> 
-> Fixes: 97e563bf5ba1 ("arm64: dts: qcom: sm6115: Add basic soc dtsi")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+base-commit: 830b3c68c1fb1e9176028d02ef86f3cf76aa2476
+prerequisite-patch-id: 54ce870d6ea747466474b5d4105cfbc05e1b01ab
+prerequisite-patch-id: e8dd8258a4c4062eee2cf07c4607d52baea71f3a
+prerequisite-patch-id: 057fa35870d8d7d22a57c13362588ffb9e9df316
+prerequisite-patch-id: 102368a6ff799c4cb639aed513deff09c1839161
+prerequisite-patch-id: 7c1a50a37919fedbbd336ca5dec295ac63c2a89d
+prerequisite-patch-id: a5d9e0f7d4f8163f566678894cf693015119f2d9
+prerequisite-patch-id: 87cb528acd9a7f1ffe7475d7261553f6a4de5753
+prerequisite-patch-id: 417736eb958e1158c60a5ed74bc2350394321a80
+prerequisite-patch-id: a137312ca162b5712e28719f77d0da78e9fdd778
+prerequisite-patch-id: f7c548b4619f491ce27f319242c4e3685c76173b
+prerequisite-patch-id: 4d90febab2fb7928f50a73104e7454312b9ce6c8
+prerequisite-patch-id: 645a807d50e0e56593ffdc6c3b50ea54a230827a
+prerequisite-patch-id: 165f8cd740ae60585d22c95b99a0689084d468e3
+prerequisite-patch-id: 480d910deccadc2947b3318c3c13dfa0882c8e0d
+prerequisite-patch-id: 1d1cb90ec12dfc9312e448759c7cab89f2bc6394
+prerequisite-patch-id: 5f539ac7c96023b36489c6da7c70c31eaf64a25b
+prerequisite-patch-id: 6bb9a780c62af3bcc2368dfd20303c7b1bc91e23
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: e3b986b9c60b2b93b7812ec174c9e1b4cfb14c97
+prerequisite-patch-id: 2e03eeb766aefd5d38f132d091618e9fa19a37b6
+prerequisite-patch-id: e0ba7af0f8d3d41844da9fbcba14b548cbc18f55
+prerequisite-patch-id: c1f8603e58c64828d0f36deac9b93c24289d8e05
+prerequisite-patch-id: d73b2371a15f99416566904dedd45be30109aa84
+prerequisite-patch-id: fbbd7f621c50a0762b188f52585e3418f9896a28
+prerequisite-patch-id: 2ddada18ab6ea5cd1da14212aaf59632f5203d40
+prerequisite-patch-id: dd10a6d021de43aef31a1df70fc1a7f8a710d137
+prerequisite-patch-id: 7acbc9c924e802712d3574dd74a6b3576089f78c
+prerequisite-patch-id: e0ac2cb2de37dcd8c6a3f27d6cba1164a6967145
+prerequisite-patch-id: ce8a6557564ba04bd90bb41d34f520347f399887
+prerequisite-patch-id: 9f71c539a241baf1e73c7e7dfde5b0b04c66a502
+prerequisite-patch-id: 0813e1684f69e106bc7a84e5f5a1f40a28e8a38d
+prerequisite-patch-id: bb8e071ed43998874b9d98292c0dcdeedc0760ca
+prerequisite-patch-id: 0c04762f1d20f09cd2a1356334a86e520907d111
+prerequisite-patch-id: 23db1e84f5de4e117427509c466ae1c106e367bf
+prerequisite-patch-id: 56577b43ff594598eaa3c1dc9f7caa462d7f94cd
+prerequisite-patch-id: 2bc43b375b470f7e8bbe937b78678ba3856e3b8f
+-- 
+2.17.1
 
-Reviewed-by: Iskren Chernev <me@iskren.info>
-
-> ---
->  arch/arm64/boot/dts/qcom/sm6115.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> index 50cb8a82ecd5..b9fff0b0ea1c 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> @@ -363,7 +363,7 @@ tlmm: pinctrl@500000 {
->  			reg-names = "west", "south", "east";
->  			interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
->  			gpio-controller;
-> -			gpio-ranges = <&tlmm 0 0 121>;
-> +			gpio-ranges = <&tlmm 0 0 114>; /* GPIOs + ufs_reset */
->  			#gpio-cells = <2>;
->  			interrupt-controller;
->  			#interrupt-cells = <2>;
