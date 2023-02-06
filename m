@@ -2,104 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CA9868B692
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 08:42:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 025B668B6D4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 08:51:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbjBFHm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 02:42:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52062 "EHLO
+        id S229788AbjBFHvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 02:51:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbjBFHmy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 02:42:54 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A0C5273
-        for <devicetree@vger.kernel.org>; Sun,  5 Feb 2023 23:42:51 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id i5so2296014wrc.0
-        for <devicetree@vger.kernel.org>; Sun, 05 Feb 2023 23:42:50 -0800 (PST)
+        with ESMTP id S230036AbjBFHvB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 02:51:01 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E8AA1E1EC
+        for <devicetree@vger.kernel.org>; Sun,  5 Feb 2023 23:50:40 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so6546577wms.0
+        for <devicetree@vger.kernel.org>; Sun, 05 Feb 2023 23:50:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2XA64voz9ivBR8UNL1Z4b6fr6//lgNZOlEzIgWzkqrI=;
-        b=Iad+7Ny2E+UALOfO6NNonPCSf+2HKHeRfPbUezACIXgAcbJUJ3G8UHXjGooNRK3KEk
-         NuwofdM+hk+PKfCB0DcqJ6du5yKbaccuJ3uTdtaVldcs04CW/ohNsPol//L4wMeG1sU/
-         RtEUvOVe93QJ0T/8b1V6fJUQ3tM1F0ty6OAxrBZZtAViiFDqpRwikB9fQdyTSczSSi8i
-         rndOCKOdsNE0xp0OgHe6AW7sqoFiV9fZzc8jQ+q/c3FPNCMf++mzw1zLATPOXSWfSgHM
-         +c/IVuPcNtRqFuow0ZU9GZ18xmDoNxsRAcx8RD3GTucjpbrzw2lrphPE4phT/+QXG7xQ
-         rXkA==
+        bh=RAh9ybEce2K1WPlqn2ygHTTlak6RqgDwVfYWXIxrXHw=;
+        b=Iw/JK0h+4e1If8/zBSu8M4U3MKoqk5bgY+fg+PFlHI9g6QS2JxYQsZinVvu7NZ1m2j
+         ZNVSOBF2+r/io7nS2nAsrk6N3AXNTBnjF70AnwZHnzi7ARkL0L+A3YC15FPMcidYgX9K
+         Ty7JJXlAL4g4e3rn1hxDtFnx8YOJCo/wHLQBWdqKMzmDTShrxX/5S6MOFVvvMllETfit
+         K3lVKRrAshxbLYckJbaqCBnNmYg6D29avGCvv3LmmrNiTgYDx1/RcXhdTupTXBv1E3sd
+         td7Zdln9LLzV+Kugyf5HBRbg8NUA9Sc1zIbRAZ6LhbX4cJ4tBIalcp+8bZXbKE+osI7j
+         zBbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2XA64voz9ivBR8UNL1Z4b6fr6//lgNZOlEzIgWzkqrI=;
-        b=ORXq/mSj42YHgZlgxzgLZh9gcyMZtXr1jX5Dicw9UazdgYvjoSMCkW969l4MtynEXY
-         gN34w6ZkY5s5l1xWMU7XmhRXjS8t822Fr8q+8WyEVCoCXNuvUjwSru52BcV9MBqFFzlm
-         YSQkTd9lWo4MsbDu4JUQpDDNepcFpaIxhs9vTin/zgQF0WPBEXKbgtX3hwLevx5y+68A
-         hcR6TnFnP0t1rLCi9Rhedgj9oHHm54kHrQnAd3nbG4jq2aPMPHN7u7Xm9HKp5D8ZpCcH
-         RTfIa1x5gMQfJxSRc1r8EXRCpBYXWOhcAOjD3b3lFA5AwJmriwNf9oUga/PTgl0FB7VI
-         qtAQ==
-X-Gm-Message-State: AO0yUKXqhXW+nBGnJgiLWFCGX6Q6qPK5Whq3HWAde4x4EVoVqv2R1vj7
-        gVnXZYgVCat3G5FAiydBn3SjVw==
-X-Google-Smtp-Source: AK7set/zNQJeepBp90+pb7siQybo5fz/0fjOBRUb17obj/tzEFyZevEn0oFiVuXuge8l3CN8hkHVCg==
-X-Received: by 2002:a05:6000:136f:b0:2c3:e80f:6aa3 with SMTP id q15-20020a056000136f00b002c3e80f6aa3mr2835371wrz.51.1675669369259;
-        Sun, 05 Feb 2023 23:42:49 -0800 (PST)
+        bh=RAh9ybEce2K1WPlqn2ygHTTlak6RqgDwVfYWXIxrXHw=;
+        b=DV+acNFa41V5vxuvGGiBPiXabpBbPztrvGjKPLLsUevtBvvEDgGLLvn7akSyBLffjE
+         zpRY/zimHCc5xZETdRA4cbU/tqlWijVeC3hfk4LJ/ftmyULZYgu3i8n5p2ZmdPmopRzB
+         7/TcIryxBmddXueIvZ4mu1KkePWI0lYl7xCAxQncNxiyJgKfbpg5x5HWV4w1SJzg47vQ
+         C2vZWPf7ArFt3kX5dLIvUaXkUZ/3U7e7dkON7++yj0OYsch5vbj1PuXSK+sUPmYoxtVz
+         cuBpfkN3SMD9lmi0onO3nxXBbY+cgr0YVEa5FmyvyuXsnsMV9BCo1CXEknbl6V/xNj97
+         OyfA==
+X-Gm-Message-State: AO0yUKU1ftuyeNqLI7UoWvUb+dGvQFvvnlVp3zfXeclTvZf9BEtLjHW9
+        FqjYUvrJ83IEtYPKLnzk648WVg==
+X-Google-Smtp-Source: AK7set/mw3Jb6zm/r2pLBEguqorSqBd4fhhXyBw+svPoDqNIONS/L/RXBnj0oio0UIxpbq894xbY+A==
+X-Received: by 2002:a05:600c:35d3:b0:3de:e8c5:d82c with SMTP id r19-20020a05600c35d300b003dee8c5d82cmr19113405wmq.29.1675669835383;
+        Sun, 05 Feb 2023 23:50:35 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f9-20020adff989000000b002c3e6b39512sm2682210wrr.53.2023.02.05.23.42.47
+        by smtp.gmail.com with ESMTPSA id j14-20020a05600c190e00b003daf681d05dsm10964068wmq.26.2023.02.05.23.50.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Feb 2023 23:42:48 -0800 (PST)
-Message-ID: <5454d5c6-1151-af9b-54a3-3bdd66b621e8@linaro.org>
-Date:   Mon, 6 Feb 2023 08:42:46 +0100
+        Sun, 05 Feb 2023 23:50:35 -0800 (PST)
+Message-ID: <e0ab9ea1-59b7-506f-1e77-231a0cdc09bf@linaro.org>
+Date:   Mon, 6 Feb 2023 08:50:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [RESEND PATCH v3 1/4] dt-bindings: net: Add WCN6855 Bluetooth
+Subject: Re: [PATCH v4 1/2] dt-bindings: net: Add ICSSG Ethernet Driver
+ bindings
 Content-Language: en-US
-To:     Steev Klimaszewski <steev@kali.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     MD Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        YueHaibing <yuehaibing@huawei.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>
-References: <20230206001634.2566-1-steev@kali.org>
- <20230206001634.2566-2-steev@kali.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, andrew@lunn.ch
+Cc:     nm@ti.com, ssantosh@kernel.org, srk@ti.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230206060708.3574472-1-danishanwar@ti.com>
+ <20230206060708.3574472-2-danishanwar@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230206001634.2566-2-steev@kali.org>
+In-Reply-To: <20230206060708.3574472-2-danishanwar@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/02/2023 01:16, Steev Klimaszewski wrote:
-> Add bindings for the QTI WCN6855 chipset, based on the WCN6750.
+On 06/02/2023 07:07, MD Danish Anwar wrote:
+> From: Puranjay Mohan <p-mohan@ti.com>
 > 
-> ---
-> - v3 No changes from v2
-> - v2 drop second binding in subject line
-> 
-> Signed-off-by: Steev Klimaszewski <steev@kali.org>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add a YAML binding document for the ICSSG Programmable real time unit
+> based Ethernet driver. This driver uses the PRU and PRUSS consumer APIs
 
-Still broken.
+You add a binding for the hardware, not for driver.
+
+> to interface the PRUs and load/run the firmware for supporting ethernet
+> functionality.
+
+Subject: drop second/last, redundant "driver bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+
+> 
+> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+> Signed-off-by: Md Danish Anwar <danishanwar@ti.com>
+> ---
+>  .../bindings/net/ti,icssg-prueth.yaml         | 179 ++++++++++++++++++
+>  1 file changed, 179 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> new file mode 100644
+> index 000000000000..e4dee01a272a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> @@ -0,0 +1,179 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/ti,icssg-prueth.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments ICSSG PRUSS Ethernet
+> +
+> +maintainers:
+> +  - Md Danish Anwar <danishanwar@ti.com>
+> +
+> +description:
+> +  Ethernet based on the Programmable Real-Time
+> +  Unit and Industrial Communication Subsystem.
+> +
+> +allOf:
+> +  - $ref: /schemas/remoteproc/ti,pru-consumer.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,am654-icssg-prueth  # for AM65x SoC family
+> +
+> +  ti,sram:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      phandle to MSMC SRAM node
+> +
+> +  dmas:
+> +    maxItems: 10
+> +
+> +  dma-names:
+> +    items:
+> +      - const: tx0-0
+> +      - const: tx0-1
+> +      - const: tx0-2
+> +      - const: tx0-3
+> +      - const: tx1-0
+> +      - const: tx1-1
+> +      - const: tx1-2
+> +      - const: tx1-3
+> +      - const: rx0
+> +      - const: rx1
+> +
+> +  ethernet-ports:
+
+Bring some order or logic in the order of the properties. Keep the
+ethernet-ports as last property.
+
+> +    type: object
+> +    additionalProperties: false
+
+Blank line
+
+> +    properties:
+> +      '#address-cells':
+> +        const: 1
+> +      '#size-cells':
+> +        const: 0
+> +
+> +    patternProperties:
+> +      ^port@[0-1]$:
+> +        type: object
+> +        description: ICSSG PRUETH external ports
+> +
+
+Drop blank line
+
+> +        $ref: ethernet-controller.yaml#
+> +
+
+Drop blank line
+
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          reg:
+> +            items:
+> +              - enum: [0, 1]
+> +            description: ICSSG PRUETH port number
+> +
+> +          interrupts-extended:
+
+Just "interrupts"
+> +            maxItems: 1
+> +
+> +          ti,syscon-rgmii-delay:
+> +            items:
+> +              - items:
+> +                  - description: phandle to system controller node
+> +                  - description: The offset to ICSSG control register
+> +            $ref: /schemas/types.yaml#/definitions/phandle-array
+> +            description:
+> +              phandle to system controller node and register offset
+> +              to ICSSG control register for RGMII transmit delay
+> +
+> +        required:
+> +          - reg
+
+required for ethernet-ports - at least one port is required, isn't it?
+> +
+> +  ti,mii-g-rt:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: |
+> +      phandle to MII_G_RT module's syscon regmap.
+> +
+> +  ti,mii-rt:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: |
+> +      phandle to MII_RT module's syscon regmap
+> +
+> +  interrupts:
+> +    maxItems: 2
+> +    description: |
+> +      Interrupt specifiers to TX timestamp IRQ.
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: tx_ts0
+> +      - const: tx_ts1
+> +
+> +required:
+> +  - compatible
+> +  - ti,sram
+> +  - dmas
+> +  - dma-names
+> +  - ethernet-ports
+> +  - ti,mii-g-rt
+> +  - interrupts
+> +  - interrupt-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    /* Example k3-am654 base board SR2.0, dual-emac */
+> +    pruss2_eth: ethernet {
+> +        compatible = "ti,am654-icssg-prueth";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&icssg2_rgmii_pins_default>;
+> +        ti,sram = <&msmc_ram>;
+> +
+> +        ti,prus = <&pru2_0>, <&rtu2_0>, <&tx_pru2_0>,
+> +                  <&pru2_1>, <&rtu2_1>, <&tx_pru2_1>;
+> +        firmware-name = "ti-pruss/am65x-pru0-prueth-fw.elf",
+> +                        "ti-pruss/am65x-rtu0-prueth-fw.elf",
+> +                        "ti-pruss/am65x-txpru0-prueth-fw.elf",
+> +                        "ti-pruss/am65x-pru1-prueth-fw.elf",
+> +                        "ti-pruss/am65x-rtu1-prueth-fw.elf",
+> +                        "ti-pruss/am65x-txpru1-prueth-fw.elf";
+> +        ti,pruss-gp-mux-sel = <2>,      /* MII mode */
+> +                              <2>,
+> +                              <2>,
+> +                              <2>,      /* MII mode */
+> +                              <2>,
+> +                              <2>;
+> +        dmas = <&main_udmap 0xc300>, /* egress slice 0 */
+> +               <&main_udmap 0xc301>, /* egress slice 0 */
+> +               <&main_udmap 0xc302>, /* egress slice 0 */
+> +               <&main_udmap 0xc303>, /* egress slice 0 */
+> +               <&main_udmap 0xc304>, /* egress slice 1 */
+> +               <&main_udmap 0xc305>, /* egress slice 1 */
+> +               <&main_udmap 0xc306>, /* egress slice 1 */
+> +               <&main_udmap 0xc307>, /* egress slice 1 */
+> +               <&main_udmap 0x4300>, /* ingress slice 0 */
+> +               <&main_udmap 0x4301>; /* ingress slice 1 */
+> +        dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
+> +                    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
+> +                    "rx0", "rx1";
+> +        ti,mii-g-rt = <&icssg2_mii_g_rt>;
+> +        interrupts = <24 0 2>, <25 1 3>;
+
+Aren't you open-coding some IRQ flags?
+
+> +        interrupt-names = "tx_ts0", "tx_ts1";
+> +        ethernet-ports {
+
 
 Best regards,
 Krzysztof
