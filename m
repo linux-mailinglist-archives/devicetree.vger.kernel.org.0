@@ -2,91 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CB2A68BF32
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:02:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A6FC68BF96
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 15:08:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231232AbjBFOCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 09:02:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38534 "EHLO
+        id S231518AbjBFOIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 09:08:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230393AbjBFOBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:01:55 -0500
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6EF8298EF
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 06:00:50 -0800 (PST)
-Received: by mail-il1-x130.google.com with SMTP id m15so4683985ilh.9
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 06:00:50 -0800 (PST)
+        with ESMTP id S231480AbjBFOHv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 09:07:51 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD122BEC8
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 06:05:31 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id hn2-20020a05600ca38200b003dc5cb96d46so10832025wmb.4
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 06:05:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MNAVKrJD9jbSiYWr0Av4XwBNw9Kr0TLfkKf5RWu2ymg=;
-        b=wUR9sy+JDUEZABIqipj7je+Jxi8uMtf7oX7nPMQlpkT8/ox6ej+VRwILZLbbgKXWWN
-         XL1hgT77JowdxdoXEa35KEdVdDJU9fClN7aE0GOpoN6avd1zftyPSQVzxqFNtdqWMj7q
-         klb3eePU49zes7W1OLq6MRZcoEUFePHsG4ljB8vdmsSe10rnUDVObJVqL7aVbkuBeG6T
-         Wyi2KMlAWAENJ06BctKWEVsipU39odylGFlQGtNSbw6LWr0umymS5lv20kI/bp5iDUsi
-         Jxvfj6M5ivwUeLtHCBW0okoyXO877pBJ2mMLcGHggsv0ELERZqVXclzPUHZXTBfMTiLl
-         +Mlw==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=l1sBDHSdASz4ecLzalMdlfELS8RCcYMZ2sk1AegZ7C4=;
+        b=gUDkn0Nk6osoDg6kBIqb4HgThjeRoU3B4yStY9UPgtkSB4y1icRX/nUz/3C0iAIpEm
+         MEDJnt9vnKjADTSJTi/kI8xh0D1PAvXE7gH5tvVQcf8lgVPHzvsc5HnaQOH1XCzK8HqA
+         iLF14vnXPg2R+rqK6qe3qmaCI98vVcpebABOShNnLKS3xsvXq448T7tqXjuyVVxuKx9g
+         yMS5bniysbumzLDbyVXjr/7YPXLCHBoUeOW+P4N/JovSFBu+zje1qoxWataFiEkxgOE+
+         ofZGWBbvJfP+qu1nMsNHPX/6rHYDCqnit3Br9d1aFXvJkdUEMDG8tGXoizjtkjstYorr
+         zWKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MNAVKrJD9jbSiYWr0Av4XwBNw9Kr0TLfkKf5RWu2ymg=;
-        b=DA/PKfLqCJfiJ42LAqFWs+yfYnQsi6wk9WqhEHGandtetZ80Rjyixg531gF4ncwzym
-         D1izQGS3CalICUNXMO8ltpRZpwxaEf8zBrX5y2qY/ZyupVSaJNKVdWRSXww+dBiVfH8N
-         4wqjUU9JcRmzV4wduKg9Ff4ZrQ9XZzrQ81mpqdCvZ/j4kJBcTzQ6nlRHtXr0XBbg4k5t
-         UY1LRxjwxBwt3DZkuFGJIJ7zsVgAG7LRqElcv39fsH8Q1Zvem+x9dxL9RMJqx9uMScqq
-         3t4PWWbPW8HOXtaj3WBykXKkg/HnjzH1ao0UtQxSa7DQSA/nbcc2O7Nw/vCcoU4va0fI
-         LiVg==
-X-Gm-Message-State: AO0yUKXn/zvAY0jIlKRGsUc9g9jmyGzqd0LlC3n5F9HZS5WFh6hDCEmw
-        hj7Mxxsg9jh7e9fKrdGb1Z5KhQ==
-X-Google-Smtp-Source: AK7set/p29Wp8Soev71NkNlEXh9ruJp6jse1g9qHoknoiqxAYsdEPVkFawnbnlwb7C4/PRWgpPfYMg==
-X-Received: by 2002:a05:6e02:1c05:b0:310:fd98:1cc2 with SMTP id l5-20020a056e021c0500b00310fd981cc2mr17085411ilh.13.1675692048127;
-        Mon, 06 Feb 2023 06:00:48 -0800 (PST)
-Received: from [172.22.22.4] ([98.61.227.136])
-        by smtp.googlemail.com with ESMTPSA id v3-20020a056638250300b0039db6cffcbasm3457082jat.71.2023.02.06.06.00.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 06:00:47 -0800 (PST)
-Message-ID: <5821a8bb-8751-70e8-970f-eb2bf2b077fb@linaro.org>
-Date:   Mon, 6 Feb 2023 08:00:46 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v9 08/27] mailbox: Add Gunyah message queue mailbox
-Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l1sBDHSdASz4ecLzalMdlfELS8RCcYMZ2sk1AegZ7C4=;
+        b=HgxnfsID+V63XV4BuhI9W4dDrmvOaOt8fWvF27pNPjUXSx7rIYGA7hZrH59UjUP1Px
+         eQ/fl0fg9HQlWlUKS47eCl/Vmirf5taeBczM+1davg9AzF01hSX2pufivFxbdv7aIxhx
+         50MrmrSgqQWiTTtySWJztCW9y3vVu4i1hMzPEhpccPiJ1asClEPtvcD4IAplflZWSXQc
+         O2IZ/mYBKwBE98kqTTcgMRpnFhiRkW4EHcjk/WBh3ncZrBzi8HDcZDjoOP5FhZXZhM/B
+         jCKjxyI0FFvONtywo+fp/b1OuSjXTAHdBWJZmEkp2j+eMNuarTtMj4W4ja/iTFUoSQmr
+         xVPA==
+X-Gm-Message-State: AO0yUKVk4ususjcuNy96Zns/T/H3w72hp3kmx0NQlVmQB42Kzbfw+NQs
+        0yp4g8TOPHpQSZgPkAUkGwWCmQ==
+X-Google-Smtp-Source: AK7set8CdDqbiahcj1npFpmbebayGsvVRXrv4P1LiTprnhax7cXuxebkMZ+iX0ubTVrxQMT9rjIupw==
+X-Received: by 2002:a05:600c:3849:b0:3d5:365b:773e with SMTP id s9-20020a05600c384900b003d5365b773emr20826426wmr.39.1675692304690;
+        Mon, 06 Feb 2023 06:05:04 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id q9-20020a1ce909000000b003dc34edacf8sm15917337wmc.31.2023.02.06.06.05.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Feb 2023 06:05:04 -0800 (PST)
+Date:   Mon, 6 Feb 2023 16:05:02 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
- <20230120224627.4053418-9-quic_eberman@quicinc.com>
- <e5acd00c-7a53-a789-8dab-a69cffda34f5@linaro.org>
-From:   Alex Elder <elder@linaro.org>
-In-Reply-To: <e5acd00c-7a53-a789-8dab-a69cffda34f5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v7 08/12] phy: qcom-qmp-pcie: Add support for SM8550 g3x2
+ and g4x2 PCIEs
+Message-ID: <Y+EJDofgt6I/abyp@linaro.org>
+References: <20230203081807.2248625-1-abel.vesa@linaro.org>
+ <20230203081807.2248625-9-abel.vesa@linaro.org>
+ <Y9zU2jBdSD72W28F@hovoldconsulting.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y9zU2jBdSD72W28F@hovoldconsulting.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -95,42 +88,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/2/23 3:59 AM, Srinivas Kandagatla wrote:
->>
->> +static irqreturn_t gh_msgq_rx_irq_handler(int irq, void *data)
->> +{
->> +    struct gh_msgq *msgq = data;
->> +    struct gh_msgq_rx_data rx_data;
->> +    unsigned long gh_err;
->> +    bool ready = true;
->> +
->> +    while (ready) {
->> +        gh_err = gh_hypercall_msgq_recv(msgq->rx_ghrsc->capid,
->> +                (uintptr_t)&rx_data.data, sizeof(rx_data.data),
-> you should proabably use  GH_MSGQ_MAX_MSG_SIZE instead of calling sizeof 
-> for every loop.
-
-I disagree with this comment.
-
-I think sizeof(object) conveys more meaning that CONSTANT_SIZE,
-and both values are known at compile time (so there is no cost
-of "calling sizeof" a lot.
-
-					-Alex
-
+On 23-02-03 10:33:14, Johan Hovold wrote:
+> On Fri, Feb 03, 2023 at 10:18:03AM +0200, Abel Vesa wrote:
+> > Add the SM8550 both g4 and g3 configurations. In addition, there is a
+> > new "lane shared" table that needs to be configured for g4, along with
+> > the No-CSR list of resets.
 > 
->> +                &rx_data.length, &ready);
->> +        if (gh_err == GH_ERROR_OK) {
->> +            mbox_chan_received_data(gh_msgq_chan(msgq), &rx_data);
->> +        } else if (gh_err == GH_ERROR_MSGQUEUE_EMPTY) {
->> +            break;
->> +        } else {
->> +            pr_warn("Failed to receive data from msgq for %s: %zd\n",
->> +                msgq->mbox.dev ? dev_name(msgq->mbox.dev) : "", gh_err);
->> +            break;
->> +        }
->> +    }
->> +
->> +    return IRQ_HANDLED;
->> +} 
+> Could you add a comment about the new nocsr reset and how it is used
+> here?
+>  
+> > Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> > 
+> > This patchset relies on the following patchset:
+> > https://lore.kernel.org/all/20230117224148.1914627-1-abel.vesa@linaro.org/
+> > 
+> > The v6 of this patch is:
+> > https://lore.kernel.org/all/20230202123902.3831491-9-abel.vesa@linaro.org/
+> > 
+> > Changes since v6:
+> >  * none
+> > 
+> > Changes since v5:
+> >  * renmaed the no-CSR reset to "phy_nocsr" as discussed off-list with
+> >    Bjorn and Johan
+> > 
+> > Changes since v4:
+> >  * dropped _serdes infix from ln_shrd table name and from every ln_shrd
+> >    variable name
+> >  * added hyphen between "no CSR" in both places
+> >  * dropped has_ln_shrd_serdes_tbl
+> >  * reordered qmp_pcie_offsets_v6_20 by struct members
+> >  * added rollback for no-CSR reset in qmp_pcie_init fail path
+> >  * moved ln_shrd offset calculation after port_b
+> > 
+> > Changes since v3:
+> >  * added Dmitry's R-b tag
+> > 
+> > Changes since v2:
+> >  * none
+> > 
+> > Changes since v1:
+> >  * split all the offsets into separate patches, like Vinod suggested
+> > 
+> > 
+> >  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 367 ++++++++++++++++++++++-
+> >  1 file changed, 365 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > index 907f3f236f05..ff6c0b526fde 100644
+> > --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > @@ -1506,6 +1506,234 @@ static const struct qmp_phy_init_tbl sm8450_qmp_gen4x2_pcie_ep_pcs_misc_tbl[] =
+> >  	QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_PCIE_OSC_DTCT_MODE2_CONFIG5, 0x08),
+> >  };
+> 
+[...]
+> 
+> >  
+> > @@ -2214,6 +2469,68 @@ static const struct qmp_phy_cfg sm8450_qmp_gen4x2_pciephy_cfg = {
+> >  	.phy_status		= PHYSTATUS_4_20,
+> >  };
+> >  
+> > +static const struct qmp_phy_cfg sm8550_qmp_gen3x2_pciephy_cfg = {
+> > +	.lanes = 2,
+> > +
+> > +	.offsets		= &qmp_pcie_offsets_v5,
+> 
+> Did you really intend to use the v5 offsets here? It seems you use v6.20
+> defines in the tables below. This may work but it looks a little strange
+> and does not match how we name and use these resources for the other
+> SoCs (e.g. reusing structures and defines from older IP revisions is
+> fine, but not necessarily the other way round).
 
+So here is what is happening here. The actual IP block version is 6 for
+the g3x2. The offsets of the tables are the same as on v5, but the
+actual offsets of some of the registers within those tables are
+entirely different. Now, if you compare the PCS PCIe offsets (v5 vs v6)
+you'll notice that all v6 registers currently added are the same as v5
+(both names and values). With that in mind, we still need to keep the v6
+offsets for the case when a new register, that might not be in v5, might
+be added later on. As for the table offsets, since they look the same we
+should probably not add a dedicated v6 one.
+> 
+> I assume this means that the gen3 PHY is really is really v5 and using
+> a subset of the v6.20 defines happens to works as they are in fact
+> identical with respect to that subset?
+> 
+> As you have dedicated gen3x2 tables, perhaps those should use the v5
+> defines?
+> 
+> And at least add a comment about this in the commit message.
+> 
+> > +
+> > +	.tbls = {
+> > +		.serdes		= sm8550_qmp_gen3x2_pcie_serdes_tbl,
+> > +		.serdes_num	= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_serdes_tbl),
+> > +		.tx		= sm8550_qmp_gen3x2_pcie_tx_tbl,
+> > +		.tx_num		= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_tx_tbl),
+> > +		.rx		= sm8550_qmp_gen3x2_pcie_rx_tbl,
+> > +		.rx_num		= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_rx_tbl),
+> > +		.pcs		= sm8550_qmp_gen3x2_pcie_pcs_tbl,
+> > +		.pcs_num	= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_pcs_tbl),
+> > +		.pcs_misc	= sm8550_qmp_gen3x2_pcie_pcs_misc_tbl,
+> > +		.pcs_misc_num	= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_pcs_misc_tbl),
+> > +	},
+> > +	.clk_list		= sc8280xp_pciephy_clk_l,
+> > +	.num_clks		= ARRAY_SIZE(sc8280xp_pciephy_clk_l),
+> > +	.reset_list		= sdm845_pciephy_reset_l,
+> > +	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
+> > +	.vreg_list		= qmp_phy_vreg_l,
+> > +	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
+> > +	.regs			= pciephy_v5_regs_layout,
+> > +
+> > +	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
+> > +	.phy_status		= PHYSTATUS,
+> > +};
+> > +
+
+[...]
