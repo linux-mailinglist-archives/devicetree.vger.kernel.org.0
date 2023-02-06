@@ -2,115 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D446468B361
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 01:27:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DCC368B398
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 02:06:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229509AbjBFA15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Feb 2023 19:27:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48758 "EHLO
+        id S229528AbjBFBF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Feb 2023 20:05:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229694AbjBFA1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 19:27:53 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4222EAD27
-        for <devicetree@vger.kernel.org>; Sun,  5 Feb 2023 16:27:49 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id hx15so29772360ejc.11
-        for <devicetree@vger.kernel.org>; Sun, 05 Feb 2023 16:27:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rvpJire9Oix0QZVP0x0MsRm7055RqWG85WNJGR1ah78=;
-        b=K2C8OmmYLDe9OgSRVG/UAqx6U+TulXaGYzBLcl9ur5siVQWhXdNbBvv+dRKGNwRUyK
-         ON0vfsXGVHAH4TdIkBpW3RMMb7G9Cz25ktOBos7BwcBe1pptKBrGjbcQqSPx2RL7TMb+
-         Rmp0PvidYYQZdADBlzSxdGfQou9/hylKnWYfd6Uudp/khcn8EGJ4yNmUS33lJWZeirIz
-         ND+V/1Qj6PSSwkRweyREeb+5RQRTA4/d8n8IyEpLk7mawYCKKa9Ul22cm+8QSnAU0R3n
-         vlRYgYmRZVQXRzgmmhsjeqGeK/vBb3rc9PwbBLR0C7/IPSoihk2+oggcgruNU2Mgv+w8
-         lRMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rvpJire9Oix0QZVP0x0MsRm7055RqWG85WNJGR1ah78=;
-        b=WeF8wyZKFhNPlWny2JAV1fdTvS5I3Yh8jKIoUOwEXY6NaNnE28crHgOgX9v8JVDk3E
-         0DZU6hIQKQrE3DcWFYqtFvUZ+Ha+tnba0caNxKIf0j4OOKuY2A/wkMr/14vuDNoUaPNq
-         caTpf0AtyL2tKltDFTqr7Fgm84fZwFP2UXsUtC36cV7w1l3E/DYH+MN394EsQ8jLS30l
-         wR4z1ZcC1ZJp7eyO/RcvHHNx3FDF8ibDp8esAowEZP6a6JqEm7EIaTGlOje4UHPWBC1i
-         1wRN1kNEzDK3Z/ngmdHMuek/5NJB55egaAIC1aFiPxL5RgNBv3x4BizbjYvkVD2lKMko
-         x/bQ==
-X-Gm-Message-State: AO0yUKW0I1+iFLcVvzBF0dh8jgiAkvP7E2xoqwI9jqzKv/IH1PYyzes1
-        UXSeHEYMMr1Q8+gXX99LRjYQpg==
-X-Google-Smtp-Source: AK7set+19/vKl62cK332+ZCFWeKvlTsYTe6ZjYoKDmCYrN0DndYD9oPU9OCmnl+2iZc/kdYqtrGnNA==
-X-Received: by 2002:a17:907:da3:b0:891:b1ba:4c85 with SMTP id go35-20020a1709070da300b00891b1ba4c85mr7946118ejc.74.1675643268790;
-        Sun, 05 Feb 2023 16:27:48 -0800 (PST)
-Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id y18-20020a1709063a9200b00878b89075adsm4716085ejd.51.2023.02.05.16.27.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Feb 2023 16:27:48 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S229536AbjBFBF5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 20:05:57 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 328461A973;
+        Sun,  5 Feb 2023 17:05:53 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 6F6CD24E20D;
+        Mon,  6 Feb 2023 09:05:45 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 6 Feb
+ 2023 09:05:45 +0800
+Received: from [192.168.120.49] (171.223.208.138) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 6 Feb
+ 2023 09:05:43 +0800
+Message-ID: <5daccff5-6f51-4ee3-29ca-a2ae32c6780e@starfivetech.com>
+Date:   Mon, 6 Feb 2023 09:05:43 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v4 0/7] Add Ethernet driver for StarFive JH7110 SoC
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+CC:     <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH 8/8] arm64: dts: qcom: sm8350-hdk: enable GPU
-Date:   Mon,  6 Feb 2023 02:27:35 +0200
-Message-Id: <20230206002735.2736935-10-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230206002735.2736935-1-dmitry.baryshkov@linaro.org>
-References: <20230206002735.2736935-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20230118061701.30047-1-yanhong.wang@starfivetech.com>
+ <Y8h/D7I7/2KhgM00@spud>
+ <81217dc9-5673-f7eb-3114-b39de8302687@starfivetech.com>
+ <958E7B1C-E0FF-416A-85AD-783682BA8B54@kernel.org>
+From:   yanhong wang <yanhong.wang@starfivetech.com>
+In-Reply-To: <958E7B1C-E0FF-416A-85AD-783682BA8B54@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the GPU on the SM8350-HDK device. The ZAP shader is required for
-the GPU to function properly.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-index df841230d1b7..5e744423a673 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-@@ -284,6 +284,14 @@ &gpi_dma1 {
- 	status = "okay";
- };
- 
-+&gpu {
-+	status = "okay";
-+
-+	zap-shader {
-+		firmware-name = "qcom/sm8350/a660_zap.mbn";
-+	};
-+};
-+
- &i2c15 {
- 	clock-frequency = <400000>;
- 	status = "okay";
--- 
-2.39.1
+On 2023/2/4 22:22, Conor Dooley wrote:
+> 
+> 
+> On 3 February 2023 04:02:54 GMT+01:00, yanhong wang <yanhong.wang@starfivetech.com> wrote:
+>>
+>>
+>>On 2023/1/19 7:21, Conor Dooley wrote:
+>>> Hey Yanhong!
+>>> 
+>>> On Wed, Jan 18, 2023 at 02:16:54PM +0800, Yanhong Wang wrote:
+>>>> This series adds ethernet support for the StarFive JH7110 RISC-V SoC. The series
+>>>> includes MAC driver. The MAC version is dwmac-5.20 (from Synopsys DesignWare).
+>>>> For more information and support, you can visit RVspace wiki[1].
+>>>> 	
+>>>> This patchset should be applied after the patchset [2], [3], [4].
+>>>> [1] https://wiki.rvspace.org/
+>>>> [2] https://lore.kernel.org/all/20221118010627.70576-1-hal.feng@starfivetech.com/
+>>>> [3] https://lore.kernel.org/all/20221118011108.70715-1-hal.feng@starfivetech.com/
+>>>> [4] https://lore.kernel.org/all/20221118011714.70877-1-hal.feng@starfivetech.com/
+>>> 
+>>> I've got those series applied, albeit locally, since they're not ready,
+>>> but I cannot get the Ethernet to work properly on my board.
+>>> I boot all of my dev boards w/ tftp, and the visionfive2 is no exception.
+>>> The fact that I am getting to the kernel in the first place means the
+>>> ethernet is working in the factory supplied U-Boot [1].
+>>> 
+>>> However, in Linux this ethernet port does not appear to work at all.
+>>> The other ethernet port is functional in Linux, but not in the factory
+>>> supplied U-Boot.
+>>> 
+>>> Is this a known issue? If it's not, I'll post the logs somewhere for
+>>> you. In case it is relevant, my board is a v1.2a.
+>>> 
+>>> Thanks,
+>>> Conor.
+>>> 
+>>> 1 - U-Boot 2021.10 (Oct 31 2022 - 12:11:37 +0800), Build: jenkins-VF2_515_Branch_SDK_Release-10
+>>
+>>
+>>No, this is not a issue. 
+>>These patches need to rely on the yt8531 phy driver of motorcomm company
+>>and the corresponding clock delay configuration to work normally, 
+>>and the yt8531 phy driver is being submitted. I have applied the
+>>motorcomm patchs during my test on board v1.2b, so the ethernet cannot work without
+>>the application of the motorcomm patchs. 
+>>
+>>For the patchs of yt8531, see [1]
+>>
+>>1 - https://patchwork.kernel.org/project/netdevbpf/cover/20230202030037.9075-1-Frank.Sae@motor-comm.com/
+> 
+> Please put that info into the cover of the next round of your submission then.
+> 
 
+I will put the info into the cover letter in the next version.
+
+> Thanks,
+> Conor.
+> 
