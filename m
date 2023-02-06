@@ -2,129 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDAEC68CAC7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 00:45:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3FDC68CAD4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 00:56:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbjBFXpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 18:45:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41082 "EHLO
+        id S229737AbjBFX4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 18:56:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229936AbjBFXpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 18:45:33 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C986E2CC45
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 15:45:28 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id m8so13327880edd.10
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 15:45:28 -0800 (PST)
+        with ESMTP id S229677AbjBFX4h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 18:56:37 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02E472F7A5
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 15:56:36 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id e22so9653331ejb.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 15:56:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LcTQxhiGskJS1QkEwQNPUf+jn+s2GnH19YjwilDkKaU=;
-        b=whTkkMiYeV4wPrKHj4XIJOzxKzsJtigduH4vQ3gl3qi8JhOwT8C3YpvE8ysCVFbi3S
-         9zfrk9emTNKh+akSp/aDFFdNdVXc7jTlsOgnxGnecQ8NySbrrm9oYskRHD2Ld/9EJBDc
-         nKsmVRqm4KlmLO/qmjDzHJJR7jISB3G8fCmmh+sQd5+EgNN1d7NfCtvaMkhRb4g341CD
-         jHW8vZmpCLfSyfSR3WoR4xOWdFnjH4D6TO7lvHF/uzzJXQthyviF/P17VtofTu6c5fw3
-         j4NLLji0DpJ6bcTz2ZAMkB45PwJLt0FUZVps7CZHUSwC7rNNbHxJGHTJUD8RvpUeCBYT
-         g9gg==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZXfWxusL+1erNu5Hi5f8zENivZdm6No5cfij43+v5J0=;
+        b=RCIhNQVkyEOVsI7zuCm4+vCVuMi2uPMkfu7J7jSKo5kS+Udwpi9jYJQdCnWtUt8Ta7
+         BGBvfbVRxncHp0E30/Ce6BntavshZHtUcYlaX3Et3VT8LtDcydtF/2UBn1cJCrPWk7p0
+         SiRwjhuLsJ2rDqMekYs4VdEex4VWQwKEYoJ88=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LcTQxhiGskJS1QkEwQNPUf+jn+s2GnH19YjwilDkKaU=;
-        b=U19EF4yCRnetCbP0YCyRSAWl5u/OTiExmDissyTniy5qLCq+wJGpGxxAo8E2QthNf3
-         C1GAkB0T6bSPl3sbuxp4kNlnHbZkUHIZTWvozP5H0La9hKToyjR2pBvNNHDEFg7gHa1O
-         XRxYVTFX9D4j0d359t46SMzG8cq7qR+OxzKaC/TfZo61McP8pT31otnBy/6aCY56dfZO
-         5YiesVvpLlZse40Y/9NI6lO7WIEcowwll6SsWvJqjTAG5BC/oHhSJZrXfxs8GsiDgMGC
-         AHIubwUMunA+z0Q9lnQK7dSXLqujsn9KVFzyN7sO8urD7D212UYgdNs8z+nrga03dwc2
-         BSQw==
-X-Gm-Message-State: AO0yUKUFm1UJ1/d0gSkYa2HnVObx7Thou4Af83OsTUCumaer9GK/Y1Yi
-        sUMMppZTtavgf40TlS+kikPimA==
-X-Google-Smtp-Source: AK7set+sZEUa8djrPEfTPNkVh3RtaFAVO83K9+DdX6m0rGGOo0L0/kLEyCh3XGnZaeulIt3Q5ShXmQ==
-X-Received: by 2002:a50:9e0f:0:b0:4a2:1263:bbab with SMTP id z15-20020a509e0f000000b004a21263bbabmr1374013ede.17.1675727127389;
-        Mon, 06 Feb 2023 15:45:27 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id y89-20020a50bb62000000b004aab193b8dbsm2395279ede.80.2023.02.06.15.45.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 15:45:26 -0800 (PST)
-Message-ID: <4fdd5618-fc35-00a8-7a6b-2dd231700686@linaro.org>
-Date:   Tue, 7 Feb 2023 01:45:25 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZXfWxusL+1erNu5Hi5f8zENivZdm6No5cfij43+v5J0=;
+        b=CQ86L1NYY+c0ss9jn6UGhMiAEIV4OPSP8MFebFJAY1jZn/QGDDvFDEM3PDTTFKf2Au
+         /D4C7ABeqmZF6oxTpTrRYAPlnzvEU82r4pcDI6+WUKOB4fTMfAkLkUQF6TZpp/xhsNyq
+         7WIxUxJbZaqDVxoT6+V2SOZ7ltXptoik3wTbNwLNMmw5IG/SVfXjeYZgDahcQQCxcvKg
+         QPM0sHAICaAyy1kYgENpMk9cl/b03Ne9CulzJDqdL36AvU3s7UvaX0Z6bZQz39dUzMQP
+         CZXtUTuG/ZY8B3jXB/XVV9mcFKZfIJZk6bVlOSPoltjX0cKqwqy0FTXgvQjWamO7MjD8
+         axOA==
+X-Gm-Message-State: AO0yUKUNO+diC5Dml0NFDRsSIW99267O7ltKJuF2WYEo6zwBPCEB9MDU
+        9JbfHQq2RJ//oeG50YohfRI7KlNUR7CmZIcl/T/6MUuYoNVJEH8DNdo=
+X-Google-Smtp-Source: AK7set/NaHSSAc70x60b/+oX/P2HNQS5z1wS9SNTPGmweIJEUfPns95YNRjY5M5oVr5gSlMDiH03DfBKLJinL4mILdM=
+X-Received: by 2002:a17:906:6a94:b0:896:43bd:7915 with SMTP id
+ p20-20020a1709066a9400b0089643bd7915mr355065ejr.93.1675727794321; Mon, 06 Feb
+ 2023 15:56:34 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v8 5/9] dt-bindings: qcom-qce: document clocks and
- clock-names as optional
-Content-Language: en-GB
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org
-References: <20230202135036.2635376-1-vladimir.zapolskiy@linaro.org>
- <20230202135036.2635376-6-vladimir.zapolskiy@linaro.org>
- <32c23da1-45f0-82a4-362d-ae5c06660e20@linaro.org>
- <36b6f8f2-c438-f5e6-b48f-326e8b709de8@linaro.org>
- <a2e4dff0-af8f-dccb-9074-8244b054c448@linaro.org>
- <61eb2a01-762e-b83b-16b7-2c9b178407da@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <61eb2a01-762e-b83b-16b7-2c9b178407da@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230204001959.935268-1-sjg@chromium.org> <CALeDE9N2KSwA=HMLS9EPFL00UxxUgi=r_M8F7W2tWT6y+dMzeQ@mail.gmail.com>
+ <CAPnjgZ297NH1oiRG9iU8=U0dSAnPLQ4WGYF7=+71aUZCYctWTA@mail.gmail.com>
+ <CAL_Jsq+mUNeEx=jwc4JF7fGCa7zkOTChoVb5CoMfHaqCi+bYpg@mail.gmail.com>
+ <CAPnjgZ3c0Tmtfzgv74vWovme0mVoF3N1hfoCnz61Hyzc-QE8vQ@mail.gmail.com> <CAL_JsqLW3GkXtr0oD28XB3MNK36Vjjzb10MhWFh85-MfN2oc3Q@mail.gmail.com>
+In-Reply-To: <CAL_JsqLW3GkXtr0oD28XB3MNK36Vjjzb10MhWFh85-MfN2oc3Q@mail.gmail.com>
+From:   Simon Glass <sjg@chromium.org>
+Date:   Mon, 6 Feb 2023 16:56:22 -0700
+Message-ID: <CAPnjgZ17UDAH4+=vUHzSkLfJJ6zoSX6r=LBiPW0Cdq4MbCfmTQ@mail.gmail.com>
+Subject: Re: [PATCH] schemas: Add schema for firmware logs
+To:     Rob Herring <robh@kernel.org>
+Cc:     Peter Robinson <pbrobinson@gmail.com>,
+        Tom Rini <trini@konsulko.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        devicetree@vger.kernel.org,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2023 18:16, Vladimir Zapolskiy wrote:
-> On 2/2/23 16:21, Neil Armstrong wrote:
->> On 02/02/2023 15:04, Vladimir Zapolskiy wrote:
->>> Hi Krzysztof,
->>>
->>> On 2/2/23 15:53, Krzysztof Kozlowski wrote:
->>>> On 02/02/2023 14:50, Vladimir Zapolskiy wrote:
->>>>> From: Neil Armstrong <neil.armstrong@linaro.org>
->>>>>
->>>>> On certain Snapdragon processors, the crypto engine clocks are 
->>>>> enabled by
->>>>> default by security firmware.
->>>>
->>>> Then probably we should not require them only on these variants.
->>>
->>> I don't have the exact list of the affected SoCs, I believe Neil can 
->>> provide
->>> such a list, if you find it crucial.
->>
->> It's the case for SM8350, SM8450 & SM8550.
->>
-> 
-> On SM8250 there is no QCE clocks also, so I'll add it to the list, and I 
-> hope
-> that now the list is complete.
-> 
-> It could be that the relevant platforms are the ones with 
-> 'qcom,no-clock-support'
-> property of QCE in the downstream.
-> 
+Hi Rob,
 
-Then, sc7180, sc8180x, sdx55, sm6150, sm7150, sm8150 also have this 
-property in QCE device. And, I think, it should also be applicable to 
-sc7280 and sc8280xp.
+On Mon, 6 Feb 2023 at 16:32, Rob Herring <robh@kernel.org> wrote:
+>
+> +boot-architecture
+>
+> On Mon, Feb 6, 2023 at 3:25 PM Simon Glass <sjg@chromium.org> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Mon, 6 Feb 2023 at 10:15, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Sat, Feb 4, 2023 at 6:04 AM Simon Glass <sjg@chromium.org> wrote:
+> > > >
+> > > > Hi Peter,
+> > > >
+> > > > On Sat, 4 Feb 2023 at 02:36, Peter Robinson <pbrobinson@gmail.com> wrote:
+> > > > >
+> > > > > Hi Simon,
+> > > > >
+> > > > > Does it make sense to devise something that is compatible with the
+> > > > > kernel's pstore [1] mechanism?
+> > > >
+> > > > Possibly...can you please be a little more specific?
+> > >
+> > > Peter is talking about the same thing I suggested on IRC.
+> > >
+> > > pstore == ramoops
+> >
+> > Oh, I only looked at the DT binding as I thought that was what you
+> > were talking about on irc.
+>
+> The binding is called ramoops as it's for the RAM backend for pstore.
+>
+> My suggestion was either using/extending ramoops or following its
+> design as a reserved memory region. All you would need to extend the
+> ramoops binding is a new property to define the size of your data.
 
--- 
-With best wishes
-Dmitry
+OK I see.
 
+>
+> > For pstore, isn't the point that Linux wants to save stuff to allow
+> > debugging or collection on reboot? What does that have to do with
+> > console logs from firmware? That seems like a different thing. Or are
+> > you suggesting that we add a pstore driver into U-Boot? It is quite a
+> > lot of code, including compression, etc. It might be easier for Linux
+> > to write the data into pstore when it starts up?
+>
+> Originally ramoops was just what you described. It has grown to
+> multiple backends and types of records (hence the rename to pstore).
+> If you just add a new subsection within the pstore region, then I
+> think the existing kernel infrastructure will support reading it from
+> userspace. Maybe new types have to be explicitly supported, IDK.
+>
+> U-boot being able to read pstore wouldn't be a terrible feature to
+> have anyways if your boot crashes before anything else is up to get
+> the output. Note I'd guess the ram backend doesn't do compression as
+> supporting slightly corrupted ram is a feature which wouldn't work.
+
+I actually meant U-Boot writing to pstore...as that is the only way
+that the console data could be provided to the kernel, as I understand
+it.
+
+Another question is how U-Boot could write thie information if the
+pstore backend is not RAM?
+>
+>
+> I think any new DT binding is premature and pstore/ramoops was just a
+> suggestion to consider. This needs wider consideration of how to
+> handle all the various (boot) firmware logs. I've added the
+> boot-architecture list for a bit more visibility.
+
+OK.
+
+Regards,
+SImon
