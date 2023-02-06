@@ -2,147 +2,446 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C0F668C4AF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 18:28:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBDBE68C4F0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 18:34:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229768AbjBFR2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 12:28:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34936 "EHLO
+        id S230080AbjBFRex (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 12:34:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230220AbjBFR2C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 12:28:02 -0500
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27BA04684;
-        Mon,  6 Feb 2023 09:27:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675704450; x=1707240450;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9MpOg/e1tMdiWWJ9lP+bpHqg1Mk6yUXpiIjkXYKqsLQ=;
-  b=KpBiHlZAQVA8zC0wKWkpn11yqhlAAcPm9ga1k6J7rMtFhAzIDFFze5jh
-   zf9YCJQaREMFJFdcangATlILVY3lF8FFWJwhvYC40LW3IXIyhbvMR8eXd
-   sj0qurs4k+o2QOIIXO6b7O+BjesiP6O2XSaGh4DDPsgby/7gg2CnN+iMw
-   MuoG2C3qcA7Nx4SuKx1V3nnlzdf4Nb2PGS/1nobvc0V/FZLI911Gwl9pV
-   XL2+1Fk4VaNGylyJYJ0V04lCz3VvWzG2sKtdhX1j6gaNBkjhlpG2Wi29U
-   rlfz9C7yfOif3N9Xq6qkG8KMpfPfK50LCwFIUYcIwiVl1Jll3PWy4lLGV
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="317270844"
-X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; 
-   d="scan'208";a="317270844"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2023 09:25:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="840435152"
-X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; 
-   d="scan'208";a="840435152"
-Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 06 Feb 2023 09:25:07 -0800
-Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pP5Ep-0002hI-0F;
-        Mon, 06 Feb 2023 17:25:07 +0000
-Date:   Tue, 7 Feb 2023 01:24:24 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Martin Liu <liumartin@google.com>, robh+dt@kernel.org,
-        frowand.list@gmail.com
-Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, surenb@google.com,
-        minchan@kernel.org, tkjos@google.com, liumartin@google.com
-Subject: Re: [PATCH] of: reserved-mem: expose reserved-mem details via debugfs
-Message-ID: <202302070150.S0t7TNwD-lkp@intel.com>
-References: <20230206142714.4151047-1-liumartin@google.com>
+        with ESMTP id S229868AbjBFReq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 12:34:46 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A394193EA;
+        Mon,  6 Feb 2023 09:34:42 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 316HY90P061159;
+        Mon, 6 Feb 2023 11:34:09 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1675704849;
+        bh=JOt6tELtRMoiKevc9skXSg50UdBgOU09SljD38/hL90=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=FwuXLL0syWoAvU6zrT5PLro7pxVirjWVHP7IUAbTy1nLlAvIFhl0uMeXmsEwPsMeJ
+         HEE3CL8J7wCXHOSyYVAXCyHAdcsZBLjMy71R0olbfFmEYp7CYg6wR9j/1TGlGNaoRQ
+         PSwFwEBJ1do2PDB9NgYQd7ZJGqVAE6ethTCmB/UA=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 316HY91S020850
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 6 Feb 2023 11:34:09 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 6
+ Feb 2023 11:34:09 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 6 Feb 2023 11:34:09 -0600
+Received: from [10.250.235.106] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 316HY3xm080421;
+        Mon, 6 Feb 2023 11:34:03 -0600
+Message-ID: <d352043e-9101-e191-dd67-b88fb1cfdf92@ti.com>
+Date:   Mon, 6 Feb 2023 23:04:02 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230206142714.4151047-1-liumartin@google.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v7 1/6] drm/tidss: Remove Video Port to Output Port
+ coupling
+Content-Language: en-US
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+CC:     Nishanth Menon <nm@ti.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Jai Luthra <j-luthra@ti.com>, Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20230125113529.13952-1-a-bhatia1@ti.com>
+ <20230125113529.13952-2-a-bhatia1@ti.com>
+ <300c0351-6ee0-d703-bd53-bc4c0fe3af0f@ideasonboard.com>
+ <94cf519a-a72f-89d8-fe2a-9fa795ede6ac@ti.com>
+ <c858250d-1406-dc3d-58d7-687cd891e7a5@ideasonboard.com>
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <c858250d-1406-dc3d-58d7-687cd891e7a5@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
 
-Thank you for the patch! Perhaps something to improve:
+On 06-Feb-23 18:35, Tomi Valkeinen wrote:
+> On 05/02/2023 15:08, Aradhya Bhatia wrote:
+>> Hi Tomi,
+>>
+>> Thanks for the review!
+>>
+>> On 03-Feb-23 16:53, Tomi Valkeinen wrote:
+>>> On 25/01/2023 13:35, Aradhya Bhatia wrote:
+>>>> Make DSS Video Ports agnostic of output bus types.
+>>>>
+>>>> DSS controllers have had a 1-to-1 coupling between its VPs and its
+>>>> output ports. This no longer stands true for the new AM625 DSS. This
+>>>> coupling, hence, has been removed by renaming the 'vp_bus_type' to
+>>>> 'output_port_bus_type' because the VPs are essentially agnostic of the
+>>>> bus type and it is the output ports which have a bus type.
+>>>>
+>>>> The AM625 DSS has 2 VPs but requires 3 output ports to support its
+>>>> Dual-Link OLDI video output coming from a single VP.
+>>>
+>>> Not a biggie, but this sentence is a bit odd here at the end. Shouldn't
+>>> it be after the "...stands true for the new AM625 DSS."?
+>>
+>> Yes! It should be. Will make the edit.
+>>
+>>>
+>>>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>>>> ---
+>>>>    drivers/gpu/drm/tidss/tidss_dispc.c | 47 +++++++++++++++++------------
+>>>>    drivers/gpu/drm/tidss/tidss_dispc.h | 21 +++++++------
+>>>>    drivers/gpu/drm/tidss/tidss_drv.h   |  5 +--
+>>>>    drivers/gpu/drm/tidss/tidss_irq.h   |  2 +-
+>>>>    drivers/gpu/drm/tidss/tidss_kms.c   | 12 ++++----
+>>>>    5 files changed, 48 insertions(+), 39 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
+>>>> index 165365b515e1..c1c4faccbddc 100644
+>>>> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+>>>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+>>>> @@ -61,7 +61,7 @@ const struct dispc_features dispc_k2g_feats = {
+>>>>        .min_pclk_khz = 4375,
+>>>>          .max_pclk_khz = {
+>>>> -        [DISPC_VP_DPI] = 150000,
+>>>> +        [DISPC_PORT_DPI] = 150000,
+>>>>        },
+>>>>          /*
+>>>> @@ -96,7 +96,6 @@ const struct dispc_features dispc_k2g_feats = {
+>>>>        .vp_name = { "vp1" },
+>>>>        .ovr_name = { "ovr1" },
+>>>>        .vpclk_name =  { "vp1" },
+>>>> -    .vp_bus_type = { DISPC_VP_DPI },
+>>>>          .vp_feat = { .color = {
+>>>>                .has_ctm = true,
+>>>> @@ -109,6 +108,9 @@ const struct dispc_features dispc_k2g_feats = {
+>>>>        .vid_name = { "vid1" },
+>>>>        .vid_lite = { false },
+>>>>        .vid_order = { 0 },
+>>>> +
+>>>> +    .num_output_ports = 1,
+>>>> +    .output_port_bus_type = { DISPC_PORT_DPI },
+>>>>    };
+>>>
+>>> Just thinking out loud, as these will get more complex in the future,
+>>> maybe we should finally group them with struct. E.g. we could define
+>>> struct array for vps, like (just hacky example):
+>>>
+>>>      struct {
+>>>          const char *name;
+>>>          const char *clkname;
+>>>          struct tidss_vp_feat feat;
+>>>      } vps[TIDSS_MAX_PORTS];
+>>>
+>>> and then use them as:
+>>>
+>>>      .vps = {
+>>>          {
+>>>              .name = "kala",
+>>>              .clkname = "kissa",
+>>>              .feat.color.has_ctm = true,
+>>>          }, {
+>>>              .name = "kala2",
+>>>              .clkname = "kissa2",
+>>>              .feat.color.has_ctm = false,
+>>>          },
+>>>      },
+>>>
+>>> Perhaps something to try in the future.
+>>>
+>>
+>> Yes, agreed! Having that structure will tidy this up.
+>> I will keep this under future work.
+>>
+>>>>    static const u16 tidss_am65x_common_regs[DISPC_COMMON_REG_TABLE_LEN] = {
+>>>> @@ -140,8 +142,8 @@ static const u16 tidss_am65x_common_regs[DISPC_COMMON_REG_TABLE_LEN] = {
+>>>>      const struct dispc_features dispc_am65x_feats = {
+>>>>        .max_pclk_khz = {
+>>>> -        [DISPC_VP_DPI] = 165000,
+>>>> -        [DISPC_VP_OLDI] = 165000,
+>>>> +        [DISPC_PORT_DPI] = 165000,
+>>>> +        [DISPC_PORT_OLDI] = 165000,
+>>>>        },
+>>>>          .scaling = {
+>>>> @@ -171,7 +173,6 @@ const struct dispc_features dispc_am65x_feats = {
+>>>>        .vp_name = { "vp1", "vp2" },
+>>>>        .ovr_name = { "ovr1", "ovr2" },
+>>>>        .vpclk_name =  { "vp1", "vp2" },
+>>>> -     .vp_bus_type = { DISPC_VP_OLDI, DISPC_VP_DPI },
+>>>>        .vp_feat = { .color = {
+>>>>                .has_ctm = true,
+>>>> @@ -185,6 +186,9 @@ const struct dispc_features dispc_am65x_feats = {
+>>>>        .vid_name = { "vid", "vidl1" },
+>>>>        .vid_lite = { false, true, },
+>>>>        .vid_order = { 1, 0 },
+>>>> +
+>>>> +    .num_output_ports = 2,
+>>>> +    .output_port_bus_type = { DISPC_PORT_OLDI, DISPC_PORT_DPI },
+>>>>    };
+>>>>      static const u16 tidss_j721e_common_regs[DISPC_COMMON_REG_TABLE_LEN] = {
+>>>> @@ -229,8 +233,8 @@ static const u16 tidss_j721e_common_regs[DISPC_COMMON_REG_TABLE_LEN] = {
+>>>>      const struct dispc_features dispc_j721e_feats = {
+>>>>        .max_pclk_khz = {
+>>>> -        [DISPC_VP_DPI] = 170000,
+>>>> -        [DISPC_VP_INTERNAL] = 600000,
+>>>> +        [DISPC_PORT_DPI] = 170000,
+>>>> +        [DISPC_PORT_INTERNAL] = 600000,
+>>>>        },
+>>>>          .scaling = {
+>>>> @@ -260,9 +264,7 @@ const struct dispc_features dispc_j721e_feats = {
+>>>>        .vp_name = { "vp1", "vp2", "vp3", "vp4" },
+>>>>        .ovr_name = { "ovr1", "ovr2", "ovr3", "ovr4" },
+>>>>        .vpclk_name = { "vp1", "vp2", "vp3", "vp4" },
+>>>> -    /* Currently hard coded VP routing (see dispc_initial_config()) */
+>>>> -    .vp_bus_type =    { DISPC_VP_INTERNAL, DISPC_VP_DPI,
+>>>> -              DISPC_VP_INTERNAL, DISPC_VP_DPI, },
+>>>> +
+>>>
+>>> I think this line feed is extra.
+>>
+>> Okay! Will remove that from all SoC feat structs.
+>>
+>>>
+>>>>        .vp_feat = { .color = {
+>>>>                .has_ctm = true,
+>>>>                .gamma_size = 1024,
+>>>> @@ -273,6 +275,11 @@ const struct dispc_features dispc_j721e_feats = {
+>>>>        .vid_name = { "vid1", "vidl1", "vid2", "vidl2" },
+>>>>        .vid_lite = { 0, 1, 0, 1, },
+>>>>        .vid_order = { 1, 3, 0, 2 },
+>>>> +
+>>>> +    .num_output_ports = 4,
+>>>> +    /* Currently hard coded VP routing (see dispc_initial_config()) */
+>>>> +    .output_port_bus_type =    { DISPC_PORT_INTERNAL, DISPC_PORT_DPI,
+>>>> +              DISPC_PORT_INTERNAL, DISPC_PORT_DPI, },
+>>>
+>>> Indent doesn't look right (but it might be just because this is a diff).
+>>
+>> I may have missed indenting this.
+>>
+>>>
+>>>>    };
+>>>>      static const u16 *dispc_common_regmap;
+>>>> @@ -287,12 +294,12 @@ struct dispc_device {
+>>>>       void __iomem *base_common;
+>>>>       void __iomem *base_vid[TIDSS_MAX_PLANES];
+>>>> -    void __iomem *base_ovr[TIDSS_MAX_PORTS];
+>>>> -    void __iomem *base_vp[TIDSS_MAX_PORTS];
+>>>> +    void __iomem *base_ovr[TIDSS_MAX_VPS];
+>>>> +    void __iomem *base_vp[TIDSS_MAX_VPS];
+>>>>       struct regmap *oldi_io_ctrl;
+>>>> -    struct clk *vp_clk[TIDSS_MAX_PORTS];
+>>>> +    struct clk *vp_clk[TIDSS_MAX_VPS];
+>>>>          const struct dispc_features *feat;
+>>>>    @@ -300,7 +307,7 @@ struct dispc_device {
+>>>>          bool is_enabled;
+>>>> -    struct dss_vp_data vp_data[TIDSS_MAX_PORTS];
+>>>> +    struct dss_vp_data vp_data[TIDSS_MAX_VPS];
+>>>>          u32 *fourccs;
+>>>>        u32 num_fourccs;
+>>>> @@ -851,7 +858,7 @@ int dispc_vp_bus_check(struct dispc_device *dispc, u32 hw_videoport,
+>>>>            return -EINVAL;
+>>>>        }
+>>>> -    if (dispc->feat->vp_bus_type[hw_videoport] != DISPC_VP_OLDI &&
+>>>> +    if (dispc->feat->output_port_bus_type[hw_videoport] != DISPC_PORT_OLDI &&
+>>>
+>>> Hmm, so is the hw_videoport a vp index or an output index? Sounds like
+>>> the former, so it's not right, even if at the moment they're identical.
+>>> We need some kind of mapping between those.
+>>>
+>>
+>> It is indeed a vp index. And yes, I can come up with a mapping mechanism.
+>>
+>>> If the mapping can be changed (or just defined in the DT), I think we
+>>> need a variable in struct dispc_device, which tells the output to which
+>>> a videoport is connected to. Or vice versa, I'm not sure which direction
+>>> we need more. If the mapping is always the same on all SoC (but I don't
+>>> think so), we can have it in the feats.
+>>>
+>>
+>> As of now, the mapping is always same. But I would like to make is
+>> generalized for future. Hence, I am considering to keep the variable in
+>> struct dispc_device.
+>>
+>> My question though would be, how would one be able to find which kind
+>> of device is the port connected to, if it is connected to a bridge? For
+>> example, in case of panels, we have a "connector_type" variable in
+>> drm_panel which tells what kind of sink it is. But there is no such
+>> thing in drm_bridge.
+>>
+>> This is required because what if we can connect an videoport to either
+>> an LVDS/OLDI bridge or a DPI bridge.
+> 
+> The connector type shouldn't matter.
+> 
+> The DSS has VPs and outputs. The VPs are "generic" and identical to each
+> other, except in their possible connections to the outputs. The outputs,
+> at least at the moment, are DPI, LVDS and internal, where internal is
+> basically just DPI.
+> 
+> Those are the three different cases we are interested in within the dss
+> driver, right? Does it matter where the DPI or LVDS output goes?
+>
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.2-rc7 next-20230206]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I believe it does. =)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Martin-Liu/of-reserved-mem-expose-reserved-mem-details-via-debugfs/20230206-222927
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230206142714.4151047-1-liumartin%40google.com
-patch subject: [PATCH] of: reserved-mem: expose reserved-mem details via debugfs
-config: ia64-allyesconfig (https://download.01.org/0day-ci/archive/20230207/202302070150.S0t7TNwD-lkp@intel.com/config)
-compiler: ia64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/5d479d32b3863f2ec8d10d756aa57cf29046e334
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Martin-Liu/of-reserved-mem-expose-reserved-mem-details-via-debugfs/20230206-222927
-        git checkout 5d479d32b3863f2ec8d10d756aa57cf29046e334
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 SHELL=/bin/bash drivers/
+While the VPs do always transmit DPI signals, the code in tidss_dispc.c
+uses the information of the bus connected at the endpoint to configure
+the OLDI parameters, and to turn OLDI IOs on and off in
+dispc_vp_(prepare/unprepare).
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+Up until now, the outputs have been fixed (VP0 -> OLDI, VP1 -> DPI), and
+the code used the enum dispc_vp_bus_type to differntiate between LVDS or
+DPI requirements. But for a general case where output from VP0 could
+either use the OLDI TXes and send out LVDS signals OR bypass the OLDI
+TXes and send out DPI signals directly, we would need a mechanism to
+find out which sink is present at the end, LVDS or DPI.
 
-All warnings (new ones prefixed by >>):
+I assumed, with that mechanism, we could (re)configure the vp-to-output
+mapping, which then would be used in the various places in
+tidss_dispc.c.
 
-   drivers/of/of_reserved_mem.c: In function 'of_reserved_mem_debug_show':
->> drivers/of/of_reserved_mem.c:465:46: warning: format '%lu' expects argument of type 'long unsigned int', but argument 5 has type 'phys_addr_t' {aka 'long long unsigned int'} [-Wformat=]
-     465 |                 seq_printf(m, "%pa..%pa ( %7lu KB ) %5s %12s %s\n", &rmem->base,
-         |                                           ~~~^
-         |                                              |
-         |                                              long unsigned int
-         |                                           %7llu
-     466 |                            &end, rmem->size / 1024,
-         |                                  ~~~~~~~~~~~~~~~~~
-         |                                             |
-         |                                             phys_addr_t {aka long long unsigned int}
+> So what I'm saying is that the DSS device tree data should already
+> define what kind of configuration we need, and there's no need to look
+> further into the panel/bridge nodes.
+> 
+>> Also, implementing this might mean removal of the part of code which
+>> confirms that the panel's "connector_type" indeed expects what the VP
+>> can provide, unless there is a way to find out what the sink is before
+>> calling the drm_of_find_panel_or_bridge API.
+> 
+> Hmm, well, each DSS output (port in DT) is of a certain type, so we
+> should be able to validate that the output and the panel's
+> connector_type match.
+> 
+>> On the direction, the primary requirement of hw_videoport has been in
+>> the tidss_dispc.c file where the HW registers are getting configured.
+>> 'hw_videoport' is a frequently passed parameter in function calls. So,
+>> at a first glance the former option might makes more sense for
+>> direction, i.e. to have a variable which tells the output to which a
+>> videoport is connected to.
+> 
+> Makes sense.
+> 
+>> And while, there is also the tidss_kms.c file, which deals with
+>> initializing encoders and attaching bridges. This is where the
+>> output_port is required more often. But I am yet to think of a case
+>> where the above direction could be an issue.
+>>
+>>
+>>> Also, I wonder if output_port is a good name as it has "port" in it
+>>> (like video port), and it's a bit long-ish. Would just "output" be
+>>> enough? We could, of course, shorten it to OP, but that looks odd to me =).
+>>>
+>>
+>>>>            fmt->is_oldi_fmt) {
+>>>>            dev_dbg(dispc->dev, "%s: %s is not OLDI-port\n",
+>>>>                __func__, dispc->feat->vp_name[hw_videoport]);
+>>>> @@ -955,7 +962,7 @@ void dispc_vp_prepare(struct dispc_device *dispc, u32 hw_videoport,
+>>>>        if (WARN_ON(!fmt))
+>>>>            return;
+>>>> -    if (dispc->feat->vp_bus_type[hw_videoport] == DISPC_VP_OLDI) {
+>>>> +    if (dispc->feat->output_port_bus_type[hw_videoport] == DISPC_PORT_OLDI) {
+>>>>            dispc_oldi_tx_power(dispc, true);
+>>>>              dispc_enable_oldi(dispc, hw_videoport, fmt);
+>>>> @@ -1014,7 +1021,7 @@ void dispc_vp_enable(struct dispc_device *dispc, u32 hw_videoport,
+>>>>        align = true;
+>>>>          /* always use DE_HIGH for OLDI */
+>>>> -    if (dispc->feat->vp_bus_type[hw_videoport] == DISPC_VP_OLDI)
+>>>> +    if (dispc->feat->output_port_bus_type[hw_videoport] == DISPC_PORT_OLDI)
+>>>>            ieo = false;
+>>>>          dispc_vp_write(dispc, hw_videoport, DISPC_VP_POL_FREQ,
+>>>> @@ -1040,7 +1047,7 @@ void dispc_vp_disable(struct dispc_device *dispc, u32 hw_videoport)
+>>>>      void dispc_vp_unprepare(struct dispc_device *dispc, u32 hw_videoport)
+>>>>    {
+>>>> -    if (dispc->feat->vp_bus_type[hw_videoport] == DISPC_VP_OLDI) {
+>>>> +    if (dispc->feat->output_port_bus_type[hw_videoport] == DISPC_PORT_OLDI) {
+>>>>            dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, 0);
+>>>>              dispc_oldi_tx_power(dispc, false);
+>>>> @@ -1116,10 +1123,10 @@ enum drm_mode_status dispc_vp_mode_valid(struct dispc_device *dispc,
+>>>>                         const struct drm_display_mode *mode)
+>>>>    {
+>>>>       u32 hsw, hfp, hbp, vsw, vfp, vbp;
+>>>> -    enum dispc_vp_bus_type bus_type;
+>>>> +    enum dispc_port_bus_type bus_type;
+>>>>       int max_pclk;
+>>>> -    bus_type = dispc->feat->vp_bus_type[hw_videoport];
+>>>> +    bus_type = dispc->feat->output_port_bus_type[hw_videoport];
+>>>>       max_pclk = dispc->feat->max_pclk_khz[bus_type];
+>>>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.h b/drivers/gpu/drm/tidss/tidss_dispc.h
+>>>> index e49432f0abf5..30fb44158347 100644
+>>>> --- a/drivers/gpu/drm/tidss/tidss_dispc.h
+>>>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.h
+>>>> @@ -50,11 +50,11 @@ struct dispc_errata {
+>>>>        bool i2000; /* DSS Does Not Support YUV Pixel Data Formats */
+>>>>    };
+>>>> -enum dispc_vp_bus_type {
+>>>> -    DISPC_VP_DPI,        /* DPI output */
+>>>> -    DISPC_VP_OLDI,        /* OLDI (LVDS) output */
+>>>> -    DISPC_VP_INTERNAL,    /* SoC internal routing */
+>>>> -    DISPC_VP_MAX_BUS_TYPE,
+>>>> +enum dispc_port_bus_type {
+>>>> +    DISPC_PORT_DPI,            /* DPI output */
+>>>> +    DISPC_PORT_OLDI,        /* OLDI (LVDS) output */
+>>>> +    DISPC_PORT_INTERNAL,        /* SoC internal routing */
+>>>> +    DISPC_PORT_MAX_BUS_TYPE,
+>>>
+>>> Okay, so here you have just "port", not "output_port". In the DT,
+>>> they're ports, so... Maybe we could use that name too, and for video
+>>> port always use "vp". The current "hw_videoport" could be easily
+>>> mistaken with "port".
+>>
+>> I see what you are saying and how somebody could confusre hw_videoport
+>> for a physical connection (i.e. port). I have always understoof
+>> hw_videoport to be a thing of the actual VP inside the SoC, but that may
+>> be because I have been working on this, and not just trying to
+>> understand the code from a high level.
+>>
+>> How about if I change the output_port to "out_port"? I am okay to keep
+>> "output" as the name to. I am saying this becuase I think, only keeping
+>> "port" might just confuse more, as you mentioned above.
+> 
+> Yes, I agree "port" is not good. Other than that, no strong opinions.
+> Whatever name you pick, someone will find it confusing ;). Just keep it
+> consistent, so that all enums, parameters, etc. use it a consistent
+> manner. If I had to choose, I'd go with the "output", but I'm fine with
+> other names too.
+> 
+
+Alright! I am good with using "output".
+
+>> And then we can change "hw_videoport" to "vp_index", perhaps, or even
+>> keep that as it is? Becuase if we do have a VP structure in future
+>> like you suggested above, "vps" and "vp" would become a close overlap.
+>> For eg, "vps[vp]".
+> 
+> That is true. I think that was the reason I chose hw_videoport instead
+> of videoport or vp, although vps[hw_videoport] is only barely better.
+> 
+> vp_index is ok for me, or maybe vp_idx or vp_num to have it a bit shorter.
+> 
+"vp_idx" seems better!
 
 
-vim +465 drivers/of/of_reserved_mem.c
-
-   450	
-   451	#if defined(CONFIG_DEBUG_FS)
-   452	static int of_reserved_mem_debug_show(struct seq_file *m, void *private)
-   453	{
-   454		unsigned int i;
-   455		size_t sum = 0;
-   456	
-   457		for (i = 0; i < reserved_mem_count; i++) {
-   458			const struct reserved_mem *rmem = &reserved_mem[i];
-   459			unsigned long node = rmem->fdt_node;
-   460			phys_addr_t end = rmem->base + rmem->size - 1;
-   461			bool nomap = (of_get_flat_dt_prop(node, "no-map", NULL)) != NULL;
-   462			bool reusable = (of_get_flat_dt_prop(node, "reusable", NULL)) != NULL;
-   463	
-   464			sum += rmem->size;
- > 465			seq_printf(m, "%pa..%pa ( %7lu KB ) %5s %12s %s\n", &rmem->base,
-   466				   &end, rmem->size / 1024,
-   467				   nomap ? "nomap" : "map",
-   468				   reusable ? "reusable" : "non-reusable",
-   469				   rmem->name ? rmem->name : "unknown");
-   470		}
-   471		seq_printf(m, "Total %d regions, %zu KB\n",
-   472			   reserved_mem_count,
-   473			   sum / 1024);
-   474		return 0;
-   475	}
-   476	DEFINE_SHOW_ATTRIBUTE(of_reserved_mem_debug);
-   477	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Regards
+Aradhya
