@@ -2,174 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A8B068C569
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 19:08:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F248D68C59A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 19:19:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229513AbjBFSI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 13:08:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60878 "EHLO
+        id S229973AbjBFSTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 13:19:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229896AbjBFSIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 13:08:24 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9909B17CE8
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 10:08:13 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id h3so3373810wrp.10
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 10:08:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8HvOrHkIP8SbO+sqt+8GIffUexPmit/k/GSAi9C9ZLA=;
-        b=ucFAJXzrJn53Zv+WFCeSBra+jaWVuMvLGrhQesAWslLqtngBNFeqOZ1sclvsw6z/Ql
-         Oyn3wD+ev+7fbKgHDrwzRf41Gs+qdvGjUlXbGAvyIriSQ+6LA7FYYOxwmoHeuao9xQ0w
-         No8YIRXi5ognFZ/fMQS1dcMRxUmFwI7Wlp6mPVhaPtlDhQSVeC0RPf618Q9ttflv5RAU
-         8U0CftKGQrUQ0mqS99VTJFAgOfNCLBRjE7L8Tixn6zIdMeeVPb3KwaYxmiquslHTNQaK
-         6I/2SmmJ76BBhJUofjYW4+gXoqBRLq0p0vtpqnD4abCqcy+Ew1zihoJ5FSuI9ubKsDJn
-         xB6g==
+        with ESMTP id S229741AbjBFSTy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 13:19:54 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF46A30ED
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 10:19:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1675707547;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=lhvAU6ZF1LkEANx5C+rlnAPFw6900cnUpZORjf4RmTw=;
+        b=OPWU0u/Kwp+bD8gqeoaJW0L0hskcwCzwZ3UUuyGSYoFGynBv07XZz54xexPrxLgIL72p7A
+        l2Xxx91ALR84wyzKcVBrnA4UgNdo5nld9xEwtHGMQCyEnLYCEJQE/wdvpvM4vIM1kU6cbV
+        Alus1FGKvMbF0ymfCzucWtvdfgQlRKw=
+Received: from mail-il1-f198.google.com (mail-il1-f198.google.com
+ [209.85.166.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-541-oZEiVVSoOHey3qDzE5sAkw-1; Mon, 06 Feb 2023 13:19:05 -0500
+X-MC-Unique: oZEiVVSoOHey3qDzE5sAkw-1
+Received: by mail-il1-f198.google.com with SMTP id s12-20020a056e021a0c00b0030efd0ed890so8536692ild.7
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 10:19:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8HvOrHkIP8SbO+sqt+8GIffUexPmit/k/GSAi9C9ZLA=;
-        b=Gbo31SfuucM1sj0na3P3F3jnR2vzzl9J+06CltMz/hc/9hZC2gagJ6ZIdhCWxkT2JJ
-         fbc2dA7OCc9pnCcGlmfLBs4NzkL9silO9CjOJ0cWNg2clPuBS5jOl/0/bZ7ejFur36+Y
-         ziphJ+UGxzltivhvqJlHwhGoGOmcgULN7cg64Qug27+ykt2BUTb+FLpBER8GNtXzzWG5
-         9hUNydKcWcgtrX259bxMxB4MmZWyZZVyyNBZjWnaLSCB3+CaCFG14ay5tXvc9u4nmG41
-         fGzw3UXMfAI4XxF/VM41982tMQhoJtqgVXsC/wSZttDU2oFM8C4PaCGOSwhMBQTyHfCh
-         Ii+A==
-X-Gm-Message-State: AO0yUKXNAYPMIZRXa4URbV0vha7qdxH0cxdYkb25lPP/o10winu1MZMw
-        7768mxdduVJD6XJnR602UgNyHw==
-X-Google-Smtp-Source: AK7set/0BWk0xFD529JMx3PTnPQ1jw0SboYPgHS35Qq0UkDSwKopgOTCywFPtlZ6jfvnsqgedRLbNg==
-X-Received: by 2002:adf:c60b:0:b0:2bd:c1de:a33f with SMTP id n11-20020adfc60b000000b002bdc1dea33fmr18720910wrg.19.1675706891758;
-        Mon, 06 Feb 2023 10:08:11 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d18-20020a5d6452000000b002c3f1214e33sm365451wrw.100.2023.02.06.10.08.10
+        bh=lhvAU6ZF1LkEANx5C+rlnAPFw6900cnUpZORjf4RmTw=;
+        b=HbyPbnl3Iz+XBFRFOllE1uTRADcnnmMrFkv39CEeY35e9eWZNRGWQ+WX+ePjj9U74b
+         NIFdXJ7ycusjwFtonoj+l/eFG0+OCLQ3pEePRE9iIpBEgrf37dLEKDoH3wP9FhxI+MIe
+         El2Q0yf+3tTYQm/iGED8Ea/d4O10Pf8tYm+BP3t7EFMUtNdUgr/dwscFcl8YhFq/U5Rg
+         urcNOelScFNEu2aRvFXr8VUA7qHJNtdMtS/AdJQE+2SLywdP2Y7tZK3NR5E7cZ2m3RXx
+         kqA8GIBCUidJqFlHARG1YQtDNv+rf72gqchhtEWldJyTT/i+nIPn1lsY7HnoMIXgYuMc
+         HxoA==
+X-Gm-Message-State: AO0yUKX2gJFNhylqxVjiw6/hoZ0LcjX0DCe/llH894Jg3PhmR9Tc9WnC
+        HumljXiLo6AcmvGCtGCzgnoOhWqzk1nFQYCGF3rBbcxupXuTNnirShZULJ3oKFNs7oKXHmz0iQb
+        WtUQatJ0u++JOzuxgoRwE7w==
+X-Received: by 2002:a92:9509:0:b0:310:c746:d35d with SMTP id y9-20020a929509000000b00310c746d35dmr114870ilh.25.1675707545226;
+        Mon, 06 Feb 2023 10:19:05 -0800 (PST)
+X-Google-Smtp-Source: AK7set9TfM4R1dtOBwYVl3jyt5Q5tfrV3TDUzJbAC3tAzHDXahYbVOTTf85vkwOrxpIwRDlYEHPrpg==
+X-Received: by 2002:a92:9509:0:b0:310:c746:d35d with SMTP id y9-20020a929509000000b00310c746d35dmr114858ilh.25.1675707544985;
+        Mon, 06 Feb 2023 10:19:04 -0800 (PST)
+Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
+        by smtp.gmail.com with ESMTPSA id d16-20020a056e020bf000b0030dbd1b725asm3378552ilu.80.2023.02.06.10.19.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Feb 2023 10:08:11 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
+        Mon, 06 Feb 2023 10:19:04 -0800 (PST)
+Date:   Mon, 6 Feb 2023 13:19:02 -0500
+From:   Brian Masney <bmasney@redhat.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [RESEND PATCH 3/3] ASoC: dt-bindings: qcom,wcd934x: Allow usage as IFD device
-Date:   Mon,  6 Feb 2023 19:08:05 +0100
-Message-Id: <20230206180805.6621-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230206180805.6621-1-krzysztof.kozlowski@linaro.org>
-References: <20230206180805.6621-1-krzysztof.kozlowski@linaro.org>
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: power: supply: Add Lenovo Yoga C630
+ EC
+Message-ID: <Y+FElkPUkfasI0yU@x1>
+References: <20230205152809.2233436-1-dmitry.baryshkov@linaro.org>
+ <20230205152809.2233436-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230205152809.2233436-2-dmitry.baryshkov@linaro.org>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The WCD9340 audio codec appears on Slimbus twice: as IFD device without
-properties and the actual audio-codec referencing the former via
-wcd9340_ifd.  Allow in the binding both versions to fix several warnings
-like:
+On Sun, Feb 05, 2023 at 05:28:07PM +0200, Dmitry Baryshkov wrote:
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> 
+> Add binding for the Embedded Controller found in the Qualcomm
+> Snapdragon-based Lenovo Yoga C630.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../power/supply/lenovo,yoga-c630-ec.yaml     | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml b/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
+> new file mode 100644
+> index 000000000000..37977344f157
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/lenovo,yoga-c630-ec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Lenovo Yoga C630 Embedded Controller.
+> +
+> +maintainers:
+> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
 
-  sdm850-samsung-w737.dtb: ifd@0,0: 'reset-gpios' is a required property
-  sdm850-samsung-w737.dtb: ifd@0,0: 'slim-ifc-dev' is a required property
-  sdm850-samsung-w737.dtb: ifd@0,0: 'interrupt-controller' is a required property
+Since this is new: Should this be updated with Bjorn's kernel.org
+address? Last I checked, this address doesn't exist anymore.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-
----
-
-oneOf: interrupts-extended|interrupts is needed to avoid dtschema
-limitation.
----
- .../bindings/sound/qcom,wcd934x.yaml          | 58 ++++++++++++++-----
- 1 file changed, 43 insertions(+), 15 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-index 39b27126cfc1..ea09590bfa30 100644
---- a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-@@ -149,21 +149,49 @@ patternProperties:
- required:
-   - compatible
-   - reg
--  - reset-gpios
--  - slim-ifc-dev
--  - interrupts
--  - interrupt-controller
--  - clock-frequency
--  - clock-output-names
--  - qcom,micbias1-microvolt
--  - qcom,micbias2-microvolt
--  - qcom,micbias3-microvolt
--  - qcom,micbias4-microvolt
--  - "#interrupt-cells"
--  - "#clock-cells"
--  - "#sound-dai-cells"
--  - "#address-cells"
--  - "#size-cells"
-+
-+allOf:
-+  - if:
-+      required:
-+        - slim-ifc-dev
-+    then:
-+      required:
-+        - reset-gpios
-+        - slim-ifc-dev
-+        - interrupt-controller
-+        - clock-frequency
-+        - clock-output-names
-+        - qcom,micbias1-microvolt
-+        - qcom,micbias2-microvolt
-+        - qcom,micbias3-microvolt
-+        - qcom,micbias4-microvolt
-+        - "#interrupt-cells"
-+        - "#clock-cells"
-+        - "#sound-dai-cells"
-+        - "#address-cells"
-+        - "#size-cells"
-+      oneOf:
-+        - required:
-+            - interrupts-extended
-+        - required:
-+            - interrupts
-+    else:
-+      properties:
-+        reset-gpios: false
-+        slim-ifc-dev: false
-+        interrupts: false
-+        interrupt-controller: false
-+        clock-frequency: false
-+        clock-output-names: false
-+        qcom,micbias1-microvolt: false
-+        qcom,micbias2-microvolt: false
-+        qcom,micbias3-microvolt: false
-+        qcom,micbias4-microvolt: false
-+        "#interrupt-cells": false
-+        "#clock-cells": false
-+        "#sound-dai-cells": false
-+        "#address-cells": false
-+        "#size-cells": false
- 
- additionalProperties: false
- 
--- 
-2.34.1
+Brian
 
