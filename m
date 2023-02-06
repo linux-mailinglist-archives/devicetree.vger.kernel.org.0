@@ -2,123 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26E6E68B68B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 08:41:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CA9868B692
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 08:42:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbjBFHlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 02:41:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50854 "EHLO
+        id S229543AbjBFHm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 02:42:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbjBFHlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 02:41:14 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAFE215557
-        for <devicetree@vger.kernel.org>; Sun,  5 Feb 2023 23:41:12 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id bh13-20020a05600c3d0d00b003dff6cd8b7eso2793541wmb.5
-        for <devicetree@vger.kernel.org>; Sun, 05 Feb 2023 23:41:12 -0800 (PST)
+        with ESMTP id S229752AbjBFHmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 02:42:54 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A0C5273
+        for <devicetree@vger.kernel.org>; Sun,  5 Feb 2023 23:42:51 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id i5so2296014wrc.0
+        for <devicetree@vger.kernel.org>; Sun, 05 Feb 2023 23:42:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=q3oROpYigvyreUmAKfX7vQra//gQmW6nHo6GnvRG+Ds=;
-        b=uC/3bR6d3VYjEUiBUYrnmwYW7IZ9T9owdYDzl1rJRth07R5DPKBihZ4b93sLM8hNrU
-         sYaInZleorUxt42QjW/4A9B0UfYWAm4t/r6ylrhIv8RIS0BTw8X57MqLo7TV1HXFsy1W
-         gT7yF97aj+MFP70toD0nZ9JIlzqbi6d8UqXsVfzekdW85z8t4aUAyaywMqXqhGSEHp18
-         Rl0lidpGqssAJ42hzBTj97FflGCQT7xm8zlUWtDF++g3dC+4iiI3wpOOc99cpgUxkjcx
-         X3wFmasnJI3m3xmxgAJzCQg+X8laBXE+8KP3Zz3ZqMlOuFj9wwTorJJQqMyuAyVw5Aja
-         fI6Q==
+        bh=2XA64voz9ivBR8UNL1Z4b6fr6//lgNZOlEzIgWzkqrI=;
+        b=Iad+7Ny2E+UALOfO6NNonPCSf+2HKHeRfPbUezACIXgAcbJUJ3G8UHXjGooNRK3KEk
+         NuwofdM+hk+PKfCB0DcqJ6du5yKbaccuJ3uTdtaVldcs04CW/ohNsPol//L4wMeG1sU/
+         RtEUvOVe93QJ0T/8b1V6fJUQ3tM1F0ty6OAxrBZZtAViiFDqpRwikB9fQdyTSczSSi8i
+         rndOCKOdsNE0xp0OgHe6AW7sqoFiV9fZzc8jQ+q/c3FPNCMf++mzw1zLATPOXSWfSgHM
+         +c/IVuPcNtRqFuow0ZU9GZ18xmDoNxsRAcx8RD3GTucjpbrzw2lrphPE4phT/+QXG7xQ
+         rXkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q3oROpYigvyreUmAKfX7vQra//gQmW6nHo6GnvRG+Ds=;
-        b=yHLYxeYxSg8NIwTRajbIuSQuf2H4fLrxjBaEqLGTQkwgOOagOoJze8Fuy+aDDBW7pd
-         OOBa+sMuDEZ4Cm+S4Jh9GYKCmgZBZo37USWNtbZ1Sz2yFF3567Z5jjz4IpHBwddBkgjW
-         bVWrFSNZqZk1P9i9z+uIogSq3iAuJT0kQg7hpjx3Ehu13cSW8Z9y+OlLbm1iGdELuVFb
-         wZv/WFUOvXldSC90sAqKv5zSdsUyVTispub36tCSfKJBtDaq7+t2U7Zp0LisCOF6PHGE
-         xqTi+v2jekFJZauQr2urzldVaABoAruk3hXNDUHKgypSURRUte47ixmKz4lrWrL8lOy4
-         hWuA==
-X-Gm-Message-State: AO0yUKXHsUkv1+5kMwrop+wvbwFl3deKFex/gxXgQwQc/qEe4dKsenUu
-        tISFOLfsxdknWbS4Mk+Z0Y2mDrKfLEIkjjAj
-X-Google-Smtp-Source: AK7set8YaWcc9JJj3MGvQEDd6EkBxt0phIHKLKG0WnWIA71woqKMG6XTB/vMdc1p7z/ph+u7c1TBaw==
-X-Received: by 2002:a05:600c:6026:b0:3df:ef18:b0a1 with SMTP id az38-20020a05600c602600b003dfef18b0a1mr10142064wmb.12.1675669271267;
-        Sun, 05 Feb 2023 23:41:11 -0800 (PST)
+        bh=2XA64voz9ivBR8UNL1Z4b6fr6//lgNZOlEzIgWzkqrI=;
+        b=ORXq/mSj42YHgZlgxzgLZh9gcyMZtXr1jX5Dicw9UazdgYvjoSMCkW969l4MtynEXY
+         gN34w6ZkY5s5l1xWMU7XmhRXjS8t822Fr8q+8WyEVCoCXNuvUjwSru52BcV9MBqFFzlm
+         YSQkTd9lWo4MsbDu4JUQpDDNepcFpaIxhs9vTin/zgQF0WPBEXKbgtX3hwLevx5y+68A
+         hcR6TnFnP0t1rLCi9Rhedgj9oHHm54kHrQnAd3nbG4jq2aPMPHN7u7Xm9HKp5D8ZpCcH
+         RTfIa1x5gMQfJxSRc1r8EXRCpBYXWOhcAOjD3b3lFA5AwJmriwNf9oUga/PTgl0FB7VI
+         qtAQ==
+X-Gm-Message-State: AO0yUKXqhXW+nBGnJgiLWFCGX6Q6qPK5Whq3HWAde4x4EVoVqv2R1vj7
+        gVnXZYgVCat3G5FAiydBn3SjVw==
+X-Google-Smtp-Source: AK7set/zNQJeepBp90+pb7siQybo5fz/0fjOBRUb17obj/tzEFyZevEn0oFiVuXuge8l3CN8hkHVCg==
+X-Received: by 2002:a05:6000:136f:b0:2c3:e80f:6aa3 with SMTP id q15-20020a056000136f00b002c3e80f6aa3mr2835371wrz.51.1675669369259;
+        Sun, 05 Feb 2023 23:42:49 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n9-20020a05600c3b8900b003d9aa76dc6asm16220625wms.0.2023.02.05.23.41.10
+        by smtp.gmail.com with ESMTPSA id f9-20020adff989000000b002c3e6b39512sm2682210wrr.53.2023.02.05.23.42.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Feb 2023 23:41:10 -0800 (PST)
-Message-ID: <06920579-74d2-8e35-a534-8a65dee322d1@linaro.org>
-Date:   Mon, 6 Feb 2023 08:41:09 +0100
+        Sun, 05 Feb 2023 23:42:48 -0800 (PST)
+Message-ID: <5454d5c6-1151-af9b-54a3-3bdd66b621e8@linaro.org>
+Date:   Mon, 6 Feb 2023 08:42:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 2/2] dt-bindings: i2c: cadence: Document `cdns,fifo-depth`
- property
+Subject: Re: [RESEND PATCH v3 1/4] dt-bindings: net: Add WCN6855 Bluetooth
 Content-Language: en-US
-To:     Lars-Peter Clausen <lars@metafoo.de>, Wolfram Sang <wsa@kernel.org>
-Cc:     Michal Simek <michal.simek@amd.com>,
-        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
+To:     Steev Klimaszewski <steev@kali.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230205230208.58355-1-lars@metafoo.de>
- <20230205230208.58355-2-lars@metafoo.de>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Mark Pearson <markpearson@lenovo.com>
+References: <20230206001634.2566-1-steev@kali.org>
+ <20230206001634.2566-2-steev@kali.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230205230208.58355-2-lars@metafoo.de>
+In-Reply-To: <20230206001634.2566-2-steev@kali.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/02/2023 00:02, Lars-Peter Clausen wrote:
-> The depth of the FIFO of the Cadence I2C controller IP is a synthesis
-> configuration parameter. Different instances of the IP can have different
-> values. For correct operation software needs to be aware of the size of the
-> FIFO.
-
-Cannot this be inferred from compatible?
-
+On 06/02/2023 01:16, Steev Klimaszewski wrote:
+> Add bindings for the QTI WCN6855 chipset, based on the WCN6750.
 > 
-> Add the documentation for the devicetree property that describes the FIFO
-> depth of the IP core.
-> 
-> The default value of 16 is for backwards compatibility reasons with
-> existing hardware descriptions where this property is not specified and
-> software has assumed that the FIFO depth is 16.
-> 
-> Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
 > ---
->  Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> - v3 No changes from v2
+> - v2 drop second binding in subject line
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml b/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
-> index 2e95cda7262a..3daa2fa73257 100644
-> --- a/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
-> @@ -38,6 +38,12 @@ properties:
->      description: |
->        Input clock name.
->  
-> +  cdns,fifo-depth:
-> +    description:
-> +      Size of the data FIFO in words.
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> Signed-off-by: Steev Klimaszewski <steev@kali.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Drop quotes.
-
-> +    default: 16
-
-maximum
-minimum?
-
+Still broken.
 
 Best regards,
 Krzysztof
