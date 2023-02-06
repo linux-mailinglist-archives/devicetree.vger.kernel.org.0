@@ -2,96 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B047768B77F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 09:40:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0BCA68B78F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 09:42:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229570AbjBFIk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 03:40:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55846 "EHLO
+        id S230125AbjBFIl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 03:41:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbjBFIkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 03:40:25 -0500
-Received: from mail-vs1-xe2b.google.com (mail-vs1-xe2b.google.com [IPv6:2607:f8b0:4864:20::e2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2308517141
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 00:40:20 -0800 (PST)
-Received: by mail-vs1-xe2b.google.com with SMTP id h19so11833785vsv.13
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 00:40:20 -0800 (PST)
+        with ESMTP id S230035AbjBFIlq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 03:41:46 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF4D1E298
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 00:41:35 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id g6so1610802wrv.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 00:41:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bxGBUMpZ6MlCuOf4ZGY5be1Z/6HawqxmEV6A7eKd+x8=;
-        b=eb4aSDL3eeoPKmPKagfqCIsDqkldstB0QqhkBdstr/XyIHyHdDPeWkcERZl4gZP4wW
-         aYh0I54j0tapjkNd4VT8+FGZJFNpZ0ySFiXDxg9vYibrt5bZt21LE1q6a++C7CFmbdRc
-         AtL+ZeigRmZ3hIG2gZ3K2kRFcgoJVA130tk68=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3VF3j3MRDdF8n8OyA+nQrmUxdMViUka5P0dDhKvF9Cs=;
+        b=RZmvbBqJPu59NEcQKGTy+NuU00/pyxdiCciV3lY+ZJFkGWY6lOKgPO/3EBgdLcFsAs
+         BJ2U0KiOrNWMTyU8NvdlStDETJowb2CVP0ZVeaVML1WknTuU+/NHEfxN/xRQZRINva9E
+         EyBOnkYYlfkc1ZtjwD8QUmkV7YkZ5T6TMK3BnhVZe76K1R49T8YbUmvtx+lJ2vOMzkOr
+         GiWbiuZGZhvnUsI0g0g4LjTXzQhH2HajjN/5ZZG7GqZy3QHa2SU0Kj5SKTBvuRYTsuIE
+         zAXDGHc0E8cBDb5YtxEg4MIfQSZgVAHVdPol3O+QQz14huxaKG1/YvIBNVcOQmuzVemm
+         yT2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bxGBUMpZ6MlCuOf4ZGY5be1Z/6HawqxmEV6A7eKd+x8=;
-        b=tVAn5ZkzIh80Zp2qws0AJlyeNYe2pNjT6tAcC/gTOJqq9OMtPptW8Rzz5XEfjKdxPs
-         mpJuuiTD7rurMkKgQMxQHfwCJACTWJPaJIi6nf2LO0+3ej9FO2EcLEidK11Z3jGjnvxo
-         /Z9bIC8Kku/BuUZGzgEgQoCRwr/b++9qV8hVNPWrh/ySc9mnoLB5cx0fuZzYl+g6T2FL
-         cieGhRWqnXZWAtgOFWRINmAmjZe4pY0L8kgZSdFfFZA4Sz6np7gBFYDtpGR7GeLRojjK
-         fOdegCCsnkBoe96OpfQMs1wWDVZAWetZZxbptVSSaiziSqoeG5fyclOoIiAx3FkBaxMI
-         H59A==
-X-Gm-Message-State: AO0yUKVruzZ4Eqx1gy/+B/NehAWw5f+lQIwz/pMWgHSAJChtJlee9MwZ
-        fyB1iVoroPLMIDmAj6XzCy8z2af5Ic7Z6HySAlbgIA==
-X-Google-Smtp-Source: AK7set/Nc+tRekf0h+tZTWStnrZoa/GmrslGQquHlfY8WRs6V9iTEWlJuxYA3EIydNHfm7RtpJMuutQEZD210Ih9vcw=
-X-Received: by 2002:a05:6102:322a:b0:3fe:ae88:d22 with SMTP id
- x10-20020a056102322a00b003feae880d22mr2856750vsf.65.1675672819238; Mon, 06
- Feb 2023 00:40:19 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3VF3j3MRDdF8n8OyA+nQrmUxdMViUka5P0dDhKvF9Cs=;
+        b=3niaBh2RoNSOrDBH7iwSjgFSFptEdDyU0sTw6xbSu4AXH3RhKgQBQ/erXXoWJ/ea0T
+         z2844cmbwQ0F07osVT98RvWOXlhf+kK+GYaOxLZUpz2Q+azSRP+HJx2KTwx9bn2NVJJt
+         3VO0CqyqLYbnmoK6k6cl5sDFQ43yNIXmvWKSSs+HU0vzhfH6jXTbSefa+WU7qw//eF4l
+         E5k6k4wcJINn3Ur4nDhuc5G8onl2gIgbxfnCKIxpxg1N5o/q7xsddcwXCeIkKewGDng6
+         ZASZUn2MacISX/dfGV8PsZCeajJN7hP24gBX6Hf/9psLL1peUUf2zGHv+H4jFMcTyqJB
+         TKVQ==
+X-Gm-Message-State: AO0yUKVnl5HjRd4K1B1SLqso/2tRkLOE4xj6t5PP0mYMZy62WoyIVy/z
+        F0WpB5ka6RxqeJCU7MihNkLx0w==
+X-Google-Smtp-Source: AK7set+LmJWRqmstWTgtfJr2oiq1AohLOY1rh7Fjr5hdugHUF6tO0yD4dWs5rOvm8gyGxzUBtmE5nw==
+X-Received: by 2002:a5d:66cc:0:b0:2c3:dafd:c729 with SMTP id k12-20020a5d66cc000000b002c3dafdc729mr8449746wrw.47.1675672894408;
+        Mon, 06 Feb 2023 00:41:34 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id w5-20020a5d6085000000b0029100e8dedasm8198595wrt.28.2023.02.06.00.41.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Feb 2023 00:41:34 -0800 (PST)
+Message-ID: <177cbf68-4e13-dabe-f14c-17a36c201e26@linaro.org>
+Date:   Mon, 6 Feb 2023 09:41:31 +0100
 MIME-Version: 1.0
-References: <20230204133040.1236799-1-treapking@chromium.org>
-In-Reply-To: <20230204133040.1236799-1-treapking@chromium.org>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 6 Feb 2023 16:40:07 +0800
-Message-ID: <CAGXv+5FW8qYnBYJsf+gLEaEGnwunPFdjjVF9YUqDqCVAjXWuKA@mail.gmail.com>
-Subject: Re: [PATCH v11 0/9] Register Type-C mode-switch in DP bridge endpoints
-To:     Pin-yen Lin <treapking@chromium.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 1/3] dt-bindings: intel,ixp4xx-expansion-bus: split out
+ peripheral properties
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Linus Walleij <linusw@kernel.org>,
+        Imre Kaloz <kaloz@openwrt.org>,
+        Krzysztof Halasa <khalasa@piap.pl>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, chrome-platform@lists.linux.dev,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-acpi@vger.kernel.org,
-        Andi Shyti <andi.shyti@linux.intel.com>,
-        Thierry Reding <treding@nvidia.com>,
-        devicetree@vger.kernel.org, Kees Cook <keescook@chromium.org>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Jani Nikula <jani.nikula@intel.com>,
-        Allen Chen <allen.chen@ite.com.tw>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Xin Ji <xji@analogixsemi.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Alex Deucher <alexander.deucher@amd.com>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Marek Vasut <marex@denx.de>, Lubomir Rintel <lkundrak@v3.sk>,
+        - <devicetree@vger.kernel.org>, Marc Zyngier <maz@kernel.org>,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mtd@lists.infradead.org, linux-serial@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+References: <20230127093217.60818-1-krzysztof.kozlowski@linaro.org>
+ <20230127093217.60818-2-krzysztof.kozlowski@linaro.org>
+ <20230130191215.GA3125737-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230130191215.GA3125737-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -100,108 +92,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 4, 2023 at 9:30 PM Pin-yen Lin <treapking@chromium.org> wrote:
->
->
-> This series introduces bindings for anx7625/it6505 to register Type-C
-> mode-switch in their output endpoints, and use data-lanes property to
-> describe the pin connections.
->
-> This series is not directly related to the built-in mux in anx7625,
-> which automatically switches between the two orientations of a single
-> Type-C connector. This series adds support of registering mode switches
-> for two downstream devices, while we use orientation switches for two
-> orientations of the Type-C connector.
->
-> The first two patch modifies fwnode_graph_devcon_matches and
-> cros_typec_init_ports to enable the registration of the switches.
->
-> Patch 4~6 introduce the bindings for anx7625 and the corresponding driver
-> modifications.
->
-> Patch 7~9 add similar bindings and driver changes for it6505.
->
-> v10: https://lore.kernel.org/all/20230112042104.4107253-1-treapking@chromium.org/
-> v9: https://lore.kernel.org/all/20230109084101.265664-1-treapking@chromium.org/
-> v8: https://lore.kernel.org/all/20230107102231.23682-1-treapking@chromium.org/
-> v7: https://lore.kernel.org/all/20230105132457.4125372-1-treapking@chromium.org/
-> v6: https://lore.kernel.org/all/20221124102056.393220-1-treapking@chromium.org/
-> v5: https://lore.kernel.org/linux-usb/20220622173605.1168416-1-pmalani@chromium.org/
->
-> Changes in v11:
-> - Added missing fwnode_handle_put in drivers/base/property.c
-> - Collected Acked-by tag
-> - Use fwnode helpers instead of DT
-> - Moved the helpers to a new file
-> - Use "reg" instead of "data-lanes" to determine the port number
-> - Updated the description of the endpoints in the bindings
-> - Referenced video-interfaces.yaml instead for the endpoints binding
-> - Removed duplicated definitions from inherited schema
-> - Moved the "data-lanes" parsing logics to bridge drivers
-> - Removed Kconfig dependencies for the bridge drivers
-> - Updated the usage of the private bridge driver data
-> - Added a clarification on the anx7625 built-in mux in the cover letter
->
-> Changes in v10:
-> - Collected Reviewed-by and Tested-by tags
-> - Replaced "void *" with "typec_mux_set_fn_t" for mux_set callbacks
-> - Print out the node name when errors on parsing DT
-> - Use dev_dbg instead of dev_warn when no Type-C switch nodes available
-> - Made the return path of drm_dp_register_mode_switch clearer
-> - Added a TODO for implementing orientation switch for anx7625
-> - Updated the commit message for the absence of orientation switch
-> - Fixed typo in the commit message
->
-> Changes in v9:
-> - Collected Reviewed-by tag
-> - Fixed subject prefix again
-> - Changed the naming of the example node for it6505
->
-> Changes in v8:
-> - Fixed the build issue when CONFIG_TYPEC=m
-> - Fixed some style issues
-> - Fixed the subject prefixes for the bindings patch
-> - Fixed the bindings for data-lanes properties
->
-> Changes in v7:
-> - Fix the long comment lines
-> - Extracted the common codes to a helper function
-> - Fixed style issues in anx7625 driver
-> - Removed DT property validation in anx7625 driver.
-> - Fixed style issues in it6505 driver
-> - Removed the redundant sleep in it6505 driver
-> - Removed DT property validation in it6505 driver
-> - Rebased to drm-misc-next
-> - Fixed indentations in bindings patches
-> - Added a new patch to fix indentations in Kconfig
->
-> Changes in v6:
-> - Changed it6505_typec_mux_set callback function to accommodate with
->   the latest drm-misc patches
-> - Changed the driver implementation to accommodate with the new binding
-> - Dropped typec-switch binding and use endpoints and data-lanes properties
->   to describe the pin connections
-> - Added new patches (patch 1,2,4) to fix probing issues
-> - Changed the bindings of it6505/anx7625 and modified the drivers
->   accordingly
-> - Merged it6505/anx7625 driver changes into a single patch
->
-> Pin-yen Lin (7):
->   drm/display: Add Type-C switch helpers
->   dt-bindings: display: bridge: anx7625: Add mode-switch support
->   drm/bridge: anx7625: Check for Type-C during panel registration
->   drm/bridge: anx7625: Register Type C mode switches
->   dt-bindings: display: bridge: it6505: Add mode-switch support
->   drm/bridge: it6505: Fix Kconfig indentation
->   drm/bridge: it6505: Register Type C mode switches
->
-> Prashant Malani (2):
->   device property: Add remote endpoint to devcon matcher
->   platform/chrome: cros_ec_typec: Purge blocking switch devlinks
+On 30/01/2023 20:12, Rob Herring wrote:
+> On Fri, Jan 27, 2023 at 10:32:15AM +0100, Krzysztof Kozlowski wrote:
+>> The properties of devices in IXP4xx expansion bus need to be also
+>> applied to actual devices' bindings.  Prepare for this by splitting them
+>> to separate intel,ixp4xx-expansion-peripheral-props binding, just like
+>> other memory-controller peripheral properties.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  ...intel,ixp4xx-expansion-bus-controller.yaml | 64 +--------------
+>>  ...tel,ixp4xx-expansion-peripheral-props.yaml | 80 +++++++++++++++++++
+> 
+> Kind of odd to have these in 2 directories. Can we move 
+> intel,ixp4xx-expansion-bus-controller.yaml to 
+> bindings/memory-controllers/?
 
-Whole series is
+Indeed mostly we kept them so far in memory-controllers. Some of these
+buses are used for attaching some type of memory, but I don't know if
+ixp4xx can work like this.
 
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+> 
+> Or maybe all the external/parallel bus interfaces need their own 
+> directory?
 
-on MT8192-based Hayato for anx7625 and not-yet-upstreamed MT8186 device
-for it6505.
+Except the IXP4xx, I wouldn't know which one goes where... Example is
+exynos-srom which can work with memory (SRAM, ROM, flash) or devices.
+
+I'll move it to memory-controllers.
+
+
+> 
+>>  .../mc-peripheral-props.yaml                  |  1 +
+>>  3 files changed, 82 insertions(+), 63 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/intel,ixp4xx-expansion-peripheral-props.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml b/Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml
+>> index 5fb4e7bfa4da..a771796ec499 100644
+>> --- a/Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml
+>> +++ b/Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml
+>> @@ -56,69 +56,7 @@ patternProperties:
+>>      description: Devices attached to chip selects are represented as
+>>        subnodes.
+>>      type: object
+>> -
+>> -    properties:
+>> -      intel,ixp4xx-eb-t1:
+>> -        description: Address timing, extend address phase with n cycles.
+>> -        $ref: /schemas/types.yaml#/definitions/uint32
+>> -        maximum: 3
+>> -
+>> -      intel,ixp4xx-eb-t2:
+>> -        description: Setup chip select timing, extend setup phase with n cycles.
+>> -        $ref: /schemas/types.yaml#/definitions/uint32
+>> -        maximum: 3
+>> -
+>> -      intel,ixp4xx-eb-t3:
+>> -        description: Strobe timing, extend strobe phase with n cycles.
+>> -        $ref: /schemas/types.yaml#/definitions/uint32
+>> -        maximum: 15
+>> -
+>> -      intel,ixp4xx-eb-t4:
+>> -        description: Hold timing, extend hold phase with n cycles.
+>> -        $ref: /schemas/types.yaml#/definitions/uint32
+>> -        maximum: 3
+>> -
+>> -      intel,ixp4xx-eb-t5:
+>> -        description: Recovery timing, extend recovery phase with n cycles.
+>> -        $ref: /schemas/types.yaml#/definitions/uint32
+>> -        maximum: 15
+>> -
+>> -      intel,ixp4xx-eb-cycle-type:
+>> -        description: The type of cycles to use on the expansion bus for this
+>> -          chip select. 0 = Intel cycles, 1 = Motorola cycles, 2 = HPI cycles.
+>> -        $ref: /schemas/types.yaml#/definitions/uint32
+>> -        enum: [0, 1, 2]
+>> -
+>> -      intel,ixp4xx-eb-byte-access-on-halfword:
+>> -        description: Allow byte read access on half word devices.
+>> -        $ref: /schemas/types.yaml#/definitions/uint32
+>> -        enum: [0, 1]
+>> -
+>> -      intel,ixp4xx-eb-hpi-hrdy-pol-high:
+>> -        description: Set HPI HRDY polarity to active high when using HPI.
+>> -        $ref: /schemas/types.yaml#/definitions/uint32
+>> -        enum: [0, 1]
+>> -
+>> -      intel,ixp4xx-eb-mux-address-and-data:
+>> -        description: Multiplex address and data on the data bus.
+>> -        $ref: /schemas/types.yaml#/definitions/uint32
+>> -        enum: [0, 1]
+>> -
+>> -      intel,ixp4xx-eb-ahb-split-transfers:
+>> -        description: Enable AHB split transfers.
+>> -        $ref: /schemas/types.yaml#/definitions/uint32
+>> -        enum: [0, 1]
+>> -
+>> -      intel,ixp4xx-eb-write-enable:
+>> -        description: Enable write cycles.
+>> -        $ref: /schemas/types.yaml#/definitions/uint32
+>> -        enum: [0, 1]
+>> -
+>> -      intel,ixp4xx-eb-byte-access:
+>> -        description: Expansion bus uses only 8 bits. The default is to use
+>> -          16 bits.
+>> -        $ref: /schemas/types.yaml#/definitions/uint32
+>> -        enum: [0, 1]
+>> +    $ref: /schemas/memory-controllers/intel,ixp4xx-expansion-peripheral-props.yaml#
+>>  
+>>  required:
+>>    - compatible
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/intel,ixp4xx-expansion-peripheral-props.yaml b/Documentation/devicetree/bindings/memory-controllers/intel,ixp4xx-expansion-peripheral-props.yaml
+>> new file mode 100644
+>> index 000000000000..8f782c80e88b
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/intel,ixp4xx-expansion-peripheral-props.yaml
+>> @@ -0,0 +1,80 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/memory-controllers/intel,ixp4xx-expansion-peripheral-props.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Peripheral properties for Intel IXP4xx Expansion Bus
+>> +
+>> +description: |
+> 
+> Don't need '|'.
+
+Right.
+
+
+Best regards,
+Krzysztof
+
