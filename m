@@ -2,118 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4D3A68C5BD
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 19:29:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E3E868C5E3
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 19:35:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbjBFS3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 13:29:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44848 "EHLO
+        id S230138AbjBFSfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 13:35:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbjBFS3Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 13:29:16 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C6DB23D87
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 10:28:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1675708108;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=aE0G6LDX8lXDW0wtXNhk8AO/NAPHw5W1SphgReObSVQ=;
-        b=gssYXOeUHze8yNvUGP+z7/O0VFP2BMXCa7T3iHgEeZa5XbCNPSzr2ftqp3TmdrkbZB0dKI
-        M/bSsrcpLAJT55ISDhVbwQlfGE1LQNfaIyYtd7psCRCdEG6JoLkaMstYx8bAazshdGhx7W
-        1Aun2leB6ZLzRJymX4+wC27GDjuAwmc=
-Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
- [209.85.166.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-370-P17-dsOrOXKMhcZKrQZ6xQ-1; Mon, 06 Feb 2023 13:28:27 -0500
-X-MC-Unique: P17-dsOrOXKMhcZKrQZ6xQ-1
-Received: by mail-io1-f69.google.com with SMTP id r25-20020a6bd919000000b0071cfef31f97so7468377ioc.4
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 10:28:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aE0G6LDX8lXDW0wtXNhk8AO/NAPHw5W1SphgReObSVQ=;
-        b=a2EJaPjQTvdyib4Du5uRiZEH05JJe4lMNcr3DINBylJe9vzruj9zOMLg3X5GzuvxHO
-         jWrylRzuOnX/qAHMalr8afys2PitOE1iGT/jmcttLbBCuKe1c/HZBo/TPMXkhq5K7Zq7
-         Msx7sHsAfF9SJV6SbKmXxhAZzE+aafcLREsH26TwyPCUhD5iQOR3M17Da5TBEBYD2CQp
-         RDXl8LpLdTSRhBxF+HgnWv5OOq10zuc1jsZch2gTL8oWb4cKx6RaaiwVdGoyh97PGDUS
-         9TrYqQOGX+086DKzbp4KMvreHnmALAma8r873/0GxLnAvE0Xy/WwP9y41OVCw6uuELoW
-         voKQ==
-X-Gm-Message-State: AO0yUKX+FI8c4LnfzbyQ4zKLz2Eku9Z6H3a01dTpo6FL44xpI1TcNhIC
-        /mwm+/nwTo4RPZi0dvUBFr9rHp2+O8yBhW/sxmZlHl4zVxWoq8xMfrelL5vWNIW342jRo9xonQh
-        kvlz14hrrDtm39eO6FMly9g==
-X-Received: by 2002:a05:6e02:674:b0:310:9798:a26 with SMTP id l20-20020a056e02067400b0031097980a26mr134559ilt.20.1675708105897;
-        Mon, 06 Feb 2023 10:28:25 -0800 (PST)
-X-Google-Smtp-Source: AK7set/L3GshufTUSqipkhjjiZm+JjTxzP+SJFCkecxkJOuVFkOZ6xWbXOwXxcoTePIVAt8uHmx+4Q==
-X-Received: by 2002:a05:6e02:674:b0:310:9798:a26 with SMTP id l20-20020a056e02067400b0031097980a26mr134550ilt.20.1675708105706;
-        Mon, 06 Feb 2023 10:28:25 -0800 (PST)
-Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id i17-20020a056e020d9100b00310ce3dd5b1sm3487877ilj.60.2023.02.06.10.28.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Feb 2023 10:28:25 -0800 (PST)
-Date:   Mon, 6 Feb 2023 13:28:23 -0500
-From:   Brian Masney <bmasney@redhat.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
+        with ESMTP id S230103AbjBFSfw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 13:35:52 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE1ED2B60F;
+        Mon,  6 Feb 2023 10:35:50 -0800 (PST)
+Received: from pendragon.ideasonboard.com (unknown [109.136.43.56])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1823E88E;
+        Mon,  6 Feb 2023 19:35:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1675708548;
+        bh=mIdJ+Y/n4cj8mqda3qys/2rWYaFQFIQmefPq0XDNoXA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vdnfiiObMb3DIy65SWo4D+yATJTu5Y4eYPOocvGUtXwvXzslqBdrNZNlvrgGUAShA
+         STJ2FDA1Cb4Lx9ejqzuPIcnyugta4IGVcwOKhNnxvhtAsmzI/RGCZ8fsQdB0mVL+A2
+         IuhBgutb/EOSLZJ3BHqAZ5Q8Y0lRvMnUu1eGoU0Y=
+Date:   Mon, 6 Feb 2023 20:35:46 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org,
+        Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Steev Klimaszewski <steev@kali.org>
-Subject: Re: [PATCH v2 2/3] power: supply: Add Lenovo Yoga C630 EC driver
-Message-ID: <Y+FGxylqBLRA+Um4@x1>
-References: <20230205152809.2233436-1-dmitry.baryshkov@linaro.org>
- <20230205152809.2233436-3-dmitry.baryshkov@linaro.org>
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] media: dt-bindings: media: i2c: Add mlx7502x
+ camera sensor binding
+Message-ID: <Y+FIgu01vjc0MQiG@pendragon.ideasonboard.com>
+References: <Ys/qq4hIQ25KXB2/@pendragon.ideasonboard.com>
+ <c87132c4-5801-2f1f-8ef9-3997474cf7a5@linaro.org>
+ <Ys/zvH3ICr4zpTLH@pendragon.ideasonboard.com>
+ <7e362d83-36c2-00ed-6525-37197ee8e5d7@linaro.org>
+ <Ys/6O2H/eDEWYHei@pendragon.ideasonboard.com>
+ <20a88191-0c4e-710f-e6ab-4087e5980533@linaro.org>
+ <Ys/+KaNltkZZmRE4@pendragon.ideasonboard.com>
+ <85cb8f2d-5d8b-ffa9-9f53-0e8bc1233e69@linaro.org>
+ <Y+DaUaGqxXQLQq3i@pendragon.ideasonboard.com>
+ <45b9574d-a146-fec0-02cc-714ff8ddc469@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230205152809.2233436-3-dmitry.baryshkov@linaro.org>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <45b9574d-a146-fec0-02cc-714ff8ddc469@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 05, 2023 at 05:28:08PM +0200, Dmitry Baryshkov wrote:
-> +static int yoga_c630_ec_adpt_get_property(struct power_supply *psy,
-> +					  enum power_supply_property psp,
-> +					  union power_supply_propval *val)
-> +{
-> +	struct yoga_c630_ec *ec = power_supply_get_drvdata(psy);
-> +	int rc = 0;
-> +
-> +	yoga_c630_ec_update_adapter_status(ec);
-> +
-> +	switch (psp) {
-> +	case POWER_SUPPLY_PROP_ONLINE:
-> +		val->intval = ec->adapter_online;
-> +		break;
-> +	default:
-> +		rc = -EINVAL;
-> +		break;
-> +	}
-> +
-> +	return rc;
+Hi Krzysztof,
 
-You can simplify this function by getting rid of the switch statement
-and rc variable:
+On Mon, Feb 06, 2023 at 07:20:21PM +0100, Krzysztof Kozlowski wrote:
+> On 06/02/2023 11:45, Laurent Pinchart wrote:
+> > On Thu, Jul 14, 2022 at 01:56:13PM +0200, Krzysztof Kozlowski wrote:
+> >> On 14/07/2022 13:29, Laurent Pinchart wrote:
+> >>> On Thu, Jul 14, 2022 at 01:23:41PM +0200, Krzysztof Kozlowski wrote:
+> >>>> On 14/07/2022 13:12, Laurent Pinchart wrote:
+> >>>>>>>>> One option would be to support the following three compatible values:
+> >>>>>>>>>
+> >>>>>>>>> 	compatible = "melexis,mlx75026", "melexis,mlx7502x";
+> >>>>>>>>> 	compatible = "melexis,mlx75027", "melexis,mlx7502x";
+> >>>>>>>>> 	compatible = "melexis,mlx7502x";
+> >>>>>>>>>
+> >>>>>>>>> The last one only would trigger autodetection. I'm still not sure how to
+> >>>>>>>>> document that properly in bindings though.
+> >>>>>>>>
+> >>>>>>>> I missed that part of binding.
+> >>>>>>>>
+> >>>>>>>> Wildcards are not allowed in compatible, so mlx7502x has to go.
+> >>>>>>>
+> >>>>>>> Really ? We've had fallback generic compatible strings since the
+> >>>>>>> beginning.
+> >>>>>>
+> >>>>>> Fallback generic compatibles are allowed. Wildcards not. Wildcards were
+> >>>>>> actually never explicitly allowed, they just slipped in to many
+> >>>>>> bindings... We have several discussions on this on mailing list, so no
+> >>>>>> real point to repeat the arguments.
+> >>>>>>
+> >>>>>> There is a difference between generic fallback. If the device follows
+> >>>>>> clear specification and version, e.g. "foo-bar-v4", you can use it for
+> >>>>>> generic compatible. This is more common in SoC components. Requirement -
+> >>>>>> there is a clear mapping between versions and SoCs.
+> >>>>>
+> >>>>> I'm not sure to see a clear difference between the two concepts.
+> >>>>
+> >>>> The clear difference is that you have a versioned and re-usable hardware
+> >>>> block plus clear mapping which version goes to which SoC. Version
+> >>>> numbers usually start with 1, not with 75025. 75025 is a model name.
+> >>>
+> >>> How about Documentation/devicetree/bindings/serial/renesas,scif.yaml for
+> >>> instance, where the version number isn't known and the SoC name is used
+> >>> instead ? Is that acceptable ?
+> >>
+> >> This is the second case I mentioned - family of devices where the family
+> >> fallback is not allowed to be alone. You cannot use just "renesas,scif"
+> >> in DTS.
+> > 
+> > OK. Does this mean you are fine with
+> > 
+> > 	compatible = "melexis,mlx75026", "melexis,mlx7502x";
+> > 	compatible = "melexis,mlx75027", "melexis,mlx7502x";
+> > 
+> > where "melexis,mlx7502x" is considered to be the family fallback, but
+> > not
+> > 
+> > 	compatible = "melexis,mlx7502x";
+> > 
+> > alone ?
+> 
+> Correct.
+> 
+> (...)
+> 
+> >>>
+> >>> In a laptop or tablet with a camera sensor, you likely don't want
+> >>> autodetection. In an industrial device, you don't care, and having the
+> >>> ability to auto-detect the exact sensor model when booting saves cost in
+> >>> the production chain as a single image can work across different models.
+> >>
+> >> We talk about the case here, not generic. Do you want to have
+> >> autodetection possible here or not?
+> > 
+> > I'd like to support auto-detection, but not make it mandatory. Assuming
+> > a family of chips supported by one driver with hardware that makes
+> > auto-detection possible, I have use cases where I specifically don't
+> > want auto-detection as it would have undesirable side effects at probe
+> > time, and other use cases where I want auto-detection as it lowers the
+> > costs in the production chain. I thus need to be able to specify, in DT,
+> > whether to use auto-detection or not, and when not using auto-detection,
+> > specify the exact chip model.
+> 
+> OK, I understand. This however stretches the Devicetree approach - you
+> are putting OS policy of device probing into the DT binding. What's
+> more, it serves only Linux' purpose. If other OS/software is fine with
+> auto-detection on first use (thus no privacy concerns), then all this
+> discussion is not relevant. The binding is independent of OS, thus we
+> should not align it to our specific OS behavior.
+> 
+> Maybe Linux needs some generic runtime knob to turn on/off autodetection
+> for all devices. It does not look like a job for DT.
 
-	if (psp == POWER_SUPPLY_PROP_ONLINE) {
-		val->intval = ec->adapter_online;
-		return 0;
-	}
+If we want to be able to run without auto-detection, regardless of the
+operating system, we need to specify the exact model in DT, otherwise a
+driver wouldn't be able to identify the device.
 
-	return -EINVAL;
+If we want to use auto-detection, that's for the purpose of simplifying
+system integration, with a single DT that covers multiple device
+variants.
 
-Brian
+Those two use cases thus require DT binding that allow for both options,
+specifying an exact model, or being more generic. I agree that deciding
+to auto-detect based on what compatible strings are specified may be
+specific to a particular Linux driver, but the fact that we need the two
+options to support both use cases isn't OS-specific in my opinion.
 
+-- 
+Regards,
+
+Laurent Pinchart
