@@ -2,214 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8773B68C717
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 20:55:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D09568C720
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 20:58:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229718AbjBFTzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 14:55:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39858 "EHLO
+        id S229778AbjBFT6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 14:58:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbjBFTzU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 14:55:20 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E1E2820C;
-        Mon,  6 Feb 2023 11:55:19 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C6DA3B815FB;
-        Mon,  6 Feb 2023 19:55:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A80DC433D2;
-        Mon,  6 Feb 2023 19:55:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675713316;
-        bh=x0oD17S0/1CLJnGLH9iD1hxf62OiooTTKy/Q2s56BYI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sG6C/2gzWM3tYvIrJb8I23pi42ElybXEGbJ7080xrsz5NXdUbbZxw6RpYYkXayqUq
-         Q7/GInr0VJTw6MflBTmrfTVXPL2hYRfUnRb+JVeluhz73VgMk19KQRPIQxDFJ1SxWa
-         1IB+qBRluFfm78oEpWtfBAbF5LckGoHz/GIdCZ1HOPs8MMfH+1b0un2LLL1G9Tmmdg
-         6co+ZS8gqfyr9nUGl8scxNfnWOjOqdi/XsHpx5RKmWsUdDh8/gvP4DZeBfQNzqLvq6
-         u9CmsA3ZTuqizVKNY0l8PxP9E87fp6b4K0T+Tyf5C3XFUkpFTNKEiW3bQCclACBP7s
-         6a5KFO3jSALMw==
-Received: by mail-vs1-f43.google.com with SMTP id y8so13959878vsq.0;
-        Mon, 06 Feb 2023 11:55:16 -0800 (PST)
-X-Gm-Message-State: AO0yUKU9MTkb/juvt3EFSwX0y7RmsBhF9qPnaYrA9KvcCzLxs79q4dsc
-        7GJsyl4ZZPvatOp5mp7e8Cd4naTQOrTH+xEgrA==
-X-Google-Smtp-Source: AK7set93aZD9DhXMsr+HrpYTVLyOGOiqhromt8iBj7FIL5vA7u7EXhitVPK4xRog/7IQcegYFqSmO370ISv83kjze/g=
-X-Received: by 2002:a67:7206:0:b0:3ea:c8c:48a5 with SMTP id
- n6-20020a677206000000b003ea0c8c48a5mr191202vsc.53.1675713315265; Mon, 06 Feb
- 2023 11:55:15 -0800 (PST)
+        with ESMTP id S229548AbjBFT6X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 14:58:23 -0500
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA9B2529C;
+        Mon,  6 Feb 2023 11:58:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1675713502; x=1707249502;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UIapvv7U+q+921kWLqdNFbESCnm/nzRFWlKArB41l4U=;
+  b=JPuKj4WJ+CMUQ+1w4e1DNpbozOUihNxFWfhS8k29QL46i9+Arl68CDr2
+   rB/E8L1tOITx3gplyJBJeOeQk4zPr7AP4Wku+7fzAT2/GQyBmOmry23vR
+   eCOW6BFrYq8+jIVoSLdNJdTd1bcGEKU4UwdMyYJFp75Im2Jh2C3yTdDLA
+   hnH6z8G1iwT7Q4Qzcph++bcdxbyKx6q/W/r/rwT/lgk/m3eM20HijYJ+g
+   1ZTqtVGYS/1IOhWckP+fjwlxc9Wad37kAAWt/j5zBD6T7j6jOhj0rTjyT
+   tRo4hn52+nNROWQnZGtt2Hn1nMZgGcvzs5xP6WMcifA+ShJuMWEmx9sv6
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="331435552"
+X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; 
+   d="scan'208";a="331435552"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2023 11:58:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="666592985"
+X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; 
+   d="scan'208";a="666592985"
+Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 06 Feb 2023 11:58:12 -0800
+Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pP7cx-0002kq-0A;
+        Mon, 06 Feb 2023 19:58:11 +0000
+Date:   Tue, 7 Feb 2023 03:57:31 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Martin Liu <liumartin@google.com>, robh+dt@kernel.org,
+        frowand.list@gmail.com
+Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, surenb@google.com,
+        minchan@kernel.org, tkjos@google.com, liumartin@google.com
+Subject: Re: [PATCH] of: reserved-mem: expose reserved-mem details via debugfs
+Message-ID: <202302070307.dJ4f1zXY-lkp@intel.com>
+References: <20230206142714.4151047-1-liumartin@google.com>
 MIME-Version: 1.0
-References: <20230206153325.43692-1-sunrockers8@gmail.com>
-In-Reply-To: <20230206153325.43692-1-sunrockers8@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 6 Feb 2023 13:55:03 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJoH2EdWxZc115HpGLmqQ3Wu8q3MS85NiqGKu57Y1o6dA@mail.gmail.com>
-Message-ID: <CAL_JsqJoH2EdWxZc115HpGLmqQ3Wu8q3MS85NiqGKu57Y1o6dA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings : misc : aspeed,cvic interrupt controller :
- convert the binding document to yaml
-To:     Vijaya Anand <sunrockers8@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230206142714.4151047-1-liumartin@google.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 6, 2023 at 9:35 AM Vijaya Anand <sunrockers8@gmail.com> wrote:
->
->     Convert the binding document for ASPEED AST2400 and AST2500 coprocessor interrupt controller
->     from txt to yaml so one could validate dt-entries correctly and any future additions can go
->     into yaml format. The options for compatability described according to the example given.
+Hi Martin,
 
-Missing DCO (Signed-off-by). checkpatch.pl will tell this for you.
+Thank you for the patch! Perhaps something to improve:
 
-> ---
->  .../devicetree/bindings/misc/aspeed,cvic.txt  | 35 ----------
->  .../devicetree/bindings/misc/aspeed,cvic.yaml | 67 +++++++++++++++++++
->  2 files changed, 67 insertions(+), 35 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/misc/aspeed,cvic.txt
->  create mode 100644 Documentation/devicetree/bindings/misc/aspeed,cvic.yaml
->
-> diff --git a/Documentation/devicetree/bindings/misc/aspeed,cvic.txt b/Documentation/devicetree/bindings/misc/aspeed,cvic.txt
-> deleted file mode 100644
-> index d62c783d1d5e..000000000000
-> --- a/Documentation/devicetree/bindings/misc/aspeed,cvic.txt
-> +++ /dev/null
-> @@ -1,35 +0,0 @@
-> -* ASPEED AST2400 and AST2500 coprocessor interrupt controller
-> -
-> -This file describes the bindings for the interrupt controller present
-> -in the AST2400 and AST2500 BMC SoCs which provides interrupt to the
-> -ColdFire coprocessor.
-> -
-> -It is not a normal interrupt controller and it would be rather
-> -inconvenient to create an interrupt tree for it as it somewhat shares
-> -some of the same sources as the main ARM interrupt controller but with
-> -different numbers.
-> -
-> -The AST2500 supports a SW generated interrupt
-> -
-> -Required properties:
-> -- reg: address and length of the register for the device.
-> -- compatible: "aspeed,cvic" and one of:
-> -               "aspeed,ast2400-cvic"
-> -             or
-> -               "aspeed,ast2500-cvic"
-> -
-> -- valid-sources: One cell, bitmap of supported sources for the implementation
-> -
-> -Optional properties;
-> -- copro-sw-interrupts: List of interrupt numbers that can be used as
-> -                      SW interrupts from the ARM to the coprocessor.
-> -                      (AST2500 only)
-> -
-> -Example:
-> -
-> -       cvic: copro-interrupt-controller@1e6c2000 {
-> -               compatible = "aspeed,ast2500-cvic";
-> -               valid-sources = <0xffffffff>;
-> -               copro-sw-interrupts = <1>;
-> -               reg = <0x1e6c2000 0x80>;
-> -       };
-> diff --git a/Documentation/devicetree/bindings/misc/aspeed,cvic.yaml b/Documentation/devicetree/bindings/misc/aspeed,cvic.yaml
-> new file mode 100644
-> index 000000000000..bbff0418fa2c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/aspeed,cvic.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/aspeed,cvic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED AST2400 and AST2500 coprocessor interrupt controller
-> +
-> +maintainers:
-> +  - Benjamin Herrenschmidt <benh@kernel.crashing.org>
-> +  - Rob Herring <robh@kernel.org>
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.2-rc7 next-20230206]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Should be someone that has and cares about Aspeed h/w, not me.
+url:    https://github.com/intel-lab-lkp/linux/commits/Martin-Liu/of-reserved-mem-expose-reserved-mem-details-via-debugfs/20230206-222927
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230206142714.4151047-1-liumartin%40google.com
+patch subject: [PATCH] of: reserved-mem: expose reserved-mem details via debugfs
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20230207/202302070307.dJ4f1zXY-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/5d479d32b3863f2ec8d10d756aa57cf29046e334
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Martin-Liu/of-reserved-mem-expose-reserved-mem-details-via-debugfs/20230206-222927
+        git checkout 5d479d32b3863f2ec8d10d756aa57cf29046e334
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash drivers/
 
-> +
-> +description: |
-> +  This file describes the bindings for the interrupt controller present
-> +  in the AST2400 and AST2500 BMC SoCs which provides interrupt to the
-> +  ColdFire coprocessor.
-> +
-> +  It is not a normal interrupt controller and it would be rather
-> +  inconvenient to create an interrupt tree for it as it somewhat shares
-> +  some of the same sources as the main ARM interrupt controller but with
-> +  different numbers.
-> +
-> +  The AST2500 supports a SW generated interruptThe Soft Decision Forward Error Correction (SDFEC) Engine is a Hard IP block
-> +  which provides high-throughput LDPC and Turbo Code implementations.
-> +  The LDPC decode & encode functionality is capable of covering a range of
-> +  customer specified Quasi-cyclic (QC) codes. The Turbo decode functionality
-> +  principally covers codes used by LTE. The FEC Engine offers significant
-> +  power and area savings versus implementations done in the FPGA fabric.
-> +
-> +properties:
-> +
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2400-cvic
-> +      - aspeed,ast2500-cvic
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: address and length of the register for the device.
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
 
-Drop generic descriptions.
+All warnings (new ones prefixed by >>):
 
-> +
-> +  valid-sources:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: One cell, bitmap of supported sources for the implementation
+   drivers/of/of_reserved_mem.c: In function 'of_reserved_mem_debug_show':
+>> drivers/of/of_reserved_mem.c:465:46: warning: format '%lu' expects argument of type 'long unsigned int', but argument 5 has type 'phys_addr_t' {aka 'unsigned int'} [-Wformat=]
+     465 |                 seq_printf(m, "%pa..%pa ( %7lu KB ) %5s %12s %s\n", &rmem->base,
+         |                                           ~~~^
+         |                                              |
+         |                                              long unsigned int
+         |                                           %7u
+     466 |                            &end, rmem->size / 1024,
+         |                                  ~~~~~~~~~~~~~~~~~
+         |                                             |
+         |                                             phys_addr_t {aka unsigned int}
 
-Drop 'one cell'. The type says that.
 
-> +
-> +  copro-sw-interrupts:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+vim +465 drivers/of/of_reserved_mem.c
 
-Is there a range of number of entries and/or values for entries. If
-so, add constraints.
+   450	
+   451	#if defined(CONFIG_DEBUG_FS)
+   452	static int of_reserved_mem_debug_show(struct seq_file *m, void *private)
+   453	{
+   454		unsigned int i;
+   455		size_t sum = 0;
+   456	
+   457		for (i = 0; i < reserved_mem_count; i++) {
+   458			const struct reserved_mem *rmem = &reserved_mem[i];
+   459			unsigned long node = rmem->fdt_node;
+   460			phys_addr_t end = rmem->base + rmem->size - 1;
+   461			bool nomap = (of_get_flat_dt_prop(node, "no-map", NULL)) != NULL;
+   462			bool reusable = (of_get_flat_dt_prop(node, "reusable", NULL)) != NULL;
+   463	
+   464			sum += rmem->size;
+ > 465			seq_printf(m, "%pa..%pa ( %7lu KB ) %5s %12s %s\n", &rmem->base,
+   466				   &end, rmem->size / 1024,
+   467				   nomap ? "nomap" : "map",
+   468				   reusable ? "reusable" : "non-reusable",
+   469				   rmem->name ? rmem->name : "unknown");
+   470		}
+   471		seq_printf(m, "Total %d regions, %zu KB\n",
+   472			   reserved_mem_count,
+   473			   sum / 1024);
+   474		return 0;
+   475	}
+   476	DEFINE_SHOW_ATTRIBUTE(of_reserved_mem_debug);
+   477	
 
-> +    description: |
-
-Don't need '|' if no formatting to maintain.
-
-> +                  List of interrupt numbers that can be used as
-> +                  SW interrupts from the ARM to the coprocessor.
-> +                  (AST2500 only)
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - valid-sources
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    cvic: copro-interrupt-controller@1e6c2000
-> +    {
-> +        compatible = "aspeed,ast2500-cvic";
-> +        valid-sources = <0xffffffff>;
-> +        copro-sw-interrupts = <1>;
-> +        reg = <0x1e6c2000 0x80>;
-> +    };
-> --
-> 2.37.1 (Apple Git-137.1)
->
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
