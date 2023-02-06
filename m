@@ -2,76 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7794A68C5AE
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 19:23:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4D3A68C5BD
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 19:29:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229737AbjBFSXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 13:23:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42164 "EHLO
+        id S229780AbjBFS3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 13:29:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbjBFSXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 13:23:45 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BACE298C6;
-        Mon,  6 Feb 2023 10:23:43 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id l14so2673889eds.4;
-        Mon, 06 Feb 2023 10:23:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TyC23soTfwOMq0a8LpZaJG0XUTHUqJMLxjJ6KOaCxeI=;
-        b=aEqv+a6iAek+Mh7PCPESa9s+6SwMxQM+pTfGfFLfwpk3nSxF3eyyjqsR0IENA6Gd9i
-         B7aupdYEeXz9avN23tbuoDGLWH/H+7zHGbI2GH6UGNjlwlUmkw92STPHWW96OBjX58io
-         Atbo+MaHimPqLYKdgBLjNFjyedJwvaDGAV88mNZnDJtQ3vM9hsanYFFDXgE8nsD7HqK8
-         4vHbCUSzBfSXpyQamGZm9kyQVIEQlJGT0hKPcgJYrnxQNO4ynGKEYe7+PnKpFwX1Evm6
-         F1gIUzceEwhQwM/cCTcY6DPQD0yAgfBqe2RQbmfRsi76egKGkqWU8tfKvVXfwlNsmPfo
-         6sEg==
+        with ESMTP id S229490AbjBFS3Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 13:29:16 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C6DB23D87
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 10:28:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1675708108;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=aE0G6LDX8lXDW0wtXNhk8AO/NAPHw5W1SphgReObSVQ=;
+        b=gssYXOeUHze8yNvUGP+z7/O0VFP2BMXCa7T3iHgEeZa5XbCNPSzr2ftqp3TmdrkbZB0dKI
+        M/bSsrcpLAJT55ISDhVbwQlfGE1LQNfaIyYtd7psCRCdEG6JoLkaMstYx8bAazshdGhx7W
+        1Aun2leB6ZLzRJymX4+wC27GDjuAwmc=
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
+ [209.85.166.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-370-P17-dsOrOXKMhcZKrQZ6xQ-1; Mon, 06 Feb 2023 13:28:27 -0500
+X-MC-Unique: P17-dsOrOXKMhcZKrQZ6xQ-1
+Received: by mail-io1-f69.google.com with SMTP id r25-20020a6bd919000000b0071cfef31f97so7468377ioc.4
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 10:28:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TyC23soTfwOMq0a8LpZaJG0XUTHUqJMLxjJ6KOaCxeI=;
-        b=hUSTq2C6lWzkfWfangIr/J1INSy4Dos9oIvNcuIMOSKjJj4UW3WhNeFPmMvaUUV5ny
-         pqQcPaCBbdbPOXqe+f+NrGnUnXqoX6nfsTOCV9yqv+H53XnoLGXoEy007/V2i3Vt44jZ
-         2O6ZQcYwIM1eFSDCBjSpJEuLpBiC4pvxHzEDSD+ltfkhdh9o/ksxwIU72v7z7WU6hCSF
-         cfyFmZcjyQug9jrdaYbSg6XEjFlutpcAuoA8YVqfAW5AhBq4MLrJdCP58f0j4iXVkM6Z
-         Ev3OAaapN/ttfDMiM0q9s24XFV66bHo5jfcs7BlFnVazLV4C5A+cv7WXVSeKzb/pYJa6
-         0CjQ==
-X-Gm-Message-State: AO0yUKVLERjjsfigP0E4Dss6TUNj3rXf146IBa3EEpgp0ffRPhuARhI5
-        6uJ5yxu+dL0reVAjW3+lC+M=
-X-Google-Smtp-Source: AK7set/YLDaJsWv/fhKmEQXf6N5FPSdTQmFx20p81QkshxCM1jPONv6g7IJ9w1QtYiONvuux1hR6UA==
-X-Received: by 2002:a50:9b1c:0:b0:4aa:a172:6616 with SMTP id o28-20020a509b1c000000b004aaa1726616mr502027edi.24.1675707821725;
-        Mon, 06 Feb 2023 10:23:41 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id m19-20020a1709061ed300b0088ed7de4821sm5792684ejj.158.2023.02.06.10.23.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 10:23:41 -0800 (PST)
-Message-ID: <a94c9b8c-d439-b633-d02a-09d36bc11ad9@gmail.com>
-Date:   Mon, 6 Feb 2023 19:23:39 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v7 0/6] add support for MT8195 VPPSYS on MMSYS and MUTEX
-Content-Language: en-US
-To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aE0G6LDX8lXDW0wtXNhk8AO/NAPHw5W1SphgReObSVQ=;
+        b=a2EJaPjQTvdyib4Du5uRiZEH05JJe4lMNcr3DINBylJe9vzruj9zOMLg3X5GzuvxHO
+         jWrylRzuOnX/qAHMalr8afys2PitOE1iGT/jmcttLbBCuKe1c/HZBo/TPMXkhq5K7Zq7
+         Msx7sHsAfF9SJV6SbKmXxhAZzE+aafcLREsH26TwyPCUhD5iQOR3M17Da5TBEBYD2CQp
+         RDXl8LpLdTSRhBxF+HgnWv5OOq10zuc1jsZch2gTL8oWb4cKx6RaaiwVdGoyh97PGDUS
+         9TrYqQOGX+086DKzbp4KMvreHnmALAma8r873/0GxLnAvE0Xy/WwP9y41OVCw6uuELoW
+         voKQ==
+X-Gm-Message-State: AO0yUKX+FI8c4LnfzbyQ4zKLz2Eku9Z6H3a01dTpo6FL44xpI1TcNhIC
+        /mwm+/nwTo4RPZi0dvUBFr9rHp2+O8yBhW/sxmZlHl4zVxWoq8xMfrelL5vWNIW342jRo9xonQh
+        kvlz14hrrDtm39eO6FMly9g==
+X-Received: by 2002:a05:6e02:674:b0:310:9798:a26 with SMTP id l20-20020a056e02067400b0031097980a26mr134559ilt.20.1675708105897;
+        Mon, 06 Feb 2023 10:28:25 -0800 (PST)
+X-Google-Smtp-Source: AK7set/L3GshufTUSqipkhjjiZm+JjTxzP+SJFCkecxkJOuVFkOZ6xWbXOwXxcoTePIVAt8uHmx+4Q==
+X-Received: by 2002:a05:6e02:674:b0:310:9798:a26 with SMTP id l20-20020a056e02067400b0031097980a26mr134550ilt.20.1675708105706;
+        Mon, 06 Feb 2023 10:28:25 -0800 (PST)
+Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
+        by smtp.gmail.com with ESMTPSA id i17-20020a056e020d9100b00310ce3dd5b1sm3487877ilj.60.2023.02.06.10.28.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Feb 2023 10:28:25 -0800 (PST)
+Date:   Mon, 6 Feb 2023 13:28:23 -0500
+From:   Brian Masney <bmasney@redhat.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230206091109.1324-1-moudy.ho@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230206091109.1324-1-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Steev Klimaszewski <steev@kali.org>
+Subject: Re: [PATCH v2 2/3] power: supply: Add Lenovo Yoga C630 EC driver
+Message-ID: <Y+FGxylqBLRA+Um4@x1>
+References: <20230205152809.2233436-1-dmitry.baryshkov@linaro.org>
+ <20230205152809.2233436-3-dmitry.baryshkov@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230205152809.2233436-3-dmitry.baryshkov@linaro.org>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,67 +84,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Feb 05, 2023 at 05:28:08PM +0200, Dmitry Baryshkov wrote:
+> +static int yoga_c630_ec_adpt_get_property(struct power_supply *psy,
+> +					  enum power_supply_property psp,
+> +					  union power_supply_propval *val)
+> +{
+> +	struct yoga_c630_ec *ec = power_supply_get_drvdata(psy);
+> +	int rc = 0;
+> +
+> +	yoga_c630_ec_update_adapter_status(ec);
+> +
+> +	switch (psp) {
+> +	case POWER_SUPPLY_PROP_ONLINE:
+> +		val->intval = ec->adapter_online;
+> +		break;
+> +	default:
+> +		rc = -EINVAL;
+> +		break;
+> +	}
+> +
+> +	return rc;
 
+You can simplify this function by getting rid of the switch statement
+and rc variable:
 
-Whole series queued, thanks!
+	if (psp == POWER_SUPPLY_PROP_ONLINE) {
+		val->intval = ec->adapter_online;
+		return 0;
+	}
 
-Matthias
+	return -EINVAL;
 
-On 06/02/2023 10:11, Moudy Ho wrote:
-> Changes since v6:
-> - Rebase on linux-next.
-> - For MMSYS api changes, fix corresponding functionality in [4/6] patch.
-> 
-> Changes since v5:
-> - Depend on :
->    [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=713031
-> 
-> Changes since v4:
-> - Rebase on linux-next.
-> - Remove MMSYS fallback compatible.
-> - Migrate MT8195 VPPSYS0/1 from clock to mtk-mmsys driver.
-> 
-> Changes since v3:
-> - Rebase on linux-next.
-> 
-> Changes since v2:
-> - Depend on :
->    [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=681097
-> - Split dts settings into two patches based on belonging to MMSYS or MUTEX.
-> 
-> Changes since v1:
-> - Depend on :
->    [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=681097
-> - Add compatible names to VPPSYS0 and VPPSYS1 in MMSYS binding file.
-> - Fix VPPSYS's MMSYS and MUTEX dts to pass the dtsb_check.
-> - Rename mtk_mmsys_merge_config() and mtk_mmsys_rsz_dcm_config() to
->    mtk_mmsys_vpp_rsz_merge_config() and mtk_mmsys_vpp_rsz_dcm_config().
-> - Clean up mtk_mmsys_vpp_rsz_dcm_config().
-> - Add a comment to mtk_mutex_write_mod() and clean it up for use in more
->    than 32 mods.
-> 
-> Hi,
-> 
-> This series add support for MT8195's two VPPSYS(Video Processor Pipe Subsystem),
-> under which there will be corresponding MMSYS and MUTEX settings that
-> need to be configured.
-> 
-> Moudy Ho (1):
->    arm64: dts: mediatek: mt8195: add MUTEX configuration for VPPSYS
-> 
-> Roy-CW.Yeh (5):
->    dt-bindings: soc: mediatek: Add support for MT8195 VPPSYS
->    arm64: dts: mediatek: mt8195: add MMSYS configuration for VPPSYS
->    soc: mediatek: mmsys: add config api for RSZ switching and DCM
->    soc: mediatek: mutex: Add mtk_mutex_set_mod support to set MOD1
->    soc: mediatek: mutex: support MT8195 VPPSYS
-> 
->   .../bindings/soc/mediatek/mediatek,mutex.yaml |   1 +
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  26 +++-
->   drivers/soc/mediatek/mt8195-mmsys.h           |  13 ++
->   drivers/soc/mediatek/mtk-mmsys.c              |  44 ++++++
->   drivers/soc/mediatek/mtk-mutex.c              | 135 +++++++++++++++++-
->   include/linux/soc/mediatek/mtk-mmsys.h        |   6 +
->   include/linux/soc/mediatek/mtk-mutex.h        |  35 +++++
->   7 files changed, 249 insertions(+), 11 deletions(-)
-> 
+Brian
+
