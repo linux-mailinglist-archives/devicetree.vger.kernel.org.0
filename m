@@ -2,62 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A40168C3D4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 17:51:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB20868C3EB
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 17:56:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229834AbjBFQvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 11:51:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59400 "EHLO
+        id S230019AbjBFQ4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 11:56:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230011AbjBFQvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 11:51:39 -0500
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A8A414EBB;
-        Mon,  6 Feb 2023 08:51:19 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id e21-20020a9d5615000000b006884e5dce99so3356744oti.5;
-        Mon, 06 Feb 2023 08:51:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nJjfaqQN07abmVZHr04x6j/pMfkMAkZRYidyFnb67BQ=;
-        b=VA8+6u1wlMlC43nBAEknGT7Kn86z+9gUDaU4CFhmPsE7EfA+1Y4IUFX9neSCTXXokh
-         V5J3UBxmTBFsuI6z2VHLeKaxXSgGFU3r9GSskrEqmF4x11rTtTvRjwKN5yuvibVw/eZ2
-         gz8SbWb6C2k8Os3KFQdss8nFTc0KxMmE/kSQtQFhAgLFcOAMYnIEgvwHktqZC7mhzzro
-         rlwP4cH3kEq3EoNAGzxSXeMq0d1HJ2gmFH0RynU09e7jKnvpD98DihtbGzyzIRvkC2Dl
-         PrlZqp0ODlfGYog2ziZZC6RP5ReuW9xfa1XYHZGhTYXwFUdIfZW+PwOhi3bHcEWXS7h7
-         lUDA==
-X-Gm-Message-State: AO0yUKXeac0xtM2/cEM8BUO5jAQ72RxAXjmqyFqswfj3OBCOImSpCFtn
-        0vAJSkRI9TnTczvU6n071A==
-X-Google-Smtp-Source: AK7set9UFjLHrrtdIPxXFwDrC3Co4bVmsVQ8HFpyab0PSxoNOaqTv8RzB9oA1/XFZNcOEP8Fx7ajoA==
-X-Received: by 2002:a05:6830:3903:b0:68b:cdd3:3b93 with SMTP id br3-20020a056830390300b0068bcdd33b93mr94004otb.26.1675702261490;
-        Mon, 06 Feb 2023 08:51:01 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q21-20020a9d6555000000b0068bd922a244sm5206293otl.20.2023.02.06.08.51.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Feb 2023 08:51:01 -0800 (PST)
-Received: (nullmailer pid 213128 invoked by uid 1000);
-        Mon, 06 Feb 2023 16:51:00 -0000
-Date:   Mon, 6 Feb 2023 10:51:00 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Danny Kaehn <kaehndan@gmail.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, ethan.twardy@plexus.com
-Subject: Re: [PATCH v3 1/4] dt-bindings: input: Add CP2112 HID USB to SMBus
- Bridge
-Message-ID: <20230206165100.GB182582-robh@kernel.org>
-References: <20230205145450.3396-1-kaehndan@gmail.com>
- <20230205145450.3396-2-kaehndan@gmail.com>
+        with ESMTP id S229834AbjBFQ4l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 11:56:41 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 066A9268C;
+        Mon,  6 Feb 2023 08:56:39 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 316GuEqO004598;
+        Mon, 6 Feb 2023 10:56:14 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1675702574;
+        bh=v9ZYSO/ymnvx8bWPKuYYeREqbLf0jUXDtJGQaIeZtvg=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=oBUDxHoeGOaG1FEQnvgsQPGGV+DYB1aj9L670uQuOpPW9hGlmBjvKwTEV9jIueag0
+         cGAPhWnQzW0B0da6TFvfwUqYPjAKcByHDjHxYeVvAWpbOD2gaR+ITAoVbOxvCTlOoh
+         nZWCymQzLXf69YeeT9eToZGqO2biYa9uDxCNiVL0=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 316GuE8i110007
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 6 Feb 2023 10:56:14 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 6
+ Feb 2023 10:56:14 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 6 Feb 2023 10:56:14 -0600
+Received: from [10.250.235.106] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 316Gu85B046178;
+        Mon, 6 Feb 2023 10:56:08 -0600
+Message-ID: <d0a6be9e-1597-bd1a-84f3-390820e73a98@ti.com>
+Date:   Mon, 6 Feb 2023 22:26:07 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230205145450.3396-2-kaehndan@gmail.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v7 3/6] drm/tidss: Add support for AM625 DSS
+Content-Language: en-US
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+CC:     DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20230125113529.13952-1-a-bhatia1@ti.com>
+ <20230125113529.13952-4-a-bhatia1@ti.com>
+ <ab6f52bb-a3f5-afda-c037-f009153a0bb6@ideasonboard.com>
+ <1662a593-8a5d-9214-8a3e-ef2699a35265@ti.com>
+ <12ba1f03-d6dd-c9c5-abf0-e9298dc22f28@ideasonboard.com>
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <12ba1f03-d6dd-c9c5-abf0-e9298dc22f28@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,158 +81,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 05, 2023 at 08:54:47AM -0600, Danny Kaehn wrote:
-> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+Hi Tomi,
+
+On 06-Feb-23 16:28, Tomi Valkeinen wrote:
+> On 05/02/2023 16:31, Aradhya Bhatia wrote:
+>>
+>>
+>> On 03-Feb-23 21:03, Tomi Valkeinen wrote:
+>>> On 25/01/2023 13:35, Aradhya Bhatia wrote:
+>>>> Add support for the DSS controller on TI's new AM625 SoC in the tidss
+>>>> driver.
+>>>>
+>>>> The first video port (VP0) in am625-dss can output OLDI signals through
+>>>> 2 OLDI TXes. A 3rd output port has been added with "DISPC_PORT_OLDI" bus
+>>>> type.
+>>>
+>>> Not a big thing here as you add support for a new SoC, but the ordering
+>>> of the patches is not optimal. Here you add the AM625 DSS support, but
+>>> then you continue actually adding the DSS support (well, mainly OLDI) in
+>>> the following patches.
+>>>
+>>> I think patch 6 could be before this patch. Parts of patch 4 could also
+>>> be before this patch. The AM65X renames from patch 5 could be before
+>>> this patch.
+>>
+>> I can move whole of Patch 6 and even of Patch 4 before this one. I have
+>> mentioned 'AM625-DSS' in a couple comments which I can make generic,
+>> and the rest everything is SoC-agnostic.
+>>
+>> I haven't tried this, but my concern is if we break patch 5 into 2
+>> separate patches,
+>>
+>> i. AM65X rename plus SoC based switch case, and
+>> ii. Addition of AM625 SoC case
+>>
+>> then I might have to overwrite some changes implemented during (i) in
+>> (ii). I don't suppose that would be okay, would it?
 > 
-> The binding allows describing the chip's gpio and i2c controller in DT
-> using the subnodes named "gpio" and "i2c", respectively. This is
-> intended to be used in configurations where the CP2112 is permanently
-> connected in hardware.
+> I'm not sure I follow here. Wouldn't (i) be a valid patch in its own?
+> Nothing wrong in expanding that later (even if you end up changing a lot
+> of it).
 > 
-> Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
-> ---
->  .../bindings/input/silabs,cp2112.yaml         | 112 ++++++++++++++++++
->  1 file changed, 112 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/silabs,cp2112.yaml
+
+(i) would be a valid patch, but implementing (ii) would over-write
+certain changes done in (i), albeit small changes in terms of brackets
+and indents. That didn't feel right initially and hence the question.
+
+> That said, I don't think this is a very important topic. There are only
+> a few commits in the history that might be problematic. A simple fix
+> would be to add all the features first, and only last add the compatible
+> string for am625.
 > 
-> diff --git a/Documentation/devicetree/bindings/input/silabs,cp2112.yaml b/Documentation/devicetree/bindings/input/silabs,cp2112.yaml
-> new file mode 100644
-> index 000000000000..eb2e89edb80a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/silabs,cp2112.yaml
-> @@ -0,0 +1,112 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/silabs,cp2112.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: CP2112 HID USB to SMBus/I2C Bridge
-> +
-> +maintainers:
-> +  - Danny Kaehn <kaehndan@gmail.com>
-> +
-> +description:
-> +  The CP2112 is a USB HID device which includes an integrated I2C controller
-> +  and 8 GPIO pins. Its GPIO pins can each be configured as inputs, open-drain
-> +  outputs, or push-pull outputs.
-> +
-> +properties:
-> +  compatible:
-> +    const: usb10c4,ea90
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: The USB port number on the host controller
-> +
-> +  i2c:
-> +    description: The SMBus/I2C controller node for the CP2112
-> +    $ref: /schemas/i2c/i2c-controller.yaml#
-> +    unevaluatedProperties: false
-> +    properties:
-> +      clock-frequency:
-> +        minimum: 10000
-> +        default: 100000
-> +        maximum: 400000
-> +
-> +  gpio:
-> +    description: The GPIO controller node for the CP2112
-> +    type: object
-> +    properties:
-> +      interrupt-controller: true
-> +      "#interrupt-cells":
-> +        const: 2
-> +
-> +      gpio-controller: true
-> +      "#gpio-cells":
-> +        const: 2
-> +
-> +      ngpios:
-> +        const: 8
-
-If this can only be 1 value, then it doesn't need to be in DT.
-
-> +
-> +      gpio-line-names:
-> +        minItems: 1
-> +        maxItems: 8
-> +
-> +    patternProperties:
-> +      "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
-
-Pick one naming scheme, not everything we allow.
-
-> +        type: object
-> +        properties:
-> +          gpio-hog: true
-> +          input: true
-> +          output-high: true
-> +          output-low: true
-> +          line-name: true
-> +          gpios:
-> +            minItems: 1
-> +            maxItems: 8
-> +
-> +        required:
-> +          - gpio-hog
-> +          - gpios
-> +
-> +        additionalProperties: false
-
-You shouldn't need all this for the hog nodes, just need the following 
-and the common schema will check the rest:
-
-required:
-  - gpio-hog 
-
-> +
-> +    unevaluatedProperties: false
-
-Move this above 'properties'. Easier to read rather than after 
-a long indented block.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/input/input.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    usb {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      device@1 {
-> +        compatible = "usb10c4,ea90";
-> +        reg = <1>;
-> +
-> +        i2c {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          temp@48 {
-> +            compatible = "national,lm75";
-> +            reg = <0x48>;
-> +          };
-> +        };
-> +
-> +        gpio {
-> +          gpio-controller;
-> +          interrupt-controller;
-> +          #gpio-cells = <2>;
-> +          gpio-line-names = "TEST0", "TEST1", "TEST2",
-> +            "TEST3", "TEST4", "TEST5", "TEST6", "TEST7";
-
-Put a hog to test the schema.
-
-> +        };
-> +      };
-> +    };
-> -- 
-> 2.25.1
+> Or do all the changes for am625 in a single patch, and try to implement
+> all the generic restructuring work before that.
 > 
+> Here we do have to change the vp-to-output mapping management, so maybe
+> the second option won't be simple enough, and it's better to do the
+> am625 changes in pieces, as in the first option.
+> 
+
+Yeah, the first option does seem a little less complicated. Will try to
+re-order this as much clearly as possible.
+
+> So, it's really up to you. Just wanted to raise this possible issue so
+> that you are aware of it and can do any easy fixes (if there are such).
+> 
+>> Also, is it important to keep the compatible-addition patches of
+>> DT-binding and driver next to each other in the series? Or should
+>> the DT-binding patches should be the first ones? Just curious! =)
+> 
+> I believe the convention is to have the DT-binding changes before you
+> add the compatible string to the driver (if I recall right checkpatch or
+> some other checking tool complains if you add a driver for a compatible
+> that doesn't have a DT binding). Generic restructurings could be before
+> the DT patch, of course, but usually I like to keep the DT binding
+> changes at the very beginning of the series.
+> 
+
+Okay, I will keep the compatible-append in the binding as the first
+patch in the series, before the other general structurings.
+
+Thank you!
+
+
+Regards
+Aradhya
