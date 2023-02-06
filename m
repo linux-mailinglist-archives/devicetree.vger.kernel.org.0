@@ -2,111 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 333FA68B432
-	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 03:41:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B235B68B4F3
+	for <lists+devicetree@lfdr.de>; Mon,  6 Feb 2023 05:43:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229452AbjBFClY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Feb 2023 21:41:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54708 "EHLO
+        id S229533AbjBFEnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Feb 2023 23:43:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjBFClY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 21:41:24 -0500
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2128.outbound.protection.outlook.com [40.107.255.128])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9480F196A9
-        for <devicetree@vger.kernel.org>; Sun,  5 Feb 2023 18:41:21 -0800 (PST)
+        with ESMTP id S229447AbjBFEns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Feb 2023 23:43:48 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC53415543;
+        Sun,  5 Feb 2023 20:43:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1675658626; x=1707194626;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=6gzUlZNI31hfH9icyXp2cAjjStvYAV9zyFhmHYgyHfM=;
+  b=kLww3NTuTArOL2PMVX05Pj2nrXVDYycCbcQ1RvFgSjLueiteIILokpYF
+   Plww2zlvlCv/iznacvhI1uZqbfYZmkrvDtNwVBV41/REDVwQzgIUrzS5+
+   jnuHpeUmWbCKsUAgBX2RUZX++eAGF2HN6TKm+ulcfbpahKBu6UgxGu9+b
+   GbSU4AEe9GQBnv34e8xW7gVgreFg9/LgjNX+6jUvovCTvOlbuu48aoeWQ
+   8zv9JwsEUEMc+HvHXBwzgydYwafr0ea2u8RlS8cVzmLoI1PdVDDFAIgyk
+   PFntJVWwP+00Gbd/8sqs5fn9/ZWXfGhdeC9NaojOJW0To1f3+zukaRi27
+   w==;
+X-IronPort-AV: E=Sophos;i="5.97,276,1669100400"; 
+   d="scan'208";a="195465916"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Feb 2023 21:43:45 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Sun, 5 Feb 2023 21:43:44 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
+ Transport; Sun, 5 Feb 2023 21:43:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l9Tq4JnEcdSLuxZkF3K5cD/JPYjsc9kiKNNfuijeeSnyTzOtbDAtIisun4aq9R24p9xoUncjQQoLWheHio8xgN3LuztL7kAMAt9k1P04gmkLAxTDJ6b0NNAzDKWirO6Oh7/2VyytTLiJfVohZIufmgy4beHBYV9qmD+efZfyVTuRzdc55NRB1J5nxxQsvYtcJf56BXOfiwnK8ylYbGlkMtbz6g3O/yzM98f72dySk1T4buj4LyA2ELx9l9E6kMRy4lhsUTcsahqjBXqXOQ5BITOTfNoDgGKhuB8YR5k05gxq0OJechVYEmvB0LFgz/SMmqEfeUBhRALsuIl/8zHIrA==
+ b=nuaqyEF2HiLd6aaNEBUYJ34671RLRzEEXf6vD3oh1kvTrlEvK8nLfbjBaIYErJRGv7N+YIu5xrS5gd9XUIm8VcYY4nbIFZgNyXnhmMPHRgTQKdBnk6+FfWEJuqbIwFZEJDZNPgODbfDCkqx8sIqcbpvhTzOXrvgNnpNhqyRuukcVk9QjJli/GToIUDXMTQHVYRbRBkslRfkgisMAvHPkIpEFr8hp06HWq10Vj/uh6qCCMLp8fxfpzWNqp5AhPxhVcuXz3Jj2jyNe/9YOi1qHyRUe1R0kcxVFH7FYJgJ4AwwkzJWaKVTotvH1R03fr/s1+2Exng3hAygGMoAsdaRYVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OCi9ujuYiJiPNOrFu/CQu8daUlWfxSvLEnHfB3JPDtE=;
- b=gXDF49pXpJUfef84103bjFTpI40zAI03+m/NCFvAIhExGtkBw3iWxIMHEezjRmbc7rLmkw6teX1xtAPIms+YHDFjUSbp71A49yaa7Ys7t+qgpX9YSLIfGvUcrco5pSZ9dYNp/Zf1+uyJPJywhiAxyvTaaLo4MWpnzQAy+gskNffQqHLrUkkpWOLbgJZeG4EsMIrivipad4cUBbb/UIxJ0TpjIuMJWRkQ9y36WnUh2fYzqntcYHFSQtpD7UmCPfsT+BpVOZJWU1rpukK8PAEcFHDMQEt95g/mww6BRTICXb/q04eGSunRt99cC9GyFZEkbduz/5Ss8PtpfrfQPdRuYQ==
+ bh=/5HiMefttE6h7u8anJVPAopmJxZEO2B1clT5BXTVtKY=;
+ b=AGzpJuQvizE6wLP3j9vk1KjgfxCIKlMBSs/6Wls5ILNV8vObJvQ+uoxB/EDgGNNHsCs4ko0X+99tAoZjvs9M7V2j+Cag5iA5a56CsVzbmPXNxuanpPEJoPMQXbjrCIdUtEzZdlydD2NPdNBsw5hirOoHM7iZyDUyzFx51V4KFi/taHJsvsR6IfJTmo6a/2VnyQOhO3kk7wYunR3eV2WZscqZ80tk+HcN18kbPaOsaGjIUn+YJfnITPuWrG5xivJHxzdbYyY8m8pb2YoVjBajk9TJZLR1TBZe3N+F1vjWaPBNvP2eATryUIP5Cn0+plw17xGUn6lt15GDvkAD9GOctQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OCi9ujuYiJiPNOrFu/CQu8daUlWfxSvLEnHfB3JPDtE=;
- b=kbFfianJ7CU5AewX3k40a/9BVmL8Y2YQK3j5gcQ8yx2HqOvI/dVGn+CzP0u/S3hR1Ru+1sme+YiWFn5f6IfyDXcWdfh1+BMyi4RPEUIRQ1OBii7ngd1Dhn7yM8xwcC6s9IkVIbhNom/EbJd9B4Z4csA3w0tpfAK2h848NkhFkac=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
- by TY3PR01MB11691.jpnprd01.prod.outlook.com (2603:1096:400:376::12) with
+ bh=/5HiMefttE6h7u8anJVPAopmJxZEO2B1clT5BXTVtKY=;
+ b=WQj5rCvsnfvk1IWmtCo301OB3qg1Rxb8N5ZFcvg6B1bYJmgVtHOAmHVIOG87QsQqev6DQwLegen7T7jhc3zX1OrLa4qitI3rwoIzAsiwJqmX+RvdvrK0uccS74BBG37YRnhbpa6EsbVQpFaVbdvAAcL/wwbtwGkpXvdEr2MkNkY=
+Received: from PH0PR11MB5611.namprd11.prod.outlook.com (2603:10b6:510:ed::9)
+ by MW5PR11MB5908.namprd11.prod.outlook.com (2603:10b6:303:194::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.34; Mon, 6 Feb
- 2023 02:41:17 +0000
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::4b75:8d8e:d89a:7860]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::4b75:8d8e:d89a:7860%9]) with mapi id 15.20.6064.034; Mon, 6 Feb 2023
- 02:41:17 +0000
-Message-ID: <87k00vqzw2.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: renesas: adjust to R-Car Gen4
-In-Reply-To: <46974ae7-5f7f-8fc1-4ea8-fe77b58f5bfb@linaro.org>
-References: <87zg9vk0ex.wl-kuninori.morimoto.gx@renesas.com>
-        <46974ae7-5f7f-8fc1-4ea8-fe77b58f5bfb@linaro.org>
-User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date:   Mon, 6 Feb 2023 02:41:17 +0000
-X-ClientProxiedBy: TYAPR01CA0127.jpnprd01.prod.outlook.com
- (2603:1096:404:2d::19) To OS3PR01MB8426.jpnprd01.prod.outlook.com
- (2603:1096:604:194::10)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.32; Mon, 6 Feb
+ 2023 04:43:42 +0000
+Received: from PH0PR11MB5611.namprd11.prod.outlook.com
+ ([fe80::6f3f:f30b:e31e:1fc7]) by PH0PR11MB5611.namprd11.prod.outlook.com
+ ([fe80::6f3f:f30b:e31e:1fc7%6]) with mapi id 15.20.6064.028; Mon, 6 Feb 2023
+ 04:43:42 +0000
+From:   <Shravan.Chippa@microchip.com>
+To:     <sakari.ailus@iki.fi>
+CC:     <paul.j.murphy@intel.com>, <daniele.alessandrelli@intel.com>,
+        <mchehab@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <shawnguo@kernel.org>, <s.hauer@pengutronix.de>,
+        <festevam@gmail.com>, <kernel@pengutronix.de>, <linux-imx@nxp.com>,
+        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH RESEND v10 5/5] media: i2c: imx334: update pixel and link
+ frequency
+Thread-Topic: [PATCH RESEND v10 5/5] media: i2c: imx334: update pixel and link
+ frequency
+Thread-Index: AQHZLUnPWr0eVsa9dkWYdFRaw/UsYa6sow+AgABq7FCAAdoPAIACfu1wgBAIoiA=
+Date:   Mon, 6 Feb 2023 04:43:42 +0000
+Message-ID: <PH0PR11MB561174CA61F9C858577F726781DA9@PH0PR11MB5611.namprd11.prod.outlook.com>
+References: <20230121033713.3535351-1-shravan.chippa@microchip.com>
+ <20230121033713.3535351-6-shravan.chippa@microchip.com>
+ <Y88SG5ndXjQ9AjZg@valkosipuli.retiisi.eu>
+ <PH0PR11MB56119C93EB4A19FEFC03778F81C99@PH0PR11MB5611.namprd11.prod.outlook.com>
+ <Y9D5eG8PP/qYPk40@valkosipuli.retiisi.eu>
+ <PH0PR11MB5611880BB2141A73B2D67D7181CC9@PH0PR11MB5611.namprd11.prod.outlook.com>
+In-Reply-To: <PH0PR11MB5611880BB2141A73B2D67D7181CC9@PH0PR11MB5611.namprd11.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR11MB5611:EE_|MW5PR11MB5908:EE_
+x-ms-office365-filtering-correlation-id: 8f23ab27-cbae-418e-e635-08db07fcb934
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 3SR7UIvo3GZe8NEw4j1nTULCLy/qF1htBJ0ifisEDUQ0rOmr865wtyeGMODAViJEfm7MeNkNXT+wA0ZSSDHtjfycI0OxTwg/zteeKLOSaj+j5i9FeGpcQTJmEulpuLIEFcTbqdlQDFfRQA0rPwfbAov3k6VEH0O755KLaYNZ2F6eGelAKrAzRmXMYT0UXbzYA1ie0K43m4cbq8TA1BS34X1ForpVco2zD6hwC/fHk8zya6X99gk5YEVXpNFDJbtJnF5ZOxT6TtpomHYOd3eLhnLNaBnUhSKHNiroouDgoNNzGFPkDIb+ZLlZ+YM0sbtBK6wgSZR96ipO9CUF5/o86IuQHzTA1NuFq3GFpZyUdECJgDwUQOSUFZj3eLrMhwz8xB+6eqINm5b5YT/QU7drusTdfLqy9Rwn/BaMzirkGlHcUBJtYSfkHAfG2/2zIwCkPS3Q5kftPcis2MUM0VxCD0dbQyrfRJ7lMSYzVw8XDPrj095nIHe6nYaBGgDhgsEbVmk1K/hnAJV9bRse4Jo4wum1UsBWD0P6fYLxEIokdH3G16cTc8M6BfFHp4YOxtEMfSLrHcn0uzOaD3nnEFzuoNonfzOJKtrS4NjX6n41tyndZecJzgMlwGayRbLM2dHxgowhOwBi5jcgK9iRXWNhDttLSa1mIsL+27HpB3WVO6dXOHMkOlg9sb2NQUGZYMzOuK5mprJm3wPSuPOuVH5jdA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5611.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(136003)(366004)(39860400002)(396003)(346002)(376002)(451199018)(478600001)(6916009)(122000001)(2906002)(7696005)(66556008)(26005)(9686003)(186003)(6506007)(8936002)(53546011)(8676002)(66946007)(64756008)(66476007)(66446008)(4326008)(41300700001)(71200400001)(316002)(7416002)(52536014)(5660300002)(54906003)(15650500001)(38100700002)(76116006)(86362001)(55016003)(33656002)(38070700005)(83380400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?N7y6agNp0ziLg3uZJyHFs/E9L7tp6vWx2d1OBOec6HVh2CpxFzuY7NNW/Fzz?=
+ =?us-ascii?Q?FQ3OqiY1eme4czGkGVF/9J5o49BIAwZjFBoeXJuI9ZzRyKPg0Usiad1snx7N?=
+ =?us-ascii?Q?BznncKWUQOK4BV2xiTNdOL32QVnANLSCTAa+BNsygLQgqcDJf4sPLHZHkLXX?=
+ =?us-ascii?Q?uD+fJF5SEL+94SRQmgDjc8/RDQpIHXUE8I1VTz/2HF8SvwmfMzU3sImxE8FB?=
+ =?us-ascii?Q?OldPAnEDvsLMRSjRNzJPvWcJw2HJwNolrXnlXQZHFILn91NSfX6M7XnlUghq?=
+ =?us-ascii?Q?2KuKSeaREXB0uFymuapLwLtPf3pQBbdqrm8RRt8uzk2SQbWW3C/QVy3WlfgW?=
+ =?us-ascii?Q?7c8a5nnwkltXDyaBxKJ9B5BNW/okD89saYLhg5PrTNS+egAt7PqxWbxaxFw7?=
+ =?us-ascii?Q?Cw7HUm6RrREoidXnukH6io5bpUu8lpZqD5UoEofWYaIORH/iDXHHu717cfGQ?=
+ =?us-ascii?Q?d9kGK+lgntYPVM99a6x1cr6ByMU1vEK7DsMHdJbG8o51rAylZYl+S6PuwrAe?=
+ =?us-ascii?Q?NNPZepfre/00O8/CZwX5NfK/W8V+wziMpaZwe3sWovX0/lJLv37wpYvOcKsD?=
+ =?us-ascii?Q?vzxk5tSdF26f5D+oGXnmh/jYgM0b+kNTAgiiJ4+JCK48plmIU5M2X8GwBfS/?=
+ =?us-ascii?Q?wPLp+niRGCGQKnqIK4LNWKB6hgGoKnRgvQpX9x8NJCTGGqm7KmPKs+bAdL6G?=
+ =?us-ascii?Q?kZs9J6EhwdSeBUPJaBGadaJ0W19Ou5ovaoGsgahwZ+lAnymvDyxlcbvPLgca?=
+ =?us-ascii?Q?qoIuA3Two61yEUQ+iYGkISOFDKjRi5JbPm4JRMQNqzvFkz6os1HDofHYdLLz?=
+ =?us-ascii?Q?1WI1PMZUqoqBjPHl8jRTOKuZJiZ3d56t1z09hEyX9XvfMboIrDdT9h/kzSzs?=
+ =?us-ascii?Q?SaKJ1ZhjPqPgJnkW4OH7ca8h46dk3kf9s3ITl2QmtopLCRJlDw4f6tBqkAhC?=
+ =?us-ascii?Q?Hkb2WJZ/no9FAOo1TIJrMNMWZkbTTCOpboBp6JvNnLnJ+TsD/A37muFjs8/w?=
+ =?us-ascii?Q?qtB2xJtf4U/VzDuWrvLnwbvddlPx24XbOCgmb2rT/t9j7HPpSwX1BjN1fNBj?=
+ =?us-ascii?Q?G5vGKkEiORyZQTUlbbrABxXj272BfBAB2mStSQTXa+8Z+K33vP55QbuX30Un?=
+ =?us-ascii?Q?A4KFguwcsfVkW12BgoM6EO6VemDyC6EckeKDXQHGqH5ByvaaHoR/KaNkuU6O?=
+ =?us-ascii?Q?5cdhl42mVzNWrwT37/ZIqN3nBEN7YtU8KIHwq/8Z71RM8zuwSBg4ZvjT3e4y?=
+ =?us-ascii?Q?9NnxprStucxMTsx5xY2c0GeO1ZzrsWXp3RAuUqiURRCZhA/BTd53NKyKCqR5?=
+ =?us-ascii?Q?69gkS+ARr+ya6zXOrd2fF5hLNBdg3Koc5YwmkyC9EBztM+VLG6pxhrkOYS2O?=
+ =?us-ascii?Q?Ry4PNH7otFRjorMmQ/q+26RWZVuqqevSjls58zjYTadsNL+2ttpgS7gatbRR?=
+ =?us-ascii?Q?5sH7IKM2LRvWdlDx+MQDgDvTxb6A0ZtJkanqGYI11FwNYGBv0v+c9blCeLIH?=
+ =?us-ascii?Q?5QmZx2PX3c7BlhKp9ZqpDe2zR+zyHX8pMk33q54RwryJhEIIFz5vQ/iHWejw?=
+ =?us-ascii?Q?LAB9g8SRXB3x3Z6PazsAg4+iqBZjlNQBqA0y+4/wE4nNXKiTllu1pHWYwQAf?=
+ =?us-ascii?Q?4A=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|TY3PR01MB11691:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2a667939-1907-4d55-4670-08db07eb9f6d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: x32FaDeM//b2c3M/9tDb/rwP3HrVkSKz6HW3RZYwII5gZN5ZYuksy23kdFHxv8towkTk9/yOYZZO3GWToTAzP6KXNofytJWux2JuUYsxw7hS1iFlrRtvFiOXSa61Ai12ts1t5kqu4OcL6aJqhzQytxiNGToc7WEsHfQgnyeF61mKjcMbU1p4Qkmf/2Is6oNVWp7ZkCytd0EHT83RmVbqxuud24rcFT0MdqW63h64RSYw0ZhrI33kCUepIJlOkab3dSisXmZXzul0FBFVAykxHPfK+FtUNWvd36ThwKT9w1edJG+IAeoGKjtz5z9VMasYCaD3nrSUObfLp+diz7LR7igrfvze8kXTA2ODbiH0u19+t7fNP/RBFUIG0VSpDSyqxVW1L78VfWKaPe6T0dYurRYpplC6hGhPORi+MAELFzRuHFUU41FTEOQCl24I9cp/ksBf7PpqyGaKOOUESykL9OISYGrlKgUlZ9/2n5wGl2NHGUZ+HUQNh1YjQ3sURy3kmt6HWlb1hQLr2WOGrMlixbehdhEk3d5MFQOgoqAU5V4v0NAkJUP12iAtjnoUYCC6KfxwdSHNVZfa4gFDjxb6GiLQwZkS3PKvDBMCPHWT72UeVKHeergVHi+/6Q1g+UoiNdJHqL30xKJT0MTGrL66L3PWAJ/a7qdQn1WZe1XobKlO4ZAvQTjIWHsNGwHEnRHWhRDsRB3i5vS87yL1tITXBw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(39860400002)(346002)(136003)(366004)(376002)(396003)(451199018)(4326008)(8676002)(6916009)(41300700001)(66556008)(66476007)(66946007)(316002)(8936002)(54906003)(36756003)(6512007)(2616005)(26005)(186003)(2906002)(5660300002)(6506007)(6486002)(52116002)(86362001)(478600001)(38100700002)(38350700002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1OfBc9nuTqwiaHPm5ymILkTOqUvgctGdvtCn7d7KswDHcmuUC7owfhSlhOQz?=
- =?us-ascii?Q?lQtTxBNE6ttjh3KMV2EqumxFgLDIkn9V9Ekyv00ibRx6gYfDHSF494yi6b+e?=
- =?us-ascii?Q?mhPSW6QKVEZqJm0ozRZ/EWEYQIcqzuEvrDnh69iyGeRE9EQ1O4DYEsKBklmt?=
- =?us-ascii?Q?IEXdcIdg7SreFBxUboKrusUIcPWF38/9BomUieRhgvBr/g3RUUh/ah+WRDS7?=
- =?us-ascii?Q?xhLetdf45jUz0qQyp8WLGmnShV7kaEAE1m9iYG2MzAooBklzDuhMJEjVSDf4?=
- =?us-ascii?Q?GQtX2ghl1cHWuo4kncvQLJgHbBEBHfeXUvQFODctjlAhZ1k3C8NzbL8WOIMB?=
- =?us-ascii?Q?U6us68ze0iQTmnwGOZdlk+k9nvAsgjimhig9+0ZYswPy4pxQPwbfRJS3vPaw?=
- =?us-ascii?Q?N9Q9hE6YHsJ/s7fM1/RUt0iLF7IxAX79Ei4r+fIdHcXaXMBjQYQGIMH0Ogho?=
- =?us-ascii?Q?BdCZsbb1sfpicX20F7tolSGkH47skJ8dfJY4VvbCqWT2ayTSdcT+AqljUrB5?=
- =?us-ascii?Q?eyW1h+yIilh7r/PI9S9AZfMmKruNCmhhVCtpiHnYF+paKqcTseFNKZxmlSf+?=
- =?us-ascii?Q?SNSjxauGGqN4I5iwykdGhPf/dd2CCyxb+6Y9iOxJoi41DJ8axxFOdyj4Slrl?=
- =?us-ascii?Q?vVt9KxfYWh7bv0S9YxTAqvQ20GJ0Y5TgmIInKgxDy+DqMKy4J7ki4dqcbi0U?=
- =?us-ascii?Q?PlZ+zk0RfumOsEloI6QedsfHqri2RUIhgbeq+91DHiSucpB6jlARLF7f2iJO?=
- =?us-ascii?Q?dw+/v2uCZK1D+a9xyIh3aBWgVi/xi7yG0NjZMko130gdg8eHIvcQMBIWISgm?=
- =?us-ascii?Q?GouPonKsbbS7v2r2KypReBpHpmomWW6lcfXz2ALiEzeqpVuWiS+gK6oG+E1I?=
- =?us-ascii?Q?0r0O4PXYMiiI5DmiLVRS+UQDC2EA6UA3LHLkoM6TgyiOaUIY0et2pbwe4Cxm?=
- =?us-ascii?Q?Xr/9eVZXlT+5HSC1ZkFm22bn/+PFy9ncLcyIWHLlyFoFiXXqdTPWuA6ilINe?=
- =?us-ascii?Q?9nH7Fk8lxzvoPlqMac5i8RjLdtqEcBGgg6R3VO+WDqa+Rci+Hxg0d/bFo9hi?=
- =?us-ascii?Q?VITqdYxkgYn8mz6C3i4FqEYRpvFNEGSfvFXmdw/8Zv+DAV4m+Wux5Bf+cv94?=
- =?us-ascii?Q?4DswiMu2p+KN28ExE2GxWljDb5NZreP8bt8pCW1TPsE6LdqSmyY/aKg0daY1?=
- =?us-ascii?Q?rhJqWqsFpRTT5qNYkBn6p/ruNH3QTrSaJZTHgP37RoOwjHzPZo1cWJjIL4/X?=
- =?us-ascii?Q?m7QmWRkoiLIZAUvWHfeomQ4Gr2tH58iGWwYOHlY86X2Osr8IgP8r/J7zCnfR?=
- =?us-ascii?Q?dgUl6BbPRmP45+FSZfHQcUEGF1hE4oz58VLYkslCEiwZRH56IKdT0Ml48wAW?=
- =?us-ascii?Q?FrWE3M26dUgUAju3yDLo3PtH19jT4T9Trv1d43RjspP/OMrFXGC4wfbbGWo2?=
- =?us-ascii?Q?kitE003g2AXk4QLV4T4Y9G4Z9xqZ4aKVworA2I9oH+nFXf8eQGCCSAi6TpTg?=
- =?us-ascii?Q?f9JTTxVHPGIZ5k0Crjbz06VX15og3PHqi35Yr2fykahQ5w8Y5fQTwZHEaOON?=
- =?us-ascii?Q?kxuD8+ol0JEXAA05i5jNY599IlbuwV+FjqNrZlEXeoLEr7otPPezorS2rprI?=
- =?us-ascii?Q?QaAOmP+7N23FhxmHom7vR38=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a667939-1907-4d55-4670-08db07eb9f6d
-X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2023 02:41:17.7754
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5611.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f23ab27-cbae-418e-e635-08db07fcb934
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Feb 2023 04:43:42.2992
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M9ovgxa5fu3YRoKQl9mmJr9Lwt3IYoFm2UlHyzDs7l6FemFAWEn/tG7tAq8r921JeYeF6fwxMK+rozMOvCtY7WdLciSZ4bKxUNzt2sxJFJV8sP+7D5IbxdfEPavyLx2m
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3PR01MB11691
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: we+oyS+vlpz4tCrene6e7G2xgTxjUXm5VM/79QtA4/Ozyi4yRLRqmxHJ51kbI7ADDJr5HcrQvAmqe5k8fnv8ubSD0Xii/IdRRK+XbaeQSrA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5908
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -115,56 +153,260 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sakari,
 
-Hi Krzysztof
 
-Thank you for your review
+> -----Original Message-----
+> From: shravan Chippa - I35088
+> Sent: 27 January 2023 05:40 AM
+> To: Sakari Ailus <sakari.ailus@iki.fi>
+> Cc: paul.j.murphy@intel.com; daniele.alessandrelli@intel.com;
+> mchehab@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
+> kernel@pengutronix.de; linux-imx@nxp.com; linux-media@vger.kernel.org;
+> linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org
+> Subject: RE: [PATCH RESEND v10 5/5] media: i2c: imx334: update pixel and
+> link frequency
+>=20
+> Hi Sakari,
+>=20
+> > -----Original Message-----
+> > From: Sakari Ailus <sakari.ailus@iki.fi>
+> > Sent: 25 January 2023 03:12 PM
+> > To: shravan Chippa - I35088 <Shravan.Chippa@microchip.com>
+> > Cc: paul.j.murphy@intel.com; daniele.alessandrelli@intel.com;
+> > mchehab@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> > shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
+> > kernel@pengutronix.de; linux-imx@nxp.com; linux-
+> media@vger.kernel.org;
+> > linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+> > kernel@lists.infradead.org
+> > Subject: Re: [PATCH RESEND v10 5/5] media: i2c: imx334: update pixel
+> > and link frequency
+> >
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know
+> > the content is safe
+> >
+> > Hi Shravan,
+> >
+> > On Tue, Jan 24, 2023 at 05:34:02AM +0000, Shravan.Chippa@microchip.com
+> > wrote:
+> > > Hi Sakari,
+> > >
+> > > > -----Original Message-----
+> > > > From: Sakari Ailus <sakari.ailus@iki.fi>
+> > > > Sent: 24 January 2023 04:33 AM
+> > > > To: shravan Chippa - I35088 <Shravan.Chippa@microchip.com>
+> > > > Cc: paul.j.murphy@intel.com; daniele.alessandrelli@intel.com;
+> > > > mchehab@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> > > > shawnguo@kernel.org; s.hauer@pengutronix.de;
+> festevam@gmail.com;
+> > > > kernel@pengutronix.de; linux-imx@nxp.com;
+> > > > linux-media@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > > > devicetree@vger.kernel.org; linux-arm- kernel@lists.infradead.org
+> > > > Subject: Re: [PATCH RESEND v10 5/5] media: i2c: imx334: update
+> > > > pixel and link frequency
+> > > >
+> > > > EXTERNAL EMAIL: Do not click links or open attachments unless you
+> > > > know the content is safe
+> > > >
+> > > > Hi Shravan,
+> > > >
+> > > > On Sat, Jan 21, 2023 at 09:07:13AM +0530, shravan kumar wrote:
+> > > > > From: Shravan Chippa <shravan.chippa@microchip.com>
+> > > > >
+> > > > > Update pixel_rate and link frequency for 1920x1080@30 while
+> > > > > changing mode.
+> > > > >
+> > > > > Add dummy ctrl cases for pixel_rate and link frequency to avoid
+> > > > > error while changing the modes dynamically.
+> > > > >
+> > > > > Add support to handle multiple link frequencies.
+> > > > >
+> > > > > Suggested-by: Sakari Ailus <sakari.ailus@iki.fi>
+> > > > > Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
+> > > > > ---
+> > > > >  drivers/media/i2c/imx334.c | 41
+> > > > > ++++++++++++++++++++++++++++----------
+> > > > >  1 file changed, 30 insertions(+), 11 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/media/i2c/imx334.c
+> > > > > b/drivers/media/i2c/imx334.c index 309c706114d2..62b104eaa437
+> > > > > 100644
+> > > > > --- a/drivers/media/i2c/imx334.c
+> > > > > +++ b/drivers/media/i2c/imx334.c
+> > > > > @@ -49,7 +49,8 @@
+> > > > >  #define IMX334_INCLK_RATE    24000000
+> > > > >
+> > > > >  /* CSI2 HW configuration */
+> > > > > -#define IMX334_LINK_FREQ     891000000
+> > > > > +#define IMX334_LINK_FREQ_891M        891000000
+> > > > > +#define IMX334_LINK_FREQ_445M        445500000
+> > > > >  #define IMX334_NUM_DATA_LANES        4
+> > > > >
+> > > > >  #define IMX334_REG_MIN               0x00
+> > > > > @@ -139,12 +140,14 @@ struct imx334 {
+> > > > >       u32 vblank;
+> > > > >       const struct imx334_mode *cur_mode;
+> > > > >       struct mutex mutex;
+> > > > > +     unsigned long menu_skip_mask;
+> > > > >       u32 cur_code;
+> > > > >       bool streaming;
+> > > > >  };
+> > > > >
+> > > > >  static const s64 link_freq[] =3D {
+> > > > > -     IMX334_LINK_FREQ,
+> > > > > +     IMX334_LINK_FREQ_891M,
+> > > > > +     IMX334_LINK_FREQ_445M,
+> > > > >  };
+> > > > >
+> > > > >  /* Sensor mode registers for 1920x1080@30fps */ @@ -468,7
+> > > > > +471,7 @@ static const struct imx334_mode supported_modes[] =3D {
+> > > > >               .vblank_min =3D 45,
+> > > > >               .vblank_max =3D 132840,
+> > > > >               .pclk =3D 297000000,
+> > > > > -             .link_freq_idx =3D 0,
+> > > > > +             .link_freq_idx =3D 1,
+> > > > >               .reg_list =3D {
+> > > > >                       .num_of_regs =3D ARRAY_SIZE(mode_1920x1080_=
+regs),
+> > > > >                       .regs =3D mode_1920x1080_regs, @@ -598,6
+> > > > > +601,11 @@ static int imx334_update_controls(struct imx334
+> > > > > +*imx334,
+> > > > >       if (ret)
+> > > > >               return ret;
+> > > > >
+> > > > > +     ret =3D __v4l2_ctrl_modify_range(imx334->pclk_ctrl, mode->p=
+clk,
+> > > > > +                                    mode->pclk, 1, mode->pclk);
+> > > > > +     if (ret)
+> > > > > +             return ret;
+> > > > > +
+> > > > >       ret =3D __v4l2_ctrl_modify_range(imx334->hblank_ctrl, mode-
+> >hblank,
+> > > > >                                      mode->hblank, 1, mode->hblan=
+k);
+> > > > >       if (ret)
+> > > > > @@ -698,6 +706,8 @@ static int imx334_set_ctrl(struct v4l2_ctrl *=
+ctrl)
+> > > > >               pm_runtime_put(imx334->dev);
+> > > > >
+> > > > >               break;
+> > > > > +     case V4L2_CID_PIXEL_RATE:
+> > > > > +     case V4L2_CID_LINK_FREQ:
+> > > > >       case V4L2_CID_HBLANK:
+> > > > >               ret =3D 0;
+> > > > >               break;
+> > > > > @@ -1047,7 +1057,7 @@ static int imx334_parse_hw_config(struct
+> > > > > imx334
+> > > > *imx334)
+> > > > >       struct fwnode_handle *ep;
+> > > > >       unsigned long rate;
+> > > > >       int ret;
+> > > > > -     int i;
+> > > > > +     int i, j;
+> > > >
+> > > > unsigned int would be nicer.
+> > > I will change.
+> > > >
+> > > > >
+> > > > >       if (!fwnode)
+> > > > >               return -ENXIO;
+> > > > > @@ -1097,11 +1107,20 @@ static int imx334_parse_hw_config(struct
+> > > > > imx334
+> > > > *imx334)
+> > > > >               goto done_endpoint_free;
+> > > > >       }
+> > > > >
+> > > > > -     for (i =3D 0; i < bus_cfg.nr_of_link_frequencies; i++)
+> > > > > -             if (bus_cfg.link_frequencies[i] =3D=3D IMX334_LINK_=
+FREQ)
+> > > > > +     for (i =3D 0; i < bus_cfg.nr_of_link_frequencies; i++) {
+> > > > > +             for (j =3D 0; j < ARRAY_SIZE(link_freq); j++) {
+> > > > > +                     if (bus_cfg.link_frequencies[i] =3D=3D link=
+_freq[j]) {
+> > > > > +                             set_bit(j,
+> > > > > + &imx334->menu_skip_mask);
+> > > >
+> > > > Is there a guarantee that you'll only be using the modes with the
+> > > > listed frequencies? I don't see one but I might have missed it.
+> > >
+> > > If I understand it correctly, the question here is, the listed
+> > > freqeunceis and modes are one to one mapped? Then yes.
+> >
+> > I don't see this being checked in imx334_set_pad_format(), for instance=
+.
+> >
+> > If a frequency isn't in DT, the driver isn't supposed to be using it ei=
+ther.
+>=20
+> Yes, there is no check.
+>=20
+> But, if a frequency is not in DT, the driver will not add in menu items.
+> So, the function imx334_set_pad_format() -> imx334_update_controls()
+> fails, if we set the frequencies which are not there in the DT or menu it=
+ems.
+>=20
 
-> This does not make sense - you just require it always.
-(snip)
-> Please do not embed if within another if, unless strictly necessary. It
-> gets unmanageable.
-(snip)
-> minItems
-(snip)
-> Drop
+Are you ok with the above explanation or any changes you are expecting?
+Please do let me know if there are any changes needed.
+I am planning to send the next version.
 
-OK, thanks. Will fix in v2
+Thanks,
+Shravan
 
-> > The "required" with if - then - else on "rcar_sound,ssi" is
-> > always match to "then" even though it is checking "renesas,rcar_sound-gen4" or not.
-> > Why ?? Is it my fault ??
-
-I'm not sure why but some "if - then - else" doesn't work correctly for me.
-One concern is that it is under "patternProperties".
-Non "patternProperties" case is works well.
-
-This is just sample case.
-In below case, only gen4 case requires "foo/bar" if my understanding was correct.
-But I get error "foo/bar are required" on *all* compatible.
-
-It is my fault ?
-
---- sample -----------
-  rcar_sound,ssi:
-    ...
-    patternProperties:
-      "^ssi-[0-9]$":
-        ...
-        allOf:
-          - if:
-              properties:
-                compatible:
-                  contains:
-=>                  const: renesas,rcar_sound-gen4
-            then:
-              required:
-=>              - foo
-=>              - bar
------------------------
-
-Thank you for your help !!
-
-Best regards
----
-Kuninori Morimoto
+>=20
+> Thanks,
+> Shravan
+>=20
+> >
+> > >
+> > > Thanks.
+> > > shravan
+> > > >
+> > > > > +                             break;
+> > > > > +                     }
+> > > > > +             }
+> > > > > +
+> > > > > +             if (j =3D=3D ARRAY_SIZE(link_freq)) {
+> > > > > +                     ret =3D dev_err_probe(imx334->dev, -EINVAL,
+> > > > > +                                         "no supported link
+> > > > > + freq found\n");
+> > > > >                       goto done_endpoint_free;
+> > > > > -
+> > > > > -     ret =3D -EINVAL;
+> > > > > +             }
+> > > > > +     }
+> > > > >
+> > > > >  done_endpoint_free:
+> > > > >       v4l2_fwnode_endpoint_free(&bus_cfg);
+> > > > > @@ -1232,10 +1251,10 @@ static int imx334_init_controls(struct
+> > > > > imx334
+> > > > *imx334)
+> > > > >       imx334->link_freq_ctrl =3D v4l2_ctrl_new_int_menu(ctrl_hdlr=
+,
+> > > > >                                                       &imx334_ctr=
+l_ops,
+> > > > >                                                       V4L2_CID_LI=
+NK_FREQ,
+> > > > > -                                                     ARRAY_SIZE(=
+link_freq) -
+> > > > > -                                                     1,
+> > > > > -                                                     mode->link_=
+freq_idx,
+> > > > > +
+> > > > > + __fls(imx334->menu_skip_mask),
+> > > > > +
+> > > > > + __ffs(imx334->menu_skip_mask),
+> > > > >
+> > > > > link_freq);
+> > > > > +
+> > > > >       if (imx334->link_freq_ctrl)
+> > > > >               imx334->link_freq_ctrl->flags |=3D
+> > > > > V4L2_CTRL_FLAG_READ_ONLY;
+> >
+> > --
+> > Kind regards,
+> >
+> > Sakari Ailus
