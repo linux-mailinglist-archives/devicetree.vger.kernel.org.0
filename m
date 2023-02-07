@@ -2,115 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 573D168D168
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 09:21:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 285E568D16D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 09:22:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229460AbjBGIVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 03:21:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53436 "EHLO
+        id S229731AbjBGIW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 03:22:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229692AbjBGIVw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 03:21:52 -0500
-Received: from mail-vk1-xa2f.google.com (mail-vk1-xa2f.google.com [IPv6:2607:f8b0:4864:20::a2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5E95276;
-        Tue,  7 Feb 2023 00:21:50 -0800 (PST)
-Received: by mail-vk1-xa2f.google.com with SMTP id v189so2056755vkf.6;
-        Tue, 07 Feb 2023 00:21:50 -0800 (PST)
+        with ESMTP id S230027AbjBGIWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 03:22:55 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4CA0CA3B
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 00:22:53 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id a2so12432964wrd.6
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 00:22:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qxIrUXBoB2zyDeM1COleyFwtINkoTGd1PktA2wpEmEA=;
-        b=pufxl/WHKqM3Y+0cFFtpThhfHYZ9YO609hoMXgC0g4sbYJ47SGU4uKc0cL9tKF0JUB
-         wAqlqiBBnq5GhMNTkhJwWC1JFrf8zmtWEqaQymkPNcXS8NsTBSOeaIs0EMaRQhgA9NzF
-         AG52xo8CJj1eoX60akdaSUMOgZEipsPi8yRhoo5zEzXYYd77HVcqe/XhwRDK37mxh3/O
-         JRQqMG4sm3buj1qlFfbPNQ0QT1Yq4XRGC3mavdrTOFCD7AmOJxzpZtjMrXUt1zLEKcfo
-         CR17EuxDAnkqPTxcBWTuqUI4xzvq+KOJx91NIWwJ19TPyJhfjPzBXHynVMRk3LYaU4oE
-         c7lQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=rznDP7uBI+QG6KYVDkvdwqbzoBSSdyzFVHdEMC/qL+s=;
+        b=XrpjMr0Dw4av7VtcwsHWujhnmZivRmIkKYDhHR/7GpoEMk6VOLS+v5n+iPETazs/y+
+         wiVPRxEEIeX8niUYSXglh7QjYaJ3k7PQXFk0suw9gkSQ3DwGw4Fu5Myt6BZnUsWyME0A
+         n0WyqEwyMZZCAh9YvuXTh2g4EQ8UnJww4DDEfdvv12hBTzXTG6ToL8V/wbgIDPWE56pG
+         obxV6/QD1TKXHXOjz2lAdPht2yTdwOkDMzxbYzZqUgutyudvFDA/0OkwSmUMvLEGMVih
+         5IFIzyOY/6yvXgeCpv64tL5NVxNsG2FjoEgEYFsunQ7EJfY18R/FnpI5Afxq7w6tAssX
+         xg7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qxIrUXBoB2zyDeM1COleyFwtINkoTGd1PktA2wpEmEA=;
-        b=Kw6wP3f21Wa/CIBoniBFLDNkTOW2fY5xFX0X6kIWlmu5M9413KrKgiPtP7IxL8bBlp
-         +5zzbya1RFYNofYpSBerg7un8QMNMqdppQhDiYS9x19rAZYHhkyqRc+n0quYOInR8yBb
-         lNRIbWxea1sxuD93eU3j8JIwZL+cIJKhSKF+Ksy4S1zP0WgDe3HPqqLu41CSUXIh6M2f
-         ysiSw3J+px9F9XlWD2AUh4CAk/3iXxsdeQl4UedUOJnIisk4EcL6q0TSYE1ukMyt04t8
-         wBf0D0jdBLhh8BiOp/zcAHuveI4lhvHyJ/pyzMByCjAEg9I8ybA1lavxoZ5CnmlKWI4p
-         OkWQ==
-X-Gm-Message-State: AO0yUKW7HmoNPWUGKDqizmdjbTyWJl8unOZWXndeGYWkSmzo2Pw63tVH
-        WILAVIWAu1rkL/gKVWizcA7iv47Q+KdVIa9rlw8=
-X-Google-Smtp-Source: AK7set/hbAUIeRFf7vEmDRrJAvTgRdEClUK/xn9DykWC9alacrgZNdX2P3lXDER15SOMbwcxFZDK3MBZ2ilktPOQJE4=
-X-Received: by 2002:a1f:ab44:0:b0:3ea:53b8:7b08 with SMTP id
- u65-20020a1fab44000000b003ea53b87b08mr274582vke.37.1675758109443; Tue, 07 Feb
- 2023 00:21:49 -0800 (PST)
+        bh=rznDP7uBI+QG6KYVDkvdwqbzoBSSdyzFVHdEMC/qL+s=;
+        b=3JmmJWPnyt1AYAfLaBZ2lChnXbF09qrSx/9oqql+4HLGhBP9OP3gp9MpyiurxvbxlT
+         MhV/3Y4OAkauDYlQePvPLewySlz+jqEiNx6UzMqWv7pFEm2dAY75ob80VzIlMt9BhB+6
+         bhEWUhbnrZxTaZwekDLZLvz0DCM1QedXyEx5o+OaqYjIxEku9DBJq0HGxNVfhJaJyIdw
+         V9vT3xRtCqsEjqK5AwJvEUkDyn+WmdxwaEDiJvhsjUDBDc+1cehbEIevAT+7BoYsMMuc
+         OMHLIvuRRj9zBNtxzZxFaL7DnZi5vOFNJ3ChQjxafQVM//nrnDTWdIeiMvmPpfrCHEbr
+         uZBg==
+X-Gm-Message-State: AO0yUKUC5hmEx1Cqo0DcksXWsOHEvnHA5lS1Z3u1Wl4kPEc1Z2Wvdti5
+        r5AgtGQuZKvEqYDDdsxB5lukCQ==
+X-Google-Smtp-Source: AK7set/13nHV2KQUuofdwb5s1dtrRayAH/7m7w+qHZtqe0Fmgaktq8+HvHFuHmI6dCONzCX5hAMmwg==
+X-Received: by 2002:a5d:4d46:0:b0:2c3:f0ec:68a7 with SMTP id a6-20020a5d4d46000000b002c3f0ec68a7mr1817670wru.30.1675758172501;
+        Tue, 07 Feb 2023 00:22:52 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:c58c:fc5c:67d6:e5f3? ([2a01:e0a:982:cbb0:c58c:fc5c:67d6:e5f3])
+        by smtp.gmail.com with ESMTPSA id l11-20020a05600002ab00b002bfb5ebf8cfsm11173916wry.21.2023.02.07.00.22.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Feb 2023 00:22:51 -0800 (PST)
+Message-ID: <0bc74947-8522-d924-de21-a1ebb6814364@linaro.org>
+Date:   Tue, 7 Feb 2023 09:22:51 +0100
 MIME-Version: 1.0
-References: <20230118084025.2898404-1-chunyan.zhang@unisoc.com>
- <41fd5c2a-9fc5-8af8-b66e-45bb83b24179@linaro.org> <CAAfSe-v3VW_sE4FwjURoOapMXrGavOK0hzeU-84-U_6xfhYbQQ@mail.gmail.com>
- <b3b9d515-20b1-62a1-3243-b1bc36c306df@linaro.org>
-In-Reply-To: <b3b9d515-20b1-62a1-3243-b1bc36c306df@linaro.org>
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-Date:   Tue, 7 Feb 2023 16:21:13 +0800
-Message-ID: <CAAfSe-tiF4--dYuKWgHUm52bMX3uSwxvWKKNRd=DFJTZZ=1x8A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: Add support for Unisoc's UMS512
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2] arm64: dts: amlogic: Make mmc host controller
+ interrupts level-sensitive
+Content-Language: en-US
+To:     Da Xue <da@lessconfused.com>, Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, soc@kernel.org,
-        devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+References: <d9721029-780e-09f1-0207-72d3897032a4@gmail.com>
+ <f06d1676-4fce-846d-d8fe-fa68439b119e@linaro.org>
+ <84d40502-fe1a-ef61-e945-9c581557f528@gmail.com>
+ <1jedrg6mkl.fsf@starbuckisacylon.baylibre.com>
+ <CACdvmAhW-uDUK-iL4HT1PgEnRHrBmNr26Q6M=wBYcpZ8=DF4Tg@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CACdvmAhW-uDUK-iL4HT1PgEnRHrBmNr26Q6M=wBYcpZ8=DF4Tg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 Feb 2023 at 15:59, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 07/02/2023 03:19, Chunyan Zhang wrote:
-> > On Thu, 19 Jan 2023 at 19:40, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 18/01/2023 09:40, Chunyan Zhang wrote:
-> >>> Add basic support for Unisoc's UMS512, with this patch,
-> >>> the board ums512-1h10 can run into console.
-> >>>
-> >
-> > [snip]
-> >
-> >>> +             ap-apb {
-> >>
-> >> Non-unit-address nodes cannot be mixed with unit address ones. Something
-> >> is wrong here.
-> >
-> > To make sure I understand correctly, did you mean non-unit-address
-> > nodes shouldn't be the parent of unit-address nodes?
-> >
-> > Does that mean the bus node should have a unique base address like:
-> >         ap-apb@70000000 {
->
-> No. I mean, run dtbs W=1 or dtbs_check DT_SCHEMA_FILES=simple-bus
+On 03/02/2023 09:03, Da Xue wrote:
+> On Fri, Jan 27, 2023 at 10:10 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>>
+>>
+>> On Fri 27 Jan 2023 at 14:02, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>>
+>>> On 27.01.2023 08:59, Neil Armstrong wrote:
+>>>> Hi,
+>>>>
+>>>> On 26/01/2023 15:03, Heiner Kallweit wrote:
+>>>>> The usage of edge-triggered interrupts lead to lost interrupts under load,
+>>>>> see [0]. This was confirmed to be fixed by using level-triggered
+>>>>> interrupts.
+>>>>> The report was about SDIO. However, as the host controller is the same
+>>>>> for SD and MMC, apply the change to all mmc controller instances.
+>>>>
+>>>> Thanks, I applied it in for-next so it runs on the CI tests.
+>>>>
+>>>>>
+>>>>> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
+>>>>>
+>>>>> Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
+>>>>
+>>>> I think we should find a better Fixes or perhaps split in 3 so it targets the
+>>>> right commit adding the nodes for each family.
+>>>>
+>>> This would be the cleanest option, right. Practically it shouldn't make
+>>> much of a difference. The chosen commit is from 2019, SDIO interrupt
+>>> support has been added just recently, and regarding MMC/SD it seems no
+>>> problems caused by edge-triggered interrupts are known.
+>>
+>> ... Well, I wonder is this might be linked to instabilities seen with
+>> very high speed mode (such as SDR104) and DDR modes. We have seen quite
+>> a lot of those over the years. In any case, if it helps stabilize the
+>> MMC on amlogic, it would be great if it can be picked up by stable.
+> 
+> On S905X, I'm still getting SDR104 failures with this change at both
+> 208MHz and 150MHz so maybe not completely.
+> 
+> [    9.071641] mmc1: tuning execution failed: -5
+> [    9.579765] mmc1: tuning execution failed: -5
+> [    9.761580] mmc1: tuning execution failed: -5
+> [    9.871836] mmc1: tuning execution failed: -5
 
-Ok, I will fix that according to the report.
+Are these the same before the change ? or did those appear with the change ?
 
-BTW, where can I see what W=1 means?
+> 
+>>
+>>>
+>>>> If the test doesn't report any breakage, I'll probably ask you that.
+>>>>
+>>> Sure.
+>>>
+>>>> Neil
+>>>>
+>>> Heiner
+>>
+>>
+>> _______________________________________________
+>> linux-amlogic mailing list
+>> linux-amlogic@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
-Thanks,
-Chunyan
-
->
->
-> Best regards,
-> Krzysztof
->
