@@ -2,112 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 043FC68D028
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 08:10:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C30C868D036
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 08:11:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229942AbjBGHKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 02:10:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43854 "EHLO
+        id S230503AbjBGHLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 02:11:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231324AbjBGHKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 02:10:13 -0500
-Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E225227BD;
-        Mon,  6 Feb 2023 23:10:11 -0800 (PST)
-Received: by soltyk.jannau.net (Postfix, from userid 1000)
-        id 5DDC326F72B; Tue,  7 Feb 2023 08:10:09 +0100 (CET)
-Date:   Tue, 7 Feb 2023 08:10:09 +0100
-From:   Janne Grunau <j@jannau.net>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230132AbjBGHLL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 02:11:11 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E0F1DBA5
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 23:11:07 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id g6so4588269wrv.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 23:11:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZS0V+GLlaD2KUKWgU7WfhuI+UXfHxHE5nFGEqvgoxzY=;
+        b=KDG8DY2Z+0qWLkniGX8jdRJcYQ4jrZLIdgu6z5KFhaDyVVS+un3nIKhRVjkwt8sXE1
+         4YvoBlmjNv/tjFXKfJrA55qERO0Werbaybh9iv1rhaaDmnWcJ8zDxNSTylFlNQ34Dz5q
+         LYHDt4pDa+EetASYqbdQE0iShp7LIDpITQ/onsyR2Nh2oaUcBZKbjNc9a0fQueNi4UF7
+         5VhLe+13xufFfUNG7rsLdL/fmXLIeQIh9eZKM107+8QO+NcAH2P6UwWOpMAWyiDRjPb8
+         DZMLmdXtXisjFRARgnvOxb9Xzzq0U8j4Jk7NXoLUxA6ytmM0oO4hY/WMsj0gX5FOo9K9
+         68AQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZS0V+GLlaD2KUKWgU7WfhuI+UXfHxHE5nFGEqvgoxzY=;
+        b=ZDxSUVJyAkvWXph9bpMylf8ypXWtn1TC6eXe8FEOFOjdO61bwbqGdF3e0AmN9xDl+I
+         kCHOG05t3f98mmCim8BMpPKpmA4WTxuZd6nTT4isgkvoTZnMDNvFUwt9Wf3K4sUBV8ZM
+         WkZfrgyD7awJp8uyoKZCZPOWQQrEVwYoPvdN4HsV6tXkdtdI9ddcbRs64oDVmYouakGC
+         clNsWdnyNGVvldq/Ij9l4jaVHp9+gpGqCFUXaihhls0jzwN//g8ahhqTYC0IACypO0Gu
+         dPP9kkV2RbXfBoQJNACSVfVmTZE4sWOUdhyNpRrUfaZu43JJBv/7CWOIabFTB981tN4e
+         zSqg==
+X-Gm-Message-State: AO0yUKXv/DJ9cbz3NRlZMhiCFKPJKhfJDIPYtfKKcm/4829zeDHFdfcC
+        +2581mf/2M/ifC9j/vzRt0unqA==
+X-Google-Smtp-Source: AK7set/+DJI2TrZhXfy4vttaEra/sZ7v5Prc0mU2ulprWaz5rtIS9fkzlWRBcRotXQsQA5THKFnzzQ==
+X-Received: by 2002:a05:6000:1081:b0:2bf:d333:219d with SMTP id y1-20020a056000108100b002bfd333219dmr1862710wrw.17.1675753865767;
+        Mon, 06 Feb 2023 23:11:05 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id d13-20020adffbcd000000b002c3f6cd1f0fsm471504wrs.83.2023.02.06.23.11.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Feb 2023 23:11:05 -0800 (PST)
+Date:   Tue, 7 Feb 2023 09:11:03 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mailing List <devicetree-spec@vger.kernel.org>,
-        Kalle Valo <kvalo@kernel.org>, van Spriel <arend@broadcom.com>,
-        =?iso-8859-1?B?Suly9G1l?= Pouiller <jerome.pouiller@silabs.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org
-Subject: Re: [PATCH RFC 0/3] dt-bindings: net: Add network-class.yaml schema
-Message-ID: <20230207071009.GB9004@jannau.net>
-References: <20230203-dt-bindings-network-class-v1-0-452e0375200d@jannau.net>
- <CAL_JsqKD7gD86_B93M19rBCWn+rmSw24vOGEhqi9Nvne1Xixwg@mail.gmail.com>
- <20230206163154.GA9004@jannau.net>
- <Y+GqsTLXRKyg0BdV@lunn.ch>
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-phy@lists.infradead.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [RFC v3 5/7] phy: qcom: phy-qcom-snps-eusb2: Add support for
+ eUSB2 repeater
+Message-ID: <Y+H5hxaOeGTP+wrt@linaro.org>
+References: <20230202133816.4026990-1-abel.vesa@linaro.org>
+ <20230202133816.4026990-6-abel.vesa@linaro.org>
+ <Y90Q4rDYw9kcXmCQ@matsya>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Y+GqsTLXRKyg0BdV@lunn.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <Y90Q4rDYw9kcXmCQ@matsya>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-02-07 02:34:41 +0100, Andrew Lunn wrote:
-> > > > I've ignored "max-frame-size" since the description in
-> > > > ethernet-controller.yaml claims there is a contradiction in the
-> > > > Devicetree specification. I suppose it is describing the property
-> > > > "max-frame-size" with "Specifies maximum packet length ...".
-> > > 
-> > > Please include it and we'll fix the spec. It is clearly wrong. 2 nios
-> > > boards use 1518 and the consumer for them says it is MTU. Everything
-> > > else clearly uses mtu with 1500 or 9000.
+On 23-02-03 19:19:22, Vinod Koul wrote:
+> On 02-02-23, 15:38, Abel Vesa wrote:
+> > From: Neil Armstrong <neil.armstrong@linaro.org>
 > > 
-> > Ok, the example in the pdf is 'max-frame-size = <1518>;'. I'll include 
-> > it with the description of ethernet-controller.yaml which specifies it 
-> > as MTU.
+> > For USB 2.0 compliance, eUSB2 needs a repeater. The PHY needs to
+> > initialize and reset it. So add repeater support
+> > 
+> > Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > ---
+> >  drivers/phy/qualcomm/phy-qcom-snps-eusb2.c | 18 +++++++++++++++++-
+> >  1 file changed, 17 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c b/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
+> > index 23ec162cc3bd..8d972d49732b 100644
+> > --- a/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
+> > +++ b/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
+> > @@ -128,6 +128,8 @@ struct qcom_snps_eusb2_hsphy {
+> >  	struct regulator_bulk_data vregs[EUSB2_NUM_VREGS];
+> >  
+> >  	enum phy_mode mode;
+> > +
+> > +	struct phy *repeater;
+> >  };
+> >  
+> >  static int qcom_snps_eusb2_hsphy_set_mode(struct phy *p, enum phy_mode mode, int submode)
+> > @@ -136,7 +138,7 @@ static int qcom_snps_eusb2_hsphy_set_mode(struct phy *p, enum phy_mode mode, int
+> >  
+> >  	phy->mode = mode;
+> >  
+> > -	return 0;
+> > +	return phy_set_mode_ext(phy->repeater, mode, submode);
+> >  }
+> >  
+> >  static void qcom_snps_eusb2_hsphy_write_mask(void __iomem *base, u32 offset,
+> > @@ -235,6 +237,12 @@ static int qcom_snps_eusb2_hsphy_init(struct phy *p)
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > +	ret = phy_init(phy->repeater);
+> > +	if (ret) {
+> > +		dev_err(&p->dev, "repeater init failed. %d\n", ret);
+> > +		goto disable_vreg;
+> > +	}
+> > +
+> >  	ret = clk_prepare_enable(phy->ref_clk);
+> >  	if (ret) {
+> >  		dev_err(&p->dev, "failed to enable ref clock, %d\n", ret);
+> > @@ -342,6 +350,8 @@ static int qcom_snps_eusb2_hsphy_exit(struct phy *p)
+> >  
+> >  	regulator_bulk_disable(ARRAY_SIZE(phy->vregs), phy->vregs);
+> >  
+> > +	phy_exit(phy->repeater);
+> > +
+> >  	return 0;
+> >  }
+> >  
+> > @@ -386,6 +396,12 @@ static int qcom_snps_eusb2_hsphy_probe(struct platform_device *pdev)
+> >  	if (ret)
+> >  		return dev_err_probe(dev, ret,
+> >  				     "failed to get regulator supplies\n");
+> > +
+> > +	phy->repeater = devm_phy_get(dev, "eusb2-repeater");
+> > +	if (IS_ERR(phy->repeater))
+> > +		return dev_err_probe(dev, PTR_ERR(phy->repeater),
+> > +				     "failed to get repeater\n");
 > 
-> You need to be careful here. Frame and MTU are different things.
+> That implies repeater is assumed to be there for all designs, how about
+> older devices, they may not have a repeater?
 
-yes, we are aware. The description in of the property in
-Documentation/devicetree/bindings/net/ethernet-controller.yaml is:
+Well, no other (older) platform has eUSB2 support, IIRC.
 
-| Maximum transfer unit (IEEE defined MTU), rather than the
-| maximum frame size (there\'s contradiction in the Devicetree
-| Specification).
+And the eUSB2 can't be used as USB 2.0 without the repeater.
 
-The description for the property in the Devicetree is:
-
-| Specifies maximum packet length in bytes that the physical interface
-| can send and receive.
-
-While the "packet length" in the description is a little confusing this 
-seems to refer to the ethernet frame size.
-
-> The IEEE 802.3 standard says nothing about MTU. I believe MTU is an IP
-> concept. It is the size of the SDU an Ethernet PDU can carry. This is
-> typically 1500.
 > 
-> Historically, the max Ethernet frame size was 1518. But with 802.1Q
-> which added the VLAN header, all modern hardware actual uses 1522 to
-> accommodate the extra 4 bytes VLAN header. So i would not actually put
-> max-frame-size = <1518> anywhere, because it will get copy/pasted and
-> break VLAN setups.
+> > +
+> >  	generic_phy = devm_phy_create(dev, NULL, &qcom_snps_eusb2_hsphy_ops);
+> >  	if (IS_ERR(generic_phy)) {
+> >  		dev_err(dev, "failed to create phy %d\n", ret);
+> > -- 
+> > 2.34.1
 > 
-> It looks like the ibm,emac.txt makes this error, max-frame-size =
-> <5dc>; 0x5dc is 1500. And there are a few powerpc .dtc using
-> 1500/0x5dc, which are probably broken.
-
-I would not say it is an error. The specification/name and use of 
-"max-frame-size" has clearly diverged. All 4 in-tree users of this 
-property interpret it as MTU. With the exception of the 2 nios2 boards 
-Rob found all device trees use either 1500, 3800 or 9000 as 
-'max-frame-size'.
-
-I think Rob's plan to deal with this conflict between specification and 
-actual use is to accept the use and update the description in the 
-specification. This results in a "max-frame-size" property which 
-describes the maximal payload / MTU. The upside of this is that we can 
-leave all devicetrees and drivers unchanged and avoid breaking 
-out-of-tree users.
-
-I'll fix the 2 nios2 boards since those currently end up with a MTU of 
-1518 in altera_tse_main.c.
-
-Janne
+> -- 
+> ~Vinod
