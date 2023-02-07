@@ -2,218 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F3ED68E2F2
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 22:26:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6BAC68E2BC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 22:20:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230039AbjBGV0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 16:26:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36886 "EHLO
+        id S229854AbjBGVT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 16:19:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230231AbjBGVZx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 16:25:53 -0500
-X-Greylist: delayed 470 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 07 Feb 2023 13:25:39 PST
-Received: from smtp.smtpout.orange.fr (smtp-21.smtpout.orange.fr [80.12.242.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D18B83CE3A
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 13:25:39 -0800 (PST)
-Received: from [192.168.1.18] ([86.243.2.178])
-        by smtp.orange.fr with ESMTPA
-        id PVLUp8FlEPPaiPVLUpiiRq; Tue, 07 Feb 2023 22:17:46 +0100
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Tue, 07 Feb 2023 22:17:46 +0100
-X-ME-IP: 86.243.2.178
-Message-ID: <fd3ccda3-f964-6904-6056-f93c43b85a0f@wanadoo.fr>
-Date:   Tue, 7 Feb 2023 22:17:39 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 2/3] ASoC: codecs: Add support for the Infineon PEB2466
- codec
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229590AbjBGVT6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 16:19:58 -0500
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCD0817175;
+        Tue,  7 Feb 2023 13:19:57 -0800 (PST)
+Received: by mail-ot1-f42.google.com with SMTP id 70-20020a9d084c000000b0068bccf754f1so4650008oty.7;
+        Tue, 07 Feb 2023 13:19:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Z47pTYQ+/5OctvC8ddoYwu8QG4IsEwXm/DVEAF/PVtM=;
+        b=SoyK9tJb5xYN3u/LN3HwBLhozTCRChlbn5319JwIwTUi55OTl0NIyBESxnHHWUfzDy
+         QPd1fKY6PqK1wVSSo8pWsrEB/OoZqgEF2fc8iCZJfxDLNaY4BNVJqNvclXO2A2WE9QAI
+         i0ECL8gX11a++cqDEWcegiz0LOESfj6ueWnK/SaUZFSwKWm03KfLmkhQCLrUvmXplKTT
+         VFE3zBb/vTzxzrcHMZEUdlzSGYX1NXRZOksINSN40sjSvdNSO97gxIKLGimEnqcSv/Bt
+         +dJyaLqL8wXg3qvXc+jNCxkmc7arTNR0WPml8/zQbZBuQkmOk/InS4o46dmOYAQgRaDw
+         hFuw==
+X-Gm-Message-State: AO0yUKWr84srnArgXSiDpQb7Z2aZaEEouuElxY8DY8glx5C6v/aNL3He
+        zDpGm+ooMq/PCa4FM4au9in+qENHNw==
+X-Google-Smtp-Source: AK7set/diBRHF4lI5GQLqN0GdFX+iy7l2cjOo76iYc6ZAnC18tkVaZyWtWStK7hjiJcpjbgQkX/zug==
+X-Received: by 2002:a9d:177:0:b0:68d:a785:5f5f with SMTP id 110-20020a9d0177000000b0068da7855f5fmr2872911otu.2.1675804796999;
+        Tue, 07 Feb 2023 13:19:56 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a24-20020a9d4718000000b0068d3f341dd9sm7019996otf.62.2023.02.07.13.19.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Feb 2023 13:19:56 -0800 (PST)
+Received: (nullmailer pid 4171931 invoked by uid 1000);
+        Tue, 07 Feb 2023 21:19:55 -0000
+Date:   Tue, 7 Feb 2023 15:19:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-input@vger.kernel.org, Stephen Kitt <steve@sk2.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230206144904.91078-1-herve.codina@bootlin.com>
- <20230206144904.91078-3-herve.codina@bootlin.com>
-Content-Language: fr
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20230206144904.91078-3-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Jiri Kosina <jikos@kernel.org>
+Subject: Re: [PATCH 5/7] dt-bindings: HID: i2c-hid: goodix: Add
+ mainboard-vddio-supply
+Message-ID: <167580479546.4171868.14123127361187653098.robh@kernel.org>
+References: <20230207024816.525938-1-dianders@chromium.org>
+ <20230206184744.5.Ia77a96c6c5564f9cc25e6220b5a9171d5c2639e8@changeid>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230206184744.5.Ia77a96c6c5564f9cc25e6220b5a9171d5c2639e8@changeid>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 06/02/2023 à 15:49, Herve Codina a écrit :
-> The Infineon PEB2466 codec is a programmable DSP-based four channels
-> codec with filters capabilities.
-> It also provides signals as GPIOs.
+
+On Mon, 06 Feb 2023 18:48:14 -0800, Douglas Anderson wrote:
+> The goodix i2c-hid bindings currently support two models of
+> touchscreen: GT7375P and GT7986U. The datasheets of both touchscreens
+> show the following things:
+> * The mainboard that the touchscreen is connected to is only expected
+>   to supply one voltage to the touchscreen: 3.3V.
+> * The touchscreen, depending on stuffing options, can accept IO to the
+>   touchscreen as either 3.3V or 1.8V. Presumably this means that the
+>   touchscreen has its own way internally to make or deal with 1.8V
+>   signals when it's configured for 1.8V IO.
 > 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> NOTE: you've got to look very carefully at the datasheet for the
+> touchscreen to see that the above bullets are true. Specifically, the
+> datasheet shows a signal called VDDIO and one might think that this is
+> where a mainboard would provide VDDIO to the touchscreen. Upon closer
+> inspection, however, a footnote can be found that says "When VDDIO is
+> left floating, the logic level is 1.8V [...]; when VDDIO is connected
+> to AVDD, the logic level is AVDD.". Thus the VDDIO pin on the
+> touchscreen IC is actually a selector and not a pin whre the mainboard
+> would pass a reference voltage.
+> 
+> The fact that the touchscreen isn't supplied 1.8V by the mainboard
+> means that when I originally submitted bindings for these touchscreens
+> I only listed the 3.3V rail in the bindings. It can be noted that the
+> original bindings and driver were added for sc7180-trogdor boards and
+> these boards all use 3.3V IO via a level shifter on the mainboard.
+> 
+> It turns out that with sc7280-herobrine-evoker, we've got a bit of a
+> strange monkey on our hands. Due to some very interesting but
+> (unfortunately) set-in-stone hardware design, we are doing 1.8V IO to
+> the touchscreen but we _also_ have some extra buffers on the mainboard
+> that need to be powered up to make the IO lines work. After much
+> pondering about this, it seems like the best way to handle this is to
+> add an optional "mainboard-vddio" rail to the bindings that is used to
+> power up the buffers. Specifically, the fact that the touchscreen
+> datasheet documents that its IOs can be at a different voltage level
+> than its main power rail means that there truly are two voltage rails
+> associated with the touchscreen, even if we don't actually provide the
+> IO rail to it. Thus it doesn't feel absurd for the DT node on the host
+> to have a 1.8V rail to power up anything related to its 1.8V logic.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->   sound/soc/codecs/Kconfig   |   12 +
->   sound/soc/codecs/Makefile  |    2 +
->   sound/soc/codecs/peb2466.c | 2071 ++++++++++++++++++++++++++++++++++++
->   3 files changed, 2085 insertions(+)
->   create mode 100644 sound/soc/codecs/peb2466.c
+> 
+>  .../devicetree/bindings/input/goodix,gt7375p.yaml          | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
 
-[...]
-
-> +static int peb2466_spi_probe(struct spi_device *spi)
-> +{
-> +	struct peb2466 *peb2466;
-> +	unsigned long mclk_rate;
-> +	int ret;
-> +	u8 xr5;
-> +
-> +	spi->bits_per_word = 8;
-> +	ret = spi_setup(spi);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	peb2466 = devm_kzalloc(&spi->dev, sizeof(*peb2466), GFP_KERNEL);
-> +	if (!peb2466)
-> +		return -ENOMEM;
-> +
-> +	peb2466->spi = spi;
-> +
-> +	peb2466->regmap = devm_regmap_init(&peb2466->spi->dev, NULL, peb2466,
-> +					   &peb2466_regmap_config);
-> +	if (IS_ERR(peb2466->regmap))
-> +		return PTR_ERR(peb2466->regmap);
-> +
-> +	peb2466->reset_gpio = devm_gpiod_get_optional(&peb2466->spi->dev,
-> +						      "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(peb2466->reset_gpio))
-> +		return PTR_ERR(peb2466->reset_gpio);
-> +
-> +	peb2466->mclk = devm_clk_get(&peb2466->spi->dev, "mclk");
-
-Hi,
-
-Up to you to decide if it is a good idea or not, but using 
-devm_clk_get_enabled() would save the 'mclk' field in peb2466 ...
-
-> +	if (IS_ERR(peb2466->mclk))
-> +		return PTR_ERR(peb2466->mclk);
-> +	ret = clk_prepare_enable(peb2466->mclk);
-> +	if (ret)
-> +		return ret;
-
-... these 3 lines ...
-
-> +
-> +	if (peb2466->reset_gpio) {
-> +		gpiod_set_value_cansleep(peb2466->reset_gpio, 1);
-> +		udelay(4);
-> +		gpiod_set_value_cansleep(peb2466->reset_gpio, 0);
-> +		udelay(4);
-> +	}
-> +
-> +	spi_set_drvdata(spi, peb2466);
-
-... this spi_set_drvdata() call ...
-
-> +
-> +	mclk_rate = clk_get_rate(peb2466->mclk);
-> +	switch (mclk_rate) {
-> +	case 1536000:
-> +		xr5 = PEB2466_XR5_MCLK_1536;
-> +		break;
-> +	case 2048000:
-> +		xr5 = PEB2466_XR5_MCLK_2048;
-> +		break;
-> +	case 4096000:
-> +		xr5 = PEB2466_XR5_MCLK_4096;
-> +		break;
-> +	case 8192000:
-> +		xr5 = PEB2466_XR5_MCLK_8192;
-> +		break;
-> +	default:
-> +		dev_err(&peb2466->spi->dev, "Unsupported clock rate %lu\n",
-> +			mclk_rate);
-> +		ret = -EINVAL;
-> +		goto failed;
-> +	}
-> +	ret = regmap_write(peb2466->regmap, PEB2466_XR5, xr5);
-> +	if (ret) {
-> +		dev_err(&peb2466->spi->dev, "Setting MCLK failed (%d)\n", ret);
-> +		goto failed;
-> +	}
-> +
-> +	ret = devm_snd_soc_register_component(&spi->dev, &peb2466_component_driver,
-> +					      &peb2466_dai_driver, 1);
-> +	if (ret)
-> +		goto failed;
-> +
-> +	if (IS_ENABLED(CONFIG_GPIOLIB)) {
-> +		ret = peb2466_gpio_init(peb2466);
-> +		if (ret)
-> +			goto failed;
-> +	}
-> +
-> +	return 0;
-> +
-> +failed:
-> +	clk_disable_unprepare(peb2466->mclk);
-> +	return ret;
-
-... this error handling path ...
-
-> +}
-> +
-> +static void peb2466_spi_remove(struct spi_device *spi)
-> +{
-> +	struct peb2466 *peb2466 = spi_get_drvdata(spi);
-> +
-> +	clk_disable_unprepare(peb2466->mclk);
-> +}
-
-... and the remove function.
-
-CJ
-
-
-> +
-> +static const struct of_device_id peb2466_of_match[] = {
-> +	{ .compatible = "infineon,peb2466", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, peb2466_of_match);
-> +
-> +static const struct spi_device_id peb2466_id_table[] = {
-> +	{ "peb2466", 0 },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(spi, peb2466_id_table);
-> +
-> +static struct spi_driver peb2466_spi_driver = {
-> +	.driver  = {
-> +		.name   = "peb2466",
-> +		.of_match_table = peb2466_of_match,
-> +	},
-> +	.id_table = peb2466_id_table,
-> +	.probe  = peb2466_spi_probe,
-> +	.remove = peb2466_spi_remove,
-> +};
-> +
-> +module_spi_driver(peb2466_spi_driver);
-> +
-> +MODULE_AUTHOR("Herve Codina <herve.codina@bootlin.com>");
-> +MODULE_DESCRIPTION("PEB2466 ALSA SoC driver");
-> +MODULE_LICENSE("GPL");
+Acked-by: Rob Herring <robh@kernel.org>
 
