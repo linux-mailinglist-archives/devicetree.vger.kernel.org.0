@@ -2,185 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D01868DD31
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:39:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 063AD68DD3F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:46:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232234AbjBGPjI convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Feb 2023 10:39:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45298 "EHLO
+        id S230303AbjBGPqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 10:46:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231181AbjBGPjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:39:07 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3F624228
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 07:39:06 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <jlu@pengutronix.de>)
-        id 1pPQ3h-00075B-5g; Tue, 07 Feb 2023 16:39:01 +0100
-Received: from localhost ([127.0.0.1])
-        by ptx.hi.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <jlu@pengutronix.de>)
-        id 1pPQ3g-0002qc-De; Tue, 07 Feb 2023 16:39:00 +0100
-Message-ID: <bc6d46732b36aad3d9da9fc537c0feeb73adaf0a.camel@pengutronix.de>
-Subject: Re: [PATCH] schemas: Add schema for firmware logs
-From:   Jan =?ISO-8859-1?Q?L=FCbbe?= <jlu@pengutronix.de>
-Reply-To: jlu@pengutronix.de
-To:     Simon Glass <sjg@chromium.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        devicetree@vger.kernel.org,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>
-Date:   Tue, 07 Feb 2023 16:38:59 +0100
-In-Reply-To: <CAPnjgZ3MU+_=BibC_VmC4FRBre4+43psX0DzJmOBA2okqoVD0w@mail.gmail.com>
-References: <20230204001959.935268-1-sjg@chromium.org>
-         <CALeDE9N2KSwA=HMLS9EPFL00UxxUgi=r_M8F7W2tWT6y+dMzeQ@mail.gmail.com>
-         <CAPnjgZ297NH1oiRG9iU8=U0dSAnPLQ4WGYF7=+71aUZCYctWTA@mail.gmail.com>
-         <CAL_Jsq+mUNeEx=jwc4JF7fGCa7zkOTChoVb5CoMfHaqCi+bYpg@mail.gmail.com>
-         <CAPnjgZ3c0Tmtfzgv74vWovme0mVoF3N1hfoCnz61Hyzc-QE8vQ@mail.gmail.com>
-         <CAL_JsqLW3GkXtr0oD28XB3MNK36Vjjzb10MhWFh85-MfN2oc3Q@mail.gmail.com>
-         <24dba2278350ea222251be80f6aade104c2319ce.camel@pengutronix.de>
-         <CAPnjgZ3MU+_=BibC_VmC4FRBre4+43psX0DzJmOBA2okqoVD0w@mail.gmail.com>
-Organization: Pengutronix
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.3-1 
+        with ESMTP id S230194AbjBGPqL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:46:11 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436793B0DE;
+        Tue,  7 Feb 2023 07:46:10 -0800 (PST)
+Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: tanureal)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9D0686602077;
+        Tue,  7 Feb 2023 15:46:08 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1675784768;
+        bh=tt5lrHlIVInMq27wdZG33n5kYVhMCWLk9XkuAdem+b0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=SFSUuLCrMTSOqxVXNcSnMi/bv6tL1Zrzdke2be//6XLQKUihpkqdmp+027ZFDz2sZ
+         AtmS/ua3flrVRaKtuN/U8HPiolzhl8xniuQ2gz4NfEhsikXX3TtgQu+F0pV100wDnI
+         yPHfIWGiFXNMbvx56QMNdSu+WdwPh78FQgEcQ+URT74uc+3ThHudOGt2zH2LIrp6Mb
+         k0Cwglw9oDerHuoldUOsuaFNC5WB7mtTNu8IvcAOlPGAGkSNDKj0D3vm22Xt6UqA0z
+         5vT+MmZ7q98eWQr41f9vBZaxi76qATAKa+MmcJOpMs69TmNJflZ5FvDprkt0Qk0pXa
+         OSX+K1mSR8Ysg==
+Message-ID: <e7257f9a-86c5-74e8-c538-6f6d2ba13274@collabora.com>
+Date:   Tue, 7 Feb 2023 15:46:06 +0000
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: jlu@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/2] Documentation: cs35l41: Shared boost properties
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20230207104021.2842-1-lucas.tanure@collabora.com>
+ <20230207104021.2842-3-lucas.tanure@collabora.com>
+ <44faeca1-94c9-4423-d87a-03d80e286812@linaro.org>
+Content-Language: en-US
+From:   Lucas Tanure <lucas.tanure@collabora.com>
+In-Reply-To: <44faeca1-94c9-4423-d87a-03d80e286812@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2023-02-07 at 06:38 -0700, Simon Glass wrote:
-> Hi Jan,
+On 07-02-2023 10:42, Krzysztof Kozlowski wrote:
+> On 07/02/2023 11:40, Lucas Tanure wrote:
+>> Describe the properties used for shared boost
+>> configuration.
 > 
-> On Tue, 7 Feb 2023 at 04:56, Jan Lübbe <jlu@pengutronix.de> wrote:
-> > 
-> > On Mon, 2023-02-06 at 17:32 -0600, Rob Herring wrote:
-> > > +boot-architecture
-> > > 
-> > > On Mon, Feb 6, 2023 at 3:25 PM Simon Glass <sjg@chromium.org> wrote:
-> > > > 
-> > > > Hi Rob,
-> > > > 
-> > > > On Mon, 6 Feb 2023 at 10:15, Rob Herring <robh@kernel.org> wrote:
-> > > > > 
-> > > > > On Sat, Feb 4, 2023 at 6:04 AM Simon Glass <sjg@chromium.org> wrote:
-> > > > > > 
-> > > > > > Hi Peter,
-> > > > > > 
-> > > > > > On Sat, 4 Feb 2023 at 02:36, Peter Robinson <pbrobinson@gmail.com>
-> > > > > > wrote:
-> > > > > > > 
-> > > > > > > Hi Simon,
-> > > > > > > 
-> > > > > > > Does it make sense to devise something that is compatible with the
-> > > > > > > kernel's pstore [1] mechanism?
-> > > > > > 
-> > > > > > Possibly...can you please be a little more specific?
-> > > > > 
-> > > > > Peter is talking about the same thing I suggested on IRC.
-> > > > > 
-> > > > > pstore == ramoops
-> > > > 
-> > > > Oh, I only looked at the DT binding as I thought that was what you
-> > > > were talking about on irc.
-> > > 
-> > > The binding is called ramoops as it's for the RAM backend for pstore.
-> > > 
-> > > My suggestion was either using/extending ramoops or following its
-> > > design as a reserved memory region. All you would need to extend the
-> > > ramoops binding is a new property to define the size of your data.
-> > > 
-> > > > For pstore, isn't the point that Linux wants to save stuff to allow
-> > > > debugging or collection on reboot? What does that have to do with
-> > > > console logs from firmware? That seems like a different thing. Or are
-> > > > you suggesting that we add a pstore driver into U-Boot? It is quite a
-> > > > lot of code, including compression, etc. It might be easier for Linux
-> > > > to write the data into pstore when it starts up?
-> > > 
-> > > Originally ramoops was just what you described. It has grown to
-> > > multiple backends and types of records (hence the rename to pstore).
-> > > If you just add a new subsection within the pstore region, then I
-> > > think the existing kernel infrastructure will support reading it from
-> > > userspace. Maybe new types have to be explicitly supported, IDK.
-> > > 
-> > > U-boot being able to read pstore wouldn't be a terrible feature to
-> > > have anyways if your boot crashes before anything else is up to get
-> > > the output. Note I'd guess the ram backend doesn't do compression as
-> > > supporting slightly corrupted ram is a feature which wouldn't work.
-> > 
-> > This is basically how it works in Barebox. It can display the pstore
-> > contents
-> > after a kernel crash and also (optionally) log to the pstore/ramooms console
-> > log. Slight RAM corruption can be handled by using error correcting codes.
-> > 
-> > It's not perfect, of course, but still very useful.
+> Use subject prefixes matching the subsystem (which you can get for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching).
+ack
 > 
-> Thanks for the pointer. I had a look at this. How do you deal with
-> updating a filesystem that might be corrupt? Is that even a good idea,
-> if the purpose of it is to collect data from a kernel crash?
-
-This uses only the ramoops "backend" in pstore, so no filesystems are involved.
-If I remember correctly, ramoops in the kernel just discards any data that is
-too corrupted to process. Barebox should behave the same, as the code was ported
-from the kernel.
-
-> We are working on a firmware 'Transfer List' which is a simple data
-> structure to communicate through the different firmware phases. Since
-> U-Boot is the last one, in this case, I suppose it could do the
-> ramoops thing and add files for each of the firmware phases.
-
-For passing logs "forward" to the next step in the boot chain, this should work
-as well and could be more explicit than the ramoops console. One benefit would
-be that keeping the logs from each step separate, right?
-
-ramoops has additional mechanisms to deal with the possible corruption caused by
-the crash or reset cycle, which shouldn't be needed in to "forward" direction.
-
-> What about logging support? It would be nice to have a format that
-> understands logging level, category, filename/function, etc.
-
-ramoops console is just unstructured text, Linux and Barebox just write
-characters to it. More structure might be nice some cases, but the necessary
-coordination between different projects could be a high barrier. ;)
-
-Perhaps a simple list of text blocks would be enough, though.
-
-> > Regards,
-> > Jan
-> > 
-> > > I think any new DT binding is premature and pstore/ramoops was just a
-> > > suggestion to consider. This needs wider consideration of how to
-> > > handle all the various (boot) firmware logs. I've added the
-> > > boot-architecture list for a bit more visibility.
+>>
+>> Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
+>> ---
+>>   .../devicetree/bindings/sound/cirrus,cs35l41.yaml     | 11 ++++++++++-
+>>   1 file changed, 10 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+>> index 18fb471aa891..6f5f01bec6f1 100644
+>> --- a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+>> @@ -85,11 +85,20 @@ properties:
+>>         boost-cap-microfarad.
+>>         External Boost must have GPIO1 as GPIO output. GPIO1 will be set high to
+>>         enable boost voltage.
+>> +      Shared boost allows two amplifiers to share a single boost circuit by
+>> +      communicating on the MDSYNC bus. The passive amplifier does not control
+>> +      the boost and receives data from the active amplifier. GPIO1 should be
+>> +      configured for Sync when shared boost is used. Shared boost is not
+>> +      compatible with External boost. Active amplifier requires
+>> +      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
+>>         0 = Internal Boost
+>>         1 = External Boost
+>> +      2 = Reserved
 > 
-> If this needs a call, I have not seen one for quite a while. It seems
-> to get cancelled at the last minute. I would be happy to attend one to
-> discuss this topic. But if people have ideas here, please weigh in.
+> How binding can be reserved? For what and why? Drop. 2 is shared active,
+> 3 is shared passive.
+2 Is shared boost without VSPK switch, a mode not supported for new 
+system designs. But there is laptops using it, so we need to keep 
+supporting in the driver.
 
-Looking at the proposed schema, I'd prefer to drop the boot-phase and project
-patterns and use the lists as suggestions only. The order of /chosen/logs/log@N
-should be enough to make sense of those.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Also to keep it simple, perhaps support the memory reference only, and drop the
-in-DTB string?
-
-Regards,
-Jan
-
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
