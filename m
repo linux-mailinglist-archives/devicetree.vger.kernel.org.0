@@ -2,345 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02F7768CB6C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 01:48:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2B0D68CB84
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 01:56:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbjBGAsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 19:48:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43182 "EHLO
+        id S230041AbjBGA4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 19:56:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbjBGAsX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 19:48:23 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94AC024CB3;
-        Mon,  6 Feb 2023 16:48:21 -0800 (PST)
-Received: from pendragon.ideasonboard.com (unknown [109.136.43.56])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C5A0C4AF;
-        Tue,  7 Feb 2023 01:48:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1675730897;
-        bh=4Fy0Vdd1c4G22l6Kt8f4vToEKcbb5hnQ1bVP3bDfPKo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Y1tpHjkHaQI0QfiXPVQ6NjFnjao9g9J5UaG7bK5Kqhos9HWtThpeXjwshm36R4auK
-         V8J7GHAE/89IvUg3+9s+7tnQ3nDRBoAtcps8PtJcFs9F97VIs1tePE/t5C1cqaR8UZ
-         44mVN6D7yvaqPJ+BVRIwg7svXfcEFrzjXws6a5kU=
-Date:   Tue, 7 Feb 2023 02:48:16 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] media: i2c: imx290: Add support for the mono sensor
- variant.
-Message-ID: <Y+Gf0OOl/Dc5pyTd@pendragon.ideasonboard.com>
-References: <20230131190700.3476796-1-dave.stevenson@raspberrypi.com>
- <20230131190700.3476796-3-dave.stevenson@raspberrypi.com>
- <5647238.DvuYhMxLoT@steina-w>
- <Y9sAhVSanMmHGHmX@pendragon.ideasonboard.com>
- <CAPY8ntDYum7b5KYMry3oR6N8sdiwU=FOsyL3NVeFMQObET=SyQ@mail.gmail.com>
+        with ESMTP id S229830AbjBGA4k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 19:56:40 -0500
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2125.outbound.protection.outlook.com [40.107.117.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0A4724CB3
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 16:56:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bmNeVOL08zg0EMs8qp7XVmjS+DYgTEA9oFh4/0cVpLnun67w+7WJOS4GqT5bzGRE4Zt7iS7VeIGCblfbKx2Thn6OnF83xm18UdV8IduSWoVepLin7j0cNwwKcYB7ev56C6u3/vpHAMkA+/u/Cs5sWysWuenMPrwpnFoLb7VywUX+EMEMnttjOdk5A0/FbAU0e3CyLlEe/9QbQqm83z9BjkxuRu7gUpky0Y4p7uVNQgX577+wyk95mqJn21HdfaezhAtIqV7coqaoE5oWezIE0zysjDxnzwpcgaoKbvQxIM0RgCkhp7RO/n0G14Mtzh+CYLlCBNB0mdi/ZISX/F0EKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Xm8t1yhM0HXHB4vIJWK7dYRKw8qTfsb9smkoKI+PZhg=;
+ b=MZH2aJRS2RAAIqI284BRb4zj3aXrtE8JXhdYI0noJVsNw5Szzjg6D15jPik3fOAEhl5xegDjIwdwo0Y4p8yaCfDY4ueLcBRlbTCT0QC2Iw0dpWFbTtx4JalLdhDj1bXeJAa60UmkUJt3InIbMSfJo1glYq2W1ub/QngJiQKZTLIa0Ewyii56ScydDnb44ZEgjIVEL20XCNVbKUDY8FhtaGL+6QajoyedUEogZtulWQLWnNd7On66Z63JN3DJkeT16ixmIoDPmGcGgTbUFGfh+i13fyhG5OomYudlqpJRD1RaZtJSocmvFftBIBf7YZoGGGo92SVdiggu+1An6v1zpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xm8t1yhM0HXHB4vIJWK7dYRKw8qTfsb9smkoKI+PZhg=;
+ b=Th9sNjnuHm11mR9Y5Va1Aw41Qx8AvjvrkGsqLA4B4PiajXblOPBfPLF5d1YDqJZtn8cQjEXGHmwIT9IpE8A/HpkBaU71KaPlXdm7LkamVflOnZ+CW4R/vGokF0PplsSZdCALRvnHlAIl3pGtTnxRfoC5KPZl/J+tYWwdkjReCc4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
+ by OSZPR01MB8545.jpnprd01.prod.outlook.com (2603:1096:604:18a::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.35; Tue, 7 Feb
+ 2023 00:56:34 +0000
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::4b75:8d8e:d89a:7860]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::4b75:8d8e:d89a:7860%9]) with mapi id 15.20.6064.035; Tue, 7 Feb 2023
+ 00:56:34 +0000
+Message-ID: <87sffiuwce.wl-kuninori.morimoto.gx@renesas.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: renesas: adjust to R-Car Gen4
+In-Reply-To: <CAMuHMdVFy62v8WC3H6f5NggTdJsk=2FmJqUR8L3XkT3jcKUj5A@mail.gmail.com>
+References: <87zg9vk0ex.wl-kuninori.morimoto.gx@renesas.com>
+        <46974ae7-5f7f-8fc1-4ea8-fe77b58f5bfb@linaro.org>
+        <87k00vqzw2.wl-kuninori.morimoto.gx@renesas.com>
+        <CAMuHMdVFy62v8WC3H6f5NggTdJsk=2FmJqUR8L3XkT3jcKUj5A@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date:   Tue, 7 Feb 2023 00:56:34 +0000
+X-ClientProxiedBy: TYCP286CA0105.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:2b4::15) To OS3PR01MB8426.jpnprd01.prod.outlook.com
+ (2603:1096:604:194::10)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAPY8ntDYum7b5KYMry3oR6N8sdiwU=FOsyL3NVeFMQObET=SyQ@mail.gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|OSZPR01MB8545:EE_
+X-MS-Office365-Filtering-Correlation-Id: adbeb913-6577-4dc3-fdef-08db08a628a8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: virkCjSd8MtOfB/AYr6jneAFicCD8stPjq8hVnS0Yl2r1pACdOLIVw/onjxJjECHYqbUDGsBsle36KHYDJL/LB2190TQ73YgIfyqHVDhYhS/sZ3SOgiJZbV3IIEFnLVx9nUEzgpyoyx1arKkd3hKzNtNCbBTlPWqnhy2LjlR66Vul6cAV2vVNt3nnQBbMRD5WRfdYhe74uKMenhAmF90QNj+bGh+nIWuCS+MOq5sVGz/IZdfVU7ImM0UUJEMKzOcR2GZ/N7pNi7kuF2jRUVnHbuInE/AIyfEW8bHWel5feXWW4Nrw0pXSbs9L/Qxx12MZhlOdxdu+Df8C9X9PNjd/ptX8V3uFuOJuwlCO5eU9ynmT2nSfYelXBne4unKdjaYtDSdwnXr3KbB8Gse1DJHzvUwGHct5Aq8om9te2Eltelk9W8hKCkaHwa4EbxLqeFM02uhJxzqBSZH1gXunp//uso7NY5aSIKWpt1jwjoGyBcNbEiMT51HgbBpJL8H11HBv2Nr3ifxHHTKIcrxrmJRKvkK+zZwOWya93PwgDlTnaqaooSRMXV3wVncJn+o5SZr7RcaTUUVu+ZKALyanMJONAqKLBBeEEb7qD087W2eeGKVaUSl5vDhWYRTIVSqpqhxiuu0dGaTsqZoixlQu7vmWb6WyT65pqvFwwc6Fe8RSlFaJBRvQOR5w6pDluq7LiOnM5zFbCMGxm9lQYNGld/EDg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(376002)(346002)(366004)(39860400002)(396003)(451199018)(36756003)(186003)(26005)(2616005)(6512007)(83380400001)(52116002)(6486002)(6506007)(478600001)(38100700002)(38350700002)(5660300002)(86362001)(41300700001)(8936002)(2906002)(316002)(66946007)(4326008)(66476007)(66556008)(8676002)(6916009)(54906003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PxObUYvMRx/dwfpfnEqk4BAtAk3g0sBMQJlIKhnxR+cXSKl9L87/F/wLNBLC?=
+ =?us-ascii?Q?rUKsDh2we29qcBYlPf7opCORoUrbavJcA56lDYUJ0sjp14DpV5Cud4eM8zys?=
+ =?us-ascii?Q?eJbOJ7wq/ZVJFVr9rznHJMRgZ+Xv/N6CNGLLMiVXB7GyxfTme07IR2NPd+8N?=
+ =?us-ascii?Q?uvjH9Vy/ZHI3E0wIsQVNpq7g8ShNfT/qyNMuOdVXvkoTCR5TCAlxacdfWLM2?=
+ =?us-ascii?Q?Md1PoaXJX6C8YYJXk1jR0W2bGGVJdZQZHB2h8r9vu+bg7xkA3pe/KhT7JuZQ?=
+ =?us-ascii?Q?agU40NbxHPPrfCJcsPvDtvzyWFBLBmsPkoEhNF2tc0sajO2IYXSKGxwvJz92?=
+ =?us-ascii?Q?q/5feNlHS+13ftPdVqAoS3U3dePlcX2GiYNI4B0MrifqBTzTKpls9W2wsZe8?=
+ =?us-ascii?Q?Ib228bFBzkidIUSvkCQ/yervRBDjCpY1RhlFVyjYl2Uuzf9CCga53tSrR0JY?=
+ =?us-ascii?Q?QCkGnMnrI4PfNtRSj4vry3BNGAHvd5H+RkliCnHW4rMpksIJN1OGflyHSPlo?=
+ =?us-ascii?Q?v/sUJYHvnUpVTOtQp7TxtjJZHDZk7ryw5vgzuUy0AwwGYRcSC48lyxUDJX2y?=
+ =?us-ascii?Q?MyBF2s/Hj4i3hHBhRo3BeWvVk+BZwdR3RXWk279yM4RoWpI17rCiAFPu7kNK?=
+ =?us-ascii?Q?vzradKnlTZ5Tv5o7cADsgPK2EdOBn0bQHTvNpk2vm7ZV+HuhhcYsE0bnkJRc?=
+ =?us-ascii?Q?4+t0kiVEW/h8I9DPCNwJOMN6cbmvuDbq9Tu6jJ0AUz8Zyxggjrm2LOhsXlpT?=
+ =?us-ascii?Q?tjejk7k1k0x5gtaowLINcLDie+ImZ80BT1dcPBoruDtvFJEo24McBYsbNEYA?=
+ =?us-ascii?Q?IZv7oUCGqH6fMqshD2Z7S2lgdEgVPErFy20C8uHHvcgcGYTktGMmHqyjLUgv?=
+ =?us-ascii?Q?l7J6h/BuCyJuYHELoRhFFa6gDFhR/Ig3DqZoBk68GWQK7Gd1xJmvXlGt9+4c?=
+ =?us-ascii?Q?sPt1mx1lALIjYLu75T4jKRzBrcpXv6o79Yr7TlrZMief7HZxa5kxFyfaIWvF?=
+ =?us-ascii?Q?pBjJzcx6/ockNo7D2miivfsEOdZ/uI9ZfxtUCeuiAoA732gfbNfEMO7Mf/vT?=
+ =?us-ascii?Q?TUKbrMviXWmbdpykFZwRzxMzN0L/ZcPlUSploEq5FBEoKHufeDuS4xObOrr0?=
+ =?us-ascii?Q?2LcVzwPCRlBG1zvUQRkDOTmKlZxgAzoIQJ61wuXoIb6ituJMDi0ApDcA31iW?=
+ =?us-ascii?Q?k+G5VEHwSzeQ6YeLvFrjo+X7sjQW4KUfLSxHUKo1VaRZ99VvzJvy3Im2Fts5?=
+ =?us-ascii?Q?iJkKMMKayJDBR70SdDlPIj99nEmlYbX6YjI59LuvTbHMm7ECBWIEWZ7UwRJA?=
+ =?us-ascii?Q?zKNYTfHY++1/YT2ku5Lfsoxw0Vfi2NZHuYM8UsQ8G/BwqL7shUMW7vzsa0a1?=
+ =?us-ascii?Q?qEGLEUFl5hJu973YtoFkD/Vu6v6pf48DASFRN1+RDQYgAWnyBSx4wrhOAw17?=
+ =?us-ascii?Q?hS6cR8TsXM1HnmkLqkcevi52k2o1d0YR76owr37lVI/6bDMRzW8nnOWcNIW4?=
+ =?us-ascii?Q?JIA52Da3Mlr5xrxIL/0ftnL/reK7zvRX1uC5NWJBO4cm9I4irxvF85qg3/Zg?=
+ =?us-ascii?Q?NMj4/YgPlebWpHExY9RwitWlR2r4yYot2MtKN5DDouln88he7CC3ml6UXcjY?=
+ =?us-ascii?Q?hlcrJ4SY9fPdYEoHu7q+xko=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: adbeb913-6577-4dc3-fdef-08db08a628a8
+X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2023 00:56:34.4376
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ogpjIOc5RzxjXNouY8TWNb0NB0G8KUbJnoIEDVnpQ//xUvWt2/WEVqt0i6zvR0VG6faA882kMJpeaIE+lmF5xXkXl4KLcDzWmr6BCoDSDLZ8FdhbysXXiY3eBtqJGBZK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB8545
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dave,
 
-On Thu, Feb 02, 2023 at 11:20:14AM +0000, Dave Stevenson wrote:
-> On Thu, 2 Feb 2023 at 00:15, Laurent Pinchart wrote:
-> > On Wed, Feb 01, 2023 at 08:03:36AM +0100, Alexander Stein wrote:
-> > > Am Dienstag, 31. Januar 2023, 20:07:00 CET schrieb Dave Stevenson:
-> > > > The IMX290 module is available as either mono or colour (Bayer).
-> > > >
-> > > > Update the driver so that it can advertise the correct mono
-> > > > formats instead of the colour ones.
-> > > >
-> > > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > > > ---
-> > > >  drivers/media/i2c/imx290.c | 47 ++++++++++++++++++++++++--------------
-> > > >  1 file changed, 30 insertions(+), 17 deletions(-)
-> > > >
-> > > > diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-> > > > index 49d6c8bdec41..a370f1102334 100644
-> > > > --- a/drivers/media/i2c/imx290.c
-> > > > +++ b/drivers/media/i2c/imx290.c
-> > > > @@ -13,6 +13,7 @@
-> > > >  #include <linux/gpio/consumer.h>
-> > > >  #include <linux/i2c.h>
-> > > >  #include <linux/module.h>
-> > > > +#include <linux/of_device.h>
-> > > >  #include <linux/pm_runtime.h>
-> > > >  #include <linux/regmap.h>
-> > > >  #include <linux/regulator/consumer.h>
-> > > > @@ -177,6 +178,7 @@ struct imx290 {
-> > > >     struct clk *xclk;
-> > > >     struct regmap *regmap;
-> > > >     u8 nlanes;
-> > > > +   u8 mono;
-> > > >
-> > > >     struct v4l2_subdev sd;
-> > > >     struct media_pad pad;
-> > > > @@ -414,7 +416,8 @@ static inline int imx290_modes_num(const struct imx290 *imx290) }
-> > > >
-> > > >  struct imx290_format_info {
-> > > > -   u32 code;
-> > > > +   /* Array of codes. [0] is for colour, [1] is for mono. */
-> > > > +   u32 code[2];
-> > >
-> > > Please use a define for that.
-> > >
-> > > >     u8 bpp;
-> > > >     const struct imx290_regval *regs;
-> > > >     unsigned int num_regs;
-> > > > @@ -422,26 +425,27 @@ struct imx290_format_info {
-> > > >
-> > > >  static const struct imx290_format_info imx290_formats[] = {
-> > > >     {
-> > > > -           .code = MEDIA_BUS_FMT_SRGGB10_1X10,
-> > > > +           .code = { MEDIA_BUS_FMT_SRGGB10_1X10, MEDIA_BUS_FMT_Y10_1X10 },
-> > > >             .bpp = 10,
-> > > >             .regs = imx290_10bit_settings,
-> > > >             .num_regs = ARRAY_SIZE(imx290_10bit_settings),
-> > > >     }, {
-> > > > -           .code = MEDIA_BUS_FMT_SRGGB12_1X12,
-> > > > +           .code = { MEDIA_BUS_FMT_SRGGB12_1X12, MEDIA_BUS_FMT_Y12_1X12 },
-> > > >             .bpp = 12,
-> > > >             .regs = imx290_12bit_settings,
-> > > >             .num_regs = ARRAY_SIZE(imx290_12bit_settings),
-> > > >     }
-> > > >  };
-> > > >
-> > > > -static const struct imx290_format_info *imx290_format_info(u32 code)
-> > > > +static const struct imx290_format_info *
-> > > > +imx290_format_info(const struct imx290 *imx290, u32 code)
-> > > >  {
-> > > >     unsigned int i;
-> > > >
-> > > >     for (i = 0; i < ARRAY_SIZE(imx290_formats); ++i) {
-> > > >             const struct imx290_format_info *info = &imx290_formats[i];
-> > > >
-> > > > -           if (info->code == code)
-> > > > +           if (info->code[imx290->mono] == code)
-> > > >                     return info;
-> > > >     }
-> > > >
-> > > > @@ -536,7 +540,7 @@ static int imx290_set_black_level(struct imx290 *imx290,
-> > > > const struct v4l2_mbus_framefmt *format,
-> > > >                               unsigned int black_level, int *err)
-> > > >  {
-> > > > -   unsigned int bpp = imx290_format_info(format->code)->bpp;
-> > > > +   unsigned int bpp = imx290_format_info(imx290, format->code)->bpp;
-> > > >
-> > > >     return imx290_write(imx290, IMX290_BLKLEVEL,
-> > > >                         black_level >> (16 - bpp), err);
-> > > > @@ -548,7 +552,7 @@ static int imx290_setup_format(struct imx290 *imx290,
-> > > >     const struct imx290_format_info *info;
-> > > >     int ret;
-> > > >
-> > > > -   info = imx290_format_info(format->code);
-> > > > +   info = imx290_format_info(imx290, format->code);
-> > > >
-> > > >     ret = imx290_set_register_array(imx290, info->regs, info->num_regs);
-> > > >     if (ret < 0) {
-> > > > @@ -844,10 +848,12 @@ static int imx290_enum_mbus_code(struct v4l2_subdev
-> > > > *sd, struct v4l2_subdev_state *sd_state,
-> > > >                              struct v4l2_subdev_mbus_code_enum *code)
-> > > >  {
-> > > > +   const struct imx290 *imx290 = to_imx290(sd);
-> > > > +
-> > > >     if (code->index >= ARRAY_SIZE(imx290_formats))
-> > > >             return -EINVAL;
-> > > >
-> > > > -   code->code = imx290_formats[code->index].code;
-> > > > +   code->code = imx290_formats[code->index].code[imx290->mono];
-> > > >
-> > > >     return 0;
-> > > >  }
-> > > > @@ -859,7 +865,7 @@ static int imx290_enum_frame_size(struct v4l2_subdev
-> > > > *sd, const struct imx290 *imx290 = to_imx290(sd);
-> > > >     const struct imx290_mode *imx290_modes = imx290_modes_ptr(imx290);
-> > > >
-> > > > -   if (!imx290_format_info(fse->code))
-> > > > +   if (!imx290_format_info(imx290, fse->code))
-> > > >             return -EINVAL;
-> > > >
-> > > >     if (fse->index >= imx290_modes_num(imx290))
-> > > > @@ -888,8 +894,8 @@ static int imx290_set_fmt(struct v4l2_subdev *sd,
-> > > >     fmt->format.width = mode->width;
-> > > >     fmt->format.height = mode->height;
-> > > >
-> > > > -   if (!imx290_format_info(fmt->format.code))
-> > > > -           fmt->format.code = imx290_formats[0].code;
-> > > > +   if (!imx290_format_info(imx290, fmt->format.code))
-> > > > +           fmt->format.code = imx290_formats[0].code[imx290->mono];
-> > > >
-> > > >     fmt->format.field = V4L2_FIELD_NONE;
-> > > >
-> > > > @@ -1177,16 +1183,29 @@ static s64 imx290_check_link_freqs(const struct
-> > > > imx290 *imx290, return 0;
-> > > >  }
-> > > >
-> > > > +static const struct of_device_id imx290_of_match[] = {
-> > > > +   { .compatible = "sony,imx290" },
-> > > > +   { .compatible = "sony,imx290-mono", .data = (void *)1 },
-> > >
-> > > Would you mind using a model specific struct? I have a patch on my stack
-> > > adding support for imx327. There are some imx327 specific writes to registers
-> > > during initialization. I do not mind adding this struct later though.
-> >
-> > If not a structure already, at least an enum
-> >
-> > enum imx290_model {
-> >         IMX290_MODEL_COLOUR,
-> >         IMX290_MODEL_MONO,
-> > };
-> >
-> > > > +   { /* sentinel */ }
-> > > > +};
-> > > > +MODULE_DEVICE_TABLE(of, imx290_of_match);
-> > > > +
-> > > >  static int imx290_parse_dt(struct imx290 *imx290)
-> > > >  {
-> > > > +   struct i2c_client *client = to_i2c_client(imx290->dev);
-> > > >     /* Only CSI2 is supported for now: */
-> > > >     struct v4l2_fwnode_endpoint ep = {
-> > > >             .bus_type = V4L2_MBUS_CSI2_DPHY
-> > > >     };
-> > > > +   const struct of_device_id *match;
-> > > >     struct fwnode_handle *endpoint;
-> > > >     int ret;
-> > > >     s64 fq;
-> > > >
-> > > > +   match = i2c_of_match_device(imx290_of_match, client);
-> > > > +   if (match)
-> > > > +           imx290->mono = match->data ? 1 : 0;
-> > > > +
-> >
-> > You can simplify this to
-> >
-> >         imx290->mono = (enum imx290_model)of_device_get_match_data(imx290->dev);
-> >
-> > which may then be best placed in the probe function.
-> >
-> > I'd be tempted to rename the imx290 mono field to model as the above
-> > looks weird, but if Alexander needs a structure anyway, we may also just
-> > do it right away:
-> >
-> > enum imx290_model {
-> >         IMX290_MODEL_COLOUR,
-> >         IMX290_MODEL_MONO,
-> > };
-> >
-> > struct imx290_model_info {
-> >         bool mono;
-> > };
+Hi Geert
+
+Thank you for your help
+
+> > --- sample -----------
+> >   rcar_sound,ssi:
+> >     ...
+> >     patternProperties:
+> >       "^ssi-[0-9]$":
+> >         ...
+> >         allOf:
+> >           - if:
+> >               properties:
+> >                 compatible:
+> >                   contains:
+> > =>                  const: renesas,rcar_sound-gen4
+> >             then:
+> >               required:
+> > =>              - foo
+> > =>              - bar
 > 
-> To my mind this gets confusing as to whether imx290_model is the
-> mono/colour switch reference for finding a code in imx290_formats, or
-> differentiating between imx290llr (mono), imx290lqr (colour),
-> imx327xyz, etc as different models of the sensor. (Having the IMX290
-> prefix because it is in the imx290 driver will get even more confusing
-> when you get IMX290_MODEL_IMX327_COLOUR).
+> As it is under patternProperties, the "if: properties" applies to the
+> properties under the ssi node, where you do not have any compatible
+> value (and definitely not the "renesas,rcar_sound-gen4" value, which
+> belongs to the _parent_ of the ssi node).
+
+Hmm...
+I want to do on above sample case is "required foo/bar when only gen4",
+but my concern is it *always* requests "foo/bar" even though it is *not* gen4.
+May be it is opposite?
+
+> So I think the only solution is to move the "if" up, and thus duplicate
+> the ssi node description:
 > 
-> Alexander was asking for a define to set the size of code in struct
-> imx290_format_info. As you also point out above, switching to using an
-> enum makes more sense, and then you can add a _MAX to get the array
-> size.
-> 
-> enum imx290_colour_variant {
->         IMX290_VARIANT_COLOUR,
->         IMX290_VARIANT_MONO,
->         IMX290_VARIANT_MAX
-> };
-> 
-> enum imx290_model {
->         IMX290_MODEL_IMX290LLR,
->         IMX290_MODEL_IMX290LQR,
-> /*
->         IMX290_MODEL_IMX327LQR,
->         IMX290_MODEL_IMX462LQR,
->         IMX290_MODEL_IMX462LLR,
->         etc,
-> */
-> };
-> 
-> static const struct imx290_model_info imx290_models[] = {
->         [IMX290_MODEL_IMX290LQR]= {
->                 .colour_variant = IMX290_VARIANT_COLOUR,
->         },
->         [IMX290_MODEL_IMX290LLR] = {
->                 .colour_variant = IMX290_VARIANT_MONO,
->         },
-> };
-> 
-> Thoughts?
+>     if:
+>         properties:
+>             compatible:
+>                 contains:
+>                     const: renesas,rcar_sound-gen4
+>     then:
+>         patternProperties:
+>             "^ssi-[0-9]$":
+>                 ...
+>     else:
+>         patternProperties:
+>             "^ssi-[0-9]$":
+>                 ...
 
-I like the above :-)
+Hmm... I have tried this but it was same result...
+I'm not sure why it doesn't match as I expected...
 
-> Otherwise I will drop back to the simplest option - I'm afraid I
-> haven't got masses of time to be messing about revising patches at
-> present.
+I will try to post my current patch as RFC.
+I'm happy if someone try it, and confirm my issue.
 
-No worries. I can also improve things on top if needed.
 
-> > static const struct imx290_model_info imx290_models[] = {
-> >         [IMX290_MODEL_COLOUR] = {
-> >                 .mono = false,
-> >         },
-> >         [IMX290_MODEL_MONO] = {
-> >                 .mono = true,
-> >         },
-> > };
-> >
-> > static const struct of_device_id imx290_of_match[] = {
-> >         {
-> >                 .compatible = "sony,imx290",
-> >                 .data = &imx290_models[IMX290_MODEL_COLOUR],
-> >         },
-> >         {
-> >                 .compatible = "sony,imx290-mono",
-> >                 .data = &imx290_models[IMX290_MODEL_MONO],
-> >         },
-> >         { /* sentinel */ },
-> > };
-> >
-> > ...
-> >
-> >         imx290->model = of_device_get_match_data(imx290->dev);
-> >
-> > and use imx290->model->mono instead of imx290->mono through the code.
-> >
-> > I'm OK if you don't want this additional complexity yet, but the code is
-> > here already and will be needed soon :-)
-> >
-> > > >     endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(imx290->dev), NULL);
-> > > >     if (!endpoint) {
-> > > >             dev_err(imx290->dev, "Endpoint node not found\n");
-> > > > @@ -1351,12 +1370,6 @@ static void imx290_remove(struct i2c_client *client)
-> > > >     pm_runtime_set_suspended(imx290->dev);
-> > > >  }
-> > > >
-> > > > -static const struct of_device_id imx290_of_match[] = {
-> > > > -   { .compatible = "sony,imx290" },
-> > > > -   { /* sentinel */ }
-> > > > -};
-> > > > -MODULE_DEVICE_TABLE(of, imx290_of_match);
-> > > > -
-> > > >  static struct i2c_driver imx290_i2c_driver = {
-> > > >     .probe_new  = imx290_probe,
-> > > >     .remove = imx290_remove,
+Thank you for your help !!
 
--- 
-Regards,
-
-Laurent Pinchart
+Best regards
+---
+Kuninori Morimoto
