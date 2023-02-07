@@ -2,82 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D527168D499
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:41:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55B9068D4A4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:43:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231735AbjBGKlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 05:41:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42038 "EHLO
+        id S231572AbjBGKm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 05:42:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231289AbjBGKle (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:41:34 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A52359D3
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 02:40:56 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so12840309wma.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 02:40:56 -0800 (PST)
+        with ESMTP id S231358AbjBGKmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:42:53 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD822C153
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 02:42:22 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id k13so5683026wrh.8
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 02:42:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=F/upuEtRcIb7t8jvkFIGw73o4E9xTmHLpfwjgu7vvog=;
-        b=xw6a313nqg5Vp68/k8JMPw+tYjF7bi9pacjL76AWkrjYhX+Rler2qrkyV0uEt8nzvn
-         K/WGubh5JJ53381qBwcTKN7uXou4K3un/bPCLYKK8P+TO6iVo0K/rR9+SJuKnfuCmKqt
-         vfkrj+yWRJfF+ZOOw6atQ6BotdDd4OKunjxwBn7C493WRS5ygMhiuVnXefqNZt7RAoDJ
-         ktvypPe3pyI2w5ftH/dZRkcoOMbjqGbBCq0VDQ4T6Rg3pq7QXPYkKFMg8Wkn2MLA2Clv
-         EdSrOLL9IqsdqlzK4juFevOmk974/ZlVwfET6wdR5vF9imwKGzSIMd7Iz0tb4S9kDj/4
-         fpGw==
+        bh=AjQX5toyVmZyFFEDPSoSrTaqoGSIHeRpLwxYhtU6050=;
+        b=UHX61DtMSMsDlTukE3lUUsvg7WmUUbdO41vBdM7YAVGyZyrIhDBvj3ZRGpgDwnN7CR
+         ZAQc19T3RgcgNoKKVQDtKdtQ2wc4VM0SWJzjgTfFMq9T10FhyOcG09vbME5Xd/rgHDHD
+         3HvNY+WFXm1YcmXykLH8Ztod4TkZYUcSuMW7sNoP9Sh591xJpRmFYJsPQr/1ciYdW8NI
+         YDebVX59G7VmmV6PK9n/Wq1WBTxLY2VGqZbvMFjPIP+zpWto4bGIWgtytwyxwryHjT1R
+         Pqwi6c1G7+HALb70TkQ2EaLZfd+VFoXehvx0ObbA0+iLcET6WR78ylGkf9m/8gg6PNFU
+         ynJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F/upuEtRcIb7t8jvkFIGw73o4E9xTmHLpfwjgu7vvog=;
-        b=DMicWMA+mw0GrbP3AeuJU8M4z6AptwFiCs0i8m2tlEdZtUFm5RTDnTxc62z0DMDhF+
-         c1BIzdnyutlDUxipo/9lapVcgtD+Nu+TbZR8M2Zre3SKqWvO5GosNvSiyZc8xtBy682K
-         HZzjEZcNvheO7ByDwfLPPA024P4p6sBRB+R9qZ/KicO3ZGDWL52XRwn4S4ahLdCdhuhN
-         M12epQZ4c3k/fu0FjyLORKrVLNp589/aQsFL2pdocsmLHIoRP3qfqEpAEsL92GzmcPAY
-         83rxZfUXrrXC/TCZqISVUOOy5j7DbdthTvTjOIY4VBD3AQvJ7gkUojaVcilrH0hf6o0b
-         B+bw==
-X-Gm-Message-State: AO0yUKUo4k6yX2y4QawoAq0CXocFd1TnQvrhiWP3uWhoJie09PdFIsX+
-        VUixqV+A6sgQBBPlM7PE0H6lgQ==
-X-Google-Smtp-Source: AK7set++tMAbtKYfer3K/a6e0NKT20sj2Nwd4RyicjOcCLQfigzIPlZVwOvPItlJKobUBErghQxVbA==
-X-Received: by 2002:a05:600c:4a9a:b0:3dc:46f6:e607 with SMTP id b26-20020a05600c4a9a00b003dc46f6e607mr2689936wmp.3.1675766453918;
-        Tue, 07 Feb 2023 02:40:53 -0800 (PST)
+        bh=AjQX5toyVmZyFFEDPSoSrTaqoGSIHeRpLwxYhtU6050=;
+        b=Alr4xuFSuZhf49Eq94SYqyZMKEOtlhVEilG535PGXNCJY81SgtBNXSw0kAgHyaZOV8
+         LBBKGWcav0OXvV2qti2tEHQ0zzCTG91y/TxcTNv+POJ89/aBskvjfY1qCpsAs6doYabr
+         moMubbVNpDGZWHfPbnFW+4UReenj1fVsStjqgHhmMoJHCckxUF8wLZS/ZwVsAJbP1YoH
+         0lcfH7M5Og+/Gzbp1hwgJYHR8NWxdSC3TYYNzsj23z2OXj3ddd9bLHNIaSk7BluyrXjR
+         c3gsL7VoQicIw2WR9dDCfqxQ0pEFr9jRhtlPL9zJTZag164oOnCM38VxI21GqJUY+hDd
+         AUaQ==
+X-Gm-Message-State: AO0yUKXxOxR56J/IrsbxFNN9CVdMuZTX311K8VGlI4HTRhB51EvDX53+
+        wkODzw14fpJBPBud1WraeQkFcA==
+X-Google-Smtp-Source: AK7set8cj+1hsFTMCBGD6WhztYFclKHDVzs8N4JlHw+lhZTiXnlFlFe+TW8Mnp0zjORJwHU2fazPkQ==
+X-Received: by 2002:a05:6000:985:b0:2c3:be89:7c38 with SMTP id by5-20020a056000098500b002c3be897c38mr11888335wrb.27.1675766541488;
+        Tue, 07 Feb 2023 02:42:21 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t6-20020a05600c198600b003dc492e4430sm14092696wmq.28.2023.02.07.02.40.52
+        by smtp.gmail.com with ESMTPSA id o13-20020a5d408d000000b002c3f42f3687sm1307866wrp.72.2023.02.07.02.42.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 02:40:53 -0800 (PST)
-Message-ID: <fe3673d9-b921-c445-0f5f-a6bc824e8582@linaro.org>
-Date:   Tue, 7 Feb 2023 11:40:51 +0100
+        Tue, 07 Feb 2023 02:42:21 -0800 (PST)
+Message-ID: <44faeca1-94c9-4423-d87a-03d80e286812@linaro.org>
+Date:   Tue, 7 Feb 2023 11:42:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH] dt-bindings: mt76: add active-low property to led
+Subject: Re: [PATCH 2/2] Documentation: cs35l41: Shared boost properties
 Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Felix Fietkau <nbd@nbd.name>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Shayne Chen <shayne.chen@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Kalle Valo <kvalo@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Lucas Tanure <lucas.tanure@collabora.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230207102501.11418-1-linux@fw-web.de>
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20230207104021.2842-1-lucas.tanure@collabora.com>
+ <20230207104021.2842-3-lucas.tanure@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230207102501.11418-1-linux@fw-web.de>
+In-Reply-To: <20230207104021.2842-3-lucas.tanure@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,30 +82,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 11:25, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> LEDs can be in low-active mode, so add dt property for it.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
->  .../devicetree/bindings/net/wireless/mediatek,mt76.yaml      | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-> index f0c78f994491..212508672979 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-> @@ -112,6 +112,11 @@ properties:
->      $ref: /schemas/leds/common.yaml#
->      additionalProperties: false
->      properties:
-> +      led-active-low:
-> +        description:
-> +          LED is enabled with ground signal.
+On 07/02/2023 11:40, Lucas Tanure wrote:
+> Describe the properties used for shared boost
+> configuration.
 
-What does it mean? You set voltage of regulator to 0? Or you set GPIO as
-0? If the latter, it's not the property of LED...
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
+
+> 
+> Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
+> ---
+>  .../devicetree/bindings/sound/cirrus,cs35l41.yaml     | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+> index 18fb471aa891..6f5f01bec6f1 100644
+> --- a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+> +++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+> @@ -85,11 +85,20 @@ properties:
+>        boost-cap-microfarad.
+>        External Boost must have GPIO1 as GPIO output. GPIO1 will be set high to
+>        enable boost voltage.
+> +      Shared boost allows two amplifiers to share a single boost circuit by
+> +      communicating on the MDSYNC bus. The passive amplifier does not control
+> +      the boost and receives data from the active amplifier. GPIO1 should be
+> +      configured for Sync when shared boost is used. Shared boost is not
+> +      compatible with External boost. Active amplifier requires
+> +      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
+>        0 = Internal Boost
+>        1 = External Boost
+> +      2 = Reserved
+
+How binding can be reserved? For what and why? Drop. 2 is shared active,
+3 is shared passive.
 
 Best regards,
 Krzysztof
