@@ -2,76 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A3AA68DC8C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:08:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D838468DCA6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:13:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232656AbjBGPIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 10:08:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50486 "EHLO
+        id S230249AbjBGPNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 10:13:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232582AbjBGPI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:08:28 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 056D327D43
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 07:08:24 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id hn2-20020a05600ca38200b003dc5cb96d46so13384899wmb.4
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 07:08:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xervDpi9D639e9DmVkznZiAeNp4KA5UAiEcaVrDAWRQ=;
-        b=bwIrr9KidC8Qn0R8ATT8N5cRgCb1mbPALzqcqYGbi3HIifdS+hZeXXejIs1vkeR3P1
-         +ri+ni7agOD9Qpn93hZAIoFmsNptdkPQgAkayVNVsmk79XKApQeGbM/LvC7bG9P4/R6x
-         kZzgJXBVfi3KP+LeEJ7/1kYC6LH7/2KiqU/5UNk7ABNNl5Dx8Bf/I6Zs1RP89Wkgzwqq
-         327w7evF4Yf3jAvuziHNB9TRYPEknTgJV3A24rRvUT0IkwX8MGTkwBdNoA43WR4jA/1f
-         O3jiEZGyZEx0qJczhEQcx76fag5ZPVbFqVyRhueOZpqmrRksZn5Ukq+DMqV1acfzDOiy
-         ry+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xervDpi9D639e9DmVkznZiAeNp4KA5UAiEcaVrDAWRQ=;
-        b=NtxU/i5Y6TRqna7fBfqwuuHH9pEJr/XHeXKSYAzYnEdsBZE2qbK4JNkCZw2rhOQkRS
-         Qxq82Lcv5CgUxcLNPkeUdCnJUBSfQdsJrjNQi66oh1mdH2oljun0O9qZcMFb9GQUZdwh
-         s+aTOok12PFJIAbhsQtP3Mt4UYge3wtGXbhfjP4B9CmJMOFsmb4e37YjIO8uO//Nruvl
-         IaAehvCvgR0q7VtA5QjlNuPmL2WdMjlh4SSPmdbp8BLz3NvGsJoMyEHh8Oe4lW/Y5y5u
-         1mWCqSDJUTu++seMzRGikIfsRotyEG7ERjWy+hEOu0T9PntjyuioU1ZN4p0bmqDWT2gG
-         ZiXQ==
-X-Gm-Message-State: AO0yUKWrQE1Z82ZX3qxiFcLENKK3bTrVZ5bc4VIQLEsk7qg+mPrMfR5s
-        U0TscuEyA/Q8RFjT1515FPS8jQ==
-X-Google-Smtp-Source: AK7set9clGcAkYsuGtSupI1CVB5MZwN0SdmoLG01l6SzS7ZVU5JafWQcOjImOdmzeKWDn29HnXxb4w==
-X-Received: by 2002:a05:600c:1887:b0:3dc:4318:d00d with SMTP id x7-20020a05600c188700b003dc4318d00dmr3336477wmp.11.1675782502585;
-        Tue, 07 Feb 2023 07:08:22 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id j33-20020a05600c1c2100b003db0ad636d1sm22092173wms.28.2023.02.07.07.08.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 07:08:22 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 07 Feb 2023 16:08:01 +0100
-Subject: [PATCH 8/8] arm64: dts: amlogic: meson-gxm-s912-libretech-pc:
- remove unused pinctrl-names from phy node
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230207-b4-amlogic-bindings-fixups-v2-v1-8-93b7e50286e7@linaro.org>
-References: <20230207-b4-amlogic-bindings-fixups-v2-v1-0-93b7e50286e7@linaro.org>
-In-Reply-To: <20230207-b4-amlogic-bindings-fixups-v2-v1-0-93b7e50286e7@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231562AbjBGPNK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:13:10 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0C019A;
+        Tue,  7 Feb 2023 07:13:08 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id B2801CE1DCE;
+        Tue,  7 Feb 2023 15:13:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCF6DC433EF;
+        Tue,  7 Feb 2023 15:13:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675782782;
+        bh=+iuzdFRsNhoD92k7qzMiT68UuchzgtnGrtdx2uA8Hv4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bUSONOSW6adCrv+WlH69HNhsmO3faIP8fMgeX0M9DuTQZkhY/N1r7gRvXxZKgY7/m
+         WhmMzilQ2i0HoACidLaqU2eq2EXdkyXtL8WQvLXbst4yFPxk4ne5xW4LYCn7jpqOfJ
+         UZzv4nACdlPwkM9nEwxHyyqs6C3uTOWfSkgki5ubGY1afI8wOq/MVcXu4fyVOCxJAx
+         Pqbfv2jmZeFU7naTCoh4yxB18omZhmSrCmx0iLVGMC9Es744evJRWfP5a6orkmHuG3
+         dK4vMbfzUwlGWT34DUxJDuXKawfVb7nER+18+GALur0PsIjgmKNMXHxlY535mJctxf
+         8XMlk8guSO7IA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1pPPf5-00027L-Nn; Tue, 07 Feb 2023 16:13:36 +0100
+Date:   Tue, 7 Feb 2023 16:13:35 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     David Collins <quic_collinsd@quicinc.com>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Yuntian Zhang <yt@radxa.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH v2 01/22] rtc: pm8xxx: fix set-alarm race
+Message-ID: <Y+Jqn5/Yt0BaitQd@hovoldconsulting.com>
+References: <20230202155448.6715-1-johan+linaro@kernel.org>
+ <20230202155448.6715-2-johan+linaro@kernel.org>
+ <efab844a-4ffe-bc68-d99e-8688ad222e3a@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <efab844a-4ffe-bc68-d99e-8688ad222e3a@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,27 +67,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixes the following bindings check error:
-phy@78000: 'pinctrl-0' is a dependency of 'pinctrl-names'
+On Mon, Feb 06, 2023 at 07:12:43PM -0800, David Collins wrote:
+> On 2/2/23 07:54, Johan Hovold wrote:
+> > Make sure to disable the alarm before updating the four alarm time
+> > registers to avoid spurious alarms during the update.
+> 
+> What scenario can encounter a spurious alarm triggering upon writing the
+> new alarm time inside of pm8xxx_rtc_set_alarm()?
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts | 1 -
- 1 file changed, 1 deletion(-)
+The alarm is stored in four bytes in little-endian order. Consider
+having had an alarm set and expired at:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
-index 874f91c348ec..6c4e68e0e625 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
-@@ -305,7 +305,6 @@ &usb {
- };
+	00 01 00 00
+
+and now you want to set an alarm at
+
+	01 02 00 00
+
+Unless the alarm is disabled before the update the alarm could go off at
+
+	01 01 00 00
+
+after updating the first byte.
  
- &usb2_phy0 {
--	pinctrl-names = "default";
- 	phy-supply = <&vcc5v>;
- };
- 
+> > Note that the disable needs to be done outside of the ctrl_reg_lock
+> > section to prevent a racing alarm interrupt from disabling the newly set
+> > alarm when the lock is released.
+> 
+> What scenario shows the IRQ race issue that you mentioned?  How does not
+> protecting this register write with a lock avoid the race condition?
 
--- 
-2.34.1
+If a previously set alarm goes off after disabling interrupts but before
+disabling the alarm inside the critical section, then that interrupt
+could be serviced as soon as interrupts are re-enabled and the handler
+would disable the newly set alarm.
 
+> > Fixes: 9a9a54ad7aa2 ("drivers/rtc: add support for Qualcomm PMIC8xxx RTC")
+> > Cc: stable@vger.kernel.org      # 3.1
+> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > ---
+> >  drivers/rtc/rtc-pm8xxx.c | 24 ++++++++++--------------
+> >  1 file changed, 10 insertions(+), 14 deletions(-)
+> 
+> Note that since locking is removed later in the patch series, my
+> questions above are mainly for the sake of curiosity.
+
+Johan
