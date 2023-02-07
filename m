@@ -2,53 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13C3068D724
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 13:47:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0047468D77C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 14:00:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229992AbjBGMrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 07:47:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37884 "EHLO
+        id S231223AbjBGNAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 08:00:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231539AbjBGMri (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 07:47:38 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D77515565
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 04:47:37 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <str@pengutronix.de>)
-        id 1pPNNj-00047M-Qv; Tue, 07 Feb 2023 13:47:31 +0100
-Received: from str by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <str@pengutronix.de>)
-        id 1pPNNj-0007tL-JA; Tue, 07 Feb 2023 13:47:31 +0100
-Date:   Tue, 7 Feb 2023 13:47:31 +0100
-From:   Steffen Trumtrar <s.trumtrar@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Dinh Nguyen <dinguyen@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH 2/2] dt-bindings: altera: Add enclustra mercury PE1
-Message-ID: <20230207124731.GB793@pengutronix.de>
-References: <20230207094101.522240-1-s.trumtrar@pengutronix.de>
- <20230207094101.522240-2-s.trumtrar@pengutronix.de>
- <6ee3eeef-3443-aa74-16a4-6854c166c378@linaro.org>
+        with ESMTP id S231621AbjBGNAS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 08:00:18 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A54439CE3
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 05:00:00 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id o36so10978578wms.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 05:00:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b8356G0ixrthqJeN28CG9y80D2Z75FJcc11F+7VGnio=;
+        b=S3wzBB5NFcZmPn5qH9zTuYEcJa1RBcpsC4cQ+IpUqG5G8wDtO/rNhgluXYICZnpa2E
+         h0H191B53OVYM0GecQv2GO5AzzI3KrpV20JXyjN6Bwd9qNhYaOEVyIaL8NkmayyZylxY
+         CXt/z/fxlf5yd9ZGyJW66nDvfwqIFU5Ehams64KFxym9mhOXSredFEFxePTVDRSlcJ7T
+         rsN16PTsHp0cjCmKdEjdpIkCHxK7daJIDFAdueUYxy/5n8RJDwNdBxMOmPTJlA6HA67e
+         muKjYCkA8+rvSX5hvrYiL3UzvL2iY2cUdJeLrSzjP32Taaup9y9JqoJ7+q/1/HwsA8h0
+         wEUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b8356G0ixrthqJeN28CG9y80D2Z75FJcc11F+7VGnio=;
+        b=ryyfbcC5f30ftQh+Eb1BQF7h2tFIHNMJhFDlM/fdOMJqOJVjF14gAQCRIi4Zywc3Et
+         kg62w53pwL14+si/APSOeUILzU1hfsddl3Q2RNVyv06N8qBB4Z860MvqWeR2I2unpkhc
+         aAimCjdExjmU/6ATdX0ufXq3J38mHL6NhZMnUClZbiv6hQqpP5vlLI9h+OhSoYKqYhlW
+         8E1xLH8vQxLDFc4VpJKABzE6hpjz5rFW0PYS0xL8yT6fmGZe5iCUYvx9UaCdBvHocl9S
+         KG3m9v3t0XV5EJMazom/bLRQxwyaxGkeIOg2lbsVaDuw/sKYfmbQ1I58uwEI1P8IFzsq
+         +8kQ==
+X-Gm-Message-State: AO0yUKVOJKPND8fwUTTbnGToI/h86AHTM/WolybDdYlDYVLpHRspN4WT
+        kqY4A0dpAdL/BuXNTSj/bvd6qw==
+X-Google-Smtp-Source: AK7set+FOWndI8Z6n4n8EYKXWdmdd4I/2cAiD7qwm96lBb0MjLTo70rwDS+uJ5+vgp2K0dZOmLirJQ==
+X-Received: by 2002:a05:600c:3412:b0:3e0:481:c88f with SMTP id y18-20020a05600c341200b003e00481c88fmr3759507wmp.30.1675774799551;
+        Tue, 07 Feb 2023 04:59:59 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id j10-20020a05600c1c0a00b003dd1c45a7b0sm15203438wms.23.2023.02.07.04.59.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Feb 2023 04:59:59 -0800 (PST)
+Message-ID: <8337e4a3-a25b-aa1a-9409-6fe1fb4ea84e@linaro.org>
+Date:   Tue, 7 Feb 2023 13:59:57 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6ee3eeef-3443-aa74-16a4-6854c166c378@linaro.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: str@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCHv2 2/4] wiegand: add Wiegand bus driver
+Content-Language: en-US
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        Zhou Furong <furong.zhou@linux.intel.com>
+Cc:     =?UTF-8?Q?Martin_Za=c5=a5ovi=c4=8d?= <m.zatovic1@gmail.com>,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, martin.petersen@oracle.com,
+        beanhuo@micron.com, arnd@arndb.de, avri.altman@wdc.com,
+        iwona.winiarska@intel.com, fmdefrancesco@gmail.com,
+        dipenp@nvidia.com, ogabbay@kernel.org, bvanassche@acm.org,
+        mathieu.poirier@linaro.org, yangyicong@hisilicon.com,
+        dan.j.williams@intel.com, devicetree@vger.kernel.org,
+        linus.walleij@linaro.org
+References: <20230202143305.21789-1-m.zatovic1@gmail.com>
+ <20230202143305.21789-3-m.zatovic1@gmail.com> <Y9ynYmIhygqp3U5u@kroah.com>
+ <cd6bd118-68ef-1742-fd9d-08a65872b02c@linux.intel.com>
+ <Y+DVyPUXBliomobN@kroah.com>
+ <581353bc-cc2c-295b-1f9a-04bcf705261b@linux.intel.com>
+ <Y+Hq9gqq9tRhP+eD@kroah.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y+Hq9gqq9tRhP+eD@kroah.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,42 +86,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 07, 2023 at 11:48:56AM +0100, Krzysztof Kozlowski wrote:
-> On 07/02/2023 10:41, Steffen Trumtrar wrote:
-> > Add binding for the enclustra PE1 baseboard from enclustra GmbH.
-> > 
-> > Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> > ---
-> >  Documentation/devicetree/bindings/arm/altera.yaml | 1 +
+On 07/02/2023 07:08, Greg KH wrote:
+> On Tue, Feb 07, 2023 at 08:36:47AM +0800, Zhou Furong wrote:
+>>
+>>
+>> On 2023/2/6 18:26, Greg KH wrote:
+>>> On Mon, Feb 06, 2023 at 05:49:44PM +0800, Zhou Furong wrote:
+>>>>
+>>>>>> +
+>>>>>> +#include <linux/device.h>
+>>>>>> +#include <linux/module.h>
+>>>>>> +#include <linux/of.h>
+>>>>>> +#include <linux/of_device.h>
+>>>>>> +#include <linux/slab.h>
+>>>>>> +#include <linux/wiegand.h>
+>>>>>> +#include <linux/dma-mapping.h>
+>>>>>> +#include <linux/dmaengine.h>
+>>>>>> +#include <linux/property.h>
+>>>>>> +
+>>>>
+>>>> please order headers
+>>>
+>>> Why?  What order?  For what gain >
+>>
+>> If all header file ordered in alphabet, it will be easy to find if a header
+>> file has been included or not when header file list is long.
 > 
-> Bindings are before the usage. Otherwise you have checkpatch error.
+> That's what search in your editor is for :)
 > 
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/altera.yaml b/Documentation/devicetree/bindings/arm/altera.yaml
-> > index 3eee03aa935c..6f306f9f2f9d 100644
-> > --- a/Documentation/devicetree/bindings/arm/altera.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/altera.yaml
-> > @@ -32,6 +32,7 @@ properties:
-> >          items:
-> >            - enum:
-> >                - google,chameleon-v3
-> > +              - enclustra,mercury-pe1
-> 
-> Messed order, keep alphabetical order.
-> 
-> >            - const: enclustra,mercury-aa1
-> >            - const: altr,socfpga-arria10
-> >            - const: altr,socfpga
-> 
+> This is not a real problem with this code, sorry.
 
-Ack.
+I would say the only argument is reducing conflicts for simultaneous
+edits, mostly when adding new headers. If everyone add at the end, you
+get conflicts which could not happen if entries were ordered.
 
-Thanks,
-Steffen Trumtrar
+Another thing is that actual order allows easier to spot duplicates or
+unneeded headers by looking. At least to me it's easier to read.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Best regards,
+Krzysztof
+
