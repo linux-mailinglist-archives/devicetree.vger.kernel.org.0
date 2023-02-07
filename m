@@ -2,229 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AFB968CEFD
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 06:30:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1BC668CF18
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 06:51:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230369AbjBGF3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 00:29:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49810 "EHLO
+        id S229665AbjBGFvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 00:51:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230236AbjBGF2z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 00:28:55 -0500
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96B302BF29
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 21:28:40 -0800 (PST)
-Received: by mail-oo1-xc2a.google.com with SMTP id z25-20020a4ad1b9000000b00517affa07c0so1325218oor.7
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 21:28:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Gd4sYDNe6UVOrg+q9jpwoTsY9NpzBuVI5nXxucyMsZw=;
-        b=EDW35YE/XRTMMUEDQNybDT4BzNWrzrsr6SEz8tih38Ww92U1TfwKe9dIJCgF5AsHNI
-         yYOeV9usgnONpu2u8IDgVQaTstSn2T8OFHFGWT7O4PzdWe7xtbLaKznmXfywTOZJL7P8
-         N6ezM9J47wm/eLLMb2+V5BzFArqzpN5nHU6t+Vw/JvyZ8D15v7Bl/65Q2ZBG+PC2mEfS
-         8I6Okf+ly3oPRxnIQxYiasmtk1BTthtmWAyomqLON1LCh3YPCVa+3zZRdUO/sqnTz0eE
-         taMpP3Yd/WRtUcW14zTV69y15MLbvSK+zfnsr+NWfoiBtQTnxyrBlG1lFvpI+r7/8SrN
-         Z5CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Gd4sYDNe6UVOrg+q9jpwoTsY9NpzBuVI5nXxucyMsZw=;
-        b=nKloQNlfPMrpHl/8w68ULxyUUloyj6jZaXeXgjHPqLBKj/5cmit83oqVuqh5uwOWjW
-         6iKQxEgQqoE8s4N0E9s+s5uEimCKJ4AI915f0/FZbiGyXbrb5zf4Pdw0YyyXau01JgYA
-         a5xIefj/aXIm1o2k5KC6kCRqHJPzM0Ifs3Vdzr/FxKNaU1cpGiVD02/RVP2hB+wd6L3X
-         g6tkuvd4omy9hilZ2zfrdFajS4gWOHST6ys2Wae2FYoUqD1ifBgeToYvIf9duKVq70Iv
-         XYiohpybJbnGNlbwf6bP8dTk1RYV2U6b7zUuRDP6avskwpr04fhWLARhQlw6phetl2ss
-         6c2w==
-X-Gm-Message-State: AO0yUKVz0t6959ekh/1+2RlmLhQFa7avgxTIDEvoL4gg5KueOHSKAv1V
-        tpjlPkG4kmNtF4V5fjz+SKC3Lg==
-X-Google-Smtp-Source: AK7set9Uy3D004ifBj8bxCumSdcCXKbgivSVVGaqxQArAm5s+JDPXWj34hs2WLgu1SHb2En8zit28g==
-X-Received: by 2002:a4a:88c5:0:b0:51a:be3:bcff with SMTP id q5-20020a4a88c5000000b0051a0be3bcffmr955384ooh.7.1675747719599;
-        Mon, 06 Feb 2023 21:28:39 -0800 (PST)
-Received: from localhost (23-118-233-243.lightspeed.snantx.sbcglobal.net. [23.118.233.243])
-        by smtp.gmail.com with ESMTPSA id l14-20020a4ae38e000000b004a0ad937ccdsm581478oov.1.2023.02.06.21.28.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Feb 2023 21:28:39 -0800 (PST)
-From:   Steev Klimaszewski <steev@kali.org>
-To:     Steev Klimaszewski <steev@kali.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
+        with ESMTP id S229563AbjBGFvI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 00:51:08 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E950326875;
+        Mon,  6 Feb 2023 21:51:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1675749064; x=1707285064;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yF4PX+2z9gDccoVYuykfNbSYoITJYxsw4/QbUOFEFXg=;
+  b=KosfakCED15gDl0FAtBboQzT0zt/fGtybzAJ2793ObpJ2Rg1r7QyZZ8h
+   Uo5LvCM8NfiQeTkG7gs+zBctSQhomWYEPsHGo5Zzaxx+mMRAXt/RNoCgK
+   vDSlijNQLKOwrb2GZSg5AE1fc3jOiag57CVpOOlCHV/envbTVjDUtFrnT
+   sySu0MQAkfaqh/cjsI+1jhiXHE0e86dQ5khigM6N3JFTXH9y/JMTloH1G
+   DdsooVugVU77FRdT4EXfnPim5VU302VAjchyrIIQblZyca+/OxJjpLhlJ
+   zlqwDRWhBZ6476TCkXKfPBgNKDlFYIGK3UKsZkkRzebZfcl/7+7180lC0
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="415633721"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; 
+   d="scan'208";a="415633721"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2023 21:50:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="775409281"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; 
+   d="scan'208";a="775409281"
+Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 06 Feb 2023 21:50:39 -0800
+Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pPGsI-00038r-19;
+        Tue, 07 Feb 2023 05:50:38 +0000
+Date:   Tue, 7 Feb 2023 13:50:01 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Saurabh Sengar <ssengar@linux.microsoft.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
+        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        virtualization@lists.linux-foundation.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>
-Subject: [PATCH v4 4/4] arm64: dts: qcom: thinkpad-x13s: Add bluetooth
-Date:   Mon,  6 Feb 2023 23:28:29 -0600
-Message-Id: <20230207052829.3996-5-steev@kali.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230207052829.3996-1-steev@kali.org>
-References: <20230207052829.3996-1-steev@kali.org>
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com, dphadke@linux.microsoft.com
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v3 3/6] Drivers: hv: vmbus: Convert acpi_device to more
+ generic platform_device
+Message-ID: <202302071303.dB30Hu98-lkp@intel.com>
+References: <1675706060-22361-4-git-send-email-ssengar@linux.microsoft.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1675706060-22361-4-git-send-email-ssengar@linux.microsoft.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Lenovo Thinkpad X13s has a WCN6855 Bluetooth controller on uart2,
-add this.
+Hi Saurabh,
 
-Signed-off-by: Steev Klimaszewski <steev@kali.org>
----
+Thank you for the patch! Yet something to improve:
 
-Changes since v3:
- * Add vreg_s1c
- * Add regulators and not dead code
- * Fix commit message changelog
+[auto build test ERROR on next-20230206]
+[also build test ERROR on v6.2-rc7]
+[cannot apply to robh/for-next tip/timers/core brgl/gpio/for-next wsa/i2c/for-next linus/master v6.2-rc7 v6.2-rc6 v6.2-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Changes since v2:
- * Remove dead code and add TODO comment
- * Make dtbs_check happy with the pin definitions
----
- .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 76 +++++++++++++++++++
- 1 file changed, 76 insertions(+)
+url:    https://github.com/intel-lab-lkp/linux/commits/Saurabh-Sengar/drivers-clocksource-hyper-v-non-ACPI-support-in-hyperv-clock/20230207-015625
+patch link:    https://lore.kernel.org/r/1675706060-22361-4-git-send-email-ssengar%40linux.microsoft.com
+patch subject: [PATCH v3 3/6] Drivers: hv: vmbus: Convert acpi_device to more generic platform_device
+config: i386-randconfig-a006-20230206 (https://download.01.org/0day-ci/archive/20230207/202302071303.dB30Hu98-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/e6c8ebd27cac165137702f5ff85b14d6d0b8e820
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Saurabh-Sengar/drivers-clocksource-hyper-v-non-ACPI-support-in-hyperv-clock/20230207-015625
+        git checkout e6c8ebd27cac165137702f5ff85b14d6d0b8e820
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index f936b020a71d..8e3c6524e7c6 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -24,6 +24,8 @@ / {
- 	aliases {
- 		i2c4 = &i2c4;
- 		i2c21 = &i2c21;
-+		serial0 = &uart17;
-+		serial1 = &uart2;
- 	};
- 
- 	wcd938x: audio-codec {
-@@ -297,6 +299,14 @@ pmc8280c-rpmh-regulators {
- 		qcom,pmic-id = "c";
- 		vdd-bob-supply = <&vreg_vph_pwr>;
- 
-+		vreg_s1c: smps1 {
-+			regulator-name = "vreg_s1c";
-+			regulator-min-microvolt = <1880000>;
-+			regulator-max-microvolt = <1900000>;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_AUTO>;
-+			regulator-allow-set-load;
-+		};
-+
- 		vreg_l1c: ldo1 {
- 			regulator-name = "vreg_l1c";
- 			regulator-min-microvolt = <1800000>;
-@@ -712,6 +722,32 @@ &qup0 {
- 	status = "okay";
- };
- 
-+&uart2 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart2_state>;
-+
-+	bluetooth {
-+		compatible = "qcom,wcn6855-bt";
-+
-+		vddio-supply = <&vreg_s10b>;
-+		vddbtcxmx-supply = <&vreg_s12b>;
-+		vddrfacmn-supply = <&vreg_s12b>;
-+		vddrfa0p8-supply = <&vreg_s12b>;
-+		vddrfa1p2-supply = <&vreg_s11b>;
-+		vddrfa1p7-supply = <&vreg_s1c>;
-+
-+		max-speed = <3200000>;
-+
-+		enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-+		swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_en>;
-+	};
-+};
-+
- &qup1 {
- 	status = "okay";
- };
-@@ -720,6 +756,12 @@ &qup2 {
- 	status = "okay";
- };
- 
-+&uart17 {
-+	compatible = "qcom,geni-debug-uart";
-+
-+	status = "okay";
-+};
-+
- &remoteproc_adsp {
- 	firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcadsp8280.mbn";
- 
-@@ -980,6 +1022,19 @@ hastings_reg_en: hastings-reg-en-state {
- &tlmm {
- 	gpio-reserved-ranges = <70 2>, <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
- 
-+	bt_en: bt-en-state {
-+		hstp-sw-ctrl-pins {
-+			pins = "gpio132";
-+			function = "gpio";
-+		};
-+
-+		hstp-bt-en-pins {
-+			pins = "gpio133";
-+			function = "gpio";
-+			drive-strength = <16>;
-+		};
-+	};
-+
- 	edp_reg_en: edp-reg-en-state {
- 		pins = "gpio25";
- 		function = "gpio";
-@@ -1001,6 +1056,27 @@ i2c4_default: i2c4-default-state {
- 		bias-disable;
- 	};
- 
-+	uart2_state: uart2-state {
-+		cts-pins {
-+			pins = "gpio122";
-+			function = "qup2";
-+			bias-disable;
-+		};
-+
-+		rts-tx-pins {
-+			pins = "gpio122", "gpio123";
-+			function = "qup2";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		rx-pins {
-+			pins = "gpio124";
-+			function = "qup2";
-+			bias-pull-up;
-+		};
-+	};
-+
- 	i2c21_default: i2c21-default-state {
- 		pins = "gpio81", "gpio82";
- 		function = "qup21";
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/hv/vmbus_drv.c:2283:1: error: non-void function does not return a value [-Werror,-Wreturn-type]
+   }
+   ^
+   1 error generated.
+
+
+vim +2283 drivers/hv/vmbus_drv.c
+
+b0069f43fc6bc9 drivers/staging/hv/vmbus_drv.c K. Y. Srinivasan 2011-04-29  2265  
+e6c8ebd27cac16 drivers/hv/vmbus_drv.c         Saurabh Sengar   2023-02-06  2266  static int vmbus_mmio_remove(void)
+7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2267  {
+7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2268  	struct resource *cur_res;
+7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2269  	struct resource *next_res;
+7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2270  
+7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2271  	if (hyperv_mmio) {
+6d146aefbaa5c5 drivers/hv/vmbus_drv.c         Jake Oshins      2016-04-05  2272  		if (fb_mmio) {
+6d146aefbaa5c5 drivers/hv/vmbus_drv.c         Jake Oshins      2016-04-05  2273  			__release_region(hyperv_mmio, fb_mmio->start,
+6d146aefbaa5c5 drivers/hv/vmbus_drv.c         Jake Oshins      2016-04-05  2274  					 resource_size(fb_mmio));
+6d146aefbaa5c5 drivers/hv/vmbus_drv.c         Jake Oshins      2016-04-05  2275  			fb_mmio = NULL;
+6d146aefbaa5c5 drivers/hv/vmbus_drv.c         Jake Oshins      2016-04-05  2276  		}
+6d146aefbaa5c5 drivers/hv/vmbus_drv.c         Jake Oshins      2016-04-05  2277  
+7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2278  		for (cur_res = hyperv_mmio; cur_res; cur_res = next_res) {
+7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2279  			next_res = cur_res->sibling;
+7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2280  			kfree(cur_res);
+7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2281  		}
+7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2282  	}
+7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05 @2283  }
+7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2284  
+
 -- 
-2.39.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
