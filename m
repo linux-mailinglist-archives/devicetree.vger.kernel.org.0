@@ -2,97 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BD0468D486
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:39:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1F4568D493
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:41:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229792AbjBGKjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 05:39:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39746 "EHLO
+        id S231350AbjBGKlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 05:41:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231717AbjBGKjX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:39:23 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 415D64EE0
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 02:38:56 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id q8so10694142wmo.5
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 02:38:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4lFvnNUEfmFOZfC45OwvN3PFMk0fFsXufSpzORMwHDk=;
-        b=EDxzu3TsCDNriK0w84Lk1nw+1AacJKCVYQf/T5G5+W4VcReJW6LHMqspzdCN8XFBhM
-         Esm0DmEjb8XJGxHv9CiXEKYvhiY0GsW08xyGl7izi1HmeWxF4RJVJUdYRYjTx0Z4F0AV
-         h4uocSKdFbqP0fuJbflEBWAliE7VPwf8R55x/qvS906+9Ij3d+8SEEhQR9GCUXDNHVJy
-         El8L4lc0pOUNfjRVszr5zgLgGNxivA5YV6uYsdLF+ywgMgNlvtU+uY3zq1ultazVANqH
-         Yl/OSk7aOqNvolpM01EiDUEi2X52i3aFPBigRXtIpdBvYHqA5j6O20SsDytYHZ9sg6G+
-         7B+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4lFvnNUEfmFOZfC45OwvN3PFMk0fFsXufSpzORMwHDk=;
-        b=M3yhYmgQlWMpB02lEsHCw36aSEMK/9RVFtHdNUbh/E0lIqw0F2rDYry6Y1wUvUx0j6
-         hrpJDl3L1qmcI4j2gF+srocsIx3SpjeNsPoBO9P72xprwHo3qSU6SQuWcRTKxuTzlhzA
-         pUcpTdJdXSIC1ymsW30VlEJevzbexRePl2BPKoK0W28ycM7qzWuQg0ajERsXs7n18EGK
-         1gFH1XcKVoTIaTcQQbDvO4kl85blSOfCPb0ah7G39isTDUmmpeMPkry1BZZUEFzygEi8
-         as++VnfqPm92Y678sc5bgXWJOz6qL6RXxpNxeglO6aZ9R1oZ6Okh1nSoA4BljZlBv9y2
-         YSSg==
-X-Gm-Message-State: AO0yUKWvjXLRQVRHOBsTk1qRd2RkFSVT9yDnSxvJDJoOFUHYQ0SHjtuH
-        yRIbrENoBKO33TeYS5gMvCp7Nw==
-X-Google-Smtp-Source: AK7set9EA70AZrV3ayvDW+3CXaJxEpJLLXtDp/TCoH8Algcq36FWfYcEPeGEadcXYAC4a1d9kulBKg==
-X-Received: by 2002:a05:600c:4919:b0:3df:a04a:1a7 with SMTP id f25-20020a05600c491900b003dfa04a01a7mr2731579wmp.22.1675766332065;
-        Tue, 07 Feb 2023 02:38:52 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t6-20020a05600c450600b003dc433bb5e1sm14444330wmo.9.2023.02.07.02.38.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 02:38:51 -0800 (PST)
-Message-ID: <4fb45056-3004-b68d-06b7-b4109e813c51@linaro.org>
-Date:   Tue, 7 Feb 2023 11:38:50 +0100
+        with ESMTP id S231289AbjBGKlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:41:11 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7CE939BB3;
+        Tue,  7 Feb 2023 02:40:47 -0800 (PST)
+Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: tanureal)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 12BE5660206C;
+        Tue,  7 Feb 2023 10:40:25 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1675766425;
+        bh=aDe3YXnfUuI58uMCtTnI5EYyG01HWAiAlxrcCdAqU/8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=BO3m3ePFlJpU1ibDl7kKm0IDoKD2o5r/gWKReuFDE01gmLZSfN8mvdyA7nR73yIjg
+         yaF3wPaZnu5xqCVg1EkTfbHIxr1O+wG4XDWQ17t1F5DL/PkRVUz8exsqMXFzq/I0Mw
+         BuW51IXF5xZnfkJeQ8N+oNOMGTmguHXWpVFcXqgjLXSZIpchbz/5P4fdgZkva5OKjt
+         DF9HhQsb2ql3vN5IGHV3tU2DITNWuexIrVq1hM8QH4rAxHCPtSf9J7VFCv/X23exps
+         TDMO9HZGw5ZR4301YPs+vgEm21LYPe0MUskJ5qj7JeYvx3iqSUulkkP+Weh9RstHeF
+         HXouKwEqJdzrQ==
+From:   Lucas Tanure <lucas.tanure@collabora.com>
+To:     David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, Lucas Tanure <lucas.tanure@collabora.com>
+Subject: [PATCH 0/2] Add CS35L41 shared boost feature
+Date:   Tue,  7 Feb 2023 10:40:19 +0000
+Message-Id: <20230207104021.2842-1-lucas.tanure@collabora.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 1/2] dt: bindings: net: ath11k: add dt entry for XO
- calibration support
-Content-Language: en-US
-To:     Youghandhar Chintala <quic_youghand@quicinc.com>, kvalo@kernel.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230207103607.12213-1-quic_youghand@quicinc.com>
- <20230207103607.12213-2-quic_youghand@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230207103607.12213-2-quic_youghand@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 11:36, Youghandhar Chintala wrote:
-> Add dt binding to get XO calibration data support for Wi-Fi RF clock.
-> 
-> Retrieve the XO trim offset via system firmware (e.g., device tree),
-> especially in the case where the device doesn't have a useful EEPROM
-> on which to store the calibrated XO offset.
-> Calibrated XO offset is sent to firmware, which compensate the RF clock
-> drift by programing the XO trim register.
-> 
+Valve's Steam Deck uses CS35L41 in shared boost mode,
+where both speakers share the boost circuit.
+Add this support in the shared lib, but for now,
+shared boost is not supported in HDA systems as
+would require BIOS changes.
 
-And this is second v3 and still not fixed. The same as previous v3 and
-previous v2 (???).
+Lucas Tanure (2):
+  ALSA: cs35l41: Add shared boost feature
+  Documentation: cs35l41: Shared boost properties
 
-Best regards,
-Krzysztof
+ .../bindings/sound/cirrus,cs35l41.yaml        | 11 +++-
+ include/sound/cs35l41.h                       | 10 +++-
+ sound/pci/hda/cs35l41_hda.c                   |  6 +-
+ sound/soc/codecs/cs35l41-lib.c                | 56 ++++++++++++++++++-
+ sound/soc/codecs/cs35l41.c                    | 21 ++++++-
+ sound/soc/codecs/cs35l41.h                    |  1 +
+ 6 files changed, 97 insertions(+), 8 deletions(-)
+
+-- 
+2.39.1
 
