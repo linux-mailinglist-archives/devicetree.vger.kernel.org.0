@@ -2,172 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E5E168CE35
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 05:32:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD91F68CE6F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 06:01:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230282AbjBGEc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 23:32:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44734 "EHLO
+        id S229478AbjBGFBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 00:01:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230294AbjBGEcZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 23:32:25 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7012613DDB;
-        Mon,  6 Feb 2023 20:32:23 -0800 (PST)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3174I1Y0011209;
-        Tue, 7 Feb 2023 04:32:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=dDG9jZi8NNGifa3TxlUih9e+cN+KpyacXCMrVoKssXg=;
- b=lNwz7D2zT1rFRpY478YJOQa8zHWEVL+Cs5VF6mb5WY80JfjiJYqBSz20tYCY0nEIdIQb
- WmaxscjV+2I0uwjqAAPEO1GMM8GsTKrWa1QDT6w3/9/1UDfocKzZuR4+OKmu4+aIsJuq
- NXrxruv2en17P16s/rGLTZjJphVu/kZ9a49Y7JtOo67/bHb5hy4y2f/l3qNXchezoSMW
- 3QHmKTCFQ1pNSko+6xxg7tV/kj9TSzV8NtCMA9dtCiyHJo1HHyQkQLTuZmXbxFeYNLHE
- CrBDOzh8a4Qvj6rRtK9lmAQoz17RadjU7KCVhIX1AsCCVwWwvj7ZGfoQJOUWPNkjxv6X Bw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nhgng5aar-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 07 Feb 2023 04:32:07 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3174W60P006581
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 7 Feb 2023 04:32:06 GMT
-Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 6 Feb 2023
- 20:31:58 -0800
-Message-ID: <e59d133e-40a9-0dae-b272-20d82e8c9b76@quicinc.com>
-Date:   Tue, 7 Feb 2023 10:01:55 +0530
+        with ESMTP id S229462AbjBGFBU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 00:01:20 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 522E817CCF;
+        Mon,  6 Feb 2023 21:01:19 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31750knq018167;
+        Mon, 6 Feb 2023 23:00:46 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1675746046;
+        bh=Hs3YoZCw4wOnroWydtnxjTMJ2o3lP1oFgOFPpB2f6dI=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=t4DnMBTtcQBUAXgbtM2w01I+iIro9rVB8AOZvgLj4tnjc/mR16nPLwuk3pY0HXGga
+         s86um/jew7wG5WYqPy4tLn0gbblIZJObw+1pL+dXCc88vjhpYghroRYOBXH1x3czGB
+         TFYAUDhEJR5MPwakp38bS9cRcpv0xFRnG0g5mG0c=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31750kkR012222
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 6 Feb 2023 23:00:46 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 6
+ Feb 2023 23:00:46 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 6 Feb 2023 23:00:46 -0600
+Received: from [10.24.69.114] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31750eK9018304;
+        Mon, 6 Feb 2023 23:00:40 -0600
+Message-ID: <229578d8-0ba6-1c24-c3d3-0085cf889aa3@ti.com>
+Date:   Tue, 7 Feb 2023 10:30:39 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH V3 5/9] clk: qcom: add Global Clock controller (GCC)
- driver for IPQ5332 SoC
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [EXTERNAL] Re: [PATCH v4 1/2] dt-bindings: net: Add ICSSG
+ Ethernet Driver bindings
 Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-CC:     <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <shawnguo@kernel.org>, <arnd@arndb.de>,
-        <dmitry.baryshkov@linaro.org>, <marcel.ziswiler@toradex.com>,
-        <nfraprado@collabora.com>, <robimarko@gmail.com>,
-        <quic_gurus@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_varada@quicinc.com>,
-        <quic_srichara@quicinc.com>
-References: <20230206071217.29313-1-quic_kathirav@quicinc.com>
- <20230206071217.29313-6-quic_kathirav@quicinc.com>
- <20230207034108.bypitlfxicpz6wqb@ripper>
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-In-Reply-To: <20230207034108.bypitlfxicpz6wqb@ripper>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4VfyI-KjiMDmNKzm7rj--9gij9Vn1Nna
-X-Proofpoint-ORIG-GUID: 4VfyI-KjiMDmNKzm7rj--9gij9Vn1Nna
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-06_07,2023-02-06_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
- bulkscore=0 malwarescore=0 spamscore=0 mlxscore=0 suspectscore=0
- phishscore=0 impostorscore=0 adultscore=0 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302070039
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Rob Herring <robh@kernel.org>, MD Danish Anwar <danishanwar@ti.com>
+CC:     <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Eric Dumazet <edumazet@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <ssantosh@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Andrew F. Davis" <afd@ti.com>, <andrew@lunn.ch>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        <linux-kernel@vger.kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+        Suman Anna <s-anna@ti.com>, <srk@ti.com>,
+        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>,
+        <netdev@vger.kernel.org>, Roger Quadros <rogerq@kernel.org>,
+        YueHaibing <yuehaibing@huawei.com>
+References: <20230206060708.3574472-1-danishanwar@ti.com>
+ <20230206060708.3574472-2-danishanwar@ti.com>
+ <167569095956.1485300.151990392599002247.robh@kernel.org>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <167569095956.1485300.151990392599002247.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Bjorn for the review!
+Hi Rob,
 
+On 06/02/23 19:16, Rob Herring wrote:
+>=20
+> On Mon, 06 Feb 2023 11:37:07 +0530, MD Danish Anwar wrote:
+>> From: Puranjay Mohan <p-mohan@ti.com>
+>>
+>> Add a YAML binding document for the ICSSG Programmable real time unit
+>> based Ethernet driver. This driver uses the PRU and PRUSS consumer API=
+s
+>> to interface the PRUs and load/run the firmware for supporting etherne=
+t
+>> functionality.
+>>
+>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+>> Signed-off-by: Md Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  .../bindings/net/ti,icssg-prueth.yaml         | 179 +++++++++++++++++=
++
+>>  1 file changed, 179 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/net/ti,icssg-pru=
+eth.yaml
+>>
+>=20
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
+k'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> ./Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml: Unable to=
+ find schema file matching $id: http://devicetree.org/schemas/remoteproc/=
+ti,pru-consumer.yaml
 
-On 2/7/2023 9:11 AM, Bjorn Andersson wrote:
-> On Mon, Feb 06, 2023 at 12:42:13PM +0530, Kathiravan T wrote:
->> diff --git a/drivers/clk/qcom/gcc-ipq5332.c b/drivers/clk/qcom/gcc-ipq5332.c
-> [..]
->> +
->> +enum {
->> +	DT_SLEEP_CLK,
->> +	DT_XO,
->> +	DT_PCIE_2LANE_PHY_PIPE_CLK,
->> +	DT_PCIE_2LANE_PHY_PIPE_X1_CLK,
->> +	DT_USB_PCIE_WRAPPER_PIPE_CLK,
-> This list does not match the clocks as defined in the binding.
+This error is coming because this series depends on series [1]. The
+ti,pru-consumer.yaml is upstreamed through series [1]. The series is appr=
+oved
+and will hopefully be merged soon.
 
+[1] https://lore.kernel.org/all/20230106121046.886863-1-danishanwar@ti.co=
+m/
 
-Ack. will fix this in next spin.
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
+/net/ti,icssg-prueth.example.dtb: ethernet: False schema does not allow {=
+'compatible': ['ti,am654-icssg-prueth'], 'pinctrl-names': ['default'], 'p=
+inctrl-0': [[4294967295]], 'ti,sram': [[4294967295]], 'ti,prus': [[429496=
+7295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295]], 'firm=
+ware-name': ['ti-pruss/am65x-pru0-prueth-fw.elf', 'ti-pruss/am65x-rtu0-pr=
+ueth-fw.elf', 'ti-pruss/am65x-txpru0-prueth-fw.elf', 'ti-pruss/am65x-pru1=
+-prueth-fw.elf', 'ti-pruss/am65x-rtu1-prueth-fw.elf', 'ti-pruss/am65x-txp=
+ru1-prueth-fw.elf'], 'ti,pruss-gp-mux-sel': [[2, 2, 2, 2, 2, 2]], 'dmas':=
+ [[4294967295, 49920], [4294967295, 49921], [4294967295, 49922], [4294967=
+295, 49923], [4294967295, 49924], [4294967295, 49925], [4294967295, 49926=
+], [4294967295, 49927], [4294967295, 17152], [4294967295, 17153]], 'dma-n=
+ames': ['tx0-0', 'tx0-1', 'tx0-2', 'tx0-3', 'tx1-0', 'tx1-1', 'tx1-2', 't=
+x1-3', 'rx0', 'rx1'], 'ti,mii-g-rt': [[429!
+>  4967295]], 'interrupts': [[24, 0, 2], [25, 1, 3]], 'interrupt-names': =
+['tx_ts0', 'tx_ts1'], 'ethernet-ports': {'#address-cells': [[1]], '#size-=
+cells': [[0]], 'port@0': {'reg': [[0]], 'phy-handle': [[4294967295]], 'ph=
+y-mode': ['rgmii-id'], 'interrupts-extended': [[4294967295, 24]], 'ti,sys=
+con-rgmii-delay': [[4294967295, 16672]], 'local-mac-address': [[0, 0, 0, =
+0, 0, 0]]}, 'port@1': {'reg': [[1]], 'phy-handle': [[4294967295]], 'phy-m=
+ode': ['rgmii-id'], 'interrupts-extended': [[4294967295, 25]], 'ti,syscon=
+-rgmii-delay': [[4294967295, 16676]], 'local-mac-address': [[0, 0, 0, 0, =
+0, 0]]}}, '$nodename': ['ethernet']}
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devic=
+etree/bindings/net/ti,icssg-prueth.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
+/net/ti,icssg-prueth.example.dtb: ethernet: Unevaluated properties are no=
+t allowed ('firmware-name', 'ti,prus', 'ti,pruss-gp-mux-sel' were unexpec=
+ted)
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devic=
+etree/bindings/net/ti,icssg-prueth.yaml
+>=20
+> doc reference errors (make refcheckdocs):
+>=20
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2023=
+0206060708.3574472-2-danishanwar@ti.com
+>=20
+> The base for the series is generally the latest rc1. A different depend=
+ency
+> should be noted in *this* patch.
+>=20
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to=
 
+> date:
+>=20
+> pip3 install dtschema --upgrade
+>=20
+> Please check and re-submit after running the above command yourself. No=
+te
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checkin=
+g
+> your schema. However, it must be unset to test all examples with your s=
+chema.
+>=20
 
->
->> +};
->> +
->> +enum {
->> +	P_PCIE3X2_PIPE,
->> +	P_PCIE3X1_0_PIPE,
->> +	P_PCIE3X1_1_PIPE,
->> +	P_USB3PHY_0_PIPE,
->> +	P_CORE_BI_PLL_TEST_SE,
->> +	P_GCC_GPLL0_OUT_MAIN_DIV_CLK_SRC,
->> +	P_GPLL0_OUT_AUX,
->> +	P_GPLL0_OUT_MAIN,
->> +	P_GPLL2_OUT_AUX,
->> +	P_GPLL2_OUT_MAIN,
->> +	P_GPLL4_OUT_AUX,
->> +	P_GPLL4_OUT_MAIN,
->> +	P_SLEEP_CLK,
->> +	P_XO,
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_xo = { .index = DT_XO };
->> +
->> +static struct clk_alpha_pll gpll0_main = {
->> +	.offset = 0x20000,
->> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_STROMER_PLUS],
->> +	.clkr = {
->> +		.enable_reg = 0xb000,
->> +		.enable_mask = BIT(0),
->> +		.hw.init = &(const struct clk_init_data){
-> Please add a space between ')' and '{ on all these.
-
-
-Ack.
-
-
->
->> +			.name = "gpll0_main",
->> +			.parent_data = &gcc_parent_data_xo,
->> +			.num_parents = 1,
->> +			.ops = &clk_alpha_pll_stromer_ops,
->> +		},
->> +	},
->> +};
-> [..]
->> +static const struct qcom_cc_desc gcc_ipq5332_desc = {
->> +	.config = &gcc_ipq5332_regmap_config,
->> +	.clks = gcc_ipq5332_clocks,
->> +	.num_clks = ARRAY_SIZE(gcc_ipq5332_clocks),
->> +	.resets = gcc_ipq5332_resets,
->> +	.num_resets = ARRAY_SIZE(gcc_ipq5332_resets),
->> +	.clk_hws = gcc_ipq5332_hws,
->> +	.num_clk_hws = ARRAY_SIZE(gcc_ipq5332_hws),
-> No GDSCs?
-
-No, there is no GDSC support.
-
-
->
-> Regards,
-> Bjorn
+--=20
+Thanks and Regards,
+Danish.
