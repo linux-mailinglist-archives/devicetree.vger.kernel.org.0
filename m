@@ -2,75 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55B9068D4A4
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:43:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C74B068D4B3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:46:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231572AbjBGKm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 05:42:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44200 "EHLO
+        id S231693AbjBGKqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 05:46:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231358AbjBGKmx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:42:53 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD822C153
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 02:42:22 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id k13so5683026wrh.8
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 02:42:22 -0800 (PST)
+        with ESMTP id S230176AbjBGKqS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:46:18 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A2C22D59
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 02:46:17 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so9608390wms.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 02:46:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AjQX5toyVmZyFFEDPSoSrTaqoGSIHeRpLwxYhtU6050=;
-        b=UHX61DtMSMsDlTukE3lUUsvg7WmUUbdO41vBdM7YAVGyZyrIhDBvj3ZRGpgDwnN7CR
-         ZAQc19T3RgcgNoKKVQDtKdtQ2wc4VM0SWJzjgTfFMq9T10FhyOcG09vbME5Xd/rgHDHD
-         3HvNY+WFXm1YcmXykLH8Ztod4TkZYUcSuMW7sNoP9Sh591xJpRmFYJsPQr/1ciYdW8NI
-         YDebVX59G7VmmV6PK9n/Wq1WBTxLY2VGqZbvMFjPIP+zpWto4bGIWgtytwyxwryHjT1R
-         Pqwi6c1G7+HALb70TkQ2EaLZfd+VFoXehvx0ObbA0+iLcET6WR78ylGkf9m/8gg6PNFU
-         ynJQ==
+        bh=Qmvz3slIJ2kg6u6RwHYgRDHfs/AJp5yf9nG98cNz5ZI=;
+        b=Pgr//yViWPDay6GY6NxOgluj0HIlZl6IMOa4KYNebAaXBH1m6QURMYjeG0U9GfdKrP
+         G8TnJxGyjbt9TZd4Y4WA0xbWVhKPDovAAoWccLYH+8z7xxTSi4F2Bk0kExfibjJCZZII
+         ScyWyApupo7WkEioUL1zQIgDGpcvbCx6oNfKBoElvsVNwqZdWMMSCdv5/bjobBeefXGx
+         bLWblhyWUKqySyHIeESMSt4loJadg0u+gNQ5YW68hueWWaULWzHuoWtzIEMFBvvR+4yU
+         0hEUMPs8b7M7btXdth3438KyarG1aEUh6Se85fSsEfu/5ZdmaqokDoRUxquI/77ODkfM
+         HVTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AjQX5toyVmZyFFEDPSoSrTaqoGSIHeRpLwxYhtU6050=;
-        b=Alr4xuFSuZhf49Eq94SYqyZMKEOtlhVEilG535PGXNCJY81SgtBNXSw0kAgHyaZOV8
-         LBBKGWcav0OXvV2qti2tEHQ0zzCTG91y/TxcTNv+POJ89/aBskvjfY1qCpsAs6doYabr
-         moMubbVNpDGZWHfPbnFW+4UReenj1fVsStjqgHhmMoJHCckxUF8wLZS/ZwVsAJbP1YoH
-         0lcfH7M5Og+/Gzbp1hwgJYHR8NWxdSC3TYYNzsj23z2OXj3ddd9bLHNIaSk7BluyrXjR
-         c3gsL7VoQicIw2WR9dDCfqxQ0pEFr9jRhtlPL9zJTZag164oOnCM38VxI21GqJUY+hDd
-         AUaQ==
-X-Gm-Message-State: AO0yUKXxOxR56J/IrsbxFNN9CVdMuZTX311K8VGlI4HTRhB51EvDX53+
-        wkODzw14fpJBPBud1WraeQkFcA==
-X-Google-Smtp-Source: AK7set8cj+1hsFTMCBGD6WhztYFclKHDVzs8N4JlHw+lhZTiXnlFlFe+TW8Mnp0zjORJwHU2fazPkQ==
-X-Received: by 2002:a05:6000:985:b0:2c3:be89:7c38 with SMTP id by5-20020a056000098500b002c3be897c38mr11888335wrb.27.1675766541488;
-        Tue, 07 Feb 2023 02:42:21 -0800 (PST)
+        bh=Qmvz3slIJ2kg6u6RwHYgRDHfs/AJp5yf9nG98cNz5ZI=;
+        b=Z9muit0ME9Dkxtdh5CMUZi3z+4v31cKcgxTdKuuOpLOwXV4xouPKC7nRMGk/TZ0esf
+         YSMtwrBSCXaCP1i4qkyebTTXNBYekpSOSWOKWTH9KaB8hsEBhGTA9u1LfA/30ymc/y3Y
+         3Bu0P1/Jn+TylUo2qZbLeZ1o2bQV9/Mk/cHvEoJYwXMGDUFi6XZmwHdgzm85ImHfrHcL
+         K7d6gGTwTwOLFK9efKcjdhJHPXavuDJNyur/Uhk3vN47EGvxZ7kC8wglHXw90hTyRklW
+         gHKvyCW9y2dc5w2N26wMj4nLU7sS0mUTUb0u8ZTA+GtZMFbg3NO8JQX4xN+hh9+FZdJV
+         cqkQ==
+X-Gm-Message-State: AO0yUKXMxUB+6648nkvdVslsV+4yeiB/Mbx3Uka8NyHPQ5JwspGh6ZUL
+        +p1V/xzDMj9kM+ZrQPXFTWxspQ==
+X-Google-Smtp-Source: AK7set9L4Xn5kAufMDg2CMnksNd3bermpYPkhxvHtkMs3aLGAt/hKlLYfNkywXWwOLRJCfSH0DacnA==
+X-Received: by 2002:a05:600c:1f14:b0:3df:e659:f9d9 with SMTP id bd20-20020a05600c1f1400b003dfe659f9d9mr2725035wmb.34.1675766776127;
+        Tue, 07 Feb 2023 02:46:16 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o13-20020a5d408d000000b002c3f42f3687sm1307866wrp.72.2023.02.07.02.42.20
+        by smtp.gmail.com with ESMTPSA id k10-20020a7bc30a000000b003dfee43863fsm11491884wmj.26.2023.02.07.02.46.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 02:42:21 -0800 (PST)
-Message-ID: <44faeca1-94c9-4423-d87a-03d80e286812@linaro.org>
-Date:   Tue, 7 Feb 2023 11:42:19 +0100
+        Tue, 07 Feb 2023 02:46:15 -0800 (PST)
+Message-ID: <828c6ab8-6f5d-510a-05ef-7e0503323c75@linaro.org>
+Date:   Tue, 7 Feb 2023 11:46:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 2/2] Documentation: cs35l41: Shared boost properties
+Subject: Re: [PATCH 3/3] soc: qcom: socinfo: add support for SA8775P
 Content-Language: en-US
-To:     Lucas Tanure <lucas.tanure@collabora.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20230207104021.2842-1-lucas.tanure@collabora.com>
- <20230207104021.2842-3-lucas.tanure@collabora.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230207100730.218725-1-brgl@bgdev.pl>
+ <20230207100730.218725-4-brgl@bgdev.pl>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230207104021.2842-3-lucas.tanure@collabora.com>
+In-Reply-To: <20230207100730.218725-4-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,40 +80,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 11:40, Lucas Tanure wrote:
-> Describe the properties used for shared boost
-> configuration.
-
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
-
+On 07/02/2023 11:07, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
+> Add SocInfo support for SA8775P.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > ---
->  .../devicetree/bindings/sound/cirrus,cs35l41.yaml     | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
+>  drivers/soc/qcom/socinfo.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-> index 18fb471aa891..6f5f01bec6f1 100644
-> --- a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-> +++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-> @@ -85,11 +85,20 @@ properties:
->        boost-cap-microfarad.
->        External Boost must have GPIO1 as GPIO output. GPIO1 will be set high to
->        enable boost voltage.
-> +      Shared boost allows two amplifiers to share a single boost circuit by
-> +      communicating on the MDSYNC bus. The passive amplifier does not control
-> +      the boost and receives data from the active amplifier. GPIO1 should be
-> +      configured for Sync when shared boost is used. Shared boost is not
-> +      compatible with External boost. Active amplifier requires
-> +      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
->        0 = Internal Boost
->        1 = External Boost
-> +      2 = Reserved
+> diff --git a/drivers/soc/qcom/socinfo.c b/drivers/soc/qcom/socinfo.c
+> index 3b970a80f3aa..c5208aa99125 100644
+> --- a/drivers/soc/qcom/socinfo.c
+> +++ b/drivers/soc/qcom/socinfo.c
+> @@ -419,6 +419,7 @@ static const struct soc_id soc_id[] = {
+>  	{ qcom_board_id(SM8350) },
+>  	{ qcom_board_id(SM6115) },
+>  	{ qcom_board_id(SC8280XP) },
+> +	{ qcom_board_id(SA8775P) },
 
-How binding can be reserved? For what and why? Drop. 2 is shared active,
-3 is shared passive.
+This does not look like correctly ordered.
 
 Best regards,
 Krzysztof
