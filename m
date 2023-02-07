@@ -2,127 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 608F968E2B5
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 22:16:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F3ED68E2F2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 22:26:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229509AbjBGVQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 16:16:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57480 "EHLO
+        id S230039AbjBGV0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 16:26:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229896AbjBGVQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 16:16:25 -0500
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D56D938667
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 13:16:22 -0800 (PST)
-Received: by mail-oi1-f177.google.com with SMTP id bd6so4825562oib.6
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 13:16:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ioxj3ZTtyZyoRXID9W54q51E/7+JLsaD1JUQ4RjMd/U=;
-        b=23S30LOztZ+AOgBprG/G1k8/sKnB/tiWVM+4WLdc07WugXAjEpGn8NBdE/Vm6DkKhw
-         04v8idMmz9JTd/CemHVhMarIfds7K5qSFPzSPAuccGaWTs0/cxRpy1VprmoYLx033/Ol
-         guT9mk8xMNbMhDlcwrKOToFRTDgozLH/1vEiaFmLH49jvZM5PBcv6liKnl63uPdfRM4E
-         YxaHIndiDcP9UxU/6vSKsLgjVDGyg54Tn5ASmtk9slPSIs3GmmVlOVKVu/zRrkGGUH2+
-         3/BQj2+F23P+M3mJ5r+hY6Zg2/NxWGWxkVCZk75B+S157iiuqIFLxv9ZN4F5b9kalljT
-         xYww==
-X-Gm-Message-State: AO0yUKVO3fdRexQPQ+3wYC7WdJp/85/u7UAnTAFutEKCW0tNEK8w7h+3
-        1Wc2xSZhh5VVH+G38EYYOw==
-X-Google-Smtp-Source: AK7set/LXJZ14Lnt/7wSTjfoNuOWNVvBD7iTVO2U5b0BQCZrCvX39bOZL6VMHpnGCzvpZ12XEM91UQ==
-X-Received: by 2002:aca:1316:0:b0:378:528:d83b with SMTP id e22-20020aca1316000000b003780528d83bmr2044736oii.55.1675804582113;
-        Tue, 07 Feb 2023 13:16:22 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bk30-20020a0568081a1e00b0037880fdb1f6sm6120330oib.24.2023.02.07.13.16.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 13:16:21 -0800 (PST)
-Received: (nullmailer pid 4167457 invoked by uid 1000);
-        Tue, 07 Feb 2023 21:16:21 -0000
-Date:   Tue, 7 Feb 2023 15:16:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 1/2] ASoC: dt-bindings: renesas,rsnd.yaml: tidyup
- reg/reg-name
-Message-ID: <20230207211621.GA4158591-robh@kernel.org>
-References: <87r0v2uvm7.wl-kuninori.morimoto.gx@renesas.com>
- <87pmamuvlh.wl-kuninori.morimoto.gx@renesas.com>
+        with ESMTP id S230231AbjBGVZx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 16:25:53 -0500
+X-Greylist: delayed 470 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 07 Feb 2023 13:25:39 PST
+Received: from smtp.smtpout.orange.fr (smtp-21.smtpout.orange.fr [80.12.242.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D18B83CE3A
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 13:25:39 -0800 (PST)
+Received: from [192.168.1.18] ([86.243.2.178])
+        by smtp.orange.fr with ESMTPA
+        id PVLUp8FlEPPaiPVLUpiiRq; Tue, 07 Feb 2023 22:17:46 +0100
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Tue, 07 Feb 2023 22:17:46 +0100
+X-ME-IP: 86.243.2.178
+Message-ID: <fd3ccda3-f964-6904-6056-f93c43b85a0f@wanadoo.fr>
+Date:   Tue, 7 Feb 2023 22:17:39 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87pmamuvlh.wl-kuninori.morimoto.gx@renesas.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/3] ASoC: codecs: Add support for the Infineon PEB2466
+ codec
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230206144904.91078-1-herve.codina@bootlin.com>
+ <20230206144904.91078-3-herve.codina@bootlin.com>
+Content-Language: fr
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20230206144904.91078-3-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 07, 2023 at 01:12:42AM +0000, Kuninori Morimoto wrote:
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Le 06/02/2023 à 15:49, Herve Codina a écrit :
+> The Infineon PEB2466 codec is a programmable DSP-based four channels
+> codec with filters capabilities.
+> It also provides signals as GPIOs.
 > 
-> Current reg/reg-name is using "maxItems", but the convention is to
-> use "minItems".
-
-Yes, but that's not really true in if/then schemas. If that's your 
-reason, then the changes are wrong.
-
-> And the core DT schemas already have a constraint that
-> requires reg-names to have the same number of elements as reg.
-
-Actually, no it doesn't.
-
-> 
-> This patch switch to use "minItems" on reg, and remove it from
-> reg-names.
-> 
-> Link: https://lore.kernel.org/r/46974ae7-5f7f-8fc1-4ea8-fe77b58f5bfb@linaro.org
-> Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
->  Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
+>   sound/soc/codecs/Kconfig   |   12 +
+>   sound/soc/codecs/Makefile  |    2 +
+>   sound/soc/codecs/peb2466.c | 2071 ++++++++++++++++++++++++++++++++++++
+>   3 files changed, 2085 insertions(+)
+>   create mode 100644 sound/soc/codecs/peb2466.c
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> index d106de00c6b2..223f4859780f 100644
-> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> @@ -298,9 +298,8 @@ allOf:
->      then:
->        properties:
->          reg:
-> -          maxItems: 3
-> +          minItems: 3
 
-This was probably correct before if the base 'reg' entry says more than 
-3 entries are allowed and in this case 3 is most you can have.
+[...]
 
->          reg-names:
-> -          maxItems: 3
->            items:
->              enum:
->                - scu
-> @@ -309,9 +308,8 @@ allOf:
->      else:
->        properties:
->          reg:
-> -          maxItems: 5
-> +          minItems: 5
+> +static int peb2466_spi_probe(struct spi_device *spi)
+> +{
+> +	struct peb2466 *peb2466;
+> +	unsigned long mclk_rate;
+> +	int ret;
+> +	u8 xr5;
+> +
+> +	spi->bits_per_word = 8;
+> +	ret = spi_setup(spi);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	peb2466 = devm_kzalloc(&spi->dev, sizeof(*peb2466), GFP_KERNEL);
+> +	if (!peb2466)
+> +		return -ENOMEM;
+> +
+> +	peb2466->spi = spi;
+> +
+> +	peb2466->regmap = devm_regmap_init(&peb2466->spi->dev, NULL, peb2466,
+> +					   &peb2466_regmap_config);
+> +	if (IS_ERR(peb2466->regmap))
+> +		return PTR_ERR(peb2466->regmap);
+> +
+> +	peb2466->reset_gpio = devm_gpiod_get_optional(&peb2466->spi->dev,
+> +						      "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(peb2466->reset_gpio))
+> +		return PTR_ERR(peb2466->reset_gpio);
+> +
+> +	peb2466->mclk = devm_clk_get(&peb2466->spi->dev, "mclk");
 
-This might be correct...
+Hi,
 
->          reg-names:
-> -          maxItems: 5
->            items:
->              enum:
->                - scu
-> -- 
-> 2.25.1
-> 
+Up to you to decide if it is a good idea or not, but using 
+devm_clk_get_enabled() would save the 'mclk' field in peb2466 ...
+
+> +	if (IS_ERR(peb2466->mclk))
+> +		return PTR_ERR(peb2466->mclk);
+> +	ret = clk_prepare_enable(peb2466->mclk);
+> +	if (ret)
+> +		return ret;
+
+... these 3 lines ...
+
+> +
+> +	if (peb2466->reset_gpio) {
+> +		gpiod_set_value_cansleep(peb2466->reset_gpio, 1);
+> +		udelay(4);
+> +		gpiod_set_value_cansleep(peb2466->reset_gpio, 0);
+> +		udelay(4);
+> +	}
+> +
+> +	spi_set_drvdata(spi, peb2466);
+
+... this spi_set_drvdata() call ...
+
+> +
+> +	mclk_rate = clk_get_rate(peb2466->mclk);
+> +	switch (mclk_rate) {
+> +	case 1536000:
+> +		xr5 = PEB2466_XR5_MCLK_1536;
+> +		break;
+> +	case 2048000:
+> +		xr5 = PEB2466_XR5_MCLK_2048;
+> +		break;
+> +	case 4096000:
+> +		xr5 = PEB2466_XR5_MCLK_4096;
+> +		break;
+> +	case 8192000:
+> +		xr5 = PEB2466_XR5_MCLK_8192;
+> +		break;
+> +	default:
+> +		dev_err(&peb2466->spi->dev, "Unsupported clock rate %lu\n",
+> +			mclk_rate);
+> +		ret = -EINVAL;
+> +		goto failed;
+> +	}
+> +	ret = regmap_write(peb2466->regmap, PEB2466_XR5, xr5);
+> +	if (ret) {
+> +		dev_err(&peb2466->spi->dev, "Setting MCLK failed (%d)\n", ret);
+> +		goto failed;
+> +	}
+> +
+> +	ret = devm_snd_soc_register_component(&spi->dev, &peb2466_component_driver,
+> +					      &peb2466_dai_driver, 1);
+> +	if (ret)
+> +		goto failed;
+> +
+> +	if (IS_ENABLED(CONFIG_GPIOLIB)) {
+> +		ret = peb2466_gpio_init(peb2466);
+> +		if (ret)
+> +			goto failed;
+> +	}
+> +
+> +	return 0;
+> +
+> +failed:
+> +	clk_disable_unprepare(peb2466->mclk);
+> +	return ret;
+
+... this error handling path ...
+
+> +}
+> +
+> +static void peb2466_spi_remove(struct spi_device *spi)
+> +{
+> +	struct peb2466 *peb2466 = spi_get_drvdata(spi);
+> +
+> +	clk_disable_unprepare(peb2466->mclk);
+> +}
+
+... and the remove function.
+
+CJ
+
+
+> +
+> +static const struct of_device_id peb2466_of_match[] = {
+> +	{ .compatible = "infineon,peb2466", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, peb2466_of_match);
+> +
+> +static const struct spi_device_id peb2466_id_table[] = {
+> +	{ "peb2466", 0 },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(spi, peb2466_id_table);
+> +
+> +static struct spi_driver peb2466_spi_driver = {
+> +	.driver  = {
+> +		.name   = "peb2466",
+> +		.of_match_table = peb2466_of_match,
+> +	},
+> +	.id_table = peb2466_id_table,
+> +	.probe  = peb2466_spi_probe,
+> +	.remove = peb2466_spi_remove,
+> +};
+> +
+> +module_spi_driver(peb2466_spi_driver);
+> +
+> +MODULE_AUTHOR("Herve Codina <herve.codina@bootlin.com>");
+> +MODULE_DESCRIPTION("PEB2466 ALSA SoC driver");
+> +MODULE_LICENSE("GPL");
+
