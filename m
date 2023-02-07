@@ -2,69 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A75C168E133
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 20:30:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1F3668E140
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 20:33:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230374AbjBGTaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 14:30:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37268 "EHLO
+        id S231616AbjBGTdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 14:33:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231522AbjBGT3r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 14:29:47 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BB033D935
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 11:29:21 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id g6so6655591wrv.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 11:29:21 -0800 (PST)
+        with ESMTP id S231363AbjBGTdC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 14:33:02 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F313B666
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 11:33:00 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so10826311wms.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 11:33:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8w0MpZ2V4rLYFppvKGuA9m6PNERjPDODLlDLq+kfjPs=;
-        b=woz3ID5u3YeS4AXaGqdutfXO9eSzuXNOLyF41ssaOAEufE0kNsS7bUpAFGyGgpjxLe
-         WZDFzfdrIX7h1KW9flxdSs4Br6vTZXw5mzKNcP2mhKfiOd0MqN3f/mTB3bkjcv5WH+6I
-         UCLx77fWQkMqeXO0Mh6o37OsY7D9/M7trF9GFJ/HsylJ3PFJNGep88m4kQExYGnLTEoU
-         nuDL779dgdLlpnLHsKz5Uk+yBrOLzZYLDdu4KT6OGflkYGuVISrSl4VaT7kZTZb+NZO0
-         MNHH6z25P9Zx4RAeLrqy9JleX+epp6urvAtQfTe4pTlESBDld2Ptql1h3BGU4flOKYgh
-         Rcxg==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aDwz8ebyu9Jo7GZkf4h4ogBfSjVLdYt8W82W2oxUCBw=;
+        b=o1nMqJ1JV7BH6nSbGoYhVezSQWYdsIwIHO2oFzyFGogxcJLHmPwe9icRyVU0CPVRdH
+         LdQqsnc/XihYDgSfu5KXBhnFDFmQir7OHeNwLDLeIU+MXVG43QgTJJz79R7ouJVp2EGY
+         xNhhFAW/mVyxPwXlrUopmdxEV+2L1ze0sqg2pLkgT+CEuRRzfTZ34oo7qz4WQF69LkpY
+         AOT/DavIzxwqnyX5RijMWO+3tmStjS/teYbwI4aow06M7dAROfuyl6Dwv5oIuFYM84XV
+         LNhbk2fdCDUAemNW3cKZi8CB5yMAIlLViRFK6RSlCC2WpOE103o9kAMVpKoArOP94U8h
+         gndw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8w0MpZ2V4rLYFppvKGuA9m6PNERjPDODLlDLq+kfjPs=;
-        b=UMXJYjgRw/nsyxvftehgMaxI2kz9/MhSencSj1PN//0/MuTwGZLHyif1fWXSNwLHdc
-         MwgfPaDy3ErzGwIzD2mkY2vww1pAinXmWA7PRlwtxepr4qksyfsfhpaI0oJZyiUA1qjS
-         F9r9g/LAX6REY9udcCTFgefChoT8Rz9zRgO3KAIQa06gWICgfrj5pD/S8MHvqjP2hvO4
-         TUskueE3M5GB+qhjqLxnPK0O3ttJWe/+xk92pS2tksnq6mas11L9rOKcfToFOsXb2mcw
-         chfB70oEUkibcHQX8Ig8y2VCP9UmkvraJCQe+ep7O+tm5JcRG5mk0OBbVRwzVabjZe3I
-         nIFw==
-X-Gm-Message-State: AO0yUKXtzrf8uTPj9H9+tNZAJRCWYvbrAtQeNaBAIExS+k1zjFgGUeRw
-        NlXPus+DwtRoBfOPYVEp0PS4RA==
-X-Google-Smtp-Source: AK7set+fKDoZgdl0m3cHJ1U/S0ylQq/28w1ACr5wlTWMsE+Xd2BplfMkuCaDRrTX7zGGg4M/ccU6pQ==
-X-Received: by 2002:a5d:4cc6:0:b0:242:800:9a7f with SMTP id c6-20020a5d4cc6000000b0024208009a7fmr3911742wrt.65.1675798159433;
-        Tue, 07 Feb 2023 11:29:19 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aDwz8ebyu9Jo7GZkf4h4ogBfSjVLdYt8W82W2oxUCBw=;
+        b=55Lz3oe5HRVBigy46N5Lu3qRP8TDvKsCPTfRwZZjEDaIRc0h/2XqBSf4A9CiONPk46
+         rrDv803CErBqgeN91BslsE4nNrPgh/PESKKpxNvTcG+SbYBj5Xve5iqIl8ymoZlHNhh7
+         9ELJspMieD7g05/FCoN52o3ys120/1y/42dUX2NM0v0GaPyKTuRh4mEJ8k9098KFozNY
+         xFIwZc1YW0/BHmkm3nTuOGAfEg1pWY4gt4vzCZpAod4M44a3lnCK8oQ5jh5qopcXKXWO
+         7PQggZZOOKBPN9IFLa6jauj/SNCU+y/4LhRdGJMV0KQ39ub3YIOKET5MhlVlA8P+ljc6
+         C/Mg==
+X-Gm-Message-State: AO0yUKUdUe3L3ha/KfYchisKHDtKIZdzaxSCGZJjGT390rAkxvPIZIF+
+        29HIGlzb7EQ4KOtd5lQupv0rJg==
+X-Google-Smtp-Source: AK7set92ZR+qa3SVZ8aNN05BcIhoOfWWX1JrmGGCPTSPHm3q4M3R/VGXCw3bbDGaZvrte7sR/+oijw==
+X-Received: by 2002:a05:600c:713:b0:3df:e4b4:de69 with SMTP id i19-20020a05600c071300b003dfe4b4de69mr4118923wmn.27.1675798378737;
+        Tue, 07 Feb 2023 11:32:58 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id bd16-20020a05600c1f1000b003db0ee277b2sm19858623wmb.5.2023.02.07.11.29.17
+        by smtp.gmail.com with ESMTPSA id d17-20020adff851000000b002c3dd82a0e9sm9199448wrq.91.2023.02.07.11.32.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 11:29:19 -0800 (PST)
+        Tue, 07 Feb 2023 11:32:58 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
         Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] media: dt-bindings: samsung-fimc: drop simple-bus
-Date:   Tue,  7 Feb 2023 20:29:14 +0100
-Message-Id: <20230207192914.549309-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] ARM: dts: exynos: drop simple-bus from FIMC in Exynos4
+Date:   Tue,  7 Feb 2023 20:32:53 +0100
+Message-Id: <20230207193254.550236-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230207192914.549309-1-krzysztof.kozlowski@linaro.org>
-References: <20230207192914.549309-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,46 +73,38 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The FIMC camera node wrapper is not a bus, so using simple-bus fallback
 compatible just to instantiate its children nodes was never correct.
-Drop the simple-bus compatible and expect driver to explicitly populate
-children devices.
+Dropping simple-bus node fixes warnings:
+
+  exynos4210-smdkv310.dtb: camera: $nodename:0: 'camera' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+
+The change is not backwards compatible and expects the FIMC driver to
+populate its children.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/media/samsung-fimc.txt | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/samsung-fimc.txt b/Documentation/devicetree/bindings/media/samsung-fimc.txt
-index 20447529c985..f90267f1180e 100644
---- a/Documentation/devicetree/bindings/media/samsung-fimc.txt
-+++ b/Documentation/devicetree/bindings/media/samsung-fimc.txt
-@@ -15,7 +15,7 @@ Common 'camera' node
- 
- Required properties:
- 
--- compatible: must be "samsung,fimc", "simple-bus"
-+- compatible: must be "samsung,fimc"
- - clocks: list of clock specifiers, corresponding to entries in
-   the clock-names property;
- - clock-names : must contain "sclk_cam0", "sclk_cam1", "pxl_async0",
-@@ -156,8 +156,8 @@ Example:
+---
+
+Depends on:
+https://lore.kernel.org/linux-samsung-soc/20230207192914.549309-1-krzysztof.kozlowski@linaro.org/T/#t
+---
+ arch/arm/boot/dts/exynos4.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/exynos4.dtsi b/arch/arm/boot/dts/exynos4.dtsi
+index 8dd6976ab0a7..434025331041 100644
+--- a/arch/arm/boot/dts/exynos4.dtsi
++++ b/arch/arm/boot/dts/exynos4.dtsi
+@@ -201,8 +201,8 @@ dsi_0: dsi@11c80000 {
+ 			#size-cells = <0>;
  		};
- 	};
  
--	camera {
--		compatible = "samsung,fimc", "simple-bus";
-+	camera@11800000 {
-+		compatible = "samsung,fimc";
- 		clocks = <&clock 132>, <&clock 133>, <&clock 351>,
- 			 <&clock 352>;
- 		clock-names = "sclk_cam0", "sclk_cam1", "pxl_async0",
-@@ -166,6 +166,7 @@ Example:
- 		clock-output-names = "cam_a_clkout", "cam_b_clkout";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&cam_port_a_clk_active>;
-+		ranges;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 
+-		camera: camera {
+-			compatible = "samsung,fimc", "simple-bus";
++		camera: camera@11800000 {
++			compatible = "samsung,fimc";
+ 			status = "disabled";
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
 -- 
 2.34.1
 
