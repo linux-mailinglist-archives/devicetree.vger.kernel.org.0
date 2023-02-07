@@ -2,99 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86F3268DD5F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:55:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4649B68DDB2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 17:14:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232626AbjBGPz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 10:55:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52458 "EHLO
+        id S232086AbjBGQOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 11:14:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232057AbjBGPzz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:55:55 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B2FF4687;
-        Tue,  7 Feb 2023 07:55:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 145B2B80AED;
-        Tue,  7 Feb 2023 15:55:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC638C4339C;
-        Tue,  7 Feb 2023 15:55:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675785350;
-        bh=5mhpI+u4oUJT36z1i/S8OyG8M5avFgLEbPsJiJcXGh8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HO8mbrNb0EMrF+aeW6Zq9fgZrXW4uWcZHRVsy7+J1WzP71OQzrS2VRoeS+kdjeNZ3
-         D3wfAfnTCcw3PDEEhx43sNxLGsCfjeutl/lCPN/fNqyiG3h48JSstX99jLTCieytQZ
-         qABTIZlKB18pMVBA6N573zv1e+WpcM9vIeBPuPi0uJQ3oMFUPhPiGxTb9WyiCQTqey
-         7wjlONL9aU6C7Mu+e6ka5fLDgRPNbvnR7k91HYEkXoREoXPsLhDgRY6vB6KHGZaK7Q
-         Vnp141fW7mI46vU/lNKyqf/JpoLW3Sk8fZqp/7NBaiecWJ7hKuPm9+wTS3YV1+zCcc
-         Wqzp/AzEussWA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pPQKW-0002JP-Hx; Tue, 07 Feb 2023 16:56:24 +0100
-Date:   Tue, 7 Feb 2023 16:56:24 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     David Collins <quic_collinsd@quicinc.com>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org
-Subject: Re: [PATCH v2 01/22] rtc: pm8xxx: fix set-alarm race
-Message-ID: <Y+J0qHrIcDYSuKKW@hovoldconsulting.com>
-References: <20230202155448.6715-1-johan+linaro@kernel.org>
- <20230202155448.6715-2-johan+linaro@kernel.org>
- <efab844a-4ffe-bc68-d99e-8688ad222e3a@quicinc.com>
- <Y+Jqn5/Yt0BaitQd@hovoldconsulting.com>
+        with ESMTP id S232681AbjBGQN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 11:13:56 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D6F65AD
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 08:13:53 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id g6so6093658wrv.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 08:13:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pNxhydrTd34r+uTCjdy7LmWbFpsf5f3sYLA3FNJZQww=;
+        b=OOpf1czEbZTuwyeGOmOGKz7pMXyILFbVPQEgNdrukQw9ebAQtZ3Ph0X+OSqHKXxqiI
+         N/SGx8WbJPHja+jDqLqkhzRlhZVgV3TSBRFNY9avBRQkE4q5JqiTiRq8U1/z8StFEDVZ
+         eqKd8NsJYe4t04WB+x036wWk0qas+WL7GhPpXxtGK9fDJUsBm7KI8hVn8WaReFG3e3w/
+         Zho6lpZ+7bnaGPY1JZTqJTQhAmNJFYItPWl4OXygL23p2f9QfN7IaCrvnfW8TJJtjIMf
+         JWkhcWKGuzVREDAvhRJ2MWMMTCHw/kQw0lj7PLi8vQiTz/qVnDIgk8o3sEO7rTIwlKCd
+         eQ9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pNxhydrTd34r+uTCjdy7LmWbFpsf5f3sYLA3FNJZQww=;
+        b=GtWWtGXR+l0WJI1Fq9lOTlNNrL/KlYN4jX/X6pMdn+C17enVAQWnVYJ+L/EfcjllUW
+         zpcoOEuz2lXBnqXpjie7M5KnNzdz/p7dDkygw90vExuo3t2qnvq4R9Zw5FV5ImkKCQET
+         58BnJxszw2suZkLabJIUphJ9HnmohavGqtQ69/Ct30QU35WR8muTA2YfQ/O3uU6xSJxU
+         g8WqKNr9p1fkcJCytoK6X5hKIPi0Q2rGX8pnRp5hEU5uqba2gFiR4zwPlDuEDkeukmlk
+         JwPgSlwLIz+vnFPT3B1/j85VfwbXjn378iCpNtejSPKM6+c1U3rGrerrx98sp4L0QBpO
+         p6uA==
+X-Gm-Message-State: AO0yUKWUf3ggxkOro7fhAtUfiRpzT8hDDfBYcomv9FzLfy9fspFYZjyF
+        5xCo4XMn03TMB3dHsE61mRGNtA==
+X-Google-Smtp-Source: AK7set/sTDamrm6lwZ2cQEH8kqJYkVmh9E/4XDzymL4dbTYXYvGyWqJKRMfRHh0fjqGQykDjRGMPmg==
+X-Received: by 2002:adf:fe09:0:b0:2bf:bc0a:361d with SMTP id n9-20020adffe09000000b002bfbc0a361dmr3139814wrr.31.1675786432534;
+        Tue, 07 Feb 2023 08:13:52 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id f7-20020a056000128700b002c3df9279f5sm8450225wrx.48.2023.02.07.08.13.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Feb 2023 08:13:52 -0800 (PST)
+Message-ID: <44c7274f-8a5e-0235-413a-6c3260018601@linaro.org>
+Date:   Tue, 7 Feb 2023 17:13:50 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y+Jqn5/Yt0BaitQd@hovoldconsulting.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/2] Documentation: cs35l41: Shared boost properties
+Content-Language: en-US
+To:     Lucas Tanure <lucas.tanure@collabora.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20230207104021.2842-1-lucas.tanure@collabora.com>
+ <20230207104021.2842-3-lucas.tanure@collabora.com>
+ <44faeca1-94c9-4423-d87a-03d80e286812@linaro.org>
+ <e7257f9a-86c5-74e8-c538-6f6d2ba13274@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e7257f9a-86c5-74e8-c538-6f6d2ba13274@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 07, 2023 at 04:13:36PM +0100, Johan Hovold wrote:
-> On Mon, Feb 06, 2023 at 07:12:43PM -0800, David Collins wrote:
-> > On 2/2/23 07:54, Johan Hovold wrote:
-> > > Make sure to disable the alarm before updating the four alarm time
-> > > registers to avoid spurious alarms during the update.
-> > 
-> > What scenario can encounter a spurious alarm triggering upon writing the
-> > new alarm time inside of pm8xxx_rtc_set_alarm()?
-> 
-> The alarm is stored in four bytes in little-endian order. Consider
-> having had an alarm set and expired at:
+On 07/02/2023 16:46, Lucas Tanure wrote:
+>>> +      Shared boost allows two amplifiers to share a single boost circuit by
+>>> +      communicating on the MDSYNC bus. The passive amplifier does not control
+>>> +      the boost and receives data from the active amplifier. GPIO1 should be
+>>> +      configured for Sync when shared boost is used. Shared boost is not
+>>> +      compatible with External boost. Active amplifier requires
+>>> +      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
+>>>         0 = Internal Boost
+>>>         1 = External Boost
+>>> +      2 = Reserved
+>>
+>> How binding can be reserved? For what and why? Drop. 2 is shared active,
+>> 3 is shared passive.
+> 2 Is shared boost without VSPK switch, a mode not supported for new 
+> system designs. But there is laptops using it, so we need to keep 
+> supporting in the driver.
 
-This was just supposed to say "Consider having an alarm set at:" as the
-alarm must still be enabled. Let me update the example I gave:
+That's not the answer. 2 is nothing here, so it cannot be reserved.
+Aren't you mixing now some register value with bindings?
 
-Consider having an alarm set at
- 
- 	10 01 00 00
+Best regards,
+Krzysztof
 
-and now you want to set an alarm at
-
- 	01 02 00 00
- 
-Unless the alarm is disabled before the update the alarm could go off at
- 
- 	01 01 00 00
- 
-after updating the first byte.
-
-Johan
