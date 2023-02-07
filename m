@@ -2,103 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C44D368D13B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 09:05:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6725668D147
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 09:08:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230511AbjBGIF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 03:05:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45614 "EHLO
+        id S230450AbjBGIID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 03:08:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230191AbjBGIF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 03:05:28 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E295613508
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 00:05:25 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id y1so12684426wru.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 00:05:25 -0800 (PST)
+        with ESMTP id S230256AbjBGIIB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 03:08:01 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AAF62B284
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 00:08:00 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id ba1so8611799wrb.5
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 00:08:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E84y+vKONIcM3mXhEEy2z1fhX1fI78cKOFVSdVHWpv0=;
-        b=Yd6jGK6jhUojjZW5dnKQZI/EOMPU01Jjp4shryndwBM0hSOJVzFozY9oRvYv1i0kkI
-         6cRh9Fi1gXzfql0/lJ24R8JbdN6DTQmH1Mf+2ma2/ZKT0SiY1HxvGBAtAiYXI9vdznUL
-         DQD4k6BkLJMZ+SN+p9HR2Ceg9EmDFblXq+sF7OEOia56dhv5b2DgOgQcgf+CxNajQ3q9
-         zT4o+7G4M4+dP0PdBxUScteNxxuxHRsce5kd8tjROlcn9DgINvuZ0MpdveNL9llA5yN0
-         qQDsm5mM3/4wzmA8C6jYtQG/4sTq6QebxKJeMXGfdfKC+dooLILuSGrbJkOhKwk/i8bQ
-         QhSQ==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=RQlDidB6Gvvp6ghBrLgv75BvvHu3m4TEuLCw4BC1C/U=;
+        b=sEDJ1fu0JDTI24wHOg1lgL/WoCnjFuVGa7uzyEZNEFTIewsjrxYH8wjB5CfvF6IGwG
+         4mMpnDpzmYZm6v4rR8GObnKIcJhTNFiYp4cchYRfiYLaZEs5//+6a0aEVjLP/mxpC1Rg
+         fGJ/4iUKSs0FMVz+2TpqE4LIMW/ziGHtl0edQd9uNLan3a3bPlcaHeFQjcm3Vj6d/vyb
+         fU4KXb3tFx2z8RVQSQ54lKBvToSP3d0CDjTEe+cmThPSxLpXC8MUS2CBvzVhCnmScFQM
+         TvL+6CtWAHca6ezrDoIMvl26AEXD0SeLcEe1rPCaD8Nc3tOvNjyFJglPvPTPImZKNaML
+         yo/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E84y+vKONIcM3mXhEEy2z1fhX1fI78cKOFVSdVHWpv0=;
-        b=d4lAwFHcDyJlLasoBfGeso90DX6SjdoCqyjw158WbUFqVjwtsARyV73Km6iC/TEis/
-         u1PjAyJ8c1Nvra8tTuhdtPRdT7GLpNzuqcKqtqC3ia9gM/Sg9TsUR4bWWPcowJ9hl6xM
-         A71zcfFH9zAjzlI/G3jIU/+gfB9hKC2asP2lYkKJHuEidHtUFJkk5TDhr4e51YI/gFFB
-         4bXlswlUnj0KyS7o38xr8KnZR40xyn2c3+MSAZA2xnujd+Rqkk1JeQMklYMxIqgkeP79
-         dHO5KABLIqVNewSYeGR1h5VLPsJ6uGmbQDpakt3TMEVHROwt2ycYNlvjVVSQIZ1DLs3D
-         N27A==
-X-Gm-Message-State: AO0yUKVDxu951JLZ+/bt9o8MawthAsezThmnhZsT4CiDtWLenZAgWuvL
-        pJUwKpvcVo0iMpXPFKbwVVDScA==
-X-Google-Smtp-Source: AK7set9PKPCq1x4e9ZzuqO7fkp35tM9IXqxzQ0JsTgYnwNa2tqr7oD7Ks+S9d1vMDNf7iT8Z0q0w7A==
-X-Received: by 2002:adf:e389:0:b0:2be:546f:50c2 with SMTP id e9-20020adfe389000000b002be546f50c2mr1788041wrm.12.1675757124552;
-        Tue, 07 Feb 2023 00:05:24 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q14-20020a05600c46ce00b003dc47d458cdsm13714167wmo.15.2023.02.07.00.05.22
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RQlDidB6Gvvp6ghBrLgv75BvvHu3m4TEuLCw4BC1C/U=;
+        b=v9yoUxbRGXJcNGXajgM4HuzzUhWCKoFWBuSdBequyTMqJxuxf3bJNbueblHkjTPgXZ
+         8KOey6IKONeT5q4klHfJXOn1L2M3JM7JbANMJRiTdHL5MDoxNPMD+b9fRH2VH9+xNtIX
+         NE8LGN+v8y/l55MMHC8PgtGZVwrWE36UFF4OikRIbtj+2ajOcAlW/WOTl40WpW9Kck/p
+         rY+ScmBuSHeSMG2P3QDMkmte0DPBb8CLOD4wFttM/kQXiMiLXJF+CXRI+V/JAhlixKcE
+         1x1L/pTeg7n1aVwGjvvMg3yOO70uMZpa9hAR5RT5oLP1mjWnm+GKLOVC7wpjDZKHgvBs
+         xUbA==
+X-Gm-Message-State: AO0yUKXU/eSpJiD5ZejMJF5TdpL2/xkY5ihvT8AjMSoS6g5xZuqcM1t4
+        bPD6ihFoC9YRp22RFB2EZ5P97g==
+X-Google-Smtp-Source: AK7set9MUnU8VvfsvVaIq/Or338muK8PL0UGOugI4JZSjpEDpqiycPmBpgyzKRDbCfFOS2RaJaUHew==
+X-Received: by 2002:a5d:6b4f:0:b0:2bf:b68a:e122 with SMTP id x15-20020a5d6b4f000000b002bfb68ae122mr1898790wrw.33.1675757278977;
+        Tue, 07 Feb 2023 00:07:58 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:c58c:fc5c:67d6:e5f3? ([2a01:e0a:982:cbb0:c58c:fc5c:67d6:e5f3])
+        by smtp.gmail.com with ESMTPSA id e6-20020a5d6d06000000b002be099f78c0sm11055130wrq.69.2023.02.07.00.07.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 00:05:24 -0800 (PST)
-Message-ID: <b8f800ac-d9f5-c8d5-ab6b-c1c25fafbeaa@linaro.org>
-Date:   Tue, 7 Feb 2023 09:05:21 +0100
+        Tue, 07 Feb 2023 00:07:58 -0800 (PST)
+Message-ID: <c65e894d-2682-9fc4-1843-1e30b2779d42@linaro.org>
+Date:   Tue, 7 Feb 2023 09:07:57 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v4 1/4] dt-bindings: net: Add WCN6855 Bluetooth
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 3/4] dt-bindings: pwm: Convert Amlogic Meson PWM binding
 Content-Language: en-US
-To:     Steev Klimaszewski <steev@kali.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>
-References: <20230207052829.3996-1-steev@kali.org>
- <20230207052829.3996-2-steev@kali.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230207052829.3996-2-steev@kali.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>, linux-pwm@vger.kernel.org
+References: <8df4ceec-663c-dc68-d775-5caeb02c0cca@gmail.com>
+ <5b83767e-c53d-316f-df10-45a39dbd9c88@gmail.com>
+ <20230206082317.ygvixvhjqppz4nmy@pengutronix.de>
+Organization: Linaro Developer Services
+In-Reply-To: <20230206082317.ygvixvhjqppz4nmy@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 06:28, Steev Klimaszewski wrote:
-> Add bindings for the QTI WCN6855 chipset.
+Hi,
+
+On 06/02/2023 09:23, Uwe Kleine-König wrote:
+> Hello,
 > 
-> Signed-off-by: Steev Klimaszewski <steev@kali.org>
-> ---
+> On Wed, Feb 01, 2023 at 09:00:21PM +0100, Heiner Kallweit wrote:
+>> Convert Amlogic Meson PWM binding to yaml.
+>>
+>> Reviewed-by: Rob Herring <robh+dt@kernel.org>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 > 
+> How is supposed to pick up this patch? Does it go in together with the
+> other patches in this series via amlogic/arm; or is there an expectation
+> that it enters via PWM?
 
+I expect Thierry to pick it, if he can't I can take with his ack.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Neil
 
-Best regards,
-Krzysztof
+> 
+> Best regards
+> Uwe
+> 
 
