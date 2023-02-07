@@ -2,133 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF9AC68D116
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 08:56:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CDB868D121
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 08:59:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229574AbjBGH4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 02:56:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39502 "EHLO
+        id S230458AbjBGH7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 02:59:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbjBGH4h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 02:56:37 -0500
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EE533ABF;
-        Mon,  6 Feb 2023 23:56:36 -0800 (PST)
-Received: by mail-qt1-f179.google.com with SMTP id z5so15778770qtn.8;
-        Mon, 06 Feb 2023 23:56:36 -0800 (PST)
+        with ESMTP id S230399AbjBGH7P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 02:59:15 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92F39360B5
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 23:59:12 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so10752994wms.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 23:59:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o7VB0jzwnOxKfmTOOzDR17bwgY03oYhE2KBFynIQKYk=;
+        b=jAx6zmTdhp+G9FV94pkDTLjS8skfz6TZbOO0uBKFi+LDNSNV8QtcIY+RtU83JITlZT
+         vcpbwxilx8Ir4QSMnsWmyKjFTIAgewWI2Ad/rWk4jESbPk6xKQKo6c7OtBNSJmfSsGAZ
+         v2JvS/tM1IouLaI0ZaXwAFIbIkK3Ul6zwLJiIiFrbeIJ/SKwbV0E2u//69bmC+O6vflC
+         fk4g96py9Fs7kRxnoozdgQCJgg1X1ALSurzAEzHbVgsy/WrxtbrO2YOdSoRhVjVR9Dqi
+         1MioNeydHl0K90eHgsYjp1gbMO7PDE2wfGWMiEUFjgjUz3/+Cqy6p9J7/HdaUfyVo0Jc
+         e6+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X2wYlj6gN2naNv6gpoblV6OOQNS/n19UAH0L94v4JNA=;
-        b=wUPhG2bN1r5NsnmQHW5uV+uFZJu0ulIEuhmFktxC08fwn1do48LRBLUTfw/Mn16tAh
-         op8NJT1ECr2pxKEEIL8fBSth5R1K5OJUdRyRBAL9q/yL1TYa5L1ohz5m5+qUw266MpxC
-         19k11pIIoiELRG44AnGRmCbEU4ADTFSu5c5qJoRPBF0uup6wqbyO7eopTCtLYCelvPTF
-         aa+Wc+q7O5foi1L2KdzbT4HRk531X/mHRAc+AzdbpS3xi7bYKGZZi+T3BLO3SxZC0HnS
-         Q0H3nQymUbi4qR2/fQoErzUNYOobkPiGNDoc8rex+msCMl3kjY4GzWYnfqXA2IjxHymB
-         /C+w==
-X-Gm-Message-State: AO0yUKXHpCKZnfDcwkdtg3334D2hdnKxaoXI/6fYMXhLwmHr3EQuIzmv
-        BYmaIVvAZT3tNfPvUQTn0hw/t1SkRImtQQ==
-X-Google-Smtp-Source: AK7set/GsXzUtdquy75y0skRTgxKoi8REMlB3sUQ/kxGRwkiKEXp2fARGeiFzvznbAB8sWCyRdNxPQ==
-X-Received: by 2002:ac8:5949:0:b0:3b8:41f4:94e7 with SMTP id 9-20020ac85949000000b003b841f494e7mr3710067qtz.17.1675756595464;
-        Mon, 06 Feb 2023 23:56:35 -0800 (PST)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id e18-20020ac86712000000b003b9a505627bsm8872489qtp.79.2023.02.06.23.56.34
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o7VB0jzwnOxKfmTOOzDR17bwgY03oYhE2KBFynIQKYk=;
+        b=uS4K09PyrXTcr0uFesfWqQTzNvkXljoLsuJRARm63Kz1zH0vzuQrJjxRgdH4KayJHp
+         VXGS/rp1zJcZ9hyO0NjRVEvgybRNGoByQOhAykU1erbtRmZH4nLtoQt9iTu2OmbTIdeg
+         gb0DclmRHmG/C4Hkdi2TACJ/m42nt4GBrbfg2upW9SVu95WYUGoNhAGhYfRnnJzqzNMg
+         jVvQju8jm4qMeViI1DSwgKRMA/jfvE8UF5ygPuZ/kbNkku8zRh89LwtzcmSjapbpupmn
+         CG9vua3qTAIJylVT/p4aloAV7kx8pWWYhF8CU45HWrBq3yNEo537AbhKiSnCw4awtttu
+         Gz2Q==
+X-Gm-Message-State: AO0yUKXVFzolgXAcX40MxanUyvpvzZJqCNABpNyC8NTdIwOX9Pl3Zf6o
+        wEqs45/yPWl072ZPor+Ns1orVA==
+X-Google-Smtp-Source: AK7set+izeJf1L9+viuy6hL3eXG0OPxOYCFMp/qcAnZZhl4TTkIhcl0lIgta0AjT+ch0CYmfrPlIhA==
+X-Received: by 2002:a05:600c:4a9a:b0:3dc:5b48:ee5 with SMTP id b26-20020a05600c4a9a00b003dc5b480ee5mr2266222wmp.2.1675756751053;
+        Mon, 06 Feb 2023 23:59:11 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id o37-20020a05600c512500b003c6bbe910fdsm19929143wms.9.2023.02.06.23.59.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 23:56:35 -0800 (PST)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5254e8994e8so140830827b3.6;
-        Mon, 06 Feb 2023 23:56:34 -0800 (PST)
-X-Received: by 2002:a5b:508:0:b0:8a3:59a4:340e with SMTP id
- o8-20020a5b0508000000b008a359a4340emr269046ybp.604.1675756583781; Mon, 06 Feb
- 2023 23:56:23 -0800 (PST)
+        Mon, 06 Feb 2023 23:59:10 -0800 (PST)
+Message-ID: <aa85caa3-6051-46ab-d927-8c552d5a718d@linaro.org>
+Date:   Tue, 7 Feb 2023 08:59:08 +0100
 MIME-Version: 1.0
-References: <20230207014207.1678715-1-saravanak@google.com> <20230207014207.1678715-4-saravanak@google.com>
-In-Reply-To: <20230207014207.1678715-4-saravanak@google.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 7 Feb 2023 08:56:11 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVRq-+zMuMPMuqLt45t5X78P4nRWZ-cJe8fk=1TsugTYA@mail.gmail.com>
-Message-ID: <CAMuHMdVRq-+zMuMPMuqLt45t5X78P4nRWZ-cJe8fk=1TsugTYA@mail.gmail.com>
-Subject: Re: [PATCH v3 03/12] soc: renesas: Move away from using OF_POPULATED
- for fw_devlink
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v4 2/7] dt-bindings: net: snps,dwmac: Update the maxitems
+ number of resets and reset-names
+To:     yanhong wang <yanhong.wang@starfivetech.com>,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Tony Lindgren <tony@atomide.com>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20230118061701.30047-1-yanhong.wang@starfivetech.com>
+ <20230118061701.30047-3-yanhong.wang@starfivetech.com>
+ <15a87640-d8c7-d7aa-bdfb-608fa2e497cb@linaro.org>
+ <c9ab22b5-3ffb-d034-b8b8-b056b82a96ce@starfivetech.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c9ab22b5-3ffb-d034-b8b8-b056b82a96ce@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 7, 2023 at 2:42 AM Saravana Kannan <saravanak@google.com> wrote:
-> The OF_POPULATED flag was set to let fw_devlink know that the device
-> tree node will not have a struct device created for it. This information
-> is used by fw_devlink to avoid deferring the probe of consumers of this
-> device tree node.
->
-> Let's use fwnode_dev_initialized() instead because it achieves the same
-> effect without using OF specific flags. This allows more generic code to
-> be written in driver core.
->
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 07/02/2023 03:43, yanhong wang wrote:
+> 
+> 
+> On 2023/1/18 23:47, Krzysztof Kozlowski wrote:
+>> On 18/01/2023 07:16, Yanhong Wang wrote:
+>>> Some boards(such as StarFive VisionFive v2) require more than one value
+>>> which defined by resets property, so the original definition can not
+>>> meet the requirements. In order to adapt to different requirements,
+>>> adjust the maxitems number definition.
+>>>
+>>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 9 +++------
+>>>  1 file changed, 3 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>>> index e26c3e76ebb7..baf2c5b9e92d 100644
+>>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>>> @@ -133,12 +133,9 @@ properties:
+>>>          - ptp_ref
+>>>  
+>>>    resets:
+>>> -    maxItems: 1
+>>
+>> Also, this does not make sense on its own and messes constraints for all
+>> other users. So another no for entire patch.
+>>
+> 
+> Thanks. Change the properties of 'resets' and reset-names like this:
+> 
+>   resets:
+>     minItems: 1
+>     maxItems: 2
+> 
+>   reset-names:
+>     minItems: 1
+>     maxItems: 2
+> 
+> Is it right?  Do you have any other better suggestions?
 
-You've missed my earlier:
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Isn't this allowing two reset items for every variant of snps,dwmac?
 
-Gr{oetje,eeting}s,
+Best regards,
+Krzysztof
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
