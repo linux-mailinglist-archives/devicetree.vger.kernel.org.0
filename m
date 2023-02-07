@@ -2,110 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE05D68E1BD
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 21:15:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BACB68E1F4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 21:37:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230207AbjBGUP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 15:15:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57376 "EHLO
+        id S229625AbjBGUhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 15:37:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229965AbjBGUP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 15:15:27 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 182EF3A5B3
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 12:15:25 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so10901723wms.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 12:15:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cdinGgVazI5fUgZBgObY9YOTAF5gu6cqTGjYkW5HU9c=;
-        b=tkPGpovGMEec0DDGESsbPR6aJLfnHktdEbfldpxzQqYpHdt/1Tu42rxfwAcpDF93qQ
-         crEJ0DcNWGY2+z3oQJzXCZeVlUZ01jVAildSAMimonAgEqXobj440SE9w340FTDTRj3W
-         +Ro/yeZw6f1murs6frpkTVBJRQxdI90dxw2CAl69pl9V14kDcoE5SJBhQe9O5+nvshnA
-         XZQxtHeU3djbkPBA5sMxqeQ/pg+ZWvAEn66/soaf0Dun4Ss5KhhGADotpAVYssKRbRjb
-         Uyy8O87oh1eUULJ+azD7Rj2mVQk6Q8RXCSTW3gOINHQaXxEvGcHv1fzWAdcH+ycjEdQu
-         C1sA==
+        with ESMTP id S229537AbjBGUhT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 15:37:19 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2166F3B0CD;
+        Tue,  7 Feb 2023 12:37:18 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id r28so13725747oiw.3;
+        Tue, 07 Feb 2023 12:37:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cdinGgVazI5fUgZBgObY9YOTAF5gu6cqTGjYkW5HU9c=;
-        b=E51A9qeyCB4PLlURoa9k02FrMW3ZZRvAnCAqzdtG0B0E2uoZ7xI59y3mmcpV+wvod0
-         gHe1qXW4LvNO8VkWpUOqJdaQCPjmXQGTvhPk7k9P7FKnj9EysjxzJe16bmygt9ojqQ4v
-         6/SGpKjSMgm4ScZLbvqRm8gcpO5ZvXxlW3PeQ1kwM2k4t5beh5j2F8VxXJS81ZIlVYmM
-         g2D92xD3jHT2fIRJ64smBwJruaZKVENct+6ciwsFwIo2SgMNcwjP6vNwb7xrq0WE8y1G
-         irPNgCK5SMxD9y5jwEoLgzaMF+el3BsgUQrfg0nQdMIwNnBw7oyrjt0fl6gb7ljHjO0/
-         i3VA==
-X-Gm-Message-State: AO0yUKVHkCFzbNueLi/CMSl1ouEC73BXHNzQtg+NvOHTF1z9dPBMIvTm
-        bS1hJT4BPlwKET5wtKodxiVQfA==
-X-Google-Smtp-Source: AK7set/5h8OvHzwHdZa8t7WRpHyDlCmAbwfSNzSfFZWUQj5pO3yjNS+ImIIb15Q2AmvMbBLoFt9JVw==
-X-Received: by 2002:a05:600c:331e:b0:3dc:5823:d6c0 with SMTP id q30-20020a05600c331e00b003dc5823d6c0mr4222460wmp.6.1675800923588;
-        Tue, 07 Feb 2023 12:15:23 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o37-20020a05600c512500b003c6bbe910fdsm21958398wms.9.2023.02.07.12.15.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 12:15:23 -0800 (PST)
-Message-ID: <6461a06b-55fa-e41a-0cf0-5a587ed2c389@linaro.org>
-Date:   Tue, 7 Feb 2023 21:15:21 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] media: samsung: exynos4-is: drop simple-bus from
- compatibles
-Content-Language: en-US
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2sF5RkIuECxkMvmcFPNdqGchQ0B4cLoOA3/te7YcOjE=;
+        b=F098Wr3kdi6GIMINRs/zleH96a009WV6JG6NqeBGR2hqQCaleydT8SPTjYoUkrUkr8
+         z8uGpAXGgZWkqUXmGsLQ4JOPno/dkEsyUH/N+zYcPHzUagSj561rUF2xJ3e5wcHwzRTt
+         DE+gK/xqTF7ZHHhG9x7So0wLzKfCFXRWzzRTONQDxJDIbjD/1rhT0slDFOU3qhTQYx51
+         wV2hwU/qKReSwVrBcIU6p74t5b6v4MmSSjIf4u+F2Pv4rEtATJPiPFBTO/mTulOeC4kw
+         AeDBb5t14ssZCFiwB0IJzVbIP4cTsEvHkTBgf3w4MRLdAZddDuunQ3dAuWsidTjSHnP4
+         eZ6w==
+X-Gm-Message-State: AO0yUKVBNX5XllwhI6R15/CfFw/GxxKXU3RH0JbyvAhXc/pFFfzYsHiq
+        L5FW4yghZ8PdJFoa48DFMQ==
+X-Google-Smtp-Source: AK7set/B4ylgU1A5htRkefbyGbhW6WJBI6o253nOAnJexKv2HHGfEtibv9DgFl2VyHQPuILgCzC9VQ==
+X-Received: by 2002:a05:6808:30c:b0:35e:d787:ec7f with SMTP id i12-20020a056808030c00b0035ed787ec7fmr2022331oie.50.1675802237344;
+        Tue, 07 Feb 2023 12:37:17 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o66-20020acaf045000000b0037af1a17692sm3717631oih.27.2023.02.07.12.37.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Feb 2023 12:37:16 -0800 (PST)
+Received: (nullmailer pid 4113072 invoked by uid 1000);
+        Tue, 07 Feb 2023 20:37:16 -0000
+Date:   Tue, 7 Feb 2023 14:37:16 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20230207192914.549309-1-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230207192914.549309-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display: panel: visionox,vtdr6130: add
+ missing reg property
+Message-ID: <20230207203716.GA4104426-robh@kernel.org>
+References: <20230207-topic-sm8550-upstream-vtdr6130-bindings-fix-v1-1-0ba2323420c5@linaro.org>
+ <Y+KaEPO7he39Gmd5@ravnborg.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y+KaEPO7he39Gmd5@ravnborg.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 20:29, Krzysztof Kozlowski wrote:
-> The FIMC camera node wrapper is not a bus, so using simple-bus fallback
-> compatible just to instantiate its children nodes was never correct.
-> Driver should explicitly populate all its children devices.
+On Tue, Feb 07, 2023 at 07:36:00PM +0100, Sam Ravnborg wrote:
+> Hi Neil.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  drivers/media/platform/samsung/exynos4-is/media-dev.c | 4 ++++
->  1 file changed, 4 insertions(+)
 > 
-> diff --git a/drivers/media/platform/samsung/exynos4-is/media-dev.c b/drivers/media/platform/samsung/exynos4-is/media-dev.c
-> index 98a60f01129d..70c4ca7844d3 100644
-> --- a/drivers/media/platform/samsung/exynos4-is/media-dev.c
-> +++ b/drivers/media/platform/samsung/exynos4-is/media-dev.c
-> @@ -1440,6 +1440,10 @@ static int fimc_md_probe(struct platform_device *pdev)
->  	if (!fmd)
->  		return -ENOMEM;
->  
-> +	ret = devm_of_platform_populate(dev);
-> +	if (ret < 0)
-> +		return -ENOMEM;
-> +
+> On Tue, Feb 07, 2023 at 11:04:36AM +0100, Neil Armstrong wrote:
+> > Add missing reg property and update example to add dsi top node.
+> > 
+> > Fixes: ef85db911134 ("dt-bindings: display: panel: document the Visionox VTDR6130 AMOLED DSI Panel")
+> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > ---
+> >  .../bindings/display/panel/visionox,vtdr6130.yaml  | 34 ++++++++++++++--------
+> >  1 file changed, 22 insertions(+), 12 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
+> > index 49e2fd4b4e99..84562a5b710a 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
+> > @@ -16,6 +16,10 @@ properties:
+> >    compatible:
+> >      const: visionox,vtdr6130
+> >  
+> > +  reg:
+> > +    maxItems: 1
+> > +    description: DSI virtual channel
+> > +
+> Other panels using dsi uses a simple
+> "	reg: true"
+> 
+> I think that would suffice here too.
 
-This cannot be devm-like, because on errors unpopulating devices breaks
-links and IOMMU. I will make it of_platform_populate() instead.
+Yes, because dsi-controller.yaml restricts it to a single entry. 
+However, it's description says there can be more than 1 virtual channel 
+for a device. In that case, it shouldn't be restricted in 
+dsi-controller.yaml and the above with 'maxItems: 1' would be correct. 
+So I'd keep this as-is.
 
-Best regards,
-Krzysztof
+Acked-by: Rob Herring <robh@kernel.org>
 
+Rob
