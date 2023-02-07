@@ -2,145 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8062768CDE0
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 05:02:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92AB068CE4A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 05:44:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230235AbjBGECe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 23:02:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60792 "EHLO
+        id S229483AbjBGEoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 23:44:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230261AbjBGECZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 23:02:25 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CDEE2D161;
-        Mon,  6 Feb 2023 20:02:15 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id f16-20020a17090a9b1000b0023058bbd7b2so12926833pjp.0;
-        Mon, 06 Feb 2023 20:02:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=awV7awz8WzQB+8buNgTYNblRUM5yram/QyouWVFZwWQ=;
-        b=Fzvdv2SBuZM8xyXZiNG6uHAAbVJRPHPUm+WXh8KDqEQjdCozwLy8aj8EW/ux9hWdN6
-         L1fMvs+TaaOFwPTWMHRKTJodpZK8GSaTY2UGe5+YQJBgbXSLvsoBm4+eCCA25ROtufor
-         uBTjYALsQ6gJKZB42gz9J6NOhh/+gFdyrrk8zx+B1aJHBbUzySOKKw71MfQe7WgnMyB7
-         CUa+3f4rwVksxHSDyFxRxHt+UvFfuLKH7aSyUd7MOnxhlXB7JIoso924XKHAHMsxzGl4
-         OzHBsUToPqhvqcGg5z6wEx3aF53UhJH7kd49UeX2VrHv5Ef0KHGxeWofhny8R0LGhLl8
-         ErCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=awV7awz8WzQB+8buNgTYNblRUM5yram/QyouWVFZwWQ=;
-        b=xn7VaMaTqvU0kXhfOCtdc2oi/VtTw2hZyM7T79LRoa9jbY1pHKWXdLX6mEnFBl6JHM
-         /JtZALrUvMr5ShC+WiChq97ky6YCliTpqzXlKTYhfbLMFvYjbu0QpJlJ9u4ctANEQ3aP
-         ZrvOyfZEhobP1soMa07OQp14OkqWZb1nMMzm9EDHjtwSsvbAt6BbIeKsdDXfdJ4NuAIM
-         izViZBB01coXF+dD+siRYIT3Ewnp52uLYHDVrZc5t8ZVY09BVZGyEzuSOkdnsSNgMuT/
-         IWMvp3lbDEIwwN5a+BQfy+G5HNLT5gb2CqJKpOEWYKXyzhzWofRkgTD2Oe3X6Acr+Pbh
-         5Mtw==
-X-Gm-Message-State: AO0yUKUsC8pyjOdkJRV1VIXPaZcZVPA2T6WnJ8z32pee/Xl2tTVUmo0U
-        cWoans2N28ns40yX11SzT0fR2YeVre8=
-X-Google-Smtp-Source: AK7set8UKS/neLd3Q82bQ+D01FOCW8FROf4ZKbRms4B+zvMIGj4NSHBldyuQ40j3DHL5HnzTU3pCMw==
-X-Received: by 2002:a17:903:230e:b0:196:49a3:d33d with SMTP id d14-20020a170903230e00b0019649a3d33dmr1553220plh.60.1675742535200;
-        Mon, 06 Feb 2023 20:02:15 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:c930:81ab:3aec:b9cb])
-        by smtp.gmail.com with ESMTPSA id p24-20020a170902b09800b001992181b5d5sm2067104plr.245.2023.02.06.20.02.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Feb 2023 20:02:14 -0800 (PST)
-Date:   Mon, 6 Feb 2023 20:02:11 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Stephen Kitt <steve@sk2.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/7] HID: i2c-hid: goodix: Add mainboard-vddio-supply
-Message-ID: <Y+HNQ/md9sUAqkU2@google.com>
-References: <20230207024816.525938-1-dianders@chromium.org>
- <20230206184744.6.Ic234b931025d1f920ce9e06fff294643943a65ad@changeid>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230206184744.6.Ic234b931025d1f920ce9e06fff294643943a65ad@changeid>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229447AbjBGEoH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 23:44:07 -0500
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DAD526CF5;
+        Mon,  6 Feb 2023 20:44:06 -0800 (PST)
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B55D4200B7B;
+        Tue,  7 Feb 2023 05:44:04 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4AD87200B72;
+        Tue,  7 Feb 2023 05:44:04 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 648DC183ABF0;
+        Tue,  7 Feb 2023 12:44:02 +0800 (+08)
+From:   Richard Zhu <hongxing.zhu@nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        l.stach@pengutronix.de, shawnguo@kernel.org,
+        lorenzo.pieralisi@arm.com, peng.fan@nxp.com, marex@denx.de,
+        marcel.ziswiler@toradex.com, tharvey@gateworks.com,
+        frank.li@nxp.com
+Cc:     hongxing.zhu@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Subject: [PATCH DTS v10 0/4] Add i.MX PCIe EP mode support
+Date:   Tue,  7 Feb 2023 12:18:24 +0800
+Message-Id: <1675743508-24702-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 06, 2023 at 06:48:15PM -0800, Douglas Anderson wrote:
-> As talked about in the patch ("dt-bindings: HID: i2c-hid: goodix: Add
-> mainboard-vddio-supply") we may need to power up a 1.8V rail on the
-> host associated with touchscreen IO. Let's add support in the driver
-> for it.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+i.MX PCIe controller is one dual mode PCIe controller, and can work either
+as RC or EP.
 
-Reviewed-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+This series add the i.MX PCIe EP mode support. And had been verified on
+i.MX8MQ, i.MX8MM EVK and i.MX8MP EVK boards.
 
-> ---
-> Unfortunately, I haven't been able to actually test this on real
-> hardware yet. However, the change is very simple, I believe it is
-> correct, and it doesn't break other boards I've tested it on.
-> 
->  drivers/hid/i2c-hid/i2c-hid-of-goodix.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/hid/i2c-hid/i2c-hid-of-goodix.c b/drivers/hid/i2c-hid/i2c-hid-of-goodix.c
-> index 584d833dc0aa..0060e3dcd775 100644
-> --- a/drivers/hid/i2c-hid/i2c-hid-of-goodix.c
-> +++ b/drivers/hid/i2c-hid/i2c-hid-of-goodix.c
-> @@ -26,6 +26,7 @@ struct i2c_hid_of_goodix {
->  	struct i2chid_ops ops;
->  
->  	struct regulator *vdd;
-> +	struct regulator *vddio;
->  	struct gpio_desc *reset_gpio;
->  	const struct goodix_i2c_hid_timing_data *timings;
->  };
-> @@ -40,6 +41,10 @@ static int goodix_i2c_hid_power_up(struct i2chid_ops *ops)
->  	if (ret)
->  		return ret;
->  
-> +	ret = regulator_enable(ihid_goodix->vddio);
-> +	if (ret)
-> +		return ret;
-> +
->  	if (ihid_goodix->timings->post_power_delay_ms)
->  		msleep(ihid_goodix->timings->post_power_delay_ms);
->  
-> @@ -56,6 +61,7 @@ static void goodix_i2c_hid_power_down(struct i2chid_ops *ops)
->  		container_of(ops, struct i2c_hid_of_goodix, ops);
->  
->  	gpiod_set_value_cansleep(ihid_goodix->reset_gpio, 1);
-> +	regulator_disable(ihid_goodix->vddio);
->  	regulator_disable(ihid_goodix->vdd);
->  }
->  
-> @@ -81,6 +87,10 @@ static int i2c_hid_of_goodix_probe(struct i2c_client *client)
->  	if (IS_ERR(ihid_goodix->vdd))
->  		return PTR_ERR(ihid_goodix->vdd);
->  
-> +	ihid_goodix->vddio = devm_regulator_get(&client->dev, "mainboard-vddio");
-> +	if (IS_ERR(ihid_goodix->vddio))
-> +		return PTR_ERR(ihid_goodix->vddio);
-> +
->  	ihid_goodix->timings = device_get_match_data(&client->dev);
->  
->  	return i2c_hid_core_probe(client, &ihid_goodix->ops, 0x0001, 0);
-> -- 
-> 2.39.1.519.gcb327c4b5f-goog
-> 
+In the verification, one EVK board used as RC, the other one used as EP.
+Use the cross TX/RX differential cable connect the two PCIe ports of these
+two EVK boards.
 
--- 
-Dmitry
++-----------+                +------------+
+|   PCIe TX |<-------------->|PCIe RX     |
+|           |                |            |
+|EVK Board  |                |EVK Board   |
+|           |                |            |
+|   PCIe RX |<-------------->|PCIe TX     |
++-----------+                +------------+
+
+Main changes from v9 -> v10:
+Refer to the comments provided by Krzysztof.
+- Move the compatibles from common schema to RC's and EP's schema separately.
+- Add the required: block into fsl,imx6q-pcie-common.yaml schema.
+- Remove the "status" in the examples.
+
+Main changes from v8 -> v9:
+Refer to Rob's review comments.
+- To avoid codes duplication, move as much as possible properties into
+  common schema.
+
+Main changes from v7 -> v8:
+Refer to Rob's review comments.
+- Merge the binding document changes into one commit.
+- To avoid the duplication, restruct the common properties of i.MX PCIe
+  schema, thus they can be shared by both RC and Endpoint modes.
+
+Main changes from v6 -> v7:
+Refer to Krzysztof's review comments.
+- Drop the 2/4/6 patches of v6 series.
+- Based on for-next branch of Shawn's git, and the fsl,imx6q-pcie.yaml
+  changes in the v4.
+  Separate the DT-schema for i.MX PCIe Endpoint modes, and pass the
+  dt_binding_check and dtbs_check.
+
+Main changes from v5 -> v6:
+- The v6 only contains the DTS changes, since PCIe part had been picked up.
+- Based on Shawn's for-next branch, and the following two patch-sets [1]
+  and [2] issued by Marek, rebase the DTS changes.
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20230116101649.46459-1-marex@denx.de/
+[2] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20230116101422.46257-1-marex@denx.de/
+
+Main changes from v4 -> v5:
+- Rebase to v6.2-rc1.
+- Follow the clock definitions on i.MX8MP platform refer to the
+  following commit.
+  https://patchwork.kernel.org/project/linux-arm-kernel/patch/20221216195932.3228998-1-l.stach@pengutronix.de/
+
+Main changes from v3 -> v4:
+- Add the Rob's ACK in the dt-binding patch.
+- Use "i.MX" to keep spell consistent.
+- Squash generic endpoint infrastructure changes of
+  "[12/14] PCI: imx6: Add iMX8MM PCIe EP mode" into Kconfig changes.
+
+NOTE:
+The following commits should be cherried back firstly, when apply this
+series.
+
+Shawn's tree (git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git)
+d50650500064 arm64: dts: imx8mp-evk: Add PCIe support
+9e65987b9584 arm64: dts: imx8mp: Add iMX8MP PCIe support
+5506018d3dec soc: imx: imx8mp-blk-ctrl: handle PCIe PHY resets
+
+Philipp's tree (git://git.pengutronix.de/git/pza/linux)
+051d9eb40388 reset: imx7: Fix the iMX8MP PCIe PHY PERST support
+
+The PHY changes:
+https://patchwork.kernel.org/project/linux-pci/cover/1664174463-13721-1-git-send-email-hongxing.zhu@nxp.com/
+
+Main changes from v2 -> v3:
+- Add the i.MX8MP PCIe EP support, and verified on i.MX8MP EVK board.
+- Rebase to latest pci/next branch(tag: v6.0-rc1 plus some PCIe changes).
+
+Main changes from v1 -> v2:
+- Add Rob's ACK into first two commits.
+- Rebase to the tag: pci-v5.20-changes of the pci/next branch.
+
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml | 279 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml     |  85 ++++++++++++++++++++++++
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml        | 240 ++-----------------------------------------------------------------
+MAINTAINERS                                                      |   2 +
+arch/arm64/boot/dts/freescale/imx8mm.dtsi                        |  24 +++++++
+arch/arm64/boot/dts/freescale/imx8mp.dtsi                        |  26 ++++++++
+arch/arm64/boot/dts/freescale/imx8mq.dtsi                        |  32 +++++++++
+7 files changed, 454 insertions(+), 234 deletions(-)
+
+[PATCH v10 1/4] dt-bindings: imx6q-pcie: Restruct i.MX PCIe schema
+[PATCH v10 2/4] arm64: dts: Add i.MX8MM PCIe EP support
+[PATCH v10 3/4] arm64: dts: Add i.MX8MQ PCIe EP support
+[PATCH v10 4/4] arm64: dts: Add i.MX8MP PCIe EP support
