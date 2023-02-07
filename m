@@ -2,107 +2,299 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B57968D191
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 09:40:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E906468D1DA
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 09:56:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231211AbjBGIka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 03:40:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60410 "EHLO
+        id S229460AbjBGI4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 03:56:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231199AbjBGIk3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 03:40:29 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ED49301BF
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 00:40:19 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso12599300wms.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 00:40:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wi801jAD1aAF7DkgN/MHC5BDNiQ1q8cPSNLJa/Z/tSY=;
-        b=CgNC5k5do6Psn4orEw4wwYVvZNvH00H0WQN9ifyps+I+gSxy7w9kaSSBbkC5PF2MLP
-         6aDPoXyScZF0oeHHijgN0ztP/c6uyKyP+HtFPRZKK1mgZrn+hWlpZOnBRedr5HYeutF6
-         nvDYMEfFykXA7wS3vPtH39896kEH2aGeumteWr57NTa06zRPqzgICNwW8M9JRJ57FwYi
-         5p9PmTrHgZ0dwAaGozGAwJsp6rDZfySdNG9Kthc/dLJGhuN8ijrcdPAD7WylrF0dl9SO
-         0EETlqHVxlkJL9dg8/kjKJ7mOKxCqpIXZKuEEPjvJG4fSeOn17l15LuwRVCcdlFAeqKx
-         tF4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wi801jAD1aAF7DkgN/MHC5BDNiQ1q8cPSNLJa/Z/tSY=;
-        b=z+tpAr9ENjxNTaFKfNNabic8SWnuSKKuy8xX69+ZeASw5B/RhojfD0f+t0CAo4ln67
-         UQCRtJC/nn1NRT7N+f1oN/yps4KDDbVm1S3SWM3tZiLG0LxhbZM0qp+wI/3dDbuggxjS
-         zwklcqSZTvj3sbGXuP372IFWBxKDIBMkabgfuQF4B0NAVo7ZS0XYhkYbNvsb11x9nky2
-         nidzLesSUkZ0um6bx/nTaD8x4qu1baZbrY3CPi/K3t1AYWANXBlAc6M1yd8A4IYmEFys
-         yCeBOoe1RsndMTucUSqcHxHj9lrTsRIgw+ZMIGeBKzgf+lquMtnxGrEr3AnCttwJxI2Z
-         UK1A==
-X-Gm-Message-State: AO0yUKWeE3llQoXo3TY7kTT6walGrWefd8SX96bzA0RQU2z191c8Fxs2
-        1jTx4qGhcZH37wCEaM3QMp5c4g==
-X-Google-Smtp-Source: AK7set8tAEoMTFdEWmnCrOkIUFIbGFuR+bCI/4iF/rVhHr2TBLydT62g0GRpYRxvyP35J/O0TV2inw==
-X-Received: by 2002:a1c:7417:0:b0:3dd:62fe:9914 with SMTP id p23-20020a1c7417000000b003dd62fe9914mr2393129wmc.18.1675759218083;
-        Tue, 07 Feb 2023 00:40:18 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i14-20020a1c540e000000b003db03725e86sm13636762wmb.8.2023.02.07.00.40.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 00:40:17 -0800 (PST)
-Message-ID: <20133e17-78da-d5f6-39bb-0031745fa294@linaro.org>
-Date:   Tue, 7 Feb 2023 09:40:16 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] arm64: dts: Add support for Unisoc's UMS512
+        with ESMTP id S229685AbjBGI4G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 03:56:06 -0500
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2076.outbound.protection.outlook.com [40.107.223.76])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 855AE37F3B;
+        Tue,  7 Feb 2023 00:55:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HZAVwHBr1DnCHAJJGHKdBY2OrVYnatAK0KpmA9eNsGULSfG5r8r3QLC+xEcWDDcpYOsiwU/qU51muX8nkD1yk0afRJATpSw/mX6Iep7PbAHc5G3y7kUSnSxQfvYZ+4FCuBvlmV8K+VlDnB8DG570L9wBrGI15CgClf3rBe6l2/5kdNcOXH1Qw38crcaC0YeLKLFdPLXgiGZajyiJkrA8RQkeMno3YImL2oEH9RsTLCqD2GM/CPxLc1tq5XFvrXVNceqU/lUBUtyzn8S5XuBBy4dqzvFAiYpVSl7y4sMjfuNluNeUPiQ9l6HeCzVUu+iPOLxStiEn29w2FjDglO8w6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4oSqoWxnLsTtBW1uRbXBh1Y5ZvDSUYjPXqKBkisucPM=;
+ b=fwcSAgSdbl6OsdJ19ivlM4q45iOOCUPg1BUmdasABRbQtXDyXBXPQmtFtYWAGJTvkKVKds2rZC3hd9ijir3FPYBdFyI7E0CEpJre2fAPa7iwKflkcPix6LRcq6GDF5PO+iRcR6nQftOuUFK36S5oENjAJh1ihfil8TmvtcGqVMbnAdTkVJUt/ptyKRhfdwwv5u5fYfSzMraHwQUIpVpAL8hVqp0Bwfdjjg9FS/5UKU+LaV9oq3MoySshra5ex+cpCkV8l8b/FEyzV/BF2DgDSP2kBBQatQboG1ZtgB9zOOat5BKL/2DoXcSd/jETjmenErls/BJemaefoVX9ARM//Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4oSqoWxnLsTtBW1uRbXBh1Y5ZvDSUYjPXqKBkisucPM=;
+ b=eyIYO0HgNWjb11eqhzmgsAVUmC4Cpss/JhtJ5eFO1iM4dd07v6avKlfQ0+LfxfKxGXZiVBVJ36mkpd1NixPPQdbHBxgGf8sngAI96ETau8okf6TIvdU3hk24zZMTTLZ1qGuCRr7EleYygy8XtDD7aI5zoVcaL/xELrx3cBh4LzY=
+Received: from DM6PR12MB3082.namprd12.prod.outlook.com (2603:10b6:5:11b::12)
+ by MN2PR12MB4191.namprd12.prod.outlook.com (2603:10b6:208:1d3::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.36; Tue, 7 Feb
+ 2023 08:55:40 +0000
+Received: from DM6PR12MB3082.namprd12.prod.outlook.com
+ ([fe80::12bb:9697:46d5:c65d]) by DM6PR12MB3082.namprd12.prod.outlook.com
+ ([fe80::12bb:9697:46d5:c65d%6]) with mapi id 15.20.6064.034; Tue, 7 Feb 2023
+ 08:55:40 +0000
+From:   "Gupta, Nipun" <Nipun.Gupta@amd.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "saravanak@google.com" <saravanak@google.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "jgg@ziepe.ca" <jgg@ziepe.ca>, "jgg@nvidia.com" <jgg@nvidia.com>,
+        "robin.murphy@arm.com" <robin.murphy@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "masahiroy@kernel.org" <masahiroy@kernel.org>,
+        "ndesaulniers@google.com" <ndesaulniers@google.com>,
+        "rdunlap@infradead.org" <rdunlap@infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: RE: [PATCH v7 3/7] dt-bindings: bus: add CDX bus controller for
+ versal net
+Thread-Topic: [PATCH v7 3/7] dt-bindings: bus: add CDX bus controller for
+ versal net
+Thread-Index: AQHZNU/YpDV0RwkJikC6UJPDVGpD+K66VkCAgAjiKlA=
+Date:   Tue, 7 Feb 2023 08:55:40 +0000
+Message-ID: <DM6PR12MB3082B4C2A0486CA742DD20C2E8DB9@DM6PR12MB3082.namprd12.prod.outlook.com>
+References: <20230131084049.23698-1-nipun.gupta@amd.com>
+ <20230131084049.23698-4-nipun.gupta@amd.com>
+ <20230201171301.GA3606391-robh@kernel.org>
+In-Reply-To: <20230201171301.GA3606391-robh@kernel.org>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, soc@kernel.org,
-        devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>
-References: <20230118084025.2898404-1-chunyan.zhang@unisoc.com>
- <41fd5c2a-9fc5-8af8-b66e-45bb83b24179@linaro.org>
- <CAAfSe-v3VW_sE4FwjURoOapMXrGavOK0hzeU-84-U_6xfhYbQQ@mail.gmail.com>
- <b3b9d515-20b1-62a1-3243-b1bc36c306df@linaro.org>
- <CAAfSe-tiF4--dYuKWgHUm52bMX3uSwxvWKKNRd=DFJTZZ=1x8A@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAAfSe-tiF4--dYuKWgHUm52bMX3uSwxvWKKNRd=DFJTZZ=1x8A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-02-07T08:55:37Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=cda62fa8-d345-46a0-8db2-82617edb9c3c;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM6PR12MB3082:EE_|MN2PR12MB4191:EE_
+x-ms-office365-filtering-correlation-id: ed22aa5d-b120-459f-6ea1-08db08e916c4
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: nq3AdJC/3vwv3MWwdDaIhGWqfasU67WcUw4a8dXOoXZfZ/SmXIE2N96hYLyGkN52PD1T/6dIBVuUzkDexl4CQCBe3QeqG+B6uHHbr8Bpv1jlNYixjmOvQbjALVyF/Mif3WFSFPHwVnkoRn3vkjFZKY2BGD2buPCJRNeMnoaghyB8WerOE4xcb780PfoAS2lfIQQemv9tyrk8vrsHw7S14gAmaQVO9vlZrXPiwGBop798Bid1nDt3uoo5JeHLGuG0Hv+tA5IYjr8GeYKko268bOJbLAQrHbRleHiNZWJEKxFCTU2irk+BM+wJrdy+lCSFSF0GwK9RatPnUlAMXsepUiuIcEr18iqFDvhbNSrTiRuCj5sm9r0X5rJVMrCs3EpLyXIoDZtnlXWhETqTj1ioMrGnZDvvYSNwpM8YNpNL5IMfZUryqgOdTwWJadcrPKv8z/vHwOR7RCvAj7YYddgqrzeEZDQKE65fowCJY1H394vkDxa5//wgr/18DEwPwx9cVfh8z7H55rmST6RW5WegMF3mRr1iwUOtX82rtBKOb8nTdTiP4z7pXB6wRqAGgqugUMu77D2zXi123X0d8k2cxYNuw3froiF5Z6pLPCth+WlHkDVbWQOIhqCfwwhPpfxw8FmbZgCILCkbbX32jAJcMplgE6fcRKNL97t/cQbACn9+d775pKkgsvHCSpc3zOGuVXmsy9lDegbveAmAMJ5dfl8wVzFsz5e6u1hBSdKlXxrLAvQiocR6wZ2PqD8LpMo75N3/aJH2BuoVx4xS1E7eng==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB3082.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(346002)(376002)(136003)(396003)(366004)(39860400002)(451199018)(186003)(6506007)(26005)(53546011)(9686003)(122000001)(38100700002)(83380400001)(7696005)(71200400001)(966005)(478600001)(38070700005)(4326008)(76116006)(8676002)(316002)(54906003)(6916009)(66476007)(66556008)(64756008)(66446008)(41300700001)(86362001)(8936002)(52536014)(7406005)(7416002)(5660300002)(2906002)(66946007)(55016003)(33656002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?YKn8KkaUPWFMGb8pPzkHT1NmAhfCnpMDwiKB5ZAKZ4kcfon3kkYkz4Sagitw?=
+ =?us-ascii?Q?+cWX2HE/Ueuu9A50P/VBJFPU3KNgIbCm/UKhEQuCowiOuwT/7JPistNjzIQT?=
+ =?us-ascii?Q?wn/fznjXWt0ewNNrXEsDBMeuc7Y+/hLX//s8mQkeYANX3d+SiGHii9h7WpuG?=
+ =?us-ascii?Q?cWr3ejZf30MFWI+ZBdSMh3+Vhm5rVFLVQZoY50N4avTLeh2OVNzvOeoZ458S?=
+ =?us-ascii?Q?1wKQPAUZ6SEoRb2emRRO3Qjcg6ZNEa8HPYmuSRW8+t8iYP23AyADqS21O7o+?=
+ =?us-ascii?Q?pgIzqkNpomto3N0q107yqpjkwUku3lUU++KjQqEUB8xwjHJp+7nX44TqRRit?=
+ =?us-ascii?Q?zrBcIyevQMwIyrj2aD/9YSiMGRVlLn44RGoDSRGm8kz3qf7gPZV/REZSxaf3?=
+ =?us-ascii?Q?C6RP1X+HN+8Mo/9VJqE19nyqL+5JrNDq+dhU9OSQccI/Hx46eOgCTEBPs5op?=
+ =?us-ascii?Q?UX4Zv1zI0prClncM0RZ1pPqeImgbswCRQ3a7a7Uis8El2+jYnU1FlNhDVn8u?=
+ =?us-ascii?Q?+PKlVTeCCeXVhQc9Ho/VpR4nbod9Tpj8cUw33rTXpRcStn7tqJtYw9DOR5KV?=
+ =?us-ascii?Q?JcrhmauZWwecFQgtB5A0PQGMOfsEGFg0lWGml3jgoDlRyxRayKzW7dXZXVK8?=
+ =?us-ascii?Q?D+1gDJSRJp1R9zdExE6lUEsUe3RSByF4sM+uOuVqLaNGJkzKY9ScUIMvXr/a?=
+ =?us-ascii?Q?i/tNpEdPCpj5rD1t2t3LDTley8+5A8VC5Qy07MHqE1dP9mV1opk1M0Ccm2WJ?=
+ =?us-ascii?Q?tHu0tQu6vJTrUD5adUQjkQSa7DMd9iO15e7jf88ZjgQVDj5E0mM4W7zEPtyi?=
+ =?us-ascii?Q?OkoHjvGRuxV7AouiTreFoqXMzox5kCUJmIeKNoP7AsGBoN/YpX3NmemVqfc+?=
+ =?us-ascii?Q?vnuCN23d5Q1TON1aHzzlYJn9XzUvqS/KUGEyfRykgtmjUy1lElgypX4BxDII?=
+ =?us-ascii?Q?1Iu6UJf5ZxE9OxZr9LkzxzepBpFboIgwvL0bXlY/YXcLYjRrLFqTfyLtACbA?=
+ =?us-ascii?Q?gpzD9vjoZM3dGyUBtiyPa+CEh16Qlrqieu3qx79DwkmsTwOyn1s+nzbT/x9o?=
+ =?us-ascii?Q?d5h5O//iAm4p0SYvxcsf5WDmIZcsh2BfSse6t2OPOpCTiRaS/cIFOXUCWT3q?=
+ =?us-ascii?Q?0QuMlOwOC8o5NyNCKgy7jkXOQ3sLDDviMiPPQYPSzBVYyIiRdUoObGO8Wyob?=
+ =?us-ascii?Q?YPq1d3bskWwK/5adzSV9I2tZ0TeP0rFmDQeFAWVibR+cDhA1NU9SdUu8An3r?=
+ =?us-ascii?Q?rAmxHiNXinp5pjBn2TncZ3fHAxfZP52Y14uHTSz96h7UXdfWonjIuog+zn4y?=
+ =?us-ascii?Q?hqXeyte8dRP5BmL40WreMj29HxQVLvWD8YdSHVHGW2pm9cXIEp8fK/LvdGpb?=
+ =?us-ascii?Q?By6hMtLhQS5WRVLXsS7MwDh9nv/KQvMEvv3q33/d0xQ35PBjTRHFsbbZxuJ1?=
+ =?us-ascii?Q?UoToWn/J1nnZtogxQBUvpbcuRvJJB05LObTAS8q15MtEpvbmpygnDQpOjjTz?=
+ =?us-ascii?Q?jcK3laITnuM6POrGqUVuf5iZqzm0dntKw9/20+OXRqKRzO/4oyy00z/fwNTc?=
+ =?us-ascii?Q?4BBvH9fsoNv3ergLWBo=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3082.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed22aa5d-b120-459f-6ea1-08db08e916c4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Feb 2023 08:55:40.5275
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1xzGpp/ctUtCzJalE1NROyq8eOtI8YwdFBeuvtEXxKNfgiclL+p1Ss+aksaQ5cn2
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4191
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 09:21, Chunyan Zhang wrote:
->>>> Non-unit-address nodes cannot be mixed with unit address ones. Something
->>>> is wrong here.
->>>
->>> To make sure I understand correctly, did you mean non-unit-address
->>> nodes shouldn't be the parent of unit-address nodes?
->>>
->>> Does that mean the bus node should have a unique base address like:
->>>         ap-apb@70000000 {
->>
->> No. I mean, run dtbs W=1 or dtbs_check DT_SCHEMA_FILES=simple-bus
-> 
-> Ok, I will fix that according to the report.
-> 
-> BTW, where can I see what W=1 means?
+[AMD Official Use Only - General]
 
-In standard kernel documentation or make help.
 
-Best regards,
-Krzysztof
 
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Wednesday, February 1, 2023 10:43 PM
+> To: Gupta, Nipun <Nipun.Gupta@amd.com>
+> Cc: krzysztof.kozlowski+dt@linaro.org; gregkh@linuxfoundation.org;
+> rafael@kernel.org; eric.auger@redhat.com; alex.williamson@redhat.com;
+> cohuck@redhat.com; song.bao.hua@hisilicon.com;
+> mchehab+huawei@kernel.org; maz@kernel.org; f.fainelli@gmail.com;
+> jeffrey.l.hugo@gmail.com; saravanak@google.com; Michael.Srba@seznam.cz;
+> mani@kernel.org; yishaih@nvidia.com; jgg@ziepe.ca; jgg@nvidia.com;
+> robin.murphy@arm.com; will@kernel.org; joro@8bytes.org;
+> masahiroy@kernel.org; ndesaulniers@google.com; rdunlap@infradead.org;
+> linux-arm-kernel@lists.infradead.org; linux-kbuild@vger.kernel.org; linux=
+-
+> kernel@vger.kernel.org; devicetree@vger.kernel.org; okaya@kernel.org;
+> Anand, Harpreet <harpreet.anand@amd.com>; Agarwal, Nikhil
+> <nikhil.agarwal@amd.com>; Simek, Michal <michal.simek@amd.com>; git
+> (AMD-Xilinx) <git@amd.com>
+> Subject: Re: [PATCH v7 3/7] dt-bindings: bus: add CDX bus controller for =
+versal
+> net
+>=20
+> Caution: This message originated from an External Source. Use proper caut=
+ion
+> when opening attachments, clicking links, or responding.
+>=20
+>=20
+> On Tue, Jan 31, 2023 at 02:10:45PM +0530, Nipun Gupta wrote:
+> > Add CDX bus controller device tree bindings for versal-net
+> > devices.
+> >
+> > Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
+> > ---
+> >  .../bindings/bus/xlnx,versal-net-cdx.yaml     | 68 +++++++++++++++++++
+> >  MAINTAINERS                                   |  1 +
+> >  2 files changed, 69 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/bus/xlnx,versal-
+> net-cdx.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/bus/xlnx,versal-net-cdx.=
+yaml
+> b/Documentation/devicetree/bindings/bus/xlnx,versal-net-cdx.yaml
+> > new file mode 100644
+> > index 000000000000..8452185b9d70
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/bus/xlnx,versal-net-cdx.yaml
+> > @@ -0,0 +1,68 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/bus/xlnx,versal-net-cdx.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: AMD CDX bus controller
+> > +
+> > +description: |
+> > +  CDX bus controller for AMD devices is implemented to dynamically
+> > +  detect CDX bus and devices on these bus using the firmware.
+> > +  The CDX bus manages multiple FPGA based hardware devices, which
+> > +  can support network, crypto or any other specialized type of
+> > +  devices. These FPGA based devices can be added/modified dynamically
+> > +  on run-time.
+> > +
+> > +  All devices on the CDX bus will have a unique streamid (for IOMMU)
+> > +  and a unique device ID (for MSI) corresponding to a requestor ID
+> > +  (one to one associated with the device). The streamid and deviceid
+> > +  are used to configure SMMU and GIC-ITS respectively.
+> > +
+> > +  iommu-map property is used to define the set of stream ids
+> > +  corresponding to each device and the associated IOMMU.
+> > +
+> > +  The MSI writes are accompanied by sideband data (Device ID).
+> > +  The msi-map property is used to associate the devices with the
+> > +  device ID as well as the associated ITS controller.
+> > +
+> > +  rproc property (xlnx,rproc) is used to identify the remote processor
+> > +  with which APU (Application Processor Unit) interacts to find out
+> > +  the bus and device configuration.
+> > +
+> > +maintainers:
+> > +  - Nipun Gupta <nipun.gupta@amd.com>
+> > +  - Nikhil Agarwal <nikhil.agarwal@amd.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: xlnx,versal-net-cdx
+> > +
+> > +  iommu-map: true
+> > +
+> > +  msi-map: true
+> > +
+> > +  xlnx,rproc:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      phandle to the remoteproc_r5 rproc node using which APU interact=
+s
+> > +      with remote processor.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - iommu-map
+> > +  - msi-map
+> > +  - xlnx,rproc
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    cdx {
+> > +        compatible =3D "xlnx,versal-net-cdx";
+> > +        /* define map for RIDs 250-259 */
+> > +        iommu-map =3D <250 &smmu 250 10>;
+> > +        /* define msi map for RIDs 250-259 */
+> > +        msi-map =3D <250 &its 250 10>;
+> > +        xlnx,rproc =3D <&remoteproc_r5>;
+>=20
+> There's no addresses associated with this bus? Like the address range
+> the devices are at.
+
+Hi Rob,
+
+There is a remoteproc device which is associated with this controller, whic=
+h
+exposes the address for CDX bus controller and hence no reg/address require=
+d
+in this node.=20
+
+> You should have 'ranges' whether Linux needs it yet
+> or not.
+
+Agree, will add this to the next spin.
+
+Thanks,
+Nipun
+
+>=20
+> Rob
