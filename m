@@ -2,50 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C44C068CBF3
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 02:32:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E95568CBF6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 02:34:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230241AbjBGBcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 20:32:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37658 "EHLO
+        id S230283AbjBGBey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 20:34:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229792AbjBGBcp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 20:32:45 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A781D2F7AC;
-        Mon,  6 Feb 2023 17:32:43 -0800 (PST)
-Received: from pendragon.ideasonboard.com (unknown [109.136.43.56])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F227E4AF;
-        Tue,  7 Feb 2023 02:32:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1675733562;
-        bh=Czb85eWNt6+QOWy4N+0JsEXtCH661GK4gXrU4i69uGk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ty33c4sWbC0BnkLe5mDB47pXArOxI/VyJHNHcLuo3nN9PrZHs2FNsm1PCDbNobuzW
-         FVEWKFQMCQ5i+NVTYJzoEQLNUXIbn0qeCLmR0+Io+Q8Y909bGZ02edRPnKkIp/Zu82
-         g+Z7ub+3TyCseuWpGy03GRC24e+PwVjiok46b7fg=
-Date:   Tue, 7 Feb 2023 03:32:40 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230297AbjBGBew (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 20:34:52 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AD9C2F7AC;
+        Mon,  6 Feb 2023 17:34:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=tZWkCJrGrg0CgOQ/KDtg58bqJacvpTUQpLyNlTnrySs=; b=duOAIAbGYd5mxT4ixKQCZRLbCb
+        lrCA8ogNU46SpMPvMKMnuwUEopuVnJRdNEBeZV7nE3qTWsp0fkNpRqwolaN8Rl5FCc+Zo9t0QFUz8
+        f2vDD42t06VYQ7XoBg17UtNGokleyafXrAkg6OoEiTGIP+sJPg39KOTKxhet7pd52fOM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pPCsb-004FpP-6f; Tue, 07 Feb 2023 02:34:41 +0100
+Date:   Tue, 7 Feb 2023 02:34:41 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Janne Grunau <j@jannau.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] media: i2c: imx290: Add support for imx327 variant
-Message-ID: <Y+GqOF2lFPH+PliK@pendragon.ideasonboard.com>
-References: <20230206131731.548795-1-alexander.stein@ew.tq-group.com>
- <20230206131731.548795-3-alexander.stein@ew.tq-group.com>
- <CAPY8ntBzi8kccb6qVkHxs02Ae1fC0emLdo5CQd4uQ9PkJySGeQ@mail.gmail.com>
+        Mailing List <devicetree-spec@vger.kernel.org>,
+        Kalle Valo <kvalo@kernel.org>, van Spriel <arend@broadcom.com>,
+        =?iso-8859-1?B?Suly9G1l?= Pouiller <jerome.pouiller@silabs.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org
+Subject: Re: [PATCH RFC 0/3] dt-bindings: net: Add network-class.yaml schema
+Message-ID: <Y+GqsTLXRKyg0BdV@lunn.ch>
+References: <20230203-dt-bindings-network-class-v1-0-452e0375200d@jannau.net>
+ <CAL_JsqKD7gD86_B93M19rBCWn+rmSw24vOGEhqi9Nvne1Xixwg@mail.gmail.com>
+ <20230206163154.GA9004@jannau.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAPY8ntBzi8kccb6qVkHxs02Ae1fC0emLdo5CQd4uQ9PkJySGeQ@mail.gmail.com>
+In-Reply-To: <20230206163154.GA9004@jannau.net>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
@@ -55,189 +57,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-On Mon, Feb 06, 2023 at 02:40:56PM +0000, Dave Stevenson wrote:
-> On Mon, 6 Feb 2023 at 13:17, Alexander Stein wrote:
-> >
-> > Both sensors are quite similar. Their specs only differ regarding LVDS
-> > and parallel output but are identical regarding MIPI-CSI-2 interface.
-> > But they use a different init setting of hard-coded values, taken from
-> > the datasheet.
-> >
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > Note: The call to v4l2_i2c_subdev_set_name will change the device name
-> > shown to userspace. So now 'imx290lqr' will be shown instead of 'imx290'.
+> > > I've ignored "max-frame-size" since the description in
+> > > ethernet-controller.yaml claims there is a contradiction in the
+> > > Devicetree specification. I suppose it is describing the property
+> > > "max-frame-size" with "Specifies maximum packet length ...".
+> > 
+> > Please include it and we'll fix the spec. It is clearly wrong. 2 nios
+> > boards use 1518 and the consumer for them says it is MTU. Everything
+> > else clearly uses mtu with 1500 or 9000.
 > 
-> This is going to cause grief as we already have a Pi libcamera
-> pipeline handler and tuning that relies on the entity name being
-> "imx290", so changing that is going to cause issues.
-> 
-> From userspace, the difference between lqr and llr is already reported
-> via the different colour formats supported (RGGB10 & RGGB12 vs Y10 &
-> Y12), so there is no need to provide the full part number. If there is
-> a need to distinguish imx327 vs imx290 in userspace, then I'd propose
-> just using the base model identifier.
+> Ok, the example in the pdf is 'max-frame-size = <1518>;'. I'll include 
+> it with the description of ethernet-controller.yaml which specifies it 
+> as MTU.
 
-Agreed.
+You need to be careful here. Frame and MTU are different things.
 
-> >  drivers/media/i2c/imx290.c | 58 ++++++++++++++++++++++++++++++++++++--
-> >  1 file changed, 55 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-> > index 1cfdd700bca5..0bfbce8853e6 100644
-> > --- a/drivers/media/i2c/imx290.c
-> > +++ b/drivers/media/i2c/imx290.c
-> > @@ -173,10 +173,13 @@ enum imx290_colour_variant {
-> >  enum imx290_model {
-> >         IMX290_MODEL_IMX290LQR,
-> >         IMX290_MODEL_IMX290LLR,
-> > +       IMX290_MODEL_IMX327LQR,
-> >  };
-> >
-> >  struct imx290_model_info {
-> >         enum imx290_colour_variant colour_variant;
-> > +       enum imx290_model model;
-> > +       const char *name;
-> >  };
-> >
-> >  enum imx290_clk_freq {
-> > @@ -272,10 +275,14 @@ static const struct imx290_regval imx290_global_init_settings[] = {
-> >         { IMX290_WINWV, 1097 },
-> >         { IMX290_XSOUTSEL, IMX290_XSOUTSEL_XVSOUTSEL_VSYNC |
-> >                            IMX290_XSOUTSEL_XHSOUTSEL_HSYNC },
-> > -       { IMX290_REG_8BIT(0x300f), 0x00 },
-> > -       { IMX290_REG_8BIT(0x3010), 0x21 },
-> > +       { IMX290_REG_8BIT(0x3011), 0x02 },
+The IEEE 802.3 standard says nothing about MTU. I believe MTU is an IP
+concept. It is the size of the SDU an Ethernet PDU can carry. This is
+typically 1500.
 
-This change should be mentioned in the commit message.
+Historically, the max Ethernet frame size was 1518. But with 802.1Q
+which added the VLAN header, all modern hardware actual uses 1522 to
+accommodate the extra 4 bytes VLAN header. So i would not actually put
+max-frame-size = <1518> anywhere, because it will get copy/pasted and
+break VLAN setups.
 
-> >         { IMX290_REG_8BIT(0x3012), 0x64 },
-> >         { IMX290_REG_8BIT(0x3013), 0x00 },
-> > +};
-> > +
-> > +static const struct imx290_regval imx290_global_init_settings_290[] = {
-> > +       { IMX290_REG_8BIT(0x300f), 0x00 },
-> > +       { IMX290_REG_8BIT(0x3010), 0x21 },
-> >         { IMX290_REG_8BIT(0x3016), 0x09 },
-> >         { IMX290_REG_8BIT(0x3070), 0x02 },
-> >         { IMX290_REG_8BIT(0x3071), 0x11 },
-> > @@ -328,6 +335,12 @@ static const struct imx290_regval xclk_regs[][IMX290_NUM_CLK_REGS] = {
-> >         },
-> >  };
-> >
-> > +static const struct imx290_regval imx290_global_init_settings_327[] = {
-> > +       { IMX290_REG_8BIT(0x309e), 0x4A },
-> > +       { IMX290_REG_8BIT(0x309f), 0x4A },
-> > +       { IMX290_REG_8BIT(0x313b), 0x61 },
+It looks like the ibm,emac.txt makes this error, max-frame-size =
+<5dc>; 0x5dc is 1500. And there are a few powerpc .dtc using
+1500/0x5dc, which are probably broken.
 
-Lowercase hex constants pleasea.
-
-> > +};
-> > +
-> >  static const struct imx290_regval imx290_1080p_settings[] = {
-> >         /* mode settings */
-> >         { IMX290_WINWV_OB, 12 },
-> > @@ -999,9 +1012,11 @@ static int imx290_start_streaming(struct imx290 *imx290,
-> >                                   struct v4l2_subdev_state *state)
-> >  {
-> >         const struct v4l2_mbus_framefmt *format;
-> > +       const struct imx290_regval *regs;
-> > +       unsigned int reg_num;
-> >         int ret;
-> >
-> > -       /* Set init register settings */
-> > +       /* Set common init register settings */
-> >         ret = imx290_set_register_array(imx290, imx290_global_init_settings,
-> >                                         ARRAY_SIZE(imx290_global_init_settings));
-> >         if (ret < 0) {
-> > @@ -1009,6 +1024,28 @@ static int imx290_start_streaming(struct imx290 *imx290,
-> >                 return ret;
-> >         }
-> >
-> > +       switch (imx290->model->model) {
-> > +       case IMX290_MODEL_IMX290LQR:
-> > +       case IMX290_MODEL_IMX290LLR:
-> > +               regs = imx290_global_init_settings_290;
-> > +               reg_num = ARRAY_SIZE(imx290_global_init_settings_290);
-> > +               break;
-> > +       case IMX290_MODEL_IMX327LQR:
-> > +               regs = imx290_global_init_settings_327;
-> > +               reg_num = ARRAY_SIZE(imx290_global_init_settings_327);
-> > +               break;
-> > +       default:
-> > +               dev_err(imx290->dev, "Invalid model: %u\n", imx290->model->model);
-
-This should never happen, so you can drop the message.
-
-> > +               return -EINVAL;
-> > +       }
-> 
-> switch/case here, or add a pointer to struct imx290_model_info?
-
-Do you mean a pointer to the model-specific init regs array? I like the
-idea. The size would need to be added too (unless we switch to
-terminating those arrays with a sentinel).
-
-> Keeping all the configuration for the different models in struct
-> imx290_model_info has an appeal to me.
-> 
-> > +
-> > +       /* Set init register settings */
-
-	/* Set device-specific init register settings */
-
-> > +       ret = imx290_set_register_array(imx290, regs, reg_num);
-> > +       if (ret < 0) {
-> > +               dev_err(imx290->dev, "Could not set init registers\n");
-> > +               return ret;
-> > +       }
-> > +
-> >         /* Set clock parameters based on mode and xclk */
-> >         ret = imx290_set_clock(imx290);
-> >         if (ret < 0) {
-> > @@ -1479,9 +1516,18 @@ static s64 imx290_check_link_freqs(const struct imx290 *imx290,
-> >  static const struct imx290_model_info imx290_models[] = {
-> >         [IMX290_MODEL_IMX290LQR] = {
-> >                 .colour_variant = IMX290_VARIANT_COLOUR,
-> > +               .model = IMX290_MODEL_IMX290LQR,
-> > +               .name = "imx290lqr",
-> >         },
-> >         [IMX290_MODEL_IMX290LLR] = {
-> >                 .colour_variant = IMX290_VARIANT_MONO,
-> > +               .model = IMX290_MODEL_IMX290LLR,
-> > +               .name = "imx290llr",
-> > +       },
-> > +       [IMX290_MODEL_IMX327LQR] = {
-> > +               .colour_variant = IMX290_VARIANT_COLOUR,
-> > +               .model = IMX290_MODEL_IMX327LQR,
-> > +               .name = "imx327lqr",
-> >         },
-> >  };
-> >
-> > @@ -1496,6 +1542,9 @@ static const struct of_device_id imx290_of_match[] = {
-> >         }, {
-> >                 .compatible = "sony,imx290llr",
-> >                 .data = &imx290_models[IMX290_MODEL_IMX290LLR],
-> > +       }, {
-> > +               .compatible = "sony,imx327lqr",
-> > +               .data = &imx290_models[IMX290_MODEL_IMX327LQR],
-> >         },
-> >         { /* sentinel */ },
-> >  };
-> > @@ -1630,6 +1679,9 @@ static int imx290_probe(struct i2c_client *client)
-> >         if (ret)
-> >                 goto err_pm;
-> >
-> > +       v4l2_i2c_subdev_set_name(&imx290->sd, client,
-> > +                                imx290->model->name, NULL);
-> > +
-> >         /*
-> >          * Finally, register the V4L2 subdev. This must be done after
-> >          * initializing everything as the subdev can be used immediately after
-
--- 
-Regards,
-
-Laurent Pinchart
+      Andrew
