@@ -2,112 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A46868D128
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 09:00:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 992F868D12A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 09:00:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231203AbjBGIAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 03:00:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41634 "EHLO
+        id S229563AbjBGIA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 03:00:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231168AbjBGH75 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 02:59:57 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91CD629146
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 23:59:55 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id a2so12380840wrd.6
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 23:59:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=i9y/P9MXwLNgqQt+C7wIYeiUxLoDHi6tNn49iTJuqSQ=;
-        b=WdD2Y/cGjIiqlS31xeZvPPnp2bp9E9bEkfrn+p1aF/sykDUZR0Mn+9UPPgIo4Ss5mR
-         X7x5zwE5fV7SDsK7AQzphRSIltCWtrtKKJ5UXe52kK8RkjiP/2OlXEh11Dto5hQGQOUj
-         fSXmQwUYRhlcbsJAXZirNibnhegy55SSODE8Zo9noHQiqBLOv8PODBiyjSuuN2UebDhu
-         xMniewVsouwDvYuFigf0c1XoVs34BeXfuXAjTuGI+br2hw3KjbeIlUIOd4/EZlktIyX0
-         DVTE6nzeYLkEVZogZyQ34rvzldQlKuKNMz9nmTpvilxR1h+W3NhjV9OCXm9W4Qk5vhT6
-         LyLQ==
+        with ESMTP id S230215AbjBGIA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 03:00:26 -0500
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EBCB36446
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 00:00:25 -0800 (PST)
+Received: by mail-qt1-f169.google.com with SMTP id h24so15862403qtr.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 00:00:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i9y/P9MXwLNgqQt+C7wIYeiUxLoDHi6tNn49iTJuqSQ=;
-        b=uE+MzdNj8x4I//k20cJg41pN2zn6zfYYuPfsx73f1khfpDuEe93te93bCOdmiE677C
-         2Gwkhx/qG5P7pwltFon8tR59Jb6A5zLJdeF/KspN6sEZyy2MbTsYPgV2z+EhgK2tRTyL
-         J8+y8DENdxoTLatwdP1P6KL13Jne/K74JErKEfcEuULLMEzKMMMfB8pXcaK+gAelNay0
-         Gn1ln3ocE1LffSWR9G1ZX3DMtC18cx2c6/c3magsJ5KR5c2i++exD5NBMu+wgR347SFj
-         5UzMaDj4cRTv2ZPJCsaknx7VCGzeROlL81jpgT8H9gt9W56c4BnoqCdWs5Sp5tRtPys8
-         AosA==
-X-Gm-Message-State: AO0yUKX8cXKF1SfH+ApsebF/W0lu1QMBxXLhN/+j3IXPIxoLlnHCL7Ka
-        BY3+wpAOT0Azq9J01juP7G5Rww==
-X-Google-Smtp-Source: AK7set979LY59KDvABkxHfzPCxi00zqtmzn2pfmV76eS0PMM6Bg/n+cN4lqN+Mh65bjJmFGGKeENEA==
-X-Received: by 2002:a05:6000:188d:b0:2c3:be89:7c36 with SMTP id a13-20020a056000188d00b002c3be897c36mr14479686wri.25.1675756794196;
-        Mon, 06 Feb 2023 23:59:54 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f7-20020a056000128700b002c3df9279f5sm7432290wrx.48.2023.02.06.23.59.52
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Mex+jfAmaUpIUDmTe8kPqw4pgJV7GY+mCAfjiClmLdg=;
+        b=jNH9uJIoGde8hq+pJJ3WDXptQOOpKHS04UYCJHJeebIdiAfLmysin+5QubvwI800ew
+         s6JCxuYfrXl6lRO66olDxoVTt9maeaHtfMxoy539jP75G9bFkHqbdc2RX/O6nSlakfa2
+         r0oNiFzo5k/4P04EMAl5IV9lYRheojAJFqnq10s8ubsEQL2DZExRBsRsvhujZdvIP7IF
+         ZHNGf/w6qzGBk4K8aUful1Yc0gVDrl7a5Zti+PqsTOA+41m8ygSZbAEYa63C996MSEEd
+         KAdiFRFa6lXPhR5a1TPf58bLnK0zySugu3bOaauCb/BWXx4n444UNkGDP2HKuJKrFzQA
+         oDpA==
+X-Gm-Message-State: AO0yUKXwZQevf/p/gu6uf1MlyetumNi9k40gWl/Jn/sZDD0l0qwG95nR
+        kiq28Cf+z28DjNoGanz1GaVSBabfCRZS8w==
+X-Google-Smtp-Source: AK7set/5JJQ1JPKc4UvBmUixSKzXhtjo4OMgzh0cerA/6EDues/T9JH0Gw0OH4EYObWSxZu2dlO0RA==
+X-Received: by 2002:a05:622a:50c:b0:3b4:5d7f:2805 with SMTP id l12-20020a05622a050c00b003b45d7f2805mr4071917qtx.6.1675756824187;
+        Tue, 07 Feb 2023 00:00:24 -0800 (PST)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id e21-20020ac80115000000b003b62e9c82ebsm9084988qtg.48.2023.02.07.00.00.23
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 23:59:53 -0800 (PST)
-Message-ID: <b3b9d515-20b1-62a1-3243-b1bc36c306df@linaro.org>
-Date:   Tue, 7 Feb 2023 08:59:51 +0100
+        Tue, 07 Feb 2023 00:00:23 -0800 (PST)
+Received: by mail-yb1-f178.google.com with SMTP id q4so12834525ybu.7
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 00:00:23 -0800 (PST)
+X-Received: by 2002:a25:eb04:0:b0:7b4:6a33:d89f with SMTP id
+ d4-20020a25eb04000000b007b46a33d89fmr204752ybs.543.1675756823230; Tue, 07 Feb
+ 2023 00:00:23 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] arm64: dts: Add support for Unisoc's UMS512
-Content-Language: en-US
-To:     Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, soc@kernel.org,
-        devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>
-References: <20230118084025.2898404-1-chunyan.zhang@unisoc.com>
- <41fd5c2a-9fc5-8af8-b66e-45bb83b24179@linaro.org>
- <CAAfSe-v3VW_sE4FwjURoOapMXrGavOK0hzeU-84-U_6xfhYbQQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAAfSe-v3VW_sE4FwjURoOapMXrGavOK0hzeU-84-U_6xfhYbQQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <87r0v2uvm7.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87r0v2uvm7.wl-kuninori.morimoto.gx@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 7 Feb 2023 09:00:11 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXYwW8bk+a+7Fb7DA7kT0DdQyJSGaSnFzdgfWZxpmPHAA@mail.gmail.com>
+Message-ID: <CAMuHMdXYwW8bk+a+7Fb7DA7kT0DdQyJSGaSnFzdgfWZxpmPHAA@mail.gmail.com>
+Subject: Re: [PATCH RFC 0/2] ASoC: dt-bindings: renesas,rsnd.yaml: adjust to
+ R-Car Gen4
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 03:19, Chunyan Zhang wrote:
-> On Thu, 19 Jan 2023 at 19:40, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 18/01/2023 09:40, Chunyan Zhang wrote:
->>> Add basic support for Unisoc's UMS512, with this patch,
->>> the board ums512-1h10 can run into console.
->>>
-> 
-> [snip]
-> 
->>> +             ap-apb {
->>
->> Non-unit-address nodes cannot be mixed with unit address ones. Something
->> is wrong here.
-> 
-> To make sure I understand correctly, did you mean non-unit-address
-> nodes shouldn't be the parent of unit-address nodes?
-> 
-> Does that mean the bus node should have a unique base address like:
->         ap-apb@70000000 {
+Hi Morimoto-san,
 
-No. I mean, run dtbs W=1 or dtbs_check DT_SCHEMA_FILES=simple-bus
+On Tue, Feb 7, 2023 at 2:12 AM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> This is [RFC] patches.
+>
+> This patch-set adjust to R-Car Gen4 on renesas,rsnd.yaml.
+> It works and no error reported.
+> But by this patch, non-Gen4 leaks from "ssi-[0-9]" checking.
+> I'm not sure why it happens.
 
+If the logic becomes too complex, you can also split the binding
+description in 4 files, one per R-Car generation.
+That would lead to lots of duplication, though.
 
-Best regards,
-Krzysztof
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
