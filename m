@@ -2,103 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5792668D6B2
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 13:29:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A307168D6BD
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 13:30:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230510AbjBGM27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 07:28:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53788 "EHLO
+        id S231276AbjBGMaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 07:30:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231515AbjBGM25 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 07:28:57 -0500
-Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7311A65A9;
-        Tue,  7 Feb 2023 04:28:56 -0800 (PST)
-Received: by mail-vs1-xe2f.google.com with SMTP id k4so16068739vsc.4;
-        Tue, 07 Feb 2023 04:28:56 -0800 (PST)
+        with ESMTP id S231196AbjBGMa3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 07:30:29 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A4A02C664
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 04:30:28 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id m14so13352145wrg.13
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 04:30:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fr1nRNymEVHaG3zo06OF84XvEiAPBTrVbfRlQ0TZbio=;
-        b=MVV2OHsxfpOOQjoQ5R8zn+LJrsUqCRJrOiRF2lo1X6E6bkqwk9P/e7j6yXbth3hd8b
-         RaYlBCUvPZXvT5qg6cYRsxn1UFiVwhaxx/UukVMQA2ChZAsIp23dftDG9SlNh33f+ndh
-         VUYjTRExYq1UiffB2KqBYjILtlKDEJ55KzJzEbJTT/3dEPjSGtqpI0cPdrc3hmBC9Slv
-         LuYWGKIHxWSPiwzptlJnSmig93iKq4BDTs47IoFepAcMrZoAE01MNQhI4DycBajDqCw/
-         tOCumBGn5VwjoIeMX+/idVUtXygSXsn3UlcSb/5IAfljE+RNCgrAGe1tVURZ2Q/90rRh
-         0lPw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uo8Ualo99d53mmVi49FY+l820ilSRXIZGdKs4k2O74k=;
+        b=lD9EZ7RPG6IizC5UEkDoAl2VLeg5YjRQJ9YuKzsS3PDhjFqSwmEkcfqb42JvX1M6PO
+         jPwtqoYOWqmM8JxVJeAoMdRkwyLbWEWCf8iYoetSVVUw016uSm8r2XFY05mJ72meJu4b
+         KLAaRI0zu3/9Slfx96CHzXB5AYW4gdj64B1X21R3beCnHSIQUsQfLV7RJB0IDWNv6wDz
+         gJe+jj4fgugWXWjR5iOZMGNBsM2KDOLHH6cvvJuNQMmfcNmw1RFam2SYz8uCgWjP84Bk
+         vsXdFu4q9yz6zrJ0t0507194GRN7eVBQr09dQLvVkrO0gaI53cfYu8ltm+OkSQMFA3Wc
+         4PdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fr1nRNymEVHaG3zo06OF84XvEiAPBTrVbfRlQ0TZbio=;
-        b=JxJFKMGnW6leEZ8hmAVJWy3xpAMqkivfqqs9t+brJoKZiSD2tDGY4n8nk6Dnggbk8J
-         VA2C+00wWx61TWXtyldgxV0eD3UiP9FOORjrxsbF9Me+d/xthTBnawz2/cos6+RFIVtD
-         bc3oHq/4D/usRucpwtLQrkvhpG7bWOw5fQDBCkOqO61NlNHRjs5v/oy+2tCpSMCSrTu0
-         i3zUPj4O2MilI9ijSU0UN1aYNzu5Y2vtkea9BD8pboAR4oHuJqS9goanQlBUEMPw6CF4
-         Y29xsF1e0BnaJ8owSJxkAdQfFgJxK6oTMOJ5JgqUgEFsFluub2JWN6qxfltCvQ4LAWho
-         vRzw==
-X-Gm-Message-State: AO0yUKVuVCXjD6OM04TIhzZgkSiQYXfjNi8voyBKEF76QBm0SGAg3Rud
-        NJOc6kITxJ+X0QqAUJPQh3l3cgLxOHeoiecZvvw=
-X-Google-Smtp-Source: AK7set/fLPaUt9vIunr/CGf8xdWp6WCyM+aV/W9xuB7kpHwK4Eb8TRn+boQph7dJbUbcWTqdyqzzgnkx9cBEgbtNRII=
-X-Received: by 2002:a67:d60d:0:b0:411:a8fb:4f41 with SMTP id
- n13-20020a67d60d000000b00411a8fb4f41mr112238vsj.67.1675772935307; Tue, 07 Feb
- 2023 04:28:55 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uo8Ualo99d53mmVi49FY+l820ilSRXIZGdKs4k2O74k=;
+        b=uj67IIMLufC09qXzc2izUkuPdZFlSM6U9jUfRuMMpfj3pmnupQbvayYGxe00X8h7GE
+         3mCwcwT4pu8RExrbtnydEyyLmdL41qX7GOF7pn5701FwkNVsVPeJN/To+sh3M2NaLyV+
+         LS9YG67xc4E5KsyqN2UptqU29tLzMYtO7GyIeSXzxEEmLvx6sO+dM0CIZ5Y2C4jd4p5U
+         ai5noB63AOvGet6XSU55xhzjuq+qsgKpbtlaixhgYLtQVZ/EYpSIOhzHZ2sA/bd3JONw
+         IG1izZuMVbBmQ1B2oYDqR8uTOg+2u5BS2c4MagbxvvH/eRX2dXgz03VPuZ+cU3/VJFva
+         Ii8Q==
+X-Gm-Message-State: AO0yUKX220oSKVbOYqFzmBhn2mMGNPc1evU/QMNVBrc+DDcy2ds2rIu+
+        2HErrC+7Jch27K0kOwdsbkp2sA==
+X-Google-Smtp-Source: AK7set/FHB9i8kE1subd+a6lk2/Py5IpC82cHNa3nwC0OUd/lRxJYlOvxC7g0sC/El2fSuhrlQBR6A==
+X-Received: by 2002:adf:f6c6:0:b0:2bf:b571:1f18 with SMTP id y6-20020adff6c6000000b002bfb5711f18mr3028904wrp.61.1675773027151;
+        Tue, 07 Feb 2023 04:30:27 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id k10-20020a5d6e8a000000b002bdda9856b5sm11214256wrz.50.2023.02.07.04.30.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Feb 2023 04:30:26 -0800 (PST)
+Message-ID: <6804adf4-2fba-e4f9-36ef-a6b8bacae76d@linaro.org>
+Date:   Tue, 7 Feb 2023 13:30:25 +0100
 MIME-Version: 1.0
-References: <20230206135016.6737-1-kaehndan@gmail.com> <20230206135016.6737-5-kaehndan@gmail.com>
- <Y+GKwhkW29Bk26S+@google.com> <Y+Ikq+ow/Z8fTRGm@smile.fi.intel.com>
-In-Reply-To: <Y+Ikq+ow/Z8fTRGm@smile.fi.intel.com>
-From:   Daniel Kaehn <kaehndan@gmail.com>
-Date:   Tue, 7 Feb 2023 06:28:42 -0600
-Message-ID: <CAP+ZCCcCNEWy+tSwZQ_szObju8vZuvzQF8RpprwTSP6vRGRF3Q@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] HID: cp2112: Devicetree Support
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, ethan.twardy@plexus.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 7/7] ASoC: dt-bindings: meson: convert axg sound card
+ control to schema
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20230206153449.596326-1-jbrunet@baylibre.com>
+ <20230206153449.596326-8-jbrunet@baylibre.com>
+ <a711905e-dbfb-4258-62be-250a9549a9c4@linaro.org>
+ <1jbkm53jvg.fsf@starbuckisacylon.baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1jbkm53jvg.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 7, 2023 at 4:15 AM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Mon, Feb 06, 2023 at 03:18:26PM -0800, Dmitry Torokhov wrote:
-> > On Mon, Feb 06, 2023 at 07:50:16AM -0600, Danny Kaehn wrote:
->
-> ...
->
-> > > +#if IS_ENABLED(CONFIG_OF_GPIO)
-> > > +   dev->gc.of_node                 = of_get_child_by_name(hdev->dev.of_node, "gpio");
-> >
-> >
-> > I believe Andy is actively trying to get rid of of_node from GPIO chips.
-> > And in general, we should be using fwnode and generic device properties
-> > as much as possible.
-> >
-> > > +#endif
->
-> Correct. And looking into the code of this patch I don't see any obstacles
-> to use fwnode APIs. You can Cc a v5 (which is supposed to be fwnode API based)
-> to me.
->
+On 07/02/2023 10:25, Jerome Brunet wrote:
+> 
+> On Mon 06 Feb 2023 at 20:21, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>>> +
+>>> +  audio-routing:
+>>> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+>>> +    description: |
+>>
+>> You still have everywhere | which should be removed. Here and in almost
+>> every other description when no special formatting is needed.
+> 
+> I'm sorry if I misunderstood your comment. I thought the problem was
+> with the '-' of '|-', which I removed here.
+> 
+> Should I use '>' for the YAML multiline format instead ?
 
-Sounds great, will do. I looked into doing this with the fwnode
-initially, but thought since the capability to describe usb devices in
-ACPI doesn't seem to be there, that I should be explicit that this
-only works for devicetree--but makes sense that it's better to be
-generic at the driver level if possible (especially if of_node is
-being removed from gpio chips), so will do!
+I asked to remove "|-". Don't add any other character - why do you need
+it? Multiline descriptions don't need block scalar headers unless you
+want to preserve some format.
 
-Thanks,
+Best regards,
+Krzysztof
 
-Danny Kaehn
