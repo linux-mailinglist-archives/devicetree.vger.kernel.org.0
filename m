@@ -2,158 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6C8168CC3D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 02:44:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C724B68CC47
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 02:48:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbjBGBoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 20:44:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41098 "EHLO
+        id S229571AbjBGBsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 20:48:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229726AbjBGBn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 20:43:28 -0500
-Received: from mail-pj1-x1049.google.com (mail-pj1-x1049.google.com [IPv6:2607:f8b0:4864:20::1049])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C340E3668C
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 17:42:51 -0800 (PST)
-Received: by mail-pj1-x1049.google.com with SMTP id dt6-20020a17090afa4600b00230183006c3so5292208pjb.7
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 17:42:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:from:subject:references:mime-version:message-id:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YX1zBRfC33D3rDRElKAdT20jJS5RQeSlv0JzqWYnjho=;
-        b=UGmq1xHhmv8QgalRGnvex5vaBwzzKCS6zloJhLFOA04JYhf7s2xljRYpy9kTAoNsHa
-         iBC98QSDMciwj7mZAoPpI2usajIcl1gF62f5Z4nG2GjxXwW1tEOTSt3uCwYi8iyDdG37
-         BQfwQH+F5b5B8hHp73/BToUo9eBPbPtsoJG7VHsq9ww2xJmU91i6mybd4OadC8hcmn4L
-         z/JS/fusQ1z+bJZfl9x8ljB4BFuvxFXBUNKd3sGG9GJYtq6qpJhSHd3ZvicyZg0osOk+
-         QxgZAlVpjyrodYVEXosDI3FM0qnhjaVmzWT6ld85NejZtUeLAUKpBMz5nIKrGLcp4W86
-         p/oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:from:subject:references:mime-version:message-id:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YX1zBRfC33D3rDRElKAdT20jJS5RQeSlv0JzqWYnjho=;
-        b=lpJJIbbQrnhAbJW6Rs+IMO3lHq9m+jNTGjlWfRi7OPLOnCEGgqZLS9X9HANd5fNbu0
-         yy9A33Iu4YF5C8DAGAmr9MdwZfefAtWHHis0X8bJvRVJyUBUmfVjzonZfulrudbKk1uf
-         +kwXS2LUZ4wl7Y64hqV5Ac30G2kttTTNbQPcCaj0VLZFXyckjnzMO8GNMvDYu6vZ2ziR
-         GZ3Gx6PpsEv0+llBU+Q0+NRp2H0BI+h5RyBkZtoWDLawYEcwO1OFTFVifSv+em/yVZik
-         iSyrocrKIpaqmKfXJplFYBta7KwKs7J6K9obu2GCxeYfrU8lFwTZFRszEYrVbpLeUgsH
-         tHxg==
-X-Gm-Message-State: AO0yUKUhp0ey+YtYrYGWALdb8lFeKgqAKLn/x6T9jwGZ9msoP65BiSFU
-        t1EP0aUvjmkWI/wl2Rca+mUecGNTJudk0Qs=
-X-Google-Smtp-Source: AK7set8Gcli9J3BzSmSCx9wcmgEyp38uzEhI1HIWAsHDVULR2jB9pwdeXZpjU2A6RPq1Ak9f9gnun0I1Kq/a1mU=
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:ae1:aba6:f21c:4a94])
- (user=saravanak job=sendgmr) by 2002:a17:90a:1d4e:b0:230:ae97:c349 with SMTP
- id u14-20020a17090a1d4e00b00230ae97c349mr441075pju.8.1675734163194; Mon, 06
- Feb 2023 17:42:43 -0800 (PST)
-Date:   Mon,  6 Feb 2023 17:42:04 -0800
-In-Reply-To: <20230207014207.1678715-1-saravanak@google.com>
-Message-Id: <20230207014207.1678715-13-saravanak@google.com>
-Mime-Version: 1.0
-References: <20230207014207.1678715-1-saravanak@google.com>
-X-Mailer: git-send-email 2.39.1.519.gcb327c4b5f-goog
-Subject: [PATCH v3 12/12] mtd: mtdpart: Don't create platform device that'll
- never probe
-From:   Saravana Kannan <saravanak@google.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?=" <rafal@milecki.pl>
-Cc:     Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229617AbjBGBsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 20:48:18 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CBE786B1;
+        Mon,  6 Feb 2023 17:48:09 -0800 (PST)
+X-UUID: 759efe32a68911ed945fc101203acc17-20230207
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=xfJdDHYM1kIjZH2oKMPB4Dv9VCfW1IAMgum+diCywO0=;
+        b=JlsUz3jqlcpktPVP7ZsYLFi9uhriH2E7uV+sCeJNtEWWDPBLWwY0tr5M1L0hvh61+Oyzowjtk5uvFKXYbE/nQEBgwBMn/3qA+Y3muEpRx/D2gDh/rOq5S3lknV4oLqsMEhFeyK9bbTir8Fhi8PQ9Uqrlk99Q8Y3yTK5GDgD0vRk=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.19,REQID:fdc50af1-e261-475c-9bc0-12e6779c7c13,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:885ddb2,CLOUDID:f7437f56-dd49-462e-a4be-2143a3ddc739,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0
+X-UUID: 759efe32a68911ed945fc101203acc17-20230207
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1120567926; Tue, 07 Feb 2023 09:48:03 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 7 Feb 2023 09:48:01 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Tue, 7 Feb 2023 09:48:01 +0800
+From:   Moudy Ho <moudy.ho@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Moudy Ho <moudy.ho@mediatek.com>
+Subject: [PATCH v7 0/1] Migrate MT8195 VPPSYS 0/1 to mtk-mmsys drive
+Date:   Tue, 7 Feb 2023 09:47:59 +0800
+Message-ID: <20230207014800.7619-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These "nvmem-cells" platform devices never get probed because there's no
-platform driver for it and it's never used anywhere else. So it's a
-waste of memory. These devices also cause fw_devlink to block nvmem
-consumers of "nvmem-cells" partition from probing because the supplier
-device never probes.
+Change since v6:
+- Rebase on linux-next.
+- Drop applied patches [1/4], [2/4] and [4/4].
+- In response to the API changes of "mtk_clk_register_gates" and
+  "mtk_alloc_clk_data", the patch [3/4] has been modified accordingly.
 
-So stop creating platform devices for nvmem-cells partitions to avoid
-wasting memory and to avoid blocking probing of consumers.
+Change since v5:
+- Rebase on linux-next.
+- Correct the compatible enumeration order in "mediatek,mmsys.yaml".
 
-Reported-by: Maxim Kiselev <bigunclemax@gmail.com>
-Fixes: bcdf0315a61a ("mtd: call of_platform_populate() for MTD partitions")
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- drivers/mtd/mtdpart.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Hi,
 
-diff --git a/drivers/mtd/mtdpart.c b/drivers/mtd/mtdpart.c
-index d442fa94c872..85f5ee6f06fc 100644
---- a/drivers/mtd/mtdpart.c
-+++ b/drivers/mtd/mtdpart.c
-@@ -577,6 +577,7 @@ static int mtd_part_of_parse(struct mtd_info *master,
- {
- 	struct mtd_part_parser *parser;
- 	struct device_node *np;
-+	struct device_node *child;
- 	struct property *prop;
- 	struct device *dev;
- 	const char *compat;
-@@ -594,6 +595,15 @@ static int mtd_part_of_parse(struct mtd_info *master,
- 	else
- 		np = of_get_child_by_name(np, "partitions");
- 
-+	/*
-+	 * Don't create devices that are added to a bus but will never get
-+	 * probed. That'll cause fw_devlink to block probing of consumers of
-+	 * this partition until the partition device is probed.
-+	 */
-+	for_each_child_of_node(np, child)
-+		if (of_device_is_compatible(child, "nvmem-cells"))
-+			of_node_set_flag(child, OF_POPULATED);
-+
- 	of_property_for_each_string(np, "compatible", prop, compat) {
- 		parser = mtd_part_get_compatible_parser(compat);
- 		if (!parser)
+This series splits patches from the original mailing list below:
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=711592
+
+Refer to the comments of 0/8 and 1/8 in the following series:
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=702518
+All about the MT8195 VPPSYS 0/1 should be probed from the "mtk-mmsys"
+driver, which then starts its own clock driver as the platform driver.
+
+Moudy Ho (1):
+  clk: mediatek: remove MT8195 vppsys/0/1 simple_probe
+
+ drivers/clk/mediatek/clk-mt8195-vpp0.c | 58 +++++++++++++++++++-------
+ drivers/clk/mediatek/clk-mt8195-vpp1.c | 58 +++++++++++++++++++-------
+ 2 files changed, 86 insertions(+), 30 deletions(-)
+
 -- 
-2.39.1.519.gcb327c4b5f-goog
+2.18.0
 
