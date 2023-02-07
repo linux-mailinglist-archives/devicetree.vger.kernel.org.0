@@ -2,488 +2,345 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96FC768CB46
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 01:37:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02F7768CB6C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 01:48:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229976AbjBGAhQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 19:37:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37670 "EHLO
+        id S229537AbjBGAsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 19:48:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbjBGAhO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 19:37:14 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44A5424484;
-        Mon,  6 Feb 2023 16:37:10 -0800 (PST)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3170D1Ts031068;
-        Tue, 7 Feb 2023 00:36:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=zdgLRXKNF5ecQt8wJmPqJEeavu5sxJAvLJzgusVYUwc=;
- b=F+zBcM9iu3QePDi1a/9/pgxLKcM5kroHrgxBZK7uXERd6q7bdNsyoqBP6mP8DFJdPjDS
- o6fu9aSPmrF7XTy7DMtodzicS/bt8doViBp5kU7hf1Bxc2swPlwiLAZtBiWekk2U/1tz
- DH6d/vJD5ou2igbLSznSVIA+Sb5s+XKQot4FKpWYwyDvOqNaYmAMoTp7tfInidX1VGrS
- iPaNbCVUzcznYADDzrYtfJO0xq2KFsWJ4LmpVl/1HbvwQT6zwIYOlR6IwvVBpknHs6tx
- 9SMNjpRSYLyngCPfMJyeSgAaJDDyLuuJaXW1dsIj7a0tY++tQ97TgeEF1L86OqVaL1Xv HA== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nhfrew2cy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 07 Feb 2023 00:36:54 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3170aqhm007446
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 7 Feb 2023 00:36:52 GMT
-Received: from [10.134.67.48] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 6 Feb 2023
- 16:36:51 -0800
-Message-ID: <b213da2f-6f63-78ba-40e4-e6abc380a5a4@quicinc.com>
-Date:   Mon, 6 Feb 2023 16:36:51 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v9 11/27] gunyah: vm_mgr: Introduce basic VM Manager
-Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>
-CC:     Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        with ESMTP id S229519AbjBGAsX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 19:48:23 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94AC024CB3;
+        Mon,  6 Feb 2023 16:48:21 -0800 (PST)
+Received: from pendragon.ideasonboard.com (unknown [109.136.43.56])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C5A0C4AF;
+        Tue,  7 Feb 2023 01:48:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1675730897;
+        bh=4Fy0Vdd1c4G22l6Kt8f4vToEKcbb5hnQ1bVP3bDfPKo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Y1tpHjkHaQI0QfiXPVQ6NjFnjao9g9J5UaG7bK5Kqhos9HWtThpeXjwshm36R4auK
+         V8J7GHAE/89IvUg3+9s+7tnQ3nDRBoAtcps8PtJcFs9F97VIs1tePE/t5C1cqaR8UZ
+         44mVN6D7yvaqPJ+BVRIwg7svXfcEFrzjXws6a5kU=
+Date:   Tue, 7 Feb 2023 02:48:16 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
- <20230120224627.4053418-12-quic_eberman@quicinc.com>
- <5c5bec7d-e3de-ef7e-b0fc-83d6c0481af1@linaro.org>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <5c5bec7d-e3de-ef7e-b0fc-83d6c0481af1@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: uFa6PppQZdfI2BBpGpKOJw1OYjNO5s80
-X-Proofpoint-GUID: uFa6PppQZdfI2BBpGpKOJw1OYjNO5s80
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-06_07,2023-02-06_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- lowpriorityscore=0 spamscore=0 clxscore=1015 impostorscore=0 mlxscore=0
- malwarescore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
- phishscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2302070004
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] media: i2c: imx290: Add support for the mono sensor
+ variant.
+Message-ID: <Y+Gf0OOl/Dc5pyTd@pendragon.ideasonboard.com>
+References: <20230131190700.3476796-1-dave.stevenson@raspberrypi.com>
+ <20230131190700.3476796-3-dave.stevenson@raspberrypi.com>
+ <5647238.DvuYhMxLoT@steina-w>
+ <Y9sAhVSanMmHGHmX@pendragon.ideasonboard.com>
+ <CAPY8ntDYum7b5KYMry3oR6N8sdiwU=FOsyL3NVeFMQObET=SyQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAPY8ntDYum7b5KYMry3oR6N8sdiwU=FOsyL3NVeFMQObET=SyQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Dave,
 
+On Thu, Feb 02, 2023 at 11:20:14AM +0000, Dave Stevenson wrote:
+> On Thu, 2 Feb 2023 at 00:15, Laurent Pinchart wrote:
+> > On Wed, Feb 01, 2023 at 08:03:36AM +0100, Alexander Stein wrote:
+> > > Am Dienstag, 31. Januar 2023, 20:07:00 CET schrieb Dave Stevenson:
+> > > > The IMX290 module is available as either mono or colour (Bayer).
+> > > >
+> > > > Update the driver so that it can advertise the correct mono
+> > > > formats instead of the colour ones.
+> > > >
+> > > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > > ---
+> > > >  drivers/media/i2c/imx290.c | 47 ++++++++++++++++++++++++--------------
+> > > >  1 file changed, 30 insertions(+), 17 deletions(-)
+> > > >
+> > > > diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
+> > > > index 49d6c8bdec41..a370f1102334 100644
+> > > > --- a/drivers/media/i2c/imx290.c
+> > > > +++ b/drivers/media/i2c/imx290.c
+> > > > @@ -13,6 +13,7 @@
+> > > >  #include <linux/gpio/consumer.h>
+> > > >  #include <linux/i2c.h>
+> > > >  #include <linux/module.h>
+> > > > +#include <linux/of_device.h>
+> > > >  #include <linux/pm_runtime.h>
+> > > >  #include <linux/regmap.h>
+> > > >  #include <linux/regulator/consumer.h>
+> > > > @@ -177,6 +178,7 @@ struct imx290 {
+> > > >     struct clk *xclk;
+> > > >     struct regmap *regmap;
+> > > >     u8 nlanes;
+> > > > +   u8 mono;
+> > > >
+> > > >     struct v4l2_subdev sd;
+> > > >     struct media_pad pad;
+> > > > @@ -414,7 +416,8 @@ static inline int imx290_modes_num(const struct imx290 *imx290) }
+> > > >
+> > > >  struct imx290_format_info {
+> > > > -   u32 code;
+> > > > +   /* Array of codes. [0] is for colour, [1] is for mono. */
+> > > > +   u32 code[2];
+> > >
+> > > Please use a define for that.
+> > >
+> > > >     u8 bpp;
+> > > >     const struct imx290_regval *regs;
+> > > >     unsigned int num_regs;
+> > > > @@ -422,26 +425,27 @@ struct imx290_format_info {
+> > > >
+> > > >  static const struct imx290_format_info imx290_formats[] = {
+> > > >     {
+> > > > -           .code = MEDIA_BUS_FMT_SRGGB10_1X10,
+> > > > +           .code = { MEDIA_BUS_FMT_SRGGB10_1X10, MEDIA_BUS_FMT_Y10_1X10 },
+> > > >             .bpp = 10,
+> > > >             .regs = imx290_10bit_settings,
+> > > >             .num_regs = ARRAY_SIZE(imx290_10bit_settings),
+> > > >     }, {
+> > > > -           .code = MEDIA_BUS_FMT_SRGGB12_1X12,
+> > > > +           .code = { MEDIA_BUS_FMT_SRGGB12_1X12, MEDIA_BUS_FMT_Y12_1X12 },
+> > > >             .bpp = 12,
+> > > >             .regs = imx290_12bit_settings,
+> > > >             .num_regs = ARRAY_SIZE(imx290_12bit_settings),
+> > > >     }
+> > > >  };
+> > > >
+> > > > -static const struct imx290_format_info *imx290_format_info(u32 code)
+> > > > +static const struct imx290_format_info *
+> > > > +imx290_format_info(const struct imx290 *imx290, u32 code)
+> > > >  {
+> > > >     unsigned int i;
+> > > >
+> > > >     for (i = 0; i < ARRAY_SIZE(imx290_formats); ++i) {
+> > > >             const struct imx290_format_info *info = &imx290_formats[i];
+> > > >
+> > > > -           if (info->code == code)
+> > > > +           if (info->code[imx290->mono] == code)
+> > > >                     return info;
+> > > >     }
+> > > >
+> > > > @@ -536,7 +540,7 @@ static int imx290_set_black_level(struct imx290 *imx290,
+> > > > const struct v4l2_mbus_framefmt *format,
+> > > >                               unsigned int black_level, int *err)
+> > > >  {
+> > > > -   unsigned int bpp = imx290_format_info(format->code)->bpp;
+> > > > +   unsigned int bpp = imx290_format_info(imx290, format->code)->bpp;
+> > > >
+> > > >     return imx290_write(imx290, IMX290_BLKLEVEL,
+> > > >                         black_level >> (16 - bpp), err);
+> > > > @@ -548,7 +552,7 @@ static int imx290_setup_format(struct imx290 *imx290,
+> > > >     const struct imx290_format_info *info;
+> > > >     int ret;
+> > > >
+> > > > -   info = imx290_format_info(format->code);
+> > > > +   info = imx290_format_info(imx290, format->code);
+> > > >
+> > > >     ret = imx290_set_register_array(imx290, info->regs, info->num_regs);
+> > > >     if (ret < 0) {
+> > > > @@ -844,10 +848,12 @@ static int imx290_enum_mbus_code(struct v4l2_subdev
+> > > > *sd, struct v4l2_subdev_state *sd_state,
+> > > >                              struct v4l2_subdev_mbus_code_enum *code)
+> > > >  {
+> > > > +   const struct imx290 *imx290 = to_imx290(sd);
+> > > > +
+> > > >     if (code->index >= ARRAY_SIZE(imx290_formats))
+> > > >             return -EINVAL;
+> > > >
+> > > > -   code->code = imx290_formats[code->index].code;
+> > > > +   code->code = imx290_formats[code->index].code[imx290->mono];
+> > > >
+> > > >     return 0;
+> > > >  }
+> > > > @@ -859,7 +865,7 @@ static int imx290_enum_frame_size(struct v4l2_subdev
+> > > > *sd, const struct imx290 *imx290 = to_imx290(sd);
+> > > >     const struct imx290_mode *imx290_modes = imx290_modes_ptr(imx290);
+> > > >
+> > > > -   if (!imx290_format_info(fse->code))
+> > > > +   if (!imx290_format_info(imx290, fse->code))
+> > > >             return -EINVAL;
+> > > >
+> > > >     if (fse->index >= imx290_modes_num(imx290))
+> > > > @@ -888,8 +894,8 @@ static int imx290_set_fmt(struct v4l2_subdev *sd,
+> > > >     fmt->format.width = mode->width;
+> > > >     fmt->format.height = mode->height;
+> > > >
+> > > > -   if (!imx290_format_info(fmt->format.code))
+> > > > -           fmt->format.code = imx290_formats[0].code;
+> > > > +   if (!imx290_format_info(imx290, fmt->format.code))
+> > > > +           fmt->format.code = imx290_formats[0].code[imx290->mono];
+> > > >
+> > > >     fmt->format.field = V4L2_FIELD_NONE;
+> > > >
+> > > > @@ -1177,16 +1183,29 @@ static s64 imx290_check_link_freqs(const struct
+> > > > imx290 *imx290, return 0;
+> > > >  }
+> > > >
+> > > > +static const struct of_device_id imx290_of_match[] = {
+> > > > +   { .compatible = "sony,imx290" },
+> > > > +   { .compatible = "sony,imx290-mono", .data = (void *)1 },
+> > >
+> > > Would you mind using a model specific struct? I have a patch on my stack
+> > > adding support for imx327. There are some imx327 specific writes to registers
+> > > during initialization. I do not mind adding this struct later though.
+> >
+> > If not a structure already, at least an enum
+> >
+> > enum imx290_model {
+> >         IMX290_MODEL_COLOUR,
+> >         IMX290_MODEL_MONO,
+> > };
+> >
+> > > > +   { /* sentinel */ }
+> > > > +};
+> > > > +MODULE_DEVICE_TABLE(of, imx290_of_match);
+> > > > +
+> > > >  static int imx290_parse_dt(struct imx290 *imx290)
+> > > >  {
+> > > > +   struct i2c_client *client = to_i2c_client(imx290->dev);
+> > > >     /* Only CSI2 is supported for now: */
+> > > >     struct v4l2_fwnode_endpoint ep = {
+> > > >             .bus_type = V4L2_MBUS_CSI2_DPHY
+> > > >     };
+> > > > +   const struct of_device_id *match;
+> > > >     struct fwnode_handle *endpoint;
+> > > >     int ret;
+> > > >     s64 fq;
+> > > >
+> > > > +   match = i2c_of_match_device(imx290_of_match, client);
+> > > > +   if (match)
+> > > > +           imx290->mono = match->data ? 1 : 0;
+> > > > +
+> >
+> > You can simplify this to
+> >
+> >         imx290->mono = (enum imx290_model)of_device_get_match_data(imx290->dev);
+> >
+> > which may then be best placed in the probe function.
+> >
+> > I'd be tempted to rename the imx290 mono field to model as the above
+> > looks weird, but if Alexander needs a structure anyway, we may also just
+> > do it right away:
+> >
+> > enum imx290_model {
+> >         IMX290_MODEL_COLOUR,
+> >         IMX290_MODEL_MONO,
+> > };
+> >
+> > struct imx290_model_info {
+> >         bool mono;
+> > };
+> 
+> To my mind this gets confusing as to whether imx290_model is the
+> mono/colour switch reference for finding a code in imx290_formats, or
+> differentiating between imx290llr (mono), imx290lqr (colour),
+> imx327xyz, etc as different models of the sensor. (Having the IMX290
+> prefix because it is in the imx290 driver will get even more confusing
+> when you get IMX290_MODEL_IMX327_COLOUR).
+> 
+> Alexander was asking for a define to set the size of code in struct
+> imx290_format_info. As you also point out above, switching to using an
+> enum makes more sense, and then you can add a _MAX to get the array
+> size.
+> 
+> enum imx290_colour_variant {
+>         IMX290_VARIANT_COLOUR,
+>         IMX290_VARIANT_MONO,
+>         IMX290_VARIANT_MAX
+> };
+> 
+> enum imx290_model {
+>         IMX290_MODEL_IMX290LLR,
+>         IMX290_MODEL_IMX290LQR,
+> /*
+>         IMX290_MODEL_IMX327LQR,
+>         IMX290_MODEL_IMX462LQR,
+>         IMX290_MODEL_IMX462LLR,
+>         etc,
+> */
+> };
+> 
+> static const struct imx290_model_info imx290_models[] = {
+>         [IMX290_MODEL_IMX290LQR]= {
+>                 .colour_variant = IMX290_VARIANT_COLOUR,
+>         },
+>         [IMX290_MODEL_IMX290LLR] = {
+>                 .colour_variant = IMX290_VARIANT_MONO,
+>         },
+> };
+> 
+> Thoughts?
 
-On 2/2/2023 4:54 AM, Srinivas Kandagatla wrote:
-> 
-> 
-> On 20/01/2023 22:46, Elliot Berman wrote:
->> Gunyah VM manager is a kernel moduel which exposes an interface to
->> Gunyah userspace to load, run, and interact with other Gunyah virtual
->> machines. The interface is a character device at /dev/gunyah.
->>
->> Add a basic VM manager driver. Upcoming patches will add more ioctls
->> into this driver.
->>
->> Co-developed-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
->> Signed-off-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
->> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
->> ---
->>   .../userspace-api/ioctl/ioctl-number.rst      |   1 +
->>   drivers/virt/gunyah/Makefile                  |   2 +-
->>   drivers/virt/gunyah/rsc_mgr.c                 |  51 +++++++-
->>   drivers/virt/gunyah/vm_mgr.c                  | 117 ++++++++++++++++++
->>   drivers/virt/gunyah/vm_mgr.h                  |  20 +++
->>   include/linux/gunyah_rsc_mgr.h                |   3 +
->>   include/uapi/linux/gunyah.h                   |  23 ++++
->>   7 files changed, 215 insertions(+), 2 deletions(-)
->>   create mode 100644 drivers/virt/gunyah/vm_mgr.c
->>   create mode 100644 drivers/virt/gunyah/vm_mgr.h
->>   create mode 100644 include/uapi/linux/gunyah.h
->>
->> diff --git a/Documentation/userspace-api/ioctl/ioctl-number.rst 
->> b/Documentation/userspace-api/ioctl/ioctl-number.rst
->> index eb045fc495a4..8696dc3cdd83 100644
->> --- a/Documentation/userspace-api/ioctl/ioctl-number.rst
->> +++ b/Documentation/userspace-api/ioctl/ioctl-number.rst
->> @@ -137,6 +137,7 @@ Code  Seq#    Include 
->> File                                           Comments
->>   'F'   DD     video/sstfb.h                                           
->> conflict!
->>   'G'   00-3F  drivers/misc/sgi-gru/grulib.h                           
->> conflict!
->>   'G'   00-0F  xen/gntalloc.h, xen/gntdev.h                            
->> conflict!
->> +'G'   00-0f  linux/gunyah.h                                          
->> conflict!
->>   'H'   00-7F  linux/hiddev.h                                          
->> conflict!
->>   'H'   00-0F  linux/hidraw.h                                          
->> conflict!
->>   'H'   01     linux/mei.h                                             
->> conflict!
->> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
->> index de29769f2f3f..03951cf82023 100644
->> --- a/drivers/virt/gunyah/Makefile
->> +++ b/drivers/virt/gunyah/Makefile
->> @@ -2,5 +2,5 @@
->>   obj-$(CONFIG_GUNYAH) += gunyah.o
->> -gunyah_rsc_mgr-y += rsc_mgr.o rsc_mgr_rpc.o
->> +gunyah_rsc_mgr-y += rsc_mgr.o rsc_mgr_rpc.o vm_mgr.o
->>   obj-$(CONFIG_GUNYAH) += gunyah_rsc_mgr.o
->> diff --git a/drivers/virt/gunyah/rsc_mgr.c 
->> b/drivers/virt/gunyah/rsc_mgr.c
->> index 382f9943fd31..95f4aa928aaf 100644
->> --- a/drivers/virt/gunyah/rsc_mgr.c
->> +++ b/drivers/virt/gunyah/rsc_mgr.c
->> @@ -16,8 +16,10 @@
->>   #include <linux/completion.h>
->>   #include <linux/gunyah_rsc_mgr.h>
->>   #include <linux/platform_device.h>
->> +#include <linux/miscdevice.h>
->>   #include "rsc_mgr.h"
->> +#include "vm_mgr.h"
->>   #define RM_RPC_API_VERSION_MASK        GENMASK(3, 0)
->>   #define RM_RPC_HEADER_WORDS_MASK    GENMASK(7, 4)
->> @@ -105,6 +107,7 @@ struct gh_rm {
->>       struct kmem_cache *cache;
->>       struct mutex send_lock;
->> +    struct miscdevice miscdev;
->>       struct work_struct recv_work;
->>   };
->> @@ -526,6 +529,33 @@ int gh_rm_call(struct gh_rm *rm, u32 message_id, 
->> void *req_buff, size_t req_buff
->>       return ret;
->>   }
->> +void get_gh_rm(struct gh_rm *rm)
->> +{
->> +    get_device(rm->dev);
->> +}
->> +EXPORT_SYMBOL_GPL(get_gh_rm);
-> 
-> We have 4/5 different vairants of exported symbols now.
-> 
-> EXPORT_SYMBOL_GPL(gunyah_vm_function_unregister);
-> EXPORT_SYMBOL_GPL(ghvm_add_resource_ticket);
-> EXPORT_SYMBOL_GPL(gh_vm_mgr_mmio_write);
-> EXPORT_SYMBOL_GPL(put_gh_rm);
-> EXPORT_SYMBOL_GPL(get_gunyah_vm);
-> 
-> I think this needs to be cleaned up for consistency reasons.
-> 
+I like the above :-)
 
-Cleaned up in the v10. "gh_vm_" will be the prefix.
+> Otherwise I will drop back to the simplest option - I'm afraid I
+> haven't got masses of time to be messing about revising patches at
+> present.
 
->> +
->> +void put_gh_rm(struct gh_rm *rm)
->> +{
->> +    put_device(rm->dev);
->> +}
->> +EXPORT_SYMBOL_GPL(put_gh_rm);
->> +
->> +static long gh_dev_ioctl(struct file *filp, unsigned int cmd, 
->> unsigned long arg)
->> +{
->> +    struct miscdevice *miscdev = filp->private_data;
->> +    struct gh_rm *rm = container_of(miscdev, struct gh_rm, miscdev);
->> +
->> +    return gh_dev_vm_mgr_ioctl(rm, cmd, arg);
->> +}
->> +
->> +static const struct file_operations gh_dev_fops = {
->> +    .owner        = THIS_MODULE,
->> +    .unlocked_ioctl    = gh_dev_ioctl,
->> +    .compat_ioctl    = compat_ptr_ioctl,
->> +    .llseek        = noop_llseek,
->> +};
->> +
->>   static int gh_msgq_platform_probe_direction(struct platform_device 
->> *pdev,
->>                       bool tx, int idx, struct gunyah_resource *ghrsc)
->>   {
->> @@ -582,13 +612,32 @@ static int gh_rm_drv_probe(struct 
->> platform_device *pdev)
->>       rm->msgq_client.rx_callback = gh_rm_msgq_rx_data;
->>       rm->msgq_client.tx_done = gh_rm_msgq_tx_done;
->> -    return gh_msgq_init(&pdev->dev, &rm->msgq, &rm->msgq_client, 
->> &rm->tx_ghrsc, &rm->rx_ghrsc);
->> +    ret = gh_msgq_init(&pdev->dev, &rm->msgq, &rm->msgq_client, 
->> &rm->tx_ghrsc, &rm->rx_ghrsc);
->> +    if (ret)
->> +        goto err_cache;
->> +
->> +    rm->miscdev.name = "gunyah";
->> +    rm->miscdev.minor = MISC_DYNAMIC_MINOR;
->> +    rm->miscdev.fops = &gh_dev_fops;
->> +
->> +    ret = misc_register(&rm->miscdev);
->> +    if (ret)
->> +        goto err_msgq;
->> +
->> +    return 0;
->> +err_msgq:
->> +    mbox_free_channel(gh_msgq_chan(&rm->msgq));
->> +    gh_msgq_remove(&rm->msgq);
->> +err_cache:
->> +    kmem_cache_destroy(rm->cache);
->> +    return ret;
->>   }
->>   static int gh_rm_drv_remove(struct platform_device *pdev)
->>   {
->>       struct gh_rm *rm = platform_get_drvdata(pdev);
->> +    misc_deregister(&rm->miscdev);
->>       mbox_free_channel(gh_msgq_chan(&rm->msgq));
->>       gh_msgq_remove(&rm->msgq);
->>       kmem_cache_destroy(rm->cache);
->> diff --git a/drivers/virt/gunyah/vm_mgr.c b/drivers/virt/gunyah/vm_mgr.c
->> new file mode 100644
->> index 000000000000..0864dbd77e28
->> --- /dev/null
->> +++ b/drivers/virt/gunyah/vm_mgr.c
->> @@ -0,0 +1,117 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All 
->> rights reserved.
->> + */
->> +
->> +#define pr_fmt(fmt) "gh_vm_mgr: " fmt
->> +
->> +#include <linux/anon_inodes.h>
->> +#include <linux/file.h>
->> +#include <linux/gunyah_rsc_mgr.h>
->> +#include <linux/miscdevice.h>
->> +#include <linux/module.h>
->> +
->> +#include <uapi/linux/gunyah.h>
->> +
->> +#include "vm_mgr.h"
->> +
->> +static __must_check struct gunyah_vm *gunyah_vm_alloc(struct 
->> gh_rm_rpc *rm)
->> +{
->> +    struct gunyah_vm *ghvm;
->> +    int vmid;
->> +
->> +    vmid = gh_rm_alloc_vmid(rm, 0);
->> +    if (vmid < 0)
->> +        return ERR_PTR(vmid);
->> +
->> +    ghvm = kzalloc(sizeof(*ghvm), GFP_KERNEL);
->> +    if (!ghvm) {
->> +        gh_rm_dealloc_vmid(rm, vmid);
->> +        return ghvm;
-> 
-> return ERR_PTR(-ENOMEM);
-> 
+No worries. I can also improve things on top if needed.
 
-Done.
+> > static const struct imx290_model_info imx290_models[] = {
+> >         [IMX290_MODEL_COLOUR] = {
+> >                 .mono = false,
+> >         },
+> >         [IMX290_MODEL_MONO] = {
+> >                 .mono = true,
+> >         },
+> > };
+> >
+> > static const struct of_device_id imx290_of_match[] = {
+> >         {
+> >                 .compatible = "sony,imx290",
+> >                 .data = &imx290_models[IMX290_MODEL_COLOUR],
+> >         },
+> >         {
+> >                 .compatible = "sony,imx290-mono",
+> >                 .data = &imx290_models[IMX290_MODEL_MONO],
+> >         },
+> >         { /* sentinel */ },
+> > };
+> >
+> > ...
+> >
+> >         imx290->model = of_device_get_match_data(imx290->dev);
+> >
+> > and use imx290->model->mono instead of imx290->mono through the code.
+> >
+> > I'm OK if you don't want this additional complexity yet, but the code is
+> > here already and will be needed soon :-)
+> >
+> > > >     endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(imx290->dev), NULL);
+> > > >     if (!endpoint) {
+> > > >             dev_err(imx290->dev, "Endpoint node not found\n");
+> > > > @@ -1351,12 +1370,6 @@ static void imx290_remove(struct i2c_client *client)
+> > > >     pm_runtime_set_suspended(imx290->dev);
+> > > >  }
+> > > >
+> > > > -static const struct of_device_id imx290_of_match[] = {
+> > > > -   { .compatible = "sony,imx290" },
+> > > > -   { /* sentinel */ }
+> > > > -};
+> > > > -MODULE_DEVICE_TABLE(of, imx290_of_match);
+> > > > -
+> > > >  static struct i2c_driver imx290_i2c_driver = {
+> > > >     .probe_new  = imx290_probe,
+> > > >     .remove = imx290_remove,
 
->> +    }
->> +
->> +    get_gh_rm(rm);
->> +
->> +    ghvm->vmid = vmid;
->> +    ghvm->rm = rm;
->> +
->> +    return ghvm;
->> +}
->> +
->> +static long gh_vm_ioctl(struct file *filp, unsigned int cmd, unsigned 
->> long arg)
->> +{
->> +    long r;
->> +
->> +    switch (cmd) {
->> +    default:
->> +        r = -ENOTTY;
->> +        break;
->> +    }
-> 
-> this function looks like dummy, why do we need this in this patch?
-> 
+-- 
+Regards,
 
-Refactored the patches to introduce when first ioctl is added.
-
->> +
->> +    return r;
->> +}
->> +
->> +static int gh_vm_release(struct inode *inode, struct file *filp)
->> +{
->> +    struct gunyah_vm *ghvm = filp->private_data;
->> +
->> +    put_gh_rm(ghvm->rm);
->> +    kfree(ghvm);
->> +    return 0;
->> +}
->> +
->> +static const struct file_operations gh_vm_fops = {
->> +    .unlocked_ioctl = gh_vm_ioctl,
->> +    .release = gh_vm_release,
->> +    .compat_ioctl    = compat_ptr_ioctl,
->> +    .llseek = noop_llseek,
->> +};
->> +
->> +static long gh_dev_ioctl_create_vm(struct gh_rm *rm, unsigned long arg)
->> +{
->> +    struct gunyah_vm *ghvm;
->> +    struct file *file;
->> +    int fd, err;
->> +
->> +    /* arg reserved for future use. */
->> +    if (arg)
->> +        return -EINVAL;
-> 
-> Bit confused here, GH_CREATE_VM IOCTL does not take any arguments so why 
-> is this arg reserved for future use. Are you going to change the ABI for 
-> GH_CREATE_VM?
-> 
-
-KVM uses the argument for architecture-specific VM flags. This series 
-only adds support for the "unauthenticated VM" type. I was thinking it 
-might be convenient to use this field to mux between the different 
-authentication types (zero would always mean "unauthenticated VM"). I've 
-not given a lot of thought to exact mechanics, but if I want to use in 
-the future, I think it should be reserved today to ensure there's no 
-backwards compatibility issues.
-
-> 
->> +
->> +    ghvm = gunyah_vm_alloc(rm);
->> +    if (IS_ERR_OR_NULL(ghvm))
->> +        return PTR_ERR(ghvm) ? : -ENOMEM;
->> +
->> +    fd = get_unused_fd_flags(O_CLOEXEC);
->> +    if (fd < 0) {
->> +        err = fd;
->> +        goto err_destroy_vm;
->> +    }
->> +
->> +    file = anon_inode_getfile("gunyah-vm", &gh_vm_fops, ghvm, O_RDWR);
->> +    if (IS_ERR(file)) {
->> +        err = PTR_ERR(file);
->> +        goto err_put_fd;
->> +    }
->> +
->> +    fd_install(fd, file);
->> +
->> +    return fd;
->> +
->> +err_put_fd:
->> +    put_unused_fd(fd);
->> +err_destroy_vm:
->> +    kfree(ghvm);
->> +    return err;
->> +}
->> +
->> +long gh_dev_vm_mgr_ioctl(struct gh_rm *rm, unsigned int cmd, unsigned 
->> long arg)
->> +{
->> +    switch (cmd) {
->> +    case GH_CREATE_VM:
->> +        return gh_dev_ioctl_create_vm(rm, arg);
->> +    default:
->> +        return -ENOIOCTLCMD;
->> +    }
->> +}
->> +EXPORT_SYMBOL_GPL(gh_dev_vm_mgr_ioctl);
->> +
->> diff --git a/drivers/virt/gunyah/vm_mgr.h b/drivers/virt/gunyah/vm_mgr.h
->> new file mode 100644
->> index 000000000000..e47f34de7f9e
->> --- /dev/null
->> +++ b/drivers/virt/gunyah/vm_mgr.h
->> @@ -0,0 +1,20 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All 
->> rights reserved.
->> + */
->> +
->> +#ifndef _GH_PRIV_VM_MGR_H
->> +#define _GH_PRIV_VM_MGR_H
->> +
->> +#include <linux/gunyah_rsc_mgr.h>
->> +
->> +#include <uapi/linux/gunyah.h>
->> +
->> +long gh_dev_vm_mgr_ioctl(struct gh_rm *rm, unsigned int cmd, unsigned 
->> long arg);
->> +
->> +struct gunyah_vm {
->> +    u16 vmid;
->> +    struct gh_rm_rpc *rm;
->> +};
->> +
->> +#endif
->> diff --git a/include/linux/gunyah_rsc_mgr.h 
->> b/include/linux/gunyah_rsc_mgr.h
->> index be0bce5507b1..9a9a037b349a 100644
->> --- a/include/linux/gunyah_rsc_mgr.h
->> +++ b/include/linux/gunyah_rsc_mgr.h
->> @@ -17,6 +17,9 @@
->>   struct gh_rm;
->> +void get_gh_rm(struct gh_rm *rm);
->> +void put_gh_rm(struct gh_rm *rm);
->> +
->>   enum gh_rm_vm_status {
->>       GH_RM_VM_STATUS_NO_STATE    = 0,
->>       GH_RM_VM_STATUS_INIT        = 1,
->> diff --git a/include/uapi/linux/gunyah.h b/include/uapi/linux/gunyah.h
->> new file mode 100644
->> index 000000000000..88a40d6e0b96
->> --- /dev/null
->> +++ b/include/uapi/linux/gunyah.h
->> @@ -0,0 +1,23 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only WITH Linux-syscall-note */
->> +/*
->> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights 
->> reserved.
->> + */
->> +
->> +#ifndef _UAPI_LINUX_GUNYAH
->> +#define _UAPI_LINUX_GUNYAH
->> +
->> +/*
->> + * Userspace interface for /dev/gunyah - gunyah based virtual machine
->> + */
->> +
->> +#include <linux/types.h>
->> +#include <linux/ioctl.h>
->> +
->> +#define GH_IOCTL_TYPE            'G'
->> +
->> +/*
->> + * ioctls for /dev/gunyah fds:
->> + */
->> +#define GH_CREATE_VM            _IO(GH_IOCTL_TYPE, 0x0) /* Returns a 
->> Gunyah VM fd */
->> +
->> +#endif
+Laurent Pinchart
