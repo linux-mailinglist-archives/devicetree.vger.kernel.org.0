@@ -2,128 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 691FC68DD16
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:33:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEC8C68DD21
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:36:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232334AbjBGPds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 10:33:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41312 "EHLO
+        id S232302AbjBGPgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 10:36:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232045AbjBGPdr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:33:47 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C2EF30EB3
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 07:33:45 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id y1so13959349wru.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 07:33:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PTnY0wGmTO1uqiMJf9qy9bUafhmq6LzH9wwHhH9NEok=;
-        b=xuiCfwYjBYOISV3VyvsuSIpS/9F7mNBcjbuEmnfneAYJ0l8iXURunS/AaF0fnr/8ll
-         QYMtWG4JtV343LYmf5CSEDEY3JnIgsKTkKRdZWJ0q/hsqFT2mLvuHb5BNr4boZ+dzDGX
-         EJ3A7F9jpJuPYVKjTH8wMcrMpv4lg2k4KR7f5gEwJEPF7QWzuh6fbscYqX7dvSlh+5+g
-         HY9euVHuxVs5j4Z9SlFcQ7eB+5iN6VG2+2/plEDlPL4/l+D4Z36olwdG9AqF+6ggN6aq
-         F+YKnUi5Q20oUGHlA9f7Hl+aWqgxjB17JN+C9D5p6zOzZ4VmBwlyHaf/yxsSrix9wYpy
-         6MuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PTnY0wGmTO1uqiMJf9qy9bUafhmq6LzH9wwHhH9NEok=;
-        b=O51mD7iHYkiOBe52EPFG5sWJSl0uPY1KzyeuSEegCvsC5UWspR3XIbAXMiOJO0v0WG
-         3OwLNFOdx63xvKShowCdj1xbUIVYS30CAON2phV9EH8j0Icilm9Ky/82An58+Uoq/+9l
-         s5Zrodp4t2/BSEXxwOKQyrpCihxqlHWkoYsmuRqV5XjS7UOxeAhvbmlQsxxXL8Q7T79Z
-         Aqd153j5v9GVRiCTFRxiKUXmFWhdYS83CVBAcq+0mX3F1X+bn9GEP8U/kPj5FuHSFTiM
-         cCI72INKKNqj9UFp1ST2lrUOvp+mAlfZ7MCoVE2xnlHF4vHbjY7uE/oxmUEVRVrVoRug
-         0tdQ==
-X-Gm-Message-State: AO0yUKVXFwSk3jeMgKx006SaqhBCTRcAqfmn7vd5ylInx1wl9Y0ZoBH+
-        a/iWdw9YB0W+L8YQI+LUn/9ERlVWHysanNca
-X-Google-Smtp-Source: AK7set/49aX7LC3tNb/jBWKWFYYtSGRExKUvmpYmP8IdPPbiYRpLqUVNC1SO9TRuJd40mrBTJ571Cw==
-X-Received: by 2002:adf:f18a:0:b0:2c3:24f3:8b47 with SMTP id h10-20020adff18a000000b002c324f38b47mr3401668wro.31.1675784024026;
-        Tue, 07 Feb 2023 07:33:44 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d16-20020adffbd0000000b002c3ea5ebc73sm4908655wrs.101.2023.02.07.07.33.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 07:33:43 -0800 (PST)
-Message-ID: <f0d58e5b-74df-26cf-592e-302a00d08eee@linaro.org>
-Date:   Tue, 7 Feb 2023 16:33:42 +0100
+        with ESMTP id S230153AbjBGPgH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:36:07 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 328A1C17F;
+        Tue,  7 Feb 2023 07:36:07 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D5418B819EE;
+        Tue,  7 Feb 2023 15:36:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C22CC4339B;
+        Tue,  7 Feb 2023 15:36:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675784164;
+        bh=twUuRWo9k9a5573XBSzemQ0MkkZj6VKOcK+Snm4pbYQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=on7gJR781lE0FEpK0kHYrD5xk+6bAxBTheM6yrUELehxQPQvUN+82j9kgc8MoH6Rv
+         ANwsPYYxde5xhhPJacBLJD/iSB6+p1rPacaSYIJ6au/q9VN7Dh+X0r80h+yMgw5SOD
+         59ISRMLHicS+F9ktW8sGdRuT0LapgpHpSy+CP2qY0FtzAQF1pJ11FXtfQP0skns7Wz
+         EOIni3uqdYBwvTJcarlq2NfgX373LNLIuTHbynIekuuaO/cYB+eAvQKoHzl386tbuN
+         7OewWkHUmdzNtLrQcx1Kil1pD+zSbomE039Zt9tp+kvQGggq6jF1Gw9/cld6d7gUTr
+         R7x84V8c35huw==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1pPQ1O-0002CR-9t; Tue, 07 Feb 2023 16:36:38 +0100
+Date:   Tue, 7 Feb 2023 16:36:38 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     David Collins <quic_collinsd@quicinc.com>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 17/22] rtc: pm8xxx: add support for nvmem offset
+Message-ID: <Y+JwBkhc/WbkFq25@hovoldconsulting.com>
+References: <20230202155448.6715-1-johan+linaro@kernel.org>
+ <20230202155448.6715-18-johan+linaro@kernel.org>
+ <f7e6203d-5773-3c40-db3c-547334efb218@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 3/3] arm64: tegra: Add Tegra234 pinmux device
-Content-Language: en-US
-To:     Prathamesh Shete <pshete@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org
-Cc:     smangipudi@nvidia.com
-References: <20230207115617.12088-1-pshete@nvidia.com>
- <20230207115617.12088-3-pshete@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230207115617.12088-3-pshete@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f7e6203d-5773-3c40-db3c-547334efb218@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 12:56, Prathamesh Shete wrote:
-> This change adds pinmux node for Tegra234.
+On Mon, Feb 06, 2023 at 07:16:54PM -0800, David Collins wrote:
+> On 2/2/23 07:54, Johan Hovold wrote:
+
+> > +static int pm8xxx_rtc_read_nvmem_offset(struct pm8xxx_rtc *rtc_dd)
+> > +{
+> > +	size_t len;
+> > +	void *buf;
+> > +	int rc;
+> > +
+> > +	buf = nvmem_cell_read(rtc_dd->nvmem_cell, &len);
+> > +	if (IS_ERR(buf)) {
+> > +		rc = PTR_ERR(buf);
+> > +		dev_dbg(rtc_dd->dev, "failed to read nvmem offset: %d\n", rc);
 > 
-> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> index eaf05ee9acd1..c91b88bc56d1 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> @@ -701,6 +701,13 @@
->  			interrupt-controller;
->  			#gpio-cells = <2>;
->  			gpio-controller;
-> +			gpio-ranges = <&pinmux 0 0 164>;
-> +		};
-> +
-> +		pinmux: pinmux@2430000 {
-> +			compatible = "nvidia,tegra234-pinmux";
-> +			reg = <0x2430000 0x19100>;
-> +			status = "okay";
+> Why is dev_dbg() used instead of dev_err() for newly added error
+> messages?  Also, why do these conditions warrant error logging when some
+> of the previous patches in this series removed older error logging?
 
-Why? Anything disabled it?
+I would have used dev_err() here and did so for v1, but Alexandre
+prefers dev_dbg() for errors that are unlikely to be seen by regular
+users but that can still be useful to developers (e.g. when enabling the
+rtc on a new platform).
 
->  		};
->  
->  		mc: memory-controller@2c00000 {
-> @@ -1664,6 +1671,13 @@
->  			interrupt-controller;
->  			#gpio-cells = <2>;
->  			gpio-controller;
-> +			gpio-range = <&pinmux_aon 0 0 32>;
-> +		};
-> +
-> +		pinmux_aon: pinmux@c300000 {
-> +			compatible = "nvidia,tegra234-pinmux-aon";
-> +			reg = <0xc300000 0x4000>;
-> +			status = "okay";
+One or two of the spmi errors I removed falls in the same category in so
+far that the control and time registers may write-protected on some
+platforms, but such errors are currently logged by the spmi controller
+driver.
 
-Also why?
-
->  		};
->  
->  		pwm4: pwm@c340000 {
-
-Best regards,
-Krzysztof
-
+Johan
