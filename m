@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 423C568D9E6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 14:57:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C8AE68D9EC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 14:57:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232248AbjBGN5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 08:57:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38436 "EHLO
+        id S232070AbjBGN5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 08:57:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232201AbjBGN4n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 08:56:43 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E46753A596
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 05:56:16 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id bk16so13614134wrb.11
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 05:56:16 -0800 (PST)
+        with ESMTP id S232286AbjBGN4o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 08:56:44 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B543C3A5B8
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 05:56:17 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so11537307wms.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 05:56:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5nP2A5i34h6FhI1PmIGZwHqThelkL340fyNZ8uWjSxo=;
-        b=VdzEKUA+I7BR/04OKzVJQzQLbpCpYeLoYwT+7MbmJwBzCXC8/Wz9dBXpicw1nu5t7K
-         wPcXLo7jpe4VQnBgW6nM+ByBemVBAgt747KHH8XpV1yCtZedPB9s2ntVMAlVkvVOzGWJ
-         bVhhWQkLCxPhB3zAJgXi57guzJWqe/gdNWLZsd5Ar9hLs6L+4zD4vJZmPsiJL4YvGWNq
-         UgeGd21VezuELwjDjCuqUxM+GVIdrj1AOeIq5D98I4RmPqJ50zwKPFC9dqlitzTy/ZlT
-         QHieExN+/CjvvdfwBMdpxpLH12Cu9I8mf7kbPFi47Px4LXJSY89ahz2E/hl6kkUiGyUl
-         JyVw==
+        bh=kE+AxQUwOxA1DoNBo9L3Bq1W/VtJeoaV/fW1FjliOjc=;
+        b=AXNPNIpXWGRFXmVvnNyBaX3EUaHtz5imfr2Kc2AD4XzXrTayE70iIYQFWo7gi7/vaB
+         ZuplajGB2GW4JSSMA8hYQJbJBf7pUSzb5+ilXMwY1WYl+jqm4LFvl6CZiiAdFXVnXXZ2
+         A+GCL3cp9W2GviQruhIqWMioQ2m1ATFWr3lVbhHBxoFDY4FJyAcmiDapk/5xyzOGsvOK
+         xIX16EfERwN9r/GBHDjTum7EHzk5vbYPi/SaOPlTRSFlxmHkLhYU6dJMYN2z9UTicq30
+         Vr1zsArjd0KRjatg1r9i9WKhNoAYpPlnmLoMOHr4wZT+UfigRJsrDGC6II8wGPWDIAHf
+         QihA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5nP2A5i34h6FhI1PmIGZwHqThelkL340fyNZ8uWjSxo=;
-        b=cc45RMcWJYHvkEeJ1gGiXvGL1RCHrWPylIfYmES3uZyhADpLi7xd7GtWJHT8jLVcds
-         KA0064c5YbLOiDzxDbqdf+w8MjakK9jlvu5UK/T7EvU3LPDBOJCQfmT9pkUW1do7nF7A
-         jkNV4eDUFS+dEY4MzqkDocL69FSrpZtM0lhf7TGaqj9a6oUvYNMxRaNnCOwIMrjk8oCi
-         w/p3cli0KRvxhJAGdjP74rsU4wqDqUtTYDKf+Pb+r+qd4ccu4I0N9ihgV1A35cTDjURH
-         wQd4g/7+SP/N3WcFG6rPWMWpUFP9vk4Rw6augr4tZlWSTyVv5IUnWSKcevzMnljA6D1M
-         D/mQ==
-X-Gm-Message-State: AO0yUKXPAeg41C8uFz4clYse8ZFzQX0LzPE6kmCvBMG2TtYonFKSp2YM
-        wlFhIXdtfxFXbE1AKQ7xBkM72g==
-X-Google-Smtp-Source: AK7set+L3zQVDlpG8ELGNddTYFVEar45muQRLY/0lkqS/38deLKHfGuV5eXNxsjES2KHz4jIs6x/Zg==
-X-Received: by 2002:adf:f3cc:0:b0:2c3:ea59:a8b with SMTP id g12-20020adff3cc000000b002c3ea590a8bmr2878259wrp.24.1675778161731;
-        Tue, 07 Feb 2023 05:56:01 -0800 (PST)
+        bh=kE+AxQUwOxA1DoNBo9L3Bq1W/VtJeoaV/fW1FjliOjc=;
+        b=bf5b5ENXrGfmasxar+DFsL9Ke4MEqY5jOozmPd8AMb0/zeR5Wa2e7LvybtbIGsDDII
+         BXEGK3Mfb02QIHFdGNYBzZOrID1Rf3l5f4Vq+r6W/lfEIqlSM5KWRgpGuco9Z1wMs2nR
+         hs32w6hDCZZb9eWboFACO+v7luvY5k/SgplcDxGGwL91nVG3v+6r/KB0dLDeG7Dv6xdZ
+         GVUEndF26fvGClUj6+xB7Ct1/mvVURlf80V5KAmI4woqF0XEHzmSzW6rVThGIOSWwHEh
+         sMUM34sbqVTAQa7Ucu2jcjdf7SG8hLUrOiv/4XTH+a5LbL/kv5PAm+XOFERMbQKvnItD
+         O3KQ==
+X-Gm-Message-State: AO0yUKVN2c05TnGH7gIQ1RR+pNxJ6muckAReIjHm8Me5shKl/3ISZ8bx
+        qTAPqiC2XagCi2axfunkppy3WQ==
+X-Google-Smtp-Source: AK7set/0VFvjfWv6VFXsQD+RR8iooJZ7MrlzClaN0ljfreU4ICsHnB9bcDH781X3XLtXeWSkncAZnA==
+X-Received: by 2002:a05:600c:4b1b:b0:3d9:f836:3728 with SMTP id i27-20020a05600c4b1b00b003d9f8363728mr3209658wmp.11.1675778163004;
+        Tue, 07 Feb 2023 05:56:03 -0800 (PST)
 Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id p10-20020a5d59aa000000b002be5401ef5fsm11611312wrr.39.2023.02.07.05.56.00
+        by smtp.gmail.com with ESMTPSA id p10-20020a5d59aa000000b002be5401ef5fsm11611312wrr.39.2023.02.07.05.56.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 05:56:01 -0800 (PST)
+        Tue, 07 Feb 2023 05:56:02 -0800 (PST)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -62,9 +62,9 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v4 5/7] phy: qcom: phy-qcom-snps-eusb2: Add support for eUSB2 repeater
-Date:   Tue,  7 Feb 2023 15:55:49 +0200
-Message-Id: <20230207135551.1418637-6-abel.vesa@linaro.org>
+Subject: [PATCH v4 6/7] arm64: dts: qcom: pm8550b: Add eUSB2 repeater node
+Date:   Tue,  7 Feb 2023 15:55:50 +0200
+Message-Id: <20230207135551.1418637-7-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230207135551.1418637-1-abel.vesa@linaro.org>
 References: <20230207135551.1418637-1-abel.vesa@linaro.org>
@@ -81,88 +81,37 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Neil Armstrong <neil.armstrong@linaro.org>
 
-For USB 2.0 compliance, eUSB2 needs a repeater. The PHY needs to
-initialize and reset it. So add repeater support
+Add nodes for the eUSB2 repeater found on the pm8550b SPMI PMIC.
 
-Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
 
 The v3 (rfc) is here:
-https://lore.kernel.org/all/20230202133816.4026990-6-abel.vesa@linaro.org/
+https://lore.kernel.org/all/20230202133816.4026990-7-abel.vesa@linaro.org/
 
 Changes since v3:
  * none
 
- drivers/phy/qualcomm/phy-qcom-snps-eusb2.c | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/pm8550b.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c b/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
-index 23ec162cc3bd..703e2f23ea00 100644
---- a/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
-+++ b/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
-@@ -128,6 +128,8 @@ struct qcom_snps_eusb2_hsphy {
- 	struct regulator_bulk_data vregs[EUSB2_NUM_VREGS];
- 
- 	enum phy_mode mode;
+diff --git a/arch/arm64/boot/dts/qcom/pm8550b.dtsi b/arch/arm64/boot/dts/qcom/pm8550b.dtsi
+index 16bcfb64d735..72609f31c890 100644
+--- a/arch/arm64/boot/dts/qcom/pm8550b.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8550b.dtsi
+@@ -55,5 +55,11 @@ pm8550b_gpios: gpio@8800 {
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+ 		};
 +
-+	struct phy *repeater;
++		pm8550b_eusb2_repeater: phy@fd00 {
++			compatible = "qcom,pm8550b-eusb2-repeater";
++			reg = <0xfd00>;
++			#phy-cells = <0>;
++		};
+ 	};
  };
- 
- static int qcom_snps_eusb2_hsphy_set_mode(struct phy *p, enum phy_mode mode, int submode)
-@@ -136,7 +138,7 @@ static int qcom_snps_eusb2_hsphy_set_mode(struct phy *p, enum phy_mode mode, int
- 
- 	phy->mode = mode;
- 
--	return 0;
-+	return phy_set_mode_ext(phy->repeater, mode, submode);
- }
- 
- static void qcom_snps_eusb2_hsphy_write_mask(void __iomem *base, u32 offset,
-@@ -235,6 +237,12 @@ static int qcom_snps_eusb2_hsphy_init(struct phy *p)
- 	if (ret)
- 		return ret;
- 
-+	ret = phy_init(phy->repeater);
-+	if (ret) {
-+		dev_err(&p->dev, "repeater init failed. %d\n", ret);
-+		goto disable_vreg;
-+	}
-+
- 	ret = clk_prepare_enable(phy->ref_clk);
- 	if (ret) {
- 		dev_err(&p->dev, "failed to enable ref clock, %d\n", ret);
-@@ -342,6 +350,8 @@ static int qcom_snps_eusb2_hsphy_exit(struct phy *p)
- 
- 	regulator_bulk_disable(ARRAY_SIZE(phy->vregs), phy->vregs);
- 
-+	phy_exit(phy->repeater);
-+
- 	return 0;
- }
- 
-@@ -355,6 +365,7 @@ static const struct phy_ops qcom_snps_eusb2_hsphy_ops = {
- static int qcom_snps_eusb2_hsphy_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
- 	struct qcom_snps_eusb2_hsphy *phy;
- 	struct phy_provider *phy_provider;
- 	struct phy *generic_phy;
-@@ -386,6 +397,12 @@ static int qcom_snps_eusb2_hsphy_probe(struct platform_device *pdev)
- 	if (ret)
- 		return dev_err_probe(dev, ret,
- 				     "failed to get regulator supplies\n");
-+
-+	phy->repeater = devm_of_phy_get_by_index(dev, np, 0);
-+	if (IS_ERR(phy->repeater))
-+		return dev_err_probe(dev, PTR_ERR(phy->repeater),
-+				     "failed to get repeater\n");
-+
- 	generic_phy = devm_phy_create(dev, NULL, &qcom_snps_eusb2_hsphy_ops);
- 	if (IS_ERR(generic_phy)) {
- 		dev_err(dev, "failed to create phy %d\n", ret);
 -- 
 2.34.1
 
