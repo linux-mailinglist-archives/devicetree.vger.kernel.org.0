@@ -2,81 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CDB868D121
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 08:59:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A46868D128
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 09:00:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230458AbjBGH7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 02:59:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41058 "EHLO
+        id S231203AbjBGIAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 03:00:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230399AbjBGH7P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 02:59:15 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92F39360B5
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 23:59:12 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so10752994wms.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 23:59:12 -0800 (PST)
+        with ESMTP id S231168AbjBGH75 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 02:59:57 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91CD629146
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 23:59:55 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id a2so12380840wrd.6
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 23:59:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=o7VB0jzwnOxKfmTOOzDR17bwgY03oYhE2KBFynIQKYk=;
-        b=jAx6zmTdhp+G9FV94pkDTLjS8skfz6TZbOO0uBKFi+LDNSNV8QtcIY+RtU83JITlZT
-         vcpbwxilx8Ir4QSMnsWmyKjFTIAgewWI2Ad/rWk4jESbPk6xKQKo6c7OtBNSJmfSsGAZ
-         v2JvS/tM1IouLaI0ZaXwAFIbIkK3Ul6zwLJiIiFrbeIJ/SKwbV0E2u//69bmC+O6vflC
-         fk4g96py9Fs7kRxnoozdgQCJgg1X1ALSurzAEzHbVgsy/WrxtbrO2YOdSoRhVjVR9Dqi
-         1MioNeydHl0K90eHgsYjp1gbMO7PDE2wfGWMiEUFjgjUz3/+Cqy6p9J7/HdaUfyVo0Jc
-         e6+Q==
+        bh=i9y/P9MXwLNgqQt+C7wIYeiUxLoDHi6tNn49iTJuqSQ=;
+        b=WdD2Y/cGjIiqlS31xeZvPPnp2bp9E9bEkfrn+p1aF/sykDUZR0Mn+9UPPgIo4Ss5mR
+         X7x5zwE5fV7SDsK7AQzphRSIltCWtrtKKJ5UXe52kK8RkjiP/2OlXEh11Dto5hQGQOUj
+         fSXmQwUYRhlcbsJAXZirNibnhegy55SSODE8Zo9noHQiqBLOv8PODBiyjSuuN2UebDhu
+         xMniewVsouwDvYuFigf0c1XoVs34BeXfuXAjTuGI+br2hw3KjbeIlUIOd4/EZlktIyX0
+         DVTE6nzeYLkEVZogZyQ34rvzldQlKuKNMz9nmTpvilxR1h+W3NhjV9OCXm9W4Qk5vhT6
+         LyLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o7VB0jzwnOxKfmTOOzDR17bwgY03oYhE2KBFynIQKYk=;
-        b=uS4K09PyrXTcr0uFesfWqQTzNvkXljoLsuJRARm63Kz1zH0vzuQrJjxRgdH4KayJHp
-         VXGS/rp1zJcZ9hyO0NjRVEvgybRNGoByQOhAykU1erbtRmZH4nLtoQt9iTu2OmbTIdeg
-         gb0DclmRHmG/C4Hkdi2TACJ/m42nt4GBrbfg2upW9SVu95WYUGoNhAGhYfRnnJzqzNMg
-         jVvQju8jm4qMeViI1DSwgKRMA/jfvE8UF5ygPuZ/kbNkku8zRh89LwtzcmSjapbpupmn
-         CG9vua3qTAIJylVT/p4aloAV7kx8pWWYhF8CU45HWrBq3yNEo537AbhKiSnCw4awtttu
-         Gz2Q==
-X-Gm-Message-State: AO0yUKXVFzolgXAcX40MxanUyvpvzZJqCNABpNyC8NTdIwOX9Pl3Zf6o
-        wEqs45/yPWl072ZPor+Ns1orVA==
-X-Google-Smtp-Source: AK7set+izeJf1L9+viuy6hL3eXG0OPxOYCFMp/qcAnZZhl4TTkIhcl0lIgta0AjT+ch0CYmfrPlIhA==
-X-Received: by 2002:a05:600c:4a9a:b0:3dc:5b48:ee5 with SMTP id b26-20020a05600c4a9a00b003dc5b480ee5mr2266222wmp.2.1675756751053;
-        Mon, 06 Feb 2023 23:59:11 -0800 (PST)
+        bh=i9y/P9MXwLNgqQt+C7wIYeiUxLoDHi6tNn49iTJuqSQ=;
+        b=uE+MzdNj8x4I//k20cJg41pN2zn6zfYYuPfsx73f1khfpDuEe93te93bCOdmiE677C
+         2Gwkhx/qG5P7pwltFon8tR59Jb6A5zLJdeF/KspN6sEZyy2MbTsYPgV2z+EhgK2tRTyL
+         J8+y8DENdxoTLatwdP1P6KL13Jne/K74JErKEfcEuULLMEzKMMMfB8pXcaK+gAelNay0
+         Gn1ln3ocE1LffSWR9G1ZX3DMtC18cx2c6/c3magsJ5KR5c2i++exD5NBMu+wgR347SFj
+         5UzMaDj4cRTv2ZPJCsaknx7VCGzeROlL81jpgT8H9gt9W56c4BnoqCdWs5Sp5tRtPys8
+         AosA==
+X-Gm-Message-State: AO0yUKX8cXKF1SfH+ApsebF/W0lu1QMBxXLhN/+j3IXPIxoLlnHCL7Ka
+        BY3+wpAOT0Azq9J01juP7G5Rww==
+X-Google-Smtp-Source: AK7set979LY59KDvABkxHfzPCxi00zqtmzn2pfmV76eS0PMM6Bg/n+cN4lqN+Mh65bjJmFGGKeENEA==
+X-Received: by 2002:a05:6000:188d:b0:2c3:be89:7c36 with SMTP id a13-20020a056000188d00b002c3be897c36mr14479686wri.25.1675756794196;
+        Mon, 06 Feb 2023 23:59:54 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o37-20020a05600c512500b003c6bbe910fdsm19929143wms.9.2023.02.06.23.59.09
+        by smtp.gmail.com with ESMTPSA id f7-20020a056000128700b002c3df9279f5sm7432290wrx.48.2023.02.06.23.59.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 23:59:10 -0800 (PST)
-Message-ID: <aa85caa3-6051-46ab-d927-8c552d5a718d@linaro.org>
-Date:   Tue, 7 Feb 2023 08:59:08 +0100
+        Mon, 06 Feb 2023 23:59:53 -0800 (PST)
+Message-ID: <b3b9d515-20b1-62a1-3243-b1bc36c306df@linaro.org>
+Date:   Tue, 7 Feb 2023 08:59:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v4 2/7] dt-bindings: net: snps,dwmac: Update the maxitems
- number of resets and reset-names
-To:     yanhong wang <yanhong.wang@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+Subject: Re: [PATCH] arm64: dts: Add support for Unisoc's UMS512
+Content-Language: en-US
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Arnd Bergmann <arnd@arndb.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20230118061701.30047-1-yanhong.wang@starfivetech.com>
- <20230118061701.30047-3-yanhong.wang@starfivetech.com>
- <15a87640-d8c7-d7aa-bdfb-608fa2e497cb@linaro.org>
- <c9ab22b5-3ffb-d034-b8b8-b056b82a96ce@starfivetech.com>
-Content-Language: en-US
+        linux-arm-kernel@lists.infradead.org, soc@kernel.org,
+        devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <20230118084025.2898404-1-chunyan.zhang@unisoc.com>
+ <41fd5c2a-9fc5-8af8-b66e-45bb83b24179@linaro.org>
+ <CAAfSe-v3VW_sE4FwjURoOapMXrGavOK0hzeU-84-U_6xfhYbQQ@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c9ab22b5-3ffb-d034-b8b8-b056b82a96ce@starfivetech.com>
+In-Reply-To: <CAAfSe-v3VW_sE4FwjURoOapMXrGavOK0hzeU-84-U_6xfhYbQQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,48 +83,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 03:43, yanhong wang wrote:
-> 
-> 
-> On 2023/1/18 23:47, Krzysztof Kozlowski wrote:
->> On 18/01/2023 07:16, Yanhong Wang wrote:
->>> Some boards(such as StarFive VisionFive v2) require more than one value
->>> which defined by resets property, so the original definition can not
->>> meet the requirements. In order to adapt to different requirements,
->>> adjust the maxitems number definition.
->>>
->>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
->>> ---
->>>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 9 +++------
->>>  1 file changed, 3 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> index e26c3e76ebb7..baf2c5b9e92d 100644
->>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> @@ -133,12 +133,9 @@ properties:
->>>          - ptp_ref
->>>  
->>>    resets:
->>> -    maxItems: 1
+On 07/02/2023 03:19, Chunyan Zhang wrote:
+> On Thu, 19 Jan 2023 at 19:40, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> Also, this does not make sense on its own and messes constraints for all
->> other users. So another no for entire patch.
+>> On 18/01/2023 09:40, Chunyan Zhang wrote:
+>>> Add basic support for Unisoc's UMS512, with this patch,
+>>> the board ums512-1h10 can run into console.
+>>>
+> 
+> [snip]
+> 
+>>> +             ap-apb {
 >>
+>> Non-unit-address nodes cannot be mixed with unit address ones. Something
+>> is wrong here.
 > 
-> Thanks. Change the properties of 'resets' and reset-names like this:
+> To make sure I understand correctly, did you mean non-unit-address
+> nodes shouldn't be the parent of unit-address nodes?
 > 
->   resets:
->     minItems: 1
->     maxItems: 2
-> 
->   reset-names:
->     minItems: 1
->     maxItems: 2
-> 
-> Is it right?  Do you have any other better suggestions?
+> Does that mean the bus node should have a unique base address like:
+>         ap-apb@70000000 {
 
-Isn't this allowing two reset items for every variant of snps,dwmac?
+No. I mean, run dtbs W=1 or dtbs_check DT_SCHEMA_FILES=simple-bus
+
 
 Best regards,
 Krzysztof
