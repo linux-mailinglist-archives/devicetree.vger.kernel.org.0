@@ -2,547 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A008E68D080
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 08:23:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 566BF68D0D4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 08:50:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230323AbjBGHX0 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Feb 2023 02:23:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49450 "EHLO
+        id S230420AbjBGHuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 02:50:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230300AbjBGHXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 02:23:25 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31CC52F7AC;
-        Mon,  6 Feb 2023 23:23:22 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 4FAB924E1CD;
-        Tue,  7 Feb 2023 15:23:19 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Feb
- 2023 15:23:19 +0800
-Received: from ubuntu.localdomain (183.27.96.33) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Feb
- 2023 15:23:18 +0800
-From:   Hal Feng <hal.feng@starfivetech.com>
-To:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-CC:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 2/2] hwmon: (sfctemp) Add StarFive JH71x0 temperature sensor
-Date:   Tue, 7 Feb 2023 15:23:14 +0800
-Message-ID: <20230207072314.62040-3-hal.feng@starfivetech.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230207072314.62040-1-hal.feng@starfivetech.com>
-References: <20230207072314.62040-1-hal.feng@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.96.33]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229625AbjBGHuE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 02:50:04 -0500
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 54E3B12847;
+        Mon,  6 Feb 2023 23:50:03 -0800 (PST)
+Received: from linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net (linux.microsoft.com [13.77.154.182])
+        by linux.microsoft.com (Postfix) with ESMTPSA id B822420C7E28;
+        Mon,  6 Feb 2023 23:50:02 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com B822420C7E28
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1675756202;
+        bh=mf6bBpSzSp5FvIZlbgZNiPFVdnfQ6pILfRC3PQopagc=;
+        h=From:To:Subject:Date:From;
+        b=MQWnrOafvpvN/YE8jA0A4/NMv0Ma8eqAj/Gv6A5D4Il2aBi9HAX2/wtRVlJ3inGes
+         QWwt2icKXn8zhkmdfZjs+dSTr/zL+K8QTeWyXImorKt3jnqt0nRbw+Bf4VCd5dqTzk
+         K8cCKOpP+k9kFX0fSKEgxICK1CNHuWJFiAXZsbfs=
+From:   Saurabh Sengar <ssengar@linux.microsoft.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
+        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com, dphadke@linux.microsoft.com
+Subject: [PATCH v4 0/6] Device tree support for Hyper-V VMBus driver
+Date:   Mon,  6 Feb 2023 23:49:53 -0800
+Message-Id: <1675756199-5917-1-git-send-email-ssengar@linux.microsoft.com>
+X-Mailer: git-send-email 1.8.3.1
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Emil Renner Berthing <kernel@esmil.dk>
+This set of patches expands the VMBus driver to include device tree
+support. This feature allows for a kernel boot without the use of ACPI
+tables, resulting in a smaller memory footprint and potentially faster
+boot times. This is tested by enabling CONFIG_FLAT and OF_EARLY_FLATTREE
+for x86.
 
-Register definitions and conversion constants based on sfctemp driver by
-Samin in the StarFive 5.10 kernel.
+The first two patches enable compilation of Hyper-V APIs in a non-ACPI
+build.
 
-Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-Co-developed-by: Samin Guo <samin.guo@starfivetech.com>
-Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
-Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
----
- Documentation/hwmon/index.rst   |   1 +
- Documentation/hwmon/sfctemp.rst |  33 +++
- MAINTAINERS                     |   8 +
- drivers/hwmon/Kconfig           |  10 +
- drivers/hwmon/Makefile          |   1 +
- drivers/hwmon/sfctemp.c         | 352 ++++++++++++++++++++++++++++++++
- 6 files changed, 405 insertions(+)
- create mode 100644 Documentation/hwmon/sfctemp.rst
- create mode 100644 drivers/hwmon/sfctemp.c
+The third patch converts the VMBus driver from acpi to more generic
+platform driver.
 
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index fe2cc6b73634..a666e3706ea2 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -180,6 +180,7 @@ Hardware Monitoring Kernel Drivers
-    sch5627
-    sch5636
-    scpi-hwmon
-+   sfctemp
-    sht15
-    sht21
-    sht3x
-diff --git a/Documentation/hwmon/sfctemp.rst b/Documentation/hwmon/sfctemp.rst
-new file mode 100644
-index 000000000000..9fbd5bb1f356
---- /dev/null
-+++ b/Documentation/hwmon/sfctemp.rst
-@@ -0,0 +1,33 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver sfctemp
-+=====================
-+
-+Supported chips:
-+ - StarFive JH7100
-+ - StarFive JH7110
-+
-+Authors:
-+ - Emil Renner Berthing <kernel@esmil.dk>
-+
-+Description
-+-----------
-+
-+This driver adds support for reading the built-in temperature sensor on the
-+JH7100 and JH7110 RISC-V SoCs by StarFive Technology Co. Ltd.
-+
-+``sysfs`` interface
-+-------------------
-+
-+The temperature sensor can be enabled, disabled and queried via the standard
-+hwmon interface in sysfs under ``/sys/class/hwmon/hwmonX`` for some value of
-+``X``:
-+
-+================ ==== =============================================
-+Name             Perm Description
-+================ ==== =============================================
-+temp1_enable     RW   Enable or disable temperature sensor.
-+                      Automatically enabled by the driver,
-+                      but may be disabled to save power.
-+temp1_input      RO   Temperature reading in milli-degrees Celsius.
-+================ ==== =============================================
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fb1471cb5ed3..6f5de1438f65 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18917,6 +18917,14 @@ L:	netdev@vger.kernel.org
- S:	Supported
- F:	drivers/net/ethernet/sfc/
- 
-+SFCTEMP HWMON DRIVER
-+M:	Emil Renner Berthing <kernel@esmil.dk>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml
-+F:	Documentation/hwmon/sfctemp.rst
-+F:	drivers/hwmon/sfctemp.c
-+
- SFF/SFP/SFP+ MODULE SUPPORT
- M:	Russell King <linux@armlinux.org.uk>
- L:	netdev@vger.kernel.org
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 3176c33af6c6..572e1b2541bb 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -1930,6 +1930,16 @@ config SENSORS_STTS751
- 	  This driver can also be built as a module. If so, the module
- 	  will be called stts751.
- 
-+config SENSORS_SFCTEMP
-+	tristate "Starfive JH71x0 temperature sensor"
-+	depends on SOC_STARFIVE || COMPILE_TEST
-+	help
-+	  If you say yes here you get support for temperature sensor
-+	  on the Starfive JH71x0 SoCs.
-+
-+	  This driver can also be built as a module.  If so, the module
-+	  will be called sfctemp.
-+
- config SENSORS_SMM665
- 	tristate "Summit Microelectronics SMM665"
- 	depends on I2C
-diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index e2e4e87b282f..337e1b19678a 100644
---- a/drivers/hwmon/Makefile
-+++ b/drivers/hwmon/Makefile
-@@ -180,6 +180,7 @@ obj-$(CONFIG_SENSORS_SBRMI)	+= sbrmi.o
- obj-$(CONFIG_SENSORS_SCH56XX_COMMON)+= sch56xx-common.o
- obj-$(CONFIG_SENSORS_SCH5627)	+= sch5627.o
- obj-$(CONFIG_SENSORS_SCH5636)	+= sch5636.o
-+obj-$(CONFIG_SENSORS_SFCTEMP)	+= sfctemp.o
- obj-$(CONFIG_SENSORS_SL28CPLD)	+= sl28cpld-hwmon.o
- obj-$(CONFIG_SENSORS_SHT15)	+= sht15.o
- obj-$(CONFIG_SENSORS_SHT21)	+= sht21.o
-diff --git a/drivers/hwmon/sfctemp.c b/drivers/hwmon/sfctemp.c
-new file mode 100644
-index 000000000000..79749b5195be
---- /dev/null
-+++ b/drivers/hwmon/sfctemp.c
-@@ -0,0 +1,352 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021 Emil Renner Berthing <kernel@esmil.dk>
-+ * Copyright (C) 2021 Samin Guo <samin.guo@starfivetech.com>
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/completion.h>
-+#include <linux/delay.h>
-+#include <linux/hwmon.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset.h>
-+
-+/*
-+ * TempSensor reset. The RSTN can be de-asserted once the analog core has
-+ * powered up. Trst(min 100ns)
-+ * 0:reset  1:de-assert
-+ */
-+#define SFCTEMP_RSTN	BIT(0)
-+
-+/*
-+ * TempSensor analog core power down. The analog core will be powered up
-+ * Tpu(min 50us) after PD is de-asserted. RSTN should be held low until the
-+ * analog core is powered up.
-+ * 0:power up  1:power down
-+ */
-+#define SFCTEMP_PD	BIT(1)
-+
-+/*
-+ * TempSensor start conversion enable.
-+ * 0:disable  1:enable
-+ */
-+#define SFCTEMP_RUN	BIT(2)
-+
-+/*
-+ * TempSensor conversion value output.
-+ * Temp(C)=DOUT*Y/4094 - K
-+ */
-+#define SFCTEMP_DOUT_POS	16
-+#define SFCTEMP_DOUT_MSK	GENMASK(27, 16)
-+
-+/* DOUT to Celcius conversion constants */
-+#define SFCTEMP_Y1000	237500L
-+#define SFCTEMP_Z	4094L
-+#define SFCTEMP_K1000	81100L
-+
-+struct sfctemp {
-+	/* serialize access to hardware register and enabled below */
-+	struct mutex lock;
-+	struct completion conversion_done;
-+	void __iomem *regs;
-+	struct clk *clk_sense;
-+	struct clk *clk_bus;
-+	struct reset_control *rst_sense;
-+	struct reset_control *rst_bus;
-+	bool enabled;
-+};
-+
-+static irqreturn_t sfctemp_isr(int irq, void *data)
-+{
-+	struct sfctemp *sfctemp = data;
-+
-+	complete(&sfctemp->conversion_done);
-+	return IRQ_HANDLED;
-+}
-+
-+static void sfctemp_power_up(struct sfctemp *sfctemp)
-+{
-+	/* make sure we're powered down first */
-+	writel(SFCTEMP_PD, sfctemp->regs);
-+	udelay(1);
-+
-+	writel(0, sfctemp->regs);
-+	/* wait t_pu(50us) + t_rst(100ns) */
-+	usleep_range(60, 200);
-+
-+	/* de-assert reset */
-+	writel(SFCTEMP_RSTN, sfctemp->regs);
-+	udelay(1); /* wait t_su(500ps) */
-+}
-+
-+static void sfctemp_power_down(struct sfctemp *sfctemp)
-+{
-+	writel(SFCTEMP_PD, sfctemp->regs);
-+}
-+
-+static void sfctemp_run_single(struct sfctemp *sfctemp)
-+{
-+	writel(SFCTEMP_RSTN | SFCTEMP_RUN, sfctemp->regs);
-+	udelay(1);
-+	writel(SFCTEMP_RSTN, sfctemp->regs);
-+}
-+
-+static int sfctemp_enable(struct sfctemp *sfctemp)
-+{
-+	int ret = 0;
-+
-+	mutex_lock(&sfctemp->lock);
-+	if (sfctemp->enabled)
-+		goto done;
-+
-+	ret = clk_prepare_enable(sfctemp->clk_bus);
-+	if (ret)
-+		goto err;
-+	ret = reset_control_deassert(sfctemp->rst_bus);
-+	if (ret)
-+		goto err_disable_bus;
-+
-+	ret = clk_prepare_enable(sfctemp->clk_sense);
-+	if (ret)
-+		goto err_assert_bus;
-+	ret = reset_control_deassert(sfctemp->rst_sense);
-+	if (ret)
-+		goto err_disable_sense;
-+
-+	sfctemp_power_up(sfctemp);
-+	sfctemp->enabled = true;
-+done:
-+	mutex_unlock(&sfctemp->lock);
-+	return ret;
-+
-+err_disable_sense:
-+	clk_disable_unprepare(sfctemp->clk_sense);
-+err_assert_bus:
-+	reset_control_assert(sfctemp->rst_bus);
-+err_disable_bus:
-+	clk_disable_unprepare(sfctemp->clk_bus);
-+err:
-+	mutex_unlock(&sfctemp->lock);
-+	return ret;
-+}
-+
-+static int sfctemp_disable(struct sfctemp *sfctemp)
-+{
-+	mutex_lock(&sfctemp->lock);
-+	if (!sfctemp->enabled)
-+		goto done;
-+
-+	sfctemp_power_down(sfctemp);
-+	reset_control_assert(sfctemp->rst_sense);
-+	clk_disable_unprepare(sfctemp->clk_sense);
-+	reset_control_assert(sfctemp->rst_bus);
-+	clk_disable_unprepare(sfctemp->clk_bus);
-+	sfctemp->enabled = false;
-+done:
-+	mutex_unlock(&sfctemp->lock);
-+	return 0;
-+}
-+
-+static void sfctemp_disable_action(void *data)
-+{
-+	sfctemp_disable(data);
-+}
-+
-+static int sfctemp_convert(struct sfctemp *sfctemp, long *val)
-+{
-+	int ret;
-+
-+	mutex_lock(&sfctemp->lock);
-+	if (!sfctemp->enabled) {
-+		ret = -ENODATA;
-+		goto out;
-+	}
-+
-+	sfctemp_run_single(sfctemp);
-+
-+	ret = wait_for_completion_interruptible_timeout(&sfctemp->conversion_done,
-+							msecs_to_jiffies(10));
-+	if (ret <= 0) {
-+		if (ret == 0)
-+			ret = -ETIMEDOUT;
-+		goto out;
-+	}
-+
-+	/* calculate temperature in milli Celcius */
-+	*val = (long)((readl(sfctemp->regs) & SFCTEMP_DOUT_MSK) >> SFCTEMP_DOUT_POS)
-+		* SFCTEMP_Y1000 / SFCTEMP_Z - SFCTEMP_K1000;
-+
-+	ret = 0;
-+out:
-+	mutex_unlock(&sfctemp->lock);
-+	return ret;
-+}
-+
-+static umode_t sfctemp_is_visible(const void *data, enum hwmon_sensor_types type,
-+				  u32 attr, int channel)
-+{
-+	switch (type) {
-+	case hwmon_temp:
-+		switch (attr) {
-+		case hwmon_temp_enable:
-+			return 0644;
-+		case hwmon_temp_input:
-+			return 0444;
-+		}
-+		return 0;
-+	default:
-+		return 0;
-+	}
-+}
-+
-+static int sfctemp_read(struct device *dev, enum hwmon_sensor_types type,
-+			u32 attr, int channel, long *val)
-+{
-+	struct sfctemp *sfctemp = dev_get_drvdata(dev);
-+
-+	switch (type) {
-+	case hwmon_temp:
-+		switch (attr) {
-+		case hwmon_temp_enable:
-+			*val = sfctemp->enabled;
-+			return 0;
-+		case hwmon_temp_input:
-+			return sfctemp_convert(sfctemp, val);
-+		}
-+		return -EINVAL;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int sfctemp_write(struct device *dev, enum hwmon_sensor_types type,
-+			 u32 attr, int channel, long val)
-+{
-+	struct sfctemp *sfctemp = dev_get_drvdata(dev);
-+
-+	switch (type) {
-+	case hwmon_temp:
-+		switch (attr) {
-+		case hwmon_temp_enable:
-+			if (val == 0)
-+				return sfctemp_disable(sfctemp);
-+			if (val == 1)
-+				return sfctemp_enable(sfctemp);
-+			break;
-+		}
-+		return -EINVAL;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct hwmon_channel_info *sfctemp_info[] = {
-+	HWMON_CHANNEL_INFO(chip, HWMON_C_REGISTER_TZ),
-+	HWMON_CHANNEL_INFO(temp, HWMON_T_ENABLE | HWMON_T_INPUT),
-+	NULL
-+};
-+
-+static const struct hwmon_ops sfctemp_hwmon_ops = {
-+	.is_visible = sfctemp_is_visible,
-+	.read = sfctemp_read,
-+	.write = sfctemp_write,
-+};
-+
-+static const struct hwmon_chip_info sfctemp_chip_info = {
-+	.ops = &sfctemp_hwmon_ops,
-+	.info = sfctemp_info,
-+};
-+
-+static int sfctemp_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device *hwmon_dev;
-+	struct sfctemp *sfctemp;
-+	int ret;
-+
-+	sfctemp = devm_kzalloc(dev, sizeof(*sfctemp), GFP_KERNEL);
-+	if (!sfctemp)
-+		return -ENOMEM;
-+
-+	dev_set_drvdata(dev, sfctemp);
-+	mutex_init(&sfctemp->lock);
-+	init_completion(&sfctemp->conversion_done);
-+
-+	sfctemp->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(sfctemp->regs))
-+		return PTR_ERR(sfctemp->regs);
-+
-+	sfctemp->clk_sense = devm_clk_get(dev, "sense");
-+	if (IS_ERR(sfctemp->clk_sense))
-+		return dev_err_probe(dev, PTR_ERR(sfctemp->clk_sense),
-+				     "error getting sense clock\n");
-+
-+	sfctemp->clk_bus = devm_clk_get(dev, "bus");
-+	if (IS_ERR(sfctemp->clk_bus))
-+		return dev_err_probe(dev, PTR_ERR(sfctemp->clk_bus),
-+				     "error getting bus clock\n");
-+
-+	sfctemp->rst_sense = devm_reset_control_get_exclusive(dev, "sense");
-+	if (IS_ERR(sfctemp->rst_sense))
-+		return dev_err_probe(dev, PTR_ERR(sfctemp->rst_sense),
-+				     "error getting sense reset\n");
-+
-+	sfctemp->rst_bus = devm_reset_control_get_exclusive(dev, "bus");
-+	if (IS_ERR(sfctemp->rst_bus))
-+		return dev_err_probe(dev, PTR_ERR(sfctemp->rst_bus),
-+				     "error getting busreset\n");
-+
-+	ret = reset_control_assert(sfctemp->rst_sense);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "error asserting sense reset\n");
-+
-+	ret = reset_control_assert(sfctemp->rst_bus);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "error asserting bus reset\n");
-+
-+	ret = platform_get_irq(pdev, 0);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = devm_request_irq(dev, ret, sfctemp_isr, 0, pdev->name, sfctemp);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "error requesting irq\n");
-+
-+	ret = devm_add_action(dev, sfctemp_disable_action, sfctemp);
-+	if (ret)
-+		return ret;
-+
-+	ret = sfctemp_enable(sfctemp);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "error enabling temperature sensor: %d\n", ret);
-+
-+	hwmon_dev = devm_hwmon_device_register_with_info(dev, pdev->name, sfctemp,
-+							 &sfctemp_chip_info, NULL);
-+	return PTR_ERR_OR_ZERO(hwmon_dev);
-+}
-+
-+static const struct of_device_id sfctemp_of_match[] = {
-+	{ .compatible = "starfive,jh7100-temp" },
-+	{ .compatible = "starfive,jh7110-temp" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, sfctemp_of_match);
-+
-+static struct platform_driver sfctemp_driver = {
-+	.probe  = sfctemp_probe,
-+	.driver = {
-+		.name = "sfctemp",
-+		.of_match_table = sfctemp_of_match,
-+	},
-+};
-+module_platform_driver(sfctemp_driver);
-+
-+MODULE_AUTHOR("Emil Renner Berthing");
-+MODULE_DESCRIPTION("StarFive JH71x0 temperature sensor driver");
-+MODULE_LICENSE("GPL");
+Further to add device tree documentation for VMBus, it needs to club with
+other virtualization driver's documentation. For this rename the virtio
+folder to more generic hypervisor, so that all the hypervisor based
+devices can co-exist in a single place in device tree documentation. The
+fourth patch does this renaming.
+
+The fifth patch introduces the device tree documentation for VMBus.
+
+The sixth patch adds device tree support to the VMBus driver. Currently
+this is tested only for x86 and it may not work for other archs.
+
+[V4]
+- rebased which fixed return type of 'vmbus_mmio_remove' from int to void
+- used __maybe_unused for 'vmbus_of_match' and safeguard vmbus_acpi_device_ids
+  under #ifdef
+
+[V3]
+- Changed the logic to use generic api (for_each_of_range) for parsing "ranges".
+- Remove dependency of ACPI for HYPERV in case of x86.
+- Removed "device tree bindings" from title and patch subject.
+- Removed duplicate vendor prefix, used microsoft instead of msft.
+- Use 'soc' in example of device tree documantation for parent node.
+- Fixed compatible schemas error generated in other modules referring to
+  virtio.
+- Drop hex notation and leading zeros from device tree cell properties.
+- Added missing full stop at the end of commit message.
+- Typos fix: s/Initaly/Initially/ and s/hibernate/hibernation/.
+- Replace to_acpi_device with ACPI_COMPANION which simplify the logic.
+- Added more info in cover letter aboutsystem under test.
+
+[v2]
+- Convert VMBus acpi device to platform device, and added device tree support
+  in separate patch. This enables using same driver structure for both the flows.
+- In Device tree documentation, changed virtio folder to hypervisor and moved
+  VMBus documentation there.
+- Moved bindings before Device tree patch.
+- Removed stale ".data" and ".name" field from of_device match table.
+- Removed debug print.
+
+Saurabh Sengar (6):
+  drivers/clocksource/hyper-v: non ACPI support in hyperv clock
+  Drivers: hv: allow non ACPI compilation for
+    hv_is_hibernation_supported
+  Drivers: hv: vmbus: Convert acpi_device to more generic
+    platform_device
+  dt-bindings: hypervisor: Rename virtio to hypervisor
+  dt-bindings: hypervisor: VMBus
+  Driver: VMBus: Add device tree support
+
+ .../devicetree/bindings/gpio/gpio-virtio.yaml      |   4 +-
+ .../bindings/hypervisor/microsoft,vmbus.yaml       |  48 +++++++++
+ .../bindings/{virtio => hypervisor}/mmio.yaml      |   2 +-
+ .../bindings/{virtio => hypervisor}/pci-iommu.yaml |   2 +-
+ .../{virtio => hypervisor}/virtio-device.yaml      |   2 +-
+ .../devicetree/bindings/i2c/i2c-virtio.yaml        |   4 +-
+ MAINTAINERS                                        |   3 +-
+ drivers/clocksource/hyperv_timer.c                 |  15 ++-
+ drivers/hv/Kconfig                                 |   4 +-
+ drivers/hv/hv_common.c                             |   4 +
+ drivers/hv/vmbus_drv.c                             | 120 ++++++++++++++++-----
+ 11 files changed, 171 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hypervisor/microsoft,vmbus.yaml
+ rename Documentation/devicetree/bindings/{virtio => hypervisor}/mmio.yaml (95%)
+ rename Documentation/devicetree/bindings/{virtio => hypervisor}/pci-iommu.yaml (98%)
+ rename Documentation/devicetree/bindings/{virtio => hypervisor}/virtio-device.yaml (93%)
+
 -- 
-2.38.1
+1.8.3.1
 
