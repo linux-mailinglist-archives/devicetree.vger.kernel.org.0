@@ -2,126 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF89668CAF4
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 01:10:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EA1F68CB44
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 01:37:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229930AbjBGAJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 19:09:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50518 "EHLO
+        id S229517AbjBGAg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 19:36:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbjBGAJ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 19:09:59 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B68972A14B
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 16:09:57 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id mc11so38992729ejb.10
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 16:09:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dnIIRXNNYlbMS+AKrVcuwW+ggQvVh27JkJUI6nfQ0MQ=;
-        b=cpXNtAjLa90makN/MpR70G1uYmNEVo2+ZDDovdnbSJu5CWMsNBrjIGXLj7VFyI4ldv
-         ea+ktCBwqoh9zHBsASAkRnXacG52+rl54sQKTFXoPj+8BeR1BCxt2ckgHbVmT/jxsASc
-         vOeY6clNWoKZwHlUM603+FWMbO/GhjMLmiW2YdfpqxQvmj0ZgglLXV/TTubrq0tPMHro
-         uyPM5Zi3cj2pYbBFVj3uaON20wGwmLCrt4rPBPPbqtoTqWbqR4XWOZhXppP/EpJB6Jpv
-         t5DkqAWXEOROup6Qk55iAM6RWtz8e5WhWyF9ShI+LJ19fmsKbJG8aQoSM6SCZaeQFXXg
-         2hOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dnIIRXNNYlbMS+AKrVcuwW+ggQvVh27JkJUI6nfQ0MQ=;
-        b=iEDKz5eC4E1sOeMBI1n4MAbSDHxjx4ay2YFakh8LPB8qdOfwrL+NoXSsjpShIF8JaK
-         Ma1N+urJ6Zzk48kvzwFQV+3xtXNcojJLr/c2Cx8mA4nS2wsebVK6obk13mdp09dzG1kb
-         eoSr7+UvZlHeuD/gEZ5Q8avTsNUlGMFIM9xUyQainwZfxLoirkKyYVbAYBefav1JiKKp
-         tJAKzXWA59BjPgTEZWmvyyCeSXbBh4CvQyBOa6Hc1QMBbW6kSwEmSk0ypif13mgQAUFk
-         EsiWaxCfOxXX4D1TmymoZ5CQRTmlQigkSzTVEQjk3qGAj4aw4n0FWu4h9Q9y36LwfPSX
-         f+tg==
-X-Gm-Message-State: AO0yUKUyPXBV+ITyq3F2nnZd9ogcHlNzx/z4ZInU6ydlvFvkR2MwDZCr
-        i7BPXAjHJzyMP0xYCtxJbWrnJQ==
-X-Google-Smtp-Source: AK7set9qV0Y3DZ6p2CpnFdQWe1PUbhGAVj0rNBuYH3BNrqGE+HfUqEoNudXjmW33fH4HsAVd2ldcbA==
-X-Received: by 2002:a17:906:8a6b:b0:882:2027:c8e2 with SMTP id hy11-20020a1709068a6b00b008822027c8e2mr1250153ejc.56.1675728596296;
-        Mon, 06 Feb 2023 16:09:56 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id gx25-20020a170906f1d900b008a322d4cab8sm2018316ejb.183.2023.02.06.16.09.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Feb 2023 16:09:55 -0800 (PST)
-Message-ID: <f5559aa0-5f87-6c15-b8f6-9a25176c0eaa@linaro.org>
-Date:   Tue, 7 Feb 2023 02:09:54 +0200
+        with ESMTP id S229447AbjBGAg5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 19:36:57 -0500
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 948A9166C5;
+        Mon,  6 Feb 2023 16:36:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1675730216; x=1707266216;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=R+jmyc8Yo+yZhgpXm5gP0gSlIk1nuY366JOKTziSiOQ=;
+  b=nctibp8mXPoL+mwAjFvBQ4ppbtm4ReUKZEZIUJNM85cmxQCVXA9dptIh
+   oCjD+8u9pz58+Vfkzj6zyDvjgbeRyxu0k9b0p0w24ZXSHYu76iOIYRg1Q
+   QjiqUW6Oj8Fab0FcsOu3lun3hekjc5VpQs1wzBVBWlI09pqimMHA3fohG
+   OjxuBYb1D03OBAG6OatMUH3s6pfbNgIDEyNjYYR4XpyVcwOrKito3pUG0
+   CW9vcfeJAgScE7S/s/ouxl0Wqrp8Ug1s9NtPa3JfnXHPdF9i6+FUU57EC
+   8XbFjEzvJaNZqLLPDqQeDDIbQa5mVbHZPrQxWXovF7FlzjtXO/P6Wc2vr
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="309693742"
+X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; 
+   d="scan'208";a="309693742"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2023 16:36:56 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="790605344"
+X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; 
+   d="scan'208";a="790605344"
+Received: from zhoufuro-mobl.ccr.corp.intel.com (HELO [10.254.211.142]) ([10.254.211.142])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2023 16:36:50 -0800
+Message-ID: <581353bc-cc2c-295b-1f9a-04bcf705261b@linux.intel.com>
+Date:   Tue, 7 Feb 2023 08:36:47 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: power: supply: Add Lenovo Yoga C630
- EC
-Content-Language: en-GB
-To:     Brian Masney <bmasney@redhat.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20230205152809.2233436-1-dmitry.baryshkov@linaro.org>
- <20230205152809.2233436-2-dmitry.baryshkov@linaro.org> <Y+FElkPUkfasI0yU@x1>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <Y+FElkPUkfasI0yU@x1>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCHv2 2/4] wiegand: add Wiegand bus driver
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     =?UTF-8?Q?Martin_Za=c5=a5ovi=c4=8d?= <m.zatovic1@gmail.com>,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, martin.petersen@oracle.com,
+        beanhuo@micron.com, arnd@arndb.de, avri.altman@wdc.com,
+        iwona.winiarska@intel.com, fmdefrancesco@gmail.com,
+        dipenp@nvidia.com, ogabbay@kernel.org, bvanassche@acm.org,
+        mathieu.poirier@linaro.org, yangyicong@hisilicon.com,
+        dan.j.williams@intel.com, devicetree@vger.kernel.org,
+        linus.walleij@linaro.org
+References: <20230202143305.21789-1-m.zatovic1@gmail.com>
+ <20230202143305.21789-3-m.zatovic1@gmail.com> <Y9ynYmIhygqp3U5u@kroah.com>
+ <cd6bd118-68ef-1742-fd9d-08a65872b02c@linux.intel.com>
+ <Y+DVyPUXBliomobN@kroah.com>
+Content-Language: en-US
+From:   Zhou Furong <furong.zhou@linux.intel.com>
+In-Reply-To: <Y+DVyPUXBliomobN@kroah.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/02/2023 20:19, Brian Masney wrote:
-> On Sun, Feb 05, 2023 at 05:28:07PM +0200, Dmitry Baryshkov wrote:
->> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+
+On 2023/2/6 18:26, Greg KH wrote:
+> On Mon, Feb 06, 2023 at 05:49:44PM +0800, Zhou Furong wrote:
 >>
->> Add binding for the Embedded Controller found in the Qualcomm
->> Snapdragon-based Lenovo Yoga C630.
+>>>> +
+>>>> +#include <linux/device.h>
+>>>> +#include <linux/module.h>
+>>>> +#include <linux/of.h>
+>>>> +#include <linux/of_device.h>
+>>>> +#include <linux/slab.h>
+>>>> +#include <linux/wiegand.h>
+>>>> +#include <linux/dma-mapping.h>
+>>>> +#include <linux/dmaengine.h>
+>>>> +#include <linux/property.h>
+>>>> +
 >>
->> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   .../power/supply/lenovo,yoga-c630-ec.yaml     | 83 +++++++++++++++++++
->>   1 file changed, 83 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml b/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
->> new file mode 100644
->> index 000000000000..37977344f157
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
->> @@ -0,0 +1,83 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/power/supply/lenovo,yoga-c630-ec.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Lenovo Yoga C630 Embedded Controller.
->> +
->> +maintainers:
->> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+>> please order headers
 > 
-> Since this is new: Should this be updated with Bjorn's kernel.org
-> address? Last I checked, this address doesn't exist anymore.
+> Why?  What order?  For what gain >
 
-Ack, nice catch.
-
-> 
-> Brian
-> 
-
--- 
-With best wishes
-Dmitry
-
+If all header file ordered in alphabet, it will be easy to find if a 
+header file has been included or not when header file list is long.
