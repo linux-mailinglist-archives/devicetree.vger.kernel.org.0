@@ -2,152 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A424E68DD4E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:49:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F85B68DD57
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:51:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232234AbjBGPte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 10:49:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50254 "EHLO
+        id S232563AbjBGPvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 10:51:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231158AbjBGPtd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:49:33 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A1403C3E;
-        Tue,  7 Feb 2023 07:49:32 -0800 (PST)
-Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: tanureal)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0E3DE6602086;
-        Tue,  7 Feb 2023 15:49:31 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675784971;
-        bh=cfvcfREHPh+IggvFYU/1ryO6SCNcrW7aAlVSVH/ZGNQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=CeR53vBJRzwPjXGUbYyL6Oqi6B9zBJGFT2gHfCaC67eoPDJq3DTT0n1mUCNdEpRAp
-         bILX7Qq0QU7ek5QOtvnMdsO7Up22uzZsWNpQByGkZwd88WEZvaWfETwUTrYFRVuPPd
-         KJHBw/oS+BLqlYyYVPsZci/lbZDuaY1MN++Cb5ObSr5N5ohZ5l4I2qPMuktyG49scq
-         W5YrmFVI+cppp2Xr6C6jRGNwEJUpYre4/nZZ1NertMnLJj4bIFvPoKHzzh24ljxXgb
-         mNFmMitYeZTziWVGmOXa+XxSp0X4mIHM49dEsobi8ZS1EGaRTxINdtLfwIcfp8b5f1
-         R5AWl8kcZopcg==
-Message-ID: <dd1bad2b-a56a-c4d2-cc28-6703febdc475@collabora.com>
-Date:   Tue, 7 Feb 2023 15:49:28 +0000
+        with ESMTP id S232239AbjBGPvq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:51:46 -0500
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D87C3170A;
+        Tue,  7 Feb 2023 07:51:44 -0800 (PST)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-15fe106c7c7so19489890fac.8;
+        Tue, 07 Feb 2023 07:51:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=oFFVAGXmAn33jC18iARlTq1W8BZjLwMZcFPq63oKn2w=;
+        b=N0M+DO+J5+8deeO0M0F0jkP8kFzkQUYSFG9m4l8/7ha6QaAjjunm75adpx+ffgejLn
+         zT7B63dvvqOiPpxijDe19VG5AnZabeNFVByHzUAaH3soPlFhWvfEqx3yqq6OlWPdpLc9
+         TRhVwi3uox8kjgd4WS6Pf8tWiXTBXLa7My7s/14hfldBrxkWrxEDyYj0Sh39RpV/Cf+U
+         peBOKoRCIyvFXzHclmttBP8SEx33npRMewYNa3NDTZgOQOcoG9HxLTNuhLp+CtlKhy5n
+         Wkoitlm0vcKs1AXWYYF7d61Bp0GI+XMizz7CpXPjX2r0D1NKp5qXTvmoG6cy1qsgW6Rx
+         kxGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oFFVAGXmAn33jC18iARlTq1W8BZjLwMZcFPq63oKn2w=;
+        b=GyFQT3MLGxNCnni1JsX1to/AsNt4Zkmqk/0XC6ebALx4c5SLBO1WCSOPLpWv2ZAEes
+         pzS/cu94N6CgzRnkQcsqDGW5Pp+PTNZINVdylYOIldEyUolBgrmAJ52NR03/eprj5M+K
+         oo6uJFMiDDWcZrpcf+F5Hg2pe5glW3Z8aJPJnzGWqx1CzIWC2Da/cPEKXOusDEa9481d
+         zKblP6yqlrl+EVNbjK4kGcSHBMKxBwdiaUwOKXu2i9eIMTi0jTVr3tV6T4wVPigsE+Qp
+         PvBrnjsCon/vsB75iDy/um1y4bUM1511YMp5aVSPyj3X9EBQGZTPfbtZdIvC0yDsIhFs
+         NNvA==
+X-Gm-Message-State: AO0yUKX4rIU3LFjkXPM9RyeF95Rt+9P/IGIqR9np4sGEkHJuumTec3vn
+        3YCyquKoV7d0wXsR/j597Fk=
+X-Google-Smtp-Source: AK7set8PNt0Bn7P7Em47vAQqHH8+QDOWgFLHEK1CoQh6BYQQUFWvd4MqvJ34uFVT/CoYEylUVKxGvw==
+X-Received: by 2002:a05:6870:a7a4:b0:163:af13:c4e1 with SMTP id x36-20020a056870a7a400b00163af13c4e1mr1432071oao.46.1675785104217;
+        Tue, 07 Feb 2023 07:51:44 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id m1-20020a056870194100b0014ff15936casm1818137oak.40.2023.02.07.07.51.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Feb 2023 07:51:43 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <ecd5ff48-78af-8cae-dd54-3bd3f0288434@roeck-us.net>
+Date:   Tue, 7 Feb 2023 07:51:39 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] ALSA: cs35l41: Add shared boost feature
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 1/7] dt-bindings: watchdog: qcom-wdt: require fallback
+ for IPQ4019
 Content-Language: en-US
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     David Rhodes <david.rhodes@cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20230207104021.2842-1-lucas.tanure@collabora.com>
- <20230207104021.2842-2-lucas.tanure@collabora.com>
- <20230207114855.GC36097@ediswmail.ad.cirrus.com>
-From:   Lucas Tanure <lucas.tanure@collabora.com>
-In-Reply-To: <20230207114855.GC36097@ediswmail.ad.cirrus.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+References: <20230113103346.29381-1-krzysztof.kozlowski@linaro.org>
+ <20230113103346.29381-2-krzysztof.kozlowski@linaro.org>
+ <20230113140230.GA1606649@roeck-us.net>
+ <7e600ba9-a99e-5f07-334f-bb872f5ed7db@linaro.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <7e600ba9-a99e-5f07-334f-bb872f5ed7db@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-02-2023 11:48, Charles Keepax wrote:
-> On Tue, Feb 07, 2023 at 10:40:20AM +0000, Lucas Tanure wrote:
->> Shared boost allows two amplifiers to share a single boost
->> circuit by communicating on the MDSYNC bus.
->> The passive amplifier does not control the boost and receives
->> data from the active amplifier.
+On 2/7/23 01:17, Krzysztof Kozlowski wrote:
+> On 13/01/2023 15:02, Guenter Roeck wrote:
+>> On Fri, Jan 13, 2023 at 11:33:40AM +0100, Krzysztof Kozlowski wrote:
+>>> The device specific compatibles ("qcom,kpss-wdt-ipq4019") should be
+>>> follwed by fallback "qcom,kpss-wdt", which is actually used by Linux
+>>> driver for binding.
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Acked-by: Rob Herring <robh@kernel.org>
 >>
->> Shared Boost is not supported in HDA Systems.
->>
+>> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 > 
-> Probably would be nice to put at least a note to say based on
-> David's patches.
-ack
+> The patchset was acked and reviewed, so are there any other comments?
+> Guenter/Will - are you planning to pick it up?
 > 
->> +static const struct reg_sequence cs35l41_shd_boost_seq[] = {
->> +	{CS35L41_PWR_CTRL3,	0x01000110},
-> 
-> This will blat whatever the user set in the DRE switch.
-> Technically blats the CLASS H enable from the DAPM widget too,
-> but as that always turns on should be a no-op. Probably should
-> either not register the DRE switch or have setting it return an
-> error for these boost modes.
-Fixed in v2.
-Changed to regmap_update_bits.
-> 
->> +int cs35l41_global_enable(struct regmap *regmap, enum cs35l41_boost_type b_type, int enable,
->> +			  struct completion *pll_lock)
->>   {
->>   	int ret;
->> +	unsigned int gpio1;
->>   
->>   	switch (b_type) {
->> +	case CS35L41_SHD_BOOST_ACTV:
->> +	case CS35L41_SHD_BOOST_PASS:
->> +		regmap_update_bits(regmap, CS35L41_PWR_CTRL3, CS35L41_SYNC_EN_MASK, 0);
->> +
->> +		gpio1 = enable ? CS35L41_GPIO1_MDSYNC : CS35L41_GPIO1_HIZ;
->> +		regmap_update_bits(regmap, CS35L41_GPIO_PAD_CONTROL, CS35L41_GPIO1_CTRL_MASK,
->> +				   gpio1 << CS35L41_GPIO1_CTRL_SHIFT);
->> +
->> +		ret = regmap_update_bits(regmap, CS35L41_PWR_CTRL1, CS35L41_GLOBAL_EN_MASK,
->> +					 enable << CS35L41_GLOBAL_EN_SHIFT);
->> +		usleep_range(3000, 3100);
->> +		if (!enable)
->> +			break;
->> +
->> +		if (!pll_lock)
->> +			return -EINVAL;
->> +
->> +		ret = wait_for_completion_timeout(pll_lock, msecs_to_jiffies(1000));
->> +		if (ret == 0)
->> +			ret = -ETIMEDOUT;
-> 
-> This feels kinda scary, in that you are relying on a 1 to 1
-> correspondence between this code running and getting a PLL lock
-> signal. The datasheet is helpfully completely vague on when PLL
-> locks are triggered.
-> 
-> The PLL enable seems to be set through set_sysclk, which could
-> be called multiple times, per DAPM power up.  Does the PLL
-> lock only go once global enable has been set? Can't help
-> but wonder if a reinit_completion should probably go somewhere
-> to ensure we are getting this lock of the PLL not a past one.
-Added a reinit_completion at cs35l41_pcm_startup
 
-> 
->> @@ -483,6 +483,11 @@ static irqreturn_t cs35l41_irq(int irq, void *data)
->>   		ret = IRQ_HANDLED;
->>   	}
->>   
->> +	if (status[2] & CS35L41_PLL_LOCK) {
->> +		regmap_write(cs35l41->regmap, CS35L41_IRQ1_STATUS3, CS35L41_PLL_LOCK);
->> +		complete(&cs35l41->pll_lock);
->> +	}
->> +
-> 
-> If you fall into any of the error cases in this IRQ handler above
-> this, it will blat values you don't want into BST_EN although, to
-> be fair that does look currently broken for external boost as
-> well.
-Fixed with a new patch in v2 series.
+The series is in my watchdog-next branch. Wim usually picks patches
+up from there.
 
-> 
-> Thanks,
-> Charles
-> 
+Guenter
 
