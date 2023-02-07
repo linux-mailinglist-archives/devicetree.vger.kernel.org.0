@@ -2,110 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AA8568D2F9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 10:38:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D539468D30D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 10:41:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231295AbjBGJiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 04:38:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47782 "EHLO
+        id S231648AbjBGJlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 04:41:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231646AbjBGJiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 04:38:24 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 893081BDC
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 01:38:21 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id a2so12631795wrd.6
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 01:38:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :to:content-language:subject:reply-to:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZuiSYsVuJ6KWzk0VqpXNXr3qlVlb53sqmaalgh7FtNo=;
-        b=zz4eEUXyXp2H0aRViuE3mXijAiJdHAQZPmILz7T5CcSxHWbeEN/KdjnpBnfCSJAPnO
-         ARP4tk24qTN/IkYxwpbJI2CYJrPFvFQMBs4CVUva59+MDYzq3ErAw0n84vzo9qtJxG9J
-         YOYmzIdzTszM9zyNLAbIpXF+EUym4/nWtyy5uDDgCf+dYZ4SeC2hIvaIMfuNn/e21Yx8
-         iHeLh6Gtlqo0VffA6rdxDLoIKpeMg8YMtMRHX7g4P60r2Oc2nHC8tL/Q8+HW1V0p6twY
-         oQXQyotVp9kFIkX55XyGzz0GPTtDQf4uwVmAWaG4hvudfTy//KQ8K1eN5KnUnnSSuPsi
-         ph+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :to:content-language:subject:reply-to:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZuiSYsVuJ6KWzk0VqpXNXr3qlVlb53sqmaalgh7FtNo=;
-        b=Dc3E8USmFQwBJzUSJCGHMDOV+vBlnOw+R+/BepOjrTUYsFX2CUkAioTodA0GoPvF3X
-         yNGlhG4Vus+9ra6tJwKoGtXErt4CxHZYCgU0kRXY2RLCnHq/8yAuPZLikg+Ih5G4v/Ad
-         M3tcEdl4ULamqBFvvdsV5J4wzgIiMsT3g4J4/Avl4NnoR1h3Lb4u0r87o49Hm3OX0mdT
-         ycRp9Q4aa68Bkea91UW1VuUeQDMljpp3et2YrAeN4JmWBZDBtqrGtaTdZmq3rOJI1vE0
-         NeLFR46glqKo70xQ9tc9kQG86qeOu/Nsaa3S2PhLMpfNoRl2NWxuNiwqyXVocLeiD44W
-         2f/Q==
-X-Gm-Message-State: AO0yUKVV30XiIirlF10DqqdwdwOaAX+FuUXyvS3M6mQADOmZXslWKbAB
-        KJSk21iW/gCSIdap57FQPpdBrA==
-X-Google-Smtp-Source: AK7set8Vv+Qef99D6UkExXk5sgQoTlpukBbFOSpXzD72N8Kf0GOUFW6Vea7iLLB1oG40yRytg0FGgg==
-X-Received: by 2002:adf:ed11:0:b0:2bd:e8b2:4da8 with SMTP id a17-20020adfed11000000b002bde8b24da8mr2014119wro.35.1675762700152;
-        Tue, 07 Feb 2023 01:38:20 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c58c:fc5c:67d6:e5f3? ([2a01:e0a:982:cbb0:c58c:fc5c:67d6:e5f3])
-        by smtp.gmail.com with ESMTPSA id l4-20020adff484000000b002c3ed120cf8sm3453169wro.61.2023.02.07.01.38.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 01:38:19 -0800 (PST)
-Message-ID: <fadf8933-21a7-012a-6f0f-4941a59f5e67@linaro.org>
-Date:   Tue, 7 Feb 2023 10:38:18 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] dt-bindings: remoteproc: qcom,sm8550-pas: correct power
- domains
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230433AbjBGJlX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 04:41:23 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEEC04224
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 01:41:21 -0800 (PST)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=pengutronix.de)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <s.trumtrar@pengutronix.de>)
+        id 1pPKTL-0003Aq-M3; Tue, 07 Feb 2023 10:41:07 +0100
+From:   Steffen Trumtrar <s.trumtrar@pengutronix.de>
+To:     Dinh Nguyen <dinguyen@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230206193313.30667-1-krzysztof.kozlowski@linaro.org>
- <8c819cc7-5071-376d-5c1e-c06555eed539@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <8c819cc7-5071-376d-5c1e-c06555eed539@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: [PATCH 1/2] ARM: dts: socfpga: Add enclustra PE1 devicetree
+Date:   Tue,  7 Feb 2023 10:41:00 +0100
+Message-Id: <20230207094101.522240-1-s.trumtrar@pengutronix.de>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/02/2023 20:36, Krzysztof Kozlowski wrote:
-> On 06/02/2023 20:33, Krzysztof Kozlowski wrote:
->> Correct CDSP and MPSS power domains to match what is used in DTS and the
->> Linux driver:
->>
->>    sm8550-mtp.dtb: remoteproc@32300000: power-domain-names: ['cx', 'mxc', 'nsp'] is too long
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> And probably:
-> 
-> Fixes: 084258d60712 ("dt-bindings: remoteproc: qcom: adsp: document sm8550 adsp, cdsp & mpss compatible")
-> 
-> Best regards,
-> Krzysztof
-> 
+The enclustra PE1 is a baseboard from enclustra GmbH for the enclustra
+Mercury AA1+ SOM.
 
-You were to fast, I'm preparing a serie fixing all checks on sm8550, including this one.
+Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+---
+ arch/arm/boot/dts/Makefile                    |  1 +
+ .../boot/dts/socfpga_arria10_mercury_pe1.dts  | 55 +++++++++++++++++++
+ 2 files changed, 56 insertions(+)
+ create mode 100644 arch/arm/boot/dts/socfpga_arria10_mercury_pe1.dts
 
-Since it's the same fix, with Fixes tag:
-Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index d08a3c450ce7..2714b70f2a67 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1179,6 +1179,7 @@ dtb-$(CONFIG_ARCH_S5PV210) += \
+ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += \
+ 	socfpga_arria5_socdk.dtb \
+ 	socfpga_arria10_chameleonv3.dtb \
++	socfpga_arria10_mercury_pe1.dtb \
+ 	socfpga_arria10_socdk_nand.dtb \
+ 	socfpga_arria10_socdk_qspi.dtb \
+ 	socfpga_arria10_socdk_sdmmc.dtb \
+diff --git a/arch/arm/boot/dts/socfpga_arria10_mercury_pe1.dts b/arch/arm/boot/dts/socfpga_arria10_mercury_pe1.dts
+new file mode 100644
+index 000000000000..a236489afbc2
+--- /dev/null
++++ b/arch/arm/boot/dts/socfpga_arria10_mercury_pe1.dts
+@@ -0,0 +1,55 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright 2023 Steffen Trumtrar <kernel@pengutronix.de>
++ */
++/dts-v1/;
++#include "socfpga_arria10_mercury_aa1.dtsi"
++
++/ {
++	model = "enclustra,mercury-pe1";
++	compatible = "enclustra,mercury-pe1", "enclustra,mercury-aa1",
++		     "altr,socfpga-arria10", "altr,socfpga";
++
++	aliases {
++		ethernet0 = &gmac0;
++		serial0 = &uart0;
++		serial1 = &uart1;
++	};
++};
++
++&gmac0 {
++	status = "okay";
++};
++
++&gpio0 {
++	status = "okay";
++};
++
++&gpio1 {
++	status = "okay";
++};
++
++&gpio2 {
++	status = "okay";
++};
++
++&i2c1 {
++	status = "okay";
++};
++
++&mmc {
++	status = "okay";
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&uart1 {
++	status = "okay";
++};
++
++&usb0 {
++	status = "okay";
++	dr_mode = "host";
++};
+-- 
+2.39.0
 
-Neil
