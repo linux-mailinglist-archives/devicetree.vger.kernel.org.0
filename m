@@ -2,95 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35C2268CE52
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 05:44:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40E6F68CE21
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 05:26:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229924AbjBGEo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 23:44:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49684 "EHLO
+        id S229728AbjBGE0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 23:26:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229686AbjBGEoM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 23:44:12 -0500
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D62527D74;
-        Mon,  6 Feb 2023 20:44:11 -0800 (PST)
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4AAD82012B8;
-        Tue,  7 Feb 2023 05:44:10 +0100 (CET)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 13A39200B7C;
-        Tue,  7 Feb 2023 05:44:10 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 2ED6E183ABF9;
-        Tue,  7 Feb 2023 12:44:08 +0800 (+08)
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        l.stach@pengutronix.de, shawnguo@kernel.org,
-        lorenzo.pieralisi@arm.com, peng.fan@nxp.com, marex@denx.de,
-        marcel.ziswiler@toradex.com, tharvey@gateworks.com,
-        frank.li@nxp.com
-Cc:     hongxing.zhu@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, linux-imx@nxp.com
-Subject: [PATCH v10 4/4] arm64: dts: Add i.MX8MP PCIe EP support
-Date:   Tue,  7 Feb 2023 12:18:28 +0800
-Message-Id: <1675743508-24702-5-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1675743508-24702-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1675743508-24702-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229519AbjBGE0d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 23:26:33 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A95A13DF5;
+        Mon,  6 Feb 2023 20:26:32 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 317435VZ000841;
+        Tue, 7 Feb 2023 04:26:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=A/RQJKoOLRjRpF9IsAVK0O9VtCUYqrcMCuYivRiuX/E=;
+ b=ILR9RZpVQPSdS4rFmaoxa/Gf+qpEU/Aw+5swV0CbKforR+ZI3LwXF+ECPXaNyaVnTD8D
+ Xj/7StAgidH3Jp+HtM99YAr0Mour4QcAWNIN2tAgXUuyqCQ/KsZmboo6Br8jFblIliRG
+ BX+3Xk1ve8Wz6nnqJOLCnEhxZENTFOIrfEbeIwCgKokXT5y3FGciNSvZ6lXXRUyRNm5N
+ /B2ZwyNqUrOE0PC6uq+hACqheEI0mGu70Vr7xKO0u0A6z4UwcvVvTYob/C42h6Tu5WcE
+ JAiVZsDK4lcJ0Dzf5F4Q+LFfeMOjCA8M1VE0jHOXu07XwwztGIrExKhlgvJouf/WQHwU mw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nhechdj3b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 07 Feb 2023 04:26:15 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3174QE7L003747
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 7 Feb 2023 04:26:14 GMT
+Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 6 Feb 2023
+ 20:26:06 -0800
+Message-ID: <b82c8aaf-b574-45b2-3b44-9edc6f82d619@quicinc.com>
+Date:   Tue, 7 Feb 2023 09:56:03 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH V3 4/9] dt-bindings: clock: Add Qualcomm IPQ5332 GCC
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <nfraprado@collabora.com>,
+        <robimarko@gmail.com>, <quic_gurus@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
+References: <20230206071217.29313-1-quic_kathirav@quicinc.com>
+ <20230206071217.29313-5-quic_kathirav@quicinc.com>
+ <03d6c92a-c9f3-915c-218a-14ff5c5250d2@linaro.org>
+Content-Language: en-US
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <03d6c92a-c9f3-915c-218a-14ff5c5250d2@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: HVc6FCGN5ufUZdgWHm-23vUYKBM_mgxq
+X-Proofpoint-ORIG-GUID: HVc6FCGN5ufUZdgWHm-23vUYKBM_mgxq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-06_07,2023-02-06_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ adultscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0
+ mlxlogscore=999 priorityscore=1501 mlxscore=0 phishscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302070038
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add i.MX8MP PCIe EP support.
+Thanks Dmirty for taking time to review the patch.
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 26 +++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index a19224fe1a6a..2f84b8b0118e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1309,6 +1309,32 @@ pcie: pcie@33800000 {
- 			status = "disabled";
- 		};
- 
-+		pcie_ep: pcie-ep@33800000 {
-+			compatible = "fsl,imx8mp-pcie-ep";
-+			reg = <0x33800000 0x000400000>, <0x18000000 0x08000000>;
-+			reg-names = "dbi", "addr_space";
-+			clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
-+				 <&clk IMX8MP_CLK_HSIO_AXI>,
-+				 <&clk IMX8MP_CLK_PCIE_ROOT>;
-+			clock-names = "pcie", "pcie_bus", "pcie_aux";
-+			assigned-clocks = <&clk IMX8MP_CLK_PCIE_AUX>;
-+			assigned-clock-rates = <10000000>;
-+			assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_50M>;
-+			num-lanes = <1>;
-+			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>; /* eDMA */
-+			interrupt-names = "dma";
-+			fsl,max-link-speed = <3>;
-+			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_PCIE>;
-+			resets = <&src IMX8MP_RESET_PCIE_CTRL_APPS_EN>,
-+				 <&src IMX8MP_RESET_PCIE_CTRL_APPS_TURNOFF>;
-+			reset-names = "apps", "turnoff";
-+			phys = <&pcie_phy>;
-+			phy-names = "pcie-phy";
-+			num-ib-windows = <4>;
-+			num-ob-windows = <4>;
-+			status = "disabled";
-+		};
-+
- 		gpu3d: gpu@38000000 {
- 			compatible = "vivante,gc";
- 			reg = <0x38000000 0x8000>;
--- 
-2.34.1
+On 2/6/2023 3:22 PM, Dmitry Baryshkov wrote:
+> On 06/02/2023 09:12, Kathiravan T wrote:
+>> Add binding for the Qualcomm IPQ5332 Global Clock Controller.
+>>
+>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+>> ---
+>> Changes in V3:
+>>     - Actually I missed to remove the clocks in V2 which are supposed to
+>>       be removed. In V3 I have removed those and they are
+>>       GCC_APSS_AHB_CLK, GCC_APSS_AHB_CLK_SRC, GCC_APSS_AXI_CLK
+>>     - For the same, didn't add the Reviewed-By tags from Stephen and
+>>       Krzysztof
+>>
+>> Changes in V2:
+>>     - property 'clocks' is marked required
+>>     - Renamed the include file name to match with compatible
+>>
+>>   .../bindings/clock/qcom,ipq5332-gcc.yaml      |  61 +++
+>>   include/dt-bindings/clock/qcom,ipq5332-gcc.h  | 356 ++++++++++++++++++
+>>   2 files changed, 417 insertions(+)
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml
+>>   create mode 100644 include/dt-bindings/clock/qcom,ipq5332-gcc.h
+>>
+>> diff --git 
+>> a/Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml 
+>> b/Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml
+>> new file mode 100644
+>> index 000000000000..961311af400c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml
+>> @@ -0,0 +1,61 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/qcom,ipq5332-gcc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Global Clock & Reset Controller on IPQ5332
+>> +
+>> +maintainers:
+>> +  - Stephen Boyd <sboyd@kernel.org>
+>> +
+>> +description: |
+>> +  Qualcomm global clock control module provides the clocks, resets 
+>> and power
+>> +  domains on IPQ5332.
+>> +
+>> +  See also:: include/dt-bindings/clock/qcom,gcc-ipq5332.h
+>> +
+>> +allOf:
+>> +  - $ref: qcom,gcc.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: qcom,ipq5332-gcc
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Board XO clock source
+>> +      - description: Sleep clock source
+>> +      - description: PCIE 2lane PHY pipe clock source
+>> +      - description: PCIE 2lane x1 PHY pipe clock source (For second 
+>> lane)
+>> +      - description: USB PCIE wrapper pipe clock source
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: xo
+>> +      - const: sleep_clk
+>> +      - const: pcie_2lane_phy_pipe_clk
+>> +      - const: pcie_2lane_phy_pipe_clk_x1
+>> +      - const: usb_pcie_wrapper_pipe_clk
+>
+> pcie3x1_0_pipe_clk_src, pcie3x1_1_pipe_clk_src, pcie3x2_pipe_clk_src 
+> usb0_pipe_clk_src are missing.
 
+
+Here is the mapping,
+
+pcie_2lane_phy_pipe_clk  is the source for pcie3x2,
+
+pcie_2lane_phy_pipe_clk_x1 is the source for pcie3x1_1,
+
+usb_pcie_wrapper_pipe_clk is the source for pcie3x1_0_pipe_clk_src and 
+usb0_pipe_clk_src.
+
+Is this what you are expecting or am I missing something here?
+
+Thanks,
+
+Kathiravan T.
+
+
+>
+>> +
+>> +required:
+>> +  - compatible
+>> +  - clocks
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    clock-controller@1800000 {
+>> +      compatible = "qcom,ipq5332-gcc";
+>> +      reg = <0x01800000 0x80000>;
+>> +      clocks = <&xo_board>,
+>> +               <&sleep_clk>,
+>> +               <&pcie_2lane_phy_pipe_clk>,
+>> +               <&pcie_2lane_phy_pipe_clk_x1>,
+>> +               <&usb_pcie_wrapper_pipe_clk>;
+>> +      #clock-cells = <1>;
+>> +      #power-domain-cells = <1>;
+>> +      #reset-cells = <1>;
+>> +    };
+>> +...
+>
