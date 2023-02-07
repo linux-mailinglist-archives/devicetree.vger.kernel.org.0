@@ -2,78 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E298568E083
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 19:50:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81A1A68E105
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 20:21:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229551AbjBGSuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 13:50:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43730 "EHLO
+        id S229704AbjBGTU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 14:20:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232354AbjBGSuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 13:50:09 -0500
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49D0E19A;
-        Tue,  7 Feb 2023 10:50:09 -0800 (PST)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1636eae256cso20265107fac.0;
-        Tue, 07 Feb 2023 10:50:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sTDL5p/pTbIdyDhATHrIIT1r/vINYB51ZWjkQyx4Uh4=;
-        b=CKmHviB3M67xKw1fXKlflzS+q+ZRIpQGR3gKhomTAfjG1PlkG8te8aJcS18x5FCH09
-         tfaxcNmPjaIQON0ELqMem3MXPs5dpIZvUf2+wJ0ZywFTbzWVZYFTWKS4k8iNokzvZUs4
-         iOERbtp1HhApqxqUNGSf+AjMpuaiBk+YhN16ogJnXJsTDYThGt8l7nQwf3pELwjOET6x
-         xqS14+jmPH77bfwJ2LBnCMlk20wN58ha4uURYfBSFAHhqRH2STONwH79kajTM1cqoPsi
-         6cqWOJXxyNYOcLrazAZtzoNrFARdGARVduAWWVG1Ur6q7uQ35RFv9WcijmE1Yj37bqFE
-         zFIg==
-X-Gm-Message-State: AO0yUKXsMYXDGNRH/GvhYNVWh9xwM0z5n3941jjd1LFQ0ZZihYUE+4sA
-        kw+x33ISR7Y7qLryQ0vU1A==
-X-Google-Smtp-Source: AK7set/uq6PAvMroOKOLPrUyaFY/Rpknih6ElrHi9snX+d00WQKGrRneh4G1sGVrhaWND76+QIvj6g==
-X-Received: by 2002:a05:6870:1615:b0:16a:9569:50ee with SMTP id b21-20020a056870161500b0016a956950eemr229762oae.21.1675795808538;
-        Tue, 07 Feb 2023 10:50:08 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n38-20020a056870822600b00155ffbdbaffsm5797178oae.18.2023.02.07.10.50.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 10:50:08 -0800 (PST)
-Received: (nullmailer pid 3965871 invoked by uid 1000);
-        Tue, 07 Feb 2023 18:50:07 -0000
-Date:   Tue, 7 Feb 2023 12:50:07 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Danny Kaehn <kaehndan@gmail.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, ethan.twardy@plexus.com
-Subject: Re: [PATCH v4 1/4] dt-bindings: i2c: Add CP2112 HID USB to SMBus
- Bridge
-Message-ID: <20230207185007.GA3962587-robh@kernel.org>
-References: <20230206135016.6737-1-kaehndan@gmail.com>
- <20230206135016.6737-2-kaehndan@gmail.com>
+        with ESMTP id S229527AbjBGTU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 14:20:58 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E76252BD
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 11:20:57 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1pPTWK-0000Gm-JD; Tue, 07 Feb 2023 20:20:48 +0100
+Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:1929:cbfc:e29:aaab])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 3FA43172BA4;
+        Tue,  7 Feb 2023 19:20:46 +0000 (UTC)
+Date:   Tue, 7 Feb 2023 20:20:40 +0100
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, Vinod <vkoul@kernel.org>
+Subject: Re: [PATCH 12/12] can: rcar_canfd: Add transceiver support
+Message-ID: <20230207192040.2b5wplxp75agydyw@pengutronix.de>
+References: <cover.1674499048.git.geert+renesas@glider.be>
+ <e825b50a843ffe40e33f34e4d858c07c1b2ff259.1674499048.git.geert+renesas@glider.be>
+ <CAMuHMdXtiC-Oo01Y-vCbokjF=L+YXMN=TucgqCS4Vtcg5gt==g@mail.gmail.com>
+ <20230202144000.2qvtnorgig52jfhw@pengutronix.de>
+ <CAMuHMdUm+ExFCspjk6OO3pvZ-mW8dOiZe7bS2r-ys0S=CBAT-Q@mail.gmail.com>
+ <20230202150632.oo57ap7bdapsvrum@pengutronix.de>
+ <CAMuHMdX0iHUvyFYSdQJFLOzatjgHDnHYDzVvWFukYpXKbq7RxA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="uebnley74i5a7pp2"
 Content-Disposition: inline
-In-Reply-To: <20230206135016.6737-2-kaehndan@gmail.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <CAMuHMdX0iHUvyFYSdQJFLOzatjgHDnHYDzVvWFukYpXKbq7RxA@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 06, 2023 at 07:50:13AM -0600, Danny Kaehn wrote:
-> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
-> 
-> The binding allows describing the chip's gpio and i2c controller in DT
-> using the subnodes named "gpio" and "i2c", respectively. This is
-> intended to be used in configurations where the CP2112 is permanently
-> connected in hardware.
 
-My comments on v3 still apply. Please slow down your pace of sending new 
-versions so folks have change to review.
+--uebnley74i5a7pp2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On 03.02.2023 11:24:08, Geert Uytterhoeven wrote:
+> > > > > I'll keep you updated when/if this ends up on an immutable branch.
+> > > >
+> > > > Should I take the patches 1...11 for can-next/main?
+> > >
+> > > That would be great, thanks!
+> >
+> > Done.
+>=20
+> Thank you!
+> Meanwhile, the dependency for 12/12 is now available as an immutable
+> branch, cfr. https://lore.kernel.org/all/Y9za4a8qyapi4CWD@matsya
+
+net-next/main is at v6.2-rc6, but does not include this series. I assume
+it will be mainlined in the v6.3 merge window. I think you can resend
+this patch against can/main once v6.3-rc1 is released.
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--uebnley74i5a7pp2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmPipIYACgkQvlAcSiqK
+BOgpVAf/ahELMG0vSewSeK3gt53ohA63VHVUWV6WwRiWHxj6dCbDF1w77kFFMKhL
+/oCXDAZj/ZwOUyFl7hMlfLLtw7BqxDU/c8gs/F7EtwVWLZKqWJW9DOE9a6MF3z2O
+UbaCSre8WMqm71VhaufiHUAAgmAdDpEfrKXXdiaNlIYzK8ZrvLkXVTxQA5oMEFRC
+NcVq+mC+utHPU2FdZdLcob9p8nXNL815oNQNFQzVt3ajrF1JpNyzj9hEvU1nzPyM
+K0DTlOU9NdTQy9wf/yV3IJ0RuAN5ig/FIz+rFTZIVISEQ6INy15c5vVHmhFnvevI
+jwekga+zhkspicJD6LxUBuoUkjkpQg==
+=uykw
+-----END PGP SIGNATURE-----
+
+--uebnley74i5a7pp2--
