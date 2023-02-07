@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C76568DCD5
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:21:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA03768DCE0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:22:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232417AbjBGPVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 10:21:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32818 "EHLO
+        id S232072AbjBGPWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 10:22:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232360AbjBGPVp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:21:45 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03F7137B5E
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 07:21:37 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id dr8so43906762ejc.12
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 07:21:36 -0800 (PST)
+        with ESMTP id S231435AbjBGPWt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:22:49 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0637FFF38
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 07:22:48 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id sa10so13570748ejc.9
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 07:22:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YTPYfaNfHTlgzHYyV9+fBlSvLMoaCZHX7hD5pX806Bw=;
-        b=yM2LjNDtT8Di21u7MkpL8aEYysXvyagUm5aFbBZ47I6Hp8/h+0a6HUX7mqE/WMGGQM
-         WnHyppQiTUdXfcPULg81UxftTgArLfn0DrEOlvPmqv0GuN4frYzktmX7+3FTAtBE5TZB
-         3I1Gol6P/42HRIH+oV61kzOydHpL1TAaxE+RUOLmFhuc9Aq/M64FlW9VdvsSKLjzZDmj
-         XCNiFpFySOrnA/GcbDMlWlzg1Q8NDk557SxUE4x4dZK6FAUPZfvfjd8J9EFLbhMEbkDm
-         v6+t8B2cMGUkBTM/WBn5ksA8GWz1UBv6/tKz8nkVe6mUM3e1Qb+L2TVtzPB6LPeRR4j6
-         Pt3g==
+        bh=qmKreYHl45MP4CU2KzjwVDdBhFwg72ubrDPfs/uyokA=;
+        b=IweP5CWPri1PXMNSLhrYrkaBE7WKdv+buUB6plO6mbOkgod7RRXub/aD5gmOU85LpM
+         jEZ2KwiNW2+gnKt6FLE5RVyuap1ue2SjTGvzseIKVkkkFsH0F9dQzJbPwmi71TDszz+s
+         WmU6Xg4E9AjufROLCGsjlpV8ZJlx/lpom0AXSIxsFo7SNu1M0lyDyWDQVZrsNX2H+wUn
+         WBiCU8I7QGJrDvekvo+EN7ZgWhFiPHhWuLXC6sG8IZeFPH9qcZwOfUZbejDyLSJ/llSx
+         Ff12kpV0XIpb3n0pGa46MdPnBQf+4z2kv31NrhXcd84xm8OqmEBR7gk/zSKcmzs5slfW
+         mnwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YTPYfaNfHTlgzHYyV9+fBlSvLMoaCZHX7hD5pX806Bw=;
-        b=ehcAAj3frA9WTLTnHeaPMwat3GWobTsvb7viF83C11F34vo5WKJobgyVG6Jjfbt0ib
-         x61w29GNm7S4vS2t/61R+hHjfryada5vzc1lIHU3FAj43C+GkvP/qhLYUtr8Cgcd+3J5
-         AmfScWqqWYS6vFhLw3RXSlFJAJ+qDjLwN7SKUWNcwspznQkWDsaGhorxYeIKws54xU2A
-         97eqvi9XcvhOtw5hEIAcVAHIcn+ZPYsDTMuvUjSVGQfTDgwvuWX5gnN6fgDbpUod6qFS
-         L/24zmNx9Kl/uI8hG/qAkTtj4xXtv+Q9jWp5DptdXErlK7V2pLNrthx33VZhfRzOiWKO
-         fskQ==
-X-Gm-Message-State: AO0yUKUpJqqnyYDxmFA1AAW4KT1lz0bVjyhNvNenl54L9uSKzQUsaWwH
-        aihvL4rY8BSVcBf0DZTu6eF7KoZ/Fr8blNZq
-X-Google-Smtp-Source: AK7set8584YuXOspFQeCKZnkVa3k+0F5o6MK5ItC2rBbYRItlVp13BBNRpy1PcI/NjxZgLO++QQCdg==
-X-Received: by 2002:a17:906:604d:b0:878:7b5c:3811 with SMTP id p13-20020a170906604d00b008787b5c3811mr4171364ejj.42.1675783295577;
-        Tue, 07 Feb 2023 07:21:35 -0800 (PST)
+        bh=qmKreYHl45MP4CU2KzjwVDdBhFwg72ubrDPfs/uyokA=;
+        b=QzZcXfDZmz+TcOkGK4X3u8Jd/CgZZDZtWGgwCGhHHDkV8LBm04eHnKM5ywydD+JRdh
+         nCe5BCy6d5BrKNLkZWF5T9HRPsHXU83l1ySb50eyee+HDCSRgCLC9kWdELkzGVrMEdWk
+         Umh2k5LCC5R9Jvlxzr5prVCenDF5spi7/uduMwh3h/SNKaG7NBZjG3wtyn02Clj9Zwl+
+         y7Bhyqms90hayN2dxwo6IOJCvAYqRv2YSjgX4dgSS8vYq9ixjFE9+f6C+KN51Te0Ss7O
+         NrxL0s5wJbU1s39+MS0XbwjQq97YH5fqfv6ufgFYpygEnAc3BMaGwCB5fjW0BhsLCPX0
+         S0Nw==
+X-Gm-Message-State: AO0yUKV4qVpXjrO4GRWxh2+gRyReaYQh6R1qIos0yf1zotsDvQPTURgI
+        G3aZWM/HdJYh+ZWWTeYrFgkAqg==
+X-Google-Smtp-Source: AK7set/jtYcWngVyUZ46lI8iUJ3ztOzCruwjq9oAGDSXgFwNqZ9bJGwM4/lk3+8vd6X951gIRWBipQ==
+X-Received: by 2002:a17:907:96a2:b0:89f:1a76:e2dc with SMTP id hd34-20020a17090796a200b0089f1a76e2dcmr5460112ejc.0.1675783366547;
+        Tue, 07 Feb 2023 07:22:46 -0800 (PST)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id bl11-20020a170906c24b00b0088d0b51f056sm6921120ejb.40.2023.02.07.07.21.34
+        by smtp.gmail.com with ESMTPSA id b9-20020a170906038900b008aa0305dbe8sm795012eja.80.2023.02.07.07.22.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 07:21:35 -0800 (PST)
-Message-ID: <f57c7137-0470-ca04-68fa-f0a2f5fabb4f@linaro.org>
-Date:   Tue, 7 Feb 2023 17:21:34 +0200
+        Tue, 07 Feb 2023 07:22:46 -0800 (PST)
+Message-ID: <1501a9da-e567-aea4-70ef-70d4c7cbf021@linaro.org>
+Date:   Tue, 7 Feb 2023 17:22:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 3/4] drm/msm/dpu: avoid unnecessary check in DPU
- reservations
+Subject: Re: [PATCH v2 4/4] drm/msm/dpu: reserve the resources on topology
+ change
 Content-Language: en-GB
 To:     Kalyan Thota <quic_kalyant@quicinc.com>,
         dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
@@ -65,15 +65,14 @@ Cc:     linux-kernel@vger.kernel.org, robdclark@chromium.org,
         quic_vpolimer@quicinc.com, quic_abhinavk@quicinc.com,
         marijn.suijten@somainline.org
 References: <1675780196-3076-1-git-send-email-quic_kalyant@quicinc.com>
- <1675780196-3076-4-git-send-email-quic_kalyant@quicinc.com>
+ <1675780196-3076-5-git-send-email-quic_kalyant@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1675780196-3076-4-git-send-email-quic_kalyant@quicinc.com>
+In-Reply-To: <1675780196-3076-5-git-send-email-quic_kalyant@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,14 +80,117 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/02/2023 16:29, Kalyan Thota wrote:
-> Return immediately on failure, this will make dpu reservations
-> part look cleaner.
+> Some features like CTM can be enabled dynamically. Release
+> and reserve the DPU resources whenever a topology change
+> occurs such that required hw blocks are allocated appropriately.
 > 
 > Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
 > ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 23 ++++++++++-------------
->   1 file changed, 10 insertions(+), 13 deletions(-)
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Changes in v1:
+> - Avoid mode_set call directly (Dmitry)
+> 
+> Changes in v2:
+> - Minor nits (Dmitry)
+> ---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h    |  2 ++
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 27 ++++++++++++++++++++++-----
+>   2 files changed, 24 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
+> index 539b68b..85bd5645 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
+> @@ -204,6 +204,7 @@ struct dpu_crtc {
+>    * @hw_ctls       : List of active ctl paths
+>    * @crc_source    : CRC source
+>    * @crc_frame_skip_count: Number of frames skipped before getting CRC
+> + * @ctm_enabled   : Cached color management enablement state
+>    */
+>   struct dpu_crtc_state {
+>   	struct drm_crtc_state base;
+> @@ -225,6 +226,7 @@ struct dpu_crtc_state {
+>   
+>   	enum dpu_crtc_crc_source crc_source;
+>   	int crc_frame_skip_count;
+> +	bool ctm_enabled;
+>   };
+>   
+>   #define to_dpu_crtc_state(x) \
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> index 3920efd..7bb4840 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> @@ -217,6 +217,22 @@ static u32 dither_matrix[DITHER_MATRIX_SZ] = {
+>   	15, 7, 13, 5, 3, 11, 1, 9, 12, 4, 14, 6, 0, 8, 2, 10
+>   };
+>   
+> +static bool _dpu_enc_is_dspp_changed(struct drm_crtc_state *crtc_state,
+> +	struct msm_display_topology topology)
+> +{
+> +	struct dpu_crtc_state *cstate = to_dpu_crtc_state(crtc_state);
+> +
+> +	if (drm_atomic_crtc_needs_modeset(crtc_state))
+> +		return true;
+
+I think this check doesn't belong to the is_dspp_changed() function.
+
+> +
+> +	if ((cstate->ctm_enabled && !topology.num_dspp) ||
+> +	    (!cstate->ctm_enabled && topology.num_dspp)) {
+> +		crtc_state->mode_changed = true;
+> +		return true;
+> +	}
+> +
+> +	return false;
+> +}
+>   
+>   bool dpu_encoder_is_widebus_enabled(const struct drm_encoder *drm_enc)
+>   {
+> @@ -642,14 +658,15 @@ static int dpu_encoder_virt_atomic_check(
+>   
+>   	topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, adj_mode, crtc_state);
+>   
+> +	_dpu_enc_is_dspp_changed(crtc_state, topology);
+> +
+>   	/*
+>   	 * Release and Allocate resources on every modeset
+> -	 * Dont allocate when active is false.
+>   	 */
+>   	if (drm_atomic_crtc_needs_modeset(crtc_state)) {
+>   		dpu_rm_release(global_state, drm_enc);
+>   
+> -		if (!crtc_state->active_changed || crtc_state->active)
+> +		if (crtc_state->enable)
+>   			ret = dpu_rm_reserve(&dpu_kms->rm, global_state,
+>   					drm_enc, crtc_state, topology);
+>   	}
+> @@ -1022,7 +1039,7 @@ static void dpu_encoder_virt_atomic_mode_set(struct drm_encoder *drm_enc,
+>   	struct dpu_hw_blk *hw_lm[MAX_CHANNELS_PER_ENC];
+>   	struct dpu_hw_blk *hw_dspp[MAX_CHANNELS_PER_ENC] = { NULL };
+>   	struct dpu_hw_blk *hw_dsc[MAX_CHANNELS_PER_ENC];
+> -	int num_lm, num_ctl, num_pp, num_dsc;
+> +	int num_lm, num_ctl, num_pp, num_dsc, num_dspp;
+>   	unsigned int dsc_mask = 0;
+>   	int i;
+>   
+> @@ -1053,7 +1070,7 @@ static void dpu_encoder_virt_atomic_mode_set(struct drm_encoder *drm_enc,
+>   		drm_enc->base.id, DPU_HW_BLK_CTL, hw_ctl, ARRAY_SIZE(hw_ctl));
+>   	num_lm = dpu_rm_get_assigned_resources(&dpu_kms->rm, global_state,
+>   		drm_enc->base.id, DPU_HW_BLK_LM, hw_lm, ARRAY_SIZE(hw_lm));
+> -	dpu_rm_get_assigned_resources(&dpu_kms->rm, global_state,
+> +	num_dspp = dpu_rm_get_assigned_resources(&dpu_kms->rm, global_state,
+>   		drm_enc->base.id, DPU_HW_BLK_DSPP, hw_dspp,
+>   		ARRAY_SIZE(hw_dspp));
+>   
+> @@ -1084,7 +1101,7 @@ static void dpu_encoder_virt_atomic_mode_set(struct drm_encoder *drm_enc,
+>   	}
+>   
+>   	cstate->num_mixers = num_lm;
+> -
+> +	cstate->ctm_enabled = !!num_dspp;
+>   	dpu_enc->connector = conn_state->connector;
+>   
+>   	for (i = 0; i < dpu_enc->num_phys_encs; i++) {
 
 -- 
 With best wishes
