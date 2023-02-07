@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D45668DE2E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 17:48:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EDD268DE30
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 17:49:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229585AbjBGQsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 11:48:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35326 "EHLO
+        id S231280AbjBGQtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 11:49:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231674AbjBGQsS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 11:48:18 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1067A39BA9
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 08:48:17 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id j25so10648599wrc.4
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 08:48:16 -0800 (PST)
+        with ESMTP id S231252AbjBGQtE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 11:49:04 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12A1639BB1
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 08:49:03 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id z13so4009430wmp.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 08:49:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ky7HAXJkS1X4hEgrcJjQQo7al6D+HHtf9urEyCKlGps=;
-        b=ZVmVyDjSx6EgkFT8iA42dx4e6NkiFFvRjgyVg3vEwOo0sTodqpf/6xC7Kg8zvu5zOi
-         +i12SLbbl4EZG+LN97qWe6I+1nf7msNnuZujHBy1cutT62jCNnRsC29vzSbwShTGLJk1
-         qZYaDyl5UTtWP6oEC2vJLZfbjaQlWRcfn9s1g62TU2LJurA6KpeBdnISuwk0MQw6cNY5
-         892USyFUbQ90GHznIUqrP6DW2lUZ+wf44TCj8WwXad3JpTV4x64SRgkhtbuXHVcqTGJK
-         MFbAe8tiuizvuNYAJkNKmLvFSSDg+Gxjp6mXLkKvCTbo5ygU/iFBvdk1NlblLIO98PDs
-         M9iQ==
+        bh=gQ6efCB61TIYLPpmHdBk+1/LSUB0gQyc/JjMU48i42c=;
+        b=bgfak1jDvCOVHQQGElWmnD2lEOMEwTBINLogn9Eq0pKQvrNoRAXz8j0EjilZ4k4JYP
+         Vmw1eHnC760O26q7ev3uIE0BV6+vlXEgBj9WZuAF5e66h3wBo485l/vcuMKvan2wuHS9
+         uIuDOePMn2u7AxdEg1LCq6cSzyJdVmnweP3F/9KzJzC72dHF+4vH+mX10ivzZVBVOho6
+         JkVdG1kEid5uJS9lG3OqmKHUgTw4VWggv5Y3fp+saqbVXt7SMQPYQ1sclQWTrrzEHYht
+         9Q0FUICTHFi4DO3gHhDSKvWkENjBFuJPlokc1Z8D9JP89mJyHhZl60+6O7RwwyyQhirs
+         ml5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ky7HAXJkS1X4hEgrcJjQQo7al6D+HHtf9urEyCKlGps=;
-        b=JdDQOATZC6iNj1u2YPra2YgcRlc5gpLQ0P/SJr59PPoKFzccO8uPCnLRgbRldWKdL8
-         hgcfJbcHnqiI5Da7GalW16sKQyJ/dLI0optV2wRMsOLXW7hKKw9PgfGaWkHDtrDvP0PS
-         WDZzVOAbd9fXo/jNxddZBq74M9ZY96ALRceIquyjhjmNnPV67V5CG+cnTI8X1qtGGUbw
-         b2TFxQ9q3s4MFUSwGwIoWGZUc1ZS8nR5tYN07hueqWdtZE+2Uw8lTD69LJRj3gV93xiT
-         VilhNJUdLy773X0KwcNnCojbeC/uZe0GHpQHvI1KuR6dOny3EWyVTTpWNgOoqPCtOeMI
-         JiMg==
-X-Gm-Message-State: AO0yUKXQXm8RpNu36U+2uZSYR7Fft4v+yLgQRfEqWK5GkdESmMXMB7g1
-        /Q93ljLEMWXyHquMKDasgdGgaA==
-X-Google-Smtp-Source: AK7set8TXIFkWABojtv5YPhyN5r9CAIvfLXqNjua96/e+MfEknoAwWnL/akisqL1H78whXRbC2TL6A==
-X-Received: by 2002:a5d:4bc2:0:b0:2c1:28e7:5081 with SMTP id l2-20020a5d4bc2000000b002c128e75081mr3490785wrt.68.1675788495656;
-        Tue, 07 Feb 2023 08:48:15 -0800 (PST)
+        bh=gQ6efCB61TIYLPpmHdBk+1/LSUB0gQyc/JjMU48i42c=;
+        b=jUmTJlRcTzJQhgAC7CKvFFr16ZfU86TE1/DwaHKEBZ4Q8blOwsXFCX3ltT6h6CXYJA
+         Tjq2TaJCrdNyepfQX+IwndcghZGN3oVucb3apAZhMNHvPAj4z+zXYrqeUNVpgamBLbKL
+         uC3yk9w6G5iwVAz0BWF6nmc2g0RCmiu/F3PZtXd46OXMkVZ1fiojZsnO/hMhE/j79c2u
+         03EwPj0NrdUWw511m4fvziBattQ/UuOnVz8tJgFgpt06GdBo2XMj3+fN2+u5BkJF8o+X
+         Ji30Fn2MZi+ucOpsjG6efJnT8AIEQROpJivfERBO9bP4fLYECUDkZyTGI6Q9C/jETegN
+         Di1Q==
+X-Gm-Message-State: AO0yUKV4it1O1hSXtD+a7s8LAyH4fXp7H/RiD0RFiLIo4C0WevimW6FR
+        aP23F8Fy4G9IBIG8cSGMHVbs0w==
+X-Google-Smtp-Source: AK7set/wpe72cljXd1fwohTpF1E1pBpcSt320AhZrTM3txhgwmGemUE2cxJ3yvXcCkWxTecsGoIF1w==
+X-Received: by 2002:a05:600c:1d8b:b0:3dc:198c:dde with SMTP id p11-20020a05600c1d8b00b003dc198c0ddemr3515818wms.41.1675788541619;
+        Tue, 07 Feb 2023 08:49:01 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i6-20020adffc06000000b002c3e28d0343sm7732034wrr.85.2023.02.07.08.48.14
+        by smtp.gmail.com with ESMTPSA id p10-20020a05600c468a00b003e0015c8618sm7074580wmo.6.2023.02.07.08.49.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 08:48:15 -0800 (PST)
-Message-ID: <1dad040e-fb18-8291-5e11-31ab35a8e4a2@linaro.org>
-Date:   Tue, 7 Feb 2023 17:48:13 +0100
+        Tue, 07 Feb 2023 08:49:01 -0800 (PST)
+Message-ID: <56ce2617-4fd1-d597-a4dc-918654cdd3f6@linaro.org>
+Date:   Tue, 7 Feb 2023 17:48:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 4/5] ASoC: cs35l41: Document CS35l41 external boost
- without VSPK
+Subject: Re: [PATCH 2/2] Documentation: cs35l41: Shared boost properties
 Content-Language: en-US
 To:     Lucas Tanure <lucas.tanure@collabora.com>,
         David Rhodes <david.rhodes@cirrus.com>,
@@ -68,36 +67,65 @@ To:     Lucas Tanure <lucas.tanure@collabora.com>,
 Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
         kernel@collabora.com
-References: <20230207162526.1024286-1-lucas.tanure@collabora.com>
- <20230207162526.1024286-5-lucas.tanure@collabora.com>
+References: <20230207104021.2842-1-lucas.tanure@collabora.com>
+ <20230207104021.2842-3-lucas.tanure@collabora.com>
+ <44faeca1-94c9-4423-d87a-03d80e286812@linaro.org>
+ <e7257f9a-86c5-74e8-c538-6f6d2ba13274@collabora.com>
+ <44c7274f-8a5e-0235-413a-6c3260018601@linaro.org>
+ <4efe9796-6d3e-09d1-d5f7-cfb25a439061@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230207162526.1024286-5-lucas.tanure@collabora.com>
+In-Reply-To: <4efe9796-6d3e-09d1-d5f7-cfb25a439061@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 17:25, Lucas Tanure wrote:
-> External Boost without GPIO1 as VSPK switch
-> is no longer supported, but there is laptop
-> models using this feature.
+On 07/02/2023 17:34, Lucas Tanure wrote:
+> On 07-02-2023 16:13, Krzysztof Kozlowski wrote:
+>> On 07/02/2023 16:46, Lucas Tanure wrote:
+>>>>> +      Shared boost allows two amplifiers to share a single boost circuit by
+>>>>> +      communicating on the MDSYNC bus. The passive amplifier does not control
+>>>>> +      the boost and receives data from the active amplifier. GPIO1 should be
+>>>>> +      configured for Sync when shared boost is used. Shared boost is not
+>>>>> +      compatible with External boost. Active amplifier requires
+>>>>> +      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
+>>>>>          0 = Internal Boost
+>>>>>          1 = External Boost
+>>>>> +      2 = Reserved
+>>>>
+>>>> How binding can be reserved? For what and why? Drop. 2 is shared active,
+>>>> 3 is shared passive.
+>>> 2 Is shared boost without VSPK switch, a mode not supported for new
+>>> system designs. But there is laptops using it, so we need to keep
+>>> supporting in the driver.
+>>
+>> That's not the answer. 2 is nothing here, so it cannot be reserved.
+>> Aren't you mixing now some register value with bindings?
+>>
+>> Best regards,
+>> Krzysztof
+>>
+>>
+> I have added a new patch with propper documentation.
+> And I would like to use 3 and 4 for shared boost as 
+> CS35L41_EXT_BOOST_NO_VSPK_SWITCH already exist as 2 and is used in the 
+> current driver.
 
+I don't see CS35L41_EXT_BOOST_NO_VSPK_SWITCH in the bindings.
 
-No, because:
+> The laptop that uses CS35L41_EXT_BOOST_NO_VSPK_SWITCH doesn't have the 
+> property "cirrus,boost-type", but to make everything consistent I would 
+> prefer to use 3 and 4 for the new boost types.
+> Is that ok with you?
 
-1. We did not finish discussion
-2. Subject prefix is still not correct.
-3. Please wrap commit message according to Linux coding style /
-submission process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
-
+I don't see how it is related. The value does not exist, so whether
+laptop has that property or not, is not really related, right?
 
 Best regards,
 Krzysztof
