@@ -2,100 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F63F68D369
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:00:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCF3268D378
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:03:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231839AbjBGKAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 05:00:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59344 "EHLO
+        id S230153AbjBGKDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 05:03:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231844AbjBGKAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:00:19 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 563F3768A
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 01:59:21 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id g6so4981805wrv.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 01:59:21 -0800 (PST)
+        with ESMTP id S230238AbjBGKDP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:03:15 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA62B1AE
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 02:03:12 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso12766364wms.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 02:03:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gyxo1SYfYxqaPFoqXEgYr/ocAyDp0P/Afe4B05MrX2g=;
-        b=KzUsPTYWPFHfbLnnGsjoPYvqAu0p4zXIIyFAyQZ7lM/tW0/LideTaa5ZkrAqRI26GH
-         GH1/SBpFezyNWMSdg0lcwdwBVPj9PnB44iaNkrCU7HZCAq9KD04+1zceZS7NpkGGbg5T
-         49lDY1s6A0TjFPNDmGQq3I8kZhT7cNTRMoRuv71V4amdrb9f+B3BzVizxeTPLmKtG2Zk
-         jqREe0/ffmG2XeH67rlJtXrgkVKC5mpgXrVq+Z/e5bDcacOGtwetl10GLbVqdBLhq0ht
-         q2pi2euEWKbuBZWSHy8sQrTKfWZGmjJGO3dBXzAsJbE0A31Ga4sjM23sNyL3m/hdDFW4
-         BtTA==
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kkp+Ll4tkGit72TXAobb+8Dz4GgYVkfmJNmgRsYUejc=;
+        b=LRZACxNr6xLylc10hfxaGCMDHYoNzUw7AbwuCI2aCOHqO8Fd1Iv9fdEZIGhwe5sw5k
+         ADjtTTlMfrNWXrTrxL7RCwfHdjvN6x6lTBgwBL3PlLK536ZolxhyxlNsrze9qSuatUy/
+         3VU7vCmD62DyHDA/q9QKBZoVG7Vy302PbYoO3dyfTDFHr0AK7p/ZdrV/uMnnAxPXzCmP
+         kBJdEOyOBTg7G2038O5JQKie8VkX3LfhVw6oZO4zpuARyDcex3k/zljLKSFa0eASPKS+
+         F9voe7MdN0Fgf2XDYP9Vrl90P6JOyRkp5ar3MtwKnMKKzO0jsQ8nEQ5P4r1vSmwEImhA
+         45/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gyxo1SYfYxqaPFoqXEgYr/ocAyDp0P/Afe4B05MrX2g=;
-        b=LDPAq0v2Lr9UUZ0jPXiBeCAcDMhG59pKL2zwEWWBAkW2cw8hVQHXCv3o7tMhPGpMNx
-         Ru1SvjdOoIDSTVJQ0K9biclvPMYfjbMHUqkqUXjv1VJMQOCIcOF35CfvjJHRsOXzpcB1
-         jT+8BfLi9h06ADTaB33F0YcpvZo+d07az0eEEVqySIwwVPiAEIc/n7ggYPcF/ZSa5zNh
-         wrAZ+30V7hbmr4MXUJ3ATF2gxP9i9LJTOCyTfV0N18YzbBtkdqy6zT2MRH8MFoUgpihb
-         Pwd+/GQl3ElGlagjjc1Vu1/blAk1FSlfXaH9ftwskHc59p6HoO3pf5mjo9DRFAtTu+ih
-         /dTQ==
-X-Gm-Message-State: AO0yUKWuRBrG5k4emUP5uu5YGwJXwEKsM4Ymp1MbBz/4fphZixOmZ9fU
-        usvfDREWz9fr/2X4CNcqZ1Vo5w==
-X-Google-Smtp-Source: AK7set9AGUr02MY4TirPrz8+iYHIBelGFh4xaIZhKWPYG47xjHnOe3bmka69hBvzuOpVUsCNtFRL7Q==
-X-Received: by 2002:a5d:4a0d:0:b0:2c3:ea81:64bf with SMTP id m13-20020a5d4a0d000000b002c3ea8164bfmr1877549wrq.56.1675763959917;
-        Tue, 07 Feb 2023 01:59:19 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l11-20020a05600002ab00b002bfb5ebf8cfsm11408275wry.21.2023.02.07.01.59.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 01:59:19 -0800 (PST)
-Message-ID: <9f0e05ee-de21-c234-7c8e-e6105e98c0ac@linaro.org>
-Date:   Tue, 7 Feb 2023 10:59:06 +0100
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Kkp+Ll4tkGit72TXAobb+8Dz4GgYVkfmJNmgRsYUejc=;
+        b=FEgiBaoKhnJIC4Cn0oye0zLv+rGRmWh5/cwe+Wb1ZK8R5a1zcBbS/pE2fZY1KTUMm6
+         ti1zQNVD7Q4Y87V8yECb1U5r4KjhsdKHKzvxH2KmzK9G703DGqbEyacBjzg6x/Idr7MU
+         lgX8iKqJ9Te21wmfvA78XrDUxO0tOCBmSOHHcO5ZIrxsMKixBBdoMXSzzQIjMuYONigb
+         zgsNhc8DWe/6vErKaMAF6L0J0CRll6vqyfy3lAn2YpukyJE6/hAGXvh4MsmbMz6yJYjT
+         RfNcw4oeZWW4Fz0dUhmF7hfbugnbuYgf0IoMJax91tRLkGRd6EMKFz6dNk0zGKFSXY2z
+         W3AQ==
+X-Gm-Message-State: AO0yUKUQa8d07BwvJSHcaOKMR0o2oec1YQ0MWeyw5PQ3i4R0CcUgKB6+
+        aaGpnBV7GhgvoienqD4nGXtsHmg7dn5m3irla+k=
+X-Google-Smtp-Source: AK7set9i0aBmW+7wDDLpgeqpJaDcgLuU4ehpABvZIFJKCasLAsMRYKVJh2tk4PARadiQ4MozA7GnMw==
+X-Received: by 2002:a05:600c:2e87:b0:3e0:1a9:b1f5 with SMTP id p7-20020a05600c2e8700b003e001a9b1f5mr2534413wmn.28.1675764191241;
+        Tue, 07 Feb 2023 02:03:11 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id x20-20020a05600c21d400b003dff2b493c8sm9921505wmj.36.2023.02.07.02.03.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Feb 2023 02:03:10 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Tue, 07 Feb 2023 11:03:10 +0100
+Subject: [PATCH] dt-bindings: dma: qcom,bam-dma: add optional memory
+ interconnect properties
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 4/5] dt-bindings: remoteproc: qcom,glink-rpm-edge: convert
- to DT schema
-Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230207-topic-sm8550-upstream-bam-dma-bindings-fix-v1-1-57dba71e8727@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAN0h4mMC/x2OzQqDMBCEX0Vy7kKMhGpfpfSQn60umDVktRTEd
+ +/Swxy+YfiY0wg2QjGP7jQNPyS0sUJ/60xaAs8IlJWNs26wzt5h3yolkDJ6b+GosjcMBaImlwC
+ ROBPPAm/6wthPbkpDxOCTUWEMghBb4LSoko911bI21O3/wfN1XT/+Ov4tkQAAAA==
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230207090852.28421-1-krzysztof.kozlowski@linaro.org>
- <20230207090852.28421-4-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230207090852.28421-4-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 10:08, Krzysztof Kozlowski wrote:
-> Convert Qualcomm G-Link RPM edge binding to DT schema.  Move it to
-> remoteproc as it better suits the purpose - communication channel with
-> remote processor.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../remoteproc/qcom,glink-rpm-edge.yaml       | 92 ++++++++++++++++++
->  .../bindings/soc/qcom/qcom,glink.txt          | 94 -------------------
->  2 files changed, 92 insertions(+), 94 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,glink-rpm-edge.yaml
->  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,glink.txt
+Recents SoCs like the SM8450 or SM8550 requires memory interconnect
+in order to have functional DMA.
 
-This is expected to trigger warning in other bindings, being fixed here:
-https://lore.kernel.org/linux-arm-msm/20230207095639.36537-1-krzysztof.kozlowski@linaro.org/T/#u
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+index 003098caf709..e922fafca833 100644
+--- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
++++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+@@ -36,6 +36,12 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
++  interconnects:
++    description: Path leading to system memory
++
++  interconnect-names:
++    const: memory
++
+   iommus:
+     minItems: 1
+     maxItems: 4
+
+---
+base-commit: 49a8133221c71b935f36a7c340c0271c2a9ee2db
+change-id: 20230207-topic-sm8550-upstream-bam-dma-bindings-fix-81929c3bea5c
 
 Best regards,
-Krzysztof
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
