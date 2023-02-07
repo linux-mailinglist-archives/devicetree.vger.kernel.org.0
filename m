@@ -2,244 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4294068D2AB
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 10:24:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0DB868D2B7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 10:25:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231438AbjBGJYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 04:24:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34982 "EHLO
+        id S231463AbjBGJZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 04:25:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231638AbjBGJXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 04:23:45 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B0DD366AC
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 01:23:09 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id qw12so41541306ejc.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 01:23:08 -0800 (PST)
+        with ESMTP id S230399AbjBGJZb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 04:25:31 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A91A8268A
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 01:25:30 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so12684790wma.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 01:25:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I70HhxHLsI2HHGcZI04fStNVNeSuevhKRqsln0/FI/A=;
-        b=yrMGmfrMG5RKmVutlzGybx2TOoPNybxgeoFTGv81EX+SrqeMxTBh6j1swNcISVyw+p
-         AgxQ+dFKkqs4M+u7dP5WPvcw6t/6BiMCzK+bOyEBzFiotz/5L2G3eEMdJFEYX4+4bwpJ
-         Z0MRw+rSaCVL7tO3EKomyzEQp/H7CkFnKCW7+mzsAR0ABkwjVvW9n6FRXkKWS8OtlSVW
-         0GnttzP+aRl1UBX6dKSXSyf58HWn/JgZXGprVJzROGcIll13KS+KQKtI+car/sh4sQk3
-         i7b90CA7JynTrQkutLlEKl4SxpFEHmuY9HM0fTBVmDHIJUDDQFwDmwPsvnJidHbLmfFO
-         CVaQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UYusMbl4fPMxM/IKPt2am1tzqQgaerR0Ur0r/xK18/I=;
+        b=MiSrqfDP4AXpDQZWjexnq2es14hv39SBstg8R7kpgPbvP4njoxbKyFTOtQP9RHhX6v
+         +WOKgBrbjgbHI/lFE52Bc83rWXMbt1bgUoQ/907obkavPBCALyKroyHMBUMj3vWL1TAZ
+         UzRx4hdvwpQc84/5eBZ9xiKzYKzcm8FBd6zBA8qA2oVH4Hg/2ta+Wgtx+3ek9YHJuV0M
+         0uMPGZunVaLiceS7ex2edNgC5VL7LGmDiP6tYImIu7yJf/E37dWBx2oIPaFSHcYhb397
+         bW2IYOFksBYfMIqy8Hjy4T0gm4O2r31E9BeDZyau6zo4sxsJjq/1c/KcnfZwMgAE5lsG
+         IRaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=I70HhxHLsI2HHGcZI04fStNVNeSuevhKRqsln0/FI/A=;
-        b=N1HVxWCv8r0Va8jxCVMMnXjs77MnX0exlp1vRrKBoeLlQMuIaiWhxtD68e7sxU5nyr
-         hT5jsaqo81hH8JCSPMjLJ+KzBED57UDO7i1SKd4p6+Fmn7lVJ9wjh/gqhpw0KXRkPKAg
-         +l2OeF28196n9gb8PE0m5q7QLY6BgI5gpXluRpxI+dd6RW33oTnRutJkMWYMg2zxxpQ/
-         kyGY5xUXwxRP6qaQNTKYZZGnBcPGzN6053B0ZOLmzGHOilE5CME7+wfNxZh6XqVvb0MS
-         VUeFA4fRnAo/oFeVwohYtDLFvlNFDvX1e5u41qXqUcsQkI6SXV0WPCui4vFtb5lRUTzC
-         94Pw==
-X-Gm-Message-State: AO0yUKU7dnHcfP5KhvRDjf4XX9X+NTF3Y0NjazKklcGp3absUMojIeh/
-        yggcNuTMoabp9EQYesBvErb9nA==
-X-Google-Smtp-Source: AK7set/4jc5ZZLArDJD4G8kQ0dT4ezIRyv/eZI/G0ee7KmVpY7u9jRJrKjLsy6MxGRs020d764r0jA==
-X-Received: by 2002:a17:906:448c:b0:88a:4a22:dd5 with SMTP id y12-20020a170906448c00b0088a4a220dd5mr2585928ejo.23.1675761787520;
-        Tue, 07 Feb 2023 01:23:07 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id ml18-20020a170906cc1200b00882f9130eafsm6599467ejb.26.2023.02.07.01.23.06
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UYusMbl4fPMxM/IKPt2am1tzqQgaerR0Ur0r/xK18/I=;
+        b=MtVqLIy+UwfnXUu002R8RSYJyBOWRPusLhya2lv8gU7U325/P2mUMqA7rDcKQWxFm7
+         TpGLIYTo3bI7Oay2uwza/MWPlvCdv0/YplqIbcYrYDbh1HEXTYAPW+apwqTqL6mY+BJP
+         luBzTZvbGU1KqOcZCeJpH81A+ivkEyxyjqvWHpaPoxr3ND5h6UHigrZFW/0xtDkdVxsj
+         wRTQ5FdjzQjoMgAlBM/EOSdY8KZ36ubOxP+pHli83WwVbNf9I5sUEmLDPtN+2zU5m28a
+         dJ3KYIjoowZ5ncDMzNYgiEs4DRk2tjmnAT4XenRdGO/aTAD/AW5Dh+v9ZT+pKKdeGe5e
+         W3cQ==
+X-Gm-Message-State: AO0yUKVaNk8Wocons5D7d0Hl9s9jYmiXOle2DQUunVpyEEWS7oPH9zy+
+        R51VbD/3fhTOhdk2gPbdLElkBg==
+X-Google-Smtp-Source: AK7set/5Z/b8RWodGcLgLWd6kSGxnia8d6FmyleaY9eBDSe4mJ5CmR7vigaOaje5M7SWwdkRMMBWYA==
+X-Received: by 2002:a05:600c:5112:b0:3da:2a59:8a4f with SMTP id o18-20020a05600c511200b003da2a598a4fmr2336503wms.38.1675761929304;
+        Tue, 07 Feb 2023 01:25:29 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id s15-20020a05600c45cf00b003e00c453447sm2979693wmo.48.2023.02.07.01.25.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 01:23:07 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        Tue, 07 Feb 2023 01:25:28 -0800 (PST)
+Message-ID: <867ec517-ef29-e8ac-8e0c-6f7ca440cf3d@linaro.org>
+Date:   Tue, 7 Feb 2023 10:25:27 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v11 3/7] dt-bindings: arm: nuvoton: Add NPCM GFXI
+Content-Language: en-US
+To:     Marvin Lin <milkfafa@gmail.com>, mchehab@kernel.org,
+        hverkuil-cisco@xs4all.nl, avifishman70@gmail.com,
+        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andrzej.p@collabora.com
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        kwliu@nuvoton.com, kflin@nuvoton.com
+References: <20230207091902.2512905-1-milkfafa@gmail.com>
+ <20230207091902.2512905-4-milkfafa@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230207091902.2512905-4-milkfafa@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 07 Feb 2023 10:23:06 +0100
-Message-Id: <CQC7Z4ZMDRKJ.3UUSZY1495PEQ@otso>
-Cc:     "Abel Vesa" <abel.vesa@linaro.org>,
-        "Alexander Stein" <alexander.stein@ew.tq-group.com>,
-        "Tony Lindgren" <tony@atomide.com>,
-        "Geert Uytterhoeven" <geert@linux-m68k.org>,
-        "John Stultz" <jstultz@google.com>,
-        "Doug Anderson" <dianders@chromium.org>,
-        "Guenter Roeck" <linux@roeck-us.net>,
-        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
-        "Maxim Kiselev" <bigunclemax@gmail.com>,
-        "Maxim Kochetkov" <fido_max@inbox.ru>,
-        "Colin Foster" <colin.foster@in-advantage.com>,
-        "Martin Kepplinger" <martin.kepplinger@puri.sm>,
-        "Jean-Philippe Brucker" <jpb@kernel.org>,
-        "Vladimir Oltean" <vladimir.oltean@nxp.com>,
-        <kernel-team@android.com>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
-        <linux-acpi@vger.kernel.org>
-Subject: Re: [PATCH v3 00/12] fw_devlink improvements
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Saravana Kannan" <saravanak@google.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "Sudeep Holla" <sudeep.holla@arm.com>,
-        "Cristian Marussi" <cristian.marussi@arm.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Bartosz Golaszewski" <brgl@bgdev.pl>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        "Marc Zyngier" <maz@kernel.org>, "Shawn Guo" <shawnguo@kernel.org>,
-        "Sascha Hauer" <s.hauer@pengutronix.de>,
-        "Pengutronix Kernel Team" <kernel@pengutronix.de>,
-        "Fabio Estevam" <festevam@gmail.com>,
-        "NXP Linux Team" <linux-imx@nxp.com>,
-        "Miquel Raynal" <miquel.raynal@bootlin.com>,
-        "Richard Weinberger" <richard@nod.at>,
-        "Vignesh Raghavendra" <vigneshr@ti.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Frank Rowand" <frowand.list@gmail.com>,
-        "Geert Uytterhoeven" <geert+renesas@glider.be>,
-        "Magnus Damm" <magnus.damm@gmail.com>,
-        "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
-        "Daniel Scally" <djrscally@gmail.com>,
-        "Heikki Krogerus" <heikki.krogerus@linux.intel.com>,
-        "Sakari Ailus" <sakari.ailus@linux.intel.com>,
-        "Len Brown" <lenb@kernel.org>,
-        =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-X-Mailer: aerc 0.14.0
-References: <20230207014207.1678715-1-saravanak@google.com>
-In-Reply-To: <20230207014207.1678715-1-saravanak@google.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue Feb 7, 2023 at 2:41 AM CET, Saravana Kannan wrote:
-> Naresh, Tony, Abel, Geert, Dmitry, Maxim(s), Miquel, Luca, Doug, Martin,
-> Jean-Philippe,
->
-> Can I get your Tested-by's for this v3 series please?
+On 07/02/2023 10:18, Marvin Lin wrote:
+> Add dt-bindings document for Graphics Core Information (GFXI) node. It
+> is used by NPCM video driver to retrieve Graphics core information.
+> 
+> Signed-off-by: Marvin Lin <milkfafa@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/arm/npcm/nuvoton,gfxi.yaml       | 39 +++++++++++++++++++
 
-Hi Saravana,
+This is still wrong location. arm is only for top-level pieces. You
+wanted to put it in soc.
 
-Seems to be alright on the same platform where it broke previously.
-
-Tested-by: Luca Weiss <luca.weiss@fairphone.com> # qcom/sm7225-fairphone-fp=
-4
-
-Regards
-Luca
-
->
-> Vladimir,
->
-> Ccing you because DSA's and fw_devlink have known/existing problems
-> (still in my TODOs to fix). But I want to make sure this series doesn't
-> cause additional problems for DSA.
->
-> All,
->
-> This patch series improves fw_devlink in the following ways:
->
-> 1. It no longer cares about a fwnode having a "compatible" property. It
->    figures this out more dynamically. The only expectation is that
->    fwnodes that are converted to devices actually get probed by a driver
->    for the dependencies to be enforced correctly.
->
-> 2. Finer grained dependency tracking. fw_devlink will now create device
->    links from the consumer to the actual resource's device (if it has one=
-,
->    Eg: gpio_device) instead of the parent supplier device. This improves
->    things like async suspend/resume ordering, potentially remove the need
->    for frameworks to create device links, more parallelized async probing=
-,
->    and better sync_state() tracking.
->
-> 3. Handle hardware/software quirks where a child firmware node gets
->    populated as a device before its parent firmware node AND actually
->    supplies a non-optional resource to the parent firmware node's
->    device.
->
-> 4. Way more robust at cycle handling (see patch for the insane cases).
->
-> 5. Stops depending on OF_POPULATED to figure out some corner cases.
->
-> 6. Simplifies the work that needs to be done by the firmware specific
->    code.
->
-> The v3 series has gone through my usual testing on my end and looks good
-> to me.
->
-> Thanks,
-> Saravana
->
-> [1] - https://lore.kernel.org/lkml/20220810060040.321697-1-saravanak@goog=
-le.com/
-> [2] - https://lore.kernel.org/lkml/CAGETcx-JUV1nj8wBJrTPfyvM7=3DMre5j_vkV=
-mZojeiumUGG6QZQ@mail.gmail.com/
->
-> v1 -> v2:
-> - Fixed Patch 1 to handle a corner case discussed in [2].
-> - New patch 10 to handle "fsl,imx8mq-gpc" being initialized by 2 drivers.
-> - New patch 11 to add fw_devlink support for SCMI devices.
->
-> v2 -> v3:
-> - Addressed most of Andy's comments in v2
-> - Added Colin and Sudeep's Tested-by for the series (except the imx and
->   renesas patches)
-> - Added Sudeep's Acked-by for the scmi patch.
-> - Added Geert's Reviewed-by for the renesas patch.
-> - Fixed gpiolib crash reported by Naresh.
-> - Patch 6: Fix __fwnode_links_move_consumers() to preserve fwnode link fl=
-ags.
-> - New Patch 12 to fix nvmem-cells issue reported by Maxim(s)/Miquel.
-> - Deleted some stale function doc in Patch 8
->
-> Cc: Abel Vesa <abel.vesa@linaro.org>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Tony Lindgren <tony@atomide.com>
-> Cc: Sudeep Holla <sudeep.holla@arm.com>
-> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
-> Cc: John Stultz <jstultz@google.com>
-> Cc: Doug Anderson <dianders@chromium.org>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: Maxim Kiselev <bigunclemax@gmail.com>
-> Cc: Maxim Kochetkov <fido_max@inbox.ru>
-> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
-> Cc: Luca Weiss <luca.weiss@fairphone.com>
-> Cc: Colin Foster <colin.foster@in-advantage.com>
-> Cc: Martin Kepplinger <martin.kepplinger@puri.sm>
-> Cc: Jean-Philippe Brucker <jpb@kernel.org>
-> Cc: Vladimir Oltean <vladimir.oltean@nxp.com>
->
-> Saravana Kannan (12):
->   driver core: fw_devlink: Don't purge child fwnode's consumer links
->   driver core: fw_devlink: Improve check for fwnode with no
->     device/driver
->   soc: renesas: Move away from using OF_POPULATED for fw_devlink
->   gpiolib: Clear the gpio_device's fwnode initialized flag before adding
->   driver core: fw_devlink: Add DL_FLAG_CYCLE support to device links
->   driver core: fw_devlink: Allow marking a fwnode link as being part of
->     a cycle
->   driver core: fw_devlink: Consolidate device link flag computation
->   driver core: fw_devlink: Make cycle detection more robust
->   of: property: Simplify of_link_to_phandle()
->   irqchip/irq-imx-gpcv2: Mark fwnode device as not initialized
->   firmware: arm_scmi: Set fwnode for the scmi_device
->   mtd: mtdpart: Don't create platform device that'll never probe
->
->  drivers/base/core.c             | 449 +++++++++++++++++++++-----------
->  drivers/firmware/arm_scmi/bus.c |   3 +-
->  drivers/gpio/gpiolib.c          |   7 +
->  drivers/irqchip/irq-imx-gpcv2.c |   1 +
->  drivers/mtd/mtdpart.c           |  10 +
->  drivers/of/property.c           |  84 +-----
->  drivers/soc/imx/gpcv2.c         |   2 +-
->  drivers/soc/renesas/rcar-sysc.c |   2 +-
->  include/linux/device.h          |   1 +
->  include/linux/fwnode.h          |  12 +-
->  10 files changed, 344 insertions(+), 227 deletions(-)
->
-> --=20
-> 2.39.1.519.gcb327c4b5f-goog
+Best regards,
+Krzysztof
 
