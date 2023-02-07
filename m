@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81FB568CCC4
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 03:49:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DDBA68CCC7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 03:49:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230020AbjBGCtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 21:49:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44660 "EHLO
+        id S229882AbjBGCtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 21:49:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229879AbjBGCtG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 21:49:06 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26AA5366B3
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 18:48:49 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id rm7-20020a17090b3ec700b0022c05558d22so13378676pjb.5
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 18:48:49 -0800 (PST)
+        with ESMTP id S230046AbjBGCtO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 21:49:14 -0500
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F266367D1
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 18:48:51 -0800 (PST)
+Received: by mail-pj1-x1031.google.com with SMTP id mi9so13568377pjb.4
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 18:48:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sR7ruv35Qv2TJdi+hb5jSOiaV9SREkd+tD+3wSx+p6o=;
-        b=I/dDS/7/aq/F71hBSixMoQhmOnHuXMaj4Gu8pVRWSBCxP77H7aRnbunjchMAzDsu3H
-         EK+oxIIDoDiFMjNzXc4aFvzy8BYeVkCpbanOwknlhoqlocl3kud9TOo7xSVpU8An8MO1
-         /OhgsooZYMUfIRWnZJZYprfyXICN5kGFzree8=
+        bh=sLp+h7RkE9BAbz0zHyr/CLuP3RxRPDj/C10VVagvrZo=;
+        b=Xi4CLe1YUFGbQK9fHIDP7TOLa8HqqV10AofMQWhjvwuTAXDntSKh1G/0F0QlQVCzcc
+         pEhIqIqhOmAdXm5aLGgYzXsLbW+CsNfBJpQt5WROcPEyPuuo7KN4Ys2FrBfQhEn2+/bE
+         tham9kJH0m7c5ZHgU5I9beRFL9JBbZKhyMs5g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sR7ruv35Qv2TJdi+hb5jSOiaV9SREkd+tD+3wSx+p6o=;
-        b=AjuagAcVB5KBPjsxyeHVJeWiSCgNQyo+0ZjsfNCDy/iR7wksBC+IZhNnuhlH8wsvVt
-         3uaW7dmWITkl/gIglLloTQtURRFBlngeogyRz0tOY8Cr1lf+oesmvNCKf8GyKECIWvXF
-         gkugZYxpZHYHC0B1LK8VGf0W+BXm2RGpw7oI9xv7A84VcQGAawD5WQmpbDldM0tsL4Da
-         986gE+8kJXbNd0oAdsqQeXQ+dy9ZS4+/rTBZ2kU89GLeleMbeTc1PHepnNMoyY8uHock
-         jK/3ZAxV8lHOBDC2jNFYMNVo7AfcGkh+k7PzTN8LkxKA09++9MGx6IKbaqSpc7STVF15
-         QzWw==
-X-Gm-Message-State: AO0yUKXVkoPuvw+taNrBGE8p8cQ6m8k2RBaIHrpic9S0xcejCmbgq4/c
-        pdUQMVkhDXVjMI+7hIo0DZig6g==
-X-Google-Smtp-Source: AK7set/ujCEl41G9OUvH78qbpCbjatAiV4B04Ou2nFyAB2tImELNnn/ViZ0sW8r4i89QtNjIv9WUTA==
-X-Received: by 2002:a05:6a21:3386:b0:be:bea0:7137 with SMTP id yy6-20020a056a21338600b000bebea07137mr2236057pzb.5.1675738129232;
-        Mon, 06 Feb 2023 18:48:49 -0800 (PST)
+        bh=sLp+h7RkE9BAbz0zHyr/CLuP3RxRPDj/C10VVagvrZo=;
+        b=K8LLk5PGDIBnDPfcXWtCGx2fNgY1VilfK2PCj61qHWF534rXjyxU8JI8C6kET97HYb
+         2nUoquzCAgWIVUuStHCoB7wfQxFborKP6zBqaSI5OjwY4nAuIp48UdQpvPbLvqKw4AiO
+         m2RmfufVnemkdh7YLiuqIFdCEUGycD2eU8waxu4HpT0Jksb3nQgtfUtttebNbjSQywnl
+         N3LiAhwUsUiePcGw1NPJcqNkoLIWWx1Bc3D1aF2usqjbiyQyxpdMW/5zrjXyYe0HDSbC
+         7Q6JAxL7eufTwXZuxgYHR+IGqOOvr9ivW2DwGEJG497+FF1a2Di61YJyCRZjSafr6rPC
+         NX7Q==
+X-Gm-Message-State: AO0yUKUaAiK9xDyOB06ckNuMC6ag8TRc1AGJg0wKb3uFeau9a6XIF8Yr
+        RIWAwwvSekiwVU0jlb5Pxiq8UA==
+X-Google-Smtp-Source: AK7set9r0K5wQE49Me85/HS+/5oBqNAIPQwnmgekoSvS5JnHCqv7bOYV6QedD5I4PjWRoy5D7U40lA==
+X-Received: by 2002:a05:6a20:4421:b0:b9:2705:4e46 with SMTP id ce33-20020a056a20442100b000b927054e46mr2102261pzb.22.1675738130907;
+        Mon, 06 Feb 2023 18:48:50 -0800 (PST)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:29fb:a635:f0df:f45a])
-        by smtp.gmail.com with ESMTPSA id s17-20020a63a311000000b0045dc85c4a5fsm6882430pge.44.2023.02.06.18.48.47
+        by smtp.gmail.com with ESMTPSA id s17-20020a63a311000000b0045dc85c4a5fsm6882430pge.44.2023.02.06.18.48.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Feb 2023 18:48:48 -0800 (PST)
+        Mon, 06 Feb 2023 18:48:50 -0800 (PST)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -58,9 +58,9 @@ Cc:     linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Douglas Anderson <dianders@chromium.org>,
         Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/7] arm64: dts: qcom: sc7280: Add 3ms ramp to herobrine's pp3300_left_in_mlb
-Date:   Mon,  6 Feb 2023 18:48:11 -0800
-Message-Id: <20230206184744.2.I13814cefc5ab3e0a39ebd09f052e3fd25d4e8f1d@changeid>
+Subject: [PATCH 3/7] arm64: dts: qcom: sc7280: Hook up the touchscreen IO rail on villager
+Date:   Mon,  6 Feb 2023 18:48:12 -0800
+Message-Id: <20230206184744.3.I740d409bc5bb69bf4a7b3c4568ea6e7a92f16ccd@changeid>
 X-Mailer: git-send-email 2.39.1.519.gcb327c4b5f-goog
 In-Reply-To: <20230207024816.525938-1-dianders@chromium.org>
 References: <20230207024816.525938-1-dianders@chromium.org>
@@ -68,50 +68,45 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "pp3300_left_in_mlb" rail on herobrine eventually connects up to
-"vreg_edp_3p3" on the qcard. On several herobrine designs this rail
-has been measured to need more than 1ms to turn on.
+On never revs of sc7280-herobrine-villager (rev2+) the L3C rail is
+provided to the touchscreen as the IO voltage rail. Let's add it in
+the device tree.
 
-While technically a herobrine derivative (defined as anyone including
-the "herobrine.dtsi") could change the board to make the rail rise
-faster or slower, the fact that two boards (evoker and villager) both
-measured it as taking more than 1ms implies that it's probably going
-to be the norm. Thus, let's add a "regulator-enable-ramp-delay"
-straight into the herobrine.dtsi to handle this. If a particular
-derivative board needs a faster or slower one then they can override
-it, though that feels unlikely.
-
-While we measured something a bit over 1ms, we'll choose 3ms to give
-us a tiny bit of margin. This isn't a rail that turns off and on all
-the time anyway and 3ms is nothing compared to the total amount of
-time to power on a panel.
+NOTE: Even though this is only really needed on rev2+ villagers (-rev0
+had non-functioning touchscreen and -rev1 had some hacky hardware
+magic), it doesn't actually hurt to do this for old villager revs. As
+talked about in the patch ("arm64: dts: qcom: sc7280: On QCard,
+regulator L3C should be 1.8V") the L3C regulator didn't go anywhere at
+all on older revs. That means that turning it on for older revs
+doesn't hurt other than drawing a tiny bit of extra power. Since -rev0
+and -rev1 villagers will never make it to real customers and it's nice
+not to have too many old device trees, the better tradeoff seems to be
+to enable it everywhere.
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
 
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/qcom/sc7280-herobrine-villager.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index 27f479ff9d80..ded36b5d28c7 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -108,6 +108,8 @@ pp3300_left_in_mlb: pp3300-left-in-mlb-regulator {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&en_pp3300_dx_edp>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager.dtsi
+index 17553e0fd6fd..818d4046d2c7 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager.dtsi
+@@ -55,6 +55,7 @@ ap_ts: touchscreen@10 {
+ 		reset-gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
  
-+		regulator-enable-ramp-delay = <3000>;
-+
- 		vin-supply = <&pp3300_z1>;
+ 		vcc33-supply = <&ts_avdd>;
++		vccio-supply = <&ts_avccio>;
  	};
+ };
  
 -- 
 2.39.1.519.gcb327c4b5f-goog
