@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F9A568CC0F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 02:42:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C20C68CC12
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 02:42:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230350AbjBGBma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 20:42:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40962 "EHLO
+        id S230345AbjBGBmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 20:42:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230349AbjBGBm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 20:42:27 -0500
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F113524F
-        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 17:42:20 -0800 (PST)
-Received: by mail-yb1-xb49.google.com with SMTP id u8-20020a258408000000b00880a7cc9684so7075620ybk.13
-        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 17:42:20 -0800 (PST)
+        with ESMTP id S230319AbjBGBm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 20:42:28 -0500
+Received: from mail-pg1-x54a.google.com (mail-pg1-x54a.google.com [IPv6:2607:f8b0:4864:20::54a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 025A236080
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 17:42:21 -0800 (PST)
+Received: by mail-pg1-x54a.google.com with SMTP id h16-20020a63df50000000b004f74bc0c71fso3575107pgj.18
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 17:42:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20210112;
         h=cc:to:from:subject:references:mime-version:message-id:in-reply-to
          :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oJLrTZtGB/wtRgZ8auzL1/mCtthfh1jmvZ+jyYODrHo=;
-        b=KxHeBd9/qrt/W/MW4sUpZIYo6+yTTh5TEOdC00+aZnQdBS23CNq8lQ/3ly9Ie7C0jx
-         AjoC98Qjw2BjtA+6HokTZ2K8U6tXQihfm5h+hLPeDCF4PTWsWCDJ/JKmZiN9nTWt8Shh
-         Ps3mn6yubOQoZo/oaLlFALgQc/euTcI9CK8eH/0m+jNzUowjJcD18GLh/uIuCpLexd7Z
-         orKSAUPqQwHVZJ9xvZl95RcQbB5RMKJL/RxwOhlVemuGVd3JmPzazJDUpXkyWRMFu6XQ
-         tonVupUP0/OJgnHzIKGNW5KmQA8ou+8EsSVWRj8S2uoKjGzS2cH4h7TZD39JXwkbCIxy
-         BAzw==
+        bh=ORUuC30mhLyGGOfOGNQGmV2Hk9NLu8NgqlPyUePgVtw=;
+        b=W3ks5YEw7SKIgSIZBtQHBL9lJVPSdYZt5YLLOMNiqg39kU3nN1EI6XuA+B32uaPZGb
+         v5zyhRmRRHO+O/PDHZr10O4cRAMqIo+F89AcNblg/s/+76O4QIK+2qBAbUZrxge36Zai
+         oUQ3lkDhN+g7lBRIxR1KVI98eol03ANv+ysGxNp9Jy33gMZ7+KWT14YWjTKmLM4h0Sde
+         uDNF/Fk2U8cuXtdVSlDGUvhsCS+fTpqnyi3ghq5nNuitlb38EuGaeD8xzBpXE/R4GDSO
+         N9LcyuvRftt3ULpiqwLSIoYSZ3EjoLNyWNXZS4LCua4bI5CqUx3cJx+UrAWXqFnajwKW
+         grxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:from:subject:references:mime-version:message-id:in-reply-to
          :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oJLrTZtGB/wtRgZ8auzL1/mCtthfh1jmvZ+jyYODrHo=;
-        b=JkNNowKUnFdQsQpOUDoX9v0f5QulfHW0jk8YdJUd4NNZcjn/3A8WtohKlsxyIPbMmS
-         w93g7FzAWLpPurGOk1qULYkUlif/v+LQDpMlpf70ofPj9zBOvf6lEhEU55cGXCEKUbm/
-         fPjN9IYYjfSVQl8EH8FJDe8lXIkEUaMZZcx5W2JX20Jx9wmY1gXKUDG9f1BDfOvgBK1e
-         tdm4fDxkkccsD/bKUfPX8xPwxk1ixfc9KDYvgNsjKJB5R/zoAZD1H1OHdhr/mQwW4/Sy
-         P5hNWV5uxkh1Vw38peKJ+ZwEm/bjAI0wvymfnAf9NeeR4mBvMPfBhWL6bXX02Bd1MnNV
-         vqHQ==
-X-Gm-Message-State: AO0yUKV/snZ/z0T7QMNn7yHJuU7UFwad350iL5DR4U+wqxMubFFn0SKy
-        BS1kxB6/boY/QOcBzt7Jw3r9bypURqpDWps=
-X-Google-Smtp-Source: AK7set9IZk0AFyhStprHcWsDyLohlpZMk4+IUUW+9YYC1cuPIrl5oy+DIc0aaHggVeZTHlKuTRQOg8YA5KQoVnA=
+        bh=ORUuC30mhLyGGOfOGNQGmV2Hk9NLu8NgqlPyUePgVtw=;
+        b=FKR1xScZsUNlkdL5RysMxi9A3ljk6Dpt2MAK8p+5quhEtLXOwYCCpdZaFErCWPzc3/
+         5kuJ9EiR5hiLHMNA1aezlneeYQxC5mA2OqB1JSyHPd3x+9tKDA8PiOFV7giydfoFbVNj
+         3GpxSf2QWsRCnUBG04Vnp23lRcn5pTvr5VVOJ2dwSVaEpANtyEtDcT22/NpDe/I1eajp
+         jaadMCNi29l0suIK0cyy6kIbY5ZYjC6nWOkkumEm20qLbxKzP+478epgHRajVS5K3Cdg
+         nC0q0XMKqR4l3Qdm7VZDFe7X5wV93SU7UgqqF4ETcRDDx1Ra9zBitk+jywnruloKhkn5
+         vqoA==
+X-Gm-Message-State: AO0yUKUT4zs6YsJLN0JW8qG+CQGE6K9i/I5Kg6A3rP89y9JQclxTCfez
+        yRT1KH6M88TlOPT/sNT1KsJ+sbG3B5AccKs=
+X-Google-Smtp-Source: AK7set8txtYYhJ0J+28pL4WUJBO9Kkr3uP9QQWYQBMNjYhLp0mg9chNGGE1J5xNq3IdUI/epAkGwDw5ZAcogFH0=
 X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:ae1:aba6:f21c:4a94])
- (user=saravanak job=sendgmr) by 2002:a25:d2cc:0:b0:855:fdcb:4465 with SMTP id
- j195-20020a25d2cc000000b00855fdcb4465mr31ybg.6.1675734138499; Mon, 06 Feb
- 2023 17:42:18 -0800 (PST)
-Date:   Mon,  6 Feb 2023 17:41:55 -0800
+ (user=saravanak job=sendgmr) by 2002:a17:90a:3f8f:b0:230:792d:7519 with SMTP
+ id m15-20020a17090a3f8f00b00230792d7519mr425744pjc.22.1675734141281; Mon, 06
+ Feb 2023 17:42:21 -0800 (PST)
+Date:   Mon,  6 Feb 2023 17:41:56 -0800
 In-Reply-To: <20230207014207.1678715-1-saravanak@google.com>
-Message-Id: <20230207014207.1678715-4-saravanak@google.com>
+Message-Id: <20230207014207.1678715-5-saravanak@google.com>
 Mime-Version: 1.0
 References: <20230207014207.1678715-1-saravanak@google.com>
 X-Mailer: git-send-email 2.39.1.519.gcb327c4b5f-goog
-Subject: [PATCH v3 03/12] soc: renesas: Move away from using OF_POPULATED for fw_devlink
+Subject: [PATCH v3 04/12] gpiolib: Clear the gpio_device's fwnode initialized
+ flag before adding
 From:   Saravana Kannan <saravanak@google.com>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         "Rafael J. Wysocki" <rafael@kernel.org>,
@@ -101,7 +102,7 @@ Cc:     Abel Vesa <abel.vesa@linaro.org>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -109,34 +110,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The OF_POPULATED flag was set to let fw_devlink know that the device
-tree node will not have a struct device created for it. This information
-is used by fw_devlink to avoid deferring the probe of consumers of this
-device tree node.
-
-Let's use fwnode_dev_initialized() instead because it achieves the same
-effect without using OF specific flags. This allows more generic code to
-be written in driver core.
+Registering an irqdomain sets the flag for the fwnode. But having the
+flag set when a device is added is interpreted by fw_devlink to mean the
+device has already been initialized and will never probe. This prevents
+fw_devlink from creating device links with the gpio_device as a
+supplier. So, clear the flag before adding the device.
 
 Signed-off-by: Saravana Kannan <saravanak@google.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
+Tested-by: Colin Foster <colin.foster@in-advantage.com>
+Tested-by: Sudeep Holla <sudeep.holla@arm.com>
 ---
- drivers/soc/renesas/rcar-sysc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpio/gpiolib.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/soc/renesas/rcar-sysc.c b/drivers/soc/renesas/rcar-sysc.c
-index b0a80de34c98..eed47696e825 100644
---- a/drivers/soc/renesas/rcar-sysc.c
-+++ b/drivers/soc/renesas/rcar-sysc.c
-@@ -437,7 +437,7 @@ static int __init rcar_sysc_pd_init(void)
+diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
+index 939c776b9488..bdb9493857eb 100644
+--- a/drivers/gpio/gpiolib.c
++++ b/drivers/gpio/gpiolib.c
+@@ -578,6 +578,13 @@ static int gpiochip_setup_dev(struct gpio_device *gdev)
+ {
+ 	int ret;
  
- 	error = of_genpd_add_provider_onecell(np, &domains->onecell_data);
- 	if (!error)
--		of_node_set_flag(np, OF_POPULATED);
-+		fwnode_dev_initialized(of_fwnode_handle(np), true);
- 
- out_put:
- 	of_node_put(np);
++	/*
++	 * If fwnode doesn't belong to another device, it's safe to clear its
++	 * initialized flag.
++	 */
++	if (gdev->dev.fwnode && !gdev->dev.fwnode->dev)
++		fwnode_dev_initialized(gdev->dev.fwnode, false);
++
+ 	ret = gcdev_register(gdev, gpio_devt);
+ 	if (ret)
+ 		return ret;
 -- 
 2.39.1.519.gcb327c4b5f-goog
 
