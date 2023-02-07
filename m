@@ -2,272 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6997768D4EE
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:57:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9502168D506
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 12:03:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231846AbjBGK5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 05:57:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57670 "EHLO
+        id S231886AbjBGLDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 06:03:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231845AbjBGK5j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:57:39 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DD962A9BE
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 02:57:36 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso12881003wms.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 02:57:36 -0800 (PST)
+        with ESMTP id S231654AbjBGLDd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 06:03:33 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B28497ED8
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 03:03:29 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id u10so7691430wmj.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 03:03:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=f8FZcb4uzFMfPmtWP/l5hxVwHej/vJK/aKrsjsyG4Cg=;
-        b=hLnwnCcPA8db5bjm0+ND5ByI90aSO4VtqvnJu/6xdGsiQKIjcP50gblOpw7ouQku1A
-         UCXeVuwZuSOhrgbddcnt84uECl0KY8mhVpx+bn/o6YZXqpZYzJs5lSPy4PpVPLNxBlLy
-         gJJ5ckX4W3AeNOq395lPVzM+dSWhLT23nwrtj35n5XnV/qeWnWygHfiyEqvyezamLWpF
-         pNMtI89IIBshO3jRuYEv5r2sJrqza6LTB5fuUc/F0713szrwpOgKti+RKlwy4O158cxC
-         77Lm7WRxjirfAlbVr88jsfaky93tDRBaR23UcnniDgVBIVnOcSM5BXivYfoBz4tj3uQS
-         M4Yg==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WJ93a5Pn7pV9qf9vPyQI+os80WkoEdvC0T6foUnk8Mg=;
+        b=INmIU2NouIzVm1jjPfdrm53AB5JjOg8/iz3jZE+fI1b7pLAYBvKC7TMLsXvXEmMnZQ
+         tvcX16TPZzl8SlvyqiF5TxNKUMYyM5yxTebfEAX2rlWAA+HUitsAujtgmlJ4a0OcbvKp
+         8E5zmSXqfdwXT0d4KY3ZDO9k4vXuXxN9PyBOyRPm+3wnJPCfpXAh5V/4V8UB4b9tOHuU
+         K7pSJDwrBk41FSY187xils4uDkG/6SBfJQGcBUbIf4WTIakcMUO5FDDxVvwxRqszTNr5
+         oK/eoxuZQpvWPGGUUZgVSbTt9YU2fw93GINQrZoiQBQZRluPERuKlrOsol0IIiu+xtLd
+         k0pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f8FZcb4uzFMfPmtWP/l5hxVwHej/vJK/aKrsjsyG4Cg=;
-        b=a1ofk8wKMDr4vfePonm/eynulqbF6LQx0aNhBeKkBX3Crzoz9TEduylD2MGu+Jt+s0
-         pERpIqRn522j9IZiFwHeKqLJv0++YgRrqya+Kwx5kfu+pI1kUfTpdtPdbvIaAFCgu8sE
-         HszUCJBWI1kUhDEhUn1VjvwwTTs+UD4ZjXuRMCEjGVRHEmXNAIXhtFPzVbeb8UXQzGPD
-         xjMrAnZOUGU64L4NDx1oWyAmXABZLCohvFvjPuY9WmmRnL4usVeQgSaouaL6kS0dcfEE
-         b2JkSjDvqAQWO4B2iceaV45kCS7hsT1SRKVIuxN/CZZtzsDgBRFEF8KYTPPRzrs4heP/
-         aB+g==
-X-Gm-Message-State: AO0yUKXfhvpCw0o4IAKTh/nAsuY8u2ZpluFHhAf2qCdNCaJsfHKwSsiG
-        WjS79CN2e4OJ0KI6HZCyzaHYnQ==
-X-Google-Smtp-Source: AK7set8KJo95kIYX47xfryIGgOz80ooU+wyiOu6FqauMXidnVWF7t7U7A0ekyJ4cp0l6r5KMZslZeQ==
-X-Received: by 2002:a05:600c:9a2:b0:3dc:576c:ab07 with SMTP id w34-20020a05600c09a200b003dc576cab07mr2755796wmp.14.1675767455224;
-        Tue, 07 Feb 2023 02:57:35 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m20-20020a05600c3b1400b003db1ca20170sm14832575wms.37.2023.02.07.02.57.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 02:57:34 -0800 (PST)
-Message-ID: <ae5ed7e6-1f4f-c45f-06ef-dd5566e8a7d0@linaro.org>
-Date:   Tue, 7 Feb 2023 11:57:33 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WJ93a5Pn7pV9qf9vPyQI+os80WkoEdvC0T6foUnk8Mg=;
+        b=knxaP5ClX2rroFYRLpeY7tgE1Z1Rv4XBaaKgs4VhZ8EAEYxs75fNDJzrLDPVezkaSz
+         0LlG+PliNh2D5VEMnjkQUUm+9zb2+XjIsw0K0q9OM3ZduOMnc7oDsQ59EO1d71BHve+r
+         Bf00PPyTaHxqbfaQUw/iPGL3SyrXrN1vzQ092njZqEOGFO/W+xGnfw4twrxdDkCg8Jlz
+         8RDCt3z36NLCugKDf/6CPFPYGiBPqPRhFd+PwDawQIWu75L2RlA+67WzpE+zgbRHTSu5
+         029Dmq76CEK29dsjo9H82cqw3HFYPbX4ZemLYES891FRrfrV3D5zJlEQOsN+hoe0vO+i
+         1MEg==
+X-Gm-Message-State: AO0yUKXS7gr+sNpAoL3lG3Pkrc9v8mdjwh699qU8RNrKPvxtZPyQhR8g
+        OVHSU54uz3vZdz5L98JNBpXVZA==
+X-Google-Smtp-Source: AK7set+9m5mhPHjw7qowGtSxwYkGbks55ol9xKSpV7ArSxwhymRP73uRItp25IcvPAhrZonE5E9JbA==
+X-Received: by 2002:a05:600c:4da2:b0:3dc:51f6:8f58 with SMTP id v34-20020a05600c4da200b003dc51f68f58mr2766884wmp.6.1675767808312;
+        Tue, 07 Feb 2023 03:03:28 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id s22-20020a1cf216000000b003dffe312925sm6761960wmc.15.2023.02.07.03.03.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Feb 2023 03:03:27 -0800 (PST)
+Date:   Tue, 7 Feb 2023 13:03:26 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 7/8] arm64: dts: qcom: sm8550: Add USB PHYs and
+ controller nodes
+Message-ID: <Y+Iv/s7V5PYkRI8D@linaro.org>
+References: <20230202132511.3983095-1-abel.vesa@linaro.org>
+ <20230202132511.3983095-8-abel.vesa@linaro.org>
+ <Y9zoD/eVG8zjMYNx@hovoldconsulting.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] dt-bindings: fpga: convert bindings document to yaml
-Content-Language: en-US
-To:     Nava kishore Manne <nava.kishore.manne@amd.com>, mdf@kernel.org,
-        hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        michal.simek@xilinx.com, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230207104812.182439-1-nava.kishore.manne@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230207104812.182439-1-nava.kishore.manne@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y9zoD/eVG8zjMYNx@hovoldconsulting.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 11:48, Nava kishore Manne wrote:
-> Convert the xilinx-pr-decoupler binding document from txt to yaml.
+On 23-02-03 11:55:11, Johan Hovold wrote:
+> On Thu, Feb 02, 2023 at 03:25:10PM +0200, Abel Vesa wrote:
+> > Add USB host controller and PHY nodes.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> > 
+> > Changes since v3:
+> >  * none
+> > 
+> > Changes since v2:
+> >  * none
+> > 
+> > NOTE: This patch has been already merged. It is here only to provide
+> > context for the rest of the patchset. There is a change with respect to
+> > the clocks, but that will be sent as a separate/individual fix patch.
 > 
-> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
+> I believe it was because of the 'phy' and 'common' resets, which have
+> been switched below.
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
+No, the resets haven't been switched, at least not compared to the
+already merged version.
 
-missing final component for prefixes
-
-Subject: drop second/last, redundant "bindings document". The
-"dt-bindings" prefix is already stating that these are bindings.
-
-> ---
->  .../bindings/fpga/xilinx-pr-decoupler.txt     | 54 -------------
->  .../bindings/fpga/xlnx,pr-decoupler.yaml      | 76 +++++++++++++++++++
->  2 files changed, 76 insertions(+), 54 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt
->  create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,pr-decoupler.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt b/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt
-> deleted file mode 100644
-> index 0acdfa6d62a4..000000000000
-> --- a/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt
-> +++ /dev/null
-> @@ -1,54 +0,0 @@
-> -Xilinx LogiCORE Partial Reconfig Decoupler Softcore
-> -
-> -The Xilinx LogiCORE Partial Reconfig Decoupler manages one or more
-> -decouplers / fpga bridges.
-> -The controller can decouple/disable the bridges which prevents signal
-> -changes from passing through the bridge.  The controller can also
-> -couple / enable the bridges which allows traffic to pass through the
-> -bridge normally.
-> -
-> -Xilinx LogiCORE Dynamic Function eXchange(DFX) AXI shutdown manager
-> -Softcore is compatible with the Xilinx LogiCORE pr-decoupler.
-> -
-> -The Dynamic Function eXchange AXI shutdown manager prevents AXI traffic
-> -from passing through the bridge. The controller safely handles AXI4MM
-> -and AXI4-Lite interfaces on a Reconfigurable Partition when it is
-> -undergoing dynamic reconfiguration, preventing the system deadlock
-> -that can occur if AXI transactions are interrupted by DFX
-> -
-> -The Driver supports only MMIO handling. A PR region can have multiple
-> -PR Decouplers which can be handled independently or chained via decouple/
-> -decouple_status signals.
-> -
-> -Required properties:
-> -- compatible		: Should contain "xlnx,pr-decoupler-1.00" followed by
-> -                          "xlnx,pr-decoupler" or
-> -                          "xlnx,dfx-axi-shutdown-manager-1.00" followed by
-> -                          "xlnx,dfx-axi-shutdown-manager"
-> -- regs			: base address and size for decoupler module
-> -- clocks		: input clock to IP
-> -- clock-names		: should contain "aclk"
-> -
-> -See Documentation/devicetree/bindings/fpga/fpga-region.txt and
-> -Documentation/devicetree/bindings/fpga/fpga-bridge.txt for generic bindings.
-> -
-> -Example:
-> -Partial Reconfig Decoupler:
-> -	fpga-bridge@100000450 {
-> -		compatible = "xlnx,pr-decoupler-1.00",
-> -			     "xlnx-pr-decoupler";
-> -		regs = <0x10000045 0x10>;
-> -		clocks = <&clkc 15>;
-> -		clock-names = "aclk";
-> -		bridge-enable = <0>;
-> -	};
-> -
-> -Dynamic Function eXchange AXI shutdown manager:
-> -	fpga-bridge@100000450 {
-> -		compatible = "xlnx,dfx-axi-shutdown-manager-1.00",
-> -			     "xlnx,dfx-axi-shutdown-manager";
-> -		regs = <0x10000045 0x10>;
-> -		clocks = <&clkc 15>;
-> -		clock-names = "aclk";
-> -		bridge-enable = <0>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,pr-decoupler.yaml b/Documentation/devicetree/bindings/fpga/xlnx,pr-decoupler.yaml
-> new file mode 100644
-> index 000000000000..caea58a9ba7d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/fpga/xlnx,pr-decoupler.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/fpga/xlnx,pr-decoupler.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx LogiCORE Partial Reconfig Decoupler/AXI shutdown manager Softcore
-> +
-> +maintainers:
-> +  - Nava kishore Manne <nava.kishore.manne@amd.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - description: The Xilinx LogiCORE Partial Reconfig Decoupler manages one
-> +          or more decouplers / fpga bridges. The controller can decouple/disable
-> +          the bridges which prevents signal changes from passing through the
-> +          bridge. The controller can also couple / enable the bridges which
-> +          allows traffic to pass through the bridge normally.
-
-Description of device goes to toplevel "description" field. Not here.
-Here you can point shortly differences, but such statement suggests you
-should have different bindings.
-
-> +        items:
-> +          - const: xlnx,pr-decoupler-1.00
-> +          - const: xlnx,pr-decoupler
-> +      - description: The Xilinx LogiCORE Dynamic Function eXchange(DFX)
-> +          AXI shutdown manager softcore is compatible with the Xilinx
-> +          LogiCORE pr-decoupler. The Dynamic Function eXchange AXI shutdown
-> +          manager prevents AXI traffic from passing through the bridge.
-> +          The controller safely handles AXI4MM and AXI4-Lite interfaces on
-> +          a Reconfigurable Partition when it is undergoing dynamic
-> +          reconfiguration, preventing the system deadlock that can occur
-> +          if AXI transactions are interrupted by DFX.
-
-Same problem.
-
-> +        items:
-> +          - const: xlnx,dfx-axi-shutdown-manager-1.00
-> +          - const: xlnx,dfx-axi-shutdown-manager
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: aclk
-> +
-> +  bridge-enable:
-
-Missing type/ref.
-
-> +    description:
-> +      Zero if driver should disable bridge at startup
-
-Are these sentences? Then missing full sotp.
-
-
-> +      One if driver should enable bridge at startup
-> +      Default is to leave bridge in current state.
-
-Missing enum.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +unevaluatedProperties: false
-
-Instead (you do not reference any other binding):
-additionalProperties: false
-
-Anyway, I have doubts it you tested it. Just read fpga-region bindings
-and original TXT... It clearly points to regions. Where are they?
-
-> +
-> +examples:
-> +  - |
-> +    fpga-bridge@100000450 {
-> +      compatible = "xlnx,pr-decoupler-1.00", "xlnx,pr-decoupler";
-> +      reg = <0x10000045 0x10>;
-> +      clocks = <&clkc 15>;
-> +      clock-names = "aclk";
-> +      bridge-enable = <0>;
-> +    };
-> +
-> +  - |
-> +    fpga-bridge@100000850 {
-
-Drop second example, it's basically the same.
-
-> +      compatible = "xlnx,dfx-axi-shutdown-manager-1.00", "xlnx,dfx-axi-shutdown-manager";
-> +      reg = <0x10000045 0x10>;
-> +      clocks = <&clkc 15>;
-> +      clock-names = "aclk";
-> +      bridge-enable = <0>;
-> +    };
-
-Best regards,
-Krzysztof
-
+> >  arch/arm64/boot/dts/qcom/sm8550.dtsi | 92 +++++++++++++++++++++++++++-
+> >  1 file changed, 91 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > index a85d2ae7d155..0262193e2ffe 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > @@ -14,6 +14,7 @@
+> >  #include <dt-bindings/mailbox/qcom-ipcc.h>
+> >  #include <dt-bindings/power/qcom-rpmpd.h>
+> >  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+> > +#include <dt-bindings/phy/phy-qcom-qmp.h>
+> >  #include <dt-bindings/thermal/thermal.h>
+> >  
+> >  / {
+> > @@ -746,7 +747,7 @@ gcc: clock-controller@100000 {
+> >  				 <&ufs_mem_phy 0>,
+> >  				 <&ufs_mem_phy 1>,
+> >  				 <&ufs_mem_phy 2>,
+> > -				 <0>;
+> > +				 <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+> >  		};
+> >  
+> >  		ipcc: mailbox@408000 {
+> > @@ -2060,6 +2061,95 @@ opp-202000000 {
+> >  			};
+> >  		};
+> >  
+> > +		usb_1_hsphy: phy@88e3000 {
+> > +			compatible = "qcom,sm8550-snps-eusb2-phy";
+> > +			reg = <0x0 0x088e3000 0x0 0x154>;
+> > +			#phy-cells = <0>;
+> > +
+> > +			clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
+> > +			clock-names = "ref";
+> > +
+> > +			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+> > +
+> > +			status = "disabled";
+> > +		};
+> > +
+> > +		usb_dp_qmpphy: phy@88e8000 {
+> > +			compatible = "qcom,sm8550-qmp-usb3-dp-phy";
+> > +			reg = <0x0 0x088e8000 0x0 0x3000>;
+> > +
+> > +			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+> > +				 <&rpmhcc RPMH_CXO_CLK>,
+> > +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+> > +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> > +			clock-names = "aux", "ref", "com_aux", "usb3_pipe";
+> > +
+> > +			power-domains = <&gcc USB3_PHY_GDSC>;
+> > +
+> > +			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
+> > +				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
+> > +			reset-names = "phy", "common";
+> > +
+> > +			#clock-cells = <1>;
+> > +			#phy-cells = <1>;
+> > +
+> > +			status = "disabled";
+> > +		};
+> 
+> Johan
