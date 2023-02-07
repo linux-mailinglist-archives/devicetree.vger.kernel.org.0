@@ -2,203 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B868168DE7B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 18:06:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0703D68DE79
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 18:05:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230344AbjBGRGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 12:06:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45838 "EHLO
+        id S231583AbjBGRF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 12:05:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbjBGRGM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 12:06:12 -0500
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 482813D092
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 09:06:03 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id ay1so11216211pfb.7
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 09:06:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=a7s5BdNztvH3Hr3AKRFoBTusAbY6jn+uBzEZI75Vbrg=;
-        b=agPD4pmg6rcj6WLSj5/G5hNCDdxsdTXDPVEYm//Gk5Sn3KbH7pAQEUq4uUJokFOJQD
-         KyY1RkmsM4cVU6bQ6vn7IvEx8+J0TaT9DJXEU4tCWEv2g8rqPl5y+6eOM1X3azDi5QTk
-         /IflrOnLIzyerBkoWnKmWQVxzdW6vTFV2LyLSsOAzVHd20/k9ARqO4Akm6Wxc78kZ4Ce
-         FxuLuSNhiSgpk6Ih9AK915xIfVl1DnVnt0FPXMTIhJTgKwGKGxy1VKr4Kxqggn2OlTHO
-         DfTvpvJa6Td/ilzozxVlOIKNe9vR72GbT3Vmb2Hatyli4gOcDz3bD1ghS6GX/XMEN7Ra
-         lQoA==
+        with ESMTP id S231187AbjBGRF4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 12:05:56 -0500
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 173C03D0A1;
+        Tue,  7 Feb 2023 09:05:53 -0800 (PST)
+Received: by mail-ot1-f47.google.com with SMTP id p24-20020a056830131800b0068d4b30536aso4389057otq.9;
+        Tue, 07 Feb 2023 09:05:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a7s5BdNztvH3Hr3AKRFoBTusAbY6jn+uBzEZI75Vbrg=;
-        b=uZn2kEK2RUeCxeY1joDVaaewYalvBv4VRDyHyWbeUOokmq7yQ60TUYEbnOf9mAnQJ0
-         IKH2Y1SKVeHPzQiz8M1QeYJ0D4Yd6OmR0JVhij/q8iiA33OiecU0mDfX695Ocy/tAOLs
-         ImckUrl0v7dnDqSRyd6Xu0qAwfCEJvOdM9V2D+nbOUQUuc6n4THgQTpj6LULaMMaLUkN
-         8fbtJJJFQnfIRYs85zJgUfUNv9d44XWRRTOS2/C90t3wC7KHwAGTCso8LtCOqlwhLxlK
-         VYnDPSQpdL4KyGmDYou8n7QFW9PpkxRv6cFs3YM7QzCg6l2Q6/qXL8Z60e8UATSitzaG
-         4s7w==
-X-Gm-Message-State: AO0yUKV26ijWd+Q8jtzLtYj/kNXx7K2Dag6fvlxTkHrcKe0vKH9ID7i4
-        bAEl+sVOEg1jWO6BAF4C8jJnGdqgJCp87g66rNljBA==
-X-Google-Smtp-Source: AK7set8WIdI9JnR5RiwV9Cup3dXh9uTQc9QthQ9jdnKWuNs4yR+YhHtNKNPtWhFUjJpmdO1N3gSsJfD9yjB1Z+KReTg=
-X-Received: by 2002:a62:1bc2:0:b0:593:b16e:52b9 with SMTP id
- b185-20020a621bc2000000b00593b16e52b9mr946010pfb.17.1675789562352; Tue, 07
- Feb 2023 09:06:02 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zjJO3OpBUSTO6OYkxL9DTxtzb7K3YxEOsZ3y6y3+V9w=;
+        b=x9MV1mWWQD27z0+DR0UQPKEQ9+4VTBxapHtHMxSobwZUBRvgZmJrmBGHxVJNlVWJ2Z
+         zwJz7sThGSyqMgs/h7W55ID240dafBxFPnFxqMKM1AKAh5o+nXvZdNPrXLHMgD+stFie
+         fTzewlNpfgxAUTMG1J8P0UFCWJDjndCsw2K3VHu0GPOI/PxfF7qtuiB1ZlfbvWl5c4TK
+         PAqy0VZELut6HzdkKGXtPKBziEQ82AwkHn+7e+xzJFqx472MZqklafkj7LR9Fd3OYKwo
+         QMmUZhbs2/+vh6grmNMx69yYqBkAPAerBasqhIpm2j10l6gowQEnwO0mL/OSanDb1jYv
+         VP0A==
+X-Gm-Message-State: AO0yUKWafmiInX0wf1yGf8XdCc7XMwFXl2fkzOHBPGeXjaaNfaEo9/PM
+        V4+nTAaG/FsDP5R+cH471w==
+X-Google-Smtp-Source: AK7set9x87GYzl8leh2Lg0sAbmIgU0U3bLD8+yGCibPjPr1q8G1W6tSreTRbK881CDXdQ76Zxpq1zA==
+X-Received: by 2002:a05:6830:690c:b0:68b:c8e1:4f44 with SMTP id cx12-20020a056830690c00b0068bc8e14f44mr2412395otb.1.1675789552218;
+        Tue, 07 Feb 2023 09:05:52 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j74-20020a9d17d0000000b0068bd04b4292sm6696702otj.31.2023.02.07.09.05.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Feb 2023 09:05:51 -0800 (PST)
+Received: (nullmailer pid 3750258 invoked by uid 1000);
+        Tue, 07 Feb 2023 17:05:50 -0000
+Date:   Tue, 7 Feb 2023 11:05:50 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Evan Green <evan@rivosinc.com>
+Cc:     Palmer Dabbelt <palmer@rivosinc.com>,
+        Conor Dooley <conor@kernel.org>, vineetg@rivosinc.com,
+        heiko@sntech.de, slewis@rivosinc.com,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 4/6] dt-bindings: Add RISC-V misaligned access
+ performance
+Message-ID: <20230207170550.GA3719881-robh@kernel.org>
+References: <20230206201455.1790329-1-evan@rivosinc.com>
+ <20230206201455.1790329-5-evan@rivosinc.com>
 MIME-Version: 1.0
-References: <20230206142714.4151047-1-liumartin@google.com> <CAL_JsqKA8pBess-zLA_2n0p8q=NBuY0EGA7qALKabwJA8ZRwrA@mail.gmail.com>
-In-Reply-To: <CAL_JsqKA8pBess-zLA_2n0p8q=NBuY0EGA7qALKabwJA8ZRwrA@mail.gmail.com>
-From:   Martin Liu <liumartin@google.com>
-Date:   Wed, 8 Feb 2023 01:05:25 +0800
-Message-ID: <CAASV4h5ANYTJUN3gQxuLxeKMknyoyt7-YTxRRMcjrQXRrVRi5Q@mail.gmail.com>
-Subject: Re: [PATCH] of: reserved-mem: expose reserved-mem details via debugfs
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, surenb@google.com,
-        minchan@kernel.org, tkjos@google.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,ENV_AND_HDR_SPF_MATCH,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL,
-        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230206201455.1790329-5-evan@rivosinc.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 6, 2023 at 11:12 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Mon, Feb 6, 2023 at 8:27 AM Martin Liu <liumartin@google.com> wrote:
-> >
-> > It's important to know reserved-mem information in mobile world
-> > since reserved memory via device tree keeps increased in platform
-> > (e.g., 45% in our platform). Therefore, it's crucial to know the
-> > reserved memory sizes breakdown for the memory accounting.
-> >
-> > This patch shows the reserved memory breakdown under debugfs to
-> > make them visible.
-> >
-> > Below is an example output:
-> > cat $debugfs/reserved_mem/show
-> > 0x00000009fc400000..0x00000009ffffffff (   61440 KB )   map     reusable test1
-> > 0x00000009f9000000..0x00000009fc3fffff (   53248 KB )   map     reusable test2
-> > 0x00000000ffdf0000..0x00000000ffffffff (    2112 KB )   map non-reusable test3
-> > 0x00000009f6000000..0x00000009f8ffffff (   49152 KB )   map     reusable test4
-> > ...
-> > 0x00000000fd902000..0x00000000fd909fff (      32 KB ) nomap non-reusable test38
-> > 0x00000000fd90a000..0x00000000fd90bfff (       8 KB ) nomap non-reusable test39
-> > Total 39 regions, 1446140 KB
->
-> This information is pretty much static, why not just print it during
-> boot? It's also just spitting out information that's straight from the
-> DT which is also available to userspace (flattened and unflattened).
+On Mon, Feb 06, 2023 at 12:14:53PM -0800, Evan Green wrote:
+> From: Palmer Dabbelt <palmer@rivosinc.com>
+> 
+> This key allows device trees to specify the performance of misaligned
+> accesses to main memory regions from each CPU in the system.
+> 
+> Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
+> Signed-off-by: Evan Green <evan@rivosinc.com>
+> ---
+> 
+> (no changes since v1)
+> 
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> index c6720764e765..2c09bd6f2927 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -85,6 +85,21 @@ properties:
+>      $ref: "/schemas/types.yaml#/definitions/string"
+>      pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:_[hsxz](?:[a-z])+)*$
+>  
+> +  riscv,misaligned-access-performance:
+> +    description:
+> +      Identifies the performance of misaligned memory accesses to main memory
+> +      regions.  There are three flavors of unaligned access performance: "emulated"
+> +      means that misaligned accesses are emulated via software and thus
+> +      extremely slow, "slow" means that misaligned accesses are supported by
+> +      hardware but still slower that aligned accesses sequences, and "fast"
+> +      means that misaligned accesses are as fast or faster than the
+> +      cooresponding aligned accesses sequences.
+> +    $ref: "/schemas/types.yaml#/definitions/string"
+> +    enum:
+> +      - emulated
+> +      - slow
+> +      - fast
 
-IIUC, for dynamic allocation cases, we can't get actual allocation layout
-from DT.  Also, there could be some adjustment from memblock
-(ex. alignment). Therefore, printing it out from the reserved_mem would
-be more clear.
+I don't think this belongs in DT. (I'm not sure about a userspace 
+interface either.)
 
-However, as you mentioned, once the allocation is done, it should be pretty
-static. Thus, printing it during boot should be reasonable. If so, we
-could print
-them out in fdt_init_reserved_mem() like below. Is my understanding correct?
-Thanks :)
+Can't this be tested and determined at runtime? Do misaligned accesses 
+and compare the performance. We already do this for things like memcpy 
+or crypto implementation selection.
 
-@@ -285,6 +285,14 @@ void __init fdt_init_reserved_mem(void)
-                                else
-                                        memblock_phys_free(rmem->base,
-                                                           rmem->size);
-+                       } else {
-+                               phys_addr_t end = rmem->base + rmem->size - 1;
-+                               bool reusable =
-(of_get_flat_dt_prop(node, "reusable", NULL)) != NULL;
-+                               pr_debug("init reserved node: %pa..%pa
-( %lu KB) %s %s %s\n",
-+                                        &rmem->base, &end, (unsigned
-long)(rmem->size / SZ_1K),
-+                                        nomap ? "nomap" : "map",
-+                                        reusable ? "reusable" : "non-reusable",
-+                                        rmem->name ? rmem->name : "unknown");
-                        }
-                }
-        }
->
-> Is there not something in memblock that provides the same info in a
-> firmware agnostic way?
-
-memblock doesn't save request's name so we couldn't count for the
-memory owner.
->
->
-> > Signed-off-by: Martin Liu <liumartin@google.com>
-> > ---
-> >  drivers/of/of_reserved_mem.c | 39 ++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 39 insertions(+)
-> >
-> > diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-> > index 65f3b02a0e4e..a73228e07c8c 100644
-> > --- a/drivers/of/of_reserved_mem.c
-> > +++ b/drivers/of/of_reserved_mem.c
-> > @@ -23,6 +23,7 @@
-> >  #include <linux/memblock.h>
-> >  #include <linux/kmemleak.h>
-> >  #include <linux/cma.h>
-> > +#include <linux/debugfs.h>
-> >
-> >  #include "of_private.h"
-> >
-> > @@ -446,3 +447,41 @@ struct reserved_mem *of_reserved_mem_lookup(struct device_node *np)
-> >         return NULL;
-> >  }
-> >  EXPORT_SYMBOL_GPL(of_reserved_mem_lookup);
-> > +
-> > +#if defined(CONFIG_DEBUG_FS)
-> > +static int of_reserved_mem_debug_show(struct seq_file *m, void *private)
-> > +{
-> > +       unsigned int i;
-> > +       size_t sum = 0;
-> > +
-> > +       for (i = 0; i < reserved_mem_count; i++) {
-> > +               const struct reserved_mem *rmem = &reserved_mem[i];
-> > +               unsigned long node = rmem->fdt_node;
-> > +               phys_addr_t end = rmem->base + rmem->size - 1;
-> > +               bool nomap = (of_get_flat_dt_prop(node, "no-map", NULL)) != NULL;
-> > +               bool reusable = (of_get_flat_dt_prop(node, "reusable", NULL)) != NULL;
->
-> There is no reason to read the flat DT at this point in time after we
-> have an unflattened tree.
-
-Ack.
->
-> > +
-> > +               sum += rmem->size;
-> > +               seq_printf(m, "%pa..%pa ( %7lu KB ) %5s %12s %s\n", &rmem->base,
-> > +                          &end, rmem->size / 1024,
-> > +                          nomap ? "nomap" : "map",
-> > +                          reusable ? "reusable" : "non-reusable",
-> > +                          rmem->name ? rmem->name : "unknown");
-> > +       }
-> > +       seq_printf(m, "Total %d regions, %zu KB\n",
-> > +                  reserved_mem_count,
-> > +                  sum / 1024);
-> > +       return 0;
-> > +}
-> > +DEFINE_SHOW_ATTRIBUTE(of_reserved_mem_debug);
-> > +
-> > +static int __init of_reserved_mem_init_debugfs(void)
-> > +{
-> > +       struct dentry *root = debugfs_create_dir("reserved_mem", NULL);
-> > +
-> > +       debugfs_create_file("show", 0444, root,
-> > +                           NULL, &of_reserved_mem_debug_fops);
-> > +       return 0;
-> > +}
-> > +device_initcall(of_reserved_mem_init_debugfs);
->
-> We already have a DT init hook, don't add another random one. Plus,
-> why does this need to be an early device_initcall?
-
-Got it. As we could print them during boot, we probably don't need this. Thanks.
->
-> Rob
+Rob
