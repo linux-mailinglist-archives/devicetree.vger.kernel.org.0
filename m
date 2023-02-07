@@ -2,132 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA3BA68D60A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 12:56:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E690868D63C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 13:13:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230034AbjBGL4c convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Feb 2023 06:56:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39520 "EHLO
+        id S231515AbjBGMNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 07:13:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbjBGL4b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 06:56:31 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CD89F752
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 03:56:30 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <jlu@pengutronix.de>)
-        id 1pPMaI-0006Xw-Qr; Tue, 07 Feb 2023 12:56:26 +0100
-Received: from localhost ([127.0.0.1])
-        by ptx.hi.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <jlu@pengutronix.de>)
-        id 1pPMaH-0004fn-2u; Tue, 07 Feb 2023 12:56:25 +0100
-Message-ID: <24dba2278350ea222251be80f6aade104c2319ce.camel@pengutronix.de>
-Subject: Re: [PATCH] schemas: Add schema for firmware logs
-From:   Jan =?ISO-8859-1?Q?L=FCbbe?= <jlu@pengutronix.de>
-Reply-To: jlu@pengutronix.de
-To:     Rob Herring <robh@kernel.org>, Simon Glass <sjg@chromium.org>
-Cc:     Peter Robinson <pbrobinson@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        devicetree@vger.kernel.org,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>
-Date:   Tue, 07 Feb 2023 12:56:22 +0100
-In-Reply-To: <CAL_JsqLW3GkXtr0oD28XB3MNK36Vjjzb10MhWFh85-MfN2oc3Q@mail.gmail.com>
-References: <20230204001959.935268-1-sjg@chromium.org>
-         <CALeDE9N2KSwA=HMLS9EPFL00UxxUgi=r_M8F7W2tWT6y+dMzeQ@mail.gmail.com>
-         <CAPnjgZ297NH1oiRG9iU8=U0dSAnPLQ4WGYF7=+71aUZCYctWTA@mail.gmail.com>
-         <CAL_Jsq+mUNeEx=jwc4JF7fGCa7zkOTChoVb5CoMfHaqCi+bYpg@mail.gmail.com>
-         <CAPnjgZ3c0Tmtfzgv74vWovme0mVoF3N1hfoCnz61Hyzc-QE8vQ@mail.gmail.com>
-         <CAL_JsqLW3GkXtr0oD28XB3MNK36Vjjzb10MhWFh85-MfN2oc3Q@mail.gmail.com>
-Organization: Pengutronix
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.3-1 
+        with ESMTP id S229776AbjBGMNI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 07:13:08 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C207AEFA2;
+        Tue,  7 Feb 2023 04:13:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1675771928;
+        bh=SZ69qIin1bOhcHFHX74qsjeogSVMDRGBQzd0Cfhbs2E=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=aThNGe0oN9xWnJyHr7GmeaUAcFgS91VHwl3T4h6Bh5LX2gFUMzsOaliBZPtELWzWu
+         3JmiYNBBbPDGOzd4cWpTbu8JgX+2ayddP/XXDnBMSdtpA1yCGZUkPJ/DaMuMl4pYUi
+         jf4Cyb2kLI9QRiblEb++hArVvoFRE84yuHXO6ljvBpi/SBYOqfQpJ0Tg9GFoZW9S2c
+         NoVnWie2tTsuF3ZpmYlW75PN6K68svmpp22rqULWLrmcgZs8EFmZWA31u5HiRcDXOw
+         MFJli+T+9k6wXLONIsxHZJ/wuNc7MERLHVO/HZCZelDVKlwkJa6EyrrCPxcXtWBxPO
+         wnU6MF+Wj46nQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.159.155] ([217.61.159.155]) by web-mail.gmx.net
+ (3c-app-gmx-bap02.server.lan [172.19.172.72]) (via HTTP); Tue, 7 Feb 2023
+ 13:12:08 +0100
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: jlu@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Message-ID: <trinity-808b2619-4325-4d03-b2f5-1a7bc27d42ea-1675771928390@3c-app-gmx-bap02>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org, Felix Fietkau <nbd@nbd.name>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Aw: Re: [PATCH] dt-bindings: mt76: add active-low property to led
+Content-Type: text/plain; charset=UTF-8
+Date:   Tue, 7 Feb 2023 13:12:08 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <fe3673d9-b921-c445-0f5f-a6bc824e8582@linaro.org>
+References: <20230207102501.11418-1-linux@fw-web.de>
+ <fe3673d9-b921-c445-0f5f-a6bc824e8582@linaro.org>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:+4vKtr2ePMdUPyHJjXQx8kjAst9kx6vKtoEZ0xKiTT993WQMGKiXQ7eai7/oGn6SLz9nI
+ ExIu7cc+kU3n1HPesxF6zHZqoD5uSYv30WVUhVvbh4whPGhV1ClwgCBYqTPR72g31ap06OVSWIuS
+ kUhgkM/shASAqUFcQMHCf1yopvlNodRCkHi1GjXiTfn2XD2HV+1w6HQ4fSmXYeRaajB/sv3vXklv
+ 3fRlFtg0JVx4PchdKiX+uLoeEA5pW9+LCRNBGAys0H0frB9UAALUBht9ZxjXFjmLLb45w8iazMo2
+ S8=
+UI-OutboundReport: notjunk:1;M01:P0:MvbBDhuOXcc=;48R3pzi9pbTRbbvz53aZgp+LQH9
+ JOc/6fcqxIWF0aacjcgq8+IJ3jRjhxIhdwMJnFr5Y1pr5pUZdjZF0h9ti8ekdXI2fFBVTrkfW
+ mn3s/vPiBScFlXx5NiahBjaoqTVuwJcnY1BZ/ICTCv14lpPkOcQrru29OFvaO5RQhWevVhgmc
+ lCc1+g3erJ87M7oCsS4KeX6VImQhNVzzY4IEeexbbBgilKn+v6OZD8Bz6RSPa7Kxg/e950lZ5
+ H3WFPHzE3hmhVK7DyBQfpHce3NoM5xoqn5N5sNb0uXeNGr1ZfARJli3idt2NTVrjvVS5Q9yem
+ 6QeHUf4hDD20a+WIfjkLP05zkztHPsF3twaH4Yvs8Qk5fT9FxGjdeaZWW7EhuEfIGBYDLRK0A
+ 2S8f3L3NwhLd1pdPANh1VdF6+8YdYos+mxk2kQdx5e52JuhsqJkF9oOrPLRp6K//z3e6OpSuk
+ a1Ah/srrTOOfg+NWTZDAddu+8nJqP0FN955ZdGB44eg8Mdx7fKPsATkb0hFpxfb0GP+VPsU1R
+ eQVLd9LB1hIn7ApvSNTcekZuiYBosX6krL7xejrcr7jLH9ZbNYwDeoFSyZ3ifPRCFT2QVQyKo
+ vX2OhyE7j3sm1eYajY4dvPexarxpENtj8vWh/8kK6xtlu/2L5CULkazncboYqY9A5txcoepYf
+ pRuN5Bro41Gc6vRSjePZb4+ItkcreGKv3FY0RzCtD8hBvFAUGExarBMZDPcMtGAGch4AXSGxN
+ IJrmehVPbNbg42Jcu/na4jMWveY8HHJpr9s3018sdPYkBfxmP69+A58CmpVlptFrvBqhkl3ZU
+ EshiDhaI48OoE50v+9COOxsg==
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2023-02-06 at 17:32 -0600, Rob Herring wrote:
-> +boot-architecture
-> 
-> On Mon, Feb 6, 2023 at 3:25 PM Simon Glass <sjg@chromium.org> wrote:
-> > 
-> > Hi Rob,
-> > 
-> > On Mon, 6 Feb 2023 at 10:15, Rob Herring <robh@kernel.org> wrote:
-> > > 
-> > > On Sat, Feb 4, 2023 at 6:04 AM Simon Glass <sjg@chromium.org> wrote:
-> > > > 
-> > > > Hi Peter,
-> > > > 
-> > > > On Sat, 4 Feb 2023 at 02:36, Peter Robinson <pbrobinson@gmail.com>
-> > > > wrote:
-> > > > > 
-> > > > > Hi Simon,
-> > > > > 
-> > > > > Does it make sense to devise something that is compatible with the
-> > > > > kernel's pstore [1] mechanism?
-> > > > 
-> > > > Possibly...can you please be a little more specific?
-> > > 
-> > > Peter is talking about the same thing I suggested on IRC.
-> > > 
-> > > pstore == ramoops
-> > 
-> > Oh, I only looked at the DT binding as I thought that was what you
-> > were talking about on irc.
-> 
-> The binding is called ramoops as it's for the RAM backend for pstore.
-> 
-> My suggestion was either using/extending ramoops or following its
-> design as a reserved memory region. All you would need to extend the
-> ramoops binding is a new property to define the size of your data.
-> 
-> > For pstore, isn't the point that Linux wants to save stuff to allow
-> > debugging or collection on reboot? What does that have to do with
-> > console logs from firmware? That seems like a different thing. Or are
-> > you suggesting that we add a pstore driver into U-Boot? It is quite a
-> > lot of code, including compression, etc. It might be easier for Linux
-> > to write the data into pstore when it starts up?
-> 
-> Originally ramoops was just what you described. It has grown to
-> multiple backends and types of records (hence the rename to pstore).
-> If you just add a new subsection within the pstore region, then I
-> think the existing kernel infrastructure will support reading it from
-> userspace. Maybe new types have to be explicitly supported, IDK.
-> 
-> U-boot being able to read pstore wouldn't be a terrible feature to
-> have anyways if your boot crashes before anything else is up to get
-> the output. Note I'd guess the ram backend doesn't do compression as
-> supporting slightly corrupted ram is a feature which wouldn't work.
+> Gesendet: Dienstag, 07. Februar 2023 um 11:40 Uhr
+> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+> On 07/02/2023 11:25, Frank Wunderlich wrote:
+> > From: Frank Wunderlich <frank-w@public-files.de>
+> >
+> > LEDs can be in low-active mode, so add dt property for it.
+> >
+> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> > ---
+> >  .../devicetree/bindings/net/wireless/mediatek,mt76.yaml      | 5 ++++=
++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,m=
+t76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.ya=
+ml
+> > index f0c78f994491..212508672979 100644
+> > --- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yam=
+l
+> > +++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yam=
+l
+> > @@ -112,6 +112,11 @@ properties:
+> >      $ref: /schemas/leds/common.yaml#
+> >      additionalProperties: false
+> >      properties:
+> > +      led-active-low:
+> > +        description:
+> > +          LED is enabled with ground signal.
+>
+> What does it mean? You set voltage of regulator to 0? Or you set GPIO as
+> 0? If the latter, it's not the property of LED...
 
-This is basically how it works in Barebox. It can display the pstore contents
-after a kernel crash and also (optionally) log to the pstore/ramooms console
-log. Slight RAM corruption can be handled by using error correcting codes.
+basicly it is a gpio-led mapped into the mt76 driver, but not passing gpio=
+ itself in this property (like gpio-led does).
+This gpio is set to 0 signal (gnd) to let the led go on ;) so imho it is a=
+ led-property, but below the wifi-node as
+the trigger comes from mt76 hardware, not an external (soc) gpio controlle=
+r.
 
-It's not perfect, of course, but still very useful.
+mt76 driver supports it already like i post change here:
 
-Regards,
-Jan
+https://patchwork.kernel.org/project/linux-mediatek/patch/20230205174833.1=
+07050-1-linux@fw-web.de/
 
-> I think any new DT binding is premature and pstore/ramoops was just a
-> suggestion to consider. This needs wider consideration of how to
-> handle all the various (boot) firmware logs. I've added the
-> boot-architecture list for a bit more visibility.
+only needed the binding for it.
 
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> Best regards,
+> Krzysztof
+>
+>
