@@ -2,103 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BF3368DEB2
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 18:16:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EC8368DF1E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 18:39:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbjBGRQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 12:16:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50576 "EHLO
+        id S231445AbjBGRjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 12:39:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232465AbjBGRPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 12:15:50 -0500
-Received: from mxout1.routing.net (mxout1.routing.net [IPv6:2a03:2900:1:a::a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D82BD3F281;
-        Tue,  7 Feb 2023 09:15:20 -0800 (PST)
-Received: from mxbox4.masterlogin.de (unknown [192.168.10.79])
-        by mxout1.routing.net (Postfix) with ESMTP id E42B441A6D;
-        Tue,  7 Feb 2023 17:15:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1675790119;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=JLrL4iWympNnVNwAETpNE1kjBqSNjCEjKLn1CYJsz9g=;
-        b=s8/mNx/3hM5Z1BYZzXx5/GGPmL6fAfaQZV9DpVzN3oIYNqzMtl75EC9k/1Y8y/zd0bRaWX
-        CgAB6WfedG3wqUIB5pJxKlSjm4keFwfeeYJvkRapmLtnr8O7fbAGOEpFdmDoag7+LkCu4U
-        obWTm6EXVkSvv9RzF0AUXySe+yJj6g4=
-Received: from frank-G5.. (fttx-pool-217.61.159.155.bambit.de [217.61.159.155])
-        by mxbox4.masterlogin.de (Postfix) with ESMTPSA id 8A269802E7;
-        Tue,  7 Feb 2023 17:15:17 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Felix Fietkau <nbd@nbd.name>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Shayne Chen <shayne.chen@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Kalle Valo <kvalo@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: mt76: allow up to 4 interrupts for mt7986
-Date:   Tue,  7 Feb 2023 18:15:12 +0100
-Message-Id: <20230207171512.35425-1-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231972AbjBGRjJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 12:39:09 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 012C7421A;
+        Tue,  7 Feb 2023 09:39:08 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 82A7160F92;
+        Tue,  7 Feb 2023 17:39:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7488C4339E;
+        Tue,  7 Feb 2023 17:39:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675791547;
+        bh=KZlrxH/j0b90gVF45TsrOX41MvrLcj8pAItg6Xzoxdo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=GBOSdL5WJf/wN4rUEjZiQTaQ87SKc9knmDdocyN27DLgtcevcjewUvlju5pPYTDDF
+         gCq8LBxzDYG063ZTo2GufKunfjMbvUZMsQ8GEEvTA5aYOo1Wf+Cp1hAGOp0gSjnVRA
+         WjBDtIfBbWnW6ehmUX7ZjHqVWfaGQgvebPk/XdfFHM1wqqWl2gpkCUaG5Z5bufAYk5
+         ix6av/JK0kWbmRBrF2Au+1HmRQRILDLzlNgEMMUazQ9UvqwRlNuQm13T3uqk868Y3u
+         +0FRgWRoArOJP4UmEZKs6B0uPGSJOLn6MZ7G+llBisOq+AIzaVhprre2nlOppjD/Aw
+         EHW4b6ffFruMA==
+Received: by mail-vs1-f53.google.com with SMTP id k6so17092413vsk.1;
+        Tue, 07 Feb 2023 09:39:07 -0800 (PST)
+X-Gm-Message-State: AO0yUKUGE2Imit4S4fZFvK/FEZ2Rlc9A6xWsBEJj2NrpIifq40gd0qLv
+        yYQADPLQlcowEswm2nSSHM+esKxc2rLp7Mte/w==
+X-Google-Smtp-Source: AK7set8he/v5HFsA1kt1CzDG53fUn4W/mqRZFX4p6+6jCqlvPfny4Lqp0rVvcs5fJmGGKMoqWTO9zOzlppsHceLljxs=
+X-Received: by 2002:a67:7206:0:b0:3ea:c8c:48a5 with SMTP id
+ n6-20020a677206000000b003ea0c8c48a5mr815523vsc.53.1675791546831; Tue, 07 Feb
+ 2023 09:39:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: 335c7e56-e374-4379-9b78-55056f0c79f6
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
+ <1675188609-20913-7-git-send-email-ssengar@linux.microsoft.com>
+ <CAL_JsqK_7eTTrSd6EKDGy9A8kC5w6cjVEtSi3CB1M7Awj+zg6g@mail.gmail.com>
+ <20230201165133.GA24116@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <20230201174638.GA3872117-robh@kernel.org> <20230203173616.GA8582@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+In-Reply-To: <20230203173616.GA8582@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 7 Feb 2023 11:38:55 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKWWg=nL5C1Hz7GQ6YCbc0ssUP71Be6kcn57v5240GQew@mail.gmail.com>
+Message-ID: <CAL_JsqKWWg=nL5C1Hz7GQ6YCbc0ssUP71Be6kcn57v5240GQew@mail.gmail.com>
+Subject: Re: [PATCH v2 6/6] Driver: VMBus: Add device tree support
+To:     Saurabh Singh Sengar <ssengar@linux.microsoft.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
+        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On Fri, Feb 3, 2023 at 11:36 AM Saurabh Singh Sengar
+<ssengar@linux.microsoft.com> wrote:
+>
+> On Wed, Feb 01, 2023 at 11:46:38AM -0600, Rob Herring wrote:
+> > On Wed, Feb 01, 2023 at 08:51:33AM -0800, Saurabh Singh Sengar wrote:
+> > > On Tue, Jan 31, 2023 at 02:12:53PM -0600, Rob Herring wrote:
+> > > > On Tue, Jan 31, 2023 at 12:10 PM Saurabh Sengar
+> > > > <ssengar@linux.microsoft.com> wrote:
+> > > > >
+> > > > > Update the driver to support device tree boot as well along with =
+ACPI.
+> > > > > At present the device tree parsing only provides the mmio region =
+info
+> > > > > and is not the exact copy of ACPI parsing. This is sufficient to =
+cater
+> > > > > all the current device tree usecases for VMBus.
+> > > > >
+> > > > > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> > > > > ---
+> > > > >  drivers/hv/vmbus_drv.c | 75 ++++++++++++++++++++++++++++++++++++=
+++++--
+> > > > >  1 file changed, 73 insertions(+), 2 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
+> > > > > index 49030e756b9f..1741f1348f9f 100644
+> > > > > --- a/drivers/hv/vmbus_drv.c
+> > > > > +++ b/drivers/hv/vmbus_drv.c
+> > > > > @@ -2152,7 +2152,7 @@ void vmbus_device_unregister(struct hv_devi=
+ce *device_obj)
+> > > > >         device_unregister(&device_obj->device);
+> > > > >  }
+> (...)
+> > > > >         struct pci_dev *pdev;
+> > > > > @@ -2442,6 +2443,7 @@ void vmbus_free_mmio(resource_size_t start,=
+ resource_size_t size)
+> > > > >  }
+> > > > >  EXPORT_SYMBOL_GPL(vmbus_free_mmio);
+> > > > >
+> > > > > +#ifdef CONFIG_ACPI
+> > > >
+> > > > It's better to put C 'if (!IS_ENABLED(CONFIG_ACPI)' code in the
+> > >
+> > > I wanted to have separate function for ACPI and device tree flow, whi=
+ch
+> > > can be easily maintained with #ifdef. Please let me know if its fine.
+> >
+> > Yes, you can have separate functions:
+> >
+> > static int vmbus_acpi_add(struct platform_device *pdev)
+> > {
+> >       if (!IS_ENABLED(CONFIG_ACPI))
+> >               return -ENODEV;
+> >
+> >       ...
+> > }
+> >
+> > The compiler will throw away the function in the end if CONFIG_ACPI is
+> > not enabled.
+> >
+> > That is easier for us to maintain because it reduces the combinations t=
+o
+> > build.
+> >
+>
+> I tried removing #ifdef CONFIG_ACPI and use C's if(!IS_ENABLED(CONFIG_ACP=
+I)) but looks
+> compiler is not optimizing out the rest of function, it still throwing er=
+rors
+> for acpi functions. This doesn't look 1:1 replacement to me.
+> Please let me know if I have missunderstood any of your suggestion.
+>
+> drivers/hv/vmbus_drv.c:2175:8: error: implicit declaration of function =
+=E2=80=98acpi_dev_resource_interrupt=E2=80=99 [-Werror=3Dimplicit-function-
 
-Mt7986 needs 4 interrupts which are already defined in mt7986a.dtsi.
-Update binding to reflect it
+That's a failure of the ACPI headers not having empty function
+declarations. The DT functions do...
 
-This fixes this error in dtbs_check (here only bpi-r3 example):
+Also, this is just a broken assumption:
 
-arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: wifi@18000000:
-interrupts: [[0, 213, 4], [0, 214, 4], [0, 215, 4], [0, 216, 4]] is too long
-	From schema: Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: wifi@18000000:
-Unevaluated properties are not allowed ('interrupts' was unexpected)
-	From schema: Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+#ifdef CONFIG_ACPI
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- .../devicetree/bindings/net/wireless/mediatek,mt76.yaml      | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+#else
+// Assume DT
+#endif
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-index 212508672979..222b657fe4ea 100644
---- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-@@ -38,7 +38,10 @@ properties:
-       MT7986 should contain 3 regions consys, dcm, and sku, in this order.
- 
-   interrupts:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 4
-+    description:
-+      MT7986 should contain 4 items.
- 
-   power-domains:
-     maxItems: 1
--- 
-2.34.1
+Both ACPI and DT can be enabled at the same time. They may be mutually
+exclusive for a platform, but not the kernel. For distro kernels, both
+will be enabled typically if the arch supports both. On arm64, DT is
+never disabled because the boot interface is always DT.
 
+Furthermore, this makes compile testing your code difficult. The arm64
+defconfig, allmodconfig and allyesconfig all will not build the DT
+code. The same for x86. This means all the CI builds that happen can't
+build test this.
+
+Rob
