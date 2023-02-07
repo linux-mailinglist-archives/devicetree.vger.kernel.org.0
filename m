@@ -2,136 +2,393 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1BC668CF18
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 06:51:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3B2468CF24
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 06:52:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229665AbjBGFvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 00:51:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55674 "EHLO
+        id S229831AbjBGFwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 00:52:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbjBGFvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 00:51:08 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E950326875;
-        Mon,  6 Feb 2023 21:51:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675749064; x=1707285064;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yF4PX+2z9gDccoVYuykfNbSYoITJYxsw4/QbUOFEFXg=;
-  b=KosfakCED15gDl0FAtBboQzT0zt/fGtybzAJ2793ObpJ2Rg1r7QyZZ8h
-   Uo5LvCM8NfiQeTkG7gs+zBctSQhomWYEPsHGo5Zzaxx+mMRAXt/RNoCgK
-   vDSlijNQLKOwrb2GZSg5AE1fc3jOiag57CVpOOlCHV/envbTVjDUtFrnT
-   sySu0MQAkfaqh/cjsI+1jhiXHE0e86dQ5khigM6N3JFTXH9y/JMTloH1G
-   DdsooVugVU77FRdT4EXfnPim5VU302VAjchyrIIQblZyca+/OxJjpLhlJ
-   zlqwDRWhBZ6476TCkXKfPBgNKDlFYIGK3UKsZkkRzebZfcl/7+7180lC0
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="415633721"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; 
-   d="scan'208";a="415633721"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2023 21:50:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="775409281"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; 
-   d="scan'208";a="775409281"
-Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 06 Feb 2023 21:50:39 -0800
-Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pPGsI-00038r-19;
-        Tue, 07 Feb 2023 05:50:38 +0000
-Date:   Tue, 7 Feb 2023 13:50:01 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Saurabh Sengar <ssengar@linux.microsoft.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
-        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
-        daniel.lezcano@linaro.org, tglx@linutronix.de,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com, dphadke@linux.microsoft.com
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v3 3/6] Drivers: hv: vmbus: Convert acpi_device to more
- generic platform_device
-Message-ID: <202302071303.dB30Hu98-lkp@intel.com>
-References: <1675706060-22361-4-git-send-email-ssengar@linux.microsoft.com>
+        with ESMTP id S229731AbjBGFwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 00:52:25 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ABA272A3;
+        Mon,  6 Feb 2023 21:52:23 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id v17so20900764lfd.7;
+        Mon, 06 Feb 2023 21:52:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TGChqigKdxG/EYc2NgN69ZYlg9KuIAi8GWNwBI/865Y=;
+        b=R2dk36K03AaVnqH9CqMSx89nC9VOUaqGDMRv82KIOyRtGhsWZCqcTw/bGXaRx3Q4r9
+         7iXGx9Srcfu1Pru3FOGBwB7RYIYe3aRiGILIiDcn/7HqrvC9b21erqFIulzHvoCkAXDz
+         bMWmfv9zNhyDYufxDeNClElwr15pg8LcCIqLls/X7nY/Nauos38/RTy9N1q3HZNcYkix
+         9xxg0BIR2mdOOEI4q4KJd2YwsFJ3d1hGj4r+szXE4cLpmJCJiybWCJ+8Y41WnkIA1yOR
+         xVabyA6oiCHSvKe6Np2MHdSC6rNu9N7Ls+gwE2iVmEK04h9oHfSl3gtyKVtQDcwN68YG
+         LPHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TGChqigKdxG/EYc2NgN69ZYlg9KuIAi8GWNwBI/865Y=;
+        b=ioVRpdqB3BCP/1Ocqvo6FBr14K9YoU8JvQ2TGp75EBRvTBFokmpYSND11gbosvbR4I
+         eEHCCEcRafqQT7wHbgOOvKVgEAoN9rt6reeO3KHS+MmPugFgmEkRdCabXFr4KzTHl3I9
+         oFAPnrfYxQ9R2WRF6vLNBk89w+OJUBp9cnlM2UuCD1LtDQ8yzOKiBhXfaoAioWAkcxsJ
+         vn8aC7nJ8NiLjvF/TkPt2SFtZV4y/r21+rqYXWfb88CFaU54QJhB2BOtHvaBSlepUUH1
+         m/ZzXvajRKkp+8MwRAW0ljblmh250137cDuGsRC9W0c2NMd5ucT1Ro52iyc1avptZOOK
+         aXmg==
+X-Gm-Message-State: AO0yUKWbpYdktbqe4ycKql1lsG911Wd+2fqjiPrJHUvpzK1x35oe6b9F
+        8QRAvYpOVQAlnxLEq3C1zn75o1jlV1wU5CO6OpM=
+X-Google-Smtp-Source: AK7set8DWR8II+u80YZEsM0OT2XTtW31+s1GO4jyjlvLAoXx2A9tdg+f1s3mABLUmnv09RJuLYYoGz3ee+MtyxVMz+I=
+X-Received: by 2002:ac2:560a:0:b0:4da:fb89:fcc5 with SMTP id
+ v10-20020ac2560a000000b004dafb89fcc5mr241364lfd.192.1675749141634; Mon, 06
+ Feb 2023 21:52:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1675706060-22361-4-git-send-email-ssengar@linux.microsoft.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230207052829.3996-1-steev@kali.org> <20230207052829.3996-3-steev@kali.org>
+In-Reply-To: <20230207052829.3996-3-steev@kali.org>
+From:   Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Date:   Mon, 6 Feb 2023 21:52:10 -0800
+Message-ID: <CABBYNZ+PGkCBRiPxaC9pVXp1AB8vpNNYWK9jLebFMr33VOUbqQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] Bluetooth: hci_qca: Add support for QTI Bluetooth
+ chip wcn6855
+To:     Steev Klimaszewski <steev@kali.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Mark Pearson <markpearson@lenovo.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Saurabh,
+Hi Steev,
 
-Thank you for the patch! Yet something to improve:
+On Mon, Feb 6, 2023 at 9:28 PM Steev Klimaszewski <steev@kali.org> wrote:
+>
+> Added regulators,GPIOs and changes required to power on/off wcn6855.
+> Added support for firmware download for wcn6855.
+>
+> Signed-off-by: Steev Klimaszewski <steev@kali.org>
+> ---
+>
+> Changes since v3:
+>  * drop unused regulators
+>
+> Changes since v2:
+>  * drop unnecessary commit info
+>
+> Changes since v1:
+>  * None
+> ---
+>  drivers/bluetooth/btqca.c   | 24 ++++++++++++++--
+>  drivers/bluetooth/btqca.h   | 10 +++++++
+>  drivers/bluetooth/hci_qca.c | 56 ++++++++++++++++++++++++++++---------
+>  3 files changed, 75 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
+> index c9064d34d830..456b961b9554 100644
+> --- a/drivers/bluetooth/btqca.c
+> +++ b/drivers/bluetooth/btqca.c
+> @@ -472,6 +472,19 @@ static int qca_download_firmware(struct hci_dev *hdev,
+>                                            config->fwname, ret);
+>                                 return ret;
+>                         }
+> +               } else if (soc_type == QCA_WCN6855 && config->type == ELF_TYPE_PATCH) {
+> +                       bt_dev_dbg(hdev, "QCA Failed to request file: %s (%d)",
+> +                                  config->fwname, ret);
 
-[auto build test ERROR on next-20230206]
-[also build test ERROR on v6.2-rc7]
-[cannot apply to robh/for-next tip/timers/core brgl/gpio/for-next wsa/i2c/for-next linus/master v6.2-rc7 v6.2-rc6 v6.2-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I suspect the above message is not really needed since you didn't even
+request the firmware at this point.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Saurabh-Sengar/drivers-clocksource-hyper-v-non-ACPI-support-in-hyperv-clock/20230207-015625
-patch link:    https://lore.kernel.org/r/1675706060-22361-4-git-send-email-ssengar%40linux.microsoft.com
-patch subject: [PATCH v3 3/6] Drivers: hv: vmbus: Convert acpi_device to more generic platform_device
-config: i386-randconfig-a006-20230206 (https://download.01.org/0day-ci/archive/20230207/202302071303.dB30Hu98-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/e6c8ebd27cac165137702f5ff85b14d6d0b8e820
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Saurabh-Sengar/drivers-clocksource-hyper-v-non-ACPI-support-in-hyperv-clock/20230207-015625
-        git checkout e6c8ebd27cac165137702f5ff85b14d6d0b8e820
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/
+> +                       config->type = TLV_TYPE_PATCH;
+> +                       snprintf(config->fwname, sizeof(config->fwname),
+> +                                "qca/hpbtfw%02x.tlv", rom_ver);
+> +                       bt_dev_info(hdev, "QCA Downloading %s", config->fwname);
+> +                       ret = request_firmware(&fw, config->fwname, &hdev->dev);
+> +                       if (ret) {
+> +                               bt_dev_err(hdev, "QCA Failed to request file: %s (%d)",
+> +                                          config->fwname, ret);
+> +                               return ret;
+> +                       }
+>                 } else {
+>                         bt_dev_err(hdev, "QCA Failed to request file: %s (%d)",
+>                                    config->fwname, ret);
+> @@ -596,7 +609,7 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+>          */
+>         rom_ver = ((soc_ver & 0x00000f00) >> 0x04) | (soc_ver & 0x0000000f);
+>
+> -       if (soc_type == QCA_WCN6750)
+> +       if (soc_type == QCA_WCN6750 || soc_type == QCA_WCN6855)
+>                 qca_send_patch_config_cmd(hdev);
+>
+>         /* Download rampatch file */
+> @@ -614,6 +627,9 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+>                 config.type = ELF_TYPE_PATCH;
+>                 snprintf(config.fwname, sizeof(config.fwname),
+>                          "qca/msbtfw%02x.mbn", rom_ver);
+> +       } else if (soc_type == QCA_WCN6855) {
+> +               snprintf(config.fwname, sizeof(config.fwname),
+> +                        "qca/hpbtfw%02x.tlv", rom_ver);
+>         } else {
+>                 snprintf(config.fwname, sizeof(config.fwname),
+>                          "qca/rampatch_%08x.bin", soc_ver);
+> @@ -648,6 +664,9 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+>         else if (soc_type == QCA_WCN6750)
+>                 snprintf(config.fwname, sizeof(config.fwname),
+>                          "qca/msnv%02x.bin", rom_ver);
+> +       else if (soc_type == QCA_WCN6855)
+> +               snprintf(config.fwname, sizeof(config.fwname),
+> +                        "qca/hpnv%02x.bin", rom_ver);
+>         else
+>                 snprintf(config.fwname, sizeof(config.fwname),
+>                          "qca/nvm_%08x.bin", soc_ver);
+> @@ -672,6 +691,7 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+>         case QCA_WCN3991:
+>         case QCA_WCN3998:
+>         case QCA_WCN6750:
+> +       case QCA_WCN6855:
+>                 hci_set_msft_opcode(hdev, 0xFD70);
+>                 break;
+>         default:
+> @@ -685,7 +705,7 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+>                 return err;
+>         }
+>
+> -       if (soc_type == QCA_WCN3991 || soc_type == QCA_WCN6750) {
+> +       if (soc_type == QCA_WCN3991 || soc_type == QCA_WCN6750 || soc_type == QCA_WCN6855) {
+>                 /* get fw build info */
+>                 err = qca_read_fw_build_info(hdev);
+>                 if (err < 0)
+> diff --git a/drivers/bluetooth/btqca.h b/drivers/bluetooth/btqca.h
+> index 61e9a50e66ae..b884095bcd9d 100644
+> --- a/drivers/bluetooth/btqca.h
+> +++ b/drivers/bluetooth/btqca.h
+> @@ -147,6 +147,7 @@ enum qca_btsoc_type {
+>         QCA_WCN3991,
+>         QCA_QCA6390,
+>         QCA_WCN6750,
+> +       QCA_WCN6855,
+>  };
+>
+>  #if IS_ENABLED(CONFIG_BT_QCA)
+> @@ -168,6 +169,10 @@ static inline bool qca_is_wcn6750(enum qca_btsoc_type soc_type)
+>  {
+>         return soc_type == QCA_WCN6750;
+>  }
+> +static inline bool qca_is_wcn6855(enum qca_btsoc_type soc_type)
+> +{
+> +       return soc_type == QCA_WCN6855;
+> +}
+>
+>  #else
+>
+> @@ -206,6 +211,11 @@ static inline bool qca_is_wcn6750(enum qca_btsoc_type soc_type)
+>         return false;
+>  }
+>
+> +static inline bool qca_is_wcn6855(enum qca_btsoc_type soc_type)
+> +{
+> +       return false;
+> +}
+> +
+>  static inline int qca_send_pre_shutdown_cmd(struct hci_dev *hdev)
+>  {
+>         return -EOPNOTSUPP;
+> diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
+> index 3df8c3606e93..a35612ba23b2 100644
+> --- a/drivers/bluetooth/hci_qca.c
+> +++ b/drivers/bluetooth/hci_qca.c
+> @@ -606,7 +606,8 @@ static int qca_open(struct hci_uart *hu)
+>                 qcadev = serdev_device_get_drvdata(hu->serdev);
+>
+>                 if (qca_is_wcn399x(qcadev->btsoc_type) ||
+> -                   qca_is_wcn6750(qcadev->btsoc_type))
+> +                   qca_is_wcn6750(qcadev->btsoc_type) ||
+> +                   qca_is_wcn6855(qcadev->btsoc_type))
+>                         hu->init_speed = qcadev->init_speed;
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+This is really ugly I must say, why don't we just check if
+qcadev->init_speed has been set then we set it as hu->init_speed?
 
-All errors (new ones prefixed by >>):
+>                 if (qcadev->oper_speed)
+> @@ -1317,7 +1318,8 @@ static int qca_set_baudrate(struct hci_dev *hdev, uint8_t baudrate)
+>
+>         /* Give the controller time to process the request */
+>         if (qca_is_wcn399x(qca_soc_type(hu)) ||
+> -           qca_is_wcn6750(qca_soc_type(hu)))
+> +           qca_is_wcn6750(qca_soc_type(hu)) ||
+> +           qca_is_wcn6855(qca_soc_type(hu)))
+>                 usleep_range(1000, 10000);
+>         else
+>                 msleep(300);
+> @@ -1394,7 +1396,8 @@ static unsigned int qca_get_speed(struct hci_uart *hu,
+>  static int qca_check_speeds(struct hci_uart *hu)
+>  {
+>         if (qca_is_wcn399x(qca_soc_type(hu)) ||
+> -           qca_is_wcn6750(qca_soc_type(hu))) {
+> +           qca_is_wcn6750(qca_soc_type(hu)) ||
+> +           qca_is_wcn6855(qca_soc_type(hu))) {
+>                 if (!qca_get_speed(hu, QCA_INIT_SPEED) &&
+>                     !qca_get_speed(hu, QCA_OPER_SPEED))
+>                         return -EINVAL;
+> @@ -1428,7 +1431,8 @@ static int qca_set_speed(struct hci_uart *hu, enum qca_speed_type speed_type)
+>                  * changing the baudrate of chip and host.
+>                  */
+>                 if (qca_is_wcn399x(soc_type) ||
+> -                   qca_is_wcn6750(soc_type))
+> +                   qca_is_wcn6750(soc_type) ||
+> +                   qca_is_wcn6855(soc_type))
+>                         hci_uart_set_flow_control(hu, true);
+>
+>                 if (soc_type == QCA_WCN3990) {
+> @@ -1446,7 +1450,8 @@ static int qca_set_speed(struct hci_uart *hu, enum qca_speed_type speed_type)
+>
+>  error:
+>                 if (qca_is_wcn399x(soc_type) ||
+> -                   qca_is_wcn6750(soc_type))
+> +                   qca_is_wcn6750(soc_type) ||
+> +                   qca_is_wcn6855(soc_type))
+>                         hci_uart_set_flow_control(hu, false);
+>
+>                 if (soc_type == QCA_WCN3990) {
+> @@ -1682,7 +1687,8 @@ static int qca_power_on(struct hci_dev *hdev)
+>                 return 0;
+>
+>         if (qca_is_wcn399x(soc_type) ||
+> -           qca_is_wcn6750(soc_type)) {
+> +           qca_is_wcn6750(soc_type) ||
+> +           qca_is_wcn6855(soc_type)) {
+>                 ret = qca_regulator_init(hu);
+>         } else {
+>                 qcadev = serdev_device_get_drvdata(hu->serdev);
+> @@ -1723,7 +1729,8 @@ static int qca_setup(struct hci_uart *hu)
+>
+>         bt_dev_info(hdev, "setting up %s",
+>                 qca_is_wcn399x(soc_type) ? "wcn399x" :
+> -               (soc_type == QCA_WCN6750) ? "wcn6750" : "ROME/QCA6390");
+> +               (soc_type == QCA_WCN6750) ? "wcn6750" :
+> +               (soc_type == QCA_WCN6855) ? "wcn6855" : "ROME/QCA6390");
+>
+>         qca->memdump_state = QCA_MEMDUMP_IDLE;
+>
+> @@ -1735,7 +1742,8 @@ static int qca_setup(struct hci_uart *hu)
+>         clear_bit(QCA_SSR_TRIGGERED, &qca->flags);
+>
+>         if (qca_is_wcn399x(soc_type) ||
+> -           qca_is_wcn6750(soc_type)) {
+> +           qca_is_wcn6750(soc_type) ||
+> +           qca_is_wcn6855(soc_type)) {
+>                 set_bit(HCI_QUIRK_USE_BDADDR_PROPERTY, &hdev->quirks);
+>                 hci_set_aosp_capable(hdev);
+>
+> @@ -1757,7 +1765,8 @@ static int qca_setup(struct hci_uart *hu)
+>         }
+>
+>         if (!(qca_is_wcn399x(soc_type) ||
+> -            qca_is_wcn6750(soc_type))) {
+> +            qca_is_wcn6750(soc_type) ||
+> +            qca_is_wcn6855(soc_type))) {
+>                 /* Get QCA version information */
+>                 ret = qca_read_soc_version(hdev, &ver, soc_type);
+>                 if (ret)
+> @@ -1883,6 +1892,20 @@ static const struct qca_device_data qca_soc_data_wcn6750 = {
+>         .capabilities = QCA_CAP_WIDEBAND_SPEECH | QCA_CAP_VALID_LE_STATES,
+>  };
+>
+> +static const struct qca_device_data qca_soc_data_wcn6855 = {
+> +       .soc_type = QCA_WCN6855,
+> +       .vregs = (struct qca_vreg []) {
+> +               { "vddio", 5000 },
+> +               { "vddbtcxmx", 126000 },
+> +               { "vddrfacmn", 12500 },
+> +               { "vddrfa0p8", 102000 },
+> +               { "vddrfa1p7", 302000 },
+> +               { "vddrfa1p2", 257000 },
+> +       },
+> +       .num_vregs = 6,
+> +       .capabilities = QCA_CAP_WIDEBAND_SPEECH | QCA_CAP_VALID_LE_STATES,
 
->> drivers/hv/vmbus_drv.c:2283:1: error: non-void function does not return a value [-Werror,-Wreturn-type]
-   }
-   ^
-   1 error generated.
+Since it appears there is already a struct like this for each soc type
+we could perhaps just extend with the data needed instead of checking
+the soc_type over and over again.
 
+> +};
+> +
+>  static void qca_power_shutdown(struct hci_uart *hu)
+>  {
+>         struct qca_serdev *qcadev;
+> @@ -2047,7 +2070,8 @@ static int qca_serdev_probe(struct serdev_device *serdev)
+>
+>         if (data &&
+>             (qca_is_wcn399x(data->soc_type) ||
+> -           qca_is_wcn6750(data->soc_type))) {
+> +           qca_is_wcn6750(data->soc_type) ||
+> +           qca_is_wcn6855(data->soc_type))) {
+>                 qcadev->btsoc_type = data->soc_type;
+>                 qcadev->bt_power = devm_kzalloc(&serdev->dev,
+>                                                 sizeof(struct qca_power),
+> @@ -2067,14 +2091,18 @@ static int qca_serdev_probe(struct serdev_device *serdev)
+>
+>                 qcadev->bt_en = devm_gpiod_get_optional(&serdev->dev, "enable",
+>                                                GPIOD_OUT_LOW);
+> -               if (IS_ERR_OR_NULL(qcadev->bt_en) && data->soc_type == QCA_WCN6750) {
+> +               if (IS_ERR_OR_NULL(qcadev->bt_en)
+> +                   && (data->soc_type == QCA_WCN6750 ||
+> +                       data->soc_type == QCA_WCN6855)) {
+>                         dev_err(&serdev->dev, "failed to acquire BT_EN gpio\n");
+>                         power_ctrl_enabled = false;
+>                 }
+>
+>                 qcadev->sw_ctrl = devm_gpiod_get_optional(&serdev->dev, "swctrl",
+>                                                GPIOD_IN);
+> -               if (IS_ERR_OR_NULL(qcadev->sw_ctrl) && data->soc_type == QCA_WCN6750)
+> +               if (IS_ERR_OR_NULL(qcadev->sw_ctrl)
+> +                   && (data->soc_type == QCA_WCN6750 ||
+> +                       data->soc_type == QCA_WCN6855))
+>                         dev_warn(&serdev->dev, "failed to acquire SW_CTRL gpio\n");
+>
+>                 qcadev->susclk = devm_clk_get_optional(&serdev->dev, NULL);
+> @@ -2150,7 +2178,8 @@ static void qca_serdev_remove(struct serdev_device *serdev)
+>         struct qca_power *power = qcadev->bt_power;
+>
+>         if ((qca_is_wcn399x(qcadev->btsoc_type) ||
+> -            qca_is_wcn6750(qcadev->btsoc_type)) &&
+> +            qca_is_wcn6750(qcadev->btsoc_type) ||
+> +            qca_is_wcn6855(qcadev->btsoc_type)) &&
+>              power->vregs_on)
+>                 qca_power_shutdown(&qcadev->serdev_hu);
+>         else if (qcadev->susclk)
+> @@ -2335,6 +2364,7 @@ static const struct of_device_id qca_bluetooth_of_match[] = {
+>         { .compatible = "qcom,wcn3991-bt", .data = &qca_soc_data_wcn3991},
+>         { .compatible = "qcom,wcn3998-bt", .data = &qca_soc_data_wcn3998},
+>         { .compatible = "qcom,wcn6750-bt", .data = &qca_soc_data_wcn6750},
+> +       { .compatible = "qcom,wcn6855-bt", .data = &qca_soc_data_wcn6855},
+>         { /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, qca_bluetooth_of_match);
+> --
+> 2.39.0
+>
 
-vim +2283 drivers/hv/vmbus_drv.c
-
-b0069f43fc6bc9 drivers/staging/hv/vmbus_drv.c K. Y. Srinivasan 2011-04-29  2265  
-e6c8ebd27cac16 drivers/hv/vmbus_drv.c         Saurabh Sengar   2023-02-06  2266  static int vmbus_mmio_remove(void)
-7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2267  {
-7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2268  	struct resource *cur_res;
-7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2269  	struct resource *next_res;
-7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2270  
-7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2271  	if (hyperv_mmio) {
-6d146aefbaa5c5 drivers/hv/vmbus_drv.c         Jake Oshins      2016-04-05  2272  		if (fb_mmio) {
-6d146aefbaa5c5 drivers/hv/vmbus_drv.c         Jake Oshins      2016-04-05  2273  			__release_region(hyperv_mmio, fb_mmio->start,
-6d146aefbaa5c5 drivers/hv/vmbus_drv.c         Jake Oshins      2016-04-05  2274  					 resource_size(fb_mmio));
-6d146aefbaa5c5 drivers/hv/vmbus_drv.c         Jake Oshins      2016-04-05  2275  			fb_mmio = NULL;
-6d146aefbaa5c5 drivers/hv/vmbus_drv.c         Jake Oshins      2016-04-05  2276  		}
-6d146aefbaa5c5 drivers/hv/vmbus_drv.c         Jake Oshins      2016-04-05  2277  
-7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2278  		for (cur_res = hyperv_mmio; cur_res; cur_res = next_res) {
-7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2279  			next_res = cur_res->sibling;
-7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2280  			kfree(cur_res);
-7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2281  		}
-7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2282  	}
-7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05 @2283  }
-7f163a6fd957a8 drivers/hv/vmbus_drv.c         Jake Oshins      2015-08-05  2284  
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Luiz Augusto von Dentz
