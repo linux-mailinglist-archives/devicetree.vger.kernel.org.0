@@ -2,97 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A804468D44A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:32:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6306668D46F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:37:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231347AbjBGKcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 05:32:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59274 "EHLO
+        id S231645AbjBGKh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 05:37:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231218AbjBGKcx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:32:53 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 154E037F15
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 02:32:21 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id mc11so41920344ejb.10
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 02:32:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8BZxDuCycAd1fCc9k9fhvujofozc+ta9issSCRUI9Nk=;
-        b=R2VkFDKf+iPdD2a3k8s04obMG9YVHq4XpfTfoVL+MRo5+b+33XFGdLi5IKztv2eqg0
-         I/kLxjmxwdFpt8Nnoum2CKtVvYNkGnkKrbdZW3nZB0c4pS5ECCVhzaZmSeRx9aCgqQ2V
-         P4IVgkPiF3SX9eg4i3w74Tz62CYpOfxFWgzVt7+JmMbo2jWgs1AWW5gWFFafboSL8l3D
-         CL51gQMiwKQZNL8FmjqIPQws09xuHoPWj6u4mS8yWWRinAtDLyPAl6XYMaifeSRQJGZs
-         MzvysHbzoR4vNsD1gBHZF79MkZbIeI9pZndp1VyL53ycU5Sv/bWV5O4I13peCdrJU67R
-         owig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8BZxDuCycAd1fCc9k9fhvujofozc+ta9issSCRUI9Nk=;
-        b=fS3krEJml7G1HQq4Ohlaig0E2AecU7A94TKSnzWISFumWWNSj+tktrlkmdnw8RCYaf
-         IMFiT1BvZWXv46+/UIXE40OhlGqXuybGR1MFPFJ/FYTfQpmBnszYq+gPBJR8YNU+Z3Nn
-         UYdBDQ+z9zyF6PkmBD+1kOWs8xOT7i0wURkj0eeO8AylZrVZR7entXQost1AD6uGQKKc
-         QRGCGO7fA9fW1I+fxChOyB/q+LY46v1a7ryM3ggqPzzhOyEdqd6X2v7UEXKNX/zENQKX
-         7Qx9WpN/ZkTEFJ1GWP86ejSuxFo3iH5F3pA6rUQOIc0gKBcht/0sEJVRruP6ACXvn3Om
-         eE8g==
-X-Gm-Message-State: AO0yUKU89AEeMWwGJ7UjUT0YvPR7KTkfHH3LNq2GgRtOaiQ//3JMDb7y
-        h9kFBa/eYm1cyjhHZRRylu1Z7Q==
-X-Google-Smtp-Source: AK7set+zqELopfv5DfjJbwt7pGlepRUBW5GRyGFrz1XjTSvVxUt1b5ryX1CAAkT2EMi2kjV6BowxMw==
-X-Received: by 2002:a17:906:228b:b0:888:a06f:104b with SMTP id p11-20020a170906228b00b00888a06f104bmr3127945eja.36.1675765930386;
-        Tue, 07 Feb 2023 02:32:10 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id v9-20020a1709064e8900b0088e7fe75736sm6687491eju.1.2023.02.07.02.32.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 02:32:10 -0800 (PST)
-Message-ID: <a188a52e-6327-f0ea-a54e-a23b88bca82f@linaro.org>
-Date:   Tue, 7 Feb 2023 12:32:09 +0200
+        with ESMTP id S231674AbjBGKhP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:37:15 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4218F4EFD;
+        Tue,  7 Feb 2023 02:36:51 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 317ARnIE009568;
+        Tue, 7 Feb 2023 10:36:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=XYWGTMx8nkY55fjz80XdD7trT0iRpLykxSOelem5Nkw=;
+ b=E/ow4Q+RLHhQWJqQxOigljLOgSZ4QffWnUxs4FQiFaK8oGJo68A3CY317g9wc5AL72YI
+ +tt8bTyTLaGTdhI7nhNvCGo795wsIy8tPKf6pkVfSBr5JpLQDM+t8uVCuMAZMVsxHQGD
+ 2C6GCENQUygPoWGuj7oZFGNZKAdES2Krgp2KUO/BLX/qzrUV9VMm/iR4vMAuk8OmcRFp
+ nytTD9LpNHJNV3riVHeShVDUB/S635yqFir4hs+v4nVHFSYrJPSA31ipVdSbl77Bukbx
+ U3P4kZK8//+gZlAR/elp8LvHXzubd5yOEMkWBsovbazErGL6UIiUzz5iCAW9k6TlZNlW Aw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nkmwqg0hj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 07 Feb 2023 10:36:44 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 317Aaia3012321
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 7 Feb 2023 10:36:44 GMT
+Received: from youghand-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 7 Feb 2023 02:36:39 -0800
+From:   Youghandhar Chintala <quic_youghand@quicinc.com>
+To:     <kvalo@kernel.org>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Youghandhar Chintala <quic_youghand@quicinc.com>
+Subject: [PATCH v3 0/2] dt: bindings: net: ath11k: add dt entry for XO calibration support
+Date:   Tue, 7 Feb 2023 16:06:05 +0530
+Message-ID: <20230207103607.12213-1-quic_youghand@quicinc.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] dt-bindings: dma: qcom,bam-dma: add optional memory
- interconnect properties
-Content-Language: en-GB
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230207-topic-sm8550-upstream-bam-dma-bindings-fix-v1-1-57dba71e8727@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230207-topic-sm8550-upstream-bam-dma-bindings-fix-v1-1-57dba71e8727@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: tzH8HSU3lxFs2OnRu3Ma8DxIwWdNdJDq
+X-Proofpoint-GUID: tzH8HSU3lxFs2OnRu3Ma8DxIwWdNdJDq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-07_02,2023-02-06_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 bulkscore=0 mlxscore=0 spamscore=0 adultscore=0
+ mlxlogscore=999 impostorscore=0 malwarescore=0 phishscore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302070095
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 12:03, Neil Armstrong wrote:
-> Recents SoCs like the SM8450 or SM8550 requires memory interconnect
-> in order to have functional DMA.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->   Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 6 ++++++
->   1 file changed, 6 insertions(+)
+Add dt binding to get XO calibration data support for Wi-Fi RF clock.
 
-I suspect this will not work without a change for a driver.
+Retrieve the XO trim offset via system firmware (e.g., device tree),
+especially in the case where the device doesn't have a useful EEPROM
+on which to store the calibrated XO offset.
+Calibrated XO offset is sent to firmware, which compensate the RF clock
+drift by programing the XO trim register.
+
+Changes from v2:
+ - Added proper commit text
+
+Changes from v1:
+ - Sending the series to right list
+
+Youghandhar Chintala (2):
+  dt: bindings: net: ath11k: add dt entry for XO calibration support
+  wifi: ath11k: PMIC XO cal data support
+
+ .../bindings/net/wireless/qcom,ath11k.yaml    |  4 ++++
+ drivers/net/wireless/ath/ath11k/ahb.c         |  8 +++++++
+ drivers/net/wireless/ath/ath11k/core.h        |  3 +++
+ drivers/net/wireless/ath/ath11k/qmi.c         | 24 +++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/qmi.h         |  4 +++-
+ 5 files changed, 42 insertions(+), 1 deletion(-)
 
 -- 
-With best wishes
-Dmitry
+2.38.0
 
